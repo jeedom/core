@@ -121,7 +121,7 @@
         "Cron persistance du cache": "Cron persistence of cache",
         "Configuration historique": "History configuration",
         "Période de calcul pour min, max, moyenne (en heure)": "Calculation period for min, max, average (hours)",
-        "Période de calcul pour la tendance (en heure)": " Calculation period for the trend (hours)",
+        "Période de calcul pour la tendance (en heure)": "Calculation period for the trend (hours)",
         "Délai avant archivage (heure)": "Delay before archiving (hours)",
         "Archiver par paquet de (heure)": "Archive by batch of (hours)",
         "Seuil de calcul de tendance": "Threshold of trend calculation",
@@ -154,11 +154,11 @@
         "Enregistrer": "Save",
         "Mise à jour :": "Last update",
         "Mettre à jour": "Update",
-        "Faire une sauvegarde avant la mise à jour": " Backup before updating",
+        "Faire une sauvegarde avant la mise à jour": "Backup before updating",
         "Branche": "Branch",
         "Dernière version": "Last version",
         "Informations :": "Information:",
-        "Clef API": "Clef API",
+        "Clef API": "API key",
         "Rattrapage maximum autorisé (min, -1 pour infini)": "Maximum number of putting right (min, -1 for infinite)",
         "Dernière date enregistrée": "Last saved date",
         "Réinitialiser": "Reset",
@@ -212,7 +212,7 @@
     "core\/php\/jeeScenario.php": {
         " avec le PID : ": " with PID : ",
         "Impossible de lancer le scénario car déjà en cours": "Enable to launch scenario because it is already launched",
-        "Scenario  : ": "Scenario  : ",
+        "Scenario  : ": "Scenario : ",
         "Erreur : ": "Error : ",
         "Impossible de lancer le scénario car désactivé : ": "Impossible to run this scenario because it’s disabled: "
     },
@@ -268,7 +268,7 @@
         ". Retard de : ": ". Delay of : ",
         ". Rattrapage en cours...": ". Putting right...",
         "Scenario lance automatiquement sur programmation": "Scenario run itself automatically on programming", 
-        "Scenario lance automatiquement sur evenement venant de : ": " Scenario run itself automatically with an event from : ", 
+        "Scenario lance automatiquement sur evenement venant de : ": "Scenario run itself automatically with an event from : ", 
         "Début exécution du scénario : ": "Start running scenario: "
     },
     "desktop\/php\/history.php": {
