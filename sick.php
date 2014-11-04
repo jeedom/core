@@ -16,9 +16,9 @@ echo "\n**************************************************\n";
 echo "*                 VARIABLES                      *";
 echo "\n**************************************************\n";
 $install_dir = dirname(__FILE__);
-$user = get_current_user();
+$processUser  =  posix_getpwuid(posix_geteuid());
 echo "Install dir : " . $install_dir . "\n";
-echo "User : " . $user . "\n";
+echo "User : " . $processUser['name'] . "\n";
 
 
 echo "\n**************************************************\n";
@@ -44,7 +44,7 @@ if (!file_exists($install_dir . '/tmp')) {
 }
 if (!is_writable($install_dir . '/tmp')) {
     echo "not writable\n";
-    echo "Do : chown  -R " . $user . ' ' . $install_dir . "/tmp\n";
+    echo "Do : chown  -R " . $processUser['name'] . ' ' . $install_dir . "/tmp\n";
     die();
 }
 echo "OK\n";
@@ -59,7 +59,7 @@ if (!file_exists($install_dir . '/log')) {
 }
 if (!is_writable($install_dir . '/log')) {
     echo "not writable\n";
-    echo "Do : chown  -R " . $user . ' ' . $install_dir . "/log\n";
+    echo "Do : chown  -R " . $processUser['name'] . ' ' . $install_dir . "/log\n";
     die();
 }
 echo "OK\n";
