@@ -277,11 +277,36 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
                     $eqLogic = new $typeEqLogic();
                     $eqLogic->setEqType_name($params['eqType_name']);
                 }
-                if (method_exists($eqLogic, 'preAjax')) {
-                    $eqLogic->preAjax();
-                }
                 utils::a2o($eqLogic, jeedom::fromHumanReadable($params));
                 $eqLogic->save();
+                $dbList = $typeCmd::byEqLogicId($eqLogic->getId());
+                $eqLogic->save();
+                $enableList = array();
+                if (isset($params['cmd'])) {
+                    $cmd_order = 0;
+                    foreach ($params['cmd'] as $cmd_info) {
+                        $cmd = null;
+                        if (isset($cmd_info['id'])) {
+                            $cmd = $typeCmd::byId($cmd_info['id']);
+                        }
+                        if (!is_object($cmd)) {
+                            $cmd = new $typeCmd();
+                        }
+                        $cmd->setEqLogic_id($eqLogic->getId());
+                        $cmd->setOrder($cmd_order);
+                        utils::a2o($cmd, jeedom::fromHumanReadable($cmd_info));
+                        $cmd->save();
+                        $cmd_order++;
+                        $enableList[$cmd->getId()] = true;
+                    }
+
+                    //suppression des entrées non innexistante.
+                    foreach ($dbList as $dbObject) {
+                        if (!isset($enableList[$dbObject->getId()]) && !$dbObject->dontRemoveCmd()) {
+                            $dbObject->remove();
+                        }
+                    }
+                }
                 $jsonrpc->makeSuccess(utils::o2a($eqLogic));
             }
 
