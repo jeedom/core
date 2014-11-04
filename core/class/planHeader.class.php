@@ -67,6 +67,15 @@ class planHeader {
         }
     }
 
+    public function preInsert() {
+        $this->setConfiguration('desktopSizeX', 500);
+        $this->setConfiguration('desktopSizeY', 500);
+        $this->setConfiguration('tabletSizeX', 500);
+        $this->setConfiguration('tabletSizeY', 500);
+        $this->setConfiguration('mobileSizeX', 500);
+        $this->setConfiguration('mobileSizeY', 500);
+    }
+
     public function save() {
         DB::save($this);
     }
