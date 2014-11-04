@@ -162,6 +162,30 @@ foreach (message::all() as $message) {
     echo "\n";
 }
 
+echo "\n**************************************************\n";
+echo "*                 PLUGIN                         *";
+echo "\n**************************************************\n";
+echo "ID | NAME | STATE\n";
+foreach (plugin::listPlugin() as $plugin) {
+    echo $plugin->getId();
+    echo " | ";
+    echo $plugin->getName();
+    echo " | ";
+    echo $plugin->isActive();
+    echo "\n";
+}
+
+foreach (plugin::listPlugin() as $plugin) {
+    if (method_exists($plugin->getId(), 'sick')) {
+        echo "\n**************************************************\n";
+        echo "*          SICK  " . $plugin->getId() . "         *";
+        echo "\n**************************************************\n";
+        $plugin_id = $plugin->getId();
+        $plugin_id::sick();
+    }
+}
+
+
 echo "\n==================================================\n";
-echo "|                 ALL CHECKS OK                  |";
+echo "|               ALL CHECKS COMPLET               |";
 echo "\n==================================================\n";
