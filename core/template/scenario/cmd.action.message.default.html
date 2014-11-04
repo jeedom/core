@@ -1,0 +1,11 @@
+<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="title" placeholder="Title" value="#title#" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block; width: 30%;"/>
+<textarea class="message expressionAttr form-control " data-l1key="options" data-l2key="message" rows="1" style="resize:vertical;display: inline-block; width: 60%;" placeholder="Message" data-cmd_id="#id#" data-uid="#uid#">#message#</textarea>
+<a class="btn btn-default btn-sm listEquipementInfo cursor" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block;"><i class="fa fa-list-alt"></i></a>
+<script>
+    $('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
+        var el = $(this);
+        jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+            el.parent().find('.expressionAttr[data-l1key=options][data-l2key=message]').atCaret('insert', result.human);
+        });
+    });
+</script>

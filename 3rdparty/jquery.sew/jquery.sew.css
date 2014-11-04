@@ -1,0 +1,33 @@
+.-sew-list-container {
+    background: white;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    min-width: 180px;
+    margin-top: 18px;
+}
+
+.-sew-list {
+    list-style: none;
+    marging: 0;
+    padding: 0;
+    max-height: 500px;
+}
+
+.-sew-list-item {
+    display: block;
+    padding: 5px 10px;
+    border-bottom: 1px solid #DDD;
+    cursor: pointer;
+}
+
+
+.-sew-list-item small {
+    color: #afafaf;
+}
+
+.-sew-list-item.selected {
+    color: white;
+    background: #4183C4;
+    text-decoration: none;
+}

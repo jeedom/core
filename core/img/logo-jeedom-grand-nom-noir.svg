@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="681.42676"
+   height="300.22281"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="logo-jeedom-sans-nom-noir.svg">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+    <inkscape:perspective
+       id="perspective2884"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.7412974"
+     inkscape:cx="340.71337"
+     inkscape:cy="150.1114"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="2057"
+     inkscape:window-height="1071"
+     inkscape:window-x="50"
+     inkscape:window-y="26"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-220.37886,-333.74656)">
+    <path
+       style="fill:#000000"
+       d="m 225.27123,630.74771 c -1.42924,-1.57929 -1.65499,-4.68935 -1.65499,-22.8 0,-14.97765 0.34296,-21.31422 1.2,-22.17126 1.64034,-1.64034 20.95966,-1.64034 22.6,0 0.77007,0.77007 1.2,4.71111 1.2,11 l 0,9.8 18.5,0 18.5,0 0,-12.5 0,-12.5 13,0 13,0 0,23.32569 c 0,23.08909 -0.0235,23.34774 -2.31445,25.5 -2.29673,2.15766 -2.62101,2.17431 -42.34501,2.17431 -37.51097,0 -40.13473,-0.1151 -41.68555,-1.82874 z m 36.49007,-55.6114 -5.14506,-5.44014 0,-46.55986 0,-46.55986 7.25,-0.002 7.25,-0.002 14.83987,-19.49804 14.83988,-19.49796 26.67672,0 26.67672,0 22.23341,28.42498 22.2334,28.42498 0,38.78717 0,38.78717 -4.20821,4.28785 -4.20821,4.28785 -38.79179,0 -38.79179,0 0,-36.5 0,-36.5 -14,0 -14,0 0,36.5 0,36.5 -8.85494,0 -8.85495,0 -5.14505,-5.44014 z m 51.85494,-91.05986 0,-12.5 -14.5,0 -14.5,0 0,12.5 0,12.5 14.5,0 14.5,0 0,-12.5 z m 62.41464,-25.75 c -26.23019,-33.6875 -47.8848,-61.46828 -48.12134,-61.73506 -0.23655,-0.26678 -1.18681,0.48444 -2.11169,1.66939 -0.92489,1.18495 -14.28161,18.37214 -29.68161,38.19376 l -28,36.0393 -23.86869,0.0413 -23.86869,0.0413 2.83161,-3.75 c 16.97706,-22.48333 103.81389,-134.82104 104.38521,-135.03943 0.99559,-0.38058 0.20296,-1.40847 130.3498,169.03943 l 12.78959,16.75 -23.50646,0 -23.50646,0 -47.69127,-61.25 z m 35.80842,-22.93002 -20.22306,-26.18003 0,-17.31997 0,-17.31998 20.5,0 20.5,0 0,43.5 c 0,23.925 -0.12463,43.5 -0.27694,43.5 -0.15232,0 -9.37732,-11.78101 -20.5,-26.18002 z m 21.77694,-61.75259 c 0,-0.51294 0.93105,-1.22812 2.069,-1.58929 1.13794,-0.36117 2.93626,-2.07899 3.99626,-3.81739 3.6029,-5.90875 2.05904,-10.91912 -4.67636,-15.17653 -5.60946,-3.54571 -4.91736,-4.56996 0.81714,-1.20932 5.71408,3.34867 7.76452,5.76889 8.44616,9.96932 0.50556,3.11539 0.0878,3.99205 -3.87133,8.12403 -4.19287,4.37592 -6.78087,5.78776 -6.78087,3.69918 z m -6.19321,-30.20435 c 0.35362,-2.40931 0.66175,-2.77719 1.32841,-1.58594 0.47739,0.85306 0.59413,2.26469 0.25941,3.13696 -1.0475,2.72972 -2.06956,1.73134 -1.58782,-1.55102 z"
+       id="path2892" />
+    <text
+       xml:space="preserve"
+       style="font-size:129.44966125px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial Black;-inkscape-font-specification:'Arial Black,'"
+       x="432.60614"
+       y="605.54309"
+       id="text2886"
+       transform="scale(0.95765397,1.0442185)"><tspan
+         sodipodi:role="line"
+         id="tspan2888"
+         x="432.60614"
+         y="605.54309">EEDOM</tspan></text>
+  </g>
+</svg>

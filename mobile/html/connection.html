@@ -1,0 +1,43 @@
+<div style="padding:10px 20px;">
+    <center>
+        <img src="core/img/logo-jeedom-petit-nom-couleur-128x128.png"/>
+    </center><br/>
+    <input type="text" id="in_login_username" value="" placeholder="{{Nom d'utilisateur}}" data-theme="b" />
+    <input type="password" id="in_login_password" value="" placeholder="{{Mot de passe}}" data-theme="b" />
+    <form>
+        <input type="checkbox" id="cb_storeConnection" data-mini="true">
+        <label for="cb_storeConnection">{{Enregistrer cet appareil}}</label>
+    </form>
+    <a id="bt_login_validate" href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-icon-left ui-icon-check">{{Connexion}}</a>
+</div>
+<script>
+    $('#bt_login_validate').on('click', function() {
+        $.ajax({// fonction permettant de faire de l'ajax
+            type: "POST", // methode de transmission des données au fichier php
+            url: "core/ajax/user.ajax.php", // url du fichier php
+            data: {
+                action: "login",
+                username: $('#in_login_username').val(),
+                password: $('#in_login_password').val(),
+                storeConnection: $('#cb_storeConnection').value()
+            },
+            dataType: 'json',
+            error: function(request, status, error) {
+                handleAjaxError(request, status, error, $('#div_alert'));
+            },
+            success: function(data) { // si l'appel a bien fonctionné
+                if (data.state != 'ok') {
+                    $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                    return;
+                }
+                if ($('#cb_storeConnection').value() == 1) {
+                    localStorage.setItem("deviceKey", data.result.deviceKey);
+                }
+                initApplication();
+            }
+        });
+    });
+</script>
+
+
+

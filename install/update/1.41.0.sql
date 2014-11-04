@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS `jeedom`.`cache_persist` (
+  `key` VARCHAR(127) NOT NULL,
+  `datetime` DATETIME NULL DEFAULT NULL,
+  `lifetime` VARCHAR(127) NOT NULL,
+  `value` VARCHAR(5119) NULL DEFAULT NULL,
+  `options` VARCHAR(5119) NULL DEFAULT NULL,
+  PRIMARY KEY (`key`),
+  UNIQUE INDEX `key_UNIQUE` (`key` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;

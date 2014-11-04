@@ -1,0 +1,11 @@
+<div class="cmd" data-type="action" data-subtype="slider" data-cmd_id="#id#">
+    <div class="slider full-width-slider" style="width: 96%;text-align: right;min-width : 100px;">
+        <input type="range" min="#minValue#" max="#maxValue#" data-theme="a" value="#state#"/>
+    </div>
+
+    <script>
+        $('.cmd[data-cmd_id=#id#] .slider').on("slidestop", function(event, ui) {
+            jeedom.cmd.execute({id: '#id#', value: {slider: $(this).find('input').value()}});
+        });
+    </script>
+</div>

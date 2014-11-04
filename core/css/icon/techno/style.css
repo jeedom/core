@@ -1,0 +1,157 @@
+@font-face {
+	font-family: 'techno';
+	src:url('fonts/techno.eot?-hn98ry');
+	src:url('fonts/techno.eot?#iefix-hn98ry') format('embedded-opentype'),
+		url('fonts/techno.woff?-hn98ry') format('woff'),
+		url('fonts/techno.ttf?-hn98ry') format('truetype'),
+		url('fonts/techno.svg?-hn98ry#techno') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="techno-"], [class*=" techno-"] {
+	font-family: 'techno';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.techno-courbes:before {
+	content: "\e626";
+}
+.techno-courbes2:before {
+	content: "\e627";
+}
+.techno-courbes3:before {
+	content: "\e628";
+}
+.techno-courbes4:before {
+	content: "\e629";
+}
+.techno-fleches:before {
+	content: "\e62a";
+}
+.techno-tv:before {
+	content: "\e62b";
+}
+.techno-freebox:before {
+	content: "\e622";
+}
+.techno-phone1:before {
+	content: "\e623";
+}
+.techno-phone2:before {
+	content: "\e624";
+}
+.techno-phone3:before {
+	content: "\e625";
+}
+.techno-ventilateur:before {
+	content: "\e61c";
+}
+.techno-prise-eco2:before {
+	content: "\e61e";
+}
+.techno-prise-eco:before {
+	content: "\e61f";
+}
+.techno-perceuse:before {
+	content: "\e620";
+}
+.techno-pc:before {
+	content: "\e621";
+}
+.techno-ventilation:before {
+	content: "\e610";
+}
+.techno-tv6:before {
+	content: "\e611";
+}
+.techno-television10:before {
+	content: "\e612";
+}
+.techno-television4:before {
+	content: "\e613";
+}
+.techno-refrigerator3:before {
+	content: "\e614";
+}
+.techno-phone69:before {
+	content: "\e615";
+}
+.techno-phone16:before {
+	content: "\e616";
+}
+.techno-oven4:before {
+	content: "\e617";
+}
+.techno-oven1:before {
+	content: "\e618";
+}
+.techno-listening3:before {
+	content: "\e619";
+}
+.techno-incoming2:before {
+	content: "\e61a";
+}
+.techno-home115:before {
+	content: "\e61b";
+}
+.techno-cancel8:before {
+	content: "\e61d";
+}
+.techno-wind15:before {
+	content: "\e600";
+}
+.techno-robot30:before {
+	content: "\e601";
+}
+.techno-refrigerator4:before {
+	content: "\e602";
+}
+.techno-plug2:before {
+	content: "\e603";
+}
+.techno-phone25:before {
+	content: "\e604";
+}
+.techno-memory:before {
+	content: "\e605";
+}
+.techno-low2:before {
+	content: "\e606";
+}
+.techno-laundry1:before {
+	content: "\e607";
+}
+.techno-heating3:before {
+	content: "\e608";
+}
+.techno-food27:before {
+	content: "\e609";
+}
+.techno-fingerprint41:before {
+	content: "\e60a";
+}
+.techno-electric9:before {
+	content: "\e60b";
+}
+.techno-desktop2:before {
+	content: "\e60c";
+}
+.techno-charging:before {
+	content: "\e60d";
+}
+.techno-cable1:before {
+	content: "\e60e";
+}
+.techno-bluetooth3:before {
+	content: "\e60f";
+}

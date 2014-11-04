@@ -1,0 +1,12 @@
+<input value="#condition#" class="expressionAttr form-control input-xs autoCompleteCondition" data-l1key="options" data-l2key="condition" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block;width: 70%;"/>
+<input value="#timeout#" class="expressionAttr form-control input-xs" data-l1key="options" data-l2key="timeout" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block;width: 20%;"/>
+<a class="btn btn-default form-control listEquipementInfo cursor input-xs" data-cmd_id="#id#" style="display: inline-block; width : 30px;"><i class="fa fa-list-alt"></i></a>
+<script>
+    $('.listEquipementInfo').off();
+    $('.listEquipementInfo').on('click', function () {
+        var el = $(this);
+        jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
+            el.parent().find('.expressionAttr[data-l1key=options][data-l2key=condition]').atCaret('insert', result.human);
+        });
+    });
+</script>

@@ -1,0 +1,2 @@
+ALTER TABLE `eqLogic` 
+ADD COLUMN `timeout` INT(11) NULL DEFAULT NULL AFTER `status`;

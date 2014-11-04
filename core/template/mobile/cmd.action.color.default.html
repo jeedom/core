@@ -1,0 +1,16 @@
+<div class="cmd" data-type="action" data-subtype="color" data-cmd_id="#id#" style="width : 149px;">
+    <input class="action_colorpicker_change cursor" type="color" data-clear-btn="false">
+    <a data-mini="true" class="action_colorpicker_off ui-btn ui-btn-b ui-mini" style="margin: 8px 8px;">Off</a>
+
+    <script>
+        $('.cmd[data-cmd_id=#id#] .action_colorpicker_change').value(('#state#' != '') ? '#state#' : '#000000');
+        $('.cmd[data-cmd_id=#id#] .action_colorpicker_off').on('click', function() {
+            jeedom.cmd.execute({id: '#id#', value: {color: '#000000'}});
+            $('.cmd[data-cmd_id=#id#] .action_colorpicker_change').value('#000000');
+        });
+        $('.cmd[data-cmd_id=#id#] .action_colorpicker_change').on('change', function() {
+            jeedom.cmd.execute({id: '#id#', value: {color: $(this).value()}});
+        });
+    </script>
+
+</div>

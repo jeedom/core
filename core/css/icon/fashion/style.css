@@ -1,0 +1,70 @@
+@font-face {
+	font-family: 'fashion';
+	src:url('fonts/fashion.eot?poztq0');
+	src:url('fonts/fashion.eot?#iefixpoztq0') format('embedded-opentype'),
+		url('fonts/fashion.woff?poztq0') format('woff'),
+		url('fonts/fashion.ttf?poztq0') format('truetype'),
+		url('fonts/fashion.svg?poztq0#fashion') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="fashion-"], [class*=" fashion-"] {
+	font-family: 'fashion';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.fashion-tshirt17:before {
+	content: "\e600";
+}
+.fashion-stylish2:before {
+	content: "\e601";
+}
+.fashion-sandals2:before {
+	content: "\e602";
+}
+.fashion-perfume1:before {
+	content: "\e603";
+}
+.fashion-mannequin1:before {
+	content: "\e604";
+}
+.fashion-king3:before {
+	content: "\e605";
+}
+.fashion-hanger2:before {
+	content: "\e606";
+}
+.fashion-female94:before {
+	content: "\e607";
+}
+.fashion-excentric:before {
+	content: "\e608";
+}
+.fashion-dress2:before {
+	content: "\e609";
+}
+.fashion-diamond10:before {
+	content: "\e60a";
+}
+.fashion-black177:before {
+	content: "\e60b";
+}
+.fashion-black170:before {
+	content: "\e60c";
+}
+.fashion-biretta:before {
+	content: "\e60d";
+}
+.fashion-bikini4:before {
+	content: "\e60e";
+}

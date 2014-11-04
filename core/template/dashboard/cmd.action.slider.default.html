@@ -1,0 +1,15 @@
+<span class="cmd  cmd-widget" data-type="action" data-subtype="slider" data-cmd_id="#id#" >
+    <div class="slider" style="margin : 5px 10px 8px 10px;width: 80px;" value="#state#"></div>
+
+    <script>
+        $(".cmd[data-cmd_id=#id#] .slider").slider({
+            range: "min",
+            min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
+            max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
+            value: ('#state#' == '') ? 0 : parseInt('#state#'),
+            change: function(event, ui) {
+                jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}});
+            }
+        });
+    </script>
+</span>

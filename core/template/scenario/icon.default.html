@@ -1,0 +1,13 @@
+<div style="height: 20px;">
+<span class="expressionAttr" data-l1key="options" data-l2key="icon" data-cmd_id="#id#" style="width: 20px;font-size: 1.3em;margin-left : 10px;position: relative; top: 4px;">#icon#</span>
+<a class="btn btn-default bt_chooseIcon cursor btn-sm" data-cmd_id="#id#" style="display : inline-block;margin-left : 60px;"><i class="fa fa-flag"></i> {{Rechercher icône}}</a>
+<script>
+    $('.bt_chooseIcon').off();
+    $('.bt_chooseIcon').on('click', function() {
+        var el = $(this);
+        chooseIcon(function(_icon) {
+            el.parent().find('.expressionAttr[data-l1key=options][data-l2key=icon]').empty().append(_icon);
+        });
+    });
+</script>
+</div>

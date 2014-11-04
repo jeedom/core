@@ -1,0 +1,70 @@
+@font-face {
+	font-family: 'animal';
+	src:url('fonts/animal.eot?ms6i7k');
+	src:url('fonts/animal.eot?#iefixms6i7k') format('embedded-opentype'),
+		url('fonts/animal.woff?ms6i7k') format('woff'),
+		url('fonts/animal.ttf?ms6i7k') format('truetype'),
+		url('fonts/animal.svg?ms6i7k#animal') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="animal-"], [class*=" animal-"] {
+	font-family: 'animal';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.animal-toucan:before {
+	content: "\e600";
+}
+.animal-spotted1:before {
+	content: "\e601";
+}
+.animal-sheep1:before {
+	content: "\e602";
+}
+.animal-rabbit:before {
+	content: "\e603";
+}
+.animal-pig4:before {
+	content: "\e604";
+}
+.animal-panda:before {
+	content: "\e605";
+}
+.animal-horse60:before {
+	content: "\e606";
+}
+.animal-gecko2:before {
+	content: "\e607";
+}
+.animal-flying1:before {
+	content: "\e608";
+}
+.animal-fish:before {
+	content: "\e609";
+}
+.animal-dog56:before {
+	content: "\e60a";
+}
+.animal-cow9:before {
+	content: "\e60b";
+}
+.animal-chicken2:before {
+	content: "\e60c";
+}
+.animal-cat3:before {
+	content: "\e60d";
+}
+.animal-animal:before {
+	content: "\e60e";
+}

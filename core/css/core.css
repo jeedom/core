@@ -1,0 +1,41 @@
+.cursor{
+    cursor : pointer;
+}
+
+.binary{
+    margin-left: 5px;
+    position: relative;
+    top: 2px;
+    width : 15px; 
+    height : 15px;
+    border-radius: 5px 5px 5px 5px;
+    display: inline-block;
+}
+
+.green{
+    background-color: #00cc00;
+}
+
+.red{
+    background-color: #cc0000;
+}
+
+.grey{
+    background-color: #666666;
+}
+
+.blue{
+    background-color: #0174DF;
+}
+
+.orange{
+    background-color: #FF8000;
+}
+
+.yellow{
+    background-color: #BFFF00;
+}
+
+.white{
+    background-color: white;
+}

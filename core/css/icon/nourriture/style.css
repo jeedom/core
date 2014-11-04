@@ -1,0 +1,76 @@
+@font-face {
+	font-family: 'nourriture';
+	src:url('fonts/nourriture.eot?s1f6ij');
+	src:url('fonts/nourriture.eot?#iefixs1f6ij') format('embedded-opentype'),
+		url('fonts/nourriture.woff?s1f6ij') format('woff'),
+		url('fonts/nourriture.ttf?s1f6ij') format('truetype'),
+		url('fonts/nourriture.svg?s1f6ij#nourriture') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="nourriture-"], [class*=" nourriture-"] {
+	font-family: 'nourriture';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.nourriture-dining8:before {
+	content: "\e610";
+}
+.nourriture-wine23:before {
+	content: "\e600";
+}
+.nourriture-soft1:before {
+	content: "\e601";
+}
+.nourriture-popcorn2:before {
+	content: "\e602";
+}
+.nourriture-plate7:before {
+	content: "\e603";
+}
+.nourriture-gingerbread:before {
+	content: "\e604";
+}
+.nourriture-cooking14:before {
+	content: "\e605";
+}
+.nourriture-coffe12:before {
+	content: "\e606";
+}
+.nourriture-cocktail7:before {
+	content: "\e607";
+}
+.nourriture-cherries:before {
+	content: "\e608";
+}
+.nourriture-chef16:before {
+	content: "\e609";
+}
+.nourriture-chef6:before {
+	content: "\e60a";
+}
+.nourriture-birthday3:before {
+	content: "\e60b";
+}
+.nourriture-beer15:before {
+	content: "\e60c";
+}
+.nourriture-barbecue1:before {
+	content: "\e60d";
+}
+.nourriture-barbecue:before {
+	content: "\e60e";
+}
+.nourriture-apron:before {
+	content: "\e60f";
+}

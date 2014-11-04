@@ -1,0 +1,193 @@
+@font-face {
+	font-family: 'maison';
+	src:url('fonts/maison.eot?50eb2s');
+	src:url('fonts/maison.eot?#iefix50eb2s') format('embedded-opentype'),
+		url('fonts/maison.woff?50eb2s') format('woff'),
+		url('fonts/maison.ttf?50eb2s') format('truetype'),
+		url('fonts/maison.svg?50eb2s#maison') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="maison-"], [class*=" maison-"] {
+	font-family: 'maison';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.maison-wc:before {
+	content: "\e633";
+}
+.maison-poubelle:before {
+	content: "\e634";
+}
+.maison-cuisiniere:before {
+	content: "\e635";
+}
+.maison-barbecue:before {
+	content: "\e636";
+}
+.maison-baignoire:before {
+	content: "\e637";
+}
+.maison-water47:before {
+	content: "\e60f";
+}
+.maison-tub1:before {
+	content: "\e610";
+}
+.maison-stairs6:before {
+	content: "\e611";
+}
+.maison-sofa5:before {
+	content: "\e612";
+}
+.maison-sofa3:before {
+	content: "\e613";
+}
+.maison-sink:before {
+	content: "\e614";
+}
+.maison-shower7:before {
+	content: "\e615";
+}
+.maison-shower6:before {
+	content: "\e616";
+}
+.maison-shower2:before {
+	content: "\e617";
+}
+.maison-queen9:before {
+	content: "\e618";
+}
+.maison-person1:before {
+	content: "\e619";
+}
+.maison-modern13:before {
+	content: "\e61a";
+}
+.maison-man337:before {
+	content: "\e61b";
+}
+.maison-man77:before {
+	content: "\e61c";
+}
+.maison-living1:before {
+	content: "\e61d";
+}
+.maison-kitchen56:before {
+	content: "\e61e";
+}
+.maison-king11:before {
+	content: "\e61f";
+}
+.maison-house109:before {
+	content: "\e620";
+}
+.maison-house100:before {
+	content: "\e621";
+}
+.maison-hotel4:before {
+	content: "\e622";
+}
+.maison-family24:before {
+	content: "\e623";
+}
+.maison-entrance:before {
+	content: "\e624";
+}
+.maison-dog25:before {
+	content: "\e625";
+}
+.maison-dining4:before {
+	content: "\e626";
+}
+.maison-dining3:before {
+	content: "\e627";
+}
+.maison-dining1:before {
+	content: "\e628";
+}
+.maison-dark48:before {
+	content: "\e629";
+}
+.maison-classic2:before {
+	content: "\e62a";
+}
+.maison-call5:before {
+	content: "\e62b";
+}
+.maison-bedroom16:before {
+	content: "\e62c";
+}
+.maison-bedroom10:before {
+	content: "\e62d";
+}
+.maison-bed2:before {
+	content: "\e62e";
+}
+.maison-bathtub3:before {
+	content: "\e62f";
+}
+.maison-bathroom22:before {
+	content: "\e630";
+}
+.maison-baby139:before {
+	content: "\e631";
+}
+.maison-ascending8:before {
+	content: "\e632";
+}
+.maison-vacuum6:before {
+	content: "\e600";
+}
+.maison-toilet7:before {
+	content: "\e601";
+}
+.maison-toilet1:before {
+	content: "\e602";
+}
+.maison-studio10:before {
+	content: "\e603";
+}
+.maison-stepped:before {
+	content: "\e604";
+}
+.maison-service:before {
+	content: "\e605";
+}
+.maison-house112:before {
+	content: "\e606";
+}
+.maison-house110:before {
+	content: "\e607";
+}
+.maison-home63:before {
+	content: "\e608";
+}
+.maison-film50:before {
+	content: "\e609";
+}
+.maison-classical:before {
+	content: "\e60a";
+}
+.maison-classic22:before {
+	content: "\e60b";
+}
+.maison-cinema1:before {
+	content: "\e60c";
+}
+.maison-building33:before {
+	content: "\e60d";
+}
+.maison-bedroom2:before {
+	content: "\e60e";
+}

@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS `jeedom`.`connection` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `ip` VARCHAR(127) NULL DEFAULT NULL,
+  `failure` INT(11) NULL DEFAULT NULL,
+  `datetime` DATETIME NULL DEFAULT NULL,
+  `username` VARCHAR(127) NULL DEFAULT NULL,
+  `status` VARCHAR(127) NULL DEFAULT NULL,
+  `options` TEXT NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ip_UNIQUE` (`ip` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
+
+ALTER TABLE `jeedom`.`connection` 
+ADD COLUMN `localisation` VARCHAR(511) NULL DEFAULT NULL AFTER `failure`;
+
+ALTER TABLE `jeedom`.`connection` 
+ADD COLUMN `informations` TEXT NULL DEFAULT NULL AFTER `options`;

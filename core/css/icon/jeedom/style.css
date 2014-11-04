@@ -1,0 +1,133 @@
+@font-face {
+	font-family: 'jeedom';
+	src:url('fonts/jeedom.eot?11rl1q');
+	src:url('fonts/jeedom.eot?#iefix11rl1q') format('embedded-opentype'),
+		url('fonts/jeedom.woff?11rl1q') format('woff'),
+		url('fonts/jeedom.ttf?11rl1q') format('truetype'),
+		url('fonts/jeedom.svg?11rl1q#jeedom') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="jeedom-"], [class*=" jeedom-"] {
+	font-family: 'jeedom';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.jeedom-pilote-off:before {
+	content: "\e620";
+}
+.jeedom-pilote-hg:before {
+	content: "\e621";
+}
+.jeedom-pilote-eco:before {
+	content: "\e622";
+}
+.jeedom-pilote-conf:before {
+	content: "\e623";
+}
+.jeedom-garage-ouvert:before {
+	content: "\e618";
+}
+.jeedom-garage-ferme:before {
+	content: "\e619";
+}
+.jeedom-thermometre-celcius:before {
+	content: "\e612";
+}
+.jeedom-surveillance1:before {
+	content: "\e613";
+}
+.jeedom-sirene:before {
+	content: "\e614";
+}
+.jeedom-prise:before {
+	content: "\e615";
+}
+.jeedom-lock-ouvert:before {
+	content: "\e616";
+}
+.jeedom-lock-ferme:before {
+	content: "\e617";
+}
+.jeedom-batterie3:before {
+	content: "\e61a";
+}
+.jeedom-batterie2:before {
+	content: "\e61b";
+}
+.jeedom-batterie1:before {
+	content: "\e61c";
+}
+.jeedom-batterie0:before {
+	content: "\e61d";
+}
+.jeedom-alerte2:before {
+	content: "\e61e";
+}
+.jeedom-alerte:before {
+	content: "\e61f";
+}
+.jeedom-mouvement:before {
+	content: "\e60a";
+}
+.jeedom-lumiere-off:before {
+	content: "\e611";
+}
+.jeedom-porte-ferme:before {
+	content: "\e607";
+}
+.jeedom-fenetre-ouverte:before {
+	content: "\e60b";
+}
+.jeedom-fenetre-ferme:before {
+	content: "\e60c";
+}
+.jeedom-feu:before {
+	content: "\e60f";
+}
+.jeedom-eau:before {
+	content: "\e610";
+}
+.jeedom-volet-ouvert:before {
+	content: "\e600";
+}
+.jeedom-volet-ferme:before {
+	content: "\e601";
+}
+.jeedom-thermometre:before {
+	content: "\e602";
+}
+.jeedom-thermo-moyen:before {
+	content: "\e603";
+}
+.jeedom-thermo-froid:before {
+	content: "\e604";
+}
+.jeedom-thermo-chaud:before {
+	content: "\e605";
+}
+.jeedom-porte-ouverte:before {
+	content: "\e606";
+}
+.jeedom-no-bell:before {
+	content: "\e608";
+}
+.jeedom-lumiere-on:before {
+	content: "\e609";
+}
+.jeedom-choc:before {
+	content: "\e60d";
+}
+.jeedom-bell:before {
+	content: "\e60e";
+}

@@ -1,0 +1,88 @@
+@font-face {
+	font-family: 'nature';
+	src:url('fonts/nature.eot?wdh7l0');
+	src:url('fonts/nature.eot?#iefixwdh7l0') format('embedded-opentype'),
+		url('fonts/nature.woff?wdh7l0') format('woff'),
+		url('fonts/nature.ttf?wdh7l0') format('truetype'),
+		url('fonts/nature.svg?wdh7l0#nature') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="nature-"], [class*=" nature-"] {
+	font-family: 'nature';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.nature-wood6:before {
+	content: "\e612";
+}
+.nature-plants:before {
+	content: "\e613";
+}
+.nature-grass:before {
+	content: "\e614";
+}
+.nature-wind:before {
+	content: "\e600";
+}
+.nature-weather1:before {
+	content: "\e601";
+}
+.nature-watering1:before {
+	content: "\e602";
+}
+.nature-water29:before {
+	content: "\e603";
+}
+.nature-tree101:before {
+	content: "\e604";
+}
+.nature-snowflake:before {
+	content: "\e605";
+}
+.nature-plant30:before {
+	content: "\e606";
+}
+.nature-plant29:before {
+	content: "\e607";
+}
+.nature-planet5:before {
+	content: "\e608";
+}
+.nature-pine7:before {
+	content: "\e609";
+}
+.nature-night2:before {
+	content: "\e60a";
+}
+.nature-leaf37:before {
+	content: "\e60b";
+}
+.nature-leaf32:before {
+	content: "\e60c";
+}
+.nature-japanese3:before {
+	content: "\e60d";
+}
+.nature-flower18:before {
+	content: "\e60e";
+}
+.nature-fire14:before {
+	content: "\e60f";
+}
+.nature-drops1:before {
+	content: "\e610";
+}
+.nature-autumn1:before {
+	content: "\e611";
+}

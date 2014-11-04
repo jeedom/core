@@ -1,0 +1,139 @@
+body{
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.alert{
+    color:#c09853;
+    background-color:#fcf8e3;
+}
+
+.alert-info{
+    color:#3a87ad;
+    background-color:#d9edf7;
+}
+
+.alert-success{
+    color:#468847;
+    background-color:#dff0d8;
+}
+
+.alert-danger{
+    color:#b94a48;
+    background-color:#f2dede;
+}
+
+.ui-btn { 
+    text-shadow:0 0 0 !important; 
+}
+
+.eqLogic-widget .ui-btn{
+    background-color: transparent !important;
+    border: 2px solid white !important;
+    color : white !important;
+    font-weight: bold !important;
+    -webkit-border-radius:3px !important;
+    -moz-border-radius:3px !important;
+    border-radius:3px !important;
+}
+
+.eqLogic-widget{
+    display: inline-block;
+    background-color: #19bc9c;
+    color : white;
+    vertical-align: top;
+    padding : 3px;
+    margin : 3px;
+    text-shadow: initial !important;
+}
+
+.view-link-widget,.plan-link-widget{
+    padding: 3px;
+    margin: 3px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    background-color: #9b59b6;
+}
+
+.scenario-widget{
+    display: inline-block;
+    background-color: #7f8c8d;
+    color : white;
+    vertical-align: top;
+    padding : 3px;
+    margin : 3px;
+    text-shadow: initial;
+}
+
+.cursor{
+    cursor : pointer;
+}
+
+.full-width-slider input {
+    display: none;
+}
+.full-width-slider .ui-slider-track {
+    margin-left: 15px;
+}
+
+legend{ 
+    color: #3eb249;
+    background-color: transparent;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.2em;
+    padding-bottom: .2em;
+    margin: 0 0 .7375em;
+    width : 100%;
+}
+
+.break{
+    position:absolute;
+    background:#222;
+    width:20px;
+    height:3px;  
+}
+
+.dot1{
+    -webkit-animation: loading 6s infinite;
+    -moz-animation: loading 6s infinite;
+    -ms-animation: loading 6s infinite;
+    -o-animation: loading 6s infinite;
+    animation: loading 6s infinite;
+}
+.dot2{
+    -webkit-animation: loading 6s 0.5s infinite;
+    -moz-animation: loading 6s 0.5s infinite;
+    -ms-animation: loading 6s 0.5s infinite;
+    -o-animation: loading 6s 0.5s infinite;
+    animation: loading 6s 0.5s infinite;
+}
+.dot3{
+    -webkit-animation: loading 6s 1s infinite;
+    -moz-animation: loading 6s 1s infinite;
+    -ms-animation: loading 6s 1s infinite;
+    -o-animation: loading 6s 1s infinite;
+    animation: loading 6s 1s infinite;
+}
+
+@keyframes "loading" {
+    from { left: 0; }
+     to { left: 100%; }
+}
+@-moz-keyframes loading {
+    from { left: 0; }
+    to { left: 100%; }
+}
+@-webkit-keyframes "loading" {
+    from { left: 0; }
+    to { left: 100%; }
+}
+@-ms-keyframes "loading" {
+    from { left: 0; }
+    to { left: 100%; }
+}
+@-o-keyframes "loading" {
+    from { left: 0; }
+    to { left: 100%; }
