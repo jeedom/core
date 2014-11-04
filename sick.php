@@ -16,7 +16,7 @@ echo "\n**************************************************\n";
 echo "*                 VARIABLES                      *";
 echo "\n**************************************************\n";
 $install_dir = dirname(__FILE__);
-$processUser  =  posix_getpwuid(posix_geteuid());
+$processUser = posix_getpwuid(posix_geteuid());
 echo "Install dir : " . $install_dir . "\n";
 echo "User : " . $processUser['name'] . "\n";
 
@@ -146,6 +146,21 @@ if (jeedom::isDateOk()) {
 }
 $cache = cache::byKey('jeedom::lastDate');
 echo " (" . $cache->getValue() . ")\n";
+
+echo "\n**************************************************\n";
+echo "*                 MESSAGE                        *";
+echo "\n**************************************************\n";
+echo "DATE | PLUGIN | LOGICALID | MESSAGE\n";
+foreach (message::all() as $message) {
+    echo $message->getDate();
+    echo " | ";
+    echo $message->getPlugin();
+    echo " | ";
+    echo $message->getLogicalId();
+    echo " | ";
+    echo $message->getMessage();
+    echo "\n";
+}
 
 echo "\n==================================================\n";
 echo "|                 ALL CHECKS OK                  |";
