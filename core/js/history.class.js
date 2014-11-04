@@ -83,6 +83,8 @@ jeedom.history.drawChart = function (_params) {
                 } else {
                     _params.option.graphStep = (data.result.cmd.subType == 'binary') ? true : false;
                 }
+            } else {
+                _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
             }
             if (init(_params.option.graphType) == '') {
                 if (isset(data.result.cmd.display) && init(data.result.cmd.display.graphType) != '') {
