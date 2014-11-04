@@ -438,6 +438,9 @@ function rrmdir($dir) {
 }
 
 function date_fr($date_en) {
+    if(config::byKey('language', 'core', 'fr_FR') == 'en_US'){
+        return $date_en;
+    }
     $texte_en = array(
         "Monday", "Tuesday", "Wednesday", "Thursday",
         "Friday", "Saturday", "Sunday", "January",
