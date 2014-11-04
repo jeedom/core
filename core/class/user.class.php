@@ -26,7 +26,6 @@ class user {
     private $login;
     private $password;
     private $options;
-    private $hash;
     private $rights;
     private $enable = 1;
 
