@@ -185,7 +185,7 @@ foreach (plugin::listPlugin() as $plugin) {
     }
 }
 
-
+echo "\n\n";
 echo "\n==================================================\n";
 echo "|               ALL CHECKS COMPLET               |";
 echo "\n==================================================\n";
