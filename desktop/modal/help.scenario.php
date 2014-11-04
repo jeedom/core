@@ -137,9 +137,8 @@ icon : permet de changer l'icone de représentation du scenario}}
         </div>
         <div id="collapse_code" class="panel-collapse collapse">
             <div class="panel-body">
-
+                <div class="alert alert-warning">{{Attention les tags ne sont pas disponible dans un bloc de type code}}</div>
                 <div class="panel-group" id="accordion2">
-
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
