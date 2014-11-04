@@ -60,6 +60,7 @@ if (!isConnect()) {
 {{#date# : jour et mois courant (ex : 1215 pour le 15 décembre)}}
 {{#semaine# : numéro de la semaine (ex : 51)}}
 {{#sjour# : pour le nom du jour de la semaine (ex : Samedi)}}
+{{#smois# : pour le nom du mois (ex : Janvier)}}
 {{rand(1,10) : pour un nombre aléatoire de 1 à 10}}
 {{average(commande,période) : donne la moyenne de la commande sur la période (period=[month,day,hour,min])
     Ex : average(#[Salle de bain][Hydrometrie][Humidité]#,1 hour) : Renvoi la moyenne de la commande sur la dernière heure
@@ -119,6 +120,7 @@ icon : permet de changer l'icone de représentation du scenario}}
 {{#date# : jour et mois courant (ex : 1215 pour le 15 decembre)}}
 {{#semaine# : numéro de la semaine (ex : 51)}}
 {{#sjour# : pour le nom du jour de la semaine en anglais (ex : sunday)}}
+{{#smois# : pour le nom du mois (ex : Janvier)}}
 {{rand[1-10] : pour un nombre aléatoire de 1 à 10}}
 {{variable (mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
     Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas}}
