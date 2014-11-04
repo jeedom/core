@@ -209,7 +209,7 @@ try {
             throw new Exception('Extension du fichier non valide (autorisé .jpg .png) : ' . $extension);
         }
         if (filesize($_FILES['file']['tmp_name']) > 5000000) {
-            throw new Exception(__('Le fichier est trop gros (miximum 5mo)', __FILE__));
+            throw new Exception(__('Le fichier est trop gros (maximum 5mo)', __FILE__));
         }
         $planHeader->setImage('type', str_replace('.', '', $extension));
         $planHeader->setImage('size', getimagesize($_FILES['file']['tmp_name']));
