@@ -661,9 +661,10 @@ class market {
                 break;
             default :
                 $type = $this->getType();
-                if (class_exists($type) && method_exists($type, 'shareOnMarket')) {
-                    $tmp = $type::shareOnMarket($this);
+                if (!class_exists($type) || !method_exists($type, 'shareOnMarket')) {
+                    throw new Exception(__('Aucune fonction correspondante à : ', __FILE__) . $type . '::shareOnMarket');
                 }
+                $tmp = $type::shareOnMarket($this);
                 break;
         }
         if (!file_exists($tmp)) {
