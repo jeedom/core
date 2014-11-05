@@ -64,7 +64,7 @@ class com_http {
             curl_setopt($ch, CURLOPT_HEADER, false);
             if ($this->getNoSslCheck()) {
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             }
             curl_setopt($ch, CURLOPT_HTTPHEADER, $this->getHeader());
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
