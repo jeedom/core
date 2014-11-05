@@ -64,6 +64,7 @@ class com_http {
             curl_setopt($ch, CURLOPT_HEADER, false);
             if ($this->getNoSslCheck()) {
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
             }
             curl_setopt($ch, CURLOPT_HTTPHEADER, $this->getHeader());
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -182,7 +183,7 @@ class com_http {
     public function setNoReportError($noReportError) {
         $this->noReportError = $noReportError;
     }
-    
+
     public function getUrl() {
         return $this->url;
     }
@@ -190,8 +191,6 @@ class com_http {
     public function setUrl($url) {
         $this->url = $url;
     }
-
-
 
 }
 
