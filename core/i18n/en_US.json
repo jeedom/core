@@ -214,7 +214,7 @@
         "Impossible de lancer le scénario car déjà en cours": "Enable to launch scenario because it is already launched",
         "Scenario  : ": "Scenario : ",
         "Erreur : ": "Error : ",
-        "Impossible de lancer le scénario car désactivé : ": "Impossible to run this scenario because it’s disabled: "
+        "Impossible de lancer le scénario car désactivé : ": "Impossible to launch this scenario because it’s disabled: "
     },
     "core\/class\/scenarioElement.class.php": {
         "Exécution de l'élément : ": "Running of component : ",
@@ -267,8 +267,8 @@
         " dernier lancement à ": " last launch at ",
         ". Retard de : ": ". Delay of : ",
         ". Rattrapage en cours...": ". Putting right...",
-        "Scenario lance automatiquement sur programmation": "Scenario run itself automatically on programming", 
-        "Scenario lance automatiquement sur evenement venant de : ": "Scenario run itself automatically with an event from : ", 
+        "Scénario lance automatiquement sur programmation": "Scenario launch itself automatically on programming", 
+        "Scénario lance automatiquement sur évènement venant de : ": "Scenario launch itself automatically with an event from : ", 
         "Début exécution du scénario : ": "Start running scenario: "
     },
     "desktop\/php\/history.php": {
@@ -303,7 +303,7 @@
     },
     "core\/php\/jeeCron.php": {
         " avec le PID : ": " with PID : ",
-        "Arrêt\/relance du deamon : ": "Stop\/launch again the deamon: ",
+        "Arrêt\/relance du deamon : ": "Stop\/relaunch the deamon: ",
         "Erreur sur ": "Error with "
     },
     "desktop\/js\/administration.js": {
@@ -423,7 +423,7 @@
         "Fonction": "Function",
         "Programmation": "Scheduling",
         "Timeout (min)": "Timeout (min)",
-        "Dernier lancement": "Last running",
+        "Dernier lancement": "Last launching",
         "Durée": "Duration",
         "Nombre de Jeecron master doit toujours être inférieur à 2": "Number of Jeecron master should always be less than 2" 
     },
@@ -461,7 +461,7 @@
         "Provoqué": "Prompted",
         "Programmé": "Scheduled",
         "Les deux": "Both",
-        "Dernier lancement": "Last running",
+        "Dernier lancement": "Last launch",
         "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.": "Please save before test. This could not work.",
         "Dupliquer le scénario": "Duplicate this scenario",
         "Enregistrer": "Save",
