@@ -208,9 +208,9 @@ function displayObject(_type, _id, _html, _plan) {
     }
 
     if (_type == 'view' || _type == 'plan') {
-        html.find('a').addClass('link');
-        html.find('a').attr('data-page', _type);
-        html.find('a').attr('data-option', _plan.link_id);
+        html.addClass('link');
+        html.attr('data-page', _type);
+        html.attr('data-option', _plan.link_id);
     }
     html.trigger('create');
 }
