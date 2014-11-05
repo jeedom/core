@@ -143,7 +143,7 @@ function displayObject(_type, _id, _html, _plan) {
 
     for (var key in _plan.css) {
         if (_plan.css[key] != '' && key != 'zoom') {
-            html.css(key, _plan.css[key] + ' !important');
+            html.css(key, _plan.css[key]);
         }
         if (key == 'color') {
             html.find('.ui-btn').css("cssText", key + ': ' + _plan.css[key] + ' !important;border-color : ' + _plan.css[key] + ' !important');
