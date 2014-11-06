@@ -587,7 +587,6 @@ class cmd {
      * @throws Exception
      */
     public function execCmd($_options = null, $cache = 1, $_sendNodeJsEvent = true) {
-        log::add('cmd', 'debug', 'Lancement de execCmd : ' . print_r($this, true));
         if ($this->getEventOnly() == 1) {
             $cache = 2;
         }
@@ -620,9 +619,7 @@ class cmd {
             if ($this->getSubType() == 'color' && isset($options['color']) && substr($options['color'], 0, 1) != '#') {
                 $options['color'] = cmd::convertColor($options['color']);
             }
-            log::add('cmd', 'debug', 'Lancement de execute : ' . $this->getId());
             $value = $this->formatValue($this->execute($options));
-            log::add('cmd', 'debug', 'Fin de execute : ' . $this->getId());
         } catch (Exception $e) {
             //Si impossible de contacter l'équipement
             $type = $eqLogic->getEqType_name();
