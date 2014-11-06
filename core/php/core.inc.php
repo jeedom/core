@@ -58,11 +58,12 @@ function jeedomPluginAutoload($classname) {
             }
             if (!is_object($plugin) && strpos($classname, 'Cmd') !== false) {
                 $classname = str_replace('Cmd', '', $classname);
-                if (strpos($classname, '_') !== false && strpos($classname, 'com_') === false) {
-                    $plugin = plugin::byId(substr($classname, 0, strpos($classname, '_')));
-                }
-                if (!is_object($plugin)) {
+                try {
                     $plugin = plugin::byId($classname);
+                } catch (Exception $e) {
+                    if (strpos($classname, '_') !== false && strpos($classname, 'com_') === false) {
+                        $plugin = plugin::byId(substr($classname, 0, strpos($classname, '_')));
+                    }
                 }
             }
             if (!is_object($plugin) && strpos($classname, '_') !== false && strpos($classname, 'com_') === false) {
