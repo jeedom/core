@@ -11,7 +11,7 @@ $(function () {
 
     initApplication();
 
-    $('body').delegate('a.link', 'click', function () {
+    $('body').delegate('.link', 'click', function () {
         modal(false);
         panel(false);
         page($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'));

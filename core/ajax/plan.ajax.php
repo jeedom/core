@@ -60,8 +60,8 @@ try {
                 if (init('version', 'dashboard') == 'dashboard') {
                     $link = 'index.php?v=d&p=plan&plan_id=' . $plan_link->getId();
                 }
-                $html = '<span class="plan-link-widget label label-success" data-link_id="' . $plan_link->getId() . '">';
-                $html .= '<a href="' . $link . '" style="color:' . $plan->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
+                $html = '<span href="' . $link . '" class="plan-link-widget label label-success" data-link_id="' . $plan_link->getId() . '">';
+                $html .= '<a style="color:' . $plan->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
                 if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
                     $html .=$plan->getDisplay('icon') . ' ' . $plan->getDisplay('name');
                 } else {
@@ -83,8 +83,8 @@ try {
                 if (init('version', 'dashboard') == 'dashboard') {
                     $link = 'index.php?v=d&p=view&view_id=' . $view->getId();
                 }
-                $html = '<span class="view-link-widget label label-primary" data-link_id="' . $view->getId() . '" >';
-                $html .= '<a href="' . $link . '" style="color:' . $plan->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
+                $html = '<span href="' . $link . '" class="view-link-widget label label-primary" data-link_id="' . $view->getId() . '" >';
+                $html .= '<a style="color:' . $plan->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
                 if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
                     $html .= $plan->getDisplay('icon') . ' ' . $plan->getDisplay('name');
                 } else {

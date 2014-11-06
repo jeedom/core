@@ -39,7 +39,7 @@ sendVarToJS('id', $plan->getId());
                 </div>
                 <label class="col-lg-4 control-label">{{Transparent}}</label>
                 <div class="col-lg-2">
-                    <input type="checkbox" class="planAttr form-control" data-l1key="display" data-l2key="background-transparent" />
+                    <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-transparent" />
                 </div>
             </div>
             <div class="form-group">
@@ -166,7 +166,7 @@ sendVarToJS('id', $plan->getId());
                 </div>
                 <label class="col-lg-4 control-label">{{Transparent}}</label>
                 <div class="col-lg-2">
-                    <input type="checkbox" class="planAttr form-control" data-l1key="display" data-l2key="background-transparent" />
+                    <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-transparent" />
                 </div>
             </div>
             <div class="form-group">
