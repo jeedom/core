@@ -37,11 +37,15 @@ sendVarToJS('id', $plan->getId());
                 <div class="col-lg-2">
                     <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
                 </div>
+                <label class="col-lg-4 control-label">{{Transparent}}</label>
+                <div class="col-lg-2">
+                    <input type="checkbox" class="planAttr form-control" data-l1key="display" data-l2key="background-transparent" />
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Couleur des icones et textes}}</label>
                 <div class="col-lg-2">
-                    <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="color" value="#FFFFFF"/>
+                    <input type="color" class="form-control " data-l1key="css" data-l2key="color" />
                 </div>
             </div>
             <div class="form-group">
@@ -160,6 +164,10 @@ sendVarToJS('id', $plan->getId());
                 <div class="col-lg-2">
                     <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
                 </div>
+                <label class="col-lg-4 control-label">{{Transparent}}</label>
+                <div class="col-lg-2">
+                    <input type="checkbox" class="planAttr form-control" data-l1key="display" data-l2key="background-transparent" />
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Couleur du texte}}</label>
@@ -211,6 +219,10 @@ sendVarToJS('id', $plan->getId());
                 <label class="col-lg-4 control-label">{{Couleur de fond}}</label>
                 <div class="col-lg-2">
                     <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
+                </div>
+                <label class="col-lg-4 control-label">{{Transparent}}</label>
+                <div class="col-lg-2">
+                    <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-transparent" />
                 </div>
             </div>
             <div class="form-group">
