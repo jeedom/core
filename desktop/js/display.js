@@ -260,7 +260,7 @@ function displayCmd(_cmd_id) {
                     _params.error(error);
                 },
                 success: function (subtype) {
-                    if (subtype.isHistorized.visible) {
+                    if (isset(subtype.isHistorized) && subtype.isHistorized.visible) {
                         div += '<div class="form-group">';
                         div += '<label class="col-lg-2 control-label">{{Historiser}}</label>';
                         div += '<div class="col-lg-1">';
