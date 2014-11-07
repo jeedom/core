@@ -142,7 +142,11 @@ function displayObject(_type, _id, _html, _plan) {
     $('#div_displayObject').append(html);
 
     for (var key in _plan.css) {
-        if (_plan.css[key] != '' && key != 'zoom') {
+        if (key == 'background-color') {
+            if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
+                html.css(key, _plan.css[key]);
+            }
+        } else {
             html.css(key, _plan.css[key]);
         }
         if (key == 'color') {
@@ -151,11 +155,10 @@ function displayObject(_type, _id, _html, _plan) {
             html.find('span').css(key, _plan.css[key]);
         }
     }
-    if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
-        html.css('background-color', 'transparent');
-    }
-    if (isset(_plan.display) && isset(_plan.display['background-defaut']) && _plan.display['background-defaut'] == 1) {
-        html.css('background-color', '');
+    if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
+        if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
+            html.css('background-color', 'transparent');
+        }
     }
     html.css('position', 'absolute');
     html.css('transform-origin', '0 0');
