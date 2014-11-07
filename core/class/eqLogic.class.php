@@ -454,7 +454,7 @@ class eqLogic {
         }
         $replace = array(
             '#id#' => $this->getId(),
-            '#name#' => $this->getName() . '<br/>',
+            '#name#' => $this->getName() . '<br/><br/>',
             '#eqLink#' => $this->getLinkToConfiguration(),
             '#category#' => $this->getPrimaryCategory(),
             '#background_color#' => $this->getBackgroundColor($version),
