@@ -45,7 +45,13 @@ sendVarToJS('id', $plan->getId());
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Couleur des icones et textes}}</label>
                 <div class="col-lg-2">
-                    <input type="color" class="form-control " data-l1key="css" data-l2key="color" />
+                    <input type="color" class="form-control planAttr" data-l1key="css" data-l2key="color" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
+                <div class="col-lg-2">
+                    <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
                 </div>
             </div>
             <div class="form-group">
@@ -176,6 +182,12 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
+                <div class="col-lg-2">
+                    <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-lg-4 control-label">{{Taille de la police (ex 50%, il faut bien mettre le signe %)}}</label>
                 <div class="col-lg-2">
                     <input class="planAttr form-control" data-l1key="css" data-l2key="font-size" />
@@ -229,6 +241,12 @@ sendVarToJS('id', $plan->getId());
                 <label class="col-lg-4 control-label">{{Couleur du texte}}</label>
                 <div class="col-lg-2">
                     <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="color" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
+                <div class="col-lg-2">
+                    <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
                 </div>
             </div>
             <div class="form-group">
