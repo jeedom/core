@@ -468,10 +468,13 @@ function displayObject(_type, _id, _html, _plan) {
             html.find('span').css(key, _plan.css[key]);
         }
     }
-    if(isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1){
+    if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
         html.css('background-color', 'transparent');
     }
-    
+    if (isset(_plan.display) && isset(_plan.display['background-defaut']) && _plan.display['background-defaut'] == 1) {
+        html.css('background-color', '');
+    }
+
     html.css('position', 'absolute');
     html.css('transform-origin', '0 0');
     html.css('transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
