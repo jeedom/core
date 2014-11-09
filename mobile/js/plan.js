@@ -77,7 +77,6 @@ function displayPlan(_planHeader_id) {
                 $('#div_displayObject').height($('#div_displayObject img').attr('data-sixe_y'));
                 $('#div_displayObject img').css('height', $('#div_displayObject img').attr('data-sixe_y') + 'px');
                 $('#div_displayObject img').css('width', $('#div_displayObject img').attr('data-sixe_x') + 'px');
-
             }
 
             $('.eqLogic-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget').remove();

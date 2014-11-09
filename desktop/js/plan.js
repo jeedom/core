@@ -15,7 +15,7 @@
  */
 var noBootstrapTooltips = true;
 var grid = false;
-
+var deviceInfo = getDeviceType();
 
 $("#md_addViewData").dialog({
     autoOpen: false,
@@ -23,6 +23,17 @@ $("#md_addViewData").dialog({
     height: (jQuery(window).height() - 150),
     width: (jQuery(window).width() - 450)
 });
+
+if (is_numeric(getUrlVars('fullScreen')) && getUrlVars('fullScreen') == 1) {
+    $('header').hide();
+    $(function () {
+        $('footer').hide();
+    });
+    $('#div_planHeader').hide();
+    $('#div_mainContainer').css('margin-top', '-60px');
+    $('#div_mainContainer').css('margin-left', '-15px');
+}
+
 /*****************************PLAN HEADER***********************************/
 $('#bt_addPlanHeader').on('click', function () {
     bootbox.prompt("Nom du design ?", function (result) {
@@ -284,18 +295,36 @@ function displayPlan() {
         },
         success: function (data) {
             var sizeSet = false;
-            if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
-                $('#div_displayObject').height(data.configuration.desktopSizeY);
-                $('#div_displayObject').width(data.configuration.desktopSizeX);
-                $('#div_displayObject img').height(data.configuration.desktopSizeY);
-                $('#div_displayObject img').width(data.configuration.desktopSizeX);
-                sizeSet = true;
+            if (deviceInfo.type == 'desktop') {
+                if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
+                    $('#div_displayObject').height(data.configuration.desktopSizeY);
+                    $('#div_displayObject').width(data.configuration.desktopSizeX);
+                    $('#div_displayObject img').height(data.configuration.desktopSizeY);
+                    $('#div_displayObject img').width(data.configuration.desktopSizeX);
+                    sizeSet = true;
+                }
+            } else if (deviceInfo.type == 'tablet') {
+                if (data.configuration != null && init(data.configuration.tabletSizeX) != '' && init(data.configuration.tabletSizeY) != '') {
+                    $('#div_displayObject').height(data.configuration.tabletSizeY);
+                    $('#div_displayObject').width(data.configuration.tabletSizeX);
+                    $('#div_displayObject img').css('height', data.configuration.tabletSizeY + 'px');
+                    $('#div_displayObject img').css('width', data.configuration.tabletSizeX + 'px');
+                    sizeSet = true;
+                }
+            } else if (deviceInfo.type == 'phone') {
+                if (data.configuration != null && init(data.configuration.mobileSizeX) != '' && init(data.configuration.mobileSizeY) != '') {
+                    $('#div_displayObject').height(data.configuration.mobileSizeY);
+                    $('#div_displayObject').width(data.configuration.mobileSizeX);
+                    $('#div_displayObject img').css('height', data.configuration.mobileSizeY + 'px');
+                    $('#div_displayObject img').css('width', data.configuration.mobileSizeX + 'px');
+                    sizeSet = true;
+                }
             }
             if (!sizeSet) {
-                $('#div_displayObject img').height($('#div_displayObject img').attr('data-sixe_y'));
-                $('#div_displayObject img').width($('#div_displayObject img').attr('data-sixe_x'));
                 $('#div_displayObject').width($('#div_displayObject img').attr('data-sixe_x'));
                 $('#div_displayObject').height($('#div_displayObject img').attr('data-sixe_y'));
+                $('#div_displayObject img').css('height', $('#div_displayObject img').attr('data-sixe_y') + 'px');
+                $('#div_displayObject img').css('width', $('#div_displayObject img').attr('data-sixe_x') + 'px');
             }
             $('.eqLogic-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
 

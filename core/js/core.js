@@ -15,7 +15,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 var noBootstrapTooltips = false;
-$(function() {
+$(function () {
     if (!$.mobile) {
         jeedom.init();
     }
@@ -23,7 +23,7 @@ $(function() {
 
 if ($.mobile) {
     if (jeedom.nodeJs.state === true) {
-        setTimeout(function() {
+        setTimeout(function () {
             $('body').trigger('nodeJsConnect');
         }, 500);
     }
@@ -43,10 +43,10 @@ function getTemplate(_folder, _version, _filename, _replace) {
         type: "POST", // methode de transmission des données au fichier php
         url: path, // url du fichier php
         async: false,
-        error: function(request, status, error) {
+        error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function(data) { // si l'appel a bien fonctionné
+        success: function (data) { // si l'appel a bien fonctionné
             if (isset(_replace) && _replace != null) {
                 for (i in _replace) {
                     var reg = new RegExp(i, "g");
@@ -99,7 +99,7 @@ function getUrlVars(_key) {
 
 function initTooltips() {
     var noTooltips = noBootstrapTooltips || false;
-    if(noTooltips){
+    if (noTooltips) {
         return;
     }
     if ($.mobile) {
@@ -113,5 +113,36 @@ function initTooltips() {
     }
 }
 
+function getDeviceType() {
+    var result = {};
+    result.type = 'desktop';
+    result.width = $('#pagecontainer').width();
+    if (navigator.userAgent.match(/(android)/gi)) {
+        result.width = screen.width;
+        result.type = 'phone';
+        if ($('#pagecontainer').width() > 899) {
+            result.type = 'tablet';
+        }
+    }
+    if (navigator.userAgent.match(/(phone)/gi)) {
+        result.type = 'phone';
+    }
+    if (navigator.userAgent.match(/(Iphone)/gi)) {
+        result.type = 'phone';
+    }
+    if (navigator.userAgent.match(/(Ipad)/gi)) {
+        result.type = 'tablet';
+    }
+    result.bSize = 220;
+    if (result.type == 'phone') {
+        var ori = window.orientation;
+        if (ori == 90 || ori == -90) {
+            result.bSize = (result.width / 3) - 15;
+        } else {
+            result.bSize = (result.width / 2) - 15;
+        }
+    }
+    return result;
+}
 
 

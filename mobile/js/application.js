@@ -83,7 +83,7 @@ function initApplication(_reinit) {
                     nodeJsKey = data.result.nodeJsKey;
                     user_id = data.result.user_id;
                     plugins = data.result.plugins;
-                    deviceInfo = getDeviceType();
+                   
                     userProfils = data.result.userProfils;
                     var include = ['core/js/core.js'];
 
@@ -100,6 +100,7 @@ function initApplication(_reinit) {
                     $.get("core/php/icon.inc.php", function (data) {
                         $("head").append(data);
                         $.include(include, function () {
+                             deviceInfo = getDeviceType();
                             if (isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home') {
                                 var res = userProfils.homePageMobile.split("::");
                                 if (res[0] == 'core') {
@@ -219,38 +220,6 @@ function notify(_title, _text) {
     setTimeout(function () {
         $('#div_alert').popup("close");
     }, 1000)
-}
-
-function getDeviceType() {
-    var result = {};
-    result.type = 'desktop';
-    result.width = $('#pagecontainer').width();
-    if (navigator.userAgent.match(/(android)/gi)) {
-        result.width = screen.width;
-        result.type = 'phone';
-        if ($('#pagecontainer').width() > 899) {
-            result.type = 'tablet';
-        }
-    }
-    if (navigator.userAgent.match(/(phone)/gi)) {
-        result.type = 'phone';
-    }
-    if (navigator.userAgent.match(/(Iphone)/gi)) {
-        result.type = 'phone';
-    }
-    if (navigator.userAgent.match(/(Ipad)/gi)) {
-        result.type = 'tablet';
-    }
-    result.bSize = 220;
-    if (result.type == 'phone') {
-        var ori = window.orientation;
-        if (ori == 90 || ori == -90) {
-            result.bSize = (result.width / 3) - 15;
-        } else {
-            result.bSize = (result.width / 2) - 15;
-        }
-    }
-    return result;
 }
 
 function setTileSize(_filter) {
