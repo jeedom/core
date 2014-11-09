@@ -35,7 +35,7 @@
         "Configuration générale": "Main configuration",
         "Langue": "Language",
         "Français": "Français",
-        "Anglais": "English", 
+        "Anglais": "English",
         "Min": "Min",
         "Max": "Max",
         "Nom": "Name",
@@ -170,7 +170,26 @@
         "Voir modules en beta (à vos risques et périls)": "See beta version of modules (at your own risk)",
         "HTTP": "HTTP",
         "Timeout de résolution DNS sur les requêtes HTTP": "DNS timeout for http requests",
-        "Désactiver la vérification du ping": "Disable ping check" 
+        "Désactiver la vérification du ping": "Disable ping check",
+        "Commande d'information utilisateur": "Commande d'information utilisateur",
+        "Durée de vie des sessions (heure)": "Durée de vie des sessions (heure)",
+        "Système": "Système",
+        "ATTENTION ces opérations sont risquées, vous pouvez perdre l'accès à votre systeme. Ces opérations peuvent ne pas marcher en fonction du niveau de droits de l'utilisateur www-data": "ATTENTION ces opérations sont risquées, vous pouvez perdre l'accès à votre systeme. Ces opérations peuvent ne pas marcher en fonction du niveau de droits de l'utilisateur www-data",
+        "Arrêter le système": "Arrêter le système",
+        "Redémarrer le système": "Redémarrer le système",
+        "Configuration réseaux": "Configuration réseaux",
+        "Adresse interne": "Adresse interne",
+        "Attention ne pas oublié le \/jeedom après l'ip si vous l'utilisez pour vous rendre sur l'interface de jeedom": "Attention ne pas oublié le \/jeedom après l'ip si vous l'utilisez pour vous rendre sur l'interface de jeedom",
+        "Adresse externe": "Adresse externe",
+        "Port externe": "Port externe",
+        "Activer l'ouverture automatique de port (UPnP)": "Activer l'ouverture automatique de port (UPnP)",
+        "Appliquer l'ouverture des ports": "Appliquer l'ouverture des ports",
+        "Mode": "Mode",
+        "Maitre": "Maitre",
+        "Esclave": "Esclave",
+        "Nombre d'échecs avant désactivation de l'équipement": "Nombre d'échecs avant désactivation de l'équipement",
+        "Utiliser le market comme DNS": "Utiliser le market comme DNS",
+        "Afficher les plugins mis en avant par le market": "Afficher les plugins mis en avant par le market"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "Toggle navigation",
@@ -200,21 +219,29 @@
         "Panel": "Panel",
         "Protocole domotique": "Automation protocole",
         "Communication": "Communication",
-        "Multimédia": "Multimedia", 
+        "Multimédia": "Multimedia",
         "Organisation": "Organization",
         "Météo": "Weather",
         "Bien-être": "Wellbeing",
         "Envoyer un rapport de bug": "Send a bug report",
         "Générale": "Main",
         "Détaillée": "Detailed",
-        "Page générée en": "Page generated in"
+        "Page générée en": "Page generated in",
+        "Designs": "Designs",
+        "Gestion des droits avancés": "Gestion des droits avancés",
+        "Réseau Jeedom": "Réseau Jeedom",
+        "Jeedom Box": "Jeedom Box",
+        "Monitoring": "Monitoring",
+        "Version mobile": "Version mobile",
+        "Mise(s) à jour disponible": "Mise(s) à jour disponible"
     },
     "core\/php\/jeeScenario.php": {
         " avec le PID : ": " with PID : ",
         "Impossible de lancer le scénario car déjà en cours": "Enable to launch scenario because it is already launched",
         "Scenario  : ": "Scenario : ",
         "Erreur : ": "Error : ",
-        "Impossible de lancer le scénario car désactivé : ": "Impossible to launch this scenario because it’s disabled: "
+        "Impossible de lancer le scénario car désactivé : ": "Impossible to launch this scenario because it’s disabled: ",
+        "Impossible de lancer le scénario car déjà en cours : ": "Impossible de lancer le scénario car déjà en cours : "
     },
     "core\/class\/scenarioElement.class.php": {
         "Exécution de l'élément : ": "Running of component : ",
@@ -222,7 +249,9 @@
         "Expression inconnue vérifier l'id : ": "Unkonwn expression, check ID: "
     },
     "core\/class\/scenarioSubElement.class.php": {
-        "Exécution du sous-élément de type : ": "Running of under-component: "
+        "Exécution du sous-élément de type : ": "Running of under-component: ",
+        "Exécution du sous-élément de type [condition] : ": "Exécution du sous-élément de type [condition] : ",
+        "Exécution du sous-élément de type [action] : ": "Exécution du sous-élément de type [action] : "
     },
     "core\/class\/scenarioExpression.class.php": {
         "Evaluation de la condition : [": "Estimate of this condition: [",
@@ -233,7 +262,9 @@
         " avec comme option(s) : \n": " with option : \n",
         "[Erreur] Aucune commande trouvée pour ": "[Error] No command found for ",
         "Affectation de la variable ": "Variable allocation ",
-        " à [": " at ["
+        " à [": " at [",
+        "Activation du scénario : ": "Activation du scénario : ",
+        "Désactivation du scénario : ": "Désactivation du scénario : "
     },
     "core\/com\/http.com.php": {
         "Url : ": "Url : ",
@@ -248,7 +279,8 @@
         "Global": "Global",
         "Filtre sur les catégories d'équipement": "Filter on device categories",
         "Autre": "Other",
-        "Historique Camera 1": "History of Camera 1"
+        "Historique Camera 1": "History of Camera 1",
+        "Etes-vous sûr de vouloir supprimer cet événement ?": "Etes-vous sûr de vouloir supprimer cet événement ?"
     },
     "desktop\/php\/view.php": {
         "Liste des vues": "View list",
@@ -258,7 +290,10 @@
         "Message venant de": "Message from",
         " \/cache lifetime =>": " \/cache lifetime =>",
         "Erreur sur": "Error on",
-        "Le type de la commande ne peut être vide :": "Command type can’t be empty :"
+        "Le type de la commande ne peut être vide :": "Command type can’t be empty :",
+        "Equipement desactivé impossible d\\éxecuter la commande : [Appartement][lapin][Parle]": "Equipement desactivé impossible d\\éxecuter la commande : [Appartement][lapin][Parle]",
+        "Equipement desactivé impossible d\\éxecuter la commande : [Appartement][lapin][Coucher]": "Equipement desactivé impossible d\\éxecuter la commande : [Appartement][lapin][Coucher]",
+        "Equipement desactivé impossible d\\éxecuter la commande : [Appartement][lapin][Debout]": "Equipement desactivé impossible d\\éxecuter la commande : [Appartement][lapin][Debout]"
     },
     "core\/class\/scenario.class.php": {
         "Evènement venant de ": "Event from ",
@@ -267,9 +302,10 @@
         " dernier lancement à ": " last launch at ",
         ". Retard de : ": ". Delay of : ",
         ". Rattrapage en cours...": ". Putting right...",
-        "Scénario lance automatiquement sur programmation": "Scenario launch itself automatically on programming", 
-        "Scénario lance automatiquement sur évènement venant de : ": "Scenario launch itself automatically with an event from : ", 
-        "Début exécution du scénario : ": "Start running scenario: "
+        "Scénario lance automatiquement sur programmation": "Scenario launch itself automatically on programming",
+        "Scénario lance automatiquement sur évènement venant de : ": "Scenario launch itself automatically with an event from : ",
+        "Début exécution du scénario : ": "Start running scenario: ",
+        "Impossible d'éxecuter le scénario : ": "Impossible d'éxecuter le scénario : "
     },
     "desktop\/php\/history.php": {
         "Ligne": "Line",
@@ -295,7 +331,9 @@
         "Erreur d\\'authentification sur node JS, clef invalide": " NodeJS authentication error, unvalided key"
     },
     "desktop\/js\/utils.js": {
-        "Attention vous quittez une page ayant des données modifiées non sauvegardé. Voulez-vous continuer ?": "Warning you’re closing a page with unsaved data. Are you sure to want to continue?"
+        "Attention vous quittez une page ayant des données modifiées non sauvegardé. Voulez-vous continuer ?": "Warning you’re closing a page with unsaved data. Are you sure to want to continue?",
+        "Bienvenue dans Jeedom": "Bienvenue dans Jeedom",
+        "Choisissez votre icône": "Choisissez votre icône"
     },
     "desktop\/js\/chat.js": {
         "en train d\\'écrire...": "Writting...",
@@ -308,11 +346,11 @@
     },
     "desktop\/js\/administration.js": {
         "Etes-vous sûr de vouloir restaurer Jeedom avec": "Are you agree to restore Jeedom with",
-        "Une fois lancée cette opération ne peut être annulée": "When it is launched, this operation could not be cancelled.", 
-        "Etes-vous sûr de vouloir supprimer la sauvegarde": "Are you agree to delete this back-up?",
-        "Sauvegarde supprimée avec succès": "Back-up succesfully removed", 
+        "Une fois lancée cette opération ne peut être annulée": "This operation could not be canceled after having been launched ",
+        "Etes-vous sûr de vouloir supprimer la sauvegarde": "Are you agree to delete this backup?",
+        "Sauvegarde supprimée avec succès": "Back-up succesfully removed",
         "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvergarde Cloud": "Are you agree to restore Jeedom with the Cloud back-up?",
-        "Connexion échoué :": "Connection failed :", 
+        "Connexion échoué :": "Connection failed :",
         "Connexion réussie": "Connection successful",
         "Etes-vous sûr de vouloir supprimer cet utilisateur ?": "Are you agree to delete this user?",
         "Quel est le nouveau mot de passe ?": "What is the new password?",
@@ -322,9 +360,7 @@
         "L\\'utilisateur a bien été supprimé": "User has been removed",
         "Cache vidé": "Empty cache",
         "Etes-vous sûr de vouloir mettre à jour Jeedom ? Une fois lancée cette opération ne peut être annulée": "Are you agree to update Jeedom? This operation could not be canceled after having been launched",
-        "Etes-vous sûr de vouloir faire une sauvegarde de Jeedom ? Une fois lancée cette opération ne peut être annulée": "Are you agree to backup Jeedom? This operation could not be canceled after having been launched",
-        "Une fois lancée cette opération ne peut être annulée": "This operation could not be canceled after having been launched ",
-        "Etes-vous sûr de vouloir supprimer la sauvegarde": "Are you agree to delete this backup?"
+        "Etes-vous sûr de vouloir faire une sauvegarde de Jeedom ? Une fois lancée cette opération ne peut être annulée": "Are you agree to backup Jeedom? This operation could not be canceled after having been launched"
     },
     "desktop\/php\/interact.php": {
         "Limiter aux équipement de type": "Limit to devices of type",
@@ -345,14 +381,14 @@
         "Limiter aux commandes de type": "Limit to commands of type",
         "Limiter aux commandes ayant pour sous-type": "Limit to commands of under-type",
         "Limiter aux commandes appartenant à l'objet": "Limit to commands of this object",
-        "Limiter aux plugins": "Limit to plugins" 
+        "Limiter aux plugins": "Limit to plugins"
     },
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Interactions list",
         "Limiter aux commande de type": "Limit to commands of type",
         "Limiter aux commandes ayant pour sous-type": "Limit to commands having as under-type",
         "Tous": "All",
-        "Limiter aux commandes appartenant à l’objet": "Limit to commands owning by object", 
+        "Limiter aux commandes appartenant à l’objet": "Limit to commands owning by object",
         "Demande": "Application",
         "Réponse": "Answer",
         "Conversion binaire : faux|vrai": "Binary conversion : false|true",
@@ -381,7 +417,10 @@
         "Remettre par défaut": "Back to default parameters",
         "Dashboard couleur commande": "Command color (desktop)",
         "Mobile couleur de fond": "Background color (mobile)",
-        "Mobile couleur commande": "Command color (mobile)"
+        "Mobile couleur commande": "Command color (mobile)",
+        "Dimension": "Dimension",
+        "Largeur pas widget (px)": "Largeur pas widget (px)",
+        "Hauteur pas widget (px)": "Hauteur pas widget (px)"
     },
     "desktop\/js\/display.js": {
         "ID": "ID",
@@ -403,7 +442,18 @@
         "Utilisé par": "Used by",
         "Equipement": "Device",
         "Commandes": "Commands",
-        "Interaction": "Interaction"
+        "Interaction": "Interaction",
+        "Sauvegarde effectuée": "Sauvegarde effectuée",
+        "Formule de calcul (utiliser #value# pour la valeur, ex #value# - 2)": "Formule de calcul (utiliser #value# pour la valeur, ex #value# - 2)",
+        "Ne pas afficher le nom de l\\'équipement sur le dashboard": "Ne pas afficher le nom de l\\'équipement sur le dashboard",
+        "sur les vues": "sur les vues",
+        "Widget Desktop": "Widget Desktop",
+        "Mobile": "Mobile",
+        "Historiser": "Historiser",
+        "Mode de lissage": "Mode de lissage",
+        "Arrondi (nombre de chiffre après la virgule)": "Arrondi (nombre de chiffre après la virgule)",
+        "Paramètres optionnels widget": "Paramètres optionnels widget",
+        "Paramètres optionnels sur la tuile": "Paramètres optionnels sur la tuile"
     },
     "desktop\/php\/cron.php": {
         "Processus Jeecron :": "Process Jeecron:",
@@ -425,7 +475,8 @@
         "Timeout (min)": "Timeout (min)",
         "Dernier lancement": "Last launching",
         "Durée": "Duration",
-        "Nombre de Jeecron master doit toujours être inférieur à 2": "Number of Jeecron master should always be less than 2" 
+        "Nombre de Jeecron master doit toujours être inférieur à 2": "Number of Jeecron master should always be less than 2",
+        "Désactiver le système cron": "Désactiver le système cron"
     },
     "desktop\/php\/object.php": {
         "Liste objects": "Objects list",
@@ -466,12 +517,14 @@
         "Dupliquer le scénario": "Duplicate this scenario",
         "Enregistrer": "Save",
         "Si\/Alors\/Sinon": "If\/Then\/Else",
-        "Désactiver le système de scénario": "Disable scenario system", 
+        "Désactiver le système de scénario": "Disable scenario system",
         "Désac. scénarios": "Disable scenarios",
         "Voir variables": "View variables",
         "Nom à afficher": "Name to display",
-        "Ne rien mettre pour laisser le nom par défaut": "Let empty to get the default name", 
-        "Déclencheur": "Trigger"
+        "Ne rien mettre pour laisser le nom par défaut": "Let empty to get the default name",
+        "Déclencheur": "Trigger",
+        "Exporter": "Exporter",
+        "Lancer en avant-plan (a ne surtout pas utiliser si vous avez des sleep dans le scénario)": "Lancer en avant-plan (a ne surtout pas utiliser si vous avez des sleep dans le scénario)"
     },
     "desktop\/js\/scenario.js": {
         "Etes-vous sûr de vouloir supprimer le scénario": "Are you agree to delete scenario?",
@@ -490,7 +543,7 @@
     "desktop\/php\/profils.php": {
         "Profile": "Profile",
         "Notifications": "Notifications",
-        "Notifier des événements": "Notify events", 
+        "Notifier des événements": "Notify events",
         "Aucune": "None",
         "Noir": "Black",
         "Blanc": "White",
@@ -523,7 +576,8 @@
         "Message(s)": "Message(s)"
     },
     "core\/class\/message.class.php": {
-        "Message de ": "Message from "
+        "Message de ": "Message from ",
+        "[JEEDOM] Message de ": "[JEEDOM] Message de "
     },
     "install\/backup.php": {
         "***************Lancement du backup de Jeedom***************\n": "***************Launching of Jeedom back-up***************\n",
@@ -534,16 +588,26 @@
         "Nettoyage des anciens backup : ": "Clean old back-up : ",
         "Envoie de la sauvegarde dans le cloud : ": "Upload new back-up to the cloud :",
         "***************Fin du backup de Jeedom***************\n": "***************End of Jeedom backup***************\n",
-        "[END BACKUP SUCCESS]\n": "[END BACKUP SUCCESS]\n"
+        "[END BACKUP SUCCESS]\n": "[END BACKUP SUCCESS]\n",
+        "Sauvegarde des fichiers...": "Sauvegarde des fichiers...",
+        "Suppression du fichier d'identification BDD...": "Suppression du fichier d'identification BDD...",
+        "Sauvegarde specifique pour le plugin...zwave...": "Sauvegarde specifique pour le plugin...zwave...",
+        "Verification de la base : \n": "Verification de la base : \n",
+        "Sauvegarde de la base de donnees...": "Sauvegarde de la base de donnees...",
+        "Creation de l'archive...": "Creation de l'archive...",
+        "Nettoyage des anciens backup...": "Nettoyage des anciens backup...",
+        "Envoie de la sauvegarde dans le cloud...": "Envoie de la sauvegarde dans le cloud..."
     },
     "desktop\/php\/connection.php": {
-        "Connectez-vous": "Login"
+        "Connectez-vous": "Login",
+        "Etes-vous sûr de vouloir réinitialiser votre mot de passe ?": "Etes-vous sûr de vouloir réinitialiser votre mot de passe ?"
     },
     "core\/class\/user.class.php": {
         "Recherche LDAP (": "Looking for LDAP ("
     },
     "core\/php\/authentification.php": {
-        "Connexion de l'utilisateur : ": "Connection of user : "
+        "Connexion de l'utilisateur : ": "Connection of user : ",
+        "Connexion de l'utilisateur par clef : ": "Connexion de l'utilisateur par clef : "
     },
     "core\/template\/dashboard\/cmd.info.history.default.html": {
         "Aire": "Area",
@@ -582,7 +646,10 @@
         "Vues": "View",
         "Messages": "Messages",
         "Message(s)": "Message(s)",
-        "Plugins": "Plugins"
+        "Plugins": "Plugins",
+        "Designs": "Designs",
+        "Version desktop": "Version desktop",
+        "Déconnexion": "Déconnexion"
     },
     "core\/ajax\/jeedom.ajax.php": {
         "401 - Accès non autorisé": "401 – Access not allowed"
@@ -613,14 +680,21 @@
         "Utilisation": "Use",
         "Changelog": "Changelog",
         "Votre objet a été envoyé avec succès sur le market": "Your object was successfully sent to the market",
-        "[Camera] Modèle": "[Camera] Model "
+        "[Camera] Modèle": "[Camera] Model ",
+        "[SNMP] Configuration": "[SNMP] Configuration"
     },
     "core\/class\/market.class.php": {
-        "Erreur market::getinfo : ": "Error market::getinfo : "
+        "Erreur market::getinfo : ": "Error market::getinfo : ",
+        "Début de la mise de : Monitoring": "Début de la mise de : Monitoring",
+        "Téléchargement de l'objet...": "Téléchargement de l'objet...",
+        "OK\n": "OK\n",
+        "Décompression de l'archive...": "Décompression de l'archive...",
+        "Installation de l'objet...": "Installation de l'objet..."
     },
     "core\/class\/evaluate.class.php": {
         "ERREUR deux opérations à la suite": "ERROR two consecutive operations",
-        "Erreur ! Expression attend paramètre avant symbole !": "Error! Expression expect parameter before symbol!"
+        "Erreur ! Expression attend paramètre avant symbole !": "Error! Expression expect parameter before symbol!",
+        "ERREUR deux paramètres sans signe de séparation": "ERREUR deux paramètres sans signe de séparation"
     },
     "core\/ajax\/cmd.ajax.php": {
         "Cmd ID inconnu : ": "Unknown cmd ID : "
@@ -628,7 +702,10 @@
     "core\/class\/eqLogic.class.php": {
         "Attention": "Warning",
         " n'a pas envoyé de message depuis plus de ": " didn’t send any message since ",
-        " min (vérifier les piles)": " min (check battery)"
+        " min (vérifier les piles)": " min (check battery)",
+        "Le nom de l'équipement ne peut être vide": "Le nom de l'équipement ne peut être vide",
+        "Le module ": "Le module ",
+        " a été désactivé car il n'a plus de batterie (": " a été désactivé car il n'a plus de batterie ("
     },
     "desktop\/php\/message.php": {
         "Plugin": "Plugin"
@@ -654,19 +731,26 @@
         "Version utilisé actuellement": "Currently used version",
         "Nombre de téléchargements": "Number of downloads",
         "Script": "Script",
-        "[Camera] Modèle": "[Camera] Model"
+        "[Camera] Modèle": "[Camera] Model",
+        "Installer stable": "Installer stable",
+        "Installer beta": "Installer beta",
+        "Objet installé avec succès": "Objet installé avec succès"
     },
     "mobile\/html\/fallback.html": {
-        "Aucune connexion réseau détectée. Veuillez vous connecter et relancer l'application": "No network connection detected. Please connect you, and re-launch the application" 
+        "Aucune connexion réseau détectée. Veuillez vous connecter et relancer l'application": "No network connection detected. Please connect you, and re-launch the application"
     },
     "desktop\/js\/plugin.js": {
-        "Voir sur le market": "View on market"
+        "Voir sur le market": "View on market",
+        "Sauvegarde effectuée": "Sauvegarde effectuée"
     },
     "core\/js\/plugin.template.js": {
         "Etes-vous sûr de vouloir supprimer l\\'équipement ?": "Are you agree to delete this device ?",
         "Veuillez d\\'abord sélectionner un": "Please select a(n)",
         "Nom de l'équipement ?": "Device name ?",
-        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Please enable the device before testing a command"
+        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Please enable the device before testing a command",
+        "Suppression effectuée avec succès": "Suppression effectuée avec succès",
+        "Nom la copie de l'équipement ?": "Nom la copie de l'équipement ?",
+        "Etes-vous sûr de vouloir supprimer l\\'équipement": "Etes-vous sûr de vouloir supprimer l\\'équipement"
     },
     "desktop\/modal\/dataStore.management.php": {
         "Valeur": "Value",
@@ -677,7 +761,16 @@
         "Type incorrect (classe commande inexistante)": "Incorrect type (nonexistent command class)"
     },
     "desktop\/modal\/market.list.php": {
-        "Nombre de téléchargements": "Number of downloads"
+        "Nombre de téléchargements": "Number of downloads",
+        "Certification": "Certification",
+        "Prix": "Prix",
+        "Note": "Note",
+        "Téléchargé": "Téléchargé",
+        "Achat": "Achat",
+        "Stable": "Stable",
+        "Beta": "Beta",
+        "Installé en BETA": "Installé en BETA",
+        "Installé en STABLE": "Installé en STABLE"
     },
     "\/var\/www\/vhosts\/darkserver.fr\/jeedom.darkserver.fr\/test.php": {
         "Retard lancement prévu à ": "Delay launch foretold at ",
@@ -892,6 +985,144 @@
     "desktop\/php\/log.php": {
         "Supprimer tous les logs": "Remove all logs",
         "Télécharger": "Download",
-        "Etes-vous sûr de vouloir supprimer tous les logs ?": "Do you really want to remove all logs?"
+        "Etes-vous sûr de vouloir supprimer tous les logs ?": "Do you really want to remove all logs?",
+        "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sur de vouloir supprimer tous les logs ?"
+    },
+    "desktop\/php\/plan.php": {
+        "Ajouter un design design": "Ajouter un design design",
+        "Editer\/configurer le design": "Editer\/configurer le design",
+        "Dupliquer le design": "Dupliquer le design",
+        "Mode édition": "Mode édition",
+        "Ajouter Graph": "Ajouter Graph",
+        "Ajouter lien": "Ajouter lien",
+        "Ajouter scénario": "Ajouter scénario",
+        "Ajouter texte": "Ajouter texte",
+        "Ajouter équipement": "Ajouter équipement",
+        "Selectionnez un lien": "Selectionnez un lien",
+        "Valider": "Valider"
+    },
+    "core\/js\/scenario.class.js": {
+        "Sélectionner le scénario": "Sélectionner le scénario"
+    },
+    "core\/js\/history.class.js": {
+        "Il n\\'existe encore aucun historique pour cette commande :": "Il n\\'existe encore aucun historique pour cette commande :",
+        "du": "du",
+        "au": "au",
+        "à partir de": "à partir de",
+        "jusqu\\'au": "jusqu\\'au",
+        "Edition de la série :": "Edition de la série :",
+        "et du point de": "et du point de",
+        "Ne rien mettre pour supprimer la valeur": "Ne rien mettre pour supprimer la valeur",
+        "La valeur a été éditée avec succès": "La valeur a été éditée avec succès"
+    },
+    "desktop\/modal\/market.comment.php": {
+        "Envoyer": "Envoyer"
+    },
+    "desktop\/js\/plan.js": {
+        "Nom la copie du design ?": "Nom la copie du design ?",
+        "Configuration du design": "Configuration du design",
+        "Configuration du widget": "Configuration du widget",
+        "Configuration du scénario": "Configuration du scénario",
+        "Configuration du lien": "Configuration du lien",
+        "Configuration du texte": "Configuration du texte",
+        "Configuration du graph": "Configuration du graph",
+        "Quitter le mode édition": "Quitter le mode édition",
+        "Mode édition": "Mode édition"
+    },
+    "desktop\/modal\/plan.configure.php": {
+        "Taille du widget": "Taille du widget",
+        "Couleur de fond": "Couleur de fond",
+        "Transparent": "Transparent",
+        "Couleur des icones et textes": "Couleur des icones et textes",
+        "Ne pas afficher le nom de l'équipement": "Ne pas afficher le nom de l'équipement",
+        "Ne pas afficher ": "Ne pas afficher ",
+        "Arrondir les angles (en %, ex 50%)": "Arrondir les angles (en %, ex 50%)",
+        "Arrondir les angles (ne pas oublié de mettre %, ex 50%)": "Arrondir les angles (ne pas oublié de mettre %, ex 50%)",
+        "Defaut": "Defaut",
+        "Défaut": "Défaut"
+    },
+    "desktop\/modal\/cmd.human.insert.php": {
+        "Objet": "Objet",
+        "Equipement": "Equipement"
+    },
+    "desktop\/modal\/scenario.log.execution.php": {
+        "Dernier": "Dernier"
+    },
+    "desktop\/php\/jeeNetwork.php": {
+        "Ajouter un Jeedom": "Ajouter un Jeedom",
+        "Général": "Général",
+        "Nom du Jeedom esclave": "Nom du Jeedom esclave",
+        "IP": "IP",
+        "Attention ne pas oublié le \/jeedom après l'ip si vous l'utilisez pour vous rendre sur l'interface de jeedom": "Attention ne pas oublié le \/jeedom après l'ip si vous l'utilisez pour vous rendre sur l'interface de jeedom",
+        "Clef API": "Clef API",
+        "Accéder (attention ne marche que si vous êtes sur le réseau local)": "Accéder (attention ne marche que si vous êtes sur le réseau local)",
+        "Se connecter": "Se connecter",
+        "Arrêter\/Redémarrer": "Arrêter\/Redémarrer",
+        "Redémarrer": "Redémarrer",
+        "Mise à jour": "Mise à jour",
+        "Vérifier": "Vérifier",
+        "Mettre à jour": "Mettre à jour",
+        "Backup": "Backup",
+        "Informations": "Informations",
+        "Version de Jeedom": "Version de Jeedom",
+        "Nombre de mise(s) à jour": "Nombre de mise(s) à jour",
+        "Nombre de message(s)": "Nombre de message(s)",
+        "Plugin": "Plugin",
+        "Logs & messages :": "Logs & messages :"
+    },
+    "desktop\/js\/jeeNetwork.js": {
+        "Suppression effectuée avec succès": "Suppression effectuée avec succès",
+        "Etes-vous sûr de vouloir restaurer cette sauvegarde sur ce Jeedom esclave ?": "Etes-vous sûr de vouloir restaurer cette sauvegarde sur ce Jeedom esclave ?",
+        "Etes-vous sûr de vouloir arrêter ce Jeedom esclave ?": "Etes-vous sûr de vouloir arrêter ce Jeedom esclave ?",
+        "Le système est en cours d\\'arrêt": "Le système est en cours d\\'arrêt",
+        "Etes-vous sûr de vouloir redémarrer ce Jeedom esclave ?": "Etes-vous sûr de vouloir redémarrer ce Jeedom esclave ?",
+        "Le système est en cours de redémarrage": "Le système est en cours de redémarrage",
+        "Etes-vous sûr de vouloir mettre à jour ce Jeedom esclave ?": "Etes-vous sûr de vouloir mettre à jour ce Jeedom esclave ?",
+        "Le système est en cours de mise à jour": "Le système est en cours de mise à jour",
+        "La vérification des mises à jour a été faite avec succès": "La vérification des mises à jour a été faite avec succès",
+        "Les messages ont été correctement supprimés": "Les messages ont été correctement supprimés",
+        "Veuillez d\\'abord sélectionner une connexion jeeNetwork": "Veuillez d\\'abord sélectionner une connexion jeeNetwork",
+        "Etes-vous sûr de vouloir supprimer la connexion jeeNetwork": "Etes-vous sûr de vouloir supprimer la connexion jeeNetwork",
+        "L\\'opération est réussie": "L\\'opération est réussie",
+        "L\\'opération a échoué": "L\\'opération a échoué"
+    },
+    "desktop\/modal\/icon.selector.php": {
+        "animal": "animal",
+        "divers": "divers",
+        "fashion": "fashion",
+        "jeedom": "jeedom",
+        "loisir": "loisir",
+        "maison": "maison",
+        "meteo": "meteo",
+        "nature": "nature",
+        "nourriture": "nourriture",
+        "personne": "personne",
+        "securite": "securite",
+        "techno": "techno",
+        "transport": "transport",
+        "Générale": "Générale"
+    },
+    "mobile\/html\/connection.html": {
+        "Enregistrer cet appareil": "Enregistrer cet appareil"
+    },
+    "core\/js\/cmd.class.js": {
+        "Action éxecutée avec succès": "Action éxecutée avec succès",
+        "[Jeedom] Message de test": "[Jeedom] Message de test",
+        "Ceci est un test de message pour la commande": "Ceci est un test de message pour la commande"
+    },
+    "desktop\/js\/update.js": {
+        "Etes-vous sur de vouloir faire les mises à jour ?": "Etes-vous sur de vouloir faire les mises à jour ?",
+        "Etes vous sur de vouloir changer l\\'état de l\\'objet ?": "Etes vous sur de vouloir changer l\\'état de l\\'objet ?",
+        "Etes vous sur de vouloir mettre a jour cet objet ?": "Etes vous sur de vouloir mettre a jour cet objet ?",
+        "Etes vous sur de vouloir supprimer cet objet ?": "Etes vous sur de vouloir supprimer cet objet ?",
+        "L\\'opération est réussie": "L\\'opération est réussie",
+        "L\\'opération a échoué": "L\\'opération a échoué",
+        "Mettre à jour": "Mettre à jour",
+        "Voir": "Voir",
+        "Changelog": "Changelog"
+    },
+    "core\/ajax\/update.ajax.php": {
+        "[START UPDATE]\n": "[START UPDATE]\n",
+        "[END UPDATE SUCCESS]\n": "[END UPDATE SUCCESS]\n"
     }
 }
