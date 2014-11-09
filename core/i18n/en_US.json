@@ -318,7 +318,7 @@
     },
     "core\/js\/core.js": {
         "La commande a été exécutée avec succès": "The command was successfully run",
-        "Mise à jour de l\\état du scénario réussi": "Successful scenario state update",
+        "Mise à jour de l\\état du scénario réussi": "Successful scenario status update",
         "[Jeedom] Message de test": "[Jeedom] Test message",
         "Ceci est un test de message pour la commande": "This is a test message for the command",
         "La valeur a été éditée avec succès": "The value was successfully edited",
@@ -818,7 +818,7 @@
         "filename => nom du fichier de log\r\n    level => [debug],[info],[error],[event]\r\n    message => message à écrire dans les logs": "filename => name of log file\r\n    level => [debug],[info],[error],[event]\r\n    message => message to write in log",
         "Retourne le nom du scénario courant": "Send back the name of  the current scenario",
         "Retourne le groupe du scénario": "Send back the group of the scenario",
-        "Retourne l'état du scénario": "Send back the state of the scenario",
+        "Retourne l'état du scénario": "Send back the status of the scenario",
         "Permet d'activer ou non le scénario\r\n    $active => 1 actif , 0 non actif": "Allow to activate (or not) a scenario\r\n    $active => 1 enabled , 0 disabled",
         "Permet de dire si le scénario est en cours ou non\r\n    $onGoing => 1 en cours , 0 arrêté": "Allow to tell if the scenario is running or not\r\n    $onGoing => 1 running , 0 stopped",
         "Sauvegarde les modifications": "Save changes",
