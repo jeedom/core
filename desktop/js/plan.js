@@ -493,6 +493,10 @@ function displayObject(_type, _id, _html, _plan) {
                 if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
                     html.css(key, _plan.css[key]);
                 }
+            } else if (key == 'background-color') {
+                if (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1) {
+                    html.css(key, _plan.css[key]);
+                }
             } else {
                 html.css(key, _plan.css[key]);
             }
