@@ -54,5 +54,11 @@ server {
                 fastcgi_buffers 4 256k;
                 fastcgi_busy_buffers_size 256k;
                 fastcgi_read_timeout 300;
+                if ($request_method = 'GET') {
+                        add_header 'Access-Control-Allow-Origin' '*';
+                        add_header 'Access-Control-Allow-Credentials' 'true';
+                        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                        add_header 'Access-Control-Allow-Headers' 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+                }
         }
 }
