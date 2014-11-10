@@ -91,6 +91,8 @@ if (init('type') == 'plugin') {
                         <option value="plugin">{{Plugin}}</option>
                         <option value="widget">{{Widget}}</option>
                         <option value="zwave">{{[Zwave] Configuration module}}</option>
+                        <option value="enocean">{{[EnOcean] Configuration module}}</option>
+                        <option value="rfxcom">{{[RfxCom] Configuration module}}</option>
                         <option value="script">{{Script}}</option>
                         <option value="camera">{{[Camera] Modèle}}</option>
                         <option value="SNMP">{{[SNMP] Configuration}}</option>
