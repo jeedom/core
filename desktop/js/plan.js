@@ -281,6 +281,7 @@ function initDraggable(_state) {
     });
     if (_state != 1 && _state != '1') {
         $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').draggable("destroy");
+        $('.graph-widget').resizable("destroy");
         $('#div_displayObject a').each(function () {
             $(this).attr('href', $(this).attr('data-href'));
         });
