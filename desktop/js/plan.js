@@ -168,40 +168,41 @@ $('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]').on('chang
 });
 
 $('#div_displayObject').delegate('.configureGraph', 'click', function () {
-    var el = $(this).closest('.graph-widget');
-    $("#md_addViewData").load('index.php?v=d&modal=cmd.graph.select', function () {
-
-        $('#table_addViewData tbody tr .enable').prop('checked', false);
-        var options = json_decode(el.find('.graphOptions').value());
-        for (var i in options) {
-            var tr = $('#table_addViewData tbody tr[data-link_id=' + options[i].link_id + ']');
-            tr.find('.enable').value(1);
-            tr.setValues(options[i], '.graphDataOption');
-            setColorSelect(tr.find('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]'));
-        }
-
-        $("#md_addViewData").dialog('option', 'buttons', {
-            "Annuler": function () {
-                $(this).dialog("close");
-            },
-            "Valider": function () {
-                var tr = $('#table_addViewData tbody tr:first');
-                var options = [];
-                while (tr.attr('data-link_id') != undefined) {
-                    if (tr.find('.enable').is(':checked')) {
-                        var graphData = tr.getValues('.graphDataOption')[0];
-                        graphData.link_id = tr.attr('data-link_id');
-                        options.push(graphData);
-                    }
-                    tr = tr.next();
-                }
-                el.find('.graphOptions').empty().append(json_encode(options));
-                savePlan(true);
-                $(this).dialog('close');
+    if ($('#bt_editPlan').attr('data-mode') == "1") {
+        var el = $(this).closest('.graph-widget');
+        $("#md_addViewData").load('index.php?v=d&modal=cmd.graph.select', function () {
+            $('#table_addViewData tbody tr .enable').prop('checked', false);
+            var options = json_decode(el.find('.graphOptions').value());
+            for (var i in options) {
+                var tr = $('#table_addViewData tbody tr[data-link_id=' + options[i].link_id + ']');
+                tr.find('.enable').value(1);
+                tr.setValues(options[i], '.graphDataOption');
+                setColorSelect(tr.find('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]'));
             }
+
+            $("#md_addViewData").dialog('option', 'buttons', {
+                "Annuler": function () {
+                    $(this).dialog("close");
+                },
+                "Valider": function () {
+                    var tr = $('#table_addViewData tbody tr:first');
+                    var options = [];
+                    while (tr.attr('data-link_id') != undefined) {
+                        if (tr.find('.enable').is(':checked')) {
+                            var graphData = tr.getValues('.graphDataOption')[0];
+                            graphData.link_id = tr.attr('data-link_id');
+                            options.push(graphData);
+                        }
+                        tr = tr.next();
+                    }
+                    el.find('.graphOptions').empty().append(json_encode(options));
+                    savePlan(true);
+                    $(this).dialog('close');
+                }
+            });
+            $('#md_addViewData').dialog('open');
         });
-        $('#md_addViewData').dialog('open');
-    });
+    }
 });
 
 $('#bt_editPlan').on('click', function () {
