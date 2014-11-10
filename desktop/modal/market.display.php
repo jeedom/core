@@ -188,6 +188,8 @@ if ($market->getPurchase() == 1) {
                         <option value="plugin">{{Plugin}}</option>
                         <option value="widget">{{Widget}}</option>
                         <option value="zwave_module">{{[Zwave] Configuration module}}</option>
+                        <option value="enocean">{{[EnOcean] Configuration module}}</option>
+                        <option value="rfxcom">{{[RfxCom] Configuration module}}</option>
                         <option value="script">{{Script}}</option>
                         <option value="camera">{{[Camera] Modèle}}</option>
                     </select>
