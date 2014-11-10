@@ -145,10 +145,20 @@ if (count($plugins_list) > 0) {
                                     <li class="dropdown cursor">
                                         <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-home"></i> {{Accueil}} <b class="caret"></b></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="index.php?v=d&p=dashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a></li>
-                                            <li><a href="index.php?v=d&p=view"><i class="fa fa-bars"></i> {{Vue}}</a></li>
-                                            <li><a href="index.php?v=d&p=plan"><i class="fa fa-picture-o"></i> {{Designs}}</a></li>
-                                            <?php
+                                            <?php if (hasRight('dashboardview')) { ?>
+                                                <li><a href="index.php?v=d&p=dashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a></li>
+                                                <?php
+                                            }
+                                            if (hasRight('viewview')) {
+                                                ?>
+                                                <li><a href="index.php?v=d&p=view"><i class="fa fa-bars"></i> {{Vue}}</a></li>
+                                                <?php
+                                            }
+                                            if (hasRight('planview')) {
+                                                ?>
+                                                <li><a href="index.php?v=d&p=plan"><i class="fa fa-picture-o"></i> {{Designs}}</a></li>
+                                                <?php
+                                            }
                                             echo $panel_menu;
                                             ?>
                                         </ul>
@@ -156,51 +166,98 @@ if (count($plugins_list) > 0) {
                                     <li><a href="index.php?v=d&p=history"><i class="fa fa-bar-chart-o"></i> {{Historique}}</a></li>
                                 <?php } ?>
 
-                                <?php if (isConnect('admin')) { ?>
+                                <?php
+                                if (isConnect('admin') || hasRight('administrationview') || hasRight('userview') || hasRight('backupview') || hasRight('updateview') || hasRight('cronview') || hasRight('securityview') || hasRight('logview')
+                                ) {
+                                    ?>
                                     <li class="dropdown cursor">
                                         <a data-toggle="dropdown"><i class="fa fa-qrcode"></i> {{Général}} <b class="caret"></b></a>
                                         <ul class="dropdown-menu" role="menu">
                                             <li class="dropdown-submenu">
                                                 <a data-toggle="dropdown"><i class="fa fa-cogs"></i> {{Administration}}</a>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fa fa-wrench"></i> {{Configuration}}</a></li>
-                                                    <li><a href="index.php?v=d&p=user"><i class="fa fa-users"></i> {{Utilisateurs}}</a></li>
-                                                    <?php if (config::byKey('jeedom::licence') > 9) { ?>
+                                                    <?php if (hasRight('administrationview')) { ?>
+                                                        <li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fa fa-wrench"></i> {{Configuration}}</a></li>
+                                                        <?php
+                                                    }
+                                                    if (hasRight('userview', true)) {
+                                                        ?>
+                                                        <li><a href="index.php?v=d&p=user"><i class="fa fa-users"></i> {{Utilisateurs}}</a></li>
+                                                        <?php
+                                                    }
+                                                    if (config::byKey('jeedom::licence') > 9) {
+                                                        ?>
                                                         <li><a href="index.php?v=d&p=rights"><i class="fa fa-graduation-cap"></i> {{Gestion des droits avancés}}</a></li>
-                                                    <?php } ?>
-                                                    <li><a href="index.php?v=d&p=backup"><i class="fa fa-floppy-o"></i> {{Sauvegarde}}</a></li>
-                                                    <li><a href="index.php?v=d&p=update"><i class="fa fa-refresh"></i> {{Centre de mise à jour}}</a></li>
-                                                    <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
+                                                        <?php
+                                                    }
+                                                    if (hasRight('backupview', true)) {
+                                                        ?>
+                                                        <li><a href="index.php?v=d&p=backup"><i class="fa fa-floppy-o"></i> {{Sauvegarde}}</a></li>
+                                                        <?php
+                                                    }
+                                                    if (hasRight('updateview', true)) {
+                                                        ?>
+                                                        <li><a href="index.php?v=d&p=update"><i class="fa fa-refresh"></i> {{Centre de mise à jour}}</a></li>
+                                                        <?php
+                                                    }
+                                                    if (config::byKey('jeeNetwork::mode') == 'master') {
+                                                        ?>
                                                         <li class="expertModeVisible"><a href="index.php?v=d&p=timeline"><i class="fa fa-history"></i> {{Timeline}}</a></li>
                                                         <?php if (config::byKey('jeedom::licence') >= 5) { ?>
                                                             <li class="expertModeVisible"><a href="index.php?v=d&p=jeeNetwork"><i class="fa fa-sitemap"></i> {{Réseau Jeedom}}</a></li>
                                                         <?php } ?>
                                                     <?php } ?>
-                                                    <li class="expertModeVisible"><a href="index.php?v=d&p=cron"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
-                                                    <li class="expertModeVisible"><a href="index.php?v=d&p=security"><i class="fa fa-lock"></i> {{Sécurité}}</a></li>
-                                                    <li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Log}}</a></li>
+                                                    <?php if (hasRight('cronview', true)) { ?>
+                                                        <li class="expertModeVisible"><a href="index.php?v=d&p=cron"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
+                                                        <?php
+                                                    }
+                                                    if (hasRight('securityview', true)) {
+                                                        ?>
+                                                        <li class="expertModeVisible"><a href="index.php?v=d&p=security"><i class="fa fa-lock"></i> {{Sécurité}}</a></li>
+                                                        <?php
+                                                    }
+                                                    if (hasRight('logview', true)) {
+                                                        ?>
+                                                        <li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Log}}</a></li>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </ul>
                                             </li>
-                                            <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
-                                                <li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Objet}}</a></li>
-                                            <?php } ?>
-                                            <li><a href="index.php?v=d&p=plugin"><i class="fa fa-tags"></i> {{Plugins}}</a></li>
-                                            <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
-                                                <li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interaction}}</a></li>
-                                                <li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Affichage}}</a></li>
+                                            <?php
+                                            if (config::byKey('jeeNetwork::mode') == 'master') {
+                                                if (hasRight('cronview', true)) {
+                                                    ?>
+                                                    <li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Objet}}</a></li>
+                                                    <?php
+                                                }
+                                            } if (hasRight('pluginview', true)) {
+                                                ?>
+                                                <li><a href="index.php?v=d&p=plugin"><i class="fa fa-tags"></i> {{Plugins}}</a></li>
                                                 <?php
                                             }
-                                            if (isConnect('admin') && config::byKey('jeeNetwork::mode') == 'master') {
+                                            if (config::byKey('jeeNetwork::mode') == 'master') {
+                                                if (hasRight('interactview', true)) {
+                                                    ?>
+                                                    <li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interaction}}</a></li>
+                                                <?php } if (hasRight('displayview')) {
+                                                    ?>
+                                                    <li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Affichage}}</a></li>
+                                                    <?php
+                                                }
+                                            }
+                                            if (hasRight('scenarioview', true) && config::byKey('jeeNetwork::mode') == 'master') {
                                                 ?>
-                                                <li><a href="index.php?v=d&p=scenario"><i class="fa fa-cogs"></i> {{Scénario}}</a></li>
-                                            <?php } ?>
+                                                <li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénario}}</a></li>
+                                                <?php
+                                            }
+                                            ?>
                                         </ul>
                                     </li>
                                     <?php
                                 }
                                 if (isConnect('admin') && config::byKey('jeeNetwork::mode') == 'master') {
                                     ?>
-
                                     <li class="dropdown cursor">
                                         <a data-toggle="dropdown"><i class="fa fa-tasks"></i> {{Plugins}} <b class="caret"></b></a>
                                         <ul class="dropdown-menu" role="menu">
@@ -261,11 +318,13 @@ if (count($plugins_list) > 0) {
                                         <i class="fa fa-question-circle" ></i>
                                     </a>
                                 </li>
-                                <li>
-                                    <a class="bt_reportBug cursor tooltips" title="{{Envoyer un rapport de bug}}">
-                                        <i class="fa fa-exclamation-circle" ></i>
-                                    </a>
-                                </li>
+                                <?php if (hasRight('reportsend', true)) { ?>
+                                    <li>
+                                        <a class="bt_reportBug cursor tooltips" title="{{Envoyer un rapport de bug}}">
+                                            <i class="fa fa-exclamation-circle" ></i>
+                                        </a>
+                                    </li>
+                                <?php } ?>
                             </ul>
                         </nav><!--/.nav-collapse -->
                     </div>

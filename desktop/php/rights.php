@@ -64,7 +64,7 @@ $pages = array(
     ),
     'scenario' => array(
         'title' => 'Scenario',
-        'view' => array('title' => 'Voiro'),
+        'view' => array('title' => 'Voir'),
         'edit' => array('title' => 'Editer')
     ),
     'security' => array(
@@ -91,6 +91,10 @@ $pages = array(
         'title' => 'Vue',
         'view' => array('title' => 'Voir'),
         'edit' => array('title' => 'Editer')
+    ),
+     'report' => array(
+        'title' => 'Rapport',
+        'send' => array('title' => 'Envoyer'),
     ),
 );
 
