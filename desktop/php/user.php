@@ -1,5 +1,5 @@
 <?php
-if (!isConnect('admin')) {
+if (!hasRight('userview',true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 sendVarToJS('ldapEnable', config::byKey('ldap::enable'));

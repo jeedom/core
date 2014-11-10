@@ -1,5 +1,5 @@
 <?php
-if (!isConnect('admin')) {
+if (!hasRight('pluginview',true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 global $JEEDOM_INTERNAL_CONFIG;

@@ -1,5 +1,5 @@
 <?php
-if (!isConnect('admin')) {
+if (!hasRight('jeeNetworkview', true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 if (config::byKey('jeedom::licence') < 5) {

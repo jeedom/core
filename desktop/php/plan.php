@@ -1,5 +1,5 @@
 <?php
-if (!isConnect()) {
+if (!hasRight('planview')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');

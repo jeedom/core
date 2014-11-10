@@ -1,5 +1,5 @@
 <?php
-if (!isConnect()) {
+if (!hasRight('viewview')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 include_file('3rdparty', 'jquery.masonry/jquery.masonry', 'js');
@@ -31,7 +31,9 @@ sendVarToJS('view_id', $view->getId());
     <div class="col-lg-2">
         <div class="bs-sidebar">
             <ul id="ul_view" class="nav nav-list bs-sidenav">
-                <a class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" href="index.php?v=d&p=view_edit"><i class="fa fa-plus-circle"></i> {{Ajouter une vue}}</a>
+                <?php if (hasRight('viewedit', true)) { ?>
+                    <a class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" href="index.php?v=d&p=view_edit"><i class="fa fa-plus-circle"></i> {{Ajouter une vue}}</a>
+                <?php } ?>
                 <li class="filter"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
                 <?php
                 foreach (view::all() as $view_info) {
@@ -47,7 +49,10 @@ sendVarToJS('view_id', $view->getId());
     </div>
 
     <div class="col-lg-10">
-        <legend style="height: 35px;color : #563d7c;">Vue <?php echo $view->getName() ?> <a href="index.php?v=d&p=view_edit&id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right" id="bt_addviewZone"><i class="fa fa-pencil"></i> {{Editer}}</a></legend>
+        <legend style="height: 35px;color : #563d7c;">Vue <?php
+            echo $view->getName();
+            if (hasRight('viewedit', true)) {
+                ?> <a href="index.php?v=d&p=view_edit&id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right" id="bt_addviewZone"><i class="fa fa-pencil"></i> {{Editer}}</a><?php } ?></legend>
         <div id="div_displayView"></div>
     </div>
 

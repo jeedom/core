@@ -1,5 +1,5 @@
 <?php
-if (!isConnect('admin')) {
+if (!hasRight('scenarioview',true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 

@@ -1,5 +1,5 @@
 <?php
-if (!isConnect()) {
+if (!hasRight('dashboardview')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 include_file('3rdparty', 'jquery.masonry/jquery.masonry', 'js');
