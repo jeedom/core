@@ -83,7 +83,7 @@ function initApplication(_reinit) {
                     nodeJsKey = data.result.nodeJsKey;
                     user_id = data.result.user_id;
                     plugins = data.result.plugins;
-                   
+
                     userProfils = data.result.userProfils;
                     var include = ['core/js/core.js'];
 
@@ -100,7 +100,7 @@ function initApplication(_reinit) {
                     $.get("core/php/icon.inc.php", function (data) {
                         $("head").append(data);
                         $.include(include, function () {
-                             deviceInfo = getDeviceType();
+                            deviceInfo = getDeviceType();
                             if (isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home') {
                                 var res = userProfils.homePageMobile.split("::");
                                 if (res[0] == 'core') {
@@ -109,7 +109,7 @@ function initApplication(_reinit) {
                                             page('equipment', 'Objet', userProfils.defaultMobileObject);
                                             break;
                                         case 'plan' :
-                                            page('plan', 'Plan', userProfils.defaultMobilePlan);
+                                            window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan;
                                             break;
                                         case 'view' :
                                             page('view', 'Vue', userProfils.defaultMobileView);
@@ -143,7 +143,7 @@ function page(_page, _title, _option, _plugin) {
         });
         return;
     }
-    
+
     jeedom.user.isConnect({
         success: function (result) {
             if (!result) {

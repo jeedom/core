@@ -13,7 +13,7 @@ $notifyTheme = array(
 $homePage = array(
     'core::dashboard' => '{{Dashboard}}',
     'core::view' => '{{Vue}}',
-    'core::plan' => '{{Plan}}',
+    'core::plan' => '{{Design}}',
 );
 foreach (plugin::listPlugin() as $pluginList) {
     if ($pluginList->isActive() == 1 && $pluginList->getDisplay() != '') {
@@ -220,10 +220,6 @@ foreach (plugin::listPlugin() as $pluginList) {
                                     }
                                     ?>
                                 </select>
-                            </div>
-                            <label class="col-lg-1 control-label">{{Plein écran}}</label>
-                            <div class="col-lg-2">
-                                <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultMobilePlanFullscreen"/>
                             </div>
                         </div>
                         <legend>Dashboard</legend>
