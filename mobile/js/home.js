@@ -41,7 +41,7 @@ function initHome() {
             var li = '';
             for (var i in planHeader) {
                 if (deviceInfo.type != 'phone' || (deviceInfo.type == 'phone' && planHeader[i].configuration.enableOnMobile == "1")) {
-                    li += '<li><a href="index.php?v=d&p=plan&plan_id=' + planHeader[i].id + '&fullScreen=1" class="" data-page="plan" data-title="' + planHeader[i].name + '" data-option="' + planHeader[i].id + '" data-ajax="false">' + planHeader[i].name + '</a></li>'
+                    li += '<li><a href="index.php?v=d&p=plan&plan_id=' + planHeader[i].id + '" class="" data-page="plan" data-title="' + planHeader[i].name + '" data-option="' + planHeader[i].id + '" data-ajax="false">' + planHeader[i].name + '</a></li>'
                 }
             }
             $('#ul_planList').empty().append(li).listview("refresh");

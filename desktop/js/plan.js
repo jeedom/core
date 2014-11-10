@@ -24,16 +24,6 @@ $("#md_addViewData").dialog({
     width: (jQuery(window).width() - 450)
 });
 
-if (is_numeric(getUrlVars('fullScreen')) && getUrlVars('fullScreen') == 1) {
-    $('header').hide();
-    $(function () {
-        $('footer').hide();
-    });
-    $('#div_planHeader').hide();
-    $('#div_mainContainer').css('margin-top', '-60px');
-    $('#div_mainContainer').css('margin-left', '-15px');
-}
-
 /*****************************PLAN HEADER***********************************/
 $('#bt_addPlanHeader').on('click', function () {
     bootbox.prompt("Nom du design ?", function (result) {
@@ -245,6 +235,16 @@ function makeGrid(_x, _y) {
     }
 }
 
+function fullScreen() {
+    $('header').hide();
+    $(function () {
+        $('footer').hide();
+    });
+    $('#div_planHeader').hide();
+    $('#div_mainContainer').css('margin-top', '-60px');
+    $('#div_mainContainer').css('margin-left', '-15px');
+}
+
 function initDraggable(_state) {
     var dragOption = {};
     if (grid != false) {
@@ -304,6 +304,7 @@ function displayPlan() {
                     sizeSet = true;
                 }
             } else if (deviceInfo.type == 'tablet') {
+                fullScreen();
                 if (data.configuration != null && init(data.configuration.tabletSizeX) != '' && init(data.configuration.tabletSizeY) != '') {
                     $('#div_displayObject').height(data.configuration.tabletSizeY);
                     $('#div_displayObject').width(data.configuration.tabletSizeX);
@@ -312,6 +313,7 @@ function displayPlan() {
                     sizeSet = true;
                 }
             } else if (deviceInfo.type == 'phone') {
+                fullScreen();
                 if (data.configuration != null && init(data.configuration.mobileSizeX) != '' && init(data.configuration.mobileSizeY) != '') {
                     $('#div_displayObject').height(data.configuration.mobileSizeY);
                     $('#div_displayObject').width(data.configuration.mobileSizeX);
