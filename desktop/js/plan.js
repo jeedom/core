@@ -223,7 +223,7 @@ $('#bt_editPlan').on('click', function () {
 
 $('#bt_switchFullScreen').on('click', function () {
     if ($('#bt_editPlan').attr('data-mode') == '0') {
-        fullScreen('phone');
+        fullScreen('desktop');
     }
 });
 
