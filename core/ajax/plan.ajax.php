@@ -205,9 +205,12 @@ try {
         if (filesize($_FILES['file']['tmp_name']) > 5000000) {
             throw new Exception(__('Le fichier est trop gros (maximum 5mo)', __FILE__));
         }
+        $img_size = getimagesize($_FILES['file']['tmp_name']);
         $planHeader->setImage('type', str_replace('.', '', $extension));
-        $planHeader->setImage('size', getimagesize($_FILES['file']['tmp_name']));
+        $planHeader->setImage('size', $img_size);
         $planHeader->setImage('data', base64_encode(file_get_contents($_FILES['file']['tmp_name'])));
+        $planHeader->setConfiguration('desktopSizeX', $img_size[0]);
+        $planHeader->setConfiguration('desktopSizeY', $img_size[1]);
         $planHeader->save();
         @rrmdir(dirname(__FILE__) . '/../../core/img/plan');
         ajax::success();

@@ -377,14 +377,16 @@ function savePlan(_refreshDisplay) {
             var plan = {};
             plan.position = {};
             plan.display = {};
+            var zoom = $(this).attr('data-zoom');
             plan.link_type = 'eqLogic';
             plan.link_id = $(this).attr('data-eqLogic_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = ($(this).height() / parent.height) * 100;
-            plan.display.width = ($(this).width() / parent.width) * 100;
+            plan.display.height = $(this).height() + 6;
+            plan.display.width = $(this).width() + 6;
             var position = $(this).position();
             plan.position.top = (((position.top)) / parent.height) * 100;
             plan.position.left = (((position.left)) / parent.width) * 100;
+            console.log(plan);
             plans.push(plan);
         });
         $('.scenario-widget').each(function () {
@@ -394,8 +396,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'scenario';
             plan.link_id = $(this).attr('data-scenario_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = ($(this).height() / parent.height) * 100;
-            plan.display.width = ($(this).width() / parent.width) * 100;
+            plan.display.height = $(this).height();
+            plan.display.width = $(this).width();
             var position = $(this).position();
             plan.position.top = (((position.top)) / parent.height) * 100;
             plan.position.left = (((position.left)) / parent.width) * 100;
@@ -408,8 +410,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'plan';
             plan.link_id = $(this).attr('data-link_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = ($(this).height() / parent.height) * 100;
-            plan.display.width = ($(this).width() / parent.width) * 100;
+            plan.display.height = $(this).height();
+            plan.display.width = $(this).width();
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;
@@ -422,8 +424,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'view';
             plan.link_id = $(this).attr('data-link_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = ($(this).height() / parent.height) * 100;
-            plan.display.width = ($(this).width() / parent.width) * 100;
+            plan.display.height = $(this).height();
+            plan.display.width = $(this).width();
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;
@@ -436,8 +438,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'graph';
             plan.link_id = $(this).attr('data-graph_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = ($(this).height() / parent.height) * 100;
-            plan.display.width = ($(this).width() / parent.width) * 100;
+            plan.display.height = $(this).height();
+            plan.display.width = $(this).width();
             plan.display.graph = json_decode($(this).find('.graphOptions').value());
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
@@ -451,8 +453,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'text';
             plan.link_id = $(this).attr('data-text_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = ($(this).height() / parent.height) * 100;
-            plan.display.width = ($(this).width() / parent.width) * 100;
+            plan.display.height = $(this).height();
+            plan.display.width = $(this).width();
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;
@@ -543,6 +545,7 @@ function displayObject(_type, _id, _html, _plan) {
     html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
     html.css('-moz-transform-origin', '0 0');
     html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
+    html.attr('data-zoom',init(_plan.css.zoom, defaultZoom));
     var position = {
         top: init(_plan.position.top, '10') * parent.height / 100,
         left: init(_plan.position.left, '10') * parent.width / 100,
@@ -554,10 +557,10 @@ function displayObject(_type, _id, _html, _plan) {
     if (grid === false) {
         html.addClass('noResize');
         if (isset(_plan.display) && isset(_plan.display.width)) {
-            html.css('width', (init(_plan.display.width, 10) * parent.width / 100));
+            html.css('width', init(_plan.display.width, 10));
         }
         if (isset(_plan.display) && isset(_plan.display.height)) {
-            html.css('height', (init(_plan.display.height, 10) * parent.height / 100));
+            html.css('height', init(_plan.display.height, 10));
         }
     } else {
         html.css("max-width", "");
