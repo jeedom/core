@@ -34,6 +34,7 @@ class com_http {
     private $cookiesession = false;
     private $allowEmptyReponse = false;
     private $noReportError = false;
+    private $CURLOPT_HTTPAUTH = '';
 
     /*     * ********************Functions static********************* */
 
@@ -77,7 +78,9 @@ class com_http {
             }
             if ($this->username != '') {
                 curl_setopt($ch, CURLOPT_USERPWD, $this->username . ':' . $this->password);
-                curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_DIGEST);
+                if($this->getCURLOPT_HTTPAUTH() != ''){
+                    curl_setopt($ch, CURLOPT_HTTPAUTH, $this->getCURLOPT_HTTPAUTH());
+                }
             }
             if ($this->getPost() != '') {
                 log::add('http.com', 'debug', 'post field : ' . print_r($this->getPost(), true));
@@ -192,6 +195,16 @@ class com_http {
     public function setUrl($url) {
         $this->url = $url;
     }
+    
+    function getCURLOPT_HTTPAUTH() {
+        return $this->CURLOPT_HTTPAUTH;
+    }
+
+    function setCURLOPT_HTTPAUTH($CURLOPT_HTTPAUTH) {
+        $this->CURLOPT_HTTPAUTH = $CURLOPT_HTTPAUTH;
+    }
+
+
 
 }
 
