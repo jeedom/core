@@ -291,7 +291,7 @@ function initDraggable(_state) {
 
         },
     });
-    $('.graph-widget').resizable();
+    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable();
     $('#div_displayObject a').each(function () {
         if ($(this).attr('href') != '#') {
             $(this).attr('data-href', $(this).attr('href'));
@@ -300,7 +300,7 @@ function initDraggable(_state) {
     });
     if (_state != 1 && _state != '1') {
         $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').draggable("destroy");
-        $('.graph-widget').resizable("destroy");
+        $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable("destroy");
         $('#div_displayObject a').each(function () {
             $(this).attr('href', $(this).attr('data-href'));
         });
@@ -388,9 +388,12 @@ function savePlan(_refreshDisplay) {
         $('.eqLogic-widget').each(function () {
             var plan = {};
             plan.position = {};
+            plan.display = {};
             plan.link_type = 'eqLogic';
             plan.link_id = $(this).attr('data-eqLogic_id');
             plan.planHeader_id = planHeader_id;
+            plan.display.height = ($(this).height() / parent.height) * 100;
+            plan.display.width = ($(this).width() / parent.width) * 100;
             var position = $(this).position();
             plan.position.top = (((position.top)) / parent.height) * 100;
             plan.position.left = (((position.left)) / parent.width) * 100;
@@ -399,9 +402,12 @@ function savePlan(_refreshDisplay) {
         $('.scenario-widget').each(function () {
             var plan = {};
             plan.position = {};
+            plan.display = {};
             plan.link_type = 'scenario';
             plan.link_id = $(this).attr('data-scenario_id');
             plan.planHeader_id = planHeader_id;
+            plan.display.height = ($(this).height() / parent.height) * 100;
+            plan.display.width = ($(this).width() / parent.width) * 100;
             var position = $(this).position();
             plan.position.top = (((position.top)) / parent.height) * 100;
             plan.position.left = (((position.left)) / parent.width) * 100;
@@ -410,9 +416,12 @@ function savePlan(_refreshDisplay) {
         $('.plan-link-widget').each(function () {
             var plan = {};
             plan.position = {};
+            plan.display = {};
             plan.link_type = 'plan';
             plan.link_id = $(this).attr('data-link_id');
             plan.planHeader_id = planHeader_id;
+            plan.display.height = ($(this).height() / parent.height) * 100;
+            plan.display.width = ($(this).width() / parent.width) * 100;
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;
@@ -421,9 +430,12 @@ function savePlan(_refreshDisplay) {
         $('.view-link-widget').each(function () {
             var plan = {};
             plan.position = {};
+            plan.display = {};
             plan.link_type = 'view';
             plan.link_id = $(this).attr('data-link_id');
             plan.planHeader_id = planHeader_id;
+            plan.display.height = ($(this).height() / parent.height) * 100;
+            plan.display.width = ($(this).width() / parent.width) * 100;
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;
@@ -550,8 +562,15 @@ function displayObject(_type, _id, _html, _plan) {
 
     html.css('top', position.top);
     html.css('left', position.left);
+
     if (grid === false) {
         html.addClass('noResize');
+        if (isset(_plan.display) && isset(_plan.display.width)) {
+            html.css('width', (init(_plan.display.width, 10) * parent.width / 100));
+        }
+        if (isset(_plan.display) && isset(_plan.display.height)) {
+            html.css('height', (init(_plan.display.height, 10) * parent.height / 100));
+        }
     } else {
         html.css("max-width", "");
         html.css("min-width", eqLogic_width_step);
@@ -635,7 +654,7 @@ function addGraph(_plan) {
     _plan.display = init(_plan.display, {});
     _plan.link_id = init(_plan.link_id, Math.round(Math.random() * 99999999) + 9999);
     var options = init(_plan.display.graph, '[]');
-    var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="width : ' + (init(_plan.display.width, 10) * parent.width / 100) + 'px;height : ' + (init(_plan.display.height, 10) * parent.height / 100) + 'px;background-color : white;border : solid 1px black;">';
+    var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="background-color : white;border : solid 1px black;">';
     if ($('#bt_editPlan').attr('data-mode') == "1") {
         html += '<i class="fa fa-cogs pull-right editMode configureGraph" style="margin-right : 5px;margin-top : 5px;"></i>';
     } else {
