@@ -227,6 +227,12 @@ $('#bt_switchFullScreen').on('click', function () {
     }
 });
 
+$('.view-link-widget,.plan-link-widget').on('click', function () {
+    if ($('#bt_editPlan').attr('data-mode') == '0') {
+        $(this).find('a').click();
+    }
+});
+
 function makeGrid(_x, _y) {
     if (_x === false) {
         $('#div_displayObject').css({
