@@ -210,15 +210,6 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-4 control-label">{{Taille du lien (LxH) :}}</label>
-                <div class="col-lg-2">
-                    <input class="planAttr form-control" data-l1key="css" data-l2key="width" />
-                </div>
-                <div class="col-lg-2">
-                    <input class="planAttr form-control" data-l1key="css" data-l2key="height" />
-                </div>
-            </div>
-            <div class="form-group">
                 <label class="col-lg-4 control-label">{{Gras)}}</label>
                 <div class="col-lg-2">
                     <select class="planAttr form-control" data-l1key="css" data-l2key="font-weight">
