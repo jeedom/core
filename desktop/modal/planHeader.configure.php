@@ -44,30 +44,13 @@ sendVarToJS('id', $planHeader->getId())
         </div>
         <legend>{{Tailles}}</legend>
         <div class="form-group">
-            <label class="col-lg-4 control-label">{{Taille desktop (LxH)}}</label>
+            <label class="col-lg-4 control-label">{{Taille (LxH)}}</label>
             <div class="col-lg-4">
                 <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="desktopSizeX" style="width: 80px;display: inline-block;"/> 
                 x 
                 <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key='desktopSizeY' style="width: 80px;display: inline-block;"/>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-lg-4 control-label">{{Taille tablette (LxH)}}</label>
-            <div class="col-lg-4">
-                <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="tabletSizeX" style="width: 80px;display: inline-block;"/> 
-                x 
-                <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key='tabletSizeY' style="width: 80px;display: inline-block;"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-4 control-label">{{Taille mobile (LxH)}}</label>
-            <div class="col-lg-4">
-                <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="mobileSizeX" style="width: 80px;display: inline-block;"/> 
-                x 
-                <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key='mobileSizeY' style="width: 80px;display: inline-block;"/>
-            </div>
-        </div>
-
     </fieldset>
 </form>
 
