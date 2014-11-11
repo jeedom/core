@@ -101,7 +101,7 @@ function initApplication(_reinit) {
                         $("head").append(data);
                         $.include(include, function () {
                             deviceInfo = getDeviceType();
-                            if (isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home') {
+                            if (isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('page') != 'home') {
                                 var res = userProfils.homePageMobile.split("::");
                                 if (res[0] == 'core') {
                                     switch (res[1]) {

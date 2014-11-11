@@ -221,6 +221,12 @@ $('#bt_editPlan').on('click', function () {
     }
 });
 
+$('#bt_switchFullScreen').on('click', function () {
+    if ($('#bt_editPlan').attr('data-mode') == '0') {
+        fullScreen('phone');
+    }
+});
+
 function makeGrid(_x, _y) {
     if (_x === false) {
         $('#div_displayObject').css({
@@ -236,7 +242,7 @@ function makeGrid(_x, _y) {
     }
 }
 
-function fullScreen() {
+function fullScreen(_version) {
     $('header').hide();
     $(function () {
         $('footer').hide();
@@ -244,6 +250,19 @@ function fullScreen() {
     $('#div_planHeader').hide();
     $('#div_mainContainer').css('margin-top', '-60px');
     $('#div_mainContainer').css('margin-left', '-15px');
+    $('#div_mainContainer').append('<a class="btn btn-default" style="position : absolute; top : 10px; right : 10px;" id="bt_returnFullScreen"><i class="fa fa-level-up fa-rotate-270"></i></a>');
+    $('#bt_returnFullScreen').on('click', function () {
+        if (_version == 'phone' || _version == 'tablet') {
+            window.location.href = "index.php?v=m&page=home";
+        } else {
+            $('header').show();
+            $('footer').show();
+            $('#div_planHeader').show();
+            $('#div_mainContainer').css('margin-top', '0px');
+            $('#div_mainContainer').css('margin-left', '0px');
+            $('#bt_returnFullScreen').remove();
+        }
+    });
 }
 
 function initDraggable(_state) {
@@ -306,7 +325,7 @@ function displayPlan() {
                     sizeSet = true;
                 }
             } else if (deviceInfo.type == 'tablet') {
-                fullScreen();
+                fullScreen('tablet');
                 if (data.configuration != null && init(data.configuration.tabletSizeX) != '' && init(data.configuration.tabletSizeY) != '') {
                     $('#div_displayObject').height(data.configuration.tabletSizeY);
                     $('#div_displayObject').width(data.configuration.tabletSizeX);
@@ -315,7 +334,7 @@ function displayPlan() {
                     sizeSet = true;
                 }
             } else if (deviceInfo.type == 'phone') {
-                fullScreen();
+                fullScreen('phone');
                 if (data.configuration != null && init(data.configuration.mobileSizeX) != '' && init(data.configuration.mobileSizeY) != '') {
                     $('#div_displayObject').height(data.configuration.mobileSizeY);
                     $('#div_displayObject').width(data.configuration.mobileSizeX);
