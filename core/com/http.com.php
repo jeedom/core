@@ -77,6 +77,7 @@ class com_http {
             }
             if ($this->username != '') {
                 curl_setopt($ch, CURLOPT_USERPWD, $this->username . ':' . $this->password);
+                curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_DIGEST);
             }
             if ($this->getPost() != '') {
                 log::add('http.com', 'debug', 'post field : ' . print_r($this->getPost(), true));
