@@ -74,18 +74,6 @@ class planHeader {
         if ($this->setConfiguration('desktopSizeY') == '') {
             $this->setConfiguration('desktopSizeY', 500);
         }
-        if ($this->setConfiguration('tabletSizeX') == '') {
-            $this->setConfiguration('tabletSizeX', 500);
-        }
-        if ($this->setConfiguration('tabletSizeY') == '') {
-            $this->setConfiguration('tabletSizeY', 500);
-        }
-        if ($this->setConfiguration('mobileSizeX') == '') {
-            $this->setConfiguration('mobileSizeX', 500);
-        }
-        if ($this->setConfiguration('mobileSizeY') == '') {
-            $this->setConfiguration('mobileSizeY', 500);
-        }
     }
 
     public function save() {

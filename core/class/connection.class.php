@@ -73,6 +73,7 @@ class connection {
                 (strtotime($connection->getDatetime()) + 60 * config::byKey('security::backlogtime')) > strtotime('now') &&
                 !$connection->isProtect()) {
             $connection->setStatus('Ban');
+            log::add('connection', 'error', __('Attention tentative d\'intrusion detectée venant de l\'IP : ', __FILE__) . $connection->getIp());
         }
         $connection->save();
     }
