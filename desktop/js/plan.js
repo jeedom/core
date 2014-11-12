@@ -515,23 +515,20 @@ function displayObject(_type, _id, _html, _plan) {
 
 
     for (var key in _plan.css) {
-        if (_plan.css[key] != '' && key != 'zoom') {
+        if (_plan.css[key] != '' && key != 'zoom' &&  key != 'color') {
             if (key == 'background-color') {
                 if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
-                    html.css(key, _plan.css[key]);
-                }
-            } else if (key == 'background-color') {
-                if (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1) {
                     html.css(key, _plan.css[key]);
                 }
             } else {
                 html.css(key, _plan.css[key]);
             }
         }
-        if (key == 'color') {
+        if (key == 'color' && (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1)) {
             html.find('.btn.btn-default').css("cssText", key + ': ' + _plan.css[key] + ' !important;border-color : ' + _plan.css[key] + ' !important');
             html.find('tspan').css('fill', _plan.css[key]);
             html.find('span').css(key, _plan.css[key]);
+            html.css(key, _plan.css[key]);
         }
     }
     if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {

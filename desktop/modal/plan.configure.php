@@ -37,11 +37,11 @@ sendVarToJS('id', $plan->getId());
                 <div class="col-lg-2">
                     <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
                 </div>
-                <label class="col-lg-2 control-label">{{Transparent}}</label>
+                <label class="col-lg-1 control-label">{{Transparent}}</label>
                 <div class="col-lg-1">
                     <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-transparent" />
                 </div>
-                <label class="col-lg-2 control-label">{{Défaut}}</label>
+                <label class="col-lg-1 control-label">{{Défaut}}</label>
                 <div class="col-lg-1">
                     <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-defaut" checked />
                 </div>
@@ -51,7 +51,7 @@ sendVarToJS('id', $plan->getId());
                 <div class="col-lg-2">
                     <input type="color" class="form-control planAttr" data-l1key="css" data-l2key="color" />
                 </div>
-                <label class="col-lg-2 control-label">{{Défaut}}</label>
+                <label class="col-lg-1 control-label">{{Défaut}}</label>
                 <div class="col-lg-1">
                     <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="color-defaut" checked />
                 </div>
@@ -178,11 +178,11 @@ sendVarToJS('id', $plan->getId());
                 <div class="col-lg-2">
                     <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
                 </div>
-                <label class="col-lg-2 control-label">{{Transparent}}</label>
+                <label class="col-lg-1 control-label">{{Transparent}}</label>
                 <div class="col-lg-2">
                     <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-transparent" />
                 </div>
-                <label class="col-lg-2 control-label">{{Défaut}}</label>
+                <label class="col-lg-1 control-label">{{Défaut}}</label>
                 <div class="col-lg-1">
                     <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-defaut" checked />
                 </div>
@@ -192,7 +192,7 @@ sendVarToJS('id', $plan->getId());
                 <div class="col-lg-2">
                     <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="color" />
                 </div>
-                <label class="col-lg-2 control-label">{{Défaut}}</label>
+                <label class="col-lg-1 control-label">{{Défaut}}</label>
                 <div class="col-lg-1">
                     <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="color-defaut" checked />
                 </div>
@@ -239,11 +239,11 @@ sendVarToJS('id', $plan->getId());
                 <div class="col-lg-2">
                     <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
                 </div>
-                <label class="col-lg-2 control-label">{{Transparent}}</label>
+                <label class="col-lg-1 control-label">{{Transparent}}</label>
                 <div class="col-lg-1">
                     <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-transparent" />
                 </div>
-                <label class="col-lg-2 control-label">{{Défaut}}</label>
+                <label class="col-lg-1 control-label">{{Défaut}}</label>
                 <div class="col-lg-1">
                     <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-defaut" checked />
                 </div>
@@ -253,7 +253,7 @@ sendVarToJS('id', $plan->getId());
                 <div class="col-lg-2">
                     <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="color" />
                 </div>
-                <label class="col-lg-2 control-label">{{Défaut}}</label>
+                <label class="col-lg-1 control-label">{{Défaut}}</label>
                 <div class="col-lg-1">
                     <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="color-defaut" checked />
                 </div>
