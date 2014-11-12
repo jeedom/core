@@ -256,6 +256,7 @@ function fullScreen(_version) {
     $('#div_planHeader').hide();
     $('#div_mainContainer').css('margin-top', '-60px');
     $('#div_mainContainer').css('margin-left', '-15px');
+    $('#wrap').css('margin-bottom', '0px');
     $('#div_mainContainer').append('<a class="btn btn-default" style="position : absolute; top : 10px; right : 10px;" id="bt_returnFullScreen"><i class="fa fa-level-up fa-rotate-270"></i></a>');
     $('#bt_returnFullScreen').on('click', function () {
         if (_version == 'phone' || _version == 'tablet') {
@@ -266,6 +267,7 @@ function fullScreen(_version) {
             $('#div_planHeader').show();
             $('#div_mainContainer').css('margin-top', '0px');
             $('#div_mainContainer').css('margin-left', '0px');
+            $('#wrap').css('margin-bottom', '15px');
             $('#bt_returnFullScreen').remove();
         }
     });
