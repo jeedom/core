@@ -95,7 +95,7 @@ try {
     }
 
     echo __('Nettoyage des anciens backup...', __FILE__);
-    system('find ' . $backup_dir . ' -mtime +' . config::byKey('backup::keepDays') . ' -print | xargs -r rm');
+    system('find ' . $backup_dir . ' -mtime +' . config::byKey('backup::keepDays') . ' -exec rm {} \ ');
     echo __("OK\n", __FILE__);
 
     if (config::byKey('backup::cloudUpload') == 1) {
