@@ -21,7 +21,7 @@ jeedom.history = function () {
 
 jeedom.history.chart = [];
 
-jeedom.history.getHistory = function (_params) {
+jeedom.history.get = function (_params) {
     var paramsRequired = ['cmd_id', 'dateStart', 'dateEnd'];
     var paramsSpecifics = {
         pre_success: function (data) {
