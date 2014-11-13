@@ -559,6 +559,15 @@ class jeedom {
         }
     }
 
+    public function checkFilesystem() {
+        $result = exec('dmesg | grep "I/O error" | wc -l');
+        if ($result != 0) {
+            log::add('core', 'error', __('Erreur : corruption sur le filesystem detecter (I/O error sur dmseg)', __FILE__));
+            return false;
+        }
+        return true;
+    }
+
     /*     * *********************Methode d'instance************************* */
 
     /*     * **********************Getteur Setteur*************************** */
