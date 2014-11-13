@@ -236,6 +236,9 @@ class scenario {
         if (!is_object($scenarioElement) || !is_object($scenario)) {
             return;
         }
+        if (is_numeric($_options['second']) && $_options['second'] > 0) {
+            sleep($_options['second']);
+        }
         $scenarioElement->getSubElement('do')->execute($scenario);
         $scenario->setLog(__('************FIN sous tâche**************', __FILE__));
         $scenario->save();

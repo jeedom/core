@@ -156,15 +156,12 @@ class scenarioElement {
             if (!is_numeric($time) || $time < 1) {
                 $time = 1;
             }
-            $cron = cron::byClassAndFunction('scenario', 'doIn', array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId())));
-            if (!is_object($cron)) {
-                $cron = new cron();
-                $cron->setClass('scenario');
-                $cron->setFunction('doIn');
-                $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId())));
-                $cron->setLastRun(date('Y-m-d H:i:s'));
-                $cron->setOnce(1);
-            }
+            $cron = new cron();
+            $cron->setClass('scenario');
+            $cron->setFunction('doIn');
+            $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s')));
+            $cron->setLastRun(date('Y-m-d H:i:s'));
+            $cron->setOnce(1);
             $next = strtotime('+ ' . $time . ' min');
             $cron->setSchedule(date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next));
             $cron->save();
