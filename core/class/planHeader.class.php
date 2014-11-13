@@ -85,16 +85,19 @@ class planHeader {
     }
 
     public function displayImage() {
+        if ($this->getImage('data') == '') {
+            return '';
+        }
         $dir = dirname(__FILE__) . '/../../core/img/plan';
         if (!file_exists($dir)) {
             mkdir($dir);
         }
-        if ($this->getImage('data') == '') {
-            return '';
+        if ($this->getImage('sha1') == '') {
+            $this->setImage('sha1', sha1($this->getImage('data')));
+            $this->save();
         }
-        $filename = sha1($this->getImage('data')) . '.' . $this->getImage('type');
+        $filename = $this->getImage('sha1') . '.' . $this->getImage('type');
         $filepath = $dir . '/' . $filename;
-
         if (!file_exists($filepath)) {
             file_put_contents($filepath, base64_decode($this->getImage('data')));
         }

@@ -14,7 +14,6 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 var noBootstrapTooltips = true;
-var grid = false;
 var deviceInfo = getDeviceType();
 
 $("#md_addViewData").dialog({
@@ -233,21 +232,6 @@ $('.view-link-widget,.plan-link-widget').on('click', function () {
     }
 });
 
-function makeGrid(_x, _y) {
-    if (_x === false) {
-        $('#div_displayObject').css({
-            'background-size': _x + 'px ' + _y + 'px',
-            'background-image': 'none'
-        });
-    } else {
-        $('#div_displayObject').css({
-            'background-size': _x + 'px ' + _y + 'px',
-            'background-position': '-4px -8px',
-            'background-image': 'repeating-linear-gradient(0deg, silver, silver 1px, transparent 1px, transparent ' + _y + 'px),repeating-linear-gradient(-90deg, silver, silver 1px, transparent 1px, transparent ' + _x + 'px)'
-        });
-    }
-}
-
 function fullScreen(_version) {
     $('header').hide();
     $(function () {
@@ -274,10 +258,6 @@ function fullScreen(_version) {
 }
 
 function initDraggable(_state) {
-    var dragOption = {};
-    if (grid != false) {
-        dragOption.grid = grid;
-    }
     $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').draggable({
         drag: function (evt, ui) {
             if ((ui.position.left + $(this).width()) >= $('#div_displayObject').width()) {
@@ -291,10 +271,6 @@ function initDraggable(_state) {
             }
             if (ui.position.left < 0) {
                 ui.position.left = 0;
-            }
-            if (grid != false && grid[0] != false) {
-                ui.position.top = Math.round(ui.position.top / grid[1]) * grid[1];
-                ui.position.left = Math.round(ui.position.left / grid[0]) * grid[0];
             }
 
         },
@@ -334,19 +310,10 @@ function displayPlan() {
                 $('#div_displayObject img').css('height', $('#div_displayObject img').attr('data-sixe_y') + 'px');
                 $('#div_displayObject img').css('width', $('#div_displayObject img').attr('data-sixe_x') + 'px');
             }
-            if (deviceInfo.type == 'tablet') {
-                fullScreen('tablet');
-            } else if (deviceInfo.type == 'phone') {
-                fullScreen('phone');
+            if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
+                fullScreen(deviceInfo.type);
             }
             $('.eqLogic-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
-
-            grid = false;
-            if (data.configuration != null && isset(data.configuration.gridX) && isset(data.configuration.gridY) && !isNaN(data.configuration.gridX) && !isNaN(data.configuration.gridY) && data.configuration.gridX > 0 && data.configuration.gridY > 0) {
-                grid = [$('#div_displayObject').width() / data.configuration.gridX, $('#div_displayObject').height() / data.configuration.gridY];
-                eqLogic_width_step = grid[0] - 5;
-                eqLogic_height_step = grid[1] - 5;
-            }
             if (planHeader_id != -1) {
                 jeedom.plan.byPlanHeader({
                     id: planHeader_id,
@@ -379,7 +346,6 @@ function savePlan(_refreshDisplay) {
             var plan = {};
             plan.position = {};
             plan.display = {};
-            var zoom = $(this).attr('data-zoom');
             plan.link_type = 'eqLogic';
             plan.link_id = $(this).attr('data-eqLogic_id');
             plan.planHeader_id = planHeader_id;
@@ -388,7 +354,6 @@ function savePlan(_refreshDisplay) {
             var position = $(this).position();
             plan.position.top = (((position.top)) / parent.height) * 100;
             plan.position.left = (((position.left)) / parent.width) * 100;
-            console.log(plan);
             plans.push(plan);
         });
         $('.scenario-widget').each(function () {
@@ -485,9 +450,7 @@ function displayObject(_type, _id, _html, _plan) {
     _plan.css = init(_plan.css, {});
     var defaultZoom = 1;
     if (_type == 'eqLogic') {
-        if (grid === false) {
-            defaultZoom = 0.65;
-        }
+        defaultZoom = 0.65;
         $('.eqLogic-widget[data-eqLogic_id=' + _id + ']').remove();
     }
     if (_type == 'scenario') {
@@ -515,7 +478,7 @@ function displayObject(_type, _id, _html, _plan) {
 
 
     for (var key in _plan.css) {
-        if (_plan.css[key] != '' && key != 'zoom' &&  key != 'color') {
+        if (_plan.css[key] != '' && key != 'zoom' && key != 'color') {
             if (key == 'background-color') {
                 if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
                     html.css(key, _plan.css[key]);
@@ -544,7 +507,6 @@ function displayObject(_type, _id, _html, _plan) {
     html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
     html.css('-moz-transform-origin', '0 0');
     html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
-    html.attr('data-zoom', init(_plan.css.zoom, defaultZoom));
     var position = {
         top: init(_plan.position.top, '10') * parent.height / 100,
         left: init(_plan.position.left, '10') * parent.width / 100,
@@ -552,43 +514,13 @@ function displayObject(_type, _id, _html, _plan) {
 
     html.css('top', position.top);
     html.css('left', position.left);
-
-    if (grid === false) {
-        html.addClass('noResize');
-        if (isset(_plan.display) && isset(_plan.display.width)) {
-            html.css('width', init(_plan.display.width, 10));
-        }
-        if (isset(_plan.display) && isset(_plan.display.height)) {
-            html.css('height', init(_plan.display.height, 10));
-        }
-    } else {
-        html.css("max-width", "");
-        html.css("min-width", eqLogic_width_step);
-        html.css("min-height", eqLogic_height_step);
-        if (!isset(_plan.display) || !isset(_plan.display.width)) {
-            html.css('width', 'auto');
-        }
-        if (!isset(_plan.display) || !isset(_plan.display.height)) {
-            html.css('height', 'auto');
-        }
-        if (_type == 'eqLogic') {
-            positionEqLogic('', false, 'eqLogic-widget');
-        }
-        if (_type == 'scenario') {
-            positionEqLogic('', false, 'scenario-widget');
-        }
-        if (_type == 'view') {
-            positionEqLogic('', false, 'view-link-widget');
-        }
-        if (_type == 'plan') {
-            positionEqLogic('', false, 'plan-link-widget');
-        }
-        if (_type == 'graph') {
-            positionEqLogic('', false, 'graph-widget');
-        }
+    html.addClass('noResize');
+    if (isset(_plan.display) && isset(_plan.display.width)) {
+        html.css('width', init(_plan.display.width, 10));
     }
-
-
+    if (isset(_plan.display) && isset(_plan.display.height)) {
+        html.css('height', init(_plan.display.height, 10));
+    }
     if (_type == 'eqLogic') {
         if (isset(_plan.display) && isset(_plan.display.cmd)) {
             for (var id in _plan.display.cmd) {
