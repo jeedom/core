@@ -1,5 +1,5 @@
 <?php
-if (!hasRight('scenarioview',true)) {
+if (!hasRight('scenarioview', true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 
@@ -235,6 +235,7 @@ include_file('3rdparty', 'jquery.tree/jquery.tree', 'js');
                         <option value="if">{{Si/Alors/Sinon}}</option>
                         <option value="action">{{Action}}</option>
                         <option value="for">{{Boucle}}</option>
+                        <option value="in">{{Dans}}</option>
                         <option value="code">{{Code}}</option>
                     </select>
                 </center>

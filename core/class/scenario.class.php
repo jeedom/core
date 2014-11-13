@@ -229,6 +229,18 @@ class scenario {
         return true;
     }
 
+    public static function doIn($_options) {
+        $scenario = self::byId($_options['scenario_id']);
+        $scenarioElement = scenarioElement::byId($_options['scenarioElement_id']);
+        $scenario->setLog(__('************Lancement sous tâche**************', __FILE__));
+        if (!is_object($scenarioElement) || !is_object($scenario)) {
+            return;
+        }
+        $scenarioElement->getSubElement('do')->execute($scenario);
+        $scenario->setLog(__('************FIN sous tâche**************', __FILE__));
+        $scenario->save();
+    }
+
     public static function cleanTable() {
         $ids = array(
             'element' => array(),

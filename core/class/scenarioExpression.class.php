@@ -533,8 +533,7 @@ class scenarioExpression {
                 }
                 $this->setLog($scenario, $message);
                 return $result;
-            }
-            if ($this->getType() == 'code') {
+            } else if ($this->getType() == 'code') {
                 $this->setLog($scenario, __('Exécution d\'un bloc code', __FILE__));
                 return eval($this->getExpression());
             }
