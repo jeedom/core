@@ -24,7 +24,12 @@ if (!isset($_GET['v'])) {
         header("location: index.php?v=d");
     }
 } else {
-    require_once dirname(__FILE__) . "/core/php/core.inc.php";
+    try {
+        require_once dirname(__FILE__) . "/core/php/core.inc.php";
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        die();
+    }
     if ($_GET['v'] == "d") {
         if (isset($_GET['modal'])) {
             include_file('core', 'authentification', 'php');
