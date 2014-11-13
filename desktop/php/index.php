@@ -167,7 +167,7 @@ if (count($plugins_list) > 0) {
                                 <?php } ?>
 
                                 <?php
-                                if (isConnect('admin') || hasRight('administrationview') || hasRight('userview') || hasRight('backupview') || hasRight('updateview') || hasRight('cronview') || hasRight('securityview') || hasRight('logview')
+                                if (hasRight('administrationview', true) || hasRight('userview', true) || hasRight('backupview', true) || hasRight('updateview', true) || hasRight('cronview', true) || hasRight('securityview', true) || hasRight('logview', true)
                                 ) {
                                     ?>
                                     <li class="dropdown cursor">
@@ -176,7 +176,7 @@ if (count($plugins_list) > 0) {
                                             <li class="dropdown-submenu">
                                                 <a data-toggle="dropdown"><i class="fa fa-cogs"></i> {{Administration}}</a>
                                                 <ul class="dropdown-menu">
-                                                    <?php if (hasRight('administrationview')) { ?>
+                                                    <?php if (hasRight('administrationview', true)) { ?>
                                                         <li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fa fa-wrench"></i> {{Configuration}}</a></li>
                                                         <?php
                                                     }
