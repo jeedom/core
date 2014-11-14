@@ -4,16 +4,16 @@
     <a class="btn btn-success btn-xs changeScenarioState" data-state="start" style="display: none;"><i class="fa fa-play"></i></a>
     <a class="btn btn-danger btn-xs changeScenarioState" data-state="stop" style="display: none;"><i class="fa fa-stop"></i></a>
 
-    <a href="#scenarioLink#" class="tooltips" title="Dernier lancement : #lastLaunch#" style="font-size: 0.85em;">#name#</a>
+    <a href="#scenarioLink#" class="tooltips" title="Dernier lancement : #lastLaunch#" style="font-size: 0.85em;position: relative;left: 3px;">#name#</a>
 
     <span class="state pull-right" style="width : 15px;font-size: 1.15em;">#icon#</span>
 
     <script>
-        $('.scenario[data-scenario_id=#id#] .changeScenarioState').on('click', function() {
+        $('.scenario[data-scenario_id=#id#] .changeScenarioState').on('click', function () {
             jeedom.scenario.changeState({
                 id: $(this).closest('.scenario').attr('data-scenario_id'),
                 state: $(this).attr('data-state'),
-                error: function(error) {
+                error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
             });

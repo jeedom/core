@@ -112,7 +112,8 @@ jeedom.scenario.refreshValue = function(_params) {
         var paramsSpecifics = {
             global: false,
             success: function(result) {
-                $('.scenario[data-scenario_id=' + params.id + ']').replaceWith(result);
+                $('.scenario[data-scenario_id=' + params.id + ']').empty().html($(result).children());
+                //$('.scenario[data-scenario_id=' + params.id + ']').replaceWith(result);
                 if ($.mobile) {
                     $('.scenario[data-scenario_id=' + params.id + ']').trigger("create");
                     setTileSize('.scenario');

@@ -211,7 +211,14 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
                 echo '<td class="type">';
                 echo 'Scénario';
                 echo '</td>';
-                echo '<td class="object_name"></td>';
+                echo '<td class="object_name">';
+                $object = $scenario->getObject();
+                if (is_object($object)) {
+                    echo $object->getName();
+                } else {
+                    echo '{{Aucun}}';
+                }
+                echo '</td>';
                 echo '<td class="name">';
                 echo $scenario->getName();
                 echo '</td>';
