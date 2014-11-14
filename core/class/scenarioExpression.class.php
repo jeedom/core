@@ -505,22 +505,25 @@ class scenarioExpression {
                     }
                     return;
                 } else if ($this->getExpression() == 'variable') {
-                    if ($scenario != null) {
-                        $value = self::setTags($this->getOptions('value'), $scenario);
-                        $message = __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' à [', __FILE__) . $value . '] = ';
-                        try {
-                            $test = new evaluate();
-                            $result = $test->Evaluer($value);
-                            if (is_string($result)) { //Alors la valeur n'est pas un calcul
-                                $result = $value;
-                            }
-                        } catch (Exception $e) {
+                    $value = self::setTags($this->getOptions('value'), $scenario);
+                    $message = __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' à [', __FILE__) . $value . '] = ';
+                    try {
+                        $test = new evaluate();
+                        $result = $test->Evaluer($value);
+                        if (is_string($result)) { //Alors la valeur n'est pas un calcul
                             $result = $value;
                         }
-                        $message .= $result;
-                        $this->setLog($scenario, $message);
-                        $scenario->setData($this->getOptions('name'), $result);
+                    } catch (Exception $e) {
+                        $result = $value;
                     }
+                    $message .= $result;
+                    $this->setLog($scenario, $message);
+                    $dataStore = new dataStore();
+                    $dataStore->setType('scenario');
+                    $dataStore->setKey($this->getOptions('name'));
+                    $dataStore->setValue($result);
+                    $dataStore->setLink_id(-1);
+                    $dataStore->save();
                     return;
                 } else {
                     $cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
