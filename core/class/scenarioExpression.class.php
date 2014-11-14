@@ -327,11 +327,13 @@ class scenarioExpression {
     }
 
     public static function trigger($_name = '', &$_scenario = null) {
-        if ($_name == '') {
-            return $_scenario->getRealTrigger();
-        }
-        if ($_name == $_scenario->getRealTrigger()) {
-            return 1;
+        if ($_scenario != null) {
+            if ($_name == '') {
+                return $_scenario->getRealTrigger();
+            }
+            if ($_name == $_scenario->getRealTrigger()) {
+                return 1;
+            }
         }
         return 0;
     }
@@ -387,9 +389,19 @@ class scenarioExpression {
         return cmd::cmdToValue(str_replace(array_keys($replace), array_values($replace), $_expression));
     }
 
+    public static function createAndExec($_type, $_cmd, $_options) {
+        $scenarioExpression = new self();
+        $scenarioExpression->setType($_type);
+        $scenarioExpression->setExpression($_cmd);
+        foreach ($_options as $key => $value) {
+            $scenarioExpression->setOptions($key, $value);
+        }
+        return $scenarioExpression->execute();
+    }
+
     /*     * *********************Methode d'instance************************* */
 
-    public function execute(&$scenario) {
+    public function execute(&$scenario = null) {
         $message = '';
         try {
             if ($this->getType() == 'element') {
@@ -408,10 +420,12 @@ class scenarioExpression {
             }
             if ($this->getType() == 'action') {
                 if ($this->getExpression() == 'icon') {
-                    $options = $this->getOptions();
-                    $this->setLog($scenario, __('Changement de l\'icone du scénario : ', __FILE__) . $options['icon']);
-                    $scenario->setDisplay('icon', $options['icon']);
-                    $scenario->save();
+                    if ($scenario != null) {
+                        $options = $this->getOptions();
+                        $this->setLog($scenario, __('Changement de l\'icone du scénario : ', __FILE__) . $options['icon']);
+                        $scenario->setDisplay('icon', $options['icon']);
+                        $scenario->save();
+                    }
                     return;
                 } else if ($this->getExpression() == 'wait') {
                     if (!isset($options['condition'])) {
@@ -453,13 +467,15 @@ class scenarioExpression {
                     $this->setLog($scenario, __('Aucune durée trouvée pour l\'action sleep ou la durée n\'est pas valide : ', __FILE__) . $options['duration']);
                     return;
                 } else if ($this->getExpression() == 'stop') {
-                    $this->setLog($scenario, __('Arret du scénario', __FILE__));
-                    $scenario->setState('stop');
-                    $scenario->setPID('');
-                    $scenario->save();
+                    if ($scenario != null) {
+                        $this->setLog($scenario, __('Arret du scénario', __FILE__));
+                        $scenario->setState('stop');
+                        $scenario->setPID('');
+                        $scenario->save();
+                    }
                     die();
                 } else if ($this->getExpression() == 'scenario') {
-                    if ($this->getOptions('scenario_id') == $scenario->getId()) {
+                    if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
                         $actionScenario = &$scenario;
                     } else {
                         $actionScenario = scenario::byId($this->getOptions('scenario_id'));
@@ -489,20 +505,22 @@ class scenarioExpression {
                     }
                     return;
                 } else if ($this->getExpression() == 'variable') {
-                    $value = self::setTags($this->getOptions('value'), $scenario);
-                    $message = __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' à [', __FILE__) . $value . '] = ';
-                    try {
-                        $test = new evaluate();
-                        $result = $test->Evaluer($value);
-                        if (is_string($result)) { //Alors la valeur n'est pas un calcul
+                    if ($scenario != null) {
+                        $value = self::setTags($this->getOptions('value'), $scenario);
+                        $message = __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' à [', __FILE__) . $value . '] = ';
+                        try {
+                            $test = new evaluate();
+                            $result = $test->Evaluer($value);
+                            if (is_string($result)) { //Alors la valeur n'est pas un calcul
+                                $result = $value;
+                            }
+                        } catch (Exception $e) {
                             $result = $value;
                         }
-                    } catch (Exception $e) {
-                        $result = $value;
+                        $message .= $result;
+                        $this->setLog($scenario, $message);
+                        $scenario->setData($this->getOptions('name'), $result);
                     }
-                    $message .= $result;
-                    $this->setLog($scenario, $message);
-                    $scenario->setData($this->getOptions('name'), $result);
                     return;
                 } else {
                     $cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
@@ -702,7 +720,9 @@ class scenarioExpression {
     }
 
     public function setLog(&$_scenario, $log) {
-        $_scenario->setLog($log);
+        if ($_scenario != null) {
+            $_scenario->setLog($log);
+        }
     }
 
 }
