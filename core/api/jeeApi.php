@@ -61,6 +61,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
         } else if ($type == 'interact') {
             echo interactQuery::tryToReply(init('query'));
         } else if ($type == 'scenario') {
+            log::add('api', 'debug', 'Demande api pour les scénarios');
             $scenario = scenario::byId(init('id'));
             if (!is_object($scenario)) {
                 throw new Exception('Aucun scénario correspondant à l\'id : ' . init('id'));
