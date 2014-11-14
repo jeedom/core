@@ -41,15 +41,20 @@ class message {
         $message->save();
     }
 
-    public static function removeAll($_plugin = '', $_logicalId = '') {
+    public static function removeAll($_plugin = '', $_logicalId = '', $_search = false) {
         $values = array();
         $sql = 'DELETE FROM message';
         if ($_plugin != '') {
             $values['plugin'] = $_plugin;
             $sql .= ' WHERE plugin=:plugin';
             if ($_logicalId != '') {
-                $values['logicalId'] = $_logicalId;
-                $sql .= ' AND logicalId=:logicalId';
+                if ($_search) {
+                    $values['logicalId'] = '%' . $_logicalId . '%';
+                    $sql .= ' AND logicalId LIKE :logicalId';
+                } else {
+                    $values['logicalId'] = $_logicalId;
+                    $sql .= ' AND logicalId=:logicalId';
+                }
             }
         }
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
