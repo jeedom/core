@@ -487,10 +487,10 @@ class cmd {
             switch ($this->getSubType()) {
                 case 'binary':
                     $value = strtolower($_value);
-                    if ($value == 'on' || $value == 'high') {
+                    if ($value == 'on' || $value == 'high' || $value == 'true' || $value === true) {
                         return 1;
                     }
-                    if ($value == 'off' || $value == 'low') {
+                    if ($value == 'off' || $value == 'low' || $value == 'false' || $value === false) {
                         return 0;
                     }
                     if ((is_numeric(intval($_value)) && intval($_value) > 1) || $_value || $_value == 1) {
