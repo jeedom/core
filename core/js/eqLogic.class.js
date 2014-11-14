@@ -273,6 +273,7 @@ jeedom.eqLogic.refreshValue = function (_params) {
             global: false,
             success: function (result) {
                 $('.eqLogic[data-eqLogic_id=' + params.id + ']').empty().html($(result.html).children());
+                initTooltips();
                 if ($.mobile) {
                     $('.eqLogic[data-eqLogic_id=' + params.id + ']').trigger("create");
                     setTileSize('.eqLogic');
