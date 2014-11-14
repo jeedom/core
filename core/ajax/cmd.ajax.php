@@ -219,10 +219,10 @@ try {
                     $previsousValue = ($history->getValue() === null ) ? null : floatval($history->getValue());
                 }
                 $info_history[] = $value;
-                if ($value > $return['maxValue'] || $return['maxValue'] == '') {
+                if (($value != null && $value > $return['maxValue']) || $return['maxValue'] == '') {
                     $return['maxValue'] = $value;
                 }
-                if ($value < $return['minValue'] || $return['minValue'] == '') {
+                if (($value != null && $value < $return['minValue']) || $return['minValue'] == '') {
                     $return['minValue'] = $value;
                 }
                 $data[] = $info_history;
