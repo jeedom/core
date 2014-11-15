@@ -238,7 +238,7 @@ class market {
                 return $cache->getValue();
             }
             $jsonrpc = self::getJsonRpc();
-            if ($jsonrpc->sendRequest('jeedom::getCurrentVersion')) {
+            if ($jsonrpc->sendRequest('jeedom::getCurrentVersion', array('branch' => config::byKey('market::branch')))) {
                 $version = trim($jsonrpc->getResult());
                 cache::set('jeedom::lastVersion', $version, 86400);
                 return $version;

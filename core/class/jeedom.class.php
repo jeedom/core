@@ -393,10 +393,14 @@ class jeedom {
         try {
             $c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
             if ($c->isDue()) {
-                update::checkAllUpdate();
-                $nbUpdate = update::nbNeedUpdate();
-                if ($nbUpdate > 0) {
-                    message::add('update', 'De nouvelles mises à jour sont disponibles (' . $nbUpdate . ')', '', 'newUpdate');
+                if (config::byKey('update::auto') == 1) {
+                    jeedom::update();
+                } else {
+                    update::checkAllUpdate();
+                    $nbUpdate = update::nbNeedUpdate();
+                    if ($nbUpdate > 0) {
+                        message::add('update', 'De nouvelles mises à jour sont disponibles (' . $nbUpdate . ')', '', 'newUpdate');
+                    }
                 }
                 config::save('update::check', rand(10, 59) . ' 06 * * *');
             }
@@ -409,7 +413,7 @@ class jeedom {
                 jeedom::backup();
             }
         } catch (Exception $e) {
-            // log::add('backup', 'error', '[' . config::byKey('backup::cron') . ']' . $e->getMessage());
+            
         }
         try {
             $c = new Cron\CronExpression('50 23 * * *', new Cron\FieldFactory);

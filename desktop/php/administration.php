@@ -732,6 +732,12 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                         <input type="checkbox" class="configKey" data-l1key="update::backupBefore"/>
                                     </div>
                                 </div>
+                                <div class="form-group expertModeVisible alert alert-danger">
+                                    <label class="col-lg-2 control-label">{{Mettre à jour automatiquement}}</label>
+                                    <div class="col-lg-1">
+                                        <input type="checkbox" class="configKey" data-l1key="update::auto"/>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">{{Branche}}</label>
                                     <div class="col-lg-2">
