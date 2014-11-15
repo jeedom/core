@@ -1,0 +1,18 @@
+Jeedom core : Guide d'utilisation
+---------------------------------
+
+Accueil
+~~~~~~~
+include::home.txt[]
+
+Dashboard
+^^^^^^^^^
+include::dashboard.txt[]
+
+Vue
+^^^
+include::view.txt[]
+
+Design
+^^^^^^
+include::design.txt[]
