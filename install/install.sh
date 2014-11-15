@@ -52,6 +52,7 @@ install_msg_en()
 	msg_available_update_razberry_zway="A newer version is available: "
 	msg_ask_update_razberry_zway="Do you wish to update Z-Way?"
 	msg_uptodate="is already installed and up-to-date"
+	msg_needinstallupdate="needs to be installed or to be updated"
 	msg_ask_install_razberry_zway="Do you wish to install Z-Way?"
 	msg_failed_installupdate_razberry_zway="Z-Way for RaZberry installation failed!"
 	msg_succeeded_installupdate_razberry_zway="Z-Way for RaZberry installation succeeded!"
@@ -94,12 +95,13 @@ install_msg_fr()
 	msg_optimize_webserver_cache="*       Vérification de l'optimisation de cache        *"
 	msg_php_version="PHP version ${PHP_VERSION} trouvé"
 	msg_php_already_optimized="PHP est déjà optimisé (utilisation d'${PHP_OPTIMIZATION})"
-	msg_optimize_webserver_cache_apc"Installation de l'optimisation de cache APC"
+	msg_optimize_webserver_cache_apc="Installation de l'optimisation de cache APC"
 	msg_optimize_webserver_cache_opcache="Installation de l'optimisation de cache Zend OpCache"
 	msg_install_razberry_zway="*         Vérification de Z-Way pour RaZberry          *"
 	msg_available_update_razberry_zway="Une version plus récente est disponible : "
 	msg_ask_update_razberry_zway="Souhaitez-vous mettre à jour Z-Way ?"
 	msg_uptodate="est déjà installé et à jour"
+	msg_needinstallupdate="nécessite une installation ou une mise à jour"
 	msg_ask_install_razberry_zway="Souhaitez-vous installer Z-Way ?"
 	msg_failed_installupdate_razberry_zway="L'installation de Z-Way pour RaZberry a échoué !"
 	msg_succeeded_installupdate_razberry_zway="L'installation de Z-Way pour RaZberry a réussi !"
@@ -139,41 +141,38 @@ configure_php()
 
 # Check if nodeJS v0.10.25 is installed,
 # otherwise, try to install it from various sources (official,
-# backport, jeedom.fr
+# backport, jeedom.fr)
 install_nodejs()
 {
-	NODEJS_VERSION="`nodejs -v 2>/dev/null  | sed 's/["v]//g'`"
-	is_version_greater_or_equal "${NODEJS_VERSION}" "0.10.25"
-	case $? in
-		1)
-			# Already installed and up to date
-			echo "nodeJS ${msg_uptodate}"
-			return
-			;;
-		0)
-			# continue...
-			;;
-	esac
+	check_nodejs_version
+	[ $? -eq 1 ] && return
 
 	# If running wheezy, try wheezy-backport
-	[ -n "`grep wheezy /etc/apt/sources.list`" -a \
-	  -z "`grep wheezy-backports /etc/apt/sources.list`" ] &&
-		echo "deb http://http.debian.net/debian wheezy-backports main" >> /etc/apt/sources.list
+	if [ -n "`grep wheezy /etc/apt/sources.list`" ]; then
+		if [ -z "`grep wheezy-backports /etc/apt/sources.list`" ]; then
+			# apply wheezy-backport patch
+			echo "deb http://http.debian.net/debian wheezy-backports main" >> /etc/apt/sources.list
 
-	# otherwise, Jessie is good ; other-otherwise ?
-	# Add wheezy-backport keyring
-	gpg --keyserver pgpkeys.mit.edu --recv 8B48AD6246925553
-	gpg --export --armor 8B48AD6246925553 > missingkey.gpg
-	apt-key add missingkey.gpg
-	rm -f missingkey.gpg
+			# Add wheezy-backport keyring
+			gpg --keyserver pgpkeys.mit.edu --recv 8B48AD6246925553
+			gpg --export --armor 8B48AD6246925553 > missingkey.gpg
+			apt-key add missingkey.gpg
+			rm -f missingkey.gpg
+		fi
+			# otherwise, Jessie is good ; other-otherwise ?
 
-	apt-get update
+		apt-get update
 
-	# Install nodeJS
-	apt-get -t wheezy-backports -y install nodejs libev4 libv8-3.8.9.20
+		# Install nodeJS
+		apt-get -t wheezy-backports -y install nodejs libev4 libv8-3.8.9.20
+	else
+		# else, simply try to install
+		apt-get -y install nodejs
+	fi
 
 	# Seems buggy on Raspbian (throw 'Illegal instruction')
-	nodejs -v
+	check_nodejs_version
+	[ $? -eq 1 ] && return
 	
 	# Fallback, if APT method failed
 	if [ $? -ne 0 ] ; then
@@ -268,6 +267,28 @@ is_version_greater_or_equal()
 	done
 	# greater or equal
 	return 1
+}
+
+
+# Check if nodeJS v0.10.25 (or higher) is installed.
+# Return 1 of true, 0 (or else) otherwise
+check_nodejs_version()
+{
+	NODEJS_VERSION="`nodejs -v 2>/dev/null  | sed 's/["v]//g'`"
+	is_version_greater_or_equal "${NODEJS_VERSION}" "0.10.25"
+	RETVAL=$?
+	case ${RETVAL} in
+		1)
+			# Already installed and up to date
+			echo "===> nodeJS ${msg_uptodate}"
+			;;
+		0)
+			# continue...
+			echo "===> nodeJS ${msg_needinstallupdate}"
+			;;
+	esac
+	
+	return ${RETVAL}
 }
 
 optimize_webserver_cache_apc()
