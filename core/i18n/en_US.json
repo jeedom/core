@@ -246,7 +246,10 @@
     "core\/class\/scenarioElement.class.php": {
         "Exécution de l'élément : ": "Running of component : ",
         "Elément inconnu vérifier l'id : ": "Unknown component, check ID: ",
-        "Expression inconnue vérifier l'id : ": "Unkonwn expression, check ID: "
+        "Expression inconnue vérifier l'id : ": "Unkonwn expression, check ID: ",
+        "Tache : ": "Tache : ",
+        " programmé à : ": " programmé à : ",
+        "Tâche : ": "Tâche : "
     },
     "core\/class\/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type : ": "Running of under-component: ",
@@ -264,7 +267,11 @@
         "Affectation de la variable ": "Variable allocation ",
         " à [": " at [",
         "Activation du scénario : ": "Activation du scénario : ",
-        "Désactivation du scénario : ": "Désactivation du scénario : "
+        "Désactivation du scénario : ": "Désactivation du scénario : ",
+        "Lancement du scénario : ": "Lancement du scénario : ",
+        "Lancement provoque par le scenario  : ": "Lancement provoque par le scenario  : ",
+        "Pause de ": "Pause de ",
+        " seconde(s)": " seconde(s)"
     },
     "core\/com\/http.com.php": {
         "Url : ": "Url : ",
@@ -293,7 +300,11 @@
         "Le type de la commande ne peut être vide :": "Command type can’t be empty :",
         "Equipement desactivé impossible d\\éxecuter la commande : [Appartement][lapin][Parle]": "Equipement desactivé impossible d\\éxecuter la commande : [Appartement][lapin][Parle]",
         "Equipement desactivé impossible d\\éxecuter la commande : [Appartement][lapin][Coucher]": "Equipement desactivé impossible d\\éxecuter la commande : [Appartement][lapin][Coucher]",
-        "Equipement desactivé impossible d\\éxecuter la commande : [Appartement][lapin][Debout]": "Equipement desactivé impossible d\\éxecuter la commande : [Appartement][lapin][Debout]"
+        "Equipement desactivé impossible d\\éxecuter la commande : [Appartement][lapin][Debout]": "Equipement desactivé impossible d\\éxecuter la commande : [Appartement][lapin][Debout]",
+        "Erreur sur ": "Erreur sur ",
+        "Le nom de la commande ne peut être vide :": "Le nom de la commande ne peut être vide :",
+        "Le sous-type de la commande ne peut être vide :": "Le sous-type de la commande ne peut être vide :",
+        "Vous ne pouvez créer une commande sans la rattacher à un équipement": "Vous ne pouvez créer une commande sans la rattacher à un équipement"
     },
     "core\/class\/scenario.class.php": {
         "Evènement venant de ": "Event from ",
@@ -305,7 +316,11 @@
         "Scénario lance automatiquement sur programmation": "Scenario launch itself automatically on programming",
         "Scénario lance automatiquement sur évènement venant de : ": "Scenario launch itself automatically with an event from : ",
         "Début exécution du scénario : ": "Start running scenario: ",
-        "Impossible d'éxecuter le scénario : ": "Impossible d'éxecuter le scénario : "
+        "Impossible d'éxecuter le scénario : ": "Impossible d'éxecuter le scénario : ",
+        "Scénario lance sur évènement : #": "Scénario lance sur évènement : #",
+        "Erreur : le scénario est tombé en timeout": "Erreur : le scénario est tombé en timeout",
+        "************Lancement sous tâche**************": "************Lancement sous tâche**************",
+        "************FIN sous tâche**************": "************FIN sous tâche**************"
     },
     "desktop\/php\/history.php": {
         "Ligne": "Line",
@@ -342,7 +357,8 @@
     "core\/php\/jeeCron.php": {
         " avec le PID : ": " with PID : ",
         "Arrêt\/relance du deamon : ": "Stop\/relaunch the deamon: ",
-        "Erreur sur ": "Error with "
+        "Erreur sur ": "Error with ",
+        "[Erreur] Classe ou fonction non trouvée ": "[Erreur] Classe ou fonction non trouvée "
     },
     "desktop\/js\/administration.js": {
         "Etes-vous sûr de vouloir restaurer Jeedom avec": "Are you agree to restore Jeedom with",
@@ -360,7 +376,13 @@
         "L\\'utilisateur a bien été supprimé": "User has been removed",
         "Cache vidé": "Empty cache",
         "Etes-vous sûr de vouloir mettre à jour Jeedom ? Une fois lancée cette opération ne peut être annulée": "Are you agree to update Jeedom? This operation could not be canceled after having been launched",
-        "Etes-vous sûr de vouloir faire une sauvegarde de Jeedom ? Une fois lancée cette opération ne peut être annulée": "Are you agree to backup Jeedom? This operation could not be canceled after having been launched"
+        "Etes-vous sûr de vouloir faire une sauvegarde de Jeedom ? Une fois lancée cette opération ne peut être annulée": "Are you agree to backup Jeedom? This operation could not be canceled after having been launched",
+        "Etes-vous sûr de vouloir réinitialiser la clef API de Jeedom ? Vous devrez reconfigurer tous les équipements communicant avec Jeedom et utilisant la clef API": "Etes-vous sûr de vouloir réinitialiser la clef API de Jeedom ? Vous devrez reconfigurer tous les équipements communicant avec Jeedom et utilisant la clef API",
+        "Etes-vous sûr de vouloir arreter le système ?": "Etes-vous sûr de vouloir arreter le système ?",
+        "Etes-vous sûr de vouloir redemarrer le système ?": "Etes-vous sûr de vouloir redemarrer le système ?",
+        "Etes-vous sûr de vouloir appliquer les regles UPnP ?": "Etes-vous sûr de vouloir appliquer les regles UPnP ?",
+        "Etes-vous sûr de vouloir changer le mode de Jeedom. Cette opération est très risquée. Si vous passer de Maitre à Esclave cela va supprimer tous vos équipements, objet, vue, plan, plugin non compatible avec le fonctionnement deporté. Aucun retour en arriere n\\'est possible ?": "Etes-vous sûr de vouloir changer le mode de Jeedom. Cette opération est très risquée. Si vous passer de Maitre à Esclave cela va supprimer tous vos équipements, objet, vue, plan, plugin non compatible avec le fonctionnement deporté. Aucun retour en arriere n\\'est possible ?",
+        "Connexion échouée :": "Connexion échouée :"
     },
     "desktop\/php\/interact.php": {
         "Limiter aux équipement de type": "Limit to devices of type",
@@ -524,7 +546,8 @@
         "Ne rien mettre pour laisser le nom par défaut": "Let empty to get the default name",
         "Déclencheur": "Trigger",
         "Exporter": "Exporter",
-        "Lancer en avant-plan (a ne surtout pas utiliser si vous avez des sleep dans le scénario)": "Lancer en avant-plan (a ne surtout pas utiliser si vous avez des sleep dans le scénario)"
+        "Lancer en avant-plan (a ne surtout pas utiliser si vous avez des sleep dans le scénario)": "Lancer en avant-plan (a ne surtout pas utiliser si vous avez des sleep dans le scénario)",
+        "Dans": "Dans"
     },
     "desktop\/js\/scenario.js": {
         "Etes-vous sûr de vouloir supprimer le scénario": "Are you agree to delete scenario?",
@@ -538,7 +561,13 @@
         "DE 1 A": "FROM 1 TO",
         "CODE": "CODE",
         "ACTION": "ACTION",
-        "Ajouter Elément": "Add component"
+        "Ajouter Elément": "Add component",
+        "Désac. scénarios": "Désac. scénarios",
+        "Act. scénarios": "Act. scénarios",
+        "Lancement du scénario réussi": "Lancement du scénario réussi",
+        "Log d'exécution du scénario": "Log d'exécution du scénario",
+        "Export du scénario": "Export du scénario",
+        "DANS (min)": "DANS (min)"
     },
     "desktop\/php\/profils.php": {
         "Profile": "Profile",
@@ -559,7 +588,23 @@
         "Vue par défault(desktop)": "Default view (desktop)",
         "Objet par défault(desktop)": "Default object (desktop)",
         "Global": "Global",
-        "Autre": "Other"
+        "Autre": "Other",
+        "Profil": "Profil",
+        "Desktop": "Desktop",
+        "Mobile": "Mobile",
+        "Couleur": "Couleur",
+        "Graphique Desktop": "Graphique Desktop",
+        "Graphique mobile": "Graphique mobile",
+        "Plan": "Plan",
+        "Accueil": "Accueil",
+        "Object par défaut sur le dashboard": "Object par défaut sur le dashboard",
+        "Vue par defaut": "Vue par defaut",
+        "Plan par defaut": "Plan par defaut",
+        "Afficher les scénarios par défaut": "Afficher les scénarios par défaut",
+        "Afficher les objets par défaut": "Afficher les objets par défaut",
+        "Retapez le mot de passe": "Retapez le mot de passe",
+        "Clef de sécurité pour appareils enregistrés": "Clef de sécurité pour appareils enregistrés",
+        "Design": "Design"
     },
     "core\/class\/cron.class.php": {
         "Arret de ": "Stop of ",
@@ -596,11 +641,13 @@
         "Sauvegarde de la base de donnees...": "Sauvegarde de la base de donnees...",
         "Creation de l'archive...": "Creation de l'archive...",
         "Nettoyage des anciens backup...": "Nettoyage des anciens backup...",
-        "Envoie de la sauvegarde dans le cloud...": "Envoie de la sauvegarde dans le cloud..."
+        "Envoie de la sauvegarde dans le cloud...": "Envoie de la sauvegarde dans le cloud...",
+        "Verification du filesystem (corruption)...": "Verification du filesystem (corruption)..."
     },
     "desktop\/php\/connection.php": {
         "Connectez-vous": "Login",
-        "Etes-vous sûr de vouloir réinitialiser votre mot de passe ?": "Etes-vous sûr de vouloir réinitialiser votre mot de passe ?"
+        "Etes-vous sûr de vouloir réinitialiser votre mot de passe ?": "Etes-vous sûr de vouloir réinitialiser votre mot de passe ?",
+        "Nom d'utilisateur ou mot de passe incorrect !": "Nom d'utilisateur ou mot de passe incorrect !"
     },
     "core\/class\/user.class.php": {
         "Recherche LDAP (": "Looking for LDAP ("
@@ -681,7 +728,9 @@
         "Changelog": "Changelog",
         "Votre objet a été envoyé avec succès sur le market": "Your object was successfully sent to the market",
         "[Camera] Modèle": "[Camera] Model ",
-        "[SNMP] Configuration": "[SNMP] Configuration"
+        "[SNMP] Configuration": "[SNMP] Configuration",
+        "[EnOcean] Configuration module": "[EnOcean] Configuration module",
+        "[RfxCom] Configuration module": "[RfxCom] Configuration module"
     },
     "core\/class\/market.class.php": {
         "Erreur market::getinfo : ": "Error market::getinfo : ",
@@ -689,7 +738,14 @@
         "Téléchargement de l'objet...": "Téléchargement de l'objet...",
         "OK\n": "OK\n",
         "Décompression de l'archive...": "Décompression de l'archive...",
-        "Installation de l'objet...": "Installation de l'objet..."
+        "Installation de l'objet...": "Installation de l'objet...",
+        "Début de la mise de : pushbullet": "Début de la mise de : pushbullet",
+        "Aucune fonction correspondante à : ": "Aucune fonction correspondante à : ",
+        "Début de la mise de : everspring.sf812": "Début de la mise de : everspring.sf812",
+        "Début de la mise de : everspring.sm103": "Début de la mise de : everspring.sm103",
+        "Début de la mise de : dashboard.info.numeric.vibration": "Début de la mise de : dashboard.info.numeric.vibration",
+        "Début de la mise de : netatmoWeather": "Début de la mise de : netatmoWeather",
+        "Début de la mise de : mobile.info.numeric.vibration": "Début de la mise de : mobile.info.numeric.vibration"
     },
     "core\/class\/evaluate.class.php": {
         "ERREUR deux opérations à la suite": "ERROR two consecutive operations",
@@ -734,7 +790,11 @@
         "[Camera] Modèle": "[Camera] Model",
         "Installer stable": "Installer stable",
         "Installer beta": "Installer beta",
-        "Objet installé avec succès": "Objet installé avec succès"
+        "Objet installé avec succès": "Objet installé avec succès",
+        "Attention vous utilisez actuellement une version beta. Celle-ci peut ne pas être stable": "Attention vous utilisez actuellement une version beta. Celle-ci peut ne pas être stable",
+        "Le retour à la version stable est dangereux": "Le retour à la version stable est dangereux",
+        "[EnOcean] Configuration module": "[EnOcean] Configuration module",
+        "[RfxCom] Configuration module": "[RfxCom] Configuration module"
     },
     "mobile\/html\/fallback.html": {
         "Aucune connexion réseau détectée. Veuillez vous connecter et relancer l'application": "No network connection detected. Please connect you, and re-launch the application"
@@ -824,7 +884,36 @@
         "Sauvegarde les modifications": "Save changes",
         "Sauvegarde une donnée\r\n    $key => clef de la valeur (int ou string)\r\n    $value => valeur à stocker (int, string, array ou object)": "Save a data\r\n    $key => key of the value (int or string)\r\n    $value => value to keep (int, string, array or object)",
         "Récupère une donnée\r\n    $key => clef de la valeur (int ou string)": "Get back a data\r\n    $key => key of the value (int ou string)",
-        "Supprime une donnée": "Delete a data"
+        "Supprime une donnée": "Delete a data",
+        "#user_connect#  : déclenché lors de la connexion d'un utilisateur": "#user_connect#  : déclenché lors de la connexion d'un utilisateur",
+        "Condition ou valeur d'une commande d'action": "Condition ou valeur d'une commande d'action",
+        "Attention à bien mettre des ' ou \" (quote ou double quote) lors de l'utilisation de chaîne de caractère. Ex : \"#[Object][Equipement][Info]#\" = \"oui\"": "Attention à bien mettre des ' ou \" (quote ou double quote) lors de l'utilisation de chaîne de caractère. Ex : \"#[Object][Equipement][Info]#\" = \"oui\"",
+        "&&\/ET\/et\/AND\/and : et": "&&\/ET\/et\/AND\/and : et",
+        "||\/OU\/ou\/OR\/or : ou": "||\/OU\/ou\/OR\/or : ou",
+        "|^\/XOR\/xor : ou": "|^\/XOR\/xor : ou",
+        "#timestamp# : retourne le nombre de secondes depuis le 1er janvier 1970": "#timestamp# : retourne le nombre de secondes depuis le 1er janvier 1970",
+        "#smois# : pour le nom du mois (ex : Janvier)": "#smois# : pour le nom du mois (ex : Janvier)",
+        "average(commande,période) : donne la moyenne de la commande sur la période (period=[month,day,hour,min])\n    Ex : average(#[Salle de bain][Hydrometrie][Humidité]#,1 hour) : Renvoi la moyenne de la commande sur la dernière heure\n{{min(commande,période) : donne le minimum de la commande sur la période (period=[month,day,hour,min])\n    Ex : min(#[Salle de bain][Hydrometrie][Humidité]#,15 min) : Renvoi le minimum de la commande sur les 15 dernières minutes\n{{max(commande,période) : donne le maximum de la commande sur la période (period=[month,day,hour,min])\n    Ex : max(#[Salle de bain][Hydrometrie][Humidité]#,1 day) : Renvoi le maximum de la commande sur les 7 derniers jours\n{{tendance(commande,période,seuil) : donne la tendance de la commande sur la période (period=[month,day,hour,min])\n    Ex : tendance(#[Salle de bain][Hydrometrie][Humidité]#,1 hour,0.1) : Renvoi 1 si en augmentation, 0 si constant et -1 si en diminution\n         Le seuil permet de definir la sensibilitée, attention le calcul du seuil utilise la calcul de <a target=\"_blank\" href=\"http:\/\/fr.wikipedia.org\/wiki\/M%C3%A9thode_des_moindres_carr%C3%A9s\">moindre carrés<\/a>": "average(commande,période) : donne la moyenne de la commande sur la période (period=[month,day,hour,min])\n    Ex : average(#[Salle de bain][Hydrometrie][Humidité]#,1 hour) : Renvoi la moyenne de la commande sur la dernière heure\n{{min(commande,période) : donne le minimum de la commande sur la période (period=[month,day,hour,min])\n    Ex : min(#[Salle de bain][Hydrometrie][Humidité]#,15 min) : Renvoi le minimum de la commande sur les 15 dernières minutes\n{{max(commande,période) : donne le maximum de la commande sur la période (period=[month,day,hour,min])\n    Ex : max(#[Salle de bain][Hydrometrie][Humidité]#,1 day) : Renvoi le maximum de la commande sur les 7 derniers jours\n{{tendance(commande,période,seuil) : donne la tendance de la commande sur la période (period=[month,day,hour,min])\n    Ex : tendance(#[Salle de bain][Hydrometrie][Humidité]#,1 hour,0.1) : Renvoi 1 si en augmentation, 0 si constant et -1 si en diminution\n         Le seuil permet de definir la sensibilitée, attention le calcul du seuil utilise la calcul de <a target=\"_blank\" href=\"http:\/\/fr.wikipedia.org\/wiki\/M%C3%A9thode_des_moindres_carr%C3%A9s\">moindre carrés<\/a>",
+        "variable(mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut\n    Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas": "variable(mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut\n    Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas",
+        "scenario(scenario) : donne le statut du scenario\n    Ex : scenario(#[Salle de bain][Lumière][Auto]#) : Renvoi 1 en cours, 0 si arreté et -1 si desactivé": "scenario(scenario) : donne le statut du scenario\n    Ex : scenario(#[Salle de bain][Lumière][Auto]#) : Renvoi 1 en cours, 0 si arreté et -1 si desactivé",
+        "stateDuration(commande,[valeur]) : donne la durée en seconde depuis le dernier changement de valeur\n    Ex : stateDuration(#[Salle de bain][Hydrometrie][Humidité]#) : Renvoi 300 si cette valeur est la depuis 5min": "stateDuration(commande,[valeur]) : donne la durée en seconde depuis le dernier changement de valeur\n    Ex : stateDuration(#[Salle de bain][Hydrometrie][Humidité]#) : Renvoi 300 si cette valeur est la depuis 5min",
+        "lastScenarioExecution(scenario) : donne la durée en seconde depuis le dernier lancement du scénario\n    Ex : lastScenarioExecution(#[Salle de bain][Lumière][Auto]#) : Renvoi 300 si le scénario c'est lancé pour la derniere fois il y a 5min": "lastScenarioExecution(scenario) : donne la durée en seconde depuis le dernier lancement du scénario\n    Ex : lastScenarioExecution(#[Salle de bain][Lumière][Auto]#) : Renvoi 300 si le scénario c'est lancé pour la derniere fois il y a 5min",
+        "randomColor(min,max) : donne une couleur aléatoire compris entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu)\n    Ex : randomColor(40,60) : Pour avoir une couleur aléatoire proche du vert": "randomColor(min,max) : donne une couleur aléatoire compris entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu)\n    Ex : randomColor(40,60) : Pour avoir une couleur aléatoire proche du vert",
+        "trigger(commande) : permet de connaitre le declencheur du scénario ou de savoir si c'est bien la commande passé en parametre qui a declenchée le scénario\n    Ex : trigger(#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien #[Salle de bain][Hydrometrie][Humidité]# qui a declenché le scénario sinon 0": "trigger(commande) : permet de connaitre le declencheur du scénario ou de savoir si c'est bien la commande passé en parametre qui a declenchée le scénario\n    Ex : trigger(#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien #[Salle de bain][Hydrometrie][Humidité]# qui a declenché le scénario sinon 0",
+        "round(valeur,[decimal]) :permet un arrondit au dessus, [decimal] nombre de decimal après la virgule\n    Ex : round(#[Salle de bain][Hydrometrie][Humidité]# \/ 10) : renverra 9 si le pourcentage d'humidité et 85": "round(valeur,[decimal]) :permet un arrondit au dessus, [decimal] nombre de decimal après la virgule\n    Ex : round(#[Salle de bain][Hydrometrie][Humidité]# \/ 10) : renverra 9 si le pourcentage d'humidité et 85",
+        "sleep : pause de x seconde(s)\nwait : attend jusqu'a ce que la condition soit valide (maximum 2h)                         \nvariable : création\/modification d'une ou de la valeur d'une variable\nscenario : permet le controle des scénarios\nstop : arrête le scénario\nicon : permet de changer l'icone de représentation du scenario": "sleep : pause de x seconde(s)\nwait : attend jusqu'a ce que la condition soit valide (maximum 2h)                         \nvariable : création\/modification d'une ou de la valeur d'une variable\nscenario : permet le controle des scénarios\nstop : arrête le scénario\nicon : permet de changer l'icone de représentation du scenario",
+        "#heure#  : heure courante (ex : 17 pour 17h15)": "#heure#  : heure courante (ex : 17 pour 17h15)",
+        "#date# : jour et mois courant (ex : 1215 pour le 15 decembre)": "#date# : jour et mois courant (ex : 1215 pour le 15 decembre)",
+        "variable (mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut\n    Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas": "variable (mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut\n    Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas",
+        "Attention les tags ne sont pas disponible dans un bloc de type code": "Attention les tags ne sont pas disponible dans un bloc de type code",
+        "Retourne l'objet commande correspondant\n    $string => lien vers la commande voulue : #[objet][equipement][commande]# (ex :  #[Appartement][Alarme][Actif]#)": "Retourne l'objet commande correspondant\n    $string => lien vers la commande voulue : #[objet][equipement][commande]# (ex :  #[Appartement][Alarme][Actif]#)",
+        "Retourne l'objet commande correspondant\n    $id => Id de la commande voulue (voir Général => Affichage)": "Retourne l'objet commande correspondant\n    $id => Id de la commande voulue (voir Général => Affichage)",
+        "Exécute la commande et retourne le résultat\n    $options => Options pour l'exécution de la commande (peut être spécifique au plugin), option de base : \n          Sous-type de la commande : message => $option = array('title' => 'titre du message , 'message' => 'Mon message');\n                                     color => $option = array('color' => 'couleur en hexadécimal');\n                                     value => $option = array('color' => 'valeur voulue');\n                                     slider => $option = array('slider' => 'valeur voulue de 0 à 100');\n    $cache  => 0 = ignorer le cache , 1 = mode normal, 2 = cache utilisé même si expiré (puis marqué à recollecter)": "Exécute la commande et retourne le résultat\n    $options => Options pour l'exécution de la commande (peut être spécifique au plugin), option de base : \n          Sous-type de la commande : message => $option = array('title' => 'titre du message , 'message' => 'Mon message');\n                                     color => $option = array('color' => 'couleur en hexadécimal');\n                                     value => $option = array('color' => 'valeur voulue');\n                                     slider => $option = array('slider' => 'valeur voulue de 0 à 100');\n    $cache  => 0 = ignorer le cache , 1 = mode normal, 2 = cache utilisé même si expiré (puis marqué à recollecter)",
+        "filename => nom du fichier de log\n    level => [debug],[info],[error],[event]\n    message => message à écrire dans les logs": "filename => nom du fichier de log\n    level => [debug],[info],[error],[event]\n    message => message à écrire dans les logs",
+        "Permet d'activer ou non le scénario\n    $active => 1 actif , 0 non actif": "Permet d'activer ou non le scénario\n    $active => 1 actif , 0 non actif",
+        "Permet de dire si le scénario est en cours ou non\n    $onGoing => 1 en cours , 0 arrêté": "Permet de dire si le scénario est en cours ou non\n    $onGoing => 1 en cours , 0 arrêté",
+        "Sauvegarde une donnée\n    $key => clef de la valeur (int ou string)\n    $value => valeur à stocker (int, string, array ou object)": "Sauvegarde une donnée\n    $key => clef de la valeur (int ou string)\n    $value => valeur à stocker (int, string, array ou object)",
+        "Récupère une donnée\n    $key => clef de la valeur (int ou string)": "Récupère une donnée\n    $key => clef de la valeur (int ou string)"
     },
     "desktop\/modal\/help.website.php": {
         "Aucune aide n'existe pour le moment sur cette page": "At this moment no help exist on this page"
@@ -898,7 +987,8 @@
         "Générale": "Main",
         "Envoyer": "Send",
         "Votre ticket a bien été ouvert. Vous pouvez le suivre ": "Your ticket is now open. You can follow it ",
-        "ici": "here"
+        "ici": "here",
+        "Votre ticket à bien été ouvert. Vous pouvez le suivre": "Votre ticket à bien été ouvert. Vous pouvez le suivre"
     },
     "desktop\/modal\/about.php": {
         "Auteur(s)": "Author(s)",
@@ -917,7 +1007,8 @@
         "Etes-vous sûr de vouloir supprimer cet utilisateur ?": "Do you really wish to remove this user?",
         "L\\'utilisateur a bien été supprimé": "This user has been deleted",
         "Quel est le nouveau mot de passe ?": "What is the new password?",
-        "Changer le mot de passe": "Change password"
+        "Changer le mot de passe": "Change password",
+        "Sauvegarde effectuée": "Sauvegarde effectuée"
     },
     "desktop\/php\/backup.php": {
         "Fréquence des sauvegardes": "Backup frequency",
@@ -944,7 +1035,8 @@
         "Fichier(s) ajouté(s) avec succès": "File(s) added successfully",
         "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde Cloud ?": "Do you really want to restore Jeedom with backup in the Cloud?",
         "L\\'opération est réussie": "Operation is completed successfully",
-        "L\\'opération a échoué": "Operation failed"
+        "L\\'opération a échoué": "Operation failed",
+        "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde Cloud": "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde Cloud"
     },
     "desktop\/php\/update.php": {
         "Mettre à jour": "Update",
@@ -980,7 +1072,9 @@
         "Suppression effectuée avec succès": "Successful deletion",
         "Etes-vous sûr de vouloir supprimer cette connexion ? Si l\\'IP :": "Do you really want to remove this connection? If IP:",
         "était bannie celle-ci ne le sera plus": "was banished, it won’t be anymore",
-        "Etes-vous sûr de vouloir bannir cette IP :": "Do you really want to banish this IP:"
+        "Etes-vous sûr de vouloir bannir cette IP :": "Do you really want to banish this IP:",
+        "était banni celle-ci ne le sera plus": "était banni celle-ci ne le sera plus",
+        "Etes-vous sûr de vouloir bannir cette IP  :": "Etes-vous sûr de vouloir bannir cette IP  :"
     },
     "desktop\/php\/log.php": {
         "Supprimer tous les logs": "Remove all logs",
@@ -999,7 +1093,9 @@
         "Ajouter texte": "Ajouter texte",
         "Ajouter équipement": "Ajouter équipement",
         "Selectionnez un lien": "Selectionnez un lien",
-        "Valider": "Valider"
+        "Valider": "Valider",
+        "Pleine écran": "Pleine écran",
+        "Plein écran": "Plein écran"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Sélectionner le scénario"
@@ -1039,7 +1135,13 @@
         "Arrondir les angles (en %, ex 50%)": "Arrondir les angles (en %, ex 50%)",
         "Arrondir les angles (ne pas oublié de mettre %, ex 50%)": "Arrondir les angles (ne pas oublié de mettre %, ex 50%)",
         "Defaut": "Defaut",
-        "Défaut": "Défaut"
+        "Défaut": "Défaut",
+        "Lien": "Lien",
+        "Icône": "Icône",
+        "Choisir une icône": "Choisir une icône",
+        "Couleur du texte": "Couleur du texte",
+        "Taille de la police (ex 50%, il faut bien mettre le signe %)": "Taille de la police (ex 50%, il faut bien mettre le signe %)",
+        "Gras)": "Gras)"
     },
     "desktop\/modal\/cmd.human.insert.php": {
         "Objet": "Objet",
@@ -1124,5 +1226,97 @@
     "core\/ajax\/update.ajax.php": {
         "[START UPDATE]\n": "[START UPDATE]\n",
         "[END UPDATE SUCCESS]\n": "[END UPDATE SUCCESS]\n"
+    },
+    "core\/class\/interactQuery.class.php": {
+        "Désolé je n'ai pas compris": "Désolé je n'ai pas compris",
+        "Désolé je n'ai pas compris la demande": "Désolé je n'ai pas compris la demande",
+        "Désolé je ne comprends pas la demande": "Désolé je ne comprends pas la demande",
+        "Je ne comprends pas": "Je ne comprends pas"
+    },
+    "desktop\/php\/rights.php": {
+        "Générale": "Générale",
+        "Plugins\/Equipements": "Plugins\/Equipements",
+        "Droits": "Droits"
+    },
+    "desktop\/php\/view_edit.php": {
+        "Creer une vue": "Creer une vue",
+        "Renommer": "Renommer",
+        "Vue": "Vue",
+        "Voir le resultat": "Voir le resultat",
+        "Ajouter une zone": "Ajouter une zone",
+        "Ajouter\/Editer viewZone": "Ajouter\/Editer viewZone",
+        "Widget": "Widget",
+        "Graphique": "Graphique",
+        "Objet": "Objet",
+        "Bleu": "Bleu",
+        "Rouge": "Rouge",
+        "Vert": "Vert",
+        "Violet": "Violet",
+        "Bleu ciel": "Bleu ciel",
+        "Orange": "Orange",
+        "Jaune": "Jaune",
+        "Rose": "Rose",
+        "Noir": "Noir",
+        "Vert\/Bleu": "Vert\/Bleu",
+        "Ligne": "Ligne",
+        "Aire": "Aire",
+        "Colonne": "Colonne"
+    },
+    "desktop\/js\/view_edit.js": {
+        "Modification enregistré": "Modification enregistré",
+        "Etes-vous sûr de vouloir supprimer la vue": "Etes-vous sûr de vouloir supprimer la vue",
+        "30min": "30min",
+        "Jour": "Jour",
+        "Semaine": "Semaine",
+        "Mois": "Mois",
+        "Années": "Années"
+    },
+    "desktop\/modal\/cmd.graph.select.php": {
+        "Objet": "Objet",
+        "Affichage": "Affichage",
+        "Bleu": "Bleu",
+        "Rouge": "Rouge",
+        "Vert": "Vert",
+        "Violet": "Violet",
+        "Bleu ciel": "Bleu ciel",
+        "Orange": "Orange",
+        "Jaune": "Jaune",
+        "Rose": "Rose",
+        "Noir": "Noir",
+        "Vert\/Bleu": "Vert\/Bleu",
+        "Ligne": "Ligne",
+        "Aire": "Aire",
+        "Colonne": "Colonne"
+    },
+    "desktop\/modal\/planHeader.configure.php": {
+        "Général": "Général",
+        "Disponible sur téléphone": "Disponible sur téléphone",
+        "Image": "Image",
+        "Grille (LxH)": "Grille (LxH)",
+        "Tailles": "Tailles",
+        "Taille desktop (LxH)": "Taille desktop (LxH)",
+        "Taille tablette (LxH)": "Taille tablette (LxH)",
+        "Taille mobile (LxH)": "Taille mobile (LxH)",
+        "Taille (LxH)": "Taille (LxH)"
+    },
+    "desktop\/modal\/eqLogic.human.insert.php": {
+        "Object": "Object",
+        "Equipement": "Equipement"
+    },
+    "core\/template\/scenario\/scenario.default": {
+        "Start": "Start",
+        "Stop": "Stop"
+    },
+    "core\/ajax\/user.ajax.php": {
+        "Demande de récupération de mot de passe pour : ": "Demande de récupération de mot de passe pour : "
+    },
+    "desktop\/js\/cron.js": {
+        "Désactiver le système cron": "Désactiver le système cron",
+        "Activer le système cron": "Activer le système cron"
+    },
+    "desktop\/modal\/cmd.history.php": {
+        "Ligne": "Ligne",
+        "Aire": "Aire",
+        "Colonne": "Colonne"
     }
 }
