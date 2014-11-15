@@ -486,7 +486,11 @@ class scenarioExpression {
                     switch ($this->getOptions('action')) {
                         case 'start':
                             $this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
-                            $actionScenario->launch(false, __('Lancement provoque par le scenario  : ', __FILE__) . $scenario->getHumanName());
+                            if ($scenario != null) {
+                                $actionScenario->launch(false, __('Lancement provoqué par le scenario  : ', __FILE__) . $scenario->getHumanName());
+                            } else {
+                                $actionScenario->launch(false, __('Lancement provoqué', __FILE__));
+                            }
                             break;
                         case 'stop':
                             $this->setLog($scenario, __('Arrêt forcer du scénario : ', __FILE__) . $actionScenario->getName());
