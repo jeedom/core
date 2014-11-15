@@ -78,6 +78,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
                     $('#div_alertReportBug').showAlert({message: data.result, level: 'danger'});
                     return;
                 }
+                $('#bt_sendBugReport').hide();
                 $('#div_alertReportBug').showAlert({message: '{{Votre ticket à bien été ouvert. Vous pouvez le suivre}} <a target="_blank" href="' + data.result.url + '">{{ici}}</a>', level: 'success'});
             }
         });
