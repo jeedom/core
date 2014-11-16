@@ -3,103 +3,110 @@ Les scénarios sont le coeur de votre domotique, c'est eux qui vont vous permett
 
 ==== Déclencheur
 Il existe des déclencheur spécifique (autre que ceux fournis par les commandes) :
-* #start#  : déclenché au (re)démarrage de Jeedom
-* #user_connect#  : déclenché lors de la connexion d'un utilisateur
-        ==== Condition ou valeur d'une commande d'action
+
+- #start#  : déclenché au (re)démarrage de Jeedom
+- #user_connect#  : déclenché lors de la connexion d'un utilisateur
+
+==== Condition ou valeur d'une commande d'action
 Attention à bien mettre des ' ou " (quote ou double quote) lors de l'utilisation de chaîne de caractère. Ex : "#[Object][Equipement][Info]#" = "oui"
 Vous pouvez utiliser n'importe lequel des symboles suivant pour les opérateurs : 
-                <pre>
-* = : égal
-* > : supérieur
-* >= : supérieur ou égal
-* < : inférieur
-* <= : inférieur ou égal
-* != : différent
-* ~ : contient
-* !~ : ne contient pas
+
+- = : égal
+- > : supérieur
+- >= : supérieur ou égal
+- < : inférieur
+- <= : inférieur ou égal
+- != : différent
+- ~ : contient
+- !~ : ne contient pas
 
 Vous pouvez combiner n'importe quelle opération avec les opérateurs suivants :
-* &&/ET/et/AND/and : et}}
-* ||/OU/ou/OR/or : ou
-* |^/XOR/xor : ou}}
+
+- &&/ET/et/AND/and : et
+- ||/OU/ou/OR/or : ou
+- |^/XOR/xor : ou
 
 Vous pouvez aussi utiliser les tags suivants :
-* #seconde# : seconde courante
-* #heure# : heure courante (ex : 17 pour 17h15)
-* #minute# : minute courante (ex : 15 pour 17h15)
-* #jour# : jour courant
-* #mois# : mois courant
-* #annee# : année courante
-* #time# : heure et minute courante (ex : 1715 pour 17h15)
-* #timestamp# : retourne le nombre de secondes depuis le 1er janvier 1970
-* #date# : jour et mois courant (ex : 1215 pour le 15 décembre)
-* #semaine# : numéro de la semaine (ex : 51)
-* #sjour# : pour le nom du jour de la semaine (ex : Samedi)
-* #njour# : numéro du jour de 0 (dimanche) à 6 (samedi)
-* #smois# : pour le nom du mois (ex : Janvier)
-* rand(1,10) : pour un nombre aléatoire de 1 à 10
-* average(commande,période) : donne la moyenne de la commande sur la période (period=[month,day,hour,min])
+
+- #seconde# : seconde courante
+- #heure# : heure courante (ex : 17 pour 17h15)
+- #minute# : minute courante (ex : 15 pour 17h15)
+- #jour# : jour courant
+- #mois# : mois courant
+- #annee# : année courante
+- #time# : heure et minute courante (ex : 1715 pour 17h15)
+- #timestamp# : retourne le nombre de secondes depuis le 1er janvier 1970
+- #date# : jour et mois courant (ex : 1215 pour le 15 décembre)
+- #semaine# : numéro de la semaine (ex : 51)
+- #sjour# : pour le nom du jour de la semaine (ex : Samedi)
+- #njour# : numéro du jour de 0 (dimanche) à 6 (samedi)
+- #smois# : pour le nom du mois (ex : Janvier)
+- rand(1,10) : pour un nombre aléatoire de 1 à 10
+- average(commande,période) : donne la moyenne de la commande sur la période (period=[month,day,hour,min])
     Ex : average(#[Salle de bain][Hydrometrie][Humidité]#,1 hour) : Renvoi la moyenne de la commande sur la dernière heure
-* min(commande,période) : donne le minimum de la commande sur la période (period=[month,day,hour,min])
+- min(commande,période) : donne le minimum de la commande sur la période (period=[month,day,hour,min])
     Ex : min(#[Salle de bain][Hydrometrie][Humidité]#,15 min) : Renvoi le minimum de la commande sur les 15 dernières minutes
-* max(commande,période) : donne le maximum de la commande sur la période (period=[month,day,hour,min])
+- max(commande,période) : donne le maximum de la commande sur la période (period=[month,day,hour,min])
     Ex : max(#[Salle de bain][Hydrometrie][Humidité]#,1 day) : Renvoi le maximum de la commande sur les 7 derniers jours
-* tendance(commande,période,seuil) : donne la tendance de la commande sur la période (period=[month,day,hour,min])
+- tendance(commande,période,seuil) : donne la tendance de la commande sur la période (period=[month,day,hour,min])
     Ex : tendance(#[Salle de bain][Hydrometrie][Humidité]#,1 hour,0.1) : Renvoi 1 si en augmentation, 0 si constant et -1 si en diminution
-         Le seuil permet de definir la sensibilitée, attention le calcul du seuil utilise la calcul de <a target="_blank" href="http://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s">moindre carrés</a>}}
-* variable(mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
+         Le seuil permet de definir la sensibilitée, attention le calcul du seuil utilise la calcul de <a target="_blank" href="http://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s">moindre carrés</a>
+- variable(mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
     Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas
-* scenario(scenario) : donne le statut du scenario
+- scenario(scenario) : donne le statut du scenario
     Ex : scenario(#[Salle de bain][Lumière][Auto]#) : Renvoi 1 en cours, 0 si arreté et -1 si desactivé
-* stateDuration(commande,[valeur]) : donne la durée en seconde depuis le dernier changement de valeur
+- stateDuration(commande,[valeur]) : donne la durée en seconde depuis le dernier changement de valeur
     Ex : stateDuration(#[Salle de bain][Hydrometrie][Humidité]#) : Renvoi 300 si cette valeur est la depuis 5min
-* lastScenarioExecution(scenario) : donne la durée en seconde depuis le dernier lancement du scénario
+- lastScenarioExecution(scenario) : donne la durée en seconde depuis le dernier lancement du scénario
     Ex : lastScenarioExecution(#[Salle de bain][Lumière][Auto]#) : Renvoi 300 si le scénario c'est lancé pour la derniere fois il y a 5min
-* randomColor(min,max) : donne une couleur aléatoire compris entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu)
+- randomColor(min,max) : donne une couleur aléatoire compris entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu)
     Ex : randomColor(40,60) : Pour avoir une couleur aléatoire proche du vert
-* trigger(commande) : permet de connaitre le declencheur du scénario ou de savoir si c'est bien la commande passé en parametre qui a declenchée le scénario
+- trigger(commande) : permet de connaitre le declencheur du scénario ou de savoir si c'est bien la commande passé en parametre qui a declenchée le scénario
     Ex : trigger(#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien #[Salle de bain][Hydrometrie][Humidité]# qui a declenché le scénario sinon 0
-* round(valeur,[decimal]) :permet un arrondit au dessus, [decimal] nombre de decimal après la virgule
+- round(valeur,[decimal]) :permet un arrondit au dessus, [decimal] nombre de decimal après la virgule
     Ex : round(#[Salle de bain][Hydrometrie][Humidité]# / 10) : renverra 9 si le pourcentage d'humidité et 85
             
 ==== Action
 En plus des commandes domotiques vous avez accès aux fonctions suivantes : 
-* sleep : pause de x seconde(s)
-* wait : attend jusqu'a ce que la condition soit valide (maximum 2h)                         
-* variable : création/modification d'une ou de la valeur d'une variable
-* scenario : permet le controle des scénarios
-* stop : arrête le scénario
-* icon : permet de changer l'icone de représentation du scenario
+
+- sleep : pause de x seconde(s)
+- wait : attend jusqu'a ce que la condition soit valide (maximum 2h)                         
+- variable : création/modification d'une ou de la valeur d'une variable
+- scenario : permet le controle des scénarios
+- stop : arrête le scénario
+- icon : permet de changer l'icone de représentation du scenario
                
 Vous pouvez aussi utiliser les tags suivants dans les options : 
-* #seconde# : seconde courante
-* #heure#  : heure courante (ex : 17 pour 17h15)
-* #minute# : minute courante (ex : 15 pour 17h15)
-* #jour# : jour courant
-* #mois# : mois courant
-* #annee# : année courante
-* #time# : heure et minute courante (ex : 1715 pour 17h15)
-* #timestamp# : retourne le nombre de secondes depuis le 1er janvier 1970
-* #date# : jour et mois courant (ex : 1215 pour le 15 decembre)
-* #semaine# : numéro de la semaine (ex : 51)
-* #sjour# : pour le nom du jour de la semaine en anglais (ex : sunday)
-* #njour# : numéro du jour de 0 (dimanche) à 6 (samedi)
-* #smois# : pour le nom du mois (ex : Janvier)
-* rand[1-10] : pour un nombre aléatoire de 1 à 10
-* variable (mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
-    Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas}}
+
+- #seconde# : seconde courante
+- #heure#  : heure courante (ex : 17 pour 17h15)
+- #minute# : minute courante (ex : 15 pour 17h15)
+- #jour# : jour courant
+- #mois# : mois courant
+- #annee# : année courante
+- #time# : heure et minute courante (ex : 1715 pour 17h15)
+- #timestamp# : retourne le nombre de secondes depuis le 1er janvier 1970
+- #date# : jour et mois courant (ex : 1215 pour le 15 decembre)
+- #semaine# : numéro de la semaine (ex : 51)
+- #sjour# : pour le nom du jour de la semaine en anglais (ex : sunday)
+- #njour# : numéro du jour de 0 (dimanche) à 6 (samedi)
+- #smois# : pour le nom du mois (ex : Janvier)
+- rand[1-10] : pour un nombre aléatoire de 1 à 10
+- variable (mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
+    Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas
              
 ==== Code
 Attention les tags ne sont pas disponible dans un bloc de type code
 
 ===== Commandes (capteurs et actionneurs)
-* cmd::byString($string);
+
+- cmd::byString($string);
     Retourne l'objet commande correspondant
     $string => lien vers la commande voulue : #[objet][equipement][commande]# (ex :  #[Appartement][Alarme][Actif]#)
-* cmd::byId($id);
+- cmd::byId($id);
     Retourne l'objet commande correspondant
     $id => Id de la commande voulue (voir Général => Affichage)
-* $cmd->execCmd($options = null, $cache = 1);
+- $cmd->execCmd($options = null, $cache = 1);
     Exécute la commande et retourne le résultat
     $options => Options pour l'exécution de la commande (peut être spécifique au plugin), option de base : 
           Sous-type de la commande : message => $option = array('title' => 'titre du message , 'message' => 'Mon message');
@@ -109,40 +116,42 @@ Attention les tags ne sont pas disponible dans un bloc de type code
     $cache  => 0 = ignorer le cache , 1 = mode normal, 2 = cache utilisé même si expiré (puis marqué à recollecter)
 
 ===== Log
-* log::add('filename','level','message');
+
+- log::add('filename','level','message');
     filename => nom du fichier de log
     level => [debug],[info],[error],[event]
     message => message à écrire dans les logs
                            
 ===== Scénario
-* $scenario->getName();
+
+- $scenario->getName();
     {{Retourne le nom du scénario courant
                               
-* $scenario->getGroup();
+- $scenario->getGroup();
     {{Retourne le groupe du scénario
                            
-* $scenario->getIsActive();
+- $scenario->getIsActive();
     Retourne l'état du scénario
                               
-* $scenario->setIsActive($active);
+- $scenario->setIsActive($active);
     Permet d'activer ou non le scénario
     $active => 1 actif , 0 non actif
                               
-* $scenario->setOnGoing($onGoing);
+- $scenario->setOnGoing($onGoing);
     Permet de dire si le scénario est en cours ou non
     $onGoing => 1 en cours , 0 arrêté
                                
-* $scenario->save();
+- $scenario->save();
     Sauvegarde les modifications
                              
-* $scenario->setData($key, $value);
+- $scenario->setData($key, $value);
     Sauvegarde une donnée
     $key => clef de la valeur (int ou string)
     $value => valeur à stocker (int, string, array ou object)
                                
-* $scenario->getData($key);
+- $scenario->getData($key);
     Récupère une donnée
     $key => clef de la valeur (int ou string)
                              
-* $scenario->removeData($key);
+- $scenario->removeData($key);
     Supprime une donnée
