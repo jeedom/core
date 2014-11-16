@@ -43,28 +43,28 @@ Vous pouvez aussi utiliser les tags suivants :
 - #smois# : pour le nom du mois (ex : Janvier)
 - rand(1,10) : pour un nombre aléatoire de 1 à 10
 - average(commande,période) : donne la moyenne de la commande sur la période (period=[month,day,hour,min])
-    Ex : average(#[Salle de bain][Hydrometrie][Humidité]#,1 hour) : Renvoi la moyenne de la commande sur la dernière heure
+    * Ex : average(#[Salle de bain][Hydrometrie][Humidité]#,1 hour) : Renvoi la moyenne de la commande sur la dernière heure
 - min(commande,période) : donne le minimum de la commande sur la période (period=[month,day,hour,min])
-    Ex : min(#[Salle de bain][Hydrometrie][Humidité]#,15 min) : Renvoi le minimum de la commande sur les 15 dernières minutes
+    * Ex : min(#[Salle de bain][Hydrometrie][Humidité]#,15 min) : Renvoi le minimum de la commande sur les 15 dernières minutes
 - max(commande,période) : donne le maximum de la commande sur la période (period=[month,day,hour,min])
-    Ex : max(#[Salle de bain][Hydrometrie][Humidité]#,1 day) : Renvoi le maximum de la commande sur les 7 derniers jours
+    * Ex : max(#[Salle de bain][Hydrometrie][Humidité]#,1 day) : Renvoi le maximum de la commande sur les 7 derniers jours
 - tendance(commande,période,seuil) : donne la tendance de la commande sur la période (period=[month,day,hour,min])
-    Ex : tendance(#[Salle de bain][Hydrometrie][Humidité]#,1 hour,0.1) : Renvoi 1 si en augmentation, 0 si constant et -1 si en diminution
-         Le seuil permet de definir la sensibilitée, attention le calcul du seuil utilise la calcul de <a target="_blank" href="http://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s">moindre carrés</a>
+    * Ex : tendance(#[Salle de bain][Hydrometrie][Humidité]#,1 hour,0.1) : Renvoi 1 si en augmentation, 0 si constant et -1 si en diminution
+           Le seuil permet de definir la sensibilitée, attention le calcul du seuil utilise la calcul de <a target="_blank" href="http://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s">moindre carrés</a>
 - variable(mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
-    Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas
+    * Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas
 - scenario(scenario) : donne le statut du scenario
-    Ex : scenario(#[Salle de bain][Lumière][Auto]#) : Renvoi 1 en cours, 0 si arreté et -1 si desactivé
+    * Ex : scenario(#[Salle de bain][Lumière][Auto]#) : Renvoi 1 en cours, 0 si arreté et -1 si desactivé
 - stateDuration(commande,[valeur]) : donne la durée en seconde depuis le dernier changement de valeur
-    Ex : stateDuration(#[Salle de bain][Hydrometrie][Humidité]#) : Renvoi 300 si cette valeur est la depuis 5min
+    * Ex : stateDuration(#[Salle de bain][Hydrometrie][Humidité]#) : Renvoi 300 si cette valeur est la depuis 5min
 - lastScenarioExecution(scenario) : donne la durée en seconde depuis le dernier lancement du scénario
-    Ex : lastScenarioExecution(#[Salle de bain][Lumière][Auto]#) : Renvoi 300 si le scénario c'est lancé pour la derniere fois il y a 5min
+    * Ex : lastScenarioExecution(#[Salle de bain][Lumière][Auto]#) : Renvoi 300 si le scénario c'est lancé pour la derniere fois il y a 5min
 - randomColor(min,max) : donne une couleur aléatoire compris entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu)
-    Ex : randomColor(40,60) : Pour avoir une couleur aléatoire proche du vert
+    * Ex : randomColor(40,60) : Pour avoir une couleur aléatoire proche du vert
 - trigger(commande) : permet de connaitre le declencheur du scénario ou de savoir si c'est bien la commande passé en parametre qui a declenchée le scénario
-    Ex : trigger(#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien #[Salle de bain][Hydrometrie][Humidité]# qui a declenché le scénario sinon 0
+    * Ex : trigger(#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien #[Salle de bain][Hydrometrie][Humidité]# qui a declenché le scénario sinon 0
 - round(valeur,[decimal]) :permet un arrondit au dessus, [decimal] nombre de decimal après la virgule
-    Ex : round(#[Salle de bain][Hydrometrie][Humidité]# / 10) : renverra 9 si le pourcentage d'humidité et 85
+    * Ex : round(#[Salle de bain][Hydrometrie][Humidité]# / 10) : renverra 9 si le pourcentage d'humidité et 85
             
 ==== Action
 En plus des commandes domotiques vous avez accès aux fonctions suivantes : 
@@ -93,7 +93,7 @@ Vous pouvez aussi utiliser les tags suivants dans les options :
 - #smois# : pour le nom du mois (ex : Janvier)
 - rand[1-10] : pour un nombre aléatoire de 1 à 10
 - variable (mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
-    Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas
+    * Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas
              
 ==== Code
 Attention les tags ne sont pas disponible dans un bloc de type code
@@ -101,57 +101,57 @@ Attention les tags ne sont pas disponible dans un bloc de type code
 ===== Commandes (capteurs et actionneurs)
 
 - cmd::byString($string);
-    Retourne l'objet commande correspondant
-    $string => lien vers la commande voulue : #[objet][equipement][commande]# (ex :  #[Appartement][Alarme][Actif]#)
+    * Retourne l'objet commande correspondant
+    * $string => lien vers la commande voulue : #[objet][equipement][commande]# (ex :  #[Appartement][Alarme][Actif]#)
 - cmd::byId($id);
-    Retourne l'objet commande correspondant
-    $id => Id de la commande voulue (voir Général => Affichage)
+    * Retourne l'objet commande correspondant
+    * $id => Id de la commande voulue (voir Général => Affichage)
 - $cmd->execCmd($options = null, $cache = 1);
-    Exécute la commande et retourne le résultat
-    $options => Options pour l'exécution de la commande (peut être spécifique au plugin), option de base : 
-          Sous-type de la commande : message => $option = array('title' => 'titre du message , 'message' => 'Mon message');
+    * Exécute la commande et retourne le résultat
+    * $options => Options pour l'exécution de la commande (peut être spécifique au plugin), option de base : 
+          ** Sous-type de la commande : message => $option = array('title' => 'titre du message , 'message' => 'Mon message');
                                      color => $option = array('color' => 'couleur en hexadécimal');
                                      value => $option = array('color' => 'valeur voulue');
                                      slider => $option = array('slider' => 'valeur voulue de 0 à 100');
-    $cache  => 0 = ignorer le cache , 1 = mode normal, 2 = cache utilisé même si expiré (puis marqué à recollecter)
+    * $cache  => 0 = ignorer le cache , 1 = mode normal, 2 = cache utilisé même si expiré (puis marqué à recollecter)
 
 ===== Log
 
 - log::add('filename','level','message');
-    filename => nom du fichier de log
-    level => [debug],[info],[error],[event]
-    message => message à écrire dans les logs
+    * filename => nom du fichier de log
+    * level => [debug],[info],[error],[event]
+    * message => message à écrire dans les logs
                            
 ===== Scénario
 
 - $scenario->getName();
-    {{Retourne le nom du scénario courant
+    * Retourne le nom du scénario courant
                               
 - $scenario->getGroup();
-    {{Retourne le groupe du scénario
+    * Retourne le groupe du scénario
                            
 - $scenario->getIsActive();
-    Retourne l'état du scénario
+    * Retourne l'état du scénario
                               
 - $scenario->setIsActive($active);
-    Permet d'activer ou non le scénario
-    $active => 1 actif , 0 non actif
+    * Permet d'activer ou non le scénario
+    * $active => 1 actif , 0 non actif
                               
 - $scenario->setOnGoing($onGoing);
-    Permet de dire si le scénario est en cours ou non
-    $onGoing => 1 en cours , 0 arrêté
+    * Permet de dire si le scénario est en cours ou non
+    * $onGoing => 1 en cours , 0 arrêté
                                
 - $scenario->save();
-    Sauvegarde les modifications
+    * Sauvegarde les modifications
                              
 - $scenario->setData($key, $value);
-    Sauvegarde une donnée
-    $key => clef de la valeur (int ou string)
-    $value => valeur à stocker (int, string, array ou object)
+    * Sauvegarde une donnée
+    * $key => clef de la valeur (int ou string)
+    * $value => valeur à stocker (int, string, array ou object)
                                
 - $scenario->getData($key);
-    Récupère une donnée
-    $key => clef de la valeur (int ou string)
+    * Récupère une donnée
+    * $key => clef de la valeur (int ou string)
                              
 - $scenario->removeData($key);
-    Supprime une donnée
+    * Supprime une donnée
