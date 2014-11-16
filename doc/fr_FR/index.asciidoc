@@ -1,15 +1,16 @@
 Accueil
-==
+=======
+
 include::home.asciidoc[]
 
 Dashboard
-==
+=========
 include::dashboard.asciidoc[]
 
 Vue
-==
+===
 include::view.asciidoc[]
 
 Design
-==
+======
 include::design.asciidoc[]
