@@ -1,11 +1,10 @@
-Dashboard
-==========
+= Core
+
+== Dashboard
 include::dashboard.asciidoc[]
 
-Vue
-===
+== Vue
 include::view.asciidoc[]
 
-Design
-======
+== Design
 include::design.asciidoc[]
