@@ -1,0 +1,2 @@
+==== Description
+C'est ici que vont se configurer la pluspart des paramètres de Jeedom

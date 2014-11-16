@@ -1,0 +1,7 @@
+==== Description
+Cette page vous permet de creer les objets de votre domotique. Un objet peut representer une piece, un emplace, un meuble, un appareil electromenager. Ceux-ci peuvent etre organisé
+entre eux (notion de père-fils) et vous donneront au final un arbre vous permettant d'y rattacher vos équipements.
+
+Ex : 
+Appartement ---> Salon
+            ---> Cuisine ---> Frigo

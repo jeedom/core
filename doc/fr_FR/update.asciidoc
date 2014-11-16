@@ -1,0 +1,2 @@
+==== Description
+Le centre de mise à jour comme sont nom l'indique vous donne toutes les mises à jour disponible pour votre Jeedom et vous permet de le mettre à jour.

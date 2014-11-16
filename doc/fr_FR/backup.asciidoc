@@ -1,0 +1,3 @@
+==== Description
+Ici vous pourrez configurer les backups : fréquence, nombre de backup à conserver, déclencher un backup manuellement... Vous pouvez aussi à partir de cette page 
+récupèrer un backup ou en envoyer à un Jeedom pour le restaurer

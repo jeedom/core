@@ -370,6 +370,7 @@ class scenarioExpression {
             '#semaine#' => date('W'),
             '#sjour#' => date_fr(date('l')),
             '#smois#' => date_fr(date('F')),
+            '#njour#' => (int) date('w'),
         );
         preg_match_all("/([a-zA-Z][a-zA-Z]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
         foreach ($matches as $match) {

@@ -1,13 +1,70 @@
 == Core
 
+=== Description
+Jeedom est un projet de domotique sans cloud et sans abonement. Il permet de piloté divers peripherique (zwave, rfxcom, enOcean, xPL, knx...). Plus d'informations ici : https://jeedom.fr
+
+=== Principe
+include::principe.asciidoc[]
+
+=== Administration
+include::administration.asciidoc[]
+
+=== Sauvegarde
+include::backup.asciidoc[]
+
+=== Moteur de tâche
+include::cron.asciidoc[]
+
 === Dashboard
 include::dashboard.asciidoc[]
 
-=== Vue
-include::view.asciidoc[]
+=== Affichage
+include::display.asciidoc[]
+
+=== Historique
+include::history.asciidoc[]
+
+=== Interactions
+include::interact.asciidoc[]
+
+=== Réseau jeedom
+include::jeeNetwork.asciidoc[]
+
+=== Log
+include::log.asciidoc[]
+
+=== Objets
+include::objects.asciidoc[]
 
 === Design
-include::design.asciidoc[]
+include::plan.asciidoc[]
+
+=== Plugins
+include::plugin.asciidoc[]
+
+=== Profils
+include::profils.asciidoc[]
+
+=== Droits avancés
+include::rights.asciidoc[]
+
+=== Scénario
+include::scenario.asciidoc[]
+
+=== Sécurité
+include::security.asciidoc[]
+
+=== Timelinge
+include::timeline.asciidoc[]
+
+=== Mise à jours
+include::update.asciidoc[]
+
+=== Utilisateurs
+include::user.asciidoc[]
+
+=== Vue
+include::view.asciidoc[]
 
 === Changelog
 include::changelog.asciidoc[]

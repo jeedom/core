@@ -1,0 +1,3 @@
+==== Description
+Page affichage le status des moteurs de Jeedom. Reservée aux utilisateurs avertie elle permet de voir si les moteurs de Jeedom tourne bien, d'en creer de nouveau, de modifier leur fréquence,
+des les arrêter...

@@ -1,0 +1,3 @@
+==== Description
+Page permettant d'afficher les logs de Jeedom, un selecteur en haut à droite vous permet de choissir le log à afficher. En fonction de votre niveau de log (configurable sur la page
+Générale -> Configuration -> Administration) vous aurez plus ou moins de détails. Vous pouvez aussi à partir de cette page vider, supprimer ou télécharger un log

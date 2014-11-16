@@ -1,0 +1,2 @@
+==== Description
+Page permetant d'afficher des historique de commande, de regler leur type de graphique (ligne, aire, barre...) et de les combiner pour faire des comparaisons
