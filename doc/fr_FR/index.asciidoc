@@ -1,6 +1,5 @@
 Accueil
 =======
-
 include::home.asciidoc[]
 
 Dashboard
