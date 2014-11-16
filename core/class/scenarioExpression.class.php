@@ -358,6 +358,7 @@ class scenarioExpression {
 
     public static function setTags($_expression, &$_scenario = null) {
         $replace = array(
+            '#seconde#' => (int) date('s'),
             '#heure#' => (int) date('G'),
             '#minute#' => (int) date('i'),
             '#jour#' => (int) date('d'),

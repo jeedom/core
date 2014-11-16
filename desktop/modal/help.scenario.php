@@ -50,6 +50,7 @@ if (!isConnect()) {
                 </pre>
                 {{Vous pouvez aussi utiliser les tags suivants :}}
                 <pre>
+{{#seconde# : seconde courante}}
 {{#heure# : heure courante (ex : 17 pour 17h15)}}
 {{#minute# : minute courante (ex : 15 pour 17h15)}}
 {{#jour# : jour courant}}
@@ -60,6 +61,7 @@ if (!isConnect()) {
 {{#date# : jour et mois courant (ex : 1215 pour le 15 décembre)}}
 {{#semaine# : numéro de la semaine (ex : 51)}}
 {{#sjour# : pour le nom du jour de la semaine (ex : Samedi)}}
+{{#njour# : numéro du jour de 0 (dimanche) à 6 (samedi)}}
 {{#smois# : pour le nom du mois (ex : Janvier)}}
 {{rand(1,10) : pour un nombre aléatoire de 1 à 10}}
 {{average(commande,période) : donne la moyenne de la commande sur la période (period=[month,day,hour,min])
@@ -110,6 +112,7 @@ icon : permet de changer l'icone de représentation du scenario}}
                 </pre>
                 {{Vous pouvez aussi utiliser les tags suivants dans les options : }}
                 <pre>
+{{#seconde# : seconde courante}}
 {{#heure#  : heure courante (ex : 17 pour 17h15)}}
 {{#minute# : minute courante (ex : 15 pour 17h15)}}
 {{#jour# : jour courant}}
@@ -120,6 +123,7 @@ icon : permet de changer l'icone de représentation du scenario}}
 {{#date# : jour et mois courant (ex : 1215 pour le 15 decembre)}}
 {{#semaine# : numéro de la semaine (ex : 51)}}
 {{#sjour# : pour le nom du jour de la semaine en anglais (ex : sunday)}}
+{{#njour# : numéro du jour de 0 (dimanche) à 6 (samedi)}}
 {{#smois# : pour le nom du mois (ex : Janvier)}}
 {{rand[1-10] : pour un nombre aléatoire de 1 à 10}}
 {{variable (mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
