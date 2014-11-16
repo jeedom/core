@@ -1,5 +1,5 @@
 Dashboard
-=========
+==========
 include::dashboard.asciidoc[]
 
 Vue
