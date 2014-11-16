@@ -1,9 +1,9 @@
-ajout de #smois# dans les tags des scénarios
-ajout d'un script sick.php qui permet de lancer les tests de bases sur jeedom pour fournir un rapport sur celui-ci
-ajout d'option de configuration du mode design
-unification design en mobile/desktop
-tous les widget sont redimensionnement sur le design
-vérification avant backup du dmesg a la recherche d'erreur d'entrée/sortie
-ajout bloque "dans" dans les scénarios. Ce bloc permet de lancement une ou des actions dans X min sans bloquer la suite du déroulement du scenario
-ajout d'un systeme d'auto update (attention ça met a jour toutes les nuit !!!)
-amélioration du systeme de version. Maintenant jeedom vous indiquera s'il y a une mise a jour de la branch de développement
+- ajout de #smois# dans les tags des scénarios
+- ajout d'un script sick.php qui permet de lancer les tests de bases sur jeedom pour fournir un rapport sur celui-ci
+- ajout d'option de configuration du mode design
+- unification design en mobile/desktop
+- tous les widget sont redimensionnement sur le design
+- vérification avant backup du dmesg a la recherche d'erreur d'entrée/sortie
+- ajout bloque "dans" dans les scénarios. Ce bloc permet de lancement une ou des actions dans X min sans bloquer la suite du déroulement du scenario
+- ajout d'un systeme d'auto update (attention ça met a jour toutes les nuit !!!)
+- amélioration du systeme de version. Maintenant jeedom vous indiquera s'il y a une mise a jour de la branch de développement
