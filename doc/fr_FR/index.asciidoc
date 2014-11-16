@@ -34,7 +34,7 @@ include::jeeNetwork.asciidoc[]
 include::log.asciidoc[]
 
 === Objets
-include::objects.asciidoc[]
+include::object.asciidoc[]
 
 === Design
 include::plan.asciidoc[]
