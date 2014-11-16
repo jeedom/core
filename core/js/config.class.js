@@ -15,11 +15,11 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-jeedom.config = function() {
+jeedom.config = function () {
 };
 
 
-jeedom.config.save = function(_params) {
+jeedom.config.save = function (_params) {
     var paramsRequired = ['configuration'];
     var paramsSpecifics = {};
     try {
@@ -39,7 +39,7 @@ jeedom.config.save = function(_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.config.load = function(_params) {
+jeedom.config.load = function (_params) {
     var paramsRequired = ['configuration'];
     var paramsSpecifics = {};
     try {
@@ -53,7 +53,7 @@ jeedom.config.load = function(_params) {
     paramsAJAX.url = 'core/ajax/config.ajax.php';
     paramsAJAX.data = {
         action: 'getKey',
-        key: json_encode(_params.configuration),
+        key: ($.isArray(_params.configuration) || $.isPlainObject(_params.configuration)) ? json_encode(_params.configuration) : _params.configuration,
         plugin: _params.plugin || 'core'
     };
     $.ajax(paramsAJAX);

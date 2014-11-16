@@ -1,4 +1,4 @@
-Jeedom core : Guide d'utilisation
+Core
 ---------------------------------
 
 Accueil
