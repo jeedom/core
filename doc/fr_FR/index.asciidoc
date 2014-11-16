@@ -1,7 +1,3 @@
-Accueil
-=======
-include::home.asciidoc[]
-
 Dashboard
 =========
 include::dashboard.asciidoc[]
