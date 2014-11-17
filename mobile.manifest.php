@@ -16,6 +16,7 @@ $js_file = array(
     '3rdparty/jquery/jquery.min.js',
     '3rdparty/jquery.mobile/jquery.mobile.min.js',
     '3rdparty/jquery.utils/jquery.utils.js',
+    '3rdparty/jquery.ui/jquery-ui.min.js',
     'core/js/cmd.class.js',
     'core/js/private.class.js',
     'core/js/core.js',
@@ -77,6 +78,8 @@ foreach ($js_file as $file) {
         echo "\n";
     }
     echo 'core/php/getJS.php?file=' . $file;
+    echo "\n";
+    echo 'core/php/getJS.php?file=' . $file . '&md5=' . md5_file(dirname(__FILE__) . '/' . $file);
     echo "\n";
 }
 foreach ($other_file as $file) {
