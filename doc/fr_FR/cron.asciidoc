@@ -1,5 +1,5 @@
 ==== Description
-es crons sont des “tâches” que Jeedom va effectuer à intervalles réguliers, ce sont en quelque sorte les moteurs de Jeedom :
+Les crons sont des “tâches” que Jeedom va effectuer à intervalles réguliers, ce sont en quelque sorte les moteurs de Jeedom :
 
 Sur cette page on retrouve en haut à droite le nombre de processus maître Jeedom en cours (ne doit jamais être supérieur à 1), puis le nombre total de processus Jeedom et enfin le nombre total de processus sur la machine. A coté on a la charge moyenne de la machine sur 1, 5 et 15min. Tout à droite on a le bouton pour rafraîchir le tableau des crons, en ajouter un et enregistrer les modifications.
 
