@@ -153,8 +153,8 @@ class scenarioElement {
             $in = $this->getSubElement('in');
             $in = $in->getExpression();
             $time = jeedom::evaluateExpression($in[0]->getExpression());
-            if (!is_numeric($time) || $time < 1) {
-                $time = 1;
+            if (!is_numeric($time) || $time < 0) {
+                $time = 0;
             }
             $cron = new cron();
             $cron->setClass('scenario');
