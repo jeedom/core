@@ -159,7 +159,11 @@ class scenarioElement {
             $cron = new cron();
             $cron->setClass('scenario');
             $cron->setFunction('doIn');
-            $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s')));
+            if($time == 0){
+                $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
+            }else{
+                $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s')));
+            }
             $cron->setLastRun(date('Y-m-d H:i:s'));
             $cron->setOnce(1);
             $next = strtotime('+ ' . $time . ' min');
