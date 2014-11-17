@@ -1,3 +1,13 @@
 ==== Description
-Page affichage le status des moteurs de Jeedom. Reservée aux utilisateurs avertie elle permet de voir si les moteurs de Jeedom tourne bien, d'en creer de nouveau, de modifier leur fréquence,
-des les arrêter...
+es crons sont des “tâches” que Jeedom va effectuer à intervalles réguliers, ce sont en quelque sorte les moteurs de Jeedom :
+
+Sur cette page on retrouve en haut à droite le nombre de processus maître Jeedom en cours (ne doit jamais être supérieur à 1), puis le nombre total de processus Jeedom et enfin le nombre total de processus sur la machine. A coté on a la charge moyenne de la machine sur 1, 5 et 15min. Tout à droite on a le bouton pour rafraîchir le tableau des crons, en ajouter un et enregistrer les modifications.
+
+En dessous on retrouve le tableau des crons, on peut, à partir de là, faire un lancement forcé, en désactiver un, voir 
+sur quelle machine il tourne (j’ai prévu à très long terme de pouvoir distribuer les différents cron sur plusieurs 
+machines pour répartir la charge ou faire une sorte de cluster) et l’ID du process. Ensuite viennent les informations de 
+configuration : si c’est un démon (l’action à réaliser est appelée toutes les secondes et le démon est automatiquement 
+redémarré au bout d’un temps défini dans l’administration, par défaut 60 min), la classe de la fonction (ou vide si elle 
+n’en a pas), le nom de la fonction à appeler, la programmation (syntaxe cron, une aide est disponible pour bien la régler) 
+et un timeout particulier si besoin. Enfin il y a les informations de statut : le dernier lancement, la durée de celui-ci, 
+le statut de la tâche et le bouton pour la supprimer.
