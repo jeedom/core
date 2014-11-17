@@ -65,6 +65,8 @@ Vous pouvez aussi utiliser les tags suivants :
     * Ex : trigger(#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien #[Salle de bain][Hydrometrie][Humidité]# qui a declenché le scénario sinon 0
 - round(valeur,[decimal]) :permet un arrondit au dessus, [decimal] nombre de decimal après la virgule
     * Ex : round(#[Salle de bain][Hydrometrie][Humidité]# / 10) : renverra 9 si le pourcentage d'humidité et 85
+- odd(valeur) : permet de savoir si un nombre est impaire ou non. Renvoi 1 si impaire 0 sinon
+    * Ex : odd(1) :  renverra 1
             
 ==== Action
 En plus des commandes domotiques vous avez accès aux fonctions suivantes : 

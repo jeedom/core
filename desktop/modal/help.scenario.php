@@ -85,8 +85,10 @@ if (!isConnect()) {
     Ex : randomColor(40,60) : Pour avoir une couleur aléatoire proche du vert}}
 {{trigger(commande) : permet de connaitre le declencheur du scénario ou de savoir si c'est bien la commande passé en parametre qui a declenchée le scénario
     Ex : trigger(#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien #[Salle de bain][Hydrometrie][Humidité]# qui a declenché le scénario sinon 0}}
-{{round(valeur,[decimal]) :permet un arrondit au dessus, [decimal] nombre de decimal après la virgule
+{{round(valeur,[decimal]) : permet un arrondit au dessus, [decimal] nombre de decimal après la virgule
     Ex : round(#[Salle de bain][Hydrometrie][Humidité]# / 10) : renverra 9 si le pourcentage d'humidité et 85}}
+{{odd(valeur) : permet de savoir si un nombre est impaire ou non. Renvoi 1 si impaire 0 sinon
+    Ex : odd(1) :  renverra 1}}
                 </pre>
             </div>
         </div>

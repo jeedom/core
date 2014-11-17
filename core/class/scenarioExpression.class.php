@@ -292,6 +292,10 @@ class scenarioExpression {
         return history::stateDuration(str_replace('#', '', $_cmd_id), $_value);
     }
 
+    public static function odd($_value) {
+        return ($_value % 2) ? 0 : 1;
+    }
+
     public static function lastScenarioExecution($_scenario_id) {
         $scenario = scenario::byId(str_replace(array('#scenario', '#'), '', $_scenario_id));
         if (!is_object($scenario)) {
