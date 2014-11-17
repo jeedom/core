@@ -1,2 +1,15 @@
 ==== Description
-C'est ici que vont se configurer la pluspart des paramètres de Jeedom
+C’est ici que se trouve la plupart des paramètres de configuration. Bien que nombreux ils sont pré-configurés par défaut.
+
+L’administration est découpée en plusieurs parties :
+
+- Configuration générale : zone indiquant la clef API (pouvant être régénérée) , la clef pour le nodeJS (elle est automatiquement modifiée toutes les 24h, nodeJS permet de rafraîchir l’interface dès qu’il y a un nouvel événement), et le mail de l’administrateur du site (permet de remonter des alertes critiques)
+- Configuration Memcache : permet de définir la durée de vie du cache par défaut ainsi que de totalement vider celui-ci (le cache est utilisé pour accélérer l’affichage de l’interface lors de la récupération de la valeur d’une commande)
+- Configuration historique : permet de configurer les différents paramètres de l’historique : période de calcul pour le min/max/moy (24h par défaut) , période de calcul pour la tendance (2h par défaut) ainsi que les seuils de calcul, le délai d’archivage (2h par défaut) et la taille des paquets lors de l’archivage (1h par défaut)
+- Configuration crontask, scripts & deamons : permet de définir la durée d’exécution maximale d’une tâche cron (les tâches cron dans jeedom représentent toutes les tâches en arrière plan : historiser, vérifier les scénarios….), de définir la durée maximale d’exécution par défaut d’un scénario (par défaut 60 secondes), la pause entre 2 vérifications des crons à lancer (1 seconde sur les systèmes performants, 60 secondes sur un Raspberry qui correspond à la durée maximale autorisée), la pause pour les crons de type deamon (par défaut 1 seconde, a un impact sur les performances et la vitesse de réaction lors d’un événement)
+- Configuration logs & messages : permet de configurer le niveau des messages à loguer (par défaut tous les niveaux sur les systèmes performants, “error” seulement sur un Raspberry), le nombre maximal de lignes dans les logs et s’il faut pour chaque erreur loguée remonter l’information à l’utilisateur ( il y a une zone spéciale pour remonter les informations importantes à l’utilisateur)
+- Configuration LDAP : permet de dire à Jeedom de ne pas utiliser sa base interne pour authentifier les utilisateurs mais de le faire contre un AD (ou LDAP), pratique pour centraliser l’authentification et faire en sorte de ne pas avoir 36 mots de passe (Jeedom est capable de gérer les groupes)
+- Conversion des couleurs en html : permet de définir la correspondance entre le mot “rouge” et la couleur réelle correspondant (sert pour la partie interaction de Jeedom, la reconnaissance vocale en passant par le module SARAH)
+- Commandes & Equipements : permet de configurer le nombre maximal de tentative échouée avec un équipement avant la désactivation de celui-ci
+- NodeJS : permet de dire à Jeedom si nodeJS est actif ou non (le désactiver permet de réduire l’utilisation de ressource mais on perd le retour d’informations sur les pages) et le port de communication interne de nodeJS (par défaut 8334)
+La partie configuration peut faire peur mais par défaut tout est configuré correctement, en revanche comme à peu prêt partout dans l’application j’ai essayé de laisser le plus de liberté possible à l’utilisateur (d’où le nombre élevé de paramètres configurables)
