@@ -18,12 +18,23 @@ $(function () {
     });
 
     var webappCache = window.applicationCache;
-    webappCache.addEventListener("updateready", updateCache, false);
+    webappCache.addEventListener('cached', updateCacheEvent, false);
+    webappCache.addEventListener('checking', updateCacheEvent, false);
+    webappCache.addEventListener('downloading', updateCacheEvent, false);
+    webappCache.addEventListener('error', updateCacheEvent, false);
+    webappCache.addEventListener('noupdate', updateCacheEvent, false);
+    webappCache.addEventListener('obsolete', updateCacheEvent, false);
+    webappCache.addEventListener('progress', updateCacheEvent, false);
+    webappCache.addEventListener('updateready', updateCacheEvent, false);
     webappCache.update();
 
-    function updateCache() {
-        webappCache.swapCache();
-        window.location.reload();
+    function updateCacheEvent(e) {
+        if (webappCache.status == 3) {
+            $('#div_updateInProgress').show();
+        } else if (e.type == 'updateready') {
+            webappCache.swapCache();
+            window.location.reload();
+        }
     }
 
     $(document).ajaxStart(function () {
