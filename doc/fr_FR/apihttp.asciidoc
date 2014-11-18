@@ -13,11 +13,11 @@ Voici l'URL = http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type
 
 #API_KEY# correspond à votre clé API, propre à votre installation. Pour la trouver il faut aller dans le menu « Général », puis « Administration » et « Configuration », en activant le mode Expert vous verrez alors une ligne Clef API.
 
-image::../images/apihttp.JPG[]
+image::../images/apihttp.jpg[]
 
 #ID# correspond à l’id de votre scénario. On peut le trouver facilement sur la page des scénarios...(on doit avoir activer le mode Expert)
 
-image::../images/apihttp2.JPG[]
+image::../images/apihttp2.png[]
 
 #ACTION# correspond à l'action que vous voulez appliquer au scénario. Les commandes disponibles sont : "start" pour démarrer un scénario ,"stop" pour arrêter un scénario ,"deactivate" pour désactiver un scénario ,"activate" pour activer un scénario.
 
@@ -31,31 +31,31 @@ Voici l'URL = http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type
 
 Pour trouver rien de plus simple. Il suffit de se rendre dans le menu Général/Affichage.
 
-image::../images/apihttp3.JPG[]
+image::../images/apihttp3.png[]
 
 Dans l'onglet Arbre domotique on retrouve toute l'arborescence de sa domotique.
 
-image::../images/apihttp3.JPG[]
+image::../images/apihttp3.png[]
 
 Il suffit de sélectionner l'élément à piloter ou à interroger et on récupère l'ID pour la placer dans l'URL.
 
 Prenons l'exemple du Plugin Alarme. Pour trouver l'ID correspondant à l'activation (armement) de l'alarme on se rend dans l'arborescence de l'alarme:
 
-image::../images/apihttp4.JPG[]
+image::../images/apihttp4.png[]
 
 Il suffit de lancer la requête HTTP avec cet ID et l'alarme s'activera (armera).
 
 Prenons le cas d'un module pour commander une lumière. Ce sera la commande ON de ce module dont on devra récupérer l'ID.
 
-image::../images/apihttp5.JPG[]
+image::../images/apihttp5.png[]
 
 Maintenant on peut utiliser la même requête pour récupérer une information. Par exemple nous allons récupérer l'information de température d'une de sonde.
 
-image::../images/apihttp6.JPG[]
+image::../images/apihttp6.png[]
 
 Si on lance la requête avec l'ID 19 correspondant à la température de cette sonde sur un navigateur, on obtient en réponse :
 
-image::../images/apihttp7.JPG[]
+image::../images/apihttp7.png[]
 
 Cependant il y a quelques cas particulier à cette commande URL...
 
