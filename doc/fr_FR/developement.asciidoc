@@ -1,4 +1,4 @@
-==== Création plugin partie 1
+==== Création plugin partie 1 : l'arborescence
 
 Voici comment ça se décompose, tout d’abord un dossier du nom de votre plugin (son identifiant unique plus exactement) qui doit contenir les sous-dossiers suivants :
 
@@ -33,7 +33,7 @@ Voici les recommandations :
 - le nom de la première page de vue d’un plugin doit être le même que l’ID du plugin
 - le nom du fichier JS (s’il y en a un) de la première page de vue du plugin doit être l’ID du plugin
 
-==== Création plugin partie 2
+==== Création de plugin partie 2 : plugin info
 
 ===== info.xml
 
@@ -215,7 +215,7 @@ if (!isConnect()) {
  </form>
 ----
  
-==== Création de plugin : partie 3 desktop
+==== Création de plugin partie 3 : dossier desktop
  
 ===== PHP
 Ce dossier contient la vue à proprement parler dedans on retrouve obligatoire la page de configuration du plugin (celle qui apparaîtra quand l'utilisateur fera plugin => catégorie => votre plugin), il est conseillé de nommer celle-ci avec l'id de votre plugin. Il peut aussi contenir le panel (page que l'utilisateur trouvera dans accueil -> nom de votre plugin).
