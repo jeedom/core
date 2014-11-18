@@ -1,3 +1,5 @@
+image::../images/interact.JPG[]
+
 ==== Description
 Le principe est le suivant : une phrase de commande déclenche une unique commande. Pour simplifier la création des phrases il est possible d'utiliser des mots clef afin que jeedom génère automatiquement une liste de phrases.
 
