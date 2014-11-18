@@ -56,7 +56,7 @@ author : Auteur du plugin
 
 Exemple :
 
-[source.xml]
+
 ----
 <?xml version="1.0" encoding="UTF-8"?>
 <info>
@@ -96,7 +96,7 @@ Ici la fonction supprime la tâche cron de Jeedom lors de la désinstallation
 
 Exemple :
 
-[source.php]
+
 ----
 <?php
 /* This file is part of Jeedom.
@@ -165,7 +165,7 @@ Le fichier est constitué de  :
 Ensuite vient le paramètre demandé (il peut en avoir plusieurs), c'est de la syntaxe standard Bootstrap pour les formulaires seule particularité à respecter c'est la classe ("configKey") à mettre sur l'élément de paramètre ainsi que le "data-l1key" qui indique le nom du paramètre. Pour récupérer la valeur de celui-ci ailleurs dans le plugin il suffit de faire  : "config::byKey(#NOM_PARAMETRE#, #PLUGIN_ID#)"
 Exemple :
 
-[source.php]
+
 ----
 <?php
 /* This file is part of Jeedom.
@@ -222,7 +222,7 @@ Ce dossier contient la vue à proprement parler dedans on retrouve obligatoire l
 
 Tous les fichiers dans ce dossier doivent finir par .php et doit obligatoirement commencer par :
 
-[source.php]
+
 ----
 <?php
 if (!isConnect('admin')) {
@@ -237,7 +237,7 @@ Toutes ces pages étant des vues elles utilisent principalement la syntaxe HTML.
 
 Pour simplifier la création de plugin vous pouvez inclure dans votre page le script javascript de template pour les plugins :
 
-[source.php]
+
 ----
 <?php include_file('core', 'plugin.template', 'js'); ?>
 ----
@@ -269,7 +269,7 @@ Toutes les commandes d'un équipement doivent se trouver dans l'élément ayant 
 
 Tous les fichiers JS doivent se trouver dans le dossier JS (facile !!!). Il est conseillé de le nommer du même ID que votre plugin (pour la partie configuration, pour le panel vous faîtes comme vous voulez). Ce fichier JS (celui de la configuration du plugin) doit au minimum contenir une méthode addCmdToTable qui prend en paramètre l'objet commande à jouter. Voici un exemple simple :
 
-[source.js]
+
 ----
 function addCmdToTable(_cmd) {
     if (!isset(_cmd)) {
@@ -300,7 +300,7 @@ Plusieurs points importants :
 
 Dernier point un exemple plus complet avec type et sous-type de commande :
 
-[source.js]
+
 ----
 function addCmdToTable(_cmd) {
     if (!isset(_cmd)) {
@@ -371,7 +371,7 @@ D'autres fonctions javascript peuvent être utilisées :
 - saveEqLogic qui prend en paramètre l'objet équipement qui va être sauvegardé en base de données (utile si vous devez faire du traitement avant sauvegarde)
 Dernière chose, pour les fichiers JS, voici comment les inclure de manière propre sur votre page php :
 
-[source.php]
+
 ----
 <?php include_file('desktop', 'weather', 'js', 'weather'); ?>
 ----
@@ -380,7 +380,7 @@ Le premier argument donne le dossier dans lequel le trouver (attention c'est le 
 ===== CSS
 Ce dossier contient vos fichiers CSS (il ne devrait pas être trop utilisé) , voici comment les inclure sur votre page :
 
-[source.php]
+
 ----
 <?php include_file('desktop', 'weather', 'css', 'weather'); ?>
 ----
@@ -391,7 +391,7 @@ Le dossier modal vous permet de stocker vos fichiers php destiner à afficher de
 
 On peut voir :
 
-[source.js]
+
 ----
 $('#md_modal').dialog({title: "{{Classe du périphérique}}"});
  $('#md_modal').load('index.php?v=d&plugin=zwave&modal=show.class&id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
