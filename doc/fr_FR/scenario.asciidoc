@@ -1,7 +1,27 @@
 ==== Description
-Les scénarios sont le coeur de votre domotique, c'est eux qui vont vous permettre d'effectuer des actions automatisés sur évenement ou sur une heure précise
+Voici pour moi la partie la plus importante dans la domotique : les scénarios. Véritable cerveau de la domotique c’est ce qui permet d’interagir avec le monde réel de manière “intelligente”. J’ai donc essayé dans Jeedom de les rendre les plus flexibles possible en essayant de ne jamais brider l’utilisateur tout en essayant qu’ils soient facilement configurables :
 
 image::../images/scenario.JPG[]
+
+Comme pour la vue on retrouve sur la partie droite la liste des scénarios (filtrable par groupe) et sur la gauche le scénario lui même, ici plusieurs parties :
+
+- En haut la partie générale où on retrouve :
+- Le nom
+- Le groupe
+- Si le scenario est actif ou non
+- La durée d’exécution maximum autorisée
+- Ensuite vient la partie des déclencheurs qui peuvent soit être un ou plusieurs événements et/ou une programmation (une heure donnée, une fréquence… cette partie s’écrit à l’aide d’une syntaxe type crontab)
+- Enfin il y a la partie information qui indique la dernière fois que le scenario a été exécuté (scénario actif), la dernière fois qu’il a été vérifié ainsi que sont statut actuel
+- En haut à droite on retrouve quelques actions utiles : duplication, l’arrêt forcé d’un scénario, log de la dernière exécution (très pratique pour vérifier le déroulement exact du scenario). 
+- Sur la partie basse on retrouve le scénario en lui même celui-ci est composé d’un nombre illimité de bloc qui peuvent être imbriqués les un dans les autres :
+* Si/Alors/Sinon : bloc de base permettant de réaliser des conditions
+* Boucle : permet de réaliser des boucles de 1 jusqu’à un nombre défini (ou même une valeur d’un capteur, ou nombre aléatoire)
+* Dans : permet de lancer une action dans X minute(s) (0 est une valeur possible). La particularité c'est que les actions sont lancé en arriere plan, elle ne bloque donc pas la suite du scenario. C'est donc un bloc non bloquant
+* Code : permet d’écrire directement en code PHP (demande certaines connaissances et peut être risqué mais permet de n’avoir plus aucune contrainte)
+
+Pour les conditions j’ai essayé de faire en sorte qu’on puisse les écrire le plus possible en langage naturel tout en restant souple. On a donc un bouton permettant de sélectionner un équipement puis on écrit la condition. Il existe une liste de tag permettant d’avoir accès à des variables issues du scénario ou d’un autre, à l’heure, à la date, à un nombre aléatoire….
+Pour les actions on peut exécuter soit une action d’une commande (les options de celle-ci apparaitront sur sa droite, comme dans la capture tout en haut pour l’envoi de mail), soit une commande d’affectation de variable ou de pause (très pratique pour simuler la présence surtout couplé à la génération d’une durée aléatoire) ou même d’action sur un autre scénario (start, stop, activer, désactiver)
+
 
 ==== Déclencheur
 Il existe des déclencheur spécifique (autre que ceux fournis par les commandes) :
