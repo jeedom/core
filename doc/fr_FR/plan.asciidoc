@@ -1,2 +1,5 @@
 ==== Description
-Page permet de configuration l'affichage de toute votre domotique de maniere très fine. Celle-ci demande du temps mais sa seule limite est votre imagination
+Page permet de configuration l'affichage de toute votre domotique de maniere très fine. Celle-ci demande du temps mais 
+sa seule limite est votre imagination.
+
+image::../images/plan.JPG[]
