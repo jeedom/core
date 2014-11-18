@@ -4,7 +4,7 @@ d’historiser n’importe qu’elle commande de type information, le principe e
 événement seulement, elle est donc historisée dès que l’événement arrive. Si la commande n’est pas de type événement 
 alors Jeedom va essayer de récupérer la valeur toutes les 5 min pour l’historiser.
 
-Une fois cette historisation précise (temps entre chaque données de l’ordre de 5 à 10min) faite, un archivage est fait en fonction des préférences de l’utilisateur  :
+Une fois cette historisation précise (temps entre chaque données de l’ordre de 5 à 10 min) faite, un archivage est fait en fonction des préférences de l’utilisateur  :
 
 - A partir de combien de temps archiver les données
 - La taille des paquets à faire
@@ -14,4 +14,7 @@ Il existe plusieurs moyens d’accéder à l’historique :
 
 - En mettant une zone graphe dans une vue
 - En cliquant sur la commande voulue dans un widget
-- Ou en allant dans la page historique qui permet de superposer différentes courbes et de combiner les styles (aire, courbe, barre). Cette page permet aussi de supprimer tout l’historique d’une commande
+- Ou en allant dans la page historique qui permet de superposer différentes courbes et de combiner les styles 
+(aire, courbe, barre). Cette page permet aussi de supprimer tout l’historique d’une commande
+
+image::../images/history.JPG[]
