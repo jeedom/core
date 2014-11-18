@@ -39,6 +39,79 @@ try {
         }
         ajax::success();
     }
+    
+    if (init('action') == 'getObjectPlan') {
+        $plan = plan::byId(init('id'));
+        if (!is_object($plan)) {
+            ajax::success(array('html' => '', 'plan' => ''));
+        }
+        if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'scenario') {
+                $link = $plan->getLink();
+                if (!is_object($link)) {
+                    continue;
+                }
+                ajax::success(array(
+                    'plan' => utils::o2a($plan),
+                    'html' => $link->toHtml(init('version', 'dashboard'))
+                ));
+            } else if ($plan->getLink_type() == 'plan') {
+                $plan_link = planHeader::byId($plan->getLink_id());
+                if (!is_object($plan_link)) {
+                    continue;
+                }
+                $link = 'index.php?v=d&p=plan&plan_id=' . $plan_link->getId();
+                $html = '<span href="' . $link . '" class="plan-link-widget label label-success" data-link_id="' . $plan_link->getId() . '">';
+                $html .= '<a href="' . $link . '" style="color:' . $plan->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
+                if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
+                    $html .=$plan->getDisplay('icon') . ' ' . $plan->getDisplay('name');
+                } else {
+                    $html .= $plan_link->getName();
+                }
+                $html .= '</a>';
+                $html .= '</span>';
+                ajax::success(array(
+                    'plan' => utils::o2a($plan),
+                    'html' => $html
+                ));
+            } else if ($plan->getLink_type() == 'view') {
+                $view = view::byId($plan->getLink_id());
+                if (!is_object($view)) {
+                    continue;
+                }
+                $link = 'index.php?v=d&p=view&view_id=' . $view->getId();
+                $html = '<span href="' . $link . '" class="view-link-widget label label-primary" data-link_id="' . $view->getId() . '" >';
+                $html .= '<a href="' . $link . '" style="color:' . $plan->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
+                if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
+                    $html .= $plan->getDisplay('icon') . ' ' . $plan->getDisplay('name');
+                } else {
+                    $html .= $view->getName();
+                }
+                $html .= '</a>';
+                $html .= '</span>';
+                ajax::success(array(
+                    'plan' => utils::o2a($plan),
+                    'html' => $html
+                ));
+            } else if ($plan->getLink_type() == 'graph') {
+                ajax::success(array(
+                    'plan' => utils::o2a($plan),
+                    'html' => ''
+                ));
+            } else if ($plan->getLink_type() == 'text') {
+                $html = '<span class="text-widget label label-default" data-text_id="' . $plan->getLink_id() . '" style="color:' . $plan->getCss('color', 'white') . ';font-size : 1.5em;">';
+                if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
+                    $html .= $plan->getDisplay('icon') . ' ' . $plan->getDisplay('text');
+                } else {
+                    $html .= $plan->getDisplay('text', 'Texte à insérer ici');
+                }
+                $html .= '</span>';
+                ajax::success(array(
+                    'plan' => utils::o2a($plan),
+                    'html' => $html
+                ));
+            }
+        ajax::success(array('html' => '', 'plan' => ''));
+    }
 
     if (init('action') == 'planHeader') {
         $return = array();
