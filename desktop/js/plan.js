@@ -335,6 +335,49 @@ function displayPlan() {
     });
 }
 
+
+
+function displayPlan2() {
+    $.showLoading();
+    jeedom.plan.getHeader({
+        id: planHeader_id,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
+                $('#div_displayObject').height(data.configuration.desktopSizeY);
+                $('#div_displayObject').width(data.configuration.desktopSizeX);
+                $('#div_displayObject img').height(data.configuration.desktopSizeY);
+                $('#div_displayObject img').width(data.configuration.desktopSizeX);
+            } else {
+                $('#div_displayObject').width($('#div_displayObject img').attr('data-sixe_x'));
+                $('#div_displayObject').height($('#div_displayObject img').attr('data-sixe_y'));
+                $('#div_displayObject img').css('height', $('#div_displayObject img').attr('data-sixe_y') + 'px');
+                $('#div_displayObject img').css('width', $('#div_displayObject img').attr('data-sixe_x') + 'px');
+            }
+            if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
+                fullScreen(deviceInfo.type);
+            }
+            $('.eqLogic-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
+            if (planHeader_id != -1) {
+                jeedom.plan.byPlanHeader({
+                    id: planHeader_id,
+                    noHtml : true,
+                    error: function (error) {
+                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                    },
+                    success: function (data) {
+                        for (var i in data) {
+                            
+                        }
+                    },
+                });
+            }
+        },
+    });
+}
+
 function savePlan(_refreshDisplay) {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
         var parent = {
