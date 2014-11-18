@@ -26,7 +26,7 @@ Plus cher 138 € mais avec un système nettement plus performant (bien que Jeed
 
 Il faut installer le razberry (je passe l’installation du système en lui même il faut juste installer Debian )
 
-[source.shell]
+[source,shell]
 ----
 wget -q -O – razberry.z-wave.me/install | sudo bash
 ----
