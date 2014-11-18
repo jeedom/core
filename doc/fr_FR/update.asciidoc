@@ -13,13 +13,13 @@ En haut, le principal, les boutons de commande. Jeedom synchronise périodiqueme
 
 Le bouton "Mettre à jour" permet de mettre à jour l'ensemble de Jeedom.
 
-image::../images/update2.JPG[]
+image::../images/update2.png[]
 
 En cliquant sur la flèche à côté du bouton "Mettre à jour" on a un certain nombre d'options de mise à jour.
 
-image::../images/update3.JPG[]
+image::../images/update3.png[]
 
 Enfin à droite de la page, la partie "Informations" permet de suivre l'état de la mise à jour.
 
-image::../images/update4.JPG[]
+image::../images/update4.png[]
 

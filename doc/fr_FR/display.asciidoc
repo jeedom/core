@@ -8,15 +8,15 @@ image::../images/display.JPG[]
 
 Sur la partie gauche se trouve l'arborescence de sa domotique, avec les objets et les équipements à l'intérieur.
 
-image::../images/display2.JPG[]
+image::../images/display2.png[]
 
 En haut à droite, une partie information, donne quelques détails sur l'objet ou l'équipement sélectionné.
 
-image::../images/display3.JPG[]
+image::../images/display3.png[]
 
 En bas à droite on peut configurer quel sera le widget (représentation graphique de l'équipement) affiché pour cet équipement, sur la version desktop ou mobile.
 
-image::../images/display4.JPG[]
+image::../images/display4.png[]
 
 === Configuration de l'affichage
 
@@ -26,10 +26,10 @@ La colorisation de ces widgets est effectuée en fonction de la catégorie d'app
 
 Pour chaque catégorie, on pourra choisir une couleur différente entre la version desktop et la version mobile. Il y a également 2 types de couleurs, les couleurs de fond des widgets, et les couleurs des commandes lorsque le widget est de type graduel, par exemple les lumières, les volets, les températures.
 
-image::../images/display5.JPG[]
+image::../images/display5.png[]
 
 En cliquant sur la couleur un fenêtre s'ouvre, permettant de choisir sa couleur.
 
-image::../images/display6.JPG[]
+image::../images/display6.png[]
 
 Pensez à sauvegarder !
