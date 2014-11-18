@@ -82,7 +82,7 @@ jeedom.plan.byId = function (_params) {
     $.ajax(paramsAJAX);
 };
 
-jeedom.plan.getObjectPlan = = function (_params) {
+jeedom.plan.getObjectPlan = function (_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
