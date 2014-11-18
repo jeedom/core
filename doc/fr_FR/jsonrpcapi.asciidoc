@@ -2,9 +2,9 @@ Voici une documentation (qui évoluera) sur les méthodes de l'API. Tout d'abord
 
 L'accès à l'API se fait par l'url : #URL_JEEDOM#/core/api/jeeApi.php
 
-=== Plugin
+==== Plugin
 
-==== plugin::listPlugin
+===== plugin::listPlugin
 Retourne la liste de tous les plugins
 
 Paramètres :
@@ -13,37 +13,37 @@ Paramètres :
 - int orderByCaterogy = 0 (retourne la liste des plugins triés par catégorie)
 
 
-=== Objet
+==== Objet
 
-==== object::all
+===== object::all
 Retourne la liste de tous les objets
 
-==== object::full
+===== object::full
 Retourne la liste de tous les objets, avec pour chaque objet tous ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
-==== object::byId
+===== object::byId
 Retourne l'objet spécifié
 
 Paramètres:
 
 - int id
 
-===== object::fullById =====
+====== object::fullById
 Retourne un objet, ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
 
-=== EqLogic
-==== eqLogic::all
+==== EqLogic
+===== eqLogic::all
 Retourne la liste de tous les équipements
 
-==== eqLogic::fullById
+===== eqLogic::fullById
 Retourne un équipement et ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
-==== eqLogic::byId
+===== eqLogic::byId
 Retourne l'équipement spécifié
 
 Paramètres:
 
 - int id
 
-==== eqLogic::byType
+===== eqLogic::byType
 
 Retourne tous les équipements appartenant au type (plugin) spécifié
 
@@ -51,13 +51,13 @@ Paramètres:
 
 - string type
 
-==== eqLogic::byObjectId
+===== eqLogic::byObjectId
 Retourne tous les équipements appartenant à l'objet spécifié
 
 Paramètres:
 - int object_id
 
-==== eqLogic::save
+===== eqLogic::save
 Retourne l'équipement enregistré/créé
 
 Paramètres:
@@ -75,26 +75,26 @@ Paramètres:
 - int $timeout;
 - array $category;
 
-=== Cmd
+==== Cmd
 
-==== cmd::all
+===== cmd::all
 Retourne la liste de toutes les commandes
 
-==== cmd::byId
+===== cmd::byId
 Retourne la commande spécifiée
 
 Paramètres:
 
 - int id
 
-==== cmd::byEqLogicId
+===== cmd::byEqLogicId
 Retourne toutes les commandes appartenant à l'équipement spécifié
 
 Paramètres:
 
 - int eqLogic_id
 
-==== cmd::execCmd
+===== cmd::execCmd
 Exécute la commande spécifiée
 
 Paramètres:
@@ -102,7 +102,7 @@ Paramètres:
 - int id
 - [options] Liste des options de la commandes (dépend du type et du sous-type de la commande)
 
-==== cmd::getStatistique
+===== cmd::getStatistique
 Retourne les statistiques sur la commande (ne marche que sur les commandes de type info et historisée)
 
 Paramètres:
@@ -111,7 +111,7 @@ Paramètres:
 - string startTime : date de début de calcul des statistiques
 - string endTime : date de fin de calcul des statistiques
 
-==== cmd::getTendance
+===== cmd::getTendance
 Retourne la tendance sur la commande (ne marche que sur les commandes de type info et historisée)
 
 Paramètres:
@@ -120,7 +120,7 @@ Paramètres:
 - string startTime : date de début de calcul de la tendance
 - string endTime : date de fin de calcul de la tendance
 
-==== cmd::getHistory
+===== cmd::getHistory
 Retourne l'historique de la commande (ne marche que sur les commandes de type info et historisée)
 
 Paramètres:
@@ -130,19 +130,19 @@ Paramètres:
 - string endTime : date de fin de l'historique
 
 
-=== Scenario
+==== Scenario
 
-==== scenario::all
+===== scenario::all
 Retourne la liste de tous les scénarios
 
-==== scenario::byId
+===== scenario::byId
 Retourne le scénario spécifié
 
 Paramètres:
 
 - int id
 
-==== scenario::changeState
+===== scenario::changeState
 Change l'état du scénario spécifié.
 
 Paramètres:
@@ -150,16 +150,16 @@ Paramètres:
 - int id
 - string state : [run,stop,enable,disable]
 
-=== Interaction
+==== Interaction
 
-==== interact::tryToReply
+===== interact::tryToReply
 Essaye de faire correspondre une demande avec une interaction, exécute l'action et répond en conséquence
 
 Paramètres:
 
 - query (phrase de la demande)
 
-=== Exemples
+==== Exemples
 Voici un exemple d'utilisation de l'API. Pour l'exemple si dessous j'utilise cette class php qui permet de simplifier l'utilisation de l'api.
 
 Récupération de la liste des objets :
