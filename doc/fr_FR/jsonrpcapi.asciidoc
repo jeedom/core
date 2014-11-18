@@ -163,6 +163,7 @@ Paramètres:
 Voici un exemple d'utilisation de l'API. Pour l'exemple si dessous j'utilise cette class php qui permet de simplifier l'utilisation de l'api.
 
 Récupération de la liste des objets :
+
 [source.shell]
 ----
  $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
@@ -171,7 +172,7 @@ Récupération de la liste des objets :
  }else{
     echo $jsonrpc->getError();
  }
- ----
+----
  
 Exécution d'une commande (avec comme option un titre et un message)
 
@@ -183,6 +184,6 @@ Exécution d'une commande (avec comme option un titre et un message)
  }else{
     echo $jsonrpc->getError();
  }
- ----
+----
  
 L'API est bien sur utilisable avec d'autre langage (simplement un post sur une page) 
