@@ -12,6 +12,9 @@ include::begin.asciidoc[]
 === Installation
 include::installation.asciidoc[]
 
+=== API HTTP
+include::apihttp.asciidoc[]
+
 === API jsonrpc
 include::jsonrpcapi.asciidoc[]
 
