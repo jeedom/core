@@ -247,13 +247,13 @@ Dans votre page de configuration une syntaxe html a été mise en place pour vou
 
 Pour la syntaxe c'est assez simple votre élément (input, select...) doit avoir la classe css eqLogicAttr (ou cmdAttr pour les commandes) et un attribut indiquant le nom de la propriété :
 
-[source.html]
+
 ----
 <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement mail}}"/>
 ----
 Là par exemple lors du chargement des données jeedom mettra la valeur du nom de l'équipement dans l'input et lors de la sauvegarde récupérera celle-ci pour la remettre en BDD. Petite astuce certaines propriétés sont en fait des chaînes JSON en BDD (ça permet d'avoir vraiment pas mal de libertés pour le plugin), dans ce cas il suffit de faire :
 
-[source.html]
+
 ----
 <input class="eqLogicAttr form-control" data-l1key='configuration' data-l2key='fromName' />
 ----
