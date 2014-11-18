@@ -1,3 +1,5 @@
 ==== Description
-Page vous permetant de télécharger de nouveau plugin, de les activer ou desactiver. Si vous etes developpeur vous pouvez aussi à partir de cette page envoyer vos 
-créations sur le market
+Page vous permetant de télécharger de nouveau plugin, de les activer ou desactiver. Si vous etes developpeur vous pouvez 
+aussi à partir de cette page envoyer vos créations sur le market.
+
+image::../images/plugin.JPG[]
