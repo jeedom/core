@@ -1,5 +1,11 @@
-==== Description
-Ici vous pourrez configurer les backups : fréquence, nombre de backup à conserver, déclencher un backup manuellement... Vous pouvez aussi à partir de cette page 
-récupèrer un backup ou en envoyer à un Jeedom pour le restaurer.
+C'est ici que on va pouvoir gérer ses sauvegardes de Jeedom. Plusieurs options sont disponibles.
+
+La première rubrique permet de paramétrer ses sauvegardes automatiques. Définir la fréquence, l'emplacement sur le disque, et également le nombre de jour pendant lequel les sauvegardes sont conservées avant d'être éffacées. Vous avez la possibilité d'envoyer automatiquement ces sauvegardes sur le service cloud de sauvegarde. Enfin via le bouton Sauvegarder, vous pouvez réaliser une sauvegarde manuelle.
+
+La deuxième rubrique permet de gérer ses sauvegardes locales (dans Jeedom). Vous pouvez sélectionner une des sauvegardes, puis la restaurer, la supprimer ou encore la télécharger sur votre ordinateur.
+
+Enfin la dernière rubrique permet de restaurer une des sauvegardes disponibles sur le sercice cloud de sauvegarde.
 
 image::../images/backup.JPG[]
+
+Ne pas oublier de sauvegarder toutes modifications du paramétrage.
