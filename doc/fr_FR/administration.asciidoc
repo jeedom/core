@@ -1,6 +1,8 @@
 ==== Description
 C’est ici que se trouve la plupart des paramètres de configuration. Bien que nombreux ils sont pré-configurés par défaut.
 
+image::../images/administration.png[]
+
 L’administration est découpée en plusieurs parties :
 
 - Configuration générale : zone indiquant la clef API (pouvant être régénérée) , la clef pour le nodeJS (elle est automatiquement modifiée toutes les 24h, nodeJS permet de rafraîchir l’interface dès qu’il y a un nouvel événement), et le mail de l’administrateur du site (permet de remonter des alertes critiques)
