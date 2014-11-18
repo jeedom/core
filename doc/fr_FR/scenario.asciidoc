@@ -1,6 +1,8 @@
 ==== Description
 Les scénarios sont le coeur de votre domotique, c'est eux qui vont vous permettre d'effectuer des actions automatisés sur évenement ou sur une heure précise
 
+image::../images/scenario.JPG[]
+
 ==== Déclencheur
 Il existe des déclencheur spécifique (autre que ceux fournis par les commandes) :
 
