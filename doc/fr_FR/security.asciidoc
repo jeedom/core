@@ -1,3 +1,6 @@
 ==== Description
-Cette page un peu spécifique, permet de gérer la sécurité de Jeedom. Elle vous indiquera si des utilisateurs ont essayé de forcer l'accès à votre domotique. Par defaut Jeedom
-bloque toute IP ayant fait 6 mauvaise tentative de connexion sur une periode de 10 min pendant 30 min
+Cette page un peu spécifique, permet de gérer la sécurité de Jeedom. Elle vous indiquera si des utilisateurs ont essayé 
+de forcer l'accès à votre domotique. Par defaut Jeedom bloque toute IP ayant fait 6 mauvaise tentative de connexion sur 
+une periode de 10 min pendant 30 min.
+
+image::../images/security.JPG[]
