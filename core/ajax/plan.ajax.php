@@ -114,6 +114,9 @@ try {
     }
 
     if (init('action') == 'planHeader') {
+        if(init('noHtml') == true){
+            ajax::success(plan::byPlanHeaderId(init('planHeader_id'));
+        }
         $return = array();
         foreach (plan::byPlanHeaderId(init('planHeader_id')) as $plan) {
             if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'scenario') {
