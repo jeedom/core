@@ -9,7 +9,7 @@ Le deuxième onglet "Configuration" propose de configurer le système de surveil
 
 Par défaut, cette liste est configurée pour accepter toutes les connexions depuis votre réseau local (chez vous). Ainsi chez vous, vous ne pouvez pas être banni. Toute fois, si votre réseau local possède une typologie différente, il faudra paramétrer cette liste en fonction.
 
-image::../images/security2.JPG[]
+image::../images/security2.png[]
 
 Toujours penser à sauvegarder dès qu'une modification est faite.
 
