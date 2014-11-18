@@ -96,7 +96,7 @@ jeedom.plan.getObjectPlan = function (_params) {
     paramsAJAX.url = 'core/ajax/plan.ajax.php';
     paramsAJAX.data = {
         action: 'getObjectPlan',
-        planHeader_id: _params.id,
+        id: _params.id,
         version: _params.version || 'dashboard'
     };
     $.ajax(paramsAJAX);

@@ -115,7 +115,7 @@ try {
 
     if (init('action') == 'planHeader') {
         if(init('noHtml') == true){
-            ajax::success(plan::byPlanHeaderId(init('planHeader_id'));
+            ajax::success(utils::o2a(plan::byPlanHeaderId(init('planHeader_id'))));
         }
         $return = array();
         foreach (plan::byPlanHeaderId(init('planHeader_id')) as $plan) {
