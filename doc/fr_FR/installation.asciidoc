@@ -5,7 +5,7 @@ Les instructions suivantes sont valables uniquement pour ubuntu/debian, elles se
 Voici donc les commandes pour une installation type sous Raspberry  (en root):
 
 === Mode simple
-[source,shell]
+
 ----
 wget -q http://git.jeedom.fr/jeedom/core/raw/stable/install/install.sh; sudo chmod 777 install.sh; sudo ./install.sh
 ----
@@ -16,7 +16,7 @@ Ensuite aller sur IP_MACHINE/jeedom (les identifiants étant admin/admin)
 
 === Mode détaillé
 Récupération des fichiers
-[source,shell]
+
 ----
 apt-get update
 apt-get install git git-core git-man
@@ -42,14 +42,14 @@ sudo service jeedom start
 === Configuration de la BDD
 Se connecter à MySQL (avec le mot de passe tapé précédemment) :
 
-[source,shell]
+
 ----
 mysql -uroot -p
 ----
 
 Création de l’utilisateur MySQL (ne pas oublier de remplacer #PASSWORD# par le mot de passe voulu) :
 
-[source,shell]
+
 ----
 CREATE USER ‘jeedom’@’localhost’ IDENTIFIED BY ‘#PASSWORD#';
 CREATE DATABASE jeedom;
@@ -59,46 +59,46 @@ GRANT ALL PRIVILEGES ON jeedom.* TO ‘jeedom’@’localhost’
 Installation de la BDD
 Aller dans le répertoire d’installation de Jeedom
 
-[source,shell]
+
 ----
 cd /usr/share/nginx/www/jeedom
 ----
 
 Copier le fichier core/config/common.config.sample.php en core/config/common.config.php
 
-[source,shell]
+
 ----
 sudo -u www-data -H cp core/config/common.config.sample.php core/config/common.config.php
 ----
 
 Éditer le fichier configuration pour mettre les informations de connexion à la base de données
 
-[source,shell]
+
 ----
 vi core/config/common.config.php
 ----
 
 Il faut juste compléter le TODO par le mot de passe tapé précédemment. Sauvegarder puis lancer l’installation :
 
-[source,shell]
+
 ----
 php install/install.php
 ----
 
 === Configuration de nginx
-[source,shell]
+
 ----
 Editer le fichier /etc/nginx/sites-available/default
 ----
 
-[source,shell]
+
 ----
 vi /etc/nginx/sites-available/default
 ----
 
 Puis ajouter les lignes suivante entre “server{” et sa balise fermante “}”
 
-[source,shell]
+
 ----
 location / {
 try_files $uri $uri/ /index.html /index.php;
@@ -133,7 +133,7 @@ include fastcgi_params;
 
 === Redémarrer nginx
 
-[source,shell]
+
 ----
 sudo service nginx restart
 ----
@@ -144,14 +144,14 @@ A partir de la vous devriez pouvoir accéder à Jeedom avec IP_MACHINE/jeedom av
 Ajouter la tâche Jeedom à la crontab
 Il faut ajouter la ligne suivante dans la crontab :
 
-[source,shell]
+
 ----
 * * * * * su --shell=/bin/bash - www-data -c "/usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php" >> /dev/null 2>&1
 ----
 
 Pour ce faire il faut taper la commande suivante :
 
-[source,shell]
+
 ----
 crontab -e
 ----
@@ -162,7 +162,7 @@ Voilà l’installation est finie
 Pour les mises à jour c’est facile 2 possibilités :
 
 - En ligne de commande
-[source,shell]
+
 ----
 cd /usr/share/nginx/www/jeedom
 php install/install.php

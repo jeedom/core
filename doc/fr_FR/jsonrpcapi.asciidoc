@@ -164,7 +164,7 @@ Voici un exemple d'utilisation de l'API. Pour l'exemple si dessous j'utilise ce
 
 Récupération de la liste des objets :
 
-[source,shell]
+
 ----
  $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
  if($jsonrpc->sendRequest('object::all', array())){
@@ -176,7 +176,7 @@ Récupération de la liste des objets :
  
 Exécution d'une commande (avec comme option un titre et un message)
 
-[source,shell]
+
 ----
  $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
  if($jsonrpc->sendRequest('cmd::execCmd', array('id' => #cmd_id#, 'options' => array('title' => 'Coucou', 'message' => 'Ca marche')))){
