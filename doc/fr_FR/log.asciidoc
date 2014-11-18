@@ -1,13 +1,13 @@
-==== Description
-Page permettant d'afficher les logs de Jeedom, un selecteur en haut à droite vous permet de choissir le log à afficher. 
-En fonction de votre niveau de log (configurable sur la pageGénérale -> Configuration -> Administration) vous aurez plus 
-ou moins de détails. Vous pouvez aussi à partir de cette page vider, supprimer ou télécharger un log.
+Le menu Logs, permet de suivre ce qui se passe sur sa domotique. Dans la plupart des cas ils ne serviront qu'à effectuer du debuggage et à résoudre des problèmes par l'équipe de support. Ce menu est d'ailleurs accessible uniquement en mode expert.
+
+La page de Logs est assez simple, en haut à gauche une liste déroulante permettant le choix des logs, en haut à droite la possibilité de vider les Logs, et au centre les Logs correspondants.
 
 image::../images/log.JPG[]
 
-En haut à gauche on retrouve une liste pour sélectionner le log qui nous intéresse, sur la droite on retrouve 4 boutons
-pour vider le log, supprimer le fichier, télécharger le log et vuer tous les logs. Le log s’affiche en dessous (avec l’heure de l’écriture, le niveau et le log 
-en lui même).
+La liste déroulante permettant de choisir les logs à afficher.
 
-Les logs sont aussi disponibles dans /logs du dossier Jeedom (utile si il y a vraiment un gros problème avec 
-l’application et que l’interface n’est plus disponible)
+image::../images/log2.JPG[]
+
+Et voici un exemple de logs.
+
+image::../images/log3.JPG[]
