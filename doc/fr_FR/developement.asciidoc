@@ -175,7 +175,7 @@ Exemple :
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
-  * Jeedom is distributed in the hope that it will be useful,
+ * Jeedom is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
@@ -213,7 +213,7 @@ if (!isConnect()) {
          </div>
      </fieldset>
  </form>
- ----
+----
  
  ==== Création de plugin : partie 3 desktop
  
@@ -395,7 +395,8 @@ On peut voir :
 ----
 $('#md_modal').dialog({title: "{{Classe du périphérique}}"});
  $('#md_modal').load('index.php?v=d&plugin=zwave&modal=show.class&id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
- ----
+----
+
 La première permet de mettre un titre à votre modal
 
 La deuxième ligne charge votre modal et l'affichage. Pour la syntaxe c'est assez simple : plugin l'id de votre plugin, modal le nom de votre modal sans le php et ensuite les paramètres que vous voulez lui passer
