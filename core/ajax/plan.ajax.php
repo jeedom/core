@@ -48,7 +48,7 @@ try {
         if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'scenario') {
                 $link = $plan->getLink();
                 if (!is_object($link)) {
-                    continue;
+                    ajax::success(array('html' => '', 'plan' => ''));
                 }
                 ajax::success(array(
                     'plan' => utils::o2a($plan),
@@ -57,7 +57,7 @@ try {
             } else if ($plan->getLink_type() == 'plan') {
                 $plan_link = planHeader::byId($plan->getLink_id());
                 if (!is_object($plan_link)) {
-                    continue;
+                    ajax::success(array('html' => '', 'plan' => ''));
                 }
                 $link = 'index.php?v=d&p=plan&plan_id=' . $plan_link->getId();
                 $html = '<span href="' . $link . '" class="plan-link-widget label label-success" data-link_id="' . $plan_link->getId() . '">';
@@ -76,7 +76,7 @@ try {
             } else if ($plan->getLink_type() == 'view') {
                 $view = view::byId($plan->getLink_id());
                 if (!is_object($view)) {
-                    continue;
+                    ajax::success(array('html' => '', 'plan' => ''));
                 }
                 $link = 'index.php?v=d&p=view&view_id=' . $view->getId();
                 $html = '<span href="' . $link . '" class="view-link-widget label label-primary" data-link_id="' . $view->getId() . '" >';
