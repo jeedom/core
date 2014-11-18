@@ -9,6 +9,9 @@ include::principe.asciidoc[]
 === Installation
 include::installation.asciidoc[]
 
+=== API jsonrpc
+include::jsonrpcapi.asciidoc[]
+
 === Administration
 include::administration.asciidoc[]
 
