@@ -6,6 +6,9 @@ Jeedom est un projet de domotique sans cloud et sans abonement. Il permet de pil
 === Principe
 include::principe.asciidoc[]
 
+=== Installation
+include::installation.asciidoc[]
+
 === Administration
 include::administration.asciidoc[]
 
