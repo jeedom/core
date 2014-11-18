@@ -369,7 +369,19 @@ function displayPlan2() {
                     },
                     success: function (data) {
                         for (var i in data) {
-                            
+                            jeedom.plan.getObjectPlan({
+                                id: data[i].plan.id,
+                                error: function (error) {
+                                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                                },
+                                success: function (data) {
+                                    if (data.plan.link_type == 'graph') {
+                                        addGraph(data.plan);
+                                    } else {
+                                        displayObject(data.plan.link_type, data.plan.link_id, data.html, data.plan);
+                                    }
+                                },
+                            });
                         }
                     },
                 });
