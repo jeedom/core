@@ -1,0 +1,406 @@
+==== Création plugin partie 1
+
+Voici comment ça se décompose, tout d’abord un dossier du nom de votre plugin (son identifiant unique plus exactement) qui doit contenir les sous-dossiers suivants :
+
+- 3rdparty : dossier contenant les librairies externes utilisées dans le plugin (exemple pour le plugin SMS une librairie pour la communication série en php)
+- core : dossier contenant tous les fichiers de fonctionnement interne
+- class : dossier contenant la classe du plugin
+- php : dossier pouvant contenir des fonctions ne devant pas forcément appartenir à une classe (souvent utilisé pour permettre l’inclusion de multiples classes ou fichiers de configuration d’un seul coup)
+- config : fichier de configuration du plugin
+- ajax : dossier contenant les fichiers cibles d’appels AJAX
+- desktop : dossier contenant la vue "bureau" du plugin (en opposition avec la vue mobile)
+* js : dossier contenant tous les fichiers de type javascript
+* php : dossier contenant tous les fichiers de type php qui font de l’affichage
+* css : il n’y en pas ici mais si besoin tous les fichiers css du plugin vont dedans
+* modal  : fichier contenant le code des modals du plugin
+- plugin_info : contient les fichiers permettant à Jeedom de qualifier le plugin, de faire son installation et sa configuration
+* info.xml : fichier contenant les informations de base du plugin (il est obligatoire sinon Jeedom ne verra pas le plugin), il contient entre autre l’identifiant du module, la description, les instructions d’installation...
+* install.php : fichier contenant (si besoin) les méthodes d’installation et de désinstallation du plugin
+* configuration.php : fichier contenant les paramètres à configurer du plugin indépendants des équipements de celui-ci (exemple pour le module Zwave l’ip du Raspberry Pi ayant la carte Razberry)
+- doc : doit contenir la doc du plugin au format asciidoc, la racine et le fichier index.asciidoc. Toute les images sont dans doc/images. La doc elle meme est dans un dossier en fonction de la langue (ex en francais : doc/fr_FR)
+
+Pour ce qui est de la convention de nommage des fichiers voici les impératifs :
+
+- les fichiers de class php doivent obligatoirement se finir par ".class.php"
+- si ce n’est pas géré par un fichier d’inclusion, le nom du fichier doit être "#nom_class#.class.php"
+- les fichiers servant uniquement de point d’entrée pour inclure de multiples fichiers doivent se finir par ".inc.php"
+- les fichiers de configuration doivent se finir par ".config.php"
+- les fichiers d’aide à une page doivent être nommés de cette forme "help.#nomdelapage#.php". Le plus souvent un plugin n’ayant qu’une page de vue, le fichier d’aide aura donc le nom suivant "help.#PLUGIN_ID#.php" (le nom de la première page d’un plugin est forcément le même que l'ID de celui-ci, et donc que le nom du dossier contenant le plugin)
+
+Voici les recommandations :
+
+- les fichiers de type AJAX doivent se finir par ".ajax.php"
+- le nom de la première page de vue d’un plugin doit être le même que l’ID du plugin
+- le nom du fichier JS (s’il y en a un) de la première page de vue du plugin doit être l’ID du plugin
+
+==== Création plugin partie 2
+
+===== info.xml
+
+Fichier de base du plugin, c'est dans celui-ci que Jeedom récupère toutes les informations relatives au plugin :
+
+Il est composé des balises (une * indique que cette balise est obligatoire) :
+
+- *id : identifiant unique du plugin (doit être le même que le nom du dossier contenant le plugin et que le type des équipements que crée le plugin)
+- *name : nom du plugin (ça sera le nom affiché sur l'interface)
+- description  : description du plugin
+- icon : classe css utilisée dans la balise <i> pour afficher l'icône du plugin. Doit obligatoirement commencer par "fa" suivi de l'icône voulu, la liste est disponible là* licence : Licence sous laquelle est publiée le plugin
+author : Auteur du plugin
+- installation : notice d'installation du plugin si nécessaire
+- *require : version minimale de Jeedom requise pour installation du plugin
+- *version : version du plugin
+- category : sert à catégoriser les plugins pour trouver celui qu'on veut plus rapidement
+- include : balise un peu particulière, permet de spécifier à Jeedom s'il faut utiliser un fichier d'inclusion particulier (pour rappel il doit se trouver dans #PLUGIN_ID#/core/php), ici par exemple j'indique qu'il faut utiliser le fichier : "sms/core/php/sms.inc.php". Si cette balise n'est pas là Jeedom inclura par défaut le fichier contenant la classe du plugin (ici ça aurait été /sms/core/class/sms.class.php. Pour rappel le fichier de classe du plugin est nommé en fonction de l'ID du plugin)
+- display : permet de spécifier le nom du fichier php (qui doit se trouver dans le dossier desktop/php) devant être appeler pour afficher le panel (lien dans le sous-menu accueil)
+- mobile : permet de spécifier le nom du fichier html (qui doit se trouver dans le dossier mobile/html) devant etre appeler pour afficher la version mobile du panel
+
+Exemple :
+
+[source.xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<info>
+    <id>zwave</id>
+    <name>Zwave</name>
+    <description>Plugin pour envoyer des ordres Z-Wave</description>
+    <icon>fa fa-rss</icon>
+    <licence>AGPL</licence>
+    <author>Loïc Gevrey</author>
+    <installation>Si vous n'avez pas une box préinstallée et que vous n'avez pas installé l'application zway (http://razberry.z-wave.me/) faites :
+        - "wget -q -O - razberry.z-wave.me/install | sudo bash"
+    </installation>
+    <require>1.10</require>
+    <version>1.0</version>
+    <category>automation protocol</category>
+    <mobile>zwave</mobile>
+</info>
+----
+
+===== installation.php
+Fichier donnant les instructions d'installation d'un plugin :
+
+Il est composé de la manière suivante :
+
+La première partie commentée contient la licence (c'est mieux :) celle utilisée ici indique que le fichier appartient à Jeedom et qu'il est open source)
+Ensuite vient l'inclusion du core de Jeedom (ça permet d’accéder au fonction interne)
+Et après viennent les 2 fonctions  :
+
+- install_pluginid() : méthode permettant d'installer le plugin
+Ici l'installation ajoute une tâche cron à Jeedom
+
+- update_pluginid() : méthode permettant d'installer le plugin
+Utilisé ici pour redémarrer la tache cron
+
+- remove_pluginid() : méthode permettant de supprimer le plugin
+Ici la fonction supprime la tâche cron de Jeedom lors de la désinstallation
+
+Exemple :
+
+[source.php]
+----
+<?php
+/* This file is part of Jeedom.
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
+require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
+
+function zwave_install() {
+    $cron = cron::byClassAndFunction('zwave', 'pull');
+    if (!is_object($cron)) {
+        $cron = new cron();
+        $cron->setClass('zwave');
+        $cron->setFunction('pull');
+        $cron->setEnable(1);
+        $cron->setDeamon(1);
+        $cron->setSchedule('* * * * *');
+        $cron->save();
+    }
+}
+
+function zwave_update() {
+    $cron = cron::byClassAndFunction('zwave', 'pull');
+    if (!is_object($cron)) {
+        $cron = new cron();
+        $cron->setClass('zwave');
+        $cron->setFunction('pull');
+        $cron->setEnable(1);
+        $cron->setDeamon(1);
+        $cron->setSchedule('* * * * *');
+        $cron->save();
+    }
+    $cron->stop();
+}
+
+function zwave_remove() {
+    $cron = cron::byClassAndFunction('zwave', 'pull');
+    if (is_object($cron)) {
+        $cron->remove();
+    }
+}
+?>
+----
+
+
+===== configuration.php
+Fichier permettant de demander des informations de configuration à l'utilisateur :
+
+Le fichier est constitué de  :
+
+- La licence comme tout à l'heure
+- L'inclusion du core de Jeedom
+- La vérification que l'utilisateur est bien connecté (j’inclue le fichier 404 car ce fichier est un fichier de type vue)
+
+Ensuite vient le paramètre demandé (il peut en avoir plusieurs), c'est de la syntaxe standard Bootstrap pour les formulaires seule particularité à respecter c'est la classe ("configKey") à mettre sur l'élément de paramètre ainsi que le "data-l1key" qui indique le nom du paramètre. Pour récupérer la valeur de celui-ci ailleurs dans le plugin il suffit de faire  : "config::byKey(#NOM_PARAMETRE#, #PLUGIN_ID#)"
+Exemple :
+
+[source.php]
+----
+<?php
+/* This file is part of Jeedom.
+ *
+  * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+  * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+  * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+  */
+ 
+ require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
+include_file('core', 'authentification', 'php');
+if (!isConnect()) {
+    include_file('desktop', '404', 'php');
+    die();
+ }
+ ?>
+ <form class="form-horizontal">
+     <fieldset>
+         <div class="form-group">
+             <label class="col-lg-2 control-label">Zway IP</label>
+             <div class="col-lg-2">
+                 <input class="configKey form-control" data-l1key="zwaveAddr" />
+             </div>
+         </div>
+         <div class="form-group">
+             <label class="col-lg-4 control-label">Supprimer automatiquement les périphériques exclus</label>
+             <div class="col-lg-4">
+                 <input type="checkbox" class="configKey" data-l1key="autoRemoveExcludeDevice" />
+             </div>
+         </div>
+         <div class="form-group">
+             <label class="col-lg-4 control-label">J'utilise un serveur openzwave</label>
+             <div class="col-lg-4">
+                 <input type="checkbox" class="configKey" data-l1key="isOpenZwave" />
+             </div>
+         </div>
+     </fieldset>
+ </form>
+ ----
+ 
+ ==== Création de plugin : partie 3 desktop
+ 
+ ===== PHP
+Ce dossier contient la vue à proprement parler dedans on retrouve obligatoire la page de configuration du plugin (celle qui apparaîtra quand l'utilisateur fera plugin => catégorie => votre plugin), il est conseillé de nommer celle-ci avec l'id de votre plugin. Il peut aussi contenir le panel (page que l'utilisateur trouvera dans accueil -> nom de votre plugin).
+
+Tous les fichiers dans ce dossier doivent finir par .php et doit obligatoirement commencer par :
+
+[source.php]
+----
+<?php
+if (!isConnect('admin')) {
+    throw new Exception('{{401 - Accès non autorisé}}');
+ }
+ sendVarToJS('eqType', 'mail');
+ ?>
+----
+Une fois sur cette page vous aurez accès en php à toutes les fonctions du core de jeedom (voir http://dev.jeedom.fr) ainsi qu'à celles de tous les modules installés donc le vôtre aussi.
+
+Toutes ces pages étant des vues elles utilisent principalement la syntaxe HTML. Pour tout ce qui est présentation, Jeedom se base principalement sur  bootstrap donc toute la documentation est applicable (http://getbootstrap.com/).
+
+Pour simplifier la création de plugin vous pouvez inclure dans votre page le script javascript de template pour les plugins :
+
+[source.php]
+----
+<?php include_file('core', 'plugin.template', 'js'); ?>
+----
+A mettre tout en bas de votre page et utile uniquement sur la page de configuration de votre plugin. Ce script permet de réduire le javascript obligatoire à une seule fonction (voir partie sur les fichiers JS).
+
+Dans votre page de configuration une syntaxe html a été mise en place pour vous simplifier la vie. Donc pour la plupart des plugins vous n'aurez  à faire que du html pour stocker vos informations en base de données et donc vous en resservir du coté de votre classe.
+
+Pour la syntaxe c'est assez simple votre élément (input, select...) doit avoir la classe css eqLogicAttr (ou cmdAttr pour les commandes) et un attribut indiquant le nom de la propriété :
+
+[source.html]
+----
+<input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement mail}}"/>
+----
+Là par exemple lors du chargement des données jeedom mettra la valeur du nom de l'équipement dans l'input et lors de la sauvegarde récupérera celle-ci pour la remettre en BDD. Petite astuce certaines propriétés sont en fait des chaînes JSON en BDD (ça permet d'avoir vraiment pas mal de libertés pour le plugin), dans ce cas il suffit de faire :
+
+[source.html]
+----
+<input class="eqLogicAttr form-control" data-l1key='configuration' data-l2key='fromName' />
+----
+Pour la liste des propriétés des équipements c'est ici et des commandes c'est ici (pour voir les propriétés qui sont de JSON il suffit de regarder le getter ou le setter si celui-ci prend 2 paramètres alors c'est du JSON)
+
+Dernier point important sur la page de configuration celle-ci peut contenir autant d'équipements et de commandes que nécessaire. Cependant il y a quelques règles à respecter :
+
+Tous les éléments ayant la classe eqLogicAttr doivent être dans un élément ayant la classe css eqLogic
+Idem pour les éléments de classe css cmdAttr qui doivent être dans un élément de classe cmd
+Toutes les commandes d'un équipement doivent se trouver dans l'élément ayant la classe eqLogic correspondant
+
+===== JS
+
+Tous les fichiers JS doivent se trouver dans le dossier JS (facile !!!). Il est conseillé de le nommer du même ID que votre plugin (pour la partie configuration, pour le panel vous faîtes comme vous voulez). Ce fichier JS (celui de la configuration du plugin) doit au minimum contenir une méthode addCmdToTable qui prend en paramètre l'objet commande à jouter. Voici un exemple simple :
+
+[source.js]
+----
+function addCmdToTable(_cmd) {
+    if (!isset(_cmd)) {
+        var _cmd = {configuration: {}};
+     }
+ 	var tr = '';     tr += '';
+     tr += '<input class="cmdAttr form-control input-sm" data-l1key="id" style="display : none;">';
+ 	tr += '<input class="cmdAttr form-control input-sm" data-l1key="name">';     tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="recipient">';     tr += '';
+     tr += '<input class="cmdAttr form-control input-sm" data-l1key="type" value="action" style="display : none;">';
+     tr += '<input class="cmdAttr form-control input-sm" data-l1key="subType" value="message" style="display : none;">';
+     if (is_numeric(_cmd.id)) {
+        tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i> {{Tester}}</a>';
+     }
+     tr += '<i class="fa fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i></td>';
+ 	tr += '';
+     $('#table_cmd tbody').append(tr);
+    $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
+}
+----
+
+Vous remarquerez qu'il y a une ligne par commande et que celle-ci a bien la classe css cmd. Vous pouvez aussi voir les éléments qui on la classe cmdAttr.
+
+
+Plusieurs points importants :
+
+- cette fonction peut être appelée avec un objet vide (d'où les 3 premières lignes) lors de l'ajout d'une nouvelle commande
+- la dernière ligne permet d'initialiser tous les champs une fois la ligne insérée
+
+Dernier point un exemple plus complet avec type et sous-type de commande :
+
+[source.js]
+----
+function addCmdToTable(_cmd) {
+    if (!isset(_cmd)) {
+        var _cmd = {};
+    }
+     if (!isset(_cmd.configuration)) {
+        _cmd.configuration = {};
+    }
+     var selRequestType = '<select style="width : 90px;" class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="requestType">';
+     selRequestType += '<option value="script">{{Script}}</option>';
+     selRequestType += '<option value="http">{{Http}}</option>';
+     selRequestType += '</select>';
+ 	var tr = '';     tr += '<input class="cmdAttr form-control input-sm" data-l1key="name" style="width : 140px;">';     
+ 	tr += '<input class="cmdAttr form-control input-sm" data-l1key="id"  style="display : none;">';     
+ 	tr += '' + selRequestType;
+    tr += '<div class="requestTypeConfig" data-type="http">';
+     tr += '<input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="noSslCheck" />Ne pas vérifier SSL';
+    tr += '</div>';  
+ 	tr += '';     tr += '';
+     tr += '<span class="type" type="' + init(_cmd.type) + '">' + jeedom.cmd.availableType() + '</span>';
+     tr += '<span class="subType" subType="' + init(_cmd.subType) + '"></span>';   
+ 	tr += '';     tr += '<textarea style="height : 95px;" class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="request"></textarea>';
+     tr += '<a class="btn btn-default browseScriptFile cursor input-sm" style="margin-top : 5px;"><i class="fa fa-folder-open"></i> {{Parcourir}}</a> ';
+     tr += '<a class="btn btn-default editScriptFile cursor input-sm" style="margin-top : 5px;"><i class="fa fa-edit"></i> {{Editer}}</a> ';
+     tr += '<a class="btn btn-success newScriptFile cursor input-sm" style="margin-top : 5px;"><i class="fa fa-file-o"></i> {{Nouveau}}</a> ';
+     tr += '<a class="btn btn-danger removeScriptFile cursor input-sm" style="margin-top : 5px;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a> ';
+     tr += '<a class="btn btn-warning bt_shareOnMarket cursor input-sm" style="margin-top : 5px;"><i class="fa fa-cloud-upload"></i> {{Partager}}</a> ';
+     tr += '</div>';   
+ 	tr += '';     tr += '';
+     tr += '<input class="cmdAttr form-control tooltips input-sm" data-l1key="unite"  style="width : 100px;" placeholder="{{Unité}}" title="{{Unité}}">';
+     tr += '<input style="width : 100px;" class="tooltips cmdAttr form-control input-sm" data-l1key="cache" data-l2key="lifetime" placeholder="{{Lifetime cache}}" title="Lifetime cache">';
+     tr += '<input class="tooltips cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="minValue" placeholder="{{Min}}" title="{{Min}}"> ';
+     tr += '<input class="tooltips cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="maxValue" placeholder="{{Max}}" title="{{Max}}">';   
+ 	tr += '';     tr += '';
+     tr += '<span><input type="checkbox" class="cmdAttr" data-l1key="isHistorized" /> {{Historiser}}<br/></span>';
+     tr += '<span><input type="checkbox" class="cmdAttr" data-l1key="cache" data-l2key="enable" checked /> {{Autoriser memcache}}</span>';
+ 	tr += '';     tr += '';
+     if (is_numeric(_cmd.id)) {
+        tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i> {{Tester}}</a>';
+     }
+     tr += '<i class="fa fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i></td>';
+ 	tr += '';
+     $('#table_cmd tbody').append(tr);
+    $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
+	
+    if (isset(_cmd.configuration.requestType)) {
+        $('#table_cmd tbody tr:last .cmdAttr[data-l1key=configuration][data-l2key=requestType]').value(init(_cmd.configuration.requestType));
+        $('#table_cmd tbody tr:last .cmdAttr[data-l1key=configuration][data-l2key=requestType]').trigger('change');
+    }
+ 	
+     if (isset(_cmd.type)) {
+        $('#table_cmd tbody tr:last .cmdAttr[data-l1key=type]').value(init(_cmd.type));
+    }
+     jeedom.cmd.changeType($('#table_cmd tbody tr:last'), init(_cmd.subType));
+    initTooltips();
+}
+----
+
+Ici on peut remarquer :
+
+- jeedom.cmd.availableType() qui va insérer un select avec la liste des types connus (action et info pour le moment)
+- <span class="subType" subType="' + init(_cmd.subType) + '"></span>: l'endroit où le select de sous type doit être posé
+- jeedom.cmd.changeType($('#table_cmd tbody tr:last'), init(_cmd.subType)) qui permet d'initialiser le sous type avec la bonne valeur
+
+D'autres fonctions javascript peuvent être utilisées :
+
+- printEqLogic qui prend en paramètre tout l'objet de l'équipement (utile en cas de traitement de données avant de les restituer). Elle est appelée lors de l'affichage des données de l'équipement
+- saveEqLogic qui prend en paramètre l'objet équipement qui va être sauvegardé en base de données (utile si vous devez faire du traitement avant sauvegarde)
+Dernière chose, pour les fichiers JS, voici comment les inclure de manière propre sur votre page php :
+
+[source.php]
+----
+<?php include_file('desktop', 'weather', 'js', 'weather'); ?>
+----
+Le premier argument donne le dossier dans lequel le trouver (attention c'est le dossier père du dossier JS), le deuxième le nom de votre javascript, le troisième indique à Jeedom que c'est un fichier JS et le dernier dans quel plugin il se trouve.
+
+===== CSS
+Ce dossier contient vos fichiers CSS (il ne devrait pas être trop utilisé) , voici comment les inclure sur votre page :
+
+[source.php]
+----
+<?php include_file('desktop', 'weather', 'css', 'weather'); ?>
+----
+Le premier argument donne le dossier dans lequel le trouver (attention c'est le dossier père du dossier CSS), le deuxième le nom de votre fichier css, le troisième indique à Jeedom que c'est un fichier CSS et le dernier dans quel plugin il se trouve.
+
+===== MODAL
+Le dossier modal vous permet de stocker vos fichiers php destiner à afficher des modals. Voici comment les appeler à partir de votre page principale (ce code se met dans un fichier javascript) :
+
+On peut voir :
+
+[source.js]
+----
+$('#md_modal').dialog({title: "{{Classe du périphérique}}"});
+ $('#md_modal').load('index.php?v=d&plugin=zwave&modal=show.class&id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
+ ----
+La première permet de mettre un titre à votre modal
+
+La deuxième ligne charge votre modal et l'affichage. Pour la syntaxe c'est assez simple : plugin l'id de votre plugin, modal le nom de votre modal sans le php et ensuite les paramètres que vous voulez lui passer
+
+===== API JS
+Ce n'est pas un dossier mais dans les dernières versions de Jeedom celui-ci offre au développeur toute une api javascript (ça évite d'écrire des appels ajax dans tous les sens). J'essayerai de faire un article pour expliquer les différentes fonctionnalités mais vous pouvez déjà trouver le code ici.
+
+Voilà pour les détails du dossier desktop. Je me doute que c'est pas des plus complets (j'essayerai de le compléter en fonction des différentes demandes que je reçois) mais j’espère que grâce à ça vous pourrez commencer à faire des plugins pour Jeedom.
