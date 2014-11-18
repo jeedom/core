@@ -1,3 +1,6 @@
 ==== Description
-Page permet de configurer de nombreuse options sur vos objet/équipement/commande, elle permet par exemple de rajouter des parametres pour l'affichage ou de mettre un offset sur 
-le resultat d'une commande. Cette page vous permettra aussi de configurer la couleur par defaut de chaque catégorie dans Jeedom.
+Page permet de configurer de nombreuse options sur vos objet/équipement/commande, elle permet par exemple de rajouter des 
+parametres pour l'affichage ou de mettre un offset sur le resultat d'une commande. Cette page vous permettra aussi de
+configurer la couleur par defaut de chaque catégorie dans Jeedom.
+
+image::../images/display.JPG[]
