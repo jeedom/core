@@ -1,6 +1,35 @@
-==== Description
-Page permet de configurer de nombreuse options sur vos objet/équipement/commande, elle permet par exemple de rajouter des 
-parametres pour l'affichage ou de mettre un offset sur le resultat d'une commande. Cette page vous permettra aussi de
-configurer la couleur par defaut de chaque catégorie dans Jeedom.
+Le sous-menu affichage est composé de deux onglets. Le premier onglet "Arbre domotique", et le deuxième "Configuration de l'affichage".
+
+=== Arbre domotique
+
+Le premier onglet "Arbre domotique" va résumer simplement votre configuration domotique. Il n'est pour le moment pas utilisé à 100%, il le sera avec la future application smartphone et tablette.
 
 image::../images/display.JPG[]
+
+Sur la partie gauche se trouve l'arborescence de sa domotique, avec les objets et les équipements à l'intérieur.
+
+image::../images/display2.JPG[]
+
+En haut à droite, une partie information, donne quelques détails sur l'objet ou l'équipement sélectionné.
+
+image::../images/display3.JPG[]
+
+En bas à droite on peut configurer quel sera le widget (représentation graphique de l'équipement) affiché pour cet équipement, sur la version desktop ou mobile.
+
+image::../images/display4.JPG[]
+
+=== Configuration de l'affichage
+
+Le deuxième onglet "Configuration de l'affichage" permet de paramétrer les couleurs des différents widgets (modules domotiques) qui apparaissent dans Jeedom.
+
+La colorisation de ces widgets est effectuée en fonction de la catégorie d'appartenance du widget qui est définie dans la configuration de chaque module (voir plugin Z-Wave, RFXCOM...etc). Parmi les catégories on retrouve le chauffage, les lumières, les automatismes etc...
+
+Pour chaque catégorie, on pourra choisir une couleur différente entre la version desktop et la version mobile. Il y a également 2 types de couleurs, les couleurs de fond des widgets, et les couleurs des commandes lorsque le widget est de type graduel, par exemple les lumières, les volets, les températures.
+
+image::../images/display5.JPG[]
+
+En cliquant sur la couleur un fenêtre s'ouvre, permettant de choisir sa couleur.
+
+image::../images/display6.JPG[]
+
+Pensez à sauvegarder !
