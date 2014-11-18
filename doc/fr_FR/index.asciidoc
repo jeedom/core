@@ -75,5 +75,8 @@ include::user.asciidoc[]
 === Vue
 include::view.asciidoc[]
 
+=== Développement d'un plugin
+include::developement.asciidoc[]
+
 === Changelog
 include::changelog.asciidoc[]
