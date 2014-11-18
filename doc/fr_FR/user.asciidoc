@@ -1,3 +1,5 @@
 ==== Description
-Page vous permettant de creer/supprimé des utilisateus. Vous pouvez aussi par le biais de cette page changer le mot de passe d'un utilisateur (si celui-ci la oublié par exemple) ou
-desactiver temporairement un compte utilisateur
+Page vous permettant de creer/supprimé des utilisateus. Vous pouvez aussi par le biais de cette page changer le mot de 
+passe d'un utilisateur (si celui-ci la oublié par exemple) ou desactiver temporairement un compte utilisateur.
+
+image::../images/user.JPG[]
