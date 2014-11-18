@@ -1,3 +1,5 @@
 ==== Description
-Les vues permette simplement de creer un affichage personalisée, ce n'est pas aussi poussé que les designs, mais ca permet en quelque minute d'avoir un affichage
-plus personalisé.
+Les vues permette simplement de creer un affichage personalisée, ce n'est pas aussi poussé que les designs, mais ca permet
+en quelque minute d'avoir un affichage plus personalisé.
+
+image::../images/view.JPG[]
