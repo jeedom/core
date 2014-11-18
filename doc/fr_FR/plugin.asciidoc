@@ -8,24 +8,26 @@ Le bouton en haut, "Télécharger du market" permet d'accéder au Market Jeedom.
 
 Sur la partie centrale, on a quelques informations concernant le plugin, avec une partie intéressante, la partie rouge Installation qui détaille si des procédures sont à réaliser.
 
-image::../images/plugin2.JPG[]
+image::../images/plugin3.png[]
 
 Au centre on trouve 2 ou 3 boutons, qui permettent d'activer ou désactiver un plugin, de voir ce plugin sur le Market, et de partager un plugin que l'on a créé.
 
-image::../images/plugin3.JPG[]
+image::../images/plugin4.png[]
 
 Ou...
 
-image::../images/plugin4.JPG[]
+image::../images/plugin5.png[]
 
 La gestion des mises à jour des plugins est centralisée dans le centre de mise à jour disponible dans le menu Général/Administration.
 
 En cliquant sur le bouton en haut à gauche "Télécharger du market" on obtient cette page, il suffit de cliquer sur le plugin de son choix pour ensuite l'installer.
 
-image::../images/plugin5.JPG[]
+image::../images/plugin8.png[]
 
 Certains plugins ont besoin d'être configurés avant d'être activés, c'est le cas par exemple du plugin RFXCOM ou Z-Wave, souvent ces paramètres sont déjà inscrits par défaut.
 
-image::../images/plugin6.JPG[]
+image::../images/plugin9.png[]
+
+image::../images/plugin10.png[]
 
 Ne pas oublier de sauvegarder pour toutes modifications.

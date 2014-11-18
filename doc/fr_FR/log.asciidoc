@@ -6,8 +6,8 @@ image::../images/log.JPG[]
 
 La liste déroulante permettant de choisir les logs à afficher.
 
-image::../images/log2.JPG[]
+image::../images/log2.png[]
 
 Et voici un exemple de logs.
 
-image::../images/log3.JPG[]
+image::../images/log3.png[]

@@ -4,16 +4,16 @@ image::../images/object.JPG[]
 
 Sur la partie gauche on a l'arborescence des objets que l'on retrouvera sur le Dashboard. On pourra par de simples glisser/déposer modifier l'ordre des objets dans la liste. Pour cela il suffit de maintenir le click sur la flèche à côté de l'objet et de glisser déposer l'objet à l'endroit voulu.
 
-image::../images/object2.JPG[]
+image::../images/object1.png[]
 
 Pour créer un objet il suffit d'en ajouter un nouveau en lui donnant un nom ainsi qu'une place dans l'arborescence en lui définissant son objet "Père", par exemple "le salon" a pour objet père le "Rez de chaussée" qui lui même a l'objet père "la maison".
 
 On pourra également choisir un icône parmi la grande bibliothèque que propose Jeedom.
 
-image::../images/object3.JPG[]
+image::../images/object2.png[]
 
 Une liste déroulante permet de selectionner l'objet père parmi la liste des objets déjà créée.
 
-image::../images/object4.JPG[]
+image::../images/object3.png[]
 
 Il n'y a plus qu'à sauvegarder et à passer à un autre objet.
