@@ -1,5 +1,11 @@
-==== Description
-Page vous permettant de creer/supprimé des utilisateus. Vous pouvez aussi par le biais de cette page changer le mot de 
-passe d'un utilisateur (si celui-ci la oublié par exemple) ou desactiver temporairement un compte utilisateur.
+C'est ici que l'on va pouvoir définir la liste des utilisateurs autorisés à se connecter à Jeedom, mais également leurs droits d'administrateur.
 
-image::../images/user.JPG[]
+image::../images/user1.JPG[]
+
+Le bouton ajouter un utilisateur, permet comme son nom l'indique d'ajouter un utilisateur, avec login et mot de passe.
+
+image::../images/user2.JPG[]
+
+Le bouton changer de mot de passe, permet de changer les mots de passe des utilisateurs si on dispose des droits d'administrateur
+
+image::../images/user3.JPG[]
