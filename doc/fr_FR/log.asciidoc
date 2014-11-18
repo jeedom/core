@@ -3,6 +3,8 @@ Page permettant d'afficher les logs de Jeedom, un selecteur en haut à droite vo
 En fonction de votre niveau de log (configurable sur la pageGénérale -> Configuration -> Administration) vous aurez plus 
 ou moins de détails. Vous pouvez aussi à partir de cette page vider, supprimer ou télécharger un log.
 
+image::../images/log.JPG[]
+
 En haut à gauche on retrouve une liste pour sélectionner le log qui nous intéresse, sur la droite on retrouve 4 boutons
 pour vider le log, supprimer le fichier, télécharger le log et vuer tous les logs. Le log s’affiche en dessous (avec l’heure de l’écriture, le niveau et le log 
 en lui même).
