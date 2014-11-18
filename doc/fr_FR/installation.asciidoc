@@ -4,7 +4,7 @@ Les instructions suivantes sont valables uniquement pour ubuntu/debian, elles se
 
 Voici donc les commandes pour une installation type sous Raspberry  (en root):
 
-=== Mode simple
+==== Mode simple
 
 ----
 wget -q http://git.jeedom.fr/jeedom/core/raw/stable/install/install.sh; sudo chmod 777 install.sh; sudo ./install.sh
@@ -14,7 +14,7 @@ Et vous n’avez plus qu’a suivre les instructions
 
 Ensuite aller sur IP_MACHINE/jeedom (les identifiants étant admin/admin)
 
-=== Mode détaillé
+==== Mode détaillé
 Récupération des fichiers
 
 ----
@@ -39,7 +39,7 @@ sudo update-rc.d jeedom defaults
 sudo service jeedom start
 ----
 
-=== Configuration de la BDD
+===== Configuration de la BDD
 Se connecter à MySQL (avec le mot de passe tapé précédemment) :
 
 
@@ -85,7 +85,7 @@ Il faut juste compléter le TODO par le mot de passe tapé précédemment. Sauve
 php install/install.php
 ----
 
-=== Configuration de nginx
+===== Configuration de nginx
 
 ----
 Editer le fichier /etc/nginx/sites-available/default
@@ -131,7 +131,7 @@ include fastcgi_params;
 }
 ----
 
-=== Redémarrer nginx
+===== Redémarrer nginx
 
 
 ----
@@ -158,7 +158,7 @@ crontab -e
 
 Voilà l’installation est finie
 
-=== Mise à jour
+==== Mise à jour
 Pour les mises à jour c’est facile 2 possibilités :
 
 - En ligne de commande

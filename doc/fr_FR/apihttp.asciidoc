@@ -2,7 +2,7 @@ Jeedom met à disposition des développeurs et des utilisateurs une API complèt
 
 2 API sont disponibles : une orientée développeur qui se pilote en JSON RPC 2.0, et une autre via URL et requête HTTP.
 
-=== API VIA URL ET REQUÊTE HTTP
+==== API VIA URL ET REQUÊTE HTTP
 Cette API s'utilise très facilement par de simples requêtes HTTP via URL. Pour simplifier au maximum, l'API utilise seulement 2 types de requête HTTP.
 
 La première requête est utilisée uniquement pour piloter un scénario.
