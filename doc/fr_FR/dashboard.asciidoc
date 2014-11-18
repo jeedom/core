@@ -1,2 +1,5 @@
 ==== Description
-Une des pages principale de Jeedom celle-ci affiche un compte rendu de toute votre domotique. Ce compte-rendu (contrairement aux vues et design) est auto-generé par Jeedom.
+Une des pages principale de Jeedom celle-ci affiche un compte rendu de toute votre domotique. 
+Ce compte-rendu (contrairement aux vues et design) est auto-generé par Jeedom.
+
+image::../images/dashboard.JPG[]
