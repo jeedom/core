@@ -9,7 +9,7 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
     exit();
 }
 echo "==================================================\n";
-echo "|               JEEDOM SICK SCRIPT               |";
+echo "|    JEEDOM SICK SCRIPT ".date('Y-m-d H:i:s')."    |";
 echo "\n==================================================\n";
 
 echo "\n**************************************************\n";
