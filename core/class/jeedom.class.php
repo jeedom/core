@@ -104,6 +104,12 @@ class jeedom {
             }
         }
     }
+    
+    public static function sick() {
+        $cmd = 'php ' . dirname(__FILE__) . '/../../sick.php';
+        $cmd.= ' >> ' . log::getPathToLog('sick') . ' 2>&1';
+        shell_exec($cmd)   
+    }
 
     public static function getUsbMapping($_name = '') {
         $cache = cache::byKey('jeedom::usbMapping');
