@@ -9,6 +9,9 @@ include::principe.asciidoc[]
 === Premiers pas
 include::begin.asciidoc[]
 
+=== Assembler la mini
+include::buildMini.asciidoc[]
+
 === Installation
 include::installation.asciidoc[]
 
