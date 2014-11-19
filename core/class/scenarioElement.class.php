@@ -156,20 +156,24 @@ class scenarioElement {
             if (!is_numeric($time) || $time < 0) {
                 $time = 0;
             }
-            $cron = new cron();
-            $cron->setClass('scenario');
-            $cron->setFunction('doIn');
-            if($time == 0){
-                $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
-            }else{
+            if ($time == 0) {
+                $cmd = '/usr/bin/php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
+                $cmd.= ' scenario_id=' . $_scenario->getId();
+                $cmd.= ' scenarioElement_id=' . $this->getId();
+                $cmd.= ' >> ' . log::getPathToLog('scenario_element_execution') . ' 2>&1 &';
+                exec($cmd);
+            } else {
+                $cron = new cron();
+                $cron->setClass('scenario');
+                $cron->setFunction('doIn');
                 $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s')));
+                $cron->setLastRun(date('Y-m-d H:i:s'));
+                $cron->setOnce(1);
+                $next = strtotime('+ ' . $time . ' min');
+                $cron->setSchedule(date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next));
+                $cron->save();
+                $_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmé à : ', __FILE__) . date('Y-m-d H:i:00', $next) . ' (+ ' . $time . ' min)');
             }
-            $cron->setLastRun(date('Y-m-d H:i:s'));
-            $cron->setOnce(1);
-            $next = strtotime('+ ' . $time . ' min');
-            $cron->setSchedule(date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next));
-            $cron->save();
-            $_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmé à : ', __FILE__) . date('Y-m-d H:i:00', $next) . ' (+ ' . $time . ' min)');
             return true;
         }
     }

@@ -34,30 +34,34 @@ if (isset($argv)) {
     }
 }
 
-$scenario = scenario::byId(init('scenario_id'));
-if (!is_object($scenario)) {
-    log::add('scenario', 'info', __('Scenario non trouvé verifier id : ', __FILE__) . init('scenario_id'));
-    die(__('Scenario non trouvé verifier id : ', __FILE__) . init('scenario_id'));
-}
-
-if (is_numeric($scenario->getTimeout()) && $scenario->getTimeout() != '' && $scenario->getTimeout() != 0) {
-    set_time_limit($scenario->getTimeout(config::byKey('maxExecTimeScript', 1) * 60));
-}
-
-try {
-    if ($scenario->getState() == 'in progress') {
-        sleep(1);
+if (init('scenarioElement_id') != '') {
+    scenarion::doIn(array('scenario_id' => init('scenario_id'), 'scenarioElement_id' => init('scenarioElement_id'), 'second' => 0));
+} else {
+    $scenario = scenario::byId(init('scenario_id'));
+    if (!is_object($scenario)) {
+        log::add('scenario', 'info', __('Scenario non trouvé verifier id : ', __FILE__) . init('scenario_id'));
+        die(__('Scenario non trouvé verifier id : ', __FILE__) . init('scenario_id'));
     }
-    if ($scenario->getState() == 'in progress') {
-        die(__('Impossible de lancer le scénario car déjà en cours : ', __FILE__) . $scenario->getHumanName());
+
+    if (is_numeric($scenario->getTimeout()) && $scenario->getTimeout() != '' && $scenario->getTimeout() != 0) {
+        set_time_limit($scenario->getTimeout(config::byKey('maxExecTimeScript', 1) * 60));
     }
-    $scenario->execute(init('trigger'), init('message'));
-} catch (Exception $e) {
-    log::add('scenario', 'error', __('Scenario  : ', __FILE__) . $scenario->getHumanName() . '. ' . __('Erreur : ', __FILE__) . $e->getMessage());
-    $scenario->setState('error');
-    $scenario->setLog(__('Erreur : ', __FILE__) . $e->getMessage());
-    $scenario->setPID('');
-    $scenario->save();
-    die();
+
+    try {
+        if ($scenario->getState() == 'in progress') {
+            sleep(1);
+        }
+        if ($scenario->getState() == 'in progress') {
+            die(__('Impossible de lancer le scénario car déjà en cours : ', __FILE__) . $scenario->getHumanName());
+        }
+        $scenario->execute(init('trigger'), init('message'));
+    } catch (Exception $e) {
+        log::add('scenario', 'error', __('Scenario  : ', __FILE__) . $scenario->getHumanName() . '. ' . __('Erreur : ', __FILE__) . $e->getMessage());
+        $scenario->setState('error');
+        $scenario->setLog(__('Erreur : ', __FILE__) . $e->getMessage());
+        $scenario->setPID('');
+        $scenario->save();
+        die();
+    }
 }
 ?>
