@@ -636,16 +636,16 @@ function addExpression(_expression) {
             if (isset(_expression.expression)) {
                 _expression.expression = _expression.expression.replace(/"/g, '&quot;');
             }
-            retour += '<div class="col-lg-11" style="position : relative; top : 5px;">';
+            retour += '<div class="col-sm-11" style="position : relative; top : 5px;">';
             retour += '<textarea class="expressionAttr form-control input-sm" data-l1key="expression" style="resize: vertical;height : 27px;" rows="1">' + init(_expression.expression) + '</textarea>';
             retour += '</div>';
-            retour += '<div class="col-lg-1">';
+            retour += '<div class="col-sm-1">';
             retour += ' <a class="btn btn-default btn-xs cursor bt_selectCmdExpression" style="position : relative; top : 3px;" title="Rechercher une commande"><i class="fa fa-list-alt"></i></a>';
             retour += ' <a class="btn btn-default btn-xs cursor bt_selectScenarioExpression" style="position : relative; top : 3px;" title="Rechercher un scenario"><i class="fa fa-history"></i></a>';
             retour += '</div>';
             break;
         case 'element' :
-            retour += '<div class="col-lg-12">';
+            retour += '<div class="col-sm-12">';
             if (isset(_expression.element) && isset(_expression.element.html)) {
                 retour += _expression.element.html;
             } else {
@@ -658,20 +658,20 @@ function addExpression(_expression) {
             retour += '</div>';
             break;
         case 'action' :
-            retour += '<div class="col-lg-1">';
+            retour += '<div class="col-sm-1">';
             retour += '<i class="fa fa-arrows-v pull-left cursor bt_sortable" style="margin-top : 9px;"></i>';
             retour += '<i class="fa fa-minus-circle pull-left cursor bt_removeExpression" style="margin-top : 9px;"></i>';
             retour += ' <a class="btn btn-default btn-xs cursor bt_selectCmdExpression pull-right"><i class="fa fa-list-alt"></i></a>';
             retour += '</div>';
-            retour += '<div class="col-lg-3">';
+            retour += '<div class="col-sm-3">';
             retour += '<input class="expressionAttr form-control input-sm" data-l1key="expression" value="' + init(_expression.expression) + '" style="font-weight:bold;"/>';
             retour += '</div>';
-            retour += '<div class="col-lg-8 expressionOptions">';
+            retour += '<div class="col-sm-8 expressionOptions">';
             retour += jeedom.cmd.displayActionOption(init(_expression.expression), init(_expression.options));
             retour += '</div>';
             break;
         case 'code' :
-            retour += '<div class="col-lg-12">';
+            retour += '<div class="col-sm-12">';
             retour += '<i class="fa fa-bars pull-left cursor bt_sortable" style="margin-top : 9px;"></i>';
             retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
             retour += '</div>';
