@@ -1,0 +1,73 @@
+Maintenant que votre box Jeedom Mini est montée, vous allez pouvoir découvrir la domotique avec Jeedom. Avant de pouvoir l'utiliser, vous devez brancher votre box Jeedom Mini sur le secteur, et sur votre réseau local (sur routeur, switch ou votre box internet...)
+
+La première chose à faire, est de trouver l'adresse IP correspondante à votre box Jeedom Mini, par exemple 192.168.1.3. Pour cela rendez-vous dans l'espace d'administration de votre routeur ou box internet, et localisez un périphérique nommé "jeedom".
+
+image::../images/firstUseMini.jpg[]
+
+A partir de là vous pouvez récupérer l'adresse IP de votre box Jeedom Mini
+
+image::../images/firstUseMini2.jpg[]
+
+Ensuite prenez votre navigateur internet favori, et tapez dans le champ réservé à l'URL (en haut) l'adresse IP précédemment trouvée. (qui correspond à votre box Jeedom Mini)
+
+image::../images/firstUseMini3.jpg[]
+
+Vous arrivez dans une page de connexion à Jeedom.
+
+image::../images/firstUseMini4.jpg[]
+
+Par défaut le nom d'utilisateur et le mot de passe sont "admin" et "admin" (sans les guillemets)
+
+image::../images/firstUseMini5.jpg[]
+
+A noter qu'il y a juste en dessous une petite case "Enregistrer cet ordinateur" qui permettra de ne pas avoir besoin de s'identifier à la prochaine connexion. (à moins de se déconnecter)
+
+image::../images/firstUseMini6.jpg[]
+
+Vous arrivez donc sur l'interface de Jeedom. Elle est vide, il faudra créer l'arborescence de votre logement via les objets, puis ajouter de nouveaux modules domotiques.
+
+image::../images/firstUseMini7.jpg[]
+
+Jeedom fonctionne à l'aide de plugins, plusieurs plugins sont préinstallés.
+
+image::../images/firstUseMini8.jpg[]
+
+Le plugin Z-Wave qui sert à configurer son réseau Z-Wave et à ajouter de nouveaux modules Z-Wave.
+
+image::../images/firstUseMini9.jpg[]
+
+Le plugin Mail.
+
+image::../images/firstUseMini10.jpg[]
+
+Le plugin Widget et Script.
+
+image::../images/firstUseMini11.jpg[]
+
+Le plugin Météo.
+
+image::../images/firstUseMini12.jpg[]
+
+Vous trouverez encore de nombreux autres plugins directement via l'interface Jeedom sur le Market Jeedom.
+
+Par ailleurs, n'oubliez pas que vous disposez de 2 bons de réductions, vous permettant d'installer 2 plugins payants gratuitement (RFXCOM et Alarme). Pour s'en servir vous devez créer un compte sur le Market Jeedom, voir la documentation : Doc Market.
+
+Sous le boitier de la Mini vous trouverez le numéro de série de celle-ci. Vous pouvez le renseigner sur votre profil du Market, cela vous permettra entre autre de télécharger l'image de la carte SD originale de votre Mini.
+
+image::../images/firstUseMini13.jpg[]
+
+Veuillez noter que le Mode expert est par défaut désactivé (à n'activer qu'en connaissance de cause). Jeedom est également configuré par défaut sur la branche Stable.
+
+image::../images/firstUseMini14.jpg[]
+
+Pour les plus experts, il est possible d'accéder au système d'exploitation de Jeedom. Pour cela il faut se connecter à la box Jeedom Mini via SSH. Vous trouverez le login et mot de passe de connexion sur l'étiquette du numéro de série de votre box Jeedom Mini (sous le boitier). Pour une question de sécurité, merci de ne pas diffuser ce mot de passe.
+
+image::../images/firstUseMini15.jpg[]
+
+Vous accédez alors à l'OS de Jeedom en ligne de commande. A noter qu'il est possible de changer le mot de passe SSH avec la commande "passwd".
+
+image::../images/firstUseMini16.jpg[]
+
+Pour continuer de découvrir et utiliser Jeedom, vous disposez d'une documentation complète : Documentation Jeedom et également d'une section tutoriel vidéo : Tutos vidéos. N'hésitez pas à vous rendre sur le Forum de Jeedom pour toute question : Forum Jeedom.
+
+Merci, et bonne découverte de la domotique avec Jeedom.
