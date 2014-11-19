@@ -20,6 +20,7 @@ Retourne la liste de tous les objets
 
 ===== object::full
 Retourne la liste de tous les objets, avec pour chaque objet tous ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
+
 ===== object::byId
 Retourne l'objet spécifié
 
@@ -27,7 +28,7 @@ Paramètres:
 
 - int id
 
-====== object::fullById
+===== object::fullById
 Retourne un objet, ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
 
 ==== EqLogic
@@ -36,6 +37,7 @@ Retourne la liste de tous les équipements
 
 ===== eqLogic::fullById
 Retourne un équipement et ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
+
 ===== eqLogic::byId
 Retourne l'équipement spécifié
 
