@@ -206,6 +206,7 @@ class market {
         foreach (plugin::listPlugin() as $plugin) {
             $_ticket['user_plugin'] .= $plugin->getId() . ',';
         }
+        jeedom::sick();
         $cibDir = realpath(dirname(__FILE__) . '/../../log');
         $tmp = dirname(__FILE__) . '/../../tmp/log.zip';
         if (file_exists($tmp)) {
