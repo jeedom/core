@@ -22,15 +22,6 @@ include::firstUseMini.asciidoc[]
 === Installation
 include::installation.asciidoc[]
 
-'''
-=== API HTTP
-include::apihttp.asciidoc[]
-
-'''
-=== API jsonrpc
-include::jsonrpcapi.asciidoc[]
-
-
 === Accueil
 ==== Dashboard
 include::dashboard.asciidoc[]
@@ -111,6 +102,14 @@ include::user.asciidoc[]
 '''
 === Profils
 include::profils.asciidoc[]
+
+'''
+=== API HTTP
+include::apihttp.asciidoc[]
+
+'''
+=== API jsonrpc
+include::jsonrpcapi.asciidoc[]
 
 '''
 === Développement d'un plugin
