@@ -78,7 +78,7 @@ try {
                 if (!is_object($view)) {
                     ajax::success(array('html' => '', 'plan' => ''));
                 }
-                $link = 'index.php?v=d&p=view&view_id=' . $view->getId();
+                $link = 'index.php?p=view&view_id=' . $view->getId();
                 $html = '<span href="' . $link . '" class="view-link-widget label label-primary">';
                 $html .= '<a href="' . $link . '" style="color:' . $plan->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
                 if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
