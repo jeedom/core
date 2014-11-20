@@ -3,20 +3,20 @@ if (!hasRight('viewview')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 include_file('3rdparty', 'jquery.masonry/jquery.masonry', 'js');
-if (init('id') == '') {
+if (init('view_id') == '') {
     if ($_SESSION['user']->getOptions('defaultDesktopView') != '') {
         $view = view::byId($_SESSION['user']->getOptions('defaultDesktopView'));
         if (is_object($view)) {
-            redirect('index.php?v=d&p=view&id=' . $view->getId());
+            redirect('index.php?v=d&p=view&view_id=' . $view->getId());
         }
     }
     $list_view = view::all();
     if (isset($list_view[0]) && is_object($list_view[0])) {
-        redirect('index.php?v=d&p=view&id=' . $list_view[0]->getId());
+        redirect('index.php?v=d&p=view&view_id=' . $list_view[0]->getId());
     }
 }
-if (init('id') != '') {
-    $view = view::byId(init('id'));
+if (init('view_id') != '') {
+    $view = view::byId(init('view_id'));
     if (!is_object($view)) {
         throw new Exception('{{Vue inconnue. Verifier l\'id}}');
     }
@@ -38,9 +38,9 @@ sendVarToJS('view_id', $view->getId());
                 <?php
                 foreach (view::all() as $view_info) {
                     if ($view->getId() == $view_info->getId()) {
-                        echo '<li class="cursor li_view active"><a href="index.php?v=d&p=view&id=' . $view_info->getId() . '">' . $view_info->getName() . '</a></li>';
+                        echo '<li class="cursor li_view active"><a href="index.php?v=d&p=view&view_id=' . $view_info->getId() . '">' . $view_info->getName() . '</a></li>';
                     } else {
-                        echo '<li class="cursor li_view"><a href="index.php?v=d&p=view&id=' . $view_info->getId() . '">' . $view_info->getName() . '</a></li>';
+                        echo '<li class="cursor li_view"><a href="index.php?v=d&p=view&view_id=' . $view_info->getId() . '">' . $view_info->getName() . '</a></li>';
                     }
                 }
                 ?>
@@ -52,7 +52,7 @@ sendVarToJS('view_id', $view->getId());
         <legend style="height: 35px;color : #563d7c;">Vue <?php
             echo $view->getName();
             if (hasRight('viewedit', true)) {
-                ?> <a href="index.php?v=d&p=view_edit&id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right" id="bt_addviewZone"><i class="fa fa-pencil"></i> {{Editer}}</a><?php } ?></legend>
+                ?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right" id="bt_addviewZone"><i class="fa fa-pencil"></i> {{Editer}}</a><?php } ?></legend>
         <div id="div_displayView"></div>
     </div>
 
