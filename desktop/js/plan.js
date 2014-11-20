@@ -241,7 +241,7 @@ function fullScreen(_version) {
     $('#div_mainContainer').css('margin-top', '-60px');
     $('#div_mainContainer').css('margin-left', '-15px');
     $('#wrap').css('margin-bottom', '0px');
-    $('#div_mainContainer').append('<a class="btn btn-default" style="position : absolute; top : 10px; right : 10px;" id="bt_returnFullScreen"><i class="fa fa-level-up fa-rotate-270"></i></a>');
+    $('#div_mainContainer').append('<a class="btn btn-default" style="position : fixed; top : 10px; right : 10px;" id="bt_returnFullScreen"><i class="fa fa-level-up fa-rotate-270"></i></a>');
     $('#bt_returnFullScreen').on('click', function () {
         if (_version == 'phone' || _version == 'tablet') {
             window.location.href = "index.php?v=m&page=home";
@@ -317,26 +317,19 @@ function displayPlan() {
             if (planHeader_id != -1) {
                 jeedom.plan.byPlanHeader({
                     id: planHeader_id,
-                    noHtml : true,
                     error: function (error) {
                         $('#div_alert').showAlert({message: error.message, level: 'danger'});
                     },
                     success: function (plans) {
+                        var objects = [];
                         for (var i in plans) {
-                            jeedom.plan.getObjectPlan({
-                                id: plans[i].id,
-                                error: function (error) {
-                                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                                },
-                                success: function (data) {
-                                    if (data.plan.link_type == 'graph') {
-                                        addGraph(data.plan);
-                                    } else {
-                                        displayObject(data.plan.link_type, data.plan.link_id, data.html, data.plan);
-                                    }
-                                },
-                            });
+                            if (plans[i].plan.link_type == 'graph') {
+                                addGraph(plans[i].plan);
+                            } else {
+                               objects.push(displayObject(plans[i].plan.link_type, plans[i].plan.link_id, plans[i].html, plans[i].plan));
+                            }
                         }
+                        $('#div_displayObject').append(objects);
                     },
                 });
             }
@@ -450,10 +443,7 @@ function savePlan(_refreshDisplay) {
     }
 }
 
-function displayObject(_type, _id, _html, _plan) {
-    for (var i in jeedom.history.chart) {
-        delete jeedom.history.chart[i];
-    }
+function displayObject(_type, _id, _html, _plan, _noRender) {
     _plan = init(_plan, {});
     _plan.position = init(_plan.position, {});
     _plan.css = init(_plan.css, {});
@@ -472,6 +462,9 @@ function displayObject(_type, _id, _html, _plan) {
         $('.plan-link-widget[data-link_id=' + _id + ']').remove();
     }
     if (_type == 'graph') {
+        for (var i in jeedom.history.chart) {
+            delete jeedom.history.chart[i];
+        }
         $('.graph-widget[data-graph_id=' + _id + ']').remove();
     }
     if (_type == 'text') {
@@ -481,10 +474,10 @@ function displayObject(_type, _id, _html, _plan) {
         height: $('#div_displayObject').height(),
         width: $('#div_displayObject').width(),
     };
-
     var html = $(_html);
-    $('#div_displayObject').append(html);
-
+    if (init(_noRender, false) == true) {
+        $('#div_displayObject').append(html);
+    }
 
     for (var key in _plan.css) {
         if (_plan.css[key] != '' && key != 'zoom' && key != 'color') {
@@ -508,7 +501,6 @@ function displayObject(_type, _id, _html, _plan) {
             html.css('background-color', 'transparent');
         }
     }
-
     html.css('position', 'absolute');
     html.css('transform-origin', '0 0');
     html.css('transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
@@ -542,7 +534,11 @@ function displayObject(_type, _id, _html, _plan) {
             html.find('.widget-name').remove();
         }
     }
-    initDraggable($('#bt_editPlan').attr('data-mode'));
+    if (init(_noRender, false) == true) {
+        initDraggable($('#bt_editPlan').attr('data-mode'));
+    } else {
+        return html;
+    }
 }
 
 /***************************EqLogic**************************************/
