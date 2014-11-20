@@ -1,4 +1,3 @@
-==== Description
 Le centre de mise à jour centralise l'ensembles de fonctions de Jeedom, et permet de mettre à jour toutes les fonctionnalités de Jeedom, le logiciel, les plugins, les widgets etc...
 
 L'affichage peut différer si on est en mode Expert ou non, certaines options varient. Il présente sous forme de tableau l'ensemble des éléments installés dans Jeedom. Si on est en mode Expert on affiche tous les élements, si non, on affiche uniquement les éléments à mettre à jour.
