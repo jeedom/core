@@ -19,3 +19,49 @@ N'oubliez pas de mettre le deuxième "/" après jeedom, ce qui donnera @ip/jeedo
 Il y a t'il une application mobile dédiée ?:::
 Il n'y a pas d'application mobile en développement par l'équipe actuellement. Néanmoins Jeedom possède une version mobile adaptée à l'utilisation sur mobile et tablette.
 Il est tout à fait possible que des développeurs tiers réalisent dans le future des applications dédiées pour Jeedom.
+
+==== Divers
+
+Quels sont les identifiants pour me connecter la première fois ?:::
+Lors de votre première connexion à Jeedom (et même après si vous ne les avez pas modifiés) le nom d'utilisateur et le mot de passe par défaut sont admin. Il est fortement conseillé de les modifier pour plus de sécurité.
+
+Page blanche suite à une mise a jour ou à une installation ?:::
+Il faut regarder le log : /usr/share/nginx/www/jeedom/log/nginx.error (commande en ssh : tail /usr/share/nginx/www/jeedom/log/nginx.error)
+Souvent c'est un problème de mot de passe de la BDD, pour le réinitialiser il faut : 
+
+----
+bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p
+echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p
+echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p
+cd /usr/share/nginx/www/jeedom
+sudo cp core/config/common.config.sample.php core/config/common.config.php
+sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php 
+sudo chown www-data:www-data core/config/common.config.php
+----
+
+Comment externaliser la BDD ?:::
+Il suffit d'éditer le fichier /usr/share/nginx/www/jeedom/core/config/common.config.php.
+Dans ce fichier se trouve la configuration de la base de données :
+
+----
+    $CONFIG = array(
+        //MySQL parametres
+        'db' => array(
+            'host' => 'localhost',
+            'port' => 3306,
+            'dbname' => 'jeedom',
+            'username' => 'jeedom',
+            'password' => '************',
+        )
+    );
+----
+
+Il suffiit de modifier les paramètres en fonction des identifiants de la base Jeedom sur le serveur MySQL.
+On exécute ces changements :
+
+----
+sudo php /usr/share/nginx/www/jeedom/install/install.php
+----
+
+Le tour est joué ! 
