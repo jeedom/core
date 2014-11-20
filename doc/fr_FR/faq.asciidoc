@@ -1,4 +1,4 @@
-Général::
+==== Général
 
 Jeedom nécessite t'il un abonnement ?:::
 Non, Jeedom ne nécessite pas d'abonnement pour son utilisation. Seul un service de sauvegarde en ligne optionnel est payant.
@@ -8,3 +8,14 @@ Non, Jeedom n'utilise pas d'infrastructure type "Cloud". Tous se fait en local e
 
 Peut-on utiliser une clé usb zwave à la place du Razberry ?:::
 Jeedom est conçu à la base pour fonctionner avec la carte Razberry. Cependant un plugin Openzwave actuellement en développement permettra la compatibilité de Jeedom avec les clés usb zwave (notamment zwave plus).
+
+==== Version desktop
+
+J'ai une page blanche quand j'accède à @ip/jeedom:::
+N'oubliez pas de mettre le deuxième "/" après jeedom, ce qui donnera @ip/jeedom/
+
+==== Version mobile
+
+Il y a t'il une application mobile dédiée ?:::
+Il n'y a pas d'application mobile en développement par l'équipe actuellement. Néanmoins Jeedom possède une version mobile adaptée à l'utilisation sur mobile et tablette.
+Il est tout à fait possible que des développeurs tiers réalisent dans le future des applications dédiées pour Jeedom.
