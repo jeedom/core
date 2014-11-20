@@ -292,7 +292,6 @@ function initDraggable(_state) {
 }
 
 function displayPlan() {
-    $.showLoading();
     jeedom.plan.getHeader({
         id: planHeader_id,
         error: function (error) {
