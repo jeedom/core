@@ -1,6 +1,6 @@
-== Core
+= Core
 
-=== Description
+== Description
 Jeedom est un projet de domotique sans cloud et sans abonement. Il permet de piloté divers peripherique (zwave, rfxcom, enOcean, xPL, knx...). Plus d'informations ici : https://jeedom.fr
 
 === Principe
