@@ -35,7 +35,7 @@ if (isset($argv)) {
 }
 
 if (init('scenarioElement_id') != '') {
-    scenarion::doIn(array('scenario_id' => init('scenario_id'), 'scenarioElement_id' => init('scenarioElement_id'), 'second' => 0));
+    scenario::doIn(array('scenario_id' => init('scenario_id'), 'scenarioElement_id' => init('scenarioElement_id'), 'second' => 0));
 } else {
     $scenario = scenario::byId(init('scenario_id'));
     if (!is_object($scenario)) {
