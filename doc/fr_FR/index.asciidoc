@@ -1,122 +1,126 @@
-= Core
+== Core
 
-== Description
+=== Description
 Jeedom est un projet de domotique sans cloud et sans abonement. Il permet de piloté divers peripherique (zwave, rfxcom, enOcean, xPL, knx...). Plus d'informations ici : https://jeedom.fr
 
-== Principe
+=== Principe
 include::principe.asciidoc[]
 
 '''
-== Comment commencer
+=== Comment commencer
 include::begin.asciidoc[]
 
 '''
-== Assembler la mini
+=== Assembler la mini
 include::buildMini.asciidoc[]
 
 '''
-== Premiers pas
+=== Premiers pas
 include::firstUseMini.asciidoc[]
 
 '''
-== Installation
+=== Installation
 include::installation.asciidoc[]
 
 '''
-== API HTTP
+=== API HTTP
 include::apihttp.asciidoc[]
 
 '''
-== API jsonrpc
+=== API jsonrpc
 include::jsonrpcapi.asciidoc[]
 
 '''
-== Générale
-=== Administration
+=== Générale
+==== Administration
 include::administration.asciidoc[]
 
 '''
-=== Sauvegarde
+==== Sauvegarde
 include::backup.asciidoc[]
 
 '''
-=== Moteur de tâche
+==== Moteur de tâche
 include::cron.asciidoc[]
 
 '''
-=== Affichage
+==== Affichage
 include::display.asciidoc[]
 
 '''
-=== Interactions
+==== Interactions
 include::interact.asciidoc[]
 
 '''
-=== Réseau jeedom
+==== Réseau jeedom
 include::jeeNetwork.asciidoc[]
 
 '''
-=== Log
+==== Log
 include::log.asciidoc[]
 
 '''
-=== Objets
+==== Objets
 include::object.asciidoc[]
 
 '''
-=== Plugins
+==== Plugins
 include::plugin.asciidoc[]
 
 '''
-=== Droits avancés
+==== Droits avancés
 include::rights.asciidoc[]
 
 '''
-=== Scénario
+==== Scénario
 include::scenario.asciidoc[]
 
 '''
-=== Sécurité
+==== Sécurité
 include::security.asciidoc[]
 
 '''
-=== Timelinge
+==== Timelinge
 include::timeline.asciidoc[]
 
 '''
-=== Mise à jours
+==== Mise à jours
 include::update.asciidoc[]
 
 '''
-=== Utilisateurs
+==== Utilisateurs
 include::user.asciidoc[]
 
 
-== Accueil
-=== Dashboard
+=== Accueil
+==== Dashboard
 include::dashboard.asciidoc[]
 
 '''
-=== Historique
+==== Historique
 include::history.asciidoc[]
 
 '''
-=== Design
+==== Design
 include::plan.asciidoc[]
 
 '''
-=== Vue
+==== Vue
 include::view.asciidoc[]
 
 
 '''
-== Profils
+=== Profils
 include::profils.asciidoc[]
 
 '''
-== Développement d'un plugin
+=== Développement d'un plugin
 include::developement.asciidoc[]
 
 '''
-== Changelog
+=== FAQ
+include::faq.asciidoc[]
+
+'''
+=== Changelog
 include::changelog.asciidoc[]
