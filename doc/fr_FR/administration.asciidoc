@@ -1,4 +1,4 @@
-==== Description
+===== Description
 C’est ici que se trouve la plupart des paramètres de configuration. Bien que nombreux ils sont pré-configurés par défaut.
 
 image::../images/administration.JPG[]
