@@ -31,80 +31,83 @@ include::apihttp.asciidoc[]
 include::jsonrpcapi.asciidoc[]
 
 '''
-== Administration
+== Générale
+
+'''
+=== Administration
 include::administration.asciidoc[]
 
 '''
-== Sauvegarde
+=== Sauvegarde
 include::backup.asciidoc[]
 
 '''
-== Moteur de tâche
+=== Moteur de tâche
 include::cron.asciidoc[]
+
+'''
+=== Affichage
+include::display.asciidoc[]
+
+'''
+=== Interactions
+include::interact.asciidoc[]
+
+'''
+=== Réseau jeedom
+include::jeeNetwork.asciidoc[]
+
+'''
+=== Log
+include::log.asciidoc[]
+
+'''
+=== Objets
+include::object.asciidoc[]
+
+'''
+=== Plugins
+include::plugin.asciidoc[]
+
+'''
+=== Droits avancés
+include::rights.asciidoc[]
+
+'''
+=== Scénario
+include::scenario.asciidoc[]
+
+'''
+=== Sécurité
+include::security.asciidoc[]
+
+'''
+=== Timelinge
+include::timeline.asciidoc[]
+
+'''
+=== Mise à jours
+include::update.asciidoc[]
+
+'''
+=== Utilisateurs
+include::user.asciidoc[]
 
 '''
 == Dashboard
 include::dashboard.asciidoc[]
 
 '''
-== Affichage
-include::display.asciidoc[]
-
-'''
 == Historique
 include::history.asciidoc[]
-
-'''
-== Interactions
-include::interact.asciidoc[]
-
-'''
-== Réseau jeedom
-include::jeeNetwork.asciidoc[]
-
-'''
-== Log
-include::log.asciidoc[]
-
-'''
-== Objets
-include::object.asciidoc[]
 
 '''
 == Design
 include::plan.asciidoc[]
 
 '''
-== Plugins
-include::plugin.asciidoc[]
-
-'''
 == Profils
 include::profils.asciidoc[]
-
-'''
-== Droits avancés
-include::rights.asciidoc[]
-
-'''
-== Scénario
-include::scenario.asciidoc[]
-
-'''
-== Sécurité
-include::security.asciidoc[]
-
-'''
-== Timelinge
-include::timeline.asciidoc[]
-
-'''
-== Mise à jours
-include::update.asciidoc[]
-
-'''
-== Utilisateurs
-include::user.asciidoc[]
 
 '''
 == Vue
