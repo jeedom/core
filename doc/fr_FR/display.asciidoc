@@ -1,6 +1,6 @@
 Le sous-menu affichage est composé de deux onglets. Le premier onglet "Arbre domotique", et le deuxième "Configuration de l'affichage".
 
-=== Arbre domotique
+==== Arbre domotique
 
 Le premier onglet "Arbre domotique" va résumer simplement votre configuration domotique. Il n'est pour le moment pas utilisé à 100%, il le sera avec la future application smartphone et tablette.
 
@@ -18,7 +18,7 @@ En bas à droite on peut configurer quel sera le widget (représentation graphiq
 
 image::../images/display4.png[]
 
-=== Configuration de l'affichage
+==== Configuration de l'affichage
 
 Le deuxième onglet "Configuration de l'affichage" permet de paramétrer les couleurs des différents widgets (modules domotiques) qui apparaissent dans Jeedom.
 
