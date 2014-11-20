@@ -311,6 +311,7 @@ function displayPlan() {
             }
             if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
                 fullScreen(deviceInfo.type);
+                $('meta[name="viewport"]').prop('content', 'width=1440');
             }
             $('.eqLogic-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
             if (planHeader_id != -1) {
