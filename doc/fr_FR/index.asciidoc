@@ -30,6 +30,23 @@ include::apihttp.asciidoc[]
 === API jsonrpc
 include::jsonrpcapi.asciidoc[]
 
+
+=== Accueil
+==== Dashboard
+include::dashboard.asciidoc[]
+
+'''
+==== Design
+include::plan.asciidoc[]
+
+'''
+==== Vue
+include::view.asciidoc[]
+
+'''
+=== Historique
+include::history.asciidoc[]
+
 '''
 === Générale
 ==== Administration
@@ -90,24 +107,6 @@ include::update.asciidoc[]
 '''
 ==== Utilisateurs
 include::user.asciidoc[]
-
-
-=== Accueil
-==== Dashboard
-include::dashboard.asciidoc[]
-
-'''
-==== Historique
-include::history.asciidoc[]
-
-'''
-==== Design
-include::plan.asciidoc[]
-
-'''
-==== Vue
-include::view.asciidoc[]
-
 
 '''
 === Profils
