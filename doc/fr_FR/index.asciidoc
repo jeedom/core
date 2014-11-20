@@ -32,8 +32,6 @@ include::jsonrpcapi.asciidoc[]
 
 '''
 == Générale
-
-'''
 === Administration
 include::administration.asciidoc[]
 
@@ -93,25 +91,27 @@ include::update.asciidoc[]
 === Utilisateurs
 include::user.asciidoc[]
 
-'''
-== Dashboard
+
+== Accueil
+=== Dashboard
 include::dashboard.asciidoc[]
 
 '''
-== Historique
+=== Historique
 include::history.asciidoc[]
 
 '''
-== Design
+=== Design
 include::plan.asciidoc[]
+
+'''
+=== Vue
+include::view.asciidoc[]
+
 
 '''
 == Profils
 include::profils.asciidoc[]
-
-'''
-== Vue
-include::view.asciidoc[]
 
 '''
 == Développement d'un plugin
