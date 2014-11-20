@@ -46,49 +46,49 @@ Vous pouvez utiliser n'importe lequel des symboles suivant pour les opérateurs 
 
 Vous pouvez combiner n'importe quelle opération avec les opérateurs suivants :
 
-- &&/ET/et/AND/and : et
-- ||/OU/ou/OR/or : ou
-- |^/XOR/xor : ou
+- && / ET / et / AND / and : et
+- || / OU / ou / OR / or : ou
+- |^ / XOR / xor : ou
 
 Vous pouvez aussi utiliser les tags suivants :
 
-- #seconde# : seconde courante
-- #heure# : heure courante (ex : 17 pour 17h15)
-- #minute# : minute courante (ex : 15 pour 17h15)
-- #jour# : jour courant
-- #mois# : mois courant
-- #annee# : année courante
-- #time# : heure et minute courante (ex : 1715 pour 17h15)
-- #timestamp# : retourne le nombre de secondes depuis le 1er janvier 1970
-- #date# : jour et mois courant (ex : 1215 pour le 15 décembre)
-- #semaine# : numéro de la semaine (ex : 51)
-- #sjour# : pour le nom du jour de la semaine (ex : Samedi)
-- #njour# : numéro du jour de 0 (dimanche) à 6 (samedi)
-- #smois# : pour le nom du mois (ex : Janvier)
+- \#seconde# : seconde courante
+- \#heure# : heure courante (ex : 17 pour 17h15)
+- \#minute# : minute courante (ex : 15 pour 17h15)
+- \#jour# : jour courant
+- \#mois# : mois courant
+- \#annee# : année courante
+- \#time# : heure et minute courante (ex : 1715 pour 17h15)
+- \#timestamp# : retourne le nombre de secondes depuis le 1er janvier 1970
+- \#date# : jour et mois courant (ex : 1215 pour le 15 décembre)
+- \#semaine# : numéro de la semaine (ex : 51)
+- \#sjour# : pour le nom du jour de la semaine (ex : Samedi)
+- \#njour# : numéro du jour de 0 (dimanche) à 6 (samedi)
+- \#smois# : pour le nom du mois (ex : Janvier)
 - rand(1,10) : pour un nombre aléatoire de 1 à 10
 - average(commande,période) : donne la moyenne de la commande sur la période (period=[month,day,hour,min])
-    * Ex : average(#[Salle de bain][Hydrometrie][Humidité]#,1 hour) : Renvoi la moyenne de la commande sur la dernière heure
+    * Ex : average(\#[Salle de bain][Hydrometrie][Humidité]#,1 hour) : Renvoi la moyenne de la commande sur la dernière heure
 - min(commande,période) : donne le minimum de la commande sur la période (period=[month,day,hour,min])
-    * Ex : min(#[Salle de bain][Hydrometrie][Humidité]#,15 min) : Renvoi le minimum de la commande sur les 15 dernières minutes
+    * Ex : min(\#[Salle de bain][Hydrometrie][Humidité]#,15 min) : Renvoi le minimum de la commande sur les 15 dernières minutes
 - max(commande,période) : donne le maximum de la commande sur la période (period=[month,day,hour,min])
-    * Ex : max(#[Salle de bain][Hydrometrie][Humidité]#,1 day) : Renvoi le maximum de la commande sur les 7 derniers jours
+    * Ex : max(\#[Salle de bain][Hydrometrie][Humidité]#,1 day) : Renvoi le maximum de la commande sur les 7 derniers jours
 - tendance(commande,période,seuil) : donne la tendance de la commande sur la période (period=[month,day,hour,min])
-    * Ex : tendance(#[Salle de bain][Hydrometrie][Humidité]#,1 hour,0.1) : Renvoi 1 si en augmentation, 0 si constant et -1 si en diminution
+    * Ex : tendance(\#[Salle de bain][Hydrometrie][Humidité]#,1 hour,0.1) : Renvoi 1 si en augmentation, 0 si constant et -1 si en diminution
            Le seuil permet de definir la sensibilitée, attention le calcul du seuil utilise la calcul de link:/http://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s[moindre carrés]
 - variable(mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
     * Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas
 - scenario(scenario) : donne le statut du scenario
-    * Ex : scenario(#[Salle de bain][Lumière][Auto]#) : Renvoi 1 en cours, 0 si arreté et -1 si desactivé
+    * Ex : scenario(\#[Salle de bain][Lumière][Auto]#) : Renvoi 1 en cours, 0 si arreté et -1 si desactivé
 - stateDuration(commande,[valeur]) : donne la durée en seconde depuis le dernier changement de valeur
-    * Ex : stateDuration(#[Salle de bain][Hydrometrie][Humidité]#) : Renvoi 300 si cette valeur est la depuis 5min
+    * Ex : stateDuration(\#[Salle de bain][Hydrometrie][Humidité]#) : Renvoi 300 si cette valeur est la depuis 5min
 - lastScenarioExecution(scenario) : donne la durée en seconde depuis le dernier lancement du scénario
-    * Ex : lastScenarioExecution(#[Salle de bain][Lumière][Auto]#) : Renvoi 300 si le scénario c'est lancé pour la derniere fois il y a 5min
+    * Ex : lastScenarioExecution(\#[Salle de bain][Lumière][Auto]#) : Renvoi 300 si le scénario c'est lancé pour la derniere fois il y a 5min
 - randomColor(min,max) : donne une couleur aléatoire compris entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu)
     * Ex : randomColor(40,60) : Pour avoir une couleur aléatoire proche du vert
 - trigger(commande) : permet de connaitre le declencheur du scénario ou de savoir si c'est bien la commande passé en parametre qui a declenchée le scénario
-    * Ex : trigger(#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien #[Salle de bain][Hydrometrie][Humidité]# qui a declenché le scénario sinon 0
+    * Ex : trigger(\#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien #[Salle de bain][Hydrometrie][Humidité]# qui a declenché le scénario sinon 0
 - round(valeur,[decimal]) :permet un arrondit au dessus, [decimal] nombre de decimal après la virgule
-    * Ex : round(#[Salle de bain][Hydrometrie][Humidité]# / 10) : renverra 9 si le pourcentage d'humidité et 85
+    * Ex : round(\#[Salle de bain][Hydrometrie][Humidité]# / 10) : renverra 9 si le pourcentage d'humidité et 85
 - odd(valeur) : permet de savoir si un nombre est impaire ou non. Renvoi 1 si impaire 0 sinon
     * Ex : odd(1) :  renverra 1
             
@@ -104,19 +104,19 @@ En plus des commandes domotiques vous avez accès aux fonctions suivantes :
                
 Vous pouvez aussi utiliser les tags suivants dans les options : 
 
-- #seconde# : seconde courante
-- #heure#  : heure courante (ex : 17 pour 17h15)
-- #minute# : minute courante (ex : 15 pour 17h15)
-- #jour# : jour courant
-- #mois# : mois courant
-- #annee# : année courante
-- #time# : heure et minute courante (ex : 1715 pour 17h15)
-- #timestamp# : retourne le nombre de secondes depuis le 1er janvier 1970
-- #date# : jour et mois courant (ex : 1215 pour le 15 decembre)
-- #semaine# : numéro de la semaine (ex : 51)
-- #sjour# : pour le nom du jour de la semaine en anglais (ex : sunday)
-- #njour# : numéro du jour de 0 (dimanche) à 6 (samedi)
-- #smois# : pour le nom du mois (ex : Janvier)
+- \#seconde# : seconde courante
+- \#heure#  : heure courante (ex : 17 pour 17h15)
+- \#minute# : minute courante (ex : 15 pour 17h15)
+- \#jour# : jour courant
+- \#mois# : mois courant
+- \#annee# : année courante
+- \#time# : heure et minute courante (ex : 1715 pour 17h15)
+- \#timestamp# : retourne le nombre de secondes depuis le 1er janvier 1970
+- \#date# : jour et mois courant (ex : 1215 pour le 15 decembre)
+- \#semaine# : numéro de la semaine (ex : 51)
+- \#sjour# : pour le nom du jour de la semaine en anglais (ex : sunday)
+- \#njour# : numéro du jour de 0 (dimanche) à 6 (samedi)
+- \#smois# : pour le nom du mois (ex : Janvier)
 - rand[1-10] : pour un nombre aléatoire de 1 à 10
 - variable (mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
     * Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas
