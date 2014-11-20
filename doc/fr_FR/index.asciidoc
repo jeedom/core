@@ -6,86 +6,114 @@ Jeedom est un projet de domotique sans cloud et sans abonement. Il permet de pil
 === Principe
 include::principe.asciidoc[]
 
+
 === Comment commencer
 include::begin.asciidoc[]
+
 
 === Assembler la mini
 include::buildMini.asciidoc[]
 
+
 === Premiers pas
 include::firstUseMini.asciidoc[]
+
 
 === Installation
 include::installation.asciidoc[]
 
+
 === API HTTP
 include::apihttp.asciidoc[]
+
 
 === API jsonrpc
 include::jsonrpcapi.asciidoc[]
 
+
 === Administration
 include::administration.asciidoc[]
+
 
 === Sauvegarde
 include::backup.asciidoc[]
 
+
 === Moteur de tâche
 include::cron.asciidoc[]
+
 
 === Dashboard
 include::dashboard.asciidoc[]
 
+
 === Affichage
 include::display.asciidoc[]
+
 
 === Historique
 include::history.asciidoc[]
 
+
 === Interactions
 include::interact.asciidoc[]
+
 
 === Réseau jeedom
 include::jeeNetwork.asciidoc[]
 
+
 === Log
 include::log.asciidoc[]
+
 
 === Objets
 include::object.asciidoc[]
 
+
 === Design
 include::plan.asciidoc[]
+
 
 === Plugins
 include::plugin.asciidoc[]
 
+
 === Profils
 include::profils.asciidoc[]
+
 
 === Droits avancés
 include::rights.asciidoc[]
 
+
 === Scénario
 include::scenario.asciidoc[]
+
 
 === Sécurité
 include::security.asciidoc[]
 
+
 === Timelinge
 include::timeline.asciidoc[]
+
 
 === Mise à jours
 include::update.asciidoc[]
 
+
 === Utilisateurs
 include::user.asciidoc[]
+
 
 === Vue
 include::view.asciidoc[]
 
+
 === Développement d'un plugin
 include::developement.asciidoc[]
+
 
 === Changelog
 include::changelog.asciidoc[]
