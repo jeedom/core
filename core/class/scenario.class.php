@@ -241,6 +241,9 @@ class scenario {
         }
         $scenarioElement->getSubElement('do')->execute($scenario);
         $scenario->setLog(__('************FIN sous tâche**************', __FILE__));
+        if(!$scenario->running()){
+            $scenario->setState('stop');
+        }
         $scenario->save();
     }
 
