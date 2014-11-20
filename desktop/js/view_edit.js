@@ -54,7 +54,7 @@ $('.viewDataOption[data-l1key=configuration][data-l2key=graphColor]').on('change
 });
 
 $('#bt_viewResult').on('click', function() {
-    window.location.href = 'index.php?v=d&p=view&id=' + $(".li_view.active").attr('data-view_id');
+    window.location.href = 'index.php?v=d&p=view&view_id=' + $(".li_view.active").attr('data-view_id');
 });
 
 $("#bt_addView").on('click', function(event) {
@@ -116,9 +116,9 @@ $("#bt_removeView").on('click', function(event) {
     });
 });
 
-if (is_numeric(getUrlVars('id'))) {
-    if ($('#ul_view .li_view[data-view_id=' + getUrlVars('id') + ']').length != 0) {
-        $('#ul_view .li_view[data-view_id=' + getUrlVars('id') + ']').click();
+if (is_numeric(getUrlVars('view_id'))) {
+    if ($('#ul_view .li_view[data-view_id=' + getUrlVars('view_id') + ']').length != 0) {
+        $('#ul_view .li_view[data-view_id=' + getUrlVars('view_id') + ']').click();
     } else {
         $('#ul_view .li_view:first').click();
     }
@@ -297,7 +297,7 @@ function editView(_view) {
             if ($('.li_view[data-view_id=' + data.result.id + ']').length != 0) {
                 $('.li_view.active a').text($('#in_addViewName').value());
             } else {
-                window.location.replace('index.php?v=d&p=view_edit&id=' + data.result.id);
+                window.location.replace('index.php?v=d&p=view_edit&view_id=' + data.result.id);
             }
         }
     });
