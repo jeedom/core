@@ -28,8 +28,8 @@ Pour les actions on peut exécuter soit une action d’une commande (les options
 ==== Déclencheur
 Il existe des déclencheur spécifique (autre que ceux fournis par les commandes) :
 
-- #start#  : déclenché au (re)démarrage de Jeedom
-- #user_connect#  : déclenché lors de la connexion d'un utilisateur
+- \#start\#  : déclenché au (re)démarrage de Jeedom
+- \#user_connect\#  : déclenché lors de la connexion d'un utilisateur
 
 ==== Condition ou valeur d'une commande d'action
 Attention à bien mettre des ' ou " (quote ou double quote) lors de l'utilisation de chaîne de caractère. Ex : "#[Object][Equipement][Info]#" = "oui"
