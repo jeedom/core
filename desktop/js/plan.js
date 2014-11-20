@@ -525,7 +525,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
         if (isset(_plan.display) && isset(_plan.display.cmd)) {
             for (var id in _plan.display.cmd) {
                 if (_plan.display.cmd[id] == 1) {
-                    $('.cmd[data-cmd_id=' + id + ']').remove();
+                    html.find('.cmd[data-cmd_id=' + id + ']').remove();
                 }
             }
         }
