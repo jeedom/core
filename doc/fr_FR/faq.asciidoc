@@ -65,3 +65,17 @@ sudo php /usr/share/nginx/www/jeedom/install/install.php
 ----
 
 Le tour est joué ! 
+
+==== Les Box's
+
+Ou acheter la mini ?:::
+La Jeedom Mini est commercialisée chez notre partenaire http://www.domadoo.fr/ à partir de 119.00€
+
+Quelle est la date de sortie de la Jeedom Center ?:::
+La Jeedom Center est prévue pour la fin de l'année 2014.
+
+Quelle est le tarif de la Jeedom Center ?:::
+Il n'y a pas de tarif annoncé pour le moment.
+
+Impossible d'accéder à Jeedom de l'extérieur depuis l'achat d'une box:::
+Par défaut Jeedom est à la racine de Nginx sur les box. Vous n'avez plus à rajouter /jeedom/ dans l'adresse d'accès. L'adresse exacte sera donc : votre_ip_public:votre_port/
