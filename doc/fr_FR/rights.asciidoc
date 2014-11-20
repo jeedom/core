@@ -1,4 +1,4 @@
-==== Description
+===== Description
 Page permettant de gerer finement les droits de chaque utilisateurs
 
 image::../images/rights.JPG[]
