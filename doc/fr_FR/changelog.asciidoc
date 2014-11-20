@@ -2,3 +2,4 @@
 - optimisation de la vitesse d'affichage des designs
 - bugfix des liens vers les vues dans les designs
 - bugfix de l'affichage de certain widget en mobile
+- mise à jour de bootstrap de 3.3.0 à 3.3.1
