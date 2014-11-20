@@ -55,7 +55,7 @@ Le principe est le suivant : une phrase de commande déclenche une unique comman
 
 ====== Demande
 Vous pouvez utiliser #commande# et #objet# (les 2 doivent absolument être utilisés ensemble) pour générer une liste de commandes (il est possible de filtrer la génération pour réduire la liste). Il est aussi possible d'utiliser #equipement# (utile si plusieurs commandes appartenant au même objet ont le même nom)
-Exemple :}} <em>{{Quelle est la #commande# [du |de la |de l']#objet#}}</em>
+Exemple : Quelle est la #commande# [du |de la |de l']#objet#
 Lors de la génération des commandes vous pouvez utiliser le champ synonyme (syn1=syn2,syn3|syn4=syn5) pour remplacer le nom des objets, des équipements et/ou des commandes
 Pour les actions vous pouvez utiliser #color# (obligatoire si la commande est de type couleur) pour la valeur d'une couleur ou #slider# (obligatoire si la commande est de type slider) pour la valeur d'un slider.
 
@@ -66,6 +66,6 @@ Vous pouvez utiliser le champ conversion binaire pour convertir les valeurs bina
 Exemple : non|oui
 
 ====== Personne
-Le champ personne permet de n'autoriser que certaines personnes \u00e0 exécuter la commande, vous pouvez mettre plusieurs profils en les séparant par |.
+Le champ personne permet de n'autoriser que certaines personnes à exécuter la commande, vous pouvez mettre plusieurs profils en les séparant par |.
 Exemple : personne1|personne2
 
