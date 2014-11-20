@@ -78,8 +78,8 @@ try {
                 if (!is_object($view)) {
                     ajax::success(array('html' => '', 'plan' => ''));
                 }
-                $link = 'index.php?p=view&view_id=' . $view->getId();
-                $html = '<span href="' . $link . '" class="view-link-widget label label-primary">';
+                $link = 'index.php?v=d&p=view&view_id=' . $view->getId();
+                $html = '<span class="view-link-widget label label-primary"  data-link_id="' . $view->getId() . '">';
                 $html .= '<a href="' . $link . '" style="color:' . $plan->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
                 if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
                     $html .= $plan->getDisplay('icon') . ' ' . $plan->getDisplay('name');
