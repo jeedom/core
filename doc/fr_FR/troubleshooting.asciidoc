@@ -33,7 +33,9 @@ La cause la plus frequente est l'utilisation d'un plugin en version beta et pas 
 
 [panel,danger]
 .Lors d'une commande j'ai une roue qui tourne sans s'arreter
+--
 Encore une fois cela est souvent du à un plugin en beta alors que Jeedom est en stable
+--
 
 [panel,danger]
 .J'ai des erreurs timeout sur socket.io dans les logs
