@@ -1,55 +1,84 @@
-==== Général
-
+[panel,primary]
 .Jeedom nécessite t'il un abonnement ?
-****
+--
 Non, Jeedom ne nécessite pas d'abonnement pour son utilisation. Seul un service de sauvegarde en ligne optionnel est payant.
-****
+--
 
-Jeedom utilise t'il des serveurs extérieurs pour fonctionner ?:::
+[panel,primary]
+.Jeedom utilise t'il des serveurs extérieurs pour fonctionner ?
+--
 Non, Jeedom n'utilise pas d'infrastructure type "Cloud". Tous se fait en local et vous n'avez pas besoin de nos serveurs pour que votre installation fonctionne. Seuls les services comme le Market ou la sauvegarde online nécessitent l'utilisation de nos serveurs.
+--
 
-Peut-on utiliser une clé usb zwave à la place du Razberry ?:::
+[panel,primary]
+.Peut-on utiliser une clé usb zwave à la place du Razberry ?
+--
 Jeedom est conçu à la base pour fonctionner avec la carte Razberry. Cependant un plugin Openzwave actuellement en développement permettra la compatibilité de Jeedom avec les clés usb zwave (notamment zwave plus).
+--
 
-==== Version desktop
-
-Peut on reordonner les équipements sur le dashboard:::
+[panel,primary]
+.Peut on reordonner les équipements sur le dashboard
+--
 Non ce n'est pas possible, mais il existe les vues pour ça
+--
 
-Peut on reordonner les commandes d'un équipement:::
+[panel,primary]
+.Peut on reordonner les commandes d'un équipement
+--
 Oui c'est possible il suffit de glisser/deposer les commandes de votre objets sur ça configuration
+--
 
-Peut on éditer le style des widgets:::
+[panel,primary]
+.Peut on éditer le style des widgets
+--
 Oui c'est possible soit en passant par le plugin widget, ou en utilisant la page generale -> Affichage
+--
 
-Peut on mettre plusieurs fois le meme équipements sur un design:::
+[panel,primary]
+.Peut on mettre plusieurs fois le meme équipements sur un design
+--
 Non ce n'est pas possible, mais vous pouvez dupliquer celui-ci grace au plugin virtuel
+--
 
-Comment changer une donner erronée de l'historique:::
+[panel,primary]
+.Comment changer une donner erronée de l'historique
+--
 Il suffit sur une courbe historique de la commande de cliquer sur le point en question. Si vous laissez le champs alors la valeur est supprimé
+--
 
-Comment enregistrer un ordinateur pour ne plus avoir à s'identifier:::
+[panel,primary]
+.Comment enregistrer un ordinateur pour ne plus avoir à s'identifier
+--
 Il suffit lors de la connexion de cocher la case "Enregistrer cer ordinateur"
+--
 
-On me demande de mettre à jour jeedom alors qu'il ne me propose rien meme après verification:::
+[panel,primary]
+.On me demande de mettre à jour jeedom alors qu'il ne me propose rien meme après verification
+--
 C'est normale, pendant la pahse de developpement de la futur beta les numéros de version ne sont pas incrementés après chaque mise à jour
+--
 
-Combien de temp doit durer un backup:::
+[panel,primary]
+.Combien de temp doit durer un backup
+--
 Il n' a pas de durée standard, cela depend du systeme mais il peut prendre plus de 5min, c'est normale
+--
 
-
-==== Version mobile
-
-Il y a t'il une application mobile dédiée ?:::
+[panel,primary]
+.Y a t'il une application mobile dédiée ?
+--
 Il n'y a pas d'application mobile en développement par l'équipe actuellement. Néanmoins Jeedom possède une version mobile adaptée à l'utilisation sur mobile et tablette.
 Il est tout à fait possible que des développeurs tiers réalisent dans le future des applications dédiées pour Jeedom.
+--
 
-==== Divers
-
-Quels sont les identifiants pour me connecter la première fois ?:::
+Quels sont les identifiants pour me connecter la première fois ?
+--
 Lors de votre première connexion à Jeedom (et même après si vous ne les avez pas modifiés) le nom d'utilisateur et le mot de passe par défaut sont admin. Il est fortement conseillé de les modifier pour plus de sécurité.
+--
 
-Comment externaliser la BDD ?:::
+[panel,primary]
+.Comment externaliser la BDD ?
+--
 Il suffit d'éditer le fichier /usr/share/nginx/www/jeedom/core/config/common.config.php.
 Dans ce fichier se trouve la configuration de la base de données :
 
@@ -66,7 +95,7 @@ Dans ce fichier se trouve la configuration de la base de données :
     );
 ----
 
-Il suffiit de modifier les paramètres en fonction des identifiants de la base Jeedom sur le serveur MySQL.
+.Il suffiit de modifier les paramètres en fonction des identifiants de la base Jeedom sur le serveur MySQL.
 On exécute ces changements :
 
 ----
@@ -74,17 +103,28 @@ sudo php /usr/share/nginx/www/jeedom/install/install.php
 ----
 
 Le tour est joué ! 
+--
 
-==== Les Box's
-
-Ou acheter la mini ?:::
+[panel,primary]
+.Ou acheter la mini ?
+--
 La Jeedom Mini est commercialisée chez notre partenaire http://www.domadoo.fr/ à partir de 119.00€
+--
 
-Quelle est la date de sortie de la Jeedom Center ?:::
+[panel,primary]
+.Quelle est la date de sortie de la Jeedom Center ?
+--
 La Jeedom Center est prévue pour la fin de l'année 2014.
+--
 
-Quelle est le tarif de la Jeedom Center ?:::
+[panel,primary]
+.Quelle est le tarif de la Jeedom Center ?
+--
 Il n'y a pas de tarif annoncé pour le moment.
+--
 
-Impossible d'accéder à Jeedom de l'extérieur depuis l'achat d'une box:::
+[panel,primary]
+.Impossible d'accéder à Jeedom de l'extérieur depuis l'achat d'une box
+--
 Par défaut Jeedom est à la racine de Nginx sur les box. Vous n'avez plus à rajouter /jeedom/ dans l'adresse d'accès. L'adresse exacte sera donc : votre_ip_public:votre_port/
+--
