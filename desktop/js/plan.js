@@ -475,7 +475,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
         width: $('#div_displayObject').width(),
     };
     var html = $(_html);
-    if (init(_noRender, false) == true) {
+    if (init(_noRender, false) == false) {
         $('#div_displayObject').append(html);
     }
 
@@ -534,7 +534,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
             html.find('.widget-name').remove();
         }
     }
-    if (init(_noRender, false) == true) {
+    if (init(_noRender, false) == false) {
         initDraggable($('#bt_editPlan').attr('data-mode'));
     } else {
         return html;
