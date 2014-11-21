@@ -120,7 +120,7 @@ include::developement.asciidoc[]
 include::faq.asciidoc[]
 
 '''
-=== Troubleshoting
+=== Troubleshooting
 include::troubleshooting.asciidoc[]
 
 '''
