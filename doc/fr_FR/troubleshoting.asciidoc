@@ -1,0 +1,58 @@
+J'ai une page blanche:::
+Il faut regarder le fichier /usr/share/nginx/www/jeedom/log/nginx.error, celui-ci indique l'erreur, les causes les plus courante sont : 
+
+- problème d'identificant MySQL 
+- MySQL est arreté ("sudo service mysql start" pour le redemarrer)
+- probleme de place sur le système de fichiers
+
+J'ai un probleme d'identifiant BDD:::
+Il faut reinitialiser ceux-ci
+
+----
+bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p
+echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p
+echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p
+cd /usr/share/nginx/www/jeedom
+sudo cp core/config/common.config.sample.php core/config/common.config.php
+sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php 
+sudo chown www-data:www-data core/config/common.config.php
+----
+
+J'ai des {{...}} partout:::
+La cause la plus frequente est l'utilisation d'un plugin en version beta et pas Jeedom ou l'inverse
+
+Lors d'une commande j'ai une roue qui tourne sans s'arreter:::
+Encore une fois cela est souvent du à un plugin en beta alors que Jeedom est en stable
+
+J'ai des erreurs timeout sur socket.io dans les logs:::
+Cela est normale c'est le nodeJS qui redemarre sa connexion
+
+Je n'ai plus accès a Jeedom ni en SSH:::
+Cette erreur n'est pas du à Jeedom mais à un probleme avec le système. Si le probleme persiste suite à une reinstallation il est conseillé de voir avec le SAV pour un soucis hardware
+
+Mon scenario ne s'arrete plus/pas:::
+Il est conseillé de regarder les commandes éxecuter par le scenario, souvent cela vient d'une commande qui ne se termine pas
+
+Mon scenario est lent à se declencher:::
+Si dans le scénario il n'y a pas de pause il est conseillé de cocher la case lancer en avant plan (disponible en mode expert)
+
+Le témoin nodeJS en bas de la page est rouge ou gris:::
+En ssh faite "sudo service nodeJS restart" pour forcer un redémarrage de celui-ci
+
+Je n'ai aucune erreur dans le log nginx.error malgrès des erreus 500:::
+Editez le fichier /etc/php5/fpm/pool.d/www.conf et decommanter la ligne ";catch_worket_process=yes" (supression du ;) et redemarrez php "sudo service php5-fpm restart"
+
+J'ai des instabilités ou des erreurs 504:::
+Vérifiez si votre systeme de fichier n'est pas corrompu "sudo dmesg | grep error"
+
+Je ne vois pas tout mes équipements sur le dashboard:::
+Souvent c'est du au faite que les équipements sont affectés à un objet qui n'est pas le fils ou l'objet lui meme du premiere objet selectionné à gauche dans l'arbre (vous pouvez dans votre profils configurer celui-ci)
+
+Le market me dit que mes identifiants sont invalide:::
+Lors de la configuration et avant le test il faut enregistrer celle-ci
+
+Lors de la connexion du maitre avec les esclaves j'ai des erreurs:::
+Verifiez que vous avez bien mis les /jeedom si vous utilisez ceux-ci juste après l'IP de jeedom (souvent le cas en installation DIY)
+
+ 

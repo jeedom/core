@@ -120,5 +120,9 @@ include::developement.asciidoc[]
 include::faq.asciidoc[]
 
 '''
+=== Troubleshoting
+include::troubleshooting.asciidoc[]
+
+'''
 === Changelog
 include::changelog.asciidoc[]

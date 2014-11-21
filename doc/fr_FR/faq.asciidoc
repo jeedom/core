@@ -11,8 +11,30 @@ Jeedom est conçu à la base pour fonctionner avec la carte Razberry. Cependant 
 
 ==== Version desktop
 
-J'ai une page blanche quand j'accède à @ip/jeedom:::
-N'oubliez pas de mettre le deuxième "/" après jeedom, ce qui donnera @ip/jeedom/
+Peut on reordonner les équipements sur le dashboard:::
+Non ce n'est pas possible, mais il existe les vues pour ça
+
+Peut on reordonner les commandes d'un équipement:::
+Oui c'est possible il suffit de glisser/deposer les commandes de votre objets sur ça configuration
+
+Peut on éditer le style des widgets:::
+Oui c'est possible soit en passant par le plugin widget, ou en utilisant la page generale -> Affichage
+
+Peut on mettre plusieurs fois le meme équipements sur un design:::
+Non ce n'est pas possible, mais vous pouvez dupliquer celui-ci grace au plugin virtuel
+
+Comment changer une donner erronée de l'historique:::
+Il suffit sur une courbe historique de la commande de cliquer sur le point en question. Si vous laissez le champs alors la valeur est supprimé
+
+Comment enregistrer un ordinateur pour ne plus avoir à s'identifier:::
+Il suffit lors de la connexion de cocher la case "Enregistrer cer ordinateur"
+
+On me demande de mettre à jour jeedom alors qu'il ne me propose rien meme après verification:::
+C'est normale, pendant la pahse de developpement de la futur beta les numéros de version ne sont pas incrementés après chaque mise à jour
+
+Combien de temp doit durer un backup:::
+Il n' a pas de durée standard, cela depend du systeme mais il peut prendre plus de 5min, c'est normale
+
 
 ==== Version mobile
 
@@ -24,21 +46,6 @@ Il est tout à fait possible que des développeurs tiers réalisent dans le futu
 
 Quels sont les identifiants pour me connecter la première fois ?:::
 Lors de votre première connexion à Jeedom (et même après si vous ne les avez pas modifiés) le nom d'utilisateur et le mot de passe par défaut sont admin. Il est fortement conseillé de les modifier pour plus de sécurité.
-
-Page blanche suite à une mise a jour ou à une installation ?:::
-Il faut regarder le log : /usr/share/nginx/www/jeedom/log/nginx.error (commande en ssh : tail /usr/share/nginx/www/jeedom/log/nginx.error)
-Souvent c'est un problème de mot de passe de la BDD, pour le réinitialiser il faut : 
-
-----
-bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
-echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p
-echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p
-echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p
-cd /usr/share/nginx/www/jeedom
-sudo cp core/config/common.config.sample.php core/config/common.config.php
-sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php 
-sudo chown www-data:www-data core/config/common.config.php
-----
 
 Comment externaliser la BDD ?:::
 Il suffit d'éditer le fichier /usr/share/nginx/www/jeedom/core/config/common.config.php.
