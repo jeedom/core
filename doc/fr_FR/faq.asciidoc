@@ -1,7 +1,9 @@
 ==== Général
 
-Jeedom nécessite t'il un abonnement ?:::
+.Jeedom nécessite t'il un abonnement ?
+****
 Non, Jeedom ne nécessite pas d'abonnement pour son utilisation. Seul un service de sauvegarde en ligne optionnel est payant.
+****
 
 Jeedom utilise t'il des serveurs extérieurs pour fonctionner ?:::
 Non, Jeedom n'utilise pas d'infrastructure type "Cloud". Tous se fait en local et vous n'avez pas besoin de nos serveurs pour que votre installation fonctionne. Seuls les services comme le Market ou la sauvegarde online nécessitent l'utilisation de nos serveurs.
