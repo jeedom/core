@@ -263,9 +263,11 @@ class plugin {
                         }
                     }
                 } else {
-                    $function = $this->getId() . '_remove';
-                    if (function_exists($this->getId() . '_remove')) {
-                        $function();
+                    if ($alreadyActive == 1) {
+                        $function = $this->getId() . '_remove';
+                        if (function_exists($this->getId() . '_remove')) {
+                            $function();
+                        }
                     }
                 }
                 $out = ob_get_clean();
