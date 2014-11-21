@@ -1,13 +1,16 @@
 [panel,danger]
-.J'ai une page blanche:::
+.J'ai une page blanche
+--
 Il faut regarder le fichier /usr/share/nginx/www/jeedom/log/nginx.error, celui-ci indique l'erreur, les causes les plus courante sont : 
 
 - problème d'identificant MySQL 
 - MySQL est arreté ("sudo service mysql start" pour le redemarrer)
 - probleme de place sur le système de fichiers
+--
 
 [panel,danger]
-.J'ai un probleme d'identifiant BDD:::
+.J'ai un probleme d'identifiant BDD
+--
 Il faut reinitialiser ceux-ci
 
 ----
@@ -20,10 +23,13 @@ sudo cp core/config/common.config.sample.php core/config/common.config.php
 sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php 
 sudo chown www-data:www-data core/config/common.config.php
 ----
+--
 
 [panel,danger]
 .J'ai des {{...}} partout
+--
 La cause la plus frequente est l'utilisation d'un plugin en version beta et pas Jeedom ou l'inverse
+--
 
 [panel,danger]
 .Lors d'une commande j'ai une roue qui tourne sans s'arreter
