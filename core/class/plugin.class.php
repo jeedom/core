@@ -272,7 +272,7 @@ class plugin {
                 }
                 $out = ob_get_clean();
                 if (trim($out) != '') {
-                    log::add($this->getId(), 'info', "Result : " . $out);
+                    log::add($this->getId(), 'info', "Installation/remove/update result : " . $out);
                 }
             }
         } catch (Exception $e) {
