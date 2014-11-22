@@ -13,7 +13,7 @@ install_msg_en()
 {
 	msg_installer_welcome="*           Welcome to the Jeedom installer            *"
 	msg_usage1="Usage: $0 [<webserver_name>]"
-	msg_usage2="            webserver_name can be 'apache' or 'nginx' (default)"
+	msg_usage2="            webserver_name can be 'apache' or 'nginx_ssl' or 'nginx' (default)"
 	msg_manual_install_nodejs_ARM="*          Manual installation of nodeJS for ARM       *"
 	msg_manual_install_nodejs_RPI="*     Manual installation of nodeJS for Raspberry      *"
 	msg_nginx_config="*                  NGINX configuration                 *"
@@ -64,7 +64,7 @@ install_msg_fr()
 {
 	msg_installer_welcome="*         Bienvenue dans l'installateur Jeedom         *"
 	msg_usage1="Utilisation: $0 [<nom_du_webserver>]"
-	msg_usage2="             nom_du_webserver peut être 'apache' ou 'nginx' (par défaut)"
+	msg_usage2="             nom_du_webserver peut être 'apache' ou 'nginx_ssl' ou 'nginx' (par défaut)"
 	msg_manual_install_nodejs_ARM="*        Installation manuelle de nodeJS pour ARM       *"
 	msg_manual_install_nodejs_RPI="*     Installation manuelle de nodeJS pour Raspberry    *"
 	msg_nginx_config="*                Configuration de NGINX                *"
@@ -260,7 +260,7 @@ configure_nginx_ssl()
     echo "********************************************************"
 	echo "${msg_nginx_ssl_config}"
     echo "********************************************************"
-    openssl genrsa -out jeedom.key 1024
+    openssl genrsa -out jeedom.key 2048
     openssl req \
         -new \
         -subj "/C=FR/ST=France/L=Paris/O=jeedom/OU=JE/CN=jeedom" \
