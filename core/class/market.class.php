@@ -684,7 +684,7 @@ class market {
             $update->setType($this->getType());
         }
         $update->setConfiguration('version', 'beta');
-        $update->setLocalVersion(date('Y-m-d H:i:s', strtotime('+1 minute' . date('Y-m-d H:i:s'))));
+        $update->setLocalVersion(date('Y-m-d H:i:s', strtotime('+2 minute' . date('Y-m-d H:i:s'))));
         $update->save();
         $update->checkUpdate();
     }

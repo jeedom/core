@@ -549,15 +549,27 @@ class eqLogic {
         return false;
     }
 
-    public function getHumanName() {
+    public function getHumanName($_tag = false) {
         $name = '';
         $objet = $this->getObject();
         if (is_object($objet)) {
-            $name .= '[' . $objet->getName() . ']';
+            if ($_tag) {
+                $name .= '<span class="label label-primary" style="text-shadow : none;">' . $objet->getName() . '</span>';
+            } else {
+                $name .= '[' . $objet->getName() . ']';
+            }
         } else {
-            $name .= '[' . __('Aucun', __FILE__) . ']';
+            if ($_tag) {
+                $name .= '<span class="label labe-default">' . __('Aucun', __FILE__) . '</span>';
+            } else {
+                $name .= '[' . __('Aucun', __FILE__) . ']';
+            }
         }
-        $name .= '[' . $this->getName() . ']';
+        if ($_tag) {
+            $name .= ' '.$this->getName();
+        } else {
+            $name .= '[' . $this->getName() . ']';
+        }
         return $name;
     }
 
