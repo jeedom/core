@@ -326,7 +326,7 @@ function displayPlan() {
                             if (plans[i].plan.link_type == 'graph') {
                                 addGraph(plans[i].plan);
                             } else {
-                                objects.push(displayObject(plans[i].plan.link_type, plans[i].plan.link_id, plans[i].html, plans[i].plan), true);
+                                objects.push(displayObject(plans[i].plan.link_type, plans[i].plan.link_id, plans[i].html, plans[i].plan, true));
                             }
                         }
                         $('#div_displayObject').append(objects);
