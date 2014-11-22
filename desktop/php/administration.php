@@ -243,10 +243,20 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 <div class="col-lg-3">
                                     <input type="text"  class="configKey form-control" data-l1key="internalAddr" />
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="alert alert-info">{{Attention ne pas oublié le /jeedom après l'ip si vous l'utilisez pour vous rendre sur l'interface de jeedom}}</div>
-                                </div>
                             </div>
+                            <?php
+                            if (file_exists('/etc/nginx/sites-available/default_ssl') || true) {
+                                echo '<div class="form-group expertModeVisible">';
+                                echo '<label class="col-lg-2 control-label">{{Forcer le https}}</label>';
+                                echo '<div class="col-lg-1">';
+                                echo '<input type="checkbox" class="configKey" data-l1key="forceHttps" />';
+                                echo '</div>';
+                                echo '<div class="col-lg-6 alert alert-danger">';
+                                echo '{{Attention si vous n\'avez pas de HTTPS et que vous activez cette option votre jeedom ne sera plus accessible}}';
+                                echo '</div>';
+                                echo '</div>';
+                            }
+                            ?>
                             <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">{{Adresse externe}}</label>

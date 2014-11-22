@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
 if (!isset($_GET['v'])) {
     $useragent = (isset($_SERVER["HTTP_USER_AGENT"])) ? $_SERVER["HTTP_USER_AGENT"] : 'none';
     if (stristr($useragent, "Android") || strpos($useragent, "iPod") || strpos($useragent, "iPhone") || strpos($useragent, "Mobile") || strpos($useragent, "WebOS") || strpos($useragent, "mobile") || strpos($useragent, "hp-tablet")) {
@@ -26,6 +25,11 @@ if (!isset($_GET['v'])) {
 } else {
     try {
         require_once dirname(__FILE__) . "/core/php/core.inc.php";
+        if ($_SERVER['SERVER_PORT'] != 443 && config::byKey('forceHttps') == 1) {
+            header("HTTP/1.1 301 Moved Permanently");
+            header("Location: https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+            exit();
+        }
     } catch (Exception $e) {
         echo $e->getMessage();
         die();
