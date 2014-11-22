@@ -58,3 +58,23 @@ jeedom.config.load = function (_params) {
     };
     $.ajax(paramsAJAX);
 };
+
+jeedom.config.remove = function (_params) {
+    var paramsRequired = ['configuration'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/config.ajax.php';
+    paramsAJAX.data = {
+        action: 'removeKey',
+        key: ($.isArray(_params.configuration) || $.isPlainObject(_params.configuration)) ? json_encode(_params.configuration) : _params.configuration,
+        plugin: _params.plugin || 'core'
+    };
+    $.ajax(paramsAJAX);
+};

@@ -41,11 +41,11 @@ try {
             $keys = json_decode($keys, true);
             $return = array();
             foreach ($keys as $key => $value) {
-                $return[$key] = jeedom::toHumanReadable(config::byKey($key, init('plugin')));
+                $return[$key] = jeedom::toHumanReadable(config::byKey($key, init('plugin', 'core')));
             }
             ajax::success($return);
         } else {
-            ajax::success(config::byKey(init('key')));
+            ajax::success(config::byKey(init('key'), init('plugin', 'core')));
         }
     }
 
@@ -67,13 +67,30 @@ try {
         }
         $values = json_decode(init('value'), true);
         foreach ($values as $key => $value) {
-            if($key == 'market::password' && !preg_match('/^[0-9a-f]{40}$/i', $value)){
+            if ($key == 'market::password' && !preg_match('/^[0-9a-f]{40}$/i', $value)) {
                 $value = sha1($value);
             }
             config::save($key, jeedom::fromHumanReadable($value), init('plugin', 'core'));
-            if($key == 'internalAddr'){
+            if ($key == 'internalAddr') {
                 jeeNetwork::pull();
             }
+        }
+        ajax::success();
+    }
+
+    if (init('action') == 'removeKey') {
+        $keys = init('key');
+        if ($keys == '') {
+            throw new Exception(__('Aucune clef demandée', __FILE__));
+        }
+        if (is_json($keys)) {
+            $keys = json_decode($keys, true);
+            $return = array();
+            foreach ($keys as $key => $value) {
+                config::remove($key, init('plugin', 'core'));
+            }
+        } else {
+            config::remove(init('key'), init('plugin', 'core'));
         }
         ajax::success();
     }
