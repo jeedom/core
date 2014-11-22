@@ -271,7 +271,9 @@ class plugin {
                     }
                 }
                 $out = ob_get_clean();
-                log::add($this->getId(), 'info', "Result : " . $out);
+                if (trim($out) != '') {
+                    log::add($this->getId(), 'info', "Result : " . $out);
+                }
             }
         } catch (Exception $e) {
             config::save('active', $alreadyActive, $this->getId());
