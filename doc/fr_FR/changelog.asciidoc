@@ -1,4 +1,9 @@
+==== 22/11/2014
+
+- Mise à jour des liens vers l'aide du nouveau site de documentation
+
 ==== 20/11/2014
+
 - optimisation de la vitesse d'affichage des designs
 - bugfix des liens vers les vues dans les designs
 - bugfix de l'affichage de certain widget en mobile
