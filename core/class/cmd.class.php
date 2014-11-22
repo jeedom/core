@@ -639,10 +639,10 @@ class cmd {
             throw $e;
         }
         if ($this->getType() == 'info' && $value !== false) {
-            cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
             if ($this->getCollectDate() == '') {
                 $this->setCollectDate(date('Y-m-d H:i:s'));
             }
+            cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
             $this->setCollect(0);
             $nodeJs = array(
                 array(
