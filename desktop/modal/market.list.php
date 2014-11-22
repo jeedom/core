@@ -58,7 +58,7 @@ $findMarket = array();
                         $urlPath = config::byKey('market::address') . '/' . $market->getImg('beta');
                     }
                 }
-                echo '<td><center><img src="core/img/no_image.gif" data-original="' . $urlPath . '"  class="lazy" height="60" width="60" /></center></td>';
+                echo '<td><center><img src="core/img/no_image.gif" data-original="' . $urlPath . '"  class="lazy" height="70" width="60" /></center></td>';
                 echo '<td><center>';
                 if ($market->getCertification() == 'Officiel') {
                     echo '<span class="label label-success" style="font-size : 1.4em;position : relative;top : 5px;">Officiel</span>';
