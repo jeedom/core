@@ -311,7 +311,7 @@ function displayPlan() {
             }
             if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
                 fullScreen(deviceInfo.type);
-                $('meta[name="viewport"]').prop('content', 'width=' + $('#div_displayObject').width()+ ',height=' + $('#div_displayObject').height());
+                $('meta[name="viewport"]').prop('content', 'width=' + $('#div_displayObject').width() + ',height=' + $('#div_displayObject').height());
             }
             $('.eqLogic-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
             if (planHeader_id != -1) {
@@ -326,7 +326,7 @@ function displayPlan() {
                             if (plans[i].plan.link_type == 'graph') {
                                 addGraph(plans[i].plan);
                             } else {
-                                objects.push(displayObject(plans[i].plan.link_type, plans[i].plan.link_id, plans[i].html, plans[i].plan));
+                                objects.push(displayObject(plans[i].plan.link_type, plans[i].plan.link_id, plans[i].html, plans[i].plan), true);
                             }
                         }
                         $('#div_displayObject').append(objects);
