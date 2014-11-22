@@ -85,6 +85,7 @@ if (count($plugins_list) > 0) {
         include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
         include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
         include_file('3rdparty', 'jquery.utils/jquery.utils', 'css');
+        include_file('3rdparty', 'bootstrap.slider/css/slider', 'css');
         include_file('3rdparty', 'jquery/jquery.min', 'js');
         include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
         include_file('core', 'core', 'js');
@@ -99,6 +100,7 @@ if (count($plugins_list) > 0) {
         include_file('desktop', 'utils', 'js');
         include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
         include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
+        include_file('3rdparty', 'bootstrap.slider/js/bootstrap-slider', 'js');
 
         if (isConnect() && $_SESSION['user']->getOptions('desktop_highcharts_theme') != '') {
             try {
