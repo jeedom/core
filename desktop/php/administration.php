@@ -569,7 +569,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
             </div>
         </div>
         <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
-            <div class="panel panel-default">
+            <div class="panel panel-default expertModeVisible">
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_convertColor">
@@ -624,7 +624,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                     </div>
                 </div>
 
-                <div class="panel panel-default">
+                <div class="panel panel-default expertModeVisible">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_nodeJS">
@@ -649,7 +649,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                 </div>
             <?php } ?>
 
-            <div class="panel panel-default expertModeVisible">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_market">
