@@ -50,7 +50,7 @@ $findMarket = array();
                 if (!is_object($update)) {
                     $install = "notInstall";
                 }
-                echo '<tr data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" class="cursor ' . $install . '" style="height:60px;">';
+                echo '<tr data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" class="cursor ' . $install . '" style="height:70px;">';
                 if ($market->getStatus('stable') == 1 && $market->getImg('stable')) {
                     $urlPath = config::byKey('market::address') . '/' . $market->getImg('stable');
                 } else {
