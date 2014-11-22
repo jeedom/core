@@ -271,7 +271,7 @@ configure_nginx_ssl()
     cp jeedom.key /etc/nginx/certs
     cp jeedom.crt /etc/nginx/certs
     rm jeedom.key jeedom.crt
-    cp ${webserver_home}/install/nginx_default_ssl /etc/nginx/sites-available/default_ssl
+    cp ${webserver_home}/jeedom/install/nginx_default_ssl /etc/nginx/sites-available/default_ssl
     ln -s /etc/nginx/sites-available/default_ssl /etc/nginx/sites-enabled/
     service nginx reload
 }
