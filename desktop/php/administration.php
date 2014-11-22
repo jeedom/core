@@ -245,7 +245,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 </div>
                             </div>
                             <?php
-                            if (file_exists('/etc/nginx/sites-available/default_ssl') || true) {
+                            if (config::byKey('jeedom::licence') >= 5 && file_exists('/etc/nginx/sites-available/default_ssl')) {
                                 echo '<div class="form-group expertModeVisible">';
                                 echo '<label class="col-lg-2 control-label">{{Forcer le https}}</label>';
                                 echo '<div class="col-lg-1">';
