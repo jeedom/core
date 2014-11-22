@@ -399,8 +399,10 @@ class scenarioExpression {
         $scenarioExpression = new self();
         $scenarioExpression->setType($_type);
         $scenarioExpression->setExpression($_cmd);
-        foreach ($_options as $key => $value) {
-            $scenarioExpression->setOptions($key, $value);
+        if (is_array($_options)) {
+            foreach ($_options as $key => $value) {
+                $scenarioExpression->setOptions($key, $value);
+            }
         }
         return $scenarioExpression->execute();
     }
