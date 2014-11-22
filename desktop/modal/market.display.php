@@ -179,6 +179,12 @@ if ($market->getPurchase() == 1) {
                     <?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') { ?>
                         <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a>
                     <?php } ?>
+                    <?php if ($market->getLink('doc_fr_FR') != '' && $market->getLink('doc_fr_FR') != 'null') { ?>
+                        <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_fr_FR'); ?>"><i class="fa fa-book"></i> Doc FR</a>
+                    <?php } ?>
+                    <?php if ($market->getLink('doc_us_US') != '' && $market->getLink('doc_us_US') != 'null') { ?>
+                        <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_us_US'); ?>"><i class="fa fa-book"></i> Doc US</a>
+                    <?php } ?>
                 </div>
             </div>
             <div class="form-group">
