@@ -128,3 +128,17 @@ Il n'y a pas de tarif annoncé pour le moment.
 --
 Par défaut Jeedom est à la racine de Nginx sur les box. Vous n'avez plus à rajouter /jeedom/ dans l'adresse d'accès. L'adresse exacte sera donc : votre_ip_public:votre_port/
 --
+
+[panel,primary]
+.Peut on mettre Jeedom en https
+--
+Oui, 2 possibilités, soit avez un DNS et vous savez mettre en place un certificat valide, dans ce cas c'est une installation standard d'un certificat. Soit vous n'avez pas de DNS et un certificat auto-signé (pour rappels un certificat auto-signé assure le cryptage des données mais pas la validation du site) ne vous genes pas, dans ce il faut faire (si quand vous mettez https devant l'URL ca ne marche pas) : 
+
+----
+sudo su -
+/usr/share/nginx/www/jeedom/install/install.sh nginx_ssl
+----
+
+Vous pouvez ensuite forcer le https dans la configuration Jeedom.
+
+--
