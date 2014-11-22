@@ -310,15 +310,11 @@ if (count($plugins_list) > 0) {
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="bt_pageHelp cursor tooltips" title="{{Aide sur la page en cours}}"
-                                    <?php
-                                    echo 'data-name="' . $page . '"';
-                                    if (isset($plugin) && is_object($plugin)) {
-                                        echo ' data-plugin="' . $plugin->getId() . '"';
-                                    }
-                                    ?>>
-                                        <i class="fa fa-question-circle" ></i>
-                                    </a>
+                                    <?php if (isset($plugin) && is_object($plugin)) { ?>
+                                        <a class="cursor tooltips" target="_blank" href="http://doc.jeedom.fr/fr_FR/<?php echo init('m'); ?>.html#" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
+                                    <?php } else { ?>
+                                        <a class="cursor tooltips" target="_blank" href="http://doc.jeedom.fr/fr_FR/core.html#<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
+                                    <?php } ?>
                                 </li>
                                 <?php if (hasRight('reportsend', true)) { ?>
                                     <li>
