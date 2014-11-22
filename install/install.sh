@@ -56,6 +56,8 @@ install_msg_en()
 	msg_ask_install_razberry_zway="Do you wish to install Z-Way?"
 	msg_failed_installupdate_razberry_zway="Z-Way for RaZberry installation failed!"
 	msg_succeeded_installupdate_razberry_zway="Z-Way for RaZberry installation succeeded!"
+        msg_ask_install_nginx_ssl="Do you want to install SSL self sign certificat"
+        msg_nginx_ssl_config="*                 NGINX SSL configuration               *"
 }
 
 install_msg_fr()
@@ -105,6 +107,8 @@ install_msg_fr()
 	msg_ask_install_razberry_zway="Souhaitez-vous installer Z-Way ?"
 	msg_failed_installupdate_razberry_zway="L'installation de Z-Way pour RaZberry a échoué !"
 	msg_succeeded_installupdate_razberry_zway="L'installation de Z-Way pour RaZberry a réussi !"
+        msg_ask_install_nginx_ssl="Voules vous mettre en place un certification SSL auto signé"
+        msg_nginx_ssl_config="*                 NGINX SSL configuration               *"
 }
 
 ########################## Helper functions ############################
@@ -231,6 +235,45 @@ configure_nginx()
     service nginx restart
     configure_php
     update-rc.d nginx defaults
+
+    # Prompt for ssl
+    echo "${msg_ask_install_nginx_ssl}"
+    while true
+    do
+        echo -n "${msg_yesno}"
+        read ANSWER < /dev/tty
+        case $ANSWER in
+                        ${msg_yes})
+                                configure_nginx_ssl
+                                break
+                                ;;
+                        ${msg_no})
+                                return
+                                ;;
+        esac
+        echo "${msg_answer_yesno}"
+    done
+}
+
+configure_nginx_ssl()
+{
+    echo "********************************************************"
+	echo "${msg_nginx_ssl_config}"
+    echo "********************************************************"
+    openssl genrsa -out jeedom.key 1024
+    openssl req \
+        -new \
+        -subj "/C=FR/ST=France/L=Paris/O=jeedom/OU=JE/CN=jeedom" \
+        -key jeedom.key \
+        -out jeedom.csr
+    openssl x509 -req -days 9999 -in jeedom.csr -signkey jeedom.key -out jeedom.crt
+    mkdir /etc/nginx/certs
+    cp jeedom.key /etc/nginx/certs
+    cp jeedom.crt /etc/nginx/certs
+    rm jeedom.key jeedom.crt
+    cp ${webserver_home}/install/nginx_default_ssl /etc/nginx/sites-available/default_ssl
+    ln -s /etc/nginx/sites-available/default_ssl /etc/nginx/sites-enabled/
+    service nginx reload
 }
 
 configure_apache()
@@ -459,6 +502,12 @@ case ${webserver} in
 		# Configuration
 		webserver_home="/var/www"
 		croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+		;;
+        nginx_ssl)
+		# Configuration
+                webserver_home="/usr/share/nginx/www"
+		configure_nginx_ssl
+                exit 1
 		;;
 	*)
 		usage_help
