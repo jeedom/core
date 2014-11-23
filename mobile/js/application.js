@@ -98,21 +98,23 @@ function initApplication(_reinit) {
                     userProfils = data.result.userProfils;
                     var include = ['core/js/core.js'];
 
-                    if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '') {
-                        $('#jQMnDColor').attr('href', '3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.color.' + userProfils.mobile_theme_color + '.css');
-                    }
-                    if (isset(userProfils.mobile_theme) && userProfils.mobile_theme != '') {
-                        $('#jQMnDTheme').attr('href', '3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.' + userProfils.mobile_theme + '.css');
-                    }
-                    if (isset(userProfils.mobile_highcharts_theme) && userProfils.mobile_highcharts_theme != '') {
-                        include.push('3rdparty/highstock/themes/' + userProfils.mobile_highcharts_theme + '.js');
+                    if (isset(userProfils) && userProfils != null) {
+                        if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '') {
+                            $('#jQMnDColor').attr('href', '3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.color.' + userProfils.mobile_theme_color + '.css');
+                        }
+                        if (isset(userProfils.mobile_theme) && userProfils.mobile_theme != '') {
+                            $('#jQMnDTheme').attr('href', '3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.' + userProfils.mobile_theme + '.css');
+                        }
+                        if (isset(userProfils.mobile_highcharts_theme) && userProfils.mobile_highcharts_theme != '') {
+                            include.push('3rdparty/highstock/themes/' + userProfils.mobile_highcharts_theme + '.js');
+                        }
                     }
 
                     $.get("core/php/icon.inc.php", function (data) {
                         $("head").append(data);
                         $.include(include, function () {
                             deviceInfo = getDeviceType();
-                            if (isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('page') != 'home') {
+                            if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('page') != 'home') {
                                 var res = userProfils.homePageMobile.split("::");
                                 if (res[0] == 'core') {
                                     switch (res[1]) {
