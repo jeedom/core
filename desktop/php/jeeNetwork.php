@@ -40,7 +40,7 @@ if (config::byKey('jeedom::licence') < 5) {
                                 <input class="form-control jeeNetworkAttr" type="text" data-l1key="ip" placeholder="IP"/>
                             </div>
                             <div class="4">
-                                <div class="alert alert-info">{{Attention ne pas oublié le /jeedom après l'ip si vous l'utilisez pour vous rendre sur l'interface de jeedom}}</div>
+                                <div class="alert alert-info">{{Attention ne pas oublier le /jeedom après l'ip si vous l'utilisez pour vous rendre sur l'interface de jeedom}}</div>
                             </div>
                         </div>
                         <div class="form-group">

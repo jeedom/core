@@ -269,7 +269,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">{{Activer l'ouverture automatique de port (UPnP)}}</label>
+                                    <label class="col-sm-2 control-label">{{Activer l'ouverture automatique des ports (UPnP)}}</label>
                                     <div class="col-sm-1">
                                         <input type="checkbox"  class="configKey" data-l1key="allowupnpn" />
                                     </div>
@@ -591,7 +591,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-6">
-                                <i class="fa fa-plus-circle pull-right" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
+                                <i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
                                 <table class="table table-condensed table-bordered" id="table_convertColor" >
                                     <thead>
                                         <tr>
@@ -752,8 +752,8 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     <label class="col-sm-2 control-label">{{Branche}}</label>
                                     <div class="col-sm-2">
                                         <select class="configKey form-control" data-l1key="market::branch">
-                                            <option value="stable">Stable</option>
-                                            <option value="master">Developpement</option>
+                                            <option value="stable">{{Stable}}</option>
+                                            <option value="master">{{Développement}}</option>
                                         </select>
                                     </div>
                                 </div>

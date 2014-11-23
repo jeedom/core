@@ -338,9 +338,9 @@ function addEditviewZone(_viewZone) {
                 div += '<option value="1 month">{{Mois}}</option>';
             }
             if (init(_viewZone.configuration.dateRange) == "1 year") {
-                div += '<option value="1 year" selected>{{Années}}</option>';
+                div += '<option value="1 year" selected>{{Année}}</option>';
             } else {
-                div += '<option value="1 year">{{Années}}</option>';
+                div += '<option value="1 year">{{Année}}</option>';
             }
             if (init(_viewZone.configuration.dateRange) == "all") {
                 div += '<option value="all" selected>{{Tous}}</option>';

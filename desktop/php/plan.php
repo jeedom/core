@@ -35,7 +35,7 @@ if (is_object($planHeader)) {
         ?>
     </select>
     <?php if (isConnect('admin')) { ?>
-        <a class="btn btn-success btn-sm" style="margin-bottom: 3px;" id="bt_addPlanHeader" title="{{Ajouter un design design}}"><i class="fa fa-plus-circle"></i></a>
+        <a class="btn btn-success btn-sm" style="margin-bottom: 3px;" id="bt_addPlanHeader" title="{{Ajouter un design}}"><i class="fa fa-plus-circle"></i></a>
         <a class="btn btn-default btn-sm editMode tooltips" style="margin-bottom: 3px;display: none;" id="bt_configurePlanHeader" title="{{Editer/configurer le design}}"><i class="fa fa-cogs"></i></a>
         <?php if (is_object($planHeader)) { ?>
             <a class="btn btn-default btn-sm editMode tooltips" style="margin-bottom: 3px;display: none;" id='bt_duplicatePlanHeader' title="{{Dupliquer le design}}"><i class="fa fa-files-o"></i></a>

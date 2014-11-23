@@ -166,7 +166,7 @@ include_file('3rdparty', 'jquery.tree/jquery.tree', 'js');
                         </div>
                     </div>
                     <div class="form-group expertModeVisible">
-                        <label class="col-md-11 control-label">{{Lancer en avant-plan (a ne surtout pas utiliser si vous avez des sleep dans le scénario)}}</label>
+                        <label class="col-md-11 control-label">{{Lancer en avant-plan (à ne surtout pas utiliser si vous avez des "sleep" dans le scénario)}}</label>
                         <div class="col-md-1">
                             <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="launchInForeground">
                         </div>
