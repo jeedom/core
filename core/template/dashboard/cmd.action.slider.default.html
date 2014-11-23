@@ -3,8 +3,7 @@
     <div class="slider" style="margin : 5px 10px 8px 10px;width: 80px;" value="#state#"></div>
 
     <script>
-        $(".cmd[data-cmd_id=#id#] .slider").slider({
-            range: "min",
+        $(".cmd[data-cmd_id=#id#] .slider").bootstrapSlider({
             min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
             max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
             value: ('#state#' == '') ? 0 : parseInt('#state#')
