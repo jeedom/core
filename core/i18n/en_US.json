@@ -227,7 +227,7 @@
         "Générale": "Main",
         "Détaillée": "Detailed",
         "Page générée en": "Page generated in",
-        "Designs": "Designs",
+        "Design": "Design",
         "Gestion des droits avancés": "Gestion des droits avancés",
         "Réseau Jeedom": "Réseau Jeedom",
         "Jeedom Box": "Jeedom Box",
@@ -694,7 +694,7 @@
         "Messages": "Messages",
         "Message(s)": "Message(s)",
         "Plugins": "Plugins",
-        "Designs": "Designs",
+        "Design": "Design",
         "Version desktop": "Version desktop",
         "Déconnexion": "Déconnexion"
     },

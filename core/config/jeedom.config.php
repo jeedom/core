@@ -121,7 +121,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
                         ),
                     ),
                     'slider' => array(
-                        'name' => 'Slider',
+                        'name' => 'Curseur',
                         'configuration' => array(
                             'minValue' => array('visible' => true),
                             'maxValue' => array('visible' => true)),

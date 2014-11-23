@@ -158,7 +158,7 @@ if (count($plugins_list) > 0) {
                                             }
                                             if (hasRight('planview')) {
                                                 ?>
-                                                <li><a href="index.php?v=d&p=plan"><i class="fa fa-picture-o"></i> {{Designs}}</a></li>
+                                                <li><a href="index.php?v=d&p=plan"><i class="fa fa-picture-o"></i> {{Design}}</a></li>
                                                 <?php
                                             }
                                             echo $panel_menu;
