@@ -241,7 +241,7 @@ class scenario {
         }
         $scenarioElement->getSubElement('do')->execute($scenario);
         $scenario->setLog(__('************FIN sous tâche**************', __FILE__));
-        if(!$scenario->running()){
+        if (!$scenario->running()) {
             $scenario->setState('stop');
         }
         $scenario->save();
@@ -441,6 +441,9 @@ class scenario {
     /*     * *********************Methode d'instance************************* */
 
     public function launch($_force = false, $_trigger = '', $_message = '') {
+        if ($this->getIsActive() != 1) {
+            return;
+        }
         if (config::byKey('enableScenario') == 1) {
             if ($this->getConfiguration('launchInForeground', 0) == 1) {
                 $this->execute($_trigger, $_message);
