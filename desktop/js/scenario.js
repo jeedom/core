@@ -763,6 +763,18 @@ function addSubElement(_subElement) {
             retour += '</div>';
             retour += '</span></legend>';
             break;
+        case 'at' :
+            retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
+            retour += '<legend style="margin-top : 0px;margin-bottom : 5px;color : inherit;font-weight:bold;border : none;"><span style="position : relative;left:15px;">{{A (Hmm)}} ';
+            retour += '<div class="expressions" style="display : inline-block; width : 90%">';
+            var expression = {type: 'condition'};
+            if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+                expression = _subElement.expressions[0];
+            }
+            retour += addExpression(expression);
+            retour += '</div>';
+            retour += '</span></legend>';
+            break;
         case 'do' :
             retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
             retour += '<legend style="margin-top : 3px;margin-bottom : 5px;color : inherit;font-weight:bold;border : none;border-top: 1px solid #e5e5e5;">FAIRE';
@@ -858,6 +870,16 @@ function addElement(_element) {
                 }
             } else {
                 div += addSubElement({type: 'in'});
+                div += addSubElement({type: 'do'});
+            }
+            break;
+        case 'at' :
+            if (isset(_element.subElements) && isset(_element.subElements)) {
+                for (var j in _element.subElements) {
+                    div += addSubElement(_element.subElements[j]);
+                }
+            } else {
+                div += addSubElement({type: 'at'});
                 div += addSubElement({type: 'do'});
             }
             break;
