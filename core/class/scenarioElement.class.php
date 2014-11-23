@@ -291,6 +291,9 @@ class scenarioElement {
                 case 'in':
                     $return .= __('DANS', __FILE__);
                     break;
+                case 'at':
+                    $return .= __('A', __FILE__);
+                    break;
                 default:
                     $return .= $subElement->getType();
                     break;
