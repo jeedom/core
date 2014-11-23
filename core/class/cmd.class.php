@@ -795,9 +795,11 @@ class cmd {
             if (is_object($cmdValue) && $cmdValue->getType() == 'info') {
                 $replace['#state#'] = $cmdValue->execCmd(null, 2);
                 $replace['#valueName#'] = $cmdValue->getName();
+                $replace['#unite#'] = $cmdValue->getUnite();
             } else {
                 $replace['#state#'] = ($this->getLastValue() != null) ? $this->getLastValue() : '';
                 $replace['#valueName#'] = $this->getName();
+                $replace['#unite#'] = $cmdValue->getUnite();
             }
             $parameters = $this->getDisplay('parameters');
             if (is_array($parameters)) {

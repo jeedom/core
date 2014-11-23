@@ -13,7 +13,7 @@ function initHome() {
                     if (isset(objects[i].display) && isset(objects[i].display.icon)) {
                         icon = objects[i].display.icon;
                     }
-                    li += '<li></span><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '</a></li>';
+                    li += '<li></span><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name.replace(/\"/g, "\'") + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '</a></li>';
                 }
             }
             $('#ul_objectList').empty().append(li).listview("refresh");
