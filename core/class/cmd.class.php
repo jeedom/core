@@ -799,7 +799,7 @@ class cmd {
             } else {
                 $replace['#state#'] = ($this->getLastValue() != null) ? $this->getLastValue() : '';
                 $replace['#valueName#'] = $this->getName();
-                $replace['#unite#'] = $cmdValue->getUnite();
+                $replace['#unite#'] = $this->getUnite();
             }
             $parameters = $this->getDisplay('parameters');
             if (is_array($parameters)) {
