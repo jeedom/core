@@ -1,3 +1,7 @@
+==== 23/11/2014
+
+- Amélioration du responsive design
+
 ==== 22/11/2014
 
 - Mise à jour des liens vers l'aide du nouveau site de documentation

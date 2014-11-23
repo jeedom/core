@@ -5,7 +5,7 @@ if (!isConnect()) {
 ?>
 
 <div class="row row-overflow">
-    <div class="col-lg-3 bs-sidebar">
+    <div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
         <ul id="ul_history" class="nav nav-list bs-sidenav">
             <li class="nav-header">{{Historique}}</li>
             <li class="filter"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" /></li>
@@ -17,7 +17,7 @@ if (!isConnect()) {
         </ul>
     </div>
 
-    <div class="col-lg-9" style="border-left: solid 1px #EEE; padding-left: 25px;height: 600px;">
+    <div class="col-lg-9 col-md-8 col-sm-7" style="border-left: solid 1px #EEE; padding-left: 25px;height: 600px;">
         <select class="form-control pull-right" id="sel_chartType" style="width: 200px;">
             <option value="line">{{Ligne}}</option>
             <option value="areaspline">{{Areaspline}}</option>

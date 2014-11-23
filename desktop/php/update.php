@@ -14,7 +14,7 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
     ?>
 </div><br/>
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-sm-8">
         {{Dernière vérification : }}<span class="label label-info" id="span_lastUpdateCheck"></span>
         <a class="btn btn-warning pull-right" id="bt_checkAllUpdate"><i class="fa fa-refresh"></i> Vérifier les objets et mises à jour</a> 
         <div class="btn-group pull-right">
@@ -49,7 +49,7 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
             </tbody>
         </table>
     </div>
-    <div class="col-lg-4">
+    <div class="col-sm-4">
         <legend>{{Informations :}}</legend>
         <pre id="pre_updateInfo"></pre>
     </div>

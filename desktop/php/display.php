@@ -19,7 +19,7 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
 <div class="tab-content">
     <div class="tab-pane active" id="tree">
         <div class="row">
-            <div class="col-lg-4" >
+            <div class="col-md-4 col-sm-5" >
                 <legend>{{Arbre des commandes}}</legend>
                 <div id='div_tree'>
                     <ul id='ul_rootTree'>
@@ -68,7 +68,7 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-md-8 col-sm-7">
                 <legend>{{Informations}}</legend>
                 <div id='div_displayInfo'></div>
             </div>
@@ -94,34 +94,34 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
                                 foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                                     echo '<legend>' . $category['name'] . '</legend>';
                                     echo '<div class="form-group">';
-                                    echo '<label class="col-lg-3 control-label">{{Dashboard couleur de fond}}</label>';
-                                    echo '<div class="col-lg-2">';
+                                    echo '<label class="col-sm-3 control-label">{{Dashboard couleur de fond}}</label>';
+                                    echo '<div class="col-sm-2">';
                                     echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':color" value="' . $category['color'] . '" />';
                                     echo '</div>';
-                                    echo '<div class="col-lg-1">';
+                                    echo '<div class="col-sm-1">';
                                     echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':color" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
                                     echo '</div>';
-                                    echo '<label class="col-lg-3 control-label">{{Dashboard couleur commande}}</label>';
-                                    echo '<div class="col-lg-2">';
+                                    echo '<label class="col-sm-3 control-label">{{Dashboard couleur commande}}</label>';
+                                    echo '<div class="col-sm-2">';
                                     echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':cmdColor" value="' . $category['cmdColor'] . '" />';
                                     echo '</div>';
-                                    echo '<div class="col-lg-1">';
+                                    echo '<div class="col-sm-1">';
                                     echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':cmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
                                     echo '</div>';
                                     echo '</div>';
                                     echo '<div class="form-group">';
-                                    echo '<label class="col-lg-3 control-label">{{Mobile couleur de fond}}</label>';
-                                    echo '<div class="col-lg-2">';
+                                    echo '<label class="col-sm-3 control-label">{{Mobile couleur de fond}}</label>';
+                                    echo '<div class="col-sm-2">';
                                     echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':mcolor" value="' . $category['mcolor'] . '"/>';
                                     echo '</div>';
-                                    echo '<div class="col-lg-1">';
+                                    echo '<div class="col-sm-1">';
                                     echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':cmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
                                     echo '</div>';
-                                    echo '<label class="col-lg-3 control-label">{{Mobile couleur commande}}</label>';
-                                    echo '<div class="col-lg-2">';
+                                    echo '<label class="col-sm-3 control-label">{{Mobile couleur commande}}</label>';
+                                    echo '<div class="col-sm-2">';
                                     echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':mcmdColor" value="' . $category['mcmdColor'] . '" />';
                                     echo '</div>';
-                                    echo '<div class="col-lg-1">';
+                                    echo '<div class="col-sm-1">';
                                     echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':mcmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
                                     echo '</div>';
                                     echo '</div>';
@@ -146,14 +146,14 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
                         <form class="form-horizontal">
                             <fieldset>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">{{Largeur pas widget (px)}}</label>
-                                    <div class="col-lg-2">
+                                    <label class="col-sm-3 control-label">{{Largeur pas widget (px)}}</label>
+                                    <div class="col-sm-2">
                                         <input class="configKey form-control cursor" data-l1key="eqLogic::widget::stepWidth" value="<?php echo config::byKey('eqLogic::widget::stepWidth') ?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-3 control-label">{{Hauteur pas widget (px)}}</label>
-                                    <div class="col-lg-2">
+                                    <label class="col-sm-3 control-label">{{Hauteur pas widget (px)}}</label>
+                                    <div class="col-sm-2">
                                         <input class="configKey form-control cursor" data-l1key="eqLogic::widget::stepHeight" value="<?php echo config::byKey('eqLogic::widget::stepHeight') ?>" />
                                     </div>
                                 </div>
@@ -167,8 +167,6 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
             <a class="btn btn-success" id="bt_displayConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
         </div>
     </div>
-
-
 </div>
 
 <?php include_file('desktop', 'display', 'js'); ?>

@@ -593,14 +593,14 @@ function saveScenario() {
 
 function addTrigger(_trigger) {
     var div = '<div class="form-group trigger">';
-    div += '<label class="col-lg-3 control-label">{{Evènement}}</label>';
-    div += '<div class="col-lg-7">';
+    div += '<label class="col-sm-3 control-label">{{Evènement}}</label>';
+    div += '<div class="col-sm-7">';
     div += '<input class="scenarioAttr input-sm form-control" data-l1key="trigger" value="' + _trigger + '">';
     div += '</div>';
-    div += '<div class="col-lg-1">';
+    div += '<div class="col-sm-1">';
     div += '<a class="btn btn-default btn-xs cursor bt_selectTrigger"><i class="fa fa-list-alt"></i></a>';
     div += '</div>';
-    div += '<div class="col-lg-1">';
+    div += '<div class="col-sm-1">';
     div += '<i class="fa fa-minus-circle bt_removeTrigger cursor"></i>';
     div += '</div>';
     div += '</div>';
@@ -609,14 +609,14 @@ function addTrigger(_trigger) {
 
 function addSchedule(_schedule) {
     var div = '<div class="form-group schedule">';
-    div += '<label class="col-lg-3 control-label">{{Programmation}}</label>';
-    div += '<div class="col-lg-7">';
+    div += '<label class="col-sm-3 control-label">{{Programmation}}</label>';
+    div += '<div class="col-sm-7">';
     div += '<input class="scenarioAttr input-sm form-control" data-l1key="schedule" value="' + _schedule + '">';
     div += '</div>';
-    div += '<div class="col-lg-1">';
+    div += '<div class="col-sm-1">';
     div += '<i class="fa fa-question-circle cursor bt_pageHelp floatright" data-name="cronSyntaxe"></i>';
     div += '</div>';
-    div += '<div class="col-lg-1">';
+    div += '<div class="col-sm-1">';
     div += '<i class="fa fa-minus-circle bt_removeSchedule cursor"></i>';
     div += '</div>';
     div += '</div>';

@@ -28,7 +28,7 @@ sendVarToJS('view_id', $view->getId());
 ?>
 
 <div class="row row-overflow">
-    <div class="col-lg-2">
+    <div class="col-lg-2 col-md-3 col-sm-4">
         <div class="bs-sidebar">
             <ul id="ul_view" class="nav nav-list bs-sidenav">
                 <?php if (hasRight('viewedit', true)) { ?>
@@ -48,7 +48,7 @@ sendVarToJS('view_id', $view->getId());
         </div>
     </div>
 
-    <div class="col-lg-10">
+    <div class="col-lg-10 col-md-9 col-sm-8">
         <legend style="height: 35px;color : #563d7c;">Vue <?php
             echo $view->getName();
             if (hasRight('viewedit', true)) {

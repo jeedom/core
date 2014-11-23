@@ -74,41 +74,41 @@ function displayCmd(_cmd_id) {
         success: function (data) {
             $('#div_displayInfo').empty();
             var div = '<div class="row">';
-            div += '<div class="col-lg-6" >';
+            div += '<div class="col-sm-6" >';
             div += '<form class="form-horizontal">';
             div += '<fieldset>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{ID}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{ID}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="id"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Logical ID}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{Logical ID}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="logicalId"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Nom}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{Nom}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="name"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Type}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{Type}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="type"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Sous-type}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{Sous-type}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="subType"></span>';
             div += '</div>';
             div += '</div>';
@@ -116,37 +116,37 @@ function displayCmd(_cmd_id) {
             div += '</fieldset>';
             div += '</form>';
             div += '</div>';
-            div += '<div class="col-lg-6" >';
+            div += '<div class="col-sm-6" >';
 
 
             div += '<form class="form-horizontal">';
             div += '<fieldset>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Unité}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{Unité}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="unite"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Commande déclenchant une mise à jour de la valeur}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{Commande déclenchant une mise à jour de la valeur}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="value"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Memcache}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{Memcache}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="cmdAttr label label-primary tooltips" data-l1key="cache" data-l2key="enable" title="{{Actif}}"></span> ';
             div += '<span class="label label-default tooltips" title="{{Durée du cache}}"><span class="cmdAttr" data-l1key="cache" data-l2key="lifetime"></span> {{seconde(s)}}</span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Evenement seulement}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{Evenement seulement}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="eventOnly"></span>';
             div += '</div>';
             div += '</div>';
@@ -171,32 +171,32 @@ function displayCmd(_cmd_id) {
                 success: function (data) {
                     var html = '';
                     html += '<div class="form-group">';
-                    html += '<label class="col-lg-2 control-label">{{Equipement}}</label>';
-                    html += '<div class="col-lg-4">';
+                    html += '<label class="col-sm-2 control-label">{{Equipement}}</label>';
+                    html += '<div class="col-sm-4">';
                     for (var i in data.eqLogic) {
                         html += ' <span class="label label-primary cursor"><a href="' + data.eqLogic[i].link + '" style="color : white;">' + data.eqLogic[i].humanName + '</a></span>';
                     }
                     html += '</div>';
                     html += '</div>';
                     html += '<div class="form-group">';
-                    html += '<label class="col-lg-2 control-label">{{Commandes}}</label>';
-                    html += '<div class="col-lg-4">';
+                    html += '<label class="col-sm-2 control-label">{{Commandes}}</label>';
+                    html += '<div class="col-sm-4">';
                     for (var i in data.cmd) {
                         html += ' <span class="label label-primary"><a href="' + data.cmd[i].link + '" style="color : white;">' + data.cmd[i].humanName + '</a></span>';
                     }
                     html += '</div>';
                     html += '</div>';
                     html += '<div class="form-group">';
-                    html += '<label class="col-lg-2 control-label">{{Scénario}}</label>';
-                    html += '<div class="col-lg-4">';
+                    html += '<label class="col-sm-2 control-label">{{Scénario}}</label>';
+                    html += '<div class="col-sm-4">';
                     for (var i in data.scenario) {
                         html += ' <span class="label label-primary"><a href="' + data.scenario[i].link + '" style="color : white;">' + data.scenario[i].humanName + '</a></span>';
                     }
                     html += '</div>';
                     html += '</div>';
                     html += '<div class="form-group">';
-                    html += '<label class="col-lg-2 control-label">{{Interaction}}</label>';
-                    html += '<div class="col-lg-4">';
+                    html += '<label class="col-sm-2 control-label">{{Interaction}}</label>';
+                    html += '<div class="col-sm-4">';
                     for (var i in data.interact) {
                         html += ' <span class="label label-primary"><a href="' + data.interact[i].link + '" style="color : white;">' + data.interact[i].humanName + '</a></span>';
                     }
@@ -215,35 +215,35 @@ function displayCmd(_cmd_id) {
 
             if (data.type == 'info' && data.subType == 'numeric') {
                 div += '<div class="form-group">';
-                div += '<label class="col-lg-6 control-label">{{Formule de calcul (utiliser #value# pour la valeur, ex #value# - 2)}}</label>';
-                div += '<div class="col-lg-6">';
+                div += '<label class="col-sm-6 control-label">{{Formule de calcul (utiliser #value# pour la valeur, ex #value# - 2)}}</label>';
+                div += '<div class="col-sm-6">';
                 div += '<input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />';
                 div += '</div>';
                 div += '</div>';
             }
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Ne pas afficher le nom de l\'équipement sur le dashboard}}</label>';
-            div += '<div class="col-lg-1">';
+            div += '<label class="col-sm-4 control-label">{{Ne pas afficher le nom de l\'équipement sur le dashboard}}</label>';
+            div += '<div class="col-sm-1">';
             div += '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" />';
             div += '</div>';
-            div += '<label class="col-lg-2 control-label">{{sur les vues}}</label>';
-            div += '<div class="col-lg-1">';
+            div += '<label class="col-sm-2 control-label">{{sur les vues}}</label>';
+            div += '<div class="col-sm-1">';
             div += '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnView" />';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-2 control-label">{{Widget Desktop}}</label>';
-            div += '<div class="col-lg-3">';
+            div += '<label class="col-sm-2 control-label">{{Widget Desktop}}</label>';
+            div += '<div class="col-sm-3">';
             div += '<select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">';
             for (var i in cmd_widgetDashboard[data.type][data.subType]) {
                 div += '<option>' + cmd_widgetDashboard[data.type][data.subType][i].name + '</option>';
             }
             div += '</select>';
             div += '</div>';
-            div += '<label class="col-lg-2 control-label">{{Mobile}}</label>';
-            div += '<div class="col-lg-3">';
+            div += '<label class="col-sm-2 control-label">{{Mobile}}</label>';
+            div += '<div class="col-sm-3">';
             div += '<select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">';
             for (var i in cmd_widgetMobile[data.type][data.subType]) {
                 div += '<option>' + cmd_widgetMobile[data.type][data.subType][i].name + '</option>';
@@ -262,12 +262,12 @@ function displayCmd(_cmd_id) {
                 success: function (subtype) {
                     if (isset(subtype.isHistorized) && subtype.isHistorized.visible) {
                         div += '<div class="form-group">';
-                        div += '<label class="col-lg-2 control-label">{{Historiser}}</label>';
-                        div += '<div class="col-lg-1">';
+                        div += '<label class="col-sm-2 control-label">{{Historiser}}</label>';
+                        div += '<div class="col-sm-1">';
                         div += '<input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />';
                         div += '</div>';
-                        div += '<label class="col-lg-2 control-label">{{Mode de lissage}}</label>';
-                        div += '<div class="col-lg-2">';
+                        div += '<label class="col-sm-2 control-label">{{Mode de lissage}}</label>';
+                        div += '<div class="col-sm-2">';
                         div += '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">';
                         div += '<option value="avg">Moyenne</option>';
                         div += '<option value="min">Minimum</option>';
@@ -275,8 +275,8 @@ function displayCmd(_cmd_id) {
                         div += '<option value="none">Aucun</option>';
                         div += '</select>';
                         div += '</div>';
-                        div += '<label class="col-lg-2 control-label">{{Arrondi (nombre de chiffre après la virgule)}}</label>';
-                        div += '<div class="col-lg-2">';
+                        div += '<label class="col-sm-2 control-label">{{Arrondi (nombre de chiffre après la virgule)}}</label>';
+                        div += '<div class="col-sm-2">';
                         div += '<input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />';
 
                         div += '</div>';
@@ -381,22 +381,22 @@ function displayObject(_object_id) {
             div += '<fieldset>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-2 control-label">{{ID}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-2 control-label">{{ID}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="objectAttr label label-primary" data-l1key="id"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-2 control-label">{{Nom}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-2 control-label">{{Nom}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="objectAttr label label-primary" data-l1key="name"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-2 control-label">{{Visible}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-2 control-label">{{Visible}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="objectAttr label label-primary" data-l1key="isVisible"></span>';
             div += '</div>';
             div += '</div>';
@@ -423,34 +423,34 @@ function displayEqLogic(_eqLogic_id) {
         success: function (data) {
             $('#div_displayInfo').empty();
             var div = '<div class="row">';
-            div += '<div class="col-lg-6" >';
+            div += '<div class="col-sm-6" >';
             div += '<form class="form-horizontal">';
             div += '<fieldset>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{ID}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{ID}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="eqLogicAttr label label-primary" data-l1key="id"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Nom}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{Nom}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="eqLogicAttr label label-primary" data-l1key="name"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Logical ID}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{Logical ID}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="eqLogicAttr label label-primary" data-l1key="logicalId"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Object ID}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{Object ID}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="eqLogicAttr label label-primary" data-l1key="object_id"></span>';
             div += '</div>';
             div += '</div>';
@@ -458,34 +458,34 @@ function displayEqLogic(_eqLogic_id) {
             div += '</fieldset>';
             div += '</form>';
             div += '</div>';
-            div += '<div class="col-lg-6" >';
+            div += '<div class="col-sm-6" >';
             div += '<form class="form-horizontal">';
             div += '<fieldset>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Type}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{Type}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="eqLogicAttr label label-primary" data-l1key="eqType_name"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Activer}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{Activer}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="eqLogicAttr label label-primary" data-l1key="isEnable"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Visible}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{Visible}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="eqLogicAttr label label-primary" data-l1key="isVisible"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Tentative échouée}}</label>';
-            div += '<div class="col-lg-4">';
+            div += '<label class="col-sm-4 control-label">{{Tentative échouée}}</label>';
+            div += '<div class="col-sm-4">';
             div += '<span class="eqLogicAttr label label-primary" data-l1key="status" data-l2key="numberTryWithoutSuccess"></span>';
             div += '</div>';
             div += '</div>';
@@ -498,12 +498,12 @@ function displayEqLogic(_eqLogic_id) {
             div += '<legend>Configuration</legend>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-lg-4 control-label">{{Ne pas afficher le nom de l\'équipement sur le dashboard}}</label>';
-            div += '<div class="col-lg-1">';
+            div += '<label class="col-sm-4 control-label">{{Ne pas afficher le nom de l\'équipement sur le dashboard}}</label>';
+            div += '<div class="col-sm-1">';
             div += '<input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" />';
             div += '</div>';
-            div += '<label class="col-lg-2 control-label">{{sur les vues}}</label>';
-            div += '<div class="col-lg-1">';
+            div += '<label class="col-sm-2 control-label">{{sur les vues}}</label>';
+            div += '<div class="col-sm-1">';
             div += '<input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnView" />';
             div += '</div>';
             div += '</div>';
