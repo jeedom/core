@@ -1,3 +1,7 @@
+==== 24/11/2014
+
+- Nouvel affichage des objets du market
+
 ==== 23/11/2014
 
 - Amélioration du responsive design

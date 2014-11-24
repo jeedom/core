@@ -3,121 +3,161 @@ if (!isConnect('admin')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
-include_file('3rdparty', 'bootstrap.rating/bootstrap.rating', 'js');
-include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
-include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
-include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
+include_file('3rdparty', 'jquery.masonry/jquery.masonry', 'js');
 
-$markets = market::byStatusAndType('stable', init('type'));
-if (config::byKey('market::showBetaMarket') == 1) {
-    $markets = array_merge($markets, market::byStatusAndType('beta', init('type')));
-} else {
-    if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
-        foreach (market::byMe() as $myMarket) {
-            if ($myMarket->getStatus() != 'stable' && $myMarket->getType() == init('type')) {
-                $markets[] = $myMarket;
-            }
+$status = init('status', null);
+$type = init('type', null);
+$categorie = init('categorie', null);
+$name = init('name', null);
+if ($name == 'false') {
+    $name = null;
+}
+$markets = market::byFilter(
+                array(
+                    'status' => $status,
+                    'type' => $type,
+                    'categorie' => $categorie,
+                    'name' => $name,
+                    'cost' => init('cost', null),
+                    'timeState' => init('timeState', null),
+                    'certification' => init('certification', null)
+                )
+);
+
+function buildUrl($_key, $_value) {
+    $url = 'index.php?v=d&modal=market.display&';
+    foreach ($_GET as $key => $value) {
+        if ($_key != $key) {
+            $url .= $key . '=' . $value . '&';
         }
     }
+    if ($_key != '' && $_value != '') {
+        $url .= $_key . '=' . $_value;
+    }
+    return $url;
 }
-$findMarket = array();
 ?>
-
-<span class="pull-right"><input type="checkbox" id="bt_marketListDisplayInstallObject" /> Afficher les objets installés</span>
-<table id="table_market" class="table table-bordered table-condensed tablesorter" data-sortlist="[[2,0]]">
-    <thead>
-        <tr>
-            <th data-sorter="false"></th>
-            <th>{{Certification}}</th>
-            <th>{{Catégorie}}</th>
-            <th>{{Nom}}</th>
-            <th>{{Description}}</th>
-            <th>{{Prix}}</th>
-            <th>{{Statut}}</th>
-            <th style="width: 110px;">{{Note}}</th>
-            <th>{{Téléchargé}}</th>
-            <th>{{Achat}}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        foreach ($markets as $market) {
-            if (!isset($findMarket[$market->getId()])) {
-                $update = update::byLogicalId($market->getLogicalId());
-                $findMarket[$market->getId()] = true;
-                $rating = $market->getRating();
-                $install = "install";
-                if (!is_object($update)) {
-                    $install = "notInstall";
-                }
-                echo '<tr data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" class="cursor ' . $install . '" style="height:70px;">';
-                if ($market->getStatus('stable') == 1 && $market->getImg('stable')) {
-                    $urlPath = config::byKey('market::address') . '/' . $market->getImg('stable');
-                } else {
-                    if ($market->getImg('beta')) {
-                        $urlPath = config::byKey('market::address') . '/' . $market->getImg('beta');
+<div style="margin-bottom: 5px; margin-top : 5px; background-color: #e7e7e7">
+    <form class="form-inline" role="form" onsubmit="return false;">
+        <div class="form-group">
+            <div class="btn-group" >
+                <a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'free') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'free'); ?>">Gratuit</a>
+                <a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'paying'); ?>">Payant</a>
+                <a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('cost', ''); ?>"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="btn-group" >
+                <a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'newest') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('timeState', 'newest'); ?>">Nouveau</a>
+                <a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'popular') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('timeState', 'popular'); ?>">Populaire</a>
+                <a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('timeState', ''); ?>"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="btn-group" >
+                <a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Officiel'); ?>">Officiel</a>
+                <a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Recommandé') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Recommandé'); ?>">Recommandé</a>
+                <a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('certification', ''); ?>"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="form-group">
+            <select class="form-control" id="sel_categorie" data-href='<?php echo buildUrl('categorie', ''); ?>'>
+                <option value="">Toutes les categories</option>
+                <?php
+                foreach (market::distinctCategorie($type) as $category) {
+                    if (trim($category) != '') {
+                        echo '<option value="' . $category . '"';
+                        echo (init('categorie') == $category) ? 'selected >' : '>';
+                        echo $category;
+                        echo '</option>';
                     }
                 }
-                echo '<td><center><img src="core/img/no_image.gif" data-original="' . $urlPath . '"  class="lazy" height="70" width="60" /></center></td>';
-                echo '<td><center>';
-                if ($market->getCertification() == 'Officiel') {
-                    echo '<span class="label label-success" style="font-size : 1.4em;position : relative;top : 5px;">Officiel</span>';
-                }
-                if ($market->getCertification() == 'Recommandé') {
-                    echo '<span class="label label-primary" style="font-size : 1.1em;position : relative;top : 5px;">Recommandé</span>';
-                }
-                echo '</center></td>';
-                echo '<td>' . $market->getCategorie() . '</td>';
-                echo '<td>' . $market->getName() . '</td>';
-                echo '<td>' . $market->getDescription() . '</td>';
-                echo '<td>';
-                if ($market->getCost() > 0) {
-                    echo '<span class="label label-primary" data-l1key="rating" style="font-size: 1em;">' . number_format($market->getCost(), 2) . ' €</span>';
-                } else {
-                    echo '<span class="label label-success" data-l1key="rating" style="font-size: 1em;">Gratuit</span>';
-                }
-                echo '</td>';
-                echo '<td>';
-                if ($market->getStatus('stable') == 1) {
-                    echo '<span class="label label-success">';
-                    echo '{{Stable}} : ';
-                    echo $market->getDatetime('stable');
-                    echo '</span><br/>';
-                }
-                if ($market->getStatus('beta') == 1) {
-                    echo '<span class="label label-warning">';
-                    echo '{{Beta}} : ';
-                    echo $market->getDatetime('beta');
-                    echo '</span><br/>';
-                }
-                if (is_object($update)) {
-                    if ($update->getConfiguration('version', 'stable') == 'beta') {
-                        echo '<span class="label label-danger">';
-                        echo '{{Installé en BETA}}';
-                        echo '</span>';
-                    } else {
-                        echo '<span class="label label-info">';
-                        echo '{{Installé en STABLE}}';
-                        echo '</span>';
-                    }
-                }
+                ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <input class="form-control" data-href='<?php echo buildUrl('name', ''); ?>' placeholder="Rechercher" id="in_search" value="<?php echo $name ?>"/>
+            <a class="btn btn-success" id="bt_search" data-href='<?php echo buildUrl('name', ''); ?>'><i class="fa fa-search"></i></a>
+        </div>
+    </form>
+</div>
+<div style="padding : 5px;">
+    <?php
+    $categorie = '';
+    $first = true;
+    foreach ($markets as $market) {
+        $category = $market->getCategorie();
+        if ($category == '') {
+            $category = 'Aucune';
+        }
+        if ($categorie != $category) {
+            $categorie = $category;
+            if (!$first) {
+                echo '</div>';
+            }
+            echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;">' . ucfirst($categorie) . '</legend>';
+            echo '<div class="pluginContainer">';
+            $first = false;
+        }
 
-                echo '</td>';
-                echo '<td><center>';
-                echo '<input type="number" class="rating" data-max="5" data-empty-value="0" data-min="1" value="' . ceil($market->getRating()) . '" data-disabled="1" />';
-                echo $market->getRating('total') . ' vote(s)';
-                echo '</center></td>';
-                echo '<td><center>' . $market->getDownloaded() . '</center></td>';
-                echo '<td><center>' . $market->getBuyer() . '</center></td>';
-                echo '</tr>';
+        echo '<div class="market cursor" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >';
+        if (!is_object(update::byLogicalId($market->getLogicalId()))) {
+            echo '<i class="fa fa-check" style="position : absolute; right : 5px;"></i>';
+        }
+
+        echo "<center>";
+        if ($market->getStatus('stable') == 1 && $market->getImg('stable')) {
+            $urlPath = config::byKey('market::address') . '/' . $market->getImg('stable');
+        } else {
+            if ($market->getImg('beta')) {
+                $urlPath = config::byKey('market::address') . '/' . $market->getImg('beta');
             }
         }
-        ?>
-    </tbody>
-</table>
+        echo '<img class="lazy" src="core/img/no_image.gif" data-original="' . $urlPath . '" height="100" width="85" />';
+        echo "</center>";
+        echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;">' . $market->getName() . '</span>';
+        if ($market->getCertification() == 'Officiel') {
+            echo '<br/><span style="font-size : 0.85em;color:#7f8c8d;position:relative; top : 10px;">Officiel</span>';
+        }
+        if ($market->getCertification() == 'Recommandé') {
+            echo '<br/><span style="font-size : 0.85em;color:#7f8c8d;position:relative; top : 10px;">Recommandé</span>';
+        }
+        $note = $market->getRating();
+
+        echo '<span style="position : absolute;bottom : 14px;left : 5px;font-size : 0.7em;">';
+        for ($i = 1; $i < 6; $i++) {
+            if ($i <= $note) {
+                echo '<i class="fa fa-star"></i>';
+            } else {
+                echo '<i class="fa fa-star-o"></i>';
+            }
+        }
+        echo '</span>';
+        if ($market->getCost() > 0) {
+            echo '<span style="position : absolute;bottom : 14px;right : 12px;font-size : 0.85em;color:#97bd44;">' . number_format($market->getCost(), 2) . ' €</span>';
+        } else {
+            echo '<span style="position : absolute;bottom : 14px;right : 12px;font-size : 0.85em;color:#97bd44;">Gratuit</span>';
+        }
+        echo '</div>';
+    }
+    ?>
+</div>
+<style>
+    .market:hover{
+        background-color : #F2F1EF !important;
+    }
+
+    #md_modal{
+        background-color: #e7e7e7
+    }
+</style>
 
 <script>
     $(function () {
+        $('.pluginContainer').each(function () {
+            $(this).masonry({columnWidth: 10});
+        });
+
         $("img.lazy").lazyload({
             event: "sporty"
         });
@@ -128,6 +168,23 @@ $findMarket = array();
             $('#table_market tbody tr.install').hide();
         }, 500);
 
+        $('.bt_pluginFilter').on('click', function () {
+            $('#md_modal').load($(this).attr('data-href'));
+        });
+
+        $('#sel_categorie').on('change', function () {
+            $('#md_modal').load($(this).attr('data-href') + '&categorie=' + $(this).value());
+        });
+
+        $('#bt_search').on('click', function () {
+            $('#md_modal').load($(this).attr('data-href') + '&name=' + $('#in_search').value());
+        });
+
+        $('#in_search').keypress(function (e) {
+            if (e.which == 13) {
+                $('#md_modal').load($(this).attr('data-href') + '&name=' + $('#in_search').value());
+            }
+        });
 
         $('#bt_marketListDisplayInstallObject').on('change', function () {
             if ($(this).value() == 1) {
@@ -137,8 +194,7 @@ $findMarket = array();
             }
         });
 
-
-        $('#table_market tbody tr').on('click', function () {
+        $('.market').on('click', function () {
             $('#md_modal2').dialog({title: "{{Market Jeedom}}"});
             $('#md_modal2').load('index.php?v=d&modal=market.display&type=' + $(this).attr('data-market_type') + '&id=' + $(this).attr('data-market_id')).dialog('open');
         });

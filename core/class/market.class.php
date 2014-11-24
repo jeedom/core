@@ -193,6 +193,21 @@ class market {
         }
     }
 
+    public static function byFilter($_filter) {
+        $market = self::getJsonRpc();
+        if ($market->sendRequest('market::byFilter', $_filter)) {
+            $return = array();
+            foreach ($market->getResult() as $result) {
+                if (isset($result['id'])) {
+                    $return[] = self::construct($result);
+                }
+            }
+            return $return;
+        } else {
+            throw new Exception($market->getError(), $market->getErrorCode());
+        }
+    }
+
     public static function getPurchaseInfo() {
         $market = self::getJsonRpc();
         if ($market->sendRequest('purchase::getInfo')) {
@@ -474,6 +489,15 @@ class market {
             throw new Exception($market->getError());
         }
         return true;
+    }
+
+    public static function distinctCategorie($_type) {
+        $market = self::getJsonRpc();
+        if ($market->sendRequest('market::distinctCategorie', array('type' => $_type))) {
+            return $market->getResult();
+        } else {
+            throw new Exception($market->getError(), $market->getErrorCode());
+        }
     }
 
     /*     * *********************Methode d'instance************************* */
