@@ -63,7 +63,7 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black))}}</label>
+                <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black)}}</label>
                 <div class="col-lg-2">
                     <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
                 </div>
