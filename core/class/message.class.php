@@ -135,6 +135,7 @@ class message {
             DB::save($this);
             @nodejs::pushNotification(__('Message de ', __FILE__) . $this->getPlugin(), $this->getMessage(), 'message');
             $cmds = explode(('&&'), config::byKey('emailAdmin'));
+            print_r($cmds);
             if (count($cmds) > 0) {
                 foreach ($cmds as $id) {
                     $cmd = cmd::byId(str_replace('#', '', $id));
@@ -143,6 +144,8 @@ class message {
                             'title' => __('[JEEDOM] Message de ', __FILE__) . $this->getPlugin(),
                             'message' => $this->getMessage()
                         ));
+                    } else {
+                        log::add('message', 'info', __('Impossible de trouver la commande correspondant à :', __FILE__) . $id);
                     }
                 }
             }
