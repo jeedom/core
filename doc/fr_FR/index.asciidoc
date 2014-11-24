@@ -80,6 +80,7 @@ include::plugin.asciidoc[]
 include::rights.asciidoc[]
 
 '''
+[[scenario]]
 ==== Scénario
 include::scenario.asciidoc[]
 
