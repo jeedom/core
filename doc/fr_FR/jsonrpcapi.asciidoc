@@ -2,7 +2,7 @@ Voici une documentation (qui évoluera) sur les méthodes de l'API. Tout d'abord
 
 L'accès à l'API se fait par l'url : #URL_JEEDOM#/core/api/jeeApi.php
 
-==== Plugin
+==== API JSON Plugin
 
 ===== plugin::listPlugin
 Retourne la liste de tous les plugins
@@ -13,7 +13,7 @@ Paramètres :
 - int orderByCaterogy = 0 (retourne la liste des plugins triés par catégorie)
 
 
-==== Objet
+==== API JSON Objet
 
 ===== object::all
 Retourne la liste de tous les objets
@@ -31,7 +31,7 @@ Paramètres:
 ===== object::fullById
 Retourne un objet, ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
 
-==== EqLogic
+==== API JSON EqLogic
 ===== eqLogic::all
 Retourne la liste de tous les équipements
 
@@ -77,7 +77,7 @@ Paramètres:
 - int $timeout;
 - array $category;
 
-==== Cmd
+==== API JSON Cmd
 
 ===== cmd::all
 Retourne la liste de toutes les commandes
@@ -132,7 +132,7 @@ Paramètres:
 - string endTime : date de fin de l'historique
 
 
-==== Scenario
+==== API JSON Scenario
 
 ===== scenario::all
 Retourne la liste de tous les scénarios
@@ -152,7 +152,7 @@ Paramètres:
 - int id
 - string state : [run,stop,enable,disable]
 
-==== Interaction
+==== API JSON Interaction
 
 ===== interact::tryToReply
 Essaye de faire correspondre une demande avec une interaction, exécute l'action et répond en conséquence
@@ -161,7 +161,7 @@ Paramètres:
 
 - query (phrase de la demande)
 
-==== Exemples
+==== API JSON Exemples
 Voici un exemple d'utilisation de l'API. Pour l'exemple si dessous j'utilise cette class php qui permet de simplifier l'utilisation de l'api.
 
 Récupération de la liste des objets :
