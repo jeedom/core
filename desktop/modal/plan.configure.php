@@ -63,6 +63,12 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black))}}</label>
+                <div class="col-lg-2">
+                    <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-lg-4 control-label">{{Ne pas afficher le nom de l'équipement}}</label>
                 <div class="col-lg-2">
                     <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="name" >
@@ -98,12 +104,9 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-4 control-label">{{Bordure}}</label>
+                <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black}}</label>
                 <div class="col-lg-2">
-                    <select class="planAttr form-control" data-l1key="css" data-l2key="border">
-                        <option value="solid 1px black">Oui</option>
-                        <option value="none">Non</option>
-                    </select>
+                    <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
                 </div>
             </div>
             <div class="form-group">
@@ -204,6 +207,12 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black)}}</label>
+                <div class="col-lg-2">
+                    <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-lg-4 control-label">{{Taille de la police (ex 50%, il faut bien mettre le signe %)}}</label>
                 <div class="col-lg-2">
                     <input class="planAttr form-control" data-l1key="css" data-l2key="font-size" />
@@ -262,6 +271,12 @@ sendVarToJS('id', $plan->getId());
                 <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
                 <div class="col-lg-2">
                     <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black)}}</label>
+                <div class="col-lg-2">
+                    <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
                 </div>
             </div>
             <div class="form-group">
