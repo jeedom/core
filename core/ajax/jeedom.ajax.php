@@ -113,8 +113,8 @@ try {
         if (!in_array($extension, array('.gz'))) {
             throw new Exception('Extension du fichier non valide (autorisé .tar.gz) : ' . $extension);
         }
-        if (filesize($_FILES['file']['tmp_name']) > 30000000) {
-            throw new Exception(__('Le fichier est trop gros (miximum 30mo)', __FILE__));
+        if (filesize($_FILES['file']['tmp_name']) > 100000000) {
+            throw new Exception(__('Le fichier est trop gros (maximum 100mo)', __FILE__));
         }
         if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $_FILES['file']['name'])) {
             throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
