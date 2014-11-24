@@ -100,7 +100,7 @@ function buildUrl($_key, $_value) {
             $first = false;
         }
 
-        echo '<div class="market cursor" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >';
+        echo '<div class="market cursor" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
         if (!is_object(update::byLogicalId($market->getLogicalId()))) {
             echo '<i class="fa fa-check" style="position : absolute; right : 5px;"></i>';
         }
