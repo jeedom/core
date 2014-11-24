@@ -117,6 +117,9 @@ class message {
     /*     * *********************Methode d'instance************************* */
 
     public function save() {
+        if ($this->getMessage() == '') {
+           return;
+        }
         if ($this->getLogicalId() == '') {
             $this->setLogicalId($this->getPlugin() . '::' . config::genKey());
         }
@@ -135,7 +138,6 @@ class message {
             DB::save($this);
             @nodejs::pushNotification(__('Message de ', __FILE__) . $this->getPlugin(), $this->getMessage(), 'message');
             $cmds = explode(('&&'), config::byKey('emailAdmin'));
-            print_r($cmds);
             if (count($cmds) > 0) {
                 foreach ($cmds as $id) {
                     $cmd = cmd::byId(str_replace('#', '', $id));
