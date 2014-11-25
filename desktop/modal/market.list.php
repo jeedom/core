@@ -61,6 +61,13 @@ function buildUrl($_key, $_value) {
             </div>
         </div>
         <div class="form-group">
+            <div class="btn-group" >
+                <a class="btn btn-default bt_installFilter" data-state="-1">Installé</a>
+                <a class="btn btn-default bt_installFilter" data-state="1">Non installé</a>
+                <a class="btn btn-default bt_installFilter" data-state="0"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <div class="form-group">
             <select class="form-control" id="sel_categorie" data-href='<?php echo buildUrl('categorie', ''); ?>'>
                 <option value="">Toutes les categories</option>
                 <?php
@@ -85,7 +92,9 @@ function buildUrl($_key, $_value) {
     <?php
     $categorie = '';
     $first = true;
+    $nCategory = 0;
     foreach ($markets as $market) {
+        $update = update::byLogicalId($market->getLogicalId());
         $category = $market->getCategorie();
         if ($category == '') {
             $category = 'Aucune';
@@ -95,16 +104,19 @@ function buildUrl($_key, $_value) {
             if (!$first) {
                 echo '</div>';
             }
-            echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;">' . ucfirst($categorie) . '</legend>';
-            echo '<div class="pluginContainer">';
+            echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '">' . ucfirst($categorie) . '</legend>';
+            echo '<div class="pluginContainer" data-category="' . $nCategory . '">';
             $first = false;
+            $nCategory++;
         }
-
-        echo '<div class="market cursor" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-        if (!is_object(update::byLogicalId($market->getLogicalId()))) {
+        $install = 'notInstall';
+        if (!is_object($update)) {
+            $install = 'install';
+        }
+        echo '<div class="market cursor ' . $install . '" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+        if (is_object($update)) {
             echo '<i class="fa fa-check" style="position : absolute; right : 5px;"></i>';
         }
-
         echo "<center>";
         if ($market->getStatus('stable') == 1 && $market->getImg('stable')) {
             $urlPath = config::byKey('market::address') . '/' . $market->getImg('stable');
@@ -190,12 +202,33 @@ function buildUrl($_key, $_value) {
             }
         });
 
-        $('#bt_marketListDisplayInstallObject').on('change', function () {
-            if ($(this).value() == 1) {
-                $('#table_market tbody tr.install').show();
-            } else {
-                $('#table_market tbody tr.install').hide();
+        $('.bt_installFilter').on('click', function () {
+            $('.bt_installFilter').removeClass('btn-primary');
+            $('.pluginContainer').show();
+            $('.market').show();
+            if ($(this).attr('data-state') == 1) {
+                $(this).addClass('btn-primary');
+                $('.notInstall').hide();
             }
+            if ($(this).attr('data-state') == -1) {
+                $(this).addClass('btn-primary');
+                $('.install').hide();
+            }
+            $('.pluginContainer').each(function () {
+                var hasVisible = false;
+                $(this).find('.market').each(function () {
+                    if ($(this).is(':visible')) {
+                        hasVisible = true;
+                    }
+                });
+                if (hasVisible) {
+                    $('legend[data-category=' + $(this).attr('data-category') + ']').show();
+                    $(this).masonry({columnWidth: 10});
+                } else {
+                    $(this).hide();
+                    $('legend[data-category=' + $(this).attr('data-category') + ']').hide();
+                }
+            });
         });
 
         $('.market').on('click', function () {
