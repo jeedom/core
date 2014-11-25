@@ -134,7 +134,11 @@ function buildUrl($_key, $_value) {
         }
         echo '</span>';
         if ($market->getCost() > 0) {
-            echo '<span style="position : absolute;bottom : 14px;right : 12px;font-size : 0.85em;color:#97bd44;">' . number_format($market->getCost(), 2) . ' €</span>';
+            echo '<span style="position : absolute;bottom : 14px;right : 12px;font-size : 0.85em;color:#97bd44;">';
+            if ($market->getCost() != $market->getRealCost()) {
+                echo '<span style="text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
+            }
+            echo number_format($market->getCost(), 2) . ' €</span>';
         } else {
             echo '<span style="position : absolute;bottom : 14px;right : 12px;font-size : 0.85em;color:#97bd44;">Gratuit</span>';
         }
