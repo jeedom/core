@@ -65,6 +65,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     <select class="configKey form-control" data-l1key="language">
                                         <option value="fr_FR">{{Français}}</option>
                                         <option value="en_US">{{Anglais}}</option>
+                                        <option value="de_DE">{{Allemand}}</option>
                                     </select>
                                 </div>
                             </div>
