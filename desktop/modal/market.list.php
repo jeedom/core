@@ -28,11 +28,11 @@ function buildUrl($_key, $_value) {
     $url = 'index.php?v=d&modal=market.display&';
     foreach ($_GET as $key => $value) {
         if ($_key != $key) {
-            $url .= $key . '=' . $value . '&';
+            $url .= $key . '=' . urlencode($value) . '&';
         }
     }
     if ($_key != '' && $_value != '') {
-        $url .= $_key . '=' . $_value;
+        $url .= $_key . '=' . urlencode($_value);
     }
     return $url;
 }
@@ -146,13 +146,13 @@ function buildUrl($_key, $_value) {
         }
         echo '</span>';
         if ($market->getCost() > 0) {
-            echo '<span style="position : absolute;bottom : 14px;right : 12px;font-size : 0.85em;color:#97bd44;">';
+            echo '<span style="position : absolute;bottom : 14px;right : 12px;color:#97bd44;">';
             if ($market->getCost() != $market->getRealCost()) {
                 echo '<span style="text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
             }
             echo number_format($market->getCost(), 2) . ' €</span>';
         } else {
-            echo '<span style="position : absolute;bottom : 14px;right : 12px;font-size : 0.85em;color:#97bd44;">Gratuit</span>';
+            echo '<span style="position : absolute;bottom : 14px;right : 12px;color:#97bd44;">Gratuit</span>';
         }
         echo '</div>';
     }
@@ -189,16 +189,16 @@ function buildUrl($_key, $_value) {
         });
 
         $('#sel_categorie').on('change', function () {
-            $('#md_modal').load($(this).attr('data-href') + '&categorie=' + $(this).value());
+            $('#md_modal').load($(this).attr('data-href') + '&categorie=' + encodeURI($(this).value()));
         });
 
         $('#bt_search').on('click', function () {
-            $('#md_modal').load($(this).attr('data-href') + '&name=' + $('#in_search').value());
+            $('#md_modal').load($(this).attr('data-href') + '&name=' + encodeURI($('#in_search').value()));
         });
 
         $('#in_search').keypress(function (e) {
             if (e.which == 13) {
-                $('#md_modal').load($(this).attr('data-href') + '&name=' + $('#in_search').value());
+                $('#md_modal').load($(this).attr('data-href') + '&name=' + encodeURI($('#in_search').value()));
             }
         });
 
