@@ -175,7 +175,7 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
                         echo '<span class="rights">';
                         echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
                         echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
-                        echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="scenario' . $eqLogic->getId() . $kright . '" />';
+                        echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="eqLogic' . $eqLogic->getId() . $kright . '" />';
                         echo '<input type="checkbox" class="rightsAttr" data-l1key="right"  checked /> ' . $right . '<br/>';
                         echo '</span>';
                     }

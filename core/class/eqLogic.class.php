@@ -566,7 +566,7 @@ class eqLogic {
             }
         }
         if ($_tag) {
-            $name .= ' '.$this->getName();
+            $name .= ' ' . $this->getName();
         } else {
             $name .= '[' . $this->getName() . ']';
         }
@@ -637,6 +637,35 @@ class eqLogic {
 
     public function refreshWidget() {
         nodejs::pushUpdate('eventEqLogic', $this->getId());
+    }
+
+    public function hasRight($_right, $_needAdmin = false, $_user = null) {
+        if (!isConnect()) {
+            return false;
+        }
+        if (isConnect('admin')) {
+            return true;
+        }
+        if (config::byKey('jeedom::licence') < 9) {
+            return ($_needAdmin) ? false : true;
+        }
+        if (!is_object($_user)) {
+            $_user = $_SESSION['user'];
+        }
+        if (!is_object($_user)) {
+            return false;
+        }
+        if ($_right = 'x') {
+            $rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'action');
+        } elseif ($_right = 'w') {
+            $rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'edit');
+        } elseif ($_right = 'r') {
+            $rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'view');
+        }
+        if (!is_object($rights)) {
+            return ($_needAdmin) ? false : true;
+        }
+        return $rights->getRight();
     }
 
     /*     * **********************Getteur Setteur*************************** */
