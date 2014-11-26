@@ -136,7 +136,7 @@ function buildUrl($_key, $_value) {
         }
         $note = $market->getRating();
 
-        echo '<span style="position : absolute;bottom : 14px;left : 5px;font-size : 0.7em;">';
+        echo '<span style="position : absolute;bottom : 5px;left : 5px;font-size : 0.7em;">';
         for ($i = 1; $i < 6; $i++) {
             if ($i <= $note) {
                 echo '<i class="fa fa-star"></i>';
@@ -146,13 +146,13 @@ function buildUrl($_key, $_value) {
         }
         echo '</span>';
         if ($market->getCost() > 0) {
-            echo '<span style="position : absolute;bottom : 14px;right : 12px;color:#97bd44;">';
+            echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">';
             if ($market->getCost() != $market->getRealCost()) {
                 echo '<span style="text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
             }
             echo number_format($market->getCost(), 2) . ' €</span>';
         } else {
-            echo '<span style="position : absolute;bottom : 14px;right : 12px;color:#97bd44;">Gratuit</span>';
+            echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">Gratuit</span>';
         }
         echo '</div>';
     }
