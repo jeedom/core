@@ -125,7 +125,7 @@ function buildUrl($_key, $_value) {
                 $urlPath = config::byKey('market::address') . '/' . $market->getImg('beta');
             }
         }
-        echo '<img class="lazy" src="core/img/no_image.gif" data-original="' . $urlPath . '" height="100" width="85" />';
+        echo '<img class="lazy" src="core/img/no_image.gif" data-original="' . $urlPath . '" height="105" width="95" />';
         echo "</center>";
         echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;">' . $market->getName() . '</span>';
         if ($market->getCertification() == 'Officiel') {
