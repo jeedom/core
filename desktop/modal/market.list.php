@@ -170,9 +170,7 @@ function buildUrl($_key, $_value) {
 
 <script>
     $(function () {
-        $('.pluginContainer').each(function () {
-            $(this).masonry({columnWidth: 10});
-        });
+        $('.pluginContainer').masonry({columnWidth: 10});
 
         $("img.lazy").lazyload({
             event: "sporty"
