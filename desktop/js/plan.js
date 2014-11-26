@@ -330,6 +330,7 @@ function displayPlan() {
                             }
                         }
                         $('#div_displayObject').append(objects);
+                        initDraggable($('#bt_editPlan').attr('data-mode'));
                     },
                 });
             }
