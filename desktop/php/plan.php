@@ -44,11 +44,11 @@ if (is_object($planHeader)) {
         <a class="btn btn-warning pull-right btn-sm" style="margin-bottom: 3px;" id="bt_editPlan" data-mode="0"><i class="fa fa-pencil"></i> {{Mode édition}}</a>
         <?php if (is_object($planHeader)) { ?>
             <a class="btn btn-success pull-right btn-sm editMode" style="margin-bottom: 3px;display: none;" id="bt_savePlan" data-mode="0"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
-            <a class="btn btn-info pull-right btn-sm editMode" style="margin-bottom: 3px;display: none;" id="bt_addGraph"><i class="fa fa-plus-circle"></i> {{Ajouter Graph}}</a>
-            <a class="btn btn-info pull-right btn-sm editMode" style="margin-bottom: 3px;display: none;" id="bt_addLink"><i class="fa fa-plus-circle"></i> {{Ajouter lien}}</a>
-            <a class="btn btn-info pull-right btn-sm editMode" style="margin-bottom: 3px;display: none;" id="bt_addScenario"><i class="fa fa-plus-circle"></i> {{Ajouter scénario}}</a>
-            <a class="btn btn-info pull-right btn-sm editMode" style="margin-bottom: 3px;display: none;" id="bt_addTexte"><i class="fa fa-plus-circle"></i> {{Ajouter texte/html}}</a>
-            <a class="btn btn-info pull-right btn-sm editMode" style="margin-bottom: 3px;display: none;" id="bt_addEqLogic"><i class="fa fa-plus-circle"></i> {{Ajouter équipement}}</a>
+            <a class="btn btn-info pull-right btn-sm editMode" style="margin-bottom: 3px;display: none;" id="bt_addGraph"><i class="fa fa-plus-circle"></i> {{Graph}}</a>
+            <a class="btn btn-info pull-right btn-sm editMode" style="margin-bottom: 3px;display: none;" id="bt_addLink"><i class="fa fa-plus-circle"></i> {{Lien}}</a>
+            <a class="btn btn-info pull-right btn-sm editMode" style="margin-bottom: 3px;display: none;" id="bt_addScenario"><i class="fa fa-plus-circle"></i> {{Scénario}}</a>
+            <a class="btn btn-info pull-right btn-sm editMode" style="margin-bottom: 3px;display: none;" id="bt_addTexte"><i class="fa fa-plus-circle"></i> {{Texte/html}}</a>
+            <a class="btn btn-info pull-right btn-sm editMode" style="margin-bottom: 3px;display: none;" id="bt_addEqLogic"><i class="fa fa-plus-circle"></i> {{Equipement}}</a>
             <?php
         }
     }

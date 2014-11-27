@@ -825,3 +825,10 @@ Enfin on previent jeedom que le widget est à rafraichir sur l'interface de l'ut
 ----
 $weather->refreshWidget();
 ----
+
+Pour la class commande, un petit truc a savoir si vous utilisez le template js de base. Lors de l'envoi de l'équipment Jeedom fait du differentiel sur les commandes et va supprimer celle qui sont en base mais pas dans la nouvelle definition de l'équipement. Voila comment l'éviter : 
+----
+ public function dontRemoveCmd() {
+    return true;
+}
+----
