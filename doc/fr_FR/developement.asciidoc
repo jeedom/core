@@ -33,7 +33,7 @@ Voici les recommandations :
 - le nom de la première page de vue d’un plugin doit être le même que l’ID du plugin
 - le nom du fichier JS (s’il y en a un) de la première page de vue du plugin doit être l’ID du plugin
 
-==== Création de plugin partie 2 : plugin info
+==== Création plugin partie 2 : plugin info
 
 ===== info.xml
 
@@ -215,7 +215,7 @@ if (!isConnect()) {
  </form>
 ----
  
-==== Création de plugin partie 3 : dossier desktop
+==== Création plugin partie 3 : dossier desktop
  
 ===== PHP
 Ce dossier contient la vue à proprement parler dedans on retrouve obligatoire la page de configuration du plugin (celle qui apparaîtra quand l'utilisateur fera plugin => catégorie => votre plugin), il est conseillé de nommer celle-ci avec l'id de votre plugin. Il peut aussi contenir le panel (page que l'utilisateur trouvera dans accueil -> nom de votre plugin).
@@ -405,3 +405,329 @@ La deuxième ligne charge votre modal et l'affichage. Pour la syntaxe c'est asse
 Ce n'est pas un dossier mais dans les dernières versions de Jeedom celui-ci offre au développeur toute une api javascript (ça évite d'écrire des appels ajax dans tous les sens). J'essayerai de faire un article pour expliquer les différentes fonctionnalités mais vous pouvez déjà trouver le code ici.
 
 Voilà pour les détails du dossier desktop. Je me doute que c'est pas des plus complets (j'essayerai de le compléter en fonction des différentes demandes que je reçois) mais j’espère que grâce à ça vous pourrez commencer à faire des plugins pour Jeedom.
+
+==== Création plugin partie 4 : dossier core
+
+De loin un des dossiers le plus important de votre plugin, il peut comporter 4 sous dossiers. 
+
+Note : tous le long de cette partie l'id de votre plugin sera referencé par : plugin_id
+
+===== PHP
+
+Contient les fichiers PHP annexe, j'ai pris l'habitude de mettre par exemple un fichier d'inclusion si, bien sur, vous avez plusieurs fichier de class ou des 3rparty à inclure
+
+===== Template
+
+Qui peut contenir 2 sous-dossier, dashboard et mobile, c'est un dossier que Jeedom scan automatique à la recherche de widget, donc si vous utilisez des widgets specifiques c'est ici qu'il faut mettre leur fichier html
+
+===== i18n
+
+C'est ici que votre traduction doit aller sous forme de fichier json (le mieux et de regarde par exemple le plugin link:https://github.com/jeedom/plugin-zwave[zwave] pour voir la forme du fichier)
+
+===== ajax
+
+Ce dossier est pour tout vos fichier ajax, voici un squelette de fichier ajax : 
+
+----
+
+<?php
+
+/* This file is part of Jeedom.
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+try {
+    require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
+    include_file('core', 'authentification', 'php');
+
+    if (!isConnect('admin')) {
+        throw new Exception(__('401 - Accès non autorisé', __FILE__));
+    }
+
+    if (init('action') == 'votre action') {
+       
+        ajax::success($result);
+    }
+
+    throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+    /*     * *********Catch exeption*************** */
+} catch (Exception $e) {
+    ajax::error(displayExeption($e), $e->getCode());
+}
+?>
+
+----
+
+
+==== class
+
+Dossier très important c'est le moteur de votre plugin, c'est la que vient les 2 class obligatoire de votre plugin : 
+
+- plugin_id
+- plugin_idCmd
+
+La premiere heritant devant hériter de la class eqLogic et la deuxieme de cmd. Voici un template : 
+
+----
+<?php
+
+/* This file is part of Jeedom.
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* * ***************************Includes********************************* */
+require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
+
+class plugin_id extends eqLogic {
+
+    /*     * *************************Attributs****************************** */
+
+
+    /*     * ***********************Methode static*************************** */
+
+
+    /*     * *********************Methode d'instance************************* */
+
+    
+    /*     * **********************Getteur Setteur*************************** */
+
+}
+
+class plugin_idCmd extends cmd {
+
+    /*     * *************************Attributs****************************** */
+
+
+    /*     * ***********************Methode static*************************** */
+
+
+    /*     * *********************Methode d'instance************************* */
+
+    
+    /*     * **********************Getteur Setteur*************************** */
+
+}
+
+?>
+----
+
+Pour la definition des class jeedom, je vous invite à consulter ce link:http://dev.jeedom.fr/[site]
+
+La seule methode obligatoire et la methode d'instance sur la class cmd execute, voici un exemple avec le plugin S.A.R.A.H : 
+
+----
+
+ public function execute($_options = array()) {
+        if (!isset($_options['title']) && !isset($_options['message'])) {
+            throw new Exception(__("Le titre ou le message ne peuvent être tous les deux vide", __FILE__));
+        }
+        $eqLogic = $this->getEqLogic();
+        $message = '';
+        if (isset($_options['title'])) {
+            $message = $_options['title'] . '. ';
+        }
+        $message .= $_options['message'];
+        $http = new com_http($eqLogic->getConfiguration('addrSrvTts') . '/?tts=' . urlencode($message));
+        return $http->exec();
+    }
+
+----
+
+Exemple assez simple mais complet, le principe est le suivant, si la commande est une action ou une info (mais pas en evenement seulement et que son cache est dépassé) alors jeedom appels cette méthode.
+
+Dans notre exemple ici c'est une commande pour faire parler S.A.R.A.H, ou le plugin recupère les paramètres dans $_options (attention c'est un tableau et ses attribut change en fonction du sous-type de la commande : color pour un sous-type color, slider pour un sous-type slider, title et message pour un sous-type message et vide pour un sous-type other).
+
+Voila pour la partie obligatoire, voila maintenant ce qui peut etre utilisé à coté (avec exemple) : 
+
+.toHtml($_version = 'dashboard')
+
+Fonction utilisable dans la commande ou dans l'équipement, en fonction des besoin, voici un exemple pour l'équipement
+
+----
+
+   public function toHtml($_version = 'dashboard') {
+        if ($this->getIsEnable() != 1) {
+            return '';
+        }
+        $_version = jeedom::versionAlias($_version);
+        $mc = cache::byKey('weatherWidget' . $_version . $this->getId());
+        if ($mc->getValue() != '') {
+            return $mc->getValue();
+        }
+        $html_forecast = '';
+
+        if ($_version != 'mobile' || $this->getConfiguration('fullMobileDisplay', 0) == 1) {
+            $forcast_template = getTemplate('core', $_version, 'forecast', 'weather');
+            for ($i = 0; $i < 5; $i++) {
+                $replace = array();
+                $replace['#day#'] = convertDayEnToFr(date('l', strtotime('+' . $i . ' days')));
+
+                if ($i == 0) {
+                    $temperature_min = $this->getCmd(null, 'temperature_min');
+                } else {
+                    $temperature_min = $this->getCmd(null, 'temperature_' . $i . '_min');
+                }
+                $replace['#low_temperature#'] = is_object($temperature_min) ? $temperature_min->execCmd() : '';
+
+                if ($i == 0) {
+                    $temperature_max = $this->getCmd(null, 'temperature_max');
+                } else {
+                    $temperature_max = $this->getCmd(null, 'temperature_' . $i . '_max');
+                }
+                $replace['#hight_temperature#'] = is_object($temperature_max) ? $temperature_max->execCmd() : '';
+
+                if ($i == 0) {
+                    $condition = $this->getCmd(null, 'condition');
+                } else {
+                    $condition = $this->getCmd(null, 'condition_' . $i);
+                }
+                $replace['#icone#'] = is_object($condition) ? self::getIconFromCondition($condition->execCmd()) : '';
+
+                $html_forecast .= template_replace($replace, $forcast_template);
+            }
+        }
+        $replace = array(
+            '#id#' => $this->getId(),
+            '#city#' => $this->getConfiguration('city_name'),
+            '#collectDate#' => '',
+            '#background_color#' => $this->getBackgroundColor($_version),
+            '#eqLink#' => $this->getLinkToConfiguration(),
+            '#forecast#' => $html_forecast,
+        );
+        $temperature = $this->getCmd(null, 'temperature');
+        $replace['#temperature#'] = is_object($temperature) ? $temperature->execCmd() : '';
+
+        $humidity = $this->getCmd(null, 'humidity');
+        $replace['#humidity#'] = is_object($humidity) ? $humidity->execCmd() : '';
+
+        $pressure = $this->getCmd(null, 'pressure');
+        $replace['#pressure#'] = is_object($pressure) ? $pressure->execCmd() : '';
+
+        $wind_speed = $this->getCmd(null, 'wind_speed');
+        $replace['#windspeed#'] = is_object($wind_speed) ? $wind_speed->execCmd() : '';
+
+        $sunrise = $this->getCmd(null, 'sunrise');
+        $replace['#sunrise#'] = is_object($sunrise) ? $sunrise->execCmd() : '';
+        if (strlen($replace['#sunrise#']) == 3) {
+            $replace['#sunrise#'] = substr($replace['#sunrise#'], 0, 1) . ':' . substr($replace['#sunrise#'], 1, 2);
+        } else if (strlen($replace['#sunset#']) == 4) {
+            $replace['#sunrise#'] = substr($replace['#sunrise#'], 0, 2) . ':' . substr($replace['#sunrise#'], 2, 2);
+        }
+
+        $sunset = $this->getCmd(null, 'sunset');
+        $replace['#sunset#'] = is_object($sunset) ? $sunset->execCmd() : '';
+        if (strlen($replace['#sunset#']) == 3) {
+            $replace['#sunset#'] = substr($replace['#sunset#'], 0, 1) . ':' . substr($replace['#sunset#'], 1, 2);
+        } else if (strlen($replace['#sunset#']) == 4) {
+            $replace['#sunset#'] = substr($replace['#sunset#'], 0, 2) . ':' . substr($replace['#sunset#'], 2, 2);
+        }
+
+        $wind_direction = $this->getCmd(null, 'wind_direction');
+        $replace['#wind_direction#'] = is_object($wind_direction) ? $wind_direction->execCmd() : 0;
+
+        $condition = $this->getCmd(null, 'condition_now');
+        $sunset_time = is_object($sunset) ? $sunset->execCmd() : null;
+        $sunrise_time = is_object($sunrise) ? $sunrise->execCmd() : null;
+        if (is_object($condition)) {
+            $replace['#icone#'] = self::getIconFromCondition($condition->execCmd(), $sunrise_time, $sunset_time);
+            $replace['#condition#'] = $condition->execCmd();
+            $replace['#collectDate#'] = $condition->getCollectDate();
+        } else {
+            $replace['#icone#'] = '';
+            $replace['#condition#'] = '';
+            $replace['#collectDate#'] = '';
+        }
+
+        $parameters = $this->getDisplay('parameters');
+        if (is_array($parameters)) {
+            foreach ($parameters as $key => $value) {
+                $replace['#' . $key . '#'] = $value;
+            }
+        }
+
+        $html = template_replace($replace, getTemplate('core', $_version, 'current', 'weather'));
+        cache::set('weatherWidget' . $_version . $this->getId(), $html, 0);
+        return $html;
+    }
+
+----
+ 
+Plusieurs chose interessante ici : 
+
+Pour de convertir la version demandé en dashboard ou mobile (mview devient mobile par exemple, cela permet par exemple sur les vue de rajouter le nom des objets)
+----
+$_version = jeedom::versionAlias($_version);
+----
+
+Ici recuperation du widget anciennement generé en cache (si celui-ci est non vide) , ca permet de gagner du temps sur la generation, attention quand meme à bien vider le cache lors de la mise à jour des données
+----
+    $mc = cache::byKey('weatherWidget' . $_version . $this->getId());
+    if ($mc->getValue() != '') {
+        return $mc->getValue();
+    }
+----
+
+Recuperation d'un template de commande, ici le template de commande : plugins/weather/core/template/$_version/forecast.html ($_version valant mobile ou dashboard)
+----
+$forcast_template = getTemplate('core', $_version, 'forecast', 'weather');
+----
+
+Ici remplacement des tag prealablement remplis dans $replace du html pour avoir les valeurs dessus
+----
+$html_forecast .= template_replace($replace, $forcast_template);
+----
+
+Cela permet de recuperer la commande ayant le logical_id : temperature_min
+----
+$this->getCmd(null, 'temperature_min');
+----
+
+La ca permet de mettre la valeur dans le tag, seulement si la commande a bien été récuperé
+----
+$replace['#temperature#'] = is_object($temperature) ? $temperature->execCmd() : '';
+----
+
+Passage important, ca permet de recuperer les personalisations faite par l'utilisateur sur la page Générale -> Affichage et de les reinjecter dans le template
+----
+$parameters = $this->getDisplay('parameters');
+if (is_array($parameters)) {
+    foreach ($parameters as $key => $value) {
+        $replace['#' . $key . '#'] = $value;
+    }
+}
+----
+
+Sauvegarde du widget dans le cache, pour que lors de la prochaine demande on le fournisse plus rapidement, on peut remarqué le 0 ici qui indique une durée de vie infinie, sinon la durée est en secondes (on verra dans la partie suivante comment le plugin weather remet à jour son widget).
+----
+cache::set('weatherWidget' . $_version . $this->getId(), $html, 0);
+----
+
+Enfin envoi du html à Jeedom : 
+----
+return $html;
+----
+
