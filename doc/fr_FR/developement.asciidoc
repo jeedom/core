@@ -731,3 +731,97 @@ Enfin envoi du html à Jeedom :
 return $html;
 ----
 
+.methode pre et post
+Lors de la creation ou la supression de vos objet (equipement, commande ou autre) dans Jeedom, celui-ci peut appeler plusieurs méthodes avant/après l'action : 
+
+- preInsert => Méthode appellé avant la création de votre objet
+- postInsert =>  Méthode appellé après la création de votre objet
+- preUpdate =>  Méthode appellé avant la mise à jour de votre objet
+- postUpdate =>  Méthode appellé après la mise à jour de votre objet
+- preSave =>  Méthode appellé avant la sauvegarde (creation et mise à jour donc) de votre objet
+- postSave =>  Méthode appellé après la sauvegarde de votre objet
+- preRemove =>  Méthode appellé avant la supression de votre objet
+- postRemove =>  Méthode appellé après la supression de votre objet
+
+Exemple, toujours avec le plugin weather de la creation des commandes ou mise à jour de celle-ci après la sauvegarde (l'exemple est simplifié) : 
+
+----
+ public function postUpdate() {
+        $weatherCmd = $this->getCmd(null, 'temperature');
+        if (!is_object($weatherCmd)) {
+            $weatherCmd = new weatherCmd();
+        }
+        $weatherCmd->setName(__('Température', __FILE__));
+        $weatherCmd->setLogicalId('temperature');
+        $weatherCmd->setEqLogic_id($this->getId());
+        $weatherCmd->setConfiguration('day', '-1');
+        $weatherCmd->setConfiguration('data', 'temp');
+        $weatherCmd->setUnite('°C');
+        $weatherCmd->setType('info');
+        $weatherCmd->setEventOnly(1);
+        $weatherCmd->setSubType('numeric');
+        $weatherCmd->save();
+
+        $cron = cron::byClassAndFunction('weather', 'updateWeatherData', array('weather_id' => intval($this->getId())));
+        if (!is_object($cron)) {
+            $cron = new cron();
+            $cron->setClass('weather');
+            $cron->setFunction('updateWeatherData');
+            $cron->setOption(array('weather_id' => intval($this->getId())));
+        }
+        $cron->setSchedule($this->getConfiguration('refreshCron', '*/30 * * * *'));
+        $cron->save();
+}
+----
+
+Le début est assez standard avec la création d'une commande, la fin est plus interessant avec la mise en place d'un cron qui va appeler la methode weather::updateWeatherData en passant l'id de l'équipement à mettre à jour toute les 30min par défaut.
+
+Ici la methode updateWeatherData (simplifié aussi) : 
+----
+ public static function updateWeatherData($_options) {
+    $weather = weather::byId($_options['weather_id']);
+    if (is_object($weather)) {
+        foreach ($weather->getCmd('info') as $cmd) {
+            $value = $cmd->execute();
+            if ($value != $cmd->execCmd()) {
+                $cmd->setCollectDate('');
+                $cmd->event($value);
+            }
+        }
+        $mc = cache::byKey('weatherWidgetmobile' . $weather->getId());
+        $mc->remove();
+        $mc = cache::byKey('weatherWidgetdashboard' . $weather->getId());
+        $mc->remove();
+        $weather->toHtml('mobile');
+        $weather->toHtml('dashboard');
+        $weather->refreshWidget();
+    }
+}
+----
+
+On voit ici que lors de l'appel on recupere l'équipement concerné puis que l'on execute les commandes pour recuperer les valeurs et mettre à jour celle-ci si necessaire.
+
+Partie très importante : 
+----
+$cmd->setCollectDate('');
+$cmd->event($value);
+----
+
+La premiere ligne est très important car juste avant on à fait un execCmd qui va remplir le champs _collectDate (le _ devant le nom de l'attribut indique à Jeedom que l'attribut ne doit pas etre sauvegarder en base, donc si vous en ajoutez pour votre class pensez bien à le preceder d'un _) or au moment de la fonction event (qui permet de signaler à Jeedom une nouvelle mise à jour de la valeur, avec declenchement de toute les actions qui doivent etre faite : mise à jour du dashboard, verification des scenario...), Jeedom regarde si la date de collecte est ancien et si c'est le cas va refuser la nouvelle valeur. D'ou la remise à 0.
+
+Ensuite on vide le cache (ici pas besoin de verifier s'il existe, l'objet est vide si le cache n'existe pas donc aucun risque pour la supression) : 
+----
+$mc = cache::byKey('weatherWidgetmobile' . $weather->getId());
+$mc->remove();
+----
+
+Vu que le cache est vide on force la generation des widget mobile et dashboard : 
+----
+$weather->toHtml('mobile');
+$weather->toHtml('dashboard');
+----
+
+Enfin on previent jeedom que le widget est à rafraichir sur l'interface de l'utilisateur : 
+----
+$weather->refreshWidget();
+----
