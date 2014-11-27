@@ -127,7 +127,7 @@ function buildUrl($_key, $_value) {
         }
         echo '<img class="lazy" src="core/img/no_image.gif" data-original="' . $urlPath . '" height="105" width="95" />';
         echo "</center>";
-        echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;">' . $market->getName() . '</span>';
+        echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $market->getName() . '</span>';
         if ($market->getCertification() == 'Officiel') {
             echo '<br/><span style="font-size : 0.85em;color:#7f8c8d;position:relative; top : 10px;">Officiel</span>';
         }
