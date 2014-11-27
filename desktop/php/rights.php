@@ -171,7 +171,7 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
                 foreach (eqLogic::all() as $eqLogic) {
                     echo '<tr>';
                     echo '<td>';
-                    foreach (array('edit' => 'Editer', 'view' => 'Voir', 'action' => 'Action') as $kright => $right) {
+                    foreach (array(/* 'edit' => 'Editer', */ 'view' => 'Voir', 'action' => 'Action') as $kright => $right) {
                         echo '<span class="rights">';
                         echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
                         echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
@@ -203,7 +203,7 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
                 foreach (scenario::all() as $scenario) {
                     echo '<tr>';
                     echo '<td>';
-                    foreach (array('edit' => 'Editer', 'action' => 'Action') as $kright => $right) {
+                    foreach (array('view' => 'Voir','edit' => 'Editer', 'action' => 'Action') as $kright => $right) {
                         echo '<span class="rights">';
                         echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
                         echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
