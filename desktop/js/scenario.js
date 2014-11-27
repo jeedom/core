@@ -43,6 +43,7 @@ autoCompleteCondition = [
     {val: 'randomColor(debut,fin)'},
     {val: 'lastScenarioExecution(scenario)'},
     {val: 'stateDuration(commande)'},
+     {val: 'median(commande1,commande2)'},
 ];
 autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'icon'];
 
