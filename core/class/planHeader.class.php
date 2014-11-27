@@ -68,10 +68,10 @@ class planHeader {
     }
 
     public function preInsert() {
-        if ($this->setConfiguration('desktopSizeX') == '') {
+        if ($this->getConfiguration('desktopSizeX') == '') {
             $this->setConfiguration('desktopSizeX', 500);
         }
-        if ($this->setConfiguration('desktopSizeY') == '') {
+        if ($this->getConfiguration('desktopSizeY') == '') {
             $this->setConfiguration('desktopSizeY', 500);
         }
     }
