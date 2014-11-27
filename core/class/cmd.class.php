@@ -480,7 +480,7 @@ class cmd {
         if (trim($_value) == '') {
             return '';
         }
-        if (strpos('error', $_value) !== false) {
+        if (strpos('error', strtolower($_value)) !== false) {
             return $_value;
         }
         if ($this->getType() == 'info') {

@@ -135,6 +135,9 @@ try {
         if (!is_object($eqLogic)) {
             throw new Exception(__('EqLogic inconnu verifié l\'id : ', __FILE__) . init('id'));
         }
+        if (!$eqLogic->hasRight('w')) {
+            throw new Exception('Vous n\'etês pas autorisé à faire cette action');
+        }
         $eqLogic->remove();
         ajax::success();
     }
@@ -175,6 +178,10 @@ try {
             if (!is_object($eqLogic)) {
                 $eqLogic = new $typeEqLogic();
                 $eqLogic->setEqType_name(init('type'));
+            } else {
+                if (!$eqLogic->hasRight('w')) {
+                    throw new Exception('Vous n\'etês pas autorisé à faire cette action');
+                }
             }
             if (method_exists($eqLogic, 'preAjax')) {
                 $eqLogic->preAjax();

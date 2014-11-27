@@ -436,6 +436,9 @@ class eqLogic {
         if ($_version == '') {
             throw new Exception(__('La version demandé ne peut être vide (mobile, dashboard ou scenario)', __FILE__));
         }
+        if (!$this->hasRight('r')) {
+            return '';
+        }
         $info = '';
         $version = jeedom::versionAlias($_version);
         $vcolor = 'cmdColor';
@@ -641,6 +644,12 @@ class eqLogic {
     }
 
     public function hasRight($_right, $_needAdmin = false, $_user = null) {
+        if (!is_object($_user)) {
+            $_user = $_SESSION['user'];
+        }
+        if (!is_object($_user)) {
+            return false;
+        }
         if (!isConnect()) {
             return false;
         }
@@ -649,12 +658,6 @@ class eqLogic {
         }
         if (config::byKey('jeedom::licence') < 9) {
             return ($_needAdmin) ? false : true;
-        }
-        if (!is_object($_user)) {
-            $_user = $_SESSION['user'];
-        }
-        if (!is_object($_user)) {
-            return false;
         }
         if ($_right = 'x') {
             $rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'action');

@@ -518,6 +518,9 @@ class scenario {
     }
 
     public function toHtml($_version) {
+        if (!$this->hasRight('r')) {
+            return '';
+        }
         $_version = jeedom::versionAlias($_version);
         $replace = array(
             '#id#' => $this->getId(),
@@ -872,6 +875,35 @@ class scenario {
         }
         $return .= '[' . $this->getName() . ']';
         return $return;
+    }
+
+    public function hasRight($_right, $_needAdmin = false, $_user = null) {
+        if (!is_object($_user)) {
+            $_user = $_SESSION['user'];
+        }
+        if (!is_object($_user)) {
+            return false;
+        }
+        if (!isConnect()) {
+            return false;
+        }
+        if (isConnect('admin')) {
+            return true;
+        }
+        if (config::byKey('jeedom::licence') < 9) {
+            return ($_needAdmin) ? false : true;
+        }
+        if ($_right = 'x') {
+            $rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'action');
+        } elseif ($_right = 'w') {
+            $rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'edit');
+        } elseif ($_right = 'r') {
+            $rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'view');
+        }
+        if (!is_object($rights)) {
+            return ($_needAdmin) ? false : true;
+        }
+        return $rights->getRight();
     }
 
     /*     * **********************Getteur Setteur*************************** */
