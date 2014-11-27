@@ -832,3 +832,16 @@ Pour la class commande, un petit truc a savoir si vous utilisez le template js d
     return true;
 }
 ----
+
+Pour finir voici quelques trucs et astuce : 
+
+- evité (à moins de savoir ce que vous faites) d'écraser une methode de la class herité (ca peut causer pas mal de problème)
+- Pour remonter la batterie (en %) d'un équipement, faite sur celui-ci (jeedom se chargera du reste et de prevenir l'utilisateur si nécessaire) : 
+----
+$eqLogic->batteryStatus(56);
+----
+
+- Sur les commandes au moment de l'ajout d'une valeur jeedom applique la methode d'instance formatValue($_value) qui en fonction du sous-type peut la remettre en forme (en particulier pour les valeurs binaire)
+- ne faite JAMAIS une methode dans la class heritant de cmd s'appellant : execCmd ou event
+- si dans la configuration de votre commande vous avez renseigné returnStateTime (en minute) et returnStateValue, jeedom changera automatique la valeur de votre commande par returnStateValue au bout de X minute(s)
+- toujours sur la commande vous pouvez utiliser addHistoryValue pour forcer la mise en historique (attention votre commande doit etre historisée)
