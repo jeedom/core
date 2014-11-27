@@ -253,6 +253,35 @@ class scenarioExpression {
         }
     }
 
+    public static function median() {
+        $args = func_get_args();
+        $values = array();
+        foreach ($args as $arg) {
+            if (is_numeric($arg)) {
+                $values[] = $arg;
+            } else {
+                $value = cmd::cmdToValue($arg);
+                if (is_numeric($value)) {
+                    $values[] = $value;
+                } else {
+                    try {
+                        $values[] = $test->Evaluer($value);
+                    } catch (Exception $ex) {
+                        
+                    }
+                }
+            }
+        }
+        if (count($values) < 1) {
+            return 0;
+        }
+        if (count($values) == 1) {
+            return $values[0];
+        }
+        sort($values);
+        return $values[round(count($values) / 2)];
+    }
+
     public static function tendance($_cmd_id, $_period = '1 hour', $_threshold = '') {
         $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
         if (!is_object($cmd)) {

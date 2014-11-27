@@ -91,6 +91,8 @@ Vous pouvez aussi utiliser les tags suivants :
     * Ex : round(\#[Salle de bain][Hydrometrie][Humidité]# / 10) : renverra 9 si le pourcentage d'humidité et 85
 - odd(valeur) : permet de savoir si un nombre est impaire ou non. Renvoi 1 si impaire 0 sinon
     * Ex : odd(1) :  renverra 1
+- median(commande1,commande2....commandeN) : renvoit la médiane de valeur
+    * Ex : odd(15,25,20) :  renverra 20
             
 ===== Action
 En plus des commandes domotiques vous avez accès aux fonctions suivantes : 
