@@ -223,7 +223,7 @@ function displayCmd(_cmd_id) {
             }
 
             div += '<div class="form-group">';
-            div += '<label class="col-sm-4 control-label">{{Ne pas afficher le nom de l\'équipement sur le dashboard}}</label>';
+            div += '<label class="col-sm-4 control-label">{{Ne pas afficher le nom de la commande sur le dashboard}}</label>';
             div += '<div class="col-sm-1">';
             div += '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" />';
             div += '</div>';
