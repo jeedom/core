@@ -448,7 +448,7 @@ class scenario {
             if ($this->getConfiguration('launchInForeground', 0) == 1) {
                 $this->execute($_trigger, $_message);
             } else {
-                $cmd = '/usr/bin/php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
+                $cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
                 $cmd.= ' scenario_id=' . $this->getId();
                 $cmd.= ' force=' . $_force;
                 $cmd.= ' trigger=' . escapeshellarg($_trigger);
