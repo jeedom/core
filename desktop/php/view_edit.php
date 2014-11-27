@@ -40,18 +40,13 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
     <div class="col-lg-10 col-md-9 col-sm-8" style="display: none;" id="div_view">
         <legend style="height: 35px;">
             <a class="btn btn-default btn-xs" id="bt_editView"><i class="fa fa-pencil"></i> {{Renommer}}</a> {{Vue}}
-            <a class="btn btn-success btn-xs pull-right" id="bt_viewResult"><i class="fa fa fa-eye"></i> {{Voir le résultat}}</a>
+            <a class="btn btn-danger btn-xs pull-right" id="bt_removeView"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+            <a class="btn btn-success btn-xs pull-right" id="bt_saveView"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+            <a class="btn btn-primary btn-xs pull-right" id="bt_viewResult"><i class="fa fa fa-eye"></i> {{Voir le résultat}}</a>
             <a class="btn btn-default btn-xs pull-right" id="bt_addviewZone"><i class="fa fa-plus-circle"></i> {{Ajouter une zone}}</a>
         </legend>
 
         <div id="div_viewZones" style="margin-top: 10px;"></div>
-
-
-        <div class="form-actions" style="margin-top: 10px;">
-
-            <a class="btn btn-danger" id="bt_removeView"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
-            <a class="btn btn-success" id="bt_saveView"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
-        </div>
     </div>
 
 </div>

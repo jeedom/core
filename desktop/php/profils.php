@@ -222,17 +222,24 @@ foreach (plugin::listPlugin() as $pluginList) {
                                 </select>
                             </div>
                         </div>
-                        <legend>Dashboard</legend>
+                        <legend>{{Dashboard}}</legend>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{Afficher les scénarios par défaut}}</label>
-                            <div class="col-sm-2">
+                            <div class="col-sm-1">
                                 <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayScenarioByDefault"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{Afficher les objets par défaut}}</label>
-                            <div class="col-sm-2">
+                            <div class="col-sm-1">
                                 <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
+                            </div>
+                        </div>
+                        <legend>{{Vue}}</legend>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{{Afficher les vues par défaut}}</label>
+                            <div class="col-sm-1">
+                                <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayViewByDefault"/>
                             </div>
                         </div>
                     </fieldset>
