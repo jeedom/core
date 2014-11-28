@@ -71,7 +71,8 @@ Il n'y a pas d'application mobile en développement par l'équipe actuellement. 
 Il est tout à fait possible que des développeurs tiers réalisent dans le future des applications dédiées pour Jeedom.
 --
 
-Quels sont les identifiants pour me connecter la première fois ?
+[panel,primary]
+.Quels sont les identifiants pour me connecter la première fois ?
 --
 Lors de votre première connexion à Jeedom (et même après si vous ne les avez pas modifiés) le nom d'utilisateur et le mot de passe par défaut sont admin. Il est fortement conseillé de les modifier pour plus de sécurité.
 --
@@ -95,7 +96,7 @@ Dans ce fichier se trouve la configuration de la base de données :
     );
 ----
 
-.Il suffiit de modifier les paramètres en fonction des identifiants de la base Jeedom sur le serveur MySQL.
+Il suffiit de modifier les paramètres en fonction des identifiants de la base Jeedom sur le serveur MySQL.
 On exécute ces changements :
 
 ----
