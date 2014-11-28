@@ -179,6 +179,9 @@ class scenarioElement {
             $at = $this->getSubElement('at');
             $at = $at->getExpression();
             $next = jeedom::evaluateExpression($at[0]->getExpression());
+            if (($next % 100) > 59) {
+                $next -= 40;
+            }
             if (!is_numeric($next) || $next < 0) {
                 $_scenario->setLog(__('Erreur dans bloc (type A) : ', __FILE__) . $this->getId() . __(', heure programmé invalide : ', __FILE__) . $next);
             }
