@@ -139,11 +139,6 @@ include::apihttp.asciidoc[]
 include::jsonrpcapi.asciidoc[]
 
 '''
-[[developement]]
-=== Développement d'un plugin
-include::developement.asciidoc[]
-
-'''
 [[faq]]
 === FAQ
 include::faq.asciidoc[]
