@@ -605,7 +605,7 @@ done
 install_nodejs
 
 apt-get install -y php5-common php5-fpm php5-cli php5-curl php5-json php5-mysql \
-                   usb-modeswitch python-serial
+                   usb-modeswitch python-serial php5-oauth
 
 echo "********************************************************"
 echo "${msg_setup_dirs_and_privs}"
