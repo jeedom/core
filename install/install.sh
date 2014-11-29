@@ -605,7 +605,13 @@ done
 install_nodejs
 
 apt-get install -y php5-common php5-fpm php5-cli php5-curl php5-json php5-mysql \
-                   usb-modeswitch python-serial php5-oauth
+                   usb-modeswitch python-serial
+
+pecl install oauth
+for i in fpm cli
+do
+        echo "extension=oauth.so" >> /etc/php5/${i}/php.ini
+done
 
 echo "********************************************************"
 echo "${msg_setup_dirs_and_privs}"
