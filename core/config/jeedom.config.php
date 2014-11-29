@@ -40,8 +40,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
             'wellness' => array('name' => 'Bien-être', 'icon' => 'fa-user'),
             'jeedomBox' => array('name' => 'Jeedom Box', 'icon' => 'fa-dropbox'),
             'monitoring' => array('name' => 'Monitoring', 'icon' => 'fa-tachometer'),
-            'health' => array('name' => 'Santé', 'icon' => 'fa-tachometer'),
-            'nature' => array('name' => 'Nature', 'icon' => 'fa-tree'),
+            'health' => array('name' => 'Santé', 'icon' => 'icon loisir-runner5'),
+            'nature' => array('name' => 'Nature', 'icon' => 'icon nature-leaf32'),
         ),
     ),
     'cmd' => array(
