@@ -43,7 +43,7 @@ autoCompleteCondition = [
     {val: 'randomColor(debut,fin)'},
     {val: 'lastScenarioExecution(scenario)'},
     {val: 'stateDuration(commande)'},
-     {val: 'median(commande1,commande2)'},
+    {val: 'median(commande1,commande2)'},
 ];
 autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'icon'];
 
@@ -672,8 +672,17 @@ function addExpression(_expression) {
             retour += '</div>';
             break;
         case 'code' :
-            retour += '<div class="col-sm-12">';
+            retour += '<div class="col-sm-1">';
             retour += '<i class="fa fa-bars pull-left cursor bt_sortable" style="margin-top : 9px;"></i>';
+            retour += '</div>';
+            retour += '<div class="col-sm-11">';
+            retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
+            retour += '</div>';
+            break;
+        case 'comment' :
+            retour += '<div class="col-sm-1">';
+            retour += '</div>';
+            retour += '<div class="col-sm-11">';
             retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
             retour += '</div>';
             break;
@@ -793,11 +802,22 @@ function addSubElement(_subElement) {
             break;
         case 'code' :
             retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-            retour += '<legend style="margin-top : px;margin-bottom : 5px;color : inherit;border : none;"><div style="position : relative;left:15px;">{{CODE}}';
+            retour += '<legend style="margin-top : 0px;margin-bottom : 5px;color : inherit;border : none;"><div style="position : relative;left:15px;">{{CODE}}';
             retour += '</div></legend>';
             retour += '<div class="expressions">';
             retour += '<div class="sortable empty" style="height : 30px;"></div>';
             var expression = {type: 'code'};
+            if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+                expression = _subElement.expressions[0];
+            }
+            retour += addExpression(expression);
+            retour += '</div>';
+            break;
+        case 'comment' :
+            retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="comment"/><br/>';
+            retour += '<div class="expressions">';
+            retour += '<div class="sortable empty" style="height : 30px;"></div>';
+            var expression = {type: 'comment'};
             if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
                 expression = _subElement.expressions[0];
             }
@@ -891,6 +911,15 @@ function addElement(_element) {
                 }
             } else {
                 div += addSubElement({type: 'code'});
+            }
+            break;
+        case 'comment' :
+            if (isset(_element.subElements) && isset(_element.subElements)) {
+                for (var j in _element.subElements) {
+                    div += addSubElement(_element.subElements[j]);
+                }
+            } else {
+                div += addSubElement({type: 'comment'});
             }
             break;
         case 'action' :

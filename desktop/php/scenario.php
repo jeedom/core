@@ -238,6 +238,7 @@ include_file('3rdparty', 'jquery.tree/jquery.tree', 'js');
                         <option value="in">{{Dans}}</option>
                         <option value="at">{{A}}</option>
                         <option value="code">{{Code}}</option>
+                        <option value="comment">{{Commentaire}}</option>
                     </select>
                 </center>
             </div>
