@@ -28,8 +28,8 @@ if (is_object($update) && $update->getStatus() == 'update') {
 ?>
 
 
-<div class='row' style='background-color: #e5e5e5; padding-top: 10px; padding-bottom: 10px;position: relative; top: -10px;'>
-    <div class='col-sm-4'>
+<div class='row' style='background-color: #e7e7e7; padding-top: 10px; padding-bottom: 10px;position: relative; top: -10px;'>
+    <div class='col-sm-3'>
         <center>
             <?php
             if ($market->getStatus('stable') == 1 && $market->getImg('stable')) {
@@ -45,14 +45,14 @@ if (is_object($update) && $update->getStatus() == 'update') {
     </div>
     <div class='col-sm-8'>
         <input class="form-control marketAttr" data-l1key="id" style="display: none;">
-        <span class="marketAttr" data-l1key="name" placeholder="{{Nom}}" style="font-size: 2.2em;font-weight: bold;"></span>
+        <span class="marketAttr" data-l1key="name" placeholder="{{Nom}}" style="font-size: 3em;font-weight: bold;"></span>
         <br/>
         <?php
         if ($market->getCertification() == 'Officiel') {
-            echo '<span>Officiel</span><br/>';
+            echo '<span style="font-size : 1.5em;color:#707070">Officiel</span><br/>';
         }
         if ($market->getCertification() == 'Recommandé') {
-            echo '<span>Recommandé</span><br/>';
+            echo '<span style="font-size: 1.5em;font-weight: bold;color:#707070;">Recommandé</span><br/>';
         }
         ?>
         <span class="marketAttr" data-l1key="categorie" style="font-size: 1em;font-weight: bold;"></span>
@@ -69,8 +69,8 @@ if (is_object($update) && $update->getStatus() == 'update') {
             $purchase_info = market::getPurchaseInfo();
             if (count($purchase_info) == 3 && isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id']) && isset($purchase_info['paypal::url']) && isset($purchase_info['paypal::marchandMail'])) {
                 ?>
-                <a class="btn btn-default btn-xs pull-right" href='https://market.jeedom.fr/index.php?v=d&p=profils'><i class="fa fa-eur"></i> Code promo</a>
-                <form action="<?php echo $purchase_info['paypal::url'] ?>/cgi-bin/webscr" method="post" style="display: inline-block;" class="pull-right" target="_blank" id='form_paypal'>
+                <a class="btn btn-default" href='https://market.jeedom.fr/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> Code promo</a>
+                <form action="<?php echo $purchase_info['paypal::url'] ?>/cgi-bin/webscr" method="post" style="display: inline-block;position: relative;top: 5px;" target="_blank" id='form_paypal'>
                     <input type='hidden' name="amount" value="<?php echo $market->getCost() ?>" />
                     <input name="currency_code" type="hidden" value="EUR" />
                     <input name="shipping" type="hidden" value="0.00" />
@@ -85,7 +85,7 @@ if (is_object($update) && $update->getStatus() == 'update') {
                     <input name="lc" type="hidden" value="FR" />
                     <input name="bn" type="hidden" value="PP-BuyNowBF" />
                     <input name="custom" type="hidden" value="<?php echo $purchase_info['user_id'] . ':' . $market->getId() ?>" />
-                    <input class="pull-right" id='bt_paypalClick' alt="{{Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée}}" name="submit" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif" type="image" style="display: inline-block;"/><img class="pull-right" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" style="display: inline-block;"/>
+                    <input id='bt_paypalClick' alt="{{Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée}}" name="submit" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif" type="image" style="display: inline-block;position: relative;top: 5px;"/><img class="pull-right" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" style="display: inline-block;"/>
                 </form>
                 <?php
             } else {
@@ -104,9 +104,9 @@ if (is_object($update) && $update->getStatus() == 'update') {
             if ($market->getCost() != $market->getRealCost()) {
                 echo '<span class="label label-primary" data-l1key="rating" style="font-size: 1em;text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
             }
-            echo '<span class="label label-primary" data-l1key="rating" style="font-size: 1em;">' . number_format($market->getCost(), 2) . ' €</span> (TVA non applicable, article 293 B du CGI)';
+            echo '<span data-l1key="rating" style="font-size: 1.5em;">' . number_format($market->getCost(), 2) . ' €</span> (TVA non applicable, article 293 B du CGI)';
         } else {
-            echo '<span class="label label-primary" data-l1key="rating" style="font-size: 1em;">{{Gratuit}}</span>';
+            echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Gratuit}}</span>';
         }
         ?>
     </div>
@@ -129,7 +129,7 @@ if (is_object($update) && $update->getStatus() == 'update') {
         <div class='row'>
             <div class='col-sm-6'>
                 <center>
-                    <span class="marketAttr" data-l1key="rating" style="font-size: 2.5em;"></span>
+                    <span class="marketAttr" data-l1key="rating" style="font-size: 4em;"></span>/5
                 </center>
             </div>
             <div class='col-sm-6'>
