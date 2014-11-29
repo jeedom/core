@@ -737,7 +737,8 @@ class cmd {
             '#displayHistory#' => 'display : none;',
             '#unite#' => $this->getUnite(),
             '#minValue#' => $this->getConfiguration('minValue', 0),
-            '#maxValue#' => $this->getConfiguration('maxValue', 100)
+            '#maxValue#' => $this->getConfiguration('maxValue', 100),
+            '#logicalId#' => $this->getLogicalId()
         );
         if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
             $replace['#name#'] = '';
