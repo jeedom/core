@@ -273,6 +273,8 @@ configure_nginx_ssl()
     rm jeedom.key jeedom.crt
     cp ${webserver_home}/jeedom/install/nginx_default_ssl /etc/nginx/sites-available/default_ssl
     ln -s /etc/nginx/sites-available/default_ssl /etc/nginx/sites-enabled/
+    update-rc.d -f mongoose remove
+    service mongoose stop
     service nginx reload
 }
 
@@ -458,6 +460,8 @@ install_razberry_zway()
 
 	# Cleanup
 	rm -f zway-install
+        update-rc.d -f mongoose remove
+        service mongoose stop
 }
 
 ##################### Main (script entry point) ########################
