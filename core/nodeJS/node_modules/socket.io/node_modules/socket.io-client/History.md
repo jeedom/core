@@ -1,4 +1,24 @@
 
+1.2.1 / 2014-11-21
+==================
+
+ * package: bump `engine.io-client`
+ * README: fixes to prevent duplicate events [nkzawa]
+ * fix reconnection after reconnecting manually [nkzawa]
+ * make ACK callbacks idempotent [thexeos]
+ * package: bump `uglify-js`
+
+1.2.0 / 2014-10-27
+==================
+
+ * bump `engine.io-client`.
+ * set `readyState` before engine.io close event
+ * fix reconnection after reconnecting manually
+ * enable to stop reconnecting
+ * downloads badge
+ * support no schema relative url
+ * enable to reconnect manually
+
 1.1.0 / 2014-09-04
 ==================
 
