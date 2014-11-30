@@ -118,13 +118,7 @@ function buildUrl($_key, $_value) {
             echo '<i class="fa fa-check" style="position : absolute; right : 5px;"></i>';
         }
         echo "<center>";
-        if ($market->getStatus('stable') == 1 && $market->getImg('stable')) {
-            $urlPath = config::byKey('market::address') . '/' . $market->getImg('stable');
-        } else {
-            if ($market->getImg('beta')) {
-                $urlPath = config::byKey('market::address') . '/' . $market->getImg('beta');
-            }
-        }
+        $urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
         echo '<img class="lazy" src="core/img/no_image.gif" data-original="' . $urlPath . '" height="105" width="95" />';
         echo "</center>";
         echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $market->getName() . '</span>';

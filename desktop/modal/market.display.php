@@ -14,17 +14,13 @@ if (!isset($market)) {
 }
 include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
 include_file('3rdparty', 'bootstrap.rating/bootstrap.rating', 'js');
+include_file('3rdparty', 'slick/slick.min', 'js');
+include_file('3rdparty', 'slick/slick', 'css');
 
 $market_array = utils::o2a($market);
 $market_array['rating'] = $market->getRating();
 $update = update::byLogicalId($market->getLogicalId());
 sendVarToJS('market_display_info', $market_array);
-if (is_object($update) && $update->getConfiguration('version', 'stable') == 'beta') {
-    //echo '<div class="alert alert-danger">{{Attention vous utilisez actuellement une version beta. Celle-ci peut ne pas être stable}}</div>';
-}
-if (is_object($update) && $update->getStatus() == 'update') {
-    //echo '<div class="alert alert-warning" id="div_pluginUpdate">{{Une mise à jour est disponible. Cliquez sur installer pour l\'effectuer}}</div>';
-}
 ?>
 
 
@@ -32,13 +28,7 @@ if (is_object($update) && $update->getStatus() == 'update') {
     <div class='col-sm-3'>
         <center>
             <?php
-            if ($market->getStatus('stable') == 1 && $market->getImg('stable')) {
-                $urlPath = config::byKey('market::address') . '/' . $market->getImg('stable');
-            } else {
-                if ($market->getImg('beta')) {
-                    $urlPath = config::byKey('market::address') . '/' . $market->getImg('beta');
-                }
-            }
+            $urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
             echo '<img src="core/img/no_image.gif" data-original="' . $urlPath . '"  class="lazy img-responsive" style="height : 200px;"/>';
             ?>
         </center>
@@ -112,6 +102,22 @@ if (is_object($update) && $update->getStatus() == 'update') {
     </div>
 </div>
 <div style="display: none;width : 100%" id="div_alertMarketDisplay"></div>
+
+<div style='padding:25px;'>
+    <div class="variable-width" style="height : 200px;">
+        <?php
+        foreach ($market->getImg('screenshot') as $screenshot) {
+            echo '<div class="item" >';
+            echo '<a href="' . config::byKey('market::address') . '/' . $screenshot . '" target="_blank"/>';
+            echo '<img src="' . config::byKey('market::address') . '/' . $screenshot . '" class="img-responsive cursor imgZoom" style="height : 200px;" data-href="' . config::byKey('market::address') . '/' . $screenshot . '" />';
+            echo '</a>';
+            echo '</div>';
+        }
+        ?>
+    </div>
+</div>
+
+
 <div class='row'>
     <div class='col-sm-6'>
         <legend>Description</legend>
@@ -220,7 +226,30 @@ if (is_object($update) && $update->getStatus() == 'update') {
 
 <div id="div_comments" title="{{Commentaires}}"></div>
 
+<style>
+    .slick-prev:before, .slick-next:before {
+        color : #e7e7e7;
+    }
+</style>
 <script>
+    $('.imgZoom').on('click', function () {
+        window.open($(this).attr("data-href"), "popupWindow", "scrollbars=yes");
+    });
+
+    $('.variable-width').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        centerMode: true,
+        variableWidth: true,
+        centerPadding: '60px',
+        accessibility: true,
+        lazyLoad: 'progressive',
+    });
+    $('.variable-width').slickNext();
+    
+    
     $('body').setValues(market_display_info, '.marketAttr');
 
     $('#bt_paypalClick').on('click', function () {
