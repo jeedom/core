@@ -106,19 +106,21 @@ sendVarToJS('market_display_info', $market_array);
 </div>
 <div style="display: none;width : 100%" id="div_alertMarketDisplay"></div>
 
-<div style='padding:25px;'>
-    <div class="variable-width" style="height : 200px;">
-        <?php
-        foreach ($market->getImg('screenshot') as $screenshot) {
-            echo '<div class="item" >';
-            echo '<a class="fancybox cursor" href="' . config::byKey('market::address') . '/' . $screenshot . '" rel="group" >';
-            echo '<img src="' . config::byKey('market::address') . '/' . $screenshot . '" class="img-responsive" style="height : 200px;" />';
-            echo '</a>';
-            echo '</div>';
-        }
-        ?>
+<?php if (count($market->getImg('screenshot')) > 0) { ?>
+    <div style='padding:25px;'>
+        <div class="variable-width" style="height : 200px;">
+            <?php
+            foreach ($market->getImg('screenshot') as $screenshot) {
+                echo '<div class="item" >';
+                echo '<a class="fancybox cursor" href="' . config::byKey('market::address') . '/' . $screenshot . '" rel="group" >';
+                echo '<img src="' . config::byKey('market::address') . '/' . $screenshot . '" class="img-responsive" style="height : 200px;" />';
+                echo '</a>';
+                echo '</div>';
+            }
+            ?>
+        </div>
     </div>
-</div>
+<?php } ?>
 
 <br/>
 <div class='row'>
@@ -247,11 +249,11 @@ sendVarToJS('market_display_info', $market_array);
         lazyLoad: 'progressive',
     });
     $('.variable-width').slickNext();
-    
+
     $(".fancybox").fancybox({
-        autoHeight : true,
+        autoHeight: true,
     });
-    
+
     $('body').setValues(market_display_info, '.marketAttr');
 
     $('#bt_paypalClick').on('click', function () {
