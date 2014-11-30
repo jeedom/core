@@ -313,6 +313,9 @@ function displayPlan() {
                 fullScreen(deviceInfo.type);
                 $('meta[name="viewport"]').prop('content', 'width=' + $('#div_displayObject').width() + ',height=' + $('#div_displayObject').height());
             }
+            if (getUrlVars('fullscreen') == 1) {
+                fullScreen(deviceInfo.type);
+            }
             $('.eqLogic-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
             if (planHeader_id != -1) {
                 jeedom.plan.byPlanHeader({
