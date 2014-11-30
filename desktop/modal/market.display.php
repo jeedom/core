@@ -113,7 +113,7 @@ sendVarToJS('market_display_info', $market_array);
             foreach ($market->getImg('screenshot') as $screenshot) {
                 echo '<div class="item" >';
                 echo '<a class="fancybox cursor" href="' . config::byKey('market::address') . '/' . $screenshot . '" rel="group" >';
-                echo '<img src="' . config::byKey('market::address') . '/' . $screenshot . '" class="img-responsive" style="height : 200px;" />';
+                echo '<img data-lazy="' . config::byKey('market::address') . '/' . $screenshot . '" style="height : 200px;" />';
                 echo '</a>';
                 echo '</div>';
             }
@@ -237,22 +237,20 @@ sendVarToJS('market_display_info', $market_array);
     }
 </style>
 <script>
-    $('.variable-width').slick({
-        dots: true,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        centerMode: true,
-        variableWidth: true,
-        centerPadding: '60px',
-        accessibility: true,
-        lazyLoad: 'progressive',
-    });
-    $('.variable-width').slickNext();
-
+    $(document).unbind('click.fb-start');
     $(".fancybox").fancybox({
         autoHeight: true,
     });
+
+    $('.variable-width').slick({
+        dots: true,
+        speed: 300,
+        variableWidth: true,
+        accessibility: true,
+    });
+    $('.variable-width').slickNext();
+
+
 
     $('body').setValues(market_display_info, '.marketAttr');
 
