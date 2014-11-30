@@ -43,6 +43,7 @@ autoCompleteCondition = [
     {val: 'randomColor(debut,fin)'},
     {val: 'lastScenarioExecution(scenario)'},
     {val: 'stateDuration(commande)'},
+    {val: 'median(commande1,commande2)'},
 ];
 autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'icon'];
 
@@ -593,14 +594,14 @@ function saveScenario() {
 
 function addTrigger(_trigger) {
     var div = '<div class="form-group trigger">';
-    div += '<label class="col-lg-3 control-label">{{Evènement}}</label>';
-    div += '<div class="col-lg-7">';
+    div += '<label class="col-sm-3 control-label">{{Evènement}}</label>';
+    div += '<div class="col-sm-7">';
     div += '<input class="scenarioAttr input-sm form-control" data-l1key="trigger" value="' + _trigger + '">';
     div += '</div>';
-    div += '<div class="col-lg-1">';
+    div += '<div class="col-sm-1">';
     div += '<a class="btn btn-default btn-xs cursor bt_selectTrigger"><i class="fa fa-list-alt"></i></a>';
     div += '</div>';
-    div += '<div class="col-lg-1">';
+    div += '<div class="col-sm-1">';
     div += '<i class="fa fa-minus-circle bt_removeTrigger cursor"></i>';
     div += '</div>';
     div += '</div>';
@@ -609,14 +610,14 @@ function addTrigger(_trigger) {
 
 function addSchedule(_schedule) {
     var div = '<div class="form-group schedule">';
-    div += '<label class="col-lg-3 control-label">{{Programmation}}</label>';
-    div += '<div class="col-lg-7">';
+    div += '<label class="col-sm-3 control-label">{{Programmation}}</label>';
+    div += '<div class="col-sm-7">';
     div += '<input class="scenarioAttr input-sm form-control" data-l1key="schedule" value="' + _schedule + '">';
     div += '</div>';
-    div += '<div class="col-lg-1">';
+    div += '<div class="col-sm-1">';
     div += '<i class="fa fa-question-circle cursor bt_pageHelp floatright" data-name="cronSyntaxe"></i>';
     div += '</div>';
-    div += '<div class="col-lg-1">';
+    div += '<div class="col-sm-1">';
     div += '<i class="fa fa-minus-circle bt_removeSchedule cursor"></i>';
     div += '</div>';
     div += '</div>';
@@ -636,16 +637,16 @@ function addExpression(_expression) {
             if (isset(_expression.expression)) {
                 _expression.expression = _expression.expression.replace(/"/g, '&quot;');
             }
-            retour += '<div class="col-lg-11" style="position : relative; top : 5px;">';
+            retour += '<div class="col-sm-11" style="position : relative; top : 5px;">';
             retour += '<textarea class="expressionAttr form-control input-sm" data-l1key="expression" style="resize: vertical;height : 27px;" rows="1">' + init(_expression.expression) + '</textarea>';
             retour += '</div>';
-            retour += '<div class="col-lg-1">';
+            retour += '<div class="col-sm-1">';
             retour += ' <a class="btn btn-default btn-xs cursor bt_selectCmdExpression" style="position : relative; top : 3px;" title="Rechercher une commande"><i class="fa fa-list-alt"></i></a>';
             retour += ' <a class="btn btn-default btn-xs cursor bt_selectScenarioExpression" style="position : relative; top : 3px;" title="Rechercher un scenario"><i class="fa fa-history"></i></a>';
             retour += '</div>';
             break;
         case 'element' :
-            retour += '<div class="col-lg-12">';
+            retour += '<div class="col-sm-12">';
             if (isset(_expression.element) && isset(_expression.element.html)) {
                 retour += _expression.element.html;
             } else {
@@ -658,21 +659,30 @@ function addExpression(_expression) {
             retour += '</div>';
             break;
         case 'action' :
-            retour += '<div class="col-lg-1">';
+            retour += '<div class="col-sm-1">';
             retour += '<i class="fa fa-arrows-v pull-left cursor bt_sortable" style="margin-top : 9px;"></i>';
             retour += '<i class="fa fa-minus-circle pull-left cursor bt_removeExpression" style="margin-top : 9px;"></i>';
             retour += ' <a class="btn btn-default btn-xs cursor bt_selectCmdExpression pull-right"><i class="fa fa-list-alt"></i></a>';
             retour += '</div>';
-            retour += '<div class="col-lg-3">';
+            retour += '<div class="col-sm-3">';
             retour += '<input class="expressionAttr form-control input-sm" data-l1key="expression" value="' + init(_expression.expression) + '" style="font-weight:bold;"/>';
             retour += '</div>';
-            retour += '<div class="col-lg-8 expressionOptions">';
+            retour += '<div class="col-sm-8 expressionOptions">';
             retour += jeedom.cmd.displayActionOption(init(_expression.expression), init(_expression.options));
             retour += '</div>';
             break;
         case 'code' :
-            retour += '<div class="col-lg-12">';
+            retour += '<div class="col-sm-1">';
             retour += '<i class="fa fa-bars pull-left cursor bt_sortable" style="margin-top : 9px;"></i>';
+            retour += '</div>';
+            retour += '<div class="col-sm-11">';
+            retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
+            retour += '</div>';
+            break;
+        case 'comment' :
+            retour += '<div class="col-sm-1">';
+            retour += '</div>';
+            retour += '<div class="col-sm-11">';
             retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
             retour += '</div>';
             break;
@@ -751,6 +761,30 @@ function addSubElement(_subElement) {
             retour += '</div>';
             retour += '</span></legend>';
             break;
+        case 'in' :
+            retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
+            retour += '<legend style="margin-top : 0px;margin-bottom : 5px;color : inherit;font-weight:bold;border : none;"><span style="position : relative;left:15px;">{{DANS (min)}} ';
+            retour += '<div class="expressions" style="display : inline-block; width : 90%">';
+            var expression = {type: 'condition'};
+            if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+                expression = _subElement.expressions[0];
+            }
+            retour += addExpression(expression);
+            retour += '</div>';
+            retour += '</span></legend>';
+            break;
+        case 'at' :
+            retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
+            retour += '<legend style="margin-top : 0px;margin-bottom : 5px;color : inherit;font-weight:bold;border : none;"><span style="position : relative;left:15px;">{{A (Hmm)}} ';
+            retour += '<div class="expressions" style="display : inline-block; width : 90%">';
+            var expression = {type: 'condition'};
+            if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+                expression = _subElement.expressions[0];
+            }
+            retour += addExpression(expression);
+            retour += '</div>';
+            retour += '</span></legend>';
+            break;
         case 'do' :
             retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
             retour += '<legend style="margin-top : 3px;margin-bottom : 5px;color : inherit;font-weight:bold;border : none;border-top: 1px solid #e5e5e5;">FAIRE';
@@ -768,11 +802,22 @@ function addSubElement(_subElement) {
             break;
         case 'code' :
             retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-            retour += '<legend style="margin-top : px;margin-bottom : 5px;color : inherit;border : none;"><div style="position : relative;left:15px;">{{CODE}}';
+            retour += '<legend style="margin-top : 0px;margin-bottom : 5px;color : inherit;border : none;"><div style="position : relative;left:15px;">{{CODE}}';
             retour += '</div></legend>';
             retour += '<div class="expressions">';
             retour += '<div class="sortable empty" style="height : 30px;"></div>';
             var expression = {type: 'code'};
+            if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+                expression = _subElement.expressions[0];
+            }
+            retour += addExpression(expression);
+            retour += '</div>';
+            break;
+        case 'comment' :
+            retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="comment"/><br/>';
+            retour += '<div class="expressions">';
+            retour += '<div class="sortable empty" style="height : 30px;"></div>';
+            var expression = {type: 'comment'};
             if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
                 expression = _subElement.expressions[0];
             }
@@ -839,6 +884,26 @@ function addElement(_element) {
                 div += addSubElement({type: 'do'});
             }
             break;
+        case 'in' :
+            if (isset(_element.subElements) && isset(_element.subElements)) {
+                for (var j in _element.subElements) {
+                    div += addSubElement(_element.subElements[j]);
+                }
+            } else {
+                div += addSubElement({type: 'in'});
+                div += addSubElement({type: 'do'});
+            }
+            break;
+        case 'at' :
+            if (isset(_element.subElements) && isset(_element.subElements)) {
+                for (var j in _element.subElements) {
+                    div += addSubElement(_element.subElements[j]);
+                }
+            } else {
+                div += addSubElement({type: 'at'});
+                div += addSubElement({type: 'do'});
+            }
+            break;
         case 'code' :
             if (isset(_element.subElements) && isset(_element.subElements)) {
                 for (var j in _element.subElements) {
@@ -846,6 +911,15 @@ function addElement(_element) {
                 }
             } else {
                 div += addSubElement({type: 'code'});
+            }
+            break;
+        case 'comment' :
+            if (isset(_element.subElements) && isset(_element.subElements)) {
+                for (var j in _element.subElements) {
+                    div += addSubElement(_element.subElements[j]);
+                }
+            } else {
+                div += addSubElement({type: 'comment'});
             }
             break;
         case 'action' :

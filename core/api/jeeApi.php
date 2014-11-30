@@ -61,6 +61,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
         } else if ($type == 'interact') {
             echo interactQuery::tryToReply(init('query'));
         } else if ($type == 'scenario') {
+            log::add('api', 'debug', 'Demande api pour les scénarios');
             $scenario = scenario::byId(init('id'));
             if (!is_object($scenario)) {
                 throw new Exception('Aucun scénario correspondant à l\'id : ' . init('id'));
@@ -277,11 +278,36 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
                     $eqLogic = new $typeEqLogic();
                     $eqLogic->setEqType_name($params['eqType_name']);
                 }
-                if (method_exists($eqLogic, 'preAjax')) {
-                    $eqLogic->preAjax();
-                }
                 utils::a2o($eqLogic, jeedom::fromHumanReadable($params));
                 $eqLogic->save();
+                $dbList = $typeCmd::byEqLogicId($eqLogic->getId());
+                $eqLogic->save();
+                $enableList = array();
+                if (isset($params['cmd'])) {
+                    $cmd_order = 0;
+                    foreach ($params['cmd'] as $cmd_info) {
+                        $cmd = null;
+                        if (isset($cmd_info['id'])) {
+                            $cmd = $typeCmd::byId($cmd_info['id']);
+                        }
+                        if (!is_object($cmd)) {
+                            $cmd = new $typeCmd();
+                        }
+                        $cmd->setEqLogic_id($eqLogic->getId());
+                        $cmd->setOrder($cmd_order);
+                        utils::a2o($cmd, jeedom::fromHumanReadable($cmd_info));
+                        $cmd->save();
+                        $cmd_order++;
+                        $enableList[$cmd->getId()] = true;
+                    }
+
+                    //suppression des entrées non innexistante.
+                    foreach ($dbList as $dbObject) {
+                        if (!isset($enableList[$dbObject->getId()]) && !$dbObject->dontRemoveCmd()) {
+                            $dbObject->remove();
+                        }
+                    }
+                }
                 $jsonrpc->makeSuccess(utils::o2a($eqLogic));
             }
 
@@ -486,7 +512,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
                 if (filesize($_file['tmp_name']) > 50000000) {
                     throw new Exception('Le fichier est trop gros (miximum 50mo)');
                 }
-                $uploadfile = $uploaddir . $jeeNetwork->getId() . '-' . $jeeNetwork->getName() . '-' . $jeeNetwork->getConfiguration('version') . '-' . date('Y-m-d_H:i:s') . '.tar' . $extension;
+                $uploadfile = $uploaddir . $jeeNetwork->getId() . '-' . $jeeNetwork->getName() . '-' . $jeeNetwork->getConfiguration('version') . '-' . date('Y-m-d_H\hi') . '.tar' . $extension;
                 if (!move_uploaded_file($_file['tmp_name'], $uploadfile)) {
                     throw new Exception('Impossible d\'uploader le fichier');
                 }

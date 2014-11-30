@@ -182,14 +182,14 @@ class scenario {
             if (is_object($_event)) {
                 $scenarios = self::byTrigger($_event->getId());
                 $trigger = '#' . $_event->getId() . '#';
-                $message = __('Scenario lance automatiquement sur evenement venant de : ', __FILE__) . $_event->getHumanName();
+                $message = __('Scénario lance automatiquement sur évènement venant de : ', __FILE__) . $_event->getHumanName();
             } else {
                 $scenarios = self::byTrigger($_event);
                 $trigger = $_event;
-                $message = __('Scenario lance sur evenement : #', __FILE__) . $_event . '#';
+                $message = __('Scénario lance sur évènement : #', __FILE__) . $_event . '#';
             }
         } else {
-            $message = __('Scenario lance automatiquement sur programmation', __FILE__);
+            $message = __('Scénario lance automatiquement sur programmation', __FILE__);
             $scenarios = scenario::all();
             $dateOk = jeedom::isDateOk();
             $trigger = '#schedule#';
@@ -227,6 +227,24 @@ class scenario {
             $scenario_->launch(false, $trigger, $message);
         }
         return true;
+    }
+
+    public static function doIn($_options) {
+        $scenario = self::byId($_options['scenario_id']);
+        $scenarioElement = scenarioElement::byId($_options['scenarioElement_id']);
+        $scenario->setLog(__('************Lancement sous tâche**************', __FILE__));
+        if (!is_object($scenarioElement) || !is_object($scenario)) {
+            return;
+        }
+        if (is_numeric($_options['second']) && $_options['second'] > 0) {
+            sleep($_options['second']);
+        }
+        $scenarioElement->getSubElement('do')->execute($scenario);
+        $scenario->setLog(__('************FIN sous tâche**************', __FILE__));
+        if (!$scenario->running()) {
+            $scenario->setState('stop');
+        }
+        $scenario->save();
     }
 
     public static function cleanTable() {
@@ -423,11 +441,14 @@ class scenario {
     /*     * *********************Methode d'instance************************* */
 
     public function launch($_force = false, $_trigger = '', $_message = '') {
+        if ($this->getIsActive() != 1) {
+            return;
+        }
         if (config::byKey('enableScenario') == 1) {
             if ($this->getConfiguration('launchInForeground', 0) == 1) {
                 $this->execute($_trigger, $_message);
             } else {
-                $cmd = '/usr/bin/php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
+                $cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
                 $cmd.= ' scenario_id=' . $this->getId();
                 $cmd.= ' force=' . $_force;
                 $cmd.= ' trigger=' . escapeshellarg($_trigger);
@@ -497,6 +518,9 @@ class scenario {
     }
 
     public function toHtml($_version) {
+        if (!$this->hasRight('r')) {
+            return '';
+        }
         $_version = jeedom::versionAlias($_version);
         $replace = array(
             '#id#' => $this->getId(),
@@ -851,6 +875,35 @@ class scenario {
         }
         $return .= '[' . $this->getName() . ']';
         return $return;
+    }
+
+    public function hasRight($_right, $_needAdmin = false, $_user = null) {
+        if (!is_object($_user)) {
+            $_user = $_SESSION['user'];
+        }
+        if (!is_object($_user)) {
+            return false;
+        }
+        if (!isConnect()) {
+            return false;
+        }
+        if (isConnect('admin')) {
+            return true;
+        }
+        if (config::byKey('jeedom::licence') < 9) {
+            return ($_needAdmin) ? false : true;
+        }
+        if ($_right = 'x') {
+            $rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'action');
+        } elseif ($_right = 'w') {
+            $rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'edit');
+        } elseif ($_right = 'r') {
+            $rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'view');
+        }
+        if (!is_object($rights)) {
+            return ($_needAdmin) ? false : true;
+        }
+        return $rights->getRight();
     }
 
     /*     * **********************Getteur Setteur*************************** */

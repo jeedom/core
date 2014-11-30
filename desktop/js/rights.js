@@ -15,6 +15,10 @@
  */
 loadRights();
 
+$('#sel_userId').on('change', function () {
+    loadRights();
+});
+
 $('#bt_saveRights').on('click', function () {
     console.log($('.rights').getValues('.rightsAttr'));
     jeedom.rights.save({
@@ -37,6 +41,7 @@ function loadRights() {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
+            $('.rightsAttr[data-l1key=right]').value(1);
             for (var i in data) {
                 var rights = $('.rightsAttr[data-l1key=entity][value=' + data[i].entity + ']').closest('.rights');
                 if (rights != undefined) {

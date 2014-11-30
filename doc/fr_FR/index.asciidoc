@@ -1,0 +1,154 @@
+== Core
+
+=== Description
+Jeedom est un projet de domotique sans cloud et sans abonement. Il permet de piloté divers peripherique (zwave, rfxcom, enOcean, xPL, knx...). Plus d'informations ici : https://jeedom.fr
+
+[[principe]]
+=== Principe
+include::principe.asciidoc[]
+
+'''
+[[begin]]
+=== Comment commencer
+include::begin.asciidoc[]
+
+'''
+[[buildMini]]
+=== Assembler la mini
+include::buildMini.asciidoc[]
+
+'''
+[[firstUseMini]]
+=== Premiers pas
+include::firstUseMini.asciidoc[]
+
+'''
+[[installation]]
+=== Installation
+include::installation.asciidoc[]
+
+=== Accueil
+[[dashboard]]
+==== Dashboard
+include::dashboard.asciidoc[]
+
+'''
+[[plan]]
+==== Design
+include::plan.asciidoc[]
+
+'''
+[[view]]
+==== Vue
+include::view.asciidoc[]
+
+'''
+[[history]]
+=== Historique
+include::history.asciidoc[]
+
+'''
+=== Générale
+[[administration]]
+==== Administration
+include::administration.asciidoc[]
+
+'''
+[[backup]]
+==== Sauvegarde
+include::backup.asciidoc[]
+
+'''
+[[cron]]
+==== Moteur de tâche
+include::cron.asciidoc[]
+
+'''
+[[display]]
+==== Affichage
+include::display.asciidoc[]
+
+'''
+[[interact]]
+==== Interactions
+include::interact.asciidoc[]
+
+'''
+[[jeeNetwork]]
+==== Réseau jeedom
+include::jeeNetwork.asciidoc[]
+
+'''
+[[log]]
+==== Log
+include::log.asciidoc[]
+
+'''
+[[object]]
+==== Objets
+include::object.asciidoc[]
+
+'''
+[[plugin]]
+==== Plugins
+include::plugin.asciidoc[]
+
+'''
+[[rights]]
+==== Droits avancés
+include::rights.asciidoc[]
+
+'''
+[[scenario]]
+==== Scénario
+include::scenario.asciidoc[]
+
+'''
+[[security]]
+==== Sécurité
+include::security.asciidoc[]
+
+'''
+[[timeline]]
+==== Timelinge
+include::timeline.asciidoc[]
+
+'''
+[[update]]
+==== Mise à jours
+include::update.asciidoc[]
+
+'''
+[[user]]
+==== Utilisateurs
+include::user.asciidoc[]
+
+'''
+[[profils]]
+=== Profils
+include::profils.asciidoc[]
+
+'''
+[[apihttp]]
+=== API HTTP
+include::apihttp.asciidoc[]
+
+'''
+[[jsonrpcapi]]
+=== API jsonrpc
+include::jsonrpcapi.asciidoc[]
+
+'''
+[[faq]]
+=== FAQ
+include::faq.asciidoc[]
+
+'''
+[[troubleshooting]]
+=== Troubleshooting
+include::troubleshooting.asciidoc[]
+
+'''
+[[changelog]]
+=== Changelog
+include::changelog.asciidoc[]

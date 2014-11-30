@@ -11,6 +11,13 @@ if (!isConnect()) {
         </lu>
     </div>
     <div class="col-lg-2">
+        <h3>{{Développeur(s)}}</h3>
+        <lu>
+            <li><a class="cursor" href="http://jeedom.fr/" style="color:blue;" target="_blank">Loïc Gevrey</a></li>
+            <li><a class="cursor" href="http://arnaud.quette.fr" style="color:blue;" target="_blank">Arnaud Quette</a></li>
+        </lu>
+    </div>
+    <div class="col-lg-2">
         <h3>{{Traducteur(s)}}</h3>
         <lu>
             <li>Marie Corbière (US)</li>
@@ -37,6 +44,7 @@ if (!isConnect()) {
             <li>Marie Corbière</li>
             <li><a class="cursor" href="http://ma-maison-domotique.blogspot.com/" style="color:blue;" target="_blank">Mathieu (alias Algeroth)</a></li>
             <li>Gerandhal</li>
+            <li>Stouille</li>
         </lu>
     </div>
 </div>

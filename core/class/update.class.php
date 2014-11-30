@@ -79,6 +79,7 @@ class update {
                 $update->save();
             }
         }
+        config::save('update::lastCheck', date('Y-m-d H:i:s'));
     }
 
     public static function makeUpdateLevel($_mode = '', $_level = 1) {

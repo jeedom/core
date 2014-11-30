@@ -1,0 +1,13 @@
+Le menu Logs, permet de suivre ce qui se passe sur sa domotique. Dans la plupart des cas ils ne serviront qu'à effectuer du debuggage et à résoudre des problèmes par l'équipe de support. Ce menu est d'ailleurs accessible uniquement en mode expert.
+
+La page de Logs est assez simple, en haut à gauche une liste déroulante permettant le choix des logs, en haut à droite la possibilité de vider les Logs, et au centre les Logs correspondants.
+
+image::../images/log.JPG[]
+
+La liste déroulante permettant de choisir les logs à afficher.
+
+image::../images/log2.png[]
+
+Et voici un exemple de logs.
+
+image::../images/log3.png[]

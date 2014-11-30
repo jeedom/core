@@ -29,7 +29,9 @@ function initEquipment(_object_id) {
             success: function (html) {
                 $('#div_displayEquipement').empty().html(html).trigger('create');
                 setTileSize('.eqLogic');
-                $('#div_displayEquipement').masonry();
+                setTimeout(function () {
+                    $('#div_displayEquipement').masonry();
+                }, 10);
             }
         });
     } else {

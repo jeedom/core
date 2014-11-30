@@ -1,5 +1,5 @@
 <?php
-if (!isConnect()) {
+if (!hasRight('dashboardview')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 include_file('3rdparty', 'jquery.masonry/jquery.masonry', 'js');
@@ -21,9 +21,9 @@ $parentNumber = array();
 <div class="row row-overflow">
     <?php
     if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
-        echo '<div class="col-lg-2" id="div_displayObjectList">';
+        echo '<div class="col-lg-2 col-md-3 col-sm-4" id="div_displayObjectList">';
     } else {
-        echo '<div class="col-lg-2" style="display:none;" id="div_displayObjectList">';
+        echo '<div class="col-lg-2 col-md-3 col-sm-4" style="display:none;" id="div_displayObjectList">';
     }
     ?>
 
@@ -49,15 +49,15 @@ $parentNumber = array();
 <?php
 if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
     if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
-        echo '<div class="col-lg-8" id="div_displayObject">';
+        echo '<div class="col-lg-8 col-md-7 col-sm-5" id="div_displayObject">';
     } else {
-        echo '<div class="col-lg-10" id="div_displayObject">';
+        echo '<div class="col-lg-10 col-md-9 col-sm-7" id="div_displayObject">';
     }
 } else {
     if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
-        echo '<div class="col-lg-10" id="div_displayObject">';
+        echo '<div class="col-lg-10 col-md-9 col-sm-8" id="div_displayObject">';
     } else {
-        echo '<div class="col-lg-12" id="div_displayObject">';
+        echo '<div class="col-lg-12 col-md-12 col-sm-12" id="div_displayObject">';
     }
 }
 ?>
@@ -114,9 +114,9 @@ echo '</div>';
 </div>
 <?php
 if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
-    echo '<div class="col-lg-2" id="div_displayScenario">';
+    echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario">';
 } else {
-    echo '<div class="col-lg-2" id="div_displayScenario" style="display:none;">';
+    echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario" style="display:none;">';
 }
 ?>
 <legend><i class="fa fa-history"></i> {{Scénarios}}</legend>

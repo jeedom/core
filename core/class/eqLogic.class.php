@@ -436,6 +436,9 @@ class eqLogic {
         if ($_version == '') {
             throw new Exception(__('La version demandé ne peut être vide (mobile, dashboard ou scenario)', __FILE__));
         }
+        if (!$this->hasRight('r')) {
+            return '';
+        }
         $info = '';
         $version = jeedom::versionAlias($_version);
         $vcolor = 'cmdColor';
@@ -454,12 +457,14 @@ class eqLogic {
         }
         $replace = array(
             '#id#' => $this->getId(),
-            '#name#' => ($this->getIsEnable()) ? $this->getName() : '<del>' . $this->getName() . '</del>',
+            '#name#' => $this->getName(),
             '#eqLink#' => $this->getLinkToConfiguration(),
             '#category#' => $this->getPrimaryCategory(),
             '#background_color#' => $this->getBackgroundColor($version),
             '#info#' => $info,
             '#style#' => '',
+            '#max_width#' => '600px',
+            '#logicalId#' => $this->getLogicalId()
         );
         if ($_version == 'dview' || $_version == 'mview') {
             $object = $this->getObject();
@@ -549,15 +554,27 @@ class eqLogic {
         return false;
     }
 
-    public function getHumanName() {
+    public function getHumanName($_tag = false) {
         $name = '';
         $objet = $this->getObject();
         if (is_object($objet)) {
-            $name .= '[' . $objet->getName() . ']';
+            if ($_tag) {
+                $name .= '<span class="label label-primary" style="text-shadow : none;">' . $objet->getName() . '</span>';
+            } else {
+                $name .= '[' . $objet->getName() . ']';
+            }
         } else {
-            $name .= '[' . __('Aucun', __FILE__) . ']';
+            if ($_tag) {
+                $name .= '<span class="label labe-default">' . __('Aucun', __FILE__) . '</span>';
+            } else {
+                $name .= '[' . __('Aucun', __FILE__) . ']';
+            }
         }
-        $name .= '[' . $this->getName() . ']';
+        if ($_tag) {
+            $name .= ' ' . $this->getName();
+        } else {
+            $name .= '[' . $this->getName() . ']';
+        }
         return $name;
     }
 
@@ -625,6 +642,35 @@ class eqLogic {
 
     public function refreshWidget() {
         nodejs::pushUpdate('eventEqLogic', $this->getId());
+    }
+
+    public function hasRight($_right, $_needAdmin = false, $_user = null) {
+        if (!is_object($_user)) {
+            $_user = $_SESSION['user'];
+        }
+        if (!is_object($_user)) {
+            return false;
+        }
+        if (!isConnect()) {
+            return false;
+        }
+        if (isConnect('admin')) {
+            return true;
+        }
+        if (config::byKey('jeedom::licence') < 9) {
+            return ($_needAdmin) ? false : true;
+        }
+        if ($_right = 'x') {
+            $rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'action');
+        } elseif ($_right = 'w') {
+            $rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'edit');
+        } elseif ($_right = 'r') {
+            $rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'view');
+        }
+        if (!is_object($rights)) {
+            return ($_needAdmin) ? false : true;
+        }
+        return $rights->getRight();
     }
 
     /*     * **********************Getteur Setteur*************************** */

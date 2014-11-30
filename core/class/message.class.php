@@ -41,15 +41,20 @@ class message {
         $message->save();
     }
 
-    public static function removeAll($_plugin = '', $_logicalId = '') {
+    public static function removeAll($_plugin = '', $_logicalId = '', $_search = false) {
         $values = array();
         $sql = 'DELETE FROM message';
         if ($_plugin != '') {
             $values['plugin'] = $_plugin;
             $sql .= ' WHERE plugin=:plugin';
             if ($_logicalId != '') {
-                $values['logicalId'] = $_logicalId;
-                $sql .= ' AND logicalId=:logicalId';
+                if ($_search) {
+                    $values['logicalId'] = '%' . $_logicalId . '%';
+                    $sql .= ' AND logicalId LIKE :logicalId';
+                } else {
+                    $values['logicalId'] = $_logicalId;
+                    $sql .= ' AND logicalId=:logicalId';
+                }
             }
         }
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
@@ -112,6 +117,9 @@ class message {
     /*     * *********************Methode d'instance************************* */
 
     public function save() {
+        if ($this->getMessage() == '') {
+           return;
+        }
         if ($this->getLogicalId() == '') {
             $this->setLogicalId($this->getPlugin() . '::' . config::genKey());
         }
@@ -138,6 +146,8 @@ class message {
                             'title' => __('[JEEDOM] Message de ', __FILE__) . $this->getPlugin(),
                             'message' => $this->getMessage()
                         ));
+                    } else {
+                        log::add('message', 'info', __('Impossible de trouver la commande correspondant à :', __FILE__) . $id);
                     }
                 }
             }

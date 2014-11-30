@@ -184,6 +184,16 @@ function printUpdate() {
             initTooltips();
         }
     });
+
+    jeedom.config.load({
+        configuration: "update::lastCheck",
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            $('#span_lastUpdateCheck').value(data);
+        }
+    });
 }
 
 function addUpdate(_update) {

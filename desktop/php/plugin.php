@@ -1,5 +1,5 @@
 <?php
-if (!isConnect('admin')) {
+if (!hasRight('pluginview',true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 global $JEEDOM_INTERNAL_CONFIG;
@@ -7,7 +7,7 @@ sendVarToJS('select_id', init('id', '-1'));
 ?>
 
 <div class="row row-overflow">
-    <div class="col-lg-3">
+    <div class="col-md-3 col-sm-4">
         <div class="bs-sidebar">
             <ul id="ul_plugin" class="nav nav-list bs-sidenav">
                 <center>
@@ -41,7 +41,7 @@ sendVarToJS('select_id', init('id', '-1'));
             </ul>
         </div>
     </div>
-    <div class="col-lg-9" id="div_confPlugin" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
+    <div class="col-md-9 col-sm-8" id="div_confPlugin" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
         <div>
             <?php
             if (config::byKey('jeedom::licence') < 5 || config::byKey('market::showPromotion') == 1) {

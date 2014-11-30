@@ -1,5 +1,5 @@
 <?php
-if (!isConnect('admin')) {
+if (!hasRight('securityview',true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
@@ -69,30 +69,30 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
         <form class="form-horizontal">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-lg-2 control-label">{{Activer la sécurité anti-piratage}}</label>
-                    <div class="col-lg-3">
+                    <label class="col-sm-2 control-label">{{Activer la sécurité anti-piratage}}</label>
+                    <div class="col-sm-3">
                         <input type="checkbox" class="configKey" data-l1key="security::enable"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-2 control-label">{{Nombre de tentatives de connexion max}}</label>
-                    <div class="col-lg-1">
+                    <label class="col-sm-2 control-label">{{Nombre de tentatives de connexion max}}</label>
+                    <div class="col-sm-1">
                         <input type="text" class="configKey form-control" data-l1key="security::retry" />
                     </div>
-                    <label class="col-lg-1 control-label">{{en (min) }}</label>
-                    <div class="col-lg-1">
+                    <label class="col-sm-1 control-label">{{en (min) }}</label>
+                    <div class="col-sm-1">
                         <input type="text" class="configKey form-control" data-l1key="security::backlogtime" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-2 control-label">{{Durée du bannissement (min)}}</label>
-                    <div class="col-lg-1">
+                    <label class="col-sm-2 control-label">{{Durée du bannissement (min)}}</label>
+                    <div class="col-sm-1">
                         <input type="text" class="configKey form-control" data-l1key="security::bantime" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-2 control-label">{{Liste blanche d'IP}}</label>
-                    <div class="col-lg-8">
+                    <label class="col-sm-2 control-label">{{Liste blanche d'IP}}</label>
+                    <div class="col-sm-8">
                         <input type="text" class="configKey form-control" data-l1key="security::protectIp" />
                     </div>
                 </div>

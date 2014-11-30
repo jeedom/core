@@ -82,6 +82,26 @@ jeedom.plan.byId = function (_params) {
     $.ajax(paramsAJAX);
 };
 
+jeedom.plan.getObjectPlan = function (_params) {
+    var paramsRequired = ['id'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/plan.ajax.php';
+    paramsAJAX.data = {
+        action: 'getObjectPlan',
+        id: _params.id,
+        version: _params.version || 'dashboard'
+    };
+    $.ajax(paramsAJAX);
+};
+
 jeedom.plan.byPlanHeader = function (_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
@@ -97,6 +117,7 @@ jeedom.plan.byPlanHeader = function (_params) {
     paramsAJAX.data = {
         action: 'planHeader',
         planHeader_id: _params.id,
+        noHtml : _params.noHtml,
         version: _params.version || 'dashboard'
     };
     $.ajax(paramsAJAX);

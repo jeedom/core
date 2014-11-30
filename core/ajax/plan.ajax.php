@@ -41,26 +41,24 @@ try {
     }
 
     if (init('action') == 'planHeader') {
-        $plans = plan::byPlanHeaderId(init('planHeader_id'));
         $return = array();
-        foreach ($plans as $plan) {
-            $link = $plan->getLink();
-            if (is_object($link)) {
+        foreach (plan::byPlanHeaderId(init('planHeader_id')) as $plan) {
+            if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'scenario') {
+                $link = $plan->getLink();
+                if (!is_object($link)) {
+                    continue;
+                }
                 $return[] = array(
                     'plan' => utils::o2a($plan),
                     'html' => $link->toHtml(init('version', 'dashboard'))
                 );
-            }
-            if ($plan->getLink_type() == 'plan') {
+            } else if ($plan->getLink_type() == 'plan') {
                 $plan_link = planHeader::byId($plan->getLink_id());
                 if (!is_object($plan_link)) {
                     continue;
                 }
-                $link = '';
-                if (init('version', 'dashboard') == 'dashboard') {
-                    $link = 'index.php?v=d&p=plan&plan_id=' . $plan_link->getId();
-                }
-                $html = '<span class="plan-link-widget label label-success" data-link_id="' . $plan_link->getId() . '">';
+                $link = 'index.php?v=d&p=plan&plan_id=' . $plan_link->getId();
+                $html = '<span href="' . $link . '" class="plan-link-widget label label-success" data-link_id="' . $plan_link->getId() . '">';
                 $html .= '<a href="' . $link . '" style="color:' . $plan->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
                 if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
                     $html .=$plan->getDisplay('icon') . ' ' . $plan->getDisplay('name');
@@ -73,17 +71,13 @@ try {
                     'plan' => utils::o2a($plan),
                     'html' => $html
                 );
-            }
-            if ($plan->getLink_type() == 'view') {
+            } else if ($plan->getLink_type() == 'view') {
                 $view = view::byId($plan->getLink_id());
                 if (!is_object($view)) {
                     continue;
                 }
-                $link = '';
-                if (init('version', 'dashboard') == 'dashboard') {
-                    $link = 'index.php?v=d&p=view&view_id=' . $view->getId();
-                }
-                $html = '<span class="view-link-widget label label-primary" data-link_id="' . $view->getId() . '" >';
+                $link = 'index.php?v=d&p=view&view_id=' . $view->getId();
+                $html = '<span href="' . $link . '" class="view-link-widget label label-primary" data-link_id="' . $view->getId() . '" >';
                 $html .= '<a href="' . $link . '" style="color:' . $plan->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
                 if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
                     $html .= $plan->getDisplay('icon') . ' ' . $plan->getDisplay('name');
@@ -96,14 +90,12 @@ try {
                     'plan' => utils::o2a($plan),
                     'html' => $html
                 );
-            }
-            if ($plan->getLink_type() == 'graph') {
+            } else if ($plan->getLink_type() == 'graph') {
                 $return[] = array(
                     'plan' => utils::o2a($plan),
                     'html' => ''
                 );
-            }
-            if ($plan->getLink_type() == 'text') {
+            } else if ($plan->getLink_type() == 'text') {
                 $html = '<span class="text-widget label label-default" data-text_id="' . $plan->getLink_id() . '" style="color:' . $plan->getCss('color', 'white') . ';font-size : 1.5em;">';
                 if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
                     $html .= $plan->getDisplay('icon') . ' ' . $plan->getDisplay('text');
@@ -209,11 +201,15 @@ try {
             throw new Exception('Extension du fichier non valide (autorisé .jpg .png) : ' . $extension);
         }
         if (filesize($_FILES['file']['tmp_name']) > 5000000) {
-            throw new Exception(__('Le fichier est trop gros (miximum 5mo)', __FILE__));
+            throw new Exception(__('Le fichier est trop gros (maximum 5mo)', __FILE__));
         }
+        $img_size = getimagesize($_FILES['file']['tmp_name']);
         $planHeader->setImage('type', str_replace('.', '', $extension));
-        $planHeader->setImage('size', getimagesize($_FILES['file']['tmp_name']));
+        $planHeader->setImage('size', $img_size);
         $planHeader->setImage('data', base64_encode(file_get_contents($_FILES['file']['tmp_name'])));
+        $planHeader->setImage('sha1', sha1($planHeader->getImage('data')));
+        $planHeader->setConfiguration('desktopSizeX', $img_size[0]);
+        $planHeader->setConfiguration('desktopSizeY', $img_size[1]);
         $planHeader->save();
         @rrmdir(dirname(__FILE__) . '/../../core/img/plan');
         ajax::success();

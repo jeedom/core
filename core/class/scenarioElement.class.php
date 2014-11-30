@@ -149,6 +149,66 @@ class scenarioElement {
                 $return = $this->getSubElement('do')->execute($_scenario);
             }
             return $return;
+        } else if ($this->getType() == 'in') {
+            $in = $this->getSubElement('in');
+            $in = $in->getExpression();
+            $time = jeedom::evaluateExpression($in[0]->getExpression());
+            if (!is_numeric($time) || $time < 0) {
+                $time = 0;
+            }
+            if ($time == 0) {
+                $cmd = '/usr/bin/php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
+                $cmd.= ' scenario_id=' . $_scenario->getId();
+                $cmd.= ' scenarioElement_id=' . $this->getId();
+                $cmd.= ' >> ' . log::getPathToLog('scenario_element_execution') . ' 2>&1 &';
+                exec($cmd);
+            } else {
+                $cron = new cron();
+                $cron->setClass('scenario');
+                $cron->setFunction('doIn');
+                $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s')));
+                $cron->setLastRun(date('Y-m-d H:i:s'));
+                $cron->setOnce(1);
+                $next = strtotime('+ ' . $time . ' min');
+                $cron->setSchedule(date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next));
+                $cron->save();
+                $_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmé à : ', __FILE__) . date('Y-m-d H:i:00', $next) . ' (+ ' . $time . ' min)');
+            }
+            return true;
+        } else if ($this->getType() == 'at') {
+            $at = $this->getSubElement('at');
+            $at = $at->getExpression();
+            $next = jeedom::evaluateExpression($at[0]->getExpression());
+            if (($next % 100) > 59) {
+                $next -= 40;
+            }
+            if (!is_numeric($next) || $next < 0) {
+                $_scenario->setLog(__('Erreur dans bloc (type A) : ', __FILE__) . $this->getId() . __(', heure programmé invalide : ', __FILE__) . $next);
+            }
+            if ($next < (date('Gi') + 1)) {
+                if (strlen($next) == 3) {
+                    $next = date('Y-m-d', strtotime('+1 day' . date('Y-m-d'))) . ' 0' . substr($next, 0, 1) . ':' . substr($next, 1, 3);
+                } else {
+                    $next = date('Y-m-d', strtotime('+1 day' . date('Y-m-d'))) . ' ' . substr($next, 0, 2) . ':' . substr($next, 2, 4);
+                }
+            } else {
+                if (strlen($next) == 3) {
+                    $next = date('Y-m-d') . ' 0' . substr($next, 0, 1) . ':' . substr($next, 1, 3);
+                } else {
+                    $next = date('Y-m-d') . ' ' . substr($next, 0, 2) . ':' . substr($next, 2, 4);
+                }
+            }
+            $next = strtotime($next);
+            $cron = new cron();
+            $cron->setClass('scenario');
+            $cron->setFunction('doIn');
+            $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
+            $cron->setLastRun(date('Y-m-d H:i:s'));
+            $cron->setOnce(1);
+            $cron->setSchedule(date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next));
+            $cron->save();
+            $_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmé à : ', __FILE__) . date('Y-m-d H:i:00', $next));
+            return true;
         }
     }
 
@@ -211,25 +271,31 @@ class scenarioElement {
             $return .= "\n";
             switch ($subElement->getType()) {
                 case 'if':
-                    $return .= 'SI';
+                    $return .= __('SI', __FILE__);
                     break;
                 case 'then':
-                    $return .= 'ALORS';
+                    $return .= __('ALORS', __FILE__);
                     break;
                 case 'else':
-                    $return .= 'SINON';
+                    $return .= __('SINON', __FILE__);
                     break;
                 case 'for':
-                    $return .= 'POUR';
+                    $return .= __('POUR', __FILE__);
                     break;
                 case 'do':
-                    $return .= 'FAIRE';
+                    $return .= __('FAIRE', __FILE__);
                     break;
                 case 'code':
-                    $return .= 'CODE';
+                    $return .= __('CODE', __FILE__);
                     break;
                 case 'action':
-                    $return .= 'ACTION';
+                    $return .= __('ACTION', __FILE__);
+                    break;
+                case 'in':
+                    $return .= __('DANS', __FILE__);
+                    break;
+                case 'at':
+                    $return .= __('A', __FILE__);
                     break;
                 default:
                     $return .= $subElement->getType();

@@ -253,6 +253,35 @@ class scenarioExpression {
         }
     }
 
+    public static function median() {
+        $args = func_get_args();
+        $values = array();
+        foreach ($args as $arg) {
+            if (is_numeric($arg)) {
+                $values[] = $arg;
+            } else {
+                $value = cmd::cmdToValue($arg);
+                if (is_numeric($value)) {
+                    $values[] = $value;
+                } else {
+                    try {
+                        $values[] = $test->Evaluer($value);
+                    } catch (Exception $ex) {
+                        
+                    }
+                }
+            }
+        }
+        if (count($values) < 1) {
+            return 0;
+        }
+        if (count($values) == 1) {
+            return $values[0];
+        }
+        sort($values);
+        return $values[round(count($values) / 2)];
+    }
+
     public static function tendance($_cmd_id, $_period = '1 hour', $_threshold = '') {
         $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
         if (!is_object($cmd)) {
@@ -292,6 +321,10 @@ class scenarioExpression {
         return history::stateDuration(str_replace('#', '', $_cmd_id), $_value);
     }
 
+    public static function odd($_value) {
+        return ($_value % 2) ? 0 : 1;
+    }
+
     public static function lastScenarioExecution($_scenario_id) {
         $scenario = scenario::byId(str_replace(array('#scenario', '#'), '', $_scenario_id));
         if (!is_object($scenario)) {
@@ -327,11 +360,13 @@ class scenarioExpression {
     }
 
     public static function trigger($_name = '', &$_scenario = null) {
-        if ($_name == '') {
-            return $_scenario->getRealTrigger();
-        }
-        if ($_name == $_scenario->getRealTrigger()) {
-            return 1;
+        if ($_scenario != null) {
+            if ($_name == '') {
+                return $_scenario->getRealTrigger();
+            }
+            if ($_name == $_scenario->getRealTrigger()) {
+                return 1;
+            }
         }
         return 0;
     }
@@ -356,6 +391,7 @@ class scenarioExpression {
 
     public static function setTags($_expression, &$_scenario = null) {
         $replace = array(
+            '#seconde#' => (int) date('s'),
             '#heure#' => (int) date('G'),
             '#minute#' => (int) date('i'),
             '#jour#' => (int) date('d'),
@@ -366,7 +402,9 @@ class scenarioExpression {
             '#seconde#' => (int) date('s'),
             '#date#' => date('md'),
             '#semaine#' => date('W'),
-            '#sjour#' => convertDayEnToFr(date('l')),
+            '#sjour#' => date_fr(date('l')),
+            '#smois#' => date_fr(date('F')),
+            '#njour#' => (int) date('w'),
         );
         preg_match_all("/([a-zA-Z][a-zA-Z]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
         foreach ($matches as $match) {
@@ -386,9 +424,21 @@ class scenarioExpression {
         return cmd::cmdToValue(str_replace(array_keys($replace), array_values($replace), $_expression));
     }
 
+    public static function createAndExec($_type, $_cmd, $_options) {
+        $scenarioExpression = new self();
+        $scenarioExpression->setType($_type);
+        $scenarioExpression->setExpression($_cmd);
+        if (is_array($_options)) {
+            foreach ($_options as $key => $value) {
+                $scenarioExpression->setOptions($key, $value);
+            }
+        }
+        return $scenarioExpression->execute();
+    }
+
     /*     * *********************Methode d'instance************************* */
 
-    public function execute(&$scenario) {
+    public function execute(&$scenario = null) {
         $message = '';
         try {
             if ($this->getType() == 'element') {
@@ -407,10 +457,12 @@ class scenarioExpression {
             }
             if ($this->getType() == 'action') {
                 if ($this->getExpression() == 'icon') {
-                    $options = $this->getOptions();
-                    $this->setLog($scenario, __('Changement de l\'icone du scénario : ', __FILE__) . $options['icon']);
-                    $scenario->setDisplay('icon', $options['icon']);
-                    $scenario->save();
+                    if ($scenario != null) {
+                        $options = $this->getOptions();
+                        $this->setLog($scenario, __('Changement de l\'icone du scénario : ', __FILE__) . $options['icon']);
+                        $scenario->setDisplay('icon', $options['icon']);
+                        $scenario->save();
+                    }
                     return;
                 } else if ($this->getExpression() == 'wait') {
                     if (!isset($options['condition'])) {
@@ -452,13 +504,15 @@ class scenarioExpression {
                     $this->setLog($scenario, __('Aucune durée trouvée pour l\'action sleep ou la durée n\'est pas valide : ', __FILE__) . $options['duration']);
                     return;
                 } else if ($this->getExpression() == 'stop') {
-                    $this->setLog($scenario, __('Arret du scénario', __FILE__));
-                    $scenario->setState('stop');
-                    $scenario->setPID('');
-                    $scenario->save();
+                    if ($scenario != null) {
+                        $this->setLog($scenario, __('Arret du scénario', __FILE__));
+                        $scenario->setState('stop');
+                        $scenario->setPID('');
+                        $scenario->save();
+                    }
                     die();
                 } else if ($this->getExpression() == 'scenario') {
-                    if ($this->getOptions('scenario_id') == $scenario->getId()) {
+                    if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
                         $actionScenario = &$scenario;
                     } else {
                         $actionScenario = scenario::byId($this->getOptions('scenario_id'));
@@ -469,7 +523,11 @@ class scenarioExpression {
                     switch ($this->getOptions('action')) {
                         case 'start':
                             $this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
-                            $actionScenario->launch(false, __('Lancement provoque par le scenario  : ', __FILE__) . $scenario->getHumanName());
+                            if ($scenario != null) {
+                                $actionScenario->launch(false, __('Lancement provoqué par le scenario  : ', __FILE__) . $scenario->getHumanName());
+                            } else {
+                                $actionScenario->launch(false, __('Lancement provoqué', __FILE__));
+                            }
                             break;
                         case 'stop':
                             $this->setLog($scenario, __('Arrêt forcer du scénario : ', __FILE__) . $actionScenario->getName());
@@ -501,7 +559,12 @@ class scenarioExpression {
                     }
                     $message .= $result;
                     $this->setLog($scenario, $message);
-                    $scenario->setData($this->getOptions('name'), $result);
+                    $dataStore = new dataStore();
+                    $dataStore->setType('scenario');
+                    $dataStore->setKey($this->getOptions('name'));
+                    $dataStore->setValue($result);
+                    $dataStore->setLink_id(-1);
+                    $dataStore->save();
                     return;
                 } else {
                     $cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
@@ -532,8 +595,7 @@ class scenarioExpression {
                 }
                 $this->setLog($scenario, $message);
                 return $result;
-            }
-            if ($this->getType() == 'code') {
+            } else if ($this->getType() == 'code') {
                 $this->setLog($scenario, __('Exécution d\'un bloc code', __FILE__));
                 return eval($this->getExpression());
             }
@@ -702,7 +764,9 @@ class scenarioExpression {
     }
 
     public function setLog(&$_scenario, $log) {
-        $_scenario->setLog($log);
+        if ($_scenario != null) {
+            $_scenario->setLog($log);
+        }
     }
 
 }

@@ -1,0 +1,11 @@
+C'est ici que l'on va pouvoir définir la liste des utilisateurs autorisés à se connecter à Jeedom, mais également leurs droits d'administrateur.
+
+image::../images/user.JPG[]
+
+Le bouton ajouter un utilisateur, permet comme son nom l'indique d'ajouter un utilisateur, avec login et mot de passe.
+
+image::../images/user2.png[]
+
+Le bouton changer de mot de passe, permet de changer les mots de passe des utilisateurs si on dispose des droits d'administrateur
+
+image::../images/user3.png[]

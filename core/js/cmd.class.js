@@ -94,7 +94,8 @@ jeedom.cmd.test = function (_params) {
                         cache: 0,
                         notify: false,
                         success: function (result) {
-                            alert(result);
+                            bootbox.confirm('{{Résulat de la commande : }}' + result, function () {
+                            });
                         }
                     });
                     break;
@@ -378,7 +379,7 @@ jeedom.cmd.changeSubType = function (_cmd) {
             if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
                 _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
                 _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').show();
-            } 
+            }
             _cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('change');
             modifyWithoutSave = false;
 
@@ -455,9 +456,7 @@ jeedom.cmd.displayActionOption = function (_expression, _options, _callback) {
                 return;
             }
             if (data.result.html != '') {
-                //html += '<div style="position : relative; top : -4px;">';
                 html += data.result.html;
-               // html += '</div>';
             }
             if ('function' == typeof (_callback)) {
                 _callback(html);

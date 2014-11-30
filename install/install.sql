@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 15 Octobre 2014 à 10:31
+-- Généré le: Mar 18 Novembre 2014 à 22:46
 -- Version du serveur: 5.6.19-0ubuntu0.14.04.1-log
--- Version de PHP: 5.5.9-1ubuntu4.4
+-- Version de PHP: 5.5.9-1ubuntu4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -30,8 +30,8 @@ CREATE TABLE IF NOT EXISTS `cache` (
   `key` varchar(127) NOT NULL,
   `datetime` datetime DEFAULT NULL,
   `lifetime` varchar(127) NOT NULL,
-  `value` varchar(5119) DEFAULT NULL,
-  `options` varchar(5119) DEFAULT NULL,
+  `value` mediumtext,
+  `options` mediumtext,
   PRIMARY KEY (`key`),
   KEY `lifetime` (`lifetime`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -415,6 +415,23 @@ CREATE TABLE IF NOT EXISTS `planHeader` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `rights`
+--
+
+CREATE TABLE IF NOT EXISTS `rights` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `entity` varchar(127) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `right` int(11) DEFAULT NULL,
+  `options` text,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `entityUser` (`entity`,`user_id`),
+  KEY `fk_rights_user1_idx` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `scenario`
 --
 
@@ -546,7 +563,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `options` text,
   `hash` varchar(255) DEFAULT NULL,
   `rights` text,
-  `enable` int(11) DEFAULT NULL,
+  `enable` int(11) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -639,6 +656,12 @@ ALTER TABLE `object`
 --
 ALTER TABLE `plan`
   ADD CONSTRAINT `fk_plan_planHeader1` FOREIGN KEY (`planHeader_id`) REFERENCES `planHeader` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `rights`
+--
+ALTER TABLE `rights`
+  ADD CONSTRAINT `fk_rights_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `scenario`

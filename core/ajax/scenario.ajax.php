@@ -29,9 +29,12 @@ try {
         if (!is_object($scenario)) {
             throw new Exception(__('Scénario ID inconnu : ', __FILE__) . init('id'));
         }
+        if (!$scenario->hasRight('x')) {
+            throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));
+        }
         switch (init('state')) {
             case 'start':
-                $scenario->launch(init('force', false),'Scenario lance manuellement par l\'utilisateur');
+                $scenario->launch(init('force', false), 'Scenario lance manuellement par l\'utilisateur');
                 break;
             case 'stop':
                 $scenario->stop();
@@ -115,6 +118,9 @@ try {
         if (!is_object($scenario)) {
             throw new Exception(__('Scénario ID inconnu', __FILE__));
         }
+        if (!$scenario->hasRight('w')) {
+            throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));
+        }
         $scenario->remove();
         ajax::success();
     }
@@ -157,6 +163,10 @@ try {
         if (!isset($scenario_db) || !is_object($scenario_db)) {
             $scenario_db = new scenario();
             $scenario_db->setIsActive(1);
+        } else {
+            if (!$scenario_db->hasRight('w')) {
+                throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));
+            }
         }
         $scenario_db->setTrigger(array());
         $scenario_db->setSchedule(array());

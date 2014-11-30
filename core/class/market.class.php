@@ -193,6 +193,21 @@ class market {
         }
     }
 
+    public static function byFilter($_filter) {
+        $market = self::getJsonRpc();
+        if ($market->sendRequest('market::byFilter', $_filter)) {
+            $return = array();
+            foreach ($market->getResult() as $result) {
+                if (isset($result['id'])) {
+                    $return[] = self::construct($result);
+                }
+            }
+            return $return;
+        } else {
+            throw new Exception($market->getError(), $market->getErrorCode());
+        }
+    }
+
     public static function getPurchaseInfo() {
         $market = self::getJsonRpc();
         if ($market->sendRequest('purchase::getInfo')) {
@@ -206,6 +221,7 @@ class market {
         foreach (plugin::listPlugin() as $plugin) {
             $_ticket['user_plugin'] .= $plugin->getId() . ',';
         }
+        jeedom::sick();
         $cibDir = realpath(dirname(__FILE__) . '/../../log');
         $tmp = dirname(__FILE__) . '/../../tmp/log.zip';
         if (file_exists($tmp)) {
@@ -238,7 +254,7 @@ class market {
                 return $cache->getValue();
             }
             $jsonrpc = self::getJsonRpc();
-            if ($jsonrpc->sendRequest('jeedom::getCurrentVersion')) {
+            if ($jsonrpc->sendRequest('jeedom::getCurrentVersion', array('branch' => config::byKey('market::branch')))) {
                 $version = trim($jsonrpc->getResult());
                 cache::set('jeedom::lastVersion', $version, 86400);
                 return $version;
@@ -475,6 +491,15 @@ class market {
         return true;
     }
 
+    public static function distinctCategorie($_type) {
+        $market = self::getJsonRpc();
+        if ($market->sendRequest('market::distinctCategorie', array('type' => $_type))) {
+            return $market->getResult();
+        } else {
+            throw new Exception($market->getError(), $market->getErrorCode());
+        }
+    }
+
     /*     * *********************Methode d'instance************************* */
 
     public function getComment() {
@@ -508,7 +533,7 @@ class market {
     }
 
     public function install($_version = 'stable') {
-        log::add('update', 'update', __('Début de la mise de : ' . $this->getLogicalId(), __FILE__) . "\n");
+        log::add('update', 'update', __('Début de la mise à jour de : ' . $this->getLogicalId(), __FILE__) . "\n");
         $tmp_dir = dirname(__FILE__) . '/../../tmp';
         $tmp = $tmp_dir . '/' . $this->getLogicalId() . '.zip';
         if (file_exists($tmp)) {
@@ -661,9 +686,10 @@ class market {
                 break;
             default :
                 $type = $this->getType();
-                if (class_exists($type) && method_exists($type, 'shareOnMarket')) {
-                    $tmp = $type::shareOnMarket($this);
+                if (!class_exists($type) || !method_exists($type, 'shareOnMarket')) {
+                    throw new Exception(__('Aucune fonction correspondante à : ', __FILE__) . $type . '::shareOnMarket');
                 }
+                $tmp = $type::shareOnMarket($this);
                 break;
         }
         if (!file_exists($tmp)) {
@@ -682,7 +708,7 @@ class market {
             $update->setType($this->getType());
         }
         $update->setConfiguration('version', 'beta');
-        $update->setLocalVersion(date('Y-m-d H:i:s', strtotime('+1 minute' . date('Y-m-d H:i:s'))));
+        $update->setLocalVersion(date('Y-m-d H:i:s', strtotime('+2 minute' . date('Y-m-d H:i:s'))));
         $update->save();
         $update->checkUpdate();
     }

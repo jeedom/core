@@ -1,0 +1,27 @@
+==== 30/11/2014
+
+- Mise à jour de socket.io en version 1.1.0 => 1.2.1
+
+==== 27/11/2014
+
+- Amélioration des vues
+
+==== 24/11/2014
+
+- Nouvel affichage des objets du market
+
+==== 23/11/2014
+
+- Amélioration du responsive design
+- Ajout bloc A dans les scénario, permet de lancer une action à une heure precise, mais calculé lors de l'éxecution du scénario
+
+==== 22/11/2014
+
+- Mise à jour des liens vers l'aide du nouveau site de documentation
+
+==== 20/11/2014
+
+- optimisation de la vitesse d'affichage des designs
+- bugfix des liens vers les vues dans les designs
+- bugfix de l'affichage de certain widget en mobile
+- mise à jour de bootstrap de 3.3.0 à 3.3.1

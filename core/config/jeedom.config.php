@@ -40,6 +40,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
             'wellness' => array('name' => 'Bien-être', 'icon' => 'fa-user'),
             'jeedomBox' => array('name' => 'Jeedom Box', 'icon' => 'fa-dropbox'),
             'monitoring' => array('name' => 'Monitoring', 'icon' => 'fa-tachometer'),
+            'health' => array('name' => 'Santé', 'icon' => 'icon loisir-runner5'),
+            'nature' => array('name' => 'Nature', 'icon' => 'icon nature-leaf32'),
         ),
     ),
     'cmd' => array(
@@ -121,7 +123,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
                         ),
                     ),
                     'slider' => array(
-                        'name' => 'Slider',
+                        'name' => 'Curseur',
                         'configuration' => array(
                             'minValue' => array('visible' => true),
                             'maxValue' => array('visible' => true)),

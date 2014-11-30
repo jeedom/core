@@ -104,6 +104,12 @@ class jeedom {
             }
         }
     }
+    
+    public static function sick() {
+        $cmd = 'php ' . dirname(__FILE__) . '/../../sick.php';
+        $cmd.= ' >> ' . log::getPathToLog('sick') . ' 2>&1';
+        shell_exec($cmd);   
+    }
 
     public static function getUsbMapping($_name = '') {
         $cache = cache::byKey('jeedom::usbMapping');
@@ -112,7 +118,7 @@ class jeedom {
             foreach (ls('/dev/', 'ttyUSB*') as $usb) {
                 $vendor = '';
                 $model = '';
-                foreach (explode("\n", shell_exec('udevadm info --name=/dev/' . $usb . ' --query=all')) as $line) {
+                foreach (explode("\n", shell_exec('/sbin/udevadm info --name=/dev/' . $usb . ' --query=all')) as $line) {
                     if (strpos($line, 'E: ID_MODEL=') !== false) {
                         $model = trim(str_replace(array('E: ID_MODEL=', '"'), '', $line));
                     }
@@ -144,7 +150,7 @@ class jeedom {
             foreach (ls('/dev/', 'ttyUSB*') as $usb) {
                 $vendor = '';
                 $model = '';
-                foreach (explode("\n", shell_exec('udevadm info --name=/dev/' . $usb . ' --query=all')) as $line) {
+                foreach (explode("\n", shell_exec('/sbin/udevadm info --name=/dev/' . $usb . ' --query=all')) as $line) {
                     if (strpos($line, 'E: ID_MODEL=') !== false) {
                         $model = trim(str_replace(array('E: ID_MODEL=', '"'), '', $line));
                     }
@@ -183,7 +189,7 @@ class jeedom {
     public static function backup($_background = false) {
         if ($_background) {
             log::clear('backup');
-            $cmd = 'nice -20 php ' . dirname(__FILE__) . '/../../install/backup.php';
+            $cmd = 'php ' . dirname(__FILE__) . '/../../install/backup.php';
             $cmd.= ' >> ' . log::getPathToLog('backup') . ' 2>&1 &';
             exec($cmd);
         } else {
@@ -393,10 +399,14 @@ class jeedom {
         try {
             $c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
             if ($c->isDue()) {
-                update::checkAllUpdate();
-                $nbUpdate = update::nbNeedUpdate();
-                if ($nbUpdate > 0) {
-                    message::add('update', 'De nouvelles mises à jour sont disponibles (' . $nbUpdate . ')', '', 'newUpdate');
+                if (config::byKey('update::auto') == 1) {
+                    jeedom::update();
+                } else {
+                    update::checkAllUpdate();
+                    $nbUpdate = update::nbNeedUpdate();
+                    if ($nbUpdate > 0) {
+                        message::add('update', 'De nouvelles mises à jour sont disponibles (' . $nbUpdate . ')', '', 'newUpdate');
+                    }
                 }
                 config::save('update::check', rand(10, 59) . ' 06 * * *');
             }
@@ -409,7 +419,7 @@ class jeedom {
                 jeedom::backup();
             }
         } catch (Exception $e) {
-            // log::add('backup', 'error', '[' . config::byKey('backup::cron') . ']' . $e->getMessage());
+            
         }
         try {
             $c = new Cron\CronExpression('50 23 * * *', new Cron\FieldFactory);
@@ -557,6 +567,15 @@ class jeedom {
                 log::add('core', 'error', $e->getMessage());
             }
         }
+    }
+
+    public function checkFilesystem() {
+        $result = exec('dmesg | grep "I/O error" | wc -l');
+        if ($result != 0) {
+            log::add('core', 'error', __('Erreur : corruption sur le filesystem detecter (I/O error sur dmseg)', __FILE__));
+            return false;
+        }
+        return true;
     }
 
     /*     * *********************Methode d'instance************************* */

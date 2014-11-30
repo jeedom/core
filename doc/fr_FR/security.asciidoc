@@ -1,0 +1,16 @@
+
+Le menu sécurité permet de configurer le système "Anti-piratage" primaire de Jeedom. Il n'est disponible qu'en mode Expert. Il s'agit d'un système de bannissement d'adresses IP, si une d'entre elles essaye de se connecter plusieurs fois à Jeedom sans succès.
+
+Ce menu permet également de suivre en temps réel les personnes connectées sur Jeedom. Cette information est disponible sur le premier onglet "Statut". Il donnera la liste des adresses IP qui se sont ou ont essayées de se connecter à Jeedom avec certaines informations. Des actions sont disponibles comme le bannissement des adresses IP.
+
+image::../images/security.JPG[]
+
+Le deuxième onglet "Configuration" propose de configurer le système de surveillance et de bannissement automatique. Plusieurs options sont disponibles : L'activation du système, la configuration des tentatives de conenxions et des bannissements, ainsi qu'une liste d'adresses IP qui ne peuvent pas être bannies par le système.
+
+Par défaut, cette liste est configurée pour accepter toutes les connexions depuis votre réseau local (chez vous). Ainsi chez vous, vous ne pouvez pas être banni. Toute fois, si votre réseau local possède une typologie différente, il faudra paramétrer cette liste en fonction.
+
+image::../images/security2.png[]
+
+Toujours penser à sauvegarder dès qu'une modification est faite.
+
+

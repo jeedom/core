@@ -31,7 +31,7 @@ function assert(expr) {
 
   var err = new AssertionError({
     message: src,
-    stackStartFunction: stack[0].fun
+    stackStartFunction: stack[0].getFunction()
   });
 
   throw err;

@@ -44,6 +44,12 @@ try {
     }
     $backup_dir = calculPath(config::byKey('backup::path'));
 
+    echo __("Verification du filesystem (corruption)...", __FILE__);
+    if (jeedom::checkFilesystem()) {
+        echo __("OK\n", __FILE__);
+    } else {
+        echo __("NOK\n", __FILE__);
+    }
     if (!file_exists($backup_dir)) {
         mkdir($backup_dir, 0770, true);
     }
@@ -95,7 +101,7 @@ try {
     }
 
     echo __('Nettoyage des anciens backup...', __FILE__);
-    system('find ' . $backup_dir . ' -mtime +' . config::byKey('backup::keepDays') . ' -print | xargs -r rm');
+    system('find ' . $backup_dir . ' -mtime +' . config::byKey('backup::keepDays') . ' -delete');
     echo __("OK\n", __FILE__);
 
     if (config::byKey('backup::cloudUpload') == 1) {

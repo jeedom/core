@@ -14,6 +14,15 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
     <div class='alert alert-info'>
         {{Attention lors de l'envoi d'un rapport de bug, tous les logs sont automatiquement envoyés en même temps. Cependant ces logs ne seront accessibles que par vous ou l'équipe de support.}}
     </div>
+    <div class='alert alert-warning'>
+        {{Merci avant tout ouverture de ticket de vérifier :}}<br/>
+        {{- que la question n'a pas déjà été posée sur le <a href='https://forum.jeedom.fr'>forum</a>}}<br/>
+        {{- que la question ne porte pas sur un plugin beta (sauf demande d'ouverture d'un ticket du développeur)}}<br/>
+        {{- que la catégorie est bien selectionnée pour que votre ticket soit traité dans les plus cours délais)}}<br/>
+        {{- que la question porte sur un plugin market officiel}}<br/>
+        {{- que la réponse n'est pas déja dans la <a href='http://doc.jeedom.fr'>documentation</a>}}<br/><br/>
+        {{N'oubliez pas que poser la question sur le forum vous fournira généralement une réponse plus rapide que par ticket.}}
+    </div>
     <div class="form-group">
         <label class="col-lg-2 control-label">{{Titre}}</label>
         <div class="col-lg-10">
@@ -70,6 +79,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
                     $('#div_alertReportBug').showAlert({message: data.result, level: 'danger'});
                     return;
                 }
+                $('#bt_sendBugReport').hide();
                 $('#div_alertReportBug').showAlert({message: '{{Votre ticket à bien été ouvert. Vous pouvez le suivre}} <a target="_blank" href="' + data.result.url + '">{{ici}}</a>', level: 'success'});
             }
         });

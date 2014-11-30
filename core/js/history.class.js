@@ -21,6 +21,33 @@ jeedom.history = function () {
 
 jeedom.history.chart = [];
 
+jeedom.history.get = function (_params) {
+    var paramsRequired = ['cmd_id', 'dateStart', 'dateEnd'];
+    var paramsSpecifics = {
+        pre_success: function (data) {
+            if (isset(jeedom.cmd.cache.byId[data.result.id])) {
+                delete jeedom.cmd.cache.byId[data.result.id];
+            }
+            return data;
+        }
+    };
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+    paramsAJAX.data = {
+        action: 'getHistory',
+        id: _params.cmd_id,
+        dateStart: _params.dateStart || '',
+        dateEnd: _params.dateEnd || ''
+    };
+    $.ajax(paramsAJAX);
+}
 
 jeedom.history.drawChart = function (_params) {
     $.showLoading();
@@ -83,6 +110,8 @@ jeedom.history.drawChart = function (_params) {
                 } else {
                     _params.option.graphStep = (data.result.cmd.subType == 'binary') ? true : false;
                 }
+            } else {
+                _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
             }
             if (init(_params.option.graphType) == '') {
                 if (isset(data.result.cmd.display) && init(data.result.cmd.display.graphType) != '') {

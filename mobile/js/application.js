@@ -11,19 +11,30 @@ $(function () {
 
     initApplication();
 
-    $('body').delegate('a.link', 'click', function () {
+    $('body').delegate('.link', 'click', function () {
         modal(false);
         panel(false);
         page($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'));
     });
 
     var webappCache = window.applicationCache;
-    webappCache.addEventListener("updateready", updateCache, false);
+    webappCache.addEventListener('cached', updateCacheEvent, false);
+    webappCache.addEventListener('checking', updateCacheEvent, false);
+    webappCache.addEventListener('downloading', updateCacheEvent, false);
+    webappCache.addEventListener('error', updateCacheEvent, false);
+    webappCache.addEventListener('noupdate', updateCacheEvent, false);
+    webappCache.addEventListener('obsolete', updateCacheEvent, false);
+    webappCache.addEventListener('progress', updateCacheEvent, false);
+    webappCache.addEventListener('updateready', updateCacheEvent, false);
     webappCache.update();
 
-    function updateCache() {
-        webappCache.swapCache();
-        window.location.reload();
+    function updateCacheEvent(e) {
+        if (webappCache.status == 3) {
+            $('#div_updateInProgress').show();
+        } else if (e.type == 'updateready') {
+            webappCache.swapCache();
+            window.location.reload();
+        }
     }
 
     $(document).ajaxStart(function () {
@@ -83,24 +94,27 @@ function initApplication(_reinit) {
                     nodeJsKey = data.result.nodeJsKey;
                     user_id = data.result.user_id;
                     plugins = data.result.plugins;
-                    deviceInfo = getDeviceType();
+
                     userProfils = data.result.userProfils;
                     var include = ['core/js/core.js'];
 
-                    if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '') {
-                        $('#jQMnDColor').attr('href', '3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.color.' + userProfils.mobile_theme_color + '.css');
-                    }
-                    if (isset(userProfils.mobile_theme) && userProfils.mobile_theme != '') {
-                        $('#jQMnDTheme').attr('href', '3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.' + userProfils.mobile_theme + '.css');
-                    }
-                    if (isset(userProfils.mobile_highcharts_theme) && userProfils.mobile_highcharts_theme != '') {
-                        include.push('3rdparty/highstock/themes/' + userProfils.mobile_highcharts_theme + '.js');
+                    if (isset(userProfils) && userProfils != null) {
+                        if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '') {
+                            $('#jQMnDColor').attr('href', '3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.color.' + userProfils.mobile_theme_color + '.css');
+                        }
+                        if (isset(userProfils.mobile_theme) && userProfils.mobile_theme != '') {
+                            $('#jQMnDTheme').attr('href', '3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.' + userProfils.mobile_theme + '.css');
+                        }
+                        if (isset(userProfils.mobile_highcharts_theme) && userProfils.mobile_highcharts_theme != '') {
+                            include.push('3rdparty/highstock/themes/' + userProfils.mobile_highcharts_theme + '.js');
+                        }
                     }
 
                     $.get("core/php/icon.inc.php", function (data) {
                         $("head").append(data);
                         $.include(include, function () {
-                            if (isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home') {
+                            deviceInfo = getDeviceType();
+                            if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('page') != 'home') {
                                 var res = userProfils.homePageMobile.split("::");
                                 if (res[0] == 'core') {
                                     switch (res[1]) {
@@ -108,7 +122,7 @@ function initApplication(_reinit) {
                                             page('equipment', 'Objet', userProfils.defaultMobileObject);
                                             break;
                                         case 'plan' :
-                                            page('plan', 'Plan', userProfils.defaultMobilePlan);
+                                            window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan;
                                             break;
                                         case 'view' :
                                             page('view', 'Vue', userProfils.defaultMobileView);
@@ -142,7 +156,7 @@ function page(_page, _title, _option, _plugin) {
         });
         return;
     }
-    
+
     jeedom.user.isConnect({
         success: function (result) {
             if (!result) {
@@ -219,38 +233,6 @@ function notify(_title, _text) {
     setTimeout(function () {
         $('#div_alert').popup("close");
     }, 1000)
-}
-
-function getDeviceType() {
-    var result = {};
-    result.type = 'desktop';
-    result.width = $('#pagecontainer').width();
-    if (navigator.userAgent.match(/(android)/gi)) {
-        result.width = screen.width;
-        result.type = 'phone';
-        if ($('#pagecontainer').width() > 899) {
-            result.type = 'tablet';
-        }
-    }
-    if (navigator.userAgent.match(/(phone)/gi)) {
-        result.type = 'phone';
-    }
-    if (navigator.userAgent.match(/(Iphone)/gi)) {
-        result.type = 'phone';
-    }
-    if (navigator.userAgent.match(/(Ipad)/gi)) {
-        result.type = 'tablet';
-    }
-    result.bSize = 220;
-    if (result.type == 'phone') {
-        var ori = window.orientation;
-        if (ori == 90 || ori == -90) {
-            result.bSize = (result.width / 3) - 15;
-        } else {
-            result.bSize = (result.width / 2) - 15;
-        }
-    }
-    return result;
 }
 
 function setTileSize(_filter) {

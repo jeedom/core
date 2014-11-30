@@ -13,7 +13,7 @@ $notifyTheme = array(
 $homePage = array(
     'core::dashboard' => '{{Dashboard}}',
     'core::view' => '{{Vue}}',
-    'core::plan' => '{{Plan}}',
+    'core::plan' => '{{Design}}',
 );
 foreach (plugin::listPlugin() as $pluginList) {
     if ($pluginList->isActive() == 1 && $pluginList->getDisplay() != '') {
@@ -38,8 +38,8 @@ foreach (plugin::listPlugin() as $pluginList) {
                 <form class="form-horizontal">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">{{Desktop}}</label>
-                            <div class="col-lg-2">
+                            <label class="col-sm-3 control-label">{{Desktop}}</label>
+                            <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme">
                                     <option value="">Défaut</option>
                                     <option value="superhero">Superhero</option>
@@ -58,32 +58,32 @@ foreach (plugin::listPlugin() as $pluginList) {
                                     <option value="yeti">Yeti</option>
                                 </select>
                             </div>
-                            <div class="col-lg-7" id="div_imgThemeDesktop" style="height: 450px;">
+                            <div class="col-sm-7" id="div_imgThemeDesktop" style="height: 450px;">
 
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">{{Mobile}}</label>
-                            <div class="col-lg-2">
+                            <label class="col-sm-3 control-label">{{Mobile}}</label>
+                            <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme">
                                     <option value="dark">Sombre</option>
                                     <option value="light">Clair</option>
                                 </select>
                             </div>
-                            <label class="col-lg-3 control-label">{{Couleur}}</label>
-                            <div class="col-lg-2">
+                            <label class="col-sm-3 control-label">{{Couleur}}</label>
+                            <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color">
-                                    <option value="green">Vert</option>
-                                    <option value="yellow">Jaune</option>
-                                    <option value="red">Rouge</option>
-                                    <option value="blue">Bleu</option>
-                                    <option value="purple">Violet</option>
+                                    <option value="green" style="background-color: #B6DB49">Vert</option>
+                                    <option value="yellow" style="background-color: #FFBD21">Jaune</option>
+                                    <option value="red" style="background-color: #FF4444">Rouge</option>
+                                    <option value="blue" style="background-color: #33B5E5">Bleu</option>
+                                    <option value="purple" style="background-color: #C58BE2">Violet</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">{{Graphique Desktop}}</label>
-                            <div class="col-lg-2">
+                            <label class="col-sm-3 control-label">{{Graphique Desktop}}</label>
+                            <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="desktop_highcharts_theme">
                                     <option value="">Défaut</option>
                                     <option value="dark-blue">Dark-blue</option>
@@ -96,8 +96,8 @@ foreach (plugin::listPlugin() as $pluginList) {
                                     <option value="skies">Skies</option>
                                 </select>
                             </div>
-                            <label class="col-lg-3 control-label">{{Graphique mobile}}</label>
-                            <div class="col-lg-2">
+                            <label class="col-sm-3 control-label">{{Graphique mobile}}</label>
+                            <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_highcharts_theme">
                                     <option value="">Défaut</option>
                                     <option value="dark-blue">Dark-blue</option>
@@ -131,8 +131,8 @@ foreach (plugin::listPlugin() as $pluginList) {
                     <fieldset>
                         <legend>Page par défaut</legend>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">{{Desktop}}</label>
-                            <div class="col-lg-2">
+                            <label class="col-sm-3 control-label">{{Desktop}}</label>
+                            <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="homePage">
                                     <?php
                                     foreach ($homePage as $key => $value) {
@@ -141,8 +141,8 @@ foreach (plugin::listPlugin() as $pluginList) {
                                     ?>
                                 </select>
                             </div>
-                            <label class="col-lg-1 control-label">{{Mobile}}</label>
-                            <div class="col-lg-2">
+                            <label class="col-sm-1 control-label">{{Mobile}}</label>
+                            <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="homePageMobile">
                                     <option value="home">{{Accueil}}</option>
                                     <?php
@@ -155,8 +155,8 @@ foreach (plugin::listPlugin() as $pluginList) {
                         </div>
                         <legend>{{Object par défaut sur le dashboard}}</legend>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">{{Desktop}}</label>
-                            <div class="col-lg-2">
+                            <label class="col-sm-3 control-label">{{Desktop}}</label>
+                            <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardObject">
                                     <?php
                                     foreach (object::all() as $object) {
@@ -165,8 +165,8 @@ foreach (plugin::listPlugin() as $pluginList) {
                                     ?>
                                 </select>
                             </div>
-                            <label class="col-lg-1 control-label">{{Mobile}}</label>
-                            <div class="col-lg-2">
+                            <label class="col-sm-1 control-label">{{Mobile}}</label>
+                            <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileObject">
                                     <?php
                                     foreach (object::all() as $object) {
@@ -178,8 +178,8 @@ foreach (plugin::listPlugin() as $pluginList) {
                         </div>
                         <legend>{{Vue par defaut}}</legend>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">{{Desktop}}</label>
-                            <div class="col-lg-2">
+                            <label class="col-sm-3 control-label">{{Desktop}}</label>
+                            <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDesktopView">
                                     <?php
                                     foreach (view::all() as $view) {
@@ -188,8 +188,8 @@ foreach (plugin::listPlugin() as $pluginList) {
                                     ?>
                                 </select>
                             </div>
-                            <label class="col-lg-1 control-label">{{Mobile}}</label>
-                            <div class="col-lg-2">
+                            <label class="col-sm-1 control-label">{{Mobile}}</label>
+                            <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileView">
                                     <?php
                                     foreach (view::all() as $view) {
@@ -201,8 +201,8 @@ foreach (plugin::listPlugin() as $pluginList) {
                         </div>
                         <legend>{{Plan par defaut}}</legend>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">{{Desktop}}</label>
-                            <div class="col-lg-2">
+                            <label class="col-sm-3 control-label">{{Desktop}}</label>
+                            <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardPlan">
                                     <?php
                                     foreach (planHeader::all() as $plan) {
@@ -211,8 +211,8 @@ foreach (plugin::listPlugin() as $pluginList) {
                                     ?>
                                 </select>
                             </div>
-                            <label class="col-lg-1 control-label">{{Mobile}}</label>
-                            <div class="col-lg-2">
+                            <label class="col-sm-1 control-label">{{Mobile}}</label>
+                            <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobilePlan">
                                     <?php
                                     foreach (planHeader::all() as $plan) {
@@ -221,22 +221,25 @@ foreach (plugin::listPlugin() as $pluginList) {
                                     ?>
                                 </select>
                             </div>
-                            <label class="col-lg-1 control-label">{{Plein écran}}</label>
-                            <div class="col-lg-2">
-                                <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultMobilePlanFullscreen"/>
-                            </div>
                         </div>
-                        <legend>Dashboard</legend>
+                        <legend>{{Dashboard}}</legend>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">{{Afficher les scénarios par défaut}}</label>
-                            <div class="col-lg-2">
+                            <label class="col-sm-3 control-label">{{Afficher les scénarios par défaut}}</label>
+                            <div class="col-sm-1">
                                 <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayScenarioByDefault"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">{{Afficher les objets par défaut}}</label>
-                            <div class="col-lg-2">
+                            <label class="col-sm-3 control-label">{{Afficher les objets par défaut}}</label>
+                            <div class="col-sm-1">
                                 <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
+                            </div>
+                        </div>
+                        <legend>{{Vue}}</legend>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{{Afficher les vues par défaut}}</label>
+                            <div class="col-sm-1">
+                                <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayViewByDefault"/>
                             </div>
                         </div>
                     </fieldset>
@@ -258,8 +261,8 @@ foreach (plugin::listPlugin() as $pluginList) {
                 <form class="form-horizontal">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">{{Notifier des événements}}</label>
-                            <div class="col-lg-3">
+                            <label class="col-sm-3 control-label">{{Notifier des événements}}</label>
+                            <div class="col-sm-3">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="notifyEvent">
                                     <?php
                                     foreach ($notifyTheme as $key => $value) {
@@ -270,8 +273,8 @@ foreach (plugin::listPlugin() as $pluginList) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">{{Notifier du lancement des scénarios}}</label>
-                            <div class="col-lg-3">
+                            <label class="col-sm-3 control-label">{{Notifier du lancement des scénarios}}</label>
+                            <div class="col-sm-3">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="notifyLaunchScenario">
                                     <?php
                                     foreach ($notifyTheme as $key => $value) {
@@ -282,8 +285,8 @@ foreach (plugin::listPlugin() as $pluginList) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">{{Notifier nouveau message}}</label>
-                            <div class="col-lg-3">
+                            <label class="col-sm-3 control-label">{{Notifier nouveau message}}</label>
+                            <div class="col-sm-3">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="notifyNewMessage">
                                     <?php
                                     foreach ($notifyTheme as $key => $value) {
@@ -312,20 +315,20 @@ foreach (plugin::listPlugin() as $pluginList) {
                 <form class="form-horizontal">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">{{Mot de passe}}</label>
-                            <div class="col-lg-3">
+                            <label class="col-sm-3 control-label">{{Mot de passe}}</label>
+                            <div class="col-sm-3">
                                 <input type="password" class="userAttr form-control" data-l1key="password" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">{{Retapez le mot de passe}}</label>
-                            <div class="col-lg-3">
+                            <label class="col-sm-3 control-label">{{Retapez le mot de passe}}</label>
+                            <div class="col-sm-3">
                                 <input type="password" class="form-control" id="in_passwordCheck" />
                             </div>
                         </div>
                         <div class="form-group expertModeVisible">
-                            <label class="col-lg-3 control-label">{{Clef de sécurité pour appareils enregistrés}}</label>
-                            <div class="col-lg-3">
+                            <label class="col-sm-3 control-label">{{Clef de sécurité pour appareils enregistrés}}</label>
+                            <div class="col-sm-3">
                                 <input class="form-control userAttr" data-l1key="options" data-l2key="registerDevice" />
                             </div>
                         </div>

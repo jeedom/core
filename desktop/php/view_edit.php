@@ -1,5 +1,5 @@
 <?php
-if (!isConnect()) {
+if (!hasRight('viewedit')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
@@ -23,10 +23,10 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
 </style>
 
 <div class="row row-overflow">
-    <div class="col-lg-2">
+    <div class="col-lg-2 col-md-3 col-sm-4">
         <div class="bs-sidebar">
             <ul id="ul_view" class="nav nav-list bs-sidenav">
-                <a id="bt_addView" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Creer une vue}}</a>
+                <a id="bt_addView" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Créer une vue}}</a>
                 <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
                 <?php
                 foreach (view::all() as $view) {
@@ -37,21 +37,16 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
         </div>
     </div>
 
-    <div class="col-lg-10" style="display: none;" id="div_view">
+    <div class="col-lg-10 col-md-9 col-sm-8" style="display: none;" id="div_view">
         <legend style="height: 35px;">
             <a class="btn btn-default btn-xs" id="bt_editView"><i class="fa fa-pencil"></i> {{Renommer}}</a> {{Vue}}
-            <a class="btn btn-success btn-xs pull-right" id="bt_viewResult"><i class="fa fa fa-eye"></i> {{Voir le resultat}}</a>
+            <a class="btn btn-danger btn-xs pull-right" id="bt_removeView"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+            <a class="btn btn-success btn-xs pull-right" id="bt_saveView"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+            <a class="btn btn-primary btn-xs pull-right" id="bt_viewResult"><i class="fa fa fa-eye"></i> {{Voir le résultat}}</a>
             <a class="btn btn-default btn-xs pull-right" id="bt_addviewZone"><i class="fa fa-plus-circle"></i> {{Ajouter une zone}}</a>
         </legend>
 
         <div id="div_viewZones" style="margin-top: 10px;"></div>
-
-
-        <div class="form-actions" style="margin-top: 10px;">
-
-            <a class="btn btn-danger" id="bt_removeView"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
-            <a class="btn btn-success" id="bt_saveView"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
-        </div>
     </div>
 
 </div>
@@ -68,14 +63,14 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
                 <input id="in_addEditviewZoneEmplacement"  style="display : none;" />
                 <form class="form-horizontal" onsubmit="return false;">
                     <div class="form-group">
-                        <label class="col-lg-2 control-label">{{Nom}}</label>
-                        <div class="col-lg-5">
+                        <label class="col-sm-2 control-label">{{Nom}}</label>
+                        <div class="col-sm-5">
                             <input id="in_addEditviewZoneName" class="form-control" placeholder="{{Nom}}" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 control-label">{{Type}}</label>
-                        <div class="col-lg-5">
+                        <label class="col-sm-2 control-label">{{Type}}</label>
+                        <div class="col-sm-5">
                             <select class="form-control" id="sel_addEditviewZoneType">
                                 <option value="widget">{{Widget}}</option>
                                 <option value="graph">{{Graphique}}</option>
@@ -211,7 +206,14 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
                 echo '<td class="type">';
                 echo 'Scénario';
                 echo '</td>';
-                echo '<td class="object_name"></td>';
+                echo '<td class="object_name">';
+                $object = $scenario->getObject();
+                if (is_object($object)) {
+                    echo $object->getName();
+                } else {
+                    echo '{{Aucun}}';
+                }
+                echo '</td>';
                 echo '<td class="name">';
                 echo $scenario->getName();
                 echo '</td>';

@@ -437,6 +437,38 @@ function rrmdir($dir) {
     return true;
 }
 
+function date_fr($date_en) {
+    if(config::byKey('language', 'core', 'fr_FR') == 'en_US'){
+        return $date_en;
+    }
+    $texte_en = array(
+        "Monday", "Tuesday", "Wednesday", "Thursday",
+        "Friday", "Saturday", "Sunday", "January",
+        "February", "March", "April", "May",
+        "June", "July", "August", "September",
+        "October", "November", "December"
+    );
+    $texte_fr = array(
+        "Lundi", "Mardi", "Mercredi", "Jeudi",
+        "Vendredi", "Samedi", "Dimanche", "Janvier",
+        "Février", "Mars", "Avril", "Mai",
+        "Juin", "Juillet", "Août", "Septembre",
+        "Octobre", "Novembre", "Décembre"
+    );
+    $date_fr = str_replace($texte_en, $texte_fr, $date_en);
+    $texte_en = array(
+        "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+        "Aug", "Sep", "Oct", "Nov", "Dec"
+    );
+    $texte_fr = array(
+        "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim",
+        "Jan", "Fev", "Mar", "Avr", "Mai", "Jui",
+        "Jui", "Aou;", "Sep", "Oct", "Nov", "Dec"
+    );
+    return str_replace($texte_en, $texte_fr, $date_fr);
+}
+
 function convertDayEnToFr($_day) {
     if ($_day == 'Monday' || $_day == 'Mon') {
         return 'Lundi';

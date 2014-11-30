@@ -35,24 +35,37 @@ sendVarToJS('id', $plan->getId());
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Couleur de fond}}</label>
                 <div class="col-lg-2">
-                    <select class="planAttr form-control" data-l1key="css" data-l2key="background-color">
-                        <option value="">Normale</option>
-                        <option value="transparent">Transparent</option>
-                        <option value="#1abc9c" style="background-color: #1abc9c;color:white;">Turquoise</option>
-                        <option value="#2ecc71" style="background-color: #2ecc71;color:white;">Emerald</option>
-                        <option value="#3498db" style="background-color: #3498db;color:white;">Pete rider</option>
-                        <option value="#9b59b6" style="background-color: #9b59b6;color:white;">Amethyst</option>
-                        <option value="#34495e" style="background-color: #34495e;color:white;">Wet asphalt</option>
-                        <option value="#f1c40f" style="background-color: #f1c40f;color:white;">Sun flower</option>
-                        <option value="#e67e22" style="background-color: #e67e22;color:white;">Carrot</option>
-                        <option value="#e74c3c" style="background-color: #e74c3c;color:white;">Alizarin</option>
-                    </select>
+                    <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
+                </div>
+                <label class="col-lg-1 control-label">{{Transparent}}</label>
+                <div class="col-lg-1">
+                    <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-transparent" />
+                </div>
+                <label class="col-lg-1 control-label">{{Défaut}}</label>
+                <div class="col-lg-1">
+                    <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-defaut" checked />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Couleur des icones et textes}}</label>
                 <div class="col-lg-2">
-                    <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="color" value="#FFFFFF"/>
+                    <input type="color" class="form-control planAttr" data-l1key="css" data-l2key="color" />
+                </div>
+                <label class="col-lg-1 control-label">{{Défaut}}</label>
+                <div class="col-lg-1">
+                    <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="color-defaut" checked />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
+                <div class="col-lg-2">
+                    <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black)}}</label>
+                <div class="col-lg-2">
+                    <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
                 </div>
             </div>
             <div class="form-group">
@@ -75,6 +88,14 @@ sendVarToJS('id', $plan->getId());
                     }
                 }
             }
+            if ($plan->getLink_type() == 'scenario') {
+                echo '<div class="form-group">';
+                echo '<label class="col-lg-4 control-label">{{Masquer les commandes}}</label>';
+                echo '<div class="col-lg-1">';
+                echo '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="hideCmd" />';
+                echo '</div>';
+                echo '</div>';
+            }
             ?>
         <?php } else if ($plan->getLink_type() == 'graph') { ?>
             <div class="form-group">
@@ -91,12 +112,9 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-4 control-label">{{Bordure}}</label>
+                <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black}}</label>
                 <div class="col-lg-2">
-                    <select class="planAttr form-control" data-l1key="css" data-l2key="border">
-                        <option value="solid 1px black">Oui</option>
-                        <option value="none">Non</option>
-                    </select>
+                    <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
                 </div>
             </div>
             <div class="form-group">
@@ -169,34 +187,37 @@ sendVarToJS('id', $plan->getId());
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Couleur de fond}}</label>
                 <div class="col-lg-2">
-                    <select class="planAttr form-control" data-l1key="css" data-l2key="background-color">
-                        <option value="">Normale</option>
-                        <option value="transparent">Transparent</option>
-                        <option value="#1abc9c" style="background-color: #1abc9c;color:white;">Turquoise</option>
-                        <option value="#2ecc71" style="background-color: #2ecc71;color:white;">Emerald</option>
-                        <option value="#3498db" style="background-color: #3498db;color:white;">Pete rider</option>
-                        <option value="#9b59b6" style="background-color: #9b59b6;color:white;">Amethyst</option>
-                        <option value="#34495e" style="background-color: #34495e;color:white;">Wet asphalt</option>
-                        <option value="#f1c40f" style="background-color: #f1c40f;color:white;">Sun flower</option>
-                        <option value="#e67e22" style="background-color: #e67e22;color:white;">Carrot</option>
-                        <option value="#e74c3c" style="background-color: #e74c3c;color:white;">Alizarin</option>
-                    </select>
+                    <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
+                </div>
+                <label class="col-lg-1 control-label">{{Transparent}}</label>
+                <div class="col-lg-2">
+                    <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-transparent" />
+                </div>
+                <label class="col-lg-1 control-label">{{Défaut}}</label>
+                <div class="col-lg-1">
+                    <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-defaut" checked />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Couleur du texte}}</label>
                 <div class="col-lg-2">
-                    <select class="planAttr form-control" data-l1key="css" data-l2key="color">
-                        <option value="">Normale</option>
-                        <option value="#1abc9c" style="background-color: #1abc9c;color:white;">Turquoise</option>
-                        <option value="#2ecc71" style="background-color: #2ecc71;color:white;">Emerald</option>
-                        <option value="#3498db" style="background-color: #3498db;color:white;">Pete rider</option>
-                        <option value="#9b59b6" style="background-color: #9b59b6;color:white;">Amethyst</option>
-                        <option value="#34495e" style="background-color: #34495e;color:white;">Wet asphalt</option>
-                        <option value="#f1c40f" style="background-color: #f1c40f;color:white;">Sun flower</option>
-                        <option value="#e67e22" style="background-color: #e67e22;color:white;">Carrot</option>
-                        <option value="#e74c3c" style="background-color: #e74c3c;color:white;">Alizarin</option>
-                    </select>
+                    <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="color" />
+                </div>
+                <label class="col-lg-1 control-label">{{Défaut}}</label>
+                <div class="col-lg-1">
+                    <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="color-defaut" checked />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
+                <div class="col-lg-2">
+                    <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black)}}</label>
+                <div class="col-lg-2">
+                    <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
                 </div>
             </div>
             <div class="form-group">
@@ -233,34 +254,37 @@ sendVarToJS('id', $plan->getId());
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Couleur de fond}}</label>
                 <div class="col-lg-2">
-                    <select class="planAttr form-control" data-l1key="css" data-l2key="background-color">
-                        <option value="">Normale</option>
-                        <option value="transparent">Transparent</option>
-                        <option value="#1abc9c" style="background-color: #1abc9c;color:white;">Turquoise</option>
-                        <option value="#2ecc71" style="background-color: #2ecc71;color:white;">Emerald</option>
-                        <option value="#3498db" style="background-color: #3498db;color:white;">Pete rider</option>
-                        <option value="#9b59b6" style="background-color: #9b59b6;color:white;">Amethyst</option>
-                        <option value="#34495e" style="background-color: #34495e;color:white;">Wet asphalt</option>
-                        <option value="#f1c40f" style="background-color: #f1c40f;color:white;">Sun flower</option>
-                        <option value="#e67e22" style="background-color: #e67e22;color:white;">Carrot</option>
-                        <option value="#e74c3c" style="background-color: #e74c3c;color:white;">Alizarin</option>
-                    </select>
+                    <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
+                </div>
+                <label class="col-lg-1 control-label">{{Transparent}}</label>
+                <div class="col-lg-1">
+                    <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-transparent" />
+                </div>
+                <label class="col-lg-1 control-label">{{Défaut}}</label>
+                <div class="col-lg-1">
+                    <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-defaut" checked />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Couleur du texte}}</label>
                 <div class="col-lg-2">
-                    <select class="planAttr form-control" data-l1key="css" data-l2key="color">
-                        <option value="">Normale</option>
-                        <option value="#1abc9c" style="background-color: #1abc9c;color:white;">Turquoise</option>
-                        <option value="#2ecc71" style="background-color: #2ecc71;color:white;">Emerald</option>
-                        <option value="#3498db" style="background-color: #3498db;color:white;">Pete rider</option>
-                        <option value="#9b59b6" style="background-color: #9b59b6;color:white;">Amethyst</option>
-                        <option value="#34495e" style="background-color: #34495e;color:white;">Wet asphalt</option>
-                        <option value="#f1c40f" style="background-color: #f1c40f;color:white;">Sun flower</option>
-                        <option value="#e67e22" style="background-color: #e67e22;color:white;">Carrot</option>
-                        <option value="#e74c3c" style="background-color: #e74c3c;color:white;">Alizarin</option>
-                    </select>
+                    <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="color" />
+                </div>
+                <label class="col-lg-1 control-label">{{Défaut}}</label>
+                <div class="col-lg-1">
+                    <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="color-defaut" checked />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
+                <div class="col-lg-2">
+                    <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black)}}</label>
+                <div class="col-lg-2">
+                    <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
                 </div>
             </div>
             <div class="form-group">

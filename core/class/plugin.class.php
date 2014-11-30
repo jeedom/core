@@ -263,13 +263,17 @@ class plugin {
                         }
                     }
                 } else {
-                    $function = $this->getId() . '_remove';
-                    if (function_exists($this->getId() . '_remove')) {
-                        $function();
+                    if ($alreadyActive == 1) {
+                        $function = $this->getId() . '_remove';
+                        if (function_exists($this->getId() . '_remove')) {
+                            $function();
+                        }
                     }
                 }
                 $out = ob_get_clean();
-                log::add($this->getId(), 'info', "Result : " . $out);
+                if (trim($out) != '') {
+                    log::add($this->getId(), 'info', "Installation/remove/update result : " . $out);
+                }
             }
         } catch (Exception $e) {
             config::save('active', $alreadyActive, $this->getId());

@@ -13,7 +13,7 @@ install_msg_en()
 {
 	msg_installer_welcome="*           Welcome to the Jeedom installer            *"
 	msg_usage1="Usage: $0 [<webserver_name>]"
-	msg_usage2="            webserver_name can be 'apache' or 'nginx' (default)"
+	msg_usage2="            webserver_name can be 'apache' or 'nginx_ssl' or 'nginx' (default)"
 	msg_manual_install_nodejs_ARM="*          Manual installation of nodeJS for ARM       *"
 	msg_manual_install_nodejs_RPI="*     Manual installation of nodeJS for Raspberry      *"
 	msg_nginx_config="*                  NGINX configuration                 *"
@@ -52,16 +52,19 @@ install_msg_en()
 	msg_available_update_razberry_zway="A newer version is available: "
 	msg_ask_update_razberry_zway="Do you wish to update Z-Way?"
 	msg_uptodate="is already installed and up-to-date"
+	msg_needinstallupdate="needs to be installed or to be updated"
 	msg_ask_install_razberry_zway="Do you wish to install Z-Way?"
 	msg_failed_installupdate_razberry_zway="Z-Way for RaZberry installation failed!"
 	msg_succeeded_installupdate_razberry_zway="Z-Way for RaZberry installation succeeded!"
+        msg_ask_install_nginx_ssl="Do you want to install SSL self sign certificat"
+        msg_nginx_ssl_config="*                 NGINX SSL configuration               *"
 }
 
 install_msg_fr()
 {
 	msg_installer_welcome="*         Bienvenue dans l'installateur Jeedom         *"
 	msg_usage1="Utilisation: $0 [<nom_du_webserver>]"
-	msg_usage2="             nom_du_webserver peut être 'apache' ou 'nginx' (par défaut)"
+	msg_usage2="             nom_du_webserver peut être 'apache' ou 'nginx_ssl' ou 'nginx' (par défaut)"
 	msg_manual_install_nodejs_ARM="*        Installation manuelle de nodeJS pour ARM       *"
 	msg_manual_install_nodejs_RPI="*     Installation manuelle de nodeJS pour Raspberry    *"
 	msg_nginx_config="*                Configuration de NGINX                *"
@@ -94,15 +97,18 @@ install_msg_fr()
 	msg_optimize_webserver_cache="*       Vérification de l'optimisation de cache        *"
 	msg_php_version="PHP version ${PHP_VERSION} trouvé"
 	msg_php_already_optimized="PHP est déjà optimisé (utilisation d'${PHP_OPTIMIZATION})"
-	msg_optimize_webserver_cache_apc"Installation de l'optimisation de cache APC"
+	msg_optimize_webserver_cache_apc="Installation de l'optimisation de cache APC"
 	msg_optimize_webserver_cache_opcache="Installation de l'optimisation de cache Zend OpCache"
 	msg_install_razberry_zway="*         Vérification de Z-Way pour RaZberry          *"
 	msg_available_update_razberry_zway="Une version plus récente est disponible : "
 	msg_ask_update_razberry_zway="Souhaitez-vous mettre à jour Z-Way ?"
 	msg_uptodate="est déjà installé et à jour"
+	msg_needinstallupdate="nécessite une installation ou une mise à jour"
 	msg_ask_install_razberry_zway="Souhaitez-vous installer Z-Way ?"
 	msg_failed_installupdate_razberry_zway="L'installation de Z-Way pour RaZberry a échoué !"
 	msg_succeeded_installupdate_razberry_zway="L'installation de Z-Way pour RaZberry a réussi !"
+        msg_ask_install_nginx_ssl="Voules vous mettre en place un certification SSL auto signé"
+        msg_nginx_ssl_config="*                 NGINX SSL configuration               *"
 }
 
 ########################## Helper functions ############################
@@ -139,41 +145,38 @@ configure_php()
 
 # Check if nodeJS v0.10.25 is installed,
 # otherwise, try to install it from various sources (official,
-# backport, jeedom.fr
+# backport, jeedom.fr)
 install_nodejs()
 {
-	NODEJS_VERSION="`nodejs -v 2>/dev/null  | sed 's/["v]//g'`"
-	is_version_greater_or_equal "${NODEJS_VERSION}" "0.10.25"
-	case $? in
-		1)
-			# Already installed and up to date
-			echo "nodeJS ${msg_uptodate}"
-			return
-			;;
-		0)
-			# continue...
-			;;
-	esac
+	check_nodejs_version
+	[ $? -eq 1 ] && return
 
 	# If running wheezy, try wheezy-backport
-	[ -n "`grep wheezy /etc/apt/sources.list`" -a \
-	  -z "`grep wheezy-backports /etc/apt/sources.list`" ] &&
-		echo "deb http://http.debian.net/debian wheezy-backports main" >> /etc/apt/sources.list
+	if [ -n "`grep wheezy /etc/apt/sources.list`" ]; then
+		if [ -z "`grep wheezy-backports /etc/apt/sources.list`" ]; then
+			# apply wheezy-backport patch
+			echo "deb http://http.debian.net/debian wheezy-backports main" >> /etc/apt/sources.list
 
-	# otherwise, Jessie is good ; other-otherwise ?
-	# Add wheezy-backport keyring
-	gpg --keyserver pgpkeys.mit.edu --recv 8B48AD6246925553
-	gpg --export --armor 8B48AD6246925553 > missingkey.gpg
-	apt-key add missingkey.gpg
-	rm -f missingkey.gpg
+			# Add wheezy-backport keyring
+			gpg --keyserver pgpkeys.mit.edu --recv 8B48AD6246925553
+			gpg --export --armor 8B48AD6246925553 > missingkey.gpg
+			apt-key add missingkey.gpg
+			rm -f missingkey.gpg
+		fi
+			# otherwise, Jessie is good ; other-otherwise ?
 
-	apt-get update
+		apt-get update
 
-	# Install nodeJS
-	apt-get -t wheezy-backports -y install nodejs libev4 libv8-3.8.9.20
+		# Install nodeJS
+		apt-get -t wheezy-backports -y install nodejs libev4 libv8-3.8.9.20
+	else
+		# else, simply try to install
+		apt-get -y install nodejs
+	fi
 
 	# Seems buggy on Raspbian (throw 'Illegal instruction')
-	nodejs -v
+	check_nodejs_version
+	[ $? -eq 1 ] && return
 	
 	# Fallback, if APT method failed
 	if [ $? -ne 0 ] ; then
@@ -232,6 +235,47 @@ configure_nginx()
     service nginx restart
     configure_php
     update-rc.d nginx defaults
+
+    # Prompt for ssl
+    echo "${msg_ask_install_nginx_ssl}"
+    while true
+    do
+        echo -n "${msg_yesno}"
+        read ANSWER < /dev/tty
+        case $ANSWER in
+                        ${msg_yes})
+                                configure_nginx_ssl
+                                break
+                                ;;
+                        ${msg_no})
+                                return
+                                ;;
+        esac
+        echo "${msg_answer_yesno}"
+    done
+}
+
+configure_nginx_ssl()
+{
+    echo "********************************************************"
+	echo "${msg_nginx_ssl_config}"
+    echo "********************************************************"
+    openssl genrsa -out jeedom.key 2048
+    openssl req \
+        -new \
+        -subj "/C=FR/ST=France/L=Paris/O=jeedom/OU=JE/CN=jeedom" \
+        -key jeedom.key \
+        -out jeedom.csr
+    openssl x509 -req -days 9999 -in jeedom.csr -signkey jeedom.key -out jeedom.crt
+    mkdir /etc/nginx/certs
+    cp jeedom.key /etc/nginx/certs
+    cp jeedom.crt /etc/nginx/certs
+    rm jeedom.key jeedom.crt
+    cp ${webserver_home}/jeedom/install/nginx_default_ssl /etc/nginx/sites-available/default_ssl
+    ln -s /etc/nginx/sites-available/default_ssl /etc/nginx/sites-enabled/
+    update-rc.d -f mongoose remove
+    service mongoose stop
+    service nginx reload
 }
 
 configure_apache()
@@ -268,6 +312,28 @@ is_version_greater_or_equal()
 	done
 	# greater or equal
 	return 1
+}
+
+
+# Check if nodeJS v0.10.25 (or higher) is installed.
+# Return 1 of true, 0 (or else) otherwise
+check_nodejs_version()
+{
+	NODEJS_VERSION="`nodejs -v 2>/dev/null  | sed 's/["v]//g'`"
+	is_version_greater_or_equal "${NODEJS_VERSION}" "0.10.25"
+	RETVAL=$?
+	case ${RETVAL} in
+		1)
+			# Already installed and up to date
+			echo "===> nodeJS ${msg_uptodate}"
+			;;
+		0)
+			# continue...
+			echo "===> nodeJS ${msg_needinstallupdate}"
+			;;
+	esac
+	
+	return ${RETVAL}
 }
 
 optimize_webserver_cache_apc()
@@ -394,6 +460,8 @@ install_razberry_zway()
 
 	# Cleanup
 	rm -f zway-install
+        update-rc.d -f mongoose remove
+        service mongoose stop
 }
 
 ##################### Main (script entry point) ########################
@@ -438,6 +506,12 @@ case ${webserver} in
 		# Configuration
 		webserver_home="/var/www"
 		croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+		;;
+        nginx_ssl)
+		# Configuration
+                webserver_home="/usr/share/nginx/www"
+		configure_nginx_ssl
+                exit 1
 		;;
 	*)
 		usage_help
@@ -536,6 +610,12 @@ install_nodejs
 
 apt-get install -y php5-common php5-fpm php5-cli php5-curl php5-json php5-mysql \
                    usb-modeswitch python-serial
+
+pecl install oauth
+for i in fpm cli
+do
+        echo "extension=oauth.so" >> /etc/php5/${i}/php.ini
+done
 
 echo "********************************************************"
 echo "${msg_setup_dirs_and_privs}"

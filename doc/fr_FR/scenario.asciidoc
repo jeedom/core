@@ -1,0 +1,185 @@
+===== Description
+Voici pour moi la partie la plus importante dans la domotique : les scénarios. Véritable cerveau de la domotique c’est ce qui permet d’interagir avec le monde réel de manière “intelligente”. J’ai donc essayé dans Jeedom de les rendre les plus flexibles possible en essayant de ne jamais brider l’utilisateur tout en essayant qu’ils soient facilement configurables :
+
+image::../images/scenario.JPG[]
+
+Comme pour la vue on retrouve sur la partie droite la liste des scénarios (filtrable par groupe) et sur la gauche le scénario lui même, ici plusieurs parties :
+
+- En haut la partie générale où on retrouve :
+- Le nom
+- Le groupe
+- Si le scenario est actif ou non
+- La durée d’exécution maximum autorisée
+- Ensuite vient la partie des déclencheurs qui peuvent soit être un ou plusieurs événements et/ou une programmation (une heure donnée, une fréquence… cette partie s’écrit à l’aide d’une syntaxe type crontab)
+- Enfin il y a la partie information qui indique la dernière fois que le scenario a été exécuté (scénario actif), la dernière fois qu’il a été vérifié ainsi que sont statut actuel
+- En haut à droite on retrouve quelques actions utiles : duplication, l’arrêt forcé d’un scénario, log de la dernière exécution (très pratique pour vérifier le déroulement exact du scenario). 
+- Sur la partie basse on retrouve le scénario en lui même celui-ci est composé d’un nombre illimité de bloc qui peuvent être imbriqués les un dans les autres :
+* Si/Alors/Sinon : bloc de base permettant de réaliser des conditions
+* Boucle : permet de réaliser des boucles de 1 jusqu’à un nombre défini (ou même une valeur d’un capteur, ou nombre aléatoire)
+* Dans : permet de lancer une action dans X minute(s) (0 est une valeur possible). La particularité c'est que les actions sont lancé en arriere plan, elle ne bloque donc pas la suite du scenario. C'est donc un bloc non bloquant
+* Code : permet d’écrire directement en code PHP (demande certaines connaissances et peut être risqué mais permet de n’avoir plus aucune contrainte)
+
+Pour les conditions j’ai essayé de faire en sorte qu’on puisse les écrire le plus possible en langage naturel tout en restant souple. On a donc un bouton permettant de sélectionner un équipement puis on écrit la condition. Il existe une liste de tag permettant d’avoir accès à des variables issues du scénario ou d’un autre, à l’heure, à la date, à un nombre aléatoire….
+
+
+Pour les actions on peut exécuter soit une action d’une commande (les options de celle-ci apparaitront sur sa droite, comme dans la capture tout en haut pour l’envoi de mail), soit une commande d’affectation de variable ou de pause (très pratique pour simuler la présence surtout couplé à la génération d’une durée aléatoire) ou même d’action sur un autre scénario (start, stop, activer, désactiver)
+
+
+===== Déclencheur
+Il existe des déclencheur spécifique (autre que ceux fournis par les commandes) :
+
+- \#start#  : déclenché au (re)démarrage de Jeedom
+- \#user_connect#  : déclenché lors de la connexion d'un utilisateur
+
+===== Condition ou valeur d'une commande d'action
+Attention à bien mettre des ' ou " (quote ou double quote) lors de l'utilisation de chaîne de caractère. Ex : "#[Object][Equipement][Info]#" = "oui"
+Vous pouvez utiliser n'importe lequel des symboles suivant pour les opérateurs : 
+
+- = : égal
+- > : supérieur
+- >= : supérieur ou égal
+- < : inférieur
+- <= : inférieur ou égal
+- != : différent
+- ~ : contient
+- !~ : ne contient pas
+
+Vous pouvez combiner n'importe quelle opération avec les opérateurs suivants :
+
+- && / ET / et / AND / and : et
+- || / OU / ou / OR / or : ou
+- |^ / XOR / xor : ou
+
+Vous pouvez aussi utiliser les tags suivants :
+
+- \#seconde# : seconde courante
+- \#heure# : heure courante (ex : 17 pour 17h15)
+- \#minute# : minute courante (ex : 15 pour 17h15)
+- \#jour# : jour courant
+- \#mois# : mois courant
+- \#annee# : année courante
+- \#time# : heure et minute courante (ex : 1715 pour 17h15)
+- \#timestamp# : retourne le nombre de secondes depuis le 1er janvier 1970
+- \#date# : jour et mois courant (ex : 1215 pour le 15 décembre)
+- \#semaine# : numéro de la semaine (ex : 51)
+- \#sjour# : pour le nom du jour de la semaine (ex : Samedi)
+- \#njour# : numéro du jour de 0 (dimanche) à 6 (samedi)
+- \#smois# : pour le nom du mois (ex : Janvier)
+- rand(1,10) : pour un nombre aléatoire de 1 à 10
+- average(commande,période) : donne la moyenne de la commande sur la période (period=[month,day,hour,min])
+    * Ex : average(\#[Salle de bain][Hydrometrie][Humidité]#,1 hour) : Renvoi la moyenne de la commande sur la dernière heure
+- min(commande,période) : donne le minimum de la commande sur la période (period=[month,day,hour,min])
+    * Ex : min(\#[Salle de bain][Hydrometrie][Humidité]#,15 min) : Renvoi le minimum de la commande sur les 15 dernières minutes
+- max(commande,période) : donne le maximum de la commande sur la période (period=[month,day,hour,min])
+    * Ex : max(\#[Salle de bain][Hydrometrie][Humidité]#,1 day) : Renvoi le maximum de la commande sur les 7 derniers jours
+- tendance(commande,période,seuil) : donne la tendance de la commande sur la période (period=[month,day,hour,min])
+    * Ex : tendance(\#[Salle de bain][Hydrometrie][Humidité]#,1 hour,0.1) : Renvoi 1 si en augmentation, 0 si constant et -1 si en diminution
+           Le seuil permet de definir la sensibilitée, attention le calcul du seuil utilise la calcul de link:/http://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s[moindre carrés]
+- variable(mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
+    * Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas
+- scenario(scenario) : donne le statut du scenario
+    * Ex : scenario(\#[Salle de bain][Lumière][Auto]#) : Renvoi 1 en cours, 0 si arreté et -1 si desactivé
+- stateDuration(commande,[valeur]) : donne la durée en seconde depuis le dernier changement de valeur
+    * Ex : stateDuration(\#[Salle de bain][Hydrometrie][Humidité]#) : Renvoi 300 si cette valeur est la depuis 5min
+- lastScenarioExecution(scenario) : donne la durée en seconde depuis le dernier lancement du scénario
+    * Ex : lastScenarioExecution(\#[Salle de bain][Lumière][Auto]#) : Renvoi 300 si le scénario c'est lancé pour la derniere fois il y a 5min
+- randomColor(min,max) : donne une couleur aléatoire compris entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu)
+    * Ex : randomColor(40,60) : Pour avoir une couleur aléatoire proche du vert
+- trigger(commande) : permet de connaitre le declencheur du scénario ou de savoir si c'est bien la commande passé en parametre qui a declenchée le scénario
+    * Ex : trigger(\#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien #[Salle de bain][Hydrometrie][Humidité]# qui a declenché le scénario sinon 0
+- round(valeur,[decimal]) :permet un arrondit au dessus, [decimal] nombre de decimal après la virgule
+    * Ex : round(\#[Salle de bain][Hydrometrie][Humidité]# / 10) : renverra 9 si le pourcentage d'humidité et 85
+- odd(valeur) : permet de savoir si un nombre est impaire ou non. Renvoi 1 si impaire 0 sinon
+    * Ex : odd(1) :  renverra 1
+- median(commande1,commande2....commandeN) : renvoit la médiane de valeur
+    * Ex : median(15,25,20) :  renverra 20
+            
+===== Action
+En plus des commandes domotiques vous avez accès aux fonctions suivantes : 
+
+- sleep : pause de x seconde(s)
+- wait : attend jusqu'a ce que la condition soit valide (maximum 2h)                         
+- variable : création/modification d'une ou de la valeur d'une variable
+- scenario : permet le controle des scénarios
+- stop : arrête le scénario
+- icon : permet de changer l'icone de représentation du scenario
+               
+Vous pouvez aussi utiliser les tags suivants dans les options : 
+
+- \#seconde# : seconde courante
+- \#heure#  : heure courante (ex : 17 pour 17h15)
+- \#minute# : minute courante (ex : 15 pour 17h15)
+- \#jour# : jour courant
+- \#mois# : mois courant
+- \#annee# : année courante
+- \#time# : heure et minute courante (ex : 1715 pour 17h15)
+- \#timestamp# : retourne le nombre de secondes depuis le 1er janvier 1970
+- \#date# : jour et mois courant (ex : 1215 pour le 15 decembre)
+- \#semaine# : numéro de la semaine (ex : 51)
+- \#sjour# : pour le nom du jour de la semaine en anglais (ex : sunday)
+- \#njour# : numéro du jour de 0 (dimanche) à 6 (samedi)
+- \#smois# : pour le nom du mois (ex : Janvier)
+- rand[1-10] : pour un nombre aléatoire de 1 à 10
+- variable (mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
+    * Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas
+             
+===== Code
+Attention les tags ne sont pas disponible dans un bloc de type code
+
+Commandes (capteurs et actionneurs)::
+
+- cmd::byString($string);
+    * Retourne l'objet commande correspondant
+    * $string => lien vers la commande voulue : #[objet][equipement][commande]# (ex :  #[Appartement][Alarme][Actif]#)
+- cmd::byId($id);
+    * Retourne l'objet commande correspondant
+    * $id => Id de la commande voulue (voir Général => Affichage)
+- $cmd->execCmd($options = null, $cache = 1);
+    * Exécute la commande et retourne le résultat
+    * $options => Options pour l'exécution de la commande (peut être spécifique au plugin), option de base : 
+          ** Sous-type de la commande : message => $option = array('title' => 'titre du message , 'message' => 'Mon message');
+                                     color => $option = array('color' => 'couleur en hexadécimal');
+                                     value => $option = array('color' => 'valeur voulue');
+                                     slider => $option = array('slider' => 'valeur voulue de 0 à 100');
+    * $cache  => 0 = ignorer le cache , 1 = mode normal, 2 = cache utilisé même si expiré (puis marqué à recollecter)
+
+Log::
+
+- log::add('filename','level','message');
+    * filename => nom du fichier de log
+    * level => [debug],[info],[error],[event]
+    * message => message à écrire dans les logs
+                           
+Scénario::
+
+- $scenario->getName();
+    * Retourne le nom du scénario courant
+                              
+- $scenario->getGroup();
+    * Retourne le groupe du scénario
+                           
+- $scenario->getIsActive();
+    * Retourne l'état du scénario
+                              
+- $scenario->setIsActive($active);
+    * Permet d'activer ou non le scénario
+    * $active => 1 actif , 0 non actif
+                              
+- $scenario->setOnGoing($onGoing);
+    * Permet de dire si le scénario est en cours ou non
+    * $onGoing => 1 en cours , 0 arrêté
+                               
+- $scenario->save();
+    * Sauvegarde les modifications
+                             
+- $scenario->setData($key, $value);
+    * Sauvegarde une donnée
+    * $key => clef de la valeur (int ou string)
+    * $value => valeur à stocker (int, string, array ou object)
+                               
+- $scenario->getData($key);
+    * Récupère une donnée
+    * $key => clef de la valeur (int ou string)
+                             
+- $scenario->removeData($key);
+    * Supprime une donnée

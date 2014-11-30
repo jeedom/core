@@ -1,5 +1,5 @@
 <?php
-if (!isConnect('admin')) {
+if (!hasRight('jeeNetworkview', true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 if (config::byKey('jeedom::licence') < 5) {
@@ -8,7 +8,7 @@ if (config::byKey('jeedom::licence') < 5) {
 ?>
 
 <div class="row row-overflow">
-    <div class="col-lg-2">
+    <div class="col-md-2 col-sm-3">
         <div class="bs-sidebar">
             <ul id="ul_jeeNetwork" class="nav nav-list bs-sidenav">
                 <a id="bt_addJeeNetwork" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter un Jeedom}}</a>
@@ -21,103 +21,103 @@ if (config::byKey('jeedom::licence') < 5) {
             </ul>
         </div>
     </div>
-    <div class="col-lg-10 jeeNetwork" style="display: none;" id="div_conf">
+    <div class="col-md-10 col-sm-9 jeeNetwork" style="display: none;" id="div_conf">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-sm-6">
                 <form class="form-horizontal">
                     <fieldset>
                         <legend>{{Général}}</legend>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">{{Nom du Jeedom esclave}}</label>
-                            <div class="col-lg-6">
+                            <label class="col-sm-4 control-label">{{Nom du Jeedom esclave}}</label>
+                            <div class="col-sm-6">
                                 <input class="form-control jeeNetworkAttr" type="text" data-l1key="id" style="display : none;"/>
                                 <input class="form-control jeeNetworkAttr" type="text" data-l1key="name" placeholder="Nom du Jeedom exclave"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">{{IP}}</label>
-                            <div class="col-lg-4">
+                            <label class="col-sm-4 control-label">{{IP}}</label>
+                            <div class="col-sm-4">
                                 <input class="form-control jeeNetworkAttr" type="text" data-l1key="ip" placeholder="IP"/>
                             </div>
-                            <div class="col-lg-4">
-                                <div class="alert alert-info">{{Attention ne pas oublié le /jeedom après l'ip si vous l'utilisez pour vous rendre sur l'interface de jeedom}}</div>
+                            <div class="col-sm-4">
+                                <div class="alert alert-info">{{Attention ne pas oublier le /jeedom après l'ip si vous l'utilisez pour vous rendre sur l'interface de jeedom}}</div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">{{Clef API}}</label>
-                            <div class="col-lg-6">
+                            <label class="col-sm-4 control-label">{{Clef API}}</label>
+                            <div class="col-sm-6">
                                 <input class="form-control jeeNetworkAttr" type="text" data-l1key="apikey" placeholder="Clef API"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">{{Accéder (attention ne marche que si vous êtes sur le réseau local)}}</label>
-                            <div class="col-lg-6">
+                            <label class="col-sm-4 control-label">{{Accéder (attention ne marche que si vous êtes sur le réseau local)}}</label>
+                            <div class="col-sm-6">
                                 <a class="btn btn-default" id="bt_connectToSlave" target="_blank">{{Se connecter}}</a>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">{{Arrêter/Redémarrer}}</label>
-                            <div class="col-lg-6">
+                            <label class="col-sm-4 control-label">{{Arrêter/Redémarrer}}</label>
+                            <div class="col-sm-6">
                                 <a class="btn btn-danger" id="bt_stop"><i class="fa fa-stop"></i> {{Arrêter}}</a>
                                 <a class="btn btn-warning" id="bt_stop"><i class="fa fa-repeat"></i> {{Redémarrer}}</a>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">{{Mise à jour}}</label>
-                            <div class="col-lg-6">
+                            <label class="col-sm-4 control-label">{{Mise à jour}}</label>
+                            <div class="col-sm-6">
                                 <a class="btn btn-warning" id="bt_checkUpdateSlave"><i class="fa fa-refresh"></i>  {{Vérifier}}</a>
                                 <a class="btn btn-default" id="bt_updateSlave"><i class="fa fa-check"></i> {{Mettre à jour}}</a>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">{{Backup}}</label>
-                            <div class="col-lg-6">
+                            <label class="col-sm-4 control-label">{{Backup}}</label>
+                            <div class="col-sm-6">
                                 <select class="form-control" id="sel_backupList"></select>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="2">
                                 <a class="btn btn-default" id="bt_restoreSlave"><i class="fa fa-check"></i> {{Restaurer}}</a>
                             </div>
                         </div>
                     </fieldset>
                 </form>
             </div>
-            <div class="col-lg-6">
+            <div class="col-sm-6">
                 <form class="form-horizontal">
                     <fieldset>
                         <legend>{{Informations}}</legend>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">{{Statut}}</label>
-                            <div class="col-lg-3">
+                            <label class="col-sm-4 control-label">{{Statut}}</label>
+                            <div class="3">
                                 <span class="label label-default jeeNetworkAttr" type="text" data-l1key="status" ></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">{{Version de Jeedom}}</label>
-                            <div class="col-lg-3">
+                            <label class="col-sm-4 control-label">{{Version de Jeedom}}</label>
+                            <div class="3">
                                 <span class="label label-default jeeNetworkAttr" type="text" data-l1key="configuration" data-l2key="version" ></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">{{Nombre de mise(s) à jour}}</label>
-                            <div class="col-lg-3">
+                            <label class="col-sm-4 control-label">{{Nombre de mise(s) à jour}}</label>
+                            <div class="3">
                                 <span class="label label-default jeeNetworkAttr" type="text" data-l1key="configuration" data-l2key="nbUpdate" ></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">{{Nombre de message(s)}}</label>
-                            <div class="col-lg-3">
+                            <label class="col-sm-4 control-label">{{Nombre de message(s)}}</label>
+                            <div class="3">
                                 <span class="label label-default jeeNetworkAttr" type="text" data-l1key="configuration" data-l2key="nbMessage" ></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">{{Dernière communication}}</label>
-                            <div class="col-lg-3">
+                            <label class="col-sm-4 control-label">{{Dernière communication}}</label>
+                            <div class="3">
                                 <span class="label label-default jeeNetworkAttr" type="text" data-l1key="configuration" data-l2key="lastCommunication" ></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">{{Plugin}}</label>
-                            <div class="col-lg-6" id="div_pluginList"></div>
+                            <label class="col-sm-4 control-label">{{Plugin}}</label>
+                            <div class="col-sm-6" id="div_pluginList"></div>
                         </div>
                     </fieldset>
                 </form>

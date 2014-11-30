@@ -40,6 +40,10 @@ try {
         if (!is_object($cmd)) {
             throw new Exception(__('Cmd ID inconnu : ', __FILE__) . init('id'));
         }
+        $eqLogic = $cmd->getEqLogic();
+        if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
+            throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));
+        }
         ajax::success($cmd->execCmd(init('value', null), init('cache', 1)));
     }
 
@@ -219,10 +223,10 @@ try {
                     $previsousValue = ($history->getValue() === null ) ? null : floatval($history->getValue());
                 }
                 $info_history[] = $value;
-                if ($value > $return['maxValue'] || $return['maxValue'] == '') {
+                if (($value != null && $value > $return['maxValue']) || $return['maxValue'] == '') {
                     $return['maxValue'] = $value;
                 }
-                if ($value < $return['minValue'] || $return['minValue'] == '') {
+                if (($value != null && $value < $return['minValue']) || $return['minValue'] == '') {
                     $return['minValue'] = $value;
                 }
                 $data[] = $info_history;

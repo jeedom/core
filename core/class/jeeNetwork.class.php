@@ -185,7 +185,19 @@ class jeeNetwork {
                 throw new Exception(__('Erreur reponse du maitre != pong : ', __FILE__) . $jsonrpc->getResult());
             }
         } else {
-            throw new Exception($jsonrpc->getError());
+            if (strpos(config::byKey('jeeNetwork::master::ip'), '/jeedom')) {
+                config::save('jeeNetwork::master::ip', config::byKey('jeeNetwork::master::ip') . '/jeedom');
+                $jsonrpc = self::getJsonRpcMaster();
+                if ($jsonrpc->sendRequest('ping')) {
+                    if ($jsonrpc->getResult() != 'pong') {
+                        throw new Exception(__('Erreur reponse du maitre != pong : ', __FILE__) . $jsonrpc->getResult());
+                    }
+                } else {
+                    throw new Exception($jsonrpc->getError());
+                }
+            } else {
+                throw new Exception($jsonrpc->getError());
+            }
         }
     }
 
@@ -221,8 +233,19 @@ class jeeNetwork {
         try {
             $this->handshake();
         } catch (Exception $e) {
-            DB::save($this, true);
-            throw $e;
+            if (strpos($this->getIp(), '/jeedom') === false) {
+                try {
+                    $this->setIp($this->getIp() . '/jeedom');
+                    $this->handshake();
+                } catch (Exception $e) {
+
+                    DB::save($this, true);
+                    throw $e;
+                }
+            } else {
+                DB::save($this, true);
+                throw $e;
+            }
         }
     }
 

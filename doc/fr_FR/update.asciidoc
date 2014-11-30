@@ -1,0 +1,24 @@
+Le centre de mise à jour centralise l'ensembles de fonctions de Jeedom, et permet de mettre à jour toutes les fonctionnalités de Jeedom, le logiciel, les plugins, les widgets etc...
+
+L'affichage peut différer si on est en mode Expert ou non, certaines options varient. Il présente sous forme de tableau l'ensemble des éléments installés dans Jeedom. Si on est en mode Expert on affiche tous les élements, si non, on affiche uniquement les éléments à mettre à jour.
+
+Il y a au total jusqu'à 5 boutons qui peuvent être disponibles par éléments. "Voir" permet de consulter la page du market correspondant à l'élément selectionné, "Partager" permet lorsque vous avez créé un élément de le partager sur le market, "Bloquer" permet de bloquer les mises à jour sur cet élément, "Supprimer" permet de désinstaller un élément, et enfin "Mettre à jour" permet de mettre à jour l'élément.
+
+A noter que "Core" Jeedom signifie la mise à jour du logiciel Jeedom
+
+image::../images/update.JPG[]
+
+En haut, le principal, les boutons de commande. Jeedom synchronise périodiquement avec le market pour voir s'il y a des mises à jour de disponibles, si jamais vous voulez être certain vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
+
+Le bouton "Mettre à jour" permet de mettre à jour l'ensemble de Jeedom.
+
+image::../images/update2.png[]
+
+En cliquant sur la flèche à côté du bouton "Mettre à jour" on a un certain nombre d'options de mise à jour.
+
+image::../images/update3.png[]
+
+Enfin à droite de la page, la partie "Informations" permet de suivre l'état de la mise à jour.
+
+image::../images/update4.png[]
+

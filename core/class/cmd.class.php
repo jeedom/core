@@ -480,17 +480,17 @@ class cmd {
         if (trim($_value) == '') {
             return '';
         }
-        if (strpos('error', $_value) !== false) {
+        if (strpos('error', strtolower($_value)) !== false) {
             return $_value;
         }
         if ($this->getType() == 'info') {
             switch ($this->getSubType()) {
                 case 'binary':
                     $value = strtolower($_value);
-                    if ($value == 'on' || $value == 'high') {
+                    if ($value == 'on' || $value == 'high' || $value == 'true' || $value === true) {
                         return 1;
                     }
-                    if ($value == 'off' || $value == 'low') {
+                    if ($value == 'off' || $value == 'low' || $value == 'false' || $value === false) {
                         return 0;
                     }
                     if ((is_numeric(intval($_value)) && intval($_value) > 1) || $_value || $_value == 1) {
@@ -639,10 +639,10 @@ class cmd {
             throw $e;
         }
         if ($this->getType() == 'info' && $value !== false) {
-            cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
             if ($this->getCollectDate() == '') {
                 $this->setCollectDate(date('Y-m-d H:i:s'));
             }
+            cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
             $this->setCollect(0);
             $nodeJs = array(
                 array(
@@ -737,7 +737,8 @@ class cmd {
             '#displayHistory#' => 'display : none;',
             '#unite#' => $this->getUnite(),
             '#minValue#' => $this->getConfiguration('minValue', 0),
-            '#maxValue#' => $this->getConfiguration('maxValue', 100)
+            '#maxValue#' => $this->getConfiguration('maxValue', 100),
+            '#logicalId#' => $this->getLogicalId()
         );
         if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
             $replace['#name#'] = '';
@@ -795,9 +796,11 @@ class cmd {
             if (is_object($cmdValue) && $cmdValue->getType() == 'info') {
                 $replace['#state#'] = $cmdValue->execCmd(null, 2);
                 $replace['#valueName#'] = $cmdValue->getName();
+                $replace['#unite#'] = $cmdValue->getUnite();
             } else {
                 $replace['#state#'] = ($this->getLastValue() != null) ? $this->getLastValue() : '';
                 $replace['#valueName#'] = $this->getName();
+                $replace['#unite#'] = $this->getUnite();
             }
             $parameters = $this->getDisplay('parameters');
             if (is_array($parameters)) {
