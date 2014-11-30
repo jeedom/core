@@ -16,6 +16,9 @@ include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
 include_file('3rdparty', 'bootstrap.rating/bootstrap.rating', 'js');
 include_file('3rdparty', 'slick/slick.min', 'js');
 include_file('3rdparty', 'slick/slick', 'css');
+include_file('3rdparty', 'fancybox/jquery.fancybox', 'js');
+include_file('3rdparty', 'fancybox/jquery.fancybox', 'css');
+
 
 $market_array = utils::o2a($market);
 $market_array['rating'] = $market->getRating();
@@ -108,8 +111,8 @@ sendVarToJS('market_display_info', $market_array);
         <?php
         foreach ($market->getImg('screenshot') as $screenshot) {
             echo '<div class="item" >';
-            echo '<a href="' . config::byKey('market::address') . '/' . $screenshot . '" target="_blank"/>';
-            echo '<img src="' . config::byKey('market::address') . '/' . $screenshot . '" class="img-responsive cursor imgZoom" style="height : 200px;" data-href="' . config::byKey('market::address') . '/' . $screenshot . '" />';
+            echo '<a class="fancybox cursor" href="' . config::byKey('market::address') . '/' . $screenshot . '" rel="group" >';
+            echo '<img src="' . config::byKey('market::address') . '/' . $screenshot . '" class="img-responsive" style="height : 200px;" />';
             echo '</a>';
             echo '</div>';
         }
@@ -117,7 +120,7 @@ sendVarToJS('market_display_info', $market_array);
     </div>
 </div>
 
-
+<br/>
 <div class='row'>
     <div class='col-sm-6'>
         <legend>Description</legend>
@@ -158,8 +161,8 @@ sendVarToJS('market_display_info', $market_array);
         <span class="marketAttr" data-l1key="utilization" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
     </div>
 </div>
-
-<legend>Information complementaire</legend>
+<br/>
+<legend>Informations complementaires</legend>
 <div class="form-group">
     <div class='row'>
         <div class='col-sm-2'>
@@ -185,7 +188,7 @@ sendVarToJS('market_display_info', $market_array);
             <?php } ?>
         </div>
         <div class='col-sm-2'>
-            <label class="control-label">{{Nombre de téléchargement}}</label><br/>
+            <label class="control-label">{{Nombre de téléchargements}}</label><br/>
             <span class="marketAttr" data-l1key="downloaded"></span>
         </div>
         <div class='col-sm-2'>
@@ -228,14 +231,10 @@ sendVarToJS('market_display_info', $market_array);
 
 <style>
     .slick-prev:before, .slick-next:before {
-        color : #e7e7e7;
+        color : #707070;
     }
 </style>
 <script>
-    $('.imgZoom').on('click', function () {
-        window.open($(this).attr("data-href"), "popupWindow", "scrollbars=yes");
-    });
-
     $('.variable-width').slick({
         dots: true,
         infinite: true,
@@ -249,6 +248,9 @@ sendVarToJS('market_display_info', $market_array);
     });
     $('.variable-width').slickNext();
     
+    $(".fancybox").fancybox({
+        autoHeight : true,
+    });
     
     $('body').setValues(market_display_info, '.marketAttr');
 
