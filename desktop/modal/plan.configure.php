@@ -88,6 +88,14 @@ sendVarToJS('id', $plan->getId());
                     }
                 }
             }
+            if ($plan->getLink_type() == 'scenario') {
+                echo '<div class="form-group">';
+                echo '<label class="col-lg-4 control-label">{{Masquer les commandes}}</label>';
+                echo '<div class="col-lg-1">';
+                echo '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="hideCmd" />';
+                echo '</div>';
+                echo '</div>';
+            }
             ?>
         <?php } else if ($plan->getLink_type() == 'graph') { ?>
             <div class="form-group">

@@ -541,6 +541,9 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
             html.find('.widget-name').remove();
         }
     }
+    if (_type == 'scenario' && isset(_plan.display) && (isset(_plan.display.hideCmd) && _plan.display.hideCmd == 1)) {
+        html.find('.changeScenarioState').remove();
+    }
     if (init(_noRender, false) == false) {
         initDraggable($('#bt_editPlan').attr('data-mode'));
     } else {
