@@ -39,13 +39,15 @@ function buildUrl($_key, $_value) {
 ?>
 <div style="margin-bottom: 5px; margin-top : 5px; background-color: #e7e7e7">
     <form class="form-inline" role="form" onsubmit="return false;">
-        <div class="form-group">
-            <div class="btn-group" >
-                <a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'free') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'free'); ?>">Gratuit</a>
-                <a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'paying'); ?>">Payant</a>
-                <a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('cost', ''); ?>"><i class="fa fa-times"></i></a>
+        <?php if (init('type', 'plugin') == 'plugin') { ?>
+            <div class="form-group">
+                <div class="btn-group" >
+                    <a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'free') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'free'); ?>">Gratuit</a>
+                    <a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'paying'); ?>">Payant</a>
+                    <a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('cost', ''); ?>"><i class="fa fa-times"></i></a>
+                </div>
             </div>
-        </div>
+        <?php } ?>
         <div class="form-group">
             <div class="btn-group" >
                 <a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'newest') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('timeState', 'newest'); ?>">Nouveau</a>
