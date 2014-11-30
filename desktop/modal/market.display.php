@@ -237,31 +237,31 @@ sendVarToJS('market_display_info', $market_array);
     }
 </style>
 <script>
+    $("img.lazy").lazyload({
+        event: "sporty"
+    });
+    $("img.lazy").trigger("sporty");
+    
     $(document).unbind('click.fb-start');
     $(".fancybox").fancybox({
         autoHeight: true,
     });
 
-    $('.variable-width').slick({
+    $('.variable-width').unslick().slick({
         dots: true,
-        speed: 300,
+        speed: 200,
         variableWidth: true,
         accessibility: true,
     });
     $('.variable-width').slickNext();
-
-
-
+    setTimeout(function(){$('.variable-width').slickGoTo(0);}, 200);
+    
+    
     $('body').setValues(market_display_info, '.marketAttr');
-
     $('#bt_paypalClick').on('click', function () {
         $(this).hide();
     });
 
-    $("img.lazy").lazyload({
-        event: "sporty"
-    });
-    $("img.lazy").trigger("sporty");
 
     $("#div_comments").dialog({
         autoOpen: false,
