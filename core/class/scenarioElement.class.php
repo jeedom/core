@@ -163,7 +163,10 @@ class scenarioElement {
                 $cmd.= ' >> ' . log::getPathToLog('scenario_element_execution') . ' 2>&1 &';
                 exec($cmd);
             } else {
-                $cron = new cron();
+                $cron = cron::byClassAndFunction('scenario', 'doIn', array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s')));
+                if (!is_object($cron)) {
+                    $cron = new cron();
+                }
                 $cron->setClass('scenario');
                 $cron->setFunction('doIn');
                 $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s')));
@@ -199,7 +202,10 @@ class scenarioElement {
                 }
             }
             $next = strtotime($next);
-            $cron = new cron();
+            $cron = cron::byClassAndFunction('scenario', 'doIn', array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
+            if (!is_object($cron)) {
+                $cron = new cron();
+            }
             $cron->setClass('scenario');
             $cron->setFunction('doIn');
             $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
