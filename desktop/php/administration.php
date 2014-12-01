@@ -217,7 +217,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
             </div>
         </div>
 
-        <div class="panel panel-default expertModeVisible">
+        <div class="panel panel-danger expertModeVisible">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_database">
@@ -233,7 +233,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">{{Accès à l'interface d'administration}}</label>
                                 <div class="col-sm-3">
-                                    <a class="btn btn-danger" target="_blank" href="<?php echo jeedom::getCurrentSqlBuddyFolder() . '/index.php' ?>"><i class="fa fa-exclamation-triangle"></i> {{Se connecter}}</a>
+                                    <a class="btn btn-danger" id="bt_accessDB" data-href="<?php echo jeedom::getCurrentSqlBuddyFolder() . '/index.php' ?>"><i class="fa fa-exclamation-triangle"></i> {{Se connecter}}</a>
                                 </div>
                             </div>
                              <div class="form-group">
