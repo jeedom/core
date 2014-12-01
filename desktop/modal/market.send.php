@@ -104,21 +104,19 @@ if (init('type') == 'plugin') {
                 <div class="col-lg-6">
                     <input class="form-control input category marketAttr" data-l1key="categorie" >
                     <select class="form-control widget category" data-l1key="categorie" style="display: none;">
-                        <option>Température</option>
-                        <option>Lumière</option>
+                        <option>Alarme diverse</option>
+                        <option>Audio/Vidéo</option>
+                        <option>Automatisme</option>
+                        <option>Autre</option>
+                        <option>Energie</option>
+                        <option>High tech</option>
                         <option>Humidité</option>
-                        <option>Consommation</option>
-                        <option>Puissance</option>
+                        <option>Lumière</option>
+                        <option>Météo</option>
                         <option>Ouverture</option>
                         <option>Présence</option>
-                        <option>Alarme diverse</option>
-                        <option>High tech</option>
-                        <option>Automatisme</option>
-                        <option>Audio/Vidéo</option>
-                        <option>Météo</option>
-                        <option>Nature</option>
+                        <option>Température</option>
                         <option>Vie</option>
-                        <option>Autre</option>
                     </select>
                 </div>
             </div>
