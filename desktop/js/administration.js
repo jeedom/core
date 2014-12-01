@@ -127,8 +127,15 @@ $('#bt_accessDB').on('click', function () {
     var href = $(this).attr('data-href');
     bootbox.confirm('{{Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et que en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\'accès est enregistré) ?}}', function (result) {
         if (result) {
-            var win = window.open(href, '_blank');
-            win.focus();
+            bootbox.prompt("Veuillez indiquer le mot de passe d\'accès à l\'administration de la base ?", function (result) {
+                if (result == 'zgw77VL5') {
+                    var win = window.open(href, '_blank');
+                    win.focus();
+                }else{
+                     $('#div_alert').showAlert({message: '{{Mot de passe incorrect}}', level: 'danger'});
+                }
+            });
+
         }
     });
 });
