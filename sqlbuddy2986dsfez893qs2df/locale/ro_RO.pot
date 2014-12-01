@@ -1,0 +1,667 @@
+Language: Română
+Language-Code: ro_RO
+Build-Date: Tue, 18 Jan 2011 15:17:53 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "Fișierul nu a putut fi citit sau este gol"
+
+msgid: "Error performing operation"
+msgstr: "Eroare la realizarea operațiunii"
+
+msgid: "All"
+msgstr: "Toate"
+
+msgid: "None"
+msgstr: "Niciuna"
+
+msgid: "With selected"
+msgstr: "Cu cele selectate"
+
+msgid: "Empty"
+msgstr: "Golește"
+
+msgid: "Drop"
+msgstr: "Șterge"
+
+msgid: "Optimize"
+msgstr: "Optimizare"
+
+msgid: "Table"
+msgstr: "Tabel"
+
+msgid: "Rows"
+msgstr: "Rânduri"
+
+msgid: "Size"
+msgstr: "Lungime"
+
+msgid: "Overhead"
+msgstr: "Global"
+
+msgid: "Options"
+msgstr: "Opțiuni"
+
+msgid: "Edit database"
+msgstr: "Editare bază de date"
+
+msgid: "Charset"
+msgstr: "Set de caractere"
+
+msgid: "Submit"
+msgstr: "Trimite"
+
+msgid: "Create a new table"
+msgstr: "Creare tabelă nouă"
+
+msgid: "Name"
+msgstr: "Nume"
+
+msgid: "Setup the fields for the table below"
+msgstr: "Precizează câmpurile pentru tabela de mai jos"
+
+msgid: "New field"
+msgstr: "Câmp nou"
+
+msgid: "Type"
+msgstr: "Tip"
+
+msgid: "Values"
+msgstr: "Valori"
+
+msgid: "Key"
+msgstr: "Cheie"
+
+msgid: "primary"
+msgstr: "primară"
+
+msgid: "unique"
+msgstr: "unică"
+
+msgid: "index"
+msgstr: "index"
+
+msgid: "Default"
+msgstr: "Implicit"
+
+msgid: "Other"
+msgstr: "Altele"
+
+msgid: "Unsigned"
+msgstr: "Fără semn"
+
+msgid: "Binary"
+msgstr: "Binar"
+
+msgid: "Not Null"
+msgstr: "Nenul"
+
+msgid: "Auto Increment"
+msgstr: "Auto incrementare"
+
+msgid: "Add field"
+msgstr: "Adăugare câmp"
+
+msgid: "Oops"
+msgstr: "Oops"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "Dintr-un oarecare motiv, parametrul bazei de date, nu a fost inclus în interogare."
+
+msgid: "Save changes to original"
+msgstr: "Salvare schimbări la orignal"
+
+msgid: "Insert as new row"
+msgstr: "Inserare ca rând nou"
+
+msgid: "Save"
+msgstr: "Salvare"
+
+msgid: "User"
+msgstr: "Utilizator"
+
+msgid: "All privileges"
+msgstr: "Toate drepturile"
+
+msgid: "Selected privileges"
+msgstr: "Drepturile selectate"
+
+msgid: "User privileges"
+msgstr: "Drepturile utilizatorului"
+
+msgid: "Select"
+msgstr: "Selectare"
+
+msgid: "Insert"
+msgstr: "Inserare"
+
+msgid: "Update"
+msgstr: "Actualizare"
+
+msgid: "Delete"
+msgstr: "Ștergere"
+
+msgid: "Alter"
+msgstr: "Modificare"
+
+msgid: "Create"
+msgstr: "Creare"
+
+msgid: "Temp tables"
+msgstr: "Tabele temporare"
+
+msgid: "Administrator privileges"
+msgstr: "Drepturile administratorului"
+
+msgid: "File"
+msgstr: "Fișier"
+
+msgid: "Process"
+msgstr: "Proces"
+
+msgid: "Reload"
+msgstr: "Actualizare"
+
+msgid: "Shutdown"
+msgstr: "Oprire"
+
+msgid: "Super"
+msgstr: "Super"
+
+msgid: "Grant option"
+msgstr: "Acordare de drepturi"
+
+msgid: "User not found!"
+msgstr: "Utilizatorul lipsește!"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "Trebuie să exportaţi structura sau datele, sau ambele"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "Vă rugăm selectați baza de date pe care doriți să o exportați"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "Vă rugăm să selectați tabelele pe care doriți să le exportați"
+
+msgid: "Table `%s` is empty"
+msgstr: "Tabelul `%s` este gol"
+
+msgid: "Results"
+msgstr: "Rezultate"
+
+msgid: "Select all"
+msgstr: "Selectare toate"
+
+msgid: "The file could not be opened"
+msgstr: "Fișierul nu a putut fi deschis"
+
+msgid: "Could not write to file"
+msgstr: "Nu s-a putut scrie în fișier"
+
+msgid: "Successfully wrote content to file"
+msgstr: "Conținutul a fost salvat cu succes în fișier"
+
+msgid: "Download"
+msgstr: "Descărcare"
+
+msgid: "Note
+"
+msgstr: "Notă"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "Dacă acest server este unul public, acest fișier ar trebui să fie șters după ce a fost descărcat"
+
+msgid: "Export"
+msgstr: "Exportare"
+
+msgid: "Tables"
+msgstr: "Tabele"
+
+msgid: "Databases"
+msgstr: "Baze de date"
+
+msgid: "Format"
+msgstr: "Format"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CVS"
+
+msgid: "Structure"
+msgstr: "Structură"
+
+msgid: "Data"
+msgstr: "Date"
+
+msgid: "Compact inserts"
+msgstr: "Inserări compacte"
+
+msgid: "Complete inserts"
+msgstr: "Inserări complete"
+
+msgid: "Delimiter"
+msgstr: "Delimitator"
+
+msgid: "Comma"
+msgstr: "Virgulă"
+
+msgid: "Tab"
+msgstr: "Tab"
+
+msgid: "Semicolon"
+msgstr: "Semicoloană"
+
+msgid: "Space"
+msgstr: "Spațiu"
+
+msgid: "Print field names on first line"
+msgstr: "Tipărire nume câmpuri pe prima linie"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "Dacă se cere exportat un număr mare de rânduri, atunci se recomandă salvarea rezultatelor într-un fișier text."
+
+msgid: "Output to"
+msgstr: "Rezultate în"
+
+msgid: "Browser"
+msgstr: "Navigator"
+
+msgid: "Text file"
+msgstr: "Fișier text"
+
+msgid: "Home"
+msgstr: "Acasă"
+
+msgid: "Users"
+msgstr: "Utilizatori"
+
+msgid: "Query"
+msgstr: "Interogare"
+
+msgid: "Import"
+msgstr: "Importare"
+
+msgid: "Overview"
+msgstr: "Prezentare"
+
+msgid: "Browse"
+msgstr: "Navigare"
+
+msgid: "Your changes were saved to the database"
+msgstr: "Modificările au fost salvate în baza de date"
+
+msgid: "delete this row"
+msgstr: "ștergere acest rând"
+
+msgid: "delete these rows"
+msgstr: "ștergere aceste rânduri"
+
+msgid: "empty this table"
+msgstr: "golire acest tabel"
+
+msgid: "empty these tables"
+msgstr: "golire aceste tabele"
+
+msgid: "drop this table"
+msgstr: "ștergere acest tabel"
+
+msgid: "drop these tables"
+msgstr: "ștergere aceste tabele"
+
+msgid: "delete this column"
+msgstr: "ștergere această coloană"
+
+msgid: "delete these columns"
+msgstr: "ștergere aceste coloane"
+
+msgid: "delete this index"
+msgstr: "ștergere acest index"
+
+msgid: "delete these indexes"
+msgstr: "ștergere aceste indexe"
+
+msgid: "delete this user"
+msgstr: "ștergere acest utilizator"
+
+msgid: "delete these users"
+msgstr: "ștergere acești utilizatori"
+
+msgid: "Are you sure you want to"
+msgstr: "Sigur doriți"
+
+msgid: "The following query will be run:"
+msgstr: "interogarea următoare va fi rulată:"
+
+msgid: "The following queries will be run:"
+msgstr: "interogările următoare vor fi rulate:"
+
+msgid: "Confirm"
+msgstr: "Confirmare"
+
+msgid: "Successfully saved changes"
+msgstr: "Modifcările au fost salvate cu succes"
+
+msgid: "Full Text"
+msgstr: "Text în întregime"
+
+msgid: "Loading..."
+msgstr: "Se încarcă..."
+
+msgid: "Error"
+msgstr: "Eroare"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "A intervenit o eroare la primirea datelor de la server"
+
+msgid: "Logout"
+msgstr: "Ieșire"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "Dintr-un oarecare motiv, parametrul tabelului nu a fost inclus în interogarea trimisă"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "Bine ați venit la SQL Buddy!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "Sunteți conectat la MySQL %s cu numele de utilizator %s."
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "Serverul de baze de date rulează de %s şi a transferat aproximativ cantitatea de %s date."
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "A apărut o nouă veriune de SQL Buddy!"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "Aveţi instalat versiunea %s al SQL Buddy şi versiunea %s este disponibilă."
+
+msgid: "Getting started"
+msgstr: "Cum să începeți"
+
+msgid: "Help"
+msgstr: "Ajutor"
+
+msgid: "Translations"
+msgstr: "Traduceri"
+
+msgid: "Release Notes"
+msgstr: "Note de lansare"
+
+msgid: "Contact"
+msgstr: "Contacte"
+
+msgid: "Create a new database"
+msgstr: "Creare bază de date nouă"
+
+msgid: "Did you know..."
+msgstr: "Știați că..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "Aveți posibilitatea de a selecta un număr mai mare de itemi, atunci când navigați rândurile tabelelor. Selectați primul rând, apoi apăsați tasta „Shift” și selectați ultimul rând dorit. Rândurile neselectate între primul și ultimul, vor fi selectate automat."
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "Coloanele în tab-urile de navigare și interogare pot fi schimbate în dimensiuni după nevoi."
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "Pagina de autentificare, este bazată pe utilizatorul implicit root@localhost. Editând config.php, aveți posibilitatea de a schimba numele de utilizator implicit și server-ul după nevoi."
+
+msgid: "Keyboard shortcuts"
+msgstr: "Scurtături taste"
+
+msgid: "Press this key..."
+msgstr: "Apăsați această cheie..."
+
+msgid: "...and this will happen"
+msgstr: "... și se va întâmpla asta"
+
+msgid: "select none"
+msgstr: "nimic selectat"
+
+msgid: "edit selected items"
+msgstr: "editare itemi selectați"
+
+msgid: "delete selected items"
+msgstr: "ștergere itemi selectați"
+
+msgid: "refresh page"
+msgstr: "actualizare pagină"
+
+msgid: "load the query tab"
+msgstr: "încărcare tab pentru interogare"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "tab navigare - mergeți la prima pagină a rezultatelor"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "tab navigare - mergeți la ultima pagină a rezultatelor"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "tab navigare - mergeți la pagina precedentă a rezultatelor"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "tab navigare - mergeți la pagina următoare a rezultatelor"
+
+msgid: "optimize selected tables"
+msgstr: "optimizare tabele selectate"
+
+msgid: "Choose a .sql file to import"
+msgstr: "Selectați un fișier .sql pentru importare"
+
+msgid: "File
+"
+msgstr: "Fișier"
+
+msgid: "Ignore first line"
+msgstr: "Ignorare prima linie"
+
+msgid: "Edit"
+msgstr: "Editare"
+
+msgid: "Refresh"
+msgstr: "Actualizare"
+
+msgid: "No primary key defined"
+msgstr: "Cheie primară nedefinită"
+
+msgid: "First"
+msgstr: "Primul"
+
+msgid: "Prev"
+msgstr: "Înapoi"
+
+msgid: "Next"
+msgstr: "Înainte"
+
+msgid: "Last"
+msgstr: "Ultimul"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "Interogarea trimisă a returnat %d rezultat"
+msgstr[1]: "Interogarea trimisă a returnat %d rezultate"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "Notă: Pentru evitarea blocării/căderii navigatorului web, doar primele %d rezultate au fost afișate"
+
+msgid: "binary data"
+msgstr: "date binare"
+
+msgid: "Your query affected %d rows"
+msgstr: "Interogarea trimisă a afectat %d rânduri"
+
+msgid: "Your query did not return any results"
+msgstr: "Interogarea trimisă nu a returnat nici-un rezultat"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "Datele trimise au fost adăugate la baza de date"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "Au intervenit ceva probleme la localizarea tabelului \"%s\""
+
+msgid: "There was a problem logging you in"
+msgstr: "A intervenit o problemă la autentificare"
+
+msgid: "Login"
+msgstr: "Autentificare"
+
+msgid: "Unsupported browser"
+msgstr: "Navigator web nesuportat"
+
+msgid: "Help!"
+msgstr: "Ajutor!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "Sesiunea a expirat. Vă rugăm să vă reautentificați."
+
+msgid: "Username"
+msgstr: "Nume utilizator"
+
+msgid: "Password"
+msgstr: "Parola"
+
+msgid: "Run a query on the %s database"
+msgstr: "Rulează o interogare în baza de date %s"
+
+msgid: "Columns"
+msgstr: "Coloane"
+
+msgid: "Add a column"
+msgstr: "Adăugare coloană"
+
+msgid: "Insert this column"
+msgstr: "Inserare această coloană"
+
+msgid: "At end of table"
+msgstr: "La sfârșitul tabelului"
+
+msgid: "At beginning of table"
+msgstr: "La începutul tabelului"
+
+msgid: "After"
+msgstr: "După"
+
+msgid: "Edit table"
+msgstr: "Editare tabel"
+
+msgid: "Indexes"
+msgstr: "Indici"
+
+msgid: "Add an index"
+msgstr: "Adăugare indice"
+
+msgid: "Column(s)"
+msgstr: "Coloan(ă/e)"
+
+msgid: "Show %d more..."
+msgstr: "Afișare altele %d ..."
+
+msgid: "Empty table"
+msgstr: "Golire tabel"
+
+msgid: "Drop table"
+msgstr: "Ștergere tabel"
+
+msgid: "Optimize table"
+msgstr: "Optimizare tabel"
+
+msgid: "Table Information"
+msgstr: "Informații tabel"
+
+msgid: "Host"
+msgstr: "Calculator gazdă"
+
+msgid: "Add a new user"
+msgstr: "Adăugare utilizator"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "Introduceți în format: ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "Sigur doriți să goliți tabelul '%s'? Vor fi șterse toate datele din acesta. Următoarea interogare va fi rulată:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "Sigur doriți să ștergeți tabelul '%s'? Vor fi șterse toate tabelele și datele din aceste. Următoarea interogare va fi rulată:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "Sigur doriți să ștergeți baza de date '%s'? Va fi ștearsă baza de date, toate tabelele cu toate datele din aceasta. Următoarea interogare va fi rulată:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "Ne pare rău, însă în prezent doar Internet Explorer 7 este suportat. Acesta poate fi descărcat gratis pe pagina de descărcări Microsoft. Puteți folosi și alte navigatoare web gratuite ce sunt suportate, cum ar fi Firefox, Safari și Opera."
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "Se pare că nu aveți cookie-urile pornite. Pentru a funcționa sesiunile, majoritatea aplicațiilor PHP necesită cookie-uri."
+
+msgid: "Importing..."
+msgstr: "Importare..."
+
+msgid: "Drop the '%s' database"
+msgstr: "Șterge baza de date '%s'"
+
+msgid: "Okay"
+msgstr: "Bine"
+
+msgid: "Cancel"
+msgstr: "Renunță"
+
+msgid: "Storage engine"
+msgstr: "Motorul pentru stocare"
+
+msgid: "Language"
+msgstr: "Limba"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "Instrucțiunea %d a fost executată din fișierul"
+msgstr[1]: "Instrucțiunile %d au fost executate din fișierul"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "Rândul %d a fost inserat în baza de date din fișierul"
+msgstr[1]: "Rândurile %d au fost inserate în baza de date din fișierul"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "Rândul %d a fost sărit din cauza numărului de valori incorecte"
+msgstr[1]: "Rândurile %d au fost sărite din cauza numărului de valori incorecte"
+
+msgid: "Theme"
+msgstr: "Tema"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f secunde)"
+
+msgid: "The following errors were reported"
+msgstr: "Următoarele erori au fost raportate"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "Nu aveți destule drepturi pentru a crea noi utilizatori."
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "Nu aveți destule drepturi pentru a studia sau a organiza utilizatorii."
+
+msgid: "You are connected to %s."
+msgstr: "Sunteți conectat la %s."
+
+msgid: "Allow access to"
+msgstr: "Permite acces la"
+
+msgid: "All databases"
+msgstr: "Toate bazele de date"
+
+msgid: "Selected databases"
+msgstr: "Bazele de date selectate"
+
+msgid: "Give user"
+msgstr: "Acordă utilizatorului"
+
+msgid: "Updates"
+msgstr: "Actualizări"
+
+msgid: "There are no updates available"
+msgstr: "Nu sunt actualizări disponibile"
+
+msgid: "Change password"
+msgstr: "Schimbare de parolă"
+
+msgid: "Redirecting..."
+msgstr: "Redirecţionare..."

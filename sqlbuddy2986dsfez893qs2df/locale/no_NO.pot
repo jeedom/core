@@ -1,0 +1,667 @@
+Language: Norsk
+Language-Code: no_NO
+Build-Date: Tue, 18 Jan 2011 15:52:08 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "Filen kunne ikke leses eller den var tom"
+
+msgid: "Error performing operation"
+msgstr: "Feil under utførelse av oppgaven"
+
+msgid: "All"
+msgstr: "Alle"
+
+msgid: "None"
+msgstr: "Ingen"
+
+msgid: "With selected"
+msgstr: "Med valgte"
+
+msgid: "Empty"
+msgstr: "Tom"
+
+msgid: "Drop"
+msgstr: "Forkast"
+
+msgid: "Optimize"
+msgstr: "Optimalisèr"
+
+msgid: "Table"
+msgstr: "Tabell"
+
+msgid: "Rows"
+msgstr: "Rader"
+
+msgid: "Size"
+msgstr: "Størrelse"
+
+msgid: "Overhead"
+msgstr: "Ekstra / overflødig"
+
+msgid: "Options"
+msgstr: "Valg"
+
+msgid: "Edit database"
+msgstr: "Endre database"
+
+msgid: "Charset"
+msgstr: "Karaktersett"
+
+msgid: "Submit"
+msgstr: "Utfør"
+
+msgid: "Create a new table"
+msgstr: "Opprett en ny tabell"
+
+msgid: "Name"
+msgstr: "Navn"
+
+msgid: "Setup the fields for the table below"
+msgstr: "Fyll inn i feltene i tabellen under"
+
+msgid: "New field"
+msgstr: "Nytt felt"
+
+msgid: "Type"
+msgstr: "Type"
+
+msgid: "Values"
+msgstr: "Verdier"
+
+msgid: "Key"
+msgstr: "Nøkkel"
+
+msgid: "primary"
+msgstr: "primær"
+
+msgid: "unique"
+msgstr: "unik"
+
+msgid: "index"
+msgstr: "indeks"
+
+msgid: "Default"
+msgstr: "Standard"
+
+msgid: "Other"
+msgstr: "Andre"
+
+msgid: "Unsigned"
+msgstr: "Positivt"
+
+msgid: "Binary"
+msgstr: "Binær"
+
+msgid: "Not Null"
+msgstr: "Ikke NULL"
+
+msgid: "Auto Increment"
+msgstr: "Automatisk utøkelse"
+
+msgid: "Add field"
+msgstr: "Legg til felt"
+
+msgid: "Oops"
+msgstr: "Oops"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "Av en eller annen grunn var det ikke noe database-parameter i forespørselen din"
+
+msgid: "Save changes to original"
+msgstr: "Lagre endringer til originalen"
+
+msgid: "Insert as new row"
+msgstr: "Sett in som ny rad"
+
+msgid: "Save"
+msgstr: "Lagre"
+
+msgid: "User"
+msgstr: "Bruker"
+
+msgid: "All privileges"
+msgstr: "Alle rettigheter"
+
+msgid: "Selected privileges"
+msgstr: "Valgte rettigheter"
+
+msgid: "User privileges"
+msgstr: "Brukerrettigheter"
+
+msgid: "Select"
+msgstr: "Velg"
+
+msgid: "Insert"
+msgstr: "Legg til"
+
+msgid: "Update"
+msgstr: "Oppdater"
+
+msgid: "Delete"
+msgstr: "Slett"
+
+msgid: "Alter"
+msgstr: "Endre"
+
+msgid: "Create"
+msgstr: "Lag"
+
+msgid: "Temp tables"
+msgstr: "Temporære tabeller"
+
+msgid: "Administrator privileges"
+msgstr: "Administrator-rettigheter"
+
+msgid: "File"
+msgstr: "Fil"
+
+msgid: "Process"
+msgstr: "Prosess"
+
+msgid: "Reload"
+msgstr: "Last på nytt"
+
+msgid: "Shutdown"
+msgstr: "Steng ned"
+
+msgid: "Super"
+msgstr: "Super"
+
+msgid: "Grant option"
+msgstr: "Innvilg tillegg"
+
+msgid: "User not found!"
+msgstr: "Bruker finnes ikke!"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "Du må ekportere enten struktur, data, eller begge deler"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "Vennligst velg databasene du vil eksportere"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "Vennligst velg tabellene du vil eksportere"
+
+msgid: "Table `%s` is empty"
+msgstr: "Tabellen `%s` er tom"
+
+msgid: "Results"
+msgstr: "Resultat"
+
+msgid: "Select all"
+msgstr: "Velg alt"
+
+msgid: "The file could not be opened"
+msgstr: "Filen kunne ikke åpnes"
+
+msgid: "Could not write to file"
+msgstr: "Kunne ikke skrive til filen"
+
+msgid: "Successfully wrote content to file"
+msgstr: "Innholdet ble skrevet til filen"
+
+msgid: "Download"
+msgstr: "Last ned"
+
+msgid: "Note
+"
+msgstr: "Notat"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "Hvis dette er en offentlig tjener, burde du slette denne filen fra tjeneren etter å ha lastet den ned."
+
+msgid: "Export"
+msgstr: "Eksporter"
+
+msgid: "Tables"
+msgstr: "Tabeller"
+
+msgid: "Databases"
+msgstr: "Databaser"
+
+msgid: "Format"
+msgstr: "Format"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "Struktur"
+
+msgid: "Data"
+msgstr: "Data"
+
+msgid: "Compact inserts"
+msgstr: "Kompakte `INSERT`"
+
+msgid: "Complete inserts"
+msgstr: "Fullstendinge `INSERT`"
+
+msgid: "Delimiter"
+msgstr: "Skilletegn"
+
+msgid: "Comma"
+msgstr: "Komma"
+
+msgid: "Tab"
+msgstr: "Tabulator"
+
+msgid: "Semicolon"
+msgstr: "Semikolon"
+
+msgid: "Space"
+msgstr: "Mellomrom"
+
+msgid: "Print field names on first line"
+msgstr: "Skriv kolonne-navn på første linje"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "Hvis du eskporterer et stort antall rader er det anbefalt at du eksporterer resultatet som en tekstfil"
+
+msgid: "Output to"
+msgstr: "Eksporter til "
+
+msgid: "Browser"
+msgstr: "Leser"
+
+msgid: "Text file"
+msgstr: "tekstfil"
+
+msgid: "Home"
+msgstr: "Hjem"
+
+msgid: "Users"
+msgstr: "Brukere"
+
+msgid: "Query"
+msgstr: "Spørring"
+
+msgid: "Import"
+msgstr: "Importer"
+
+msgid: "Overview"
+msgstr: "Oversikt"
+
+msgid: "Browse"
+msgstr: "Les"
+
+msgid: "Your changes were saved to the database"
+msgstr: "Dine endringer er lagret til databasen"
+
+msgid: "delete this row"
+msgstr: "slett denne raden"
+
+msgid: "delete these rows"
+msgstr: "slett disse radene"
+
+msgid: "empty this table"
+msgstr: "tøm denne tabellen"
+
+msgid: "empty these tables"
+msgstr: "tøm disse tabellene"
+
+msgid: "drop this table"
+msgstr: "slett denne tabellen"
+
+msgid: "drop these tables"
+msgstr: "slett disse tabellene"
+
+msgid: "delete this column"
+msgstr: "slett denne kolonnen"
+
+msgid: "delete these columns"
+msgstr: "slett disse kollonnene"
+
+msgid: "delete this index"
+msgstr: "slett denne indeksen"
+
+msgid: "delete these indexes"
+msgstr: "slett disse indeksene"
+
+msgid: "delete this user"
+msgstr: "slett denne brukeren"
+
+msgid: "delete these users"
+msgstr: "slett disse brukerne"
+
+msgid: "Are you sure you want to"
+msgstr: "Er du sikker på at du vil "
+
+msgid: "The following query will be run:"
+msgstr: "Den følgende spørringen vil kjøres:"
+
+msgid: "The following queries will be run:"
+msgstr: "De følgende spørringene vil kjøres:"
+
+msgid: "Confirm"
+msgstr: "Bekreft"
+
+msgid: "Successfully saved changes"
+msgstr: "Endringene er lagret"
+
+msgid: "Full Text"
+msgstr: "Full tekst"
+
+msgid: "Loading..."
+msgstr: "Laster"
+
+msgid: "Error"
+msgstr: "Feil"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "Det oppstod en feil i forbindelse med mottak av data fra serveren"
+
+msgid: "Logout"
+msgstr: "Logg ut"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "Av en eller annen grunn ble ikke tabellparameteren inkludert i din forespørsel"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "Velkommen til SQL Buddy!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "Du er tilkoblet MySQL %s med brukeren %s."
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "Databasen har kjørt siden %s og har overført ca %s med data."
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "En ny versjon av SQL Buddy er tilgjengelig!"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "Du har SQL Buddy %s innstallert og %s er nå tilgjengelig."
+
+msgid: "Getting started"
+msgstr: "Introduksjon"
+
+msgid: "Help"
+msgstr: "Hjelp"
+
+msgid: "Translations"
+msgstr: "Oversettelse"
+
+msgid: "Release Notes"
+msgstr: "Utgivelses-noter"
+
+msgid: "Contact"
+msgstr: "Kontakt"
+
+msgid: "Create a new database"
+msgstr: "Lag en ny database"
+
+msgid: "Did you know..."
+msgstr: "Visste du at..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "Det finnes en enklere måte å velge en større gruppe av enheter når man utforsker tabellrader. Velg første rad, hold nede shift-knappen og velg så siste rad. Merkeboksene mellom disse to radene vil bli automatisk merket for deg."
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "Størrelsen på kolonnene i utforsk- og spørringstabluatorene kan forandres. Du kan forandre dem til å bli så bred eller tynn som du vil."
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "Innloggingssiden er basert på standardbrukeren root@localhost. Ved å forandre på config.php kan du forandre denne standardbrukeren og vertsmaskinen til det du vil."
+
+msgid: "Keyboard shortcuts"
+msgstr: "Tastatursnarveier"
+
+msgid: "Press this key..."
+msgstr: "Trykk en tast..."
+
+msgid: "...and this will happen"
+msgstr: "... og så vil dette skje"
+
+msgid: "select none"
+msgstr: "velg ingen"
+
+msgid: "edit selected items"
+msgstr: "endre de valgte objekter"
+
+msgid: "delete selected items"
+msgstr: "slett valgte objekter"
+
+msgid: "refresh page"
+msgstr: "oppdater siden"
+
+msgid: "load the query tab"
+msgstr: "last spørrings-fanen"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "les fanen -  gå til første side av resultatene"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "les fanen - få til siste side av resultatene"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "les fanen - gå til forrige side av resultatene"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "les fanen - gå til neste side av fanen"
+
+msgid: "optimize selected tables"
+msgstr: "optimér de valgte tabellene"
+
+msgid: "Choose a .sql file to import"
+msgstr: "Velg en.sql-fil å importere"
+
+msgid: "File
+"
+msgstr: "Fil"
+
+msgid: "Ignore first line"
+msgstr: "Ignorér første linje"
+
+msgid: "Edit"
+msgstr: "Endre"
+
+msgid: "Refresh"
+msgstr: "Oppdatér"
+
+msgid: "No primary key defined"
+msgstr: "Ingen primærnøkkel er definert"
+
+msgid: "First"
+msgstr: "Første"
+
+msgid: "Prev"
+msgstr: "Forrige"
+
+msgid: "Next"
+msgstr: "Neste"
+
+msgid: "Last"
+msgstr: "Siste"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "Din spørring returnerte %d resultat"
+msgstr[1]: "Din spørring returnerte %d resultater"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "Notat: For å unngå å kræsje din webklient ble kun de første %d resultatene vist"
+
+msgid: "binary data"
+msgstr: "binærdata"
+
+msgid: "Your query affected %d rows"
+msgstr: "Spørringen din forandret på %d rader"
+
+msgid: "Your query did not return any results"
+msgstr: "Spørringen din ga ingen resultater"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "Dine data har blitt lagt til i databasen"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "Det oppsto vanskeligheter med å finne tabellen ved navn \"%s\" "
+
+msgid: "There was a problem logging you in"
+msgstr: "Det oppsto ett problem under innlogging"
+
+msgid: "Login"
+msgstr: "Logg inn"
+
+msgid: "Unsupported browser"
+msgstr: "Webklienten er ikke støttet"
+
+msgid: "Help!"
+msgstr: "Hjelp!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "Din sessjon har utløpt. Vennligst logg inn på nytt."
+
+msgid: "Username"
+msgstr: "Brukernavn"
+
+msgid: "Password"
+msgstr: "Passord"
+
+msgid: "Run a query on the %s database"
+msgstr: "Kjør en spørring på databasen '%s'"
+
+msgid: "Columns"
+msgstr: "Kolonner"
+
+msgid: "Add a column"
+msgstr: "Legg til en kolonne"
+
+msgid: "Insert this column"
+msgstr: "Legg inn denne kolonnen"
+
+msgid: "At end of table"
+msgstr: "På slutten av tabellen"
+
+msgid: "At beginning of table"
+msgstr: "På begynnelsen av tabellen"
+
+msgid: "After"
+msgstr: "Etter"
+
+msgid: "Edit table"
+msgstr: "Endre tabell"
+
+msgid: "Indexes"
+msgstr: "Indekser"
+
+msgid: "Add an index"
+msgstr: "Legg til en indeks"
+
+msgid: "Column(s)"
+msgstr: "Kolonne(r)"
+
+msgid: "Show %d more..."
+msgstr: "Vis %d flere..."
+
+msgid: "Empty table"
+msgstr: "Tøm tabellen"
+
+msgid: "Drop table"
+msgstr: "Slett tabellen"
+
+msgid: "Optimize table"
+msgstr: "Optimaliser tabellen"
+
+msgid: "Table Information"
+msgstr: "Tabellinformasjon"
+
+msgid: "Host"
+msgstr: "Vert"
+
+msgid: "Add a new user"
+msgstr: "Legg til ny bruker"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "Legg til i format: ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "Er du sikker på at du vil slette tabell med navn '%s'? Alt av data i tabellen vil bli slettet. Følgende spørring vil bli kjørt:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "Er du sikker på at du vil slette tabellen med navn '%s'? Dette vil slette tabellen og alt av data som ligger i den. Følgende spørring vil bli kjørt:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "Er du sikker på at du vil slette databasen med navn '%s'? Dette vil slette databasen, tabellene i den og alt av data som ligger i tabellene. Følgende spørring vil bli kjørt:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "Vi beklager, men bare Internet Explorer 7 er støttet. Den kan lastes ned gratis på Microsofts hjemmeside. Andre gratisalternativer er også støttet, inkludert Opera, Safari og Firefox."
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "Det ser ikke ut til at du har informasjonskapsler slått på. Dette kreves i de fleste PHP-programmer for at sessjoner skal fungere."
+
+msgid: "Importing..."
+msgstr: "Importerer..."
+
+msgid: "Drop the '%s' database"
+msgstr: "Slett databasen '%s'"
+
+msgid: "Okay"
+msgstr: "Ok"
+
+msgid: "Cancel"
+msgstr: "Avbryt"
+
+msgid: "Storage engine"
+msgstr: "Lagringsmotor"
+
+msgid: "Language"
+msgstr: "Språk"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "%d programlinje ble utført fra filen"
+msgstr[1]: "%d programlinjer ble utført fra filen"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "%d rad ble lagt inn i databasen fra filen"
+msgstr[1]: "%d rader ble lagt inn i databasen fra filen"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "%d rad ble ignorert fordi verdiene ikke var korrekt"
+msgstr[1]: "%d rader ble ignorert fordi verdiene ikke var korrekt"
+
+msgid: "Theme"
+msgstr: "Tema"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f sekunder)"
+
+msgid: "The following errors were reported"
+msgstr: "Følgende feilmeldinger ble rapportert"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "Du har ikke nok rettigheter til å lage nye brukere."
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "Du har ikke nok rettigheter til å vise eller forandre på brukere."
+
+msgid: "You are connected to %s."
+msgstr: "Du er tilkoblet %s."
+
+msgid: "Allow access to"
+msgstr: "Gi tilgang til"
+
+msgid: "All databases"
+msgstr: "Alle databaser"
+
+msgid: "Selected databases"
+msgstr: "Valgte databaser"
+
+msgid: "Give user"
+msgstr: "Gi bruker"
+
+msgid: "Updates"
+msgstr: "Oppdateringer"
+
+msgid: "There are no updates available"
+msgstr: "Det er ingen oppdateringer tilgjengelig"
+
+msgid: "Change password"
+msgstr: "Endre passord"
+
+msgid: "Redirecting..."
+msgstr: "Videresender..."

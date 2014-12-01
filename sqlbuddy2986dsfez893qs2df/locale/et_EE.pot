@@ -1,0 +1,667 @@
+Language: Eesti keel
+Language-Code: et_EE
+Build-Date: Tue, 18 Jan 2011 15:55:03 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "Faili ei suudetud lugeda või fail oli tühi"
+
+msgid: "Error performing operation"
+msgstr: "Viga toimingu teostamisel"
+
+msgid: "All"
+msgstr: "Kõik"
+
+msgid: "None"
+msgstr: "Mitte ükski"
+
+msgid: "With selected"
+msgstr: "Valitutega"
+
+msgid: "Empty"
+msgstr: "Tühjenda"
+
+msgid: "Drop"
+msgstr: "Eemalda"
+
+msgid: "Optimize"
+msgstr: "Optimeeri"
+
+msgid: "Table"
+msgstr: "Tabel"
+
+msgid: "Rows"
+msgstr: "Read"
+
+msgid: "Size"
+msgstr: "Maht"
+
+msgid: "Overhead"
+msgstr: "Ülejääv"
+
+msgid: "Options"
+msgstr: "Valikud"
+
+msgid: "Edit database"
+msgstr: "Muuda andmebaasi"
+
+msgid: "Charset"
+msgstr: "Tähekodeering"
+
+msgid: "Submit"
+msgstr: "Kinnita"
+
+msgid: "Create a new table"
+msgstr: "Loo uus tabel"
+
+msgid: "Name"
+msgstr: "Nimi"
+
+msgid: "Setup the fields for the table below"
+msgstr: "Seadista alljärgneva tabeli väljad"
+
+msgid: "New field"
+msgstr: "Uus väli"
+
+msgid: "Type"
+msgstr: "Tüüp"
+
+msgid: "Values"
+msgstr: "Väärtused"
+
+msgid: "Key"
+msgstr: "Võti"
+
+msgid: "primary"
+msgstr: "primaarne"
+
+msgid: "unique"
+msgstr: "unikaalne"
+
+msgid: "index"
+msgstr: "indeks"
+
+msgid: "Default"
+msgstr: "Vaikimisi"
+
+msgid: "Other"
+msgstr: "Muu"
+
+msgid: "Unsigned"
+msgstr: "Märgita"
+
+msgid: "Binary"
+msgstr: "Binaarne"
+
+msgid: "Not Null"
+msgstr: "Mitte NULL"
+
+msgid: "Auto Increment"
+msgstr: "Automaatselt suurenev"
+
+msgid: "Add field"
+msgstr: "Lisa väli"
+
+msgid: "Oops"
+msgstr: "Ups..."
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "Mingil põhjusel puudus päringus andmebaasi parameeter"
+
+msgid: "Save changes to original"
+msgstr: "Salvesta muudatused originaali"
+
+msgid: "Insert as new row"
+msgstr: "Lisa uue reana"
+
+msgid: "Save"
+msgstr: "Salvesta"
+
+msgid: "User"
+msgstr: "Kasutaja"
+
+msgid: "All privileges"
+msgstr: "Kõik õigused"
+
+msgid: "Selected privileges"
+msgstr: "Valitud õigused"
+
+msgid: "User privileges"
+msgstr: "Kasutaja õigused"
+
+msgid: "Select"
+msgstr: "Vali"
+
+msgid: "Insert"
+msgstr: "Sisesta"
+
+msgid: "Update"
+msgstr: "Uuenda"
+
+msgid: "Delete"
+msgstr: "Kustuta"
+
+msgid: "Alter"
+msgstr: "Muuda"
+
+msgid: "Create"
+msgstr: "Loo"
+
+msgid: "Temp tables"
+msgstr: "Ajutised tabelid"
+
+msgid: "Administrator privileges"
+msgstr: "Admin. õigused"
+
+msgid: "File"
+msgstr: "Fail"
+
+msgid: "Process"
+msgstr: "Protsess"
+
+msgid: "Reload"
+msgstr: "Lae uuesti"
+
+msgid: "Shutdown"
+msgstr: "Lülita välja"
+
+msgid: "Super"
+msgstr: "Super"
+
+msgid: "Grant option"
+msgstr: "Võimalda valik"
+
+msgid: "User not found!"
+msgstr: "Kasutajat ei leitud"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "Sa pead eksportima kas struktuuri, andmed või mõlemad"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "Palun vali andmebaas, mida soovid eksportida"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "Palun vali tabelid, mida soovid eksportida"
+
+msgid: "Table `%s` is empty"
+msgstr: "Tabel '%s' on tühi"
+
+msgid: "Results"
+msgstr: "Tulemused"
+
+msgid: "Select all"
+msgstr: "Vali kõik"
+
+msgid: "The file could not be opened"
+msgstr: "Faili ei suudetud avada"
+
+msgid: "Could not write to file"
+msgstr: "Ei saanud faili salvestada"
+
+msgid: "Successfully wrote content to file"
+msgstr: "Sisu edukalt faili kirjutatud"
+
+msgid: "Download"
+msgstr: "Lae alla"
+
+msgid: "Note
+"
+msgstr: "Märkus"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "Kui see on avalik server, siis sa pead kustutama selle faili serverist pärast seda kui oled selle alla laadinud"
+
+msgid: "Export"
+msgstr: "Ekspordi"
+
+msgid: "Tables"
+msgstr: "Tabelid"
+
+msgid: "Databases"
+msgstr: "Andmebaasid"
+
+msgid: "Format"
+msgstr: "Vorming"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "Struktuur"
+
+msgid: "Data"
+msgstr: "Andmed"
+
+msgid: "Compact inserts"
+msgstr: "Kompaktsed sisestused"
+
+msgid: "Complete inserts"
+msgstr: "Täielikud sisestused"
+
+msgid: "Delimiter"
+msgstr: "Eraldaja"
+
+msgid: "Comma"
+msgstr: "Koma"
+
+msgid: "Tab"
+msgstr: "Tabeldusmärgis"
+
+msgid: "Semicolon"
+msgstr: "Semikoolon"
+
+msgid: "Space"
+msgstr: "Tühik"
+
+msgid: "Print field names on first line"
+msgstr: "Väljasta veergude nimed esimesel real"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "Kui ekspordid palju tabeliridu, siis on soovitatav valida väljundiks tekstifail."
+
+msgid: "Output to"
+msgstr: "Väljasta"
+
+msgid: "Browser"
+msgstr: "Veebilehitseja"
+
+msgid: "Text file"
+msgstr: "Tekstifail"
+
+msgid: "Home"
+msgstr: "Avaleht"
+
+msgid: "Users"
+msgstr: "Kasutajad"
+
+msgid: "Query"
+msgstr: "Päring"
+
+msgid: "Import"
+msgstr: "Import"
+
+msgid: "Overview"
+msgstr: "Ülevaade"
+
+msgid: "Browse"
+msgstr: "Vaata tabeli sisu"
+
+msgid: "Your changes were saved to the database"
+msgstr: "Teie muudatused on salvestatud andmebaasi"
+
+msgid: "delete this row"
+msgstr: "kustuta see rida"
+
+msgid: "delete these rows"
+msgstr: "kustuta need read"
+
+msgid: "empty this table"
+msgstr: "tühjenda see tabel"
+
+msgid: "empty these tables"
+msgstr: "tühjenda need tabelid"
+
+msgid: "drop this table"
+msgstr: "eemalda see tabel"
+
+msgid: "drop these tables"
+msgstr: "eemalda need tabelid"
+
+msgid: "delete this column"
+msgstr: "kustuta see veerg"
+
+msgid: "delete these columns"
+msgstr: "kustuta need veerud"
+
+msgid: "delete this index"
+msgstr: "kustuta see indeks"
+
+msgid: "delete these indexes"
+msgstr: "kustuta need indeksid"
+
+msgid: "delete this user"
+msgstr: "kustuta see kasutaja"
+
+msgid: "delete these users"
+msgstr: "kustuta need kasutajad"
+
+msgid: "Are you sure you want to"
+msgstr: "Oled sa kindel, et soovid"
+
+msgid: "The following query will be run:"
+msgstr: "Järgnev päring viiakse läbi:"
+
+msgid: "The following queries will be run:"
+msgstr: "Järgnevad päringud viiakse läbi:"
+
+msgid: "Confirm"
+msgstr: "Kinnita"
+
+msgid: "Successfully saved changes"
+msgstr: "Muudatused salvestatud"
+
+msgid: "Full Text"
+msgstr: "Täistekst"
+
+msgid: "Loading..."
+msgstr: "Laen..."
+
+msgid: "Error"
+msgstr: "Viga"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "Tekkis viga andmete kättesaamisega serverist"
+
+msgid: "Logout"
+msgstr: "Logi välja"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "Mingil põhjusel ei sisalda päring tabeli parameetrit "
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "Tere tulemast SQL Buddy'sse!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "Olete ühendatud MySQL %s kasutaja %sga."
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "Andmebaas on üleval olnud alates %s ja andmemahtu on selle aja jooksul olnud %s."
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "Uus SQL Buddy versioon on saadaval!"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "SQL Buddy %s on paigaldatud ja %s on nüüd kättesaadav."
+
+msgid: "Getting started"
+msgstr: "Alguse abi"
+
+msgid: "Help"
+msgstr: "Abi"
+
+msgid: "Translations"
+msgstr: "Tõlked"
+
+msgid: "Release Notes"
+msgstr: "Väljalaske teated"
+
+msgid: "Contact"
+msgstr: "Kontakt"
+
+msgid: "Create a new database"
+msgstr: "Loo uus andmebaas"
+
+msgid: "Did you know..."
+msgstr: "Kas teadsid, et ..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "Mitme rea valimiseks valige esimene rida, hoia all SHIFT klahvi ja vali siis viimane rida. "
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "Veerude laiused lehtede \"Vaata tabeli sisu\" ja \"Päring\" all on muudetavad."
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "Sisselogimislehel on vaikimisi väärtusteks root ja localhost. Failis config.php on neid vaikimisi väärtusi võimalik muuta."
+
+msgid: "Keyboard shortcuts"
+msgstr: "Kiirklahvid"
+
+msgid: "Press this key..."
+msgstr: "Vajuta seda klahvi..."
+
+msgid: "...and this will happen"
+msgstr: "...ja see juhtub"
+
+msgid: "select none"
+msgstr: "Deselekteeri kõik"
+
+msgid: "edit selected items"
+msgstr: "muuda valitud elemente"
+
+msgid: "delete selected items"
+msgstr: "kustuta valitud elemendid"
+
+msgid: "refresh page"
+msgstr: "värskenda leht"
+
+msgid: "load the query tab"
+msgstr: "lae päringu leht"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "vaatamise leht - esimene lehekülg"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "vaatamise leht - viimane lehekülg"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "vaatamise leht - eelmine lehekülg"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "vaatamise leht - järgmine lehekülg"
+
+msgid: "optimize selected tables"
+msgstr: "optimeeri valitud tabeleid"
+
+msgid: "Choose a .sql file to import"
+msgstr: "Vali importimiseks .sql fail "
+
+msgid: "File
+"
+msgstr: "Fail"
+
+msgid: "Ignore first line"
+msgstr: "Eira esimest rida"
+
+msgid: "Edit"
+msgstr: "Muuda"
+
+msgid: "Refresh"
+msgstr: "Värskenda"
+
+msgid: "No primary key defined"
+msgstr: "Võti on määramata"
+
+msgid: "First"
+msgstr: "Esimene"
+
+msgid: "Prev"
+msgstr: "Eelmine"
+
+msgid: "Next"
+msgstr: "Järgmine"
+
+msgid: "Last"
+msgstr: "Viimane"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "Päring tagastas %d tulemuse"
+msgstr[1]: "Päring tagastas %d tulemust"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "Märkus: Et vältida sinu veebilehitseja kokkujooksmist, kuvatakse ainult %d esimest tulemust"
+
+msgid: "binary data"
+msgstr: "binaarsed andmed"
+
+msgid: "Your query affected %d rows"
+msgstr: "Su päring avaldas mõju %d reale"
+
+msgid: "Your query did not return any results"
+msgstr: "Päring ei andnud tulemusi"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "Andmed sisestati andmebaasi"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "Ei leitud \"%s\" tabelit"
+
+msgid: "There was a problem logging you in"
+msgstr: "Sisselogimisel tekkis probleeme"
+
+msgid: "Login"
+msgstr: "Sisene"
+
+msgid: "Unsupported browser"
+msgstr: "Sinu veebilehitseja ei ole toetatud lehitsejate nimekirjas"
+
+msgid: "Help!"
+msgstr: "Abi!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "Sessioon on aegunud. Palun logi uuesti sisse"
+
+msgid: "Username"
+msgstr: "Kasutajanimi"
+
+msgid: "Password"
+msgstr: "Parool"
+
+msgid: "Run a query on the %s database"
+msgstr: "Käivita päring andmebaasis %s"
+
+msgid: "Columns"
+msgstr: "Veerud"
+
+msgid: "Add a column"
+msgstr: "Lisa veerg"
+
+msgid: "Insert this column"
+msgstr: "Lisa see veerg"
+
+msgid: "At end of table"
+msgstr: "Tabeli lõppu"
+
+msgid: "At beginning of table"
+msgstr: "Tabeli algusesse"
+
+msgid: "After"
+msgstr: "Pärast"
+
+msgid: "Edit table"
+msgstr: "Muuda tabelit"
+
+msgid: "Indexes"
+msgstr: "Indeksid"
+
+msgid: "Add an index"
+msgstr: "Lisa indeks"
+
+msgid: "Column(s)"
+msgstr: "Veerg/veerud"
+
+msgid: "Show %d more..."
+msgstr: "Näita veel %d"
+
+msgid: "Empty table"
+msgstr: "Tühjenda tabel"
+
+msgid: "Drop table"
+msgstr: "Eemalda tabel"
+
+msgid: "Optimize table"
+msgstr: "Optimeeri tabelit"
+
+msgid: "Table Information"
+msgstr: "Tabeli informatsioon"
+
+msgid: "Host"
+msgstr: "Host"
+
+msgid: "Add a new user"
+msgstr: "Lisa uus kasutaja"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "Sisesta formaadis: ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "Kindel, et tahad tühjendada '%s' tabeli? See kustutab kõik andmed selles tabelis. Järgmine päring viiakse läbi:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "Kindel, et tahad kustutada '%s' tabeli? See kustutab tabeli enda ja kõik andmed selles. Järgmine päring viiakse läbi:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "Kindel, et tahad kustutada andmebaasi '%s'? See kustutab andmebaasi, seal olevad tabelid ja nendes olevad andmed. Järgmine päring viiakse läbi:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "Vabandame, aga ainult Internet Explorer 7 on toetatud. Seda on võimalik alla laadida Microsofti koduleheküljelt. Samuti on toetatud Firefox, Safari ja Opera."
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "Tundub, et küpsised pole lubatud. Sessioonide toetamiseks lubage küpsiste kasutamine"
+
+msgid: "Importing..."
+msgstr: "Impordin..."
+
+msgid: "Drop the '%s' database"
+msgstr: "Eemalda andmebaas '%s'"
+
+msgid: "Okay"
+msgstr: "OK"
+
+msgid: "Cancel"
+msgstr: "Tühista"
+
+msgid: "Storage engine"
+msgstr: "Andmebaasi mootor"
+
+msgid: "Language"
+msgstr: "Keel"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "%d päring viidi läbi failist"
+msgstr[1]: "%d päringut viidi läbi failist"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "%d rida lisati andmebaasi failist"
+msgstr[1]: "% rida lisati andmebaasi failist"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "%d rida jäeti vahele, sest väärtuste arv oli vale"
+msgstr[1]: "%d rida jäeti vahele, sest väärtuste arv oli vale"
+
+msgid: "Theme"
+msgstr: "Kujundus"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f sekundit)"
+
+msgid: "The following errors were reported"
+msgstr: "Järgnevad vead edastati"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "Sul pole piisavalt õigusi, et luua uusi andmebaasi kasutajaid."
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "Sul pole piisavalt õigusi, et vaadata või hallata kasutajaid."
+
+msgid: "You are connected to %s."
+msgstr: "Oled ühendatud masinaga %s"
+
+msgid: "Allow access to"
+msgstr: "Luba juurdepääs"
+
+msgid: "All databases"
+msgstr: "Kõik andmebaasid"
+
+msgid: "Selected databases"
+msgstr: "Valitud andmebaasid"
+
+msgid: "Give user"
+msgstr: "Anna kasutajale"
+
+msgid: "Updates"
+msgstr: "Uuendused"
+
+msgid: "There are no updates available"
+msgstr: "Saadavalolevaid uuendusi ei ole"
+
+msgid: "Change password"
+msgstr: "Muuda parool"
+
+msgid: "Redirecting..."
+msgstr: "Suunamine..."

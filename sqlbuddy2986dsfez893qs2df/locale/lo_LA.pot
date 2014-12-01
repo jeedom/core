@@ -1,0 +1,667 @@
+Language: Lao
+Language-Code: lo_LA
+Build-Date: Tue, 18 Jan 2011 15:12:42 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "ໄຟລ໌ບໍ່ສາມາດອ່ານໄດ້ ຫຼືວ່າງເປົ່າ"
+
+msgid: "Error performing operation"
+msgstr: "ເກີດຄວາມຜິດພາດໃນລະຫວ່າງປະຕິບັດການ"
+
+msgid: "All"
+msgstr: "ທັງໝົດ"
+
+msgid: "None"
+msgstr: "ບໍ່ເລືອກຈັກອັນ"
+
+msgid: "With selected"
+msgstr: "ກັບອັນທີ່ເລືອກໄວ້"
+
+msgid: "Empty"
+msgstr: "ວ່າງເປົ່າ"
+
+msgid: "Drop"
+msgstr: "ໂຍນຖິ້ມ"
+
+msgid: "Optimize"
+msgstr: "ປັບປຸງ"
+
+msgid: "Table"
+msgstr: "ຕາຕະລາງ"
+
+msgid: "Rows"
+msgstr: "ແຖວ"
+
+msgid: "Size"
+msgstr: "ຂະໜາດ"
+
+msgid: "Overhead"
+msgstr: "ເກີນ"
+
+msgid: "Options"
+msgstr: "ຕົວເລືອກ"
+
+msgid: "Edit database"
+msgstr: "ແກ້ໄຂຖານຂໍ້ມູນ"
+
+msgid: "Charset"
+msgstr: "Charset"
+
+msgid: "Submit"
+msgstr: "ຕົກລົງ"
+
+msgid: "Create a new table"
+msgstr: "ສ້າງຕາຕະລາງໃໝ່"
+
+msgid: "Name"
+msgstr: "ຊື່"
+
+msgid: "Setup the fields for the table below"
+msgstr: "ຕິດຕັ້ງ"
+
+msgid: "New field"
+msgstr: "ສ້າງ field ໃໝ່"
+
+msgid: "Type"
+msgstr: "ປະເພດ"
+
+msgid: "Values"
+msgstr: "ຄ່າ"
+
+msgid: "Key"
+msgstr: "Key"
+
+msgid: "primary"
+msgstr: "primary"
+
+msgid: "unique"
+msgstr: "unique"
+
+msgid: "index"
+msgstr: "index"
+
+msgid: "Default"
+msgstr: "Default"
+
+msgid: "Other"
+msgstr: "Other"
+
+msgid: "Unsigned"
+msgstr: "Unsigned"
+
+msgid: "Binary"
+msgstr: "Binary"
+
+msgid: "Not Null"
+msgstr: "Not Null"
+
+msgid: "Auto Increment"
+msgstr: "Auto Increment"
+
+msgid: "Add field"
+msgstr: "ເພີ່ມ field"
+
+msgid: "Oops"
+msgstr: "ໂອ້..."
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "ດ້ວຍເຫດຜົນບາງຢ່າງ ເຮັດໃຫ້ parameter ບໍ່ສາມາດໃສ່ເຂົ້າມາໃນຄຳຂໍຂອງທ່ານໄດ້"
+
+msgid: "Save changes to original"
+msgstr: "ບັນທຶກທັບອັນເກົ່າ"
+
+msgid: "Insert as new row"
+msgstr: "ບັນທຶກໃສ່ໃນແຖວໃໝ່"
+
+msgid: "Save"
+msgstr: "ບັນທຶກ"
+
+msgid: "User"
+msgstr: "ຜູ້ໃຊ້ງານ"
+
+msgid: "All privileges"
+msgstr: "ສິດທິທັງບໝົດ"
+
+msgid: "Selected privileges"
+msgstr: "ເລືອກສິດທິ"
+
+msgid: "User privileges"
+msgstr: "ສິດທິຜູ້ໃຊ້"
+
+msgid: "Select"
+msgstr: "ເລືອກ"
+
+msgid: "Insert"
+msgstr: "ໃສ່"
+
+msgid: "Update"
+msgstr: "ອັບເດດ"
+
+msgid: "Delete"
+msgstr: "ລຶບ"
+
+msgid: "Alter"
+msgstr: "ປ່ຽນແປງ"
+
+msgid: "Create"
+msgstr: "ສ້າງ"
+
+msgid: "Temp tables"
+msgstr: "ຕາຕະລາງຊົ່ວຄາວ"
+
+msgid: "Administrator privileges"
+msgstr: "ສິດທິຜູ້ເບິ່ງແຍງລະບົບ"
+
+msgid: "File"
+msgstr: "ໄຟລ໌"
+
+msgid: "Process"
+msgstr: "Process"
+
+msgid: "Reload"
+msgstr: "ຣີໂຫລດ"
+
+msgid: "Shutdown"
+msgstr: "ປິດ"
+
+msgid: "Super"
+msgstr: "Super"
+
+msgid: "Grant option"
+msgstr: "Grant option"
+
+msgid: "User not found!"
+msgstr: "ບໍ່ພົບຜູ້ໃຊ້ນີ້!"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "ທ່ານຕ້ອງສົ່ງອອກໂຄງສ້າງຕາຕະລາງ ຫຼືຂໍ້ມູນໃນຕາຕະລາງຢ່າງໃດຢ່າງໜຶ່ງ ຫຼືທັງສອງ"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "ກະລຸນາເລືອກຖານຂໍ້ມູນທີ່ທ່ານຕ້ອງການສົ່ງອອກ"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "ກະລຸນາເລືອກຕາຕະລາງທີ່ທ່ານຕ້ອງການສົ່ງອອກ"
+
+msgid: "Table `%s` is empty"
+msgstr: " `%s`  ເປັນຕາຕະລາງວ່າງເປົ່າ"
+
+msgid: "Results"
+msgstr: "ຜົນ"
+
+msgid: "Select all"
+msgstr: "ເລືອກທັງໝົດ"
+
+msgid: "The file could not be opened"
+msgstr: "ບໍ່ສາມາດເປີດໄຟລ໌ໄດ້"
+
+msgid: "Could not write to file"
+msgstr: "ບໍ່ສາມາດຂຽນໄຟລ໌ໄດ້"
+
+msgid: "Successfully wrote content to file"
+msgstr: "ຂຽນໄຟລ໌ສຳເລັດແລ້ວ"
+
+msgid: "Download"
+msgstr: "ດາວໂຫລດ"
+
+msgid: "Note
+"
+msgstr: "ໝາຍເຫດ"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "ຖ້ານີ້ເປັນ server ສາທາລະນະ ທ່ານຄວນລຶບໄຟລ໌ນີ້ຫລັງຈາກດາວໂຫລດໄປແລ້ວ"
+
+msgid: "Export"
+msgstr: "ສົ່ງອອກ"
+
+msgid: "Tables"
+msgstr: "ຕາຕະລາງ"
+
+msgid: "Databases"
+msgstr: "ຖານຂໍ້ມູນ"
+
+msgid: "Format"
+msgstr: "Format"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "ໂຄງສ້າງ"
+
+msgid: "Data"
+msgstr: "ຂໍ້ມູນ"
+
+msgid: "Compact inserts"
+msgstr: "Compact inserts"
+
+msgid: "Complete inserts"
+msgstr: "Complete inserts"
+
+msgid: "Delimiter"
+msgstr: "Delimiter"
+
+msgid: "Comma"
+msgstr: "ຈຸດ"
+
+msgid: "Tab"
+msgstr: "ແຖບ"
+
+msgid: "Semicolon"
+msgstr: "ຈ້ຳຈຸດ (;)"
+
+msgid: "Space"
+msgstr: "ຍະວ່າງ"
+
+msgid: "Print field names on first line"
+msgstr: "ພິມຊື່ field ໃນແຖວທຳອິດ"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "ຫາກທ່ານຈະສົ່ງອອກຖານຂໍ້ມູນທີ່ມີຫຼາຍແຖວ ຂໍແນະນຳໃຫ້ເລືອກຜົນເປັນ text file"
+
+msgid: "Output to"
+msgstr: "ສົ່ງອອກເປັນ"
+
+msgid: "Browser"
+msgstr: "Browser"
+
+msgid: "Text file"
+msgstr: "Text file"
+
+msgid: "Home"
+msgstr: "ໜ້າທຳອິດ"
+
+msgid: "Users"
+msgstr: "ຜູ້ໃຊ້ງານ"
+
+msgid: "Query"
+msgstr: "ຄິວຣີ"
+
+msgid: "Import"
+msgstr: "ນຳເຂົ້າ"
+
+msgid: "Overview"
+msgstr: "ພາບລວມ"
+
+msgid: "Browse"
+msgstr: "ເລືອກ"
+
+msgid: "Your changes were saved to the database"
+msgstr: "ການບັນທຶກຂອງທ່ານຖືກບັນທຶກໃນຖານຂໍ້ມູນແລ້ວ"
+
+msgid: "delete this row"
+msgstr: "ລຶບແຖວນີ້"
+
+msgid: "delete these rows"
+msgstr: "ລຶບແຖວເຫລົ່ານີ້"
+
+msgid: "empty this table"
+msgstr: "ລຶບຂໍ້ມູນໃນແຖວນີ້"
+
+msgid: "empty these tables"
+msgstr: "ລຶບຂໍ້ມູນໃນແຖວເຫລົ່ານີ້"
+
+msgid: "drop this table"
+msgstr: "ໂຍນຕາຕະລາງນີ້ຖິ້ມ"
+
+msgid: "drop these tables"
+msgstr: "ໂຍນຕາຕະລາງເຫລົ່ານີ້ຖິ້ມ"
+
+msgid: "delete this column"
+msgstr: "ລຶບຄໍລຳນີ້"
+
+msgid: "delete these columns"
+msgstr: "ລຶບຄໍລັບເຫລົ່ານີ້"
+
+msgid: "delete this index"
+msgstr: "ລຶບອິນເດັກນີ້"
+
+msgid: "delete these indexes"
+msgstr: "ລຶບອິນເດັກເຫລົ່ານີ້"
+
+msgid: "delete this user"
+msgstr: "ລຶບຜູ້ໃຊ້ຄົນນີ້"
+
+msgid: "delete these users"
+msgstr: "ລຶບຜູ້ໃຊ້ເຫລົ່ານີ້"
+
+msgid: "Are you sure you want to"
+msgstr: "ທ່ານແນ່ໃຈຫຼືບໍ່ວ່າຈະ"
+
+msgid: "The following query will be run:"
+msgstr: "ນີ້ແມ່ນຄຳສັ່ງທີ່ຈະສັ່ງງານ"
+
+msgid: "The following queries will be run:"
+msgstr: "ນີ້ແມ່ນຄຳສັ່ງທີ່ຈະສັ່ງງານ"
+
+msgid: "Confirm"
+msgstr: "ຢືນຢັນ"
+
+msgid: "Successfully saved changes"
+msgstr: "ບັນທຶກຮຽບຮ້ອຍແລ້ວ"
+
+msgid: "Full Text"
+msgstr: "ຂໍ້ຄວາມເຕັມ"
+
+msgid: "Loading..."
+msgstr: "ກຳລັງໂຫລດ..."
+
+msgid: "Error"
+msgstr: "ຜິດພາດ!"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "ເກີດຄວາມຜິດພາດລະຫວ່າງການຮັບຂໍ້ມູນຈາກເຊີບເວີ"
+
+msgid: "Logout"
+msgstr: "ອອກຈາກລະບົບ"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "ດ້ວຍເຫດຜົນບາງປະການ ເຮັດໃຫ້ພາຣາເມັດເຕີຂອງຕາຕະລາງ ບໍ່ໄດ້ຖືກໃສ່ມານຳຄຳຮ້ອງຂໍຂອງທ່ານ"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "ຍິນດີຕ້ອນຮັບ ເຂົ້າສູ່ SQL Buddy!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "ທ່ານໄດ້ເຊື່ອມຕໍ່ເຂົ້າຖານຂໍ້ມູນ %s ໃສຊື່ %s."
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "ລະບົບຖານຂໍ້ມູນນີ້ຖືກເປີດໃຊ້ມາຕັ້ງແຕ່ %s ແລະສົ່ງຂໍ້ມູນໄປແລ້ວປະມານ %s."
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "ເວີຊັນໃຫມ່ຂອງ SQL Buddy ອອກແລ້ວ!"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "ທ່ານກຳລັງໃຊ້ SQL Buddy ເວີຊັນ %s ແລະຕອນນີ້ເວີຊັນ %s ມີໃຫ້ດາວໂຫລດແລ້ວ."
+
+msgid: "Getting started"
+msgstr: "ເລີ່ມໃຊ້ງານ"
+
+msgid: "Help"
+msgstr: "ຊ່ວຍເຫລືອ"
+
+msgid: "Translations"
+msgstr: "ຮ່ວມແປ"
+
+msgid: "Release Notes"
+msgstr: "ໝາຍເຫດໃນເວີຊັນ"
+
+msgid: "Contact"
+msgstr: "ຕິດຕໍ່"
+
+msgid: "Create a new database"
+msgstr: "ສ້າງຖານຂໍ້ມູນໃຫມ່"
+
+msgid: "Did you know..."
+msgstr: "ທ່ານຮູ້ບໍ່ວ່າ..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "ມີວິທີງ່າຍກວ່ານັ້ນໃນການເລືອກຂໍ້ມູນກຸ່ມໃຫຍ່. ຂັ້ນຕອນທຳອິດ ຄລິກໃສ່ທີ່ເຄື່ອງໝາຍຖືກໃນແຖວທີ່ ໑ ຈາກນັ້ນໃຫ້ກົດປຸ່ມ Shift ໃນແປ້ນຄີບອດຄ້າງໄວ້ ແລ້ວຄລິກໃສ່ທີ່ເຄື່ອງໝາຍຖືກ ໃນແຖວສຸດທ້າຍ. ການເຮັດເຊັ່ນນີ້ຈະເປັນການເລືອກແຖວຂໍ້ມູນ ຈາກແຖວທຳອິດ ຈົນໄປຮອດແຖວສຸດທ້າຍທີ່ທ່ານຄລິກ."
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "ຄໍລຳໃນແຖບເລືອກ ແລະແຖບຄິວຣີ ສາມາດທີ່ຈະຫຍໍ້ ຫຼືຂະຫຍາຍໄດ້. ທ່ານສາມາດຄລິກເພື່ອລາກ ໃຫ້ໄດ້ຂະໜາດຕາມຕ້ອງການ."
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "ຫນ້າຕ່າງການເຂົ້າສູ່ລະບົບ ໃນຄ່າເລີ່ມຕົ້ນຂອງຜູ້ໃຊ້ງານ root@localhost. ທ່ານສາມາດແກ້ໄຂຜູ້ໃຊ້ງານ,ເຊີບເວີ ໄດ້ຕາມຄວາມຕ້ອງການໄດ້ທີ່ໄຟລ config.php"
+
+msgid: "Keyboard shortcuts"
+msgstr: "ປຸ່ມລັດ"
+
+msgid: "Press this key..."
+msgstr: "ກົດປຸ່ມນີ້"
+
+msgid: "...and this will happen"
+msgstr: "ແລ້ວຈັກເກີດ..."
+
+msgid: "select none"
+msgstr: "ບໍ່ເລືອກຈັກອັນ"
+
+msgid: "edit selected items"
+msgstr: "ແກ້ໄຂທີ່ເລືອກໄວ້"
+
+msgid: "delete selected items"
+msgstr: "ລຶບທີ່ເລືອກໄວ້"
+
+msgid: "refresh page"
+msgstr: "ໂຫລດຫນ້ານີ້ອີກເທື່ອ"
+
+msgid: "load the query tab"
+msgstr: "ໂຫລດແຖວຄິວຣີ"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "ແຖບເລືອກ - ໄປໜ້າທຳອິດຂອງຜົນການຊອກຫາ"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "ແຖບເລືອກ - ໄປໜ້າສຸດທ້າຍຂອງຜົນການຊອກຫາ"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "ແຖບເລືອກ - ໄປໜ້າກ່ອນໜ້ານີ້ຂອງຜົນການຊອກຫາ"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "ແຖບເລືອກ - ໄປໜ້າຕໍ່ໄປຂອງຜົນການຊອກຫາ"
+
+msgid: "optimize selected tables"
+msgstr: "ປັບປຸງຕາຕະລາງທີ່ເລືອກ"
+
+msgid: "Choose a .sql file to import"
+msgstr: "ເລືອກໄຟລ໌ .sql ທີ່ຕ້ອງການນຳເຂົ້າ"
+
+msgid: "File
+"
+msgstr: "ໄຟລ໌"
+
+msgid: "Ignore first line"
+msgstr: "ບໍ່ຕ້ອງສົນໃຈແຖວທຳອິດ"
+
+msgid: "Edit"
+msgstr: "ແກ້ໄຂ"
+
+msgid: "Refresh"
+msgstr: "ຣີເຟຣດ"
+
+msgid: "No primary key defined"
+msgstr: "ຍັງບໍ່ໄດ້ລະບຸກະແຈຫລັກ"
+
+msgid: "First"
+msgstr: "ທຳອິດ"
+
+msgid: "Prev"
+msgstr: "ກ່ອນໜ້ານີ້"
+
+msgid: "Next"
+msgstr: "ຕໍ່ໄປ"
+
+msgid: "Last"
+msgstr: "ໜ້າສຸດທ້າຍ"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "ຄິວຣີຂອງທ່ານໃຫ້ຜົາການຊອກຫາເປັນຈຳນວນ %d"
+msgstr[1]: "ຄິວຣີຂອງທ່ານໃຫ້ຜົາການຊອກຫາເປັນຈຳນວນ %d"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "ໝາຍເຫດ: ເພື່ອປ້ອງກັນບໍ່ໃຫ້ໜ້ານີ້ຄ້າງ, ໃຫ້ເລືອກສະເພາະ %d ທຳອິດທີ່ຖືກສະແດງໃນໜ້າເທົ່ານັ້ນ."
+
+msgid: "binary data"
+msgstr: "ຂໍ້ມູນໄບນາຣີ"
+
+msgid: "Your query affected %d rows"
+msgstr: "ຄິວຣີຂອງທ່ານເປັນຜົນກັບຂໍ້ມູນ %d ແຖວ"
+
+msgid: "Your query did not return any results"
+msgstr: "ຄິວຣີຂອງທ່ານບໍ່ມີຜົນລັບໃດ ໆ"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "ຂໍ້ມູນຂອງທ່ານຖືກບັນທຶກລົງໃນຖານຂໍ້ມູນແລ້ວ"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "ປະກົດມີບັນຫາເລັກນ້ອຍໃນຕະຕາລາງຊື່ \"%s\""
+
+msgid: "There was a problem logging you in"
+msgstr: "ປະກົດວ່າມີບັນຫາໃນການລັອກອິນ"
+
+msgid: "Login"
+msgstr: "ລັອກອິນ"
+
+msgid: "Unsupported browser"
+msgstr: "browser ທີ່ບໍ່ຮອງຮັບ"
+
+msgid: "Help!"
+msgstr: "ຊ່ວຍແດ່!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "session ການໃຊ້ງານຂອງທ່ານໝົດລົງແລ້ວ, ກະລຸນາລັອກອິນເຂົ້າມາໃໝ່."
+
+msgid: "Username"
+msgstr: "ຊື່ຜູ້ໃຊ້ງານ"
+
+msgid: "Password"
+msgstr: "ລະຫັດຜ່ານ"
+
+msgid: "Run a query on the %s database"
+msgstr: "ຣັນຄິວຣີໃນຖານຂໍ້ມູນ %s"
+
+msgid: "Columns"
+msgstr: "ຄໍລຳ"
+
+msgid: "Add a column"
+msgstr: "ເພີ່ມຄໍລຳ"
+
+msgid: "Insert this column"
+msgstr: "ໃສ່ຄໍລັມນີ້"
+
+msgid: "At end of table"
+msgstr: "ຈຸດສຸດທ້າຍຂອງຕາຕະລາງ"
+
+msgid: "At beginning of table"
+msgstr: "ຈູດເລີ່ມຕົ້ນຂອງຕາຕະລາງ"
+
+msgid: "After"
+msgstr: "ຫຼັງຈາກ"
+
+msgid: "Edit table"
+msgstr: "ແກ້ໄຂຕາຕະລາງ"
+
+msgid: "Indexes"
+msgstr: "ອິນເດັກ"
+
+msgid: "Add an index"
+msgstr: "ເພີ່ມອິນເດັກ"
+
+msgid: "Column(s)"
+msgstr: "ຄໍລຳ"
+
+msgid: "Show %d more..."
+msgstr: "ສະແດງ %d ເພີ່ມ..."
+
+msgid: "Empty table"
+msgstr: "ລຶບຂໍ້ມູນໃນຕາຕະລາງນີ້"
+
+msgid: "Drop table"
+msgstr: "ໂຍນຕາຕະລາງນີ້ຖິ້ມ"
+
+msgid: "Optimize table"
+msgstr: "ປັບປຸງຕາຕະລາງ"
+
+msgid: "Table Information"
+msgstr: "ລາຍລະອຽດຕາຕະລາງ"
+
+msgid: "Host"
+msgstr: "Host"
+
+msgid: "Add a new user"
+msgstr: "ເພີ່ມຜູ້ໃຊ້ງານໃໝ່"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "ໃສ່ໃນຮູບແບບນີ້: ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "ທ່ານແນ່ໃຈຫຼືບໍ່ວ່າຈະລຶບຂໍ້ມູນໃນຕາຕະລາງ '%s'? ຖ້າທ່ານຕ້ອງການຈະລຶບແທ້ ລະບົບຈະຣັນຄຳສັ່ງລຸ່ມນີ້:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "ທ່ານແນ່ໃຈຫຼືບໍ່ວ່າຈະໂຍນຕາຕະລາງ '%s' ຖິ້ມ? ຖ້າທ່ານຕ້ອງການຈະລຶບແທ້ ລະບົບຈະຣັນຄຳສັ່ງລຸ່ມນີ້:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "ທ່ານແນ່ໃຈຫຼືບໍ່ວ່າຈະໂຍນຖານຂໍ້ມູນ '%s' ຖິ້ມ? ການກະທຳນີ້ຈະເປັນການລຶບຖານຂໍ້ມູນ, ຕາຕະລາງ ແລະຂໍ້ມູນທັງໝົດໃນຖານຂໍ້ມູນນີ້ຖິ້ມ."
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "ຂໍອະໄພ, ຂະນະນີ້ມີພຽງ Internet Explorer 7 ເທົ່ານັ້ນທີ່ສາມາດໃຊ້ໄດ້. ທ່ານສາມາດດາວໂຫລດໄດ້ຟຣີຈາກເວັບໄຊຂອງ Microsoft. ນອກຈາກນີ້ກໍ່ຍັງມີ browser ຟຣີອື່ນ ໆ ທີ່ຮອງຮັບເຊັ່ນ Firefox, Safari, ແລະ Opera ເປັນຕົ້ນ."
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "ລະບົບກວດສອບວ່າ Browser ຂອງທ່ານ ຍັງບໍໄດ້່ເປີດການທຳງານຂອງ cookies. ເພື່ອໃຫ້ລະບົບເຮັດວຽກກະລຸນາເປີດການທຳງານຂອງ Cookies ກ່ອນ"
+
+msgid: "Importing..."
+msgstr: "ກຳລັງນຳເຂົ້າ..."
+
+msgid: "Drop the '%s' database"
+msgstr: "ໂຍນຖານຂໍ້ມູນ '%s' ຖິ້ມ"
+
+msgid: "Okay"
+msgstr: "ຕົກລົງ"
+
+msgid: "Cancel"
+msgstr: "ຍົກເລີກ"
+
+msgid: "Storage engine"
+msgstr: "Storage engine"
+
+msgid: "Language"
+msgstr: "ພາສາ"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "ຄຳສັ່ງ %d ຖືກປະຕິບັດຈາກໄຟລ໌"
+msgstr[1]: "ຄຳສັ່ງ %d ຖືກປະຕິບັດຈາກໄຟລ໌"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "ມີຂໍ້ມູນ %d ແຖວຖືກປ້ອນລົງໃນຖານຂໍ້ມູນຈາກໄຟລ໌"
+msgstr[1]: "ມີຂໍ້ມູນ %d ແຖວຖືກປ້ອນລົງໃນຖານຂໍ້ມູນຈາກໄຟລ໌"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "ມີຂໍ້ມູນ %d ແຖວຖືກຂ້າມໄປເພາະຂໍ້ມູນບາງຢ່າງບໍ່ຖືກຕ້ອງ"
+msgstr[1]: "ມີຂໍ້ມູນ %d ແຖວຖືກຂ້າມໄປເພາະຂໍ້ມູນບາງຢ່າງບໍ່ຖືກຕ້ອງ"
+
+msgid: "Theme"
+msgstr: "ຮູບແບບໜ້າຕາ"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f ວິນາທີ)"
+
+msgid: "The following errors were reported"
+msgstr: "ລາຍງານຂໍ້ຜິດພາດດ້ານລຸ່ມຮຽບຮ້ອຍແລ້ວ"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "ທ່ານບໍ່ມີອະພິສິດພຽງພໍທີ່ຈະສ້າງຜູ້ໃຊ້ໃໝ່ໄດ້."
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "ທ່ານບໍ່ມີອະພິສິດພຽງພໍທີ່ຈະຈັດການ ຫຼືເບິ່ງຜູ້ໃຊ້ຕ່າງ ໆ ໄດ້."
+
+msgid: "You are connected to %s."
+msgstr: "ຂະນະນີ້ທ່ານກຳລັງເຊື່ອມຕໍ່ໄປທີ່ %s."
+
+msgid: "Allow access to"
+msgstr: "ອະນຸຍາດໃຫ້ເຂົ້າເຖິງ"
+
+msgid: "All databases"
+msgstr: "ຖານຂໍ້ມູນທັງໝົດ"
+
+msgid: "Selected databases"
+msgstr: "ຖານຂໍ້ມູນທີ່ເລືອກໄວ້"
+
+msgid: "Give user"
+msgstr: "ໃຫ້ຜູ້ໃຊ້ງານ"
+
+msgid: "Updates"
+msgstr: "ອັບເດດ"
+
+msgid: "There are no updates available"
+msgstr: "ຍັງບໍ່ມີເວີຊັນອັບເດດໃໝ່ເທື່ອ"
+
+msgid: "Change password"
+msgstr: "ປ່ຽນລະຫັດຜ່ານ"
+
+msgid: "Redirecting..."
+msgstr: "ຕົກລົງ"

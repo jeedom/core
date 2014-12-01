@@ -1,0 +1,667 @@
+Language: Українська
+Language-Code: uk_UA
+Build-Date: Tue, 18 Jan 2011 15:25:14 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "Файл неможливо прочитати або він порожній"
+
+msgid: "Error performing operation"
+msgstr: "Помилка підчас виконання операції"
+
+msgid: "All"
+msgstr: "Усі"
+
+msgid: "None"
+msgstr: "Жодного"
+
+msgid: "With selected"
+msgstr: "З обраними"
+
+msgid: "Empty"
+msgstr: "Порожній"
+
+msgid: "Drop"
+msgstr: "Видалити"
+
+msgid: "Optimize"
+msgstr: "Оптимізувати"
+
+msgid: "Table"
+msgstr: "Таблиця"
+
+msgid: "Rows"
+msgstr: "Рядки"
+
+msgid: "Size"
+msgstr: "Розмір"
+
+msgid: "Overhead"
+msgstr: "Верхній"
+
+msgid: "Options"
+msgstr: "Параметри"
+
+msgid: "Edit database"
+msgstr: "Редагувати базу даних"
+
+msgid: "Charset"
+msgstr: "Кодування"
+
+msgid: "Submit"
+msgstr: "Передати"
+
+msgid: "Create a new table"
+msgstr: "Створити нову таблицю"
+
+msgid: "Name"
+msgstr: "Ім'я"
+
+msgid: "Setup the fields for the table below"
+msgstr: "Задайте поля для таблиці нижче"
+
+msgid: "New field"
+msgstr: "Нове поле"
+
+msgid: "Type"
+msgstr: "Тип"
+
+msgid: "Values"
+msgstr: "Значення"
+
+msgid: "Key"
+msgstr: "Ключ"
+
+msgid: "primary"
+msgstr: "первинний"
+
+msgid: "unique"
+msgstr: "унікальний"
+
+msgid: "index"
+msgstr: "індекс"
+
+msgid: "Default"
+msgstr: "За замовчуванням"
+
+msgid: "Other"
+msgstr: "Інший"
+
+msgid: "Unsigned"
+msgstr: "Беззнаковий"
+
+msgid: "Binary"
+msgstr: "Бінарний"
+
+msgid: "Not Null"
+msgstr: "Не нуль"
+
+msgid: "Auto Increment"
+msgstr: "Авто-інкремент"
+
+msgid: "Add field"
+msgstr: "Додати поле"
+
+msgid: "Oops"
+msgstr: "Упс"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "По деяким причинам, параметри бази не було включено у запит"
+
+msgid: "Save changes to original"
+msgstr: "Зберегти зміни в оригіналі"
+
+msgid: "Insert as new row"
+msgstr: "Вставити новий рядок"
+
+msgid: "Save"
+msgstr: "Зберегти"
+
+msgid: "User"
+msgstr: "Користувач"
+
+msgid: "All privileges"
+msgstr: "Всі привілеї"
+
+msgid: "Selected privileges"
+msgstr: "Вибрани привілеї"
+
+msgid: "User privileges"
+msgstr: "Привілеї користувача"
+
+msgid: "Select"
+msgstr: "Вибрати"
+
+msgid: "Insert"
+msgstr: "Додати"
+
+msgid: "Update"
+msgstr: "Оновити"
+
+msgid: "Delete"
+msgstr: "Видалити"
+
+msgid: "Alter"
+msgstr: "Переробити"
+
+msgid: "Create"
+msgstr: "Створити"
+
+msgid: "Temp tables"
+msgstr: "Тимчасові таблиці"
+
+msgid: "Administrator privileges"
+msgstr: "Адміністраторські привілеї"
+
+msgid: "File"
+msgstr: "Файл"
+
+msgid: "Process"
+msgstr: "Процес"
+
+msgid: "Reload"
+msgstr: "Перезавантаження"
+
+msgid: "Shutdown"
+msgstr: "Завершення"
+
+msgid: "Super"
+msgstr: "Супер"
+
+msgid: "Grant option"
+msgstr: "Права доступу"
+
+msgid: "User not found!"
+msgstr: "Користувач не знайдений!"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "Вам потрібно експортувати структуру, дані або все разом "
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "Виберіть бази даних для експорту"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "Виберіть таблиці для експорту"
+
+msgid: "Table `%s` is empty"
+msgstr: "Таблиця `%s` порожня"
+
+msgid: "Results"
+msgstr: "Результати"
+
+msgid: "Select all"
+msgstr: "Вибрати все"
+
+msgid: "The file could not be opened"
+msgstr: "Файл не може бути відкритий"
+
+msgid: "Could not write to file"
+msgstr: "Неможливо записати у файл"
+
+msgid: "Successfully wrote content to file"
+msgstr: "Успішно записано контент у файл"
+
+msgid: "Download"
+msgstr: "Завантажити"
+
+msgid: "Note
+"
+msgstr: "Нотатка"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "При розміщенні на публічному сервері, вам необхідно видалити цей файл з серверу після завантаження "
+
+msgid: "Export"
+msgstr: "Експорт"
+
+msgid: "Tables"
+msgstr: "Таблиці"
+
+msgid: "Databases"
+msgstr: "Бази даних"
+
+msgid: "Format"
+msgstr: "Формат"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "Структура"
+
+msgid: "Data"
+msgstr: "Дані"
+
+msgid: "Compact inserts"
+msgstr: "Компактна вставка"
+
+msgid: "Complete inserts"
+msgstr: "Повна вставка"
+
+msgid: "Delimiter"
+msgstr: "Розмежувач"
+
+msgid: "Comma"
+msgstr: "Кома"
+
+msgid: "Tab"
+msgstr: "Табуляція"
+
+msgid: "Semicolon"
+msgstr: "Крапка з комою"
+
+msgid: "Space"
+msgstr: "Пробіл"
+
+msgid: "Print field names on first line"
+msgstr: "Вивести назву полів першою стрічкою"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "Якщо Ви експортуєте велику кількість рядків, рекомендується щоб Ви вибрали для збереження текстовий файл"
+
+msgid: "Output to"
+msgstr: "виводити в"
+
+msgid: "Browser"
+msgstr: "Бравзер"
+
+msgid: "Text file"
+msgstr: "Текстовий файл"
+
+msgid: "Home"
+msgstr: "Додому"
+
+msgid: "Users"
+msgstr: "Користувачі"
+
+msgid: "Query"
+msgstr: "Запит"
+
+msgid: "Import"
+msgstr: "Імпорт"
+
+msgid: "Overview"
+msgstr: "Огляд"
+
+msgid: "Browse"
+msgstr: "Шукати"
+
+msgid: "Your changes were saved to the database"
+msgstr: "Ваші зміни було збережено до бази данних"
+
+msgid: "delete this row"
+msgstr: "видалити цей рядок"
+
+msgid: "delete these rows"
+msgstr: "видалити ці рядки"
+
+msgid: "empty this table"
+msgstr: "спорожнити цю таблицю"
+
+msgid: "empty these tables"
+msgstr: "спорожнити ці таблиці"
+
+msgid: "drop this table"
+msgstr: "знищити цю таблицю"
+
+msgid: "drop these tables"
+msgstr: "знищити ці таблиці"
+
+msgid: "delete this column"
+msgstr: "видалити цей стовпчик"
+
+msgid: "delete these columns"
+msgstr: "видалити ці стовпчики"
+
+msgid: "delete this index"
+msgstr: "видалити цей індекс"
+
+msgid: "delete these indexes"
+msgstr: "видалити ці індекси"
+
+msgid: "delete this user"
+msgstr: "видалити користувача"
+
+msgid: "delete these users"
+msgstr: "видалити цього користувачя"
+
+msgid: "Are you sure you want to"
+msgstr: "Ви дійсно бажаєте"
+
+msgid: "The following query will be run:"
+msgstr: "Наступний запит буде виконаний:"
+
+msgid: "The following queries will be run:"
+msgstr: "Наступні запити будуть виконані?"
+
+msgid: "Confirm"
+msgstr: "Підтвердити"
+
+msgid: "Successfully saved changes"
+msgstr: "Зміни успішно збережено"
+
+msgid: "Full Text"
+msgstr: "Повний текст"
+
+msgid: "Loading..."
+msgstr: "Завантаження..."
+
+msgid: "Error"
+msgstr: "Помилка"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "Сталася помилка при отримані даних зі сервера"
+
+msgid: "Logout"
+msgstr: "Вихід"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "З певних причин, назва таблиці не була включена в ваш запит"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "Вас вітає SQL Buddy!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "Ви з'єднані з MySQL %s як користувач %s.	"
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "Сервер баз даних працює з %s і приблизно передав %s даних."
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "Доступна нова версія SQL Buddy"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "Ваша версія SQL Buddy %s а зараз доступна %s для завантаження."
+
+msgid: "Getting started"
+msgstr: "Почати"
+
+msgid: "Help"
+msgstr: "Допомога"
+
+msgid: "Translations"
+msgstr: "Переклади"
+
+msgid: "Release Notes"
+msgstr: "Примітки до випуску"
+
+msgid: "Contact"
+msgstr: "Контакт"
+
+msgid: "Create a new database"
+msgstr: "Створити нову базу даних"
+
+msgid: "Did you know..."
+msgstr: "Чи знаєте ви..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "Існує простий спосіб вибрати велику групу елементів при перегляді записів в таблиці. Позначити перший рядок, утримуючи кнопку Shift, і позначте кінцевий рядок. Прапорці між цими рядками будуть автоматично позначені."
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "Колонки в закладках запиту і перегляду розсовуємо. Відрегулюйте їх на скільки ви забажаєте."
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "На сторінці входу використовується користувач за замовчуванням root@localhost. Ви можете відредагувати config.php і змінити користувача за умовчанням і хост."
+
+msgid: "Keyboard shortcuts"
+msgstr: "Клавіатурні скорочення"
+
+msgid: "Press this key..."
+msgstr: "Натисніть цю кнопку..."
+
+msgid: "...and this will happen"
+msgstr: "...і відбудеться ця дія"
+
+msgid: "select none"
+msgstr: "зняти виділення"
+
+msgid: "edit selected items"
+msgstr: "редагувати виділені елементи"
+
+msgid: "delete selected items"
+msgstr: "видалити виділені елементи"
+
+msgid: "refresh page"
+msgstr: "оновити сторінку"
+
+msgid: "load the query tab"
+msgstr: "Завантажити запит у вкладці"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "переглянути на вкладці - перейти до першої сторінки результатів"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "переглянути на вкладці - перейти до останьої сторінки результатів"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "переглянути на вкладці - перейти до попередньої сторінки результатів"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "переглянути на вкладці - перейти до наступної сторінки результатів"
+
+msgid: "optimize selected tables"
+msgstr: "оптимізувати виділені таблиці"
+
+msgid: "Choose a .sql file to import"
+msgstr: "Виберіть .sql файл для імпорту"
+
+msgid: "File
+"
+msgstr: "Файл"
+
+msgid: "Ignore first line"
+msgstr: "Ігнорувати перший рядок"
+
+msgid: "Edit"
+msgstr: "Редагувати"
+
+msgid: "Refresh"
+msgstr: "Оновити"
+
+msgid: "No primary key defined"
+msgstr: "Не визначено первинного ключа"
+
+msgid: "First"
+msgstr: "Первий"
+
+msgid: "Prev"
+msgstr: "Попередній"
+
+msgid: "Next"
+msgstr: "Наступний"
+
+msgid: "Last"
+msgstr: "Останній"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "Ваш запит повернув %d результат"
+msgstr[1]: "Ваш запит повернув %d результатів"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "Щоб у Вас не виникло проблем з роботою браузеру тільки %d результатів будуть відображені"
+
+msgid: "binary data"
+msgstr: "двійкові дані"
+
+msgid: "Your query affected %d rows"
+msgstr: "Ваш запит задіяв %d записів"
+
+msgid: "Your query did not return any results"
+msgstr: "Ваш запит не повернув жодного результату"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "Ваші дані внесено до бази даних"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "Виникла невелика проблема з пошуком таблиці \"%s\""
+
+msgid: "There was a problem logging you in"
+msgstr: "Виникла проблема при спробі входу"
+
+msgid: "Login"
+msgstr: "Логін"
+
+msgid: "Unsupported browser"
+msgstr: "Непідтримуваний бравзер"
+
+msgid: "Help!"
+msgstr: "Допомога!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "Час вашої сесії вичерпано. Будь-ласка увійдіть під логіном ще раз."
+
+msgid: "Username"
+msgstr: "Логін"
+
+msgid: "Password"
+msgstr: "Пароль"
+
+msgid: "Run a query on the %s database"
+msgstr: "Виконати запит до бази даних %s"
+
+msgid: "Columns"
+msgstr: "Стовбці"
+
+msgid: "Add a column"
+msgstr: "Додати стовбець"
+
+msgid: "Insert this column"
+msgstr: "Вставити цей стовбець"
+
+msgid: "At end of table"
+msgstr: "В кінці таблиці"
+
+msgid: "At beginning of table"
+msgstr: "На початку таблиці"
+
+msgid: "After"
+msgstr: "Після"
+
+msgid: "Edit table"
+msgstr: "Редагувати таблицю"
+
+msgid: "Indexes"
+msgstr: "Індекси"
+
+msgid: "Add an index"
+msgstr: "Додати індекс"
+
+msgid: "Column(s)"
+msgstr: "Стовбці"
+
+msgid: "Show %d more..."
+msgstr: "Показати %d більше..."
+
+msgid: "Empty table"
+msgstr: "Очистити таблицю"
+
+msgid: "Drop table"
+msgstr: "Видалити таблицю"
+
+msgid: "Optimize table"
+msgstr: "Оптимізувати таблицю"
+
+msgid: "Table Information"
+msgstr: "Інформація про таблицю"
+
+msgid: "Host"
+msgstr: "Хост"
+
+msgid: "Add a new user"
+msgstr: "Додати нового користувача"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "Введіть відповідно формату: ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "Ви впевнені, що хочете очистити таблицю '%s'? Всі дані з цієї таблиці буде видалено. Буде виконано такий запит: "
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "Ви впевнені, що хочете видалити таблицю '%s'? Це призведе до видалення таблиці та її даних. Буде виконано наступний запит:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "Ви впевнені, що хочете видалити базу данних '%s'? Це призведе до видалення бази даних, всіх її таблиць і даних в цих таблицях. Буде виконано наступний запит:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "Нам дуже шкода, але на даний момент підтримується тільки Internet Explorer 7. Він доступний для вільного завантаження з сайту компанії Майкрософт. Інші вільно-поширювані браузери так само підтримуються, включаючи Firefox, Safari і Opera."
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "Ви, здається, не включили підтримку кук. Для роботи сесій більшість інсталяцій php вимагає куки."
+
+msgid: "Importing..."
+msgstr: "Імпортую..."
+
+msgid: "Drop the '%s' database"
+msgstr: "Видалити базу даних '%s'"
+
+msgid: "Okay"
+msgstr: "Гаразд"
+
+msgid: "Cancel"
+msgstr: "Скасувати"
+
+msgid: "Storage engine"
+msgstr: "Механізм збереження"
+
+msgid: "Language"
+msgstr: "Мова"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "Команда %d була виконана з вмісту файлу"
+msgstr[1]: "Команди %d були виконані з вмісту файлу"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "Рядок %d була вставлена в базу даних з вмісту файлу"
+msgstr[1]: "Строки %d були вставлені в базу даних з вмісту файлу"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "Рядок %d була пропущена, тому що кількість значень невірне"
+msgstr[1]: "Строки %d були пропущені, тому що кількість значень невірне"
+
+msgid: "Theme"
+msgstr: "тема"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f секунд)"
+
+msgid: "The following errors were reported"
+msgstr: "Виявлено наступні помилки"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "Ви не маєте достатньо прав для створення нових користувачів"
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "Ви не маєте достатньо прав для перегляду чи керуванню користувачами"
+
+msgid: "You are connected to %s."
+msgstr: "Ви під'єднані до"
+
+msgid: "Allow access to"
+msgstr: "Дозволити доступ до"
+
+msgid: "All databases"
+msgstr: "Усі бази данних"
+
+msgid: "Selected databases"
+msgstr: "Вибрати базу данних"
+
+msgid: "Give user"
+msgstr: "Отримати користувача"
+
+msgid: "Updates"
+msgstr: "Поновлення"
+
+msgid: "There are no updates available"
+msgstr: "Немає наявних поновленнь"
+
+msgid: "Change password"
+msgstr: "Змінити пароль"
+
+msgid: "Redirecting..."
+msgstr: "Перенаправлення..."

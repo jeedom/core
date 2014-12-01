@@ -220,6 +220,56 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
         <div class="panel panel-default expertModeVisible">
             <div class="panel-heading">
                 <h3 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_database">
+                        {{Base de données}}
+                    </a>
+                </h3>
+            </div>
+            <div id="config_database" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <div class="alert alert-danger">{{ATTENTION ces opérations sont risquées, vous pouvez perdre l'accès à votre systeme et à Jeedom. Suite à une modification de la base de données, l'équipe Jeedom se reserve le droit de refuser toute demande de support.}}</div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{Accès à l'interface d'administration}}</label>
+                                <div class="col-sm-3">
+                                    <a class="btn btn-danger" target="_blank" href="<?php echo jeedom::getCurrentSqlBuddyFolder() . '/index.php' ?>"><i class="fa fa-exclamation-triangle"></i> {{Se connecter}}</a>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label class="col-sm-2 control-label">{{Machine (hostname)}}</label>
+                                <div class="col-sm-1">
+                                    <?php
+                                    global $CONFIG;
+                                    echo $CONFIG['db']['host'];
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{Utilisateur (username)}}</label>
+                                <div class="col-sm-1">
+                                    <?php
+                                    echo $CONFIG['db']['username'];
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{Mot de passe (password)}}</label>
+                                <div class="col-sm-1">
+                                    <?php
+                                    echo $CONFIG['db']['password'];
+                                    ?>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default expertModeVisible">
+            <div class="panel-heading">
+                <h3 class="panel-title">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_network">
                         {{Configuration réseaux}}
                     </a>

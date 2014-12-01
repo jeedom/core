@@ -1,0 +1,668 @@
+Language: Shqip
+Language-Code: sq_AL
+Build-Date: Tue, 18 Jan 2011 15:50:19 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "Fajlli nuk mund te lexohet ose eshte i zbrazet"
+
+msgid: "Error performing operation"
+msgstr: "Gabim gjate operacionit"
+
+msgid: "All"
+msgstr: "Gjitha"
+
+msgid: "None"
+msgstr: "Asnje"
+
+msgid: "With selected"
+msgstr: "Me te selektuarat"
+
+msgid: "Empty"
+msgstr: "Zbraz"
+
+msgid: "Drop"
+msgstr: "Hedhe"
+
+msgid: "Optimize"
+msgstr: "Optimizoje"
+
+msgid: "Table"
+msgstr: "Tabela"
+
+msgid: "Rows"
+msgstr: "Rrjeshtat"
+
+msgid: "Size"
+msgstr: "Madhesia"
+
+msgid: "Overhead"
+msgstr: "Siper"
+
+msgid: "Options"
+msgstr: "Opcionet"
+
+msgid: "Edit database"
+msgstr: "Rregullo databazen"
+
+msgid: "Charset"
+msgstr: "Charset"
+
+msgid: "Submit"
+msgstr: "Paraqit"
+
+msgid: "Create a new table"
+msgstr: "Krijo tabele te re"
+
+msgid: "Name"
+msgstr: "Emri"
+
+msgid: "Setup the fields for the table below"
+msgstr: "Ndertoj fushat per tabelen me poshte"
+
+msgid: "New field"
+msgstr: "Fushe e re"
+
+msgid: "Type"
+msgstr: "Lloji"
+
+msgid: "Values"
+msgstr: "Vlera"
+
+msgid: "Key"
+msgstr: "Grepi"
+
+msgid: "primary"
+msgstr: "primare"
+
+msgid: "unique"
+msgstr: "unike"
+
+msgid: "index"
+msgstr: "indeks"
+
+msgid: "Default"
+msgstr: "Default"
+
+msgid: "Other"
+msgstr: "Tjeter"
+
+msgid: "Unsigned"
+msgstr: "E panënshkruar"
+
+msgid: "Binary"
+msgstr: "Binar"
+
+msgid: "Not Null"
+msgstr: "Jo e zbrazet"
+
+msgid: "Auto Increment"
+msgstr: "Auto-rritje"
+
+msgid: "Add field"
+msgstr: "Shto fushe"
+
+msgid: "Oops"
+msgstr: "upss"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "Per disa arsyeje, parametrat e databazes nuk jane bashkangjitur ne kerkese"
+
+msgid: "Save changes to original"
+msgstr: "Ruaj ndryshimet ne origjinal"
+
+msgid: "Insert as new row"
+msgstr: "Shto si rrjesht te ri"
+
+msgid: "Save"
+msgstr: "Ruaj"
+
+msgid: "User"
+msgstr: "Përdorues"
+
+msgid: "All privileges"
+msgstr: "Gjitha privilegjet"
+
+msgid: "Selected privileges"
+msgstr: "Privilegjet e zgjedhura"
+
+msgid: "User privileges"
+msgstr: "Privilegjet e perdoruesit"
+
+msgid: "Select"
+msgstr: "Zgjedh"
+
+msgid: "Insert"
+msgstr: "Shto"
+
+msgid: "Update"
+msgstr: "Perditeso"
+
+msgid: "Delete"
+msgstr: "Fshij"
+
+msgid: "Alter"
+msgstr: "Shendrro"
+
+msgid: "Create"
+msgstr: "Krijo"
+
+msgid: "Temp tables"
+msgstr: "Tabelat e perkoheshme"
+
+msgid: "Administrator privileges"
+msgstr: "Privilegjet e administratorit"
+
+msgid: "File"
+msgstr: "Fajll"
+
+msgid: "Process"
+msgstr: "Proces"
+
+msgid: "Reload"
+msgstr: "Rifresko"
+
+msgid: "Shutdown"
+msgstr: "Fike"
+
+msgid: "Super"
+msgstr: "Super"
+
+msgid: "Grant option"
+msgstr: "Jep opcione"
+
+msgid: "User not found!"
+msgstr: "Perdoruesi nuk u gjet."
+
+msgid: "You must export either structure, data, or both"
+msgstr: "You duhet te eksportoni strukturen, permbajtjen apo te dyjat"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "Ju lutemi zgjedheni databazen qe deshironi te eksportoni"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "Ju lutemi zgjedheni tabelat qe deshironi te eksportoni"
+
+msgid: "Table `%s` is empty"
+msgstr: "Tabela `%s` eshte e zbrazet"
+
+msgid: "Results"
+msgstr: "Rezultatet"
+
+msgid: "Select all"
+msgstr: "Zgjedh gjitha"
+
+msgid: "The file could not be opened"
+msgstr: "Fajlli nuk mund te hapet"
+
+msgid: "Could not write to file"
+msgstr: "Nuk mund te shkruaj"
+
+msgid: "Successfully wrote content to file"
+msgstr: "Permbajtja u shkruaj me sukses ne fajll"
+
+msgid: "Download"
+msgstr: "Shkarko"
+
+msgid: "Note
+"
+msgstr: "Notë"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "Nese ky eshte nje server publik, you duhet ta fshijni kete fajll pasi ta keni shkarkuar"
+
+msgid: "Export"
+msgstr: "Eksport"
+
+msgid: "Tables"
+msgstr: "Tabelat"
+
+msgid: "Databases"
+msgstr: "Databazat"
+
+msgid: "Format"
+msgstr: "Formatizo"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CVS"
+
+msgid: "Structure"
+msgstr: "Struktura"
+
+msgid: "Data"
+msgstr: "Permbajtja"
+
+msgid: "Compact inserts"
+msgstr: "Ngjeshe permbajtjen e futur"
+
+msgid: "Complete inserts"
+msgstr: "Kompleto permbajtjen e futur"
+
+msgid: "Delimiter"
+msgstr: "Delimeter"
+
+msgid: "Comma"
+msgstr: "Presje"
+
+msgid: "Tab"
+msgstr: "Tabular"
+
+msgid: "Semicolon"
+msgstr: "Pikëpresje"
+
+msgid: "Space"
+msgstr: "Hapsire"
+
+msgid: "Print field names on first line"
+msgstr: "Shtyp emrat e fushave ne rrjeshtin e pare"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "Nese jeni duke eksportuar nje numer te madh te rrjeshtave, eshte e rekomanduar te di ruani ne nje tekst fajll"
+
+msgid: "Output to"
+msgstr: "Ruaj si"
+
+msgid: "Browser"
+msgstr: "Browser"
+
+msgid: "Text file"
+msgstr: "Tekst fajll"
+
+msgid: "Home"
+msgstr: "Home"
+
+msgid: "Users"
+msgstr: "Perdoruesit"
+
+msgid: "Query"
+msgstr: "Kueri"
+
+msgid: "Import"
+msgstr: "Import"
+
+msgid: "Overview"
+msgstr: "Pasqyra"
+
+msgid: "Browse"
+msgstr: "Gjej"
+
+msgid: "Your changes were saved to the database"
+msgstr: "Ndryshimet u ruajten ne databaze"
+
+msgid: "delete this row"
+msgstr: "fshijni kete rrjesht"
+
+msgid: "delete these rows"
+msgstr: "fshijni keto rrjeshta"
+
+msgid: "empty this table"
+msgstr: "zbrazeni kete tabele"
+
+msgid: "empty these tables"
+msgstr: "zbrazeni keto tabela"
+
+msgid: "drop this table"
+msgstr: "hedheni kete tabele"
+
+msgid: "drop these tables"
+msgstr: "hedheni keto tabela"
+
+msgid: "delete this column"
+msgstr: "fshijni kete kolone"
+
+msgid: "delete these columns"
+msgstr: "fshijni keto kolona"
+
+msgid: "delete this index"
+msgstr: "fshijni kete indeks"
+
+msgid: "delete these indexes"
+msgstr: "fshijni keto indekse"
+
+msgid: "delete this user"
+msgstr: "fshijni kete perdorues"
+
+msgid: "delete these users"
+msgstr: "fshijni keta perdorues"
+
+msgid: "Are you sure you want to"
+msgstr: "A jeni i sigurt se doni te"
+
+msgid: "The following query will be run:"
+msgstr: "Kjo kerkese do te ekzekutohet"
+
+msgid: "The following queries will be run:"
+msgstr: "Keto kerkesa do te ekzekutohen"
+
+msgid: "Confirm"
+msgstr: "Konfirmo"
+
+msgid: "Successfully saved changes"
+msgstr: "Ndryshimet u ruajten me sukses"
+
+msgid: "Full Text"
+msgstr: "Gjithe tekst"
+
+msgid: "Loading..."
+msgstr: "Loading"
+
+msgid: "Error"
+msgstr: "Gabim"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "Kishte nje gabim gjate marrjes se permbajtjes nga serveri"
+
+msgid: "Logout"
+msgstr: "Çkyçu"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "Per disa arsyeje, parametrat e tabeles nuk jane bashkangjitur ne kerkese"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "Miresevini ne SQL Buddy!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "Ju jeni lidhur ne MySQL %s si perdoruesi %s."
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "Serveri i databazes eshte i ndezur qe nga %s dhe ka transferuar perafersisht %s te permbajtjes"
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "Verzioni i ri i SQL Buddy eshte gati!"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "Ju keni SQL Buddy %s te instaluar dhe %s eshte gati."
+
+msgid: "Getting started"
+msgstr: "Gati te filloni"
+
+msgid: "Help"
+msgstr: "Ndihma"
+
+msgid: "Translations"
+msgstr: "Perkthimet"
+
+msgid: "Release Notes"
+msgstr: "Shenimet e Verzionit"
+
+msgid: "Contact"
+msgstr: "Kontakti"
+
+msgid: "Create a new database"
+msgstr: "Krijo nje databaze te re"
+
+msgid: "Did you know..."
+msgstr: "A e dini se ..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "Per te selektuar me shume se nje rrjesht, Zgjedheni te parin, mbajeni SHIFT dhe zgjedheni te fundit."
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "Kolonat ja te rizmadhueshme, afrohu me kursor ne mes te du kolonafe tek rrjeshti i pare."
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "Faqja e kyqjes eshte e bazuar ne root@localhost, "
+
+msgid: "Keyboard shortcuts"
+msgstr: "Shkurtesat e tastieres"
+
+msgid: "Press this key..."
+msgstr: "Shtyp kete tast..."
+
+msgid: "...and this will happen"
+msgstr: "... dhe kjo do te ndodhe"
+
+msgid: "select none"
+msgstr: "mos zgjedh asnjeren"
+
+msgid: "edit selected items"
+msgstr: "ndrysho gjerat e zgjedhura"
+
+msgid: "delete selected items"
+msgstr: "fshij gjerat e zgjedhura"
+
+msgid: "refresh page"
+msgstr: "Rifresko faqen"
+
+msgid: "load the query tab"
+msgstr: "ngarko tabin e pyetjes"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "shko tek faqja e pare e rezultateve"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "shko tek faqja e fundit e rezultateve"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "shko tek faqja e paraprake e rezultateve"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "shko tek faqja e ardhshme e rezultateve"
+
+msgid: "optimize selected tables"
+msgstr: "optimizo tabelat e zgjedhura"
+
+msgid: "Choose a .sql file to import"
+msgstr: "Zgjedhe nje .sql fajll per import"
+
+msgid: "File
+"
+msgstr: "Fajll"
+
+msgid: "Ignore first line"
+msgstr: "Injoro rrjeshtin e pare"
+
+msgid: "Edit"
+msgstr: "Ndrysho"
+
+msgid: "Refresh"
+msgstr: "Rifresko"
+
+msgid: "No primary key defined"
+msgstr: "Ska asnj kyq primar te definuar"
+
+msgid: "First"
+msgstr: "E para"
+
+msgid: "Prev"
+msgstr: "Paraprakja"
+
+msgid: "Next"
+msgstr: "E ardhshmja"
+
+msgid: "Last"
+msgstr: "E fundit"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "Kerkesa juaj dha %d rezultat"
+msgstr[1]: "Kerkesa juaj dha %d rezultate"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "Shenim: Per te menjanuar problemet me shfletues, vetem %d rezultatet e para jane shfaqur"
+
+msgid: "binary data"
+msgstr: "permbajtej binare"
+
+msgid: "Your query affected %d rows"
+msgstr: "Kerkesa juaj preku %d rrjeshta"
+
+msgid: "Your query did not return any results"
+msgstr: "Kerkesa juaj nuk dha ndonje rezultat"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "Permbajtja juaj eshte futur ne databaze"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "Ishte nje telash i vogel gjate lokalizimit te tabeles \"%s\""
+
+msgid: "There was a problem logging you in"
+msgstr: "Kishte nje problem gjate kyqjes."
+
+msgid: "Login"
+msgstr: "Kyqu"
+
+msgid: "Unsupported browser"
+msgstr: "Shfletues i pa perkrahur, perdor Firefox."
+
+msgid: "Help!"
+msgstr: "Ndihme!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "Sesioni juaj ka mbaruar, ju lutemi kyquni perseri."
+
+msgid: "Username"
+msgstr: "Perdoruesi"
+
+msgid: "Password"
+msgstr: "Fjalekalimi"
+
+msgid: "Run a query on the %s database"
+msgstr: "Jep nje kerkese ne databazen %s "
+
+msgid: "Columns"
+msgstr: "Kolonat"
+
+msgid: "Add a column"
+msgstr: "Shto nje kolone"
+
+msgid: "Insert this column"
+msgstr: "Fut kete kolone"
+
+msgid: "At end of table"
+msgstr: "Ne fund te tabeles"
+
+msgid: "At beginning of table"
+msgstr: "Ne fillim te tabeles"
+
+msgid: "After"
+msgstr: "Pas"
+
+msgid: "Edit table"
+msgstr: "Ndrysho tabelen"
+
+msgid: "Indexes"
+msgstr: "Indekset"
+
+msgid: "Add an index"
+msgstr: "Shto nje indeks"
+
+msgid: "Column(s)"
+msgstr: "Kolona (t)"
+
+msgid: "Show %d more..."
+msgstr: "Shfaq %d me shume .."
+
+msgid: "Empty table"
+msgstr: "Zbraz tabelen"
+
+msgid: "Drop table"
+msgstr: "Hedh tabelen"
+
+msgid: "Optimize table"
+msgstr: "Optimizo tabelen"
+
+msgid: "Table Information"
+msgstr: "Informatata e tabeles"
+
+msgid: "Host"
+msgstr: "Hosti"
+
+msgid: "Add a new user"
+msgstr: "Shto perdorues te ri"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "Vendos ne formatin: ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "A je i sigurt qe do me zbraz tabelen '%s'. Kjo i fshijn gjitha. "
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "A je i sigurt qe do me hedhe tabelen '%s'. Kjo i fshijn gjitha. 
+"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "A je i sigurt qe do me hedhe databazen'%s'. Kjo i fshijn gjitha. "
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "Na vjen keq po vetem internet explorer 7 eshte duke u perkrahur. Shkarkoje Firefox."
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "Nuk i keni cookie te leshuara. Leshoni menjehere sa sju erdha aty."
+
+msgid: "Importing..."
+msgstr: "Duke importuar"
+
+msgid: "Drop the '%s' database"
+msgstr: "Hedh databazen '%s'"
+
+msgid: "Okay"
+msgstr: "Ne rregull"
+
+msgid: "Cancel"
+msgstr: "Anulo"
+
+msgid: "Storage engine"
+msgstr: "Motori i magazinimit"
+
+msgid: "Language"
+msgstr: "Gjuha"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "%d u ekzekutua nga fajlli"
+msgstr[1]: "%d ishte ekzekutuar nga fajlli"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "%d rrjeshta u futen ne databaze nga fajlli"
+msgstr[1]: "%d rrjeshta ishin futur ne databaze nga fajlli"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "%d rrjesht eshte tejkaluar sepse vlera ishte jokorrekt"
+msgstr[1]: "%d rrjeshta jane tejkaluar sepse vlera ishte jokorrekte"
+
+msgid: "Theme"
+msgstr: "Tema"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f sekonda)"
+
+msgid: "The following errors were reported"
+msgstr: "Keto gabime u raportuan."
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "Nuk keni leje per te krijuar perdorues te ri."
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "Nuk keni leje per ti pare apo menagjuar perdoruesit"
+
+msgid: "You are connected to %s."
+msgstr: "Ju jeni lidhur me %s."
+
+msgid: "Allow access to"
+msgstr: "Lejo akses tek"
+
+msgid: "All databases"
+msgstr: "Gjitha Databazat"
+
+msgid: "Selected databases"
+msgstr: "Databazat e zgjedhura"
+
+msgid: "Give user"
+msgstr: "Jepi perdorues"
+
+msgid: "Updates"
+msgstr: "Te rejat"
+
+msgid: "There are no updates available"
+msgstr: "Ska asnj te re"
+
+msgid: "Change password"
+msgstr: "Ndrysho fjalekalimin"
+
+msgid: "Redirecting..."
+msgstr: "Duke ridrejtuar..."

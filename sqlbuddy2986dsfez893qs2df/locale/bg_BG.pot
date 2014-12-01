@@ -1,0 +1,667 @@
+Language: български език
+Language-Code: bg_BG
+Build-Date: Tue, 18 Jan 2011 16:02:23 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "Или файлът е празен, или не може да бъде прочетен."
+
+msgid: "Error performing operation"
+msgstr: "Грешка при извършване на операцията"
+
+msgid: "All"
+msgstr: "Всички"
+
+msgid: "None"
+msgstr: "Никой"
+
+msgid: "With selected"
+msgstr: "С избраните"
+
+msgid: "Empty"
+msgstr: "Празно"
+
+msgid: "Drop"
+msgstr: "Унищожаване"
+
+msgid: "Optimize"
+msgstr: "Оптимизиране"
+
+msgid: "Table"
+msgstr: "Таблица"
+
+msgid: "Rows"
+msgstr: "Редове"
+
+msgid: "Size"
+msgstr: "Размер"
+
+msgid: "Overhead"
+msgstr: "Пренатоварване"
+
+msgid: "Options"
+msgstr: "Настройки"
+
+msgid: "Edit database"
+msgstr: "Редактиране на база"
+
+msgid: "Charset"
+msgstr: "Кодиране"
+
+msgid: "Submit"
+msgstr: "Изпращане"
+
+msgid: "Create a new table"
+msgstr: "Създаване на нова таблица"
+
+msgid: "Name"
+msgstr: "Име"
+
+msgid: "Setup the fields for the table below"
+msgstr: "Попълнете полетата за таблицата по-долу"
+
+msgid: "New field"
+msgstr: "Ново поле"
+
+msgid: "Type"
+msgstr: "Тип"
+
+msgid: "Values"
+msgstr: "Стойности"
+
+msgid: "Key"
+msgstr: "Ключ"
+
+msgid: "primary"
+msgstr: "Идентификатор"
+
+msgid: "unique"
+msgstr: "уникален"
+
+msgid: "index"
+msgstr: "индекс"
+
+msgid: "Default"
+msgstr: "По подразбиране"
+
+msgid: "Other"
+msgstr: "Друг"
+
+msgid: "Unsigned"
+msgstr: "Unsigned"
+
+msgid: "Binary"
+msgstr: "Двойчно"
+
+msgid: "Not Null"
+msgstr: "не е нула"
+
+msgid: "Auto Increment"
+msgstr: "Автоматично броене (AI)"
+
+msgid: "Add field"
+msgstr: "Добавяне на поле"
+
+msgid: "Oops"
+msgstr: "Опа"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "Поради някаква причина, параметъра на базата данни не бе включен във вашата заявка."
+
+msgid: "Save changes to original"
+msgstr: "Запази промените върху оригинала"
+
+msgid: "Insert as new row"
+msgstr: "Добавяне като нов ред"
+
+msgid: "Save"
+msgstr: "Запази"
+
+msgid: "User"
+msgstr: "Потребител"
+
+msgid: "All privileges"
+msgstr: "Всички привилегии"
+
+msgid: "Selected privileges"
+msgstr: "Избрани привилегии"
+
+msgid: "User privileges"
+msgstr: "Потребителски привилегии"
+
+msgid: "Select"
+msgstr: "Избери"
+
+msgid: "Insert"
+msgstr: "Вмъкване"
+
+msgid: "Update"
+msgstr: "Обновяване"
+
+msgid: "Delete"
+msgstr: "Изтриване"
+
+msgid: "Alter"
+msgstr: "Променяне"
+
+msgid: "Create"
+msgstr: "Създаване"
+
+msgid: "Temp tables"
+msgstr: "Временни таблици"
+
+msgid: "Administrator privileges"
+msgstr: "Административи привилегии"
+
+msgid: "File"
+msgstr: "Файл"
+
+msgid: "Process"
+msgstr: "Процес"
+
+msgid: "Reload"
+msgstr: "Презареждане"
+
+msgid: "Shutdown"
+msgstr: "Изключване"
+
+msgid: "Super"
+msgstr: "Супер"
+
+msgid: "Grant option"
+msgstr: "Позволи опцията"
+
+msgid: "User not found!"
+msgstr: "Потребителят не съществува"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "Трябва да извлечеш и двете структури, датата, или двете"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "Моля, изберете базата данни която искате да извлечете"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "Моля, изберете таблицата която искате да излвечете"
+
+msgid: "Table `%s` is empty"
+msgstr: "Таблицата `%s`  е празна"
+
+msgid: "Results"
+msgstr: "Резултати"
+
+msgid: "Select all"
+msgstr: "Избиране на всички"
+
+msgid: "The file could not be opened"
+msgstr: "Файлът не може да бъде отворен"
+
+msgid: "Could not write to file"
+msgstr: "Неможе да запише файла"
+
+msgid: "Successfully wrote content to file"
+msgstr: "Успешнен запис на файла"
+
+msgid: "Download"
+msgstr: "Изтегляне"
+
+msgid: "Note
+"
+msgstr: "Бележка"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "Ако това е публичен сървър, трябва да изтриете този файл от сървъра, след като го свалите."
+
+msgid: "Export"
+msgstr: "Изнасяне"
+
+msgid: "Tables"
+msgstr: "Таблици"
+
+msgid: "Databases"
+msgstr: "Бази от данни"
+
+msgid: "Format"
+msgstr: "Формат"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "Структура"
+
+msgid: "Data"
+msgstr: "Данни"
+
+msgid: "Compact inserts"
+msgstr: "Компактни вмъквания"
+
+msgid: "Complete inserts"
+msgstr: "Пълни вмъквания"
+
+msgid: "Delimiter"
+msgstr: "Разделител"
+
+msgid: "Comma"
+msgstr: "Запетая"
+
+msgid: "Tab"
+msgstr: "Таб"
+
+msgid: "Semicolon"
+msgstr: "Точка и запетая"
+
+msgid: "Space"
+msgstr: "Интервал"
+
+msgid: "Print field names on first line"
+msgstr: "Принтирай полето с имена на първо място"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "Ако експортирате много редове е препоръчително да пренасочите резултатите към текстов файл."
+
+msgid: "Output to"
+msgstr: "Прати към"
+
+msgid: "Browser"
+msgstr: "Браузър"
+
+msgid: "Text file"
+msgstr: "Текстов файл"
+
+msgid: "Home"
+msgstr: "Начало"
+
+msgid: "Users"
+msgstr: "Потребители"
+
+msgid: "Query"
+msgstr: "Заявка"
+
+msgid: "Import"
+msgstr: "Внасяне"
+
+msgid: "Overview"
+msgstr: "Бърз преглед"
+
+msgid: "Browse"
+msgstr: "Разлистване"
+
+msgid: "Your changes were saved to the database"
+msgstr: "Промените бяха съхранени в базата от данни"
+
+msgid: "delete this row"
+msgstr: "изтриване на този ред"
+
+msgid: "delete these rows"
+msgstr: "изтриване на тези редове"
+
+msgid: "empty this table"
+msgstr: "изпразване на тази таблица"
+
+msgid: "empty these tables"
+msgstr: "изпразване на тези таблици"
+
+msgid: "drop this table"
+msgstr: "изтриване на тази таблица"
+
+msgid: "drop these tables"
+msgstr: "изтриване на тези таблици"
+
+msgid: "delete this column"
+msgstr: "изтриване на тази колона"
+
+msgid: "delete these columns"
+msgstr: "изтриване на тези колони"
+
+msgid: "delete this index"
+msgstr: "изтриване на този индекс"
+
+msgid: "delete these indexes"
+msgstr: "изтриване на тези индекси"
+
+msgid: "delete this user"
+msgstr: "изтриване на този потребител"
+
+msgid: "delete these users"
+msgstr: "изтриване на тези потребители"
+
+msgid: "Are you sure you want to"
+msgstr: "Сигурни ли сте че искате да"
+
+msgid: "The following query will be run:"
+msgstr: "Следната заявка ще бъде изпълнена:"
+
+msgid: "The following queries will be run:"
+msgstr: "Следните заявки ще бъдат изпълнени:"
+
+msgid: "Confirm"
+msgstr: "Потвърдете"
+
+msgid: "Successfully saved changes"
+msgstr: "Промените бяха успешно запазени"
+
+msgid: "Full Text"
+msgstr: "Пълен текст"
+
+msgid: "Loading..."
+msgstr: "Зареждане..."
+
+msgid: "Error"
+msgstr: "Грешка"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "Има грешка в получаването на информация от сървъра"
+
+msgid: "Logout"
+msgstr: "Излизане"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "По някаква причина, параметрите на таблицата не бях включени"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "Добре дошли в SQL Buddy!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "Вие сте свързан към MySQL %s с потребител %s."
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "Сървърът работи от %s и е обработил около %s данни"
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "Налична е нова версия на SQL Buddy!"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "Имате SQL Buddy %s инсталиран, наличен е %s"
+
+msgid: "Getting started"
+msgstr: "Започване"
+
+msgid: "Help"
+msgstr: "Помощ"
+
+msgid: "Translations"
+msgstr: "Преводи"
+
+msgid: "Release Notes"
+msgstr: "Бележки от автора"
+
+msgid: "Contact"
+msgstr: "Контакт"
+
+msgid: "Create a new database"
+msgstr: "Създаване на нова база данни"
+
+msgid: "Did you know..."
+msgstr: "Знаете ли, че..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "Има лесен начин за избиране на голяма група от записи докато преглеждате записите на таблица. Маркирай първия ред, задръж SHIFT бутона и маркирай последния ред. Редовете между двата избрани ще се маркират автоматично."
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "Колоните"
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "Началната страница е базирана на основния потребител root@localhost. Като редактирате config.php можете да промените настройките по подразбиране на каквито желаете."
+
+msgid: "Keyboard shortcuts"
+msgstr: "Бързи клавиши"
+
+msgid: "Press this key..."
+msgstr: "Натисни този клавиш..."
+
+msgid: "...and this will happen"
+msgstr: "...и ще се случи това"
+
+msgid: "select none"
+msgstr: "избери нищо"
+
+msgid: "edit selected items"
+msgstr: "редактиране на избраните"
+
+msgid: "delete selected items"
+msgstr: "изтриване на избраните"
+
+msgid: "refresh page"
+msgstr: "опресни страницата"
+
+msgid: "load the query tab"
+msgstr: "зареди прозореца за заявки"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "преглеждане - отиди на първата страница"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "преглеждане - отиди на последната страница"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "преглеждане - предишна страница"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "преглеждане - следваща страница"
+
+msgid: "optimize selected tables"
+msgstr: "оптимизирай избраните таблици"
+
+msgid: "Choose a .sql file to import"
+msgstr: "Избери .sql файл за вмъкване"
+
+msgid: "File
+"
+msgstr: "Файл"
+
+msgid: "Ignore first line"
+msgstr: "Игнориране на първия ред"
+
+msgid: "Edit"
+msgstr: "Редактиране"
+
+msgid: "Refresh"
+msgstr: "Опресняване"
+
+msgid: "No primary key defined"
+msgstr: "Не е дефиниран основен ключ"
+
+msgid: "First"
+msgstr: "Първи"
+
+msgid: "Prev"
+msgstr: "Предишен"
+
+msgid: "Next"
+msgstr: "Следващ"
+
+msgid: "Last"
+msgstr: "Последен"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "Заявката Ви върна %d резултат"
+msgstr[1]: "Заявката Ви върна %d резултата"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "Забележка: За да не замръзне браузера ви са показани само първите %d резултати"
+
+msgid: "binary data"
+msgstr: "бинарни данни"
+
+msgid: "Your query affected %d rows"
+msgstr: "Вашата заявка модифицира %d ред(а)"
+
+msgid: "Your query did not return any results"
+msgstr: "Вашата заявка не върна никакви резултати"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "Данните ви бяха вмъкнати в базата от данни"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "Възникна проблем при намирането на таблица \"%s\""
+
+msgid: "There was a problem logging you in"
+msgstr: "Възникна проблем при входа"
+
+msgid: "Login"
+msgstr: "Влизане"
+
+msgid: "Unsupported browser"
+msgstr: "Неподдържан браузър"
+
+msgid: "Help!"
+msgstr: "Помощ!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "Вашата сесия изтече. Моля, влезте отново."
+
+msgid: "Username"
+msgstr: "Потребителско име"
+
+msgid: "Password"
+msgstr: "Парола"
+
+msgid: "Run a query on the %s database"
+msgstr: "Изпълни заявка върху %s база  данни"
+
+msgid: "Columns"
+msgstr: "Колони"
+
+msgid: "Add a column"
+msgstr: "Добавяне на колона"
+
+msgid: "Insert this column"
+msgstr: "Вмъкване на тази колона"
+
+msgid: "At end of table"
+msgstr: "В края на таблица"
+
+msgid: "At beginning of table"
+msgstr: "В началото на таблица"
+
+msgid: "After"
+msgstr: "След"
+
+msgid: "Edit table"
+msgstr: "Редактиране на таблица"
+
+msgid: "Indexes"
+msgstr: "Индекси"
+
+msgid: "Add an index"
+msgstr: "Добави индекс"
+
+msgid: "Column(s)"
+msgstr: "Колона(и)"
+
+msgid: "Show %d more..."
+msgstr: "Покажи %d още..."
+
+msgid: "Empty table"
+msgstr: "Изчисти таблица"
+
+msgid: "Drop table"
+msgstr: "Премахни таблица"
+
+msgid: "Optimize table"
+msgstr: "Оптимизиране на таблица"
+
+msgid: "Table Information"
+msgstr: "Информация за таблица"
+
+msgid: "Host"
+msgstr: "Хост"
+
+msgid: "Add a new user"
+msgstr: "Добавяне на нов потребител"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "Въведи във формат: ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "Сигурен ли си, че искаш да изпразниш таблица %s? Това действие ще изтрие всички данни в нея. Ще се изпълни следната заявка:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: ""
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: ""
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: ""
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: ""
+
+msgid: "Importing..."
+msgstr: "Внасяне..."
+
+msgid: "Drop the '%s' database"
+msgstr: "Премахни '%s' база данни"
+
+msgid: "Okay"
+msgstr: "Приеми"
+
+msgid: "Cancel"
+msgstr: "Отказване"
+
+msgid: "Storage engine"
+msgstr: ""
+
+msgid: "Language"
+msgstr: "Език"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: ""
+msgstr[1]: ""
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: ""
+msgstr[1]: ""
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: ""
+msgstr[1]: ""
+
+msgid: "Theme"
+msgstr: "Тема"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f секунди)"
+
+msgid: "The following errors were reported"
+msgstr: "Следните грешки бяха докладвани"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "Нямате достатъчно права за създаване на нов потребител."
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "Нямате достатъчно права за разглеждане или управление на потребителите."
+
+msgid: "You are connected to %s."
+msgstr: "Вие сте свързан с %s."
+
+msgid: "Allow access to"
+msgstr: "Позволи достъп до"
+
+msgid: "All databases"
+msgstr: "Всички бази данни"
+
+msgid: "Selected databases"
+msgstr: "Избрани бази данни"
+
+msgid: "Give user"
+msgstr: "Дай потребител"
+
+msgid: "Updates"
+msgstr: "Обновления"
+
+msgid: "There are no updates available"
+msgstr: "Няма текущи обновления"
+
+msgid: "Change password"
+msgstr: "Промени парола"
+
+msgid: "Redirecting..."
+msgstr: "Пренасочване..."

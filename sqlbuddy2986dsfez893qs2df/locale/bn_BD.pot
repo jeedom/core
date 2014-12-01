@@ -1,0 +1,667 @@
+Language: বাংলা
+Language-Code: bn_BD
+Build-Date: Tue, 18 Jan 2011 15:36:53 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "ফাইলটি হয় পড়া যাচ্ছেনা অথবা খালি"
+
+msgid: "Error performing operation"
+msgstr: "কাজ সম্পন্ন করতে ত্রুটি"
+
+msgid: "All"
+msgstr: "সব"
+
+msgid: "None"
+msgstr: "কোনোটি নয়"
+
+msgid: "With selected"
+msgstr: "পছন্দকৃতগুলো নিয়ে"
+
+msgid: "Empty"
+msgstr: "খালি"
+
+msgid: "Drop"
+msgstr: "বাতিল"
+
+msgid: "Optimize"
+msgstr: "অপটিমাইজ"
+
+msgid: "Table"
+msgstr: "টেবিল"
+
+msgid: "Rows"
+msgstr: "সারি"
+
+msgid: "Size"
+msgstr: "আকার"
+
+msgid: "Overhead"
+msgstr: "বাহুল্য"
+
+msgid: "Options"
+msgstr: "অপশন"
+
+msgid: "Edit database"
+msgstr: "ডাটাবেজ সম্পাদনা"
+
+msgid: "Charset"
+msgstr: "অক্ষরমালা"
+
+msgid: "Submit"
+msgstr: "পাঠান"
+
+msgid: "Create a new table"
+msgstr: "নতুন টেবিল তৈরি"
+
+msgid: "Name"
+msgstr: "নাম"
+
+msgid: "Setup the fields for the table below"
+msgstr: "টেবিলের জন্য ফিল্ডগুলো নিচে ঠিক করে দিন"
+
+msgid: "New field"
+msgstr: "নতুন ফিল্ড"
+
+msgid: "Type"
+msgstr: "ধরণ"
+
+msgid: "Values"
+msgstr: "মানসমূহ"
+
+msgid: "Key"
+msgstr: "কী"
+
+msgid: "primary"
+msgstr: "প্রাইমারি"
+
+msgid: "unique"
+msgstr: "অদ্বিতীয়"
+
+msgid: "index"
+msgstr: "সূচক"
+
+msgid: "Default"
+msgstr: "প্রদত্ত"
+
+msgid: "Other"
+msgstr: "অন্যান্য"
+
+msgid: "Unsigned"
+msgstr: "অচিহ্নিত"
+
+msgid: "Binary"
+msgstr: "বাইনারি"
+
+msgid: "Not Null"
+msgstr: "নাল নয়"
+
+msgid: "Auto Increment"
+msgstr: "স্বয়ংক্রিয় বৃদ্ধি"
+
+msgid: "Add field"
+msgstr: "ফিল্ড যোগকরণ"
+
+msgid: "Oops"
+msgstr: "ইশশ"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "কোনো কারণে, আপনার রিকোয়েস্টে ডাটাবেজ প্যারামিটারটি যুক্ত ছিলোনা"
+
+msgid: "Save changes to original"
+msgstr: "মূল অবস্থায় সংরক্ষণ"
+
+msgid: "Insert as new row"
+msgstr: "নতুন সারি হিসেবে ইনসার্ট"
+
+msgid: "Save"
+msgstr: "সংরক্ষণ"
+
+msgid: "User"
+msgstr: "ব্যবহারকারি"
+
+msgid: "All privileges"
+msgstr: "সব সুবিধা"
+
+msgid: "Selected privileges"
+msgstr: "বাছাইকৃত সুবিধা"
+
+msgid: "User privileges"
+msgstr: "ব্যবহারকারি সুবিধা"
+
+msgid: "Select"
+msgstr: "সিলেক্ট"
+
+msgid: "Insert"
+msgstr: "ইনসার্ট"
+
+msgid: "Update"
+msgstr: "আপডেট"
+
+msgid: "Delete"
+msgstr: "ডিলিট"
+
+msgid: "Alter"
+msgstr: "অল্টার"
+
+msgid: "Create"
+msgstr: "ক্রিয়েট"
+
+msgid: "Temp tables"
+msgstr: "অস্থায়ি টেবিল"
+
+msgid: "Administrator privileges"
+msgstr: "অ্যাডমিনের সুবিধা"
+
+msgid: "File"
+msgstr: "নথি"
+
+msgid: "Process"
+msgstr: "প্রক্রিয়াকরণ"
+
+msgid: "Reload"
+msgstr: "রিলোড"
+
+msgid: "Shutdown"
+msgstr: "বন্ধকরণ"
+
+msgid: "Super"
+msgstr: "সুপার"
+
+msgid: "Grant option"
+msgstr: "গ্রান্ট অপশন"
+
+msgid: "User not found!"
+msgstr: "এই নামে ব্যবহারকারি নেই!"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "আপনাকে অবশ্যই হয় কাঠামো, ডাটা অথবা উভয়কেই এক্সপোর্ট করতে হবে"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "যে ডাটাবেজগুলো এক্সপোর্ট করতে চান সেগুলো পছন্দ করুন"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "যে টেবিলগুলো এক্সপোর্ট করবেন সেগুলো পছন্দ করুন"
+
+msgid: "Table `%s` is empty"
+msgstr: "`%s` টেবিলটি খালি"
+
+msgid: "Results"
+msgstr: "ফলাফল"
+
+msgid: "Select all"
+msgstr: "সব পছন্দ"
+
+msgid: "The file could not be opened"
+msgstr: "ফাইলটি খোলা যাচ্ছেনা"
+
+msgid: "Could not write to file"
+msgstr: "ফাইলে লেখা যাচ্ছেনা"
+
+msgid: "Successfully wrote content to file"
+msgstr: "সফলভাবে ফাইলে লেখা হলো"
+
+msgid: "Download"
+msgstr: "ডাউনলোড"
+
+msgid: "Note
+"
+msgstr: "নোট"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "এটা একটি পাবলিক সার্ভার, ডাউনলোড শেষে আপনার অবশ্যই ফাইলটি মুছে দেয়া উচিৎ"
+
+msgid: "Export"
+msgstr: "এক্সপোর্ট"
+
+msgid: "Tables"
+msgstr: "টেবিল"
+
+msgid: "Databases"
+msgstr: "ডাটাবেজ"
+
+msgid: "Format"
+msgstr: "ফরম্যাট"
+
+msgid: "SQL"
+msgstr: "এসকিউএল"
+
+msgid: "CSV"
+msgstr: "সিএসভি"
+
+msgid: "Structure"
+msgstr: "কাঠামো"
+
+msgid: "Data"
+msgstr: "ডাটা"
+
+msgid: "Compact inserts"
+msgstr: "সংক্ষিপ্ত ইনসার্ট"
+
+msgid: "Complete inserts"
+msgstr: "পূর্ণাঙ্গ ইনসার্ট"
+
+msgid: "Delimiter"
+msgstr: "পৃথককারক"
+
+msgid: "Comma"
+msgstr: "কমা"
+
+msgid: "Tab"
+msgstr: "ট্যাব"
+
+msgid: "Semicolon"
+msgstr: "সেমিকোলন"
+
+msgid: "Space"
+msgstr: "স্পেস"
+
+msgid: "Print field names on first line"
+msgstr: "প্রথম লাইনে ফিল্ডের নাম মুদ্রণ"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "যদি বিশাল সংখ্যক সারি এক্সপোর্ট করতে চান, তবে পরামর্শ হচ্ছে আউটপুট কোনো টেক্সট ফাইলে নিন"
+
+msgid: "Output to"
+msgstr: "আউটপুট দেবে"
+
+msgid: "Browser"
+msgstr: "ব্রাউজার"
+
+msgid: "Text file"
+msgstr: "টেক্সট ফাইল"
+
+msgid: "Home"
+msgstr: "মূলপাতা"
+
+msgid: "Users"
+msgstr: "ব্যবহারকারি"
+
+msgid: "Query"
+msgstr: "কোয়্যারি"
+
+msgid: "Import"
+msgstr: "আমদানি"
+
+msgid: "Overview"
+msgstr: "একনজর"
+
+msgid: "Browse"
+msgstr: "ব্রাউজ"
+
+msgid: "Your changes were saved to the database"
+msgstr: "আপনার পরিবর্তনগুলো ডাটাবেজে সংরক্ষিত হয়েছে"
+
+msgid: "delete this row"
+msgstr: "সারিটি মুছুন"
+
+msgid: "delete these rows"
+msgstr: "সারিগুলো মুছুন"
+
+msgid: "empty this table"
+msgstr: "টেবিলটি খালি করুন"
+
+msgid: "empty these tables"
+msgstr: "টেবিলগুলো খালি করুন"
+
+msgid: "drop this table"
+msgstr: "টেবিলটি বাদ দিন"
+
+msgid: "drop these tables"
+msgstr: "টেবিলগুলো বাদ দিন"
+
+msgid: "delete this column"
+msgstr: "কলামটি মুছুন"
+
+msgid: "delete these columns"
+msgstr: "কলামগুলো মুছুন"
+
+msgid: "delete this index"
+msgstr: "সূচকটি মুছুন"
+
+msgid: "delete these indexes"
+msgstr: "সূচকগুলো মুছুন"
+
+msgid: "delete this user"
+msgstr: "ব্যবহারকারিটি মুছুন"
+
+msgid: "delete these users"
+msgstr: "ব্যবহারকারিগুলো মুছুন"
+
+msgid: "Are you sure you want to"
+msgstr: "আপনি নিশ্চিত ভাবেই চাইছেন"
+
+msgid: "The following query will be run:"
+msgstr: "নিচের কোয়্যারিটি রান করবে:"
+
+msgid: "The following queries will be run:"
+msgstr: "নিচের কোয়্যারিগুলো রান করবে:"
+
+msgid: "Confirm"
+msgstr: "নিশ্চিত করুন"
+
+msgid: "Successfully saved changes"
+msgstr: "সফলভাবে পরিবর্তনগুলো সংরক্ষিত"
+
+msgid: "Full Text"
+msgstr: "ফুল টেক্সট"
+
+msgid: "Loading..."
+msgstr: "লোড হচ্ছে…"
+
+msgid: "Error"
+msgstr: "সমস্যা"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "সার্ভার থেকে তথ্য আহরণে সমস্যা হচ্ছে"
+
+msgid: "Logout"
+msgstr: "প্রস্থান"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "কোনো কারণে, টেবিল প্যারামিটারটি আপনার রিকোয়েস্টে যুক্ত হয়নি"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "SQL Buddyতে স্বাগতম!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "আপনি MySQL %s-এ যুক্ত হয়েছেন ব্যবহারকারি নাম %s দিয়ে"
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "ডাটাবেজ সার্ভারটি %s থেকে চলছে এবং প্রায় %s উপাত্ত সঞ্চালন করেছে"
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "নতুন সংস্করণের SQL Buddy পাওয়া যাচ্ছে!"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "আপনার ইনস্টল করা আছে SQL Buddy %s আর %s পাওয়া যাচ্ছে।"
+
+msgid: "Getting started"
+msgstr: "প্রারম্ভিক ধারণা"
+
+msgid: "Help"
+msgstr: "সাহায্য"
+
+msgid: "Translations"
+msgstr: "অনুবাদসমূহ"
+
+msgid: "Release Notes"
+msgstr: "প্রকাশের বিবরণ"
+
+msgid: "Contact"
+msgstr: "যোগাযোগ"
+
+msgid: "Create a new database"
+msgstr: "নতুন ডাটাবেজ তৈরি করুন"
+
+msgid: "Did you know..."
+msgstr: "আপনি কি জানেন…"
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "টেবিল ব্রাউজকালিন একটি সহজ উপায়ে অনেকগুলো সারি একসাথে পছন্দ করতে পারেন। প্রথম সারিটি পছন্দ করা হলে, শিফট চেপে রেখে শেষের সারিটি পছন্দ করুন। মাঝের সবগুলো সারি আপনিই পছন্দকৃত হয়ে যাবে।"
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "ব্রাউজ এবং কোয়ারি ট্যাবের কলামগুলো রিসাইজ করা যায়। প্রয়োজনমতো ঠিক করে নিন।"
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "প্রবেশ পাতাটি মূলত root@localhost এর জন্য কাজ করবে। যদি config.php তে পরিবর্তন করেন, তবে ব্যবহারকারি এবং হোস্ট নিজের মতো করে দিতে পারেন।"
+
+msgid: "Keyboard shortcuts"
+msgstr: "কীবোর্ড শর্টকাট"
+
+msgid: "Press this key..."
+msgstr: "এই অক্ষরটি চাপুন…"
+
+msgid: "...and this will happen"
+msgstr: "…আর এটা ঘটবে"
+
+msgid: "select none"
+msgstr: "কোনোটি নয়"
+
+msgid: "edit selected items"
+msgstr: "পছন্দকৃতগুলো সম্পাদনা"
+
+msgid: "delete selected items"
+msgstr: "পছন্দকৃতগুলো মুছুন"
+
+msgid: "refresh page"
+msgstr: "পাতাটি রিফ্রেস"
+
+msgid: "load the query tab"
+msgstr: "কোয়্যারি ট্যাব লোড"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "ব্রাউজ ট্যাব - ফলাফলের প্রথম পাতায় যান"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "ব্রাউজ ট্যাব - ফলাফলের শেষ পাতায় যান"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "ব্রাউজ ট্যাব - ফলাফলের আগের পাতায় যান"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "ব্রাউজ ট্যাব - ফলাফলের পরের পাতায় যান"
+
+msgid: "optimize selected tables"
+msgstr: "পছন্দকৃত টেবিলগুলো অপটিমাইজ করুন"
+
+msgid: "Choose a .sql file to import"
+msgstr: "যে .sql ফাইল থেকে আমদানি করবেন"
+
+msgid: "File
+"
+msgstr: "ফাইল"
+
+msgid: "Ignore first line"
+msgstr: "প্রথম লাইন অগ্রাহ্য করবে"
+
+msgid: "Edit"
+msgstr: "সম্পাদনা"
+
+msgid: "Refresh"
+msgstr: "রিফ্রেস"
+
+msgid: "No primary key defined"
+msgstr: "প্রাইমারি কী দেয়া হয়নি"
+
+msgid: "First"
+msgstr: "প্রথম"
+
+msgid: "Prev"
+msgstr: "আগেরটি"
+
+msgid: "Next"
+msgstr: "পরেরটি"
+
+msgid: "Last"
+msgstr: "শেষ"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "আপনার কোয়্যারিটি %dটি ফলাফল দিয়েছে"
+msgstr[1]: "আপনার কোয়্যারিটি %dটি ফলাফল দিয়েছে"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "নোট: আপনার ব্রাউজারটি যাতে ক্রাশ না করে, তাই প্রথম %dিট ফলাফল দেখানো হলো"
+
+msgid: "binary data"
+msgstr: "বাইনারি ডাটা"
+
+msgid: "Your query affected %d rows"
+msgstr: "আপনার কোয়্যারিটি %dটি সারিতে প্রভাব করেছে"
+
+msgid: "Your query did not return any results"
+msgstr: "কোয়্যাটি কোনো ফলাফল দেয়নি"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "আপনার উপাত্ত ডাটাবেজে ইনসার্ট করা হয়েছে"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "একটু সমস্যা দেখা দিয়েছে \"%s\" টেবিলটি পাওয়া যাচ্ছেনা"
+
+msgid: "There was a problem logging you in"
+msgstr: "আপনাকে প্রবেশ করাতে সমস্যা হচ্ছে"
+
+msgid: "Login"
+msgstr: "প্রবেশ"
+
+msgid: "Unsupported browser"
+msgstr: "ব্রাউজারটির জন্য সমর্থন নেই"
+
+msgid: "Help!"
+msgstr: "সাহায্য!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "আপনার সেশনের সময় শেষ। আপনার প্রবেশ করুন।"
+
+msgid: "Username"
+msgstr: "ইউজারনেম"
+
+msgid: "Password"
+msgstr: "পাসওয়ার্ড"
+
+msgid: "Run a query on the %s database"
+msgstr: "%s ডাটাবেজে একটি কোয়্যারি চালান"
+
+msgid: "Columns"
+msgstr: "কলাম"
+
+msgid: "Add a column"
+msgstr: "একটি কলাম যোগ"
+
+msgid: "Insert this column"
+msgstr: "কলামটি ইনসার্ট করুন"
+
+msgid: "At end of table"
+msgstr: "টেবিলটির শেষে"
+
+msgid: "At beginning of table"
+msgstr: "টেবিলটির শুরুতে"
+
+msgid: "After"
+msgstr: "পরে"
+
+msgid: "Edit table"
+msgstr: "টেবিল সম্পাদনা"
+
+msgid: "Indexes"
+msgstr: "সূচকসমূহ"
+
+msgid: "Add an index"
+msgstr: "সূচক যোগ"
+
+msgid: "Column(s)"
+msgstr: "কলাম"
+
+msgid: "Show %d more..."
+msgstr: "আরো  %sটি দেখাচ্ছে…"
+
+msgid: "Empty table"
+msgstr: "খালি টেবিল"
+
+msgid: "Drop table"
+msgstr: "টেবিল বাতিল"
+
+msgid: "Optimize table"
+msgstr: "টেবিল অপটিমাইজ"
+
+msgid: "Table Information"
+msgstr: "টেবিলের তথ্য"
+
+msgid: "Host"
+msgstr: "হোস্ট"
+
+msgid: "Add a new user"
+msgstr: "নতুন ব্যবহারকারি সংযোজন"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "এইভাবে ইনপুট করুন: ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "আপনি নিশ্চিত যে আপনি '%s' টেবিলটি খালি করতে চান? এর ফলে এটির সব উপাত্ত মুছে যাবে। নিচের কোয়্যারিটি রান হবে:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "আপনি নিশ্চিত যে আপনি '%s' টেবিলটি বাতিল করতে চান? এর ফলে টেবিলটিসহ এটির সব উপাত্ত মুছে যাবে। নিচের কোয়্যারিটি রান হবে:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "আপনি নিশ্চিত যে আপনি '%s' ডাটাবেজটি বাতিল করতে চান? এর ফলে এই ডাটাবেজ, ডাটাবেজের সকল টেবিল, এবং সব টেবিলের সব উপাত্ত মুছে যাবে। নিচের কোয়্যারিটি রান হবে:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "আমরা দু:খিত, এই মুহূর্তে কেবল ইন্টারনেট এক্সপ্লোরার ৭ সমর্থন রয়েছে। মাইক্রোসফটের ওয়েবসাইটে এটি বিনামূল্যেই পেতে পারবেন। অন্যান্য বিনামূল্যের ব্রাউজারেরও সমর্থন আছে, যেমন ফায়ারফক্স, সাফারি এবং অপেরা।"
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "দেখা যাচ্ছে আপনার কুকি সক্রিয় করা নেই। সেশন কাজ করতে হলে, বেশিরভাগ পিএইচপি অ্যাপ্লিকেশনেরই কুকি দরকার হয়।"
+
+msgid: "Importing..."
+msgstr: "আমদানি হচ্ছে…"
+
+msgid: "Drop the '%s' database"
+msgstr: "'%s' ডাটাবেজটি বাতিল"
+
+msgid: "Okay"
+msgstr: "আচ্ছা"
+
+msgid: "Cancel"
+msgstr: "বাতিল"
+
+msgid: "Storage engine"
+msgstr: "সংরক্ষণীয় ইঞ্জিন"
+
+msgid: "Language"
+msgstr: "ভাষা"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "%d টি স্টেটমেন্ট ফাইলটি থেকে রান করেছে"
+msgstr[1]: "%d টি স্টেটমেন্ট ফাইলটি থেকে রান করেছে"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "%d টি সারি ফাইলটি থেকে ডাটাবেজে ইনসার্ট করা হয়েছে"
+msgstr[1]: "%d টি সারি ফাইলটি থেকে ডাটাবেজে ইনসার্ট করা হয়েছে"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "%d িট সারি অগ্রাহ্য করা হয়েছে কারণ উপাত্তের মানের সংখ্যায় ভুল ছিলো"
+msgstr[1]: "%d িট সারি অগ্রাহ্য করা হয়েছে কারণ উপাত্তের মানের সংখ্যায় ভুল ছিলো"
+
+msgid: "Theme"
+msgstr: "থিম"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f সেকেন্ড)"
+
+msgid: "The following errors were reported"
+msgstr: "নিচের সমস্যাগুলো দেখা দিয়েছে"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "আপনার নতুন ব্যবহারকারি তৈরির জন্য পর্যাপ্ত অনুমতি নেই"
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "ব্যবহারকারিদের দেখা এবং ব্যবস্থাপনার জন্য আপনার পর্যাপ্ত অনুমতি নেই"
+
+msgid: "You are connected to %s."
+msgstr: "আপনি "
+
+msgid: "Allow access to"
+msgstr: "প্রবেশাধিকার দিন"
+
+msgid: "All databases"
+msgstr: "সব ডাটাবেজ"
+
+msgid: "Selected databases"
+msgstr: "পছন্দকৃত ডাটাবেজ"
+
+msgid: "Give user"
+msgstr: "ব্যবহারকারিকে দিন"
+
+msgid: "Updates"
+msgstr: "আপডেটসমূহ"
+
+msgid: "There are no updates available"
+msgstr: "কোনো আপডেট নেই"
+
+msgid: "Change password"
+msgstr: "পাসওয়ার্ড পরিবর্তন"
+
+msgid: "Redirecting..."
+msgstr: "ফিরিয়ে দেয়া হচ্ছে…"

@@ -1,0 +1,667 @@
+Language: Русский
+Language-Code: ru_RU
+Build-Date: Tue, 18 Jan 2011 15:18:31 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "Файл не был прочитан или файл пуст"
+
+msgid: "Error performing operation"
+msgstr: "Ошибка во время выполнения операции"
+
+msgid: "All"
+msgstr: "Всё"
+
+msgid: "None"
+msgstr: "Ничего"
+
+msgid: "With selected"
+msgstr: "С выбранными"
+
+msgid: "Empty"
+msgstr: "Пусто"
+
+msgid: "Drop"
+msgstr: "Удалить"
+
+msgid: "Optimize"
+msgstr: "Оптимизация"
+
+msgid: "Table"
+msgstr: "Таблица"
+
+msgid: "Rows"
+msgstr: "Строки"
+
+msgid: "Size"
+msgstr: "Размер"
+
+msgid: "Overhead"
+msgstr: "Верхний"
+
+msgid: "Options"
+msgstr: "Опции"
+
+msgid: "Edit database"
+msgstr: "Изменить базу данных"
+
+msgid: "Charset"
+msgstr: "Кодировка"
+
+msgid: "Submit"
+msgstr: "Отправить"
+
+msgid: "Create a new table"
+msgstr: "Создать новую таблицу"
+
+msgid: "Name"
+msgstr: "Имя"
+
+msgid: "Setup the fields for the table below"
+msgstr: "Укажите поля для таблицы ниже"
+
+msgid: "New field"
+msgstr: "Новое поле"
+
+msgid: "Type"
+msgstr: "Тип"
+
+msgid: "Values"
+msgstr: "Значения"
+
+msgid: "Key"
+msgstr: "Ключ"
+
+msgid: "primary"
+msgstr: "Первичный"
+
+msgid: "unique"
+msgstr: "Уникальный"
+
+msgid: "index"
+msgstr: "Индекс"
+
+msgid: "Default"
+msgstr: "По-умолчанию"
+
+msgid: "Other"
+msgstr: "Другое"
+
+msgid: "Unsigned"
+msgstr: "Беззнаковое"
+
+msgid: "Binary"
+msgstr: "Двоичное"
+
+msgid: "Not Null"
+msgstr: "Ненулевое"
+
+msgid: "Auto Increment"
+msgstr: "Авто увеличение"
+
+msgid: "Add field"
+msgstr: "Добавить поле"
+
+msgid: "Oops"
+msgstr: "Произошла ошибка..."
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "По некоторой причине, параметр базы данных не был включен в ваш запрос"
+
+msgid: "Save changes to original"
+msgstr: "Сохранить изменения в оригинал"
+
+msgid: "Insert as new row"
+msgstr: "Вставить как новую строку"
+
+msgid: "Save"
+msgstr: "Сохранить"
+
+msgid: "User"
+msgstr: "Пользователь"
+
+msgid: "All privileges"
+msgstr: "Все привилегии"
+
+msgid: "Selected privileges"
+msgstr: "Выбранные привилегии"
+
+msgid: "User privileges"
+msgstr: "Пользовательские привилегии"
+
+msgid: "Select"
+msgstr: "Выбор"
+
+msgid: "Insert"
+msgstr: "Вставить"
+
+msgid: "Update"
+msgstr: "Обновление"
+
+msgid: "Delete"
+msgstr: "Удаление"
+
+msgid: "Alter"
+msgstr: "Изменение"
+
+msgid: "Create"
+msgstr: "Создать"
+
+msgid: "Temp tables"
+msgstr: "Временные таблицы"
+
+msgid: "Administrator privileges"
+msgstr: "Привилегии администратора"
+
+msgid: "File"
+msgstr: "Файл"
+
+msgid: "Process"
+msgstr: "Процесс"
+
+msgid: "Reload"
+msgstr: "Перезагрузить"
+
+msgid: "Shutdown"
+msgstr: "Остановить"
+
+msgid: "Super"
+msgstr: "Супер"
+
+msgid: "Grant option"
+msgstr: "Права доступа"
+
+msgid: "User not found!"
+msgstr: "Такой пользователь не найден!"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "Вам следует экспортировать структуру, данные или всё вместе"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "Выберите базы данных для экспорта"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "Выберите таблицы для экспорта"
+
+msgid: "Table `%s` is empty"
+msgstr: "Таблица `%s` пуста"
+
+msgid: "Results"
+msgstr: "Результаты"
+
+msgid: "Select all"
+msgstr: "Выбрать все"
+
+msgid: "The file could not be opened"
+msgstr: "Не удаётся открыть файл"
+
+msgid: "Could not write to file"
+msgstr: "Не удаётся записать в файл"
+
+msgid: "Successfully wrote content to file"
+msgstr: "Содержимое успешно записано в файл"
+
+msgid: "Download"
+msgstr: "Загрузка"
+
+msgid: "Note
+"
+msgstr: "Заметка"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "При размещении на публичном сервере, вам следует удалить данный файл с сервера после загрузки"
+
+msgid: "Export"
+msgstr: "Экспорт"
+
+msgid: "Tables"
+msgstr: "Таблицы"
+
+msgid: "Databases"
+msgstr: "Базы данных"
+
+msgid: "Format"
+msgstr: "Формат"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "Структура"
+
+msgid: "Data"
+msgstr: "Данные"
+
+msgid: "Compact inserts"
+msgstr: "Компактные вставки"
+
+msgid: "Complete inserts"
+msgstr: "Выполненные вставки"
+
+msgid: "Delimiter"
+msgstr: "Разделитель"
+
+msgid: "Comma"
+msgstr: "Запятая"
+
+msgid: "Tab"
+msgstr: "Вкладка"
+
+msgid: "Semicolon"
+msgstr: "Двоеточие"
+
+msgid: "Space"
+msgstr: "Пробел"
+
+msgid: "Print field names on first line"
+msgstr: "Вывести имена полей на первой линии"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "Если вы экспортируете большое количество строк, рекомендуется выводить результат в текстовый файл"
+
+msgid: "Output to"
+msgstr: "Выводить в"
+
+msgid: "Browser"
+msgstr: "Браузер"
+
+msgid: "Text file"
+msgstr: "Текстовый файл"
+
+msgid: "Home"
+msgstr: "Домой"
+
+msgid: "Users"
+msgstr: "Пользователи"
+
+msgid: "Query"
+msgstr: "Запрос"
+
+msgid: "Import"
+msgstr: "Импорт"
+
+msgid: "Overview"
+msgstr: "Обзор"
+
+msgid: "Browse"
+msgstr: "Просмотреть"
+
+msgid: "Your changes were saved to the database"
+msgstr: "Изменения были сохранены"
+
+msgid: "delete this row"
+msgstr: "удалить строку"
+
+msgid: "delete these rows"
+msgstr: "удалить эти строки"
+
+msgid: "empty this table"
+msgstr: "очистить таблицу"
+
+msgid: "empty these tables"
+msgstr: "очистить эти таблицы"
+
+msgid: "drop this table"
+msgstr: "удалить таблицу"
+
+msgid: "drop these tables"
+msgstr: "удалить эти таблицы"
+
+msgid: "delete this column"
+msgstr: "удалить колонку"
+
+msgid: "delete these columns"
+msgstr: "удалить эти колонки"
+
+msgid: "delete this index"
+msgstr: "удалить индекс"
+
+msgid: "delete these indexes"
+msgstr: "удалить эти индексы"
+
+msgid: "delete this user"
+msgstr: "удалить пользователя"
+
+msgid: "delete these users"
+msgstr: "удалить указанных пользователей"
+
+msgid: "Are you sure you want to"
+msgstr: "Вы уверены, что хотите"
+
+msgid: "The following query will be run:"
+msgstr: "Следующий запрос будет выполнен:"
+
+msgid: "The following queries will be run:"
+msgstr: "Следующие запросы будут выполнены:"
+
+msgid: "Confirm"
+msgstr: "Подтвердить"
+
+msgid: "Successfully saved changes"
+msgstr: "Изменения успешно сохранены"
+
+msgid: "Full Text"
+msgstr: "Полнотекстовый"
+
+msgid: "Loading..."
+msgstr: "Загрузка..."
+
+msgid: "Error"
+msgstr: "Ошибка"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "Произошла ошибка при получении данных с сервера"
+
+msgid: "Logout"
+msgstr: "Завершить сеанс"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "По некоторым причинам параметр таблицы не был включен в ваш запрос"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "Добро пожаловать в SQL Buddy!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "Вы подсоединены к MySQL %s пользователем %s"
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "Сервер БД работает с %s и передал примерно %s данных"
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "Доступна новая версия  SQL Buddy"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "У вас установлена SQL Buddy %s, сейчас доступна %s"
+
+msgid: "Getting started"
+msgstr: "С чего начать?"
+
+msgid: "Help"
+msgstr: "Справка"
+
+msgid: "Translations"
+msgstr: "Переводы"
+
+msgid: "Release Notes"
+msgstr: "Замечания к релизу"
+
+msgid: "Contact"
+msgstr: "Контакты"
+
+msgid: "Create a new database"
+msgstr: "Создать новую базу данных"
+
+msgid: "Did you know..."
+msgstr: "Знаете ли вы..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "Существует простой способ выбрать большую группу элементов при просмотре записей в таблице. Выделите первый ряд, удерживая кнопку Shift, и выделите конечный ряд. Флажки между этими рядами будут автоматически выделены."
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "Колонки в закладках запроса и просмотра раздвигаемые. Отрегулируйте их на сколько вы пожелаете."
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "На странице входа используется пользователь по умолчанию root@localhost. Вы можете отредактировать config.php и сменить пользователя по умолчанию и хост."
+
+msgid: "Keyboard shortcuts"
+msgstr: "Быстрые клавиши"
+
+msgid: "Press this key..."
+msgstr: "Нажмите эту клавишу..."
+
+msgid: "...and this will happen"
+msgstr: "... и это случится"
+
+msgid: "select none"
+msgstr: "Снять выделение"
+
+msgid: "edit selected items"
+msgstr: "Редактировать выбранный элемент"
+
+msgid: "delete selected items"
+msgstr: "Удалить выбранный элемент"
+
+msgid: "refresh page"
+msgstr: "Обновить страницу"
+
+msgid: "load the query tab"
+msgstr: "Загрузить запрос во вкладке"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "Просмотреть на вкладке - перейти к первой странице результатов"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "Просмотреть на вкладке - перейти к последней странице результатов"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "Просмотреть на вкладке - переход на предыдущую страницу результатов"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "Просмотреть на вкладке - переход на следующую страницу результатов"
+
+msgid: "optimize selected tables"
+msgstr: "Оптимизировать выбранные таблицы"
+
+msgid: "Choose a .sql file to import"
+msgstr: "Выберите для импорта файл с расширением *.sql"
+
+msgid: "File
+"
+msgstr: "Файл"
+
+msgid: "Ignore first line"
+msgstr: "Игнорировать первую строку"
+
+msgid: "Edit"
+msgstr: "Редактировать"
+
+msgid: "Refresh"
+msgstr: "Обновить"
+
+msgid: "No primary key defined"
+msgstr: "Не указан основной кл3"
+
+msgid: "First"
+msgstr: "Первый"
+
+msgid: "Prev"
+msgstr: "Пред."
+
+msgid: "Next"
+msgstr: "След."
+
+msgid: "Last"
+msgstr: "Последний"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "Ваш запрос вернул %d результат"
+msgstr[1]: "Ваш запрос вернул %d результатов"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "Чтобы предотвратить возможные проблемы в работе вашего браузера, только первые %d результатов будут показаны"
+
+msgid: "binary data"
+msgstr: "бинарные данные"
+
+msgid: "Your query affected %d rows"
+msgstr: "Ваш запрос затронул %d строк"
+
+msgid: "Your query did not return any results"
+msgstr: "Ваш запрос не вернул никаких результатов"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "Ваши данные были вставлены в базу данных"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "Возникла небольшая проблема с поиском таблицы \"%s\""
+
+msgid: "There was a problem logging you in"
+msgstr: "Возникла проблема при попытке входа"
+
+msgid: "Login"
+msgstr: "Войти"
+
+msgid: "Unsupported browser"
+msgstr: "Ваш браузер не поддерживается, извините."
+
+msgid: "Help!"
+msgstr: "Помогите!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "Увы, срок действия вашей сессии истёк. Пожалуйста, войдите снова."
+
+msgid: "Username"
+msgstr: "Имя пользователя"
+
+msgid: "Password"
+msgstr: "Пароль"
+
+msgid: "Run a query on the %s database"
+msgstr: "Выполнить запрос к базе %s"
+
+msgid: "Columns"
+msgstr: "Колонки"
+
+msgid: "Add a column"
+msgstr: "Добавить колонку"
+
+msgid: "Insert this column"
+msgstr: "Вставить колонку"
+
+msgid: "At end of table"
+msgstr: "В конец таблицы"
+
+msgid: "At beginning of table"
+msgstr: "В начало таблицы"
+
+msgid: "After"
+msgstr: "После"
+
+msgid: "Edit table"
+msgstr: "Редактировать таблицу"
+
+msgid: "Indexes"
+msgstr: "Индексы"
+
+msgid: "Add an index"
+msgstr: "Добавить индекс"
+
+msgid: "Column(s)"
+msgstr: "Колонка(и)"
+
+msgid: "Show %d more..."
+msgstr: "Показать %d больше…"
+
+msgid: "Empty table"
+msgstr: "Очистить таблицу"
+
+msgid: "Drop table"
+msgstr: "Удалить таблицу"
+
+msgid: "Optimize table"
+msgstr: "Оптимизировать таблицу"
+
+msgid: "Table Information"
+msgstr: "Информация о таблице"
+
+msgid: "Host"
+msgstr: "Хост"
+
+msgid: "Add a new user"
+msgstr: "Добавить нового пользователя"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "Формат ввода: ('1', '2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "Вы уверены, что хотите очистить таблицу '%s'? Это приведет к полному удалению данных. Будет выполнен следующий запрос:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "Вы уверены, что хотите удалить таблицу '%s'? Это приведет к удалению таблицы и ее данных. Будет выполнен следующий запрос:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "Вы уверены, что хотите удалить базу данных '%s'? Это приведет к удалению базы данных, всех ее таблиц и данных в этих таблицах. Будет выполнен следующий запрос:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "Нам очень жаль, но на данный момент поддерживается только Internet Explorer 7. Он доступен для свободного скачивания с сайта компании Майкрософт. Другие свободно-распространяемые браузеры так же поддерживаются, включая Firefox, Safari и Opera."
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "Вы, кажется, не включили поддержку кук. Для работы сессий большинство инсталляций php требует куки."
+
+msgid: "Importing..."
+msgstr: "Импортирование..."
+
+msgid: "Drop the '%s' database"
+msgstr: "Удалить базу данных '%s'"
+
+msgid: "Okay"
+msgstr: "Принять"
+
+msgid: "Cancel"
+msgstr: "Отменить"
+
+msgid: "Storage engine"
+msgstr: "Механизм хранилища"
+
+msgid: "Language"
+msgstr: "Язык"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "Команда %d была выполнена из содержимого файла"
+msgstr[1]: "Команды %d были выполнены из содержимого файла"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "Строка %d была вставлена в базу данных из содержимого файла"
+msgstr[1]: "Строки %d были вставлены в базу данных из содержимого файла"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "Строка %d была пропущена, потому что количество значений неверное"
+msgstr[1]: "Строки %d были пропущены, потому что количество значений неверное"
+
+msgid: "Theme"
+msgstr: "Тема"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f секунд)"
+
+msgid: "The following errors were reported"
+msgstr: "Обнаружены следующие ошибки"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "У Вас недостаточно прав для создания новых пользователей"
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "У Вас недостаточно прав для того, чтобы просматривать или управлять пользователями"
+
+msgid: "You are connected to %s."
+msgstr: "Вы соединены с %s"
+
+msgid: "Allow access to"
+msgstr: "Разрешить доступ к "
+
+msgid: "All databases"
+msgstr: "Все базы данных"
+
+msgid: "Selected databases"
+msgstr: "Выбранные БД"
+
+msgid: "Give user"
+msgstr: "Дать пользователю"
+
+msgid: "Updates"
+msgstr: "Обновления"
+
+msgid: "There are no updates available"
+msgstr: "Нет доступных обновлений"
+
+msgid: "Change password"
+msgstr: "Изменить пароль"
+
+msgid: "Redirecting..."
+msgstr: "Переадресация..."

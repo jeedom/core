@@ -1,0 +1,667 @@
+Language: Latviešu
+Language-Code: lv_LV
+Build-Date: Tue, 18 Jan 2011 15:13:15 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "Failu nav iespējams nolasīt vai arī tas ir tukšs"
+
+msgid: "Error performing operation"
+msgstr: "Kļūda veicot darbību"
+
+msgid: "All"
+msgstr: "Visi"
+
+msgid: "None"
+msgstr: "Neviens"
+
+msgid: "With selected"
+msgstr: "Ar izvēlētajiem"
+
+msgid: "Empty"
+msgstr: "Iztukšot"
+
+msgid: "Drop"
+msgstr: "Dzēst"
+
+msgid: "Optimize"
+msgstr: "Optimizēt"
+
+msgid: "Table"
+msgstr: "Tabula"
+
+msgid: "Rows"
+msgstr: "Rindas"
+
+msgid: "Size"
+msgstr: "Izmērs"
+
+msgid: "Overhead"
+msgstr: "Pārtērējums"
+
+msgid: "Options"
+msgstr: "Opcijas"
+
+msgid: "Edit database"
+msgstr: "Labot datubāzi"
+
+msgid: "Charset"
+msgstr: "Raktzīmju kopa"
+
+msgid: "Submit"
+msgstr: "Saglabāt"
+
+msgid: "Create a new table"
+msgstr: "Izveidot jaunu tabulu"
+
+msgid: "Name"
+msgstr: "Nosaukums"
+
+msgid: "Setup the fields for the table below"
+msgstr: "Sagatavot laukus apakšā esošajai tabulai"
+
+msgid: "New field"
+msgstr: "Jauns lauks"
+
+msgid: "Type"
+msgstr: "Tips"
+
+msgid: "Values"
+msgstr: "Vērtības"
+
+msgid: "Key"
+msgstr: "Atslēga"
+
+msgid: "primary"
+msgstr: "primārā"
+
+msgid: "unique"
+msgstr: "unikālā"
+
+msgid: "index"
+msgstr: "indekss"
+
+msgid: "Default"
+msgstr: "Noklusēts"
+
+msgid: "Other"
+msgstr: "Cits"
+
+msgid: "Unsigned"
+msgstr: "Bez zīmes"
+
+msgid: "Binary"
+msgstr: "Binārs"
+
+msgid: "Not Null"
+msgstr: "Ne tukšs"
+
+msgid: "Auto Increment"
+msgstr: "Automātiski palielināt"
+
+msgid: "Add field"
+msgstr: "Pievienot lauku"
+
+msgid: "Oops"
+msgstr: "Ui :)"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "Kaut kāda iemesla dēļ datubāzes parametrs netika iekļauts kopā ar pieprasījumu"
+
+msgid: "Save changes to original"
+msgstr: "Saglabāt izmaiņas oriģinālā"
+
+msgid: "Insert as new row"
+msgstr: "Ievietot jaunu rindu"
+
+msgid: "Save"
+msgstr: "Saglabāt"
+
+msgid: "User"
+msgstr: "Lietotājs"
+
+msgid: "All privileges"
+msgstr: "Visas privilēģijas"
+
+msgid: "Selected privileges"
+msgstr: "Izvēlētās privilēģijas"
+
+msgid: "User privileges"
+msgstr: "Lietotāja privilēģijas"
+
+msgid: "Select"
+msgstr: "SELECT"
+
+msgid: "Insert"
+msgstr: "INSERT"
+
+msgid: "Update"
+msgstr: "UPDATE"
+
+msgid: "Delete"
+msgstr: "DELETE"
+
+msgid: "Alter"
+msgstr: "ALTER"
+
+msgid: "Create"
+msgstr: "CREATE"
+
+msgid: "Temp tables"
+msgstr: "TEMP tabulas"
+
+msgid: "Administrator privileges"
+msgstr: "Administratīvās privilēģijas"
+
+msgid: "File"
+msgstr: "File (Fails)"
+
+msgid: "Process"
+msgstr: "Process"
+
+msgid: "Reload"
+msgstr: "Reload"
+
+msgid: "Shutdown"
+msgstr: "Shutdown (Izslēgt)"
+
+msgid: "Super"
+msgstr: "Super"
+
+msgid: "Grant option"
+msgstr: "Grant opcija"
+
+msgid: "User not found!"
+msgstr: "Lietotājs nav atrasts!"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "Ir jāeksportē vai nu struktūra vai dati, vai abas šīs lietas"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "Lūdzu, izvēlēties eksportējamās datubāzes"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "Lūdzu, izvēlēties eksportējamās tabulas"
+
+msgid: "Table `%s` is empty"
+msgstr: "Tabula `%s` ir tukša"
+
+msgid: "Results"
+msgstr: "Rezultāti"
+
+msgid: "Select all"
+msgstr: "Izvēlēties visu"
+
+msgid: "The file could not be opened"
+msgstr: "Nevar atvērt failu"
+
+msgid: "Could not write to file"
+msgstr: "Failā nevar ierakstīt"
+
+msgid: "Successfully wrote content to file"
+msgstr: "Saturs veiksmīgi ierakstīts failā"
+
+msgid: "Download"
+msgstr: "Lejuplādēt"
+
+msgid: "Note
+"
+msgstr: "Piezīme"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "Ja šis ir publiski pieejams serveris, šis fails būtu jāizdzēš pēc tā lejupielādes pabeigšanas"
+
+msgid: "Export"
+msgstr: "Eksportēt"
+
+msgid: "Tables"
+msgstr: "Tabulas"
+
+msgid: "Databases"
+msgstr: "Datubāzes"
+
+msgid: "Format"
+msgstr: "Formāts"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "Struktūra"
+
+msgid: "Data"
+msgstr: "Dati"
+
+msgid: "Compact inserts"
+msgstr: "Sablīvētas ievietošanas"
+
+msgid: "Complete inserts"
+msgstr: "Pilnas ievietošanas"
+
+msgid: "Delimiter"
+msgstr: "Atdalītājs"
+
+msgid: "Comma"
+msgstr: "Komats"
+
+msgid: "Tab"
+msgstr: "Tabulators"
+
+msgid: "Semicolon"
+msgstr: "Semikols"
+
+msgid: "Space"
+msgstr: "Atstarpe"
+
+msgid: "Print field names on first line"
+msgstr: "Pirmajā rindā drukāt lauku nosaukumus"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "Ja eksportējat lielu daudzumu rindu, tiek rekomendēts izvadīt rezultātu teksta failā"
+
+msgid: "Output to"
+msgstr: "Izvadīt uz"
+
+msgid: "Browser"
+msgstr: "Pārlūku"
+
+msgid: "Text file"
+msgstr: "Teksta failu"
+
+msgid: "Home"
+msgstr: "Sākums"
+
+msgid: "Users"
+msgstr: "Lietotāji"
+
+msgid: "Query"
+msgstr: "Vaicājums"
+
+msgid: "Import"
+msgstr: "Importēt"
+
+msgid: "Overview"
+msgstr: "Pārskats"
+
+msgid: "Browse"
+msgstr: "Pārlūkot"
+
+msgid: "Your changes were saved to the database"
+msgstr: "Jūsu veiktās izmaiņas tika saglabātas datubāzē"
+
+msgid: "delete this row"
+msgstr: "dzēst šo rindu"
+
+msgid: "delete these rows"
+msgstr: "dzēst šīs rindas"
+
+msgid: "empty this table"
+msgstr: "iztukšot šo tabulu"
+
+msgid: "empty these tables"
+msgstr: "iztukšot šīs tabulas"
+
+msgid: "drop this table"
+msgstr: "izdzēst šo tabulu"
+
+msgid: "drop these tables"
+msgstr: "izdzēst šīs tabulas"
+
+msgid: "delete this column"
+msgstr: "dzēst šo kolonnu"
+
+msgid: "delete these columns"
+msgstr: "dzēst šīs kolonnas"
+
+msgid: "delete this index"
+msgstr: "dzēst šo indeksu"
+
+msgid: "delete these indexes"
+msgstr: "dzēst šos indeksus"
+
+msgid: "delete this user"
+msgstr: "dzēst šo lietotāju"
+
+msgid: "delete these users"
+msgstr: "dzēst šos lietotājus"
+
+msgid: "Are you sure you want to"
+msgstr: "Vai tiešām vēlaties"
+
+msgid: "The following query will be run:"
+msgstr: "Tiks izpildīts šis vaicājums:"
+
+msgid: "The following queries will be run:"
+msgstr: "Tiks izpildīti šie vaicājumi:"
+
+msgid: "Confirm"
+msgstr: "Apstiprināt"
+
+msgid: "Successfully saved changes"
+msgstr: "Izmaiņas veiksmīgi saglabātas"
+
+msgid: "Full Text"
+msgstr: "Pilns Teksts"
+
+msgid: "Loading..."
+msgstr: "Notiek ielāde..."
+
+msgid: "Error"
+msgstr: "Kļūda"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "Saņemot datus no servera, notika kļūda"
+
+msgid: "Logout"
+msgstr: "Atslēgties"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "Kaut kāda iemesla dēļ tabulas parametrs netika iekļauts pieprasījumā"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "Laipni lūgti SQL Buddy!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "Jūs esat pieslēdzies MySQL %s ar lietotāju %s."
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "Datubāzes serveris darbojas kopš %s un ir pārsūtījis aptuveni %s datu."
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "Ir pieejama jauna SQL Buddy versija!"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "Jums ir instalēts SQL Buddy %s un %s jau ir pieejams."
+
+msgid: "Getting started"
+msgstr: "Uzsākšana"
+
+msgid: "Help"
+msgstr: "Palīdzība"
+
+msgid: "Translations"
+msgstr: "Tulkojumi"
+
+msgid: "Release Notes"
+msgstr: "Izlaiduma piezīmes"
+
+msgid: "Contact"
+msgstr: "Kontakts"
+
+msgid: "Create a new database"
+msgstr: "Izveidot jaunu datubāzi"
+
+msgid: "Did you know..."
+msgstr: "Vai jūs zinājāt, ka..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "Ir vienkāršāks veids kā izvēlēties lielu vienību skaitu, kad apskatāt tabulas rindas. Uzklikšķiniet pirmo rindu, turiet nospiestu Shift un uzklikšķiniet pēdējai rindai. Izvēles rūtiņas starp šīm divām rindām tiks automātiski iezīmētas."
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "Pārlūkošanas un vaicājumu šķirkļos kolonnas ir ar maināmu platumu, pielāgojiet tās pēc vajadzības."
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "Pieslēgšanās lapa pēc noklusēšanas izmanto lietotāju root@localhost. Izmainot config.php failu, varat izmainīt noklusēto lietotāju un datoru uz tādu, kāds ērtāks."
+
+msgid: "Keyboard shortcuts"
+msgstr: "Klaviatūras saīsnes"
+
+msgid: "Press this key..."
+msgstr: "Nospiediet šo pogu..."
+
+msgid: "...and this will happen"
+msgstr: "... un notiks šis"
+
+msgid: "select none"
+msgstr: "neizvēlēties nevienu"
+
+msgid: "edit selected items"
+msgstr: "labot iezīmētās vienības"
+
+msgid: "delete selected items"
+msgstr: "dzēst iezīmētās vienības"
+
+msgid: "refresh page"
+msgstr: "atjaunot lapas skatījumu"
+
+msgid: "load the query tab"
+msgstr: "ielādēt vaicājumu šķirkli"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "pārlūkošanas šķirklis - iet uz rezultātu pirmo lapu"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "pārlūkošanas šķirklis - iet uz rezultātu pēdējo lapu"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "pārlūkošanas šķirklis - iet uz rezultātu iepriekšējo lapu"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "pārlūkošanas šķirklis - iet uz rezultātu nākošo lapu"
+
+msgid: "optimize selected tables"
+msgstr: "optimizēt izvēlētās tabulas"
+
+msgid: "Choose a .sql file to import"
+msgstr: "Izvēlēties importējamo .sql failu"
+
+msgid: "File
+"
+msgstr: "Fails"
+
+msgid: "Ignore first line"
+msgstr: "Ignorēt pirmo rindu"
+
+msgid: "Edit"
+msgstr: "Labot"
+
+msgid: "Refresh"
+msgstr: "Atjaunot skatījumu"
+
+msgid: "No primary key defined"
+msgstr: "Nav definēta primārā atslēga"
+
+msgid: "First"
+msgstr: "Pirmā"
+
+msgid: "Prev"
+msgstr: "Iepriekšējā"
+
+msgid: "Next"
+msgstr: "Nākošā"
+
+msgid: "Last"
+msgstr: "Pēdējā"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "Jūsu vaicājums deva %d rezultātu"
+msgstr[1]: "Jūsu vaicājums deva %d rezultātus"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "Piezīme: Lai neuzkārtu pārlūku, tiek rādīti tikai pirmie %d rezultāti"
+
+msgid: "binary data"
+msgstr: "binārie dati"
+
+msgid: "Your query affected %d rows"
+msgstr: "Jūsu vaicājums ietekmēja %d rindas"
+
+msgid: "Your query did not return any results"
+msgstr: "Jūsu vaicājums nedeva nevienu rezultātu"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "Jūsu dati veiksmīgi ievietoti datubāzē"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "Bija problēmas atrast \"%s\" tabulu"
+
+msgid: "There was a problem logging you in"
+msgstr: "Bija problēma ar autentificēšanos"
+
+msgid: "Login"
+msgstr: "Pieslēgties"
+
+msgid: "Unsupported browser"
+msgstr: "Neatbalstīts pārlūks"
+
+msgid: "Help!"
+msgstr: "Palīdzība!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "Jūsu sesijas laiks beidzies. Lūdzu, pieslēdzieties vēlreiz."
+
+msgid: "Username"
+msgstr: "Lietotājvārds"
+
+msgid: "Password"
+msgstr: "Parole"
+
+msgid: "Run a query on the %s database"
+msgstr: "Izpildīt vaicājumu %s datubāzē"
+
+msgid: "Columns"
+msgstr: "Kolonnas"
+
+msgid: "Add a column"
+msgstr: "Pievienot kolonnu"
+
+msgid: "Insert this column"
+msgstr: "Ievietot šo kolonnu"
+
+msgid: "At end of table"
+msgstr: "Tabulas beigās"
+
+msgid: "At beginning of table"
+msgstr: "Tabulas sākumā"
+
+msgid: "After"
+msgstr: "Pēc"
+
+msgid: "Edit table"
+msgstr: "Rediģēt tabulu"
+
+msgid: "Indexes"
+msgstr: "Indeksi"
+
+msgid: "Add an index"
+msgstr: "Pievienot indeksu"
+
+msgid: "Column(s)"
+msgstr: "Kolonna(s)"
+
+msgid: "Show %d more..."
+msgstr: "Rādīt vēl %d..."
+
+msgid: "Empty table"
+msgstr: "Iztukšot tabulu"
+
+msgid: "Drop table"
+msgstr: "Dzēst tabulu"
+
+msgid: "Optimize table"
+msgstr: "Optimizēt tabulu"
+
+msgid: "Table Information"
+msgstr: "Tabulas informācija"
+
+msgid: "Host"
+msgstr: "Serveris"
+
+msgid: "Add a new user"
+msgstr: "Pievienot jaunu lietotāju"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "Ievadiet formātā: ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "Vai esat pārliecināts, ka gribat iztukšot tabulu '%s'? Ar to izdzēsīsiet visus tajā esošos datus. Tiks izpildīts šis vaicājums:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "Vai esat pārliecināts, ka gribat dzēst tabulu '%s'? Ar to izdzēsīsiet gan tabulu, gan tajā esošos datus. Tiks izpildīts šis vaicājums:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "Vai esat pārliecināts, ka gribat dzēst datubāzi '%s'? Ar to izdzēsīsiet, gan datubāzi, gan tajā esošās tabulas, gan tajās esošos datus. Tiks izpildīts šis vaicājums:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "Atvainojiet, taču šobrīt tiek atbalstīts tikai Internet Explorer 7. To var bez maksas lejupielādēt no Microsoft. Tiek atbalstīti arī bezmaksas pārlūki (Firefox, Safari un Opera)."
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "Izskatās, ka nav atļauti cepumi. Lai darbotos sesijas, vairumam PHP instalācijām nepieciešami cepumi."
+
+msgid: "Importing..."
+msgstr: "Notiek importēšana..."
+
+msgid: "Drop the '%s' database"
+msgstr: "Dzēst datubāzi '%s'"
+
+msgid: "Okay"
+msgstr: "OK"
+
+msgid: "Cancel"
+msgstr: "Atcelt"
+
+msgid: "Storage engine"
+msgstr: "Glabāšanas dzinējs"
+
+msgid: "Language"
+msgstr: "Valoda"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "No faila tika izpildīts %d vaicājums"
+msgstr[1]: "No faila tika izpildīti %d vaicājumi"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "No faila tika ievietota %d rinda"
+msgstr[1]: "No faila tika ievietotas %d rindas"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "%d rinda bija jāizlaiž, jo bija nepareizs vērtību skaits"
+msgstr[1]: "%d ridas bija jāizlaiž, jo bija nepareizs vērtību skaits"
+
+msgid: "Theme"
+msgstr: "Izskats"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f sekundes)"
+
+msgid: "The following errors were reported"
+msgstr: "Tika paziņotas šādas kļūdas"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "Jums nav pietiekamu tiesību veidot jaunus lietotājus."
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "Jums nav pietiekamu tiesību aplūkot vai pārvaldīt lietotājus."
+
+msgid: "You are connected to %s."
+msgstr: "Esat pieslēdzies %s"
+
+msgid: "Allow access to"
+msgstr: "Ļaut piekļuvi pie"
+
+msgid: "All databases"
+msgstr: "Visām datubāzēm"
+
+msgid: "Selected databases"
+msgstr: "Izvēlētajām datubāzēm"
+
+msgid: "Give user"
+msgstr: "Piešķirt lietotājam"
+
+msgid: "Updates"
+msgstr: "Jauninājumi"
+
+msgid: "There are no updates available"
+msgstr: "Ir pieejami jauninājumi"
+
+msgid: "Change password"
+msgstr: "Mainīt paroli"
+
+msgid: "Redirecting..."
+msgstr: "Pārsūtu..."

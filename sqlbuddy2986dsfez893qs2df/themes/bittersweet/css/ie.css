@@ -1,0 +1,44 @@
+#header {
+padding-bottom: 4px;
+}
+
+#rightside {
+padding-bottom: 0 !important;
+}
+
+.leftchecks {
+margin-left: -22px !important;
+}
+.browsetab .leftchecks {
+margin-left: -38px !important;
+}
+
+.manip {
+padding-top: 0 !important;
+padding-bottom: 1px !important;
+}
+.manip dt {
+padding: 0 5px 0 1px !important;
+}
+
+.browsetab .gridheader, .users .gridheader {
+margin-top: -15px;
+}
+
+.dblist {
+float: none !important;
+}
+.dblist ul li {
+float: none !important;
+}
+
+.sublist {
+width: 225px;
+}
+
+#leftside {
+width: 225px !important;
+}
+#rightside {
+margin-left: 225px !important;
+}

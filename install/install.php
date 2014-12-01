@@ -110,11 +110,20 @@ try {
                     if (filesize($tmp) < 10) {
                         throw new Exception(__('Echec lors du telechargement du fichier veuillez reessayer plus tard (taile inferieur a 10 octets)', __FILE__));
                     }
+                    echo __("OK\n", __FILE__);
 
+                    echo __("Nettoyage des dossiers en cours...", __FILE__);
                     $cibDir = dirname(__FILE__) . '/../tmp/jeedom';
                     if (file_exists($cibDir)) {
                         rrmdir($cibDir);
                     }
+                    echo __("OK\n", __FILE__);
+                    echo __("Nettoyage sqlbuddy en cours...", __FILE__);
+                    foreach (ls(dirname(__FILE__) . '/../', 'sqlbuddy*') as $file) {
+                        rrmdir(dirname(__FILE__) . '/../' . $file);
+                    }
+                    echo __("OK\n", __FILE__);
+                    echo __("Creéation des dossiers temporaire...", __FILE__);
                     if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
                         throw new Exception(__('Impossible de creer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
                     }
@@ -135,6 +144,9 @@ try {
                     @rcopy($cibDir . '/', dirname(__FILE__) . '/../', false);
                     rrmdir($cibDir);
                     unlink($tmp);
+                    echo __("OK\n", __FILE__);
+                    echo __("Renommage sqlbuddy en cours...", __FILE__);
+                    jeedom::renameSqlBuddyFolder();
                     echo __("OK\n", __FILE__);
                 } catch (Exception $e) {
                     if (init('mode') != 'force') {

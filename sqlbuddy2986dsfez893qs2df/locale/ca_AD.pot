@@ -1,0 +1,667 @@
+Language: Català
+Language-Code: ca_AD
+Build-Date: Tue, 18 Jan 2011 15:04:12 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "No s'ha pogut llegir l'arxiu o estava buit"
+
+msgid: "Error performing operation"
+msgstr: "Error durant la operació"
+
+msgid: "All"
+msgstr: "Tots"
+
+msgid: "None"
+msgstr: "Cap"
+
+msgid: "With selected"
+msgstr: "Amb els seleccionats"
+
+msgid: "Empty"
+msgstr: "Buidar"
+
+msgid: "Drop"
+msgstr: "Eliminar"
+
+msgid: "Optimize"
+msgstr: "Optimitzar"
+
+msgid: "Table"
+msgstr: "Taula"
+
+msgid: "Rows"
+msgstr: "Files"
+
+msgid: "Size"
+msgstr: "Mida"
+
+msgid: "Overhead"
+msgstr: "Overhead (a dalt)"
+
+msgid: "Options"
+msgstr: "Opcions"
+
+msgid: "Edit database"
+msgstr: "Editar base de dades"
+
+msgid: "Charset"
+msgstr: "Joc de caràcters"
+
+msgid: "Submit"
+msgstr: "Enviar"
+
+msgid: "Create a new table"
+msgstr: "Crear nova taula"
+
+msgid: "Name"
+msgstr: "Nom"
+
+msgid: "Setup the fields for the table below"
+msgstr: "Estableix els camps per la següent taula"
+
+msgid: "New field"
+msgstr: "Nou camp"
+
+msgid: "Type"
+msgstr: "Tipus"
+
+msgid: "Values"
+msgstr: "Valors"
+
+msgid: "Key"
+msgstr: "Clau"
+
+msgid: "primary"
+msgstr: "primària"
+
+msgid: "unique"
+msgstr: "única"
+
+msgid: "index"
+msgstr: "índex"
+
+msgid: "Default"
+msgstr: "Per defecte"
+
+msgid: "Other"
+msgstr: "Altre"
+
+msgid: "Unsigned"
+msgstr: "Sense signar"
+
+msgid: "Binary"
+msgstr: "Binàri"
+
+msgid: "Not Null"
+msgstr: "No Null"
+
+msgid: "Auto Increment"
+msgstr: "Auto-incremental"
+
+msgid: "Add field"
+msgstr: "Afegir camp"
+
+msgid: "Oops"
+msgstr: "Ostres"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "Per alguna raó, el paràmetre de la base de dades no s'ha inclòs a la teva petició"
+
+msgid: "Save changes to original"
+msgstr: "Desar canvis a l'original"
+
+msgid: "Insert as new row"
+msgstr: "Inserir com a nova fila"
+
+msgid: "Save"
+msgstr: "Desar"
+
+msgid: "User"
+msgstr: "Usuari"
+
+msgid: "All privileges"
+msgstr: "Tots els privilegis"
+
+msgid: "Selected privileges"
+msgstr: "Privilegis seleccionats"
+
+msgid: "User privileges"
+msgstr: "Privilegis d'usuari"
+
+msgid: "Select"
+msgstr: "Select"
+
+msgid: "Insert"
+msgstr: "Insert"
+
+msgid: "Update"
+msgstr: "Update"
+
+msgid: "Delete"
+msgstr: "Delete"
+
+msgid: "Alter"
+msgstr: "Alter"
+
+msgid: "Create"
+msgstr: "Create"
+
+msgid: "Temp tables"
+msgstr: "Taules temporals"
+
+msgid: "Administrator privileges"
+msgstr: "Privilegis d'administrador"
+
+msgid: "File"
+msgstr: "Arxiu"
+
+msgid: "Process"
+msgstr: "Procés"
+
+msgid: "Reload"
+msgstr: "Recarregar"
+
+msgid: "Shutdown"
+msgstr: "Apagar"
+
+msgid: "Super"
+msgstr: "Super"
+
+msgid: "Grant option"
+msgstr: "Otorgar opció"
+
+msgid: "User not found!"
+msgstr: "Usuari no trobat"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "Has d'exportar l'estructura, les dades o ambdues."
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "Si us plau, seleccioni la base de dades que voleu exportar"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "Si us plau, seleccioni les taules que voleu exportar"
+
+msgid: "Table `%s` is empty"
+msgstr: "La taula `%s` és buida"
+
+msgid: "Results"
+msgstr: "Resultats"
+
+msgid: "Select all"
+msgstr: "Seleccionar tot"
+
+msgid: "The file could not be opened"
+msgstr: "El fitxer no pot ser obert"
+
+msgid: "Could not write to file"
+msgstr: "Impossible escriure el fitxer"
+
+msgid: "Successfully wrote content to file"
+msgstr: "El fitxer s'ha escrit correctament"
+
+msgid: "Download"
+msgstr: "Descarregant"
+
+msgid: "Note
+"
+msgstr: "Nota"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "Si això és un servidor públic, has d'esborrar aquest arxiu del servidor després de descarregar-lo"
+
+msgid: "Export"
+msgstr: "Exportar"
+
+msgid: "Tables"
+msgstr: "Taules"
+
+msgid: "Databases"
+msgstr: "Base de dades"
+
+msgid: "Format"
+msgstr: "Formateig"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "Estructura"
+
+msgid: "Data"
+msgstr: "Data"
+
+msgid: "Compact inserts"
+msgstr: "Inserts compactats"
+
+msgid: "Complete inserts"
+msgstr: "Inserts complerts"
+
+msgid: "Delimiter"
+msgstr: "Delimitador"
+
+msgid: "Comma"
+msgstr: "Coma"
+
+msgid: "Tab"
+msgstr: "Tabulador"
+
+msgid: "Semicolon"
+msgstr: "Punt i coma"
+
+msgid: "Space"
+msgstr: "Espai"
+
+msgid: "Print field names on first line"
+msgstr: "Imprimir els noms del camps a la primera línia"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "Si vosté està exportant un nùmero gran de columnes, es recomenable que faci el volcat sobre un arxiu de texte."
+
+msgid: "Output to"
+msgstr: "Extraure a"
+
+msgid: "Browser"
+msgstr: "Navegador"
+
+msgid: "Text file"
+msgstr: "Fitxer text"
+
+msgid: "Home"
+msgstr: "Inici"
+
+msgid: "Users"
+msgstr: "Usuaris"
+
+msgid: "Query"
+msgstr: "Consulta"
+
+msgid: "Import"
+msgstr: "Importar"
+
+msgid: "Overview"
+msgstr: "Visualitzar"
+
+msgid: "Browse"
+msgstr: "Navegar"
+
+msgid: "Your changes were saved to the database"
+msgstr: "Els teus canvis s'han guardat a la base de dades"
+
+msgid: "delete this row"
+msgstr: "elimina aquesta fila"
+
+msgid: "delete these rows"
+msgstr: "elimina aquestes files"
+
+msgid: "empty this table"
+msgstr: "buida aquesta taula"
+
+msgid: "empty these tables"
+msgstr: "buida aquestes taules"
+
+msgid: "drop this table"
+msgstr: "elimina aquesta taula"
+
+msgid: "drop these tables"
+msgstr: "elimina aquestes taules"
+
+msgid: "delete this column"
+msgstr: "esborra aquesta columna"
+
+msgid: "delete these columns"
+msgstr: "esborra aquestes columnes"
+
+msgid: "delete this index"
+msgstr: "esborra aquest índex"
+
+msgid: "delete these indexes"
+msgstr: "esborra aquests índexs"
+
+msgid: "delete this user"
+msgstr: "esborra aquest usuari"
+
+msgid: "delete these users"
+msgstr: "esborra aquests usuaris"
+
+msgid: "Are you sure you want to"
+msgstr: "Estàs segur que vols"
+
+msgid: "The following query will be run:"
+msgstr: "La següent query serà creada:"
+
+msgid: "The following queries will be run:"
+msgstr: "Les següents queries seran creades:"
+
+msgid: "Confirm"
+msgstr: "Confirma"
+
+msgid: "Successfully saved changes"
+msgstr: "Canvis guardats correctament"
+
+msgid: "Full Text"
+msgstr: "Text complet"
+
+msgid: "Loading..."
+msgstr: "Carregant..."
+
+msgid: "Error"
+msgstr: "Error"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "Hi ha hagut un error al rebre les dades desde el servidor"
+
+msgid: "Logout"
+msgstr: "Surt"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "Per alguna raó, algun paràmetre de no ha sigut inclòs a la seva consulta"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "Benvingut a SQL Buddy!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "Estàs connectat a MySQL %s amb l'usuari %s."
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "El servidor de base de dades esta funcionant des de %s i ha transferit aproximadament %s de dades"
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "Una nova versió de SQL Buddy està disponible!"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "SQL Buddy ha sigut instalat i està disponible."
+
+msgid: "Getting started"
+msgstr: "Començant"
+
+msgid: "Help"
+msgstr: "Ajuda"
+
+msgid: "Translations"
+msgstr: "Traduccions"
+
+msgid: "Release Notes"
+msgstr: "Notes tècniques"
+
+msgid: "Contact"
+msgstr: "Contactar"
+
+msgid: "Create a new database"
+msgstr: "Crear una nova base de dades"
+
+msgid: "Did you know..."
+msgstr: "Sabies que..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "Hi ha una forma més fàcil de seleccionar un grup gran d'elements quan s'estan fullejant files de la base de dades. Marca la primera fila, polsa la tecla shift y marca la última fila. Totes les files entre una i altra seran marcades automàticament."
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "Les columnes en les pestanyes de consulta i fullejar poden canviar de amplària."
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "La fulla d'autenticació està basada en un usuari per defecte (root@localhost). Editant config.php, pots canviar l'usuari per defecte i el hoste als que vulgues."
+
+msgid: "Keyboard shortcuts"
+msgstr: "Adreces de Teclat"
+
+msgid: "Press this key..."
+msgstr: "Pitja aquesta tecla...."
+
+msgid: "...and this will happen"
+msgstr: ".... i passarà això"
+
+msgid: "select none"
+msgstr: "selecciona cap"
+
+msgid: "edit selected items"
+msgstr: "modifica elements seleccionats"
+
+msgid: "delete selected items"
+msgstr: "esborra elements seleccionats"
+
+msgid: "refresh page"
+msgstr: "refresca pàgina"
+
+msgid: "load the query tab"
+msgstr: "carrega la pestanya de consultes"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "Pestanya navegació - anar a la primera pàgina de resultats"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "Pestanya navegació - anar a la última pàgina de resultats"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "Pestanya navegació - anar a la pàgina de resultats següent"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "Pestanya navegació - anar a la pàgina de resultats anterior"
+
+msgid: "optimize selected tables"
+msgstr: "optimitza les taules seleccionades"
+
+msgid: "Choose a .sql file to import"
+msgstr: "Tria un arxiu .sql per a importar-lo"
+
+msgid: "File
+"
+msgstr: "Arxiu"
+
+msgid: "Ignore first line"
+msgstr: "Ignora la primera línia"
+
+msgid: "Edit"
+msgstr: "Editar"
+
+msgid: "Refresh"
+msgstr: "Refrescar"
+
+msgid: "No primary key defined"
+msgstr: "No s'ha definit clau principal"
+
+msgid: "First"
+msgstr: "Primer"
+
+msgid: "Prev"
+msgstr: "Ant"
+
+msgid: "Next"
+msgstr: "Pos"
+
+msgid: "Last"
+msgstr: "Ultim"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "La consulta ha retornat %d resultat"
+msgstr[1]: "La consulta ha retornat %d resultats"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "Nota: Per evitar bloquejar el navegador, només es mostraran els %d primers resultats."
+
+msgid: "binary data"
+msgstr: "dades binaries"
+
+msgid: "Your query affected %d rows"
+msgstr: "La teva consulta ha afectat a %d files"
+
+msgid: "Your query did not return any results"
+msgstr: "La teva consulta no ha tornat cap resultat"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "Les teves dades han sigut inserides a la base de dades"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "Hi ha hagut un problema localitzant la taula '%s'"
+
+msgid: "There was a problem logging you in"
+msgstr: "Hi ha hagut un problema en la identificació en"
+
+msgid: "Login"
+msgstr: "Autentificació"
+
+msgid: "Unsupported browser"
+msgstr: "Navegador no suportat"
+
+msgid: "Help!"
+msgstr: "Ajuda!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "La teva sessió ha caducat. Per favor, autenticat un altra vegada."
+
+msgid: "Username"
+msgstr: "Usuari"
+
+msgid: "Password"
+msgstr: "Contrasenya"
+
+msgid: "Run a query on the %s database"
+msgstr: "Executar una consulta a la base de dades %s"
+
+msgid: "Columns"
+msgstr: "Columnes"
+
+msgid: "Add a column"
+msgstr: "Afegir una columna"
+
+msgid: "Insert this column"
+msgstr: "Inserir aquesta columna"
+
+msgid: "At end of table"
+msgstr: "Al final de la taula"
+
+msgid: "At beginning of table"
+msgstr: "Al principi de la taula"
+
+msgid: "After"
+msgstr: "Després"
+
+msgid: "Edit table"
+msgstr: "Edita la taula"
+
+msgid: "Indexes"
+msgstr: "Índexs"
+
+msgid: "Add an index"
+msgstr: "Afegir un índex"
+
+msgid: "Column(s)"
+msgstr: "Columna(es)"
+
+msgid: "Show %d more..."
+msgstr: "Mostrar %d més..."
+
+msgid: "Empty table"
+msgstr: "Buidar la taula"
+
+msgid: "Drop table"
+msgstr: "Eliminar la taula"
+
+msgid: "Optimize table"
+msgstr: "Optimitzar la taula"
+
+msgid: "Table Information"
+msgstr: "Informació de la taula"
+
+msgid: "Host"
+msgstr: "Amfitrió"
+
+msgid: "Add a new user"
+msgstr: "Afegeix un nou usuari"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "Introdueix seguint el format: ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "Estas segur de que vols buidar la taula '%s'? Això eliminarà *totes les dades* dins de la taula. La següent consulta serà executada:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "Estas segur de que vols eliminar la taula '%s'? Això eliminarà la taula i *totes les dades* dins. La següent consulta serà executada:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "Estàs segur que vols eliminar la base de dades '%s'? Açò eliminarà la base de dades, les taules dins de la base de dades i *totes les dades* dins d'eixes taules. La següent consulta serà executada:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "Ho sentim, pero actualment  només Internet Explorer 7 està suportat. Està disponible com a descàrrega gratuïta al website de Microsoft. Hi ha d'altres navegadors suportats gratuïts, com ara  Firefox, Safari i Opera."
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "Sembla que no tens les cookies habilitades. Per a que funcionen, la majoria de les instal·lacions PHP requereixen cookies."
+
+msgid: "Importing..."
+msgstr: "Fent la importació..."
+
+msgid: "Drop the '%s' database"
+msgstr: "Eliminar la base de dades '%s'"
+
+msgid: "Okay"
+msgstr: "Correcte"
+
+msgid: "Cancel"
+msgstr: "Cancel·la"
+
+msgid: "Storage engine"
+msgstr: "Motor d'enmagatzematge"
+
+msgid: "Language"
+msgstr: "Idioma"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "La ordre %d ha sigut executada des de l'arxiu"
+msgstr[1]: "Les ordres %d han sigut executades des de l'arxiu"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "%d fila ha estat insertada en la base de dades des de l'arxiu"
+msgstr[1]: "%d files han estat insertades en la base de dades des de l'arxiu"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "%d fila ha estat ignorada perque el nombre de valors és incorrecte"
+msgstr[1]: "%d files han estat ignorades perque el nombre de valors és incorrecte"
+
+msgid: "Theme"
+msgstr: "Tema"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f segons)"
+
+msgid: "The following errors were reported"
+msgstr: "S'han reportat els següents errors"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "No tens prous permisos per a crear nous usuaris."
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "No tens prous permisos per veure o manipular els usuaris."
+
+msgid: "You are connected to %s."
+msgstr: "Estàs connectat a %s"
+
+msgid: "Allow access to"
+msgstr: "Permetre l'accés a"
+
+msgid: "All databases"
+msgstr: "Totes les bases de dades"
+
+msgid: "Selected databases"
+msgstr: "Bases de dades selecionades"
+
+msgid: "Give user"
+msgstr: "Donar a l'usuari"
+
+msgid: "Updates"
+msgstr: "Actualitzacions"
+
+msgid: "There are no updates available"
+msgstr: "No hi ha actualitzacions disponibles."
+
+msgid: "Change password"
+msgstr: "Canviar clau"
+
+msgid: "Redirecting..."
+msgstr: "Redirigint..."

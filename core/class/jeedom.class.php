@@ -104,11 +104,11 @@ class jeedom {
             }
         }
     }
-    
+
     public static function sick() {
         $cmd = 'php ' . dirname(__FILE__) . '/../../sick.php';
         $cmd.= ' >> ' . log::getPathToLog('sick') . ' 2>&1';
-        shell_exec($cmd);   
+        shell_exec($cmd);
     }
 
     public static function getUsbMapping($_name = '') {
@@ -576,6 +576,24 @@ class jeedom {
             return false;
         }
         return true;
+    }
+
+    /*     * ****************************SQL BUDDY*************************** */
+
+    public static function getCurrentSqlBuddyFolder() {
+        $dir = dirname(__FILE__) . '/../../';
+        $ls = ls($dir, 'sqlbuddy*');
+        if (count($ls) != 1) {
+            return '';
+        }
+        return $ls[0];
+    }
+
+    public static function renameSqlBuddyFolder() {
+        $folder = self::getCurrentSqlBuddyFolder();
+        if ($folder != '') {
+            rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../sqlbuddy' . config::genKey());
+        }
     }
 
     /*     * *********************Methode d'instance************************* */

@@ -1,0 +1,667 @@
+Language: Bahasa Indonesia
+Language-Code: id_ID
+Build-Date: Tue, 18 Jan 2011 15:11:27 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "File tidak dapat dibaca atau file masih kosong"
+
+msgid: "Error performing operation"
+msgstr: "Gagal menjalankan perintah"
+
+msgid: "All"
+msgstr: "Semua"
+
+msgid: "None"
+msgstr: "Tidak satupun"
+
+msgid: "With selected"
+msgstr: "Yang terseleksi"
+
+msgid: "Empty"
+msgstr: "Kosong"
+
+msgid: "Drop"
+msgstr: "Drop"
+
+msgid: "Optimize"
+msgstr: "Optimalkan"
+
+msgid: "Table"
+msgstr: "Tabel"
+
+msgid: "Rows"
+msgstr: "Baris"
+
+msgid: "Size"
+msgstr: "Ukuran"
+
+msgid: "Overhead"
+msgstr: "Overhead"
+
+msgid: "Options"
+msgstr: "Opsi"
+
+msgid: "Edit database"
+msgstr: "Edit database"
+
+msgid: "Charset"
+msgstr: "Charset"
+
+msgid: "Submit"
+msgstr: "Kirim"
+
+msgid: "Create a new table"
+msgstr: "Buat tabel baru"
+
+msgid: "Name"
+msgstr: "Nama"
+
+msgid: "Setup the fields for the table below"
+msgstr: "Setup field baru pada tabel berikut"
+
+msgid: "New field"
+msgstr: "Field baru"
+
+msgid: "Type"
+msgstr: "Tipe"
+
+msgid: "Values"
+msgstr: "Nilai"
+
+msgid: "Key"
+msgstr: "Kunci"
+
+msgid: "primary"
+msgstr: "primary"
+
+msgid: "unique"
+msgstr: "unique"
+
+msgid: "index"
+msgstr: "indeks"
+
+msgid: "Default"
+msgstr: "Default"
+
+msgid: "Other"
+msgstr: "Lainnya"
+
+msgid: "Unsigned"
+msgstr: "Unsigned"
+
+msgid: "Binary"
+msgstr: "Biner"
+
+msgid: "Not Null"
+msgstr: "Not Null"
+
+msgid: "Auto Increment"
+msgstr: "Auto Increment"
+
+msgid: "Add field"
+msgstr: "Tambah field"
+
+msgid: "Oops"
+msgstr: "Ups"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "Untuk alasan tertentu, parameter database tidak disertakan dalam query anda"
+
+msgid: "Save changes to original"
+msgstr: "Simpan perubahan ke kondisi asli "
+
+msgid: "Insert as new row"
+msgstr: "Sisip sebagai baris baru"
+
+msgid: "Save"
+msgstr: "Simpan"
+
+msgid: "User"
+msgstr: "User"
+
+msgid: "All privileges"
+msgstr: "Semua hak akses (privileges)"
+
+msgid: "Selected privileges"
+msgstr: "Hak akses yang terseleksi"
+
+msgid: "User privileges"
+msgstr: "Hak akses user"
+
+msgid: "Select"
+msgstr: "Pilih"
+
+msgid: "Insert"
+msgstr: "Insert"
+
+msgid: "Update"
+msgstr: "Update"
+
+msgid: "Delete"
+msgstr: "Delete"
+
+msgid: "Alter"
+msgstr: "Alter"
+
+msgid: "Create"
+msgstr: "Create"
+
+msgid: "Temp tables"
+msgstr: "Tabel sementara"
+
+msgid: "Administrator privileges"
+msgstr: "Hak akses administrator"
+
+msgid: "File"
+msgstr: "Berkas"
+
+msgid: "Process"
+msgstr: "Proses"
+
+msgid: "Reload"
+msgstr: "Reload"
+
+msgid: "Shutdown"
+msgstr: "Matikan"
+
+msgid: "Super"
+msgstr: "Super"
+
+msgid: "Grant option"
+msgstr: "Opsi grant"
+
+msgid: "User not found!"
+msgstr: "User tidak ditemukan!"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "Anda harus mengekspor struktur, atau data, maupun kedua-duanya"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "Silakan pilih database yang ingin anda ekspor"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "Silakan pilih tabel yang ingin anda ekspor"
+
+msgid: "Table `%s` is empty"
+msgstr: "Tabel `%s` kosong"
+
+msgid: "Results"
+msgstr: "Hasil"
+
+msgid: "Select all"
+msgstr: "Seleksi semua"
+
+msgid: "The file could not be opened"
+msgstr: "File tidak dapat dibuka"
+
+msgid: "Could not write to file"
+msgstr: "Tidak dapat menulis ke file"
+
+msgid: "Successfully wrote content to file"
+msgstr: "Sukses! Content telah ditulis dalam file"
+
+msgid: "Download"
+msgstr: "Download"
+
+msgid: "Note
+"
+msgstr: "Catatan"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "Bila server yang Anda gunakan bersifat publik, sebaiknya Anda hapus file ini dari server setelah mendownloadnya."
+
+msgid: "Export"
+msgstr: "Ekspor"
+
+msgid: "Tables"
+msgstr: "Tabel-tabel"
+
+msgid: "Databases"
+msgstr: "Database-database"
+
+msgid: "Format"
+msgstr: "Format"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "Struktur"
+
+msgid: "Data"
+msgstr: "Data"
+
+msgid: "Compact inserts"
+msgstr: "Sisip secara compact"
+
+msgid: "Complete inserts"
+msgstr: "Sisip secara komplit"
+
+msgid: "Delimiter"
+msgstr: "Pemisah"
+
+msgid: "Comma"
+msgstr: "Koma"
+
+msgid: "Tab"
+msgstr: "Tab"
+
+msgid: "Semicolon"
+msgstr: "Titik koma"
+
+msgid: "Space"
+msgstr: "Spasi"
+
+msgid: "Print field names on first line"
+msgstr: "Cetak nama field pada baris pertama"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "Jika Anda mengekspor baris dalam jumlah besar, direkomendasikan untuk menyimpan outputnya dalam sebuah file teks"
+
+msgid: "Output to"
+msgstr: "Keluaran ke"
+
+msgid: "Browser"
+msgstr: "Browser"
+
+msgid: "Text file"
+msgstr: "File teks"
+
+msgid: "Home"
+msgstr: "Home"
+
+msgid: "Users"
+msgstr: "User-user"
+
+msgid: "Query"
+msgstr: "Query"
+
+msgid: "Import"
+msgstr: "Impor"
+
+msgid: "Overview"
+msgstr: "Sekilas"
+
+msgid: "Browse"
+msgstr: "Browse"
+
+msgid: "Your changes were saved to the database"
+msgstr: "Perubahan telah disimpan ke dalam database"
+
+msgid: "delete this row"
+msgstr: "hapus baris ini"
+
+msgid: "delete these rows"
+msgstr: "hapus baris-baris ini"
+
+msgid: "empty this table"
+msgstr: "kosongkan tabel ini"
+
+msgid: "empty these tables"
+msgstr: "kosongkan tabel-tabel ini"
+
+msgid: "drop this table"
+msgstr: "drop tabel ini"
+
+msgid: "drop these tables"
+msgstr: "drop tabel-tabel ini"
+
+msgid: "delete this column"
+msgstr: "hapus kolom "
+
+msgid: "delete these columns"
+msgstr: "hapus kolom-kolom ini"
+
+msgid: "delete this index"
+msgstr: "hapus indeks ini"
+
+msgid: "delete these indexes"
+msgstr: "hapus indeks-indeks ini"
+
+msgid: "delete this user"
+msgstr: "hapus user ini"
+
+msgid: "delete these users"
+msgstr: "hapus user-user ini"
+
+msgid: "Are you sure you want to"
+msgstr: "Apakah anda yakin untuk"
+
+msgid: "The following query will be run:"
+msgstr: "Query berikut ini akan dieksekusi"
+
+msgid: "The following queries will be run:"
+msgstr: "Query-query berikut ini akan dieksekusi"
+
+msgid: "Confirm"
+msgstr: "Konfirmasi"
+
+msgid: "Successfully saved changes"
+msgstr: "Perubahan telah disimpan"
+
+msgid: "Full Text"
+msgstr: "Full Teks"
+
+msgid: "Loading..."
+msgstr: "Loading..."
+
+msgid: "Error"
+msgstr: "Error"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "Terjadi error saat menerima data dari server "
+
+msgid: "Logout"
+msgstr: "Logout"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "Untuk alasan tertentu, parameter tabel tidak disertakan dalam query anda"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "Selamat datang di SQL Buddy"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "Anda terkoneksi ke MySQL %s atas nama user %s"
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "Server database telah berjalan sejak %s dan telah mentransfer kurang lebih %s data."
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "Versi terbaru SQL Buddy telah tersedia"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "Versi SQL Buddy Anda adalah %s dan sekarang telah tersedia versi %s."
+
+msgid: "Getting started"
+msgstr: "Pendahuluan"
+
+msgid: "Help"
+msgstr: "Bantuan"
+
+msgid: "Translations"
+msgstr: "Terjemahan"
+
+msgid: "Release Notes"
+msgstr: "Catatan rilis"
+
+msgid: "Contact"
+msgstr: "Kontak"
+
+msgid: "Create a new database"
+msgstr: "Buat database baru"
+
+msgid: "Did you know..."
+msgstr: "Tahukah anda..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "Ada cara mudah untuk menyeleksi banyak group item. Pilih baris pertama, lalu tekan tombol shift bersamaan dengan memilih baris akhir. Checkbox antara baris awal hingga akhir secara otomatis akan terseleksi."
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "Kolom pada browse dan tab query dapat di-resize. Anda bisa mengubah-ubah ukurannya sesuai keinginan. "
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "Halaman login adalah berdasar pada user default: root@localhost. Anda bisa mengubahnya dengan mengedit nama default user dan nama host pada file config.php"
+
+msgid: "Keyboard shortcuts"
+msgstr: "Langkah Cepat keyboard"
+
+msgid: "Press this key..."
+msgstr: "Tekan tombol ini..."
+
+msgid: "...and this will happen"
+msgstr: "...dan hal ini akan terjadi"
+
+msgid: "select none"
+msgstr: "Tanpa seleksi"
+
+msgid: "edit selected items"
+msgstr: "edit item yang terseleksi"
+
+msgid: "delete selected items"
+msgstr: "hapus item yang terseleksi"
+
+msgid: "refresh page"
+msgstr: "refresh halaman"
+
+msgid: "load the query tab"
+msgstr: "load tab query"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "browse tab - tuju ke halaman awal"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "browse tab - tuju ke halaman akhir"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "browse tab - tuju ke halaman sebelumnya"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "browse tab - tuju ke halaman sesudahnya"
+
+msgid: "optimize selected tables"
+msgstr: "Optimalkan tabel yang terpilih"
+
+msgid: "Choose a .sql file to import"
+msgstr: "Pilih file .sql yang akan diimpor"
+
+msgid: "File
+"
+msgstr: "File"
+
+msgid: "Ignore first line"
+msgstr: "Abaikan baris pertama"
+
+msgid: "Edit"
+msgstr: "Edit"
+
+msgid: "Refresh"
+msgstr: "Refresh"
+
+msgid: "No primary key defined"
+msgstr: "Tidak ada primary key yang terdefinisi"
+
+msgid: "First"
+msgstr: "Awal"
+
+msgid: "Prev"
+msgstr: "Sebelum"
+
+msgid: "Next"
+msgstr: "Berikut"
+
+msgid: "Last"
+msgstr: "Akhir"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "Query anda menghasilkan %d hasil"
+msgstr[1]: "Query anda menghasilkan %d hasil"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "Catatan: Untuk menghindari crash-nya browser Anda, hanya %d hasil yang ditampilkan"
+
+msgid: "binary data"
+msgstr: "data biner"
+
+msgid: "Your query affected %d rows"
+msgstr: "Query anda mempengaruhi %d baris"
+
+msgid: "Your query did not return any results"
+msgstr: "Query anda tidak menghasilkan apa-apa"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "Data telah disisipkan ke dalam database"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "Telah terjadi masalah saat mencari tabel \"%s\""
+
+msgid: "There was a problem logging you in"
+msgstr: "Telah terjadi masalah pada proses login"
+
+msgid: "Login"
+msgstr: "Login"
+
+msgid: "Unsupported browser"
+msgstr: "Browser yang tidak didukung"
+
+msgid: "Help!"
+msgstr: "Tolong!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "Session anda telah berakhir. Silahkan login kembali."
+
+msgid: "Username"
+msgstr: "Username"
+
+msgid: "Password"
+msgstr: "Password"
+
+msgid: "Run a query on the %s database"
+msgstr: "Eksekusi sebuah query pada database %s"
+
+msgid: "Columns"
+msgstr: "Kolom"
+
+msgid: "Add a column"
+msgstr: "Tambahkan sebuah kolom"
+
+msgid: "Insert this column"
+msgstr: "Sisipkan kolom ini"
+
+msgid: "At end of table"
+msgstr: "Pada akhir tabel"
+
+msgid: "At beginning of table"
+msgstr: "Pada awal tabel"
+
+msgid: "After"
+msgstr: "Setelah"
+
+msgid: "Edit table"
+msgstr: "Edit tabel"
+
+msgid: "Indexes"
+msgstr: "Indeks"
+
+msgid: "Add an index"
+msgstr: "Tambahkan sebuah indeks"
+
+msgid: "Column(s)"
+msgstr: "Kolom"
+
+msgid: "Show %d more..."
+msgstr: "Tampilkan %d berikutnya..."
+
+msgid: "Empty table"
+msgstr: "Kosongkan tabel"
+
+msgid: "Drop table"
+msgstr: "Drop tabel"
+
+msgid: "Optimize table"
+msgstr: "Optimalkan tabel"
+
+msgid: "Table Information"
+msgstr: "Info tabel"
+
+msgid: "Host"
+msgstr: "Host"
+
+msgid: "Add a new user"
+msgstr: "Tambahkan user baru"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "Masukkan dalam format: ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "Apakah anda yakin untuk mengosongkan tabel '%s'? Semua data di dalam tabel tersebut akan dihapus. Query berikut akan dieksekusi:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "Apakah anda yakin untuk men-drop tabel '%s'? Tabel dan semua data di dalamnya akan dihapus. Query berikut akan dieksekusi:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "Apakah anda yakin untuk men-drop database '%s'? Database, tabel dalam database, dan semua data di dalam tabel tersebut akan dihapus. Query berikut akan dieksekusi:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "Mohon maaf, saat ini hanya Internet Eksplorer 7 yang didukung. Disarankan menggunakan browser Firefox, Safari, maupun Opera yang tersedia gratis dan bebas masalah. ;)"
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "Anda harus meng-enable cookies agar sessions dalam php dapat bekerja."
+
+msgid: "Importing..."
+msgstr: "Sedang mengimport..."
+
+msgid: "Drop the '%s' database"
+msgstr: "Drop database '%s'"
+
+msgid: "Okay"
+msgstr: "Ok"
+
+msgid: "Cancel"
+msgstr: "Batal"
+
+msgid: "Storage engine"
+msgstr: "Penyimpanan"
+
+msgid: "Language"
+msgstr: "Bahasa"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "%d statemen telah dieksekusi dari file"
+msgstr[1]: "%d statemen telah dieksekusi dari file"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "%d baris telah disisipkan dari file ke dalam database "
+msgstr[1]: "%d baris telah disisipkan dari file ke dalam database "
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "%d baris telah diabaikan karena banyaknya values tidak sesuai"
+msgstr[1]: "%d baris telah diabaikan karena banyaknya values tidak sesuai"
+
+msgid: "Theme"
+msgstr: "Tema"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f detik)"
+
+msgid: "The following errors were reported"
+msgstr: "Error berikut ini telah diketahui"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "Anda tidak mempunyai ijin untuk membuat user baru."
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "Anda tidak mempunyai ijin untuk menampilkan atau me-manage user."
+
+msgid: "You are connected to %s."
+msgstr: "Anda terkoneksi ke %s."
+
+msgid: "Allow access to"
+msgstr: "Ijinkan akses ke"
+
+msgid: "All databases"
+msgstr: "Semua database"
+
+msgid: "Selected databases"
+msgstr: "Database terpilih"
+
+msgid: "Give user"
+msgstr: "Berikan user"
+
+msgid: "Updates"
+msgstr: "Perbaharui"
+
+msgid: "There are no updates available"
+msgstr: "Tidak ada update baru yang tersedia"
+
+msgid: "Change password"
+msgstr: "Ubah password"
+
+msgid: "Redirecting..."
+msgstr: "melanjutkan....."
