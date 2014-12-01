@@ -1,3 +1,8 @@
+==== 01/12/2014
+- Ajout de SQL buddy (éditeur type phpmyadmin) disponible uniquement en mode expert à partir de Générale => Administrateur => Configuration. /!\ Attention reservé aux expert, toute demande de support suite à une fausse manipulation pourra etre refusée /!\ 
+- Version stable 1.138.0
+- Bufix
+
 ==== 30/11/2014
 - Version stable 1.136.0
 - Mise à jour de socket.io en version 1.1.0 => 1.2.1
