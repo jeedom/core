@@ -275,11 +275,13 @@ function initDraggable(_state) {
 
         },
     });
+
     $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable();
+
     $('#div_displayObject a').each(function () {
         if ($(this).attr('href') != '#') {
             $(this).attr('data-href', $(this).attr('href'));
-            $(this).attr('href', '#');
+            $(this).removeAttr('href');
         }
     });
     if (_state != 1 && _state != '1') {

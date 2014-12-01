@@ -82,10 +82,10 @@ sendVarToJS('market_display_info', $market_array);
                 </form>
                 <?php
             } else {
-                echo '<div class="alert alert-info">{{Cet article est payant vous devez avoir un compte sur le market et avoir renseigné la clef API de celui-ci dans Jeedom pour pouvoir l\'acheter}}</div>';
+                echo '<div class="alert alert-info">{{Cet article est payant vous devez avoir un compte sur le market et avoir renseigné les identifiants market dans Jeedom pour pouvoir l\'acheter}}</div>';
             }
         } else {
-            echo '<div class="alert alert-info">{{Cet article est payant vous devez avoir un compte sur le market et avoir renseigné la clef API de celui-ci dans Jeedom pour pouvoir l\'acheter}}</div>';
+            echo '<div class="alert alert-info">{{Cet article est payant vous devez avoir un compte sur le market et avoir renseigné les identifiants market dans Jeedom pour pouvoir l\'acheter}}</div>';
         }
         if (is_object($update)) {
             ?>
