@@ -10,7 +10,15 @@
         // The speed gauge
         $('.cmd[data-cmd_id=#id#] .gauge').highcharts({
         chart: {
-        type: 'solidgauge',
+        events: {
+        click: function (event) {
+        if (!$.mobile && '#history#' == 'history cursor') {
+        $('#md_modal').dialog({title: "{{Historique}}"});
+                $("#md_modal").load('index.php?v=d&modal=cmd.history&id=#id#').dialog('open');
+        }
+        }
+        },
+                type: 'solidgauge',
                 height : 95,
                 plotBackgroundColor: null,
                 plotBackgroundImage: null,
@@ -74,7 +82,7 @@
                 },
                 series: [{
                 name: '',
-                        data: [Math.round(parseFloat('#state#')*10)/10],
+                        data: [Math.round(parseFloat('#state#') * 10) / 10],
                         dataLabels: {
                         format: '<span style="color : white;">{y}</span> <span style="font-size:10px;color:white">#unite#</span>'
                         },
