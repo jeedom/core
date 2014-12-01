@@ -69,6 +69,16 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-lg-4 control-label">{{Profondeur}}</label>
+                <div class="col-lg-2">
+                    <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
+                        <option value="1000">Niveau 1</option>
+                        <option value="1001">Niveau 2</option>
+                        <option value="1002">Niveau 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-lg-4 control-label">{{Ne pas afficher le nom de l'équipement}}</label>
                 <div class="col-lg-2">
                     <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="name" >
@@ -118,6 +128,16 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-lg-4 control-label">{{Profondeur}}</label>
+                <div class="col-lg-2">
+                    <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
+                        <option value="1000">Niveau 1</option>
+                        <option value="1001">Niveau 2</option>
+                        <option value="1002">Niveau 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-lg-4 control-label">{{Afficher la légende}}</label>
                 <div class="col-lg-2">
                     <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="showLegend" >
@@ -142,7 +162,6 @@ sendVarToJS('id', $plan->getId());
                     <input class="planAttr form-control" data-l1key="display" data-l2key="name" />
                 </div>
             </div>
-
             <?php if ($plan->getLink_type() == 'view') { ?>
                 <div class="form-group">
                     <label class="col-lg-4 control-label">{{Lien}}</label>
@@ -221,6 +240,16 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-lg-4 control-label">{{Profondeur}}</label>
+                <div class="col-lg-2">
+                    <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
+                        <option value="1000">Niveau 1</option>
+                        <option value="1001">Niveau 2</option>
+                        <option value="1002">Niveau 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-lg-4 control-label">{{Taille de la police (ex 50%, il faut bien mettre le signe %)}}</label>
                 <div class="col-lg-2">
                     <input class="planAttr form-control" data-l1key="css" data-l2key="font-size" />
@@ -291,6 +320,16 @@ sendVarToJS('id', $plan->getId());
                 <label class="col-lg-4 control-label">{{Taille de la police (ex 50%, il faut bien mettre le signe %)}}</label>
                 <div class="col-lg-2">
                     <input class="planAttr form-control" data-l1key="css" data-l2key="font-size" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">{{Profondeur}}</label>
+                <div class="col-lg-2">
+                    <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
+                        <option value="1000">Niveau 1</option>
+                        <option value="1001">Niveau 2</option>
+                        <option value="1002">Niveau 3</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
