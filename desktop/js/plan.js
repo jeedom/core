@@ -533,17 +533,8 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
             html.css('background-color', 'transparent');
         }
     }
-    var rotate = '';
-    if (isset(_plan.css) && isset(_plan.css.rotate) && _plan.css.rotate != 0) {
-        rotate = ' rotate(' + _plan.css.rotate + 'deg)';
-    }
+
     html.css('position', 'absolute');
-    html.css('transform-origin', '0 0');
-    html.css('transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
-    html.css('-webkit-transform-origin', '0 0');
-    html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
-    html.css('-moz-transform-origin', '0 0');
-    html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
     var position = {
         top: init(_plan.position.top, '10') * parent.height / 100,
         left: init(_plan.position.left, '10') * parent.width / 100,
@@ -551,6 +542,21 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
 
     html.css('top', position.top);
     html.css('left', position.left);
+
+
+    var rotate = '';
+    if (isset(_plan.css) && isset(_plan.css.rotate) && _plan.css.rotate != 0) {
+        rotate = ' rotate(' + _plan.css.rotate + 'deg)';
+    }
+
+
+    html.css('transform-origin', '0 0');
+    html.css('transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
+    html.css('-webkit-transform-origin', '0 0');
+    html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
+    html.css('-moz-transform-origin', '0 0');
+    html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
+
     html.addClass('noResize');
     if (isset(_plan.display) && isset(_plan.display.width)) {
         html.css('width', init(_plan.display.width, 10));
