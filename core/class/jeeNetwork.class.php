@@ -185,7 +185,7 @@ class jeeNetwork {
                 throw new Exception(__('Erreur reponse du maitre != pong : ', __FILE__) . $jsonrpc->getResult());
             }
         } else {
-            if (strpos(config::byKey('jeeNetwork::master::ip'), '/jeedom')) {
+            if (strpos(config::byKey('jeeNetwork::master::ip'), '/jeedom') === false) {
                 config::save('jeeNetwork::master::ip', config::byKey('jeeNetwork::master::ip') . '/jeedom');
                 $jsonrpc = self::getJsonRpcMaster();
                 if ($jsonrpc->sendRequest('ping')) {
