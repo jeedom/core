@@ -5,13 +5,23 @@ if (!hasRight('planview')) {
 include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
 include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
 include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
-$planHeader = planHeader::byId(init('id'));
+$planHeader = null;
 $planHeaders = planHeader::all();
 
 if (init('plan_id') == '') {
-    $planHeader = planHeader::byId($_SESSION['user']->getOptions('defaultDashboardPlan'));
+    foreach ($planHeaders as $planHeader_select) {
+        if ($planHeader_select->getId() == $_SESSION['user']->getOptions('defaultDashboardPlan')) {
+            $planHeader = $planHeader_select;
+            break;
+        }
+    }
 } else {
-    $planHeader = planHeader::byId(init('plan_id'));
+    foreach ($planHeaders as $planHeader_select) {
+        if ($planHeader_select->getId() == init('plan_id')) {
+            $planHeader = $planHeader_select;
+            break;
+        }
+    }
 }
 if (!is_object($planHeader) && count($planHeaders) > 0) {
     $planHeader = $planHeaders[0];
@@ -25,7 +35,7 @@ if (is_object($planHeader)) {
 <div id="div_planHeader">
     <select class="form-control input-sm" style="width: 200px;display: inline-block" id="sel_planHeader">
         <?php
-        foreach (planHeader::all() as $planHeader_select) {
+        foreach ($planHeaders as $planHeader_select) {
             if ($planHeader_select->getId() == $planHeader->getId()) {
                 echo '<option selected value="' . $planHeader_select->getId() . '">' . $planHeader_select->getName() . '</option>';
             } else {
@@ -40,7 +50,7 @@ if (is_object($planHeader)) {
         <?php if (is_object($planHeader)) { ?>
             <a class="btn btn-default btn-sm editMode tooltips" style="margin-bottom: 3px;display: none;" id='bt_duplicatePlanHeader' title="{{Dupliquer le design}}"><i class="fa fa-files-o"></i></a>
         <?php } ?>
-            <a class="btn btn-default pull-right btn-sm" style="margin-bottom: 3px;" id="bt_switchFullScreen" ><i class="fa fa-pencil"></i> {{Plein écran}}</a>
+        <a class="btn btn-default pull-right btn-sm" style="margin-bottom: 3px;" id="bt_switchFullScreen" ><i class="fa fa-pencil"></i> {{Plein écran}}</a>
         <a class="btn btn-warning pull-right btn-sm" style="margin-bottom: 3px;" id="bt_editPlan" data-mode="0"><i class="fa fa-pencil"></i> {{Mode édition}}</a>
         <?php if (is_object($planHeader)) { ?>
             <a class="btn btn-success pull-right btn-sm editMode" style="margin-bottom: 3px;display: none;" id="bt_savePlan" data-mode="0"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
@@ -72,10 +82,8 @@ if (is_object($planHeader)) {
                 <div class="linkplan linkOption">
                     <select class="form-control linkId">
                         <?php
-                        foreach (planHeader::all() as $planHeader_select) {
-                            if ($planHeader_select->getId() != $planHeader->getId()) {
-                                echo '<option value="' . $planHeader_select->getId() . '">' . $planHeader_select->getName() . '</option>';
-                            }
+                        foreach ($planHeaders as $planHeader_select) {
+                            echo '<option value="' . $planHeader_select->getId() . '">' . $planHeader_select->getName() . '</option>';
                         }
                         ?>   
                     </select>
@@ -98,11 +106,6 @@ if (is_object($planHeader)) {
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-
-
-
 <div id="md_addViewData" title="Ajouter widget/graph"></div>
-
-
 
 <?php include_file('desktop', 'plan', 'js'); ?>
