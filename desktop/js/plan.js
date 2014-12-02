@@ -272,7 +272,7 @@ function fullScreen(_version) {
 function initDraggable(_state) {
     $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').draggable({
         drag: function (evt, ui) {
-            if ((ui.position.left + $(this).width()) >= $('#div_displayObject').width()) {
+        /*    if ((ui.position.left + $(this).width()) >= $('#div_displayObject').width()) {
                 ui.position.left = $('#div_displayObject').width() - $(this).width();
             }
             if ((ui.position.top + $(this).height()) >= $('#div_displayObject').height()) {
@@ -283,7 +283,7 @@ function initDraggable(_state) {
             }
             if (ui.position.left < 0) {
                 ui.position.left = 0;
-            }
+            }*/
 
         },
     });
