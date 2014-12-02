@@ -213,6 +213,16 @@ sendVarToJS('id', $plan->getId());
                         </select>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label">{{Position X}}</label>
+                    <div class="col-lg-2">
+                        <input class="planAttr form-control" data-l1key="display" data-l2key="offsetX" />
+                    </div>
+                    <label class="col-lg-2 control-label">{{Position Y}}</label>
+                    <div class="col-lg-2">
+                        <input class="planAttr form-control" data-l1key="display" data-l2key="offsetY" />
+                    </div>
+                </div>
             <?php } ?>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Icône}}</label>

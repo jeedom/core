@@ -54,13 +54,7 @@ if (is_object($planHeader)) {
     }
     ?>
 </div>
-<div id="div_displayObject" style="position: relative;">
-    <?php
-    if (is_object($planHeader) && $planHeader->getImage('type') != '') {
-        echo $planHeader->displayImage();
-    }
-    ?>
-</div>
+<div id="div_displayObject" style="position: relative;"></div>
 
 <div class="modal fade" id="md_selectLink">
     <div class="modal-dialog">

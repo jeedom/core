@@ -58,7 +58,19 @@ $('#bt_duplicatePlanHeader').on('click', function () {
 });
 
 $('#sel_planHeader').on('change', function () {
-    window.location.replace('index.php?v=d&p=plan&plan_id=' + $(this).value());
+    if (planHeader_id != $(this).attr('data-link_id')) {
+        planHeader_id = $(this).value();
+        displayPlan();
+    }
+});
+
+$('body').delegate('.plan-link-widget', 'click', function () {
+    if ($('#bt_editPlan').attr('data-mode') != "1") {
+        if (planHeader_id != $(this).attr('data-link_id')) {
+            planHeader_id = $(this).attr('data-link_id');
+            displayPlan($(this).attr('data-offsetX'), $(this).attr('data-offsetX'));
+        }
+    }
 });
 
 /*****************************PLAN***********************************/
@@ -293,13 +305,17 @@ function initDraggable(_state) {
     }
 }
 
-function displayPlan() {
+function displayPlan(_offsetX, _offsetY) {
     jeedom.plan.getHeader({
         id: planHeader_id,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
+            $('#div_displayObject').empty();
+            if (isset(data.image)) {
+                $('#div_displayObject').append(data.image);
+            }
             if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
                 $('#div_displayObject').height(data.configuration.desktopSizeY);
                 $('#div_displayObject').width(data.configuration.desktopSizeX);
@@ -336,6 +352,10 @@ function displayPlan() {
                         }
                         $('#div_displayObject').append(objects);
                         initDraggable($('#bt_editPlan').attr('data-mode'));
+                        if (!isNaN(_offsetX) && _offsetX != 0 && !isNaN(_offsetY) && _offsetY != 0) {
+                            $('body').scrollTop(_offsetX);
+                            $('body').scrollLeft(_offsetY);
+                        }
                     },
                 });
             }
@@ -654,7 +674,6 @@ function addLink(_link, _plan) {
     var link = '';
     var label = '';
     if (_link.type == 'plan') {
-        link = 'index.php?v=d&p=plan&plan_id=' + _link.id;
         label = 'label-success';
     }
     if (_link.type == 'view') {
