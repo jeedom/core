@@ -122,9 +122,9 @@ function buildUrl($_key, $_value) {
         echo '<div class="market cursor ' . $install . '" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
         if ($market->getType() == 'widget') {
             if (strpos($market->getName(), 'mobile.') !== false) {
-                echo '<i class="fa fa-mobile pull-left"></i>';
+                echo '<i class="fa fa-mobile pull-left" style="color:#c5c5c5"></i>';
             } else {
-                echo '<i class="fa fa-desktop pull-left"></i>';
+                echo '<i class="fa fa-desktop pull-left" style="color:#c5c5c5"></i>';
             }
         }
         if (is_object($update)) {
