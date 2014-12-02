@@ -492,7 +492,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     }
 
     for (var key in _plan.css) {
-        if (_plan.css[key] != '' && key != 'zoom' && key != 'color') {
+        if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate') {
             if (key == 'background-color') {
                 if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
                     html.css(key, _plan.css[key]);
@@ -513,13 +513,17 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
             html.css('background-color', 'transparent');
         }
     }
+    var rotate = '';
+    if (isset(_plan.css) && isset(_plan.css.rotate) && _plan.css.rotate != 0) {
+        rotate = ' rotate(' + _plan.css.rotate + 'deg)';
+    }
     html.css('position', 'absolute');
     html.css('transform-origin', '0 0');
-    html.css('transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
+    html.css('transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
     html.css('-webkit-transform-origin', '0 0');
-    html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
+    html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
     html.css('-moz-transform-origin', '0 0');
-    html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
+    html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
     var position = {
         top: init(_plan.position.top, '10') * parent.height / 100,
         left: init(_plan.position.left, '10') * parent.width / 100,

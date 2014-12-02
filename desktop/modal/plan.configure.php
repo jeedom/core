@@ -33,6 +33,12 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-lg-4 control-label">{{Rotation (°)}}</label>
+                <div class="col-lg-2">
+                    <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="rotate" value="0"/>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-lg-4 control-label">{{Couleur de fond}}</label>
                 <div class="col-lg-2">
                     <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
