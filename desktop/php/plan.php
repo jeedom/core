@@ -54,7 +54,7 @@ if (is_object($planHeader)) {
     }
     ?>
 </div>
-<div id="div_displayObject" style="position: relative;"></div>
+<div id="div_displayObject" class="container-fluid" style="position: relative;padding:0;"></div>
 
 <div class="modal fade" id="md_selectLink">
     <div class="modal-dialog">
