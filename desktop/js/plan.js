@@ -316,16 +316,23 @@ function displayPlan(_offsetX, _offsetY) {
             if (isset(data.image)) {
                 $('#div_displayObject').append(data.image);
             }
+            var proportion = 1;
+            if (deviceInfo.type == 'tablet' && isset(data.configuration) && isset(data.configuration.tabletteProportion) && data.configuration.tabletteProportion != 1) {
+                proportion = data.configuration.tabletteProportion;
+            }
+            if (deviceInfo.type == 'phone' && isset(data.configuration) && isset(data.configuration.mobileProportion) && data.configuration.mobileProportion != 1) {
+                proportion = data.configuration.mobileProportion;
+            }
             if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
-                $('#div_displayObject').height(data.configuration.desktopSizeY);
-                $('#div_displayObject').width(data.configuration.desktopSizeX);
-                $('#div_displayObject img').height(data.configuration.desktopSizeY);
-                $('#div_displayObject img').width(data.configuration.desktopSizeX);
+                $('#div_displayObject').height(data.configuration.desktopSizeY * proportion);
+                $('#div_displayObject').width(data.configuration.desktopSizeX * proportion);
+                $('#div_displayObject img').height(data.configuration.desktopSizeY * proportion);
+                $('#div_displayObject img').width(data.configuration.desktopSizeX * proportion);
             } else {
-                $('#div_displayObject').width($('#div_displayObject img').attr('data-sixe_x'));
-                $('#div_displayObject').height($('#div_displayObject img').attr('data-sixe_y'));
-                $('#div_displayObject img').css('height', $('#div_displayObject img').attr('data-sixe_y') + 'px');
-                $('#div_displayObject img').css('width', $('#div_displayObject img').attr('data-sixe_x') + 'px');
+                $('#div_displayObject').width($('#div_displayObject img').attr('data-sixe_x') * proportion);
+                $('#div_displayObject').height($('#div_displayObject img').attr('data-sixe_y') * proportion);
+                $('#div_displayObject img').css('height', ($('#div_displayObject img').attr('data-sixe_y') * proportion) + 'px');
+                $('#div_displayObject img').css('width', ($('#div_displayObject img').attr('data-sixe_x') * proportion) + 'px');
             }
             if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
                 fullScreen(deviceInfo.type);
