@@ -30,7 +30,7 @@ class user {
     private $rights;
     private $enable = 1;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function byId($_id) {
         $values = array(
@@ -77,7 +77,7 @@ class user {
                         $user->setLogin($_login);
                         $user->setPassword(sha1($_mdp));
                         $user->save();
-                        log::add("connection", "info", __('Utilisateur creer depuis le LDAP : ', __FILE__) . $_login);
+                        log::add("connection", "info", __('Utilisateur créé depuis le LDAP : ', __FILE__) . $_login);
                         jeedom::event('user_connect');
                         return $user;
                     } else {
@@ -85,7 +85,7 @@ class user {
                         if (is_object($user)) {
                             $user->remove();
                         }
-                        log::add("connection", "info", __('Utilisateur non autorisé à acceder à Jeedom (', __FILE__) . $_login . ')');
+                        log::add("connection", "info", __('Utilisateur non autorisé à accéder à Jeedom (', __FILE__) . $_login . ')');
                         return false;
                     }
                 } else {
@@ -93,7 +93,7 @@ class user {
                     if (is_object($user)) {
                         $user->remove();
                     }
-                    log::add("connection", "info", __('Utilisateur non autorisé à acceder à Jeedom (', __FILE__) . $_login . ')');
+                    log::add("connection", "info", __('Utilisateur non autorisé à accéder à Jeedom (', __FILE__) . $_login . ')');
                     return false;
                 }
                 return false;
@@ -173,11 +173,11 @@ class user {
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function presave() {
         if ($this->getLogin() == '') {
-            throw new Exception(__('Le nom d\'utilisateur ne peut être vide', __FILE__));
+            throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
         }
     }
 
