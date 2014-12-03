@@ -31,7 +31,7 @@ class scenarioExpression {
     private $order;
     private $log;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function byId($_id) {
         $values = array(
@@ -104,7 +104,7 @@ class scenarioExpression {
         return $return;
     }
 
-    /*     * ********************Fonction utiliser dans le calcule des conditions********************************* */
+    /*     * ********************Fonctions utilisées dans le calcul des conditions********************************* */
 
     public static function rand($_min, $_max) {
         return rand($_min, $_max);
@@ -386,7 +386,7 @@ class scenarioExpression {
         return cmd::cmdToValue(str_replace(array_keys($replace), array_values($replace), $_expression));
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function execute(&$scenario) {
         $message = '';
@@ -408,7 +408,7 @@ class scenarioExpression {
             if ($this->getType() == 'action') {
                 if ($this->getExpression() == 'icon') {
                     $options = $this->getOptions();
-                    $this->setLog($scenario, __('Changement de l\'icone du scénario : ', __FILE__) . $options['icon']);
+                    $this->setLog($scenario, __('Changement de l\'icône du scénario : ', __FILE__) . $options['icon']);
                     $scenario->setDisplay('icon', $options['icon']);
                     $scenario->save();
                     return;
@@ -464,15 +464,15 @@ class scenarioExpression {
                         $actionScenario = scenario::byId($this->getOptions('scenario_id'));
                     }
                     if (!is_object($actionScenario)) {
-                        throw new Exception($scenario, __('Action sur scénario impossible. Scénario introuvable vérifier l\'id : ', __FILE__) . $this->getOptions('scenario_id'));
+                        throw new Exception($scenario, __('Action sur scénario impossible. Scénario introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('scenario_id'));
                     }
                     switch ($this->getOptions('action')) {
                         case 'start':
-                            $this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
-                            $actionScenario->launch(false, __('Lancement provoque par le scenario  : ', __FILE__) . $scenario->getHumanName());
+                            $this->setLog($scenario, __('Exécution du scénario : ', __FILE__) . $actionScenario->getName());
+                            $actionScenario->launch(false, __('Exécution provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName());
                             break;
                         case 'stop':
-                            $this->setLog($scenario, __('Arrêt forcer du scénario : ', __FILE__) . $actionScenario->getName());
+                            $this->setLog($scenario, __('Arrêt forcé du scénario : ', __FILE__) . $actionScenario->getName());
                             $actionScenario->stop();
                             break;
                         case 'deactivate':
