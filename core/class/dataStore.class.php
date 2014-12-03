@@ -28,7 +28,7 @@ class dataStore {
     private $key;
     private $value;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function byId($_id) {
         $values = array(
@@ -76,7 +76,7 @@ class dataStore {
         return true;
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function preSave() {
         $allowType = array('cmd', 'object', 'eqLogic', 'scenario', 'eqReal');
@@ -87,7 +87,7 @@ class dataStore {
             throw new Exception(__('Link_id doit être un chiffre',__FILE__));
         }
         if ($this->getKey() == '') {
-            throw new Exception(__('La clef ne peut être vide',__FILE__));
+            throw new Exception(__('La clef ne peut pas être vide',__FILE__));
         }
         if ($this->getId() == '') {
             $dataStore = self::byTypeLinkIdKey($this->getType(), $this->getLink_id(), $this->getKey());
