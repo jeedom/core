@@ -182,14 +182,14 @@ class scenario {
             if (is_object($_event)) {
                 $scenarios = self::byTrigger($_event->getId());
                 $trigger = '#' . $_event->getId() . '#';
-                $message = __('Scénario lance automatiquement sur évènement venant de : ', __FILE__) . $_event->getHumanName();
+                $message = __('Scenario lance automatiquement sur evenement venant de : ', __FILE__) . $_event->getHumanName();
             } else {
                 $scenarios = self::byTrigger($_event);
                 $trigger = $_event;
-                $message = __('Scénario lance sur évènement : #', __FILE__) . $_event . '#';
+                $message = __('Scenario lance sur evenement : #', __FILE__) . $_event . '#';
             }
         } else {
-            $message = __('Scénario lance automatiquement sur programmation', __FILE__);
+            $message = __('Scenario lance automatiquement sur programmation', __FILE__);
             $scenarios = scenario::all();
             $dateOk = jeedom::isDateOk();
             $trigger = '#schedule#';
