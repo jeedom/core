@@ -30,7 +30,7 @@ class object {
     private $configuration;
     private $display;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function byId($_id) {
         $values = array(
@@ -105,11 +105,11 @@ class object {
         return $return;
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function preSave() {
         if (is_numeric($this->getFather_id()) && $this->getFather_id() == $this->getId()) {
-            throw new Exception(__('L\'objet ne peut être son propre père', __FILE__));
+            throw new Exception(__('L\'objet ne peut pas être son propre père', __FILE__));
         }
         $this->checkTreeConsistency();
     }
