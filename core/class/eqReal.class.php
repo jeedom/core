@@ -30,7 +30,7 @@ class eqReal {
     protected $configuration;
     protected $_internalEvent = 0;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public function getTableName() {
         return 'eqReal';
@@ -100,7 +100,7 @@ class eqReal {
         return $return;
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function remove() {
         foreach ($this->getEqLogic() as $eqLogic) {
@@ -116,7 +116,7 @@ class eqReal {
 
     public function save() {
         if ($this->getName() == '') {
-            throw new Exception(__('Le nom de l\'équipement réel ne peut être vide', __FILE__));
+            throw new Exception(__('Le nom de l\'équipement réel ne peut pas être vide', __FILE__));
         }
         if ($this->getInternalEvent() == 1) {
             $internalEvent = new internalEvent();
