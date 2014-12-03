@@ -33,12 +33,6 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-4 control-label">{{Rotation (°)}}</label>
-                <div class="col-lg-2">
-                    <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="rotate" value="0"/>
-                </div>
-            </div>
-            <div class="form-group">
                 <label class="col-lg-4 control-label">{{Couleur de fond}}</label>
                 <div class="col-lg-2">
                     <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
@@ -129,12 +123,6 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-4 control-label">{{Rotation (°)}}</label>
-                <div class="col-lg-2">
-                    <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="rotate" value="0"/>
-                </div>
-            </div>
-            <div class="form-group">
                 <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black}}</label>
                 <div class="col-lg-2">
                     <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
@@ -174,12 +162,6 @@ sendVarToJS('id', $plan->getId());
                 <label class="col-lg-4 control-label">{{Nom}}</label>
                 <div class="col-lg-2">
                     <input class="planAttr form-control" data-l1key="display" data-l2key="name" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-4 control-label">{{Rotation (°)}}</label>
-                <div class="col-lg-2">
-                    <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="rotate" value="0"/>
                 </div>
             </div>
             <?php if ($plan->getLink_type() == 'view') { ?>
@@ -300,12 +282,6 @@ sendVarToJS('id', $plan->getId());
                 <label class="col-lg-4 control-label">{{Nom}}</label>
                 <div class="col-lg-4">
                     <textarea class="planAttr form-control" data-l1key="display" data-l2key="text" >Texte à insérer ici</textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-4 control-label">{{Rotation (°)}}</label>
-                <div class="col-lg-2">
-                    <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="rotate" value="0"/>
                 </div>
             </div>
             <div class="form-group">

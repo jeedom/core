@@ -553,7 +553,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
 
     var rotate = '';
     if (isset(_plan.css) && isset(_plan.css.rotate) && _plan.css.rotate != 0) {
-        rotate = ' rotate(' + _plan.css.rotate + 'deg)';
+    //    rotate = ' rotate(' + _plan.css.rotate + 'deg)';
     }
 
 
