@@ -358,7 +358,7 @@ class cmd {
     public static function byString($_string) {
         $cmd = self::byId(str_replace('#', '', self::humanReadableToCmd($_string)));
         if (!is_object($cmd)) {
-            throw new Exception(__('La commande n\'a pu être trouvée : ', __FILE__) . $_string . __(' => ', __FILE__) . self::humanReadableToCmd($_string));
+            throw new Exception(__('La commande n\'a pas pu être trouvée : ', __FILE__) . $_string . __(' => ', __FILE__) . self::humanReadableToCmd($_string));
         }
         return $cmd;
     }
@@ -431,7 +431,7 @@ class cmd {
         if (isset($colors[$_color])) {
             return $colors[$_color];
         }
-        throw new Exception(__('Impossible de traduire la couleur en code hexadecimal :', __FILE__) . $_color);
+        throw new Exception(__('Impossible de traduire la couleur en code hexadécimal :', __FILE__) . $_color);
     }
 
     public static function availableWidget($_version) {
@@ -474,7 +474,7 @@ class cmd {
         }
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function formatValue($_value) {
         if (trim($_value) == '') {
@@ -526,16 +526,16 @@ class cmd {
 
     public function save() {
         if ($this->getName() == '') {
-            throw new Exception(__('Le nom de la commande ne peut être vide :', __FILE__) . print_r($this, true));
+            throw new Exception(__('Le nom de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
         }
         if ($this->getType() == '') {
-            throw new Exception(__('Le type de la commande ne peut être vide :', __FILE__) . print_r($this, true));
+            throw new Exception(__('Le type de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
         }
         if ($this->getSubType() == '') {
-            throw new Exception(__('Le sous-type de la commande ne peut être vide :', __FILE__) . print_r($this, true));
+            throw new Exception(__('Le sous-type de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
         }
         if ($this->getEqLogic_id() == '') {
-            throw new Exception(__('Vous ne pouvez créer une commande sans la rattacher à un équipement', __FILE__));
+            throw new Exception(__('Vous ne pouvez pas créer une commande sans la rattacher à un équipement', __FILE__));
         }
         if ($this->getEqType() == '') {
             $this->setEqType($this->getEqLogic()->getEqType_name());
@@ -582,7 +582,7 @@ class cmd {
     /**
      * 
      * @param type $_options
-     * @param type $cache 0 = ignorer le cache , 1 = mode normale, 2 = cache utilisé meme si expiré (puis marqué à recollecter)
+     * @param type $cache 0 = ignorer le cache , 1 = mode normale, 2 = cache utilisé même si expiré (puis marqué à recollecter)
      * @return command result
      * @throws Exception
      */
@@ -602,7 +602,7 @@ class cmd {
         }
         $eqLogic = $this->getEqLogic();
         if (!is_object($eqLogic) || $eqLogic->getIsEnable() != 1) {
-            throw new Exception(__('Equipement desactivé impossible d\éxecuter la commande : ' . $this->getHumanName(), __FILE__));
+            throw new Exception(__('Equipement désactivé - impossible d\'exécuter la commande : ' . $this->getHumanName(), __FILE__));
         }
         try {
             if ($_options !== null && $_options !== '') {
