@@ -31,7 +31,7 @@ class scenarioExpression {
     private $order;
     private $log;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function byId($_id) {
         $values = array(
@@ -104,7 +104,7 @@ class scenarioExpression {
         return $return;
     }
 
-    /*     * ********************Fonction utiliser dans le calcule des conditions********************************* */
+    /*     * ********************Fonctions utilisées dans le calcul des conditions********************************* */
 
     public static function rand($_min, $_max) {
         return rand($_min, $_max);
@@ -518,7 +518,7 @@ class scenarioExpression {
                         $actionScenario = scenario::byId($this->getOptions('scenario_id'));
                     }
                     if (!is_object($actionScenario)) {
-                        throw new Exception($scenario, __('Action sur scénario impossible. Scénario introuvable vérifier l\'id : ', __FILE__) . $this->getOptions('scenario_id'));
+                        throw new Exception($scenario, __('Action sur scénario impossible. Scénario introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('scenario_id'));
                     }
                     switch ($this->getOptions('action')) {
                         case 'start':
@@ -530,7 +530,7 @@ class scenarioExpression {
                             }
                             break;
                         case 'stop':
-                            $this->setLog($scenario, __('Arrêt forcer du scénario : ', __FILE__) . $actionScenario->getName());
+                            $this->setLog($scenario, __('Arrêt forcé du scénario : ', __FILE__) . $actionScenario->getName());
                             $actionScenario->stop();
                             break;
                         case 'deactivate':
