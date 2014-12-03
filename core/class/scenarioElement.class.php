@@ -29,7 +29,7 @@ class scenarioElement {
     private $order = 0;
     private $_subelement;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function byId($_id) {
         $values = array(
@@ -48,7 +48,7 @@ class scenarioElement {
             $element_db = new scenarioElement();
         }
         if (!isset($element_db) || !is_object($element_db)) {
-            throw new Exception(__('Elément inconnue verifier l\'id : ', __FILE__) . $element_ajax['id']);
+            throw new Exception(__('Elément inconnu - Vérifiez l\'id : ', __FILE__) . $element_ajax['id']);
         }
         utils::a2o($element_db, $element_ajax);
         $element_db->save();
@@ -113,7 +113,7 @@ class scenarioElement {
         return $element_db->getId();
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function save() {
         DB::save($this);
@@ -141,8 +141,8 @@ class scenarioElement {
             $limits = $for->getExpression();
             $limits = jeedom::evaluateExpression($limits[0]->getExpression());
             if (!is_numeric($limits)) {
-                $_scenario->setLog(__('[ERREUR] La condition pour une boucle doit être un numérique : ', __FILE__) . $limits);
-                throw new Exception(__('La condition pour une boucle doit être un numérique : ', __FILE__) . $limits);
+                $_scenario->setLog(__('[ERREUR] La condition pour une boucle doit être numérique : ', __FILE__) . $limits);
+                throw new Exception(__('La condition pour une boucle doit être numérique : ', __FILE__) . $limits);
             }
             $return = false;
             for ($i = 1; $i <= $limits; $i++) {

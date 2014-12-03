@@ -27,7 +27,7 @@ class planHeader {
     private $image;
     private $configuration;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function byId($_id) {
         $values = array(
@@ -45,7 +45,7 @@ class planHeader {
         return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function copy($_name) {
         $planHeaderCopy = clone $this;
@@ -63,7 +63,7 @@ class planHeader {
 
     public function preSave() {
         if (trim($this->getName()) == '') {
-            throw new Exception(__('Le nom du plan ne peut être vide'));
+            throw new Exception(__('Le nom du plan ne peut pas être vide'));
         }
     }
 

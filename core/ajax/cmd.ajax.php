@@ -27,7 +27,7 @@ try {
     if (init('action') == 'toHtml') {
         $cmd = cmd::byId(init('id'));
         if (!is_object($cmd)) {
-            throw new Exception(__('Cmd inconnu verifié l\'id', __FILE__));
+            throw new Exception(__('Cmd inconnu - Vérifiez l\'id', __FILE__));
         }
         $info_cmd = array();
         $info_cmd['id'] = $cmd->getId();
@@ -272,7 +272,7 @@ try {
     }
 
 
-    throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+    throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
     /*     * *********Catch exeption*************** */
 } catch (Exception $e) {
     ajax::error(displayExeption($e), $e->getCode());

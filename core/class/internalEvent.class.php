@@ -26,7 +26,7 @@ class internalEvent {
     private $event;
     private $options = '';
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function all() {
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
@@ -97,7 +97,7 @@ class internalEvent {
 
     public static function getNewInternalEvent($_plugin) {
         if ($_plugin == '') {
-            throw new Exception(__('Le nom du plugin ne peut être vide', __FILE__));
+            throw new Exception(__('Le nom du plugin ne peut pas être vide', __FILE__));
         }
         $now = strtotime(date('Y-m-d H:i:s', strtotime('-1 second', strtotime('now'))));
         self::cleanEvent();
@@ -117,7 +117,7 @@ class internalEvent {
         }
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function save() {
         $options = $this->getOptions();

@@ -168,7 +168,7 @@ class evaluate {
 
     private function Eval_Faire_Operation($valeur1, $valeur2, $operateur) {
         if ($operateur != "&" && $operateur != "!" && (!is_numeric($valeur1) || !is_numeric($valeur2))) {
-            throw new Exception(__('ERREUR attention l\'operateur ', __FILE__) . $operateur . __(' necessite deux numeriques.', __FILE__));
+            throw new Exception(__('ERREUR attention l\'opérateur ', __FILE__) . $operateur . __(' nécessite deux opérandes numériques.', __FILE__));
         }
         $valeur1 = trim($valeur1);
         $valeur2 = trim($valeur2);
@@ -302,7 +302,7 @@ class evaluate {
     }
 
     /* ------------------------------------------------------------
-      SEPARE LES PARAMETRE(VALEUR,OPERATEUR) DEPUIS UNE CHAINE
+      SEPARE LES PARAMETRES (VALEUR,OPERATEUR) DEPUIS UNE CHAINE
       --------------------------------------------------------------- */
 
     private function Eval_Trouver_Liste_Param($param) {
@@ -346,12 +346,12 @@ class evaluate {
                 }
                 $caractereSpeciale = false;
             }
-            //SEPRATION DES PARAMETRES
+            //SEPARATION DES PARAMETRES
             if ((array_search($lettre, $tabSignes) !== false || $lettre == " ") && $nbCaractOuvrant == 0) {
                 if (array_search($lettre, $tabSignes) !== false) {
                     if ($paramNom != "") {
                         if (!isset($lstP[$lastNum]["operateur"]) && $lastNum != -1) {
-                            throw new Exception(__("ERREUR deux paramètre sans signe de separation : ", __FILE__) . $param);
+                            throw new Exception(__("ERREUR deux paramètres sans signe de séparation : ", __FILE__) . $param);
                         }
                         $num = sizeof($lstP);
                         $lstP[$num] = array();
@@ -375,7 +375,7 @@ class evaluate {
                         } else {
                             if ($lastNum == -1) {
                                 if ($lettre != '-') {
-                                    throw new Exception(__("ERREUR expression attend paramètre avant symbole : " . $lettre, __FILE__));
+                                    throw new Exception(__("ERREUR l'expression attend un paramètre avant symbole : " . $lettre, __FILE__));
                                 } else {
                                     $paramNom = '-' . $paramNom;
                                 }

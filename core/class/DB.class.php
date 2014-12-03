@@ -37,13 +37,13 @@ class DB {
         try {
             $this->connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
         } catch (Exception $e) {
-            throw new Exception('DB : Incorrect parameters');
+            throw new Exception('DB : Paramètres incorrects');
         }
     }
 
     public static function getLastInsertId() {
         if (!isset(self::$sharedInstance)) {
-            throw new Exception('DB : Aucune connection active impossible d\'avoir le dernier ID inseré');
+            throw new Exception('DB : Aucune connection active - impossible d\'avoir le dernier ID inséré');
         }
         return self::$sharedInstance->connection->lastInsertId();
     }

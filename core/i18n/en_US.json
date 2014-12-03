@@ -309,8 +309,8 @@
     "core\/class\/scenario.class.php": {
         "Evènement venant de ": "Event from ",
         ") vérification du\/des scénario(s) : ": ") Check of scenario(s) : ",
-        "Retard lancement prévu à ": "Delay for launch foretold at ",
-        " dernier lancement à ": " last launch at ",
+        "Retard d\\'exécution prévue à ": "Delay for launch foretold at ",
+        " dernière exécution à ": " last launch at ",
         ". Retard de : ": ". Delay of : ",
         ". Rattrapage en cours...": ". Putting right...",
         "Scénario lance automatiquement sur programmation": "Scenario launch itself automatically on programming",
