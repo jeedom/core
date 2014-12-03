@@ -88,7 +88,7 @@ if (init('type') == 'plugin') {
                 <label class="col-lg-4 control-label">{{Type}}</label>
                 <div class="col-lg-6">
                     <select class="form-control marketAttr" data-l1key="type" disabled>
-                        <option value="plugin" data-category='input'>{{Plugin}}</option>
+                        <option value="plugin" data-category='plugin'>{{Plugin}}</option>
                         <option value="widget" data-category='widget'>{{Widget}}</option>
                         <option value="zwave" data-category='input'>{{[Zwave] Configuration module}}</option>
                         <option value="enocean" data-category='input'>{{[EnOcean] Configuration module}}</option>
@@ -117,6 +117,23 @@ if (init('type') == 'plugin') {
                         <option>Présence</option>
                         <option>Température</option>
                         <option>Vie</option>
+                    </select>
+                    <select class="form-control plugin category" data-l1key="categorie" style="display: none;">
+                        <option>Autre</option>
+                        <option>Box</option>
+                        <option>Communication</option>
+                        <option>Confort</option>
+                        <option>Energie</option>
+                        <option>Météo</option>
+                        <option>Monitoring</option>
+                        <option>Multimedia</option>
+                        <option>Nature</option>
+                        <option>Objets connectés</option>
+                        <option>Organisation</option>
+                        <option>Programmation</option>
+                        <option>Protocole domotique</option>
+                        <option>Santé</option>
+                        <option>Sécurité</option>
                     </select>
                 </div>
             </div>
