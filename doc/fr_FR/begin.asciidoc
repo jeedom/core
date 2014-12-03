@@ -83,7 +83,7 @@ sudo update-rc.d jeedom defaults
 sudo service jeedom start
 ----
 
-===== Configuration de la BDD
+.Configuration de la BDD
 Se connecter à MySQL (avec le mot de passe tapé précédemment) :
 
 
@@ -175,7 +175,7 @@ include fastcgi_params;
 }
 ----
 
-===== Redémarrer nginx
+.Redémarrer nginx
 
 
 ----
