@@ -48,7 +48,7 @@ Les instructions suivantes sont valables uniquement pour ubuntu/debian, elles se
 
 Voici donc les commandes pour une installation type sous Raspberry  (en root):
 
-====== Mode simple
+.Mode simple
 
 ----
 wget -q http://git.jeedom.fr/jeedom/core/raw/stable/install/install.sh; sudo chmod 777 install.sh; sudo ./install.sh
@@ -58,7 +58,7 @@ Et vous n’avez plus qu’a suivre les instructions
 
 Ensuite aller sur IP_MACHINE/jeedom (les identifiants étant admin/admin)
 
-====== Mode détaillé
+.Mode détaillé
 Récupération des fichiers
 
 ----
