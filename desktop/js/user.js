@@ -115,12 +115,12 @@ function printUsers() {
                 ligne += '<span class="userAttr" data-l1key="id" style="display : none;"/>';
                 ligne += '<span class="userAttr" data-l1key="login" />';
                 ligne += '</td>';
-                ligne += '<td>';
+                ligne += '<td><center>';
                 if (ldapEnable != '1') {
-                    ligne += '<a class="btn btn-xs btn-danger pull-right del_user"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
-                    ligne += '<a class="btn btn-xs btn-warning pull-right change_mdp_user"><i class="fa fa-pencil"></i> {{Changer le mot de passe}}</a>';
+                    ligne += '<a class="btn btn-xs btn-danger pull-right del_user" style="margin-bottom : 5px;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
+                    ligne += '<a class="btn btn-xs btn-warning pull-right change_mdp_user" style="margin-bottom : 5px;"><i class="fa fa-pencil"></i> {{Changer le mot de passe}}</a>';
                 }
-                ligne += '</td>';
+                ligne += '</center></td>';
                 ligne += '<td>';
                 ligne += '<input type="checkbox" class="userAttr" data-l1key="enable" />';
                 ligne += '</td>';

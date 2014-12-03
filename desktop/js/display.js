@@ -79,36 +79,36 @@ function displayCmd(_cmd_id) {
             div += '<fieldset>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-sm-4 control-label">{{ID}}</label>';
-            div += '<div class="col-sm-4">';
+            div += '<label class="col-xs-4 control-label">{{ID}}</label>';
+            div += '<div class="col-xs-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="id"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-sm-4 control-label">{{Logical ID}}</label>';
-            div += '<div class="col-sm-4">';
+            div += '<label class="col-xs-4 control-label">{{Logical ID}}</label>';
+            div += '<div class="col-xs-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="logicalId"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-sm-4 control-label">{{Nom}}</label>';
-            div += '<div class="col-sm-4">';
+            div += '<label class="col-xs-4 control-label">{{Nom}}</label>';
+            div += '<div class="col-xs-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="name"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-sm-4 control-label">{{Type}}</label>';
-            div += '<div class="col-sm-4">';
+            div += '<label class="col-xs-4 control-label">{{Type}}</label>';
+            div += '<div class="col-xs-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="type"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-sm-4 control-label">{{Sous-type}}</label>';
-            div += '<div class="col-sm-4">';
+            div += '<label class="col-xs-4 control-label">{{Sous-type}}</label>';
+            div += '<div class="col-xs-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="subType"></span>';
             div += '</div>';
             div += '</div>';
@@ -123,30 +123,30 @@ function displayCmd(_cmd_id) {
             div += '<fieldset>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-sm-4 control-label">{{Unité}}</label>';
-            div += '<div class="col-sm-4">';
+            div += '<label class="col-xs-4 control-label">{{Unité}}</label>';
+            div += '<div class="col-xs-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="unite"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-sm-4 control-label">{{Commande déclenchant une mise à jour de la valeur}}</label>';
-            div += '<div class="col-sm-4">';
+            div += '<label class="col-xs-4 control-label">{{Commande déclenchant une mise à jour}}</label>';
+            div += '<div class="col-xs-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="value"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-sm-4 control-label">{{Memcache}}</label>';
-            div += '<div class="col-sm-4">';
+            div += '<label class="col-xs-4 control-label">{{Memcache}}</label>';
+            div += '<div class="col-xs-4">';
             div += '<span class="cmdAttr label label-primary tooltips" data-l1key="cache" data-l2key="enable" title="{{Actif}}"></span> ';
             div += '<span class="label label-default tooltips" title="{{Durée du cache}}"><span class="cmdAttr" data-l1key="cache" data-l2key="lifetime"></span> {{seconde(s)}}</span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-sm-4 control-label">{{Evenement seulement}}</label>';
-            div += '<div class="col-sm-4">';
+            div += '<label class="col-xs-4 control-label">{{Evenement seulement}}</label>';
+            div += '<div class="col-xs-4">';
             div += '<span class="cmdAttr label label-primary" data-l1key="eventOnly"></span>';
             div += '</div>';
             div += '</div>';
@@ -171,7 +171,7 @@ function displayCmd(_cmd_id) {
                 success: function (data) {
                     var html = '';
                     html += '<div class="form-group">';
-                    html += '<label class="col-sm-2 control-label">{{Equipement}}</label>';
+                    html += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement}}</label>';
                     html += '<div class="col-sm-4">';
                     for (var i in data.eqLogic) {
                         html += ' <span class="label label-primary cursor"><a href="' + data.eqLogic[i].link + '" style="color : white;">' + data.eqLogic[i].humanName + '</a></span>';
@@ -179,7 +179,7 @@ function displayCmd(_cmd_id) {
                     html += '</div>';
                     html += '</div>';
                     html += '<div class="form-group">';
-                    html += '<label class="col-sm-2 control-label">{{Commandes}}</label>';
+                    html += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commandes}}</label>';
                     html += '<div class="col-sm-4">';
                     for (var i in data.cmd) {
                         html += ' <span class="label label-primary"><a href="' + data.cmd[i].link + '" style="color : white;">' + data.cmd[i].humanName + '</a></span>';
@@ -187,7 +187,7 @@ function displayCmd(_cmd_id) {
                     html += '</div>';
                     html += '</div>';
                     html += '<div class="form-group">';
-                    html += '<label class="col-sm-2 control-label">{{Scénario}}</label>';
+                    html += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario}}</label>';
                     html += '<div class="col-sm-4">';
                     for (var i in data.scenario) {
                         html += ' <span class="label label-primary"><a href="' + data.scenario[i].link + '" style="color : white;">' + data.scenario[i].humanName + '</a></span>';
@@ -195,7 +195,7 @@ function displayCmd(_cmd_id) {
                     html += '</div>';
                     html += '</div>';
                     html += '<div class="form-group">';
-                    html += '<label class="col-sm-2 control-label">{{Interaction}}</label>';
+                    html += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Interaction}}</label>';
                     html += '<div class="col-sm-4">';
                     for (var i in data.interact) {
                         html += ' <span class="label label-primary"><a href="' + data.interact[i].link + '" style="color : white;">' + data.interact[i].humanName + '</a></span>';
@@ -234,16 +234,16 @@ function displayCmd(_cmd_id) {
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-sm-2 control-label">{{Widget Desktop}}</label>';
-            div += '<div class="col-sm-3">';
+            div += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Widget Desktop}}</label>';
+            div += '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">';
             div += '<select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">';
             for (var i in cmd_widgetDashboard[data.type][data.subType]) {
                 div += '<option>' + cmd_widgetDashboard[data.type][data.subType][i].name + '</option>';
             }
             div += '</select>';
             div += '</div>';
-            div += '<label class="col-sm-2 control-label">{{Mobile}}</label>';
-            div += '<div class="col-sm-3">';
+            div += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mobile}}</label>';
+            div += '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">';
             div += '<select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">';
             for (var i in cmd_widgetMobile[data.type][data.subType]) {
                 div += '<option>' + cmd_widgetMobile[data.type][data.subType][i].name + '</option>';
@@ -381,21 +381,21 @@ function displayObject(_object_id) {
             div += '<fieldset>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-sm-2 control-label">{{ID}}</label>';
+            div += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{ID}}</label>';
             div += '<div class="col-sm-4">';
             div += '<span class="objectAttr label label-primary" data-l1key="id"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-sm-2 control-label">{{Nom}}</label>';
+            div += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom}}</label>';
             div += '<div class="col-sm-4">';
             div += '<span class="objectAttr label label-primary" data-l1key="name"></span>';
             div += '</div>';
             div += '</div>';
 
             div += '<div class="form-group">';
-            div += '<label class="col-sm-2 control-label">{{Visible}}</label>';
+            div += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Visible}}</label>';
             div += '<div class="col-sm-4">';
             div += '<span class="objectAttr label label-primary" data-l1key="isVisible"></span>';
             div += '</div>';
@@ -502,7 +502,7 @@ function displayEqLogic(_eqLogic_id) {
             div += '<div class="col-sm-1">';
             div += '<input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" />';
             div += '</div>';
-            div += '<label class="col-sm-2 control-label">{{sur les vues}}</label>';
+            div += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{sur les vues}}</label>';
             div += '<div class="col-sm-1">';
             div += '<input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnView" />';
             div += '</div>';

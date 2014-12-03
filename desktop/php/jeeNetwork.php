@@ -28,53 +28,50 @@ if (config::byKey('jeedom::licence') < 5) {
                     <fieldset>
                         <legend>{{Général}}</legend>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{Nom du Jeedom esclave}}</label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-4 col-xs-6 control-label">{{Nom du Jeedom esclave}}</label>
+                            <div class="col-sm-6 col-xs-6">
                                 <input class="form-control jeeNetworkAttr" type="text" data-l1key="id" style="display : none;"/>
                                 <input class="form-control jeeNetworkAttr" type="text" data-l1key="name" placeholder="Nom du Jeedom exclave"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{IP}}</label>
-                            <div class="col-sm-4">
+                            <label class="col-sm-4 col-xs-6 control-label">{{IP}}</label>
+                            <div class="col-sm-4 col-xs-6">
                                 <input class="form-control jeeNetworkAttr" type="text" data-l1key="ip" placeholder="IP"/>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="alert alert-info">{{Attention ne pas oublier le /jeedom après l'ip si vous l'utilisez pour vous rendre sur l'interface de jeedom}}</div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{Clef API}}</label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-4 col-xs-6 control-label">{{Clef API}}</label>
+                            <div class="col-sm-6 col-xs-6">
                                 <input class="form-control jeeNetworkAttr" type="text" data-l1key="apikey" placeholder="Clef API"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{Accéder (attention ne marche que si vous êtes sur le réseau local)}}</label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-4 col-xs-6 control-label">{{Accéder (attention ne marche que si vous êtes sur le réseau local)}}</label>
+                            <div class="col-sm-6 col-xs-6">
                                 <a class="btn btn-default" id="bt_connectToSlave" target="_blank">{{Se connecter}}</a>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{Arrêter/Redémarrer}}</label>
-                            <div class="col-sm-6">
-                                <a class="btn btn-danger" id="bt_stop"><i class="fa fa-stop"></i> {{Arrêter}}</a>
-                                <a class="btn btn-warning" id="bt_stop"><i class="fa fa-repeat"></i> {{Redémarrer}}</a>
+                            <label class="col-sm-4 col-xs-6 control-label">{{Arrêter/Redémarrer}}</label>
+                            <div class="col-sm-6 col-xs-6">
+                                <a class="btn btn-danger" id="bt_stop" style="margin-bottom: 5px;"><i class="fa fa-stop"></i> {{Arrêter}}</a>
+                                <a class="btn btn-warning" id="bt_stop" style="margin-bottom: 5px;"><i class="fa fa-repeat"></i> {{Redémarrer}}</a>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{Mise à jour}}</label>
-                            <div class="col-sm-6">
-                                <a class="btn btn-warning" id="bt_checkUpdateSlave"><i class="fa fa-refresh"></i>  {{Vérifier}}</a>
-                                <a class="btn btn-default" id="bt_updateSlave"><i class="fa fa-check"></i> {{Mettre à jour}}</a>
+                            <label class="col-sm-4 col-xs-6 control-label">{{Mise à jour}}</label>
+                            <div class="col-sm-6 col-xs-6">
+                                <a class="btn btn-warning" id="bt_checkUpdateSlave" style="margin-bottom: 5px;"><i class="fa fa-refresh"></i>  {{Vérifier}}</a>
+                                <a class="btn btn-default" id="bt_updateSlave" style="margin-bottom: 5px;"><i class="fa fa-check"></i> {{Mettre à jour}}</a>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{Backup}}</label>
-                            <div class="col-sm-6">
+                            <label class="col-sm-4 col-xs-4 control-label">{{Backup}}</label>
+                            <div class="col-sm-6 col-xs-4">
                                 <select class="form-control" id="sel_backupList"></select>
                             </div>
-                            <div class="2">
+                            <div class="col-sm-2  col-xs-4">
                                 <a class="btn btn-default" id="bt_restoreSlave"><i class="fa fa-check"></i> {{Restaurer}}</a>
                             </div>
                         </div>
@@ -86,50 +83,50 @@ if (config::byKey('jeedom::licence') < 5) {
                     <fieldset>
                         <legend>{{Informations}}</legend>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{Statut}}</label>
-                            <div class="3">
+                            <label class="col-sm-4 col-xs-6 control-label">{{Statut}}</label>
+                            <div class="col-sm-3 col-xs-6">
                                 <span class="label label-default jeeNetworkAttr" type="text" data-l1key="status" ></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{Version de Jeedom}}</label>
-                            <div class="3">
+                            <label class="col-sm-4 col-xs-6 control-label">{{Version de Jeedom}}</label>
+                            <div class="col-sm-3 col-xs-6">
                                 <span class="label label-default jeeNetworkAttr" type="text" data-l1key="configuration" data-l2key="version" ></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{Nombre de mise(s) à jour}}</label>
-                            <div class="3">
+                            <label class="col-sm-4 col-xs-6 control-label">{{Nombre de mise(s) à jour}}</label>
+                            <div class="col-sm-3 col-xs-6">
                                 <span class="label label-default jeeNetworkAttr" type="text" data-l1key="configuration" data-l2key="nbUpdate" ></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{Nombre de message(s)}}</label>
-                            <div class="3">
+                            <label class="col-sm-4 col-xs-6 control-label">{{Nombre de message(s)}}</label>
+                            <div class="col-sm-3 col-xs-6">
                                 <span class="label label-default jeeNetworkAttr" type="text" data-l1key="configuration" data-l2key="nbMessage" ></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{Dernière communication}}</label>
-                            <div class="3">
+                            <label class="col-sm-4 col-xs-6 control-label">{{Dernière communication}}</label>
+                            <div class="col-sm-3 col-xs-6">
                                 <span class="label label-default jeeNetworkAttr" type="text" data-l1key="configuration" data-l2key="lastCommunication" ></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{Plugin}}</label>
-                            <div class="col-sm-6" id="div_pluginList"></div>
+                            <label class="col-sm-4 col-xs-6 control-label">{{Plugin}}</label>
+                            <div class="col-sm-6 col-xs-6" id="div_pluginList"></div>
                         </div>
                     </fieldset>
                 </form>
             </div>
         </div>
         <legend>{{Logs & messages :}}</legend>
-        <select id="sel_logSlave" class="form-control" style="display: inline-block;width: 200px;"></select>
-        <a class="btn btn-success" id="bt_showLog">Voir</a>
-        <a class="btn btn-warning" id="bt_emptyLog"><i class="fa fa-times"></i> Vider</a>
-        <a class="btn btn-danger" id="bt_removeLog"><i class="fa fa-trash-o"></i> Supprimer</a>
-        <a class="btn btn-default pull-right" id="bt_showMessage"><i class="fa fa-eye"></i> Voir les messages</a>
-        <a class="btn btn-danger pull-right" id="bt_emptyMessage"><i class="fa fa-trash-o"></i> Vider les messages</a>
+        <select id="sel_logSlave" class="form-control" style="display: inline-block;width: 200px;margin-bottom: 5px;"></select>
+        <a class="btn btn-success" id="bt_showLog" style="margin-bottom: 5px;"><i class="fa fa-eye"></i> Voir</a>
+        <a class="btn btn-warning" id="bt_emptyLog" style="margin-bottom: 5px;"><i class="fa fa-times"></i> Vider</a>
+        <a class="btn btn-danger" id="bt_removeLog" style="margin-bottom: 5px;"><i class="fa fa-trash-o"></i> Supprimer</a>
+        <a class="btn btn-default pull-right" id="bt_showMessage" style="margin-bottom: 5px;"><i class="fa fa-eye"></i> Voir les messages</a>
+        <a class="btn btn-danger pull-right" id="bt_emptyMessage" style="margin-bottom: 5px;"><i class="fa fa-trash-o"></i> Vider les messages</a>
         <br/><br/>
         <pre id="pre_updateInfo"></pre>
         <hr/>

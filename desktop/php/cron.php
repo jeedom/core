@@ -10,17 +10,19 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
 {{Processus Jeecron :}} <span class="label label-default"><span class="tooltips" id="span_jeecronMasterRuns" title="{{Nombre de Jeecron master doit toujours être inférieur à 2}}"></span> | 
     <span id="span_jeecronRuns" class="tooltips" title="{{Nombre total de processus Jeedom en cours}}"></span> | 
     <span id="span_nbProcess" class="tooltips" title="{{Nombre total de processus en cours sur la machine}}"></span></span>
-<span style="margin-left: 100px;">{{Load avg}} <span class="label label-default"><span id="span_loadAvg1" class="tooltips" title="{{Charge moyenne du système sur la dernière minute}}"></span> | 
+    <br/>
+<span>{{Load avg}} <span class="label label-default"><span id="span_loadAvg1" class="tooltips" title="{{Charge moyenne du système sur la dernière minute}}"></span> | 
         <span id="span_loadAvg5" class="tooltips" title="{{Charge moyenne du système sur les 5 dernières minutes}}"></span> | 
         <span id="span_loadAvg15" class="tooltips" title="{{Charge moyenne du système sur les 15 dernières minutes}}"></span></span></span>
-<a class="btn btn-success pull-right" id="bt_save"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
-<a class="btn btn-default pull-right" id="bt_addCron"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
-<a class="btn btn-default pull-right" id="bt_refreshCron"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
+
+    <a class="btn btn-success pull-right" id="bt_save" style="margin-top: 5px;"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+<a class="btn btn-default pull-right" id="bt_addCron" style="margin-top: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
+<a class="btn btn-default pull-right" id="bt_refreshCron" style="margin-top: 5px;"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
 <?php
 if (config::byKey('enableCron') == 0) {
-    echo '<a class="btn btn-success pull-right" id="bt_changeCronState" data-state="1"><i class="fa fa-check"></i> {{Activer le système cron}}</a>';
+    echo '<a class="btn btn-success pull-right" id="bt_changeCronState" data-state="1" style="margin-top: 5px;"><i class="fa fa-check"></i> {{Activer le système cron}}</a>';
 } else {
-    echo '<a class="btn btn-danger pull-right" id="bt_changeCronState" data-state="0"><i class="fa fa-times"></i> {{Désactiver le système cron}}</a>';
+    echo '<a class="btn btn-danger pull-right" id="bt_changeCronState" data-state="0" style="margin-top: 5px;"><i class="fa fa-times"></i> {{Désactiver le système cron}}</a>';
 }
 ?>
 <br/><br/><br/>
