@@ -272,18 +272,18 @@ function fullScreen(_version) {
 function initDraggable(_state) {
     $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').draggable({
         drag: function (evt, ui) {
-        /*    if ((ui.position.left + $(this).width()) >= $('#div_displayObject').width()) {
-                ui.position.left = $('#div_displayObject').width() - $(this).width();
-            }
-            if ((ui.position.top + $(this).height()) >= $('#div_displayObject').height()) {
-                ui.position.top = $('#div_displayObject').height() - $(this).height();
-            }
-            if (ui.position.top < 0) {
-                ui.position.top = 0;
-            }
-            if (ui.position.left < 0) {
-                ui.position.left = 0;
-            }*/
+            /*    if ((ui.position.left + $(this).width()) >= $('#div_displayObject').width()) {
+             ui.position.left = $('#div_displayObject').width() - $(this).width();
+             }
+             if ((ui.position.top + $(this).height()) >= $('#div_displayObject').height()) {
+             ui.position.top = $('#div_displayObject').height() - $(this).height();
+             }
+             if (ui.position.top < 0) {
+             ui.position.top = 0;
+             }
+             if (ui.position.left < 0) {
+             ui.position.left = 0;
+             }*/
 
         },
     });
@@ -324,10 +324,17 @@ function displayPlan(_offsetX, _offsetY) {
                 proportion = data.configuration.mobileProportion;
             }
             if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
-                $('#div_displayObject').height(data.configuration.desktopSizeY * proportion);
-                $('#div_displayObject').width(data.configuration.desktopSizeX * proportion);
-                $('#div_displayObject img').height(data.configuration.desktopSizeY * proportion);
-                $('#div_displayObject img').width(data.configuration.desktopSizeX * proportion);
+                if (isNaN(data.configuration.desktopSizeX) && isNaN(data.configuration.desktopSizeY)) {
+                    $('#div_displayObject').height(data.configuration.desktopSizeY);
+                    $('#div_displayObject').width(data.configuration.desktopSizeX);
+                    $('#div_displayObject img').height(data.configuration.desktopSizeY);
+                    $('#div_displayObject img').width(data.configuration.desktopSizeX);
+                } else {
+                    $('#div_displayObject').height(data.configuration.desktopSizeY * proportion);
+                    $('#div_displayObject').width(data.configuration.desktopSizeX * proportion);
+                    $('#div_displayObject img').height(data.configuration.desktopSizeY * proportion);
+                    $('#div_displayObject img').width(data.configuration.desktopSizeX * proportion);
+                }
             } else {
                 $('#div_displayObject').width($('#div_displayObject img').attr('data-sixe_x') * proportion);
                 $('#div_displayObject').height($('#div_displayObject img').attr('data-sixe_y') * proportion);
@@ -553,7 +560,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
 
     var rotate = '';
     if (isset(_plan.css) && isset(_plan.css.rotate) && _plan.css.rotate != 0) {
-    //    rotate = ' rotate(' + _plan.css.rotate + 'deg)';
+        //    rotate = ' rotate(' + _plan.css.rotate + 'deg)';
     }
 
 
