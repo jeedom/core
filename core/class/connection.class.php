@@ -117,7 +117,7 @@ class connection {
         }
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function isProtect() {
         return self::protectedIp($this->getIp());
@@ -201,7 +201,7 @@ class connection {
 
     public function setStatus($status) {
         if ($status == 'Ban' && $this->isProtect()) {
-            throw new Exception(__('Vous ne pouvez bannir cette IP car elle est en liste blanche', __FILE__));
+            throw new Exception(__('Vous ne pouvez pas bannir cette IP car elle est en liste blanche', __FILE__));
         }
         $this->status = $status;
     }
