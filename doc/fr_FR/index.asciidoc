@@ -22,11 +22,6 @@ include::buildMini.asciidoc[]
 === Premiers pas
 include::firstUseMini.asciidoc[]
 
-'''
-[[installation]]
-=== Installation
-include::installation.asciidoc[]
-
 === Accueil
 [[dashboard]]
 ==== Dashboard
