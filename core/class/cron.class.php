@@ -38,7 +38,7 @@ class cron {
     private $option;
     private $once = 0;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     /**
      * Return an array of all cron object
@@ -161,7 +161,7 @@ class cron {
         return true;
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     /**
      * Check if cron object is valid before save
@@ -169,10 +169,10 @@ class cron {
      */
     public function preSave() {
         if ($this->getFunction() == '') {
-            throw new Exception(__('La fonction ne peut être vide', __FILE__));
+            throw new Exception(__('La fonction ne peut pas être vide', __FILE__));
         }
         if ($this->getSchedule() == '') {
-            throw new Exception(__('La programmation ne peut être vide : ', __FILE__) . print_r($this, true));
+            throw new Exception(__('La programmation ne peut pas être vide : ', __FILE__) . print_r($this, true));
         }
     }
 
@@ -246,7 +246,7 @@ class cron {
                 if (!$this->running()) {
                     exec($cmd . ' >> /dev/null 2>&1 &');
                 } else {
-                    throw new Exception(__('Impossible de lancer la tache car elle est déjà en cours (', __FILE__) . $this->getNbRun() . ') : ' . $cmd);
+                    throw new Exception(__('Impossible d\'exécuter la tâche car elle est déjà en cours d\'exécution (', __FILE__) . $this->getNbRun() . ') : ' . $cmd);
                 }
             }
         }
@@ -321,7 +321,7 @@ class cron {
             $this->setServer('');
             $this->setPID();
             $this->save();
-            throw new Exception($this->getClass() . '::' . $this->getFunction() . __('() : Impossible d\'arreter la tâche', __FILE__));
+            throw new Exception($this->getClass() . '::' . $this->getFunction() . __('() : Impossible d\'arrêter la tâche', __FILE__));
         } else {
             $this->setState('stop');
             $this->setDuration(-1);
