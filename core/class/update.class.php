@@ -31,7 +31,7 @@ class update {
     private $status;
     private $configuration;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function checkAllUpdate($_filter = '') {
         $findCore = false;
@@ -212,7 +212,7 @@ class update {
         }
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function checkUpdate() {
         if ($this->getType() == 'core') {
@@ -241,10 +241,10 @@ class update {
 
     public function preSave() {
         if ($this->getLogicalId() == '') {
-            throw new Exception(__('Le logical ID ne peut être vide', __FILE__));
+            throw new Exception(__('Le logical ID ne peut pas être vide', __FILE__));
         }
         if ($this->getLocalVersion() == '') {
-            throw new Exception(__('La version locale ne peut être vide', __FILE__));
+            throw new Exception(__('La version locale ne peut pas être vide', __FILE__));
         }
         if ($this->getName() == '') {
             $this->setName($this->getLogicalId());
@@ -278,7 +278,7 @@ class update {
 
     public function deleteObjet() {
         if ($this->getType() == 'core') {
-            throw new Exception('Vous ne pouvez supprimer le core de Jeedom');
+            throw new Exception('Vous ne pouvez pas supprimer le core de Jeedom');
         } else {
             try {
                 $market = market::byLogicalId($this->getLogicalId());
