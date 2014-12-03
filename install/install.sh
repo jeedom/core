@@ -608,7 +608,7 @@ done
 # Check if nodeJS was actually installed, otherwise do a manual install
 install_nodejs
 
-apt-get install -y php5-common php5-fpm php5-cli php5-curl php5-json php5-mysql \
+apt-get install -y php5-common php5-fpm php5-dev php5-cli php5-curl php5-json php5-mysql \
                    usb-modeswitch python-serial
 
 pecl install oauth
