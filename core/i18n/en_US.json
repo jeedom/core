@@ -263,12 +263,12 @@
     "core\/class\/scenario.class.php": {
         "Evènement venant de ": "Event from ",
         ") vérification du\/des scénario(s) : ": ") Check of scenario(s) : ",
-        "Retard lancement prévu à ": "Delay for launch foretold at ",
-        " dernier lancement à ": " last launch at ",
+        "Retard d\\'exécution prévue à ": "Delay for launch foretold at ",
+        " dernière exécution à ": " last launch at ",
         ". Retard de : ": ". Delay of : ",
         ". Rattrapage en cours...": ". Putting right...",
-        "Scenario lance automatiquement sur programmation": "Scenario run itself automatically on programming", 
-        "Scenario lance automatiquement sur evenement venant de : ": " Scenario run itself automatically with an event from : ", 
+        "Scénario exécuté automatiquement sur programmation": "Scenario run itself automatically on programming", 
+        "Scénario exécuté automatiquement sur évènement venant de : ": " Scenario run itself automatically with an event from : ", 
         "Début exécution du scénario : ": "Start running scenario: "
     },
     "desktop\/php\/history.php": {
@@ -282,7 +282,7 @@
     },
     "core\/js\/core.js": {
         "La commande a été exécutée avec succès": "The command was successfully run",
-        "Mise à jour de l\\état du scénario réussi": "Successful scenario state update",
+        "Mise à jour de l\\'état du scénario réussi": "Successful scenario state update",
         "[Jeedom] Message de test": "[Jeedom] Test message",
         "Ceci est un test de message pour la commande": "This is a test message for the command",
         "La valeur a été éditée avec succès": "The value was successfully edited",
