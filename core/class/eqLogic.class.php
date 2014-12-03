@@ -40,7 +40,7 @@ class eqLogic {
     protected $_object = null;
     private static $_templateArray = array();
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function byId($_id) {
         $values = array(
@@ -393,7 +393,7 @@ class eqLogic {
         return $text;
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function copy($_name) {
         $eqLogicCopy = clone $this;
@@ -434,7 +434,7 @@ class eqLogic {
 
     public function toHtml($_version = 'dashboard') {
         if ($_version == '') {
-            throw new Exception(__('La version demandé ne peut être vide (mobile, dashboard ou scenario)', __FILE__));
+            throw new Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
         }
         if (!$this->hasRight('r')) {
             return '';
@@ -512,7 +512,7 @@ class eqLogic {
 
     public function save() {
         if ($this->getName() == '') {
-            throw new Exception(__('Le nom de l\'équipement ne peut être vide', __FILE__));
+            throw new Exception(__('Le nom de l\'équipement ne peut pas être vide', __FILE__));
         }
         if ($this->getInternalEvent() == 1) {
             $internalEvent = new internalEvent();
@@ -628,7 +628,7 @@ class eqLogic {
             $logicalId = 'lowBattery' . $this->getId();
             if (count(message::byPluginLogicalId($this->getEqType_name(), $logicalId)) == 0) {
                 $message = 'Le module ' . $this->getEqType_name() . ' ';
-                $message .= $this->getHumanName() . ' à moins de ' . $_pourcent . '% de batterie';
+                $message .= $this->getHumanName() . ' a moins de ' . $_pourcent . '% de batterie';
                 message::add($this->getEqType_name(), $message, '', $logicalId);
             }
         }

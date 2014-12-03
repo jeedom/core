@@ -34,7 +34,7 @@ class interactDef {
     private $options;
     private $enable;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function byId($_id) {
         $values = array(
@@ -134,7 +134,7 @@ class interactDef {
         return $return;
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function selectReply() {
         $replies = self::generateTextVariant($this->getReply());
@@ -144,7 +144,7 @@ class interactDef {
 
     public function save() {
         if ($this->getQuery() == '') {
-            throw new Exception(__('La commande (demande) ne peut etre vide', __FILE__));
+            throw new Exception(__('La commande (demande) ne peut pas être vide', __FILE__));
         }
         $this->setLink_id(str_replace('#', '', jeedom::fromHumanReadable($this->getLink_id())));
         return DB::save($this);

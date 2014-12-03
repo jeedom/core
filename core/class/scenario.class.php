@@ -182,14 +182,14 @@ class scenario {
             if (is_object($_event)) {
                 $scenarios = self::byTrigger($_event->getId());
                 $trigger = '#' . $_event->getId() . '#';
-                $message = __('Scenario lance automatiquement sur evenement venant de : ', __FILE__) . $_event->getHumanName();
+                $message = __('Scénario exécuté automatiquement sur évènement venant de : ', __FILE__) . $_event->getHumanName();
             } else {
                 $scenarios = self::byTrigger($_event);
                 $trigger = $_event;
-                $message = __('Scenario lance sur evenement : #', __FILE__) . $_event . '#';
+                $message = __('Scénario exécuté sur évènement : #', __FILE__) . $_event . '#';
             }
         } else {
-            $message = __('Scenario lance automatiquement sur programmation', __FILE__);
+            $message = __('Scénario évènement automatiquement sur programmation', __FILE__);
             $scenarios = scenario::all();
             $dateOk = jeedom::isDateOk();
             $trigger = '#schedule#';
@@ -197,16 +197,16 @@ class scenario {
                 if ($scenario->getState() == 'in progress') {
                     if ($scenario->running()) {
                         if ($scenario->getTimeout() > 0 && (strtotime('now') - strtotime($scenario->getLastLaunch())) > $scenario->getTimeout()) {
-                            $scenario->setLog(__('Erreur : le scénario est tombé en timeout', __FILE__));
+                            $scenario->setLog(__('Erreur : le scénario est en timeout', __FILE__));
                             try {
                                 $scenario->stop();
                             } catch (Exception $e) {
-                                $scenario->setLog(__('Erreur : le scénario est tombé en timeout mais il est impossible de l\'arreter : ', __FILE__) . $e->getMessage());
+                                $scenario->setLog(__('Erreur : le scénario est en timeout et il est impossible de l\'arrêter : ', __FILE__) . $e->getMessage());
                                 $scenario->save();
                             }
                         }
                     } else {
-                        $scenario->setLog(__('Erreur : le scénario c\'est incident (toujours marqué en cours mais arreté)', __FILE__));
+                        $scenario->setLog(__('Erreur : le scénario c\'est incident (toujours marqué en cours mais arrêté)', __FILE__));
                         $scenario->setState('error');
                         $scenario->save();
                     }
@@ -438,7 +438,7 @@ class scenario {
         return $return;
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function launch($_force = false, $_trigger = '', $_message = '') {
         if ($this->getIsActive() != 1) {
@@ -475,14 +475,14 @@ class scenario {
             }
         }
         if ($this->getIsActive() != 1) {
-            $this->setLog(__('Impossible d\'éxecuter le scénario : ', __FILE__) . $this->getHumanName() . ' sur : ' . $_message . ' car il est désactivé');
+            $this->setLog(__('Impossible d\'exécuter le scénario : ', __FILE__) . $this->getHumanName() . ' sur : ' . $_message . ' car il est désactivé');
             $this->setDisplay('icon', '');
             $this->save();
             return;
         }
         $this->setLog('');
         $this->setDisplay('icon', '');
-        $this->setLog(__('Début exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
+        $this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
         $this->setState('in progress');
         $this->setPID(getmypid());
         $this->setLastLaunch(date('Y-m-d H:i:s'));
@@ -585,7 +585,7 @@ class scenario {
             $this->setTimeout(0);
         }
         if ($this->getName() == '') {
-            throw new Exception('Le nom du scénario ne peut être vide');
+            throw new Exception('Le nom du scénario ne peut être vide.');
         }
         if (($this->getMode() == 'schedule' || $this->getMode() == 'all') && $this->getSchedule() == '') {
             throw new Exception(__('Le scénario est de type programmé mais la programmation est vide', __FILE__));
@@ -718,7 +718,7 @@ class scenario {
                     $diff = round(abs((strtotime('now') - strtotime($prev)) / 60));
                     if ($lastCheck <= $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
                         if ($diff > 3) {
-                            log::add('scenario', 'error', __('Retard lancement prévu à ', __FILE__) . $prev->format('Y-m-d H:i:s') . __(' dernier lancement à ', __FILE__) . $lastCheck->format('Y-m-d H:i:s') . __('. Retard de : ', __FILE__) . $diff . ' min : ' . $this->getName() . __('. Rattrapage en cours...', __FILE__));
+                            log::add('scenario', 'error', __('Retard exécution prévue à ', __FILE__) . $prev->format('Y-m-d H:i:s') . __(' dernière exécution à ', __FILE__) . $lastCheck->format('Y-m-d H:i:s') . __('. Retard de : ', __FILE__) . $diff . ' min : ' . $this->getName() . __('. Rattrapage en cours...', __FILE__));
                         }
                         return true;
                     }
@@ -738,7 +738,7 @@ class scenario {
                 $diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
                 if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
                     if ($diff > 3) {
-                        log::add('scenario', 'error', __('Retard lancement prévu à ', __FILE__) . $prev->format('Y-m-d H:i:s') . __(' dernier lancement à ', __FILE__) . $lastCheck->format('Y-m-d H:i:s') . __('. Retard de : ', __FILE__) . $diff . ' min: ' . $this->getName() . __('. Rattrapage en cours...', __FILE__));
+                        log::add('scenario', 'error', __('Retard d\'exécution prévue à ', __FILE__) . $prev->format('Y-m-d H:i:s') . __(' dernière exécution à ', __FILE__) . $lastCheck->format('Y-m-d H:i:s') . __('. Retard de : ', __FILE__) . $diff . ' min: ' . $this->getName() . __('. Rattrapage en cours...', __FILE__));
                     }
                     return true;
                 }
@@ -773,7 +773,7 @@ class scenario {
                 $retry++;
             }
             if ($this->running()) {
-                throw new Exception(__('Impossible d\'arreter le scénario : ', __FILE__) . $this->getHumanName() . __('. PID : ', __FILE__) . $this->getPID());
+                throw new Exception(__('Impossible d\'arrêter le scénario : ', __FILE__) . $this->getHumanName() . __('. PID : ', __FILE__) . $this->getPID());
             }
         }
         $this->setState('stop');

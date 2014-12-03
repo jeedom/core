@@ -28,7 +28,7 @@ class listener {
     private $function;
     private $option;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function all() {
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
@@ -95,7 +95,7 @@ class listener {
         return $this->getFunction() . '()';
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function run($_event, $_value) {
         $cmd = '/usr/bin/php ' . dirname(__FILE__) . '/../php/jeeListener.php';
@@ -105,7 +105,7 @@ class listener {
 
     public function preSave() {
         if ($this->getFunction() == '') {
-            throw new Exception(__('La fonction ne peut être vide', __FILE__));
+            throw new Exception(__('La fonction ne peut pas être vide', __FILE__));
         }
     }
 
