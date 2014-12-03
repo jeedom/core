@@ -343,7 +343,11 @@ function displayPlan(_offsetX, _offsetY) {
             }
             if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
                 fullScreen(deviceInfo.type);
-                $('meta[name="viewport"]').prop('content', 'width=' + $('#div_displayObject').width() + ',height=' + $('#div_displayObject').height());
+                if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '' && isNaN(data.configuration.desktopSizeX) && isNaN(data.configuration.desktopSizeY)) {
+
+                } else {
+                    $('meta[name="viewport"]').prop('content', 'width=' + $('#div_displayObject').width() + ',height=' + $('#div_displayObject').height());
+                }
             }
             if (getUrlVars('fullscreen') == 1) {
                 fullScreen(deviceInfo.type);
