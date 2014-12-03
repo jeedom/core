@@ -33,39 +33,39 @@ if (!hasRight('interactview', true)) {
                             <a class="btn btn-default btn-xs pull-right" id="bt_duplicate">{{Dupliquer}}</a>
                         </legend>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Nom}}</label>
-                            <div class="col-sm-9">
+                            <label class="col-sm-3 col-xs-3 control-label">{{Nom}}</label>
+                            <div class="col-sm-9 col-xs-9">
                                 <input class="form-control interactAttr" type="text" data-l1key="name" placeholder=""/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Demande}}</label>
-                            <div class="col-sm-9">
+                            <label class="col-sm-3 col-xs-3 control-label">{{Demande}}</label>
+                            <div class="col-sm-9 col-xs-9">
                                 <input class="form-control interactAttr" type="text" data-l1key="id" style="display : none;"/>
                                 <input class="form-control interactAttr" type="text" data-l1key="query" placeholder=""/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Synonyme}}</label>
-                            <div class="col-sm-9">
+                            <label class="col-sm-3 col-xs-3 control-label">{{Synonyme}}</label>
+                            <div class="col-sm-9 col-xs-9">
                                 <input class="form-control interactAttr tooltips" type="text" data-l1key="options" data-l2key="synonymes" placeholder="" title="{{Remplace les mots par leur synonymes lors de la génération des commandes}}"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Réponse}}</label>
-                            <div class="col-sm-9">
+                            <label class="col-sm-3 col-xs-3 control-label">{{Réponse}}</label>
+                            <div class="col-sm-9 col-xs-9">
                                 <input class="form-control interactAttr" type="text" data-l1key="reply" placeholder=""/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Conversion binaire}}</label>
-                            <div class="col-sm-9">
+                            <label class="col-sm-3 col-xs-3 control-label">{{Conversion binaire}}</label>
+                            <div class="col-sm-9 col-xs-9">
                                 <input class="form-control tooltips interactAttr" type="text" data-l1key="options" data-l2key="convertBinary" placeholder="" title="{{Convertir les commandes binaire}}"/>
                             </div>
                         </div>
                          <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Liste des utilisateurs autorisés}}</label>
-                            <div class="col-sm-9">
+                            <label class="col-sm-3 col-xs-3 control-label">{{Utilisateurs autorisés}}</label>
+                            <div class="col-sm-9 col-xs-9">
                                 <input class="form-control tooltips interactAttr" type="text" data-l1key="person" placeholder="" title="{{Liste des utilisateur (login) separé par un |}}"/>
                             </div>
                         </div>
@@ -77,20 +77,20 @@ if (!hasRight('interactview', true)) {
                     <fieldset>
                         <legend>{{Phrases générées}}</legend>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{Phrases générées}}</label>
-                            <div class="col-sm-8">
+                            <label class="col-sm-4 col-xs-7 control-label">{{Phrases générées}}</label>
+                            <div class="col-sm-8 col-xs-4">
                                 <a class="btn btn-default displayInteracQuery">{{Voir}}</a>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{Nombre de phrases générées}}</label>
-                            <div class="col-sm-8">
+                            <label class="col-sm-4 col-xs-7 control-label">{{Nombre de phrases générées}}</label>
+                            <div class="col-sm-8 col-xs-2">
                                 <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">{{Nombre de phrases actives}}</label>
-                            <div class="col-sm-8">
+                            <label class="col-sm-4 col-xs-7 control-label">{{Nombre de phrases actives}}</label>
+                            <div class="col-sm-8 col-xs-2">
                                 <span class="label label-success interactAttr" data-l1key="nbEnableInteractQuery"></span>
                             </div>
                         </div>
@@ -106,8 +106,8 @@ if (!hasRight('interactview', true)) {
                     <fieldset>
                         <legend>{{Action}}</legend>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Type d'action}}</label>
-                            <div class="col-sm-9">
+                            <label class="col-sm-3 col-xs-6 control-label">{{Type d'action}}</label>
+                            <div class="col-sm-9 col-xs-6">
                                 <select class="interactAttr form-control input-sm" data-l1key="link_type">';
                                     <option value="cmd">{{Commande}}</option>
                                     <option value="whatDoYouKnow">{{Que sais tu ?}}</option>
