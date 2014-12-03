@@ -25,7 +25,7 @@ class view {
     private $id;
     private $name;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function all() {
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
@@ -43,11 +43,11 @@ class view {
         return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function presave() {
         if ($this->getName() == '') {
-            throw new Exception('Le nom de la vue ne peut être vide');
+            throw new Exception('Le nom de la vue ne peut pas être vide');
         }
     }
 
