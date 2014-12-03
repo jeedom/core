@@ -30,7 +30,7 @@ class jeeNetwork {
     private $name;
     private $status;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function all() {
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
@@ -177,12 +177,12 @@ class jeeNetwork {
 
     public static function testMaster() {
         if (config::byKey('jeeNetwork::mode') != 'slave') {
-            throw new Exception(__('Seul un esclave peut envoyer un backup au maitre', __FILE__));
+            throw new Exception(__('Seul un esclave peut envoyer un backup au maître', __FILE__));
         }
         $jsonrpc = self::getJsonRpcMaster();
         if ($jsonrpc->sendRequest('ping')) {
             if ($jsonrpc->getResult() != 'pong') {
-                throw new Exception(__('Erreur reponse du maitre != pong : ', __FILE__) . $jsonrpc->getResult());
+                throw new Exception(__('Erreur réponse du maître != pong : ', __FILE__) . $jsonrpc->getResult());
             }
         } else {
             throw new Exception($jsonrpc->getError());
@@ -191,7 +191,7 @@ class jeeNetwork {
 
     public static function sendBackup($_path) {
         if (config::byKey('jeeNetwork::mode') != 'slave') {
-            throw new Exception(__('Seul un esclave peut envoyer un backup au maitre', __FILE__));
+            throw new Exception(__('Seul un esclave peut envoyer un backup au maître', __FILE__));
         }
         $jsonrpc = self::getJsonRpcMaster();
         $file = array(
@@ -204,7 +204,7 @@ class jeeNetwork {
 
     public static function getJsonRpcMaster() {
         if (config::byKey('jeeNetwork::master::ip') == '') {
-            throw new Exception(__('Aucune adresse IP renseignée pour le maitre ', __FILE__));
+            throw new Exception(__('Aucune adresse IP renseignée pour le maître ', __FILE__));
         }
         return new jsonrpcClient(config::byKey('jeeNetwork::master::ip') . '/core/api/jeeApi.php', config::byKey('jeeNetwork::master::apikey'), array('slave_id' => config::byKey('jeeNetwork::slave::id')));
     }
@@ -213,10 +213,10 @@ class jeeNetwork {
 
     public function preUpdate() {
         if ($this->getIp() == '') {
-            throw new Exception('L\'adresse IP ne peut etre vide');
+            throw new Exception('L\'adresse IP ne peut pas être vide');
         }
         if ($this->getApikey() == '') {
-            throw new Exception('La clef API ne peut etre vide');
+            throw new Exception('La clef API ne peut pas être vide');
         }
         try {
             $this->handshake();
@@ -251,7 +251,7 @@ class jeeNetwork {
             $this->setConfiguration('auiKey', $result['auiKey']);
             $this->setConfiguration('lastCommunication', date('Y-m-d H:i:s'));
             if ($this->getConfiguration('nbMessage') != $result['nbMessage'] && $result['nbMessage'] > 0) {
-                log::add('jeeNetwork', 'error', __('Le jeedom esclave : ', __FILE__) . $this->getName() . __(' à de nouveau message : ', __FILE__) . $result['nbMessage']);
+                log::add('jeeNetwork', 'error', __('Le jeedom esclave : ', __FILE__) . $this->getName() . __(' a de nouveaux messages : ', __FILE__) . $result['nbMessage']);
             }
             $this->setConfiguration('nbMessage', $result['nbMessage']);
         } else {
