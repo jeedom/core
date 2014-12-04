@@ -516,6 +516,8 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
         $('#div_displayObject').append(html);
     }
 
+    html.css('z-index', 1000);
+
     for (var key in _plan.css) {
         if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate') {
             if (key == 'background-color') {
