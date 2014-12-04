@@ -285,6 +285,11 @@ $("#bt_addJeeNetwork").on('click', function (event) {
     });
 });
 
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    $("#bt_saveJeeNetwork").click();
+});
+
 $("#bt_saveJeeNetwork").on('click', function (event) {
     if ($('.li_jeeNetwork.active').attr('data-jeeNetwork_id') != undefined) {
         jeedom.jeeNetwork.save({

@@ -19,6 +19,12 @@ $('#sel_userId').on('change', function () {
     loadRights();
 });
 
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    $("#bt_saveRights").click();
+});
+
+
 $('#bt_saveRights').on('click', function () {
     console.log($('.rights').getValues('.rightsAttr'));
     jeedom.rights.save({

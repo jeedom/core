@@ -145,6 +145,11 @@ $("#bt_addScenario").on('click', function (event) {
     });
 });
 
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    saveScenario();
+});
+
 $("#bt_saveScenario").on('click', function (event) {
     saveScenario();
 });

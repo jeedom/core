@@ -105,6 +105,11 @@ $('.eqLogicAction[data-action=copy]').on('click', function () {
     }
 });
 
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    $('.eqLogicAction[data-action=save]').click();
+});
+
 $('.eqLogicAction[data-action=save]').on('click', function () {
     var eqLogics = [];
     $('.eqLogic').each(function () {

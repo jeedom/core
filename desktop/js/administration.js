@@ -98,6 +98,10 @@ $('.changeJeeNetworkMode').on('click', function () {
     });
 });
 
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    $("#bt_saveGeneraleConfig").click();
+});
 
 $("#bt_saveGeneraleConfig").on('click', function (event) {
     $.hideAlert();
@@ -131,8 +135,8 @@ $('#bt_accessDB').on('click', function () {
                 if (result == 'zgw77VL5') {
                     var win = window.open(href, '_blank');
                     win.focus();
-                }else{
-                     $('#div_alert').showAlert({message: '{{Mot de passe incorrect}}', level: 'danger'});
+                } else {
+                    $('#div_alert').showAlert({message: '{{Mot de passe incorrect}}', level: 'danger'});
                 }
             });
 

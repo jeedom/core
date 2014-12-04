@@ -41,6 +41,11 @@ $("#bt_newUserSave").on('click', function(event) {
 
 });
 
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    $('#bt_saveUser').click();
+});
+
 $("#bt_saveUser").on('click', function(event) {
     jeedom.user.save({
         users: $('#table_user tbody tr').getValues('.userAttr'),

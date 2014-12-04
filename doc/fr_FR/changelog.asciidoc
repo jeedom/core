@@ -1,3 +1,6 @@
+==== 04/12/2014
+- Ajout du raccourci ctrl+s partout pour sauvegarder les paramètres/modifications
+
 ==== 01/12/2014
 - Ajout de SQL buddy (éditeur type phpmyadmin) disponible uniquement en mode expert à partir de Générale => Administrateur => Configuration. /!\ Attention reservé aux expert, toute demande de support suite à une fausse manipulation pourra etre refusée /!\ 
 - Version stable 1.138.0

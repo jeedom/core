@@ -28,6 +28,11 @@ if (getUrlVars('saveSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }
 
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    $('#bt_saveSecurityConfig').click();
+});
+
 $('#bt_saveSecurityConfig').on('click', function() {
     jeedom.config.save({
         configuration: $('#config').getValues('.configKey')[0],

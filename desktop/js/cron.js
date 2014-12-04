@@ -27,6 +27,11 @@ $("#bt_addCron").on('click', function () {
     addCron({});
 });
 
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    $("#bt_save").click();
+});
+
 $("#bt_save").on('click', function () {
     jeedom.cron.save({
         crons: $('#table_cron tbody tr').getValues('.cronAttr'),

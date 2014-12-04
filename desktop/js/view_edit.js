@@ -73,6 +73,11 @@ $("#bt_editView").on('click', function(event) {
     });
 });
 
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    $('#bt_saveView').click();
+});
+
 $('#bt_saveView').on('click', function(event) {
     $.hideAlert();
     var viewZones = [];

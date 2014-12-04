@@ -15,6 +15,11 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    $("#bt_saveProfils").click();
+});
+
 $("#bt_saveProfils").on('click', function (event) {
     $.hideAlert();
     var profil = $('body').getValues('.userAttr');
