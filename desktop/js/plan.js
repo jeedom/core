@@ -295,6 +295,7 @@ function initDraggable(_state) {
 }
 
 function displayPlan(_offsetX, _offsetY) {
+    history.replaceState(null, "Jeedom", "index.php?v=d&p=plan&plan_id=" + planHeader_id);
     jeedom.plan.getHeader({
         id: planHeader_id,
         error: function (error) {
@@ -302,40 +303,37 @@ function displayPlan(_offsetX, _offsetY) {
         },
         success: function (data) {
             $('#div_displayObject').empty();
+            $('#div_displayObject').height('auto');
+            $('#div_displayObject').width('auto');
             if (isset(data.image)) {
                 $('#div_displayObject').append(data.image);
             }
-            var proportion = 1;
-            if (deviceInfo.type == 'tablet' && isset(data.configuration) && isset(data.configuration.tabletteProportion) && data.configuration.tabletteProportion != 1) {
-                proportion = data.configuration.tabletteProportion;
-            }
-            if (deviceInfo.type == 'phone' && isset(data.configuration) && isset(data.configuration.mobileProportion) && data.configuration.mobileProportion != 1) {
-                proportion = data.configuration.mobileProportion;
-            }
-            if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
-                if (isNaN(data.configuration.desktopSizeX) && isNaN(data.configuration.desktopSizeY)) {
-                    $('#div_displayObject').height(data.configuration.desktopSizeY);
-                    $('#div_displayObject').width(data.configuration.desktopSizeX);
-                    $('#div_displayObject img').height(data.configuration.desktopSizeY);
-                    $('#div_displayObject img').width(data.configuration.desktopSizeX);
-                } else {
+            if (!isset(data.configuration) || !isset(data.configuration.responsiveMode) || data.configuration.responsiveMode != 1) {
+                var proportion = 1;
+                if (deviceInfo.type == 'tablet' && isset(data.configuration) && isset(data.configuration.tabletteProportion) && data.configuration.tabletteProportion != 1) {
+                    proportion = data.configuration.tabletteProportion;
+                }
+                if (deviceInfo.type == 'phone' && isset(data.configuration) && isset(data.configuration.mobileProportion) && data.configuration.mobileProportion != 1) {
+                    proportion = data.configuration.mobileProportion;
+                }
+                if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
                     $('#div_displayObject').height(data.configuration.desktopSizeY * proportion);
                     $('#div_displayObject').width(data.configuration.desktopSizeX * proportion);
                     $('#div_displayObject img').height(data.configuration.desktopSizeY * proportion);
                     $('#div_displayObject img').width(data.configuration.desktopSizeX * proportion);
-                }
-            } else {
-                $('#div_displayObject').width($('#div_displayObject img').attr('data-sixe_x') * proportion);
-                $('#div_displayObject').height($('#div_displayObject img').attr('data-sixe_y') * proportion);
-                $('#div_displayObject img').css('height', ($('#div_displayObject img').attr('data-sixe_y') * proportion) + 'px');
-                $('#div_displayObject img').css('width', ($('#div_displayObject img').attr('data-sixe_x') * proportion) + 'px');
-            }
-            if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
-                fullScreen(deviceInfo.type);
-                if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '' && isNaN(data.configuration.desktopSizeX) && isNaN(data.configuration.desktopSizeY)) {
-
                 } else {
-                    $('meta[name="viewport"]').prop('content', 'width=' + $('#div_displayObject').width() + ',height=' + $('#div_displayObject').height());
+                    $('#div_displayObject').width($('#div_displayObject img').attr('data-sixe_x') * proportion);
+                    $('#div_displayObject').height($('#div_displayObject img').attr('data-sixe_y') * proportion);
+                    $('#div_displayObject img').css('height', ($('#div_displayObject img').attr('data-sixe_y') * proportion) + 'px');
+                    $('#div_displayObject img').css('width', ($('#div_displayObject img').attr('data-sixe_x') * proportion) + 'px');
+                }
+                if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
+                    fullScreen(deviceInfo.type);
+                    if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '' && isNaN(data.configuration.desktopSizeX) && isNaN(data.configuration.desktopSizeY)) {
+
+                    } else {
+                        $('meta[name="viewport"]').prop('content', 'width=' + $('#div_displayObject').width() + ',height=' + $('#div_displayObject').height());
+                    }
                 }
             }
             if (getUrlVars('fullscreen') == 1) {

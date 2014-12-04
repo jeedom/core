@@ -35,6 +35,12 @@ sendVarToJS('id', $planHeader->getId())
             </div>
         </div>
         <legend>{{Tailles}}</legend>
+        <div class="form-group expertModeVisible">
+            <label class="col-lg-4 control-label">{{Responsive mode (Attention toute les valeurs de taille sont ignorées)}}</label>
+            <div class="col-lg-4">
+                <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="responsiveMode" /> 
+            </div>
+        </div>
         <div class="form-group">
             <label class="col-lg-4 control-label">{{Taille (LxH)}}</label>
             <div class="col-lg-4">
