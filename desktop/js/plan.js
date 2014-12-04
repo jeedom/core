@@ -563,11 +563,13 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
 
     html.addClass('noResize');
-    if (isset(_plan.display) && isset(_plan.display.width)) {
-        html.css('width', init(_plan.display.width, 10));
-    }
-    if (isset(_plan.display) && isset(_plan.display.height)) {
-        html.css('height', init(_plan.display.height, 10));
+    if (!isset(_plan.display.noPredefineSize) || _plan.display.noPredefineSize == 0) {
+        if (isset(_plan.display) && isset(_plan.display.width)) {
+            html.css('width', init(_plan.display.width, 10));
+        }
+        if (isset(_plan.display) && isset(_plan.display.height)) {
+            html.css('height', init(_plan.display.height, 10));
+        }
     }
     if (_type == 'eqLogic') {
         if (isset(_plan.display) && isset(_plan.display.cmd)) {
