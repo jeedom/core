@@ -295,7 +295,11 @@ function initDraggable(_state) {
 }
 
 function displayPlan(_offsetX, _offsetY) {
-    history.replaceState(null, "Jeedom", "index.php?v=d&p=plan&plan_id=" + planHeader_id);
+    var url = "index.php?v=d&p=plan&plan_id=" + planHeader_id;
+    if (getUrlVars('fullscreen') == 1) {
+        url += '&fullscreen=1';
+    }
+    history.replaceState(null, "Jeedom", url);
     jeedom.plan.getHeader({
         id: planHeader_id,
         error: function (error) {
