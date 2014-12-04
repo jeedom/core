@@ -546,23 +546,12 @@ class scenarioExpression {
                     }
                     return;
                 } else if ($this->getExpression() == 'variable') {
-                    $value = self::setTags($this->getOptions('value'), $scenario);
-                    $message = __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' à [', __FILE__) . $value . '] = ';
-                    try {
-                        $test = new evaluate();
-                        $result = $test->Evaluer($value);
-                        if (is_string($result)) { //Alors la valeur n'est pas un calcul
-                            $result = $value;
-                        }
-                    } catch (Exception $e) {
-                        $result = $value;
-                    }
-                    $message .= $result;
+                    $message = __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' => ', __FILE__) . $options['value'];
                     $this->setLog($scenario, $message);
                     $dataStore = new dataStore();
                     $dataStore->setType('scenario');
                     $dataStore->setKey($this->getOptions('name'));
-                    $dataStore->setValue($result);
+                    $dataStore->setValue($options['value']);
                     $dataStore->setLink_id(-1);
                     $dataStore->save();
                     return;
