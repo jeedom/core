@@ -214,3 +214,9 @@ php install/install.php
 - Par l’interface de jeedom dans Général -> Administration -> Mises à jour
 
 Voilà normalement ça devrait marcher (bien que l’ayant déjà fait plusieurs fois j’ai fait la procédure de tête donc si il y a la moindre erreur ou amélioration n’hésitez pas à me le dire ;-) )
+
+[panel,primary]
+.Je n'arrive pas a installer Jeedom, que dois je vérifier ?
+--
+Une des premieres vérification doit etre la place disponible sur votre système de fichier.
+--
