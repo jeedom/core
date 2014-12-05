@@ -559,7 +559,11 @@ class eqLogic {
         $objet = $this->getObject();
         if (is_object($objet)) {
             if ($_tag) {
-                $name .= '<span class="label label-primary" style="text-shadow : none;">' . $objet->getName() . '</span>';
+                if ($objet->getDisplay('tagColor') != '') {
+                    $name .= '<span class="label" style="text-shadow : none;background-color:' . $objet->getDisplay('tagColor') . '">' . $objet->getName() . '</span>';
+                } else {
+                    $name .= '<span class="label label-primary" style="text-shadow : none;">' . $objet->getName() . '</span>';
+                }
             } else {
                 $name .= '[' . $objet->getName() . ']';
             }
