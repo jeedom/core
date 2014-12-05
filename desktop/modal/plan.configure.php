@@ -280,8 +280,8 @@ sendVarToJS('id', $plan->getId());
         <?php } else if ($plan->getLink_type() == 'text') { ?>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Nom}}</label>
-                <div class="col-lg-4">
-                    <textarea class="planAttr form-control" data-l1key="display" data-l2key="text" >Texte à insérer ici</textarea>
+                <div class="col-lg-8">
+                    <textarea class="planAttr form-control" data-l1key="display" data-l2key="text" rows=10>Texte à insérer ici</textarea>
                 </div>
             </div>
             <div class="form-group">
