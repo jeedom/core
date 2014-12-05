@@ -569,7 +569,7 @@ class eqLogic {
             }
         } else {
             if ($_tag) {
-                $name .= '<span class="label labe-default">' . __('Aucun', __FILE__) . '</span>';
+                $name .= '<span class="label label-default" style="text-shadow : none;">' . __('Aucun', __FILE__) . '</span>';
             } else {
                 $name .= '[' . __('Aucun', __FILE__) . ']';
             }
