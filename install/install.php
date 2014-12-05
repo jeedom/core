@@ -123,7 +123,7 @@ try {
                         rrmdir(dirname(__FILE__) . '/../' . $file);
                     }
                     echo __("OK\n", __FILE__);
-                    echo __("Creéation des dossiers temporaire...", __FILE__);
+                    echo __("Creation des dossiers temporaire...", __FILE__);
                     if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
                         throw new Exception(__('Impossible de creer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
                     }
