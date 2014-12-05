@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
+var changeLeftMenuObjectOrEqLogicName = false;
 $(".li_eqLogic").on('click', function () {
     $('.eqLogic').hide();
     if ('function' == typeof (prePrintEqLogic)) {
@@ -56,6 +56,7 @@ $(".li_eqLogic").on('click', function () {
                 jeedom.cmd.changeSubType($(this).closest('.cmd'));
             });
             initExpertMode();
+            changeLeftMenuObjectOrEqLogicName = false;
         }
     });
     return false;
@@ -83,8 +84,6 @@ $('.eqLogicAction[data-action=copy]').on('click', function () {
                     success: function (data) {
                         modifyWithoutSave = false;
                         if ($('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + data.id + ']').length != 0) {
-                            var name = $('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + data.id + '] a').text();
-                            $('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + data.id + '] a').empty().append(name.substr(0, name.lastIndexOf("[")) + '[' + data.name + ']');
                             $('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + data.id + ']').click();
                         } else {
                             var vars = getUrlVars();
@@ -132,9 +131,7 @@ $('.eqLogicAction[data-action=save]').on('click', function () {
         },
         success: function (data) {
             modifyWithoutSave = false;
-            if ($('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + data.id + ']').length != 0) {
-                var name = $('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + data.id + '] a').text();
-                $('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + data.id + '] a').empty().append(name.substr(0, name.lastIndexOf("[")) + '[' + data.name + ']');
+            if ($('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + data.id + ']').length != 0 && !changeLeftMenuObjectOrEqLogicName) {
                 $('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + data.id + ']').click();
                 $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
             } else {
@@ -151,6 +148,14 @@ $('.eqLogicAction[data-action=save]').on('click', function () {
         }
     });
     return false;
+});
+
+$('.eqLogicAttr[data-l1key=name]').on('change',function(){
+    changeLeftMenuObjectOrEqLogicName = true;
+});
+
+$('.eqLogicAttr[data-l1key=object_id]').on('change',function(){
+    changeLeftMenuObjectOrEqLogicName = true;
 });
 
 $('.eqLogicAction[data-action=remove]').on('click', function () {
