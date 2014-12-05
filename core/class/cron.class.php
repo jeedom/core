@@ -92,6 +92,22 @@ class cron {
         return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
+    public static function searchClassAndFunction($_class, $_function, $_option = '') {
+        $value = array(
+            'class' => $_class,
+            'function' => $_function,
+        );
+        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+                FROM cron
+                WHERE class=:class
+                    AND function=:function';
+        if ($_option != '') {
+            $value['option'] = '%' . $_option . '%';
+            $sql .= ' LIKE `option`=:option';
+        }
+        return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+    }
+
     /**
      * Return number of cron running
      * @return int
