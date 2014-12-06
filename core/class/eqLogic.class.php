@@ -35,6 +35,7 @@ class eqLogic {
     protected $timeout;
     protected $category;
     protected $display;
+    protected $order;
     protected $_internalEvent = 0;
     protected $_debug = false;
     protected $_object = null;
@@ -120,7 +121,7 @@ class eqLogic {
             $values['logicalId'] = $_logicalId;
             $sql .= ' AND logicalId=:logicalId';
         }
-        $sql .= ' ORDER BY category DESC';
+        $sql .= ' ORDER BY `order`,category DESC';
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
 
@@ -855,6 +856,17 @@ class eqLogic {
             echo "Mode debug activé\n";
         }
         $this->_debug = $_debug;
+    }
+
+    function getOrder() {
+        if ($this->order == '') {
+            return 0;
+        }
+        return $this->order;
+    }
+
+    function setOrder($order) {
+        $this->order = $order;
     }
 
 }

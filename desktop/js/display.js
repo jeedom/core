@@ -496,6 +496,14 @@ function displayEqLogic(_eqLogic_id) {
             div += '</div>';
 
             div += '<legend>Configuration</legend>';
+            div += '<form class="form-horizontal">';
+            div += '<fieldset>';
+            div += '<div class="form-group">';
+            div += '<label class="col-sm-4 control-label">{{Ordre}}</label>';
+            div += '<div class="col-sm-2">';
+            div += '<input type="number" class="eqLogicAttr form-control" data-l1key="order" />';
+            div += '</div>';
+            div += '</div>';
 
             div += '<div class="form-group">';
             div += '<label class="col-sm-4 control-label">{{Ne pas afficher le nom de l\'équipement sur le dashboard}}</label>';
@@ -507,7 +515,8 @@ function displayEqLogic(_eqLogic_id) {
             div += '<input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnView" />';
             div += '</div>';
             div += '</div>';
-
+            div += '</fieldset>';
+            div += '</form>';
             div += '<legend>{{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>';
             div += '<table class="table table-bordered table-condensed" id="table_widgetParameters">';
             div += '<thead>';

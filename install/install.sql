@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mar 18 Novembre 2014 à 22:46
+-- Généré le: Sam 06 Décembre 2014 à 11:24
 -- Version du serveur: 5.6.19-0ubuntu0.14.04.1-log
 -- Version de PHP: 5.5.9-1ubuntu4.5
 
@@ -195,6 +195,7 @@ CREATE TABLE IF NOT EXISTS `eqLogic` (
   `timeout` int(11) DEFAULT NULL,
   `category` text,
   `display` text,
+  `order` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique` (`name`,`object_id`),
   KEY `eqTypeName` (`eqType_name`),
