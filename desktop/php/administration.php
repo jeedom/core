@@ -625,16 +625,12 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     <input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
                                 </div>
                             </div>
-                            
-                            
-                              <div class="form-group">
-                                      <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                        <div class="alert alert-info">{{N'oubliez pas de sauvegarder la configuration avant de tester}}</div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                        <a class="btn btn-default" id="bt_testLdapConnection"><i class="fa fa-cube"></i> Tester</a>
-                                    </div>
+                            <div class="form-group">
+                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
+                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                    <a class="btn btn-default" id="bt_testLdapConnection"><i class="fa fa-cube"></i> Tester</a>
                                 </div>
+                            </div>
                         </fieldset>
                     </form>
                 </div>
@@ -752,9 +748,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                      <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                        <div class="alert alert-info">{{N'oubliez pas de sauvegarder la configuration avant de tester}}</div>
-                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                         <a class="btn btn-default" id="bt_testMarketConnection"><i class="fa fa-cube"></i> Tester</a>
                                     </div>
