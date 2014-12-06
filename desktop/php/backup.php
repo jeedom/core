@@ -102,7 +102,7 @@ include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
                         ?>
                         <div class="form-group">
                             <label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes disponibles}}</label>
-                            <div class="col-sm-4 col-xs-6">
+                            <div class="col-sm-6 col-xs-6">
                                 <select class="form-control" id="sel_restoreCloudBackup">
                                     <?php
                                     try {
