@@ -42,13 +42,17 @@ class interactQuery {
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
-    public static function byQuery($_query) {
+    public static function byQuery($_query,$_interactDef_id = null) {
         $values = array(
             'query' => $_query
         );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                 FROM interactQuery
                 WHERE query=:query';
+        if($_interactDef_id != null){
+           $values['interactDef_id'] = $_interactDef_id;
+           $sql .= ' AND interactDef_id=:interactDef_id';
+        }
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 

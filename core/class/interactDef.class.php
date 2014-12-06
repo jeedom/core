@@ -156,7 +156,7 @@ class interactDef {
         $allInteractQueries = interactQuery::byInteractDefId($this->getId());
         foreach ($queries as $query) {
             if ($query['link_id'] != '' || $query['link_type'] == 'whatDoYouKnow') {
-                $interactQuery = interactQuery::byQuery($query['query']);
+                $interactQuery = interactQuery::byQuery($query['query'], $this->getId());
                 if (!is_object($interactQuery)) {
                     $interactQuery = new interactQuery();
                 }
