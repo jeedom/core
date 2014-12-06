@@ -546,12 +546,22 @@ class scenarioExpression {
                     }
                     return;
                 } else if ($this->getExpression() == 'variable') {
-                    $message = __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' => ', __FILE__) . $options['value'];
+                    try {
+                        $test = new evaluate();
+                        $result = $test->Evaluer($options['value']);
+                        if (!is_numeric($result)) { //Alors la valeur n'est pas un calcul
+                            $result = $options['value'];
+                        }
+                    } catch (Exception $ex) {
+                        $result = $options['value'];
+                    }
+
+                    $message = __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' => ', __FILE__) . $options['value'] . ' = ' . $result;
                     $this->setLog($scenario, $message);
                     $dataStore = new dataStore();
                     $dataStore->setType('scenario');
                     $dataStore->setKey($this->getOptions('name'));
-                    $dataStore->setValue($options['value']);
+                    $dataStore->setValue($result);
                     $dataStore->setLink_id(-1);
                     $dataStore->save();
                     return;
