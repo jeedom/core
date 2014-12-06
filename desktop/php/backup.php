@@ -14,18 +14,18 @@ include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
                 <fieldset>
                     <div class="form-group">
                         <div class="form-group expertModeVisible">
-                            <label class="col-xs-6 control-label">{{Fréquence des sauvegardes}}</label>
-                            <div class="col-xs-3">
+                            <label class="col-sm-4 col-xs-6 control-label">{{Fréquence des sauvegardes}}</label>
+                            <div class="col-sm-2 col-xs-3">
                                 <input type="text"  class="configKey form-control" data-l1key="backup::cron" />
                             </div>
-                            <div class="col-xs-1">
+                            <div class="col-sm-2 col-xs-1">
                                 <i class="fa fa-question-circle cursor bt_pageHelp" data-name='cronSyntaxe'></i>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-6 control-label">{{Sauvegardes}}</label>
-                        <div class="col-xs-6">
+                        <label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes}}</label>
+                        <div class="col-sm-4 col-xs-6">
                             <a class="btn btn-default" id="bt_backupJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-floppy-o"></i> Sauvegarder</a>
                         </div>
                     </div>
