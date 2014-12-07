@@ -233,12 +233,13 @@ class jeeNetwork {
         try {
             $this->handshake();
         } catch (Exception $e) {
+            $old_ip = $this->getIp();
             if (strpos($this->getIp(), '/jeedom') === false) {
                 try {
                     $this->setIp($this->getIp() . '/jeedom');
                     $this->handshake();
                 } catch (Exception $e) {
-
+                    $this->setIp($old_ip);
                     DB::save($this, true);
                     throw $e;
                 }
