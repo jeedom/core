@@ -19,6 +19,8 @@ setTimeout(function () {
     $('.div_displayEquipement').packery();
 }, 2);
 
+
+
 $('body').delegate('.eqLogic-widget .history', 'click', function () {
     $('#md_modal').dialog({title: "{{Historique}}"});
     $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
