@@ -3,7 +3,7 @@ if (!isConnect('admin')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
-include_file('3rdparty', 'jquery.masonry/jquery.masonry', 'js');
+include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
 
 $status = init('status', null);
 $type = init('type', null);
@@ -177,7 +177,7 @@ function buildUrl($_key, $_value) {
 
 <script>
     $(function () {
-        $('.pluginContainer').masonry({columnWidth: 10});
+        $('.pluginContainer').packery();
 
         $("img.lazy").lazyload({
             event: "sporty"
@@ -228,7 +228,7 @@ function buildUrl($_key, $_value) {
                 });
                 if (hasVisible) {
                     $('legend[data-category=' + $(this).attr('data-category') + ']').show();
-                    $(this).masonry({columnWidth: 10});
+                    $(this).packery();
                 } else {
                     $(this).hide();
                     $('legend[data-category=' + $(this).attr('data-category') + ']').hide();

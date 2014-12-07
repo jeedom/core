@@ -30,7 +30,7 @@ function initEquipment(_object_id) {
                 $('#div_displayEquipement').empty().html(html).trigger('create');
                 setTileSize('.eqLogic');
                 setTimeout(function () {
-                    $('#div_displayEquipement').masonry();
+                    $('#div_displayEquipement').packery();
                 }, 10);
             }
         });
@@ -40,6 +40,6 @@ function initEquipment(_object_id) {
 
     $(window).on("orientationchange", function (event) {
         setTileSize('.eqLogic');
-        $('#div_displayEquipement').masonry();
+        $('#div_displayEquipement').packery();
     });
 }
