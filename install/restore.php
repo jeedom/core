@@ -116,7 +116,7 @@ try {
     echo __("OK\n", __FILE__);
 
     echo __("Restauration de la base de donnees...", __FILE__);
-    system("mysql --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  < " . $tmp . "/DB_backup.sql");
+    system("mysql --host=" . $CONFIG['db']['host'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  < " . $tmp . "/DB_backup.sql");
     echo __("OK\n", __FILE__);
 
     echo __("Restauration des fichiers...", __FILE__);
