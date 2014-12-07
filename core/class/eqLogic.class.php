@@ -464,7 +464,7 @@ class eqLogic {
             '#background_color#' => $this->getBackgroundColor($version),
             '#info#' => $info,
             '#style#' => '',
-            '#max_width#' => '600px',
+            '#max_width#' => '650px',
             '#logicalId#' => $this->getLogicalId()
         );
         if ($_version == 'dview' || $_version == 'mview') {
