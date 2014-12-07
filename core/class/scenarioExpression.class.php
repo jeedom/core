@@ -380,7 +380,7 @@ class scenarioExpression {
                 $result = $_value;
             }
         } catch (Exception $e) {
-            
+            $result = $_value;
         }
         if ($_decimal == 0) {
             return ceil(floatval(str_replace(',', '.', $result)));
