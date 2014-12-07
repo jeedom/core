@@ -75,7 +75,7 @@ sendVarToJS('select_id', init('id', '-1'));
         <div class="alert alert-success">
             <h5 style="display: inline-block;font-weight: bold;">{{Description}} : </h5> <span id="span_plugin_description"></span><br/>
             <h5 style="display: inline-block;font-weight: bold;">{{Version plugin}} : </h5> <span id="span_plugin_version"></span> - 
-            <h5 style="display: inline-block;font-weight: bold;">{{Version Jeedom requis}} : </h5> <span id="span_plugin_require"></span><br/>
+            <h5 style="display: inline-block;font-weight: bold;">{{Version Jeedom requise}} : </h5> <span id="span_plugin_require"></span><br/>
             <h5 style="display: inline-block;font-weight: bold;">{{Auteur}} : </h5> <span id="span_plugin_author"></span> - 
             <h5 style="display: inline-block;font-weight: bold;">{{Licence}} : </h5> <span id="span_plugin_licence"></span>
         </div>
