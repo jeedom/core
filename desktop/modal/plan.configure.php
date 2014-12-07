@@ -2,7 +2,13 @@
 if (!isConnect('admin')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
-
+include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
+include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
+include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
+include_file('3rdparty', 'codemirror/mode/htmlmixed/htmlmixed', 'js');
+include_file('3rdparty', 'codemirror/mode/xml/xml', 'js');
+include_file('3rdparty', 'codemirror/mode/javascript/javascript', 'js');
+include_file('3rdparty', 'codemirror/mode/css/css', 'js');
 $plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
 if (!is_object($plan)) {
     throw new Exception('Impossible de trouver le design');
@@ -335,12 +341,12 @@ sendVarToJS('id', $plan->getId());
                     <input class="planAttr form-control" data-l1key="css" data-l2key="font-size" />
                 </div>
             </div>
-              <div class="form-group expertModeVisible">
-            <label class="col-lg-4 control-label">{{Ne pas prendre en compte la taille predefinie)}}</label>
-            <div class="col-lg-4">
-                <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="noPredefineSize" /> 
+            <div class="form-group expertModeVisible">
+                <label class="col-lg-4 control-label">{{Ne pas prendre en compte la taille predefinie)}}</label>
+                <div class="col-lg-4">
+                    <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="noPredefineSize" /> 
+                </div>
             </div>
-        </div>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Profondeur}}</label>
                 <div class="col-lg-2">
@@ -367,6 +373,8 @@ sendVarToJS('id', $plan->getId());
 
 
 <script>
+    editor = [];
+
     $('#bt_chooseIcon').on('click', function () {
         chooseIcon(function (_icon) {
             $('.planAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
@@ -407,14 +415,37 @@ sendVarToJS('id', $plan->getId());
                     return;
                 }
                 $('#fd_planConfigure').setValues(data.result, '.planAttr');
+                if (data.result.link_type == 'text') {
+                    var code = $('.planAttr[data-l1key=display][data-l2key=text]');
+                    if (code.attr('id') == undefined) {
+                        code.uniqueId();
+                        var id = code.attr('id');
+                        setTimeout(function () {
+                            editor[id] = CodeMirror.fromTextArea(document.getElementById(id), {
+                                lineNumbers: true,
+                                mode: 'htmlmixed',
+                                matchBrackets: true
+                            });
+                        }, 1);
+                    }
+                }
+
+
             }
         });
     }
 
 
     function save() {
+        var plans = $('#fd_planConfigure').getValues('.planAttr');
+        if (plans[0].link_type == 'text') {
+            var id = $('.planAttr[data-l1key=display][data-l2key=text]').attr('id');
+            if (id != undefined && isset(editor[id])) {
+                plans[0].display.text = editor[id].getValue();
+            }
+        }
         jeedom.plan.save({
-            plans: $('#fd_planConfigure').getValues('.planAttr'),
+            plans: plans,
             error: function (error) {
                 $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'});
             },
