@@ -39,6 +39,7 @@ function initEquipment(_object_id) {
     }
 
     $(window).on("orientationchange", function (event) {
+        deviceInfo = getDeviceType();
         setTileSize('.eqLogic');
         $('#div_displayEquipement').packery();
     });
