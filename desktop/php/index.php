@@ -102,6 +102,7 @@ if (count($plugins_list) > 0) {
         include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
         include_file('3rdparty', 'bootstrap.slider/js/bootstrap-slider', 'js');
         include_file('3rdparty', 'jwerty/jwerty', 'js');
+        include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
 
         if (isConnect() && $_SESSION['user']->getOptions('desktop_highcharts_theme') != '') {
             try {

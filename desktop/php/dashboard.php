@@ -2,7 +2,7 @@
 if (!hasRight('dashboardview')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
-include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
+
 if (init('object_id') == '') {
     $object = object::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
 } else {

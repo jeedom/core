@@ -555,7 +555,7 @@ class eqLogic {
         return false;
     }
 
-    public function getHumanName($_tag = false) {
+    public function getHumanName($_tag = false, $_prettify = false) {
         $name = '';
         $objet = $this->getObject();
         if (is_object($objet)) {
@@ -575,10 +575,16 @@ class eqLogic {
                 $name .= '[' . __('Aucun', __FILE__) . ']';
             }
         }
+        if ($_prettify) {
+            $name .= '<br/><strong>';
+        }
         if ($_tag) {
             $name .= ' ' . $this->getName();
         } else {
             $name .= '[' . $this->getName() . ']';
+        }
+        if ($_prettify) {
+            $name .= '</strong>';
         }
         return $name;
     }

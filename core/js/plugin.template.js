@@ -15,10 +15,23 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 var changeLeftMenuObjectOrEqLogicName = false;
+
+$('.eqLogicDisplayCard').on('click', function () {
+    $('.li_eqLogic[data-eqLogic_id=' + $(this).attr('data-eqLogic_id') + ']').click();
+});
+
+$('.eqLogicAction[data-action=returnToThumbnailDisplay]').on('click', function () {
+    $('.eqLogic').hide();
+    $('.eqLogicThumbnailDisplay').show();
+});
+
 $(".li_eqLogic").on('click', function () {
     $('.eqLogic').hide();
     if ('function' == typeof (prePrintEqLogic)) {
         prePrintEqLogic();
+    }
+    if ($('.eqLogicThumbnailDisplay').html() != undefined) {
+        $('.eqLogicThumbnailDisplay').hide();
     }
     if (isset($(this).attr('data-eqLogic_type')) && isset($('.' + $(this).attr('data-eqLogic_type')))) {
         $('.' + $(this).attr('data-eqLogic_type')).show();
@@ -150,11 +163,11 @@ $('.eqLogicAction[data-action=save]').on('click', function () {
     return false;
 });
 
-$('.eqLogicAttr[data-l1key=name]').on('change',function(){
+$('.eqLogicAttr[data-l1key=name]').on('change', function () {
     changeLeftMenuObjectOrEqLogicName = true;
 });
 
-$('.eqLogicAttr[data-l1key=object_id]').on('change',function(){
+$('.eqLogicAttr[data-l1key=object_id]').on('change', function () {
     changeLeftMenuObjectOrEqLogicName = true;
 });
 
@@ -260,11 +273,21 @@ if (is_numeric(getUrlVars('id'))) {
     if ($('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + getUrlVars('id') + ']').length != 0) {
         $('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + getUrlVars('id') + ']').click();
     } else {
-        $('#ul_eqLogic .li_eqLogic:first').click();
+        if ($('.eqLogicThumbnailDisplay').html() == undefined) {
+            $('#ul_eqLogic .li_eqLogic:first').click();
+        }
     }
 } else {
-    $('#ul_eqLogic .li_eqLogic:first').click();
+    if ($('.eqLogicThumbnailDisplay').html() == undefined) {
+        $('#ul_eqLogic .li_eqLogic:first').click();
+    }
 }
+
+$('.eqLogicThumbnailContainer').packery();
+
+$("img.lazy").lazyload({
+    event: "sporty"
+});
 
 $('body').delegate('.cmdAttr', 'change', function () {
     modifyWithoutSave = true;
