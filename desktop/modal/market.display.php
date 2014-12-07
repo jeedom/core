@@ -153,7 +153,7 @@ sendVarToJS('market_display_info', $market_array);
                     </div><br/>
                 <?php } ?>
                 <center>
-                    <a class="btn btn-default" id="bt_viewComment"><i class="fa fa-comments-o"></i> {{Commentaires}}</a>
+                    <a class="btn btn-default" id="bt_viewComment"><i class="fa fa-comments-o"></i> {{Commentaires (<?php echo $market->getNbComment(); ?>)}}</a>
                 </center>
             </div>
         </div>

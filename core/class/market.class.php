@@ -45,6 +45,7 @@ class market {
     private $realcost = 0;
     private $link;
     private $certification;
+    private $nbComment;
 
     /*     * ***********************Méthodes statiques*************************** */
 
@@ -72,6 +73,7 @@ class market {
         $market->setCost($_arrayMarket['cost']);
         $market->rating = ($_arrayMarket['rating']);
         $market->setBuyer($_arrayMarket['buyer']);
+        $market->setNbComment($_arrayMarket['nbComment']);
         $market->img = json_encode($_arrayMarket['img'], JSON_UNESCAPED_UNICODE);
         $market->link = json_encode($_arrayMarket['link'], JSON_UNESCAPED_UNICODE);
 
@@ -885,6 +887,14 @@ class market {
 
     function setCertification($certification) {
         $this->certification = $certification;
+    }
+
+    function getNbComment() {
+        return $this->nbComment;
+    }
+
+    function setNbComment($nbComment) {
+        $this->nbComment = $nbComment;
     }
 
 }
