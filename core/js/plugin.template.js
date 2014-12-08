@@ -23,6 +23,7 @@ $('.eqLogicDisplayCard').on('click', function () {
 $('.eqLogicAction[data-action=returnToThumbnailDisplay]').on('click', function () {
     $('.eqLogic').hide();
     $('.eqLogicThumbnailDisplay').show();
+    $('.li_eqLogic').removeClass('active');
 });
 
 $(".li_eqLogic").on('click', function () {
