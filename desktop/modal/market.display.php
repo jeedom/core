@@ -12,7 +12,6 @@ if (init('logicalId') != '') {
 if (!isset($market)) {
     throw new Exception('404 not found');
 }
-include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
 include_file('3rdparty', 'bootstrap.rating/bootstrap.rating', 'js');
 include_file('3rdparty', 'slick/slick.min', 'js');
 include_file('3rdparty', 'slick/slick', 'css');

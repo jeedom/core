@@ -2,8 +2,6 @@
 if (!isConnect('admin')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
-include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
-include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
 
 $status = init('status', null);
 $type = init('type', null);
