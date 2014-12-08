@@ -70,7 +70,6 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
                 </div>
             </div>
             <div class="col-lg-10 col-md-9 col-sm-8">
-                <legend>{{Informations}}</legend>
                 <div id='div_displayInfo'></div>
             </div>
         </div>

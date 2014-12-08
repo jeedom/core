@@ -9,6 +9,7 @@ if (!is_object($object)) {
 sendVarToJS('objectInfo', utils::o2a($object));
 ?>
 <div id='div_displayObjectConfigure'>
+    <legend>{{Informations}}</legend>
     <div class="row">
         <form class="form-horizontal">
             <fieldset>

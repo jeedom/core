@@ -14,164 +14,148 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 <div id='div_displayCmdConfigure'>
     <div class="row">
         <div class="col-sm-6" >
-            <form class="form-horizontal">
-                <fieldset>
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label">{{ID}}</label>
-                        <div class="col-xs-4">
-                            <span class="cmdAttr label label-primary" data-l1key="id"></span>
-                        </div>
-                    </div>
+            <legend>{{Informations}}</legend>
+            <div class="row">
+                <div class="col-sm-6" >
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label">{{ID}}</label>
+                                <div class="col-xs-4">
+                                    <span class="cmdAttr label label-primary" data-l1key="id"></span>
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Logical ID}}</label>
-                        <div class="col-xs-4">
-                            <span class="cmdAttr label label-primary" data-l1key="logicalId"></span>
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label">{{Logical ID}}</label>
+                                <div class="col-xs-4">
+                                    <span class="cmdAttr label label-primary" data-l1key="logicalId"></span>
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Nom}}</label>
-                        <div class="col-xs-4">
-                            <span class="cmdAttr label label-primary" data-l1key="name"></span>
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label">{{Nom}}</label>
+                                <div class="col-xs-4">
+                                    <span class="cmdAttr label label-primary" data-l1key="name"></span>
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Type}}</label>
-                        <div class="col-xs-4">
-                            <span class="cmdAttr label label-primary" data-l1key="type"></span>
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label">{{Type}}</label>
+                                <div class="col-xs-4">
+                                    <span class="cmdAttr label label-primary" data-l1key="type"></span>
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Sous-type}}</label>
-                        <div class="col-xs-4">
-                            <span class="cmdAttr label label-primary" data-l1key="subType"></span>
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label">{{Sous-type}}</label>
+                                <div class="col-xs-4">
+                                    <span class="cmdAttr label label-primary" data-l1key="subType"></span>
+                                </div>
+                            </div>
 
-                </fieldset>
-            </form>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="col-sm-6" >
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label">{{Unité}}</label>
+                                <div class="col-xs-4">
+                                    <span class="cmdAttr label label-primary" data-l1key="unite"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label">{{Commande déclenchant une mise à jour}}</label>
+                                <div class="col-xs-4">
+                                    <span class="cmdAttr label label-primary" data-l1key="value"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label">{{Memcache}}</label>
+                                <div class="col-xs-4">
+                                    <span class="cmdAttr label label-primary tooltips" data-l1key="cache" data-l2key="enable" title="{{Actif}}"></span> 
+                                    <span class="label label-default tooltips" title="{{Durée du cache}}"><span class="cmdAttr" data-l1key="cache" data-l2key="lifetime"></span> {{seconde(s)}}</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label">{{Evenement seulement}}</label>
+                                <div class="col-xs-4">
+                                    <span class="cmdAttr label label-primary" data-l1key="eventOnly"></span>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
         </div>
+
         <div class="col-sm-6" >
-
-
+            <legend>{{Utilisé par}}</legend>
             <form class="form-horizontal">
-                <fieldset>
-
+                <fieldset id="fd_cmdUsedBy">
+                    <?php
+                    $usedBy = $cmd->getUsedBy();
+                    ?>
                     <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Unité}}</label>
-                        <div class="col-xs-4">
-                            <span class="cmdAttr label label-primary" data-l1key="unite"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Commande déclenchant une mise à jour}}</label>
-                        <div class="col-xs-4">
-                            <span class="cmdAttr label label-primary" data-l1key="value"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Memcache}}</label>
-                        <div class="col-xs-4">
-                            <span class="cmdAttr label label-primary tooltips" data-l1key="cache" data-l2key="enable" title="{{Actif}}"></span> 
-                            <span class="label label-default tooltips" title="{{Durée du cache}}"><span class="cmdAttr" data-l1key="cache" data-l2key="lifetime"></span> {{seconde(s)}}</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Evenement seulement}}</label>
-                        <div class="col-xs-4">
-                            <span class="cmdAttr label label-primary" data-l1key="eventOnly"></span>
-                        </div>
-                    </div>
-
-                </fieldset>
-            </form>
-        </div>
-    </div>
-
-    <div>
-        <legend>{{Utilisé par}}</legend>
-        <form class="form-horizontal">
-            <fieldset id="fd_cmdUsedBy">
-                <?php
-                $usedBy = $cmd->getUsedBy();
-                ?>
-                <div class="form-group">
-                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement}}</label>
-                    <div class="col-sm-4">
-                        <?php
-                        foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
-                            echo '<span class="label label-primary cursor"><a href="' . $usedByEqLogic['link'] . '" style="color : white;">' . $usedByEqLogic['humanName'] . '</a></span>';
-                        }
-                        ?>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commandes}}</label>
-                    <div class="col-sm-4">
-                        <?php
-                        foreach ($usedBy['cmd'] as $usedByCmd) {
-                            echo '<span class="label label-primary cursor"><a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" style="color : white;">' . $usedByCmd->getHumanName() . '</a></span>';
-                        }
-                        ?>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario}}</label>
-                    <div class="col-sm-4">
-                        <?php
-                        foreach ($usedBy['scenario'] as $usedByScneario) {
-                            echo '<span class="label label-primary cursor"><a href="' . $usedByScneario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScneario->getHumanName() . '</a></span>';
-                        }
-                        ?>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Interaction}}</label>
-                    <div class="col-sm-4">
-                        <div class="col-sm-4">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement}}</label>
+                        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
                             <?php
-                            foreach ($usedBy['interact'] as $usedByInteract) {
-                                echo '<span class="label label-primary cursor"><a href="' . $usedByInteract->getLinkToConfiguration() . '" style="color : white;">' . $usedByInteract->getName() . '</a></span>';
+                            foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
+                                echo '<span class="label label-primary cursor"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
                             }
                             ?>
                         </div>
                     </div>
-                </div>
-            </fieldset>
-        </form>
-
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commandes}}</label>
+                        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
+                            <?php
+                            foreach ($usedBy['cmd'] as $usedByCmd) {
+                                echo '<span class="label label-primary cursor"><a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" style="color : white;">' . $usedByCmd->getHumanName() . '</a></span><br/>';
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario}}</label>
+                        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
+                            <?php
+                            foreach ($usedBy['scenario'] as $usedByScneario) {
+                                echo '<span class="label label-primary cursor"><a href="' . $usedByScneario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScneario->getHumanName() . '</a></span><br/>';
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Interaction}}</label>
+                        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
+                            <?php
+                            foreach ($usedBy['interact'] as $usedByInteract) {
+                                echo '<span class="label label-primary cursor"><a href="' . $usedByInteract->getLinkToConfiguration() . '" style="color : white;">' . $usedByInteract->getQuery() . '</a></span><br/>';
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<div class='row'>
+    <div class='col-lg-6 col-md-5 col-sm-4'>
         <legend>{{Configuration}}</legend>
         <form class="form-horizontal">
             <fieldset>
-                <?php if ($cmd->getType() == 'info' && $cmd->getSubType() == 'numeric') { ?>
-                    <div class="form-group">
-                        <label class="col-sm-6 control-label">{{Formule de calcul (utiliser #value# pour la valeur, ex #value# - 2)}}</label>
-                        <div class="col-sm-6">
-                            <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />
-                        </div>
-                    </div>
-                <?php } ?>
-
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">{{Ne pas afficher le nom de la commande sur le dashboard}}</label>
-                    <div class="col-sm-1">
-                        <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" />
-                    </div>
-                    <label class="col-sm-2 control-label">{{sur les vues}}</label>
-                    <div class="col-sm-1">
-                        <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnView" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Widget Desktop}}</label>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Widget Desktop}}</label>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                         <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
                             <?php
                             foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $widget) {
@@ -180,8 +164,8 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                             ?>
                         </select>
                     </div>
-                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mobile}}</label>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                    <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6 control-label">{{Widget Mobile}}</label>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                         <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
                             <?php
                             foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
@@ -192,14 +176,38 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas afficher le nom sur le dashboard}}</label>
+                    <div class="col-xs-1">
+                        <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" />
+                    </div>
+                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{sur les vues}}</label>
+                    <div class="col-xs-1">
+                        <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnView" />
+                    </div>
+                </div>
+
+                <?php if ($cmd->getType() == 'info' && $cmd->getSubType() == 'numeric') { ?>
+                    <div class="form-group">
+                        <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Formule de calcul (#value# pour la valeur)}}</label>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />
+                        </div>
+                    </div>
+                <?php } ?>
+
                 <?php if ($cmd->getIsHistorized() == 1) { ?>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{Historiser}}</label>
-                        <div class="col-sm-1">
+                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
+                        <div class="col-xs-1">
                             <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
                         </div>
-                        <label class="col-sm-2 control-label">{{Mode de lissage}}</label>
-                        <div class="col-sm-2">
+
+                    </div>
+                    <div class="form-group">
+
+                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                             <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
                                 <option value="avg">Moyenne</option>
                                 <option value="min">Minimum</option>
@@ -207,16 +215,18 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                                 <option value="none">Aucun</option>
                             </select>
                         </div>
-                        <label class="col-sm-2 control-label">{{Arrondi (nombre de chiffre après la virgule)}}</label>
-                        <div class="col-sm-2">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi (chiffre après la virgule)}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                             <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
-
                         </div>
                     </div>
                 <?php } ?>
             </fieldset>
         </form>
-
+    </div>
+    <div class='col-lg-6 col-md-7 col-sm-8'>
         <legend>{{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
         <table class="table table-bordered table-condensed" id="table_widgetParameters">
             <thead>
@@ -246,8 +256,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 ?>
             </tbody>
         </table>
-        <a class="btn btn-success" id="saveCmd"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
     </div>
+</div>
+<a class="btn btn-success" id="saveCmd"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
 </div>
 
 <script>
