@@ -1,3 +1,7 @@
+==== 08/12/2014
+
+- Ajout champs de recherche sur la page scénario et affichage
+
 ==== 06/12/2014
 
 - Possibilité de choissir l'ordre du dashboard à partir de la page Générale -> Affichage
