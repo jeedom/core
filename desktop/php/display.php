@@ -4,7 +4,7 @@ if (!hasRight('displayview', true)) {
 }
 
 include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
-include_file('3rdparty', 'jquery.tree/jquery.tree', 'js');
+include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
 
 sendVarToJS('cmd_widgetDashboard', cmd::availableWidget('dashboard'));
 sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
@@ -21,6 +21,7 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
         <div class="row">
             <div class="col-lg-2 col-md-3 col-sm-4" >
                 <legend>{{Arbre des commandes}}</legend>
+                <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
                 <div id='div_tree'>
                     <ul id='ul_rootTree'>
                         <?php if (count(eqLogic::byObjectId(null)) > 0) { ?>

@@ -27,8 +27,13 @@ $('#div_tree').on('select_node.jstree', function (node, selected) {
         displayCmd(selected.node.a_attr['data-cmd_id']);
     }
 });
-$('#div_tree').jstree();
 
+$("#div_tree").jstree({
+    "plugins": ["search"]
+});
+$('#in_treeSearch').keyup(function () {
+    $('#div_tree').jstree(true).search($('#in_treeSearch').val());
+});
 
 $("#bt_displayConfig").on('click', function (event) {
     $.hideAlert();

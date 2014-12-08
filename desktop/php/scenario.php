@@ -12,7 +12,7 @@ include_file('3rdparty', 'codemirror/mode/htmlmixed/htmlmixed', 'js');
 include_file('3rdparty', 'codemirror/mode/clike/clike', 'js');
 include_file('3rdparty', 'codemirror/mode/php/php', 'js');
 include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
-include_file('3rdparty', 'jquery.tree/jquery.tree', 'js');
+include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
 ?>
 
 
@@ -31,6 +31,7 @@ include_file('3rdparty', 'jquery.tree/jquery.tree', 'js');
             </center>
             <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> Nouveau scénario</a>
 
+            <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
             <div id="div_tree">
                 <ul id="ul_scenario" >  
                     <li data-jstree='{"opened":true}'>
