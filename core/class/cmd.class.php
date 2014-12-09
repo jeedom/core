@@ -156,7 +156,7 @@ class cmd {
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
 
-    public static function byEqLogicIdAndLogicalId($_eqLogic_id, $_logicalId) {
+    public static function byEqLogicIdAndLogicalId($_eqLogic_id, $_logicalId,$_multiple = false) {
         $values = array(
             'eqLogic_id' => $_eqLogic_id,
             'logicalId' => $_logicalId
@@ -165,6 +165,9 @@ class cmd {
                 FROM cmd
                 WHERE eqLogic_id=:eqLogic_id
                     AND logicalId=:logicalId';
+        if($_multiple){
+            return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+        }
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
     }
 
