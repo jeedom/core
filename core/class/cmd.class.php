@@ -509,13 +509,7 @@ class cmd {
                             
                         }
                     }
-                    $_value = floatval($_value);
-                    if ($_value > $this->getConfiguration('maxValue', $_value)) {
-                        return $this->getConfiguration('maxValue', $_value);
-                    }
-                    if ($_value < $this->getConfiguration('minValue', $_value)) {
-                        return $this->getConfiguration('minValue', $_value);
-                    }
+                    return floatval($_value);
                     return $_value;
             }
         }
