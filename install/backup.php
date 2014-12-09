@@ -36,7 +36,7 @@ if (isset($argv)) {
 
 try {
     require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-    echo __("***************Lancement du backup de Jeedom***************\n", __FILE__);
+    echo __("***************Lancement de la sauvegarde de Jeedom***************\n", __FILE__);
     global $CONFIG;
     $tmp = dirname(__FILE__) . '/../tmp/backup';
     if (!file_exists($tmp)) {
@@ -44,7 +44,7 @@ try {
     }
     $backup_dir = calculPath(config::byKey('backup::path'));
 
-    echo __("Verification du filesystem (corruption)...", __FILE__);
+    echo __("Vérification du système de fichiers (corruption)...", __FILE__);
     if (jeedom::checkFilesystem()) {
         echo __("OK\n", __FILE__);
     } else {
@@ -54,7 +54,7 @@ try {
         mkdir($backup_dir, 0770, true);
     }
     if (!is_writable($backup_dir)) {
-        throw new Exception(__('Le dossier des backups n\'est pas accessible en ecriture. Verifier les droits : ', __FILE__) . $backup_dir);
+        throw new Exception(__('Le dossier des sauvegardes n\'est pas accessible en écriture. Vérifiez les droits : ', __FILE__) . $backup_dir);
     }
 
     $bakcup_name = 'backup-' . getVersion('jeedom') . '-' . date("d-m-Y-H\hi") . '.tar.gz';
@@ -63,7 +63,7 @@ try {
     rcopy(dirname(__FILE__) . '/..', $tmp, true, array('tmp', 'backup', 'log'));
     echo __("OK\n", __FILE__);
 
-    echo __('Suppression du fichier d\'identification BDD...', __FILE__);
+    echo __('Suppression du fichier d\'identification de la base de données...', __FILE__);
     if (file_exists($tmp . '/core/config/common.config.php')) {
         unlink($tmp . '/core/config/common.config.php');
     }
@@ -75,7 +75,7 @@ try {
     foreach (plugin::listPlugin(true) as $plugin) {
         $plugin_id = $plugin->getId();
         if (method_exists($plugin_id, 'backup')) {
-            echo __('Sauvegarde specifique pour le plugin...' . $plugin_id . '...', __FILE__);
+            echo __('Sauvegarde spécifique pour le plugin...' . $plugin_id . '...', __FILE__);
             if (!file_exists($tmp . '/plugin_backup/' . $plugin_id)) {
                 mkdir($tmp . '/plugin_backup/' . $plugin_id, 0770, true);
             }
@@ -84,28 +84,28 @@ try {
         }
     }
 
-    echo __("Verification de la base : \n", __FILE__);
+    echo __("Vérification de la base de données : \n", __FILE__);
     system("mysqlcheck --host=" . $CONFIG['db']['host'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . ' --auto-repair --silent');
 
 
-    echo __('Sauvegarde de la base de donnees...', __FILE__);
+    echo __('Sauvegarde de la base de données...', __FILE__);
     system("mysqldump --host=" . $CONFIG['db']['host'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  > " . $tmp . "/DB_backup.sql");
     echo __("OK\n", __FILE__);
 
-    echo __('Creation de l\'archive...', __FILE__);
+    echo __('Création de l\'archive...', __FILE__);
     system('cd ' . $tmp . '; tar cfz ' . $backup_dir . '/' . $bakcup_name . ' * > /dev/null 2>&1');
     echo __("OK\n", __FILE__);
 
     if (!file_exists($backup_dir . '/' . $bakcup_name)) {
-        throw new Exception(__('Echec lors de la compression du backup. Backup introuvable : ', __FILE__) . $backup_dir . '/' . $bakcup_name);
+        throw new Exception(__('Echec lors de la compression de la sauvegarde. Sauvegarde introuvable : ', __FILE__) . $backup_dir . '/' . $bakcup_name);
     }
 
-    echo __('Nettoyage des anciens backup...', __FILE__);
+    echo __('Nettoyage des anciennes sauvegardes...', __FILE__);
     system('find ' . $backup_dir . ' -mtime +' . config::byKey('backup::keepDays') . ' -delete');
     echo __("OK\n", __FILE__);
 
     if (config::byKey('backup::cloudUpload') == 1) {
-        echo __('Envoie de la sauvegarde dans le cloud...', __FILE__);
+        echo __('Envoi de la sauvegarde dans le cloud...', __FILE__);
         try {
             market::sendBackup($backup_dir . '/' . $bakcup_name);
         } catch (Exception $e) {
@@ -116,7 +116,7 @@ try {
     }
 
     if (config::byKey('jeeNetwork::mode') == 'slave') {
-        echo __('Envoie de la sauvegarde sur le maitre...', __FILE__);
+        echo __('Envoi de la sauvegarde sur le maître...', __FILE__);
         try {
             jeeNetwork::sendBackup($backup_dir . '/' . $bakcup_name);
         } catch (Exception $e) {
@@ -126,11 +126,11 @@ try {
         echo __("OK\n", __FILE__);
     }
 
-    echo __("***************Fin du backup de Jeedom***************\n", __FILE__);
+    echo __("***************Fin de la sauvegarde de Jeedom***************\n", __FILE__);
     echo "[END BACKUP SUCCESS]\n";
 } catch (Exception $e) {
-    echo __('Erreur durant le backup : ', __FILE__) . br2nl($e->getMessage());
-    echo __('Details : ', __FILE__) . print_r($e->getTrace());
+    echo __('Erreur durant la sauvegarde : ', __FILE__) . br2nl($e->getMessage());
+    echo __('Détails : ', __FILE__) . print_r($e->getTrace());
     echo "[END BACKUP ERROR]\n";
     throw $e;
 }
