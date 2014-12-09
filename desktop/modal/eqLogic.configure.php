@@ -11,7 +11,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 ?>
 <div style="display: none;" id="md_displayEqLogicConfigure"></div>
 <div id='div_displayEqLogicConfigure'>
-    <legend>{{Informations}}</legend>
+    <legend>{{Informations}}  <a class="btn btn-success pull-right btn-xs" id="bt_eqLogicConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a></legend>
     <div class="row">
         <div class="col-sm-4" >
             <form class="form-horizontal">
@@ -139,7 +139,6 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
             </table>
         </div>
     </div>
-    <a class="btn btn-success" id="saveEqLogic"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
 </div>
 <script>
     $('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr');
@@ -162,7 +161,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
         $('#table_widgetParameters tbody').append(tr);
     });
 
-    $('#saveEqLogic').off().on('click', function () {
+    $('#bt_eqLogicConfigureSave').on('click', function () {
         var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
         if (!isset(eqLogic.display)) {
             eqLogic.display = {};

@@ -229,6 +229,11 @@ $('.eqLogicAction[data-action=add]').on('click', function () {
     });
 });
 
+$('.eqLogic .eqLogicAction[data-action=configure]').on('click', function () {
+    $('#md_modal').dialog({title: "{{Configuration commande}}"});
+    $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $('.li_eqLogic.active').attr('data-eqLogic_id')).dialog('open');
+});
+
 /**************************CMD*********************************************/
 $('.cmdAction[data-action=add]').on('click', function () {
     addCmdToTable();
@@ -268,6 +273,11 @@ $('body').delegate('.cmd .cmdAction[data-action=test]', 'click', function () {
     } else {
         $('#div_alert').showAlert({message: '{{Veuillez activer l\'équipement avant de tester une de ses commandes}}', level: 'warning'});
     }
+});
+
+$('body').delegate('.cmd .cmdAction[data-action=configure]', 'click', function () {
+    $('#md_modal').dialog({title: "{{Configuration commande}}"});
+    $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open');
 });
 
 if (is_numeric(getUrlVars('id'))) {

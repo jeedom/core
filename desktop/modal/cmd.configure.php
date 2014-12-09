@@ -96,7 +96,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         </div>
 
         <div class="col-sm-6" >
-            <legend>{{Utilisé par}}</legend>
+            <legend>{{Utilisé par}}
+             <a class="btn btn-success btn-xs pull-right" id="bt_cmdConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+            </legend>
             <form class="form-horizontal">
                 <fieldset id="fd_cmdUsedBy">
                     <?php
@@ -256,7 +258,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 </table>
             </div>
         </div>
-        <a class="btn btn-success" id="saveCmd"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
     </div>
 
     <script>
@@ -280,7 +281,8 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         });
 
         $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
-        $('#saveCmd').off().on('click', function () {
+        
+        $('#bt_cmdConfigureSave').on('click', function () {
             var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
             if (!isset(cmd.display)) {
                 cmd.display = {};
