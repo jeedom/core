@@ -19,15 +19,15 @@ if (!isConnect()) {
                     $object = $cmd->getEqLogic()->getObject();
                     if (is_object($object)) {
                         if ($object->getDisplay('tagColor') != '') {
-                            echo '<span class="label cursor displayObject" data-object_id="' . $cmd->getEqLogic()->getObject_id() . '" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . '">' . $object->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
+                            echo '<span class="label cursor displayObject" data-object_id="o' . $cmd->getEqLogic()->getObject_id() . '" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . '">' . $object->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
                         } else {
-                            echo '<span class="label label-primary cursor displayObject" data-object_id="' . $cmd->getEqLogic()->getObject_id() . '" style="text-shadow : none;">' . $object->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
+                            echo '<span class="label label-primary cursor displayObject" data-object_id="o' . $cmd->getEqLogic()->getObject_id() . '" style="text-shadow : none;">' . $object->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
                         }
                     } else {
-                        echo '<span class="label label-default cursor displayObject" data-object_id="' . $cmd->getEqLogic()->getObject_id() . '" style="text-shadow : none;">' . __('Aucun', __FILE__) . ' <i class="fa fa-arrow-circle-right"></i></span>';
+                        echo '<span class="label label-default cursor displayObject" data-object_id="o' . $cmd->getEqLogic()->getObject_id() . '" style="text-shadow : none;">' . __('Aucun', __FILE__) . ' <i class="fa fa-arrow-circle-right"></i></span>';
                     }
                     echo '<br/>';
-                    echo '<div class="cmdList" data-object_id="' . $cmd->getEqLogic()->getObject_id() . '" style="display:none;margin-left : 20px;">';
+                    echo '<div class="cmdList" data-object_id="o' . $cmd->getEqLogic()->getObject_id() . '" style="display:none;margin-left : 20px;">';
                 }
                 echo '<li class="cursor li_history" data-cmd_id="' . $cmd->getId() . '"><a class="history"><i class="fa fa-trash-o remove"></i> <i class="fa fa-share export"></i> ' . $cmd->getEqLogic()->getName() . ' - ' . $cmd->getName() . '</a></li>';
                 $object_id = $cmd->getEqLogic()->getObject_id();
