@@ -952,13 +952,17 @@ class cmd {
         return false;
     }
 
-    public function getHumanName() {
+    public function getHumanName($_tag = false, $_prettify = false) {
         $name = '';
         $eqLogic = $this->getEqLogic();
         if (is_object($eqLogic)) {
-            $name .= $eqLogic->getHumanName();
+            $name .= $eqLogic->getHumanName($_tag, $_prettify);
         }
-        $name .= '[' . $this->getName() . ']';
+        if ($_tag) {
+            $name .= ' - ' . $this->getName();
+        } else {
+            $name .= '[' . $this->getName() . ']';
+        }
         return $name;
     }
 
