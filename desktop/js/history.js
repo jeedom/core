@@ -45,6 +45,15 @@ $(".li_history .remove").on('click', function () {
     });
 });
 
+$('.displayObject').on('click', function () {
+    var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']');
+    if (list.is(':visible')) {
+        list.hide();
+    } else {
+        list.show();
+    }
+});
+
 $(".li_history .export").on('click', function () {
     window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null);
 });

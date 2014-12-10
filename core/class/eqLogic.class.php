@@ -557,16 +557,16 @@ class eqLogic {
 
     public function getHumanName($_tag = false, $_prettify = false) {
         $name = '';
-        $objet = $this->getObject();
-        if (is_object($objet)) {
+        $object = $this->getObject();
+        if (is_object($object)) {
             if ($_tag) {
-                if ($objet->getDisplay('tagColor') != '') {
-                    $name .= '<span class="label" style="text-shadow : none;background-color:' . $objet->getDisplay('tagColor') . '">' . $objet->getName() . '</span>';
+                if ($object->getDisplay('tagColor') != '') {
+                    $name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . '">' . $object->getName() . '</span>';
                 } else {
-                    $name .= '<span class="label label-primary" style="text-shadow : none;">' . $objet->getName() . '</span>';
+                    $name .= '<span class="label label-primary" style="text-shadow : none;">' . $object->getName() . '</span>';
                 }
             } else {
-                $name .= '[' . $objet->getName() . ']';
+                $name .= '[' . $object->getName() . ']';
             }
         } else {
             if ($_tag) {
