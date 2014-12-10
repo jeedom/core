@@ -1,3 +1,7 @@
+==== 10/12/2014
+
+- Amélioration page historique
+
 ==== 08/12/2014
 
 - Ajout champs de recherche sur la page scénario et affichage
