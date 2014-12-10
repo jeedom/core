@@ -19,12 +19,12 @@ if (!isConnect()) {
                     $object = $cmd->getEqLogic()->getObject();
                     if (is_object($object)) {
                         if ($object->getDisplay('tagColor') != '') {
-                            echo '<span class="label cursor displayObject" data-object_id="' . $cmd->getEqLogic()->getObject_id() . '" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . '">' . $object->getName() . '</span>';
+                            echo '<span class="label cursor displayObject" data-object_id="' . $cmd->getEqLogic()->getObject_id() . '" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . '">' . $object->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
                         } else {
-                            echo '<span class="label label-primary cursor displayObject" data-object_id="' . $cmd->getEqLogic()->getObject_id() . '" style="text-shadow : none;">' . $object->getName() . '</span>';
+                            echo '<span class="label label-primary cursor displayObject" data-object_id="' . $cmd->getEqLogic()->getObject_id() . '" style="text-shadow : none;">' . $object->getName() . ' <i class="fa fa-arrow-circle-right"></i></span>';
                         }
                     } else {
-                        echo '<span class="label label-default cursor displayObject" data-object_id="' . $cmd->getEqLogic()->getObject_id() . '" style="text-shadow : none;">' . __('Aucun', __FILE__) . '</span>';
+                        echo '<span class="label label-default cursor displayObject" data-object_id="' . $cmd->getEqLogic()->getObject_id() . '" style="text-shadow : none;">' . __('Aucun', __FILE__) . ' <i class="fa fa-arrow-circle-right"></i></span>';
                     }
                     echo '<br/>';
                     echo '<div class="cmdList" data-object_id="' . $cmd->getEqLogic()->getObject_id() . '" style="display:none;margin-left : 20px;">';
