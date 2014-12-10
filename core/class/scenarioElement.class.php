@@ -152,7 +152,7 @@ class scenarioElement {
         } else if ($this->getType() == 'in') {
             $in = $this->getSubElement('in');
             $in = $in->getExpression();
-            $time = jeedom::evaluateExpression($in[0]->getExpression());
+            $time = ceil(str_replace('.', ',',jeedom::evaluateExpression($in[0]->getExpression())));
             if (!is_numeric($time) || $time < 0) {
                 $time = 0;
             }
