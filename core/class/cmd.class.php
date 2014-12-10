@@ -862,6 +862,7 @@ class cmd {
                 $cmd->event($cmd->execute(), $_loop);
             }
         }
+       
         nodejs::pushUpdate('eventCmd', $nodeJs);
         scenario::check($this);
         listener::check($this->getId(), $value);
