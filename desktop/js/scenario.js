@@ -44,6 +44,7 @@ autoCompleteCondition = [
     {val: 'lastScenarioExecution(scenario)'},
     {val: 'stateDuration(commande)'},
     {val: 'median(commande1,commande2)'},
+    {val: 'time(value)'},
 ];
 autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'icon'];
 
