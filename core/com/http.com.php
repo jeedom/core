@@ -30,6 +30,7 @@ class com_http {
     private $noSslCheck = true;
     private $sleepTime = 500000;
     private $post = '';
+    private $put = '';
     private $header = array('Connection: close');
     private $cookiesession = false;
     private $allowEmptyReponse = false;
@@ -78,7 +79,7 @@ class com_http {
             }
             if ($this->username != '') {
                 curl_setopt($ch, CURLOPT_USERPWD, $this->username . ':' . $this->password);
-                if($this->getCURLOPT_HTTPAUTH() != ''){
+                if ($this->getCURLOPT_HTTPAUTH() != '') {
                     curl_setopt($ch, CURLOPT_HTTPAUTH, $this->getCURLOPT_HTTPAUTH());
                 }
             }
@@ -86,6 +87,11 @@ class com_http {
                 log::add('http.com', 'debug', 'post field : ' . print_r($this->getPost(), true));
                 curl_setopt($ch, CURLOPT_POST, true);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $this->getPost());
+            }
+            if ($this->getPut() != '') {
+                log::add('http.com', 'debug', 'post field : ' . print_r($this->getPut(), true));
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $this->getPut());
             }
             $response = curl_exec($ch);
             $nbRetry++;
@@ -195,7 +201,7 @@ class com_http {
     public function setUrl($url) {
         $this->url = $url;
     }
-    
+
     function getCURLOPT_HTTPAUTH() {
         return $this->CURLOPT_HTTPAUTH;
     }
@@ -204,7 +210,13 @@ class com_http {
         $this->CURLOPT_HTTPAUTH = $CURLOPT_HTTPAUTH;
     }
 
+    function getPut() {
+        return $this->put;
+    }
 
+    function setPut($put) {
+        $this->put = $put;
+    }
 
 }
 
