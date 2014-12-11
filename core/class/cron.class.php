@@ -108,6 +108,18 @@ class cron {
         return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
 
+    public static function clean() {
+        $crons = self::all();
+        foreach ($crons as $cron) {
+            $c = new Cron\CronExpression($cron->getSchedule(), new Cron\FieldFactory);
+            try {
+                $c->getNextRunDate();
+            } catch (Exception $ex) {
+                $cron->remove();
+            }
+        }
+    }
+
     /**
      * Return number of cron running
      * @return int

@@ -392,6 +392,7 @@ class jeedom {
             $c = new Cron\CronExpression(config::byKey('log::chunck'), new Cron\FieldFactory);
             if ($c->isDue()) {
                 log::chunk();
+                cron::clean();
             }
         } catch (Exception $e) {
             log::add('log', 'error', $e->getMessage());
