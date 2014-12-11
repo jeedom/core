@@ -372,7 +372,7 @@ class scenarioExpression {
     }
 
     public static function round($_value, $_decimal = 0) {
-        $_value = cmd::cmdToValue($_value);
+        $_value = self::setTags($_value);
         try {
             $test = new evaluate();
             $result = $test->Evaluer($_value);
@@ -387,6 +387,14 @@ class scenarioExpression {
         } else {
             return round(floatval(str_replace(',', '.', $result)), $_decimal);
         }
+    }
+
+    public static function time($_value) {
+        $_value = self::setTags($_value);
+        if (($_value % 100) > 59) {
+            $_value -= 40;
+        }
+        return $_value;
     }
 
     public static function setTags($_expression, &$_scenario = null) {
