@@ -237,8 +237,6 @@ class market {
         if (isset($_ticket['options']['page'])) {
             $_ticket['options']['page'] = substr($_ticket['options']['page'], strpos($_ticket['options']['page'], 'index.php'));
         }
-
-
         $file = array(
             'file' => '@' . realpath($tmp)
         );

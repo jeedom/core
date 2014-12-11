@@ -108,7 +108,8 @@ $(function () {
     $("#md_reportBug").dialog({
         autoOpen: false,
         modal: true,
-        width: 600,
+        height: (jQuery(window).height() - 100),
+        width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
         open: function () {
             $("body").css({overflow: 'hidden'})
         },

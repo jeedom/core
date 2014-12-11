@@ -31,7 +31,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
     </div>
     <div class="form-group">
         <label class="col-lg-2 control-label">{{Catégorie}}</label>
-        <div class="col-lg-10">
+        <div class="col-lg-3">
             <select class="form-control input-sm ticketAttr" data-l1key="category">
                 <option>{{Générale}}</option>
                 <option>{{Scénario}}</option>
@@ -41,6 +41,23 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
                     echo '<option>plugin::' . $plugin->getId() . '</option>';
                 }
                 ?>
+            </select>
+        </div> 
+        <label class="col-lg-1 control-label">{{Type}}</label>
+        <div class="col-lg-3">
+            <select class="form-control input-sm ticketAttr" data-l1key="type">
+                <option value='question'>{{Question}}</option>
+                <option value='problem'>{{Probleme}}</option>
+                <option value='incident'>{{Incident}}</option>
+            </select>
+        </div> 
+        <label class="col-lg-1 control-label">{{Priorité}}</label>
+        <div class="col-lg-2">
+            <select class="form-control input-sm ticketAttr" data-l1key="priority">
+                <option value='low'>{{Bas}}</option>
+                <option value='normal'>{{Normale}}</option>
+                <option value='high'>{{Haut}}</option>
+                <option value='urgent'>{{Urgent}}</option>
             </select>
         </div> 
     </div>
