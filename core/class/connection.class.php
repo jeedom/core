@@ -124,8 +124,14 @@ class connection {
         return self::protectedIp($this->getIp());
     }
 
-    public function presave() {
+    public function preSave() {
         $this->setDatetime(date('Y-m-d H:i:s'));
+        if ($this->getId() == '') {
+            $connection = connection::byIp($this->getIp());
+            if (is_object($connection)) {
+                $this->setId($connection->getId());
+            }
+        }
         if ($this->getLocalisation() == '') {
             try {
                 $http = new com_http('http://ipinfo.io/' . $this->getIp());
