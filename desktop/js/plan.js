@@ -23,6 +23,11 @@ $("#md_addViewData").dialog({
     width: (jQuery(window).width() - 450)
 });
 
+$('body').delegate('.eqLogic-widget .history', 'click', function () {
+    $('#md_modal').dialog({title: "{{Historique}}"});
+    $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+});
+
 /*****************************PLAN HEADER***********************************/
 $('#bt_addPlanHeader').on('click', function () {
     bootbox.prompt("Nom du design ?", function (result) {
