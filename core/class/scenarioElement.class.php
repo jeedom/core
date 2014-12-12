@@ -139,7 +139,7 @@ class scenarioElement {
         } else if ($this->getType() == 'for') {
             $for = $this->getSubElement('for');
             $limits = $for->getExpression();
-            $limits = jeedom::evaluateExpression($limits[0]->getExpression());
+            $limits = intval(jeedom::evaluateExpression($limits[0]->getExpression()));
             if (!is_numeric($limits)) {
                 $_scenario->setLog(__('[ERREUR] La condition pour une boucle doit être numérique : ', __FILE__) . $limits);
                 throw new Exception(__('La condition pour une boucle doit être numérique : ', __FILE__) . $limits);
