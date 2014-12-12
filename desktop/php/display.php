@@ -18,7 +18,7 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
 
 <div class="tab-content">
     <div class="tab-pane active" id="tree">
-        <div class="row">
+        <div class="row row-overflow">
             <div class="col-lg-2 col-md-3 col-sm-4" >
                 <legend>{{Arbre des commandes}}</legend>
                 <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
@@ -70,6 +70,7 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
                 </div>
             </div>
             <div class="col-lg-10 col-md-9 col-sm-8">
+                <br/>
                 <div id='div_displayInfo'></div>
             </div>
         </div>
