@@ -24,8 +24,10 @@ $("#md_addViewData").dialog({
 });
 
 $('body').delegate('.eqLogic-widget .history', 'click', function () {
-    $('#md_modal').dialog({title: "{{Historique}}"});
-    $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+    if ($('#bt_editPlan').attr('data-mode') != "1") {
+        $('#md_modal').dialog({title: "{{Historique}}"});
+        $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+    }
 });
 
 /*****************************PLAN HEADER***********************************/
