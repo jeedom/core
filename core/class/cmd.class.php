@@ -698,7 +698,6 @@ class cmd {
         $template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $this->getTemplate($version, 'default');
         if (!isset(self::$_templateArray[$version . '::' . $template_name])) {
             if ($this->getTemplate($version, 'default') != 'default') {
-                $template = getTemplate('core', $version, $template_name, 'widget');
                 $findWidgetPlugin = false;
                 if ($template == '') {
                     foreach (plugin::listPlugin(true) as $plugin) {
@@ -710,6 +709,9 @@ class cmd {
                             $findWidgetPlugin = true;
                         }
                     }
+                }
+                if ($findWidgetPlugin) {
+                    $template = getTemplate('core', $version, $template_name, 'widget');
                 }
                 if ($findWidgetPlugin && $template == '' && config::byKey('market::autoInstallMissingWidget') == 1) {
                     try {
@@ -862,7 +864,7 @@ class cmd {
                 $cmd->event($cmd->execute(), $_loop);
             }
         }
-       
+
         nodejs::pushUpdate('eventCmd', $nodeJs);
         scenario::check($this);
         listener::check($this->getId(), $value);
