@@ -75,7 +75,11 @@ class connection {
             $connection->setStatus('Ban');
             log::add('connection', 'error', __('Attention tentative d\'intrusion detectée venant de l\'IP : ', __FILE__) . $connection->getIp());
         }
-        $connection->save();
+        try {
+            $connection->save();
+        } catch (Exception $e) {
+            
+        }
     }
 
     public static function protectedIp($_ip) {
@@ -97,7 +101,11 @@ class connection {
         $connection->setFailure(0);
         $connection->setUsername($_username);
         $connection->setStatus('Ok');
-        $connection->save();
+        try {
+            $connection->save();
+        } catch (Exception $e) {
+            
+        }
     }
 
     public static function cron() {
