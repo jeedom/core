@@ -609,7 +609,7 @@ done
 install_nodejs
 
 apt-get install -y php5-common php5-fpm php5-dev php5-cli php5-curl php5-json php5-mysql \
-                   usb-modeswitch python-serial make php-pear libpcre3-dev
+                   usb-modeswitch python-serial make php-pear libpcre3-dev build-essential
 
 pecl install oauth
 for i in fpm cli

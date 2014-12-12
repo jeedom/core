@@ -300,6 +300,63 @@ $("img.lazy").lazyload({
     event: "sporty"
 });
 
+$("img.lazy").each(function () {
+    var el = $(this);
+    if (el.attr('data-original2') != undefined) {
+        $("<img>", {
+            src: el.attr('data-original'),
+            error: function () {
+                $("<img>", {
+                    src: el.attr('data-original2'),
+                    error: function () {
+                        if (el.attr('data-original3') != undefined) {
+                            $("<img>", {
+                                src: el.attr('data-original3'),
+                                error: function () {
+                                    el.lazyload({
+                                        event: "sporty"
+                                    });
+                                    el.trigger("sporty");
+                                },
+                                load: function () {
+                                    el.attr("data-original", el.attr('data-original3'));
+                                    el.lazyload({
+                                        event: "sporty"
+                                    });
+                                    el.trigger("sporty");
+                                }
+                            });
+                        } else {
+                            el.lazyload({
+                                event: "sporty"
+                            });
+                            el.trigger("sporty");
+                        }
+                    },
+                    load: function () {
+                        el.attr("data-original", el.attr('data-original2'));
+                        el.lazyload({
+                            event: "sporty"
+                        });
+                        el.trigger("sporty");
+                    }
+                });
+            },
+            load: function () {
+                el.lazyload({
+                    event: "sporty"
+                });
+                el.trigger("sporty");
+            }
+        });
+    } else {
+        el.lazyload({
+            event: "sporty"
+        });
+        el.trigger("sporty");
+    }
+});
+
 $('body').delegate('.cmdAttr', 'change', function () {
     modifyWithoutSave = true;
 });
