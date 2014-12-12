@@ -7,7 +7,7 @@ include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
 include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
 ?>
 <div id="backup">
-    <div class="row">
+    <div class="row row-overflow">
         <div class="col-sm-6">
             <legend>{{Sauvegardes}}</legend>
             <form class="form-horizontal">
