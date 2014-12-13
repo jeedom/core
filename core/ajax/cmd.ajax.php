@@ -71,6 +71,15 @@ try {
         ajax::success(utils::o2a($cmd));
     }
 
+    if (init('action') == 'byHumanName') {
+        $cmd_id = cmd::humanReadableToCmd(init('humanName'));
+        $cmd = cmd::byId(str_replace('#', '', $cmd_id));
+        if (!is_object($cmd)) {
+            throw new Exception(__('Cmd inconnu : ', __FILE__) . init('humanName'), 9999);
+        }
+        ajax::success(utils::o2a($cmd));
+    }
+
     if (init('action') == 'usedBy') {
         $cmd = cmd::byId(init('id'));
         if (!is_object($cmd)) {

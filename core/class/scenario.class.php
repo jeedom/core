@@ -41,6 +41,7 @@ class scenario {
     private $display;
     private $description;
     private $configuration;
+    private $type;
     private $_internalEvent = 0;
     private static $_templateArray;
     private $_elements = array();
@@ -68,32 +69,49 @@ class scenario {
      * Renvoit tous les objects scenario
      * @return [] scenario object scenario
      */
-    public static function all($_group = '') {
+    public static function all($_group = '', $_type = null) {
+        $values = array();
         if ($_group === '') {
             $sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . ' 
                     FROM scenario s
-                    INNER JOIN object ob ON s.object_id=ob.id
-                    ORDER BY ob.name,s.group, s.name';
-            $result1 = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+                    INNER JOIN object ob ON s.object_id=ob.id';
+            if ($_type != null) {
+                $values['type'] = $_type;
+                $sql .= ' WHERE `type`=:type';
+            }
+            $sql .= ' ORDER BY ob.name,s.group, s.name';
+            $result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
             $sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '  
                     FROM scenario s
-                    WHERE s.object_id IS NULL
-                    ORDER BY s.group, s.name';
-            $result2 = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+                    WHERE s.object_id IS NULL';
+            if ($_type != null) {
+                $values['type'] = $_type;
+                $sql .= ' AND `type`=:type';
+            }
+            $sql .= ' ORDER BY s.group, s.name';
+            $result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
             return array_merge($result1, $result2);
         } else if ($_group === null) {
             $sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '  
                     FROM scenario s
                     INNER JOIN object ob ON s.object_id=ob.id
-                    WHERE (`group` IS NULL OR `group` = "")
-                    ORDER BY ob.name, s.name';
-            $result1 = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+                    WHERE (`group` IS NULL OR `group` = "")';
+            if ($_type != null) {
+                $values['type'] = $_type;
+                $sql .= ' AND `type`=:type';
+            }
+            $sql .= ' ORDER BY s.group, s.name';
+            $result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
             $sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '  
                     FROM scenario s
                     WHERE (`group` IS NULL OR `group` = "")
-                        AND s.object_id IS NULL
-                    ORDER BY  s.name';
-            $result2 = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+                        AND s.object_id IS NULL';
+            if ($_type != null) {
+                $values['type'] = $_type;
+                $sql .= ' AND `type`=:type';
+            }
+            $sql .= ' ORDER BY  s.name';
+            $result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
             return array_merge($result1, $result2);
         } else {
             $values = array(
@@ -102,14 +120,22 @@ class scenario {
             $sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '  
                     FROM scenario s
                     INNER JOIN object ob ON s.object_id=ob.id
-                    WHERE `group`=:group
-                    ORDER BY ob.name,s.group, s.name';
+                    WHERE `group`=:group';
+            if ($_type != null) {
+                $values['type'] = $_type;
+                $sql .= ' AND `type`=:type';
+            }
+            $sql .= ' ORDER BY ob.name,s.group, s.name';
             $result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
             $sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '  
                     FROM scenario s
                     WHERE `group`=:group
-                        AND s.object_id IS NULL
-                    ORDER BY s.group, s.name';
+                        AND s.object_id IS NULL';
+            if ($_type != null) {
+                $values['type'] = $_type;
+                $sql .= ' AND `type`=:type';
+            }
+            $sql .= ' ORDER BY s.group, s.name';
             $result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
             return array_merge($result1, $result2);
         }
@@ -855,26 +881,49 @@ class scenario {
         return object::byId($this->object_id);
     }
 
-    public function getHumanName($_complete = false, $_noGroup = false) {
-        $return = '';
+    public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false) {
+        $name = '';
         if (is_numeric($this->getObject_id())) {
-            $return .= '[' . $this->getObject()->getName() . ']';
+            $object = $this->getObject();
+            if ($_tag) {
+                if ($object->getDisplay('tagColor') != '') {
+                    $name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . '">' . $object->getName() . '</span>';
+                } else {
+                    $name .= '<span class="label label-primary" style="text-shadow : none;">' . $object->getName() . '</span>';
+                }
+            } else {
+                $name .= '[' . $object->getName() . ']';
+            }
         } else {
             if ($_complete) {
-                $return .= '[' . __('Aucun', __FILE__) . ']';
+                if ($_tag) {
+                    $name .= '<span class="label label-default" style="text-shadow : none;">' . __('Aucun', __FILE__) . '</span>';
+                } else {
+                    $name .= '[' . __('Aucun', __FILE__) . ']';
+                }
             }
         }
         if (!$_noGroup) {
             if ($this->getGroup() != '') {
-                $return .= '[' . $this->getGroup() . ']';
+                $name .= '[' . $this->getGroup() . ']';
             } else {
                 if ($_complete) {
-                    $return .= '[' . __('Aucun', __FILE__) . ']';
+                    $name .= '[' . __('Aucun', __FILE__) . ']';
                 }
             }
         }
-        $return .= '[' . $this->getName() . ']';
-        return $return;
+        if ($_prettify) {
+            $name .= '<br/><strong>';
+        }
+        if ($_tag) {
+            $name .= ' ' . $this->getName();
+        } else {
+            $name .= '[' . $this->getName() . ']';
+        }
+        if ($_prettify) {
+            $name .= '</strong>';
+        }
+        return $name;
     }
 
     public function hasRight($_right, $_needAdmin = false, $_user = null) {
@@ -966,6 +1015,10 @@ class scenario {
 
     public function getType() {
         return $this->type;
+    }
+    
+    function setType($type) {
+        $this->type = $type;
     }
 
     public function getMode() {

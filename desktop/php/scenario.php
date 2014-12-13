@@ -13,9 +13,12 @@ include_file('3rdparty', 'codemirror/mode/clike/clike', 'js');
 include_file('3rdparty', 'codemirror/mode/php/php', 'js');
 include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
 include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
+$scenarios = array();
+$scenarios[-1] = scenario::all(null);
+foreach (scenario::listGroup() as $group) {
+    $scenarios[$group['group']] = scenario::all($group['group']);
+}
 ?>
-
-
 <div class="row row-overflow">
     <div class="col-lg-2 col-md-3 col-sm-4">
         <div class="bs-sidebar nav nav-list bs-sidenav"> 
@@ -38,7 +41,7 @@ include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
                         <a>Aucune</a>
                         <ul>
                             <?php
-                            foreach (scenario::all(null) as $scenario) {
+                            foreach ($scenarios[-1] as $scenario) {
                                 echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
                                 echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
                                 echo '</li>';
@@ -51,7 +54,7 @@ include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
                                 echo '<li data-jstree=\'{"opened":true}\'>';
                                 echo '<a>' . $group['group'] . '</a>';
                                 echo '<ul>';
-                                foreach (scenario::all($group['group']) as $scenario) {
+                                foreach ($scenarios[$group['group']] as $scenario) {
                                     echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
                                     echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
                                     echo '</li>';
@@ -65,14 +68,54 @@ include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
             </div>
         </div>
     </div>
-    <div class="col-lg-10 col-md-9 col-sm-8" id="div_editScenario" style="display: none; border-left: solid 1px #EEE; padding-left: 25px;">
 
-        <legend style="height: 35px;">{{Scénario}}
+    <div class="col-lg-10 col-md-9 col-sm-8" id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
+        <legend>{{Mes scenarios}}
+            <a class="btn btn-default btn-xs pull-right" href="index.php?v=d&p=scenarioAssist"><i class="fa fa-toggle-on"></i> {{Interface simple}}</a>
+        </legend>
+        <?php
+        if (count($scenarios) == 0) {
+            echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune alarme, cliquez à gauche sur le bouton ajouter une alarme pour commencer</span></center>";
+        } else {
+            echo '<legend>Aucun</legend>';
+            echo '<div class="scenarioListContainer">';
+            foreach ($scenarios[-1] as $scenario) {
+                echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+                echo "<center>";
+                echo '<img src="plugins/alarm/doc/images/alarm_icon.png" height="105" width="95" />';
+                echo "</center>";
+                echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
+                echo '</div>';
+            }
+            echo '</div>';
+
+            foreach (scenario::listGroup() as $group) {
+                if ($group['group'] != '') {
+                    echo '<legend>' . $group['group'] . '</legend>';
+                    echo '<div class="scenarioListContainer">';
+                    foreach ($scenarios[$group['group']] as $scenario) {
+                        echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+                        echo "<center>";
+                        echo '<img src="plugins/alarm/doc/images/alarm_icon.png" height="105" width="95" />';
+                        echo "</center>";
+                        echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
+                        echo '</div>';
+                    }
+                    echo '</div>';
+                }
+            }
+            ?>
+        <?php } ?>
+    </div>
+
+    <div class="col-lg-10 col-md-9 col-sm-8" id="div_editScenario" style="display: none; border-left: solid 1px #EEE; padding-left: 25px;">
+        <legend style="height: 35px;"><i class="fa fa-arrow-circle-left cursor" id="bt_scenarioThumbnailDisplay"></i> {{Scénario}}
             <span class="expertModeVisible">(ID : <span class="scenarioAttr" data-l1key="id" ></span>)</span>
             <a class="btn btn-default btn-xs pull-right" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>
             <a class="btn btn-default btn-xs pull-right" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
             <a class="btn btn-default btn-xs pull-right" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
             <a class="btn btn-danger btn-xs pull-right" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
+            <a class="btn btn-default btn-xs pull-right" href="index.php?v=d&p=scenarioAssist"><i class="fa fa-toggle-on"></i> {{Interface simple}}</a>
         </legend>
         <div class="row">
             <div class="col-sm-4">

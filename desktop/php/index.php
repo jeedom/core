@@ -254,9 +254,11 @@ if (count($plugins_list) > 0) {
                                                 }
                                             }
                                             if (hasRight('scenarioview', true) && config::byKey('jeeNetwork::mode') == 'master') {
-                                                ?>
-                                                <li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénario}}</a></li>
-                                                <?php
+                                                if (config::byKey('scenario::expertMode') == '1') {
+                                                    echo '<li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénario}}</a></li>';
+                                                } else {
+                                                    echo '<li><a href = "index.php?v=d&p=scenarioAssist"><i class = "fa fa-cogs"></i> {{Scénario}}</a></li>';
+                                                }
                                             }
                                             ?>
                                         </ul>

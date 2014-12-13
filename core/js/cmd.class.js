@@ -23,6 +23,9 @@ jeedom.cmd.cache = Array();
 if (!isset(jeedom.cmd.cache.byId)) {
     jeedom.cmd.cache.byId = Array();
 }
+if (!isset(jeedom.cmd.cache.byHumanName)) {
+    jeedom.cmd.cache.byHumanName = Array();
+}
 
 jeedom.cmd.execute = function (_params) {
     var notify = _params.notify || true;
@@ -262,6 +265,34 @@ jeedom.cmd.byId = function (_params) {
     paramsAJAX.data = {
         action: 'byId',
         id: _params.id
+    };
+    $.ajax(paramsAJAX);
+}
+
+jeedom.cmd.byHumanName = function (_params) {
+    var paramsRequired = ['humanName'];
+    var paramsSpecifics = {
+        pre_success: function (data) {
+            jeedom.cmd.cache.byHumanName[data.result.humanName] = data.result;
+            return data;
+        }
+    };
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    if (isset(jeedom.cmd.cache.byHumanName[params.humanName]) && init(params.noCache, false) == false) {
+        params.success(jeedom.cmd.cache.byHumanName[params.humanName]);
+        return;
+    }
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+    paramsAJAX.data = {
+        action: 'byHumanName',
+        humanName: _params.humanName
     };
     $.ajax(paramsAJAX);
 }

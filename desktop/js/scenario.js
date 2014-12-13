@@ -52,11 +52,25 @@ if (getUrlVars('saveSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }
 
+$('.scenarioListContainer').packery();
+
+$('#bt_scenarioThumbnailDisplay').on('click', function () {
+    $('#div_editScenario').hide();
+    $('#scenarioThumbnailDisplay').show();
+    $('.li_scenario').removeClass('active');
+});
+
+$('.scenarioDisplayCard').on('click', function () {
+    $('#div_tree').jstree('deselect_all');
+    $('#div_tree').jstree('select_node', 'scenario' + $(this).attr('data-scenario_id'));
+});
+
 $('#div_tree').on('select_node.jstree', function (node, selected) {
     if (selected.node.a_attr.class == 'li_scenario') {
         $.hideAlert();
         $(".li_scenario").removeClass('active');
         $(this).addClass('active');
+        $('#scenarioThumbnailDisplay').hide();
         printScenario(selected.node.a_attr['data-scenario_id']);
     }
 });
@@ -94,10 +108,6 @@ $('.scenarioAttr[data-l1key=group]').autocomplete({
     minLength: 1,
 });
 
-$(".li_scenario").on('click', function (event) {
-
-});
-
 $("#bt_changeAllScenarioState").on('click', function () {
     var el = $(this);
     jeedom.config.save({
@@ -117,10 +127,6 @@ $("#bt_changeAllScenarioState").on('click', function () {
             }
         }
     });
-});
-
-$('#sel_group').change(function () {
-    window.location.href = 'index.php?v=d&p=scenario&group=' + $(this).value();
 });
 
 $('#md_addScenario').modal('hide');
@@ -429,9 +435,6 @@ $('body').delegate('.subElementAttr', 'change', function () {
 if (is_numeric(getUrlVars('id'))) {
     $('#div_tree').jstree('deselect_all');
     $('#div_tree').jstree('select_node', 'scenario' + getUrlVars('id'));
-} else {
-    $('#div_tree').jstree('deselect_all');
-    $('#div_tree').jstree('select_node', $('.li_scenario:first').attr('id'));
 }
 
 function updateSortable() {
@@ -490,11 +493,7 @@ function printScenario(_id) {
         success: function (data) {
             pColor = 0;
             $('.scenarioAttr').value('');
-            $('#table_scenarioCondition tbody').empty();
-            $('#table_scenarioAction tbody').empty();
-            $('#table_trigger tbody').empty();
             $('body').setValues(data, '.scenarioAttr');
-            $('#span_type').text(data.type);
             data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
             $('#span_lastLaunch').text(data.lastLaunch);
 
@@ -572,8 +571,8 @@ function printScenario(_id) {
 
 function saveScenario() {
     $.hideAlert();
-    var scenario = $('body').getValues('.scenarioAttr');
-    scenario = scenario[0];
+    var scenario = $('body').getValues('.scenarioAttr')[0];
+    scenario.type = "expert";
     var elements = [];
     $('#div_scenarioElement').children('.element').each(function () {
         elements.push(getElement($(this)));
