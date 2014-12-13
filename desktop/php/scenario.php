@@ -82,7 +82,7 @@ foreach (scenario::listGroup() as $group) {
             foreach ($scenarios[-1] as $scenario) {
                 echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
                 echo "<center>";
-                echo '<img src="plugins/alarm/doc/images/alarm_icon.png" height="105" width="95" />';
+                echo '<img src="core/img/logo-jeedom-petit-nom-couleur-128x128.png" height="105" width="95" />';
                 echo "</center>";
                 echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
                 echo '</div>';
@@ -96,7 +96,7 @@ foreach (scenario::listGroup() as $group) {
                     foreach ($scenarios[$group['group']] as $scenario) {
                         echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
                         echo "<center>";
-                        echo '<img src="plugins/alarm/doc/images/alarm_icon.png" height="105" width="95" />';
+                        echo '<img src="core/img/logo-jeedom-petit-nom-couleur-128x128.png" height="105" width="95" />';
                         echo "</center>";
                         echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
                         echo '</div>';
