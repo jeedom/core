@@ -74,8 +74,8 @@ foreach (scenario::listGroup() as $group) {
             <a class="btn btn-default btn-xs pull-right" href="index.php?v=d&p=scenarioAssist"><i class="fa fa-toggle-on"></i> {{Interface simple}}</a>
         </legend>
         <?php
-        if (count($scenarios) == 0) {
-            echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune alarme, cliquez à gauche sur le bouton ajouter une alarme pour commencer</span></center>";
+        if (count(scenario::all()) == 0) {
+            echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario, cliquez sur ajouter un scénario pour commencer</span></center>";
         } else {
             echo '<legend>Aucun</legend>';
             echo '<div class="scenarioListContainer">';

@@ -10,8 +10,8 @@ include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
 include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
 include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
 $scenarios = array();
-$scenarios[-1] = scenario::all(null);
 
+$scenarios[-1] = scenario::all(null);
 foreach (scenario::listGroup() as $group) {
     $scenarios[$group['group']] = scenario::all($group['group']);
 }
@@ -64,8 +64,8 @@ foreach (scenario::listGroup() as $group) {
             <a class="btn btn-default btn-xs pull-right" href="index.php?v=d&p=scenario"><i class="fa fa-toggle-off"></i> {{Interface avancée}}</a>
         </legend>
         <?php
-        if (count($scenarios) == 0) {
-            echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario standard, cliquez sur ajouter un scénario ou passer en mode avancé</span></center>";
+        if (count(scenario::all()) == 0) {
+            echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario, cliquez sur ajouter un scénario pour commencer</span></center>";
         } else {
             if (count($scenarios[-1]) > 0) {
                 echo '<div class="scenarioListContainer">';
