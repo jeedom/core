@@ -42,7 +42,7 @@ try {
         }
         $eqLogic = $cmd->getEqLogic();
         if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
-            throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));
+            throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
         }
         ajax::success($cmd->execCmd(init('value', null), init('cache', 1)));
     }
