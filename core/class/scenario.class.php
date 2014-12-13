@@ -740,7 +740,11 @@ class scenario {
                         return true;
                     }
                     $lastCheck = new DateTime($this->getLastLaunch());
-                    $prev = $c->getPreviousRunDate();
+                    try {
+                        $prev = $c->getPreviousRunDate();
+                    } catch (Exception $exc) {
+                        $prev = new DateTime('2000-01-01 01:00:00');
+                    }
                     $diff = round(abs((strtotime('now') - strtotime($prev)) / 60));
                     if ($lastCheck <= $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
                         if ($diff > 3) {
@@ -760,7 +764,11 @@ class scenario {
                     return true;
                 }
                 $lastCheck = new DateTime($this->getLastLaunch());
-                $prev = $c->getPreviousRunDate();
+                try {
+                    $prev = $c->getPreviousRunDate();
+                } catch (Exception $exc) {
+                    $prev = new DateTime('2000-01-01 01:00:00');
+                }
                 $diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
                 if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
                     if ($diff > 3) {
@@ -1016,7 +1024,7 @@ class scenario {
     public function getType() {
         return $this->type;
     }
-    
+
     function setType($type) {
         $this->type = $type;
     }

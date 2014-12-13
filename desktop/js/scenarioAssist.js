@@ -20,13 +20,6 @@ if (getUrlVars('saveSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }
 
-$('#div_helpCronGenerate').cron({
-    initial: "* * * * *",
-    onChange: function () {
-        $('#span_helpCronGenerate').text($(this).cron("value"));
-    }
-});
-
 $('.scenarioListContainer').packery();
 
 $('#bt_scenarioThumbnailDisplay').on('click', function () {
@@ -244,6 +237,57 @@ $('#cb_conditionStart').on('change', function () {
     }
 });
 
+$('#sel_scheduleMode').on('change', function () {
+    $('#div_scheduleConfig').empty();
+    if ($(this).value() == 'once') {
+        var html = '<label class="col-xs-4 control-label" >{{Date}}</label>';
+        html += '<div class="col-xs-4">';
+        html += '<input class="form-control" id="in_dateScenarioTrigger">';
+        html += '</div>';
+        html += '<span class="scenarioAttr" data-l1key="schedule" id="span_cronResult" style="display: none;"></span>';
+        $('#div_scheduleConfig').append(html);
+        $('#in_dateScenarioTrigger').datetimepicker({lang: 'fr',
+            i18n: {
+                fr: {
+                    months: [
+                        'Janvier', 'Février', 'Mars', 'Avril',
+                        'Mai', 'Juin', 'Juillet', 'Aout',
+                        'Septembre', 'Octobre', 'Novembre', 'Décembre',
+                    ],
+                    dayOfWeek: [
+                        "Di", "Lu", "Ma", "Me",
+                        "Je", "Ve", "Sa",
+                    ]
+                }
+            },
+            format: 'Y-m-d H:i:00',
+            step: 15
+        });
+        $('#in_dateScenarioTrigger').on('change', function () {
+            if ($(this).value() != '') {
+                var date = new Date(Date.parse($(this).value()));
+                var minute = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+                var hour = (date.getHours() < 10 ? '0' : '') + date.getHours();
+                var strdate = (date.getDate() < 10 ? '0' : '') + date.getDate();
+                var month = ((date.getMonth()+1) < 10 ? '0' : '') + (date.getMonth()+1) ;
+                var cron = minute + ' ' + hour + ' ' + strdate + ' ' + month + ' ' + date.getDay() + ' ' + date.getFullYear()
+                $('#span_cronResult').value(cron);
+            }
+        });
+    } else {
+        var html = '<div class="col-xs-3"></div>';
+        html += '<div id="div_cronGenerator"></div>';
+        html += '<span class="scenarioAttr" data-l1key="schedule" id="span_cronResult" style="display: none;">* * * * *</span>';
+        $('#div_scheduleConfig').append(html);
+        $('#div_cronGenerator').empty().cron({
+            initial: '* * * * *',
+            onChange: function () {
+                $('#span_cronResult').text($(this).cron("value"));
+            }
+        });
+    }
+});
+
 /**************** Initialisation **********************/
 
 if (is_numeric(getUrlVars('id'))) {
@@ -307,21 +351,23 @@ function printScenario(_id) {
             $('.provokeMode').empty();
             $('.scheduleMode').empty();
             $('.scenarioAttr[data-l1key=mode]').trigger('change');
-            $('#div_helpCronGenerate').empty();
+            $('#div_cronGenerator').empty();
             if (data.schedule == '' || data.schedule == undefined) {
-                $('#div_helpCronGenerate').cron({
-                    initial: "* * * * *",
-                    onChange: function () {
-                        $('#span_helpCronGenerate').text($(this).cron("value"));
-                    }
-                });
+                $('#sel_scheduleMode').value('once');
             } else {
-                $('#div_helpCronGenerate').cron({
-                    initial: data.schedule,
-                    onChange: function () {
-                        $('#span_helpCronGenerate').text($(this).cron("value"));
-                    }
-                });
+                if (data.schedule.indexOf('*') != -1) {
+                    $('#sel_scheduleMode').value('repete');
+                    $('#div_cronGenerator').empty().cron({
+                        initial: data.schedule,
+                        onChange: function () {
+                            $('#span_cronResult').text($(this).cron("value"));
+                        }
+                    });
+                } else {
+                    $('#sel_scheduleMode').value('once');
+                    var cron = data.schedule.split(' ');
+                    $('#in_dateScenarioTrigger').value(cron[5] + '-' + cron[3] + '-' + cron[2] + ' ' + cron[1] + ':' + cron[0] + ':00');
+                }
             }
 
             $('#bt_stopScenario').hide();

@@ -4,13 +4,14 @@ if (!hasRight('scenarioview', true)) {
 }
 
 include_file('3rdparty', 'jquery.sew/jquery.sew', 'css');
-
+include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
+include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css');
 include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
 include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
 include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
-include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
-$scenarios = array();
+include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js', 'calendar');
 
+$scenarios = array();
 $scenarios[-1] = scenario::all(null);
 foreach (scenario::listGroup() as $group) {
     $scenarios[$group['group']] = scenario::all($group['group']);
@@ -164,8 +165,16 @@ foreach (scenario::listGroup() as $group) {
                             </div>
                         </div>
                         <div class="form-group mode schedule">
-                            <div class="col-xs-3"></div>
-                            <div id='div_helpCronGenerate'></div><span class="scenarioAttr" data-l1key="schedule" id='span_helpCronGenerate' style="display: none;">* * * * *</span>
+                            <label class="col-xs-4 control-label" >{{Déclenchement}}</label>
+                            <div class="col-xs-4">
+                                <select class="form-control scenarioAttr input-sm" id="sel_scheduleMode">
+                                    <option value="once">Ponctuel</option>
+                                    <option value="repete">Répété</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group mode schedule" id="div_scheduleConfig">
+
                         </div>
                         <div class="form-group mode provoke trigger">
                             <label class="col-xs-4 control-label" >{{Déclencheur}}</label>
