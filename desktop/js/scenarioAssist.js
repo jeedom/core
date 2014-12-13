@@ -141,7 +141,7 @@ $("#bt_delScenario").on('click', function (event) {
                 },
                 success: function () {
                     modifyWithoutSave = false;
-                    window.location.replace('index.php?v=d&p=scenario');
+                    window.location.replace('index.php?v=d&p=scenarioAssist');
                 }
             });
         }
@@ -305,7 +305,12 @@ function printScenario(_id) {
             $('.scenarioAttr[data-l1key=mode]').trigger('change');
             $('#div_helpCronGenerate').empty();
             if (data.schedule == '' || data.schedule == undefined) {
-                $('#span_helpCronGenerate').text('* * * * *');
+                $('#div_helpCronGenerate').cron({
+                    initial: "* * * * *",
+                    onChange: function () {
+                        $('#span_helpCronGenerate').text($(this).cron("value"));
+                    }
+                });
             } else {
                 $('#div_helpCronGenerate').cron({
                     initial: data.schedule,
