@@ -37,8 +37,12 @@ $('#bt_scenarioThumbnailDisplay').on('click', function () {
 });
 
 $('.scenarioDisplayCard').on('click', function () {
-    $('#div_tree').jstree('deselect_all');
-    $('#div_tree').jstree('select_node', 'scenario' + $(this).attr('data-scenario_id'));
+    if ($(this).attr('data-type') == 'simple') {
+        $('#div_tree').jstree('deselect_all');
+        $('#div_tree').jstree('select_node', 'scenario' + $(this).attr('data-scenario_id'));
+    } else {
+        window.location.href = "index.php?v=d&p=scenario&id=" + $(this).attr('data-scenario_id');
+    }
 });
 
 $('#div_tree').on('select_node.jstree', function (node, selected) {
@@ -47,7 +51,12 @@ $('#div_tree').on('select_node.jstree', function (node, selected) {
         $(".li_scenario").removeClass('active');
         $(this).addClass('active');
         $('#scenarioThumbnailDisplay').hide();
-        printScenario(selected.node.a_attr['data-scenario_id']);
+
+        if (selected.node.a_attr['data-type'] == 'simple') {
+            printScenario(selected.node.a_attr['data-scenario_id']);
+        } else {
+            window.location.href = "index.php?v=d&p=scenario&id=" + selected.node.a_attr['data-scenario_id'];
+        }
     }
 });
 

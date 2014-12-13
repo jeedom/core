@@ -10,9 +10,10 @@ include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
 include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
 include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
 $scenarios = array();
-$scenarios[-1] = scenario::all(null, 'simple');
+$scenarios[-1] = scenario::all(null);
+
 foreach (scenario::listGroup() as $group) {
-    $scenarios[$group['group']] = scenario::all($group['group'], 'simple');
+    $scenarios[$group['group']] = scenario::all($group['group']);
 }
 ?>
 
@@ -30,7 +31,7 @@ foreach (scenario::listGroup() as $group) {
                                 <?php
                                 foreach ($scenarios[-1] as $scenario) {
                                     echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-                                    echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
+                                    echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
                                     echo '</li>';
                                 }
                                 ?>
@@ -44,7 +45,7 @@ foreach (scenario::listGroup() as $group) {
                                 echo '<ul>';
                                 foreach ($scenarios[$group['group']] as $scenario) {
                                     echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-                                    echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
+                                    echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
                                     echo '</li>';
                                 }
                                 echo '</ul>';
@@ -64,14 +65,12 @@ foreach (scenario::listGroup() as $group) {
         </legend>
         <?php
         if (count($scenarios) == 0) {
-            echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune alarme, cliquez à gauche sur le bouton ajouter une alarme pour commencer</span></center>";
+            echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario standard, cliquez sur ajouter un scénario ou passer en mode avancé</span></center>";
         } else {
             if (count($scenarios[-1]) > 0) {
-                // echo '<legend>Aucun</legend>';
                 echo '<div class="scenarioListContainer">';
-
                 foreach ($scenarios[-1] as $scenario) {
-                    echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+                    echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
                     echo "<center>";
                     echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
                     echo "</center>";
@@ -80,13 +79,12 @@ foreach (scenario::listGroup() as $group) {
                 }
                 echo '</div>';
             }
-
             foreach (scenario::listGroup() as $group) {
                 if ($group['group'] != '' && count($scenarios[$group['group']]) > 0) {
                     echo '<legend>' . $group['group'] . '</legend>';
                     echo '<div class="scenarioListContainer">';
                     foreach ($scenarios[$group['group']] as $scenario) {
-                        echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+                        echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
                         echo "<center>";
                         echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
                         echo "</center>";
@@ -172,7 +170,7 @@ foreach (scenario::listGroup() as $group) {
                         <div class="form-group mode provoke trigger">
                             <label class="col-xs-4 control-label" >{{Déclencheur}}</label>
                             <div class="form-group">
-                                <div class="col-xs-7">
+                                <div class="col-xs-6">
                                     <input class="scenarioAttr input-sm form-control" data-l1key="trigger" disabled>
                                 </div>
                                 <div class="col-xs-1">
