@@ -103,7 +103,7 @@ foreach (scenario::listGroup() as $group) {
             <a class="btn btn-default btn-xs pull-right" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
             <a class="btn btn-default btn-xs pull-right" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
             <a class="btn btn-danger btn-xs pull-right" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
-            <a class="btn btn-default btn-xs pull-right" href="index.php?v=d&p=scenario"><i class="fa fa-toggle-off"></i> {{Interface avancée}}</a>
+            <a class="btn btn-default btn-xs pull-right" id="bt_switchToExpertMode" href="index.php?v=d&p=scenario"><i class="fa fa-toggle-off"></i> {{Interface avancée}}</a>
         </legend>
         <div class="row well" style="margin: 0px;margin-bottom: 15px;">
             <legend>1) Informations générale</legend>
@@ -171,10 +171,10 @@ foreach (scenario::listGroup() as $group) {
                             <label class="col-xs-4 control-label" >{{Déclencheur}}</label>
                             <div class="form-group">
                                 <div class="col-xs-6">
-                                    <input class="scenarioAttr input-sm form-control" data-l1key="trigger" disabled>
+                                    <input class="scenarioAttr form-control" data-l1key="trigger" disabled>
                                 </div>
                                 <div class="col-xs-1">
-                                    <a class="btn btn-default btn-sm cursor" id="bt_selectTrigger"><i class="fa fa-list-alt"></i></a>
+                                    <a class="btn btn-default cursor" id="bt_selectTrigger"><i class="fa fa-list-alt"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -189,10 +189,10 @@ foreach (scenario::listGroup() as $group) {
                         <div class="form-group condition" style="display: none;">
                             <label class="col-xs-4 control-label" >{{Si}}</label>
                             <div class="col-xs-7">
-                                <input class="input-sm form-control" id="in_cmdCondition" disabled>
+                                <input class="form-control" id="in_cmdCondition" disabled>
                             </div>
                             <div class="col-xs-1">
-                                <a class="btn btn-default btn-sm cursor" id="bt_selectCondition"><i class="fa fa-list-alt"></i></a>
+                                <a class="btn btn-default cursor" id="bt_selectCondition"><i class="fa fa-list-alt"></i></a>
                             </div>
                         </div>
                         <div class="form-group condition" style="display: none;">

@@ -27,7 +27,6 @@ $('#div_helpCronGenerate').cron({
     }
 });
 
-
 $('.scenarioListContainer').packery();
 
 $('#bt_scenarioThumbnailDisplay').on('click', function () {
@@ -227,6 +226,7 @@ $('#bt_selectTrigger').on('click', function (event) {
     var el = $(this);
     jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
         el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human);
+        addCondition({expression: result.human});
     });
 });
 
@@ -289,6 +289,7 @@ function addCondition(_condition) {
 }
 
 function printScenario(_id) {
+    $('#bt_switchToExpertMode').attr('href', 'index.php?v=d&p=scenario&id=' + _id)
     $.showLoading();
     jeedom.scenario.get({
         id: _id,
@@ -296,6 +297,9 @@ function printScenario(_id) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
+            if (data.type != 'simple') {
+                window.location.href = "index.php?v=d&p=scenario&id=" + _id;
+            }
             $('.scenarioAttr').value('');
             $('body').setValues(data, '.scenarioAttr');
             data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
