@@ -60,20 +60,20 @@ foreach (scenario::listGroup() as $group) {
 
     <div class="col-lg-10 col-md-9 col-sm-8" id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
         <legend>{{Mes scenarios}}
-        <a class="btn btn-default btn-xs pull-right" href="index.php?v=d&p=scenario"><i class="fa fa-toggle-off"></i> {{Interface avancée}}</a>
+            <a class="btn btn-default btn-xs pull-right" href="index.php?v=d&p=scenario"><i class="fa fa-toggle-off"></i> {{Interface avancée}}</a>
         </legend>
         <?php
         if (count($scenarios) == 0) {
             echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune alarme, cliquez à gauche sur le bouton ajouter une alarme pour commencer</span></center>";
         } else {
             if (count($scenarios[-1]) > 0) {
-               // echo '<legend>Aucun</legend>';
+                // echo '<legend>Aucun</legend>';
                 echo '<div class="scenarioListContainer">';
 
                 foreach ($scenarios[-1] as $scenario) {
                     echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
                     echo "<center>";
-                    echo '<img src="core/img/logo-jeedom-petit-nom-couleur-128x128.png" height="105" width="95" />';
+                    echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
                     echo "</center>";
                     echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
                     echo '</div>';
@@ -88,7 +88,7 @@ foreach (scenario::listGroup() as $group) {
                     foreach ($scenarios[$group['group']] as $scenario) {
                         echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
                         echo "<center>";
-                        echo '<img src="core/img/logo-jeedom-petit-nom-couleur-128x128.png" height="105" width="95" />';
+                        echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
                         echo "</center>";
                         echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
                         echo '</div>';
