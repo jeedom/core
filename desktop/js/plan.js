@@ -549,6 +549,9 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
             html.css('background-color', 'transparent');
+            html.find('.cmd').each(function(){
+                $(this).css('background-color', 'transparent');
+            });
         }
     }
 
