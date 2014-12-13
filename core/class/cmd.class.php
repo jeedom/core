@@ -696,6 +696,7 @@ class cmd {
         $version = jeedom::versionAlias($_version);
         $html = '';
         $template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $this->getTemplate($version, 'default');
+        $template = '';
         if (!isset(self::$_templateArray[$version . '::' . $template_name])) {
             if ($this->getTemplate($version, 'default') != 'default') {
                 $findWidgetPlugin = false;
