@@ -405,7 +405,7 @@ install_razberry_zway()
 	# Check if already installed
 	if [ -f /etc/z-way/VERSION ]; then
 		# Get latest zway install
-		wget -q -O - razberry.z-wave.me/install -O zway-install
+		wget -q -O - razberry.z-wave.me/install/v1.7.2 -O zway-install
 		# Check version
 		ZWAY_AVAIL_VERSION="`cat zway-install | awk '/.*[0-9].[0-9].[0-9].*z-way\/VERSION$/{ print $2 }' | sed 's/["v]//g'`"
 		is_version_greater_or_equal ${ZWAY_INSTALLED_VERSION} ${ZWAY_AVAIL_VERSION} 
