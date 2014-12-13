@@ -24,11 +24,11 @@ class jeedom {
 
     private static $jeedomConfiguration;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function stop() {
         try {
-            echo "Desactivation de toutes les tâches";
+            echo "Désactivation de toutes les tâches";
             config::save('enableCron', 0);
             foreach (cron::all() as $cron) {
                 if ($cron->running()) {
@@ -44,11 +44,11 @@ class jeedom {
                 echo "\n***ERREUR*** " . $e->getMessage();
             }
         }
-        /*         * **********Arret des crons********************* */
+        /*         * **********Arrêt des crons********************* */
 
         try {
             if (cron::jeeCronRun()) {
-                echo "Arret du cron master ";
+                echo "Arrêt du cron master ";
                 $pid = cron::getPidFile();
                 $kill = posix_kill($pid, 15);
                 if (!$kill) {
@@ -573,7 +573,7 @@ class jeedom {
     public function checkFilesystem() {
         $result = exec('dmesg | grep "I/O error" | wc -l');
         if ($result != 0) {
-            log::add('core', 'error', __('Erreur : corruption sur le filesystem detecter (I/O error sur dmseg)', __FILE__));
+            log::add('core', 'error', __('Erreur : corruption sur le système de fichiers détectée (erreur I/O sur dmseg)', __FILE__));
             return false;
         }
         return true;
@@ -597,7 +597,7 @@ class jeedom {
         }
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     /*     * **********************Getteur Setteur*************************** */
 }
