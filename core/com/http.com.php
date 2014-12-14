@@ -37,7 +37,7 @@ class com_http {
     private $noReportError = false;
     private $CURLOPT_HTTPAUTH = '';
 
-    /*     * ********************Functions static********************* */
+    /*     * ********************Fonctions statiques********************* */
 
     function __construct($_url = '', $_username = '', $_password = '') {
         $this->url = $_url;
@@ -45,7 +45,7 @@ class com_http {
         $this->password = $_password;
     }
 
-    /*     * ************* Functions ************************************ */
+    /*     * ************* Fonctions ************************************ */
 
     function exec($_timeout = 2, $_maxRetry = 3) {
         if ($this->getPing() && config::byKey('http::ping_disable') != 1) {
@@ -114,7 +114,7 @@ class com_http {
             }
             curl_close($ch);
             if ($this->getNoReportError() === false) {
-                throw new Exception(__('Echec de la requete http : ', __FILE__) . $this->url . ' Curl error : ' . $curl_error, 404);
+                throw new Exception(__('Echec de la requête http : ', __FILE__) . $this->url . ' Curl error : ' . $curl_error, 404);
             }
         }
         curl_close($ch);
