@@ -439,13 +439,15 @@ function printScenario(_id) {
                     $('#cb_conditionStart').value(0);
                 }
                 var conditionStr = element.subElements[0].expressions[0].expression
-                var conditionArray = conditionStr.split(' ');
-                if (conditionArray.length >= 3) {
-                    var condition = {expression: conditionArray[0], operator: conditionArray[1]};
-                    conditionArray.shift();
-                    conditionArray.shift();
-                    condition.operande = conditionArray.join(' ');
-                    addCondition(condition);
+                var firstArray = conditionStr.split(']#');
+                if (firstArray.length == 2) {
+                    var conditionArray = firstArray[1].split(' ');
+                    if (conditionArray.length >= 3) {
+                        var condition = {expression: firstArray[0]+']#', operator: conditionArray[0]};
+                        conditionArray.shift();
+                        condition.operande = conditionArray.join(' ');
+                        addCondition(condition);
+                    }
                 }
                 for (var i in element.subElements[1].expressions) {
                     addAction(element.subElements[1].expressions[i]);
