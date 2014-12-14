@@ -21,6 +21,7 @@ foreach (scenario::listGroup() as $group) {
 <div class="row row-overflow">
     <div class="col-lg-2 col-md-3 col-sm-4">
         <div class="bs-sidebar nav nav-list bs-sidenav"> 
+            <a class="btn btn-warning pull-right form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenario" style="text-shadow: none;"><i class="fa fa-toggle-off"></i> {{Interface avancée}}</a>
             <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> Nouveau scénario</a>
             <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
             <div id="div_tree">
@@ -62,7 +63,7 @@ foreach (scenario::listGroup() as $group) {
 
     <div class="col-lg-10 col-md-9 col-sm-8" id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
         <legend>{{Mes scenarios}}
-            <a class="btn btn-default btn-xs pull-right" href="index.php?v=d&p=scenario"><i class="fa fa-toggle-off"></i> {{Interface avancée}}</a>
+            
         </legend>
         <?php
         if (count(scenario::all()) == 0) {
@@ -104,7 +105,6 @@ foreach (scenario::listGroup() as $group) {
             <a class="btn btn-default btn-xs pull-right" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
             <a class="btn btn-default btn-xs pull-right" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
             <a class="btn btn-danger btn-xs pull-right" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
-            <a class="btn btn-default btn-xs pull-right" id="bt_switchToExpertMode" href="index.php?v=d&p=scenario"><i class="fa fa-toggle-off"></i> {{Interface avancée}}</a>
         </legend>
         <div class="row well" style="margin: 0px;margin-bottom: 15px;">
             <legend>1) Informations générale</legend>

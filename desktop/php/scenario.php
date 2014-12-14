@@ -1,4 +1,4 @@
-<?php
+ <?php
 if (!hasRight('scenarioview', true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -22,6 +22,7 @@ foreach (scenario::listGroup() as $group) {
 <div class="row row-overflow">
     <div class="col-lg-2 col-md-3 col-sm-4">
         <div class="bs-sidebar nav nav-list bs-sidenav"> 
+            <a class="btn btn-success form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenarioAssist" style="text-shadow: none;"><i class="fa fa-toggle-on"></i> {{Interface simple}}</a>
             <center>
                 <?php
                 if (config::byKey('enableScenario') == 0) {
@@ -70,9 +71,7 @@ foreach (scenario::listGroup() as $group) {
     </div>
 
     <div class="col-lg-10 col-md-9 col-sm-8" id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
-        <legend>{{Mes scenarios}}
-            <a class="btn btn-default btn-xs pull-right" href="index.php?v=d&p=scenarioAssist"><i class="fa fa-toggle-on"></i> {{Interface simple}}</a>
-        </legend>
+        <legend>{{Mes scenarios}}</legend>
         <?php
         if (count(scenario::all()) == 0) {
             echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario, cliquez sur ajouter un scénario pour commencer</span></center>";
@@ -115,7 +114,7 @@ foreach (scenario::listGroup() as $group) {
             <a class="btn btn-default btn-xs pull-right" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
             <a class="btn btn-default btn-xs pull-right" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
             <a class="btn btn-danger btn-xs pull-right" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
-            <a class="btn btn-default btn-xs pull-right" id="bt_switchToExpertMode" href="index.php?v=d&p=scenarioAssist"><i class="fa fa-toggle-on"></i> {{Interface simple}}</a>
+            
         </legend>
         <div class="row">
             <div class="col-sm-4">
