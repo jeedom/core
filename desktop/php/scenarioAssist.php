@@ -169,16 +169,20 @@ foreach (scenario::listGroup() as $group) {
 
         <div class="row">
             <div class="col-sm-2"></div>
-            <div class="col-sm-3">
-                <img src="core/img/si.svg" class="img-responsive" style="height: 50px" />
-            </div>
             <div class="col-sm-2">
-               
+                <center>
+                    <img src="core/img/si.svg" class="img-responsive" style="height: 50px;" />
+                </center>
+            </div>
+              <div class="col-sm-1"></div>
+            <div class="col-sm-2">
                 <center><i class="fa fa-arrow-right fa-5x"></i></center>
             </div>
             <div class="col-sm-1"></div>
-            <div class="col-sm-3">
-                <img src="core/img/alors.svg" class="img-responsive" style="height: 50px" />
+            <div class="col-sm-2">
+                <center>
+                    <img src="core/img/alors.svg" class="img-responsive" style="height: 50px" />
+                </center>
             </div>
         </div>
         <br/>
