@@ -168,7 +168,7 @@ foreach (scenario::listGroup() as $group) {
                     <legend>2) Déclencheur</legend>
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-xs-4 control-label" >{{Type}}</label>
+                            <label class="col-xs-4 control-label" >{{Scénario}}</label>
                             <div class="col-xs-4">
                                 <select class="form-control scenarioAttr input-sm" data-l1key="mode">
                                     <option value="schedule">Programmé</option>
@@ -189,7 +189,7 @@ foreach (scenario::listGroup() as $group) {
 
                         </div>
                         <div class="form-group mode provoke trigger">
-                            <label class="col-xs-4 control-label" >{{Déclencheur}}</label>
+                            <label class="col-xs-4 control-label" >{{Par}}</label>
                             <div class="form-group">
                                 <div class="col-xs-6">
                                     <input class="scenarioAttr form-control" data-l1key="trigger" disabled>
@@ -201,14 +201,14 @@ foreach (scenario::listGroup() as $group) {
                         </div>
                         <hr/>
                         <div class="form-group">
-                            <label class="col-xs-4 control-label" >{{Déclenchement conditioné}}</label>
+                            <label class="col-xs-4 control-label" >{{Si}}</label>
                             <div class="col-xs-1">
                                 <input type="checkbox" id="cb_conditionStart" />
                             </div>
 
                         </div>
                         <div class="form-group condition" style="display: none;">
-                            <label class="col-xs-4 control-label" >{{Si}}</label>
+                            <label class="col-xs-4 control-label" ></label>
                             <div class="col-xs-7">
                                 <input class="form-control" id="in_cmdCondition" disabled>
                             </div>
@@ -262,7 +262,7 @@ foreach (scenario::listGroup() as $group) {
             <div class="col-sm-6">
                 <div class="well">
                     <form class="form-horizontal">
-                        <legend>3) Action
+                        <legend>3) Alors
                             <a class="btn btn-xs pull-right btn-success" id="bt_addAction"><i class="fa fa-plus-circle"></i> Ajouter</a>
                         </legend>
                         <div id="div_actionList"></div>
