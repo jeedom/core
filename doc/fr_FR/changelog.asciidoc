@@ -1,3 +1,8 @@
+==== 14/12/2014
+
+- Ajout interface de configuration de scénario simple
+- Suppression des backups les plus vieux si le dossier fait plus de 500mo
+
 ==== 10/12/2014
 
 - Amélioration page historique
