@@ -174,7 +174,7 @@ foreach (scenario::listGroup() as $group) {
                     <img src="core/img/si.svg" class="img-responsive" style="height: 50px;" />
                 </center>
             </div>
-              <div class="col-sm-1"></div>
+            <div class="col-sm-1"></div>
             <div class="col-sm-2">
                 <center><i class="fa fa-arrow-right fa-5x"></i></center>
             </div>
@@ -214,13 +214,11 @@ foreach (scenario::listGroup() as $group) {
                         </div>
                         <div class="form-group mode provoke trigger">
                             <label class="col-xs-3 control-label" >{{Par}}</label>
-                            <div class="form-group">
-                                <div class="col-xs-7">
-                                    <input class="scenarioAttr form-control" data-l1key="trigger" disabled>
-                                </div>
-                                <div class="col-xs-2">
-                                    <a class="btn btn-default cursor" id="bt_selectTrigger"><i class="fa fa-list-alt"></i></a>
-                                </div>
+                            <div class="col-xs-7">
+                                <input class="scenarioAttr form-control" data-l1key="trigger" disabled>
+                            </div>
+                            <div class="col-xs-2">
+                                <a class="btn btn-default cursor" id="bt_selectTrigger"><i class="fa fa-list-alt"></i></a>
                             </div>
                         </div>
                         <hr/>
