@@ -215,10 +215,10 @@ foreach (scenario::listGroup() as $group) {
                         <div class="form-group mode provoke trigger">
                             <label class="col-xs-3 control-label" >{{Par}}</label>
                             <div class="form-group">
-                                <div class="col-xs-8">
+                                <div class="col-xs-7">
                                     <input class="scenarioAttr form-control" data-l1key="trigger" disabled>
                                 </div>
-                                <div class="col-xs-1">
+                                <div class="col-xs-2">
                                     <a class="btn btn-default cursor" id="bt_selectTrigger"><i class="fa fa-list-alt"></i></a>
                                 </div>
                             </div>
