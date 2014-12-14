@@ -9,7 +9,7 @@ include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css');
 include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
 include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
 include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
-include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js', 'calendar');
+include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js');
 
 $scenarios = array();
 $scenarios[-1] = scenario::all(null);
