@@ -374,33 +374,21 @@ class cron {
         }
         try {
             $c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
-            try {
-                if ($c->isDue()) {
-                    return true;
-                }
-            } catch (Exception $e) {
-                
+            if ($c->isDue()) {
+                return true;
             }
             try {
-                try {
-                    $prev = $c->getPreviousRunDate();
-                } catch (Exception $exc) {
-                    $prev = new DateTime('2000-01-01 01:00:00');
-                }
-                $lastCheck = new DateTime($this->getLastRun());
-                $diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
-                if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
-                    if ($diff > 3) {
-                        log::add('cron', 'error', __('Retard de ', __FILE__) . $diff . ' min : ' . $this->getClass() . '::' . $this->getFunction() . __('(). Rattrapage en cours...', __FILE__));
-                    }
-                    return true;
-                }
-            } catch (Exception $e) {
-                
+                $prev = $c->getPreviousRunDate();
+            } catch (Exception $exc) {
+                $prev = new DateTime('2000-01-01 01:00:00');
+            }
+            $lastCheck = new DateTime($this->getLastRun());
+            $diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
+            if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
+                return true;
             }
         } catch (Exception $e) {
-            log::add('cron', 'error', __('Expression cron non valide : ', __FILE__) . $this->getSchedule() . __('. Détails : ', __FILE__) . $e->getMessage());
-            return false;
+            
         }
         return false;
     }

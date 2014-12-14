@@ -753,8 +753,7 @@ class scenario {
                         return true;
                     }
                 } catch (Exception $exc) {
-                    log::add('scenario', 'error', __('Expression cron non valide : ', __FILE__) . $schedule);
-                    return false;
+                  
                 }
             }
         } else {
@@ -777,8 +776,7 @@ class scenario {
                     return true;
                 }
             } catch (Exception $exc) {
-                log::add('scenario', 'error', __('Expression cron non valide : ', __FILE__) . $this->getSchedule());
-                return false;
+               
             }
         }
         return false;
