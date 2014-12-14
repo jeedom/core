@@ -118,8 +118,13 @@ foreach (scenario::listGroup() as $group) {
             <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
             <a class="btn btn-danger btn-xs pull-right expertModeVisible" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
         </legend>
+
+
+
+
+
         <div class="row well" style="margin: 0px;margin-bottom: 15px;">
-            <legend>1) Informations générale</legend>
+            <legend>1) Informations générales</legend>
             <div class="col-sm-6">
                 <form class="form-horizontal">
                     <div class="form-group">
@@ -163,13 +168,28 @@ foreach (scenario::listGroup() as $group) {
         </div>
 
         <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-3">
+                <img src="core/img/si.svg" class="img-responsive" />
+            </div>
+            <div class="col-sm-2">
+                <br/>
+                <center><i class="fa fa-arrow-right fa-5x"></i></center>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3">
+                <img src="core/img/alors.svg" class="img-responsive" />
+            </div>
+        </div>
+        <br/>
+        <div class="row">
             <div class="col-sm-6">
                 <div class="well">
                     <legend>2) Condition d'exécution</legend>
                     <form class="form-horizontal">
                         <div class="form-group">
                             <label class="col-xs-3 control-label" >{{Scénario}}</label>
-                            <div class="col-xs-4">
+                            <div class="col-xs-9">
                                 <select class="form-control scenarioAttr input-sm" data-l1key="mode">
                                     <option value="schedule">Programmé</option>
                                     <option value="provoke">Déclenché</option>
@@ -178,7 +198,7 @@ foreach (scenario::listGroup() as $group) {
                         </div>
                         <div class="form-group mode schedule">
                             <label class="col-xs-3 control-label" >{{A exécuter}}</label>
-                            <div class="col-xs-4">
+                            <div class="col-xs-9">
                                 <select class="form-control scenarioAttr input-sm" id="sel_scheduleMode">
                                     <option value="once">une seule fois</option>
                                     <option value="repete">répététivement</option>
@@ -191,7 +211,7 @@ foreach (scenario::listGroup() as $group) {
                         <div class="form-group mode provoke trigger">
                             <label class="col-xs-3 control-label" >{{Par}}</label>
                             <div class="form-group">
-                                <div class="col-xs-6">
+                                <div class="col-xs-8">
                                     <input class="scenarioAttr form-control" data-l1key="trigger" disabled>
                                 </div>
                                 <div class="col-xs-1">
@@ -202,24 +222,23 @@ foreach (scenario::listGroup() as $group) {
                         <hr/>
                         <div class="form-group">
                             <label class="col-xs-3 control-label" >{{Condition optionnelle}}</label>
-                            <div class="col-xs-1">
+                            <div class="col-xs-2">
                                 <input type="checkbox" id="cb_conditionStart" />
                             </div>
-
                         </div>
                         <div class="form-group condition" style="display: none;">
                             <label class="col-xs-3 control-label" >{{Si}}</label>
                             <div class="col-xs-7">
                                 <input class="form-control" id="in_cmdCondition" disabled>
                             </div>
-                            <div class="col-xs-1">
+                            <div class="col-xs-2">
                                 <a class="btn btn-default cursor" id="bt_selectCondition"><i class="fa fa-list-alt"></i></a>
                             </div>
                         </div>
                         <div class="form-group condition" style="display: none;">
                             <label class="col-xs-3 control-label" >{{Est}}</label>
                             <div class='conditionOptions' data-type="info" data-subtype="numeric" style="display : none;">
-                                <div class="col-xs-3">
+                                <div class="col-xs-4">
                                     <select class="conditionAttr form-control" data-l1key="operator">
                                         <option value="=">égale</option>
                                         <option value=">">supérieur</option>
@@ -227,12 +246,12 @@ foreach (scenario::listGroup() as $group) {
                                         <option value="!=">différent</option>
                                     </select>
                                 </div>
-                                <div class="col-xs-3">
+                                <div class="col-xs-5">
                                     <input type="number" class="conditionAttr form-control" data-l1key="operande" />
                                 </div>
                             </div>
                             <div class='conditionOptions' data-type="info" data-subtype="string" style="display : none;">
-                                <div class="col-xs-3">
+                                <div class="col-xs-4">
                                     <select class="conditionAttr form-control" data-l1key="operator">
                                         <option value="=">égale</option>
                                         <option value="!=">différent</option>
@@ -240,12 +259,12 @@ foreach (scenario::listGroup() as $group) {
                                         <option value="!~">ne contient pas</option>
                                     </select>
                                 </div>
-                                <div class="col-xs-3">
+                                <div class="col-xs-5">
                                     <input class="conditionAttr form-control" data-l1key="operande" />
                                 </div>
                             </div>
                             <div class='conditionOptions' data-type="info" data-subtype="binary" style="display : none;">
-                                <div class="col-xs-6">
+                                <div class="col-xs-9">
                                     <input class="conditionAttr" data-l1key="operator" value="=" style="display : none;" />
                                     <select class="conditionAttr form-control" data-l1key="operande">
                                         <option value="1">Ouvert</option>

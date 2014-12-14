@@ -261,8 +261,8 @@ $('#cb_conditionStart').on('change', function () {
 $('#sel_scheduleMode').on('change', function () {
     $('#div_scheduleConfig').empty();
     if ($(this).value() == 'once') {
-        var html = '<label class="col-xs-4 control-label" >{{En date du}}</label>';
-        html += '<div class="col-xs-4">';
+        var html = '<label class="col-xs-3 control-label" >{{En date du}}</label>';
+        html += '<div class="col-xs-9">';
         html += '<input class="form-control" id="in_dateScenarioTrigger">';
         html += '</div>';
         html += '<span class="scenarioAttr" data-l1key="schedule" id="span_cronResult" style="display: none;"></span>';
@@ -317,11 +317,11 @@ if (is_numeric(getUrlVars('id'))) {
 }
 
 function addAction(_action) {
-    var retour = '<div class="container-fluid expression" style="margin-top : 4px;"><div class="col-xs-2">';
+    var retour = '<div class="container-fluid expression" style="margin-top : 4px;"><div class="col-xs-3">';
     retour += '<i class="fa fa-minus-circle pull-left cursor bt_removeExpression" style="margin-top : 9px;"></i>';
     retour += ' <a class="btn btn-default btn-sm cursor bt_selectCmdExpression cursor pull-right" ><i class="fa fa-list-alt"></i></a>';
     retour += '</div>';
-    retour += '<div class="col-xs-9">';
+    retour += '<div class="col-xs-8">';
     retour += '<span class="expressionAttr" data-l1key="type" style="display : none;" >action</span>';
     retour += '<input class="expressionAttr form-control input-sm" data-l1key="expression" value="' + init(_action.expression) + '" disabled />';
     retour += '</div>';
