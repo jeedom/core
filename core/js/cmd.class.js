@@ -484,8 +484,8 @@ jeedom.cmd.displayActionOption = function (_expression, _options, _callback) {
 
 
 jeedom.cmd.normalizeName = function (_tagname) {
-    var arrayOn = ['on', 'marche', 'go','lock'];
-    var arrayOff = ['off', 'arret', 'arrêt', 'stop','unlock'];
+    var arrayOn = ['on', 'marche', 'go','lock','lock_down','lock_up'];
+    var arrayOff = ['off', 'arret', 'arrêt', 'stop','unlock','unlock_down','unlock_up'];
     var name = _tagname.toLowerCase();
     /^([^0-9]+)[0-9]*$/.exec(name);
     name = RegExp.$1;
