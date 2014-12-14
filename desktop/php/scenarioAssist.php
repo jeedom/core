@@ -263,7 +263,7 @@ foreach (scenario::listGroup() as $group) {
                 <div class="well">
                     <form class="form-horizontal">
                         <legend>3) Alors
-                            <a class="btn btn-xs pull-right btn-success" id="bt_addAction"><i class="fa fa-plus-circle"></i> Ajouter</a>
+                            <a class="btn btn-xs pull-right btn-success" id="bt_addAction"><i class="fa fa-plus-circle"></i> Ajouter une action</a>
                         </legend>
                         <div id="div_actionList"></div>
                     </form>
