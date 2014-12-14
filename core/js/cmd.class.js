@@ -484,14 +484,26 @@ jeedom.cmd.displayActionOption = function (_expression, _options, _callback) {
 
 
 jeedom.cmd.normalizeName = function (_tagname) {
-    var arrayOn = ['on', 'marche', 'go','lock','lock_down','lock_up'];
-    var arrayOff = ['off', 'arret', 'arrêt', 'stop','unlock','unlock_down','unlock_up'];
+    var arrayOn = ['on', 'marche', 'go', 'lock'];
+    var arrayOff = ['off', 'arret', 'arrêt', 'stop', 'unlock'];
     var name = _tagname.toLowerCase();
     /^([^0-9]+)[0-9]*$/.exec(name);
     name = RegExp.$1;
     if (arrayOn.indexOf(name) >= 0) {//Test si name cmd equivalent à "on"
         return 'on';
     } else if (arrayOff.indexOf(name) >= 0) {//Test si name cmd equivalent à "off"
+        return 'off';
+    }
+    if (name.indexOf("lock") == 0) {
+        return 'on';
+    }
+    if (name.indexOf("unlock") == 0) {
+        return 'off';
+    }
+    if (name.indexOf("on") != -1) {
+        return 'on';
+    }
+    if (name.indexOf("off") != -1) {
         return 'off';
     }
     return _tagname;
