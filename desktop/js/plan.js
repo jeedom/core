@@ -470,8 +470,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'text';
             plan.link_id = $(this).attr('data-text_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).height() + 6 + (2 * borderSize);
-            plan.display.width = $(this).width() + 6 + (2 * borderSize);
+            plan.display.height = $(this).height() + (2 * borderSize);
+            plan.display.width = $(this).width() + (2 * borderSize);
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;

@@ -96,13 +96,13 @@ try {
                     'html' => ''
                 );
             } else if ($plan->getLink_type() == 'text') {
-                $html = '<span class="text-widget label label-default" data-text_id="' . $plan->getLink_id() . '" style="color:' . $plan->getCss('color', 'white') . ';font-size : 1.5em;">';
+                $html = '<div class="text-widget" data-text_id="' . $plan->getLink_id() . '" style="color:' . $plan->getCss('color', 'black') . ';font-size : 1.5em;">';
                 if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
                     $html .= $plan->getDisplay('icon') . ' ' . $plan->getDisplay('text');
                 } else {
                     $html .= $plan->getDisplay('text', 'Texte à insérer ici');
                 }
-                $html .= '</span>';
+                $html .= '</div>';
                 $return[] = array(
                     'plan' => utils::o2a($plan),
                     'html' => $html
