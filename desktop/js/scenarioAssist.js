@@ -59,30 +59,21 @@ $('#in_treeSearch').keyup(function () {
     $('#div_tree').jstree(true).search($('#in_treeSearch').val());
 });
 
-$('.scenarioAttr[data-l1key=group]').autocomplete({
-    source: function (request, response, url) {
-        $.ajax({
-            type: 'POST',
-            url: 'core/ajax/scenario.ajax.php',
-            data: {
-                action: 'autoCompleteGroup',
-                term: request.term
-            },
-            dataType: 'json',
-            global: false,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error);
-            },
-            success: function (data) {
-                if (data.state != 'ok') {
-                    $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                    return;
+$("#bt_copyScenario").on('click', function () {
+    bootbox.prompt("Nom du scénario ?", function (result) {
+        if (result !== null) {
+            jeedom.scenario.copy({
+                id: $('.scenarioAttr[data-l1key=id]').value(),
+                name: result,
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                    window.location.replace('index.php?v=d&p=scenarioAssist&id=' + data.id);
                 }
-                response(data.result);
-            }
-        });
-    },
-    minLength: 1,
+            });
+        }
+    });
 });
 
 $('#md_addScenario').modal('hide');
