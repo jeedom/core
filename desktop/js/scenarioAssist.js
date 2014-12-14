@@ -261,7 +261,7 @@ $('#cb_conditionStart').on('change', function () {
 $('#sel_scheduleMode').on('change', function () {
     $('#div_scheduleConfig').empty();
     if ($(this).value() == 'once') {
-        var html = '<label class="col-xs-4 control-label" >{{Date}}</label>';
+        var html = '<label class="col-xs-4 control-label" >{{En date du}}</label>';
         html += '<div class="col-xs-4">';
         html += '<input class="form-control" id="in_dateScenarioTrigger">';
         html += '</div>';

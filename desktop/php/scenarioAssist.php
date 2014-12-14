@@ -165,10 +165,10 @@ foreach (scenario::listGroup() as $group) {
         <div class="row">
             <div class="col-sm-6">
                 <div class="well">
-                    <legend>2) Déclencheur</legend>
+                    <legend>2) Condition d'exécution</legend>
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-xs-4 control-label" >{{Scénario}}</label>
+                            <label class="col-xs-3 control-label" >{{Scénario}}</label>
                             <div class="col-xs-4">
                                 <select class="form-control scenarioAttr input-sm" data-l1key="mode">
                                     <option value="schedule">Programmé</option>
@@ -177,11 +177,11 @@ foreach (scenario::listGroup() as $group) {
                             </div>
                         </div>
                         <div class="form-group mode schedule">
-                            <label class="col-xs-4 control-label" >{{Déclenchement}}</label>
+                            <label class="col-xs-3 control-label" >{{A exécuter}}</label>
                             <div class="col-xs-4">
                                 <select class="form-control scenarioAttr input-sm" id="sel_scheduleMode">
-                                    <option value="once">Ponctuel</option>
-                                    <option value="repete">Répété</option>
+                                    <option value="once">une seule fois</option>
+                                    <option value="repete">répététivement</option>
                                 </select>
                             </div>
                         </div>
@@ -189,7 +189,7 @@ foreach (scenario::listGroup() as $group) {
 
                         </div>
                         <div class="form-group mode provoke trigger">
-                            <label class="col-xs-4 control-label" >{{Par}}</label>
+                            <label class="col-xs-3 control-label" >{{Par}}</label>
                             <div class="form-group">
                                 <div class="col-xs-6">
                                     <input class="scenarioAttr form-control" data-l1key="trigger" disabled>
@@ -201,14 +201,14 @@ foreach (scenario::listGroup() as $group) {
                         </div>
                         <hr/>
                         <div class="form-group">
-                            <label class="col-xs-4 control-label" >{{Si}}</label>
+                            <label class="col-xs-3 control-label" >{{Condition optionnelle}}</label>
                             <div class="col-xs-1">
                                 <input type="checkbox" id="cb_conditionStart" />
                             </div>
 
                         </div>
                         <div class="form-group condition" style="display: none;">
-                            <label class="col-xs-4 control-label" ></label>
+                            <label class="col-xs-3 control-label" >{{Si}}</label>
                             <div class="col-xs-7">
                                 <input class="form-control" id="in_cmdCondition" disabled>
                             </div>
@@ -217,7 +217,7 @@ foreach (scenario::listGroup() as $group) {
                             </div>
                         </div>
                         <div class="form-group condition" style="display: none;">
-                            <label class="col-xs-4 control-label" >{{Est}}</label>
+                            <label class="col-xs-3 control-label" >{{Est}}</label>
                             <div class='conditionOptions' data-type="info" data-subtype="numeric" style="display : none;">
                                 <div class="col-xs-3">
                                     <select class="conditionAttr form-control" data-l1key="operator">
@@ -262,7 +262,7 @@ foreach (scenario::listGroup() as $group) {
             <div class="col-sm-6">
                 <div class="well">
                     <form class="form-horizontal">
-                        <legend>3) Alors
+                        <legend>3) Actions
                             <a class="btn btn-xs pull-right btn-success" id="bt_addAction"><i class="fa fa-plus-circle"></i> Ajouter une action</a>
                         </legend>
                         <div id="div_actionList"></div>
