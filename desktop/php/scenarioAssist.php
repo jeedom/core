@@ -21,7 +21,7 @@ foreach (scenario::listGroup() as $group) {
 <div class="row row-overflow">
     <div class="col-lg-2 col-md-3 col-sm-4">
         <div class="bs-sidebar nav nav-list bs-sidenav"> 
-            <a class="btn btn-warning pull-right form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenario" style="text-shadow: none;"><i class="fa fa-toggle-off"></i> {{Interface avancée}}</a>
+            <a class="btn btn-success pull-right form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenario" style="text-shadow: none;"><i class="fa fa-toggle-off"></i> {{Interface simple}}</a>
             <center>
                 <?php
                 if (config::byKey('enableScenario') == 0) {

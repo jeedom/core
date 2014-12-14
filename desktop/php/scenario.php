@@ -22,7 +22,7 @@ foreach (scenario::listGroup() as $group) {
 <div class="row row-overflow">
     <div class="col-lg-2 col-md-3 col-sm-4">
         <div class="bs-sidebar nav nav-list bs-sidenav"> 
-            <a class="btn btn-success form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenarioAssist" style="text-shadow: none;"><i class="fa fa-toggle-on"></i> {{Interface simple}}</a>
+            <a class="btn btn-warning form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenarioAssist" style="text-shadow: none;"><i class="fa fa-toggle-on"></i> {{Interface avancée}}</a>
             <center>
                 <?php
                 if (config::byKey('enableScenario') == 0) {

@@ -79,27 +79,57 @@ $("#bt_copyScenario").on('click', function () {
 $('#md_addScenario').modal('hide');
 
 $("#bt_addScenario").on('click', function (event) {
-    bootbox.prompt("Nom du scénario ?", function (result) {
-        if (result !== null) {
-            $.hideAlert();
-            jeedom.scenario.save({
-                scenario: {name: result, type: 'simple'},
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                },
-                success: function (data) {
-                    var vars = getUrlVars();
-                    var url = 'index.php?';
-                    for (var i in vars) {
-                        if (i != 'id' && i != 'saveSuccessFull' && i != 'removeSuccessFull') {
-                            url += i + '=' + vars[i].replace('#', '') + '&';
-                        }
-                    }
-                    url += 'id=' + data.id + '&saveSuccessFull=1';
-                    modifyWithoutSave = false;
-                    window.location.href = url;
+    bootbox.dialog({
+        title: "Ajout d'un nouveau scénario",
+        message: '<div class="row">  ' +
+                '<div class="col-md-12"> ' +
+                '<form class="form-horizontal" onsubmit="return false;"> ' +
+                '<div class="form-group"> ' +
+                '<label class="col-md-4 control-label">{{Nom}}</label> ' +
+                '<div class="col-md-4"> ' +
+                '<input id="in_scenarioAddName" type="text" placeholder="{{Nom de votre scénario}}" class="form-control input-md"> ' +
+                '</div> ' +
+                '</div> ' +
+                '<div class="form-group"> ' +
+                '<label class="col-md-4 control-label">{{Type}}</label> ' +
+                '<div class="col-md-4"> <div class="radio"> <label> ' +
+                '<input name="cbScenarioType" class="cb_scenarioType" type="radio" value="simple" checked="checked"> ' +
+                '{{Simple}}</label> ' +
+                '</div><div class="radio"> <label> ' +
+                '<input  name="cbScenarioType" class="cb_scenarioType" type="radio" value="expert"> {{Avancée}}</label> ' +
+                '</div> ' +
+                '</div> </div>' +
+                '</form> </div>  </div>',
+        buttons: {
+            "Annuler": {
+                className: "btn-default",
+                callback: function () {
                 }
-            });
+            },
+            success: {
+                label: "D'accord",
+                className: "btn-primary",
+                callback: function () {
+                    jeedom.scenario.save({
+                        scenario: {name: $('#in_scenarioAddName').val(), type: $("input[name=cbScenarioType]:checked").val()},
+                        error: function (error) {
+                            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                        },
+                        success: function (data) {
+                            var vars = getUrlVars();
+                            var url = 'index.php?';
+                            for (var i in vars) {
+                                if (i != 'id' && i != 'saveSuccessFull' && i != 'removeSuccessFull') {
+                                    url += i + '=' + vars[i].replace('#', '') + '&';
+                                }
+                            }
+                            url += 'id=' + data.id + '&saveSuccessFull=1';
+                            modifyWithoutSave = false;
+                            window.location.href = url;
+                        }
+                    });
+                }
+            },
         }
     });
 });
@@ -260,7 +290,7 @@ $('#sel_scheduleMode').on('change', function () {
                 var minute = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
                 var hour = (date.getHours() < 10 ? '0' : '') + date.getHours();
                 var strdate = (date.getDate() < 10 ? '0' : '') + date.getDate();
-                var month = ((date.getMonth()+1) < 10 ? '0' : '') + (date.getMonth()+1) ;
+                var month = ((date.getMonth() + 1) < 10 ? '0' : '') + (date.getMonth() + 1);
                 var cron = minute + ' ' + hour + ' ' + strdate + ' ' + month + ' ' + date.getDay() + ' ' + date.getFullYear()
                 $('#span_cronResult').value(cron);
             }
