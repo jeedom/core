@@ -20,7 +20,7 @@ foreach (scenario::listGroup() as $group) {
 }
 ?>
 <div class="row row-overflow">
-    <div class="col-lg-2 col-md-3 col-sm-4">
+    <div class="col-lg-2 col-md-3 col-sm-4" id="div_listScenario">
         <div class="bs-sidebar nav nav-list bs-sidenav" > 
             <a class="btn btn-warning form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenarioAssist" style="text-shadow: none;"><i class="fa fa-toggle-on"></i> {{Interface avancée}}</a>
             <center>
@@ -70,7 +70,7 @@ foreach (scenario::listGroup() as $group) {
         </div>
     </div>
 
-    <div class="col-lg-10 col-md-9 col-sm-8" id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
+    <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
         <legend>{{Mes scenarios}}</legend>
         <?php
         if (count(scenario::all()) == 0) {
@@ -107,7 +107,7 @@ foreach (scenario::listGroup() as $group) {
         <?php } ?>
     </div>
 
-    <div class="col-lg-10 col-md-9 col-sm-8" id="div_editScenario" style="display: none; border-left: solid 1px #EEE; padding-left: 25px;">
+    <div id="div_editScenario" style="display: none; border-left: solid 1px #EEE; padding-left: 25px;">
         <legend style="height: 35px;"><i class="fa fa-arrow-circle-left cursor" id="bt_scenarioThumbnailDisplay"></i> {{Scénario}}
             <span class="expertModeVisible">(ID : <span class="scenarioAttr" data-l1key="id" ></span>)</span>
             <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>

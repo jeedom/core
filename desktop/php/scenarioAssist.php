@@ -19,7 +19,7 @@ foreach (scenario::listGroup() as $group) {
 ?>
 
 <div class="row row-overflow">
-    <div class="col-lg-2 col-md-3 col-sm-4">
+    <div class="col-lg-2 col-md-3 col-sm-4" id="div_listScenario">
         <div class="bs-sidebar nav nav-list bs-sidenav"> 
             <a class="btn btn-success pull-right form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenario" style="text-shadow: none;"><i class="fa fa-toggle-off"></i> {{Interface simple}}</a>
             <center>
@@ -71,7 +71,7 @@ foreach (scenario::listGroup() as $group) {
     </div>
 
 
-    <div class="col-lg-10 col-md-9 col-sm-8" id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
+    <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
         <legend>{{Mes scenarios}}
 
         </legend>
@@ -111,7 +111,7 @@ foreach (scenario::listGroup() as $group) {
         <?php } ?>
     </div>
 
-    <div class="col-lg-10 col-md-9 col-sm-8" id="div_editScenario" style="display: none; border-left: solid 1px #EEE; padding-left: 25px;">
+    <div id="div_editScenario" style="display: none; border-left: solid 1px #EEE; padding-left: 25px;">
         <legend style="height: 35px;"><i class="fa fa-arrow-circle-left cursor" id="bt_scenarioThumbnailDisplay"></i> {{Scénario}}
             <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>
             <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>

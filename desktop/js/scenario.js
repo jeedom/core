@@ -52,6 +52,14 @@ if (getUrlVars('saveSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }
 
+$("#div_listScenario").resizable({
+    handles: "all",
+    grid: [1, 10000],
+    stop: function () {
+        $('.scenarioListContainer').packery();
+    }
+});
+
 $('.scenarioListContainer').packery();
 
 $('#bt_scenarioThumbnailDisplay').on('click', function () {
