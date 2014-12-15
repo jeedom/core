@@ -699,23 +699,23 @@ class scenario {
             foreach ($this->getSchedule() as $schedule) {
                 try {
                     $c = new Cron\CronExpression($schedule, new Cron\FieldFactory);
-                    $calculatedDate_tmp['prevDate'] = $c->getPreviousRunDate();
-                    $calculatedDate_tmp['nextDate'] = $c->getNextRunDate();
+                    $calculatedDate_tmp['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
+                    $calculatedDate_tmp['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
                 } catch (Exception $exc) {
                     //echo $exc->getTraceAsString();
                 }
-                if ($calculatedDate['prevDate'] == '' || $calculatedDate['prevDate'] < $calculatedDate_tmp['prevDate']) {
+                if ($calculatedDate['prevDate'] == '' || strtotime($calculatedDate['prevDate']) < strtotime($calculatedDate_tmp['prevDate'])) {
                     $calculatedDate['prevDate'] = $calculatedDate_tmp['prevDate'];
                 }
-                if ($calculatedDate['nextDate'] == '' || $calculatedDate['nextDate'] > $calculatedDate_tmp['nextDate']) {
+                if ($calculatedDate['nextDate'] == '' || strtotime($calculatedDate['nextDate']) > strtotime($calculatedDate_tmp['nextDate'])) {
                     $calculatedDate['nextDate'] = $calculatedDate_tmp['nextDate'];
                 }
             }
         } else {
             try {
                 $c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
-                $calculatedDate['prevDate'] = $c->getPreviousRunDate();
-                $calculatedDate['nextDate'] = $c->getNextRunDate();
+                $calculatedDate['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
+                $calculatedDate['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
             } catch (Exception $exc) {
                 //echo $exc->getTraceAsString();
             }
