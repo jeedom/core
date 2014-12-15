@@ -146,7 +146,8 @@ jeedom.history.drawChart = function (_params) {
                 point: {
                     events: {
                         click: function (event) {
-                            if (!$.mobile) {
+                            var deviceInfo = getDeviceType();
+                            if (!$.mobile && deviceInfo.type != 'tablet' && deviceInfo.type != 'phone') {
                                 var id = this.series.userOptions.id;
                                 var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x);
                                 var value = this.y;
