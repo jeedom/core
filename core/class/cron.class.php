@@ -374,8 +374,12 @@ class cron {
         }
         try {
             $c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
-            if ($c->isDue()) {
-                return true;
+            try {
+                if ($c->isDue()) {
+                    return true;
+                }
+            } catch (Exception $exc) {
+                
             }
             try {
                 $prev = $c->getPreviousRunDate();
