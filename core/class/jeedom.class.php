@@ -474,7 +474,18 @@ class jeedom {
                 $rdkey = config::genKey();
                 config::save('jeedom::rdkey', $rdkey);
             }
-            $key = shell_exec("/sbin/ifconfig eth0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+            $ifconfig = shell_exec("/sbin/ifconfig");
+            if (strpos($ifconfig, 'eth1') !== false) {
+                $key = shell_exec("/sbin/ifconfig eth1 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+            } else if (strpos($ifconfig, 'p2p0') !== false) {
+                $key = shell_exec("/sbin/ifconfig p2p0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+            } else if (strpos($ifconfig, 'p2p1') !== false) {
+                $key = shell_exec("/sbin/ifconfig p2p1 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+            } else if (strpos($ifconfig, 'p2p2') !== false) {
+                $key = shell_exec("/sbin/ifconfig p2p2 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+            } else {
+                $key = shell_exec("/sbin/ifconfig eth0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+            }
             $hwkey = sha1($key . $rdkey);
             cache::set('jeedom::hwkey', $hwkey, 86400);
             return $hwkey;
