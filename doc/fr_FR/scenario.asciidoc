@@ -94,7 +94,7 @@ Vous pouvez aussi utiliser les tags suivants :
 - median(commande1,commande2....commandeN) : renvoit la médiane de valeur
     * Ex : median(15,25,20) :  renverra 20
 - time(value) : permet d'addition #time# avec une durée
-    * Ex : median(#time# + 30) : s'il est 16h50 renverra : 1650 + 30 = 1720
+    * Ex : time(#time# + 30) : s'il est 16h50 renverra : 1650 + 30 = 1720
             
 ===== Action
 En plus des commandes domotiques vous avez accès aux fonctions suivantes : 
