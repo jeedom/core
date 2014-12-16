@@ -352,6 +352,8 @@ function displayPlan(_offsetX, _offsetY) {
             }
             if (isset(data.configuration) && isset(data.configuration.noReturnFullScreen) && data.configuration.noReturnFullScreen == 1) {
                 noReturnButtonFullScreen = true;
+            }else{
+                 noReturnButtonFullScreen = false;
             }
             if (getUrlVars('fullscreen') == 1) {
                 fullScreen(deviceInfo.type);
