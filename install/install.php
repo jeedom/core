@@ -94,9 +94,9 @@ try {
                     echo __('Nettoyage du dossier temporaire (tmp)', __FILE__);
                     exec('rm -rf ' . dirname(__FILE__) . '/../tmp/*.zip');
                     exec('rm -rf ' . dirname(__FILE__) . '/../tmp/backup');
-                    echo __('OK', __FILE__);
+                    echo __("OK\n", __FILE__);
                 } catch (Exception $e) {
-                    echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+                    echo __('***ERREUR*** ', __FILE__) . $e->getMessage() . "\n";
                 }
                 try {
                     $url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip';
