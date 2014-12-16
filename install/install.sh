@@ -236,6 +236,10 @@ configure_nginx()
     configure_php
     update-rc.d nginx defaults
 
+    croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+    cronjob="* * * * * $croncmd"
+    ( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
+
     # Prompt for ssl
     echo "${msg_ask_install_nginx_ssl}"
     while true
@@ -288,6 +292,11 @@ configure_apache()
         a2ensite 000-default.conf
     fi
     service apache2 restart
+
+    croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+    cronjob="* * * * * $croncmd"
+    ( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
+
     configure_php
 }
 
@@ -675,9 +684,6 @@ echo "********************************************************"
 echo "${msg_setup_cron}"
 echo "********************************************************"
 
-croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null"
-cronjob="* * * * * $croncmd"
-( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
 
 case ${webserver} in
 	nginx)
