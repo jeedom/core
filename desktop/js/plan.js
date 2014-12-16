@@ -15,6 +15,7 @@
  */
 var noBootstrapTooltips = true;
 var deviceInfo = getDeviceType();
+var noReturnButtonFullScreen = false;
 
 $("#md_addViewData").dialog({
     autoOpen: false,
@@ -265,20 +266,22 @@ function fullScreen(_version) {
     $('#div_mainContainer').css('margin-top', '-60px');
     $('#div_mainContainer').css('margin-left', '-15px');
     $('#wrap').css('margin-bottom', '0px');
-    $('#div_mainContainer').append('<a class="btn btn-default" style="position : fixed; top : 10px; right : 10px;" id="bt_returnFullScreen"><i class="fa fa-level-up fa-rotate-270"></i></a>');
-    $('#bt_returnFullScreen').on('click', function () {
-        if (_version == 'phone' || _version == 'tablet') {
-            window.location.href = "index.php?v=m&page=home";
-        } else {
-            $('header').show();
-            $('footer').show();
-            $('#div_planHeader').show();
-            $('#div_mainContainer').css('margin-top', '0px');
-            $('#div_mainContainer').css('margin-left', '0px');
-            $('#wrap').css('margin-bottom', '15px');
-            $('#bt_returnFullScreen').remove();
-        }
-    });
+    if (!noReturnButtonFullScreen) {
+        $('#div_mainContainer').append('<a class="btn btn-default" style="position : fixed; top : 10px; right : 10px;z-index:9999;" id="bt_returnFullScreen"><i class="fa fa-level-up fa-rotate-270"></i></a>');
+        $('#bt_returnFullScreen').on('click', function () {
+            if (_version == 'phone' || _version == 'tablet') {
+                window.location.href = "index.php?v=m&page=home";
+            } else {
+                $('header').show();
+                $('footer').show();
+                $('#div_planHeader').show();
+                $('#div_mainContainer').css('margin-top', '0px');
+                $('#div_mainContainer').css('margin-left', '0px');
+                $('#wrap').css('margin-bottom', '15px');
+                $('#bt_returnFullScreen').remove();
+            }
+        });
+    }
 }
 
 function initDraggable(_state) {
@@ -346,6 +349,9 @@ function displayPlan(_offsetX, _offsetY) {
                         $('meta[name="viewport"]').prop('content', 'width=' + $('#div_displayObject').width() + ',height=' + $('#div_displayObject').height());
                     }
                 }
+            }
+            if (isset(data.configuration) && isset(data.configuration.noReturnFullScreen) && data.configuration.noReturnFullScreen == 1) {
+                noReturnButtonFullScreen = true;
             }
             if (getUrlVars('fullscreen') == 1) {
                 fullScreen(deviceInfo.type);
@@ -549,7 +555,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
             html.css('background-color', 'transparent');
-            html.find('.cmd').each(function(){
+            html.find('.cmd').each(function () {
                 $(this).css('background-color', 'transparent');
             });
         }

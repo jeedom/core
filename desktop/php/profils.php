@@ -199,7 +199,7 @@ foreach (plugin::listPlugin() as $pluginList) {
                                 </select>
                             </div>
                         </div>
-                        <legend>{{Plan par defaut}}</legend>
+                        <legend>{{Design par defaut}}</legend>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{Desktop}}</label>
                             <div class="col-sm-2">

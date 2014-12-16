@@ -34,6 +34,12 @@ sendVarToJS('id', $planHeader->getId())
                 <input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
             </div>
         </div>
+        <div class="form-group expertModeVisible">
+            <label class="col-lg-4 control-label">{{Ne pas afficher la fleche de retour lors de la mise en pleine écran}}</label>
+            <div class="col-lg-4">
+                <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="noReturnFullScreen" /> 
+            </div>
+        </div>
         <legend>{{Tailles}}</legend>
         <div class="form-group expertModeVisible">
             <label class="col-lg-4 control-label">{{Responsive mode (Attention toute les valeurs de taille sont ignorées)}}</label>
