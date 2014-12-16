@@ -91,6 +91,16 @@ try {
             jeedom::stop();
             if (init('v') == '') {
                 try {
+                    echo __("Suppression du dossier temporaire (tmp)...", __FILE__);
+                    rrmdir(dirname(__FILE__) . '/../tmp');
+                    if (!file_exists(dirname(__FILE__) . '/../tmp')) {
+                        mkdir(dirname(__FILE__) . '/../tmp');
+                    }
+                    echo __('OK', __FILE__);
+                } catch (Exception $e) {
+                    echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+                }
+                try {
                     $url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip';
                     echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
                     echo __("Téléchargement en cours...", __FILE__);
