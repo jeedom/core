@@ -96,7 +96,7 @@ try {
                     'html' => ''
                 );
             } else if ($plan->getLink_type() == 'text') {
-                $html = '<div class="text-widget" data-text_id="' . $plan->getLink_id() . '" style="color:' . $plan->getCss('color', 'black') . ';font-size : 1.5em;">';
+                $html = '<div class="text-widget" data-text_id="' . $plan->getLink_id() . '" style="color:' . $plan->getCss('color', 'black') . ';">';
                 if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
                     $html .= $plan->getDisplay('icon') . ' ' . $plan->getDisplay('text');
                 } else {

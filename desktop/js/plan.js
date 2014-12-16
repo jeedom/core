@@ -731,8 +731,8 @@ function addText(_plan) {
     _plan = init(_plan, {});
     _plan.css = init(_plan.css, {});
     _plan.link_id = init(_plan.link_id, Math.round(Math.random() * 99999999) + 9999);
-    var html = '<span class="text-widget label label-default" data-text_id="' + _plan.link_id + '" style="color:' + init(_plan.css.color, 'white') + ';text-decoration:none;font-size : 1.5em;">';
+    var html = '<div class="text-widget" data-text_id="' + _plan.link_id + '">';
     html += _plan.display.text;
-    html += '</span>';
+    html += '</div>';
     displayObject('text', _plan.link_id, html, _plan);
 }
