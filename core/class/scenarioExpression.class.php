@@ -391,10 +391,19 @@ class scenarioExpression {
 
     public static function time($_value) {
         $_value = self::setTags($_value);
-        if (($_value % 100) > 59) {
-            $_value -= 40;
+        try {
+            $test = new evaluate();
+            $result = $test->Evaluer($_value);
+            if (is_string($result)) { //Alors la valeur n'est pas un calcul
+                $result = $_value;
+            }
+        } catch (Exception $e) {
+            $result = $_value;
         }
-        return $_value;
+        if (($result % 100) > 59) {
+            $result += 40;
+        }
+        return $result;
     }
 
     public static function setTags($_expression, &$_scenario = null) {
@@ -554,6 +563,7 @@ class scenarioExpression {
                     }
                     return;
                 } else if ($this->getExpression() == 'variable') {
+                    $options['value'] = self::setTags($options['value']);
                     try {
                         $test = new evaluate();
                         $result = $test->Evaluer($options['value']);
