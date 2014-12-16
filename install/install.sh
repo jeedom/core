@@ -569,8 +569,10 @@ if [ "${webserver}" = "apache" ] ; then
     service apache2 restart
 fi
 
-apt-get install -y ffmpeg libssh2-php ntp unzip miniupnpc \
+apt-get install -y libssh2-php ntp unzip miniupnpc \
                    mysql-client mysql-common mysql-server mysql-server-core-5.5
+apt-get install -y ffmpeg
+apt-get install -y avconv
 echo "${msg_passwd_mysql}"
 while true
 do
