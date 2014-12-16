@@ -91,6 +91,7 @@ try {
             jeedom::stop();
             if (init('v') == '') {
                 try {
+                    echo __('Nettoyage du dossier temporaire (tmp)', __FILE__);
                     exec('rm -rf ' . dirname(__FILE__) . '/../tmp/*.zip');
                     exec('rm -rf ' . dirname(__FILE__) . '/../tmp/backup');
                     echo __('OK', __FILE__);
