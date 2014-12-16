@@ -91,11 +91,8 @@ try {
             jeedom::stop();
             if (init('v') == '') {
                 try {
-                    echo __("Suppression du dossier temporaire (tmp)...", __FILE__);
-                    rrmdir(dirname(__FILE__) . '/../tmp');
-                    if (!file_exists(dirname(__FILE__) . '/../tmp')) {
-                        mkdir(dirname(__FILE__) . '/../tmp');
-                    }
+                    exec('rm -rf ' . dirname(__FILE__) . '/../tmp/*.zip');
+                    exec('rm -rf ' . dirname(__FILE__) . '/../tmp/backup');
                     echo __('OK', __FILE__);
                 } catch (Exception $e) {
                     echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
