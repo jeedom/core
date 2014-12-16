@@ -204,17 +204,16 @@ foreach (scenario::listGroup() as $group) {
             <div class="col-sm-3">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <div class="col-md-12">
+                        <div class="col-md-11">
                             <textarea class="form-control scenarioAttr" data-l1key="description" placeholder="Description"></textarea>
                         </div>
                     </div>
                     <div class="form-group expertModeVisible">
-                        <label class="col-xs-11 control-label">{{Lancer en avant-plan (à ne surtout pas utiliser si vous avez des "sleep" dans le scénario)}}</label>
+                        <label class="col-xs-6 control-label">{{Lancer en avant-plan}}</label>
                         <div class="col-xs-1">
-                            <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="launchInForeground">
+                            <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="launchInForeground" titme="{{A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario}}">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-xs-6 control-label" for="span_lastCheck">{{Dernier lancement}}</label>
                         <div class="col-xs-6">
