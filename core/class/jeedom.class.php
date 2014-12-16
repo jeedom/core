@@ -438,13 +438,15 @@ class jeedom {
         } catch (Exception $e) {
             log::add('scenario', 'error', $e->getMessage());
         }
-        try {
-            $c = new Cron\CronExpression(config::byKey('jeeNetwork::pull'), new Cron\FieldFactory);
-            if ($c->isDue()) {
-                jeeNetwork::pull();
+        if (config::byKey('jeeNetwork::mode') != 'slave') {
+            try {
+                $c = new Cron\CronExpression(config::byKey('jeeNetwork::pull'), new Cron\FieldFactory);
+                if ($c->isDue()) {
+                    jeeNetwork::pull();
+                }
+            } catch (Exception $e) {
+                log::add('jeeNetwork', 'error', '[' . config::byKey('jeeNetwork::pull') . ']' . $e->getMessage());
             }
-        } catch (Exception $e) {
-            log::add('jeeNetwork', 'error', '[' . config::byKey('jeeNetwork::pull') . ']' . $e->getMessage());
         }
         if (config::byKey('market::allowDNS') == 1 && config::byKey('jeeNetwork::mode') == 'master' && config::byKey('jeedom::licence') >= 5) {
             try {
