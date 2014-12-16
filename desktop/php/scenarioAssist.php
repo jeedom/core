@@ -119,10 +119,6 @@ foreach (scenario::listGroup() as $group) {
             <a class="btn btn-danger btn-xs pull-right expertModeVisible" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
         </legend>
 
-
-
-
-
         <div class="row well" style="margin: 0px;margin-bottom: 15px;">
             <legend>1) Informations générales</legend>
             <div class="col-sm-6">
@@ -176,7 +172,7 @@ foreach (scenario::listGroup() as $group) {
             </div>
             <div class="col-sm-1"></div>
             <div class="col-sm-2">
-                <center><i class="fa fa-arrow-right fa-5x"></i></center>
+                <center><i class="fa fa-arrow-right fa-5x" style="color : #454449"></i></center>
             </div>
             <div class="col-sm-1"></div>
             <div class="col-sm-2">
