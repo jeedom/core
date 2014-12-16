@@ -23,6 +23,12 @@ include::plan.asciidoc[]
 include::view.asciidoc[]
 
 '''
+[[scenario]]
+=== Scénario
+include::scenario.asciidoc[]
+
+
+'''
 [[history]]
 === Historique
 include::history.asciidoc[]
@@ -77,11 +83,6 @@ include::plugin.asciidoc[]
 [[rights]]
 ==== Droits avancés
 include::rights.asciidoc[]
-
-'''
-[[scenario]]
-==== Scénario
-include::scenario.asciidoc[]
 
 '''
 [[security]]
