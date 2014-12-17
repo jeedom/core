@@ -41,6 +41,12 @@ include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
                             <input type="text" class="configKey form-control" data-l1key="backup::keepDays" />
                         </div>
                     </div>
+                      <div class="form-group expertModeVisible">
+                        <label class="col-sm-4 col-xs-6 control-label">{{Taille total maximum des backups}}</label>
+                        <div class="col-sm-4 col-xs-6">
+                            <input type="text" class="configKey form-control" data-l1key="backup::maxSize" />
+                        </div>
+                    </div>
                     <?php if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) { ?>
                         <div class="form-group">
                             <label class="col-sm-4 col-xs-6 control-label">{{Envoyer les sauvegardes dans le cloud}}</label>
