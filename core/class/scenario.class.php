@@ -743,17 +743,14 @@ class scenario {
                     } catch (Exception $exc) {
                         
                     }
-                    $lastCheck = new DateTime($this->getLastLaunch());
                     try {
                         $prev = $c->getPreviousRunDate();
                     } catch (Exception $exc) {
                         $prev = new DateTime('2000-01-01 01:00:00');
                     }
                     $diff = round(abs((strtotime('now') - strtotime($prev)) / 60));
+                    $lastCheck = new DateTime($this->getLastLaunch());
                     if ($lastCheck <= $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
-                        if ($diff > 3) {
-                            log::add('scenario', 'error', __('Retard exécution prévue à ', __FILE__) . $prev->format('Y-m-d H:i:s') . __(' dernière exécution à ', __FILE__) . $lastCheck->format('Y-m-d H:i:s') . __('. Retard de : ', __FILE__) . $diff . ' min : ' . $this->getName() . __('. Rattrapage en cours...', __FILE__));
-                        }
                         return true;
                     }
                 } catch (Exception $exc) {
