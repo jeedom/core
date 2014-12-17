@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 13 Décembre 2014 à 12:07
+-- Généré le: Mer 17 Décembre 2014 à 22:19
 -- Version du serveur: 5.6.19-0ubuntu0.14.04.1-log
 -- Version de PHP: 5.5.9-1ubuntu4.5
 
@@ -456,6 +456,7 @@ CREATE TABLE IF NOT EXISTS `scenario` (
   `display` text,
   `description` text,
   `configuration` text,
+  `type` varchar(127) DEFAULT 'expert',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`group`,`object_id`,`name`),
   KEY `group` (`group`),
