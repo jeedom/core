@@ -121,7 +121,7 @@ class eqLogic {
             $values['logicalId'] = $_logicalId;
             $sql .= ' AND logicalId=:logicalId';
         }
-        $sql .= ' ORDER BY `order` DESC,category';
+        $sql .= ' ORDER BY `order`,category';
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
 
