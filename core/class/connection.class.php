@@ -75,7 +75,11 @@ class connection {
             $connection->setStatus('Ban');
             log::add('connection', 'error', __('Attention tentative d\'intrusion detectée venant de l\'IP : ', __FILE__) . $connection->getIp());
         }
-        $connection->save();
+        try {
+            $connection->save();
+        } catch (Exception $e) {
+            
+        }
     }
 
     public static function protectedIp($_ip) {
@@ -97,7 +101,11 @@ class connection {
         $connection->setFailure(0);
         $connection->setUsername($_username);
         $connection->setStatus('Ok');
-        $connection->save();
+        try {
+            $connection->save();
+        } catch (Exception $e) {
+            
+        }
     }
 
     public static function cron() {
@@ -118,14 +126,20 @@ class connection {
         }
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function isProtect() {
         return self::protectedIp($this->getIp());
     }
 
-    public function presave() {
+    public function preSave() {
         $this->setDatetime(date('Y-m-d H:i:s'));
+        if ($this->getId() == '') {
+            $connection = connection::byIp($this->getIp());
+            if (is_object($connection)) {
+                $this->setId($connection->getId());
+            }
+        }
         if ($this->getLocalisation() == '') {
             try {
                 $http = new com_http('http://ipinfo.io/' . $this->getIp());
@@ -202,7 +216,7 @@ class connection {
 
     public function setStatus($status) {
         if ($status == 'Ban' && $this->isProtect()) {
-            throw new Exception(__('Vous ne pouvez bannir cette IP car elle est en liste blanche', __FILE__));
+            throw new Exception(__('Vous ne pouvez pas bannir cette IP car elle est en liste blanche', __FILE__));
         }
         $this->status = $status;
     }

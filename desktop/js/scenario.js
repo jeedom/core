@@ -44,6 +44,7 @@ autoCompleteCondition = [
     {val: 'lastScenarioExecution(scenario)'},
     {val: 'stateDuration(commande)'},
     {val: 'median(commande1,commande2)'},
+    {val: 'time(value)'},
 ];
 autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'icon'];
 
@@ -51,16 +52,43 @@ if (getUrlVars('saveSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }
 
+$("#div_listScenario").resizable({
+    handles: "all",
+    grid: [1, 10000],
+    stop: function () {
+        $('.scenarioListContainer').packery();
+    }
+});
+
+$('.scenarioListContainer').packery();
+
+$('#bt_scenarioThumbnailDisplay').on('click', function () {
+    $('#div_editScenario').hide();
+    $('#scenarioThumbnailDisplay').show();
+    $('.li_scenario').removeClass('active');
+});
+
+$('.scenarioDisplayCard').on('click', function () {
+    $('#div_tree').jstree('deselect_all');
+    $('#div_tree').jstree('select_node', 'scenario' + $(this).attr('data-scenario_id'));
+});
+
 $('#div_tree').on('select_node.jstree', function (node, selected) {
     if (selected.node.a_attr.class == 'li_scenario') {
         $.hideAlert();
         $(".li_scenario").removeClass('active');
         $(this).addClass('active');
+        $('#scenarioThumbnailDisplay').hide();
         printScenario(selected.node.a_attr['data-scenario_id']);
     }
 });
 
-$('#div_tree').jstree();
+$("#div_tree").jstree({
+    "plugins": ["search"]
+});
+$('#in_treeSearch').keyup(function () {
+    $('#div_tree').jstree(true).search($('#in_treeSearch').val());
+});
 
 $('.scenarioAttr[data-l1key=group]').autocomplete({
     source: function (request, response, url) {
@@ -88,10 +116,6 @@ $('.scenarioAttr[data-l1key=group]').autocomplete({
     minLength: 1,
 });
 
-$(".li_scenario").on('click', function (event) {
-
-});
-
 $("#bt_changeAllScenarioState").on('click', function () {
     var el = $(this);
     jeedom.config.save({
@@ -113,36 +137,67 @@ $("#bt_changeAllScenarioState").on('click', function () {
     });
 });
 
-$('#sel_group').change(function () {
-    window.location.href = 'index.php?v=d&p=scenario&group=' + $(this).value();
-});
-
 $('#md_addScenario').modal('hide');
 
 $("#bt_addScenario").on('click', function (event) {
-    bootbox.prompt("Nom du scénario ?", function (result) {
-        if (result !== null) {
-            $.hideAlert();
-            jeedom.scenario.save({
-                scenario: {name: result},
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                },
-                success: function (data) {
-                    var vars = getUrlVars();
-                    var url = 'index.php?';
-                    for (var i in vars) {
-                        if (i != 'id' && i != 'saveSuccessFull' && i != 'removeSuccessFull') {
-                            url += i + '=' + vars[i].replace('#', '') + '&';
-                        }
-                    }
-                    url += 'id=' + data.id + '&saveSuccessFull=1';
-                    modifyWithoutSave = false;
-                    window.location.href = url;
+    bootbox.dialog({
+        title: "Ajout d'un nouveau scénario",
+        message: '<div class="row">  ' +
+                '<div class="col-md-12"> ' +
+                '<form class="form-horizontal" onsubmit="return false;"> ' +
+                '<div class="form-group"> ' +
+                '<label class="col-md-4 control-label">{{Nom}}</label> ' +
+                '<div class="col-md-4"> ' +
+                '<input id="in_scenarioAddName" type="text" placeholder="{{Nom de votre scénario}}" class="form-control input-md"> ' +
+                '</div> ' +
+                '</div> ' +
+                '<div class="form-group"> ' +
+                '<label class="col-md-4 control-label">{{Type}}</label> ' +
+                '<div class="col-md-4"> <div class="radio"> <label> ' +
+                '<input name="cbScenarioType" class="cb_scenarioType" type="radio" value="simple" checked="checked"> ' +
+                '{{Simple}}</label> ' +
+                '</div><div class="radio"> <label> ' +
+                '<input  name="cbScenarioType" class="cb_scenarioType" type="radio" value="expert"> {{Avancée}}</label> ' +
+                '</div> ' +
+                '</div> </div>' +
+                '</form> </div>  </div>',
+        buttons: {
+            "Annuler": {
+                className: "btn-default",
+                callback: function () {
                 }
-            });
+            },
+            success: {
+                label: "D'accord",
+                className: "btn-primary",
+                callback: function () {
+                    jeedom.scenario.save({
+                        scenario: {name: $('#in_scenarioAddName').val(), type: $("input[name=cbScenarioType]:checked").val()},
+                        error: function (error) {
+                            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                        },
+                        success: function (data) {
+                            var vars = getUrlVars();
+                            var url = 'index.php?';
+                            for (var i in vars) {
+                                if (i != 'id' && i != 'saveSuccessFull' && i != 'removeSuccessFull') {
+                                    url += i + '=' + vars[i].replace('#', '') + '&';
+                                }
+                            }
+                            url += 'id=' + data.id + '&saveSuccessFull=1';
+                            modifyWithoutSave = false;
+                            window.location.href = url;
+                        }
+                    });
+                }
+            },
         }
     });
+});
+
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    saveScenario();
 });
 
 $("#bt_saveScenario").on('click', function (event) {
@@ -418,9 +473,6 @@ $('body').delegate('.subElementAttr', 'change', function () {
 if (is_numeric(getUrlVars('id'))) {
     $('#div_tree').jstree('deselect_all');
     $('#div_tree').jstree('select_node', 'scenario' + getUrlVars('id'));
-} else {
-    $('#div_tree').jstree('deselect_all');
-    $('#div_tree').jstree('select_node', $('.li_scenario:first').attr('id'));
 }
 
 function updateSortable() {
@@ -477,13 +529,12 @@ function printScenario(_id) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
+            if (data.type == 'simple') {
+                $('#bt_switchToExpertMode').attr('href', 'index.php?v=d&p=scenarioAssist&id=' + _id)
+            }
             pColor = 0;
             $('.scenarioAttr').value('');
-            $('#table_scenarioCondition tbody').empty();
-            $('#table_scenarioAction tbody').empty();
-            $('#table_trigger tbody').empty();
             $('body').setValues(data, '.scenarioAttr');
-            $('#span_type').text(data.type);
             data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
             $('#span_lastLaunch').text(data.lastLaunch);
 
@@ -561,8 +612,8 @@ function printScenario(_id) {
 
 function saveScenario() {
     $.hideAlert();
-    var scenario = $('body').getValues('.scenarioAttr');
-    scenario = scenario[0];
+    var scenario = $('body').getValues('.scenarioAttr')[0];
+    scenario.type = "expert";
     var elements = [];
     $('#div_scenarioElement').children('.element').each(function () {
         elements.push(getElement($(this)));
@@ -594,14 +645,14 @@ function saveScenario() {
 
 function addTrigger(_trigger) {
     var div = '<div class="form-group trigger">';
-    div += '<label class="col-sm-3 control-label">{{Evènement}}</label>';
-    div += '<div class="col-sm-7">';
+    div += '<label class="col-xs-3 control-label">{{Evènement}}</label>';
+    div += '<div class="col-xs-7">';
     div += '<input class="scenarioAttr input-sm form-control" data-l1key="trigger" value="' + _trigger + '">';
     div += '</div>';
-    div += '<div class="col-sm-1">';
+    div += '<div class="col-xs-1">';
     div += '<a class="btn btn-default btn-xs cursor bt_selectTrigger"><i class="fa fa-list-alt"></i></a>';
     div += '</div>';
-    div += '<div class="col-sm-1">';
+    div += '<div class="col-xs-1">';
     div += '<i class="fa fa-minus-circle bt_removeTrigger cursor"></i>';
     div += '</div>';
     div += '</div>';
@@ -610,14 +661,14 @@ function addTrigger(_trigger) {
 
 function addSchedule(_schedule) {
     var div = '<div class="form-group schedule">';
-    div += '<label class="col-sm-3 control-label">{{Programmation}}</label>';
-    div += '<div class="col-sm-7">';
+    div += '<label class="col-xs-3 control-label">{{Programmation}}</label>';
+    div += '<div class="col-xs-7">';
     div += '<input class="scenarioAttr input-sm form-control" data-l1key="schedule" value="' + _schedule + '">';
     div += '</div>';
-    div += '<div class="col-sm-1">';
+    div += '<div class="col-xs-1">';
     div += '<i class="fa fa-question-circle cursor bt_pageHelp floatright" data-name="cronSyntaxe"></i>';
     div += '</div>';
-    div += '<div class="col-sm-1">';
+    div += '<div class="col-xs-1">';
     div += '<i class="fa fa-minus-circle bt_removeSchedule cursor"></i>';
     div += '</div>';
     div += '</div>';
@@ -637,16 +688,16 @@ function addExpression(_expression) {
             if (isset(_expression.expression)) {
                 _expression.expression = _expression.expression.replace(/"/g, '&quot;');
             }
-            retour += '<div class="col-sm-11" style="position : relative; top : 5px;">';
+            retour += '<div class="col-xs-11" style="position : relative; top : 5px;">';
             retour += '<textarea class="expressionAttr form-control input-sm" data-l1key="expression" style="resize: vertical;height : 27px;" rows="1">' + init(_expression.expression) + '</textarea>';
             retour += '</div>';
-            retour += '<div class="col-sm-1">';
+            retour += '<div class="col-xs-1">';
             retour += ' <a class="btn btn-default btn-xs cursor bt_selectCmdExpression" style="position : relative; top : 3px;" title="Rechercher une commande"><i class="fa fa-list-alt"></i></a>';
             retour += ' <a class="btn btn-default btn-xs cursor bt_selectScenarioExpression" style="position : relative; top : 3px;" title="Rechercher un scenario"><i class="fa fa-history"></i></a>';
             retour += '</div>';
             break;
         case 'element' :
-            retour += '<div class="col-sm-12">';
+            retour += '<div class="col-xs-12">';
             if (isset(_expression.element) && isset(_expression.element.html)) {
                 retour += _expression.element.html;
             } else {
@@ -659,30 +710,30 @@ function addExpression(_expression) {
             retour += '</div>';
             break;
         case 'action' :
-            retour += '<div class="col-sm-1">';
+            retour += '<div class="col-xs-1">';
             retour += '<i class="fa fa-arrows-v pull-left cursor bt_sortable" style="margin-top : 9px;"></i>';
             retour += '<i class="fa fa-minus-circle pull-left cursor bt_removeExpression" style="margin-top : 9px;"></i>';
             retour += ' <a class="btn btn-default btn-xs cursor bt_selectCmdExpression pull-right"><i class="fa fa-list-alt"></i></a>';
             retour += '</div>';
-            retour += '<div class="col-sm-3">';
+            retour += '<div class="col-xs-3">';
             retour += '<input class="expressionAttr form-control input-sm" data-l1key="expression" value="' + init(_expression.expression) + '" style="font-weight:bold;"/>';
             retour += '</div>';
-            retour += '<div class="col-sm-8 expressionOptions">';
+            retour += '<div class="col-xs-8 expressionOptions">';
             retour += jeedom.cmd.displayActionOption(init(_expression.expression), init(_expression.options));
             retour += '</div>';
             break;
         case 'code' :
-            retour += '<div class="col-sm-1">';
+            retour += '<div class="col-xs-1">';
             retour += '<i class="fa fa-bars pull-left cursor bt_sortable" style="margin-top : 9px;"></i>';
             retour += '</div>';
-            retour += '<div class="col-sm-11">';
+            retour += '<div class="col-xs-11">';
             retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
             retour += '</div>';
             break;
         case 'comment' :
-            retour += '<div class="col-sm-1">';
+            retour += '<div class="col-xs-1">';
             retour += '</div>';
-            retour += '<div class="col-sm-11">';
+            retour += '<div class="col-xs-11">';
             retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
             retour += '</div>';
             break;

@@ -15,12 +15,20 @@
  */
 var noBootstrapTooltips = true;
 var deviceInfo = getDeviceType();
+var noReturnButtonFullScreen = false;
 
 $("#md_addViewData").dialog({
     autoOpen: false,
     modal: true,
     height: (jQuery(window).height() - 150),
     width: (jQuery(window).width() - 450)
+});
+
+$('body').delegate('.eqLogic-widget .history', 'click', function () {
+    if ($('#bt_editPlan').attr('data-mode') != "1") {
+        $('#md_modal').dialog({title: "{{Historique}}"});
+        $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+    }
 });
 
 /*****************************PLAN HEADER***********************************/
@@ -58,7 +66,19 @@ $('#bt_duplicatePlanHeader').on('click', function () {
 });
 
 $('#sel_planHeader').on('change', function () {
-    window.location.replace('index.php?v=d&p=plan&plan_id=' + $(this).value());
+    if (planHeader_id != $(this).attr('data-link_id')) {
+        planHeader_id = $(this).value();
+        displayPlan();
+    }
+});
+
+$('body').delegate('.plan-link-widget', 'click', function () {
+    if ($('#bt_editPlan').attr('data-mode') != "1") {
+        if (planHeader_id != $(this).attr('data-link_id')) {
+            planHeader_id = $(this).attr('data-link_id');
+            displayPlan($(this).attr('data-offsetX'), $(this).attr('data-offsetX'));
+        }
+    }
 });
 
 /*****************************PLAN***********************************/
@@ -89,6 +109,11 @@ $('#bt_addTexte').on('click', function () {
 });
 
 displayPlan();
+
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    savePlan();
+});
 
 $('#bt_savePlan').on('click', function () {
     savePlan();
@@ -241,40 +266,26 @@ function fullScreen(_version) {
     $('#div_mainContainer').css('margin-top', '-60px');
     $('#div_mainContainer').css('margin-left', '-15px');
     $('#wrap').css('margin-bottom', '0px');
-    $('#div_mainContainer').append('<a class="btn btn-default" style="position : fixed; top : 10px; right : 10px;" id="bt_returnFullScreen"><i class="fa fa-level-up fa-rotate-270"></i></a>');
-    $('#bt_returnFullScreen').on('click', function () {
-        if (_version == 'phone' || _version == 'tablet') {
-            window.location.href = "index.php?v=m&page=home";
-        } else {
-            $('header').show();
-            $('footer').show();
-            $('#div_planHeader').show();
-            $('#div_mainContainer').css('margin-top', '0px');
-            $('#div_mainContainer').css('margin-left', '0px');
-            $('#wrap').css('margin-bottom', '15px');
-            $('#bt_returnFullScreen').remove();
-        }
-    });
+    if (!noReturnButtonFullScreen) {
+        $('#div_mainContainer').append('<a class="btn btn-default" style="position : fixed; top : 10px; right : 10px;z-index:9999;" id="bt_returnFullScreen"><i class="fa fa-level-up fa-rotate-270"></i></a>');
+        $('#bt_returnFullScreen').on('click', function () {
+            if (_version == 'phone' || _version == 'tablet') {
+                window.location.href = "index.php?v=m&page=home";
+            } else {
+                $('header').show();
+                $('footer').show();
+                $('#div_planHeader').show();
+                $('#div_mainContainer').css('margin-top', '0px');
+                $('#div_mainContainer').css('margin-left', '0px');
+                $('#wrap').css('margin-bottom', '15px');
+                $('#bt_returnFullScreen').remove();
+            }
+        });
+    }
 }
 
 function initDraggable(_state) {
-    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').draggable({
-        drag: function (evt, ui) {
-            if ((ui.position.left + $(this).width()) >= $('#div_displayObject').width()) {
-                ui.position.left = $('#div_displayObject').width() - $(this).width();
-            }
-            if ((ui.position.top + $(this).height()) >= $('#div_displayObject').height()) {
-                ui.position.top = $('#div_displayObject').height() - $(this).height();
-            }
-            if (ui.position.top < 0) {
-                ui.position.top = 0;
-            }
-            if (ui.position.left < 0) {
-                ui.position.left = 0;
-            }
-
-        },
-    });
+    $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').draggable();
 
     $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable();
 
@@ -293,27 +304,56 @@ function initDraggable(_state) {
     }
 }
 
-function displayPlan() {
+function displayPlan(_offsetX, _offsetY) {
+    var url = "index.php?v=d&p=plan&plan_id=" + planHeader_id;
+    if (getUrlVars('fullscreen') == 1) {
+        url += '&fullscreen=1';
+    }
+    history.replaceState(null, "Jeedom", url);
     jeedom.plan.getHeader({
         id: planHeader_id,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-            if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
-                $('#div_displayObject').height(data.configuration.desktopSizeY);
-                $('#div_displayObject').width(data.configuration.desktopSizeX);
-                $('#div_displayObject img').height(data.configuration.desktopSizeY);
-                $('#div_displayObject img').width(data.configuration.desktopSizeX);
-            } else {
-                $('#div_displayObject').width($('#div_displayObject img').attr('data-sixe_x'));
-                $('#div_displayObject').height($('#div_displayObject img').attr('data-sixe_y'));
-                $('#div_displayObject img').css('height', $('#div_displayObject img').attr('data-sixe_y') + 'px');
-                $('#div_displayObject img').css('width', $('#div_displayObject img').attr('data-sixe_x') + 'px');
+            $('#div_displayObject').empty();
+            $('#div_displayObject').height('auto');
+            $('#div_displayObject').width('auto');
+            if (isset(data.image)) {
+                $('#div_displayObject').append(data.image);
             }
-            if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
-                fullScreen(deviceInfo.type);
-                $('meta[name="viewport"]').prop('content', 'width=' + $('#div_displayObject').width() + ',height=' + $('#div_displayObject').height());
+            if (!isset(data.configuration) || !isset(data.configuration.responsiveMode) || data.configuration.responsiveMode != 1) {
+                var proportion = 1;
+                if (deviceInfo.type == 'tablet' && isset(data.configuration) && isset(data.configuration.tabletteProportion) && data.configuration.tabletteProportion != 1) {
+                    proportion = data.configuration.tabletteProportion;
+                }
+                if (deviceInfo.type == 'phone' && isset(data.configuration) && isset(data.configuration.mobileProportion) && data.configuration.mobileProportion != 1) {
+                    proportion = data.configuration.mobileProportion;
+                }
+                if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
+                    $('#div_displayObject').height(data.configuration.desktopSizeY * proportion);
+                    $('#div_displayObject').width(data.configuration.desktopSizeX * proportion);
+                    $('#div_displayObject img').height(data.configuration.desktopSizeY * proportion);
+                    $('#div_displayObject img').width(data.configuration.desktopSizeX * proportion);
+                } else {
+                    $('#div_displayObject').width($('#div_displayObject img').attr('data-sixe_x') * proportion);
+                    $('#div_displayObject').height($('#div_displayObject img').attr('data-sixe_y') * proportion);
+                    $('#div_displayObject img').css('height', ($('#div_displayObject img').attr('data-sixe_y') * proportion) + 'px');
+                    $('#div_displayObject img').css('width', ($('#div_displayObject img').attr('data-sixe_x') * proportion) + 'px');
+                }
+                if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
+                    fullScreen(deviceInfo.type);
+                    if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '' && isNaN(data.configuration.desktopSizeX) && isNaN(data.configuration.desktopSizeY)) {
+
+                    } else {
+                        $('meta[name="viewport"]').prop('content', 'width=' + $('#div_displayObject').width() + ',height=' + $('#div_displayObject').height());
+                    }
+                }
+            }
+            if (isset(data.configuration) && isset(data.configuration.noReturnFullScreen) && data.configuration.noReturnFullScreen == 1) {
+                noReturnButtonFullScreen = true;
+            }else{
+                 noReturnButtonFullScreen = false;
             }
             if (getUrlVars('fullscreen') == 1) {
                 fullScreen(deviceInfo.type);
@@ -336,6 +376,10 @@ function displayPlan() {
                         }
                         $('#div_displayObject').append(objects);
                         initDraggable($('#bt_editPlan').attr('data-mode'));
+                        if (!isNaN(_offsetX) && _offsetX != 0 && !isNaN(_offsetY) && _offsetY != 0) {
+                            $('body').scrollTop(_offsetX);
+                            $('body').scrollLeft(_offsetY);
+                        }
                     },
                 });
             }
@@ -434,8 +478,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'text';
             plan.link_id = $(this).attr('data-text_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).height() + 10 + (2 * borderSize);
-            plan.display.width = $(this).width() + 25 + (2 * borderSize);
+            plan.display.height = $(this).height() + (2 * borderSize);
+            plan.display.width = $(this).width() + (2 * borderSize);
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;
@@ -491,8 +535,10 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
         $('#div_displayObject').append(html);
     }
 
+    html.css('z-index', 1000);
+
     for (var key in _plan.css) {
-        if (_plan.css[key] != '' && key != 'zoom' && key != 'color') {
+        if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate') {
             if (key == 'background-color') {
                 if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
                     html.css(key, _plan.css[key]);
@@ -511,15 +557,13 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
             html.css('background-color', 'transparent');
+            html.find('.cmd').each(function () {
+                $(this).css('background-color', 'transparent');
+            });
         }
     }
+
     html.css('position', 'absolute');
-    html.css('transform-origin', '0 0');
-    html.css('transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
-    html.css('-webkit-transform-origin', '0 0');
-    html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
-    html.css('-moz-transform-origin', '0 0');
-    html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
     var position = {
         top: init(_plan.position.top, '10') * parent.height / 100,
         left: init(_plan.position.left, '10') * parent.width / 100,
@@ -527,12 +571,29 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
 
     html.css('top', position.top);
     html.css('left', position.left);
-    html.addClass('noResize');
-    if (isset(_plan.display) && isset(_plan.display.width)) {
-        html.css('width', init(_plan.display.width, 10));
+
+
+    var rotate = '';
+    if (isset(_plan.css) && isset(_plan.css.rotate) && _plan.css.rotate != 0) {
+        //    rotate = ' rotate(' + _plan.css.rotate + 'deg)';
     }
-    if (isset(_plan.display) && isset(_plan.display.height)) {
-        html.css('height', init(_plan.display.height, 10));
+
+
+    html.css('transform-origin', '0 0');
+    html.css('transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
+    html.css('-webkit-transform-origin', '0 0');
+    html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
+    html.css('-moz-transform-origin', '0 0');
+    html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
+
+    html.addClass('noResize');
+    if (!isset(_plan.display) || !isset(_plan.display.noPredefineSize) || _plan.display.noPredefineSize == 0) {
+        if (isset(_plan.display) && isset(_plan.display.width)) {
+            html.css('width', init(_plan.display.width, 10));
+        }
+        if (isset(_plan.display) && isset(_plan.display.height)) {
+            html.css('height', init(_plan.display.height, 10));
+        }
     }
     if (_type == 'eqLogic') {
         if (isset(_plan.display) && isset(_plan.display.cmd)) {
@@ -650,7 +711,6 @@ function addLink(_link, _plan) {
     var link = '';
     var label = '';
     if (_link.type == 'plan') {
-        link = 'index.php?v=d&p=plan&plan_id=' + _link.id;
         label = 'label-success';
     }
     if (_link.type == 'view') {
@@ -671,8 +731,8 @@ function addText(_plan) {
     _plan = init(_plan, {});
     _plan.css = init(_plan.css, {});
     _plan.link_id = init(_plan.link_id, Math.round(Math.random() * 99999999) + 9999);
-    var html = '<span class="text-widget label label-default" data-text_id="' + _plan.link_id + '" style="color:' + init(_plan.css.color, 'white') + ';text-decoration:none;font-size : 1.5em;">';
+    var html = '<div class="text-widget" data-text_id="' + _plan.link_id + '">';
     html += _plan.display.text;
-    html += '</span>';
+    html += '</div>';
     displayObject('text', _plan.link_id, html, _plan);
 }

@@ -2,8 +2,6 @@
 if (!isConnect('admin')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
-include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
-include_file('3rdparty', 'jquery.masonry/jquery.masonry', 'js');
 
 $status = init('status', null);
 $type = init('type', null);
@@ -71,8 +69,12 @@ function buildUrl($_key, $_value) {
         </div>
         <div class="form-group">
             <select class="form-control" id="sel_categorie" data-href='<?php echo buildUrl('categorie', ''); ?>'>
-                <option value="">Toutes les categories</option>
+                <?php if (init('type', 'plugin') == 'zwave') { ?>
+                    <option value="">Toutes les marques</option>
+                <?php } else { ?>
+                    <option value="">Toutes les categories</option>
                 <?php
+                }
                 foreach (market::distinctCategorie($type) as $category) {
                     if (trim($category) != '') {
                         echo '<option value="' . $category . '"';
@@ -116,6 +118,13 @@ function buildUrl($_key, $_value) {
             $install = 'install';
         }
         echo '<div class="market cursor ' . $install . '" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+        if ($market->getType() == 'widget') {
+            if (strpos($market->getName(), 'mobile.') !== false) {
+                echo '<i class="fa fa-mobile pull-left" style="color:#c5c5c5"></i>';
+            } else {
+                echo '<i class="fa fa-desktop pull-left" style="color:#c5c5c5"></i>';
+            }
+        }
         if (is_object($update)) {
             echo '<i class="fa fa-check" style="position : absolute; right : 5px;"></i>';
         }
@@ -166,7 +175,7 @@ function buildUrl($_key, $_value) {
 
 <script>
     $(function () {
-        $('.pluginContainer').masonry({columnWidth: 10});
+        $('.pluginContainer').packery();
 
         $("img.lazy").lazyload({
             event: "sporty"
@@ -217,7 +226,7 @@ function buildUrl($_key, $_value) {
                 });
                 if (hasVisible) {
                     $('legend[data-category=' + $(this).attr('data-category') + ']').show();
-                    $(this).masonry({columnWidth: 10});
+                    $(this).packery();
                 } else {
                     $(this).hide();
                     $('legend[data-category=' + $(this).attr('data-category') + ']').hide();

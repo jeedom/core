@@ -27,7 +27,7 @@ try {
     if (init('action') == 'toHtml') {
         $cmd = cmd::byId(init('id'));
         if (!is_object($cmd)) {
-            throw new Exception(__('Cmd inconnu verifié l\'id', __FILE__));
+            throw new Exception(__('Cmd inconnu - Vérifiez l\'id', __FILE__));
         }
         $info_cmd = array();
         $info_cmd['id'] = $cmd->getId();
@@ -42,7 +42,7 @@ try {
         }
         $eqLogic = $cmd->getEqLogic();
         if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
-            throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));
+            throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
         }
         ajax::success($cmd->execCmd(init('value', null), init('cache', 1)));
     }
@@ -67,6 +67,15 @@ try {
         $cmd = cmd::byId(init('id'));
         if (!is_object($cmd)) {
             throw new Exception(__('Cmd inconnu : ', __FILE__) . init('id'), 9999);
+        }
+        ajax::success(utils::o2a($cmd));
+    }
+
+    if (init('action') == 'byHumanName') {
+        $cmd_id = cmd::humanReadableToCmd(init('humanName'));
+        $cmd = cmd::byId(str_replace('#', '', $cmd_id));
+        if (!is_object($cmd)) {
+            throw new Exception(__('Cmd inconnu : ', __FILE__) . init('humanName'), 9999);
         }
         ajax::success(utils::o2a($cmd));
     }
@@ -272,7 +281,7 @@ try {
     }
 
 
-    throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+    throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
     /*     * *********Catch exeption*************** */
 } catch (Exception $e) {
     ajax::error(displayExeption($e), $e->getCode());

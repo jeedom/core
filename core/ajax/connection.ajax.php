@@ -27,7 +27,7 @@ try {
     if (init('action') == 'remove') {
         $connection = connection::byId(init('id'));
         if (!is_object($connection)) {
-            throw new Exception(__('Connexion inconnu verifié l\'id', __FILE__));
+            throw new Exception(__('Connexion inconnue. Vérifiez l\'id', __FILE__));
         }
         $connection->remove();
         ajax::success();
@@ -36,14 +36,14 @@ try {
     if (init('action') == 'ban') {
         $connection = connection::byId(init('id'));
         if (!is_object($connection)) {
-            throw new Exception(__('Connexion inconnu verifié l\'id', __FILE__));
+            throw new Exception(__('Connexion inconnue. Vérifiez l\'id', __FILE__));
         }
         $connection->setStatus('Ban');
         $connection->save();
         ajax::success();
     }
 
-    throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+    throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
     /*     * *********Catch exeption*************** */
 } catch (Exception $e) {
     ajax::error(displayExeption($e), $e->getCode());

@@ -1,0 +1,667 @@
+Language: فارسی
+Language-Code: fa_IR
+Build-Date: Tue, 18 Jan 2011 15:08:53 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "فایل مورد نظر یا خالی می باشد یا اینکه مجوز خواندن را ندارد"
+
+msgid: "Error performing operation"
+msgstr: "عملیات نمایش خطا"
+
+msgid: "All"
+msgstr: "همه"
+
+msgid: "None"
+msgstr: "هیچ‌کدام"
+
+msgid: "With selected"
+msgstr: "با انتخاب شده‌ها"
+
+msgid: "Empty"
+msgstr: "خالی"
+
+msgid: "Drop"
+msgstr: "حذف"
+
+msgid: "Optimize"
+msgstr: "بهینه‌سازی"
+
+msgid: "Table"
+msgstr: "جدول"
+
+msgid: "Rows"
+msgstr: "سطرها"
+
+msgid: "Size"
+msgstr: "اندازه"
+
+msgid: "Overhead"
+msgstr: "سربار"
+
+msgid: "Options"
+msgstr: "گزینه‌ها"
+
+msgid: "Edit database"
+msgstr: "ویرایش پایگاه داده"
+
+msgid: "Charset"
+msgstr: "ساختار کاراکتر"
+
+msgid: "Submit"
+msgstr: "ثبت"
+
+msgid: "Create a new table"
+msgstr: "ساخت یک جدول جدید"
+
+msgid: "Name"
+msgstr: "نام"
+
+msgid: "Setup the fields for the table below"
+msgstr: "تعیین فیلدها برای جدول زیر"
+
+msgid: "New field"
+msgstr: "فیلد جدید"
+
+msgid: "Type"
+msgstr: "نوع"
+
+msgid: "Values"
+msgstr: "مقادیر"
+
+msgid: "Key"
+msgstr: "کلید"
+
+msgid: "primary"
+msgstr: "اصلی"
+
+msgid: "unique"
+msgstr: "منحصر به فرد"
+
+msgid: "index"
+msgstr: "شاخص"
+
+msgid: "Default"
+msgstr: "پیش‌فرض"
+
+msgid: "Other"
+msgstr: "دیگر"
+
+msgid: "Unsigned"
+msgstr: "بدون علامت"
+
+msgid: "Binary"
+msgstr: "دودویی"
+
+msgid: "Not Null"
+msgstr: "غیر پوچ"
+
+msgid: "Auto Increment"
+msgstr: "افزایش خودکار"
+
+msgid: "Add field"
+msgstr: "اضافه کردن فیلد"
+
+msgid: "Oops"
+msgstr: "Oops"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "به دلایلی، پارامتر‌های پایگاه داده مشمول درخواست شما نمی‌باشد"
+
+msgid: "Save changes to original"
+msgstr: "برگشت تغییرات به حالت اصلی"
+
+msgid: "Insert as new row"
+msgstr: "ثبت به صورت یک سطر جدید"
+
+msgid: "Save"
+msgstr: "ذخیره"
+
+msgid: "User"
+msgstr: "کاربر"
+
+msgid: "All privileges"
+msgstr: "تمام حقوق"
+
+msgid: "Selected privileges"
+msgstr: "حقوق انتخاب شده"
+
+msgid: "User privileges"
+msgstr: "حقوق کاربر"
+
+msgid: "Select"
+msgstr: "انتخاب"
+
+msgid: "Insert"
+msgstr: "درج"
+
+msgid: "Update"
+msgstr: "به ‌روزرسانی"
+
+msgid: "Delete"
+msgstr: "حذف"
+
+msgid: "Alter"
+msgstr: "تغییر دادن"
+
+msgid: "Create"
+msgstr: "ساختن"
+
+msgid: "Temp tables"
+msgstr: "قالب جدول ها"
+
+msgid: "Administrator privileges"
+msgstr: "حقوق مدیر"
+
+msgid: "File"
+msgstr: "فایل"
+
+msgid: "Process"
+msgstr: "پردازش کردن"
+
+msgid: "Reload"
+msgstr: "بازسازی"
+
+msgid: "Shutdown"
+msgstr: "خاموش کردن"
+
+msgid: "Super"
+msgstr: "عالی"
+
+msgid: "Grant option"
+msgstr: "گزینه های ارائه شده"
+
+msgid: "User not found!"
+msgstr: "کاربر مورد نظر یافت نشد"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "شما می بایست ساختار، داده یا از هر دوی آن‌ها پشتیبان بگیرید"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "لطفا پایگاه داده‌های مورد نظر خود را به منظور پشتیبان‌گیری انتخاب نمائید"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "لطفا جدول‌های مورد نظر خود را به منظور پشتیبان گیری انتخاب نمائید"
+
+msgid: "Table `%s` is empty"
+msgstr: "خالی است '%S' جدول"
+
+msgid: "Results"
+msgstr: "نتایج"
+
+msgid: "Select all"
+msgstr: "انتخاب همه"
+
+msgid: "The file could not be opened"
+msgstr: "فایل مورد نظر قابل باز شدن نیست"
+
+msgid: "Could not write to file"
+msgstr: "فایل مورد نظر قابل نوشتن نیست"
+
+msgid: "Successfully wrote content to file"
+msgstr: "ثبت اطلاعات در فایل با موفقیت صورت گرفت"
+
+msgid: "Download"
+msgstr: "دانلود"
+
+msgid: "Note
+"
+msgstr: "توجه"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "اگر این، یک سرور عمومی است، باید فایل مورد نظر را بعد از دانلود از سرور حذف نمائید"
+
+msgid: "Export"
+msgstr: "برون‌ریزی"
+
+msgid: "Tables"
+msgstr: "جدول‌ها"
+
+msgid: "Databases"
+msgstr: "پایگاه داده‌ها"
+
+msgid: "Format"
+msgstr: "قالب"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "ساختار"
+
+msgid: "Data"
+msgstr: "داده"
+
+msgid: "Compact inserts"
+msgstr: "درج اطلاعات به صورت فشرده"
+
+msgid: "Complete inserts"
+msgstr: "اتمام درج اطلاعات"
+
+msgid: "Delimiter"
+msgstr: "تعیین کننده محدودیت‌ها"
+
+msgid: "Comma"
+msgstr: "کاما"
+
+msgid: "Tab"
+msgstr: "Tab"
+
+msgid: "Semicolon"
+msgstr: "سمی‌کالن"
+
+msgid: "Space"
+msgstr: "فضای خالی"
+
+msgid: "Print field names on first line"
+msgstr: "چاپ نام فیلد در خط اول"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "اگر در حال برون‌ریزیِ تعداد زیادی از سطر‌ها هستید، پیشنهاد می‌شود که نتایج را در یک فایل متنی ذخیره کنید"
+
+msgid: "Output to"
+msgstr: "خروجی در"
+
+msgid: "Browser"
+msgstr: "مرورگر"
+
+msgid: "Text file"
+msgstr: "فایل متنی"
+
+msgid: "Home"
+msgstr: "خانه"
+
+msgid: "Users"
+msgstr: "کاربرها"
+
+msgid: "Query"
+msgstr: "پرس‌و‌جو"
+
+msgid: "Import"
+msgstr: "درون‌ریزی"
+
+msgid: "Overview"
+msgstr: "نمایش کلی"
+
+msgid: "Browse"
+msgstr: "نمایش"
+
+msgid: "Your changes were saved to the database"
+msgstr: "تغییرات مورد نظر شما در پایگاه داده ذخیره شد"
+
+msgid: "delete this row"
+msgstr: "حذف این سطر"
+
+msgid: "delete these rows"
+msgstr: "حذف این سطرها"
+
+msgid: "empty this table"
+msgstr: "خالی کردن این جدول"
+
+msgid: "empty these tables"
+msgstr: "خالی کردن این جداول"
+
+msgid: "drop this table"
+msgstr: "حذف این جدول"
+
+msgid: "drop these tables"
+msgstr: "حذف این جداول"
+
+msgid: "delete this column"
+msgstr: "حذف این ستون"
+
+msgid: "delete these columns"
+msgstr: "حذف این ستون‌ها"
+
+msgid: "delete this index"
+msgstr: "حذف این شاخص"
+
+msgid: "delete these indexes"
+msgstr: "حذف این شاخص‌ها"
+
+msgid: "delete this user"
+msgstr: "حذف این کاربر"
+
+msgid: "delete these users"
+msgstr: "حذف این کاربرها"
+
+msgid: "Are you sure you want to"
+msgstr: "آیا مطمئنید که می‌خواهید"
+
+msgid: "The following query will be run:"
+msgstr: "اجرای پرس‌و‌جو :"
+
+msgid: "The following queries will be run:"
+msgstr: "اجرای پرس‌و‌جو ها :"
+
+msgid: "Confirm"
+msgstr: "تائید"
+
+msgid: "Successfully saved changes"
+msgstr: "ذخیره تغییرات با موفقیت صورت گرفت"
+
+msgid: "Full Text"
+msgstr: "تمام-متن"
+
+msgid: "Loading..."
+msgstr: "در حال بارگذاری..."
+
+msgid: "Error"
+msgstr: "خطا"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "بروز خطا در دریافت اطلاعات از سرور "
+
+msgid: "Logout"
+msgstr: "خروج"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "به دلایلی پارامتر‌های جدول مشمول درخواست شما نمی‌باشد"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "خوش آمدید SQL Buddy به"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "%s با نام کاربری %s اتصال موفقیت آمیز به"
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "سرور پایگاه داده از %s در حال سرویس‌دهی است و تقریبا %s از مجموع داده‌ها را انتقال داده است."
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "نسخه جدیدِ SQL Buddy منتشر شده است"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "شما در حال استفاده از SQL Buddy %s هستید و هم‌اکنون نسخه‌ی %s منتشر شده است."
+
+msgid: "Getting started"
+msgstr: "شروع کنید"
+
+msgid: "Help"
+msgstr: "راهنما"
+
+msgid: "Translations"
+msgstr: "ترجمه‌ها"
+
+msgid: "Release Notes"
+msgstr: "یادداشت‌های این نسخه"
+
+msgid: "Contact"
+msgstr: "ارتباط با ما"
+
+msgid: "Create a new database"
+msgstr: "ساخت یک پایگاه داده جدید"
+
+msgid: "Did you know..."
+msgstr: "آیا می دانید..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "راه ساده‌تری برای انتخاب گروه کثیری از مواردِ در حال نمایش سطرهای جدول، وجود دارد: اولین سطر را انتخاب کرده و کلید shift را نگه دارید، و سپس سطر آخر را انتخاب کنید. تمامی سطرها مابین این دو انتخاب خواهند شد."
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "ستون‌ها در قسمت پرس‌وجو و نیز در قسمت نمایش قابلیت تغییر اندازه را دارند. می‌توانید به هر اندازه که مایلید آن‌ها را تغییر دهید."
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "صفحه‌ی ورود به سیستم بر اساس نام کاربری پیش‌فرض root@localhost کار می‌کند. با ویرایش فایل config.php می‌توانید نام کاربر پیش‌فرض و میزبان را به طور دلخواه تغییر دهید."
+
+msgid: "Keyboard shortcuts"
+msgstr: "کلیدهای میان‌بر"
+
+msgid: "Press this key..."
+msgstr: "این کلید را فشار دهید..."
+
+msgid: "...and this will happen"
+msgstr: "...و این اتفاق می افتد"
+
+msgid: "select none"
+msgstr: "انتخاب هیچ‌کدام"
+
+msgid: "edit selected items"
+msgstr: "ویرایش موارد انتخاب شده"
+
+msgid: "delete selected items"
+msgstr: "حذف موارد انتخاب شده"
+
+msgid: "refresh page"
+msgstr: "تازه‌سازی صفحه"
+
+msgid: "load the query tab"
+msgstr: "بارگذاری برگ پرس‌وجو"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "بخش نمایش - صفحه‌ی نخست نتایج"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "بخش نمایش - صفحه‌ی آخر نتایج"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "بخش نمایش - صفحه‌ی پیشین نتایج"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "بخش نمایش - صفحه‌ی بعدی نتایج"
+
+msgid: "optimize selected tables"
+msgstr: "بهینه‌سازی جداول انتخاب شده"
+
+msgid: "Choose a .sql file to import"
+msgstr: "انتخاب یک فایل .sql به منظور درون‌ریزی"
+
+msgid: "File
+"
+msgstr: "فایل"
+
+msgid: "Ignore first line"
+msgstr: "چشم پوشی از خط اول"
+
+msgid: "Edit"
+msgstr: "ویرایش"
+
+msgid: "Refresh"
+msgstr: "تازه‌سازی"
+
+msgid: "No primary key defined"
+msgstr: "هیچ کلید اصلی‌ای تعریف نشده است"
+
+msgid: "First"
+msgstr: "نخست"
+
+msgid: "Prev"
+msgstr: "پیشین"
+
+msgid: "Next"
+msgstr: "بعدی"
+
+msgid: "Last"
+msgstr: "آخر"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "پرس‌وجوی شما %d نتیجه در بر داشت."
+msgstr[1]: "پرس‌وجوی شما %d نتیجه در بر داشت."
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "توجه: برای جلوگیری از crash شدن مرورگرتان، تنها %d نتیجه‌ی نخست نمایش داده شده است"
+
+msgid: "binary data"
+msgstr: "داده‌ی دودویی"
+
+msgid: "Your query affected %d rows"
+msgstr: "پرس‌وجوی شما بر %d سطر مؤثر واقع شد"
+
+msgid: "Your query did not return any results"
+msgstr: "پرس‌وجوی شما نتیجه‌ای در بر نداشت"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "اطلاعات مورد نظر در پایگاه داده درج شدند"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "مشکلی در یافتن جدول \"%s\" روی داده است"
+
+msgid: "There was a problem logging you in"
+msgstr: "بروز مشکل در هنگام ورود به سیستم"
+
+msgid: "Login"
+msgstr: "ورود"
+
+msgid: "Unsupported browser"
+msgstr: "سیستم از این مرورگر پشتیبانی نمی‌کند"
+
+msgid: "Help!"
+msgstr: "کمک!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "لطفا دوباره وارد شوید، مدتی‌ست که سیستم غیرفعال بوده است."
+
+msgid: "Username"
+msgstr: "نام کاربری"
+
+msgid: "Password"
+msgstr: "کلمه عبور"
+
+msgid: "Run a query on the %s database"
+msgstr: "اجرای یک پرس‌وجو روی پایگاه داده %s"
+
+msgid: "Columns"
+msgstr: "ستون‌ها"
+
+msgid: "Add a column"
+msgstr: "اضافه کردن یک ستون"
+
+msgid: "Insert this column"
+msgstr: "درج این ستون"
+
+msgid: "At end of table"
+msgstr: "در انتهای جدول"
+
+msgid: "At beginning of table"
+msgstr: "در ابتدای جدول"
+
+msgid: "After"
+msgstr: "بعد از"
+
+msgid: "Edit table"
+msgstr: "ویرایش جدول"
+
+msgid: "Indexes"
+msgstr: "شاخص‌ها"
+
+msgid: "Add an index"
+msgstr: "ایجاد یک شاخص"
+
+msgid: "Column(s)"
+msgstr: "ستون(ها)"
+
+msgid: "Show %d more..."
+msgstr: "نمایش %d مورد بیشتر..."
+
+msgid: "Empty table"
+msgstr: "خالی کردن جدول"
+
+msgid: "Drop table"
+msgstr: "حذف جدول"
+
+msgid: "Optimize table"
+msgstr: "بهینه‌سازی جدول"
+
+msgid: "Table Information"
+msgstr: "اطلاعات جدول"
+
+msgid: "Host"
+msgstr: "میزبان"
+
+msgid: "Add a new user"
+msgstr: "ثبت کاربر جدید"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "با فرمت مقابل وارد کنید: ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "آیا مطمئنید که می‌خواهید جدول '%s' را خالی کنید؟ این عملیات تمامی اطلاعات داخل جدول را حذف می‌کند. پرس‌وجوی ذیل در آستانه‌ی اجراست:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "آیا مطمئنید که می‌خواهید جدول '%s' را حذف کنید؟ این عملیات جدول و تمامی اطلاعات داخل آن را حذف می‌کند. پرس‌وجوی ذیل در آستانه‌ی اجراست:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "آیا مطمئنید که می‌خواهید پایگاه داده '%s' را حذف کنید؟ این عملیات پایگاه داده، تمامی جداول و اطلاعات داخل آن را حذف می‌کند. پرس‌وجوی ذیل در آستانه‌ی اجراست:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "متاسفیم، اما در حال حاضر تنها از اینترنت اکسپلورر 7 پشتیبانی می‌کنیم. این نرم‌افزار به صورت رایکان در سایت شرکت مایکروسافت برای دانلود موجود است. مرورگرهای رایگان دیگری که توسط سیستم پشتیبانی می‌شوند شامل فایرفاکس، سفاری و اپرا نیز هستند."
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "مرورگر شما از کوکی در حال حاضر پشتیبانی نمی‌کند، بیشتر نصب‌های PHP برای به کارگیری اجلاس‌ها به کوکی نیاز دارند."
+
+msgid: "Importing..."
+msgstr: "درون‌ریزی..."
+
+msgid: "Drop the '%s' database"
+msgstr: "حذف پایگاه داده '%s'"
+
+msgid: "Okay"
+msgstr: "تائید"
+
+msgid: "Cancel"
+msgstr: "انصراف"
+
+msgid: "Storage engine"
+msgstr: "موتور ذخیره‌سازی"
+
+msgid: "Language"
+msgstr: "زبان"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "%d دستور از فایل، اجرا شد"
+msgstr[1]: "%d دستور از فایل، اجرا شد"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "%d سطر از فایل، در پایگاه داده درج شد"
+msgstr[1]: "%d سطر از فایل، در پایگاه داده درج شد"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "%d سطر ناچارا نادیده گرفته شد چرا که تعداد ارزش‌ها غیرمعتبر بود"
+msgstr[1]: "%d سطر ناچارا نادیده گرفته شد چرا که تعداد ارزش‌ها غیرمعتبر بود"
+
+msgid: "Theme"
+msgstr: "پوسته"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f ثانیه)"
+
+msgid: "The following errors were reported"
+msgstr: "خطاهای ذیل گزارش شدند"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "اجازه‌ی لازم برای ایجاد کاربر جدید را ندارید."
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "اجازه‌ی لازم برای مشاهده یا مدیریت کاربران را ندارید."
+
+msgid: "You are connected to %s."
+msgstr: "شما به %s متصل هستید."
+
+msgid: "Allow access to"
+msgstr: "مجوز دسترسی به"
+
+msgid: "All databases"
+msgstr: "همه پایگاه‌های داده"
+
+msgid: "Selected databases"
+msgstr: "پایگاه داده‌های انتخاب شده"
+
+msgid: "Give user"
+msgstr: "اعطا به کاربر"
+
+msgid: "Updates"
+msgstr: "بروزرسانی‌ها"
+
+msgid: "There are no updates available"
+msgstr: "هیچ بروزرسانی‌ای موجود نیست"
+
+msgid: "Change password"
+msgstr: "تغییر رمز"
+
+msgid: "Redirecting..."
+msgstr: "در حال انتقال"

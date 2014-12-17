@@ -1,4 +1,4 @@
-<?php
+ <?php
 if (!hasRight('scenarioview', true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -12,13 +12,17 @@ include_file('3rdparty', 'codemirror/mode/htmlmixed/htmlmixed', 'js');
 include_file('3rdparty', 'codemirror/mode/clike/clike', 'js');
 include_file('3rdparty', 'codemirror/mode/php/php', 'js');
 include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
-include_file('3rdparty', 'jquery.tree/jquery.tree', 'js');
+include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
+$scenarios = array();
+$scenarios[-1] = scenario::all(null);
+foreach (scenario::listGroup() as $group) {
+    $scenarios[$group['group']] = scenario::all($group['group']);
+}
 ?>
-
-
 <div class="row row-overflow">
-    <div class="col-lg-2 col-md-3 col-sm-4">
-        <div class="bs-sidebar nav nav-list bs-sidenav"> 
+    <div class="col-lg-2 col-md-3 col-sm-4" id="div_listScenario">
+        <div class="bs-sidebar nav nav-list bs-sidenav" > 
+            <a class="btn btn-warning form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenarioAssist" style="text-shadow: none;"><i class="fa fa-toggle-on"></i> {{Interface avancée}}</a>
             <center>
                 <?php
                 if (config::byKey('enableScenario') == 0) {
@@ -31,13 +35,14 @@ include_file('3rdparty', 'jquery.tree/jquery.tree', 'js');
             </center>
             <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> Nouveau scénario</a>
 
+            <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
             <div id="div_tree">
                 <ul id="ul_scenario" >  
                     <li data-jstree='{"opened":true}'>
                         <a>Aucune</a>
                         <ul>
                             <?php
-                            foreach (scenario::all(null) as $scenario) {
+                            foreach ($scenarios[-1] as $scenario) {
                                 echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
                                 echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
                                 echo '</li>';
@@ -50,7 +55,7 @@ include_file('3rdparty', 'jquery.tree/jquery.tree', 'js');
                                 echo '<li data-jstree=\'{"opened":true}\'>';
                                 echo '<a>' . $group['group'] . '</a>';
                                 echo '<ul>';
-                                foreach (scenario::all($group['group']) as $scenario) {
+                                foreach ($scenarios[$group['group']] as $scenario) {
                                     echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
                                     echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
                                     echo '</li>';
@@ -64,50 +69,88 @@ include_file('3rdparty', 'jquery.tree/jquery.tree', 'js');
             </div>
         </div>
     </div>
-    <div class="col-lg-10 col-md-9 col-sm-8" id="div_editScenario" style="display: none; border-left: solid 1px #EEE; padding-left: 25px;">
 
-        <legend style="height: 35px;">{{Scénario}}
+    <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
+        <legend>{{Mes scenarios}}</legend>
+        <?php
+        if (count(scenario::all()) == 0) {
+            echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario, cliquez sur ajouter un scénario pour commencer</span></center>";
+        } else {
+            echo '<legend>Aucun</legend>';
+            echo '<div class="scenarioListContainer">';
+            foreach ($scenarios[-1] as $scenario) {
+                echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+                echo "<center>";
+                echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
+                echo "</center>";
+                echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
+                echo '</div>';
+            }
+            echo '</div>';
+
+            foreach (scenario::listGroup() as $group) {
+                if ($group['group'] != '') {
+                    echo '<legend>' . $group['group'] . '</legend>';
+                    echo '<div class="scenarioListContainer">';
+                    foreach ($scenarios[$group['group']] as $scenario) {
+                        echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+                        echo "<center>";
+                        echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
+                        echo "</center>";
+                        echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
+                        echo '</div>';
+                    }
+                    echo '</div>';
+                }
+            }
+            ?>
+        <?php } ?>
+    </div>
+
+    <div id="div_editScenario" style="display: none; border-left: solid 1px #EEE; padding-left: 25px;">
+        <legend style="height: 35px;"><i class="fa fa-arrow-circle-left cursor" id="bt_scenarioThumbnailDisplay"></i> {{Scénario}}
             <span class="expertModeVisible">(ID : <span class="scenarioAttr" data-l1key="id" ></span>)</span>
-            <a class="btn btn-default btn-xs pull-right" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>
-            <a class="btn btn-default btn-xs pull-right" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
-            <a class="btn btn-default btn-xs pull-right" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
-            <a class="btn btn-danger btn-xs pull-right" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
+            <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_copyScenario"><i class="fa fa-copy"></i> {{Dupliquer}}</a>
+            <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
+            <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
+            <a class="btn btn-danger btn-xs pull-right expertModeVisible" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
+            
         </legend>
         <div class="row">
             <div class="col-sm-4">
                 <form class="form-horizontal">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-md-6 control-label" >{{Nom du scénario}}</label>
-                            <div class="col-md-6">
+                            <label class="col-xs-6 control-label" >{{Nom du scénario}}</label>
+                            <div class="col-xs-6">
                                 <input class="form-control scenarioAttr input-sm" data-l1key="name" type="text" placeholder="{{Nom du scénario}}"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-6 control-label" >{{Nom à afficher}}</label>
-                            <div class="col-md-6">
+                            <label class="col-xs-6 control-label" >{{Nom à afficher}}</label>
+                            <div class="col-xs-6">
                                 <input class="form-control scenarioAttr input-sm tooltips" title="{{Ne rien mettre pour laisser le nom par défaut}}" data-l1key="display" data-l2key="name" type="text" placeholder="{{Nom à afficher}}"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-6 control-label" >{{Groupe}}</label>
-                            <div class="col-md-6">
+                            <label class="col-xs-6 control-label" >{{Groupe}}</label>
+                            <div class="col-xs-6">
                                 <input class="form-control scenarioAttr input-sm" data-l1key="group" type="text" placeholder="{{Groupe du scénario}}"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-6 control-label">{{Actif}}</label>
-                            <div class="col-md-1">
+                            <label class="col-sm-6 col-xs-3 control-label">{{Actif}}</label>
+                            <div class="col-sm-1 col-xs-1">
                                 <input type="checkbox" class="scenarioAttr" data-l1key="isActive">
                             </div>
-                            <label class="col-md-3 control-label">{{Visible}}</label>
-                            <div class="col-md-1">
+                            <label class="col-sm-3 col-xs-3 control-label">{{Visible}}</label>
+                            <div class="col-sm-1 col-xs-1">
                                 <input type="checkbox" class="scenarioAttr" data-l1key="isVisible">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-6 control-label" >{{Objet parent}}</label>
-                            <div class="col-md-6">
+                            <label class="col-xs-6 control-label" >{{Objet parent}}</label>
+                            <div class="col-xs-6">
                                 <select class="scenarioAttr form-control input-sm" data-l1key="object_id">
                                     <option value="">{{Aucun}}</option>
                                     <?php
@@ -119,8 +162,8 @@ include_file('3rdparty', 'jquery.tree/jquery.tree', 'js');
                             </div>
                         </div>
                         <div class="form-group expertModeVisible">
-                            <label class="col-md-6 control-label">{{Timeout secondes (0 = illimité)}}</label>
-                            <div class="col-md-6">
+                            <label class="col-xs-6 control-label">{{Timeout secondes (0 = illimité)}}</label>
+                            <div class="col-xs-6">
                                 <input class="form-control scenarioAttr input-sm" data-l1key="timeout">
                             </div>
                         </div>
@@ -131,8 +174,8 @@ include_file('3rdparty', 'jquery.tree/jquery.tree', 'js');
             <div class="col-sm-5">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-md-3 control-label" >{{Mode du scénario}}</label>
-                        <div class="col-md-3">
+                        <label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
+                        <div class="col-sm-3 col-xs-6">
                             <select class="form-control scenarioAttr input-sm" data-l1key="mode">
                                 <option value="provoke">{{Provoqué}}</option>
                                 <option value="schedule">{{Programmé}}</option>
@@ -146,10 +189,10 @@ include_file('3rdparty', 'jquery.tree/jquery.tree', 'js');
                     </div>
                     <div class="scheduleDisplay" style="display: none;">
                         <div class="form-group">
-                            <label class="col-md-3 control-label" >{{Précédent}}</label>
-                            <div class="col-md-3" ><span class="scenarioAttr label label-primary" data-l1key="forecast" data-l2key="prevDate" data-l3key="date"></span></div>
-                            <label class="col-md-3 control-label" >{{Prochain}}</label>
-                            <div class="col-md-3"><span class="scenarioAttr label label-success" data-l1key="forecast" data-l2key="nextDate" data-l3key="date"></span></div> 
+                            <label class="col-xs-3 control-label" >{{Précédent}}</label>
+                            <div class="col-xs-3" ><span class="scenarioAttr label label-primary" data-l1key="forecast" data-l2key="prevDate" data-l3key="date"></span></div>
+                            <label class="col-xs-3 control-label" >{{Prochain}}</label>
+                            <div class="col-xs-3"><span class="scenarioAttr label label-success" data-l1key="forecast" data-l2key="nextDate" data-l3key="date"></span></div> 
                         </div>
                         <div class="scheduleMode"></div>
                     </div>
@@ -161,26 +204,25 @@ include_file('3rdparty', 'jquery.tree/jquery.tree', 'js');
             <div class="col-sm-3">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <div class="col-md-12">
+                        <div class="col-md-11">
                             <textarea class="form-control scenarioAttr" data-l1key="description" placeholder="Description"></textarea>
                         </div>
                     </div>
                     <div class="form-group expertModeVisible">
-                        <label class="col-md-11 control-label">{{Lancer en avant-plan (à ne surtout pas utiliser si vous avez des "sleep" dans le scénario)}}</label>
-                        <div class="col-md-1">
-                            <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="launchInForeground">
+                        <label class="col-xs-6 control-label">{{Lancer en avant-plan}}</label>
+                        <div class="col-xs-1">
+                            <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="launchInForeground" titme="{{A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario}}">
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label class="col-md-6 control-label" for="span_lastCheck">{{Dernier lancement}}</label>
-                        <div class="col-md-6">
+                        <label class="col-xs-6 control-label" for="span_lastCheck">{{Dernier lancement}}</label>
+                        <div class="col-xs-6">
                             <div><span id="span_lastLaunch" class="label label-info" style="position: relative; top: 4px;"></span></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-6 control-label" for="span_ongoing">{{Etat}}</label>
-                        <div class="col-md-6">
+                        <label class="col-xs-6 control-label" for="span_ongoing">{{Etat}}</label>
+                        <div class="col-xs-6">
                             <div><span id="span_ongoing" class="label" style="position: relative; top: 4px;"></span></div>
                         </div>
                     </div>

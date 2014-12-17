@@ -24,14 +24,14 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
         {{N'oubliez pas que poser la question sur le forum vous fournira généralement une réponse plus rapide que par ticket.}}
     </div>
     <div class="form-group">
-        <label class="col-lg-2 control-label">{{Titre}}</label>
-        <div class="col-lg-10">
+        <label class="col-sm-2 control-label">{{Titre}}</label>
+        <div class="col-sm-8">
             <input class="form-control input-sm ticketAttr" data-l1key="title"/>
         </div> 
     </div>
     <div class="form-group">
-        <label class="col-lg-2 control-label">{{Catégorie}}</label>
-        <div class="col-lg-10">
+        <label class="col-sm-2 control-label">{{Catégorie}}</label>
+        <div class="col-sm-2">
             <select class="form-control input-sm ticketAttr" data-l1key="category">
                 <option>{{Générale}}</option>
                 <option>{{Scénario}}</option>
@@ -43,10 +43,27 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
                 ?>
             </select>
         </div> 
+        <label class="col-sm-1 control-label">{{Type}}</label>
+        <div class="col-sm-2">
+            <select class="form-control input-sm ticketAttr" data-l1key="type">
+                <option value='question'>{{Question}}</option>
+                <option value='problem'>{{Probleme}}</option>
+                <option value='incident'>{{Incident}}</option>
+            </select>
+        </div> 
+        <label class="col-sm-1 control-label">{{Priorité}}</label>
+        <div class="col-sm-2">
+            <select class="form-control input-sm ticketAttr" data-l1key="priority">
+                <option value='low'>{{Bas}}</option>
+                <option value='normal'>{{Normale}}</option>
+                <option value='high'>{{Haut}}</option>
+                <option value='urgent'>{{Urgent}}</option>
+            </select>
+        </div> 
     </div>
     <div class="form-group">
-        <label class="col-lg-2 control-label">{{Message}}</label>
-        <div class="col-lg-10">
+        <label class="col-sm-2 control-label">{{Message}}</label>
+        <div class="col-sm-8">
             <textarea class="form-control messageAttr input-sm" data-l1key="message" ></textarea>
             <input class="form-control ticketAttr" data-l1key="options" data-l2key="page" style="display: none;"/>
         </div> 
@@ -80,7 +97,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
                     return;
                 }
                 $('#bt_sendBugReport').hide();
-                $('#div_alertReportBug').showAlert({message: '{{Votre ticket à bien été ouvert. Vous pouvez le suivre}} <a target="_blank" href="' + data.result.url + '">{{ici}}</a>', level: 'success'});
+                $('#div_alertReportBug').showAlert({message: '{{Votre ticket à bien été ouvert. Un mail va vous etre envoyé', level: 'success'});
             }
         });
     });

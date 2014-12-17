@@ -1,0 +1,667 @@
+Language: 中文 (简体)
+Language-Code: zh_CN
+Build-Date: Tue, 18 Jan 2011 15:26:00 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "文件为空或文件不可读"
+
+msgid: "Error performing operation"
+msgstr: "操作错误"
+
+msgid: "All"
+msgstr: "全部"
+
+msgid: "None"
+msgstr: "无"
+
+msgid: "With selected"
+msgstr: "将选中项目"
+
+msgid: "Empty"
+msgstr: "清空"
+
+msgid: "Drop"
+msgstr: "丢弃"
+
+msgid: "Optimize"
+msgstr: "优化"
+
+msgid: "Table"
+msgstr: "表"
+
+msgid: "Rows"
+msgstr: "行"
+
+msgid: "Size"
+msgstr: "大小"
+
+msgid: "Overhead"
+msgstr: "开销"
+
+msgid: "Options"
+msgstr: "选项"
+
+msgid: "Edit database"
+msgstr: "编辑数据库"
+
+msgid: "Charset"
+msgstr: "字符集"
+
+msgid: "Submit"
+msgstr: "提交"
+
+msgid: "Create a new table"
+msgstr: "创建新表"
+
+msgid: "Name"
+msgstr: "名称"
+
+msgid: "Setup the fields for the table below"
+msgstr: "为表设置字段"
+
+msgid: "New field"
+msgstr: "新建字段"
+
+msgid: "Type"
+msgstr: "类型"
+
+msgid: "Values"
+msgstr: "值"
+
+msgid: "Key"
+msgstr: "键"
+
+msgid: "primary"
+msgstr: "主"
+
+msgid: "unique"
+msgstr: "唯一"
+
+msgid: "index"
+msgstr: "索引"
+
+msgid: "Default"
+msgstr: "默认"
+
+msgid: "Other"
+msgstr: "其他"
+
+msgid: "Unsigned"
+msgstr: "无符号"
+
+msgid: "Binary"
+msgstr: "二进制"
+
+msgid: "Not Null"
+msgstr: "非空"
+
+msgid: "Auto Increment"
+msgstr: "自增"
+
+msgid: "Add field"
+msgstr: "添加字段"
+
+msgid: "Oops"
+msgstr: "啊"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "由于某种原因，数据库参数未包含在您的请求中"
+
+msgid: "Save changes to original"
+msgstr: "保存更改到原始数据"
+
+msgid: "Insert as new row"
+msgstr: "插入新行"
+
+msgid: "Save"
+msgstr: "保存"
+
+msgid: "User"
+msgstr: "用户"
+
+msgid: "All privileges"
+msgstr: "所有权限"
+
+msgid: "Selected privileges"
+msgstr: "选择权限"
+
+msgid: "User privileges"
+msgstr: "用户权限"
+
+msgid: "Select"
+msgstr: "选择"
+
+msgid: "Insert"
+msgstr: "插入"
+
+msgid: "Update"
+msgstr: "更新"
+
+msgid: "Delete"
+msgstr: "删除"
+
+msgid: "Alter"
+msgstr: "修改"
+
+msgid: "Create"
+msgstr: "创建"
+
+msgid: "Temp tables"
+msgstr: "临时表"
+
+msgid: "Administrator privileges"
+msgstr: "管理员权限"
+
+msgid: "File"
+msgstr: "文件"
+
+msgid: "Process"
+msgstr: "进程"
+
+msgid: "Reload"
+msgstr: "重新加载"
+
+msgid: "Shutdown"
+msgstr: "关闭"
+
+msgid: "Super"
+msgstr: "超级"
+
+msgid: "Grant option"
+msgstr: "授权选项"
+
+msgid: "User not found!"
+msgstr: "用户未找到！"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "您必须导出结构、数据其一，或两者"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "请选择您要导出的数据库昂达飞"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "请选择您要导出的表"
+
+msgid: "Table `%s` is empty"
+msgstr: "表 `%s` 为空"
+
+msgid: "Results"
+msgstr: "结果"
+
+msgid: "Select all"
+msgstr: "全选"
+
+msgid: "The file could not be opened"
+msgstr: "该文件无法打开"
+
+msgid: "Could not write to file"
+msgstr: "无法写入文件"
+
+msgid: "Successfully wrote content to file"
+msgstr: "已成功地将内容写入文件"
+
+msgid: "Download"
+msgstr: "下载"
+
+msgid: "Note
+"
+msgstr: "注"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "如果这是一台公共服务器，您必须在下载后删除此文件"
+
+msgid: "Export"
+msgstr: "导出"
+
+msgid: "Tables"
+msgstr: "表"
+
+msgid: "Databases"
+msgstr: "数据库"
+
+msgid: "Format"
+msgstr: "格式"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "结构"
+
+msgid: "Data"
+msgstr: "数据"
+
+msgid: "Compact inserts"
+msgstr: "简化的 Insert 语句"
+
+msgid: "Complete inserts"
+msgstr: "完整的 Insert 语句"
+
+msgid: "Delimiter"
+msgstr: "分隔符"
+
+msgid: "Comma"
+msgstr: "逗号"
+
+msgid: "Tab"
+msgstr: "制表符"
+
+msgid: "Semicolon"
+msgstr: "分号"
+
+msgid: "Space"
+msgstr: "空格"
+
+msgid: "Print field names on first line"
+msgstr: "在第一行打印字段名"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "如果您正导出的是大量的数据，建议将其输出为文本文件"
+
+msgid: "Output to"
+msgstr: "输出到"
+
+msgid: "Browser"
+msgstr: "浏览器"
+
+msgid: "Text file"
+msgstr: "文本文件"
+
+msgid: "Home"
+msgstr: "主页"
+
+msgid: "Users"
+msgstr: "用户"
+
+msgid: "Query"
+msgstr: "查询"
+
+msgid: "Import"
+msgstr: "导入"
+
+msgid: "Overview"
+msgstr: "概览"
+
+msgid: "Browse"
+msgstr: "浏览"
+
+msgid: "Your changes were saved to the database"
+msgstr: "您的修改已经保存至数据库"
+
+msgid: "delete this row"
+msgstr: "删除此行"
+
+msgid: "delete these rows"
+msgstr: "删除这些行"
+
+msgid: "empty this table"
+msgstr: "清空此表"
+
+msgid: "empty these tables"
+msgstr: "清空这些表"
+
+msgid: "drop this table"
+msgstr: "丢弃此表"
+
+msgid: "drop these tables"
+msgstr: "丢弃这些表"
+
+msgid: "delete this column"
+msgstr: "删除此列"
+
+msgid: "delete these columns"
+msgstr: "删除这些列"
+
+msgid: "delete this index"
+msgstr: "删除此索引"
+
+msgid: "delete these indexes"
+msgstr: "删除这些索引"
+
+msgid: "delete this user"
+msgstr: "删除此用户"
+
+msgid: "delete these users"
+msgstr: "删除这些用户"
+
+msgid: "Are you sure you want to"
+msgstr: "您确信您要"
+
+msgid: "The following query will be run:"
+msgstr: "下列查询将运行："
+
+msgid: "The following queries will be run:"
+msgstr: "下列查询将运行："
+
+msgid: "Confirm"
+msgstr: "确认"
+
+msgid: "Successfully saved changes"
+msgstr: "更改已成功保存"
+
+msgid: "Full Text"
+msgstr: "全文"
+
+msgid: "Loading..."
+msgstr: "加载中……"
+
+msgid: "Error"
+msgstr: "错误"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "从服务器接收数据时出错"
+
+msgid: "Logout"
+msgstr: "登出"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "由于某种原因，表参数未包含在您的请求中"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "欢迎使用 SQL Buddy！"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "您已经连接到 MySQL %s ，连接身份为 %s 。"
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "数据库服务器已经从 %s 开始运行，并且已经传输了大约 %s 的数据。"
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "有新版 SQL Buddy 可用！"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "您已经成功安装SQL Buddy %s ，最新版本是 %s 。"
+
+msgid: "Getting started"
+msgstr: "新手上路"
+
+msgid: "Help"
+msgstr: "帮助"
+
+msgid: "Translations"
+msgstr: "多国语言"
+
+msgid: "Release Notes"
+msgstr: "发行说明"
+
+msgid: "Contact"
+msgstr: "联系我们"
+
+msgid: "Create a new database"
+msgstr: "创建新数据库"
+
+msgid: "Did you know..."
+msgstr: "您知道吗……"
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "这里有种选中大量数据项的简便方法：选择第一行，按住 Shift 键不放，然后选择最后一行，在这两行之间的所有项都会自动选中。"
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "在浏览中的列和查询选项卡是可以改变大小的。您可以按您需要调整宽窄。"
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "登录页面是基于 root@localhost 这一默认用户的。通过编辑config.php，您可以将默认用户和主机随意更改为所需值。"
+
+msgid: "Keyboard shortcuts"
+msgstr: "快捷键"
+
+msgid: "Press this key..."
+msgstr: "按下这个键……"
+
+msgid: "...and this will happen"
+msgstr: "……就会这样"
+
+msgid: "select none"
+msgstr: "不选"
+
+msgid: "edit selected items"
+msgstr: "编辑选中的项"
+
+msgid: "delete selected items"
+msgstr: "删除选中的项"
+
+msgid: "refresh page"
+msgstr: "刷新页面"
+
+msgid: "load the query tab"
+msgstr: "加载查询选项卡"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "浏览选项卡 ─ 跳至结果的第一页"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "浏览选项卡 ─ 跳至结果的最后页"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "浏览选项卡 ─ 跳至结果的前一页"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "浏览选项卡 ─ 跳至结果的后一页"
+
+msgid: "optimize selected tables"
+msgstr: "优化所选表"
+
+msgid: "Choose a .sql file to import"
+msgstr: "选择一个 .sql 文件以导入"
+
+msgid: "File
+"
+msgstr: "文件"
+
+msgid: "Ignore first line"
+msgstr: "忽略第一行"
+
+msgid: "Edit"
+msgstr: "编辑"
+
+msgid: "Refresh"
+msgstr: "刷新"
+
+msgid: "No primary key defined"
+msgstr: "主键未定义"
+
+msgid: "First"
+msgstr: "第一"
+
+msgid: "Prev"
+msgstr: "前"
+
+msgid: "Next"
+msgstr: "后"
+
+msgid: "Last"
+msgstr: "最后"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "您的查询返回 %d 个结果"
+msgstr[1]: "您的查询返回 %d 个结果"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "注：为避免使您的浏览器崩溃，只显示前 %d 个结果"
+
+msgid: "binary data"
+msgstr: "二进制数据"
+
+msgid: "Your query affected %d rows"
+msgstr: "您的查询影响了 %d 行数据"
+
+msgid: "Your query did not return any results"
+msgstr: "您的查询没有返回任何结果"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "您的数据已经被插入数据库"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "在为 \"%s\" 表定位时遇到了点麻烦"
+
+msgid: "There was a problem logging you in"
+msgstr: "在您登录时出现错误"
+
+msgid: "Login"
+msgstr: "登录"
+
+msgid: "Unsupported browser"
+msgstr: "不支持的浏览器"
+
+msgid: "Help!"
+msgstr: "帮助！"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "您的会话已经超时。请重新登录。"
+
+msgid: "Username"
+msgstr: "用户名"
+
+msgid: "Password"
+msgstr: "密码"
+
+msgid: "Run a query on the %s database"
+msgstr: "在数据库 %s 上执行查询"
+
+msgid: "Columns"
+msgstr: "列"
+
+msgid: "Add a column"
+msgstr: "添加一个列"
+
+msgid: "Insert this column"
+msgstr: "插入该列"
+
+msgid: "At end of table"
+msgstr: "在表尾"
+
+msgid: "At beginning of table"
+msgstr: "在表头"
+
+msgid: "After"
+msgstr: "后于"
+
+msgid: "Edit table"
+msgstr: "编辑表"
+
+msgid: "Indexes"
+msgstr: "索引"
+
+msgid: "Add an index"
+msgstr: "添加一个索引"
+
+msgid: "Column(s)"
+msgstr: "列"
+
+msgid: "Show %d more..."
+msgstr: "再显示 %d 个……"
+
+msgid: "Empty table"
+msgstr: "清空表"
+
+msgid: "Drop table"
+msgstr: "丢弃表"
+
+msgid: "Optimize table"
+msgstr: "优化表"
+
+msgid: "Table Information"
+msgstr: "表信息"
+
+msgid: "Host"
+msgstr: "主机"
+
+msgid: "Add a new user"
+msgstr: "添加新用户"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "按 ('1','2') 的格式输入"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "您确定您想清空数据表 '%s' ？这将删除其中所有数据。以下查询将运行："
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "您确定您想删除数据表 '%s' ？这将删除该表及其中所有数据。以下查询将运行："
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "您确定您想删除数据库 '%s' ？这将删除数据库本身、以及数据库中的表，和表中所有数据。以下查询将运行："
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "我们很抱歉，但是目前只支持 Internet Explorer 7 。它可以在 Microsoft 的网站上免费下载。其他一些免费的浏览器也被支持，比如 Firefox、Safari 和 Opera。"
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "您好像没有启用 Cookie 。为了使会话生效，大多数 PHP 程序需要启用 Cookie。"
+
+msgid: "Importing..."
+msgstr: "导入中……"
+
+msgid: "Drop the '%s' database"
+msgstr: "删除数据库 '%s'"
+
+msgid: "Okay"
+msgstr: "OK"
+
+msgid: "Cancel"
+msgstr: "取消"
+
+msgid: "Storage engine"
+msgstr: "存储引擎"
+
+msgid: "Language"
+msgstr: "语言"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "%d 条语句是从该文件执行的"
+msgstr[1]: "%d 条语句是从该文件执行的"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "%d 行数据是从该文件插入数据库的"
+msgstr[1]: "%d 行数据是从该文件插入数据库的"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "由于对应的值的数目不正确， %d 行数据已被跳过"
+msgstr[1]: "由于对应的值的数目不正确， %d 行数据已被跳过"
+
+msgid: "Theme"
+msgstr: "主题"
+
+msgid: "(%.4f seconds)"
+msgstr: "（%.4f 秒）"
+
+msgid: "The following errors were reported"
+msgstr: "已报告下列错误"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "您没有足够的权限来创建新用户。"
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "您没有足够的权限来查看或管理用户。"
+
+msgid: "You are connected to %s."
+msgstr: "您连接到了 %s。"
+
+msgid: "Allow access to"
+msgstr: "允许访问"
+
+msgid: "All databases"
+msgstr: "所有数据库"
+
+msgid: "Selected databases"
+msgstr: "已选数据库"
+
+msgid: "Give user"
+msgstr: "给用户"
+
+msgid: "Updates"
+msgstr: "更新"
+
+msgid: "There are no updates available"
+msgstr: "无可用的更新"
+
+msgid: "Change password"
+msgstr: "修改密码"
+
+msgid: "Redirecting..."
+msgstr: "跳转中"

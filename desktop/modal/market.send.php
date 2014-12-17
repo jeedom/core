@@ -88,21 +88,53 @@ if (init('type') == 'plugin') {
                 <label class="col-lg-4 control-label">{{Type}}</label>
                 <div class="col-lg-6">
                     <select class="form-control marketAttr" data-l1key="type" disabled>
-                        <option value="plugin">{{Plugin}}</option>
-                        <option value="widget">{{Widget}}</option>
-                        <option value="zwave">{{[Zwave] Configuration module}}</option>
-                        <option value="enocean">{{[EnOcean] Configuration module}}</option>
-                        <option value="rfxcom">{{[RfxCom] Configuration module}}</option>
-                        <option value="script">{{Script}}</option>
-                        <option value="camera">{{[Camera] Modèle}}</option>
-                        <option value="SNMP">{{[SNMP] Configuration}}</option>
+                        <option value="plugin" data-category='plugin'>{{Plugin}}</option>
+                        <option value="widget" data-category='widget'>{{Widget}}</option>
+                        <option value="zwave" data-category='input'>{{[Zwave] Configuration module}}</option>
+                        <option value="enocean" data-category='input'>{{[EnOcean] Configuration module}}</option>
+                        <option value="rfxcom" data-category='input'>{{[RfxCom] Configuration module}}</option>
+                        <option value="script" data-category='input'>{{Script}}</option>
+                        <option value="camera" data-category='input'>{{[Camera] Modèle}}</option>
+                        <option value="SNMP" data-category='input'>{{[SNMP] Configuration}}</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Catégorie}}</label>
                 <div class="col-lg-6">
-                    <input class="form-control marketAttr" data-l1key="categorie" placeholder="{{Catégorie}}">
+                    <input class="form-control input category marketAttr" data-l1key="categorie" >
+                    <select class="form-control widget category" data-l1key="categorie" style="display: none;">
+                        <option>Alarme diverse</option>
+                        <option>Audio/Vidéo</option>
+                        <option>Automatisme</option>
+                        <option>Autre</option>
+                        <option>Energie</option>
+                        <option>High tech</option>
+                        <option>Humidité</option>
+                        <option>Lumière</option>
+                        <option>Météo</option>
+                        <option>Ouverture</option>
+                        <option>Présence</option>
+                        <option>Température</option>
+                        <option>Vie</option>
+                    </select>
+                    <select class="form-control plugin category" data-l1key="categorie" style="display: none;">
+                        <option>Autre</option>
+                        <option>Box</option>
+                        <option>Communication</option>
+                        <option>Confort</option>
+                        <option>Energie</option>
+                        <option>Météo</option>
+                        <option>Monitoring</option>
+                        <option>Multimedia</option>
+                        <option>Nature</option>
+                        <option>Objets connectés</option>
+                        <option>Organisation</option>
+                        <option>Programmation</option>
+                        <option>Protocole domotique</option>
+                        <option>Santé</option>
+                        <option>Sécurité</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
@@ -156,6 +188,8 @@ if (is_object($market)) {
 ?>
 <script>
     $('.marketAttr[data-l1key=type]').on('change', function () {
+        $('.category').hide().removeClass('marketAttr');
+        $('.category.' + $('.marketAttr[data-l1key=type] option:selected').attr('data-category')).show().addClass('marketAttr');
         if ($(this).value() == 'plugin') {
             $('#div_marketPrice').show();
         } else {

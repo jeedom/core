@@ -38,7 +38,7 @@ class cron {
     private $option;
     private $once = 0;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     /**
      * Return an array of all cron object
@@ -90,6 +90,34 @@ class cron {
             $sql .= ' AND `option`=:option';
         }
         return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+    }
+
+    public static function searchClassAndFunction($_class, $_function, $_option = '') {
+        $value = array(
+            'class' => $_class,
+            'function' => $_function,
+        );
+        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+                FROM cron
+                WHERE class=:class
+                    AND function=:function';
+        if ($_option != '') {
+            $value['option'] = '%' . $_option . '%';
+            $sql .= ' LIKE `option`=:option';
+        }
+        return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+    }
+
+    public static function clean() {
+        $crons = self::all();
+        foreach ($crons as $cron) {
+            $c = new Cron\CronExpression($cron->getSchedule(), new Cron\FieldFactory);
+            try {
+                $c->getNextRunDate();
+            } catch (Exception $ex) {
+                $cron->remove();
+            }
+        }
     }
 
     /**
@@ -161,7 +189,7 @@ class cron {
         return true;
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     /**
      * Check if cron object is valid before save
@@ -169,10 +197,10 @@ class cron {
      */
     public function preSave() {
         if ($this->getFunction() == '') {
-            throw new Exception(__('La fonction ne peut être vide', __FILE__));
+            throw new Exception(__('La fonction ne peut pas être vide', __FILE__));
         }
         if ($this->getSchedule() == '') {
-            throw new Exception(__('La programmation ne peut être vide : ', __FILE__) . print_r($this, true));
+            throw new Exception(__('La programmation ne peut pas être vide : ', __FILE__) . print_r($this, true));
         }
     }
 
@@ -246,7 +274,7 @@ class cron {
                 if (!$this->running()) {
                     exec($cmd . ' >> /dev/null 2>&1 &');
                 } else {
-                    throw new Exception(__('Impossible de lancer la tache car elle est déjà en cours (', __FILE__) . $this->getNbRun() . ') : ' . $cmd);
+                    throw new Exception(__('Impossible d\'exécuter la tâche car elle est déjà en cours d\'exécution (', __FILE__) . $this->getNbRun() . ') : ' . $cmd);
                 }
             }
         }
@@ -321,7 +349,7 @@ class cron {
             $this->setServer('');
             $this->setPID();
             $this->save();
-            throw new Exception($this->getClass() . '::' . $this->getFunction() . __('() : Impossible d\'arreter la tâche', __FILE__));
+            throw new Exception($this->getClass() . '::' . $this->getFunction() . __('() : Impossible d\'arrêter la tâche', __FILE__));
         } else {
             $this->setState('stop');
             $this->setDuration(-1);
@@ -350,25 +378,21 @@ class cron {
                 if ($c->isDue()) {
                     return true;
                 }
-            } catch (Exception $e) {
+            } catch (Exception $exc) {
                 
             }
             try {
                 $prev = $c->getPreviousRunDate();
-                $lastCheck = new DateTime($this->getLastRun());
-                $diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
-                if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
-                    if ($diff > 3) {
-                        log::add('cron', 'error', __('Retard de ', __FILE__) . $diff . ' min : ' . $this->getClass() . '::' . $this->getFunction() . __('(). Rattrapage en cours...', __FILE__));
-                    }
-                    return true;
-                }
-            } catch (Exception $e) {
-                
+            } catch (Exception $exc) {
+                $prev = new DateTime('2000-01-01 01:00:00');
+            }
+            $lastCheck = new DateTime($this->getLastRun());
+            $diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
+            if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
+                return true;
             }
         } catch (Exception $e) {
-            log::add('cron', 'error', __('Expression cron non valide : ', __FILE__) . $this->getSchedule() . __('. Détails : ', __FILE__) . $e->getMessage());
-            return false;
+            
         }
         return false;
     }

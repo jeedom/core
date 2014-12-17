@@ -162,7 +162,6 @@ try {
         }
         if (!isset($scenario_db) || !is_object($scenario_db)) {
             $scenario_db = new scenario();
-            $scenario_db->setIsActive(1);
         } else {
             if (!$scenario_db->hasRight('w')) {
                 throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));

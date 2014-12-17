@@ -1,0 +1,667 @@
+Language: Svenska
+Language-Code: sv_SE
+Build-Date: Tue, 18 Jan 2011 15:23:48 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "Filen kunde inte läsas eller var tom"
+
+msgid: "Error performing operation"
+msgstr: "Fel vid genomförande"
+
+msgid: "All"
+msgstr: "Alla"
+
+msgid: "None"
+msgstr: "Inga"
+
+msgid: "With selected"
+msgstr: "Med markerade"
+
+msgid: "Empty"
+msgstr: "Tom"
+
+msgid: "Drop"
+msgstr: "Radera"
+
+msgid: "Optimize"
+msgstr: "Optimera"
+
+msgid: "Table"
+msgstr: "Tabell"
+
+msgid: "Rows"
+msgstr: "Rader"
+
+msgid: "Size"
+msgstr: "Storlek"
+
+msgid: "Overhead"
+msgstr: "Outnyttjat"
+
+msgid: "Options"
+msgstr: "Alternativ"
+
+msgid: "Edit database"
+msgstr: "Editera databas"
+
+msgid: "Charset"
+msgstr: "Kodning"
+
+msgid: "Submit"
+msgstr: "Skicka"
+
+msgid: "Create a new table"
+msgstr: "Skapa en ny tabell"
+
+msgid: "Name"
+msgstr: "Namn"
+
+msgid: "Setup the fields for the table below"
+msgstr: "Ställ in fälten för tabellen nedan"
+
+msgid: "New field"
+msgstr: "Nytt fält"
+
+msgid: "Type"
+msgstr: "Typ"
+
+msgid: "Values"
+msgstr: "Värden"
+
+msgid: "Key"
+msgstr: "Nyckel"
+
+msgid: "primary"
+msgstr: "primär"
+
+msgid: "unique"
+msgstr: "unik"
+
+msgid: "index"
+msgstr: "index"
+
+msgid: "Default"
+msgstr: "Standard"
+
+msgid: "Other"
+msgstr: "Andra"
+
+msgid: "Unsigned"
+msgstr: "Osignerad"
+
+msgid: "Binary"
+msgstr: "Binär"
+
+msgid: "Not Null"
+msgstr: "Inte Null"
+
+msgid: "Auto Increment"
+msgstr: "Öka automatiskt"
+
+msgid: "Add field"
+msgstr: "Infoga fält"
+
+msgid: "Oops"
+msgstr: "Hoppsan"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "Av någon anledning kunde inte databasparametern inkluderas i din förfrågan"
+
+msgid: "Save changes to original"
+msgstr: "Spara ändringar till orginal"
+
+msgid: "Insert as new row"
+msgstr: "Infoga som ny rad"
+
+msgid: "Save"
+msgstr: "Spara"
+
+msgid: "User"
+msgstr: "Användare"
+
+msgid: "All privileges"
+msgstr: "Alla rättigheter"
+
+msgid: "Selected privileges"
+msgstr: "Valda rättigheter"
+
+msgid: "User privileges"
+msgstr: "Användarrättigheter"
+
+msgid: "Select"
+msgstr: "Markera"
+
+msgid: "Insert"
+msgstr: "Infoga"
+
+msgid: "Update"
+msgstr: "Uppdatera"
+
+msgid: "Delete"
+msgstr: "Radera"
+
+msgid: "Alter"
+msgstr: "Ändra"
+
+msgid: "Create"
+msgstr: "Skapa"
+
+msgid: "Temp tables"
+msgstr: "Temporära tabeller"
+
+msgid: "Administrator privileges"
+msgstr: "Administratörsrättigheter"
+
+msgid: "File"
+msgstr: "Fil"
+
+msgid: "Process"
+msgstr: "Process"
+
+msgid: "Reload"
+msgstr: "Ladda om"
+
+msgid: "Shutdown"
+msgstr: "Stäng av"
+
+msgid: "Super"
+msgstr: "Super"
+
+msgid: "Grant option"
+msgstr: "Grant"
+
+msgid: "User not found!"
+msgstr: "Användaren hittades inte!"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "Du måste exportera struktur, data eller båda"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "Välj de databaser du vill exportera"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "Välj de tabeller du vill exportera"
+
+msgid: "Table `%s` is empty"
+msgstr: "Tabellen `%s` är tom"
+
+msgid: "Results"
+msgstr: "Resultat"
+
+msgid: "Select all"
+msgstr: "Markera alla"
+
+msgid: "The file could not be opened"
+msgstr: "Filen kunde inte öppnas"
+
+msgid: "Could not write to file"
+msgstr: "Kan inte skriva till fil"
+
+msgid: "Successfully wrote content to file"
+msgstr: "Skrivning till filen lyckades"
+
+msgid: "Download"
+msgstr: "Ladda ner"
+
+msgid: "Note
+"
+msgstr: "Notering"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "Om detta är en publik server bör du ta bort den här filen efter att ha laddat ner den"
+
+msgid: "Export"
+msgstr: "Exportera"
+
+msgid: "Tables"
+msgstr: "Tabeller"
+
+msgid: "Databases"
+msgstr: "Databaser"
+
+msgid: "Format"
+msgstr: "Format"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "Struktur"
+
+msgid: "Data"
+msgstr: "Data"
+
+msgid: "Compact inserts"
+msgstr: "Komprimerad infogning"
+
+msgid: "Complete inserts"
+msgstr: "Komplett infogning"
+
+msgid: "Delimiter"
+msgstr: "Avgränsare"
+
+msgid: "Comma"
+msgstr: "Komma"
+
+msgid: "Tab"
+msgstr: "Tabb"
+
+msgid: "Semicolon"
+msgstr: "Semikolon"
+
+msgid: "Space"
+msgstr: "Mellanslag"
+
+msgid: "Print field names on first line"
+msgstr: "Skriv fältnamn på första raden"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "Om du exporterar ett stort antal rader rekommenderas skrivning till textfil"
+
+msgid: "Output to"
+msgstr: "Skriv till"
+
+msgid: "Browser"
+msgstr: "Webbläsare"
+
+msgid: "Text file"
+msgstr: "Textfil"
+
+msgid: "Home"
+msgstr: "Hem"
+
+msgid: "Users"
+msgstr: "Användare"
+
+msgid: "Query"
+msgstr: "Sökfråga"
+
+msgid: "Import"
+msgstr: "Importera"
+
+msgid: "Overview"
+msgstr: "Överblick"
+
+msgid: "Browse"
+msgstr: "Utforska"
+
+msgid: "Your changes were saved to the database"
+msgstr: "Dina ändringar har blivit sparade i databasen"
+
+msgid: "delete this row"
+msgstr: "radera den här raden"
+
+msgid: "delete these rows"
+msgstr: "radera de här raderna"
+
+msgid: "empty this table"
+msgstr: "töm den här tabellen"
+
+msgid: "empty these tables"
+msgstr: "töm de här tabellerna"
+
+msgid: "drop this table"
+msgstr: "radera tabell"
+
+msgid: "drop these tables"
+msgstr: "radera tabellerna"
+
+msgid: "delete this column"
+msgstr: "ta bort colum"
+
+msgid: "delete these columns"
+msgstr: "ta bort de här colummerna"
+
+msgid: "delete this index"
+msgstr: "Ta bort index"
+
+msgid: "delete these indexes"
+msgstr: "Ta bort alla index"
+
+msgid: "delete this user"
+msgstr: "ta bort användare"
+
+msgid: "delete these users"
+msgstr: "ta bort de här användarna"
+
+msgid: "Are you sure you want to"
+msgstr: "Är du säker på att du vill"
+
+msgid: "The following query will be run:"
+msgstr: "Följande sökfråga kommer att köras:"
+
+msgid: "The following queries will be run:"
+msgstr: "Följande sökfrågor kommer att köras:"
+
+msgid: "Confirm"
+msgstr: "Acceptera"
+
+msgid: "Successfully saved changes"
+msgstr: "Dina ändringar är sparade"
+
+msgid: "Full Text"
+msgstr: "Fulltext"
+
+msgid: "Loading..."
+msgstr: "Laddar..."
+
+msgid: "Error"
+msgstr: "Fel"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "Ett fel uppstod när data hämtades från servern"
+
+msgid: "Logout"
+msgstr: "Logga ut"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "Av någon anledning kunde inte tabellparametern inkluderas i din förfrågan"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "Välkommen till SQL Buddy!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "Du är ansluten till MySQL %s med användaren %s."
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "Databasservern har varit igång sedan %s och har skickat ca %s data."
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "En ny version av SQL Buddy är tillgänglig!"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "Du har för närvarande SQL Buddy %s installerat och %s är nu tillgänglig"
+
+msgid: "Getting started"
+msgstr: "Börja"
+
+msgid: "Help"
+msgstr: "Hjälp"
+
+msgid: "Translations"
+msgstr: "Översättningar"
+
+msgid: "Release Notes"
+msgstr: "Ändringar"
+
+msgid: "Contact"
+msgstr: "Kontakt"
+
+msgid: "Create a new database"
+msgstr: "Skapa en ny databas"
+
+msgid: "Did you know..."
+msgstr: "Visste du att..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "För att enklast markera en stor grupp av poster i en tabell, markera första posten och håll sedan inne shift-tangenten och klicka på sista posten. Alla kryssrutor mellan dessa två poster kommer då automatiskt bli markerade."
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "Kolumnerna i utforskaren och fråge-flikarna är justerbara. Ändra till önskad storlek."
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "Login-sidan använder root-kontot om inga ändringar har gjorts. Genom att ändra i config.php kan dessa inställningar justeras efter eget önskemål."
+
+msgid: "Keyboard shortcuts"
+msgstr: "Kortkommandon"
+
+msgid: "Press this key..."
+msgstr: "Tryck denna tangent..."
+
+msgid: "...and this will happen"
+msgstr: "... för att detta ska hända"
+
+msgid: "select none"
+msgstr: "avmarkera alla"
+
+msgid: "edit selected items"
+msgstr: "Ändra valda objekt"
+
+msgid: "delete selected items"
+msgstr: "ta bort markerade objekt"
+
+msgid: "refresh page"
+msgstr: "uppdatera sidan"
+
+msgid: "load the query tab"
+msgstr: "Öppna fråge-fliken"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "Bläddra-tabb - Gå till första resultat-sidan"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "Bläddra-tabb - Gå till sista resultat-sidan"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "Bläddra-tabb - Gå till föregående resultat-sida"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "Bläddra-tabb - Gå till nästa resultat-sida"
+
+msgid: "optimize selected tables"
+msgstr: "optimera markerade tabeller"
+
+msgid: "Choose a .sql file to import"
+msgstr: "Välj en .sql-fil att importera"
+
+msgid: "File
+"
+msgstr: "Fil"
+
+msgid: "Ignore first line"
+msgstr: "Ignorera första raden"
+
+msgid: "Edit"
+msgstr: "Ändra"
+
+msgid: "Refresh"
+msgstr: "Uppdatera"
+
+msgid: "No primary key defined"
+msgstr: "Ingen primärnyckel är definierad"
+
+msgid: "First"
+msgstr: "Första"
+
+msgid: "Prev"
+msgstr: "Föregående"
+
+msgid: "Next"
+msgstr: "Nästa"
+
+msgid: "Last"
+msgstr: "Sista"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "Din sökning gav %d resultat"
+msgstr[1]: "Din sökning gav %d resultat"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "Obs! För att undvika att din webbläsare ska krascha kommer endast de %d första resultaten att visas"
+
+msgid: "binary data"
+msgstr: "binärdata"
+
+msgid: "Your query affected %d rows"
+msgstr: "Din sökfråga påverkade %d rader"
+
+msgid: "Your query did not return any results"
+msgstr: "Din sökfråga gav inga resultat"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "Din data har infogats i databasen"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "Det uppstod problem vid sökning efter tabellen \"%s\""
+
+msgid: "There was a problem logging you in"
+msgstr: "Problem med inloggning"
+
+msgid: "Login"
+msgstr: "Logga in"
+
+msgid: "Unsupported browser"
+msgstr: "Webbläsaren stöds ej"
+
+msgid: "Help!"
+msgstr: "Hjälp"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "Din session har tagit slut. Var god logga in igen."
+
+msgid: "Username"
+msgstr: "Användarnamn"
+
+msgid: "Password"
+msgstr: "Lösenord"
+
+msgid: "Run a query on the %s database"
+msgstr: "Kör en sökfråga på databasen %s"
+
+msgid: "Columns"
+msgstr: "Kolumner"
+
+msgid: "Add a column"
+msgstr: "Lägg till kolumn"
+
+msgid: "Insert this column"
+msgstr: "Infoga den här kolumen"
+
+msgid: "At end of table"
+msgstr: "I slutet av tabellen"
+
+msgid: "At beginning of table"
+msgstr: "I början av tabellen"
+
+msgid: "After"
+msgstr: "Efter"
+
+msgid: "Edit table"
+msgstr: "Ändra tabell"
+
+msgid: "Indexes"
+msgstr: "Index"
+
+msgid: "Add an index"
+msgstr: "Lägg till index"
+
+msgid: "Column(s)"
+msgstr: "Kolumn(er)"
+
+msgid: "Show %d more..."
+msgstr: "Visa ytterligare %d..."
+
+msgid: "Empty table"
+msgstr: "Töm tabellen"
+
+msgid: "Drop table"
+msgstr: "Radera tabell"
+
+msgid: "Optimize table"
+msgstr: "Optimrera tabellen"
+
+msgid: "Table Information"
+msgstr: "Tabellinformation"
+
+msgid: "Host"
+msgstr: "Värd"
+
+msgid: "Add a new user"
+msgstr: "Lägg till ny användare"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "Skriv in i formatet: ('1', '2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "Är du säker på att du vill tömma tabellen '%s'? Detta kommer att radera all data i tabellen. Följande fråga kommer att köras:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "Är du säker på att du vill radera tabellen '%s'? Detta kommer att radera tabellen och all data i denna tabell. Följande fråga kommer att köras:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "Är du säker på att du vill radera databasen '%s'? Detta kommer att radera databasen och alla tabeller och all data i denna databas. Följande fråga kommer att köras:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "Endast Internet Explorer 7 stöds. Den finns att ladda hem på Microsofts webbsida. Andra gratis webbläsare som också stöds är Firefox, Safari och Opera."
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "Det verkar som att du inte tillåter cookies. För att en session ska fungera kräver de flesta PHP-installationer att cookies tillåts."
+
+msgid: "Importing..."
+msgstr: "Importerar..."
+
+msgid: "Drop the '%s' database"
+msgstr: "Radera databasen '%s'"
+
+msgid: "Okay"
+msgstr: "Ok"
+
+msgid: "Cancel"
+msgstr: "Avbryt"
+
+msgid: "Storage engine"
+msgstr: "Lagringsmotor"
+
+msgid: "Language"
+msgstr: "Språk"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "%d utdrag kördes från filen"
+msgstr[1]: "%d utdrag kördes från filen"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "%d rad sattes in i databasen från filen"
+msgstr[1]: "%d rader sattes in i databasen från filen"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "%d rad hoppades över på grund av att antalet värden inte var korrekta"
+msgstr[1]: "%d rader hoppades över på grund av att antalet värden inte var korrekta"
+
+msgid: "Theme"
+msgstr: "Tema"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f sekunder)"
+
+msgid: "The following errors were reported"
+msgstr: "Följande fel har rapporterats"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "Du saknar rättigheterna för att skapa en ny användare."
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "Du saknar rättigheterna för att visa eller hantera användare."
+
+msgid: "You are connected to %s."
+msgstr: "Du är ansluten till %s."
+
+msgid: "Allow access to"
+msgstr: "Tillåt åtkomst till"
+
+msgid: "All databases"
+msgstr: "Alla databaser"
+
+msgid: "Selected databases"
+msgstr: "Markerade databaser"
+
+msgid: "Give user"
+msgstr: "Ge användare"
+
+msgid: "Updates"
+msgstr: "Uppdateringar"
+
+msgid: "There are no updates available"
+msgstr: "Det finns inga tillgängliga uppdateringar"
+
+msgid: "Change password"
+msgstr: "Byt lösenord"
+
+msgid: "Redirecting..."
+msgstr: "Förflyttar..."

@@ -20,7 +20,7 @@ include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
                 <script>
                     $('#div_helpCronGenerate').cron({
                         initial: "* * * * *",
-                        onChange: function() {
+                        onChange: function () {
                             $('#span_helpCronGenerate').text($(this).cron("value"));
                         }
                     });

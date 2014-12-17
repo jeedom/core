@@ -54,8 +54,8 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
                     echo $connection->getInformations('org');
                     echo '</td>';
                     echo '<td>';
-                    echo '<a class="btn btn-warning btn-xs remove pull-right" style="color : white;"><i class="fa fa-trash-o"></i> Supprimer</a> ';
-                    echo '<a class="btn btn-danger btn-xs ban pull-right" style="color : white;"><i class="fa fa-thumbs-down"></i> Bannir</a>';
+                    echo '<a class="btn btn-warning btn-xs remove pull-right" style="color : white;margin-bottom: 5px;"><i class="fa fa-trash-o"></i> Supprimer</a> ';
+                    echo '<a class="btn btn-danger btn-xs ban pull-right" style="color : white;margin-bottom: 5px;"><i class="fa fa-thumbs-down"></i> Bannir</a>';
                     echo '</td>';
                     echo '</tr>';
                 }
@@ -69,30 +69,30 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
         <form class="form-horizontal">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">{{Activer la sécurité anti-piratage}}</label>
-                    <div class="col-sm-3">
+                    <label class="col-sm-2 col-xs-6 control-label">{{Activer la sécurité anti-piratage}}</label>
+                    <div class="col-sm-3 col-xs-6">
                         <input type="checkbox" class="configKey" data-l1key="security::enable"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">{{Nombre de tentatives de connexion max}}</label>
-                    <div class="col-sm-1">
+                    <label class="col-sm-2 col-xs-3 control-label">{{Nombre de tentatives de connexion max}}</label>
+                    <div class="col-sm-1 col-xs-3">
                         <input type="text" class="configKey form-control" data-l1key="security::retry" />
                     </div>
-                    <label class="col-sm-1 control-label">{{en (min) }}</label>
-                    <div class="col-sm-1">
+                    <label class="col-sm-1 col-xs-3 control-label">{{en (min) }}</label>
+                    <div class="col-sm-1 col-xs-3">
                         <input type="text" class="configKey form-control" data-l1key="security::backlogtime" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">{{Durée du bannissement (min)}}</label>
-                    <div class="col-sm-1">
+                    <label class="col-sm-2 col-xs-6 control-label">{{Durée du bannissement (min)}}</label>
+                    <div class="col-sm-1 col-xs-6">
                         <input type="text" class="configKey form-control" data-l1key="security::bantime" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">{{Liste blanche d'IP}}</label>
-                    <div class="col-sm-8">
+                    <label class="col-sm-2 col-xs-6 control-label">{{Liste blanche d'IP}}</label>
+                    <div class="col-sm-8 col-xs-6">
                         <input type="text" class="configKey form-control" data-l1key="security::protectIp" />
                     </div>
                 </div>

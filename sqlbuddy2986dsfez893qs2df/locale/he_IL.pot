@@ -1,0 +1,667 @@
+Language: עִבְרִית
+Language-Code: he_IL
+Build-Date: Tue, 18 Jan 2011 15:10:24 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "לא ניתן לקרוא את הקובץ, או שהוא ריק"
+
+msgid: "Error performing operation"
+msgstr: "שגיאה בביצוע הפעולה"
+
+msgid: "All"
+msgstr: "הכל"
+
+msgid: "None"
+msgstr: "כלום"
+
+msgid: "With selected"
+msgstr: "עם הנבחר"
+
+msgid: "Empty"
+msgstr: "רוקן"
+
+msgid: "Drop"
+msgstr: "הסר"
+
+msgid: "Optimize"
+msgstr: "ייעל"
+
+msgid: "Table"
+msgstr: "טבלה"
+
+msgid: "Rows"
+msgstr: "שורה"
+
+msgid: "Size"
+msgstr: "גודל"
+
+msgid: "Overhead"
+msgstr: "תְּקוּרָה"
+
+msgid: "Options"
+msgstr: "אפשרויות"
+
+msgid: "Edit database"
+msgstr: "ערוך מסד נתונים"
+
+msgid: "Charset"
+msgstr: "תווים"
+
+msgid: "Submit"
+msgstr: "שלח"
+
+msgid: "Create a new table"
+msgstr: "צור טבלה חדשה"
+
+msgid: "Name"
+msgstr: "שם"
+
+msgid: "Setup the fields for the table below"
+msgstr: "הסדר את השדות עבור הטבלה שמתחת"
+
+msgid: "New field"
+msgstr: "שדה חדש"
+
+msgid: "Type"
+msgstr: "סוג"
+
+msgid: "Values"
+msgstr: "ערכים"
+
+msgid: "Key"
+msgstr: "מפתח"
+
+msgid: "primary"
+msgstr: "עיקרי"
+
+msgid: "unique"
+msgstr: "ייחודי"
+
+msgid: "index"
+msgstr: "אינדקס"
+
+msgid: "Default"
+msgstr: "ברירת מחדל"
+
+msgid: "Other"
+msgstr: "אחר"
+
+msgid: "Unsigned"
+msgstr: "לא חתום"
+
+msgid: "Binary"
+msgstr: "בינארי"
+
+msgid: "Not Null"
+msgstr: "לא מאופס"
+
+msgid: "Auto Increment"
+msgstr: "גִּדּוּל עצמי"
+
+msgid: "Add field"
+msgstr: "הוסף שדה"
+
+msgid: "Oops"
+msgstr: "אופסס"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "מסיבה לא ידועה , מסד נתונים לא היה כלול בבקשתך"
+
+msgid: "Save changes to original"
+msgstr: "שמור שינויים בקובץ המקורי"
+
+msgid: "Insert as new row"
+msgstr: "הכנס שורה חדשה"
+
+msgid: "Save"
+msgstr: "שמור"
+
+msgid: "User"
+msgstr: "משתמש"
+
+msgid: "All privileges"
+msgstr: "כל ההרשאות"
+
+msgid: "Selected privileges"
+msgstr: "הרשאות נבחרות"
+
+msgid: "User privileges"
+msgstr: "הרשאות משתמש"
+
+msgid: "Select"
+msgstr: "בחר"
+
+msgid: "Insert"
+msgstr: "הכנס"
+
+msgid: "Update"
+msgstr: "עדכן"
+
+msgid: "Delete"
+msgstr: "מחק"
+
+msgid: "Alter"
+msgstr: "שנה"
+
+msgid: "Create"
+msgstr: "צור"
+
+msgid: "Temp tables"
+msgstr: "טבלאות זמניות"
+
+msgid: "Administrator privileges"
+msgstr: "הרשאות מנהל"
+
+msgid: "File"
+msgstr: "קובץ"
+
+msgid: "Process"
+msgstr: "תהליך"
+
+msgid: "Reload"
+msgstr: "טען מחדש "
+
+msgid: "Shutdown"
+msgstr: "סגירה"
+
+msgid: "Super"
+msgstr: "מעבר"
+
+msgid: "Grant option"
+msgstr: "אפשרות הענקה"
+
+msgid: "User not found!"
+msgstr: "משתמש לא קיים !"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "חובה לייצא מבנה , מידע או את שניהם"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "אנא בחר את מסד הנתונים לייצוא"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "אנא בחר את הטבלאות לייצוא"
+
+msgid: "Table `%s` is empty"
+msgstr: " ריקה `%s`  הטבלה "
+
+msgid: "Results"
+msgstr: "תוצאות"
+
+msgid: "Select all"
+msgstr: "בחר הכל"
+
+msgid: "The file could not be opened"
+msgstr: "הקובץ לא ניתן לפתיחה"
+
+msgid: "Could not write to file"
+msgstr: "לא ניתן לכתוב לקובץ"
+
+msgid: "Successfully wrote content to file"
+msgstr: "התוכן נכתב בהצלחה לקובץ"
+
+msgid: "Download"
+msgstr: "הורד"
+
+msgid: "Note
+"
+msgstr: "פתקה"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "אם זהו שרת ציבורי, יש למחוק קובץ זה לאחר ההורדה"
+
+msgid: "Export"
+msgstr: "ייצא"
+
+msgid: "Tables"
+msgstr: "טבלאות"
+
+msgid: "Databases"
+msgstr: "מסדי נתונים"
+
+msgid: "Format"
+msgstr: "אתחול"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "מבנה"
+
+msgid: "Data"
+msgstr: "מידע"
+
+msgid: "Compact inserts"
+msgstr: "החדרות מוקטנות"
+
+msgid: "Complete inserts"
+msgstr: "החדרות מלאות"
+
+msgid: "Delimiter"
+msgstr: "מפריד"
+
+msgid: "Comma"
+msgstr: "פסיק"
+
+msgid: "Tab"
+msgstr: "לשונית"
+
+msgid: "Semicolon"
+msgstr: "נקודה פסיק"
+
+msgid: "Space"
+msgstr: "רווח"
+
+msgid: "Print field names on first line"
+msgstr: "הדפס את שמות השדות בשורה הראשונה"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "אתה מייצא מספר רב של שורות , מומלץ לשמור את התוצאות לקובץ"
+
+msgid: "Output to"
+msgstr: "נשמר ב"
+
+msgid: "Browser"
+msgstr: "דפדפן"
+
+msgid: "Text file"
+msgstr: "קובץ מלל"
+
+msgid: "Home"
+msgstr: "דף הבית"
+
+msgid: "Users"
+msgstr: "משתמשים"
+
+msgid: "Query"
+msgstr: "שאילתא"
+
+msgid: "Import"
+msgstr: "ייבוא"
+
+msgid: "Overview"
+msgstr: "סקירה"
+
+msgid: "Browse"
+msgstr: "עלעל"
+
+msgid: "Your changes were saved to the database"
+msgstr: "השינויים שביצעת יישמרו למסד הנתונים"
+
+msgid: "delete this row"
+msgstr: "מחק את השורה הזו"
+
+msgid: "delete these rows"
+msgstr: "מחק את השורות הללו"
+
+msgid: "empty this table"
+msgstr: "רוקן את הטבלה הזו"
+
+msgid: "empty these tables"
+msgstr: "רוקן את הטבלאות הללו"
+
+msgid: "drop this table"
+msgstr: "מחק טבלה זו"
+
+msgid: "drop these tables"
+msgstr: "מחק טבלאות אלו"
+
+msgid: "delete this column"
+msgstr: "מחק את הטור הזה"
+
+msgid: "delete these columns"
+msgstr: "מחק את הטורים הללו"
+
+msgid: "delete this index"
+msgstr: "מחק את האינדקס הזה"
+
+msgid: "delete these indexes"
+msgstr: "מחק את האינדקסים הללו"
+
+msgid: "delete this user"
+msgstr: "מחק את המשתמש"
+
+msgid: "delete these users"
+msgstr: "מחק את המשתמשים"
+
+msgid: "Are you sure you want to"
+msgstr: "האם אתה בטוח שאתה רוצה"
+
+msgid: "The following query will be run:"
+msgstr: "השאילתא הבאה עומדת להתבצע:"
+
+msgid: "The following queries will be run:"
+msgstr: "השאילתות הבאות עומדות להתבצע:"
+
+msgid: "Confirm"
+msgstr: "אשר"
+
+msgid: "Successfully saved changes"
+msgstr: "שינויים נשמרו בהצלחה"
+
+msgid: "Full Text"
+msgstr: "מלל מלא"
+
+msgid: "Loading..."
+msgstr: "טוען"
+
+msgid: "Error"
+msgstr: "שגיאה"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "אירעה שגיאה בקבלת המידע מן השרת"
+
+msgid: "Logout"
+msgstr: "יציאה מהמערכת"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "מסיבה לא ידועה , משתני הטבלה לא נכללו בבקשתך "
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "ברוכים הבאים ל- SQL BUDDY"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "%s עם משתמש %s אתה מחובר למסד נתונים"
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "של מידע %s והעביר בערך %s שרת מסד הנתונים בפעולה מ"
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "ישנה גרסה חדשה של SQL BUDDY"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "מערכת האתר הותקנה וכעת ניתן להכנס אליה"
+
+msgid: "Getting started"
+msgstr: "איך מתחילים"
+
+msgid: "Help"
+msgstr: "עזרה"
+
+msgid: "Translations"
+msgstr: "תרגומים"
+
+msgid: "Release Notes"
+msgstr: "הערות שחרור גרסה"
+
+msgid: "Contact"
+msgstr: "ליצור קשר"
+
+msgid: "Create a new database"
+msgstr: "צור מסד נתונים חדש"
+
+msgid: "Did you know..."
+msgstr: "הידעת ..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "ישנה דרך קלה יותר לבחור קבוצה גדולה של פריטים כאשר מעלעלים בשורות הטבלה. סמן את השורה הראשונה, החזק את כפתור ה\"שיפט\" וסמן את השורה האחרונה. תיבות הסימון בינהן יסומנו עבורך באופן מיידי"
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "הטורים בסמניות העלעול והשאילתות ניתנים לשינוי גודל . אפשר לעצב אותם רחבים או צרים כרצונך"
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "root@localhost דף הכניסה מבוסס על משתמש ברירת  config.php מחדל . ע\"י עריכה של קובץ המשתניםrn ניתן לשנות את המשתמש והשרת למה שתחפוץ"
+
+msgid: "Keyboard shortcuts"
+msgstr: "קיצורי מקלדת"
+
+msgid: "Press this key..."
+msgstr: "לחץ על כפתור זה ...."
+
+msgid: "...and this will happen"
+msgstr: "... וזה מה שיקרה"
+
+msgid: "select none"
+msgstr: "בחר בכלום"
+
+msgid: "edit selected items"
+msgstr: "ערוך פריטים שנבחרו"
+
+msgid: "delete selected items"
+msgstr: "מחק פריטים שנבחרו"
+
+msgid: "refresh page"
+msgstr: "רענן דף"
+
+msgid: "load the query tab"
+msgstr: "טען לשונית שאילתא"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "לשונית עלעול - לך לדף התוצאות הראשון"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "לשונית עלעול - לך לדף התוצאות האחרון"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "לשונית עלעול - לך לדף התוצאות הקודם"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "לשונית עלעול - לך לדף התוצאות הבא"
+
+msgid: "optimize selected tables"
+msgstr: "ייעל את הטבלאות הנבחרות"
+
+msgid: "Choose a .sql file to import"
+msgstr: "בחר קובץ גיבוי מסד לייבא"
+
+msgid: "File
+"
+msgstr: "קובץ"
+
+msgid: "Ignore first line"
+msgstr: "התעלם משורה ראשונה"
+
+msgid: "Edit"
+msgstr: "עריכה"
+
+msgid: "Refresh"
+msgstr: "רענן"
+
+msgid: "No primary key defined"
+msgstr: "לא מוגדר מפתח עיקרי"
+
+msgid: "First"
+msgstr: "ראשון"
+
+msgid: "Prev"
+msgstr: "הקודם"
+
+msgid: "Next"
+msgstr: "הבא"
+
+msgid: "Last"
+msgstr: "אחרון"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "%d השאילתא שלך החזירה את התוצאה "
+msgstr[1]: "השאילתא שלך החזירה %d תוצאות"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "%d הערה : כדי להימנע מקריסת הדפדפן, רק rnתוצאות ראשונות מוצגות"
+
+msgid: "binary data"
+msgstr: "מידע בינארי"
+
+msgid: "Your query affected %d rows"
+msgstr: "שורות הושפעו מהשאילתא שלך%d "
+
+msgid: "Your query did not return any results"
+msgstr: "השאילתא שלך לא החזירה תוצאות כלל"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "המידע הוכנס לתוך מסד הנתונים"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "%s הייתה בעייה מסויימת לאתר את הטבלה "
+
+msgid: "There was a problem logging you in"
+msgstr: "הייתה בעייה באימות הנתונים"
+
+msgid: "Login"
+msgstr: "התחברות למערכת"
+
+msgid: "Unsupported browser"
+msgstr: "דפדפן לא נתמך"
+
+msgid: "Help!"
+msgstr: "עזרה!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "לתהליך שלך נגמר הזמן. אנא התחבר שנית למערכת"
+
+msgid: "Username"
+msgstr: "שם משתמש"
+
+msgid: "Password"
+msgstr: "סיסמא"
+
+msgid: "Run a query on the %s database"
+msgstr: "%s הרץ שאילתא על המסד "
+
+msgid: "Columns"
+msgstr: "טורים"
+
+msgid: "Add a column"
+msgstr: "הוסף טור"
+
+msgid: "Insert this column"
+msgstr: "הכנס את הטור הזה"
+
+msgid: "At end of table"
+msgstr: "בסוף הטבלה"
+
+msgid: "At beginning of table"
+msgstr: "בתחילת הטבלה"
+
+msgid: "After"
+msgstr: "אחרי"
+
+msgid: "Edit table"
+msgstr: "ערוך טבלה"
+
+msgid: "Indexes"
+msgstr: "אינדקסים"
+
+msgid: "Add an index"
+msgstr: "הוסף אינדקס"
+
+msgid: "Column(s)"
+msgstr: "טורים"
+
+msgid: "Show %d more..."
+msgstr: "...%d הראה עוד  "
+
+msgid: "Empty table"
+msgstr: "רוקן טבלה"
+
+msgid: "Drop table"
+msgstr: "מחק טבלה"
+
+msgid: "Optimize table"
+msgstr: "ייעל טבלה"
+
+msgid: "Table Information"
+msgstr: "מידע לגבי טבלה"
+
+msgid: "Host"
+msgstr: "מארח"
+
+msgid: "Add a new user"
+msgstr: "הוסף משתמש חדש"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "('2','1'):הכנס לפי התבנית "
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "האם אתה בטוח שאתה רוצה לרוקן את הטבלה ? פעולה זו תמחוק את כל המידע שבתוכה. השאילתא הבאה תרוץ :"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "האם אתה בטוח שאתה רוצה למחוק את הטבלה ? פעולה זו תמחוק את כל המידע שבתוכה. השאילתא הבאה תרוץ:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "האם אתה בטוח שאתה רוצה למחוק את הטבלה ? פעולה זו תמחוק את הטבלה וכל המידע שבתוכה. השאילתא הבאה תרוץ:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "אנחנו מצטערים , המערכת תומכת כרגע באקספלורר 7 בלבד . ניתן למצוא הורדה בחינם באתר מיקרוסופט. הנתמכים האחרים הינם דפדפנים חינמיים , בכללם פיירפוקס , סאפארי ואופרה"
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "נראה שה\"עוגיות\" שלך לא מופעלות , אנא הפעל אותן על מנת שהחיבור יעבוד"
+
+msgid: "Importing..."
+msgstr: "מיבא..."
+
+msgid: "Drop the '%s' database"
+msgstr: "'%s'  זרוק את המסד "
+
+msgid: "Okay"
+msgstr: "טוב"
+
+msgid: "Cancel"
+msgstr: "ביטול"
+
+msgid: "Storage engine"
+msgstr: "מנוע אחסון"
+
+msgid: "Language"
+msgstr: "שפה"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "בוצעה מתוך הקובץ %d הצהרה"
+msgstr[1]: "בוצעו מתוך הקובץ %d הצהרות"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "הוחדרה לתוך המסד מן הקובץ %d שורה"
+msgstr[1]: "שורות הוחדרו למסד מתוך הקובץ %d"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "נפסחה בשל מספר משתנים שגוי %d שורה "
+msgstr[1]: "שורות נפסחו בשל מספר משתנים שגוי %d "
+
+msgid: "Theme"
+msgstr: "תבנית תצוגה "
+
+msgid: "(%.4f seconds)"
+msgstr: "( %.4f שניות )"
+
+msgid: "The following errors were reported"
+msgstr: "השגיאות הבאות אירעו "
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "אין לך הרשאות מספיקות ליצור משתמשים חדשים"
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "אין לך הרשאות מספקות לצפייה או ניהול משתמשים"
+
+msgid: "You are connected to %s."
+msgstr: "%s אתה מחובר אל "
+
+msgid: "Allow access to"
+msgstr: "אפשר גישה ל"
+
+msgid: "All databases"
+msgstr: "כל מסדי הנתונים"
+
+msgid: "Selected databases"
+msgstr: "מסדים נבחרים"
+
+msgid: "Give user"
+msgstr: "אשר למשתמש"
+
+msgid: "Updates"
+msgstr: "עדכונים"
+
+msgid: "There are no updates available"
+msgstr: "אין עדכונים "
+
+msgid: "Change password"
+msgstr: "שנה ססמא"
+
+msgid: "Redirecting..."
+msgstr: "מפנה.."

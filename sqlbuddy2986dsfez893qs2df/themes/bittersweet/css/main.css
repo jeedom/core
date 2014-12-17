@@ -1,0 +1,155 @@
+body {
+background: rgb(255, 255, 255) url(../images/initLoad-dark.png) no-repeat 50% 125px;
+}
+
+#header {
+background: rgb(80, 80, 80) url(../images/header.png) repeat-x;
+}
+
+#headerlogo {
+width: 185px !important;
+}
+#leftside {
+width: 205px !important;
+overflow-y: hidden;
+}
+#rightside {
+margin-left: 205px !important;
+}
+#sidemenu {
+overflow-x: hidden;
+}
+
+#bottom {
+background: transparent url(../../../images/window-shadow-bottom.png) repeat-x scroll 0px -7px;
+}
+
+#innercontent a {
+color: steelBlue;
+}
+#innercontent a:hover {
+color: rgb(50, 50, 50);
+}
+
+h3, h4 {
+color: rgb(135, 135, 115);
+text-transform: uppercase;
+font-weight: normal;
+}
+h3 {
+font-size: 12px;
+}
+h4 {
+border-bottom: 1px solid rgb(210, 210, 210);
+line-height: 1.3;
+font-size: 14px;
+}
+
+#headerinfo a {
+color: rgb(200, 200, 200) !important;
+text-decoration: none;
+}
+#headerinfo a:hover {
+color: rgb(250, 250, 250) !important;
+}
+
+.grid {
+border-color: rgb(220, 220, 220) rgb(190, 190, 190) rgb(190, 190, 190) rgb(190, 190, 190);
+}
+
+.alternator {
+border-bottom-color: transparent;
+background: white;
+}
+.alternator2 {
+background: rgb(245, 245, 245);
+}
+.highlighted {
+border-bottom-color: rgb(210, 210, 210) !important;
+background: rgb(230, 230, 215) !important;
+}
+
+.paginator a {
+color: rgb(125, 125, 125) !important;
+}
+
+.dblistheader {
+color: rgb(150, 150, 150) !important;
+}
+.dblist {
+float: left;
+}
+.dblist ul li {
+float: left;
+clear: left;
+}
+.dblist ul li a {
+display: inline !important;
+border-width: 0 !important;
+}
+.dblist ul li a .menutext {
+color: rgb(80, 80, 80);
+margin-left: 0 !important;
+float: left;
+}
+.dblist ul li a:hover .menutext {
+color: rgb(40, 40, 40);
+}
+.dblist ul li a .menuicon {
+color: rgb(150, 150, 150) !important;
+}
+.dblist ul li.selected>a {
+font-weight: bold;
+}
+.sublist {
+float: left;
+clear: left;
+line-height: 18px;
+}
+.sublist li a {
+color: rgb(80, 80, 80);
+}
+.sublist li a:hover {
+color: rgb(40, 40, 40);
+}
+.subcount {
+color: rgb(150, 150, 150);
+}
+
+#loginform {
+padding: 3px;
+border: 1px solid rgb(200, 200, 200);
+}
+#loginform .loginspacer {
+background: #E9EBDF !important;
+padding: 10px 15px 10px 11px !important;
+}
+.loginheader {
+border-bottom-color: rgb(200, 200, 200);
+}
+#loginform .field {
+color: #777;
+}
+
+#toptabs ul li a {
+color: rgb(220, 220, 220);
+}
+#toptabs ul li a .rowcount {
+color: rgb(175, 175, 175);
+}
+#toptabs ul li a:hover {
+color: rgb(250, 250, 250);
+}
+#toptabs ul li.selected a {
+color: rgb(250, 250, 250);
+font-weight: bold;
+}
+#toptabs ul li.selected a .rowcount {
+color: rgb(225, 225, 225);
+}
+#toptabs ul li.deactivated a {
+color: rgb(135, 135, 135) !important;
+}
+#toptabs ul li.deactivated a .rowcount {
+color: rgb(175, 175, 175) !important;
+}

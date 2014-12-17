@@ -116,6 +116,11 @@ if (getUrlVars('id') != '') {
     $('#ul_plugin .li_plugin:first').click();
 }
 
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    $("#bt_savePluginConfig").click();
+});
+
 $("#bt_savePluginConfig").on('click', function (event) {
     savePluginConfig();
     return false;

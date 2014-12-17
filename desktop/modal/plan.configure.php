@@ -2,7 +2,13 @@
 if (!isConnect('admin')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
-
+include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
+include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
+include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
+include_file('3rdparty', 'codemirror/mode/htmlmixed/htmlmixed', 'js');
+include_file('3rdparty', 'codemirror/mode/xml/xml', 'js');
+include_file('3rdparty', 'codemirror/mode/javascript/javascript', 'js');
+include_file('3rdparty', 'codemirror/mode/css/css', 'js');
 $plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
 if (!is_object($plan)) {
     throw new Exception('Impossible de trouver le design');
@@ -69,6 +75,17 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-lg-4 control-label">{{Profondeur}}</label>
+                <div class="col-lg-2">
+                    <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
+                        <option value="99">Niveau -1</option>
+                        <option value="1000" selected>Niveau 1</option>
+                        <option value="1001">Niveau 2</option>
+                        <option value="1002">Niveau 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-lg-4 control-label">{{Ne pas afficher le nom de l'équipement}}</label>
                 <div class="col-lg-2">
                     <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="name" >
@@ -118,6 +135,17 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-lg-4 control-label">{{Profondeur}}</label>
+                <div class="col-lg-2">
+                    <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
+                        <option value="99">Niveau -1</option>
+                        <option value="1000" selected>Niveau 1</option>
+                        <option value="1001">Niveau 2</option>
+                        <option value="1002">Niveau 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-lg-4 control-label">{{Afficher la légende}}</label>
                 <div class="col-lg-2">
                     <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="showLegend" >
@@ -142,7 +170,6 @@ sendVarToJS('id', $plan->getId());
                     <input class="planAttr form-control" data-l1key="display" data-l2key="name" />
                 </div>
             </div>
-
             <?php if ($plan->getLink_type() == 'view') { ?>
                 <div class="form-group">
                     <label class="col-lg-4 control-label">{{Lien}}</label>
@@ -172,6 +199,16 @@ sendVarToJS('id', $plan->getId());
                             }
                             ?>   
                         </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label">{{Position X}}</label>
+                    <div class="col-lg-2">
+                        <input class="planAttr form-control" data-l1key="display" data-l2key="offsetX" />
+                    </div>
+                    <label class="col-lg-2 control-label">{{Position Y}}</label>
+                    <div class="col-lg-2">
+                        <input class="planAttr form-control" data-l1key="display" data-l2key="offsetY" />
                     </div>
                 </div>
             <?php } ?>
@@ -221,6 +258,17 @@ sendVarToJS('id', $plan->getId());
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-lg-4 control-label">{{Profondeur}}</label>
+                <div class="col-lg-2">
+                    <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
+                        <option value="99">Niveau -1</option>
+                        <option value="1000" selected>Niveau 1</option>
+                        <option value="1001">Niveau 2</option>
+                        <option value="1002">Niveau 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-lg-4 control-label">{{Taille de la police (ex 50%, il faut bien mettre le signe %)}}</label>
                 <div class="col-lg-2">
                     <input class="planAttr form-control" data-l1key="css" data-l2key="font-size" />
@@ -238,8 +286,8 @@ sendVarToJS('id', $plan->getId());
         <?php } else if ($plan->getLink_type() == 'text') { ?>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Nom}}</label>
-                <div class="col-lg-4">
-                    <textarea class="planAttr form-control" data-l1key="display" data-l2key="text" >Texte à insérer ici</textarea>
+                <div class="col-lg-8">
+                    <textarea class="planAttr form-control" data-l1key="display" data-l2key="text" rows=10>Texte à insérer ici</textarea>
                 </div>
             </div>
             <div class="form-group">
@@ -293,6 +341,23 @@ sendVarToJS('id', $plan->getId());
                     <input class="planAttr form-control" data-l1key="css" data-l2key="font-size" />
                 </div>
             </div>
+            <div class="form-group expertModeVisible">
+                <label class="col-lg-4 control-label">{{Ne pas prendre en compte la taille predefinie)}}</label>
+                <div class="col-lg-4">
+                    <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="noPredefineSize" /> 
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">{{Profondeur}}</label>
+                <div class="col-lg-2">
+                    <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
+                        <option value="99">Niveau -1</option>
+                        <option value="1000" selected>Niveau 1</option>
+                        <option value="1001">Niveau 2</option>
+                        <option value="1002">Niveau 3</option>
+                    </select>
+                </div>
+            </div>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Gras)}}</label>
                 <div class="col-lg-2">
@@ -308,6 +373,8 @@ sendVarToJS('id', $plan->getId());
 
 
 <script>
+    editor = [];
+
     $('#bt_chooseIcon').on('click', function () {
         chooseIcon(function (_icon) {
             $('.planAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
@@ -348,14 +415,37 @@ sendVarToJS('id', $plan->getId());
                     return;
                 }
                 $('#fd_planConfigure').setValues(data.result, '.planAttr');
+                if (data.result.link_type == 'text') {
+                    var code = $('.planAttr[data-l1key=display][data-l2key=text]');
+                    if (code.attr('id') == undefined) {
+                        code.uniqueId();
+                        var id = code.attr('id');
+                        setTimeout(function () {
+                            editor[id] = CodeMirror.fromTextArea(document.getElementById(id), {
+                                lineNumbers: true,
+                                mode: 'htmlmixed',
+                                matchBrackets: true
+                            });
+                        }, 1);
+                    }
+                }
+
+
             }
         });
     }
 
 
     function save() {
+        var plans = $('#fd_planConfigure').getValues('.planAttr');
+        if (plans[0].link_type == 'text') {
+            var id = $('.planAttr[data-l1key=display][data-l2key=text]').attr('id');
+            if (id != undefined && isset(editor[id])) {
+                plans[0].display.text = editor[id].getValue();
+            }
+        }
         jeedom.plan.save({
-            plans: $('#fd_planConfigure').getValues('.planAttr'),
+            plans: plans,
             error: function (error) {
                 $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'});
             },

@@ -36,7 +36,7 @@ function initView(_view_id) {
         }
         setTileSize('.eqLogic');
         setTileSize('.scenario');
-        $('.eqLogicZone').masonry();
+        $('.eqLogicZone').packery();
     });
 }
 
@@ -49,5 +49,5 @@ function displayView(html) {
     }
     setTileSize('.eqLogic');
     setTileSize('.scenario');
-    $('.eqLogicZone').masonry();
+    $('.eqLogicZone').packery();
 }

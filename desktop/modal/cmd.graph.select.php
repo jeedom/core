@@ -2,16 +2,18 @@
 if (!isConnect()) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
+include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
+include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
+include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
 ?>
 
 <table id="table_addViewDataHidden" style="display: none;">
     <tbody></tbody>
 </table>
-<table class="table table-condensed table-bordered table-striped" id="table_addViewData">
+<table class="table table-condensed table-bordered table-striped tablesorter" id="table_addViewData">
     <thead>
         <tr>
             <th style="width: 50px;">#</th>
-            <th style="width: 150px;">{{Type}}</th>
             <th style="width: 150px;">{{Objet}}</th>
             <th style="width: 150px;">{{Nom}}</th>
             <th>{{Affichage}}</th>
@@ -31,11 +33,8 @@ if (!isConnect()) {
                 echo '<input type="checkbox" class="enable" />';
                 echo '<input class="graphDataOption" data-l1key="link_id" value="' . $cmd->getId() . '" hidden/>';
                 echo '</td>';
-                echo '<td class="type">';
-                echo 'Commande';
-                echo '<input class="graphDataOption" data-l1key="type" value="cmd" hidden/>';
-                echo '</td>';
                 echo '<td class="object_name">';
+                 echo '<input class="graphDataOption" data-l1key="type" value="cmd" hidden/>';
                 if (is_object($object)) {
                     echo $object->getName();
                 }
@@ -91,3 +90,7 @@ if (!isConnect()) {
         ?>
     </tbody>
 </table>
+
+<script>
+    initTableSorter();
+</script>

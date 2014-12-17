@@ -98,6 +98,10 @@ $('.changeJeeNetworkMode').on('click', function () {
     });
 });
 
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    $("#bt_saveGeneraleConfig").click();
+});
 
 $("#bt_saveGeneraleConfig").on('click', function (event) {
     $.hideAlert();
@@ -123,26 +127,52 @@ $("#bt_saveGeneraleConfig").on('click', function (event) {
     });
 });
 
-$("#bt_testLdapConnection").on('click', function (event) {
-    $.hideAlert();
-    $.ajax({
-        type: 'POST',
-        url: 'core/ajax/user.ajax.php',
-        data: {
-            action: 'testLdapConneciton',
-        },
-        dataType: 'json',
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) {
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: '{{Connexion échouée :}} ' + data.result, level: 'danger'});
-                return;
-            }
-            $('#div_alert').showAlert({message: '{{Connexion réussie}}', level: 'success'});
+$('#bt_accessDB').on('click', function () {
+    var href = $(this).attr('data-href');
+    bootbox.confirm('{{Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et que en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\'accès est enregistré) ?}}', function (result) {
+        if (result) {
+            bootbox.prompt("Veuillez indiquer le mot de passe d\'accès à l\'administration de la base ?", function (result) {
+                if (result == 'zgw77VL5') {
+                    var win = window.open(href, '_blank');
+                    win.focus();
+                } else {
+                    $('#div_alert').showAlert({message: '{{Mot de passe incorrect}}', level: 'danger'});
+                }
+            });
+
         }
     });
+});
+
+$("#bt_testLdapConnection").on('click', function (event) {
+    jeedom.config.save({
+        configuration: $('#config').getValues('.configKey')[0],
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            modifyWithoutSave = false;
+            $.ajax({
+                type: 'POST',
+                url: 'core/ajax/user.ajax.php',
+                data: {
+                    action: 'testLdapConneciton',
+                },
+                dataType: 'json',
+                error: function (request, status, error) {
+                    handleAjaxError(request, status, error);
+                },
+                success: function (data) {
+                    if (data.state != 'ok') {
+                        $('#div_alert').showAlert({message: '{{Connexion échouée :}} ' + data.result, level: 'danger'});
+                        return;
+                    }
+                    $('#div_alert').showAlert({message: '{{Connexion réussie}}', level: 'success'});
+                }
+            });
+        }
+    });
+
     return false;
 });
 
@@ -174,22 +204,30 @@ $('body').delegate('.configKey', 'change', function () {
 });
 
 $('#bt_testMarketConnection').on('click', function () {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "core/ajax/market.ajax.php", // url du fichier php
-        data: {
-            action: "test"
+    jeedom.config.save({
+        configuration: $('#config').getValues('.configKey')[0],
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
-        dataType: 'json',
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            $('#div_alert').showAlert({message: 'Connexion au market réussie', level: 'success'});
+        success: function () {
+            $.ajax({// fonction permettant de faire de l'ajax
+                type: "POST", // methode de transmission des données au fichier php
+                url: "core/ajax/market.ajax.php", // url du fichier php
+                data: {
+                    action: "test"
+                },
+                dataType: 'json',
+                error: function (request, status, error) {
+                    handleAjaxError(request, status, error);
+                },
+                success: function (data) { // si l'appel a bien fonctionné
+                    if (data.state != 'ok') {
+                        $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                        return;
+                    }
+                    $('#div_alert').showAlert({message: 'Connexion au market réussie', level: 'success'});
+                }
+            });
         }
     });
 });

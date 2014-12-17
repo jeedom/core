@@ -12,7 +12,6 @@ if (init('logicalId') != '') {
 if (!isset($market)) {
     throw new Exception('404 not found');
 }
-include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
 include_file('3rdparty', 'bootstrap.rating/bootstrap.rating', 'js');
 include_file('3rdparty', 'slick/slick.min', 'js');
 include_file('3rdparty', 'slick/slick', 'css');
@@ -153,7 +152,7 @@ sendVarToJS('market_display_info', $market_array);
                     </div><br/>
                 <?php } ?>
                 <center>
-                    <a class="btn btn-default" id="bt_viewComment"><i class="fa fa-comments-o"></i> {{Commentaires}}</a>
+                    <a class="btn btn-default" id="bt_viewComment"><i class="fa fa-comments-o"></i> {{Commentaires (<?php echo $market->getNbComment(); ?>)}}</a>
                 </center>
             </div>
         </div>
@@ -241,7 +240,7 @@ sendVarToJS('market_display_info', $market_array);
         event: "sporty"
     });
     $("img.lazy").trigger("sporty");
-    
+
     $(document).unbind('click.fb-start');
     $(".fancybox").fancybox({
         autoHeight: true,
@@ -254,10 +253,16 @@ sendVarToJS('market_display_info', $market_array);
         accessibility: true,
     });
     $('.variable-width').slickNext();
-    setTimeout(function(){$('.variable-width').slickGoTo(0);}, 200);
-    
-    
+    setTimeout(function () {
+        $('.variable-width').slickGoTo(0);
+    }, 200);
+
+
     $('body').setValues(market_display_info, '.marketAttr');
+    $('.marketAttr[data-l1key=changelog]').html(linkify(market_display_info.changelog));
+    $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
+    $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
+
     $('#bt_paypalClick').on('click', function () {
         $(this).hide();
     });

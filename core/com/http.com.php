@@ -30,13 +30,14 @@ class com_http {
     private $noSslCheck = true;
     private $sleepTime = 500000;
     private $post = '';
+    private $put = '';
     private $header = array('Connection: close');
     private $cookiesession = false;
     private $allowEmptyReponse = false;
     private $noReportError = false;
     private $CURLOPT_HTTPAUTH = '';
 
-    /*     * ********************Functions static********************* */
+    /*     * ********************Fonctions statiques********************* */
 
     function __construct($_url = '', $_username = '', $_password = '') {
         $this->url = $_url;
@@ -44,7 +45,7 @@ class com_http {
         $this->password = $_password;
     }
 
-    /*     * ************* Functions ************************************ */
+    /*     * ************* Fonctions ************************************ */
 
     function exec($_timeout = 2, $_maxRetry = 3) {
         if ($this->getPing() && config::byKey('http::ping_disable') != 1) {
@@ -78,7 +79,7 @@ class com_http {
             }
             if ($this->username != '') {
                 curl_setopt($ch, CURLOPT_USERPWD, $this->username . ':' . $this->password);
-                if($this->getCURLOPT_HTTPAUTH() != ''){
+                if ($this->getCURLOPT_HTTPAUTH() != '') {
                     curl_setopt($ch, CURLOPT_HTTPAUTH, $this->getCURLOPT_HTTPAUTH());
                 }
             }
@@ -86,6 +87,11 @@ class com_http {
                 log::add('http.com', 'debug', 'post field : ' . print_r($this->getPost(), true));
                 curl_setopt($ch, CURLOPT_POST, true);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $this->getPost());
+            }
+            if ($this->getPut() != '') {
+                log::add('http.com', 'debug', 'post field : ' . print_r($this->getPut(), true));
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $this->getPut());
             }
             $response = curl_exec($ch);
             $nbRetry++;
@@ -108,7 +114,7 @@ class com_http {
             }
             curl_close($ch);
             if ($this->getNoReportError() === false) {
-                throw new Exception(__('Echec de la requete http : ', __FILE__) . $this->url . ' Curl error : ' . $curl_error, 404);
+                throw new Exception(__('Echec de la requête http : ', __FILE__) . $this->url . ' Curl error : ' . $curl_error, 404);
             }
         }
         curl_close($ch);
@@ -195,7 +201,7 @@ class com_http {
     public function setUrl($url) {
         $this->url = $url;
     }
-    
+
     function getCURLOPT_HTTPAUTH() {
         return $this->CURLOPT_HTTPAUTH;
     }
@@ -204,7 +210,13 @@ class com_http {
         $this->CURLOPT_HTTPAUTH = $CURLOPT_HTTPAUTH;
     }
 
+    function getPut() {
+        return $this->put;
+    }
 
+    function setPut($put) {
+        $this->put = $put;
+    }
 
 }
 

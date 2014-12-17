@@ -40,7 +40,7 @@ class plugin {
     private $include = array();
     private static $_cache = array();
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function byId($_id) {
         if (isset(self::$_cache[$_id])) {
@@ -212,7 +212,7 @@ class plugin {
         }
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function isActive() {
         return config::byKey('active', $this->id);
@@ -225,7 +225,7 @@ class plugin {
         $alreadyActive = config::byKey('active', $this->getId(), 0);
         if ($_state == 1) {
             if (config::byKey('jeeNetwork::mode') != 'master' && $this->getAllowRemote() != 1) {
-                throw new Exception('Vous ne pouvez activer ce plugin sur une Jeedom configuré en esclave');
+                throw new Exception('Vous ne pouvez pas activer ce plugin sur un Jeedom configuré en esclave');
             }
             market::checkPayment($this->getId());
             config::save('active', $_state, $this->getId());

@@ -1,0 +1,667 @@
+Language: English
+Language-Code: en_US
+Build-Date: Tue, 18 Jan 2011 15:06:44 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: ""
+
+msgid: "Error performing operation"
+msgstr: ""
+
+msgid: "All"
+msgstr: ""
+
+msgid: "None"
+msgstr: ""
+
+msgid: "With selected"
+msgstr: ""
+
+msgid: "Empty"
+msgstr: ""
+
+msgid: "Drop"
+msgstr: ""
+
+msgid: "Optimize"
+msgstr: ""
+
+msgid: "Table"
+msgstr: ""
+
+msgid: "Rows"
+msgstr: ""
+
+msgid: "Size"
+msgstr: ""
+
+msgid: "Overhead"
+msgstr: ""
+
+msgid: "Options"
+msgstr: ""
+
+msgid: "Edit database"
+msgstr: ""
+
+msgid: "Charset"
+msgstr: ""
+
+msgid: "Submit"
+msgstr: ""
+
+msgid: "Create a new table"
+msgstr: ""
+
+msgid: "Name"
+msgstr: ""
+
+msgid: "Setup the fields for the table below"
+msgstr: ""
+
+msgid: "New field"
+msgstr: ""
+
+msgid: "Type"
+msgstr: ""
+
+msgid: "Values"
+msgstr: ""
+
+msgid: "Key"
+msgstr: ""
+
+msgid: "primary"
+msgstr: ""
+
+msgid: "unique"
+msgstr: ""
+
+msgid: "index"
+msgstr: ""
+
+msgid: "Default"
+msgstr: ""
+
+msgid: "Other"
+msgstr: ""
+
+msgid: "Unsigned"
+msgstr: ""
+
+msgid: "Binary"
+msgstr: ""
+
+msgid: "Not Null"
+msgstr: ""
+
+msgid: "Auto Increment"
+msgstr: ""
+
+msgid: "Add field"
+msgstr: ""
+
+msgid: "Oops"
+msgstr: ""
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: ""
+
+msgid: "Save changes to original"
+msgstr: ""
+
+msgid: "Insert as new row"
+msgstr: ""
+
+msgid: "Save"
+msgstr: ""
+
+msgid: "User"
+msgstr: ""
+
+msgid: "All privileges"
+msgstr: ""
+
+msgid: "Selected privileges"
+msgstr: ""
+
+msgid: "User privileges"
+msgstr: ""
+
+msgid: "Select"
+msgstr: ""
+
+msgid: "Insert"
+msgstr: ""
+
+msgid: "Update"
+msgstr: ""
+
+msgid: "Delete"
+msgstr: ""
+
+msgid: "Alter"
+msgstr: ""
+
+msgid: "Create"
+msgstr: ""
+
+msgid: "Temp tables"
+msgstr: ""
+
+msgid: "Administrator privileges"
+msgstr: ""
+
+msgid: "File"
+msgstr: ""
+
+msgid: "Process"
+msgstr: ""
+
+msgid: "Reload"
+msgstr: ""
+
+msgid: "Shutdown"
+msgstr: ""
+
+msgid: "Super"
+msgstr: ""
+
+msgid: "Grant option"
+msgstr: ""
+
+msgid: "User not found!"
+msgstr: ""
+
+msgid: "You must export either structure, data, or both"
+msgstr: ""
+
+msgid: "Please select the databases that you would like to export"
+msgstr: ""
+
+msgid: "Please select the tables that you would like to export"
+msgstr: ""
+
+msgid: "Table `%s` is empty"
+msgstr: ""
+
+msgid: "Results"
+msgstr: ""
+
+msgid: "Select all"
+msgstr: ""
+
+msgid: "The file could not be opened"
+msgstr: ""
+
+msgid: "Could not write to file"
+msgstr: ""
+
+msgid: "Successfully wrote content to file"
+msgstr: ""
+
+msgid: "Download"
+msgstr: ""
+
+msgid: "Note
+"
+msgstr: ""
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: ""
+
+msgid: "Export"
+msgstr: ""
+
+msgid: "Tables"
+msgstr: ""
+
+msgid: "Databases"
+msgstr: ""
+
+msgid: "Format"
+msgstr: ""
+
+msgid: "SQL"
+msgstr: ""
+
+msgid: "CSV"
+msgstr: ""
+
+msgid: "Structure"
+msgstr: ""
+
+msgid: "Data"
+msgstr: ""
+
+msgid: "Compact inserts"
+msgstr: ""
+
+msgid: "Complete inserts"
+msgstr: ""
+
+msgid: "Delimiter"
+msgstr: ""
+
+msgid: "Comma"
+msgstr: ""
+
+msgid: "Tab"
+msgstr: ""
+
+msgid: "Semicolon"
+msgstr: ""
+
+msgid: "Space"
+msgstr: ""
+
+msgid: "Print field names on first line"
+msgstr: ""
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: ""
+
+msgid: "Output to"
+msgstr: ""
+
+msgid: "Browser"
+msgstr: ""
+
+msgid: "Text file"
+msgstr: ""
+
+msgid: "Home"
+msgstr: ""
+
+msgid: "Users"
+msgstr: ""
+
+msgid: "Query"
+msgstr: ""
+
+msgid: "Import"
+msgstr: ""
+
+msgid: "Overview"
+msgstr: ""
+
+msgid: "Browse"
+msgstr: ""
+
+msgid: "Your changes were saved to the database"
+msgstr: ""
+
+msgid: "delete this row"
+msgstr: ""
+
+msgid: "delete these rows"
+msgstr: ""
+
+msgid: "empty this table"
+msgstr: ""
+
+msgid: "empty these tables"
+msgstr: ""
+
+msgid: "drop this table"
+msgstr: ""
+
+msgid: "drop these tables"
+msgstr: ""
+
+msgid: "delete this column"
+msgstr: ""
+
+msgid: "delete these columns"
+msgstr: ""
+
+msgid: "delete this index"
+msgstr: ""
+
+msgid: "delete these indexes"
+msgstr: ""
+
+msgid: "delete this user"
+msgstr: ""
+
+msgid: "delete these users"
+msgstr: ""
+
+msgid: "Are you sure you want to"
+msgstr: ""
+
+msgid: "The following query will be run:"
+msgstr: ""
+
+msgid: "The following queries will be run:"
+msgstr: ""
+
+msgid: "Confirm"
+msgstr: ""
+
+msgid: "Successfully saved changes"
+msgstr: ""
+
+msgid: "Full Text"
+msgstr: ""
+
+msgid: "Loading..."
+msgstr: ""
+
+msgid: "Error"
+msgstr: ""
+
+msgid: "There was an error receiving data from the server"
+msgstr: ""
+
+msgid: "Logout"
+msgstr: ""
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: ""
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: ""
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: ""
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: ""
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: ""
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: ""
+
+msgid: "Getting started"
+msgstr: ""
+
+msgid: "Help"
+msgstr: ""
+
+msgid: "Translations"
+msgstr: ""
+
+msgid: "Release Notes"
+msgstr: ""
+
+msgid: "Contact"
+msgstr: ""
+
+msgid: "Create a new database"
+msgstr: ""
+
+msgid: "Did you know..."
+msgstr: ""
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: ""
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: ""
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: ""
+
+msgid: "Keyboard shortcuts"
+msgstr: ""
+
+msgid: "Press this key..."
+msgstr: ""
+
+msgid: "...and this will happen"
+msgstr: ""
+
+msgid: "select none"
+msgstr: ""
+
+msgid: "edit selected items"
+msgstr: ""
+
+msgid: "delete selected items"
+msgstr: ""
+
+msgid: "refresh page"
+msgstr: ""
+
+msgid: "load the query tab"
+msgstr: ""
+
+msgid: "browse tab - go to first page of results"
+msgstr: ""
+
+msgid: "browse tab - go to last page of results"
+msgstr: ""
+
+msgid: "browse tab - go to previous page of results"
+msgstr: ""
+
+msgid: "browse tab - go to next page of results"
+msgstr: ""
+
+msgid: "optimize selected tables"
+msgstr: ""
+
+msgid: "Choose a .sql file to import"
+msgstr: ""
+
+msgid: "File
+"
+msgstr: ""
+
+msgid: "Ignore first line"
+msgstr: ""
+
+msgid: "Edit"
+msgstr: ""
+
+msgid: "Refresh"
+msgstr: ""
+
+msgid: "No primary key defined"
+msgstr: ""
+
+msgid: "First"
+msgstr: ""
+
+msgid: "Prev"
+msgstr: ""
+
+msgid: "Next"
+msgstr: ""
+
+msgid: "Last"
+msgstr: ""
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: ""
+msgstr[1]: ""
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: ""
+
+msgid: "binary data"
+msgstr: ""
+
+msgid: "Your query affected %d rows"
+msgstr: ""
+
+msgid: "Your query did not return any results"
+msgstr: ""
+
+msgid: "Your data has been inserted into the database"
+msgstr: ""
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: ""
+
+msgid: "There was a problem logging you in"
+msgstr: ""
+
+msgid: "Login"
+msgstr: ""
+
+msgid: "Unsupported browser"
+msgstr: ""
+
+msgid: "Help!"
+msgstr: ""
+
+msgid: "Your session has timed out. Please login again."
+msgstr: ""
+
+msgid: "Username"
+msgstr: ""
+
+msgid: "Password"
+msgstr: ""
+
+msgid: "Run a query on the %s database"
+msgstr: ""
+
+msgid: "Columns"
+msgstr: ""
+
+msgid: "Add a column"
+msgstr: ""
+
+msgid: "Insert this column"
+msgstr: ""
+
+msgid: "At end of table"
+msgstr: ""
+
+msgid: "At beginning of table"
+msgstr: ""
+
+msgid: "After"
+msgstr: ""
+
+msgid: "Edit table"
+msgstr: ""
+
+msgid: "Indexes"
+msgstr: ""
+
+msgid: "Add an index"
+msgstr: ""
+
+msgid: "Column(s)"
+msgstr: ""
+
+msgid: "Show %d more..."
+msgstr: ""
+
+msgid: "Empty table"
+msgstr: ""
+
+msgid: "Drop table"
+msgstr: ""
+
+msgid: "Optimize table"
+msgstr: ""
+
+msgid: "Table Information"
+msgstr: ""
+
+msgid: "Host"
+msgstr: ""
+
+msgid: "Add a new user"
+msgstr: ""
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: ""
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: ""
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: ""
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: ""
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: ""
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: ""
+
+msgid: "Importing..."
+msgstr: ""
+
+msgid: "Drop the '%s' database"
+msgstr: ""
+
+msgid: "Okay"
+msgstr: ""
+
+msgid: "Cancel"
+msgstr: ""
+
+msgid: "Storage engine"
+msgstr: ""
+
+msgid: "Language"
+msgstr: ""
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: ""
+msgstr[1]: ""
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: ""
+msgstr[1]: ""
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: ""
+msgstr[1]: ""
+
+msgid: "Theme"
+msgstr: ""
+
+msgid: "(%.4f seconds)"
+msgstr: ""
+
+msgid: "The following errors were reported"
+msgstr: ""
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: ""
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: ""
+
+msgid: "You are connected to %s."
+msgstr: ""
+
+msgid: "Allow access to"
+msgstr: ""
+
+msgid: "All databases"
+msgstr: ""
+
+msgid: "Selected databases"
+msgstr: ""
+
+msgid: "Give user"
+msgstr: ""
+
+msgid: "Updates"
+msgstr: ""
+
+msgid: "There are no updates available"
+msgstr: ""
+
+msgid: "Change password"
+msgstr: ""
+
+msgid: "Redirecting..."
+msgstr: ""

@@ -143,3 +143,9 @@ sudo su -
 Vous pouvez ensuite forcer le https dans la configuration Jeedom.
 
 --
+
+[panel,primary]
+.J'ai le message : "Vous avez un trop grand nombre de système jeedom déclaré, veuillez en réduire le nombre et demander une réinitialisation de votre clef hardware" que faire ?
+--
+Rendez vous sur le market, connectez vous avec votre compte puis aller sur votre page profils et demandez une reinitilisation de clef harware
+--

@@ -152,6 +152,14 @@ Paramètres:
 - int id
 - string state : [run,stop,enable,disable]
 
+==== API JSON Message
+
+===== message::all
+Retourne la liste de tous les messages
+
+===== message::removeAll
+Supprime tous les messages
+
 ==== API JSON Interaction
 
 ===== interact::tryToReply

@@ -54,7 +54,7 @@ class jeedom {
                 if (!$kill) {
                     $kill = posix_kill($pid, 9);
                     if (!$kill) {
-                        throw new Exception('Impossible de coupe le cron master : ' . $pid);
+                        throw new Exception('Impossible d\'arrêter le cron master : ' . $pid);
                     }
                 }
                 echo " OK\n";
@@ -68,9 +68,9 @@ class jeedom {
         }
 
 
-        /*         * *********Arret des scenarios**************** */
+        /*         * *********Arrêt des scénarios**************** */
         try {
-            echo "Desactivation de tous les scenarios";
+            echo "Désactivation de tous les scénarios";
             config::save('enableScenario', 0);
             foreach (scenario::all() as $scenario) {
                 $scenario->stop();
@@ -88,12 +88,12 @@ class jeedom {
 
     public static function start() {
         try {
-            /*             * *********Reactivation des scenarios**************** */
-            echo "Reactivation des scenarios : ";
+            /*             * *********Réactivation des scénarios**************** */
+            echo "Réactivation des scénarios : ";
             config::save('enableScenario', 1);
             echo "OK\n";
-            /*             * *********Reactivation des tâches**************** */
-            echo "Reactivation des tâches : ";
+            /*             * *********Réactivation des tâches**************** */
+            echo "Réactivation des tâches : ";
             config::save('enableCron', 1);
             echo "OK\n";
         } catch (Exception $e) {
@@ -104,11 +104,11 @@ class jeedom {
             }
         }
     }
-    
+
     public static function sick() {
         $cmd = 'php ' . dirname(__FILE__) . '/../../sick.php';
         $cmd.= ' >> ' . log::getPathToLog('sick') . ' 2>&1';
-        shell_exec($cmd);   
+        shell_exec($cmd);
     }
 
     public static function getUsbMapping($_name = '') {
@@ -364,7 +364,7 @@ class jeedom {
             message::removeAll('core', 'dateCheckFailed');
             return true;
         }
-        log::add('core', 'error', __('La date système (', __FILE__) . date('Y-m-d H:00:00') . __(') est anterieur ou trop loin à la dernière date (', __FILE__) . date('Y-m-d H:i:s', $lastDate) . __(')enregistrer. Tous les lancements des scenarios sont interrompus jusqu\'à correction.', __FILE__), 'dateCheckFailed');
+        log::add('core', 'error', __('La date système (', __FILE__) . date('Y-m-d H:00:00') . __(') est antérieure ou trop loin de la dernière date (', __FILE__) . date('Y-m-d H:i:s', $lastDate) . __(')enregistrer. Toutes les exécutions des scénarios sont interrompues jusqu\'à correction.', __FILE__), 'dateCheckFailed');
         return false;
     }
 
@@ -382,7 +382,7 @@ class jeedom {
             self::doUPnP();
             DB::Prepare("REPLACE INTO `start` (`key` ,`value`) VALUES ('start',  'ok')", array());
             self::event('start');
-            log::add('core', 'info', 'Demarrage de Jeedom OK');
+            log::add('core', 'info', 'Démarrage de Jeedom OK');
         }
         plugin::cron();
         interactDef::cron();
@@ -392,6 +392,7 @@ class jeedom {
             $c = new Cron\CronExpression(config::byKey('log::chunck'), new Cron\FieldFactory);
             if ($c->isDue()) {
                 log::chunk();
+                cron::clean();
             }
         } catch (Exception $e) {
             log::add('log', 'error', $e->getMessage());
@@ -437,13 +438,15 @@ class jeedom {
         } catch (Exception $e) {
             log::add('scenario', 'error', $e->getMessage());
         }
-        try {
-            $c = new Cron\CronExpression(config::byKey('jeeNetwork::pull'), new Cron\FieldFactory);
-            if ($c->isDue()) {
-                jeeNetwork::pull();
+        if (config::byKey('jeeNetwork::mode') != 'slave') {
+            try {
+                $c = new Cron\CronExpression(config::byKey('jeeNetwork::pull'), new Cron\FieldFactory);
+                if ($c->isDue()) {
+                    jeeNetwork::pull();
+                }
+            } catch (Exception $e) {
+                log::add('jeeNetwork', 'error', '[' . config::byKey('jeeNetwork::pull') . ']' . $e->getMessage());
             }
-        } catch (Exception $e) {
-            log::add('jeeNetwork', 'error', '[' . config::byKey('jeeNetwork::pull') . ']' . $e->getMessage());
         }
         if (config::byKey('market::allowDNS') == 1 && config::byKey('jeeNetwork::mode') == 'master' && config::byKey('jeedom::licence') >= 5) {
             try {
@@ -473,7 +476,18 @@ class jeedom {
                 $rdkey = config::genKey();
                 config::save('jeedom::rdkey', $rdkey);
             }
-            $key = shell_exec("/sbin/ifconfig eth0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+            $ifconfig = shell_exec("/sbin/ifconfig");
+            if (strpos($ifconfig, 'eth1') !== false) {
+                $key = shell_exec("/sbin/ifconfig eth1 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+            } else if (strpos($ifconfig, 'p2p0') !== false) {
+                $key = shell_exec("/sbin/ifconfig p2p0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+            } else if (strpos($ifconfig, 'p2p1') !== false) {
+                $key = shell_exec("/sbin/ifconfig p2p1 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+            } else if (strpos($ifconfig, 'p2p2') !== false) {
+                $key = shell_exec("/sbin/ifconfig p2p2 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+            } else {
+                $key = shell_exec("/sbin/ifconfig eth0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+            }
             $hwkey = sha1($key . $rdkey);
             cache::set('jeedom::hwkey', $hwkey, 86400);
             return $hwkey;
@@ -491,7 +505,7 @@ class jeedom {
         if ($restrict_hw == 1 && config::byKey('jeedom::licence') < 1) {
             if (($register_datetime + 604800) > strtotime('now')) {
                 $result = $register_datetime + 604800 - strtotime('now');
-                log::add(__('hardware', 'error', 'Attention vous utilisez Jeedom sur un hardware soumis à une licence, veuillez enregistrer votre compte market et/ou acheter une licence, il vous reste ', __FILE__) . convertDuration($result), 'restrictHardwareTime');
+                log::add(__('hardware', 'error', 'Attention vous utilisez Jeedom sur un matériel soumis à une licence, veuillez enregistrer votre compte market et/ou acheter une licence, il vous reste ', __FILE__) . convertDuration($result), 'restrictHardwareTime');
                 cache::set('isRestrictionOk', $result, 86400);
                 return $result;
             }
@@ -576,6 +590,24 @@ class jeedom {
             return false;
         }
         return true;
+    }
+
+    /*     * ****************************SQL BUDDY*************************** */
+
+    public static function getCurrentSqlBuddyFolder() {
+        $dir = dirname(__FILE__) . '/../../';
+        $ls = ls($dir, 'sqlbuddy*');
+        if (count($ls) != 1) {
+            return '';
+        }
+        return $ls[0];
+    }
+
+    public static function renameSqlBuddyFolder() {
+        $folder = self::getCurrentSqlBuddyFolder();
+        if ($folder != '') {
+            rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../sqlbuddy' . config::genKey());
+        }
     }
 
     /*     * *********************Methode d'instance************************* */

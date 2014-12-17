@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+date_default_timezone_set('Europe/Brussels');
 require_once dirname(__FILE__) . '/../config/common.config.php';
 require_once dirname(__FILE__) . '/../class/DB.class.php';
 require_once dirname(__FILE__) . '/../class/config.class.php';

@@ -29,7 +29,7 @@ class scenarioElement {
     private $order = 0;
     private $_subelement;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function byId($_id) {
         $values = array(
@@ -48,7 +48,7 @@ class scenarioElement {
             $element_db = new scenarioElement();
         }
         if (!isset($element_db) || !is_object($element_db)) {
-            throw new Exception(__('Elément inconnue verifier l\'id : ', __FILE__) . $element_ajax['id']);
+            throw new Exception(__('Elément inconnu - Vérifiez l\'id : ', __FILE__) . $element_ajax['id']);
         }
         utils::a2o($element_db, $element_ajax);
         $element_db->save();
@@ -113,7 +113,7 @@ class scenarioElement {
         return $element_db->getId();
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function save() {
         DB::save($this);
@@ -139,10 +139,10 @@ class scenarioElement {
         } else if ($this->getType() == 'for') {
             $for = $this->getSubElement('for');
             $limits = $for->getExpression();
-            $limits = jeedom::evaluateExpression($limits[0]->getExpression());
+            $limits = intval(jeedom::evaluateExpression($limits[0]->getExpression()));
             if (!is_numeric($limits)) {
-                $_scenario->setLog(__('[ERREUR] La condition pour une boucle doit être un numérique : ', __FILE__) . $limits);
-                throw new Exception(__('La condition pour une boucle doit être un numérique : ', __FILE__) . $limits);
+                $_scenario->setLog(__('[ERREUR] La condition pour une boucle doit être numérique : ', __FILE__) . $limits);
+                throw new Exception(__('La condition pour une boucle doit être numérique : ', __FILE__) . $limits);
             }
             $return = false;
             for ($i = 1; $i <= $limits; $i++) {
@@ -152,7 +152,7 @@ class scenarioElement {
         } else if ($this->getType() == 'in') {
             $in = $this->getSubElement('in');
             $in = $in->getExpression();
-            $time = jeedom::evaluateExpression($in[0]->getExpression());
+            $time = ceil(str_replace('.', ',',jeedom::evaluateExpression($in[0]->getExpression())));
             if (!is_numeric($time) || $time < 0) {
                 $time = 0;
             }
@@ -163,7 +163,10 @@ class scenarioElement {
                 $cmd.= ' >> ' . log::getPathToLog('scenario_element_execution') . ' 2>&1 &';
                 exec($cmd);
             } else {
-                $cron = new cron();
+                $cron = cron::byClassAndFunction('scenario', 'doIn', array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s')));
+                if (!is_object($cron)) {
+                    $cron = new cron();
+                }
                 $cron->setClass('scenario');
                 $cron->setFunction('doIn');
                 $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s')));
@@ -180,7 +183,7 @@ class scenarioElement {
             $at = $at->getExpression();
             $next = jeedom::evaluateExpression($at[0]->getExpression());
             if (($next % 100) > 59) {
-                $next -= 40;
+                $next += 40;
             }
             if (!is_numeric($next) || $next < 0) {
                 $_scenario->setLog(__('Erreur dans bloc (type A) : ', __FILE__) . $this->getId() . __(', heure programmé invalide : ', __FILE__) . $next);
@@ -199,7 +202,10 @@ class scenarioElement {
                 }
             }
             $next = strtotime($next);
-            $cron = new cron();
+            $cron = cron::byClassAndFunction('scenario', 'doIn', array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
+            if (!is_object($cron)) {
+                $cron = new cron();
+            }
             $cron->setClass('scenario');
             $cron->setFunction('doIn');
             $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));

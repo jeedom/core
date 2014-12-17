@@ -1,0 +1,667 @@
+Language: Slovenčina
+Language-Code: sk_SK
+Build-Date: Tue, 18 Jan 2011 15:19:32 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "Zo súboru nemožno čítať alebo je súbor prázdny"
+
+msgid: "Error performing operation"
+msgstr: "Chyba pri vykonávaní akcie"
+
+msgid: "All"
+msgstr: "Všetko"
+
+msgid: "None"
+msgstr: "Nič"
+
+msgid: "With selected"
+msgstr: "S vybranými"
+
+msgid: "Empty"
+msgstr: "Prázdne"
+
+msgid: "Drop"
+msgstr: "Vymazať"
+
+msgid: "Optimize"
+msgstr: "Optimalizovať"
+
+msgid: "Table"
+msgstr: "Tabuľka"
+
+msgid: "Rows"
+msgstr: "Riadky"
+
+msgid: "Size"
+msgstr: "Veľkosť"
+
+msgid: "Overhead"
+msgstr: "Naviac"
+
+msgid: "Options"
+msgstr: "Nastavenia"
+
+msgid: "Edit database"
+msgstr: "Editovať databázu"
+
+msgid: "Charset"
+msgstr: "Znaková sada"
+
+msgid: "Submit"
+msgstr: "Potvrdiť"
+
+msgid: "Create a new table"
+msgstr: "Vytvoriť novú tabuľku"
+
+msgid: "Name"
+msgstr: "Meno"
+
+msgid: "Setup the fields for the table below"
+msgstr: "Nastavte pole pre tabuľku"
+
+msgid: "New field"
+msgstr: "Nové pole"
+
+msgid: "Type"
+msgstr: "Typ"
+
+msgid: "Values"
+msgstr: "Hodnoty"
+
+msgid: "Key"
+msgstr: "Kľúč"
+
+msgid: "primary"
+msgstr: "primárny"
+
+msgid: "unique"
+msgstr: "unikátny"
+
+msgid: "index"
+msgstr: "index"
+
+msgid: "Default"
+msgstr: "Predvolený"
+
+msgid: "Other"
+msgstr: "Iný"
+
+msgid: "Unsigned"
+msgstr: "Bez znamienka"
+
+msgid: "Binary"
+msgstr: "Binárny"
+
+msgid: "Not Null"
+msgstr: "Nenulový"
+
+msgid: "Auto Increment"
+msgstr: "Auto inkrementácia"
+
+msgid: "Add field"
+msgstr: "Pridať pole"
+
+msgid: "Oops"
+msgstr: "ups"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "Z nejakého dôvodu, parameter databázy nebol zahrnutý v dopyte"
+
+msgid: "Save changes to original"
+msgstr: "Uložiť zmeny do originálu"
+
+msgid: "Insert as new row"
+msgstr: "Pridať ako nový riadok"
+
+msgid: "Save"
+msgstr: "Uložiť"
+
+msgid: "User"
+msgstr: "Používateľ"
+
+msgid: "All privileges"
+msgstr: "Všetky oprávnenia"
+
+msgid: "Selected privileges"
+msgstr: "Vybrané oprávnenia"
+
+msgid: "User privileges"
+msgstr: "Používateľské oprávnenia"
+
+msgid: "Select"
+msgstr: "Vybrať"
+
+msgid: "Insert"
+msgstr: "Vložiť"
+
+msgid: "Update"
+msgstr: "Upraviť"
+
+msgid: "Delete"
+msgstr: "Zmazať"
+
+msgid: "Alter"
+msgstr: "Zmeniť"
+
+msgid: "Create"
+msgstr: "Vytvoriť"
+
+msgid: "Temp tables"
+msgstr: "Dočasné tabuľky"
+
+msgid: "Administrator privileges"
+msgstr: "Administrátorské oprávnenia"
+
+msgid: "File"
+msgstr: "Súbor"
+
+msgid: "Process"
+msgstr: "Proces"
+
+msgid: "Reload"
+msgstr: "Aktualizovať"
+
+msgid: "Shutdown"
+msgstr: "Vypnúť"
+
+msgid: "Super"
+msgstr: "Super"
+
+msgid: "Grant option"
+msgstr: "Prideľovacie oprávnenie"
+
+msgid: "User not found!"
+msgstr: "Používateľ sa nenašiel!"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "Musíte exportovať štruktúru, dáta alebo oboje"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "Vyberte prosím databázy, ktoré chcete exportovať"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "Vyberte prosím tabuľky, ktoré chcete exportovať"
+
+msgid: "Table `%s` is empty"
+msgstr: "Tabuľka `%s` je prázdna"
+
+msgid: "Results"
+msgstr: "Výsledky"
+
+msgid: "Select all"
+msgstr: "Vybrať všetko"
+
+msgid: "The file could not be opened"
+msgstr: "Súbor sa nepodarilo otvoriť"
+
+msgid: "Could not write to file"
+msgstr: "Do súboru sa nedá písať"
+
+msgid: "Successfully wrote content to file"
+msgstr: "Údaje boli zapísané do súboru"
+
+msgid: "Download"
+msgstr: "Prevziať"
+
+msgid: "Note
+"
+msgstr: "Poznámka"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "Ak je tento server verejný, mali by ste tento súbor po stiahnutí vymazať"
+
+msgid: "Export"
+msgstr: "Export"
+
+msgid: "Tables"
+msgstr: "Tabuľky"
+
+msgid: "Databases"
+msgstr: "Databázy"
+
+msgid: "Format"
+msgstr: "Formát"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "Štruktúra"
+
+msgid: "Data"
+msgstr: "Dáta"
+
+msgid: "Compact inserts"
+msgstr: "Kompaktné vkladanie"
+
+msgid: "Complete inserts"
+msgstr: "Kompletné vkladanie"
+
+msgid: "Delimiter"
+msgstr: "Oddeľovač"
+
+msgid: "Comma"
+msgstr: "Čiarka"
+
+msgid: "Tab"
+msgstr: "Tabulátor"
+
+msgid: "Semicolon"
+msgstr: "Bodkočiarka"
+
+msgid: "Space"
+msgstr: "Medzerník"
+
+msgid: "Print field names on first line"
+msgstr: "Vypíš názvi polí na prvom riadku"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "Ak exportujete veľký počet riadkov, odporúča sa, aby ste údaje exportovali do súboru"
+
+msgid: "Output to"
+msgstr: "Výstup do"
+
+msgid: "Browser"
+msgstr: "Prehliadač"
+
+msgid: "Text file"
+msgstr: "Textový súbor"
+
+msgid: "Home"
+msgstr: "Domov"
+
+msgid: "Users"
+msgstr: "Používatelia"
+
+msgid: "Query"
+msgstr: "Dopyt"
+
+msgid: "Import"
+msgstr: "Import"
+
+msgid: "Overview"
+msgstr: "Prehľad"
+
+msgid: "Browse"
+msgstr: "Prehliadať"
+
+msgid: "Your changes were saved to the database"
+msgstr: "Zmeny boli uložené do databázy"
+
+msgid: "delete this row"
+msgstr: "zmaž tento riadok"
+
+msgid: "delete these rows"
+msgstr: "zmaž tieto riadky"
+
+msgid: "empty this table"
+msgstr: "vyprázdni túto tabuľku"
+
+msgid: "empty these tables"
+msgstr: "vyprázdni tieto tabuľky"
+
+msgid: "drop this table"
+msgstr: "zmaž túto tabuľku"
+
+msgid: "drop these tables"
+msgstr: "zmaž tieto tabuľky"
+
+msgid: "delete this column"
+msgstr: "zmaž tento stĺpec"
+
+msgid: "delete these columns"
+msgstr: "zmaž tieto stĺpce"
+
+msgid: "delete this index"
+msgstr: "zmaž tento index"
+
+msgid: "delete these indexes"
+msgstr: "zmaž tieto indexy"
+
+msgid: "delete this user"
+msgstr: "zmaž tohto používateľa"
+
+msgid: "delete these users"
+msgstr: "zmaž týchto používateľov"
+
+msgid: "Are you sure you want to"
+msgstr: "Ste si istý, že chcete"
+
+msgid: "The following query will be run:"
+msgstr: "Vykoná sa nasledujúci dopyt"
+
+msgid: "The following queries will be run:"
+msgstr: "Vykonajú sa nasledujúce dopyty"
+
+msgid: "Confirm"
+msgstr: "Potvrdiť"
+
+msgid: "Successfully saved changes"
+msgstr: "Zmeny boli úspešne uložené"
+
+msgid: "Full Text"
+msgstr: "Celý text"
+
+msgid: "Loading..."
+msgstr: "Načítava sa..."
+
+msgid: "Error"
+msgstr: "Chyba"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "Nastala chyba pri prijímaní dát zo serveru"
+
+msgid: "Logout"
+msgstr: "Odhlásiť"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "Z nejakého dôvodu, parameter tabuľky nebol zahrnutý v dopyte"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "Vitajte v SQL Buddy!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "Ste pripojený s MySQL %s ako používateľ %s."
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "Databázový server beží od %s and poslal približne %s dát."
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "Je dostupná nová verzia SQL Buddy!"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "Máte nainštalovanú SQL Buddy %s a teraz je dostupná verzia %s."
+
+msgid: "Getting started"
+msgstr: "Začíname"
+
+msgid: "Help"
+msgstr: "Pomoc"
+
+msgid: "Translations"
+msgstr: "Preklady"
+
+msgid: "Release Notes"
+msgstr: "Poznámky k vydaniu"
+
+msgid: "Contact"
+msgstr: "Kontakt"
+
+msgid: "Create a new database"
+msgstr: "Vytvoriť novú databázu"
+
+msgid: "Did you know..."
+msgstr: "Vedeli ste, že..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "Existuje jednoduchšia cesta ako označiť veľké množstvo položiek pri prehliadaní riadkov tabuľky. Vyznačte prvý riadok, podržte klávesu shift a označte posledný riadok. Tým sa označia všetky riadky medzi týmito dvoma."
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "Stĺpce v listoch Prehliadať a Dopyt majú nastaviteľnú veľkosť. Nastavte si ich tak široké alebo úzke ako chcete."
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "Prihlasovacia stránka je založená na predvolenom používateľovi root@localhost. V súbore config.php môžete zmeniť predvolené používateľské meno a hostiteľa na aké len chcete."
+
+msgid: "Keyboard shortcuts"
+msgstr: "Klávesové skratky"
+
+msgid: "Press this key..."
+msgstr: "Stačte túto klávesu..."
+
+msgid: "...and this will happen"
+msgstr: "...a toto sa stane."
+
+msgid: "select none"
+msgstr: "nevybrať nič"
+
+msgid: "edit selected items"
+msgstr: "upraviť vybrané položky"
+
+msgid: "delete selected items"
+msgstr: "vymazať vybrané položky"
+
+msgid: "refresh page"
+msgstr: "aktualizovať stránku"
+
+msgid: "load the query tab"
+msgstr: "otvoriť záložku dopytmi"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "prejsť na prvú stránku výsledkov"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "prejsť na poslednú stránku výsledkov"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "prejsť na predchádzajúcu stránku výsledkov"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "prejsť na nasledujúcu stránku výsledkov"
+
+msgid: "optimize selected tables"
+msgstr: "optimalizovať vybrané tabuľky"
+
+msgid: "Choose a .sql file to import"
+msgstr: "Vyberte .sql súbor, ktorý sa má importovať"
+
+msgid: "File
+"
+msgstr: "Súbor"
+
+msgid: "Ignore first line"
+msgstr: "Ignorovať prvý riadok"
+
+msgid: "Edit"
+msgstr: "Úpravy"
+
+msgid: "Refresh"
+msgstr: "Aktualizovať"
+
+msgid: "No primary key defined"
+msgstr: "Žiaden primárny kľúč."
+
+msgid: "First"
+msgstr: "Prvý"
+
+msgid: "Prev"
+msgstr: "Predchádzajúci"
+
+msgid: "Next"
+msgstr: "Nasledujúci"
+
+msgid: "Last"
+msgstr: "Posledný"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "Váš dopyt vrátil %d výsledok"
+msgstr[1]: "Váš dopyt vrátil %d výsledkov"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "Poznámka: aby sa predišlo pádu vášho prehliadača, bolo zobrazených len prvých %d výsledkov"
+
+msgid: "binary data"
+msgstr: "binárne dáta"
+
+msgid: "Your query affected %d rows"
+msgstr: "Váš dopyt ovplyvnil %d riadkov"
+
+msgid: "Your query did not return any results"
+msgstr: "Vás dopyt nevrátil žiadne výsledky"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "Údaje boli vložené do databázy"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "Nastal menší problém pri hľadaní tabuľky \"%s\""
+
+msgid: "There was a problem logging you in"
+msgstr: "Nastal problém pri prihlasovaní"
+
+msgid: "Login"
+msgstr: "Prihlásenie"
+
+msgid: "Unsupported browser"
+msgstr: "Nepodporovaný prehliadač"
+
+msgid: "Help!"
+msgstr: "Pomoc!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "Vaša relácia vypršala. Prosím, prihláste sa znovu."
+
+msgid: "Username"
+msgstr: "Používateľské meno"
+
+msgid: "Password"
+msgstr: "Heslo"
+
+msgid: "Run a query on the %s database"
+msgstr: "Vykonaj dotaz na databáze %s"
+
+msgid: "Columns"
+msgstr: "Stĺpce"
+
+msgid: "Add a column"
+msgstr: "Pridať stĺpec"
+
+msgid: "Insert this column"
+msgstr: "Vložiť tento stĺpec"
+
+msgid: "At end of table"
+msgstr: "Na koniec tabuľky"
+
+msgid: "At beginning of table"
+msgstr: "Na začiatok tabuľky"
+
+msgid: "After"
+msgstr: "Po"
+
+msgid: "Edit table"
+msgstr: "Upraviť tabuľku"
+
+msgid: "Indexes"
+msgstr: "Indexy"
+
+msgid: "Add an index"
+msgstr: "Pridať index"
+
+msgid: "Column(s)"
+msgstr: "Stĺpec/ce"
+
+msgid: "Show %d more..."
+msgstr: "Zobraziť ďaľších %s "
+
+msgid: "Empty table"
+msgstr: "Prázdna tabuľka"
+
+msgid: "Drop table"
+msgstr: "Zmazať tabuľku"
+
+msgid: "Optimize table"
+msgstr: "Optimalizovať tabuľku"
+
+msgid: "Table Information"
+msgstr: "Informácie o tabuľke"
+
+msgid: "Host"
+msgstr: "Hostiteľ"
+
+msgid: "Add a new user"
+msgstr: "Pridať nového používateľa"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "Vložte vo formáte: ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "Ste si istý, že chcete vyprázdniť tabuľku '%s'? Zmažú sa tým všetky údaje v nej. Vykoná sa nasledujúci dopyt:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "Ste si istý, že chcete zmazať tabuľku '%s'? Zmažú sa tým tabuľka a aj všetky údaje v nej. Vykoná sa nasledujúci dopyt:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "Ste si istý, že chcete zmazať databázu '%s'? Zmaže sa tým databáza, všetky tabuľky v databáze a všetky údaje v tabuľkách. Vykoná sa nasledujúci dopyt:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "Je nám ľúto, ale momentálne je podporovaný len Internet Explorer 7. Je voľne dostupný na stiahnutie na stránke Microsoft-u. Ostatné voľne dostupné prehliadače sú tiež podporované, vrátane Firefoxu, Safari a Opery."
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "Vyzerá to, že nemáte povolené cookies. Aby správne fungovali relácie, väčšina php inštalácií vyžaduje povolené cookies."
+
+msgid: "Importing..."
+msgstr: "Importuje sa..."
+
+msgid: "Drop the '%s' database"
+msgstr: "Zmazať databázu '%s'"
+
+msgid: "Okay"
+msgstr: "OK"
+
+msgid: "Cancel"
+msgstr: "Zrušiť"
+
+msgid: "Storage engine"
+msgstr: "Úložný engine"
+
+msgid: "Language"
+msgstr: "Jazyk"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "zo súboru bol vykonaný %d dopyt"
+msgstr[1]: "zo súboru bolo vykonaných %d dopytov"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "zo súboru bol vložený do databázy %d riadok"
+msgstr[1]: "zo súboru bolo vložených do databázy %d riadkov"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "%d riadok musel byť vynechaný, pretože počet hodnôt nebol správny"
+msgstr[1]: "%d riadkov muselo byť vynechaných, pretože počet hodnôt nebol správny"
+
+msgid: "Theme"
+msgstr: "Motív"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f sekúnd)"
+
+msgid: "The following errors were reported"
+msgstr: "Nastali nasledovné chyby"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "Nemáte dostatočné oprávnienia na pridanie nového používateľa"
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "Nemáte dostatočné oprávnienia na spravovanie používateľov"
+
+msgid: "You are connected to %s."
+msgstr: "Ste pripojený k %s"
+
+msgid: "Allow access to"
+msgstr: "Povoliť prístup k"
+
+msgid: "All databases"
+msgstr: "Všetky databázy"
+
+msgid: "Selected databases"
+msgstr: "Vybrané databázy"
+
+msgid: "Give user"
+msgstr: "Daj používateľovi"
+
+msgid: "Updates"
+msgstr: "Aktualizácie"
+
+msgid: "There are no updates available"
+msgstr: "Nie su dostupné žiadne aktualizácie"
+
+msgid: "Change password"
+msgstr: "Zmeniť heslo"
+
+msgid: "Redirecting..."
+msgstr: "Presmerujem..."

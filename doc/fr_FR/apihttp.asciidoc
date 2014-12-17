@@ -5,6 +5,8 @@ Jeedom met à disposition des développeurs et des utilisateurs une API complèt
 ==== API via URL et requête HTTP
 Cette API s'utilise très facilement par de simples requêtes HTTP via URL. Pour simplifier au maximum, l'API utilise seulement 2 types de requête HTTP.
 
+Attention si vous aves une mini et non une installation DIY il faut enlever les /jeedom dans toutes les URLs de commande.
+
 La première requête est utilisée uniquement pour piloter un scénario.
 
 Voici l'URL = http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&id=#ID#&action=#ACTION#

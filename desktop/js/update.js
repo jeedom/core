@@ -218,19 +218,19 @@ function addUpdate(_update) {
     tr += '</td>';
     tr += '<td style="width : 400px;">';
     if (_update.status == 'update') {
-        tr += '<a class="btn btn-info btn-xs pull-right update tooltips" style="color : white;" title="{{Mettre à jour}}"><i class="fa fa-refresh"></i> Mettre à jour</a>';
+        tr += '<a class="btn btn-info btn-xs pull-right update tooltips" style="color : white;margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fa fa-refresh"></i> Mettre à jour</a>';
     }
 
     if (_update.type != 'core') {
-        tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible tooltips" data-state="unhold" style="color : white;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
+        tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible tooltips" data-state="unhold" style="color : white;margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
         if (isset(_update.configuration) && isset(_update.configuration.market_owner) && _update.configuration.market_owner == 1) {
-            tr += '<a class="btn btn-success btn-xs pull-right sendToMarket tooltips cursor expertModeVisible" style="color : white;" title="{{Envoyer sur le market}}"><i class="fa fa-cloud-upload"></i> {{Partager}}</a>';
+            tr += '<a class="btn btn-success btn-xs pull-right sendToMarket tooltips cursor expertModeVisible" style="color : white;margin-bottom : 5px;" title="{{Envoyer sur le market}}"><i class="fa fa-cloud-upload"></i> {{Partager}}</a>';
         }
         if (isset(_update.configuration) && isset(_update.configuration.market) && _update.configuration.market == 1) {
-            tr += '<a class="btn btn-primary btn-xs pull-right view tooltips cursor" style="color : white;"><i class="fa fa-search"></i> {{Voir}}</a>';
+            tr += '<a class="btn btn-primary btn-xs pull-right view tooltips cursor" style="color : white;margin-bottom : 5px;"><i class="fa fa-search"></i> {{Voir}}</a>';
         }
     } else {
-        tr += '<a class="btn btn-default btn-xs pull-right" href="https://wiki.jeedom.fr/index.php?title=Changelog" target="_blank"><i class="fa fa-bars"></i> {{Changelog}}</a>';
+        tr += '<a class="btn btn-default btn-xs pull-right" href="https://wiki.jeedom.fr/index.php?title=Changelog" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-bars"></i> {{Changelog}}</a>';
     }
 
     tr += '</td>';

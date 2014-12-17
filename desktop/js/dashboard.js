@@ -16,8 +16,10 @@
  */
 positionEqLogic();
 setTimeout(function () {
-    $('.div_displayEquipement').masonry({columnWidth: 1});
+    $('.div_displayEquipement').packery();
 }, 2);
+
+
 
 $('body').delegate('.eqLogic-widget .history', 'click', function () {
     $('#md_modal').dialog({title: "{{Historique}}"});
@@ -33,7 +35,7 @@ $('#bt_displayScenario').on('click', function () {
             $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12');
         }
         $('.div_displayEquipement').each(function () {
-            $(this).masonry({columnWidth: 1});
+            $(this).packery();
         });
         $(this).attr('data-display', 0);
     } else {
@@ -43,7 +45,7 @@ $('#bt_displayScenario').on('click', function () {
         } else {
             $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-7');
         }
-        $('.div_displayEquipement').masonry({columnWidth: 1});
+        $('.div_displayEquipement').packery();
         $(this).attr('data-display', 1);
     }
 });
@@ -57,7 +59,7 @@ $('#bt_displayObject').on('click', function () {
             $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12');
         }
         $('.div_displayEquipement').each(function () {
-            $(this).masonry({columnWidth: 1});
+            $(this).packery();
         });
         $(this).attr('data-display', 0);
     } else {
@@ -67,7 +69,7 @@ $('#bt_displayObject').on('click', function () {
         } else {
             $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-8');
         }
-        $('.div_displayEquipement').masonry({columnWidth: 1});
+        $('.div_displayEquipement').packery();
         $(this).attr('data-display', 1);
     }
 });

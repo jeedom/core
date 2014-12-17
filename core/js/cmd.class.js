@@ -17,11 +17,12 @@
 
 jeedom.cmd = function () {
 };
-
 jeedom.cmd.cache = Array();
-
 if (!isset(jeedom.cmd.cache.byId)) {
     jeedom.cmd.cache.byId = Array();
+}
+if (!isset(jeedom.cmd.cache.byHumanName)) {
+    jeedom.cmd.cache.byHumanName = Array();
 }
 
 jeedom.cmd.execute = function (_params) {
@@ -67,7 +68,6 @@ jeedom.cmd.execute = function (_params) {
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/cmd.ajax.php';
-
     var cache = 1;
     if (_params.cache !== undefined) {
         cache = _params.cache;
@@ -80,8 +80,6 @@ jeedom.cmd.execute = function (_params) {
     };
     $.ajax(paramsAJAX);
 };
-
-
 jeedom.cmd.test = function (_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {
@@ -172,8 +170,6 @@ jeedom.cmd.test = function (_params) {
     };
     $.ajax(paramsAJAX);
 };
-
-
 jeedom.cmd.refreshValue = function (_params) {
     var cmd = $('.cmd[data-cmd_id=' + _params.id + ']');
     if (cmd.html() != undefined && cmd.closest('.eqLogic').attr('data-version') != undefined) {
@@ -209,8 +205,6 @@ jeedom.cmd.refreshValue = function (_params) {
         $.ajax(paramsAJAX);
     }
 };
-
-
 jeedom.cmd.save = function (_params) {
     var paramsRequired = ['cmd'];
     var paramsSpecifics = {
@@ -266,6 +260,34 @@ jeedom.cmd.byId = function (_params) {
     $.ajax(paramsAJAX);
 }
 
+jeedom.cmd.byHumanName = function (_params) {
+    var paramsRequired = ['humanName'];
+    var paramsSpecifics = {
+        pre_success: function (data) {
+            jeedom.cmd.cache.byHumanName[data.result.humanName] = data.result;
+            return data;
+        }
+    };
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    if (isset(jeedom.cmd.cache.byHumanName[params.humanName]) && init(params.noCache, false) == false) {
+        params.success(jeedom.cmd.cache.byHumanName[params.humanName]);
+        return;
+    }
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+    paramsAJAX.data = {
+        action: 'byHumanName',
+        humanName: _params.humanName
+    };
+    $.ajax(paramsAJAX);
+}
+
 jeedom.cmd.usedBy = function (_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
@@ -313,7 +335,6 @@ jeedom.cmd.changeType = function (_cmd, _subType) {
         }
     });
 };
-
 jeedom.cmd.changeSubType = function (_cmd) {
     jeedom.getConfiguration({
         key: 'cmd:type:' + _cmd.find('.cmdAttr[data-l1key=type]').value() + ':subtype:' + _cmd.find('.cmdAttr[data-l1key=subType]').value(),
@@ -382,14 +403,12 @@ jeedom.cmd.changeSubType = function (_cmd) {
             }
             _cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('change');
             modifyWithoutSave = false;
-
             if ('function' == typeof (initExpertMode)) {
                 initExpertMode();
             }
         }
     });
 };
-
 jeedom.cmd.availableType = function () {
     var selType = '<select style="width : 120px; margin-bottom : 3px;" class="cmdAttr form-control input-sm" data-l1key="type">';
     selType += '<option value="info">{{Info}}</option>';
@@ -397,14 +416,12 @@ jeedom.cmd.availableType = function () {
     selType += '</select>';
     return selType;
 };
-
 jeedom.cmd.getSelectModal = function (_options, _callback) {
     if (!isset(_options)) {
         _options = {};
     }
     if ($("#mod_insertCmdValue").length == 0) {
         $('body').append('<div id="mod_insertCmdValue" title="{{Sélectionner la commande}}" ></div>');
-
         $("#mod_insertCmdValue").dialog({
             autoOpen: false,
             modal: true,
@@ -431,8 +448,6 @@ jeedom.cmd.getSelectModal = function (_options, _callback) {
     });
     $('#mod_insertCmdValue').dialog('open');
 };
-
-
 jeedom.cmd.displayActionOption = function (_expression, _options, _callback) {
     var html = '';
     $.ajax({// fonction permettant de faire de l'ajax
@@ -466,3 +481,30 @@ jeedom.cmd.displayActionOption = function (_expression, _options, _callback) {
     });
     return html;
 };
+
+
+jeedom.cmd.normalizeName = function (_tagname) {
+    var arrayOn = ['on', 'marche', 'go', 'lock'];
+    var arrayOff = ['off', 'arret', 'arrêt', 'stop', 'unlock'];
+    var name = _tagname.toLowerCase();
+    /^([^0-9]+)[0-9]*$/.exec(name);
+    name = RegExp.$1;
+    if (arrayOn.indexOf(name) >= 0) {//Test si name cmd equivalent à "on"
+        return 'on';
+    } else if (arrayOff.indexOf(name) >= 0) {//Test si name cmd equivalent à "off"
+        return 'off';
+    }
+    if (name.indexOf("lock") == 0) {
+        return 'on';
+    }
+    if (name.indexOf("unlock") == 0) {
+        return 'off';
+    }
+    if (name.indexOf("on") != -1) {
+        return 'on';
+    }
+    if (name.indexOf("off") != -1) {
+        return 'off';
+    }
+    return _tagname;
+}

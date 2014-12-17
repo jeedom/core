@@ -1,0 +1,888 @@
+body {
+text-align: center;
+background: url(../images/initLoad.png) no-repeat 50% 125px;
+font: 12px/17px arial, sans-serif;
+color: rgb(50, 50, 50);
+}
+
+* {
+margin: 0; padding: 0;
+}
+
+table {
+border-spacing: 0;
+}
+
+a {
+text-decoration: none;
+color: #3A6D96;
+cursor: pointer;
+}
+a:hover {
+color: rgb(60, 60, 60);
+}
+a img {
+border: 0;
+display: block;
+}
+
+p {
+margin: 3px 0 5px;
+}
+
+h3 {
+font-size: 13px;
+}
+h4 {
+font-size: 13px;
+margin: 0 0 5px 0;
+border-bottom: 1px solid rgb(220, 220, 220);
+}
+
+ul {
+padding-left: 20px;
+}
+
+li {
+list-style-type: square;
+}
+
+input, textarea, select {
+font-family: arial, sans-serif;
+color: rgb(50, 50, 50);
+}
+.text, textarea {
+padding: 1px;
+font-size: 13px;
+width: 175px;
+}
+textarea {
+height: 80px;
+line-height: 15px;
+}
+select {
+font-size: 12px;
+}
+select[multiple] {
+border-color: rgb(195, 195, 195) rgb(235, 235, 235) rgb(225, 225, 225) rgb(215, 215, 215);
+border-width: 1px;
+border-style: solid;
+}
+option {
+padding: 1px 5px;
+}
+label {
+margin: 0 5px 0 0;
+vertical-align: middle;
+}
+label input {
+margin: 0 5px 2px 0;
+vertical-align: middle;
+}
+.inputbutton {
+background: url(../images/button.png);
+padding: 2px 5px 4px;
+font-size: 12px;
+line-height: 18px;
+width: 60px;
+height: 22px; 
+border: 0;
+color: rgb(60, 60, 60);
+outline-width: thin;
+}
+.inputbutton:active {
+background: url(../images/button.png) 0 22px;
+color: rgb(80, 80, 80);
+}
+
+#headerlogo {
+width: 161px;
+padding: 10px 15px 2px;
+float: left;
+}
+#headerlogo a {
+outline: none;
+}
+#headerlogo img {
+display: inline;
+}
+#headerinfo {
+padding: 7px 18px 0;
+width: 175px;
+text-align: right;
+float: right;
+color: white;
+}
+#headerinfo a {
+margin-left: 10px;
+outline: none;
+}
+
+#load {
+color: rgb(190, 190, 190);
+}
+
+#container {
+width: 100%;
+line-height: 18px;
+text-align: left;
+}
+
+#bottom {
+width: 100%;
+opacity: 0;
+clear: left;
+padding-top: 6px;
+min-height: 350px;
+}
+#leftside {
+vertical-align: top;
+width: 180px;
+float: left;
+}
+#rightside {
+vertical-align: top;
+margin-left: 180px;
+padding: 0 6px 5px 0;
+}
+#sidemenu {
+display: block;
+padding: 10px 0 0 5px;
+}
+
+#content {
+width: 100%;
+}
+#innercontent {
+padding: 8px 10px 10px;
+}
+
+.grid {
+border-width: 1px;
+border-style: solid;
+border-color: rgb(225, 225, 225) rgb(210, 210, 210) rgb(210, 210, 210) rgb(210, 210, 210);
+background: url(../images/schemaHeader.png) top repeat-x;
+}
+
+.gridheader {
+height: 18px;
+border-bottom: 1px solid rgb(150, 150, 150);
+border-right: 1px solid #fff;
+overflow: hidden;
+}
+.gridheaderinner {
+padding-left: 1px;
+}
+
+.headertitle {
+background: #EEEEEE url(../images/schemaHeader.png) top;
+padding: 0 5px 0 6px;
+width: 200px;
+cursor: pointer;
+overflow: hidden;
+display: block;
+float: left;
+color: rgb(90, 90, 90);
+}
+
+.columnresizer {
+border-right: 1px solid rgb(255, 255, 255);
+border-left: 1px solid rgb(185, 185, 185);
+width: 0;
+height: 18px;
+cursor: ew-resize;
+}
+
+.emptyvoid {
+background: #EEEEEE url(../images/schemaHeader.png) top;
+height: 16px;
+width: 14px;
+padding: 1px 4px;
+float: left;
+border-bottom: 1px solid rgb(150, 150, 150);
+border-right: 1px solid rgb(205, 205, 205);
+}
+
+.impotent .headertitle, .impotent .columnresizer {
+cursor: default;
+}
+.nosort .headertitle {
+cursor: default;
+}
+
+.browse {
+line-height: 17px;
+min-width: 100%;
+width: 100%;
+}
+.browse table td {
+border-right: 1px solid rgb(200, 200, 200);
+vertical-align: top;
+}
+
+.item {
+padding: 2px 6px;
+width: 200px;
+overflow: hidden;
+max-height: 16px;
+}
+.longtext {
+width: 300px;
+}
+.numeric {
+width: 150px;
+}
+.binary {
+font-style: italic;
+color: #AAAA8F;
+}
+.structure .headertitle, .structure .item, .dboverview .headertitle, .dboverview .item {
+width: 150px;
+}
+
+.leftchecks {
+width: 22px;
+position: absolute;
+overflow: hidden;
+border-right: 1px solid rgb(185, 185, 185);
+}
+.manip {
+padding-top: 1px;
+vertical-align: top;
+height: 19px;
+}
+.manip:last-child {
+border-bottom: 0 !important;
+}
+.manip dt {
+width: 15px;
+padding: 0 1px 0 5px;
+float: left;
+}
+.manip dd {
+width: 15px;
+padding: 2px 0 0 0;
+float: left;
+}
+.manip dd a {
+background: url(../images/info.png) no-repeat;
+width: 13px;
+height: 13px;
+display: block;
+cursor: default;
+}
+.manip dd a:hover {
+background: url(../images/infoHover.png) no-repeat;
+}
+.browsetab .leftchecks {
+width: 38px;
+}
+
+.withchecks {
+margin-left: 22px;
+border-left: 1px solid rgb(240, 240, 240);
+}
+.withinfo {
+margin-left: 39px;
+}
+
+.sort {
+color: steelblue;
+}
+.sortasc {
+background: url(../images/sortasc.gif) no-repeat right 6px;
+margin-right: 1px;
+}
+.sortdesc {
+background: url(../images/sortdesc.gif) no-repeat right 5px;
+margin-right: 1px;
+}
+
+.alternator {
+border-bottom: 1px solid #f0f0ff;
+}
+.alternator2 {
+background: #f0f0ff;
+border-bottom: 1px solid transparent;
+}
+.highlighted {
+background: #F5F5B8 !important;
+border-bottom: 1px solid #E5E6AD !important;
+}
+
+.gridscroll {
+overflow: auto;
+min-height: 21px;
+}
+
+.gridscroll .browse:last-child {
+border-bottom: 0 !important;
+}
+
+.browsenav {
+width: 100%;
+padding: 2px 0 3px;
+}
+.browsenav td {
+color: rgb(125, 125, 125);
+}
+.browsenav a {
+outline: none;
+}
+.browsenav .options {
+padding-left: 7px;
+}
+.browsenav .options a {
+margin: 0 1px;
+}
+.browsenav .right {
+padding-right: 8px;
+text-align: right;
+}
+.browsenav .right a {
+padding-left: 10px;
+}
+.browsenav .paginator {
+padding: 0 3px 0 5px;
+}
+.browsenav .paginator a {
+color: rgb(125, 125, 125);
+padding-left: 5px;
+}
+.browsenav .paginator a.selected {
+font-weight: bold;
+color: rgb(150, 150, 150);
+}
+
+.insert {
+margin: 8px 6px;
+width: 350px;
+}
+.insert td {
+padding: 1px 6px 0;
+}
+.insert .inputarea {
+padding-bottom: 8px;
+}
+.insert .text {
+width: 325px;
+}
+.insert textarea {
+width: 325px;
+}
+.insertseperator {
+width: 348px;
+margin: 12px 5px;
+border-bottom: 2px solid #ccc;
+}
+.insertmessage {
+margin: 1px 4px;
+padding: 4px 8px;
+color: rgb(75, 75, 75);
+width: 332px;
+}
+
+.edit {
+border-bottom: 1px solid rgb(175, 175, 175);
+margin-bottom: 17px;
+}
+form:last-child .edit {
+border-bottom: 0 !important;
+}
+
+.fieldheader {
+color: rgb(110, 110, 110);
+}
+.fieldheader .fieldheadertitle {
+width: 345px;
+display: block;
+float: left;
+}
+.fieldheader a.fieldclose {
+width: 14px;
+height: 16px;
+padding-right: 4px;
+display: block;
+float: right;
+background: url(../images/close.png) no-repeat 0 1px;
+}
+.fieldheader a.fieldclose:hover {
+background: url(../images/closeHover.png) no-repeat 0 1px;
+}
+.secondaryheader {
+color: rgb(100, 100, 100);
+padding-right: 8px !important;
+vertical-align: top;
+}
+.secondaryheader a {
+color: rgb(100, 100, 100);
+}
+
+#fieldlist .fieldbox:first-child .fieldclose {
+display: none;
+}
+
+.structure .inputbox {
+width: 500px;
+margin-top: 15px;
+}
+.structure .secondaryheader {
+width: 65px;
+}
+.structure .grid {
+margin-bottom: 15px;
+}
+
+.columnheader {
+color: rgb(125, 125, 125);
+padding: 3px 0 0 7px;
+cursor: pointer;
+}
+.column .text {
+font-size: 12px;
+}
+
+.paneheader {
+margin: 7px 0 0;
+color: rgb(115, 115, 115);
+}
+.paneheader a {
+color: rgb(115, 115, 115);
+}
+
+.dboverview .column1 {
+width: 200px;
+}
+.dboverview .inputbox {
+width: 500px;
+}
+.dboverview .inputbox .secondaryheader {
+width: 80px;
+}
+
+.overview {
+margin: 0px 0 5px 0;
+border-bottom: 1px solid rgb(220, 220, 220);
+padding: 0 0 3px 0;
+}
+.inputbox .overview td {
+padding: 7px 0 3px;
+}
+.overview .fieldheader {
+border-bottom: 1px solid rgb(220, 220, 220);
+padding-bottom: 2px;
+}
+.overview .text, .overview select, .overview option {
+width: 135px;
+}
+
+.editcolumn {
+margin-left: 4px;
+padding: 12px 0;
+width: 430px;
+}
+.editcolumn table {
+width: 100%;
+}
+.editcolumn td {
+padding: 1px 6px 0;
+}
+.editcolumn .inputarea {
+padding-bottom: 8px;
+}
+.editcolumn .text {
+width: 325px;
+font-size: 12px !important;
+}
+
+.edituser {
+margin: 0 0 4px 13px;
+padding: 12px 0;
+width: 335px;
+border-bottom: 1px solid rgb(175, 175, 175);
+}
+form:last-child .edituser {
+border-bottom: 0 !important;
+}
+.edituser .edit {
+border-bottom: 0;
+margin-bottom: 0;
+}
+.edituser .secondaryheader {
+width: 110px;
+}
+
+.users {
+padding: 5px 7px 7px;
+width: 550px;
+}
+.users .inputbox {
+width: 335px;
+}
+.users .secondaryheader {
+width: 110px;
+}
+.privpane {
+background: rgb(240, 240, 240);
+padding: 1px 0px 8px 12px;
+margin-top: 5px;
+}
+#dbaccesspane {
+padding-top: 5px !important;
+}
+.privpane td {
+padding: 1px 0 !important;
+}
+
+.export {
+padding: 7px 7px 5px 14px;
+width: 375px;
+}
+.export h4 {
+padding-bottom: 3px;
+}
+.export .secondaryheader {
+width: 110px;
+}
+.export .message {
+color: rgb(100, 100, 100);
+line-height: 14px;
+}
+.export table {
+width: 100%;
+}
+.export td {
+padding: 5px 0;
+}
+.export select {
+width: 100%;
+}
+.export .text {
+font-size: 12px;
+width: 100px;
+}
+.exportseperator {
+margin: 7px 0;
+border-bottom: 1px solid rgb(210, 210, 210);
+}
+#EXPORTWRAPPER {
+padding: 7px;
+}
+#EXPORTWRAPPER strong {
+color: #646464;
+}
+#EXPORTRESULTS {
+width: 100%;
+max-width: 100%;
+height: 250px;
+font-size: 12px;
+margin-top: 3px;
+}
+
+.import {
+padding: 7px 7px 5px 14px;
+width: 350px;
+}
+.import h4 {
+padding-bottom: 3px;
+}
+.import .secondaryheader {
+width: 80px;
+}
+.import table {
+width: 100%;
+}
+.import td {
+padding: 5px 0;
+}
+.import .text {
+font-size: 12px;
+width: 100px;
+}
+
+.inputbox {
+padding: 0 7px 5px;
+}
+.inputbox h4 {
+margin-bottom: 5px;
+padding-bottom: 2px;
+}
+.inputbox table {
+width: 100%;
+}
+.inputbox td {
+padding: 5px 0;
+}
+.inputbox .text, .inputbox textarea, .inputbox select[multiple] {
+font-size: 12px;
+}
+
+.fulltextwin {
+position: absolute;
+text-align: left;
+color: rgb(240, 240, 240);
+width: 475px;
+}
+.fulltextheader {
+height: 21px;
+}
+.fulltextheader td {
+padding: 2px 0;
+}
+.headertl {
+width: 19px;
+background: url(../images/window-header-left.png) no-repeat;
+}
+.headertr {
+width: 19px;
+background: url(../images/window-header-right.png) no-repeat;
+}
+.headercenter {
+background: url(../images/window-header-center.png) repeat-x;
+}
+
+.fulltextheader p {
+margin: 0 !important;
+padding-left: 2px;
+}
+.fulltextheader img {
+margin-top: 1px;
+}
+.mainl {
+width: 13px;
+background: url(../images/window-shadow-left.png) repeat-y;
+}
+.maincenter {
+background: url(../images/window-center.png);
+padding: 5px 5px 0 8px;
+}
+.fulltextcontent {
+overflow: auto;
+min-height: 100px;
+padding-right: 5px;
+}
+.mainr {
+width: 13px;
+background: url(../images/window-shadow-right.png) repeat-y;
+}
+.fulltexttitle {
+color: rgb(175, 175, 175);
+font-weight: bold;
+}
+.fulltextbody {
+margin-bottom: 10px;
+line-height: 15px;
+}
+.fulltextfooter {
+width: 100%;
+}
+.fulltextfooter td {
+height: 19px;
+}
+.footerbl {
+width: 15px;
+background: url(../images/window-shadow-bottom-left.png) no-repeat -1px;
+}
+.footerbr {
+width: 15px;
+background: url(../images/window-shadow-bottom-right.png) no-repeat;
+}
+.footermiddle {
+width: auto;
+background: url(../images/window-shadow-bottom.png) repeat-x;
+}
+
+.dialog {
+width: 475px;
+}
+.dialog .fulltextcontent {
+min-height: 25px;
+}
+.dialog .maincenter {
+padding: 5px 2px 0px 8px !important
+}
+.buttons {
+padding: 7px 0 5px;
+}
+.windowbutton {
+background: url(../images/window-button.png);
+padding: 3px 5px 4px;
+width: 60px;
+height: 22px; 
+border: 0;
+color: white;
+outline-color: rgb(130, 130, 130);
+outline-width: thin;
+}
+.resizeHandle {
+float: right;
+margin-bottom: -1px;
+}
+
+#QUERY {
+width: 550px;
+font-size: 12px;
+display: block;
+margin: 2px 0 0;
+}
+
+.querybox {
+font-family: "courier new";
+background: rgb(90, 90, 90);
+padding: 4px 6px 2px;
+margin: 10px 0 1px 0;
+max-height: 75px;
+overflow: auto;
+font-weight: normal;
+}
+
+.clearer {
+height: 0;
+line-height: 0;
+clear: both;
+}
+
+#loginform {
+margin: 0 auto;
+width: 330px;
+margin-top: 115px;
+}
+#loginform .loginspacer {
+padding: 13px 18px 13px 14px;
+}
+#loginform table {
+width: 100%;
+}
+.loginheader {
+border-bottom: 1px solid #E1E1E1;
+padding-bottom: 8px !important;
+float: left;
+width: 100%;
+margin-bottom: 10px;
+}
+.loginheader h3 {
+font-size: 13px;
+float: left;
+}
+.loginheader a {
+float: right;
+text-align: right;
+}
+#loginform td {
+padding: 5px 5px;
+line-height: 14px;
+}
+#loginform .field {
+width: 85px;
+text-align: right;
+color: #4A7496;
+}
+#loginform select {
+width: 165px;
+}
+#loginform .text {
+width: 160px;
+color: rgb(70, 70, 70);
+font-size: 13px;
+}
+#loginform .errormess {
+color: #AA3939;
+padding: 0 0 5px;
+text-align: center;
+}
+
+.errormessage {
+background: rgb(255, 245, 245);
+border: 1px solid rgb(230, 210, 210);
+padding: 7px 9px;
+line-height: 15px;
+color: rgb(80, 80, 80);
+}
+.errormessage strong {
+color: #EB4A4A;
+display: block;
+margin-bottom: 3px;
+}
+.errormessage p {
+margin-bottom: 0;
+}
+.statusmessage {
+padding: 4px 0;
+color: rgb(125, 125, 125);
+}
+
+.hometable {
+margin: 7px 0 0 10px;
+width: 475px;
+}
+.hometable p {
+line-height: 15px;
+}
+.hometable table td {
+padding-top: 7px;
+}
+.hometable .text {
+width: 130px;
+}
+.hometable select {
+width: 135px;
+}
+.hometable .inputfield {
+color: rgb(140, 140, 140);
+width: 95px;
+padding-right: 7px;
+text-align: right;
+}
+
+.keyboardtable {
+width: 445px;
+margin-top: 7px;
+border-right: 1px solid rgb(200, 200, 200);
+border-bottom: 1px solid rgb(200, 200, 200);
+}
+.keyboardtable td, .keyboardtable th {
+padding: 1px 10px 1px 5px !important;
+border-left: 1px solid rgb(200, 200, 200);
+border-top: 1px solid rgb(200, 200, 200);
+}
+.keyboardtable th {
+color: rgb(125, 125, 125);
+font-weight: normal;
+text-align: left;
+}
+
+dl.information {
+width: 200px;
+}
+dl.information dt {
+float: left;
+width: 100px;
+clear: left;
+color: rgb(125, 125, 125);
+}
+dl.information dd {
+float: left;
+width: 100px;
+}
+
+.morelink:hover {
+text-decoration: underline;
+}
+
+.errorpage {
+padding: 6px 10px 3px;
+width: 450px;
+}
+.errorpage h4 {
+font-weight: bold;
+}
+
+.goto {
+cursor: pointer;
+margin-top: 2px;
+opacity: 0.7;
+float: right;
+}
+.goto:hover {
+opacity: 1;
+}

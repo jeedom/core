@@ -1,0 +1,27 @@
+#header {
+display: none;
+}
+
+.inputbutton, .inputbutton:active {
+background: default !important;
+border: default !important;
+line-height: inherit !important;
+width: auto !important;
+height: auto !important; 
+}
+
+#innercontent a {
+color: #3A6D96 !important;
+}
+
+.leftchecks, .emptyvoid {
+display: none !important;
+}
+.gridscroll, .gridheader {
+max-height: none !important;
+max-width: none !important;
+overflow: none !important;
+}
+.withinfo, .withchecks {
+margin-left: 0 !important;
+}

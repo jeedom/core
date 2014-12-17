@@ -2,7 +2,7 @@
 if (!hasRight('viewview')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
-include_file('3rdparty', 'jquery.masonry/jquery.masonry', 'js');
+
 if (init('view_id') == '') {
     if ($_SESSION['user']->getOptions('defaultDesktopView') != '') {
         $view = view::byId($_SESSION['user']->getOptions('defaultDesktopView'));
@@ -23,7 +23,6 @@ if (init('view_id') != '') {
 } else {
     redirect('index.php?v=d&p=view_edit');
 }
-include_file('3rdparty', 'jquery.masonry/jquery.masonry', 'js');
 sendVarToJS('view_id', $view->getId());
 ?>
 

@@ -236,6 +236,10 @@ configure_nginx()
     configure_php
     update-rc.d nginx defaults
 
+    croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+    cronjob="* * * * * $croncmd"
+    ( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
+
     # Prompt for ssl
     echo "${msg_ask_install_nginx_ssl}"
     while true
@@ -288,6 +292,11 @@ configure_apache()
         a2ensite 000-default.conf
     fi
     service apache2 restart
+
+    croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+    cronjob="* * * * * $croncmd"
+    ( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
+
     configure_php
 }
 
@@ -405,7 +414,7 @@ install_razberry_zway()
 	# Check if already installed
 	if [ -f /etc/z-way/VERSION ]; then
 		# Get latest zway install
-		wget -q -O - razberry.z-wave.me/install -O zway-install
+		wget -q -O - razberry.z-wave.me/install/v1.7.2 -O zway-install
 		# Check version
 		ZWAY_AVAIL_VERSION="`cat zway-install | awk '/.*[0-9].[0-9].[0-9].*z-way\/VERSION$/{ print $2 }' | sed 's/["v]//g'`"
 		is_version_greater_or_equal ${ZWAY_INSTALLED_VERSION} ${ZWAY_AVAIL_VERSION} 
@@ -569,8 +578,10 @@ if [ "${webserver}" = "apache" ] ; then
     service apache2 restart
 fi
 
-apt-get install -y ffmpeg libssh2-php ntp unzip miniupnpc \
+apt-get install -y libssh2-php ntp unzip miniupnpc \
                    mysql-client mysql-common mysql-server mysql-server-core-5.5
+apt-get install -y ffmpeg
+apt-get install -y avconv
 echo "${msg_passwd_mysql}"
 while true
 do
@@ -608,9 +619,9 @@ done
 # Check if nodeJS was actually installed, otherwise do a manual install
 install_nodejs
 
-apt-get install -y php5-common php5-fpm php5-cli php5-curl php5-json php5-mysql \
-                   usb-modeswitch python-serial
-
+apt-get install -y php5-common php5-fpm php5-dev php5-cli php5-curl php5-json php5-mysql \
+                   usb-modeswitch python-serial make php-pear libpcre3-dev build-essential
+apt-get install -y php5-oauth
 pecl install oauth
 for i in fpm cli
 do
@@ -673,9 +684,6 @@ echo "********************************************************"
 echo "${msg_setup_cron}"
 echo "********************************************************"
 
-croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null"
-cronjob="* * * * * $croncmd"
-( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
 
 case ${webserver} in
 	nginx)

@@ -35,12 +35,13 @@ class eqLogic {
     protected $timeout;
     protected $category;
     protected $display;
+    protected $order;
     protected $_internalEvent = 0;
     protected $_debug = false;
     protected $_object = null;
     private static $_templateArray = array();
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function byId($_id) {
         $values = array(
@@ -120,7 +121,7 @@ class eqLogic {
             $values['logicalId'] = $_logicalId;
             $sql .= ' AND logicalId=:logicalId';
         }
-        $sql .= ' ORDER BY category DESC';
+        $sql .= ' ORDER BY `order`,category DESC';
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
 
@@ -393,7 +394,7 @@ class eqLogic {
         return $text;
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function copy($_name) {
         $eqLogicCopy = clone $this;
@@ -434,7 +435,7 @@ class eqLogic {
 
     public function toHtml($_version = 'dashboard') {
         if ($_version == '') {
-            throw new Exception(__('La version demandé ne peut être vide (mobile, dashboard ou scenario)', __FILE__));
+            throw new Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
         }
         if (!$this->hasRight('r')) {
             return '';
@@ -463,7 +464,7 @@ class eqLogic {
             '#background_color#' => $this->getBackgroundColor($version),
             '#info#' => $info,
             '#style#' => '',
-            '#max_width#' => '600px',
+            '#max_width#' => '650px',
             '#logicalId#' => $this->getLogicalId()
         );
         if ($_version == 'dview' || $_version == 'mview') {
@@ -512,7 +513,7 @@ class eqLogic {
 
     public function save() {
         if ($this->getName() == '') {
-            throw new Exception(__('Le nom de l\'équipement ne peut être vide', __FILE__));
+            throw new Exception(__('Le nom de l\'équipement ne peut pas être vide', __FILE__));
         }
         if ($this->getInternalEvent() == 1) {
             $internalEvent = new internalEvent();
@@ -554,26 +555,36 @@ class eqLogic {
         return false;
     }
 
-    public function getHumanName($_tag = false) {
+    public function getHumanName($_tag = false, $_prettify = false) {
         $name = '';
-        $objet = $this->getObject();
-        if (is_object($objet)) {
+        $object = $this->getObject();
+        if (is_object($object)) {
             if ($_tag) {
-                $name .= '<span class="label label-primary" style="text-shadow : none;">' . $objet->getName() . '</span>';
+                if ($object->getDisplay('tagColor') != '') {
+                    $name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . '">' . $object->getName() . '</span>';
+                } else {
+                    $name .= '<span class="label label-primary" style="text-shadow : none;">' . $object->getName() . '</span>';
+                }
             } else {
-                $name .= '[' . $objet->getName() . ']';
+                $name .= '[' . $object->getName() . ']';
             }
         } else {
             if ($_tag) {
-                $name .= '<span class="label labe-default">' . __('Aucun', __FILE__) . '</span>';
+                $name .= '<span class="label label-default" style="text-shadow : none;">' . __('Aucun', __FILE__) . '</span>';
             } else {
                 $name .= '[' . __('Aucun', __FILE__) . ']';
             }
+        }
+        if ($_prettify) {
+            $name .= '<br/><strong>';
         }
         if ($_tag) {
             $name .= ' ' . $this->getName();
         } else {
             $name .= '[' . $this->getName() . ']';
+        }
+        if ($_prettify) {
+            $name .= '</strong>';
         }
         return $name;
     }
@@ -628,7 +639,7 @@ class eqLogic {
             $logicalId = 'lowBattery' . $this->getId();
             if (count(message::byPluginLogicalId($this->getEqType_name(), $logicalId)) == 0) {
                 $message = 'Le module ' . $this->getEqType_name() . ' ';
-                $message .= $this->getHumanName() . ' à moins de ' . $_pourcent . '% de batterie';
+                $message .= $this->getHumanName() . ' a moins de ' . $_pourcent . '% de batterie';
                 message::add($this->getEqType_name(), $message, '', $logicalId);
             }
         }
@@ -710,9 +721,9 @@ class eqLogic {
         return $this->isEnable;
     }
 
-    public function getCmd($_type = null, $_logicalId = null, $_visible = null) {
+    public function getCmd($_type = null, $_logicalId = null, $_visible = null, $_multiple = false) {
         if ($_logicalId != null) {
-            return cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId);
+            return cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple);
         }
         return cmd::byEqLogicId($this->id, $_type, $_visible);
     }
@@ -851,6 +862,17 @@ class eqLogic {
             echo "Mode debug activé\n";
         }
         $this->_debug = $_debug;
+    }
+
+    function getOrder() {
+        if ($this->order == '') {
+            return 0;
+        }
+        return $this->order;
+    }
+
+    function setOrder($order) {
+        $this->order = $order;
     }
 
 }

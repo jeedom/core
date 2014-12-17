@@ -41,6 +41,7 @@ class scenario {
     private $display;
     private $description;
     private $configuration;
+    private $type;
     private $_internalEvent = 0;
     private static $_templateArray;
     private $_elements = array();
@@ -68,32 +69,49 @@ class scenario {
      * Renvoit tous les objects scenario
      * @return [] scenario object scenario
      */
-    public static function all($_group = '') {
+    public static function all($_group = '', $_type = null) {
+        $values = array();
         if ($_group === '') {
             $sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . ' 
                     FROM scenario s
-                    INNER JOIN object ob ON s.object_id=ob.id
-                    ORDER BY ob.name,s.group, s.name';
-            $result1 = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+                    INNER JOIN object ob ON s.object_id=ob.id';
+            if ($_type != null) {
+                $values['type'] = $_type;
+                $sql .= ' WHERE `type`=:type';
+            }
+            $sql .= ' ORDER BY ob.name,s.group, s.name';
+            $result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
             $sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '  
                     FROM scenario s
-                    WHERE s.object_id IS NULL
-                    ORDER BY s.group, s.name';
-            $result2 = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+                    WHERE s.object_id IS NULL';
+            if ($_type != null) {
+                $values['type'] = $_type;
+                $sql .= ' AND `type`=:type';
+            }
+            $sql .= ' ORDER BY s.group, s.name';
+            $result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
             return array_merge($result1, $result2);
         } else if ($_group === null) {
             $sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '  
                     FROM scenario s
                     INNER JOIN object ob ON s.object_id=ob.id
-                    WHERE (`group` IS NULL OR `group` = "")
-                    ORDER BY ob.name, s.name';
-            $result1 = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+                    WHERE (`group` IS NULL OR `group` = "")';
+            if ($_type != null) {
+                $values['type'] = $_type;
+                $sql .= ' AND `type`=:type';
+            }
+            $sql .= ' ORDER BY s.group, s.name';
+            $result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
             $sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '  
                     FROM scenario s
                     WHERE (`group` IS NULL OR `group` = "")
-                        AND s.object_id IS NULL
-                    ORDER BY  s.name';
-            $result2 = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+                        AND s.object_id IS NULL';
+            if ($_type != null) {
+                $values['type'] = $_type;
+                $sql .= ' AND `type`=:type';
+            }
+            $sql .= ' ORDER BY  s.name';
+            $result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
             return array_merge($result1, $result2);
         } else {
             $values = array(
@@ -102,14 +120,22 @@ class scenario {
             $sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '  
                     FROM scenario s
                     INNER JOIN object ob ON s.object_id=ob.id
-                    WHERE `group`=:group
-                    ORDER BY ob.name,s.group, s.name';
+                    WHERE `group`=:group';
+            if ($_type != null) {
+                $values['type'] = $_type;
+                $sql .= ' AND `type`=:type';
+            }
+            $sql .= ' ORDER BY ob.name,s.group, s.name';
             $result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
             $sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '  
                     FROM scenario s
                     WHERE `group`=:group
-                        AND s.object_id IS NULL
-                    ORDER BY s.group, s.name';
+                        AND s.object_id IS NULL';
+            if ($_type != null) {
+                $values['type'] = $_type;
+                $sql .= ' AND `type`=:type';
+            }
+            $sql .= ' ORDER BY s.group, s.name';
             $result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
             return array_merge($result1, $result2);
         }
@@ -182,14 +208,14 @@ class scenario {
             if (is_object($_event)) {
                 $scenarios = self::byTrigger($_event->getId());
                 $trigger = '#' . $_event->getId() . '#';
-                $message = __('Scénario lance automatiquement sur évènement venant de : ', __FILE__) . $_event->getHumanName();
+                $message = __('Scénario exécuté automatiquement sur évènement venant de : ', __FILE__) . $_event->getHumanName();
             } else {
                 $scenarios = self::byTrigger($_event);
                 $trigger = $_event;
-                $message = __('Scénario lance sur évènement : #', __FILE__) . $_event . '#';
+                $message = __('Scénario exécuté sur évènement : #', __FILE__) . $_event . '#';
             }
         } else {
-            $message = __('Scénario lance automatiquement sur programmation', __FILE__);
+            $message = __('Scénario évènement automatiquement sur programmation', __FILE__);
             $scenarios = scenario::all();
             $dateOk = jeedom::isDateOk();
             $trigger = '#schedule#';
@@ -197,16 +223,16 @@ class scenario {
                 if ($scenario->getState() == 'in progress') {
                     if ($scenario->running()) {
                         if ($scenario->getTimeout() > 0 && (strtotime('now') - strtotime($scenario->getLastLaunch())) > $scenario->getTimeout()) {
-                            $scenario->setLog(__('Erreur : le scénario est tombé en timeout', __FILE__));
+                            $scenario->setLog(__('Erreur : le scénario est en timeout', __FILE__));
                             try {
                                 $scenario->stop();
                             } catch (Exception $e) {
-                                $scenario->setLog(__('Erreur : le scénario est tombé en timeout mais il est impossible de l\'arreter : ', __FILE__) . $e->getMessage());
+                                $scenario->setLog(__('Erreur : le scénario est en timeout et il est impossible de l\'arrêter : ', __FILE__) . $e->getMessage());
                                 $scenario->save();
                             }
                         }
                     } else {
-                        $scenario->setLog(__('Erreur : le scénario c\'est incident (toujours marqué en cours mais arreté)', __FILE__));
+                        $scenario->setLog(__('Erreur : le scénario c\'est incident (toujours marqué en cours mais arrêté)', __FILE__));
                         $scenario->setState('error');
                         $scenario->save();
                     }
@@ -438,7 +464,7 @@ class scenario {
         return $return;
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function launch($_force = false, $_trigger = '', $_message = '') {
         if ($this->getIsActive() != 1) {
@@ -475,14 +501,14 @@ class scenario {
             }
         }
         if ($this->getIsActive() != 1) {
-            $this->setLog(__('Impossible d\'éxecuter le scénario : ', __FILE__) . $this->getHumanName() . ' sur : ' . $_message . ' car il est désactivé');
+            $this->setLog(__('Impossible d\'exécuter le scénario : ', __FILE__) . $this->getHumanName() . ' sur : ' . $_message . ' car il est désactivé');
             $this->setDisplay('icon', '');
             $this->save();
             return;
         }
         $this->setLog('');
         $this->setDisplay('icon', '');
-        $this->setLog(__('Début exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
+        $this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
         $this->setState('in progress');
         $this->setPID(getmypid());
         $this->setLastLaunch(date('Y-m-d H:i:s'));
@@ -585,7 +611,7 @@ class scenario {
             $this->setTimeout(0);
         }
         if ($this->getName() == '') {
-            throw new Exception('Le nom du scénario ne peut être vide');
+            throw new Exception('Le nom du scénario ne peut être vide.');
         }
         if (($this->getMode() == 'schedule' || $this->getMode() == 'all') && $this->getSchedule() == '') {
             throw new Exception(__('Le scénario est de type programmé mais la programmation est vide', __FILE__));
@@ -673,23 +699,23 @@ class scenario {
             foreach ($this->getSchedule() as $schedule) {
                 try {
                     $c = new Cron\CronExpression($schedule, new Cron\FieldFactory);
-                    $calculatedDate_tmp['prevDate'] = $c->getPreviousRunDate();
-                    $calculatedDate_tmp['nextDate'] = $c->getNextRunDate();
+                    $calculatedDate_tmp['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
+                    $calculatedDate_tmp['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
                 } catch (Exception $exc) {
                     //echo $exc->getTraceAsString();
                 }
-                if ($calculatedDate['prevDate'] == '' || $calculatedDate['prevDate'] < $calculatedDate_tmp['prevDate']) {
+                if ($calculatedDate['prevDate'] == '' || strtotime($calculatedDate['prevDate']) < strtotime($calculatedDate_tmp['prevDate'])) {
                     $calculatedDate['prevDate'] = $calculatedDate_tmp['prevDate'];
                 }
-                if ($calculatedDate['nextDate'] == '' || $calculatedDate['nextDate'] > $calculatedDate_tmp['nextDate']) {
+                if ($calculatedDate['nextDate'] == '' || strtotime($calculatedDate['nextDate']) > strtotime($calculatedDate_tmp['nextDate'])) {
                     $calculatedDate['nextDate'] = $calculatedDate_tmp['nextDate'];
                 }
             }
         } else {
             try {
                 $c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
-                $calculatedDate['prevDate'] = $c->getPreviousRunDate();
-                $calculatedDate['nextDate'] = $c->getNextRunDate();
+                $calculatedDate['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
+                $calculatedDate['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
             } catch (Exception $exc) {
                 //echo $exc->getTraceAsString();
             }
@@ -710,41 +736,55 @@ class scenario {
             foreach ($this->getSchedule() as $schedule) {
                 try {
                     $c = new Cron\CronExpression($schedule, new Cron\FieldFactory);
-                    if ($c->isDue()) {
-                        return true;
+                    try {
+                        if ($c->isDue()) {
+                            return true;
+                        }
+                    } catch (Exception $exc) {
+                        
                     }
                     $lastCheck = new DateTime($this->getLastLaunch());
-                    $prev = $c->getPreviousRunDate();
+                    try {
+                        $prev = $c->getPreviousRunDate();
+                    } catch (Exception $exc) {
+                        $prev = new DateTime('2000-01-01 01:00:00');
+                    }
                     $diff = round(abs((strtotime('now') - strtotime($prev)) / 60));
                     if ($lastCheck <= $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
                         if ($diff > 3) {
-                            log::add('scenario', 'error', __('Retard lancement prévu à ', __FILE__) . $prev->format('Y-m-d H:i:s') . __(' dernier lancement à ', __FILE__) . $lastCheck->format('Y-m-d H:i:s') . __('. Retard de : ', __FILE__) . $diff . ' min : ' . $this->getName() . __('. Rattrapage en cours...', __FILE__));
+                            log::add('scenario', 'error', __('Retard exécution prévue à ', __FILE__) . $prev->format('Y-m-d H:i:s') . __(' dernière exécution à ', __FILE__) . $lastCheck->format('Y-m-d H:i:s') . __('. Retard de : ', __FILE__) . $diff . ' min : ' . $this->getName() . __('. Rattrapage en cours...', __FILE__));
                         }
                         return true;
                     }
                 } catch (Exception $exc) {
-                    log::add('scenario', 'error', __('Expression cron non valide : ', __FILE__) . $schedule);
-                    return false;
+                    
                 }
             }
         } else {
             try {
                 $c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
-                if ($c->isDue()) {
-                    return true;
+                try {
+                    if ($c->isDue()) {
+                        return true;
+                    }
+                } catch (Exception $exc) {
+                    
                 }
                 $lastCheck = new DateTime($this->getLastLaunch());
-                $prev = $c->getPreviousRunDate();
+                try {
+                    $prev = $c->getPreviousRunDate();
+                } catch (Exception $exc) {
+                    $prev = new DateTime('2000-01-01 01:00:00');
+                }
                 $diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
                 if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
                     if ($diff > 3) {
-                        log::add('scenario', 'error', __('Retard lancement prévu à ', __FILE__) . $prev->format('Y-m-d H:i:s') . __(' dernier lancement à ', __FILE__) . $lastCheck->format('Y-m-d H:i:s') . __('. Retard de : ', __FILE__) . $diff . ' min: ' . $this->getName() . __('. Rattrapage en cours...', __FILE__));
+                        log::add('scenario', 'error', __('Retard d\'exécution prévue à ', __FILE__) . $prev->format('Y-m-d H:i:s') . __(' dernière exécution à ', __FILE__) . $lastCheck->format('Y-m-d H:i:s') . __('. Retard de : ', __FILE__) . $diff . ' min: ' . $this->getName() . __('. Rattrapage en cours...', __FILE__));
                     }
                     return true;
                 }
             } catch (Exception $exc) {
-                log::add('scenario', 'error', __('Expression cron non valide : ', __FILE__) . $this->getSchedule());
-                return false;
+                
             }
         }
         return false;
@@ -773,7 +813,7 @@ class scenario {
                 $retry++;
             }
             if ($this->running()) {
-                throw new Exception(__('Impossible d\'arreter le scénario : ', __FILE__) . $this->getHumanName() . __('. PID : ', __FILE__) . $this->getPID());
+                throw new Exception(__('Impossible d\'arrêter le scénario : ', __FILE__) . $this->getHumanName() . __('. PID : ', __FILE__) . $this->getPID());
             }
         }
         $this->setState('stop');
@@ -855,26 +895,49 @@ class scenario {
         return object::byId($this->object_id);
     }
 
-    public function getHumanName($_complete = false, $_noGroup = false) {
-        $return = '';
+    public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false) {
+        $name = '';
         if (is_numeric($this->getObject_id())) {
-            $return .= '[' . $this->getObject()->getName() . ']';
+            $object = $this->getObject();
+            if ($_tag) {
+                if ($object->getDisplay('tagColor') != '') {
+                    $name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . '">' . $object->getName() . '</span>';
+                } else {
+                    $name .= '<span class="label label-primary" style="text-shadow : none;">' . $object->getName() . '</span>';
+                }
+            } else {
+                $name .= '[' . $object->getName() . ']';
+            }
         } else {
             if ($_complete) {
-                $return .= '[' . __('Aucun', __FILE__) . ']';
+                if ($_tag) {
+                    $name .= '<span class="label label-default" style="text-shadow : none;">' . __('Aucun', __FILE__) . '</span>';
+                } else {
+                    $name .= '[' . __('Aucun', __FILE__) . ']';
+                }
             }
         }
         if (!$_noGroup) {
             if ($this->getGroup() != '') {
-                $return .= '[' . $this->getGroup() . ']';
+                $name .= '[' . $this->getGroup() . ']';
             } else {
                 if ($_complete) {
-                    $return .= '[' . __('Aucun', __FILE__) . ']';
+                    $name .= '[' . __('Aucun', __FILE__) . ']';
                 }
             }
         }
-        $return .= '[' . $this->getName() . ']';
-        return $return;
+        if ($_prettify) {
+            $name .= '<br/><strong>';
+        }
+        if ($_tag) {
+            $name .= ' ' . $this->getName();
+        } else {
+            $name .= '[' . $this->getName() . ']';
+        }
+        if ($_prettify) {
+            $name .= '</strong>';
+        }
+        return $name;
     }
 
     public function hasRight($_right, $_needAdmin = false, $_user = null) {
@@ -966,6 +1029,10 @@ class scenario {
 
     public function getType() {
         return $this->type;
+    }
+
+    function setType($type) {
+        $this->type = $type;
     }
 
     public function getMode() {

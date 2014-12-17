@@ -31,7 +31,7 @@ class scenarioExpression {
     private $order;
     private $log;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function byId($_id) {
         $values = array(
@@ -104,7 +104,7 @@ class scenarioExpression {
         return $return;
     }
 
-    /*     * ********************Fonction utiliser dans le calcule des conditions********************************* */
+    /*     * ********************Fonctions utilisées dans le calcul des conditions********************************* */
 
     public static function rand($_min, $_max) {
         return rand($_min, $_max);
@@ -372,7 +372,7 @@ class scenarioExpression {
     }
 
     public static function round($_value, $_decimal = 0) {
-        $_value = cmd::cmdToValue($_value);
+        $_value = self::setTags($_value);
         try {
             $test = new evaluate();
             $result = $test->Evaluer($_value);
@@ -380,13 +380,30 @@ class scenarioExpression {
                 $result = $_value;
             }
         } catch (Exception $e) {
-            
+            $result = $_value;
         }
         if ($_decimal == 0) {
             return ceil(floatval(str_replace(',', '.', $result)));
         } else {
             return round(floatval(str_replace(',', '.', $result)), $_decimal);
         }
+    }
+
+    public static function time($_value) {
+        $_value = self::setTags($_value);
+        try {
+            $test = new evaluate();
+            $result = $test->Evaluer($_value);
+            if (is_string($result)) { //Alors la valeur n'est pas un calcul
+                $result = $_value;
+            }
+        } catch (Exception $e) {
+            $result = $_value;
+        }
+        if (($result % 100) > 59) {
+            $result += 40;
+        }
+        return $result;
     }
 
     public static function setTags($_expression, &$_scenario = null) {
@@ -518,7 +535,7 @@ class scenarioExpression {
                         $actionScenario = scenario::byId($this->getOptions('scenario_id'));
                     }
                     if (!is_object($actionScenario)) {
-                        throw new Exception($scenario, __('Action sur scénario impossible. Scénario introuvable vérifier l\'id : ', __FILE__) . $this->getOptions('scenario_id'));
+                        throw new Exception($scenario, __('Action sur scénario impossible. Scénario introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('scenario_id'));
                     }
                     switch ($this->getOptions('action')) {
                         case 'start':
@@ -530,7 +547,7 @@ class scenarioExpression {
                             }
                             break;
                         case 'stop':
-                            $this->setLog($scenario, __('Arrêt forcer du scénario : ', __FILE__) . $actionScenario->getName());
+                            $this->setLog($scenario, __('Arrêt forcé du scénario : ', __FILE__) . $actionScenario->getName());
                             $actionScenario->stop();
                             break;
                         case 'deactivate':
@@ -546,18 +563,18 @@ class scenarioExpression {
                     }
                     return;
                 } else if ($this->getExpression() == 'variable') {
-                    $value = self::setTags($this->getOptions('value'), $scenario);
-                    $message = __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' à [', __FILE__) . $value . '] = ';
+                    $options['value'] = self::setTags($options['value']);
                     try {
                         $test = new evaluate();
-                        $result = $test->Evaluer($value);
-                        if (is_string($result)) { //Alors la valeur n'est pas un calcul
-                            $result = $value;
+                        $result = $test->Evaluer($options['value']);
+                        if (!is_numeric($result)) { //Alors la valeur n'est pas un calcul
+                            $result = $options['value'];
                         }
-                    } catch (Exception $e) {
-                        $result = $value;
+                    } catch (Exception $ex) {
+                        $result = $options['value'];
                     }
-                    $message .= $result;
+
+                    $message = __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' => ', __FILE__) . $options['value'] . ' = ' . $result;
                     $this->setLog($scenario, $message);
                     $dataStore = new dataStore();
                     $dataStore->setType('scenario');

@@ -61,6 +61,11 @@ $("#bt_addObject").on('click', function(event) {
     });
 });
 
+jwerty.key('ctrl+s', function (e) {
+    e.preventDefault();
+    $("#bt_saveObject").click();
+});
+
 $("#bt_saveObject").on('click', function(event) {
     if ($('.li_object.active').attr('data-object_id') != undefined) {
         jeedom.object.save({

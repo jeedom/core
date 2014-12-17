@@ -1,0 +1,667 @@
+Language: Nederlands
+Language-Code: nl_NL
+Build-Date: Tue, 18 Jan 2011 15:14:28 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "Bestand kon niet gelezen worden of was leeg"
+
+msgid: "Error performing operation"
+msgstr: "Fout tijdens bewerking"
+
+msgid: "All"
+msgstr: "Alles"
+
+msgid: "None"
+msgstr: "Niets"
+
+msgid: "With selected"
+msgstr: "Met geselecteerde"
+
+msgid: "Empty"
+msgstr: "Leeg"
+
+msgid: "Drop"
+msgstr: "Verwijderen"
+
+msgid: "Optimize"
+msgstr: "Optimaliseren"
+
+msgid: "Table"
+msgstr: "Tabel"
+
+msgid: "Rows"
+msgstr: "Rijen"
+
+msgid: "Size"
+msgstr: "Grootte"
+
+msgid: "Overhead"
+msgstr: "Overhead"
+
+msgid: "Options"
+msgstr: "Opties"
+
+msgid: "Edit database"
+msgstr: "Database bewerken"
+
+msgid: "Charset"
+msgstr: "Karakterset"
+
+msgid: "Submit"
+msgstr: "Uitvoeren"
+
+msgid: "Create a new table"
+msgstr: "Nieuwe tabel aanmaken"
+
+msgid: "Name"
+msgstr: "Naam"
+
+msgid: "Setup the fields for the table below"
+msgstr: "Bewerk de velden voor de onderstaande tabel"
+
+msgid: "New field"
+msgstr: "Nieuw veld"
+
+msgid: "Type"
+msgstr: "Type"
+
+msgid: "Values"
+msgstr: "Waarden"
+
+msgid: "Key"
+msgstr: "Sleutel"
+
+msgid: "primary"
+msgstr: "primair"
+
+msgid: "unique"
+msgstr: "uniek"
+
+msgid: "index"
+msgstr: "index"
+
+msgid: "Default"
+msgstr: "Standaardwaarde"
+
+msgid: "Other"
+msgstr: "Anders"
+
+msgid: "Unsigned"
+msgstr: "Ongetekend"
+
+msgid: "Binary"
+msgstr: "Binair"
+
+msgid: "Not Null"
+msgstr: "Niet null"
+
+msgid: "Auto Increment"
+msgstr: "Automatisch toenemend"
+
+msgid: "Add field"
+msgstr: "Voeg veld toe"
+
+msgid: "Oops"
+msgstr: "Oeps"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "Omwille van een bepaalde reden was de database parameter niet in uw verzoek meegenomen"
+
+msgid: "Save changes to original"
+msgstr: "Sla wijzigingen op in origineel"
+
+msgid: "Insert as new row"
+msgstr: "Invoegen als nieuwe rij"
+
+msgid: "Save"
+msgstr: "Opslaan"
+
+msgid: "User"
+msgstr: "Gebruiker"
+
+msgid: "All privileges"
+msgstr: "Alle rechten"
+
+msgid: "Selected privileges"
+msgstr: "Geselecteerde rechten"
+
+msgid: "User privileges"
+msgstr: "Gebruikersrechten"
+
+msgid: "Select"
+msgstr: "Selecteer"
+
+msgid: "Insert"
+msgstr: "Invoegen"
+
+msgid: "Update"
+msgstr: "Aanpassen"
+
+msgid: "Delete"
+msgstr: "Verwijderen"
+
+msgid: "Alter"
+msgstr: "Verander"
+
+msgid: "Create"
+msgstr: "Aanmaken"
+
+msgid: "Temp tables"
+msgstr: "Tijdelijke tabellen"
+
+msgid: "Administrator privileges"
+msgstr: "Beheerdersrechten"
+
+msgid: "File"
+msgstr: "Bestand"
+
+msgid: "Process"
+msgstr: "Verwerk"
+
+msgid: "Reload"
+msgstr: "Herlaad"
+
+msgid: "Shutdown"
+msgstr: "Afsluiten"
+
+msgid: "Super"
+msgstr: "Super"
+
+msgid: "Grant option"
+msgstr: "Rechten toekennen"
+
+msgid: "User not found!"
+msgstr: "Gebruiker niet gevonden!"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "U moet de structuur en/of data exporteren"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "Selecteer a.u.b. de databases die u wilt exporteren"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "Selecteer a.u.b. de tabellen die u wilt exporteren"
+
+msgid: "Table `%s` is empty"
+msgstr: "Tabel `%s` is leeg"
+
+msgid: "Results"
+msgstr: "Resultaten"
+
+msgid: "Select all"
+msgstr: "Alles selecteren"
+
+msgid: "The file could not be opened"
+msgstr: "Het bestand kon niet worden geopend"
+
+msgid: "Could not write to file"
+msgstr: "Kan niet schrijven naar bestand"
+
+msgid: "Successfully wrote content to file"
+msgstr: "Schrijven naar bestand is gelukt"
+
+msgid: "Download"
+msgstr: "Download"
+
+msgid: "Note
+"
+msgstr: "Opmerking"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "Dit is een publieke server, u zal dit bestand van de server moeten verwijderen nadat u het gedownload heeft"
+
+msgid: "Export"
+msgstr: "Exporteer"
+
+msgid: "Tables"
+msgstr: "Tabellen"
+
+msgid: "Databases"
+msgstr: "Databases"
+
+msgid: "Format"
+msgstr: "Formaat"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "Structuur"
+
+msgid: "Data"
+msgstr: "Gegevens"
+
+msgid: "Compact inserts"
+msgstr: "Compacte INSERTs"
+
+msgid: "Complete inserts"
+msgstr: "Complete INSERTs"
+
+msgid: "Delimiter"
+msgstr: "Scheidingsteken"
+
+msgid: "Comma"
+msgstr: "Komma"
+
+msgid: "Tab"
+msgstr: "Tab"
+
+msgid: "Semicolon"
+msgstr: "Puntkomma"
+
+msgid: "Space"
+msgstr: "Spatie"
+
+msgid: "Print field names on first line"
+msgstr: "Veldnamen op de eerste regel weergeven"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "Als u een groot aantal rijen exporteert, wordt aanbevolen het resultaat naar een tekstbestand uit te voeren."
+
+msgid: "Output to"
+msgstr: "Exporteren naar"
+
+msgid: "Browser"
+msgstr: "Browser"
+
+msgid: "Text file"
+msgstr: "Tekst bestand"
+
+msgid: "Home"
+msgstr: "Home"
+
+msgid: "Users"
+msgstr: "Gebruikers"
+
+msgid: "Query"
+msgstr: "Query"
+
+msgid: "Import"
+msgstr: "Import"
+
+msgid: "Overview"
+msgstr: "Overzicht"
+
+msgid: "Browse"
+msgstr: "Bladeren"
+
+msgid: "Your changes were saved to the database"
+msgstr: "De wijzigingen zijn in de database opgeslagen"
+
+msgid: "delete this row"
+msgstr: "Verwijder deze rij"
+
+msgid: "delete these rows"
+msgstr: "Verwijder deze rijen"
+
+msgid: "empty this table"
+msgstr: "deze tabel leegmaken"
+
+msgid: "empty these tables"
+msgstr: "deze tabellen leegmaken"
+
+msgid: "drop this table"
+msgstr: "deze tabel verwijderen"
+
+msgid: "drop these tables"
+msgstr: "deze tabellen verwijderen"
+
+msgid: "delete this column"
+msgstr: "deze kolom verwijderen"
+
+msgid: "delete these columns"
+msgstr: "deze kolommen verwijderen"
+
+msgid: "delete this index"
+msgstr: "deze index verwijderen"
+
+msgid: "delete these indexes"
+msgstr: "deze indexen verwijderen"
+
+msgid: "delete this user"
+msgstr: "deze gebruiker verwijderen"
+
+msgid: "delete these users"
+msgstr: "deze gebruikers verwijderen"
+
+msgid: "Are you sure you want to"
+msgstr: "Weet je zeker dat je wil"
+
+msgid: "The following query will be run:"
+msgstr: "De volgende query zal worden uitgevoerd:"
+
+msgid: "The following queries will be run:"
+msgstr: "De volgende query's zullen worden uitgevoerd:"
+
+msgid: "Confirm"
+msgstr: "Bevestig"
+
+msgid: "Successfully saved changes"
+msgstr: "De aanpassingen zijn opgeslagen"
+
+msgid: "Full Text"
+msgstr: "Volledige tekst"
+
+msgid: "Loading..."
+msgstr: "Laden ..."
+
+msgid: "Error"
+msgstr: "Fout"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "Er is een fout opgetreden bij het ontvangen van data van de server"
+
+msgid: "Logout"
+msgstr: "Uitloggen"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "Omwille een bepaalde reden was de tabelparameter niet in uw verzoek meegenomen"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "Welkom in SQL Buddy!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "U bent verbonden met MySQL %s als gebruiker %s"
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "De database server draait sinds %s en heeft ongeveer %s data verzonden"
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "Er is een nieuwe versie van SQL Buddy beschikbaar!"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "U heeft SQL Buddy %s geïnstalleerd en %s is nu beschikbaar"
+
+msgid: "Getting started"
+msgstr: "Hoe te beginnen"
+
+msgid: "Help"
+msgstr: "Help"
+
+msgid: "Translations"
+msgstr: "Vertalingen"
+
+msgid: "Release Notes"
+msgstr: "Versie notities"
+
+msgid: "Contact"
+msgstr: "Contact"
+
+msgid: "Create a new database"
+msgstr: "Nieuwe database aanmaken"
+
+msgid: "Did you know..."
+msgstr: "Wist je dat..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "Er is een gemakkelijker manier om een grote groep van items te selecteren terwijl u door tabelrijen bladert. Klik op de eerste rij, houd shift ingedrukt en selecteer de laatste rij. De keuzevakjes tussen de twee rijen zullen nu automatisch voor u worden gemarkeerd."
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "De kolommen in de Bladeren- en Query-tabbladen zijn schaalbaar. Stel ze zo breed of smal in zoals u wilt."
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "De login pagina is gebaseerd op de standaard gebruiker root@localhost. Door config.php aan te passen kunt u de standaard gebruiker en -host aanpassen"
+
+msgid: "Keyboard shortcuts"
+msgstr: "Sneltoetsen"
+
+msgid: "Press this key..."
+msgstr: "Druk op deze toets..."
+
+msgid: "...and this will happen"
+msgstr: "... en dit zal gebeuren"
+
+msgid: "select none"
+msgstr: "selecteer niets"
+
+msgid: "edit selected items"
+msgstr: "bewerk de geselecteerde items"
+
+msgid: "delete selected items"
+msgstr: "verwijder de geselecteerde items"
+
+msgid: "refresh page"
+msgstr: "ververs de pagina"
+
+msgid: "load the query tab"
+msgstr: "laad de query tab"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "blader tab - ga naar de eerste pagina met resultaten"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "blader tab - ga naar de laatste pagina met resultaten"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "blader tab - ga naar de vorige pagina met resultaten"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "blader tab - ga naar de volgende pagina met resultaten"
+
+msgid: "optimize selected tables"
+msgstr: "optimaliseer geselecteerde tabellen"
+
+msgid: "Choose a .sql file to import"
+msgstr: "Kies een .sql bestand om te importeren"
+
+msgid: "File
+"
+msgstr: "Bestand"
+
+msgid: "Ignore first line"
+msgstr: "Negeer eerste regel"
+
+msgid: "Edit"
+msgstr: "Bewerk"
+
+msgid: "Refresh"
+msgstr: "Verversen"
+
+msgid: "No primary key defined"
+msgstr: "Geen primaire sleutel gedefinieerd"
+
+msgid: "First"
+msgstr: "Eerste"
+
+msgid: "Prev"
+msgstr: "Vorige"
+
+msgid: "Next"
+msgstr: "Volgende"
+
+msgid: "Last"
+msgstr: "Laatste"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "Je query gaf %d resultaat"
+msgstr[1]: "Je query gaf %d resultaten"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "Opmerking: Om het crashen van uw browser te voorkomen, worden alleen de eerste %d resultaten getoond"
+
+msgid: "binary data"
+msgstr: "binaire data"
+
+msgid: "Your query affected %d rows"
+msgstr: "De query heeft %d rijen aangepast"
+
+msgid: "Your query did not return any results"
+msgstr: "De query gaf geen resultaten terug"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "Uw data is in de database geplaatst"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "Er waren problemen om de \"%s\" tabel te vinden"
+
+msgid: "There was a problem logging you in"
+msgstr: "Er heeft zich een probleem voor gedaan tijdens het inloggen"
+
+msgid: "Login"
+msgstr: "Inloggen"
+
+msgid: "Unsupported browser"
+msgstr: "Niet ondersteunde browser"
+
+msgid: "Help!"
+msgstr: "Help!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "Uw sessie is verlopen. Log a.u.b. opnieuw in."
+
+msgid: "Username"
+msgstr: "Gebruikersnaam"
+
+msgid: "Password"
+msgstr: "Wachtwoord"
+
+msgid: "Run a query on the %s database"
+msgstr: "Voer een query uit op de %s database"
+
+msgid: "Columns"
+msgstr: "Kolommen"
+
+msgid: "Add a column"
+msgstr: "Kolom toevoegen"
+
+msgid: "Insert this column"
+msgstr: "Deze kolom invoegen"
+
+msgid: "At end of table"
+msgstr: "Aan het einde van de tabel"
+
+msgid: "At beginning of table"
+msgstr: "Aan het begin van de tabel"
+
+msgid: "After"
+msgstr: "Na"
+
+msgid: "Edit table"
+msgstr: "Tabel bewerken"
+
+msgid: "Indexes"
+msgstr: "Indexen"
+
+msgid: "Add an index"
+msgstr: "Voeg een index toe"
+
+msgid: "Column(s)"
+msgstr: "Kolom(men)"
+
+msgid: "Show %d more..."
+msgstr: "Laat %d meer zien..."
+
+msgid: "Empty table"
+msgstr: "Leeg tabel"
+
+msgid: "Drop table"
+msgstr: "Verwijder tabel"
+
+msgid: "Optimize table"
+msgstr: "Optimaliseer tabel"
+
+msgid: "Table Information"
+msgstr: "Tabel informatie"
+
+msgid: "Host"
+msgstr: "Host"
+
+msgid: "Add a new user"
+msgstr: "Nieuwe gebruiker toevoegen"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "Invullen in het formaat: ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "Weet u zeker dat u de '%s' tabel wilt leegmaken? Dit zal alle gegevens verwijderen. De volgende Query zal worden uitgevoerd:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "Weet u zeker dat u de '%s' tabel wilt verwijderen? Dit zal alle gegevens verwijderen. De volgende Query zal worden uitgevoerd:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "Weet u zeker dat u de '%s' database wilt leegmaken? Dit zal alle tabellen met alle gegevens verwijderen. De volgende Query zal worden uitgevoerd:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "Sorry, maar op dit moment ondersteunen we alleen Internet Explorer 7, Firefox, Safari en Opera. Internet Explorer is gratis beschikbaar op de site van Microsoft."
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "U heeft cookies uitgeschakeld. Om sessies te laten werken hebben de meeste php-installaties cookies nodig."
+
+msgid: "Importing..."
+msgstr: "Importeren..."
+
+msgid: "Drop the '%s' database"
+msgstr: "Verwijder de '%s' database"
+
+msgid: "Okay"
+msgstr: "Oké"
+
+msgid: "Cancel"
+msgstr: "Annuleer"
+
+msgid: "Storage engine"
+msgstr: "Opslagtype"
+
+msgid: "Language"
+msgstr: "Taal"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "%d statement was uitgevoerd vanuit het bestand"
+msgstr[1]: "%d statements zijn uitgevoerd vanuit het bestand"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "%d rijen zijn ingevoegd in de database uit het bestand"
+msgstr[1]: "%d rijen zijn ingevoegd in de database uit het bestand "
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "%d rijen werden overgeslagen omdat het aantal waarden incorrect was."
+msgstr[1]: "%d rijen werden overgeslagen omdat het aantal waarden incorrect was."
+
+msgid: "Theme"
+msgstr: "Thema"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f seconden)"
+
+msgid: "The following errors were reported"
+msgstr: "De volgende fouten werden gerapporteerd"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "Je hebt niet genoeg rechten om nieuwe gebruikers te creëren."
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "Je hebt niet genoeg rechten om gebruikers te beheren of in te zien."
+
+msgid: "You are connected to %s."
+msgstr: "Je bent verbonden met %s."
+
+msgid: "Allow access to"
+msgstr: "Geef toestemming aan"
+
+msgid: "All databases"
+msgstr: "Alle databases"
+
+msgid: "Selected databases"
+msgstr: "Geselecteerde database"
+
+msgid: "Give user"
+msgstr: "Geef gebruiker"
+
+msgid: "Updates"
+msgstr: "Updates"
+
+msgid: "There are no updates available"
+msgstr: "Er zijn geen updates beschikbaar"
+
+msgid: "Change password"
+msgstr: "Wachtwoord wijzigen"
+
+msgid: "Redirecting..."
+msgstr: "Doorsturen..."

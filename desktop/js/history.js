@@ -45,6 +45,17 @@ $(".li_history .remove").on('click', function () {
     });
 });
 
+$('.displayObject').on('click', function () {
+    var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']');
+    if (list.is(':visible')) {
+        $(this).find('i.fa').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right');
+        list.hide();
+    } else {
+        $(this).find('i.fa').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down');
+        list.show();
+    }
+});
+
 $(".li_history .export").on('click', function () {
     window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null);
 });

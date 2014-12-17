@@ -156,7 +156,7 @@ class cmd {
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
 
-    public static function byEqLogicIdAndLogicalId($_eqLogic_id, $_logicalId) {
+    public static function byEqLogicIdAndLogicalId($_eqLogic_id, $_logicalId, $_multiple = false) {
         $values = array(
             'eqLogic_id' => $_eqLogic_id,
             'logicalId' => $_logicalId
@@ -165,6 +165,9 @@ class cmd {
                 FROM cmd
                 WHERE eqLogic_id=:eqLogic_id
                     AND logicalId=:logicalId';
+        if ($_multiple) {
+            return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+        }
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
     }
 
@@ -358,7 +361,7 @@ class cmd {
     public static function byString($_string) {
         $cmd = self::byId(str_replace('#', '', self::humanReadableToCmd($_string)));
         if (!is_object($cmd)) {
-            throw new Exception(__('La commande n\'a pu être trouvée : ', __FILE__) . $_string . __(' => ', __FILE__) . self::humanReadableToCmd($_string));
+            throw new Exception(__('La commande n\'a pas pu être trouvée : ', __FILE__) . $_string . __(' => ', __FILE__) . self::humanReadableToCmd($_string));
         }
         return $cmd;
     }
@@ -431,7 +434,7 @@ class cmd {
         if (isset($colors[$_color])) {
             return $colors[$_color];
         }
-        throw new Exception(__('Impossible de traduire la couleur en code hexadecimal :', __FILE__) . $_color);
+        throw new Exception(__('Impossible de traduire la couleur en code hexadécimal :', __FILE__) . $_color);
     }
 
     public static function availableWidget($_version) {
@@ -474,7 +477,7 @@ class cmd {
         }
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function formatValue($_value) {
         if (trim($_value) == '') {
@@ -507,6 +510,7 @@ class cmd {
                         }
                     }
                     return floatval($_value);
+                    return $_value;
             }
         }
         return $_value;
@@ -526,16 +530,16 @@ class cmd {
 
     public function save() {
         if ($this->getName() == '') {
-            throw new Exception(__('Le nom de la commande ne peut être vide :', __FILE__) . print_r($this, true));
+            throw new Exception(__('Le nom de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
         }
         if ($this->getType() == '') {
-            throw new Exception(__('Le type de la commande ne peut être vide :', __FILE__) . print_r($this, true));
+            throw new Exception(__('Le type de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
         }
         if ($this->getSubType() == '') {
-            throw new Exception(__('Le sous-type de la commande ne peut être vide :', __FILE__) . print_r($this, true));
+            throw new Exception(__('Le sous-type de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
         }
         if ($this->getEqLogic_id() == '') {
-            throw new Exception(__('Vous ne pouvez créer une commande sans la rattacher à un équipement', __FILE__));
+            throw new Exception(__('Vous ne pouvez pas créer une commande sans la rattacher à un équipement', __FILE__));
         }
         if ($this->getEqType() == '') {
             $this->setEqType($this->getEqLogic()->getEqType_name());
@@ -582,7 +586,7 @@ class cmd {
     /**
      * 
      * @param type $_options
-     * @param type $cache 0 = ignorer le cache , 1 = mode normale, 2 = cache utilisé meme si expiré (puis marqué à recollecter)
+     * @param type $cache 0 = ignorer le cache , 1 = mode normale, 2 = cache utilisé même si expiré (puis marqué à recollecter)
      * @return command result
      * @throws Exception
      */
@@ -602,7 +606,7 @@ class cmd {
         }
         $eqLogic = $this->getEqLogic();
         if (!is_object($eqLogic) || $eqLogic->getIsEnable() != 1) {
-            throw new Exception(__('Equipement desactivé impossible d\éxecuter la commande : ' . $this->getHumanName(), __FILE__));
+            throw new Exception(__('Equipement désactivé - impossible d\'exécuter la commande : ' . $this->getHumanName(), __FILE__));
         }
         try {
             if ($_options !== null && $_options !== '') {
@@ -692,9 +696,9 @@ class cmd {
         $version = jeedom::versionAlias($_version);
         $html = '';
         $template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $this->getTemplate($version, 'default');
+        $template = '';
         if (!isset(self::$_templateArray[$version . '::' . $template_name])) {
             if ($this->getTemplate($version, 'default') != 'default') {
-                $template = getTemplate('core', $version, $template_name, 'widget');
                 $findWidgetPlugin = false;
                 if ($template == '') {
                     foreach (plugin::listPlugin(true) as $plugin) {
@@ -706,6 +710,9 @@ class cmd {
                             $findWidgetPlugin = true;
                         }
                     }
+                }
+                if ($findWidgetPlugin) {
+                    $template = getTemplate('core', $version, $template_name, 'widget');
                 }
                 if ($findWidgetPlugin && $template == '' && config::byKey('market::autoInstallMissingWidget') == 1) {
                     try {
@@ -858,6 +865,7 @@ class cmd {
                 $cmd->event($cmd->execute(), $_loop);
             }
         }
+
         nodejs::pushUpdate('eventCmd', $nodeJs);
         scenario::check($this);
         listener::check($this->getId(), $value);
@@ -948,13 +956,17 @@ class cmd {
         return false;
     }
 
-    public function getHumanName() {
+    public function getHumanName($_tag = false, $_prettify = false) {
         $name = '';
         $eqLogic = $this->getEqLogic();
         if (is_object($eqLogic)) {
-            $name .= $eqLogic->getHumanName();
+            $name .= $eqLogic->getHumanName($_tag, $_prettify);
         }
-        $name .= '[' . $this->getName() . ']';
+        if ($_tag) {
+            $name .= ' - ' . $this->getName();
+        } else {
+            $name .= '[' . $this->getName() . ']';
+        }
         return $name;
     }
 

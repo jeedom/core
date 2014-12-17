@@ -1,0 +1,667 @@
+Language: ภาษาไทย
+Language-Code: th_TH
+Build-Date: Tue, 18 Jan 2011 15:42:13 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "ไม่สามารถอ่านแฟ้มได้ หรือแฟ้มว่างเปล่า"
+
+msgid: "Error performing operation"
+msgstr: "เกิดข้อผิดพลาดในการทำงาน"
+
+msgid: "All"
+msgstr: "ทั้ังหมด"
+
+msgid: "None"
+msgstr: "ไม่มี"
+
+msgid: "With selected"
+msgstr: "ทำกับที่เลือก"
+
+msgid: "Empty"
+msgstr: "ลบข้อมูล"
+
+msgid: "Drop"
+msgstr: "โยนทิ้ง"
+
+msgid: "Optimize"
+msgstr: "ปรับแต่ง"
+
+msgid: "Table"
+msgstr: "ตาราง"
+
+msgid: "Rows"
+msgstr: "แถว"
+
+msgid: "Size"
+msgstr: "ขนาด"
+
+msgid: "Overhead"
+msgstr: "เกินความจำเป็น"
+
+msgid: "Options"
+msgstr: "ตัวเลือก"
+
+msgid: "Edit database"
+msgstr: "แก้ไขฐานข้อมูล"
+
+msgid: "Charset"
+msgstr: "ชุดตัวอักษร"
+
+msgid: "Submit"
+msgstr: "ตกลง"
+
+msgid: "Create a new table"
+msgstr: "สร้างตารางใหม่"
+
+msgid: "Name"
+msgstr: "ชื่อ"
+
+msgid: "Setup the fields for the table below"
+msgstr: "กำหนดฟิลด์ของตารางได้ที่ด้านล่าง"
+
+msgid: "New field"
+msgstr: "ฟิลด์"
+
+msgid: "Type"
+msgstr: "ชนิด"
+
+msgid: "Values"
+msgstr: "ค่า"
+
+msgid: "Key"
+msgstr: "กุญแจ"
+
+msgid: "primary"
+msgstr: "กุญแจหลัก"
+
+msgid: "unique"
+msgstr: "เป็นหนึ่งเดียว"
+
+msgid: "index"
+msgstr: "ดัชนี"
+
+msgid: "Default"
+msgstr: "ค่าเริ่มต้น"
+
+msgid: "Other"
+msgstr: "อื่นๆ"
+
+msgid: "Unsigned"
+msgstr: "แบบไม่มีเครื่องหมาย"
+
+msgid: "Binary"
+msgstr: "ไบนารี"
+
+msgid: "Not Null"
+msgstr: "ไม่ว่าง"
+
+msgid: "Auto Increment"
+msgstr: "เพิ่มอัตโนมัติ"
+
+msgid: "Add field"
+msgstr: "เพิ่มฟีลด์"
+
+msgid: "Oops"
+msgstr: "โอ้ว"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "ด้วยเหตุผลบางอย่าง พารามิเตอร์ของฐานข้อมูลไม่ได้รวมอยู่ในการร้องขอของคุณ"
+
+msgid: "Save changes to original"
+msgstr: "บันทึกซ้ำต้นฉบับ"
+
+msgid: "Insert as new row"
+msgstr: "แทรกบรรทัดใหม่"
+
+msgid: "Save"
+msgstr: "บันทึก"
+
+msgid: "User"
+msgstr: "ผู้ใช้งาน"
+
+msgid: "All privileges"
+msgstr: "ทุกระดับ"
+
+msgid: "Selected privileges"
+msgstr: "เลือกระดับ"
+
+msgid: "User privileges"
+msgstr: "ระดับผู้ใช้งาน"
+
+msgid: "Select"
+msgstr: "เลือก"
+
+msgid: "Insert"
+msgstr: "แทรก"
+
+msgid: "Update"
+msgstr: "ปรับปรุง"
+
+msgid: "Delete"
+msgstr: "ลบ"
+
+msgid: "Alter"
+msgstr: "เปลี่ยน"
+
+msgid: "Create"
+msgstr: "สร้าง"
+
+msgid: "Temp tables"
+msgstr: "ตารางชั่วคราว"
+
+msgid: "Administrator privileges"
+msgstr: "ระดับผู้ดูแลระบบ"
+
+msgid: "File"
+msgstr: "แฟ้ม"
+
+msgid: "Process"
+msgstr: "กระบวนการ"
+
+msgid: "Reload"
+msgstr: "โหลดใหม่"
+
+msgid: "Shutdown"
+msgstr: "ปิด"
+
+msgid: "Super"
+msgstr: "ซูเปอร์"
+
+msgid: "Grant option"
+msgstr: "ทางเลือกของการให้สิทธิ"
+
+msgid: "User not found!"
+msgstr: "ไม่พบชื่อผู้ใช้"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "คุณต้องการส่งออก โครงสร้าง ฐานข้อมูล หรือทั้งคู่"
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "กรุณาเลือกฐานข้อมูลสำหรับส่งออก"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "กรุณาเลือกตารางสำหรับส่งออก"
+
+msgid: "Table `%s` is empty"
+msgstr: "ตาราง `%s` ว่างเปล่า"
+
+msgid: "Results"
+msgstr: "ผลลัพธ์"
+
+msgid: "Select all"
+msgstr: "เลือกทั้งหมด"
+
+msgid: "The file could not be opened"
+msgstr: "ไม่สามารถเปิดแฟ้มได้"
+
+msgid: "Could not write to file"
+msgstr: "ไม่สามารถเขียนแฟ้มได้"
+
+msgid: "Successfully wrote content to file"
+msgstr: "เขียนแฟ้มสำเร็จแล้ว"
+
+msgid: "Download"
+msgstr: "ดาวน์โหลด"
+
+msgid: "Note
+"
+msgstr: "บันทึก"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "คุณควรลบแฟ้มจากเซิร์ฟเวอร์หลังจากที่คุณดาวน์โหลดข้อมูลนั้น ถ้าคุณใช้เซิร์ฟเวอร์สาธารณะ "
+
+msgid: "Export"
+msgstr: "ส่งออก"
+
+msgid: "Tables"
+msgstr: "ตาราง"
+
+msgid: "Databases"
+msgstr: "ฐานข้อมูล"
+
+msgid: "Format"
+msgstr: "รูปแบบ"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "โครงสร้าง"
+
+msgid: "Data"
+msgstr: "ข้อมูล"
+
+msgid: "Compact inserts"
+msgstr: "แทรกกระทัดรัด"
+
+msgid: "Complete inserts"
+msgstr: "แทรกทั้งหมด"
+
+msgid: "Delimiter"
+msgstr: "ตัวแบ่ง"
+
+msgid: "Comma"
+msgstr: "เครื่องหมายจุลภาค"
+
+msgid: "Tab"
+msgstr: "แท็บ"
+
+msgid: "Semicolon"
+msgstr: "เครื่องหมายอัฒภาค"
+
+msgid: "Space"
+msgstr: "ช่องว่าง"
+
+msgid: "Print field names on first line"
+msgstr: "พิมพ์ชื่อฟิลด์บนบรรทัดแรก"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "ถ้าคุณต้องการส่งออกบรรทัดจำนวนมาก คุณควรจะส่งออกผลลัพธ์ของบรรทัด ไปยังแฟ้มข้อความ"
+
+msgid: "Output to"
+msgstr: "ส่งออกยัง"
+
+msgid: "Browser"
+msgstr: "เบราว์เซอร์"
+
+msgid: "Text file"
+msgstr: "แฟ้มข้อความ"
+
+msgid: "Home"
+msgstr: "หน้าหลัก"
+
+msgid: "Users"
+msgstr: "ผู้ใช้งาน"
+
+msgid: "Query"
+msgstr: "ข้อคำถาม"
+
+msgid: "Import"
+msgstr: "นำเข้า"
+
+msgid: "Overview"
+msgstr: "ภาพรวม"
+
+msgid: "Browse"
+msgstr: "เรียกดู"
+
+msgid: "Your changes were saved to the database"
+msgstr: "คุณบันทึกการเปลี่ยนแปลงฐานข้อมูล"
+
+msgid: "delete this row"
+msgstr: "ลบแถว"
+
+msgid: "delete these rows"
+msgstr: "ลบแถวที่เลือก"
+
+msgid: "empty this table"
+msgstr: "ลบข้อมูลในตาราง"
+
+msgid: "empty these tables"
+msgstr: "ลบข้อมูลในตาราง"
+
+msgid: "drop this table"
+msgstr: "ลบตารางนี้"
+
+msgid: "drop these tables"
+msgstr: "ลบตารางนี้"
+
+msgid: "delete this column"
+msgstr: "ลบสดมถ์นี้"
+
+msgid: "delete these columns"
+msgstr: "ลบสดมถ์นี้"
+
+msgid: "delete this index"
+msgstr: "ลบดัชนีนี้"
+
+msgid: "delete these indexes"
+msgstr: "ลบดัชนีนี้"
+
+msgid: "delete this user"
+msgstr: "ลบผู้ใช้งานคนนี้"
+
+msgid: "delete these users"
+msgstr: "ลบผู้ใช้งานคนนี้"
+
+msgid: "Are you sure you want to"
+msgstr: "คุณมั่นใจที่จะทำมัน"
+
+msgid: "The following query will be run:"
+msgstr: "กำลังจะเรียกใช้งานข้อคำถาม"
+
+msgid: "The following queries will be run:"
+msgstr: "กำลังจะเรียกใช้งานข้อคำถาม"
+
+msgid: "Confirm"
+msgstr: "ยืนยัน"
+
+msgid: "Successfully saved changes"
+msgstr: "บันทึกการเปลี่ยนแปลงสำเร็จแล้ว"
+
+msgid: "Full Text"
+msgstr: "ข้อความเต็ม"
+
+msgid: "Loading..."
+msgstr: "กำลังเรียกข้อมูล..."
+
+msgid: "Error"
+msgstr: "ข้อผิดผลาด"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "เกิดข้อผิดพลาดระหว่างรับข้อมูลจากเซิร์ฟเวอร์"
+
+msgid: "Logout"
+msgstr: "ออกจากการทำงาน"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "ด้วยเหตุผลบางอย่าง พารามิเตอร์ของตารางไม่ได้รวมอยู่ในการร้องขอของคุณ"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "ยินดีต้อนรับสู่ SQL Buddy!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "คุณเชื่อมต่อกับ MySQL %s ด้วยชื่อผู้ใช้งาน %s"
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "เซิร์ฟเวอร์ของฐานข้อมูลนี้ ดำเนินงานมาตั้งแต่ %s และได้เคลี่อนย้ายข้อมูลมาแล้วประมาณ %s"
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "SQL Buddy รุ่นใหม่ออกมาแล้ว"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "คุณมี SQL Buddy รุ่น %s ติดตั้งอยู่ และรุ่น %s สามารถใช้งานได้แล้ว"
+
+msgid: "Getting started"
+msgstr: "เริ่มทำ"
+
+msgid: "Help"
+msgstr: "ช่วยเหลือ"
+
+msgid: "Translations"
+msgstr: "การแปล"
+
+msgid: "Release Notes"
+msgstr: "บันทึกประจำรุ่น"
+
+msgid: "Contact"
+msgstr: "ติดต่อ"
+
+msgid: "Create a new database"
+msgstr: "สร้างฐานข้อมูลใหม่"
+
+msgid: "Did you know..."
+msgstr: "คุณรู้หรือไม่..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "มีวิธีที่ง่ายๆ สำหรับเลือกกลุ่มรายการขนาดใหญ่เวลาที่ต้องการเรียกดูแถวหลายๆ แถวในตาราง สามารถทำได้โดยเช็ก หรือกาเครื่องหมายที่แถวแรก กดปุ่ม shift ค้างไว้ และเช็กที่แถวสุดท้าย แล้วกล่องกากบาท ที่อยู่ระหว่างสองแถวจะถูกกาเครื่องหมายโดยอัตโนมัติ"
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "สดมถ์ที่อยู่ในแท็บเรียกดู และแท็บข้อคำถาม สามารถถูกปรับขนาดให้กว้างขึ้น หรือแคบลงตามความต้องการของคุณ"
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "เว็บเพจการเข้าสู่ระบบ จะยึดกับผู้ใช้งานเริ่มต้นของ root@localhost คุณสามารถเปลี่ยนค่า ผู้ใช้งานเริ่มต้น และเครื่องคอมพิวเตอร์แม่ข่าย เป็นค่าที่คุณต้องการโดยแก้ไขแฟ้ม config.php "
+
+msgid: "Keyboard shortcuts"
+msgstr: "ปุ่มลัด"
+
+msgid: "Press this key..."
+msgstr: "กดปุ่มนี้..."
+
+msgid: "...and this will happen"
+msgstr: "...และสิ่งนี้กำลังจะเกิดขึ้น"
+
+msgid: "select none"
+msgstr: "ไม่เลือก"
+
+msgid: "edit selected items"
+msgstr: "แก้ไขรายการที่เลือก"
+
+msgid: "delete selected items"
+msgstr: "ลบรายการที่เลือก"
+
+msgid: "refresh page"
+msgstr: "เรียกแสดงผล หน้าใหม่"
+
+msgid: "load the query tab"
+msgstr: "เรียกข้อมูลแท็บข้อคำถาม"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "แท็บเรียกดู - ไปยังหน้าแรกของผลลัพธ์"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "แท็บเรียกดู - ไปยังหน้าสุดท้ายของผลลัพธ์"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "แท็บเรียกดู - ไปยังหน้าก่อนของผลลัพธ์"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "แท็บเรียกดู - ไปยังหน้าถัดไปของผลลัพธ์"
+
+msgid: "optimize selected tables"
+msgstr: "ปรับแต่งตารางที่เลือก"
+
+msgid: "Choose a .sql file to import"
+msgstr: "เลือกแฟ้ม .sql เพื่อนำเข้า"
+
+msgid: "File
+"
+msgstr: "แฟ้ม"
+
+msgid: "Ignore first line"
+msgstr: "ไม่สนใจบรรทัดแรก"
+
+msgid: "Edit"
+msgstr: "แก้ไข"
+
+msgid: "Refresh"
+msgstr: "ทำใหม่"
+
+msgid: "No primary key defined"
+msgstr: "หาค่ากุญแจหลักไม่ได้"
+
+msgid: "First"
+msgstr: "แรก"
+
+msgid: "Prev"
+msgstr: "ก่อน"
+
+msgid: "Next"
+msgstr: "ถัดไป"
+
+msgid: "Last"
+msgstr: "สุดท้าย"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "ได้รับ %d ผลลัพธ์จากข้อคำถามของคุณ"
+msgstr[1]: "ได้รับ %d ผลลัพธ์จากข้อคำถามของคุณ"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "บันทึก: เพื่อป้องกันไม่ให้เกิดข้อผิดพลาดกับเบราว์เซอร์ของท่าน โปรแกรมจะแสดงผลลัพธ์จำนวน %d ผลลัพธ์แรกเท่านั้น"
+
+msgid: "binary data"
+msgstr: "ข้อมูลไบนารี"
+
+msgid: "Your query affected %d rows"
+msgstr: "ข้อคำถามของคุณทำให้เกิดการเปลี่ยนแปลง %d แถว"
+
+msgid: "Your query did not return any results"
+msgstr: "ไม่พบผลลัพธ์จากข้อคำถามของคุณ"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "ข้อมูลของคุณถูกบันทึกลงในฐานข้อมูล"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "เกิดปัญหาเล็กน้อยขณะค้นหาตาราง \"%s\""
+
+msgid: "There was a problem logging you in"
+msgstr: "เกิดปัญหาขณะที่นำคุณเข้าใช้งาน"
+
+msgid: "Login"
+msgstr: "เข้าใช้งาน"
+
+msgid: "Unsupported browser"
+msgstr: "เบราว์เซอร์ที่ไม่สนับสนุน"
+
+msgid: "Help!"
+msgstr: "ช่วยเหลือ!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "วาระของคุณได้สิ้นสุดลงแล้ว กรุณาเข้าสู่ระบบใหม่อีกครั้ง"
+
+msgid: "Username"
+msgstr: "ชื่อผู้ใช้งาน"
+
+msgid: "Password"
+msgstr: "รหัสผ่าน"
+
+msgid: "Run a query on the %s database"
+msgstr: "เรียกใช้งานข้อคำถามบนฐานข้อมูล %s"
+
+msgid: "Columns"
+msgstr: "สดมถ์"
+
+msgid: "Add a column"
+msgstr: "เพิ่มสดมถ์"
+
+msgid: "Insert this column"
+msgstr: "แทรกสดมถ์นี้"
+
+msgid: "At end of table"
+msgstr: "สิ้นสุดตาราง"
+
+msgid: "At beginning of table"
+msgstr: "เริ่มตารางนี้"
+
+msgid: "After"
+msgstr: "หลังจาก"
+
+msgid: "Edit table"
+msgstr: "แก้ตาราง"
+
+msgid: "Indexes"
+msgstr: "ดัชนี"
+
+msgid: "Add an index"
+msgstr: "เพิ่มดัชนี"
+
+msgid: "Column(s)"
+msgstr: "สดมถ์"
+
+msgid: "Show %d more..."
+msgstr: "แสดงเพิ่มอีก... %d "
+
+msgid: "Empty table"
+msgstr: "ตารางว่างเปล่า"
+
+msgid: "Drop table"
+msgstr: "ลบตาราง"
+
+msgid: "Optimize table"
+msgstr: "ปรับแต่งตาราง"
+
+msgid: "Table Information"
+msgstr: "ข้อมูลตาราง"
+
+msgid: "Host"
+msgstr: "โฮสต์"
+
+msgid: "Add a new user"
+msgstr: "เพิ่มผู้ใช้งาน"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "กรุณาใช้รูปแบบนี้ ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "คุณแน่ใจแล้วหรือว่าจะลบข้อมูลในตาราง '%s' นี้ การกระทำดังกล่าวลบข้อมูลในตารางทั้งหมด ข้อคำถามดังกล่าวกำลังจะถูกเรียกใช้:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "คุณแน่ใจแล้วหรือว่าต้องการจะลบตาราง '%s' นี้ การกระทำดังกล่าวจะลบทั้งตาราง และข้อมูลที่อยู่ในตารางทั้งหมด ข้อคำถามดังกล่าวกำลังจะถูกเรียกใช้:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "คุณแน่ใจแล้วหรือว่าต้องการจะลบฐานข้อมูล '%s' นี้การกระทำดังกล่างจะลบทั้งฐานข้อมูล ตารางทั้งหมดที่อยู่ข้างใน รวมไปถึงข้อมูลทั้งหมดที่อยู่ในตาราง ข้อคำถามดังกล่าวกำลังจะถูกเรียกใช้:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "ขออภัยในความไม่สะดวก ในขณะนี้เราสนับสนุน Internet Explorer 7 เพียงอย่างเดียว คุณสามารถดาวน์โหลดโปรแกรมโดยไม่ต้องเสียค่าใช้จ่าย ผ่านทางเว็บของไมโครซอฟท์ และเรายังสนับสนุนเบราว์เซอร์อื่น รวมไปถึง Firefox Safari และ Opera ด้วย"
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "คุณไม่ได้เปิดการทำงานของคุกกี้เอาไว้ ซึ่งการติดตั้งของ php นั้นต้องการคุกกี้เพื่อที่จะให้ session สามารถทำงานได้"
+
+msgid: "Importing..."
+msgstr: "กำลังนำเข้า..."
+
+msgid: "Drop the '%s' database"
+msgstr: "กำจัดฐานข้อมูล `%s`"
+
+msgid: "Okay"
+msgstr: "ตกลง"
+
+msgid: "Cancel"
+msgstr: "ยกเลิก"
+
+msgid: "Storage engine"
+msgstr: "กลไกของที่เก็บข้อมูล"
+
+msgid: "Language"
+msgstr: "ภาษา"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "ถ้อยแถลงจำนวน %d ประโยคได้ถูกดำเนินการจากแฟ้ม"
+msgstr[1]: "ถ้อยแถลงจำนวน %d ประโยคได้ถูกดำเนินการจากแฟ้ม"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "แทรกแถวเข้าในฐานข้อมูลจากแฟ้มจำนวน %d แถว"
+msgstr[1]: "แทรกแถวเข้าในฐานข้อมูลจากแฟ้มจำนวน %d แถว"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "ข้าม %d แถว เนื่องจากมีข้อมูลจำนวนหนึ่งไม่ถูกต้อง "
+msgstr[1]: "ข้าม %d แถว เนื่องจากมีข้อมูลจำนวนหนึ่งไม่ถูกต้อง "
+
+msgid: "Theme"
+msgstr: "ชุดตกแต่ง"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f วินาที)"
+
+msgid: "The following errors were reported"
+msgstr: "ข้อผิดพลาดดังกล่าวถูกรายงานแล้ว"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "คุณไม่ได้รับอนุญาติให้สร้างผู้ใช้งานใหม่ได้"
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "คุณไม่ได้รับอนุญาติให้ดู หรือจัดการผู้ใช้งาน"
+
+msgid: "You are connected to %s."
+msgstr: "คุณกำลังติดต่อกับ %s"
+
+msgid: "Allow access to"
+msgstr: "อนุญาติให้เข้าถึง"
+
+msgid: "All databases"
+msgstr: "ฐานข้อมูลทั้งหมด"
+
+msgid: "Selected databases"
+msgstr: "ฐานข้อมูลที่ถูกเลือก"
+
+msgid: "Give user"
+msgstr: "ให้ผู้ใช้งาน"
+
+msgid: "Updates"
+msgstr: "ข้อมูลปรับปรุง"
+
+msgid: "There are no updates available"
+msgstr: "ไม่ค้นพบข้อมูลปรับปรุง"
+
+msgid: "Change password"
+msgstr: "เปลี่ยนรหัสผ่าน"
+
+msgid: "Redirecting..."
+msgstr: "กำลังส่งต่อ..."

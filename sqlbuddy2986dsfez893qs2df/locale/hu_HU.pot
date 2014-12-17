@@ -1,0 +1,667 @@
+Language: Magyar
+Language-Code: hu_HU
+Build-Date: Tue, 18 Jan 2011 15:11:03 -0700
+
+msgid: "Either the file could not be read or it was empty"
+msgstr: "A fájl nem olvasható vagy üres"
+
+msgid: "Error performing operation"
+msgstr: "Hiba a művelet elvégzésében"
+
+msgid: "All"
+msgstr: "Összes"
+
+msgid: "None"
+msgstr: "Nincs"
+
+msgid: "With selected"
+msgstr: "A kiválasztott"
+
+msgid: "Empty"
+msgstr: "Kiürít"
+
+msgid: "Drop"
+msgstr: "Eldob"
+
+msgid: "Optimize"
+msgstr: "Optimalizál"
+
+msgid: "Table"
+msgstr: "Tábla"
+
+msgid: "Rows"
+msgstr: "Sorok"
+
+msgid: "Size"
+msgstr: "Méret"
+
+msgid: "Overhead"
+msgstr: "Felülírás"
+
+msgid: "Options"
+msgstr: "Beállítások"
+
+msgid: "Edit database"
+msgstr: "Adatbázis szerkesztése"
+
+msgid: "Charset"
+msgstr: "Karakterkészlet"
+
+msgid: "Submit"
+msgstr: "Elküld"
+
+msgid: "Create a new table"
+msgstr: "Új tábla létrehozása"
+
+msgid: "Name"
+msgstr: "Név"
+
+msgid: "Setup the fields for the table below"
+msgstr: "Add meg a mezőket a lenti táblához"
+
+msgid: "New field"
+msgstr: "Új mező"
+
+msgid: "Type"
+msgstr: "Típus"
+
+msgid: "Values"
+msgstr: "Értékek"
+
+msgid: "Key"
+msgstr: "Kulcs"
+
+msgid: "primary"
+msgstr: "elsődleges"
+
+msgid: "unique"
+msgstr: "egyedi"
+
+msgid: "index"
+msgstr: "index"
+
+msgid: "Default"
+msgstr: "Alapértelmezett"
+
+msgid: "Other"
+msgstr: "Egyéb"
+
+msgid: "Unsigned"
+msgstr: "Jelöletlen"
+
+msgid: "Binary"
+msgstr: "Bináris"
+
+msgid: "Not Null"
+msgstr: "Nem nulla"
+
+msgid: "Auto Increment"
+msgstr: "Automatikus sorszám"
+
+msgid: "Add field"
+msgstr: "Mező hozzáadása"
+
+msgid: "Oops"
+msgstr: "Hupsz"
+
+msgid: "For some reason, the database parameter was not included with your request"
+msgstr: "Valamilyen okból kifolyólag, az adatbázis paraméter nem volt belefoglalva a kérésbe"
+
+msgid: "Save changes to original"
+msgstr: "Változások mentése az eredetin"
+
+msgid: "Insert as new row"
+msgstr: "Beszúrás új sorként"
+
+msgid: "Save"
+msgstr: "Mentés"
+
+msgid: "User"
+msgstr: "Felhasználó"
+
+msgid: "All privileges"
+msgstr: "Minden jog"
+
+msgid: "Selected privileges"
+msgstr: "Kiválasztott jogok"
+
+msgid: "User privileges"
+msgstr: "Felhasználói jogok"
+
+msgid: "Select"
+msgstr: "Kiválasztás"
+
+msgid: "Insert"
+msgstr: "Beszúrás"
+
+msgid: "Update"
+msgstr: "Frissítés"
+
+msgid: "Delete"
+msgstr: "Törlés"
+
+msgid: "Alter"
+msgstr: "Módosítás"
+
+msgid: "Create"
+msgstr: "Létrehozás"
+
+msgid: "Temp tables"
+msgstr: "Átmeneti táblák"
+
+msgid: "Administrator privileges"
+msgstr: "Adminisztrációs jogok"
+
+msgid: "File"
+msgstr: "Fájl"
+
+msgid: "Process"
+msgstr: "Folyamat"
+
+msgid: "Reload"
+msgstr: "Újratöltés"
+
+msgid: "Shutdown"
+msgstr: "Leállítás"
+
+msgid: "Super"
+msgstr: "Szuper"
+
+msgid: "Grant option"
+msgstr: "Jogosultsági opciók"
+
+msgid: "User not found!"
+msgstr: "A felhasználó nem található!"
+
+msgid: "You must export either structure, data, or both"
+msgstr: "Exportálnod kell bármelyik szerkezetet, adatot vagy mindkettőt "
+
+msgid: "Please select the databases that you would like to export"
+msgstr: "Kérlek válaszd ki az exportálásra szánt adatbázisokat"
+
+msgid: "Please select the tables that you would like to export"
+msgstr: "Kérlek válaszd ki az exportálásra szánt táblákat"
+
+msgid: "Table `%s` is empty"
+msgstr: "A(z) '%s' tábla üres"
+
+msgid: "Results"
+msgstr: "Eredmények"
+
+msgid: "Select all"
+msgstr: "Mindent kijelöl"
+
+msgid: "The file could not be opened"
+msgstr: "A fájl nem nyitható meg"
+
+msgid: "Could not write to file"
+msgstr: "Nem tudom írni a fájlt"
+
+msgid: "Successfully wrote content to file"
+msgstr: "A fájl tartalmának írása kész"
+
+msgid: "Download"
+msgstr: "Letöltés"
+
+msgid: "Note
+"
+msgstr: "Megjegyzés"
+
+msgid: "If this is a public server, you should delete this file from the server after you download it"
+msgstr: "Ha ez egy nyilvános szerver, törölnöd majd le ezt a fájlt miután letöltötted "
+
+msgid: "Export"
+msgstr: "Exportálás"
+
+msgid: "Tables"
+msgstr: "Táblák"
+
+msgid: "Databases"
+msgstr: "Adatbázisok"
+
+msgid: "Format"
+msgstr: "Formátum"
+
+msgid: "SQL"
+msgstr: "SQL"
+
+msgid: "CSV"
+msgstr: "CSV"
+
+msgid: "Structure"
+msgstr: "Struktúra"
+
+msgid: "Data"
+msgstr: "Adat"
+
+msgid: "Compact inserts"
+msgstr: "Részletes beillesztés"
+
+msgid: "Complete inserts"
+msgstr: "Teljes beillesztés"
+
+msgid: "Delimiter"
+msgstr: "Elválasztó"
+
+msgid: "Comma"
+msgstr: "Pont"
+
+msgid: "Tab"
+msgstr: "Fül"
+
+msgid: "Semicolon"
+msgstr: "Pontosvessző"
+
+msgid: "Space"
+msgstr: "Szóköz"
+
+msgid: "Print field names on first line"
+msgstr: "Mezőnevek mentése az első sorba"
+
+msgid: "If you are exporting a large number of rows, it is recommended that you output the results to a text file"
+msgstr: "Ha túl sok mezőt exportálsz, akkor ajánlott kimenetnek szöveges fájlt választani"
+
+msgid: "Output to"
+msgstr: "Mentés"
+
+msgid: "Browser"
+msgstr: "Böngésző"
+
+msgid: "Text file"
+msgstr: "Szöveg fájl"
+
+msgid: "Home"
+msgstr: "Főoldal"
+
+msgid: "Users"
+msgstr: "Felhasználók"
+
+msgid: "Query"
+msgstr: "Kérés"
+
+msgid: "Import"
+msgstr: "Importálás"
+
+msgid: "Overview"
+msgstr: "Áttekintés"
+
+msgid: "Browse"
+msgstr: "Böngészés"
+
+msgid: "Your changes were saved to the database"
+msgstr: "A változásaid mentésre kerültek az adatbázisba"
+
+msgid: "delete this row"
+msgstr: "sor törlése"
+
+msgid: "delete these rows"
+msgstr: "sorok törlése"
+
+msgid: "empty this table"
+msgstr: "a tábla ürítése"
+
+msgid: "empty these tables"
+msgstr: "a táblák ürítése"
+
+msgid: "drop this table"
+msgstr: "tábla eldobása"
+
+msgid: "drop these tables"
+msgstr: "táblák eldobása"
+
+msgid: "delete this column"
+msgstr: "oszlop törlése"
+
+msgid: "delete these columns"
+msgstr: "oszlopok törlése"
+
+msgid: "delete this index"
+msgstr: "index törlése"
+
+msgid: "delete these indexes"
+msgstr: "indexek törlése"
+
+msgid: "delete this user"
+msgstr: "felhasználó törlése"
+
+msgid: "delete these users"
+msgstr: "felhasználók törlése"
+
+msgid: "Are you sure you want to"
+msgstr: "Tényleg akarod"
+
+msgid: "The following query will be run:"
+msgstr: "Ez a lekérdezés fog végrehajtódni:"
+
+msgid: "The following queries will be run:"
+msgstr: "Ezek a lekérdezések fognak végrehajtódni:"
+
+msgid: "Confirm"
+msgstr: "Megerősítés"
+
+msgid: "Successfully saved changes"
+msgstr: "Változtatások sikeresen mentve"
+
+msgid: "Full Text"
+msgstr: "Teljes szöveg"
+
+msgid: "Loading..."
+msgstr: "Betöltés..."
+
+msgid: "Error"
+msgstr: "Hiba"
+
+msgid: "There was an error receiving data from the server"
+msgstr: "Hiba lépett fel az adatok fogadása közben a szervertől"
+
+msgid: "Logout"
+msgstr: "Kijelentkezés"
+
+msgid: "For some reason, the table parameter was not included with your request"
+msgstr: "Valamilyen okból kifolyólag, a tábla paraméter nem volt belefoglalva a kérésbe"
+
+msgid: "Welcome to SQL Buddy!"
+msgstr: "Üdvözöli az SQL Buddy!"
+
+msgid: "You are connected to MySQL %s with the user %s."
+msgstr: "Csatlakozva a következőhöz: MySQL %s, mint %s felhasználó."
+
+msgid: "The database server has been running since %s and has transferred approximately %s of data."
+msgstr: "Az adatbázis szerver %s óta fut és hozzávetőlegesen %s adatforgalmat generált"
+
+msgid: "A new version of SQL Buddy is available!"
+msgstr: "Az SQL Buddy egy újabb verziója elérhető!"
+
+msgid: "You have SQL Buddy %s installed and %s is now available."
+msgstr: "Az SQL Buddy %s verziója van telepítve és elérhető a(z) %s verzió"
+
+msgid: "Getting started"
+msgstr: "Elindulás"
+
+msgid: "Help"
+msgstr: "Súgó"
+
+msgid: "Translations"
+msgstr: "Fordítások"
+
+msgid: "Release Notes"
+msgstr: "Kiadási megjegyzések"
+
+msgid: "Contact"
+msgstr: "Kapcsolat"
+
+msgid: "Create a new database"
+msgstr: "Új adatbázis létrehozása"
+
+msgid: "Did you know..."
+msgstr: "Tudtad-e hogy..."
+
+msgid: "There is an easier way to select a large group of items when browsing table rows. Check the first row, hold the shift key, and check the final row. The checkboxes between the two rows will be automatically checked for you."
+msgstr: "Létezik egy egyszerűbb módszer több sor kijelölésére adatbázis-táblák listázásakor. Jelöld ki az első sort, tartsd nyomva a Shift-et és jelöld ki az utolsó sort. A checkboxok a két sor között automatikusan kiválasztódnak."
+
+msgid: "The columns in the browse and query tabs are resizable. Adjust them to as wide or narrow as you like."
+msgstr: "Az oszlopok szelessége a böngésző és lekérdezés fülekben változtatható. Állítsd őket amilyen szélesre vagy keskenyre akarod."
+
+msgid: "The login page is based on a default user of root@localhost. By editing config.php, you can change the default user and host to whatever you want."
+msgstr: "A bejelentkezési oldal a root@localhost  alapértelmezett felhasználóján alapul. A config.php fájl szerkeztésével meg tudod változtatni az alapértelmezett felhasználót és host-ot bármire."
+
+msgid: "Keyboard shortcuts"
+msgstr: "Gyorsbillentyűk"
+
+msgid: "Press this key..."
+msgstr: "Nyomd le ezt a gombot..."
+
+msgid: "...and this will happen"
+msgstr: "...és ez fog történni"
+
+msgid: "select none"
+msgstr: "nincs kiválasztva"
+
+msgid: "edit selected items"
+msgstr: "kiválasztott elemek szerkesztése"
+
+msgid: "delete selected items"
+msgstr: "kiválasztott elemek törlése"
+
+msgid: "refresh page"
+msgstr: "Oldal frissítése"
+
+msgid: "load the query tab"
+msgstr: "lekérdezés fül betöltése"
+
+msgid: "browse tab - go to first page of results"
+msgstr: "Első oldal"
+
+msgid: "browse tab - go to last page of results"
+msgstr: "Utolsó oldal"
+
+msgid: "browse tab - go to previous page of results"
+msgstr: "Előző oldal"
+
+msgid: "browse tab - go to next page of results"
+msgstr: "Következő oldal"
+
+msgid: "optimize selected tables"
+msgstr: "a kiválasztott táblák optimalizálása"
+
+msgid: "Choose a .sql file to import"
+msgstr: "Válassz egy .sql fájlt az importáláshoz"
+
+msgid: "File
+"
+msgstr: "Fájl"
+
+msgid: "Ignore first line"
+msgstr: "Első sor kihagyása"
+
+msgid: "Edit"
+msgstr: "Szerkesztés"
+
+msgid: "Refresh"
+msgstr: "Frissítés"
+
+msgid: "No primary key defined"
+msgstr: "Nincs elsődleges kulcs definiálva"
+
+msgid: "First"
+msgstr: "Első"
+
+msgid: "Prev"
+msgstr: "Előző"
+
+msgid: "Next"
+msgstr: "Következő"
+
+msgid: "Last"
+msgstr: "Utolsó"
+
+msgid: "Your query returned %d result"
+msgid_plural: "Your query returned %d results"
+msgstr[0]: "A lekérdezés %d találatot adott vissza"
+msgstr[1]: "A lekérdezés %d találatot adott vissza"
+
+msgid: "Note: To avoid crashing your browser, only the first %d results have been displayed"
+msgstr: "Megjegyzés: A böngésződ összeomlásának elkerülése végett csak az első %d találat lett megjelenítve"
+
+msgid: "binary data"
+msgstr: "bináris adat"
+
+msgid: "Your query affected %d rows"
+msgstr: "A lekérdezésed %d sort adott vissza"
+
+msgid: "Your query did not return any results"
+msgstr: "A lekérdezésednek nincs eredménye"
+
+msgid: "Your data has been inserted into the database"
+msgstr: "Az adat be lett szúrva az adatbázisba"
+
+msgid: "There was a bit of trouble locating the \"%s\" table"
+msgstr: "Probléma lépett fel a(z) \"%s\" tábla keresése közben"
+
+msgid: "There was a problem logging you in"
+msgstr: "Probléma van a bejelentkezéseddel"
+
+msgid: "Login"
+msgstr: "Belépés"
+
+msgid: "Unsupported browser"
+msgstr: "Nem támogatott böngésző"
+
+msgid: "Help!"
+msgstr: "Segítség!"
+
+msgid: "Your session has timed out. Please login again."
+msgstr: "Lejárt a munkameneted. Lépj be újra."
+
+msgid: "Username"
+msgstr: "Felhasználónév"
+
+msgid: "Password"
+msgstr: "Jelszó"
+
+msgid: "Run a query on the %s database"
+msgstr: "Lekérdezés futtatása a(z) %s adatbázison"
+
+msgid: "Columns"
+msgstr: "Oszlopok"
+
+msgid: "Add a column"
+msgstr: "Oszlop hozzáadása"
+
+msgid: "Insert this column"
+msgstr: "Oszlop beszúrása"
+
+msgid: "At end of table"
+msgstr: "A tábla végére"
+
+msgid: "At beginning of table"
+msgstr: "A tábla elejére"
+
+msgid: "After"
+msgstr: "Utána"
+
+msgid: "Edit table"
+msgstr: "Tábla szerkesztése"
+
+msgid: "Indexes"
+msgstr: "Indexek"
+
+msgid: "Add an index"
+msgstr: "Index hozzáadása"
+
+msgid: "Column(s)"
+msgstr: "Oszlop(ok)"
+
+msgid: "Show %d more..."
+msgstr: "Mutass %d többet..."
+
+msgid: "Empty table"
+msgstr: "Üres tábla"
+
+msgid: "Drop table"
+msgstr: "Tábla törlése"
+
+msgid: "Optimize table"
+msgstr: "Tábla optimalizálása"
+
+msgid: "Table Information"
+msgstr: "Tábla információ"
+
+msgid: "Host"
+msgstr: "Host"
+
+msgid: "Add a new user"
+msgstr: "Új felhasználó létrehozása"
+
+msgid: "Enter in the format: ('1','2')"
+msgstr: "A következő formában kérem: ('1','2')"
+
+msgid: "Are you sure you want to empty the '%s' table? This will delete all the data inside of it. The following query will be run:"
+msgstr: "Biztosan ki akarod üríteni a(z) '%s' táblát? Ezzel törölni fogod az összes adatot a táblában. A következő lekérdezés lesz lefuttatva:"
+
+msgid: "Are you sure you want to drop the '%s' table? This will delete the table and all data inside of it. The following query will be run:"
+msgstr: "Biztosan törölni szeretnéd a(z) '%s' táblát? Ezzel törölni fogod a táblát és a benne lévő összes adatot. A következő lekérdezés lesz lefuttatva:"
+
+msgid: "Are you sure you want to drop the database '%s'? This will delete the database, the tables inside the database, and all data inside of the tables. The following query will be run:"
+msgstr: "Biztosan törölni szeretnéd a(z) '%s' adatbázist? Ezzel törölni fogod az adatbázist, a benne lévő táblákat és a táblákban lévő összes adatot. A következő lekérdezés lesz lefuttatva:"
+
+msgid: "We're sorry, but currently only Internet Explorer 7 is supported. It is available as a free download on Microsoft's website. Other free browsers are also supported, including Firefox, Safari, and Opera."
+msgstr: "Sajnos csak az Internet Explorer 7 támogatott. Ingyenesen letölthető a Microsoft weboldaláról. Egyéb ingyenes böngészők is támogatottak, mint a Firefox, Safari és az Opera."
+
+msgid: "You don't appear to have cookies enabled. For sessions to work, most php installations require cookies."
+msgstr: "Úgy tűnik a sütik nincsenek engedélyezve. A munkamenetek működéséhez, a legtöbb PHP alkalmazásnak szüksége van a sütik-k engedélyezésére."
+
+msgid: "Importing..."
+msgstr: "Importálás..."
+
+msgid: "Drop the '%s' database"
+msgstr: "'%s' adatbázis törlése"
+
+msgid: "Okay"
+msgstr: "Rendben"
+
+msgid: "Cancel"
+msgstr: "Mégsem"
+
+msgid: "Storage engine"
+msgstr: "Tároló motor"
+
+msgid: "Language"
+msgstr: "Nyelv"
+
+msgid: "%d statement was executed from the file"
+msgid_plural: "%d statements were executed from the file"
+msgstr[0]: "%d eljárás végrehajtva fájlból"
+msgstr[1]: "%d eljárás végrehajtva fájlból"
+
+msgid: "%d row was inserted into the database from the file"
+msgid_plural: "%d rows were inserted into the database from the file"
+msgstr[0]: "%d sor beszúrva fájlból"
+msgstr[1]: "%d sor beszúrva fájlból"
+
+msgid: "%d row had to be skipped because the number of values was incorrect"
+msgid_plural: "%d rows had to be skipped because the number of values was incorrect"
+msgstr[0]: "%d sor átugorva, mivel az értékek száma érvénytelen"
+msgstr[1]: "%d sor átugorva, mivel az értékek száma érvénytelen"
+
+msgid: "Theme"
+msgstr: "Sablon"
+
+msgid: "(%.4f seconds)"
+msgstr: "(%.4f másodperc)"
+
+msgid: "The following errors were reported"
+msgstr: "A következő hibák jelentkeztek"
+
+msgid: "You do not have enough permissions to create new users."
+msgstr: "Nincs elegendő hozzáférési jogod, hogy új felhasználót készíts."
+
+msgid: "You do not have enough permissions to view or manage users."
+msgstr: "Nincs elegendő hozzáférési jogod, hogy megtekintsd vagy menedzseld a felhasználót."
+
+msgid: "You are connected to %s."
+msgstr: "Csatlakozva vagy a következőhöz: %s."
+
+msgid: "Allow access to"
+msgstr: "Hozzáférés engedélyezése a(z)"
+
+msgid: "All databases"
+msgstr: "Összes adatbázis"
+
+msgid: "Selected databases"
+msgstr: "Kiválasztott adatbázis(ok)"
+
+msgid: "Give user"
+msgstr: "Add meg a felhasználót"
+
+msgid: "Updates"
+msgstr: "Frissítések"
+
+msgid: "There are no updates available"
+msgstr: "Nincsenek elérhető frissítések"
+
+msgid: "Change password"
+msgstr: "Jelszó csere"
+
+msgid: "Redirecting..."
+msgstr: "Átirányítás..."

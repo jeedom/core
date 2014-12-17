@@ -45,8 +45,9 @@ class market {
     private $realcost = 0;
     private $link;
     private $certification;
+    private $nbComment;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     private static function construct($_arrayMarket) {
         $market = new self();
@@ -72,6 +73,7 @@ class market {
         $market->setCost($_arrayMarket['cost']);
         $market->rating = ($_arrayMarket['rating']);
         $market->setBuyer($_arrayMarket['buyer']);
+        $market->setNbComment($_arrayMarket['nbComment']);
         $market->img = json_encode($_arrayMarket['img'], JSON_UNESCAPED_UNICODE);
         $market->link = json_encode($_arrayMarket['link'], JSON_UNESCAPED_UNICODE);
 
@@ -230,13 +232,11 @@ class market {
             }
         }
         if (!create_zip($cibDir, $tmp)) {
-            throw new Exception(__('Echec de création du zip', __FILE__));
+            throw new Exception(__('Echec de création de l\'archive zip', __FILE__));
         }
         if (isset($_ticket['options']['page'])) {
             $_ticket['options']['page'] = substr($_ticket['options']['page'], strpos($_ticket['options']['page'], 'index.php'));
         }
-
-
         $file = array(
             'file' => '@' . realpath($tmp)
         );
@@ -269,7 +269,7 @@ class market {
 
     public static function getJsonRpc() {
         if (config::byKey('market::address') == '') {
-            throw new Exception(__('Aucune addresse pour le market de renseignée', __FILE__));
+            throw new Exception(__('Aucune addresse n\'est renseignée pour le market', __FILE__));
         }
         if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
             $jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
@@ -430,7 +430,7 @@ class market {
         $tmp = $tmp_dir . '/' . $_backup;
         file_put_contents($tmp, fopen($url, 'r'));
         if (!file_exists($tmp)) {
-            throw new Exception(__('Impossible de télécharger le backup : ', __FILE__) . $url . '.');
+            throw new Exception(__('Impossible de télécharger la sauvegarde : ', __FILE__) . $url . '.');
         }
         if (!file_exists(dirname(__FILE__) . '/../../backup/')) {
             mkdir(dirname(__FILE__) . '/../../backup/');
@@ -458,7 +458,7 @@ class market {
             }
         }
         if (is_object($market) && $market->getPurchase() == 0) {
-            throw new Exception(__('Vous devez acheter cette article avant de pouvoir l\'activer', __FILE__));
+            throw new Exception(__('Vous devez acheter cet article avant de pouvoir l\'activer', __FILE__));
         }
     }
 
@@ -540,7 +540,7 @@ class market {
             unlink($tmp);
         }
         if (!is_writable($tmp_dir)) {
-            throw new Exception(__('Impossible d\'écrire dans le repertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : chmod 777 -R ', __FILE__) . $tmp_dir);
+            throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : chmod 777 -R ', __FILE__) . $tmp_dir);
         }
         if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
             $url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . config::byKey('market::username') . '&password=' . config::byKey('market::password') . '&password_type=sha1';
@@ -550,7 +550,7 @@ class market {
         log::add('update', 'update', __('Téléchargement de l\'objet...', __FILE__));
         file_put_contents($tmp, fopen($url, 'r'));
         if (!file_exists($tmp)) {
-            throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '. Si l\'application est payante, l\'avez vous achetée ?', __FILE__));
+            throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '. Si l\'application est payante, l\'avez-vous achetée ?', __FILE__));
         }
         log::add('update', 'update', __("OK\n", __FILE__));
         switch ($this->getType()) {
@@ -565,7 +565,7 @@ class market {
                 if ($res === TRUE) {
                     if (!$zip->extractTo($cibDir . '/')) {
                         $content = file_get_contents($tmp);
-                        throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pu être décompressés : ', __FILE__) . substr($content, 255));
+                        throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
                     }
                     $zip->close();
                     log::add('update', 'update', __("OK\n", __FILE__));
@@ -584,34 +584,34 @@ class market {
                 } else {
                     switch ($res) {
                         case ZipArchive::ER_EXISTS:
-                            $ErrMsg = "File already exists.";
+                            $ErrMsg = "Le fichier existe déjà.";
                             break;
                         case ZipArchive::ER_INCONS:
-                            $ErrMsg = "Zip archive inconsistent.";
+                            $ErrMsg = "L'archive zip est inconsistente.";
                             break;
                         case ZipArchive::ER_MEMORY:
-                            $ErrMsg = "Malloc failure.";
+                            $ErrMsg = "Erreur mémoire.";
                             break;
                         case ZipArchive::ER_NOENT:
-                            $ErrMsg = "No such file.";
+                            $ErrMsg = "Ce fichier n\'existe pas.";
                             break;
                         case ZipArchive::ER_NOZIP:
-                            $ErrMsg = "Not a zip archive.";
+                            $ErrMsg = "Ceci n\'est pas une archive zip.";
                             break;
                         case ZipArchive::ER_OPEN:
-                            $ErrMsg = "Can't open file.";
+                            $ErrMsg = "Le fichier ne peut pas être ouvert.";
                             break;
                         case ZipArchive::ER_READ:
-                            $ErrMsg = "Read error.";
+                            $ErrMsg = "Erreur de lecture.";
                             break;
                         case ZipArchive::ER_SEEK:
-                            $ErrMsg = "Seek error.";
+                            $ErrMsg = "Erreur de recherche.";
                             break;
                         default:
-                            $ErrMsg = "Unknow (Code $res)";
+                            $ErrMsg = "Erreur inconnue (Code $res)";
                             break;
                     }
-                    throw new Exception(__('Impossible de décompresser le zip : ', __FILE__) . $tmp . __('. Erreur : ', __FILE__) . $ErrMsg . '. Si l\'application est payante, l\'avez vous achetée ?');
+                    throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp . __('. Erreur : ', __FILE__) . $ErrMsg . '. Si l\'application est payante, l\'avez-vous achetée ?');
                 }
                 break;
             default :
@@ -681,7 +681,7 @@ class market {
                     }
                 }
                 if (!create_zip($cibDir, $tmp)) {
-                    throw new Exception(__('Echec de création du zip', __FILE__));
+                    throw new Exception(__('Echec de création de l\'archive zip', __FILE__));
                 }
                 break;
             default :
@@ -885,6 +885,14 @@ class market {
 
     function setCertification($certification) {
         $this->certification = $certification;
+    }
+
+    function getNbComment() {
+        return $this->nbComment;
+    }
+
+    function setNbComment($nbComment) {
+        $this->nbComment = $nbComment;
     }
 
 }

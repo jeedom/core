@@ -29,7 +29,7 @@ class interactQuery {
     private $link_id;
     private $enable = 1;
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     public static function byId($_id) {
         $values = array(
@@ -42,13 +42,17 @@ class interactQuery {
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
-    public static function byQuery($_query) {
+    public static function byQuery($_query,$_interactDef_id = null) {
         $values = array(
             'query' => $_query
         );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                 FROM interactQuery
                 WHERE query=:query';
+        if($_interactDef_id != null){
+           $values['interactDef_id'] = $_interactDef_id;
+           $sql .= ' AND interactDef_id=:interactDef_id';
+        }
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
@@ -206,7 +210,7 @@ class interactQuery {
         );
         if (isset($_parameters['profile'])) {
             $notUnderstood[] = __('Désolé ', __FILE__) . $_parameters['profile'] . __(' je n\'ai pas compris', __FILE__);
-            $notUnderstood[] = __('Désolé ', __FILE__) . $_parameters['profile'] . __(' je n\'ai pas compris ta demande', __FILE__);
+            $notUnderstood[] = __('Désolé ', __FILE__) . $_parameters['profile'] . __(' je n\'ai pas compris votre demande', __FILE__);
         }
         $random = rand(0, count($notUnderstood) - 1);
         return $notUnderstood[$random];
@@ -223,17 +227,17 @@ class interactQuery {
         return $reply[$random];
     }
 
-    /*     * *********************Methode d'instance************************* */
+    /*     * *********************Méthodes d'instance************************* */
 
     public function save() {
         if ($this->getQuery() == '') {
-            throw new Exception(__('La commande vocale ne peut être vide', __FILE__));
+            throw new Exception(__('La commande vocale ne peut pas être vide', __FILE__));
         }
         if ($this->getInteractDef_id() == '') {
-            throw new Exception(__('SarahDef_id ne peut être vide', __FILE__));
+            throw new Exception(__('SarahDef_id ne peut pas être vide', __FILE__));
         }
         if ($this->getLink_id() == '' && $this->getLink_type() != 'whatDoYouKnow') {
-            throw new Exception(__('Cette ordre vocale n\'est associé à aucune commande : ', __FILE__) . $this->getQuery());
+            throw new Exception(__('Cet ordre vocal n\'est associé à aucune commande : ', __FILE__) . $this->getQuery());
         }
         $checksum = DB::checksum('interactQuery');
         DB::save($this);
@@ -261,7 +265,7 @@ class interactQuery {
             $person = strtolower($interactDef->getPerson());
             $person = explode('|', $person);
             if (!in_array($_parameters['profile'], $person)) {
-                return __('Tu n\'es pas autorisé à executer cette action', __FILE__);
+                return __('Vous n\'êtes pas autorisé à exécuter cette action', __FILE__);
             }
         }
         if ($this->getLink_type() == 'whatDoYouKnow') {
@@ -282,7 +286,7 @@ class interactQuery {
             }
             $interactDef = $this->getInteractDef();
             if (!is_object($interactDef)) {
-                return __('Impossible de trouver la définition de l\'intéraction', __FILE__);
+                return __('Impossible de trouver la définition de l\'interaction', __FILE__);
             }
             $reply = $interactDef->selectReply();
             if (trim($reply) == '') {
@@ -290,7 +294,7 @@ class interactQuery {
             }
             switch ($interactDef->getOptions('scenario_action')) {
                 case 'start':
-                    $scenario->launch(false, __('Scenario lance sur interaction (S.A.R.A.H, SMS...)', __FILE__));
+                    $scenario->launch(false, __('Scenario exécuté sur interaction (S.A.R.A.H, SMS...)', __FILE__));
                     return $reply;
                 case 'stop':
                     $scenario->stop();
@@ -304,7 +308,7 @@ class interactQuery {
                     $scenario->save();
                     return $reply;
                 default:
-                    return __('Aucune action défini dans l\'intéraction sur le scénario : ', __FILE__) . $scenario->getHumanName();
+                    return __('Aucune action n\'est définie dans l\'interaction sur le scénario : ', __FILE__) . $scenario->getHumanName();
             }
         }
 
@@ -326,7 +330,7 @@ class interactQuery {
             $cmd = cmd::byId($this->getLink_id());
             if (!is_object($cmd)) {
                 log::add('interact', 'error', __('Commande : ', __FILE__) . $this->getLink_id() . __(' introuvable veuillez renvoyer les listes des commandes', __FILE__));
-                return __('Commande introuvable verifier qu\'elle existe toujours', __FILE__);
+                return __('Commande introuvable - vérifiez si elle existe toujours', __FILE__);
             }
             $replace['#commande#'] = $cmd->getName();
             if (isset($synonymes[strtolower($cmd->getName())])) {
@@ -351,7 +355,7 @@ class interactQuery {
                 $matches = $matches[1];
                 if (count($matches) > 0) {
                     if (!isset($_parameters['dictation'])) {
-                        return __('Erreur aucune phrase envoyé. Impossible de remplir les trous', __FILE__);
+                        return __('Erreur aucune phrase envoyée. Impossible de remplir les trous', __FILE__);
                     }
                     $dictation = $_parameters['dictation'];
                     $options = array();
@@ -383,7 +387,7 @@ class interactQuery {
                 }
                 try {
                     if ($cmd->execCmd($options) === false) {
-                        return __('Impossible d\'executer la commande', __FILE__);
+                        return __('Impossible d\'exécuter la commande', __FILE__);
                     }
                 } catch (Exception $exc) {
                     return $exc->getMessage();
@@ -397,7 +401,7 @@ class interactQuery {
             if ($cmd->getType() == 'info') {
                 $value = $cmd->execCmd();
                 if ($value === null) {
-                    return __('Impossible de recuperer la valeur de la commande', __FILE__);
+                    return __('Impossible de récupérer la valeur de la commande', __FILE__);
                 } else {
                     $replace['#valeur#'] = $value;
                     if ($cmd->getSubType() == 'binary' && $interactDef->getOptions('convertBinary') != '') {

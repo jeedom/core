@@ -60,6 +60,8 @@ if (count($plugins_list) > 0) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <META HTTP-EQUIV="Pragma" CONTENT="private">
         <META HTTP-EQUIV="Cache-Control" CONTENT="private, max-age=5400, pre-check=5400">
         <META HTTP-EQUIV="Expires" CONTENT="<?php echo date(DATE_RFC822, strtotime("1 day")); ?>">
@@ -101,6 +103,9 @@ if (count($plugins_list) > 0) {
         include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
         include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
         include_file('3rdparty', 'bootstrap.slider/js/bootstrap-slider', 'js');
+        include_file('3rdparty', 'jwerty/jwerty', 'js');
+        include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
+        include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
 
         if (isConnect() && $_SESSION['user']->getOptions('desktop_highcharts_theme') != '') {
             try {
@@ -249,9 +254,11 @@ if (count($plugins_list) > 0) {
                                                 }
                                             }
                                             if (hasRight('scenarioview', true) && config::byKey('jeeNetwork::mode') == 'master') {
-                                                ?>
-                                                <li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénario}}</a></li>
-                                                <?php
+                                                if (config::byKey('scenario::expertMode') == '1') {
+                                                    echo '<li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénario}}</a></li>';
+                                                } else {
+                                                    echo '<li><a href = "index.php?v=d&p=scenarioAssist"><i class = "fa fa-cogs"></i> {{Scénario}}</a></li>';
+                                                }
                                             }
                                             ?>
                                         </ul>
