@@ -60,7 +60,7 @@ class jeeNetwork {
 
     public static function changeMode($_mode) {
         if (config::byKey('jeedom::licence') < 5) {
-            throw new Exception(__('Votre licence ne vous autorise pas à utiliser le mode esclave'));
+            throw new Exception(__('Votre licence ne vous autorise pas à utiliser le mode esclave',__FILE__));
         }
         switch ($_mode) {
             case 'master':

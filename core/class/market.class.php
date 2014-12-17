@@ -286,16 +286,19 @@ class market {
             ));
         }
         $jsonrpc->setCb_class('market');
-        $jsonrpc->setCb_function('updateLicence');
+        $jsonrpc->setCb_function('postJsonRpc');
         return $jsonrpc;
     }
 
-    public static function updateLicence($_result) {
+    public static function postJsonRpc($_result) {
         if (is_array($_result) && isset($_result['licence'])) {
             config::save('jeedom::licence', $_result['licence']);
         }
         if (is_array($_result) && isset($_result['register::datetime'])) {
             config::save('register::datetime', $_result['register::datetime']);
+        }
+        if (is_array($_result) && isset($_result['client::ip']) && config::byKey('externalAddr') == '') {
+            config::save('externalAddr', $_result['client::ip']);
         }
     }
 
