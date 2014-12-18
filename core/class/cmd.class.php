@@ -988,6 +988,28 @@ class cmd {
         }
     }
 
+    public function export() {
+        $cmd = clone $this;
+        $cmd->setId('');
+        $cmd->setOrder('');
+        $cmd->setEqLogic_id('');
+        $cmd->cache = '';
+        $cmd->setInternalEvent('');
+        $cmdValue = $cmd->getCmdValue();
+        if(is_object($cmdValue)){
+             $cmd->setValue($cmdValue->getName());
+        }else{
+             $cmd->setValue('');
+        }
+        $return = utils::o2a($cmd);
+        foreach ($return as $key => $value) {
+            if ($value == '') {
+                unset($return[$key]);
+            }
+        }
+        return $return;
+    }
+
     /*     * **********************Getteur Setteur*************************** */
 
     public function getId() {

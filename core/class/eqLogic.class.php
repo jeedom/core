@@ -684,6 +684,31 @@ class eqLogic {
         return $rights->getRight();
     }
 
+    public function export($_withCmd = true) {
+        $eqLogic = clone $this;
+        $eqLogic->setId('');
+        $eqLogic->setLogicalId('');
+        $eqLogic->setObject_id('');
+        $eqLogic->setIsEnable('');
+        $eqLogic->setIsVisible('');
+        $eqLogic->setTimeout('');
+        $eqLogic->setOrder('');
+        $eqLogic->setInternalEvent('');
+        $return = utils::o2a($eqLogic);
+        foreach ($return as $key => $value) {
+            if ($value == '') {
+                unset($return[$key]);
+            }
+        }
+        if ($_withCmd) {
+            $return['cmd'] = array();
+            foreach ($this->getCmd() as $cmd) {
+                $return['cmd'][] = $cmd->export();
+            }
+        }
+        return $return;
+    }
+
     /*     * **********************Getteur Setteur*************************** */
 
     public function getId() {
