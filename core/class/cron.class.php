@@ -387,15 +387,11 @@ class cron {
             } catch (Exception $e) {
                 log::add('cron', 'info', 'Erreur => ' . print_r($e, true));
             }
-            try {
-                $prev = $c->getPreviousRunDate();
-                $lastCheck = new DateTime($this->getLastRun());
-                $diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
-                if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
-                    return true;
-                }
-            } catch (Exception $e) {
-                log::add('cron', 'info', 'Erreur => ' . print_r($e, true));
+            $prev = $c->getPreviousRunDate();
+            $lastCheck = new DateTime($this->getLastRun());
+            $diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
+            if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
+                return true;
             }
         } catch (Exception $e) {
             log::add('cron', 'info', 'Erreur => ' . print_r($e, true));
