@@ -118,6 +118,11 @@ $('.eqLogicAction[data-action=copy]').on('click', function () {
     }
 });
 
+
+$('.eqLogicAction[data-action=export]').on('click', function () {
+    window.open('core/php/export.php?type=eqLogic&id=' + $('.li_eqLogic.active').attr('data-eqLogic_id'), "_blank", null);
+});
+
 jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
     $('.eqLogicAction[data-action=save]').click();

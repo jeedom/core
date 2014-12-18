@@ -995,16 +995,25 @@ class cmd {
         $cmd->setEqLogic_id('');
         $cmd->cache = '';
         $cmd->setInternalEvent('');
+        $cmd->setDisplay('graphType', '');
         $cmdValue = $cmd->getCmdValue();
-        if(is_object($cmdValue)){
-             $cmd->setValue($cmdValue->getName());
-        }else{
-             $cmd->setValue('');
+        if (is_object($cmdValue)) {
+            $cmd->setValue($cmdValue->getName());
+        } else {
+            $cmd->setValue('');
         }
         $return = utils::o2a($cmd);
         foreach ($return as $key => $value) {
-            if ($value == '') {
-                unset($return[$key]);
+            if (is_array($value)) {
+                foreach ($value as $key2 => $value2) {
+                    if ($value2 == '') {
+                        unset($return[$key][$key2]);
+                    }
+                }
+            } else {
+                if ($value == '') {
+                    unset($return[$key]);
+                }
             }
         }
         return $return;

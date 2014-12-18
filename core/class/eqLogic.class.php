@@ -694,10 +694,20 @@ class eqLogic {
         $eqLogic->setTimeout('');
         $eqLogic->setOrder('');
         $eqLogic->setInternalEvent('');
+        $eqLogic->setConfiguration('nerverFail', '');
+        $eqLogic->setConfiguration('noBatterieCheck', '');
         $return = utils::o2a($eqLogic);
         foreach ($return as $key => $value) {
-            if ($value == '') {
-                unset($return[$key]);
+            if (is_array($value)) {
+                foreach ($value as $key2 => $value2) {
+                    if ($value2 == '') {
+                        unset($return[$key][$key2]);
+                    }
+                }
+            } else {
+                if ($value == '') {
+                    unset($return[$key]);
+                }
             }
         }
         if ($_withCmd) {

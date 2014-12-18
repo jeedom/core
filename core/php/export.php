@@ -39,7 +39,15 @@ switch ($type) {
             echo "\n";
         }
         break;
-
+    case 'eqLogic':
+        $eqLogic = eqLogic::byId(init('id'));
+        if (!is_object($eqLogic)) {
+            throw new Exception(__('Commande introuvable : ', __FILE__) . init('id'));
+        }
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=' . $eqLogic->getHumanName() . '.json');
+        echo json_encode($eqLogic->export(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        break;
     default:
         break;
 }
