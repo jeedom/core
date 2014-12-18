@@ -950,8 +950,9 @@ class cmd {
     }
 
     public function getCmdValue() {
-        if (is_numeric($this->getValue())) {
-            return self::byId($this->getValue());
+        $cmd = self::byId(str_replace('#', '', $this->getValue()));
+        if (is_object($cmd)) {
+            return $cmd;
         }
         return false;
     }
