@@ -378,18 +378,18 @@ class cron {
                 if ($c->isDue()) {
                     return true;
                 }
-            } catch (Exception $exc) {
+            } catch (Exception $e) {
                 
             }
             try {
                 $prev = $c->getPreviousRunDate();
-            } catch (Exception $exc) {
-                $prev = new DateTime('2000-01-01 01:00:00');
-            }
-            $lastCheck = new DateTime($this->getLastRun());
-            $diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
-            if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
-                return true;
+                $lastCheck = new DateTime($this->getLastRun());
+                $diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
+                if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
+                    return true;
+                }
+            } catch (Exception $e) {
+                
             }
         } catch (Exception $e) {
             

@@ -731,25 +731,17 @@ class scenario {
         if ($now == $last) {
             return false;
         }
-        $lastLaunch = new DateTime($this->getLastLaunch());
         if (is_array($this->getSchedule())) {
             foreach ($this->getSchedule() as $schedule) {
                 try {
                     $c = new Cron\CronExpression($schedule, new Cron\FieldFactory);
-                    try {
-                        if ($c->isDue()) {
-                            return true;
-                        }
-                    } catch (Exception $exc) {
-                        
+                    if ($c->isDue()) {
+                        return true;
                     }
-                    try {
-                        $prev = $c->getPreviousRunDate();
-                    } catch (Exception $exc) {
-                        $prev = new DateTime('2000-01-01 01:00:00');
-                    }
+                    $lastCheck = new DateTime($this->getLastLaunch());
+                    $prev = $c->getPreviousRunDate();
                     $diff = round(abs((strtotime('now') - strtotime($prev)) / 60));
-                    if ($lastLaunch <= $prev && ($diff <= config::byKey('maxCatchAllow', 5) || config::byKey('maxCatchAllow', 5) == -1)) {
+                    if ($lastCheck <= $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
                         return true;
                     }
                 } catch (Exception $exc) {
@@ -759,24 +751,17 @@ class scenario {
         } else {
             try {
                 $c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
-                try {
-                    if ($c->isDue()) {
-                        return true;
-                    }
-                } catch (Exception $exc) {
-                    
+                if ($c->isDue()) {
+                    return true;
                 }
-                try {
-                    $prev = $c->getPreviousRunDate();
-                } catch (Exception $exc) {
-                    $prev = new DateTime('2000-01-01 01:00:00');
-                }
+                $lastCheck = new DateTime($this->getLastLaunch());
+                $prev = $c->getPreviousRunDate();
                 $diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
-                if ($lastLaunch < $prev && $diff <= config::byKey('maxCatchAllow', 5) || config::byKey('maxCatchAllow', 5) == -1) {
+                if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
                     return true;
                 }
             } catch (Exception $exc) {
-                
+               
             }
         }
         return false;
