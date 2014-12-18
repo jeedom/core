@@ -59,7 +59,7 @@ sendVarToJS('market_display_info', $market_array);
             }
         } else if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
             $purchase_info = market::getPurchaseInfo();
-            if (count($purchase_info) == 3 && isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id']) && isset($purchase_info['paypal::url']) && isset($purchase_info['paypal::marchandMail'])) {
+            if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id']) && isset($purchase_info['paypal::url']) && isset($purchase_info['paypal::marchandMail'])) {
                 ?>
                 <a class="btn btn-default" href='https://market.jeedom.fr/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> Code promo</a>
                 <form action="<?php echo $purchase_info['paypal::url'] ?>/cgi-bin/webscr" method="post" style="display: inline-block;position: relative;top: 5px;" target="_blank" id='form_paypal'>
