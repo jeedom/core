@@ -44,7 +44,7 @@ class cmd {
     protected $_eqLogic = null;
     private static $_templateArray = array();
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     private static function cast($_inputs) {
         if (is_object($_inputs) && class_exists($_inputs->getEqType() . 'Cmd')) {
@@ -586,7 +586,7 @@ class cmd {
     /**
      * 
      * @param type $_options
-     * @param type $cache 0 = ignorer le cache , 1 = mode normale, 2 = cache utilisé même si expiré (puis marqué à recollecter)
+     * @param type $cache 0 = ignorer le cache , 1 = mode normal, 2 = cache utilisé même si expiré (puis marqué à recollecter)
      * @return command result
      * @throws Exception
      */
