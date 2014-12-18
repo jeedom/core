@@ -364,12 +364,18 @@ class cron {
      * @return boolean
      */
     public function isDue() {
+        if ($this->getClass() == 'weather') {
+            log::add('cron', 'debug', 'Test isDue pour ' . print_r($this, true));
+        }
         //check if already sent on that minute 
         $last = strtotime($this->getLastRun());
         $now = time();
         $now = ($now - $now % 60);
         $last = ($last - $last % 60);
         if ($now == $last) {
+            if ($this->getClass() == 'weather') {
+                log::add('cron', 'debug', '$now == $last => ' . $now . '== ' . $last);
+            }
             return false;
         }
         try {
@@ -379,7 +385,7 @@ class cron {
                     return true;
                 }
             } catch (Exception $e) {
-                
+                log::add('cron', 'info', 'Erreur => ' . print_r($e, true));
             }
             try {
                 $prev = $c->getPreviousRunDate();
@@ -389,10 +395,13 @@ class cron {
                     return true;
                 }
             } catch (Exception $e) {
-                
+                log::add('cron', 'info', 'Erreur => ' . print_r($e, true));
             }
         } catch (Exception $e) {
-            
+            log::add('cron', 'info', 'Erreur => ' . print_r($e, true));
+        }
+        if ($this->getClass() == 'weather') {
+            log::add('cron', 'debug', 'End with false');
         }
         return false;
     }

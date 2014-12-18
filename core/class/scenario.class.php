@@ -735,24 +735,36 @@ class scenario {
             foreach ($this->getSchedule() as $schedule) {
                 try {
                     $c = new Cron\CronExpression($schedule, new Cron\FieldFactory);
-                    if ($c->isDue()) {
-                        return true;
+                    try {
+                        if ($c->isDue()) {
+                            return true;
+                        }
+                    } catch (Exception $e) {
+                        log::add('scenario', 'info', 'Erreur => ' . print_r($e, true));
                     }
-                    $lastCheck = new DateTime($this->getLastLaunch());
-                    $prev = $c->getPreviousRunDate();
-                    $diff = round(abs((strtotime('now') - strtotime($prev)) / 60));
-                    if ($lastCheck <= $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
-                        return true;
+                    try {
+                        $lastCheck = new DateTime($this->getLastLaunch());
+                        $prev = $c->getPreviousRunDate();
+                        $diff = round(abs((strtotime('now') - strtotime($prev)) / 60));
+                        if ($lastCheck <= $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
+                            return true;
+                        }
+                    } catch (Exception $e) {
+                        log::add('cron', 'info', 'Erreur => ' . print_r($e, true));
                     }
                 } catch (Exception $exc) {
-                    
+                    log::add('cron', 'info', 'Erreur => ' . print_r($e, true));
                 }
             }
         } else {
             try {
                 $c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
-                if ($c->isDue()) {
-                    return true;
+                try {
+                    if ($c->isDue()) {
+                        return true;
+                    }
+                } catch (Exception $e) {
+                    log::add('cron', 'info', 'Erreur => ' . print_r($e, true));
                 }
                 $lastCheck = new DateTime($this->getLastLaunch());
                 $prev = $c->getPreviousRunDate();
@@ -761,7 +773,7 @@ class scenario {
                     return true;
                 }
             } catch (Exception $exc) {
-               
+                log::add('cron', 'info', 'Erreur => ' . print_r($e, true));
             }
         }
         return false;
