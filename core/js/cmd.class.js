@@ -439,7 +439,9 @@ jeedom.cmd.getSelectModal = function (_options, _callback) {
         },
         "Valider": function () {
             var retour = {};
+            retour.cmd = {};
             retour.human = mod_insertCmd.getValue();
+            retour.cmd.id = mod_insertCmd.getCmdId();
             if ($.trim(retour) != '' && 'function' == typeof (_callback)) {
                 _callback(retour);
             }

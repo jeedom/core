@@ -67,6 +67,10 @@ if (!isConnect()) {
         }
         return '#[' + object_name + '][' + equipement_name + '][' + cmd_name + ']#';
     }
+    
+    mod_insertCmd.getCmdId = function () {
+        return $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_cmd select').value();
+    }
 
     mod_insertCmd.changeObjectCmd = function (_select) {
         jeedom.object.getEqLogic({
