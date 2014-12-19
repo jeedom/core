@@ -1,3 +1,10 @@
+==== 19/12/2014
+
+- Version stable 1.145
+- Bugfix sur les lancements programmés
+- Bugfix filtre sur l'historique
+- Ajout export de configuration (utile pour les plugins zwave et caméra)
+
 ==== 14/12/2014
 
 - Ajout interface de configuration de scénario simple
