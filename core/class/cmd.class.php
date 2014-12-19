@@ -1016,6 +1016,12 @@ class cmd {
                 }
             }
         }
+        if (isset($return['configuration']) && count($return['configuration']) == 0) {
+            unset($return['configuration']);
+        }
+        if (isset($return['display']) && count($return['display']) == 0) {
+            unset($return['display']);
+        }
         return $return;
     }
 

@@ -710,6 +710,12 @@ class eqLogic {
                 }
             }
         }
+        if (isset($return['configuration']) && count($return['configuration']) == 0) {
+            unset($return['configuration']);
+        }
+        if (isset($return['display']) && count($return['display']) == 0) {
+            unset($return['display']);
+        }
         if ($_withCmd) {
             $return['cmd'] = array();
             foreach ($this->getCmd() as $cmd) {
