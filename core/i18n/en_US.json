@@ -1208,7 +1208,7 @@
         "Enregistrer cet appareil": "Enregistrer cet appareil"
     },
     "core\/js\/cmd.class.js": {
-        "Action éxecutée avec succès": "Action éxecutée avec succès",
+        "Action exécutée avec succès": "Action executed successfully",
         "[Jeedom] Message de test": "[Jeedom] Message de test",
         "Ceci est un test de message pour la commande": "Ceci est un test de message pour la commande"
     },

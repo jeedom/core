@@ -590,22 +590,21 @@ function init(_value, _default) {
         });
         var searchText = 1;
         var showLi = true;
-        while (li.html() != undefined) {
+        $(this).find('li:not(.filter):not(.nav-header)').each(function () {
             showLi = true;
             for (var i = 0; i < inputs.length; i++) {
-                searchText = li.find('a').text().toLowerCase().stripAccents().indexOf(inputs[i][1].stripAccents());
+                searchText = $(this).find('a').text().toLowerCase().stripAccents().indexOf(inputs[i][1].stripAccents());
                 if (searchText < 0) {
                     showLi = false;
                     break;
                 }
             }
             if (showLi) {
-                li.show();
+                $(this).show();
             } else {
-                li.hide();
+                $(this).hide();
             }
-            li = li.next();
-        }
+        });
         return this;
     };
 

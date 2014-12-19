@@ -104,7 +104,7 @@ try {
     system('find ' . $backup_dir . ' -mtime +' . config::byKey('backup::keepDays') . ' -delete');
     echo __("OK\n", __FILE__);
 
-    echo __('Limite de la taille total des backups à ', __FILE__) . config::byKey('backup::maxSize') . ' mo...';
+    echo __('Limite de la taille totale des sauvegardes à ', __FILE__) . config::byKey('backup::maxSize') . ' Mo...';
     $max_size = config::byKey('backup::maxSize') * 1024 * 1024;
     $i = 0;
     while (getDirectorySize($backup_dir) > $max_size) {
@@ -120,7 +120,7 @@ try {
             }
         }
         if ($older['file'] == null) {
-            echo __('Erreur aucun fichier trouver a supprimer alors que le répertoire fait : ' . getDirectorySize($backup_dir), __FILE__);
+            echo __('Erreur aucun fichier à supprimer alors que le dossier fait : ' . getDirectorySize($backup_dir), __FILE__);
         }
         echo __("\n - Suppression de : ", __FILE__) . $older['file'];
         if(!unlink($older['file'])){
@@ -128,7 +128,7 @@ try {
         }
         $i++;
         if ($i > 50) {
-            echo __('Plus de 50 backups supprimés. Je m\'arrete', __FILE__);
+            echo __('Plus de 50 sauvegardes supprimées. Je m\'arrête', __FILE__);
         }
     }
     echo __("OK\n", __FILE__);

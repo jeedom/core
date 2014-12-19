@@ -44,7 +44,7 @@ class cmd {
     protected $_eqLogic = null;
     private static $_templateArray = array();
 
-    /*     * ***********************Methode static*************************** */
+    /*     * ***********************Méthodes statiques*************************** */
 
     private static function cast($_inputs) {
         if (is_object($_inputs) && class_exists($_inputs->getEqType() . 'Cmd')) {
@@ -586,7 +586,7 @@ class cmd {
     /**
      * 
      * @param type $_options
-     * @param type $cache 0 = ignorer le cache , 1 = mode normale, 2 = cache utilisé même si expiré (puis marqué à recollecter)
+     * @param type $cache 0 = ignorer le cache , 1 = mode normal, 2 = cache utilisé même si expiré (puis marqué à recollecter)
      * @return command result
      * @throws Exception
      */
@@ -950,8 +950,9 @@ class cmd {
     }
 
     public function getCmdValue() {
-        if (is_numeric($this->getValue())) {
-            return self::byId($this->getValue());
+        $cmd = self::byId(str_replace('#', '', $this->getValue()));
+        if (is_object($cmd)) {
+            return $cmd;
         }
         return false;
     }
@@ -985,6 +986,37 @@ class cmd {
             $cache = cache::byKey('collect' . $this->getId());
             $cache->remove();
         }
+    }
+
+    public function export() {
+        $cmd = clone $this;
+        $cmd->setId('');
+        $cmd->setOrder('');
+        $cmd->setEqLogic_id('');
+        $cmd->cache = '';
+        $cmd->setInternalEvent('');
+        $cmd->setDisplay('graphType', '');
+        $cmdValue = $cmd->getCmdValue();
+        if (is_object($cmdValue)) {
+            $cmd->setValue($cmdValue->getName());
+        } else {
+            $cmd->setValue('');
+        }
+        $return = utils::o2a($cmd);
+        foreach ($return as $key => $value) {
+            if (is_array($value)) {
+                foreach ($value as $key2 => $value2) {
+                    if ($value2 == '') {
+                        unset($return[$key][$key2]);
+                    }
+                }
+            } else {
+                if ($value == '') {
+                    unset($return[$key]);
+                }
+            }
+        }
+        return $return;
     }
 
     /*     * **********************Getteur Setteur*************************** */

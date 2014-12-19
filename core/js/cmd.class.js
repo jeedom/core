@@ -107,7 +107,7 @@ jeedom.cmd.test = function (_params) {
                                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                                 },
                                 success: function () {
-                                    $('#div_alert').showAlert({message: '{{Action éxecutée avec succès}}', level: 'success'});
+                                    $('#div_alert').showAlert({message: '{{Action exécutée avec succès}}', level: 'success'});
                                 }
                             });
                             break;
@@ -120,7 +120,7 @@ jeedom.cmd.test = function (_params) {
                                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                                 },
                                 success: function () {
-                                    $('#div_alert').showAlert({message: '{{Action éxecutée avec succès}}', level: 'success'});
+                                    $('#div_alert').showAlert({message: '{{Action exécutée avec succès}}', level: 'success'});
                                 }
                             });
                             break;
@@ -133,7 +133,7 @@ jeedom.cmd.test = function (_params) {
                                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                                 },
                                 success: function () {
-                                    $('#div_alert').showAlert({message: '{{Action éxecutée avec succès}}', level: 'success'});
+                                    $('#div_alert').showAlert({message: '{{Action exécutée avec succès}}', level: 'success'});
                                 }
                             });
                             break;
@@ -439,7 +439,9 @@ jeedom.cmd.getSelectModal = function (_options, _callback) {
         },
         "Valider": function () {
             var retour = {};
+            retour.cmd = {};
             retour.human = mod_insertCmd.getValue();
+            retour.cmd.id = mod_insertCmd.getCmdId();
             if ($.trim(retour) != '' && 'function' == typeof (_callback)) {
                 _callback(retour);
             }
@@ -489,9 +491,9 @@ jeedom.cmd.normalizeName = function (_tagname) {
     var name = _tagname.toLowerCase();
     /^([^0-9]+)[0-9]*$/.exec(name);
     name = RegExp.$1;
-    if (arrayOn.indexOf(name) >= 0) {//Test si name cmd equivalent à "on"
+    if (arrayOn.indexOf(name) >= 0) {//Test si name cmd équivalent à "on"
         return 'on';
-    } else if (arrayOff.indexOf(name) >= 0) {//Test si name cmd equivalent à "off"
+    } else if (arrayOff.indexOf(name) >= 0) {//Test si name cmd équivalent à "off"
         return 'off';
     }
     if (name.indexOf("lock") == 0) {
