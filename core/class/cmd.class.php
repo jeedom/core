@@ -885,20 +885,26 @@ class cmd {
     }
 
     public function checkReturnState($_value) {
-        if (is_numeric($this->getConfiguration('returnStateTime')) && $this->getConfiguration('returnStateTime') > 0 && $_value != $this->getConfiguration('returnStateValue') && trim($this->getConfiguration('returnStateValue')) != '') {
-            $cron = cron::byClassAndFunction('cmd', 'returnState', array('cmd_id' => intval($this->getId())));
-            if (!is_object($cron)) {
-                $cron = new cron();
+        if (is_numeric($this->getConfiguration('returnStateTime')) && $this->getConfiguration('returnStateTime') > 0 && $_value != $this->getConfiguration('returnStateValue')) {
+            if (trim($this->getConfiguration('returnStateValue')) == '') {
+                if (method_exists($this, 'forceUpdate')) {
+                    $this->forceUpdate();
+                }
+            } else {
+                $cron = cron::byClassAndFunction('cmd', 'returnState', array('cmd_id' => intval($this->getId())));
+                if (!is_object($cron)) {
+                    $cron = new cron();
+                }
+                $cron->setClass('cmd');
+                $cron->setFunction('returnState');
+                $cron->setOnce(1);
+                $cron->setOption(array('cmd_id' => intval($this->getId())));
+                $next = strtotime('+ ' . ($this->getConfiguration('returnStateTime') + 1) . ' minutes ' . date('Y-m-d H:i:s'));
+                $schedule = date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next);
+                $cron->setSchedule($schedule);
+                $cron->setLastRun(date('Y-m-d H:i:s'));
+                $cron->save();
             }
-            $cron->setClass('cmd');
-            $cron->setFunction('returnState');
-            $cron->setOnce(1);
-            $cron->setOption(array('cmd_id' => intval($this->getId())));
-            $next = strtotime('+ ' . ($this->getConfiguration('returnStateTime') + 1) . ' minutes ' . date('Y-m-d H:i:s'));
-            $schedule = date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next);
-            $cron->setSchedule($schedule);
-            $cron->setLastRun(date('Y-m-d H:i:s'));
-            $cron->save();
         }
     }
 
