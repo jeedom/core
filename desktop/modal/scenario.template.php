@@ -16,25 +16,19 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
         <div class="form-group">
             <label class="col-xs-2 control-label">{{Market}}</label>
             <div class="col-xs-8">
-                <a class='btn btn-success' id='bt_scenarioTemplateConvert'><i class="fa fa-code"></i> Convertir le scénario courant en template</a>
+                <a class='btn btn-success' id='bt_scenarioTemplateConvert'><i class="fa fa-code"></i> Convertir le scénario courant en un nouveau template</a>
             </div>
         </div>
         <div class="form-group">
             <label class="col-xs-2 control-label">{{Appliquer un template}}</label>
-            <div class="col-xs-3">
-                <select class='form-control' id='sel_scenarioTemplate'>
-                    <option value=''>Aucun</option>
-                    <?php
-                    foreach (scenario::getTemplate() as $template) {
-                        echo '<option value=' . $template . '>' . str_replace('.json', '', $template) . '</option>';
-                    }
-                    ?>
-                </select>
+            <div class="col-xs-2">
+                <select class='form-control' id='sel_scenarioTemplate'></select>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-8">
                 <a class='btn btn-warning' id='bt_scenarioTemplateShare'><i class="fa fa-cloud-upload"></i> Partager</a>
                 <a class='btn btn-danger' id='bt_scenarioTemplateRemove'><i class="fa fa-times"></i> Supprimer</a>
                 <a class="btn btn-default" id="bt_scenarioTemplateDisplayMarket"><i class="fa fa-shopping-cart"></i> {{Market}}</a>
+                <a class='btn btn-success' id='bt_scenarioTemplateConvertInTemplate'><i class="fa fa-code"></i> Convertir le scénario courant dans ce template</a>
             </div>
         </div>
         <div id='div_scenarioTemplateParametreConfiguration' style='display : none;'>
@@ -55,7 +49,9 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
                 $('#sel_scenarioTemplate').empty();
                 var option = "<option value=''>Aucun</option>";
                 for (var i in data) {
-                    option += "<option value='" + data[i] + "'>" + data[i].replace(".json", "") + "</option>";
+                    var name = data[i].split(".");
+                    name = name[1];
+                    option += "<option value='" + data[i] + "'>" + name.replace(".json", "") + "</option>";
                 }
                 $('#sel_scenarioTemplate').html(option);
                 $('#sel_scenarioTemplate').trigger('change');
@@ -80,6 +76,20 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
         $('#md_modal2').load('index.php?v=d&modal=market.send&type=scenario&logicalId=' + encodeURI(logicalId) + '&name=' + encodeURI($('#sel_scenarioTemplate option:selected').text())).dialog('open');
     });
 
+
+    $('#bt_scenarioTemplateConvertInTemplate').on('click', function () {
+        jeedom.scenario.convertToTemplate({
+            id: scenario_template_id,
+            template: $('#sel_scenarioTemplate').value(),
+            error: function (error) {
+                $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function (data) {
+                refreshScenarioTemplateList();
+                $('#md_scenarioTemplate').showAlert({message: 'Création du template réussi', level: 'success'});
+            }
+        });
+    });
 
     $('#bt_scenarioTemplateConvert').on('click', function () {
         jeedom.scenario.convertToTemplate({

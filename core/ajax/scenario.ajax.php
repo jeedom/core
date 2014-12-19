@@ -60,7 +60,7 @@ try {
         }
         ajax::success($return);
     }
-    
+
     if (init('action') == 'getTemplate') {
         ajax::success(scenario::getTemplate());
     }
@@ -71,7 +71,15 @@ try {
             throw new Exception(__('Scénario ID inconnu : ', __FILE__) . init('id'));
         }
         $path = dirname(__FILE__) . '/../config/scenario';
-        $name = $scenario->getGroup() . '_' . $scenario->getName() . '.json';
+        if (init('template') == '') {
+            if ($scenario->getGroup() == '') {
+                $name = config::genKey(5) . '.' . $scenario->getName() . '.json';
+            } else {
+                $name = config::genKey(5) . '.' . $scenario->getGroup() . '_' . $scenario->getName() . '.json';
+            }
+        } else {
+            $name = init('template');
+        }
         file_put_contents($path . '/' . $name, json_encode($scenario->export('array'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         ajax::success();
     }

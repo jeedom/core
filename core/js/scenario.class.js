@@ -137,6 +137,7 @@ jeedom.scenario.convertToTemplate = function (_params) {
     paramsAJAX.data = {
         action: 'convertToTemplate',
         id: _params.id,
+        template: _params.template || '',
     };
     $.ajax(paramsAJAX);
 }
