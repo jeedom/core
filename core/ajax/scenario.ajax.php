@@ -60,6 +60,87 @@ try {
         }
         ajax::success($return);
     }
+    
+    if (init('action') == 'getTemplate') {
+        ajax::success(scenario::getTemplate());
+    }
+
+    if (init('action') == 'convertToTemplate') {
+        $scenario = scenario::byId(init('id'));
+        if (!is_object($scenario)) {
+            throw new Exception(__('Scénario ID inconnu : ', __FILE__) . init('id'));
+        }
+        $path = dirname(__FILE__) . '/../config/scenario';
+        $name = $scenario->getGroup() . '_' . $scenario->getName() . '.json';
+        file_put_contents($path . '/' . $name, json_encode($scenario->export('array'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        ajax::success();
+    }
+
+    if (init('action') == 'removeTemplate') {
+        $path = dirname(__FILE__) . '/../config/scenario';
+        if (file_exists($path . '/' . init('template'))) {
+            unlink($path . '/' . init('template'));
+        }
+        ajax::success();
+    }
+
+    if (init('action') == 'loadTemplateDiff') {
+        $path = dirname(__FILE__) . '/../config/scenario';
+        if (!file_exists($path . '/' . init('template'))) {
+            throw new Exception('Fichier non trouvé : ' . $path . '/' . init('template'));
+        }
+        $return = array();
+        foreach (preg_split("/((\r?\n)|(\r\n?))/", file_get_contents($path . '/' . init('template'))) as $line) {
+            preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $line, $matches, PREG_SET_ORDER);
+            if (count($matches) > 0) {
+                foreach ($matches as $match) {
+                    $return[$match[0]] = $match[0];
+                }
+            }
+        }
+        ajax::success($return);
+    }
+
+    if (init('action') == 'applyTemplate') {
+        $path = dirname(__FILE__) . '/../config/scenario';
+        if (!file_exists($path . '/' . init('template'))) {
+            throw new Exception('Fichier non trouvé : ' . $path . '/' . init('template'));
+        }
+        foreach (json_decode(init('convert'), true) as $value) {
+            if (trim($value['end']) == '') {
+                throw new Exception(__('La convertion suivante ne peut être vide : ', __FILE__) . $value['begin']);
+            }
+            $converts[$value['begin']] = $value['end'];
+        }
+        $content = str_replace(array_keys($converts), $converts, file_get_contents($path . '/' . init('template')));
+        $scenario_ajax = json_decode($content, true);
+        if (isset($scenario_ajax['name'])) {
+            unset($scenario_ajax['name']);
+        }
+        if (isset($scenario_ajax['group'])) {
+            unset($scenario_ajax['group']);
+        }
+        $scenario_db = scenario::byId(init('id'));
+        if (!is_object($scenario_db)) {
+            throw new Exception(__('Scénario ID inconnu : ', __FILE__) . init('id'));
+        }
+        if (!$scenario_db->hasRight('w')) {
+            throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));
+        }
+        $scenario_db->setTrigger(array());
+        $scenario_db->setSchedule(array());
+        utils::a2o($scenario_db, $scenario_ajax);
+        $scenario_db->save();
+        $scenario_element_list = array();
+        if (isset($scenario_ajax['elements'])) {
+            foreach ($scenario_ajax['elements'] as $element_ajax) {
+                $scenario_element_list[] = scenarioElement::saveAjaxElement($element_ajax);
+            }
+            $scenario_db->setScenarioElement($scenario_element_list);
+        }
+        $scenario_db->save();
+        ajax::success();
+    }
 
     if (init('action') == 'all') {
         $scenarios = scenario::all();

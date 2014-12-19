@@ -464,6 +464,74 @@ class scenario {
         return $return;
     }
 
+    public static function getTemplate($_template = '') {
+        $path = dirname(__FILE__) . '/../config/scenario';
+        if (isset($_template) && $_template != '') {
+            
+        }
+        return ls($path, '*.json', false, array('files', 'quiet'));
+    }
+    
+     /*     * *************************MARKET**************************************** */
+
+    public static function shareOnMarket(&$market) {
+        $moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
+        if (!file_exists($moduleFile)) {
+            throw new Exception('Impossible de trouver le fichier de configuration ' . $moduleFile);
+        }
+        $tmp = dirname(__FILE__) . '/../../tmp/' . $market->getLogicalId() . '.zip';
+        if (file_exists($tmp)) {
+            if (!unlink($tmp)) {
+                throw new Exception(__('Impossible de supprimer : ', __FILE__) . $tmp . __('. Vérifiez les droits', __FILE__));
+            }
+        }
+        if (!create_zip($moduleFile, $tmp)) {
+            throw new Exception(__('Echec de création du zip. Répertoire source : ', __FILE__) . $moduleFile . __(' / Répertoire cible : ', __FILE__) . $tmp);
+        }
+        return $tmp;
+    }
+
+    public static function getFromMarket(&$market, $_path) {
+        $cibDir = dirname(__FILE__) . '/../config/scenario/';
+        if (!file_exists($cibDir)) {
+            throw new Exception(__('Impossible d\'installer la configuration du module le répertoire n\'existe pas : ', __FILE__) . $cibDir);
+        }
+        $zip = new ZipArchive;
+        if ($zip->open($_path) === TRUE) {
+            $zip->extractTo($cibDir . '/');
+            $zip->close();
+        } else {
+            throw new Exception('Impossible de décompresser le zip : ' . $_path);
+        }
+        $moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
+        if (!file_exists($moduleFile)) {
+            throw new Exception(__('Echec de l\'installation. Impossible de trouver le module ', __FILE__) . $moduleFile);
+        }
+
+        foreach (eqLogic::byTypeAndSearhConfiguration('zwave', $market->getLogicalId()) as $eqLogic) {
+            $eqLogic->applyModuleConfiguration();
+        }
+    }
+
+    public static function removeFromMarket(&$market) {
+        $moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
+        if (!file_exists($moduleFile)) {
+            throw new Exception(__('Echec lors de la suppression. Impossible de trouver le module ', __FILE__) . $moduleFile);
+        }
+        if (!unlink($moduleFile)) {
+            throw new Exception(__('Impossible de supprimer le fichier :  ', __FILE__) . $moduleFile . '. Veuillez vérifier les droits');
+        }
+    }
+
+    public static function listMarketObject() {
+        $return = array();
+        foreach (scenario::getTemplate() as $logical_id => $name) {
+            $return[] = $logical_id;
+        }
+        return $return;
+    }
+
+
     /*     * *********************Méthodes d'instance************************* */
 
     public function launch($_force = false, $_trigger = '', $_message = '') {
@@ -833,44 +901,97 @@ class scenario {
         return array();
     }
 
-    public function export() {
-        $return = '';
-        $return .= '- Nom du scénario : ' . $this->getName() . "\n";
-        if (is_numeric($this->getObject_id())) {
-            $return .= '- Objet parent : ' . $this->getObject()->getName() . "\n";
-        }
-        $return .= '- Mode du scénario : ' . $this->getMode() . "\n";
-        $schedules = $this->getSchedule();
-        if ($this->getMode() == 'schedule' || $this->getMode() == 'all') {
-            if (is_array($schedules)) {
-                foreach ($schedules as $schedule) {
-                    $return .= '    - Programmation : ' . $schedule . "\n";
+    public function export($_mode = 'text') {
+        if ($_mode == 'text') {
+            $return = '';
+            $return .= '- Nom du scénario : ' . $this->getName() . "\n";
+            if (is_numeric($this->getObject_id())) {
+                $return .= '- Objet parent : ' . $this->getObject()->getName() . "\n";
+            }
+            $return .= '- Mode du scénario : ' . $this->getMode() . "\n";
+            $schedules = $this->getSchedule();
+            if ($this->getMode() == 'schedule' || $this->getMode() == 'all') {
+                if (is_array($schedules)) {
+                    foreach ($schedules as $schedule) {
+                        $return .= '    - Programmation : ' . $schedule . "\n";
+                    }
+                } else {
+                    if ($schedules != '') {
+                        $return .= '    - Programmation : ' . $schedules . "\n";
+                    }
                 }
-            } else {
-                if ($schedules != '') {
-                    $return .= '    - Programmation : ' . $schedules . "\n";
+            }
+            if ($this->getMode() == 'provoke' || $this->getMode() == 'all') {
+                $triggers = $this->getTrigger();
+                if (is_array($triggers)) {
+                    foreach ($triggers as $trigger) {
+                        $return .= '    - Evènement : ' . jeedom::toHumanReadable($trigger) . "\n";
+                    }
+                } else {
+                    if ($triggers != '') {
+                        $return .= '    - Evènement : ' . jeedom::toHumanReadable($triggers) . "\n";
+                    }
+                }
+            }
+            $return .= "\n";
+            $return .= $this->getDescription();
+            $return .= "\n\n";
+            foreach ($this->getElement() as $element) {
+                $exports = explode("\n", $element->export());
+                foreach ($exports as $export) {
+                    $return .= "    " . $export . "\n";
                 }
             }
         }
-        if ($this->getMode() == 'provoke' || $this->getMode() == 'all') {
-            $triggers = $this->getTrigger();
-            if (is_array($triggers)) {
-                foreach ($triggers as $trigger) {
-                    $return .= '    - Evènement : ' . jeedom::toHumanReadable($trigger) . "\n";
-                }
-            } else {
-                if ($triggers != '') {
-                    $return .= '    - Evènement : ' . jeedom::toHumanReadable($triggers) . "\n";
-                }
+        if ($_mode == 'array') {
+            $return = utils::o2a($this);
+
+            $return['trigger'] = jeedom::toHumanReadable($return['trigger']);
+            $return['elements'] = array();
+            foreach ($this->getElement() as $element) {
+                $return['elements'][] = $element->getAjaxElement('array');
             }
-        }
-        $return .= "\n";
-        $return .= $this->getDescription();
-        $return .= "\n\n";
-        foreach ($this->getElement() as $element) {
-            $exports = explode("\n", $element->export());
-            foreach ($exports as $export) {
-                $return .= "    " . $export . "\n";
+            if (isset($return['id'])) {
+                unset($return['id']);
+            }
+            if (isset($return['lastLaunch'])) {
+                unset($return['lastLaunch']);
+            }
+            if (isset($return['log'])) {
+                unset($return['log']);
+            }
+            if (isset($return['hlogs'])) {
+                unset($return['hlogs']);
+            }
+            if (isset($return['object_id'])) {
+                unset($return['object_id']);
+            }
+            if (isset($return['pid'])) {
+                unset($return['pid']);
+            }
+            if (isset($return['scenarioElement'])) {
+                unset($return['scenarioElement']);
+            }
+            if (isset($return['_internalEvent'])) {
+                unset($return['_internalEvent']);
+            }
+            if (isset($return['_templateArray'])) {
+                unset($return['_templateArray']);
+            }
+            if (isset($return['_templateArray'])) {
+                unset($return['_templateArray']);
+            }
+            if (isset($return['_changeState'])) {
+                unset($return['_changeState']);
+            }
+            if (isset($return['_realTrigger'])) {
+                unset($return['_realTrigger']);
+            }
+            if (isset($return['_templateArray'])) {
+                unset($return['_templateArray']);
+            }
+            if (isset($return['_elements'])) {
+                unset($return['_elements']);
             }
         }
         return $return;

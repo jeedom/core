@@ -1,5 +1,10 @@
 ==== 19/12/2014
 
+- Possibilité de transformer un scénario en template 
+- Possibilité de partager des scénarios
+
+==== 18/12/2014
+
 - Version stable 1.145
 - Bugfix sur les lancements programmés
 - Bugfix filtre sur l'historique

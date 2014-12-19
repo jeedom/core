@@ -16,7 +16,7 @@
  */
 
 
-jeedom.scenario = function() {
+jeedom.scenario = function () {
 };
 
 jeedom.scenario.cache = Array();
@@ -25,10 +25,10 @@ if (!isset(jeedom.scenario.cache.html)) {
     jeedom.scenario.cache.html = Array();
 }
 
-jeedom.scenario.all = function(_params) {
+jeedom.scenario.all = function (_params) {
     var paramsRequired = [];
     var paramsSpecifics = {
-        pre_success: function(data) {
+        pre_success: function (data) {
             jeedom.scenario.cache.all = data.result;
             return data;
         }
@@ -52,10 +52,10 @@ jeedom.scenario.all = function(_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.scenario.toHtml = function(_params) {
+jeedom.scenario.toHtml = function (_params) {
     var paramsRequired = ['id', 'version'];
     var paramsSpecifics = {
-        pre_success: function(data) {
+        pre_success: function (data) {
             if (_params.id == 'all' || $.isArray(_params.id)) {
                 for (var i in data.result) {
                     jeedom.scenario.cache.html[i] = data.result[i];
@@ -84,7 +84,7 @@ jeedom.scenario.toHtml = function(_params) {
 }
 
 
-jeedom.scenario.changeState = function(_params) {
+jeedom.scenario.changeState = function (_params) {
     var paramsRequired = ['id', 'state'];
     var paramsSpecifics = {global: false};
     try {
@@ -104,14 +104,111 @@ jeedom.scenario.changeState = function(_params) {
     $.ajax(paramsAJAX);
 }
 
+jeedom.scenario.getTemplate = function (_params) {
+    var paramsRequired = [];
+    var paramsSpecifics = {global: false};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/scenario.ajax.php';
+    paramsAJAX.data = {
+        action: 'getTemplate',
+    };
+    $.ajax(paramsAJAX);
+}
 
-jeedom.scenario.refreshValue = function(_params) {
+jeedom.scenario.convertToTemplate = function (_params) {
+    var paramsRequired = ['id'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/scenario.ajax.php';
+    paramsAJAX.data = {
+        action: 'convertToTemplate',
+        id: _params.id,
+    };
+    $.ajax(paramsAJAX);
+}
+
+jeedom.scenario.removeTemplate = function (_params) {
+    var paramsRequired = ['template'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/scenario.ajax.php';
+    paramsAJAX.data = {
+        action: 'removeTemplate',
+        template: _params.template,
+    };
+    $.ajax(paramsAJAX);
+}
+
+jeedom.scenario.loadTemplateDiff = function (_params) {
+    var paramsRequired = ['template', 'id'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/scenario.ajax.php';
+    paramsAJAX.data = {
+        action: 'loadTemplateDiff',
+        template: _params.template,
+        id: _params.id,
+    };
+    $.ajax(paramsAJAX);
+}
+
+
+jeedom.scenario.applyTemplate = function (_params) {
+    var paramsRequired = ['template', 'id', 'convert'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/scenario.ajax.php';
+    paramsAJAX.data = {
+        action: 'applyTemplate',
+        template: _params.template,
+        id: _params.id,
+        convert: _params.convert,
+    };
+    $.ajax(paramsAJAX);
+}
+
+jeedom.scenario.refreshValue = function (_params) {
     if ($('.scenario[data-scenario_id=' + _params.id + ']').html() != undefined) {
         var version = $('.scenario[data-scenario_id=' + _params.id + ']').attr('data-version');
         var paramsRequired = ['id'];
         var paramsSpecifics = {
             global: false,
-            success: function(result) {
+            success: function (result) {
                 $('.scenario[data-scenario_id=' + params.id + ']').empty().html($(result).children());
                 initTooltips();
                 if ($.mobile) {
@@ -139,7 +236,7 @@ jeedom.scenario.refreshValue = function(_params) {
 };
 
 
-jeedom.scenario.copy = function(_params) {
+jeedom.scenario.copy = function (_params) {
     var paramsRequired = ['id', 'name'];
     var paramsSpecifics = {};
     try {
@@ -160,7 +257,7 @@ jeedom.scenario.copy = function(_params) {
 };
 
 
-jeedom.scenario.get = function(_params) {
+jeedom.scenario.get = function (_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
@@ -179,7 +276,7 @@ jeedom.scenario.get = function(_params) {
     $.ajax(paramsAJAX);
 };
 
-jeedom.scenario.save = function(_params) {
+jeedom.scenario.save = function (_params) {
     var paramsRequired = ['scenario'];
     var paramsSpecifics = {};
     try {
@@ -198,7 +295,7 @@ jeedom.scenario.save = function(_params) {
     $.ajax(paramsAJAX);
 };
 
-jeedom.scenario.remove = function(_params) {
+jeedom.scenario.remove = function (_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
@@ -217,7 +314,7 @@ jeedom.scenario.remove = function(_params) {
     $.ajax(paramsAJAX);
 };
 
-jeedom.scenario.getSelectModal = function(_options, callback) {
+jeedom.scenario.getSelectModal = function (_options, callback) {
     if (!isset(_options)) {
         _options = {};
     }
@@ -236,10 +333,10 @@ jeedom.scenario.getSelectModal = function(_options, callback) {
     }
     mod_insertScenario.setOptions(_options);
     $("#mod_insertScenarioValue").dialog('option', 'buttons', {
-        "Annuler": function() {
+        "Annuler": function () {
             $(this).dialog("close");
         },
-        "Valider": function() {
+        "Valider": function () {
             var retour = {};
             retour.human = mod_insertScenario.getValue();
             retour.id = mod_insertScenario.getId();

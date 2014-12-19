@@ -1,4 +1,4 @@
- <?php
+<?php
 if (!hasRight('scenarioview', true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -114,7 +114,7 @@ foreach (scenario::listGroup() as $group) {
             <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
             <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
             <a class="btn btn-danger btn-xs pull-right expertModeVisible" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
-            
+            <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_templateScenario"><i class="fa fa-cubes"></i> {{Template}}</a>
         </legend>
         <div class="row">
             <div class="col-sm-4">

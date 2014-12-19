@@ -152,7 +152,7 @@ class scenarioElement {
         } else if ($this->getType() == 'in') {
             $in = $this->getSubElement('in');
             $in = $in->getExpression();
-            $time = ceil(str_replace('.', ',',jeedom::evaluateExpression($in[0]->getExpression())));
+            $time = ceil(str_replace('.', ',', jeedom::evaluateExpression($in[0]->getExpression())));
             if (!is_numeric($time) || $time < 0) {
                 $time = 0;
             }
@@ -234,18 +234,74 @@ class scenarioElement {
         }
     }
 
-    public function getAjaxElement() {
+    public function getAjaxElement($_mode = 'ajax') {
         $return = utils::o2a($this);
+        if ($_mode == 'json') {
+            if (isset($return['id'])) {
+                unset($return['id']);
+            }
+            if (isset($return['scenarioElement_id'])) {
+                unset($return['scenarioElement_id']);
+            }
+            if (isset($return['log'])) {
+                unset($return['log']);
+            }
+            if (isset($return['_expression'])) {
+                unset($return['_expression']);
+            }
+        }
         $return['subElements'] = array();
         foreach ($this->getSubElement() as $subElement) {
             $subElement_ajax = utils::o2a($subElement);
+            if ($_mode == 'array') {
+                if (isset($subElement_ajax['id'])) {
+                    unset($subElement_ajax['id']);
+                }
+                if (isset($subElement_ajax['scenarioElement_id'])) {
+                    unset($subElement_ajax['scenarioElement_id']);
+                }
+                if (isset($subElement_ajax['log'])) {
+                    unset($subElement_ajax['log']);
+                }
+                if (isset($subElement_ajax['_expression'])) {
+                    unset($subElement_ajax['_expression']);
+                }
+            }
             $subElement_ajax['expressions'] = array();
             foreach ($subElement->getExpression() as $expression) {
                 $expression_ajax = utils::o2a($expression);
+                if ($_mode == 'array') {
+                    if (isset($expression_ajax['id'])) {
+                        unset($expression_ajax['id']);
+                    }
+                    if (isset($expression_ajax['scenarioSubElement_id'])) {
+                        unset($expression_ajax['scenarioSubElement_id']);
+                    }
+                    if (isset($expression_ajax['log'])) {
+                        unset($expression_ajax['log']);
+                    }
+                    if (isset($expression_ajax['_expression'])) {
+                        unset($expression_ajax['_expression']);
+                    }
+                }
                 if ($expression->getType() == 'element') {
                     $element = self::byId($expression->getExpression());
                     if (is_object($element)) {
-                        $expression_ajax['element'] = $element->getAjaxElement();
+                        $expression_ajax['element'] = $element->getAjaxElement($_mode);
+                        if ($_mode == 'array') {
+                            if (isset($expression_ajax['element']['id'])) {
+                                unset($expression_ajax['element']['id']);
+                            }
+                            if (isset($expression_ajax['element']['scenarioElement_id'])) {
+                                unset($expression_ajax['element']['scenarioElement_id']);
+                            }
+                            if (isset($expression_ajax['element']['log'])) {
+                                unset($expression_ajax['element']['log']);
+                            }
+                            if (isset($expression_ajax['element']['_expression'])) {
+                                unset($expression_ajax['element']['_expression']);
+                            }
+                        }
                     }
                 }
                 $expression_ajax['expression'] = jeedom::toHumanReadable($expression_ajax['expression']);

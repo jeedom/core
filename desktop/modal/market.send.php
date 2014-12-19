@@ -94,6 +94,7 @@ if (init('type') == 'plugin') {
                         <option value="enocean" data-category='input'>{{[EnOcean] Configuration module}}</option>
                         <option value="rfxcom" data-category='input'>{{[RfxCom] Configuration module}}</option>
                         <option value="script" data-category='input'>{{Script}}</option>
+                        <option value="scenario" data-category='input'>{{Scénario}}</option>
                         <option value="camera" data-category='input'>{{[Camera] Modèle}}</option>
                         <option value="SNMP" data-category='input'>{{[SNMP] Configuration}}</option>
                     </select>
