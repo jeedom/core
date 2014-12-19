@@ -733,15 +733,15 @@ class scenario {
         }
         if (is_array($this->getSchedule())) {
             foreach ($this->getSchedule() as $schedule) {
-                $c = new Cron\CronExpression($schedule, new Cron\FieldFactory);
                 try {
-                    if ($c->isDue()) {
-                        return true;
+                    $c = new Cron\CronExpression($schedule, new Cron\FieldFactory);
+                    try {
+                        if ($c->isDue()) {
+                            return true;
+                        }
+                    } catch (Exception $e) {
+                        
                     }
-                } catch (Exception $e) {
-                    
-                }
-                try {
                     $lastCheck = new DateTime($this->getLastLaunch());
                     $prev = $c->getPreviousRunDate();
                     $diff = round(abs((strtotime('now') - strtotime($prev)) / 60));
@@ -753,15 +753,15 @@ class scenario {
                 }
             }
         } else {
-            $c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
             try {
-                if ($c->isDue()) {
-                    return true;
+                $c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
+                try {
+                    if ($c->isDue()) {
+                        return true;
+                    }
+                } catch (Exception $e) {
+                    
                 }
-            } catch (Exception $e) {
-                
-            }
-            try {
                 $lastCheck = new DateTime($this->getLastLaunch());
                 $prev = $c->getPreviousRunDate();
                 $diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
