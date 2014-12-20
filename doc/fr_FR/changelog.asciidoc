@@ -1,6 +1,8 @@
 ==== 20/12/2014
 
 - Possibilité d'ajouter du javascript et css personalisé directement inclus sur toute les pages (avec differenciation desktop/mobile)
+- Correction de bug lors des backups si le dossier de backup par defaut a été changé
+- Correction d'un bug lors des mise à jour des plugins
 
 ==== 19/12/2014
 

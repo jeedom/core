@@ -33,13 +33,15 @@ class update {
 
     /*     * ***********************Méthodes statiques*************************** */
 
-    public static function checkAllUpdate($_filter = '') {
+    public static function checkAllUpdate($_filter = '', $_findNewObject = true) {
         $findCore = false;
         $marketObject = array(
             'logical_id' => array(),
             'version' => array(),
         );
-        self::findNewUpdateObject();
+        if ($_findNewObject) {
+            self::findNewUpdateObject();
+        }
         foreach (self::all($_filter) as $update) {
             if ($update->getType() == 'core') {
                 if ($findCore) {
@@ -168,7 +170,7 @@ class update {
             $values['type'] = $_filter;
             $sql .= ' WHERE `type`=:type';
         }
-        $sql .= ' ORDER BY ( `type` = "core") DESC,( `status` = "update") DESC';
+        $sql .= ' ORDER BY FIELD( `type`,"plugin","core") DESC,( `status` = "update") DESC';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
 

@@ -41,7 +41,7 @@ $backup_ok = false;
 $update_begin = false;
 try {
     require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-    echo __("***************Installation/Mise à jour de Jeedom " . getVersion('jeedom') . " (".date('Y-m-d H:i:s').")***************\n", __FILE__);
+    echo __("***************Installation/Mise à jour de Jeedom " . getVersion('jeedom') . " (" . date('Y-m-d H:i:s') . ")***************\n", __FILE__);
     echo "Paramètres de la mise à jour : level : " . init('level', -1) . ", mode : " . init('mode') . " \n";
 
     try {
@@ -61,7 +61,7 @@ try {
         try {
             if (init('level', -1) > -1 && init('mode') != 'force') {
                 echo __("Vérification des mises à jour...", __FILE__);
-                update::checkAllUpdate();
+                update::checkAllUpdate('', false);
                 echo __("OK\n", __FILE__);
             }
         } catch (Exception $e) {
@@ -75,6 +75,8 @@ try {
         if (init('level', -1) < 1) {
             if (config::byKey('update::backupBefore') == 1 && init('mode') != 'force') {
                 try {
+                    global $NO_PLUGIN_BAKCUP;
+                    $NO_PLUGIN_BAKCUP = true;
                     jeedom::backup();
                 } catch (Exception $e) {
                     if (init('mode') != 'force') {
