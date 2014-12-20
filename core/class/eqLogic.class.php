@@ -561,7 +561,7 @@ class eqLogic {
         if (is_object($object)) {
             if ($_tag) {
                 if ($object->getDisplay('tagColor') != '') {
-                    $name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . '">' . $object->getName() . '</span>';
+                    $name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . ';color:' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . '</span>';
                 } else {
                     $name .= '<span class="label label-primary" style="text-shadow : none;">' . $object->getName() . '</span>';
                 }
