@@ -1,3 +1,7 @@
+==== 20/12/2014
+
+- Possibilité d'ajouter du javascript et css personalisé directement inclus sur toute les pages (avec differenciation desktop/mobile)
+
 ==== 19/12/2014
 
 - Possibilité de transformer un scénario en template 

@@ -33,6 +33,9 @@ $js_file = array(
     'core/js/plan.class.js',
     '3rdparty/jquery.packery/jquery.packery.js',
 );
+if (file_exists(dirname(__FILE__) . '/mobile/custom/custom.js')) {
+    $js_file[] = 'mobile/custom/custom.js';
+}
 
 $other_file = array(
     'core/php/icon.inc.php',
@@ -55,6 +58,9 @@ $other_file = array(
     '3rdparty/jquery.mobile/css/fonts/roboto/Roboto-Thin-webfont.woff',
     '3rdparty/jquery.mobile/css/fonts/roboto/Roboto-Light-webfont.woff'
 );
+if (file_exists(dirname(__FILE__) . '/mobile/custom/custom.css')) {
+    $other_file[] = 'mobile/custom/custom.css';
+}
 
 $root_dir = dirname(__FILE__) . '/core/css/icon/';
 foreach (ls($root_dir, '*') as $dir) {

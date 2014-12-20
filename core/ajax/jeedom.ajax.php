@@ -35,6 +35,9 @@ try {
                 $return['plugins'][] = utils::o2a($plugin);
             }
         }
+        $return['custom'] = array();
+        $return['custom']['js'] = file_exists(dirname(__FILE__) . '/../../mobile/custom/custom.js');
+        $return['custom']['css'] = file_exists(dirname(__FILE__) . '/../../mobile/custom/custom.css');
         ajax::success($return);
     }
 
@@ -138,6 +141,26 @@ try {
             throw new Exception(__('Vous devez d\'abord activer l\'UPnP avant de forcer sa mise en place', __FILE__));
         }
         ajax::success(jeedom::doUPnP());
+    }
+
+    if (init('action') == 'saveCustom') {
+        $path = dirname(__FILE__) . '/../../';
+        if (init('version') != 'desktop' && init('version') != 'mobile') {
+            throw new Exception(__('La version ne peut etre que desktop ou mobile', __FILE__));
+        }
+        if (init('type') != 'js' && init('type') != 'css') {
+            throw new Exception(__('La version ne peut etre que js ou css', __FILE__));
+        }
+        $path .= init('version') . '/custom/';
+        if (!file_exists($path)) {
+            mkdir($path);
+        }
+        $path .= 'custom.' . init('type');
+        if (file_exists($path)) {
+            unlink($path);
+        }
+        file_put_contents($path, init('content'));
+        ajax::success();
     }
 
     throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));

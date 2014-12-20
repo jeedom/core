@@ -92,6 +92,11 @@ $pages = array(
         'view' => array('title' => 'Voir'),
     //  'edit' => array('title' => 'Editer')
     ),
+    'custom' => array(
+        'title' => 'Personnalisation avancée',
+        'view' => array('title' => 'Voir'),
+    //  'edit' => array('title' => 'Editer')
+    ),
     'report' => array(
         'title' => 'Rapport',
         'send' => array('title' => 'Envoyer'),
@@ -203,7 +208,7 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
                 foreach (scenario::all() as $scenario) {
                     echo '<tr>';
                     echo '<td>';
-                    foreach (array('view' => 'Voir','edit' => 'Editer', 'action' => 'Action') as $kright => $right) {
+                    foreach (array('view' => 'Voir', 'edit' => 'Editer', 'action' => 'Action') as $kright => $right) {
                         echo '<span class="rights">';
                         echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
                         echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
