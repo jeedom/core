@@ -166,7 +166,6 @@ try {
                     }
                 }
             }
-            print_r(get_included_files());
             include dirname(__FILE__) . '/../core/config/version.config.php';
 
             if (init('v') != '') {
@@ -241,11 +240,9 @@ try {
                     $curentVersion = $nextVersion;
                 }
             }
-            print_r(get_included_files());
             try {
                 echo __("Vérification de la mise à jour...", __FILE__);
-                update::checkAllUpdate('core');
-                print_r(get_included_files());
+                update::checkAllUpdate('core',false);
                 config::save('version', getVersion('jeedom'));
                 echo __("OK\n", __FILE__);
             } catch (Exception $ex) {
