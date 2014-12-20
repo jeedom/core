@@ -61,10 +61,8 @@ try {
         try {
             if (init('level', -1) > -1 && init('mode') != 'force') {
                 echo __("Vérification des mises à jour...", __FILE__);
-                print_r(get_included_files());
                 update::checkAllUpdate('', false);
                 echo __("OK\n", __FILE__);
-                print_r(get_included_files());
             }
         } catch (Exception $e) {
             if (init('mode') != 'force') {
@@ -79,9 +77,7 @@ try {
                 try {
                     global $NO_PLUGIN_BAKCUP;
                     $NO_PLUGIN_BAKCUP = true;
-                    print_r(get_included_files());
                     jeedom::backup();
-                    print_r(get_included_files());
                 } catch (Exception $e) {
                     if (init('mode') != 'force') {
                         throw $e;
@@ -97,7 +93,7 @@ try {
             jeedom::stop();
             if (init('v') == '') {
                 try {
-                    echo __('Nettoyage du dossier temporaire (tmp)', __FILE__);
+                    echo __('Nettoyage du dossier temporaire (tmp)...', __FILE__);
                     exec('rm -rf ' . dirname(__FILE__) . '/../tmp/*.zip');
                     exec('rm -rf ' . dirname(__FILE__) . '/../tmp/backup');
                     echo __("OK\n", __FILE__);
@@ -170,6 +166,7 @@ try {
                     }
                 }
             }
+            print_r(get_included_files());
             include dirname(__FILE__) . '/../core/config/version.config.php';
 
             if (init('v') != '') {
@@ -244,9 +241,11 @@ try {
                     $curentVersion = $nextVersion;
                 }
             }
+            print_r(get_included_files());
             try {
                 echo __("Vérification de la mise à jour...", __FILE__);
                 update::checkAllUpdate('core');
+                print_r(get_included_files());
                 config::save('version', getVersion('jeedom'));
                 echo __("OK\n", __FILE__);
             } catch (Exception $ex) {

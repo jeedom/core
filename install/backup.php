@@ -64,7 +64,7 @@ try {
     if (strpos('/', config::byKey('backup::path')) === false) {
         $exclude[] = config::byKey('backup::path');
     }
-    rcopy(dirname(__FILE__) . '/..', $tmp, true, array('tmp', 'backup', 'log'));
+    rcopy(dirname(__FILE__) . '/..', $tmp, true, $exclude);
     echo __("OK\n", __FILE__);
 
     echo __('Suppression du fichier d\'identification de la base de données...', __FILE__);
