@@ -423,17 +423,9 @@ class jeedom {
             
         }
         try {
-            $c = new Cron\CronExpression('50 23 * * *', new Cron\FieldFactory);
+            $c = new Cron\CronExpression('20 23 * * *', new Cron\FieldFactory);
             if ($c->isDue()) {
                 scenario::cleanTable();
-            }
-        } catch (Exception $e) {
-            log::add('scenario', 'error', $e->getMessage());
-        }
-        try {
-            $c = new Cron\CronExpression('00 * * * *', new Cron\FieldFactory);
-            if ($c->isDue()) {
-                self::isDateOk();
             }
         } catch (Exception $e) {
             log::add('scenario', 'error', $e->getMessage());
