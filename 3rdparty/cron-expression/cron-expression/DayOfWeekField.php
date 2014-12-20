@@ -2,6 +2,9 @@
 
 namespace Cron;
 
+use DateTime;
+use InvalidArgumentException;
+
 /**
  * Day of week field.  Allows: * / , - ? L #
  *
@@ -14,17 +17,26 @@ namespace Cron;
  * '#' is allowed for the day-of-week field, and must be followed by a
  * number between one and five. It allows you to specify constructs such as
  * "the second Friday" of a given month.
+ *
+ * @author Michael Dowling <mtdowling@gmail.com>
  */
 class DayOfWeekField extends AbstractField
 {
-    public function isSatisfiedBy(\DateTime $date, $value)
+    /**
+     * {@inheritdoc}
+     */
+    public function isSatisfiedBy(DateTime $date, $value)
     {
         if ($value == '?') {
             return true;
         }
 
         // Convert text day of the week values to integers
-        $value = $this->convertLiterals($value);
+        $value = str_ireplace(
+            array('SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'),
+            range(0, 6),
+            $value
+        );
 
         $currentYear = $date->format('Y');
         $currentMonth = $date->format('m');
@@ -45,18 +57,12 @@ class DayOfWeekField extends AbstractField
         // Handle # hash tokens
         if (strpos($value, '#')) {
             list($weekday, $nth) = explode('#', $value);
-
-            // 0 and 7 are both Sunday, however 7 matches date('N') format ISO-8601
-            if ($weekday === '0') {
-                $weekday = 7;
-            }
-
             // Validate the hash fields
-            if ($weekday < 0 || $weekday > 7) {
-                throw new \InvalidArgumentException("Weekday must be a value between 0 and 7. {$weekday} given");
+            if ($weekday < 1 || $weekday > 5) {
+                throw new InvalidArgumentException("Weekday must be a value between 1 and 5. {$weekday} given");
             }
             if ($nth > 5) {
-                throw new \InvalidArgumentException('There are never more than 5 of a given weekday in a month');
+                throw new InvalidArgumentException('There are never more than 5 of a given weekday in a month');
             }
             // The current weekday must match the targeted weekday to proceed
             if ($date->format('N') != $weekday) {
@@ -97,7 +103,10 @@ class DayOfWeekField extends AbstractField
         return $this->isSatisfied($fieldValue, $value);
     }
 
-    public function increment(\DateTime $date, $invert = false)
+    /**
+     * {@inheritdoc}
+     */
+    public function increment(DateTime $date, $invert = false)
     {
         if ($invert) {
             $date->modify('-1 day');
@@ -110,18 +119,11 @@ class DayOfWeekField extends AbstractField
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function validate($value)
     {
-        $value = $this->convertLiterals($value);
-        return (bool) preg_match('/^(\*|[0-7](L?|#[1-5]))([\/\,\-][0-7]+)*$/', $value);
-    }
-
-    private function convertLiterals($string)
-    {
-        return str_ireplace(
-            array('SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'),
-            range(0, 6),
-            $string
-        );
+        return (bool) preg_match('/[\*,\/\-0-9A-Z]+/', $value);
     }
 }

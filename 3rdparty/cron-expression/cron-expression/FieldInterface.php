@@ -2,8 +2,12 @@
 
 namespace Cron;
 
+use DateTime;
+
 /**
  * CRON field interface
+ *
+ * @author Michael Dowling <mtdowling@gmail.com>
  */
 interface FieldInterface
 {
@@ -15,7 +19,7 @@ interface FieldInterface
      *
      * @return bool Returns TRUE if satisfied, FALSE otherwise
      */
-    public function isSatisfiedBy(\DateTime $date, $value);
+    public function isSatisfiedBy(DateTime $date, $value);
 
     /**
      * When a CRON expression is not satisfied, this method is used to increment
@@ -26,7 +30,7 @@ interface FieldInterface
      *
      * @return FieldInterface
      */
-    public function increment(\DateTime $date, $invert = false);
+    public function increment(DateTime $date, $invert = false);
 
     /**
      * Validates a CRON expression for a given field

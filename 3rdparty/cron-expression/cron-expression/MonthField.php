@@ -6,9 +6,14 @@ use DateTime;
 
 /**
  * Month field.  Allows: * , / -
+ *
+ * @author Michael Dowling <mtdowling@gmail.com>
  */
 class MonthField extends AbstractField
 {
+    /**
+     * {@inheritdoc}
+     */
     public function isSatisfiedBy(DateTime $date, $value)
     {
         // Convert text month values to integers
@@ -24,6 +29,9 @@ class MonthField extends AbstractField
         return $this->isSatisfied($date->format('m'), $value);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function increment(DateTime $date, $invert = false)
     {
         if ($invert) {
@@ -37,6 +45,9 @@ class MonthField extends AbstractField
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function validate($value)
     {
         return (bool) preg_match('/[\*,\/\-0-9A-Z]+/', $value);
