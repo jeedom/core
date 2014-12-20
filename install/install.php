@@ -61,8 +61,10 @@ try {
         try {
             if (init('level', -1) > -1 && init('mode') != 'force') {
                 echo __("Vérification des mises à jour...", __FILE__);
+                print_r(get_included_files());
                 update::checkAllUpdate('', false);
                 echo __("OK\n", __FILE__);
+                print_r(get_included_files());
             }
         } catch (Exception $e) {
             if (init('mode') != 'force') {
@@ -77,7 +79,9 @@ try {
                 try {
                     global $NO_PLUGIN_BAKCUP;
                     $NO_PLUGIN_BAKCUP = true;
+                    print_r(get_included_files());
                     jeedom::backup();
+                    print_r(get_included_files());
                 } catch (Exception $e) {
                     if (init('mode') != 'force') {
                         throw $e;
