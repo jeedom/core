@@ -252,6 +252,7 @@ try {
         }
         if (init('level', -1) > -1) {
             echo __("***************Mise à jour des plugins***************\n", __FILE__);
+            print_r(get_included_files());
             update::updateAll();
             echo __("***************Mise à jour des plugins réussie***************\n", __FILE__);
         }
