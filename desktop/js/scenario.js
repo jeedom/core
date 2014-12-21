@@ -655,7 +655,7 @@ function addTrigger(_trigger) {
     var div = '<div class="form-group trigger">';
     div += '<label class="col-xs-3 control-label">{{Evènement}}</label>';
     div += '<div class="col-xs-7">';
-    div += '<input class="scenarioAttr input-sm form-control" data-l1key="trigger" value="' + _trigger + '" disabled>';
+    div += '<input class="scenarioAttr input-sm form-control" data-l1key="trigger" value="' + _trigger + '" >';
     div += '</div>';
     div += '<div class="col-xs-1">';
     div += '<a class="btn btn-default btn-xs cursor bt_selectTrigger"><i class="fa fa-list-alt"></i></a>';
