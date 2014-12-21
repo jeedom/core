@@ -62,7 +62,7 @@ $('.saveCustom').on('click', function () {
     if (version == 'desktop' && type == 'js') {
         editor = editorDesktopJS;
     }
-    if (version == 'desktop' && type == 'csss') {
+    if (version == 'desktop' && type == 'css') {
         editor = editorDesktopCSS;
     }
     if (version == 'mobile' && type == 'js') {
