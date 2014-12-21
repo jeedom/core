@@ -624,6 +624,7 @@ class jeedom {
         $result = '';
         $nginx_conf = trim(file_get_contents('/etc/nginx/sites-available/jeedom_dynamic_rule'));
         $accolade = 0;
+        $change = false;
         foreach (explode("\n", trim($nginx_conf)) as $conf_line) {
             if ($accolade > 0 && strpos('{', $conf_line) !== false) {
                 $accolade++;
@@ -636,6 +637,8 @@ class jeedom {
             }
             if ($accolade == 0) {
                 $result .= $conf_line . "\n";
+            } else {
+                $change = true;
             }
             if ($accolade > 0 && strpos('}', $conf_line) !== false) {
                 $accolade--;
@@ -644,8 +647,10 @@ class jeedom {
         if ($_returnResult) {
             return $result;
         }
-        file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $result);
-        shell_exec('sudo service nginx reload');
+        if ($change) {
+            file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $result);
+            shell_exec('sudo service nginx reload');
+        }
     }
 
     /*     * *********************Methode d'instance************************* */

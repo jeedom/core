@@ -230,6 +230,7 @@ configure_nginx()
     fi
     cp install/nginx_default /etc/nginx/sites-available/default
     cp install/nginx_jeedom_dynamic_rules /etc/nginx/sites-available/jeedom_dynamic_rule
+    chmod 777 /etc/nginx/sites-available/jeedom_dynamic_rule
     if [ ! -f '/etc/nginx/sites-enabled/default' ]; then
         ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
     fi
