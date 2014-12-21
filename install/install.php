@@ -42,7 +42,7 @@ $update_begin = false;
 try {
     require_once dirname(__FILE__) . '/../core/php/core.inc.php';
     echo __("****Installation/Mise à jour de Jeedom " . getVersion('jeedom') . " (" . date('Y-m-d H:i:s') . ")****\n", __FILE__);
-    echo "Paramètres de la mise à jour : level : " . init('level', -1) . ", mode : " . init('mode') . ", système : " . init('system', 'no') . " \n";
+    echo "Paramètres de la mise à jour : level : " . init('level', -1) . ", mode : " . init('mode') . ", system : " . init('system', 'no') . " \n";
 
     try {
         $curentVersion = config::byKey('version');
@@ -262,7 +262,7 @@ try {
         }
         if (init('system', 'no') == 'yes') {
             echo __("***************Lancement mise à jour systeme***************\n", __FILE__);
-            $cmd = 'sudo ' . dirname(__FILE__) . '/../../install/install.sh update_nginx';
+            $cmd = 'sudo ' . dirname(__FILE__) . '/install.sh update_nginx';
             $cmd.= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
             exec($cmd);
             die();
