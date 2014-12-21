@@ -234,7 +234,7 @@ class jeedom {
 
     public static function update($_mode = '', $_level = -1, $_system = 'no') {
         log::clear('update');
-        $cmd = 'php ' . dirname(__FILE__) . '/../../install/install.php mode=' . $_mode . ' level=' . $_level.' system='.$_system;
+        $cmd = 'php ' . dirname(__FILE__) . '/../../install/install.php mode=' . $_mode . ' level=' . $_level . ' system=' . $_system;
         $cmd.= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
         exec($cmd);
     }
@@ -604,7 +604,10 @@ class jeedom {
 
     /*     * ****************************Nginx management*************************** */
 
-    public static function nginx_saveRules($_rules) {
+    public static function nginx_saveRule($_rules) {
+        if (!is_array($_rules)) {
+            $_rules = array($_rules);
+        }
         if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
             throw new Exception('Fichier non trouvé : /etc/nginx/sites-available/jeedom_dynamic_rule');
         }
@@ -618,6 +621,9 @@ class jeedom {
     }
 
     public static function nginx_removeRule($_rules, $_returnResult = false) {
+        if (!is_array($_rules)) {
+            $_rules = array($_rules);
+        }
         if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
             throw new Exception('Fichier non trouvé : /etc/nginx/sites-available/jeedom_dynamic_rule');
         }
