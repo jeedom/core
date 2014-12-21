@@ -288,7 +288,7 @@ configure_nginx_ssl()
     cp jeedom.crt /etc/nginx/certs
     rm jeedom.key jeedom.crt
 
-    JEEDOM_ROOT="`cat /etc/nginx/sites-available/defaults | grep -e 'root /usr/share/nginx/www/jeedom;'`"
+    JEEDOM_ROOT="`cat /etc/nginx/sites-available/default | grep -e 'root /usr/share/nginx/www/jeedom;'`"
     cp ${webserver_home}/jeedom/install/nginx_default_ssl /etc/nginx/sites-available/default_ssl
     if [ ! -f '/etc/nginx/sites-enabled/default_ssl' ]; then
         ln -s /etc/nginx/sites-available/default_ssl /etc/nginx/sites-enabled/default_ssl
