@@ -602,6 +602,52 @@ class jeedom {
         }
     }
 
+    /*     * ****************************Nginx management*************************** */
+
+    public static function nginx_saveRules($_rules) {
+        if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
+            throw new Exception('Fichier non trouvé : /etc/nginx/sites-available/jeedom_dynamic_rule');
+        }
+        $nginx_conf = self::nginx_removeRule($_rules, true);
+
+        foreach ($_rules as $rule) {
+            $nginx_conf .= "\n" . $rule . "\n";
+        }
+        file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $nginx_conf);
+        shell_exec('sudo service nginx reload');
+    }
+
+    public static function nginx_removeRule($_rules, $_returnResult = false) {
+        if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
+            throw new Exception('Fichier non trouvé : /etc/nginx/sites-available/jeedom_dynamic_rule');
+        }
+        $result = '';
+        $nginx_conf = trim(file_get_contents('/etc/nginx/sites-available/jeedom_dynamic_rule'));
+        $accolade = 0;
+        foreach (explode("\n", trim($nginx_conf)) as $conf_line) {
+            if ($accolade > 0 && strpos('{', $conf_line) !== false) {
+                $accolade++;
+            }
+            foreach ($_rules as $rule) {
+                $rule_line = explode("\n", trim($rule));
+                if (trim($conf_line) == trim($rule_line[0])) {
+                    $accolade = 1;
+                }
+            }
+            if ($accolade == 0) {
+                $result .= $conf_line . "\n";
+            }
+            if ($accolade > 0 && strpos('}', $conf_line) !== false) {
+                $accolade--;
+            }
+        }
+        if ($_returnResult) {
+            return $result;
+        }
+        file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $result);
+        shell_exec('sudo service nginx reload');
+    }
+
     /*     * *********************Methode d'instance************************* */
 
     /*     * **********************Getteur Setteur*************************** */

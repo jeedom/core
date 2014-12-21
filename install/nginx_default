@@ -39,6 +39,8 @@ server {
                 deny all;
         }
 
+        include sites-available/jeedom_dynamic_rule;
+
         location /socket.io/ {
                 proxy_pass http://127.0.0.1:8070/socket.io/;
                 proxy_http_version 1.1;
