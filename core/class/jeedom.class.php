@@ -625,7 +625,7 @@ class jeedom {
             $_rules = array($_rules);
         }
         if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-            throw new Exception('Fichier non trouvé : /etc/nginx/sites-available/jeedom_dynamic_rule');
+           return $_rules;
         }
         $result = '';
         $nginx_conf = trim(file_get_contents('/etc/nginx/sites-available/jeedom_dynamic_rule'));
