@@ -252,29 +252,13 @@ configure_nginx()
     cronjob="* * * * * $croncmd"
     ( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
 
-    # Prompt for ssl
-    echo "${msg_ask_install_nginx_ssl}"
-    while true
-    do
-        echo -n "${msg_yesno}"
-        read ANSWER < /dev/tty
-        case $ANSWER in
-                        ${msg_yes})
-                                configure_nginx_ssl
-                                break
-                                ;;
-                        ${msg_no})
-                                return
-                                ;;
-        esac
-        echo "${msg_answer_yesno}"
-    done
+    configure_nginx_ssl                   
 }
 
 configure_nginx_ssl()
 {
     echo "********************************************************"
-	echo "${msg_nginx_ssl_config}"
+    echo "${msg_nginx_ssl_config}"
     echo "********************************************************"
     openssl genrsa -out jeedom.key 2048
     openssl req \
@@ -601,11 +585,7 @@ case ${webserver} in
 
                 cd $webserver_home/jeedom
                 configure_nginx
-                echo "********************************************************"
-                echo "${msg_install_razberry_zway}"
-                echo "********************************************************"
-                install_razberry_zway
-
+              
                 echo "********************************************************"
                 echo "${msg_update_jeedom}"
                 echo "********************************************************"

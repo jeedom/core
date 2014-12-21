@@ -37,6 +37,22 @@ $('.bt_updateAll').on('click', function () {
     });
 });
 
+$('#bt_updateSystem').on('click', function () {
+    bootbox.confirm('{{Etes-vous sur de vouloir faire la mise à jour de tout et du système, cette opération peut durée plusieurs dizaine de minutes et est risqué ? <b>NE SURTOUT PAS FAIRE CETTE OPERATION SI VOUS UTILISEZ APACHE</b>}} ', function (result) {
+        if (result) {
+            $.hideAlert();
+            jeedom.update.doSystem({
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                    getJeedomLog(1, 'update');
+                }
+            });
+        }
+    });
+});
+
 $('#bt_checkAllUpdate').on('click', function () {
     $.hideAlert();
     jeedom.update.checkAll({

@@ -69,6 +69,11 @@ try {
         update::makeUpdateLevel(init('mode'), init('level'));
         ajax::success();
     }
+    
+     if (init('action') == 'updateSystem') {
+        jeedom::updateSystem();
+        ajax::success();
+    }
 
     if (init('action') == 'changeState') {
         $update = update::byId(init('id'));

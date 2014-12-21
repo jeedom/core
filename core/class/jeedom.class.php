@@ -238,6 +238,13 @@ class jeedom {
         $cmd.= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
         exec($cmd);
     }
+    
+    public static function updateSystem() {
+        log::clear('update');
+        $cmd = dirname(__FILE__) . '/../../install/install.sh update_nginx';
+        $cmd.= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
+        exec($cmd);
+    }
 
     public static function getConfiguration($_key, $_default = false) {
         if (!is_array(self::$jeedomConfiguration)) {
