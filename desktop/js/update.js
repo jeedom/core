@@ -38,10 +38,15 @@ $('.bt_updateAll').on('click', function () {
 });
 
 $('#bt_updateSystem').on('click', function () {
+    var level = $(this).attr('data-level');
+    var mode = $(this).attr('data-mode');
     bootbox.confirm('{{Etes-vous sur de vouloir faire la mise à jour de tout et du système, cette opération peut durée plusieurs dizaine de minutes et est risqué ? <b>NE SURTOUT PAS FAIRE CETTE OPERATION SI VOUS UTILISEZ APACHE</b>}} ', function (result) {
         if (result) {
             $.hideAlert();
-            jeedom.update.doSystem({
+            jeedom.update.doAll({
+                mode: mode,
+                level: level,
+                system: 'yes',
                 error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },

@@ -41,8 +41,8 @@ $backup_ok = false;
 $update_begin = false;
 try {
     require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-    echo __("***************Installation/Mise à jour de Jeedom " . getVersion('jeedom') . " (" . date('Y-m-d H:i:s') . ")***************\n", __FILE__);
-    echo "Paramètres de la mise à jour : level : " . init('level', -1) . ", mode : " . init('mode') . " \n";
+    echo __("****Installation/Mise à jour de Jeedom " . getVersion('jeedom') . " (" . date('Y-m-d H:i:s') . ")****\n", __FILE__);
+    echo "Paramètres de la mise à jour : level : " . init('level', -1) . ", mode : " . init('mode') . ", système : " . init('system', 'no') . " \n";
 
     try {
         $curentVersion = config::byKey('version');
@@ -242,7 +242,7 @@ try {
             }
             try {
                 echo __("Vérification de la mise à jour...", __FILE__);
-                update::checkAllUpdate('core',false);
+                update::checkAllUpdate('core', false);
                 config::save('version', getVersion('jeedom'));
                 echo __("OK\n", __FILE__);
             } catch (Exception $ex) {
@@ -259,6 +259,13 @@ try {
             jeedom::start();
         } catch (Exception $ex) {
             echo __("***ERREUR*** ", __FILE__) . $ex->getMessage() . "\n";
+        }
+        if (init('systeme', 'no') == 'yes') {
+            echo __("***************Lancement mise à jour systeme***************\n", __FILE__);
+            $cmd = 'php ' . dirname(__FILE__) . '/../../install/install.php mode=' . $_mode . ' level=' . $_level . ' systeme=' . $_system;
+            $cmd.= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
+            exec($cmd);
+            die();
         }
     } else {
 

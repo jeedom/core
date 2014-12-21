@@ -232,16 +232,9 @@ class jeedom {
         }
     }
 
-    public static function update($_mode = '', $_level = -1) {
+    public static function update($_mode = '', $_level = -1, $_system = 'no') {
         log::clear('update');
-        $cmd = 'php ' . dirname(__FILE__) . '/../../install/install.php mode=' . $_mode . ' level=' . $_level;
-        $cmd.= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
-        exec($cmd);
-    }
-    
-    public static function updateSystem() {
-        log::clear('update');
-        $cmd = 'sudo '.dirname(__FILE__) . '/../../install/install.sh update_nginx';
+        $cmd = 'php ' . dirname(__FILE__) . '/../../install/install.php mode=' . $_mode . ' level=' . $_level.' systeme='.$_system;
         $cmd.= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
         exec($cmd);
     }

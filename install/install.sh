@@ -11,7 +11,7 @@
 
 install_msg_en()
 {
-	msg_installer_welcome="*           Welcome to the Jeedom installer            *"
+	msg_installer_welcome="*      Welcome to the Jeedom installer/updater        *"
 	msg_usage1="Usage: $0 [<webserver_name>]"
 	msg_usage2="            webserver_name can be 'apache' or 'nginx_ssl' or 'nginx' (default)"
 	msg_manual_install_nodejs_ARM="*          Manual installation of nodeJS for ARM       *"
@@ -65,7 +65,7 @@ install_msg_en()
 
 install_msg_fr()
 {
-	msg_installer_welcome="*         Bienvenue dans l'installateur Jeedom         *"
+	msg_installer_welcome="*Bienvenue dans l'assistant d'intallation/mise à jour de Jeedom*"
 	msg_usage1="Utilisation: $0 [<nom_du_webserver>]"
 	msg_usage2="             nom_du_webserver peut être 'apache' ou 'nginx_ssl' ou 'nginx' (par défaut)"
 	msg_manual_install_nodejs_ARM="*        Installation manuelle de nodeJS pour ARM       *"
@@ -587,12 +587,6 @@ case ${webserver} in
 
                 cd $webserver_home/jeedom
                 configure_nginx
-              
-                echo "********************************************************"
-                echo "${msg_update_jeedom}"
-                echo "********************************************************"
-                php install/install.php
-                chown -R www-data:www-data *
 
                 echo "********************************************************"
                 echo "${msg_setup_nodejs_service}"
@@ -605,21 +599,7 @@ case ${webserver} in
                 echo "${msg_startup_nodejs_service}"
                 echo "********************************************************"
                 service jeedom start
-
-                echo "********************************************************"
-                echo "${msg_post_update_actions}"
-                echo "********************************************************"
-                cp install/motd /etc
-                chown root:root /etc/motd
-                chmod 644 /etc/motd
-
-                echo "********************************************************"
-                echo "${msg_update_complete}"
-                echo "********************************************************"
-                IP=$(ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{print $1}')
-                HOST=$(hostname -f)
-                echo "${msg_login_info1}"
-                echo "\n\t\thttp://$IP/jeedom ${msg_or} http://$HOST/jeedom\n"
+                echo '[END UPDATE SUCCESS]';
                 exit 1
 		;;
 	*)

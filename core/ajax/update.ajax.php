@@ -66,12 +66,7 @@ try {
     }
 
     if (init('action') == 'updateAll') {
-        update::makeUpdateLevel(init('mode'), init('level'));
-        ajax::success();
-    }
-    
-     if (init('action') == 'updateSystem') {
-        jeedom::updateSystem();
+        update::makeUpdateLevel(init('mode'), init('level'), init('system', 'no'));
         ajax::success();
     }
 
