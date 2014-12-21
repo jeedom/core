@@ -84,8 +84,8 @@ class update {
         config::save('update::lastCheck', date('Y-m-d H:i:s'));
     }
 
-    public static function makeUpdateLevel($_mode = '', $_level = 1) {
-        jeedom::update($_mode, $_level);
+    public static function makeUpdateLevel($_mode = '', $_level = 1, $_system = 'no') {
+        jeedom::update($_mode, $_level, $_system);
     }
 
     public static function updateAll($_filter = '') {
