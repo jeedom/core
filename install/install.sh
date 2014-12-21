@@ -230,7 +230,7 @@ configure_nginx()
         rm /etc/nginx/sites-available/default
     fi
     cp install/nginx_default /etc/nginx/sites-available/default
-    if [ -z "${JEEDOM_ROOT}" ]; then
+    if [ ! -z "${JEEDOM_ROOT}" ]; then
         sed -i 's%root /usr/share/nginx/www;%root /usr/share/nginx/www/jeedom;%g' /etc/nginx/sites-available/default
     fi
     cp install/nginx_jeedom_dynamic_rules /etc/nginx/sites-available/jeedom_dynamic_rule
@@ -285,7 +285,7 @@ configure_nginx_ssl()
     JEEDOM_ROOT="`cat /etc/nginx/sites-available/defaults | grep -e 'root /usr/share/nginx/www/jeedom;'`"
     cp ${webserver_home}/jeedom/install/nginx_default_ssl /etc/nginx/sites-available/default_ssl
     ln -s /etc/nginx/sites-available/default_ssl /etc/nginx/sites-enabled/
-    if [ -z "${JEEDOM_ROOT}" ]; then
+    if [ ! -z "${JEEDOM_ROOT}" ]; then
         sed -i 's%root /usr/share/nginx/www;%root /usr/share/nginx/www/jeedom;%g' /etc/nginx/sites-available/default_ssl
     fi
     update-rc.d -f mongoose remove
