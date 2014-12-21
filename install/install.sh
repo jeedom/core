@@ -590,6 +590,8 @@ case ${webserver} in
                 echo "********************************************************"
                 install_dependency
                 install_dependency_nginx
+
+                cd $webserver_home/jeedom
                 configure_nginx
                 echo "********************************************************"
                 echo "${msg_install_razberry_zway}"
@@ -599,8 +601,8 @@ case ${webserver} in
                 echo "********************************************************"
                 echo "${msg_install_jeedom}"
                 echo "********************************************************"
-                php /usr/share/nginx/www/jeedom/install/install.php
-                chown -R www-data:www-data /usr/share/nginx/www/jeedom/*
+                php install/install.php
+                chown -R www-data:www-data *
 
                 echo "********************************************************"
                 echo "${msg_setup_nodejs_service}"
