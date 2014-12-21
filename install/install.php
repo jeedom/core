@@ -260,9 +260,9 @@ try {
         } catch (Exception $ex) {
             echo __("***ERREUR*** ", __FILE__) . $ex->getMessage() . "\n";
         }
-        if (init('systeme', 'no') == 'yes') {
+        if (init('system', 'no') == 'yes') {
             echo __("***************Lancement mise à jour systeme***************\n", __FILE__);
-            $cmd = 'php ' . dirname(__FILE__) . '/../../install/install.php mode=' . $_mode . ' level=' . $_level . ' systeme=' . $_system;
+            $cmd = 'sudo ' . dirname(__FILE__) . '/../../install/install.sh update_nginx';
             $cmd.= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
             exec($cmd);
             die();
