@@ -270,7 +270,7 @@ class scenario {
         if (!$scenario->running()) {
             $scenario->setState('stop');
         }
-        $scenario->save();
+       // $scenario->save();
     }
 
     public static function cleanTable() {
