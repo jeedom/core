@@ -154,7 +154,7 @@ class scenarioElement {
             $in = $in->getExpression();
             $time = ceil(str_replace('.', ',', jeedom::evaluateExpression($in[0]->getExpression())));
             if (!is_numeric($time) || $time < 0) {
-                $time = 0;
+                $time = 1;
             }
             if ($time == 0) {
                 $cmd = '/usr/bin/php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
