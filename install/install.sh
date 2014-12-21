@@ -225,10 +225,14 @@ configure_nginx()
 	done
 
     service nginx stop
+    JEEDOM_ROOT="`cat /etc/nginx/sites-available/defaults | grep -e 'root /usr/share/nginx/www/jeedom;'`"
     if [ -f '/etc/nginx/sites-available/defaults' ]; then
         rm /etc/nginx/sites-available/default
     fi
     cp install/nginx_default /etc/nginx/sites-available/default
+    if [ -z "${JEEDOM_ROOT}" ]; then
+        sed -i 's%root /usr/share/nginx/www;%root /usr/share/nginx/www/jeedom;%g' /etc/nginx/sites-available/default
+    fi
     cp install/nginx_jeedom_dynamic_rules /etc/nginx/sites-available/jeedom_dynamic_rule
     chmod 777 /etc/nginx/sites-available/jeedom_dynamic_rule
     if [ ! -f '/etc/nginx/sites-enabled/default' ]; then
@@ -277,8 +281,13 @@ configure_nginx_ssl()
     cp jeedom.key /etc/nginx/certs
     cp jeedom.crt /etc/nginx/certs
     rm jeedom.key jeedom.crt
+
+    JEEDOM_ROOT="`cat /etc/nginx/sites-available/defaults | grep -e 'root /usr/share/nginx/www/jeedom;'`"
     cp ${webserver_home}/jeedom/install/nginx_default_ssl /etc/nginx/sites-available/default_ssl
     ln -s /etc/nginx/sites-available/default_ssl /etc/nginx/sites-enabled/
+    if [ -z "${JEEDOM_ROOT}" ]; then
+        sed -i 's%root /usr/share/nginx/www;%root /usr/share/nginx/www/jeedom;%g' /etc/nginx/sites-available/default_ssl
+    fi
     update-rc.d -f mongoose remove
     service mongoose stop
     service nginx reload
@@ -475,6 +484,55 @@ install_razberry_zway()
         service mongoose stop
 }
 
+install_dependency()
+{
+        apt-get update
+        apt-get install -y libssh2-php ntp unzip miniupnpc \
+                   mysql-client mysql-common mysql-server mysql-server-core-5.5
+        apt-get install -y ffmpeg
+        apt-get install -y avconv
+
+        apt-get install -y php5-common php5-fpm php5-dev php5-cli php5-curl php5-json php5-mysql \
+                   usb-modeswitch python-serial make php-pear libpcre3-dev build-essential
+        apt-get install -y php5-oauth
+        pecl install oauth
+
+        for i in fpm cli
+        do
+            PHP_OAUTH="`cat /etc/php5/${i}/php.ini | grep -e 'oauth.so'`"
+            if [ -z "${PHP_OAUTH}" ]; then
+                echo "extension=oauth.so" >> /etc/php5/${i}/php.ini
+            fi
+        done
+}
+
+install_dependency_nginx()
+{
+        apt-get install -y nginx-common nginx-full
+}
+
+install_dependency_apache()
+{
+    # Packages dependencies
+    apt-get install -y apache2 libapache2-mod-php5 autoconf make subversion
+    svn checkout http://svn.apache.org/repos/asf/httpd/httpd/tags/2.2.22/ httpd-2.2.22
+    wget --no-check-certificate http://cafarelli.fr/gentoo/apache-2.2.24-wstunnel.patch
+    cd httpd-2.2.22
+    patch -p1 < ../apache-2.2.24-wstunnel.patch
+    svn co http://svn.apache.org/repos/asf/apr/apr/branches/1.4.x srclib/apr
+    svn co http://svn.apache.org/repos/asf/apr/apr-util/branches/1.3.x srclib/apr-util
+    ./buildconf
+    ./configure --enable-proxy=shared --enable-proxy_wstunnel=shared
+    make
+    cp modules/proxy/.libs/mod_proxy{_wstunnel,}.so /usr/lib/apache2/modules/
+    chmod 644 /usr/lib/apache2/modules/mod_proxy{_wstunnel,}.so
+    echo "# Depends: proxy\nLoadModule proxy_wstunnel_module /usr/lib/apache2/modules/mod_proxy_wstunnel.so" | tee -a /etc/apache2/mods-available/proxy_wstunnel.load
+    a2enmod proxy_wstunnel
+    a2enmod proxy_http
+    a2enmod proxy
+    service apache2 restart
+}
+
 ##################### Main (script entry point) ########################
 
 webserver=${1-nginx}
@@ -524,6 +582,54 @@ case ${webserver} in
 		configure_nginx_ssl
                 exit 1
 		;;
+        update_nginx)
+		# Configuration
+                webserver_home="/usr/share/nginx/www"
+                echo "********************************************************"
+                echo "${msg_install_deps}"
+                echo "********************************************************"
+                install_dependency
+                install_dependency_nginx
+                configure_nginx
+                echo "********************************************************"
+                echo "${msg_install_razberry_zway}"
+                echo "********************************************************"
+                install_razberry_zway
+
+                echo "********************************************************"
+                echo "${msg_install_jeedom}"
+                echo "********************************************************"
+                php /usr/share/nginx/www/jeedom/install/install.php
+                chown -R www-data:www-data /usr/share/nginx/www/jeedom/*
+
+                echo "********************************************************"
+                echo "${msg_setup_nodejs_service}"
+                echo "********************************************************"
+                cp jeedom /etc/init.d/
+                chmod +x /etc/init.d/jeedom
+                update-rc.d jeedom defaults
+
+                echo "********************************************************"
+                echo "${msg_startup_nodejs_service}"
+                echo "********************************************************"
+                service jeedom start
+
+                echo "********************************************************"
+                echo "${msg_post_install_actions}"
+                echo "********************************************************"
+                cp install/motd /etc
+                chown root:root /etc/motd
+                chmod 644 /etc/motd
+
+                echo "********************************************************"
+                echo "${msg_install_complete}"
+                echo "********************************************************"
+                IP=$(ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{print $1}')
+                HOST=$(hostname -f)
+                echo "${msg_login_info1}"
+                echo "\n\t\thttp://$IP/jeedom ${msg_or} http://$HOST/jeedom\n"
+                exit 1
+		;;
 	*)
 		usage_help
 		exit 1
@@ -552,38 +658,18 @@ done
 echo "********************************************************"
 echo "${msg_install_deps}"
 echo "********************************************************"
-apt-get update
 
+install_dependency
 if [ "${webserver}" = "nginx" ] ; then 
     # Packages dependencies
-    apt-get install -y nginx-common nginx-full
+    install_dependency_nginx
 fi
 
 if [ "${webserver}" = "apache" ] ; then 
-    # Packages dependencies
-    apt-get install -y apache2 libapache2-mod-php5 autoconf make subversion
-    svn checkout http://svn.apache.org/repos/asf/httpd/httpd/tags/2.2.22/ httpd-2.2.22
-    wget --no-check-certificate http://cafarelli.fr/gentoo/apache-2.2.24-wstunnel.patch
-    cd httpd-2.2.22
-    patch -p1 < ../apache-2.2.24-wstunnel.patch
-    svn co http://svn.apache.org/repos/asf/apr/apr/branches/1.4.x srclib/apr
-    svn co http://svn.apache.org/repos/asf/apr/apr-util/branches/1.3.x srclib/apr-util
-    ./buildconf
-    ./configure --enable-proxy=shared --enable-proxy_wstunnel=shared
-    make
-    cp modules/proxy/.libs/mod_proxy{_wstunnel,}.so /usr/lib/apache2/modules/
-    chmod 644 /usr/lib/apache2/modules/mod_proxy{_wstunnel,}.so
-    echo "# Depends: proxy\nLoadModule proxy_wstunnel_module /usr/lib/apache2/modules/mod_proxy_wstunnel.so" | tee -a /etc/apache2/mods-available/proxy_wstunnel.load
-    a2enmod proxy_wstunnel
-    a2enmod proxy_http
-    a2enmod proxy
-    service apache2 restart
+   install_dependency_apache
 fi
 
-apt-get install -y libssh2-php ntp unzip miniupnpc \
-                   mysql-client mysql-common mysql-server mysql-server-core-5.5
-apt-get install -y ffmpeg
-apt-get install -y avconv
+
 echo "${msg_passwd_mysql}"
 while true
 do
@@ -618,17 +704,7 @@ do
         fi
 done
 
-# Check if nodeJS was actually installed, otherwise do a manual install
-install_nodejs
 
-apt-get install -y php5-common php5-fpm php5-dev php5-cli php5-curl php5-json php5-mysql \
-                   usb-modeswitch python-serial make php-pear libpcre3-dev build-essential
-apt-get install -y php5-oauth
-pecl install oauth
-for i in fpm cli
-do
-        echo "extension=oauth.so" >> /etc/php5/${i}/php.ini
-done
 
 echo "********************************************************"
 echo "${msg_setup_dirs_and_privs}"
