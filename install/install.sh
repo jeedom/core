@@ -498,6 +498,7 @@ install_dependency()
                 echo "extension=oauth.so" >> /etc/php5/${i}/php.ini
             fi
         done
+        service php5-fpm restart
 }
 
 install_dependency_nginx()
@@ -598,8 +599,8 @@ case ${webserver} in
                 echo "********************************************************"
                 echo "${msg_startup_nodejs_service}"
                 echo "********************************************************"
-                service jeedom start
-                echo '[END UPDATE SUCCESS]';
+                service jeedom restart
+                echo '[END UPDATE SUCCESS]'
                 exit 1
 		;;
 	*)

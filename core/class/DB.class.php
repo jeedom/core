@@ -227,7 +227,7 @@ class DB {
                         // extract operator from value
                         $value = substr($value, $operatorInformation['length'] + 1); // +1 because of space
                         // add % % to LIKE operator
-                        if (in_array($operatorInformation['value'], ['LIKE', 'NOT LIKE'])) {
+                        if (in_array($operatorInformation['value'], array('LIKE', 'NOT LIKE'))) {
                             $value = '%' . $value . '%';
                         }
                     }
