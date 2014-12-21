@@ -35,11 +35,14 @@ install_msg_en()
 	msg_unable_to_download_file="Unable to download the file"
 	msg_config_db="*               Configuring the database               *"
 	msg_install_jeedom="*                 Installing de Jeedom                 *"
+        msg_update_jeedom="*                  Updating de Jeedom                  *"
 	msg_setup_cron="*                   Setting up cron                    *"
 	msg_setup_nodejs_service="*               Setting up nodeJS service              *"
 	msg_startup_nodejs_service="*             Starting the nodeJS service              *"
 	msg_post_install_actions="*             Post-installation actions                *"
+        msg_post_update_actions="*               Post-update actions                    *"
 	msg_install_complete="*                Installation complete                 *"
+        msg_update_complete="*                   Update complete                    *"
 	msg_or="or"
 	msg_login_info1="You can log in to Jeedom by going on:"
 	msg_login_info2="Your credentials are:"
@@ -86,11 +89,14 @@ install_msg_fr()
 	msg_unable_to_download_file="Impossible de télécharger le fichier"
 	msg_config_db="*          Configuration de la base de données         *"
 	msg_install_jeedom="*                Installation de Jeedom                *"
+        msg_update_jeedom="*                Mise à jour de Jeedom                 *"
 	msg_setup_cron="*                Mise en place du cron                 *"
 	msg_setup_nodejs_service="*            Mise en place du service nodeJS           *"
 	msg_startup_nodejs_service="*             Démarrage du service nodeJS              *"
 	msg_post_install_actions="*             Action post installation                 *"
+        msg_post_update_actions="*              Action post mise à jour                 *"
 	msg_install_complete="*                Installation terminée                 *"
+        msg_update_complete="*                Mise à jour terminée                  *"
 	msg_or="ou"
 	msg_login_info1="Vous pouvez vous connecter sur Jeedom en allant sur :"
 	msg_login_info2="Vos identifiants sont :"
@@ -225,7 +231,7 @@ configure_nginx()
 	done
 
     service nginx stop
-    JEEDOM_ROOT="`cat /etc/nginx/sites-available/defaults | grep -e 'root /usr/share/nginx/www/jeedom;'`"
+    JEEDOM_ROOT="`cat /etc/nginx/sites-available/default | grep -e 'root /usr/share/nginx/www/jeedom;'`"
     if [ -f '/etc/nginx/sites-available/defaults' ]; then
         rm /etc/nginx/sites-available/default
     fi
@@ -284,7 +290,9 @@ configure_nginx_ssl()
 
     JEEDOM_ROOT="`cat /etc/nginx/sites-available/defaults | grep -e 'root /usr/share/nginx/www/jeedom;'`"
     cp ${webserver_home}/jeedom/install/nginx_default_ssl /etc/nginx/sites-available/default_ssl
-    ln -s /etc/nginx/sites-available/default_ssl /etc/nginx/sites-enabled/
+    if [ ! -f '/etc/nginx/sites-enabled/default_ssl' ]; then
+        ln -s /etc/nginx/sites-available/default_ssl /etc/nginx/sites-enabled/default_ssl
+    fi
     if [ ! -z "${JEEDOM_ROOT}" ]; then
         sed -i 's%root /usr/share/nginx/www;%root /usr/share/nginx/www/jeedom;%g' /etc/nginx/sites-available/default_ssl
     fi
@@ -599,7 +607,7 @@ case ${webserver} in
                 install_razberry_zway
 
                 echo "********************************************************"
-                echo "${msg_install_jeedom}"
+                echo "${msg_update_jeedom}"
                 echo "********************************************************"
                 php install/install.php
                 chown -R www-data:www-data *
@@ -617,14 +625,14 @@ case ${webserver} in
                 service jeedom start
 
                 echo "********************************************************"
-                echo "${msg_post_install_actions}"
+                echo "${msg_post_update_actions}"
                 echo "********************************************************"
                 cp install/motd /etc
                 chown root:root /etc/motd
                 chmod 644 /etc/motd
 
                 echo "********************************************************"
-                echo "${msg_install_complete}"
+                echo "${msg_update_complete}"
                 echo "********************************************************"
                 IP=$(ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{print $1}')
                 HOST=$(hostname -f)
