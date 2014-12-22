@@ -7,11 +7,11 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
 include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
 ?>
 
-{{Processus Jeecron :}} <span class="label label-default"><span class="tooltips" id="span_jeecronMasterRuns" title="{{Nombre de Jeecron master doit toujours être inférieur à 2}}"></span> | 
+{{Processus cron Jeedom :}} <span class="label label-default"><span class="tooltips" id="span_jeecronMasterRuns" title="{{Nombre de processus Jeedom cron maître (doit toujours être inférieur à 2)}}"></span> | 
     <span id="span_jeecronRuns" class="tooltips" title="{{Nombre total de processus Jeedom en cours}}"></span> | 
     <span id="span_nbProcess" class="tooltips" title="{{Nombre total de processus en cours sur la machine}}"></span></span>
     <br/>
-<span>{{Load avg}} <span class="label label-default"><span id="span_loadAvg1" class="tooltips" title="{{Charge moyenne du système sur la dernière minute}}"></span> | 
+<span>{{Charge moyenne}} <span class="label label-default"><span id="span_loadAvg1" class="tooltips" title="{{Charge moyenne du système sur la dernière minute}}"></span> | 
         <span id="span_loadAvg5" class="tooltips" title="{{Charge moyenne du système sur les 5 dernières minutes}}"></span> | 
         <span id="span_loadAvg15" class="tooltips" title="{{Charge moyenne du système sur les 15 dernières minutes}}"></span></span></span>
 
