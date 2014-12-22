@@ -1,6 +1,5 @@
 function initHome() {
     refreshMessageNumber();
-    $('#ul_objectList').trigger('create');
     jeedom.object.all({
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -78,6 +77,33 @@ function initHome() {
                 initApplication();
             }
         });
+    });
+
+    $('#bt_showObjectList').off().on('click', function () {
+        if ($('#ul_objectList').is(':visible')) {
+            $('#ul_objectList').hide();
+        } else {
+            $('.jeedomListView').hide();
+            $('#ul_objectList').show();
+        }
+    });
+
+    $('#bt_showViewList').off().on('click', function () {
+        if ($('#ul_viewList').is(':visible')) {
+            $('#ul_viewList').hide();
+        } else {
+            $('.jeedomListView').hide();
+            $('#ul_viewList').show();
+        }
+    });
+
+    $('#bt_showPlanList').off().on('click', function () {
+        if ($('#ul_planList').is(':visible')) {
+            $('#ul_planList').hide();
+        } else {
+            $('.jeedomListView').hide();
+            $('#ul_planList').show();
+        }
     });
 }
 
