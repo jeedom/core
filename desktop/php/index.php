@@ -204,7 +204,7 @@ if (count($plugins_list) > 0) {
                                                     }
                                                     if (hasRight('backupview', true)) {
                                                         ?>
-                                                        <li><a href="index.php?v=d&p=backup"><i class="fa fa-floppy-o"></i> {{Sauvegarde}}</a></li>
+                                                        <li><a href="index.php?v=d&p=backup"><i class="fa fa-floppy-o"></i> {{Sauvegardes}}</a></li>
                                                         <?php
                                                     }
                                                     if (hasRight('updateview', true)) {
@@ -230,12 +230,12 @@ if (count($plugins_list) > 0) {
                                                     }
                                                     if (hasRight('logview', true)) {
                                                         ?>
-                                                        <li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Log}}</a></li>
+                                                        <li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
                                                         <?php
                                                     }
                                                      if (hasRight('customview', true)) {
                                                         ?>
-                                                        <li class="expertModeVisible"><a href="index.php?v=d&p=custom"><i class="fa fa-pencil-square-o"></i> {{Personalisation avancée}}</a></li>
+                                                        <li class="expertModeVisible"><a href="index.php?v=d&p=custom"><i class="fa fa-pencil-square-o"></i> {{Personnalisation avancée}}</a></li>
                                                         <?php
                                                     }
                                                     ?>
@@ -245,7 +245,7 @@ if (count($plugins_list) > 0) {
                                             if (config::byKey('jeeNetwork::mode') == 'master') {
                                                 if (hasRight('cronview', true)) {
                                                     ?>
-                                                    <li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Objet}}</a></li>
+                                                    <li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Objets}}</a></li>
                                                     <?php
                                                 }
                                             } if (hasRight('pluginview', true)) {
@@ -256,7 +256,7 @@ if (count($plugins_list) > 0) {
                                             if (config::byKey('jeeNetwork::mode') == 'master') {
                                                 if (hasRight('interactview', true)) {
                                                     ?>
-                                                    <li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interaction}}</a></li>
+                                                    <li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interactions}}</a></li>
                                                 <?php } if (hasRight('displayview')) {
                                                     ?>
                                                     <li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Affichage}}</a></li>
@@ -265,9 +265,9 @@ if (count($plugins_list) > 0) {
                                             }
                                             if (hasRight('scenarioview', true) && config::byKey('jeeNetwork::mode') == 'master') {
                                                 if (config::byKey('scenario::expertMode') == '1') {
-                                                    echo '<li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénario}}</a></li>';
+                                                    echo '<li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>';
                                                 } else {
-                                                    echo '<li><a href = "index.php?v=d&p=scenarioAssist"><i class = "fa fa-cogs"></i> {{Scénario}}</a></li>';
+                                                    echo '<li><a href = "index.php?v=d&p=scenarioAssist"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>';
                                                 }
                                             }
                                             ?>
@@ -350,10 +350,10 @@ if (count($plugins_list) > 0) {
                         echo '<div style="width : 100%" class="alert alert-warning">{{Erreur cron : il n\'y a pas eu de lancement depuis plus de 1h}}</div>';
                     }
                     if (config::byKey('enableCron', 'core', 1, true) == 0) {
-                        echo '<div style="width : 100%" class="alert alert-warning">{{Erreur cron : les crons sont désactivés, aller dans Générale -> Administration -> Moteur de tache pour les réactiver}}</div>';
+                        echo '<div style="width : 100%" class="alert alert-warning">{{Erreur cron : les crons sont désactivés. Allez dans Général -> Administration -> Moteur de tâches pour les réactiver}}</div>';
                     }
                     if (config::byKey('enableScenario') == 0) {
-                        echo '<div style="width : 100%" class="alert alert-warning">{{Erreur scénario : tous les scénarios sont désactivés aller sur la page des scénarios pour les réactiver}}</div>';
+                        echo '<div style="width : 100%" class="alert alert-warning">{{Erreur scénario : tous les scénarios sont désactivés. Allez Général -> Scénarios pour les réactiver}}</div>';
                     }
                     ?>
                     <div style="display: none;width : 100%" id="div_alert"></div>
