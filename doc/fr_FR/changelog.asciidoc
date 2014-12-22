@@ -1,3 +1,7 @@
+==== 22/12/2014
+
+- Possibilité dans les scénarios de desactiver une action sans la supprimer
+
 ==== 20/12/2014
 
 - Possibilité d'ajouter du javascript et css personalisé directement inclus sur toute les pages (avec differenciation desktop/mobile)

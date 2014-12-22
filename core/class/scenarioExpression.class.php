@@ -456,6 +456,9 @@ class scenarioExpression {
     /*     * *********************Methode d'instance************************* */
 
     public function execute(&$scenario = null) {
+        if ($this->getOptions('enable', 1) == 0) {
+            return;
+        }
         $message = '';
         try {
             if ($this->getType() == 'element') {
@@ -467,6 +470,9 @@ class scenarioExpression {
                 return;
             }
             $options = $this->getOptions();
+            if (isset($options['enable'])) {
+                unset($options['enable']);
+            }
             if (is_array($options) && $this->getExpression() != 'wait') {
                 foreach ($options as $key => $value) {
                     $options[$key] = str_replace('"', '', self::setTags($value, $scenario));

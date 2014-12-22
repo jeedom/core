@@ -721,7 +721,12 @@ function addExpression(_expression) {
             retour += '<div class="col-xs-1">';
             retour += '<i class="fa fa-arrows-v pull-left cursor bt_sortable" style="margin-top : 9px;"></i>';
             retour += '<i class="fa fa-minus-circle pull-left cursor bt_removeExpression" style="margin-top : 9px;"></i>';
-            retour += ' <a class="btn btn-default btn-xs cursor bt_selectCmdExpression pull-right"><i class="fa fa-list-alt"></i></a>';
+            if (!isset(_expression.options) || !isset(_expression.options.enable) || _expression.options.enable == 1) {
+                retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked style="margin-top : 9px;" title="Décocher pour desactiver l\'action"/>';
+            } else {
+                retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" style="margin-top : 9px;" title="Decocher pour desactiver l\'action"/>';
+            }
+            retour += ' <a class="btn btn-default btn-xs cursor bt_selectCmdExpression pull-right" style="margin-top : 4px;"><i class="fa fa-list-alt"></i></a>';
             retour += '</div>';
             retour += '<div class="col-xs-3">';
             retour += '<input class="expressionAttr form-control input-sm" data-l1key="expression" value="' + init(_expression.expression) + '" style="font-weight:bold;"/>';
