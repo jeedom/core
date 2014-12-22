@@ -175,6 +175,16 @@ try {
         ajax::success();
     }
 
+    if (init('action') == 'createTemporary') {
+        if (!isConnect('admin')) {
+            throw new Exception(__('401 - Accès non autorisé', __FILE__));
+        }
+        $user = user::createTemporary(12);
+        $return = utils::o2a($user);
+        $return['directUrl'] = $user->getDirectUrlAccess();
+        ajax::success($return);
+    }
+
     throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
     /*     * *********Catch exeption*************** */
 } catch (Exception $e) {

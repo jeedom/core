@@ -78,6 +78,22 @@ $("#table_user").delegate(".del_user", 'click', function (event) {
     });
 });
 
+$('#bt_addTemporariUser').on('click', function () {
+    bootbox.confirm('{{Etes-vous sûr de vouloir creer un utilisateur d\'accès temporaire ?}}', function (result) {
+        if (result) {
+            jeedom.user.createTemporary({
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                    printUsers();
+                    bootbox.alert("Voici l'url à passer pour donner un accès temporaire : <br\><b style='word-break: break-all;white-space: pre-wrap;word-wrap: break-word;'>" + data.directUrl + "</b>");
+                }
+            });
+        }
+    });
+});
+
 $("#table_user").delegate(".change_mdp_user", 'click', function (event) {
     $.hideAlert();
     var user = {id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value(), login: $(this).closest('tr').find('.userAttr[data-l1key=login]').value()};

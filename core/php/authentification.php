@@ -143,7 +143,7 @@ function login($_login, $_password, $_ajax = false, $_passAlreadyEncode = false)
     sleep(5);
     if (!$_ajax) {
         if (strpos($_SERVER['PHP_SELF'], 'core') || strpos($_SERVER['PHP_SELF'], 'desktop')) {
-            header('Location:../../index.php?v=' . $_GET['v'] . '&error=1');
+            header('Location:../../index.php?v=d&error=1');
         } else {
             header('Location:index.php?v=' . $_GET['v'] . '&error=1');
         }
@@ -178,7 +178,7 @@ function loginByKey($_key, $_ajax = false) {
     sleep(5);
     if (!$_ajax) {
         if (strpos($_SERVER['PHP_SELF'], 'core') || strpos($_SERVER['PHP_SELF'], 'desktop')) {
-            header('Location:../../index.php?v=' . $_GET['v'] . '&error=1');
+            header('Location:../../index.php?v=derror=1');
         } else {
             header('Location:index.php?v=' . $_GET['v'] . '&error=1');
         }

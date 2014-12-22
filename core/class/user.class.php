@@ -116,8 +116,20 @@ class user {
         $user = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
         if (is_object($user)) {
             jeedom::event('user_connect');
+            if ($user->getOptions('validity_limit') != '' && strtotime('now') > strtotime($user->getOptions('validity_limit'))) {
+                $user->remove();
+                return false;
+            }
         }
         return $user;
+    }
+
+    public static function cleanOutdatedUser() {
+        foreach (user::all() as $user) {
+            if ($user->getOptions('validity_limit') != '' && strtotime('now') > strtotime($user->getOptions('validity_limit'))) {
+                $user->remove();
+            }
+        }
     }
 
     public static function connectToLDAP() {
@@ -170,11 +182,23 @@ class user {
     public static function searchByRight($_rights) {
         $values = array(
             'rights' => '%"' . $_rights . '":1%',
+            'rights2' => '%"' . $_rights . '":"1"%',
         );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                 FROM user 
-                WHERE rights LIKE :rights';
+                WHERE rights LIKE :rights
+                    OR rights LIKE :rights2';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+    }
+
+    public static function createTemporary($_hours) {
+        $user = new self();
+        $user->setLogin('temp_' . config::genKey());
+        $user->setPassword(config::genKey(64));
+        $user->setRights('admin', 1);
+        $user->setOptions('validity_limit', date('Y-m-d H:i:s', strtotime('+' . $_hours . ' hour now')));
+        $user->save();
+        return $user;
     }
 
     /*     * *********************Méthodes d'instance************************* */
@@ -206,8 +230,8 @@ class user {
     }
 
     public function getDirectUrlAccess() {
-        if(config::byKey('market::returnLink') != '' && config::byKey('market::allowDNS')){
-            return config::byKey('market::returnLink') . '&url='.urlencode('/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword());
+        if (config::byKey('market::returnLink') != '' && config::byKey('market::allowDNS')) {
+            return config::byKey('market::returnLink') . '&url=' . urlencode('/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword());
         }
         return config::byKey('externalAddr') . '/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword();
     }

@@ -426,6 +426,7 @@ class jeedom {
             $c = new Cron\CronExpression('20 23 * * *', new Cron\FieldFactory);
             if ($c->isDue()) {
                 scenario::cleanTable();
+                user::cleanOutdatedUser();
             }
         } catch (Exception $e) {
             log::add('scenario', 'error', $e->getMessage());
