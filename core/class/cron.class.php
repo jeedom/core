@@ -209,7 +209,7 @@ class cron {
      * @return boolean
      */
     public function save() {
-        return DB::save($this);
+        return DB::save($this, false, true);
     }
 
     /**
