@@ -254,7 +254,9 @@ configure_nginx()
     cronjob="* * * * * $croncmd"
     ( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
 
-    configure_nginx_ssl                   
+    if [ ! -f '/etc/nginx/sites-enabled/default_ssl' ]; then
+        configure_nginx_ssl         
+    fi          
 }
 
 configure_nginx_ssl()
