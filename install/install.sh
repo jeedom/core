@@ -220,16 +220,15 @@ install_nodejs()
 configure_nginx()
 {
     echo "********************************************************"
-	echo "${msg_nginx_config}"
+    echo "${msg_nginx_config}"
     echo "********************************************************"
-	for i in apache2 apache
-	do
-		if [ -f "/etc/init.d/${i}" ]; then
-			service ${i} stop
-			update-rc.d ${i} remove
-		fi
-	done
-
+    for i in apache2 apache mongoose
+    do
+            if [ -f "/etc/init.d/${i}" ]; then
+                    service ${i} stop
+                    update-rc.d ${i} remove
+            fi
+    done
     service nginx stop
     JEEDOM_ROOT="`cat /etc/nginx/sites-available/default | grep -e 'root /usr/share/nginx/www/jeedom;'`"
     if [ -f '/etc/nginx/sites-available/defaults' ]; then
@@ -284,8 +283,13 @@ configure_nginx_ssl()
     if [ ! -z "${JEEDOM_ROOT}" ]; then
         sed -i 's%root /usr/share/nginx/www;%root /usr/share/nginx/www/jeedom;%g' /etc/nginx/sites-available/default_ssl
     fi
-    update-rc.d -f mongoose remove
-    service mongoose stop
+    for i in apache2 apache mongoose
+    do
+            if [ -f "/etc/init.d/${i}" ]; then
+                    service ${i} stop
+                    update-rc.d ${i} remove
+            fi
+    done
     service nginx reload
 }
 
@@ -476,8 +480,14 @@ install_razberry_zway()
 
 	# Cleanup
 	rm -f zway-install
-        update-rc.d -f mongoose remove
-        service mongoose stop
+        for i in mongoose
+        do
+            if [ -f "/etc/init.d/${i}" ]; then
+                    service ${i} stop
+                    update-rc.d ${i} remove
+            fi
+        done
+        ps aux | grep mongoose | awk '{print $2}' | xargs kill -9 
 }
 
 install_dependency()
