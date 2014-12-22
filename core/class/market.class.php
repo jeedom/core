@@ -301,6 +301,9 @@ class market {
             if (isset($_result['client::ip']) && config::byKey('market::allowDNS') == 1) {
                 config::save('externalAddr', $_result['client::ip']);
             }
+            if (isset($_result['client::marketlink']) && config::byKey('market::allowDNS') == 1) {
+                config::save('market::returnLink', $_result['client::marketlink']);
+            }
         }
     }
 

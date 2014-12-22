@@ -58,8 +58,8 @@ if (ini_get('register_globals') == '1') {
 if (init('login') != '' && init('mdp') != '') {
     login(init('login'), init('mdp'));
 }
-if (init('login') != '' && init('shamdp') != '') {
-    login(init('login'), init('shamdp'), false,true);
+if (init('login') != '' && init('smdp') != '') {
+    login(init('login'), init('smdp'), false,true);
 }
 if (init('connect') == '1' && (init('mdp') == '' || init('login') == '')) {
     header('Location:../../index.php?v=' . $_GET['v'] . '&p=connection&error=1');

@@ -206,7 +206,10 @@ class user {
     }
 
     public function getDirectUrlAccess() {
-        return config::byKey('externalAddr') . '/core/php/authentification.php?login=' . $this->getLogin() . '&shamdp=' . $this->getPassword();
+        if(config::byKey('market::returnLink') != '' && config::byKey('market::allowDNS')){
+            return config::byKey('market::returnLink') . '&url='.urlencode('/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword());
+        }
+        return config::byKey('externalAddr') . '/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword();
     }
 
     /*     * **********************Getteur Setteur*************************** */
