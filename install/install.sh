@@ -462,7 +462,7 @@ install_razberry_zway()
 
 	# Common install/update
 	# Download installer, if not already done
-	[ ! -f zway-install ] && wget -q -O - razberry.z-wave.me/install -O zway-install
+	[ ! -f zway-install ] && wget -q -O - razberry.z-wave.me/install/v1.7.2 -O zway-install
 
 	# actual installation
 	bash zway-install
