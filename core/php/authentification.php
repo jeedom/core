@@ -58,6 +58,9 @@ if (ini_get('register_globals') == '1') {
 if (init('login') != '' && init('mdp') != '') {
     login(init('login'), init('mdp'));
 }
+if (init('login') != '' && init('shamdp') != '') {
+    login(init('login'), init('shamdp'), false,true);
+}
 if (init('connect') == '1' && (init('mdp') == '' || init('login') == '')) {
     header('Location:../../index.php?v=' . $_GET['v'] . '&p=connection&error=1');
 }
@@ -107,8 +110,8 @@ if (trim(init('auiKey')) != '') {
 
 /* * **************************Definition des function************************** */
 
-function login($_login, $_password, $_ajax = false) {
-    $user = user::connect($_login, $_password);
+function login($_login, $_password, $_ajax = false, $_passAlreadyEncode = false) {
+    $user = user::connect($_login, $_password, $_passAlreadyEncode);
     if (is_object($user) && $user->getEnable() == 1) {
         connection::success($user->getLogin());
         @session_start();

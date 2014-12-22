@@ -291,14 +291,16 @@ class market {
     }
 
     public static function postJsonRpc($_result) {
-        if (is_array($_result) && isset($_result['licence'])) {
-            config::save('jeedom::licence', $_result['licence']);
-        }
-        if (is_array($_result) && isset($_result['register::datetime'])) {
-            config::save('register::datetime', $_result['register::datetime']);
-        }
-        if (is_array($_result) && isset($_result['client::ip']) && config::byKey('externalAddr') == '') {
-            config::save('externalAddr', $_result['client::ip']);
+        if (is_array($_result)) {
+            if (isset($_result['licence'])) {
+                config::save('jeedom::licence', $_result['licence']);
+            }
+            if (isset($_result['register::datetime'])) {
+                config::save('register::datetime', $_result['register::datetime']);
+            }
+            if (isset($_result['client::ip']) && config::byKey('market::allowDNS') == 1) {
+                config::save('externalAddr', $_result['client::ip']);
+            }
         }
     }
 

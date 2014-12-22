@@ -318,6 +318,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             }
                             ?>
                             <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
+                            <div class='alert alert-info'>{{Si vous utilisez le market comme DNS vous n'avez pas à remplir ces champs (voir la section market)}}</div>
                                 <div class="form-group">
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse externe}}</label>
                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">

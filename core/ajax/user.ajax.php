@@ -86,7 +86,13 @@ try {
         if (!isConnect('admin')) {
             throw new Exception(__('401 - Accès non autorisé', __FILE__));
         }
-        ajax::success(utils::o2a(user::all()));
+        $users = array();
+        foreach (user::all() as $user) {
+            $user_info = utils::o2a($user);
+            $user_info['directUrl'] = $user->getDirectUrlAccess();
+            $users[] = $user_info;
+        }
+        ajax::success($users);
     }
 
     if (init('action') == 'save') {

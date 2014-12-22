@@ -47,7 +47,12 @@ class user {
      * @param string $_mdp motsz de passe en sha1
      * @return user object user 
      */
-    public static function connect($_login, $_mdp) {
+    public static function connect($_login, $_mdp, $_passAlreadyEncode = false) {
+        if ($_passAlreadyEncode) {
+            $sMdp = $_mdp;
+        } else {
+            $sMdp = sha1($_mdp);
+        }
         if (config::byKey('ldap:enable') == '1') {
             log::add("connection", "debug", __('Authentification par LDAP', __FILE__));
             $ad = self::connectToLDAP();
@@ -68,13 +73,13 @@ class user {
                     if ($entries['count'] > 0) {
                         $user = self::byLogin($_login);
                         if (is_object($user)) {
-                            $user->setPassword(sha1($_mdp));
+                            $user->setPassword($sMdp);
                             $user->save();
                             return $user;
                         }
                         $user = new user;
                         $user->setLogin($_login);
-                        $user->setPassword(sha1($_mdp));
+                        $user->setPassword($sMdp);
                         $user->save();
                         log::add("connection", "info", __('Utilisateur créé depuis le LDAP : ', __FILE__) . $_login);
                         jeedom::event('user_connect');
@@ -96,20 +101,20 @@ class user {
                     return false;
                 }
                 return false;
-            }else{
-                 log::add("connection", "info", __('Impossible de se connecter au LDAP', __FILE__));
+            } else {
+                log::add("connection", "info", __('Impossible de se connecter au LDAP', __FILE__));
             }
         }
         $values = array(
             'login' => $_login,
-            'password' => sha1($_mdp),
+            'password' => $sMdp,
         );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                 FROM user 
                 WHERE login=:login 
                     AND password=:password';
         $user = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-        if(is_object($user)){
+        if (is_object($user)) {
             jeedom::event('user_connect');
         }
         return $user;
@@ -144,7 +149,7 @@ class user {
                 WHERE options LIKE :key';
         $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
         if (is_object($result)) {
-            
+
             if ($result->getOptions('registerDevice') == $_key || $result->getOptions('registerDesktop') == $_key) {
                 return $result;
             }
@@ -200,6 +205,10 @@ class user {
         return (is_numeric($this->id) && $this->login != '');
     }
 
+    public function getDirectUrlAccess() {
+        return config::byKey('externalAddr') . '/core/php/authentification.php?login=' . $this->getLogin() . '&shamdp=' . $this->getPassword();
+    }
+
     /*     * **********************Getteur Setteur*************************** */
 
     public function getId() {
@@ -241,7 +250,7 @@ class user {
     public function setRights($_key, $_value) {
         $this->rights = utils::setJsonAttr($this->rights, $_key, $_value);
     }
-    
+
     function getEnable() {
         return $this->enable;
     }

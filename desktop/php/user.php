@@ -14,7 +14,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
             <a class="btn btn-success pull-right" id="bt_addUser"><i class="fa fa-plus-circle"></i> {{Ajouter un utilisateur}}</a><br/><br/>
         <?php } ?>
         <table class="table table-condensed table-bordered" id="table_user">
-            <thead><th>{{Nom d'utilisateur}}</th><th>{{Actions}}</th><th>{{Actif}}</th><th>{{Droits}}</th></thead>
+            <thead><th>{{Nom d'utilisateur}}</th><th>{{Actions}}</th><th>{{Actif}}</th><th>{{Droits}}</th><th>{{Accès directement}}</th></thead>
             <tbody></tbody>
         </table>
         <div class="form-actions" style="height: 20px;">
