@@ -119,12 +119,12 @@ try {
         $older = array('file' => null, 'datetime' => null);
         foreach (ls($backup_dir, '*') as $file) {
             if ($older['datetime'] == null) {
-                $older['file'] = $record_dir . '/' . $file;
-                $older['datetime'] = filemtime($record_dir . '/' . $file);
+                $older['file'] = $backup_dir . '/' . $file;
+                $older['datetime'] = filemtime($backup_dir . '/' . $file);
             }
-            if ($older['datetime'] > filemtime($record_dir . '/' . $file)) {
-                $older['file'] = $record_dir . '/' . $file;
-                $older['datetime'] = filemtime($record_dir . '/' . $file);
+            if ($older['datetime'] > filemtime($backup_dir . '/' . $file)) {
+                $older['file'] = $backup_dir . '/' . $file;
+                $older['datetime'] = filemtime($backup_dir . '/' . $file);
             }
         }
         if ($older['file'] == null) {
