@@ -513,6 +513,8 @@ install_dependency()
             fi
         done
         service php5-fpm restart
+
+        apt-get install -y libjsoncpp-dev libtinyxml-dev 
 }
 
 install_dependency_nginx()
