@@ -23,18 +23,20 @@ if (getUrlVars('removeSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
 }
 
-$(".li_object").on('click', function(event) {
+$(".li_object").on('click', function (event) {
     $('#div_conf').show();
     $('.li_object').removeClass('active');
     $(this).addClass('active');
     jeedom.object.byId({
         id: $(this).attr('data-object_id'),
         cache: false,
-        error: function(error) {
+        error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
-        success: function(data) {
+        success: function (data) {
             $('.objectAttr').value('');
+            $('.objectAttr[data-l1key=display][data-l2key=tagColor]').value('#9b59b6');
+            $('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').value('#ffffff');
             $('.objectAttr[data-l1key=father_id] option').show();
             $('.object').setValues(data, '.objectAttr');
             $('.objectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide();
@@ -44,15 +46,15 @@ $(".li_object").on('click', function(event) {
     return false;
 });
 
-$("#bt_addObject").on('click', function(event) {
-    bootbox.prompt("Nom de l'objet ?", function(result) {
+$("#bt_addObject").on('click', function (event) {
+    bootbox.prompt("Nom de l'objet ?", function (result) {
         if (result !== null) {
             jeedom.object.save({
                 object: {name: result, isVisible: 1},
-                error: function(error) {
+                error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
-                success: function(data) {
+                success: function (data) {
                     modifyWithoutSave = false;
                     window.location.replace('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1');
                 }
@@ -66,14 +68,14 @@ jwerty.key('ctrl+s', function (e) {
     $("#bt_saveObject").click();
 });
 
-$("#bt_saveObject").on('click', function(event) {
+$("#bt_saveObject").on('click', function (event) {
     if ($('.li_object.active').attr('data-object_id') != undefined) {
         jeedom.object.save({
             object: $('.object').getValues('.objectAttr')[0],
-            error: function(error) {
+            error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
-            success: function(data) {
+            success: function (data) {
                 modifyWithoutSave = false;
                 window.location.replace('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1');
             }
@@ -84,17 +86,17 @@ $("#bt_saveObject").on('click', function(event) {
     return false;
 });
 
-$("#bt_removeObject").on('click', function(event) {
+$("#bt_removeObject").on('click', function (event) {
     if ($('.li_object.active').attr('data-object_id') != undefined) {
         $.hideAlert();
-        bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.li_object.active a').text() + '</span> ?', function(result) {
+        bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.li_object.active a').text() + '</span> ?', function (result) {
             if (result) {
                 jeedom.object.remove({
                     id: $('.li_object.active').attr('data-object_id'),
-                    error: function(error) {
+                    error: function (error) {
                         $('#div_alert').showAlert({message: error.message, level: 'danger'});
                     },
-                    success: function() {
+                    success: function () {
                         modifyWithoutSave = false;
                         window.location.replace('index.php?v=d&p=object&removeSuccessFull=1');
                     }
@@ -107,7 +109,7 @@ $("#bt_removeObject").on('click', function(event) {
     return false;
 });
 
-$('body').delegate('.bt_sortable', 'mouseenter', function() {
+$('body').delegate('.bt_sortable', 'mouseenter', function () {
     $("#ul_object").sortable({
         axis: "y",
         cursor: "move",
@@ -116,14 +118,14 @@ $('body').delegate('.bt_sortable', 'mouseenter', function() {
         tolerance: "intersect",
         forcePlaceholderSize: true,
         dropOnEmpty: true,
-        stop: function(event, ui) {
+        stop: function (event, ui) {
             var objects = [];
-            $('#ul_object .li_object').each(function() {
+            $('#ul_object .li_object').each(function () {
                 objects.push($(this).attr('data-object_id'));
             });
             jeedom.object.setOrder({
                 objects: objects,
-                error: function(error) {
+                error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 }
             });
@@ -132,12 +134,12 @@ $('body').delegate('.bt_sortable', 'mouseenter', function() {
     $("#ul_object").sortable("enable");
 });
 
-$('body').delegate('.bt_sortable', 'mouseout', function() {
+$('body').delegate('.bt_sortable', 'mouseout', function () {
     $("#ul_object").sortable("disable");
 });
 
-$('#bt_chooseIcon').on('click', function() {
-    chooseIcon(function(_icon) {
+$('#bt_chooseIcon').on('click', function () {
+    chooseIcon(function (_icon) {
         $('.objectAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
     });
 });
@@ -152,6 +154,6 @@ if (is_numeric(getUrlVars('id'))) {
     $('#ul_object .li_object:first').click();
 }
 
-$('body').delegate('.objectAttr', 'change', function() {
+$('body').delegate('.objectAttr', 'change', function () {
     modifyWithoutSave = true;
 });
