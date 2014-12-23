@@ -500,19 +500,15 @@ install_dependency()
 
         apt-get install -y php5-common php5-fpm php5-dev php5-cli php5-curl php5-json php5-mysql \
                    usb-modeswitch python-serial make php-pear libpcre3-dev build-essential
-        apt-get install -y php5-oauth
-        
-
-        if [ $? -ne 0 ]; then
-            pecl install oauth
-            for i in fpm cli
-            do
-                PHP_OAUTH="`cat /etc/php5/${i}/php.ini | grep -e 'oauth.so'`"
-                if [ -z "${PHP_OAUTH}" ]; then
-                    echo "extension=oauth.so" >> /etc/php5/${i}/php.ini
-                fi
-            done
-        fi
+       
+        pecl install oauth
+        for i in fpm cli
+        do
+            PHP_OAUTH="`cat /etc/php5/${i}/php.ini | grep -e 'oauth.so'`"
+            if [ -z "${PHP_OAUTH}" ]; then
+                echo "extension=oauth.so" >> /etc/php5/${i}/php.ini
+            fi
+        done
         service php5-fpm restart
 }
 
