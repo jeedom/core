@@ -480,7 +480,7 @@ class cmd {
     /*     * *********************Méthodes d'instance************************* */
 
     public function formatValue($_value) {
-        if (trim($_value) == '') {
+        if (trim($_value) == '' && $_value !== false) {
             return '';
         }
         if (strpos('error', strtolower($_value)) !== false) {
