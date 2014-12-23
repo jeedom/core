@@ -125,7 +125,7 @@ class eqLogic {
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
 
-    public static function byLogicalId($_logicalId, $_eqType_name) {
+    public static function byLogicalId($_logicalId, $_eqType_name, $_multiple = false) {
         $values = array(
             'logicalId' => $_logicalId,
             'eqType_name' => $_eqType_name
@@ -134,6 +134,9 @@ class eqLogic {
                 FROM eqLogic
                 WHERE logicalId=:logicalId
                     AND eqType_name=:eqType_name';
+        if ($_multiple) {
+            return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+        }
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
     }
 
