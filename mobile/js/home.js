@@ -105,5 +105,17 @@ function initHome() {
             $('#ul_planList').show();
         }
     });
+    
+    $('#bt_listPlugin').off().on('click', function () {
+        if ($('#ul_pluginList').is(':visible')) {
+            $('#ul_pluginList').hide();
+        } else {
+            $('.jeedomListView').hide();
+            $('#ul_pluginList').show();
+        }
+    });
+    
+    
+    
 }
 
