@@ -94,7 +94,6 @@ function initApplication(_reinit) {
                     nodeJsKey = data.result.nodeJsKey;
                     user_id = data.result.user_id;
                     plugins = data.result.plugins;
-
                     userProfils = data.result.userProfils;
                     var include = ['core/js/core.js'];
 
