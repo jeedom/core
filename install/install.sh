@@ -401,7 +401,7 @@ optimize_webserver_cache_opcache()
 optimize_webserver_cache()
 {
 	echo "${msg_php_version}"
-
+        PHP_VERSION="`php -v | awk '/PHP [0-9].[0-9].[0-9].*/{ print $2 }' | cut -d'-' -f1`"
 	# Check if PHP is already optimized or not (empty string)
 	if [ -n "${PHP_OPTIMIZATION}" ]; then
 		echo "${msg_php_already_optimized}"
@@ -520,6 +520,7 @@ install_dependency()
 
         apt-get install -y libjsoncpp-dev libtinyxml-dev 
         apt-get install -y libxml2 libarchive-dev 
+        apt-get autoremove
 }
 
 install_dependency_nginx()
