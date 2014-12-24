@@ -47,7 +47,7 @@ install_msg_en()
 	msg_login_info1="You can log in to Jeedom by going on:"
 	msg_login_info2="Your credentials are:"
 	msg_optimize_webserver_cache="*      Checking for webserver cache optimization       *"
-	msg_php_version="PHP version ${PHP_VERSION} found"
+	msg_php_version="PHP version found : "
 	msg_php_already_optimized="PHP is already optimized (using ${PHP_OPTIMIZATION})"
 	msg_optimize_webserver_cache_apc="Installing APC cache optimization"
 	msg_optimize_webserver_cache_opcache="Installing Zend OpCache cache optimization"
@@ -101,7 +101,7 @@ install_msg_fr()
 	msg_login_info1="Vous pouvez vous connecter sur Jeedom en allant sur :"
 	msg_login_info2="Vos identifiants sont :"
 	msg_optimize_webserver_cache="*       Vérification de l'optimisation de cache        *"
-	msg_php_version="PHP version ${PHP_VERSION} trouvé"
+	msg_php_version="PHP version trouvé : "
 	msg_php_already_optimized="PHP est déjà optimisé (utilisation d'${PHP_OPTIMIZATION})"
 	msg_optimize_webserver_cache_apc="Installation de l'optimisation de cache APC"
 	msg_optimize_webserver_cache_opcache="Installation de l'optimisation de cache Zend OpCache"
@@ -400,7 +400,7 @@ optimize_webserver_cache_opcache()
 # Otherwise, install cache optimization according to PHP version
 optimize_webserver_cache()
 {
-	echo "${msg_php_version}"
+	echo "${msg_php_version}${PHP_VERSION}"
 	# Check if PHP is already optimized or not (empty string)
 	if [ -n "${PHP_OPTIMIZATION}" ]; then
 		echo "${msg_php_already_optimized}"
