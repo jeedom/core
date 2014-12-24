@@ -294,6 +294,7 @@ configure_nginx_ssl()
             fi
     done
     service nginx reload
+    update-rc.d nginx
 }
 
 configure_apache()
@@ -513,6 +514,9 @@ install_dependency()
             fi
         done
         service php5-fpm restart
+
+        apt-get install -y libjsoncpp-dev libtinyxml-dev 
+        apt-get install -y libxml2 libarchive-dev 
 }
 
 install_dependency_nginx()

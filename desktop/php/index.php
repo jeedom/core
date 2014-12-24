@@ -106,11 +106,11 @@ if (count($plugins_list) > 0) {
         include_file('3rdparty', 'jwerty/jwerty', 'js');
         include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
         include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
-        if (file_exists(dirname(__FILE__) . '/../custom/custom.js')) {
-            include_file('desktop', '', 'custom.js');
-        }
         if (file_exists(dirname(__FILE__) . '/../custom/custom.css')) {
             include_file('desktop', '', 'custom.css');
+        }
+        if (file_exists(dirname(__FILE__) . '/../custom/custom.js')) {
+            include_file('desktop', '', 'custom.js');
         }
         if (isConnect() && $_SESSION['user']->getOptions('desktop_highcharts_theme') != '') {
             try {
@@ -233,7 +233,7 @@ if (count($plugins_list) > 0) {
                                                         <li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
                                                         <?php
                                                     }
-                                                     if (hasRight('customview', true)) {
+                                                    if (hasRight('customview', true)) {
                                                         ?>
                                                         <li class="expertModeVisible"><a href="index.php?v=d&p=custom"><i class="fa fa-pencil-square-o"></i> {{Personnalisation avancée}}</a></li>
                                                         <?php
