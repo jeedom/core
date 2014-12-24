@@ -4,7 +4,7 @@ server {
         root /usr/share/nginx/www;
         index index.html index.htm index.php;
         access_log off;
-        error_log /usr/share/nginx/www/jeedom/log/nginx.error;
+        error_log /usr/share/nginx/www/jeedom/log/nginx.error crit;
         client_max_body_size 100M;
 
         ssl          on;

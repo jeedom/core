@@ -1099,7 +1099,7 @@ class cmd {
     }
 
     public function setName($name) {
-        $name = str_replace(array('&', '#', ']', '[', '%', "'", "+"), '', $name);
+        $name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $name);
         if ($name != $this->getName()) {
             $this->setInternalEvent(1);
         }

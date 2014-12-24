@@ -4,11 +4,11 @@ server {
         root /usr/share/nginx/www;
         index index.html index.htm index.php;
         access_log off;
-        error_log /usr/share/nginx/www/jeedom/log/nginx.error;
+        error_log /usr/share/nginx/www/jeedom/log/nginx.error crit;
         client_max_body_size 100M;
        
         location /jeedom/ {
-                try_files $uri $uri/ /index.html /index.php;
+                try_files $uri $uri/ /index.html /index.php crit;
         }
 
         location ~ ^/jeedom/tmp/(.*)$ {
