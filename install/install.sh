@@ -774,11 +774,20 @@ optimize_webserver_cache
 echo "********************************************************"
 echo "${msg_setup_nodejs_service}"
 echo "********************************************************"
-cp jeedom /etc/init.d/
+cp install/jeedom /etc/init.d/
 chmod +x /etc/init.d/jeedom
 update-rc.d jeedom defaults
+
+if [ -d /etc/systemd/system ]; then
+    cp install/jeedom.service /etc/systemd/system
+    systemctl enable jeedom
+fi
+
 if [ "${webserver}" = "apache" ] ; then 
     sed -i 's%PATH_TO_JEEDOM="/usr/share/nginx/www/jeedom"%PATH_TO_JEEDOM="/var/www/jeedom"%g' /etc/init.d/jeedom
+    if [ -d /etc/systemd/system ]; then
+        sed -i 's%/usr/share/nginx/www/jeedom%/var/www/jeedom%g' /etc/systemd/system/jeedom.service
+    fi
 fi
 
 echo "********************************************************"

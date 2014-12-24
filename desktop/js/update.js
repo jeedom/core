@@ -179,6 +179,7 @@ function getJeedomLog(_autoUpdate, _log) {
                 }
             }
             $('#pre_' + _log + 'Info').text(log);
+            $('#pre_updateInfo').parent().scrollTop($('#pre_updateInfo').parent().height() + 200000);
             if (init(_autoUpdate, 0) == 1) {
                 setTimeout(function () {
                     getJeedomLog(_autoUpdate, _log)
