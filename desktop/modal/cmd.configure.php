@@ -53,7 +53,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                                     <span class="cmdAttr label label-primary" data-l1key="subType"></span>
                                 </div>
                             </div>
-
                         </fieldset>
                     </form>
                 </div>
@@ -93,11 +92,19 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                     </form>
                 </div>
             </div>
+            <div class="form-group">
+                <label class="col-xs-2 control-label">{{URL direct}}</label>
+                <div class="col-xs-10">
+                    <?php
+                    echo '<a href="'.$cmd->getDirectUrlAccess().'" target="_blank"><i class="fa fa-external-link"></i> URL</a>';
+                    ?>
+                </div>
+            </div>
         </div>
 
         <div class="col-sm-6" >
             <legend>{{Utilisé par}}
-             <a class="btn btn-success btn-xs pull-right" id="bt_cmdConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+                <a class="btn btn-success btn-xs pull-right" id="bt_cmdConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
             </legend>
             <form class="form-horizontal">
                 <fieldset id="fd_cmdUsedBy">
@@ -281,7 +288,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         });
 
         $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
-        
+
         $('#bt_cmdConfigureSave').on('click', function () {
             var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
             if (!isset(cmd.display)) {

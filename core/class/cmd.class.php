@@ -1025,6 +1025,27 @@ class cmd {
         return $return;
     }
 
+    public function getDirectUrlAccess() {
+        $url = '/core/api/jeeApi.php?apikey=' . config::byKey('api') . '&type=cmd&id=' . $this->getId();
+        if ($this->getType() == 'action') {
+            switch ($this->getSubType()) {
+                case 'slider' :
+                    $url.= '&slider=50';
+                    break;
+                case 'color' :
+                    $url.= '&color=#123456';
+                    break;
+                case 'message' :
+                    $url.= '&title=montitre&message=monmessage';
+                    break;
+            }
+        }
+        if (config::byKey('market::returnLink') != '' && config::byKey('market::allowDNS')) {
+            return config::byKey('market::returnLink') . '&url=' . urlencode($url);
+        }
+        return config::byKey('externalAddr') . $url;
+    }
+
     /*     * **********************Getteur Setteur*************************** */
 
     public function getId() {
