@@ -353,7 +353,7 @@ if (count($plugins_list) > 0) {
                         echo '<div style="width : 100%" class="alert alert-warning">{{Erreur cron : les crons sont désactivés. Allez dans Général -> Administration -> Moteur de tâches pour les réactiver}}</div>';
                     }
                     if (config::byKey('enableScenario') == 0) {
-                        echo '<div style="width : 100%" class="alert alert-warning">{{Erreur scénario : tous les scénarios sont désactivés. Allez Général -> Scénarios pour les réactiver}}</div>';
+                        echo '<div style="width : 100%" class="alert alert-warning">{{Erreur scénario : tous les scénarios sont désactivés. Allez dans Général -> Scénarios pour les réactiver}}</div>';
                     }
                     ?>
                     <div style="display: none;width : 100%" id="div_alert"></div>
@@ -395,8 +395,12 @@ if (count($plugins_list) > 0) {
                 <span class="pull-left">&copy; <a id="bt_jeedomAbout" class="cursor">Jeedom</a> (v<?php echo getVersion('jeedom') ?> 
                     <?php
                     $nbNeedUpdate = update::nbNeedUpdate();
-                    if ($nbNeedUpdate > 0) {
-                        echo '<span class="label label-danger"><a href="index.php?v=d&p=update" style="color : white;">' . $nbNeedUpdate . ' {{Mise(s) à jour disponible}}</a></span>';
+                    if ($nbNeedUpdate == 1) {
+                        echo '<span class="label label-danger"><a href="index.php?v=d&p=update" style="color : white;">' . $nbNeedUpdate . ' {{Mise à jour disponible}}</a></span>';
+                    } else {
+                        if ($nbNeedUpdate > 1) {
+                            echo '<span class="label label-danger"><a href="index.php?v=d&p=update" style="color : white;">' . $nbNeedUpdate . ' {{Mises à jour disponibles}}</a></span>';
+                        }
                     }
                     echo ') ';
                     echo date('Y');
