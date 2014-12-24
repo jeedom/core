@@ -48,7 +48,7 @@ install_msg_en()
 	msg_login_info2="Your credentials are:"
 	msg_optimize_webserver_cache="*      Checking for webserver cache optimization       *"
 	msg_php_version="PHP version found : "
-	msg_php_already_optimized="PHP is already optimized (using ${PHP_OPTIMIZATION})"
+	msg_php_already_optimized="PHP is already optimized, using : "
 	msg_optimize_webserver_cache_apc="Installing APC cache optimization"
 	msg_optimize_webserver_cache_opcache="Installing Zend OpCache cache optimization"
 	msg_install_razberry_zway="*     Checking for Z-Way for RaZberry installation     *"
@@ -102,7 +102,7 @@ install_msg_fr()
 	msg_login_info2="Vos identifiants sont :"
 	msg_optimize_webserver_cache="*       Vérification de l'optimisation de cache        *"
 	msg_php_version="PHP version trouvé : "
-	msg_php_already_optimized="PHP est déjà optimisé (utilisation d'${PHP_OPTIMIZATION})"
+	msg_php_already_optimized="PHP est déjà optimisé, utilisation de : "
 	msg_optimize_webserver_cache_apc="Installation de l'optimisation de cache APC"
 	msg_optimize_webserver_cache_opcache="Installation de l'optimisation de cache Zend OpCache"
 	msg_install_razberry_zway="*         Vérification de Z-Way pour RaZberry          *"
@@ -300,7 +300,7 @@ configure_nginx_ssl()
 configure_apache()
 {
     echo "********************************************************"
-	echo "${msg_apache_config}"
+    echo "${msg_apache_config}"
     echo "********************************************************"
     cp install/apache_default /etc/apache2/sites-available/000-default.conf
     if [ ! -f '/etc/apache2/sites-enabled/000-default.conf' ]; then
@@ -403,7 +403,7 @@ optimize_webserver_cache()
 	echo "${msg_php_version}${PHP_VERSION}"
 	# Check if PHP is already optimized or not (empty string)
 	if [ -n "${PHP_OPTIMIZATION}" ]; then
-		echo "${msg_php_already_optimized}"
+		echo "${msg_php_already_optimized}${PHP_OPTIMIZATION}"
 		return
 	fi
 
