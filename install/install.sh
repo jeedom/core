@@ -497,13 +497,11 @@ install_razberry_zway()
 install_dependency()
 {
         apt-get update
-        apt-get install -y libssh2-php ntp unzip miniupnpc \
-                   mysql-client mysql-common mysql-server mysql-server-core-5.5
+        apt-get install -y libssh2-php ntp unzip miniupnpc mysql-client mysql-common mysql-server mysql-server-core-5.5
         apt-get install -y ffmpeg
         apt-get install -y avconv
 
-        apt-get install -y php5-common php5-fpm php5-dev php5-cli php5-curl php5-json php5-mysql \
-                   usb-modeswitch python-serial make php-pear libpcre3-dev build-essential
+        apt-get install -y php5-common php5-fpm php5-dev php5-cli php5-curl php5-json php5-mysql usb-modeswitch python-serial make php-pear libpcre3-dev build-essential
        
         pecl install oauth
         for i in fpm cli
