@@ -141,12 +141,13 @@ usage_help()
 configure_php()
 {
     [ -z "`getent group dialout | grep www-data`" ] && adduser www-data dialout
-    [ -z "`getent group gpio | grep www-data`" ] && adduser www-data gpio
+    GPIO_GROUP="`cat /etc/group | grep -e 'gpio'`"
+    if [ -z "${JEEDOM_CRON}" ]; then
+        [ -z "`getent group gpio | grep www-data`" ] && adduser www-data gpio
+    fi
     sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /etc/php5/fpm/php.ini
     sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' /etc/php5/fpm/php.ini
     sed -i 's/post_max_size = 8M/post_max_size = 1G/g' /etc/php5/fpm/php.ini
-    service php5-fpm restart
-    /etc/init.d/php5-fpm restart
 }
 
 # Check if nodeJS v0.10.25 is installed,
@@ -416,8 +417,6 @@ optimize_webserver_cache()
 			optimize_webserver_cache_opcache
 			;;
 	esac
-	# FIXME: may be done in common with configure_php()
-	service php5-fpm restart
 }
 
 # Check for the need to install razberry zway server and install it
@@ -516,7 +515,6 @@ install_dependency()
                     echo "extension=oauth.so" >> /etc/php5/${i}/php.ini
                 fi
             done
-            service php5-fpm restart
         fi
 
         apt-get install -y libjsoncpp-dev libtinyxml-dev 
@@ -614,6 +612,7 @@ case ${webserver} in
                 echo "********************************************************"
                 service jeedom restart
                 echo '[END UPDATE SUCCESS]'
+                service php5-fpm restart
                 exit 1
 		;;
 	*)
@@ -791,10 +790,6 @@ if [ "${webserver}" = "apache" ] ; then
         sed -i 's%/usr/share/nginx/www/jeedom%/var/www/jeedom%g' /etc/systemd/system/jeedom.service
     fi
 fi
-
-echo "********************************************************"
-echo "${msg_startup_nodejs_service}"
-echo "********************************************************"
 service jeedom start
 
 echo "********************************************************"
@@ -803,6 +798,7 @@ echo "********************************************************"
 cp install/motd /etc
 chown root:root /etc/motd
 chmod 644 /etc/motd
+service php5-fpm restart
 
 echo "********************************************************"
 echo "${msg_install_complete}"
