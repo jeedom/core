@@ -519,6 +519,7 @@ install_dependency()
 
         apt-get install -y libjsoncpp-dev libtinyxml-dev 
         apt-get install -y libxml2 libarchive-dev 
+        install_nodejs
         apt-get autoremove
 }
 
