@@ -401,7 +401,6 @@ optimize_webserver_cache_opcache()
 optimize_webserver_cache()
 {
 	echo "${msg_php_version}"
-        PHP_VERSION="`php -v | awk '/PHP [0-9].[0-9].[0-9].*/{ print $2 }' | cut -d'-' -f1`"
 	# Check if PHP is already optimized or not (empty string)
 	if [ -n "${PHP_OPTIMIZATION}" ]; then
 		echo "${msg_php_already_optimized}"
@@ -554,17 +553,6 @@ install_dependency_apache()
 
 webserver=${1-nginx}
 ws_upname="$(echo ${webserver} | tr 'a-z' 'A-Z')"
-
-# Get the currently installed php version
-PHP_VERSION="`php -v | awk '/PHP [0-9].[0-9].[0-9].*/{ print $2 }' | cut -d'-' -f1`"
-PHP_OPTIMIZATION="`php -v | grep -e 'OPcache' -o -e 'APC'`"
-# Workaround APC detection: APC is not exposed in 'php -v'
-if [ -z "${PHP_OPTIMIZATION}" ]; then
-	APC_INI="/etc/php5/cli/conf.d/20-apc.ini"
-	if [ -f /etc/php5/cli/conf.d/20-apc.ini ]; then
-		PHP_OPTIMIZATION="APC"
-	fi
-fi
 
 # Select the right language, among available ones
 setup_i18n
@@ -770,6 +758,16 @@ esac
 echo "********************************************************"
 echo "${msg_optimize_webserver_cache}"
 echo "********************************************************"
+# Get the currently installed php version
+PHP_VERSION="`php -v | awk '/PHP [0-9].[0-9].[0-9].*/{ print $2 }' | cut -d'-' -f1`"
+PHP_OPTIMIZATION="`php -v | grep -e 'OPcache' -o -e 'APC'`"
+# Workaround APC detection: APC is not exposed in 'php -v'
+if [ -z "${PHP_OPTIMIZATION}" ]; then
+	APC_INI="/etc/php5/cli/conf.d/20-apc.ini"
+	if [ -f /etc/php5/cli/conf.d/20-apc.ini ]; then
+		PHP_OPTIMIZATION="APC"
+	fi
+fi
 optimize_webserver_cache
 
 echo "********************************************************"
