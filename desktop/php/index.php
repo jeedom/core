@@ -355,6 +355,9 @@ if (count($plugins_list) > 0) {
                     if (config::byKey('enableScenario') == 0) {
                         echo '<div style="width : 100%" class="alert alert-warning">{{Erreur scénario : tous les scénarios sont désactivés. Allez dans Général -> Scénarios pour les réactiver}}</div>';
                     }
+                    if (user::hasDefaultIdentification() == 1) {
+                        echo '<div style="width : 100%" class="alert alert-danger">{{Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href="index.php?v=d&p=user">ici</a> pour modifier le mot de passe de l\'utilisateur admin}}</div>';
+                    }
                     ?>
                     <div style="display: none;width : 100%" id="div_alert"></div>
                     <?php

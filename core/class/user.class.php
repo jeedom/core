@@ -201,6 +201,15 @@ class user {
         return $user;
     }
 
+    public static function hasDefaultIdentification() {
+        $sql = 'SELECT count(id) as nb
+                FROM user 
+                WHERE login="admin" 
+                    AND password=SHA1("admin")';
+        $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+        return $result['nb'];
+    }
+
     /*     * *********************Méthodes d'instance************************* */
 
     public function presave() {
