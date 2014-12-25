@@ -879,6 +879,7 @@ class cmd {
         $value = $this->formatValue($_value);
         log::add('cmd', 'event', 'Evènement sur la commande : ' . $this->getHumanName() . ' (' . $this->getId() . ') => ' . $value . '(' . $_value . ')');
         cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
+        scenario::check($this);
         $this->setCollect(0);
         $nodeJs = array(array('cmd_id' => $this->getId()));
         foreach (self::byValue($this->getId()) as $cmd) {
@@ -890,7 +891,6 @@ class cmd {
         }
 
         nodejs::pushUpdate('eventCmd', $nodeJs);
-        scenario::check($this);
         listener::check($this->getId(), $value);
         if (strpos($_value, 'error') === false) {
             $eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
