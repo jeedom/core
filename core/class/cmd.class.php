@@ -155,17 +155,25 @@ class cmd {
         $sql .= ' ORDER BY name';
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
-    
-    public static function searchDisplay($_display, $_type = null) {
+
+    public static function searchTemplate($_template, $_eqType = null, $_type = null, $_subtype = null) {
         $values = array(
-            'display' => '%' . $_display . '%'
+            'template' => '%' . $_template . '%'
         );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                 FROM cmd
-                WHERE display LIKE :display';
-        if ($_type != null) {
-            $values['eqType'] = $_type;
+                WHERE template LIKE :template';
+        if ($_eqType != null) {
+            $values['eqType'] = $_eqType;
             $sql .= ' AND eqType=:eqType ';
+        }
+        if ($_type != null) {
+            $values['type'] = $_type;
+            $sql .= ' AND type=:type ';
+        }
+        if ($_subtype != null) {
+            $values['subType'] = $_subtype;
+            $sql .= ' AND subType=:subType ';
         }
         $sql .= ' ORDER BY name';
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
