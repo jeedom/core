@@ -155,6 +155,21 @@ class cmd {
         $sql .= ' ORDER BY name';
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
+    
+    public static function searchDisplay($_display, $_type = null) {
+        $values = array(
+            'display' => '%' . $_display . '%'
+        );
+        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+                FROM cmd
+                WHERE display LIKE :display';
+        if ($_type != null) {
+            $values['eqType'] = $_type;
+            $sql .= ' AND eqType=:eqType ';
+        }
+        $sql .= ' ORDER BY name';
+        return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+    }
 
     public static function byEqLogicIdAndLogicalId($_eqLogic_id, $_logicalId, $_multiple = false) {
         $values = array(
