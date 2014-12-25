@@ -877,7 +877,6 @@ class cmd {
             return;
         }
         $value = $this->formatValue($_value);
-        log::add('cmd', 'event', 'Evènement sur la commande : ' . $this->getHumanName() . ' (' . $this->getId() . ') => ' . $value . '(' . $_value . ')');
         cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
         scenario::check($this);
         $this->setCollect(0);
