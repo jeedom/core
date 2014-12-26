@@ -735,10 +735,12 @@ class cmd {
     }
 
     public function toHtml($_version = 'dashboard', $options = '', $_cmdColor = null, $_cache = 2) {
+        $startLoadTime = getmicrotime();
         $version = jeedom::versionAlias($_version);
         $html = '';
         $template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $this->getTemplate($version, 'default');
         $template = '';
+        log::add('cmd_display', 'debug', 'cmdTohtml A : ' . (getmicrotime() - $startLoadTime));
         if (!isset(self::$_templateArray[$version . '::' . $template_name])) {
             if ($this->getTemplate($version, 'default') != 'default') {
                 $findWidgetPlugin = false;
@@ -753,6 +755,7 @@ class cmd {
                         }
                     }
                 }
+                log::add('cmd_display', 'debug', 'cmdTohtml B : ' . (getmicrotime() - $startLoadTime));
                 if ($findWidgetPlugin) {
                     $template = getTemplate('core', $version, $template_name, 'widget');
                 }
@@ -768,6 +771,7 @@ class cmd {
                         $this->save();
                     }
                 }
+                log::add('cmd_display', 'debug', 'cmdTohtml C : ' . (getmicrotime() - $startLoadTime));
                 if ($template == '') {
                     $template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.default';
                     $template = getTemplate('core', $version, $template_name);
@@ -779,6 +783,7 @@ class cmd {
         } else {
             $template = self::$_templateArray[$version . '::' . $template_name];
         }
+        log::add('cmd_display', 'debug', 'cmdTohtml D : ' . (getmicrotime() - $startLoadTime));
         $replace = array(
             '#id#' => $this->getId(),
             '#name#' => ($this->getDisplay('icon') != '') ? $this->getDisplay('icon') : $this->getName(),
@@ -789,12 +794,14 @@ class cmd {
             '#maxValue#' => $this->getConfiguration('maxValue', 100),
             '#logicalId#' => $this->getLogicalId()
         );
+        log::add('cmd_display', 'debug', 'cmdTohtml E : ' . (getmicrotime() - $startLoadTime));
         if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
             $replace['#name#'] = '';
         }
         if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
             $replace['#name#'] = '';
         }
+        log::add('cmd_display', 'debug', 'cmdTohtml F : ' . (getmicrotime() - $startLoadTime));
         if ($_cmdColor == null && $version != 'scenario') {
             $eqLogic = $this->getEqLogic();
             $vcolor = ($version == 'mobile') ? 'mcmdColor' : 'cmdColor';
@@ -806,6 +813,7 @@ class cmd {
         } else {
             $replace['#cmdColor#'] = $_cmdColor;
         }
+        log::add('cmd_display', 'debug', 'cmdTohtml G : ' . (getmicrotime() - $startLoadTime));
         if ($this->getType() == 'info') {
             $replace['#state#'] = '';
             $replace['#tendance#'] = '';
@@ -813,6 +821,7 @@ class cmd {
             if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
                 $replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
             }
+            log::add('cmd_display', 'debug', 'cmdTohtml H : ' . (getmicrotime() - $startLoadTime));
             $replace['#collectDate#'] = $this->getCollectDate();
             if ($this->getIsHistorized() == 1) {
                 $replace['#history#'] = 'history cursor';
@@ -833,12 +842,14 @@ class cmd {
                     }
                 }
             }
+            log::add('cmd_display', 'debug', 'cmdTohtml I : ' . (getmicrotime() - $startLoadTime));
             $parameters = $this->getDisplay('parameters');
             if (is_array($parameters)) {
                 foreach ($parameters as $key => $value) {
                     $replace['#' . $key . '#'] = $value;
                 }
             }
+            log::add('cmd_display', 'debug', 'cmdTohtml J : ' . (getmicrotime() - $startLoadTime));
             return template_replace($replace, $template);
         } else {
             $cmdValue = $this->getCmdValue();
