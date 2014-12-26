@@ -521,7 +521,7 @@ class history {
         if ($values['value'] === '') {
             $values['value'] = null;
         }
-        $sql = 'REPLACE DELAYED INTO ' . $this->getTableName() . '
+        $sql = 'REPLACE INTO ' . $this->getTableName() . '
                 SET cmd_id=:cmd_id, 
                     `datetime`=:datetime,
                     value=:value';

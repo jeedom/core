@@ -108,7 +108,7 @@ class cache {
             'lifetime' => $this->getLifetime(),
             'options' => $this->options
         );
-        $sql = 'REPLACE DELAYED cache
+        $sql = 'REPLACE cache
                  SET `key`=:key,
                      `value`=:value,
                      `datetime`=:datetime,
