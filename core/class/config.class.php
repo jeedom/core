@@ -73,7 +73,7 @@ class config {
             'key' => $_key,
             'value' => $_value
         );
-        $sql = 'REPLACE config 
+        $sql = 'REPLACE DELAYED config 
                 SET `key`=:key,
                     `value`=:value,
                      plugin=:plugin';

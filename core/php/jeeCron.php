@@ -24,6 +24,10 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
     echo "The page that you have requested could not be found.";
     exit();
 }
+
+require_once dirname(__FILE__) . "/core.inc.php";
+
+$startTime = getmicrotime();
 if (isset($argv)) {
     foreach ($argv as $arg) {
         $argList = explode('=', $arg);
@@ -32,10 +36,6 @@ if (isset($argv)) {
         }
     }
 }
-if (!isset($_GET['cron_id']) && file_exists(dirname(__FILE__) . '/../../jeeCron.pid') && posix_getsid(file_get_contents(dirname(__FILE__) . '/../../jeeCron.pid'))) {
-    die();
-}
-require_once dirname(__FILE__) . "/core.inc.php";
 
 if (init('cron_id') != '') {
     $datetime = date('Y-m-d H:i:s');
@@ -125,7 +125,6 @@ if (init('cron_id') != '') {
         log::add('cron', 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
     }
 } else {
-    log::add('cron', 'debug', 'Je me relance !!!!!');
     if (cron::jeeCronRun()) {
         die();
     }
@@ -181,7 +180,13 @@ if (init('cron_id') != '') {
                 }
             }
         }
+        if ($sleepTime > 59) {
+            die();
+        }
         sleep($sleepTime);
+        if ((getmicrotime() - $startTime) > 59) {
+            die();
+        }
     }
 }
 ?>
