@@ -39,10 +39,8 @@ if (isset($argv)) {
 try {
     set_time_limit(config::byKey('maxExecTimeScript', 60));
     $cmd = cmd::byId(init('event_id'));
-    foreach (cmd::byValue(init('event_id')) as $cmd) {
-        if ($cmd->getType() == 'info') {
-            $cmd->event($cmd->execute(), init('loop', 0));
-        }
+    foreach (cmd::byValue(init('event_id'), 'info') as $cmd) {
+        $cmd->event($cmd->execute(), init('loop', 0));
     }
     $listeners = listener::searchEvent($_event);
     if (count($listeners) > 0) {
