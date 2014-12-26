@@ -903,7 +903,7 @@ class cmd {
             }
         }
         nodejs::pushUpdate('eventCmd', $nodeJs);
-        listener::check($this->getId(), $value);
+        listener::check($this->getId(), $value, $_loop);
         if (strpos($_value, 'error') === false) {
             $eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
             $this->addHistoryValue($value, $this->getCollectDate());

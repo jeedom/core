@@ -41,7 +41,7 @@ try {
     $cmd = cmd::byId(init('event_id'));
     foreach (cmd::byValue(init('event_id')) as $cmd) {
         if ($cmd->getType() == 'info') {
-            $cmd->event($cmd->execute());
+            $cmd->event($cmd->execute(), init('loop', 0));
         }
     }
     $listeners = listener::searchEvent($_event);
