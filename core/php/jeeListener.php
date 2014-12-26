@@ -38,41 +38,43 @@ if (isset($argv)) {
 
 try {
     set_time_limit(config::byKey('maxExecTimeScript', 60));
-
-    $listener_id = init('listener_id');
-    if ($listener_id == '') {
-        throw new Exception(__('Le listener ID ne peut être vide', __FILE__));
-    }
-    $listener = listener::byId($listener_id);
-    if (!is_object($listener)) {
-        throw new Exception(__('Listener non trouvé : ', __FILE__) . $listener_id);
-    }
-    $option = array();
-    if (count($listener->getOption()) > 0) {
-        $option = $listener->getOption();
-    }
-    $option['event_id'] = init('event_id');
-    $option['value'] = init('value');
-    if ($listener->getClass() != '') {
-        $class = $listener->getClass();
-        $function = $listener->getFunction();
-        if (class_exists($class) && method_exists($class, $function)) {
-            $class::$function($option);
-        } else {
-            log::add('listener', 'error', __('[Erreur] Classe ou fonction non trouvée ', __FILE__) . $listener->getName());
-            die();
+    $cmd = cmd::byId(init('event_id'));
+    foreach (self::byValue(init('event_id')) as $cmd) {
+        if ($cmd->getType() == 'info') {
+            $cmd->event($cmd->execute());
         }
-    } else {
-        $function = $listener->getFunction();
-        if (function_exists($function)) {
-            $function($option);
-        } else {
-            log::add('listener', 'error', __('[Erreur] Non trouvée ', __FILE__) . $listener->getName());
-            die();
+    }
+    $listeners = listener::searchEvent($_event);
+    if (count($listeners) > 0) {
+        foreach ($listeners as $listener) {
+            $option = array();
+            if (count($listener->getOption()) > 0) {
+                $option = $listener->getOption();
+            }
+            $option['event_id'] = init('event_id');
+            $option['value'] = init('value');
+            if ($listener->getClass() != '') {
+                $class = $listener->getClass();
+                $function = $listener->getFunction();
+                if (class_exists($class) && method_exists($class, $function)) {
+                    $class::$function($option);
+                } else {
+                    log::add('listener', 'error', __('[Erreur] Classe ou fonction non trouvée ', __FILE__) . $listener->getName());
+                    continue;
+                }
+            } else {
+                $function = $listener->getFunction();
+                if (function_exists($function)) {
+                    $function($option);
+                } else {
+                    log::add('listener', 'error', __('[Erreur] Non trouvée ', __FILE__) . $listener->getName());
+                    continue;
+                }
+            }
         }
     }
 } catch (Exception $e) {
-    log::add(init('plugin_id', 'plugin'), 'error', $e->getMessage());
+    log::add('listenner', 'error', $e->getMessage());
     die($e->getMessage());
 }
 ?>
