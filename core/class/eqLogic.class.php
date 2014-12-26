@@ -772,6 +772,10 @@ class eqLogic {
         return cmd::byEqLogicId($this->id, $_type, $_visible);
     }
 
+    public function searchCmdByConfiguration($_configuration, $_type = null) {
+        return cmd::searchConfigurationEqLogic($this->id, $_configuration, $_type);
+    }
+
     public function getEqReal_id() {
         return $this->eqReal_id;
     }

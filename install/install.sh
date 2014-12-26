@@ -253,7 +253,7 @@ configure_nginx()
     JEEDOM_CRON="`crontab -l | grep -e 'jeeCron.php'`"
     
     if [ -z "${JEEDOM_CRON}" ]; then
-        croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+        croncmd="su --shell=/bin/bash - www-data -c '/usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null"
         cronjob="* * * * * $croncmd"
         ( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
     fi

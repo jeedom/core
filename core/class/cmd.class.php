@@ -141,18 +141,34 @@ class cmd {
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
 
-    public static function searchConfiguration($_configuration, $_type = null) {
+    public static function searchConfiguration($_configuration, $_eqType = null) {
         $values = array(
             'configuration' => '%' . $_configuration . '%'
         );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                 FROM cmd
                 WHERE configuration LIKE :configuration';
-        if ($_type != null) {
-            $values['eqType'] = $_type;
+        if ($_eqType != null) {
+            $values['eqType'] = $_eqType;
             $sql .= ' AND eqType=:eqType ';
         }
         $sql .= ' ORDER BY name';
+        return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+    }
+
+    public static function searchConfigurationEqLogic($_eqLogic_id, $_configuration, $_type = null) {
+        $values = array(
+            'configuration' => '%' . $_configuration . '%',
+            'eqLogic_id' => $_eqLogic_id
+        );
+        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+                FROM cmd
+                WHERE eqLogic_id=:eqLogic_id';
+        if ($_type != null) {
+            $values['type'] = $_type;
+            $sql .= ' AND type=:type ';
+        }
+        $sql .= ' AND configuration LIKE :configuration';
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
 
