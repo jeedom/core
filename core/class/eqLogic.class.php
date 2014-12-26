@@ -443,7 +443,7 @@ class eqLogic {
         if (!$this->hasRight('r')) {
             return '';
         }
-        $info = '';
+        $cmd_html = '';
         $version = jeedom::versionAlias($_version);
         $vcolor = 'cmdColor';
         if ($version == 'mobile') {
