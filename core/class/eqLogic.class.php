@@ -456,7 +456,7 @@ class eqLogic {
         }
         if ($this->getIsEnable()) {
             foreach ($this->getCmd(null, null, true) as $cmd) {
-                $cmd.=$cmd->toHtml($_version, '', $cmdColor);
+                $cmd_html.=$cmd->toHtml($_version, '', $cmdColor);
             }
         }
         $replace = array(
@@ -465,7 +465,7 @@ class eqLogic {
             '#eqLink#' => $this->getLinkToConfiguration(),
             '#category#' => $this->getPrimaryCategory(),
             '#background_color#' => $this->getBackgroundColor($version),
-            '#cmd#' => $cmd,
+            '#cmd#' => $cmd_html,
             '#style#' => '',
             '#max_width#' => '650px',
             '#logicalId#' => $this->getLogicalId()
