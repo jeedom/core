@@ -93,9 +93,7 @@ class cache {
         $cache->setValue($_value);
         $cache->setLifetime($_lifetime);
         if ($_options != null) {
-            foreach ($_options as $key => $value) {
-                $cache->setOptions($key, $value);
-            }
+            $cache->options = json_encode($_options, JSON_UNESCAPED_UNICODE);
         }
         return $cache->save();
     }
@@ -108,9 +106,9 @@ class cache {
             'value' => $this->getValue(),
             'datetime' => date('Y-m-d H:i:s'),
             'lifetime' => $this->getLifetime(),
-            'options' => json_encode($this->getOptions())
+            'options' => $this->options
         );
-        $sql = 'REPLACE cache
+        $sql = 'REPLACE DELAYED cache
                  SET `key`=:key,
                      `value`=:value,
                      `datetime`=:datetime,
