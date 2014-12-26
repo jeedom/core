@@ -875,6 +875,7 @@ class cmd {
     }
 
     public function event($_value, $_loop = 0) {
+        $startLoadTime = getmicrotime();
         if (trim($_value) === '') {
             return;
         }
@@ -885,16 +886,20 @@ class cmd {
         if ($this->getType() != 'info' || $_loop > 5) {
             return;
         }
-
+        log::add('event', 'debug', 'Time A : ' . (getmicrotime() - $startLoadTime));
         $_loop++;
         $collectDate = ($this->getCollectDate() != '' ) ? strtotime($this->getCollectDate()) : '';
         $nowtime = strtotime('now');
         if ($this->getCollectDate() != '' && (($nowtime - $collectDate) > 3600 || ($nowtime + 300 ) < $collectDate)) {
             return;
         }
+        log::add('event', 'debug', 'Time B : ' . (getmicrotime() - $startLoadTime));
         $value = $this->formatValue($_value);
+        log::add('event', 'debug', 'Time C : ' . (getmicrotime() - $startLoadTime));
         cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
+        log::add('event', 'debug', 'Time D : ' . (getmicrotime() - $startLoadTime));
         scenario::check($this);
+        log::add('event', 'debug', 'Time E : ' . (getmicrotime() - $startLoadTime));
         $this->setCollect(0);
         $nodeJs = array(array('cmd_id' => $this->getId()));
         foreach (self::byValue($this->getId()) as $cmd) {
@@ -904,22 +909,17 @@ class cmd {
                 $cmd->event($cmd->execute(), $_loop);
             }
         }
-
+        log::add('event', 'debug', 'Time F : ' . (getmicrotime() - $startLoadTime));
         nodejs::pushUpdate('eventCmd', $nodeJs);
+        log::add('event', 'debug', 'Time G : ' . (getmicrotime() - $startLoadTime));
         listener::check($this->getId(), $value);
         if (strpos($_value, 'error') === false) {
             $eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
             $this->addHistoryValue($value, $this->getCollectDate());
         }
-        $internalEvent = new internalEvent();
-        $internalEvent->setEvent('event::cmd');
-        $internalEvent->setOptions('id', $this->getId());
-        $internalEvent->setOptions('value', $value);
-        if ($this->getCollectDate() != '') {
-            $internalEvent->setDatetime($this->getCollectDate());
-        }
-        $internalEvent->save();
+        log::add('event', 'debug', 'Time H : ' . (getmicrotime() - $startLoadTime));
         $this->checkReturnState($value);
+        log::add('event', 'debug', 'Time I : ' . (getmicrotime() - $startLoadTime));
     }
 
     public function checkReturnState($_value) {
