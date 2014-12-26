@@ -456,7 +456,7 @@ class eqLogic {
         }
         if ($this->getIsEnable()) {
             foreach ($this->getCmd(null, null, true) as $cmd) {
-                $info.=$cmd->toHtml($_version, '', $cmdColor);
+                $cmd.=$cmd->toHtml($_version, '', $cmdColor);
             }
         }
         $replace = array(
@@ -465,7 +465,7 @@ class eqLogic {
             '#eqLink#' => $this->getLinkToConfiguration(),
             '#category#' => $this->getPrimaryCategory(),
             '#background_color#' => $this->getBackgroundColor($version),
-            '#info#' => $info,
+            '#cmd#' => $cmd,
             '#style#' => '',
             '#max_width#' => '650px',
             '#logicalId#' => $this->getLogicalId()
@@ -478,11 +478,9 @@ class eqLogic {
         }
         if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
             $replace['#name#'] = '';
-            $replace['#object_name#'] = (is_object($object)) ? $object->getName() : '';
         }
         if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
             $replace['#name#'] = '<br/>';
-            $replace['#object_name#'] = (is_object($object)) ? $object->getName() : '';
         }
         $parameters = $this->getDisplay('parameters');
         if (is_array($parameters)) {
@@ -490,7 +488,6 @@ class eqLogic {
                 $replace['#' . $key . '#'] = $value;
             }
         }
-
         if (!isset(self::$_templateArray[$version])) {
             self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
         }
