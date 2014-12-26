@@ -39,7 +39,7 @@ if (isset($argv)) {
 try {
     set_time_limit(config::byKey('maxExecTimeScript', 60));
     $cmd = cmd::byId(init('event_id'));
-    foreach (self::byValue(init('event_id')) as $cmd) {
+    foreach (cmd::byValue(init('event_id')) as $cmd) {
         if ($cmd->getType() == 'info') {
             $cmd->event($cmd->execute());
         }
