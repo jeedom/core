@@ -707,7 +707,7 @@ class cmd {
             }
             $eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
         }
-        if ($this->getType() == 'action' && $options !== null) {
+        if ($this->getType() == 'action' && $options !== null && $this->getValue() == '') {
             if (isset($options['slider'])) {
                 $this->setConfiguration('lastCmdValue', $options['slider']);
                 $this->save();
