@@ -758,7 +758,6 @@ class cmd {
                         }
                     }
                 }
-                log::add('cmd_display', 'debug', 'cmdTohtml B : ' . (getmicrotime() - $startLoadTime));
                 if ($template == '' && config::byKey('active', 'widget') == 1 && config::byKey('market::autoInstallMissingWidget') == 1) {
                     try {
                         $market = market::byLogicalId(str_replace('.cmd', '', $version . '.' . $template_name));
