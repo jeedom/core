@@ -909,6 +909,7 @@ class cmd {
                 $nodeJs[] = array('cmd_id' => $cmd->getId());
                 log::add('event', 'debug', 'Time E2 : ' . (getmicrotime() - $startLoadTime));
             } else {
+                log::add('event', 'debug', 'CMD : ' . print_r($cmd, true));
                 $cmd->event($cmd->execute(), $_loop);
                 log::add('event', 'debug', 'Time E3 : ' . (getmicrotime() - $startLoadTime));
             }
