@@ -743,23 +743,19 @@ class cmd {
         log::add('cmd_display', 'debug', 'cmdTohtml A : ' . (getmicrotime() - $startLoadTime));
         if (!isset(self::$_templateArray[$version . '::' . $template_name])) {
             if ($this->getTemplate($version, 'default') != 'default') {
-                $findWidgetPlugin = false;
+                if (config::byKey('active', 'widget') == 1) {
+                    $template = getTemplate('core', $version, $template_name, 'widget');
+                }
                 if ($template == '') {
                     foreach (plugin::listPlugin(true) as $plugin) {
                         $template = getTemplate('core', $version, $template_name, $plugin->getId());
                         if ($template != '') {
                             break;
                         }
-                        if ($plugin->getId() == 'widget') {
-                            $findWidgetPlugin = true;
-                        }
                     }
                 }
                 log::add('cmd_display', 'debug', 'cmdTohtml B : ' . (getmicrotime() - $startLoadTime));
-                if ($findWidgetPlugin) {
-                    $template = getTemplate('core', $version, $template_name, 'widget');
-                }
-                if ($findWidgetPlugin && $template == '' && config::byKey('market::autoInstallMissingWidget') == 1) {
+                if ($template == '' && config::byKey('active', 'widget') == 1 && config::byKey('market::autoInstallMissingWidget') == 1) {
                     try {
                         $market = market::byLogicalId(str_replace('.cmd', '', $version . '.' . $template_name));
                         if (is_object($market)) {
@@ -823,9 +819,12 @@ class cmd {
             }
             log::add('cmd_display', 'debug', 'cmdTohtml H : ' . (getmicrotime() - $startLoadTime));
             $replace['#collectDate#'] = $this->getCollectDate();
+            log::add('cmd_display', 'debug', 'cmdTohtml H1 : ' . (getmicrotime() - $startLoadTime));
             if ($this->getIsHistorized() == 1) {
+                log::add('cmd_display', 'debug', 'cmdTohtml H2 : ' . (getmicrotime() - $startLoadTime));
                 $replace['#history#'] = 'history cursor';
                 if (config::byKey('displayStatsWidget') == 1 && strpos($template, '#displayHistory#') !== false) {
+                    log::add('cmd_display', 'debug', 'cmdTohtml H3 : ' . (getmicrotime() - $startLoadTime));
                     $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));
                     $replace['#displayHistory#'] = '';
                     $historyStatistique = $this->getStatistique($startHist, date('Y-m-d H:i:s'));
@@ -841,6 +840,7 @@ class cmd {
                         $replace['#tendance#'] = 'fa fa-arrow-down';
                     }
                 }
+                log::add('cmd_display', 'debug', 'cmdTohtml H4 : ' . (getmicrotime() - $startLoadTime));
             }
             log::add('cmd_display', 'debug', 'cmdTohtml I : ' . (getmicrotime() - $startLoadTime));
             $parameters = $this->getDisplay('parameters');
