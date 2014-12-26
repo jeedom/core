@@ -827,12 +827,12 @@ class cmd {
                     $replace['#minHistoryValue#'] = round($historyStatistique['min'], 1);
                     $replace['#maxHistoryValue#'] = round($historyStatistique['max'], 1);
                     $tendance = $this->getTendance($startHist, date('Y-m-d H:i:s'));
-                    $replace['#tendance#'] = 'fa fa-minus';
                     if ($tendance > config::byKey('historyCalculTendanceThresholddMax')) {
                         $replace['#tendance#'] = 'fa fa-arrow-up';
-                    }
-                    if ($tendance < config::byKey('historyCalculTendanceThresholddMin')) {
+                    } else if ($tendance < config::byKey('historyCalculTendanceThresholddMin')) {
                         $replace['#tendance#'] = 'fa fa-arrow-down';
+                    } else {
+                        $replace['#tendance#'] = 'fa fa-minus';
                     }
                 }
             }
@@ -893,7 +893,6 @@ class cmd {
         if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
             return;
         }
-        $_loop++;
         $value = $this->formatValue($_value);
         cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
         scenario::check($this);
@@ -903,7 +902,7 @@ class cmd {
             $nodeJs[] = array('cmd_id' => $cmd->getId());
         }
         nodejs::pushUpdate('eventCmd', $nodeJs);
-        listener::check($this->getId(), $value, $_loop);
+        listener::check($this->getId(), $value, $_loop++);
         if (strpos($_value, 'error') === false) {
             $eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
             $this->addHistoryValue($value, $this->getCollectDate());
