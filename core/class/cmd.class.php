@@ -907,7 +907,7 @@ class cmd {
             log::add('event', 'debug', 'Time E1 : ' . (getmicrotime() - $startLoadTime));
             if ($cmd->getType() == 'action') {
                 $nodeJs[] = array('cmd_id' => $cmd->getId());
-                 log::add('event', 'debug', 'Time E2 : ' . (getmicrotime() - $startLoadTime));
+                log::add('event', 'debug', 'Time E2 : ' . (getmicrotime() - $startLoadTime));
             } else {
                 $cmd->event($cmd->execute(), $_loop);
                 log::add('event', 'debug', 'Time E3 : ' . (getmicrotime() - $startLoadTime));
@@ -917,9 +917,12 @@ class cmd {
         nodejs::pushUpdate('eventCmd', $nodeJs);
         log::add('event', 'debug', 'Time G : ' . (getmicrotime() - $startLoadTime));
         listener::check($this->getId(), $value);
+        log::add('event', 'debug', 'Time G1 : ' . (getmicrotime() - $startLoadTime));
         if (strpos($_value, 'error') === false) {
             $eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
+            log::add('event', 'debug', 'Time G2 : ' . (getmicrotime() - $startLoadTime));
             $this->addHistoryValue($value, $this->getCollectDate());
+            log::add('event', 'debug', 'Time G3 : ' . (getmicrotime() - $startLoadTime));
         }
         log::add('event', 'debug', 'Time H : ' . (getmicrotime() - $startLoadTime));
         $this->checkReturnState($value);
