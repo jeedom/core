@@ -875,6 +875,7 @@ class cmd {
     }
 
     public function event($_value, $_loop = 0) {
+        log::add('event', 'debug', '-------------------------------------');
         $startLoadTime = getmicrotime();
         if (trim($_value) === '') {
             return;
@@ -903,10 +904,13 @@ class cmd {
         $this->setCollect(0);
         $nodeJs = array(array('cmd_id' => $this->getId()));
         foreach (self::byValue($this->getId()) as $cmd) {
+            log::add('event', 'debug', 'Time E1 : ' . (getmicrotime() - $startLoadTime));
             if ($cmd->getType() == 'action') {
                 $nodeJs[] = array('cmd_id' => $cmd->getId());
+                 log::add('event', 'debug', 'Time E2 : ' . (getmicrotime() - $startLoadTime));
             } else {
                 $cmd->event($cmd->execute(), $_loop);
+                log::add('event', 'debug', 'Time E3 : ' . (getmicrotime() - $startLoadTime));
             }
         }
         log::add('event', 'debug', 'Time F : ' . (getmicrotime() - $startLoadTime));
