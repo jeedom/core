@@ -879,12 +879,9 @@ class cmd {
     }
 
     public function event($_value, $_loop = 0) {
-        log::add('event', 'debug', '----------------------');
-        $startLoadTime = getmicrotime();
         if (trim($_value) === '' || $_loop > 5 || $this->getType() != 'info') {
             return;
         }
-        log::add('event', 'debug', 'Time A : ' . (getmicrotime() - $startLoadTime));
         $collectDate = ($this->getCollectDate() != '' ) ? strtotime($this->getCollectDate()) : '';
         $nowtime = strtotime('now');
         if ($this->getCollectDate() != '' && (($nowtime - $collectDate) > 3600 || ($nowtime + 300 ) < $collectDate)) {
@@ -894,34 +891,22 @@ class cmd {
         if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
             return;
         }
-        log::add('event', 'debug', 'Time B : ' . (getmicrotime() - $startLoadTime));
         $_loop++;
         $value = $this->formatValue($_value);
-        log::add('event', 'debug', 'Time C : ' . (getmicrotime() - $startLoadTime));
         cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
-        log::add('event', 'debug', 'Time D : ' . (getmicrotime() - $startLoadTime));
         scenario::check($this);
-        log::add('event', 'debug', 'Time E : ' . (getmicrotime() - $startLoadTime));
         $this->setCollect(0);
-        log::add('event', 'debug', 'Time F : ' . (getmicrotime() - $startLoadTime));
         $nodeJs = array(array('cmd_id' => $this->getId()));
         foreach (self::byValue($this->getId(), 'action') as $cmd) {
             $nodeJs[] = array('cmd_id' => $cmd->getId());
         }
-        log::add('event', 'debug', 'Time G : ' . (getmicrotime() - $startLoadTime));
         nodejs::pushUpdate('eventCmd', $nodeJs);
-        log::add('event', 'debug', 'Time H : ' . (getmicrotime() - $startLoadTime));
         listener::check($this->getId(), $value, $_loop);
-        log::add('event', 'debug', 'Time I : ' . (getmicrotime() - $startLoadTime));
         if (strpos($_value, 'error') === false) {
             $eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
-            log::add('event', 'debug', 'Time J : ' . (getmicrotime() - $startLoadTime));
             $this->addHistoryValue($value, $this->getCollectDate());
-            log::add('event', 'debug', 'Time K : ' . (getmicrotime() - $startLoadTime));
         }
-        log::add('event', 'debug', 'Time L : ' . (getmicrotime() - $startLoadTime));
         $this->checkReturnState($value);
-        log::add('event', 'debug', 'Time M : ' . (getmicrotime() - $startLoadTime));
     }
 
     public function checkReturnState($_value) {
