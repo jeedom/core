@@ -46,13 +46,19 @@ class cmd {
 
     /*     * ***********************Méthodes statiques*************************** */
 
-    private static function cast($_inputs) {
+    private static function cast($_inputs, $_eqLogic = null) {
         if (is_object($_inputs) && class_exists($_inputs->getEqType() . 'Cmd')) {
+            if ($_eqLogic != null) {
+                $_inputs->_eqLogic = $_eqLogic;
+            }
             return cast($_inputs, $_inputs->getEqType() . 'Cmd');
         }
         if (is_array($_inputs)) {
             $return = array();
             foreach ($_inputs as $input) {
+                if ($_eqLogic != null) {
+                    $input->_eqLogic = $_eqLogic;
+                }
                 $return[] = self::cast($input);
             }
             return $return;
@@ -108,7 +114,7 @@ class cmd {
         return array_merge($result1, $result2);
     }
 
-    public static function byEqLogicId($_eqLogic_id, $_type = null, $_visible = null) {
+    public static function byEqLogicId($_eqLogic_id, $_type = null, $_visible = null, $_eqLogic = null) {
         $values = array(
             'eqLogic_id' => $_eqLogic_id
         );
@@ -123,7 +129,7 @@ class cmd {
             $sql .= ' AND `isVisible`=1';
         }
         $sql .= ' ORDER BY `order`,`name`';
-        return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+        return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__), $_eqLogic);
     }
 
     public static function byLogicalId($_logical_id, $_type = null) {
@@ -735,12 +741,10 @@ class cmd {
     }
 
     public function toHtml($_version = 'dashboard', $options = '', $_cmdColor = null, $_cache = 2) {
-        $startLoadTime = getmicrotime();
         $version = jeedom::versionAlias($_version);
         $html = '';
         $template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $this->getTemplate($version, 'default');
         $template = '';
-        log::add('cmd_display', 'debug', 'cmdTohtml A : ' . (getmicrotime() - $startLoadTime));
         if (!isset(self::$_templateArray[$version . '::' . $template_name])) {
             if ($this->getTemplate($version, 'default') != 'default') {
                 if (config::byKey('active', 'widget') == 1) {
@@ -767,7 +771,6 @@ class cmd {
                         $this->save();
                     }
                 }
-                log::add('cmd_display', 'debug', 'cmdTohtml C : ' . (getmicrotime() - $startLoadTime));
                 if ($template == '') {
                     $template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.default';
                     $template = getTemplate('core', $version, $template_name);
@@ -779,7 +782,6 @@ class cmd {
         } else {
             $template = self::$_templateArray[$version . '::' . $template_name];
         }
-        log::add('cmd_display', 'debug', 'cmdTohtml D : ' . (getmicrotime() - $startLoadTime));
         $replace = array(
             '#id#' => $this->getId(),
             '#name#' => ($this->getDisplay('icon') != '') ? $this->getDisplay('icon') : $this->getName(),
@@ -790,14 +792,12 @@ class cmd {
             '#maxValue#' => $this->getConfiguration('maxValue', 100),
             '#logicalId#' => $this->getLogicalId()
         );
-        log::add('cmd_display', 'debug', 'cmdTohtml E : ' . (getmicrotime() - $startLoadTime));
         if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
             $replace['#name#'] = '';
         }
         if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
             $replace['#name#'] = '';
         }
-        log::add('cmd_display', 'debug', 'cmdTohtml F : ' . (getmicrotime() - $startLoadTime));
         if ($_cmdColor == null && $version != 'scenario') {
             $eqLogic = $this->getEqLogic();
             $vcolor = ($version == 'mobile') ? 'mcmdColor' : 'cmdColor';
@@ -809,7 +809,6 @@ class cmd {
         } else {
             $replace['#cmdColor#'] = $_cmdColor;
         }
-        log::add('cmd_display', 'debug', 'cmdTohtml G : ' . (getmicrotime() - $startLoadTime));
         if ($this->getType() == 'info') {
             $replace['#state#'] = '';
             $replace['#tendance#'] = '';
@@ -817,14 +816,10 @@ class cmd {
             if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
                 $replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
             }
-            log::add('cmd_display', 'debug', 'cmdTohtml H : ' . (getmicrotime() - $startLoadTime));
             $replace['#collectDate#'] = $this->getCollectDate();
-            log::add('cmd_display', 'debug', 'cmdTohtml H1 : ' . (getmicrotime() - $startLoadTime));
             if ($this->getIsHistorized() == 1) {
-                log::add('cmd_display', 'debug', 'cmdTohtml H2 : ' . (getmicrotime() - $startLoadTime));
                 $replace['#history#'] = 'history cursor';
                 if (config::byKey('displayStatsWidget') == 1 && strpos($template, '#displayHistory#') !== false) {
-                    log::add('cmd_display', 'debug', 'cmdTohtml H3 : ' . (getmicrotime() - $startLoadTime));
                     $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));
                     $replace['#displayHistory#'] = '';
                     $historyStatistique = $this->getStatistique($startHist, date('Y-m-d H:i:s'));
@@ -840,16 +835,13 @@ class cmd {
                         $replace['#tendance#'] = 'fa fa-arrow-down';
                     }
                 }
-                log::add('cmd_display', 'debug', 'cmdTohtml H4 : ' . (getmicrotime() - $startLoadTime));
             }
-            log::add('cmd_display', 'debug', 'cmdTohtml I : ' . (getmicrotime() - $startLoadTime));
             $parameters = $this->getDisplay('parameters');
             if (is_array($parameters)) {
                 foreach ($parameters as $key => $value) {
                     $replace['#' . $key . '#'] = $value;
                 }
             }
-            log::add('cmd_display', 'debug', 'cmdTohtml J : ' . (getmicrotime() - $startLoadTime));
             return template_replace($replace, $template);
         } else {
             $cmdValue = $this->getCmdValue();

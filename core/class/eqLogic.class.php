@@ -766,7 +766,7 @@ class eqLogic {
         if ($_logicalId != null) {
             return cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple);
         }
-        return cmd::byEqLogicId($this->id, $_type, $_visible);
+        return cmd::byEqLogicId($this->id, $_type, $_visible, $this);
     }
 
     public function searchCmdByConfiguration($_configuration, $_type = null) {
