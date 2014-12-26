@@ -675,7 +675,6 @@ class cmd {
                 $eqLogic->setStatus('numberTryWithoutSuccess', $numberTryWithoutSuccess);
                 if ($numberTryWithoutSuccess >= config::byKey('numberOfTryBeforeEqLogicDisable')) {
                     $message = 'Désactivation de <a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getName();
-                    $message .= ($eqLogic->getEqReal_id() != '') ? ' (' . $eqLogic->getEqReal()->getName() . ') ' : '';
                     $message .= '</a> car il n\'a pas répondu ou mal répondu lors des 3 derniers essais';
                     message::add($type, $message);
                     $eqLogic->setIsEnable(0);
@@ -701,7 +700,7 @@ class cmd {
             }
             nodejs::pushUpdate('eventCmd', $nodeJs);
         }
-        if (!is_array($value) && strpos($value, 'error') === false) {
+        if ($this->getType() != 'action' && !is_array($value) && strpos($value, 'error') === false) {
             if ($eqLogic->getStatus('numberTryWithoutSuccess') != 0) {
                 $eqLogic->setStatus('numberTryWithoutSuccess', 0);
             }
