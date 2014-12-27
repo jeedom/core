@@ -215,12 +215,6 @@ foreach (scenario::listGroup() as $group) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-6 control-label" for="span_lastCheck">{{Dernier lancement}}</label>
-                        <div class="col-xs-6">
-                            <div><span id="span_lastLaunch" class="label label-info" style="position: relative; top: 4px;"></span></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="col-xs-6 control-label" for="span_ongoing">{{Etat}}</label>
                         <div class="col-xs-6">
                             <div><span id="span_ongoing" class="label" style="position: relative; top: 4px;"></span></div>
