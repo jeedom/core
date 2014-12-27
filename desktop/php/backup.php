@@ -42,7 +42,7 @@ include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
                         </div>
                     </div>
                       <div class="form-group expertModeVisible">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Taille total maximum des backups}}</label>
+                        <label class="col-sm-4 col-xs-6 control-label">{{Taille total maximum des backups (mo)}}</label>
                         <div class="col-sm-4 col-xs-6">
                             <input type="text" class="configKey form-control" data-l1key="backup::maxSize" />
                         </div>
