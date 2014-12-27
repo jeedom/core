@@ -333,110 +333,95 @@ class jeedom {
     }
 
     public static function isStarted() {
-       return file_exists('/tmp/jeedom_start');
-    }
+     return file_exists('/tmp/jeedom_start');
+ }
 
-    public static function isDateOk() {
-        $cache = cache::byKey('jeedom::lastDate');
-        $lastDate = strtotime($cache->getValue());
-        if ($lastDate == '' || $lastDate === false) {
-            cache::set('jeedom::lastDate', date('Y-m-d H:00:00'), 0);
-            message::removeAll('core', 'dateCheckFailed');
-            return true;
-        }
-        if ($lastDate == strtotime(date('Y-m-d H:00:00'))) {
-            message::removeAll('core', 'dateCheckFailed');
-            return true;
-        }
-        if (($lastDate + 2592000) > strtotime(date('Y-m-d H:00:00')) && ($lastDate - 7200) < strtotime(date('Y-m-d H:00:00'))) {
-            cache::set('jeedom::lastDate', date('Y-m-d H:00:00'), 0);
-            message::removeAll('core', 'dateCheckFailed');
-            return true;
-        }
-        $ntptime = strtotime(getNtpTime());
-        if ($ntptime !== false && ($ntptime + 7200) > strtotime('now') && ($ntptime - 7200) < strtotime('now')) {
-            cache::set('jeedom::lastDate', date('Y-m-d H:00:00'), 0);
-            message::removeAll('core', 'dateCheckFailed');
-            return true;
-        }
-        log::add('core', 'error', __('La date système (', __FILE__) . date('Y-m-d H:00:00') . __(') est antérieure ou trop loin de la dernière date (', __FILE__) . date('Y-m-d H:i:s', $lastDate) . __(')enregistrer. Toutes les exécutions des scénarios sont interrompues jusqu\'à correction.', __FILE__), 'dateCheckFailed');
+ public static function isDateOk() {
+    if(file_exists('/tmp/jeedom_dateOk')){
+        return true;
+    }
+    if(strtotime('now') < strtotime('2014-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')){
+        log::add('core', 'error', __('La date du système est incorrect (avant 2014-01-01 ou après 2019-01-01) : ',__FILE__).date('Y-m-d H:i:s'), 'dateCheckFailed');
         return false;
     }
+    touch('/tmp/jeedom_dateOk');
+    return true;
+}
 
-    public static function event($_event) {
-        scenario::check($_event);
+public static function event($_event) {
+    scenario::check($_event);
+}
+
+public static function cron() {
+    if (!self::isStarted()) {
+        $cache = cache::byKey('jeedom::usbMapping');
+        $cache->remove();
+        jeedom::start();
+        plugin::start();
+        internalEvent::start();
+        self::doUPnP();
+        touch('/tmp/jeedom_start');
+        self::event('start');
+        log::add('core', 'info', 'Démarrage de Jeedom OK');
     }
+    plugin::cron();
+    eqLogic::checkAlive();
+    
+    try {
+        if(date('i')%10==0){
+         interactDef::cron();
+         connection::cron();
+         if (config::byKey('jeeNetwork::mode') != 'slave') {
+          jeeNetwork::pull();
+      }
+      if (config::byKey('market::allowDNS') == 1 && config::byKey('jeeNetwork::mode') == 'master' && config::byKey('jeedom::licence') >= 5) {
+        market::updateIp();
+    }
+}
+} catch (Exception $e) {
 
-    public static function cron() {
-        if (!self::isStarted()) {
-            $cache = cache::byKey('jeedom::usbMapping');
-            $cache->remove();
-            jeedom::start();
-            plugin::start();
-            internalEvent::start();
-            self::doUPnP();
-            touch('/tmp/jeedom_start');
-            self::event('start');
-            log::add('core', 'info', 'Démarrage de Jeedom OK');
-        }
-        plugin::cron();
-        eqLogic::checkAlive();
-        
-        try {
-            if(date('i')%10==0){
-               interactDef::cron();
-               connection::cron();
-               if (config::byKey('jeeNetwork::mode') != 'slave') {
-                  jeeNetwork::pull();
-              }
-              if (config::byKey('market::allowDNS') == 1 && config::byKey('jeeNetwork::mode') == 'master' && config::byKey('jeedom::licence') >= 5) {
-                market::updateIp();
+}
+try {
+    if (date('Gi') == 202) {
+        log::chunk();
+        cron::clean();
+    }
+} catch (Exception $e) {
+    log::add('log', 'error', $e->getMessage());
+}
+try {
+    if (date('Gi') == 2320) {
+        scenario::cleanTable();
+        user::cleanOutdatedUser();
+    }
+} catch (Exception $e) {
+    log::add('scenario', 'error', $e->getMessage());
+}
+try {
+    $c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
+    if ($c->isDue()) {
+        if (config::byKey('update::auto') == 1) {
+            jeedom::update();
+        } else {
+            update::checkAllUpdate();
+            $nbUpdate = update::nbNeedUpdate();
+            if ($nbUpdate > 0) {
+                message::add('update', 'De nouvelles mises à jour sont disponibles (' . $nbUpdate . ')', '', 'newUpdate');
             }
         }
-    } catch (Exception $e) {
+        config::save('update::check', rand(10, 59) . ' 06 * * *');
+    }
+} catch (Exception $e) {
 
+}
+try {
+    $c = new Cron\CronExpression(config::byKey('backup::cron'), new Cron\FieldFactory);
+    if ($c->isDue()) {
+        jeedom::backup();
     }
-    try {
-        if (date('Gi') == 202) {
-            log::chunk();
-            cron::clean();
-        }
-    } catch (Exception $e) {
-        log::add('log', 'error', $e->getMessage());
-    }
-    try {
-        if (date('Gi') == 2320) {
-            scenario::cleanTable();
-            user::cleanOutdatedUser();
-        }
-    } catch (Exception $e) {
-        log::add('scenario', 'error', $e->getMessage());
-    }
-    try {
-        $c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
-        if ($c->isDue()) {
-            if (config::byKey('update::auto') == 1) {
-                jeedom::update();
-            } else {
-                update::checkAllUpdate();
-                $nbUpdate = update::nbNeedUpdate();
-                if ($nbUpdate > 0) {
-                    message::add('update', 'De nouvelles mises à jour sont disponibles (' . $nbUpdate . ')', '', 'newUpdate');
-                }
-            }
-            config::save('update::check', rand(10, 59) . ' 06 * * *');
-        }
-    } catch (Exception $e) {
+} catch (Exception $e) {
 
-    }
-    try {
-        $c = new Cron\CronExpression(config::byKey('backup::cron'), new Cron\FieldFactory);
-        if ($c->isDue()) {
-            jeedom::backup();
-        }
-    } catch (Exception $e) {
-
-    }
+}
 
 }
 
@@ -613,13 +598,13 @@ public static function nginx_removeRule($_rules, $_returnResult = false) {
         $_rules = array($_rules);
     }
     if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-       return $_rules;
-   }
-   $result = '';
-   $nginx_conf = trim(file_get_contents('/etc/nginx/sites-available/jeedom_dynamic_rule'));
-   $accolade = 0;
-   $change = false;
-   foreach (explode("\n", trim($nginx_conf)) as $conf_line) {
+     return $_rules;
+ }
+ $result = '';
+ $nginx_conf = trim(file_get_contents('/etc/nginx/sites-available/jeedom_dynamic_rule'));
+ $accolade = 0;
+ $change = false;
+ foreach (explode("\n", trim($nginx_conf)) as $conf_line) {
     if ($accolade > 0 && strpos('{', $conf_line) !== false) {
         $accolade++;
     }
