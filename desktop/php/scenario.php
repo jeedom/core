@@ -209,9 +209,9 @@ foreach (scenario::listGroup() as $group) {
                         </div>
                     </div>
                     <div class="form-group expertModeVisible">
-                        <label class="col-xs-6 control-label">{{Lancer en avant-plan}}</label>
+                        <label class="col-xs-6 control-label">{{Executer le plus rapidement possible}}</label>
                         <div class="col-xs-1">
-                            <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="launchInForeground" titme="{{A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario}}">
+                            <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="speedPriority" titme="{{A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours}}">
                         </div>
                     </div>
                     <div class="form-group">

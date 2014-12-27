@@ -214,6 +214,23 @@ try {
         ajax::success();
     }
 
+    if (init('action') == 'emptyLog') {
+        if (!isConnect('admin')) {
+            throw new Exception(__('401 - Accès non autorisé', __FILE__));
+        }
+        $scenario = scenario::byId(init('id'));
+        if (!is_object($scenario)) {
+            throw new Exception(__('Scénario ID inconnu', __FILE__));
+        }
+        if (!$scenario->hasRight('w')) {
+            throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));
+        }
+        if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log')) {
+            unlink(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log');
+        }
+        ajax::success();
+    }
+
     if (init('action') == 'copy') {
         if (!isConnect('admin')) {
             throw new Exception(__('401 - Accès non autorisé', __FILE__));

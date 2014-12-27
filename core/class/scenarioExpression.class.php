@@ -770,8 +770,7 @@ class scenarioExpression {
     }
 
     public function setOptions($_key, $_value) {
-        $_value = jeedom::fromHumanReadable($_value);
-        $this->options = utils::setJsonAttr($this->options, $_key, $_value);
+        $this->options = utils::setJsonAttr($this->options, $_key, jeedom::fromHumanReadable($_value));
     }
 
     public function getOrder() {

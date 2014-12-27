@@ -33,11 +33,10 @@ class scenario {
     private $pid;
     private $scenarioElement;
     private $trigger;
-    private $log;
+    private $_log;
     private $timeout = 0;
     private $object_id = null;
     private $isVisible = 1;
-    private $hlogs;
     private $display;
     private $description;
     private $configuration;
@@ -538,7 +537,7 @@ class scenario {
             return;
         }
         if (config::byKey('enableScenario') == 1) {
-            if ($this->getConfiguration('launchInForeground', 0) == 1) {
+            if ($this->getConfiguration('speedPriority', 0) == 1) {
                 $this->execute($_trigger, $_message);
             } else {
                 $cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
@@ -573,26 +572,31 @@ class scenario {
             $this->save();
             return;
         }
-        $this->setLog('');
-        $this->setDisplay('icon', '');
-        $this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
-        $this->setState('in progress');
-        $this->setPID(getmypid());
-        $this->setLastLaunch(date('Y-m-d H:i:s'));
-        $this->save();
+        if ($this->getConfiguration('speedPriority', 0) == 0) {
+            $this->setLog('');
+            $this->setDisplay('icon', '');
+            $this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
+            $this->setState('in progress');
+            $this->setPID(getmypid());
+            $this->setLastLaunch(date('Y-m-d H:i:s'));
+            $this->save();
+        }
         $this->setRealTrigger($_trigger);
         foreach ($this->getElement() as $element) {
             $element->execute($this);
         }
-        $this->setState('stop');
-        $this->setPID('');
-        if ($this->getIsActive() == 1) {
-            $scenario = self::byId($this->getId());
-            if (is_object($scenario)) {
-                $this->setIsActive($scenario->getIsActive());
+        if ($this->getConfiguration('speedPriority', 0) == 0) {
+            $this->setState('stop');
+            $this->setPID('');
+            if ($this->getIsActive() == 1) {
+                $scenario = self::byId($this->getId());
+                if (is_object($scenario)) {
+                    $this->setIsActive($scenario->getIsActive());
+                }
             }
+            $this->save();
         }
-        $this->save();
+        $this->persistLog();
         return true;
     }
 
@@ -1062,6 +1066,16 @@ class scenario {
         return $rights->getRight();
     }
 
+    public function persistLog() {
+        if (!file_exists(dirname(__FILE__) . '/../../log/scenarioLog')) {
+            mkdir(dirname(__FILE__) . '/../../log/scenarioLog');
+        }
+        $path = dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $this->getId() . '.log';
+        $log = fopen($path, "a+");
+        fputs($log, $this->getLog() . "------------------------------------\n");
+        fclose($log);
+    }
+
     /*     * **********************Getteur Setteur*************************** */
 
     public function getId() {
@@ -1187,14 +1201,14 @@ class scenario {
     }
 
     public function getLog() {
-        return $this->log;
+        return $this->_log;
     }
 
     public function setLog($log) {
         if ($log == '') {
-            $this->log = '';
+            $this->_log = '';
         } else {
-            $this->log .= '[' . date('Y-m-d H:i:s') . '][SCENARIO] ' . $log . "\n";
+            $this->_log .= '[' . date('Y-m-d H:i:s') . '][SCENARIO] ' . $log . "\n";
         }
     }
 
