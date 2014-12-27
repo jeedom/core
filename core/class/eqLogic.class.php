@@ -36,7 +36,6 @@ class eqLogic {
     protected $category;
     protected $display;
     protected $order;
-    protected $_internalEvent = 0;
     protected $_debug = false;
     protected $_object = null;
     private static $_templateArray = array();
@@ -504,31 +503,14 @@ class eqLogic {
         }
         viewData::removeByTypeLinkId('eqLogic', $this->getId());
         dataStore::removeByTypeLinkId('eqLogic', $this->getId());
-        $internalEvent = new internalEvent();
-        $internalEvent->setEvent('remove::eqLogic');
-        $internalEvent->setOptions('id', $this->getId());
-        DB::remove($this);
-        $internalEvent->save();
+        return DB::remove($this);
     }
 
     public function save() {
         if ($this->getName() == '') {
             throw new Exception(__('Le nom de l\'équipement ne peut pas être vide', __FILE__));
         }
-        if ($this->getInternalEvent() == 1) {
-            $internalEvent = new internalEvent();
-            if ($this->getId() == '') {
-                $internalEvent->setEvent('create::eqLogic');
-            } else {
-                $internalEvent->setEvent('update::eqLogic');
-            }
-        }
-        DB::save($this);
-        if (isset($internalEvent)) {
-            $internalEvent->setOptions('id', $this->getId());
-            $internalEvent->save();
-        }
-        return true;
+        return DB::save($this);
     }
 
     public function refresh() {
@@ -693,7 +675,6 @@ class eqLogic {
         $eqLogic->setIsVisible('');
         $eqLogic->setTimeout('');
         $eqLogic->setOrder('');
-        $eqLogic->setInternalEvent('');
         $eqLogic->setConfiguration('nerverFail', '');
         $eqLogic->setConfiguration('noBatterieCheck', '');
         $return = utils::o2a($eqLogic);
@@ -782,59 +763,35 @@ class eqLogic {
     }
 
     public function setId($id) {
-        if ($id != $this->getId()) {
-            $this->setInternalEvent(1);
-        }
         $this->id = $id;
     }
 
     public function setName($name) {
         $name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $name);
-        if ($name != $this->getName()) {
-            $this->setInternalEvent(1);
-        }
         $this->name = $name;
     }
 
     public function setLogicalId($logicalId) {
-        if ($logicalId != $this->getLogicalId()) {
-            $this->setInternalEvent(1);
-        }
         $this->logicalId = $logicalId;
     }
 
     public function setObject_id($object_id = null) {
-        if ($object_id != $this->getObject_id()) {
-            $this->setInternalEvent(1);
-        }
         $this->object_id = (!is_numeric($object_id)) ? null : $object_id;
     }
 
     public function setEqType_name($eqType_name) {
-        if ($eqType_name != $this->getEqType_name()) {
-            $this->setInternalEvent(1);
-        }
         $this->eqType_name = $eqType_name;
     }
 
     public function setEqReal_id($eqReal_id) {
-        if ($eqReal_id != $this->getEqReal_id()) {
-            $this->setInternalEvent(1);
-        }
         $this->eqReal_id = $eqReal_id;
     }
 
     public function setIsVisible($isVisible) {
-        if ($isVisible != $this->getIsVisible()) {
-            $this->setInternalEvent(1);
-        }
         $this->isVisible = $isVisible;
     }
 
     public function setIsEnable($_isEnable) {
-        if ($_isEnable != $this->getIsEnable()) {
-            $this->setInternalEvent(1);
-        }
         $this->isEnable = $_isEnable;
     }
 
@@ -869,14 +826,6 @@ class eqLogic {
 
     public function setDisplay($_key, $_value) {
         $this->display = utils::setJsonAttr($this->display, $_key, $_value);
-    }
-
-    public function getInternalEvent() {
-        return $this->_internalEvent;
-    }
-
-    public function setInternalEvent($_internalEvent) {
-        $this->_internalEvent = $_internalEvent;
     }
 
     public function getTimeout() {

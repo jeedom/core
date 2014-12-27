@@ -28,7 +28,6 @@ class eqReal {
     protected $type;
     protected $cat;
     protected $configuration;
-    protected $_internalEvent = 0;
 
     /*     * ***********************Méthodes statiques*************************** */
 
@@ -107,31 +106,14 @@ class eqReal {
             $eqLogic->remove();
         }
         dataStore::removeByTypeLinkId('eqReal', $this->getId());
-        $internalEvent = new internalEvent();
-        $internalEvent->setEvent('remove::eqReal');
-        $internalEvent->setOptions('id', $this->getId());
-        DB::remove($this);
-        $internalEvent->save();
+        return DB::remove($this);
     }
 
     public function save() {
         if ($this->getName() == '') {
             throw new Exception(__('Le nom de l\'équipement réel ne peut pas être vide', __FILE__));
         }
-        if ($this->getInternalEvent() == 1) {
-            $internalEvent = new internalEvent();
-            if ($this->getId() == '') {
-                $internalEvent->setEvent('create::eqReal');
-            } else {
-                $internalEvent->setEvent('update::eqReal');
-            }
-        }
-        DB::save($this);
-        if (isset($internalEvent)) {
-            $internalEvent->setOptions('id', $this->getId());
-            $internalEvent->save();
-        }
-        return true;
+        return DB::save($this);
     }
 
     /*     * **********************Getteur Setteur*************************** */
@@ -161,37 +143,22 @@ class eqReal {
     }
 
     public function setId($id) {
-        if ($id != $this->getId()) {
-            $this->setInternalEvent(1);
-        }
         $this->id = $id;
     }
 
     public function setLogicalId($logicalId) {
-        if ($logicalId != $this->getLogicalId()) {
-            $this->setInternalEvent(1);
-        }
         $this->logicalId = $logicalId;
     }
 
     public function setName($name) {
-        if ($name != $this->getName()) {
-            $this->setInternalEvent(1);
-        }
         $this->name = $name;
     }
 
     public function setType($type) {
-        if ($type != $this->getType()) {
-            $this->setInternalEvent(1);
-        }
         $this->type = $type;
     }
 
     public function setCat($cat) {
-        if ($cat != $this->getCat()) {
-            $this->setInternalEvent(1);
-        }
         $this->cat = $cat;
     }
 
@@ -201,14 +168,6 @@ class eqReal {
 
     public function setConfiguration($_key, $_value) {
         $this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
-    }
-
-    public function getInternalEvent() {
-        return $this->_internalEvent;
-    }
-
-    public function setInternalEvent($_internalEvent) {
-        $this->_internalEvent = $_internalEvent;
     }
 
 }

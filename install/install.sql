@@ -298,19 +298,6 @@ CREATE TABLE IF NOT EXISTS `interactQuery` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `internalEvent`
---
-
-CREATE TABLE IF NOT EXISTS `internalEvent` (
-  `datetime` datetime DEFAULT NULL,
-  `event` varchar(127) DEFAULT NULL,
-  `options` varchar(511) DEFAULT NULL,
-  KEY `datetime` (`datetime`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `jeeNetwork`
 --
 
@@ -520,18 +507,6 @@ CREATE TABLE IF NOT EXISTS `scenarioSubElement` (
   KEY `fk_scenarioSubElement_scenarioElement1_idx` (`scenarioElement_id`),
   KEY `type` (`scenarioElement_id`,`type`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `start`
---
-
-CREATE TABLE IF NOT EXISTS `start` (
-  `key` varchar(127) NOT NULL,
-  `value` varchar(127) DEFAULT NULL,
-  PRIMARY KEY (`key`)
-) ENGINE=MEMORY DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 

@@ -358,7 +358,6 @@ public static function cron() {
         $cache->remove();
         jeedom::start();
         plugin::start();
-        internalEvent::start();
         self::doUPnP();
         touch('/tmp/jeedom_start');
         self::event('start');
@@ -369,7 +368,6 @@ public static function cron() {
     
     try {
         if(date('i')%10==0){
-         interactDef::cron();
          connection::cron();
          if (config::byKey('jeeNetwork::mode') != 'slave') {
           jeeNetwork::pull();

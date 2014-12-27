@@ -239,20 +239,10 @@ class interactQuery {
         if ($this->getLink_id() == '' && $this->getLink_type() != 'whatDoYouKnow') {
             throw new Exception(__('Cet ordre vocal n\'est associé à aucune commande : ', __FILE__) . $this->getQuery());
         }
-        $checksum = DB::checksum('interactQuery');
-        DB::save($this);
-        if ($checksum != DB::checksum('interactQuery')) {
-            $internalEvent = new internalEvent();
-            $internalEvent->setEvent('update::interactQuery');
-            $internalEvent->save();
-        }
-        return true;
+        return DB::save($this);
     }
 
     public function remove() {
-        $internalEvent = new internalEvent();
-        $internalEvent->setEvent('update::interactQuery');
-        $internalEvent->save();
         return DB::remove($this);
     }
 

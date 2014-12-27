@@ -84,37 +84,6 @@ class interactDef {
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
 
-    public static function cron() {
-        $updatedObject = array();
-        foreach (internalEvent::getNewInternalEvent('interactDef') as $internalEvent) {
-            $event = explode('::', $internalEvent->getEvent());
-            $eventName = '';
-            if (in_array($event[0], array('update', 'create', 'remove'))) {
-                switch ($event[1]) {
-                    case 'cmd':
-                        $updatedObject['commande'] = true;
-                        break;
-                    case 'eqLogic':
-                        $updatedObject['equipement'] = true;
-                        break;
-                    case 'object':
-                        $updatedObject['objet'] = true;
-                        $updatedObject['object'] = true;
-                        break;
-                    default:
-                        continue;
-                        break;
-                }
-            }
-        }
-
-        foreach ($updatedObject as $key => $value) {
-            foreach (self::searchByQuery('#' . $key . '#') as $interactDef) {
-                $interactDef->postSave();
-            }
-        }
-    }
-
     public static function byUsedCommand($_cmd_id) {
         $return = array();
         $interactQueries = interactQuery::byTypeAndLinkId('cmd', $_cmd_id);

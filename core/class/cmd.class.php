@@ -40,7 +40,6 @@ class cmd {
     protected $_collectDate = '';
     protected $value = null;
     protected $isVisible = 1;
-    protected $_internalEvent = 0;
     protected $_eqLogic = null;
     private static $_templateArray = array();
 
@@ -593,20 +592,7 @@ class cmd {
         if ($this->getEqType() == '') {
             $this->setEqType($this->getEqLogic()->getEqType_name());
         }
-        if ($this->getInternalEvent() == 1) {
-            $internalEvent = new internalEvent();
-            if ($this->getId() == '') {
-                $internalEvent->setEvent('create::cmd');
-            } else {
-                $internalEvent->setEvent('update::cmd');
-            }
-        }
         DB::save($this);
-        if (isset($internalEvent)) {
-            $internalEvent->setOptions('id', $this->getId());
-            $internalEvent->save();
-        }
-
         $mc = cache::byKey('cmd' . $this->getId());
         if ($mc->getLifetime() != $this->getCacheLifetime()) {
             $mc->remove();
@@ -621,11 +607,7 @@ class cmd {
     public function remove() {
         viewData::removeByTypeLinkId('cmd', $this->getId());
         dataStore::removeByTypeLinkId('cmd', $this->getId());
-        $internalEvent = new internalEvent();
-        $internalEvent->setEvent('remove::cmd');
-        $internalEvent->setOptions('id', $this->getId());
-        DB::remove($this);
-        $internalEvent->save();
+        return DB::remove($this);
     }
 
     public function execute($_options = array()) {
@@ -1032,7 +1014,6 @@ class cmd {
         $cmd->setOrder('');
         $cmd->setEqLogic_id('');
         $cmd->cache = '';
-        $cmd->setInternalEvent('');
         $cmd->setDisplay('graphType', '');
         $cmdValue = $cmd->getCmdValue();
         if (is_object($cmdValue)) {
@@ -1130,59 +1111,35 @@ class cmd {
     }
 
     public function setId($id = '') {
-        if ($id != $this->getId()) {
-            $this->setInternalEvent(1);
-        }
         $this->id = $id;
     }
 
     public function setName($name) {
         $name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $name);
-        if ($name != $this->getName()) {
-            $this->setInternalEvent(1);
-        }
         $this->name = $name;
     }
 
     public function setType($type) {
-        if ($type != $this->getType()) {
-            $this->setInternalEvent(1);
-        }
         $this->type = $type;
     }
 
     public function setSubType($subType) {
-        if ($subType != $this->getSubType()) {
-            $this->setInternalEvent(1);
-        }
         $this->subType = $subType;
     }
 
     public function setEqLogic_id($eqLogic_id) {
-        if ($eqLogic_id != $this->getEqLogic_id()) {
-            $this->setInternalEvent(1);
-        }
         $this->eqLogic_id = $eqLogic_id;
     }
 
     public function setIsHistorized($isHistorized) {
-        if ($isHistorized != $this->getIsHistorized()) {
-            $this->setInternalEvent(1);
-        }
         $this->isHistorized = $isHistorized;
     }
 
     public function setUnite($unite) {
-        if ($unite != $this->getUnite()) {
-            $this->setInternalEvent(1);
-        }
         $this->unite = $unite;
     }
 
     public function setEventOnly($eventOnly) {
-        if ($eventOnly != $this->getEventOnly()) {
-            $this->setInternalEvent(1);
-        }
         $this->eventOnly = $eventOnly;
     }
 
@@ -1240,14 +1197,6 @@ class cmd {
 
     public function setIsVisible($isVisible) {
         $this->isVisible = $isVisible;
-    }
-
-    public function getInternalEvent() {
-        return $this->_internalEvent;
-    }
-
-    public function setInternalEvent($_internalEvent) {
-        $this->_internalEvent = $_internalEvent;
     }
 
     public function getOrder() {

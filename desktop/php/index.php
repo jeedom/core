@@ -214,7 +214,6 @@ if (count($plugins_list) > 0) {
                                                     }
                                                     if (config::byKey('jeeNetwork::mode') == 'master') {
                                                         ?>
-                                                        <li class="expertModeVisible"><a href="index.php?v=d&p=timeline"><i class="fa fa-history"></i> {{Timeline}}</a></li>
                                                         <?php if (config::byKey('jeedom::licence') >= 5) { ?>
                                                             <li class="expertModeVisible"><a href="index.php?v=d&p=jeeNetwork"><i class="fa fa-sitemap"></i> {{Réseau Jeedom}}</a></li>
                                                         <?php } ?>

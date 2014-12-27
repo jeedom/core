@@ -41,7 +41,6 @@ class scenario {
     private $description;
     private $configuration;
     private $type;
-    private $_internalEvent = 0;
     private static $_templateArray;
     private $_elements = array();
     private $_changeState = false;
@@ -693,14 +692,10 @@ public function refresh() {
 public function remove() {
     viewData::removeByTypeLinkId('scenario', $this->getId());
     dataStore::removeByTypeLinkId('scenario', $this->getId());
-    $internalEvent = new internalEvent();
-    $internalEvent->setEvent('remove::scenario');
-    $internalEvent->setOptions('id', $this->getId());
     foreach ($this->getElement() as $element) {
         $element->remove();
     }
-    DB::remove($this);
-    $internalEvent->save();
+    return DB::remove($this);
 }
 
 public function removeData($_key, $_private = false) {
@@ -949,9 +944,6 @@ public function export($_mode = 'text') {
         if (isset($return['scenarioElement'])) {
             unset($return['scenarioElement']);
         }
-        if (isset($return['_internalEvent'])) {
-            unset($return['_internalEvent']);
-        }
         if (isset($return['_templateArray'])) {
             unset($return['_templateArray']);
         }
@@ -1092,15 +1084,11 @@ public function setId($id) {
 }
 
 public function setName($name) {
-    if ($name != $this->getName()) {
-        $this->setInternalEvent(1);
-    }
     $this->name = $name;
 }
 
 public function setIsActive($isActive) {
     if ($isActive != $this->getIsActive()) {
-        $this->setInternalEvent(1);
         $this->_changeState = true;
     }
     $this->isActive = $isActive;
@@ -1222,29 +1210,6 @@ public function setObject_id($object_id = null) {
 
 public function setIsVisible($isVisible) {
     $this->isVisible = $isVisible;
-}
-
-public function getHlogs() {
-    if (is_json($this->hlogs)) {
-        return json_decode($this->hlogs, true);
-    }
-    return $this->hlogs;
-}
-
-public function setHlogs($hlogs) {
-    if (is_array($hlogs)) {
-        $this->hlogs = json_encode($hlogs);
-    } else {
-        $this->hlogs = $hlogs;
-    }
-}
-
-public function getInternalEvent() {
-    return $this->_internalEvent;
-}
-
-public function setInternalEvent($_internalEvent) {
-    $this->_internalEvent = $_internalEvent;
 }
 
 public function getDisplay($_key = '', $_default = '') {

@@ -72,11 +72,6 @@ $pages = array(
         'view' => array('title' => 'Voir'),
     //  'edit' => array('title' => 'Editer')
     ),
-    'timeline' => array(
-        'title' => 'Timeline',
-        'view' => array('title' => 'Voir'),
-    //  'edit' => array('title' => 'Editer')
-    ),
     'update' => array(
         'title' => 'Mise à jour',
         'view' => array('title' => 'Voir'),
