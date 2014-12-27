@@ -183,7 +183,7 @@ class jeedom {
     }
 
     public static function persist() {
-        
+
     }
 
     public static function backup($_background = false) {
@@ -310,7 +310,7 @@ class jeedom {
                                 $result[$object->getId()]['eqLogic'][$eqLogic->getId()]['cmd'][$cmd->getId()]['unite'] = $cmd->getUnite();
                                 $result[$object->getId()]['eqLogic'][$eqLogic->getId()]['cmd'][$cmd->getId()]['value'] = $value;
                             } catch (Exception $exc) {
-                                
+
                             }
                         }
                     }
@@ -333,12 +333,7 @@ class jeedom {
     }
 
     public static function isStarted() {
-        $sql = "SELECT `value` FROM `start` WHERE `key`='start'";
-        $result = DB::Prepare($sql, array());
-        if (count($result) > 0 && $result['value'] == 'ok') {
-            return true;
-        }
-        return false;
+       return file_exists('/tmp/jeedom_start');
     }
 
     public static function isDateOk() {
@@ -380,289 +375,281 @@ class jeedom {
             plugin::start();
             internalEvent::start();
             self::doUPnP();
-            DB::Prepare("REPLACE INTO `start` (`key` ,`value`) VALUES ('start',  'ok')", array());
+            touch('/tmp/jeedom_start');
             self::event('start');
             log::add('core', 'info', 'Démarrage de Jeedom OK');
         }
         plugin::cron();
-        interactDef::cron();
         eqLogic::checkAlive();
-        connection::cron();
+        
         try {
-            $c = new Cron\CronExpression(config::byKey('log::chunck'), new Cron\FieldFactory);
-            if ($c->isDue()) {
-                log::chunk();
-                cron::clean();
-            }
-        } catch (Exception $e) {
-            log::add('log', 'error', $e->getMessage());
-        }
-        try {
-            $c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
-            if ($c->isDue()) {
-                if (config::byKey('update::auto') == 1) {
-                    jeedom::update();
-                } else {
-                    update::checkAllUpdate();
-                    $nbUpdate = update::nbNeedUpdate();
-                    if ($nbUpdate > 0) {
-                        message::add('update', 'De nouvelles mises à jour sont disponibles (' . $nbUpdate . ')', '', 'newUpdate');
-                    }
-                }
-                config::save('update::check', rand(10, 59) . ' 06 * * *');
-            }
-        } catch (Exception $e) {
-            //log::add('update', 'error', '[' . config::byKey('update::check') . ']' . $e->getMessage());
-        }
-        try {
-            $c = new Cron\CronExpression(config::byKey('backup::cron'), new Cron\FieldFactory);
-            if ($c->isDue()) {
-                jeedom::backup();
-            }
-        } catch (Exception $e) {
-            
-        }
-        try {
-            $c = new Cron\CronExpression('20 23 * * *', new Cron\FieldFactory);
-            if ($c->isDue()) {
-                scenario::cleanTable();
-                user::cleanOutdatedUser();
-            }
-        } catch (Exception $e) {
-            log::add('scenario', 'error', $e->getMessage());
-        }
-        if (config::byKey('jeeNetwork::mode') != 'slave') {
-            try {
-                $c = new Cron\CronExpression(config::byKey('jeeNetwork::pull'), new Cron\FieldFactory);
-                if ($c->isDue()) {
-                    jeeNetwork::pull();
-                }
-            } catch (Exception $e) {
-                log::add('jeeNetwork', 'error', '[' . config::byKey('jeeNetwork::pull') . ']' . $e->getMessage());
+            if(date('i')%10==0){
+               interactDef::cron();
+               connection::cron();
+               if (config::byKey('jeeNetwork::mode') != 'slave') {
+                  jeeNetwork::pull();
+              }
+              if (config::byKey('market::allowDNS') == 1 && config::byKey('jeeNetwork::mode') == 'master' && config::byKey('jeedom::licence') >= 5) {
+                market::updateIp();
             }
         }
-        if (config::byKey('market::allowDNS') == 1 && config::byKey('jeeNetwork::mode') == 'master' && config::byKey('jeedom::licence') >= 5) {
-            try {
-                $c = new Cron\CronExpression('*/10 * * * *', new Cron\FieldFactory);
-                if ($c->isDue()) {
-                    market::updateIp();
-                }
-            } catch (Exception $e) {
-                log::add('market', 'error', '[' . config::byKey('jeeNetwork::mode') . ']' . $e->getMessage());
-            }
-        }
-    }
+    } catch (Exception $e) {
 
-    public static function checkOngoingThread($_cmd) {
-        return shell_exec('ps ax | grep "' . $_cmd . '$" | grep -v "grep" | wc -l');
     }
-
-    public static function retrievePidThread($_cmd) {
-        return shell_exec('ps ax | grep "' . $_cmd . '$" | grep -v "grep" | awk \'{print $1}\'');
+    try {
+        if (date('Gi') == 202) {
+            log::chunk();
+            cron::clean();
+        }
+    } catch (Exception $e) {
+        log::add('log', 'error', $e->getMessage());
     }
-
-    public static function getHardwareKey() {
-        $cache = cache::byKey('jeedom::hwkey');
-        if ($cache->getValue(0) == 0) {
-            $rdkey = config::byKey('jeedom::rdkey');
-            if ($rdkey == '') {
-                $rdkey = config::genKey();
-                config::save('jeedom::rdkey', $rdkey);
-            }
-            $ifconfig = shell_exec("/sbin/ifconfig");
-            if (strpos($ifconfig, 'eth1') !== false) {
-                $key = shell_exec("/sbin/ifconfig eth1 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
-            } else if (strpos($ifconfig, 'p2p0') !== false) {
-                $key = shell_exec("/sbin/ifconfig p2p0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
-            } else if (strpos($ifconfig, 'p2p1') !== false) {
-                $key = shell_exec("/sbin/ifconfig p2p1 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
-            } else if (strpos($ifconfig, 'p2p2') !== false) {
-                $key = shell_exec("/sbin/ifconfig p2p2 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+    try {
+        if (date('Gi') == 2320) {
+            scenario::cleanTable();
+            user::cleanOutdatedUser();
+        }
+    } catch (Exception $e) {
+        log::add('scenario', 'error', $e->getMessage());
+    }
+    try {
+        $c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
+        if ($c->isDue()) {
+            if (config::byKey('update::auto') == 1) {
+                jeedom::update();
             } else {
-                $key = shell_exec("/sbin/ifconfig eth0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
-            }
-            $hwkey = sha1($key . $rdkey);
-            cache::set('jeedom::hwkey', $hwkey, 86400);
-            return $hwkey;
-        }
-        return $cache->getValue();
-    }
-
-    public static function isRestrictionOk() {
-        $isRestrictionOk = cache::byKey('isRestrictionOk');
-        if ($isRestrictionOk->getValue(-1) != -1) {
-            return $isRestrictionOk->getValue(0);
-        }
-        $register_datetime = config::save('register::datetime', date('Y-m-d H:i:s'));
-        $restrict_hw = shell_exec("dmesg | grep HummingBoard | wc -l");
-        if ($restrict_hw == 1 && config::byKey('jeedom::licence') < 1) {
-            if (($register_datetime + 604800) > strtotime('now')) {
-                $result = $register_datetime + 604800 - strtotime('now');
-                log::add(__('hardware', 'error', 'Attention vous utilisez Jeedom sur un matériel soumis à une licence, veuillez enregistrer votre compte market et/ou acheter une licence, il vous reste ', __FILE__) . convertDuration($result), 'restrictHardwareTime');
-                cache::set('isRestrictionOk', $result, 86400);
-                return $result;
-            }
-            cache::set('isRestrictionOk', 0, 86400);
-
-            return 0;
-        }
-        cache::set('isRestrictionOk', 1, 86400);
-        return 1;
-    }
-
-    public static function versionAlias($_version) {
-        $alias = array(
-            'mview' => 'mobile',
-            'dview' => 'dashboard',
-        );
-        return (isset($alias[$_version])) ? $alias[$_version] : $_version;
-    }
-
-    public static function toHumanReadable($_input) {
-        return scenario::toHumanReadable(eqLogic::toHumanReadable(cmd::cmdToHumanReadable($_input)));
-    }
-
-    public static function fromHumanReadable($_input) {
-        return scenario::fromHumanReadable(eqLogic::fromHumanReadable(cmd::humanReadableToCmd($_input)));
-    }
-
-    public static function evaluateExpression($_input) {
-        try {
-            $_input = scenarioExpression::setTags($_input);
-            $test = new evaluate();
-            $result = $test->Evaluer($_input);
-            if (is_bool($result) || is_numeric($result)) {
-                return $result;
-            }
-            return $_input;
-        } catch (Exception $exc) {
-            return $_input;
-        }
-    }
-
-    public static function haltSystem() {
-        exec('sudo halt');
-    }
-
-    public static function rebootSystem() {
-        exec('sudo reboot');
-    }
-
-    public static function portForwarding($_internalIp, $_internalPort, $_externalPort, $_protocol = 'TCP') {
-        $fp = popen("which upnpc", "r");
-        $result = fgets($fp, 255);
-        $exists = !empty($result);
-        pclose($fp);
-        if (!$exists) {
-            throw new Exception(__('Impossible de trouver : upnpc. Veuillez l\'installer en ssh en faisant : "sudo apt-get install -y miniupnpc"', __FILE__));
-        }
-        shell_exec('upnpc -d ' . $_externalPort . ' ' . $_protocol);
-        $result = exec('upnpc -a ' . $_internalIp . ' ' . $_internalPort . ' ' . $_externalPort . ' ' . $_protocol);
-        if (strpos($result, 'is redirected to internal') === false) {
-            throw new Exception(__('Echec de la redirection de port : ', __FILE__) . $result);
-        }
-    }
-
-    public static function doUPnP() {
-        if (config::byKey('internalAddr') == '') {
-            config::save('internalAddr', exec("/sbin/ifconfig eth0 | grep 'inet adr:' | cut -d: -f2 | awk '{ print $1}'"));
-        }
-        if (config::byKey('allowupnpn') == 1) {
-            try {
-                self::portForwarding(getIpFromString(config::byKey('internalAddr')), 80, config::byKey('externalPort', 80));
-            } catch (Exception $e) {
-                log::add('core', 'error', $e->getMessage());
-            }
-        }
-    }
-
-    public function checkFilesystem() {
-        $result = exec('dmesg | grep "I/O error" | wc -l');
-        if ($result != 0) {
-            log::add('core', 'error', __('Erreur : corruption sur le filesystem detecter (I/O error sur dmseg)', __FILE__));
-            return false;
-        }
-        return true;
-    }
-
-    /*     * ****************************SQL BUDDY*************************** */
-
-    public static function getCurrentSqlBuddyFolder() {
-        $dir = dirname(__FILE__) . '/../../';
-        $ls = ls($dir, 'sqlbuddy*');
-        if (count($ls) != 1) {
-            return '';
-        }
-        return $ls[0];
-    }
-
-    public static function renameSqlBuddyFolder() {
-        $folder = self::getCurrentSqlBuddyFolder();
-        if ($folder != '') {
-            rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../sqlbuddy' . config::genKey());
-        }
-    }
-
-    /*     * ****************************Nginx management*************************** */
-
-    public static function nginx_saveRule($_rules) {
-        if (!is_array($_rules)) {
-            $_rules = array($_rules);
-        }
-        if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-            throw new Exception('Fichier non trouvé : /etc/nginx/sites-available/jeedom_dynamic_rule');
-        }
-        $nginx_conf = self::nginx_removeRule($_rules, true);
-
-        foreach ($_rules as $rule) {
-            $nginx_conf .= "\n" . $rule . "\n";
-        }
-        file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $nginx_conf);
-        shell_exec('sudo service nginx reload');
-    }
-
-    public static function nginx_removeRule($_rules, $_returnResult = false) {
-        if (!is_array($_rules)) {
-            $_rules = array($_rules);
-        }
-        if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-           return $_rules;
-        }
-        $result = '';
-        $nginx_conf = trim(file_get_contents('/etc/nginx/sites-available/jeedom_dynamic_rule'));
-        $accolade = 0;
-        $change = false;
-        foreach (explode("\n", trim($nginx_conf)) as $conf_line) {
-            if ($accolade > 0 && strpos('{', $conf_line) !== false) {
-                $accolade++;
-            }
-            foreach ($_rules as $rule) {
-                $rule_line = explode("\n", trim($rule));
-                if (trim($conf_line) == trim($rule_line[0])) {
-                    $accolade = 1;
+                update::checkAllUpdate();
+                $nbUpdate = update::nbNeedUpdate();
+                if ($nbUpdate > 0) {
+                    message::add('update', 'De nouvelles mises à jour sont disponibles (' . $nbUpdate . ')', '', 'newUpdate');
                 }
             }
-            if ($accolade == 0) {
-                $result .= $conf_line . "\n";
-            } else {
-                $change = true;
-            }
-            if ($accolade > 0 && strpos('}', $conf_line) !== false) {
-                $accolade--;
-            }
+            config::save('update::check', rand(10, 59) . ' 06 * * *');
         }
-        if ($_returnResult) {
+    } catch (Exception $e) {
+
+    }
+    try {
+        $c = new Cron\CronExpression(config::byKey('backup::cron'), new Cron\FieldFactory);
+        if ($c->isDue()) {
+            jeedom::backup();
+        }
+    } catch (Exception $e) {
+
+    }
+
+}
+
+public static function checkOngoingThread($_cmd) {
+    return shell_exec('ps ax | grep "' . $_cmd . '$" | grep -v "grep" | wc -l');
+}
+
+public static function retrievePidThread($_cmd) {
+    return shell_exec('ps ax | grep "' . $_cmd . '$" | grep -v "grep" | awk \'{print $1}\'');
+}
+
+public static function getHardwareKey() {
+    $cache = cache::byKey('jeedom::hwkey');
+    if ($cache->getValue(0) == 0) {
+        $rdkey = config::byKey('jeedom::rdkey');
+        if ($rdkey == '') {
+            $rdkey = config::genKey();
+            config::save('jeedom::rdkey', $rdkey);
+        }
+        $ifconfig = shell_exec("/sbin/ifconfig");
+        if (strpos($ifconfig, 'eth1') !== false) {
+            $key = shell_exec("/sbin/ifconfig eth1 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+        } else if (strpos($ifconfig, 'p2p0') !== false) {
+            $key = shell_exec("/sbin/ifconfig p2p0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+        } else if (strpos($ifconfig, 'p2p1') !== false) {
+            $key = shell_exec("/sbin/ifconfig p2p1 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+        } else if (strpos($ifconfig, 'p2p2') !== false) {
+            $key = shell_exec("/sbin/ifconfig p2p2 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+        } else {
+            $key = shell_exec("/sbin/ifconfig eth0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+        }
+        $hwkey = sha1($key . $rdkey);
+        cache::set('jeedom::hwkey', $hwkey, 86400);
+        return $hwkey;
+    }
+    return $cache->getValue();
+}
+
+public static function isRestrictionOk() {
+    $isRestrictionOk = cache::byKey('isRestrictionOk');
+    if ($isRestrictionOk->getValue(-1) != -1) {
+        return $isRestrictionOk->getValue(0);
+    }
+    $register_datetime = config::save('register::datetime', date('Y-m-d H:i:s'));
+    $restrict_hw = shell_exec("dmesg | grep HummingBoard | wc -l");
+    if ($restrict_hw == 1 && config::byKey('jeedom::licence') < 1) {
+        if (($register_datetime + 604800) > strtotime('now')) {
+            $result = $register_datetime + 604800 - strtotime('now');
+            log::add(__('hardware', 'error', 'Attention vous utilisez Jeedom sur un matériel soumis à une licence, veuillez enregistrer votre compte market et/ou acheter une licence, il vous reste ', __FILE__) . convertDuration($result), 'restrictHardwareTime');
+            cache::set('isRestrictionOk', $result, 86400);
             return $result;
         }
-        if ($change) {
-            file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $result);
-            shell_exec('sudo service nginx reload');
+        cache::set('isRestrictionOk', 0, 86400);
+
+        return 0;
+    }
+    cache::set('isRestrictionOk', 1, 86400);
+    return 1;
+}
+
+public static function versionAlias($_version) {
+    $alias = array(
+        'mview' => 'mobile',
+        'dview' => 'dashboard',
+        );
+    return (isset($alias[$_version])) ? $alias[$_version] : $_version;
+}
+
+public static function toHumanReadable($_input) {
+    return scenario::toHumanReadable(eqLogic::toHumanReadable(cmd::cmdToHumanReadable($_input)));
+}
+
+public static function fromHumanReadable($_input) {
+    return scenario::fromHumanReadable(eqLogic::fromHumanReadable(cmd::humanReadableToCmd($_input)));
+}
+
+public static function evaluateExpression($_input) {
+    try {
+        $_input = scenarioExpression::setTags($_input);
+        $test = new evaluate();
+        $result = $test->Evaluer($_input);
+        if (is_bool($result) || is_numeric($result)) {
+            return $result;
+        }
+        return $_input;
+    } catch (Exception $exc) {
+        return $_input;
+    }
+}
+
+public static function haltSystem() {
+    exec('sudo halt');
+}
+
+public static function rebootSystem() {
+    exec('sudo reboot');
+}
+
+public static function portForwarding($_internalIp, $_internalPort, $_externalPort, $_protocol = 'TCP') {
+    $fp = popen("which upnpc", "r");
+    $result = fgets($fp, 255);
+    $exists = !empty($result);
+    pclose($fp);
+    if (!$exists) {
+        throw new Exception(__('Impossible de trouver : upnpc. Veuillez l\'installer en ssh en faisant : "sudo apt-get install -y miniupnpc"', __FILE__));
+    }
+    shell_exec('upnpc -d ' . $_externalPort . ' ' . $_protocol);
+    $result = exec('upnpc -a ' . $_internalIp . ' ' . $_internalPort . ' ' . $_externalPort . ' ' . $_protocol);
+    if (strpos($result, 'is redirected to internal') === false) {
+        throw new Exception(__('Echec de la redirection de port : ', __FILE__) . $result);
+    }
+}
+
+public static function doUPnP() {
+    if (config::byKey('internalAddr') == '') {
+        config::save('internalAddr', exec("/sbin/ifconfig eth0 | grep 'inet adr:' | cut -d: -f2 | awk '{ print $1}'"));
+    }
+    if (config::byKey('allowupnpn') == 1) {
+        try {
+            self::portForwarding(getIpFromString(config::byKey('internalAddr')), 80, config::byKey('externalPort', 80));
+        } catch (Exception $e) {
+            log::add('core', 'error', $e->getMessage());
         }
     }
+}
 
-    /*     * *********************Methode d'instance************************* */
+public function checkFilesystem() {
+    $result = exec('dmesg | grep "I/O error" | wc -l');
+    if ($result != 0) {
+        log::add('core', 'error', __('Erreur : corruption sur le filesystem detecter (I/O error sur dmseg)', __FILE__));
+        return false;
+    }
+    return true;
+}
 
-    /*     * **********************Getteur Setteur*************************** */
+/*     * ****************************SQL BUDDY*************************** */
+
+public static function getCurrentSqlBuddyFolder() {
+    $dir = dirname(__FILE__) . '/../../';
+    $ls = ls($dir, 'sqlbuddy*');
+    if (count($ls) != 1) {
+        return '';
+    }
+    return $ls[0];
+}
+
+public static function renameSqlBuddyFolder() {
+    $folder = self::getCurrentSqlBuddyFolder();
+    if ($folder != '') {
+        rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../sqlbuddy' . config::genKey());
+    }
+}
+
+/*     * ****************************Nginx management*************************** */
+
+public static function nginx_saveRule($_rules) {
+    if (!is_array($_rules)) {
+        $_rules = array($_rules);
+    }
+    if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
+        throw new Exception('Fichier non trouvé : /etc/nginx/sites-available/jeedom_dynamic_rule');
+    }
+    $nginx_conf = self::nginx_removeRule($_rules, true);
+
+    foreach ($_rules as $rule) {
+        $nginx_conf .= "\n" . $rule . "\n";
+    }
+    file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $nginx_conf);
+    shell_exec('sudo service nginx reload');
+}
+
+public static function nginx_removeRule($_rules, $_returnResult = false) {
+    if (!is_array($_rules)) {
+        $_rules = array($_rules);
+    }
+    if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
+       return $_rules;
+   }
+   $result = '';
+   $nginx_conf = trim(file_get_contents('/etc/nginx/sites-available/jeedom_dynamic_rule'));
+   $accolade = 0;
+   $change = false;
+   foreach (explode("\n", trim($nginx_conf)) as $conf_line) {
+    if ($accolade > 0 && strpos('{', $conf_line) !== false) {
+        $accolade++;
+    }
+    foreach ($_rules as $rule) {
+        $rule_line = explode("\n", trim($rule));
+        if (trim($conf_line) == trim($rule_line[0])) {
+            $accolade = 1;
+        }
+    }
+    if ($accolade == 0) {
+        $result .= $conf_line . "\n";
+    } else {
+        $change = true;
+    }
+    if ($accolade > 0 && strpos('}', $conf_line) !== false) {
+        $accolade--;
+    }
+}
+if ($_returnResult) {
+    return $result;
+}
+if ($change) {
+    file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $result);
+    shell_exec('sudo service nginx reload');
+}
+}
+
+/*     * *********************Methode d'instance************************* */
+
+/*     * **********************Getteur Setteur*************************** */
 }
 
 ?>
