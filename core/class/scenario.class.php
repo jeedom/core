@@ -270,7 +270,7 @@ class scenario {
         if (!$scenario->running()) {
             $scenario->setState('stop');
         }
-       // $scenario->save();
+        // $scenario->save();
     }
 
     public static function cleanTable() {
@@ -471,8 +471,8 @@ class scenario {
         }
         return ls($path, '*.json', false, array('files', 'quiet'));
     }
-    
-     /*     * *************************MARKET**************************************** */
+
+    /*     * *************************MARKET**************************************** */
 
     public static function shareOnMarket(&$market) {
         $moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
@@ -530,7 +530,6 @@ class scenario {
         }
         return $return;
     }
-
 
     /*     * *********************Méthodes d'instance************************* */
 
@@ -691,19 +690,7 @@ class scenario {
             $calculateScheduleDate = $this->calculateScheduleDate();
             $this->setLastLaunch($calculateScheduleDate['prevDate']);
         }
-        if ($this->getInternalEvent() == 1) {
-            $internalEvent = new internalEvent();
-            if ($this->getId() == '') {
-                $internalEvent->setEvent('create::scenario');
-            } else {
-                $internalEvent->setEvent('update::scenario');
-            }
-        }
         DB::save($this);
-        if (isset($internalEvent)) {
-            $internalEvent->setOptions('id', $this->getId());
-            $internalEvent->save();
-        }
         if ($this->_changeState) {
             @nodejs::pushUpdate('eventScenario', $this->getId());
         }
