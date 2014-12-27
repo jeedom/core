@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -14,18 +13,15 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
-jeedom.cmd = function () {
-};
-jeedom.cmd.cache = Array();
-if (!isset(jeedom.cmd.cache.byId)) {
+ jeedom.cmd = function() {};
+ jeedom.cmd.cache = Array();
+ if (!isset(jeedom.cmd.cache.byId)) {
     jeedom.cmd.cache.byId = Array();
 }
 if (!isset(jeedom.cmd.cache.byHumanName)) {
     jeedom.cmd.cache.byHumanName = Array();
 }
-
-jeedom.cmd.execute = function (_params) {
+jeedom.cmd.execute = function(_params) {
     var notify = _params.notify || true;
     if (notify) {
         var eqLogic = $('.cmd[data-cmd_id=' + _params.id + ']').closest('.eqLogic');
@@ -37,14 +33,17 @@ jeedom.cmd.execute = function (_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {
         global: false,
-        pre_success: function (data) {
+        pre_success: function(data) {
             if (data.state != 'ok') {
-                if ('function' != typeof (_params.error)) {
-                    $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                if ('function' != typeof(_params.error)) {
+                    $('#div_alert').showAlert({
+                        message: data.result,
+                        level: 'danger'
+                    });
                 }
                 if (notify) {
                     eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
-                    setTimeout(function () {
+                    setTimeout(function() {
                         eqLogic.find('.statusCmd').empty();
                     }, 3000);
                 }
@@ -52,7 +51,7 @@ jeedom.cmd.execute = function (_params) {
             }
             if (notify) {
                 eqLogic.find('.statusCmd').empty().append('<i class="fa fa-rss"></i>');
-                setTimeout(function () {
+                setTimeout(function() {
                     eqLogic.find('.statusCmd').empty();
                 }, 3000);
             }
@@ -80,78 +79,108 @@ jeedom.cmd.execute = function (_params) {
     };
     $.ajax(paramsAJAX);
 };
-jeedom.cmd.test = function (_params) {
+jeedom.cmd.test = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {
         global: false,
-        success: function (result) {
+        success: function(result) {
             switch (result.type) {
-                case 'info' :
+                case 'info':
+                jeedom.cmd.execute({
+                    id: _params.id,
+                    cache: 0,
+                    notify: false,
+                    success: function(result) {
+                        bootbox.confirm('{{Résulat de la commande : }}' + result, function() {});
+                    }
+                });
+                break;
+                case 'action':
+                switch (result.subType) {
+                    case 'other':
                     jeedom.cmd.execute({
                         id: _params.id,
                         cache: 0,
-                        notify: false,
-                        success: function (result) {
-                            bootbox.confirm('{{Résulat de la commande : }}' + result, function () {
+                        error: function(error) {
+                            $('#div_alert').showAlert({
+                                message: error.message,
+                                level: 'danger'
+                            });
+                        },
+                        success: function() {
+                            $('#div_alert').showAlert({
+                                message: '{{Action exécutée avec succès}}',
+                                level: 'success'
                             });
                         }
                     });
                     break;
-                case 'action' :
-                    switch (result.subType) {
-                        case 'other' :
-                            jeedom.cmd.execute({
-                                id: _params.id,
-                                cache: 0,
-                                error: function (error) {
-                                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                                },
-                                success: function () {
-                                    $('#div_alert').showAlert({message: '{{Action exécutée avec succès}}', level: 'success'});
-                                }
+                    case 'slider':
+                    jeedom.cmd.execute({
+                        id: _params.id,
+                        value: {
+                            slider: 50
+                        },
+                        cache: 0,
+                        error: function(error) {
+                            $('#div_alert').showAlert({
+                                message: error.message,
+                                level: 'danger'
                             });
-                            break;
-                        case 'slider' :
-                            jeedom.cmd.execute({
-                                id: _params.id,
-                                value: {slider: 50},
-                                cache: 0,
-                                error: function (error) {
-                                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                                },
-                                success: function () {
-                                    $('#div_alert').showAlert({message: '{{Action exécutée avec succès}}', level: 'success'});
-                                }
+                        },
+                        success: function() {
+                            $('#div_alert').showAlert({
+                                message: '{{Action exécutée avec succès}}',
+                                level: 'success'
                             });
-                            break;
-                        case 'color' :
-                            jeedom.cmd.execute({
-                                id: _params.id,
-                                value: {color: '#fff000'},
-                                cache: 0,
-                                error: function (error) {
-                                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                                },
-                                success: function () {
-                                    $('#div_alert').showAlert({message: '{{Action exécutée avec succès}}', level: 'success'});
-                                }
-                            });
-                            break;
-                        case 'message' :
-                            jeedom.cmd.execute({
-                                id: _params.id,
-                                value: {title: '{{[Jeedom] Message de test}}', message: '{{Ceci est un test de message pour la commande}} ' + result.name},
-                                cache: 0,
-                                error: function (error) {
-                                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                                },
-                                success: function () {
-                                    $('#div_alert').showAlert({message: '{{Action éxecutée avec succès}}', level: 'success'});
-                                }
-                            });
-                            break;
-                    }
+                        }
+                    });
                     break;
+                    case 'color':
+                    jeedom.cmd.execute({
+                        id: _params.id,
+                        value: {
+                            color: '#fff000'
+                        },
+                        cache: 0,
+                        error: function(error) {
+                            $('#div_alert').showAlert({
+                                message: error.message,
+                                level: 'danger'
+                            });
+                        },
+                        success: function() {
+                            $('#div_alert').showAlert({
+                                message: '{{Action exécutée avec succès}}',
+                                level: 'success'
+                            });
+                        }
+                    });
+                    break;
+                    case 'message':
+                    jeedom.cmd.execute({
+                        id: _params.id,
+                        value: {
+                            title: '{{[Jeedom] Message de test}}',
+                            message: '{{Ceci est un test de message pour la commande}} ' + result.name
+                        },
+                        cache: 0,
+                        error: function(error) {
+                            $('#div_alert').showAlert({
+                                message: error.message,
+                                level: 'danger'
+                            });
+                        },
+                        success: function() {
+                            $('#div_alert').showAlert({
+                                message: '{{Action éxecutée avec succès}}',
+                                level: 'success'
+                            });
+                        }
+                    });
+                    break;
+                }
+                break;
             }
         }
     };
@@ -170,14 +199,14 @@ jeedom.cmd.test = function (_params) {
     };
     $.ajax(paramsAJAX);
 };
-jeedom.cmd.refreshValue = function (_params) {
+jeedom.cmd.refreshValue = function(_params) {
     var cmd = $('.cmd[data-cmd_id=' + _params.id + ']');
     if (cmd.html() != undefined && cmd.closest('.eqLogic').attr('data-version') != undefined) {
         var version = cmd.closest('.eqLogic').attr('data-version');
         var paramsRequired = ['id'];
         var paramsSpecifics = {
             global: false,
-            success: function (result) {
+            success: function(result) {
                 cmd.replaceWith(result.html);
                 initTooltips();
                 if ($.mobile) {
@@ -205,10 +234,10 @@ jeedom.cmd.refreshValue = function (_params) {
         $.ajax(paramsAJAX);
     }
 };
-jeedom.cmd.save = function (_params) {
+jeedom.cmd.save = function(_params) {
     var paramsRequired = ['cmd'];
     var paramsSpecifics = {
-        pre_success: function (data) {
+        pre_success: function(data) {
             if (isset(jeedom.cmd.cache.byId[data.result.id])) {
                 delete jeedom.cmd.cache.byId[data.result.id];
             }
@@ -230,12 +259,10 @@ jeedom.cmd.save = function (_params) {
     };
     $.ajax(paramsAJAX);
 }
-
-
-jeedom.cmd.byId = function (_params) {
+jeedom.cmd.byId = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {
-        pre_success: function (data) {
+        pre_success: function(data) {
             jeedom.cmd.cache.byId[data.result.id] = data.result;
             return data;
         }
@@ -259,11 +286,10 @@ jeedom.cmd.byId = function (_params) {
     };
     $.ajax(paramsAJAX);
 }
-
-jeedom.cmd.byHumanName = function (_params) {
+jeedom.cmd.byHumanName = function(_params) {
     var paramsRequired = ['humanName'];
     var paramsSpecifics = {
-        pre_success: function (data) {
+        pre_success: function(data) {
             jeedom.cmd.cache.byHumanName[data.result.humanName] = data.result;
             return data;
         }
@@ -287,8 +313,7 @@ jeedom.cmd.byHumanName = function (_params) {
     };
     $.ajax(paramsAJAX);
 }
-
-jeedom.cmd.usedBy = function (_params) {
+jeedom.cmd.usedBy = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
@@ -306,18 +331,17 @@ jeedom.cmd.usedBy = function (_params) {
     };
     $.ajax(paramsAJAX);
 }
-
-jeedom.cmd.changeType = function (_cmd, _subType) {
+jeedom.cmd.changeType = function(_cmd, _subType) {
     var selSubType = '<select style="width : 120px;margin-top : 5px;" class="cmdAttr form-control input-sm" data-l1key="subType">';
     var type = _cmd.find('.cmdAttr[data-l1key=type]').value();
     jeedom.getConfiguration({
         key: 'cmd:type:' + type + ':subtype',
         default: 0,
         async: false,
-        error: function (error) {
+        error: function(error) {
             _params.error(error);
         },
-        success: function (subType) {
+        success: function(subType) {
             for (var i in subType) {
                 selSubType += '<option value="' + i + '">' + subType[i].name + '</option>';
             }
@@ -329,21 +353,21 @@ jeedom.cmd.changeType = function (_cmd, _subType) {
                 modifyWithoutSave = false;
             }
             jeedom.cmd.changeSubType(_cmd);
-            if ('function' == typeof (initExpertMode)) {
+            if ('function' == typeof(initExpertMode)) {
                 initExpertMode();
             }
         }
     });
 };
-jeedom.cmd.changeSubType = function (_cmd) {
+jeedom.cmd.changeSubType = function(_cmd) {
     jeedom.getConfiguration({
         key: 'cmd:type:' + _cmd.find('.cmdAttr[data-l1key=type]').value() + ':subtype:' + _cmd.find('.cmdAttr[data-l1key=subType]').value(),
         default: 0,
         async: false,
-        error: function (error) {
+        error: function(error) {
             _params.error(error);
         },
-        success: function (subtype) {
+        success: function(subtype) {
             for (var i in subtype) {
                 if (isset(subtype[i].visible)) {
                     var el = _cmd.find('.cmdAttr[data-l1key=' + i + ']');
@@ -380,7 +404,6 @@ jeedom.cmd.changeSubType = function (_cmd) {
                                 el.hide();
                                 el.addClass('hide');
                             }
-
                         }
                         if (isset(subtype[i][j].parentVisible)) {
                             if (subtype[i][j].parentVisible) {
@@ -403,20 +426,20 @@ jeedom.cmd.changeSubType = function (_cmd) {
             }
             _cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('change');
             modifyWithoutSave = false;
-            if ('function' == typeof (initExpertMode)) {
+            if ('function' == typeof(initExpertMode)) {
                 initExpertMode();
             }
         }
     });
 };
-jeedom.cmd.availableType = function () {
+jeedom.cmd.availableType = function() {
     var selType = '<select style="width : 120px; margin-bottom : 3px;" class="cmdAttr form-control input-sm" data-l1key="type">';
     selType += '<option value="info">{{Info}}</option>';
     selType += '<option value="action">{{Action}}</option>';
     selType += '</select>';
     return selType;
 };
-jeedom.cmd.getSelectModal = function (_options, _callback) {
+jeedom.cmd.getSelectModal = function(_options, _callback) {
     if (!isset(_options)) {
         _options = {};
     }
@@ -428,21 +451,25 @@ jeedom.cmd.getSelectModal = function (_options, _callback) {
             height: 250,
             width: 800
         });
-        jQuery.ajaxSetup({async: false});
+        jQuery.ajaxSetup({
+            async: false
+        });
         $('#mod_insertCmdValue').load('index.php?v=d&modal=cmd.human.insert');
-        jQuery.ajaxSetup({async: true});
+        jQuery.ajaxSetup({
+            async: true
+        });
     }
     mod_insertCmd.setOptions(_options);
     $("#mod_insertCmdValue").dialog('option', 'buttons', {
-        "Annuler": function () {
+        "Annuler": function() {
             $(this).dialog("close");
         },
-        "Valider": function () {
+        "Valider": function() {
             var retour = {};
             retour.cmd = {};
             retour.human = mod_insertCmd.getValue();
             retour.cmd.id = mod_insertCmd.getCmdId();
-            if ($.trim(retour) != '' && 'function' == typeof (_callback)) {
+            if ($.trim(retour) != '' && 'function' == typeof(_callback)) {
                 _callback(retour);
             }
             $(this).dialog('close');
@@ -450,9 +477,9 @@ jeedom.cmd.getSelectModal = function (_options, _callback) {
     });
     $('#mod_insertCmdValue').dialog('open');
 };
-jeedom.cmd.displayActionOption = function (_expression, _options, _callback) {
+jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
     var html = '';
-    $.ajax({// fonction permettant de faire de l'ajax
+    $.ajax({ // fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
         url: "core/ajax/scenario.ajax.php", // url du fichier php
         data: {
@@ -462,51 +489,52 @@ jeedom.cmd.displayActionOption = function (_expression, _options, _callback) {
             option: json_encode(_options)
         },
         dataType: 'json',
-        async: ('function' == typeof (_callback)),
+        async: ('function' == typeof(_callback)),
         global: false,
-        error: function (request, status, error) {
+        error: function(request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            if (data.result.html != '') {
-                html += data.result.html;
-            }
-            if ('function' == typeof (_callback)) {
-                _callback(html);
-                return;
-            }
+        success: function(data) { // si l'appel a bien fonctionné
+        if (data.state != 'ok') {
+            $('#div_alert').showAlert({
+                message: data.result,
+                level: 'danger'
+            });
+            return;
         }
-    });
-    return html;
+        if (data.result.html != '') {
+            html += data.result.html;
+        }
+        if ('function' == typeof(_callback)) {
+            _callback(html);
+            return;
+        }
+    }
+});
+return html;
 };
-
-
-jeedom.cmd.normalizeName = function (_tagname) {
+jeedom.cmd.normalizeName = function(_tagname) {
     var arrayOn = ['on', 'marche', 'go', 'lock'];
     var arrayOff = ['off', 'arret', 'arrêt', 'stop', 'unlock'];
     var name = _tagname.toLowerCase();
     /^([^0-9]+)[0-9]*$/.exec(name);
     name = RegExp.$1;
-    if (arrayOn.indexOf(name) >= 0) {//Test si name cmd équivalent à "on"
+    if (arrayOn.indexOf(name) >= 0) { //Test si name cmd équivalent à "on"
         return 'on';
-    } else if (arrayOff.indexOf(name) >= 0) {//Test si name cmd équivalent à "off"
-        return 'off';
-    }
-    if (name.indexOf("lock") == 0) {
-        return 'on';
-    }
-    if (name.indexOf("unlock") == 0) {
-        return 'off';
-    }
-    if (name.indexOf("on") != -1) {
-        return 'on';
-    }
-    if (name.indexOf("off") != -1) {
-        return 'off';
-    }
-    return _tagname;
+    } else if (arrayOff.indexOf(name) >= 0) { //Test si name cmd équivalent à "off"
+    return 'off';
+}
+if (name.indexOf("lock") == 0) {
+    return 'on';
+}
+if (name.indexOf("unlock") == 0) {
+    return 'off';
+}
+if (name.indexOf("on") != -1) {
+    return 'on';
+}
+if (name.indexOf("off") != -1) {
+    return 'off';
+}
+return _tagname;
 }
