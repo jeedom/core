@@ -554,28 +554,14 @@ class scenario {
     }
 
     public function execute($_trigger = '', $_message = '') {
-        $logs = $this->getHlogs();
-        if (trim($this->getLog()) != '') {
-            if (is_array($logs)) {
-                if (count($logs) > 5) {
-                    array_pop($logs);
-                }
-                array_unshift($logs, $this->getLog());
-                $this->setHlogs($logs);
-            } else {
-                $this->setHlogs(array($this->getLog()));
-            }
-        }
         if ($this->getIsActive() != 1) {
             $this->setLog(__('Impossible d\'exécuter le scénario : ', __FILE__) . $this->getHumanName() . ' sur : ' . $_message . ' car il est désactivé');
-            $this->setDisplay('icon', '');
-            $this->save();
+            $this->persistLog();
             return;
         }
+        $this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
         if ($this->getConfiguration('speedPriority', 0) == 0) {
-            $this->setLog('');
             $this->setDisplay('icon', '');
-            $this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
             $this->setState('in progress');
             $this->setPID(getmypid());
             $this->setLastLaunch(date('Y-m-d H:i:s'));
