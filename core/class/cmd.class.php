@@ -892,16 +892,29 @@ class cmd {
         if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
             return;
         }
+        $_loop++;
         $value = $this->formatValue($_value);
         cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
         scenario::check($this);
         $this->setCollect(0);
         $nodeJs = array(array('cmd_id' => $this->getId()));
-        foreach (self::byValue($this->getId(), 'action') as $cmd) {
-            $nodeJs[] = array('cmd_id' => $cmd->getId());
+        $foundInfo = false;
+        foreach (self::byValue($this->getId()) as $cmd) {
+            if ($cmd->getType() == 'action') {
+                $nodeJs[] = array('cmd_id' => $cmd->getId());
+            } else {
+                if ($_loop > 1) {
+                    $cmd->event($cmd->execute(), $_loop);
+                } else {
+                    $foundInfo = true;
+                }
+            }
         }
         nodejs::pushUpdate('eventCmd', $nodeJs);
-        listener::check($this->getId(), $value, $_loop++);
+        if ($foundInfo) {
+            listener::backgroundCalculDependencyCmd($this->getId(), $_loop);
+        }
+        listener::check($this->getId(), $value);
         if (strpos($_value, 'error') === false) {
             $eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
             $this->addHistoryValue($value, $this->getCollectDate());
