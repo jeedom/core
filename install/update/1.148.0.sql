@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS `jeedom`.`start` ;
+DROP TABLE IF EXISTS `start` ;

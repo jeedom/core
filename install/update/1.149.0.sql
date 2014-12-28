@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS `jeedom`.`internalEvent` ;
+DROP TABLE IF EXISTS `internalEvent` ;
