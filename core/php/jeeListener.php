@@ -35,14 +35,13 @@ if (isset($argv)) {
         }
     }
 }
+ set_time_limit(config::byKey('maxExecTimeScript', 60));
 if (init('listener_id') == '') {
     foreach (cmd::byValue(init('event_id'), 'info') as $cmd) {
-        $cmd->event($cmd->execute(), init('loop', 0));
+        $cmd->event($cmd->execute(), init('loop', 2));
     }
 } else {
     try {
-        set_time_limit(config::byKey('maxExecTimeScript', 60));
-
         $listener_id = init('listener_id');
         if ($listener_id == '') {
             throw new Exception(__('Le listener ID ne peut être vide', __FILE__));
