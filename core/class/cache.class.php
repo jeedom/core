@@ -31,7 +31,7 @@ class cache {
 
     /*     * ***********************Methode static*************************** */
 
-    public static function byKey($_key, $_noRemove = false, $_allowFastCache = false) {
+    public static function byKey($_key, $_noRemove = false) {
         $values = array(
             'key' => $_key
         );
@@ -50,33 +50,6 @@ class cache {
             }
         }
         return $cache;
-    }
-
-    public static function search($_search, $_noRemove = false) {
-        $values = array(
-            'key' => '%' . $_search . '%'
-        );
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM cache
-                WHERE `key` LIKE :key';
-        $caches = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-        if (!$_noRemove) {
-            foreach ($caches as $cache) {
-                if ($cache->hasExpired()) {
-                    $cache->remove();
-                }
-            }
-        }
-        return $caches;
-    }
-
-    public static function deleteBySearch($_search) {
-        $values = array(
-            'key' => '%' . $_search . '%'
-        );
-        $sql = 'DELETE FROM cache
-                WHERE `key` LIKE :key';
-        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
     }
 
     public static function flush() {

@@ -36,7 +36,7 @@ function jeedomCoreAutoload($classname) {
     try {
         include_file('core', $classname, 'class');
     } catch (Exception $e) {
-        
+
     }
 }
 
@@ -44,7 +44,7 @@ function jeedomComAutoload($classname) {
     try {
         include_file('core', substr($classname, 4), 'com');
     } catch (Exception $e) {
-        
+
     }
 }
 
@@ -80,7 +80,7 @@ function jeedomPluginAutoload($classname) {
             }
         }
     } catch (Exception $e) {
-        
+
     }
 }
 
@@ -90,7 +90,7 @@ function jeedom3rdPartyAutoload($classname) {
             include_file('3rdparty', 'cron-expression/cron.inc', 'php');
         }
     } catch (Exception $e) {
-        
+
     }
 }
 
@@ -121,6 +121,6 @@ try {
         exit();
     }
 } catch (Exception $e) {
-    
+
 }
 ?>

@@ -265,7 +265,6 @@ foreach (scenario::listGroup() as $group) {
                 <h3>{{Ajouter élément}}</h3>
             </div>
             <div class="modal-body">
-                <div style="display: none;" id="div_addElementAlert"></div>
                 <center>
                     <select id="in_addElementType" class="form-control">
                         <option value="if">{{Si/Alors/Sinon}}</option>
@@ -281,6 +280,31 @@ foreach (scenario::listGroup() as $group) {
             <div class="modal-footer">
                 <a class="btn btn-danger" data-dismiss="modal"><i class="fa fa-minus-circle"></i> {{Annuler}}</a>
                 <a class="btn btn-success" id="bt_addElementSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="md_selectOtherAction">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">×</button>
+                <h3>{{Ajouter élément}}</h3>
+            </div>
+            <div class="modal-body">
+                <center>
+                    <select id="sel_otherAction" class="form-control">
+                        <option value="sleep">{{Pause}}</option>
+                        <option value="variable">{{Variable}}</option>
+                        <option value="scenario">{{Scénario}}</option>
+                        <option value="stop">{{Stop}}</option>
+                    </select>
+                </center>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger" data-dismiss="modal"><i class="fa fa-minus-circle"></i> {{Annuler}}</a>
+                <a class="btn btn-success" id="bt_selectOtherActionSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
             </div>
         </div>
     </div>
