@@ -94,9 +94,9 @@ class listener {
         }
     }
 
-    public static function backgroundCalculDependencyCmd($_event, $_loop = 0) {
+    public static function backgroundCalculDependencyCmd($_event) {
         $cmd = '/usr/bin/php ' . dirname(__FILE__) . '/../php/jeeListener.php';
-        $cmd.= ' event_id=' . $_event . ' loop=' . $_loop;
+        $cmd.= ' event_id=' . $_event;
         exec($cmd . ' >> /dev/null 2>&1 &');
     }
 

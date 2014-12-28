@@ -35,10 +35,10 @@ if (isset($argv)) {
         }
     }
 }
- set_time_limit(config::byKey('maxExecTimeScript', 60));
+set_time_limit(config::byKey('maxExecTimeScript', 60));
 if (init('listener_id') == '') {
     foreach (cmd::byValue(init('event_id'), 'info') as $cmd) {
-        $cmd->event($cmd->execute(), init('loop', 2));
+        $cmd->event($cmd->execute(),2);
     }
 } else {
     try {

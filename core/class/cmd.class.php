@@ -864,7 +864,7 @@ class cmd {
     }
 
     public function event($_value, $_loop = 0) {
-        if (trim($_value) === '' || $_loop > 5 || $this->getType() != 'info') {
+        if (trim($_value) === '' || $_loop > 4 || $this->getType() != 'info') {
             return;
         }
         $collectDate = ($this->getCollectDate() != '' ) ? strtotime($this->getCollectDate()) : '';
@@ -896,7 +896,7 @@ class cmd {
         }
         nodejs::pushUpdate('eventCmd', $nodeJs);
         if ($foundInfo) {
-            listener::backgroundCalculDependencyCmd($this->getId(), $_loop);
+            listener::backgroundCalculDependencyCmd($this->getId());
         }
         listener::check($this->getId(), $value);
         if (strpos($_value, 'error') === false) {
