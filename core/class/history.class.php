@@ -473,6 +473,8 @@ return strtotime('now') - strtotime($result['datetime']);
             $time = strtotime($this->getDatetime());
             $time -= $time % 300;
             $this->setDatetime(date('Y-m-d H:i:s', $time));
+        }else{
+             $this->setDatetime(date('Y-m-d H:00:00', $this->getDatetime()));
         }
         $values = array(
             'cmd_id' => $this->getCmd_id(),
