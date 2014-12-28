@@ -3,24 +3,24 @@ if (!isConnect()) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 if (config::byKey('market::address') == '') {
-    throw new Exception('{{Aucune addresse pour le market de renseignée}}');
+    throw new Exception('{{Aucune addresse pour le market n\'est renseignée}}');
 }
 if (config::byKey('market::apikey') == '' && config::byKey('market::username') == '') {
-    throw new Exception('{{Aucune clef market de renseigner. Veuillez vous enregistrer sur le market puis renseigner la clef dans Jeedom avant d\'ouvrir un ticket}}');
+    throw new Exception('{{Aucune clé pour le market n\'est renseignée. Veuillez vous enregistrer sur le market puis renseigner la clé dans Jeedom avant d\'ouvrir un ticket}}');
 }
 ?>
 <div id='div_alertReportBug'></div>
 <form class="form-horizontal" role="form" id="form_reportBug">
     <div class='alert alert-info'>
-        {{Attention lors de l'envoi d'un rapport de bug, tous les logs sont automatiquement envoyés en même temps. Cependant ces logs ne seront accessibles que par vous ou l'équipe de support.}}
+        {{Attention lors de l'envoi d'un rapport de bug, tous les logs sont automatiquement envoyés en même temps. Cependant ces logs ne seront accessibles que par vous-même et l'équipe de support.}}
     </div>
     <div class='alert alert-warning'>
-        {{Merci avant tout ouverture de ticket de vérifier :}}<br/>
+        {{Merci de vérifier avant toute ouverture de ticket :}}<br/>
         {{- que la question n'a pas déjà été posée sur le <a href='https://forum.jeedom.fr'>forum</a>}}<br/>
         {{- que la question ne porte pas sur un plugin beta (sauf demande d'ouverture d'un ticket du développeur)}}<br/>
-        {{- que la catégorie est bien selectionnée pour que votre ticket soit traité dans les plus cours délais)}}<br/>
+        {{- que la catégorie est bien selectionnée pour que votre ticket soit traité dans les plus courts délais)}}<br/>
         {{- que la question porte sur un plugin market officiel}}<br/>
-        {{- que la réponse n'est pas déja dans la <a href='http://doc.jeedom.fr'>documentation</a>}}<br/><br/>
+        {{- que la réponse n'est pas déjà dans la <a href='http://doc.jeedom.fr'>documentation</a>}}<br/><br/>
         {{N'oubliez pas que poser la question sur le forum vous fournira généralement une réponse plus rapide que par ticket.}}
     </div>
     <div class="form-group">
@@ -47,17 +47,17 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
         <div class="col-sm-2">
             <select class="form-control input-sm ticketAttr" data-l1key="type">
                 <option value='question'>{{Question}}</option>
-                <option value='problem'>{{Probleme}}</option>
+                <option value='problem'>{{Problème}}</option>
                 <option value='incident'>{{Incident}}</option>
             </select>
         </div> 
         <label class="col-sm-1 control-label">{{Priorité}}</label>
         <div class="col-sm-2">
             <select class="form-control input-sm ticketAttr" data-l1key="priority">
-                <option value='low'>{{Bas}}</option>
+                <option value='low'>{{Basse}}</option>
                 <option value='normal'>{{Normale}}</option>
-                <option value='high'>{{Haut}}</option>
-                <option value='urgent'>{{Urgent}}</option>
+                <option value='high'>{{Haute}}</option>
+                <option value='urgent'>{{Urgente}}</option>
             </select>
         </div> 
     </div>
@@ -81,7 +81,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
         var ticket = ticket[0];
         ticket.messages = $('#form_reportBug').getValues('.messageAttr');
         $.ajax({// fonction permettant de faire de l'ajax
-            type: "POST", // methode de transmission des données au fichier php
+            type: "POST", // méthode de transmission des données au fichier php
             url: "core/ajax/market.ajax.php", // url du fichier php
             data: {
                 action: "sendReportBug",
@@ -97,7 +97,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
                     return;
                 }
                 $('#bt_sendBugReport').hide();
-                $('#div_alertReportBug').showAlert({message: '{{Votre ticket à bien été ouvert. Un mail va vous etre envoyé', level: 'success'});
+                $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Un mail va vous être envoyé', level: 'success'});
             }
         });
     });
