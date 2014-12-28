@@ -603,23 +603,37 @@ public function toHtml($_version) {
     if (!$this->hasRight('r')) {
         return '';
     }
-    $_version = jeedom::versionAlias($_version);
-    $replace = array(
-        '#id#' => $this->getId(),
-        '#state#' => $this->getState(),
-        '#isActive#' => $this->getIsActive(),
-        '#name#' => ($this->getDisplay('name') != '') ? $this->getDisplay('name') : $this->getHumanName(),
-        '#icon#' => $this->getIcon(),
-        '#lastLaunch#' => $this->getLastLaunch(),
-        '#scenarioLink#' => $this->getLinkToConfiguration(),
-        );
-    if (!isset(self::$_templateArray)) {
-        self::$_templateArray = array();
-    }
-    if (!isset(self::$_templateArray[$_version])) {
-        self::$_templateArray[$_version] = getTemplate('core', $_version, 'scenario');
-    }
-    return template_replace($replace, self::$_templateArray[$_version]);
+    $sql = 'SELECT `value` FROM cache 
+    WHERE `key`="scenarioHtml' . $_version . $this->getId().'"';
+    $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+    if ($result['value'] != '') {
+       return $result['value'];
+   }
+   $_version = jeedom::versionAlias($_version);
+   $replace = array(
+    '#id#' => $this->getId(),
+    '#state#' => $this->getState(),
+    '#isActive#' => $this->getIsActive(),
+    '#name#' => ($this->getDisplay('name') != '') ? $this->getDisplay('name') : $this->getHumanName(),
+    '#icon#' => $this->getIcon(),
+    '#lastLaunch#' => $this->getLastLaunch(),
+    '#scenarioLink#' => $this->getLinkToConfiguration(),
+    );
+   if (!isset(self::$_templateArray)) {
+    self::$_templateArray = array();
+}
+if (!isset(self::$_templateArray[$_version])) {
+    self::$_templateArray[$_version] = getTemplate('core', $_version, 'scenario');
+}
+$html = template_replace($replace, self::$_templateArray[$_version]);
+cache::set('scenarioHtml' . $_version . $this->getId(), $html, 0);
+return $html;
+}
+
+public function emptyCacheWidget(){
+    $sql = 'DELETE FROM cache 
+    WHERE `key` LIKE "scenarioHtml%'.$this->getId().'"';
+    DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 }
 
 public function getIcon($_only_class = false) {
@@ -679,6 +693,9 @@ public function save() {
         $calculateScheduleDate = $this->calculateScheduleDate();
         $this->setLastLaunch($calculateScheduleDate['prevDate']);
     }
+    if($this->getId() != ''){
+        $this->emptyCacheWidget();
+    }
     DB::save($this);
     if ($this->_changeState) {
         @nodejs::pushUpdate('eventScenario', $this->getId());
@@ -695,6 +712,7 @@ public function remove() {
     foreach ($this->getElement() as $element) {
         $element->remove();
     }
+    $this->emptyCacheWidget();
     return DB::remove($this);
 }
 

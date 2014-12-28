@@ -364,18 +364,18 @@ public static function cron() {
         log::add('core', 'info', 'Démarrage de Jeedom OK');
     }
     plugin::cron();
-    eqLogic::checkAlive();
     
     try {
         if(date('i')%10==0){
-         connection::cron();
-         if (config::byKey('jeeNetwork::mode') != 'slave') {
-          jeeNetwork::pull();
-      }
-      if (config::byKey('market::allowDNS') == 1 && config::byKey('jeeNetwork::mode') == 'master' && config::byKey('jeedom::licence') >= 5) {
-        market::updateIp();
+           eqLogic::checkAlive();
+           connection::cron();
+           if (config::byKey('jeeNetwork::mode') != 'slave') {
+              jeeNetwork::pull();
+          }
+          if (config::byKey('market::allowDNS') == 1 && config::byKey('jeeNetwork::mode') == 'master' && config::byKey('jeedom::licence') >= 5) {
+            market::updateIp();
+        }
     }
-}
 } catch (Exception $e) {
 
 }
