@@ -580,8 +580,8 @@ public function execute($_trigger = '', $_message = '') {
             }
         }
         $this->save();
+        $this->persistLog();
     }
-    $this->persistLog();
     return true;
 }
 
