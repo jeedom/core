@@ -478,6 +478,11 @@ function printScenario(_id) {
                 if (firstArray.length == 2) {
                     var conditionArray = firstArray[1].split(' ');
                     if (conditionArray.length >= 3) {
+
+                        if(conditionArray[0] == ''){
+                            conditionArray.shift();
+                        }
+                        console.log(conditionArray);
                         var condition = {expression: firstArray[0]+']#', operator: conditionArray[0]};
                         conditionArray.shift();
                         condition.operande = conditionArray.join(' ');
