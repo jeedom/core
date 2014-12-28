@@ -782,16 +782,13 @@ class cmd {
         if ($this->getType() == 'info') {
             $replace['#state#'] = '';
             $replace['#tendance#'] = '';
-            log::add('html','debug','Time E1 : '.(getmicrotime() - $startLoadTime));
             $replace['#state#'] = $this->execCmd(null, $_cache);
-            log::add('html','debug','Time E2 : '.(getmicrotime() - $startLoadTime));
             if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
                 $replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
             }
             $replace['#collectDate#'] = $this->getCollectDate();
             if ($this->getIsHistorized() == 1) {
                 $replace['#history#'] = 'history cursor';
-                log::add('html','debug','Time F2 : '.(getmicrotime() - $startLoadTime));
                 if (config::byKey('displayStatsWidget') == 1 && strpos($template, '#displayHistory#') !== false) {
                     $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));
                     $replace['#displayHistory#'] = '';
