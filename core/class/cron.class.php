@@ -149,7 +149,7 @@ class cron {
      * Set jeecron pid of current process
      */
     public static function setPidFile() {
-        $path = dirname(__FILE__) . '/../../jeeCron.pid';
+        $path = '/tmp/jeeCron.pid';
         $fp = fopen($path, 'w');
         fwrite($fp, getmypid());
         fclose($fp);
@@ -160,7 +160,7 @@ class cron {
      * @return int
      */
     public static function getPidFile() {
-        $path = dirname(__FILE__) . '/../../jeeCron.pid';
+        $path = '/tmp/jeeCron.pid';
         if (file_exists($path)) {
             return file_get_contents($path);
         }
