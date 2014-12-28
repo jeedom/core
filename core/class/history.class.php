@@ -484,7 +484,7 @@ return strtotime('now') - strtotime($result['datetime']);
         if ($values['value'] === '') {
             $values['value'] = null;
         }
-        $sql = 'INSERT INTO ' . $this->getTableName() . '
+        $sql = 'REPLACE INTO ' . $this->getTableName() . '
         SET cmd_id=:cmd_id, 
         `datetime`=:datetime,
         value=:value';
