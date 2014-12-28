@@ -597,6 +597,7 @@ class cmd {
         if ($mc->getLifetime() != $this->getCacheLifetime()) {
             $mc->remove();
         }
+        $this->getEqLogic()->emptyCacheWidget();
         return true;
     }
 
@@ -607,6 +608,7 @@ class cmd {
     public function remove() {
         viewData::removeByTypeLinkId('cmd', $this->getId());
         dataStore::removeByTypeLinkId('cmd', $this->getId());
+        $this->getEqLogic()->emptyCacheWidget();
         return DB::remove($this);
     }
 
@@ -639,6 +641,7 @@ class cmd {
         if (!is_object($eqLogic) || $eqLogic->getIsEnable() != 1) {
             throw new Exception(__('Equipement désactivé - impossible d\'exécuter la commande : ' . $this->getHumanName(), __FILE__));
         }
+        $eqLogic->emptyCacheWidget();
         try {
             if ($_options !== null && $_options !== '') {
                 $options = self::cmdToValue($_options);
@@ -891,6 +894,7 @@ class cmd {
             $this->addHistoryValue($value, $this->getCollectDate());
         }
         $this->checkReturnState($value);
+        $eqLogic->emptyCacheWidget();
     }
 
     public function checkReturnState($_value) {
