@@ -238,7 +238,6 @@ CREATE TABLE IF NOT EXISTS `history` (
   `cmd_id` int(11) NOT NULL,
   `datetime` datetime NOT NULL,
   `value` float DEFAULT NULL,
-  PRIMARY KEY (`cmd_id`,`datetime`),
   KEY `fk_history5min_commands1_idx` (`cmd_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -252,7 +251,6 @@ CREATE TABLE IF NOT EXISTS `historyArch` (
   `cmd_id` int(11) NOT NULL,
   `datetime` datetime NOT NULL,
   `value` float DEFAULT NULL,
-  PRIMARY KEY (`cmd_id`,`datetime`),
   KEY `fk_history5min_commands1` (`cmd_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -607,18 +605,6 @@ ALTER TABLE `cmd`
 ALTER TABLE `eqLogic`
   ADD CONSTRAINT `fk_eqLogic_jeenode1` FOREIGN KEY (`eqReal_id`) REFERENCES `eqReal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_eqLogic_object1` FOREIGN KEY (`object_id`) REFERENCES `object` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `history`
---
-ALTER TABLE `history`
-  ADD CONSTRAINT `fk_history_cmd1` FOREIGN KEY (`cmd_id`) REFERENCES `cmd` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `historyArch`
---
-ALTER TABLE `historyArch`
-  ADD CONSTRAINT `fk_historyArch_cmd1` FOREIGN KEY (`cmd_id`) REFERENCES `cmd` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `object`
