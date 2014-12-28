@@ -771,35 +771,27 @@ class cmd {
             '#unite#' => $this->getUnite(),
             '#minValue#' => $this->getConfiguration('minValue', 0),
             '#maxValue#' => $this->getConfiguration('maxValue', 100),
-            '#logicalId#' => $this->getLogicalId()
+            '#logicalId#' => $this->getLogicalId(),
+            '#cmdColor#' => ($_cmdColor == null) ? '#ecf0f1' : $_cmdColor
         );
-        if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
+        if ($this->getDisplay('doNotShowNameOnView') == 1 && ($_version == 'dview' || $_version == 'mview')) {
             $replace['#name#'] = '';
-        }
-        if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
+        }else if ($this->getDisplay('doNotShowNameOnDashboard') == 1 && ($_version == 'mobile' || $_version == 'dashboard')) {
             $replace['#name#'] = '';
-        }
-        if ($_cmdColor == null && $version != 'scenario') {
-            $eqLogic = $this->getEqLogic();
-            $vcolor = ($version == 'mobile') ? 'mcmdColor' : 'cmdColor';
-            if ($eqLogic->getPrimaryCategory() == '') {
-                $replace['#cmdColor#'] = '';
-            } else {
-                $replace['#cmdColor#'] = jeedom::getConfiguration('eqLogic:category:' . $eqLogic->getPrimaryCategory() . ':' . $vcolor);
-            }
-        } else {
-            $replace['#cmdColor#'] = $_cmdColor;
         }
         if ($this->getType() == 'info') {
             $replace['#state#'] = '';
             $replace['#tendance#'] = '';
-            $replace['#state#'] = trim($this->execCmd(null, $_cache));
+            log::add('html','debug','Time E1 : '.(getmicrotime() - $startLoadTime));
+            $replace['#state#'] = $this->execCmd(null, $_cache);
+            log::add('html','debug','Time E2 : '.(getmicrotime() - $startLoadTime));
             if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
                 $replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
             }
             $replace['#collectDate#'] = $this->getCollectDate();
             if ($this->getIsHistorized() == 1) {
                 $replace['#history#'] = 'history cursor';
+                log::add('html','debug','Time F2 : '.(getmicrotime() - $startLoadTime));
                 if (config::byKey('displayStatsWidget') == 1 && strpos($template, '#displayHistory#') !== false) {
                     $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));
                     $replace['#displayHistory#'] = '';
