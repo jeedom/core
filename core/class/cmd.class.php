@@ -863,7 +863,7 @@ class cmd {
         }
     }
 
-    public function event($_value, $_loop = 0) {
+    public function event($_value, $_loop = 1) {
         if (trim($_value) === '' || $_loop > 4 || $this->getType() != 'info') {
             return;
         }

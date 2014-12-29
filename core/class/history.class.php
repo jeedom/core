@@ -457,7 +457,7 @@ return strtotime('now') - strtotime($result['datetime']);
 
     /*     * *********************Methode d'instance************************* */
 
-    public function save($_cmd = null) {
+     public function save($_cmd = null) {
         if ($_cmd == null) {
             $cmd = $this->getCmd();
         } else {
@@ -466,28 +466,65 @@ return strtotime('now') - strtotime($result['datetime']);
         if ($this->getDatetime() == '') {
             $this->setDatetime(date('Y-m-d H:i:s'));
         }
-        if ($cmd->getConfiguration('historizeRound') !== '' && $cmd->getConfiguration('historizeRound') >= 0) {
+        if ($cmd->getConfiguration('historizeRound') !== '' && is_numeric($cmd->getConfiguration('historizeRound')) && $cmd->getConfiguration('historizeRound') >= 0) {
             $this->setValue(round($this->getValue(), $cmd->getConfiguration('historizeRound')));
         }
-        if ($cmd->getSubType() != 'binary' && $this->getTableName() == 'history') {
-            $time = strtotime($this->getDatetime());
-            $time -= $time % 300;
-            $this->setDatetime(date('Y-m-d H:i:s', $time));
-        }else{
-             $this->setDatetime(date('Y-m-d H:00:00', $this->getDatetime()));
+        if ($cmd->getSubType() != 'binary' && $cmd->getConfiguration('historizeMode', 'avg') != 'none') {
+            if ($this->getTableName() == 'history') {
+                $time = strtotime($this->getDatetime());
+                $time -= $time % 300;
+                $this->setDatetime(date('Y-m-d H:i:s', $time));
+                if ($this->getValue() === 0) {
+                    $values = array(
+                        'cmd_id' => $this->getCmd_id(),
+                        'datetime' => date('Y-m-d H:i:00', strtotime($this->getDatetime()) + 300),
+                        'value' => $this->getValue(),
+                    );
+                    $sql = 'REPLACE INTO history
+                                SET cmd_id=:cmd_id, 
+                                    `datetime`=:datetime,
+                                    value=:value';
+                    DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+                    return;
+                }
+                $values = array(
+                    'cmd_id' => $this->getCmd_id(),
+                    'datetime' => $this->getDatetime(),
+                );
+                $sql = 'SELECT `value`
+                        FROM history
+                        WHERE cmd_id=:cmd_id 
+                            AND `datetime`=:datetime';
+                $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+                if ($result !== false) {
+                    switch ($cmd->getConfiguration('historizeMode', 'avg')) {
+                        case 'avg':
+                            $this->setValue(($result['value'] + $this->getValue()) / 2);
+                            break;
+                        case 'min':
+                            $this->setValue(min($result['value'], $this->getValue()));
+                            break;
+                        case 'max':
+                            $this->setValue(max($result['value'], $this->getValue()));
+                            break;
+                    }
+                }
+            } else {
+                $this->setDatetime(date('Y-m-d H:00:00', strtotime($this->getDatetime())));
+            }
         }
         $values = array(
             'cmd_id' => $this->getCmd_id(),
             'datetime' => $this->getDatetime(),
             'value' => $this->getValue(),
-            );
+        );
         if ($values['value'] === '') {
             $values['value'] = null;
         }
         $sql = 'REPLACE INTO ' . $this->getTableName() . '
-        SET cmd_id=:cmd_id, 
-        `datetime`=:datetime,
-        value=:value';
+                SET cmd_id=:cmd_id, 
+                    `datetime`=:datetime,
+                    value=:value';
         DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
     }
 
