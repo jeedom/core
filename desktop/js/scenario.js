@@ -732,7 +732,7 @@ function addExpression(_expression) {
         retour += '</div>';
         break;
         case 'action' :
-        retour += '<div class="col-xs-1">';
+        retour += '<div class="col-xs-2">';
         retour += '<i class="fa fa-arrows-v pull-left cursor bt_sortable" style="margin-top : 9px;"></i>';
         retour += '<i class="fa fa-minus-circle pull-left cursor bt_removeExpression" style="margin-top : 9px;"></i>';
         if (!isset(_expression.options) || !isset(_expression.options.enable) || _expression.options.enable == 1) {
@@ -740,13 +740,13 @@ function addExpression(_expression) {
         } else {
             retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" style="margin-top : 9px;" title="Decocher pour desactiver l\'action"/>';
         }
-        retour += ' <a class="btn btn-default btn-xs cursor bt_selectOtherActionExpression pull-right" style="margin-top : 4px;" title="{{Chercher une autre action}}"><i class="fa fa-tasks"></i></a>';
-        retour += ' <a class="btn btn-default btn-xs cursor bt_selectCmdExpression pull-right" style="margin-top : 4px;" title="{{Chercher une commande}}"><i class="fa fa-list-alt"></i></a>';
+        retour += ' <a class="btn btn-default btn-xs cursor bt_selectOtherActionExpression pull-right" style="margin-top : 4px;" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>';
+        retour += ' <a class="btn btn-default btn-xs cursor bt_selectCmdExpression pull-right" style="margin-top : 4px;" title="{{Sélectionner la commande}}"><i class="fa fa-list-alt"></i></a>';
         retour += '</div>';
         retour += '<div class="col-xs-3">';
         retour += '<input class="expressionAttr form-control input-sm" data-l1key="expression" value="' + init(_expression.expression) + '" style="font-weight:bold;"/>';
         retour += '</div>';
-        retour += '<div class="col-xs-8 expressionOptions">';
+        retour += '<div class="col-xs-7 expressionOptions">';
         retour += jeedom.cmd.displayActionOption(init(_expression.expression), init(_expression.options));
         retour += '</div>';
         break;
@@ -905,11 +905,11 @@ function addSubElement(_subElement) {
         break;
         case 'action' :
         retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-        retour += '<legend style="margin-top : 0px;margin-bottom : 5px;color : inherit;border : none;"><div style="position : relative;left:15px;">{{ACTION}}';
+        retour += '<legend style="margin-top : 2px;margin-bottom : 5px;color : inherit;border : none;"><div style="position : relative;left:15px;top:2px">{{ACTION}}';
         retour += '<a class="btn btn-xs btn-default bt_addScenarioElement pull-right fromSubElement" style="position : relative; top : 10px;left:-35px;"><i class="fa fa-plus-circle"></i> {{Ajouter élément}}</a>';
         retour += '<a class="btn btn-xs btn-default bt_addAction pull-right" style="position : relative; top : 10px;left:-35px;"><i class="fa fa-plus-circle"></i> {{Ajouter action}}</a>';
         retour += '</div></legend>';
-        retour += '<div class="expressions">';
+        retour += '<div class="expressions" style="margin-top : 8px;">';
         retour += '<div class="sortable empty" style="height : 30px;"></div>';
         if (isset(_subElement.expressions)) {
             for (var k in _subElement.expressions) {
