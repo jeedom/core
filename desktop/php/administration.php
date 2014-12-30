@@ -39,18 +39,6 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 </div>
                             <?php } ?>
                             <div class="form-group">
-                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Dernière date enregistrée}}</label>
-                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"> 
-                                    <?php
-                                    $cache = cache::byKey('jeedom::lastDate');
-                                    echo '<p class="form-control-static" id="in_jeedomLastDate">' . $cache->getValue() . '</p>';
-                                    ?>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4"> 
-                                    <a class="btn btn-default form-control" id="bt_clearJeedomLastDate">{{Réinitialiser}}</a>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande d'information utilisateur}}</label>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                     <input type="text"  class="configKey form-control" data-l1key="emailAdmin" />
