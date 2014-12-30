@@ -128,7 +128,7 @@ if (init('type') == 'plugin') {
                         <option>Energie</option>
                         <option>Météo</option>
                         <option>Monitoring</option>
-                        <option>Multimedia</option>
+                        <option>Multimédia</option>
                         <option>Nature</option>
                         <option>Objets connectés</option>
                         <option>Organisation</option>
