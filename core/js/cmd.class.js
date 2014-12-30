@@ -91,7 +91,7 @@ jeedom.cmd.test = function(_params) {
                     cache: 0,
                     notify: false,
                     success: function(result) {
-                        bootbox.confirm('{{Résulat de la commande : }}' + result, function() {});
+                        bootbox.confirm('{{Résultat de la commande : }}' + result, function() {});
                     }
                 });
                 break;
@@ -480,7 +480,7 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
 jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
     var html = '';
     $.ajax({ // fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
+        type: "POST", // méthode de transmission des données au fichier php
         url: "core/ajax/scenario.ajax.php", // url du fichier php
         data: {
             action: 'actionToHtml',
