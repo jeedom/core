@@ -173,7 +173,7 @@ jeedom.cmd.test = function(_params) {
                         },
                         success: function() {
                             $('#div_alert').showAlert({
-                                message: '{{Action éxecutée avec succès}}',
+                                message: '{{Action exécutée avec succès}}',
                                 level: 'success'
                             });
                         }
