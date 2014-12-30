@@ -97,6 +97,7 @@ if (init('type') == 'plugin') {
                         <option value="scenario" data-category='input'>{{Scénario}}</option>
                         <option value="camera" data-category='input'>{{[Camera] Modèle}}</option>
                         <option value="SNMP" data-category='input'>{{[SNMP] Configuration}}</option>
+                        <option value="mySensors" data-category='input'>{{[My Sensors] Noeud}}</option>
                     </select>
                 </div>
             </div>
