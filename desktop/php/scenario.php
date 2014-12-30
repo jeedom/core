@@ -290,7 +290,7 @@ foreach (scenario::listGroup() as $group) {
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close" data-dismiss="modal">×</button>
-                <h3>{{Ajouter élément}}</h3>
+                <h3>{{Sélectionner le mot-clé}}</h3>
             </div>
             <div class="modal-body">
                 <center>
@@ -303,8 +303,8 @@ foreach (scenario::listGroup() as $group) {
                 </center>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-danger" data-dismiss="modal"><i class="fa fa-minus-circle"></i> {{Annuler}}</a>
-                <a class="btn btn-success" id="bt_selectOtherActionSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+                <a class="btn btn-default" data-dismiss="modal"><i class="fa fa-minus-circle"></i> {{Annuler}}</a>
+                <a class="btn btn-primary" id="bt_selectOtherActionSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
             </div>
         </div>
     </div>
