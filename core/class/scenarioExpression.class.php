@@ -401,7 +401,7 @@ class scenarioExpression {
             $result = $_value;
         }
         if (($result % 100) > 59) {
-            $result += 40;
+            $result -= 40;
         }
         return $result;
     }
