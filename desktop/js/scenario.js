@@ -33,8 +33,8 @@
  {val: '#semaine#'},
  {val: '#sjour#'},
  {val: '#minute#'},
-  {val: '#IP#'},
-   {val: '#hostname#'},
+ {val: '#IP#'},
+ {val: '#hostname#'},
  {val: 'variable(mavariable,defaut)'},
  {val: 'tendance(commande,periode)'},
  {val: 'average(commande,periode)'},
@@ -339,7 +339,7 @@ $('body').delegate('.bt_selectOtherActionExpression', 'click', function (event) 
     $("#bt_selectOtherActionSave").off().on('click', function (event) {
         expression.find('.expressionAttr[data-l1key=expression]').value($('#sel_otherAction').value());
         jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
-                expression.find('.expressionOptions').html(html);
+            expression.find('.expressionOptions').html(html);
         });
         $('#md_selectOtherAction').modal('hide');
     });
