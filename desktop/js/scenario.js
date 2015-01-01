@@ -33,6 +33,8 @@
  {val: '#semaine#'},
  {val: '#sjour#'},
  {val: '#minute#'},
+  {val: '#IP#'},
+   {val: '#hostname#'},
  {val: 'variable(mavariable,defaut)'},
  {val: 'tendance(commande,periode)'},
  {val: 'average(commande,periode)'},

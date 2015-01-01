@@ -333,10 +333,10 @@ class jeedom {
     }
 
     public static function isStarted() {
-     return file_exists('/tmp/jeedom_start');
- }
+       return file_exists('/tmp/jeedom_start');
+   }
 
- public static function isDateOk() {
+   public static function isDateOk() {
     if(file_exists('/tmp/jeedom_dateOk')){
         return true;
     }
@@ -367,15 +367,15 @@ public static function cron() {
     
     try {
         if(date('i')%10==0){
-           eqLogic::checkAlive();
-           connection::cron();
-           if (config::byKey('jeeNetwork::mode') != 'slave') {
-              jeeNetwork::pull();
-          }
-          if (config::byKey('market::allowDNS') == 1 && config::byKey('jeeNetwork::mode') == 'master' && config::byKey('jeedom::licence') >= 5) {
-            market::updateIp();
-        }
+         eqLogic::checkAlive();
+         connection::cron();
+         if (config::byKey('jeeNetwork::mode') != 'slave') {
+          jeeNetwork::pull();
+      }
+      if (config::byKey('market::allowDNS') == 1 && config::byKey('jeeNetwork::mode') == 'master' && config::byKey('jeedom::licence') >= 5) {
+        market::updateIp();
     }
+}
 } catch (Exception $e) {
 
 }
@@ -596,13 +596,13 @@ public static function nginx_removeRule($_rules, $_returnResult = false) {
         $_rules = array($_rules);
     }
     if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-     return $_rules;
- }
- $result = '';
- $nginx_conf = trim(file_get_contents('/etc/nginx/sites-available/jeedom_dynamic_rule'));
- $accolade = 0;
- $change = false;
- foreach (explode("\n", trim($nginx_conf)) as $conf_line) {
+       return $_rules;
+   }
+   $result = '';
+   $nginx_conf = trim(file_get_contents('/etc/nginx/sites-available/jeedom_dynamic_rule'));
+   $accolade = 0;
+   $change = false;
+   foreach (explode("\n", trim($nginx_conf)) as $conf_line) {
     if ($accolade > 0 && strpos('{', $conf_line) !== false) {
         $accolade++;
     }

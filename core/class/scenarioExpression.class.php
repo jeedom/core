@@ -422,6 +422,8 @@ class scenarioExpression {
             '#sjour#' => date_fr(date('l')),
             '#smois#' => date_fr(date('F')),
             '#njour#' => (int) date('w'),
+            '#hostname#' => gethostname(),
+            '#IP#' => config::byKey('internalAddr'),
         );
         preg_match_all("/([a-zA-Z][a-zA-Z]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
         foreach ($matches as $match) {
