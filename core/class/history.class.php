@@ -213,7 +213,7 @@ ORDER BY `datetime` ASC ';
 return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 }
 
-public static function getPlurality($_cmd_id, $_startTime = null, $_endTime = null, $_period = 'day') {
+public static function getPlurality($_cmd_id, $_startTime = null, $_endTime = null, $_period = 'day',$_offset = 0) {
     $values = array(
         'cmd_id' => $_cmd_id,
         );
@@ -225,7 +225,13 @@ public static function getPlurality($_cmd_id, $_startTime = null, $_endTime = nu
     }
     switch ($_period) {
         case 'day':
-        $select = 'SELECT cmd_id,MAX(`value`) as `value`,DATE_FORMAT(`datetime`,"%Y-%m-%d 00:00:00") as `datetime`';
+        if($_offset == 0){
+            $select = 'SELECT cmd_id,MAX(`value`) as `value`,DATE_FORMAT(`datetime`,"%Y-%m-%d 00:00:00") as `datetime`';
+        }elseif($_offset > 0){
+            $select = 'SELECT cmd_id,MAX(`value`) as `value`,DATE_FORMAT(DATE_ADD(`datetime`, INTERVAL '.$_offset.' HOUR),"%Y-%m-%d 00:00:00") as `datetime`';
+        }else{
+            $select = 'SELECT cmd_id,MAX(`value`) as `value`,DATE_FORMAT(DATE_SUB(`datetime`, INTERVAL '.abs($_offset).' HOUR),"%Y-%m-%d 00:00:00") as `datetime`';
+        }
         break;
         case 'month':
         $select = 'SELECT cmd_id,MAX(`value`) as `value`,DATE_FORMAT(`datetime`,"%Y-%m-01 00:00:00") as `datetime`';
@@ -239,13 +245,19 @@ public static function getPlurality($_cmd_id, $_startTime = null, $_endTime = nu
     }
     switch ($_period) {
         case 'day':
-        $groupBy = ' GROUP BY date(`datetime`)';
+        if($_offset == 0){
+            $groupBy = ' GROUP BY date(`datetime`)';
+        }elseif($_offset > 0){
+            $groupBy = ' GROUP BY date(DATE_ADD(`datetime`, INTERVAL '.$_offset.' HOUR))';
+        }else{
+            $groupBy = ' GROUP BY date(DATE_SUB(`datetime`, INTERVAL '.abs($_offset).' HOUR))';
+        }
         break;
         case 'month':
-        $groupBy = ' GROUP BY month(`datetime`)';
+        $groupBy = ' GROUP BY month(DATE_ADD(`datetime`, INTERVAL '.$_offset.' DAY))';
         break;
         case 'year':
-        $groupBy = ' GROUP BY YEAR(`datetime`)';
+        $groupBy = ' GROUP BY YEAR(DATE_ADD(`datetime`, INTERVAL '.$_offset.' MONTH))';
         break;
         default :
         $groupBy = '';
@@ -277,6 +289,9 @@ public static function getPlurality($_cmd_id, $_startTime = null, $_endTime = nu
         $sql .=' ) as dt ';
 $sql .= $groupBy;
 $sql .= ' ORDER BY `datetime` ASC ';
+if($_offset != 0){
+  //  echo $sql;
+}
 return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 }
 
@@ -457,7 +472,7 @@ return strtotime('now') - strtotime($result['datetime']);
 
     /*     * *********************Methode d'instance************************* */
 
-     public function save($_cmd = null) {
+    public function save($_cmd = null) {
         if ($_cmd == null) {
             $cmd = $this->getCmd();
         } else {
@@ -479,34 +494,34 @@ return strtotime('now') - strtotime($result['datetime']);
                         'cmd_id' => $this->getCmd_id(),
                         'datetime' => date('Y-m-d H:i:00', strtotime($this->getDatetime()) + 300),
                         'value' => $this->getValue(),
-                    );
+                        );
                     $sql = 'REPLACE INTO history
-                                SET cmd_id=:cmd_id, 
-                                    `datetime`=:datetime,
-                                    value=:value';
+                    SET cmd_id=:cmd_id, 
+                    `datetime`=:datetime,
+                    value=:value';
                     DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
                     return;
                 }
                 $values = array(
                     'cmd_id' => $this->getCmd_id(),
                     'datetime' => $this->getDatetime(),
-                );
+                    );
                 $sql = 'SELECT `value`
-                        FROM history
-                        WHERE cmd_id=:cmd_id 
-                            AND `datetime`=:datetime';
+                FROM history
+                WHERE cmd_id=:cmd_id 
+                AND `datetime`=:datetime';
                 $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
                 if ($result !== false) {
                     switch ($cmd->getConfiguration('historizeMode', 'avg')) {
                         case 'avg':
-                            $this->setValue(($result['value'] + $this->getValue()) / 2);
-                            break;
+                        $this->setValue(($result['value'] + $this->getValue()) / 2);
+                        break;
                         case 'min':
-                            $this->setValue(min($result['value'], $this->getValue()));
-                            break;
+                        $this->setValue(min($result['value'], $this->getValue()));
+                        break;
                         case 'max':
-                            $this->setValue(max($result['value'], $this->getValue()));
-                            break;
+                        $this->setValue(max($result['value'], $this->getValue()));
+                        break;
                     }
                 }
             } else {
@@ -517,14 +532,14 @@ return strtotime('now') - strtotime($result['datetime']);
             'cmd_id' => $this->getCmd_id(),
             'datetime' => $this->getDatetime(),
             'value' => $this->getValue(),
-        );
+            );
         if ($values['value'] === '') {
             $values['value'] = null;
         }
         $sql = 'REPLACE INTO ' . $this->getTableName() . '
-                SET cmd_id=:cmd_id, 
-                    `datetime`=:datetime,
-                    value=:value';
+        SET cmd_id=:cmd_id, 
+        `datetime`=:datetime,
+        value=:value';
         DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
     }
 

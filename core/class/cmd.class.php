@@ -998,8 +998,8 @@ class cmd {
         return history::all($this->id, $_dateStart, $_dateEnd);
     }
 
-    public function getPluralityHistory($_dateStart = null, $_dateEnd = null, $_period = 'day') {
-        return history::getPlurality($this->id, $_dateStart, $_dateEnd, $_period);
+    public function getPluralityHistory($_dateStart = null, $_dateEnd = null, $_period = 'day',$_offset = 0) {
+        return history::getPlurality($this->id, $_dateStart, $_dateEnd, $_period,$_offset);
     }
 
     public function setCollect($collect) {
