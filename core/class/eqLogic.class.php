@@ -592,16 +592,12 @@ public function getHumanName($_tag = false, $_prettify = false) {
 }
 
 public function getBackgroundColor($_version = 'dashboard') {
-    $vcolor = 'color';
-    $default = '#19bc9c';
-    if ($_version == 'mobile') {
-        $vcolor = 'mcolor';
-    }
+    $vcolor = ($_version == 'mobile') ? 'mcolor' : 'color';
     $category = $this->getPrimaryCategory();
     if ($category != '') {
         return jeedom::getConfiguration('eqLogic:category:' . $category . ':' . $vcolor);
     }
-    return $default;
+    return jeedom::getConfiguration('eqLogic:category:default:' . $vcolor);
 }
 
 public function getPrimaryCategory() {
