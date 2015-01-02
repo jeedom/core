@@ -531,7 +531,7 @@ class cmd {
         if (trim($_value) == '' && $_value !== false) {
             return '';
         }
-        if (strpos('error', strtolower($_value)) !== false) {
+        if (@strpos('error', strtolower($_value)) !== false) {
             return $_value;
         }
         if ($this->getType() == 'info') {

@@ -97,7 +97,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
                     return;
                 }
                 $('#bt_sendBugReport').hide();
-                $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Un mail va vous être envoyé', level: 'success'});
+                $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Un mail va vous être envoyé}}', level: 'success'});
             }
         });
     });
