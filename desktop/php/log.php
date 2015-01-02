@@ -40,16 +40,11 @@ if ($logfile == '') {
     ?>
 </select>
 <br/><br/>
-
-<pre><?php
-$file = file(dirname(__FILE__) .'/../../log/'.$logfile);
-$file = array_reverse($file);
-foreach($file as $f){
-    echo $f;
-}?></pre>
-
+<div id="div_logDisplay" style="overflow: scroll;"><pre><?php echo file_get_contents(dirname(__FILE__) .'/../../log/'.$logfile);?></pre></div>
 <script>
     $(function() {
+        $('#div_logDisplay').height($(window).height() - $('header').height() - $('footer').height() - 90);
+        $('#div_logDisplay').scrollTop(999999999);
         $('#bt_downloadLog').click(function() {
             window.open('core/php/downloadFile.php?pathfile=log/' + $('#sel_log').value(), "_blank", null);
         });
