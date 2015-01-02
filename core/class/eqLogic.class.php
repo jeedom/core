@@ -596,7 +596,6 @@ public function getBackgroundColor($_version = 'dashboard') {
     $default = '#19bc9c';
     if ($_version == 'mobile') {
         $vcolor = 'mcolor';
-        $default = '#19bc9c';
     }
     $category = $this->getPrimaryCategory();
     if ($category != '') {
