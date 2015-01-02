@@ -15,12 +15,12 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-modifyWithoutSave = false;
-nbActiveAjaxRequest = 0;
-eqLogic_width_step = 40;
-eqLogic_height_step = 80;
+ modifyWithoutSave = false;
+ nbActiveAjaxRequest = 0;
+ eqLogic_width_step = 40;
+ eqLogic_height_step = 80;
 
-$(function () {
+ $(function () {
 
     $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
         event.preventDefault();
@@ -29,36 +29,36 @@ $(function () {
         $(this).parent().toggleClass('open');
     });
     if (!navigator.userAgent.match(/Android/i)
-            && !navigator.userAgent.match(/webOS/i)
-            && !navigator.userAgent.match(/iPhone/i)
-            && !navigator.userAgent.match(/iPad/i)
-            && !navigator.userAgent.match(/iPod/i)
-            && !navigator.userAgent.match(/BlackBerry/i)
-            & !navigator.userAgent.match(/Windows Phone/i)
-            ) {
+        && !navigator.userAgent.match(/webOS/i)
+        && !navigator.userAgent.match(/iPhone/i)
+        && !navigator.userAgent.match(/iPad/i)
+        && !navigator.userAgent.match(/iPod/i)
+        && !navigator.userAgent.match(/BlackBerry/i)
+        & !navigator.userAgent.match(/Windows Phone/i)
+        ) {
         $('ul.dropdown-menu [data-toggle=dropdown]').on('mouseenter', function (event) {
             event.preventDefault();
             event.stopPropagation();
             $(this).parent().siblings().removeClass('open');
             $(this).parent().toggleClass('open');
         });
-    }
-    /*********************Gestion de l'heure********************************/
-    setInterval(function () {
-        var date = new Date();
-        date.setTime(date.getTime() + clientServerDiffDatetime);
-        var hour = date.getHours();
-        var minute = date.getMinutes();
-        var seconde = date.getSeconds();
-        var horloge = (hour < 10) ? '0' + hour : hour;
-        horloge += ':';
-        horloge += (minute < 10) ? '0' + minute : minute;
-        horloge += ':';
-        horloge += (seconde < 10) ? '0' + seconde : seconde;
-        $('#horloge').text(horloge);
-    }, 1000);
+}
+/*********************Gestion de l'heure********************************/
+setInterval(function () {
+    var date = new Date();
+    date.setTime(date.getTime() + clientServerDiffDatetime);
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var seconde = date.getSeconds();
+    var horloge = (hour < 10) ? '0' + hour : hour;
+    horloge += ':';
+    horloge += (minute < 10) ? '0' + minute : minute;
+    horloge += ':';
+    horloge += (seconde < 10) ? '0' + seconde : seconde;
+    $('#horloge').text(horloge);
+}, 1000);
 
-    initTooltips();
+initTooltips();
 
     // Ajax Loading Screen
     $(document).ajaxStart(function () {
@@ -216,6 +216,32 @@ $(function () {
         $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"});
         $("#md_modal").load('index.php?v=d&modal=first.use').dialog('open');
     }
+
+    $('#bt_haltSystem').on('click', function () {
+        $.hideAlert();
+        bootbox.confirm('{{Etes-vous sûr de vouloir arreter le système ?}}', function (result) {
+            if (result) {
+                jeedom.haltSystem({
+                    error: function (error) {
+                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                    },
+                });
+            }
+        });
+    });
+
+    $('#bt_rebootSystem').on('click', function () {
+        $.hideAlert();
+        bootbox.confirm('{{Etes-vous sûr de vouloir redemarrer le système ?}}', function (result) {
+            if (result) {
+                jeedom.rebootSystem({
+                    error: function (error) {
+                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                    },
+                });
+            }
+        });
+    });
 });
 
 function linkify(inputText) {
