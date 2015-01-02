@@ -34,19 +34,19 @@ try {
         }
         switch (init('state')) {
             case 'start':
-                $scenario->launch(init('force', false), 'Scenario lance manuellement par l\'utilisateur');
-                break;
+            $scenario->launch(init('force', false), 'Scenario lance manuellement par l\'utilisateur');
+            break;
             case 'stop':
-                $scenario->stop();
-                break;
+            $scenario->stop();
+            break;
             case 'deactivate':
-                $scenario->setIsActive(0);
-                $scenario->save();
-                break;
+            $scenario->setIsActive(0);
+            $scenario->save();
+            break;
             case 'activate':
-                $scenario->setIsActive(1);
-                $scenario->save();
-                break;
+            $scenario->setIsActive(1);
+            $scenario->save();
+            break;
         }
         ajax::success();
     }
@@ -81,6 +81,9 @@ try {
             $name = init('template');
         }
         file_put_contents($path . '/' . $name, json_encode($scenario->export('array'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        if(!file_exists($path . '/' . $name)){
+            throw new Exception(__('Impossible de creer le template, vérifiez les droits : ', __FILE__) . $path . '/' . $name);
+        }
         ajax::success();
     }
 

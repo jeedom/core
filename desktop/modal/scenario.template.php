@@ -16,7 +16,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
         <div class="form-group">
             <label class="col-xs-2 control-label">{{Market}}</label>
             <div class="col-xs-8">
-                <a class='btn btn-success' id='bt_scenarioTemplateConvert'><i class="fa fa-code"></i> Convertir le scénario courant en un nouveau template</a>
+                <a class='btn btn-success' id='bt_scenarioTemplateConvert'><i class="fa fa-code"></i> {{Convertir le scénario courant en un nouveau template}}</a>
             </div>
         </div>
         <div class="form-group">
@@ -25,10 +25,10 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
                 <select class='form-control' id='sel_scenarioTemplate'></select>
             </div>
             <div class="col-xs-8">
-                <a class='btn btn-warning' id='bt_scenarioTemplateShare'><i class="fa fa-cloud-upload"></i> Partager</a>
-                <a class='btn btn-danger' id='bt_scenarioTemplateRemove'><i class="fa fa-times"></i> Supprimer</a>
+                <a class='btn btn-warning' id='bt_scenarioTemplateShare'><i class="fa fa-cloud-upload"></i> {{Partager}}</a>
+                <a class='btn btn-danger' id='bt_scenarioTemplateRemove'><i class="fa fa-times"></i> {{Supprimer}}</a>
                 <a class="btn btn-default" id="bt_scenarioTemplateDisplayMarket"><i class="fa fa-shopping-cart"></i> {{Market}}</a>
-                <a class='btn btn-success' id='bt_scenarioTemplateConvertInTemplate'><i class="fa fa-code"></i> Convertir le scénario courant dans ce template</a>
+                <a class='btn btn-success' id='bt_scenarioTemplateConvertInTemplate'><i class="fa fa-code"></i> {{Sauvegarder le scénario courant dans ce template}}</a>
             </div>
         </div>
         <div id='div_scenarioTemplateParametreConfiguration' style='display : none;'>
