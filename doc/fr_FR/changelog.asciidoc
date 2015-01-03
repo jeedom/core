@@ -1,5 +1,9 @@
 ==== 01/01/2015
 
+- Amélioration de la reconnaissance des interactions
+
+==== 01/01/2015
+
 - Grosse optimisation générale (scénario et dashboard)
 - Ajout #IP# et #hostname# dans les tags de scénario
 

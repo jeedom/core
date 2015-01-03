@@ -106,8 +106,7 @@ class interactQuery {
                 FROM interactQuery 
                 WHERE enable = 1
                 GROUP BY id
-                HAVING score > 1
-                ORDER BY score DESC';
+                HAVING score > 1';
         $queries = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL,PDO::FETCH_CLASS, __CLASS__);
         $caracteres = array(
             'À' => 'a', 'Á' => 'a', 'Â' => 'a', 'Ä' => 'a', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ä' => 'a', '@' => 'a',
