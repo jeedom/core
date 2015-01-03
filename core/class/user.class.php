@@ -34,10 +34,10 @@ class user {
     public static function byId($_id) {
         $values = array(
             'id' => $_id,
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM user 
-                WHERE id=:id';
+        FROM user 
+        WHERE id=:id';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
@@ -108,11 +108,11 @@ class user {
         $values = array(
             'login' => $_login,
             'password' => $sMdp,
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM user 
-                WHERE login=:login 
-                    AND password=:password';
+        FROM user 
+        WHERE login=:login 
+        AND password=:password';
         $user = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
         if (is_object($user)) {
             jeedom::event('user_connect');
@@ -145,20 +145,20 @@ class user {
     public static function byLogin($_login) {
         $values = array(
             'login' => $_login,
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM user 
-                WHERE login=:login';
+        FROM user 
+        WHERE login=:login';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
     public static function byKey($_key) {
         $values = array(
             'key' => '%' . $_key . '%',
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM user 
-                WHERE options LIKE :key';
+        FROM user 
+        WHERE options LIKE :key';
         $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
         if (is_object($result)) {
 
@@ -175,7 +175,7 @@ class user {
      */
     public static function all() {
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . ' 
-                FROM user';
+        FROM user';
         return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
 
@@ -183,11 +183,11 @@ class user {
         $values = array(
             'rights' => '%"' . $_rights . '":1%',
             'rights2' => '%"' . $_rights . '":"1"%',
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM user 
-                WHERE rights LIKE :rights
-                    OR rights LIKE :rights2';
+        FROM user 
+        WHERE rights LIKE :rights
+        OR rights LIKE :rights2';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
 
@@ -203,9 +203,9 @@ class user {
 
     public static function hasDefaultIdentification() {
         $sql = 'SELECT count(id) as nb
-                FROM user 
-                WHERE login="admin" 
-                    AND password=SHA1("admin")';
+        FROM user 
+        WHERE login="admin" 
+        AND password=SHA1("admin")';
         $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
         return $result['nb'];
     }
@@ -242,7 +242,7 @@ class user {
         if (config::byKey('market::returnLink') != '' && config::byKey('market::allowDNS')) {
             return config::byKey('market::returnLink') . '&url=' . urlencode('/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword());
         }
-        return config::byKey('externalAddr') . '/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword();
+        return config::byKey('externalAddr').':'.config::byKey('externalPort',80) . '/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword();
     }
 
     /*     * **********************Getteur Setteur*************************** */
