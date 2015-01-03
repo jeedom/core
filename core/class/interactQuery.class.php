@@ -102,31 +102,32 @@ class interactQuery {
         $values = array(
             'query' => $_query,
         );
-        $sql = 'SELECT id, MATCH query AGAINST (:query IN NATURAL LANGUAGE MODE) as score 
+        $sql = 'SELECT ' . DB::buildField(__CLASS__) . ', MATCH query AGAINST (:query IN NATURAL LANGUAGE MODE) as score 
                 FROM interactQuery 
+                WHERE enable = 1
                 GROUP BY id
                 HAVING score > 1
-                ORDER BY score DESC,enable DESC';
-        $results = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
-        $queries = array();
-        $highest = 0;
-        foreach ($results as $result) {
-            if ($result['score'] >= $highest) {
-                $highest = $result['score'];
-                $queries[] = self::byId($result['id']);
-            }
-        }
+                ORDER BY score DESC';
+        $queries = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL,PDO::FETCH_CLASS, __CLASS__);
+        $caracteres = array(
+            'À' => 'a', 'Á' => 'a', 'Â' => 'a', 'Ä' => 'a', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ä' => 'a', '@' => 'a',
+            'È' => 'e', 'É' => 'e', 'Ê' => 'e', 'Ë' => 'e', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', '€' => 'e',
+            'Ì' => 'i', 'Í' => 'i', 'Î' => 'i', 'Ï' => 'i', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i',
+            'Ò' => 'o', 'Ó' => 'o', 'Ô' => 'o', 'Ö' => 'o', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'ö' => 'o',
+            'Ù' => 'u', 'Ú' => 'u', 'Û' => 'u', 'Ü' => 'u', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'µ' => 'u',
+            'Œ' => 'oe', 'œ' => 'oe',
+            '$' => 's');
         $shortest = 999;
+        $_query = strtolower(preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+#', '', strtr($_query, $caracteres)));
         foreach ($queries as $query) {
-            $input = $query->getQuery();
+            $input = strtolower(preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+#', '', strtr($query->getQuery(), $caracteres)));
             preg_match_all("/#(.*?)#/", $input, $matches);
             foreach ($matches[1] as $match) {
                 $input = str_replace('#' . $match . '#', '', $input);
             }
-            $lev = levenshtein(strtolower($_query), strtolower($query->getQuery()));
+            $lev = levenshtein($_query, $input);
             if ($lev == 0) {
                 $closest = $query;
-                $shortest = 0;
                 break;
             }
             if ($lev <= $shortest || $shortest < 0) {
@@ -134,10 +135,10 @@ class interactQuery {
                 $shortest = $lev;
             }
         }
-        if (!isset($query)) {
+        if (!is_object($closest)) {
             return null;
         }
-        return $query;
+        return $closest;
     }
 
     public static function whatDoYouKnow($_object = null) {
