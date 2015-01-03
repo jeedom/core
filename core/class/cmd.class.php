@@ -554,7 +554,7 @@ class cmd {
                         $test = new evaluate();
                         $_value = $test->Evaluer(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
                     } catch (Exception $ex) {
-                        
+
                     }
                 }
                 return floatval($_value);
@@ -1065,7 +1065,7 @@ class cmd {
         if (config::byKey('market::returnLink') != '' && config::byKey('market::allowDNS')) {
             return config::byKey('market::returnLink') . '&url=' . urlencode($url);
         }
-        return config::byKey('externalAddr') ':'.config::byKey('externalPort',80). $url;
+        return config::byKey('externalAddr'). ':'.config::byKey('externalPort',80). $url;
     }
 
     /*     * **********************Getteur Setteur*************************** */
