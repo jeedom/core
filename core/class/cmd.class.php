@@ -531,7 +531,7 @@ class cmd {
         if (trim($_value) == '' && $_value !== false) {
             return '';
         }
-        if (strpos('error', strtolower($_value)) !== false) {
+        if (@strpos('error', strtolower($_value)) !== false) {
             return $_value;
         }
         if ($this->getType() == 'info') {
@@ -780,7 +780,7 @@ class cmd {
             $eqLogic = $this->getEqLogic();
             $vcolor = ($version == 'mobile') ? 'mcmdColor' : 'cmdColor';
             if ($eqLogic->getPrimaryCategory() == '') {
-                $replace['#cmdColor#'] = '';
+                $replace['#cmdColor#'] = jeedom::getConfiguration('eqLogic:category:default:' . $vcolor);
             } else {
                 $replace['#cmdColor#'] = jeedom::getConfiguration('eqLogic:category:' . $eqLogic->getPrimaryCategory() . ':' . $vcolor);
             }
