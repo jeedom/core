@@ -75,8 +75,9 @@ function buildUrl($_key, $_value) {
                     <option value="">Toutes les categories</option>
                 <?php
                 }
-                foreach (market::distinctCategorie($type) as $category) {
-                    if (trim($category) != '') {
+
+                foreach (market::distinctCategorie($type) as $id => $category) {
+                    if (trim($category) != '' && is_numeric($id)) {
                         echo '<option value="' . $category . '"';
                         echo (init('categorie') == $category) ? 'selected >' : '>';
                         echo $category;

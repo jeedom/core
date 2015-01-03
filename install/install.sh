@@ -505,6 +505,7 @@ install_dependency()
         apt-get install -y php5-common php5-fpm php5-dev php5-cli php5-curl php5-json php5-mysql
         apt-get install -y usb-modeswitch
         apt-get install -y python-serial make php-pear libpcre3-dev build-essential
+        apt-get install -y libudev1
        
         pecl install oauth
         if [ $? -eq 0 ] ; then
