@@ -308,7 +308,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 }
                                 ?>
                                 <legend>Accès externe</legend>
-                                <?php if (config::byKey('jeeNetwork::mode') == 'master' && config::byKey('market::allowDNS') == 0) { ?>
+                                <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
                                     <div class="form-group">
                                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
                                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -322,7 +322,12 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     <div class="form-group">
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse}}</label>
                                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                            <input type="text"  class="configKey form-control" data-l1key="externalAddr" />
+                                        <?php if(config::byKey('market::allowDNS') == 0){
+                                            echo '<input type="text"  class="configKey form-control" data-l1key="externalAddr" />';
+                                        }else{
+                                            echo '<input type="text"  class="configKey form-control" data-l1key="externalAddr" disabled />';
+                                        }
+                                        ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -346,9 +351,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                             <a class="btn btn-default" id="bt_forceApplyUPnP"> {{Appliquer}}</a>
                                         </div>
                                     </div>
-                                    <?php }else{ ?>
-                                    <div class='alert alert-info'>{{Vous utilisez le market comme DNS vous n'avez pas à remplir ces champs, la configuration ce fait <a href="http://market.jeedom.fr/index.php?v=d&p=profils">ici</a>}}</div>
-                                    <?php } ?>
+                                    <?php }?>
                                     <legend>Autres</legend>
                                     <?php if (config::byKey('jeedom::licence') >= 5) { ?>
                                         <div class="form-group expertModeVisible alert alert-danger">
