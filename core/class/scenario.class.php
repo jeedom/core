@@ -265,10 +265,7 @@ class scenario {
         }
         $scenarioElement->getSubElement('do')->execute($scenario);
         $scenario->setLog(__('************FIN sous tâche**************', __FILE__));
-        if (!$scenario->running()) {
-            $scenario->setState('stop');
-        }
-        // $scenario->save();
+        $scenario->persistLog();
     }
 
     public static function cleanTable() {
@@ -607,10 +604,10 @@ public function toHtml($_version) {
     WHERE `key`="scenarioHtml' . $_version . $this->getId().'"';
     $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
     if ($result['value'] != '') {
-       return $result['value'];
-   }
-   $_version = jeedom::versionAlias($_version);
-   $replace = array(
+     return $result['value'];
+ }
+ $_version = jeedom::versionAlias($_version);
+ $replace = array(
     '#id#' => $this->getId(),
     '#state#' => $this->getState(),
     '#isActive#' => $this->getIsActive(),
@@ -619,7 +616,7 @@ public function toHtml($_version) {
     '#lastLaunch#' => $this->getLastLaunch(),
     '#scenarioLink#' => $this->getLinkToConfiguration(),
     );
-   if (!isset(self::$_templateArray)) {
+ if (!isset(self::$_templateArray)) {
     self::$_templateArray = array();
 }
 if (!isset(self::$_templateArray[$_version])) {
