@@ -41,7 +41,7 @@ include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
                             <input type="text" class="configKey form-control" data-l1key="backup::keepDays" />
                         </div>
                     </div>
-                      <div class="form-group expertModeVisible">
+                    <div class="form-group expertModeVisible">
                         <label class="col-sm-4 col-xs-6 control-label">{{Taille total maximum des backups (mo)}}</label>
                         <div class="col-sm-4 col-xs-6">
                             <input type="text" class="configKey form-control" data-l1key="backup::maxSize" />
@@ -54,94 +54,96 @@ include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
                                 <input type="checkbox" class="configKey" data-l1key="backup::cloudUpload" />
                             </div>
                         </div>
-                    <?php } ?>
-                </fieldset>
-            </form>
-            <div class="form-actions" style="height: 20px;">
-                <a class="btn btn-success" id="bt_saveBackup"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
-            </div><br/><br/>
-            <legend>{{Sauvegardes locales}}</legend>
-            <form class="form-horizontal">
-                <fieldset>
-                    <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes disponibles}}</label>
-                        <div class="col-sm-4 col-xs-6">
-                            <select class="form-control" id="sel_restoreBackup"> </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Restaurer la sauvegarde}}</label>
-                        <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-warning" id="bt_restoreJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-file"></i> {{Restaurer}}</a>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Supprimer la sauvegarde}}</label>
-                        <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-danger" id="bt_removeBackup"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Envoyer une sauvegarde}}</label>
-                        <div class="col-sm-8 col-xs-6">
-                            <input id="bt_uploadBackup" type="file" name="file" data-url="core/ajax/jeedom.ajax.php?action=backupupload">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Télécharger la sauvegarde}}</label>
-                        <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-success" id="bt_downloadBackup"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-            <?php if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) { ?>
-                <legend>{{Sauvegardes cloud}}</legend>
+                        <?php } ?>
+                    </fieldset>
+                </form>
+                <div class="form-actions" style="height: 20px;">
+                    <a class="btn btn-success" id="bt_saveBackup"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+                </div><br/><br/>
+                <legend>{{Sauvegardes locales}}</legend>
                 <form class="form-horizontal">
                     <fieldset>
-                        <?php
-                        try {
-                            $listeCloudBackup = market::listeBackup();
-                        } catch (Exception $e) {
-                            echo '<div class="alert alert-danger">' . $e->getMessage() . '</div>';
-                        }
-                        ?>
                         <div class="form-group">
                             <label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes disponibles}}</label>
-                            <div class="col-sm-6 col-xs-6">
-                                <select class="form-control" id="sel_restoreCloudBackup">
-                                    <?php
-                                    try {
-                                        foreach ($listeCloudBackup as $backup) {
-                                            echo '<option>' . $backup . '</option>';
-                                        }
-                                    } catch (Exception $e) {
-                                        
-                                    }
-                                    ?>
-                                </select>
+                            <div class="col-sm-4 col-xs-6">
+                                <select class="form-control" id="sel_restoreBackup"> </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 col-xs-6 control-label">{{Restaurer la sauvegarde}}</label>
                             <div class="col-sm-4 col-xs-6">
-                                <a class="btn btn-warning" id="bt_restoreCloudJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-file"></i> {{Restaurer}}</a>
+                                <a class="btn btn-warning" id="bt_restoreJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-file"></i> {{Restaurer}}</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 col-xs-6 control-label">{{Supprimer la sauvegarde}}</label>
+                            <div class="col-sm-4 col-xs-6">
+                                <a class="btn btn-danger" id="bt_removeBackup"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 col-xs-6 control-label">{{Envoyer une sauvegarde}}</label>
+                            <div class="col-sm-8 col-xs-6">
+                                <input id="bt_uploadBackup" type="file" name="file" data-url="core/ajax/jeedom.ajax.php?action=backupupload">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 col-xs-6 control-label">{{Télécharger la sauvegarde}}</label>
+                            <div class="col-sm-4 col-xs-6">
+                                <a class="btn btn-success" id="bt_downloadBackup"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
                             </div>
                         </div>
                     </fieldset>
                 </form>
-            <?php } ?>
+                <?php if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) { ?>
+                    <legend>{{Sauvegardes cloud}}</legend>
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <?php
+                            try {
+                                $listeCloudBackup = market::listeBackup();
+                            } catch (Exception $e) {
+                                echo '<div class="alert alert-danger">' . $e->getMessage() . '</div>';
+                            }
+                            ?>
+                            <div class="form-group">
+                                <label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes disponibles}}</label>
+                                <div class="col-sm-6 col-xs-6">
+                                    <select class="form-control" id="sel_restoreCloudBackup">
+                                        <?php
+                                        try {
+                                            foreach ($listeCloudBackup as $key => $backup) {
+                                                if(is_numeric($key)){
+                                                    echo '<option>' . $backup . '</option>';
+                                                }
+                                            }
+                                        } catch (Exception $e) {
+                                            
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 col-xs-6 control-label">{{Restaurer la sauvegarde}}</label>
+                                <div class="col-sm-4 col-xs-6">
+                                    <a class="btn btn-warning" id="bt_restoreCloudJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-file"></i> {{Restaurer}}</a>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <?php } ?>
+                </div>
+                <div class="col-sm-6">
+                    <legend>{{Informations sauvegardes}}</legend>
+                    <pre id="pre_backupInfo"></pre>
+                    <legend>{{Informations restaurations}}</legend>
+                    <pre id="pre_restoreInfo">
+
+                    </pre>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-6">
-            <legend>{{Informations sauvegardes}}</legend>
-            <pre id="pre_backupInfo"></pre>
-            <legend>{{Informations restaurations}}</legend>
-            <pre id="pre_restoreInfo">
-
-            </pre>
-        </div>
-    </div>
-</div>
 
 
-<?php include_file("desktop", "backup", "js"); ?>
+        <?php include_file("desktop", "backup", "js"); ?>
