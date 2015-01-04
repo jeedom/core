@@ -242,7 +242,7 @@ class user {
         if (config::byKey('market::returnLink') != '' && config::byKey('market::allowDNS')) {
             return config::byKey('market::returnLink') . '&url=' . urlencode('/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword());
         }
-        return config::byKey('externalAddr').':'.config::byKey('externalPort',80) . '/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword();
+        return config::byKey('externalProtocol').config::byKey('externalAddr'). ':'.config::byKey('externalPort','core',80).config::byKey('externalComplement'). . '/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword(); 
     }
 
     /*     * **********************Getteur Setteur*************************** */
