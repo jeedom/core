@@ -353,7 +353,7 @@ if (count($plugins_list) > 0) {
                                     if (config::byKey('enableCron', 'core', 1, true) == 0) {
                                         echo '<div style="width : 100%" class="alert alert-warning">{{Erreur cron : les crons sont désactivés. Allez dans Général -> Administration -> Moteur de tâches pour les réactiver}}</div>';
                                     }
-                                    if (config::byKey('enableScenario') == 0) {
+                                    if (config::byKey('enableScenario') == 0 && count(scenario::all()) > 0) {
                                         echo '<div style="width : 100%" class="alert alert-warning">{{Erreur scénario : tous les scénarios sont désactivés. Allez dans Général -> Scénarios pour les réactiver}}</div>';
                                     }
                                     if (user::hasDefaultIdentification() == 1) {
