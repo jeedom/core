@@ -117,6 +117,7 @@ public static function recognize($_query) {
         'Œ' => 'oe', 'œ' => 'oe',
         '$' => 's');
     $shortest = 999;
+    $closest = null;
     $_query = strtolower(preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+#', '', strtr($_query, $caracteres)));
     foreach ($queries as $query) {
         $input = strtolower(preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+#', '', strtr($query->getQuery(), $caracteres)));
@@ -133,9 +134,6 @@ public static function recognize($_query) {
             $closest = $query;
             $shortest = $lev;
         }
-    }
-    if (!is_object($closest)) {
-        return null;
     }
     return $closest;
 }
