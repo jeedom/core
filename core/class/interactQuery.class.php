@@ -313,10 +313,7 @@ public function executeAndReply($_parameters) {
         }
     }
     $replace = array();
-    $replace['#heure#'] = date('H\hi');
-    $replace['#date#'] = date('l F Y');
-    $replace['#jour#'] = date('l');
-    $replace['#datetime#'] = date('l F Y H\hi');
+    $reply = scenarioExpression::setTags($reply);
 
     if ($this->getLink_type() == 'cmd') {
         $cmd = cmd::byId($this->getLink_id());
