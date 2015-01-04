@@ -277,7 +277,10 @@ class market {
                 'password' => config::byKey('market::password'),
                 'password_type' => 'sha1',
                 'jeedomversion' => getVersion('jeedom'),
-                'hwkey' => jeedom::getHardwareKey()
+                'hwkey' => jeedom::getHardwareKey(),
+                'addrProtocol' => config::byKey('externalProtocol'),
+                'addrPort' => config::byKey('externalPort'),
+                'addrComplement' => config::byKey('externalComplement'),
             ));
         } else {
             $jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', config::byKey('market::apikey'), array(
