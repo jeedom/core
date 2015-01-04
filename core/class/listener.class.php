@@ -79,12 +79,6 @@ class listener {
         return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
 
-//    public static function check($_event, $_value, $_loop = 0) {
-//        $cmd = '/usr/bin/php ' . dirname(__FILE__) . '/../php/jeeListener.php';
-//        $cmd.= ' event_id=' . $_event . ' value=' . $_value . ' loop=' . $_loop;
-//        exec($cmd . ' >> /dev/null 2>&1 &');
-//    }
-
     public static function check($_event, $_value) {
         $listeners = self::searchEvent($_event);
         if (count($listeners) > 0) {

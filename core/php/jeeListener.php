@@ -62,7 +62,8 @@ if (init('listener_id') == '') {
             if (class_exists($class) && method_exists($class, $function)) {
                 $class::$function($option);
             } else {
-                log::add('listener', 'error', __('[Erreur] Classe ou fonction non trouvée ', __FILE__) . $listener->getName());
+                log::add('listener', 'debug', __('[Erreur] Classe ou fonction non trouvée ', __FILE__) . $listener->getName());
+                $listener->remove();
                 die();
             }
         } else {
