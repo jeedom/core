@@ -135,30 +135,14 @@ class evaluate {
             $tab1[$j]["operateur"] = "";
             $res = $this->Eval_Comparer($this->Eval_Evaluer_Liste_Parametres($tab1), $this->Eval_Evaluer_Liste_Parametres($tab2), $lstParam[$j]["operateur"]);
         } else {
-            //SINON ON CALCUL					
-            $i = 0;
-            while (sizeof($lstParam) > 1 && $i < sizeof($tabOperateursoperation)) {
-
-                $j = (sizeof($lstParam) - 2);
-                while (sizeof($lstParam) > 1 && $j >= 0) {
-                    if ($lstParam[$j]["operateur"] == $tabOperateursoperation[$i]) {
-                        $lstParam[$j]["valeur"] = $this->Eval_Faire_Operation($lstParam[$j]["valeur"], $lstParam[$j + 1]["valeur"], $lstParam[$j]["operateur"]);
-                        $lstParam[$j]["operateur"] = $lstParam[$j + 1]["operateur"];
-                        for ($u = $j + 1; $u < (sizeof($lstParam) - 1); $u++) {
-                            $lstParam[$u] = $lstParam[$u + 1];
-                        }
-                        unset($lstParam[sizeof($lstParam) - 1]);
-                    } else {
-                        $j--;
-                    }
-                }
-                $i++;
+            //SINON ON CALCUL		
+            while (sizeof($lstParam) > 1) {
+                if (in_array($lstParam[0]["operateur"], $tabOperateursoperation)) {
+                    $lstParam[1]["valeur"] = $this->Eval_Faire_Operation($lstParam[0]["valeur"], $lstParam[1]["valeur"], $lstParam[0]["operateur"]);
+                } 
+                array_shift($lstParam);
             }
-            if (isset($lstParam[0]["valeur"])) {
-                $res = $lstParam[0]["valeur"];
-            } else {
-                $res = '';
-            }
+            $res = (isset($lstParam[0]["valeur"])) ? $lstParam[0]["valeur"] : '';
         }
         return $res;
     }
@@ -173,11 +157,13 @@ class evaluate {
         }
         $valeur1 = trim($valeur1);
         $valeur2 = trim($valeur2);
+        echo $valeur1.' '.$operateur.' '.$valeur2."\n";
         switch ($operateur) {
             case "+":
             $res = $valeur1 + $valeur2;
             break;
             case "-":
+
             $res = $valeur1 - $valeur2;
             break;
             case "*":
