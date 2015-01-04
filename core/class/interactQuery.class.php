@@ -50,13 +50,13 @@ class interactQuery {
         FROM interactQuery
         WHERE query=:query';
         if($_interactDef_id != null){
-           $values['interactDef_id'] = $_interactDef_id;
-           $sql .= ' AND interactDef_id=:interactDef_id';
-       }
-       return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-   }
+         $values['interactDef_id'] = $_interactDef_id;
+         $sql .= ' AND interactDef_id=:interactDef_id';
+     }
+     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+ }
 
-   public static function byInteractDefId($_interactDef_id, $_enable = false) {
+ public static function byInteractDefId($_interactDef_id, $_enable = false) {
     $values = array(
         'interactDef_id' => $_interactDef_id
         );
@@ -167,7 +167,11 @@ public static function tryToReply($_query, $_parameters = array()) {
     if (trim($reply) == '') {
         $reply = self::dontUnderstand($_parameters);
     }
-    log::add('interaction','debug','J\'ai reçu : '.$_query."\nJ'ai compris : ".$interactQuery->getQuery()."\nJ'ai répondu : ".$reply);
+    if(is_object($interactQuery)){
+        log::add('interaction','debug','J\'ai reçu : '.$_query."\nJ'ai compris : ".$interactQuery->getQuery()."\nJ'ai répondu : ".$reply);
+    }else{
+        log::add('interaction','debug','J\'ai reçu : '.$_query."\nJe n'ai rien compris\nJ'ai répondu : ".$reply);
+    }
     return ucfirst($reply);
 }
 
