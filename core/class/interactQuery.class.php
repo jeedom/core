@@ -164,7 +164,7 @@ public static function tryToReply($_query, $_parameters = array()) {
     if (is_object($interactQuery)) {
         $reply = $interactQuery->executeAndReply($_parameters);
     }
-    if ($reply == '') {
+    if (trim($reply) == '') {
         $reply = self::dontUnderstand($_parameters);
     }
     log::add('interaction','debug','J\'ai reçu : '.$_query."\nJ'ai compris : ".$interactQuery->getQuery()."\nJ'ai répondu : ".$reply);
