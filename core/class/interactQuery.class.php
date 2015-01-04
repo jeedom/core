@@ -134,6 +134,10 @@ public static function recognize($_query) {
             $closest = $query;
             $shortest = $lev;
         }
+
+    }
+    if($shortest > 10){
+        return null;
     }
     return $closest;
 }
@@ -153,6 +157,7 @@ public static function whatDoYouKnow($_object = null) {
 }
 
 public static function tryToReply($_query, $_parameters = array()) {
+    log::add('interaction','debug','Query => '.$_query."\nParameters => ".print_r($_parameters ,true));
     $_parameters['dictation'] = $_query;
     if (isset($_parameters['profile'])) {
         $_parameters['profile'] = strtolower($_parameters['profile']);
@@ -162,7 +167,7 @@ public static function tryToReply($_query, $_parameters = array()) {
     if (is_object($interactQuery)) {
         $reply = $interactQuery->executeAndReply($_parameters);
     }
-    if (trim($reply) == '') {
+    if (trim($reply) == '' && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
         $reply = self::dontUnderstand($_parameters);
     }
     if(is_object($interactQuery)){

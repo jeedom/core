@@ -59,7 +59,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
                 echo $cmd->execCmd($_REQUEST);
             }
         } else if ($type == 'interact') {
-            echo interactQuery::tryToReply(init('query'));
+            echo interactQuery::tryToReply(init('query'), array('emptyReply' => init('emptyReply',0)));
         } else if ($type == 'scenario') {
             log::add('api', 'debug', 'Demande api pour les scénarios');
             $scenario = scenario::byId(init('id'));
