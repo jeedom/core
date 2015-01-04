@@ -1,3 +1,7 @@
+==== 04/01/2015
+
+- Refonte de la configuration reseaux (externe et interne) avec meilleurs integration au market, merci de verfier votre configuration
+
 ==== 01/01/2015
 
 - Amélioration de la reconnaissance des interactions
