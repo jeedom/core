@@ -438,6 +438,13 @@ class scenarioExpression {
                 } else {
                     $replace[$match[0]] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
                 }
+            }else{
+                if(function_exists($function)){
+                    foreach ($arguments as &$argument) {
+                        $argument = cmd::cmdToValue($argument);
+                        $replace[$match[0]] = call_user_func_array($function, $arguments);
+                    }
+                }
             }
         }
         return cmd::cmdToValue(str_replace(array_keys($replace), array_values($replace), $_expression));
