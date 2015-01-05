@@ -1,12 +1,16 @@
-==== 04/01/2015
+==== v1.152.0 05/01/2015
+
+- Nombreuse corrections de bugs
+
+==== v1.152.0 04/01/2015
 
 - Refonte de la configuration reseaux (externe et interne) avec meilleurs integration au market, merci de verfier votre configuration
 
-==== 01/01/2015
+==== v1.152.0 01/01/2015
 
 - Amélioration de la reconnaissance des interactions
 
-==== 01/01/2015
+==== v1.151.0 01/01/2015
 
 - Grosse optimisation générale (scénario et dashboard)
 - Ajout #IP# et #hostname# dans les tags de scénario
@@ -15,43 +19,43 @@
 
 - Possibilité dans les scénarios de desactiver une action sans la supprimer
 
-==== 20/12/2014
+==== v1.151.0 20/12/2014
 
 - Possibilité d'ajouter du javascript et css personalisé directement inclus sur toute les pages (avec differenciation desktop/mobile)
 - Correction de bug lors des backups si le dossier de backup par defaut a été changé
 - Correction d'un bug lors des mise à jour des plugins
 
-==== 19/12/2014
+==== v1.150.0 19/12/2014
 
 - Possibilité de transformer un scénario en template 
 - Possibilité de partager des scénarios
 
-==== 18/12/2014
+==== v1.145.0 18/12/2014
 
 - Version stable 1.145
 - Bugfix sur les lancements programmés
 - Bugfix filtre sur l'historique
 - Ajout export de configuration (utile pour les plugins zwave et caméra)
 
-==== 14/12/2014
+==== v1.145.0 14/12/2014
 
 - Ajout interface de configuration de scénario simple
 - Suppression des backups les plus vieux si le dossier fait plus de 500mo
 
-==== 10/12/2014
+==== v1.145.0 10/12/2014
 
 - Amélioration page historique
 
-==== 08/12/2014
+==== v1.145.0 08/12/2014
 
 - Ajout champs de recherche sur la page scénario et affichage
 - Amélioration page affichage
 
-==== 06/12/2014
+==== v1.145.0 06/12/2014
 
 - Possibilité de choissir l'ordre du dashboard à partir de la page Générale -> Affichage
 
-==== 04/12/2014
+==== v1.145.0 04/12/2014
 
 - Ajout du raccourci ctrl+s partout pour sauvegarder les paramètres/modifications
 
