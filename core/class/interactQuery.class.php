@@ -329,6 +329,7 @@ public function executeAndReply($_parameters) {
         }
         $replace['#objet#'] = '';
         $replace['#equipement#'] = '';
+        $replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
         $eqLogic = $cmd->getEqLogic();
         if (is_object($eqLogic)) {
             $replace['#equipement#'] = $eqLogic->getName();

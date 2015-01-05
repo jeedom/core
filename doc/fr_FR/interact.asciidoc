@@ -60,7 +60,8 @@ Lors de la génération des commandes vous pouvez utiliser le champ synonyme (sy
 Pour les actions vous pouvez utiliser #color# (obligatoire si la commande est de type couleur) pour la valeur d'une couleur ou #slider# (obligatoire si la commande est de type slider) pour la valeur d'un slider.
 
 Réponse::
-Vous pouvez utiliser #valeur# et #unite# dans le retour (ils seront remplacés par la valeur et l'unité de la commande). Toutes les valeurs passées dans demande (#mavaleur#) sont accessibles. Vous avez aussi #heure#, #date#, #jour# et #datetime#."
+Vous pouvez utiliser #valeur# et #unite# dans le retour (ils seront remplacés par la valeur et l'unité de la commande). Toutes les valeurs passées dans demande (#mavaleur#) sont accessibles. Vous avez aussi accès a tous les tag des scénario et à : 
+#profile# => Nom de la personne ayant lancé l'éxecution (peut ne pas etre disponible)
 Exemple : #valeur# #unite#
 Vous pouvez utiliser le champ conversion binaire pour convertir les valeurs binaires (0 et 1) : 
 Exemple : non|oui
