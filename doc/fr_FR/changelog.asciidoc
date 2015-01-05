@@ -1,4 +1,4 @@
-*v1.152.0 05/01/2015*
+*v05/01/2015* _v1.152.0_
 
 - Nombreuse corrections de bugs
 
