@@ -137,7 +137,7 @@ public static function recognize($_query) {
 
     }
     if($shortest > 10){
-        return null;
+      //  return null;
     }
     return $closest;
 }
@@ -157,7 +157,6 @@ public static function whatDoYouKnow($_object = null) {
 }
 
 public static function tryToReply($_query, $_parameters = array()) {
-    log::add('interaction','debug','Query => '.$_query."\nParameters => ".print_r($_parameters ,true));
     $_parameters['dictation'] = $_query;
     if (isset($_parameters['profile'])) {
         $_parameters['profile'] = strtolower($_parameters['profile']);
