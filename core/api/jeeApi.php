@@ -60,7 +60,7 @@ if (trim(config::byKey('api')) == '') {
                     }
                 } else if ($type == 'interact') {
                     $query = init('query');
-                    if(mb_detect_encoding($query) != 'utf8' || strpos($query, 'Ã')){
+                    if(mb_detect_encoding($query) != 'UTF-8' || strpos($query, 'Ã') !== false){
                         $query = utf8_encode($query);
                     }
                     echo interactQuery::tryToReply($query, array('emptyReply' => init('emptyReply',0)));
