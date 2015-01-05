@@ -489,7 +489,7 @@ public static function shareOnMarket(&$market) {
 public static function getFromMarket(&$market, $_path) {
     $cibDir = dirname(__FILE__) . '/../config/scenario/';
     if (!file_exists($cibDir)) {
-        throw new Exception(__('Impossible d\'installer la configuration du module le répertoire n\'existe pas : ', __FILE__) . $cibDir);
+       mkdir($cibDir);
     }
     $zip = new ZipArchive;
     if ($zip->open($_path) === TRUE) {
