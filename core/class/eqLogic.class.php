@@ -440,10 +440,10 @@ class eqLogic {
         }
         $hasOnlyEventOnly = $this->hasOnlyEventOnlyCmd();
         if($hasOnlyEventOnly){
-         $sql = 'SELECT `value` FROM cache 
-         WHERE `key`="widgetHtml' . $_version . $this->getId().'"';
-         $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-         if ($result['value'] != '') {
+           $sql = 'SELECT `value` FROM cache 
+           WHERE `key`="widgetHtml' . $_version . $this->getId().'"';
+           $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+           if ($result['value'] != '') {
             return $result['value'];
         }
     }
@@ -529,6 +529,9 @@ public function save() {
     }
     if($this->getId() != ''){
         $this->emptyCacheWidget();
+        $this->setConfiguration('updatetime',date('Y-m-d H:i:s'));
+    }else{
+        $this->setConfiguration('createtime',date('Y-m-d H:i:s'));
     }
     return DB::save($this);
 }
