@@ -470,7 +470,7 @@ public static function getTemplate($_template = '') {
 /*     * *************************MARKET**************************************** */
 
 public static function shareOnMarket(&$market) {
-    $moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
+    $moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId(). '.json';
     if (!file_exists($moduleFile)) {
         throw new Exception('Impossible de trouver le fichier de configuration ' . $moduleFile);
     }
@@ -501,10 +501,6 @@ public static function getFromMarket(&$market, $_path) {
     $moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
     if (!file_exists($moduleFile)) {
         throw new Exception(__('Echec de l\'installation. Impossible de trouver le module ', __FILE__) . $moduleFile);
-    }
-
-    foreach (eqLogic::byTypeAndSearhConfiguration('zwave', $market->getLogicalId()) as $eqLogic) {
-        $eqLogic->applyModuleConfiguration();
     }
 }
 

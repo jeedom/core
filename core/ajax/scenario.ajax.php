@@ -76,9 +76,9 @@ try {
         }
         if (init('template') == '') {
             if ($scenario->getGroup() == '') {
-                $name = config::genKey(5) . '.' . $scenario->getName() . '.json';
+                $name = config::genKey(5) . '.' . str_replace(' ', '', $scenario->getName()) . '.json';
             } else {
-                $name = config::genKey(5) . '.' . $scenario->getGroup() . '_' . $scenario->getName() . '.json';
+                $name = config::genKey(5) . '.' . str_replace(' ', '', $scenario->getGroup() . '_' . $scenario->getName()) . '.json';
             }
         } else {
             $name = init('template');
