@@ -137,6 +137,7 @@ public static function recognize($_query) {
 
     }
     if($shortest > 10){
+        log::add('interact','debug','Correspondance trop éloigné : '.$shortest);
         return null;
     }
     return $closest;
