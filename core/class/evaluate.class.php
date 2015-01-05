@@ -157,7 +157,6 @@ class evaluate {
         }
         $valeur1 = trim($valeur1);
         $valeur2 = trim($valeur2);
-        echo $valeur1.' '.$operateur.' '.$valeur2."\n";
         switch ($operateur) {
             case "+":
             $res = $valeur1 + $valeur2;
