@@ -137,7 +137,7 @@ public static function recognize($_query) {
 
     }
     if($shortest > 10){
-      //  return null;
+        return null;
     }
     return $closest;
 }
