@@ -288,7 +288,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 <div class="form-group">
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port}}</label>
                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                        <input type="text"  class="configKey form-control" data-l1key="internalPort" />
+                                        <input type="number" class="configKey form-control" data-l1key="internalPort" />
                                     </div>
                                 </div>
                                 <?php
@@ -344,7 +344,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                         <div class="form-group">
                                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port}}</label>
                                             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                                <input type="text"  class="configKey form-control" data-l1key="externalPort" />
+                                                <input type="number" class="configKey form-control" data-l1key="externalPort" />
                                             </div>
                                         </div>
                                         <div class="form-group">
