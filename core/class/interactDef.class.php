@@ -159,7 +159,7 @@ class interactDef {
             preg_match_all("/#(.*?)#/", $input, $matches);
             $matches = $matches[1];
             if ($this->getLink_type() == 'cmd') {
-                if (in_array('commande', $matches) && in_array('objet', $matches)) {
+                if (in_array('commande', $matches) && (in_array('objet', $matches) || in_array('equipement', $matches))) {
                     foreach (object::all() as $object) {
                         if (($this->getFiltres('object_id', 'all') == 'all' || $object->getId() == $this->getFiltres('object_id'))) {
                             foreach ($object->getEqLogic() as $eqLogic) {
