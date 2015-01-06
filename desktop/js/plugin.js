@@ -42,6 +42,8 @@ $(".li_plugin").on('click', function () {
                 $('#span_plugin_market').append('<a class="btn btn-warning btn-xs sendOnMarket" data-market_logicalId="' + data.id + '"><i class="fa fa-cloud-upload"></i> {{Envoyer sur le market}}</a>')
             }
 
+            $('#span_plugin_doc').empty().append('<a class="btn btn-primary btn-xs" target="_blank" href="http://doc.jeedom.fr/fr_FR/' + data.id + '.html"><i class="fa fa-book"></i> {{Documentation}}</a>');
+
             if (data.checkVersion != -1) {
                 $('#span_plugin_require').html('<span>' + data.require + '</span>');
             } else {
