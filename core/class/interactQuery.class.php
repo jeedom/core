@@ -136,7 +136,7 @@ public static function recognize($_query) {
         }
 
     }
-    if($shortest > 10){
+    if($shortest > config::byKey('interact::confidence')){
         log::add('interact','debug','Correspondance trop éloigné : '.$shortest);
         return null;
     }

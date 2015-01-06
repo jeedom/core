@@ -486,6 +486,30 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             <div class="panel panel-default expertModeVisible">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_interact">
+                                            {{Configuration intéractions}}
+                                        </a>
+                                    </h3>
+                                </div>
+                                <div id="configuration_interact" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <form class="form-horizontal">
+                                            <fieldset>
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Niveau de confidence (defaut 10)}}</label>
+                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                        <input type="text" class="configKey form-control" data-l1key="interact::confidence"/>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                             <div class="panel panel-default expertModeVisible">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
                                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_cron">
                                             {{Configuration crontask, scripts & deamons}}
                                         </a>
