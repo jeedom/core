@@ -419,7 +419,7 @@ public static function formatTime($_time){
     $_time = self::setTags($_time);
     if(strlen($_time) > 3){
        return substr($_time,0,2).'h'.substr($_time,2,2);
-   }else{
+   } else {
        return substr($_time,0,1).'h'.substr($_time,1,2);
    }
 }
@@ -447,20 +447,38 @@ public static function setTags($_expression, &$_scenario = null) {
     foreach ($matches as $match) {
         $function = $match[1];
         $arguments = explode(',', $match[2]);
+        $replace_string =  $match[0];
+        /*if(substr_count($match[2],'(') != substr_count($match[2],')')){
+           $arguments = self::setTags($match[2].')');
+           $replace_string =  $match[0];
+            if(substr($_expression,strpos($_expression,$match[2])+strlen($match[2])+1,1) == ','){
+                for($i=strpos($_expression,$match[2])+strlen($match[2]) + 1;$i<strlen($_expression);$i++){
+                    $car = $_expression[$i];
+                    if( $car != ')'){
+                        $arguments .= $car;
+                        $replace_string .= $car;
+                    }else{
+                        break;
+                    }
+                }
+            }
+            $replace_string .= ')';
+            $arguments = explode(',', $arguments);
+        }*/
         if (method_exists(__CLASS__, $function)) {
             if ($function == 'trigger') {
                 if (!isset($arguments[0])) {
                     $arguments[0] = '';
                 }
-                $replace[$match[0]] = self::trigger($arguments[0], $_scenario);
+                $replace[$replace_string] = self::trigger($arguments[0], $_scenario);
             } else {
-                $replace[$match[0]] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
+                $replace[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
             }
         }else{
             if(function_exists($function)){
                 foreach ($arguments as &$argument) {
                     $argument = cmd::cmdToValue($argument);
-                    $replace[$match[0]] = call_user_func_array($function, $arguments);
+                    $replace[$replace_string] = call_user_func_array($function, $arguments);
                 }
             }
         }
