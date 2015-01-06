@@ -317,6 +317,7 @@ public function executeAndReply($_parameters) {
         }
     }
     $replace = array();
+     $replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
 
     if ($this->getLink_type() == 'cmd') {
         $cmd = cmd::byId($this->getLink_id());
@@ -330,7 +331,7 @@ public function executeAndReply($_parameters) {
         }
         $replace['#objet#'] = '';
         $replace['#equipement#'] = '';
-        $replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
+       
         $eqLogic = $cmd->getEqLogic();
         if (is_object($eqLogic)) {
             $replace['#equipement#'] = $eqLogic->getName();

@@ -34,10 +34,10 @@ $(".li_interact").on('click', function (event) {
             $('.interactAttr').value('');
             $(".interactAttr[data-l1key=link_type]").off();
             $('.interact').setValues(data, '.interactAttr');
+            changeLinkType(data);
             $(".interactAttr[data-l1key=link_type]").on('change', function () {
                 changeLinkType({link_type: $(this).value()});
             });
-            $(".interactAttr[data-l1key=link_type]").trigger('change');
         }
     });
     return false;
