@@ -408,11 +408,19 @@ public static function time($_value) {
         if(strpos($_value, '-') !== false){
             $result -= 40;
         }else{
-         $result += 40; 
-     }       
+           $result += 40; 
+       }       
 
- }
- return $result;
+   }
+   return $result;
+}
+
+public static function formatTime($_time){
+    if(strlen($_time) > 3){
+       return substr($_time,0,2).'h'.ubstr($_time,2,4);
+   }else{
+       return substr($_time,0,1).'h'.ubstr($_time,2,4);
+   }
 }
 
 public static function setTags($_expression, &$_scenario = null) {
