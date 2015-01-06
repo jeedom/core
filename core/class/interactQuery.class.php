@@ -50,13 +50,13 @@ class interactQuery {
         FROM interactQuery
         WHERE query=:query';
         if($_interactDef_id != null){
-         $values['interactDef_id'] = $_interactDef_id;
-         $sql .= ' AND interactDef_id=:interactDef_id';
-     }
-     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
- }
+           $values['interactDef_id'] = $_interactDef_id;
+           $sql .= ' AND interactDef_id=:interactDef_id';
+       }
+       return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+   }
 
- public static function byInteractDefId($_interactDef_id, $_enable = false) {
+   public static function byInteractDefId($_interactDef_id, $_enable = false) {
     $values = array(
         'interactDef_id' => $_interactDef_id
         );
@@ -316,7 +316,6 @@ public function executeAndReply($_parameters) {
         }
     }
     $replace = array();
-    $reply = scenarioExpression::setTags($reply);
 
     if ($this->getLink_type() == 'cmd') {
         $cmd = cmd::byId($this->getLink_id());
