@@ -416,6 +416,7 @@ public static function time($_value) {
 }
 
 public static function formatTime($_time){
+    $_value = self::setTags($_value);
     if(strlen($_time) > 3){
        return substr($_time,0,2).'h'.substr($_time,2,2);
    }else{
