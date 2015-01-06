@@ -490,18 +490,18 @@ public static function getFromMarket(&$market, $_path) {
     $cibDir = dirname(__FILE__) . '/../config/scenario/';
     if (!file_exists($cibDir)) {
        mkdir($cibDir);
-    }
-    $zip = new ZipArchive;
-    if ($zip->open($_path) === TRUE) {
-        $zip->extractTo($cibDir . '/');
-        $zip->close();
-    } else {
-        throw new Exception('Impossible de décompresser le zip : ' . $_path);
-    }
-    $moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
-    if (!file_exists($moduleFile)) {
-        throw new Exception(__('Echec de l\'installation. Impossible de trouver le module ', __FILE__) . $moduleFile);
-    }
+   }
+   $zip = new ZipArchive;
+   if ($zip->open($_path) === TRUE) {
+    $zip->extractTo($cibDir . '/');
+    $zip->close();
+} else {
+    throw new Exception('Impossible de décompresser le zip : ' . $_path);
+}
+$moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
+if (!file_exists($moduleFile)) {
+    throw new Exception(__('Echec de l\'installation. Impossible de trouver le module ', __FILE__) . $moduleFile);
+}
 }
 
 public static function removeFromMarket(&$market) {
@@ -525,24 +525,21 @@ public static function listMarketObject() {
 /*     * *********************Méthodes d'instance************************* */
 
 public function launch($_force = false, $_trigger = '', $_message = '') {
-    if ($this->getIsActive() != 1) {
-        return;
+    if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
+        return false;
     }
-    if (config::byKey('enableScenario') == 1) {
-        if ($this->getConfiguration('speedPriority', 0) == 1) {
-            $this->execute($_trigger, $_message);
-        } else {
-            $cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
-            $cmd.= ' scenario_id=' . $this->getId();
-            $cmd.= ' force=' . $_force;
-            $cmd.= ' trigger=' . escapeshellarg($_trigger);
-            $cmd.= ' message=' . escapeshellarg($_message);
-            $cmd.= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
-            exec($cmd);
-        }
-        return true;
+    if ($this->getConfiguration('speedPriority', 0) == 1) {
+        $this->execute($_trigger, $_message);
+    } else {
+        $cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
+        $cmd.= ' scenario_id=' . $this->getId();
+        $cmd.= ' force=' . $_force;
+        $cmd.= ' trigger=' . escapeshellarg($_trigger);
+        $cmd.= ' message=' . escapeshellarg($_message);
+        $cmd.= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
+        exec($cmd);
     }
-    return false;
+    return true;
 }
 
 public function execute($_trigger = '', $_message = '') {
@@ -551,8 +548,9 @@ public function execute($_trigger = '', $_message = '') {
         $this->persistLog();
         return;
     }
-    $this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
+    
     if ($this->getConfiguration('speedPriority', 0) == 0) {
+        $this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
         $this->setDisplay('icon', '');
         $this->setState('in progress');
         $this->setPID(getmypid());
@@ -566,12 +564,6 @@ public function execute($_trigger = '', $_message = '') {
     if ($this->getConfiguration('speedPriority', 0) == 0) {
         $this->setState('stop');
         $this->setPID('');
-        if ($this->getIsActive() == 1) {
-            $scenario = self::byId($this->getId());
-            if (is_object($scenario)) {
-                $this->setIsActive($scenario->getIsActive());
-            }
-        }
         $this->save();
         $this->persistLog();
     }
@@ -1189,11 +1181,7 @@ public function getLog() {
 }
 
 public function setLog($log) {
-    if ($log == '') {
-        $this->_log = '';
-    } else {
-        $this->_log .= '[' . date('Y-m-d H:i:s') . '][SCENARIO] ' . $log . "\n";
-    }
+    $this->_log .= '[' . date('Y-m-d H:i:s') . '][SCENARIO] ' . $log . "\n";
 }
 
 public function getTimeout($_default = '') {
