@@ -489,10 +489,10 @@ public static function shareOnMarket(&$market) {
 public static function getFromMarket(&$market, $_path) {
     $cibDir = dirname(__FILE__) . '/../config/scenario/';
     if (!file_exists($cibDir)) {
-       mkdir($cibDir);
-   }
-   $zip = new ZipArchive;
-   if ($zip->open($_path) === TRUE) {
+     mkdir($cibDir);
+ }
+ $zip = new ZipArchive;
+ if ($zip->open($_path) === TRUE) {
     $zip->extractTo($cibDir . '/');
     $zip->close();
 } else {
@@ -528,18 +528,19 @@ public function launch($_force = false, $_trigger = '', $_message = '') {
     if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
         return false;
     }
-    if ($this->getConfiguration('speedPriority', 0) == 1) {
-        $this->execute($_trigger, $_message);
-    } else {
-        $cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
-        $cmd.= ' scenario_id=' . $this->getId();
-        $cmd.= ' force=' . $_force;
-        $cmd.= ' trigger=' . escapeshellarg($_trigger);
-        $cmd.= ' message=' . escapeshellarg($_message);
-        $cmd.= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
-        exec($cmd);
-    }
-    return true;
+    if ($this->getConfiguration('speedPriority', 0) == 0) {
+       $cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
+       $cmd.= ' scenario_id=' . $this->getId();
+       $cmd.= ' force=' . $_force;
+       $cmd.= ' trigger=' . escapeshellarg($_trigger);
+       $cmd.= ' message=' . escapeshellarg($_message);
+       $cmd.= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
+       exec($cmd);
+   } else {
+       $this->execute($_trigger, $_message);
+       
+   }
+   return true;
 }
 
 public function execute($_trigger = '', $_message = '') {
@@ -592,10 +593,10 @@ public function toHtml($_version) {
     WHERE `key`="scenarioHtml' . $_version . $this->getId().'"';
     $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
     if ($result['value'] != '') {
-     return $result['value'];
- }
- $_version = jeedom::versionAlias($_version);
- $replace = array(
+       return $result['value'];
+   }
+   $_version = jeedom::versionAlias($_version);
+   $replace = array(
     '#id#' => $this->getId(),
     '#state#' => $this->getState(),
     '#isActive#' => $this->getIsActive(),
@@ -604,7 +605,7 @@ public function toHtml($_version) {
     '#lastLaunch#' => $this->getLastLaunch(),
     '#scenarioLink#' => $this->getLinkToConfiguration(),
     );
- if (!isset(self::$_templateArray)) {
+   if (!isset(self::$_templateArray)) {
     self::$_templateArray = array();
 }
 if (!isset(self::$_templateArray[$_version])) {
