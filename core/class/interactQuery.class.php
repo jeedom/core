@@ -127,6 +127,7 @@ public static function recognize($_query) {
         }
         $lev = levenshtein($_query, $input);
         if ($lev == 0) {
+            $shortest = 0;
             $closest = $query;
             break;
         }
