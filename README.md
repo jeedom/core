@@ -72,7 +72,7 @@ location ~ \.php$ {
 ```bash
 server {
   listen       443;
-  server_name mon.domain.fr;
+  server_name  my.domain.fr;
   ssl          on;
   ssl_certificate      /etc/nginx/certs/jeedom.crt;
   ssl_certificate_key  /etc/nginx/certs/jeedom.key;
