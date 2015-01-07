@@ -6,13 +6,21 @@ Website (French):  [https://jeedom.fr/](https://jeedom.fr/)
 
 (Readme en français [ci-dessous](#french).)
 
+# Automatic install #
+```bash
+sudo apt-get update
+sudo apt-get dist-upgrade
+wget -q https://raw.githubusercontent.com/jeedom/core/stable/install/install.sh
+sudo chmod 777 install.sh
+sudo ./install.sh
+```
+# Manual install #
 ## Prerequisites ##
 
 * PHP 5.3
 * MySQL
 * PHP cURL
 * nodeJS
-
 
 To retrieve necessary packages:
 ```bash
@@ -141,7 +149,15 @@ server {
 
 # French #
 
-
+# Installation automatic #
+```bash
+sudo apt-get update
+sudo apt-get dist-upgrade
+wget -q https://raw.githubusercontent.com/jeedom/core/stable/install/install.sh
+sudo chmod 777 install.sh
+sudo ./install.sh
+```
+# Installation manuel #
 
 ## Pre-requis ##
 
