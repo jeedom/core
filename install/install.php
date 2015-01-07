@@ -132,6 +132,10 @@ try {
                     foreach (ls(dirname(__FILE__) . '/../', 'sqlbuddy*') as $file) {
                         rrmdir(dirname(__FILE__) . '/../' . $file);
                     }
+                    echo __("Nettoyage sysinfo en cours...", __FILE__);
+                    foreach (ls(dirname(__FILE__) . '/../', 'sysinfo*') as $file) {
+                        rrmdir(dirname(__FILE__) . '/../' . $file);
+                    }
                     echo __("OK\n", __FILE__);
                     echo __("Création des dossiers temporaire...", __FILE__);
                     if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
@@ -157,6 +161,9 @@ try {
                     echo __("OK\n", __FILE__);
                     echo __("Renommage sqlbuddy en cours...", __FILE__);
                     jeedom::renameSqlBuddyFolder();
+                    echo __("OK\n", __FILE__);
+                    echo __("Renommage sysinfo en cours...", __FILE__);
+                    jeedom::renameSysInfoFolder();
                     echo __("OK\n", __FILE__);
                 } catch (Exception $e) {
                     if (init('mode') != 'force') {

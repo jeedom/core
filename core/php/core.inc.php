@@ -94,11 +94,10 @@ function jeedom3rdPartyAutoload($classname) {
 
     }
 }
-
-spl_autoload_register('jeedomCoreAutoload', true, true);
-spl_autoload_register('jeedomComAutoload', true, true);
-spl_autoload_register('jeedomPluginAutoload', true, true);
 spl_autoload_register('jeedom3rdPartyAutoload', true, true);
+spl_autoload_register('jeedomPluginAutoload', true, true);
+spl_autoload_register('jeedomComAutoload', true, true);
+spl_autoload_register('jeedomCoreAutoload', true, true);
 
 /* * *******************Securité anti piratage**************************** */
 try {

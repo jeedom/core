@@ -232,6 +232,11 @@ if (count($plugins_list) > 0) {
                                                                     <li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
                                                                     <?php
                                                                 }
+                                                                 if (hasRight('sysinfo', true)) {
+                                                                    ?>
+                                                                    <li class="expertModeVisible"><a href="index.php?v=d&p=sysinfo"><i class="fa fa-tachometer"></i> {{Informations système}}</a></li>
+                                                                    <?php
+                                                                }
                                                                 if (hasRight('customview', true)) {
                                                                     ?>
                                                                     <li class="expertModeVisible"><a href="index.php?v=d&p=custom"><i class="fa fa-pencil-square-o"></i> {{Personnalisation avancée}}</a></li>
