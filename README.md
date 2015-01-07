@@ -1,6 +1,6 @@
 # Jeedom by Loïc Gevrey #
 
-For French, see below.
+(Version en français [ci-dessous](#french).)
 
 ## Prerequisites ##
 
