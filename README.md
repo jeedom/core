@@ -1,6 +1,10 @@
 # Jeedom by Loïc Gevrey #
 
-(Version en français [ci-dessous](#french).)
+Website (English): [https://jeedom.fr/index-en.php](https://jeedom.fr/index-en.php)
+
+Website (French):  [https://jeedom.fr/](https://jeedom.fr/)
+
+(Readme en français [ci-dessous](#french).)
 
 ## Prerequisites ##
 
