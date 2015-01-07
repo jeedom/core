@@ -115,10 +115,10 @@ server {
   
 }
 
-# Redirection des requêtes http en https
+# Re-routing http requests as https.
 server {
   listen 80;
-  server_name mon.domaine.fr www.mon.domaine.fr;
+  server_name my.domain.bla www.my.domain.bla;
   rewrite     ^(.*)   https://$server_name$1 permanent;
 }
 ```
