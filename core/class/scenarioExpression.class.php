@@ -279,7 +279,7 @@ class scenarioExpression {
             return $values[0];
         }
         sort($values);
-        return $values[round(count($values) / 2)];
+        return $values[round(count($values) / 2) - 1];
     }
 
     public static function tendance($_cmd_id, $_period = '1 hour', $_threshold = '') {
