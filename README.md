@@ -1,9 +1,11 @@
-Jeedom réalisé par Loïc Gevrey
-    1) PRE-REQUIS
-        - PHP 5.3
-        - MySQL
-        - PHP cURL
-        - nodeJS
+# Jeedom by Loïc Gevrey #
+
+## Prerequisites ##
+* PHP 5.3
+* MySQL
+* PHP cURL
+* nodeJS
+
         Si vous n'avez pas encore installé les dépendances :
             apt-get update
             apt-get install nginx-common  nginx-full
