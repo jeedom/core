@@ -1,3 +1,7 @@
+*07/01/2015* _v1.152.0_
+
+- Ajout d'une page d'information système
+
 *05/01/2015* _v1.152.0_
 
 - Nombreuse corrections de bugs
