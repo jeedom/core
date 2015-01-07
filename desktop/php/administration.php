@@ -274,7 +274,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse}}</label>
+                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse/IP}}</label>
                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                         <input type="text"  class="configKey form-control" data-l1key="internalAddr" />
                                     </div>
@@ -291,22 +291,6 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                         <input type="number" class="configKey form-control" data-l1key="internalPort" />
                                     </div>
                                 </div>
-                                <?php
-                                if (config::byKey('jeedom::licence') >= 5 && file_exists('/etc/nginx/sites-available/default_ssl')) {
-                                    echo '<div class="form-group expertModeVisible">';
-                                    echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Forcer le https}}</label>';
-                                    echo '<div class="col-xs-1">';
-                                    echo '<input type="checkbox" class="configKey" data-l1key="forceHttps" />';
-                                    echo '</div>';
-                                    echo '<div class="col-sm-3">';
-                                    echo '<a class="btn btn-default btn-sm" target="_blank" href="https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '"><i class="fa fa-lock"></i> Tester le https</a>';
-                                    echo '</div>';
-                                    echo '<div class="col-sm-4 col-xs-12 alert alert-danger">';
-                                    echo '{{Attention si vous n\'avez pas de HTTPS et que vous activez cette option votre jeedom ne sera plus accessible}}';
-                                    echo '</div>';
-                                    echo '</div>';
-                                }
-                                ?>
                                 <legend>Accès externe</legend>
                                 <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
                                     <div class="form-group">
@@ -320,7 +304,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse}}</label>
+                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse/IP}}</label>
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
                                             <?php if(config::byKey('market::allowDNS') == 0){
                                                 echo '<input type="text"  class="configKey form-control" data-l1key="externalAddr" />';
@@ -374,6 +358,22 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                                 </div>
                                             </div>
                                             <?php } ?>
+                                            <?php
+                                            if (config::byKey('jeedom::licence') >= 5 && file_exists('/etc/nginx/sites-available/default_ssl')) {
+                                                echo '<div class="form-group expertModeVisible">';
+                                                echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Forcer le https}}</label>';
+                                                echo '<div class="col-xs-1">';
+                                                echo '<input type="checkbox" class="configKey" data-l1key="forceHttps" />';
+                                                echo '</div>';
+                                                echo '<div class="col-sm-3">';
+                                                echo '<a class="btn btn-default btn-sm" target="_blank" href="https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '"><i class="fa fa-lock"></i> Tester le https</a>';
+                                                echo '</div>';
+                                                echo '<div class="col-sm-4 col-xs-12 alert alert-danger">';
+                                                echo '{{Attention si vous n\'avez pas de HTTPS et que vous activez cette option votre jeedom ne sera plus accessible}}';
+                                                echo '</div>';
+                                                echo '</div>';
+                                            }
+                                            ?>
                                         </fieldset>
                                     </form>
                                 </div>
@@ -507,7 +507,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 </div>
                             </div>
 
-                             <div class="panel panel-default expertModeVisible">
+                            <div class="panel panel-default expertModeVisible">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
                                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_cron">

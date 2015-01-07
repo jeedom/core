@@ -329,7 +329,7 @@ if (count($plugins_list) > 0) {
                                                 </li>
                                                 <li>
                                                     <?php if (isset($plugin) && is_object($plugin)) { ?>
-                                                    <a class="cursor tooltips" target="_blank" href="http://doc.jeedom.fr/fr_FR/<?php echo init('m'); ?>.html#" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
+                                                    <a class="cursor tooltips" target="_blank" href="http://doc.jeedom.fr/fr_FR/<?php echo init('m'); ?>.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
                                                     <?php } else { ?>
                                                     <a class="cursor tooltips" target="_blank" href="http://doc.jeedom.fr/fr_FR/core.html#<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
                                                     <?php } ?>
