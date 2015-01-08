@@ -137,6 +137,7 @@ try {
         $i++;
         if ($i > 50) {
             echo __('Plus de 50 sauvegardes supprimées. Je m\'arrête', __FILE__);
+            break;
         }
     }
     echo __("OK\n", __FILE__);
