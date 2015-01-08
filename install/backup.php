@@ -130,8 +130,8 @@ try {
         if ($older['file'] == null) {
             echo __('Erreur aucun fichier à supprimer alors que le dossier fait : ' . getDirectorySize($backup_dir), __FILE__);
         }
-        echo __("\n - Suppression de : ", __FILE__) . $backup_dir . $older['file'];
-        if (!unlink($backup_dir .$older['file'])) {
+        echo __("\n - Suppression de : ", __FILE__) . $older['file'];
+        if (!unlink($older['file'])) {
             $i = 50;
         }
         $i++;
