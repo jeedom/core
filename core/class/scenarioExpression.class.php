@@ -448,10 +448,10 @@ public static function setTags($_expression, &$_scenario = null) {
         $function = $match[1];
         $arguments = explode(',', $match[2]);
         $replace_string =  $match[0];
+
         if(substr_count($match[2],'(') != substr_count($match[2],')')){
            $arguments = self::setTags($match[2].')');
-           $replace_string =  $match[0];
-            if(substr($_expression,strpos($_expression,$match[2])+strlen($match[2])+1,1) == ','){
+            if(substr($_expression,strpos($_expression,$match[2])+strlen($match[2])+1,1) != ')'){
                 for($i=strpos($_expression,$match[2])+strlen($match[2]) + 1;$i<strlen($_expression);$i++){
                     $car = $_expression[$i];
                     if( $car != ')'){
