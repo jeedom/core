@@ -1,5 +1,5 @@
 <?php
-if (!hasRight('userview',true)) {
+if (!hasRight('userview', true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
@@ -11,10 +11,12 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
     <div class="tab-pane" id="user">
         <legend>{{Liste des utilisateurs :}}</legend>
         <?php if (config::byKey('ldap::enable') != '1') { ?>
-            <a class="btn btn-success pull-right" id="bt_addUser"><i class="fa fa-plus-circle"></i> {{Ajouter un utilisateur}}</a><br/><br/>
+            <a class="btn btn-success pull-right" id="bt_addUser"><i class="fa fa-plus-circle"></i> {{Ajouter un utilisateur}}</a>
+            <a class="btn btn-default pull-right tooltips" id="bt_addTemporariUser" title="{{A utiliser pour laisser l'accès temporaire pour de l'assistance par exemple}}"><i class="fa fa-plus-circle"></i> {{Ajouter un utilisateur temporaire}}</a>
+            <br/><br/>
         <?php } ?>
         <table class="table table-condensed table-bordered" id="table_user">
-            <thead><th>{{Nom d'utilisateur}}</th><th>{{Actions}}</th><th>{{Actif}}</th><th>{{Droits}}</th></thead>
+            <thead><th>{{Nom d'utilisateur}}</th><th>{{Actions}}</th><th>{{Actif}}</th><th>{{Droits}}</th><th>{{Accès directement}}</th></thead>
             <tbody></tbody>
         </table>
         <div class="form-actions" style="height: 20px;">

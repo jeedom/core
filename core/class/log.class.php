@@ -50,14 +50,7 @@ class log {
     public static function chunk($_log = '') {
         if ($_log != '') {
             $path = self::getPathToLog($_log);
-            $log_file = file($path);
-            if (count($log_file) > config::byKey('maxLineLog')) {
-                $log_file = array_slice($log_file, count($log_file) - config::byKey('maxLineLog'));
-                $log_txt = implode("", $log_file);
-                $log = fopen($path, "w+");
-                fwrite($log, $log_txt);
-                fclose($log);
-            }
+            shell_exec('echo "$(tail -n '.config::byKey('maxLineLog').' '.$path.')" > '.$path);
             @chown($path, 'www-data');
             @chgrp($path, 'www-data');
             @chmod($path, 0777);
@@ -65,33 +58,22 @@ class log {
             $logs = ls(dirname(__FILE__) . '/../../log/', '*');
             foreach ($logs as $log) {
                 $path = dirname(__FILE__) . '/../../log/' . $log;
-                if (filesize($path) > 20000) {
-                    if (filesize($path) > 1000000) {
-                        unlink($path);
-                        touch($path);
-                        continue;
-                    }
-                    $f = @fopen($path, "r+");
-                    if ($f !== false) {
-                        ftruncate($f, 20000);
-                        fclose($f);
-                    } else {
-                        unlink($path);
-                        touch($path);
-                        continue;
-                    }
+                if(is_file($path)){
+                    shell_exec('echo "$(tail -n '.config::byKey('maxLineLog').' '.$path.')" > '.$path);
+                    @chown($path, 'www-data');
+                    @chgrp($path, 'www-data');
+                    @chmod($path, 0777);
                 }
-                $log_file = file($path);
-                if (count($log_file) > config::byKey('maxLineLog')) {
-                    $log_file = array_slice($log_file, count($log_file) - config::byKey('maxLineLog'));
-                    $log_txt = implode("", $log_file);
-                    $log = fopen($path, "w+");
-                    fwrite($log, $log_txt);
-                    fclose($log);
+            }
+            $logs = ls(dirname(__FILE__) . '/../../log/scenarioLog', '*');
+            foreach ($logs as $log) {
+                $path = dirname(__FILE__) . '/../../log/scenarioLog/' . $log;
+                 if(is_file($path)){
+                    shell_exec('echo "$(tail -n '.config::byKey('maxLineLog').' '.$path.')" > '.$path);
+                    @chown($path, 'www-data');
+                    @chgrp($path, 'www-data');
+                    @chmod($path, 0777);
                 }
-                @chown($path, 'www-data');
-                @chgrp($path, 'www-data');
-                @chmod($path, 0777);
             }
         }
     }
@@ -126,7 +108,7 @@ class log {
         $logs = ls(dirname(__FILE__) . '/../../log/', '*');
         foreach ($logs as $log) {
             $path = dirname(__FILE__) . '/../../log/' . $log;
-            if ($log != 'nginx.error') {
+            if ($log != 'nginx.error' && !is_dir($path)) {
                 unlink($path);
             }
         }

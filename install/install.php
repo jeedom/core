@@ -41,8 +41,8 @@ $backup_ok = false;
 $update_begin = false;
 try {
     require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-    echo __("***************Installation/Mise à jour de Jeedom " . getVersion('jeedom') . "***************\n", __FILE__);
-    echo "Paramètres de la mise à jour : level : " . init('level', -1) . ", mode : " . init('mode') . " \n";
+    echo __("****Installation/Mise à jour de Jeedom " . getVersion('jeedom') . " (" . date('Y-m-d H:i:s') . ")****\n", __FILE__);
+    echo "Paramètres de la mise à jour : level : " . init('level', -1) . ", mode : " . init('mode') . ", system : " . init('system', 'no') . " \n";
 
     try {
         $curentVersion = config::byKey('version');
@@ -61,7 +61,7 @@ try {
         try {
             if (init('level', -1) > -1 && init('mode') != 'force') {
                 echo __("Vérification des mises à jour...", __FILE__);
-                update::checkAllUpdate();
+                update::checkAllUpdate('', false);
                 echo __("OK\n", __FILE__);
             }
         } catch (Exception $e) {
@@ -75,6 +75,8 @@ try {
         if (init('level', -1) < 1) {
             if (config::byKey('update::backupBefore') == 1 && init('mode') != 'force') {
                 try {
+                    global $NO_PLUGIN_BAKCUP;
+                    $NO_PLUGIN_BAKCUP = true;
                     jeedom::backup();
                 } catch (Exception $e) {
                     if (init('mode') != 'force') {
@@ -91,7 +93,7 @@ try {
             jeedom::stop();
             if (init('v') == '') {
                 try {
-                    echo __('Nettoyage du dossier temporaire (tmp)', __FILE__);
+                    echo __('Nettoyage du dossier temporaire (tmp)...', __FILE__);
                     exec('rm -rf ' . dirname(__FILE__) . '/../tmp/*.zip');
                     exec('rm -rf ' . dirname(__FILE__) . '/../tmp/backup');
                     echo __("OK\n", __FILE__);
@@ -130,6 +132,10 @@ try {
                     foreach (ls(dirname(__FILE__) . '/../', 'sqlbuddy*') as $file) {
                         rrmdir(dirname(__FILE__) . '/../' . $file);
                     }
+                    echo __("Nettoyage sysinfo en cours...", __FILE__);
+                    foreach (ls(dirname(__FILE__) . '/../', 'sysinfo*') as $file) {
+                        rrmdir(dirname(__FILE__) . '/../' . $file);
+                    }
                     echo __("OK\n", __FILE__);
                     echo __("Création des dossiers temporaire...", __FILE__);
                     if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
@@ -155,6 +161,9 @@ try {
                     echo __("OK\n", __FILE__);
                     echo __("Renommage sqlbuddy en cours...", __FILE__);
                     jeedom::renameSqlBuddyFolder();
+                    echo __("OK\n", __FILE__);
+                    echo __("Renommage sysinfo en cours...", __FILE__);
+                    jeedom::renameSysInfoFolder();
                     echo __("OK\n", __FILE__);
                 } catch (Exception $e) {
                     if (init('mode') != 'force') {
@@ -240,7 +249,7 @@ try {
             }
             try {
                 echo __("Vérification de la mise à jour...", __FILE__);
-                update::checkAllUpdate('core');
+                update::checkAllUpdate('core', false);
                 config::save('version', getVersion('jeedom'));
                 echo __("OK\n", __FILE__);
             } catch (Exception $ex) {
@@ -257,6 +266,13 @@ try {
             jeedom::start();
         } catch (Exception $ex) {
             echo __("***ERREUR*** ", __FILE__) . $ex->getMessage() . "\n";
+        }
+        if (init('system', 'no') == 'yes') {
+            echo __("***************Lancement mise à jour systeme***************\n", __FILE__);
+            $cmd = 'sudo ' . dirname(__FILE__) . '/install.sh update_nginx';
+            $cmd.= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
+            exec($cmd);
+            die();
         }
     } else {
 

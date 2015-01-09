@@ -37,6 +37,27 @@ $('.bt_updateAll').on('click', function () {
     });
 });
 
+$('#bt_updateSystem').on('click', function () {
+    var level = $(this).attr('data-level');
+    var mode = $(this).attr('data-mode');
+    bootbox.confirm('{{Etes-vous sur de vouloir faire la mise à jour de tout et du système, cette opération peut durée plusieurs dizaine de minutes et est risqué ? <b>NE SURTOUT PAS FAIRE CETTE OPERATION SI VOUS UTILISEZ APACHE</b>}} ', function (result) {
+        if (result) {
+            $.hideAlert();
+            jeedom.update.doAll({
+                mode: mode,
+                level: level,
+                system: 'yes',
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                    getJeedomLog(1, 'update');
+                }
+            });
+        }
+    });
+});
+
 $('#bt_checkAllUpdate').on('click', function () {
     $.hideAlert();
     jeedom.update.checkAll({
@@ -158,6 +179,7 @@ function getJeedomLog(_autoUpdate, _log) {
                 }
             }
             $('#pre_' + _log + 'Info').text(log);
+            $('#pre_updateInfo').parent().scrollTop($('#pre_updateInfo').parent().height() + 200000);
             if (init(_autoUpdate, 0) == 1) {
                 setTimeout(function () {
                     getJeedomLog(_autoUpdate, _log)
@@ -230,7 +252,7 @@ function addUpdate(_update) {
             tr += '<a class="btn btn-primary btn-xs pull-right view tooltips cursor" style="color : white;margin-bottom : 5px;"><i class="fa fa-search"></i> {{Voir}}</a>';
         }
     } else {
-        tr += '<a class="btn btn-default btn-xs pull-right" href="https://wiki.jeedom.fr/index.php?title=Changelog" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-bars"></i> {{Changelog}}</a>';
+        tr += '<a class="btn btn-default btn-xs pull-right" href="http://doc.jeedom.fr/fr_FR/core.html#changelog" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-bars"></i> {{Changelog}}</a>';
     }
 
     tr += '</td>';

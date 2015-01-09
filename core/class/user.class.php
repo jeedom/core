@@ -34,10 +34,10 @@ class user {
     public static function byId($_id) {
         $values = array(
             'id' => $_id,
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM user 
-                WHERE id=:id';
+        FROM user 
+        WHERE id=:id';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
@@ -47,7 +47,12 @@ class user {
      * @param string $_mdp motsz de passe en sha1
      * @return user object user 
      */
-    public static function connect($_login, $_mdp) {
+    public static function connect($_login, $_mdp, $_passAlreadyEncode = false) {
+        if ($_passAlreadyEncode) {
+            $sMdp = $_mdp;
+        } else {
+            $sMdp = sha1($_mdp);
+        }
         if (config::byKey('ldap:enable') == '1') {
             log::add("connection", "debug", __('Authentification par LDAP', __FILE__));
             $ad = self::connectToLDAP();
@@ -68,13 +73,13 @@ class user {
                     if ($entries['count'] > 0) {
                         $user = self::byLogin($_login);
                         if (is_object($user)) {
-                            $user->setPassword(sha1($_mdp));
+                            $user->setPassword($sMdp);
                             $user->save();
                             return $user;
                         }
                         $user = new user;
                         $user->setLogin($_login);
-                        $user->setPassword(sha1($_mdp));
+                        $user->setPassword($sMdp);
                         $user->save();
                         log::add("connection", "info", __('Utilisateur créé depuis le LDAP : ', __FILE__) . $_login);
                         jeedom::event('user_connect');
@@ -96,23 +101,35 @@ class user {
                     return false;
                 }
                 return false;
-            }else{
-                 log::add("connection", "info", __('Impossible de se connecter au LDAP', __FILE__));
+            } else {
+                log::add("connection", "info", __('Impossible de se connecter au LDAP', __FILE__));
             }
         }
         $values = array(
             'login' => $_login,
-            'password' => sha1($_mdp),
-        );
+            'password' => $sMdp,
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM user 
-                WHERE login=:login 
-                    AND password=:password';
+        FROM user 
+        WHERE login=:login 
+        AND password=:password';
         $user = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-        if(is_object($user)){
+        if (is_object($user)) {
             jeedom::event('user_connect');
+            if ($user->getOptions('validity_limit') != '' && strtotime('now') > strtotime($user->getOptions('validity_limit'))) {
+                $user->remove();
+                return false;
+            }
         }
         return $user;
+    }
+
+    public static function cleanOutdatedUser() {
+        foreach (user::all() as $user) {
+            if ($user->getOptions('validity_limit') != '' && strtotime('now') > strtotime($user->getOptions('validity_limit'))) {
+                $user->remove();
+            }
+        }
     }
 
     public static function connectToLDAP() {
@@ -128,23 +145,23 @@ class user {
     public static function byLogin($_login) {
         $values = array(
             'login' => $_login,
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM user 
-                WHERE login=:login';
+        FROM user 
+        WHERE login=:login';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
     public static function byKey($_key) {
         $values = array(
             'key' => '%' . $_key . '%',
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM user 
-                WHERE options LIKE :key';
+        FROM user 
+        WHERE options LIKE :key';
         $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
         if (is_object($result)) {
-            
+
             if ($result->getOptions('registerDevice') == $_key || $result->getOptions('registerDesktop') == $_key) {
                 return $result;
             }
@@ -158,18 +175,39 @@ class user {
      */
     public static function all() {
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . ' 
-                FROM user';
+        FROM user';
         return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
 
     public static function searchByRight($_rights) {
         $values = array(
             'rights' => '%"' . $_rights . '":1%',
-        );
+            'rights2' => '%"' . $_rights . '":"1"%',
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM user 
-                WHERE rights LIKE :rights';
+        FROM user 
+        WHERE rights LIKE :rights
+        OR rights LIKE :rights2';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+    }
+
+    public static function createTemporary($_hours) {
+        $user = new self();
+        $user->setLogin('temp_' . config::genKey());
+        $user->setPassword(config::genKey(64));
+        $user->setRights('admin', 1);
+        $user->setOptions('validity_limit', date('Y-m-d H:i:s', strtotime('+' . $_hours . ' hour now')));
+        $user->save();
+        return $user;
+    }
+
+    public static function hasDefaultIdentification() {
+        $sql = 'SELECT count(id) as nb
+        FROM user 
+        WHERE login="admin" 
+        AND password=SHA1("admin")';
+        $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+        return $result['nb'];
     }
 
     /*     * *********************Méthodes d'instance************************* */
@@ -198,6 +236,13 @@ class user {
      */
     public function is_Connected() {
         return (is_numeric($this->id) && $this->login != '');
+    }
+
+    public function getDirectUrlAccess() {
+        if (config::byKey('market::returnLink') != '' && config::byKey('market::allowDNS')) {
+            return config::byKey('market::returnLink') . '&url=' . urlencode('/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword());
+        }
+        return config::byKey('externalProtocol').config::byKey('externalAddr'). ':'.config::byKey('externalPort','core',80).config::byKey('externalComplement'). '/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword(); 
     }
 
     /*     * **********************Getteur Setteur*************************** */
@@ -241,7 +286,7 @@ class user {
     public function setRights($_key, $_value) {
         $this->rights = utils::setJsonAttr($this->rights, $_key, $_value);
     }
-    
+
     function getEnable() {
         return $this->enable;
     }

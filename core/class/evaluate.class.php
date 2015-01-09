@@ -24,7 +24,7 @@ class evaluate {
       RENVOIE LA VALEUR REEL D'UN PARAMETRE
       --------------------------------------------------------------- */
 
-    public function Get_Valeur_Of_Parametre($param) {
+      public function Get_Valeur_Of_Parametre($param) {
         $tabSignes = array("=", "!=", "&&", "||", "<", "<=", ">", ">=", "~", "!~", "+", "-", "%", "/", "^", "&", "*", '|^');
         if ((substr($param, 0, 1) == '"' || substr($param, 0, 1) == "'") && substr($param, -1, 1) == substr($param, 0, 1)) {
             $val = str_replace("\\\\", "\\", $param);
@@ -48,7 +48,7 @@ class evaluate {
       EVALUE UNE EXPRESSION MATHEMATIQUE OU LOGIQUE
       --------------------------------------------------------------- */
 
-    public function Evaluer($chaine) {
+      public function Evaluer($chaine) {
         $replace = array(
             ' et ' => ' && ',
             ' ET ' => ' && ',
@@ -60,7 +60,7 @@ class evaluate {
             ' OR ' => ' || ',
             ' XOR ' => ' |^ ',
             ' xor ' => ' |^ ',
-        );
+            );
         $chaine = str_replace(array_keys($replace), array_values($replace), $chaine);
 
         $chaine = str_replace('!~', '§~', $chaine);
@@ -68,6 +68,7 @@ class evaluate {
         $chaine = str_replace('!', '1 !', $chaine);
         $chaine = str_replace('§~', '!~', $chaine);
         $chaine = str_replace('§=', '!=', $chaine);
+        $chaine = str_replace("\n", '', $chaine);
 
         //DECOMPOSITION DES PARAMETRES
         $lstParam = $this->Eval_Trouver_Liste_Param($chaine);
@@ -101,7 +102,7 @@ class evaluate {
       EVALUE UNE LISTE DE PARAMETRE(VALEUR+OPERATEUR)
       --------------------------------------------------------------- */
 
-    private function Eval_Evaluer_Liste_Parametres($lstParam) {
+      private function Eval_Evaluer_Liste_Parametres($lstParam) {
         $tabOperateursComparaison = array('&&', '||', '|^', '=', '!=', '<', '<=', '>', '>=', '~', '!~');
         $tabOperateursoperation = array('&', '^', '%', '*', '/', '-', '!', '+');
 
@@ -134,30 +135,14 @@ class evaluate {
             $tab1[$j]["operateur"] = "";
             $res = $this->Eval_Comparer($this->Eval_Evaluer_Liste_Parametres($tab1), $this->Eval_Evaluer_Liste_Parametres($tab2), $lstParam[$j]["operateur"]);
         } else {
-            //SINON ON CALCUL					
-            $i = 0;
-            while (sizeof($lstParam) > 1 && $i < sizeof($tabOperateursoperation)) {
-
-                $j = (sizeof($lstParam) - 2);
-                while (sizeof($lstParam) > 1 && $j >= 0) {
-                    if ($lstParam[$j]["operateur"] == $tabOperateursoperation[$i]) {
-                        $lstParam[$j]["valeur"] = $this->Eval_Faire_Operation($lstParam[$j]["valeur"], $lstParam[$j + 1]["valeur"], $lstParam[$j]["operateur"]);
-                        $lstParam[$j]["operateur"] = $lstParam[$j + 1]["operateur"];
-                        for ($u = $j + 1; $u < (sizeof($lstParam) - 1); $u++) {
-                            $lstParam[$u] = $lstParam[$u + 1];
-                        }
-                        unset($lstParam[sizeof($lstParam) - 1]);
-                    } else {
-                        $j--;
-                    }
-                }
-                $i++;
+            //SINON ON CALCUL		
+            while (sizeof($lstParam) > 1) {
+                if (in_array($lstParam[0]["operateur"], $tabOperateursoperation)) {
+                    $lstParam[1]["valeur"] = $this->Eval_Faire_Operation($lstParam[0]["valeur"], $lstParam[1]["valeur"], $lstParam[0]["operateur"]);
+                } 
+                array_shift($lstParam);
             }
-            if (isset($lstParam[0]["valeur"])) {
-                $res = $lstParam[0]["valeur"];
-            } else {
-                $res = '';
-            }
+            $res = (isset($lstParam[0]["valeur"])) ? $lstParam[0]["valeur"] : '';
         }
         return $res;
     }
@@ -166,7 +151,7 @@ class evaluate {
       EFFECTUE UNE OPERATION SIMPLE ENTRE DEUX VALEURS
       --------------------------------------------------------------- */
 
-    private function Eval_Faire_Operation($valeur1, $valeur2, $operateur) {
+      private function Eval_Faire_Operation($valeur1, $valeur2, $operateur) {
         if ($operateur != "&" && $operateur != "!" && (!is_numeric($valeur1) || !is_numeric($valeur2))) {
             throw new Exception(__('ERREUR attention l\'opérateur ', __FILE__) . $operateur . __(' nécessite deux opérandes numériques.', __FILE__));
         }
@@ -174,29 +159,30 @@ class evaluate {
         $valeur2 = trim($valeur2);
         switch ($operateur) {
             case "+":
-                $res = $valeur1 + $valeur2;
-                break;
+            $res = $valeur1 + $valeur2;
+            break;
             case "-":
-                $res = $valeur1 - $valeur2;
-                break;
+
+            $res = $valeur1 - $valeur2;
+            break;
             case "*":
-                $res = $valeur1 * $valeur2;
-                break;
+            $res = $valeur1 * $valeur2;
+            break;
             case "/":
-                $res = $valeur1 / $valeur2;
-                break;
+            $res = $valeur1 / $valeur2;
+            break;
             case "%":
-                $res = $valeur1 % $valeur2;
-                break;
+            $res = $valeur1 % $valeur2;
+            break;
             case "!":
-                $res = (!$valeur2) ? 1 : 0;
-                break;
+            $res = (!$valeur2) ? 1 : 0;
+            break;
             case "&":
-                $res = $valeur1 . $valeur2;
-                break;
+            $res = $valeur1 . $valeur2;
+            break;
             case "^":
-                $res = pow($valeur1, $valeur2);
-                break;
+            $res = pow($valeur1, $valeur2);
+            break;
         }
 
         return $res;
@@ -206,97 +192,97 @@ class evaluate {
       COMPARE DEUX VALEURS EN FONCTION DE L'OPERATEUR
       --------------------------------------------------------------- */
 
-    private function Eval_Comparer($valeur1, $valeur2, $operateur) {
+      private function Eval_Comparer($valeur1, $valeur2, $operateur) {
         $valeur1 = trim($valeur1);
         $valeur2 = trim($valeur2);
         switch ($operateur) {
             case "=":
-                if (!is_numeric($valeur1) && !is_numeric($valeur2)) {
-                    if (strcasecmp(strtolower($valeur1), strtolower($valeur2)) == 0) {
-                        $res = true;
-                    } else {
-                        $res = false;
-                    }
+            if (!is_numeric($valeur1) && !is_numeric($valeur2)) {
+                if (strcasecmp(strtolower($valeur1), strtolower($valeur2)) == 0) {
+                    $res = true;
                 } else {
-                    if ($valeur1 == $valeur2) {
-                        $res = true;
-                    } else {
-                        $res = false;
-                    }
+                    $res = false;
                 }
+            } else {
+                if ($valeur1 == $valeur2) {
+                    $res = true;
+                } else {
+                    $res = false;
+                }
+            }
 
-                break;
+            break;
             case "<":
-                if ($valeur1 < $valeur2) {
-                    $res = true;
-                } else {
-                    $res = false;
-                }
-                break;
+            if ($valeur1 < $valeur2) {
+                $res = true;
+            } else {
+                $res = false;
+            }
+            break;
             case "<=":
-                if ($valeur1 <= $valeur2) {
-                    $res = true;
-                } else {
-                    $res = false;
-                }
-                break;
+            if ($valeur1 <= $valeur2) {
+                $res = true;
+            } else {
+                $res = false;
+            }
+            break;
             case ">":
-                if ($valeur1 > $valeur2) {
-                    $res = true;
-                } else {
-                    $res = false;
-                }
-                break;
+            if ($valeur1 > $valeur2) {
+                $res = true;
+            } else {
+                $res = false;
+            }
+            break;
             case ">=":
-                if ($valeur1 >= $valeur2) {
-                    $res = true;
-                } else {
-                    $res = false;
-                }
-                break;
+            if ($valeur1 >= $valeur2) {
+                $res = true;
+            } else {
+                $res = false;
+            }
+            break;
             case "!=":
-                if ($valeur1 != $valeur2) {
-                    $res = true;
-                } else {
-                    $res = false;
-                }
-                break;
+            if ($valeur1 != $valeur2) {
+                $res = true;
+            } else {
+                $res = false;
+            }
+            break;
             case "||":
-                if ($valeur1 || $valeur2) {
-                    $res = true;
-                } else {
-                    $res = false;
-                }
-                break;
+            if ($valeur1 || $valeur2) {
+                $res = true;
+            } else {
+                $res = false;
+            }
+            break;
             case "&&":
 
-                if ($valeur1 && $valeur2) {
-                    $res = true;
-                } else {
-                    $res = false;
-                }
-                break;
+            if ($valeur1 && $valeur2) {
+                $res = true;
+            } else {
+                $res = false;
+            }
+            break;
             case "|^":
-                if ($valeur1 XOR $valeur2) {
-                    $res = true;
-                } else {
-                    $res = false;
-                }
-                break;
+            if ($valeur1 XOR $valeur2) {
+                $res = true;
+            } else {
+                $res = false;
+            }
+            break;
             case "~":
-                if (strpos(strtolower($valeur1), strtolower($valeur2)) !== false) {
-                    $res = true;
-                } else {
-                    $res = false;
-                }
-                break;
+            if (strpos(strtolower($valeur1), strtolower($valeur2)) !== false) {
+                $res = true;
+            } else {
+                $res = false;
+            }
+            break;
             case "!~":
-                if (strpos(strtolower($valeur1), strtolower($valeur2)) === false) {
-                    $res = true;
-                } else {
-                    $res = false;
-                }
-                break;
+            if (strpos(strtolower($valeur1), strtolower($valeur2)) === false) {
+                $res = true;
+            } else {
+                $res = false;
+            }
+            break;
         }
         return $res;
     }
@@ -305,7 +291,7 @@ class evaluate {
       SEPARE LES PARAMETRES (VALEUR,OPERATEUR) DEPUIS UNE CHAINE
       --------------------------------------------------------------- */
 
-    private function Eval_Trouver_Liste_Param($param) {
+      private function Eval_Trouver_Liste_Param($param) {
         $tabSignes = array("=", "!=", "&&", "||", "<", "<=", ">", ">=", "+", "-", "%", "/", "^", "&", "*", "|", "~", "!~", "!", "|^");
 
         $param = trim($param);
@@ -336,85 +322,85 @@ class evaluate {
                         } else if ($lettre == '(') {
                             if ($caracOuvrant[$nbCaractOuvrant] != "'" && $caracOuvrant[$nbCaractOuvrant] != '"') {
                                 $caracOuvrant[$nbCaractOuvrant + 1] = ")";
-                                $nbCaractOuvrant++;
-                            }
-                        } else if (($lettre == '"' && $caracOuvrant[$nbCaractOuvrant] != "'") || ($lettre == "'" && $caracOuvrant[$nbCaractOuvrant] != '"')) {
-                            $caracOuvrant[$nbCaractOuvrant + 1] = $lettre;
-                            $nbCaractOuvrant++;
-                        }
-                    }
-                }
-                $caractereSpeciale = false;
-            }
+$nbCaractOuvrant++;
+}
+} else if (($lettre == '"' && $caracOuvrant[$nbCaractOuvrant] != "'") || ($lettre == "'" && $caracOuvrant[$nbCaractOuvrant] != '"')) {
+    $caracOuvrant[$nbCaractOuvrant + 1] = $lettre;
+    $nbCaractOuvrant++;
+}
+}
+}
+$caractereSpeciale = false;
+}
             //SEPARATION DES PARAMETRES
-            if ((array_search($lettre, $tabSignes) !== false || $lettre == " ") && $nbCaractOuvrant == 0) {
-                if (array_search($lettre, $tabSignes) !== false) {
-                    if ($paramNom != "") {
-                        if (!isset($lstP[$lastNum]["operateur"]) && $lastNum != -1) {
-                            throw new Exception(__("ERREUR deux paramètres sans signe de séparation : ", __FILE__) . $param);
-                        }
-                        $num = sizeof($lstP);
-                        $lstP[$num] = array();
-                        $lstP[$num]["valeur"] = $paramNom;
-                        $lstP[$num]["operateur"] = $lettre;
-                        $lastNum = $num;
-                        $paramNom = "";
-                    } else {
-                        if (isset($lstP[$lastNum]["operateur"]) && $lastNum != -1) {
-                            $ope = $lstP[$lastNum]["operateur"] . $lettre;
-                     
-                            if (array_search($ope, $tabSignes) === false) {
-                                if ($lettre != '-') {
-                                    throw new Exception(__("ERREUR deux opérations à la suite", __FILE__));
-                                } else {
-                                    $paramNom = '-' . $paramNom;
-                                }
-                            } else {
-                                $lstP[$lastNum]["operateur"].=$lettre;
-                            }
-                        } else {
-                            if ($lastNum == -1) {
-                                if ($lettre != '-') {
-                                    throw new Exception(__("ERREUR l'expression attend un paramètre avant symbole : " . $lettre, __FILE__));
-                                } else {
-                                    $paramNom = '-' . $paramNom;
-                                }
-                            } else {
-                                $lstP[$lastNum]["operateur"] = $lettre;
-                            }
-                        }
-                    }
-                } else {
-                    if ($lastLettre != " " && array_search($lastLettre, $tabSignes) === false) {
-                        if (!isset($lstP[$lastNum]["operateur"]) && $lastNum != -1) {
-                            throw new Exception(__("ERREUR deux paramètres sans signe de séparation", __FILE__));
-                        }
-                        $num = sizeof($lstP);
-                        $lstP[$num] = array();
-                        $lstP[$num]["valeur"] = $paramNom;
-                        $lastNum = $num;
-                        $paramNom = "";
-                    }
-                }
-            } else {
-                $paramNom.=$lettre;
-            }
-            $lastLettre = $lettre;
-        }
-        //DERNIER PARAMETRE
-
+if ((array_search($lettre, $tabSignes) !== false || $lettre == " ") && $nbCaractOuvrant == 0) {
+    if (array_search($lettre, $tabSignes) !== false) {
         if ($paramNom != "") {
+            if (!isset($lstP[$lastNum]["operateur"]) && $lastNum != -1) {
+                throw new Exception(__("ERREUR deux paramètres sans signe de séparation : ", __FILE__) . $param);
+            }
             $num = sizeof($lstP);
             $lstP[$num] = array();
             $lstP[$num]["valeur"] = $paramNom;
-            $lstP[$num]["operateur"] = "";
+            $lstP[$num]["operateur"] = $lettre;
+            $lastNum = $num;
+            $paramNom = "";
+        } else {
+            if (isset($lstP[$lastNum]["operateur"]) && $lastNum != -1) {
+                $ope = $lstP[$lastNum]["operateur"] . $lettre;
+                
+                if (array_search($ope, $tabSignes) === false) {
+                    if ($lettre != '-') {
+                        throw new Exception(__("ERREUR deux opérations à la suite", __FILE__));
+                    } else {
+                        $paramNom = '-' . $paramNom;
+                    }
+                } else {
+                    $lstP[$lastNum]["operateur"].=$lettre;
+                }
+            } else {
+                if ($lastNum == -1) {
+                    if ($lettre != '-') {
+                        throw new Exception(__("ERREUR l'expression attend un paramètre avant symbole : " . $lettre, __FILE__));
+                    } else {
+                        $paramNom = '-' . $paramNom;
+                    }
+                } else {
+                    $lstP[$lastNum]["operateur"] = $lettre;
+                }
+            }
         }
-        //ERREUR SI UN CARACTERE OUVRANT " ' ( ou { n'a pas été fermé
-        if ($nbCaractOuvrant > 0) {
-            throw new Exception(__("ERREUR dans l'espression, caractère fermant attendu : ", __FILE__) . $caracOuvrant[sizeof($caracOuvrant)]);
+    } else {
+        if ($lastLettre != " " && array_search($lastLettre, $tabSignes) === false) {
+            if (!isset($lstP[$lastNum]["operateur"]) && $lastNum != -1) {
+                throw new Exception(__("ERREUR deux paramètres sans signe de séparation", __FILE__));
+            }
+            $num = sizeof($lstP);
+            $lstP[$num] = array();
+            $lstP[$num]["valeur"] = $paramNom;
+            $lastNum = $num;
+            $paramNom = "";
         }
-        return $lstP;
     }
+} else {
+    $paramNom.=$lettre;
+}
+$lastLettre = $lettre;
+}
+        //DERNIER PARAMETRE
+
+if ($paramNom != "") {
+    $num = sizeof($lstP);
+    $lstP[$num] = array();
+    $lstP[$num]["valeur"] = $paramNom;
+    $lstP[$num]["operateur"] = "";
+}
+        //ERREUR SI UN CARACTERE OUVRANT " ' ( ou { n'a pas été fermé
+if ($nbCaractOuvrant > 0) {
+    throw new Exception(__("ERREUR dans l'espression, caractère fermant attendu : ", __FILE__) . $caracOuvrant[sizeof($caracOuvrant)]);
+}
+return $lstP;
+}
 
 }
 

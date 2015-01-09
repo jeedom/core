@@ -34,10 +34,10 @@ class scenarioElement {
     public static function byId($_id) {
         $values = array(
             'id' => $_id
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '  
-                FROM ' . __CLASS__ . ' 
-                WHERE id=:id';
+        FROM ' . __CLASS__ . ' 
+        WHERE id=:id';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
@@ -152,7 +152,7 @@ class scenarioElement {
         } else if ($this->getType() == 'in') {
             $in = $this->getSubElement('in');
             $in = $in->getExpression();
-            $time = ceil(str_replace('.', ',',jeedom::evaluateExpression($in[0]->getExpression())));
+            $time = ceil(str_replace('.', ',', jeedom::evaluateExpression($in[0]->getExpression())));
             if (!is_numeric($time) || $time < 0) {
                 $time = 0;
             }
@@ -183,207 +183,267 @@ class scenarioElement {
             $at = $at->getExpression();
             $next = jeedom::evaluateExpression($at[0]->getExpression());
             if (($next % 100) > 59) {
-                $next += 40;
-            }
-            if (!is_numeric($next) || $next < 0) {
-                $_scenario->setLog(__('Erreur dans bloc (type A) : ', __FILE__) . $this->getId() . __(', heure programmé invalide : ', __FILE__) . $next);
-            }
-            if ($next < (date('Gi') + 1)) {
-                if (strlen($next) == 3) {
-                    $next = date('Y-m-d', strtotime('+1 day' . date('Y-m-d'))) . ' 0' . substr($next, 0, 1) . ':' . substr($next, 1, 3);
-                } else {
-                    $next = date('Y-m-d', strtotime('+1 day' . date('Y-m-d'))) . ' ' . substr($next, 0, 2) . ':' . substr($next, 2, 4);
-                }
-            } else {
-                if (strlen($next) == 3) {
-                    $next = date('Y-m-d') . ' 0' . substr($next, 0, 1) . ':' . substr($next, 1, 3);
-                } else {
-                    $next = date('Y-m-d') . ' ' . substr($next, 0, 2) . ':' . substr($next, 2, 4);
-                }
-            }
-            $next = strtotime($next);
-            $cron = cron::byClassAndFunction('scenario', 'doIn', array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
-            if (!is_object($cron)) {
-                $cron = new cron();
-            }
-            $cron->setClass('scenario');
-            $cron->setFunction('doIn');
-            $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
-            $cron->setLastRun(date('Y-m-d H:i:s'));
-            $cron->setOnce(1);
-            $cron->setSchedule(date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next));
-            $cron->save();
-            $_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmé à : ', __FILE__) . date('Y-m-d H:i:00', $next));
-            return true;
+                if(strpos($at[0]->getExpression(), '-') !== false){
+                    $next -= 40;
+                }else{
+                 $next += 40; 
+             }       
+         }
+         if (!is_numeric($next) || $next < 0) {
+            $_scenario->setLog(__('Erreur dans bloc (type A) : ', __FILE__) . $this->getId() . __(', heure programmé invalide : ', __FILE__) . $next);
         }
-    }
-
-    public function getSubElement($_type = '') {
-        if ($_type != '') {
-            if (isset($this->_subelement[$_type]) && is_object($this->_subelement[$_type])) {
-                return $this->_subelement[$_type];
+        if ($next < (date('Gi') + 1)) {
+            if (strlen($next) == 3) {
+                $next = date('Y-m-d', strtotime('+1 day' . date('Y-m-d'))) . ' 0' . substr($next, 0, 1) . ':' . substr($next, 1, 3);
+            } else {
+                $next = date('Y-m-d', strtotime('+1 day' . date('Y-m-d'))) . ' ' . substr($next, 0, 2) . ':' . substr($next, 2, 4);
             }
-            $this->_subelement[$_type] = scenarioSubElement::byScenarioElementId($this->getId(), $_type);
-            return $this->_subelement[$_type];
         } else {
-            if (count($this->_subelement[-1]) > 0) {
-                return $this->_subelement[-1];
+            if (strlen($next) == 3) {
+                $next = date('Y-m-d') . ' 0' . substr($next, 0, 1) . ':' . substr($next, 1, 3);
+            } else {
+                $next = date('Y-m-d') . ' ' . substr($next, 0, 2) . ':' . substr($next, 2, 4);
             }
-            $this->_subelement[-1] = scenarioSubElement::byScenarioElementId($this->getId(), $_type);
+        }
+        $next = strtotime($next);
+        $cron = cron::byClassAndFunction('scenario', 'doIn', array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
+        if (!is_object($cron)) {
+            $cron = new cron();
+        }
+        $cron->setClass('scenario');
+        $cron->setFunction('doIn');
+        $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
+        $cron->setLastRun(date('Y-m-d H:i:s'));
+        $cron->setOnce(1);
+        $cron->setSchedule(date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next));
+        $cron->save();
+        $_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmé à : ', __FILE__) . date('Y-m-d H:i:00', $next));
+        return true;
+    }
+}
+
+public function getSubElement($_type = '') {
+    if ($_type != '') {
+        if (isset($this->_subelement[$_type]) && is_object($this->_subelement[$_type])) {
+            return $this->_subelement[$_type];
+        }
+        $this->_subelement[$_type] = scenarioSubElement::byScenarioElementId($this->getId(), $_type);
+        return $this->_subelement[$_type];
+    } else {
+        if (count($this->_subelement[-1]) > 0) {
             return $this->_subelement[-1];
         }
+        $this->_subelement[-1] = scenarioSubElement::byScenarioElementId($this->getId(), $_type);
+        return $this->_subelement[-1];
     }
+}
 
-    public function getAjaxElement() {
-        $return = utils::o2a($this);
-        $return['subElements'] = array();
-        foreach ($this->getSubElement() as $subElement) {
-            $subElement_ajax = utils::o2a($subElement);
-            $subElement_ajax['expressions'] = array();
-            foreach ($subElement->getExpression() as $expression) {
-                $expression_ajax = utils::o2a($expression);
-                if ($expression->getType() == 'element') {
-                    $element = self::byId($expression->getExpression());
-                    if (is_object($element)) {
-                        $expression_ajax['element'] = $element->getAjaxElement();
+public function getAjaxElement($_mode = 'ajax') {
+    $return = utils::o2a($this);
+    if ($_mode == 'json') {
+        if (isset($return['id'])) {
+            unset($return['id']);
+        }
+        if (isset($return['scenarioElement_id'])) {
+            unset($return['scenarioElement_id']);
+        }
+        if (isset($return['log'])) {
+            unset($return['log']);
+        }
+        if (isset($return['_expression'])) {
+            unset($return['_expression']);
+        }
+    }
+    $return['subElements'] = array();
+    foreach ($this->getSubElement() as $subElement) {
+        $subElement_ajax = utils::o2a($subElement);
+        if ($_mode == 'array') {
+            if (isset($subElement_ajax['id'])) {
+                unset($subElement_ajax['id']);
+            }
+            if (isset($subElement_ajax['scenarioElement_id'])) {
+                unset($subElement_ajax['scenarioElement_id']);
+            }
+            if (isset($subElement_ajax['log'])) {
+                unset($subElement_ajax['log']);
+            }
+            if (isset($subElement_ajax['_expression'])) {
+                unset($subElement_ajax['_expression']);
+            }
+        }
+        $subElement_ajax['expressions'] = array();
+        foreach ($subElement->getExpression() as $expression) {
+            $expression_ajax = utils::o2a($expression);
+            if ($_mode == 'array') {
+                if (isset($expression_ajax['id'])) {
+                    unset($expression_ajax['id']);
+                }
+                if (isset($expression_ajax['scenarioSubElement_id'])) {
+                    unset($expression_ajax['scenarioSubElement_id']);
+                }
+                if (isset($expression_ajax['log'])) {
+                    unset($expression_ajax['log']);
+                }
+                if (isset($expression_ajax['_expression'])) {
+                    unset($expression_ajax['_expression']);
+                }
+            }
+            if ($expression->getType() == 'element') {
+                $element = self::byId($expression->getExpression());
+                if (is_object($element)) {
+                    $expression_ajax['element'] = $element->getAjaxElement($_mode);
+                    if ($_mode == 'array') {
+                        if (isset($expression_ajax['element']['id'])) {
+                            unset($expression_ajax['element']['id']);
+                        }
+                        if (isset($expression_ajax['element']['scenarioElement_id'])) {
+                            unset($expression_ajax['element']['scenarioElement_id']);
+                        }
+                        if (isset($expression_ajax['element']['log'])) {
+                            unset($expression_ajax['element']['log']);
+                        }
+                        if (isset($expression_ajax['element']['_expression'])) {
+                            unset($expression_ajax['element']['_expression']);
+                        }
                     }
                 }
-                $expression_ajax['expression'] = jeedom::toHumanReadable($expression_ajax['expression']);
-                $subElement_ajax['expressions'][] = $expression_ajax;
             }
-            $return['subElements'][] = $subElement_ajax;
+            $expression_ajax['expression'] = jeedom::toHumanReadable($expression_ajax['expression']);
+            $subElement_ajax['expressions'][] = $expression_ajax;
         }
-        return $return;
+        $return['subElements'][] = $subElement_ajax;
     }
+    return $return;
+}
 
-    public function getAllId() {
-        $return = array(
-            'element' => array($this->getId()),
-            'subelement' => array(),
-            'expression' => array(),
+public function getAllId() {
+    $return = array(
+        'element' => array($this->getId()),
+        'subelement' => array(),
+        'expression' => array(),
         );
-        foreach ($this->getSubElement() as $subelement) {
-            $result = $subelement->getAllId();
-            $return['element'] = array_merge($return['element'], $result['element']);
-            $return['subelement'] = array_merge($return['subelement'], $result['subelement']);
-            $return['expression'] = array_merge($return['expression'], $result['expression']);
-        }
-        return $return;
+    foreach ($this->getSubElement() as $subelement) {
+        $result = $subelement->getAllId();
+        $return['element'] = array_merge($return['element'], $result['element']);
+        $return['subelement'] = array_merge($return['subelement'], $result['subelement']);
+        $return['expression'] = array_merge($return['expression'], $result['expression']);
     }
+    return $return;
+}
 
-    public function export() {
-        $return = '';
-        foreach ($this->getSubElement() as $subElement) {
-            $return .= "\n";
-            switch ($subElement->getType()) {
-                case 'if':
-                    $return .= __('SI', __FILE__);
-                    break;
-                case 'then':
-                    $return .= __('ALORS', __FILE__);
-                    break;
-                case 'else':
-                    $return .= __('SINON', __FILE__);
-                    break;
-                case 'for':
-                    $return .= __('POUR', __FILE__);
-                    break;
-                case 'do':
-                    $return .= __('FAIRE', __FILE__);
-                    break;
-                case 'code':
-                    $return .= __('CODE', __FILE__);
-                    break;
-                case 'action':
-                    $return .= __('ACTION', __FILE__);
-                    break;
-                case 'in':
-                    $return .= __('DANS', __FILE__);
-                    break;
-                case 'at':
-                    $return .= __('A', __FILE__);
-                    break;
-                default:
-                    $return .= $subElement->getType();
-                    break;
+public function export() {
+    $return = '';
+    foreach ($this->getSubElement() as $subElement) {
+        $return .= "\n";
+        switch ($subElement->getType()) {
+            case 'if':
+            $return .= __('SI', __FILE__);
+            break;
+            case 'then':
+            $return .= __('ALORS', __FILE__);
+            break;
+            case 'else':
+            $return .= __('SINON', __FILE__);
+            break;
+            case 'for':
+            $return .= __('POUR', __FILE__);
+            break;
+            case 'do':
+            $return .= __('FAIRE', __FILE__);
+            break;
+            case 'code':
+            $return .= __('CODE', __FILE__);
+            break;
+            case 'action':
+            $return .= __('ACTION', __FILE__);
+            break;
+            case 'in':
+            $return .= __('DANS', __FILE__);
+            break;
+            case 'at':
+            $return .= __('A', __FILE__);
+            break;
+            default:
+            $return .= $subElement->getType();
+            break;
+        }
+
+        foreach ($subElement->getExpression() as $expression) {
+            $export = $expression->export();
+            if ($expression->getType() != 'condition' && trim($export) != '') {
+                $return .= "\n";
             }
-
-            foreach ($subElement->getExpression() as $expression) {
-                $export = $expression->export();
-                if ($expression->getType() != 'condition' && trim($export) != '') {
-                    $return .= "\n";
-                }
-                if (trim($export) != '') {
-                    $return .= ' ' . $expression->export();
-                }
+            if (trim($export) != '') {
+                $return .= ' ' . $expression->export();
             }
         }
-        return $return;
     }
+    return $return;
+}
 
-    public function copy() {
-        $elementCopy = clone $this;
-        $elementCopy->setId('');
-        $elementCopy->save();
-        foreach ($this->getSubElement() as $subelement) {
-            $subelement->copy($elementCopy->getId());
-        }
-        return $elementCopy->getId();
+public function copy() {
+    $elementCopy = clone $this;
+    $elementCopy->setId('');
+    $elementCopy->save();
+    foreach ($this->getSubElement() as $subelement) {
+        $subelement->copy($elementCopy->getId());
     }
+    return $elementCopy->getId();
+}
 
-    public function getScenario() {
-        $scenario = scenario::byElement($this->getId());
-        if (is_object($scenario)) {
-            return $scenario;
-        }
-        $expression = scenarioExpression::byElement($this->getId());
-        if (is_object($expression)) {
-            return $expression->getSubElement()->getElement()->getScenario();
-        }
-        return null;
+public function getScenario() {
+    $scenario = scenario::byElement($this->getId());
+    if (is_object($scenario)) {
+        return $scenario;
     }
-
-    /*     * **********************Getteur Setteur*************************** */
-
-    public function getId() {
-        return $this->id;
+    $expression = scenarioExpression::byElement($this->getId());
+    if (is_object($expression)) {
+        return $expression->getSubElement()->getElement()->getScenario();
     }
+    return null;
+}
 
-    public function setId($id) {
-        $this->id = $id;
-    }
+/*     * **********************Getteur Setteur*************************** */
 
-    public function getName() {
-        return $this->name;
-    }
+public function getId() {
+    return $this->id;
+}
 
-    public function setName($name) {
-        $this->name = $name;
-    }
+public function setId($id) {
+    $this->id = $id;
+}
 
-    public function getType() {
-        return $this->type;
-    }
+public function getName() {
+    return $this->name;
+}
 
-    public function setType($type) {
-        $this->type = $type;
-    }
+public function setName($name) {
+    $this->name = $name;
+}
 
-    public function getOptions($_key = '', $_default = '') {
-        return utils::getJsonAttr($this->options, $_key, $_default);
-    }
+public function getType() {
+    return $this->type;
+}
 
-    public function setOptions($_key, $_value) {
-        $this->options = utils::setJsonAttr($this->options, $_key, $_value);
-    }
+public function setType($type) {
+    $this->type = $type;
+}
 
-    public function getOrder() {
-        return $this->order;
-    }
+public function getOptions($_key = '', $_default = '') {
+    return utils::getJsonAttr($this->options, $_key, $_default);
+}
 
-    public function setOrder($order) {
-        $this->order = $order;
-    }
+public function setOptions($_key, $_value) {
+    $this->options = utils::setJsonAttr($this->options, $_key, $_value);
+}
+
+public function getOrder() {
+    return $this->order;
+}
+
+public function setOrder($order) {
+    $this->order = $order;
+}
 
 }
 

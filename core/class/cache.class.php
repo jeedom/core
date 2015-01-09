@@ -31,13 +31,13 @@ class cache {
 
     /*     * ***********************Methode static*************************** */
 
-    public static function byKey($_key, $_noRemove = false, $_allowFastCache = false) {
+    public static function byKey($_key, $_noRemove = false) {
         $values = array(
             'key' => $_key
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM cache
-                WHERE `key`=:key';
+        FROM cache
+        WHERE `key`=:key';
         $cache = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
         if (!is_object($cache)) {
             $cache = new self();
@@ -55,10 +55,10 @@ class cache {
     public static function search($_search, $_noRemove = false) {
         $values = array(
             'key' => '%' . $_search . '%'
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM cache
-                WHERE `key` LIKE :key';
+        FROM cache
+        WHERE `key` LIKE :key';
         $caches = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
         if (!$_noRemove) {
             foreach ($caches as $cache) {
@@ -73,12 +73,12 @@ class cache {
     public static function deleteBySearch($_search) {
         $values = array(
             'key' => '%' . $_search . '%'
-        );
+            );
         $sql = 'DELETE FROM cache
-                WHERE `key` LIKE :key';
+        WHERE `key` LIKE :key';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
     }
-
+    
     public static function flush() {
         $sql = 'TRUNCATE TABLE cache';
         return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
@@ -93,9 +93,7 @@ class cache {
         $cache->setValue($_value);
         $cache->setLifetime($_lifetime);
         if ($_options != null) {
-            foreach ($_options as $key => $value) {
-                $cache->setOptions($key, $value);
-            }
+            $cache->options = json_encode($_options, JSON_UNESCAPED_UNICODE);
         }
         return $cache->save();
     }
@@ -108,14 +106,14 @@ class cache {
             'value' => $this->getValue(),
             'datetime' => date('Y-m-d H:i:s'),
             'lifetime' => $this->getLifetime(),
-            'options' => json_encode($this->getOptions())
-        );
+            'options' => $this->options
+            );
         $sql = 'REPLACE cache
-                 SET `key`=:key,
-                     `value`=:value,
-                     `datetime`=:datetime,
-                     `lifetime`=:lifetime,
-                     `options`=:options';
+        SET `key`=:key,
+        `value`=:value,
+        `datetime`=:datetime,
+        `lifetime`=:lifetime,
+        `options`=:options';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
     }
 

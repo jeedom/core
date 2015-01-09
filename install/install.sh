@@ -11,7 +11,7 @@
 
 install_msg_en()
 {
-	msg_installer_welcome="*           Welcome to the Jeedom installer            *"
+	msg_installer_welcome="*      Welcome to the Jeedom installer/updater        *"
 	msg_usage1="Usage: $0 [<webserver_name>]"
 	msg_usage2="            webserver_name can be 'apache' or 'nginx_ssl' or 'nginx' (default)"
 	msg_manual_install_nodejs_ARM="*          Manual installation of nodeJS for ARM       *"
@@ -35,17 +35,20 @@ install_msg_en()
 	msg_unable_to_download_file="Unable to download the file"
 	msg_config_db="*               Configuring the database               *"
 	msg_install_jeedom="*                 Installing de Jeedom                 *"
+	msg_update_jeedom="*                  Updating de Jeedom                  *"
 	msg_setup_cron="*                   Setting up cron                    *"
 	msg_setup_nodejs_service="*               Setting up nodeJS service              *"
 	msg_startup_nodejs_service="*             Starting the nodeJS service              *"
 	msg_post_install_actions="*             Post-installation actions                *"
+	msg_post_update_actions="*               Post-update actions                    *"
 	msg_install_complete="*                Installation complete                 *"
+	msg_update_complete="*                   Update complete                    *"
 	msg_or="or"
 	msg_login_info1="You can log in to Jeedom by going on:"
 	msg_login_info2="Your credentials are:"
 	msg_optimize_webserver_cache="*      Checking for webserver cache optimization       *"
-	msg_php_version="PHP version ${PHP_VERSION} found"
-	msg_php_already_optimized="PHP is already optimized (using ${PHP_OPTIMIZATION})"
+	msg_php_version="PHP version found : "
+	msg_php_already_optimized="PHP is already optimized, using : "
 	msg_optimize_webserver_cache_apc="Installing APC cache optimization"
 	msg_optimize_webserver_cache_opcache="Installing Zend OpCache cache optimization"
 	msg_install_razberry_zway="*     Checking for Z-Way for RaZberry installation     *"
@@ -56,13 +59,13 @@ install_msg_en()
 	msg_ask_install_razberry_zway="Do you wish to install Z-Way?"
 	msg_failed_installupdate_razberry_zway="Z-Way for RaZberry installation failed!"
 	msg_succeeded_installupdate_razberry_zway="Z-Way for RaZberry installation succeeded!"
-        msg_ask_install_nginx_ssl="Do you want to install SSL self sign certificat"
-        msg_nginx_ssl_config="*                 NGINX SSL configuration               *"
+	msg_ask_install_nginx_ssl="Do you want to install SSL self sign certificat"
+	msg_nginx_ssl_config="*                 NGINX SSL configuration               *"
 }
 
 install_msg_fr()
 {
-	msg_installer_welcome="*         Bienvenue dans l'installateur Jeedom         *"
+	msg_installer_welcome="*Bienvenue dans l'assistant d'intallation/mise à jour de Jeedom*"
 	msg_usage1="Utilisation: $0 [<nom_du_webserver>]"
 	msg_usage2="             nom_du_webserver peut être 'apache' ou 'nginx_ssl' ou 'nginx' (par défaut)"
 	msg_manual_install_nodejs_ARM="*        Installation manuelle de nodeJS pour ARM       *"
@@ -86,17 +89,20 @@ install_msg_fr()
 	msg_unable_to_download_file="Impossible de télécharger le fichier"
 	msg_config_db="*          Configuration de la base de données         *"
 	msg_install_jeedom="*                Installation de Jeedom                *"
+	msg_update_jeedom="*                Mise à jour de Jeedom                 *"
 	msg_setup_cron="*                Mise en place du cron                 *"
 	msg_setup_nodejs_service="*            Mise en place du service nodeJS           *"
 	msg_startup_nodejs_service="*             Démarrage du service nodeJS              *"
 	msg_post_install_actions="*             Action post installation                 *"
+	msg_post_update_actions="*              Action post mise à jour                 *"
 	msg_install_complete="*                Installation terminée                 *"
+	msg_update_complete="*                Mise à jour terminée                  *"
 	msg_or="ou"
 	msg_login_info1="Vous pouvez vous connecter sur Jeedom en allant sur :"
 	msg_login_info2="Vos identifiants sont :"
 	msg_optimize_webserver_cache="*       Vérification de l'optimisation de cache        *"
-	msg_php_version="PHP version ${PHP_VERSION} trouvé"
-	msg_php_already_optimized="PHP est déjà optimisé (utilisation d'${PHP_OPTIMIZATION})"
+	msg_php_version="PHP version trouvé : "
+	msg_php_already_optimized="PHP est déjà optimisé, utilisation de : "
 	msg_optimize_webserver_cache_apc="Installation de l'optimisation de cache APC"
 	msg_optimize_webserver_cache_opcache="Installation de l'optimisation de cache Zend OpCache"
 	msg_install_razberry_zway="*         Vérification de Z-Way pour RaZberry          *"
@@ -107,8 +113,8 @@ install_msg_fr()
 	msg_ask_install_razberry_zway="Souhaitez-vous installer Z-Way ?"
 	msg_failed_installupdate_razberry_zway="L'installation de Z-Way pour RaZberry a échoué !"
 	msg_succeeded_installupdate_razberry_zway="L'installation de Z-Way pour RaZberry a réussi !"
-        msg_ask_install_nginx_ssl="Voules vous mettre en place un certification SSL auto signé"
-        msg_nginx_ssl_config="*                 NGINX SSL configuration               *"
+	msg_ask_install_nginx_ssl="Voules vous mettre en place un certification SSL auto signé"
+	msg_nginx_ssl_config="*                 NGINX SSL configuration               *"
 }
 
 ########################## Helper functions ############################
@@ -118,12 +124,12 @@ setup_i18n()
 	lang=${LANG:=en_US}
 	case ${lang} in
 		[Ff][Rr]*)
-			install_msg_fr
-			;;
-		[Ee][Nn]*|*)
-			install_msg_en
-			;;
-	esac
+install_msg_fr
+;;
+[Ee][Nn]*|*)
+install_msg_en
+;;
+esac
 }
 
 usage_help()
@@ -134,13 +140,14 @@ usage_help()
 }
 configure_php()
 {
-    [ -z "`getent group dialout | grep www-data`" ] && adduser www-data dialout
-    [ -z "`getent group gpio | grep www-data`" ] && adduser www-data gpio
-    sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /etc/php5/fpm/php.ini
-    sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' /etc/php5/fpm/php.ini
-    sed -i 's/post_max_size = 8M/post_max_size = 1G/g' /etc/php5/fpm/php.ini
-    service php5-fpm restart
-    /etc/init.d/php5-fpm restart
+	[ -z "`getent group dialout | grep www-data`" ] && adduser www-data dialout
+	GPIO_GROUP="`cat /etc/group | grep -e 'gpio'`"
+	if [ -z "${JEEDOM_CRON}" ]; then
+		[ -z "`getent group gpio | grep www-data`" ] && adduser www-data gpio
+	fi
+	sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /etc/php5/fpm/php.ini
+	sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' /etc/php5/fpm/php.ini
+	sed -i 's/post_max_size = 8M/post_max_size = 1G/g' /etc/php5/fpm/php.ini
 }
 
 # Check if nodeJS v0.10.25 is installed,
@@ -165,7 +172,7 @@ install_nodejs()
 		fi
 			# otherwise, Jessie is good ; other-otherwise ?
 
-		apt-get update
+			apt-get update
 
 		# Install nodeJS
 		apt-get -t wheezy-backports -y install nodejs libev4 libv8-3.8.9.20
@@ -213,91 +220,100 @@ install_nodejs()
 
 configure_nginx()
 {
-    echo "********************************************************"
+	echo "********************************************************"
 	echo "${msg_nginx_config}"
-    echo "********************************************************"
-	for i in apache2 apache
+	echo "********************************************************"
+	for i in apache2 apache mongoose
 	do
 		if [ -f "/etc/init.d/${i}" ]; then
 			service ${i} stop
 			update-rc.d ${i} remove
 		fi
 	done
+	service nginx stop
+	JEEDOM_ROOT="`cat /etc/nginx/sites-available/default | grep -e 'root /usr/share/nginx/www/jeedom;'`"
+	if [ -f '/etc/nginx/sites-available/defaults' ]; then
+		rm /etc/nginx/sites-available/default
+	fi
+	cp install/nginx_default /etc/nginx/sites-available/default
+	if [ ! -z "${JEEDOM_ROOT}" ]; then
+		sed -i 's%root /usr/share/nginx/www;%root /usr/share/nginx/www/jeedom;%g' /etc/nginx/sites-available/default
+	fi
+	if [ ! -f '/etc/nginx/sites-available/jeedom_dynamic_rule' ]; then
+		cp install/nginx_jeedom_dynamic_rules /etc/nginx/sites-available/jeedom_dynamic_rule
+	fi
+	chmod 777 /etc/nginx/sites-available/jeedom_dynamic_rule
+	if [ ! -f '/etc/nginx/sites-enabled/default' ]; then
+		ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+	fi
+	service nginx restart
+	configure_php
+	update-rc.d nginx defaults
 
-    service nginx stop
-    if [ -f '/etc/nginx/sites-available/defaults' ]; then
-        rm /etc/nginx/sites-available/default
-    fi
-    cp install/nginx_default /etc/nginx/sites-available/default
-    if [ ! -f '/etc/nginx/sites-enabled/default' ]; then
-        ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-    fi
-    service nginx restart
-    configure_php
-    update-rc.d nginx defaults
+	JEEDOM_CRON="`crontab -l | grep -e 'jeeCron.php'`"
 
-    croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null"
-    cronjob="* * * * * $croncmd"
-    ( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
-
-    # Prompt for ssl
-    echo "${msg_ask_install_nginx_ssl}"
-    while true
-    do
-        echo -n "${msg_yesno}"
-        read ANSWER < /dev/tty
-        case $ANSWER in
-                        ${msg_yes})
-                                configure_nginx_ssl
-                                break
-                                ;;
-                        ${msg_no})
-                                return
-                                ;;
-        esac
-        echo "${msg_answer_yesno}"
-    done
+	if [ -z "${JEEDOM_CRON}" ]; then
+		croncmd="su --shell=/bin/bash - www-data -c '/usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+		cronjob="* * * * * $croncmd"
+		( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
+	fi
+	if [ ! -f '/etc/nginx/sites-enabled/default_ssl' ]; then
+		configure_nginx_ssl         
+	fi          
 }
 
 configure_nginx_ssl()
 {
-    echo "********************************************************"
+	echo "********************************************************"
 	echo "${msg_nginx_ssl_config}"
-    echo "********************************************************"
-    openssl genrsa -out jeedom.key 2048
-    openssl req \
-        -new \
-        -subj "/C=FR/ST=France/L=Paris/O=jeedom/OU=JE/CN=jeedom" \
-        -key jeedom.key \
-        -out jeedom.csr
-    openssl x509 -req -days 9999 -in jeedom.csr -signkey jeedom.key -out jeedom.crt
-    mkdir /etc/nginx/certs
-    cp jeedom.key /etc/nginx/certs
-    cp jeedom.crt /etc/nginx/certs
-    rm jeedom.key jeedom.crt
-    cp ${webserver_home}/jeedom/install/nginx_default_ssl /etc/nginx/sites-available/default_ssl
-    ln -s /etc/nginx/sites-available/default_ssl /etc/nginx/sites-enabled/
-    update-rc.d -f mongoose remove
-    service mongoose stop
-    service nginx reload
+	echo "********************************************************"
+	openssl genrsa -out jeedom.key 2048
+	openssl req \
+	-new \
+	-subj "/C=FR/ST=France/L=Paris/O=jeedom/OU=JE/CN=jeedom" \
+	-key jeedom.key \
+	-out jeedom.csr
+	openssl x509 -req -days 9999 -in jeedom.csr -signkey jeedom.key -out jeedom.crt
+	mkdir /etc/nginx/certs
+	cp jeedom.key /etc/nginx/certs
+	cp jeedom.crt /etc/nginx/certs
+	rm jeedom.key jeedom.crt
+
+	JEEDOM_ROOT="`cat /etc/nginx/sites-available/default | grep -e 'root /usr/share/nginx/www/jeedom;'`"
+	cp ${webserver_home}/jeedom/install/nginx_default_ssl /etc/nginx/sites-available/default_ssl
+	if [ ! -f '/etc/nginx/sites-enabled/default_ssl' ]; then
+		ln -s /etc/nginx/sites-available/default_ssl /etc/nginx/sites-enabled/default_ssl
+	fi
+	if [ ! -z "${JEEDOM_ROOT}" ]; then
+		sed -i 's%root /usr/share/nginx/www;%root /usr/share/nginx/www/jeedom;%g' /etc/nginx/sites-available/default_ssl
+	fi
+	for i in apache2 apache mongoose
+	do
+		if [ -f "/etc/init.d/${i}" ]; then
+			service ${i} stop
+			update-rc.d ${i} remove
+		fi
+	done
+	service nginx reload
+	update-rc.d nginx
 }
 
 configure_apache()
 {
-    echo "********************************************************"
+	echo "********************************************************"
 	echo "${msg_apache_config}"
-    echo "********************************************************"
-    cp install/apache_default /etc/apache2/sites-available/000-default.conf
-    if [ ! -f '/etc/apache2/sites-enabled/000-default.conf' ]; then
-        a2ensite 000-default.conf
-    fi
-    service apache2 restart
+	echo "********************************************************"
+	cp install/apache_default /etc/apache2/sites-available/000-default.conf
+	if [ ! -f '/etc/apache2/sites-enabled/000-default.conf' ]; then
+		a2ensite 000-default.conf
+	fi
+	service apache2 restart
 
-    croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null"
-    cronjob="* * * * * $croncmd"
-    ( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
+	croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+	cronjob="* * * * * $croncmd"
+	( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
 
-    configure_php
+	configure_php
 }
 
 # Compare two "X.Y.Z" formated versions
@@ -336,17 +352,17 @@ check_nodejs_version()
 			# Already installed and up to date
 			echo "===> nodeJS ${msg_uptodate}"
 			;;
-		0)
+			0)
 			# continue...
 			echo "===> nodeJS ${msg_needinstallupdate}"
 			;;
-	esac
-	
-	return ${RETVAL}
-}
+		esac
 
-optimize_webserver_cache_apc()
-{
+		return ${RETVAL}
+	}
+
+	optimize_webserver_cache_apc()
+	{
 	# php < 5.5 => APC
 	echo "${msg_optimize_webserver_cache_apc}"
 	apt-get install -y php-apc php-pear php5-dev build-essential libpcre3-dev
@@ -385,25 +401,22 @@ optimize_webserver_cache_opcache()
 # Otherwise, install cache optimization according to PHP version
 optimize_webserver_cache()
 {
-	echo "${msg_php_version}"
-
+	echo "${msg_php_version}${PHP_VERSION}"
 	# Check if PHP is already optimized or not (empty string)
 	if [ -n "${PHP_OPTIMIZATION}" ]; then
-		echo "${msg_php_already_optimized}"
+		echo "${msg_php_already_optimized}${PHP_OPTIMIZATION}"
 		return
 	fi
 
 	is_version_greater_or_equal "${PHP_VERSION}" "5.5.0"
 	case $? in
 		0)
-			optimize_webserver_cache_apc
-			;;
-		1)
-			optimize_webserver_cache_opcache
-			;;
-	esac
-	# FIXME: may be done in common with configure_php()
-	service php5-fpm restart
+optimize_webserver_cache_apc
+;;
+1)
+optimize_webserver_cache_opcache
+;;
+esac
 }
 
 # Check for the need to install razberry zway server and install it
@@ -414,7 +427,7 @@ install_razberry_zway()
 	# Check if already installed
 	if [ -f /etc/z-way/VERSION ]; then
 		# Get latest zway install
-		wget -q -O - razberry.z-wave.me/install/v1.7.2 -O zway-install
+		wget -q -O - razberry.z-wave.me/install zway-install
 		# Check version
 		ZWAY_AVAIL_VERSION="`cat zway-install | awk '/.*[0-9].[0-9].[0-9].*z-way\/VERSION$/{ print $2 }' | sed 's/["v]//g'`"
 		is_version_greater_or_equal ${ZWAY_INSTALLED_VERSION} ${ZWAY_AVAIL_VERSION} 
@@ -425,13 +438,13 @@ install_razberry_zway()
 				echo "${msg_ask_update_razberry_zway}"
 				# return on 'no', and process to common install/update
 				;;
-			1)
+				1)
 				# echo "already installed and up to date"
 				echo "Z-Way ${msg_uptodate}"
 				return
 				;;
-		esac
-	else
+			esac
+		else
 		# Not installed, propose to install
 		echo "${msg_ask_install_razberry_zway}"
 		# return on 'no', and process to common install/update
@@ -440,18 +453,18 @@ install_razberry_zway()
 	# Common yes/no processing
 	while true
 	do
-			echo -n "${msg_yesno}"
-			read ANSWER < /dev/tty
-			case $ANSWER in
-					${msg_yes})
-						break
-						;;
-					${msg_no})
-						return
-						;;
-			esac
-			echo "${msg_answer_yesno}"
-	done
+		echo -n "${msg_yesno}"
+		read ANSWER < /dev/tty
+		case $ANSWER in
+			${msg_yes})
+break
+;;
+${msg_no})
+return
+;;
+esac
+echo "${msg_answer_yesno}"
+done
 
 	# Common install/update
 	# Download installer, if not already done
@@ -469,95 +482,56 @@ install_razberry_zway()
 
 	# Cleanup
 	rm -f zway-install
-        update-rc.d -f mongoose remove
-        service mongoose stop
+	for i in mongoose zbw_connect
+	do
+		if [ -f "/etc/init.d/${i}" ]; then
+			service ${i} stop
+			update-rc.d ${i} remove
+		fi
+	done
+	ps aux | grep mongoose | awk '{print $2}' | xargs kill -9
+	ps aux | grep zbw_connect | awk '{print $2}' | xargs kill -9 
 }
 
-##################### Main (script entry point) ########################
+install_dependency()
+{
+	apt-get update
+	apt-get install -y mysql-client mysql-common mysql-server mysql-server-core-5.5
+	apt-get install -y miniupnpc
+	apt-get install -y libssh2-php
+	apt-get install -y ntp
+	apt-get install -y unzip
+	apt-get install -y ffmpeg
+	apt-get install -y avconv
+	apt-get install -y php5-common php5-fpm php5-dev php5-cli php5-curl php5-json php5-mysql
+	apt-get install -y usb-modeswitch
+	apt-get install -y python-serial make php-pear libpcre3-dev build-essential
+	apt-get install -y libudev1
 
-webserver=${1-nginx}
-ws_upname="$(echo ${webserver} | tr 'a-z' 'A-Z')"
-
-# Get the currently installed php version
-PHP_VERSION="`php -v | awk '/PHP [0-9].[0-9].[0-9].*/{ print $2 }' | cut -d'-' -f1`"
-PHP_OPTIMIZATION="`php -v | grep -e 'OPcache' -o -e 'APC'`"
-# Workaround APC detection: APC is not exposed in 'php -v'
-if [ -z "${PHP_OPTIMIZATION}" ]; then
-	APC_INI="/etc/php5/cli/conf.d/20-apc.ini"
-	if [ -f /etc/php5/cli/conf.d/20-apc.ini ]; then
-		PHP_OPTIMIZATION="APC"
+	pecl install oauth
+	if [ $? -eq 0 ] ; then
+		for i in fpm cli
+		do
+			PHP_OAUTH="`cat /etc/php5/${i}/php.ini | grep -e 'oauth.so'`"
+			if [ -z "${PHP_OAUTH}" ]; then
+				echo "extension=oauth.so" >> /etc/php5/${i}/php.ini
+			fi
+		done
 	fi
-fi
 
-# Select the right language, among available ones
-setup_i18n
+	apt-get install -y libjsoncpp-dev libtinyxml-dev 
+	apt-get install -y libxml2 libarchive-dev 
+	install_nodejs
+	apt-get autoremove
+}
 
-echo "********************************************************"
-echo "${msg_installer_welcome}"
-echo "********************************************************"
+install_dependency_nginx()
+{
+	apt-get install -y nginx-common nginx-full
+}
 
-# Check for root priviledges
-if [ $(id -u) != 0 ]
-then
-        echo "Super-user (root) privileges are required to install Jeedom"
-        echo "Please run 'sudo $0' or log in as root, and rerun $0"
-        exit 1
-fi
-
-# Check that the provided ${webserver} is supported [nginx,apache]
-case ${webserver} in
-	nginx)
-		# Configuration
-		webserver_home="/usr/share/nginx/www"
-		croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null"
-		;;
-	apache)
-		# Configuration
-		webserver_home="/var/www"
-		croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null"
-		;;
-        nginx_ssl)
-		# Configuration
-                webserver_home="/usr/share/nginx/www"
-		configure_nginx_ssl
-                exit 1
-		;;
-	*)
-		usage_help
-		exit 1
-		;;
-esac
-
-echo "${msg_question_install_jeedom}"
-echo "${msg_warning_install_jeedom}"
-[ -d "${webserver_home}/jeedom/" ] && echo "${msg_warning_overwrite_jeedom}"
-while true
-do
-		echo -n "${msg_yesno}"
-		read ANSWER < /dev/tty
-		case $ANSWER in
-				${msg_yes})
-						break
-						;;
-				${msg_no})
-						echo "${msg_cancel_install}"
-						exit 1
-						;;
-		esac
-		echo "${msg_answer_yesno}"
-done
-
-echo "********************************************************"
-echo "${msg_install_deps}"
-echo "********************************************************"
-apt-get update
-
-if [ "${webserver}" = "nginx" ] ; then 
-    # Packages dependencies
-    apt-get install -y nginx-common nginx-full
-fi
-
-if [ "${webserver}" = "apache" ] ; then 
+install_dependency_apache()
+{
     # Packages dependencies
     apt-get install -y apache2 libapache2-mod-php5 autoconf make subversion
     svn checkout http://svn.apache.org/repos/asf/httpd/httpd/tags/2.2.22/ httpd-2.2.22
@@ -576,32 +550,133 @@ if [ "${webserver}" = "apache" ] ; then
     a2enmod proxy_http
     a2enmod proxy
     service apache2 restart
+}
+
+##################### Main (script entry point) ########################
+
+webserver=${1-nginx}
+ws_upname="$(echo ${webserver} | tr 'a-z' 'A-Z')"
+
+# Select the right language, among available ones
+setup_i18n
+
+echo "********************************************************"
+echo "${msg_installer_welcome}"
+echo "********************************************************"
+
+# Check for root priviledges
+if [ $(id -u) != 0 ]
+	then
+	echo "Super-user (root) privileges are required to install Jeedom"
+	echo "Please run 'sudo $0' or log in as root, and rerun $0"
+	exit 1
 fi
 
-apt-get install -y libssh2-php ntp unzip miniupnpc \
-                   mysql-client mysql-common mysql-server mysql-server-core-5.5
-apt-get install -y ffmpeg
-apt-get install -y avconv
+# Check that the provided ${webserver} is supported [nginx,apache]
+case ${webserver} in
+	nginx)
+		# Configuration
+		webserver_home="/usr/share/nginx/www"
+		croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+		;;
+		apache)
+		# Configuration
+		webserver_home="/var/www"
+		croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+		;;
+		nginx_ssl)
+		# Configuration
+		webserver_home="/usr/share/nginx/www"
+		configure_nginx_ssl
+		exit 1
+		;;
+		update_nginx)
+		# Configuration
+		webserver_home="/usr/share/nginx/www"
+		echo "********************************************************"
+		echo "${msg_install_deps}"
+		echo "********************************************************"
+		install_dependency
+		install_dependency_nginx
+
+		cd $webserver_home/jeedom
+		configure_nginx
+
+		echo "********************************************************"
+		echo "${msg_setup_nodejs_service}"
+		echo "********************************************************"
+		cp jeedom /etc/init.d/
+		chmod +x /etc/init.d/jeedom
+		update-rc.d jeedom defaults
+
+		echo "********************************************************"
+		echo "${msg_startup_nodejs_service}"
+		echo "********************************************************"
+		service jeedom restart
+		echo '[END UPDATE SUCCESS]'
+		service php5-fpm restart
+		exit 1
+		;;
+		*)
+usage_help
+exit 1
+;;
+esac
+
+echo "${msg_question_install_jeedom}"
+echo "${msg_warning_install_jeedom}"
+[ -d "${webserver_home}/jeedom/" ] && echo "${msg_warning_overwrite_jeedom}"
+while true
+do
+	echo -n "${msg_yesno}"
+	read ANSWER < /dev/tty
+	case $ANSWER in
+		${msg_yes})
+break
+;;
+${msg_no})
+echo "${msg_cancel_install}"
+exit 1
+;;
+esac
+echo "${msg_answer_yesno}"
+done
+
+echo "********************************************************"
+echo "${msg_install_deps}"
+echo "********************************************************"
+
+install_dependency
+if [ "${webserver}" = "nginx" ] ; then 
+    # Packages dependencies
+    install_dependency_nginx
+fi
+
+if [ "${webserver}" = "apache" ] ; then 
+	install_dependency_apache
+fi
+
+
 echo "${msg_passwd_mysql}"
 while true
 do
-        read MySQL_root < /dev/tty
-        echo "${msg_confirm_passwd_mysql} ${MySQL_root}"
-        while true
-        do
-            echo -n "${msg_yesno}"
-            read ANSWER < /dev/tty
-            case $ANSWER in
+	read MySQL_root < /dev/tty
+	echo "${msg_confirm_passwd_mysql} ${MySQL_root}"
+	while true
+	do
+		echo -n "${msg_yesno}"
+		read ANSWER < /dev/tty
+		case $ANSWER in
 			${msg_yes})
-				break
-				;;
-			${msg_no})
-				break
-				;;
-            esac
-            echo "${msg_answer_yesno}"
-        done    
-        if [ "${ANSWER}" = "${msg_yes}" ]; then
+break
+;;
+${msg_no})
+break
+;;
+esac
+echo "${msg_answer_yesno}"
+done    
+if [ "${ANSWER}" = "${msg_yes}" ]; then
 			# Test access immediately
 			# to ensure that the provided password is valid
 			CMD="`echo "show databases;" | mysql -uroot -p${MySQL_root}`"
@@ -613,105 +688,110 @@ do
 				echo "${msg_passwd_mysql}"
 				continue
 			fi
-        fi
-done
-
-# Check if nodeJS was actually installed, otherwise do a manual install
-install_nodejs
-
-apt-get install -y php5-common php5-fpm php5-dev php5-cli php5-curl php5-json php5-mysql \
-                   usb-modeswitch python-serial make php-pear libpcre3-dev build-essential
-apt-get install -y php5-oauth
-pecl install oauth
-for i in fpm cli
-do
-        echo "extension=oauth.so" >> /etc/php5/${i}/php.ini
-done
-
-echo "********************************************************"
-echo "${msg_setup_dirs_and_privs}"
-echo "********************************************************"
-
-mkdir -p "${webserver_home}"
-cd "${webserver_home}"
-chown www-data:www-data -R "${webserver_home}"
-
-echo "********************************************************"
-echo "${msg_copy_jeedom_files}"
-echo "********************************************************"
-if [ -d "jeedom" ] ; then
-    rm -rf jeedom
-fi
-wget --no-check-certificate -O jeedom.zip https://market.jeedom.fr/jeedom/stable/jeedom.zip
-if [  $? -ne 0 ] ; then
-    wget --no-check-certificate -O jeedom.zip https://market.jeedom.fr/jeedom/stable/jeedom.zip
-    if [  $? -ne 0 ] ; then
-        echo "${msg_unable_to_download_file}"
-        exit 0
-    fi
-fi
-unzip jeedom.zip -d jeedom
-mkdir "${webserver_home}"/jeedom/tmp
-chmod 775 -R "${webserver_home}"
-chown -R www-data:www-data "${webserver_home}"
-rm -rf jeedom.zip
-cd jeedom
-
-echo "********************************************************"
-echo "${msg_config_db}"
-echo "********************************************************"
-bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
-echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p${MySQL_root}
-echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p${MySQL_root}
-echo "DROP DATABASE IF EXISTS jeedom;" | mysql -uroot -p${MySQL_root}
-echo "CREATE DATABASE jeedom;" | mysql -uroot -p${MySQL_root}
-echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p${MySQL_root}
-
-echo "********************************************************"
-echo "${msg_install_razberry_zway}"
-echo "********************************************************"
-install_razberry_zway
-
-echo "********************************************************"
-echo "${msg_install_jeedom}"
-echo "********************************************************"
-cp core/config/common.config.sample.php core/config/common.config.php
-sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php 
-chown www-data:www-data core/config/common.config.php
-php install/install.php mode=force
-
-echo "********************************************************"
-echo "${msg_setup_cron}"
-echo "********************************************************"
+		fi
+	done
 
 
-case ${webserver} in
-	nginx)
-		configure_nginx
-		;;
-	apache)
-		configure_apache
-		;;
+
+	echo "********************************************************"
+	echo "${msg_setup_dirs_and_privs}"
+	echo "********************************************************"
+
+	mkdir -p "${webserver_home}"
+	cd "${webserver_home}"
+	chown www-data:www-data -R "${webserver_home}"
+
+	echo "********************************************************"
+	echo "${msg_copy_jeedom_files}"
+	echo "********************************************************"
+	if [ -d "jeedom" ] ; then
+		rm -rf jeedom
+	fi
+	wget --no-check-certificate -O jeedom.zip https://market.jeedom.fr/jeedom/stable/jeedom.zip
+	if [  $? -ne 0 ] ; then
+		wget --no-check-certificate -O jeedom.zip https://market.jeedom.fr/jeedom/stable/jeedom.zip
+		if [  $? -ne 0 ] ; then
+			echo "${msg_unable_to_download_file}"
+			exit 0
+		fi
+	fi
+	unzip jeedom.zip -d jeedom
+	mkdir "${webserver_home}"/jeedom/tmp
+	chmod 775 -R "${webserver_home}"
+	chown -R www-data:www-data "${webserver_home}"
+	rm -rf jeedom.zip
+	cd jeedom
+
+	echo "********************************************************"
+	echo "${msg_config_db}"
+	echo "********************************************************"
+	bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+	echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p${MySQL_root}
+	echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p${MySQL_root}
+	echo "DROP DATABASE IF EXISTS jeedom;" | mysql -uroot -p${MySQL_root}
+	echo "CREATE DATABASE jeedom;" | mysql -uroot -p${MySQL_root}
+	echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p${MySQL_root}
+
+	echo "********************************************************"
+	echo "${msg_install_razberry_zway}"
+	echo "********************************************************"
+	install_razberry_zway
+
+	echo "********************************************************"
+	echo "${msg_install_jeedom}"
+	echo "********************************************************"
+	cp core/config/common.config.sample.php core/config/common.config.php
+	sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php 
+	chown www-data:www-data core/config/common.config.php
+	php install/install.php mode=force
+
+	echo "********************************************************"
+	echo "${msg_setup_cron}"
+	echo "********************************************************"
+
+
+	case ${webserver} in
+		nginx)
+configure_nginx
+;;
+apache)
+configure_apache
+;;
 esac
 
 echo "********************************************************"
 echo "${msg_optimize_webserver_cache}"
 echo "********************************************************"
+# Get the currently installed php version
+PHP_VERSION="`php -v | awk '/PHP [0-9].[0-9].[0-9].*/{ print $2 }' | cut -d'-' -f1`"
+PHP_OPTIMIZATION="`php -v | grep -e 'OPcache' -o -e 'APC'`"
+# Workaround APC detection: APC is not exposed in 'php -v'
+if [ -z "${PHP_OPTIMIZATION}" ]; then
+	APC_INI="/etc/php5/cli/conf.d/20-apc.ini"
+	if [ -f /etc/php5/cli/conf.d/20-apc.ini ]; then
+		PHP_OPTIMIZATION="APC"
+	fi
+fi
 optimize_webserver_cache
 
 echo "********************************************************"
 echo "${msg_setup_nodejs_service}"
 echo "********************************************************"
-cp jeedom /etc/init.d/
+cp install/jeedom /etc/init.d/
 chmod +x /etc/init.d/jeedom
 update-rc.d jeedom defaults
-if [ "${webserver}" = "apache" ] ; then 
-    sed -i 's%PATH_TO_JEEDOM="/usr/share/nginx/www/jeedom"%PATH_TO_JEEDOM="/var/www/jeedom"%g' /etc/init.d/jeedom
+
+if [ -d /etc/systemd/system ]; then
+	cp install/jeedom.service /etc/systemd/system
+	systemctl enable jeedom
 fi
 
-echo "********************************************************"
-echo "${msg_startup_nodejs_service}"
-echo "********************************************************"
+if [ "${webserver}" = "apache" ] ; then 
+	sed -i 's%PATH_TO_JEEDOM="/usr/share/nginx/www/jeedom"%PATH_TO_JEEDOM="/var/www/jeedom"%g' /etc/init.d/jeedom
+	if [ -d /etc/systemd/system ]; then
+		sed -i 's%/usr/share/nginx/www/jeedom%/var/www/jeedom%g' /etc/systemd/system/jeedom.service
+	fi
+fi
 service jeedom start
 
 echo "********************************************************"
@@ -720,6 +800,7 @@ echo "********************************************************"
 cp install/motd /etc
 chown root:root /etc/motd
 chmod 644 /etc/motd
+service php5-fpm restart
 
 echo "********************************************************"
 echo "${msg_install_complete}"

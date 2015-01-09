@@ -30,6 +30,7 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
                     <li><a href="#" class="bt_updateAll expertModeVisible" data-level="1" data-mode="force">{{Plugins seulement forcés}}</a></li>
                     <li><a href="#" class="bt_updateAll" data-level="-1" data-mode="">{{Jeedom seulement}}</a></li>
                     <li><a href="#" class="bt_updateAll expertModeVisible" data-level="-1" data-mode="force">{{Jeedom seulement forcé}}</a></li>
+                    <li><a href="#" class="expertModeVisible" id="bt_updateSystem" data-level="0" data-mode="">{{Tout + système (risqué)}}</a></li>
                 </ul>
             </div>
         </div>

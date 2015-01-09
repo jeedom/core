@@ -4,6 +4,8 @@ namespace Cron;
 
 /**
  * Abstract CRON expression field
+ *
+ * @author Michael Dowling <mtdowling@gmail.com>
  */
 abstract class AbstractField implements FieldInterface
 {

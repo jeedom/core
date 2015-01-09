@@ -7,7 +7,8 @@
             min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
             max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
             value: ('#state#' == '') ? 0 : parseInt('#state#')
-        }).on('slideStop', function (ev) {
+        });
+        $(".cmd[data-cmd_id=#id#] .slider").on('slideStop', function (ev) {
             jeedom.cmd.execute({id: '#id#', value: {slider: ev.value}});
         });
     </script>

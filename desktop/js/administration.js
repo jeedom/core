@@ -24,32 +24,6 @@ $("#bt_genKeyAPI").on('click', function (event) {
     });
 });
 
-$('#bt_haltSysteme').on('click', function () {
-    $.hideAlert();
-    bootbox.confirm('{{Etes-vous sûr de vouloir arreter le système ?}}', function (result) {
-        if (result) {
-            jeedom.haltSystem({
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                },
-            });
-        }
-    });
-});
-
-$('#bt_rebootSysteme').on('click', function () {
-    $.hideAlert();
-    bootbox.confirm('{{Etes-vous sûr de vouloir redemarrer le système ?}}', function (result) {
-        if (result) {
-            jeedom.rebootSystem({
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                },
-            });
-        }
-    });
-});
-
 $('#bt_forceApplyUPnP').on('click', function () {
     $.hideAlert();
     bootbox.confirm('{{Etes-vous sûr de vouloir appliquer les regles UPnP ?}}', function (result) {

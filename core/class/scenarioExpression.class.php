@@ -36,42 +36,42 @@ class scenarioExpression {
     public static function byId($_id) {
         $values = array(
             'id' => $_id
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '  
-                FROM ' . __CLASS__ . ' 
-                WHERE id=:id';
+        FROM ' . __CLASS__ . ' 
+        WHERE id=:id';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
     public static function byscenarioSubElementId($_scenarioSubElementId) {
         $values = array(
             'scenarioSubElement_id' => $_scenarioSubElementId
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '  
-                FROM ' . __CLASS__ . ' 
-                WHERE scenarioSubElement_id=:scenarioSubElement_id
-                ORDER BY `order`';
+        FROM ' . __CLASS__ . ' 
+        WHERE scenarioSubElement_id=:scenarioSubElement_id
+        ORDER BY `order`';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
 
     public static function searchExpression($_expression) {
         $values = array(
             'expression' => '%' . $_expression . '%'
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '  
-                FROM ' . __CLASS__ . ' 
-                WHERE expression LIKE :expression';
+        FROM ' . __CLASS__ . ' 
+        WHERE expression LIKE :expression';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
 
     public static function byElement($_element_id) {
         $values = array(
             'expression' => $_element_id
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '  
-                FROM ' . __CLASS__ . ' 
-                WHERE expression=:expression
-                    AND `type`= "element"';
+        FROM ' . __CLASS__ . ' 
+        WHERE expression=:expression
+        AND `type`= "element"';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
@@ -96,7 +96,7 @@ class scenarioExpression {
                 }
                 $return['html'] = template_replace(cmd::cmdToHumanReadable($replace), $return['html']);
             } catch (Exception $e) {
-                
+
             }
         }
         $replace = array('#uid#' => 'exp' . mt_rand());
@@ -121,9 +121,9 @@ class scenarioExpression {
         }
         switch ($state) {
             case 'stop':
-                return 0;
+            return 0;
             case 'in progress':
-                return 1;
+            return 1;
         }
         return -2;
     }
@@ -144,7 +144,7 @@ class scenarioExpression {
                         try {
                             $values[] = $test->Evaluer($value);
                         } catch (Exception $ex) {
-                            
+
                         }
                     }
                 }
@@ -180,7 +180,7 @@ class scenarioExpression {
                         try {
                             $values[] = $test->Evaluer($value);
                         } catch (Exception $ex) {
-                            
+
                         }
                     }
                 }
@@ -233,7 +233,7 @@ class scenarioExpression {
                         try {
                             $values[] = $test->Evaluer($value);
                         } catch (Exception $ex) {
-                            
+
                         }
                     }
                 }
@@ -267,7 +267,7 @@ class scenarioExpression {
                     try {
                         $values[] = $test->Evaluer($value);
                     } catch (Exception $ex) {
-                        
+
                     }
                 }
             }
@@ -279,7 +279,7 @@ class scenarioExpression {
             return $values[0];
         }
         sort($values);
-        return $values[round(count($values) / 2)];
+        return $values[round(count($values) / 2) - 1];
     }
 
     public static function tendance($_cmd_id, $_period = '1 hour', $_threshold = '') {
@@ -377,414 +377,464 @@ class scenarioExpression {
             $test = new evaluate();
             $result = $test->Evaluer($_value);
             if (is_string($result)) { //Alors la valeur n'est pas un calcul
-                $result = $_value;
-            }
-        } catch (Exception $e) {
             $result = $_value;
         }
-        if ($_decimal == 0) {
-            return ceil(floatval(str_replace(',', '.', $result)));
-        } else {
-            return round(floatval(str_replace(',', '.', $result)), $_decimal);
-        }
+    } catch (Exception $e) {
+        $result = $_value;
     }
+    if ($_decimal == 0) {
+        return ceil(floatval(str_replace(',', '.', $result)));
+    } else {
+        return round(floatval(str_replace(',', '.', $result)), $_decimal);
+    }
+}
 
-    public static function time($_value) {
-        $_value = self::setTags($_value);
-        try {
-            $test = new evaluate();
-            $result = $test->Evaluer($_value);
+public static function time($_value) {
+    $_value = self::setTags($_value);
+    try {
+        $test = new evaluate();
+        $result = $test->Evaluer($_value);
             if (is_string($result)) { //Alors la valeur n'est pas un calcul
-                $result = $_value;
-            }
-        } catch (Exception $e) {
             $result = $_value;
         }
-        if (($result % 100) > 59) {
-            $result += 40;
-        }
-        return $result;
+    } catch (Exception $e) {
+        $result = $_value;
     }
+    if($result < 0){
+        return -1;
+    }
+    
+    if (($result % 100) > 59) {
+        if(strpos($_value, '-') !== false){
+            $result -= 40;
+        }else{
+           $result += 40; 
+       }       
 
-    public static function setTags($_expression, &$_scenario = null) {
-        $replace = array(
-            '#seconde#' => (int) date('s'),
-            '#heure#' => (int) date('G'),
-            '#minute#' => (int) date('i'),
-            '#jour#' => (int) date('d'),
-            '#mois#' => (int) date('m'),
-            '#annee#' => (int) date('Y'),
-            '#time#' => date('Gi'),
-            '#timestamp#' => time(),
-            '#seconde#' => (int) date('s'),
-            '#date#' => date('md'),
-            '#semaine#' => date('W'),
-            '#sjour#' => date_fr(date('l')),
-            '#smois#' => date_fr(date('F')),
-            '#njour#' => (int) date('w'),
+   }
+   return $result;
+}
+
+public static function formatTime($_time){
+    $_time = self::setTags($_time);
+    if(strlen($_time) > 3){
+       return substr($_time,0,2).'h'.substr($_time,2,2);
+   } else {
+       return substr($_time,0,1).'h'.substr($_time,1,2);
+   }
+}
+
+public static function setTags($_expression, &$_scenario = null) {
+    $replace = array(
+        '#seconde#' => (int) date('s'),
+        '#heure#' => (int) date('G'),
+        '#minute#' => (int) date('i'),
+        '#jour#' => (int) date('d'),
+        '#mois#' => (int) date('m'),
+        '#annee#' => (int) date('Y'),
+        '#time#' => date('Gi'),
+        '#timestamp#' => time(),
+        '#seconde#' => (int) date('s'),
+        '#date#' => date('md'),
+        '#semaine#' => date('W'),
+        '#sjour#' => date_fr(date('l')),
+        '#smois#' => date_fr(date('F')),
+        '#njour#' => (int) date('w'),
+        '#hostname#' => gethostname(),
+        '#IP#' => config::byKey('internalAddr'),
         );
-        preg_match_all("/([a-zA-Z][a-zA-Z]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
-        foreach ($matches as $match) {
-            $function = $match[1];
-            $arguments = explode(',', $match[2]);
-            if (method_exists(__CLASS__, $function)) {
-                if ($function == 'trigger') {
-                    if (!isset($arguments[0])) {
-                        $arguments[0] = '';
+    preg_match_all("/([a-zA-Z][a-zA-Z]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
+    foreach ($matches as $match) {
+        $function = $match[1];
+        $arguments = explode(',', $match[2]);
+        $replace_string =  $match[0];
+        /*if(substr_count($match[2],'(') != substr_count($match[2],')')){
+           $arguments = self::setTags($match[2].')');
+           $replace_string =  $match[0];
+            if(substr($_expression,strpos($_expression,$match[2])+strlen($match[2])+1,1) == ','){
+                for($i=strpos($_expression,$match[2])+strlen($match[2]) + 1;$i<strlen($_expression);$i++){
+                    $car = $_expression[$i];
+                    if( $car != ')'){
+                        $arguments .= $car;
+                        $replace_string .= $car;
+                    }else{
+                        break;
                     }
-                    $replace[$match[0]] = self::trigger($arguments[0], $_scenario);
-                } else {
-                    $replace[$match[0]] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
+                }
+            }
+            $replace_string .= ')';
+            $arguments = explode(',', $arguments);
+        }*/
+        if (method_exists(__CLASS__, $function)) {
+            if ($function == 'trigger') {
+                if (!isset($arguments[0])) {
+                    $arguments[0] = '';
+                }
+                $replace[$replace_string] = self::trigger($arguments[0], $_scenario);
+            } else {
+                $replace[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
+            }
+        }else{
+            if(function_exists($function)){
+                foreach ($arguments as &$argument) {
+                    $argument = cmd::cmdToValue($argument);
+                    $replace[$replace_string] = call_user_func_array($function, $arguments);
                 }
             }
         }
-        return cmd::cmdToValue(str_replace(array_keys($replace), array_values($replace), $_expression));
     }
+    return cmd::cmdToValue(str_replace(array_keys($replace), array_values($replace), $_expression));
+}
 
-    public static function createAndExec($_type, $_cmd, $_options) {
-        $scenarioExpression = new self();
-        $scenarioExpression->setType($_type);
-        $scenarioExpression->setExpression($_cmd);
-        if (is_array($_options)) {
-            foreach ($_options as $key => $value) {
-                $scenarioExpression->setOptions($key, $value);
-            }
-        }
-        return $scenarioExpression->execute();
-    }
-
-    /*     * *********************Methode d'instance************************* */
-
-    public function execute(&$scenario = null) {
-        $message = '';
-        try {
-            if ($this->getType() == 'element') {
-                $element = scenarioElement::byId($this->getExpression());
-                if (is_object($element)) {
-                    $this->setLog($scenario, __('Exécution d\'un bloc élément : ', __FILE__) . $this->getExpression());
-                    return $element->execute($scenario);
-                }
-                return;
-            }
-            $options = $this->getOptions();
-            if (is_array($options) && $this->getExpression() != 'wait') {
-                foreach ($options as $key => $value) {
-                    $options[$key] = str_replace('"', '', self::setTags($value, $scenario));
-                }
-            }
-            if ($this->getType() == 'action') {
-                if ($this->getExpression() == 'icon') {
-                    if ($scenario != null) {
-                        $options = $this->getOptions();
-                        $this->setLog($scenario, __('Changement de l\'icone du scénario : ', __FILE__) . $options['icon']);
-                        $scenario->setDisplay('icon', $options['icon']);
-                        $scenario->save();
-                    }
-                    return;
-                } else if ($this->getExpression() == 'wait') {
-                    if (!isset($options['condition'])) {
-                        return;
-                    }
-                    $test = new evaluate();
-                    $result = false;
-                    $occurence = 0;
-                    $limit = (isset($options['timeout']) && is_numeric($options['timeout'])) ? $options['timeout'] : 7200;
-                    while ($result !== true) {
-                        $expression = self::setTags($options['condition'], $scenario);
-                        $result = $test->Evaluer($expression);
-                        if ($occurence > $limit) {
-                            $this->setLog($scenario, __('[Wait] Condition valide par dépassement de temps', __FILE__));
-                            return;
-                        }
-                        $occurence++;
-                        sleep(1);
-                    }
-                    $this->setLog($scenario, __('[Wait] Condition valide : ', __FILE__) . $expression);
-                    return;
-                } else if ($this->getExpression() == 'sleep') {
-                    if (isset($options['duration'])) {
-                        try {
-                            $test = new evaluate();
-                            $options['duration'] = $test->Evaluer($options['duration']);
-                        } catch (Exception $e) {
-                            
-                        }
-                        if (is_numeric($options['duration']) && $options['duration'] > 0) {
-                            $this->setLog($scenario, __('Pause de ', __FILE__) . $options['duration'] . __(' seconde(s)', __FILE__));
-                            if ($options['duration'] < 1) {
-                                return usleep($options['duration'] * 1000);
-                            } else {
-                                return sleep($options['duration']);
-                            }
-                        }
-                    }
-                    $this->setLog($scenario, __('Aucune durée trouvée pour l\'action sleep ou la durée n\'est pas valide : ', __FILE__) . $options['duration']);
-                    return;
-                } else if ($this->getExpression() == 'stop') {
-                    if ($scenario != null) {
-                        $this->setLog($scenario, __('Arret du scénario', __FILE__));
-                        $scenario->setState('stop');
-                        $scenario->setPID('');
-                        $scenario->save();
-                    }
-                    die();
-                } else if ($this->getExpression() == 'scenario') {
-                    if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
-                        $actionScenario = &$scenario;
-                    } else {
-                        $actionScenario = scenario::byId($this->getOptions('scenario_id'));
-                    }
-                    if (!is_object($actionScenario)) {
-                        throw new Exception($scenario, __('Action sur scénario impossible. Scénario introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('scenario_id'));
-                    }
-                    switch ($this->getOptions('action')) {
-                        case 'start':
-                            $this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
-                            if ($scenario != null) {
-                                $actionScenario->launch(false, __('Lancement provoqué par le scenario  : ', __FILE__) . $scenario->getHumanName());
-                            } else {
-                                $actionScenario->launch(false, __('Lancement provoqué', __FILE__));
-                            }
-                            break;
-                        case 'stop':
-                            $this->setLog($scenario, __('Arrêt forcé du scénario : ', __FILE__) . $actionScenario->getName());
-                            $actionScenario->stop();
-                            break;
-                        case 'deactivate':
-                            $this->setLog($scenario, __('Désactivation du scénario : ', __FILE__) . $actionScenario->getName());
-                            $actionScenario->setIsActive(0);
-                            $actionScenario->save();
-                            break;
-                        case 'activate':
-                            $this->setLog($scenario, __('Activation du scénario : ', __FILE__) . $actionScenario->getName());
-                            $actionScenario->setIsActive(1);
-                            $actionScenario->save();
-                            break;
-                    }
-                    return;
-                } else if ($this->getExpression() == 'variable') {
-                    $options['value'] = self::setTags($options['value']);
-                    try {
-                        $test = new evaluate();
-                        $result = $test->Evaluer($options['value']);
-                        if (!is_numeric($result)) { //Alors la valeur n'est pas un calcul
-                            $result = $options['value'];
-                        }
-                    } catch (Exception $ex) {
-                        $result = $options['value'];
-                    }
-
-                    $message = __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' => ', __FILE__) . $options['value'] . ' = ' . $result;
-                    $this->setLog($scenario, $message);
-                    $dataStore = new dataStore();
-                    $dataStore->setType('scenario');
-                    $dataStore->setKey($this->getOptions('name'));
-                    $dataStore->setValue($result);
-                    $dataStore->setLink_id(-1);
-                    $dataStore->save();
-                    return;
-                } else {
-                    $cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
-                    if (is_object($cmd)) {
-                        if (is_array($options) && count($options) != 0) {
-                            $this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName() . __(" avec comme option(s) : \n", __FILE__) . print_r($options, true));
-                        } else {
-                            $this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName());
-                        }
-                        return $cmd->execCmd($options);
-                    }
-                    $this->setLog($scenario, __('[Erreur] Aucune commande trouvée pour ', __FILE__) . $this->getExpression());
-                    return;
-                }
-            } else if ($this->getType() == 'condition') {
-                $test = new evaluate();
-                $expression = self::setTags($this->getExpression(), $scenario);
-                $message = __('Evaluation de la condition : [', __FILE__) . $expression . '] = ';
-                $result = $test->Evaluer($expression);
-                if (is_bool($result)) {
-                    if ($result) {
-                        $message .= __('Vrai', __FILE__);
-                    } else {
-                        $message .= __('Faux', __FILE__);
-                    }
-                } else {
-                    $message .= $result;
-                }
-                $this->setLog($scenario, $message);
-                return $result;
-            } else if ($this->getType() == 'code') {
-                $this->setLog($scenario, __('Exécution d\'un bloc code', __FILE__));
-                return eval($this->getExpression());
-            }
-        } catch (Exception $e) {
-            $this->setLog($scenario, $message . $e->getMessage());
+public static function createAndExec($_type, $_cmd, $_options) {
+    $scenarioExpression = new self();
+    $scenarioExpression->setType($_type);
+    $scenarioExpression->setExpression($_cmd);
+    if (is_array($_options)) {
+        foreach ($_options as $key => $value) {
+            $scenarioExpression->setOptions($key, $value);
         }
     }
+    return $scenarioExpression->execute();
+}
 
-    public function save() {
-        DB::save($this);
+/*     * *********************Methode d'instance************************* */
+
+public function execute(&$scenario = null) {
+    if ($this->getOptions('enable', 1) == 0) {
+        return;
     }
-
-    public function remove() {
-        DB::remove($this);
-    }
-
-    public function getAllId() {
-        $return = array(
-            'element' => array(),
-            'subelement' => array(),
-            'expression' => array($this->getId()),
-        );
-        $result = array(
-            'element' => array(),
-            'subelement' => array(),
-            'expression' => array(),
-        );
+    $message = '';
+    try {
         if ($this->getType() == 'element') {
             $element = scenarioElement::byId($this->getExpression());
             if (is_object($element)) {
-                $result = $element->getAllId();
+                $this->setLog($scenario, __('Exécution d\'un bloc élément : ', __FILE__) . $this->getExpression());
+                return $element->execute($scenario);
             }
-        }
-        $return['element'] = array_merge($return['element'], $result['element']);
-        $return['subelement'] = array_merge($return['subelement'], $result['subelement']);
-        $return['expression'] = array_merge($return['expression'], $result['expression']);
-        return $return;
-    }
-
-    public function copy($_scenarioSubElement_id) {
-        $expressionCopy = clone $this;
-        $expressionCopy->setId('');
-        $expressionCopy->setScenarioSubElement_id($_scenarioSubElement_id);
-        $expressionCopy->save();
-        if ($expressionCopy->getType() == 'element') {
-            $element = scenarioElement::byId($expressionCopy->getExpression());
-            if (is_object($element)) {
-                $expressionCopy->setExpression($element->copy());
-                $expressionCopy->save();
-            }
-        }
-        return $expressionCopy->getId();
-    }
-
-    public function emptyOptions() {
-        $this->options = '';
-    }
-
-    public function export() {
-        $return = '';
-        if ($this->getType() == 'element') {
-            $element = scenarioElement::byId($this->getExpression());
-            if (is_object($element)) {
-                $exports = explode("\n", $element->export());
-                foreach ($exports as $export) {
-                    $return .= "    " . $export . "\n";
-                }
-            }
-            return rtrim($return);
+            return;
         }
         $options = $this->getOptions();
+        if (isset($options['enable'])) {
+            unset($options['enable']);
+        }
+        if (is_array($options) && $this->getExpression() != 'wait') {
+            foreach ($options as $key => $value) {
+                $options[$key] = str_replace('"', '', self::setTags($value, $scenario));
+            }
+        }
         if ($this->getType() == 'action') {
             if ($this->getExpression() == 'icon') {
-                return '';
+                if ($scenario != null) {
+                    $options = $this->getOptions();
+                    $this->setLog($scenario, __('Changement de l\'icone du scénario : ', __FILE__) . $options['icon']);
+                    $scenario->setDisplay('icon', $options['icon']);
+                    $scenario->save();
+                }
+                return;
+            } else if ($this->getExpression() == 'wait') {
+                if (!isset($options['condition'])) {
+                    return;
+                }
+                $test = new evaluate();
+                $result = false;
+                $occurence = 0;
+                $limit = (isset($options['timeout']) && is_numeric($options['timeout'])) ? $options['timeout'] : 7200;
+                while ($result !== true) {
+                    $expression = self::setTags($options['condition'], $scenario);
+                    $result = $test->Evaluer($expression);
+                    if ($occurence > $limit) {
+                        $this->setLog($scenario, __('[Wait] Condition valide par dépassement de temps', __FILE__));
+                        return;
+                    }
+                    $occurence++;
+                    sleep(1);
+                }
+                $this->setLog($scenario, __('[Wait] Condition valide : ', __FILE__) . $expression);
+                return;
             } else if ($this->getExpression() == 'sleep') {
-                return '(sleep) Pause de  : ' . $options['duration'];
+                if (isset($options['duration'])) {
+                    try {
+                        $test = new evaluate();
+                        $options['duration'] = $test->Evaluer($options['duration']);
+                    } catch (Exception $e) {
+
+                    }
+                    if (is_numeric($options['duration']) && $options['duration'] > 0) {
+                        $this->setLog($scenario, __('Pause de ', __FILE__) . $options['duration'] . __(' seconde(s)', __FILE__));
+                        if ($options['duration'] < 1) {
+                            return usleep($options['duration'] * 1000);
+                        } else {
+                            return sleep($options['duration']);
+                        }
+                    }
+                }
+                $this->setLog($scenario, __('Aucune durée trouvée pour l\'action sleep ou la durée n\'est pas valide : ', __FILE__) . $options['duration']);
+                return;
             } else if ($this->getExpression() == 'stop') {
-                return '(stop) Arret du scenario';
+                if ($scenario != null) {
+                    $this->setLog($scenario, __('Arret du scénario', __FILE__));
+                    $scenario->setState('stop');
+                    $scenario->setPID('');
+                    $scenario->save();
+                }
+                die();
             } else if ($this->getExpression() == 'scenario') {
-                $actionScenario = scenario::byId($this->getOptions('scenario_id'));
-                if (is_object($actionScenario)) {
-                    return '(scenario) ' . $this->getOptions('action') . ' de ' . $actionScenario->getHumanName();
+                if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
+                    $actionScenario = &$scenario;
+                } else {
+                    $actionScenario = scenario::byId($this->getOptions('scenario_id'));
                 }
+                if (!is_object($actionScenario)) {
+                    throw new Exception($scenario, __('Action sur scénario impossible. Scénario introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('scenario_id'));
+                }
+                switch ($this->getOptions('action')) {
+                    case 'start':
+                    $this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
+                    if ($scenario != null) {
+                        $actionScenario->launch(false, __('Lancement provoqué par le scenario  : ', __FILE__) . $scenario->getHumanName());
+                    } else {
+                        $actionScenario->launch(false, __('Lancement provoqué', __FILE__));
+                    }
+                    break;
+                    case 'stop':
+                    $this->setLog($scenario, __('Arrêt forcé du scénario : ', __FILE__) . $actionScenario->getName());
+                    $actionScenario->stop();
+                    break;
+                    case 'deactivate':
+                    $this->setLog($scenario, __('Désactivation du scénario : ', __FILE__) . $actionScenario->getName());
+                    $actionScenario->setIsActive(0);
+                    $actionScenario->save();
+                    break;
+                    case 'activate':
+                    $this->setLog($scenario, __('Activation du scénario : ', __FILE__) . $actionScenario->getName());
+                    $actionScenario->setIsActive(1);
+                    $actionScenario->save();
+                    break;
+                }
+                return;
             } else if ($this->getExpression() == 'variable') {
-                return '(variable) Affectation de la variable : ' . $this->getOptions('name') . ' à ' . $this->getOptions('value');
-            } else {
-                $return = jeedom::toHumanReadable($this->getExpression());
-                if (is_array($options) && count($options) != 0) {
-                    $return .= ' - Options : ' . print_r(jeedom::toHumanReadable($options), true);
+                $options['value'] = self::setTags($options['value']);
+                try {
+                    $test = new evaluate();
+                    $result = $test->Evaluer($options['value']);
+                        if (!is_numeric($result)) { //Alors la valeur n'est pas un calcul
+                        $result = $options['value'];
+                    }
+                } catch (Exception $ex) {
+                    $result = $options['value'];
                 }
-                return $return;
+
+                $message = __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' => ', __FILE__) . $options['value'] . ' = ' . $result;
+                $this->setLog($scenario, $message);
+                $dataStore = new dataStore();
+                $dataStore->setType('scenario');
+                $dataStore->setKey($this->getOptions('name'));
+                $dataStore->setValue($result);
+                $dataStore->setLink_id(-1);
+                $dataStore->save();
+                return;
+            } else {
+                $cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
+                if (is_object($cmd)) {
+                    if (is_array($options) && count($options) != 0) {
+                        $this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName() . __(" avec comme option(s) : \n", __FILE__) . print_r($options, true));
+                    } else {
+                        $this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName());
+                    }
+                    return $cmd->execCmd($options);
+                }
+                $this->setLog($scenario, __('[Erreur] Aucune commande trouvée pour ', __FILE__) . $this->getExpression());
+                return;
             }
         } else if ($this->getType() == 'condition') {
-            return jeedom::toHumanReadable($this->getExpression());
+            $test = new evaluate();
+            $expression = self::setTags($this->getExpression(), $scenario);
+            $message = __('Evaluation de la condition : [', __FILE__) . $expression . '] = ';
+            $result = $test->Evaluer($expression);
+            if (is_bool($result)) {
+                if ($result) {
+                    $message .= __('Vrai', __FILE__);
+                } else {
+                    $message .= __('Faux', __FILE__);
+                }
+            } else {
+                $message .= $result;
+            }
+            $this->setLog($scenario, $message);
+            return $result;
+        } else if ($this->getType() == 'code') {
+            $this->setLog($scenario, __('Exécution d\'un bloc code', __FILE__));
+            return eval($this->getExpression());
         }
-        if ($this->getType() == 'code') {
-            
-        }
+    } catch (Exception $e) {
+        $this->setLog($scenario, $message . $e->getMessage());
     }
+}
 
-    /*     * **********************Getteur Setteur*************************** */
+public function save() {
+    DB::save($this);
+}
 
-    public function getId() {
-        return $this->id;
-    }
+public function remove() {
+    DB::remove($this);
+}
 
-    public function setId($id) {
-        $this->id = $id;
-    }
-
-    public function getType() {
-        return $this->type;
-    }
-
-    public function setType($type) {
-        $this->type = $type;
-    }
-
-    public function getScenarioSubElement_id() {
-        return $this->scenarioSubElement_id;
-    }
-
-    public function getSubElement() {
-        return scenarioSubElement::byId($this->getScenarioSubElement_id());
-    }
-
-    public function setScenarioSubElement_id($scenarioSubElement_id) {
-        $this->scenarioSubElement_id = $scenarioSubElement_id;
-    }
-
-    public function getSubtype() {
-        return $this->subtype;
-    }
-
-    public function setSubtype($subtype) {
-        $this->subtype = $subtype;
-    }
-
-    public function getExpression() {
-        return $this->expression;
-    }
-
-    public function setExpression($expression) {
-        $this->expression = jeedom::fromHumanReadable($expression);
-    }
-
-    public function getOptions($_key = '', $_default = '') {
-        return utils::getJsonAttr($this->options, $_key, $_default);
-    }
-
-    public function setOptions($_key, $_value) {
-        $_value = jeedom::fromHumanReadable($_value);
-        $this->options = utils::setJsonAttr($this->options, $_key, $_value);
-    }
-
-    public function getOrder() {
-        return $this->order;
-    }
-
-    public function setOrder($order) {
-        $this->order = $order;
-    }
-
-    public function getLog() {
-        return $this->log;
-    }
-
-    public function setLog(&$_scenario, $log) {
-        if ($_scenario != null) {
-            $_scenario->setLog($log);
+public function getAllId() {
+    $return = array(
+        'element' => array(),
+        'subelement' => array(),
+        'expression' => array($this->getId()),
+        );
+    $result = array(
+        'element' => array(),
+        'subelement' => array(),
+        'expression' => array(),
+        );
+    if ($this->getType() == 'element') {
+        $element = scenarioElement::byId($this->getExpression());
+        if (is_object($element)) {
+            $result = $element->getAllId();
         }
     }
+    $return['element'] = array_merge($return['element'], $result['element']);
+    $return['subelement'] = array_merge($return['subelement'], $result['subelement']);
+    $return['expression'] = array_merge($return['expression'], $result['expression']);
+    return $return;
+}
+
+public function copy($_scenarioSubElement_id) {
+    $expressionCopy = clone $this;
+    $expressionCopy->setId('');
+    $expressionCopy->setScenarioSubElement_id($_scenarioSubElement_id);
+    $expressionCopy->save();
+    if ($expressionCopy->getType() == 'element') {
+        $element = scenarioElement::byId($expressionCopy->getExpression());
+        if (is_object($element)) {
+            $expressionCopy->setExpression($element->copy());
+            $expressionCopy->save();
+        }
+    }
+    return $expressionCopy->getId();
+}
+
+public function emptyOptions() {
+    $this->options = '';
+}
+
+public function export() {
+    $return = '';
+    if ($this->getType() == 'element') {
+        $element = scenarioElement::byId($this->getExpression());
+        if (is_object($element)) {
+            $exports = explode("\n", $element->export());
+            foreach ($exports as $export) {
+                $return .= "    " . $export . "\n";
+            }
+        }
+        return rtrim($return);
+    }
+    $options = $this->getOptions();
+    if ($this->getType() == 'action') {
+        if ($this->getExpression() == 'icon') {
+            return '';
+        } else if ($this->getExpression() == 'sleep') {
+            return '(sleep) Pause de  : ' . $options['duration'];
+        } else if ($this->getExpression() == 'stop') {
+            return '(stop) Arret du scenario';
+        } else if ($this->getExpression() == 'scenario') {
+            $actionScenario = scenario::byId($this->getOptions('scenario_id'));
+            if (is_object($actionScenario)) {
+                return '(scenario) ' . $this->getOptions('action') . ' de ' . $actionScenario->getHumanName();
+            }
+        } else if ($this->getExpression() == 'variable') {
+            return '(variable) Affectation de la variable : ' . $this->getOptions('name') . ' à ' . $this->getOptions('value');
+        } else {
+            $return = jeedom::toHumanReadable($this->getExpression());
+            if (is_array($options) && count($options) != 0) {
+                $return .= ' - Options : ' . print_r(jeedom::toHumanReadable($options), true);
+            }
+            return $return;
+        }
+    } else if ($this->getType() == 'condition') {
+        return jeedom::toHumanReadable($this->getExpression());
+    }
+    if ($this->getType() == 'code') {
+
+    }
+}
+
+/*     * **********************Getteur Setteur*************************** */
+
+public function getId() {
+    return $this->id;
+}
+
+public function setId($id) {
+    $this->id = $id;
+}
+
+public function getType() {
+    return $this->type;
+}
+
+public function setType($type) {
+    $this->type = $type;
+}
+
+public function getScenarioSubElement_id() {
+    return $this->scenarioSubElement_id;
+}
+
+public function getSubElement() {
+    return scenarioSubElement::byId($this->getScenarioSubElement_id());
+}
+
+public function setScenarioSubElement_id($scenarioSubElement_id) {
+    $this->scenarioSubElement_id = $scenarioSubElement_id;
+}
+
+public function getSubtype() {
+    return $this->subtype;
+}
+
+public function setSubtype($subtype) {
+    $this->subtype = $subtype;
+}
+
+public function getExpression() {
+    return $this->expression;
+}
+
+public function setExpression($expression) {
+    $this->expression = jeedom::fromHumanReadable($expression);
+}
+
+public function getOptions($_key = '', $_default = '') {
+    return utils::getJsonAttr($this->options, $_key, $_default);
+}
+
+public function setOptions($_key, $_value) {
+    $this->options = utils::setJsonAttr($this->options, $_key, jeedom::fromHumanReadable($_value));
+}
+
+public function getOrder() {
+    return $this->order;
+}
+
+public function setOrder($order) {
+    $this->order = $order;
+}
+
+public function getLog() {
+    return $this->log;
+}
+
+public function setLog(&$_scenario, $log) {
+    if ($_scenario != null) {
+        $_scenario->setLog($log);
+    }
+}
 
 }
 

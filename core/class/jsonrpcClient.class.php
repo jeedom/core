@@ -91,7 +91,13 @@ class jsonrpcClient {
             }
         }
         if ($_file !== null) {
-            $_request = array_merge($_request, $_file);
+            if (version_compare(phpversion(), '5.5.0', '>=')) {
+                foreach ($_file as $key => $value) {
+                    $_request[$key] = new CurlFile(str_replace('@', '', $value));
+                }
+            } else {
+                $_request = array_merge($_request, $_file);
+            }
         }
         $nbRetry = 0;
         while ($nbRetry < $_maxRetry) {

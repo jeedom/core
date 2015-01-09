@@ -9,15 +9,15 @@
 
         // The speed gauge
         $('.cmd[data-cmd_id=#id#] .gauge').highcharts({
-        chart: {
-        events: {
-        click: function (event) {
-        if (!$.mobile && '#history#' == 'history cursor') {
-        $('#md_modal').dialog({title: "{{Historique}}"});
-                $("#md_modal").load('index.php?v=d&modal=cmd.history&id=#id#').dialog('open');
-        }
-        }
-        },
+            chart: {
+                events: {
+                    click: function (event) {
+                        if (!$.mobile && '#history#' == 'history cursor') {
+                            $('#md_modal').dialog({title: "Historique"});
+                            $("#md_modal").load('index.php?v=d&modal=cmd.history&id=#id#').dialog('open');
+                        }
+                    }
+                },
                 type: 'solidgauge',
                 height : 95,
                 plotBackgroundColor: null,
@@ -30,67 +30,67 @@
                 spacingRight: 0,
                 spacingBottom: 0,
                 borderWidth : 0
-        },
-                title: null,
-                pane: {
+            },
+            title: null,
+            pane: {
                 center: ['50%', '85%'],
-                        size: '100%',
-                        startAngle: - 90,
-                        endAngle: 90,
-                        background: {
-                        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                                innerRadius: '60%',
-                                outerRadius: '100%',
-                                shape: 'arc'
-                        }
-                },
-                tooltip: {
+                size: '100%',
+                startAngle: - 90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+            tooltip: {
                 enabled: false
-                },
+            },
                 // the value axis
                 yAxis: {
-                stops: [
-                        [0, '#cmdColor#']
-                ],
-                        lineWidth: 0,
-                        minorTickInterval: null,
-                        tickPixelInterval: 400,
-                        labels : {enabled: false},
-                        tickWidth: 0,
-                        title: {
+                    stops: [
+                    [0, '#cmdColor#']
+                    ],
+                    lineWidth: 0,
+                    minorTickInterval: null,
+                    tickPixelInterval: 400,
+                    labels : {enabled: false},
+                    tickWidth: 0,
+                    title: {
                         y: - 70
-                        },
-                        min: #minValue#,
-                        max: #maxValue#,
-                        title: {
+                    },
+                    min: #minValue#,
+                    max: #maxValue#,
+                    title: {
                         text: '<span style="color: white;font-weight: bold;font-family : Helvetica Neue,Helvetica,Arial,sans-serif;">#name#</span>',
-                                y: - 35
-                        }
+                        y: - 35
+                    }
                 },
                 labels : {enabled: false},
                 plotOptions: {
-                solidgauge: {
-                dataLabels: {
-                y: 5,
-                        borderWidth: 0,
-                        useHTML: true
-                }
-                }
+                    solidgauge: {
+                        dataLabels: {
+                            y: 5,
+                            borderWidth: 0,
+                            useHTML: true
+                        }
+                    }
                 },
                 credits: {
-                enabled: false
+                    enabled: false
                 },
                 series: [{
-                name: '',
-                        data: [Math.round(parseFloat('#state#') * 10) / 10],
-                        dataLabels: {
+                    name: '',
+                    data: [Math.round(parseFloat('#state#') * 10) / 10],
+                    dataLabels: {
                         format: '<span style="color : white;">{y}</span> <span style="font-size:10px;color:white">#unite#</span>'
-                        },
+                    },
                 }]
-        });
-        } else {
-        $('.cmd[data-cmd_id=#id#] .gauge').append('<center><span class="label label-danger" style="margin-top : 5px;">#state#</span></center>');
-        }
-    </script>
+            });
+} else {
+    $('.cmd[data-cmd_id=#id#] .gauge').append('<center><span class="label label-danger" style="margin-top : 5px;">#state#</span></center>');
+}
+</script>
 
 </div>

@@ -112,7 +112,7 @@ class DB {
      * @param object $object
      * @return boolean
      */
-    public static function save($object, $_direct = false) {
+    public static function save($object, $_direct = false, $_replace = false) {
         if (!$_direct && method_exists($object, 'preSave')) {
             $object->preSave();
         }
@@ -122,7 +122,11 @@ class DB {
                 $object->preInsert();
             }
             list($sql, $parameters) = self::buildQuery($object);
-            $sql = 'INSERT INTO `' . self::getTableName($object) . '` SET ' . implode(', ', $sql);
+            if ($_replace) {
+                $sql = 'REPLACE INTO `' . self::getTableName($object) . '` SET ' . implode(', ', $sql);
+            } else {
+                $sql = 'INSERT INTO `' . self::getTableName($object) . '` SET ' . implode(', ', $sql);
+            }
             $res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
             $reflection = self::getReflectionClass($object);
             if ($reflection->hasProperty('id')) {
@@ -227,7 +231,7 @@ class DB {
                         // extract operator from value
                         $value = substr($value, $operatorInformation['length'] + 1); // +1 because of space
                         // add % % to LIKE operator
-                        if (in_array($operatorInformation['value'], ['LIKE', 'NOT LIKE'])) {
+                        if (in_array($operatorInformation['value'], array('LIKE', 'NOT LIKE'))) {
                             $value = '%' . $value . '%';
                         }
                     }

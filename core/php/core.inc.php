@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+//error_reporting(E_ERROR);
 date_default_timezone_set('Europe/Brussels');
 require_once dirname(__FILE__) . '/../config/common.config.php';
 require_once dirname(__FILE__) . '/../class/DB.class.php';
@@ -36,7 +37,7 @@ function jeedomCoreAutoload($classname) {
     try {
         include_file('core', $classname, 'class');
     } catch (Exception $e) {
-        
+
     }
 }
 
@@ -44,7 +45,7 @@ function jeedomComAutoload($classname) {
     try {
         include_file('core', substr($classname, 4), 'com');
     } catch (Exception $e) {
-        
+
     }
 }
 
@@ -80,7 +81,7 @@ function jeedomPluginAutoload($classname) {
             }
         }
     } catch (Exception $e) {
-        
+
     }
 }
 
@@ -90,14 +91,13 @@ function jeedom3rdPartyAutoload($classname) {
             include_file('3rdparty', 'cron-expression/cron.inc', 'php');
         }
     } catch (Exception $e) {
-        
+
     }
 }
-
-spl_autoload_register('jeedomCoreAutoload', true, true);
-spl_autoload_register('jeedomComAutoload', true, true);
-spl_autoload_register('jeedomPluginAutoload', true, true);
 spl_autoload_register('jeedom3rdPartyAutoload', true, true);
+spl_autoload_register('jeedomPluginAutoload', true, true);
+spl_autoload_register('jeedomComAutoload', true, true);
+spl_autoload_register('jeedomCoreAutoload', true, true);
 
 /* * *******************Securité anti piratage**************************** */
 try {
@@ -121,6 +121,6 @@ try {
         exit();
     }
 } catch (Exception $e) {
-    
+
 }
 ?>

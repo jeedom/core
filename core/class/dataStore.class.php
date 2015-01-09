@@ -141,7 +141,7 @@ class dataStore {
     }
 
     public function getValue($_default = '') {
-        if ($this->value == '') {
+        if ($this->value === '') {
             return $_default;
         }
         if (is_json($this->value)) {

@@ -129,16 +129,7 @@ class object {
     }
 
     public function save() {
-        $internalEvent = new internalEvent();
-        if ($this->getId() == '') {
-            $internalEvent->setEvent('create::object');
-        } else {
-            $internalEvent->setEvent('update::object');
-        }
-        DB::save($this);
-        $internalEvent->setOptions('id', $this->getId());
-        $internalEvent->save();
-        return true;
+        return DB::save($this);
     }
 
     public function getChild($_visible = true) {
@@ -177,11 +168,7 @@ class object {
     }
 
     public function remove() {
-        $internalEvent = new internalEvent();
-        $internalEvent->setEvent('remove::object');
-        $internalEvent->setOptions('id', $this->getId());
-        DB::remove($this);
-        $internalEvent->save();
+       return DB::remove($this);
     }
 
     public function getFather() {

@@ -86,7 +86,13 @@ try {
         if (!isConnect('admin')) {
             throw new Exception(__('401 - Accès non autorisé', __FILE__));
         }
-        ajax::success(utils::o2a(user::all()));
+        $users = array();
+        foreach (user::all() as $user) {
+            $user_info = utils::o2a($user);
+            $user_info['directUrl'] = $user->getDirectUrlAccess();
+            $users[] = $user_info;
+        }
+        ajax::success($users);
     }
 
     if (init('action') == 'save') {
@@ -167,6 +173,16 @@ try {
             throw new Exception();
         }
         ajax::success();
+    }
+
+    if (init('action') == 'createTemporary') {
+        if (!isConnect('admin')) {
+            throw new Exception(__('401 - Accès non autorisé', __FILE__));
+        }
+        $user = user::createTemporary(12);
+        $return = utils::o2a($user);
+        $return['directUrl'] = $user->getDirectUrlAccess();
+        ajax::success($return);
     }
 
     throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));

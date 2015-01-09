@@ -2,23 +2,34 @@
 
 namespace Cron;
 
+use DateTime;
+use DateTimeZone;
+
 /**
  * Hours field.  Allows: * , / -
+ *
+ * @author Michael Dowling <mtdowling@gmail.com>
  */
 class HoursField extends AbstractField
 {
-    public function isSatisfiedBy(\DateTime $date, $value)
+    /**
+     * {@inheritdoc}
+     */
+    public function isSatisfiedBy(DateTime $date, $value)
     {
         return $this->isSatisfied($date->format('H'), $value);
     }
 
-    public function increment(\DateTime $date, $invert = false)
+    /**
+     * {@inheritdoc}
+     */
+    public function increment(DateTime $date, $invert = false)
     {
         // Change timezone to UTC temporarily. This will
         // allow us to go back or forwards and hour even
         // if DST will be changed between the hours.
         $timezone = $date->getTimezone();
-        $date->setTimezone(new \DateTimeZone('UTC'));
+        $date->setTimezone(new DateTimeZone('UTC'));
         if ($invert) {
             $date->modify('-1 hour');
             $date->setTime($date->format('H'), 59);
@@ -31,6 +42,9 @@ class HoursField extends AbstractField
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function validate($value)
     {
         return (bool) preg_match('/[\*,\/\-0-9]+/', $value);

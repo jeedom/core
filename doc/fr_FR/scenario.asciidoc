@@ -65,6 +65,8 @@ Vous pouvez aussi utiliser les tags suivants :
 - \#sjour# : pour le nom du jour de la semaine (ex : Samedi)
 - \#njour# : numéro du jour de 0 (dimanche) à 6 (samedi)
 - \#smois# : pour le nom du mois (ex : Janvier)
+- \#IP# : IP interne de jeedom
+- \#hostname# : nom de la machine Jeedom
 - rand(1,10) : pour un nombre aléatoire de 1 à 10
 - average(commande,période) : donne la moyenne de la commande sur la période (period=[month,day,hour,min])
     * Ex : average(\#[Salle de bain][Hydrometrie][Humidité]#,1 hour) : Renvoi la moyenne de la commande sur la dernière heure
@@ -95,6 +97,8 @@ Vous pouvez aussi utiliser les tags suivants :
     * Ex : median(15,25,20) :  renverra 20
 - time(value) : permet d'addition #time# avec une durée
     * Ex : time(\#time\# + 30) : s'il est 16h50 renverra : 1650 + 30 = 1720
+- formatTime(time) : permet de formater le retour d'une chaine #time#
+    * Ex : formatTime(1650) : renverra 16h50
             
 ===== Action
 En plus des commandes domotiques vous avez accès aux fonctions suivantes : 
@@ -121,9 +125,13 @@ Vous pouvez aussi utiliser les tags suivants dans les options :
 - \#sjour# : pour le nom du jour de la semaine en anglais (ex : sunday)
 - \#njour# : numéro du jour de 0 (dimanche) à 6 (samedi)
 - \#smois# : pour le nom du mois (ex : Janvier)
+- \#IP# : IP interne de jeedom
+- \#hostname# : nom de la machine Jeedom
 - rand[1-10] : pour un nombre aléatoire de 1 à 10
 - variable (mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
     * Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas
+- formatTime(time) : permet de formater le retour d'une chaine #time#
+    * Ex : formatTime(1650) : renverra 16h50
              
 ===== Code
 Attention les tags ne sont pas disponible dans un bloc de type code

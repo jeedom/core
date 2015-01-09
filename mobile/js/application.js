@@ -94,7 +94,6 @@ function initApplication(_reinit) {
                     nodeJsKey = data.result.nodeJsKey;
                     user_id = data.result.user_id;
                     plugins = data.result.plugins;
-
                     userProfils = data.result.userProfils;
                     var include = ['core/js/core.js'];
 
@@ -109,7 +108,14 @@ function initApplication(_reinit) {
                             include.push('3rdparty/highstock/themes/' + userProfils.mobile_highcharts_theme + '.js');
                         }
                     }
-
+                    if (isset(data.result.custom) && data.result.custom != null) {
+                        if (isset(data.result.custom.css) && data.result.custom.css) {
+                            include.push('mobile/custom/custom.css');
+                        }
+                        if (isset(data.result.custom.js) && data.result.custom.js) {
+                            include.push('mobile/custom/custom.js');
+                        }
+                    }
                     $.get("core/php/icon.inc.php", function (data) {
                         $("head").append(data);
                         $.include(include, function () {

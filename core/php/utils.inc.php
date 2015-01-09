@@ -70,6 +70,16 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
             $_fn = $_fn . '.class.js';
             $type = 'js';
         }
+        if ($_type == 'custom.js') {
+            $_folder = $_folder . '/custom';
+            $_fn = $_fn . 'custom.js';
+            $type = 'js';
+        }
+        if ($_type == 'custom.css') {
+            $_folder = $_folder . '/custom';
+            $_fn = $_fn . 'custom.css';
+            $type = 'css';
+        }
         if ($_type == 'api') {
             $_folder .= '/api';
             $_fn = $_fn . '.api.php';

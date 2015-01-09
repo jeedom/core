@@ -201,3 +201,24 @@ jeedom.doUPnP = function (_params) {
     };
     $.ajax(paramsAJAX);
 };
+
+jeedom.saveCustum = function (_params) {
+    var paramsRequired = ['version', 'type', 'content'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+    paramsAJAX.data = {
+        action: 'saveCustom',
+        type: _params.type,
+        version: _params.version,
+        content: _params.content,
+    };
+    $.ajax(paramsAJAX);
+};

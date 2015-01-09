@@ -1,4 +1,4 @@
- <?php
+<?php
 if (!hasRight('scenarioview', true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -26,12 +26,12 @@ foreach (scenario::listGroup() as $group) {
             <center>
                 <?php
                 if (config::byKey('enableScenario') == 0) {
-                    echo '<a class="btn btn-sm btn-success expertModeVisible" id="bt_changeAllScenarioState" data-state="1" style="width : 49%;min-width : 127px;margin-top : 3px;text-shadow: none" ><i class="fa fa-check"></i> {{Act. scénarios}}</a>';
+                    echo '<a class="btn btn-sm btn-success expertModeVisible" id="bt_changeAllScenarioState" data-state="1" style="width : 48%;min-width : 127px;margin-top : 3px;text-shadow: none" ><i class="fa fa-check"></i> {{Act. scénarios}}</a>';
                 } else {
-                    echo '<a class="btn btn-sm btn-danger expertModeVisible" id="bt_changeAllScenarioState" data-state="0" style="width : 49%;min-width : 127px;margin-top : 3px;text-shadow: none" ><i class="fa fa-times"></i> {{Désac. scénarios}}</a>';
+                    echo '<a class="btn btn-sm btn-danger expertModeVisible" id="bt_changeAllScenarioState" data-state="0" style="width : 48%;min-width : 127px;margin-top : 3px;text-shadow: none" ><i class="fa fa-times"></i> {{Désac. scénarios}}</a>';
                 }
                 ?>
-                <a class="btn btn-default btn-sm tooltips expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables de scénario}}" style="width : 49%;min-width : 127px;margin-top : 3px;"><i class="fa fa fa-eye" style="font-size : 1.5em;"></i> {{Voir variables}}</a>
+                <a class="btn btn-default btn-sm tooltips expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables de scénario}}" style="width : 48%;min-width : 127px;margin-top : 3px;"><i class="fa fa fa-eye" style="font-size : 1.5em;"></i> {{Voir variables}}</a>
             </center>
             <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> Nouveau scénario</a>
 
@@ -114,7 +114,7 @@ foreach (scenario::listGroup() as $group) {
             <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
             <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
             <a class="btn btn-danger btn-xs pull-right expertModeVisible" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
-            
+            <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_templateScenario"><i class="fa fa-cubes"></i> {{Template}}</a>
         </legend>
         <div class="row">
             <div class="col-sm-4">
@@ -209,15 +209,9 @@ foreach (scenario::listGroup() as $group) {
                         </div>
                     </div>
                     <div class="form-group expertModeVisible">
-                        <label class="col-xs-6 control-label">{{Lancer en avant-plan}}</label>
+                        <label class="col-xs-6 control-label">{{Exécuter le plus rapidement possible}}</label>
                         <div class="col-xs-1">
-                            <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="launchInForeground" titme="{{A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario}}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-6 control-label" for="span_lastCheck">{{Dernier lancement}}</label>
-                        <div class="col-xs-6">
-                            <div><span id="span_lastLaunch" class="label label-info" style="position: relative; top: 4px;"></span></div>
+                            <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="speedPriority" titme="{{A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours et aucun log ne sera écris par celui-ci}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -271,7 +265,6 @@ foreach (scenario::listGroup() as $group) {
                 <h3>{{Ajouter élément}}</h3>
             </div>
             <div class="modal-body">
-                <div style="display: none;" id="div_addElementAlert"></div>
                 <center>
                     <select id="in_addElementType" class="form-control">
                         <option value="if">{{Si/Alors/Sinon}}</option>
@@ -287,6 +280,31 @@ foreach (scenario::listGroup() as $group) {
             <div class="modal-footer">
                 <a class="btn btn-danger" data-dismiss="modal"><i class="fa fa-minus-circle"></i> {{Annuler}}</a>
                 <a class="btn btn-success" id="bt_addElementSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="md_selectOtherAction">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">×</button>
+                <h3>{{Sélectionner le mot-clé}}</h3>
+            </div>
+            <div class="modal-body">
+                <center>
+                    <select id="sel_otherAction" class="form-control">
+                        <option value="sleep">{{Pause}}</option>
+                        <option value="variable">{{Variable}}</option>
+                        <option value="scenario">{{Scénario}}</option>
+                        <option value="stop">{{Stop}}</option>
+                    </select>
+                </center>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
+                <a class="btn btn-primary" id="bt_selectOtherActionSave">{{Valider}}</a>
             </div>
         </div>
     </div>

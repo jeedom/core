@@ -262,7 +262,7 @@ class jeeNetwork {
         $jsonrpc = $this->getJsonRpc();
         $params = array(
             'apikey_master' => config::byKey('api'),
-            'address' => config::byKey('internalAddr'),
+            'address' => config::byKey('internalProtocol').config::byKey('internalAddr'). ':'.config::byKey('internalPort','core',80).config::byKey('internalComplement'),
             'slave_ip' => $this->getRealIp(),
             'slave_id' => $this->getId(),
         );

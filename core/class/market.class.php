@@ -277,7 +277,10 @@ class market {
                 'password' => config::byKey('market::password'),
                 'password_type' => 'sha1',
                 'jeedomversion' => getVersion('jeedom'),
-                'hwkey' => jeedom::getHardwareKey()
+                'hwkey' => jeedom::getHardwareKey(),
+                'addrProtocol' => config::byKey('externalProtocol'),
+                'addrPort' => config::byKey('externalPort'),
+                'addrComplement' => config::byKey('externalComplement'),
             ));
         } else {
             $jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', config::byKey('market::apikey'), array(
@@ -291,14 +294,19 @@ class market {
     }
 
     public static function postJsonRpc($_result) {
-        if (is_array($_result) && isset($_result['licence'])) {
-            config::save('jeedom::licence', $_result['licence']);
-        }
-        if (is_array($_result) && isset($_result['register::datetime'])) {
-            config::save('register::datetime', $_result['register::datetime']);
-        }
-        if (is_array($_result) && isset($_result['client::ip']) && config::byKey('externalAddr') == '') {
-            config::save('externalAddr', $_result['client::ip']);
+        if (is_array($_result)) {
+            if (isset($_result['licence'])) {
+                config::save('jeedom::licence', $_result['licence']);
+            }
+            if (isset($_result['register::datetime'])) {
+                config::save('register::datetime', $_result['register::datetime']);
+            }
+            if (isset($_result['client::ip']) && config::byKey('market::allowDNS') == 1) {
+                config::save('externalAddr', $_result['client::ip']);
+            }
+            if (isset($_result['client::marketlink']) && config::byKey('market::allowDNS') == 1) {
+                config::save('market::returnLink', $_result['client::marketlink']);
+            }
         }
     }
 

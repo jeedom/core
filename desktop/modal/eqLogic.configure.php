@@ -44,6 +44,12 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">{{Date de création}}</label>
+                        <div class="col-sm-4">
+                            <span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="createtime"></span>
+                        </div>
+                    </div>
                 </fieldset>
             </form>
         </div>
@@ -75,6 +81,13 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                         <label class="col-sm-4 control-label">{{Tentative échouée}}</label>
                         <div class="col-sm-4">
                             <span class="eqLogicAttr label label-primary" data-l1key="status" data-l2key="numberTryWithoutSuccess"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">{{Dernière mise à jour}}</label>
+                        <div class="col-sm-4">
+                            <span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="updatetime"></span>
                         </div>
                     </div>
                 </fieldset>

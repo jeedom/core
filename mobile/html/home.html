@@ -5,13 +5,9 @@
 <div class="ui-grid-a">
     <div class="ui-block-a">
         <center>
-            <a href="#equipmentMenu" data-rel="popup" data-transition="none" data-position-to="window" class="ui-btn ui-btn-b" style="margin: 5px;">
+            <a class="ui-btn ui-btn-b" style="margin: 5px;" id="bt_showObjectList">
                 <i class="fa fa fa-tachometer" style="font-size: 3em;"></i><br/>{{Equipements}}
             </a>
-            <div data-role="popup" id="equipmentMenu" data-theme="b">
-                <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">{{Fermer}}</a>
-                <ul data-role="listview" data-inset="true" style="min-width:210px;" id="ul_objectList"></ul>
-            </div>
         </center>
     </div>
 
@@ -22,31 +18,32 @@
             </a>
         </center>
     </div>
-    
+
+</div>
+<ul data-role="listview" class="jeedomListView" data-inset="true" style="display: none;" id="ul_objectList"></ul>
+
+<div class="ui-grid-a">
     <div class="ui-block-a">
         <center>
-            <a href="#viewMenu" data-rel="popup" data-transition="none" data-position-to="window" class="ui-btn ui-btn-b" style="margin: 5px;">
+            <a class="ui-btn ui-btn-b" style="margin: 5px;" id="bt_showViewList">
                 <i class="fa fa-bars" style="font-size: 3em;"></i><br/>{{Vues}}
             </a>
-            <div data-role="popup" id="viewMenu" data-theme="b">
-                <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">{{Fermer}}</a>
-                <ul data-role="listview" data-inset="true" style="min-width:210px;" id="ul_viewList"></ul>
-            </div>
         </center>
     </div>
 
     <div class="ui-block-b">
         <center>
-            <a href="#planMenu" data-rel="popup" data-transition="none" data-position-to="window" class="ui-btn ui-btn-b" style="margin: 5px;">
+            <a class="ui-btn ui-btn-b" style="margin: 5px;" id="bt_showPlanList">
                 <i class="fa fa-picture-o" style="font-size: 3em;"></i><br/>{{Design}}
             </a>
-            <div data-role="popup" id="planMenu" data-theme="b">
-                <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">{{Fermer}}</a>
-                <ul data-role="listview" data-inset="true" style="min-width:210px;" id="ul_planList"></ul>
-            </div>
         </center>
     </div>
+</div>
 
+<ul class="jeedomListView" data-role="listview" data-inset="true" style="display: none;" id="ul_planList"></ul>
+<ul class="jeedomListView" data-role="listview" data-inset="true" style="display: none;" id="ul_viewList"></ul>
+
+<div class="ui-grid-a">
     <div class="ui-block-a">
         <center>
             <a href="#" class="link ui-btn ui-btn-b" data-page="message" data-title="{{Messages}}" data-role="button" data-theme="b" style="margin: 5px;">
@@ -57,18 +54,16 @@
 
     <div class="ui-block-b">
         <center>
-            <a href="#pluginMenu" data-rel="popup" data-transition="none" data-position-to="window" id="bt_listPlugin" class="ui-btn ui-btn-b" style="margin: 5px;">
+            <a id="bt_listPlugin" class="ui-btn ui-btn-b" style="margin: 5px;">
                 <i class="fa fa-tasks" style="font-size: 3em;"></i><br/>{{Plugins}}
             </a>
-            <div data-role="popup" id="pluginMenu" data-theme="b">
-                <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">{{Fermer}}</a>
-                <ul data-role="listview" data-inset="true" style="min-width:210px;" id="ul_pluginList">
-                    <li><a href="#">Aucun plugin</a></li>
-                </ul>
-            </div>
         </center>
     </div>
-
+</div>
+<ul class="jeedomListView" data-role="listview" data-inset="true" style="display: none;" id="ul_pluginList">
+    <li><a href="#">Aucun plugin</a></li>
+</ul>
+<div class="ui-grid-a">
     <div class="ui-block-a">
         <center>
             <a href="index.php?v=d" class="ui-btn ui-btn-b" data-role="button" data-theme="b" style="margin: 5px;" data-ajax="false">

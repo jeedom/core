@@ -16,11 +16,11 @@
  */
 
 
-jeedom.update = function() {
+jeedom.update = function () {
 };
 
 
-jeedom.update.doAll = function(_params) {
+jeedom.update.doAll = function (_params) {
     var paramsRequired = ['level', 'mode'];
     var paramsSpecifics = {};
     try {
@@ -35,12 +35,13 @@ jeedom.update.doAll = function(_params) {
     paramsAJAX.data = {
         action: 'updateAll',
         level: _params.level,
-        mode: _params.mode
+        mode: _params.mode,
+        system: _params.system || 'no'
     };
     $.ajax(paramsAJAX);
 }
 
-jeedom.update.changeState = function(_params) {
+jeedom.update.changeState = function (_params) {
     var paramsRequired = ['id', 'state'];
     var paramsSpecifics = {};
     try {
@@ -60,7 +61,7 @@ jeedom.update.changeState = function(_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.update.do = function(_params) {
+jeedom.update.do = function (_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
@@ -79,7 +80,7 @@ jeedom.update.do = function(_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.update.remove = function(_params) {
+jeedom.update.remove = function (_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
@@ -98,7 +99,7 @@ jeedom.update.remove = function(_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.update.checkAll = function(_params) {
+jeedom.update.checkAll = function (_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -117,7 +118,7 @@ jeedom.update.checkAll = function(_params) {
 }
 
 
-jeedom.update.get = function(_params) {
+jeedom.update.get = function (_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {

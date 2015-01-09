@@ -1,54 +1,97 @@
-==== 14/12/2014
+*07/01/2015* _v1.152.0_
+
+- Ajout d'une page d'information système
+
+*05/01/2015* _v1.152.0_
+
+- Nombreuse corrections de bugs
+
+*04/01/2015* _v1.152.0_
+
+- Refonte de la configuration reseaux (externe et interne) avec meilleurs integration au market, merci de verfier votre configuration
+
+*01/01/2015* _v1.152.0_
+
+- Amélioration de la reconnaissance des interactions
+
+*01/01/2015* _v1.152.0_
+
+- Grosse optimisation générale (scénario et dashboard)
+- Ajout #IP# et #hostname# dans les tags de scénario
+
+*22/12/2014* _v1.151.0_
+
+- Possibilité dans les scénarios de desactiver une action sans la supprimer
+
+*20/12/2014* _v1.151.0_
+
+- Possibilité d'ajouter du javascript et css personalisé directement inclus sur toute les pages (avec differenciation desktop/mobile)
+- Correction de bug lors des backups si le dossier de backup par defaut a été changé
+- Correction d'un bug lors des mise à jour des plugins
+
+*19/12/2014* _v1.150.0_
+
+- Possibilité de transformer un scénario en template 
+- Possibilité de partager des scénarios
+
+*18/12/2014* _v1.145.0_
+
+- Version stable 1.145
+- Bugfix sur les lancements programmés
+- Bugfix filtre sur l'historique
+- Ajout export de configuration (utile pour les plugins zwave et caméra)
+
+*14/12/2014* _v1.145.0_
 
 - Ajout interface de configuration de scénario simple
 - Suppression des backups les plus vieux si le dossier fait plus de 500mo
 
-==== 10/12/2014
+*10/12/2014* _v1.145.0_
 
 - Amélioration page historique
 
-==== 08/12/2014
+*08/12/2014* _v1.145.0_
 
 - Ajout champs de recherche sur la page scénario et affichage
 - Amélioration page affichage
 
-==== 06/12/2014
+*06/12/2014* _v1.145.0_
 
 - Possibilité de choissir l'ordre du dashboard à partir de la page Générale -> Affichage
 
-==== 04/12/2014
+*04/12/2014* _v1.140.0_
 
 - Ajout du raccourci ctrl+s partout pour sauvegarder les paramètres/modifications
 
-==== 01/12/2014
+*01/12/2014*
 
-- Ajout de SQL buddy (éditeur type phpmyadmin) disponible uniquement en mode expert à partir de Générale => Administrateur => Configuration. /!\ Attention reservé aux expert, toute demande de support suite à une fausse manipulation pourra etre refusée /!\ 
+- Ajout de SQL buddy (éditeur type phpmyadmin) disponible uniquement en mode expert à partir de Générale => Administrateur => Configuration*/!\ Attention reservé aux expert, toute demande de support suite à une fausse manipulation pourra etre refusée /!\ 
 - Version stable 1.138.0
 - Bufix
 
-==== 30/11/2014
+*30/11/2014*
 
 - Version stable 1.136.0
 - Mise à jour de socket.io en version 1.1.0 => 1.2.1
 
-==== 27/11/2014
+*27/11/2014*
 
 - Amélioration des vues
 
-==== 24/11/2014
+*24/11/2014*
 
 - Nouvel affichage des objets du market
 
-==== 23/11/2014
+*23/11/2014*
 
 - Amélioration du responsive design
 - Ajout bloc A dans les scénario, permet de lancer une action à une heure precise, mais calculé lors de l'éxecution du scénario
 
-==== 22/11/2014
+*22/11/2014*
 
 - Mise à jour des liens vers l'aide du nouveau site de documentation
 
-==== 20/11/2014
+*20/11/2014*
 
 - optimisation de la vitesse d'affichage des designs
 - bugfix des liens vers les vues dans les designs

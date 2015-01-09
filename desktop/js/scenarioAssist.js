@@ -142,6 +142,12 @@ $("#bt_addScenario").on('click', function (event) {
     });
 });
 
+$('#bt_displayScenarioVariable').on('click', function () {
+    $('#md_modal').closest('.ui-dialog').css('z-index', '1030');
+    $('#md_modal').dialog({title: "{{Variables des scénarios}}"});
+    $("#md_modal").load('index.php?v=d&modal=dataStore.management&type=scenario').dialog('open');
+});
+
 jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
     saveScenario();
@@ -179,6 +185,27 @@ $("#bt_testScenario").on('click', function () {
         },
         success: function () {
             $('#div_alert').showAlert({message: '{{Lancement du scénario réussi}}', level: 'success'});
+        }
+    });
+});
+
+$("#bt_changeAllScenarioState").on('click', function () {
+    var el = $(this);
+    jeedom.config.save({
+        configuration: {enableScenario: el.attr('data-state')},
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            if (el.attr('data-state') == 1) {
+                el.find('i').removeClass('fa-check').addClass('fa-times');
+                el.removeClass('btn-success').addClass('btn-danger').attr('data-state', 0);
+                el.empty().html('<i class="fa fa-times"></i> {{Désac. scénarios}}');
+            } else {
+                el.find('i').removeClass('fa-times').addClass('fa-check');
+                el.removeClass('btn-danger').addClass('btn-success').attr('data-state', 1);
+                el.empty().html('<i class="fa fa-check"></i> {{Act. scénarios}}');
+            }
         }
     });
 });
@@ -451,6 +478,11 @@ function printScenario(_id) {
                 if (firstArray.length == 2) {
                     var conditionArray = firstArray[1].split(' ');
                     if (conditionArray.length >= 3) {
+
+                        if(conditionArray[0] == ''){
+                            conditionArray.shift();
+                        }
+                        console.log(conditionArray);
                         var condition = {expression: firstArray[0]+']#', operator: conditionArray[0]};
                         conditionArray.shift();
                         condition.operande = conditionArray.join(' ');

@@ -94,8 +94,10 @@ if (init('type') == 'plugin') {
                         <option value="enocean" data-category='input'>{{[EnOcean] Configuration module}}</option>
                         <option value="rfxcom" data-category='input'>{{[RfxCom] Configuration module}}</option>
                         <option value="script" data-category='input'>{{Script}}</option>
+                        <option value="scenario" data-category='input'>{{Scénario}}</option>
                         <option value="camera" data-category='input'>{{[Camera] Modèle}}</option>
                         <option value="SNMP" data-category='input'>{{[SNMP] Configuration}}</option>
+                        <option value="mySensors" data-category='input'>{{[My Sensors] Noeud}}</option>
                     </select>
                 </div>
             </div>
@@ -126,7 +128,7 @@ if (init('type') == 'plugin') {
                         <option>Energie</option>
                         <option>Météo</option>
                         <option>Monitoring</option>
-                        <option>Multimedia</option>
+                        <option>Multimédia</option>
                         <option>Nature</option>
                         <option>Objets connectés</option>
                         <option>Organisation</option>

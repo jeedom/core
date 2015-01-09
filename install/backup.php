@@ -60,7 +60,11 @@ try {
     $bakcup_name = 'backup-' . getVersion('jeedom') . '-' . date("d-m-Y-H\hi") . '.tar.gz';
 
     echo __('Sauvegarde des fichiers...', __FILE__);
-    rcopy(dirname(__FILE__) . '/..', $tmp, true, array('tmp', 'backup', 'log'));
+    $exclude = array('tmp', 'backup', 'log');
+    if (strpos('/', config::byKey('backup::path')) === false) {
+        $exclude[] = config::byKey('backup::path');
+    }
+    rcopy(dirname(__FILE__) . '/..', $tmp, true, $exclude);
     echo __("OK\n", __FILE__);
 
     echo __('Suppression du fichier d\'identification de la base de données...', __FILE__);
@@ -72,15 +76,19 @@ try {
     if (!file_exists($tmp . '/plugin_backup')) {
         mkdir($tmp . '/plugin_backup', 0770, true);
     }
-    foreach (plugin::listPlugin(true) as $plugin) {
-        $plugin_id = $plugin->getId();
-        if (method_exists($plugin_id, 'backup')) {
-            echo __('Sauvegarde spécifique pour le plugin...' . $plugin_id . '...', __FILE__);
-            if (!file_exists($tmp . '/plugin_backup/' . $plugin_id)) {
-                mkdir($tmp . '/plugin_backup/' . $plugin_id, 0770, true);
+
+    global $NO_PLUGIN_BAKCUP;
+    if (!isset($NO_PLUGIN_BAKCUP) || $NO_PLUGIN_BAKCUP == false) {
+        foreach (plugin::listPlugin(true) as $plugin) {
+            $plugin_id = $plugin->getId();
+            if (method_exists($plugin_id, 'backup')) {
+                echo __('Sauvegarde spécifique pour le plugin...' . $plugin_id . '...', __FILE__);
+                if (!file_exists($tmp . '/plugin_backup/' . $plugin_id)) {
+                    mkdir($tmp . '/plugin_backup/' . $plugin_id, 0770, true);
+                }
+                $plugin_id::backup($tmp . '/plugin_backup/' . $plugin_id);
+                echo __("OK\n", __FILE__);
             }
-            $plugin_id::backup($tmp . '/plugin_backup/' . $plugin_id);
-            echo __("OK\n", __FILE__);
         }
     }
 
@@ -111,24 +119,25 @@ try {
         $older = array('file' => null, 'datetime' => null);
         foreach (ls($backup_dir, '*') as $file) {
             if ($older['datetime'] == null) {
-                $older['file'] = $record_dir . '/' . $file;
-                $older['datetime'] = filemtime($record_dir . '/' . $file);
+                $older['file'] = $backup_dir . '/' . $file;
+                $older['datetime'] = filemtime($backup_dir . '/' . $file);
             }
-            if ($older['datetime'] > filemtime($record_dir . '/' . $file)) {
-                $older['file'] = $record_dir . '/' . $file;
-                $older['datetime'] = filemtime($record_dir . '/' . $file);
+            if ($older['datetime'] > filemtime($backup_dir . '/' . $file)) {
+                $older['file'] = $backup_dir . '/' . $file;
+                $older['datetime'] = filemtime($backup_dir . '/' . $file);
             }
         }
         if ($older['file'] == null) {
             echo __('Erreur aucun fichier à supprimer alors que le dossier fait : ' . getDirectorySize($backup_dir), __FILE__);
         }
         echo __("\n - Suppression de : ", __FILE__) . $older['file'];
-        if(!unlink($older['file'])){
+        if (!unlink($older['file'])) {
             $i = 50;
         }
         $i++;
         if ($i > 50) {
             echo __('Plus de 50 sauvegardes supprimées. Je m\'arrête', __FILE__);
+            break;
         }
     }
     echo __("OK\n", __FILE__);

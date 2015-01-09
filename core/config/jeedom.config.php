@@ -25,8 +25,9 @@ $JEEDOM_INTERNAL_CONFIG = array(
             'energy' => array('name' => 'Energie', 'color' => '#2eb04b', 'mcolor' => '#2eb04b', 'cmdColor' => '#69e283', 'mcmdColor' => '#69e283'),
             'light' => array('name' => 'Lumière', 'color' => '#f39c12', 'mcolor' => '#f39c12', 'cmdColor' => '#f1c40f', 'mcmdColor' => '#f1c40f'),
             'automatism' => array('name' => 'Automatisme', 'color' => '#808080', 'mcolor' => '#808080', 'cmdColor' => '#c2beb8', 'mcmdColor' => '#c2beb8'),
+            'default' => array('name' => 'Defaut', 'color' => '#19bc9c', 'mcolor' => '#19bc9c', 'cmdColor' => '#5DFFDF', 'mcmdColor' => '#5DFFDF'),
+            ),
         ),
-    ),
     'plugin' => array(
         'category' => array(
             'security' => array('name' => 'Sécurité', 'icon' => 'fa-lock'),
@@ -42,140 +43,140 @@ $JEEDOM_INTERNAL_CONFIG = array(
             'monitoring' => array('name' => 'Monitoring', 'icon' => 'fa-tachometer'),
             'health' => array('name' => 'Santé', 'icon' => 'icon loisir-runner5'),
             'nature' => array('name' => 'Nature', 'icon' => 'icon nature-leaf32'),
-        ),
-    ),
-    'cmd' => array(
-        'type' => array(
-            'info' => array(
-                'name' => 'Info',
-                'subtype' => array(
-                    'numeric' => array(
-                        'name' => 'Numérique',
-                        'configuration' => array(
-                            'minValue' => array('visible' => true),
-                            'maxValue' => array('visible' => true)),
-                        'unite' => array('visible' => true),
-                        'eventOnly' => array('visible' => true),
-                        'isHistorized' => array('visible' => true),
-                        'cache' => array(
-                            'lifetime' => array('visible' => true),
-                            'enable' => array('visible' => true)
+            ),
+),
+'cmd' => array(
+    'type' => array(
+        'info' => array(
+            'name' => 'Info',
+            'subtype' => array(
+                'numeric' => array(
+                    'name' => 'Numérique',
+                    'configuration' => array(
+                        'minValue' => array('visible' => true),
+                        'maxValue' => array('visible' => true)),
+                    'unite' => array('visible' => true),
+                    'eventOnly' => array('visible' => true),
+                    'isHistorized' => array('visible' => true),
+                    'cache' => array(
+                        'lifetime' => array('visible' => true),
+                        'enable' => array('visible' => true)
                         ),
-                        'display' => array(
-                            'invertBinary' => array('visible' => false),
-                            'icon' => array('visible' => false, 'parentVisible' => false),
-                        ),
-                    ),
-                    'binary' => array(
-                        'name' => 'Binaire',
-                        'configuration' => array(
-                            'minValue' => array('visible' => false),
-                            'maxValue' => array('visible' => false)),
-                        'unite' => array('visible' => false),
-                        'eventOnly' => array('visible' => true),
-                        'isHistorized' => array('visible' => true),
-                        'cache' => array(
-                            'lifetime' => array('visible' => true),
-                            'enable' => array('visible' => true)
-                        ),
-                        'display' => array(
-                            'invertBinary' => array('visible' => true),
-                            'icon' => array('visible' => false, 'parentVisible' => false),
+                    'display' => array(
+                        'invertBinary' => array('visible' => false),
+                        'icon' => array('visible' => false, 'parentVisible' => false),
                         ),
                     ),
-                    'string' => array(
-                        'name' => 'Autre',
-                        'configuration' => array(
-                            'minValue' => array('visible' => false),
-                            'maxValue' => array('visible' => false)),
-                        'unite' => array('visible' => true),
-                        'eventOnly' => array('visible' => true),
-                        'isHistorized' => array('visible' => false),
-                        'cache' => array(
-                            'lifetime' => array('visible' => true),
-                            'enable' => array('visible' => true)
+                'binary' => array(
+                    'name' => 'Binaire',
+                    'configuration' => array(
+                        'minValue' => array('visible' => false),
+                        'maxValue' => array('visible' => false)),
+                    'unite' => array('visible' => false),
+                    'eventOnly' => array('visible' => true),
+                    'isHistorized' => array('visible' => true),
+                    'cache' => array(
+                        'lifetime' => array('visible' => true),
+                        'enable' => array('visible' => true)
                         ),
-                        'display' => array(
-                            'invertBinary' => array('visible' => false),
-                            'icon' => array('visible' => false, 'parentVisible' => false),
+                    'display' => array(
+                        'invertBinary' => array('visible' => true),
+                        'icon' => array('visible' => false, 'parentVisible' => false),
+                        ),
+                    ),
+                'string' => array(
+                    'name' => 'Autre',
+                    'configuration' => array(
+                        'minValue' => array('visible' => false),
+                        'maxValue' => array('visible' => false)),
+                    'unite' => array('visible' => true),
+                    'eventOnly' => array('visible' => true),
+                    'isHistorized' => array('visible' => false),
+                    'cache' => array(
+                        'lifetime' => array('visible' => true),
+                        'enable' => array('visible' => true)
+                        ),
+                    'display' => array(
+                        'invertBinary' => array('visible' => false),
+                        'icon' => array('visible' => false, 'parentVisible' => false),
                         ),
                     ),
                 )
+),
+'action' => array(
+    'name' => 'Action',
+    'subtype' => array(
+        'other' => array(
+            'name' => 'Défaut',
+            'configuration' => array(
+                'minValue' => array('visible' => false),
+                'maxValue' => array('visible' => false)),
+            'unite' => array('visible' => false),
+            'eventOnly' => array('visible' => false),
+            'isHistorized' => array('visible' => false),
+            'cache' => array(
+                'lifetime' => array('visible' => false),
+                'enable' => array('visible' => false)
+                ),
+            'display' => array(
+                'invertBinary' => array('visible' => false),
+                'icon' => array('visible' => true, 'parentVisible' => true),
+                ),
             ),
-            'action' => array(
-                'name' => 'Action',
-                'subtype' => array(
-                    'other' => array(
-                        'name' => 'Défaut',
-                        'configuration' => array(
-                            'minValue' => array('visible' => false),
-                            'maxValue' => array('visible' => false)),
-                        'unite' => array('visible' => false),
-                        'eventOnly' => array('visible' => false),
-                        'isHistorized' => array('visible' => false),
-                        'cache' => array(
-                            'lifetime' => array('visible' => false),
-                            'enable' => array('visible' => false)
-                        ),
-                        'display' => array(
-                            'invertBinary' => array('visible' => false),
-                            'icon' => array('visible' => true, 'parentVisible' => true),
-                        ),
-                    ),
-                    'slider' => array(
-                        'name' => 'Curseur',
-                        'configuration' => array(
-                            'minValue' => array('visible' => true),
-                            'maxValue' => array('visible' => true)),
-                        'unite' => array('visible' => false),
-                        'eventOnly' => array('visible' => false),
-                        'isHistorized' => array('visible' => false),
-                        'cache' => array(
-                            'lifetime' => array('visible' => false),
-                            'enable' => array('visible' => false)
-                        ),
-                        'display' => array(
-                            'invertBinary' => array('visible' => false),
-                            'icon' => array('visible' => true, 'parentVisible' => true),
-                        ),
-                    ),
-                    'message' => array(
-                        'name' => 'Message',
-                        'configuration' => array(
-                            'minValue' => array('visible' => false),
-                            'maxValue' => array('visible' => false)),
-                        'unite' => array('visible' => false),
-                        'eventOnly' => array('visible' => false),
-                        'isHistorized' => array('visible' => false),
-                        'cache' => array(
-                            'lifetime' => array('visible' => false),
-                            'enable' => array('visible' => false)
-                        ),
-                        'display' => array(
-                            'invertBinary' => array('visible' => false),
-                            'icon' => array('visible' => true, 'parentVisible' => true),
-                        ),
-                    ),
-                    'color' => array(
-                        'name' => 'Couleur',
-                        'configuration' => array(
-                            'minValue' => array('visible' => false),
-                            'maxValue' => array('visible' => false)),
-                        'unite' => array('visible' => false),
-                        'eventOnly' => array('visible' => false),
-                        'isHistorized' => array('visible' => false),
-                        'cache' => array(
-                            'lifetime' => array('visible' => false),
-                            'enable' => array('visible' => false)
-                        ),
-                        'display' => array(
-                            'invertBinary' => array('visible' => false),
-                            'icon' => array('visible' => true, 'parentVisible' => true),
-                        ),
-                    ),
+        'slider' => array(
+            'name' => 'Curseur',
+            'configuration' => array(
+                'minValue' => array('visible' => true),
+                'maxValue' => array('visible' => true)),
+            'unite' => array('visible' => false),
+            'eventOnly' => array('visible' => false),
+            'isHistorized' => array('visible' => false),
+            'cache' => array(
+                'lifetime' => array('visible' => false),
+                'enable' => array('visible' => false)
+                ),
+            'display' => array(
+                'invertBinary' => array('visible' => false),
+                'icon' => array('visible' => true, 'parentVisible' => true),
+                ),
+            ),
+        'message' => array(
+            'name' => 'Message',
+            'configuration' => array(
+                'minValue' => array('visible' => false),
+                'maxValue' => array('visible' => false)),
+            'unite' => array('visible' => false),
+            'eventOnly' => array('visible' => false),
+            'isHistorized' => array('visible' => false),
+            'cache' => array(
+                'lifetime' => array('visible' => false),
+                'enable' => array('visible' => false)
+                ),
+            'display' => array(
+                'invertBinary' => array('visible' => false),
+                'icon' => array('visible' => true, 'parentVisible' => true),
+                ),
+            ),
+        'color' => array(
+            'name' => 'Couleur',
+            'configuration' => array(
+                'minValue' => array('visible' => false),
+                'maxValue' => array('visible' => false)),
+            'unite' => array('visible' => false),
+            'eventOnly' => array('visible' => false),
+            'isHistorized' => array('visible' => false),
+            'cache' => array(
+                'lifetime' => array('visible' => false),
+                'enable' => array('visible' => false)
+                ),
+            'display' => array(
+                'invertBinary' => array('visible' => false),
+                'icon' => array('visible' => true, 'parentVisible' => true),
                 ),
             ),
         ),
-    ),
+),
+),
+),
 );
 ?>
