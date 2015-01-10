@@ -299,6 +299,7 @@ foreach (scenario::listGroup() as $group) {
                         <option value="variable">{{Variable}}</option>
                         <option value="scenario">{{Scénario}}</option>
                         <option value="stop">{{Stop}}</option>
+                        <option value="say">{{Dit}}</option>
                     </select>
                 </center>
             </div>

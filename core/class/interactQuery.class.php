@@ -137,11 +137,15 @@ public static function recognize($_query) {
         }
 
     }
-    if(config::byKey('interact::confidence') > 0 && $shortest > config::byKey('interact::confidence')){
-        log::add('interact','debug','Correspondance trop éloigné : '.$shortest);
-        return null;
-    }
-    return $closest;
+    if(str_word_count($_query) == 1 && $shortest > 1){
+     log::add('interact','debug','Correspondance trop éloigné (limite à 1 du à la presence d\'un seul mots) : '.$shortest);
+     return null;
+ }
+ if(config::byKey('interact::confidence') > 0 && $shortest > config::byKey('interact::confidence')){
+    log::add('interact','debug','Correspondance trop éloigné : '.$shortest);
+    return null;
+}
+return $closest;
 }
 
 public static function whatDoYouKnow($_object = null) {
@@ -317,7 +321,7 @@ public function executeAndReply($_parameters) {
         }
     }
     $replace = array();
-     $replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
+    $replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
 
     if ($this->getLink_type() == 'cmd') {
         $cmd = cmd::byId($this->getLink_id());
@@ -331,7 +335,7 @@ public function executeAndReply($_parameters) {
         }
         $replace['#objet#'] = '';
         $replace['#equipement#'] = '';
-       
+        
         $eqLogic = $cmd->getEqLogic();
         if (is_object($eqLogic)) {
             $replace['#equipement#'] = $eqLogic->getName();
@@ -344,39 +348,12 @@ public function executeAndReply($_parameters) {
         $replace['#unite#'] = $cmd->getUnite();
         if ($cmd->getType() == 'action') {
             $options = null;
-            $query = $this->getQuery();
-            preg_match_all("/#(.*?)#/", $query, $matches);
-            $matches = $matches[1];
-            if (count($matches) > 0) {
-                if (!isset($_parameters['dictation'])) {
-                    return __('Erreur aucune phrase envoyée. Impossible de remplir les trous', __FILE__);
-                }
-                $dictation = $_parameters['dictation'];
-                $options = array();
-                $start = 0;
-                $bitWords = array();
-                foreach ($matches as $match) {
-                    $bitWords[] = substr($query, $start, strpos($query, '#' . $match . '#') - $start);
-                    $start = strpos($query, '#' . $match . '#') + strlen('#' . $match . '#');
-                }
-                if ($start < strlen($query)) {
-                    $bitWords[] = substr($query, $start);
-                }
-                $i = 0;
-                foreach ($matches as $match) {
-                    if (isset($bitWords[$i])) {
-                        $start = strpos($dictation, $bitWords[$i]);
-                    } else {
-                        $start = 0;
+            if($cmd->getSubType() == 'slider'){
+                preg_match_all("/([0-9]*)/", $_parameters['dictation'], $matches);
+                foreach ($matches[1] as $number) {
+                    if (is_numeric($number)) {
+                        $options['slider'] = $number;
                     }
-                    if (isset($bitWords[$i + 1])) {
-                        $end = strpos($dictation, $bitWords[$i + 1]);
-                        $options[$match] = trim(substr($dictation, $start + strlen($bitWords[$i]), $end - ($start + strlen($bitWords[$i]))));
-                    } else {
-                        $options[$match] = trim(substr($dictation, $start + strlen($bitWords[$i])));
-                    }
-
-                    $i++;
                 }
             }
             try {

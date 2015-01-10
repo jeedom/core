@@ -579,6 +579,8 @@ public function execute(&$scenario = null) {
                     $scenario->save();
                 }
                 die();
+            } else if ($this->getExpression() == 'say') {
+               nodejs::pushUpdate('jeedom::say', $options['message']) ;
             } else if ($this->getExpression() == 'scenario') {
                 if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
                     $actionScenario = &$scenario;
