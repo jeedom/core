@@ -89,7 +89,7 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 <?php
 echo '<div object_id="' . $object->getId() . '">';
 echo '<legend>' . $object->getDisplay('icon') . ' ' . $object->getName() . '</legend>';
-echo '<div class="div_displayEquipement" style="width: 100%;">';
+echo '<div class="div_displayEquipement" style="width: 100%;margin-bottom : 3px;">';
 foreach ($object->getEqLogic(true, true) as $eqLogic) {
     if ((init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1)) {
         echo $eqLogic->toHtml('dashboard');
@@ -98,7 +98,7 @@ foreach ($object->getEqLogic(true, true) as $eqLogic) {
 echo '</div>';
 foreach ($child_object as $child) {
     $margin = 40 * $parentNumber[$child->getId()];
-    echo '<div object_id="' . $child->getId() . '" style="margin-left : ' . $margin . 'px;">';
+    echo '<div object_id="' . $child->getId() . '" style="margin-left : ' . $margin . 'px;margin-bottom : 3px;">';
     echo '<legend>' . $child->getDisplay('icon') . ' ' . $child->getName() . '</legend>';
     echo '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '" style="width: 100%;">';
     foreach ($child->getEqLogic(true, true) as $eqLogic) {
