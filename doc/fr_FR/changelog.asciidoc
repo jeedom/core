@@ -1,3 +1,15 @@
+*10/01/2015* _v1.153.0_
+
+- Stable 1.153.0
+- Amélioration reconnaissance des intérations qui n'ont que un mot
+- Ajout action say dans les scénarios (pour dire un texte sur tous les onglet jeedom ouvert)
+- Possibilité de reconnaissance des nombres dans les interactions pour les commandes de type slider (expérimental)
+
+*07/01/2015* _v1.153.0_
+
+- Support de fonction imbriqué dans les scénarios/interaction/virtuel (ex "round(variable(toto),1)" )
+- Sortie stable de la version 1.152.0
+
 *07/01/2015* _v1.152.0_
 
 - Ajout d'une page d'information système

@@ -106,6 +106,7 @@ if (count($plugins_list) > 0) {
                 include_file('3rdparty', 'jwerty/jwerty', 'js');
                 include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
                 include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
+                include_file('3rdparty', 'responsivevoices/responsivevoices', 'js');
                 if (file_exists(dirname(__FILE__) . '/../custom/custom.css')) {
                     include_file('desktop', '', 'custom.css');
                 }
@@ -232,7 +233,7 @@ if (count($plugins_list) > 0) {
                                                                     <li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
                                                                     <?php
                                                                 }
-                                                                 if (hasRight('sysinfo', true)) {
+                                                                if (hasRight('sysinfo', true)) {
                                                                     ?>
                                                                     <li class="expertModeVisible"><a href="index.php?v=d&p=sysinfo"><i class="fa fa-tachometer"></i> {{Informations système}}</a></li>
                                                                     <?php

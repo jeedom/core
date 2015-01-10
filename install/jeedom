@@ -28,7 +28,7 @@
 ### END INIT INFO
 
 PATH_TO_JEEDOM="/usr/share/nginx/www/jeedom"
-DAEMONUSER" #utilisateur du programme
+DAEMONUSER="www-data" #utilisateur du programme
 
 
 ####################NODE JS###################################

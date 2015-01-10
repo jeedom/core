@@ -448,10 +448,10 @@ public static function setTags($_expression, &$_scenario = null) {
         $function = $match[1];
         $arguments = explode(',', $match[2]);
         $replace_string =  $match[0];
-        /*if(substr_count($match[2],'(') != substr_count($match[2],')')){
+
+        if(substr_count($match[2],'(') != substr_count($match[2],')')){
            $arguments = self::setTags($match[2].')');
-           $replace_string =  $match[0];
-            if(substr($_expression,strpos($_expression,$match[2])+strlen($match[2])+1,1) == ','){
+            if(substr($_expression,strpos($_expression,$match[2])+strlen($match[2])+1,1) != ')'){
                 for($i=strpos($_expression,$match[2])+strlen($match[2]) + 1;$i<strlen($_expression);$i++){
                     $car = $_expression[$i];
                     if( $car != ')'){
@@ -464,7 +464,7 @@ public static function setTags($_expression, &$_scenario = null) {
             }
             $replace_string .= ')';
             $arguments = explode(',', $arguments);
-        }*/
+        }
         if (method_exists(__CLASS__, $function)) {
             if ($function == 'trigger') {
                 if (!isset($arguments[0])) {
@@ -579,6 +579,8 @@ public function execute(&$scenario = null) {
                     $scenario->save();
                 }
                 die();
+            } else if ($this->getExpression() == 'say') {
+               nodejs::pushUpdate('jeedom::say', $options['message']) ;
             } else if ($this->getExpression() == 'scenario') {
                 if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
                     $actionScenario = &$scenario;

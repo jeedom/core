@@ -50,7 +50,7 @@ try {
             $update = true;
         }
     } catch (Exception $e) {
-        
+
     }
     if (init('v') != '') {
         $update = true;
@@ -186,6 +186,13 @@ try {
                 $updateSql = dirname(__FILE__) . '/update/' . init('v') . '.sql';
                 if (file_exists($updateSql)) {
                     try {
+                        echo __("Désactivation des contraintes...", __FILE__);
+                        DB::Prepare("SET foreign_key_checks = 0", array(), DB::FETCH_TYPE_ROW);
+                        echo __("OK\n", __FILE__);
+                    } catch (Exception $e) {
+                        echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+                    }
+                    try {
                         echo __("Mise à jour de la base de données en version : ", __FILE__) . init('v') . "\n";
                         $sql = file_get_contents($updateSql);
                         DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
@@ -196,6 +203,13 @@ try {
                         } else {
                             echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
                         }
+                    }
+                    try {
+                        echo __("Réactivation des contraintes...", __FILE__);
+                        DB::Prepare("SET foreign_key_checks = 1", array(), DB::FETCH_TYPE_ROW);
+                        echo __("OK\n", __FILE__);
+                    } catch (Exception $e) {
+                        echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
                     }
                 }
                 $updateScript = dirname(__FILE__) . '/update/' . init('v') . '.php';

@@ -109,6 +109,7 @@ En plus des commandes domotiques vous avez accès aux fonctions suivantes :
 - scenario : permet le controle des scénarios
 - stop : arrête le scénario
 - icon : permet de changer l'icone de représentation du scenario
+- say : permet de faire dire un texte à jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)
                
 Vous pouvez aussi utiliser les tags suivants dans les options : 
 

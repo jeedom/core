@@ -76,6 +76,9 @@ jeedom.init = function () {
         socket.on('eventEqLogic', function (eqLogic_id) {
             jeedom.eqLogic.refreshValue({id: eqLogic_id});
         });
+        socket.on('jeedom::say', function (_message) {
+            responsiveVoice.speak(_message,'French Female');
+        });
         socket.on('jeedom::alert', function (_options) {
             _options = json_decode(_options);
             if (!isset(_options.message) || $.trim(_options.message) == '') {
