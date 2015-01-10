@@ -1,5 +1,6 @@
 *10/01/2015* _v1.153.0_
 
+- Stable 1.153.0
 - Amélioration reconnaissance des intérations qui n'ont que un mot
 - Ajout action say dans les scénarios (pour dire un texte sur tous les onglet jeedom ouvert)
 - Possibilité de reconnaissance des nombres dans les interactions pour les commandes de type slider (expérimental)

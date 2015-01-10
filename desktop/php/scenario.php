@@ -300,6 +300,7 @@ foreach (scenario::listGroup() as $group) {
                         <option value="scenario">{{Scénario}}</option>
                         <option value="stop">{{Stop}}</option>
                         <option value="say">{{Dit}}</option>
+                        <option value="wait">{{Attendre}}</option>
                     </select>
                 </center>
             </div>
