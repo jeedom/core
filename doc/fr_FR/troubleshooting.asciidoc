@@ -96,4 +96,3 @@ Lors de la configuration et avant le test il faut enregistrer celle-ci
 --
 Verifiez que vous avez bien mis les /jeedom si vous utilisez ceux-ci juste après l'IP de jeedom (souvent le cas en installation DIY)
 --
- 
