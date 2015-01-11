@@ -80,7 +80,14 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                     <div class="form-group">
                         <label class="col-sm-4 control-label">{{Tentative échouée}}</label>
                         <div class="col-sm-4">
-                            <span class="eqLogicAttr label label-primary" data-l1key="status" data-l2key="numberTryWithoutSuccess"></span>
+                            <span class="label label-primary"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess',0) ?></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                    <label class="col-sm-4 control-label">{{Date de dernière communication}}</label>
+                        <div class="col-sm-4">
+                            <span class="label label-primary"><?php echo $eqLogic->getStatus('lastCommunication') ?></span>
                         </div>
                     </div>
 
