@@ -609,6 +609,7 @@ class cmd {
         viewData::removeByTypeLinkId('cmd', $this->getId());
         dataStore::removeByTypeLinkId('cmd', $this->getId());
         $this->getEqLogic()->emptyCacheWidget();
+        $this->emptyHistory();
         return DB::remove($this);
     }
 
