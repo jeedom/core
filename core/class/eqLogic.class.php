@@ -485,7 +485,7 @@ class eqLogic {
         $replace['#name#'] = '';
     }
     if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
-        $replace['#name#'] = '';
+        $replace['#name#'] = '<br/>';
     }
     $parameters = $this->getDisplay('parameters');
     if (is_array($parameters)) {
