@@ -234,8 +234,8 @@ CREATE TABLE IF NOT EXISTS `history` (
   CONSTRAINT `fk_history_cmd1`
     FOREIGN KEY (`cmd_id`)
     REFERENCES `cmd` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 

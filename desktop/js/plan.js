@@ -636,7 +636,7 @@ function displayFrameObject(name, _type, _id, _html, _plan, _noRender) {
             html.find('.widget-name').remove();
         }
     }
-    if (_type == 'scenario' && isset(_plan.display) && (isset(_plan.display.hideCmd) && _plan.display.hideCmd == 1)) {
+    if (_type == 'scenario' && isset(_plan.display) && isset(_plan.display.hideCmd) && _plan.display.hideCmd == 1) {
         html.find('.changeScenarioState').remove();
     }
     if (init(_noRender, false) == false) {

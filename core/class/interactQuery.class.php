@@ -50,13 +50,13 @@ class interactQuery {
         FROM interactQuery
         WHERE query=:query';
         if($_interactDef_id != null){
-           $values['interactDef_id'] = $_interactDef_id;
-           $sql .= ' AND interactDef_id=:interactDef_id';
-       }
-       return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-   }
+         $values['interactDef_id'] = $_interactDef_id;
+         $sql .= ' AND interactDef_id=:interactDef_id';
+     }
+     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+ }
 
-   public static function byInteractDefId($_interactDef_id, $_enable = false) {
+ public static function byInteractDefId($_interactDef_id, $_enable = false) {
     $values = array(
         'interactDef_id' => $_interactDef_id
         );
@@ -138,10 +138,10 @@ public static function recognize($_query) {
 
     }
     if(str_word_count($_query) == 1 && $shortest > 1){
-     log::add('interact','debug','Correspondance trop éloigné (limite à 1 du à la presence d\'un seul mots) : '.$shortest);
-     return null;
- }
- if(config::byKey('interact::confidence') > 0 && $shortest > config::byKey('interact::confidence')){
+       log::add('interact','debug','Correspondance trop éloigné (limite à 1 du à la presence d\'un seul mots) : '.$shortest);
+       return null;
+   }
+   if(config::byKey('interact::confidence') > 0 && $shortest > config::byKey('interact::confidence')){
     log::add('interact','debug','Correspondance trop éloigné : '.$shortest);
     return null;
 }
@@ -292,6 +292,9 @@ public function executeAndReply($_parameters) {
         if (trim($reply) == '') {
             $reply = self::replyOk();
         }
+        $replace = array();
+        $replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
+        $reply = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
         switch ($interactDef->getOptions('scenario_action')) {
             case 'start':
             $scenario->launch(false, __('Scenario exécuté sur interaction (S.A.R.A.H, SMS...)', __FILE__));

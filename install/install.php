@@ -130,11 +130,11 @@ try {
                     echo __("OK\n", __FILE__);
                     echo __("Nettoyage sqlbuddy en cours...", __FILE__);
                     foreach (ls(dirname(__FILE__) . '/../', 'sqlbuddy*') as $file) {
-                        rrmdir(dirname(__FILE__) . '/../' . $file);
+                        @rrmdir(dirname(__FILE__) . '/../' . $file);
                     }
                     echo __("Nettoyage sysinfo en cours...", __FILE__);
                     foreach (ls(dirname(__FILE__) . '/../', 'sysinfo*') as $file) {
-                        rrmdir(dirname(__FILE__) . '/../' . $file);
+                        @rrmdir(dirname(__FILE__) . '/../' . $file);
                     }
                     echo __("OK\n", __FILE__);
                     echo __("Création des dossiers temporaire...", __FILE__);
@@ -387,10 +387,10 @@ echo "[END UPDATE SUCCESS]\n";
 
 function incrementVersion($_version) {
     $version = explode('.', $_version);
-    if ($version[2] < 200) {
+    if ($version[2] < 500) {
         $version[2] ++;
     } else {
-        if ($version[1] < 200) {
+        if ($version[1] < 500) {
             $version[1] ++;
             $version[2] = 0;
         } else {
