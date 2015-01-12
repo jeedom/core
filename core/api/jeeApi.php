@@ -68,10 +68,10 @@ if (trim(config::byKey('api')) == '') {
                         $param['emptyReply'] = init('emptyReply');
                     }
                     if(init('profile') != ''){
-                     $param['profile'] = init('profile');
-                 }
-                 echo interactQuery::tryToReply($query, $param);
-             } else if ($type == 'scenario') {
+                       $param['profile'] = init('profile');
+                   }
+                   echo interactQuery::tryToReply($query, $param);
+               } else if ($type == 'scenario') {
                 log::add('api', 'debug', 'Demande api pour les scénarios');
                 $scenario = scenario::byId(init('id'));
                 if (!is_object($scenario)) {
@@ -322,16 +322,16 @@ if (trim(config::byKey('api')) == '') {
 
 
                 if ($jsonrpc->getMethod() == 'eqLogic::byTypeAndId') {
-                    $return = array();
-                    foreach ($params['eqType'] as $eqType) {
-                        $info_eqLogics = array();
-                        foreach (eqLogic::byType($eqType) as $eqLogic) {
-                            $info_cmds = array();
-                            foreach ($eqLogic->getCmd() as $cmd) {
-                               $info_cmd = utils::o2a($cmd);
-                               if($cmd->getType() == 'info'){
+                   $return = array();
+                   foreach ($params['eqType'] as $eqType) {
+                    $info_eqLogics = array();
+                    foreach (eqLogic::byType($eqType) as $eqLogic) {
+                        $info_cmds = array();
+                        foreach ($eqLogic->getCmd() as $cmd) {
+                            $info_cmd = utils::o2a($cmd);
+                            if($cmd->getType() == 'info'){
                                 $info_cmd['value'] = $cmd->execCmd();
-                                $info_cmd['collectDate'] = $cmd->getCollectDate()
+                                $info_cmd['collectDate'] = $cmd->getCollectDate();
                             }
                         }
                         $info_cmds[] = $info_cmd;
@@ -341,15 +341,16 @@ if (trim(config::byKey('api')) == '') {
                     }
                 }
                 $return[$eqType] = $info_eqLogics;
-            }
-            foreach ($params['id'] as $id) {
-                $eqLogic = eqLogic::byId($id);
-                $info_cmds = array();
-                foreach ($eqLogic->getCmd() as $cmd) {
-                   $info_cmd = utils::o2a($cmd);
-                   if($cmd->getType() == 'info'){
-                    $info_cmd['value'] = $cmd->execCmd();
-                    $info_cmd['collectDate'] = $cmd->getCollectDate()
+
+                foreach ($params['id'] as $id) {
+                    $eqLogic = eqLogic::byId($id);
+                    $info_cmds = array();
+                    foreach ($eqLogic->getCmd() as $cmd) {
+                       $info_cmd = utils::o2a($cmd);
+                       if($cmd->getType() == 'info'){
+                        $info_cmd['value'] = $cmd->execCmd();
+                        $info_cmd['collectDate'] = $cmd->getCollectDate();
+                    }
                 }
                 $info_cmds[] = $info_cmd;
                 $info_eqLogic =  utils::o2a($eqLogic);
@@ -357,6 +358,7 @@ if (trim(config::byKey('api')) == '') {
                 $return[$id] = $info_eqLogic;
             }
             $jsonrpc->makeSuccess($return);
+
         }
 
         /*             * ************************Commande*************************** */
