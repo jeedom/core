@@ -80,7 +80,7 @@ Vous pouvez aussi utiliser les tags suivants :
 - variable(mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
     * Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas
 - scenario(scenario) : donne le statut du scenario
-    * Ex : scenario(\#[Salle de bain][Lumière][Auto]#) : Renvoi 1 en cours, 0 si arreté et -1 si desactivé
+    * Ex : scenario(\#[Salle de bain][Lumière][Auto]#) : Renvoi 1 en cours, 0 si arreté et -1 si desactivé, -2 si le scénario n'éxiste pas et -3 si l'état n'est pas cohérent
 - stateDuration(commande,[valeur]) : donne la durée en seconde depuis le dernier changement de valeur
     * Ex : stateDuration(\#[Salle de bain][Hydrometrie][Humidité]#) : Renvoi 300 si cette valeur est la depuis 5min
 - lastScenarioExecution(scenario) : donne la durée en seconde depuis le dernier lancement du scénario

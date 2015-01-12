@@ -125,7 +125,7 @@ class scenarioExpression {
             case 'in progress':
             return 1;
         }
-        return -2;
+        return -3;
     }
 
     public static function average($_cmd_id, $_period = '1 hour') {
