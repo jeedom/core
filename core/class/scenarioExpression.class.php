@@ -334,7 +334,7 @@ class scenarioExpression {
     }
 
     public static function collectDate($_cmd,$_format = 'Y-m-d H:i:s'){
-        $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+        $cmd = cmd::byId(trim(str_replace('#', '', $_cmd)));
         if(!is_object($cmd)){
             return -1;
         }
