@@ -99,6 +99,8 @@ Vous pouvez aussi utiliser les tags suivants :
     * Ex : time(\#time\# + 30) : s'il est 16h50 renverra : 1650 + 30 = 1720
 - formatTime(time) : permet de formater le retour d'une chaine #time#
     * Ex : formatTime(1650) : renverra 16h50
+- collectDate(cmd,[format]) : renvoit la date de la derniere donnée pour la commande donnée en paramètre, le 2eme paramètre optionel permet de spécifier le format de retour (détails link:http://php.net/manual/fr/function.date.php[ici])
+    * Ex : collectDate(\#[Salle de bain][Hydrometrie][Humidité]#) : renverra 2015-01-01 17:45:12
             
 ===== Action
 En plus des commandes domotiques vous avez accès aux fonctions suivantes : 
