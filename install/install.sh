@@ -507,6 +507,7 @@ install_dependency()
 	apt-get install -y usb-modeswitch
 	apt-get install -y python-serial make php-pear libpcre3-dev build-essential
 	apt-get install -y libudev1
+	apt-get install -y systemd
 
 	pecl install oauth
 	if [ $? -eq 0 ] ; then
