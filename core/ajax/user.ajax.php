@@ -47,22 +47,25 @@ try {
         $oldPassword = $user->getPassword();
         $user->setPassword(sha1($newPassword));
         $cmds = explode(('&&'), config::byKey('emailAdmin'));
+        $found = false;
         try {
             if (count($cmds) > 0) {
                 foreach ($cmds as $id) {
                     $cmd = cmd::byId(str_replace('#', '', $id));
                     if (is_object($cmd)) {
+                        $found = true;
                         $cmd->execCmd(array(
                             'title' => __('[JEEDOM] Récuperation de mot de passe', __FILE__),
                             'message' => 'Voici votre nouveau mot de passe pour votre installation jeedom : ' . $newPassword
-                        ));
+                            ));
                     }
                 }
-            } else {
+            }
+            if(!$found){
                 market::sendUserMessage(__('[JEEDOM] Récuperation de mot de passe', __FILE__), 'Voici votre nouveau mot de passe pour votre installation jeedom : ' . $newPassword);
             }
         } catch (Exception $e) {
-            throw new Exception(__('Aucune commande trouvé pour envoyé le nouveau mot de passe, la demande de récupération à echoué', __FILE__));
+            throw new Exception(__('Aucune commande trouvé pour envoyé le nouveau mot de passe, la demande de récupération a echouée', __FILE__));
         }
         $user->save();
         ajax::success();

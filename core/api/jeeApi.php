@@ -68,10 +68,10 @@ if (trim(config::byKey('api')) == '') {
                         $param['emptyReply'] = init('emptyReply');
                     }
                     if(init('profile') != ''){
-                     $param['profile'] = init('profile');
-                 }
-                 echo interactQuery::tryToReply($query, $param);
-             } else if ($type == 'scenario') {
+                       $param['profile'] = init('profile');
+                   }
+                   echo interactQuery::tryToReply($query, $param);
+               } else if ($type == 'scenario') {
                 log::add('api', 'debug', 'Demande api pour les scénarios');
                 $scenario = scenario::byId(init('id'));
                 if (!is_object($scenario)) {
@@ -320,287 +320,328 @@ if (trim(config::byKey('api')) == '') {
                     $jsonrpc->makeSuccess(utils::o2a($eqLogic));
                 }
 
-                /*             * ************************Commande*************************** */
-                if ($jsonrpc->getMethod() == 'cmd::all') {
-                    $jsonrpc->makeSuccess(utils::o2a(cmd::all()));
-                }
 
-                if ($jsonrpc->getMethod() == 'cmd::byEqLogicId') {
-                    $jsonrpc->makeSuccess(utils::o2a(cmd::byEqLogicId($params['eqLogic_id'])));
-                }
-
-                if ($jsonrpc->getMethod() == 'cmd::byId') {
-                    $cmd = cmd::byId($params['id']);
-                    if (!is_object($cmd)) {
-                        throw new Exception('Cmd introuvable : ' . $params['id'], -32701);
-                    }
-                    $jsonrpc->makeSuccess(utils::o2a($cmd));
-                }
-
-                if ($jsonrpc->getMethod() == 'cmd::execCmd') {
-                    if (is_array($params['id'])) {
-                        $return = array();
-                        foreach ($params['id'] as $id) {
-                            $cmd = cmd::byId($id);
-                            if (!is_object($cmd)) {
-                                throw new Exception('Cmd introuvable : ' . $id, -32702);
+                if ($jsonrpc->getMethod() == 'eqLogic::byTypeAndId') {
+                   $return = array();
+                   foreach ($params['eqType'] as $eqType) {
+                    $info_eqLogics = array();
+                    foreach (eqLogic::byType($eqType) as $eqLogic) {
+                        $info_cmds = array();
+                        foreach ($eqLogic->getCmd() as $cmd) {
+                            $info_cmd = utils::o2a($cmd);
+                            if($cmd->getType() == 'info'){
+                                $info_cmd['value'] = $cmd->execCmd();
+                                $info_cmd['collectDate'] = $cmd->getCollectDate();
                             }
-                            $return[$id] = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
                         }
-                    } else {
-                        $cmd = cmd::byId($params['id']);
-                        if (!is_object($cmd)) {
-                            throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
-                        }
-                        $return = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
+                        $info_cmds[] = $info_cmd;
+                        $info_eqLogic =  utils::o2a($eqLogic);
+                        $info_eqLogic['cmds'] = $info_cmds;
+                        $info_eqLogics[] = $info_eqLogic;
                     }
-                    $jsonrpc->makeSuccess($return);
                 }
+                $return[$eqType] = $info_eqLogics;
 
-                if ($jsonrpc->getMethod() == 'cmd::getStatistique') {
-                    $cmd = cmd::byId($params['id']);
-                    if (!is_object($cmd)) {
-                        throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
+                foreach ($params['id'] as $id) {
+                    $eqLogic = eqLogic::byId($id);
+                    $info_cmds = array();
+                    foreach ($eqLogic->getCmd() as $cmd) {
+                       $info_cmd = utils::o2a($cmd);
+                       if($cmd->getType() == 'info'){
+                        $info_cmd['value'] = $cmd->execCmd();
+                        $info_cmd['collectDate'] = $cmd->getCollectDate();
                     }
-                    $jsonrpc->makeSuccess($cmd->getStatistique($params['startTime'], $params['endTime']));
                 }
-
-                if ($jsonrpc->getMethod() == 'cmd::getTendance') {
-                    $cmd = cmd::byId($params['id']);
-                    if (!is_object($cmd)) {
-                        throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
-                    }
-                    $jsonrpc->makeSuccess($cmd->getTendance($params['startTime'], $params['endTime']));
-                }
-
-                if ($jsonrpc->getMethod() == 'cmd::getHistory') {
-                    $cmd = cmd::byId($params['id']);
-                    if (!is_object($cmd)) {
-                        throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
-                    }
-                    $jsonrpc->makeSuccess(utils::o2a($cmd->getHistory($params['startTime'], $params['endTime'])));
-                }
-
-                /*             * ************************Scénario*************************** */
-                if ($jsonrpc->getMethod() == 'scenario::all') {
-                    $jsonrpc->makeSuccess(utils::o2a(scenario::all()));
-                }
-
-                if ($jsonrpc->getMethod() == 'scenario::byId') {
-                    $scenario = scenario::byId($params['id']);
-                    if (!is_object($scenario)) {
-                        throw new Exception('Scenario introuvable : ' . $params['id'], -32703);
-                    }
-                    $jsonrpc->makeSuccess(utils::o2a($scenario));
-                }
-
-                if ($jsonrpc->getMethod() == 'scenario::changeState') {
-                    $scenario = scenario::byId($params['id']);
-                    if (!is_object($scenario)) {
-                        throw new Exception('Scenario introuvable : ' . $params['id'], -32702);
-                    }
-                    if ($params['state'] == 'stop') {
-                        $jsonrpc->makeSuccess($scenario->stop());
-                    }
-                    if ($params['state'] == 'run') {
-                        $jsonrpc->makeSuccess($scenario->launch(false, __('Scenario lance sur appels API', __FILE__)));
-                    }
-                    if ($params['state'] == 'enable') {
-                        $scenario->setIsActive(1);
-                        $jsonrpc->makeSuccess($scenario->save());
-                    }
-                    if ($params['state'] == 'disable') {
-                        $scenario->setIsActive(0);
-                        $jsonrpc->makeSuccess($scenario->save());
-                    }
-                    throw new Exception('La paramètre "state" ne peut être vide et doit avoir pour valuer [run,stop,enable;disable]');
-                }
-
-
-                /*             * ************************JeeNetwork*************************** */
-                if ($jsonrpc->getMethod() == 'jeeNetwork::handshake') {
-                    if (config::byKey('jeeNetwork::mode') != 'slave') {
-                        throw new Exception('Impossible d\'ajouter une box jeedom non esclave à un reseau Jeedom');
-                    }
-                    $auiKey = config::byKey('auiKey');
-                    if ($auiKey == '') {
-                        $auiKey = config::genKey(255);
-                        config::save('auiKey', $auiKey);
-                    }
-                    $return = array(
-                        'mode' => config::byKey('jeeNetwork::mode'),
-                        'nbUpdate' => update::nbNeedUpdate(),
-                        'version' => getVersion('jeedom'),
-                        'nbMessage' => message::nbMessage(),
-                        'auiKey' => $auiKey
-                        );
-                    foreach (plugin::listPlugin(true) as $plugin) {
-                        if ($plugin->getAllowRemote() == 1) {
-                            $return['plugin'][] = $plugin->getId();
-                        }
-                    }
-                    $address = (isset($params['address']) && $params['address'] != '') ? $params['address'] : getClientIp();
-                    config::save('jeeNetwork::master::ip', $address);
-                    config::save('jeeNetwork::master::apikey', $params['apikey_master']);
-                    config::save('jeeNetwork::slave::id', $params['slave_id']);
-                    if (config::byKey('internalAddr') == '') {
-                        config::save('internalAddr', $params['slave_ip']);
-                    }
-                    jeeNetwork::testMaster();
-                    $jsonrpc->makeSuccess($return);
-                }
-
-                if ($jsonrpc->getMethod() == 'jeeNetwork::reload') {
-                    foreach (plugin::listPlugin(true) as $plugin) {
-                        try {
-                            $plugin->launch('slaveReload');
-                        } catch (Exception $ex) {
-
-                        }
-                    }
-                    $jsonrpc->makeSuccess('ok');
-                }
-
-                if ($jsonrpc->getMethod() == 'jeeNetwork::halt') {
-                    jeedom::haltSystem();
-                    $jsonrpc->makeSuccess('ok');
-                }
-
-                if ($jsonrpc->getMethod() == 'jeeNetwork::reboot') {
-                    jeedom::rebootSystem();
-                    $jsonrpc->makeSuccess('ok');
-                }
-
-                if ($jsonrpc->getMethod() == 'jeeNetwork::update') {
-                    jeedom::update('', 0);
-                    $jsonrpc->makeSuccess('ok');
-                }
-
-                if ($jsonrpc->getMethod() == 'jeeNetwork::checkUpdate') {
-                    update::checkAllUpdate();
-                    $jsonrpc->makeSuccess('ok');
-                }
-
-                if ($jsonrpc->getMethod() == 'jeeNetwork::installPlugin') {
-                    $market = market::byId($params['plugin_id']);
-                    if (!is_object($market)) {
-                        throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . $params['plugin_id']);
-                    }
-                    if (!isset($params['version'])) {
-                        $params['version'] = 'stable';
-                    }
-                    $market->install($params['version']);
-                    $jsonrpc->makeSuccess('ok');
-                }
-
-                if ($jsonrpc->getMethod() == 'jeeNetwork::receivedBackup') {
-                    if (config::byKey('jeeNetwork::mode') == 'slave') {
-                        throw new Exception(__('Seul un maitre peut recevoir un backup', __FILE__));
-                    }
-                    $jeeNetwork = jeeNetwork::byId($params['slave_id']);
-                    if (!is_object($jeeNetwork)) {
-                        throw new Exception(__('Aucun esclave correspondant à l\'id : ', __FILE__) . $params['slave_id']);
-                    }
-                    if (substr(config::byKey('backup::path'), 0, 1) != '/') {
-                        $backup_dir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
-                    } else {
-                        $backup_dir = config::byKey('backup::path');
-                    }
-                    $uploaddir = $backup_dir . '/slave/';
-                    if (!file_exists($uploaddir)) {
-                        mkdir($uploaddir);
-                    }
-                    if (!file_exists($uploaddir)) {
-                        throw new Exception('Répertoire d\'upload non trouvé : ' . $uploaddir);
-                    }
-                    $_file = $_FILES['file'];
-                    $extension = strtolower(strrchr($_file['name'], '.'));
-                    if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
-                        throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . $extension);
-                    }
-                    if (filesize($_file['tmp_name']) > 50000000) {
-                        throw new Exception('Le fichier est trop gros (miximum 50mo)');
-                    }
-                    $uploadfile = $uploaddir . $jeeNetwork->getId() . '-' . $jeeNetwork->getName() . '-' . $jeeNetwork->getConfiguration('version') . '-' . date('Y-m-d_H\hi') . '.tar' . $extension;
-                    if (!move_uploaded_file($_file['tmp_name'], $uploadfile)) {
-                        throw new Exception('Impossible d\'uploader le fichier');
-                    }
-                    system('find ' . $uploaddir . $jeeNetwork->getId() . '*' . ' -mtime +' . config::byKey('backup::keepDays') . ' -print | xargs -r rm');
-                    $jsonrpc->makeSuccess('ok');
-                }
-
-                if ($jsonrpc->getMethod() == 'jeeNetwork::restoreBackup') {
-                    if (config::byKey('jeeNetwork::mode') != 'slave') {
-                        throw new Exception(__('Seul un esclave peut restorer un backup', __FILE__));
-                    }
-                    if (substr(config::byKey('backup::path'), 0, 1) != '/') {
-                        $uploaddir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
-                    } else {
-                        $uploaddir = config::byKey('backup::path');
-                    }
-                    if (!file_exists($uploaddir)) {
-                        mkdir($uploaddir);
-                    }
-                    if (!file_exists($uploaddir)) {
-                        throw new Exception('Repertoire d\'upload non trouve : ' . $uploaddir);
-                    }
-                    $_file = $_FILES['file'];
-                    $extension = strtolower(strrchr($_file['name'], '.'));
-                    if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
-                        throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . $extension);
-                    }
-                    if (filesize($_file['tmp_name']) > 50000000) {
-                        throw new Exception('Le fichier est trop gros (miximum 50mo)');
-                    }
-                    $bakcup_name = 'backup-' . getVersion('jeedom') . '-' . date("d-m-Y-H\hi") . '.tar.gz';
-                    $uploadfile = $uploaddir . '/' . $bakcup_name;
-                    if (!move_uploaded_file($_file['tmp_name'], $uploadfile)) {
-                        throw new Exception('Impossible d\'uploader le fichier');
-                    }
-                    jeedom::restore($uploadfile, true);
-                    $jsonrpc->makeSuccess('ok');
-                }
-
-                /*             * ************************Log*************************** */
-                if ($jsonrpc->getMethod() == 'log::get') {
-                    $jsonrpc->makeSuccess(log::get($params['log'], $params['start'], $params['nbLine']));
-                }
-
-                if ($jsonrpc->getMethod() == 'log::list') {
-                    $jsonrpc->makeSuccess(log::liste());
-                }
-
-                if ($jsonrpc->getMethod() == 'log::empty') {
-                    $jsonrpc->makeSuccess(log::clear($params['log']));
-                }
-
-                if ($jsonrpc->getMethod() == 'log::remove') {
-                    $jsonrpc->makeSuccess(log::remove($params['log']));
-                }
-
-                /*             * ************************Messages*************************** */
-                if ($jsonrpc->getMethod() == 'message::removeAll') {
-                    $jsonrpc->makeSuccess(message::removeAll());
-                }
-
-                if ($jsonrpc->getMethod() == 'message::all') {
-                    $jsonrpc->makeSuccess(utils::o2a(message::all()));
-                }
-
-                /*             * ************************Interact*************************** */
-                if ($jsonrpc->getMethod() == 'interact::tryToReply') {
-                    $jsonrpc->makeSuccess(interactQuery::tryToReply(init('query')));
-                }
-
-                /*             * ************************************************************************ */
+                $info_cmds[] = $info_cmd;
+                $info_eqLogic =  utils::o2a($eqLogic);
+                $info_eqLogic['cmds'] = $info_cmds;
+                $return[$id] = $info_eqLogic;
             }
-            throw new Exception('Aucune méthode correspondante : ' . $jsonrpc->getMethod(), -32500);
-            /*         * *********Catch exeption*************** */
-        } catch (Exception $e) {
-            $message = $e->getMessage();
-            $jsonrpc = new jsonrpc(init('request'));
-            $errorCode = (is_numeric($e->getCode())) ? -32000 - $e->getCode() : -32599;
-            $jsonrpc->makeError($errorCode, $message);
+            $jsonrpc->makeSuccess($return);
+
         }
+
+        /*             * ************************Commande*************************** */
+        if ($jsonrpc->getMethod() == 'cmd::all') {
+            $jsonrpc->makeSuccess(utils::o2a(cmd::all()));
+        }
+
+        if ($jsonrpc->getMethod() == 'cmd::byEqLogicId') {
+            $jsonrpc->makeSuccess(utils::o2a(cmd::byEqLogicId($params['eqLogic_id'])));
+        }
+
+        if ($jsonrpc->getMethod() == 'cmd::byId') {
+            $cmd = cmd::byId($params['id']);
+            if (!is_object($cmd)) {
+                throw new Exception('Cmd introuvable : ' . $params['id'], -32701);
+            }
+            $jsonrpc->makeSuccess(utils::o2a($cmd));
+        }
+
+        if ($jsonrpc->getMethod() == 'cmd::execCmd') {
+            if (is_array($params['id'])) {
+                $return = array();
+                foreach ($params['id'] as $id) {
+                    $cmd = cmd::byId($id);
+                    if (!is_object($cmd)) {
+                        throw new Exception('Cmd introuvable : ' . $id, -32702);
+                    }
+                    $return[$id] = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
+                }
+            } else {
+                $cmd = cmd::byId($params['id']);
+                if (!is_object($cmd)) {
+                    throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
+                }
+                $return = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
+            }
+            $jsonrpc->makeSuccess($return);
+        }
+
+        if ($jsonrpc->getMethod() == 'cmd::getStatistique') {
+            $cmd = cmd::byId($params['id']);
+            if (!is_object($cmd)) {
+                throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
+            }
+            $jsonrpc->makeSuccess($cmd->getStatistique($params['startTime'], $params['endTime']));
+        }
+
+        if ($jsonrpc->getMethod() == 'cmd::getTendance') {
+            $cmd = cmd::byId($params['id']);
+            if (!is_object($cmd)) {
+                throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
+            }
+            $jsonrpc->makeSuccess($cmd->getTendance($params['startTime'], $params['endTime']));
+        }
+
+        if ($jsonrpc->getMethod() == 'cmd::getHistory') {
+            $cmd = cmd::byId($params['id']);
+            if (!is_object($cmd)) {
+                throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
+            }
+            $jsonrpc->makeSuccess(utils::o2a($cmd->getHistory($params['startTime'], $params['endTime'])));
+        }
+
+        /*             * ************************Scénario*************************** */
+        if ($jsonrpc->getMethod() == 'scenario::all') {
+            $jsonrpc->makeSuccess(utils::o2a(scenario::all()));
+        }
+
+        if ($jsonrpc->getMethod() == 'scenario::byId') {
+            $scenario = scenario::byId($params['id']);
+            if (!is_object($scenario)) {
+                throw new Exception('Scenario introuvable : ' . $params['id'], -32703);
+            }
+            $jsonrpc->makeSuccess(utils::o2a($scenario));
+        }
+
+        if ($jsonrpc->getMethod() == 'scenario::changeState') {
+            $scenario = scenario::byId($params['id']);
+            if (!is_object($scenario)) {
+                throw new Exception('Scenario introuvable : ' . $params['id'], -32702);
+            }
+            if ($params['state'] == 'stop') {
+                $jsonrpc->makeSuccess($scenario->stop());
+            }
+            if ($params['state'] == 'run') {
+                $jsonrpc->makeSuccess($scenario->launch(false, __('Scenario lance sur appels API', __FILE__)));
+            }
+            if ($params['state'] == 'enable') {
+                $scenario->setIsActive(1);
+                $jsonrpc->makeSuccess($scenario->save());
+            }
+            if ($params['state'] == 'disable') {
+                $scenario->setIsActive(0);
+                $jsonrpc->makeSuccess($scenario->save());
+            }
+            throw new Exception('La paramètre "state" ne peut être vide et doit avoir pour valuer [run,stop,enable;disable]');
+        }
+
+
+        /*             * ************************JeeNetwork*************************** */
+        if ($jsonrpc->getMethod() == 'jeeNetwork::handshake') {
+            if (config::byKey('jeeNetwork::mode') != 'slave') {
+                throw new Exception('Impossible d\'ajouter une box jeedom non esclave à un reseau Jeedom');
+            }
+            $auiKey = config::byKey('auiKey');
+            if ($auiKey == '') {
+                $auiKey = config::genKey(255);
+                config::save('auiKey', $auiKey);
+            }
+            $return = array(
+                'mode' => config::byKey('jeeNetwork::mode'),
+                'nbUpdate' => update::nbNeedUpdate(),
+                'version' => getVersion('jeedom'),
+                'nbMessage' => message::nbMessage(),
+                'auiKey' => $auiKey
+                );
+            foreach (plugin::listPlugin(true) as $plugin) {
+                if ($plugin->getAllowRemote() == 1) {
+                    $return['plugin'][] = $plugin->getId();
+                }
+            }
+            $address = (isset($params['address']) && $params['address'] != '') ? $params['address'] : getClientIp();
+            config::save('jeeNetwork::master::ip', $address);
+            config::save('jeeNetwork::master::apikey', $params['apikey_master']);
+            config::save('jeeNetwork::slave::id', $params['slave_id']);
+            if (config::byKey('internalAddr') == '') {
+                config::save('internalAddr', $params['slave_ip']);
+            }
+            jeeNetwork::testMaster();
+            $jsonrpc->makeSuccess($return);
+        }
+
+        if ($jsonrpc->getMethod() == 'jeeNetwork::reload') {
+            foreach (plugin::listPlugin(true) as $plugin) {
+                try {
+                    $plugin->launch('slaveReload');
+                } catch (Exception $ex) {
+
+                }
+            }
+            $jsonrpc->makeSuccess('ok');
+        }
+
+        if ($jsonrpc->getMethod() == 'jeeNetwork::halt') {
+            jeedom::haltSystem();
+            $jsonrpc->makeSuccess('ok');
+        }
+
+        if ($jsonrpc->getMethod() == 'jeeNetwork::reboot') {
+            jeedom::rebootSystem();
+            $jsonrpc->makeSuccess('ok');
+        }
+
+        if ($jsonrpc->getMethod() == 'jeeNetwork::update') {
+            jeedom::update('', 0);
+            $jsonrpc->makeSuccess('ok');
+        }
+
+        if ($jsonrpc->getMethod() == 'jeeNetwork::checkUpdate') {
+            update::checkAllUpdate();
+            $jsonrpc->makeSuccess('ok');
+        }
+
+        if ($jsonrpc->getMethod() == 'jeeNetwork::installPlugin') {
+            $market = market::byId($params['plugin_id']);
+            if (!is_object($market)) {
+                throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . $params['plugin_id']);
+            }
+            if (!isset($params['version'])) {
+                $params['version'] = 'stable';
+            }
+            $market->install($params['version']);
+            $jsonrpc->makeSuccess('ok');
+        }
+
+        if ($jsonrpc->getMethod() == 'jeeNetwork::receivedBackup') {
+            if (config::byKey('jeeNetwork::mode') == 'slave') {
+                throw new Exception(__('Seul un maitre peut recevoir un backup', __FILE__));
+            }
+            $jeeNetwork = jeeNetwork::byId($params['slave_id']);
+            if (!is_object($jeeNetwork)) {
+                throw new Exception(__('Aucun esclave correspondant à l\'id : ', __FILE__) . $params['slave_id']);
+            }
+            if (substr(config::byKey('backup::path'), 0, 1) != '/') {
+                $backup_dir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
+            } else {
+                $backup_dir = config::byKey('backup::path');
+            }
+            $uploaddir = $backup_dir . '/slave/';
+            if (!file_exists($uploaddir)) {
+                mkdir($uploaddir);
+            }
+            if (!file_exists($uploaddir)) {
+                throw new Exception('Répertoire d\'upload non trouvé : ' . $uploaddir);
+            }
+            $_file = $_FILES['file'];
+            $extension = strtolower(strrchr($_file['name'], '.'));
+            if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
+                throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . $extension);
+            }
+            if (filesize($_file['tmp_name']) > 50000000) {
+                throw new Exception('Le fichier est trop gros (miximum 50mo)');
+            }
+            $uploadfile = $uploaddir . $jeeNetwork->getId() . '-' . $jeeNetwork->getName() . '-' . $jeeNetwork->getConfiguration('version') . '-' . date('Y-m-d_H\hi') . '.tar' . $extension;
+            if (!move_uploaded_file($_file['tmp_name'], $uploadfile)) {
+                throw new Exception('Impossible d\'uploader le fichier');
+            }
+            system('find ' . $uploaddir . $jeeNetwork->getId() . '*' . ' -mtime +' . config::byKey('backup::keepDays') . ' -print | xargs -r rm');
+            $jsonrpc->makeSuccess('ok');
+        }
+
+        if ($jsonrpc->getMethod() == 'jeeNetwork::restoreBackup') {
+            if (config::byKey('jeeNetwork::mode') != 'slave') {
+                throw new Exception(__('Seul un esclave peut restorer un backup', __FILE__));
+            }
+            if (substr(config::byKey('backup::path'), 0, 1) != '/') {
+                $uploaddir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
+            } else {
+                $uploaddir = config::byKey('backup::path');
+            }
+            if (!file_exists($uploaddir)) {
+                mkdir($uploaddir);
+            }
+            if (!file_exists($uploaddir)) {
+                throw new Exception('Repertoire d\'upload non trouve : ' . $uploaddir);
+            }
+            $_file = $_FILES['file'];
+            $extension = strtolower(strrchr($_file['name'], '.'));
+            if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
+                throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . $extension);
+            }
+            if (filesize($_file['tmp_name']) > 50000000) {
+                throw new Exception('Le fichier est trop gros (miximum 50mo)');
+            }
+            $bakcup_name = 'backup-' . getVersion('jeedom') . '-' . date("d-m-Y-H\hi") . '.tar.gz';
+            $uploadfile = $uploaddir . '/' . $bakcup_name;
+            if (!move_uploaded_file($_file['tmp_name'], $uploadfile)) {
+                throw new Exception('Impossible d\'uploader le fichier');
+            }
+            jeedom::restore($uploadfile, true);
+            $jsonrpc->makeSuccess('ok');
+        }
+
+        /*             * ************************Log*************************** */
+        if ($jsonrpc->getMethod() == 'log::get') {
+            $jsonrpc->makeSuccess(log::get($params['log'], $params['start'], $params['nbLine']));
+        }
+
+        if ($jsonrpc->getMethod() == 'log::list') {
+            $jsonrpc->makeSuccess(log::liste());
+        }
+
+        if ($jsonrpc->getMethod() == 'log::empty') {
+            $jsonrpc->makeSuccess(log::clear($params['log']));
+        }
+
+        if ($jsonrpc->getMethod() == 'log::remove') {
+            $jsonrpc->makeSuccess(log::remove($params['log']));
+        }
+
+        /*             * ************************Messages*************************** */
+        if ($jsonrpc->getMethod() == 'message::removeAll') {
+            $jsonrpc->makeSuccess(message::removeAll());
+        }
+
+        if ($jsonrpc->getMethod() == 'message::all') {
+            $jsonrpc->makeSuccess(utils::o2a(message::all()));
+        }
+
+        /*             * ************************Interact*************************** */
+        if ($jsonrpc->getMethod() == 'interact::tryToReply') {
+            $jsonrpc->makeSuccess(interactQuery::tryToReply(init('query')));
+        }
+
+        /*             * ************************************************************************ */
     }
-    ?>
+    throw new Exception('Aucune méthode correspondante : ' . $jsonrpc->getMethod(), -32500);
+    /*         * *********Catch exeption*************** */
+} catch (Exception $e) {
+    $message = $e->getMessage();
+    $jsonrpc = new jsonrpc(init('request'));
+    $errorCode = (is_numeric($e->getCode())) ? -32000 - $e->getCode() : -32599;
+    $jsonrpc->makeError($errorCode, $message);
+}
+}
+?>

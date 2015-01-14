@@ -422,7 +422,7 @@ function positionEqLogic(_id, _noResize, _class) {
                     statistiques.css('left', left);
                 }
             });
-            if (!init(_noResize, false)) {
+            if (!init(_noResize, false) && eqLogic_height_step > 1 && eqLogic_width_step > 1) {
                 var hMarge = (Math.ceil(eqLogic.height() / eqLogic_height_step) - 1) * 6;
                 var wMarge = (Math.ceil(eqLogic.width() / eqLogic_width_step) - 1) * 6;
                 eqLogic.height((Math.ceil(eqLogic.height() / eqLogic_height_step) * eqLogic_height_step) - 6 + hMarge);

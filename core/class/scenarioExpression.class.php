@@ -333,6 +333,18 @@ class scenarioExpression {
         return strtotime('now') - strtotime($scenario->getLastLaunch());
     }
 
+    public static function collectDate($_cmd,$_format = 'Y-m-d H:i:s'){
+        $cmd = cmd::byId(trim(str_replace('#', '', $_cmd)));
+        if(!is_object($cmd)){
+            return -1;
+        }
+        if($cmd->getType() != 'info'){
+            return -2;
+        }
+        $cmd->execCmd();
+        return date($_format,strtotime($cmd->getCollectDate()));
+    }
+
     public static function randomColor($_rangeLower, $_rangeHighter) {
         $value = rand($_rangeLower, $_rangeHighter);
         $color_range = 85;

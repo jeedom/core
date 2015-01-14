@@ -59,6 +59,14 @@ Retourne tous les équipements appartenant à l'objet spécifié
 Paramètres:
 - int object_id
 
+===== eqLogic::byTypeAndId
+Renvoi un tableau d'équipement en fonction des paramètres. Le retour sera de la forme array('eqType1' =>array( 'id'=>...,'cmds' => array(....)),'eqType2' =>array( 'id'=>...,'cmds' => array(....))....,id1 => array( 'id'=>...,'cmds' => array(....)),id2 => array( 'id'=>...,'cmds' => array(....))..)
+
+Paramètres:
+
+- string[] eqType = tableau des types d'équipement voulu
+- int[] id = tableau des ID d'équipements personnalisé voulu
+
 ===== eqLogic::save
 Retourne l'équipement enregistré/créé
 

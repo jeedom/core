@@ -1,4 +1,13 @@
-*10/01/2015* _v1.153.0_
+*12/01/2015* _v1.156.0_
+
+- Correction de 2 bugs sur l'export et le partage des scénarios
+
+*11/01/2015* _v1.156.0_
+
+- Stable 1.155.0
+- Corrections d'un bug lors de la suppression des commandes
+
+*10/01/2015* _v1.155.0_
 
 - Stable 1.153.0
 - Amélioration reconnaissance des intérations qui n'ont que un mot

@@ -26,7 +26,11 @@ $(function () {
     webappCache.addEventListener('obsolete', updateCacheEvent, false);
     webappCache.addEventListener('progress', updateCacheEvent, false);
     webappCache.addEventListener('updateready', updateCacheEvent, false);
-    webappCache.update();
+    try{
+        webappCache.update();
+    }catch (e) {
+
+    }
 
     function updateCacheEvent(e) {
         if (webappCache.status == 3) {
@@ -76,76 +80,76 @@ function initApplication(_reinit) {
             }
         },
         success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                modal(false);
-                panel(false);
-                if (data.code == -1234) {
-                    page('connection', 'Connexion');
-                    return;
-                } else {
-                    $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                }
+        if (data.state != 'ok') {
+            modal(false);
+            panel(false);
+            if (data.code == -1234) {
+                page('connection', 'Connexion');
                 return;
             } else {
-                if (init(_reinit, false) == false) {
-                    modal(false);
-                    panel(false);
-                    /*************Initialisation environement********************/
-                    nodeJsKey = data.result.nodeJsKey;
-                    user_id = data.result.user_id;
-                    plugins = data.result.plugins;
-                    userProfils = data.result.userProfils;
-                    var include = ['core/js/core.js'];
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            }
+            return;
+        } else {
+            if (init(_reinit, false) == false) {
+                modal(false);
+                panel(false);
+                /*************Initialisation environement********************/
+                nodeJsKey = data.result.nodeJsKey;
+                user_id = data.result.user_id;
+                plugins = data.result.plugins;
+                userProfils = data.result.userProfils;
+                var include = ['core/js/core.js'];
 
-                    if (isset(userProfils) && userProfils != null) {
-                        if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '') {
-                            $('#jQMnDColor').attr('href', '3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.color.' + userProfils.mobile_theme_color + '.css');
-                        }
-                        if (isset(userProfils.mobile_theme) && userProfils.mobile_theme != '') {
-                            $('#jQMnDTheme').attr('href', '3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.' + userProfils.mobile_theme + '.css');
-                        }
-                        if (isset(userProfils.mobile_highcharts_theme) && userProfils.mobile_highcharts_theme != '') {
-                            include.push('3rdparty/highstock/themes/' + userProfils.mobile_highcharts_theme + '.js');
-                        }
+                if (isset(userProfils) && userProfils != null) {
+                    if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '') {
+                        $('#jQMnDColor').attr('href', '3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.color.' + userProfils.mobile_theme_color + '.css');
                     }
-                    if (isset(data.result.custom) && data.result.custom != null) {
-                        if (isset(data.result.custom.css) && data.result.custom.css) {
-                            include.push('mobile/custom/custom.css');
-                        }
-                        if (isset(data.result.custom.js) && data.result.custom.js) {
-                            include.push('mobile/custom/custom.js');
-                        }
+                    if (isset(userProfils.mobile_theme) && userProfils.mobile_theme != '') {
+                        $('#jQMnDTheme').attr('href', '3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.' + userProfils.mobile_theme + '.css');
                     }
-                    $.get("core/php/icon.inc.php", function (data) {
-                        $("head").append(data);
-                        $.include(include, function () {
-                            deviceInfo = getDeviceType();
-                            if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('page') != 'home') {
-                                var res = userProfils.homePageMobile.split("::");
-                                if (res[0] == 'core') {
-                                    switch (res[1]) {
-                                        case 'dashboard' :
-                                            page('equipment', 'Objet', userProfils.defaultMobileObject);
-                                            break;
-                                        case 'plan' :
-                                            window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan;
-                                            break;
-                                        case 'view' :
-                                            page('view', 'Vue', userProfils.defaultMobileView);
-                                            break;
-                                    }
-                                } else {
-                                    page(res[1], 'Plugin', '', res[0]);
+                    if (isset(userProfils.mobile_highcharts_theme) && userProfils.mobile_highcharts_theme != '') {
+                        include.push('3rdparty/highstock/themes/' + userProfils.mobile_highcharts_theme + '.js');
+                    }
+                }
+                if (isset(data.result.custom) && data.result.custom != null) {
+                    if (isset(data.result.custom.css) && data.result.custom.css) {
+                        include.push('mobile/custom/custom.css');
+                    }
+                    if (isset(data.result.custom.js) && data.result.custom.js) {
+                        include.push('mobile/custom/custom.js');
+                    }
+                }
+                $.get("core/php/icon.inc.php", function (data) {
+                    $("head").append(data);
+                    $.include(include, function () {
+                        deviceInfo = getDeviceType();
+                        if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('page') != 'home') {
+                            var res = userProfils.homePageMobile.split("::");
+                            if (res[0] == 'core') {
+                                switch (res[1]) {
+                                    case 'dashboard' :
+                                    page('equipment', 'Objet', userProfils.defaultMobileObject);
+                                    break;
+                                    case 'plan' :
+                                    window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan;
+                                    break;
+                                    case 'view' :
+                                    page('view', 'Vue', userProfils.defaultMobileView);
+                                    break;
                                 }
                             } else {
-                                page('home', 'Accueil');
+                                page(res[1], 'Plugin', '', res[0]);
                             }
-                        });
+                        } else {
+                            page('home', 'Accueil');
+                        }
                     });
-                }
-            }
-        }
-    });
+});
+}
+}
+}
+});
 }
 
 function page(_page, _title, _option, _plugin) {

@@ -90,11 +90,6 @@ include::rights.asciidoc[]
 include::security.asciidoc[]
 
 '''
-[[timeline]]
-==== Timelinge
-include::timeline.asciidoc[]
-
-'''
 [[update]]
 ==== Mise à jours
 include::update.asciidoc[]

@@ -186,10 +186,10 @@ class scenarioElement {
                 if(strpos($at[0]->getExpression(), '-') !== false){
                     $next -= 40;
                 }else{
-                 $next += 40; 
-             }       
-         }
-         if (!is_numeric($next) || $next < 0) {
+                   $next += 40; 
+               }       
+           }
+           if (!is_numeric($next) || $next < 0) {
             $_scenario->setLog(__('Erreur dans bloc (type A) : ', __FILE__) . $this->getId() . __(', heure programmé invalide : ', __FILE__) . $next);
         }
         if ($next < (date('Gi') + 1)) {
@@ -240,7 +240,7 @@ public function getSubElement($_type = '') {
 
 public function getAjaxElement($_mode = 'ajax') {
     $return = utils::o2a($this);
-    if ($_mode == 'json') {
+    if ($_mode == 'array') {
         if (isset($return['id'])) {
             unset($return['id']);
         }
@@ -308,7 +308,11 @@ public function getAjaxElement($_mode = 'ajax') {
                     }
                 }
             }
-            $expression_ajax['expression'] = jeedom::toHumanReadable($expression_ajax['expression']);
+            if ($_mode == 'array') {
+                $expression_ajax = jeedom::toHumanReadable($expression_ajax);
+            }else{
+                $expression_ajax['expression'] = jeedom::toHumanReadable($expression_ajax['expression']);
+            }
             $subElement_ajax['expressions'][] = $expression_ajax;
         }
         $return['subElements'][] = $subElement_ajax;
