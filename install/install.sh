@@ -227,7 +227,7 @@ configure_nginx()
 	do
 		if [ -f "/etc/init.d/${i}" ]; then
 			service ${i} stop
-			update-rc.d ${i} remove
+			update-rc.d -f ${i} remove
 		fi
 	done
 	service nginx stop
@@ -291,7 +291,7 @@ configure_nginx_ssl()
 	do
 		if [ -f "/etc/init.d/${i}" ]; then
 			service ${i} stop
-			update-rc.d ${i} remove
+			update-rc.d -f ${i} remove
 		fi
 	done
 	service nginx reload
@@ -486,7 +486,7 @@ done
 	do
 		if [ -f "/etc/init.d/${i}" ]; then
 			service ${i} stop
-			update-rc.d ${i} remove
+			update-rc.d -f ${i} remove
 		fi
 	done
 	ps aux | grep mongoose | awk '{print $2}' | xargs kill -9
