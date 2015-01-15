@@ -58,7 +58,7 @@ class plugin {
 
         $plugin_xml = @simplexml_load_file($_id);
         if (!is_object($plugin_xml)) {
-            throw new Exception('Plugin introuvable : ' . $_id);
+            throw new Exception('Plugin introuvable (xml invalide) : ' . $_id);
         }
         $plugin = new plugin();
         $plugin->id = (string) $plugin_xml->id;
