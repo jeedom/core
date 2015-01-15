@@ -19,7 +19,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                     <form class="form-horizontal">
                         <fieldset>
                             <div class="form-group expertModeVisible">
-                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef api}}</label>
+                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef API}}</label>
                                 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"> 
                                     <p class="form-control-static" id="in_keyAPI"><?php echo config::byKey('api'); ?></p>
                                 </div>
@@ -29,7 +29,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             </div>
                             <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
                                 <div class="form-group expertModeVisible">
-                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef nodeJS}}</label>
+                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef NodeJS}}</label>
                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"> 
                                         <p class="form-control-static" id="in_nodeJsKey"><?php echo config::byKey('nodeJsKey'); ?></p>
                                     </div>
@@ -180,7 +180,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Configuration des scénario en mode expert par défaut}}</label>
+                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Configuration des scénarios en mode expert par défaut}}</label>
                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                         <input type="checkbox" class="configKey" data-l1key="scenario::expertMode" />
                                     </div>
@@ -202,7 +202,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                     <div class="panel-body">
                         <form class="form-horizontal">
                             <fieldset>
-                                <div class="alert alert-danger">{{ATTENTION ces opérations sont risquées, vous pouvez perdre l'accès à votre systeme et à Jeedom. Suite à une modification de la base de données, l'équipe Jeedom se reserve le droit de refuser toute demande de support.}}</div>
+                                <div class="alert alert-danger">{{ATTENTION ces opérations sont risquées, vous pouvez perdre l'accès à votre systeme et à Jeedom. Suite à une modification de la base de données, l'équipe Jeedom se réserve le droit de refuser toute demande de support.}}</div>
                                 <div class="form-group">
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès à l'interface d'administration}}</label>
                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -219,7 +219,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Utilisateur (username)}}</label>
+                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Utilisateur}}</label>
                                     <div class="col-sm-1">
                                         <?php
                                         echo $CONFIG['db']['username'];
@@ -227,7 +227,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe (password)}}</label>
+                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
                                     <div class="col-sm-1">
                                         <?php
                                         echo $CONFIG['db']['password'];
@@ -256,7 +256,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 <?php
                                 if (config::byKey('jeeNetwork::mode') == 'slave') {
                                     echo '<div class="form-group expertModeVisible">';
-                                    echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP Maitre}}</label>';
+                                    echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP Maître}}</label>';
                                     echo '<div class="col-sm-6">';
                                     echo '<span class="label label-info">' . config::byKey('jeeNetwork::master::ip') . '</span>';
                                     echo '</div>';
@@ -274,13 +274,13 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse/IP}}</label>
+                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse URL  ou IP}}</label>
                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                         <input type="text"  class="configKey form-control" data-l1key="internalAddr" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Complement (comme /jeedom)}}</label>
+                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Complément (exemple : /jeedom)}}</label>
                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                         <input type="text"  class="configKey form-control" data-l1key="internalComplement" />
                                     </div>
@@ -304,7 +304,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse/IP}}</label>
+                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse URL ou IP}}</label>
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
                                             <?php if(config::byKey('market::allowDNS') == 0){
                                                 echo '<input type="text"  class="configKey form-control" data-l1key="externalAddr" />';
@@ -320,7 +320,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                             <?php }?>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Complement (comme /jeedom)}}</label>
+                                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Complément (exemple : /jeedom)}}</label>
                                             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                                 <input type="text"  class="configKey form-control" data-l1key="externalComplement" />
                                             </div>
@@ -348,10 +348,10 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                                 <div class="col-sm-6">
                                                     <?php
                                                     if (config::byKey('jeeNetwork::mode') == 'master') {
-                                                        echo '<a class="btn btn-success changeJeeNetworkMode" data-mode="master">{{Maitre}}</a> ';
+                                                        echo '<a class="btn btn-success changeJeeNetworkMode" data-mode="master">{{Maître}}</a> ';
                                                         echo '<a class="btn btn-default changeJeeNetworkMode" data-mode="slave">{{Esclave}}</a>';
                                                     } else {
-                                                        echo '<a class="btn btn-default changeJeeNetworkMode" data-mode="master">{{Maitre}}</a> ';
+                                                        echo '<a class="btn btn-default changeJeeNetworkMode" data-mode="master">{{Maître}}</a> ';
                                                         echo '<a class="btn btn-success changeJeeNetworkMode" data-mode="slave">{{Esclave}}</a>';
                                                     }
                                                     ?>
@@ -385,7 +385,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
                                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_memcache">
-                                            {{Configuration cache}}
+                                            {{Configuration du cache}}
                                         </a>
                                     </h3>
                                 </div>
@@ -394,7 +394,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                         <form class="form-horizontal">
                                             <fieldset>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Durée de vie memcache (secondes)}}</label>
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Durée de vie de memcache (en secondes)}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                                         <input type="text"  class="configKey form-control" data-l1key="lifetimeMemCache" />
                                                     </div>
@@ -426,7 +426,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
                                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_history">
-                                            {{Configuration historique}}
+                                            {{Configuration de l'historique}}
                                         </a>
                                     </h3>
                                 </div>
@@ -435,31 +435,31 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                         <form class="form-horizontal">
                                             <fieldset>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher statistique sur les widgets}}</label>
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les statistiques sur les widgets}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                                         <input type="checkbox"  class="configKey" data-l1key="displayStatsWidget" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période de calcul pour min, max, moyenne (en heure)}}</label>
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période de calcul pour min, max, moyenne (en heures)}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                                         <input type="text"  class="configKey form-control" data-l1key="historyCalculPeriod" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période de calcul pour la tendance (en heure)}}</label>
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période de calcul pour la tendance (en heures)}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                                         <input type="text"  class="configKey form-control" data-l1key="historyCalculTendance" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Délai avant archivage (heure)}}</label>
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Délai avant archivage (en heures)}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                                         <input type="text"  class="configKey form-control" data-l1key="historyArchiveTime" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Archiver par paquet de (heure)}}</label>
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Archiver par paquet de (en heures)}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                                         <input type="text"  class="configKey form-control" data-l1key="historyArchivePackage" />
                                                     </div>
@@ -487,7 +487,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
                                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_interact">
-                                            {{Configuration intéractions}}
+                                            {{Configuration des interactions}}
                                         </a>
                                     </h3>
                                 </div>
@@ -496,7 +496,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                         <form class="form-horizontal">
                                             <fieldset>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Niveau de confidence (defaut 10)}}</label>
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sensibilité (par défaut 10)}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                                         <input type="text" class="configKey form-control" data-l1key="interact::confidence"/>
                                                     </div>
@@ -511,7 +511,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
                                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_cron">
-                                            {{Configuration crontask, scripts & deamons}}
+                                            {{Configuration des crontask, scripts & démons}}
                                         </a>
                                     </h3>
                                 </div>
@@ -520,31 +520,31 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                         <form class="form-horizontal">
                                             <fieldset>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Rattrapage maximum autorisé (min, -1 pour infini)}}</label>
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Rattrapage maximum autorisé (en minutes, -1 pour infini)}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                                         <input type="text" class="configKey form-control" data-l1key="maxCatchAllow"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Crontask : temps exécution max (min)}}</label>
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Crontask : temps d'exécution max (en minutes)}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                                         <input type="text" class="configKey form-control" data-l1key="maxExecTimeCrontask"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Script : temps exécution max (min)}}</label>
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Script : temps d'exécution max (en minutes)}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                                         <input type="text" class="configKey form-control" data-l1key="maxExecTimeScript"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group alert alert-danger">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Jeecron sleep time}}</label>
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps de sommeil Jeecron}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                                         <input type="text" class="configKey form-control" data-l1key="cronSleepTime"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group alert alert-danger">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Deamons sleep time}}</label>
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps de sommeil des Démons}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                                         <input type="text" class="configKey form-control" data-l1key="deamonsSleepTime"/>
                                                     </div>
@@ -825,7 +825,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                                         </div>
                                                         <?php } ?>
                                                         <div class="form-group alert alert-danger">
-                                                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Voir modules en beta (à vos risques et périls)}}</label>
+                                                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Voir les modules en beta (à vos risques et périls)}}</label>
                                                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                                                 <input type="checkbox"  class="configKey" data-l1key="market::showBetaMarket" />
                                                             </div>
