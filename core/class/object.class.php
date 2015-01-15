@@ -218,7 +218,7 @@ class object {
     }
 
     public function setName($name) {
-        $name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $name);
+        $name = str_replace(array('&', '#', ']', '[', '%'), '', $name);
         $this->name = $name;
     }
 
