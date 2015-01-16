@@ -85,19 +85,11 @@ function jeedomPluginAutoload($classname) {
     }
 }
 
-function jeedom3rdPartyAutoload($classname) {
-    try {
-        if ($classname == 'Cron\CronExpression') {
-            include_file('3rdparty', 'cron-expression/cron.inc', 'php');
-        }
-    } catch (Exception $e) {
-
-    }
-}
-spl_autoload_register('jeedom3rdPartyAutoload', true, true);
+spl_autoload_register('jeedomCoreAutoload', true, true);
 spl_autoload_register('jeedomPluginAutoload', true, true);
 spl_autoload_register('jeedomComAutoload', true, true);
-spl_autoload_register('jeedomCoreAutoload', true, true);
+require_once dirname(__FILE__) . '/../../vendor/autoload.php';
+
 
 /* * *******************Securité anti piratage**************************** */
 try {

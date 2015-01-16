@@ -4,8 +4,6 @@ namespace Cron;
 
 /**
  * Abstract CRON expression field
- *
- * @author Michael Dowling <mtdowling@gmail.com>
  */
 abstract class AbstractField implements FieldInterface
 {
@@ -79,7 +77,7 @@ abstract class AbstractField implements FieldInterface
     {
         $parts = array_map('trim', explode('/', $value, 2));
         $stepSize = isset($parts[1]) ? $parts[1] : 0;
-        if ($parts[0] == '*' || $parts[0] === '0') {
+        if (($parts[0] == '*' || $parts[0] === '0') && 0 !== $stepSize) {
             return (int) $dateValue % $stepSize == 0;
         }
 
@@ -89,6 +87,10 @@ abstract class AbstractField implements FieldInterface
         // Ensure that the date value is within the range
         if ($dateValue < $offset || $dateValue > $to) {
             return false;
+        }
+
+        if ($dateValue > $offset && 0 === $stepSize) {
+          return false;
         }
 
         for ($i = $offset; $i <= $to; $i+= $stepSize) {

@@ -1,0 +1,15 @@
+{
+    "name": "jeedom/core",
+    "description": "Software for home automation",
+    "require": {
+        "mtdowling/cron-expression": "~1.0",
+        "symfony/expression-language": "~2.6"
+    },
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Loic Gevrey",
+            "email": "loic@jeedom.com"
+        }
+    ]
+}
