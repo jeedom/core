@@ -416,7 +416,6 @@ return strtotime('now') - strtotime($result['datetime']);
         $now = strtotime('now');
         $archiveTime = (config::byKey('historyArchiveTime') + 1) * 3600;
         $packetTime = (config::byKey('historyArchivePackage')) * 3600;
-        $test = new evaluate();
         $value = array();
         $cmd_histories = array();
         preg_match_all("/#([0-9]*)#/", $_strcalcul, $matches);
@@ -461,7 +460,7 @@ return strtotime('now') - strtotime($result['datetime']);
                 $datetime = floatval(strtotime($datetime . " UTC"));
                 $calcul = template_replace($cmd_history, $_strcalcul);
                 try {
-                    $result = floatval($test->Evaluer($calcul));
+                    $result = floatval(evaluate($calcul));
                     $value[$datetime] = $result;
                 } catch (Exception $e) {
 

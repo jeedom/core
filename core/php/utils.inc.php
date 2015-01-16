@@ -16,6 +16,8 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
     $type = '';
     if ($_folder == '3rdparty') {
@@ -204,22 +206,22 @@ function getmicrotime() {
 function redirect($_url, $_forceType = null) {
     switch ($_forceType) {
         case 'JS':
+        echo '<script type="text/javascript">';
+        echo "window.location.href='$_url';";
+        echo '</script>';
+        break;
+        case 'PHP':
+        exit(header("Location: $_url"));
+        break;
+        default:
+        if (headers_sent()) {
             echo '<script type="text/javascript">';
             echo "window.location.href='$_url';";
             echo '</script>';
-            break;
-        case 'PHP':
+        } else {
             exit(header("Location: $_url"));
-            break;
-        default:
-            if (headers_sent()) {
-                echo '<script type="text/javascript">';
-                echo "window.location.href='$_url';";
-                echo '</script>';
-            } else {
-                exit(header("Location: $_url"));
-            }
-            break;
+        }
+        break;
     }
     return;
 }
@@ -317,48 +319,48 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
     if ($folder) {
         $current_folder = realpath('.');
         if (in_array('quiet', $options)) { // If quiet is on, we will suppress the 'no such folder' error
-            if (!file_exists($folder))
-                return array();
-        }
-        if (!is_dir($folder) || !chdir($folder))
+        if (!file_exists($folder))
             return array();
     }
-    $get_files = in_array('files', $options);
-    $get_folders = in_array('folders', $options);
-    $both = array();
-    $folders = array();
+    if (!is_dir($folder) || !chdir($folder))
+        return array();
+}
+$get_files = in_array('files', $options);
+$get_folders = in_array('folders', $options);
+$both = array();
+$folders = array();
     // Get the all files and folders in the given directory.
-    if ($get_files) {
-        $both = array();
-        foreach (glob($pattern, GLOB_BRACE + GLOB_MARK) as $file) {
-            if (!is_dir($folder . '/' . $file)) {
-                $both[] = $file;
-            }
+if ($get_files) {
+    $both = array();
+    foreach (glob($pattern, GLOB_BRACE + GLOB_MARK) as $file) {
+        if (!is_dir($folder . '/' . $file)) {
+            $both[] = $file;
         }
     }
-    if ($recursivly or $get_folders) {
-        $folders = glob("*", GLOB_ONLYDIR + GLOB_MARK);
-    }
+}
+if ($recursivly or $get_folders) {
+    $folders = glob("*", GLOB_ONLYDIR + GLOB_MARK);
+}
 
     //If a pattern is specified, make sure even the folders match that pattern.
-    $matching_folders = array();
-    if ($pattern !== '*')
-        $matching_folders = glob($pattern, GLOB_ONLYDIR + GLOB_MARK);
+$matching_folders = array();
+if ($pattern !== '*')
+    $matching_folders = glob($pattern, GLOB_ONLYDIR + GLOB_MARK);
 
     //Get just the files by removing the folders from the list of all files.
-    $all = array_values(array_diff($both, $folders));
-    if ($recursivly or $get_folders) {
-        foreach ($folders as $this_folder) {
-            if ($get_folders) {
+$all = array_values(array_diff($both, $folders));
+if ($recursivly or $get_folders) {
+    foreach ($folders as $this_folder) {
+        if ($get_folders) {
                 //If a pattern is specified, make sure even the folders match that pattern.
-                if ($pattern !== '*') {
-                    if (in_array($this_folder, $matching_folders))
-                        array_push($all, $this_folder);
-                } else
+            if ($pattern !== '*') {
+                if (in_array($this_folder, $matching_folders))
                     array_push($all, $this_folder);
-            }
+            } else
+            array_push($all, $this_folder);
+        }
 
-            if ($recursivly) {
+        if ($recursivly) {
                 // Continue calling this function for all the folders
                 $deep_items = ls($pattern, $this_folder, $recursivly, $options); # :RECURSION:
                 foreach ($deep_items as $item) {
@@ -457,25 +459,25 @@ function date_fr($date_en) {
         "February", "March", "April", "May",
         "June", "July", "August", "September",
         "October", "November", "December"
-    );
+        );
     $texte_fr = array(
         "Lundi", "Mardi", "Mercredi", "Jeudi",
         "Vendredi", "Samedi", "Dimanche", "Janvier",
         "Février", "Mars", "Avril", "Mai",
         "Juin", "Juillet", "Août", "Septembre",
         "Octobre", "Novembre", "Décembre"
-    );
+        );
     $date_fr = str_replace($texte_en, $texte_fr, $date_en);
     $texte_en = array(
         "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
         "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
         "Aug", "Sep", "Oct", "Nov", "Dec"
-    );
+        );
     $texte_fr = array(
         "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim",
         "Jan", "Fev", "Mar", "Avr", "Mai", "Jui",
         "Jui", "Aou;", "Sep", "Oct", "Nov", "Dec"
-    );
+        );
     return str_replace($texte_en, $texte_fr, $date_fr);
 }
 
@@ -683,7 +685,7 @@ function getNtpTime() {
         'utcnist.colorado.edu',
         'time.nist.gov',
         'ntp.pads.ufrj.br',
-    );
+        );
     $time_adjustment = 0;
     foreach ($time_servers as $time_server) {
         $fp = fsockopen($time_server, 37, $errno, $errstr, 1);
@@ -738,6 +740,19 @@ function getIpFromString($_string) {
     }
     if (!filter_var($_string, FILTER_VALIDATE_IP)) {
         $_string = gethostbyname($_string);
+    }
+    return $_string;
+}
+
+
+function evaluate($_string){
+    if(!isset($GLOBALS['ExpressionLanguage'])){
+        $GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
+    }
+    try {
+        return $GLOBALS['ExpressionLanguage']->evaluate($_string);
+    } catch (Exception $e) {
+
     }
     return $_string;
 }

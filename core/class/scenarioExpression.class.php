@@ -131,7 +131,6 @@ class scenarioExpression {
     public static function average($_cmd_id, $_period = '1 hour') {
         $args = func_get_args();
         if (count($args) > 2 || strpos($_period, '#') !== false || is_numeric($_period)) {
-            $test = new evaluate();
             $values = array();
             foreach ($args as $arg) {
                 if (is_numeric($arg)) {
@@ -142,7 +141,7 @@ class scenarioExpression {
                         $values[] = $value;
                     } else {
                         try {
-                            $values[] = $test->Evaluer($value);
+                            $values[] = evaluate($value);
                         } catch (Exception $ex) {
 
                         }
@@ -167,7 +166,6 @@ class scenarioExpression {
     public static function max($_cmd_id, $_period = '1 hour') {
         $args = func_get_args();
         if (count($args) > 2 || strpos($_period, '#') !== false || is_numeric($_period)) {
-            $test = new evaluate();
             $values = array();
             foreach ($args as $arg) {
                 if (is_numeric($arg)) {
@@ -178,7 +176,7 @@ class scenarioExpression {
                         $values[] = $value;
                     } else {
                         try {
-                            $values[] = $test->Evaluer($value);
+                            $values[] = evaluate($value);
                         } catch (Exception $ex) {
 
                         }
@@ -201,13 +199,12 @@ class scenarioExpression {
     }
 
     public static function wait($_condition, $_timeout = 7200) {
-        $test = new evaluate();
         $result = false;
         $occurence = 0;
         $limit = (is_numeric($_timeout)) ? $_timeout : 7200;
         while ($result === false) {
             $expression = self::setTags($_condition);
-            $result = $test->Evaluer($expression);
+            $result = evaluate($expression);
             if ($occurence > $limit) {
                 return 0;
             }
@@ -220,7 +217,6 @@ class scenarioExpression {
     public static function min($_cmd_id, $_period = '1 hour') {
         $args = func_get_args();
         if (count($args) > 2 || strpos($_period, '#') !== false || is_numeric($_period)) {
-            $test = new evaluate();
             $values = array();
             foreach ($args as $arg) {
                 if (is_numeric($arg)) {
@@ -231,7 +227,7 @@ class scenarioExpression {
                         $values[] = $value;
                     } else {
                         try {
-                            $values[] = $test->Evaluer($value);
+                            $values[] = evaluate($value);
                         } catch (Exception $ex) {
 
                         }
@@ -265,7 +261,7 @@ class scenarioExpression {
                     $values[] = $value;
                 } else {
                     try {
-                        $values[] = $test->Evaluer($value);
+                        $values[] = evaluate($value);
                     } catch (Exception $ex) {
 
                     }
@@ -386,8 +382,7 @@ class scenarioExpression {
     public static function round($_value, $_decimal = 0) {
         $_value = self::setTags($_value);
         try {
-            $test = new evaluate();
-            $result = $test->Evaluer($_value);
+            $result = evaluate($_value);
             if (is_string($result)) { //Alors la valeur n'est pas un calcul
             $result = $_value;
         }
@@ -404,8 +399,7 @@ class scenarioExpression {
 public static function time($_value) {
     $_value = self::setTags($_value);
     try {
-        $test = new evaluate();
-        $result = $test->Evaluer($_value);
+        $result = evaluate($_value);
             if (is_string($result)) { //Alors la valeur n'est pas un calcul
             $result = $_value;
         }
@@ -548,13 +542,12 @@ public function execute(&$scenario = null) {
                 if (!isset($options['condition'])) {
                     return;
                 }
-                $test = new evaluate();
                 $result = false;
                 $occurence = 0;
                 $limit = (isset($options['timeout']) && is_numeric($options['timeout'])) ? $options['timeout'] : 7200;
                 while ($result !== true) {
                     $expression = self::setTags($options['condition'], $scenario);
-                    $result = $test->Evaluer($expression);
+                    $result = evaluate($expression);
                     if ($occurence > $limit) {
                         $this->setLog($scenario, __('[Wait] Condition valide par dépassement de temps', __FILE__));
                         return;
@@ -567,8 +560,7 @@ public function execute(&$scenario = null) {
             } else if ($this->getExpression() == 'sleep') {
                 if (isset($options['duration'])) {
                     try {
-                        $test = new evaluate();
-                        $options['duration'] = $test->Evaluer($options['duration']);
+                        $options['duration'] = evaluate($options['duration']);
                     } catch (Exception $e) {
 
                     }
@@ -630,8 +622,7 @@ public function execute(&$scenario = null) {
             } else if ($this->getExpression() == 'variable') {
                 $options['value'] = self::setTags($options['value']);
                 try {
-                    $test = new evaluate();
-                    $result = $test->Evaluer($options['value']);
+                    $result = evaluate($options['value']);
                         if (!is_numeric($result)) { //Alors la valeur n'est pas un calcul
                         $result = $options['value'];
                     }
@@ -662,10 +653,9 @@ public function execute(&$scenario = null) {
                 return;
             }
         } else if ($this->getType() == 'condition') {
-            $test = new evaluate();
             $expression = self::setTags($this->getExpression(), $scenario);
             $message = __('Evaluation de la condition : [', __FILE__) . $expression . '] = ';
-            $result = $test->Evaluer($expression);
+            $result =evaluate($expression);
             if (is_bool($result)) {
                 if ($result) {
                     $message .= __('Vrai', __FILE__);

@@ -499,8 +499,7 @@ public static function fromHumanReadable($_input) {
 public static function evaluateExpression($_input) {
     try {
         $_input = scenarioExpression::setTags($_input);
-        $test = new evaluate();
-        $result = $test->Evaluer($_input);
+        $result =evaluate($_input);
         if (is_bool($result) || is_numeric($result)) {
             return $result;
         }
