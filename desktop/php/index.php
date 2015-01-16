@@ -1,17 +1,25 @@
 <?php
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
-if (init('p') == '' && isConnect()) {
-    $homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
-    if (count($homePage) == 2) {
-        if ($homePage[0] == 'core') {
-            redirect('index.php?v=d&p=' . $homePage[1]);
-        } else {
-            redirect('index.php?v=d&m=' . $homePage[0] . '&p=' . $homePage[1]);
-        }
+
+
+
+if(isConnect()){
+   $homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
+   if (count($homePage) == 2) {
+    if ($homePage[0] == 'core') {
+        $homeLink = 'index.php?v=d&p=' . $homePage[1];
     } else {
-        redirect('index.php?v=d&p=dashboard');
+        $homeLink = 'index.php?v=d&m=' . $homePage[0] . '&p=' . $homePage[1];
     }
+} else {
+    $homeLink = 'index.php?v=d&p=dashboard';
+}
+}
+
+
+if (init('p') == '' && isConnect()) {
+    redirect($homeLink);
 }
 $page = '';
 if (isConnect() && init('p') != '') {
@@ -158,7 +166,7 @@ if (count($plugins_list) > 0) {
                         <header class="navbar navbar-fixed-top navbar-default">
                             <div class="container-fluid">
                                 <div class="navbar-header">
-                                    <a class="navbar-brand" href="index.php?v=d">
+                                <a class="navbar-brand" href="<?php echo $homeLink ?>">
                                         <img src="core/img/logo-jeedom-grand-nom-couleur.svg" height="30" style="position: relative; top:-5px;"/>
                                     </a>
                                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
