@@ -20,18 +20,27 @@
  eqLogic_width_step = 40;
  eqLogic_height_step = 80;
 
+
+
+
+
  $(function () {
 
     $('body').delegate('a','click',function(event){
         if($(this).attr('href') != '' && $(this).attr('href') != undefined && $(this).attr('href').indexOf("index.php") == 0 && $(this).attr('href').indexOf("p=") > 0){
             event.preventDefault();
             window.history.pushState(null, 'Jeedom', $(this).attr('href'));
-            $('#div_pageContainer').empty().load($(this).attr('href')+'&ajax=1');
+            $('#div_pageContainer').empty().load($(this).attr('href')+'&ajax=1',function(){
+                initPage();
+            });
+            
         }
     });
 
     window.onpopstate = function(event) {
-        $('#div_pageContainer').empty().load(document.location+'&ajax=1');
+        $('#div_pageContainer').empty().load(document.location+'&ajax=1',function(){
+            initPage();
+        });
     };
 
     $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
@@ -70,7 +79,6 @@ setInterval(function () {
     $('#horloge').text(horloge);
 }, 1000);
 
-initTooltips();
 
     // Ajax Loading Screen
     $(document).ajaxStart(function () {
@@ -215,10 +223,7 @@ initTooltips();
         }
     });
 
-    initTableSorter();
-    initExpertMode();
-    $.initTableFilter();
-    initRowOverflow();
+
     $(window).resize(function () {
         initRowOverflow();
     });
@@ -254,7 +259,17 @@ initTooltips();
             }
         });
     });
+
+    initPage();
 });
+
+function initPage(){
+    initTooltips();
+    initTableSorter();
+    initExpertMode();
+    $.initTableFilter();
+    initRowOverflow();
+}
 
 function linkify(inputText) {
     //URLs starting with http://, https://, or ftp://
