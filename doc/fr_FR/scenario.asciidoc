@@ -35,7 +35,7 @@ Il existe des déclencheur spécifique (autre que ceux fournis par les commandes
 Attention à bien mettre des ' ou " (quote ou double quote) lors de l'utilisation de chaîne de caractère. Ex : "#[Object][Equipement][Info]#" = "oui"
 Vous pouvez utiliser n'importe lequel des symboles suivant pour les opérateurs : 
 
-- = : égal
+- \=\= : égal
 - > : supérieur
 - >= : supérieur ou égal
 - < : inférieur
