@@ -50,13 +50,13 @@ class interactQuery {
         FROM interactQuery
         WHERE query=:query';
         if($_interactDef_id != null){
-           $values['interactDef_id'] = $_interactDef_id;
-           $sql .= ' AND interactDef_id=:interactDef_id';
-       }
-       return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-   }
+         $values['interactDef_id'] = $_interactDef_id;
+         $sql .= ' AND interactDef_id=:interactDef_id';
+     }
+     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+ }
 
-   public static function byInteractDefId($_interactDef_id, $_enable = false) {
+ public static function byInteractDefId($_interactDef_id, $_enable = false) {
     $values = array(
         'interactDef_id' => $_interactDef_id
         );
@@ -139,10 +139,10 @@ public static function recognize($_query) {
 
     }
     if(str_word_count($_query) == 1 && $shortest > 1){
-     log::add('interact','debug','Correspondance trop éloigné (limite à 1 du à la presence d\'un seul mots) : '.$shortest);
-     return null;
- }
- if(config::byKey('interact::confidence') > 0 && $shortest > config::byKey('interact::confidence')){
+       log::add('interact','debug','Correspondance trop éloigné (limite à 1 du à la presence d\'un seul mots) : '.$shortest);
+       return null;
+   }
+   if(config::byKey('interact::confidence') > 0 && $shortest > config::byKey('interact::confidence')){
     log::add('interact','debug','Correspondance trop éloigné : '.$shortest);
     return null;
 }
@@ -360,34 +360,42 @@ public function executeAndReply($_parameters) {
                     }
                 }
             }
-            try {
-                if ($cmd->execCmd($options) === false) {
-                    return __('Impossible d\'exécuter la commande', __FILE__);
-                }
-            } catch (Exception $exc) {
-                return $exc->getMessage();
+            if($cmd->getSubType() == 'color'){
+                $colors = config::byKey('convertColor');
+                foreach (explode(' ', $_parameters['dictation']) as $word) {
+                  if(isset($colors[strtolower($word)])){
+                    $options['color'] = $colors[strtolower($word)];
+                  }
+              }
+          }
+          try {
+            if ($cmd->execCmd($options) === false) {
+                return __('Impossible d\'exécuter la commande', __FILE__);
             }
-            if ($options != null) {
-                foreach ($options as $key => $value) {
-                    $replace['#' . $key . '#'] = $value;
-                }
-            }
+        } catch (Exception $exc) {
+            return $exc->getMessage();
         }
-        if ($cmd->getType() == 'info') {
-            $value = $cmd->execCmd();
-            if ($value === null) {
-                return __('Impossible de récupérer la valeur de la commande', __FILE__);
-            } else {
-                $replace['#valeur#'] = $value;
-                if ($cmd->getSubType() == 'binary' && $interactDef->getOptions('convertBinary') != '') {
-                    $convertBinary = $interactDef->getOptions('convertBinary');
-                    $convertBinary = explode('|', $convertBinary);
-                    $replace['#valeur#'] = $convertBinary[$replace['#valeur#']];
-                }
+        if ($options != null) {
+            foreach ($options as $key => $value) {
+                $replace['#' . $key . '#'] = $value;
             }
         }
     }
-    return scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
+    if ($cmd->getType() == 'info') {
+        $value = $cmd->execCmd();
+        if ($value === null) {
+            return __('Impossible de récupérer la valeur de la commande', __FILE__);
+        } else {
+            $replace['#valeur#'] = $value;
+            if ($cmd->getSubType() == 'binary' && $interactDef->getOptions('convertBinary') != '') {
+                $convertBinary = $interactDef->getOptions('convertBinary');
+                $convertBinary = explode('|', $convertBinary);
+                $replace['#valeur#'] = $convertBinary[$replace['#valeur#']];
+            }
+        }
+    }
+}
+return scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
 }
 
 public function getInteractDef() {
