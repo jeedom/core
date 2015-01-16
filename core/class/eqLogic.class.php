@@ -76,13 +76,16 @@ class eqLogic {
         return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
 
-    public static function byTimeout($_timeout = 0) {
+    public static function byTimeout($_timeout = 0,$_onlyEnable = false) {
         $values = array(
             'timeout' => $_timeout
             );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM eqLogic
         WHERE timeout>:timeout';
+        if($_onlyEnable){
+            $sql .= ' AND enable=1'
+        }
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
 
@@ -254,34 +257,32 @@ class eqLogic {
     }
 
     public static function checkAlive() {
-        foreach (eqLogic::byTimeout() as $eqLogic) {
-            if ($eqLogic->getIsEnable() == 1) {
-                $sendReport = false;
-                $cmds = $eqLogic->getCmd();
-                foreach ($cmds as $cmd) {
-                    if ($cmd->getEventOnly() == 1) {
-                        $sendReport = true;
-                    }
+        foreach (eqLogic::byTimeout(1,true) as $eqLogic) {
+            $sendReport = false;
+            $cmds = $eqLogic->getCmd();
+            foreach ($cmds as $cmd) {
+                if ($cmd->getEventOnly() == 1) {
+                    $sendReport = true;
                 }
-                $logicalId = 'noMessage' . $eqLogic->getId();
-                if ($sendReport) {
-                    $noReponseTimeLimit = $eqLogic->getTimeout();
-                    if (count(message::byPluginLogicalId('core', $logicalId)) == 0) {
-                        if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
-                            $message = __('Attention', __FILE__) . ' <a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName();
-                            $message .= '</a>' . __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifier les piles)', __FILE__);
-                            message::add('core', $message, '', $logicalId);
-                            foreach ($cmds as $cmd) {
-                                if ($cmd->getEventOnly() == 1) {
-                                    $cmd->event('error::timeout');
-                                }
+            }
+            $logicalId = 'noMessage' . $eqLogic->getId();
+            if ($sendReport) {
+                $noReponseTimeLimit = $eqLogic->getTimeout();
+                if (count(message::byPluginLogicalId('core', $logicalId)) == 0) {
+                    if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
+                        $message = __('Attention', __FILE__) . ' <a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName();
+                        $message .= '</a>' . __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifier les piles)', __FILE__);
+                        message::add('core', $message, '', $logicalId);
+                        foreach ($cmds as $cmd) {
+                            if ($cmd->getEventOnly() == 1) {
+                                $cmd->event('error::timeout');
                             }
                         }
-                    } else {
-                        if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) > date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
-                            foreach (message::byPluginLogicalId('core', $logicalId) as $message) {
-                                $message->remove();
-                            }
+                    }
+                } else {
+                    if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) > date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
+                        foreach (message::byPluginLogicalId('core', $logicalId) as $message) {
+                            $message->remove();
                         }
                     }
                 }
@@ -440,10 +441,10 @@ class eqLogic {
         }
         $hasOnlyEventOnly = $this->hasOnlyEventOnlyCmd();
         if($hasOnlyEventOnly){
-           $sql = 'SELECT `value` FROM cache 
-           WHERE `key`="widgetHtml' . $_version . $this->getId().'"';
-           $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-           if ($result['value'] != '') {
+         $sql = 'SELECT `value` FROM cache 
+         WHERE `key`="widgetHtml' . $_version . $this->getId().'"';
+         $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+         if ($result['value'] != '') {
             return $result['value'];
         }
     }
