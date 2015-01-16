@@ -43,6 +43,12 @@ class scenarioExpression {
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
+    public static function all() {
+        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '  
+        FROM ' . __CLASS__;
+        return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+    }
+
     public static function byscenarioSubElementId($_scenarioSubElementId) {
         $values = array(
             'scenarioSubElement_id' => $_scenarioSubElementId

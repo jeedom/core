@@ -29,6 +29,7 @@
     $('body').delegate('a','click',function(event){
         if($(this).attr('href') != '' && $(this).attr('href') != undefined && $(this).attr('href').indexOf("index.php") == 0 && $(this).attr('href').indexOf("p=") > 0){
             event.preventDefault();
+            $.hideAlert();
             window.history.pushState(null, 'Jeedom', $(this).attr('href'));
             $('#div_pageContainer').empty().load($(this).attr('href')+'&ajax=1',function(){
                 initPage();
@@ -39,34 +40,35 @@
 
     window.onpopstate = function(event) {
         if(document.location.href != '' && document.location.href != undefined && document.location.href.indexOf("index.php") > 0 && document.location.href.indexOf("p=") > 0){
-            $('#div_pageContainer').empty().load(document.location+'&ajax=1',function(){
-                initPage();
-            });
-        }else{
-            window.location.href = document.location.href;
-        }
-    };
+          $.hideAlert();
+          $('#div_pageContainer').empty().load(document.location+'&ajax=1',function(){
+            initPage();
+        });
+      }else{
+        window.location.href = document.location.href;
+    }
+};
 
-    $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+$('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    $(this).parent().siblings().removeClass('open');
+    $(this).parent().toggleClass('open');
+});
+if (!navigator.userAgent.match(/Android/i)
+    && !navigator.userAgent.match(/webOS/i)
+    && !navigator.userAgent.match(/iPhone/i)
+    && !navigator.userAgent.match(/iPad/i)
+    && !navigator.userAgent.match(/iPod/i)
+    && !navigator.userAgent.match(/BlackBerry/i)
+    & !navigator.userAgent.match(/Windows Phone/i)
+    ) {
+    $('ul.dropdown-menu [data-toggle=dropdown]').on('mouseenter', function (event) {
         event.preventDefault();
         event.stopPropagation();
         $(this).parent().siblings().removeClass('open');
         $(this).parent().toggleClass('open');
     });
-    if (!navigator.userAgent.match(/Android/i)
-        && !navigator.userAgent.match(/webOS/i)
-        && !navigator.userAgent.match(/iPhone/i)
-        && !navigator.userAgent.match(/iPad/i)
-        && !navigator.userAgent.match(/iPod/i)
-        && !navigator.userAgent.match(/BlackBerry/i)
-        & !navigator.userAgent.match(/Windows Phone/i)
-        ) {
-        $('ul.dropdown-menu [data-toggle=dropdown]').on('mouseenter', function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            $(this).parent().siblings().removeClass('open');
-            $(this).parent().toggleClass('open');
-        });
 }
 /*********************Gestion de l'heure********************************/
 setInterval(function () {
