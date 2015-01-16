@@ -5,6 +5,8 @@ try {
 			$value = $expression->getExpression();
 			$value = str_replace('==', '=', $value);
 			$value = str_replace('=', '==', $value);
+			$value = str_replace('<==', '<=', $value);
+			$value = str_replace('>==', '>=', $value);
 			$expression->setExpression($value);
 			$expression->save();
 		}
