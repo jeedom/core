@@ -1,5 +1,4 @@
 <?php
-$startLoadTime = getmicrotime();
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
 if (init('p') == '' && isConnect()) {
@@ -367,20 +366,23 @@ if (count($plugins_list) > 0) {
                                     }
                                     ?>
                                     <div style="display: none;width : 100%" id="div_alert"></div>
-                                    <?php
-                                    try {
-                                        if (isset($plugin) && is_object($plugin)) {
-                                            include_file('desktop', $page, 'php', $plugin->getId());
-                                        } else {
-                                            include_file('desktop', $page, 'php');
+
+                                    <div id="div_pageContainer">
+                                        <?php
+                                        try {
+                                            if (isset($plugin) && is_object($plugin)) {
+                                                include_file('desktop', $page, 'php', $plugin->getId());
+                                            } else {
+                                                include_file('desktop', $page, 'php');
+                                            }
+                                        } catch (Exception $e) {
+                                            ob_end_clean();
+                                            echo '<div class="alert alert-danger div_alert">';
+                                            echo displayExeption($e);
+                                            echo '</div>';
                                         }
-                                    } catch (Exception $e) {
-                                        ob_end_clean();
-                                        echo '<div class="alert alert-danger div_alert">';
-                                        echo displayExeption($e);
-                                        echo '</div>';
-                                    }
-                                    ?>
+                                        ?>
+                                    </div>
                                     <div id="md_modal"></div>
                                     <div id="md_modal2"></div>
                                     <div id="md_pageHelp" style="display: none;" title="Aide">
@@ -413,11 +415,9 @@ if (count($plugins_list) > 0) {
                                         }
                                     }
                                     echo ') ';
-echo date('Y');
-echo ' - {{Page générée en}} ' . round(getmicrotime() - $startLoadTime, 3) . 's';
-?>
-</span>
-</footer>
-<?php } ?>
-</body>
-</html>
+                                    echo date('Y'); ?>
+                                </span>
+                            </footer>
+                            <?php } ?>
+                        </body>
+                        </html>

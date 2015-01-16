@@ -22,6 +22,18 @@
 
  $(function () {
 
+    $('body').delegate('a','click',function(event){
+        if($(this).attr('href') != '' && $(this).attr('href').indexOf("index.php") == 0 && $(this).attr('href').indexOf("p=") > 0){
+            event.preventDefault();
+            window.history.pushState(null, 'Jeedom', $(this).attr('href'));
+            $('#div_pageContainer').empty().load($(this).attr('href')+'&ajax=1');
+        }
+    });
+
+    window.onpopstate = function(event) {
+        $('#div_pageContainer').empty().load(document.location+'&ajax=1');
+    };
+
     $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
         event.preventDefault();
         event.stopPropagation();

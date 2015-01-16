@@ -41,6 +41,7 @@ try {
         ajax::success($return);
     }
 
+
     if (!isConnect('admin')) {
         throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
     }
