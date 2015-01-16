@@ -2,9 +2,6 @@
 if (!hasRight('securityview',true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
-include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
-include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
-include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
 ?>
 <ul class="nav nav-tabs" id="security_tab">
     <li class="active"><a href="#status">{{Statut}}</a></li>

@@ -2,9 +2,6 @@
 if (!hasRight('backupview', true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
-include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
-include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
-include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
 ?>
 <div id="backup">
     <div class="row row-overflow">

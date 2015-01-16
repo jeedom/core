@@ -106,6 +106,24 @@ if (count($plugins_list) > 0) {
                 include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
                 include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
                 include_file('3rdparty', 'responsivevoices/responsivevoices', 'js');
+                include_file('3rdparty', 'jquery.sew/jquery.sew', 'css');
+                include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
+                include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
+                include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
+                include_file('3rdparty', 'codemirror/mode/htmlmixed/htmlmixed', 'js');
+                include_file('3rdparty', 'codemirror/mode/clike/clike', 'js');
+                include_file('3rdparty', 'codemirror/mode/php/php', 'js');
+                include_file('3rdparty', 'codemirror/mode/xml/xml', 'js');
+                include_file('3rdparty', 'codemirror/mode/javascript/javascript', 'js');
+                include_file('3rdparty', 'codemirror/mode/css/css', 'js');
+                include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
+                include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
+                include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
+                include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
+                include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
+                include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
+                include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
+                include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
                 if (file_exists(dirname(__FILE__) . '/../custom/custom.css')) {
                     include_file('desktop', '', 'custom.css');
                 }
