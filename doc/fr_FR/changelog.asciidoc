@@ -1,4 +1,4 @@
-*16/01/2015* _v1.157.0_
+*16/01/2015* _v1.159.0_
 
 - Utilisation de composer
 - Changement de la librairie d'interpretation d'expression 

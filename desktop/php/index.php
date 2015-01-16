@@ -2,11 +2,9 @@
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
 
-
-
 if(isConnect()){
-   $homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
-   if (count($homePage) == 2) {
+ $homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
+ if (count($homePage) == 2) {
     if ($homePage[0] == 'core') {
         $homeLink = 'index.php?v=d&p=' . $homePage[1];
     } else {
@@ -166,7 +164,7 @@ if (count($plugins_list) > 0) {
                         <header class="navbar navbar-fixed-top navbar-default">
                             <div class="container-fluid">
                                 <div class="navbar-header">
-                                <a class="navbar-brand" href="<?php echo $homeLink ?>">
+                                    <a class="navbar-brand" href="<?php echo $homeLink ?>">
                                         <img src="core/img/logo-jeedom-grand-nom-couleur.svg" height="30" style="position: relative; top:-5px;"/>
                                     </a>
                                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
