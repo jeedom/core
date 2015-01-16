@@ -750,7 +750,7 @@ function evaluate($_string){
         $GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
     }
     try {
-        return $GLOBALS['ExpressionLanguage']->evaluate(str_replace(array(' et ',' ET ', ' ou ', ' OU '), array(' && ',' && ',' || ', ' || '), $_string));
+        return $GLOBALS['ExpressionLanguage']->evaluate(str_replace(array(' et ',' ET ',' AND ', ' ou ', ' OR ', ' OU '), array(' && ',' && ',' && ',' || ',' || ', ' || '), $_string));
     } catch (Exception $e) {
 
     }
