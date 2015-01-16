@@ -38,10 +38,15 @@
     });
 
     window.onpopstate = function(event) {
+        if(document.location.href != '' && document.location.href != undefined && document.location.href.indexOf("index.php") > 0 && document.location.href.indexOf("p=") > 0){
         $('#div_pageContainer').empty().load(document.location+'&ajax=1',function(){
             initPage();
         });
     };
+    }else{
+        window.location.href = document.location.href;
+    }
+};
 
     $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
         event.preventDefault();
