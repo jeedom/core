@@ -214,7 +214,7 @@ function redirect($_url, $_forceType = null) {
         exit(header("Location: $_url"));
         break;
         default:
-        if (headers_sent()) {
+        if (headers_sent() || isset($_GET['ajax'])) {
             echo '<script type="text/javascript">';
             echo "window.location.href='$_url';";
             echo '</script>';
