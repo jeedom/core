@@ -58,7 +58,8 @@ if (!isset($_GET['v'])) {
                     echo '</div>';
                 }
             }
-        } if (isset($_GET['ajax'])) {
+            die();
+        } if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
             include_file('core', 'authentification', 'php');
             try {
                 if (!isConnect()) {
@@ -76,9 +77,12 @@ if (!isset($_GET['v'])) {
                     echo '</div>';
 
                 }
+                die();
             }else {
                 include_file('desktop', 'index', 'php');
+                die();
             }
+
         } else if ($_GET['v'] == "m") {
             if (isset($_GET['modal'])) {
                 include_file('mobile', init('modal'), 'modal', init('plugin'));
