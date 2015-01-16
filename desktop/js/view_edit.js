@@ -15,14 +15,9 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-$("#md_addViewData").dialog({
-    autoOpen: false,
-    modal: true,
-    height: (jQuery(window).height() - 150),
-    width: (jQuery(window).width() - 450)
-});
 
-$(".li_view").on('click', function(event) {
+
+ $(".li_view").on('click', function(event) {
     $.hideAlert();
     $(".li_view").removeClass('active');
     $(this).addClass('active');
@@ -49,15 +44,15 @@ $(".li_view").on('click', function(event) {
     return false;
 });
 
-$('.viewDataOption[data-l1key=configuration][data-l2key=graphColor]').on('change', function() {
+ $('.viewDataOption[data-l1key=configuration][data-l2key=graphColor]').on('change', function() {
     setColorSelect($(this).closest('select'));
 });
 
-$('#bt_viewResult').on('click', function() {
+ $('#bt_viewResult').on('click', function() {
     window.location.href = 'index.php?v=d&p=view&view_id=' + $(".li_view.active").attr('data-view_id');
 });
 
-$("#bt_addView").on('click', function(event) {
+ $("#bt_addView").on('click', function(event) {
     bootbox.prompt("Nom de la vue ?", function(result) {
         if (result !== null) {
             editView({id: '', name: result});
@@ -65,7 +60,7 @@ $("#bt_addView").on('click', function(event) {
     });
 });
 
-$("#bt_editView").on('click', function(event) {
+ $("#bt_editView").on('click', function(event) {
     bootbox.prompt("Nom de la vue ?", function(result) {
         if (result !== null) {
             editView({id: $('.li_view.active').attr('data-view_id'), name: result});
@@ -73,12 +68,12 @@ $("#bt_editView").on('click', function(event) {
     });
 });
 
-jwerty.key('ctrl+s', function (e) {
+ jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
     $('#bt_saveView').click();
 });
 
-$('#bt_saveView').on('click', function(event) {
+ $('#bt_saveView').on('click', function(event) {
     $.hideAlert();
     var viewZones = [];
     $('.viewZone').each(function() {
@@ -103,7 +98,7 @@ $('#bt_saveView').on('click', function(event) {
     return;
 });
 
-$("#bt_removeView").on('click', function(event) {
+ $("#bt_removeView").on('click', function(event) {
     $.hideAlert();
     bootbox.confirm('{{Etes-vous sûr de vouloir supprimer la vue}} <span style="font-weight: bold ;">' + $(".li_view.active a").text() + '</span> ?', function(result) {
         if (result) {
@@ -121,7 +116,7 @@ $("#bt_removeView").on('click', function(event) {
     });
 });
 
-if (is_numeric(getUrlVars('view_id'))) {
+ if (is_numeric(getUrlVars('view_id'))) {
     if ($('#ul_view .li_view[data-view_id=' + getUrlVars('view_id') + ']').length != 0) {
         $('#ul_view .li_view[data-view_id=' + getUrlVars('view_id') + ']').click();
     } else {
@@ -195,73 +190,76 @@ $('#div_viewZones').delegate('.bt_editviewZone', 'click', function() {
 /*****************************DATA****************************************/
 
 $('#div_viewZones').delegate('.bt_addViewData', 'click', function() {
-    $('#table_addViewData .filter').value('');
-    var viewZone = $(this).closest('.viewZone');
-    $('#table_addViewData tbody tr .enable').prop('checked', false);
-    var type = viewZone.find('.viewZoneAttr[data-l1key=type]').value();
-    if (type == 'graph') {
-        $('#table_addViewDataHidden tbody').append($('#table_addViewData tr[data-type=widget]'));
-        $('#table_addViewData tbody').append($('#table_addViewDataHidden tr[data-type=graph]'));
-    }
-    if (type == 'widget') {
-        $('#table_addViewDataHidden tbody').append($('#table_addViewData tr[data-type=graph]'));
-        $('#table_addViewData tbody').append($('#table_addViewDataHidden tr[data-type=widget]'));
-    }
-    $('#table_addViewData').trigger('update');
-    $('#table_addViewData tbody tr div.option').hide();
-
-
-    var viewDatas = [];
-    viewZone.find('span.viewData').each(function() {
-        viewDatas.push($(this));
-    });
-    for (var i = (viewDatas.length - 1); i >= 0; i--) {
-        var viewData = $('#table_addViewData tbody tr[data-viewDataType=' + viewDatas[i].find('.viewDataAttr[data-l1key=type]').value() + '][data-link_id=' + viewDatas[i].find('.viewDataAttr[data-l1key=link_id]').value() + ']');
-        if (viewData != null) {
-            viewData.find('.enable').value(1);
-            viewData.find('.option').show();
-            viewDatas[i].find('.viewDataAttr').each(function() {
-                viewData.find('.viewDataOption[data-l1key=' + $(this).attr('data-l1key') + '][data-l2key=' + $(this).attr('data-l2key') + ']').value($(this).value());
-            });
-            setColorSelect(viewData.find('.viewDataOption[data-l1key=configuration][data-l2key=graphColor]'));
-            $('#table_addViewData tbody').prepend(viewData);
+    var bt = $(this);
+    $("#md_modal").load('index.php?v=d&modal=view.widget',function() { 
+        $('#table_addViewData .filter').value('');
+        var viewZone =bt.closest('.viewZone');
+        $('#table_addViewData tbody tr .enable').prop('checked', false);
+        var type = viewZone.find('.viewZoneAttr[data-l1key=type]').value();
+        if (type == 'graph') {
+            $('#table_addViewDataHidden tbody').append($('#table_addViewData tr[data-type=widget]'));
+            $('#table_addViewData tbody').append($('#table_addViewDataHidden tr[data-type=graph]'));
         }
-    }
+        if (type == 'widget') {
+            $('#table_addViewDataHidden tbody').append($('#table_addViewData tr[data-type=graph]'));
+            $('#table_addViewData tbody').append($('#table_addViewDataHidden tr[data-type=widget]'));
+        }
+        $('#table_addViewData').trigger('update');
+        $('#table_addViewData tbody tr div.option').hide();
 
-    $("#md_addViewData").dialog('option', 'buttons', {
-        "Annuler": function() {
-            $(this).dialog("close");
-        },
-        "Valider": function() {
-            var span = '';
-            var tr = $('#table_addViewData tbody tr:first');
-            while (tr.attr('data-link_id') != undefined) {
-                if (tr.find('.enable').is(':checked')) {
-                    var viewData = tr.getValues('.viewDataOption');
-                    viewData = viewData[0];
-                    viewData.link_id = tr.attr('data-link_id');
-                    viewData.name = '';
-                    if (tr.find('.object_name').text() != '') {
-                        viewData.name += '[' + tr.find('.object_name').text() + ']';
-                    } else {
-                        if (tr.find('.type').text() == 'Scénario') {
-                            viewData.name += '[Scénario]';
-                        }
-                        if (tr.find('.type').text() == 'Commande') {
-                            viewData.name += '[Aucun]';
-                        }
-                    }
-                    viewData.name += '[' + tr.find('.name').text() + ']';
-                    span += addServiceToviewZone(viewData);
-                }
-                tr = tr.next();
+
+        var viewDatas = [];
+        viewZone.find('span.viewData').each(function() {
+            viewDatas.push($(this));
+        });
+        for (var i = (viewDatas.length - 1); i >= 0; i--) {
+            var viewData = $('#table_addViewData tbody tr[data-viewDataType=' + viewDatas[i].find('.viewDataAttr[data-l1key=type]').value() + '][data-link_id=' + viewDatas[i].find('.viewDataAttr[data-l1key=link_id]').value() + ']');
+            if (viewData != null) {
+                viewData.find('.enable').value(1);
+                viewData.find('.option').show();
+                viewDatas[i].find('.viewDataAttr').each(function() {
+                    viewData.find('.viewDataOption[data-l1key=' + $(this).attr('data-l1key') + '][data-l2key=' + $(this).attr('data-l2key') + ']').value($(this).value());
+                });
+                setColorSelect(viewData.find('.viewDataOption[data-l1key=configuration][data-l2key=graphColor]'));
+                $('#table_addViewData tbody').prepend(viewData);
             }
-            viewZone.find('span.viewData').remove();
-            viewZone.find('.div_viewData').append(span);
-            $(this).dialog('close');
         }
-    });
-    $("#md_addViewData").dialog('open');
+
+        $("#md_modal").dialog('option', 'buttons', {
+            "Annuler": function() {
+                $(this).dialog("close");
+            },
+            "Valider": function() {
+                var tr = $('#table_addViewData tbody tr:first');
+                span = '';
+                while (tr.attr('data-link_id') != undefined) {
+                    if (tr.find('.enable').is(':checked')) {
+                        var viewData = tr.getValues('.viewDataOption');
+                        viewData = viewData[0];
+                        viewData.link_id = tr.attr('data-link_id');
+                        viewData.name = '';
+                        if (tr.find('.object_name').text() != '') {
+                            viewData.name += '[' + tr.find('.object_name').text() + ']';
+                        } else {
+                            if (tr.find('.type').text() == 'Scénario') {
+                                viewData.name += '[Scénario]';
+                            }
+                            if (tr.find('.type').text() == 'Commande') {
+                                viewData.name += '[Aucun]';
+                            }
+                        }
+                        viewData.name += '[' + tr.find('.name').text() + ']';
+                        span += addServiceToviewZone(viewData);
+                    }
+                    tr = tr.next();
+                }
+                viewZone.find('span.viewData').remove();
+                viewZone.find('.div_viewData').append(span);
+                $(this).dialog('close');
+            }
+        });
+$("#md_modal").dialog('open');
+});
 });
 
 $('#div_viewZones').delegate('.bt_removeViewData', 'click', function() {
@@ -295,17 +293,17 @@ function editView(_view) {
             handleAjaxError(request, status, error, $('#div_addViewAlert'));
         },
         success: function(data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_addViewAlert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            if ($('.li_view[data-view_id=' + data.result.id + ']').length != 0) {
-                $('.li_view.active a').text($('#in_addViewName').value());
-            } else {
-                window.location.replace('index.php?v=d&p=view_edit&view_id=' + data.result.id);
-            }
+        if (data.state != 'ok') {
+            $('#div_addViewAlert').showAlert({message: data.result, level: 'danger'});
+            return;
         }
-    });
+        if ($('.li_view[data-view_id=' + data.result.id + ']').length != 0) {
+            $('.li_view.active a').text($('#in_addViewName').value());
+        } else {
+            window.location.replace('index.php?v=d&p=view_edit&view_id=' + data.result.id);
+        }
+    }
+});
 }
 
 function addEditviewZone(_viewZone) {

@@ -2,13 +2,6 @@
 if (!isConnect('admin')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
-include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
-include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
-include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
-include_file('3rdparty', 'codemirror/mode/htmlmixed/htmlmixed', 'js');
-include_file('3rdparty', 'codemirror/mode/xml/xml', 'js');
-include_file('3rdparty', 'codemirror/mode/javascript/javascript', 'js');
-include_file('3rdparty', 'codemirror/mode/css/css', 'js');
 $plan = plan::byLinkTypeLinkIdPlanHedaerId(init('link_type'), init('link_id'), init('planHeader_id'));
 if (!is_object($plan)) {
     throw new Exception('Impossible de trouver le design');

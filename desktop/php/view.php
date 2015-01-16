@@ -66,4 +66,4 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
 
 </div>
 
-<?php //include_file('desktop', 'view', 'js'); ?>
+<?php include_file('desktop', 'view', 'js'); ?>

@@ -30,6 +30,10 @@
         if($(this).attr('href') != '' && $(this).attr('href') != undefined && $(this).attr('href').indexOf("index.php") == 0 && $(this).attr('href').indexOf("p=") > 0){
             event.preventDefault();
             $.hideAlert();
+            $( "#md_reportBug" ).dialog( "close" );
+            $( "#md_pageHelp" ).dialog( "close" );
+            $( "#md_modal" ).dialog( "close" );
+            $( "#md_modal2" ).dialog( "close" );
             window.history.pushState(null, 'Jeedom', $(this).attr('href'));
             $('#div_pageContainer').empty().load($(this).attr('href')+'&ajax=1',function(){
                 initPage();
@@ -41,6 +45,10 @@
     window.onpopstate = function(event) {
         if(document.location.href != '' && document.location.href != undefined && document.location.href.indexOf("index.php") > 0 && document.location.href.indexOf("p=") > 0){
           $.hideAlert();
+          $( "#md_reportBug" ).dialog( "close" );
+          $( "#md_pageHelp" ).dialog( "close" );
+          $( "#md_modal" ).dialog( "close" );
+          $( "#md_modal2" ).dialog( "close" );
           $('#div_pageContainer').empty().load(document.location+'&ajax=1',function(){
             initPage();
         });
