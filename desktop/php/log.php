@@ -41,9 +41,13 @@ if ($logfile == '') {
 </select>
 <br/><br/>
 <div id="div_logDisplay" style="overflow: scroll;"><pre><?php
-$h = fopen(dirname(__FILE__) .'/../../log/'.$logfile, "rb");
-echo fread($h, filesize(dirname(__FILE__) .'/../../log/'.$logfile));
-fclose($h);?></pre></div>
+$handle = fopen(dirname(__FILE__) .'/../../log/'.$logfile, "r");
+if ($handle) {
+    while (!feof($handle)) {
+        echo fgets($handle, 4096);
+    }
+    fclose($handle);
+}?></pre></div>
 <script>
     $(function() {
         $('#div_logDisplay').height($(window).height() - $('header').height() - $('footer').height() - 90);
