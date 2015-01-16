@@ -80,7 +80,7 @@ $('.displayInteracQuery').on('click', function () {
 
 $('body').delegate('.listEquipementInfo', 'click', function () {
     jeedom.cmd.getSelectModal({}, function (result) {
-        $('.interactAttr[data-l1key=link_id]').value(result.human);
+        $('.interactAttr[data-l1key=link_id]').atCaret('insert',result.human);
     });
 });
 

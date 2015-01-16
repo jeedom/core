@@ -328,69 +328,72 @@ public function executeAndReply($_parameters) {
     $replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
 
     if ($this->getLink_type() == 'cmd') {
-        $cmd = cmd::byId($this->getLink_id());
-        if (!is_object($cmd)) {
-            log::add('interact', 'error', __('Commande : ', __FILE__) . $this->getLink_id() . __(' introuvable veuillez renvoyer les listes des commandes', __FILE__));
-            return __('Commande introuvable - vérifiez si elle existe toujours', __FILE__);
-        }
-        $replace['#commande#'] = $cmd->getName();
-        if (isset($synonymes[strtolower($cmd->getName())])) {
-            $replace['#commande#'] = $synonymes[strtolower($cmd->getName())][rand(0, count($synonymes[strtolower($cmd->getName())]) - 1)];
-        }
-        $replace['#objet#'] = '';
-        $replace['#equipement#'] = '';
-        
-        $eqLogic = $cmd->getEqLogic();
-        if (is_object($eqLogic)) {
-            $replace['#equipement#'] = $eqLogic->getName();
-            $object = $eqLogic->getObject();
-            if (is_object($object)) {
-                $replace['#objet#'] = $object->getName();
-            }
-        }
+        foreach (explode('&&', $this->getLink_id()) as $cmd_id) {
+            $cmd = cmd::byId($cmd_id);
 
-        $replace['#unite#'] = $cmd->getUnite();
-        if ($cmd->getType() == 'action') {
-            $options = null;
-            if($cmd->getSubType() == 'slider'){
-                preg_match_all("/([0-9]*)/", $_parameters['dictation'], $matches);
-                foreach ($matches[1] as $number) {
-                    if (is_numeric($number)) {
-                        $options['slider'] = $number;
+            if (!is_object($cmd)) {
+                log::add('interact', 'error', __('Commande : ', __FILE__) . $this->getLink_id() . __(' introuvable veuillez renvoyer les listes des commandes', __FILE__));
+                return __('Commande introuvable - vérifiez si elle existe toujours', __FILE__);
+            }
+            $replace['#commande#'] = $cmd->getName();
+            if (isset($synonymes[strtolower($cmd->getName())])) {
+                $replace['#commande#'] = $synonymes[strtolower($cmd->getName())][rand(0, count($synonymes[strtolower($cmd->getName())]) - 1)];
+            }
+            $replace['#objet#'] = '';
+            $replace['#equipement#'] = '';
+
+            $eqLogic = $cmd->getEqLogic();
+            if (is_object($eqLogic)) {
+                $replace['#equipement#'] = $eqLogic->getName();
+                $object = $eqLogic->getObject();
+                if (is_object($object)) {
+                    $replace['#objet#'] = $object->getName();
+                }
+            }
+
+            $replace['#unite#'] = $cmd->getUnite();
+            if ($cmd->getType() == 'action') {
+                $options = null;
+                if($cmd->getSubType() == 'slider'){
+                    preg_match_all("/([0-9]*)/", $_parameters['dictation'], $matches);
+                    foreach ($matches[1] as $number) {
+                        if (is_numeric($number)) {
+                            $options['slider'] = $number;
+                        }
+                    }
+                }
+                if($cmd->getSubType() == 'color'){
+                    $colors = config::byKey('convertColor');
+                    foreach (explode(' ', $_parameters['dictation']) as $word) {
+                      if(isset($colors[strtolower($word)])){
+                        $options['color'] = $colors[strtolower($word)];
                     }
                 }
             }
-            if($cmd->getSubType() == 'color'){
-                $colors = config::byKey('convertColor');
-                foreach (explode(' ', $_parameters['dictation']) as $word) {
-                  if(isset($colors[strtolower($word)])){
-                    $options['color'] = $colors[strtolower($word)];
-                  }
-              }
-          }
-          try {
-            if ($cmd->execCmd($options) === false) {
-                return __('Impossible d\'exécuter la commande', __FILE__);
+            try {
+                if ($cmd->execCmd($options) === false) {
+                    return __('Impossible d\'exécuter la commande', __FILE__);
+                }
+            } catch (Exception $exc) {
+                return $exc->getMessage();
             }
-        } catch (Exception $exc) {
-            return $exc->getMessage();
-        }
-        if ($options != null) {
-            foreach ($options as $key => $value) {
-                $replace['#' . $key . '#'] = $value;
+            if ($options != null) {
+                foreach ($options as $key => $value) {
+                    $replace['#' . $key . '#'] = $value;
+                }
             }
         }
-    }
-    if ($cmd->getType() == 'info') {
-        $value = $cmd->execCmd();
-        if ($value === null) {
-            return __('Impossible de récupérer la valeur de la commande', __FILE__);
-        } else {
-            $replace['#valeur#'] = $value;
-            if ($cmd->getSubType() == 'binary' && $interactDef->getOptions('convertBinary') != '') {
-                $convertBinary = $interactDef->getOptions('convertBinary');
-                $convertBinary = explode('|', $convertBinary);
-                $replace['#valeur#'] = $convertBinary[$replace['#valeur#']];
+        if ($cmd->getType() == 'info') {
+            $value = $cmd->execCmd();
+            if ($value === null) {
+                return __('Impossible de récupérer la valeur de la commande', __FILE__);
+            } else {
+                $replace['#valeur#'] = $value;
+                if ($cmd->getSubType() == 'binary' && $interactDef->getOptions('convertBinary') != '') {
+                    $convertBinary = $interactDef->getOptions('convertBinary');
+                    $convertBinary = explode('|', $convertBinary);
+                    $replace['#valeur#'] = $convertBinary[$replace['#valeur#']];
+                }
             }
         }
     }

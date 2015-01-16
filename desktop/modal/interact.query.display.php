@@ -33,7 +33,14 @@ if (count($interactQueries) == 0) {
             echo '<td>' . $interactQuery->getQuery() . '</td>';
             echo '<td>';
             if ($interactQuery->getLink_type() == 'cmd') {
-                echo str_replace('#', '', cmd::cmdToHumanReadable('#' . $interactQuery->getLink_id() . '#'));
+                foreach (explode('&&', $interactQuery->getLink_id() ) as $cmd_id) {
+                    $cmd = cmd::byId($cmd_id);
+                    if (is_object($cmd)) {
+                        $link_id .= cmd::cmdToHumanReadable('#' . $cmd->getId() . '# && ');
+                    }
+
+                }
+                echo str_replace('#', '', trim(trim($link_id),'&&'));
             }
             echo '</td>';
             echo '<td>';
@@ -89,13 +96,13 @@ if (count($interactQueries) == 0) {
                 });
             }
         });
-    });
+});
 
-    $('#table_interactQuery .changeEnable').on('click', function () {
-        var tr = $(this).closest('tr');
-        var btn = $(this);
-        $.ajax({
-            type: 'POST',
+$('#table_interactQuery .changeEnable').on('click', function () {
+    var tr = $(this).closest('tr');
+    var btn = $(this);
+    $.ajax({
+        type: 'POST',
             url: "core/ajax/interact.ajax.php", // url du fichier php
             data: {
                 action: 'changeState',
@@ -124,6 +131,6 @@ if (count($interactQueries) == 0) {
                 }
             }
         });
-    });
+});
 
 </script>
