@@ -230,7 +230,7 @@ foreach (scenario::listGroup() as $group) {
                             <div class='conditionOptions' data-type="info" data-subtype="numeric" style="display : none;">
                                 <div class="col-xs-4">
                                     <select class="conditionAttr form-control" data-l1key="operator">
-                                        <option value="=">égale</option>
+                                        <option value="==">égale</option>
                                         <option value=">">supérieur</option>
                                         <option value="<">inférieur</option>
                                         <option value="!=">différent</option>
