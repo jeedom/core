@@ -4,7 +4,7 @@
 - Changement de la librairie d'interpretation d'expression 
 - Navigation desktop en full ajax
 - Support des couleurs dans les interactions
-- Multiple action sur les interactions autorisé (séparé par des &&)
+- Multiple action sur les interactions autorisées (séparé par des &&)
 
 *12/01/2015* _v1.156.0_
 

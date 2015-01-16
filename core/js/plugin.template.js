@@ -20,13 +20,13 @@ $('.eqLogicDisplayCard').on('click', function () {
     $('.li_eqLogic[data-eqLogic_id=' + $(this).attr('data-eqLogic_id') + ']').click();
 });
 
-$('.eqLogicAction[data-action=returnToThumbnailDisplay]').on('click', function () {
+$('.eqLogicAction[data-action=returnToThumbnailDisplay]').off().on('click', function () {
     $('.eqLogic').hide();
     $('.eqLogicThumbnailDisplay').show();
     $('.li_eqLogic').removeClass('active');
 });
 
-$(".li_eqLogic").on('click', function () {
+$(".li_eqLogic").off().on('click', function () {
     $('.eqLogic').hide();
     if ('function' == typeof (prePrintEqLogic)) {
         prePrintEqLogic();
@@ -85,7 +85,7 @@ if (getUrlVars('removeSuccessFull') == 1) {
 }
 
 /**************************EqLogic*********************************************/
-$('.eqLogicAction[data-action=copy]').on('click', function () {
+$('.eqLogicAction[data-action=copy]').off().on('click', function () {
     if ($('.li_eqLogic.active').attr('data-eqLogic_id') != undefined) {
         bootbox.prompt("{{Nom la copie de l'équipement ?}}", function (result) {
             if (result !== null) {
@@ -119,7 +119,7 @@ $('.eqLogicAction[data-action=copy]').on('click', function () {
 });
 
 
-$('.eqLogicAction[data-action=export]').on('click', function () {
+$('.eqLogicAction[data-action=export]').off().on('click', function () {
     window.open('core/php/export.php?type=eqLogic&id=' + $('.li_eqLogic.active').attr('data-eqLogic_id'), "_blank", null);
 });
 
@@ -128,7 +128,7 @@ jwerty.key('ctrl+s', function (e) {
     $('.eqLogicAction[data-action=save]').click();
 });
 
-$('.eqLogicAction[data-action=save]').on('click', function () {
+$('.eqLogicAction[data-action=save]').off().on('click', function () {
     var eqLogics = [];
     $('.eqLogic').each(function () {
         if ($(this).is(':visible')) {
@@ -169,15 +169,15 @@ $('.eqLogicAction[data-action=save]').on('click', function () {
     return false;
 });
 
-$('.eqLogicAttr[data-l1key=name]').on('change', function () {
+$('.eqLogicAttr[data-l1key=name]').off().on('change', function () {
     changeLeftMenuObjectOrEqLogicName = true;
 });
 
-$('.eqLogicAttr[data-l1key=object_id]').on('change', function () {
+$('.eqLogicAttr[data-l1key=object_id]').off().on('change', function () {
     changeLeftMenuObjectOrEqLogicName = true;
 });
 
-$('.eqLogicAction[data-action=remove]').on('click', function () {
+$('.eqLogicAction[data-action=remove]').off().on('click', function () {
     if ($('.li_eqLogic.active').attr('data-eqLogic_id') != undefined) {
         bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.li_eqLogic.active a:first').text() + '</b> ?', function (result) {
             if (result) {
@@ -208,7 +208,7 @@ $('.eqLogicAction[data-action=remove]').on('click', function () {
 });
 
 
-$('.eqLogicAction[data-action=add]').on('click', function () {
+$('.eqLogicAction[data-action=add]').off().on('click', function () {
     bootbox.prompt("{{Nom de l'équipement ?}}", function (result) {
         if (result !== null) {
             jeedom.eqLogic.save({
@@ -234,29 +234,29 @@ $('.eqLogicAction[data-action=add]').on('click', function () {
     });
 });
 
-$('.eqLogic .eqLogicAction[data-action=configure]').on('click', function () {
+$('.eqLogic .eqLogicAction[data-action=configure]').off().on('click', function () {
     $('#md_modal').dialog({title: "{{Configuration commande}}"});
     $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $('.li_eqLogic.active').attr('data-eqLogic_id')).dialog('open');
 });
 
 /**************************CMD*********************************************/
-$('.cmdAction[data-action=add]').on('click', function () {
+$('.cmdAction[data-action=add]').off().on('click', function () {
     addCmdToTable();
     $('.cmd:last .cmdAttr[data-l1key=type]').trigger('change');
 });
 
-$('body').delegate('.cmd .cmdAction[data-l1key=chooseIcon]', 'click', function () {
+$('body').undelegate('.cmd .cmdAction[data-action=chooseIcon]', 'click').delegate('.cmd .cmdAction[data-l1key=chooseIcon]', 'click', function () {
     var cmd = $(this).closest('.cmd');
     chooseIcon(function (_icon) {
         cmd.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
     });
 });
 
-$('body').delegate('.cmd .cmdAttr[data-l1key=display][data-l2key=icon]', 'click', function () {
+$('body').undelegate('.cmd .cmdAction[data-action=icon]', 'click').delegate('.cmd .cmdAttr[data-l1key=display][data-l2key=icon]', 'click', function () {
     $(this).empty();
 });
 
-$('body').delegate('.cmd .cmdAttr[data-l1key=eventOnly]', 'change', function () {
+$('body').undelegate('.cmd .cmdAction[data-action=eventOnly]', 'click').delegate('.cmd .cmdAttr[data-l1key=eventOnly]', 'change', function () {
     if ($(this).value() == 1) {
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').hide();
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').addClass('hide');
@@ -266,11 +266,11 @@ $('body').delegate('.cmd .cmdAttr[data-l1key=eventOnly]', 'change', function () 
     }
 });
 
-$('body').delegate('.cmd .cmdAction[data-action=remove]', 'click', function () {
+$('body').undelegate('.cmd .cmdAction[data-action=remove]', 'click').delegate('.cmd .cmdAction[data-action=remove]', 'click', function () {
     $(this).closest('tr').remove();
 });
 
-$('body').delegate('.cmd .cmdAction[data-action=test]', 'click', function () {
+$('body').undelegate('.cmd .cmdAction[data-action=test]', 'click').delegate('.cmd .cmdAction[data-action=test]', 'click', function (event) {
     $.hideAlert();
     if ($('.eqLogicAttr[data-l1key=isEnable]').is(':checked')) {
         var id = $(this).closest('.cmd').attr('data-cmd_id');
@@ -278,9 +278,10 @@ $('body').delegate('.cmd .cmdAction[data-action=test]', 'click', function () {
     } else {
         $('#div_alert').showAlert({message: '{{Veuillez activer l\'équipement avant de tester une de ses commandes}}', level: 'warning'});
     }
+
 });
 
-$('body').delegate('.cmd .cmdAction[data-action=configure]', 'click', function () {
+$('body').undelegate('.cmd .cmdAction[data-action=configure]', 'click').delegate('.cmd .cmdAction[data-action=configure]', 'click', function () {
     $('#md_modal').dialog({title: "{{Configuration commande}}"});
     $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open');
 });
