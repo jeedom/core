@@ -23,7 +23,7 @@
  $(function () {
 
     $('body').delegate('a','click',function(event){
-        if($(this).attr('href') != '' && $(this).attr('href').indexOf("index.php") == 0 && $(this).attr('href').indexOf("p=") > 0){
+        if($(this).attr('href') != '' && $(this).attr('href') != undefined && $(this).attr('href').indexOf("index.php") == 0 && $(this).attr('href').indexOf("p=") > 0){
             event.preventDefault();
             window.history.pushState(null, 'Jeedom', $(this).attr('href'));
             $('#div_pageContainer').empty().load($(this).attr('href')+'&ajax=1');

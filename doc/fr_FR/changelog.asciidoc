@@ -1,3 +1,9 @@
+*16/01/2015* _v1.157.0_
+
+- Utilisation de composer
+- Changement de la librairie d'interpretation d'expression 
+- Navigation desktop en full ajax
+
 *12/01/2015* _v1.156.0_
 
 - Correction de 2 bugs sur l'export et le partage des scénarios
