@@ -33,7 +33,6 @@
             $('#div_pageContainer').empty().load($(this).attr('href')+'&ajax=1',function(){
                 initPage();
             });
-            
         }
     });
 

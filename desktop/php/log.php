@@ -41,27 +41,29 @@ if ($logfile == '') {
 </select>
 <br/><br/>
 <div id="div_logDisplay" style="overflow: scroll;"><pre><?php
-$handle = fopen(dirname(__FILE__) .'/../../log/'.$logfile, "r");
-if ($handle) {
-    while (!feof($handle)) {
-        echo fgets($handle, 4096);
-    }
-    fclose($handle);
-}?></pre></div>
-<script>
-    $(function() {
-        $('#div_logDisplay').height($(window).height() - $('header').height() - $('footer').height() - 90);
-        $('#div_logDisplay').scrollTop(999999999);
-        $('#bt_downloadLog').click(function() {
-            window.open('core/php/downloadFile.php?pathfile=log/' + $('#sel_log').value(), "_blank", null);
-        });
+    $handle = fopen(dirname(__FILE__) .'/../../log/'.$logfile, "r");
+    if ($handle) {
+        while (!feof($handle)) {
+            echo fgets($handle, 4096);
+        }
+        fclose($handle);
+    }?></pre></div>
+    <script>
+        $(function() {
+            $('#div_logDisplay').height($(window).height() - $('header').height() - $('footer').height() - 90);
+            $('#div_logDisplay').scrollTop(999999999);
+            $('#bt_downloadLog').click(function() {
+                window.open('core/php/downloadFile.php?pathfile=log/' + $('#sel_log').value(), "_blank", null);
+            });
 
-        $("#sel_log").on('change', function() {
-            log = $('#sel_log').value();
-            window.location = 'index.php?v=d&p=log&logfile=' + log;
-        });
+            $("#sel_log").on('change', function() {
+                log = $('#sel_log').value();
+                $('#div_pageContainer').empty().load('index.php?v=d&p=log&logfile=' + log+'&ajax=1',function(){
+                    initPage();
+                });
+            });
 
-        $("#bt_clearLog").on('click', function(event) {
+            $("#bt_clearLog").on('click', function(event) {
             $.ajax({// fonction permettant de faire de l'ajax
                 type: "POST", // methode de transmission des données au fichier php
                 url: "core/ajax/log.ajax.php", // url du fichier php
@@ -77,13 +79,15 @@ if ($handle) {
                 if (data.state != 'ok') {
                     $('#div_alertError').showAlert({message: data.result, level: 'danger'});
                 } else {
-                    window.location.reload();
-                }
-            }
-        });
+                 $('#div_pageContainer').empty().load('index.php?v=d&p=log&ajax=1',function(){
+                    initPage();
+                });
+             }
+         }
+     });
         });
 
-        $("#bt_removeLog").on('click', function(event) {
+            $("#bt_removeLog").on('click', function(event) {
             $.ajax({// fonction permettant de faire de l'ajax
                 type: "POST", // methode de transmission des données au fichier php
                 url: "core/ajax/log.ajax.php", // url du fichier php
@@ -99,15 +103,17 @@ if ($handle) {
                 if (data.state != 'ok') {
                     $('#div_alertError').showAlert({message: data.result, level: 'danger'});
                 } else {
-                    window.location.href = 'index.php?v=d&p=log';
-                }
-            }
-        });
+                   $('#div_pageContainer').empty().load('index.php?v=d&p=log&ajax=1',function(){
+                    initPage();
+                });
+               }
+           }
+       });
         });
 
-        $("#bt_removeAllLog").on('click', function(event) {
-            bootbox.confirm("{{Etes-vous sur de vouloir supprimer tous les logs ?}}", function(result) {
-                if (result) {
+            $("#bt_removeAllLog").on('click', function(event) {
+                bootbox.confirm("{{Etes-vous sur de vouloir supprimer tous les logs ?}}", function(result) {
+                    if (result) {
                     $.ajax({// fonction permettant de faire de l'ajax
                         type: "POST", // methode de transmission des données au fichier php
                         url: "core/ajax/log.ajax.php", // url du fichier php
@@ -121,13 +127,16 @@ if ($handle) {
                         success: function(data) { // si l'appel a bien fonctionné
                         if (data.state != 'ok') {
                             $('#div_alertError').showAlert({message: data.result, level: 'danger'});
-                        } else {
-                            window.location.href = 'index.php?v=d&p=log';
-                        }
+                            return;
+                        } 
+                        $('#div_pageContainer').empty().load('index.php?v=d&p=log&ajax=1',function(){
+                            initPage();
+                        });
+                        
                     }
                 });
-                }
-            });
+}
+});
 });
 });
 </script>
