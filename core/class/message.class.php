@@ -153,6 +153,7 @@ class message {
                 }
             }
         }
+        @nodejs::pushUpdate('message::refreshMessageNumber');
     }
 
     public function remove() {
