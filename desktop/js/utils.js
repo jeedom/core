@@ -25,6 +25,7 @@
     $('body').delegate('a','click',function(event){
         if($(this).attr('href') != '' && $(this).attr('href') != undefined && $(this).attr('href').indexOf("index.php") == 0 && $(this).attr('href').indexOf("p=") > 0){
             event.preventDefault();
+            $('#div_pageContainer').empty();
             $.hideAlert();
             $( "#md_reportBug" ).dialog( "close" );
             $( "#md_pageHelp" ).dialog( "close" );
