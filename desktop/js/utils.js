@@ -22,7 +22,7 @@
 
  $(function () {
 
-    $('body').delegate('a','click',function(event){
+   /* $('body').delegate('a','click',function(event){
         if($(this).attr('href') != '' && $(this).attr('href') != undefined && $(this).attr('href').indexOf("index.php") == 0 && $(this).attr('href').indexOf("p=") > 0){
             event.preventDefault();
             $('#div_pageContainer').empty();
@@ -64,7 +64,7 @@
             }
         });
       }
-  };
+  };*/
 
   $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
     event.preventDefault();
