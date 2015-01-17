@@ -586,6 +586,7 @@ public function execute(&$scenario = null) {
                     $this->setLog($scenario, __('Arret du scénario', __FILE__));
                     $scenario->setState('stop');
                     $scenario->setPID('');
+                    $scenario->persistLog();
                     $scenario->save();
                 }
                 die();
