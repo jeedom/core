@@ -449,11 +449,11 @@ public static function setTags($_expression, &$_scenario = null) {
         '#seconde#' => (int) date('s'),
         '#date#' => date('md'),
         '#semaine#' => date('W'),
-        '#sjour#' => date_fr(date('l')),
-        '#smois#' => date_fr(date('F')),
+        '#sjour#' => '"'.date_fr(date('l')).'"',
+        '#smois#' => '"'.date_fr(date('F')).'"',
         '#njour#' => (int) date('w'),
-        '#hostname#' => gethostname(),
-        '#IP#' => config::byKey('internalAddr'),
+        '#hostname#' => '"'.gethostname().'"',
+        '#IP#' => '"'.config::byKey('internalAddr').'"',
         );
     preg_match_all("/([a-zA-Z][a-zA-Z]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
     foreach ($matches as $match) {
