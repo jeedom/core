@@ -30,6 +30,7 @@
 </div>
 
 <script>
+    login_page = true;
     $('#bt_forgotPassword').on('click', function () {
         if ($('#login').value() == '') {
             $('#div_alert').showAlert({message: 'Vous devez d\'abord entrer votre nom d\'utilisateur', level: 'danger'});

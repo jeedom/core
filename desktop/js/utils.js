@@ -20,10 +20,6 @@
  eqLogic_width_step = 40;
  eqLogic_height_step = 80;
 
-
-
-
-
  $(function () {
 
     $('body').delegate('a','click',function(event){
@@ -43,18 +39,20 @@
     });
 
     window.onpopstate = function(event) {
-        if(document.location.href != '' && document.location.href != undefined && document.location.href.indexOf("index.php") > 0 && document.location.href.indexOf("p=") > 0){
+        if(document.location.href != '' && document.location.href != undefined 
+            && document.location.href.indexOf("index.php") > 0 && document.location.href.indexOf("p=") > 0 
+            && !isset(login_page)){
           $.hideAlert();
-          $( "#md_reportBug" ).dialog( "close" );
-          $( "#md_pageHelp" ).dialog( "close" );
-          $( "#md_modal" ).dialog( "close" );
-          $( "#md_modal2" ).dialog( "close" );
-          $('#div_pageContainer').empty().load(document.location+'&ajax=1',function(){
-            initPage();
-        });
-      }else{
-        window.location.href = document.location.href;
-    }
+      $( "#md_reportBug" ).dialog( "close" );
+      $( "#md_pageHelp" ).dialog( "close" );
+      $( "#md_modal" ).dialog( "close" );
+      $( "#md_modal2" ).dialog( "close" );
+      $('#div_pageContainer').empty().load(document.location+'&ajax=1',function(){
+        initPage();
+    });
+  }else{
+    window.location.href = document.location.href;
+}
 };
 
 $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
