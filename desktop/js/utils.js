@@ -48,16 +48,18 @@
     window.onpopstate = function(event) {
         if(document.location.href != '' && document.location.href != undefined && document.location.href.indexOf("index.php") > 0 && document.location.href.indexOf("p=") > 0){
           $.hideAlert();
+          $('#div_pageContainer').empty();
           $( "#md_reportBug" ).dialog( "close" );
           $( "#md_pageHelp" ).dialog( "close" );
           $( "#md_modal" ).dialog( "close" );
           $( "#md_modal2" ).dialog( "close" );
+          var startTime = Date.now();
           $.ajax({
               url: document.location+'&ajax=1',
               dataType: 'html',
               success: function(html) {
-                $('#span_loadPageTime').text((Date.now() - startTime)/1000);
                 $('#div_pageContainer').empty().html(html);
+                 $('#span_loadPageTime').text((Date.now() - startTime)/1000);
                 initPage();
             }
         });
