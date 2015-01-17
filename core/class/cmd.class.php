@@ -556,8 +556,10 @@ class cmd {
 
                     }
                 }
+                if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
+                    $_value = round($_value, $this->getConfiguration('historizeRound'));
+                }
                 return floatval($_value);
-                return $_value;
             }
         }
         return $_value;
