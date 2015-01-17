@@ -130,6 +130,10 @@ if (count($plugins_list) > 0) {
                 include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
                 include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
                 include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
+                include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js');
+                include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css');
+                include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
+                include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
                 if (file_exists(dirname(__FILE__) . '/../custom/custom.css')) {
                     include_file('desktop', '', 'custom.css');
                 }
