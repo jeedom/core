@@ -42,8 +42,7 @@
         if(document.location.href == '' || document.location.href == undefined || document.location.href.indexOf("p=connection") > 0) {
             return;
         } 
-
-        if(document.location.href != '' && document.location.href != undefined && document.location.href.indexOf("index.php") > 0 && document.location.href.indexOf("p=") > 0){
+        if(document.location.href.indexOf("index.php") > 0 && document.location.href.indexOf("p=") > 0){
           $.hideAlert();
           $( "#md_reportBug" ).dialog( "close" );
           $( "#md_pageHelp" ).dialog( "close" );
