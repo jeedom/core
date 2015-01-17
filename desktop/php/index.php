@@ -1,10 +1,11 @@
 <?php
+$startLoadTime = getmicrotime();
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
 
 if(isConnect()){
- $homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
- if (count($homePage) == 2) {
+   $homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
+   if (count($homePage) == 2) {
     if ($homePage[0] == 'core') {
         $homeLink = 'index.php?v=d&p=' . $homePage[1];
     } else {
@@ -443,9 +444,11 @@ if (count($plugins_list) > 0) {
                                         }
                                     }
                                     echo ') ';
-                                    echo date('Y'); ?>
-                                </span>
-                            </footer>
-                            <?php } ?>
-                        </body>
-                        </html>
+echo date('Y'); 
+echo ' - {{Page générée en}} <span id="span_loadPageTime">' . round(getmicrotime() - $startLoadTime, 3) . '</span>s';
+?>
+</span>
+</footer>
+<?php } ?>
+</body>
+</html>

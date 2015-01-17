@@ -30,8 +30,11 @@
             $( "#md_pageHelp" ).dialog( "close" );
             $( "#md_modal" ).dialog( "close" );
             $( "#md_modal2" ).dialog( "close" );
+
             window.history.pushState(null, 'Jeedom', $(this).attr('href'));
+            var startTime = Date.now();
             $('#div_pageContainer').empty().load($(this).attr('href')+'&ajax=1',function(){
+                $('#span_loadPageTime').text((Date.now() - startTime)/1000);
                 initPage();
             });
 
@@ -49,15 +52,15 @@
             initPage();
         });
       }
-};
+  };
 
-$('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+  $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
     $(this).parent().siblings().removeClass('open');
     $(this).parent().toggleClass('open');
 });
-if (!navigator.userAgent.match(/Android/i)
+  if (!navigator.userAgent.match(/Android/i)
     && !navigator.userAgent.match(/webOS/i)
     && !navigator.userAgent.match(/iPhone/i)
     && !navigator.userAgent.match(/iPad/i)
