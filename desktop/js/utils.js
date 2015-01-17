@@ -39,7 +39,7 @@
     });
 
     window.onpopstate = function(event) {
-        if(document.location.href != '' || document.location.href != undefined || document.location.href.indexOf("p=connection") > 0) {
+        if(document.location.href == '' || document.location.href == undefined || document.location.href.indexOf("p=connection") > 0) {
             return;
         } 
 
