@@ -88,6 +88,9 @@ jeedom.init = function () {
             }
 
         });
+        socket.on('message::refreshMessageNumber', function (_options) {
+            refreshMessageNumber();
+        }
         socket.on('notify', function (title, text, category) {
             var theme = '';
             switch (init(category)) {

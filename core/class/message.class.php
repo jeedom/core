@@ -57,7 +57,8 @@ class message {
                 }
             }
         }
-        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+        DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+        @nodejs::pushUpdate('message::refreshMessageNumber');
     }
 
     public static function nbMessage() {
@@ -156,7 +157,7 @@ class message {
 
     public function remove() {
         DB::remove($this);
-        @nodejs::pushNotification('', '', 'message');
+        @nodejs::pushUpdate('message::refreshMessageNumber');
     }
 
     /*     * **********************Getteur Setteur*************************** */
