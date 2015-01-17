@@ -22,8 +22,8 @@
 
  $(function () {
 
-   /* $('body').delegate('a','click',function(event){
-        if($(this).attr('href') != '' && $(this).attr('href') != undefined && $(this).attr('href').indexOf("index.php") == 0 && $(this).attr('href').indexOf("p=") > 0 && $(this).attr('href').indexOf("p=dashboard") > 0){
+    $('body').delegate('a','click',function(event){
+        if($(this).attr('href') != '' && $(this).attr('href') != undefined && $(this).attr('href').indexOf("index.php") == 0 && $(this).attr('href').indexOf("p=") > 0){
             event.preventDefault();
             $.hideAlert();
             $( "#md_reportBug" ).dialog( "close" );
@@ -32,10 +32,15 @@
             $( "#md_modal2" ).dialog( "close" );
             window.history.pushState(null, 'Jeedom', $(this).attr('href'));
             var startTime = Date.now();
-            $('#div_pageContainer').load($(this).attr('href')+'&ajax=1',function(){
+            $.ajax({
+              url: $(this).attr('href')+'&ajax=1',
+              dataType: 'html',
+              success: function(html) {
                 $('#span_loadPageTime').text((Date.now() - startTime)/1000);
+                $('#div_pageContainer').html(html);
                 initPage();
-            });
+            }
+        });
         }
     });
 
@@ -46,11 +51,17 @@
           $( "#md_pageHelp" ).dialog( "close" );
           $( "#md_modal" ).dialog( "close" );
           $( "#md_modal2" ).dialog( "close" );
-          $('#div_pageContainer').empty().load(document.location+'&ajax=1',function(){
-            initPage();
+          $.ajax({
+              url: document.location+'&ajax=1',
+              dataType: 'html',
+              success: function(html) {
+                $('#span_loadPageTime').text((Date.now() - startTime)/1000);
+                $('#div_pageContainer').empty().html(html);
+                initPage();
+            }
         });
       }
-  };*/
+  };
 
   $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
     event.preventDefault();
