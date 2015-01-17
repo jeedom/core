@@ -160,6 +160,9 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                             <option value="Pacific/Kiritimati">(GMT+14:00) Kiritimati</option>
                                         </select>
                                     </div>
+                                    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
+                                        <a class="btn btn-primary" id="bt_forceSyncHour"><i class="fa fa-clock-o"></i> Forcer la synchronisation de l'heure</a>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Licence}}</label>

@@ -517,6 +517,10 @@ public static function rebootSystem() {
     exec('sudo reboot');
 }
 
+public static function forceSyncHour() {
+    exec('sudo service ntp restart');
+}
+
 public static function portForwarding($_internalIp, $_internalPort, $_externalPort, $_protocol = 'TCP') {
     $fp = popen("which upnpc", "r");
     $result = fgets($fp, 255);
