@@ -476,7 +476,7 @@ class eqLogic {
         '#max_width#' => '650px',
         '#logicalId#' => $this->getLogicalId()
         );
-    if ($_version == 'dview' || $_version == 'mview') {
+    if ($_version == 'dview' || $_version == 'mview' && $this->getDisplay('doNotShowObjectNameOnView',0) == 0) {
         $object = $this->getObject();
         $replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
     } else {

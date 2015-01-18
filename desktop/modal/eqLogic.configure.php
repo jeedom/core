@@ -85,7 +85,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                     </div>
 
                     <div class="form-group">
-                    <label class="col-sm-4 control-label">{{Date de dernière communication}}</label>
+                        <label class="col-sm-4 control-label">{{Date de dernière communication}}</label>
                         <div class="col-sm-4">
                             <span class="label label-primary"><?php echo $eqLogic->getStatus('lastCommunication') ?></span>
                         </div>
@@ -107,58 +107,66 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
             <form class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">{{Ordre}}</label>
+                        <label class="col-sm-4 control-label">{{Ordre}}</label>
                         <div class="col-sm-2">
                             <input type="number" class="eqLogicAttr form-control" data-l1key="order" />
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">{{Ne pas afficher le nom sur le dashboard}}</label>
+                        <label class="col-sm-4 control-label">{{Ne pas afficher le nom sur le dashboard}}</label>
                         <div class="col-sm-1">
                             <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" />
                         </div>
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{sur les vues}}</label>
+                    </div>
+                    <div class="form-group">
+                    <label class="col-sm-4 control-label">{{Ne pas afficher le nom sur les vues}}</label>
                         <div class="col-sm-1">
                             <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnView" />
                         </div>
                     </div>
-                </fieldset>
-            </form>
-        </div>
-
-        <div class='col-lg-6 col-md-7 col-sm-8'>
-            <legend>{{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
-            <table class="table table-bordered table-condensed" id="table_widgetParameters">
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Valeur</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    if ($eqLogic->getDisplay('parameters') != '') {
-                        foreach ($eqLogic->getDisplay('parameters') as $key => $value) {
-                            echo '<tr>';
-                            echo '<td>';
-                            echo '<input class="form-control key" value="' . $key . '" />';
-                            echo '</td>';
-                            echo '<td>';
-                            echo '<input class="form-control value" value="' . $value . '" />';
-                            echo '</td>';
-                            echo '<td>';
-                            echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fa fa-times"></i> Supprimer</a>';
-                            echo '</td>';
-                            echo '</tr>';
-                        }
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
+                    <div class="form-group">
+                       <label class="col-sm-4 control-label">{{Ne pas afficher le nom de l'objet sur les vues}}</label>
+                       <div class="col-sm-1">
+                        <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowObjectNameOnView" />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
     </div>
+
+    <div class='col-lg-6 col-md-7 col-sm-8'>
+        <legend>{{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
+        <table class="table table-bordered table-condensed" id="table_widgetParameters">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Valeur</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($eqLogic->getDisplay('parameters') != '') {
+                    foreach ($eqLogic->getDisplay('parameters') as $key => $value) {
+                        echo '<tr>';
+                        echo '<td>';
+                        echo '<input class="form-control key" value="' . $key . '" />';
+                        echo '</td>';
+                        echo '<td>';
+                        echo '<input class="form-control value" value="' . $value . '" />';
+                        echo '</td>';
+                        echo '<td>';
+                        echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fa fa-times"></i> Supprimer</a>';
+                        echo '</td>';
+                        echo '</tr>';
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
 </div>
 <script>
     $('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr');
