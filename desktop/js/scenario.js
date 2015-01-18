@@ -639,6 +639,11 @@ function printScenario(_id) {
                     addSchedule(data.schedule);
                 }
             }
+
+            if(data.elements.length == 0){
+                $('#div_scenarioElement').append('<center><span style=\'color:#767676;font-size:1.2em;font-weight: bold;\'>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
+            }
+
             for (var i in data.elements) {
                 $('#div_scenarioElement').append(addElement(data.elements[i]));
             }
