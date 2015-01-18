@@ -274,6 +274,14 @@ $('#bt_displayScenarioVariable').on('click', function () {
 });
 
 /*******************Element***********************/
+
+$('body').delegate('.helpSelectCron','click',function(){
+    var el = $(this).closest('.schedule').find('.scenarioAttr[data-l1key=schedule]');
+    jeedom.getCronSelectModal({},function (result) {
+        el.value(result.value);
+    });
+});
+
 $('body').delegate( '.bt_addScenarioElement','click', function (event) {
     var elementDiv = $(this).closest('.element');
     var expression = false;
@@ -699,13 +707,6 @@ function addSchedule(_schedule) {
     div += '</div>';
     $('.scheduleMode').append(div);
 }
-
-$('body').delegate('.helpSelectCron','click',function(){
-    var el = $(this).closest('.schedule').find('.scenarioAttr[data-l1key=schedule]');
-    jeedom.getCronSelectModal({},function (result) {
-        el.value(result.value);
-    });
-});
 
 function addExpression(_expression) {
     if (!isset(_expression.type) || _expression.type == '') {
