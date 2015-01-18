@@ -486,7 +486,7 @@ function positionEqLogic(_id, _noResize, _class) {
 
             var verticalAlign = eqLogic.find('.verticalAlign');
             var offset = eqLogic.find('.widget-name').height();
-            offset = (offset < 1) ? 10 : offset;
+            offset = (offset < 1) ? - 10 : offset;
             if (count(verticalAlign) > 0 && verticalAlign != undefined) {
                 verticalAlign.css('position', 'relative');
                 verticalAlign.css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - offset);
