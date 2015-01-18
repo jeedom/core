@@ -34,7 +34,7 @@ if (trim(config::byKey('api')) == '') {
             try {
                 if (config::byKey('api') != init('apikey') && config::byKey('api') != init('api')) {
                     connection::failed();
-                    throw new Exception('Clef API non valide, vous n\'etes pas autorisé à effectuer cette action (jeeApi). Demande venant de :' . getClientIp() . 'Clef API : ' . init('apikey') . init('api') . ' != ' . config::byKey('api'));
+                    throw new Exception('Clef API non valide, vous n\'etes pas autorisé à effectuer cette action (jeeApi). Demande venant de :' . getClientIp() . 'Clef API : ' . init('apikey') . init('api'));
                 }
                 connection::success('api');
                 $type = init('type');
@@ -68,10 +68,10 @@ if (trim(config::byKey('api')) == '') {
                         $param['emptyReply'] = init('emptyReply');
                     }
                     if(init('profile') != ''){
-                       $param['profile'] = init('profile');
-                   }
-                   echo interactQuery::tryToReply($query, $param);
-               } else if ($type == 'scenario') {
+                     $param['profile'] = init('profile');
+                 }
+                 echo interactQuery::tryToReply($query, $param);
+             } else if ($type == 'scenario') {
                 log::add('api', 'debug', 'Demande api pour les scénarios');
                 $scenario = scenario::byId(init('id'));
                 if (!is_object($scenario)) {
@@ -322,8 +322,8 @@ if (trim(config::byKey('api')) == '') {
 
 
                 if ($jsonrpc->getMethod() == 'eqLogic::byTypeAndId') {
-                   $return = array();
-                   foreach ($params['eqType'] as $eqType) {
+                 $return = array();
+                 foreach ($params['eqType'] as $eqType) {
                     $info_eqLogics = array();
                     foreach (eqLogic::byType($eqType) as $eqLogic) {
                         $info_cmds = array();
@@ -346,8 +346,8 @@ if (trim(config::byKey('api')) == '') {
                     $eqLogic = eqLogic::byId($id);
                     $info_cmds = array();
                     foreach ($eqLogic->getCmd() as $cmd) {
-                       $info_cmd = utils::o2a($cmd);
-                       if($cmd->getType() == 'info'){
+                     $info_cmd = utils::o2a($cmd);
+                     if($cmd->getType() == 'info'){
                         $info_cmd['value'] = $cmd->execCmd();
                         $info_cmd['collectDate'] = $cmd->getCollectDate();
                     }
