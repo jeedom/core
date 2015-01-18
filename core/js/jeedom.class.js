@@ -247,7 +247,7 @@ jeedom.forceSyncHour = function (_params) {
     $.ajax(paramsAJAX);
 };
 
-jeedom.getCronSelectModal = function() {
+jeedom.getCronSelectModal = function(_options,_callback) {
     if ($("#mod_insertCronValue").length == 0) {
         $('body').append('<div id="mod_insertCronValue" title="{{Assitant cron}}" ></div>');
         $("#mod_insertCronValue").dialog({
@@ -271,7 +271,7 @@ jeedom.getCronSelectModal = function() {
         "Valider": function() {
             var retour = {};
             retour.cron = {};
-            retour.human = mod_insertCron.getValue();
+            retour.value = mod_insertCron.getValue();
             if ($.trim(retour) != '' && 'function' == typeof(_callback)) {
                 _callback(retour);
             }

@@ -6,12 +6,13 @@ if (!isConnect()) {
 <div class="form-group mode schedule">
     <label class="col-xs-3 control-label" >{{A exécuter}}</label>
     <div class="col-xs-9">
-        <select class="form-control input-sm" id="mod_cron_sel_scheduleMode">
+        <select class="form-control" id="mod_cron_sel_scheduleMode">
             <option value="once">une seule fois</option>
             <option value="repete">répététivement</option>
         </select>
     </div>
 </div>
+<br/><br/>
 <div class="form-group mode schedule" id="mod_cron_div_scheduleConfig"></div>
 
 <script>
@@ -65,7 +66,7 @@ if (!isConnect()) {
             });
         }
     });
-
+$('#mod_cron_sel_scheduleMode').trigger('change');
 
 function mod_insertCron() {
 }

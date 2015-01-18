@@ -691,7 +691,7 @@ function addSchedule(_schedule) {
     div += '<input class="scenarioAttr input-sm form-control" data-l1key="schedule" value="' + _schedule + '">';
     div += '</div>';
     div += '<div class="col-xs-1">';
-    div += '<i class="fa fa-question-circle cursor bt_pageHelp floatright" data-name="cronSyntaxe"></i>';
+    div += '<i class="fa fa-question-circle cursor floatright helpSelectCron"></i>';
     div += '</div>';
     div += '<div class="col-xs-1">';
     div += '<i class="fa fa-minus-circle bt_removeSchedule cursor"></i>';
@@ -699,6 +699,13 @@ function addSchedule(_schedule) {
     div += '</div>';
     $('.scheduleMode').append(div);
 }
+
+$('body').delegate('.helpSelectCron','click',function(){
+    var el = $(this).closest('.schedule').find('.scenarioAttr[data-l1key=schedule]');
+    jeedom.getCronSelectModal({},function (result) {
+        el.value(result.value);
+    });
+});
 
 function addExpression(_expression) {
     if (!isset(_expression.type) || _expression.type == '') {
