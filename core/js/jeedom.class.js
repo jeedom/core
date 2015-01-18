@@ -246,3 +246,37 @@ jeedom.forceSyncHour = function (_params) {
     };
     $.ajax(paramsAJAX);
 };
+
+jeedom.getCronSelectModal = function() {
+    if ($("#mod_insertCronValue").length == 0) {
+        $('body').append('<div id="mod_insertCronValue" title="{{Assitant cron}}" ></div>');
+        $("#mod_insertCronValue").dialog({
+            autoOpen: false,
+            modal: true,
+            height: 250,
+            width: 800
+        });
+        jQuery.ajaxSetup({
+            async: false
+        });
+        $('#mod_insertCronValue').load('index.php?v=d&modal=cron.human.insert');
+        jQuery.ajaxSetup({
+            async: true
+        });
+    }
+    $("#mod_insertCronValue").dialog('option', 'buttons', {
+        "Annuler": function() {
+            $(this).dialog("close");
+        },
+        "Valider": function() {
+            var retour = {};
+            retour.cron = {};
+            retour.human = mod_insertCron.getValue();
+            if ($.trim(retour) != '' && 'function' == typeof(_callback)) {
+                _callback(retour);
+            }
+            $(this).dialog('close');
+        }
+    });
+    $('#mod_insertCronValue').dialog('open');
+};

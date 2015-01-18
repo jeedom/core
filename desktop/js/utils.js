@@ -487,7 +487,7 @@ function positionEqLogic(_id, _noResize, _class) {
             var verticalAlign = eqLogic.find('.verticalAlign');
             if (count(verticalAlign) > 0 && verticalAlign != undefined) {
                 verticalAlign.css('position', 'relative');
-                verticalAlign.css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - eqLogic.find('.widget-name').height());
+                verticalAlign.css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - eqLogic.find('.widget-name').height() + 5);
                 verticalAlign.css('left', (eqLogic.width() - verticalAlign.width()) / 2);
             }
         }

@@ -79,6 +79,7 @@ jeedom.cmd.execute = function(_params) {
     };
     $.ajax(paramsAJAX);
 };
+
 jeedom.cmd.test = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {
@@ -199,6 +200,7 @@ jeedom.cmd.test = function(_params) {
     };
     $.ajax(paramsAJAX);
 };
+
 jeedom.cmd.refreshValue = function(_params) {
     var cmd = $('.cmd[data-cmd_id=' + _params.id + ']');
     if (cmd.html() != undefined && cmd.closest('.eqLogic').attr('data-version') != undefined) {
@@ -234,6 +236,7 @@ jeedom.cmd.refreshValue = function(_params) {
         $.ajax(paramsAJAX);
     }
 };
+
 jeedom.cmd.save = function(_params) {
     var paramsRequired = ['cmd'];
     var paramsSpecifics = {
@@ -258,7 +261,8 @@ jeedom.cmd.save = function(_params) {
         cmd: json_encode(_params.cmd)
     };
     $.ajax(paramsAJAX);
-}
+};
+
 jeedom.cmd.byId = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {
@@ -285,7 +289,8 @@ jeedom.cmd.byId = function(_params) {
         id: _params.id
     };
     $.ajax(paramsAJAX);
-}
+};
+
 jeedom.cmd.byHumanName = function(_params) {
     var paramsRequired = ['humanName'];
     var paramsSpecifics = {
@@ -312,7 +317,8 @@ jeedom.cmd.byHumanName = function(_params) {
         humanName: _params.humanName
     };
     $.ajax(paramsAJAX);
-}
+};
+
 jeedom.cmd.usedBy = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
@@ -330,7 +336,8 @@ jeedom.cmd.usedBy = function(_params) {
         id: _params.id
     };
     $.ajax(paramsAJAX);
-}
+};
+
 jeedom.cmd.changeType = function(_cmd, _subType) {
     var selSubType = '<select style="width : 120px;margin-top : 5px;" class="cmdAttr form-control input-sm" data-l1key="subType">';
     var type = _cmd.find('.cmdAttr[data-l1key=type]').value();
@@ -359,6 +366,7 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
         }
     });
 };
+
 jeedom.cmd.changeSubType = function(_cmd) {
     jeedom.getConfiguration({
         key: 'cmd:type:' + _cmd.find('.cmdAttr[data-l1key=type]').value() + ':subtype:' + _cmd.find('.cmdAttr[data-l1key=subType]').value(),
@@ -432,6 +440,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
         }
     });
 };
+
 jeedom.cmd.availableType = function() {
     var selType = '<select style="width : 120px; margin-bottom : 3px;" class="cmdAttr form-control input-sm" data-l1key="type">';
     selType += '<option value="info">{{Info}}</option>';
@@ -439,6 +448,7 @@ jeedom.cmd.availableType = function() {
     selType += '</select>';
     return selType;
 };
+
 jeedom.cmd.getSelectModal = function(_options, _callback) {
     if (!isset(_options)) {
         _options = {};
@@ -477,6 +487,7 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
     });
     $('#mod_insertCmdValue').dialog('open');
 };
+
 jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
     var html = '';
     $.ajax({ // fonction permettant de faire de l'ajax
@@ -513,6 +524,7 @@ jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
 });
 return html;
 };
+
 jeedom.cmd.normalizeName = function(_tagname) {
     var arrayOn = ['on', 'marche', 'go', 'lock'];
     var arrayOff = ['off', 'arret', 'arrêt', 'stop', 'unlock'];
