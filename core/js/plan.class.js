@@ -76,7 +76,7 @@ jeedom.plan.byId = function (_params) {
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/plan.ajax.php';
     paramsAJAX.data = {
-        action: 'byId',
+        action: 'get',
         id: _params.id
     };
     $.ajax(paramsAJAX);
