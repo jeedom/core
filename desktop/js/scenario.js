@@ -273,6 +273,18 @@ $('#bt_displayScenarioVariable').on('click', function () {
     $("#md_modal").load('index.php?v=d&modal=dataStore.management&type=scenario').dialog('open');
 });
 
+$('#in_addElementType').on('change',function(){
+    $('.addElementTypeDescription').hide();
+    $('.addElementTypeDescription.'+$(this).value()).show();
+});
+
+
+$('#sel_otherAction').on('change',function(){
+    $('.sel_otherActionDescription').hide();
+    $('.sel_otherActionDescription.'+$(this).value()).show();
+});
+
+
 /*******************Element***********************/
 
 $('body').delegate('.helpSelectCron','click',function(){
@@ -572,7 +584,7 @@ function printScenario(_id) {
             $('#span_lastLaunch').text(data.lastLaunch);
 
             $('#div_scenarioElement').empty();
-            $('#div_scenarioElement').append('<a class="btn btn-default bt_addScenarioElement"><i class="fa fa-plus-circle"></i> {{Ajouter Elément}}</a><br/><br/>');
+            $('#div_scenarioElement').append('<a class="btn btn-default bt_addScenarioElement tootlips" title="Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a><br/><br/>');
             $('.provokeMode').empty();
             $('.scheduleMode').empty();
             $('.scenarioAttr[data-l1key=mode]').trigger('change');
@@ -812,7 +824,7 @@ function addSubElement(_subElement) {
         case 'then' :
         retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
         retour += '<legend style="margin-top : 0px;margin-bottom : 0px;color : inherit;font-weight:bold;border : none;border-top: 1px solid #e5e5e5;font-size:1.2em;">{{ALORS}}';
-        retour += '<a class="btn btn-xs btn-default bt_addScenarioElement pull-right fromSubElement" style="position : relative; top : 2px;"><i class="fa fa-plus-circle"></i> {{Ajouter élément}}</a>';
+        retour += '<a class="btn btn-xs btn-default bt_addScenarioElement pull-right fromSubElement tootlips" style="position : relative; top : 2px;" title="Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a>';
         retour += '<a class="btn btn-xs btn-default bt_addAction pull-right" style="position : relative; top : 2px;"><i class="fa fa-plus-circle"></i> {{Ajouter action}}</a>';
         retour += '</legend>';
         retour += '<div class="expressions">';
@@ -827,7 +839,7 @@ function addSubElement(_subElement) {
         case 'else' :
         retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
         retour += '<legend style="margin-top : 2px;margin-bottom : 0px;color : inherit;font-weight:bold;border : none;border-top: 1px solid #e5e5e5;font-size:1.2em;">{{SINON}}';
-        retour += '<a class="btn btn-xs btn-default bt_addScenarioElement pull-right fromSubElement" style="position : relative; top : 2px;"><i class="fa fa-plus-circle"></i> {{Ajouter élément}}</a>';
+        retour += '<a class="btn btn-xs btn-default bt_addScenarioElement pull-right fromSubElement tootlips" style="position : relative; top : 2px;"><i class="fa fa-plus-circle" title="Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)"></i> {{Ajouter bloc}}</a>';
         retour += '<a class="btn btn-xs btn-default bt_addAction pull-right" style="position : relative; top : 2px;"><i class="fa fa-plus-circle"></i> {{Ajouter action}}</a>';
         retour += '</legend>';
         retour += '<div class="expressions">';
@@ -878,7 +890,7 @@ function addSubElement(_subElement) {
         case 'do' :
         retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
         retour += '<legend style="margin-top : 3px;margin-bottom : 5px;color : inherit;font-weight:bold;border : none;border-top: 1px solid #e5e5e5;">FAIRE';
-        retour += '<a class="btn btn-xs btn-default bt_addScenarioElement pull-right fromSubElement" style="position : relative; top : 2px;"><i class="fa fa-plus-circle"></i> {{Ajouter élément}}</a>';
+        retour += '<a class="btn btn-xs btn-default bt_addScenarioElement pull-right fromSubElement tootlips" style="position : relative; top : 2px;" title="Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a>';
         retour += '<a class="btn btn-xs btn-default bt_addAction pull-right" style="position : relative; top : 2px;"><i class="fa fa-plus-circle"></i> {{Ajouter action}}</a>';
         retour += '</legend>';
         retour += '<div class="expressions">';
@@ -917,7 +929,7 @@ function addSubElement(_subElement) {
         case 'action' :
         retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
         retour += '<legend style="margin-top : 2px;margin-bottom : 5px;color : inherit;border : none;"><div style="position : relative;left:15px;top:2px">{{ACTION}}';
-        retour += '<a class="btn btn-xs btn-default bt_addScenarioElement pull-right fromSubElement" style="position : relative; top : 10px;left:-35px;"><i class="fa fa-plus-circle"></i> {{Ajouter élément}}</a>';
+        retour += '<a class="btn btn-xs btn-default bt_addScenarioElement pull-right fromSubElement tootlips" style="position : relative; top : 10px;left:-35px;" title="Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a>';
         retour += '<a class="btn btn-xs btn-default bt_addAction pull-right" style="position : relative; top : 10px;left:-35px;"><i class="fa fa-plus-circle"></i> {{Ajouter action}}</a>';
         retour += '</div></legend>';
         retour += '<div class="expressions" style="margin-top : 8px;">';
