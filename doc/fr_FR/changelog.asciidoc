@@ -1,3 +1,8 @@
+*19/01/2015* _v1.160.0_
+
+- Correction des bugs de regression du parser
+- Possibilité d'uploader une archive de plugin directement à partir de l'interface
+
 *16/01/2015* _v1.159.0_
 
 - Utilisation de composer

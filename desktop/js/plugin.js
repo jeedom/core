@@ -108,6 +108,18 @@ $("#span_plugin_toggleState").delegate(".togglePlugin", 'click', function () {
     });
 });
 
+$('#bt_uploadPlugin').fileupload({
+    dataType: 'json',
+    replaceFileInput: false,
+    done: function (e, data) {
+        if (data.result.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result.result, level: 'danger'});
+            return;
+        }
+        $('#div_alert').showAlert({message: '{{Plugin ajouté(s) avec succès. Recharger la page pour le voir}}', level: 'success'});
+    }
+});
+
 if (getUrlVars('id') != '') {
     if ($('#ul_plugin .li_plugin[data-plugin_id=' + getUrlVars('id') + ']').length != 0) {
         $('#ul_plugin .li_plugin[data-plugin_id=' + getUrlVars('id') + ']').click();
