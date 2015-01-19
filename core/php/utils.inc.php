@@ -762,5 +762,13 @@ function evaluate($_string){
     } catch (Exception $e) {
 
     }
+    if(!isset($GLOBALS['evaluate'])){
+        $GLOBALS['evaluate'] = new evaluate();
+    }
+    try {
+        return $GLOBALS['evaluate']->Evaluer($expr);
+    } catch (Exception $e) {
+
+    }   
     return $_string;
 }
