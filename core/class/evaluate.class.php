@@ -63,6 +63,7 @@ class evaluate {
             );
         $chaine = str_replace(array_keys($replace), array_values($replace), $chaine);
 
+        $chaine = str_replace('==', '=', $chaine);
         $chaine = str_replace('!~', '§~', $chaine);
         $chaine = str_replace('!=', '§=', $chaine);
         $chaine = str_replace('!', '1 !', $chaine);
