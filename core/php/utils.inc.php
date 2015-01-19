@@ -760,7 +760,7 @@ function evaluate($_string){
         $expr = str_replace('====', '===', $expr);
         return $GLOBALS['ExpressionLanguage']->evaluate($expr);
     } catch (Exception $e) {
-        log::add('expression','debug','[Parser 1] Expression : '.$_string.' tranformé en '.$expr.' => '$e->getMessage());
+        log::add('expression','debug','[Parser 1] Expression : '.$_string.' tranformé en '.$expr.' => '.$e->getMessage());
     }
     if(!isset($GLOBALS['evaluate'])){
         $GLOBALS['evaluate'] = new evaluate();
@@ -768,7 +768,7 @@ function evaluate($_string){
     try {
         return $GLOBALS['evaluate']->Evaluer($_string);
     } catch (Exception $e) {
-       log::add('expression','debug','[Parser 2] Expression : '.$_string.' => '$e->getMessage());
+        log::add('expression','debug','[Parser 2] Expression : '.$_string.' => '.$e->getMessage());
    }   
    return $_string;
 }
