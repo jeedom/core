@@ -812,6 +812,7 @@ class cmd {
                     $replace['#averageHistoryValue#'] = round($historyStatistique['avg'], 1);
                     $replace['#minHistoryValue#'] = round($historyStatistique['min'], 1);
                     $replace['#maxHistoryValue#'] = round($historyStatistique['max'], 1);
+                    $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculTendance') . ' hour'));
                     $tendance = $this->getTendance($startHist, date('Y-m-d H:i:s'));
                     if ($tendance > config::byKey('historyCalculTendanceThresholddMax')) {
                         $replace['#tendance#'] = 'fa fa-arrow-up';
