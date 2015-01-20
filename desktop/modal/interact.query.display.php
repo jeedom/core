@@ -32,6 +32,7 @@ if (count($interactQueries) == 0) {
             echo '<tr class="' . $trClass . '" data-interactQuery_id="' . $interactQuery->getId() . '">';
             echo '<td>' . $interactQuery->getQuery() . '</td>';
             echo '<td>';
+            $link_id = '';
             if ($interactQuery->getLink_type() == 'cmd') {
                 foreach (explode('&&', $interactQuery->getLink_id() ) as $cmd_id) {
                     $cmd = cmd::byId($cmd_id);
