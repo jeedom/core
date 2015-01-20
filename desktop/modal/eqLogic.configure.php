@@ -130,6 +130,11 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                        <div class="col-sm-1">
                         <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowObjectNameOnView" />
                     </div>
+                     <div class="form-group">
+                       <label class="col-sm-4 control-label">{{Ne pas afficher le niveau de batterrie}}</label>
+                       <div class="col-sm-1">
+                        <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotDisplayBatteryLevel" />
+                    </div>
                 </div>
             </fieldset>
         </form>

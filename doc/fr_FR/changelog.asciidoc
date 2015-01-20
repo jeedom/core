@@ -1,3 +1,7 @@
+*20/01/2015* _v1.160.0_
+
+- Ajout du niveau de batterie sur les widgets
+
 *19/01/2015* _v1.160.0_
 
 - Correction des bugs de regression du parser
