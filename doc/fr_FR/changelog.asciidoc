@@ -1,3 +1,7 @@
+*21/01/2015* _v1.160.0_
+
+- Desactivation des contraintes sur la base lors de la mise à jour
+
 *20/01/2015* _v1.160.0_
 
 - Ajout du niveau de batterie sur les widgets
