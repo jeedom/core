@@ -339,8 +339,9 @@ if (trim(config::byKey('api')) == '') {
                         $info_eqLogic['cmds'] = $info_cmds;
                         $info_eqLogics[] = $info_eqLogic;
                     }
+                    $return[$eqType] = $info_eqLogics;
                 }
-                $return[$eqType] = $info_eqLogics;
+              
 
                 foreach ($params['id'] as $id) {
                     $eqLogic = eqLogic::byId($id);
