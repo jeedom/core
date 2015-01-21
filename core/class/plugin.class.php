@@ -58,7 +58,7 @@ class plugin {
 
         $plugin_xml = @simplexml_load_file($_id);
         if (!is_object($plugin_xml)) {
-            throw new Exception('Plugin introuvable (xml invalide) : ' . $_id);
+            throw new Exception('Plugin introuvable (xml invalide) : ' . $_id.'. Description : '.print_r(libxml_get_errors(),true));
         }
         $plugin = new plugin();
         $plugin->id = (string) $plugin_xml->id;
@@ -87,12 +87,12 @@ class plugin {
             $plugin->include = array(
                 'file' => (string) $plugin_xml->include,
                 'type' => (string) $plugin_xml->include['type']
-            );
+                );
         } else {
             $plugin->include = array(
                 'file' => $plugin_xml->id,
                 'type' => 'class'
-            );
+                );
         }
 
         self::$_cache[$_id] = $plugin;
@@ -116,9 +116,9 @@ class plugin {
         $listPlugin = array();
         if ($_activateOnly) {
             $sql = "SELECT plugin
-                    FROM config
-                    WHERE `key`='active'
-                    AND `value`='1'";
+            FROM config
+            WHERE `key`='active'
+            AND `value`='1'";
             $results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
             foreach ($results as $result) {
                 try {
