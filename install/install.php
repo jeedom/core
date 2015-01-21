@@ -187,7 +187,10 @@ try {
                 if (file_exists($updateSql)) {
                     try {
                         echo __("Désactivation des contraintes...", __FILE__);
-                        DB::Prepare("SET foreign_key_checks = 0", array(), DB::FETCH_TYPE_ROW);
+                        $sql = "SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+                                SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+                                SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';";
+                        DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
                         echo __("OK\n", __FILE__);
                     } catch (Exception $e) {
                         echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
@@ -206,7 +209,10 @@ try {
                     }
                     try {
                         echo __("Réactivation des contraintes...", __FILE__);
-                        DB::Prepare("SET foreign_key_checks = 1", array(), DB::FETCH_TYPE_ROW);
+                        $sql = "SET SQL_MODE=@OLD_SQL_MODE;
+                                SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+                                SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;";
+                        DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
                         echo __("OK\n", __FILE__);
                     } catch (Exception $e) {
                         echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
@@ -232,6 +238,16 @@ try {
                     $updateSql = dirname(__FILE__) . '/update/' . $nextVersion . '.sql';
                     if (file_exists($updateSql)) {
                         try {
+                            echo __("Désactivation des contraintes...", __FILE__);
+                            $sql = "SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+                                    SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+                                    SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';";
+                            DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+                            echo __("OK\n", __FILE__);
+                        } catch (Exception $e) {
+                            echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+                        }
+                        try {
                             echo __("Mise à jour de la base de données en version : ", __FILE__) . $nextVersion . "...";
                             $sql = file_get_contents($updateSql);
                             DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
@@ -242,6 +258,16 @@ try {
                             } else {
                                 echo '***ERREUR*** ' . $e->getMessage();
                             }
+                        }
+                         try {
+                            echo __("Réactivation des contraintes...", __FILE__);
+                            $sql = "SET SQL_MODE=@OLD_SQL_MODE;
+                                    SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+                                    SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;";
+                            DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+                            echo __("OK\n", __FILE__);
+                        } catch (Exception $e) {
+                            echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
                         }
                     }
                     $updateScript = dirname(__FILE__) . '/update/' . $nextVersion . '.php';
