@@ -441,10 +441,10 @@ class eqLogic {
         }
         $hasOnlyEventOnly = $this->hasOnlyEventOnlyCmd();
         if($hasOnlyEventOnly){
-           $sql = 'SELECT `value` FROM cache 
-           WHERE `key`="widgetHtml' . $_version . $this->getId().'"';
-           $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-           if ($result['value'] != '') {
+         $sql = 'SELECT `value` FROM cache 
+         WHERE `key`="widgetHtml' . $_version . $this->getId().'"';
+         $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+         if ($result['value'] != '') {
             return $result['value'];
         }
     }
@@ -476,6 +476,7 @@ class eqLogic {
         '#max_width#' => '650px',
         '#logicalId#' => $this->getLogicalId(),
         '#battery#' => ($this->getConfiguration('doNotDisplayBatteryLevel',0) == 0) ? $this->getConfiguration('batteryStatus',-1) : -1,
+        '#batteryDatetime#' => $this->getConfiguration('batteryStatusDatetime',__('inconnue',__FILE__)),
         );
     if ($_version == 'dview' || $_version == 'mview' && $this->getDisplay('doNotShowObjectNameOnView',0) == 0) {
         $object = $this->getObject();
@@ -630,7 +631,7 @@ public function displayDebug($_message) {
     }
 }
 
-public function batteryStatus($_pourcent) {
+public function batteryStatus($_pourcent,$_datetime = '') {
     foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
         $message->remove();
     }
@@ -652,7 +653,13 @@ public function batteryStatus($_pourcent) {
         message::add($this->getEqType_name(), $message, '', $logicalId);
     }
     $this->setConfiguration('batteryStatus',$_pourcent);
-    $this->save();
+    if($_datetime != ''){
+     $this->setConfiguration('batteryStatusDatetime',$_datetime);  
+ }else{
+   $this->setConfiguration('batteryStatusDatetime',$date('Y-m-d H:i:s'));
+}
+
+$this->save();
 }
 
 public function refreshWidget() {
