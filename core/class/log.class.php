@@ -156,6 +156,9 @@ class log {
 
     public static function nbLine($_log = 'core') {
         $path = self::getPathToLog($_log);
+        if(!file_exists($path)){
+            return 0;
+        }
         $log_file = file($path);
         return count($log_file);
     }
