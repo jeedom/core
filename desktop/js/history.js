@@ -46,9 +46,9 @@ $("body").delegate("ul li input.filter", 'keyup', function () {
 $(".li_history .remove").on('click', function () {
     var bt_remove = $(this);
     $.hideAlert();
-    bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'historique de}} <span style="font-weight: bold ;">' + bt_remove.closest('.li_history').find('.history').text() + '</span> ?', function (result) {
-        if (result) {
-            emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'));
+    bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquel il faut supprimer l\'historique de }} <span style="font-weight: bold ;">' + bt_remove.closest('.li_history').find('.history').text() + '</span> ?', function (result) {
+        if (result !== null) {
+            emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'),result);
         }
     });
 });
@@ -68,13 +68,14 @@ $(".li_history .export").on('click', function () {
     window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null);
 });
 
-function emptyHistory(_cmd_id) {
+function emptyHistory(_cmd_id,_date) {
     $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
         url: "core/ajax/cmd.ajax.php", // url du fichier php
         data: {
             action: "emptyHistory",
-            id: _cmd_id
+            id: _cmd_id,
+            date: _date
         },
         dataType: 'json',
         error: function (request, status, error) {

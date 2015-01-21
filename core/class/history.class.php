@@ -58,13 +58,13 @@ class history {
      * Archive les données de history dans historyArch 
      */
     public static function archive() {
-     $sql = 'DELETE FROM history WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2020-01-01 01:00:00"';
-     DB::Prepare($sql, array());
-     $sql = 'DELETE FROM historyArch WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2020-01-01 01:00:00"';
-     DB::Prepare($sql, array());        
+       $sql = 'DELETE FROM history WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2020-01-01 01:00:00"';
+       DB::Prepare($sql, array());
+       $sql = 'DELETE FROM historyArch WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2020-01-01 01:00:00"';
+       DB::Prepare($sql, array());        
 
 
-     if (config::byKey('historyArchivePackage') >= config::byKey('historyArchiveTime')) {
+       if (config::byKey('historyArchivePackage') >= config::byKey('historyArchiveTime')) {
         config::save('historyArchivePackage', config::byKey('historyArchiveTime') - 1);
     }
 
@@ -402,13 +402,22 @@ return strtotime('now') - strtotime($result['datetime']);
         }
     }
 
-    public static function emptyHistory($_cmd_id) {
+    public static function emptyHistory($_cmd_id,$_date = '') {
         $values = array(
             'cmd_id' => $_cmd_id,
             );
+        if($_date != ''){
+            $values['date']  = $_date;
+        }
         $sql = 'DELETE FROM history WHERE cmd_id=:cmd_id';
+        if($_date != ''){
+            $sql .= ' AND `datetime` <= :date';
+        }
         DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
         $sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id';
+        if($_date != ''){
+            $sql .= ' AND `datetime` <= :date';
+        }
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
     }
 

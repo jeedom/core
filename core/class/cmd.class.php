@@ -934,8 +934,8 @@ class cmd {
         $mc->invalid();
     }
 
-    public function emptyHistory() {
-        return history::emptyHistory($this->getId());
+    public function emptyHistory($_date = '') {
+        return history::emptyHistory($this->getId(),$_date);
     }
 
     public function addHistoryValue($_value, $_datetime = '') {
