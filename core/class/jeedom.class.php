@@ -415,6 +415,7 @@ try {
 try {
     $c = new Cron\CronExpression(config::byKey('backup::cron'), new Cron\FieldFactory);
     if ($c->isDue()) {
+        log::add('backup','debug','Lancement du backup automatiquement');
         jeedom::backup();
     }
 } catch (Exception $e) {
