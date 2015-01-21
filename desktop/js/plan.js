@@ -309,6 +309,9 @@ function displayPlan(_offsetX, _offsetY) {
     if (getUrlVars('fullscreen') == 1) {
         url += '&fullscreen=1';
     }
+    if(planHeader_id == -1){
+        return;
+    }
     history.replaceState(null, "Jeedom", url);
     jeedom.plan.getHeader({
         id: planHeader_id,
