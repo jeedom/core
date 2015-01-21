@@ -68,7 +68,7 @@ class log {
             $logs = ls(dirname(__FILE__) . '/../../log/scenarioLog', '*');
             foreach ($logs as $log) {
                 $path = dirname(__FILE__) . '/../../log/scenarioLog/' . $log;
-                 if(is_file($path)){
+                if(is_file($path)){
                     shell_exec('echo "$(tail -n '.config::byKey('maxLineLog').' '.$path.')" > '.$path);
                     @chown($path, 'www-data');
                     @chgrp($path, 'www-data');
@@ -171,7 +171,13 @@ class log {
     }
 
     public static function liste() {
-        return ls(dirname(__FILE__) . '/../../log/', '*');
+        $return = array();
+        foreach (ls(dirname(__FILE__) . '/../../log/', '*') as $log) {
+            if(!is_dir(dirname(__FILE__) . '/../../log/'.$log)){
+                $return[] = $log;
+            }
+        } 
+        return $return;
     }
 
     /*     * *********************Methode d'instance************************* */
