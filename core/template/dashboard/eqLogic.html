@@ -14,13 +14,13 @@
 <script>
     if(!isNaN('#battery#') && parseInt('#battery#') >= 0){
         if(parseInt('#battery#') >= 75){
-            $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie3" title="#battery# %" style="font-size : 2em;"></i>');
+            $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie3 tooltips" title="#battery# %" style="font-size : 2em;"></i>');
         }else if(parseInt('#battery#') >= 50){
-            $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie2" title="#battery# %" style="font-size : 2em;"></i>');
+            $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie2 tooltips" title="#battery# %" style="font-size : 2em;"></i>');
         }else if(parseInt('#battery#') >= 25){
-            $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie1" title="#battery# %" style="font-size : 2em;"></i>');
+            $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie1 tooltips" title="#battery# %" style="font-size : 2em;"></i>');
         }else{
-            $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie0" title="#battery# %" style="font-size : 2em;"></i>');
+            $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie0 tooltips" title="#battery# %" style="font-size : 2em;"></i>');
         }
     }
     if ('#noResize#' == 1) {
