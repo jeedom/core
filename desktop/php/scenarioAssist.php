@@ -15,14 +15,18 @@ foreach (scenario::listGroup() as $group) {
         <div class="bs-sidebar nav nav-list bs-sidenav"> 
             <a class="btn btn-success pull-right form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenario" style="text-shadow: none;"><i class="fa fa-toggle-off"></i> {{Interface simple}}</a>
             <center>
+                <div class="col-xs-6">
                 <?php
                 if (config::byKey('enableScenario') == 0) {
-                    echo '<a class="btn btn-sm btn-success expertModeVisible" id="bt_changeAllScenarioState" data-state="1" style="width : 49%;min-width : 127px;margin-top : 3px;text-shadow: none" ><i class="fa fa-check"></i> {{Act. scénarios}}</a>';
+                    echo '<a class="btn btn-sm btn-success expertModeVisible" id="bt_changeAllScenarioState" data-state="1" style="margin-top : 3px;text-shadow: none;" ><i class="fa fa-check"></i> {{Act. scénarios}}</a>';
                 } else {
-                    echo '<a class="btn btn-sm btn-danger expertModeVisible" id="bt_changeAllScenarioState" data-state="0" style="width : 49%;min-width : 127px;margin-top : 3px;text-shadow: none" ><i class="fa fa-times"></i> {{Désac. scénarios}}</a>';
+                    echo '<a class="btn btn-sm btn-danger expertModeVisible" id="bt_changeAllScenarioState" data-state="0" style="margin-top : 3px;text-shadow: none;" ><i class="fa fa-times"></i> {{Désac. scénarios}}</a>';
                 }
                 ?>
-                <a class="btn btn-default btn-sm tooltips expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables de scénario}}" style="width : 49%;min-width : 127px;margin-top : 3px;"><i class="fa fa fa-eye" style="font-size : 1.5em;"></i> {{Voir variables}}</a>
+                </div>
+                <div class="col-xs-6">
+                <a class="btn btn-default btn-sm tooltips expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables de scénario}}" style="margin-top : 3px;text-shadow: none"><i class="fa fa fa-eye"></i> {{Voir variables}}</a>
+                </div>
             </center>
             <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> Nouveau scénario</a>
             <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />

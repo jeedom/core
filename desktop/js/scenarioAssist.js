@@ -16,7 +16,7 @@
  */
 
 
-if (getUrlVars('saveSuccessFull') == 1) {
+ if (getUrlVars('saveSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }
 
@@ -92,24 +92,24 @@ $("#bt_addScenario").on('click', function (event) {
     bootbox.dialog({
         title: "Ajout d'un nouveau scénario",
         message: '<div class="row">  ' +
-                '<div class="col-md-12"> ' +
-                '<form class="form-horizontal" onsubmit="return false;"> ' +
-                '<div class="form-group"> ' +
-                '<label class="col-md-4 control-label">{{Nom}}</label> ' +
-                '<div class="col-md-4"> ' +
-                '<input id="in_scenarioAddName" type="text" placeholder="{{Nom de votre scénario}}" class="form-control input-md"> ' +
-                '</div> ' +
-                '</div> ' +
-                '<div class="form-group"> ' +
-                '<label class="col-md-4 control-label">{{Type}}</label> ' +
-                '<div class="col-md-4"> <div class="radio"> <label> ' +
-                '<input name="cbScenarioType" class="cb_scenarioType" type="radio" value="simple" checked="checked"> ' +
-                '{{Simple}}</label> ' +
-                '</div><div class="radio"> <label> ' +
-                '<input  name="cbScenarioType" class="cb_scenarioType" type="radio" value="expert"> {{Avancée}}</label> ' +
-                '</div> ' +
-                '</div> </div>' +
-                '</form> </div>  </div>',
+        '<div class="col-md-12"> ' +
+        '<form class="form-horizontal" onsubmit="return false;"> ' +
+        '<div class="form-group"> ' +
+        '<label class="col-md-4 control-label">{{Nom}}</label> ' +
+        '<div class="col-md-4"> ' +
+        '<input id="in_scenarioAddName" type="text" placeholder="{{Nom de votre scénario}}" class="form-control input-md"> ' +
+        '</div> ' +
+        '</div> ' +
+        '<div class="form-group"> ' +
+        '<label class="col-md-4 control-label">{{Type}}</label> ' +
+        '<div class="col-md-4"> <div class="radio"> <label> ' +
+        '<input name="cbScenarioType" class="cb_scenarioType" type="radio" value="simple" checked="checked"> ' +
+        '{{Simple}}</label> ' +
+        '</div><div class="radio"> <label> ' +
+        '<input  name="cbScenarioType" class="cb_scenarioType" type="radio" value="expert"> {{Avancée}}</label> ' +
+        '</div> ' +
+        '</div> </div>' +
+        '</form> </div>  </div>',
         buttons: {
             "Annuler": {
                 className: "btn-default",
@@ -308,13 +308,13 @@ $('#sel_scheduleMode').on('change', function () {
             i18n: {
                 fr: {
                     months: [
-                        'Janvier', 'Février', 'Mars', 'Avril',
-                        'Mai', 'Juin', 'Juillet', 'Aout',
-                        'Septembre', 'Octobre', 'Novembre', 'Décembre',
+                    'Janvier', 'Février', 'Mars', 'Avril',
+                    'Mai', 'Juin', 'Juillet', 'Aout',
+                    'Septembre', 'Octobre', 'Novembre', 'Décembre',
                     ],
                     dayOfWeek: [
-                        "Di", "Lu", "Ma", "Me",
-                        "Je", "Ve", "Sa",
+                    "Di", "Lu", "Ma", "Me",
+                    "Je", "Ve", "Sa",
                     ]
                 }
             },
@@ -323,12 +323,15 @@ $('#sel_scheduleMode').on('change', function () {
         });
         $('#in_dateScenarioTrigger').on('change', function () {
             if ($(this).value() != '') {
-                var date = new Date(Date.parse($(this).value()));
+                var a=$(this).value().split(" ");
+                var d=a[0].split("-");
+                var t=a[1].split(":");
+                var date = new Date(d[0],(d[1]-1),d[2],t[0],t[1],t[2]);
                 var minute = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
                 var hour = (date.getHours() < 10 ? '0' : '') + date.getHours();
                 var strdate = (date.getDate() < 10 ? '0' : '') + date.getDate();
                 var month = ((date.getMonth() + 1) < 10 ? '0' : '') + (date.getMonth() + 1);
-                var cron = minute + ' ' + hour + ' ' + strdate + ' ' + month + ' ' + date.getDay() + ' ' + date.getFullYear()
+                 var cron = minute + ' ' + hour + ' ' + strdate + ' ' + month + ' ' + date.getDay() + ' ' + date.getFullYear();
                 $('#span_cronResult').value(cron);
             }
         });
@@ -413,7 +416,7 @@ function printScenario(_id) {
             if (data.schedule == '' || data.schedule == undefined) {
                 $('#sel_scheduleMode').value('once');
             } else {
-                if (data.schedule.indexOf('*') != -1) {
+                if (data.schedule.indexOf('*') != -1 && false) {
                     $('#sel_scheduleMode').value('repete');
                     $('#div_cronGenerator').empty().cron({
                         initial: data.schedule,
@@ -431,23 +434,23 @@ function printScenario(_id) {
             $('#bt_stopScenario').hide();
             switch (data.state) {
                 case 'error' :
-                    $('#span_ongoing').text('Erreur');
-                    $('#span_ongoing').removeClass('label-info label-danger label-success').addClass('label-warning');
-                    break;
+                $('#span_ongoing').text('Erreur');
+                $('#span_ongoing').removeClass('label-info label-danger label-success').addClass('label-warning');
+                break;
                 case 'on' :
-                    $('#span_ongoing').text('Actif');
-                    $('#span_ongoing').removeClass('label-info label-danger label-warning').addClass('label-success');
-                    break;
+                $('#span_ongoing').text('Actif');
+                $('#span_ongoing').removeClass('label-info label-danger label-warning').addClass('label-success');
+                break;
                 case 'in progress' :
-                    $('#span_ongoing').text('En cours');
-                    $('#span_ongoing').addClass('label-success');
-                    $('#span_ongoing').removeClass('label-success label-danger label-warning').addClass('label-info');
-                    $('#bt_stopScenario').show();
-                    break;
+                $('#span_ongoing').text('En cours');
+                $('#span_ongoing').addClass('label-success');
+                $('#span_ongoing').removeClass('label-success label-danger label-warning').addClass('label-info');
+                $('#bt_stopScenario').show();
+                break;
                 case 'stop' :
-                    $('#span_ongoing').text('Arrêté');
-                    $('#span_ongoing').removeClass('label-info label-success label-warning').addClass('label-danger');
-                    break;
+                $('#span_ongoing').text('Arrêté');
+                $('#span_ongoing').removeClass('label-info label-success label-warning').addClass('label-danger');
+                break;
             }
             if (data.isActive != 1) {
                 $('#in_ongoing').text('Inactif');
@@ -521,32 +524,32 @@ function saveScenario() {
     }
     var actions = $('#div_actionList .expression').getValues('.expressionAttr')
     var elements = [{
-            id: scenarionDescription.scenario_element_id,
-            type: 'if',
-            subElements: [
-                {
-                    id: scenarionDescription.scenario_subelement_if_id,
-                    scenarioElement_id: scenarionDescription.scenario_element_id,
-                    subtype: "condition",
-                    type: "if",
-                    expressions: [{expression: condition, type: 'condition'}]
-                },
-                {
-                    id: scenarionDescription.scenario_subelement_then_id,
-                    scenarioElement_id: scenarionDescription.scenario_element_id,
-                    subtype: "action",
-                    type: "then",
-                    expressions: actions
-                },
-                {
-                    id: scenarionDescription.scenario_subelement_else_id,
-                    scenarioElement_id: scenarionDescription.scenario_element_id,
-                    subtype: "action",
-                    type: "else",
-                    expressions: []
-                }
-            ]
-        }];
+        id: scenarionDescription.scenario_element_id,
+        type: 'if',
+        subElements: [
+        {
+            id: scenarionDescription.scenario_subelement_if_id,
+            scenarioElement_id: scenarionDescription.scenario_element_id,
+            subtype: "condition",
+            type: "if",
+            expressions: [{expression: condition, type: 'condition'}]
+        },
+        {
+            id: scenarionDescription.scenario_subelement_then_id,
+            scenarioElement_id: scenarionDescription.scenario_element_id,
+            subtype: "action",
+            type: "then",
+            expressions: actions
+        },
+        {
+            id: scenarionDescription.scenario_subelement_else_id,
+            scenarioElement_id: scenarionDescription.scenario_element_id,
+            subtype: "action",
+            type: "else",
+            expressions: []
+        }
+        ]
+    }];
     scenario.elements = elements;
 
     jeedom.scenario.save({

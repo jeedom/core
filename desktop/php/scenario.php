@@ -15,14 +15,18 @@ foreach (scenario::listGroup() as $group) {
         <div class="bs-sidebar nav nav-list bs-sidenav" > 
             <a class="btn btn-warning form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenarioAssist" style="text-shadow: none;"><i class="fa fa-toggle-on"></i> {{Interface avancée}}</a>
             <center>
-                <?php
-                if (config::byKey('enableScenario') == 0) {
-                    echo '<a class="btn btn-sm btn-success expertModeVisible" id="bt_changeAllScenarioState" data-state="1" style="width : 48%;min-width : 127px;margin-top : 3px;text-shadow: none" ><i class="fa fa-check"></i> {{Act. scénarios}}</a>';
-                } else {
-                    echo '<a class="btn btn-sm btn-danger expertModeVisible" id="bt_changeAllScenarioState" data-state="0" style="width : 48%;min-width : 127px;margin-top : 3px;text-shadow: none" ><i class="fa fa-times"></i> {{Désac. scénarios}}</a>';
-                }
-                ?>
-                <a class="btn btn-default btn-sm tooltips expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables de scénario}}" style="width : 48%;min-width : 127px;margin-top : 3px;"><i class="fa fa fa-eye" style="font-size : 1.5em;"></i> {{Voir variables}}</a>
+                <div class="col-xs-6">
+                    <?php
+                    if (config::byKey('enableScenario') == 0) {
+                        echo '<a class="btn btn-sm btn-success expertModeVisible" id="bt_changeAllScenarioState" data-state="1" style="width : 48%;min-width : 127px;margin-top : 3px;text-shadow: none;" ><i class="fa fa-check"></i> {{Act. scénarios}}</a>';
+                    } else {
+                        echo '<a class="btn btn-sm btn-danger expertModeVisible" id="bt_changeAllScenarioState" data-state="0" style="width : 48%;min-width : 127px;margin-top : 3px;text-shadow: none;" ><i class="fa fa-times"></i> {{Désac. scénarios}}</a>';
+                    }
+                    ?>
+                </div>
+                <div class="col-xs-6">
+                <a class="btn btn-default btn-sm tooltips expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables de scénario}}" style="margin-top : 3px;text-shadow: none;"><i class="fa fa fa-eye"></i> {{Voir variables}}</a>
+                </div>
             </center>
             <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> Nouveau scénario</a>
 
@@ -281,14 +285,14 @@ foreach (scenario::listGroup() as $group) {
                         </div>
 
                         <div class="alert alert-info addElementTypeDescription in" style="display:none;">
-                         Permet de faire une action dans X min. Par exemple, dans 5min éteindre la lumière.
-                     </div>
+                           Permet de faire une action dans X min. Par exemple, dans 5min éteindre la lumière.
+                       </div>
 
-                     <div class="alert alert-info addElementTypeDescription at" style="display:none;">
-                         A un temps précis, cet élément permet de lancer une action. Par exemple, à 9h30 ouvrir les volets.
-                     </div>
+                       <div class="alert alert-info addElementTypeDescription at" style="display:none;">
+                           A un temps précis, cet élément permet de lancer une action. Par exemple, à 9h30 ouvrir les volets.
+                       </div>
 
-                     <div class="alert alert-info addElementTypeDescription code" style="display:none;">
+                       <div class="alert alert-info addElementTypeDescription code" style="display:none;">
                         Cet élément permet de rajouter à son scénario de la programmation à l’aide d’un code, PHP/Shell etc...
                     </div>
 
@@ -341,10 +345,10 @@ foreach (scenario::listGroup() as $group) {
                     </div>
 
                     <div class="alert alert-info sel_otherActionDescription stop" style="display:none;">
-                       Arrête le scénario
-                   </div>
+                     Arrête le scénario
+                 </div>
 
-                   <div class="alert alert-info sel_otherActionDescription say" style="display:none;">
+                 <div class="alert alert-info sel_otherActionDescription say" style="display:none;">
                     Permet de faire dire un texte à jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur) 
                 </div>
 
