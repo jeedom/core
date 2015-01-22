@@ -475,7 +475,7 @@ class eqLogic {
         '#style#' => '',
         '#max_width#' => '650px',
         '#logicalId#' => $this->getLogicalId(),
-        '#battery#' => ($this->getDisplay('doNotDisplayBatteryLevel',0) == 0) ? $this->getConfiguration('batteryStatus',-1) : -1,
+        '#battery#' => ($this->getDisplay('doNotDisplayBatteryLevel',0) == 0) ? $this->getConfiguration('batteryStatus',-2) : -1,
         '#batteryDatetime#' => $this->getConfiguration('batteryStatusDatetime',__('inconnue',__FILE__)),
         );
     if ($_version == 'dview' || $_version == 'mview' && $this->getDisplay('doNotShowObjectNameOnView',0) == 0) {
