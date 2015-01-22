@@ -74,12 +74,14 @@ class user {
                         $user = self::byLogin($_login);
                         if (is_object($user)) {
                             $user->setPassword($sMdp);
+                            $user->setOptions('lastConnection',date('Y-m-d H:i:s'));
                             $user->save();
                             return $user;
                         }
                         $user = new user;
                         $user->setLogin($_login);
                         $user->setPassword($sMdp);
+                        $user->setOptions('lastConnection',date('Y-m-d H:i:s'));
                         $user->save();
                         log::add("connection", "info", __('Utilisateur créé depuis le LDAP : ', __FILE__) . $_login);
                         jeedom::event('user_connect');
@@ -121,6 +123,8 @@ class user {
                 return false;
             }
         }
+        $user->setOptions('lastConnection',date('Y-m-d H:i:s'));
+        $user->save();
         return $user;
     }
 
