@@ -58,13 +58,15 @@ class history {
      * Archive les données de history dans historyArch 
      */
     public static function archive() {
-       $sql = 'DELETE FROM history WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2020-01-01 01:00:00"';
-       DB::Prepare($sql, array());
-       $sql = 'DELETE FROM historyArch WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2020-01-01 01:00:00"';
-       DB::Prepare($sql, array());        
-
-
-       if (config::byKey('historyArchivePackage') >= config::byKey('historyArchiveTime')) {
+     $sql = 'DELETE FROM history WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2020-01-01 01:00:00"';
+     DB::Prepare($sql, array());
+     $sql = 'DELETE FROM historyArch WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2020-01-01 01:00:00"';
+     DB::Prepare($sql, array());  
+     $sql = 'DELETE FROM history WHERE `value` IS NULL';
+     DB::Prepare($sql, array());
+     $sql = 'DELETE FROM historyArch WHERE `value` IS NULL';
+     DB::Prepare($sql, array());    
+     if (config::byKey('historyArchivePackage') >= config::byKey('historyArchiveTime')) {
         config::save('historyArchivePackage', config::byKey('historyArchiveTime') - 1);
     }
 
