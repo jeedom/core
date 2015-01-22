@@ -59,6 +59,7 @@ sendVarToJS('select_id', init('id', '-1'));
                 <span style='font-weight: bold;'>N'oubliez pas d'activer le plugin pour pouvoir vous servir de celui-ci</span><br/>
                 <span id="span_plugin_toggleState"></span><br/><br/>
                 <span id="span_plugin_market"></span>
+                <span id="span_plugin_delete"></span>
                 <span id="span_plugin_doc"></span>
             </center>
             <br/>

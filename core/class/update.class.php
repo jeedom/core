@@ -183,7 +183,7 @@ class update {
     }
 
     public static function findNewUpdateObject() {
-        foreach (plugin::listPlugin(true) as $plugin) {
+        foreach (plugin::listPlugin() as $plugin) {
             $plugin_id = $plugin->getId();
             $update = self::byTypeAndLogicalId('plugin', $plugin_id);
             if (!is_object($update)) {
