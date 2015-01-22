@@ -114,6 +114,9 @@ public static function recognize($_query) {
         WHERE enable = 1
         AND query=:query';
         $queries = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL,PDO::FETCH_CLASS, __CLASS__);
+        if(is_object($queries)){
+            return $queries;
+        }
     }
     log::add('interact','debug','Result : '.print_r($queries,true));
     $caracteres = array(
