@@ -55,7 +55,7 @@ class plugin {
                 throw new Exception('Plugin introuvable : ' . $_id);
             }
         }
-
+        libxml_use_internal_errors(true);
         $plugin_xml = @simplexml_load_file($_id);
         if (!is_object($plugin_xml)) {
             throw new Exception('Plugin introuvable (xml invalide) : ' . $_id.'. Description : '.print_r(libxml_get_errors(),true));
