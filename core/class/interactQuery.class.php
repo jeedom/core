@@ -113,10 +113,11 @@ public static function recognize($_query) {
         FROM interactQuery 
         WHERE enable = 1
         AND query=:query';
-        $queries = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL,PDO::FETCH_CLASS, __CLASS__);
+        $queries = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW,PDO::FETCH_CLASS, __CLASS__);
         if(is_object($queries)){
             return $queries;
         }
+        $queries = self::all();
     }
     log::add('interact','debug','Result : '.print_r($queries,true));
     $caracteres = array(
@@ -188,9 +189,9 @@ public static function tryToReply($_query, $_parameters = array()) {
         $reply = self::dontUnderstand($_parameters);
     }
     if(is_object($interactQuery)){
-        log::add('interaction','debug','J\'ai reçu : '.$_query."\nJ'ai compris : ".$interactQuery->getQuery()."\nJ'ai répondu : ".$reply);
+        log::add('interact','debug','J\'ai reçu : '.$_query."\nJ'ai compris : ".$interactQuery->getQuery()."\nJ'ai répondu : ".$reply);
     }else{
-        log::add('interaction','debug','J\'ai reçu : '.$_query."\nJe n'ai rien compris\nJ'ai répondu : ".$reply);
+        log::add('interact','debug','J\'ai reçu : '.$_query."\nJe n'ai rien compris\nJ'ai répondu : ".$reply);
     }
     return ucfirst($reply);
 }
@@ -296,6 +297,7 @@ public function executeAndReply($_parameters) {
         if (!is_object($scenario)) {
             return __('Impossible de trouver le scénario correspondant', __FILE__);
         }
+        log::add('interact','debug','Execution du scénario : '.$scenario->getHumanName().' => '.$interactDef->getOptions('scenario_action'));
         $interactDef = $this->getInteractDef();
         if (!is_object($interactDef)) {
             return __('Impossible de trouver la définition de l\'interaction', __FILE__);
@@ -339,6 +341,7 @@ public function executeAndReply($_parameters) {
     $replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
 
     if ($this->getLink_type() == 'cmd') {
+
         foreach (explode('&&', $this->getLink_id()) as $cmd_id) {
             $cmd = cmd::byId($cmd_id);
 
@@ -346,6 +349,7 @@ public function executeAndReply($_parameters) {
                 log::add('interact', 'error', __('Commande : ', __FILE__) . $this->getLink_id() . __(' introuvable veuillez renvoyer les listes des commandes', __FILE__));
                 return __('Commande introuvable - vérifiez si elle existe toujours', __FILE__);
             }
+
             $replace['#commande#'] = $cmd->getName();
             if (isset($synonymes[strtolower($cmd->getName())])) {
                 $replace['#commande#'] = $synonymes[strtolower($cmd->getName())][rand(0, count($synonymes[strtolower($cmd->getName())]) - 1)];
@@ -382,6 +386,7 @@ public function executeAndReply($_parameters) {
                 }
             }
             try {
+                log::add('interact','debug','Execution de la commande : '.$cmd->getHumanName().' => '.print_r($options,true));
                 if ($cmd->execCmd($options) === false) {
                     return __('Impossible d\'exécuter la commande', __FILE__);
                 }
