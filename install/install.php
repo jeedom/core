@@ -287,6 +287,13 @@ try {
                     $curentVersion = $nextVersion;
                 }
             }
+              try {
+                echo __("Vérification de la consistence de Jeedom...", __FILE__);
+                require_once dirname(__FILE__).'/consistency.php';
+                echo __("OK\n", __FILE__);
+            } catch (Exception $ex) {
+                echo __("***ERREUR*** ", __FILE__) . $ex->getMessage() . "\n";
+            }
             try {
                 echo __("Vérification de la mise à jour...", __FILE__);
                 update::checkAllUpdate('core', false);
