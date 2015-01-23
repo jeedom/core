@@ -137,7 +137,7 @@ public static function recognize($_query) {
         foreach ($matches[1] as $match) {
             $input = str_replace('#' . $match . '#', '', $input);
         }
-        $lev = levenshtein($_query, $input);
+        $lev = levenshtein($input,$_query);
         log::add('interact','debug','Je compare : '.$_query.' avec '.$input.' => '.$lev);
         if ($lev == 0) {
             $shortest = 0;
