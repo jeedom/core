@@ -78,6 +78,7 @@ class history {
         $archiveTime = '0' . $archiveTime;
     }
 }
+
 if(config::byKey('historyArchivePackage') < 1){
   $archivePackage = '00:'.config::byKey('historyArchivePackage') * 60 .':00';
 }else{
