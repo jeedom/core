@@ -47,7 +47,7 @@
  {val: 'median(commande1,commande2)'},
  {val: 'time(value)'},
  ];
- autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'icon', 'say','wait'];
+ autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'icon', 'say','wait','return'];
 
  if (getUrlVars('saveSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});

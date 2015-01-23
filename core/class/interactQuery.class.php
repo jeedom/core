@@ -311,7 +311,11 @@ public function executeAndReply($_parameters) {
         $reply = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
         switch ($interactDef->getOptions('scenario_action')) {
             case 'start':
-            $scenario->launch(false, __('Scenario exécuté sur interaction (S.A.R.A.H, SMS...)', __FILE__));
+            $return = $scenario->launch(false, __('Scenario exécuté sur interaction (S.A.R.A.H, SMS...)', __FILE__));
+            if(is_string($return) && $return != ''){
+                $return = str_replace(array_keys($replace), $replace, $return)
+                return $return;
+            }
             return $reply;
             case 'stop':
             $scenario->stop();

@@ -45,6 +45,7 @@ class scenario {
     private $_elements = array();
     private $_changeState = false;
     private $_realTrigger = '';
+    private $_return = '';
 
     /*     * ***********************Methode static*************************** */
 
@@ -537,8 +538,7 @@ public function launch($_force = false, $_trigger = '', $_message = '') {
      $cmd.= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
      exec($cmd);
  } else {
-     $this->execute($_trigger, $_message);
-
+     return $this->execute($_trigger, $_message);
  }
  return true;
 }
@@ -567,6 +567,9 @@ public function execute($_trigger = '', $_message = '') {
         $this->setPID('');
         $this->save();
         $this->persistLog();
+    }
+    if($this->getReturn() != ''){
+        return $this->getReturn();
     }
     return true;
 }
@@ -1245,6 +1248,14 @@ function getRealTrigger() {
 
 function setRealTrigger($_realTrigger) {
     $this->_realTrigger = $_realTrigger;
+}
+
+function getReturn() {
+    return $this->_return;
+}
+
+function setReturn($_return) {
+    $this->_return = $_return;
 }
 
 }

@@ -325,6 +325,7 @@ foreach (scenario::listGroup() as $group) {
                             <option value="stop">{{Stop}}</option>
                             <option value="say">{{Dit}}</option>
                             <option value="wait">{{Attendre}}</option>
+                            <option value="return">{{Retourner}}</option>
                         </select>
                     </center>
                     <br/>
@@ -350,6 +351,10 @@ foreach (scenario::listGroup() as $group) {
 
                  <div class="alert alert-info sel_otherActionDescription say" style="display:none;">
                     Permet de faire dire un texte à jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur) 
+                </div>
+
+                 <div class="alert alert-info sel_otherActionDescription return" style="display:none;">
+                    Retourne un message à la fin du scénario, ne sert que pour retourner un message spécifique suite a une intération. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ca marche.
                 </div>
 
             </div>
