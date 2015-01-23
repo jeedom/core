@@ -455,7 +455,7 @@ public static function setTags($_expression, &$_scenario = null) {
         '#hostname#' => '"'.gethostname().'"',
         '#IP#' => '"'.config::byKey('internalAddr').'"',
         );
-    preg_match_all("/([a-zA-Z][a-zA-Z]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
+    preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
     foreach ($matches as $match) {
         $function = $match[1];
         $arguments = explode(',', $match[2]);

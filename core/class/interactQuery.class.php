@@ -345,7 +345,6 @@ public function executeAndReply($_parameters) {
     $replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
 
     if ($this->getLink_type() == 'cmd') {
-
         foreach (explode('&&', $this->getLink_id()) as $cmd_id) {
             $cmd = cmd::byId($cmd_id);
 
