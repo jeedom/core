@@ -313,7 +313,7 @@ public function executeAndReply($_parameters) {
             case 'start':
             $return = $scenario->launch(false, __('Scenario exécuté sur interaction (S.A.R.A.H, SMS...)', __FILE__));
             if(is_string($return) && $return != ''){
-                $return = str_replace(array_keys($replace), $replace, $return)
+                $return = str_replace(array_keys($replace), $replace, $return);
                 return $return;
             }
             return $reply;
