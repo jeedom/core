@@ -46,7 +46,7 @@ class plugin {
         if (isset(self::$_cache[$_id])) {
             return self::$_cache[$_id];
         }
-        if (!file_exists($_id)) {
+        if (!file_exists($_id) || strpos($_id, '.xml') === false) {
             $_id = self::getPathById($_id);
             if (isset(self::$_cache[$_id])) {
                 return self::$_cache[$_id];
