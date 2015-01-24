@@ -276,7 +276,7 @@ try {
         if (!is_object($cmd)) {
             throw new Exception(__('Cmd ID inconnu : ', __FILE__) . init('id'));
         }
-        $cmd->emptyHistory(inti('date'));
+        $cmd->emptyHistory(init('date'));
         ajax::success();
     }
 
