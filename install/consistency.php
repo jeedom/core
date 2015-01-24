@@ -91,6 +91,7 @@ try {
 
 	$cron = cron::byClassAndFunction('cmd', 'collect');
 	if (!is_object($cron)) {
+		$cron = new cron();
 		$cron->setClass('cmd');
 		$cron->setFunction('collect');
 		$cron->setSchedule('*/5 * * * * *');
@@ -100,6 +101,7 @@ try {
 
 	$cron = cron::byClassAndFunction('history', 'archive');
 	if (!is_object($cron)) {
+		$cron = new cron();
 		$cron->setClass('history');
 		$cron->setFunction('archive');
 		$cron->setSchedule('00 * * * * *');
@@ -109,6 +111,7 @@ try {
 
 	$cron = cron::byClassAndFunction('jeedom', 'cron');
 	if (!is_object($cron)) {
+		$cron = new cron();
 		$cron->setClass('jeedom');
 		$cron->setFunction('cron');
 		$cron->setSchedule('* * * * * *');
