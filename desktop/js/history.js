@@ -86,7 +86,7 @@
                 $('#div_alert').showAlert({message: data.result, level: 'danger'});
                 return;
             }
-            $('#div_alert').showAlert({message: '{{Historique supprimé avec succes}}', level: 'success'});
+            $('#div_alert').showAlert({message: '{{Historique supprimé avec succès}}', level: 'success'});
             li = $('li[data-cmd_id=' + _cmd_id + ']');
             if (li.hasClass('active')) {
                 li.find('.history').click();
