@@ -437,7 +437,7 @@ public static function formatTime($_time){
 }
 
 public static function setTags($_expression, &$_scenario = null) {
-    $replace = array(
+    $replace1 = array(
         '#seconde#' => (int) date('s'),
         '#heure#' => (int) date('G'),
         '#minute#' => (int) date('i'),
@@ -455,6 +455,7 @@ public static function setTags($_expression, &$_scenario = null) {
         '#hostname#' => '"'.gethostname().'"',
         '#IP#' => '"'.config::byKey('internalAddr').'"',
         );
+    $replace2 = array();
     preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
     foreach ($matches as $match) {
         $function = $match[1];
@@ -482,20 +483,20 @@ if (method_exists(__CLASS__, $function)) {
         if (!isset($arguments[0])) {
             $arguments[0] = '';
         }
-        $replace[$replace_string] = self::trigger($arguments[0], $_scenario);
+        $replace2[$replace_string] = self::trigger($arguments[0], $_scenario);
     } else {
-        $replace[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
+        $replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
     }
 }else{
     if(function_exists($function)){
         foreach ($arguments as &$argument) {
             $argument = cmd::cmdToValue($argument);
-            $replace[$replace_string] = call_user_func_array($function, $arguments);
+            $replace2[$replace_string] = call_user_func_array($function, $arguments);
         }
     }
 }
 }
-return cmd::cmdToValue(str_replace(array_keys($replace), array_values($replace), $_expression));
+return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1),str_replace(array_keys($replace2), array_values($replace2), $_expression)));
 }
 
 public static function createAndExec($_type, $_cmd, $_options) {
