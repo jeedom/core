@@ -461,7 +461,7 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
            var condition = result.human;
            condition += ' ' + $('.conditionAttr[data-l1key=operator]').value();
            condition += ' ' + $('.conditionAttr[data-l1key=operande]').value();
-           condition += ' ' + $('.conditionAttr[data-l1key=next]').value().' ';
+           condition += ' ' + $('.conditionAttr[data-l1key=next]').value()+' ';
            expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition);
            if($('.conditionAttr[data-l1key=next]').value() != ''){
               el.click();
