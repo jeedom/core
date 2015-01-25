@@ -421,10 +421,12 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
       '            <div class="col-xs-7">' +
       '                 <input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />' +
       '                  <select class="conditionAttr form-control" data-l1key="operande">' +
-      '                       <option value="1">Ouvert</option>' +
-      '                        <option value="0">Fermé</option>' +
-      '                         <option value="1">Allumé</option>' +
-      '                          <option value="0">Eteint</option>' +
+      '                       <option value="1">{{Ouvert}}</option>' +
+      '                       <option value="0">{{Fermé}}</option>' +
+      '                       <option value="1">{{Allumé}}</option>' +
+      '                       <option value="0">{{Eteint}}S</option>' +
+      '                       <option value="1">{{Déclenché}}</option>' +
+      '                       <option value="0">{{Au repos}}</option>' +
       '                       </select>' +
       '                    </div>' +
       '                 </div>' +
@@ -432,7 +434,7 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
       '<label class="col-xs-5 control-label" >{{Ensuite}}</label>' +
       '             <div class="col-xs-3">' +
       '                <select class="conditionAttr form-control" data-l1key="next">' +
-      '                    <option value="">rien</option>' +
+      '                  <option value="">rien</option>' +
       '                  <option value="ET">{{et}}</option>' +
       '                  <option value="OU">{{ou}}</option>' +
       '            </select>' +
