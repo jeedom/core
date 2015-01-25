@@ -90,7 +90,7 @@ sendVarToJS('id', $plan->getId());
                 foreach ($link->getCmd() as $cmd) {
                     if ($cmd->getIsVisible() == 1) {
                         echo '<div class="form-group">';
-                        echo '<label class="col-lg-4 control-label">{{Ne pas afficher }}' . $cmd->getHumanName() . '</label>';
+                        echo '<label class="col-lg-6 control-label">{{Ne pas afficher }}' . $cmd->getHumanName() . '</label>';
                         echo '<div class="col-lg-1">';
                         echo '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmd" data-l3key="' . $cmd->getID() . '" />';
                         echo '</div>';
@@ -100,7 +100,7 @@ sendVarToJS('id', $plan->getId());
             }
             if ($plan->getLink_type() == 'scenario') {
                 echo '<div class="form-group">';
-                echo '<label class="col-lg-4 control-label">{{Masquer les commandes}}</label>';
+                echo '<label class="col-lg-6 control-label">{{Masquer les commandes}}</label>';
                 echo '<div class="col-lg-1">';
                 echo '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="hideCmd" />';
                 echo '</div>';
