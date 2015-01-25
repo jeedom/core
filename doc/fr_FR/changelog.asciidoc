@@ -1,3 +1,7 @@
+*25/01/2015* _v1.160.0_
+
+- Ajout de fenetre t'aide lors de la mise en place de conditions des scénarios
+
 *23/01/2015* _v1.160.0_
 
 - Ajout action "return" dans les scénarios, pour retourner un message spécifique suite a une intération. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ca marche.
