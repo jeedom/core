@@ -366,6 +366,7 @@ foreach (scenario::listGroup() as $group) {
     </div>
 </div>
 
+
 <?php
 include_file('desktop', 'scenario', 'js');
 include_file('3rdparty', 'jquery.sew/jquery.caretposition', 'js');

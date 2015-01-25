@@ -348,9 +348,99 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
             });
         }
         if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
-            expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human);
-        }
-    });
+            message = 'Aucun choix possible';
+            if(result.cmd.subType == 'numeric'){
+               message = '<div class="row">  ' +
+               '<div class="col-md-12"> ' +
+               '<form class="form-horizontal" onsubmit="return false;"> ' +
+               '<div class="form-group"> ' +
+               '<label class="col-xs-5 control-label" >'+result.human+' {{est}}</label>' +
+               '           <div>' +
+               '             <div class="col-xs-3">' +
+               '                <select class="conditionAttr form-control" data-l1key="operator">' +
+               '                    <option value="==">égale</option>' +
+               '                  <option value=">">supérieur</option>' +
+               '                  <option value="<">inférieur</option>' +
+               '                 <option value="!=">différent</option>' +
+               '            </select>' +
+               '       </div>' +
+               '      <div class="col-xs-4">' +
+               '         <input type="number" class="conditionAttr form-control" data-l1key="operande" />' +
+               '    </div>' +
+               '</div>' +
+               '</div> </div>' +
+               '</form> </div>  </div>';
+           }
+           if(result.cmd.subType == 'string'){
+              message = '<div class="row">  ' +
+              '<div class="col-md-12"> ' +
+              '<form class="form-horizontal" onsubmit="return false;"> ' +
+              '<div class="form-group"> ' +
+              '<label class="col-xs-5 control-label" >'+result.human+' {{est}}</label>' +
+              '           <div>' +
+              '             <div class="col-xs-3">' +
+              '                <select class="conditionAttr form-control" data-l1key="operator">' +
+              '                    <option value="==">égale</option>' +
+              '                  <option value=">">supérieur</option>' +
+              '                  <option value="<">inférieur</option>' +
+              '                 <option value="!=">différent</option>' +
+              '            </select>' +
+              '       </div>' +
+              '      <div class="col-xs-4">' +
+              '         <input class="conditionAttr form-control" data-l1key="operande" />' +
+              '    </div>' +
+              '</div>' +
+              '</div> </div>' +
+              '</form> </div>  </div>';
+          }
+          if(result.cmd.subType == 'binary'){
+              message = '<div class="row">  ' +
+              '<div class="col-md-12"> ' +
+              '<form class="form-horizontal" onsubmit="return false;"> ' +
+              '<div class="form-group"> ' +
+              '<label class="col-xs-5 control-label" >'+result.human+' {{est}}</label>' +
+              '<div>' +
+              '            <div class="col-xs-7">' +
+              '                 <input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />' +
+              '                  <select class="conditionAttr form-control" data-l1key="operande">' +
+              '                       <option value="1">Ouvert</option>' +
+              '                        <option value="0">Fermé</option>' +
+              '                         <option value="1">Allumé</option>' +
+              '                          <option value="0">Eteint</option>' +
+              '                       </select>' +
+              '                    </div>' +
+              '                 </div>' +
+              '</div>' +
+              '</div> </div>' +
+              '</form> </div>  </div>';
+          }
+
+          bootbox.dialog({
+            title: "Ajout d'un nouveau scénario",
+            message: message,
+            buttons: {
+                "Ne rien mettre": {
+                    className: "btn-default",
+                    callback: function () {
+                        expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human);
+                    }
+                },
+                success: {
+                    label: "Valider",
+                    className: "btn-primary",
+                    callback: function () {
+                     var condition = result.human;
+                     condition += ' ' + $('.conditionAttr[data-l1key=operator]').value();
+                     condition += ' ' + $('.conditionAttr[data-l1key=operande]').value();
+                     expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition);
+                 }
+             },
+         }
+     });
+
+
+      }
+  });
 });
 
 

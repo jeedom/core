@@ -72,6 +72,14 @@ if (!isConnect()) {
         return $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_cmd select').value();
     }
 
+    mod_insertCmd.getType = function () {
+        return $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_cmd select option:selected').attr('data-type');
+    }
+
+     mod_insertCmd.getSubType = function () {
+        return $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_cmd select option:selected').attr('data-subType');
+    }
+
     mod_insertCmd.changeObjectCmd = function (_select) {
         jeedom.object.getEqLogic({
             id: _select.value(),
@@ -98,24 +106,24 @@ if (!isConnect()) {
             }
         });
 
-    }
+}
 
-    mod_insertCmd.changeEqLogic = function (_select) {
-        jeedom.eqLogic.builSelectCmd({
-            id: _select.value(),
-            filter: mod_insertCmd.options.cmd,
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (html) {
-                _select.closest('tr').find('.mod_insertCmdValue_cmd').empty();
-                var selectCmd = '<select class="form-control">';
-                selectCmd += html;
-                selectCmd += '</select>';
-                _select.closest('tr').find('.mod_insertCmdValue_cmd').append(selectCmd);
-            }
-        });
-    }
+mod_insertCmd.changeEqLogic = function (_select) {
+    jeedom.eqLogic.builSelectCmd({
+        id: _select.value(),
+        filter: mod_insertCmd.options.cmd,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (html) {
+            _select.closest('tr').find('.mod_insertCmdValue_cmd').empty();
+            var selectCmd = '<select class="form-control">';
+            selectCmd += html;
+            selectCmd += '</select>';
+            _select.closest('tr').find('.mod_insertCmdValue_cmd').append(selectCmd);
+        }
+    });
+}
 
-    mod_insertCmd.changeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select'), mod_insertCmd.options);
+mod_insertCmd.changeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select'), mod_insertCmd.options);
 </script>

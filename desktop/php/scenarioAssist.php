@@ -247,7 +247,7 @@ foreach (scenario::listGroup() as $group) {
                             <div class='conditionOptions' data-type="info" data-subtype="string" style="display : none;">
                                 <div class="col-xs-4">
                                     <select class="conditionAttr form-control" data-l1key="operator">
-                                        <option value="=">égale</option>
+                                        <option value="==">égale</option>
                                         <option value="!=">différent</option>
                                         <option value="~">contient</option>
                                         <option value="!~">ne contient pas</option>
@@ -259,7 +259,7 @@ foreach (scenario::listGroup() as $group) {
                             </div>
                             <div class='conditionOptions' data-type="info" data-subtype="binary" style="display : none;">
                                 <div class="col-xs-9">
-                                    <input class="conditionAttr" data-l1key="operator" value="=" style="display : none;" />
+                                    <input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />
                                     <select class="conditionAttr form-control" data-l1key="operande">
                                         <option value="1">Ouvert</option>
                                         <option value="0">Fermé</option>

@@ -220,7 +220,7 @@ jeedom.eqLogic.builSelectCmd = function (_params) {
             for (var i in cmds) {
                 if ((init(_params.filter.type, 'all') == 'all' || cmds[i].type == _params.filter.type) &&
                         (init(_params.filter.subType, 'all') == 'all' || cmds[i].subType == _params.filter.subType)) {
-                    result += '<option value="' + cmds[i].id + '" >' + cmds[i].name + '</option>';
+                    result += '<option value="' + cmds[i].id + '" data-type="' + cmds[i].type + '"  data-subType="' + cmds[i].subType + '" >' + cmds[i].name + '</option>';
                 }
             }
             if ('function' == typeof (_params.success)) {
