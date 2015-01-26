@@ -84,7 +84,7 @@ class eqLogic {
         FROM eqLogic
         WHERE timeout>:timeout';
         if($_onlyEnable){
-            $sql .= ' AND enable=1';
+            $sql .= ' AND isEnable=1';
         }
         return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
