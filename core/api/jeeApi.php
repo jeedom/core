@@ -155,6 +155,7 @@ if (trim(config::byKey('api')) == '') {
             connection::success('api');
 
             if (isset($params['plugin']) && $params['plugin'] != '') {
+                log::add('api', 'info', 'Demande pour le plugin : '.$params['plugin']);
                 include_file('core', $params['plugin'], 'api', $params['plugin']);
             } else {
                 /*             * ***********************Ping********************************* */
