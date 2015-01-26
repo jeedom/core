@@ -398,7 +398,9 @@ try {
 try {
     $c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
     if ($c->isDue()) {
-        if (config::byKey('update::auto') == 1) {
+       $lastCheck = strtotime(config::byKey('update::lastCheck'));
+       if((strtotime('now') - $lastCheck) > 3600){
+          if (config::byKey('update::auto') == 1) {
             jeedom::update();
         } else {
             update::checkAllUpdate();
@@ -409,6 +411,7 @@ try {
         }
         config::save('update::check', rand(10, 59) . ' 06 * * *');
     }
+}
 } catch (Exception $e) {
 
 }
