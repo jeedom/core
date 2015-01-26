@@ -104,8 +104,8 @@ try {
 		$cron = new cron();
 		$cron->setClass('history');
 		$cron->setFunction('archive');
-		$cron->setSchedule('00 * * * * *');
-		$cron->setTimeout(20);
+		$cron->setSchedule('05 00 * * * *');
+		$cron->setTimeout(60);
 		$cron->save();
 	}
 
