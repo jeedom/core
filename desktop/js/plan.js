@@ -465,8 +465,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'graph';
             plan.link_id = $(this).attr('data-graph_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).height() + 6 + (2 * borderSize);
-            plan.display.width = $(this).width() + 6 + (2 * borderSize);
+            plan.display.height = $(this).height() + 2 + (2 * borderSize);
+            plan.display.width = $(this).width() + 2 + (2 * borderSize);
             plan.display.graph = json_decode($(this).find('.graphOptions').value());
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
