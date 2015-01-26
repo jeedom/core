@@ -424,7 +424,7 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
       '                       <option value="1">{{Ouvert}}</option>' +
       '                       <option value="0">{{Fermé}}</option>' +
       '                       <option value="1">{{Allumé}}</option>' +
-      '                       <option value="0">{{Eteint}}S</option>' +
+      '                       <option value="0">{{Eteint}}</option>' +
       '                       <option value="1">{{Déclenché}}</option>' +
       '                       <option value="0">{{Au repos}}</option>' +
       '                       </select>' +
