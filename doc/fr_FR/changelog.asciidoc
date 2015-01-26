@@ -1,6 +1,6 @@
 *25/01/2015* _v1.160.0_
 
-- Ajout de fenetre t'aide lors de la mise en place de conditions des scénarios
+- Ajout d'une fenêtre d'aide pour la mise en place de conditions dans les scénarios
 
 *23/01/2015* _v1.160.0_
 
