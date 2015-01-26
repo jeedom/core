@@ -261,14 +261,16 @@ jeedom.history.drawChart = function (_params) {
                     yAxis: [{
                             format: '{value}',
                             showEmpty: false,
-                            maxPadding: 0.25,
+                            minPadding: 0.001,
+                            maxPadding: 0.001,
                             showLastLabel: true,
                         }, {
                             opposite: false,
                             format: '{value}',
                             showEmpty: false,
                             gridLineWidth: 0,
-                            maxPadding: 0.25,
+                            minPadding: 0.001,
+                            maxPadding: 0.001,
                             labels: {
                                 align: 'left',
                                 x: 2
