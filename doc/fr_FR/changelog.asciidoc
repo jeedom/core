@@ -6,6 +6,7 @@
 
 - Ajout action "return" dans les scénarios, pour retourner un message spécifique suite a une intération. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ca marche.
 - Ajout d'une vérification de la consistence après chaque mise à jour
+- Possibilité de supprimé l'historique d'une commande avant une date donnée
 
 *21/01/2015* _v1.160.0_
 

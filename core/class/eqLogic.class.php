@@ -76,19 +76,6 @@ class eqLogic {
         return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
 
-    public static function byTimeout($_timeout = 0,$_onlyEnable = false) {
-        $values = array(
-            'timeout' => $_timeout
-            );
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM eqLogic
-        WHERE timeout>:timeout';
-        if($_onlyEnable){
-            $sql .= ' AND isEnable=1';
-        }
-        return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
-    }
-
     public static function byEqRealId($_eqReal_id) {
         $values = array(
             'eqReal_id' => $_eqReal_id
@@ -290,6 +277,19 @@ class eqLogic {
         }
     }
 
+    public static function byTimeout($_timeout = 0,$_onlyEnable = false) {
+        $values = array(
+            'timeout' => $_timeout
+            );
+        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+        FROM eqLogic
+        WHERE timeout>:timeout';
+        if($_onlyEnable){
+            $sql .= ' AND isEnable=1';
+        }
+        return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+    }
+
     public static function byObjectNameEqLogicName($_object_name, $_eqLogic_name) {
         if ($_object_name == __('Aucun', __FILE__)) {
             $values = array(
@@ -441,10 +441,10 @@ class eqLogic {
         }
         $hasOnlyEventOnly = $this->hasOnlyEventOnlyCmd();
         if($hasOnlyEventOnly){
-         $sql = 'SELECT `value` FROM cache 
-         WHERE `key`="widgetHtml' . $_version . $this->getId().'"';
-         $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-         if ($result['value'] != '') {
+           $sql = 'SELECT `value` FROM cache 
+           WHERE `key`="widgetHtml' . $_version . $this->getId().'"';
+           $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+           if ($result['value'] != '') {
             return $result['value'];
         }
     }
@@ -654,12 +654,12 @@ public function batteryStatus($_pourcent,$_datetime = '') {
     }
     $this->setConfiguration('batteryStatus',$_pourcent);
     if($_datetime != ''){
-     $this->setConfiguration('batteryStatusDatetime',$_datetime);  
- }else{
-   $this->setConfiguration('batteryStatusDatetime',$date('Y-m-d H:i:s'));
-}
+       $this->setConfiguration('batteryStatusDatetime',$_datetime);  
+   }else{
+     $this->setConfiguration('batteryStatusDatetime',$date('Y-m-d H:i:s'));
+ }
 
-$this->save();
+ $this->save();
 }
 
 public function refreshWidget() {
