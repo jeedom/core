@@ -401,6 +401,7 @@ try {
        $lastCheck = strtotime(config::byKey('update::lastCheck'));
        if((strtotime('now') - $lastCheck) > 3600){
           if (config::byKey('update::auto') == 1) {
+            update::checkAllUpdate();
             jeedom::update();
         } else {
             update::checkAllUpdate();
