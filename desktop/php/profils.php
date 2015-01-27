@@ -42,6 +42,7 @@ foreach (plugin::listPlugin() as $pluginList) {
                             <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme">
                                     <option value="">Défaut</option>
+                                    <option value="bootable">Bootable</option>
                                     <option value="cerulean">Cerulean</option>
                                     <option value="cosmo">Cosmo</option>
                                     <option value="cyborg">Cyborg</option>
