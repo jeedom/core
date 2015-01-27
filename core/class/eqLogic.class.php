@@ -656,7 +656,7 @@ public function batteryStatus($_pourcent,$_datetime = '') {
     if($_datetime != ''){
        $this->setConfiguration('batteryStatusDatetime',$_datetime);  
    }else{
-     $this->setConfiguration('batteryStatusDatetime',$date('Y-m-d H:i:s'));
+     $this->setConfiguration('batteryStatusDatetime',date('Y-m-d H:i:s'));
  }
 
  $this->save();
