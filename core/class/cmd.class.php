@@ -872,10 +872,6 @@ class cmd {
             return;
         }
         $collectDate = ($this->getCollectDate() != '' ) ? strtotime($this->getCollectDate()) : '';
-        $nowtime = strtotime('now');
-        if ($this->getCollectDate() != '' && (($nowtime - $collectDate) > 3600 || ($nowtime + 300 ) < $collectDate)) {
-            return;
-        }
         $eqLogic = $this->getEqLogic();
         if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
             return;
