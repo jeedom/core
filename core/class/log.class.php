@@ -98,7 +98,7 @@ class log {
      */
     public static function remove($_log) {
         $path = self::getPathToLog($_log);
-        if (file_exists($path) && $_log != 'nginx.error') {
+        if (file_exists($path) && strpos($_log, 'nginx.error') === false) {
             unlink($path);
         }
         return true;
@@ -108,7 +108,7 @@ class log {
         $logs = ls(dirname(__FILE__) . '/../../log/', '*');
         foreach ($logs as $log) {
             $path = dirname(__FILE__) . '/../../log/' . $log;
-            if ($log != 'nginx.error' && !is_dir($path)) {
+            if (strpos($_log, 'nginx.error') === false && !is_dir($path)) {
                 unlink($path);
             }
         }
