@@ -1,3 +1,7 @@
+*26/01/2015* _v1.161.0_
+
+- Ajout fonction averageBetween, maxBetween et minBetween pour les scénarios
+
 *25/01/2015* _v1.160.0_
 
 - Ajout d'une fenêtre d'aide pour la mise en place de conditions dans les scénarios
