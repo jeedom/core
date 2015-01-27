@@ -73,7 +73,13 @@ Vous pouvez aussi utiliser les tags suivants :
 - min(commande,période) : donne le minimum de la commande sur la période (period=[month,day,hour,min])
     * Ex : min(\#[Salle de bain][Hydrometrie][Humidité]#,15 min) : Renvoi le minimum de la commande sur les 15 dernières minutes
 - max(commande,période) : donne le maximum de la commande sur la période (period=[month,day,hour,min])
-    * Ex : max(\#[Salle de bain][Hydrometrie][Humidité]#,1 day) : Renvoi le maximum de la commande sur les 7 derniers jours
+    * Ex : max(\#[Salle de bain][Hydrometrie][Humidité]#,7 day) : Renvoi le maximum de la commande sur les 7 derniers jours
+- averageBetween(commande,start,end) : donne la moyenne de la commande entre les 2 bornes demandées (sous la forme Y-m-d H:i:s)
+    * Ex : averageBetween(\#[Salle de bain][Hydrometrie][Humidité]#,2015-01-01 00:00:00,2015-01-15 00:00:00) : Renvoi la moyenne de la commande entre le 1 janvier 2015 et le 15 janvier 2015
+- maxBetween(commande,start,end) : donne le maximum de la commande entre les 2 bornes demandées (sous la forme Y-m-d H:i:s)
+    * Ex : maxBetween(\#[Salle de bain][Hydrometrie][Humidité]#,2015-01-01 00:00:00,2015-01-15 00:00:00) : Renvoi le maximum de la commande entre le 1 janvier 2015 et le 15 janvier 2015
+- minBetween(commande,start,end) : donne le minimum de la commande entre les 2 bornes demandées (sous la forme Y-m-d H:i:s)
+    * Ex : minBetween(\#[Salle de bain][Hydrometrie][Humidité]#,2015-01-01 00:00:00,2015-01-15 00:00:00) : Renvoi le minimum de la commande entre le 1 janvier 2015 et le 15 janvier 2015
 - tendance(commande,période,seuil) : donne la tendance de la commande sur la période (period=[month,day,hour,min])
     * Ex : tendance(\#[Salle de bain][Hydrometrie][Humidité]#,1 hour,0.1) : Renvoi 1 si en augmentation, 0 si constant et -1 si en diminution
            Le seuil permet de definir la sensibilitée, attention le calcul du seuil utilise la calcul de link:/http://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s[moindre carrés]
