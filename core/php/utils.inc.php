@@ -749,18 +749,20 @@ function evaluate($_string){
     if(!isset($GLOBALS['ExpressionLanguage'])){
         $GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
     }
-    try {
-        $expr = str_replace(array(' et ',' ET ',' AND ',' and ', ' ou ', ' OR ', ' or ', ' OU '), array(' && ',' && ',' && ',' && ',' || ',' || ',' || ', ' || '), $_string);
-        $expr = str_replace('==', '=', $expr);
-        $expr = str_replace('=', '==', $expr);
-        $expr = str_replace('<==', '<=', $expr);
-        $expr = str_replace('>==', '>=', $expr);
-        $expr = str_replace('!==', '!=', $expr);
-        $expr = str_replace('!===', '!==', $expr);
-        $expr = str_replace('====', '===', $expr);
-        return $GLOBALS['ExpressionLanguage']->evaluate($expr);
-    } catch (Exception $e) {
-        log::add('expression','debug','[Parser 1] Expression : '.$_string.' tranformé en '.$expr.' => '.$e->getMessage());
+    if(strpos($_string,'~') === false){
+        try {
+            $expr = str_replace(array(' et ',' ET ',' AND ',' and ', ' ou ', ' OR ', ' or ', ' OU '), array(' && ',' && ',' && ',' && ',' || ',' || ',' || ', ' || '), $_string);
+            $expr = str_replace('==', '=', $expr);
+            $expr = str_replace('=', '==', $expr);
+            $expr = str_replace('<==', '<=', $expr);
+            $expr = str_replace('>==', '>=', $expr);
+            $expr = str_replace('!==', '!=', $expr);
+            $expr = str_replace('!===', '!==', $expr);
+            $expr = str_replace('====', '===', $expr);
+            return $GLOBALS['ExpressionLanguage']->evaluate($expr);
+        } catch (Exception $e) {
+            log::add('expression','debug','[Parser 1] Expression : '.$_string.' tranformé en '.$expr.' => '.$e->getMessage());
+        }
     }
     if(!isset($GLOBALS['evaluate'])){
         $GLOBALS['evaluate'] = new evaluate();
@@ -769,6 +771,6 @@ function evaluate($_string){
         return $GLOBALS['evaluate']->Evaluer($_string);
     } catch (Exception $e) {
         log::add('expression','debug','[Parser 2] Expression : '.$_string.' => '.$e->getMessage());
-   }   
-   return $_string;
+    }   
+    return $_string;
 }
