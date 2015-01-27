@@ -563,7 +563,7 @@ class cmd {
                 if($_value > $this->getConfiguration('maxValue', $_value) && $this->getConfiguration('maxValueReplace') == 1){
                     $_value = $this->getConfiguration('maxValue', $_value);
                 }
-                if($_value < $this->getConfiguration('minValue', $_value) && $this->getConfiguration('minValueReplace ') == 1){
+                if($_value < $this->getConfiguration('minValue', $_value) && $this->getConfiguration('minValueReplace') == 1){
                     $_value = $this->getConfiguration('minValue', $_value);
                 }
                 return floatval($_value);
