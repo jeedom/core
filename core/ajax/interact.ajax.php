@@ -53,16 +53,16 @@ try {
             foreach (explode('&&', $result['link_id'] ) as $cmd_id) {
                 $cmd = cmd::byId($cmd_id);
                 if (is_object($cmd)) {
-                   $link_id .= cmd::cmdToHumanReadable('#' . $cmd->getId() . '# && ');
-               }
+                 $link_id .= cmd::cmdToHumanReadable('#' . $cmd->getId() . '# && ');
+             }
 
-           }
-           $result['link_id'] =  trim(trim($link_id),'&&');
-       }
-       ajax::success($result);
-   }
+         }
+         $result['link_id'] =  trim(trim($link_id),'&&');
+     }
+     ajax::success($result);
+ }
 
-   if (init('action') == 'save') {
+ if (init('action') == 'save') {
     $interact_json = json_decode(init('interact'), true);
     if (isset($interact_json['id'])) {
         $interact = interactDef::byId($interact_json['id']);
@@ -73,6 +73,11 @@ try {
     utils::a2o($interact, $interact_json);
     $interact->save();
     ajax::success(utils::o2a($interact));
+}
+
+if (init('action') == 'regenerateInteract') {
+    interactDef::regenerateInteract();
+    ajax::success();
 }
 
 if (init('action') == 'remove') {

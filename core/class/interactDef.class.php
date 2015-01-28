@@ -103,6 +103,12 @@ class interactDef {
         return $return;
     }
 
+    public static function regenerateInteract(){
+        foreach (self::all() as $interactDef) {
+            $interactDef->save();
+        }
+    }
+
     /*     * *********************Méthodes d'instance************************* */
 
     public function selectReply() {

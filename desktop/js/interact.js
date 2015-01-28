@@ -101,6 +101,23 @@ $("#bt_saveInteract").on('click', function () {
     });
 });
 
+
+$("#bt_regenerateInteract").on('click', function () {
+    bootbox.confirm('{{Etes-vous sûr de vouloir regénerer toutes les intérations (cela peut être très long) ?}}', function (result) {
+        if (result !== null) {
+            jeedom.interact.regenerateInteract({
+                interact: {query: result},
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                   $('#div_alert').showAlert({message: '{{Toutes les intérations ont été regénerées}}', level: 'success'});
+                }
+            });
+        }
+    });
+});
+
 $("#bt_addInteract").on('click', function () {
     bootbox.prompt("Demande ?", function (result) {
         if (result !== null) {
