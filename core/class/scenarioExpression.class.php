@@ -171,7 +171,7 @@ class scenarioExpression {
         if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
             return '';
         }
-        $historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
+        $historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
         return round($historyStatistique['avg'], 1);
     }
 
@@ -212,7 +212,7 @@ class scenarioExpression {
         if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
             return '';
         }
-        $historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
+        $historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
         return round($historyStatistique['max'], 1);
     }
 
@@ -269,7 +269,7 @@ class scenarioExpression {
         if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
             return '';
         }
-        $historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
+        $historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
         return round($historyStatistique['min'], 1);
     }
 
@@ -513,7 +513,10 @@ if (method_exists(__CLASS__, $function)) {
         }
     }
 }
+
+
 }
+
 return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1),str_replace(array_keys($replace2), array_values($replace2), $_expression)));
 }
 
