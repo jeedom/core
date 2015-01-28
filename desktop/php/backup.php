@@ -23,7 +23,7 @@ if (!hasRight('backupview', true)) {
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes}}</label>
                         <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-default" id="bt_backupJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-floppy-o"></i> Sauvegarder</a>
+                            <a class="btn btn-default" id="bt_backupJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-floppy-o"></i> Lancer</a>
                         </div>
                     </div>
                     <div class="form-group expertModeVisible">
