@@ -462,48 +462,54 @@ class eqLogic {
     }
     if ($this->getIsEnable()) {
         foreach ($this->getCmd(null, null, true) as $cmd) {
-            $cmd_html.=$cmd->toHtml($_version, '', $cmdColor);
+          if($cmd->getDisplay('forceReturnLineBefore',0) == 1){
+            $cmd_html .= '<br/>';
+        }
+        $cmd_html.=$cmd->toHtml($_version, '', $cmdColor);
+        if($cmd->getDisplay('forceReturnLineAfter',0) == 1){
+            $cmd_html .= '<br/>';
         }
     }
-    $replace = array(
-        '#id#' => $this->getId(),
-        '#name#' => $this->getName(),
-        '#eqLink#' => $this->getLinkToConfiguration(),
-        '#category#' => $this->getPrimaryCategory(),
-        '#background_color#' => $this->getBackgroundColor($version),
-        '#cmd#' => $cmd_html,
-        '#style#' => '',
-        '#max_width#' => '650px',
-        '#logicalId#' => $this->getLogicalId(),
-        '#battery#' => ($this->getDisplay('doNotDisplayBatteryLevel',0) == 0) ? $this->getConfiguration('batteryStatus',-2) : -1,
-        '#batteryDatetime#' => $this->getConfiguration('batteryStatusDatetime',__('inconnue',__FILE__)),
-        );
-    if ($_version == 'dview' || $_version == 'mview' && $this->getDisplay('doNotShowObjectNameOnView',0) == 0) {
-        $object = $this->getObject();
-        $replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
-    } else {
-        $replace['#object_name#'] = '';
+}
+$replace = array(
+    '#id#' => $this->getId(),
+    '#name#' => $this->getName(),
+    '#eqLink#' => $this->getLinkToConfiguration(),
+    '#category#' => $this->getPrimaryCategory(),
+    '#background_color#' => $this->getBackgroundColor($version),
+    '#cmd#' => $cmd_html,
+    '#style#' => '',
+    '#max_width#' => '650px',
+    '#logicalId#' => $this->getLogicalId(),
+    '#battery#' => ($this->getDisplay('doNotDisplayBatteryLevel',0) == 0) ? $this->getConfiguration('batteryStatus',-2) : -1,
+    '#batteryDatetime#' => $this->getConfiguration('batteryStatusDatetime',__('inconnue',__FILE__)),
+    );
+if ($_version == 'dview' || $_version == 'mview' && $this->getDisplay('doNotShowObjectNameOnView',0) == 0) {
+    $object = $this->getObject();
+    $replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
+} else {
+    $replace['#object_name#'] = '';
+}
+if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
+    $replace['#name#'] = '';
+}
+if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
+    $replace['#name#'] = '';
+}
+$parameters = $this->getDisplay('parameters');
+if (is_array($parameters)) {
+    foreach ($parameters as $key => $value) {
+        $replace['#' . $key . '#'] = $value;
     }
-    if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
-        $replace['#name#'] = '';
-    }
-    if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
-        $replace['#name#'] = '';
-    }
-    $parameters = $this->getDisplay('parameters');
-    if (is_array($parameters)) {
-        foreach ($parameters as $key => $value) {
-            $replace['#' . $key . '#'] = $value;
-        }
-    }
-    if (!isset(self::$_templateArray[$version])) {
-        self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
-    }
-    $html = template_replace($replace, self::$_templateArray[$version]);
-    if($hasOnlyEventOnly){
-        cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
-    }
-    return $html;
+}
+if (!isset(self::$_templateArray[$version])) {
+    self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
+}
+$html = template_replace($replace, self::$_templateArray[$version]);
+if($hasOnlyEventOnly){
+    cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
+}
+return $html;
 }
 
 public function emptyCacheWidget(){
