@@ -423,6 +423,7 @@ public function removeAllMessage() {
     if (!$jsonrpc->sendRequest('message::removeAll', array())) {
         throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
     }
+    return true;
 }
 
 public function restoreLocalBackup($_backup) {

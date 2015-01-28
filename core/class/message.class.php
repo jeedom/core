@@ -59,6 +59,7 @@ class message {
         }
         DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
         @nodejs::pushUpdate('message::refreshMessageNumber');
+        return true;
     }
 
     public static function nbMessage() {
