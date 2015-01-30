@@ -86,13 +86,28 @@ Souvent c'est du au faite que les équipements sont affectés à un objet qui n'
 --
 
 [panel,danger]
-.Le market me dit que mes identifiants sont invalide
---
-Lors de la configuration et avant le test il faut enregistrer celle-ci
---
-
-[panel,danger]
 .Lors de la connexion du maitre avec les esclaves j'ai des erreurs
 --
 Verifiez que vous avez bien mis les /jeedom si vous utilisez ceux-ci juste après l'IP de jeedom (souvent le cas en installation DIY)
+--
+
+[panel,danger]
+.J'ai l'erreur suivante : SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' 
+--
+Cela est du à MySQL qui est arreté, ce n'est pas normale, les cas courants sont : 
+
+- soucis de place sur le système de fichier (peut etre vérifié en faisant df -h, en ssh)
+- probleme de corruption de fichier, arrive souvent suite à un arrêt non propre de jeedom (coupure de courant)
+
+Malheureusement il n'y a pas beaucoup de solution si c'est le deuxieme cas, le mieux etant de recuperer un backup (disponible dans /usr/share/nginx/www/jeedom/backup par défaut), de réinstaller jeedom et de restaurer le backup.
+
+Vous pouvez aussi en ssh regarder pourquoi mysql ne veut pas demarrer : 
+````
+sudo su -
+servive mysql stop
+mysqld --verbose
+````
+
+Ou consulter le log : /var/log/mysql/error.log
+
 --
