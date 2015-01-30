@@ -102,11 +102,11 @@ Cela est du à MySQL qui est arreté, ce n'est pas normale, les cas courants son
 Malheureusement il n'y a pas beaucoup de solution si c'est le deuxieme cas, le mieux etant de recuperer un backup (disponible dans /usr/share/nginx/www/jeedom/backup par défaut), de réinstaller jeedom et de restaurer le backup.
 
 Vous pouvez aussi en ssh regarder pourquoi mysql ne veut pas demarrer : 
-````
+----
 sudo su -
 servive mysql stop
 mysqld --verbose
-````
+----
 
 Ou consulter le log : /var/log/mysql/error.log
 
