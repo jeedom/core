@@ -14,15 +14,15 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-function jeedom() {
-}
+ function jeedom() {
+ }
 
 
-jeedom.cache = [];
-jeedom.nodeJs = {state: -1};
-jeedom.display = {};
+ jeedom.cache = [];
+ jeedom.nodeJs = {state: -1};
+ jeedom.display = {};
 
-if (!isset(jeedom.cache.getConfiguration)) {
+ if (!isset(jeedom.cache.getConfiguration)) {
     jeedom.cache.getConfiguration = Array();
 }
 
@@ -37,9 +37,9 @@ jeedom.init = function () {
     Highcharts.setOptions({
         lang: {
             months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-                'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
             shortMonths: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-                'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
             weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
         }
     });
@@ -79,6 +79,14 @@ jeedom.init = function () {
         socket.on('jeedom::say', function (_message) {
             responsiveVoice.speak(_message,'French Female');
         });
+        socket.on('jeedom::gotoplan', function (_plan_id) {
+            if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
+             if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
+                planHeader_id = _plan_id;
+                displayPlan();
+            }
+        }
+    });
         socket.on('jeedom::alert', function (_options) {
             _options = json_decode(_options);
             if (!isset(_options.message) || $.trim(_options.message) == '') {
@@ -95,27 +103,27 @@ jeedom.init = function () {
             var theme = '';
             switch (init(category)) {
                 case 'event' :
-                    if (init(userProfils.notifyEvent) == 'none') {
-                        return;
-                    } else {
-                        theme = userProfils.notifyEvent;
-                    }
-                    break;
+                if (init(userProfils.notifyEvent) == 'none') {
+                    return;
+                } else {
+                    theme = userProfils.notifyEvent;
+                }
+                break;
                 case 'scenario' :
-                    if (init(userProfils.notifyLaunchScenario) == 'none') {
-                        return;
-                    } else {
-                        theme = userProfils.notifyLaunchScenario;
-                    }
-                    break;
+                if (init(userProfils.notifyLaunchScenario) == 'none') {
+                    return;
+                } else {
+                    theme = userProfils.notifyLaunchScenario;
+                }
+                break;
                 case 'message' :
-                    if (init(userProfils.notifyNewMessage) == 'none') {
-                        return;
-                    } else {
-                        theme = userProfils.notifyNewMessage;
-                    }
-                    refreshMessageNumber();
-                    break;
+                if (init(userProfils.notifyNewMessage) == 'none') {
+                    return;
+                } else {
+                    theme = userProfils.notifyNewMessage;
+                }
+                refreshMessageNumber();
+                break;
             }
             notify(title, text, theme);
         });

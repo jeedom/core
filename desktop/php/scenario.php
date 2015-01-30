@@ -25,7 +25,7 @@ foreach (scenario::listGroup() as $group) {
                     ?>
                 </div>
                 <div class="col-xs-6">
-                <a class="btn btn-default btn-sm tooltips expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables de scénario}}" style="margin-top : 3px;text-shadow: none;"><i class="fa fa fa-eye"></i> {{Voir variables}}</a>
+                    <a class="btn btn-default btn-sm tooltips expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables de scénario}}" style="margin-top : 3px;text-shadow: none;"><i class="fa fa fa-eye"></i> {{Voir variables}}</a>
                 </div>
             </center>
             <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> Nouveau scénario</a>
@@ -326,6 +326,7 @@ foreach (scenario::listGroup() as $group) {
                             <option value="say">{{Dit}}</option>
                             <option value="wait">{{Attendre}}</option>
                             <option value="return">{{Retourner}}</option>
+                            <option value="gotodesign">{{Aller au design}}</option>
                         </select>
                     </center>
                     <br/>
@@ -353,8 +354,12 @@ foreach (scenario::listGroup() as $group) {
                     Permet de faire dire un texte à jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur) 
                 </div>
 
-                 <div class="alert alert-info sel_otherActionDescription return" style="display:none;">
+                <div class="alert alert-info sel_otherActionDescription return" style="display:none;">
                     Retourne un message à la fin du scénario, ne sert que pour retourner un message spécifique suite a une intération. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ca marche.
+                </div>
+
+                <div class="alert alert-info sel_otherActionDescription gotodesign" style="display:none;">
+                    Change le design afficher sur tous les navigateurs qui affichage un design par le design demandé
                 </div>
 
             </div>

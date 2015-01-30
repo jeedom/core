@@ -264,7 +264,7 @@ class scenarioExpression {
         }
     }
 
-     public static function minBetween($_cmd_id,$_startDate,$_endDate){
+    public static function minBetween($_cmd_id,$_startDate,$_endDate){
         $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
         if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
             return '';
@@ -438,20 +438,20 @@ public static function time($_value) {
         if(strpos($_value, '-') !== false){
             $result -= 40;
         }else{
-         $result += 40; 
-     }       
+           $result += 40; 
+       }       
 
- }
- return $result;
+   }
+   return $result;
 }
 
 public static function formatTime($_time){
     $_time = self::setTags($_time);
     if(strlen($_time) > 3){
-     return substr($_time,0,2).'h'.substr($_time,2,2);
- } else {
-     return substr($_time,0,1).'h'.substr($_time,1,2);
- }
+       return substr($_time,0,2).'h'.substr($_time,2,2);
+   } else {
+       return substr($_time,0,1).'h'.substr($_time,1,2);
+   }
 }
 
 public static function setTags($_expression, &$_scenario = null) {
@@ -481,8 +481,8 @@ public static function setTags($_expression, &$_scenario = null) {
         $replace_string =  $match[0];
 
         if(substr_count($match[2],'(') != substr_count($match[2],')')){
-         $arguments = self::setTags($match[2].')');
-         if(substr($_expression,strpos($_expression,$match[2])+strlen($match[2])+1,1) != ')'){
+           $arguments = self::setTags($match[2].')');
+           if(substr($_expression,strpos($_expression,$match[2])+strlen($match[2])+1,1) != ')'){
             for($i=strpos($_expression,$match[2])+strlen($match[2]) + 1;$i<strlen($_expression);$i++){
                 $car = $_expression[$i];
                 if( $car != ')'){
@@ -615,10 +615,13 @@ public function execute(&$scenario = null) {
             } else if ($this->getExpression() == 'say') {
                 $this->setLog($scenario, __('Je dis : ',__FILE__).$options['message']);
                 nodejs::pushUpdate('jeedom::say', $options['message']) ;
-            } else if ($this->getExpression() == 'return') {
-             $this->setLog($scenario, __('Je vais retourner : ',__FILE__).$options['message']);
-             $scenario->setReturn($scenario->getReturn().$options['message']);
-         }else if ($this->getExpression() == 'scenario') {
+            }  else if ($this->getExpression() == 'gotodesign') {
+                $this->setLog($scenario, __('Changement design : ',__FILE__).$options['plan_id']);
+                nodejs::pushUpdate('jeedom::gotoplan', $options['plan_id']) ;
+            }else if ($this->getExpression() == 'return') {
+               $this->setLog($scenario, __('Je vais retourner : ',__FILE__).$options['message']);
+               $scenario->setReturn($scenario->getReturn().$options['message']);
+           }else if ($this->getExpression() == 'scenario') {
             if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
                 $actionScenario = &$scenario;
             } else {

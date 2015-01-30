@@ -119,6 +119,7 @@ En plus des commandes domotiques vous avez accès aux fonctions suivantes :
 - icon : permet de changer l'icone de représentation du scenario
 - say : permet de faire dire un texte à jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)
 - return : retourne un message à la fin du scénario, ne sert que pour retourner un message spécifique suite a une intération. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ca marche
+- gotodesign : change le design afficher sur tous les navigateurs qui affichage un design par le design demandé
                
 Vous pouvez aussi utiliser les tags suivants dans les options : 
 
