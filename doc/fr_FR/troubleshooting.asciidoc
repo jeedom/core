@@ -104,7 +104,7 @@ Malheureusement il n'y a pas beaucoup de solution si c'est le deuxieme cas, le m
 Vous pouvez aussi en ssh regarder pourquoi mysql ne veut pas demarrer : 
 ----
 sudo su -
-servive mysql stop
+service mysql stop
 mysqld --verbose
 ----
 
