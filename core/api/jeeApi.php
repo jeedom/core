@@ -334,8 +334,8 @@ if (trim(config::byKey('api')) == '') {
                                 $info_cmd['value'] = $cmd->execCmd();
                                 $info_cmd['collectDate'] = $cmd->getCollectDate();
                             }
+                            $info_cmds[] = $info_cmd;
                         }
-                        $info_cmds[] = $info_cmd;
                         $info_eqLogic =  utils::o2a($eqLogic);
                         $info_eqLogic['cmds'] = $info_cmds;
                         $info_eqLogics[] = $info_eqLogic;
@@ -353,8 +353,9 @@ if (trim(config::byKey('api')) == '') {
                         $info_cmd['value'] = $cmd->execCmd();
                         $info_cmd['collectDate'] = $cmd->getCollectDate();
                     }
+                    $info_cmds[] = $info_cmd;
                 }
-                $info_cmds[] = $info_cmd;
+                
                 $info_eqLogic =  utils::o2a($eqLogic);
                 $info_eqLogic['cmds'] = $info_cmds;
                 $return[$id] = $info_eqLogic;
