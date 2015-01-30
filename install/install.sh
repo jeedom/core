@@ -603,8 +603,6 @@ case ${webserver} in
 		cd $webserver_home/jeedom
 		configure_nginx
 
-		install_razberry_zway
-
 		echo "********************************************************"
 		echo "${msg_setup_nodejs_service}"
 		echo "********************************************************"
