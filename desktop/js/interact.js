@@ -104,7 +104,7 @@ $("#bt_saveInteract").on('click', function () {
 
 $("#bt_regenerateInteract").on('click', function () {
     bootbox.confirm('{{Etes-vous sûr de vouloir regénerer toutes les intérations (cela peut être très long) ?}}', function (result) {
-        if (result !== null) {
+       if (result) {
             jeedom.interact.regenerateInteract({
                 interact: {query: result},
                 error: function (error) {
