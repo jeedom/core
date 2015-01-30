@@ -1,6 +1,6 @@
 *30/01/2015* _v1.161.0_
 
-- Ajout aciton gotodesign dans les scénarios pour changer le design afficher sur tous les navigateurs qui affichage un design par le design demandé
+- Ajout action gotodesign dans les scénarios pour changer le design afficher sur tous les navigateurs qui affichage un design par le design demandé
 
 *28/01/2015* _v1.161.0_
 
