@@ -35,49 +35,96 @@ jeedom.cmd.execute = function(_params) {
         global: false,
         pre_success: function(data) {
             if (data.state != 'ok') {
-                if ('function' != typeof(_params.error)) {
-                    $('#div_alert').showAlert({
-                        message: data.result,
-                        level: 'danger'
-                    });
+                if(data.code == -32005){
+                    if ($.mobile) {
+                       var result = prompt("Veuillez indiquer le code ?", "")
+                       if(result != null){
+                           _params.codeAccess = result;
+                           jeedom.cmd.execute(_params);
+                       }else{
+                        if ('function' != typeof(_params.error)) {
+                            $('#div_alert').showAlert({
+                                message: data.result,
+                                level: 'danger'
+                            });
+                        }
+                        if (notify) {
+                            eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
+                            setTimeout(function() {
+                                eqLogic.find('.statusCmd').empty();
+                            }, 3000);
+                        }
+                        return data;
+                    }
+                }else{
+                   bootbox.prompt("Veuillez indiquer le code ?", function (result) {
+                    if(result != null){
+                       _params.codeAccess = result;
+                       jeedom.cmd.execute(_params);
+                   }else{
+                    if ('function' != typeof(_params.error)) {
+                        $('#div_alert').showAlert({
+                            message: data.result,
+                            level: 'danger'
+                        });
+                    }
+                    if (notify) {
+                        eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
+                        setTimeout(function() {
+                            eqLogic.find('.statusCmd').empty();
+                        }, 3000);
+                    }
+                    return data;
                 }
-                if (notify) {
-                    eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
-                    setTimeout(function() {
-                        eqLogic.find('.statusCmd').empty();
-                    }, 3000);
-                }
-                return data;
+
+            });
+               }
+           }else{
+            if ('function' != typeof(_params.error)) {
+                $('#div_alert').showAlert({
+                    message: data.result,
+                    level: 'danger'
+                });
             }
             if (notify) {
-                eqLogic.find('.statusCmd').empty().append('<i class="fa fa-rss"></i>');
+                eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
                 setTimeout(function() {
                     eqLogic.find('.statusCmd').empty();
                 }, 3000);
             }
             return data;
         }
-    };
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/cmd.ajax.php';
-    var cache = 1;
-    if (_params.cache !== undefined) {
-        cache = _params.cache;
+    if (notify) {
+        eqLogic.find('.statusCmd').empty().append('<i class="fa fa-rss"></i>');
+        setTimeout(function() {
+            eqLogic.find('.statusCmd').empty();
+        }, 3000);
     }
-    paramsAJAX.data = {
-        action: 'execCmd',
-        id: _params.id,
-        cache: cache,
-        value: _params.value || ''
-    };
-    $.ajax(paramsAJAX);
+    return data;
+}
+};
+try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+} catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+}
+var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+var paramsAJAX = jeedom.private.getParamsAJAX(params);
+paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+var cache = 1;
+if (_params.cache !== undefined) {
+    cache = _params.cache;
+}
+paramsAJAX.data = {
+    action: 'execCmd',
+    id: _params.id,
+    codeAccess: _params.codeAccess,
+    cache: cache,
+    value: _params.value || ''
+};
+$.ajax(paramsAJAX);
 };
 
 jeedom.cmd.test = function(_params) {

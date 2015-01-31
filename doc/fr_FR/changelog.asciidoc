@@ -1,3 +1,7 @@
+*31/01/2015* _v1.161.0_
+
+- Possibilité de mettre un code sur une commande de type action (à partir de la fenetre de configuration avancé de l'action)
+
 *30/01/2015* _v1.161.0_
 
 - Ajout action gotodesign dans les scénarios pour changer le design afficher sur tous les navigateurs qui affichage un design par le design demandé
