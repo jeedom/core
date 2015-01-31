@@ -754,7 +754,7 @@ class cmd {
                 }
                 if ($template == '' && config::byKey('active', 'widget') == 1 && config::byKey('market::autoInstallMissingWidget') == 1) {
                     try {
-                        $market = market::byLogicalId(str_replace('.cmd', '', $version . '.' . $template_name));
+                        $market = market::byLogicalId(str_replace('cmd.', '', $version . '.' . $template_name));
                         if (is_object($market)) {
                             $market->install();
                             $template = getTemplate('core', $version, $template_name, 'widget');
