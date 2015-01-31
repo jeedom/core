@@ -233,7 +233,7 @@ public static function dontUnderstand($_parameters) {
         );
     if (isset($_parameters['profile'])) {
         $notUnderstood[] = __('Désolé ', __FILE__) . $_parameters['profile'] . __(' je n\'ai pas compris', __FILE__);
-        $notUnderstood[] = __('Désolé ', __FILE__) . $_parameters['profile'] . __(' je n\'ai pas compris votre demande', __FILE__);
+        $notUnderstood[] = __('Désolé ', __FILE__) . $_parameters['profile'] . __(' je n\'ai pas compris ta demande', __FILE__);
     }
     $random = rand(0, count($notUnderstood) - 1);
     return $notUnderstood[$random];
