@@ -2,8 +2,8 @@
 # socket.io
 
 [![Build Status](https://secure.travis-ci.org/Automattic/socket.io.svg)](http://travis-ci.org/Automattic/socket.io)
-[![NPM version](https://badge.fury.io/js/socket.io.svg)](http://badge.fury.io/js/socket.io)
-![Downloads](http://img.shields.io/npm/dm/socket.io.svg)
+![NPM version](https://badge.fury.io/js/socket.io.svg)
+![Downloads](http://img.shields.io/npm/dm/socket.io.svg?style=flat)
 
 ## How to use
 
@@ -274,7 +274,7 @@ server.listen(3000);
 
 ### Socket#conn:Socket
 
-  A reference to the underyling `Client` transport connection (engine.io
+  A reference to the underlying `Client` transport connection (engine.io
   `Socket` object).
 
 ### Socket#request:Request

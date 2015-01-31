@@ -1,4 +1,28 @@
 
+1.3.2 / 2015-01-19
+==================
+
+ * no change on this release
+
+1.3.1 / 2015-01-19
+==================
+
+ * no change on this release
+ * package: bump `engine.io`
+
+1.3.0 / 2015-01-19
+==================
+
+ * package: bump `engine.io`
+ * add test for reconnection after server restarts [rase-]
+ * update license with up-to-date year range [fay-jai]
+ * fix leaving unknown rooms [defunctzombie]
+ * allow null origins when allowed origins is a function [drewblaisdell]
+ * fix tests on node 0.11
+ * package: fix `npm test` to run on windows
+ * package: bump `debug` v2.1.0 [coderaiser]
+ * added tests for volatile [rase-]
+
 1.2.1 / 2014-11-21
 ==================
 

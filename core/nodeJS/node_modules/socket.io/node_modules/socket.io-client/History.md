@@ -1,4 +1,24 @@
 
+1.3.2 / 2015-01-19
+==================
+
+ * build `socket.io.js`
+
+1.3.1 / 2015-01-19
+==================
+
+ * no change on this release
+ * package: bump `engine.io-client` to not depend on `git(1)` for a dep
+
+1.3.0 / 2015-01-19
+==================
+
+ * package: bump `engine.io-client`
+ * added `socket.id` property pointing to session id [rase-]
+ * fix url parsing when uri string is undefined [defunctzombie]
+ * implemented `backo` for exponential backoff with randomization [mokesmokes]
+ * reset reconnection attempts state after a successul connection [mokesmokes]
+
 1.2.1 / 2014-11-21
 ==================
 
