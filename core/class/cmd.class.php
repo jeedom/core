@@ -1173,7 +1173,7 @@ class cmd {
     }
 
     public function setConfiguration($_key, $_value) {
-        if($_key == 'actionCodeAccess' && !preg_match('/^[0-9a-f]{40}$/i', $_value)){
+        if($_key == 'actionCodeAccess' && !preg_match('/^[0-9a-f]{40}$/i', $_value) && $_value != ''){
             $_value = sha1($_value);
         }
         $this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
