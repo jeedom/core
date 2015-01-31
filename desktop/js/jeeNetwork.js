@@ -163,7 +163,7 @@ $('#bt_restoreSlave').on('click', function () {
 });
 
 
-$('#bt_haltSysteme').on('click', function () {
+$('#bt_haltSlave').on('click', function () {
     $.hideAlert();
     bootbox.confirm('{{Etes-vous sûr de vouloir arrêter ce Jeedom esclave ?}}', function (result) {
         if (result) {
@@ -180,7 +180,7 @@ $('#bt_haltSysteme').on('click', function () {
     });
 });
 
-$('#bt_rebootSysteme').on('click', function () {
+$('#bt_rebootSlave').on('click', function () {
     $.hideAlert();
     bootbox.confirm('{{Etes-vous sûr de vouloir redémarrer ce Jeedom esclave ?}}', function (result) {
         if (result) {
