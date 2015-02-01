@@ -490,10 +490,10 @@ public static function shareOnMarket(&$market) {
 public static function getFromMarket(&$market, $_path) {
     $cibDir = dirname(__FILE__) . '/../config/scenario/';
     if (!file_exists($cibDir)) {
-       mkdir($cibDir);
-   }
-   $zip = new ZipArchive;
-   if ($zip->open($_path) === TRUE) {
+     mkdir($cibDir);
+ }
+ $zip = new ZipArchive;
+ if ($zip->open($_path) === TRUE) {
     $zip->extractTo($cibDir . '/');
     $zip->close();
 } else {
@@ -530,17 +530,17 @@ public function launch($_force = false, $_trigger = '', $_message = '') {
         return false;
     }
     if ($this->getConfiguration('speedPriority', 0) == 0) {
-     $cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
-     $cmd.= ' scenario_id=' . $this->getId();
-     $cmd.= ' force=' . $_force;
-     $cmd.= ' trigger=' . escapeshellarg($_trigger);
-     $cmd.= ' message=' . escapeshellarg($_message);
-     $cmd.= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
-     exec($cmd);
- } else {
-     return $this->execute($_trigger, $_message);
- }
- return true;
+       $cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
+       $cmd.= ' scenario_id=' . $this->getId();
+       $cmd.= ' force=' . $_force;
+       $cmd.= ' trigger=' . escapeshellarg($_trigger);
+       $cmd.= ' message=' . escapeshellarg($_message);
+       $cmd.= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
+       exec($cmd);
+   } else {
+       return $this->execute($_trigger, $_message);
+   }
+   return true;
 }
 
 public function execute($_trigger = '', $_message = '') {
@@ -596,10 +596,10 @@ public function toHtml($_version) {
     WHERE `key`="scenarioHtml' . $_version . $this->getId().'"';
     $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
     if ($result['value'] != '') {
-     return $result['value'];
- }
- $_version = jeedom::versionAlias($_version);
- $replace = array(
+       return $result['value'];
+   }
+   $_version = jeedom::versionAlias($_version);
+   $replace = array(
     '#id#' => $this->getId(),
     '#state#' => $this->getState(),
     '#isActive#' => $this->getIsActive(),
@@ -608,7 +608,7 @@ public function toHtml($_version) {
     '#lastLaunch#' => $this->getLastLaunch(),
     '#scenarioLink#' => $this->getLinkToConfiguration(),
     );
- if (!isset(self::$_templateArray)) {
+   if (!isset(self::$_templateArray)) {
     self::$_templateArray = array();
 }
 if (!isset(self::$_templateArray[$_version])) {
@@ -717,26 +717,30 @@ public function removeData($_key, $_private = false) {
     return true;
 }
 
-public function setData($_key, $_value) {
+public function setData($_key, $_value,$_private = false) {
     $dataStore = new dataStore();
     $dataStore->setType('scenario');
     $dataStore->setKey($_key);
     $dataStore->setValue($_value);
-    $dataStore->setLink_id(-1);
+    if($_private){
+        $dataStore->setLink_id($this->getId());
+    }else{
+        $dataStore->setLink_id(-1);
+    }
     $dataStore->save();
     return true;
 }
 
-public function getData($_key, $_private = false) {
+public function getData($_key, $_private = false,$_default = '') {
     if ($_private) {
         $dataStore = dataStore::byTypeLinkIdKey('scenario', $this->getId(), $_key);
     } else {
         $dataStore = dataStore::byTypeLinkIdKey('scenario', -1, $_key);
     }
     if (is_object($dataStore)) {
-        return $dataStore->getValue();
+        return $dataStore->getValue($_default);
     }
-    return '';
+    return $_default;
 }
 
 public function calculateScheduleDate() {
