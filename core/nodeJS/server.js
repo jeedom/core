@@ -24,23 +24,23 @@ var io = require('socket.io')({
 
 var express = require('express');
 
-var internalServer = express.createServer();
+var internalServer = express();
 internalServer.listen(8334);
 internalServer.get('/', function(req, res) {
     var message = {};
     message.datetime = new Date().getTime();
-    message.type = req.param('type');
-    message.key = req.param('key');
-    message.title = req.param('title');
-    message.text = req.param('text');
-    message.category = req.param('category');
-    message.userFromId = req.param('userFromId');
-    message.userDestId = req.param('userDestId');
-    message.message = req.param('message');
-    message.options = req.param('options');
+    message.type = req.query['type'];
+    message.key = req.query['key'];
+    message.title = req.query['title'];
+    message.text = req.query['text'];
+    message.category = req.query['category'];
+    message.userFromId = req.query['userFromId'];
+    message.userDestId = req.query['userDestId'];
+    message.message = req.query['message'];
+    message.options = req.query['options'];
     handleMessage(message);
     addMessage(message);
-    res.send('OK', 200);
+    res.status(200).send('OK');
 });
 
 var clients = [];
