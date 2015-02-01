@@ -811,21 +811,36 @@ class cmd {
             $replace['#collectDate#'] = $this->getCollectDate();
             if ($this->getIsHistorized() == 1) {
                 $replace['#history#'] = 'history cursor';
+
+
+
                 if (config::byKey('displayStatsWidget') == 1 && strpos($template, '#displayHistory#') !== false) {
-                    $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));
-                    $replace['#displayHistory#'] = '';
-                    $historyStatistique = $this->getStatistique($startHist, date('Y-m-d H:i:s'));
-                    $replace['#averageHistoryValue#'] = round($historyStatistique['avg'], 1);
-                    $replace['#minHistoryValue#'] = round($historyStatistique['min'], 1);
-                    $replace['#maxHistoryValue#'] = round($historyStatistique['max'], 1);
-                    $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculTendance') . ' hour'));
-                    $tendance = $this->getTendance($startHist, date('Y-m-d H:i:s'));
-                    if ($tendance > config::byKey('historyCalculTendanceThresholddMax')) {
-                        $replace['#tendance#'] = 'fa fa-arrow-up';
-                    } else if ($tendance < config::byKey('historyCalculTendanceThresholddMin')) {
-                        $replace['#tendance#'] = 'fa fa-arrow-down';
-                    } else {
-                        $replace['#tendance#'] = 'fa fa-minus';
+                    $showStat  = true;
+                    if ($this->getDisplay('doNotShowStatOnDashboard') == 1 && $_version == 'dashboard') {
+                        $showStat = false;
+                    }
+                    if ($this->getDisplay('doNotShowStatOnView') == 1 && ($_version == 'dview' || $_version == 'mview')) {
+                        $showStat = false;
+                    }
+                    if ($this->getDisplay('doNotShowStatOnMobile') == 1 && $_version == 'mobile') {
+                        $showStat = false;
+                    }
+                    if($showStat){
+                        $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));
+                        $replace['#displayHistory#'] = '';
+                        $historyStatistique = $this->getStatistique($startHist, date('Y-m-d H:i:s'));
+                        $replace['#averageHistoryValue#'] = round($historyStatistique['avg'], 1);
+                        $replace['#minHistoryValue#'] = round($historyStatistique['min'], 1);
+                        $replace['#maxHistoryValue#'] = round($historyStatistique['max'], 1);
+                        $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculTendance') . ' hour'));
+                        $tendance = $this->getTendance($startHist, date('Y-m-d H:i:s'));
+                        if ($tendance > config::byKey('historyCalculTendanceThresholddMax')) {
+                            $replace['#tendance#'] = 'fa fa-arrow-up';
+                        } else if ($tendance < config::byKey('historyCalculTendanceThresholddMin')) {
+                            $replace['#tendance#'] = 'fa fa-arrow-down';
+                        } else {
+                            $replace['#tendance#'] = 'fa fa-minus';
+                        }
                     }
                 }
             }

@@ -441,10 +441,10 @@ class eqLogic {
         }
         $hasOnlyEventOnly = $this->hasOnlyEventOnlyCmd();
         if($hasOnlyEventOnly){
-         $sql = 'SELECT `value` FROM cache 
-         WHERE `key`="widgetHtml' . $_version . $this->getId().'"';
-         $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-         if ($result['value'] != '') {
+           $sql = 'SELECT `value` FROM cache 
+           WHERE `key`="widgetHtml' . $_version . $this->getId().'"';
+           $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+           if ($result['value'] != '') {
             return $result['value'];
         }
     }
@@ -485,29 +485,23 @@ $replace = array(
     '#batteryDatetime#' => $this->getConfiguration('batteryStatusDatetime',__('inconnue',__FILE__)),
     );
 
-$replace['#object_name#'] = '';
-if ($_version == 'dview' || $_version == 'mview'){
-  if($this->getDisplay('doNotShowObjectNameOnView',0) == 0){
+if ($_version == 'dview' || $_version == 'mview') {
     $object = $this->getObject();
     $replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
+} else {
+    $replace['#object_name#'] = '';
 }
- if($this->getDisplay('doNotDisplayBatteryLevelOnView',0) == 0){
-    $replace['#battery#'] = -1;
-}
-if($this->getDisplay('doNotShowNameOnView') == 1){
+if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
     $replace['#name#'] = '';
 }
-}elseif ($_version == 'mobile'){
-    if($this->getDisplay('doNotShowNameOnMobile') == 1){
-     $replace['#name#'] = '';
- }
-}elseif ($_version == 'dashboard'){
-   if($this->getDisplay('doNotShowNameOnDashboard') == 1){
-     $replace['#name#'] = '';
- }
- if($this->getDisplay('doNotDisplayBatteryLevelOnDashboard',0) == 0){
+if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
+    $replace['#name#'] = '<br/>';
+}
+if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotDisplayBatteryLevelOnDashboard') == 1) {
     $replace['#battery#'] = -1;
 }
+if ($_version == 'dashboard' && $this->getDisplay('doNotDisplayBatteryLevelOnView') == 1) {
+    $replace['#battery#'] = -1;
 }
 
 $parameters = $this->getDisplay('parameters');
@@ -674,12 +668,12 @@ public function batteryStatus($_pourcent,$_datetime = '') {
     }
     $this->setConfiguration('batteryStatus',$_pourcent);
     if($_datetime != ''){
-     $this->setConfiguration('batteryStatusDatetime',$_datetime);  
- }else{
-   $this->setConfiguration('batteryStatusDatetime',date('Y-m-d H:i:s'));
-}
+       $this->setConfiguration('batteryStatusDatetime',$_datetime);  
+   }else{
+     $this->setConfiguration('batteryStatusDatetime',date('Y-m-d H:i:s'));
+ }
 
-$this->save();
+ $this->save();
 }
 
 public function refreshWidget() {
