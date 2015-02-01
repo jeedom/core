@@ -84,6 +84,12 @@ sendVarToJS('id', $plan->getId());
                     <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="name" >
                 </div>
             </div>
+             <div class="form-group">
+                <label class="col-lg-4 control-label">{{Ne pas afficher le niveau de batterie}}</label>
+                <div class="col-lg-2">
+                    <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="batteryLevel" >
+                </div>
+            </div>
             <legend>Spécifique</legend>
             <?php
             if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
