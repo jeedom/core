@@ -106,71 +106,84 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
             <legend>Configuration</legend>
             <form class="form-horizontal">
                 <fieldset>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">{{Ordre}}</label>
-                        <div class="col-sm-2">
-                            <input type="number" class="eqLogicAttr form-control" data-l1key="order" />
-                        </div>
-                    </div>
+                   <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Dashboard</th>
+                            <th>Vue</th>
+                            <th>Design</th>
+                            <th>Mobile</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     <tr>
+                        <td>{{Ne pas afficher le nom}}</td>
+                        <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
+                        <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>{{Ne pas afficher le de l'objet}}</td>
+                        <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowObjectNameOnView" /></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
 
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">{{Ne pas afficher le nom sur le dashboard}}</label>
-                        <div class="col-sm-1">
-                            <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                    <label class="col-sm-4 control-label">{{Ne pas afficher le nom sur les vues}}</label>
-                        <div class="col-sm-1">
-                            <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnView" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                       <label class="col-sm-4 control-label">{{Ne pas afficher le nom de l'objet sur les vues}}</label>
-                       <div class="col-sm-1">
-                        <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowObjectNameOnView" />
-                    </div>
-                     <div class="form-group">
-                       <label class="col-sm-4 control-label">{{Ne pas afficher le niveau de batterrie}}</label>
-                       <div class="col-sm-1">
-                        <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotDisplayBatteryLevel" />
-                    </div>
+                </tbody>
+            </table>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label">{{Ordre}}</label>
+                <div class="col-sm-2">
+                    <input type="number" class="eqLogicAttr form-control" data-l1key="order" />
                 </div>
-            </fieldset>
-        </form>
-    </div>
+            </div>
 
-    <div class='col-lg-6 col-md-7 col-sm-8'>
-        <legend>{{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
-        <table class="table table-bordered table-condensed" id="table_widgetParameters">
-            <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Valeur</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($eqLogic->getDisplay('parameters') != '') {
-                    foreach ($eqLogic->getDisplay('parameters') as $key => $value) {
-                        echo '<tr>';
-                        echo '<td>';
-                        echo '<input class="form-control key" value="' . $key . '" />';
-                        echo '</td>';
-                        echo '<td>';
-                        echo '<input class="form-control value" value="' . $value . '" />';
-                        echo '</td>';
-                        echo '<td>';
-                        echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fa fa-times"></i> Supprimer</a>';
-                        echo '</td>';
-                        echo '</tr>';
-                    }
+           
+            <div class="form-group">
+             <label class="col-sm-4 control-label">{{Ne pas afficher le niveau de batterrie}}</label>
+             <div class="col-sm-1">
+                <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotDisplayBatteryLevel" />
+            </div>
+        </div>
+    </fieldset>
+</form>
+</div>
+
+<div class='col-lg-6 col-md-7 col-sm-8'>
+    <legend>{{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
+    <table class="table table-bordered table-condensed" id="table_widgetParameters">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Valeur</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if ($eqLogic->getDisplay('parameters') != '') {
+                foreach ($eqLogic->getDisplay('parameters') as $key => $value) {
+                    echo '<tr>';
+                    echo '<td>';
+                    echo '<input class="form-control key" value="' . $key . '" />';
+                    echo '</td>';
+                    echo '<td>';
+                    echo '<input class="form-control value" value="' . $value . '" />';
+                    echo '</td>';
+                    echo '<td>';
+                    echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fa fa-times"></i> Supprimer</a>';
+                    echo '</td>';
+                    echo '</tr>';
                 }
-                ?>
-            </tbody>
-        </table>
-    </div>
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
 </div>
 </div>
 <script>

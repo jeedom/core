@@ -160,39 +160,50 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             <legend>{{Configuration}}</legend>
             <form class="form-horizontal">
                 <fieldset>
-                    <div class="form-group">
-                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Widget Desktop}}</label>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                            <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
-                                <?php
-                                foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $widget) {
-                                    echo '<option>' . $widget['name'] . '</option>';
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6 control-label">{{Widget Mobile}}</label>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                            <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
-                                <?php
-                                foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
-                                    echo '<option>' . $widget['name'] . '</option>';
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Dashboard</th>
+                                <th>Vue</th>
+                                <th>Design</th>
+                                <th>Mobile</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{Widget}}</td>
+                                <td colspan="3">
+                                    <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
+                                        <?php
+                                        foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $widget) {
+                                            echo '<option>' . $widget['name'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
+                                        <?php
+                                        foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
+                                            echo '<option>' . $widget['name'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{Ne pas afficher le nom}}</td>
+                                <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
+                                <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
 
-                    <div class="form-group">
-                        <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas afficher le nom sur le dashboard}}</label>
-                        <div class="col-xs-1">
-                            <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" />
-                        </div>
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{sur les vues}}</label>
-                        <div class="col-xs-1">
-                            <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnView" />
-                        </div>
-                    </div>
+
+
+                        </tbody>
+                    </table>
 
                     <div class="form-group">
                         <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
@@ -257,7 +268,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         <div class='col-lg-6 col-md-7 col-sm-8'>
             <legend>{{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
             <table class="table table-bordered table-condensed" id="table_widgetParameters">
-                <thead>
+                <thead class="table table-bordered">
                     <tr>
                         <th>Nom</th>
                         <th>Valeur</th>
