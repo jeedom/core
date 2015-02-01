@@ -106,13 +106,12 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
             <legend>Configuration</legend>
             <form class="form-horizontal">
                 <fieldset>
-                   <table class="table table-bordered">
+                   <table class="table table-bordered table-condensed">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Dashboard</th>
+                            <th>Dashboard et Design</th>
                             <th>Vue</th>
-                            <th>Design</th>
                             <th>Mobile</th>
                         </tr>
                     </thead>
@@ -121,36 +120,31 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                         <td>{{Ne pas afficher le nom}}</td>
                         <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
                         <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
+                        <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnMobile" /></td>
+                    </tr>
+                    <tr>
+                        <td>{{Ne pas afficher le nom de l'objet}}</td>
                         <td></td>
+                        <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowObjectNameOnView" /></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td>{{Ne pas afficher le de l'objet}}</td>
-                        <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowObjectNameOnView" /></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{Ne pas afficher le niveau de batterrie}}</td>
+                        <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnDashboard" /></td>
+                        <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnView" /></td>
                         <td></td>
                     </tr>
-
                 </tbody>
             </table>
 
             <div class="form-group">
-                <label class="col-sm-4 control-label">{{Ordre}}</label>
+                <label class="col-sm-3 control-label">{{Ordre}}</label>
                 <div class="col-sm-2">
                     <input type="number" class="eqLogicAttr form-control" data-l1key="order" />
                 </div>
             </div>
-
-           
-            <div class="form-group">
-             <label class="col-sm-4 control-label">{{Ne pas afficher le niveau de batterrie}}</label>
-             <div class="col-sm-1">
-                <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotDisplayBatteryLevel" />
-            </div>
-        </div>
-    </fieldset>
-</form>
+        </fieldset>
+    </form>
 </div>
 
 <div class='col-lg-6 col-md-7 col-sm-8'>

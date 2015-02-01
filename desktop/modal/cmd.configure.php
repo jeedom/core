@@ -160,20 +160,19 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             <legend>{{Configuration}}</legend>
             <form class="form-horizontal">
                 <fieldset>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-condensed">
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Dashboard</th>
+                                <th>Dashboard et design</th>
                                 <th>Vue</th>
-                                <th>Design</th>
                                 <th>Mobile</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>{{Widget}}</td>
-                                <td colspan="3">
+                                <td colspan="2">
                                     <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
                                         <?php
                                         foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $widget) {
@@ -197,20 +196,16 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                                 <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
                                 <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
                                 <td></td>
-                                <td></td>
                             </tr>
-
-
-
                         </tbody>
                     </table>
 
                     <div class="form-group">
-                        <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
+                        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
                         <div class="col-xs-1">
                             <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineBefore" />
                         </div>
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{après le widget}}</label>
+                        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 control-label">{{après le widget}}</label>
                         <div class="col-xs-1">
                             <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" />
                         </div>
@@ -218,7 +213,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 
                     <?php if ($cmd->getType() == 'info' && $cmd->getSubType() == 'numeric') { ?>
                     <div class="form-group">
-                        <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Formule de calcul (#value# pour la valeur)}}</label>
+                        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 control-label">{{Formule de calcul (#value# pour la valeur)}}</label>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />
                         </div>
