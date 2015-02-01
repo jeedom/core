@@ -187,6 +187,10 @@ function savePluginConfig() {
         success: function () {
             $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
             modifyWithoutSave = false;
+            var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveConfiguration';
+            if (typeof window[postSave] == 'function'){
+                window[postSave]();
+            }
         }
     });
 }
