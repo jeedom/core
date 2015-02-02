@@ -189,10 +189,10 @@ class scenarioElement {
                 if(strpos($at[0]->getExpression(), '-') !== false){
                     $next -= 40;
                 }else{
-                   $next += 40; 
-               }       
-           }
-           if (!is_numeric($next) || $next < 0) {
+                 $next += 40; 
+             }       
+         }
+         if (!is_numeric($next) || $next < 0) {
             $_scenario->setLog(__('Erreur dans bloc (type A) : ', __FILE__) . $this->getId() . __(', heure programmé invalide : ', __FILE__) . $next);
         }
         if ($next < (date('Gi') + 1)) {
@@ -209,7 +209,7 @@ class scenarioElement {
             }
         }
         $next = strtotime($next);
-         $crons = cron::searchClassAndFunction('scenario','doIn','"scenarioElement_id":'.$this->getId());
+        $crons = cron::searchClassAndFunction('scenario','doIn','"scenarioElement_id":'.$this->getId());
         if(is_array($crons)){
             foreach ($crons as $cron) {
                 $cron->remove();
