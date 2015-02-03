@@ -497,10 +497,10 @@ if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotSh
 if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
     $replace['#name#'] = '<br/>';
 }
-if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotDisplayBatteryLevelOnDashboard') == 1) {
+if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotDisplayBatteryLevelOnView') == 1) {
     $replace['#battery#'] = -1;
 }
-if ($_version == 'dashboard' && $this->getDisplay('doNotDisplayBatteryLevelOnView') == 1) {
+if ($_version == 'dashboard' && $this->getDisplay('doNotDisplayBatteryLevelOnDashboard') == 1) {
     $replace['#battery#'] = -1;
 }
 
