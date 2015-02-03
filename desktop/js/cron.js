@@ -124,10 +124,10 @@ function addCron(_cron) {
     tr += '<td class="option"><span class="cronAttr" data-l1key="id"></span></td>';
     tr += '<td>';
     if (init(_cron.state) == 'run') {
-        tr += '<a class="btn btn-danger btn-sm stop" style="color : white;"><i class="fa fa-stop"></i></a>';
+        tr += '<a class="btn btn-danger btn-xs stop" style="color : white;"><i class="fa fa-stop"></i></a>';
     }
     if (init(_cron.state) != '' && init(_cron.state) != 'starting' && init(_cron.state) != 'run' && init(_cron.state) != 'stoping') {
-        tr += '<a class="btn btn-success btn-sm start" style="color : white;"><i class="fa fa-play"></i></a>';
+        tr += '<a class="btn btn-success btn-xs start" style="color : white;"><i class="fa fa-play"></i></a>';
     }
     tr += '</td>';
     tr += '<td class="enable"><center>';
@@ -141,15 +141,15 @@ function addCron(_cron) {
     tr += '</td>';
     tr += '<td class="deamons">';
     tr += '<input type="checkbox" class="cronAttr" data-l1key="deamon" /></span> ';
-    tr += '<input class="cronAttr form-control" data-l1key="deamonSleepTime" style="width : 50px; display : inline-block;"/>';
+    tr += '<input class="cronAttr form-control input-sm" data-l1key="deamonSleepTime" style="width : 50px; display : inline-block;"/>';
     tr += '</td>';
     tr += '<td class="once">';
     tr += '<input type="checkbox" class="cronAttr" data-l1key="once" /></span> ';
     tr += '</td>';
-    tr += '<td class="class"><input class="form-control cronAttr" data-l1key="class" /></td>';
-    tr += '<td class="function"><input class="form-control cronAttr" data-l1key="function" /></td>';
-    tr += '<td class="schedule"><input class="cronAttr form-control" data-l1key="schedule" /></td>';
-    tr += '<td class="function"><input class="form-control cronAttr" data-l1key="timeout" /></td>';
+    tr += '<td class="class"><input class="form-control cronAttr input-sm" data-l1key="class" /></td>';
+    tr += '<td class="function"><input class="form-control cronAttr input-sm" data-l1key="function" /></td>';
+    tr += '<td class="schedule"><input class="cronAttr form-control input-sm" data-l1key="schedule" /></td>';
+    tr += '<td class="function"><input class="form-control cronAttr input-sm" data-l1key="timeout" /></td>';
     tr += '<td class="lastRun">';
     tr += init(_cron.lastRun);
     tr += '</td>';
