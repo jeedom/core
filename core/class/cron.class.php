@@ -103,7 +103,7 @@ class cron {
                     AND function=:function';
         if ($_option != '') {
             $value['option'] = '%' . $_option . '%';
-            $sql .= ' LIKE `option`=:option';
+            $sql .= ' AND `option` LIKE :option';
         }
         return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
