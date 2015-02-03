@@ -170,7 +170,7 @@ class update {
             $values['type'] = $_filter;
             $sql .= ' WHERE `type`=:type';
         }
-        $sql .= ' ORDER BY FIELD( `type`,"plugin","core") DESC,( `status` = "update") DESC';
+        $sql .= ' ORDER BY FIELD( `type`,"plugin","core") DESC,FIELD( `status`, "update","ok") DESC, `name` ASC';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
 
