@@ -253,7 +253,7 @@ configure_nginx()
 	JEEDOM_CRON="`crontab -l | grep -e 'jeeCron.php'`"
 
 	if [ -z "${JEEDOM_CRON}" ]; then
-		croncmd="su --shell=/bin/bash - www-data -c '/usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+		croncmd="su --shell=/bin/bash - www-data -c '/usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
 		cronjob="* * * * * $croncmd"
 		( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
 	fi
@@ -309,7 +309,7 @@ configure_apache()
 	fi
 	service apache2 restart
 
-	croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+	croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
 	cronjob="* * * * * $croncmd"
 	( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
 
