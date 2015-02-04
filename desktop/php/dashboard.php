@@ -99,7 +99,7 @@ echo '</div>';
 foreach ($child_object as $child) {
     $eqLogics = $child->getEqLogic(true, true);
     if(count($eqLogics) > 0){
-        $margin = 40 * $parentNumber[$child->getId()];
+        $margin = (isset($parentNumber[$child->getId()])) ? 40 * $parentNumber[$child->getId()] : 0;
         echo '<div object_id="' . $child->getId() . '" style="margin-left : ' . $margin . 'px;margin-bottom : 3px;">';
         echo '<legend style="margin-bottom : 0px;">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</legend>';
         echo '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '" style="width: 100%;">';
