@@ -509,6 +509,7 @@ install_dependency()
 	apt-get install -y libudev1
 	apt-get install -y systemd
 	apt-get install -y npm
+	apt-get install -y libtinyxml-dev
 
 	pecl install oauth
 	if [ $? -eq 0 ] ; then
