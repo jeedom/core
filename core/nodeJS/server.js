@@ -15,18 +15,18 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-var io = require('socket.io')({
+ var io = require('socket.io')({
   'browser client minification' : 1,
   'browser client etag' : 1,
   'browser client gzip' : 1
 }).listen(8070);
 
 
-var express = require('express');
+ var express = require('express');
 
-var internalServer = express();
-internalServer.listen(8334);
-internalServer.get('/', function(req, res) {
+ var internalServer = express();
+ internalServer.listen(8334);
+ internalServer.get('/', function(req, res) {
     var message = {};
     message.datetime = new Date().getTime();
     message.type = req.query['type'];
@@ -39,22 +39,23 @@ internalServer.get('/', function(req, res) {
     message.message = req.query['message'];
     message.options = req.query['options'];
     handleMessage(message);
-    addMessage(message);
-    res.status(200).send('OK');
+  //  addMessage(message);
+  res.status(200).send('OK');
 });
 
-var clients = [];
-var messages = [];
-io.sockets.on('connection', function(socket) {
+ var clients = [];
+ var messages = [];
+ io.sockets.on('connection', function(socket) {
     socket.on('authentification', function(key, user_id) {
-        clients[socket.id] = [];
-        clients[socket.id]['key'] = key;
-        clients[socket.id]['user_id'] = user_id;
-        clients[socket.id]['socket'] = socket;
-        addMessage(null);
+        clients[socket.id] = {
+            key : key,
+            user_id : user_id,
+            socket : socket,
+        };
+     /*   addMessage(null);
         for (var i in messages) {
             handleMessage(messages[i]);
-        }
+        }*/
     });
 
     socket.on('disconnect', function(key) {
@@ -62,7 +63,7 @@ io.sockets.on('connection', function(socket) {
     });
 });
 
-function addMessage(message) {
+ function addMessage(message) {
     var tmp_message = [];
     var now = new Date().getTime();
     for (var i in messages) {
@@ -73,11 +74,11 @@ function addMessage(message) {
         }
     }
     if (message != null) {
-        if (message.type != 'notify') {
-            tmp_message.push(message);
-        }
+     if (message.type == 'eventScenario' || message.type == 'eventEqLogic' || message.type == 'eventCmd') {
+        tmp_message.push(message);
     }
-    messages = tmp_message;
+}
+messages = tmp_message;
 }
 
 function handleMessage(message) {
@@ -85,11 +86,11 @@ function handleMessage(message) {
         if (clients[i].key == message.key) {
             switch (message.type) {
                 case 'notify' :
-                    clients[i].socket.emit('notify', message.title, message.text, message.category);
-                    break;
+                clients[i].socket.emit('notify', message.title, message.text, message.category);
+                break;
                 default :
-                    clients[i].socket.emit(message.type, message.options);
-                    break;
+                clients[i].socket.emit(message.type, message.options);
+                break;
             }
         } else {
             clients[i].socket.emit('authentification_failed');
