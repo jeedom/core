@@ -902,6 +902,7 @@ class cmd {
         cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
         scenario::check($this);
         $this->setCollect(0);
+        $eqLogic->emptyCacheWidget();
         $nodeJs = array(array('cmd_id' => $this->getId()));
         $foundInfo = false;
         foreach (self::byValue($this->getId()) as $cmd) {
@@ -925,7 +926,6 @@ class cmd {
             $this->addHistoryValue($value, $this->getCollectDate());
         }
         $this->checkReturnState($value);
-        $eqLogic->emptyCacheWidget();
     }
 
     public function checkReturnState($_value) {
