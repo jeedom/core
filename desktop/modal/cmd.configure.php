@@ -198,7 +198,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>{{Ne pas afficher les statisitiques}}</td>
+                                <td>{{Ne pas afficher les statistiques}}</td>
                                 <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowStatOnDashboard" /></td>
                                 <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowStatOnView" /></td>
                                 <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowStatOnMobile" /></td>
