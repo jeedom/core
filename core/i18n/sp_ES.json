@@ -203,7 +203,35 @@
         "Afficher les plugins mis en avant par le market": "Afficher les plugins mis en avant par le market",
         "Mettre à jour automatiquement": "Mettre à jour automatiquement",
         "Stable": "Stable",
-        "Développement": "Développement"
+        "Développement": "Développement",
+        "Clef NodeJS": "Clef NodeJS",
+        "Configuration des scénarios en mode expert par défaut": "Configuration des scénarios en mode expert par défaut",
+        "ATTENTION ces opérations sont risquées, vous pouvez perdre l'accès à votre systeme et à Jeedom. Suite à une modification de la base de données, l'équipe Jeedom se réserve le droit de refuser toute demande de support.": "ATTENTION ces opérations sont risquées, vous pouvez perdre l'accès à votre systeme et à Jeedom. Suite à une modification de la base de données, l'équipe Jeedom se réserve le droit de refuser toute demande de support.",
+        "Utilisateur": "Utilisateur",
+        "Protocole": "Protocole",
+        "Adresse URL  ou IP": "Adresse URL  ou IP",
+        "Complément (exemple : \/jeedom)": "Complément (exemple : \/jeedom)",
+        "Adresse URL ou IP": "Adresse URL ou IP",
+        "Maître": "Maître",
+        "Forcer le https": "Forcer le https",
+        "Attention si vous n'avez pas de HTTPS et que vous activez cette option votre jeedom ne sera plus accessible": "Attention si vous n'avez pas de HTTPS et que vous activez cette option votre jeedom ne sera plus accessible",
+        "Configuration du cache": "Configuration du cache",
+        "Durée de vie de memcache (en secondes)": "Durée de vie de memcache (en secondes)",
+        "Configuration de l'historique": "Configuration de l'historique",
+        "Afficher les statistiques sur les widgets": "Afficher les statistiques sur les widgets",
+        "Période de calcul pour min, max, moyenne (en heures)": "Période de calcul pour min, max, moyenne (en heures)",
+        "Période de calcul pour la tendance (en heures)": "Période de calcul pour la tendance (en heures)",
+        "Délai avant archivage (en heures)": "Délai avant archivage (en heures)",
+        "Archiver par paquet de (en heures)": "Archiver par paquet de (en heures)",
+        "Configuration des interactions": "Configuration des interactions",
+        "Sensibilité (par défaut 10)": "Sensibilité (par défaut 10)",
+        "Configuration des crontask, scripts & démons": "Configuration des crontask, scripts & démons",
+        "Rattrapage maximum autorisé (en minutes, -1 pour infini)": "Rattrapage maximum autorisé (en minutes, -1 pour infini)",
+        "Crontask : temps d'exécution max (en minutes)": "Crontask : temps d'exécution max (en minutes)",
+        "Script : temps d'exécution max (en minutes)": "Script : temps d'exécution max (en minutes)",
+        "Temps de sommeil Jeecron": "Temps de sommeil Jeecron",
+        "Temps de sommeil des Démons": "Temps de sommeil des Démons",
+        "Voir les modules en beta (à vos risques et périls)": "Voir les modules en beta (à vos risques et périls)"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "Toggle navigation",
@@ -247,7 +275,14 @@
         "Santé": "Santé",
         "Monitoring": "Monitoring",
         "Nature": "Nature",
-        "Version mobile": "Version mobile"
+        "Version mobile": "Version mobile",
+        "Logs": "Logs",
+        "Informations système": "Informations système",
+        "Personnalisation avancée": "Personnalisation avancée",
+        "Objets": "Objets",
+        "Interactions": "Interactions",
+        "Redémarrer": "Redémarrer",
+        "Eteindre": "Eteindre"
     },
     "core\/php\/jeeScenario.php": {
         " avec le PID : ": " con el PID : ",
@@ -291,7 +326,8 @@
         "Global": "Global",
         "Filtre sur les catégories d'équipement": "Filtro en las categorías de equipamiento",
         "Autre": "Otro",
-        "Historique Camera 1": "Historial de la cámara 1"
+        "Historique Camera 1": "Historial de la cámara 1",
+        "Defaut": "Defaut"
     },
     "desktop\/php\/view.php": {
         "Liste des vues": "Lista de las vistas",
@@ -389,7 +425,15 @@
         "Limiter aux commandes de type": "Limitar a los órdenes de tipo",
         "Limiter aux commandes ayant pour sous-type": "Limitar a los órdenes que tienen para subtipo",
         "Limiter aux commandes appartenant à l'objet": "Limitar a los órdenes pertenenciendo al objeto",
-        "Limiter aux plugins": "Limitar a los plugins"
+        "Limiter aux plugins": "Limitar a los plugins",
+        "Regénerer les interactions": "Regénerer les interactions",
+        "Utilisateurs autorisés": "Utilisateurs autorisés",
+        "Liste des utilisateur (login) separé par un |": "Liste des utilisateur (login) separé par un |",
+        "Filtres": "Filtres",
+        "Limiter à l'équipement": "Limiter à l'équipement",
+        "Limiter au plugin": "Limiter au plugin",
+        "Limiter à la catégorie": "Limiter à la catégorie",
+        "Defaut": "Defaut"
     },
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Lista de interacciones",
@@ -473,7 +517,10 @@
         "Dernier lancement": "Último lanzamiento",
         "Durée": "Duración",
         "Nombre de Jeecron master doit toujours être inférieur à 2": "Número de Jeecron master siempre debe ser inferior a 2",
-        "Désactiver le système cron": "Désactiver le système cron"
+        "Désactiver le système cron": "Désactiver le système cron",
+        "Processus cron Jeedom :": "Processus cron Jeedom :",
+        "Nombre de processus Jeedom cron maître (doit toujours être inférieur à 2)": "Nombre de processus Jeedom cron maître (doit toujours être inférieur à 2)",
+        "Charge moyenne": "Charge moyenne"
     },
     "desktop\/php\/object.php": {
         "Liste objects": "Lista objetos",
@@ -484,7 +531,8 @@
         "Icône": "Icono",
         "Choisir une icône": "Elegir un icono",
         "Choisir": "Choisir",
-        "Couleur du tag": "Couleur du tag"
+        "Couleur du tag": "Couleur du tag",
+        "Couleur du texte du tag": "Couleur du texte du tag"
     },
     "desktop\/js\/object.js": {
         "Sauvegarde effectuée avec succès": "Copia de seguridad realizada con éxito",
@@ -529,7 +577,19 @@
         "Lancer en avant-plan (à ne surtout pas utiliser si vous avez des \"sleep\" dans le scénario)": "Lancer en avant-plan (à ne surtout pas utiliser si vous avez des \"sleep\" dans le scénario)",
         "Dans": "Dans",
         "A": "A",
-        "Commentaire": "Commentaire"
+        "Commentaire": "Commentaire",
+        "Template": "Template",
+        "Exécuter le plus rapidement possible": "Exécuter le plus rapidement possible",
+        "A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours et aucun log ne sera écris par celui-ci": "A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours et aucun log ne sera écris par celui-ci",
+        "Sélectionner le mot-clé": "Sélectionner le mot-clé",
+        "Pause": "Pause",
+        "Variable": "Variable",
+        "Stop": "Stop",
+        "Dit": "Dit",
+        "Attendre": "Attendre",
+        "Retourner": "Retourner",
+        "Aller au design": "Aller au design",
+        "Valider": "Valider"
     },
     "desktop\/js\/scenario.js": {
         "Etes-vous sûr de vouloir supprimer le scénario": "¿Está seguro de querer borrar el escenario?",
@@ -686,7 +746,8 @@
     "core\/class\/eqLogic.class.php": {
         "Attention": "Atención",
         " n'a pas envoyé de message depuis plus de ": " no ha enviado mensaje desde más de ",
-        " min (vérifier les piles)": " min (verificar batería)"
+        " min (vérifier les piles)": " min (verificar batería)",
+        "inconnue": "inconnue"
     },
     "desktop\/php\/message.php": {
         "Plugin": "Plugin"
@@ -807,7 +868,11 @@
     "desktop\/php\/user.php": {
         "Liste des utilisateurs :": "Lista de los usuarios:",
         "Ajouter un utilisateur": "Añadir un usuario",
-        "Droits": "Derechos"
+        "Droits": "Derechos",
+        "A utiliser pour laisser l'accès temporaire pour de l'assistance par exemple": "A utiliser pour laisser l'accès temporaire pour de l'assistance par exemple",
+        "Ajouter un utilisateur temporaire": "Ajouter un utilisateur temporaire",
+        "Date de dernière connection": "Date de dernière connection",
+        "Accès directement": "Accès directement"
     },
     "desktop\/js\/user.js": {
         "Etes-vous sûr de vouloir supprimer cet utilisateur ?": "¿Está seguro de querer borrar este usuario?",
@@ -830,7 +895,8 @@
         "Télécharger": "Descargar",
         "Sauvegardes cloud": "Copias de seguridad Cloud",
         "Informations sauvegardes": "Informaciones copias de seguridad",
-        "Informations restaurations": "Informaciones restauraciones"
+        "Informations restaurations": "Informaciones restauraciones",
+        "Taille total maximum des backups (mo)": "Taille total maximum des backups (mo)"
     },
     "desktop\/js\/backup.js": {
         "Etes-vous sûr de vouloir faire une sauvegarde de Jeedom ? Une fois lancée cette opération ne peut être annulée": "¿Está seguro de querer hacer una copia de seguridad Jeedom? Una vez en marcha esta operación no puede ser cancelada",
@@ -853,7 +919,9 @@
         "Version actuelle": "Versión actual",
         "Version disponible": "Versión disponible",
         "Statut": "Estado",
-        "Informations :": "Informaciones:"
+        "Informations :": "Informaciones:",
+        "Dernière vérification : ": "Dernière vérification : ",
+        "Tout + système (risqué)": "Tout + système (risqué)"
     },
     "desktop\/php\/timeline.php": {
         "Date": "Fecha",
@@ -936,7 +1004,20 @@
         "Condition optionnelle": "Condition optionnelle",
         "Si": "Si",
         "Est": "Est",
-        "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.": "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir."
+        "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.": "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.",
+        "égal": "égal",
+        "supérieur": "supérieur",
+        "inférieur": "inférieur",
+        "différent": "différent",
+        "égale": "égale",
+        "contient": "contient",
+        "ne contient pas": "ne contient pas",
+        "Ouvert": "Ouvert",
+        "Fermé": "Fermé",
+        "Allumé": "Allumé",
+        "Eteint": "Eteint",
+        "Déclenché": "Déclenché",
+        "Au repos": "Au repos"
     },
     "desktop\/php\/rights.php": {
         "Générale": "Générale",
@@ -983,5 +1064,75 @@
     "desktop\/js\/cron.js": {
         "Désactiver le système cron": "Désactiver le système cron",
         "Activer le système cron": "Activer le système cron"
+    },
+    "desktop\/php\/view_edit.php": {
+        "Créer une vue": "Créer une vue",
+        "Renommer": "Renommer",
+        "Vue": "Vue",
+        "Voir le résultat": "Voir le résultat",
+        "Ajouter une zone": "Ajouter une zone",
+        "Ajouter\/Editer viewZone": "Ajouter\/Editer viewZone",
+        "Widget": "Widget",
+        "Graphique": "Graphique"
+    },
+    "desktop\/modal\/view.widget.php": {
+        "Objet": "Objet",
+        "Bleu": "Bleu",
+        "Rouge": "Rouge",
+        "Vert": "Vert",
+        "Violet": "Violet",
+        "Bleu ciel": "Bleu ciel",
+        "Orange": "Orange",
+        "Jaune": "Jaune",
+        "Rose": "Rose",
+        "Noir": "Noir",
+        "Vert\/Bleu": "Vert\/Bleu",
+        "Ligne": "Ligne",
+        "Aire": "Aire",
+        "Colonne": "Colonne"
+    },
+    "desktop\/modal\/object.configure.php": {
+        "Informations": "Informations",
+        "ID": "ID"
+    },
+    "desktop\/modal\/eqLogic.configure.php": {
+        "Informations": "Informations",
+        "ID": "ID",
+        "Logical ID": "Logical ID",
+        "Object ID": "Object ID",
+        "Date de création": "Date de création",
+        "Tentative échouée": "Tentative échouée",
+        "Date de dernière communication": "Date de dernière communication",
+        "Dernière mise à jour": "Dernière mise à jour",
+        "Ne pas afficher le nom": "Ne pas afficher le nom",
+        "Ne pas afficher le nom de l'objet": "Ne pas afficher le nom de l'objet",
+        "Ne pas afficher le niveau de batterrie": "Ne pas afficher le niveau de batterrie",
+        "Ordre": "Ordre",
+        "Paramètres optionnels sur la tuile": "Paramètres optionnels sur la tuile",
+        "Enregistrement réussi": "Enregistrement réussi"
+    },
+    "desktop\/modal\/cmd.configure.php": {
+        "Informations": "Informations",
+        "ID": "ID",
+        "Logical ID": "Logical ID",
+        "Sous-type": "Sous-type",
+        "Unité": "Unité",
+        "Commande déclenchant une mise à jour": "Commande déclenchant une mise à jour",
+        "Memcache": "Memcache",
+        "Durée du cache": "Durée du cache",
+        "seconde(s)": "seconde(s)",
+        "Evenement seulement": "Evenement seulement",
+        "URL direct": "URL direct",
+        "Utilisé par": "Utilisé par",
+        "Equipement": "Equipement",
+        "Commandes": "Commandes",
+        "Interaction": "Interaction",
+        "Widget": "Widget",
+        "Ne pas afficher le nom": "Ne pas afficher le nom",
+        "Ne pas afficher les statistiques": "Ne pas afficher les statistiques",
+        "Retour à la ligne forcé avant le widget": "Retour à la ligne forcé avant le widget",
+        "après le widget": "après le widget",
+        "Paramètres optionnels widget": "Paramètres optionnels widget",
+        "Enregistrement réussi": "Enregistrement réussi"
     }
 }

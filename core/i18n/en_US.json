@@ -189,7 +189,48 @@
         "Esclave": "Esclave",
         "Nombre d'échecs avant désactivation de l'équipement": "Nombre d'échecs avant désactivation de l'équipement",
         "Utiliser le market comme DNS": "Utiliser le market comme DNS",
-        "Afficher les plugins mis en avant par le market": "Afficher les plugins mis en avant par le market"
+        "Afficher les plugins mis en avant par le market": "Afficher les plugins mis en avant par le market",
+        "Clef NodeJS": "Clef NodeJS",
+        "Commande d'information utilisateur": "Commande d'information utilisateur",
+        "Allemand": "Allemand",
+        "Espagnol": "Espagnol",
+        "Configuration des scénarios en mode expert par défaut": "Configuration des scénarios en mode expert par défaut",
+        "Base de données": "Base de données",
+        "ATTENTION ces opérations sont risquées, vous pouvez perdre l'accès à votre systeme et à Jeedom. Suite à une modification de la base de données, l'équipe Jeedom se réserve le droit de refuser toute demande de support.": "ATTENTION ces opérations sont risquées, vous pouvez perdre l'accès à votre systeme et à Jeedom. Suite à une modification de la base de données, l'équipe Jeedom se réserve le droit de refuser toute demande de support.",
+        "Accès à l'interface d'administration": "Accès à l'interface d'administration",
+        "Se connecter": "Se connecter",
+        "Machine (hostname)": "Machine (hostname)",
+        "Utilisateur": "Utilisateur",
+        "Protocole": "Protocole",
+        "Adresse URL  ou IP": "Adresse URL  ou IP",
+        "Complément (exemple : \/jeedom)": "Complément (exemple : \/jeedom)",
+        "Adresse URL ou IP": "Adresse URL ou IP",
+        "Activer l'ouverture automatique des ports (UPnP)": "Activer l'ouverture automatique des ports (UPnP)",
+        "Appliquer": "Appliquer",
+        "Forcer le https": "Forcer le https",
+        "Attention si vous n'avez pas de HTTPS et que vous activez cette option votre jeedom ne sera plus accessible": "Attention si vous n'avez pas de HTTPS et que vous activez cette option votre jeedom ne sera plus accessible",
+        "Configuration du cache": "Configuration du cache",
+        "Durée de vie de memcache (en secondes)": "Durée de vie de memcache (en secondes)",
+        "Configuration de l'historique": "Configuration de l'historique",
+        "Afficher les statistiques sur les widgets": "Afficher les statistiques sur les widgets",
+        "Période de calcul pour min, max, moyenne (en heures)": "Période de calcul pour min, max, moyenne (en heures)",
+        "Période de calcul pour la tendance (en heures)": "Période de calcul pour la tendance (en heures)",
+        "Délai avant archivage (en heures)": "Délai avant archivage (en heures)",
+        "Archiver par paquet de (en heures)": "Archiver par paquet de (en heures)",
+        "Seuil de calcul de tendance bas": "Seuil de calcul de tendance bas",
+        "Seuil de calcul de tendance haut": "Seuil de calcul de tendance haut",
+        "Configuration des interactions": "Configuration des interactions",
+        "Sensibilité (par défaut 10)": "Sensibilité (par défaut 10)",
+        "Configuration des crontask, scripts & démons": "Configuration des crontask, scripts & démons",
+        "Rattrapage maximum autorisé (en minutes, -1 pour infini)": "Rattrapage maximum autorisé (en minutes, -1 pour infini)",
+        "Crontask : temps d'exécution max (en minutes)": "Crontask : temps d'exécution max (en minutes)",
+        "Script : temps d'exécution max (en minutes)": "Script : temps d'exécution max (en minutes)",
+        "Temps de sommeil Jeecron": "Temps de sommeil Jeecron",
+        "Temps de sommeil des Démons": "Temps de sommeil des Démons",
+        "Voir les modules en beta (à vos risques et périls)": "Voir les modules en beta (à vos risques et périls)",
+        "Mettre à jour automatiquement": "Mettre à jour automatiquement",
+        "Stable": "Stable",
+        "Développement": "Développement"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "Toggle navigation",
@@ -223,7 +264,6 @@
         "Organisation": "Organization",
         "Météo": "Weather",
         "Bien-être": "Wellbeing",
-        "Envoyer un rapport de bug": "Send a bug report",
         "Générale": "Main",
         "Détaillée": "Detailed",
         "Page générée en": "Page generated in",
@@ -233,7 +273,16 @@
         "Jeedom Box": "Jeedom Box",
         "Monitoring": "Monitoring",
         "Version mobile": "Version mobile",
-        "Mise(s) à jour disponible": "Mise(s) à jour disponible"
+        "Mise(s) à jour disponible": "Mise(s) à jour disponible",
+        "Logs": "Logs",
+        "Informations système": "Informations système",
+        "Personnalisation avancée": "Personnalisation avancée",
+        "Objets": "Objets",
+        "Interactions": "Interactions",
+        "Santé": "Santé",
+        "Nature": "Nature",
+        "Redémarrer": "Redémarrer",
+        "Eteindre": "Eteindre"
     },
     "core\/php\/jeeScenario.php": {
         " avec le PID : ": " with PID : ",
@@ -247,9 +296,8 @@
         "Exécution de l'élément : ": "Running of component : ",
         "Elément inconnu. Vérifiez l'id : ": "Unknown component, check ID: ",
         "Expression inconnue. Vérifiez l'id : ": "Unkonwn expression, check ID: ",
-        "Tâche : ": "Tache : ",
-        " programmée à : ": " programmé à : ",
-        "Tâche : ": "Tâche : "
+        "Tâche : ": "Tâche : ",
+        " programmée à : ": " programmé à : "
     },
     "core\/class\/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type : ": "Running of under-component: ",
@@ -280,14 +328,16 @@
         "Erreur curl : ": "Curl error : ",
         " sur la commande ": " on command ",
         " après ": " after ",
-        " relance(s)": " relaunch(es)"
+        " relance(s)": " relaunch(es)",
+        "\nReponse : ": "\nReponse : "
     },
     "desktop\/php\/dashboard.php": {
         "Global": "Global",
         "Filtre sur les catégories d'équipement": "Filter on device categories",
         "Autre": "Other",
         "Historique Camera 1": "History of Camera 1",
-        "Etes-vous sûr de vouloir supprimer cet événement ?": "Etes-vous sûr de vouloir supprimer cet événement ?"
+        "Etes-vous sûr de vouloir supprimer cet événement ?": "Etes-vous sûr de vouloir supprimer cet événement ?",
+        "Defaut": "Defaut"
     },
     "desktop\/php\/view.php": {
         "Liste des vues": "View list",
@@ -320,7 +370,8 @@
         "Scénario exécuté sur évènement : #": "Scénario lance sur évènement : #",
         "Erreur : le scénario est tombé en timeout": "Erreur : le scénario est tombé en timeout",
         "************Lancement sous tâche**************": "************Lancement sous tâche**************",
-        "************FIN sous tâche**************": "************FIN sous tâche**************"
+        "************FIN sous tâche**************": "************FIN sous tâche**************",
+        "Scénario évènement automatiquement sur programmation": "Scénario évènement automatiquement sur programmation"
     },
     "desktop\/php\/history.php": {
         "Ligne": "Line",
@@ -366,7 +417,7 @@
         "Etes-vous sûr de vouloir supprimer la sauvegarde": "Are you agree to delete this backup?",
         "Sauvegarde supprimée avec succès": "Back-up succesfully removed",
         "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde Cloud": "Are you agree to restore Jeedom with the Cloud back-up?",
-        "Connexion échouée :": "Connection failed :",
+        "Connexion échouée :": "Connexion échouée :",
         "Connexion réussie": "Connection successful",
         "Etes-vous sûr de vouloir supprimer cet utilisateur ?": "Are you agree to delete this user?",
         "Quel est le nouveau mot de passe ?": "What is the new password?",
@@ -381,8 +432,7 @@
         "Etes-vous sûr de vouloir arrêter le système ?": "Etes-vous sûr de vouloir arrêter le système ?",
         "Etes-vous sûr de vouloir redémarrer le système ?": "Etes-vous sûr de vouloir redémarrer le système ?",
         "Etes-vous sûr de vouloir appliquer les règles UPnP ?": "Etes-vous sûr de vouloir appliquer les règles UPnP ?",
-        "Etes-vous sûr de vouloir changer le mode de Jeedom. Cette opération est très risquée. Si vous passer de Maître à Esclave, cela va supprimer tous vos équipements, objets, vues, plans, plugins non compatibles avec le fonctionnement déporté. Aucun retour en arrière n\\'est possible ?": "Etes-vous sûr de vouloir changer le mode de Jeedom. Cette opération est très risquée. Si vous passer de Maitre à Esclave cela va supprimer tous vos équipements, objet, vue, plan, plugin non compatible avec le fonctionnement deporté. Aucun retour en arriere n\\'est possible ?",
-        "Connexion échouée :": "Connexion échouée :"
+        "Etes-vous sûr de vouloir changer le mode de Jeedom. Cette opération est très risquée. Si vous passer de Maître à Esclave, cela va supprimer tous vos équipements, objets, vues, plans, plugins non compatibles avec le fonctionnement déporté. Aucun retour en arrière n\\'est possible ?": "Etes-vous sûr de vouloir changer le mode de Jeedom. Cette opération est très risquée. Si vous passer de Maitre à Esclave cela va supprimer tous vos équipements, objet, vue, plan, plugin non compatible avec le fonctionnement deporté. Aucun retour en arriere n\\'est possible ?"
     },
     "desktop\/php\/interact.php": {
         "Limiter aux équipements de type": "Limit to devices of type",
@@ -403,7 +453,18 @@
         "Limiter aux commandes de type": "Limit to commands of type",
         "Limiter aux commandes ayant pour sous-type": "Limit to commands of under-type",
         "Limiter aux commandes appartenant à l'objet": "Limit to commands of this object",
-        "Limiter aux plugins": "Limit to plugins"
+        "Limiter aux plugins": "Limit to plugins",
+        "Regénerer les interactions": "Regénerer les interactions",
+        "Remplace les mots par leur synonymes lors de la génération des commandes": "Remplace les mots par leur synonymes lors de la génération des commandes",
+        "Convertir les commandes binaire": "Convertir les commandes binaire",
+        "Utilisateurs autorisés": "Utilisateurs autorisés",
+        "Liste des utilisateur (login) separé par un |": "Liste des utilisateur (login) separé par un |",
+        "Que sais tu ?": "Que sais tu ?",
+        "Filtres": "Filtres",
+        "Limiter à l'équipement": "Limiter à l'équipement",
+        "Limiter au plugin": "Limiter au plugin",
+        "Limiter à la catégorie": "Limiter à la catégorie",
+        "Defaut": "Defaut"
     },
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Interactions list",
@@ -419,7 +480,6 @@
         "Remplace les mots par leurs synonymes lors de la génération des commandes": "Replace words with their synonyms during commands creation",
         "Nombre de requêtes active": "Number of active request(s)",
         "Nombre de requêtes totales": "Total number of request(s)",
-        "Limiter aux commandes de type": "Limit to commands of type",
         "Nombre de requête(s) active(s)": "Number of enable request(s)",
         "Nombre de requête(s) totale(s)": "Total number of request(s)",
         "Suppression effectuée avec succès": "Complete deletion",
@@ -498,7 +558,9 @@
         "Dernier lancement": "Last launching",
         "Durée": "Duration",
         "Nombre de Jeecron master doit toujours être inférieur à 2": "Number of Jeecron master should always be less than 2",
-        "Désactiver le système cron": "Désactiver le système cron"
+        "Désactiver le système cron": "Désactiver le système cron",
+        "Processus cron Jeedom :": "Processus cron Jeedom :",
+        "Nombre de processus Jeedom cron maître (doit toujours être inférieur à 2)": "Nombre de processus Jeedom cron maître (doit toujours être inférieur à 2)"
     },
     "desktop\/php\/object.php": {
         "Liste objects": "Objects list",
@@ -507,7 +569,10 @@
         "Père": "Father",
         "Ajouter objet": "Add object",
         "Icône": "Icon",
-        "Choisir une icône": "Select icon"
+        "Choisir une icône": "Select icon",
+        "Choisir": "Choisir",
+        "Couleur du tag": "Couleur du tag",
+        "Couleur du texte du tag": "Couleur du texte du tag"
     },
     "desktop\/js\/object.js": {
         "Sauvegarde effectuée avec succès": "Save complete successfully",
@@ -521,7 +586,8 @@
         "Liste plugin": "Plugin list",
         "Plugin à jour": "Plugin up to date",
         "Version plugin": "Plugin version",
-        "Version Jeedom requis": "Required Jeedom version"
+        "Version Jeedom requis": "Required Jeedom version",
+        "Version Jeedom requise": "Version Jeedom requise"
     },
     "desktop\/php\/scenario.php": {
         "Activer le système de scénario": "Activate scenario system",
@@ -547,7 +613,23 @@
         "Déclencheur": "Trigger",
         "Exporter": "Exporter",
         "Lancer en avant-plan (à ne surtout pas utiliser si vous avez des sleep dans le scénario)": "Lancer en avant-plan (a ne surtout pas utiliser si vous avez des sleep dans le scénario)",
-        "Dans": "Dans"
+        "Dans": "Dans",
+        "Interface avancée": "Interface avancée",
+        "Mes scenarios": "Mes scenarios",
+        "Template": "Template",
+        "Exécuter le plus rapidement possible": "Exécuter le plus rapidement possible",
+        "A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours et aucun log ne sera écris par celui-ci": "A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours et aucun log ne sera écris par celui-ci",
+        "A": "A",
+        "Commentaire": "Commentaire",
+        "Sélectionner le mot-clé": "Sélectionner le mot-clé",
+        "Pause": "Pause",
+        "Variable": "Variable",
+        "Stop": "Stop",
+        "Dit": "Dit",
+        "Attendre": "Attendre",
+        "Retourner": "Retourner",
+        "Aller au design": "Aller au design",
+        "Valider": "Valider"
     },
     "desktop\/js\/scenario.js": {
         "Etes-vous sûr de vouloir supprimer le scénario": "Are you agree to delete scenario?",
@@ -622,7 +704,8 @@
     },
     "core\/class\/message.class.php": {
         "Message de ": "Message from ",
-        "[JEEDOM] Message de ": "[JEEDOM] Message de "
+        "[JEEDOM] Message de ": "[JEEDOM] Message de ",
+        "Impossible de trouver la commande correspondant à :": "Impossible de trouver la commande correspondant à :"
     },
     "install\/backup.php": {
         "***************Lancement de la sauvegarde de Jeedom***************\n": "***************Launching of Jeedom back-up***************\n",
@@ -761,7 +844,8 @@
         " min (vérifier les piles)": " min (check battery)",
         "Le nom de l'équipement ne peut pas être vide": "Le nom de l'équipement ne peut être vide",
         "Le module ": "Le module ",
-        " a été désactivé car il n'a plus de batterie (": " a été désactivé car il n'a plus de batterie ("
+        " a été désactivé car il n'a plus de batterie (": " a été désactivé car il n'a plus de batterie (",
+        "inconnue": "inconnue"
     },
     "desktop\/php\/message.php": {
         "Plugin": "Plugin"
@@ -1001,7 +1085,11 @@
     "desktop\/php\/user.php": {
         "Liste des utilisateurs :": "Users list:",
         "Ajouter un utilisateur": "Add user",
-        "Droits": "Rights"
+        "Droits": "Rights",
+        "A utiliser pour laisser l'accès temporaire pour de l'assistance par exemple": "A utiliser pour laisser l'accès temporaire pour de l'assistance par exemple",
+        "Ajouter un utilisateur temporaire": "Ajouter un utilisateur temporaire",
+        "Date de dernière connection": "Date de dernière connection",
+        "Accès directement": "Accès directement"
     },
     "desktop\/js\/user.js": {
         "Etes-vous sûr de vouloir supprimer cet utilisateur ?": "Do you really wish to remove this user?",
@@ -1024,7 +1112,8 @@
         "Télécharger": "Download",
         "Sauvegardes cloud": "Backups in the Cloud",
         "Informations sauvegardes": "Backups information",
-        "Informations restaurations": "Restorations information"
+        "Informations restaurations": "Restorations information",
+        "Taille total maximum des backups (mo)": "Taille total maximum des backups (mo)"
     },
     "desktop\/js\/backup.js": {
         "Etes-vous sûr de vouloir faire une sauvegarde de Jeedom ? Une fois lancée cette opération ne peut être annulée": "Do you really want to backup Jeedom? This operation can’t be cancelled.",
@@ -1048,7 +1137,9 @@
         "Version actuelle": "Current version",
         "Version disponible": "Available version",
         "Statut": "Status",
-        "Informations :": "Information:"
+        "Informations :": "Information:",
+        "Dernière vérification : ": "Dernière vérification : ",
+        "Tout + système (risqué)": "Tout + système (risqué)"
     },
     "desktop\/php\/timeline.php": {
         "Date": "Date",
@@ -1095,7 +1186,12 @@
         "Selectionnez un lien": "Selectionnez un lien",
         "Valider": "Valider",
         "Pleine écran": "Pleine écran",
-        "Plein écran": "Plein écran"
+        "Plein écran": "Plein écran",
+        "Ajouter un design": "Ajouter un design",
+        "Graph": "Graph",
+        "Lien": "Lien",
+        "Texte\/html": "Texte\/html",
+        "Equipement": "Equipement"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Sélectionner le scénario"
@@ -1260,7 +1356,9 @@
         "Vert\/Bleu": "Vert\/Bleu",
         "Ligne": "Ligne",
         "Aire": "Aire",
-        "Colonne": "Colonne"
+        "Colonne": "Colonne",
+        "Créer une vue": "Créer une vue",
+        "Voir le résultat": "Voir le résultat"
     },
     "desktop\/js\/view_edit.js": {
         "Modification enregistré": "Modification enregistré",
@@ -1318,5 +1416,94 @@
         "Ligne": "Ligne",
         "Aire": "Aire",
         "Colonne": "Colonne"
+    },
+    "desktop\/modal\/view.widget.php": {
+        "Objet": "Objet",
+        "Bleu": "Bleu",
+        "Rouge": "Rouge",
+        "Vert": "Vert",
+        "Violet": "Violet",
+        "Bleu ciel": "Bleu ciel",
+        "Orange": "Orange",
+        "Jaune": "Jaune",
+        "Rose": "Rose",
+        "Noir": "Noir",
+        "Vert\/Bleu": "Vert\/Bleu",
+        "Ligne": "Ligne",
+        "Aire": "Aire",
+        "Colonne": "Colonne"
+    },
+    "desktop\/modal\/object.configure.php": {
+        "Informations": "Informations",
+        "ID": "ID"
+    },
+    "desktop\/modal\/eqLogic.configure.php": {
+        "Informations": "Informations",
+        "ID": "ID",
+        "Logical ID": "Logical ID",
+        "Object ID": "Object ID",
+        "Date de création": "Date de création",
+        "Tentative échouée": "Tentative échouée",
+        "Date de dernière communication": "Date de dernière communication",
+        "Dernière mise à jour": "Dernière mise à jour",
+        "Ne pas afficher le nom": "Ne pas afficher le nom",
+        "Ne pas afficher le nom de l'objet": "Ne pas afficher le nom de l'objet",
+        "Ne pas afficher le niveau de batterrie": "Ne pas afficher le niveau de batterrie",
+        "Ordre": "Ordre",
+        "Paramètres optionnels sur la tuile": "Paramètres optionnels sur la tuile",
+        "Enregistrement réussi": "Enregistrement réussi"
+    },
+    "desktop\/modal\/cmd.configure.php": {
+        "Informations": "Informations",
+        "ID": "ID",
+        "Logical ID": "Logical ID",
+        "Sous-type": "Sous-type",
+        "Unité": "Unité",
+        "Commande déclenchant une mise à jour": "Commande déclenchant une mise à jour",
+        "Memcache": "Memcache",
+        "Durée du cache": "Durée du cache",
+        "seconde(s)": "seconde(s)",
+        "Evenement seulement": "Evenement seulement",
+        "URL direct": "URL direct",
+        "Utilisé par": "Utilisé par",
+        "Equipement": "Equipement",
+        "Commandes": "Commandes",
+        "Interaction": "Interaction",
+        "Widget": "Widget",
+        "Ne pas afficher le nom": "Ne pas afficher le nom",
+        "Ne pas afficher les statistiques": "Ne pas afficher les statistiques",
+        "Retour à la ligne forcé avant le widget": "Retour à la ligne forcé avant le widget",
+        "après le widget": "après le widget",
+        "Paramètres optionnels widget": "Paramètres optionnels widget",
+        "Enregistrement réussi": "Enregistrement réussi"
+    },
+    "desktop\/php\/scenarioAssist.php": {
+        "Interface simple": "Interface simple",
+        "Désac. scénarios": "Désac. scénarios",
+        "Voir toutes les variables de scénario": "Voir toutes les variables de scénario",
+        "Voir variables": "Voir variables",
+        "Mes scenarios": "Mes scenarios",
+        "Exporter": "Exporter",
+        "Nom du scénario": "Nom du scénario",
+        "Dernier lancement": "Dernier lancement",
+        "A exécuter": "A exécuter",
+        "Par": "Par",
+        "Condition optionnelle": "Condition optionnelle",
+        "Si": "Si",
+        "Est": "Est",
+        "égal": "égal",
+        "supérieur": "supérieur",
+        "inférieur": "inférieur",
+        "différent": "différent",
+        "égale": "égale",
+        "contient": "contient",
+        "ne contient pas": "ne contient pas",
+        "Ouvert": "Ouvert",
+        "Fermé": "Fermé",
+        "Allumé": "Allumé",
+        "Eteint": "Eteint",
+        "Déclenché": "Déclenché",
+        "Au repos": "Au repos",
+        "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.": "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir."
     }
 }
