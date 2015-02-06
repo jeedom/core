@@ -37,11 +37,11 @@ jeedom.cmd.execute = function(_params) {
             if (data.state != 'ok') {
                 if(data.code == -32005){
                     if ($.mobile) {
-                       var result = prompt("Veuillez indiquer le code ?", "")
-                       if(result != null){
-                           _params.codeAccess = result;
-                           jeedom.cmd.execute(_params);
-                       }else{
+                     var result = prompt("Veuillez indiquer le code ?", "")
+                     if(result != null){
+                         _params.codeAccess = result;
+                         jeedom.cmd.execute(_params);
+                     }else{
                         if ('function' != typeof(_params.error)) {
                             $('#div_alert').showAlert({
                                 message: data.result,
@@ -57,11 +57,11 @@ jeedom.cmd.execute = function(_params) {
                         return data;
                     }
                 }else{
-                   bootbox.prompt("Veuillez indiquer le code ?", function (result) {
+                 bootbox.prompt("Veuillez indiquer le code ?", function (result) {
                     if(result != null){
-                       _params.codeAccess = result;
-                       jeedom.cmd.execute(_params);
-                   }else{
+                     _params.codeAccess = result;
+                     jeedom.cmd.execute(_params);
+                 }else{
                     if ('function' != typeof(_params.error)) {
                         $('#div_alert').showAlert({
                             message: data.result,
@@ -78,8 +78,8 @@ jeedom.cmd.execute = function(_params) {
                 }
 
             });
-               }
-           }else{
+             }
+         }else{
             if ('function' != typeof(_params.error)) {
                 $('#div_alert').showAlert({
                     message: data.result,

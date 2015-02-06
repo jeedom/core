@@ -402,7 +402,7 @@ try {
        if((strtotime('now') - $lastCheck) > 3600){
           if (config::byKey('update::auto') == 1) {
             update::checkAllUpdate();
-            jeedom::update();
+            jeedom::update('',0);
         } else {
             update::checkAllUpdate();
             $nbUpdate = update::nbNeedUpdate();
