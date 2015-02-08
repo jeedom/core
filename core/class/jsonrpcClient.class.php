@@ -43,9 +43,7 @@ class jsonrpcClient {
             return false;
         }
 
-        $result = json_decode($this->rawResult);
-        $is_json = (json_last_error() == JSON_ERROR_NONE) ? true : false;
-        if (!$is_json) {
+        if (!((is_string($this->rawResult) && (is_object(json_decode($this->rawResult)) || is_array(json_decode($this->rawResult)))))) {
             $this->error = '9999<br/>Reponse is not json : ' . $this->rawResult;
             $this->errorMessage = $this->rawResult;
             return false;
