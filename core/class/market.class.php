@@ -46,6 +46,7 @@ class market {
     private $link;
     private $certification;
     private $nbComment;
+    private $private;
 
     /*     * ***********************Méthodes statiques*************************** */
 
@@ -74,6 +75,7 @@ class market {
         $market->rating = ($_arrayMarket['rating']);
         $market->setBuyer($_arrayMarket['buyer']);
         $market->setNbComment($_arrayMarket['nbComment']);
+        $market->setPrivate($_arrayMarket['private']);
         $market->img = json_encode($_arrayMarket['img'], JSON_UNESCAPED_UNICODE);
         $market->link = json_encode($_arrayMarket['link'], JSON_UNESCAPED_UNICODE);
 
@@ -840,6 +842,14 @@ class market {
 
     public function setLogicalId($logicalId) {
         $this->logicalId = $logicalId;
+    }
+
+     public function getPrivate() {
+        return $this->private;
+    }
+
+    public function setPrivate($private) {
+        $this->private = $private;
     }
 
     public function getApi_author() {
