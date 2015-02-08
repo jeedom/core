@@ -106,8 +106,8 @@ class jeeNetwork {
                         break;
                         case 'plugin':
                         try {
-                         $plugin = plugin::byId($update->getLogicalId());
-                         if (is_object($plugin) && $plugin->getAllowRemote() != 1) {
+                           $plugin = plugin::byId($update->getLogicalId());
+                           if (is_object($plugin) && $plugin->getAllowRemote() != 1) {
                             $update->deleteObjet();
                         } 
                     } catch (Exception $e) {
@@ -283,6 +283,14 @@ public function handshake() {
         $this->setStatus('error');
         throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
     }
+}
+
+public function sendRawRequest($_method,$_params = array()){
+   $jsonrpc = $this->getJsonRpc();
+   if (!$jsonrpc->sendRequest($_method, $_params)) {
+    throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
+}
+return $jsonrpc->getResult();
 }
 
 public function reload() {
