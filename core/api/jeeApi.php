@@ -68,10 +68,10 @@ if (trim(config::byKey('api')) == '') {
                         $param['emptyReply'] = init('emptyReply');
                     }
                     if(init('profile') != ''){
-                     $param['profile'] = init('profile');
-                 }
-                 echo interactQuery::tryToReply($query, $param);
-             } else if ($type == 'scenario') {
+                       $param['profile'] = init('profile');
+                   }
+                   echo interactQuery::tryToReply($query, $param);
+               } else if ($type == 'scenario') {
                 log::add('api', 'debug', 'Demande api pour les scénarios');
                 $scenario = scenario::byId(init('id'));
                 if (!is_object($scenario)) {
@@ -323,8 +323,8 @@ if (trim(config::byKey('api')) == '') {
 
 
                 if ($jsonrpc->getMethod() == 'eqLogic::byTypeAndId') {
-                 $return = array();
-                 foreach ($params['eqType'] as $eqType) {
+                   $return = array();
+                   foreach ($params['eqType'] as $eqType) {
                     $info_eqLogics = array();
                     foreach (eqLogic::byType($eqType) as $eqLogic) {
                         $info_cmds = array();
@@ -348,8 +348,8 @@ if (trim(config::byKey('api')) == '') {
                     $eqLogic = eqLogic::byId($id);
                     $info_cmds = array();
                     foreach ($eqLogic->getCmd() as $cmd) {
-                     $info_cmd = utils::o2a($cmd);
-                     if($cmd->getType() == 'info'){
+                       $info_cmd = utils::o2a($cmd);
+                       if($cmd->getType() == 'info'){
                         $info_cmd['value'] = $cmd->execCmd();
                         $info_cmd['collectDate'] = $cmd->getCollectDate();
                     }
@@ -624,17 +624,22 @@ if (trim(config::byKey('api')) == '') {
 
         /*             * ************************Messages*************************** */
         if ($jsonrpc->getMethod() == 'message::removeAll') {
-           message::removeAll();
-           $jsonrpc->makeSuccess('ok');
-       }
+         message::removeAll();
+         $jsonrpc->makeSuccess('ok');
+     }
 
-       if ($jsonrpc->getMethod() == 'message::all') {
+     if ($jsonrpc->getMethod() == 'message::all') {
         $jsonrpc->makeSuccess(utils::o2a(message::all()));
     }
 
     /*             * ************************Interact*************************** */
     if ($jsonrpc->getMethod() == 'interact::tryToReply') {
         $jsonrpc->makeSuccess(interactQuery::tryToReply(init('query')));
+    }
+
+    /*             * ************************USB mapping*************************** */
+    if ($jsonrpc->getMethod() == 'jeedom::getUsbMapping') {
+        $jsonrpc->makeSuccess(jeedom::getUsbMapping());
     }
 
     /*             * ************************************************************************ */

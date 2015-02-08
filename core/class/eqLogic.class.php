@@ -481,7 +481,7 @@ $replace = array(
     '#style#' => '',
     '#max_width#' => '650px',
     '#logicalId#' => $this->getLogicalId(),
-    '#battery#' =>$this->getConfiguration('batteryStatus',-2),
+    '#battery#' => $this->getConfiguration('batteryStatus',-2),
     '#batteryDatetime#' => $this->getConfiguration('batteryStatusDatetime',__('inconnue',__FILE__)),
     );
 
