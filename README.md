@@ -6,7 +6,7 @@ Website (French):  [https://jeedom.fr/](https://jeedom.fr/)
 
 (Readme en français [ci-dessous](#french).)
 
-# Automatic install #
+# Install #
 ```bash
 sudo apt-get update
 sudo apt-get dist-upgrade
@@ -17,7 +17,7 @@ sudo ./install.sh
 
 # French #
 
-# Installation automatic #
+# Installation #
 ```bash
 sudo apt-get update
 sudo apt-get dist-upgrade
