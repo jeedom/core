@@ -43,7 +43,9 @@ try {
 	foreach ($crons as $cron) {
 		$c = new Cron\CronExpression($cron->getSchedule(), new Cron\FieldFactory);
 		try {
-			$c->getNextRunDate();
+			if(!$c->isDue()){
+				$c->getNextRunDate();
+			}
 		} catch (Exception $ex) {
 			$cron->remove();
 		}
@@ -117,6 +119,11 @@ try {
 		$cron->setSchedule('* * * * * *');
 		$cron->setTimeout(60);
 		$cron->save();
+	}
+
+	$dynamic_apache_path = dirname(__FILE__) . '/../core/config/apache_jeedom_dynamic_rules';
+	if(!file_exists($dynamic_apache_path)){
+		touch($dynamic_apache_path);
 	}
 } catch (Exception $e) {
 	echo $e->getMessage();
