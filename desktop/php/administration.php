@@ -52,9 +52,9 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                         <select class="configKey form-control" data-l1key="language">
                                             <option value="fr_FR">{{Français}}</option>
-                                            <option value="en_US">{{Anglais}}</option>
-                                            <option value="de_DE">{{Allemand}}</option>
-                                            <option value="sp_ES">{{Espagnol}}</option>
+                                            <option value="en_US">{{English}}</option>
+                                            <option value="de_DE">{{Deutsch}}</option>
+                                            <option value="sp_ES">{{Español}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -205,7 +205,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                     <div class="panel-body">
                         <form class="form-horizontal">
                             <fieldset>
-                                <div class="alert alert-danger">{{ATTENTION ces opérations sont risquées, vous pouvez perdre l'accès à votre systeme et à Jeedom. Suite à une modification de la base de données, l'équipe Jeedom se réserve le droit de refuser toute demande de support.}}</div>
+                                <div class="alert alert-danger">{{ATTENTION ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. Suite à une modification de la base de données, l'équipe Jeedom se réserve le droit de refuser toute demande de support.}}</div>
                                 <div class="form-group">
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès à l'interface d'administration}}</label>
                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -277,7 +277,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse URL  ou IP}}</label>
+                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse URL ou IP}}</label>
                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                         <input type="text"  class="configKey form-control" data-l1key="internalAddr" />
                                     </div>
