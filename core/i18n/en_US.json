@@ -916,11 +916,6 @@
         "Installé en BETA": "Installé en BETA",
         "Installé en STABLE": "Installé en STABLE"
     },
-    "\/var\/www\/vhosts\/darkserver.fr\/jeedom.darkserver.fr\/test.php": {
-        "Retard exécution prévu à ": "Delay launch foretold at ",
-        " dernière exécution à ": " last lauch at ",
-        ". Retard de : ": ". Delay of : "
-    },
     "desktop\/modal\/help.scenario.php": {
         "Déclencheur": "Trigger",
         "Il existe des déclencheurs spécifiques (autres que ceux fournis par les commandes) :": "Specific triggers exist (different from the one provided by commands)",

@@ -798,11 +798,6 @@
     "desktop\/modal\/market.list.php": {
         "Nombre de téléchargements": "Número de descargas"
     },
-    "\/var\/www\/vhosts\/darkserver.fr\/jeedom.darkserver.fr\/test.php": {
-        "Retard lancement prévu à ": "Retraso lanzamiento previsto a la(s) ",
-        " dernier lancement à ": " Último lanzamiento a la(s) ",
-        ". Retard de : ": ". Retraso de : "
-    },
     "desktop\/modal\/help.cronSyntaxe.php": {
         "Générateur": "Generator ",
         "Exemples \/ Programmation prédéfinie": "Ejemplos \/ Programación predefinida",
