@@ -866,6 +866,7 @@ class cmd {
 					$replace['#' . $key . '#'] = $value;
 				}
 			}
+			$replace['#valueName#'] .= '<br/>';
 			$html .= template_replace($replace, $template);
 			if (trim($html) == '') {
 				return $html;
