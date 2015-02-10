@@ -31,6 +31,7 @@ if (!isConnect()) {
             cmd_id: "<?php echo init('id') ?>",
             el: 'div_historyChart',
             daterange: 'all',
+            newGraph : true,
             success: function (data) {
                 if (init(data.cmd.display.graphStep) != '') {
                     $('.cb_step[data-cmd_id=#id#]').off().value(init(data.cmd.display.graphStep));

@@ -14,15 +14,15 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-function jeedom() {
-}
+ function jeedom() {
+ }
 
 
-jeedom.cache = [];
-jeedom.nodeJs = {state: -1};
-jeedom.display = {};
+ jeedom.cache = [];
+ jeedom.nodeJs = {state: -1};
+ jeedom.display = {};
 
-if (!isset(jeedom.cache.getConfiguration)) {
+ if (!isset(jeedom.cache.getConfiguration)) {
     jeedom.cache.getConfiguration = Array();
 }
 
@@ -37,9 +37,9 @@ jeedom.init = function () {
     Highcharts.setOptions({
         lang: {
             months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-                'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
             shortMonths: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-                'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
             weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
         }
     });
@@ -79,6 +79,14 @@ jeedom.init = function () {
         socket.on('jeedom::say', function (_message) {
             responsiveVoice.speak(_message,'French Female');
         });
+        socket.on('jeedom::gotoplan', function (_plan_id) {
+            if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
+             if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
+                planHeader_id = _plan_id;
+                displayPlan();
+            }
+        }
+    });
         socket.on('jeedom::alert', function (_options) {
             _options = json_decode(_options);
             if (!isset(_options.message) || $.trim(_options.message) == '') {
@@ -88,31 +96,34 @@ jeedom.init = function () {
             }
 
         });
+        socket.on('message::refreshMessageNumber', function (_options) {
+            refreshMessageNumber();
+        });
         socket.on('notify', function (title, text, category) {
             var theme = '';
             switch (init(category)) {
                 case 'event' :
-                    if (init(userProfils.notifyEvent) == 'none') {
-                        return;
-                    } else {
-                        theme = userProfils.notifyEvent;
-                    }
-                    break;
+                if (init(userProfils.notifyEvent) == 'none') {
+                    return;
+                } else {
+                    theme = userProfils.notifyEvent;
+                }
+                break;
                 case 'scenario' :
-                    if (init(userProfils.notifyLaunchScenario) == 'none') {
-                        return;
-                    } else {
-                        theme = userProfils.notifyLaunchScenario;
-                    }
-                    break;
+                if (init(userProfils.notifyLaunchScenario) == 'none') {
+                    return;
+                } else {
+                    theme = userProfils.notifyLaunchScenario;
+                }
+                break;
                 case 'message' :
-                    if (init(userProfils.notifyNewMessage) == 'none') {
-                        return;
-                    } else {
-                        theme = userProfils.notifyNewMessage;
-                    }
-                    refreshMessageNumber();
-                    break;
+                if (init(userProfils.notifyNewMessage) == 'none') {
+                    return;
+                } else {
+                    theme = userProfils.notifyNewMessage;
+                }
+                refreshMessageNumber();
+                break;
             }
             notify(title, text, theme);
         });
@@ -224,4 +235,56 @@ jeedom.saveCustum = function (_params) {
         content: _params.content,
     };
     $.ajax(paramsAJAX);
+};
+
+jeedom.forceSyncHour = function (_params) {
+    var paramsRequired = [];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+    paramsAJAX.data = {
+        action: 'forceSyncHour',
+    };
+    $.ajax(paramsAJAX);
+};
+
+jeedom.getCronSelectModal = function(_options,_callback) {
+    if ($("#mod_insertCronValue").length == 0) {
+        $('body').append('<div id="mod_insertCronValue" title="{{Assitant cron}}" ></div>');
+        $("#mod_insertCronValue").dialog({
+            autoOpen: false,
+            modal: true,
+            height: 250,
+            width: 800
+        });
+        jQuery.ajaxSetup({
+            async: false
+        });
+        $('#mod_insertCronValue').load('index.php?v=d&modal=cron.human.insert');
+        jQuery.ajaxSetup({
+            async: true
+        });
+    }
+    $("#mod_insertCronValue").dialog('option', 'buttons', {
+        "Annuler": function() {
+            $(this).dialog("close");
+        },
+        "Valider": function() {
+            var retour = {};
+            retour.cron = {};
+            retour.value = mod_insertCron.getValue();
+            if ($.trim(retour) != '' && 'function' == typeof(_callback)) {
+                _callback(retour);
+            }
+            $(this).dialog('close');
+        }
+    });
+    $('#mod_insertCronValue').dialog('open');
 };

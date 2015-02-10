@@ -15,7 +15,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (getUrlVars('saveSuccessFull') == 1) {
+ if (getUrlVars('saveSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }
 
@@ -66,6 +66,10 @@ $("#bt_addObject").on('click', function (event) {
 jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
     $("#bt_saveObject").click();
+});
+
+$('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
+    $('.objectAttr[data-l1key=display][data-l2key=icon]').value('');
 });
 
 $("#bt_saveObject").on('click', function (event) {

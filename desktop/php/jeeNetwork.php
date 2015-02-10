@@ -55,8 +55,8 @@ if (config::byKey('jeedom::licence') < 5) {
                         <div class="form-group">
                             <label class="col-sm-4 col-xs-6 control-label">{{Arrêter/Redémarrer}}</label>
                             <div class="col-sm-6 col-xs-6">
-                                <a class="btn btn-danger" id="bt_stop" style="margin-bottom: 5px;"><i class="fa fa-stop"></i> {{Arrêter}}</a>
-                                <a class="btn btn-warning" id="bt_stop" style="margin-bottom: 5px;"><i class="fa fa-repeat"></i> {{Redémarrer}}</a>
+                                <a class="btn btn-danger" id="bt_haltSlave" style="margin-bottom: 5px;"><i class="fa fa-stop"></i> {{Arrêter}}</a>
+                                <a class="btn btn-warning" id="bt_rebootSlave" style="margin-bottom: 5px;"><i class="fa fa-repeat"></i> {{Redémarrer}}</a>
                             </div>
                         </div>
                         <div class="form-group">

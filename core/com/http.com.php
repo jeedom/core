@@ -102,6 +102,7 @@ class com_http {
                 $nbRetry = $_maxRetry + 1;
             }
         }
+
         if (curl_errno($ch)) {
             $curl_error = curl_error($ch);
             if ($this->getNoReportError() === false && $this->getAllowEmptyReponse() == true && strpos($curl_error, 'Empty reply from server') !== false) {
@@ -114,6 +115,7 @@ class com_http {
             }
             curl_close($ch);
             if ($this->getNoReportError() === false) {
+                 
                 throw new Exception(__('Echec de la requête http : ', __FILE__) . $this->url . ' Curl error : ' . $curl_error, 404);
             }
         }

@@ -15,14 +15,14 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-var chart;
-var noChart = 1;
-var colorChart = 0;
-var lastId = null;
+ var chart;
+ var noChart = 1;
+ var colorChart = 0;
+ var lastId = null;
 
-initHistoryTrigger();
+ initHistoryTrigger();
 
-$(".li_history .history").on('click', function (event) {
+ $(".li_history .history").on('click', function (event) {
     $.hideAlert();
     if ($(this).closest('.li_history').hasClass('active')) {
         $(this).closest('.li_history').removeClass('active');
@@ -35,7 +35,7 @@ $(".li_history .history").on('click', function (event) {
     return false;
 });
 
-$("body").delegate("ul li input.filter", 'keyup', function () {
+ $("body").delegate("ul li input.filter", 'keyup', function () {
     if ($(this).value() == '') {
         $('.cmdList').hide();
     } else {
@@ -43,17 +43,17 @@ $("body").delegate("ul li input.filter", 'keyup', function () {
     }
 });
 
-$(".li_history .remove").on('click', function () {
+ $(".li_history .remove").on('click', function () {
     var bt_remove = $(this);
     $.hideAlert();
-    bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'historique de}} <span style="font-weight: bold ;">' + bt_remove.closest('.li_history').find('.history').text() + '</span> ?', function (result) {
-        if (result) {
-            emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'));
+    bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquel il faut supprimer l\'historique de }} <span style="font-weight: bold ;">' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?', function (result) {
+        if (result !== null) {
+            emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'),result);
         }
     });
 });
 
-$('.displayObject').on('click', function () {
+ $('.displayObject').on('click', function () {
     var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']');
     if (list.is(':visible')) {
         $(this).find('i.fa').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right');
@@ -64,17 +64,18 @@ $('.displayObject').on('click', function () {
     }
 });
 
-$(".li_history .export").on('click', function () {
+ $(".li_history .export").on('click', function () {
     window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null);
 });
 
-function emptyHistory(_cmd_id) {
+ function emptyHistory(_cmd_id,_date) {
     $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
         url: "core/ajax/cmd.ajax.php", // url du fichier php
         data: {
             action: "emptyHistory",
-            id: _cmd_id
+            id: _cmd_id,
+            date: _date
         },
         dataType: 'json',
         error: function (request, status, error) {
@@ -85,7 +86,7 @@ function emptyHistory(_cmd_id) {
                 $('#div_alert').showAlert({message: data.result, level: 'danger'});
                 return;
             }
-            $('#div_alert').showAlert({message: '{{Historique supprimé avec succes}}', level: 'success'});
+            $('#div_alert').showAlert({message: '{{Historique supprimé avec succès}}', level: 'success'});
             li = $('li[data-cmd_id=' + _cmd_id + ']');
             if (li.hasClass('active')) {
                 li.find('.history').click();

@@ -15,7 +15,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-$(".li_plugin").on('click', function () {
+ $(".li_plugin").on('click', function () {
     $.hideAlert();
     $('.li_plugin').removeClass('active');
     $(this).addClass('active');
@@ -41,7 +41,7 @@ $(".li_plugin").on('click', function () {
             if (data.status.market_owner == 1) {
                 $('#span_plugin_market').append('<a class="btn btn-warning btn-xs sendOnMarket" data-market_logicalId="' + data.id + '"><i class="fa fa-cloud-upload"></i> {{Envoyer sur le market}}</a>')
             }
-
+            $('#span_plugin_delete').empty().append('<a class="btn btn-danger btn-xs removePlugin" data-market_logicalId="' + data.id + '"><i class="fa fa-trash"></i> {{Supprimer}}</a>');
             $('#span_plugin_doc').empty().append('<a class="btn btn-primary btn-xs" target="_blank" href="http://doc.jeedom.fr/fr_FR/' + data.id + '.html"><i class="fa fa-book"></i> {{Documentation}}</a>');
 
             if (data.checkVersion != -1) {
@@ -91,7 +91,25 @@ $(".li_plugin").on('click', function () {
             modifyWithoutSave = false;
         }
     });
-    return false;
+return false;
+});
+
+$('#span_plugin_delete').delegate('.removePlugin','click',function(){
+    var _el = $(this);
+    bootbox.confirm('{{Etes vous sur de vouloir supprimer ce plugin ?}}', function (result) {
+        if (result) {
+            $.hideAlert();
+            jeedom.update.remove({
+                id: _el.attr('data-market_logicalId'),
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                    window.location.reload();
+                }
+            });
+        }
+    });
 });
 
 $("#span_plugin_toggleState").delegate(".togglePlugin", 'click', function () {
@@ -106,6 +124,18 @@ $("#span_plugin_toggleState").delegate(".togglePlugin", 'click', function () {
             window.location.replace('index.php?v=d&p=plugin&id=' + _el.attr('data-plugin_id'));
         }
     });
+});
+
+$('#bt_uploadPlugin').fileupload({
+    dataType: 'json',
+    replaceFileInput: false,
+    done: function (e, data) {
+        if (data.result.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result.result, level: 'danger'});
+            return;
+        }
+        $('#div_alert').showAlert({message: '{{Plugin ajouté(s) avec succès. Recharger la page pour le voir}}', level: 'success'});
+    }
 });
 
 if (getUrlVars('id') != '') {
@@ -157,6 +187,10 @@ function savePluginConfig() {
         success: function () {
             $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
             modifyWithoutSave = false;
+            var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveConfiguration';
+            if (typeof window[postSave] == 'function'){
+                window[postSave]();
+            }
         }
     });
 }

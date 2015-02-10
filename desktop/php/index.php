@@ -2,17 +2,23 @@
 $startLoadTime = getmicrotime();
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
-if (init('p') == '' && isConnect()) {
-    $homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
-    if (count($homePage) == 2) {
-        if ($homePage[0] == 'core') {
-            redirect('index.php?v=d&p=' . $homePage[1]);
-        } else {
-            redirect('index.php?v=d&m=' . $homePage[0] . '&p=' . $homePage[1]);
-        }
+
+if(isConnect()){
+   $homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
+   if (count($homePage) == 2) {
+    if ($homePage[0] == 'core') {
+        $homeLink = 'index.php?v=d&p=' . $homePage[1];
     } else {
-        redirect('index.php?v=d&p=dashboard');
+        $homeLink = 'index.php?v=d&m=' . $homePage[0] . '&p=' . $homePage[1];
     }
+} else {
+    $homeLink = 'index.php?v=d&p=dashboard';
+}
+}
+
+
+if (init('p') == '' && isConnect()) {
+    redirect($homeLink);
 }
 $page = '';
 if (isConnect() && init('p') != '') {
@@ -107,6 +113,28 @@ if (count($plugins_list) > 0) {
                 include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
                 include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
                 include_file('3rdparty', 'responsivevoices/responsivevoices', 'js');
+                include_file('3rdparty', 'jquery.sew/jquery.sew', 'css');
+                include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
+                include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
+                include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
+                include_file('3rdparty', 'codemirror/mode/htmlmixed/htmlmixed', 'js');
+                include_file('3rdparty', 'codemirror/mode/clike/clike', 'js');
+                include_file('3rdparty', 'codemirror/mode/php/php', 'js');
+                include_file('3rdparty', 'codemirror/mode/xml/xml', 'js');
+                include_file('3rdparty', 'codemirror/mode/javascript/javascript', 'js');
+                include_file('3rdparty', 'codemirror/mode/css/css', 'js');
+                include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
+                include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
+                include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
+                include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
+                include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
+                include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
+                include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
+                include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
+                include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js');
+                include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css');
+                include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
+                include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
                 if (file_exists(dirname(__FILE__) . '/../custom/custom.css')) {
                     include_file('desktop', '', 'custom.css');
                 }
@@ -141,7 +169,7 @@ if (count($plugins_list) > 0) {
                         <header class="navbar navbar-fixed-top navbar-default">
                             <div class="container-fluid">
                                 <div class="navbar-header">
-                                    <a class="navbar-brand" href="index.php?v=d">
+                                    <a class="navbar-brand" href="<?php echo $homeLink ?>">
                                         <img src="core/img/logo-jeedom-grand-nom-couleur.svg" height="30" style="position: relative; top:-5px;"/>
                                     </a>
                                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -367,20 +395,23 @@ if (count($plugins_list) > 0) {
                                     }
                                     ?>
                                     <div style="display: none;width : 100%" id="div_alert"></div>
-                                    <?php
-                                    try {
-                                        if (isset($plugin) && is_object($plugin)) {
-                                            include_file('desktop', $page, 'php', $plugin->getId());
-                                        } else {
-                                            include_file('desktop', $page, 'php');
+
+                                    <div id="div_pageContainer">
+                                        <?php
+                                        try {
+                                            if (isset($plugin) && is_object($plugin)) {
+                                                include_file('desktop', $page, 'php', $plugin->getId());
+                                            } else {
+                                                include_file('desktop', $page, 'php');
+                                            }
+                                        } catch (Exception $e) {
+                                            ob_end_clean();
+                                            echo '<div class="alert alert-danger div_alert">';
+                                            echo displayExeption($e);
+                                            echo '</div>';
                                         }
-                                    } catch (Exception $e) {
-                                        ob_end_clean();
-                                        echo '<div class="alert alert-danger div_alert">';
-                                        echo displayExeption($e);
-                                        echo '</div>';
-                                    }
-                                    ?>
+                                        ?>
+                                    </div>
                                     <div id="md_modal"></div>
                                     <div id="md_modal2"></div>
                                     <div id="md_pageHelp" style="display: none;" title="Aide">
@@ -413,8 +444,8 @@ if (count($plugins_list) > 0) {
                                         }
                                     }
                                     echo ') ';
-echo date('Y');
-echo ' - {{Page générée en}} ' . round(getmicrotime() - $startLoadTime, 3) . 's';
+echo date('Y'); 
+echo ' - {{Page générée en}} <span id="span_loadPageTime">' . round(getmicrotime() - $startLoadTime, 3) . '</span>s';
 ?>
 </span>
 </footer>

@@ -149,3 +149,13 @@ Vous pouvez ensuite forcer le https dans la configuration Jeedom.
 --
 Rendez vous sur le market, connectez vous avec votre compte puis aller sur votre page profils et demandez une reinitilisation de clef harware
 --
+
+[panel,primary]
+.Qu'est ce que evenement seulement et  lifetime cache ?
+--
+
+- Évènement seulement : indique à Jeedom de ne jamais demander la valeur (c'est l'équipement qui la remonte). Donc lors de la réception d'une valeur, celle-ci a une durée de vie infinie (jusqu’à la réception suivante).
+- Lifetime cache : Durée de validité d'une valeur, si vous mettez 60 secondes par exemple, quand la valeur datetera de plus de 60 ET que jeedom en a besoin (dashboard, scénario...) alors il ira interroger le module pour avoir une valeur à jour
+
+Attention ces 2 options sont reservées aux utilisateurs avancés qui comprennent parfaitement leur fonction, une erreur de configuration la dedans peut rendre une installation instable voir inopérante. Par exemple en zwave, rfxcom et enocean la case evenement seulement devrait TOUJOURS etre cochée
+--

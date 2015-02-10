@@ -155,6 +155,7 @@ if (trim(config::byKey('api')) == '') {
             connection::success('api');
 
             if (isset($params['plugin']) && $params['plugin'] != '') {
+                log::add('api', 'info', 'Demande pour le plugin : '.$params['plugin']);
                 include_file('core', $params['plugin'], 'api', $params['plugin']);
             } else {
                 /*             * ***********************Ping********************************* */
@@ -333,14 +334,15 @@ if (trim(config::byKey('api')) == '') {
                                 $info_cmd['value'] = $cmd->execCmd();
                                 $info_cmd['collectDate'] = $cmd->getCollectDate();
                             }
+                            $info_cmds[] = $info_cmd;
                         }
-                        $info_cmds[] = $info_cmd;
                         $info_eqLogic =  utils::o2a($eqLogic);
                         $info_eqLogic['cmds'] = $info_cmds;
                         $info_eqLogics[] = $info_eqLogic;
                     }
+                    $return[$eqType] = $info_eqLogics;
                 }
-                $return[$eqType] = $info_eqLogics;
+                
 
                 foreach ($params['id'] as $id) {
                     $eqLogic = eqLogic::byId($id);
@@ -351,8 +353,9 @@ if (trim(config::byKey('api')) == '') {
                         $info_cmd['value'] = $cmd->execCmd();
                         $info_cmd['collectDate'] = $cmd->getCollectDate();
                     }
+                    $info_cmds[] = $info_cmd;
                 }
-                $info_cmds[] = $info_cmd;
+                
                 $info_eqLogic =  utils::o2a($eqLogic);
                 $info_eqLogic['cmds'] = $info_cmds;
                 $return[$id] = $info_eqLogic;
@@ -621,22 +624,28 @@ if (trim(config::byKey('api')) == '') {
 
         /*             * ************************Messages*************************** */
         if ($jsonrpc->getMethod() == 'message::removeAll') {
-            $jsonrpc->makeSuccess(message::removeAll());
-        }
+         message::removeAll();
+         $jsonrpc->makeSuccess('ok');
+     }
 
-        if ($jsonrpc->getMethod() == 'message::all') {
-            $jsonrpc->makeSuccess(utils::o2a(message::all()));
-        }
-
-        /*             * ************************Interact*************************** */
-        if ($jsonrpc->getMethod() == 'interact::tryToReply') {
-            $jsonrpc->makeSuccess(interactQuery::tryToReply(init('query')));
-        }
-
-        /*             * ************************************************************************ */
+     if ($jsonrpc->getMethod() == 'message::all') {
+        $jsonrpc->makeSuccess(utils::o2a(message::all()));
     }
-    throw new Exception('Aucune méthode correspondante : ' . $jsonrpc->getMethod(), -32500);
-    /*         * *********Catch exeption*************** */
+
+    /*             * ************************Interact*************************** */
+    if ($jsonrpc->getMethod() == 'interact::tryToReply') {
+        $jsonrpc->makeSuccess(interactQuery::tryToReply(init('query')));
+    }
+
+    /*             * ************************USB mapping*************************** */
+    if ($jsonrpc->getMethod() == 'jeedom::getUsbMapping') {
+        $jsonrpc->makeSuccess(jeedom::getUsbMapping());
+    }
+
+    /*             * ************************************************************************ */
+}
+throw new Exception('Aucune méthode correspondante : ' . $jsonrpc->getMethod(), -32500);
+/*         * *********Catch exeption*************** */
 } catch (Exception $e) {
     $message = $e->getMessage();
     $jsonrpc = new jsonrpc(init('request'));

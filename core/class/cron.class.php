@@ -46,7 +46,7 @@ class cron {
      */
     public static function all($_order = false) {
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM cron';
+        FROM cron';
         if ($_order) {
             $sql .= ' ORDER BY deamon DESC';
         }
@@ -61,10 +61,10 @@ class cron {
     public static function byId($_id) {
         $value = array(
             'id' => $_id,
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM cron
-                WHERE id=:id';
+        FROM cron
+        WHERE id=:id';
         return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
@@ -79,11 +79,11 @@ class cron {
         $value = array(
             'class' => $_class,
             'function' => $_function,
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM cron
-                WHERE class=:class
-                    AND function=:function';
+        FROM cron
+        WHERE class=:class
+        AND function=:function';
         if ($_option != '') {
             $_option = json_encode($_option, JSON_UNESCAPED_UNICODE);
             $value['option'] = $_option;
@@ -96,14 +96,14 @@ class cron {
         $value = array(
             'class' => $_class,
             'function' => $_function,
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM cron
-                WHERE class=:class
-                    AND function=:function';
+        FROM cron
+        WHERE class=:class
+        AND function=:function';
         if ($_option != '') {
             $value['option'] = '%' . $_option . '%';
-            $sql .= ' LIKE `option`=:option';
+            $sql .= ' AND `option` LIKE :option';
         }
         return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
@@ -113,7 +113,9 @@ class cron {
         foreach ($crons as $cron) {
             $c = new Cron\CronExpression($cron->getSchedule(), new Cron\FieldFactory);
             try {
-                $c->getNextRunDate();
+                if(!$c->isDue()){
+                    $c->getNextRunDate();
+                }
             } catch (Exception $ex) {
                 $cron->remove();
             }
@@ -181,7 +183,7 @@ class cron {
 
     public static function ok() {
         $sql = 'SELECT UNIX_TIMESTAMP(max(`lastRun`)) as `time`
-                FROM cron';
+        FROM cron';
         $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
         if ((strtotime('now') - $result['time']) > 3600) {
             return false;

@@ -68,7 +68,7 @@ class log {
             $logs = ls(dirname(__FILE__) . '/../../log/scenarioLog', '*');
             foreach ($logs as $log) {
                 $path = dirname(__FILE__) . '/../../log/scenarioLog/' . $log;
-                 if(is_file($path)){
+                if(is_file($path)){
                     shell_exec('echo "$(tail -n '.config::byKey('maxLineLog').' '.$path.')" > '.$path);
                     @chown($path, 'www-data');
                     @chgrp($path, 'www-data');
@@ -98,7 +98,7 @@ class log {
      */
     public static function remove($_log) {
         $path = self::getPathToLog($_log);
-        if (file_exists($path) && $_log != 'nginx.error') {
+        if (file_exists($path) && strpos($_log, 'nginx.error') === false) {
             unlink($path);
         }
         return true;
@@ -108,7 +108,7 @@ class log {
         $logs = ls(dirname(__FILE__) . '/../../log/', '*');
         foreach ($logs as $log) {
             $path = dirname(__FILE__) . '/../../log/' . $log;
-            if ($log != 'nginx.error' && !is_dir($path)) {
+            if (strpos($_log, 'nginx.error') === false && !is_dir($path)) {
                 unlink($path);
             }
         }
@@ -156,6 +156,9 @@ class log {
 
     public static function nbLine($_log = 'core') {
         $path = self::getPathToLog($_log);
+        if(!file_exists($path)){
+            return 0;
+        }
         $log_file = file($path);
         return count($log_file);
     }
@@ -171,7 +174,13 @@ class log {
     }
 
     public static function liste() {
-        return ls(dirname(__FILE__) . '/../../log/', '*');
+        $return = array();
+        foreach (ls(dirname(__FILE__) . '/../../log/', '*') as $log) {
+            if(!is_dir(dirname(__FILE__) . '/../../log/'.$log)){
+                $return[] = $log;
+            }
+        } 
+        return $return;
     }
 
     /*     * *********************Methode d'instance************************* */

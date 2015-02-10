@@ -43,6 +43,12 @@ class scenarioExpression {
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
+    public static function all() {
+        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '  
+        FROM ' . __CLASS__;
+        return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+    }
+
     public static function byscenarioSubElementId($_scenarioSubElementId) {
         $values = array(
             'scenarioSubElement_id' => $_scenarioSubElementId
@@ -131,7 +137,6 @@ class scenarioExpression {
     public static function average($_cmd_id, $_period = '1 hour') {
         $args = func_get_args();
         if (count($args) > 2 || strpos($_period, '#') !== false || is_numeric($_period)) {
-            $test = new evaluate();
             $values = array();
             foreach ($args as $arg) {
                 if (is_numeric($arg)) {
@@ -142,7 +147,7 @@ class scenarioExpression {
                         $values[] = $value;
                     } else {
                         try {
-                            $values[] = $test->Evaluer($value);
+                            $values[] = evaluate($value);
                         } catch (Exception $ex) {
 
                         }
@@ -152,10 +157,7 @@ class scenarioExpression {
             return array_sum($values) / count($values);
         } else {
             $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
-            if (!is_object($cmd)) {
-                return '';
-            }
-            if ($cmd->getIsHistorized() == 0) {
+            if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
                 return '';
             }
             $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
@@ -164,10 +166,18 @@ class scenarioExpression {
         }
     }
 
+    public static function averageBetween($_cmd_id,$_startDate,$_endDate){
+        $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+        if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+            return '';
+        }
+        $historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
+        return round($historyStatistique['avg'], 1);
+    }
+
     public static function max($_cmd_id, $_period = '1 hour') {
         $args = func_get_args();
         if (count($args) > 2 || strpos($_period, '#') !== false || is_numeric($_period)) {
-            $test = new evaluate();
             $values = array();
             foreach ($args as $arg) {
                 if (is_numeric($arg)) {
@@ -178,7 +188,7 @@ class scenarioExpression {
                         $values[] = $value;
                     } else {
                         try {
-                            $values[] = $test->Evaluer($value);
+                            $values[] = evaluate($value);
                         } catch (Exception $ex) {
 
                         }
@@ -188,10 +198,7 @@ class scenarioExpression {
             return max($values);
         } else {
             $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
-            if (!is_object($cmd)) {
-                return '';
-            }
-            if ($cmd->getIsHistorized() == 0) {
+            if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
                 return '';
             }
             $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
@@ -200,14 +207,22 @@ class scenarioExpression {
         }
     }
 
+    public static function maxBetween($_cmd_id,$_startDate,$_endDate){
+        $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+        if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+            return '';
+        }
+        $historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
+        return round($historyStatistique['max'], 1);
+    }
+
     public static function wait($_condition, $_timeout = 7200) {
-        $test = new evaluate();
         $result = false;
         $occurence = 0;
         $limit = (is_numeric($_timeout)) ? $_timeout : 7200;
         while ($result === false) {
             $expression = self::setTags($_condition);
-            $result = $test->Evaluer($expression);
+            $result = evaluate($expression);
             if ($occurence > $limit) {
                 return 0;
             }
@@ -220,7 +235,6 @@ class scenarioExpression {
     public static function min($_cmd_id, $_period = '1 hour') {
         $args = func_get_args();
         if (count($args) > 2 || strpos($_period, '#') !== false || is_numeric($_period)) {
-            $test = new evaluate();
             $values = array();
             foreach ($args as $arg) {
                 if (is_numeric($arg)) {
@@ -231,7 +245,7 @@ class scenarioExpression {
                         $values[] = $value;
                     } else {
                         try {
-                            $values[] = $test->Evaluer($value);
+                            $values[] = evaluate($value);
                         } catch (Exception $ex) {
 
                         }
@@ -241,16 +255,22 @@ class scenarioExpression {
             return min($values);
         } else {
             $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
-            if (!is_object($cmd)) {
-                return '';
-            }
-            if ($cmd->getIsHistorized() == 0) {
+            if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
                 return '';
             }
             $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
             $historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
             return round($historyStatistique['min'], 1);
         }
+    }
+
+    public static function minBetween($_cmd_id,$_startDate,$_endDate){
+        $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+        if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+            return '';
+        }
+        $historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
+        return round($historyStatistique['min'], 1);
     }
 
     public static function median() {
@@ -265,7 +285,7 @@ class scenarioExpression {
                     $values[] = $value;
                 } else {
                     try {
-                        $values[] = $test->Evaluer($value);
+                        $values[] = evaluate($value);
                     } catch (Exception $ex) {
 
                     }
@@ -373,7 +393,7 @@ class scenarioExpression {
 
     public static function trigger($_name = '', &$_scenario = null) {
         if ($_scenario != null) {
-            if ($_name == '') {
+            if (trim($_name) == '') {
                 return $_scenario->getRealTrigger();
             }
             if ($_name == $_scenario->getRealTrigger()) {
@@ -386,8 +406,7 @@ class scenarioExpression {
     public static function round($_value, $_decimal = 0) {
         $_value = self::setTags($_value);
         try {
-            $test = new evaluate();
-            $result = $test->Evaluer($_value);
+            $result = evaluate($_value);
             if (is_string($result)) { //Alors la valeur n'est pas un calcul
             $result = $_value;
         }
@@ -404,8 +423,7 @@ class scenarioExpression {
 public static function time($_value) {
     $_value = self::setTags($_value);
     try {
-        $test = new evaluate();
-        $result = $test->Evaluer($_value);
+        $result = evaluate($_value);
             if (is_string($result)) { //Alors la valeur n'est pas un calcul
             $result = $_value;
         }
@@ -437,7 +455,7 @@ public static function formatTime($_time){
 }
 
 public static function setTags($_expression, &$_scenario = null) {
-    $replace = array(
+    $replace1 = array(
         '#seconde#' => (int) date('s'),
         '#heure#' => (int) date('G'),
         '#minute#' => (int) date('i'),
@@ -449,13 +467,14 @@ public static function setTags($_expression, &$_scenario = null) {
         '#seconde#' => (int) date('s'),
         '#date#' => date('md'),
         '#semaine#' => date('W'),
-        '#sjour#' => date_fr(date('l')),
-        '#smois#' => date_fr(date('F')),
+        '#sjour#' => '"'.date_fr(date('l')).'"',
+        '#smois#' => '"'.date_fr(date('F')).'"',
         '#njour#' => (int) date('w'),
-        '#hostname#' => gethostname(),
-        '#IP#' => config::byKey('internalAddr'),
+        '#hostname#' => '"'.gethostname().'"',
+        '#IP#' => '"'.config::byKey('internalAddr').'"',
         );
-    preg_match_all("/([a-zA-Z][a-zA-Z]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
+    $replace2 = array();
+    preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
     foreach ($matches as $match) {
         $function = $match[1];
         $arguments = explode(',', $match[2]);
@@ -463,39 +482,42 @@ public static function setTags($_expression, &$_scenario = null) {
 
         if(substr_count($match[2],'(') != substr_count($match[2],')')){
            $arguments = self::setTags($match[2].')');
-            if(substr($_expression,strpos($_expression,$match[2])+strlen($match[2])+1,1) != ')'){
-                for($i=strpos($_expression,$match[2])+strlen($match[2]) + 1;$i<strlen($_expression);$i++){
-                    $car = $_expression[$i];
-                    if( $car != ')'){
-                        $arguments .= $car;
-                        $replace_string .= $car;
-                    }else{
-                        break;
-                    }
+           if(substr($_expression,strpos($_expression,$match[2])+strlen($match[2])+1,1) != ')'){
+            for($i=strpos($_expression,$match[2])+strlen($match[2]) + 1;$i<strlen($_expression);$i++){
+                $car = $_expression[$i];
+                if( $car != ')'){
+                    $arguments .= $car;
+                    $replace_string .= $car;
+                }else{
+                    break;
                 }
             }
-            $replace_string .= ')';
-            $arguments = explode(',', $arguments);
         }
-        if (method_exists(__CLASS__, $function)) {
-            if ($function == 'trigger') {
-                if (!isset($arguments[0])) {
-                    $arguments[0] = '';
-                }
-                $replace[$replace_string] = self::trigger($arguments[0], $_scenario);
-            } else {
-                $replace[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
-            }
-        }else{
-            if(function_exists($function)){
-                foreach ($arguments as &$argument) {
-                    $argument = cmd::cmdToValue($argument);
-                    $replace[$replace_string] = call_user_func_array($function, $arguments);
-                }
-            }
+        $replace_string .= ')';
+$arguments = explode(',', $arguments);
+}
+if (method_exists(__CLASS__, $function)) {
+    if ($function == 'trigger') {
+        if (!isset($arguments[0])) {
+            $arguments[0] = '';
+        }
+        $replace2[$replace_string] = self::trigger($arguments[0], $_scenario);
+    } else {
+        $replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
+    }
+}else{
+    if(function_exists($function)){
+        foreach ($arguments as &$argument) {
+            $argument = cmd::cmdToValue($argument);
+            $replace2[$replace_string] = call_user_func_array($function, $arguments);
         }
     }
-    return cmd::cmdToValue(str_replace(array_keys($replace), array_values($replace), $_expression));
+}
+
+
+}
+
+return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1),str_replace(array_keys($replace2), array_values($replace2), $_expression)));
 }
 
 public static function createAndExec($_type, $_cmd, $_options) {
@@ -548,13 +570,12 @@ public function execute(&$scenario = null) {
                 if (!isset($options['condition'])) {
                     return;
                 }
-                $test = new evaluate();
                 $result = false;
                 $occurence = 0;
                 $limit = (isset($options['timeout']) && is_numeric($options['timeout'])) ? $options['timeout'] : 7200;
                 while ($result !== true) {
                     $expression = self::setTags($options['condition'], $scenario);
-                    $result = $test->Evaluer($expression);
+                    $result = evaluate($expression);
                     if ($occurence > $limit) {
                         $this->setLog($scenario, __('[Wait] Condition valide par dépassement de temps', __FILE__));
                         return;
@@ -567,8 +588,7 @@ public function execute(&$scenario = null) {
             } else if ($this->getExpression() == 'sleep') {
                 if (isset($options['duration'])) {
                     try {
-                        $test = new evaluate();
-                        $options['duration'] = $test->Evaluer($options['duration']);
+                        $options['duration'] = evaluate($options['duration']);
                     } catch (Exception $e) {
 
                     }
@@ -588,50 +608,57 @@ public function execute(&$scenario = null) {
                     $this->setLog($scenario, __('Arret du scénario', __FILE__));
                     $scenario->setState('stop');
                     $scenario->setPID('');
+                    $scenario->persistLog();
                     $scenario->save();
                 }
                 die();
             } else if ($this->getExpression() == 'say') {
-               nodejs::pushUpdate('jeedom::say', $options['message']) ;
-            } else if ($this->getExpression() == 'scenario') {
-                if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
-                    $actionScenario = &$scenario;
+                $this->setLog($scenario, __('Je dis : ',__FILE__).$options['message']);
+                nodejs::pushUpdate('jeedom::say', $options['message']) ;
+            }  else if ($this->getExpression() == 'gotodesign') {
+                $this->setLog($scenario, __('Changement design : ',__FILE__).$options['plan_id']);
+                nodejs::pushUpdate('jeedom::gotoplan', $options['plan_id']) ;
+            }else if ($this->getExpression() == 'return') {
+               $this->setLog($scenario, __('Je vais retourner : ',__FILE__).$options['message']);
+               $scenario->setReturn($scenario->getReturn().$options['message']);
+           }else if ($this->getExpression() == 'scenario') {
+            if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
+                $actionScenario = &$scenario;
+            } else {
+                $actionScenario = scenario::byId($this->getOptions('scenario_id'));
+            }
+            if (!is_object($actionScenario)) {
+                throw new Exception($scenario, __('Action sur scénario impossible. Scénario introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('scenario_id'));
+            }
+            switch ($this->getOptions('action')) {
+                case 'start':
+                $this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
+                if ($scenario != null) {
+                    $actionScenario->launch(false, __('Lancement provoqué par le scenario  : ', __FILE__) . $scenario->getHumanName());
                 } else {
-                    $actionScenario = scenario::byId($this->getOptions('scenario_id'));
+                    $actionScenario->launch(false, __('Lancement provoqué', __FILE__));
                 }
-                if (!is_object($actionScenario)) {
-                    throw new Exception($scenario, __('Action sur scénario impossible. Scénario introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('scenario_id'));
-                }
-                switch ($this->getOptions('action')) {
-                    case 'start':
-                    $this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
-                    if ($scenario != null) {
-                        $actionScenario->launch(false, __('Lancement provoqué par le scenario  : ', __FILE__) . $scenario->getHumanName());
-                    } else {
-                        $actionScenario->launch(false, __('Lancement provoqué', __FILE__));
-                    }
-                    break;
-                    case 'stop':
-                    $this->setLog($scenario, __('Arrêt forcé du scénario : ', __FILE__) . $actionScenario->getName());
-                    $actionScenario->stop();
-                    break;
-                    case 'deactivate':
-                    $this->setLog($scenario, __('Désactivation du scénario : ', __FILE__) . $actionScenario->getName());
-                    $actionScenario->setIsActive(0);
-                    $actionScenario->save();
-                    break;
-                    case 'activate':
-                    $this->setLog($scenario, __('Activation du scénario : ', __FILE__) . $actionScenario->getName());
-                    $actionScenario->setIsActive(1);
-                    $actionScenario->save();
-                    break;
-                }
-                return;
-            } else if ($this->getExpression() == 'variable') {
-                $options['value'] = self::setTags($options['value']);
-                try {
-                    $test = new evaluate();
-                    $result = $test->Evaluer($options['value']);
+                break;
+                case 'stop':
+                $this->setLog($scenario, __('Arrêt forcé du scénario : ', __FILE__) . $actionScenario->getName());
+                $actionScenario->stop();
+                break;
+                case 'deactivate':
+                $this->setLog($scenario, __('Désactivation du scénario : ', __FILE__) . $actionScenario->getName());
+                $actionScenario->setIsActive(0);
+                $actionScenario->save();
+                break;
+                case 'activate':
+                $this->setLog($scenario, __('Activation du scénario : ', __FILE__) . $actionScenario->getName());
+                $actionScenario->setIsActive(1);
+                $actionScenario->save();
+                break;
+            }
+            return;
+        } else if ($this->getExpression() == 'variable') {
+            $options['value'] = self::setTags($options['value']);
+            try {
+                $result = evaluate($options['value']);
                         if (!is_numeric($result)) { //Alors la valeur n'est pas un calcul
                         $result = $options['value'];
                     }
@@ -662,10 +689,9 @@ public function execute(&$scenario = null) {
                 return;
             }
         } else if ($this->getType() == 'condition') {
-            $test = new evaluate();
             $expression = self::setTags($this->getExpression(), $scenario);
             $message = __('Evaluation de la condition : [', __FILE__) . $expression . '] = ';
-            $result = $test->Evaluer($expression);
+            $result =evaluate($expression);
             if (is_bool($result)) {
                 if ($result) {
                     $message .= __('Vrai', __FILE__);

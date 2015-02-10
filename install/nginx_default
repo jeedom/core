@@ -39,6 +39,14 @@ server {
                 deny all;
         }
 
+        location /iss/ {
+                try_files $uri $uri/ @rewriteiss;
+        }
+
+        location @rewriteiss {
+            rewrite ^/iss/(.*)$ /jeedom/plugins/imperihome/core/php/imperihome.php?_url=/$1;
+        }
+
         include sites-available/jeedom_dynamic_rule;
 
         location /socket.io/ {

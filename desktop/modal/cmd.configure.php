@@ -151,163 +151,196 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                             ?>
                         </div>
                     </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class='row'>
+        <div class='col-lg-6 col-md-5 col-sm-4'>
+            <legend>{{Configuration}}</legend>
+            <form class="form-horizontal">
+                <fieldset>
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Dashboard et design</th>
+                                <th>Vue</th>
+                                <th>Mobile</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{Widget}}</td>
+                                <td colspan="2">
+                                    <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
+                                        <?php
+                                        foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $widget) {
+                                            echo '<option>' . $widget['name'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
+                                        <?php
+                                        foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
+                                            echo '<option>' . $widget['name'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{Ne pas afficher le nom}}</td>
+                                <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
+                                <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>{{Ne pas afficher les statistiques}}</td>
+                                <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowStatOnDashboard" /></td>
+                                <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowStatOnView" /></td>
+                                <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowStatOnMobile" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="form-group">
+                        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
+                        <div class="col-xs-1">
+                            <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineBefore" />
+                        </div>
+                        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 control-label">{{après le widget}}</label>
+                        <div class="col-xs-1">
+                            <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" />
+                        </div>
                     </div>
+
+                    <?php if ($cmd->getType() == 'info' && $cmd->getSubType() == 'numeric') { ?>
+                    <div class="form-group">
+                        <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 control-label">{{Formule de calcul (#value# pour la valeur)}}</label>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />
+                        </div>
+                    </div>
+                    <?php } ?>
+
+
+                    <?php if ($cmd->getType() == 'action') { ?>
+                    <div class="form-group">
+                        <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Code d'accès}}</label>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <input type="password" class="cmdAttr form-control" data-l1key="configuration" data-l2key="actionCodeAccess" />
+                        </div>
+                    </div>
+                    <?php } ?>
+
+                    <?php if ($cmd->getIsHistorized() == 1) { ?>
+                    <div class="form-group">
+                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
+                        <div class="col-xs-1">
+                            <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
+                                <option value="avg">Moyenne</option>
+                                <option value="min">Minimum</option>
+                                <option value="max">Maximum</option>
+                                <option value="none">Aucun</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi (chiffre après la virgule)}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
+                        </div>
+                    </div>
+                    <?php } ?>
                 </fieldset>
             </form>
         </div>
-        <div class='row'>
-            <div class='col-lg-6 col-md-5 col-sm-4'>
-                <legend>{{Configuration}}</legend>
-                <form class="form-horizontal">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Widget Desktop}}</label>
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
-                                    <?php
-                                    foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $widget) {
-                                        echo '<option>' . $widget['name'] . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                            <label class="col-lg-2 col-md-2 col-sm-2 col-xs-6 control-label">{{Widget Mobile}}</label>
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
-                                    <?php
-                                    foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
-                                        echo '<option>' . $widget['name'] . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas afficher le nom sur le dashboard}}</label>
-                            <div class="col-xs-1">
-                                <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" />
-                            </div>
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{sur les vues}}</label>
-                            <div class="col-xs-1">
-                                <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnView" />
-                            </div>
-                        </div>
-
-                        <?php if ($cmd->getType() == 'info' && $cmd->getSubType() == 'numeric') { ?>
-                            <div class="form-group">
-                                <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Formule de calcul (#value# pour la valeur)}}</label>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />
-                                </div>
-                            </div>
-                        <?php } ?>
-
-                        <?php if ($cmd->getIsHistorized() == 1) { ?>
-                            <div class="form-group">
-                                <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
-                                <div class="col-xs-1">
-                                    <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
-                                </div>
-
-                            </div>
-                            <div class="form-group">
-
-                                <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
-                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
-                                        <option value="avg">Moyenne</option>
-                                        <option value="min">Minimum</option>
-                                        <option value="max">Maximum</option>
-                                        <option value="none">Aucun</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi (chiffre après la virgule)}}</label>
-                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
-                                </div>
-                            </div>
-                        <?php } ?>
-                    </fieldset>
-                </form>
-            </div>
-            <div class='col-lg-6 col-md-7 col-sm-8'>
-                <legend>{{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
-                <table class="table table-bordered table-condensed" id="table_widgetParameters">
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Valeur</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        if ($cmd->getDisplay('parameters') != '') {
-                            foreach ($cmd->getDisplay('parameters') as $key => $value) {
-                                echo '<tr>';
-                                echo '<td>';
-                                echo '<input class="form-control key" value="' . $key . '" />';
-                                echo '</td>';
-                                echo '<td>';
-                                echo '<input class="form-control value" value="' . $value . '" />';
-                                echo '</td>';
-                                echo '<td>';
-                                echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fa fa-times"></i> Supprimer</a>';
-                                echo '</td>';
-                                echo '</tr>';
-                            }
+        <div class='col-lg-6 col-md-7 col-sm-8'>
+            <legend>{{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
+            <table class="table table-bordered table-condensed" id="table_widgetParameters">
+                <thead class="table table-bordered">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Valeur</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if ($cmd->getDisplay('parameters') != '') {
+                        foreach ($cmd->getDisplay('parameters') as $key => $value) {
+                            echo '<tr>';
+                            echo '<td>';
+                            echo '<input class="form-control key" value="' . $key . '" />';
+                            echo '</td>';
+                            echo '<td>';
+                            echo '<input class="form-control value" value="' . $value . '" />';
+                            echo '</td>';
+                            echo '<td>';
+                            echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fa fa-times"></i> Supprimer</a>';
+                            echo '</td>';
+                            echo '</tr>';
                         }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
-    <script>
-        $('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
-            $(this).closest('tr').remove();
+<script>
+    $('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
+        $(this).closest('tr').remove();
+    });
+
+    $('#bt_addWidgetParameters').off().on('click', function () {
+        var tr = '<tr>';
+        tr += '<td>';
+        tr += '<input class="form-control key" />';
+        tr += '</td>';
+        tr += '<td>';
+        tr += '<input class="form-control value" />';
+        tr += '</td>';
+        tr += '<td>';
+        tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fa fa-times"></i> Supprimer</a>';
+        tr += '</td>';
+        tr += '</tr>';
+        $('#table_widgetParameters tbody').append(tr);
+    });
+
+    $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
+
+    $('#bt_cmdConfigureSave').on('click', function () {
+        var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
+        if (!isset(cmd.display)) {
+            cmd.display = {};
+        }
+        if (!isset(cmd.display.parameters)) {
+            cmd.display.parameters = {};
+        }
+        $('#table_widgetParameters tbody tr').each(function () {
+            cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
         });
-
-        $('#bt_addWidgetParameters').off().on('click', function () {
-            var tr = '<tr>';
-            tr += '<td>';
-            tr += '<input class="form-control key" />';
-            tr += '</td>';
-            tr += '<td>';
-            tr += '<input class="form-control value" />';
-            tr += '</td>';
-            tr += '<td>';
-            tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fa fa-times"></i> Supprimer</a>';
-            tr += '</td>';
-            tr += '</tr>';
-            $('#table_widgetParameters tbody').append(tr);
-        });
-
-        $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
-
-        $('#bt_cmdConfigureSave').on('click', function () {
-            var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
-            if (!isset(cmd.display)) {
-                cmd.display = {};
+        jeedom.cmd.save({
+            cmd: cmd,
+            error: function (error) {
+                $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function () {
+                $('#md_displayCmdConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
             }
-            if (!isset(cmd.display.parameters)) {
-                cmd.display.parameters = {};
-            }
-            $('#table_widgetParameters tbody tr').each(function () {
-                cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
-            });
-            jeedom.cmd.save({
-                cmd: cmd,
-                error: function (error) {
-                    $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
-                },
-                success: function () {
-                    $('#md_displayCmdConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
-                }
-            });
         });
-    </script>
+    });
+</script>

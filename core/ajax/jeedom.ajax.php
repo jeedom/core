@@ -41,6 +41,7 @@ try {
         ajax::success($return);
     }
 
+
     if (!isConnect('admin')) {
         throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
     }
@@ -134,6 +135,10 @@ try {
 
     if (init('action') == 'rebootSystem') {
         ajax::success(jeedom::rebootSystem());
+    }
+
+    if (init('action') == 'forceSyncHour') {
+        ajax::success(jeedom::forceSyncHour());
     }
 
     if (init('action') == 'doUPnP') {

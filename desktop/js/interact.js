@@ -80,7 +80,7 @@ $('.displayInteracQuery').on('click', function () {
 
 $('body').delegate('.listEquipementInfo', 'click', function () {
     jeedom.cmd.getSelectModal({}, function (result) {
-        $('.interactAttr[data-l1key=link_id]').value(result.human);
+        $('.interactAttr[data-l1key=link_id]').atCaret('insert',result.human);
     });
 });
 
@@ -97,6 +97,23 @@ $("#bt_saveInteract").on('click', function () {
         },
         success: function (data) {
             window.location.replace('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
+        }
+    });
+});
+
+
+$("#bt_regenerateInteract").on('click', function () {
+    bootbox.confirm('{{Etes-vous sûr de vouloir regénerer toutes les intérations (cela peut être très long) ?}}', function (result) {
+       if (result) {
+            jeedom.interact.regenerateInteract({
+                interact: {query: result},
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                   $('#div_alert').showAlert({message: '{{Toutes les intérations ont été regénerées}}', level: 'success'});
+                }
+            });
         }
     });
 });

@@ -15,7 +15,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-$("#bt_genKeyAPI").on('click', function (event) {
+ $("#bt_genKeyAPI").on('click', function (event) {
     $.hideAlert();
     bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API de Jeedom ? Vous devrez reconfigurer tous les équipements communicant avec Jeedom et utilisant la clef API}}', function (result) {
         if (result) {
@@ -24,7 +24,7 @@ $("#bt_genKeyAPI").on('click', function (event) {
     });
 });
 
-$('#bt_forceApplyUPnP').on('click', function () {
+ $('#bt_forceApplyUPnP').on('click', function () {
     $.hideAlert();
     bootbox.confirm('{{Etes-vous sûr de vouloir appliquer les regles UPnP ?}}', function (result) {
         if (result) {
@@ -40,22 +40,34 @@ $('#bt_forceApplyUPnP').on('click', function () {
     });
 });
 
-$("#bt_nodeJsKey").on('click', function (event) {
+ $('#bt_forceSyncHour').on('click', function () {
+    $.hideAlert();
+    jeedom.forceSyncHour({
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            $('#div_alert').showAlert({message: 'Commande réalisée avec succès', level: 'success'});
+        }
+    });
+});
+
+ $("#bt_nodeJsKey").on('click', function (event) {
     $.hideAlert();
     genNodeJsKey();
 });
 
-$("#bt_flushMemcache").on('click', function (event) {
+ $("#bt_flushMemcache").on('click', function (event) {
     $.hideAlert();
     flushMemcache();
 });
 
-$("#bt_clearJeedomLastDate").on('click', function (event) {
+ $("#bt_clearJeedomLastDate").on('click', function (event) {
     $.hideAlert();
     clearJeedomDate();
 });
 
-$('.changeJeeNetworkMode').on('click', function () {
+ $('.changeJeeNetworkMode').on('click', function () {
     var mode = $(this).attr('data-mode');
     bootbox.confirm('{{Etes-vous sûr de vouloir changer le mode de Jeedom. Cette opération est très risquée. Si vous passer de Maitre à Esclave cela va supprimer tous vos équipements, objet, vue, plan, plugin non compatible avec le fonctionnement deporté. Aucun retour en arriere n\'est possible ?}}', function (result) {
         if (result) {
@@ -72,12 +84,12 @@ $('.changeJeeNetworkMode').on('click', function () {
     });
 });
 
-jwerty.key('ctrl+s', function (e) {
+ jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
     $("#bt_saveGeneraleConfig").click();
 });
 
-$("#bt_saveGeneraleConfig").on('click', function (event) {
+ $("#bt_saveGeneraleConfig").on('click', function (event) {
     $.hideAlert();
     saveConvertColor();
     jeedom.config.save({
@@ -101,7 +113,7 @@ $("#bt_saveGeneraleConfig").on('click', function (event) {
     });
 });
 
-$('#bt_accessDB').on('click', function () {
+ $('#bt_accessDB').on('click', function () {
     var href = $(this).attr('data-href');
     bootbox.confirm('{{Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et que en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\'accès est enregistré) ?}}', function (result) {
         if (result) {
@@ -118,7 +130,7 @@ $('#bt_accessDB').on('click', function () {
     });
 });
 
-$("#bt_testLdapConnection").on('click', function (event) {
+ $("#bt_testLdapConnection").on('click', function (event) {
     jeedom.config.save({
         configuration: $('#config').getValues('.configKey')[0],
         error: function (error) {
@@ -147,7 +159,7 @@ $("#bt_testLdapConnection").on('click', function (event) {
         }
     });
 
-    return false;
+return false;
 });
 
 $('#bt_addColorConvert').on('click', function () {
@@ -195,13 +207,13 @@ $('#bt_testMarketConnection').on('click', function () {
                     handleAjaxError(request, status, error);
                 },
                 success: function (data) { // si l'appel a bien fonctionné
-                    if (data.state != 'ok') {
-                        $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                        return;
-                    }
-                    $('#div_alert').showAlert({message: 'Connexion au market réussie', level: 'success'});
+                if (data.state != 'ok') {
+                    $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                    return;
                 }
-            });
+                $('#div_alert').showAlert({message: 'Connexion au market réussie', level: 'success'});
+            }
+        });
         }
     });
 });
@@ -218,13 +230,13 @@ function genKeyAPI() {
             handleAjaxError(request, status, error);
         },
         success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            $('#in_keyAPI').value(data.result);
+        if (data.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            return;
         }
-    });
+        $('#in_keyAPI').value(data.result);
+    }
+});
 }
 
 function genNodeJsKey() {
@@ -239,13 +251,13 @@ function genNodeJsKey() {
             handleAjaxError(request, status, error);
         },
         success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            $('#in_nodeJsKey').value(data.result);
+        if (data.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            return;
         }
-    });
+        $('#in_nodeJsKey').value(data.result);
+    }
+});
 }
 
 function clearJeedomDate() {
@@ -260,13 +272,13 @@ function clearJeedomDate() {
             handleAjaxError(request, status, error);
         },
         success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            $('#in_jeedomLastDate').value('');
+        if (data.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            return;
         }
-    });
+        $('#in_jeedomLastDate').value('');
+    }
+});
 }
 
 
@@ -282,13 +294,13 @@ function flushMemcache() {
             handleAjaxError(request, status, error);
         },
         success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            $('#div_alert').showAlert({message: '{{Cache vidé}}', level: 'success'});
+        if (data.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            return;
         }
-    });
+        $('#div_alert').showAlert({message: '{{Cache vidé}}', level: 'success'});
+    }
+});
 }
 
 
@@ -306,18 +318,18 @@ function printConvertColor() {
             handleAjaxError(request, status, error);
         },
         success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-
-            $('#table_convertColor tbody').empty();
-            for (var color in data.result) {
-                addConvertColor(color, data.result[color]);
-            }
-            modifyWithoutSave = false;
+        if (data.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            return;
         }
-    });
+
+        $('#table_convertColor tbody').empty();
+        for (var color in data.result) {
+            addConvertColor(color, data.result[color]);
+        }
+        modifyWithoutSave = false;
+    }
+});
 }
 
 function addConvertColor(_color, _html) {
@@ -352,11 +364,11 @@ function saveConvertColor() {
             handleAjaxError(request, status, error);
         },
         success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            modifyWithoutSave = false;
+        if (data.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            return;
         }
-    });
+        modifyWithoutSave = false;
+    }
+});
 }

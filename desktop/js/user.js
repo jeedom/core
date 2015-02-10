@@ -148,6 +148,9 @@ function printUsers() {
                 ligne += '<input type="checkbox" class="userAttr" data-l1key="rights" data-l2key="admin"/> Admin';
                 ligne += '</td>';
                 ligne += '<td>';
+                ligne += '<span class="userAttr" data-l1key="options" data-l2key="lastConnection"></span>';
+                ligne += '</td>';
+                ligne += '<td>';
                 ligne += '<a target="blank" href="' + data[i].directUrl + '">URL</a>';
                 ligne += '</td>';
                 ligne += '</tr>';

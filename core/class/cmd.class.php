@@ -531,6 +531,7 @@ class cmd {
         if (trim($_value) == '' && $_value !== false) {
             return '';
         }
+        $_value = trim(trim($_value),'"');
         if (@strpos('error', strtolower($_value)) !== false) {
             return $_value;
         }
@@ -551,14 +552,21 @@ class cmd {
                 case 'numeric':
                 if ($this->getConfiguration('calculValueOffset') != '') {
                     try {
-                        $test = new evaluate();
-                        $_value = $test->Evaluer(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
+                        $_value = evaluate(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
                     } catch (Exception $ex) {
 
                     }
                 }
+                if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
+                    $_value = round($_value, $this->getConfiguration('historizeRound'));
+                }
+                if($_value > $this->getConfiguration('maxValue', $_value) && $this->getConfiguration('maxValueReplace') == 1){
+                    $_value = $this->getConfiguration('maxValue', $_value);
+                }
+                if($_value < $this->getConfiguration('minValue', $_value) && $this->getConfiguration('minValueReplace') == 1){
+                    $_value = $this->getConfiguration('minValue', $_value);
+                }
                 return floatval($_value);
-                return $_value;
             }
         }
         return $_value;
@@ -746,7 +754,7 @@ class cmd {
                 }
                 if ($template == '' && config::byKey('active', 'widget') == 1 && config::byKey('market::autoInstallMissingWidget') == 1) {
                     try {
-                        $market = market::byLogicalId(str_replace('.cmd', '', $version . '.' . $template_name));
+                        $market = market::byLogicalId(str_replace('cmd.', '', $version . '.' . $template_name));
                         if (is_object($market)) {
                             $market->install();
                             $template = getTemplate('core', $version, $template_name, 'widget');
@@ -803,20 +811,36 @@ class cmd {
             $replace['#collectDate#'] = $this->getCollectDate();
             if ($this->getIsHistorized() == 1) {
                 $replace['#history#'] = 'history cursor';
+
+
+
                 if (config::byKey('displayStatsWidget') == 1 && strpos($template, '#displayHistory#') !== false) {
-                    $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));
-                    $replace['#displayHistory#'] = '';
-                    $historyStatistique = $this->getStatistique($startHist, date('Y-m-d H:i:s'));
-                    $replace['#averageHistoryValue#'] = round($historyStatistique['avg'], 1);
-                    $replace['#minHistoryValue#'] = round($historyStatistique['min'], 1);
-                    $replace['#maxHistoryValue#'] = round($historyStatistique['max'], 1);
-                    $tendance = $this->getTendance($startHist, date('Y-m-d H:i:s'));
-                    if ($tendance > config::byKey('historyCalculTendanceThresholddMax')) {
-                        $replace['#tendance#'] = 'fa fa-arrow-up';
-                    } else if ($tendance < config::byKey('historyCalculTendanceThresholddMin')) {
-                        $replace['#tendance#'] = 'fa fa-arrow-down';
-                    } else {
-                        $replace['#tendance#'] = 'fa fa-minus';
+                    $showStat  = true;
+                    if ($this->getDisplay('doNotShowStatOnDashboard') == 1 && $_version == 'dashboard') {
+                        $showStat = false;
+                    }
+                    if ($this->getDisplay('doNotShowStatOnView') == 1 && ($_version == 'dview' || $_version == 'mview')) {
+                        $showStat = false;
+                    }
+                    if ($this->getDisplay('doNotShowStatOnMobile') == 1 && $_version == 'mobile') {
+                        $showStat = false;
+                    }
+                    if($showStat){
+                        $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));
+                        $replace['#displayHistory#'] = '';
+                        $historyStatistique = $this->getStatistique($startHist, date('Y-m-d H:i:s'));
+                        $replace['#averageHistoryValue#'] = round($historyStatistique['avg'], 1);
+                        $replace['#minHistoryValue#'] = round($historyStatistique['min'], 1);
+                        $replace['#maxHistoryValue#'] = round($historyStatistique['max'], 1);
+                        $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculTendance') . ' hour'));
+                        $tendance = $this->getTendance($startHist, date('Y-m-d H:i:s'));
+                        if ($tendance > config::byKey('historyCalculTendanceThresholddMax')) {
+                            $replace['#tendance#'] = 'fa fa-arrow-up';
+                        } else if ($tendance < config::byKey('historyCalculTendanceThresholddMin')) {
+                            $replace['#tendance#'] = 'fa fa-arrow-down';
+                        } else {
+                            $replace['#tendance#'] = 'fa fa-minus';
+                        }
                     }
                 }
             }
@@ -869,10 +893,6 @@ class cmd {
             return;
         }
         $collectDate = ($this->getCollectDate() != '' ) ? strtotime($this->getCollectDate()) : '';
-        $nowtime = strtotime('now');
-        if ($this->getCollectDate() != '' && (($nowtime - $collectDate) > 3600 || ($nowtime + 300 ) < $collectDate)) {
-            return;
-        }
         $eqLogic = $this->getEqLogic();
         if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
             return;
@@ -882,6 +902,7 @@ class cmd {
         cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
         scenario::check($this);
         $this->setCollect(0);
+        $eqLogic->emptyCacheWidget();
         $nodeJs = array(array('cmd_id' => $this->getId()));
         $foundInfo = false;
         foreach (self::byValue($this->getId()) as $cmd) {
@@ -905,7 +926,6 @@ class cmd {
             $this->addHistoryValue($value, $this->getCollectDate());
         }
         $this->checkReturnState($value);
-        $eqLogic->emptyCacheWidget();
     }
 
     public function checkReturnState($_value) {
@@ -931,8 +951,8 @@ class cmd {
         $mc->invalid();
     }
 
-    public function emptyHistory() {
-        return history::emptyHistory($this->getId());
+    public function emptyHistory($_date = '') {
+        return history::emptyHistory($this->getId(),$_date);
     }
 
     public function addHistoryValue($_value, $_datetime = '') {
@@ -1168,6 +1188,9 @@ class cmd {
     }
 
     public function setConfiguration($_key, $_value) {
+        if($_key == 'actionCodeAccess' && !preg_match('/^[0-9a-f]{40}$/i', $_value) && $_value != ''){
+            $_value = sha1($_value);
+        }
         $this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
     }
 

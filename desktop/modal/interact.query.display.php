@@ -11,9 +11,6 @@ sendVarToJS('interactDisplay_interactDef_id', init('interactDef_id'));
 if (count($interactQueries) == 0) {
     throw new Exception('{{Aucune phrase trouvée}}');
 }
-include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
-include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
-include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
 ?>
 
 <div style="display: none;" id="md_displayInteractQueryAlert"></div>
@@ -35,8 +32,16 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
             echo '<tr class="' . $trClass . '" data-interactQuery_id="' . $interactQuery->getId() . '">';
             echo '<td>' . $interactQuery->getQuery() . '</td>';
             echo '<td>';
+            $link_id = '';
             if ($interactQuery->getLink_type() == 'cmd') {
-                echo str_replace('#', '', cmd::cmdToHumanReadable('#' . $interactQuery->getLink_id() . '#'));
+                foreach (explode('&&', $interactQuery->getLink_id() ) as $cmd_id) {
+                    $cmd = cmd::byId($cmd_id);
+                    if (is_object($cmd)) {
+                        $link_id .= cmd::cmdToHumanReadable('#' . $cmd->getId() . '# && ');
+                    }
+
+                }
+                echo str_replace('#', '', trim(trim($link_id),'&&'));
             }
             echo '</td>';
             echo '<td>';
@@ -92,13 +97,13 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
                 });
             }
         });
-    });
+});
 
-    $('#table_interactQuery .changeEnable').on('click', function () {
-        var tr = $(this).closest('tr');
-        var btn = $(this);
-        $.ajax({
-            type: 'POST',
+$('#table_interactQuery .changeEnable').on('click', function () {
+    var tr = $(this).closest('tr');
+    var btn = $(this);
+    $.ajax({
+        type: 'POST',
             url: "core/ajax/interact.ajax.php", // url du fichier php
             data: {
                 action: 'changeState',
@@ -127,6 +132,6 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
                 }
             }
         });
-    });
+});
 
 </script>

@@ -35,50 +35,98 @@ jeedom.cmd.execute = function(_params) {
         global: false,
         pre_success: function(data) {
             if (data.state != 'ok') {
-                if ('function' != typeof(_params.error)) {
-                    $('#div_alert').showAlert({
-                        message: data.result,
-                        level: 'danger'
-                    });
+                if(data.code == -32005){
+                    if ($.mobile) {
+                     var result = prompt("Veuillez indiquer le code ?", "")
+                     if(result != null){
+                         _params.codeAccess = result;
+                         jeedom.cmd.execute(_params);
+                     }else{
+                        if ('function' != typeof(_params.error)) {
+                            $('#div_alert').showAlert({
+                                message: data.result,
+                                level: 'danger'
+                            });
+                        }
+                        if (notify) {
+                            eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
+                            setTimeout(function() {
+                                eqLogic.find('.statusCmd').empty();
+                            }, 3000);
+                        }
+                        return data;
+                    }
+                }else{
+                 bootbox.prompt("Veuillez indiquer le code ?", function (result) {
+                    if(result != null){
+                     _params.codeAccess = result;
+                     jeedom.cmd.execute(_params);
+                 }else{
+                    if ('function' != typeof(_params.error)) {
+                        $('#div_alert').showAlert({
+                            message: data.result,
+                            level: 'danger'
+                        });
+                    }
+                    if (notify) {
+                        eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
+                        setTimeout(function() {
+                            eqLogic.find('.statusCmd').empty();
+                        }, 3000);
+                    }
+                    return data;
                 }
-                if (notify) {
-                    eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
-                    setTimeout(function() {
-                        eqLogic.find('.statusCmd').empty();
-                    }, 3000);
-                }
-                return data;
+
+            });
+             }
+         }else{
+            if ('function' != typeof(_params.error)) {
+                $('#div_alert').showAlert({
+                    message: data.result,
+                    level: 'danger'
+                });
             }
             if (notify) {
-                eqLogic.find('.statusCmd').empty().append('<i class="fa fa-rss"></i>');
+                eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
                 setTimeout(function() {
                     eqLogic.find('.statusCmd').empty();
                 }, 3000);
             }
             return data;
         }
-    };
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/cmd.ajax.php';
-    var cache = 1;
-    if (_params.cache !== undefined) {
-        cache = _params.cache;
+    if (notify) {
+        eqLogic.find('.statusCmd').empty().append('<i class="fa fa-rss"></i>');
+        setTimeout(function() {
+            eqLogic.find('.statusCmd').empty();
+        }, 3000);
     }
-    paramsAJAX.data = {
-        action: 'execCmd',
-        id: _params.id,
-        cache: cache,
-        value: _params.value || ''
-    };
-    $.ajax(paramsAJAX);
+    return data;
+}
 };
+try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+} catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+}
+var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+var paramsAJAX = jeedom.private.getParamsAJAX(params);
+paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+var cache = 1;
+if (_params.cache !== undefined) {
+    cache = _params.cache;
+}
+paramsAJAX.data = {
+    action: 'execCmd',
+    id: _params.id,
+    codeAccess: _params.codeAccess,
+    cache: cache,
+    value: _params.value || ''
+};
+$.ajax(paramsAJAX);
+};
+
 jeedom.cmd.test = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {
@@ -199,6 +247,7 @@ jeedom.cmd.test = function(_params) {
     };
     $.ajax(paramsAJAX);
 };
+
 jeedom.cmd.refreshValue = function(_params) {
     var cmd = $('.cmd[data-cmd_id=' + _params.id + ']');
     if (cmd.html() != undefined && cmd.closest('.eqLogic').attr('data-version') != undefined) {
@@ -234,6 +283,7 @@ jeedom.cmd.refreshValue = function(_params) {
         $.ajax(paramsAJAX);
     }
 };
+
 jeedom.cmd.save = function(_params) {
     var paramsRequired = ['cmd'];
     var paramsSpecifics = {
@@ -258,7 +308,8 @@ jeedom.cmd.save = function(_params) {
         cmd: json_encode(_params.cmd)
     };
     $.ajax(paramsAJAX);
-}
+};
+
 jeedom.cmd.byId = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {
@@ -285,7 +336,8 @@ jeedom.cmd.byId = function(_params) {
         id: _params.id
     };
     $.ajax(paramsAJAX);
-}
+};
+
 jeedom.cmd.byHumanName = function(_params) {
     var paramsRequired = ['humanName'];
     var paramsSpecifics = {
@@ -312,7 +364,8 @@ jeedom.cmd.byHumanName = function(_params) {
         humanName: _params.humanName
     };
     $.ajax(paramsAJAX);
-}
+};
+
 jeedom.cmd.usedBy = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
@@ -330,7 +383,8 @@ jeedom.cmd.usedBy = function(_params) {
         id: _params.id
     };
     $.ajax(paramsAJAX);
-}
+};
+
 jeedom.cmd.changeType = function(_cmd, _subType) {
     var selSubType = '<select style="width : 120px;margin-top : 5px;" class="cmdAttr form-control input-sm" data-l1key="subType">';
     var type = _cmd.find('.cmdAttr[data-l1key=type]').value();
@@ -359,6 +413,7 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
         }
     });
 };
+
 jeedom.cmd.changeSubType = function(_cmd) {
     jeedom.getConfiguration({
         key: 'cmd:type:' + _cmd.find('.cmdAttr[data-l1key=type]').value() + ':subtype:' + _cmd.find('.cmdAttr[data-l1key=subType]').value(),
@@ -432,6 +487,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
         }
     });
 };
+
 jeedom.cmd.availableType = function() {
     var selType = '<select style="width : 120px; margin-bottom : 3px;" class="cmdAttr form-control input-sm" data-l1key="type">';
     selType += '<option value="info">{{Info}}</option>';
@@ -439,6 +495,7 @@ jeedom.cmd.availableType = function() {
     selType += '</select>';
     return selType;
 };
+
 jeedom.cmd.getSelectModal = function(_options, _callback) {
     if (!isset(_options)) {
         _options = {};
@@ -469,6 +526,8 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
             retour.cmd = {};
             retour.human = mod_insertCmd.getValue();
             retour.cmd.id = mod_insertCmd.getCmdId();
+            retour.cmd.type = mod_insertCmd.getType();
+            retour.cmd.subType = mod_insertCmd.getSubType();
             if ($.trim(retour) != '' && 'function' == typeof(_callback)) {
                 _callback(retour);
             }
@@ -477,6 +536,7 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
     });
     $('#mod_insertCmdValue').dialog('open');
 };
+
 jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
     var html = '';
     $.ajax({ // fonction permettant de faire de l'ajax
@@ -513,6 +573,7 @@ jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
 });
 return html;
 };
+
 jeedom.cmd.normalizeName = function(_tagname) {
     var arrayOn = ['on', 'marche', 'go', 'lock'];
     var arrayOff = ['off', 'arret', 'arrêt', 'stop', 'unlock'];

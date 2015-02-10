@@ -1,3 +1,54 @@
+*08/02/2015* _v1.162.0_
+
+- Support de la notion de plugin privé
+
+*31/01/2015* _v1.161.0_
+
+- Possibilité de mettre un code sur une commande de type action (à partir de la fenetre de configuration avancé de l'action), uniquement sur les widget (pas de code demandé pour les scénarios)
+
+*30/01/2015* _v1.161.0_
+
+- Ajout action gotodesign dans les scénarios pour changer le design afficher sur tous les navigateurs qui affichage un design par le design demandé
+
+*28/01/2015* _v1.161.0_
+
+- Ajout d'un bouton pour regénerer toutes les interactions
+- Ajout d'option pour forcer le retour à la ligne avant/après un widget
+
+*26/01/2015* _v1.161.0_
+
+- Ajout fonction averageBetween, maxBetween et minBetween pour les scénarios
+
+*25/01/2015* _v1.160.0_
+
+- Ajout d'une fenêtre d'aide pour la mise en place de conditions dans les scénarios
+
+*23/01/2015* _v1.160.0_
+
+- Ajout action "return" dans les scénarios, pour retourner un message spécifique suite a une intération. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ca marche.
+- Ajout d'une vérification de la consistence après chaque mise à jour
+- Possibilité de supprimé l'historique d'une commande avant une date donnée
+
+*21/01/2015* _v1.160.0_
+
+- Desactivation des contraintes sur la base lors de la mise à jour
+
+*20/01/2015* _v1.160.0_
+
+- Ajout du niveau de batterie sur les widgets
+
+*19/01/2015* _v1.160.0_
+
+- Correction des bugs de regression du parser
+- Possibilité d'uploader une archive de plugin directement à partir de l'interface
+
+*16/01/2015* _v1.159.0_
+
+- Utilisation de composer
+- Changement de la librairie d'interpretation d'expression 
+- Support des couleurs dans les interactions
+- Multiple action sur les interactions autorisées (séparé par des &&)
+
 *12/01/2015* _v1.156.0_
 
 - Correction de 2 bugs sur l'export et le partage des scénarios

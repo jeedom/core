@@ -12,6 +12,7 @@ sendVarToJS('select_id', init('id', '-1'));
             <ul id="ul_plugin" class="nav nav-list bs-sidenav">
                 <center>
                     <a class="btn btn-default btn-sm tooltips" id="bt_displayMarket" style="display: inline-block;"><i class="fa fa-shopping-cart"></i> {{Market}}</a>
+                    <input class="expertModeVisible" id="bt_uploadPlugin" type="file" name="file" data-url="core/ajax/plugin.ajax.php?action=pluginupload" style="display : inline-block;">
                 </center>
                 <li class="filter" style="margin-bottom: 5px;margin-top: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
                 <?php
@@ -42,6 +43,7 @@ sendVarToJS('select_id', init('id', '-1'));
         </div>
     </div>
     <div class="col-md-9 col-sm-8" id="div_confPlugin" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
+
         <div>
             <?php
             if (config::byKey('jeedom::licence') < 5 || config::byKey('market::showPromotion') == 1) {
@@ -57,6 +59,7 @@ sendVarToJS('select_id', init('id', '-1'));
                 <span style='font-weight: bold;'>N'oubliez pas d'activer le plugin pour pouvoir vous servir de celui-ci</span><br/>
                 <span id="span_plugin_toggleState"></span><br/><br/>
                 <span id="span_plugin_market"></span>
+                <span id="span_plugin_delete"></span>
                 <span id="span_plugin_doc"></span>
             </center>
             <br/>

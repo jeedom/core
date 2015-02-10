@@ -50,13 +50,13 @@ class interactQuery {
         FROM interactQuery
         WHERE query=:query';
         if($_interactDef_id != null){
-         $values['interactDef_id'] = $_interactDef_id;
-         $sql .= ' AND interactDef_id=:interactDef_id';
-     }
-     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
- }
+           $values['interactDef_id'] = $_interactDef_id;
+           $sql .= ' AND interactDef_id=:interactDef_id';
+       }
+       return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+   }
 
- public static function byInteractDefId($_interactDef_id, $_enable = false) {
+   public static function byInteractDefId($_interactDef_id, $_enable = false) {
     $values = array(
         'interactDef_id' => $_interactDef_id
         );
@@ -108,6 +108,18 @@ public static function recognize($_query) {
     GROUP BY id
     HAVING score > 1';
     $queries = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL,PDO::FETCH_CLASS, __CLASS__);
+    if(count($queries) == 0){
+        $sql = 'SELECT ' . DB::buildField(__CLASS__) .'
+        FROM interactQuery 
+        WHERE enable = 1
+        AND query=:query';
+        $queries = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW,PDO::FETCH_CLASS, __CLASS__);
+        if(is_object($queries)){
+            return $queries;
+        }
+        $queries = self::all();
+    }
+    log::add('interact','debug','Result : '.print_r($queries,true));
     $caracteres = array(
         'À' => 'a', 'Á' => 'a', 'Â' => 'a', 'Ä' => 'a', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ä' => 'a', '@' => 'a',
         'È' => 'e', 'É' => 'e', 'Ê' => 'e', 'Ë' => 'e', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', '€' => 'e',
@@ -125,7 +137,8 @@ public static function recognize($_query) {
         foreach ($matches[1] as $match) {
             $input = str_replace('#' . $match . '#', '', $input);
         }
-        $lev = levenshtein($_query, $input);
+        $lev = levenshtein($input,$_query);
+        log::add('interact','debug','Je compare : '.$_query.' avec '.$input.' => '.$lev);
         if ($lev == 0) {
             $shortest = 0;
             $closest = $query;
@@ -138,10 +151,10 @@ public static function recognize($_query) {
 
     }
     if(str_word_count($_query) == 1 && $shortest > 1){
-       log::add('interact','debug','Correspondance trop éloigné (limite à 1 du à la presence d\'un seul mots) : '.$shortest);
-       return null;
-   }
-   if(config::byKey('interact::confidence') > 0 && $shortest > config::byKey('interact::confidence')){
+     log::add('interact','debug','Correspondance trop éloigné (limite à 1 du à la presence d\'un seul mots) : '.$shortest);
+     return null;
+ }
+ if(config::byKey('interact::confidence') > 0 && $shortest > config::byKey('interact::confidence')){
     log::add('interact','debug','Correspondance trop éloigné : '.$shortest);
     return null;
 }
@@ -176,9 +189,9 @@ public static function tryToReply($_query, $_parameters = array()) {
         $reply = self::dontUnderstand($_parameters);
     }
     if(is_object($interactQuery)){
-        log::add('interaction','debug','J\'ai reçu : '.$_query."\nJ'ai compris : ".$interactQuery->getQuery()."\nJ'ai répondu : ".$reply);
+        log::add('interact','debug','J\'ai reçu : '.$_query."\nJ'ai compris : ".$interactQuery->getQuery()."\nJ'ai répondu : ".$reply);
     }else{
-        log::add('interaction','debug','J\'ai reçu : '.$_query."\nJe n'ai rien compris\nJ'ai répondu : ".$reply);
+        log::add('interact','debug','J\'ai reçu : '.$_query."\nJe n'ai rien compris\nJ'ai répondu : ".$reply);
     }
     return ucfirst($reply);
 }
@@ -220,7 +233,7 @@ public static function dontUnderstand($_parameters) {
         );
     if (isset($_parameters['profile'])) {
         $notUnderstood[] = __('Désolé ', __FILE__) . $_parameters['profile'] . __(' je n\'ai pas compris', __FILE__);
-        $notUnderstood[] = __('Désolé ', __FILE__) . $_parameters['profile'] . __(' je n\'ai pas compris votre demande', __FILE__);
+        $notUnderstood[] = __('Désolé ', __FILE__) . $_parameters['profile'] . __(' je n\'ai pas compris ta demande', __FILE__);
     }
     $random = rand(0, count($notUnderstood) - 1);
     return $notUnderstood[$random];
@@ -284,6 +297,7 @@ public function executeAndReply($_parameters) {
         if (!is_object($scenario)) {
             return __('Impossible de trouver le scénario correspondant', __FILE__);
         }
+        log::add('interact','debug','Execution du scénario : '.$scenario->getHumanName().' => '.$interactDef->getOptions('scenario_action'));
         $interactDef = $this->getInteractDef();
         if (!is_object($interactDef)) {
             return __('Impossible de trouver la définition de l\'interaction', __FILE__);
@@ -297,7 +311,11 @@ public function executeAndReply($_parameters) {
         $reply = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
         switch ($interactDef->getOptions('scenario_action')) {
             case 'start':
-            $scenario->launch(false, __('Scenario exécuté sur interaction (S.A.R.A.H, SMS...)', __FILE__));
+            $return = $scenario->launch(false, __('Scenario exécuté sur interaction (S.A.R.A.H, SMS...)', __FILE__));
+            if(is_string($return) && $return != ''){
+                $return = str_replace(array_keys($replace), $replace, $return);
+                return $return;
+            }
             return $reply;
             case 'stop':
             $scenario->stop();
@@ -327,39 +345,51 @@ public function executeAndReply($_parameters) {
     $replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
 
     if ($this->getLink_type() == 'cmd') {
-        $cmd = cmd::byId($this->getLink_id());
-        if (!is_object($cmd)) {
-            log::add('interact', 'error', __('Commande : ', __FILE__) . $this->getLink_id() . __(' introuvable veuillez renvoyer les listes des commandes', __FILE__));
-            return __('Commande introuvable - vérifiez si elle existe toujours', __FILE__);
-        }
-        $replace['#commande#'] = $cmd->getName();
-        if (isset($synonymes[strtolower($cmd->getName())])) {
-            $replace['#commande#'] = $synonymes[strtolower($cmd->getName())][rand(0, count($synonymes[strtolower($cmd->getName())]) - 1)];
-        }
-        $replace['#objet#'] = '';
-        $replace['#equipement#'] = '';
-        
-        $eqLogic = $cmd->getEqLogic();
-        if (is_object($eqLogic)) {
-            $replace['#equipement#'] = $eqLogic->getName();
-            $object = $eqLogic->getObject();
-            if (is_object($object)) {
-                $replace['#objet#'] = $object->getName();
-            }
-        }
+        foreach (explode('&&', $this->getLink_id()) as $cmd_id) {
+            $cmd = cmd::byId($cmd_id);
 
-        $replace['#unite#'] = $cmd->getUnite();
-        if ($cmd->getType() == 'action') {
-            $options = null;
-            if($cmd->getSubType() == 'slider'){
-                preg_match_all("/([0-9]*)/", $_parameters['dictation'], $matches);
-                foreach ($matches[1] as $number) {
-                    if (is_numeric($number)) {
-                        $options['slider'] = $number;
+            if (!is_object($cmd)) {
+                log::add('interact', 'error', __('Commande : ', __FILE__) . $this->getLink_id() . __(' introuvable veuillez renvoyer les listes des commandes', __FILE__));
+                return __('Commande introuvable - vérifiez si elle existe toujours', __FILE__);
+            }
+
+            $replace['#commande#'] = $cmd->getName();
+            if (isset($synonymes[strtolower($cmd->getName())])) {
+                $replace['#commande#'] = $synonymes[strtolower($cmd->getName())][rand(0, count($synonymes[strtolower($cmd->getName())]) - 1)];
+            }
+            $replace['#objet#'] = '';
+            $replace['#equipement#'] = '';
+
+            $eqLogic = $cmd->getEqLogic();
+            if (is_object($eqLogic)) {
+                $replace['#equipement#'] = $eqLogic->getName();
+                $object = $eqLogic->getObject();
+                if (is_object($object)) {
+                    $replace['#objet#'] = $object->getName();
+                }
+            }
+
+            $replace['#unite#'] = $cmd->getUnite();
+            if ($cmd->getType() == 'action') {
+                $options = null;
+                if($cmd->getSubType() == 'slider'){
+                    preg_match_all("/([0-9]*)/", $_parameters['dictation'], $matches);
+                    foreach ($matches[1] as $number) {
+                        if (is_numeric($number)) {
+                            $options['slider'] = $number;
+                        }
+                    }
+                }
+                if($cmd->getSubType() == 'color'){
+                    $colors = config::byKey('convertColor');
+                    foreach (explode(' ', $_parameters['dictation']) as $word) {
+                      if(isset($colors[strtolower($word)])){
+                        $options['color'] = $colors[strtolower($word)];
                     }
                 }
             }
             try {
+                log::add('interact','debug','Execution de la commande : '.$cmd->getHumanName().' => '.print_r($options,true));
                 if ($cmd->execCmd($options) === false) {
                     return __('Impossible d\'exécuter la commande', __FILE__);
                 }
@@ -386,7 +416,8 @@ public function executeAndReply($_parameters) {
             }
         }
     }
-    return scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
+}
+return scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
 }
 
 public function getInteractDef() {

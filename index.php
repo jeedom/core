@@ -58,25 +58,47 @@ if (!isset($_GET['v'])) {
                     echo '</div>';
                 }
             }
-        } else {
-            include_file('desktop', 'index', 'php');
-        }
-    } else if ($_GET['v'] == "m") {
-        if (isset($_GET['modal'])) {
-            include_file('mobile', init('modal'), 'modal', init('plugin'));
-        } else {
-            if (isset($_GET['p'])) {
-                if (isset($_GET['m'])) {
-                    include_file('mobile', $_GET['p'], 'html', $_GET['m']);
-                } else {
-                    include_file('mobile', $_GET['p'], 'html');
+            die();
+        } if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
+            include_file('core', 'authentification', 'php');
+            try {
+                if (!isConnect()) {
+                    throw new Exception('{{401 - Accès non autorisé}}');
                 }
-            } else {
-                include_file('mobile', 'index', 'html');
+                include_file('desktop', init('p'), 'php', init('m'));
+            } catch (Exception $e) {
+                $_folder = 'desktop/php';
+                if (init('m') != '') {
+                    $_folder = 'plugins/' . init('m') . '/' . $_folder;
+                }
+                    ob_end_clean(); //Clean pile after expetion (to prevent no-traduction)
+                    echo '<div class="alert alert-danger div_alert">';
+                    echo translate::exec(displayExeption($e), $_folder . '/' . init('modal') . '.php');
+                    echo '</div>';
+
+                }
+                die();
+            }else {
+                include_file('desktop', 'index', 'php');
+                die();
             }
+
+        } else if ($_GET['v'] == "m") {
+            if (isset($_GET['modal'])) {
+                include_file('mobile', init('modal'), 'modal', init('plugin'));
+            } else {
+                if (isset($_GET['p'])) {
+                    if (isset($_GET['m'])) {
+                        include_file('mobile', $_GET['p'], 'html', $_GET['m']);
+                    } else {
+                        include_file('mobile', $_GET['p'], 'html');
+                    }
+                } else {
+                    include_file('mobile', 'index', 'html');
+                }
+            }
+        } else {
+            echo "Erreur veuillez contacter l'administrateur";
         }
-    } else {
-        echo "Erreur veuillez contacter l'administrateur";
     }
-}
-?>
+    ?>

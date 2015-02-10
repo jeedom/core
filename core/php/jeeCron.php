@@ -157,16 +157,19 @@ if (init('cron_id') != '') {
                     }
                 }
                 if ($cron->getState() == 'run' && ($duration / 60) >= $cron->getTimeout()) {
-                    $cron->stop();
+                    $cron->stop(); 
                 }
 
                 switch ($cron->getState()) {
                     case 'starting':
-                        $cron->run();
-                        break;
+                    $cron->run();
+                    break;
                     case 'stoping':
-                        $cron->halt();
-                        break;
+                    $cron->halt();
+                    if($cron->getEnable() == 1 && $cron->getDeamon() == 1 && !$cron->running()){
+                        $cron->run();
+                    }
+                    break;
                 }
             } catch (Exception $e) {
                 if ($cron->getOnce() != 1) {

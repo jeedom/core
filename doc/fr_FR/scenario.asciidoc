@@ -35,7 +35,7 @@ Il existe des déclencheur spécifique (autre que ceux fournis par les commandes
 Attention à bien mettre des ' ou " (quote ou double quote) lors de l'utilisation de chaîne de caractère. Ex : "#[Object][Equipement][Info]#" = "oui"
 Vous pouvez utiliser n'importe lequel des symboles suivant pour les opérateurs : 
 
-- = : égal
+- == : égal
 - > : supérieur
 - >= : supérieur ou égal
 - < : inférieur
@@ -73,7 +73,13 @@ Vous pouvez aussi utiliser les tags suivants :
 - min(commande,période) : donne le minimum de la commande sur la période (period=[month,day,hour,min])
     * Ex : min(\#[Salle de bain][Hydrometrie][Humidité]#,15 min) : Renvoi le minimum de la commande sur les 15 dernières minutes
 - max(commande,période) : donne le maximum de la commande sur la période (period=[month,day,hour,min])
-    * Ex : max(\#[Salle de bain][Hydrometrie][Humidité]#,1 day) : Renvoi le maximum de la commande sur les 7 derniers jours
+    * Ex : max(\#[Salle de bain][Hydrometrie][Humidité]#,7 day) : Renvoi le maximum de la commande sur les 7 derniers jours
+- averageBetween(commande,start,end) : donne la moyenne de la commande entre les 2 bornes demandées (sous la forme Y-m-d H:i:s)
+    * Ex : averageBetween(\#[Salle de bain][Hydrometrie][Humidité]#,2015-01-01 00:00:00,2015-01-15 00:00:00) : Renvoi la moyenne de la commande entre le 1 janvier 2015 et le 15 janvier 2015
+- maxBetween(commande,start,end) : donne le maximum de la commande entre les 2 bornes demandées (sous la forme Y-m-d H:i:s)
+    * Ex : maxBetween(\#[Salle de bain][Hydrometrie][Humidité]#,2015-01-01 00:00:00,2015-01-15 00:00:00) : Renvoi le maximum de la commande entre le 1 janvier 2015 et le 15 janvier 2015
+- minBetween(commande,start,end) : donne le minimum de la commande entre les 2 bornes demandées (sous la forme Y-m-d H:i:s)
+    * Ex : minBetween(\#[Salle de bain][Hydrometrie][Humidité]#,2015-01-01 00:00:00,2015-01-15 00:00:00) : Renvoi le minimum de la commande entre le 1 janvier 2015 et le 15 janvier 2015
 - tendance(commande,période,seuil) : donne la tendance de la commande sur la période (period=[month,day,hour,min])
     * Ex : tendance(\#[Salle de bain][Hydrometrie][Humidité]#,1 hour,0.1) : Renvoi 1 si en augmentation, 0 si constant et -1 si en diminution
            Le seuil permet de definir la sensibilitée, attention le calcul du seuil utilise la calcul de link:/http://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s[moindre carrés]
@@ -99,7 +105,7 @@ Vous pouvez aussi utiliser les tags suivants :
     * Ex : time(\#time\# + 30) : s'il est 16h50 renverra : 1650 + 30 = 1720
 - formatTime(time) : permet de formater le retour d'une chaine #time#
     * Ex : formatTime(1650) : renverra 16h50
-- collectDate(cmd,[format]) : renvoit la date de la derniere donnée pour la commande donnée en paramètre, le 2eme paramètre optionel permet de spécifier le format de retour (détails link:http://php.net/manual/fr/function.date.php[ici])
+- collectDate(cmd,[format]) : renvoit la date de la derniere donnée pour la commande donnée en paramètre, le 2eme paramètre optionel permet de spécifier le format de retour (détails link:http://php.net/manual/fr/function.date.php[ici]). Un retour de -1 signifi que la commande est introuvable, et -2 que la commande n'est pas de type info
     * Ex : collectDate(\#[Salle de bain][Hydrometrie][Humidité]#) : renverra 2015-01-01 17:45:12
             
 ===== Action
@@ -112,6 +118,8 @@ En plus des commandes domotiques vous avez accès aux fonctions suivantes :
 - stop : arrête le scénario
 - icon : permet de changer l'icone de représentation du scenario
 - say : permet de faire dire un texte à jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)
+- return : retourne un message à la fin du scénario, ne sert que pour retourner un message spécifique suite a une intération. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ca marche
+- gotodesign : change le design afficher sur tous les navigateurs qui affichage un design par le design demandé
                
 Vous pouvez aussi utiliser les tags suivants dans les options : 
 

@@ -2,10 +2,6 @@
 if (!hasRight('displayview', true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
-
-include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
-include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
-
 sendVarToJS('cmd_widgetDashboard', cmd::availableWidget('dashboard'));
 sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
 ?>

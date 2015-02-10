@@ -2,8 +2,6 @@
 if (!isConnect()) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
-include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
-include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
 ?>
 
 <div class="panel-group" id="accordion">

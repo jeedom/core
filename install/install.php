@@ -187,7 +187,10 @@ try {
                 if (file_exists($updateSql)) {
                     try {
                         echo __("Désactivation des contraintes...", __FILE__);
-                        DB::Prepare("SET foreign_key_checks = 0", array(), DB::FETCH_TYPE_ROW);
+                        $sql = "SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+                                SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+                                SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';";
+                        DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
                         echo __("OK\n", __FILE__);
                     } catch (Exception $e) {
                         echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
@@ -206,7 +209,10 @@ try {
                     }
                     try {
                         echo __("Réactivation des contraintes...", __FILE__);
-                        DB::Prepare("SET foreign_key_checks = 1", array(), DB::FETCH_TYPE_ROW);
+                        $sql = "SET SQL_MODE=@OLD_SQL_MODE;
+                                SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+                                SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;";
+                        DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
                         echo __("OK\n", __FILE__);
                     } catch (Exception $e) {
                         echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
@@ -232,6 +238,16 @@ try {
                     $updateSql = dirname(__FILE__) . '/update/' . $nextVersion . '.sql';
                     if (file_exists($updateSql)) {
                         try {
+                            echo __("Désactivation des contraintes...", __FILE__);
+                            $sql = "SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+                                    SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+                                    SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';";
+                            DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+                            echo __("OK\n", __FILE__);
+                        } catch (Exception $e) {
+                            echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+                        }
+                        try {
                             echo __("Mise à jour de la base de données en version : ", __FILE__) . $nextVersion . "...";
                             $sql = file_get_contents($updateSql);
                             DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
@@ -242,6 +258,16 @@ try {
                             } else {
                                 echo '***ERREUR*** ' . $e->getMessage();
                             }
+                        }
+                         try {
+                            echo __("Réactivation des contraintes...", __FILE__);
+                            $sql = "SET SQL_MODE=@OLD_SQL_MODE;
+                                    SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+                                    SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;";
+                            DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+                            echo __("OK\n", __FILE__);
+                        } catch (Exception $e) {
+                            echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
                         }
                     }
                     $updateScript = dirname(__FILE__) . '/update/' . $nextVersion . '.php';
@@ -260,6 +286,13 @@ try {
                     }
                     $curentVersion = $nextVersion;
                 }
+            }
+              try {
+                echo __("Vérification de la consistence de Jeedom...", __FILE__);
+                require_once dirname(__FILE__).'/consistency.php';
+                echo __("OK\n", __FILE__);
+            } catch (Exception $ex) {
+                echo __("***ERREUR*** ", __FILE__) . $ex->getMessage() . "\n";
             }
             try {
                 echo __("Vérification de la mise à jour...", __FILE__);
@@ -307,50 +340,7 @@ try {
         echo __("Post installe...\n", __FILE__);
         nodejs::updateKey();
         config::save('api', config::genKey());
-        echo __("Ajout des taches cron\n", __FILE__);
-        $cron = new cron();
-        $cron->setClass('history');
-        $cron->setFunction('historize');
-        $cron->setSchedule('*/5 * * * * *');
-        $cron->setTimeout(5);
-        $cron->save();
-        $cron = new cron();
-        $cron->setClass('scenario');
-        $cron->setFunction('check');
-        $cron->setSchedule('* * * * * *');
-        $cron->setTimeout(5);
-        $cron->save();
-        $cron = new cron();
-        $cron->setClass('cmd');
-        $cron->setFunction('collect');
-        $cron->setSchedule('*/5 * * * * *');
-        $cron->setTimeout(5);
-        $cron->save();
-        $cron = new cron();
-        $cron->setClass('plugin');
-        $cron->setFunction('cronDaily');
-        $cron->setSchedule('00 00 * * *');
-        $cron->setTimeout(5);
-        $cron->save();
-        $cron = new cron();
-        $cron->setClass('plugin');
-        $cron->setFunction('cronHourly');
-        $cron->setSchedule('00 * * * *');
-        $cron->setTimeout(5);
-        $cron->save();
-        $cron = new cron();
-        $cron->setClass('history');
-        $cron->setFunction('archive');
-        $cron->setSchedule('00 * * * * *');
-        $cron->setTimeout(20);
-        $cron->save();
-        $cron = new cron();
-        $cron->setClass('jeedom');
-        $cron->setFunction('cron');
-        $cron->setSchedule('* * * * * *');
-        $cron->setTimeout(60);
-        $cron->save();
-
+        require_once dirname(__FILE__).'/consistency.php';
         echo __("Ajout de l\'utilisateur (admin,admin)\n", __FILE__);
         $user = new user();
         $user->setLogin('admin');

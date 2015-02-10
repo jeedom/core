@@ -163,10 +163,15 @@ class scenarioElement {
                 $cmd.= ' >> ' . log::getPathToLog('scenario_element_execution') . ' 2>&1 &';
                 exec($cmd);
             } else {
-                $cron = cron::byClassAndFunction('scenario', 'doIn', array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s')));
-                if (!is_object($cron)) {
-                    $cron = new cron();
+                $crons = cron::searchClassAndFunction('scenario','doIn','"scenarioElement_id":'.$this->getId());
+                if(is_array($crons)){
+                    foreach ($crons as $cron) {
+                        if($cron->getState() != 'run'){
+                            $cron->remove();
+                        }
+                    }
                 }
+                $cron = new cron();
                 $cron->setClass('scenario');
                 $cron->setFunction('doIn');
                 $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => date('s')));
@@ -186,10 +191,10 @@ class scenarioElement {
                 if(strpos($at[0]->getExpression(), '-') !== false){
                     $next -= 40;
                 }else{
-                   $next += 40; 
-               }       
-           }
-           if (!is_numeric($next) || $next < 0) {
+                 $next += 40; 
+             }       
+         }
+         if (!is_numeric($next) || $next < 0) {
             $_scenario->setLog(__('Erreur dans bloc (type A) : ', __FILE__) . $this->getId() . __(', heure programmé invalide : ', __FILE__) . $next);
         }
         if ($next < (date('Gi') + 1)) {
@@ -206,20 +211,25 @@ class scenarioElement {
             }
         }
         $next = strtotime($next);
-        $cron = cron::byClassAndFunction('scenario', 'doIn', array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
-        if (!is_object($cron)) {
-            $cron = new cron();
+        $crons = cron::searchClassAndFunction('scenario','doIn','"scenarioElement_id":'.$this->getId());
+        if(is_array($crons)){
+            foreach ($crons as $cron) {
+              if($cron->getState() != 'run'){
+                $cron->remove();
+            }
         }
-        $cron->setClass('scenario');
-        $cron->setFunction('doIn');
-        $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
-        $cron->setLastRun(date('Y-m-d H:i:s'));
-        $cron->setOnce(1);
-        $cron->setSchedule(date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next));
-        $cron->save();
-        $_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmé à : ', __FILE__) . date('Y-m-d H:i:00', $next));
-        return true;
     }
+    $cron = new cron();
+    $cron->setClass('scenario');
+    $cron->setFunction('doIn');
+    $cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
+    $cron->setLastRun(date('Y-m-d H:i:s'));
+    $cron->setOnce(1);
+    $cron->setSchedule(date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next));
+    $cron->save();
+    $_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmé à : ', __FILE__) . date('Y-m-d H:i:00', $next));
+    return true;
+}
 }
 
 public function getSubElement($_type = '') {

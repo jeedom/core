@@ -236,12 +236,14 @@ $('#bt_editPlan').on('click', function () {
         $(this).html('<i class="fa fa-pencil"></i> {{Quitter le mode édition}}');
         $(this).attr('data-mode', '1');
         $('#div_displayObject').css('background-color', '#bdc3c7');
+        $('#bt_switchFullScreen').hide();
     } else {
         initDraggable(0);
         $('.editMode').hide();
         $(this).html('<i class="fa fa-pencil"></i> {{Mode édition}}');
         $(this).attr('data-mode', '0');
         $('#div_displayObject').css('background-color', 'transparent');
+        $('#bt_switchFullScreen').show();
     }
 });
 
@@ -308,6 +310,9 @@ function displayPlan(_offsetX, _offsetY) {
     var url = "index.php?v=d&p=plan&plan_id=" + planHeader_id;
     if (getUrlVars('fullscreen') == 1) {
         url += '&fullscreen=1';
+    }
+    if(planHeader_id == -1){
+        return;
     }
     history.replaceState(null, "Jeedom", url);
     jeedom.plan.getHeader({
@@ -462,8 +467,8 @@ function savePlan(_refreshDisplay) {
             plan.link_type = 'graph';
             plan.link_id = $(this).attr('data-graph_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).height() + 6 + (2 * borderSize);
-            plan.display.width = $(this).width() + 6 + (2 * borderSize);
+            plan.display.height = $(this).height() + 2 + (2 * borderSize);
+            plan.display.width = $(this).width() + 2 + (2 * borderSize);
             plan.display.graph = json_decode($(this).find('.graphOptions').value());
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
@@ -635,6 +640,9 @@ function displayFrameObject(name, _type, _id, _html, _plan, _noRender) {
         if (isset(_plan.display) && (isset(_plan.display.name) && _plan.display.name == 1)) {
             html.find('.widget-name').remove();
         }
+        if (isset(_plan.display) && (isset(_plan.display.batteryLevel) && _plan.display.batteryLevel == 1)) {
+            html.find('.statusBattery').remove();
+        }
     }
     if (_type == 'scenario' && isset(_plan.display) && isset(_plan.display.hideCmd) && _plan.display.hideCmd == 1) {
         html.find('.changeScenarioState').remove();
@@ -752,6 +760,9 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
         }
         if (isset(_plan.display) && (isset(_plan.display.name) && _plan.display.name == 1)) {
             html.find('.widget-name').remove();
+        }
+        if (isset(_plan.display) && (isset(_plan.display.batteryLevel) && _plan.display.batteryLevel == 1)) {
+            html.find('.statusBattery').remove();
         }
     }
     if (_type == 'scenario' && isset(_plan.display) && (isset(_plan.display.hideCmd) && _plan.display.hideCmd == 1)) {

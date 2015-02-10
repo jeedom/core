@@ -8,13 +8,13 @@ $notifyTheme = array(
     'error' => '{{Rouge}}',
     'success' => '{{Vert}}',
     'warning' => '{{Jaune}}',
-);
+    );
 
 $homePage = array(
     'core::dashboard' => '{{Dashboard}}',
     'core::view' => '{{Vue}}',
     'core::plan' => '{{Design}}',
-);
+    );
 foreach (plugin::listPlugin() as $pluginList) {
     if ($pluginList->isActive() == 1 && $pluginList->getDisplay() != '') {
         $homePage[$pluginList->getId() . '::' . $pluginList->getDisplay()] = $pluginList->getName();
@@ -42,18 +42,21 @@ foreach (plugin::listPlugin() as $pluginList) {
                             <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme">
                                     <option value="">Défaut</option>
-                                    <option value="superhero">Superhero</option>
-                                    <option value="slate">Slate</option>
-                                    <option value="flatly">Faltly</option>
+                                    <option value="bootable">Bootable</option>
                                     <option value="cerulean">Cerulean</option>
                                     <option value="cosmo">Cosmo</option>
                                     <option value="cyborg">Cyborg</option>
+                                    <option value="darkly">Darkly</option>
+                                    <option value="flatly">Faltly</option>
                                     <option value="journal">Journal</option>
                                     <option value="lumen">Lumen</option>
+                                    <option value="paper">Paper</option>
                                     <option value="readable">Readable</option>
                                     <option value="sandstone">Sandstone</option>
                                     <option value="simplex">Simplex</option>
                                     <option value="spacelab">Spacelab</option>
+                                    <option value="superhero">Superhero</option>
+                                    <option value="slate">Slate</option>
                                     <option value="united">United</option>
                                     <option value="yeti">Yeti</option>
                                 </select>

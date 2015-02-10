@@ -398,8 +398,11 @@ try {
 try {
     $c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
     if ($c->isDue()) {
-        if (config::byKey('update::auto') == 1) {
-            jeedom::update();
+       $lastCheck = strtotime(config::byKey('update::lastCheck'));
+       if((strtotime('now') - $lastCheck) > 3600){
+          if (config::byKey('update::auto') == 1) {
+            update::checkAllUpdate();
+            jeedom::update('',0);
         } else {
             update::checkAllUpdate();
             $nbUpdate = update::nbNeedUpdate();
@@ -409,12 +412,14 @@ try {
         }
         config::save('update::check', rand(10, 59) . ' 06 * * *');
     }
+}
 } catch (Exception $e) {
 
 }
 try {
     $c = new Cron\CronExpression(config::byKey('backup::cron'), new Cron\FieldFactory);
     if ($c->isDue()) {
+        log::add('backup_launch','debug','Lancement du backup automatiquement');
         jeedom::backup();
     }
 } catch (Exception $e) {
@@ -499,8 +504,7 @@ public static function fromHumanReadable($_input) {
 public static function evaluateExpression($_input) {
     try {
         $_input = scenarioExpression::setTags($_input);
-        $test = new evaluate();
-        $result = $test->Evaluer($_input);
+        $result =evaluate($_input);
         if (is_bool($result) || is_numeric($result)) {
             return $result;
         }
@@ -516,6 +520,10 @@ public static function haltSystem() {
 
 public static function rebootSystem() {
     exec('sudo reboot');
+}
+
+public static function forceSyncHour() {
+    exec('sudo service ntp restart');
 }
 
 public static function portForwarding($_internalIp, $_internalPort, $_externalPort, $_protocol = 'TCP') {
@@ -645,6 +653,40 @@ if ($_returnResult) {
 if ($change) {
     file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $result);
     shell_exec('sudo service nginx reload');
+}
+}
+
+public static function apache_saveRule($_rules) {
+    if (!is_array($_rules)) {
+        $_rules = array($_rules);
+    }
+    $jeedom_dynamic_rule_file = dirname(__FILE__) . '/../../core/config/apache_jeedom_dynamic_rules';
+    if (!file_exists($jeedom_dynamic_rule_file)) {
+        throw new Exception('Fichier non trouvé : '.$jeedom_dynamic_rule_file);
+    }
+    foreach ($_rules as $rule) {
+        $apache_conf .= $rule . "\n";
+    }
+    file_put_contents($jeedom_dynamic_rule_file, $apache_conf);
+}
+
+public static function apache_removeRule($_rules, $_returnResult = false) {
+    if (!is_array($_rules)) {
+        $_rules = array($_rules);
+    }
+    $jeedom_dynamic_rule_file = dirname(__FILE__) . '/../../core/config/apache_jeedom_dynamic_rules';
+    if (!file_exists($jeedom_dynamic_rule_file)) {
+       return $_rules;
+   }
+   $apache_conf = trim(file_get_contents($jeedom_dynamic_rule_file));
+   $new_apache_conf = $apache_conf;
+   foreach ($_rules as $rule) {
+     $new_apache_conf = preg_replace($rule, "", $new_apache_conf );
+ }
+ $new_apache_conf = preg_replace("/\n\n*/s", "\n", $new_apache_conf );
+
+ if ($new_apache_conf != $apache_conf) {
+    file_put_contents($jeedom_dynamic_rule_file, $new_apache_conf);
 }
 }
 

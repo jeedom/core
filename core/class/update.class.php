@@ -38,7 +38,7 @@ class update {
         $marketObject = array(
             'logical_id' => array(),
             'version' => array(),
-        );
+            );
         if ($_findNewObject) {
             self::findNewUpdateObject();
         }
@@ -119,30 +119,30 @@ class update {
     public static function byId($_id) {
         $values = array(
             'id' => $_id,
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM `update` 
-                WHERE id=:id';
+        FROM `update` 
+        WHERE id=:id';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
     public static function byLogicalId($_logicalId) {
         $values = array(
             'logicalId' => $_logicalId,
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM `update`
-                WHERE logicalId=:logicalId';
+        FROM `update`
+        WHERE logicalId=:logicalId';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
     public static function byType($_type) {
         $values = array(
             'type' => $_type,
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM `update`
-                WHERE type=:type';
+        FROM `update`
+        WHERE type=:type';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
 
@@ -150,11 +150,11 @@ class update {
         $values = array(
             'logicalId' => $_logicalId,
             'type' => $_type,
-        );
+            );
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM `update`
-                WHERE logicalId=:logicalId
-                    AND type=:type';
+        FROM `update`
+        WHERE logicalId=:logicalId
+        AND type=:type';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
     }
 
@@ -165,25 +165,25 @@ class update {
     public static function all($_filter = '') {
         $values = array();
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . ' 
-                FROM `update`';
+        FROM `update`';
         if ($_filter != '') {
             $values['type'] = $_filter;
             $sql .= ' WHERE `type`=:type';
         }
-        $sql .= ' ORDER BY FIELD( `type`,"plugin","core") DESC,( `status` = "update") DESC';
+        $sql .= ' ORDER BY FIELD( `type`,"plugin","core") DESC,FIELD( `status`, "update","ok","depreciated") ASC, `name` ASC';
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
 
     public static function nbNeedUpdate() {
         $sql = 'SELECT count(*)
-                FROM `update`
-                WHERE `status`="update"';
+        FROM `update`
+        WHERE `status`="update"';
         $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
         return $result['count(*)'];
     }
 
     public static function findNewUpdateObject() {
-        foreach (plugin::listPlugin(true) as $plugin) {
+        foreach (plugin::listPlugin() as $plugin) {
             $plugin_id = $plugin->getId();
             $update = self::byTypeAndLogicalId('plugin', $plugin_id);
             if (!is_object($update)) {
@@ -237,7 +237,7 @@ class update {
                 $this->setRemoteVersion($market_info['datetime']);
                 $this->save();
             } catch (Exception $ex) {
-                
+
             }
         }
     }

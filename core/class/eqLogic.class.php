@@ -76,16 +76,6 @@ class eqLogic {
         return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
 
-    public static function byTimeout($_timeout = 0) {
-        $values = array(
-            'timeout' => $_timeout
-            );
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM eqLogic
-        WHERE timeout>:timeout';
-        return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
-    }
-
     public static function byEqRealId($_eqReal_id) {
         $values = array(
             'eqReal_id' => $_eqReal_id
@@ -254,39 +244,50 @@ class eqLogic {
     }
 
     public static function checkAlive() {
-        foreach (eqLogic::byTimeout() as $eqLogic) {
-            if ($eqLogic->getIsEnable() == 1) {
-                $sendReport = false;
-                $cmds = $eqLogic->getCmd();
-                foreach ($cmds as $cmd) {
-                    if ($cmd->getEventOnly() == 1) {
-                        $sendReport = true;
-                    }
+        foreach (eqLogic::byTimeout(1,true) as $eqLogic) {
+            $sendReport = false;
+            $cmds = $eqLogic->getCmd();
+            foreach ($cmds as $cmd) {
+                if ($cmd->getEventOnly() == 1) {
+                    $sendReport = true;
                 }
-                $logicalId = 'noMessage' . $eqLogic->getId();
-                if ($sendReport) {
-                    $noReponseTimeLimit = $eqLogic->getTimeout();
-                    if (count(message::byPluginLogicalId('core', $logicalId)) == 0) {
-                        if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
-                            $message = __('Attention', __FILE__) . ' <a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName();
-                            $message .= '</a>' . __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifier les piles)', __FILE__);
-                            message::add('core', $message, '', $logicalId);
-                            foreach ($cmds as $cmd) {
-                                if ($cmd->getEventOnly() == 1) {
-                                    $cmd->event('error::timeout');
-                                }
+            }
+            $logicalId = 'noMessage' . $eqLogic->getId();
+            if ($sendReport) {
+                $noReponseTimeLimit = $eqLogic->getTimeout();
+                if (count(message::byPluginLogicalId('core', $logicalId)) == 0) {
+                    if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
+                        $message = __('Attention', __FILE__) . ' <a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName();
+                        $message .= '</a>' . __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifier les piles)', __FILE__);
+                        message::add('core', $message, '', $logicalId);
+                        foreach ($cmds as $cmd) {
+                            if ($cmd->getEventOnly() == 1) {
+                                $cmd->event('error::timeout');
                             }
                         }
-                    } else {
-                        if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) > date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
-                            foreach (message::byPluginLogicalId('core', $logicalId) as $message) {
-                                $message->remove();
-                            }
+                    }
+                } else {
+                    if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) > date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
+                        foreach (message::byPluginLogicalId('core', $logicalId) as $message) {
+                            $message->remove();
                         }
                     }
                 }
             }
         }
+    }
+
+    public static function byTimeout($_timeout = 0,$_onlyEnable = false) {
+        $values = array(
+            'timeout' => $_timeout
+            );
+        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+        FROM eqLogic
+        WHERE timeout>:timeout';
+        if($_onlyEnable){
+            $sql .= ' AND isEnable=1';
+        }
+        return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
     }
 
     public static function byObjectNameEqLogicName($_object_name, $_eqLogic_name) {
@@ -461,46 +462,62 @@ class eqLogic {
     }
     if ($this->getIsEnable()) {
         foreach ($this->getCmd(null, null, true) as $cmd) {
-            $cmd_html.=$cmd->toHtml($_version, '', $cmdColor);
+          if($cmd->getDisplay('forceReturnLineBefore',0) == 1){
+            $cmd_html .= '<br/>';
+        }
+        $cmd_html.=$cmd->toHtml($_version, '', $cmdColor);
+        if($cmd->getDisplay('forceReturnLineAfter',0) == 1){
+            $cmd_html .= '<br/>';
         }
     }
-    $replace = array(
-        '#id#' => $this->getId(),
-        '#name#' => $this->getName(),
-        '#eqLink#' => $this->getLinkToConfiguration(),
-        '#category#' => $this->getPrimaryCategory(),
-        '#background_color#' => $this->getBackgroundColor($version),
-        '#cmd#' => $cmd_html,
-        '#style#' => '',
-        '#max_width#' => '650px',
-        '#logicalId#' => $this->getLogicalId()
-        );
-    if ($_version == 'dview' || $_version == 'mview') {
-        $object = $this->getObject();
-        $replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
-    } else {
-        $replace['#object_name#'] = '';
+}
+$replace = array(
+    '#id#' => $this->getId(),
+    '#name#' => $this->getName(),
+    '#eqLink#' => $this->getLinkToConfiguration(),
+    '#category#' => $this->getPrimaryCategory(),
+    '#background_color#' => $this->getBackgroundColor($version),
+    '#cmd#' => $cmd_html,
+    '#style#' => '',
+    '#max_width#' => '650px',
+    '#logicalId#' => $this->getLogicalId(),
+    '#battery#' => $this->getConfiguration('batteryStatus',-2),
+    '#batteryDatetime#' => $this->getConfiguration('batteryStatusDatetime',__('inconnue',__FILE__)),
+    );
+
+if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowObjectNameOnView',0) == 0) {
+    $object = $this->getObject();
+    $replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
+} else {
+    $replace['#object_name#'] = '';
+}
+if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
+    $replace['#name#'] = '';
+}
+if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
+    $replace['#name#'] = '<br/>';
+}
+if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotDisplayBatteryLevelOnView') == 1) {
+    $replace['#battery#'] = -1;
+}
+if ($_version == 'dashboard' && $this->getDisplay('doNotDisplayBatteryLevelOnDashboard') == 1) {
+    $replace['#battery#'] = -1;
+}
+
+$parameters = $this->getDisplay('parameters');
+if (is_array($parameters)) {
+    foreach ($parameters as $key => $value) {
+        $replace['#' . $key . '#'] = $value;
     }
-    if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
-        $replace['#name#'] = '';
-    }
-    if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
-        $replace['#name#'] = '<br/>';
-    }
-    $parameters = $this->getDisplay('parameters');
-    if (is_array($parameters)) {
-        foreach ($parameters as $key => $value) {
-            $replace['#' . $key . '#'] = $value;
-        }
-    }
-    if (!isset(self::$_templateArray[$version])) {
-        self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
-    }
-    $html = template_replace($replace, self::$_templateArray[$version]);
-    if($hasOnlyEventOnly){
-        cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
-    }
-    return $html;
+}
+if (!isset(self::$_templateArray[$version])) {
+    self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
+}
+$html = template_replace($replace, self::$_templateArray[$version]);
+if($hasOnlyEventOnly){
+    cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
+}
+return $html;
 }
 
 public function emptyCacheWidget(){
@@ -628,7 +645,7 @@ public function displayDebug($_message) {
     }
 }
 
-public function batteryStatus($_pourcent) {
+public function batteryStatus($_pourcent,$_datetime = '') {
     foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
         $message->remove();
     }
@@ -649,6 +666,14 @@ public function batteryStatus($_pourcent) {
         $message .= $this->getHumanName() . __(' a été désactivé car il n\'a plus de batterie (', __FILE__) . $_pourcent . ' %)';
         message::add($this->getEqType_name(), $message, '', $logicalId);
     }
+    $this->setConfiguration('batteryStatus',$_pourcent);
+    if($_datetime != ''){
+       $this->setConfiguration('batteryStatusDatetime',$_datetime);  
+   }else{
+     $this->setConfiguration('batteryStatusDatetime',date('Y-m-d H:i:s'));
+ }
+
+ $this->save();
 }
 
 public function refreshWidget() {

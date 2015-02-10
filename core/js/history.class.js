@@ -167,7 +167,12 @@ jeedom.history.drawChart = function (_params) {
                 shadow: true
             };
             legend.enabled = init(_params.showLegend, true);
-            if (!isset(jeedom.history.chart[_params.el])) {
+            if(isset(_params.newGraph) && _params.newGraph == true){
+                delete jeedom.history.chart[_params.el];
+            }
+
+
+            if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
                 jeedom.history.chart[_params.el] = {};
                 jeedom.history.chart[_params.el].cmd = new Array();
                 jeedom.history.chart[_params.el].color = 0;
@@ -256,14 +261,16 @@ jeedom.history.drawChart = function (_params) {
                     yAxis: [{
                             format: '{value}',
                             showEmpty: false,
-                            maxPadding: 0.25,
+                            minPadding: 0.001,
+                            maxPadding: 0.001,
                             showLastLabel: true,
                         }, {
                             opposite: false,
                             format: '{value}',
                             showEmpty: false,
                             gridLineWidth: 0,
-                            maxPadding: 0.25,
+                            minPadding: 0.001,
+                            maxPadding: 0.001,
                             labels: {
                                 align: 'left',
                                 x: 2

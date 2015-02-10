@@ -36,13 +36,14 @@ class jsonrpcClient {
                 'id' => rand(1, 9999),
                 'method' => $_method,
                 'params' => $_params,
-        )));
+                )));
         $this->rawResult = preg_replace('/[^[:print:]]/', '', trim($this->send($request, $_timeout, $_file, $_maxRetry)));
 
         if ($this->rawResult === false) {
             return false;
         }
-        if (!is_json($this->rawResult)) {
+
+        if (!((is_string($this->rawResult) && (is_object(json_decode($this->rawResult)) || is_array(json_decode($this->rawResult)))))) {
             $this->error = '9999<br/>Reponse is not json : ' . $this->rawResult;
             $this->errorMessage = $this->rawResult;
             return false;

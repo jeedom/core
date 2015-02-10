@@ -227,7 +227,7 @@ configure_nginx()
 	do
 		if [ -f "/etc/init.d/${i}" ]; then
 			service ${i} stop
-			update-rc.d ${i} remove
+			update-rc.d -f ${i} remove
 		fi
 	done
 	service nginx stop
@@ -253,7 +253,7 @@ configure_nginx()
 	JEEDOM_CRON="`crontab -l | grep -e 'jeeCron.php'`"
 
 	if [ -z "${JEEDOM_CRON}" ]; then
-		croncmd="su --shell=/bin/bash - www-data -c '/usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+		croncmd="su --shell=/bin/bash - www-data -c '/usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
 		cronjob="* * * * * $croncmd"
 		( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
 	fi
@@ -291,7 +291,7 @@ configure_nginx_ssl()
 	do
 		if [ -f "/etc/init.d/${i}" ]; then
 			service ${i} stop
-			update-rc.d ${i} remove
+			update-rc.d -f ${i} remove
 		fi
 	done
 	service nginx reload
@@ -309,7 +309,7 @@ configure_apache()
 	fi
 	service apache2 restart
 
-	croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+	croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
 	cronjob="* * * * * $croncmd"
 	( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
 
@@ -486,7 +486,7 @@ done
 	do
 		if [ -f "/etc/init.d/${i}" ]; then
 			service ${i} stop
-			update-rc.d ${i} remove
+			update-rc.d -f ${i} remove
 		fi
 	done
 	ps aux | grep mongoose | awk '{print $2}' | xargs kill -9
@@ -508,6 +508,8 @@ install_dependency()
 	apt-get install -y python-serial make php-pear libpcre3-dev build-essential
 	apt-get install -y libudev1
 	apt-get install -y systemd
+	apt-get install -y npm
+	apt-get install -y libtinyxml-dev
 
 	pecl install oauth
 	if [ $? -eq 0 ] ; then
@@ -578,12 +580,12 @@ case ${webserver} in
 	nginx)
 		# Configuration
 		webserver_home="/usr/share/nginx/www"
-		croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+		croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
 		;;
 		apache)
 		# Configuration
 		webserver_home="/var/www"
-		croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null"
+		croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
 		;;
 		nginx_ssl)
 		# Configuration
@@ -602,8 +604,6 @@ case ${webserver} in
 
 		cd $webserver_home/jeedom
 		configure_nginx
-
-		install_razberry_zway
 
 		echo "********************************************************"
 		echo "${msg_setup_nodejs_service}"

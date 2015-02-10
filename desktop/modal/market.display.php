@@ -57,7 +57,10 @@ sendVarToJS('market_display_info', $market_array);
             if ($market->getStatus('beta') == 1) {
                 echo ' <a class="btn btn-warning bt_installFromMarket" data-version="beta" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer beta}}</a>';
             }
-        } else if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
+        } else if($market->getPrivate() == 1) {
+           echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accèder}}</div>';
+       }else{
+        if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
             $purchase_info = market::getPurchaseInfo();
             if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id']) && isset($purchase_info['paypal::url']) && isset($purchase_info['paypal::marchandMail'])) {
                 ?>
@@ -86,9 +89,10 @@ sendVarToJS('market_display_info', $market_array);
         } else {
             echo '<div class="alert alert-info">{{Cet article est payant vous devez avoir un compte sur le market et avoir renseigné les identifiants market dans Jeedom pour pouvoir l\'acheter}}</div>';
         }
-        if (is_object($update)) {
-            ?>
-            <a class="btn btn-danger" style="color : white;" id="bt_removeFromMarket" data-market_id="<?php echo $market->getId(); ?>" ><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+    }
+    if (is_object($update)) {
+        ?>
+        <a class="btn btn-danger" style="color : white;" id="bt_removeFromMarket" data-market_id="<?php echo $market->getId(); ?>" ><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
         <?php } ?>
         <br/><br/>
         <?php
@@ -103,22 +107,28 @@ sendVarToJS('market_display_info', $market_array);
         ?>
     </div>
 </div>
+<?php
+if ($market->getCertification() != 'Officiel') {
+    echo '<div class="alert alert-warning">{{Attention ce plugin n\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée}}</div>';
+
+}
+?>
 <div style="display: none;width : 100%" id="div_alertMarketDisplay"></div>
 
 <?php if (count($market->getImg('screenshot')) > 0) { ?>
-    <div style='padding:25px;'>
-        <div class="variable-width" style="height : 200px;">
-            <?php
-            foreach ($market->getImg('screenshot') as $screenshot) {
-                echo '<div class="item" >';
-                echo '<a class="fancybox cursor" href="' . config::byKey('market::address') . '/' . $screenshot . '" rel="group" >';
-                echo '<img data-lazy="' . config::byKey('market::address') . '/' . $screenshot . '" style="height : 200px;" />';
-                echo '</a>';
-                echo '</div>';
-            }
-            ?>
-        </div>
+<div style='padding:25px;'>
+    <div class="variable-width" style="height : 200px;">
+        <?php
+        foreach ($market->getImg('screenshot') as $screenshot) {
+            echo '<div class="item" >';
+            echo '<a class="fancybox cursor" href="' . config::byKey('market::address') . '/' . $screenshot . '" rel="group" >';
+            echo '<img data-lazy="' . config::byKey('market::address') . '/' . $screenshot . '" style="height : 200px;" />';
+            echo '</a>';
+            echo '</div>';
+        }
+        ?>
     </div>
+</div>
 <?php } ?>
 
 <br/>
@@ -150,150 +160,150 @@ sendVarToJS('market_display_info', $market_array);
                             <span><input type="number" class="rating" id="in_myRating" data-max="5" data-empty-value="0" data-min="1" data-clearable="Effacer" value="<?php echo $market->getRating('user') ?>" /></span>
                         </div>
                     </div><br/>
-                <?php } ?>
-                <center>
-                    <a class="btn btn-default" id="bt_viewComment"><i class="fa fa-comments-o"></i> {{Commentaires (<?php echo $market->getNbComment(); ?>)}}</a>
-                </center>
+                    <?php } ?>
+                    <center>
+                        <a class="btn btn-default" id="bt_viewComment"><i class="fa fa-comments-o"></i> {{Commentaires (<?php echo $market->getNbComment(); ?>)}}</a>
+                    </center>
+                </div>
             </div>
         </div>
-    </div>
-    <div class='col-sm-6'>
-        <legend>Utilisation</legend>
-        <span class="marketAttr" data-l1key="utilization" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
-    </div>
-</div>
-<br/>
-<legend>Informations complementaires</legend>
-<div class="form-group">
-    <div class='row'>
-        <div class='col-sm-2'>
-            <label class="control-label">{{Auteur}}</label><br/>
-            <span><?php echo $market->getAuthor() ?></span>
+        <div class='col-sm-6'>
+            <legend>Utilisation</legend>
+            <span class="marketAttr" data-l1key="utilization" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
         </div>
-        <div class='col-sm-3'>
-            <label class="control-label">{{Lien}}</label><br/>
-            <?php if ($market->getLink('wiki') != '' && $market->getLink('wiki') != 'null') { ?>
+    </div>
+    <br/>
+    <legend>Informations complementaires</legend>
+    <div class="form-group">
+        <div class='row'>
+            <div class='col-sm-2'>
+                <label class="control-label">{{Auteur}}</label><br/>
+                <span><?php echo $market->getAuthor() ?></span>
+            </div>
+            <div class='col-sm-3'>
+                <label class="control-label">{{Lien}}</label><br/>
+                <?php if ($market->getLink('wiki') != '' && $market->getLink('wiki') != 'null') { ?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('wiki'); ?>"><i class="fa fa-krw"></i> Wiki</a>
-            <?php } ?>
-            <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') { ?>
+                <?php } ?>
+                <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') { ?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a>
-            <?php } ?>
-            <?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') { ?>
+                <?php } ?>
+                <?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') { ?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a>
-            <?php } ?>
-            <?php if ($market->getLink('doc_fr_FR') != '' && $market->getLink('doc_fr_FR') != 'null') { ?>
+                <?php } ?>
+                <?php if ($market->getLink('doc_fr_FR') != '' && $market->getLink('doc_fr_FR') != 'null') { ?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_fr_FR'); ?>"><i class="fa fa-book"></i> Doc FR</a>
-            <?php } ?>
-            <?php if ($market->getLink('doc_us_US') != '' && $market->getLink('doc_us_US') != 'null') { ?>
+                <?php } ?>
+                <?php if ($market->getLink('doc_us_US') != '' && $market->getLink('doc_us_US') != 'null') { ?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_us_US'); ?>"><i class="fa fa-book"></i> Doc US</a>
-            <?php } ?>
-        </div>
-        <div class='col-sm-2'>
-            <label class="control-label">{{Nombre de téléchargements}}</label><br/>
-            <span class="marketAttr" data-l1key="downloaded"></span>
-        </div>
-        <div class='col-sm-2'>
-            <label class="control-label">{{Type}}</label><br/>
-            <span class="marketAttr" data-l1key="type"></span>
-        </div>
-        <div class='col-sm-3'>
-            <label class="control-label">{{Version}}</label><br/>
-            <?php
-            if ($market->getStatus('stable') == 1) {
-                echo '<span class="label label-success">';
-                echo 'Stable : ';
-                echo $market->getDatetime('stable');
-                echo '</span><br/>';
-            }
-            if ($market->getStatus('beta') == 1) {
-                echo ' <span class="label label-warning">';
-                echo 'Beta : ';
-                echo $market->getDatetime('beta');
-                echo '</span>';
-            }
-            if (is_object($update) && $update->getConfiguration('version', 'stable') == 'beta' && $market->getStatus('stable') == 1) {
-                if (strtotime($market->getDatetime('stable')) >= strtotime($update->getLocalVersion())) {
-                    echo '<br/><span class="label label-info">';
-                    echo '{{Le retour à la version stable est possible}}';
-                    echo '</span>';
-                } else {
-                    echo '<br/><span class="label label-danger">';
-                    echo '{{Le retour à la version stable est dangereux}}';
+                <?php } ?>
+            </div>
+            <div class='col-sm-2'>
+                <label class="control-label">{{Nombre de téléchargements}}</label><br/>
+                <span class="marketAttr" data-l1key="downloaded"></span>
+            </div>
+            <div class='col-sm-2'>
+                <label class="control-label">{{Type}}</label><br/>
+                <span class="marketAttr" data-l1key="type"></span>
+            </div>
+            <div class='col-sm-3'>
+                <label class="control-label">{{Version}}</label><br/>
+                <?php
+                if ($market->getStatus('stable') == 1) {
+                    echo '<span class="label label-success">';
+                    echo 'Stable : ';
+                    echo $market->getDatetime('stable');
+                    echo '</span><br/>';
+                }
+                if ($market->getStatus('beta') == 1) {
+                    echo ' <span class="label label-warning">';
+                    echo 'Beta : ';
+                    echo $market->getDatetime('beta');
                     echo '</span>';
                 }
-            }
-            ?>
+                if (is_object($update) && $update->getConfiguration('version', 'stable') == 'beta' && $market->getStatus('stable') == 1) {
+                    if (strtotime($market->getDatetime('stable')) >= strtotime($update->getLocalVersion())) {
+                        echo '<br/><span class="label label-info">';
+                        echo '{{Le retour à la version stable est possible}}';
+                        echo '</span>';
+                    } else {
+                        echo '<br/><span class="label label-danger">';
+                        echo '{{Le retour à la version stable est dangereux}}';
+                        echo '</span>';
+                    }
+                }
+                ?>
+            </div>
         </div>
+
     </div>
 
-</div>
+    <div id="div_comments" title="{{Commentaires}}"></div>
 
-<div id="div_comments" title="{{Commentaires}}"></div>
-
-<style>
-    .slick-prev:before, .slick-next:before {
-        color : #707070;
-    }
-</style>
-<script>
-    $("img.lazy").lazyload({
-        event: "sporty"
-    });
-    $("img.lazy").trigger("sporty");
-
-    $(document).unbind('click.fb-start');
-    $(".fancybox").fancybox({
-        autoHeight: true,
-    });
-
-    $('.variable-width').unslick().slick({
-        dots: true,
-        speed: 200,
-        variableWidth: true,
-        accessibility: true,
-    });
-    $('.variable-width').slickNext();
-    setTimeout(function () {
-        $('.variable-width').slickGoTo(0);
-    }, 200);
-
-
-    $('body').setValues(market_display_info, '.marketAttr');
-    $('.marketAttr[data-l1key=changelog]').html(linkify(market_display_info.changelog));
-    $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
-    $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
-
-    $('#bt_paypalClick').on('click', function () {
-        $(this).hide();
-    });
-
-
-    $("#div_comments").dialog({
-        autoOpen: false,
-        modal: true,
-        height: (jQuery(window).height() - 300),
-        width: 600,
-        position: {my: 'center', at: 'center', of: window},
-        open: function () {
-            if ((jQuery(window).width() - 50) < 1500) {
-                $('#md_modal').dialog({width: jQuery(window).width() - 50});
-            }
+    <style>
+        .slick-prev:before, .slick-next:before {
+            color : #707070;
         }
-    });
+    </style>
+    <script>
+        $("img.lazy").lazyload({
+            event: "sporty"
+        });
+        $("img.lazy").trigger("sporty");
 
-    $('#bt_viewComment').on('click', function () {
-        reloadMarketComment();
-        $('#div_comments').dialog('open');
-    });
+        $(document).unbind('click.fb-start');
+        $(".fancybox").fancybox({
+            autoHeight: true,
+        });
+
+        $('.variable-width').unslick().slick({
+            dots: true,
+            speed: 200,
+            variableWidth: true,
+            accessibility: true,
+        });
+        $('.variable-width').slickNext();
+        setTimeout(function () {
+            $('.variable-width').slickGoTo(0);
+        }, 200);
 
 
-    function reloadMarketComment() {
-        $('#div_comments').load('index.php?v=d&modal=market.comment&id=' + $('.marketAttr[data-l1key=id]').value());
-    }
+        $('body').setValues(market_display_info, '.marketAttr');
+        $('.marketAttr[data-l1key=changelog]').html(linkify(market_display_info.changelog));
+        $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
+        $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
 
-    $('.bt_installFromMarket').on('click', function () {
-        var id = $(this).attr('data-market_id');
-        var logicalId = $(this).attr('data-market_logicalId');
+        $('#bt_paypalClick').on('click', function () {
+            $(this).hide();
+        });
+
+
+        $("#div_comments").dialog({
+            autoOpen: false,
+            modal: true,
+            height: (jQuery(window).height() - 300),
+            width: 600,
+            position: {my: 'center', at: 'center', of: window},
+            open: function () {
+                if ((jQuery(window).width() - 50) < 1500) {
+                    $('#md_modal').dialog({width: jQuery(window).width() - 50});
+                }
+            }
+        });
+
+        $('#bt_viewComment').on('click', function () {
+            reloadMarketComment();
+            $('#div_comments').dialog('open');
+        });
+
+
+        function reloadMarketComment() {
+            $('#div_comments').load('index.php?v=d&modal=market.comment&id=' + $('.marketAttr[data-l1key=id]').value());
+        }
+
+        $('.bt_installFromMarket').on('click', function () {
+            var id = $(this).attr('data-market_id');
+            var logicalId = $(this).attr('data-market_logicalId');
         $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // methode de transmission des données au fichier php
             url: "core/ajax/market.ajax.php", // url du fichier php
@@ -307,21 +317,21 @@ sendVarToJS('market_display_info', $market_array);
                 handleAjaxError(request, status, error);
             },
             success: function (data) { // si l'appel a bien fonctionné
-                if (data.state != 'ok') {
-                    $('#div_alertMarketDisplay').showAlert({message: data.result, level: 'danger'});
-                    return;
-                }
-                var url = window.location.href;
-                if (url.indexOf('p=plugin') > 0) {
-                    window.location.href = 'index.php?v=d&p=plugin&id=' + logicalId;
-                }
-                $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'});
+            if (data.state != 'ok') {
+                $('#div_alertMarketDisplay').showAlert({message: data.result, level: 'danger'});
+                return;
             }
-        });
+            var url = window.location.href;
+            if (url.indexOf('p=plugin') > 0) {
+                window.location.href = 'index.php?v=d&p=plugin&id=' + logicalId;
+            }
+            $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'});
+        }
     });
+});
 
-    $('#bt_removeFromMarket').on('click', function () {
-        var id = $(this).attr('data-market_id');
+$('#bt_removeFromMarket').on('click', function () {
+    var id = $(this).attr('data-market_id');
         $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // methode de transmission des données au fichier php
             url: "core/ajax/market.ajax.php", // url du fichier php
@@ -334,18 +344,18 @@ sendVarToJS('market_display_info', $market_array);
                 handleAjaxError(request, status, error);
             },
             success: function (data) { // si l'appel a bien fonctionné
-                if (data.state != 'ok') {
-                    $('#div_alertMarketDisplay').showAlert({message: data.result, level: 'danger'});
-                    return;
-                }
-                $.showLoading();
-                window.location.reload();
+            if (data.state != 'ok') {
+                $('#div_alertMarketDisplay').showAlert({message: data.result, level: 'danger'});
+                return;
             }
-        });
+            $.showLoading();
+            window.location.reload();
+        }
+    });
     });
 
-    $('#in_myRating').on('change', function () {
-        var id = $('.marketAttr[data-l1key=id]').value();
+$('#in_myRating').on('change', function () {
+    var id = $('.marketAttr[data-l1key=id]').value();
         $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // methode de transmission des données au fichier php
             url: "core/ajax/market.ajax.php", // url du fichier php
@@ -359,11 +369,11 @@ sendVarToJS('market_display_info', $market_array);
                 handleAjaxError(request, status, error);
             },
             success: function (data) { // si l'appel a bien fonctionné
-                if (data.state != 'ok') {
-                    $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                    return;
-                }
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
             }
-        });
+        }
+    });
     });
 </script>

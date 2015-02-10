@@ -2,14 +2,6 @@
 if (!hasRight('customview', true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
-
-include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
-include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
-include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
-include_file('3rdparty', 'codemirror/mode/htmlmixed/htmlmixed', 'js');
-include_file('3rdparty', 'codemirror/mode/xml/xml', 'js');
-include_file('3rdparty', 'codemirror/mode/javascript/javascript', 'js');
-include_file('3rdparty', 'codemirror/mode/css/css', 'js');
 ?>
 <div class="alert alert-warning">Attention tout ce que vous écrivez ici est global et inclus sur tout les pages, la moindre erreur peut rendre votre jeedom non fonctionel</div>
 <div role="tabpanel">

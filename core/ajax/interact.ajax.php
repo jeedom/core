@@ -30,14 +30,15 @@ try {
             $result['nbInteractQuery'] = count(interactQuery::byInteractDefId($result['id']));
             $result['nbEnableInteractQuery'] = count(interactQuery::byInteractDefId($result['id'], true));
             if ($result['link_type'] == 'cmd' && $result['link_id'] != '') {
-                $cmd = cmd::byId($result['link_id']);
-                if (is_object($cmd)) {
-                    $result['link_id'] = cmd::cmdToHumanReadable('#' . $cmd->getId() . '#');
-                } else {
-                    if ($result['link_id'] == 0) {
-                        $result['link_id'] = '';
+                $link_id = '';
+                foreach (explode('&&', $result['link_id'] ) as $cmd_id) {
+                    $cmd = cmd::byId($cmd_id);
+                    if (is_object($cmd)) {
+                        $link_id .= cmd::cmdToHumanReadable('#' . $cmd->getId() . '# && ');
                     }
+
                 }
+                $result['link_id'] =  trim(trim($link_id),'&&');
             }
         }
         ajax::success($results);
@@ -48,66 +49,72 @@ try {
         $result['nbInteractQuery'] = count(interactQuery::byInteractDefId($result['id']));
         $result['nbEnableInteractQuery'] = count(interactQuery::byInteractDefId($result['id'], true));
         if ($result['link_type'] == 'cmd' && $result['link_id'] != '') {
-            $cmd = cmd::byId($result['link_id']);
-            if (is_object($cmd)) {
-                $result['link_id'] = cmd::cmdToHumanReadable('#' . $cmd->getId() . '#');
-            } else {
-                if ($result['link_id'] == 0) {
-                    $result['link_id'] = '';
-                }
-            }
-        }
-        ajax::success($result);
-    }
+            $link_id = '';
+            foreach (explode('&&', $result['link_id'] ) as $cmd_id) {
+                $cmd = cmd::byId($cmd_id);
+                if (is_object($cmd)) {
+                 $link_id .= cmd::cmdToHumanReadable('#' . $cmd->getId() . '# && ');
+             }
 
-    if (init('action') == 'save') {
-        $interact_json = json_decode(init('interact'), true);
-        if (isset($interact_json['id'])) {
-            $interact = interactDef::byId($interact_json['id']);
-        }
-        if (!isset($interact) || !is_object($interact)) {
-            $interact = new interactDef();
-        }
-        utils::a2o($interact, $interact_json);
-        $interact->save();
-        ajax::success(utils::o2a($interact));
-    }
+         }
+         $result['link_id'] =  trim(trim($link_id),'&&');
+     }
+     ajax::success($result);
+ }
 
-    if (init('action') == 'remove') {
-        if (!isConnect('admin')) {
-            throw new Exception(__('401 - Accès non autorisé', __FILE__));
-        }
-        $interact = interactDef::byId(init('id'));
-        if (!is_object($interact)) {
-            throw new Exception(__('Interaction inconnu verifié l\'id', __FILE__));
-        }
-        $interact->remove();
-        ajax::success();
+ if (init('action') == 'save') {
+    $interact_json = json_decode(init('interact'), true);
+    if (isset($interact_json['id'])) {
+        $interact = interactDef::byId($interact_json['id']);
     }
-
-    if (init('action') == 'changeState') {
-        $interactQuery = interactQuery::byId(init('id'));
-        if (!is_object($interactQuery)) {
-            throw new Exception(__('InteractQuery ID inconnu', __FILE__));
-        }
-        $interactQuery->setEnable(init('enable'));
-        $interactQuery->save();
-        ajax::success();
+    if (!isset($interact) || !is_object($interact)) {
+        $interact = new interactDef();
     }
+    utils::a2o($interact, $interact_json);
+    $interact->save();
+    ajax::success(utils::o2a($interact));
+}
 
-    if (init('action') == 'changeAllState') {
-        $interactQueries = interactQuery::byInteractDefId(init('id'));
-        if (is_array($interactQueries)) {
-            foreach ($interactQueries as $interactQuery) {
-                $interactQuery->setEnable(init('enable'));
-                $interactQuery->save();
-            }
-        }
-        ajax::success();
+if (init('action') == 'regenerateInteract') {
+    interactDef::regenerateInteract();
+    ajax::success();
+}
+
+if (init('action') == 'remove') {
+    if (!isConnect('admin')) {
+        throw new Exception(__('401 - Accès non autorisé', __FILE__));
     }
+    $interact = interactDef::byId(init('id'));
+    if (!is_object($interact)) {
+        throw new Exception(__('Interaction inconnu verifié l\'id', __FILE__));
+    }
+    $interact->remove();
+    ajax::success();
+}
 
-    throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
-    /*     * *********Catch exeption*************** */
+if (init('action') == 'changeState') {
+    $interactQuery = interactQuery::byId(init('id'));
+    if (!is_object($interactQuery)) {
+        throw new Exception(__('InteractQuery ID inconnu', __FILE__));
+    }
+    $interactQuery->setEnable(init('enable'));
+    $interactQuery->save();
+    ajax::success();
+}
+
+if (init('action') == 'changeAllState') {
+    $interactQueries = interactQuery::byInteractDefId(init('id'));
+    if (is_array($interactQueries)) {
+        foreach ($interactQueries as $interactQuery) {
+            $interactQuery->setEnable(init('enable'));
+            $interactQuery->save();
+        }
+    }
+    ajax::success();
+}
+
+throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
     ajax::error(displayExeption($e), $e->getCode());
 }

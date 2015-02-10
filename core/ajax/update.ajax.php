@@ -59,6 +59,9 @@ try {
     if (init('action') == 'remove') {
         $update = update::byId(init('id'));
         if (!is_object($update)) {
+            $update = update::byLogicalId(init('id'));
+        }
+        if (!is_object($update)) {
             throw new Exception(__('Aucune correspondance pour l\'ID : ' . init('id'), __FILE__));
         }
         $update->deleteObjet();
