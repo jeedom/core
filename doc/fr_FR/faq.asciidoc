@@ -115,7 +115,7 @@ La Jeedom Mini est commercialisée chez notre partenaire http://www.domadoo.fr/ 
 [panel,primary]
 .Quelle est la date de sortie de la Jeedom Center ?
 --
-La Jeedom Center est prévue pour la fin de l'année 2014.
+La Jeedom Center est prévue pour début l'année 2015.
 --
 
 [panel,primary]
