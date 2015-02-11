@@ -4,16 +4,16 @@
 
 *31/01/2015* _v1.161.0_
 
-- Possibilité de mettre un code sur une commande de type action (à partir de la fenetre de configuration avancé de l'action), uniquement sur les widget (pas de code demandé pour les scénarios)
+- Possibilité de mettre un code sur une commande de type action (à partir de la fenêtre de configuration avancée de l'action), uniquement sur les widget (pas de code demandé pour les scénarios)
 
 *30/01/2015* _v1.161.0_
 
-- Ajout action gotodesign dans les scénarios pour changer le design afficher sur tous les navigateurs qui affichage un design par le design demandé
+- Ajout action gotodesign dans les scénarios pour changer le design affiché sur tous les navigateurs qui affichent un design par le design demandé
 
 *28/01/2015* _v1.161.0_
 
-- Ajout d'un bouton pour regénerer toutes les interactions
-- Ajout d'option pour forcer le retour à la ligne avant/après un widget
+- Ajout d'un bouton pour regénérer toutes les interactions
+- Ajout d'une option pour forcer le retour à la ligne avant/après un widget
 
 *26/01/2015* _v1.161.0_
 
@@ -25,13 +25,13 @@
 
 *23/01/2015* _v1.160.0_
 
-- Ajout action "return" dans les scénarios, pour retourner un message spécifique suite a une intération. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ca marche.
-- Ajout d'une vérification de la consistence après chaque mise à jour
-- Possibilité de supprimé l'historique d'une commande avant une date donnée
+- Ajout action "return" dans les scénarios, pour retourner un message spécifique suite à une interaction. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ça fonctionne.
+- Ajout d'une vérification de consistence après chaque mise à jour
+- Possibilité de supprimer l'historique d'une commande avant une date donnée
 
 *21/01/2015* _v1.160.0_
 
-- Desactivation des contraintes sur la base lors de la mise à jour
+- Désactivation des contraintes sur la base lors de la mise à jour
 
 *20/01/2015* _v1.160.0_
 
@@ -39,15 +39,15 @@
 
 *19/01/2015* _v1.160.0_
 
-- Correction des bugs de regression du parser
+- Correction des bugs de régression du parser
 - Possibilité d'uploader une archive de plugin directement à partir de l'interface
 
 *16/01/2015* _v1.159.0_
 
 - Utilisation de composer
-- Changement de la librairie d'interpretation d'expression 
+- Changement de la librairie d'interprétation d'expression 
 - Support des couleurs dans les interactions
-- Multiple action sur les interactions autorisées (séparé par des &&)
+- Actions multiples sur les interactions autorisées (séparées par des &&)
 
 *12/01/2015* _v1.156.0_
 
@@ -61,13 +61,13 @@
 *10/01/2015* _v1.155.0_
 
 - Stable 1.153.0
-- Amélioration reconnaissance des intérations qui n'ont que un mot
-- Ajout action say dans les scénarios (pour dire un texte sur tous les onglet jeedom ouvert)
+- Amélioration de la reconnaissance des interactions qui n'ont qu'un seul mot
+- Ajout action say dans les scénarios (pour dire un texte sur tous les onglets jeedom ouverts)
 - Possibilité de reconnaissance des nombres dans les interactions pour les commandes de type slider (expérimental)
 
 *07/01/2015* _v1.153.0_
 
-- Support de fonction imbriqué dans les scénarios/interaction/virtuel (ex "round(variable(toto),1)" )
+- Support de fonction imbriquée dans les scénarios/interactions/virtuels (ex "round(variable(toto),1)" )
 - Sortie stable de la version 1.152.0
 
 *07/01/2015* _v1.152.0_
@@ -76,11 +76,11 @@
 
 *05/01/2015* _v1.152.0_
 
-- Nombreuse corrections de bugs
+- Nombreuses corrections de bugs
 
 *04/01/2015* _v1.152.0_
 
-- Refonte de la configuration reseaux (externe et interne) avec meilleurs integration au market, merci de verfier votre configuration
+- Refonte de la configuration reseau (externe et interne) avec meilleure intégration au market, merci de vérifier votre configuration
 
 *01/01/2015* _v1.152.0_
 
@@ -93,13 +93,13 @@
 
 *22/12/2014* _v1.151.0_
 
-- Possibilité dans les scénarios de desactiver une action sans la supprimer
+- Possibilité dans les scénarios de désactiver une action sans la supprimer
 
 *20/12/2014* _v1.151.0_
 
-- Possibilité d'ajouter du javascript et css personalisé directement inclus sur toute les pages (avec differenciation desktop/mobile)
+- Possibilité d'ajouter du javascript et css personalisés directement inclus sur toutes les pages (avec différenciation desktop/mobile)
 - Correction de bug lors des backups si le dossier de backup par defaut a été changé
-- Correction d'un bug lors des mise à jour des plugins
+- Correction d'un bug lors des mises à jour des plugins
 
 *19/12/2014* _v1.150.0_
 
@@ -116,7 +116,7 @@
 *14/12/2014* _v1.145.0_
 
 - Ajout interface de configuration de scénario simple
-- Suppression des backups les plus vieux si le dossier fait plus de 500mo
+- Suppression des backups les plus vieux si le dossier fait plus de 500Mo
 
 *10/12/2014* _v1.145.0_
 
@@ -129,7 +129,7 @@
 
 *06/12/2014* _v1.145.0_
 
-- Possibilité de choissir l'ordre du dashboard à partir de la page Générale -> Affichage
+- Possibilité de choisir l'ordre du dashboard à partir de la page Générale -> Affichage
 
 *04/12/2014* _v1.140.0_
 
@@ -137,7 +137,7 @@
 
 *01/12/2014*
 
-- Ajout de SQL buddy (éditeur type phpmyadmin) disponible uniquement en mode expert à partir de Générale => Administrateur => Configuration*/!\ Attention reservé aux expert, toute demande de support suite à une fausse manipulation pourra etre refusée /!\ 
+- Ajout de SQL buddy (éditeur type phpmyadmin) disponible uniquement en mode expert à partir de Générale => Administrateur => Configuration*/!\ Attention reservé aux experts, toute demande de support suite à une fausse manipulation pourra etre refusée /!\ 
 - Version stable 1.138.0
 - Bufix
 
@@ -157,7 +157,7 @@
 *23/11/2014*
 
 - Amélioration du responsive design
-- Ajout bloc A dans les scénario, permet de lancer une action à une heure precise, mais calculé lors de l'éxecution du scénario
+- Ajout bloc A dans les scénarios, permet de lancer une action à une heure précise, mais calculé lors de l'exécution du scénario
 
 *22/11/2014*
 
