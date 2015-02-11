@@ -174,6 +174,7 @@ try {
                 }
             }
             include dirname(__FILE__) . '/../core/config/version.config.php';
+        
 
             if (init('v') != '') {
                 echo __("La mise à jour ", __FILE__) . init('v') . __(" va être appliquée à nouveau. Voulez-vous continuer  ? [o/N] ", __FILE__);
