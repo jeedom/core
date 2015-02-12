@@ -170,3 +170,9 @@ chmod -R 775 /usr/share/nginx/www/jeedom
 chown -R www-data:www-data /usr/share/nginx/www/jeedom
 ----
 --
+
+[panel,primary]
+.Ou se trouve les backups de jeedom ?
+--
+Ils sont dans le dossier /usr/share/nginx/www/jeedom/backup
+--
