@@ -361,7 +361,7 @@ check_nodejs_version()
 		return ${RETVAL}
 	}
 
-	optimize_webserver_cache_apc()
+optimize_webserver_cache_apc()
 	{
 	# php < 5.5 => APC
 	echo "${msg_optimize_webserver_cache_apc}"
