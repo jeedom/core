@@ -264,41 +264,40 @@
         "Détaillée": "Detailed",
         "Page générée en": "Page generated in",
         "Design": "Design",
-        "Gestion des droits avancés": "Gestion des droits avancés",
-        "Réseau Jeedom": "Réseau Jeedom",
+        "Gestion des droits avancés": "Advanced rights management",
+        "Réseau Jeedom": "Jeedom Network",
         "Jeedom Box": "Jeedom Box",
         "Monitoring": "Monitoring",
-        "Version mobile": "Version mobile",
-        "Mise(s) à jour disponible": "Mise(s) à jour disponible",
+        "Version mobile": "Mobile version",
+        "Mise(s) à jour disponible": "Available update",
         "Logs": "Logs",
-        "Informations système": "Informations système",
-        "Personnalisation avancée": "Personnalisation avancée",
-        "Objets": "Objets",
+        "Informations système": "System information",
+        "Personnalisation avancée": "Advanced customization",
+        "Objets": "Objects",
         "Interactions": "Interactions",
-        "Santé": "Santé",
+        "Santé": "Health",
         "Nature": "Nature",
-        "Redémarrer": "Redémarrer",
-        "Eteindre": "Eteindre"
+        "Redémarrer": "Reboot",
+        "Eteindre": "Turn off"
     },
     "core\/php\/jeeScenario.php": {
         " avec le PID : ": " with PID : ",
-        "Impossible d\\'exécuter le scénario car déjà en cours": "Enable to launch scenario because it is already launched",
         "Scenario  : ": "Scenario : ",
         "Erreur : ": "Error : ",
-        "Impossible d\\'exécuter le scénario car désactivé : ": "Impossible to launch this scenario because it’s disabled: ",
-        "Impossible d\\'exécuter le scénario car déjà en cours : ": "Impossible de lancer le scénario car déjà en cours : "
+        "Scénario non trouvé vérifier id : ":"Scenario not found, check the id : ",
+        "Impossible de lancer le scénario car déjà en cours : ": "Enable to launch scenario because it is already launched : "
     },
     "core\/class\/scenarioElement.class.php": {
         "Exécution de l'élément : ": "Running of component : ",
         "Elément inconnu. Vérifiez l'id : ": "Unknown component, check ID: ",
         "Expression inconnue. Vérifiez l'id : ": "Unkonwn expression, check ID: ",
-        "Tâche : ": "Tâche : ",
-        " programmée à : ": " programmé à : "
+        "Tâche : ": "Task : ",
+        " programmée à : ": " scheduled at : "
     },
     "core\/class\/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type : ": "Running of under-component: ",
-        "Exécution du sous-élément de type [condition] : ": "Exécution du sous-élément de type [condition] : ",
-        "Exécution du sous-élément de type [action] : ": "Exécution du sous-élément de type [action] : "
+        "Exécution du sous-élément de type [condition] : ": "Running the type of sub-element [condition] : ",
+        "Exécution du sous-élément de type [action] : ": "Running the type of sub-element [action] : "
     },
     "core\/class\/scenarioExpression.class.php": {
         "Evaluation de la condition : [": "Estimate of this condition: [",
@@ -310,11 +309,11 @@
         "[Erreur] Aucune commande trouvée pour ": "[Error] No command found for ",
         "Affectation de la variable ": "Variable allocation ",
         " à [": " at [",
-        "Activation du scénario : ": "Activation du scénario : ",
-        "Désactivation du scénario : ": "Désactivation du scénario : ",
-        "Exécution du scénario : ": "Lancement du scénario : ",
-        "Exécution provoqu2e par le sc2nario  : ": "Lancement provoque par le scenario  : ",
-        "Pause de ": "Pause de ",
+        "Activation du scénario : ": "Activation of scenario : ",
+        "Désactivation du scénario : ": "Deactivation of scenario : ",
+        "Exécution du scénario : ": "Execution of scenario : ",
+        "Lancement provoqué par le scenario  : ": "Scenario prompting the execution  : ",
+        "Pause de ": "Pause of ",
         " seconde(s)": " seconde(s)"
     },
     "core\/com\/http.com.php": {
