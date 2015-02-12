@@ -312,7 +312,7 @@
         "Activation du scénario : ": "Activation of scenario : ",
         "Désactivation du scénario : ": "Deactivation of scenario : ",
         "Exécution du scénario : ": "Execution of scenario : ",
-        "Lancement provoqué par le scenario  : ": "Scenario prompting the execution  : ",
+        "Lancement provoqué par le scénario  : ": "Scenario prompting the execution  : ",
         "Pause de ": "Pause of ",
         " seconde(s)": " seconde(s)"
     },
