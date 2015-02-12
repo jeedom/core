@@ -179,22 +179,22 @@ if (init('type') == 'plugin') {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Langue</label>
+                    <label class="col-sm-4 control-label">{{Langue}}</label>
                     <div class="col-sm-8">
                         <label class="checkbox-inline">
-                            <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="fr_FR"> Français
+                            <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="fr_FR"> {{Français}}
                         </label>
                         <label class="checkbox-inline">
-                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="en_US"> Anglais
+                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="en_US"> {{Anglais}}
                       </label>
                       <label class="checkbox-inline">
-                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="de_DE"> Allemand
+                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="de_DE"> {{Allemand}}
                       </label>
                       <label class="checkbox-inline">
-                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="sp_SP"> Espagnole
+                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="sp_SP"> {{Espagnole}}
                       </label>
                       <label class="checkbox-inline">
-                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="ru_RU"> Russe
+                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="ru_RU"> {{Russe}}
                       </label>
                   </div>
               </div>
