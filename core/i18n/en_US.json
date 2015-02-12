@@ -191,6 +191,7 @@
         "Commande d'information utilisateur": "Command of users information",
         "Deutsch": "Deutsch",
         "Español": "Español",
+        "Pусский":"Pусский",
         "Configuration des scénarios en mode expert par défaut": "Scenario configuration as expert mode by default",
         "Base de données": "Database",
         "ATTENTION ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. Suite à une modification de la base de données, l'équipe Jeedom se réserve le droit de refuser toute demande de support.": "CAUTION ! These operations are risky, you may lose access to your system and to Jeedom. Further to database changes, Jeedom's team reserve the right to refuse any support request.",
