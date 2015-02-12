@@ -634,7 +634,7 @@ public function execute(&$scenario = null) {
                 case 'start':
                 $this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
                 if ($scenario != null) {
-                    $actionScenario->launch(false, __('Lancement provoqué par le scenario  : ', __FILE__) . $scenario->getHumanName());
+                    $actionScenario->launch(false, __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName());
                 } else {
                     $actionScenario->launch(false, __('Lancement provoqué', __FILE__));
                 }
