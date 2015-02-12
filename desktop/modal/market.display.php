@@ -58,8 +58,8 @@ sendVarToJS('market_display_info', $market_array);
                 echo ' <a class="btn btn-warning bt_installFromMarket" data-version="beta" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer beta}}</a>';
             }
         } else if($market->getPrivate() == 1) {
-           echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accèder}}</div>';
-       }else{
+         echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accèder}}</div>';
+     }else{
         if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
             $purchase_info = market::getPurchaseInfo();
             if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id']) && isset($purchase_info['paypal::url']) && isset($purchase_info['paypal::marchandMail'])) {
@@ -209,9 +209,7 @@ if ($market->getCertification() != 'Officiel') {
             <div class='col-sm-2'>
                 <label class="control-label">Langue disponible</label><br/>
                 <?php
-                if($market->getLanguage('fr_FR') == 1){
-                    echo '<img src="core/img/francais.png" width="30" />';
-                }
+                echo '<img src="core/img/francais.png" width="30" />';
                 if($market->getLanguage('en_US') == 1){
                     echo '<img src="core/img/anglais.png" width="30" />';
                 }
@@ -219,9 +217,9 @@ if ($market->getCertification() != 'Officiel') {
                     echo '<img src="core/img/allemand.png" width="30" />';
                 }
                 if($market->getLanguage('sp_SP') == 1){
-                   echo '<img src="core/img/espagnol.png" width="30" />';
-               }
-               if($market->getLanguage('ru_RU') == 1){
+                 echo '<img src="core/img/espagnol.png" width="30" />';
+             }
+             if($market->getLanguage('ru_RU') == 1){
                 echo '<img src="core/img/russe.png" width="30" />';
             }
             ?>

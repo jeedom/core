@@ -182,9 +182,6 @@ if (init('type') == 'plugin') {
                     <label class="col-sm-4 control-label">{{Langue}}</label>
                     <div class="col-sm-8">
                         <label class="checkbox-inline">
-                            <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="fr_FR"> {{Français}}
-                        </label>
-                        <label class="checkbox-inline">
                           <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="en_US"> {{Anglais}}
                       </label>
                       <label class="checkbox-inline">
