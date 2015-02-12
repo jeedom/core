@@ -159,3 +159,14 @@ Rendez vous sur le market, connectez vous avec votre compte puis aller sur votre
 
 Attention ces 2 options sont reservées aux utilisateurs avancés qui comprennent parfaitement leur fonction, une erreur de configuration la dedans peut rendre une installation instable voir inopérante. Par exemple en zwave, rfxcom et enocean la case evenement seulement devrait TOUJOURS etre cochée
 --
+
+[panel,primary]
+.Comment remettre à plat les droits ?
+--
+En ssh faites : 
+----
+sudo su -
+chmod -R 775 /usr/share/nginx/www/jeedom
+chown -R www-data:www-data /usr/share/nginx/www/jeedom
+----
+--
