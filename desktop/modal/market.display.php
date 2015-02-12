@@ -58,8 +58,8 @@ sendVarToJS('market_display_info', $market_array);
                 echo ' <a class="btn btn-warning bt_installFromMarket" data-version="beta" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer beta}}</a>';
             }
         } else if($market->getPrivate() == 1) {
-           echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accèder}}</div>';
-       }else{
+         echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accèder}}</div>';
+     }else{
         if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
             $purchase_info = market::getPurchaseInfo();
             if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id']) && isset($purchase_info['paypal::url']) && isset($purchase_info['paypal::marchandMail'])) {
@@ -180,31 +180,51 @@ if ($market->getCertification() != 'Officiel') {
                 <label class="control-label">{{Auteur}}</label><br/>
                 <span><?php echo $market->getAuthor() ?></span>
             </div>
-            <div class='col-sm-3'>
+            <div class='col-sm-2'>
                 <label class="control-label">{{Lien}}</label><br/>
                 <?php if ($market->getLink('wiki') != '' && $market->getLink('wiki') != 'null') { ?>
-                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('wiki'); ?>"><i class="fa fa-krw"></i> Wiki</a>
+                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('wiki'); ?>"><i class="fa fa-krw"></i> Wiki</a><br/>
                 <?php } ?>
                 <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') { ?>
-                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a>
+                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a><br/>
                 <?php } ?>
                 <?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') { ?>
-                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a>
+                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a><br/>
                 <?php } ?>
                 <?php if ($market->getLink('doc_fr_FR') != '' && $market->getLink('doc_fr_FR') != 'null') { ?>
-                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_fr_FR'); ?>"><i class="fa fa-book"></i> Doc FR</a>
+                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_fr_FR'); ?>"><i class="fa fa-book"></i> Doc FR</a><br/>
                 <?php } ?>
                 <?php if ($market->getLink('doc_us_US') != '' && $market->getLink('doc_us_US') != 'null') { ?>
-                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_us_US'); ?>"><i class="fa fa-book"></i> Doc US</a>
+                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_us_US'); ?>"><i class="fa fa-book"></i> Doc US</a><br/>
                 <?php } ?>
             </div>
             <div class='col-sm-2'>
                 <label class="control-label">{{Nombre de téléchargements}}</label><br/>
                 <span class="marketAttr" data-l1key="downloaded"></span>
             </div>
-            <div class='col-sm-2'>
+            <div class='col-sm-1'>
                 <label class="control-label">{{Type}}</label><br/>
                 <span class="marketAttr" data-l1key="type"></span>
+            </div>
+            <div class='col-sm-2'>
+                <label class="control-label">Langue disponible</label><br/>
+                <?php
+                if($market->getLanguage('fr_FR') == 1){
+                    echo 'Francais<br/>';
+                }
+                if($market->getLanguage('en_US') == 1){
+                    echo 'Anglais<br/>';
+                }
+                if($market->getLanguage('de_DE') == 1){
+                    echo 'Allemand<br/>';
+                }
+                if($market->getLanguage('sp_SP') == 1){
+                    echo 'Espagnole<br/>';
+                }
+                if($market->getLanguage('ru_RU') == 1){
+                    echo 'Russe<br/>';
+                }
+                ?>
             </div>
             <div class='col-sm-3'>
                 <label class="control-label">{{Version}}</label><br/>
