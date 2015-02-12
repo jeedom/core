@@ -46,6 +46,7 @@ class market {
     private $link;
     private $certification;
     private $nbComment;
+    private $language;
     private $private;
 
     /*     * ***********************Méthodes statiques*************************** */
@@ -78,6 +79,7 @@ class market {
         $market->setPrivate($_arrayMarket['private']);
         $market->img = json_encode($_arrayMarket['img'], JSON_UNESCAPED_UNICODE);
         $market->link = json_encode($_arrayMarket['link'], JSON_UNESCAPED_UNICODE);
+        $market->language = json_encode($_arrayMarket['language'], JSON_UNESCAPED_UNICODE);
 
         $market->setRealcost($_arrayMarket['realCost']);
         if (!isset($_arrayMarket['api_author'])) {
@@ -814,6 +816,14 @@ class market {
 
     public function setLink($_key, $_value) {
         $this->link = utils::setJsonAttr($this->link, $_key, $_value);
+    }
+
+     public function getLanguage($_key = '', $_default = '') {
+        return utils::getJsonAttr($this->language, $_key, $_default);
+    }
+
+    public function setLanguage($_key, $_value) {
+        $this->language = utils::setJsonAttr($this->language, $_key, $_value);
     }
 
     public function getImg($_key = '', $_default = '') {

@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
 sendVarToJS('market_display_info', array(
     'logicalId' => init('logicalId'),
     'name' => init('name')
-));
+    ));
 sendVarToJS('market_type', init('type'));
 try {
     if (init('logicalId') != '') {
@@ -40,34 +40,34 @@ if (init('type') == 'plugin') {
 <br/><br/>
 <form class="form-horizontal" role="form" id="form_sendToMarket">
     <?php if (init('type') == 'plugin') { ?>
-        <hr/>
-        <div class="row">
-            <div class="col-lg-3">
-                <div style="height: 130px;" class="priceChoose alert alert-success">
-                    <br/>
-                    <center><input type="radio" name="rb_price" class="rb_price free" data-value="" checked/> <h4 style="display: inline-block">Gratuit</h4></center>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div style="height: 130px;" class="priceChoose">
-                    <center><input type="radio" name="rb_price" class="rb_price" data-value="1" /> <h4 style="display: inline-block">1€</h4></center>
-                    <center>Sur ce prix seront prélevés 0,25€ de frais paypal puis 35% destinés à l'équipe du projet Jeedom</center>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div style="height: 130px;" class="priceChoose">
-                    <center><input type="radio" name="rb_price" class="rb_price" data-value="2" /> <h4 style="display: inline-block">2€</h4></center>
-                    <center>Sur ce prix seront prélevés 0,25€ de frais paypal puis 30% destinés à l'équipe du projet Jeedom</center>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div style="height: 130px;" class="priceChoose">
-                    <center><input type="radio" name="rb_price" class="rb_price" data-value="custom" /> <h4 style="display: inline-block">Libre</h4> <input class="form-control marketAttr input-sm" data-l1key="cost" placeholder="Prix" style="display : inline-block; width : 80px;"> €</center>
-                    <center>Sur ce prix seront prélevés 0,25€ de frais paypal puis 25% destinés à l'équipe du projet Jeedom (le prix doit etre >= 3€)</center>
-                </div>
+    <hr/>
+    <div class="row">
+        <div class="col-lg-3">
+            <div style="height: 130px;" class="priceChoose alert alert-success">
+                <br/>
+                <center><input type="radio" name="rb_price" class="rb_price free" data-value="" checked/> <h4 style="display: inline-block">Gratuit</h4></center>
             </div>
         </div>
-        <hr/>
+        <div class="col-lg-3">
+            <div style="height: 130px;" class="priceChoose">
+                <center><input type="radio" name="rb_price" class="rb_price" data-value="1" /> <h4 style="display: inline-block">1€</h4></center>
+                <center>Sur ce prix seront prélevés 0,25€ de frais paypal puis 35% destinés à l'équipe du projet Jeedom</center>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div style="height: 130px;" class="priceChoose">
+                <center><input type="radio" name="rb_price" class="rb_price" data-value="2" /> <h4 style="display: inline-block">2€</h4></center>
+                <center>Sur ce prix seront prélevés 0,25€ de frais paypal puis 30% destinés à l'équipe du projet Jeedom</center>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div style="height: 130px;" class="priceChoose">
+                <center><input type="radio" name="rb_price" class="rb_price" data-value="custom" /> <h4 style="display: inline-block">Libre</h4> <input class="form-control marketAttr input-sm" data-l1key="cost" placeholder="Prix" style="display : inline-block; width : 80px;"> €</center>
+                <center>Sur ce prix seront prélevés 0,25€ de frais paypal puis 25% destinés à l'équipe du projet Jeedom (le prix doit etre >= 3€)</center>
+            </div>
+        </div>
+    </div>
+    <hr/>
     <?php } ?>
     <div class="row">
         <div class="col-lg-6">
@@ -178,9 +178,29 @@ if (init('type') == 'plugin') {
                         <textarea class="form-control marketAttr" data-l1key="changelog" placeholder="{{Changelog}}" style="height: 150px;"></textarea>
                     </div>
                 </div>
-            </div>
-        </div> 
-    </div> 
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Langue</label>
+                    <div class="col-sm-8">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="fr_FR"> Français
+                        </label>
+                        <label class="checkbox-inline">
+                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="en_US"> Anglais
+                      </label>
+                      <label class="checkbox-inline">
+                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="de_DE"> Allemand
+                      </label>
+                      <label class="checkbox-inline">
+                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="sp_SP"> Espagnole
+                      </label>
+                      <label class="checkbox-inline">
+                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="ru_RU"> Russe
+                      </label>
+                  </div>
+              </div>
+          </div>
+      </div> 
+  </div> 
 </form>
 
 <?php
@@ -255,18 +275,18 @@ if (is_object($market)) {
                 handleAjaxError(request, status, error, $('#div_alertMarketSend'));
             },
             success: function (data) { // si l'appel a bien fonctionné
-                if (data.state != 'ok') {
-                    $('#div_alertMarketSend').showAlert({message: data.result, level: 'danger'});
-                    return;
-                }
-                if (market.id == undefined || market.id == '') {
-                    $.showLoading();
-                    window.location.reload();
-                } else {
-                    $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
-                }
-
+            if (data.state != 'ok') {
+                $('#div_alertMarketSend').showAlert({message: data.result, level: 'danger'});
+                return;
             }
-        });
+            if (market.id == undefined || market.id == '') {
+                $.showLoading();
+                window.location.reload();
+            } else {
+                $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
+            }
+
+        }
     });
+});
 </script>
