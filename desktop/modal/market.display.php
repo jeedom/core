@@ -58,8 +58,8 @@ sendVarToJS('market_display_info', $market_array);
                 echo ' <a class="btn btn-warning bt_installFromMarket" data-version="beta" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer beta}}</a>';
             }
         } else if($market->getPrivate() == 1) {
-         echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accèder}}</div>';
-     }else{
+           echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accèder}}</div>';
+       }else{
         if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
             $purchase_info = market::getPurchaseInfo();
             if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id']) && isset($purchase_info['paypal::url']) && isset($purchase_info['paypal::marchandMail'])) {
@@ -210,120 +210,120 @@ if ($market->getCertification() != 'Officiel') {
                 <label class="control-label">Langue disponible</label><br/>
                 <?php
                 if($market->getLanguage('fr_FR') == 1){
-                    echo 'Francais<br/>';
+                    echo '<img src="core/img/francais.png" width="30" />';
                 }
                 if($market->getLanguage('en_US') == 1){
-                    echo 'Anglais<br/>';
+                    echo '<img src="core/img/anglais.png" width="30" />';
                 }
                 if($market->getLanguage('de_DE') == 1){
-                    echo 'Allemand<br/>';
+                    echo '<img src="core/img/allemand.png" width="30" />';
                 }
                 if($market->getLanguage('sp_SP') == 1){
-                    echo 'Espagnole<br/>';
-                }
-                if($market->getLanguage('ru_RU') == 1){
-                    echo 'Russe<br/>';
-                }
-                ?>
-            </div>
-            <div class='col-sm-3'>
-                <label class="control-label">{{Version}}</label><br/>
-                <?php
-                if ($market->getStatus('stable') == 1) {
-                    echo '<span class="label label-success">';
-                    echo 'Stable : ';
-                    echo $market->getDatetime('stable');
-                    echo '</span><br/>';
-                }
-                if ($market->getStatus('beta') == 1) {
-                    echo ' <span class="label label-warning">';
-                    echo 'Beta : ';
-                    echo $market->getDatetime('beta');
+                   echo '<img src="core/img/espagnol.png" width="30" />';
+               }
+               if($market->getLanguage('ru_RU') == 1){
+                echo '<img src="core/img/russe.png" width="30" />';
+            }
+            ?>
+        </div>
+        <div class='col-sm-3'>
+            <label class="control-label">{{Version}}</label><br/>
+            <?php
+            if ($market->getStatus('stable') == 1) {
+                echo '<span class="label label-success">';
+                echo 'Stable : ';
+                echo $market->getDatetime('stable');
+                echo '</span><br/>';
+            }
+            if ($market->getStatus('beta') == 1) {
+                echo ' <span class="label label-warning">';
+                echo 'Beta : ';
+                echo $market->getDatetime('beta');
+                echo '</span>';
+            }
+            if (is_object($update) && $update->getConfiguration('version', 'stable') == 'beta' && $market->getStatus('stable') == 1) {
+                if (strtotime($market->getDatetime('stable')) >= strtotime($update->getLocalVersion())) {
+                    echo '<br/><span class="label label-info">';
+                    echo '{{Le retour à la version stable est possible}}';
+                    echo '</span>';
+                } else {
+                    echo '<br/><span class="label label-danger">';
+                    echo '{{Le retour à la version stable est dangereux}}';
                     echo '</span>';
                 }
-                if (is_object($update) && $update->getConfiguration('version', 'stable') == 'beta' && $market->getStatus('stable') == 1) {
-                    if (strtotime($market->getDatetime('stable')) >= strtotime($update->getLocalVersion())) {
-                        echo '<br/><span class="label label-info">';
-                        echo '{{Le retour à la version stable est possible}}';
-                        echo '</span>';
-                    } else {
-                        echo '<br/><span class="label label-danger">';
-                        echo '{{Le retour à la version stable est dangereux}}';
-                        echo '</span>';
-                    }
-                }
-                ?>
-            </div>
+            }
+            ?>
         </div>
-
     </div>
 
-    <div id="div_comments" title="{{Commentaires}}"></div>
+</div>
 
-    <style>
-        .slick-prev:before, .slick-next:before {
-            color : #707070;
-        }
-    </style>
-    <script>
-        $("img.lazy").lazyload({
-            event: "sporty"
-        });
-        $("img.lazy").trigger("sporty");
+<div id="div_comments" title="{{Commentaires}}"></div>
 
-        $(document).unbind('click.fb-start');
-        $(".fancybox").fancybox({
-            autoHeight: true,
-        });
+<style>
+    .slick-prev:before, .slick-next:before {
+        color : #707070;
+    }
+</style>
+<script>
+    $("img.lazy").lazyload({
+        event: "sporty"
+    });
+    $("img.lazy").trigger("sporty");
 
-        $('.variable-width').unslick().slick({
-            dots: true,
-            speed: 200,
-            variableWidth: true,
-            accessibility: true,
-        });
-        $('.variable-width').slickNext();
-        setTimeout(function () {
-            $('.variable-width').slickGoTo(0);
-        }, 200);
+    $(document).unbind('click.fb-start');
+    $(".fancybox").fancybox({
+        autoHeight: true,
+    });
 
-
-        $('body').setValues(market_display_info, '.marketAttr');
-        $('.marketAttr[data-l1key=changelog]').html(linkify(market_display_info.changelog));
-        $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
-        $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
-
-        $('#bt_paypalClick').on('click', function () {
-            $(this).hide();
-        });
+    $('.variable-width').unslick().slick({
+        dots: true,
+        speed: 200,
+        variableWidth: true,
+        accessibility: true,
+    });
+    $('.variable-width').slickNext();
+    setTimeout(function () {
+        $('.variable-width').slickGoTo(0);
+    }, 200);
 
 
-        $("#div_comments").dialog({
-            autoOpen: false,
-            modal: true,
-            height: (jQuery(window).height() - 300),
-            width: 600,
-            position: {my: 'center', at: 'center', of: window},
-            open: function () {
-                if ((jQuery(window).width() - 50) < 1500) {
-                    $('#md_modal').dialog({width: jQuery(window).width() - 50});
-                }
+    $('body').setValues(market_display_info, '.marketAttr');
+    $('.marketAttr[data-l1key=changelog]').html(linkify(market_display_info.changelog));
+    $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
+    $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
+
+    $('#bt_paypalClick').on('click', function () {
+        $(this).hide();
+    });
+
+
+    $("#div_comments").dialog({
+        autoOpen: false,
+        modal: true,
+        height: (jQuery(window).height() - 300),
+        width: 600,
+        position: {my: 'center', at: 'center', of: window},
+        open: function () {
+            if ((jQuery(window).width() - 50) < 1500) {
+                $('#md_modal').dialog({width: jQuery(window).width() - 50});
             }
-        });
-
-        $('#bt_viewComment').on('click', function () {
-            reloadMarketComment();
-            $('#div_comments').dialog('open');
-        });
-
-
-        function reloadMarketComment() {
-            $('#div_comments').load('index.php?v=d&modal=market.comment&id=' + $('.marketAttr[data-l1key=id]').value());
         }
+    });
 
-        $('.bt_installFromMarket').on('click', function () {
-            var id = $(this).attr('data-market_id');
-            var logicalId = $(this).attr('data-market_logicalId');
+    $('#bt_viewComment').on('click', function () {
+        reloadMarketComment();
+        $('#div_comments').dialog('open');
+    });
+
+
+    function reloadMarketComment() {
+        $('#div_comments').load('index.php?v=d&modal=market.comment&id=' + $('.marketAttr[data-l1key=id]').value());
+    }
+
+    $('.bt_installFromMarket').on('click', function () {
+        var id = $(this).attr('data-market_id');
+        var logicalId = $(this).attr('data-market_logicalId');
         $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // methode de transmission des données au fichier php
             url: "core/ajax/market.ajax.php", // url du fichier php
