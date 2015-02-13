@@ -285,6 +285,7 @@ class market {
                 'addrProtocol' => config::byKey('externalProtocol'),
                 'addrPort' => config::byKey('externalPort'),
                 'addrComplement' => config::byKey('externalComplement'),
+                'nbMessage' => message::nbMessage(),
                 ));
         } else {
             $jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', config::byKey('market::apikey'), array(
