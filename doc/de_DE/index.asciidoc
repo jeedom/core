@@ -1,0 +1,149 @@
+== Kern
+
+=== Beschreibung
+Jeedom ist ein Home-Automation-Projekt ohne Cloud und ohne Abonement. Es ermöglicht verschiedenen Peripherie zu kontrollieren  (Zwave, RFXCOM, EnOcean, xPL, KNX ...). Mehr Informationen finden sie hier: https://jeedom.fr
+
+[[Bestandteil]]
+=== Bestandteil
+include::Bestandteil.asciidoc[]
+
+=== Mein Haus
+[[Armaturenbrett]]
+==== Armaturenbrett
+include::Armaturenbrett.asciidoc[]
+
+'''
+[[view]]
+==== Ansicht
+include::Ansicht.asciidoc[]
+
+'''
+[[Plan]]
+==== Design
+include::Plan.asciidoc[]
+
+'''
+[[history]]
+=== Chronik
+include::Chronik.asciidoc[]
+
+'''
+=== Allgemein
+[[administration]]
+==== Verwaltung
+include::Verwaltung.asciidoc[]
+
+'''
+[[configuration]]
+===== Konfiguration
+include::Konfiguration.asciidoc[]
+
+'''
+[[user]]
+===== Benutzer
+include::Benutzer.asciidoc[]
+
+'''
+[[backup]]
+===== Sicherungskopie
+include::Sicherungskopie.asciidoc[]
+
+'''
+[[update]]
+===== Update Center
+include::updatecenter.asciidoc[]
+
+'''
+[[jeeNetwork]]
+===== Jeedom Netzwerk
+include::JeedoNetzwerk.asciidoc[]
+
+'''
+[[cron]]
+===== Task-Engine
+include::Task-Engine.asciidoc[]
+
+'''
+[[security]]
+===== Sicherheit
+include::sicherheit.asciidoc[]
+
+'''
+[[log]]
+===== Logs
+include::logs.asciidoc[]
+
+'''
+[[info system]]
+===== System Information
+include::SystemInformation.asciidoc[]
+
+'''
+[[erw_anpas]]
+===== Erweiterte Anpassung
+include::erweiterteanp.asciidoc[]
+
+'''
+[[object]]
+==== Objekte
+include::objekte.asciidoc[]
+
+'''
+[[plugin]]
+==== Plugins
+include::plugininstall.asciidoc[]
+
+'''
+[[interact]]
+==== Interaction
+include::interaction.asciidoc[]
+
+'''
+[[display]]
+==== Ansichteinstellung
+include::Ansicht.asciidoc[]
+
+'''
+[[scenario]]
+==== Szenario
+include::Szenario.asciidoc[]
+
+'''
+[[plugin]]
+=== Plugins
+include::plugin.asciidoc[]
+
+'''
+[[admin]]
+=== Admin
+include::Admin.asciidoc[]
+
+'''
+[[profils]]
+==== Profil
+include::profil.asciidoc[]
+
+'''
+[[apihttp]]
+=== API HTTP
+include::apihttp.asciidoc[]
+
+'''
+[[jsonrpcapi]]
+=== API jsonrpc
+include::jsonrpcapi.asciidoc[]
+
+'''
+[[faq]]
+=== FAQ
+include::faq.asciidoc[]
+
+'''
+[[troubleshooting]]
+=== Troubleshooting
+include::troubleshooting.asciidoc[]
+
+'''
+[[changelog]]
+=== Changelog
+include::changelog.asciidoc[]
