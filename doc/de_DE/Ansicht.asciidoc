@@ -1,0 +1,2 @@
+In der Ansicht können einfache persönliche Ansichten erstellt werden, sie sind nicht so fortgeschritten wie die im Design, aber es erlaubt
+in wenigen Minuten eine eigene Anzeige zu haben.
