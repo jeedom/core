@@ -183,6 +183,9 @@ install_msg_fr
 [Ee][Nn]*|*)
 install_msg_en
 ;;
+[De][De]*|*)
+install_msg_de
+;;
 esac
 }
 
