@@ -2,7 +2,7 @@ In dem Untermenü Verwaltung finden sich weitere die wie folgt sind :
 
 '''
 [[configuration]]
-Konfiguration
+-Konfiguration
 include::Konfiguration.asciidoc[]
 
 '''
