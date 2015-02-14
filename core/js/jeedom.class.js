@@ -257,7 +257,7 @@ jeedom.forceSyncHour = function (_params) {
 
 jeedom.getCronSelectModal = function(_options,_callback) {
     if ($("#mod_insertCronValue").length == 0) {
-        $('body').append('<div id="mod_insertCronValue" title="{{Assitant cron}}" ></div>');
+        $('body').append('<div id="mod_insertCronValue" title="{{Assistant cron}}" ></div>');
         $("#mod_insertCronValue").dialog({
             autoOpen: false,
             modal: true,
