@@ -20,7 +20,7 @@ class translate {
 		if (!isset(static::$translation) || !isset(static::$translation[self::getLanguage()])) {
 			static::$translation = array(
 				self::getLanguage() => self::loadTranslation(),
-			);
+				);
 		}
 		return static::$translation[self::getLanguage()];
 	}
@@ -121,8 +121,12 @@ class translate {
 		}
 		file_put_contents(self::getPathTranslationFile(self::getLanguage()), json_encode($core, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
 		foreach ($plugins as $plugin_name => $translation) {
-			$plugin = plugin::byId($plugin_name);
-			$plugin->saveTranslation(self::getLanguage(), $translation);
+			try {
+				$plugin = plugin::byId($plugin_name);
+				$plugin->saveTranslation(self::getLanguage(), $translation);
+			} catch (Exception $e) {
+				
+			}
 		}
 	}
 
