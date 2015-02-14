@@ -2,7 +2,7 @@ In dem Untermenü Verwaltung finden sich weitere die wie folgt sind :
 
 '''
 [[configuration]]
--Konfiguration
+Konfiguration :  Unter diesem Menü findet man verschiedene Einstellungen die man für die Jeedom Software ändern kann.
 include::Konfiguration.asciidoc[]
 
 '''
