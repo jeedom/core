@@ -184,6 +184,9 @@ public static function tryToReply($_query, $_parameters = array()) {
     $interactQuery = interactQuery::recognize($_query);
     if (is_object($interactQuery)) {
         $reply = $interactQuery->executeAndReply($_parameters);
+        if (trim($reply) == ''){
+            $reply  = sefl::replyOk();
+        }
     }
     if (trim($reply) == '' && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
         $reply = self::dontUnderstand($_parameters);
