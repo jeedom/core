@@ -640,7 +640,7 @@
         "Les deux": "beide",
         "Déclencheur": "Auslöser",
         "Exécuter le plus rapidement possible": "So schnell wie möglich ausführen",
-        "A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours et aucun log ne sera écris par celui-ci": "Nicht zu verwenden, wenn Sie einen "Schlaf" Befehl im Skript haben. Achtung in diesem Modus können Sie nicht wissen, ob das Skript im Gange ist und keine Protokollierung wird geschrieben werden",
+        "A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours et aucun log ne sera écris par celui-ci": "Nicht zu verwenden, wenn Sie einen 'Schlaf' Befehl im Skript haben. Achtung in diesem Modus können Sie nicht wissen, ob das Skript im Gange ist und keine Protokollierung wird geschrieben werden",
         "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.": "Bitte Speichern Sie vor dem Test, damit es funktioniert.",
         "Dupliquer le scénario": "Szenario Duplizieren",
         "Si\/Alors\/Sinon": "wenn\/dann\/Sonst",
