@@ -571,7 +571,7 @@ $('body').delegate('.bt_sortable', 'mouseenter', function () {
     refreshPositions: true,
     dropOnEmpty: false,
     update: function (event, ui) {
-      if (ui.item.findAtDepth('.element', 2).length == 1) {
+      if (ui.item.findAtDepth('.element', 2).length == 1 && ui.item.parent().attr('id') == 'div_scenarioElement') {
         ui.item.replaceWith(ui.item.findAtDepth('.element', 2));
       }
       if (ui.item.hasClass('element') && ui.item.parent().attr('id') != 'div_scenarioElement') {
