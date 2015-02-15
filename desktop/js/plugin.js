@@ -67,7 +67,7 @@
             $('#div_plugin_configuration').empty();
             if (data.checkVersion != -1) {
                 if (data.configurationPath != '' && data.activate == 1) {
-                    $('#div_plugin_configuration').load(data.configurationPath, function () {
+                    $('#div_plugin_configuration').load('index.php?v=d&plugin='+data.id+'&configure=1', function () {
                         jeedom.config.load({
                             configuration: $('#div_plugin_configuration').getValues('.configKey')[0],
                             plugin: $('.li_plugin.active').attr('data-plugin_id'),

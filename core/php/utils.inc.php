@@ -92,6 +92,11 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 			$_fn = $_fn . '.html';
 			$type = 'php';
 		}
+		if ($_type == 'configuration') {
+			$_folder .= '';
+			$_fn = $_fn . '.php';
+			$type = 'php';
+		}
 	}
 	if ($_plugin != '') {
 		$_folder = 'plugins/' . $_plugin . '/' . $_folder;

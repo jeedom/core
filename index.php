@@ -43,34 +43,48 @@ if (!isset($_GET['v'])) {
                 }
                 include_file('desktop', init('modal'), 'modal', init('plugin'));
             } catch (Exception $e) {
-                if ($e->getCode() == 35486 && strpos(init('modal'), 'help') !== false) {
-                    echo '<div class="alert alert-warning div_alert">';
-                    echo 'Il n\'y a encore aucune aide sur cette page pour le moment';
-                    echo '</div>';
-                } else {
-                    $_folder = 'desktop/modal';
-                    if (init('plugin') != '') {
-                        $_folder = 'plugins/' . init('plugin') . '/' . $_folder;
-                    }
+                $_folder = 'desktop/modal';
+                if (init('plugin') != '') {
+                    $_folder = 'plugins/' . init('plugin') . '/' . $_folder;
+                }
                     ob_end_clean(); //Clean pile after expetion (to prevent no-traduction)
                     echo '<div class="alert alert-danger div_alert">';
                     echo translate::exec(displayExeption($e), $_folder . '/' . init('modal') . '.php');
                     echo '</div>';
                 }
-            }
-            die();
-        } if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
-            include_file('core', 'authentification', 'php');
-            try {
-                if (!isConnect()) {
-                    throw new Exception('{{401 - Accès non autorisé}}');
+                die();
+            } 
+            if (isset($_GET['configure'])) {
+                include_file('core', 'authentification', 'php');
+                try {
+                    if (!isConnect()) {
+                        throw new Exception('{{401 - Accès non autorisé}}');
+                    }
+                    include_file('plugin_info', 'configuration', 'configuration', init('plugin'));
+                } catch (Exception $e) {
+                    $_folder = 'plugin_info';
+                    if (init('plugin') != '') {
+                        $_folder = 'plugins/' . init('plugin') . '/plugin_info';
+                    }
+                    ob_end_clean(); //Clean pile after expetion (to prevent no-traduction)
+                    echo '<div class="alert alert-danger div_alert">';
+                    echo translate::exec(displayExeption($e), $_folder . '/configure.php');
+                    echo '</div>';
                 }
-                include_file('desktop', init('p'), 'php', init('m'));
-            } catch (Exception $e) {
-                $_folder = 'desktop/php';
-                if (init('m') != '') {
-                    $_folder = 'plugins/' . init('m') . '/' . $_folder;
-                }
+                die();
+            } 
+            if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
+                include_file('core', 'authentification', 'php');
+                try {
+                    if (!isConnect()) {
+                        throw new Exception('{{401 - Accès non autorisé}}');
+                    }
+                    include_file('desktop', init('p'), 'php', init('m'));
+                } catch (Exception $e) {
+                    $_folder = 'desktop/php';
+                    if (init('m') != '') {
+                        $_folder = 'plugins/' . init('m') . '/' . $_folder;
+                    }
                     ob_end_clean(); //Clean pile after expetion (to prevent no-traduction)
                     echo '<div class="alert alert-danger div_alert">';
                     echo translate::exec(displayExeption($e), $_folder . '/' . init('modal') . '.php');
