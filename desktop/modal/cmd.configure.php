@@ -82,7 +82,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                             </div>
 
                             <div class="form-group">
-                                <label class="col-xs-4 control-label">{{Evenement seulement}}</label>
+                                <label class="col-xs-4 control-label">{{Evénement seulement}}</label>
                                 <div class="col-xs-4">
                                     <span class="cmdAttr label label-primary" data-l1key="eventOnly"></span>
                                 </div>
