@@ -302,7 +302,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 </div>
 
 
-<div id="md_cmdConfigureSelectMultiple" title="{{Séléction multiple de commande}}">
+<div id="md_cmdConfigureSelectMultiple" title="{{Sélection multiple de commandes}}">
     <div style="display: none;" id="md_cmdConfigureSelectMultipleAlert"></div>
     <div>
         <a class="btn btn-default" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="fa fa-check-circle-o"></i> {{Basculer}}</a>

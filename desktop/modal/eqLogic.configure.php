@@ -186,7 +186,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 </div>
 
 
-<div id="md_eqLogicConfigureSelectMultiple" title="{{Selection multiple d'équipement}}">
+<div id="md_eqLogicConfigureSelectMultiple" title="{{Sélection multiple d'équipements}}">
     <div style="display: none;" id="md_eqLogicConfigureSelectMultipleAlert"></div>
     <div>
         <a class="btn btn-default" id="bt_eqLogicConfigureSelectMultipleAlertToogle" data-state="0"><i class="fa fa-check-circle-o"></i> {{Basculer}}</a>
