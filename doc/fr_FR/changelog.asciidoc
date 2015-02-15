@@ -2,6 +2,7 @@
 
 - Bugfix
 - Possibilité d'appliqué les parametres d'un équipement/widget en masse (page Générale -> Affichage puis "Appliquer à")
+- Ajout champs de recherche pour choisir une icone
 
 *09/02/2015* _v1.163.0_
 
