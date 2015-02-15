@@ -47,6 +47,8 @@ jeedom.eqLogic.save = function (_params) {
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.async =  _params.async || true;
+
     paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
     paramsAJAX.data = {
         action: 'save',
