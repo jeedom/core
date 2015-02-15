@@ -93,6 +93,7 @@ if (init('type') == 'plugin') {
                         <option value="zwave" data-category='input'>{{[Zwave] Configuration module}}</option>
                         <option value="enocean" data-category='input'>{{[EnOcean] Configuration module}}</option>
                         <option value="rfxcom" data-category='input'>{{[RfxCom] Configuration module}}</option>
+                        <option value="edisio" data-category='input'>{{[Edisio] Configuration module}}</option>
                         <option value="script" data-category='input'>{{Script}}</option>
                         <option value="scenario" data-category='input'>{{Scénario}}</option>
                         <option value="camera" data-category='input'>{{[Camera] Modèle}}</option>
