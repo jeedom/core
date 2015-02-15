@@ -266,7 +266,7 @@
         ". Rattrapage en cours...": "Förderkurse",
         "Scénario exécuté automatiquement sur programmation": "Szenario wird automatisch auf die Programmierung",
         "Scénario lance automatiquement sur evenement venant de : ": "Szenario wird automatisch auf Ereignisse aus :",
-        "Début exécution du scénario :  ": "Starten Sie die Ausführung des Szenarios:"
+        "Début exécution du scénario :  ": "Starten Sie die Ausführung des Szenarios:  "
     },
     "desktop\/php\/history.php": {
         "Ligne": "Linie",
@@ -362,7 +362,7 @@
         "Nombre de requête(s) active(s)": "Anzahl der Freigabe-Anforderung (en)",
         "Nombre de requête(s) totale(s)": "Gesamtzahl der Anfrage (n)",
         "Suppression effectuée avec succès": "Vollständiges Löschen",
-        "Etes-vous sûr de vouloir supprimer l\\'intÃ©raction": "diese Interaktion zu löschen?",
+        "Etes-vous sûr de vouloir supprimer l\\'intéraction": "diese Interaktion zu löschen?",
         "Veuillez d\\'abord sélectionner un objet": "Bitte wählen Sie ein Objekt",
         "Start": "Anfang",
         "Stop": "Aufhören"
@@ -407,8 +407,8 @@
         "Nombre total de processus Jeedom en cours": "Gesamtzahl der laufenden Jeedom Prozess",
         "Nombre total de processus en cours sur la machine": "Gesamtzahl der laufenden Prozesses an der Maschine",
         "Load avg": "Load avg",
-        "Charge moyenne du système sur la derniÃ¨re minute": "Durchschnittslast des Systems während der letzten Minute",
-        "Charge moyenne du système sur les 5 derniÃ¨res minutes": "Durchschnittslast des Systems während der letzten 5 Minuten",
+        "Charge moyenne du système sur la dernière minute": "Durchschnittslast des Systems während der letzten Minute",
+        "Charge moyenne du système sur les 5 dernières minutes": "Durchschnittslast des Systems während der letzten 5 Minuten",
         "Charge moyenne du système sur les 15 dernières minutes": "Durchschnittslast des Systems während der letzten 15 Minuten",
         "Enregistrer": "sparen",
         "Rafraîchir": "Refresh",
