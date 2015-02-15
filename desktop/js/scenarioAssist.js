@@ -416,7 +416,7 @@ function printScenario(_id) {
             if (data.schedule == '' || data.schedule == undefined) {
                 $('#sel_scheduleMode').value('once');
             } else {
-                if (data.schedule.indexOf('*') != -1 && false) {
+                if (data.schedule.indexOf('*') != -1) {
                     $('#sel_scheduleMode').value('repete');
                     $('#div_cronGenerator').empty().cron({
                         initial: data.schedule,
