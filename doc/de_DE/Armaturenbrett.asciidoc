@@ -1,0 +1,2 @@
+Eine der wichtigsten Seiten von Jeedom es eine Übersicht über alle Ihrer Geräte der Home-Automation.
+Dieser Jeedom Bericht (im Gegensatz zu den Ansichten und Design) ist selbsterzeugt.
