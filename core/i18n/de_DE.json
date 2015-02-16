@@ -80,13 +80,13 @@
         "Sélectionner la commande": "Select-Befehl",
         "Lancement de ": "Lancierung",
         "Enregistrer": "Speichern",
-        "Sauvegarde réussie": "Sparen komplette",
+        "Sauvegarde réussie": "erfolgreiche Sicherung",
         "Ajouter élément": "Komponente hinzufügen",
         "Nom d'utilisateur": "Benutzername",
         "Mot de passe": "Kennwort",
         "Connexion": "Verbindung",
         "Liste objets": "Liste Objekte",
-        "Sauvegarde effectuée avec succès": "Speichern erfolgreich abgeschlossen",
+        "Sauvegarde effectuée avec succès": "Sicherheitskopie erfolgreich abgeschlossen",
         "Se déconnecter": "abmelden",
         "Rechercher équipement": "Auf der Suche nach Gerät",
         "Equipements": "Gerät",
@@ -185,15 +185,15 @@
         "Plugins": "Nachricht",
         "Profil": "Profil",
         "Mode expert": "Expertenmodus",
-        "Se déconnecter": "austragen",
+        "Se déconnecter": "Abmelden",
         "Aide sur la page en cours": "Hilfe auf der aktuellen Seite",
-        "Envoyer un rapport de bug": "Senden Sie einen Fehlerbericht",
+        "Envoyer un rapport de bug": "Fehlerbericht senden",
         "Spécifique": "spezifisch",
-        "Ouverture d'un ticket": "Öffnungs ein Ticket",
+        "Ouverture d'un ticket": "Ticket öffen",
         "Moteur de tâches": "Task Engine",
         "Filtre sur les catégories d'équipement": "Filter auf Gerätekategorien",
         "Sauvegarde": "Sicherungskopie",
-        "Centre de mise à jour": "Center Update",
+        "Centre de mise à jour": "Update-Center",
         "Timeline": "Timeline",
         "Panel": "Tafel",
         "Protocole domotique": "Automatisierungsprotokoll",
@@ -202,22 +202,22 @@
         "Organisation": "Organisation",
         "Météo": "Wetter",
         "Bien-être": "Wohlfahrt",
-        "Envoyer un rapport de bug": "Senden Sie einen Fehlerbericht",
+        "Envoyer un rapport de bug": "Fehlerbericht senden",
         "Générale": "allgemein",
         "Détaillée": "detailliert",
-        "Page générée en": "Seitenerstellung in"
+        "Page générée en": "Seitenerstellt in"
     },
     "core\/php\/jeeScenario.php": {
         " avec le PID:": " mit der PID:",
-        "Impossible d'exécuter le scénario car déjà en cours": "da er bereits gestartet ist",
+        "Impossible d'exécuter le scénario car déjà en cours": "Ausfüren vom Szenario nicht möglich, da er bereits gestartet ist",
         "Scenario : ": "Szenario : ",
         "Erreur :": "Fehler",
-        "Impossible d'exécuter le scénario car désactivé :": "Weil seine behinderte laufen:"
+        "Impossible d'exécuter le scénario car désactivé :": "Ausfüren vom Szenario nicht möglich, da er bereits nicht aktiv ist"
     },
     "core\/class\/scenarioElement.class.php": {
         "Exécution de l'élément : ": "Laufen der Komponente:",
-        "Elément inconnu. Vérifiez l'id :": "überprüfen ID:",
-        "Expression inconnue. Vérifiez l'id :": "überprüfen ID:"
+        "Elément inconnu. Vérifiez l'id :": "Unbekanntes Element. ID überprüfen:",
+        "Expression inconnue. Vérifiez l'id :": "Unbekanntes Ausdruck . ID überprüfen:"
     },
     "core\/class\/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type : ": "Laufen der Unterkomponente:"
@@ -236,7 +236,7 @@
     "core\/com\/http.com.php": {
         "Url : ": "url",
         "\nRéponse : ": "\nAntwort",
-        "Echec de la requête http : ": "Fehlgeschlagen http Anfrage:",
+        "Echec de la requête http : ": "http Anfrage Fehlgeschlagen :",
         "Erreur curl : ": "Curl-Fehler:",
         " sur la commande ": "der Befehls",
         " après ": "nach",
@@ -278,12 +278,12 @@
         "Historique supprimé avec succès": "Geschichte erfolgreich entfernt"
     },
     "core\/js\/core.js": {
-        "La commande a été exécutée avec succès": "Der Befehl wurde erfolgreich ausgeführt wurde",
+        "La commande a été exécutée avec succès": "Der Befehl wurde erfolgreich ausgeführt",
         "Mise à jour de l\\'état du scénario réussi": "Erfolgreiche Szenario Zustandsaktualisierungs",
         "[Jeedom] Message de test": "[Jeedom] Testmeldung",
         "Ceci est un test de message pour la commande": "Dies ist eine Testnachricht für den Befehl",
         "La valeur a été éditée avec succès": "Der Wert wurde erfolgreich bearbeitet",
-        "Il n\\'existe encore aucun historique pour cette commande : ": "Es gibt immer noch keine Geschichte für diesen Befehl",
+        "Il n\\'existe encore aucun historique pour cette commande : ": "Es gibt noch keine Geschichte für diesen Befehl",
         "Edition de la série : ": "Ausgabe Reihe:",
         "et du point de": "und Punkt",
         "Ne rien mettre pour supprimer la valeur :": "Um den Wert zu entfernen :"
