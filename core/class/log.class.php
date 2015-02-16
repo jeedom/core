@@ -87,9 +87,11 @@ class log {
      */
     public static function clear($_log) {
         $path = self::getPathToLog($_log);
-        $log = fopen($path, "w");
-        ftruncate($log, 0);
-        fclose($log);
+        if(file_exists($path)){
+            $log = fopen($path, "w");
+            ftruncate($log, 0);
+            fclose($log);
+        }
         return true;
     }
 

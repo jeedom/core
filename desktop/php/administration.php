@@ -341,7 +341,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                                 <input type="checkbox"  class="configKey" data-l1key="allowupnpn" />
                                             </div>
                                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                <a class="btn btn-default" id="bt_forceApplyUPnP"> {{Appliquer}}</a>
+                                                <a class="btn btn-default" id="bt_forceApplyUPnP"> {{Appliquer UPnP}}</a>
                                             </div>
                                         </div>
                                         <?php }?>
