@@ -1,4 +1,4 @@
-===== Description
+==== Description
 Voici pour moi la partie la plus importante dans la domotique : les scénarios. Véritable cerveau de la domotique c’est ce qui permet d’interagir avec le monde réel de manière “intelligente”. J’ai donc essayé dans Jeedom de les rendre les plus flexibles possible en essayant de ne jamais brider l’utilisateur tout en essayant qu’ils soient facilement configurables :
 
 image::../images/scenario.JPG[]
@@ -25,13 +25,13 @@ Pour les conditions j’ai essayé de faire en sorte qu’on puisse les écrire 
 Pour les actions on peut exécuter soit une action d’une commande (les options de celle-ci apparaitront sur sa droite, comme dans la capture tout en haut pour l’envoi de mail), soit une commande d’affectation de variable ou de pause (très pratique pour simuler la présence surtout couplé à la génération d’une durée aléatoire) ou même d’action sur un autre scénario (start, stop, activer, désactiver)
 
 
-===== Déclencheur
+==== Déclencheur
 Il existe des déclencheur spécifique (autre que ceux fournis par les commandes) :
 
 - \#start#  : déclenché au (re)démarrage de Jeedom
 - \#user_connect#  : déclenché lors de la connexion d'un utilisateur
 
-===== Condition ou valeur d'une commande d'action
+==== Condition ou valeur d'une commande d'action
 Attention à bien mettre des ' ou " (quote ou double quote) lors de l'utilisation de chaîne de caractère. Ex : "#[Object][Equipement][Info]#" = "oui"
 Vous pouvez utiliser n'importe lequel des symboles suivant pour les opérateurs : 
 
@@ -108,7 +108,7 @@ Vous pouvez aussi utiliser les tags suivants :
 - collectDate(cmd,[format]) : renvoit la date de la derniere donnée pour la commande donnée en paramètre, le 2eme paramètre optionel permet de spécifier le format de retour (détails link:http://php.net/manual/fr/function.date.php[ici]). Un retour de -1 signifi que la commande est introuvable, et -2 que la commande n'est pas de type info
     * Ex : collectDate(\#[Salle de bain][Hydrometrie][Humidité]#) : renverra 2015-01-01 17:45:12
             
-===== Action
+==== Action
 En plus des commandes domotiques vous avez accès aux fonctions suivantes : 
 
 - sleep : pause de x seconde(s)
@@ -144,7 +144,7 @@ Vous pouvez aussi utiliser les tags suivants dans les options :
 - formatTime(time) : permet de formater le retour d'une chaine #time#
     * Ex : formatTime(1650) : renverra 16h50
              
-===== Code
+==== Code
 Attention les tags ne sont pas disponible dans un bloc de type code
 
 Commandes (capteurs et actionneurs)::
