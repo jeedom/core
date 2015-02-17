@@ -21,7 +21,7 @@ Diese Plugins konnen uber den Markt geladen werden und ermoglichen es, Jeedom zu
 Jeedom ermoglicht irgendeinem Plugin, mit einem anderem uber eine normale Basis zu komunizieren, ermoglicht z.B. dass die Plugins Thermostat oder Alarm irgendeine Protokoll benutzt.
 Haustechnik entweder gleich eine IP-Kommunikationsobjekt ...
 
-Neben der Partikel Jeedom um kein Abo und keine Cload, die den Betrieb des Home-Automation, auch wenn Sie kein Internet haben, gewährleistet sein. Dies garantiert
+Neben der Partikel Jeedom um kein Abo und keine Cload, die den Betrieb des Home-Automation, auch wenn Sie kein Internet haben, gewahrleistet sein. Dies garantiert
 auch die Sicherheit Ihrer Daten (vermeidet das Risiko der Piraterie in der Masse von Konten).
 
 Das Projekt ist Open-Source die eine hohe Rate von Weiterentwicklung ermoglicht, dank der vielen Entwickler die teilnehmen.
