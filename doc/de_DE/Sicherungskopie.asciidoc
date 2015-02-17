@@ -1,6 +1,14 @@
+Sicherungskopie
 
+Hier werden ihre Jeedom Backups verwalten. Mehrere Optionen sind verfügbar.
 
-Das Menü ermöglicht Sicherheit, das System primäre "Antipiraterie" von Jeedom zu configurer. Er ist nur in der Sachverständigen Weise verfügbar. Es handelt sich um ein System der Verbannung der Adressen IP, wenn ein unter ihnen versucht, mehrmals zu Jeedom erfolglos anzuschließen. 
+Die erste Rubrik ermöglicht, Einstellungen für ihre automatischen Sicherungskopien vorzunehmen. 
+Stellen Sie die Frequenz, die Lage auf der Festplatte, und auch die Anzahl der Tage, an denen die Sicherungen gespeichert bleiben bevor sie wieder gelöscht werden.
+Sie können diese Sicherungen automatisch in den Cloud-Backup-Service zu senden. Über die Schaltfläche Speichern, können Sie eine manuelle Sicherung durchführen.
+
+Der zweite Abschnitt ermöglicht es Ihnen, lokale Backups zu verwalten (in Jeedom). Sie können eine Sicherung auswählen und dann wiederherstellen, löschen oder laden Sie es auf Ihren Computer.
+
+Schließlich ermöglicht die letzte Rubrik, einen der verfügbaren Sicherungen auf dem Cloud-Backup-Service zu restaurieren. 
 
 
 Kern 
