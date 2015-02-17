@@ -63,4 +63,3 @@ include::erweiterteanp.asciidoc[]
 
 
 zum Kern zurück
-include::index.asciidoc[]
