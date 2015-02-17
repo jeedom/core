@@ -58,8 +58,8 @@ sendVarToJS('market_display_info', $market_array);
                 echo ' <a class="btn btn-warning bt_installFromMarket" data-version="beta" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer beta}}</a>';
             }
         } else if($market->getPrivate() == 1) {
-         echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accèder}}</div>';
-     }else{
+           echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accèder}}</div>';
+       }else{
         if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
             $purchase_info = market::getPurchaseInfo();
             if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id']) && isset($purchase_info['paypal::url']) && isset($purchase_info['paypal::marchandMail'])) {
@@ -197,6 +197,18 @@ if ($market->getCertification() != 'Officiel') {
                 <?php if ($market->getLink('doc_us_US') != '' && $market->getLink('doc_us_US') != 'null') { ?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_us_US'); ?>"><i class="fa fa-book"></i> Doc US</a><br/>
                 <?php } ?>
+                <?php if ($market->getLink('doc_us_US') != '' && $market->getLink('doc_de_DE') != 'null') {?>
+                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_de_DE');?>"><i class="fa fa-book"></i> Doc DE</a><br/>
+                <?php }?>
+                <?php if ($market->getLink('doc_us_US') != '' && $market->getLink('doc_sp_SP') != 'null') {?>
+                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_sp_SP');?>"><i class="fa fa-book"></i> Doc SP</a><br/>
+                <?php }?>
+                <?php if ($market->getLink('doc_us_US') != '' && $market->getLink('doc_ru_RU') != 'null') {?>
+                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_ru_RU');?>"><i class="fa fa-book"></i> Doc RU</a><br/>
+                <?php }?>
+                <?php if ($market->getLink('doc_us_US') != '' && $market->getLink('doc_id_ID') != 'null') {?>
+                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_id_ID');?>"><i class="fa fa-book"></i> Doc ID</a><br/>
+                <?php }?>
             </div>
             <div class='col-sm-2'>
                 <label class="control-label">{{Nombre de téléchargements}}</label><br/>
@@ -217,9 +229,9 @@ if ($market->getCertification() != 'Officiel') {
                     echo '<img src="core/img/allemand.png" width="30" />';
                 }
                 if($market->getLanguage('sp_SP') == 1){
-                 echo '<img src="core/img/espagnol.png" width="30" />';
-             }
-             if($market->getLanguage('ru_RU') == 1){
+                   echo '<img src="core/img/espagnol.png" width="30" />';
+               }
+               if($market->getLanguage('ru_RU') == 1){
                 echo '<img src="core/img/russe.png" width="30" />';
             }
             ?>
