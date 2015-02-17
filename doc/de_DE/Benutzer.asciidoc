@@ -1,0 +1,8 @@
+Benutzer
+
+Auf dieser Seite werden Benutzer hinzugefügt oder entfernt. Es werden aber auch Rechte für die Benutzer vergeben. 
+
+
+
+Kern 
+include::index.asciidoc[]
