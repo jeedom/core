@@ -1,4 +1,4 @@
-Jeedom ist aus einem Kern zusammengesetzt, der folgende Grundfunktionen enthält: 
+Jeedom ist aus einem Kern zusammengesetzt, der folgende Grundfunktionen enthalt: 
 
 - Szenario
 - Chronik
