@@ -16,9 +16,9 @@ Um diesen Kern herum sind Plugins zu integrieren, die beliebig sein konnen:
 - Organisation (agenda, Google agenda)
 - Programmierung (script)
 
-Diese Plugins konnen über den Markt geladen werden und ermoglichen es, Jeedom zu erweitern.
+Diese Plugins konnen uber den Markt geladen werden und ermoglichen es, Jeedom zu erweitern.
 
-Jeedom ermoglicht irgendeinem Plugin, mit einem anderem über eine normale Basis zu komunizieren, ermoglicht z.B. dass die Plugins Thermostat oder Alarm irgendeine Protokoll benutzt.
+Jeedom ermoglicht irgendeinem Plugin, mit einem anderem uber eine normale Basis zu komunizieren, ermoglicht z.B. dass die Plugins Thermostat oder Alarm irgendeine Protokoll benutzt.
 Haustechnik entweder gleich eine IP-Kommunikationsobjekt ...
 
 Neben der Partikel Jeedom um kein Abo und keine Cload, die den Betrieb des Home-Automation, auch wenn Sie kein Internet haben, gewährleistet sein. Dies garantiert
