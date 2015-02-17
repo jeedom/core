@@ -162,119 +162,25 @@ class scenarioExpression {
             }
             $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
             $historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
-            return round($historyStatistique['avg'], 1);
-        }
+            if($historyStatistique['avg'] == ''){
+             return $cmd->execCmd(null,2);
+         }
+         return round($historyStatistique['avg'], 1);
+     }
+ }
+
+ public static function averageBetween($_cmd_id,$_startDate,$_endDate){
+    $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+    if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+        return '';
     }
+    $historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
+    return round($historyStatistique['avg'], 1);
+}
 
-    public static function averageBetween($_cmd_id,$_startDate,$_endDate){
-        $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
-        if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
-            return '';
-        }
-        $historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
-        return round($historyStatistique['avg'], 1);
-    }
-
-    public static function max($_cmd_id, $_period = '1 hour') {
-        $args = func_get_args();
-        if (count($args) > 2 || strpos($_period, '#') !== false || is_numeric($_period)) {
-            $values = array();
-            foreach ($args as $arg) {
-                if (is_numeric($arg)) {
-                    $values[] = $arg;
-                } else {
-                    $value = cmd::cmdToValue($arg);
-                    if (is_numeric($value)) {
-                        $values[] = $value;
-                    } else {
-                        try {
-                            $values[] = evaluate($value);
-                        } catch (Exception $ex) {
-
-                        }
-                    }
-                }
-            }
-            return max($values);
-        } else {
-            $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
-            if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
-                return '';
-            }
-            $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
-            $historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
-            return round($historyStatistique['max'], 1);
-        }
-    }
-
-    public static function maxBetween($_cmd_id,$_startDate,$_endDate){
-        $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
-        if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
-            return '';
-        }
-        $historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
-        return round($historyStatistique['max'], 1);
-    }
-
-    public static function wait($_condition, $_timeout = 7200) {
-        $result = false;
-        $occurence = 0;
-        $limit = (is_numeric($_timeout)) ? $_timeout : 7200;
-        while ($result === false) {
-            $expression = self::setTags($_condition);
-            $result = evaluate($expression);
-            if ($occurence > $limit) {
-                return 0;
-            }
-            $occurence++;
-            sleep(1);
-        }
-        return 1;
-    }
-
-    public static function min($_cmd_id, $_period = '1 hour') {
-        $args = func_get_args();
-        if (count($args) > 2 || strpos($_period, '#') !== false || is_numeric($_period)) {
-            $values = array();
-            foreach ($args as $arg) {
-                if (is_numeric($arg)) {
-                    $values[] = $arg;
-                } else {
-                    $value = cmd::cmdToValue($arg);
-                    if (is_numeric($value)) {
-                        $values[] = $value;
-                    } else {
-                        try {
-                            $values[] = evaluate($value);
-                        } catch (Exception $ex) {
-
-                        }
-                    }
-                }
-            }
-            return min($values);
-        } else {
-            $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
-            if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
-                return '';
-            }
-            $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
-            $historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
-            return round($historyStatistique['min'], 1);
-        }
-    }
-
-    public static function minBetween($_cmd_id,$_startDate,$_endDate){
-        $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
-        if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
-            return '';
-        }
-        $historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
-        return round($historyStatistique['min'], 1);
-    }
-
-    public static function median() {
-        $args = func_get_args();
+public static function max($_cmd_id, $_period = '1 hour') {
+    $args = func_get_args();
+    if (count($args) > 2 || strpos($_period, '#') !== false || is_numeric($_period)) {
         $values = array();
         foreach ($args as $arg) {
             if (is_numeric($arg)) {
@@ -292,121 +198,224 @@ class scenarioExpression {
                 }
             }
         }
-        if (count($values) < 1) {
+        return max($values);
+    } else {
+        $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+        if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+            return '';
+        }
+        $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+        $historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
+        if($historyStatistique['max'] == ''){
+         return $cmd->execCmd(null,2);
+     }
+     return round($historyStatistique['max'], 1);
+ }
+}
+
+public static function maxBetween($_cmd_id,$_startDate,$_endDate){
+    $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+    if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+        return '';
+    }
+    $historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
+    return round($historyStatistique['max'], 1);
+}
+
+public static function wait($_condition, $_timeout = 7200) {
+    $result = false;
+    $occurence = 0;
+    $limit = (is_numeric($_timeout)) ? $_timeout : 7200;
+    while ($result === false) {
+        $expression = self::setTags($_condition);
+        $result = evaluate($expression);
+        if ($occurence > $limit) {
             return 0;
         }
-        if (count($values) == 1) {
-            return $values[0];
-        }
-        sort($values);
-        return $values[round(count($values) / 2) - 1];
+        $occurence++;
+        sleep(1);
     }
+    return 1;
+}
 
-    public static function tendance($_cmd_id, $_period = '1 hour', $_threshold = '') {
+public static function min($_cmd_id, $_period = '1 hour') {
+    $args = func_get_args();
+    if (count($args) > 2 || strpos($_period, '#') !== false || is_numeric($_period)) {
+        $values = array();
+        foreach ($args as $arg) {
+            if (is_numeric($arg)) {
+                $values[] = $arg;
+            } else {
+                $value = cmd::cmdToValue($arg);
+                if (is_numeric($value)) {
+                    $values[] = $value;
+                } else {
+                    try {
+                        $values[] = evaluate($value);
+                    } catch (Exception $ex) {
+
+                    }
+                }
+            }
+        }
+        return min($values);
+    } else {
         $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
-        if (!is_object($cmd)) {
+        if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
             return '';
         }
-        if ($cmd->getIsHistorized() == 0) {
-            return '';
-        }
-        $endTime = date('Y-m-d H:i:s');
-        $startTime = date('Y-m-d H:i:s', strtotime('-' . $_period . '' . $endTime));
-        $tendance = $cmd->getTendance($startTime, $endTime);
-        if ($_threshold != '') {
-            $maxThreshold = $_threshold;
-            $minThreshold = -$_threshold;
+        $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+        $historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
+        if($historyStatistique['min'] == ''){
+         return $cmd->execCmd(null,2);
+     }
+     return round($historyStatistique['min'], 1);
+ }
+}
+
+public static function minBetween($_cmd_id,$_startDate,$_endDate){
+    $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+    if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+        return '';
+    }
+    $historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
+    return round($historyStatistique['min'], 1);
+}
+
+public static function median() {
+    $args = func_get_args();
+    $values = array();
+    foreach ($args as $arg) {
+        if (is_numeric($arg)) {
+            $values[] = $arg;
         } else {
-            $maxThreshold = config::byKey('historyCalculTendanceThresholddMax');
-            $minThreshold = config::byKey('historyCalculTendanceThresholddMin');
+            $value = cmd::cmdToValue($arg);
+            if (is_numeric($value)) {
+                $values[] = $value;
+            } else {
+                try {
+                    $values[] = evaluate($value);
+                } catch (Exception $ex) {
+
+                }
+            }
         }
-        if ($tendance > $maxThreshold) {
+    }
+    if (count($values) < 1) {
+        return 0;
+    }
+    if (count($values) == 1) {
+        return $values[0];
+    }
+    sort($values);
+    return $values[round(count($values) / 2) - 1];
+}
+
+public static function tendance($_cmd_id, $_period = '1 hour', $_threshold = '') {
+    $cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+    if (!is_object($cmd)) {
+        return '';
+    }
+    if ($cmd->getIsHistorized() == 0) {
+        return '';
+    }
+    $endTime = date('Y-m-d H:i:s');
+    $startTime = date('Y-m-d H:i:s', strtotime('-' . $_period . '' . $endTime));
+    $tendance = $cmd->getTendance($startTime, $endTime);
+    if ($_threshold != '') {
+        $maxThreshold = $_threshold;
+        $minThreshold = -$_threshold;
+    } else {
+        $maxThreshold = config::byKey('historyCalculTendanceThresholddMax');
+        $minThreshold = config::byKey('historyCalculTendanceThresholddMin');
+    }
+    if ($tendance > $maxThreshold) {
+        return 1;
+    }
+    if ($tendance < $minThreshold) {
+        return -1;
+    }
+    return 0;
+}
+
+public static function variable($_name, $_default = '') {
+    $dataStore = dataStore::byTypeLinkIdKey('scenario', -1, trim($_name));
+    if (is_object($dataStore)) {
+        return $dataStore->getValue($_default);
+    }
+    return $_default;
+}
+
+public static function stateDuration($_cmd_id, $_value = null) {
+    return history::stateDuration(str_replace('#', '', $_cmd_id), $_value);
+}
+
+public static function odd($_value) {
+    return ($_value % 2) ? 0 : 1;
+}
+
+public static function lastScenarioExecution($_scenario_id) {
+    $scenario = scenario::byId(str_replace(array('#scenario', '#'), '', $_scenario_id));
+    if (!is_object($scenario)) {
+        return 0;
+    }
+    return strtotime('now') - strtotime($scenario->getLastLaunch());
+}
+
+public static function collectDate($_cmd,$_format = 'Y-m-d H:i:s'){
+    $cmd = cmd::byId(trim(str_replace('#', '', $_cmd)));
+    if(!is_object($cmd)){
+        return -1;
+    }
+    if($cmd->getType() != 'info'){
+        return -2;
+    }
+    $cmd->execCmd();
+    return date($_format,strtotime($cmd->getCollectDate()));
+}
+
+public static function randomColor($_rangeLower, $_rangeHighter) {
+    $value = rand($_rangeLower, $_rangeHighter);
+    $color_range = 85;
+    $color = new stdClass();
+    $color->red = $_rangeLower;
+    $color->green = $_rangeLower;
+    $color->blue = $_rangeLower;
+    if ($value < $color_range * 1) {
+        $color->red += $color_range - $value;
+        $color->green += $value;
+    } else if ($value < $color_range * 2) {
+        $color->green += $color_range - $value;
+        $color->blue += $value;
+    } else if ($value < $color_range * 3) {
+        $color->blue += $color_range - $value;
+        $color->red += $value;
+    }
+    $color->red = ($color->red < 0) ? dechex(0) : dechex(round($color->red));
+    $color->blue = ($color->blue < 0) ? dechex(0) : dechex(round($color->blue));
+    $color->green = ($color->green < 0) ? dechex(0) : dechex(round($color->green));
+    $color->red = (strlen($color->red) == 1) ? '0' . $color->red : $color->red;
+    $color->green = (strlen($color->green) == 1) ? '0' . $color->green : $color->green;
+    $color->blue = (strlen($color->blue) == 1) ? '0' . $color->blue : $color->blue;
+    return '#' . $color->red . $color->green . $color->blue;
+}
+
+public static function trigger($_name = '', &$_scenario = null) {
+    if ($_scenario != null) {
+        if (trim($_name) == '') {
+            return $_scenario->getRealTrigger();
+        }
+        if ($_name == $_scenario->getRealTrigger()) {
             return 1;
         }
-        if ($tendance < $minThreshold) {
-            return -1;
-        }
-        return 0;
     }
+    return 0;
+}
 
-    public static function variable($_name, $_default = '') {
-        $dataStore = dataStore::byTypeLinkIdKey('scenario', -1, trim($_name));
-        if (is_object($dataStore)) {
-            return $dataStore->getValue($_default);
-        }
-        return $_default;
-    }
-
-    public static function stateDuration($_cmd_id, $_value = null) {
-        return history::stateDuration(str_replace('#', '', $_cmd_id), $_value);
-    }
-
-    public static function odd($_value) {
-        return ($_value % 2) ? 0 : 1;
-    }
-
-    public static function lastScenarioExecution($_scenario_id) {
-        $scenario = scenario::byId(str_replace(array('#scenario', '#'), '', $_scenario_id));
-        if (!is_object($scenario)) {
-            return 0;
-        }
-        return strtotime('now') - strtotime($scenario->getLastLaunch());
-    }
-
-    public static function collectDate($_cmd,$_format = 'Y-m-d H:i:s'){
-        $cmd = cmd::byId(trim(str_replace('#', '', $_cmd)));
-        if(!is_object($cmd)){
-            return -1;
-        }
-        if($cmd->getType() != 'info'){
-            return -2;
-        }
-        $cmd->execCmd();
-        return date($_format,strtotime($cmd->getCollectDate()));
-    }
-
-    public static function randomColor($_rangeLower, $_rangeHighter) {
-        $value = rand($_rangeLower, $_rangeHighter);
-        $color_range = 85;
-        $color = new stdClass();
-        $color->red = $_rangeLower;
-        $color->green = $_rangeLower;
-        $color->blue = $_rangeLower;
-        if ($value < $color_range * 1) {
-            $color->red += $color_range - $value;
-            $color->green += $value;
-        } else if ($value < $color_range * 2) {
-            $color->green += $color_range - $value;
-            $color->blue += $value;
-        } else if ($value < $color_range * 3) {
-            $color->blue += $color_range - $value;
-            $color->red += $value;
-        }
-        $color->red = ($color->red < 0) ? dechex(0) : dechex(round($color->red));
-        $color->blue = ($color->blue < 0) ? dechex(0) : dechex(round($color->blue));
-        $color->green = ($color->green < 0) ? dechex(0) : dechex(round($color->green));
-        $color->red = (strlen($color->red) == 1) ? '0' . $color->red : $color->red;
-        $color->green = (strlen($color->green) == 1) ? '0' . $color->green : $color->green;
-        $color->blue = (strlen($color->blue) == 1) ? '0' . $color->blue : $color->blue;
-        return '#' . $color->red . $color->green . $color->blue;
-    }
-
-    public static function trigger($_name = '', &$_scenario = null) {
-        if ($_scenario != null) {
-            if (trim($_name) == '') {
-                return $_scenario->getRealTrigger();
-            }
-            if ($_name == $_scenario->getRealTrigger()) {
-                return 1;
-            }
-        }
-        return 0;
-    }
-
-    public static function round($_value, $_decimal = 0) {
-        $_value = self::setTags($_value);
-        try {
-            $result = evaluate($_value);
+public static function round($_value, $_decimal = 0) {
+    $_value = self::setTags($_value);
+    try {
+        $result = evaluate($_value);
             if (is_string($result)) { //Alors la valeur n'est pas un calcul
             $result = $_value;
         }
@@ -438,20 +447,20 @@ public static function time($_value) {
         if(strpos($_value, '-') !== false){
             $result -= 40;
         }else{
-           $result += 40; 
-       }       
+         $result += 40; 
+     }       
 
-   }
-   return $result;
+ }
+ return $result;
 }
 
 public static function formatTime($_time){
     $_time = self::setTags($_time);
     if(strlen($_time) > 3){
-       return substr($_time,0,2).'h'.substr($_time,2,2);
-   } else {
-       return substr($_time,0,1).'h'.substr($_time,1,2);
-   }
+     return substr($_time,0,2).'h'.substr($_time,2,2);
+ } else {
+     return substr($_time,0,1).'h'.substr($_time,1,2);
+ }
 }
 
 public static function setTags($_expression, &$_scenario = null) {
@@ -481,8 +490,8 @@ public static function setTags($_expression, &$_scenario = null) {
         $replace_string =  $match[0];
 
         if(substr_count($match[2],'(') != substr_count($match[2],')')){
-           $arguments = self::setTags($match[2].')');
-           if(substr($_expression,strpos($_expression,$match[2])+strlen($match[2])+1,1) != ')'){
+         $arguments = self::setTags($match[2].')');
+         if(substr($_expression,strpos($_expression,$match[2])+strlen($match[2])+1,1) != ')'){
             for($i=strpos($_expression,$match[2])+strlen($match[2]) + 1;$i<strlen($_expression);$i++){
                 $car = $_expression[$i];
                 if( $car != ')'){
@@ -619,9 +628,9 @@ public function execute(&$scenario = null) {
                 $this->setLog($scenario, __('Changement design : ',__FILE__).$options['plan_id']);
                 nodejs::pushUpdate('jeedom::gotoplan', $options['plan_id']) ;
             }else if ($this->getExpression() == 'return') {
-               $this->setLog($scenario, __('Je vais retourner : ',__FILE__).$options['message']);
-               $scenario->setReturn($scenario->getReturn().$options['message']);
-           }else if ($this->getExpression() == 'scenario') {
+             $this->setLog($scenario, __('Je vais retourner : ',__FILE__).$options['message']);
+             $scenario->setReturn($scenario->getReturn().$options['message']);
+         }else if ($this->getExpression() == 'scenario') {
             if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
                 $actionScenario = &$scenario;
             } else {
