@@ -74,7 +74,7 @@ include::sicherheit.asciidoc[]
 include::logs.asciidoc[]
 
 '''
-[[info system]]
+[[info_system]]
 ===== System Information
 include::SystemInformation.asciidoc[]
 
@@ -142,3 +142,8 @@ include::faq.asciidoc[]
 [[troubleshooting]]
 === Troubleshooting
 include::troubleshooting.asciidoc[]
+
+'''
+[[changelog]]
+=== Changelog
+include::changelog.asciidoc[]
