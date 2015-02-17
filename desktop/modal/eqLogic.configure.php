@@ -133,7 +133,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                         <td></td>
                     </tr>
                     <tr>
-                        <td>{{Ne pas afficher le niveau de batterrie}}</td>
+                        <td>{{Ne pas afficher le niveau de batterie}}</td>
                         <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnDashboard" /></td>
                         <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnView" /></td>
                         <td></td>
