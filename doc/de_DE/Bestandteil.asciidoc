@@ -1,0 +1,27 @@
+Jeedom ist aus einem Kern zusammengesetzt, der folgende Grundfunktionen enthalt: 
+
+- Szenario
+- Chronik
+- Ansicht
+- Interaction
+- Update und Backup
+
+Um diesen Kern herum sind Plugins zu integrieren, die beliebig sein können:
+ 
+- Haustechnik Protokolle(zwave, rfxcom, enOcean...)
+- IP Protokolle(knx,xPL...)
+- Kommunikationsobjekt (nest, netatmo...)
+- hohes Niveau (alarme, thermostat...)
+- Schnittstelle(widget)
+- Organisation (agenda, Google agenda)
+- Programmierung (script)
+
+Diese Plugins können über den Markt geladen werden und ermöglichen es, Jeedom zu erweitern.
+
+Jeedom ermöglicht irgendeinem Plugin, mit einem anderem über eine normale Basis zu komunizieren, ermöglicht z.B. dass die Plugins Thermostat oder Alarm irgendeine Protokoll benutzt.
+Haustechnik entweder gleich eine IP-Kommunikationsobjekt ...
+
+Neben der Partikel Jeedom um kein Abo und keine Cload, die den Betrieb des Home-Automation, auch wenn Sie kein Internet haben, gewährleistet sein. Dies garantiert
+auch die Sicherheit Ihrer Daten (vermeidet das Risiko der Piraterie in der Masse von Konten).
+
+Das Projekt ist Open-Source die eine hohe Rate von Weiterentwicklung ermöglicht, dank der vielen Entwickler die teilnehmen.
