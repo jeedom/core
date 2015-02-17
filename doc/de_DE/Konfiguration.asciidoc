@@ -1,5 +1,36 @@
+Konfiguration
 
+Auf dieser Seite Können verschiedeme Systemeigenschaften konfiguriert werden.
 
+-Hauptkonfiguration
+
+-Datenbank
+
+-Netzwerkkonfiguration
+
+-Cache-Konfiguration
+
+-Chronik Konfiguration
+
+-Interaktion Konfiguration
+
+-Skripte & Daemons Konfiguration
+
+-Logs & Nachrichten Konfiguration
+
+-LDAP-Konfiguration
+
+-Umwandlung von Farben in HTML
+
+-Befehle & Geräte
+
+-NodeJS
+
+-Markt
+
+-Update
+
+-HTTP
 
 
 Kern 
