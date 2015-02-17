@@ -800,6 +800,8 @@ class cmd {
 			$replace['#name#'] = '';
 		} else if ($this->getDisplay('doNotShowNameOnDashboard') == 1 && ($_version == 'mobile' || $_version == 'dashboard')) {
 			$replace['#name#'] = '';
+		}else{
+			$replace['#name#'].='<br/>';
 		}
 		if ($this->getType() == 'info') {
 			$replace['#state#'] = '';
