@@ -1,0 +1,5 @@
+Sicherheit
+
+Das Menü ermöglicht Sicherheit, das System primäre "Antipiraterie" von Jeedom zu configurer. Er ist nur in der Sachverständigen Weise verfügbar. Es handelt sich um ein System der Verbannung der Adressen IP, wenn ein unter ihnen versucht, mehrmals zu Jeedom erfolglos anzuschließen.
+
+Kern index.asciidoc
