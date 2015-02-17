@@ -2,4 +2,5 @@ Sicherheit
 
 Das Sicherheits Menü ermöglicht , das Jeedom System primär vor "Antipiraterie" zu schützen. Es ist nur im Experten-Modus verfügbar. Es handelt sich um ein System der Verbannung der IP Adressen , wenn ein Benutzer versucht mehrmals erfolglos in Jeedom einzuloggen.
 
-Kern index.asciidoc[]
+Kern 
+include::index.asciidoc[]
