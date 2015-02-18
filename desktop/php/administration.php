@@ -166,24 +166,6 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Pack}}</label>
-                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                        <?php
-                                        switch (config::byKey('jeedom::licence')) {
-                                            case 0:
-                                            echo '<span class="label label-primary">Community</span>';
-                                            break;
-                                            case 5:
-                                            echo '<span class="label label-info">Power</span>';
-                                            break;
-                                            case 10:
-                                            echo '<span class="label label-success">Pro</span>';
-                                            break;
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Configuration des scénarios en mode expert par défaut}}</label>
                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                         <input type="checkbox" class="configKey" data-l1key="scenario::expertMode" />
