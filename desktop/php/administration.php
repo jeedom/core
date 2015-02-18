@@ -166,7 +166,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Licence}}</label>
+                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Pack}}</label>
                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                         <?php
                                         switch (config::byKey('jeedom::licence')) {
