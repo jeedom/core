@@ -212,9 +212,6 @@ function hasRight($_right, $_needAdmin = false) {
     if (isConnect('admin')) {
         return true;
     }
-    if (config::byKey('jeedom::licence') < 9) {
-        return ($_needAdmin) ? false : true;
-    }
     $rights = rights::byuserIdAndEntity($_SESSION['user']->getId(), $_right);
     if (!is_object($rights)) {
         return ($_needAdmin) ? false : true;

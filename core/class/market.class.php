@@ -300,9 +300,6 @@ class market {
 
     public static function postJsonRpc($_result) {
         if (is_array($_result)) {
-            if (isset($_result['licence'])) {
-                config::save('jeedom::licence', $_result['licence']);
-            }
             if (isset($_result['register::datetime'])) {
                 config::save('register::datetime', $_result['register::datetime']);
             }

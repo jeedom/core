@@ -4,8 +4,8 @@ include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
 
 if(isConnect()){
- $homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
- if (count($homePage) == 2) {
+   $homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
+   if (count($homePage) == 2) {
     if ($homePage[0] == 'core') {
         $homeLink = 'index.php?v=d&p=' . $homePage[1];
     } else {
@@ -226,11 +226,9 @@ if (count($plugins_list) > 0) {
                                                                 <li><a href="index.php?v=d&p=user"><i class="fa fa-users"></i> {{Utilisateurs}}</a></li>
                                                                 <?php
                                                             }
-                                                            if (config::byKey('jeedom::licence') > 9) {
-                                                                ?>
-                                                                <li><a href="index.php?v=d&p=rights"><i class="fa fa-graduation-cap"></i> {{Gestion des droits avancés}}</a></li>
-                                                                <?php
-                                                            }
+                                                            ?>
+                                                            <li><a href="index.php?v=d&p=rights"><i class="fa fa-graduation-cap"></i> {{Gestion des droits avancés}}</a></li>
+                                                            <?php
                                                             if (hasRight('backupview', true)) {
                                                                 ?>
                                                                 <li><a href="index.php?v=d&p=backup"><i class="fa fa-floppy-o"></i> {{Sauvegardes}}</a></li>

@@ -343,7 +343,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                             </div>
                                         </div>
                                         <?php
-                                        if (config::byKey('jeedom::licence') >= 5 && file_exists('/etc/nginx/sites-available/default_ssl')) {
+                                        if (file_exists('/etc/nginx/sites-available/default_ssl')) {
                                             echo '<div class="form-group expertModeVisible">';
                                             echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Forcer le https}}</label>';
                                             echo '<div class="col-xs-1">';
@@ -800,98 +800,95 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                                         <input type="checkbox"  class="configKey" data-l1key="market::allowDNS" />
                                                     </div>
                                                 </div>
-                                                <?php if (config::byKey('jeedom::licence') >= 5) { ?>
-                                                    <div class="form-group">
-                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les plugins mis en avant par le market}}</label>
-                                                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                            <input type="checkbox"  class="configKey" data-l1key="market::showPromotion" />
-                                                        </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les plugins mis en avant par le market}}</label>
+                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                        <input type="checkbox"  class="configKey" data-l1key="market::showPromotion" />
                                                     </div>
-                                                    <?php } ?>
-                                                    <div class="form-group alert alert-danger">
-                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Voir les modules en beta (à vos risques et périls)}}</label>
-                                                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                            <input type="checkbox"  class="configKey" data-l1key="market::showBetaMarket" />
-                                                        </div>
+                                                </div>
+                                                <div class="form-group alert alert-danger">
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Voir les modules en beta (à vos risques et périls)}}</label>
+                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                        <input type="checkbox"  class="configKey" data-l1key="market::showBetaMarket" />
                                                     </div>
-
-                                                </fieldset>
-                                            </form>
-                                        </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
                                     </div>
-                                </div>
-
-                                <div class="panel panel-default expertModeVisible">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_update">
-                                                {{Mise à jour}}
-                                            </a>
-                                        </h3>
-                                    </div>
-                                    <div id="configuration_update" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <form class="form-horizontal">
-                                                <fieldset>
-                                                    <div class="form-group expertModeVisible">
-                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
-                                                        <div class="col-sm-1">
-                                                            <input type="checkbox" class="configKey" data-l1key="update::backupBefore"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group expertModeVisible alert alert-danger">
-                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mettre à jour automatiquement}}</label>
-                                                        <div class="col-sm-1">
-                                                            <input type="checkbox" class="configKey" data-l1key="update::auto"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Branche}}</label>
-                                                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                            <select class="configKey form-control" data-l1key="market::branch">
-                                                                <option value="stable">{{Stable}}</option>
-                                                                <option value="master">{{Développement}}</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default expertModeVisible">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_http">
-                                                {{HTTP}}
-                                            </a>
-                                        </h3>
-                                    </div>
-                                    <div id="configuration_http" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <form class="form-horizontal">
-                                                <fieldset>
-                                                    <div class="form-group expertModeVisible">
-                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Timeout de résolution DNS sur les requêtes HTTP}}</label>
-                                                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                            <input class="configKey form-control" data-l1key="http::ping_timeout"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group alert alert-danger expertModeVisible">
-                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Désactiver la vérification du ping}}</label>
-                                                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                            <input type="checkbox" class="configKey" data-l1key="http::ping_disable"/>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-actions" style="height: 20px;">
-                                    <a class="btn btn-success" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
                                 </div>
                             </div>
-                        </div>
 
-                        <?php include_file("desktop", "administration", "js"); ?>
+                            <div class="panel panel-default expertModeVisible">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_update">
+                                            {{Mise à jour}}
+                                        </a>
+                                    </h3>
+                                </div>
+                                <div id="configuration_update" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <form class="form-horizontal">
+                                            <fieldset>
+                                                <div class="form-group expertModeVisible">
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
+                                                    <div class="col-sm-1">
+                                                        <input type="checkbox" class="configKey" data-l1key="update::backupBefore"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group expertModeVisible alert alert-danger">
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mettre à jour automatiquement}}</label>
+                                                    <div class="col-sm-1">
+                                                        <input type="checkbox" class="configKey" data-l1key="update::auto"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Branche}}</label>
+                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                        <select class="configKey form-control" data-l1key="market::branch">
+                                                            <option value="stable">{{Stable}}</option>
+                                                            <option value="master">{{Développement}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default expertModeVisible">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_http">
+                                            {{HTTP}}
+                                        </a>
+                                    </h3>
+                                </div>
+                                <div id="configuration_http" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <form class="form-horizontal">
+                                            <fieldset>
+                                                <div class="form-group expertModeVisible">
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Timeout de résolution DNS sur les requêtes HTTP}}</label>
+                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                        <input class="configKey form-control" data-l1key="http::ping_timeout"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group alert alert-danger expertModeVisible">
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Désactiver la vérification du ping}}</label>
+                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                        <input type="checkbox" class="configKey" data-l1key="http::ping_disable"/>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions" style="height: 20px;">
+                                <a class="btn btn-success" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php include_file("desktop", "administration", "js"); ?>
