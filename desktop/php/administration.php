@@ -346,138 +346,421 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                         </div>
                                         <?php }?>
                                         <legend>Autres</legend>
-                                        <?php if (config::byKey('jeedom::licence') >= 5) { ?>
-                                            <div class="form-group expertModeVisible alert alert-danger">
-                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mode}}</label>
-                                                <div class="col-sm-6">
-                                                    <?php
-                                                    if (config::byKey('jeeNetwork::mode') == 'master') {
-                                                        echo '<a class="btn btn-success changeJeeNetworkMode" data-mode="master">{{Maître}}</a> ';
-                                                        echo '<a class="btn btn-default changeJeeNetworkMode" data-mode="slave">{{Esclave}}</a>';
-                                                    } else {
-                                                        echo '<a class="btn btn-default changeJeeNetworkMode" data-mode="master">{{Maître}}</a> ';
-                                                        echo '<a class="btn btn-success changeJeeNetworkMode" data-mode="slave">{{Esclave}}</a>';
-                                                    }
-                                                    ?>
+                                        <div class="form-group expertModeVisible alert alert-danger">
+                                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mode}}</label>
+                                            <div class="col-sm-6">
+                                                <?php
+                                                if (config::byKey('jeeNetwork::mode') == 'master') {
+                                                    echo '<a class="btn btn-success changeJeeNetworkMode" data-mode="master">{{Maître}}</a> ';
+                                                    echo '<a class="btn btn-default changeJeeNetworkMode" data-mode="slave">{{Esclave}}</a>';
+                                                } else {
+                                                    echo '<a class="btn btn-default changeJeeNetworkMode" data-mode="master">{{Maître}}</a> ';
+                                                    echo '<a class="btn btn-success changeJeeNetworkMode" data-mode="slave">{{Esclave}}</a>';
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        if (config::byKey('jeedom::licence') >= 5 && file_exists('/etc/nginx/sites-available/default_ssl')) {
+                                            echo '<div class="form-group expertModeVisible">';
+                                            echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Forcer le https}}</label>';
+                                            echo '<div class="col-xs-1">';
+                                            echo '<input type="checkbox" class="configKey" data-l1key="forceHttps" />';
+                                            echo '</div>';
+                                            echo '<div class="col-sm-3">';
+                                            echo '<a class="btn btn-default btn-sm" target="_blank" href="https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '"><i class="fa fa-lock"></i> Tester le https</a>';
+                                            echo '</div>';
+                                            echo '<div class="col-sm-4 col-xs-12 alert alert-danger">';
+                                            echo '{{Attention si vous n\'avez pas de HTTPS et que vous activez cette option votre jeedom ne sera plus accessible}}';
+                                            echo '</div>';
+                                            echo '</div>';
+                                        }
+                                        ?>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
+                        <div class="panel panel-default expertModeVisible">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_memcache">
+                                        {{Configuration du cache}}
+                                    </a>
+                                </h3>
+                            </div>
+                            <div id="config_memcache" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <form class="form-horizontal">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Durée de vie de memcache (en secondes)}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text"  class="configKey form-control" data-l1key="lifetimeMemCache" />
                                                 </div>
                                             </div>
-                                            <?php } ?>
-                                            <?php
-                                            if (config::byKey('jeedom::licence') >= 5 && file_exists('/etc/nginx/sites-available/default_ssl')) {
-                                                echo '<div class="form-group expertModeVisible">';
-                                                echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Forcer le https}}</label>';
-                                                echo '<div class="col-xs-1">';
-                                                echo '<input type="checkbox" class="configKey" data-l1key="forceHttps" />';
-                                                echo '</div>';
-                                                echo '<div class="col-sm-3">';
-                                                echo '<a class="btn btn-default btn-sm" target="_blank" href="https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '"><i class="fa fa-lock"></i> Tester le https</a>';
-                                                echo '</div>';
-                                                echo '<div class="col-sm-4 col-xs-12 alert alert-danger">';
-                                                echo '{{Attention si vous n\'avez pas de HTTPS et que vous activez cette option votre jeedom ne sera plus accessible}}';
-                                                echo '</div>';
-                                                echo '</div>';
-                                            }
-                                            ?>
+
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Vider toutes les données en cache}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <a class="btn btn-warning" id="bt_flushMemcache">{{Vider}}</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Cron persistance du cache}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text"  class="configKey form-control" data-l1key="persist::cron" />
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <i class="fa fa-question-circle cursor bt_pageHelp" data-name='cronSyntaxe'></i>
+                                                </div>
+                                            </div>
                                         </fieldset>
                                     </form>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_history">
+                                        {{Configuration de l'historique}}
+                                    </a>
+                                </h3>
+                            </div>
+                            <div id="config_history" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <form class="form-horizontal">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les statistiques sur les widgets}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="checkbox"  class="configKey" data-l1key="displayStatsWidget" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période de calcul pour min, max, moyenne (en heures)}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text"  class="configKey form-control" data-l1key="historyCalculPeriod" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période de calcul pour la tendance (en heures)}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text"  class="configKey form-control" data-l1key="historyCalculTendance" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Délai avant archivage (en heures)}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text"  class="configKey form-control" data-l1key="historyArchiveTime" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Archiver par paquet de (en heures)}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text"  class="configKey form-control" data-l1key="historyArchivePackage" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Seuil de calcul de tendance bas}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text"  class="configKey form-control" data-l1key="historyCalculTendanceThresholddMin" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Seuil de calcul de tendance haut}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text"  class="configKey form-control" data-l1key="historyCalculTendanceThresholddMax" />
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
+
+                        <div class="panel panel-default expertModeVisible">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_interact">
+                                        {{Configuration des interactions}}
+                                    </a>
+                                </h3>
+                            </div>
+                            <div id="configuration_interact" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <form class="form-horizontal">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sensibilité (par défaut 10)}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text" class="configKey form-control" data-l1key="interact::confidence"/>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default expertModeVisible">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_cron">
+                                        {{Configuration des crontask, scripts & démons}}
+                                    </a>
+                                </h3>
+                            </div>
+                            <div id="configuration_cron" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <form class="form-horizontal">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Rattrapage maximum autorisé (en minutes, -1 pour infini)}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text" class="configKey form-control" data-l1key="maxCatchAllow"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Crontask : temps d'exécution max (en minutes)}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text" class="configKey form-control" data-l1key="maxExecTimeCrontask"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Script : temps d'exécution max (en minutes)}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text" class="configKey form-control" data-l1key="maxExecTimeScript"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group alert alert-danger">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps de sommeil Jeecron}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text" class="configKey form-control" data-l1key="cronSleepTime"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group alert alert-danger">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps de sommeil des Démons}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text" class="configKey form-control" data-l1key="deamonsSleepTime"/>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default expertModeVisible">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_logMessage">
+                                        {{Configuration des logs & messages}}
+                                    </a>
+                                </h3>
+                            </div>
+                            <div id="configuration_logMessage" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <form class="form-horizontal">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ajouter un message à chaque erreur dans les logs}}</label>
+                                                <div class="col-sm-1">
+                                                    <input type="checkbox" class="configKey" data-l1key="addMessageForErrorLog" checked/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre de lignes maximum dans un fichier de log}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text" class="configKey form-control" data-l1key="maxLineLog"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Logs actifs}}</label>
+                                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="debug" checked /> Debug
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="info" checked /> Info
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="event" checked /> Event
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="error" checked /> Error
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default expertModeVisible">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_ldap">
+                                        {{Configuration LDAP}}
+                                    </a>
+                                </h3>
+                            </div>
+                            <div id="config_ldap" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <form class="form-horizontal">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer l'authentification LDAP}}</label>
+                                                <div class="col-sm-1">
+                                                    <input type="checkbox" class="configKey" data-l1key="ldap:enable"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hôte}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text"  class="configKey form-control" data-l1key="ldap:host" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text"  class="configKey form-control" data-l1key="ldap:port" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Domaine}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text"  class="configKey form-control" data-l1key="ldap:domain" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Base DN}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text"  class="configKey form-control" data-l1key="ldap:basedn" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text"  class="configKey form-control" data-l1key="ldap:username" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="password"  class="configKey form-control" data-l1key="ldap:password" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Filtre (optionnel)}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="text"  class="configKey form-control" data-l1key="ldap:filter" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group alert alert-danger">
+                                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Autoriser REMOTE_USER}}</label>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
+                                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                    <a class="btn btn-default" id="bt_testLdapConnection"><i class="fa fa-cube"></i> Tester</a>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
                             <div class="panel panel-default expertModeVisible">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_memcache">
-                                            {{Configuration du cache}}
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_convertColor">
+                                            {{Conversion des couleurs en html}}
                                         </a>
                                     </h3>
                                 </div>
-                                <div id="config_memcache" class="panel-collapse collapse">
+                                <div id="configuration_convertColor" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        <form class="form-horizontal">
-                                            <fieldset>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Durée de vie de memcache (en secondes)}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text"  class="configKey form-control" data-l1key="lifetimeMemCache" />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Vider toutes les données en cache}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <a class="btn btn-warning" id="bt_flushMemcache">{{Vider}}</a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Cron persistance du cache}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text"  class="configKey form-control" data-l1key="persist::cron" />
-                                                    </div>
-                                                    <div class="col-sm-1">
-                                                        <i class="fa fa-question-circle cursor bt_pageHelp" data-name='cronSyntaxe'></i>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                        </form>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
+                                                <table class="table table-condensed table-bordered" id="table_convertColor" >
+                                                    <thead>
+                                                        <tr>
+                                                            <th>{{Nom}}</th><th>{{Code HTML}}</th>
+                                                        </tr>
+                                                        <tr class="filter" style="display : none;">
+                                                            <td class="color"><input class="filter form-control" filterOn="color" /></td>
+                                                            <td class="codeHtml"><input class="filter form-control" filterOn="codeHtml" /></td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="panel panel-default">
+                            <div class="panel panel-default expertModeVisible">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_history">
-                                            {{Configuration de l'historique}}
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_commandeEqlogic">
+                                            {{Commandes & Equipements}}
                                         </a>
                                     </h3>
                                 </div>
-                                <div id="config_history" class="panel-collapse collapse">
+                                <div id="configuration_commandeEqlogic" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <form class="form-horizontal">
                                             <fieldset>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les statistiques sur les widgets}}</label>
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échecs avant désactivation de l'équipement}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="checkbox"  class="configKey" data-l1key="displayStatsWidget" />
+                                                        <input type="text"  class="configKey form-control" data-l1key="numberOfTryBeforeEqLogicDisable" />
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période de calcul pour min, max, moyenne (en heures)}}</label>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default expertModeVisible">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_nodeJS">
+                                            {{NodeJS}}
+                                        </a>
+                                    </h3>
+                                </div>
+                                <div id="configuration_nodeJS" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <form class="form-horizontal">
+                                            <fieldset>
+                                                <div class="form-group expertModeVisible">
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port interne NodeJS}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text"  class="configKey form-control" data-l1key="historyCalculPeriod" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période de calcul pour la tendance (en heures)}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text"  class="configKey form-control" data-l1key="historyCalculTendance" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Délai avant archivage (en heures)}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text"  class="configKey form-control" data-l1key="historyArchiveTime" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Archiver par paquet de (en heures)}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text"  class="configKey form-control" data-l1key="historyArchivePackage" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Seuil de calcul de tendance bas}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text"  class="configKey form-control" data-l1key="historyCalculTendanceThresholddMin" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Seuil de calcul de tendance haut}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text"  class="configKey form-control" data-l1key="historyCalculTendanceThresholddMax" />
+                                                        <input type="text"  class="configKey form-control" data-l1key="nodeJsInternalPort" />
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -487,282 +770,106 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             </div>
                             <?php } ?>
 
-                            <div class="panel panel-default expertModeVisible">
+                            <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_interact">
-                                            {{Configuration des interactions}}
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_market">
+                                            {{Market}}
                                         </a>
                                     </h3>
                                 </div>
-                                <div id="configuration_interact" class="panel-collapse collapse">
+                                <div id="configuration_market" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <form class="form-horizontal">
                                             <fieldset>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sensibilité (par défaut 10)}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text" class="configKey form-control" data-l1key="interact::confidence"/>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="panel panel-default expertModeVisible">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_cron">
-                                            {{Configuration des crontask, scripts & démons}}
-                                        </a>
-                                    </h3>
-                                </div>
-                                <div id="configuration_cron" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <form class="form-horizontal">
-                                            <fieldset>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Rattrapage maximum autorisé (en minutes, -1 pour infini)}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text" class="configKey form-control" data-l1key="maxCatchAllow"/>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Crontask : temps d'exécution max (en minutes)}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text" class="configKey form-control" data-l1key="maxExecTimeCrontask"/>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Script : temps d'exécution max (en minutes)}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text" class="configKey form-control" data-l1key="maxExecTimeScript"/>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group alert alert-danger">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps de sommeil Jeecron}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text" class="configKey form-control" data-l1key="cronSleepTime"/>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group alert alert-danger">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps de sommeil des Démons}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text" class="configKey form-control" data-l1key="deamonsSleepTime"/>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="panel panel-default expertModeVisible">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_logMessage">
-                                            {{Configuration des logs & messages}}
-                                        </a>
-                                    </h3>
-                                </div>
-                                <div id="configuration_logMessage" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <form class="form-horizontal">
-                                            <fieldset>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ajouter un message à chaque erreur dans les logs}}</label>
-                                                    <div class="col-sm-1">
-                                                        <input type="checkbox" class="configKey" data-l1key="addMessageForErrorLog" checked/>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre de lignes maximum dans un fichier de log}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text" class="configKey form-control" data-l1key="maxLineLog"/>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Logs actifs}}</label>
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse}}</label>
                                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="debug" checked /> Debug
-                                                            </label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="info" checked /> Info
-                                                            </label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="event" checked /> Event
-                                                            </label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="error" checked /> Error
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="panel panel-default expertModeVisible">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_ldap">
-                                            {{Configuration LDAP}}
-                                        </a>
-                                    </h3>
-                                </div>
-                                <div id="config_ldap" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <form class="form-horizontal">
-                                            <fieldset>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer l'authentification LDAP}}</label>
-                                                    <div class="col-sm-1">
-                                                        <input type="checkbox" class="configKey" data-l1key="ldap:enable"/>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hôte}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text"  class="configKey form-control" data-l1key="ldap:host" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text"  class="configKey form-control" data-l1key="ldap:port" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Domaine}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text"  class="configKey form-control" data-l1key="ldap:domain" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Base DN}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text"  class="configKey form-control" data-l1key="ldap:basedn" />
+                                                        <input class="configKey form-control" data-l1key="market::address"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text"  class="configKey form-control" data-l1key="ldap:username" />
+                                                        <input type="text"  class="configKey form-control" data-l1key="market::username" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="password"  class="configKey form-control" data-l1key="ldap:password" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Filtre (optionnel)}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="text"  class="configKey form-control" data-l1key="ldap:filter" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group alert alert-danger">
-                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Autoriser REMOTE_USER}}</label>
-                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
+                                                        <input type="password"  class="configKey form-control" data-l1key="market::password" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
                                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                        <a class="btn btn-default" id="bt_testLdapConnection"><i class="fa fa-cube"></i> Tester</a>
+                                                        <a class="btn btn-default" id="bt_testMarketConnection"><i class="fa fa-cube"></i> Tester</a>
                                                     </div>
                                                 </div>
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
-                                <div class="panel panel-default expertModeVisible">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_convertColor">
-                                                {{Conversion des couleurs en html}}
-                                            </a>
-                                        </h3>
-                                    </div>
-                                    <div id="configuration_convertColor" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
-                                                    <table class="table table-condensed table-bordered" id="table_convertColor" >
-                                                        <thead>
-                                                            <tr>
-                                                                <th>{{Nom}}</th><th>{{Code HTML}}</th>
-                                                            </tr>
-                                                            <tr class="filter" style="display : none;">
-                                                                <td class="color"><input class="filter form-control" filterOn="color" /></td>
-                                                                <td class="codeHtml"><input class="filter form-control" filterOn="codeHtml" /></td>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        </tbody>
-                                                    </table>
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Installer automatiquement les widgets manquants}}</label>
+                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                        <input type="checkbox"  class="configKey" data-l1key="market::autoInstallMissingWidget" />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default expertModeVisible">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_commandeEqlogic">
-                                                {{Commandes & Equipements}}
-                                            </a>
-                                        </h3>
-                                    </div>
-                                    <div id="configuration_commandeEqlogic" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <form class="form-horizontal">
-                                                <fieldset>
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Utiliser le market comme DNS}}</label>
+                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                        <input type="checkbox"  class="configKey" data-l1key="market::allowDNS" />
+                                                    </div>
+                                                </div>
+                                                <?php if (config::byKey('jeedom::licence') >= 5) { ?>
                                                     <div class="form-group">
-                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échecs avant désactivation de l'équipement}}</label>
+                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les plugins mis en avant par le market}}</label>
                                                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                            <input type="text"  class="configKey form-control" data-l1key="numberOfTryBeforeEqLogicDisable" />
+                                                            <input type="checkbox"  class="configKey" data-l1key="market::showPromotion" />
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </fieldset>
-                                        </form>
+                                                    <?php } ?>
+                                                    <div class="form-group alert alert-danger">
+                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Voir les modules en beta (à vos risques et périls)}}</label>
+                                                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                                            <input type="checkbox"  class="configKey" data-l1key="market::showBetaMarket" />
+                                                        </div>
+                                                    </div>
+
+                                                </fieldset>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="panel panel-default expertModeVisible">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">
-                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_nodeJS">
-                                                {{NodeJS}}
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_update">
+                                                {{Mise à jour}}
                                             </a>
                                         </h3>
                                     </div>
-                                    <div id="configuration_nodeJS" class="panel-collapse collapse">
+                                    <div id="configuration_update" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <form class="form-horizontal">
                                                 <fieldset>
                                                     <div class="form-group expertModeVisible">
-                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port interne NodeJS}}</label>
+                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
+                                                        <div class="col-sm-1">
+                                                            <input type="checkbox" class="configKey" data-l1key="update::backupBefore"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group expertModeVisible alert alert-danger">
+                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mettre à jour automatiquement}}</label>
+                                                        <div class="col-sm-1">
+                                                            <input type="checkbox" class="configKey" data-l1key="update::auto"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Branche}}</label>
                                                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                            <input type="text"  class="configKey form-control" data-l1key="nodeJsInternalPort" />
+                                                            <select class="configKey form-control" data-l1key="market::branch">
+                                                                <option value="stable">{{Stable}}</option>
+                                                                <option value="master">{{Développement}}</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </fieldset>
@@ -770,148 +877,39 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                         </div>
                                     </div>
                                 </div>
-                                <?php } ?>
-
-                                <div class="panel panel-default">
+                                <div class="panel panel-default expertModeVisible">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">
-                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_market">
-                                                {{Market}}
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_http">
+                                                {{HTTP}}
                                             </a>
                                         </h3>
                                     </div>
-                                    <div id="configuration_market" class="panel-collapse collapse">
+                                    <div id="configuration_http" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <form class="form-horizontal">
                                                 <fieldset>
-                                                    <div class="form-group">
-                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse}}</label>
-                                                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                                            <input class="configKey form-control" data-l1key="market::address"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
+                                                    <div class="form-group expertModeVisible">
+                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Timeout de résolution DNS sur les requêtes HTTP}}</label>
                                                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                            <input type="text"  class="configKey form-control" data-l1key="market::username" />
+                                                            <input class="configKey form-control" data-l1key="http::ping_timeout"/>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
+                                                    <div class="form-group alert alert-danger expertModeVisible">
+                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Désactiver la vérification du ping}}</label>
                                                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                            <input type="password"  class="configKey form-control" data-l1key="market::password" />
+                                                            <input type="checkbox" class="configKey" data-l1key="http::ping_disable"/>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
-                                                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                            <a class="btn btn-default" id="bt_testMarketConnection"><i class="fa fa-cube"></i> Tester</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Installer automatiquement les widgets manquants}}</label>
-                                                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                            <input type="checkbox"  class="configKey" data-l1key="market::autoInstallMissingWidget" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Utiliser le market comme DNS}}</label>
-                                                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                            <input type="checkbox"  class="configKey" data-l1key="market::allowDNS" />
-                                                        </div>
-                                                    </div>
-                                                    <?php if (config::byKey('jeedom::licence') >= 5) { ?>
-                                                        <div class="form-group">
-                                                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les plugins mis en avant par le market}}</label>
-                                                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                                <input type="checkbox"  class="configKey" data-l1key="market::showPromotion" />
-                                                            </div>
-                                                        </div>
-                                                        <?php } ?>
-                                                        <div class="form-group alert alert-danger">
-                                                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Voir les modules en beta (à vos risques et périls)}}</label>
-                                                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                                <input type="checkbox"  class="configKey" data-l1key="market::showBetaMarket" />
-                                                            </div>
-                                                        </div>
-
-                                                    </fieldset>
-                                                </form>
-                                            </div>
+                                                </fieldset>
+                                            </form>
                                         </div>
-                                    </div>
-
-                                    <div class="panel panel-default expertModeVisible">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_update">
-                                                    {{Mise à jour}}
-                                                </a>
-                                            </h3>
-                                        </div>
-                                        <div id="configuration_update" class="panel-collapse collapse">
-                                            <div class="panel-body">
-                                                <form class="form-horizontal">
-                                                    <fieldset>
-                                                        <div class="form-group expertModeVisible">
-                                                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
-                                                            <div class="col-sm-1">
-                                                                <input type="checkbox" class="configKey" data-l1key="update::backupBefore"/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group expertModeVisible alert alert-danger">
-                                                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mettre à jour automatiquement}}</label>
-                                                            <div class="col-sm-1">
-                                                                <input type="checkbox" class="configKey" data-l1key="update::auto"/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Branche}}</label>
-                                                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                                <select class="configKey form-control" data-l1key="market::branch">
-                                                                    <option value="stable">{{Stable}}</option>
-                                                                    <option value="master">{{Développement}}</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </fieldset>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default expertModeVisible">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_http">
-                                                    {{HTTP}}
-                                                </a>
-                                            </h3>
-                                        </div>
-                                        <div id="configuration_http" class="panel-collapse collapse">
-                                            <div class="panel-body">
-                                                <form class="form-horizontal">
-                                                    <fieldset>
-                                                        <div class="form-group expertModeVisible">
-                                                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Timeout de résolution DNS sur les requêtes HTTP}}</label>
-                                                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                                <input class="configKey form-control" data-l1key="http::ping_timeout"/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group alert alert-danger expertModeVisible">
-                                                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Désactiver la vérification du ping}}</label>
-                                                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                                                <input type="checkbox" class="configKey" data-l1key="http::ping_disable"/>
-                                                            </div>
-                                                        </div>
-                                                    </fieldset>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-actions" style="height: 20px;">
-                                        <a class="btn btn-success" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
                                     </div>
                                 </div>
+                                <div class="form-actions" style="height: 20px;">
+                                    <a class="btn btn-success" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+                                </div>
                             </div>
+                        </div>
 
-                            <?php include_file("desktop", "administration", "js"); ?>
+                        <?php include_file("desktop", "administration", "js"); ?>

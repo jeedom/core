@@ -464,7 +464,7 @@ if (trim(config::byKey('api')) == '') {
         /*             * ************************JeeNetwork*************************** */
         if ($jsonrpc->getMethod() == 'jeeNetwork::handshake') {
             if (config::byKey('jeeNetwork::mode') != 'slave') {
-                throw new Exception('Impossible d\'ajouter une box jeedom non esclave à un reseau Jeedom');
+                throw new Exception('Impossible d\'ajouter une box jeedom non esclave à un réseau Jeedom');
             }
             $auiKey = config::byKey('auiKey');
             if ($auiKey == '') {
