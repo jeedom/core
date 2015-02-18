@@ -171,10 +171,10 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                         <?php
                                         switch (config::byKey('jeedom::licence')) {
                                             case 0:
-                                            echo '<span class="label label-primary">Free</span>';
+                                            echo '<span class="label label-primary">Community</span>';
                                             break;
                                             case 5:
-                                            echo '<span class="label label-info">Power user</span>';
+                                            echo '<span class="label label-info">Power</span>';
                                             break;
                                             case 10:
                                             echo '<span class="label label-success">Pro</span>';

@@ -23,10 +23,7 @@ try {
     if (!isConnect('admin')) {
         throw new Exception(__('401 - Accès non autorisé', __FILE__));
     }
-    if (config::byKey('jeedom::licence') < 5) {
-        throw new Exception(__('Votre licence ne vous autorise pas à utiliser le mode esclave'));
-    }
-
+  
     if (init('action') == 'remove') {
         if (!isConnect('admin')) {
             throw new Exception(__('401 - Accès non autorisé', __FILE__));

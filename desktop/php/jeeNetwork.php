@@ -2,9 +2,6 @@
 if (!hasRight('jeeNetworkview', true)) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
-if (config::byKey('jeedom::licence') < 5) {
-    throw new Exception(__('Votre licence ne vous autorise pas à utiliser le mode esclave'));
-}
 ?>
 
 <div class="row row-overflow">

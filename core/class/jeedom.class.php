@@ -372,7 +372,7 @@ public static function cron() {
          if (config::byKey('jeeNetwork::mode') != 'slave') {
           jeeNetwork::pull();
       }
-      if (config::byKey('market::allowDNS') == 1 && config::byKey('jeeNetwork::mode') == 'master' && config::byKey('jeedom::licence') >= 5) {
+      if (config::byKey('market::allowDNS') == 1 && config::byKey('jeeNetwork::mode') == 'master') {
         market::updateIp();
     }
 }
