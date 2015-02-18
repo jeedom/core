@@ -1,0 +1,24 @@
+  "desktop\/modal\/about.php": {
+       "Développeur(s)": "Entwickler ",
+       "Auteur(s)": "Autoren",
+       "Traducteur(s)": "Übersetzer",
+       "Correcteur(s)": "Korrekturen",
+	   "Designer": "Designer",
+	   "Beta-testeur(s)": "Beta-Tester",
+	   "Remerciements": "Danksagung"
+	},
+	"desktop\/modal\/cmd.configure.php": {
+       "Evénement seulement": "nur Ereignisse",
+	   "Appliquer à": "übernehmen",
+	   "Formule de calcul (#value# pour la valeur)": "Berechnungsformel (# Wert # auf den Wert)",
+	   "Code d'accès": "Zugangscode",
+	   "Historiser": "chronisieren",
+	   "Mode de lissage": "glätten Modus",
+	   "Arrondi (chiffre après la virgule)": "Abgerundet (Zahlen nach dem Komma)",
+	   "Sélection multiple de commandes": "Auswahl mehrerer Befehle",
+	   "Basculer": "Knebel",
+	   "Modification appliqués avec succès": "Änderung erfolgreich angewendet"
+	},
+	"desktop\/modal\/eqLogic.configure.php": {
+	   "Modification appliqués avec succès": "Änderung, erfolgreich angewandt"
+	}
