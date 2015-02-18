@@ -623,8 +623,8 @@ public function execute(&$scenario = null) {
                 die();
             }else if ($this->getExpression() == 'log') {
                 if ($scenario != null) {
-                    $this->setLog($options['message']);
-                    if ($scenario->getConfiguration('speedPriority', 0) == 0) {
+                    $scenario->setLog('Log : '.$options['message']);
+                    if ($scenario->getConfiguration('speedPriority', 0) == 1) {
                         $scenario->persistLog();
                     }
                 }
