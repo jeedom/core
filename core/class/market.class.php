@@ -434,11 +434,7 @@ class market {
     }
 
     public static function retoreBackup($_backup) {
-        if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
-            $url = config::byKey('market::address') . "/core/php/downloadBackup.php?backup=" . $_backup . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . config::byKey('market::username') . '&password=' . config::byKey('market::password') . '&password_type=sha1';
-        } else {
-            $url = config::byKey('market::address') . "/core/php/downloadBackup.php?backup=" . $_backup . '&hwkey=' . jeedom::getHardwareKey() . '&apikey=' . config::byKey('market::apikey');
-        }
+        $url = config::byKey('market::address') . "/core/php/downloadBackup.php?backup=" . $_backup . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . config::byKey('market::password') . '&password_type=sha1';
         $tmp_dir = dirname(__FILE__) . '/../../tmp';
         $tmp = $tmp_dir . '/' . $_backup;
         file_put_contents($tmp, fopen($url, 'r'));
@@ -555,11 +551,7 @@ class market {
         if (!is_writable($tmp_dir)) {
             throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : chmod 777 -R ', __FILE__) . $tmp_dir);
         }
-        if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
-            $url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . config::byKey('market::username') . '&password=' . config::byKey('market::password') . '&password_type=sha1';
-        } else {
-            $url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&hwkey=' . jeedom::getHardwareKey() . '&apikey=' . config::byKey('market::apikey');
-        }
+        $url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . config::byKey('market::password') . '&password_type=sha1';
         log::add('update', 'update', __('Téléchargement de l\'objet...', __FILE__));
         file_put_contents($tmp, fopen($url, 'r'));
         if (!file_exists($tmp)) {
@@ -816,7 +808,7 @@ class market {
         $this->link = utils::setJsonAttr($this->link, $_key, $_value);
     }
 
-     public function getLanguage($_key = '', $_default = '') {
+    public function getLanguage($_key = '', $_default = '') {
         return utils::getJsonAttr($this->language, $_key, $_default);
     }
 
@@ -852,7 +844,7 @@ class market {
         $this->logicalId = $logicalId;
     }
 
-     public function getPrivate() {
+    public function getPrivate() {
         return $this->private;
     }
 
