@@ -56,7 +56,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                             <option value="de_DE">{{Deutsch}}</option>
                                             <option value="es_ES">{{Español}}</option>
                                             <option value="ru_RU">{{Pусский}}</option>
-                                            <option value="id_ID">{{Indonesien}}</option>
+                                            <option value="id_ID">{{Indonésien}}</option>
                                         </select>
                                     </div>
                                 </div>
