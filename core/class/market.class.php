@@ -288,7 +288,7 @@ class market {
 				'nbMessage' => message::nbMessage(),
 			));
 		} else {
-			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', config::byKey('market::apikey'), array(
+			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
 				'jeedomversion' => getVersion('jeedom'),
 				'hwkey' => jeedom::getHardwareKey(),
 			));
