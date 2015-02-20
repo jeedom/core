@@ -551,11 +551,7 @@ class market {
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : chmod 777 -R ', __FILE__) . $tmp_dir);
 		}
-		$marketUsername = config::byKey('market::username');
-		if (strpos($marketUsername, '&') !== false || strpos($marketUsername, '#') !== false) {
-			$marketUsername = urlencode(config::byKey('market::username'));
-		}
-		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . $marketUsername . '&password=' . config::byKey('market::password') . '&password_type=sha1';
+		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . config::byKey('market::password') . '&password_type=sha1';
 		log::add('update', 'update', __('Téléchargement de l\'objet...', __FILE__));
 		file_put_contents($tmp, fopen($url, 'r'));
 		if (!file_exists($tmp)) {
