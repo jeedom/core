@@ -131,6 +131,9 @@ class scenarioElement {
             if ($this->getSubElement('if')->execute($_scenario)) {
                 return $this->getSubElement('then')->execute($_scenario);
             }
+            if(!is_object($this->getSubElement('else'))){
+                return;
+            }
             return $this->getSubElement('else')->execute($_scenario);
         } else if ($this->getType() == 'action') {
             return $this->getSubElement('action')->execute($_scenario);
@@ -191,10 +194,10 @@ class scenarioElement {
                 if(strpos($at[0]->getExpression(), '-') !== false){
                     $next -= 40;
                 }else{
-                 $next += 40; 
-             }       
-         }
-         if (!is_numeric($next) || $next < 0) {
+                   $next += 40; 
+               }       
+           }
+           if (!is_numeric($next) || $next < 0) {
             $_scenario->setLog(__('Erreur dans bloc (type A) : ', __FILE__) . $this->getId() . __(', heure programmé invalide : ', __FILE__) . $next);
         }
         if ($next < (date('Gi') + 1)) {
