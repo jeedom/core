@@ -31,7 +31,4 @@ $CONFIG = array(
         'password' => '#PASSWORD#',
     )
 );
-
-define('TRANSLATION_AUTODISCOVERY' , 0);
-define('DESKTOP_CACHE' , 1);
 ?>

@@ -72,7 +72,7 @@ class translate {
 			}
 			$_content = str_replace("{{" . $text . "}}", $replace, $_content);
 		}
-		if ($language == 'fr_FR' && $modify && (defined('TRANSLATION_AUTODISCOVERY') && TRANSLATION_AUTODISCOVERY == 1)) {
+		if ($language == 'fr_FR' && $modify) {
 			static::$translation[self::getLanguage()] = $translate;
 			self::saveTranslation($language);
 		}
