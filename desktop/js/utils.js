@@ -484,14 +484,14 @@ function positionEqLogic(_id, _noResize, _class) {
                 eqLogic.width((Math.ceil(eqLogic.width() / eqLogic_width_step) * eqLogic_width_step) - 6 + wMarge);
             }
 
-            var verticalAlign = eqLogic.find('.verticalAlign');
+           /* var verticalAlign = eqLogic.find('.verticalAlign');
             var offset = eqLogic.find('.widget-name').height();
             offset = (offset < 1) ? -5 : offset-12;
             if (count(verticalAlign) > 0 && verticalAlign != undefined) {
                 verticalAlign.css('position', 'relative');
                 //verticalAlign.css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - offset);
                 verticalAlign.css('left', (eqLogic.width() - verticalAlign.width()) / 2);
-            }
+            }*/
         }
     });
 }
