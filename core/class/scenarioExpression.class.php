@@ -628,6 +628,8 @@ public function execute(&$scenario = null) {
                         $scenario->persistLog();
                     }
                 }
+            }else if ($this->getExpression() == 'message') {
+               message::add('scenario',$options['message']);
             } else if ($this->getExpression() == 'say') {
                 $this->setLog($scenario, __('Je dis : ',__FILE__).$options['message']);
                 nodejs::pushUpdate('jeedom::say', $options['message']) ;
