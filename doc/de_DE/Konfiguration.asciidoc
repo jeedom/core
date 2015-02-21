@@ -1,4 +1,4 @@
-Konfiguration
+===== Konfiguration
 
 Auf dieser Seite Können verschiedeme Systemeigenschaften konfiguriert werden.
 
@@ -32,6 +32,6 @@ Auf dieser Seite Können verschiedeme Systemeigenschaften konfiguriert werden.
 
 -HTTP
 
-
-Kern 
-include::index.asciidoc[]
+Verwaltung Include::Verwaltung.asciidoc[]
+ 
+Inhalt include::index.asciidoc[]
