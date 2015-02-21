@@ -1,4 +1,4 @@
-==== Bestandteile
+===== Bestandteile
 
 Jeedom ist aus einem Kern zusammengesetzt, der folgende Grundfunktionen enthält: 
 
