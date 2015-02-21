@@ -67,7 +67,7 @@ include::SystemInformation.asciidoc[]
 [[erw_anpas]]
 - Erweiterte Anpassung : 
 Erweiterte Anpassungen können hier erfolgen. Das Menü ist nur im Expertenmodus zur Verfügung
-include::erweiterteanp.asciidoc[]
+include::Erweiterte_Anpassung.asciidoc[]
 
 
 zum Inhalt zurück
