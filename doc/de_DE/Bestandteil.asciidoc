@@ -1,3 +1,5 @@
+==== Bestandteile
+
 Jeedom ist aus einem Kern zusammengesetzt, der folgende Grundfunktionen enthält: 
 
 - Szenario
@@ -26,5 +28,5 @@ auch die Sicherheit Ihrer Daten (vermeidet das Risiko der Piraterie in der Masse
 
 Das Projekt ist Open-Source die eine hohe Rate von Weiterentwicklung ermöglicht, dank der vielen Entwickler die teilnehmen.
 
-Kern 
+Inhalt 
 include::index.asciidoc[]
