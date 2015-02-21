@@ -1,4 +1,6 @@
+===== Design
+
 Auf der Design-Seite kann auf individuelle Weise Ihre Home-Automation angezeigt werden. Es braucht Zeit, aber die Grenze ist Ihre einzige Vorstellungskraft.
 
-Kern 
+Inhalt 
 include::index.asciidoc[]
