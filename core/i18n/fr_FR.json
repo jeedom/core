@@ -46,12 +46,15 @@
         "Générale": "Générale",
         "Détaillée": "Détaillée",
         "Ouverture d'un ticket": "Ouverture d'un ticket",
-        "Page générée en": "Page générée en"
+        "Page générée en": "Page générée en",
+        "Mise à jour disponible": "Mise à jour disponible",
+        "Mises à jour disponibles": "Mises à jour disponibles"
     },
     "core\/class\/scenario.class.php": {
         "Scénario exécuté automatiquement sur évènement venant de : ": "Scénario exécuté automatiquement sur évènement venant de : ",
         "Scénario évènement automatiquement sur programmation": "Scénario évènement automatiquement sur programmation",
-        "Aucun": "Aucun"
+        "Aucun": "Aucun",
+        "Début d'exécution du scénario : ": "Début d'exécution du scénario : "
     },
     "desktop\/php\/plan.php": {
         "Ajouter un design": "Ajouter un design",
@@ -418,7 +421,9 @@
         "HTTP": "HTTP",
         "Timeout de résolution DNS sur les requêtes HTTP": "Timeout de résolution DNS sur les requêtes HTTP",
         "Désactiver la vérification du ping": "Désactiver la vérification du ping",
-        "Sauvegarder": "Sauvegarder"
+        "Sauvegarder": "Sauvegarder",
+        "Indonesien": "Indonesien",
+        "Indonésien": "Indonésien"
     },
     "desktop\/php\/user.php": {
         "Liste des utilisateurs :": "Liste des utilisateurs :",
@@ -628,5 +633,300 @@
         "Message": "Message",
         "Envoyer": "Envoyer",
         "Votre ticket a bien été ouvert. Un mail va vous être envoyé": "Votre ticket a bien été ouvert. Un mail va vous être envoyé"
+    },
+    "core\/class\/scenarioSubElement.class.php": {
+        "Exécution du sous-élément de type [condition] : ": "Exécution du sous-élément de type [condition] : ",
+        "Exécution du sous-élément de type [action] : ": "Exécution du sous-élément de type [action] : "
+    },
+    "core\/class\/scenarioExpression.class.php": {
+        "Evaluation de la condition : [": "Evaluation de la condition : [",
+        "Vrai": "Vrai",
+        "Exécution d'un bloc élément : ": "Exécution d'un bloc élément : ",
+        "Exécution de la commande ": "Exécution de la commande ",
+        " avec comme option(s) : \n": " avec comme option(s) : \n",
+        "Faux": "Faux",
+        "Activation du scénario : ": "Activation du scénario : ",
+        "Désactivation du scénario : ": "Désactivation du scénario : ",
+        "Lancement du scénario : ": "Lancement du scénario : ",
+        "Lancement provoqué": "Lancement provoqué",
+        "Pause de ": "Pause de ",
+        " seconde(s)": " seconde(s)",
+        "Affectation de la variable ": "Affectation de la variable ",
+        " => ": " => "
+    },
+    "desktop\/modal\/market.list.php": {
+        "Market Jeedom": "Market Jeedom"
+    },
+    "core\/class\/market.class.php": {
+        "Erreur market::getinfo : ": "Erreur market::getinfo : ",
+        "Début de la mise à jour de : fibaro.fgr221": "Début de la mise à jour de : fibaro.fgr221",
+        "Téléchargement de l'objet...": "Téléchargement de l'objet...",
+        "OK\n": "OK\n",
+        "Installation de l'objet...": "Installation de l'objet...",
+        "Début de la mise à jour de : presence": "Début de la mise à jour de : presence",
+        "Décompression de l'archive...": "Décompression de l'archive...",
+        "Début de la mise à jour de : sonos": "Début de la mise à jour de : sonos",
+        "Début de la mise à jour de : mySensors": "Début de la mise à jour de : mySensors",
+        "Début de la mise à jour de : dashboard.action.other.FibaroWallPlug": "Début de la mise à jour de : dashboard.action.other.FibaroWallPlug",
+        "Début de la mise à jour de : dashboard.action.other.lightIMG": "Début de la mise à jour de : dashboard.action.other.lightIMG",
+        "Début de la mise à jour de : Monitoring": "Début de la mise à jour de : Monitoring"
+    },
+    "core\/class\/cron.class.php": {
+        "Arret de ": "Arret de "
+    },
+    "desktop\/php\/connection.php": {
+        "Nom d'utilisateur ou mot de passe incorrect !": "Nom d'utilisateur ou mot de passe incorrect !",
+        "Connectez-vous": "Connectez-vous",
+        "Nom d'utilisateur": "Nom d'utilisateur",
+        "Mot de passe": "Mot de passe",
+        "Connexion": "Connexion",
+        "Etes-vous sûr de vouloir réinitialiser votre mot de passe ?": "Etes-vous sûr de vouloir réinitialiser votre mot de passe ?"
+    },
+    "core\/js\/jeedom.class.js": {
+        "Erreur d\\'authentification sur node JS, clef invalide": "Erreur d\\'authentification sur node JS, clef invalide",
+        "Assistant cron": "Assistant cron"
+    },
+    "core\/js\/eqLogic.class.js": {
+        "Sélectionner la commande": "Sélectionner la commande"
+    },
+    "core\/js\/cmd.class.js": {
+        "Résultat de la commande : ": "Résultat de la commande : ",
+        "Action exécutée avec succès": "Action exécutée avec succès",
+        "[Jeedom] Message de test": "[Jeedom] Message de test",
+        "Ceci est un test de message pour la commande": "Ceci est un test de message pour la commande",
+        "Info": "Info",
+        "Action": "Action",
+        "Sélectionner la commande": "Sélectionner la commande"
+    },
+    "core\/js\/scenario.class.js": {
+        "Sélectionner le scénario": "Sélectionner le scénario"
+    },
+    "core\/js\/history.class.js": {
+        "Il n\\'existe encore aucun historique pour cette commande :": "Il n\\'existe encore aucun historique pour cette commande :",
+        "du": "du",
+        "au": "au",
+        "à partir de": "à partir de",
+        "jusqu\\'au": "jusqu\\'au",
+        "Edition de la série :": "Edition de la série :",
+        "et du point de": "et du point de",
+        "valeur :": "valeur :",
+        "Ne rien mettre pour supprimer la valeur": "Ne rien mettre pour supprimer la valeur",
+        "La valeur a été éditée avec succès": "La valeur a été éditée avec succès"
+    },
+    "desktop\/js\/utils.js": {
+        "Attention vous quittez une page ayant des données modifiées non sauvegardé. Voulez-vous continuer ?": "Attention vous quittez une page ayant des données modifiées non sauvegardé. Voulez-vous continuer ?",
+        "Bienvenue dans Jeedom": "Bienvenue dans Jeedom",
+        "Etes-vous sûr de vouloir arreter le système ?": "Etes-vous sûr de vouloir arreter le système ?",
+        "Etes-vous sûr de vouloir redemarrer le système ?": "Etes-vous sûr de vouloir redemarrer le système ?",
+        "Choisissez votre icône": "Choisissez votre icône"
+    },
+    "install\/backup.php": {
+        "***************Lancement de la sauvegarde de Jeedom***************\n": "***************Lancement de la sauvegarde de Jeedom***************\n",
+        "Vérification du système de fichiers (corruption)...": "Vérification du système de fichiers (corruption)...",
+        "OK\n": "OK\n",
+        "Sauvegarde des fichiers...": "Sauvegarde des fichiers...",
+        "Suppression du fichier d'identification de la base de données...": "Suppression du fichier d'identification de la base de données...",
+        "Sauvegarde spécifique pour le plugin...zwave...": "Sauvegarde spécifique pour le plugin...zwave...",
+        "Vérification de la base de données : \n": "Vérification de la base de données : \n",
+        "Sauvegarde de la base de données...": "Sauvegarde de la base de données...",
+        "Création de l'archive...": "Création de l'archive...",
+        "Nettoyage des anciennes sauvegardes...": "Nettoyage des anciennes sauvegardes...",
+        "Limite de la taille totale des sauvegardes à ": "Limite de la taille totale des sauvegardes à ",
+        "\n - Suppression de : ": "\n - Suppression de : ",
+        "Envoi de la sauvegarde dans le cloud...": "Envoi de la sauvegarde dans le cloud...",
+        "***************Fin de la sauvegarde de Jeedom***************\n": "***************Fin de la sauvegarde de Jeedom***************\n"
+    },
+    "core\/class\/message.class.php": {
+        "Message de ": "Message de ",
+        "Impossible de trouver la commande correspondant à :": "Impossible de trouver la commande correspondant à :"
+    },
+    "core\/php\/authentification.php": {
+        "Connexion de l'utilisateur par clef : ": "Connexion de l'utilisateur par clef : "
+    },
+    "desktop\/php\/message.php": {
+        "Vider": "Vider",
+        "Tout": "Tout",
+        "Date et heure": "Date et heure",
+        "Plugin": "Plugin",
+        "Description": "Description",
+        "Action": "Action"
+    },
+    "core\/ajax\/update.ajax.php": {
+        "[START UPDATE]\n": "[START UPDATE]\n",
+        "[END UPDATE SUCCESS]\n": "[END UPDATE SUCCESS]\n"
+    },
+    "desktop\/modal\/market.send.php": {
+        "Envoyer": "Envoyer",
+        "ID": "ID",
+        "Nom": "Nom",
+        "Type": "Type",
+        "Plugin": "Plugin",
+        "Widget": "Widget",
+        "[Zwave] Configuration module": "[Zwave] Configuration module",
+        "[EnOcean] Configuration module": "[EnOcean] Configuration module",
+        "[RfxCom] Configuration module": "[RfxCom] Configuration module",
+        "[Edisio] Configuration module": "[Edisio] Configuration module",
+        "Script": "Script",
+        "Scénario": "Scénario",
+        "[Camera] Modèle": "[Camera] Modèle",
+        "[SNMP] Configuration": "[SNMP] Configuration",
+        "[My Sensors] Noeud": "[My Sensors] Noeud",
+        "Catégorie": "Catégorie",
+        "Description": "Description",
+        "Utilisation": "Utilisation",
+        "Changelog": "Changelog",
+        "Langue": "Langue",
+        "Anglais": "Anglais",
+        "Allemand": "Allemand",
+        "Espagnole": "Espagnole",
+        "Russe": "Russe",
+        "Votre objet a été envoyé avec succès sur le market": "Votre objet a été envoyé avec succès sur le market"
+    },
+    "core\/class\/cmd.class.php": {
+        "Aucun": "Aucun"
+    },
+    "desktop\/modal\/cron.human.insert.php": {
+        "A exécuter": "A exécuter",
+        "En date du": "En date du"
+    },
+    "mobile\/html\/index.html": {
+        "Accueil": "Accueil"
+    },
+    "core\/ajax\/jeedom.ajax.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé"
+    },
+    "mobile\/html\/connection.html": {
+        "Nom d'utilisateur": "Nom d'utilisateur",
+        "Mot de passe": "Mot de passe",
+        "Enregistrer cet appareil": "Enregistrer cet appareil",
+        "Connexion": "Connexion"
+    },
+    "desktop\/modal\/market.display.php": {
+        "Nom": "Nom",
+        "Installer stable": "Installer stable",
+        "Installer beta": "Installer beta",
+        "Supprimer": "Supprimer",
+        "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée",
+        "Ma Note": "Ma Note",
+        "Commentaires (0)": "Commentaires (0)",
+        "Auteur": "Auteur",
+        "Lien": "Lien",
+        "Nombre de téléchargements": "Nombre de téléchargements",
+        "Type": "Type",
+        "Version": "Version",
+        "Le retour à la version stable est dangereux": "Le retour à la version stable est dangereux",
+        "Commentaires": "Commentaires",
+        "Objet installé avec succès": "Objet installé avec succès",
+        "Commentaires (2)": "Commentaires (2)"
+    },
+    "desktop\/js\/plugin.js": {
+        "Voir sur le market": "Voir sur le market",
+        "Envoyer sur le market": "Envoyer sur le market",
+        "Supprimer": "Supprimer",
+        "Documentation": "Documentation",
+        "Désactiver": "Désactiver",
+        "Activer": "Activer",
+        "Etes vous sur de vouloir supprimer ce plugin ?": "Etes vous sur de vouloir supprimer ce plugin ?",
+        "Plugin ajouté(s) avec succès. Recharger la page pour le voir": "Plugin ajouté(s) avec succès. Recharger la page pour le voir",
+        "Market Jeedom": "Market Jeedom",
+        "Sauvegarde effectuée": "Sauvegarde effectuée"
+    },
+    "desktop\/modal\/market.comment.php": {
+        "Envoyer": "Envoyer"
+    },
+    "core\/template\/scenario\/scenario.default": {
+        "Start": "Start",
+        "Stop": "Stop",
+        "Activer": "Activer",
+        "Désactiver": "Désactiver"
+    },
+    "desktop\/modal\/cmd.human.insert.php": {
+        "Objet": "Objet",
+        "Equipement": "Equipement",
+        "Commande": "Commande",
+        "Aucun": "Aucun"
+    },
+    "desktop\/modal\/scenario.log.execution.php": {
+        "Ce scénario s'éxécute le plus rapidement possible il n'écris donc pas de log": "Ce scénario s'éxécute le plus rapidement possible il n'écris donc pas de log"
+    },
+    "desktop\/js\/scenario.js": {
+        "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
+        "Désac. scénarios": "Désac. scénarios",
+        "Act. scénarios": "Act. scénarios",
+        "Nom": "Nom",
+        "Nom de votre scénario": "Nom de votre scénario",
+        "Type": "Type",
+        "Simple": "Simple",
+        "Avancée": "Avancée",
+        "Etes-vous sûr de vouloir supprimer le scénario": "Etes-vous sûr de vouloir supprimer le scénario",
+        "Lancement du scénario réussi": "Lancement du scénario réussi",
+        "Variables des scénarios": "Variables des scénarios",
+        "est": "est",
+        "égale": "égale",
+        "supérieur": "supérieur",
+        "inférieur": "inférieur",
+        "différent": "différent",
+        "Ensuite": "Ensuite",
+        "et": "et",
+        "ou": "ou",
+        "Ouvert": "Ouvert",
+        "Fermé": "Fermé",
+        "Allumé": "Allumé",
+        "Eteint": "Eteint",
+        "Déclenché": "Déclenché",
+        "Au repos": "Au repos",
+        "Log d'exécution du scénario": "Log d'exécution du scénario",
+        "Export du scénario": "Export du scénario",
+        "Template de scénario": "Template de scénario",
+        "Jamais": "Jamais",
+        "Ajouter bloc": "Ajouter bloc",
+        "Evènement": "Evènement",
+        "Programmation": "Programmation",
+        "Sélectionner un mot-clé": "Sélectionner un mot-clé",
+        "Sélectionner la commande": "Sélectionner la commande",
+        "SI": "SI",
+        "ALORS": "ALORS",
+        "Ajouter action": "Ajouter action",
+        "SINON": "SINON",
+        "DE 1 A": "DE 1 A",
+        "DANS (min)": "DANS (min)",
+        "A (Hmm)": "A (Hmm)",
+        "CODE": "CODE",
+        "ACTION": "ACTION"
+    },
+    "core\/php\/jeeScenario.php": {
+        "Impossible de lancer le scénario car déjà en cours : ": "Impossible de lancer le scénario car déjà en cours : "
+    },
+    "mobile\/html\/message.html": {
+        "Date": "Date",
+        "Plugin": "Plugin",
+        "Description": "Description"
+    },
+    "mobile\/html\/home.html": {
+        "Equipements": "Equipements",
+        "Scénarios": "Scénarios",
+        "Scénario": "Scénario",
+        "Vues": "Vues",
+        "Design": "Design",
+        "Messages": "Messages",
+        "Message(s)": "Message(s)",
+        "Plugins": "Plugins",
+        "Version desktop": "Version desktop",
+        "Déconnexion": "Déconnexion"
+    },
+    "desktop\/modal\/about.php": {
+        "Auteur(s)": "Auteur(s)",
+        "Développeur(s)": "Développeur(s)",
+        "Traducteur(s)": "Traducteur(s)",
+        "Correcteur(s)": "Correcteur(s)",
+        "Designer": "Designer",
+        "Beta-testeur(s)": "Beta-testeur(s)",
+        "Remerciements": "Remerciements"
+    },
+    "desktop\/modal\/cmd.history.php": {
+        "Ligne": "Ligne",
+        "Aire": "Aire",
+        "Colonne": "Colonne",
+        "Historique": "Historique"
     }
 }
