@@ -15,12 +15,6 @@ Unter diesem Menü kann mann neue Benutzer hinzufügen oder auch vorhandene enfe
 include::Benutzer.asciidoc[]
 
 '''
-[[user]]
-- Erweiterte Rechte : 
-Unter diesem Menü kann mann den Benutzern besondere Rechte verleihen. 
-include::Erweiterte_Rechte.asciidoc[]
-
-'''
 [[backup]]
 - Sicherungskopie : 
 Unter diesm Menü werden Sicherungskopien angelegt und wieder hergestellt.
@@ -58,7 +52,7 @@ Im Log Menü werden die verschiedenen Log dateien die Jeedom anlegt untersucht w
 include::logs.asciidoc[]
 
 '''
-[[info system]]
+[[info_system]]
 - System Information : 
 System Informationen über die Hardware sind in diesem Menü zu sehen. Das Menü ist nur im Expertenmodus zur Verfügung
 include::SystemInformation.asciidoc[]
