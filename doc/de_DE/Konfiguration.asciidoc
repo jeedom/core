@@ -32,6 +32,8 @@ Auf dieser Seite Können verschiedeme Systemeigenschaften konfiguriert werden.
 
 -HTTP
 
-Verwaltung Include::Verwaltung.asciidoc[]
+Verwaltung 
+Include::Verwaltung.asciidoc[]
  
-Inhalt include::index.asciidoc[]
+Inhalt 
+include::index.asciidoc[]
