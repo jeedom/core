@@ -3,7 +3,8 @@
 
 
 
-
-Verwaltung Verwaltung.asciidoc
-
-Inhalt index.asciidoc
+Verwaltung 
+include::Verwaltung.asciidoc[] 
+ 
+Inhalt 
+include::index.asciidoc[]
