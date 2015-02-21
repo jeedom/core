@@ -27,6 +27,3 @@ Neben der Partikel Jeedom um kein Abo und keine Cload, die den Betrieb des Home-
 auch die Sicherheit Ihrer Daten (vermeidet das Risiko der Piraterie in der Masse von Konten).
 
 Das Projekt ist Open-Source die eine hohe Rate von Weiterentwicklung ermöglicht, dank der vielen Entwickler die teilnehmen.
-
-Inhalt 
-include::index.asciidoc[]

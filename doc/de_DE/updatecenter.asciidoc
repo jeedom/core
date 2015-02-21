@@ -12,11 +12,3 @@ Es gibt insgesamt bis zu 5 Knöpfen, die von Element verfügbar sein können:
 -"Update" können Sie den Artikel aktualisieren.
 
 Beachten Sie, dass "Core" Jeedom Update für die Basissoftware bedeutet.
-
-
-
-Verwaltung 
-include::Verwaltung.asciidoc[] 
- 
-Inhalt 
-include::index.asciidoc[]

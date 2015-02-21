@@ -31,9 +31,3 @@ Auf dieser Seite Können verschiedeme Systemeigenschaften konfiguriert werden.
 -Update
 
 -HTTP
-
-Verwaltung 
-include::Verwaltung.asciidoc[] 
- 
-Inhalt 
-include::index.asciidoc[]

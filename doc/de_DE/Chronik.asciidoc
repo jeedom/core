@@ -19,6 +19,3 @@ Es gibt mehrere Möglichkeiten, um die Chronik zu zeigen:
 - Durch Klick auf den gewünschten Befehl in einem Widget
 - Oder indem Sie auf der Chronik-Seite, die verschiedenen Kurven überlagern und verbinden es sind verschiedene Stiele erlaubt
 (Fläche, Kurve, balken). Auf dieser Seite können Sie auch die ganze Chronik eines Auftrages löschen
-
-Inhalt 
-include::index.asciidoc[]

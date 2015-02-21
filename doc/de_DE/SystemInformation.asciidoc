@@ -1,8 +1,2 @@
 ===== System Information
 
-
-Verwaltung 
-include::Verwaltung.asciidoc[] 
- 
-Inhalt 
-include::index.asciidoc[]

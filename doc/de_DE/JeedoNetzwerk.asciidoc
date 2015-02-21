@@ -1,9 +1,3 @@
 ===== Jeedom Netzwerk
 
 Hier wird ein Jeedom Netzwer Konfiguriert das aus verschiedener Hardware bestehen kann.
-
-Verwaltung 
-include::Verwaltung.asciidoc[] 
- 
-Inhalt 
-include::index.asciidoc[]
