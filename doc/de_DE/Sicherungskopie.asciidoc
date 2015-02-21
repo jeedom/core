@@ -1,4 +1,4 @@
-Sicherungskopie
+===== Sicherungskopie
 
 Hier werden ihre Jeedom Backups verwalten. Mehrere Optionen sind verfügbar.
 
@@ -11,5 +11,8 @@ Der zweite Abschnitt ermöglicht es Ihnen, lokale Backups zu verwalten (in Jeedo
 Schließlich ermöglicht die letzte Rubrik, einen der verfügbaren Sicherungen auf dem Cloud-Backup-Service zu restaurieren. 
 
 
-Kern 
+Verwaltung 
+include::Verwaltung.asciidoc[] 
+ 
+Inhalt 
 include::index.asciidoc[]
