@@ -68,7 +68,3 @@ include::SystemInformation.asciidoc[]
 - Erweiterte Anpassung : 
 Erweiterte Anpassungen können hier erfolgen. Das Menü ist nur im Expertenmodus zur Verfügung
 include::Erweiterte_Anpassung.asciidoc[]
-
-
-zum Inhalt zurück
-include::index.asciidoc[]
