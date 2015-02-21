@@ -1,0 +1,6 @@
+===== Erweitere Rechte
+
+
+
+Inhalt 
+include::index.asciidoc[]
