@@ -597,5 +597,5 @@ if (name.indexOf("on") != -1) {
 if (name.indexOf("off") != -1) {
     return 'off';
 }
-return _tagname;
+return name;
 }
