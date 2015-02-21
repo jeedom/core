@@ -1,3 +1,5 @@
+===== Verwaltung
+
 In dem Untermenü Verwaltung finden sich weitere die wie folgt sind :
 
 '''
@@ -11,6 +13,12 @@ include::Konfiguration.asciidoc[]
 - Benutzer : 
 Unter diesem Menü kann mann neue Benutzer hinzufügen oder auch vorhandene enfernen
 include::Benutzer.asciidoc[]
+
+'''
+[[user]]
+- Erweiterte Rechte : 
+Unter diesem Menü kann mann den Benutzern besondere Rechte verleihen. 
+include::Erweiterte_Rechte.asciidoc[]
 
 '''
 [[backup]]
@@ -62,5 +70,5 @@ Erweiterte Anpassungen können hier erfolgen. Das Menü ist nur im Expertenmodus
 include::erweiterteanp.asciidoc[]
 
 
-zum Kern zurück
+zum Inhalt zurück
 include::index.asciidoc[]
