@@ -64,7 +64,13 @@ Si dans le scénario il n'y a pas de pause il est conseillé de cocher la case l
 [panel,danger]
 .Le témoin nodeJS en bas de la page est rouge ou gris
 --
-En ssh faite "sudo service nodeJS restart" pour forcer un redémarrage de celui-ci
+En ssh faite "sudo service nodeJS restart" pour forcer un redémarrage de celui-ci. Si ca ne marche pas faites : 
+----
+sudo su -
+rm -rf /usr/share/nginx/www/jeedom/core/nodeJS
+reboot
+----
+Puis mettre à jour jeedom, le redemarrer à nouveau et ca devrait être bon
 --
 
 [panel,danger]
