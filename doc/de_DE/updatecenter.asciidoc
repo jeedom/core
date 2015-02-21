@@ -1,4 +1,4 @@
-Update Center
+===== Update Center
 
 Das Aktualisierungszentrum zentralisiert die Gesamtheit der Funktionen von Jeedom und ermöglicht, alle Funktionalitäten von Jeedom auf den neuesten Stand zu bringen, die Grundsoftware, die Plugins, die Widgets, u. s. w. .
 
@@ -15,5 +15,8 @@ Beachten Sie, dass "Core" Jeedom Update für die Basissoftware bedeutet.
 
 
 
-Kern 
+Verwaltung 
+include::Verwaltung.asciidoc[] 
+ 
+Inhalt 
 include::index.asciidoc[]
