@@ -78,6 +78,7 @@
                                 $('#div_plugin_configuration').setValues(data, '.configKey');
                                 $('#div_plugin_configuration').parent().show();
                                 modifyWithoutSave = false;
+                                initTooltips();
                             }
                         });
                     });

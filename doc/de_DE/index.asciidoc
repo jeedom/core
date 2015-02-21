@@ -1,4 +1,4 @@
-== Kern
+== Inhalt
 
 === Beschreibung
 Jeedom ist ein Home-Automation-Projekt ohne Cloud und ohne Abonement. Es ermöglicht verschiedenen Peripherie zu kontrollieren  (Zwave, RFXCOM, EnOcean, xPL, KNX ...). Mehr Informationen finden sie hier: https://jeedom.fr
@@ -74,7 +74,7 @@ include::sicherheit.asciidoc[]
 include::logs.asciidoc[]
 
 '''
-[[info_system]]
+[[info system]]
 ===== System Information
 include::SystemInformation.asciidoc[]
 

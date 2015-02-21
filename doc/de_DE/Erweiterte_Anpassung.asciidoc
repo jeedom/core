@@ -1,6 +1,4 @@
-===== Logs
-
-
+===== Erweiterte Anpassung
 
 Verwaltung 
 include::Verwaltung.asciidoc[] 
