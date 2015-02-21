@@ -6,5 +6,5 @@
 Verwaltung 
 include::Verwaltung.asciidoc[] 
  
-Inhalt 
-include::index.asciidoc[]
+ 
+include::index.asciidoc[Inhalt]
