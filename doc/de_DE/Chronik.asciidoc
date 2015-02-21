@@ -1,4 +1,7 @@
-==== Beschreibung
+==== Chronik
+
+===== Beschreibung
+
 Ein wichtiger Teil in einer Software ist die Chronik, dies ist ein richtiges Gedächtnis.  Es ist in Jeedom möglich
 jede Art von Steuerinformationen zu archivieren, das Prinzip ist ziemlich einfach, der Befehl ist ein
 Ereignis,  es wird sobald das Ereignis eintritt archiviert. Wenn die Befehl kein Ereignis Typ ist
@@ -17,5 +20,5 @@ Es gibt mehrere Möglichkeiten, um die Chronik zu zeigen:
 - Oder indem Sie auf der Chronik-Seite, die verschiedenen Kurven überlagern und verbinden es sind verschiedene Stiele erlaubt
 (Fläche, Kurve, balken). Auf dieser Seite können Sie auch die ganze Chronik eines Auftrages löschen
 
-Kern 
+Inhalt 
 include::index.asciidoc[]
