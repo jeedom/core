@@ -97,7 +97,7 @@
                                 }
                             });
                         })
-                    });
+});
 } else {
     $('#div_plugin_configuration').parent().hide();
 }
@@ -209,6 +209,26 @@ function savePluginConfig() {
                 window[postSave]();
             }
         }
+    });
+
+    $('.slaveConfig').each(function(){
+        var slave_id = $(this).attr('data-slave_id');
+        jeedom.jeeNetwork.saveConfig({
+            configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
+            plugin: $('.li_plugin.active').attr('data-plugin_id'),
+            id: slave_id,
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function () {
+                $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
+                modifyWithoutSave = false;
+                var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveConfiguration';
+                if (typeof window[postSave] == 'function'){
+                    window[postSave]();
+                }
+            }
+        });
     });
 }
 

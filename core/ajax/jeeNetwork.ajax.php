@@ -185,7 +185,7 @@ try {
 		ajax::success($return);
 	}
 
-	if (init('action') == 'configSave') {
+	if (init('action') == 'addKey') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
 			throw new Exception(__('JeeNetwork inconnu verifié l\'id : ', __FILE__) . init('id'));
@@ -205,6 +205,10 @@ try {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
 			throw new Exception(__('JeeNetwork inconnu verifié l\'id : ', __FILE__) . init('id'));
+		}
+		$keys = init('key');
+		if ($keys == '') {
+			throw new Exception(__('Aucune clef demandée', __FILE__));
 		}
 		if (is_json($keys)) {
 			$keys = json_decode($keys, true);
