@@ -283,6 +283,9 @@ class jeeNetwork {
 	}
 
 	public function sendRawRequest($_method, $_params = array()) {
+		if ($this->getStatus() == 'error') {
+			return '';
+		}
 		$jsonrpc = $this->getJsonRpc();
 		if (!$jsonrpc->sendRequest($_method, $_params)) {
 			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
@@ -442,6 +445,32 @@ class jeeNetwork {
 		if (!$jsonrpc->sendRequest('jeeNetwork::restoreBackup', array(), 3600, $file)) {
 			throw new Exception($jsonrpc->getError());
 		}
+	}
+
+	public function configByKey($_key, $_plugin = '', $_default = '') {
+		if ($this->getStatus() == 'error') {
+			return '';
+		}
+		$jsonrpc = $this->getJsonRpc();
+		if ($jsonrpc->sendRequest('config::byKey', array('key' => $_key, 'plugin' => $_plugin, 'default' => $_default))) {
+			return $jsonrpc->getResult();
+		} else {
+			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
+		}
+
+	}
+
+	public function configSave($_key, $_value, $_plugin = '') {
+		if ($this->getStatus() == 'error') {
+			return '';
+		}
+		$jsonrpc = $this->getJsonRpc();
+		if ($jsonrpc->sendRequest('config::save', array('key' => $_key, 'plugin' => $_plugin, 'value' => $_value))) {
+			return $jsonrpc->getResult();
+		} else {
+			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
+		}
+
 	}
 
 	public function getJsonRpc() {

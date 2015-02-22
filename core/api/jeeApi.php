@@ -154,6 +154,15 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 		connection::success('api');
 
+		/*             * ************************config*************************** */
+		if ($jsonrpc->getMethod() == 'config::byKey') {
+			$jsonrpc->makeSuccess(config::byKey($params['key'], $params['plugin'], $params['default']));
+		}
+
+		if ($jsonrpc->getMethod() == 'config::save') {
+			$jsonrpc->makeSuccess(config::save($params['key'], $params['value'], $params['plugin']));
+		}
+
 		if (isset($params['plugin']) && $params['plugin'] != '') {
 			log::add('api', 'info', 'Demande pour le plugin : ' . $params['plugin']);
 			include_file('core', $params['plugin'], 'api', $params['plugin']);
@@ -638,16 +647,6 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'jeedom::getUsbMapping') {
 				$jsonrpc->makeSuccess(jeedom::getUsbMapping());
 			}
-
-			/*             * ************************config*************************** */
-			if ($jsonrpc->getMethod() == 'config::byKey') {
-				$jsonrpc->makeSuccess(config::byKey($params['key'], $params['plugin'], $params['default']));
-			}
-
-			if ($jsonrpc->getMethod() == 'config::save') {
-				$jsonrpc->makeSuccess(config::save($params['key'], $params['value'], $params['plugin']));
-			}
-
 			/*             * ************************************************************************ */
 		}
 		throw new Exception('Aucune méthode correspondante : ' . $jsonrpc->getMethod(), -32500);

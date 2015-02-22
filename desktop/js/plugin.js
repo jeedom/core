@@ -81,17 +81,33 @@
                                 initTooltips();
                             }
                         });
+                        $('.slaveConfig').each(function(){
+                            var slave_id = $(this).attr('data-slave_id');
+                            jeedom.jeeNetwork.loadConfig({
+                                configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
+                                plugin: $('.li_plugin.active').attr('data-plugin_id'),
+                                id: slave_id,
+                                error: function (error) {
+                                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                                },
+                                success: function (data) {
+                                    $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').setValues(data, '.slaveConfigKey');
+                                    modifyWithoutSave = false;
+                                    initTooltips();
+                                }
+                            });
+                        })
                     });
-                } else {
-                    $('#div_plugin_configuration').parent().hide();
-                }
-            } else {
-                $('#div_plugin_configuration').parent().hide();
-            }
-            $('#div_confPlugin').show();
-            modifyWithoutSave = false;
-        }
-    });
+} else {
+    $('#div_plugin_configuration').parent().hide();
+}
+} else {
+    $('#div_plugin_configuration').parent().hide();
+}
+$('#div_confPlugin').show();
+modifyWithoutSave = false;
+}
+});
 return false;
 });
 
