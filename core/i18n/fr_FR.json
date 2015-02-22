@@ -145,7 +145,8 @@
         "Version plugin": "Version plugin",
         "Version Jeedom requise": "Version Jeedom requise",
         "Auteur": "Auteur",
-        "Licence": "Licence"
+        "Licence": "Licence",
+        "N'oubliez pas d'activer le plugin pour pouvoir vous servir de celui-ci": "N'oubliez pas d'activer le plugin pour pouvoir vous servir de celui-ci"
     },
     "desktop\/php\/interact.php": {
         "Ajouter interaction": "Ajouter interaction",
