@@ -2,23 +2,39 @@
 
 Auf dieser Seite Können verschiedeme Systemeigenschaften konfiguriert werden.
 
+image::../images_DE/Konfiguration.png[]
+
 -Hauptkonfiguration
 
+image::../images_DE/Hauptkonfiguration.png[]
+
 -Datenbank
+
+image::../images_DE/Datenbank_Konfig.png[]
 
 -Netzwerkkonfiguration
 
 -Cache-Konfiguration
 
+image::../images_DE/Cache-Konfiguration.png[]
+
 -Chronik Konfiguration
+
+image::../images_DE/Chronik_Konfiguration.png[]
 
 -Interaktion Konfiguration
 
 -Skripte & Daemons Konfiguration
 
+image::../images_DE/Cron_Skript_Demons_Konf.png[]
+
 -Logs & Nachrichten Konfiguration
 
+image::../images_DE/Logs_Nachr_Konfig.png[]
+
 -LDAP-Konfiguration
+
+image::../images_DE/LDAP_Konfiguration.png[]
 
 -Umwandlung von Farben in HTML
 
@@ -28,9 +44,17 @@ Auf dieser Seite Können verschiedeme Systemeigenschaften konfiguriert werden.
 
 -Markt
 
+image::../images_DE/Markt_Konfiguration.png[]
+
 -Update
+
+image::../images_DE/Update_Konfig.png[]
+
+image::../images_DE/Update_konfig_ausw.png[]
 
 -HTTP
 
-image::../images_DE/Konfiguration.png[]
+image::../images_DE/HTTP_Konfig.png[]
+
+
 

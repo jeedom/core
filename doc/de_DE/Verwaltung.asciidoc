@@ -8,6 +8,8 @@ In dem Untermenü Verwaltung finden sich weitere die wie folgt sind :
 Unter diesem Menü findet man verschiedene Einstellungen die mann für die Jeedom Software ändern kann.
 include::Konfiguration.asciidoc[]
 
+Menü_verwaltung.png
+
 '''
 [[user]]
 - Benutzer : 
@@ -69,6 +71,7 @@ include::SystemInformation.asciidoc[]
 Erweiterte Anpassungen können hier erfolgen. Das Menü ist nur im Expertenmodus zur Verfügung
 include::Erweiterte_Anpassung.asciidoc[]
 
+image::../images_DE/Menü_verwaltung.png[]
 
 zum Inhalt zurück
 include::index.asciidoc[]
