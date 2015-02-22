@@ -42,7 +42,7 @@ class plugin {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function byId($_id) {
+	public static function byId($_id,$_translate = true) {
 		if (isset(self::$_cache[$_id])) {
 			return self::$_cache[$_id];
 		}
@@ -56,6 +56,7 @@ class plugin {
 			}
 		}
 		libxml_use_internal_errors(true);
+		$_id = str_replace('//', '/', $_id);
 		$plugin_xml = @simplexml_load_file($_id);
 		if (!is_object($plugin_xml)) {
 			throw new Exception('Plugin introuvable (xml invalide) : ' . $_id . '. Description : ' . print_r(libxml_get_errors(), true));
@@ -95,6 +96,11 @@ class plugin {
 			);
 		}
 
+		if($_translate){
+			$plugin->description = __($plugin->description,$_id);
+			$plugin->installation = __($plugin->installation,$_id);
+		}
+
 		self::$_cache[$_id] = $plugin;
 		self::$_cache[$plugin->id] = $plugin;
 		return $plugin;
@@ -112,7 +118,7 @@ class plugin {
 		}
 	}
 
-	public static function listPlugin($_activateOnly = false, $_orderByCaterogy = false) {
+	public static function listPlugin($_activateOnly = false, $_orderByCaterogy = false,$_translate = true) {
 		$listPlugin = array();
 		if ($_activateOnly) {
 			$sql = "SELECT plugin
@@ -122,7 +128,7 @@ class plugin {
 			$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 			foreach ($results as $result) {
 				try {
-					$listPlugin[] = plugin::byId($result['plugin']);
+					$listPlugin[] = plugin::byId($result['plugin'],$_translate);
 				} catch (Exception $e) {
 					log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $result['plugin']);
 				}
@@ -134,7 +140,7 @@ class plugin {
 					$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . '/plugin_info/info.xml';
 					if (file_exists($pathInfoPlugin)) {
 						try {
-							$listPlugin[] = plugin::byId($pathInfoPlugin);
+							$listPlugin[] = plugin::byId($pathInfoPlugin,$_translate);
 						} catch (Exception $e) {
 							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
 						}

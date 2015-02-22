@@ -30,6 +30,7 @@ class translate {
 	}
 
 	public static function exec($_content, $_name = '', $_backslash = false) {
+
 		if ($_content == '' || $_name == '') {
 			return '';
 		}
@@ -46,7 +47,9 @@ class translate {
 				}
 			}
 		}
+
 		$modify = false;
+
 		$translate = self::getTranslation();
 		preg_match_all("/{{(.*?)}}/s", $_content, $matches);
 		foreach ($matches[1] as $text) {
@@ -87,12 +90,14 @@ class translate {
 		$return = array();
 		if (file_exists(self::getPathTranslationFile(self::getLanguage()))) {
 			$return = file_get_contents(self::getPathTranslationFile(self::getLanguage()));
+
 			if (is_json($return)) {
 				$return = json_decode($return, true);
 			} else {
 				$return = array();
 			}
-			foreach (plugin::listPlugin(true) as $plugin) {
+
+			foreach (plugin::listPlugin(true,false,false) as $plugin) {
 				$return = array_merge($return, $plugin->getTranslation(self::getLanguage()));
 			}
 		}
