@@ -252,20 +252,6 @@ class jeeNetwork {
 		return DB::save($this);
 	}
 
-	public function postSave() {
-		if (method_exists('jeedom', 'nginx_saveRule')) {
-			$rules = array(
-				"location /slave" . $this->getId() . "/ {\n" .
-				"proxy_pass http://" . $this->getIp() . "/;\n" .
-				"proxy_redirect off;\n" .
-				"proxy_set_header Host \$host:\$server_port;\n" .
-				"proxy_set_header X-Real-IP \$remote_addr;\n" .
-				"}",
-			);
-			jeedom::nginx_saveRule($rules);
-		}
-	}
-
 	public function remove() {
 		return DB::remove($this);
 	}
