@@ -1,0 +1,17 @@
+===== Admin
+
+Im Admin Menü kann die Benutzeroberfläche individuell angepasst werden. Der Experten-Modus wird hier ein und aus geschaltet.
+Das Haus_Automatisierungsgerät startet mann neu oder schaltet es aus. Aus der Bedienungssoftware wird sich ausgeloggt.
+ 
+image::../images_DE/Menü_Admin1.png[]
+
+Im Profil werden verschiedene Themen zur Gestaltung angeboten.
+Wie mann das Interface nach dem einloggen haben möchte wird hier eingestellt.
+Benachrichtigungen können verschieden farbig angezeigt weden.
+
+image::../images_DE/Menü_Admin_Profil.png[]
+
+Wenn der Experten Modus ausgeschalten ist sind einige Menüs nicht erreichbar. 
+Experten Modus ein- ausschalten
+
+image::../images_DE/Menü_Admin2.png[]
