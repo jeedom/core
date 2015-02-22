@@ -678,7 +678,9 @@
     },
     "core\/js\/jeedom.class.js": {
         "Erreur d\\'authentification sur node JS, clef invalide": "Erreur d\\'authentification sur node JS, clef invalide",
-        "Assistant cron": "Assistant cron"
+        "Assistant cron": "Assistant cron",
+        "Annuler": "Annuler",
+        "Valider": "Valider"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner la commande": "Sélectionner la commande"

@@ -273,10 +273,10 @@ jeedom.getCronSelectModal = function(_options,_callback) {
         });
     }
     $("#mod_insertCronValue").dialog('option', 'buttons', {
-        "Annuler": function() {
+        "{{Annuler}}": function() {
             $(this).dialog("close");
         },
-        "Valider": function() {
+        "{{Valider}}": function() {
             var retour = {};
             retour.cron = {};
             retour.value = mod_insertCron.getValue();
