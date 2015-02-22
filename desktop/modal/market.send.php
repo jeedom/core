@@ -1,34 +1,34 @@
 <?php
 if (!isConnect('admin')) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 sendVarToJS('market_display_info', array(
-    'logicalId' => init('logicalId'),
-    'name' => init('name')
-    ));
+	'logicalId' => init('logicalId'),
+	'name' => init('name'),
+));
 sendVarToJS('market_type', init('type'));
 try {
-    if (init('logicalId') != '') {
-        $market = market::byLogicalId(init('logicalId'));
-    }
+	if (init('logicalId') != '') {
+		$market = market::byLogicalId(init('logicalId'));
+	}
 } catch (Exception $e) {
-    $market = null;
+	$market = null;
 }
 if (is_object($market)) {
-    if ($market->getApi_author() == '') {
-        throw new Exception('{{Vous n\'etes pas l\'autheur du plugin}}');
-    }
+	if ($market->getApi_author() == '') {
+		throw new Exception('{{Vous n\'etes pas l\'autheur du plugin}}');
+	}
 }
 
 if (init('type') == 'plugin') {
-    $plugin = plugin::byId(init('logicalId'));
-    if (!is_object($plugin)) {
-        throw new Exception('{{Le plugin :}} ' . init('logicalId') . ' {{est introuvable}}');
-    }
-    $plugin_info = utils::o2a($plugin);
-    $plugin_info['logicalId'] = $plugin_info['id'];
-    unset($plugin_info['id']);
-    sendVarToJS('market_display_info', $plugin_info);
+	$plugin = plugin::byId(init('logicalId'));
+	if (!is_object($plugin)) {
+		throw new Exception('{{Le plugin :}} ' . init('logicalId') . ' {{est introuvable}}');
+	}
+	$plugin_info = utils::o2a($plugin);
+	$plugin_info['logicalId'] = $plugin_info['id'];
+	unset($plugin_info['id']);
+	sendVarToJS('market_display_info', $plugin_info);
 }
 ?>
 
@@ -39,7 +39,7 @@ if (init('type') == 'plugin') {
 
 <br/><br/>
 <form class="form-horizontal" role="form" id="form_sendToMarket">
-    <?php if (init('type') == 'plugin') { ?>
+    <?php if (init('type') == 'plugin') {?>
     <hr/>
     <div class="row">
         <div class="col-lg-3">
@@ -68,7 +68,7 @@ if (init('type') == 'plugin') {
         </div>
     </div>
     <hr/>
-    <?php } ?>
+    <?php }?>
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group">
@@ -164,7 +164,7 @@ if (init('type') == 'plugin') {
                     <input class="form-control marketAttr" data-l1key="link" data-l2key="forum">
                 </div>
             </div>
-        </div> 
+        </div>
         <div class="col-lg-6">
             <div class="form-group">
                 <div class="form-group">
@@ -183,27 +183,33 @@ if (init('type') == 'plugin') {
                     <label class="col-sm-4 control-label">{{Langue}}</label>
                     <div class="col-sm-8">
                         <label class="checkbox-inline">
-                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="en_US"> {{Anglais}}
+                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="en_US"> {{English}}
                       </label>
                       <label class="checkbox-inline">
-                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="de_DE"> {{Allemand}}
+                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="de_DE"> {{Deutsch}}
                       </label>
                       <label class="checkbox-inline">
-                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="sp_SP"> {{Espagnole}}
+                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="sp_SP"> {{Español}}
                       </label>
                       <label class="checkbox-inline">
-                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="ru_RU"> {{Russe}}
+                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="ru_RU"> {{Pусский}}
+                      </label>
+                       <label class="checkbox-inline">
+                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="id_ID"> {{Indonésien}}
+                      </label>
+                       <label class="checkbox-inline">
+                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="it_IT"> {{Italiano}}
                       </label>
                   </div>
               </div>
           </div>
-      </div> 
-  </div> 
+      </div>
+  </div>
 </form>
 
 <?php
 if (is_object($market)) {
-    sendVarToJS('market_display_info', utils::o2a($market));
+	sendVarToJS('market_display_info', utils::o2a($market));
 }
 ?>
 <script>

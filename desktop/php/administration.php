@@ -1,6 +1,6 @@
 <?php
 if (!hasRight('administrationview', true)) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 ?>
@@ -20,24 +20,24 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                         <fieldset>
                             <div class="form-group expertModeVisible">
                                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef API}}</label>
-                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"> 
-                                    <p class="form-control-static" id="in_keyAPI"><?php echo config::byKey('api'); ?></p>
+                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                    <p class="form-control-static" id="in_keyAPI"><?php echo config::byKey('api');?></p>
                                 </div>
-                                <div class="col-lg-1 col-md-2 col-sm-3"> 
+                                <div class="col-lg-1 col-md-2 col-sm-3">
                                     <a class="btn btn-default form-control" id="bt_genKeyAPI">{{Générer}}</a>
                                 </div>
                             </div>
-                            <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
+                            <?php if (config::byKey('jeeNetwork::mode') == 'master') {?>
                                 <div class="form-group expertModeVisible">
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef NodeJS}}</label>
-                                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"> 
-                                        <p class="form-control-static" id="in_nodeJsKey"><?php echo config::byKey('nodeJsKey'); ?></p>
+                                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                        <p class="form-control-static" id="in_nodeJsKey"><?php echo config::byKey('nodeJsKey');?></p>
                                     </div>
-                                    <div class="col-lg-1 col-md-2 col-sm-3"> 
+                                    <div class="col-lg-1 col-md-2 col-sm-3">
                                         <a class="btn btn-default form-control" id="bt_nodeJsKey" >{{Générer}}</a>
                                     </div>
                                 </div>
-                                <?php } ?>
+                                <?php }?>
                                 <div class="form-group">
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande d'information utilisateur}}</label>
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -57,6 +57,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                             <option value="es_ES">{{Español}}</option>
                                             <option value="ru_RU">{{Pусский}}</option>
                                             <option value="id_ID">{{Indonésien}}</option>
+                                            <option value="it_IT">{{Italiano}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -193,32 +194,32 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 <div class="form-group">
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès à l'interface d'administration}}</label>
                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                        <a class="btn btn-danger" id="bt_accessDB" data-href="<?php echo jeedom::getCurrentSqlBuddyFolder() . '/index.php' ?>"><i class="fa fa-exclamation-triangle"></i> {{Se connecter}}</a>
+                                        <a class="btn btn-danger" id="bt_accessDB" data-href="<?php echo jeedom::getCurrentSqlBuddyFolder() . '/index.php'?>"><i class="fa fa-exclamation-triangle"></i> {{Se connecter}}</a>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Machine (hostname)}}</label>
                                     <div class="col-sm-1">
                                         <?php
-                                        global $CONFIG;
-                                        echo $CONFIG['db']['host'];
-                                        ?>
+global $CONFIG;
+echo $CONFIG['db']['host'];
+?>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Utilisateur}}</label>
                                     <div class="col-sm-1">
                                         <?php
-                                        echo $CONFIG['db']['username'];
-                                        ?>
+echo $CONFIG['db']['username'];
+?>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
                                     <div class="col-sm-1">
                                         <?php
-                                        echo $CONFIG['db']['password'];
-                                        ?>
+echo $CONFIG['db']['password'];
+?>
                                     </div>
                                 </div>
                             </fieldset>
@@ -241,15 +242,15 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             <fieldset>
                                 <legend>Accès interne</legend>
                                 <?php
-                                if (config::byKey('jeeNetwork::mode') == 'slave') {
-                                    echo '<div class="form-group expertModeVisible">';
-                                    echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP Maître}}</label>';
-                                    echo '<div class="col-sm-6">';
-                                    echo '<span class="label label-info">' . config::byKey('jeeNetwork::master::ip') . '</span>';
-                                    echo '</div>';
-                                    echo '</div>';
-                                }
-                                ?>
+if (config::byKey('jeeNetwork::mode') == 'slave') {
+	echo '<div class="form-group expertModeVisible">';
+	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP Maître}}</label>';
+	echo '<div class="col-sm-6">';
+	echo '<span class="label label-info">' . config::byKey('jeeNetwork::master::ip') . '</span>';
+	echo '</div>';
+	echo '</div>';
+}
+?>
                                 <div class="form-group">
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
                                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -279,7 +280,8 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     </div>
                                 </div>
                                 <legend>Accès externe</legend>
-                                <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
+                                <?php if (config::byKey('jeeNetwork::mode') == 'master') {
+	?>
                                     <div class="form-group">
                                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
                                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -293,14 +295,14 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     <div class="form-group">
                                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse URL ou IP}}</label>
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-                                            <?php if(config::byKey('market::allowDNS') == 0){
-                                                echo '<input type="text"  class="configKey form-control" data-l1key="externalAddr" />';
-                                            }else{
-                                                echo '<input type="text"  class="configKey form-control" data-l1key="externalAddr" disabled />';
-                                            }
-                                            ?>
+                                            <?php if (config::byKey('market::allowDNS') == 0) {
+		echo '<input type="text"  class="configKey form-control" data-l1key="externalAddr" />';
+	} else {
+		echo '<input type="text"  class="configKey form-control" data-l1key="externalAddr" disabled />';
+	}
+	?>
                                         </div>
-                                        <?php if(config::byKey('market::allowDNS') != 0){ ?>
+                                        <?php if (config::byKey('market::allowDNS') != 0) {?>
                                             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
                                                 <a class="btn btn-default" href="http://market.jeedom.fr/index.php?v=d&p=profils" target="_blank">Configurer</a>
                                             </div>
@@ -333,39 +335,39 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mode}}</label>
                                             <div class="col-sm-6">
                                                 <?php
-                                                if (config::byKey('jeeNetwork::mode') == 'master') {
-                                                    echo '<a class="btn btn-success changeJeeNetworkMode" data-mode="master">{{Maître}}</a> ';
-                                                    echo '<a class="btn btn-default changeJeeNetworkMode" data-mode="slave">{{Esclave}}</a>';
-                                                } else {
-                                                    echo '<a class="btn btn-default changeJeeNetworkMode" data-mode="master">{{Maître}}</a> ';
-                                                    echo '<a class="btn btn-success changeJeeNetworkMode" data-mode="slave">{{Esclave}}</a>';
-                                                }
-                                                ?>
+if (config::byKey('jeeNetwork::mode') == 'master') {
+	echo '<a class="btn btn-success changeJeeNetworkMode" data-mode="master">{{Maître}}</a> ';
+	echo '<a class="btn btn-default changeJeeNetworkMode" data-mode="slave">{{Esclave}}</a>';
+} else {
+	echo '<a class="btn btn-default changeJeeNetworkMode" data-mode="master">{{Maître}}</a> ';
+	echo '<a class="btn btn-success changeJeeNetworkMode" data-mode="slave">{{Esclave}}</a>';
+}
+?>
                                             </div>
                                         </div>
                                         <?php
-                                        if (file_exists('/etc/nginx/sites-available/default_ssl')) {
-                                            echo '<div class="form-group expertModeVisible">';
-                                            echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Forcer le https}}</label>';
-                                            echo '<div class="col-xs-1">';
-                                            echo '<input type="checkbox" class="configKey" data-l1key="forceHttps" />';
-                                            echo '</div>';
-                                            echo '<div class="col-sm-3">';
-                                            echo '<a class="btn btn-default btn-sm" target="_blank" href="https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '"><i class="fa fa-lock"></i> Tester le https</a>';
-                                            echo '</div>';
-                                            echo '<div class="col-sm-4 col-xs-12 alert alert-danger">';
-                                            echo '{{Attention si vous n\'avez pas de HTTPS et que vous activez cette option votre jeedom ne sera plus accessible}}';
-                                            echo '</div>';
-                                            echo '</div>';
-                                        }
-                                        ?>
+if (file_exists('/etc/nginx/sites-available/default_ssl')) {
+	echo '<div class="form-group expertModeVisible">';
+	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Forcer le https}}</label>';
+	echo '<div class="col-xs-1">';
+	echo '<input type="checkbox" class="configKey" data-l1key="forceHttps" />';
+	echo '</div>';
+	echo '<div class="col-sm-3">';
+	echo '<a class="btn btn-default btn-sm" target="_blank" href="https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '"><i class="fa fa-lock"></i> Tester le https</a>';
+	echo '</div>';
+	echo '<div class="col-sm-4 col-xs-12 alert alert-danger">';
+	echo '{{Attention si vous n\'avez pas de HTTPS et que vous activez cette option votre jeedom ne sera plus accessible}}';
+	echo '</div>';
+	echo '</div>';
+}
+?>
                                     </fieldset>
                                 </form>
                             </div>
                         </div>
                     </div>
 
-                    <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
+                    <?php if (config::byKey('jeeNetwork::mode') == 'master') {?>
                         <div class="panel panel-default expertModeVisible">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
@@ -466,7 +468,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 </div>
                             </div>
                         </div>
-                        <?php } ?>
+                        <?php }?>
 
                         <div class="panel panel-default expertModeVisible">
                             <div class="panel-heading">
@@ -672,7 +674,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 </div>
                             </div>
                         </div>
-                        <?php if (config::byKey('jeeNetwork::mode') == 'master') { ?>
+                        <?php if (config::byKey('jeeNetwork::mode') == 'master') {?>
                             <div class="panel panel-default expertModeVisible">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
@@ -751,7 +753,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     </div>
                                 </div>
                             </div>
-                            <?php } ?>
+                            <?php }?>
 
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -892,4 +894,4 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                         </div>
                     </div>
 
-                    <?php include_file("desktop", "administration", "js"); ?>
+                    <?php include_file("desktop", "administration", "js");?>
