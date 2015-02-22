@@ -31,9 +31,5 @@ Auf dieser Seite Können verschiedeme Systemeigenschaften konfiguriert werden.
 -Update
 
 -HTTP
+image::../images_DE/Konfiguration.png[]
 
-Verwaltung 
-include::Verwaltung.asciidoc[] 
- 
-Inhalt 
-include::index.asciidoc[]
