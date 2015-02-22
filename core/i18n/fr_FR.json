@@ -991,5 +991,28 @@
         "Valider": "Valider",
         "Enregistrement réussi": "Enregistrement réussi",
         "Modification appliqués avec succès": "Modification appliqués avec succès"
+    },
+    "desktop\/js\/interact.js": {
+        "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
+        "Suppression effectuée avec succès": "Suppression effectuée avec succès",
+        "Liste des interactions": "Liste des interactions",
+        "Etes-vous sûr de vouloir regénerer toutes les intérations (cela peut être très long) ?": "Etes-vous sûr de vouloir regénerer toutes les intérations (cela peut être très long) ?",
+        "Toutes les intérations ont été regénerées": "Toutes les intérations ont été regénerées",
+        "Etes-vous sûr de vouloir supprimer l\\'intéraction": "Etes-vous sûr de vouloir supprimer l\\'intéraction",
+        "Veuillez d\\'abord sélectionner un objet": "Veuillez d\\'abord sélectionner un objet",
+        "Commande": "Commande",
+        "Scénario": "Scénario",
+        "Action": "Action",
+        "Start": "Start",
+        "Stop": "Stop",
+        "Activer": "Activer",
+        "Désactiver": "Désactiver"
+    },
+    "desktop\/modal\/interact.query.display.php": {
+        "Phrase": "Phrase",
+        "Commande": "Commande",
+        "Action": "Action",
+        "Désactiver": "Désactiver",
+        "Activer": "Activer"
     }
 }
