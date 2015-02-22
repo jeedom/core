@@ -15,8 +15,15 @@ Beachten Sie, dass "Core" Jeedom Update für die Basissoftware bedeutet.
 
 
 
-Verwaltung 
-include::Verwaltung.asciidoc[] 
- 
-Inhalt 
-include::index.asciidoc[]
+Oben in der Tabelle sind die SteuerKnöpfe. Jeedom baut regelmäßig eine Verbindung mit dem Markt auf, um zu sehen ob Updates verfügbar sind.
+Wenn Sie eine mannuelle Prüfung durchführen  möchten, können Sie auf die Schaltfläche "Nach Updates suchen" drücken.
+
+Die Schaltfläche "Update", um Jeedom zu aktualisieren.
+
+
+
+Durch Klick auf den Pfeil neben der Schaltfläche "Update" hat mann eine Reihe von Upgrade-Optionen.
+
+
+
+Schließlich auf der rechten Seite der Seite, sind die "Informationen", um den Status der Aktualisierung zu verfolgen.
