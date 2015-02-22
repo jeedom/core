@@ -542,7 +542,7 @@ class market {
 	}
 
 	public function install($_version = 'stable') {
-		log::add('update', 'update', __('Début de la mise à jour de : ' . $this->getLogicalId(), __FILE__) . "\n");
+		log::add('update', 'update', __('Début de la mise à jour de : ', __FILE__). $this->getLogicalId() . "\n");
 		$tmp_dir = dirname(__FILE__) . '/../../tmp';
 		$tmp = $tmp_dir . '/' . $this->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {

@@ -659,17 +659,10 @@
     },
     "core\/class\/market.class.php": {
         "Erreur market::getinfo : ": "Erreur market::getinfo : ",
-        "Début de la mise à jour de : fibaro.fgr221": "Début de la mise à jour de : fibaro.fgr221",
         "Téléchargement de l'objet...": "Téléchargement de l'objet...",
         "OK\n": "OK\n",
         "Installation de l'objet...": "Installation de l'objet...",
-        "Début de la mise à jour de : presence": "Début de la mise à jour de : presence",
         "Décompression de l'archive...": "Décompression de l'archive...",
-        "Début de la mise à jour de : sonos": "Début de la mise à jour de : sonos",
-        "Début de la mise à jour de : mySensors": "Début de la mise à jour de : mySensors",
-        "Début de la mise à jour de : dashboard.action.other.FibaroWallPlug": "Début de la mise à jour de : dashboard.action.other.FibaroWallPlug",
-        "Début de la mise à jour de : dashboard.action.other.lightIMG": "Début de la mise à jour de : dashboard.action.other.lightIMG",
-        "Début de la mise à jour de : Monitoring": "Début de la mise à jour de : Monitoring"
     },
     "core\/class\/cron.class.php": {
         "Arret de ": "Arret de "
