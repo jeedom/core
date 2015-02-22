@@ -11,13 +11,13 @@ if($scenario->getConfiguration('speedPriority',0) == 1){
 }
 ?>
 <div style="display: none;width : 100%" id="div_alertScenarioLog"></div>
-<a class="btn btn-danger pull-right" id="bt_scenarioLogEmpty"><i class="fa fa-trash"></i> Vider les logs</a>
+<a class="btn btn-danger pull-right" id="bt_scenarioLogEmpty"><i class="fa fa-trash"></i> {{Vider les logs}}</a>
 <br/><br/>
 <?php
 if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . init('scenario_id') . '.log')) {
     echo '<pre id="pre_logScenarioDisplay">' . trim(file_get_contents(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . init('scenario_id') . '.log')) . '</pre>';
 } else {
-    echo "Aucun log n'existe pour votre scénario : " . dirname(__FILE__) . '/../../log/scenarioLog/scenario' . init('scenario_id') . '.log.';
+    echo "{{Aucun log n'existe pour votre scénario : }}" . dirname(__FILE__) . '/../../log/scenarioLog/scenario' . init('scenario_id') . '.log.';
 }
 ?>
 <script>
@@ -28,7 +28,7 @@ if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . init('sc
                 $('#div_alertScenarioLog').showAlert({message: error.message, level: 'danger'});
             },
             success: function () {
-                $('#div_alertScenarioLog').showAlert({message: 'Log vidé avec succès', level: 'success'});
+                $('#div_alertScenarioLog').showAlert({message: '{{Log vidé avec succès}}', level: 'success'});
                 $('#pre_logScenarioDisplay').empty();
             }
         });

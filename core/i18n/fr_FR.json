@@ -783,7 +783,8 @@
         "Votre objet a été envoyé avec succès sur le market": "Votre objet a été envoyé avec succès sur le market"
     },
     "core\/class\/cmd.class.php": {
-        "Aucun": "Aucun"
+        "Aucun": "Aucun",
+        "Erreur sur ": "Erreur sur "
     },
     "desktop\/modal\/cron.human.insert.php": {
         "A exécuter": "A exécuter",
@@ -847,7 +848,10 @@
         "Aucun": "Aucun"
     },
     "desktop\/modal\/scenario.log.execution.php": {
-        "Ce scénario s'éxécute le plus rapidement possible il n'écris donc pas de log": "Ce scénario s'éxécute le plus rapidement possible il n'écris donc pas de log"
+        "Ce scénario s'éxécute le plus rapidement possible il n'écris donc pas de log": "Ce scénario s'éxécute le plus rapidement possible il n'écris donc pas de log",
+        "Vider les logs": "Vider les logs",
+        "Log vidé avec succès": "Log vidé avec succès",
+        "Aucun log n'existe pour votre scénario : ": "Aucun log n'existe pour votre scénario : "
     },
     "desktop\/js\/scenario.js": {
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
@@ -928,5 +932,68 @@
         "Aire": "Aire",
         "Colonne": "Colonne",
         "Historique": "Historique"
+    },
+    "core\/js\/plugin.template.js": {
+        "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
+        "Suppression effectuée avec succès": "Suppression effectuée avec succès",
+        "Nom la copie de l'équipement ?": "Nom la copie de l'équipement ?",
+        "Etes-vous sûr de vouloir supprimer l\\'équipement": "Etes-vous sûr de vouloir supprimer l\\'équipement",
+        "Veuillez d\\'abord sélectionner un": "Veuillez d\\'abord sélectionner un",
+        "Nom de l'équipement ?": "Nom de l'équipement ?",
+        "Configuration commande": "Configuration commande",
+        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Veuillez activer l\\'équipement avant de tester une de ses commandes"
+    },
+    "desktop\/js\/profils.js": {
+        "Les deux mots de passe ne sont identiques": "Les deux mots de passe ne sont identiques",
+        "Sauvegarde effectuée": "Sauvegarde effectuée"
+    },
+    "desktop\/js\/administration.js": {
+        "Etes-vous sûr de vouloir réinitialiser la clef API de Jeedom ? Vous devrez reconfigurer tous les équipements communicant avec Jeedom et utilisant la clef API": "Etes-vous sûr de vouloir réinitialiser la clef API de Jeedom ? Vous devrez reconfigurer tous les équipements communicant avec Jeedom et utilisant la clef API",
+        "Etes-vous sûr de vouloir appliquer les regles UPnP ?": "Etes-vous sûr de vouloir appliquer les regles UPnP ?",
+        "Commande réalisée avec succès": "Commande réalisée avec succès",
+        "Etes-vous sûr de vouloir changer le mode de Jeedom. Cette opération est très risquée. Si vous passer de Maitre à Esclave cela va supprimer tous vos équipements, objet, vue, plan, plugin non compatible avec le fonctionnement deporté. Aucun retour en arriere n\\'est possible ?": "Etes-vous sûr de vouloir changer le mode de Jeedom. Cette opération est très risquée. Si vous passer de Maitre à Esclave cela va supprimer tous vos équipements, objet, vue, plan, plugin non compatible avec le fonctionnement deporté. Aucun retour en arriere n\\'est possible ?",
+        "Sauvegarde réussie": "Sauvegarde réussie",
+        "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et que en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistré) ?": "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et que en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistré) ?",
+        "Mot de passe incorrect": "Mot de passe incorrect",
+        "Connexion échouée :": "Connexion échouée :",
+        "Connexion réussie": "Connexion réussie",
+        "Connexion au market réussie": "Connexion au market réussie",
+        "Cache vidé": "Cache vidé"
+    },
+    "desktop\/modal\/cmd.configure.php": {
+        "Informations": "Informations",
+        "ID": "ID",
+        "Logical ID": "Logical ID",
+        "Nom": "Nom",
+        "Type": "Type",
+        "Sous-type": "Sous-type",
+        "Unité": "Unité",
+        "Commande déclenchant une mise à jour": "Commande déclenchant une mise à jour",
+        "Memcache": "Memcache",
+        "Actif": "Actif",
+        "Durée du cache": "Durée du cache",
+        "seconde(s)": "seconde(s)",
+        "Evénement seulement": "Evénement seulement",
+        "URL direct": "URL direct",
+        "Utilisé par": "Utilisé par",
+        "Enregistrer": "Enregistrer",
+        "Appliquer à": "Appliquer à",
+        "Equipement": "Equipement",
+        "Commandes": "Commandes",
+        "Scénario": "Scénario",
+        "Interaction": "Interaction",
+        "Configuration": "Configuration",
+        "Widget": "Widget",
+        "Ne pas afficher le nom": "Ne pas afficher le nom",
+        "Ne pas afficher les statistiques": "Ne pas afficher les statistiques",
+        "Retour à la ligne forcé avant le widget": "Retour à la ligne forcé avant le widget",
+        "après le widget": "après le widget",
+        "Code d'accès": "Code d'accès",
+        "Paramètres optionnels widget": "Paramètres optionnels widget",
+        "Sélection multiple de commandes": "Sélection multiple de commandes",
+        "Basculer": "Basculer",
+        "Valider": "Valider",
+        "Enregistrement réussi": "Enregistrement réussi",
+        "Modification appliqués avec succès": "Modification appliqués avec succès"
     }
 }
