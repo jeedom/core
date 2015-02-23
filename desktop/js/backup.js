@@ -43,12 +43,17 @@ $("#bt_saveBackup").on('click', function (event) {
     });
 });
 
-$("#bt_backupJeedom").on('click', function (event) {
+$(".bt_backupJeedom").on('click', function (event) {
     var el = $(this);
     bootbox.confirm('{{Etes-vous sûr de vouloir faire une sauvegarde de Jeedom ? Une fois lancée cette opération ne peut être annulée}}', function (result) {
         if (result) {
+            noCloudUpload = 0;
+            if(el.attr('data-noCloudBackup') == 1){
+                noCloudUpload = 1;
+            }
             el.find('.fa-refresh').show();
             jeedom.backup.backup({
+                noCloudUpload : noCloudUpload,
                 error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
