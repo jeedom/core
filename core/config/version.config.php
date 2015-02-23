@@ -18,5 +18,5 @@
 
 global $VERSION;
 $VERSION = array(
-	'jeedom' => '1.165.0'
+	'jeedom' => '1.166.0',
 );

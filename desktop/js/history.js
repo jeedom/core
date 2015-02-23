@@ -145,14 +145,16 @@ function addChart(_cmd_id, _action) {
             el: 'div_graph',
             daterange: 'all',
             success: function (data) {
-                if (init(data.cmd.display.graphStep) != '') {
-                    $('#cb_step').off().value(init(data.cmd.display.graphStep));
-                }
-                if (init(data.cmd.display.graphType) != '') {
-                    $('#sel_chartType').off().value(init(data.cmd.display.graphType));
-                }
-                if (init(data.cmd.display.graphDerive) != '') {
-                    $('#cb_derive').off().value(init(data.cmd.display.graphDerive));
+                if(isset(data.cmd.display)){
+                    if (init(data.cmd.display.graphStep) != '') {
+                        $('#cb_step').off().value(init(data.cmd.display.graphStep));
+                    }
+                    if (init(data.cmd.display.graphType) != '') {
+                        $('#sel_chartType').off().value(init(data.cmd.display.graphType));
+                    }
+                    if (init(data.cmd.display.graphDerive) != '') {
+                        $('#cb_derive').off().value(init(data.cmd.display.graphDerive));
+                    }
                 }
                 initHistoryTrigger();
             }

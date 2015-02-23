@@ -1,113 +1,20 @@
 /**
- * @license Data plugin for Highcharts
+ * @license Highstock JS v2.1.1 (2015-02-17)
+ * Data module
  *
  * (c) 2012-2014 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
 
-/*
- * The Highcharts Data plugin is a utility to ease parsing of input sources like
- * CSV, HTML tables or grid views into basic configuration options for use 
- * directly in the Highcharts constructor.
- *
- * Demo: http://jsfiddle.net/highcharts/SnLFj/
- *
- * --- OPTIONS ---
- *
- * - columns : Array<Array<Mixed>>
- * A two-dimensional array representing the input data on tabular form. This input can
- * be used when the data is already parsed, for example from a grid view component.
- * Each cell can be a string or number. If not switchRowsAndColumns is set, the columns
- * are interpreted as series. See also the rows option.
- *
- * - complete : Function(chartOptions)
- * The callback that is evaluated when the data is finished loading, optionally from an 
- * external source, and parsed. The first argument passed is a finished chart options
- * object, containing the series. Thise options
- * can be extended with additional options and passed directly to the chart constructor. This is 
- * related to the parsed callback, that goes in at an earlier stage.
- *
- * - csv : String
- * A comma delimited string to be parsed. Related options are startRow, endRow, startColumn
- * and endColumn to delimit what part of the table is used. The lineDelimiter and 
- * itemDelimiter options define the CSV delimiter formats.
- *
- * - dateFormat: String
- * Which of the predefined date formats in Date.prototype.dateFormats to use to parse date
- * columns, for example "dd/mm/YYYY" or "YYYY-mm-dd". Defaults to a best guess based on
- * what format gives valid dates, and prefers ordered dates.
- * 
- * - endColumn : Integer
- * In tabular input data, the first row (indexed by 0) to use. Defaults to the last 
- * column containing data.
- *
- * - endRow : Integer
- * In tabular input data, the last row (indexed by 0) to use. Defaults to the last row
- * containing data.
- *
- * - googleSpreadsheetKey : String 
- * A Google Spreadsheet key. See https://developers.google.com/gdata/samples/spreadsheet_sample
- * for general information on GS.
- *
- * - googleSpreadsheetWorksheet : String 
- * The Google Spreadsheet worksheet. The available id's can be read from 
- * https://spreadsheets.google.com/feeds/worksheets/{key}/public/basic
- *
- * - itemDelimiter : String
- * Item or cell delimiter for parsing CSV. Defaults to the tab character "\t" if a tab character
- * is found in the CSV string, if not it defaults to ",".
- *
- * - lineDelimiter : String
- * Line delimiter for parsing CSV. Defaults to "\n".
- *
- * - parsed : Function
- * A callback function to access the parsed columns, the two-dimentional input data
- * array directly, before they are interpreted into series data and categories. See also
- * the complete callback, that goes in on a later stage where the raw columns are interpreted
- * into a Highcharts option structure. Return false to stop completion, or call this.complete()
- * to continue async.
- *
- * - parseDate : Function
- * A callback function to parse string representations of dates into JavaScript timestamps.
- * Return an integer on success.
- *
- * - rows : Array<Array<Mixed>>
- * The same as the columns input option, but defining rows intead of columns.
- *
- * - seriesMapping : Array<Object>
- * An array containing object with Point property names along with what column id the
- * property should be taken from.
- *
- * - startColumn : Integer
- * In tabular input data, the first column (indexed by 0) to use. 
- *
- * - startRow : Integer
- * In tabular input data, the first row (indexed by 0) to use.
- *
- * - switchRowsAndColumns : Boolean
- * Switch rows and columns of the input data, so that this.columns effectively becomes the
- * rows of the data set, and the rows are interpreted as series.
- *
- * - table : String|HTMLElement
- * A HTML table or the id of such to be parsed as input data. Related options ara startRow,
- * endRow, startColumn and endColumn to delimit what part of the table is used.
- */
-
-/*
- * TODO: 
- * - Handle various date formats
- *     - http://jsfiddle.net/highcharts/114wejdx/
- *     - http://jsfiddle.net/highcharts/ryv67bkq/
- */
-
 // JSLint options:
 /*global jQuery, HighchartsAdapter */
 
-(function (Highcharts) { // docs
+(function (Highcharts) {
 	
 	// Utilities
 	var each = Highcharts.each,
+		pick = Highcharts.pick,
 		inArray = HighchartsAdapter.inArray,
 		splat = Highcharts.splat,
 		SeriesBuilder;
@@ -128,6 +35,8 @@
 		this.options = options;
 		this.chartOptions = chartOptions;
 		this.columns = options.columns || this.rowsToColumns(options.rows) || [];
+		this.firstRowAsNames = pick(options.firstRowAsNames, true);
+		this.decimalRegex = options.decimalPoint && new RegExp('^([0-9]+)' + options.decimalPoint + '([0-9]+)$');
 
 		// This is a two-dimensional array holding the raw, trimmed string values
 		// with the same organisation as the columns array. It makes it possible
@@ -172,7 +81,7 @@
 			globalType = chartOptions && chartOptions.chart && chartOptions.chart.type,
 			individualCounts = [],
 			seriesBuilders = [],
-			seriesIndex,
+			seriesIndex = 0,
 			i;
 
 		each((chartOptions && chartOptions.series) || [], function (series) {
@@ -252,9 +161,6 @@
 
 		// Interpret the values into right types
 		this.parseTypes();
-		
-		// Use first row for series names?
-		this.findHeaderRow();
 		
 		// Handle columns if a handleColumns callback is given
 		if (this.parsed() !== false) {
@@ -421,25 +327,22 @@
 	},
 	
 	/**
-	 * Find the header row. For now, we just check whether the first row contains
-	 * numbers or strings. Later we could loop down and find the first row with 
-	 * numbers.
-	 */
-	findHeaderRow: function () {
-		var headerRow = 0;
-		each(this.columns, function (column) {
-			if (column.isNumeric && typeof column[0] !== 'string') {
-				headerRow = null;
-			}
-		});
-		this.headerRow = headerRow;
-	},
-	
-	/**
 	 * Trim a string from whitespace
 	 */
-	trim: function (str) {
-		return typeof str === 'string' ? str.replace(/^\s+|\s+$/g, '') : str;
+	trim: function (str, inside) {
+		if (typeof str === 'string') {
+			str = str.replace(/^\s+|\s+$/g, '');
+
+			// Clear white space insdie the string, like thousands separators
+			if (inside && /^[0-9\s]+$/.test(str)) { 
+				str = str.replace(/\s/g, '');
+			}
+
+			if (this.decimalRegex) {
+				str = str.replace(this.decimalRegex, '$1.$2');
+			}
+		}
+		return str;
 	},
 	
 	/**
@@ -447,97 +350,118 @@
 	 */
 	parseTypes: function () {
 		var columns = this.columns,
-			rawColumns = this.rawColumns, 
-			col = columns.length, 
-			row,
+			col = columns.length;
+
+		while (col--) {
+			this.parseColumn(columns[col], col);
+		}
+
+	},
+
+	/**
+	 * Parse a single column. Set properties like .isDatetime and .isNumeric.
+	 */
+	parseColumn: function (column, col) {
+		var rawColumns = this.rawColumns,
+			columns = this.columns, 
+			row = column.length,
 			val,
 			floatVal,
 			trimVal,
-			isXColumn,
+			trimInsideVal,
+			firstRowAsNames = this.firstRowAsNames,
+			isXColumn = inArray(col, this.valueCount.xColumns) !== -1,
 			dateVal,
-			descending,
 			backup = [],
 			diff,
-			hasHeaderRow,
-			forceCategory,
-			chartOptions = this.chartOptions;
-
-		while (col--) {
-			row = columns[col].length;
+			chartOptions = this.chartOptions,
+			descending,
+			columnTypes = this.options.columnTypes || [],
+			columnType = columnTypes[col],
+			forceCategory = isXColumn && ((chartOptions && chartOptions.xAxis && splat(chartOptions.xAxis)[0].type === 'category') || columnType === 'string');
+		
+		if (!rawColumns[col]) {
 			rawColumns[col] = [];
-			isXColumn = inArray(col, this.valueCount.xColumns) !== -1;
-			forceCategory = isXColumn && chartOptions && chartOptions.xAxis && splat(chartOptions.xAxis)[0].type === 'category';
-			while (row--) {
-				val = backup[row] || columns[col][row];
-				floatVal = parseFloat(val);
-				trimVal = rawColumns[col][row] = this.trim(val);
+		}
+		while (row--) {
+			val = backup[row] || column[row];
+			
+			trimVal = this.trim(val);
+			trimInsideVal = this.trim(val, true);
+			floatVal = parseFloat(trimInsideVal);
 
-				// Disable number or date parsing by setting the X axis type to category
-				if (forceCategory) {
-					columns[col][row] = trimVal;
+			// Set it the first time
+			if (rawColumns[col][row] === undefined) {
+				rawColumns[col][row] = trimVal;
+			}
+			
+			// Disable number or date parsing by setting the X axis type to category
+			if (forceCategory || (row === 0 && firstRowAsNames)) {
+				column[row] = trimVal;
 
-				/*jslint eqeq: true*/
-				} else if (trimVal == floatVal) { // is numeric
-				/*jslint eqeq: false*/
-					columns[col][row] = floatVal;
-					
-					// If the number is greater than milliseconds in a year, assume datetime
-					if (floatVal > 365 * 24 * 3600 * 1000) {
-						columns[col].isDatetime = true;
-					} else {
-						columns[col].isNumeric = true;
-					}					
+			} else if (+trimInsideVal === floatVal) { // is numeric
+			
+				column[row] = floatVal;
 				
-				} else { // string, continue to determine if it is a date string or really a string
-					dateVal = this.parseDate(val);
-					// Only allow parsing of dates if this column is an x-column
-					if (isXColumn && typeof dateVal === 'number' && !isNaN(dateVal)) { // is date
-						backup[row] = val; 
-						columns[col][row] = dateVal;
-						columns[col].isDatetime = true;
+				// If the number is greater than milliseconds in a year, assume datetime
+				if (floatVal > 365 * 24 * 3600 * 1000 && columnType !== 'float') {
+					column.isDatetime = true;
+				} else {
+					column.isNumeric = true;
+				}
 
-						// Check if the dates are uniformly descending or ascending. If they 
-						// are not, chances are that they are a different time format, so check
-						// for alternative.
-						if (columns[col][row + 1] !== undefined) {
-							diff = dateVal > columns[col][row + 1];
-							if (diff !== descending && descending !== undefined) {
-								if (this.alternativeFormat) {
-									this.dateFormat = this.alternativeFormat;
-									row = columns[col].length;
-									this.alternativeFormat = this.dateFormats[this.dateFormat].alternative;
-								} else {
-									columns[col].unsorted = true;
-								}
+				if (column[row + 1] !== undefined) {
+					descending = floatVal > column[row + 1];
+				}
+			
+			// String, continue to determine if it is a date string or really a string
+			} else {
+				dateVal = this.parseDate(val);
+				// Only allow parsing of dates if this column is an x-column
+				if (isXColumn && typeof dateVal === 'number' && !isNaN(dateVal) && columnType !== 'float') { // is date
+					backup[row] = val; 
+					column[row] = dateVal;
+					column.isDatetime = true;
+
+					// Check if the dates are uniformly descending or ascending. If they 
+					// are not, chances are that they are a different time format, so check
+					// for alternative.
+					if (column[row + 1] !== undefined) {
+						diff = dateVal > column[row + 1];
+						if (diff !== descending && descending !== undefined) {
+							if (this.alternativeFormat) {
+								this.dateFormat = this.alternativeFormat;
+								row = column.length;
+								this.alternativeFormat = this.dateFormats[this.dateFormat].alternative;
+							} else {
+								column.unsorted = true;
 							}
-							descending = diff;
 						}
-					
-					} else { // string
-						columns[col][row] = trimVal === '' ? null : trimVal;
-						if (row !== 0 && (columns[col].isDatetime || columns[col].isNumeric)) {
-							columns[col].mixed = true;
-						}
+						descending = diff;
+					}
+				
+				} else { // string
+					column[row] = trimVal === '' ? null : trimVal;
+					if (row !== 0 && (column.isDatetime || column.isNumeric)) {
+						column.mixed = true;
 					}
 				}
 			}
-
-			// If strings are intermixed with numbers or dates in a parsed column, it is an indication
-			// that parsing went wrong or the data was not intended to display as numbers or dates and 
-			// parsing is too aggressive. Fall back to categories. Demonstrated in the 
-			// highcharts/demo/column-drilldown sample.
-			if (isXColumn && columns[col].mixed) {
-				columns[col] = rawColumns[col];
-			}
 		}
 
-		// If the 0 column is date and descending, reverse all columns. 
-		// TODO: probably this should apply to xColumns, not 0 column alone.
-		if (columns[0].isDatetime && descending) {
-			hasHeaderRow = typeof columns[0][0] !== 'number';
+		// If strings are intermixed with numbers or dates in a parsed column, it is an indication
+		// that parsing went wrong or the data was not intended to display as numbers or dates and 
+		// parsing is too aggressive. Fall back to categories. Demonstrated in the 
+		// highcharts/demo/column-drilldown sample.
+		if (isXColumn && column.mixed) {
+			columns[col] = rawColumns[col];
+		}
+
+		// If the 0 column is date or number and descending, reverse all columns. 
+		if (isXColumn && descending && this.options.sort) {
 			for (col = 0; col < columns.length; col++) {
 				columns[col].reverse();
-				if (hasHeaderRow) {
+				if (firstRowAsNames) {
 					columns[col].unshift(columns[col].pop());
 				}
 			}
@@ -578,7 +502,6 @@
 		'mm/dd/YY': {
 			regex: /^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.]([0-9]{2})$/,
 			parser: function (match) {
-				console.log(match)
 				return Date.UTC(+match[3] + 2000, match[1] - 1, +match[2]);
 			}
 		}
@@ -731,7 +654,7 @@
 
 			// Get the names and shift the top row
 			for (i = 0; i < columns.length; i++) {
-				if (this.headerRow === 0) {
+				if (this.firstRowAsNames) {
 					columns[i].name = columns[i].shift();
 				}
 			}
@@ -812,17 +735,23 @@
 				if (builder.name) {
 					series[seriesIndex].name = builder.name;
 				}
+				if (type === 'category') {
+					series[seriesIndex].turboThreshold = 0;
+				}
 			}
 
 
 
 			// Do the callback
 			chartOptions = {
-				xAxis: {
-					type: type
-				},
 				series: series
 			};
+			if (type) {
+				chartOptions.xAxis = {
+					type: type
+				};
+			}
+			
 			if (options.complete) {
 				options.complete(chartOptions);
 			}

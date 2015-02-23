@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v2.0.4 (2014-09-02)
+ * @license Highstock JS v2.1.1 (2015-02-17)
  * Plugin for displaying a message when there is no data visible in chart.
  *
  * (c) 2010-2014 Highsoft AS
@@ -57,7 +57,7 @@
 	}
 
 	H.Series.prototype.hasData = function () {
-		return this.dataMax !== undefined && this.dataMin !== undefined;
+		return this.visible && this.dataMax !== undefined && this.dataMin !== undefined; // #3703
 	};
 	
 	/**
