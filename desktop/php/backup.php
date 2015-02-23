@@ -27,7 +27,7 @@ if (!hasRight('backupview', true)) {
                         </div>
                         <?php if (config::byKey('backup::cloudUpload') == 1) {?>
                         <div class="col-sm-3 col-xs-2">
-                            <a class="btn btn-default bt_backupJeedom" data-noCloudBackup="1" ><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-floppy-o"></i> Lancer sans envoi sur le market</a>
+                            <a class="btn btn-default bt_backupJeedom" data-noCloudBackup="1" ><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-floppy-o"></i> Lancer sans envoi sur le cloud</a>
                         </div>
                         <?php }?>
                     </div>
