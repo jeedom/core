@@ -20,7 +20,7 @@ class translate {
 		if (!isset(static::$translation) || !isset(static::$translation[self::getLanguage()])) {
 			static::$translation = array(
 				self::getLanguage() => self::loadTranslation(),
-				);
+			);
 		}
 		return static::$translation[self::getLanguage()];
 	}
@@ -34,6 +34,9 @@ class translate {
 			return '';
 		}
 		$language = self::getLanguage();
+		if ($language == 'fr_FR' && config::byKey('generateTranslation') != 1) {
+			return preg_replace("/{{(.*?)}}/s", '$1', $_content);
+		}
 		if (substr($_name, 0, 1) == '/') {
 			if (strpos($_name, 'plugins') !== false) {
 				$_name = substr($_name, strpos($_name, 'plugins'));
@@ -92,7 +95,7 @@ class translate {
 			} else {
 				$return = array();
 			}
-			foreach (plugin::listPlugin(true,false,false) as $plugin) {
+			foreach (plugin::listPlugin(true, false, false) as $plugin) {
 				$return = array_merge($return, $plugin->getTranslation(self::getLanguage()));
 			}
 		}
@@ -114,13 +117,13 @@ class translate {
 				$plugins[$plugin][$page] = $translation;
 			}
 		}
-		file_put_contents(self::getPathTranslationFile(self::getLanguage()), json_encode($core, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+		file_put_contents(self::getPathTranslationFile(self::getLanguage()), json_encode($core, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 		foreach ($plugins as $plugin_name => $translation) {
 			try {
 				$plugin = plugin::byId($plugin_name);
 				$plugin->saveTranslation(self::getLanguage(), $translation);
 			} catch (Exception $e) {
-				
+
 			}
 		}
 	}

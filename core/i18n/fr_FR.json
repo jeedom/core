@@ -54,7 +54,8 @@
         "Scénario exécuté automatiquement sur évènement venant de : ": "Scénario exécuté automatiquement sur évènement venant de : ",
         "Scénario évènement automatiquement sur programmation": "Scénario évènement automatiquement sur programmation",
         "Aucun": "Aucun",
-        "Début d'exécution du scénario : ": "Début d'exécution du scénario : "
+        "Début d'exécution du scénario : ": "Début d'exécution du scénario : ",
+        "Scénario exécuté sur évènement : #": "Scénario exécuté sur évènement : #"
     },
     "desktop\/php\/plan.php": {
         "Ajouter un design": "Ajouter un design",
@@ -424,7 +425,10 @@
         "Désactiver la vérification du ping": "Désactiver la vérification du ping",
         "Sauvegarder": "Sauvegarder",
         "Indonesien": "Indonesien",
-        "Indonésien": "Indonésien"
+        "Indonésien": "Indonésien",
+        "Italiano": "Italiano",
+        "Option pour les developpeurs permetant à Jeedom de générer les phrases à traduire": "Option pour les developpeurs permetant à Jeedom de générer les phrases à traduire",
+        "Généré les traductions": "Généré les traductions"
     },
     "desktop\/php\/user.php": {
         "Liste des utilisateurs :": "Liste des utilisateurs :",
@@ -663,7 +667,8 @@
         "Téléchargement de l'objet...": "Téléchargement de l'objet...",
         "OK\n": "OK\n",
         "Installation de l'objet...": "Installation de l'objet...",
-        "Décompression de l'archive...": "Décompression de l'archive..."
+        "Décompression de l'archive...": "Décompression de l'archive...",
+        "Début de la mise à jour de : ": "Début de la mise à jour de : "
     },
     "core\/class\/cron.class.php": {
         "Arret de ": "Arret de "
@@ -730,14 +735,16 @@
         "Limite de la taille totale des sauvegardes à ": "Limite de la taille totale des sauvegardes à ",
         "\n - Suppression de : ": "\n - Suppression de : ",
         "Envoi de la sauvegarde dans le cloud...": "Envoi de la sauvegarde dans le cloud...",
-        "***************Fin de la sauvegarde de Jeedom***************\n": "***************Fin de la sauvegarde de Jeedom***************\n"
+        "***************Fin de la sauvegarde de Jeedom***************\n": "***************Fin de la sauvegarde de Jeedom***************\n",
+        "OK": "OK"
     },
     "core\/class\/message.class.php": {
         "Message de ": "Message de ",
         "Impossible de trouver la commande correspondant à :": "Impossible de trouver la commande correspondant à :"
     },
     "core\/php\/authentification.php": {
-        "Connexion de l'utilisateur par clef : ": "Connexion de l'utilisateur par clef : "
+        "Connexion de l'utilisateur par clef : ": "Connexion de l'utilisateur par clef : ",
+        "Connexion de l'utilisateur : ": "Connexion de l'utilisateur : "
     },
     "desktop\/php\/message.php": {
         "Vider": "Vider",
@@ -776,7 +783,14 @@
         "Allemand": "Allemand",
         "Espagnole": "Espagnole",
         "Russe": "Russe",
-        "Votre objet a été envoyé avec succès sur le market": "Votre objet a été envoyé avec succès sur le market"
+        "Votre objet a été envoyé avec succès sur le market": "Votre objet a été envoyé avec succès sur le market",
+        "Vous n'etes pas l'autheur du plugin": "Vous n'etes pas l'autheur du plugin",
+        "English": "English",
+        "Deutsch": "Deutsch",
+        "Español": "Español",
+        "Pусский": "Pусский",
+        "Indonésien": "Indonésien",
+        "Italiano": "Italiano"
     },
     "core\/class\/cmd.class.php": {
         "Aucun": "Aucun",
@@ -1014,5 +1028,23 @@
         "Action": "Action",
         "Désactiver": "Désactiver",
         "Activer": "Activer"
+    },
+    "core\/ajax\/jeeNetwork.ajax.php": {
+        "Aucune methode correspondante à : ": "Aucune methode correspondante à : "
+    },
+    "desktop\/js\/backup.js": {
+        "Sauvegarde réussie": "Sauvegarde réussie",
+        "Etes-vous sûr de vouloir faire une sauvegarde de Jeedom ? Une fois lancée cette opération ne peut être annulée": "Etes-vous sûr de vouloir faire une sauvegarde de Jeedom ? Une fois lancée cette opération ne peut être annulée",
+        "Etes-vous sûr de vouloir restaurer Jeedom avec": "Etes-vous sûr de vouloir restaurer Jeedom avec",
+        "Une fois lancée cette opération ne peut être annulée": "Une fois lancée cette opération ne peut être annulée",
+        "Etes-vous sûr de vouloir supprimer la sauvegarde": "Etes-vous sûr de vouloir supprimer la sauvegarde",
+        "Sauvegarde supprimée avec succès": "Sauvegarde supprimée avec succès",
+        "Fichier(s) ajouté(s) avec succès": "Fichier(s) ajouté(s) avec succès",
+        "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde Cloud": "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde Cloud",
+        "L\\'opération est réussie": "L\\'opération est réussie",
+        "L\\'opération a échoué": "L\\'opération a échoué"
+    },
+    "core\/php\/jeeCron.php": {
+        "Erreur sur ": "Erreur sur "
     }
 }
