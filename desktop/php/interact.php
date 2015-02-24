@@ -1,6 +1,6 @@
 <?php
 if (!hasRight('interactview', true)) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
 
@@ -12,15 +12,15 @@ if (!hasRight('interactview', true)) {
                 <a id="bt_regenerateInteract" class="btn btn-warning" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-refresh"></i> {{Regénerer les interactions}}</a>
                 <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
                 <?php
-                $allObject = object::buildTree();
-                foreach (interactDef::all() as $interact) {
-                    if ($interact->getName() != '') {
-                        echo '<li class="li_interact cursor" data-interact_id="' . $interact->getId() . '"><a>' . $interact->getName() . '</a></li>';
-                    } else {
-                        echo '<li class="li_interact cursor" data-interact_id="' . $interact->getId() . '"><a>' . $interact->getQuery() . '</a></li>';
-                    }
-                }
-                ?>
+$allObject = object::buildTree();
+foreach (interactDef::all() as $interact) {
+	if ($interact->getName() != '') {
+		echo '<li class="li_interact cursor" data-interact_id="' . $interact->getId() . '"><a>' . $interact->getName() . '</a></li>';
+	} else {
+		echo '<li class="li_interact cursor" data-interact_id="' . $interact->getId() . '"><a>' . $interact->getQuery() . '</a></li>';
+	}
+}
+?>
             </ul>
         </div>
     </div>
@@ -80,7 +80,7 @@ if (!hasRight('interactview', true)) {
                         <div class="form-group">
                             <label class="col-sm-4 col-xs-7 control-label">{{Phrases générées}}</label>
                             <div class="col-sm-8 col-xs-4">
-                                <a class="btn btn-default displayInteracQuery">{{Voir}}</a>
+                                <a class="btn btn-default displayInteracQuery"><i class="fa fa-eye"></i> {{Voir}}</a>
                             </div>
                         </div>
                         <div class="form-group">
@@ -133,10 +133,10 @@ if (!hasRight('interactview', true)) {
                             <div class="col-sm-4">
                                 <select class="interactAttr form-control" data-l1key="filtres" data-l2key="cmd_type">
                                     <?php
-                                    foreach (jeedom::getConfiguration('cmd:type') as $id => $type) {
-                                        echo '<option value="' . $id . '">' . $type['name'] . '</option>';
-                                    }
-                                    ?>
+foreach (jeedom::getConfiguration('cmd:type') as $id => $type) {
+	echo '<option value="' . $id . '">' . $type['name'] . '</option>';
+}
+?>
                                 </select>
                             </div>
                         </div>
@@ -146,12 +146,12 @@ if (!hasRight('interactview', true)) {
                                 <select class="interactAttr form-control" data-l1key="filtres" data-l2key="subtype">
                                     <option value="all">{{Tous}}</option>
                                     <?php
-                                    foreach (jeedom::getConfiguration('cmd:type') as $type) {
-                                        foreach ($type['subtype'] as $id => $subtype) {
-                                            echo '<option value="' . $id . '">' . $subtype['name'] . '</option>';
-                                        }
-                                    }
-                                    ?>
+foreach (jeedom::getConfiguration('cmd:type') as $type) {
+	foreach ($type['subtype'] as $id => $subtype) {
+		echo '<option value="' . $id . '">' . $subtype['name'] . '</option>';
+	}
+}
+?>
                                 </select>
                             </div>
                         </div>
@@ -161,10 +161,10 @@ if (!hasRight('interactview', true)) {
                                 <select class='interactAttr form-control' data-l1key='filtres' data-l2key='cmd_unite'>
                                     <option value="all">{{Tous}}</option>
                                     <?php
-                                    foreach (cmd::allUnite() as $unite) {
-                                        echo '<option value="' . $unite['unite'] . '" >' . $unite['unite'] . '</option>';
-                                    }
-                                    ?>
+foreach (cmd::allUnite() as $unite) {
+	echo '<option value="' . $unite['unite'] . '" >' . $unite['unite'] . '</option>';
+}
+?>
                                 </select>
                             </div>
                         </div>
@@ -174,10 +174,10 @@ if (!hasRight('interactview', true)) {
                                 <select class='interactAttr form-control' data-l1key='filtres' data-l2key='object_id' >
                                     <option value="all">{{Tous}}</option>
                                     <?php
-                                    foreach (object::all() as $object) {
-                                        echo '<option value="' . $object->getId() . '" >' . $object->getName() . '</option>';
-                                    }
-                                    ?>
+foreach (object::all() as $object) {
+	echo '<option value="' . $object->getId() . '" >' . $object->getName() . '</option>';
+}
+?>
                                 </select>
                             </div>
                         </div>
@@ -187,10 +187,10 @@ if (!hasRight('interactview', true)) {
                                 <select class='interactAttr form-control' data-l1key='filtres' data-l2key='eqLogic_id' >
                                     <option value="all">{{Tous}}</option>
                                     <?php
-                                    foreach (eqLogic::all() as $eqLogic) {
-                                        echo '<option value="' . $eqLogic->getId() . '" >' . $eqLogic->getHumanName() . '</option>';
-                                    }
-                                    ?>
+foreach (eqLogic::all() as $eqLogic) {
+	echo '<option value="' . $eqLogic->getId() . '" >' . $eqLogic->getHumanName() . '</option>';
+}
+?>
                                 </select>
                             </div>
                         </div>
@@ -200,10 +200,10 @@ if (!hasRight('interactview', true)) {
                                 <select class='interactAttr form-control' data-l1key='filtres' data-l2key='plugin'>
                                     <option value="all">{{Tous}}</option>
                                     <?php
-                                    foreach (eqLogic::allType() as $type) {
-                                        echo '<option value="' . $type['type'] . '" >' . $type['type'] . '</option>';
-                                    }
-                                    ?>
+foreach (eqLogic::allType() as $type) {
+	echo '<option value="' . $type['type'] . '" >' . $type['type'] . '</option>';
+}
+?>
                                 </select>
                             </div>
                         </div>
@@ -214,10 +214,10 @@ if (!hasRight('interactview', true)) {
                                 <select class='interactAttr form-control' data-l1key='filtres' data-l2key='eqLogic_category'>
                                     <option value="all">{{Toutes}}</option>
                                     <?php
-                                    foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-                                        echo '<option value="' . $key . '">{{' . $value['name'] . '}}</option>';
-                                    }
-                                    ?>
+foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
+	echo '<option value="' . $key . '">{{' . $value['name'] . '}}</option>';
+}
+?>
                                 </select>
                             </div>
                         </div>
@@ -238,4 +238,4 @@ if (!hasRight('interactview', true)) {
     </div>
 </div>
 
-<?php include_file('desktop', 'interact', 'js'); ?>
+<?php include_file('desktop', 'interact', 'js');?>

@@ -33,7 +33,7 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                    $('#div_alert').showAlert({message: 'Commande réalisée avec succès', level: 'success'});
+                    $('#div_alert').showAlert({message: '{{Commande réalisée avec succès}}', level: 'success'});
                 }
             });
         }
@@ -47,7 +47,7 @@
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-            $('#div_alert').showAlert({message: 'Commande réalisée avec succès', level: 'success'});
+            $('#div_alert').showAlert({message: '{{Commande réalisée avec succès}}', level: 'success'});
         }
     });
 });
@@ -211,7 +211,7 @@ $('#bt_testMarketConnection').on('click', function () {
                     $('#div_alert').showAlert({message: data.result, level: 'danger'});
                     return;
                 }
-                $('#div_alert').showAlert({message: 'Connexion au market réussie', level: 'success'});
+                $('#div_alert').showAlert({message: '{{Connexion au market réussie}}', level: 'success'});
             }
         });
         }

@@ -1,0 +1,11 @@
+===== Sicherungskopie
+
+Hier werden ihre Jeedom Backups verwalten. Mehrere Optionen sind verfügbar.
+
+Die erste Rubrik ermöglicht, Einstellungen für ihre automatischen Sicherungskopien vorzunehmen. 
+Stellen Sie die Frequenz, die Lage auf der Festplatte, und auch die Anzahl der Tage, an denen die Sicherungen gespeichert bleiben bevor sie wieder gelöscht werden.
+Sie können diese Sicherungen automatisch in den Cloud-Backup-Service zu senden. Über die Schaltfläche Speichern, können Sie eine manuelle Sicherung durchführen.
+
+Der zweite Abschnitt ermöglicht es Ihnen, lokale Backups zu verwalten (in Jeedom). Sie können eine Sicherung auswählen und dann wiederherstellen, löschen oder laden Sie es auf Ihren Computer.
+
+Schließlich ermöglicht die letzte Rubrik, einen der verfügbaren Sicherungen auf dem Cloud-Backup-Service zu restaurieren. 

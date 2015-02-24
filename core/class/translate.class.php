@@ -34,7 +34,7 @@ class translate {
 			return '';
 		}
 		$language = self::getLanguage();
-		if ($language == 'fr_FR') {
+		if ($language == 'fr_FR' && config::byKey('generateTranslation') != 1) {
 			return preg_replace("/{{(.*?)}}/s", '$1', $_content);
 		}
 		if (substr($_name, 0, 1) == '/') {
@@ -68,14 +68,14 @@ class translate {
 				$translate[$_name][$text] = $text;
 			}
 			if ($_backslash && $replace !== false) {
-				$replace = str_replace("'", "\'", $replace);
+				$replace = str_replace("'", "\'", str_replace("\'", "'", $replace));
 			}
 			if ($replace === false) {
 				$replace = $text;
 			}
 			$_content = str_replace("{{" . $text . "}}", $replace, $_content);
 		}
-		if ($modify && (defined('TRANSLATION_AUTODISCOVERY') && TRANSLATION_AUTODISCOVERY == 1)) {
+		if ($language == 'fr_FR' && $modify) {
 			static::$translation[self::getLanguage()] = $translate;
 			self::saveTranslation($language);
 		}
@@ -88,17 +88,15 @@ class translate {
 
 	public static function loadTranslation() {
 		$return = array();
-		if (self::getLanguage() != 'fr_FR') {
-			if (file_exists(self::getPathTranslationFile(self::getLanguage()))) {
-				$return = file_get_contents(self::getPathTranslationFile(self::getLanguage()));
-				if (is_json($return)) {
-					$return = json_decode($return, true);
-				} else {
-					$return = array();
-				}
-				foreach (plugin::listPlugin(true) as $plugin) {
-					$return = array_merge($return, $plugin->getTranslation(self::getLanguage()));
-				}
+		if (file_exists(self::getPathTranslationFile(self::getLanguage()))) {
+			$return = file_get_contents(self::getPathTranslationFile(self::getLanguage()));
+			if (is_json($return)) {
+				$return = json_decode($return, true);
+			} else {
+				$return = array();
+			}
+			foreach (plugin::listPlugin(true, false, false) as $plugin) {
+				$return = array_merge($return, $plugin->getTranslation(self::getLanguage()));
 			}
 		}
 		return $return;
@@ -119,10 +117,14 @@ class translate {
 				$plugins[$plugin][$page] = $translation;
 			}
 		}
-		file_put_contents(self::getPathTranslationFile(self::getLanguage()), json_encode($core, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+		file_put_contents(self::getPathTranslationFile(self::getLanguage()), json_encode($core, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 		foreach ($plugins as $plugin_name => $translation) {
-			$plugin = plugin::byId($plugin_name);
-			$plugin->saveTranslation(self::getLanguage(), $translation);
+			try {
+				$plugin = plugin::byId($plugin_name);
+				$plugin->saveTranslation(self::getLanguage(), $translation);
+			} catch (Exception $e) {
+
+			}
 		}
 	}
 

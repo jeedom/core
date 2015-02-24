@@ -65,7 +65,7 @@ function getAllMessage(_plugin) {
                 tbody += '<td class="message">' + messages[i].message + '</td>';
                 tbody += '</tr>';
             }
-            $('#table_message tbody').empty().append(tbody);
+            $('#table_message tbody').empty().html(tbody);
             $("#table_message").table("rebuild");
         }
     });

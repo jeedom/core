@@ -307,9 +307,6 @@ ORDER BY `datetime` ASC ';
 		$sql .= ' ) as dt ';
 		$sql .= $groupBy;
 		$sql .= ' ORDER BY `datetime` ASC ';
-		if ($_offset != 0) {
-			//  echo $sql;
-		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 

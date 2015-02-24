@@ -140,7 +140,7 @@ class connection {
                 $this->setId($connection->getId());
             }
         }
-        if ($this->getLocalisation() == '') {
+        if ($this->getLocalisation() == '' && !netMatch('192.*.*.*',$this->getIp()) && !netMatch('127.0.0.1',$this->getIp()) && !netMatch('10.*.*.*',$this->getIp())) {
             try {
                 $http = new com_http('http://ipinfo.io/' . $this->getIp());
                 $http->setLogError(false);

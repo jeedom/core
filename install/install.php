@@ -132,6 +132,7 @@ try {
                     foreach (ls(dirname(__FILE__) . '/../', 'sqlbuddy*') as $file) {
                         @rrmdir(dirname(__FILE__) . '/../' . $file);
                     }
+                    echo __("OK\n", __FILE__);
                     echo __("Nettoyage sysinfo en cours...", __FILE__);
                     foreach (ls(dirname(__FILE__) . '/../', 'sysinfo*') as $file) {
                         @rrmdir(dirname(__FILE__) . '/../' . $file);
@@ -174,6 +175,7 @@ try {
                 }
             }
             include dirname(__FILE__) . '/../core/config/version.config.php';
+        
 
             if (init('v') != '') {
                 echo __("La mise à jour ", __FILE__) . init('v') . __(" va être appliquée à nouveau. Voulez-vous continuer  ? [o/N] ", __FILE__);

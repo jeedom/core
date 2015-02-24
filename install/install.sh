@@ -117,6 +117,60 @@ install_msg_fr()
 	msg_nginx_ssl_config="*                 NGINX SSL configuration               *"
 }
 
+install_msg_de()
+{
+	msg_installer_welcome="*      Willkommen beim Jeedom Installer / Updater        *"
+	msg_usage1="Einsatz: $0 [<Name_des_Webservers>]"
+	msg_usage2="            Webserver_Name kann "Apache" oder "nginx_ssl" oder "nginx" (Standard) sein"
+	msg_manual_install_nodejs_ARM="*          Manuelle Installation von nodejs für ARM      *"
+	msg_manual_install_nodejs_RPI="*     Manuelle Installation von nodejs für Raspberry     *"
+	msg_nginx_config="*                  NGINX Konfiguration                 *"
+	msg_apache_config="*                  APACHE Konfiguration                *"
+	msg_question_install_jeedom="Sind Sie sicher, dass Sie Jeedom installieren wollen?"
+	msg_warning_install_jeedom="Warnung: Diese überschreibt die Standard Konfiguration ${ws_upname}, falls vorhanden!"
+	msg_warning_overwrite_jeedom="Warnung: Ihr vorhandene Jeedom Installation wird überschrieben!"
+	msg_yes="ja"
+	msg_no="nein"
+	msg_yesno="ja/nein: "
+	msg_cancel_install="Abbruch der Installation"
+	msg_answer_yesno="Antwort ja oder nein"
+	msg_install_deps="*               Installations Abhängigkeiten            *"
+	msg_passwd_mysql="Welches Kennwort haben Sie gerade eingegeben (Root von MySQL)? "
+	msg_confirm_passwd_mysql="Bestätigen sie, dass das Passwort:"
+	msg_bad_passwd_mysql="Das MySQL-Passwort ist ungültig!"
+	msg_setup_dirs_and_privs="*      Das Erzeugen von Verzeichnissen und die Aufstellung von Rechten       *"
+	msg_copy_jeedom_files="*                Das Kopieren von Jeedom-Dateien              *"
+	msg_unable_to_download_file="Unmöglich die Datei herrunter zu laden"
+	msg_config_db="*               Konfiguration der Datenbank               *"
+	msg_install_jeedom="*                Installieren von Jeedom                *"
+	msg_update_jeedom="*                  Aktualisieren von Jeedom                  *"
+	msg_setup_cron="*                    Cron einrichten                   *"
+	msg_setup_nodejs_service="*               Einrichten von nodejs Dienst              *"
+	msg_startup_nodejs_service="*             Starten von nodejs Dienst              *"
+	msg_post_install_actions="*             Aktionen nach der Installation                *"
+	msg_post_update_actions="*               Aktionen nach Update                    *"
+	msg_install_complete="*                Installation abgeschlossen                *"
+	msg_update_complete="*                   Aktualisierung abgeschlossen                    *"
+	msg_or="or"
+	msg_login_info1="Sie können sich in Jeedom einzloggen, indem Sie auf:"
+	msg_login_info2="Ihre Anmeldedaten sind:"
+	msg_optimize_webserver_cache="*      Überprüfen auf Webserver-Caching-Optimierung       *"
+	msg_php_version="PHP Version gefunden: "
+	msg_php_already_optimized="PHP wird bereits optimiert, mit:  "
+	msg_optimize_webserver_cache_apc="Installation von APC-Cache-Optimierung"
+	msg_optimize_webserver_cache_opcache="Installation von OpCache-Cache-Optimierung"
+	msg_install_razberry_zway="*     Überprüfen auf Z-Way für Razberry Installation     *"
+	msg_available_update_razberry_zway="Eine neuere Version ist verfügbar: "
+	msg_ask_update_razberry_zway="Wollen Sie Z-Way aktualisieren?"
+	msg_uptodate="ist bereits installiert und auf dem neuesten Stand"
+	msg_needinstallupdate="Muss installiert oder aktualisiert werden!"
+	msg_ask_install_razberry_zway="Wollen Sie Z-Way installieren?"
+	msg_failed_installupdate_razberry_zway="Z-Way für Razberry Installation fehlgeschlagen!"
+	msg_succeeded_installupdate_razberry_zway="Z-Way für Razberry Installation war erfolgreich!"
+	msg_ask_install_nginx_ssl="Möchten Sie SSL installieren, selbst signiertes Zertifikat"
+	msg_nginx_ssl_config="*                 NGINX SSL-Konfiguration               *"
+}
+
 ########################## Helper functions ############################
 
 setup_i18n()
@@ -128,6 +182,9 @@ install_msg_fr
 ;;
 [Ee][Nn]*|*)
 install_msg_en
+;;
+[De][De]*|*)
+install_msg_de
 ;;
 esac
 }
@@ -361,7 +418,7 @@ check_nodejs_version()
 		return ${RETVAL}
 	}
 
-	optimize_webserver_cache_apc()
+optimize_webserver_cache_apc()
 	{
 	# php < 5.5 => APC
 	echo "${msg_optimize_webserver_cache_apc}"

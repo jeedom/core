@@ -27,55 +27,55 @@
 });
 
  $(".li_eqLogic").on('click', function () {
-     if ($('.eqLogicThumbnailDisplay').html() != undefined) {
-        $('.eqLogicThumbnailDisplay').hide();
-    }
+   if ($('.eqLogicThumbnailDisplay').html() != undefined) {
+    $('.eqLogicThumbnailDisplay').hide();
+}
 
-    $('.eqLogic').hide();
-    if ('function' == typeof (prePrintEqLogic)) {
-        prePrintEqLogic();
-    }
+$('.eqLogic').hide();
+if ('function' == typeof (prePrintEqLogic)) {
+    prePrintEqLogic();
+}
 
-    if (isset($(this).attr('data-eqLogic_type')) && isset($('.' + $(this).attr('data-eqLogic_type')))) {
-        $('.' + $(this).attr('data-eqLogic_type')).show();
-    } else {
-        $('.eqLogic').show();
-    }
-    $('.li_eqLogic').removeClass('active');
-    $(this).addClass('active');
-    $.showLoading();
+if (isset($(this).attr('data-eqLogic_type')) && isset($('.' + $(this).attr('data-eqLogic_type')))) {
+    $('.' + $(this).attr('data-eqLogic_type')).show();
+} else {
+    $('.eqLogic').show();
+}
+$('.li_eqLogic').removeClass('active');
+$(this).addClass('active');
+$.showLoading();
 
-    jeedom.eqLogic.print({
-        type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
-        id: $(this).attr('data-eqLogic_id'),
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (data) {
-            $('body .eqLogicAttr').value('');
-            $('body').setValues(data, '.eqLogicAttr');
-            if ('function' == typeof (printEqLogic)) {
-                printEqLogic(data);
-            }
-            if ('function' == typeof (addCmdToTable)) {
-                $('.cmd').remove();
-                for (var i in data.cmd) {
-                    addCmdToTable(data.cmd[i]);
-                }
-            }
-            initTooltips();
-            modifyWithoutSave = false;
-            $('body').delegate('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
-                jeedom.cmd.changeType($(this).closest('.cmd'));
-            });
-
-            $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
-                jeedom.cmd.changeSubType($(this).closest('.cmd'));
-            });
-            initExpertMode();
-            changeLeftMenuObjectOrEqLogicName = false;
+jeedom.eqLogic.print({
+    type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
+    id: $(this).attr('data-eqLogic_id'),
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+        $('body .eqLogicAttr').value('');
+        $('body').setValues(data, '.eqLogicAttr');
+        if ('function' == typeof (printEqLogic)) {
+            printEqLogic(data);
         }
-    });
+        if ('function' == typeof (addCmdToTable)) {
+            $('.cmd').remove();
+            for (var i in data.cmd) {
+                addCmdToTable(data.cmd[i]);
+            }
+        }
+        initTooltips();
+        modifyWithoutSave = false;
+        $('body').delegate('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
+            jeedom.cmd.changeType($(this).closest('.cmd'));
+        });
+
+        $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
+            jeedom.cmd.changeSubType($(this).closest('.cmd'));
+        });
+        initExpertMode();
+        changeLeftMenuObjectOrEqLogicName = false;
+    }
+});
 return false;
 });
 
@@ -270,7 +270,13 @@ $('body').delegate('.cmd .cmdAttr[data-l1key=eventOnly]', 'change', function () 
 });
 
 $('body').delegate('.cmd .cmdAction[data-action=remove]', 'click', function () {
-    $(this).closest('tr').remove();
+  $(this).closest('tr').remove();
+});
+
+$('body').delegate('.cmd .cmdAction[data-action=copy]', 'click', function () {
+    var cmd = $(this).closest('.cmd').getValues('.cmdAttr')[0];
+    cmd.id= '';
+    addCmdToTable(cmd);
 });
 
 $('body').delegate('.cmd .cmdAction[data-action=test]', 'click', function (event) {

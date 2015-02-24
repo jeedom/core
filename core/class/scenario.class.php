@@ -1039,9 +1039,6 @@ public function hasRight($_right, $_needAdmin = false, $_user = null) {
     if (isConnect('admin')) {
         return true;
     }
-    if (config::byKey('jeedom::licence') < 9) {
-        return ($_needAdmin) ? false : true;
-    }
     if ($_right = 'x') {
         $rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'action');
     } elseif ($_right = 'w') {

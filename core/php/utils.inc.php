@@ -92,6 +92,11 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 			$_fn = $_fn . '.html';
 			$type = 'php';
 		}
+		if ($_type == 'configuration') {
+			$_folder .= '';
+			$_fn = $_fn . '.php';
+			$type = 'php';
+		}
 	}
 	if ($_plugin != '') {
 		$_folder = 'plugins/' . $_plugin . '/' . $_folder;
@@ -469,82 +474,150 @@ function date_fr($date_en) {
 	if (config::byKey('language', 'core', 'fr_FR') == 'en_US') {
 		return $date_en;
 	}
-	$texte_en = array(
+	$texte_long_en = array(
 		"Monday", "Tuesday", "Wednesday", "Thursday",
 		"Friday", "Saturday", "Sunday", "January",
 		"February", "March", "April", "May",
 		"June", "July", "August", "September",
 		"October", "November", "December",
 	);
-	$texte_fr = array(
-		"Lundi", "Mardi", "Mercredi", "Jeudi",
-		"Vendredi", "Samedi", "Dimanche", "Janvier",
-		"Février", "Mars", "Avril", "Mai",
-		"Juin", "Juillet", "Août", "Septembre",
-		"Octobre", "Novembre", "Décembre",
-	);
-	$date_fr = str_replace($texte_en, $texte_fr, $date_en);
-	$texte_en = array(
+	$texte_short_en = array(
 		"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
 		"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
 		"Aug", "Sep", "Oct", "Nov", "Dec",
 	);
-	$texte_fr = array(
-		"Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim",
-		"Jan", "Fev", "Mar", "Avr", "Mai", "Jui",
-		"Jui", "Aou;", "Sep", "Oct", "Nov", "Dec",
-	);
-	return str_replace($texte_en, $texte_fr, $date_fr);
+
+	switch (config::byKey('language', 'core', 'fr_FR')) {
+		case 'fr_FR':
+			$texte_long = array(
+				"Lundi", "Mardi", "Mercredi", "Jeudi",
+				"Vendredi", "Samedi", "Dimanche", "Janvier",
+				"Février", "Mars", "Avril", "Mai",
+				"Juin", "Juillet", "Août", "Septembre",
+				"Octobre", "Novembre", "Décembre",
+			);
+			$texte_short = array(
+				"Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim",
+				"Jan", "Fev", "Mar", "Avr", "Mai", "Jui",
+				"Jui", "Aou;", "Sep", "Oct", "Nov", "Dec",
+			);
+			break;
+		case 'de_DE':
+			$texte_long = array(
+				"Montag", "Dienstag", "Mittwoch", "Donnerstag",
+				"Freitag", "Samstag", "Sonntag", "Januar",
+				"Februar", "März", "April", "May",
+				"Juni", "July", "August", "September",
+				"October", "November", "December",
+			);
+
+			$texte_short = array(
+				"Mon", "Die", "Mit", "Thu", "Don", "Sam", "Son",
+				"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+				"Aug", "Sep", "Oct", "Nov", "Dec",
+			);
+			break;
+		default:
+			return $date_en;
+			break;
+	}
+	return str_replace($texte_short_en, $texte_short, str_replace($texte_long_en, $texte_long, $date_en));
 }
 
 function convertDayEnToFr($_day) {
-	if ($_day == 'Monday' || $_day == 'Mon') {
-		return 'Lundi';
-	}
-	if ($_day == 'monday' || $_day == 'mon') {
-		return 'lundi';
-	}
+	switch (config::byKey('language', 'core', 'fr_FR')) {
+		case 'fr_FR':
+			if ($_day == 'Monday' || $_day == 'Mon') {
+				return 'Lundi';
+			}
+			if ($_day == 'monday' || $_day == 'mon') {
+				return 'lundi';
+			}
 
-	if ($_day == 'Tuesday' || $_day == 'Tue') {
-		return 'Mardi';
-	}
-	if ($_day == 'tuesday' || $_day == 'tue') {
-		return 'mardi';
-	}
+			if ($_day == 'Tuesday' || $_day == 'Tue') {
+				return 'Mardi';
+			}
+			if ($_day == 'tuesday' || $_day == 'tue') {
+				return 'mardi';
+			}
 
-	if ($_day == 'Wednesday' || $_day == 'Wed') {
-		return 'Mercredi';
-	}
-	if ($_day == 'wednesday' || $_day == 'wed') {
-		return 'mercredi';
-	}
+			if ($_day == 'Wednesday' || $_day == 'Wed') {
+				return 'Mercredi';
+			}
+			if ($_day == 'wednesday' || $_day == 'wed') {
+				return 'mercredi';
+			}
 
-	if ($_day == 'Thursday' || $_day == 'Thu') {
-		return 'Jeudi';
-	}
-	if ($_day == 'thursday' || $_day == 'thu') {
-		return 'Jeudi';
-	}
+			if ($_day == 'Thursday' || $_day == 'Thu') {
+				return 'Jeudi';
+			}
+			if ($_day == 'thursday' || $_day == 'thu') {
+				return 'Jeudi';
+			}
 
-	if ($_day == 'Friday' || $_day == 'Fri') {
-		return 'Vendredi';
-	}
-	if ($_day == 'friday' || $_day == 'fri') {
-		return 'vendredi';
-	}
+			if ($_day == 'Friday' || $_day == 'Fri') {
+				return 'Vendredi';
+			}
+			if ($_day == 'friday' || $_day == 'fri') {
+				return 'vendredi';
+			}
 
-	if ($_day == 'Saturday' || $_day == 'Sat') {
-		return 'Samedi';
-	}
-	if ($_day == 'saturday' || $_day == 'sat') {
-		return 'samedi';
-	}
+			if ($_day == 'Saturday' || $_day == 'Sat') {
+				return 'Samedi';
+			}
+			if ($_day == 'saturday' || $_day == 'sat') {
+				return 'samedi';
+			}
 
-	if ($_day == 'Sunday' || $_day == 'Sun') {
-		return 'Dimanche';
-	}
-	if ($_day == 'sunday' || $_day == 'sun') {
-		return 'dimanche';
+			if ($_day == 'Sunday' || $_day == 'Sun') {
+				return 'Dimanche';
+			}
+			if ($_day == 'sunday' || $_day == 'sun') {
+				return 'dimanche';
+			}
+		case 'de_DE':
+			if ($_day == 'Monday' || $_day == 'Mon') {
+				return 'Montag';
+			}
+			if ($_day == 'monday' || $_day == 'mon') {
+				return 'montag';
+			}
+			if ($_day == 'Tuesday' || $_day == 'Tue') {
+				return 'Donnerstag';
+			}
+			if ($_day == 'tuesday' || $_day == 'tue') {
+				return 'donnerstag';
+			}
+			if ($_day == 'Wednesday' || $_day == 'Wed') {
+				return 'Mittwoch';
+			}
+			if ($_day == 'wednesday' || $_day == 'wed') {
+				return 'mittwoch';
+			}
+			if ($_day == 'Thursday' || $_day == 'Thu') {
+				return 'Donnerstag';
+			}
+			if ($_day == 'thursday' || $_day == 'thu') {
+				return 'Donnerstag';
+			}
+			if ($_day == 'Friday' || $_day == 'Fri') {
+				return 'Freitag';
+			}
+			if ($_day == 'friday' || $_day == 'fri') {
+				return 'freitag';
+			}
+			if ($_day == 'Saturday' || $_day == 'Sat') {
+				return 'Samstag';
+			}
+			if ($_day == 'saturday' || $_day == 'sat') {
+				return 'samstag';
+			}
+			if ($_day == 'Sunday' || $_day == 'Sun') {
+				return 'Sonntag';
+			}
+			if ($_day == 'sunday' || $_day == 'sun') {
+				return 'Sonntag';
+			}
 	}
 
 	return $_day;

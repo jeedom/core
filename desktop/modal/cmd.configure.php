@@ -82,7 +82,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                             </div>
 
                             <div class="form-group">
-                                <label class="col-xs-4 control-label">{{Evenement seulement}}</label>
+                                <label class="col-xs-4 control-label">{{Evénement seulement}}</label>
                                 <div class="col-xs-4">
                                     <span class="cmdAttr label label-primary" data-l1key="eventOnly"></span>
                                 </div>
@@ -105,6 +105,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         <div class="col-sm-6" >
             <legend>{{Utilisé par}}
                 <a class="btn btn-success btn-xs pull-right" id="bt_cmdConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+                <a class="btn btn-default pull-right btn-xs" id="bt_cmdConfigureSaveOn"><i class="fa fa-plus-circle"></i> {{Appliquer à}}</a>
             </legend>
             <form class="form-horizontal">
                 <fieldset id="fd_cmdUsedBy">
@@ -300,47 +301,157 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
     </div>
 </div>
 
+
+<div id="md_cmdConfigureSelectMultiple" title="{{Sélection multiple de commandes}}">
+    <div style="display: none;" id="md_cmdConfigureSelectMultipleAlert"></div>
+    <div>
+        <a class="btn btn-default" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="fa fa-check-circle-o"></i> {{Basculer}}</a>
+        <a class="btn btn-success pull-right" id="bt_cmdConfigureSelectMultipleAlertApply" style="color : white;" ><i class="fa fa-check"></i> {{Valider}}</a>
+    </div>
+    <br/>
+    <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureSelectMultiple">
+        <thead>
+            <tr>
+                <th></th>
+                <th>{{Nom}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
+                echo '<tr data-cmd_id="'.$listCmd->getId().'">';
+                echo '<td>';
+                if($listCmd->getId() == $cmd->getId()){
+                    echo '<input type="checkbox" class="selectMultipleApplyCmd" checked/>';
+                }else{
+                    echo '<input type="checkbox" class="selectMultipleApplyCmd" />';
+                }
+                echo '</td>';
+                echo '<td>';
+                echo $listCmd->getHumanName(true);
+                echo '</td>';
+                echo '</tr>';
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+
+
 <script>
-    $('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
-        $(this).closest('tr').remove();
+ $("#md_cmdConfigureSelectMultiple").dialog({
+    autoOpen: false,
+    modal: true,
+    height: (jQuery(window).height() - 150),
+    width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
+    position: {my: 'center', at: 'center', of: window},
+    open: function () {
+        $("body").css({overflow: 'hidden'});
+    },
+    beforeClose: function (event, ui) {
+        $("body").css({overflow: 'inherit'});
+    }
+});
+
+
+
+ $('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
+    $(this).closest('tr').remove();
+});
+
+ $('#bt_addWidgetParameters').off().on('click', function () {
+    var tr = '<tr>';
+    tr += '<td>';
+    tr += '<input class="form-control key" />';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<input class="form-control value" />';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fa fa-times"></i> Supprimer</a>';
+    tr += '</td>';
+    tr += '</tr>';
+    $('#table_widgetParameters tbody').append(tr);
+});
+
+ $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
+
+ $('#bt_cmdConfigureSave').on('click', function () {
+    var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
+    if (!isset(cmd.display)) {
+        cmd.display = {};
+    }
+    if (!isset(cmd.display.parameters)) {
+        cmd.display.parameters = {};
+    }
+    $('#table_widgetParameters tbody tr').each(function () {
+        cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
     });
-
-    $('#bt_addWidgetParameters').off().on('click', function () {
-        var tr = '<tr>';
-        tr += '<td>';
-        tr += '<input class="form-control key" />';
-        tr += '</td>';
-        tr += '<td>';
-        tr += '<input class="form-control value" />';
-        tr += '</td>';
-        tr += '<td>';
-        tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fa fa-times"></i> Supprimer</a>';
-        tr += '</td>';
-        tr += '</tr>';
-        $('#table_widgetParameters tbody').append(tr);
+    jeedom.cmd.save({
+        cmd: cmd,
+        error: function (error) {
+            $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            $('#md_displayCmdConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
+        }
     });
+});
 
-    $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
 
-    $('#bt_cmdConfigureSave').on('click', function () {
-        var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
-        if (!isset(cmd.display)) {
-            cmd.display = {};
+
+
+
+ $('#bt_cmdConfigureSaveOn').on('click',function(){
+    var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
+    if (!isset(cmd.display)) {
+        cmd.display = {};
+    }
+    if (!isset(cmd.display.parameters)) {
+        cmd.display.parameters = {};
+    }
+    $('#table_widgetParameters tbody tr').each(function () {
+        cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
+    });
+    cmd = {display : cmd.display,template : cmd.template };
+    $('#md_cmdConfigureSelectMultiple').dialog('open');
+    initTableSorter();
+
+    $('#bt_cmdConfigureSelectMultipleAlertToogle').off().on('click', function () {
+        var state = false;
+        if ($(this).attr('data-state') == 0) {
+            state = true;
+            $(this).attr('data-state', 1);
+            $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
+        } else {
+            state = false;
+            $(this).attr('data-state', 0);
+            $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
         }
-        if (!isset(cmd.display.parameters)) {
-            cmd.display.parameters = {};
-        }
-        $('#table_widgetParameters tbody tr').each(function () {
-            cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
-        });
-        jeedom.cmd.save({
-            cmd: cmd,
-            error: function (error) {
-                $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-                $('#md_displayCmdConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
+        $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
+            if ($(this).is(':visible')) {
+                $(this).find('.selectMultipleApplyCmd').prop('checked', state);
             }
         });
     });
+
+    $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
+      $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
+        if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
+            cmd.id = $(this).attr('data-cmd_id');
+            jeedom.cmd.save({
+                cmd: cmd,
+                error: function (error) {
+                    $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+
+                }
+            });
+        }
+    });
+      $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification appliqués avec succès}}", level: 'success'});
+  });
+
+});
 </script>

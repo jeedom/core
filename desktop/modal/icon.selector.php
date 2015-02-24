@@ -26,6 +26,7 @@ if (!isConnect()) {
         font-size: 0.8em;
     }
 </style>
+<input class="form-control pull-right" placeholder="{{Rechercher}}" id="in_iconSelectorSearch" />
 <?php
 foreach (ls('core/css/icon', '*') as $dir) {
     if (is_dir('core/css/icon/' . $dir) && file_exists('core/css/icon/' . $dir . '/style.css')) {
@@ -256,6 +257,17 @@ foreach (ls('core/css/icon', '*') as $dir) {
     </div>
 </div>
 <script>
+    $('#in_iconSelectorSearch').on('keyup',function(){
+        $('.divIconSel').show();
+        var search = $(this).value();
+        if(search != ''){
+            $('.iconDesc').each(function(){
+                if($(this).text().indexOf(search) == -1){
+                    $(this).closest('.divIconSel').hide();
+                }
+            })
+        }
+    });
     $('.divIconSel').on('click', function () {
         $('.divIconSel').removeClass('iconSelected');
         $(this).closest('.divIconSel').addClass('iconSelected');

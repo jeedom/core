@@ -39,8 +39,8 @@ if (init('scenarioElement_id') != '') {
 } else {
     $scenario = scenario::byId(init('scenario_id'));
     if (!is_object($scenario)) {
-        log::add('scenario', 'info', __('Scenario non trouvé verifier id : ', __FILE__) . init('scenario_id'));
-        die(__('Scenario non trouvé verifier id : ', __FILE__) . init('scenario_id'));
+        log::add('scenario', 'info', __('Scénario non trouvé vérifier id : ', __FILE__) . init('scenario_id'));
+        die(__('Scénario non trouvé vérifier id : ', __FILE__) . init('scenario_id'));
     }
 
     if (is_numeric($scenario->getTimeout()) && $scenario->getTimeout() != '' && $scenario->getTimeout() != 0) {

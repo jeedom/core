@@ -145,9 +145,9 @@ Vous pouvez ensuite forcer le https dans la configuration Jeedom.
 --
 
 [panel,primary]
-.J'ai le message : "Vous avez un trop grand nombre de système jeedom déclaré, veuillez en réduire le nombre et demander une réinitialisation de votre clef hardware" que faire ?
+.J'ai le message : "Vous avez un trop grand nombre de système jeedom déclaré, veuillez en réduire le nombre et demander une réinitialisation de vos clefs d'installation" que faire ?
 --
-Rendez vous sur le market, connectez vous avec votre compte puis aller sur votre page profils et demandez une reinitilisation de clef harware
+Rendez vous sur le market, connectez vous avec votre compte puis aller sur votre page profils et demandez une reinitilisation de clefs d'installation
 --
 
 [panel,primary]
@@ -158,4 +158,33 @@ Rendez vous sur le market, connectez vous avec votre compte puis aller sur votre
 - Lifetime cache : Durée de validité d'une valeur, si vous mettez 60 secondes par exemple, quand la valeur datetera de plus de 60 ET que jeedom en a besoin (dashboard, scénario...) alors il ira interroger le module pour avoir une valeur à jour
 
 Attention ces 2 options sont reservées aux utilisateurs avancés qui comprennent parfaitement leur fonction, une erreur de configuration la dedans peut rendre une installation instable voir inopérante. Par exemple en zwave, rfxcom et enocean la case evenement seulement devrait TOUJOURS etre cochée
+--
+
+[panel,primary]
+.Comment remettre à plat les droits ?
+--
+En ssh faites : 
+----
+sudo su -
+chmod -R 775 /usr/share/nginx/www/jeedom
+chown -R www-data:www-data /usr/share/nginx/www/jeedom
+----
+--
+
+[panel,primary]
+.Ou se trouve les backups de jeedom ?
+--
+Ils sont dans le dossier /usr/share/nginx/www/jeedom/backup
+--
+
+[panel,primary]
+.Comment mettre à jour jeedom en SSH ?
+--
+En ssh faites : 
+----
+sudo su -
+php /usr/share/nginx/www/jeedom/install/install.php
+chmod -R 775 /usr/share/nginx/www/jeedom
+chown -R www-data:www-data /usr/share/nginx/www/jeedom
+----
 --

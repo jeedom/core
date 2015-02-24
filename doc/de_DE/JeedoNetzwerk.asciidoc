@@ -1,0 +1,3 @@
+===== Jeedom Netzwerk
+
+Hier wird ein Jeedom Netzwer Konfiguriert das aus verschiedener Hardware bestehen kann.

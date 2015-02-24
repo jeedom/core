@@ -693,9 +693,6 @@ class eqLogic {
 		if (isConnect('admin')) {
 			return true;
 		}
-		if (config::byKey('jeedom::licence') < 9) {
-			return ($_needAdmin) ? false : true;
-		}
 		if ($_right = 'x') {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'action');
 		} elseif ($_right = 'w') {

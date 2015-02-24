@@ -1,0 +1,14 @@
+===== Update Center
+
+Das Aktualisierungszentrum zentralisiert die Gesamtheit der Funktionen von Jeedom und ermöglicht, alle Funktionalitäten von Jeedom auf den neuesten Stand zu bringen, die Grundsoftware, die Plugins, die Widgets, u. s. w. .
+
+Er stellt in Form einer Tabelle die Gesamtheit der in Jeedom installierten Elemente vor. Wenn man im Experten Modus ist, markiert man alle Elemente die man die auf den neuesten Stand bringenden möchte. 
+
+Es gibt insgesamt bis zu 5 Knöpfen, die von Element verfügbar sein können:
+-"sehen" bietet den Zugang zum Markt der Seite, die dem ausgewählten Element.
+-"Teilen" wird verwendet, wenn Sie ein Element der Marktanteil erstellt.
+-"Block" werden Updates zu diesem Element blockiert.
+-"Entfernen", um eine Option zu deinstallieren.
+-"Update" können Sie den Artikel aktualisieren.
+
+Beachten Sie, dass "Core" Jeedom Update für die Basissoftware bedeutet.

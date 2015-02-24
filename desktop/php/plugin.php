@@ -46,7 +46,7 @@ sendVarToJS('select_id', init('id', '-1'));
 
         <div>
             <?php
-            if (config::byKey('jeedom::licence') < 5 || config::byKey('market::showPromotion') == 1) {
+            if (config::byKey('market::showPromotion') == 1) {
                 echo market::getPromo();
             }
             ?>
@@ -56,7 +56,7 @@ sendVarToJS('select_id', init('id', '-1'));
         </legend>
         <div>
             <center>
-                <span style='font-weight: bold;'>N'oubliez pas d'activer le plugin pour pouvoir vous servir de celui-ci</span><br/>
+                <span style='font-weight: bold;'>{{N'oubliez pas d'activer le plugin pour pouvoir vous servir de celui-ci}}</span><br/>
                 <span id="span_plugin_toggleState"></span><br/><br/>
                 <span id="span_plugin_market"></span>
                 <span id="span_plugin_delete"></span>

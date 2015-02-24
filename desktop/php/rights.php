@@ -2,9 +2,6 @@
 if (!isConnect('admin')) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
-if (config::byKey('jeedom::licence') < 9) {
-    throw new Exception('{{401 - Accès non autorisé}}');
-}
 
 $pages = array(
     'administration' => array(

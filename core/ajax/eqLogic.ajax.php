@@ -160,6 +160,7 @@ try {
         if (!isConnect('admin')) {
             throw new Exception(__('401 - Accès non autorisé', __FILE__));
         }
+
         $eqLogicsSave = json_decode(init('eqLogic'), true);
 
         foreach ($eqLogicsSave as $eqLogicSave) {

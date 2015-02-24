@@ -25,7 +25,7 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
                                 <a>{{Sans objet}}</a>
                                 <ul>
                                     <?php
-                                    foreach (eqLogic::byObjectId(null) as $eqLogic) {
+                                    foreach (eqLogic::byObjectId(null,false) as $eqLogic) {
                                         echo '<li>';
                                         echo '<a class="infoEqLogic" data-eqLogic_id="' . $eqLogic->getId() . '">' . $eqLogic->getName() . '</a>';
                                         echo '<ul>';

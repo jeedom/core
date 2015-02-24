@@ -23,9 +23,6 @@ try {
     if (!isConnect('admin')) {
         throw new Exception(__('401 - Accès non autorisé', __FILE__));
     }
-    if (config::byKey('jeedom::licence') < 9) {
-        throw new Exception(__('401 - Accès non autorisé', __FILE__));
-    }
 
     if (init('action') == 'byUserId') {
         ajax::success(utils::o2a(rights::byUserId(init('user_id'))));

@@ -41,7 +41,7 @@ if ($logfile == '') {
 </select>
 <br/><br/>
 <div id="div_logDisplay" style="overflow: scroll;"><pre><?php
-echo system('cat '.dirname(__FILE__) .'/../../log/'.$logfile);?></pre></div>
+echo shell_exec('cat '.dirname(__FILE__) .'/../../log/'.$logfile);?></pre></div>
     <script>
         $(function() {
             $('#div_logDisplay').height($(window).height() - $('header').height() - $('footer').height() - 90);
