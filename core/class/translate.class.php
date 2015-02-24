@@ -68,7 +68,7 @@ class translate {
 				$translate[$_name][$text] = $text;
 			}
 			if ($_backslash && $replace !== false) {
-				$replace = str_replace("'", "\'", $replace);
+				$replace = str_replace("\'", "'", str_replace("'", "\'", $replace));
 			}
 			if ($replace === false) {
 				$replace = $text;
