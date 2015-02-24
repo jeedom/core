@@ -176,3 +176,15 @@ chown -R www-data:www-data /usr/share/nginx/www/jeedom
 --
 Ils sont dans le dossier /usr/share/nginx/www/jeedom/backup
 --
+
+[panel,primary]
+.Comment mettre à jour jeedom en SSH ?
+--
+En ssh faites : 
+----
+sudo su -
+php /usr/share/nginx/www/jeedom/install/install.php
+chmod -R 775 /usr/share/nginx/www/jeedom
+chown -R www-data:www-data /usr/share/nginx/www/jeedom
+----
+--
