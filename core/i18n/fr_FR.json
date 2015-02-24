@@ -427,8 +427,8 @@
         "Indonesien": "Indonesien",
         "Indonésien": "Indonésien",
         "Italiano": "Italiano",
-        "Option pour les developpeurs permetant à Jeedom de générer les phrases à traduire": "Option pour les developpeurs permetant à Jeedom de générer les phrases à traduire",
-        "Généré les traductions": "Généré les traductions"
+        "Généré les traductions": "Généré les traductions",
+        "Option pour les developpeurs permettant à Jeedom de générer les phrases à traduire": "Option pour les developpeurs permettant à Jeedom de générer les phrases à traduire"
     },
     "desktop\/php\/user.php": {
         "Liste des utilisateurs :": "Liste des utilisateurs :",
@@ -1046,5 +1046,20 @@
     },
     "core\/php\/jeeCron.php": {
         "Erreur sur ": "Erreur sur "
+    },
+    "core\/class\/jeeNetwork.class.php": {
+        "Le jeedom esclave : ": "Le jeedom esclave : ",
+        " a de nouveaux messages : ": " a de nouveaux messages : "
+    },
+    "desktop\/js\/plan.js": {
+        "Nom la copie du design ?": "Nom la copie du design ?",
+        "Configuration du design": "Configuration du design",
+        "Configuration du widget": "Configuration du widget",
+        "Configuration du scénario": "Configuration du scénario",
+        "Configuration du lien": "Configuration du lien",
+        "Configuration du texte": "Configuration du texte",
+        "Configuration du graph": "Configuration du graph",
+        "Quitter le mode édition": "Quitter le mode édition",
+        "Mode édition": "Mode édition"
     }
 }
