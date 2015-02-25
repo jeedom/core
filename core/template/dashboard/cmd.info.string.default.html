@@ -1,11 +1,12 @@
 <div class="tooltips cmd cmd-widget" data-type="info" data-subtype="string" data-cmd_id="#id#" title="#collectDate#" style="display: block;">
-    <center> <span style="font-weight: bold;font-size : 12px;">#name#</span> <span class='label label-default'>#state#</span></center>
-    <script>
-        if ('#state#' == 'On' || '#state#' == 'Marche') {
-            $('.cmd[data-cmd_id=#id#] span.label').removeClass('label-default').addClass('label-success');
-        }
-        if ('#state#' == 'Off' || '#state#' == 'Arret') {
-            $('.cmd[data-cmd_id=#id#] span.label').removeClass('label-default').addClass('label-danger');
-        }
-    </script>
+	<center> <span style="font-weight: bold;font-size : 12px;" class="cmdName">#name#</span> <span class='label label-default'>#state#</span></center>
+	<script>
+		if ('#state#' == 'On' || '#state#' == 'Marche') {
+			$('.cmd[data-cmd_id=#id#] span.label').removeClass('label-default').addClass('label-success');
+		}
+		if ('#state#' == 'Off' || '#state#' == 'Arret') {
+			$('.cmd[data-cmd_id=#id#] span.label').removeClass('label-default').addClass('label-danger');
+		}
+		$('.cmd[data-cmd_id=#id#] .cmdName').empty().append('#name#'.replace('<br/>','').replace('<br>',''));
+	</script>
 </div>
