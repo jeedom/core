@@ -294,11 +294,7 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 }
 		}
 		if (hasRight('scenarioview', true) && config::byKey('jeeNetwork::mode') == 'master') {
-			if (config::byKey('scenario::expertMode') == '1') {
-				echo '<li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>';
-			} else {
-				echo '<li><a href = "index.php?v=d&p=scenarioAssist"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>';
-			}
+			echo '<li><a href = "index.php?v=d&p=scenarioAssist"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>';
 		}
 		?>
                                                     </ul>
