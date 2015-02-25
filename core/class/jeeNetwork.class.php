@@ -447,6 +447,13 @@ class jeeNetwork {
 		}
 	}
 
+	public function backup() {
+		$jsonrpc = $this->getJsonRpc();
+		if (!$jsonrpc->sendRequest('jeeNetwork::backup', array())) {
+			throw new Exception($jsonrpc->getError());
+		}
+	}
+
 	public function configByKey($_key, $_plugin = '', $_default = '') {
 		if ($this->getStatus() == 'error') {
 			return '';

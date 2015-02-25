@@ -611,6 +611,11 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				$jsonrpc->makeSuccess('ok');
 			}
 
+			if ($jsonrpc->getMethod() == 'jeeNetwork::restoreBackup') {
+				jeedom::backup();
+				$jsonrpc->makeSuccess('ok');
+			}
+
 			/*             * ************************Log*************************** */
 			if ($jsonrpc->getMethod() == 'log::get') {
 				$jsonrpc->makeSuccess(log::get($params['log'], $params['start'], $params['nbLine']));
