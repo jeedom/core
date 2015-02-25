@@ -478,11 +478,20 @@ function positionEqLogic(_id, _noResize, _class) {
                 }
             });
             if (!init(_noResize, false) && eqLogic_height_step > 1 && eqLogic_width_step > 1) {
-                var hMarge = (Math.ceil(eqLogic.height() / eqLogic_height_step) - 1) * 6;
-                var wMarge = (Math.ceil(eqLogic.width() / eqLogic_width_step) - 1) * 6;
-                eqLogic.height((Math.ceil(eqLogic.height() / eqLogic_height_step) * eqLogic_height_step) - 6 + hMarge);
-                eqLogic.width((Math.ceil(eqLogic.width() / eqLogic_width_step) * eqLogic_width_step) - 6 + wMarge);
-            }
+                if(eqLogic_width_step == 1){
+                   eqLogic.width(eqLogic.width() + 5);
+               }else{
+                   var wMarge = (Math.ceil(eqLogic.width() / eqLogic_width_step) - 1) * 2;
+                   eqLogic.width((Math.ceil(eqLogic.width() / eqLogic_width_step) * eqLogic_width_step) - 6 + wMarge);
+               }
+               if(eqLogic_height_step == 1){
+                eqLogic.height(eqLogic.height() + 5);
+            }else{
+               var hMarge = (Math.ceil(eqLogic.height() / eqLogic_height_step) - 1) * 2;
+               eqLogic.height((Math.ceil(eqLogic.height() / eqLogic_height_step) * eqLogic_height_step) - 6 + hMarge);
+           }
+
+       }
 
            /* var verticalAlign = eqLogic.find('.verticalAlign');
             var offset = eqLogic.find('.widget-name').height();
@@ -494,4 +503,4 @@ function positionEqLogic(_id, _noResize, _class) {
             }*/
         }
     });
-}
+            }
