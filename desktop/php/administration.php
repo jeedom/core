@@ -172,14 +172,6 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     <a class="btn btn-primary" id="bt_forceSyncHour"><i class="fa fa-clock-o"></i> Forcer la synchronisation de l'heure</a>
                                 </div>
                             </div>
-                             <?php if (config::byKey('jeeNetwork::mode') == 'master') {?>
-                            <div class="form-group">
-                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Configuration des scénarios en mode expert par défaut}}</label>
-                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                    <input type="checkbox" class="configKey" data-l1key="scenario::expertMode" />
-                                </div>
-                            </div>
-                            <?php }?>
                         </fieldset>
                     </form>
                 </div>
