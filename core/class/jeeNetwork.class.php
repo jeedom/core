@@ -462,6 +462,9 @@ class jeeNetwork {
 		if ($jsonrpc->sendRequest('config::byKey', array('key' => $_key, 'plugin' => $_plugin, 'default' => $_default))) {
 			return $jsonrpc->getResult();
 		} else {
+			if ($jsonrpc->getError() == 'No error') {
+				return '';
+			}
 			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 		}
 

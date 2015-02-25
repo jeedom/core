@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-if (getUrlVars('removeSuccessFull') == 1) {
+ if (getUrlVars('removeSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
 }
 
@@ -45,6 +45,17 @@ $(".li_jeeNetwork").on('click', function (event) {
             modifyWithoutSave = false;
         }
     });
+    jeedom.jeeNetwork.loadConfig({
+     id: $(this).attr('data-jeeNetwork_id'),
+     configuration: $('#administration').getValues('.configKey')[0],
+     error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+        $('#administration').setValues(data, '.configKey');
+        modifyWithoutSave = false;
+    }
+});
     jeedom.jeeNetwork.listLog({
         id: $(this).attr('data-jeeNetwork_id'),
         error: function (error) {
@@ -362,6 +373,21 @@ if (is_numeric(getUrlVars('id'))) {
 
 $('body').delegate('.objectAttr', 'change', function () {
     modifyWithoutSave = true;
+});
+
+
+$('#bt_saveGeneraleConfig').on('click',function(){
+    jeedom.jeeNetwork.saveConfig({
+        configuration: $('#administration').getValues('.configKey')[0],
+        id: $('.li_jeeNetwork.active').attr('data-jeeNetwork_id'),
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
+            modifyWithoutSave = false;
+        }
+    });
 });
 
 
