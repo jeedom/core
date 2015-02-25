@@ -227,10 +227,10 @@ class cmd {
         INNER JOIN eqLogic el ON c.eqLogic_id=el.id
         WHERE ( value=:value OR value LIKE :search)
         AND el.isEnable=1
-        AND id!=:value';
+        AND c.id!=:value';
 			if ($_type != null) {
 				$values['type'] = $_type;
-				$sql .= ' AND type=:type ';
+				$sql .= ' AND c.type=:type ';
 			}
 		} else {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
