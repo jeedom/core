@@ -1,3 +1,7 @@
+*26/02/2015 _v1.167.0_
+
+- Option sur la page Générale -> Affichage pour centrer verticalement ou non les commandes d'un équipement
+
 *25/02/2015 _v1.167.0_
 
 - Amélioration de la page de gestion du réseaux Jeedom

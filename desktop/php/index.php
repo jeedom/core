@@ -163,6 +163,7 @@ if (!isConnect()) {
 	sendVarToJS('nodeJsKey', config::byKey('nodeJsKey'));
 	sendVarToJS('eqLogic_width_step', config::byKey('eqLogic::widget::stepWidth'));
 	sendVarToJS('eqLogic_height_step', config::byKey('eqLogic::widget::stepHeight'));
+	sendVarToJS('eqLogic_vertical_align', config::byKey('eqLogic::widget::verticalAlign'));
 	sendVarToJS('jeedom_firstUse', config::byKey('jeedom::firstUse', 'core', 1));
 	?>
                     <div id="wrap">

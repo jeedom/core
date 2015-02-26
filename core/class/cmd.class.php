@@ -792,6 +792,7 @@ class cmd {
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => ($this->getDisplay('icon') != '') ? $this->getDisplay('icon') : $this->getName(),
+			'#name_display#' => ($this->getDisplay('icon') != '') ? $this->getDisplay('icon') : $this->getName(),
 			'#history#' => '',
 			'#displayHistory#' => 'display : none;',
 			'#unite#' => $this->getUnite(),
@@ -811,11 +812,11 @@ class cmd {
 			$replace['#cmdColor#'] = $_cmdColor;
 		}
 		if ($this->getDisplay('doNotShowNameOnView') == 1 && ($_version == 'dview' || $_version == 'mview')) {
-			$replace['#name#'] = '';
+			$replace['#name_display#'] = '';
 		} else if ($this->getDisplay('doNotShowNameOnDashboard') == 1 && ($_version == 'mobile' || $_version == 'dashboard')) {
-			$replace['#name#'] = '';
+			$replace['#name_display#'] = '';
 		} else {
-			$replace['#name#'] .= '<br/>';
+			$replace['#name_display#'] .= '<br/>';
 		}
 		if ($this->getType() == 'info') {
 			$replace['#state#'] = '';
