@@ -1,6 +1,8 @@
 *26/02/2015 _v1.167.0_
 
 - Option sur la page Générale -> Affichage pour centrer verticalement ou non les commandes d'un équipement
+- Correction d'un bug empechant la restauration d'un backup
+- Correction de bug d'affichage sur le dashboard
 
 *25/02/2015 _v1.167.0_
 
