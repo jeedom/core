@@ -51,13 +51,13 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Langue}}</label>
                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                         <select class="configKey form-control" data-l1key="language">
-                                            <option value="fr_FR">{{Français}}</option>
-                                            <option value="en_US">{{English}}</option>
-                                            <option value="de_DE">{{Deutsch}}</option>
-                                            <option value="es_ES">{{Español}}</option>
-                                            <option value="ru_RU">{{Pусский}}</option>
-                                            <option value="id_ID">{{Indonésien}}</option>
-                                            <option value="it_IT">{{Italiano}}</option>
+                                            <option value="fr_FR">Français</option>
+                                            <option value="en_US">English</option>
+                                            <option value="de_DE">Deutsch</option>
+                                            <option value="es_ES">Español</option>
+                                            <option value="ru_RU">Pусский</option>
+                                            <option value="id_ID">Indonesia</option>
+                                            <option value="it_IT">Italiano</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 expertModeVisible">
