@@ -215,18 +215,32 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byValue($_value, $_type = null) {
+	public static function byValue($_value, $_type = null, $_onlyEnable = false) {
 		$values = array(
 			'value' => $_value,
 			'search' => '%#' . $_value . '#%',
 		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+
+		if ($_onlyEnable) {
+			$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
+        FROM cmd c
+        INNER JOIN eqLogic el ON c.eqLogic_id=el.id
+        WHERE ( value=:value OR value LIKE :search)
+        AND el.isEnable=1
+        AND c.id!=:value';
+			if ($_type != null) {
+				$values['type'] = $_type;
+				$sql .= ' AND c.type=:type ';
+			}
+		} else {
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM cmd
         WHERE ( value=:value OR value LIKE :search)
         AND id!=:value';
-		if ($_type != null) {
-			$values['type'] = $_type;
-			$sql .= ' AND type=:type ';
+			if ($_type != null) {
+				$values['type'] = $_type;
+				$sql .= ' AND type=:type ';
+			}
 		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
@@ -778,6 +792,7 @@ class cmd {
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => ($this->getDisplay('icon') != '') ? $this->getDisplay('icon') : $this->getName(),
+			'#name_display#' => ($this->getDisplay('icon') != '') ? $this->getDisplay('icon') : $this->getName(),
 			'#history#' => '',
 			'#displayHistory#' => 'display : none;',
 			'#unite#' => $this->getUnite(),
@@ -797,11 +812,13 @@ class cmd {
 			$replace['#cmdColor#'] = $_cmdColor;
 		}
 		if ($this->getDisplay('doNotShowNameOnView') == 1 && ($_version == 'dview' || $_version == 'mview')) {
+			$replace['#name_display#'] = '';
 			$replace['#name#'] = '';
 		} else if ($this->getDisplay('doNotShowNameOnDashboard') == 1 && ($_version == 'mobile' || $_version == 'dashboard')) {
+			$replace['#name_display#'] = '';
 			$replace['#name#'] = '';
-		}else{
-			$replace['#name#'].='<br/>';
+		} else {
+			$replace['#name_display#'] .= '<br/>';
 		}
 		if ($this->getType() == 'info') {
 			$replace['#state#'] = '';
@@ -906,7 +923,7 @@ class cmd {
 		$eqLogic->emptyCacheWidget();
 		$nodeJs = array(array('cmd_id' => $this->getId()));
 		$foundInfo = false;
-		foreach (self::byValue($this->getId()) as $cmd) {
+		foreach (self::byValue($this->getId(), null, true) as $cmd) {
 			if ($cmd->getType() == 'action') {
 				$nodeJs[] = array('cmd_id' => $cmd->getId());
 			} else {

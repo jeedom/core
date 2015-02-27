@@ -591,6 +591,9 @@ if (name.indexOf("lock") == 0) {
 if (name.indexOf("unlock") == 0) {
     return 'off';
 }
+if (name.indexOf("descendre") == 0) {
+    return 'off';
+}
 if (name.indexOf("on") != -1) {
     return 'on';
 }

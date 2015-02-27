@@ -447,6 +447,13 @@ class jeeNetwork {
 		}
 	}
 
+	public function backup() {
+		$jsonrpc = $this->getJsonRpc();
+		if (!$jsonrpc->sendRequest('jeeNetwork::backup', array())) {
+			throw new Exception($jsonrpc->getError());
+		}
+	}
+
 	public function configByKey($_key, $_plugin = '', $_default = '') {
 		if ($this->getStatus() == 'error') {
 			return '';
@@ -455,6 +462,9 @@ class jeeNetwork {
 		if ($jsonrpc->sendRequest('config::byKey', array('key' => $_key, 'plugin' => $_plugin, 'default' => $_default))) {
 			return $jsonrpc->getResult();
 		} else {
+			if ($jsonrpc->getError() == 'No error') {
+				return '';
+			}
 			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 		}
 

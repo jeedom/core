@@ -1,10 +1,10 @@
 <?php
 if (!isConnect('admin')) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $cmd = cmd::byId(init('cmd_id'));
 if (!is_object($cmd)) {
-    throw new Exception('Commande non trouvé : ' . init('cmd_id'));
+	throw new Exception('Commande non trouvé : ' . init('cmd_id'));
 }
 sendVarToJS('cmdInfo', utils::o2a($cmd));
 $cmd_widgetDashboard = cmd::availableWidget('dashboard');
@@ -76,7 +76,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                             <div class="form-group">
                                 <label class="col-xs-4 control-label">{{Memcache}}</label>
                                 <div class="col-xs-4">
-                                    <span class="cmdAttr label label-primary tooltips" data-l1key="cache" data-l2key="enable" title="{{Actif}}"></span> 
+                                    <span class="cmdAttr label label-primary tooltips" data-l1key="cache" data-l2key="enable" title="{{Actif}}"></span>
                                     <span class="label label-default tooltips" title="{{Durée du cache}}"><span class="cmdAttr" data-l1key="cache" data-l2key="lifetime"></span> {{seconde(s)}}</span>
                                 </div>
                             </div>
@@ -88,6 +88,13 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                                 </div>
                             </div>
 
+                             <div class="form-group">
+                                <label class="col-xs-4 control-label">{{Visible}}</label>
+                                <div class="col-xs-4">
+                                    <input type="checkbox" class="cmdAttr" data-l1key="isVisible" />
+                                </div>
+                            </div>
+
                         </fieldset>
                     </form>
                 </div>
@@ -96,8 +103,8 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 <label class="col-xs-2 control-label">{{URL direct}}</label>
                 <div class="col-xs-10">
                     <?php
-                    echo '<a href="'.$cmd->getDirectUrlAccess().'" target="_blank"><i class="fa fa-external-link"></i> URL</a>';
-                    ?>
+echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa fa-external-link"></i> URL</a>';
+?>
                 </div>
             </div>
         </div>
@@ -110,46 +117,46 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             <form class="form-horizontal">
                 <fieldset id="fd_cmdUsedBy">
                     <?php
-                    $usedBy = $cmd->getUsedBy();
-                    ?>
+$usedBy = $cmd->getUsedBy();
+?>
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement}}</label>
                         <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
                             <?php
-                            foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
-                                echo '<span class="label label-primary cursor"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
-                            }
-                            ?>
+foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
+	echo '<span class="label label-primary cursor"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
+}
+?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commandes}}</label>
                         <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
                             <?php
-                            foreach ($usedBy['cmd'] as $usedByCmd) {
-                                echo '<span class="label label-primary cursor"><a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" style="color : white;">' . $usedByCmd->getHumanName() . '</a></span><br/>';
-                            }
-                            ?>
+foreach ($usedBy['cmd'] as $usedByCmd) {
+	echo '<span class="label label-primary cursor"><a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" style="color : white;">' . $usedByCmd->getHumanName() . '</a></span><br/>';
+}
+?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario}}</label>
                         <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
                             <?php
-                            foreach ($usedBy['scenario'] as $usedByScneario) {
-                                echo '<span class="label label-primary cursor"><a href="' . $usedByScneario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScneario->getHumanName() . '</a></span><br/>';
-                            }
-                            ?>
+foreach ($usedBy['scenario'] as $usedByScneario) {
+	echo '<span class="label label-primary cursor"><a href="' . $usedByScneario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScneario->getHumanName() . '</a></span><br/>';
+}
+?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Interaction}}</label>
                         <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
                             <?php
-                            foreach ($usedBy['interact'] as $usedByInteract) {
-                                echo '<span class="label label-primary cursor"><a href="' . $usedByInteract->getLinkToConfiguration() . '" style="color : white;">' . $usedByInteract->getQuery() . '</a></span><br/>';
-                            }
-                            ?>
+foreach ($usedBy['interact'] as $usedByInteract) {
+	echo '<span class="label label-primary cursor"><a href="' . $usedByInteract->getLinkToConfiguration() . '" style="color : white;">' . $usedByInteract->getQuery() . '</a></span><br/>';
+}
+?>
                         </div>
                     </div>
                 </div>
@@ -176,19 +183,19 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                                 <td colspan="2">
                                     <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
                                         <?php
-                                        foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $widget) {
-                                            echo '<option>' . $widget['name'] . '</option>';
-                                        }
-                                        ?>
+foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $widget) {
+	echo '<option>' . $widget['name'] . '</option>';
+}
+?>
                                     </select>
                                 </td>
                                 <td>
                                     <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
                                         <?php
-                                        foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
-                                            echo '<option>' . $widget['name'] . '</option>';
-                                        }
-                                        ?>
+foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
+	echo '<option>' . $widget['name'] . '</option>';
+}
+?>
                                     </select>
                                 </td>
                             </tr>
@@ -218,26 +225,26 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                         </div>
                     </div>
 
-                    <?php if ($cmd->getType() == 'info' && $cmd->getSubType() == 'numeric') { ?>
+                    <?php if ($cmd->getType() == 'info' && $cmd->getSubType() == 'numeric') {?>
                     <div class="form-group">
                         <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 control-label">{{Formule de calcul (#value# pour la valeur)}}</label>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />
                         </div>
                     </div>
-                    <?php } ?>
+                    <?php }?>
 
 
-                    <?php if ($cmd->getType() == 'action') { ?>
+                    <?php if ($cmd->getType() == 'action') {?>
                     <div class="form-group">
                         <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Code d'accès}}</label>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <input type="password" class="cmdAttr form-control" data-l1key="configuration" data-l2key="actionCodeAccess" />
                         </div>
                     </div>
-                    <?php } ?>
+                    <?php }?>
 
-                    <?php if ($cmd->getIsHistorized() == 1) { ?>
+                    <?php if ($cmd->getIsHistorized() == 1) {?>
                     <div class="form-group">
                         <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
                         <div class="col-xs-1">
@@ -263,7 +270,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                             <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
                         </div>
                     </div>
-                    <?php } ?>
+                    <?php }?>
                 </fieldset>
             </form>
         </div>
@@ -279,22 +286,22 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 </thead>
                 <tbody>
                     <?php
-                    if ($cmd->getDisplay('parameters') != '') {
-                        foreach ($cmd->getDisplay('parameters') as $key => $value) {
-                            echo '<tr>';
-                            echo '<td>';
-                            echo '<input class="form-control key" value="' . $key . '" />';
-                            echo '</td>';
-                            echo '<td>';
-                            echo '<input class="form-control value" value="' . $value . '" />';
-                            echo '</td>';
-                            echo '<td>';
-                            echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fa fa-times"></i> Supprimer</a>';
-                            echo '</td>';
-                            echo '</tr>';
-                        }
-                    }
-                    ?>
+if ($cmd->getDisplay('parameters') != '') {
+	foreach ($cmd->getDisplay('parameters') as $key => $value) {
+		echo '<tr>';
+		echo '<td>';
+		echo '<input class="form-control key" value="' . $key . '" />';
+		echo '</td>';
+		echo '<td>';
+		echo '<input class="form-control value" value="' . $value . '" />';
+		echo '</td>';
+		echo '<td>';
+		echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fa fa-times"></i> Supprimer</a>';
+		echo '</td>';
+		echo '</tr>';
+	}
+}
+?>
                 </tbody>
             </table>
         </div>
@@ -318,21 +325,21 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         </thead>
         <tbody>
             <?php
-            foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
-                echo '<tr data-cmd_id="'.$listCmd->getId().'">';
-                echo '<td>';
-                if($listCmd->getId() == $cmd->getId()){
-                    echo '<input type="checkbox" class="selectMultipleApplyCmd" checked/>';
-                }else{
-                    echo '<input type="checkbox" class="selectMultipleApplyCmd" />';
-                }
-                echo '</td>';
-                echo '<td>';
-                echo $listCmd->getHumanName(true);
-                echo '</td>';
-                echo '</tr>';
-            }
-            ?>
+foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
+	echo '<tr data-cmd_id="' . $listCmd->getId() . '">';
+	echo '<td>';
+	if ($listCmd->getId() == $cmd->getId()) {
+		echo '<input type="checkbox" class="selectMultipleApplyCmd" checked/>';
+	} else {
+		echo '<input type="checkbox" class="selectMultipleApplyCmd" />';
+	}
+	echo '</td>';
+	echo '<td>';
+	echo $listCmd->getHumanName(true);
+	echo '</td>';
+	echo '</tr>';
+}
+?>
         </tbody>
     </table>
 </div>

@@ -363,6 +363,13 @@ function displayPlan(_offsetX, _offsetY) {
             if (getUrlVars('fullscreen') == 1) {
                 fullScreen(deviceInfo.type);
             }
+
+            if (isset(data.configuration) && isset(data.configuration.readOnly) && data.configuration.readOnly == 1) {
+                $('#bt_editPlan').hide();
+            }else{
+                $('#bt_editPlan').show();
+            }
+
             $('.eqLogic-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
             if (planHeader_id != -1) {
                 jeedom.plan.byPlanHeader({

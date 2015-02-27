@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-if (getUrlVars('removeSuccessFull') == 1) {
+ if (getUrlVars('removeSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
 }
 
@@ -45,6 +45,17 @@ $(".li_jeeNetwork").on('click', function (event) {
             modifyWithoutSave = false;
         }
     });
+    jeedom.jeeNetwork.loadConfig({
+     id: $(this).attr('data-jeeNetwork_id'),
+     configuration: $('#administration').getValues('.configKey')[0],
+     error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+        $('#administration').setValues(data, '.configKey');
+        modifyWithoutSave = false;
+    }
+});
     jeedom.jeeNetwork.listLog({
         id: $(this).attr('data-jeeNetwork_id'),
         error: function (error) {
@@ -97,7 +108,7 @@ $('#bt_showLog').on('click', function () {
                 log += data[i][2].replace(regex, "\n");
                 log += "\n";
             }
-            $('#pre_updateInfo').text(log);
+            $('#pre_logInfo').text(log);
         }
     });
 });
@@ -110,7 +121,7 @@ $('#bt_emptyLog').on('click', function () {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-            $('#pre_updateInfo').empty();
+            $('#pre_logInfo').empty();
         }
     });
 });
@@ -139,7 +150,7 @@ $('#bt_removeLog').on('click', function () {
                     $('#sel_logSlave').empty().append(option);
                 }
             });
-            $('#pre_updateInfo').empty();
+            $('#pre_logInfo').empty();
         }
     });
 });
@@ -155,7 +166,25 @@ $('#bt_restoreSlave').on('click', function () {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                    getJeedomSlaveLog(1, 'restore');
+                    getJeedomSlaveLog(1, 'restore',$('#pre_backupInfo'));
+                }
+            });
+        }
+    });
+});
+
+$('#bt_backupSlave').on('click', function () {
+    $.hideAlert();
+    bootbox.confirm('{{Etes-vous sûr de vouloir sauvegarder ce Jeedom esclave ?}}', function (result) {
+        if (result) {
+            jeedom.jeeNetwork.backup({
+                id: $('.li_jeeNetwork.active').attr('data-jeeNetwork_id'),
+                backup: $('#sel_backupList').value(),
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                    getJeedomSlaveLog(1, 'backup',$('#pre_backupInfo'));
                 }
             });
         }
@@ -207,7 +236,7 @@ $('#bt_updateSlave').on('click', function () {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                    getJeedomSlaveLog(1, 'update');
+                    getJeedomSlaveLog(1, 'update',$('#pre_updateInfo'));
                     $('#div_alert').showAlert({message: '{{Le système est en cours de mise à jour}}', level: 'success'});
                 }
             });
@@ -347,7 +376,22 @@ $('body').delegate('.objectAttr', 'change', function () {
 });
 
 
-function getJeedomSlaveLog(_autoUpdate, _log) {
+$('#bt_saveGeneraleConfig').on('click',function(){
+    jeedom.jeeNetwork.saveConfig({
+        configuration: $('#administration').getValues('.configKey')[0],
+        id: $('.li_jeeNetwork.active').attr('data-jeeNetwork_id'),
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
+            modifyWithoutSave = false;
+        }
+    });
+});
+
+
+function getJeedomSlaveLog(_autoUpdate, _log,_el) {
     $.ajax({
         type: 'POST',
         url: 'core/ajax/jeeNetwork.ajax.php',
@@ -360,13 +404,13 @@ function getJeedomSlaveLog(_autoUpdate, _log) {
         global: false,
         error: function (request, status, error) {
             setTimeout(function () {
-                getJeedomSlaveLog(_autoUpdate, _log)
+                getJeedomSlaveLog(_autoUpdate, _log,_el)
             }, 1000);
         },
         success: function (data) {
             if (data.state != 'ok') {
                 setTimeout(function () {
-                    getJeedomSlaveLog(_autoUpdate, _log)
+                    getJeedomSlaveLog(_autoUpdate, _log,_el)
                 }, 1000);
                 return;
             }
@@ -384,10 +428,10 @@ function getJeedomSlaveLog(_autoUpdate, _log) {
                     _autoUpdate = 0;
                 }
             }
-            $('#pre_updateInfo').text(log);
+            _el.text(log);
             if (init(_autoUpdate, 0) == 1) {
                 setTimeout(function () {
-                    getJeedomSlaveLog(_autoUpdate, _log)
+                    getJeedomSlaveLog(_autoUpdate, _log,_el)
                 }, 1000);
             } else {
                 $('#bt_' + _log + 'Jeedom .fa-refresh').hide();

@@ -139,6 +139,14 @@ try {
 		ajax::success($jeeNetwork->restoreLocalBackup(init('backup')));
 	}
 
+	if (init('action') == 'backup') {
+		$jeeNetwork = jeeNetwork::byId(init('id'));
+		if (!is_object($jeeNetwork)) {
+			throw new Exception(__('JeeNetwork inconnu verifié l\'id : ', __FILE__) . init('id'));
+		}
+		ajax::success($jeeNetwork->backup());
+	}
+
 	if (init('action') == 'save') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));

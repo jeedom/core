@@ -1,6 +1,6 @@
 <?php
 if (!hasRight('displayview', true)) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 sendVarToJS('cmd_widgetDashboard', cmd::availableWidget('dashboard'));
 sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
@@ -20,48 +20,49 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
                 <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
                 <div id='div_tree'>
                     <ul id='ul_rootTree'>
-                        <?php if (count(eqLogic::byObjectId(null)) > 0) { ?>
+                        <?php if (count(eqLogic::byObjectId(null)) > 0) {
+	?>
                             <li>
                                 <a>{{Sans objet}}</a>
                                 <ul>
                                     <?php
-                                    foreach (eqLogic::byObjectId(null,false) as $eqLogic) {
-                                        echo '<li>';
-                                        echo '<a class="infoEqLogic" data-eqLogic_id="' . $eqLogic->getId() . '">' . $eqLogic->getName() . '</a>';
-                                        echo '<ul>';
-                                        foreach ($eqLogic->getCmd() as $cmd) {
-                                            echo '<li>';
-                                            echo '<a class="infoCmd" data-cmd_id="' . $cmd->getId() . '">' . $cmd->getName() . '</a>';
-                                            echo '</li>';
-                                        }
-                                        echo '</ul>';
-                                        echo '</li>';
-                                    }
-                                    ?>
+foreach (eqLogic::byObjectId(null, false) as $eqLogic) {
+		echo '<li>';
+		echo '<a class="infoEqLogic" data-eqLogic_id="' . $eqLogic->getId() . '">' . $eqLogic->getName() . '</a>';
+		echo '<ul>';
+		foreach ($eqLogic->getCmd() as $cmd) {
+			echo '<li>';
+			echo '<a class="infoCmd" data-cmd_id="' . $cmd->getId() . '">' . $cmd->getName() . '</a>';
+			echo '</li>';
+		}
+		echo '</ul>';
+		echo '</li>';
+	}
+	?>
                                 </ul>
                             </li>
-                        <?php } ?>
+                        <?php }?>
                         <?php
-                        foreach (object::all() as $object) {
-                            echo '<li>';
-                            echo '<a class="infoObject" data-object_id="' . $object->getId() . '">' . $object->getName() . '</a>';
-                            echo '<ul>';
-                            foreach ($object->getEqLogic(false, false) as $eqLogic) {
-                                echo '<li>';
-                                echo '<a class="infoEqLogic" data-eqLogic_id="' . $eqLogic->getId() . '">' . $eqLogic->getName() . '</a>';
-                                echo '<ul>';
-                                foreach ($eqLogic->getCmd() as $cmd) {
-                                    echo '<li>';
-                                    echo '<a class="infoCmd" data-cmd_id="' . $cmd->getId() . '">' . $cmd->getName() . '</a>';
-                                    echo '</li>';
-                                }
-                                echo '</ul>';
-                                echo '</li>';
-                            }
-                            echo '</ul>';
-                            echo '</li>';
-                        }
-                        ?>
+foreach (object::all() as $object) {
+	echo '<li>';
+	echo '<a class="infoObject" data-object_id="' . $object->getId() . '">' . $object->getName() . '</a>';
+	echo '<ul>';
+	foreach ($object->getEqLogic(false, false) as $eqLogic) {
+		echo '<li>';
+		echo '<a class="infoEqLogic" data-eqLogic_id="' . $eqLogic->getId() . '">' . $eqLogic->getName() . '</a>';
+		echo '<ul>';
+		foreach ($eqLogic->getCmd() as $cmd) {
+			echo '<li>';
+			echo '<a class="infoCmd" data-cmd_id="' . $cmd->getId() . '">' . $cmd->getName() . '</a>';
+			echo '</li>';
+		}
+		echo '</ul>';
+		echo '</li>';
+	}
+	echo '</ul>';
+	echo '</li>';
+}
+?>
                     </ul>
                 </div>
             </div>
@@ -88,42 +89,42 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
                         <form class="form-horizontal">
                             <fieldset>
                                 <?php
-                                foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
-                                    echo '<legend>' . $category['name'] . '</legend>';
-                                    echo '<div class="form-group">';
-                                    echo '<label class="col-sm-3 control-label">{{Dashboard couleur de fond}}</label>';
-                                    echo '<div class="col-sm-2">';
-                                    echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':color" value="' . $category['color'] . '" />';
-                                    echo '</div>';
-                                    echo '<div class="col-sm-1">';
-                                    echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':color" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
-                                    echo '</div>';
-                                    echo '<label class="col-sm-3 control-label">{{Dashboard couleur commande}}</label>';
-                                    echo '<div class="col-sm-2">';
-                                    echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':cmdColor" value="' . $category['cmdColor'] . '" />';
-                                    echo '</div>';
-                                    echo '<div class="col-sm-1">';
-                                    echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':cmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
-                                    echo '</div>';
-                                    echo '</div>';
-                                    echo '<div class="form-group">';
-                                    echo '<label class="col-sm-3 control-label">{{Mobile couleur de fond}}</label>';
-                                    echo '<div class="col-sm-2">';
-                                    echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':mcolor" value="' . $category['mcolor'] . '"/>';
-                                    echo '</div>';
-                                    echo '<div class="col-sm-1">';
-                                    echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':cmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
-                                    echo '</div>';
-                                    echo '<label class="col-sm-3 control-label">{{Mobile couleur commande}}</label>';
-                                    echo '<div class="col-sm-2">';
-                                    echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':mcmdColor" value="' . $category['mcmdColor'] . '" />';
-                                    echo '</div>';
-                                    echo '<div class="col-sm-1">';
-                                    echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':mcmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
-                                    echo '</div>';
-                                    echo '</div>';
-                                }
-                                ?>
+foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
+	echo '<legend>' . $category['name'] . '</legend>';
+	echo '<div class="form-group">';
+	echo '<label class="col-sm-3 control-label">{{Dashboard couleur de fond}}</label>';
+	echo '<div class="col-sm-2">';
+	echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':color" value="' . $category['color'] . '" />';
+	echo '</div>';
+	echo '<div class="col-sm-1">';
+	echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':color" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+	echo '</div>';
+	echo '<label class="col-sm-3 control-label">{{Dashboard couleur commande}}</label>';
+	echo '<div class="col-sm-2">';
+	echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':cmdColor" value="' . $category['cmdColor'] . '" />';
+	echo '</div>';
+	echo '<div class="col-sm-1">';
+	echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':cmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+	echo '</div>';
+	echo '</div>';
+	echo '<div class="form-group">';
+	echo '<label class="col-sm-3 control-label">{{Mobile couleur de fond}}</label>';
+	echo '<div class="col-sm-2">';
+	echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':mcolor" value="' . $category['mcolor'] . '"/>';
+	echo '</div>';
+	echo '<div class="col-sm-1">';
+	echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':cmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+	echo '</div>';
+	echo '<label class="col-sm-3 control-label">{{Mobile couleur commande}}</label>';
+	echo '<div class="col-sm-2">';
+	echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':mcmdColor" value="' . $category['mcmdColor'] . '" />';
+	echo '</div>';
+	echo '<div class="col-sm-1">';
+	echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':mcmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+	echo '</div>';
+	echo '</div>';
+}
+?>
                             </fieldset>
                         </form>
                     </div>
@@ -145,13 +146,26 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">{{Largeur pas widget (px)}}</label>
                                     <div class="col-sm-2">
-                                        <input class="configKey form-control cursor" data-l1key="eqLogic::widget::stepWidth" value="<?php echo config::byKey('eqLogic::widget::stepWidth') ?>" />
+                                        <input class="configKey form-control cursor" data-l1key="eqLogic::widget::stepWidth" value="<?php echo config::byKey('eqLogic::widget::stepWidth')?>" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">{{Hauteur pas widget (px)}}</label>
                                     <div class="col-sm-2">
-                                        <input class="configKey form-control cursor" data-l1key="eqLogic::widget::stepHeight" value="<?php echo config::byKey('eqLogic::widget::stepHeight') ?>" />
+                                        <input class="configKey form-control cursor" data-l1key="eqLogic::widget::stepHeight" value="<?php echo config::byKey('eqLogic::widget::stepHeight')?>" />
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="col-sm-3 control-label">{{Centrer verticalement les commandes sur la tuile}}</label>
+                                    <div class="col-sm-2">
+                                    <?php
+if (config::byKey('eqLogic::widget::verticalAlign') == 1) {
+	echo '<input type="checkbox" class="configKey cursor" data-l1key="eqLogic::widget::verticalAlign" checked />';
+} else {
+	echo '<input type="checkbox" class="configKey cursor" data-l1key="eqLogic::widget::verticalAlign" />';
+}
+?>
+
                                     </div>
                                 </div>
                             </fieldset>
@@ -166,4 +180,4 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
     </div>
 </div>
 
-<?php include_file('desktop', 'display', 'js'); ?>
+<?php include_file('desktop', 'display', 'js');?>
