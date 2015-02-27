@@ -813,8 +813,10 @@ class cmd {
 		}
 		if ($this->getDisplay('doNotShowNameOnView') == 1 && ($_version == 'dview' || $_version == 'mview')) {
 			$replace['#name_display#'] = '';
+			$replace['#name#'] = '';
 		} else if ($this->getDisplay('doNotShowNameOnDashboard') == 1 && ($_version == 'mobile' || $_version == 'dashboard')) {
 			$replace['#name_display#'] = '';
+			$replace['#name#'] = '';
 		} else {
 			$replace['#name_display#'] .= '<br/>';
 		}
