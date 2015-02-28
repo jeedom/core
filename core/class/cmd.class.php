@@ -1104,7 +1104,11 @@ class cmd {
 		if (config::byKey('market::returnLink') != '' && config::byKey('market::allowDNS')) {
 			return config::byKey('market::returnLink') . '&url=' . urlencode($url);
 		}
-		return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . config::byKey('externalComplement') . $url;
+		if (config::byKey('externalAddr') != '') {
+			return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . config::byKey('externalComplement') . $url;
+		} else {
+			return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . config::byKey('internalComplement') . $url;
+		}
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
