@@ -69,6 +69,7 @@ if (init('type') == 'plugin') {
     </div>
     <hr/>
     <?php }?>
+    <div class="alert alert-info">{{N'oubliez pas de rajouter une image à votre création en passant par le market.}}<span id="span_directLinkWidget"></span></div>
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group">
@@ -264,6 +265,11 @@ if (is_object($market)) {
 });
 
   $('body').setValues(market_display_info, '.marketAttr');
+  if(market_display_info.id != ''){
+    $('#span_directLinkWidget').value('{{Ou en cliquant }}<a href="http://market.jeedom.fr/index.php?v=d&p=addMarket&id='+market_display_info.id+'" target="_blank" >{{ici}}</a>');
+  }else{
+    $('#span_directLinkWidget').value('');
+  }
 
   if (market_display_info.realcost == '' || market_display_info.realcost == 0) {
     $('.rb_price.free').prop('checked', true);
