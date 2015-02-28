@@ -148,9 +148,9 @@ if (init('type') == 'plugin') {
             </div>
         </div>
         <div class="col-lg-6">
-         <div class="form-group">
-             <label class="col-sm-2 control-label">Video</label>
-             <div class="col-sm-9">
+           <div class="form-group">
+               <label class="col-sm-2 control-label">Video</label>
+               <div class="col-sm-9">
                 <input class="form-control marketAttr" data-l1key="link" data-l2key="video">
             </div>
         </div>
@@ -203,7 +203,7 @@ if (init('type') == 'plugin') {
 
 <div title="Qu'avez vous changer ?" id="md_marketSendChangeChange">
     <form class="form-horizontal" role="form">
-     <div class="form-group">
+       <div class="form-group">
         <label class="col-sm-3 control-label">{{Version}}</label>
         <div class="col-sm-3">
             <input class="form-control" id="in_marketSendVersion">
@@ -212,11 +212,11 @@ if (init('type') == 'plugin') {
     <div class="form-group">
         <label class="col-sm-3 control-label">{{Changement}}</label>
         <div class="col-sm-9">
-         <textarea class="form-control" id="ta_marketSendChange" placeholder="{{Changement}}" style="height: 150px;"></textarea>
-     </div>
- </div>
- <a class="btn btn-success pull-right" id="bt_marketSendValideChange"><i class="fa fa-check"></i> {{Valider}}</a>
- <a class="btn btn-default pull-right"><i class="fa fa-times"></i> {{Annuler}}</a>
+           <textarea class="form-control" id="ta_marketSendChange" placeholder="{{Changement}}" style="height: 150px;"></textarea>
+       </div>
+   </div>
+   <a class="btn btn-success pull-right" id="bt_marketSendValideChange"><i class="fa fa-check"></i> {{Valider}}</a>
+   <a class="btn btn-default pull-right" id="bt_marketSendCancelChange"><i class="fa fa-times"></i> {{Annuler}}</a>
 </form>
 </div>
 
@@ -298,9 +298,12 @@ $('#bt_sendToMarket').on('click', function () {
     });
 
     if(market.id != ''){
-       $('#md_marketSendChangeChange').dialog('open');
-       $('#in_marketSendVersion').value(market_display_info.version);
-       $('#bt_marketSendValideChange').off().on('click',function(){
+     $('#md_marketSendChangeChange').dialog('open');
+     $('#in_marketSendVersion').value(market_display_info.version);
+     $('#bt_marketSendCancelChange').off().on('click',function(){
+        $('#md_marketSendChangeChange').dialog('close');
+    });
+     $('#bt_marketSendValideChange').off().on('click',function(){
 
         market.version = $('#in_marketSendVersion').value();
         market.change = $('#ta_marketSendChange').value();
@@ -326,12 +329,12 @@ $('#bt_sendToMarket').on('click', function () {
                 $.showLoading();
                 window.location.reload();
             } else {
-               $('#md_marketSendChangeChange').dialog('close');
-               $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
-           }
+             $('#md_marketSendChangeChange').dialog('close');
+             $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
+         }
 
-       }
-   });
+     }
+ });
 });
 
 }else{
