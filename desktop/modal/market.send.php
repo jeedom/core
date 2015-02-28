@@ -306,6 +306,7 @@ $('#bt_sendToMarket').on('click', function () {
     if(market.id != ''){
      $('#md_marketSendChangeChange').dialog('open');
      $('#in_marketSendVersion').value(market_display_info.version);
+     $('#ta_marketSendChange').value('');
      $('#bt_marketSendCancelChange').off().on('click',function(){
         $('#md_marketSendChangeChange').dialog('close');
     });
