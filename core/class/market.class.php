@@ -48,6 +48,7 @@ class market {
 	private $nbComment;
 	private $language;
 	private $private;
+	private $change;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -80,6 +81,7 @@ class market {
 		$market->img = json_encode($_arrayMarket['img'], JSON_UNESCAPED_UNICODE);
 		$market->link = json_encode($_arrayMarket['link'], JSON_UNESCAPED_UNICODE);
 		$market->language = json_encode($_arrayMarket['language'], JSON_UNESCAPED_UNICODE);
+		$market->change = '';
 
 		$market->setRealcost($_arrayMarket['realCost']);
 		if (!isset($_arrayMarket['api_author'])) {
@@ -542,7 +544,7 @@ class market {
 	}
 
 	public function install($_version = 'stable') {
-		log::add('update', 'update', __('Début de la mise à jour de : ', __FILE__). $this->getLogicalId() . "\n");
+		log::add('update', 'update', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
 		$tmp_dir = dirname(__FILE__) . '/../../tmp';
 		$tmp = $tmp_dir . '/' . $this->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
@@ -676,6 +678,9 @@ class market {
 		}
 		$market = self::getJsonRpc();
 		$params = utils::o2a($this);
+		if (isset($params['changelog'])) {
+			unset($params['changelog']);
+		}
 		switch ($this->getType()) {
 			case 'plugin':
 				$cibDir = realpath(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId());
@@ -914,6 +919,14 @@ class market {
 
 	function setNbComment($nbComment) {
 		$this->nbComment = $nbComment;
+	}
+
+	function getChange() {
+		return $this->change;
+	}
+
+	function setChange($change) {
+		$this->change = $change;
 	}
 
 }

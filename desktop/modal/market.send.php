@@ -146,66 +146,79 @@ if (init('type') == 'plugin') {
                     <textarea class="form-control marketAttr" data-l1key="description" placeholder="{{Description}}" style="height: 150px;"></textarea>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label">Lien Video</label>
-                <div class="col-sm-6">
-                    <input class="form-control marketAttr" data-l1key="link" data-l2key="video">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label">Lien Wiki</label>
-                <div class="col-sm-6">
-                    <input class="form-control marketAttr" data-l1key="link" data-l2key="wiki">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-4 control-label">Lien Forum</label>
-                <div class="col-sm-6">
-                    <input class="form-control marketAttr" data-l1key="link" data-l2key="forum">
-                </div>
-            </div>
         </div>
         <div class="col-lg-6">
+         <div class="form-group">
+             <label class="col-sm-2 control-label">Video</label>
+             <div class="col-sm-9">
+                <input class="form-control marketAttr" data-l1key="link" data-l2key="video">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Wiki</label>
+            <div class="col-sm-9">
+                <input class="form-control marketAttr" data-l1key="link" data-l2key="wiki">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Forum</label>
+            <div class="col-sm-9">
+                <input class="form-control marketAttr" data-l1key="link" data-l2key="forum">
+            </div>
+        </div>
+        <div class="form-group">
             <div class="form-group">
-                <div class="form-group">
-                    <label class="col-lg-4 control-label">{{Utilisation}}</label>
-                    <div class="col-lg-6">
-                        <textarea class="form-control marketAttr" data-l1key="utilization" placeholder="{{Utilisation}}" style="height: 150px;"></textarea>
-                    </div>
+                <label class="col-lg-2 control-label">{{Utilisation}}</label>
+                <div class="col-lg-9">
+                    <textarea class="form-control marketAttr" data-l1key="utilization" placeholder="{{Utilisation}}" style="height: 150px;"></textarea>
                 </div>
-                <div class="form-group">
-                    <label class="col-lg-4 control-label">{{Changelog}}</label>
-                    <div class="col-lg-6">
-                        <textarea class="form-control marketAttr" data-l1key="changelog" placeholder="{{Changelog}}" style="height: 150px;"></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">{{Langue}}</label>
-                    <div class="col-sm-8">
-                        <label class="checkbox-inline">
-                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="en_US"> {{English}}
-                      </label>
-                      <label class="checkbox-inline">
-                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="de_DE"> {{Deutsch}}
-                      </label>
-                      <label class="checkbox-inline">
-                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="sp_SP"> {{Español}}
-                      </label>
-                      <label class="checkbox-inline">
-                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="ru_RU"> {{Pусский}}
-                      </label>
-                       <label class="checkbox-inline">
-                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="id_ID"> {{Indonésien}}
-                      </label>
-                       <label class="checkbox-inline">
-                          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="it_IT"> {{Italiano}}
-                      </label>
-                  </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{{Langue}}</label>
+                <div class="col-sm-10">
+                    <label class="checkbox-inline">
+                      <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="en_US"> {{English}}
+                  </label>
+                  <label class="checkbox-inline">
+                      <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="de_DE"> {{Deutsch}}
+                  </label>
+                  <label class="checkbox-inline">
+                      <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="sp_SP"> {{Español}}
+                  </label>
+                  <label class="checkbox-inline">
+                      <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="ru_RU"> {{Pусский}}
+                  </label>
+                  <label class="checkbox-inline">
+                      <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="id_ID"> {{Indonésien}}
+                  </label>
+                  <label class="checkbox-inline">
+                      <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="it_IT"> {{Italiano}}
+                  </label>
               </div>
           </div>
       </div>
   </div>
+</div>
 </form>
+
+<div title="Qu'avez vous changer ?" id="md_marketSendChangeChange">
+    <form class="form-horizontal" role="form">
+     <div class="form-group">
+        <label class="col-sm-3 control-label">{{Version}}</label>
+        <div class="col-sm-3">
+            <input class="form-control" id="in_marketSendVersion">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">{{Changement}}</label>
+        <div class="col-sm-9">
+         <textarea class="form-control" id="ta_marketSendChange" placeholder="{{Changement}}" style="height: 150px;"></textarea>
+     </div>
+ </div>
+ <a class="btn btn-success pull-right" id="bt_marketSendValideChange"><i class="fa fa-check"></i> {{Valider}}</a>
+ <a class="btn btn-default pull-right"><i class="fa fa-times"></i> {{Annuler}}</a>
+</form>
+</div>
 
 <?php
 if (is_object($market)) {
@@ -213,60 +226,115 @@ if (is_object($market)) {
 }
 ?>
 <script>
-    $('.marketAttr[data-l1key=type]').on('change', function () {
-        $('.category').hide().removeClass('marketAttr');
-        $('.category.' + $('.marketAttr[data-l1key=type] option:selected').attr('data-category')).show().addClass('marketAttr');
-        if ($(this).value() == 'plugin') {
-            $('#div_marketPrice').show();
-        } else {
-            $('#div_marketPrice').hide();
+  $("#md_marketSendChangeChange").dialog({
+    autoOpen: false,
+    modal: true,
+    height: 350,
+    width:700,
+    position: {my: 'center', at: 'center', of: window},
+    open: function () {
+        $("body").css({overflow: 'hidden'});
+    },
+    beforeClose: function (event, ui) {
+        $("body").css({overflow: 'inherit'});
+    }
+});
+
+
+
+  $('.marketAttr[data-l1key=type]').on('change', function () {
+    $('.category').hide().removeClass('marketAttr');
+    $('.category.' + $('.marketAttr[data-l1key=type] option:selected').attr('data-category')).show().addClass('marketAttr');
+    if ($(this).value() == 'plugin') {
+        $('#div_marketPrice').show();
+    } else {
+        $('#div_marketPrice').hide();
+    }
+});
+
+  $('.rb_price').on('change', function () {
+    $('.priceChoose').removeClass('alert alert-success');
+    $(this).closest('.priceChoose').addClass('alert alert-success');
+});
+
+  $('.priceChoose').on('click', function () {
+    $(this).find('.rb_price').prop('checked', true);
+    $('.priceChoose').removeClass('alert alert-success');
+    $(this).addClass('alert alert-success');
+});
+
+  $('body').setValues(market_display_info, '.marketAttr');
+
+  if (market_display_info.realcost == '' || market_display_info.realcost == 0) {
+    $('.rb_price.free').prop('checked', true);
+    $('.marketAttr[data-l1key=cost]').value('');
+    $('.rb_price.free').closest('.priceChoose').addClass('alert alert-success');
+} else if (market_display_info.realcost == 1) {
+    $('.rb_price[data-value=1]').prop('checked', true);
+    $('.marketAttr[data-l1key=cost]').value('');
+    $('.rb_price[data-value=1]').closest('.priceChoose').addClass('alert alert-success');
+    $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
+} else if (market_display_info.realcost == 2) {
+    $('.rb_price[data-value=2]').prop('checked', true);
+    $('.marketAttr[data-l1key=cost]').value('');
+    $('.rb_price[data-value=2]').closest('.priceChoose').addClass('alert alert-success');
+    $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
+    $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
+} else {
+    $('.rb_price[data-value=custom]').prop('checked', true);
+    $('.rb_price[data-value=custom]').closest('.priceChoose').addClass('alert alert-success');
+    $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
+    $('.marketAttr[data-l1key=cost]').value(market_display_info.realcost);
+}
+
+$('.marketAttr[data-l1key=type]').value(market_type);
+
+$('#bt_sendToMarket').on('click', function () {
+    var market = $('#form_sendToMarket').getValues('.marketAttr')[0];
+    $('.rb_price').each(function () {
+        if ($(this).is(":checked") && $(this).attr('data-value') != 'custom') {
+            market.cost = parseInt($(this).attr('data-value'));
         }
     });
 
-    $('.rb_price').on('change', function () {
-        $('.priceChoose').removeClass('alert alert-success');
-        $(this).closest('.priceChoose').addClass('alert alert-success');
-    });
+    if(market.id != ''){
+       $('#md_marketSendChangeChange').dialog('open');
+       $('#in_marketSendVersion').value(market_display_info.version);
+       $('#bt_marketSendValideChange').off().on('click',function(){
 
-    $('.priceChoose').on('click', function () {
-        $(this).find('.rb_price').prop('checked', true);
-        $('.priceChoose').removeClass('alert alert-success');
-        $(this).addClass('alert alert-success');
-    });
+        market.version = $('#in_marketSendVersion').value();
+        market.change = $('#ta_marketSendChange').value();
 
-    $('body').setValues(market_display_info, '.marketAttr');
 
-    if (market_display_info.realcost == '' || market_display_info.realcost == 0) {
-        $('.rb_price.free').prop('checked', true);
-        $('.marketAttr[data-l1key=cost]').value('');
-        $('.rb_price.free').closest('.priceChoose').addClass('alert alert-success');
-    } else if (market_display_info.realcost == 1) {
-        $('.rb_price[data-value=1]').prop('checked', true);
-        $('.marketAttr[data-l1key=cost]').value('');
-        $('.rb_price[data-value=1]').closest('.priceChoose').addClass('alert alert-success');
-        $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
-    } else if (market_display_info.realcost == 2) {
-        $('.rb_price[data-value=2]').prop('checked', true);
-        $('.marketAttr[data-l1key=cost]').value('');
-        $('.rb_price[data-value=2]').closest('.priceChoose').addClass('alert alert-success');
-        $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
-        $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
-    } else {
-        $('.rb_price[data-value=custom]').prop('checked', true);
-        $('.rb_price[data-value=custom]').closest('.priceChoose').addClass('alert alert-success');
-        $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
-        $('.marketAttr[data-l1key=cost]').value(market_display_info.realcost);
-    }
-
-    $('.marketAttr[data-l1key=type]').value(market_type);
-
-    $('#bt_sendToMarket').on('click', function () {
-        var market = $('#form_sendToMarket').getValues('.marketAttr')[0];
-        $('.rb_price').each(function () {
-            if ($(this).is(":checked") && $(this).attr('data-value') != 'custom') {
-                market.cost = parseInt($(this).attr('data-value'));
+  $.ajax({// fonction permettant de faire de l'ajax
+            type: "POST", // methode de transmission des données au fichier php
+            url: "core/ajax/market.ajax.php", // url du fichier php
+            data: {
+                action: "save",
+                market: json_encode(market),
+            },
+            dataType: 'json',
+            error: function (request, status, error) {
+                handleAjaxError(request, status, error, $('#div_alertMarketSend'));
+            },
+            success: function (data) { // si l'appel a bien fonctionné
+            if (data.state != 'ok') {
+                $('#div_alertMarketSend').showAlert({message: data.result, level: 'danger'});
+                return;
             }
-        });
+            if (market.id == undefined || market.id == '') {
+                $.showLoading();
+                window.location.reload();
+            } else {
+               $('#md_marketSendChangeChange').dialog('close');
+               $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
+           }
+
+       }
+   });
+});
+
+}else{
         $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // methode de transmission des données au fichier php
             url: "core/ajax/market.ajax.php", // url du fichier php
@@ -292,5 +360,6 @@ if (is_object($market)) {
 
         }
     });
+}
 });
 </script>
