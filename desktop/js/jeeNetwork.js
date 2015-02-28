@@ -278,7 +278,7 @@ $('#bt_showMessage').on('click', function () {
                 log += data[i]['message'];
                 log += "\n";
             }
-            $('#pre_updateInfo').text(log);
+            $('#pre_logInfo').text(log);
         }
     });
 });
