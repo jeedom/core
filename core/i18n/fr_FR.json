@@ -55,7 +55,9 @@
         "Scénario évènement automatiquement sur programmation": "Scénario évènement automatiquement sur programmation",
         "Aucun": "Aucun",
         "Début d'exécution du scénario : ": "Début d'exécution du scénario : ",
-        "Scénario exécuté sur évènement : #": "Scénario exécuté sur évènement : #"
+        "Scénario exécuté sur évènement : #": "Scénario exécuté sur évènement : #",
+        "Erreur : le scénario c'est incident (toujours marqué en cours mais arrêté)": "Erreur : le scénario c'est incident (toujours marqué en cours mais arrêté)",
+        "Echec lors de la suppression. Impossible de trouver le module ": "Echec lors de la suppression. Impossible de trouver le module "
     },
     "desktop\/php\/plan.php": {
         "Ajouter un design": "Ajouter un design",
@@ -75,7 +77,9 @@
     },
     "core\/class\/eqLogic.class.php": {
         "inconnue": "inconnue",
-        "Aucun": "Aucun"
+        "Aucun": "Aucun",
+        "Le module ": "Le module ",
+        " a été désactivé car il n'a plus de batterie (": " a été désactivé car il n'a plus de batterie ("
     },
     "desktop\/php\/dashboard.php": {
         "Liste objets": "Liste objets",
@@ -208,7 +212,8 @@
         "Dimension": "Dimension",
         "Largeur pas widget (px)": "Largeur pas widget (px)",
         "Hauteur pas widget (px)": "Hauteur pas widget (px)",
-        "Sauvegarder": "Sauvegarder"
+        "Sauvegarder": "Sauvegarder",
+        "Centrer verticalement les commandes sur la tuile": "Centrer verticalement les commandes sur la tuile"
     },
     "desktop\/php\/scenario.php": {
         "Interface avancée": "Interface avancée",
@@ -523,7 +528,68 @@
         "Plugin": "Plugin",
         "Logs & messages :": "Logs & messages :",
         "Supprimer": "Supprimer",
-        "Sauvegarder": "Sauvegarder"
+        "Sauvegarder": "Sauvegarder",
+        "Log && messages": "Log && messages",
+        "Configuration": "Configuration",
+        "Log et messages": "Log et messages",
+        "Backuper": "Backuper",
+        "Administration": "Administration",
+        "Voir": "Voir",
+        "Vider": "Vider",
+        "Voir les messages": "Voir les messages",
+        "Vider les messages": "Vider les messages",
+        "Configuration générale": "Configuration générale",
+        "Langue": "Langue",
+        "Français": "Français",
+        "English": "English",
+        "Deutsch": "Deutsch",
+        "Español": "Español",
+        "Pусский": "Pусский",
+        "Indonésien": "Indonésien",
+        "Italiano": "Italiano",
+        "Option pour les developpeurs permettant à Jeedom de générer les phrases à traduire": "Option pour les developpeurs permettant à Jeedom de générer les phrases à traduire",
+        "Généré les traductions": "Généré les traductions",
+        "Durée de vie des sessions (heure)": "Durée de vie des sessions (heure)",
+        "Date et heure": "Date et heure",
+        "Configuration réseaux": "Configuration réseaux",
+        "IP Maître": "IP Maître",
+        "Protocole": "Protocole",
+        "Adresse URL ou IP": "Adresse URL ou IP",
+        "Complément (exemple : \/jeedom)": "Complément (exemple : \/jeedom)",
+        "Port": "Port",
+        "Configuration des crontask, scripts & démons": "Configuration des crontask, scripts & démons",
+        "Rattrapage maximum autorisé (en minutes, -1 pour infini)": "Rattrapage maximum autorisé (en minutes, -1 pour infini)",
+        "Crontask : temps d'exécution max (en minutes)": "Crontask : temps d'exécution max (en minutes)",
+        "Script : temps d'exécution max (en minutes)": "Script : temps d'exécution max (en minutes)",
+        "Temps de sommeil Jeecron": "Temps de sommeil Jeecron",
+        "Temps de sommeil des Démons": "Temps de sommeil des Démons",
+        "Configuration des logs & messages": "Configuration des logs & messages",
+        "Ajouter un message à chaque erreur dans les logs": "Ajouter un message à chaque erreur dans les logs",
+        "Nombre de lignes maximum dans un fichier de log": "Nombre de lignes maximum dans un fichier de log",
+        "Logs actifs": "Logs actifs",
+        "Configuration LDAP": "Configuration LDAP",
+        "Activer l'authentification LDAP": "Activer l'authentification LDAP",
+        "Hôte": "Hôte",
+        "Domaine": "Domaine",
+        "Base DN": "Base DN",
+        "Nom d'utilisateur": "Nom d'utilisateur",
+        "Mot de passe": "Mot de passe",
+        "Filtre (optionnel)": "Filtre (optionnel)",
+        "Autoriser REMOTE_USER": "Autoriser REMOTE_USER",
+        "Market": "Market",
+        "Adresse": "Adresse",
+        "Installer automatiquement les widgets manquants": "Installer automatiquement les widgets manquants",
+        "Utiliser le market comme DNS": "Utiliser le market comme DNS",
+        "Afficher les plugins mis en avant par le market": "Afficher les plugins mis en avant par le market",
+        "Voir les modules en beta (à vos risques et périls)": "Voir les modules en beta (à vos risques et périls)",
+        "Faire une sauvegarde avant la mise à jour": "Faire une sauvegarde avant la mise à jour",
+        "Mettre à jour automatiquement": "Mettre à jour automatiquement",
+        "Branche": "Branche",
+        "Stable": "Stable",
+        "Développement": "Développement",
+        "HTTP": "HTTP",
+        "Timeout de résolution DNS sur les requêtes HTTP": "Timeout de résolution DNS sur les requêtes HTTP",
+        "Désactiver la vérification du ping": "Désactiver la vérification du ping"
     },
     "desktop\/php\/cron.php": {
         "Processus cron Jeedom :": "Processus cron Jeedom :",
@@ -790,11 +856,20 @@
         "Español": "Español",
         "Pусский": "Pусский",
         "Indonésien": "Indonésien",
-        "Italiano": "Italiano"
+        "Italiano": "Italiano",
+        "Changement": "Changement",
+        "Version": "Version",
+        "Valider": "Valider",
+        "Annuler": "Annuler",
+        "N'oubliez pas de rajouter une image à votre création": "N'oubliez pas de rajouter une image à votre création",
+        "N'oubliez pas de rajouter une image à votre création en passant par le market.": "N'oubliez pas de rajouter une image à votre création en passant par le market.",
+        "Ou en cliquant ": "Ou en cliquant ",
+        "ici": "ici"
     },
     "core\/class\/cmd.class.php": {
         "Aucun": "Aucun",
-        "Erreur sur ": "Erreur sur "
+        "Erreur sur ": "Erreur sur ",
+        "Le nom de la commande ne peut pas être vide :": "Le nom de la commande ne peut pas être vide :"
     },
     "desktop\/modal\/cron.human.insert.php": {
         "A exécuter": "A exécuter",
@@ -828,7 +903,12 @@
         "Le retour à la version stable est dangereux": "Le retour à la version stable est dangereux",
         "Commentaires": "Commentaires",
         "Objet installé avec succès": "Objet installé avec succès",
-        "Commentaires (2)": "Commentaires (2)"
+        "Commentaires (2)": "Commentaires (2)",
+        "Gratuit": "Gratuit",
+        "Commentaires (6)": "Commentaires (6)",
+        "Changelog": "Changelog",
+        "Tout voir": "Tout voir",
+        "Commentaires (7)": "Commentaires (7)"
     },
     "desktop\/js\/plugin.js": {
         "Voir sur le market": "Voir sur le market",
@@ -1004,7 +1084,8 @@
         "Basculer": "Basculer",
         "Valider": "Valider",
         "Enregistrement réussi": "Enregistrement réussi",
-        "Modification appliqués avec succès": "Modification appliqués avec succès"
+        "Modification appliqués avec succès": "Modification appliqués avec succès",
+        "Visible": "Visible"
     },
     "desktop\/js\/interact.js": {
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
@@ -1061,5 +1142,99 @@
         "Configuration du graph": "Configuration du graph",
         "Quitter le mode édition": "Quitter le mode édition",
         "Mode édition": "Mode édition"
+    },
+    "desktop\/modal\/planHeader.configure.php": {
+        "Général": "Général",
+        "Nom": "Nom",
+        "Disponible sur téléphone": "Disponible sur téléphone",
+        "Image": "Image",
+        "Ne pas afficher la fleche de retour lors de la mise en pleine écran": "Ne pas afficher la fleche de retour lors de la mise en pleine écran",
+        "Tailles": "Tailles",
+        "Responsive mode (Attention toute les valeurs de taille sont ignorées)": "Responsive mode (Attention toute les valeurs de taille sont ignorées)",
+        "Taille (LxH)": "Taille (LxH)",
+        "Proportion tablette (ex : 0.7)": "Proportion tablette (ex : 0.7)",
+        "Proportion téléphone (ex 0.5)": "Proportion téléphone (ex 0.5)"
+    },
+    "mobile\/js\/message.js": {
+        "Action": "Action",
+        "Vider": "Vider",
+        "Logfile": "Logfile",
+        "Tout": "Tout"
+    },
+    "install\/install.php": {
+        "Vérification des mises à jour...": "Vérification des mises à jour...",
+        "OK\n": "OK\n",
+        "***************Mise à jour des plugins***************\n": "***************Mise à jour des plugins***************\n",
+        "***************Mise à jour des plugins réussie***************\n": "***************Mise à jour des plugins réussie***************\n"
+    },
+    "desktop\/js\/jeeNetwork.js": {
+        "Suppression effectuée avec succès": "Suppression effectuée avec succès",
+        "Etes-vous sûr de vouloir restaurer cette sauvegarde sur ce Jeedom esclave ?": "Etes-vous sûr de vouloir restaurer cette sauvegarde sur ce Jeedom esclave ?",
+        "Etes-vous sûr de vouloir arrêter ce Jeedom esclave ?": "Etes-vous sûr de vouloir arrêter ce Jeedom esclave ?",
+        "Le système est en cours d\\'arrêt": "Le système est en cours d\\'arrêt",
+        "Etes-vous sûr de vouloir redémarrer ce Jeedom esclave ?": "Etes-vous sûr de vouloir redémarrer ce Jeedom esclave ?",
+        "Le système est en cours de redémarrage": "Le système est en cours de redémarrage",
+        "Etes-vous sûr de vouloir mettre à jour ce Jeedom esclave ?": "Etes-vous sûr de vouloir mettre à jour ce Jeedom esclave ?",
+        "Le système est en cours de mise à jour": "Le système est en cours de mise à jour",
+        "La vérification des mises à jour a été faite avec succès": "La vérification des mises à jour a été faite avec succès",
+        "Les messages ont été correctement supprimés": "Les messages ont été correctement supprimés",
+        "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
+        "Veuillez d\\'abord sélectionner une connexion jeeNetwork": "Veuillez d\\'abord sélectionner une connexion jeeNetwork",
+        "Etes-vous sûr de vouloir supprimer la connexion jeeNetwork": "Etes-vous sûr de vouloir supprimer la connexion jeeNetwork",
+        "L\\'opération est réussie": "L\\'opération est réussie",
+        "L\\'opération a échoué": "L\\'opération a échoué",
+        "Etes-vous sûr de vouloir sauvegarder ce Jeedom esclave ?": "Etes-vous sûr de vouloir sauvegarder ce Jeedom esclave ?",
+        "Sauvegarde effectuée": "Sauvegarde effectuée"
+    },
+    "desktop\/modal\/eqLogic.configure.php": {
+        "Informations": "Informations",
+        "Supprimer": "Supprimer",
+        "Enregistrer": "Enregistrer",
+        "Appliquer à": "Appliquer à",
+        "ID": "ID",
+        "Nom": "Nom",
+        "Logical ID": "Logical ID",
+        "Object ID": "Object ID",
+        "Date de création": "Date de création",
+        "Type": "Type",
+        "Activer": "Activer",
+        "Visible": "Visible",
+        "Tentative échouée": "Tentative échouée",
+        "Date de dernière communication": "Date de dernière communication",
+        "Dernière mise à jour": "Dernière mise à jour",
+        "Ne pas afficher le nom": "Ne pas afficher le nom",
+        "Ne pas afficher le nom de l'objet": "Ne pas afficher le nom de l'objet",
+        "Ne pas afficher le niveau de batterie": "Ne pas afficher le niveau de batterie",
+        "Ordre": "Ordre",
+        "Paramètres optionnels sur la tuile": "Paramètres optionnels sur la tuile",
+        "Valeur": "Valeur",
+        "Action": "Action",
+        "Sélection multiple d'équipements": "Sélection multiple d'équipements",
+        "Basculer": "Basculer",
+        "Valider": "Valider",
+        "Enregistrement réussi": "Enregistrement réussi",
+        "Etes-vous sûr de vouloir supprimer cette équipement ?": "Etes-vous sûr de vouloir supprimer cette équipement ?",
+        "Suppression réalisée avec succès": "Suppression réalisée avec succès",
+        "Modification appliqués avec succès": "Modification appliqués avec succès"
+    },
+    "desktop\/modal\/object.configure.php": {
+        "Informations": "Informations",
+        "ID": "ID",
+        "Nom": "Nom",
+        "Visible": "Visible"
+    },
+    "desktop\/js\/security.js": {
+        "Suppression effectuée avec succès": "Suppression effectuée avec succès",
+        "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
+        "Sauvegarde réussie": "Sauvegarde réussie",
+        "Etes-vous sûr de vouloir supprimer cette connexion ? Si l\\'IP :": "Etes-vous sûr de vouloir supprimer cette connexion ? Si l\\'IP :",
+        "était banni celle-ci ne le sera plus": "était banni celle-ci ne le sera plus",
+        "Etes-vous sûr de vouloir bannir cette IP  :": "Etes-vous sûr de vouloir bannir cette IP  :"
+    },
+    "desktop\/js\/object.js": {
+        "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
+        "Suppression effectuée avec succès": "Suppression effectuée avec succès",
+        "Veuillez d\\'abord sélectionner un objet": "Veuillez d\\'abord sélectionner un objet",
+        "Etes-vous sûr de vouloir supprimer l\\'objet": "Etes-vous sûr de vouloir supprimer l\\'objet"
     }
 }
