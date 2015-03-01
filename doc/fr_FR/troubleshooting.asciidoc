@@ -117,3 +117,9 @@ mysqld --verbose
 Ou consulter le log : /var/log/mysql/error.log
 
 --
+
+[panel,danger]
+.Les boutons arreter/redemarrer ne fonctionne pas
+--
+Sur une installation DIY c'est normale, il faut faire en ssh visudo et à la fin du fichier vous devez ajouter : www-data ALL=(ALL) NOPASSWD: ALL.
+--
