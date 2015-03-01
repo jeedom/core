@@ -13,26 +13,26 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-var noBootstrapTooltips = true;
-var deviceInfo = getDeviceType();
-var noReturnButtonFullScreen = false;
+ var noBootstrapTooltips = true;
+ var deviceInfo = getDeviceType();
+ var noReturnButtonFullScreen = false;
 
-$("#md_addViewData").dialog({
+ $("#md_addViewData").dialog({
     autoOpen: false,
     modal: true,
     height: (jQuery(window).height() - 150),
     width: (jQuery(window).width() - 450)
 });
 
-$('body').delegate('.eqLogic-widget .history', 'click', function () {
+ $('body').delegate('.eqLogic-widget .history', 'click', function () {
     if ($('#bt_editPlan').attr('data-mode') != "1") {
         $('#md_modal').dialog({title: "Historique"});
         $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
     }
 });
 
-/*****************************PLAN HEADER***********************************/
-$('#bt_addPlanHeader').on('click', function () {
+ /*****************************PLAN HEADER***********************************/
+ $('#bt_addPlanHeader').on('click', function () {
     bootbox.prompt("Nom du design ?", function (result) {
         if (result !== null) {
             jeedom.plan.saveHeader({
@@ -48,7 +48,7 @@ $('#bt_addPlanHeader').on('click', function () {
     });
 });
 
-$('#bt_duplicatePlanHeader').on('click', function () {
+ $('#bt_duplicatePlanHeader').on('click', function () {
     bootbox.prompt("{{Nom la copie du design ?}}", function (result) {
         if (result !== null) {
             jeedom.plan.copyHeader({
@@ -65,14 +65,17 @@ $('#bt_duplicatePlanHeader').on('click', function () {
     });
 });
 
-$('#sel_planHeader').on('change', function () {
+ $('#sel_planHeader').on('change', function () {
     if (planHeader_id != $(this).attr('data-link_id')) {
+        if($('#bt_editPlan').attr('data-mode') == 1){
+            $('#bt_editPlan').click();
+        }
         planHeader_id = $(this).value();
         displayPlan();
     }
 });
 
-$('body').delegate('.plan-link-widget', 'click', function () {
+ $('body').delegate('.plan-link-widget', 'click', function () {
     if ($('#bt_editPlan').attr('data-mode') != "1") {
         if (planHeader_id != $(this).attr('data-link_id')) {
             planHeader_id = $(this).attr('data-link_id');
@@ -81,94 +84,94 @@ $('body').delegate('.plan-link-widget', 'click', function () {
     }
 });
 
-/*****************************PLAN***********************************/
-$('#bt_addEqLogic').on('click', function () {
+ /*****************************PLAN***********************************/
+ $('#bt_addEqLogic').on('click', function () {
     jeedom.eqLogic.getSelectModal({}, function (data) {
         addEqLogic(data.id);
     });
 });
 
-$('#bt_addScenario').on('click', function () {
+ $('#bt_addScenario').on('click', function () {
     jeedom.scenario.getSelectModal({}, function (data) {
         addScenario(data.id);
     });
 });
 
-$('#bt_addLink').on('click', function () {
+ $('#bt_addLink').on('click', function () {
     $('#md_selectLink').modal('show');
 });
 
-$('#bt_addGraph').on('click', function () {
+ $('#bt_addGraph').on('click', function () {
     addGraph({});
     savePlan();
 });
 
-$('#bt_addTexte').on('click', function () {
+ $('#bt_addTexte').on('click', function () {
     addText({display: {text: 'Texte à insérer ici'}});
     savePlan();
 });
 
-displayPlan();
+ displayPlan();
 
-jwerty.key('ctrl+s', function (e) {
+ jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
     savePlan();
 });
 
-$('#bt_savePlan').on('click', function () {
+ $('#bt_savePlan').on('click', function () {
     savePlan();
 });
 
-$('#bt_configurePlanHeader').on('click', function () {
+ $('#bt_configurePlanHeader').on('click', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
         $('#md_modal').dialog({title: "{{Configuration du design}}"});
         $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
-$('#div_displayObject').delegate('.eqLogic-widget', 'dblclick', function () {
+ $('#div_displayObject').delegate('.eqLogic-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
         $('#md_modal').dialog({title: "{{Configuration du widget}}"});
         $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=eqLogic&link_id=' + $(this).attr('data-eqLogic_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
-$('#div_displayObject').delegate('.scenario-widget', 'dblclick', function () {
+ $('#div_displayObject').delegate('.scenario-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
         $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
         $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=scenario&link_id=' + $(this).attr('data-scenario_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
-$('#div_displayObject').delegate('.plan-link-widget', 'dblclick', function () {
+ $('#div_displayObject').delegate('.plan-link-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
         $('#md_modal').dialog({title: "{{Configuration du lien}}"});
         $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=plan&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
-$('#div_displayObject').delegate('.text-widget', 'dblclick', function () {
+ $('#div_displayObject').delegate('.text-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
         $('#md_modal').dialog({title: "{{Configuration du texte}}"});
         $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=text&link_id=' + $(this).attr('data-text_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
-$('#div_displayObject').delegate('.view-link-widget', 'dblclick', function () {
+ $('#div_displayObject').delegate('.view-link-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
         $('#md_modal').dialog({title: "{{Configuration du lien}}"});
         $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=view&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
-$('#div_displayObject').delegate('.graph-widget', 'dblclick', function () {
+ $('#div_displayObject').delegate('.graph-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
         $('#md_modal').dialog({title: "{{Configuration du graph}}"});
         $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=graph&link_id=' + $(this).attr('data-graph_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
-$('.planHeaderAttr').on('change', function () {
+ $('.planHeaderAttr').on('change', function () {
     var planHeader = $('#div_planHeader').getValues('.planHeaderAttr')[0];
     planHeader.id = planHeader_id;
     jeedom.plan.saveHeader({
@@ -183,7 +186,7 @@ $('.planHeaderAttr').on('change', function () {
     });
 });
 
-function setColorSelect(_select) {
+ function setColorSelect(_select) {
     _select.css('background-color', _select.find('option:selected').val());
 }
 
@@ -226,7 +229,7 @@ $('#div_displayObject').delegate('.configureGraph', 'click', function () {
             });
             $('#md_addViewData').dialog('open');
         });
-    }
+}
 });
 
 $('#bt_editPlan').on('click', function () {
@@ -394,9 +397,9 @@ function displayPlan(_offsetX, _offsetY) {
                         }
                     },
                 });
-            }
-        },
-    });
+}
+},
+});
 }
 
 function savePlan(_refreshDisplay) {
