@@ -92,12 +92,15 @@
         "Automatisme": "Automatisme",
         "Defaut": "Defaut",
         "Autre": "Autre",
-        "Scénarios": "Scénarios"
+        "Scénarios": "Scénarios",
+        "Afficher\/Masquer les objets": "Afficher\/Masquer les objets",
+        "Afficher\/Masquer les scénarios": "Afficher\/Masquer les scénarios"
     },
     "desktop\/php\/view.php": {
         "Ajouter une vue": "Ajouter une vue",
         "Rechercher": "Rechercher",
-        "Editer": "Editer"
+        "Editer": "Editer",
+        "Afficher\/Masquer les vues": "Afficher\/Masquer les vues"
     },
     "desktop\/php\/view_edit.php": {
         "Créer une vue": "Créer une vue",
@@ -271,7 +274,8 @@
         "Attendre": "Attendre",
         "Retourner": "Retourner",
         "Aller au design": "Aller au design",
-        "Valider": "Valider"
+        "Valider": "Valider",
+        "Nouveau scénario": "Nouveau scénario"
     },
     "desktop\/php\/scenarioAssist.php": {
         "Interface simple": "Interface simple",
@@ -309,7 +313,8 @@
         "Au repos": "Au repos",
         "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.": "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.",
         "Supprimer": "Supprimer",
-        "Sauvegarder": "Sauvegarder"
+        "Sauvegarder": "Sauvegarder",
+        "Nouveau scénario": "Nouveau scénario"
     },
     "desktop\/js\/scenarioAssist.js": {
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
@@ -482,7 +487,8 @@
         "Télécharger": "Télécharger",
         "Sauvegardes cloud": "Sauvegardes cloud",
         "Informations sauvegardes": "Informations sauvegardes",
-        "Informations restaurations": "Informations restaurations"
+        "Informations restaurations": "Informations restaurations",
+        "Lancer": "Lancer"
     },
     "desktop\/php\/update.php": {
         "Dernière vérification : ": "Dernière vérification : ",
@@ -646,7 +652,8 @@
         "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sur de vouloir supprimer tous les logs ?"
     },
     "desktop\/php\/custom.php": {
-        "Sauvegarder": "Sauvegarder"
+        "Sauvegarder": "Sauvegarder",
+        "Attention tout ce que vous écrivez ici est global et inclus sur tout les pages, la moindre erreur peut rendre votre jeedom non fonctionel": "Attention tout ce que vous écrivez ici est global et inclus sur tout les pages, la moindre erreur peut rendre votre jeedom non fonctionel"
     },
     "desktop\/php\/profils.php": {
         "Profil": "Profil",
@@ -746,7 +753,11 @@
         "Nom d'utilisateur": "Nom d'utilisateur",
         "Mot de passe": "Mot de passe",
         "Connexion": "Connexion",
-        "Etes-vous sûr de vouloir réinitialiser votre mot de passe ?": "Etes-vous sûr de vouloir réinitialiser votre mot de passe ?"
+        "Etes-vous sûr de vouloir réinitialiser votre mot de passe ?": "Etes-vous sûr de vouloir réinitialiser votre mot de passe ?",
+        "Enregistrer cet ordinateur": "Enregistrer cet ordinateur",
+        "J'ai oublié mon mot de passe": "J'ai oublié mon mot de passe",
+        "Vous devez d\\'abord entrer votre nom d\\'utilisateur": "Vous devez d\\'abord entrer votre nom d\\'utilisateur",
+        "Un nouveau mot de passe vient de vous être envoyé": "Un nouveau mot de passe vient de vous être envoyé"
     },
     "core\/js\/jeedom.class.js": {
         "Erreur d\\'authentification sur node JS, clef invalide": "Erreur d\\'authentification sur node JS, clef invalide",
@@ -921,7 +932,9 @@
         "Etes vous sur de vouloir supprimer ce plugin ?": "Etes vous sur de vouloir supprimer ce plugin ?",
         "Plugin ajouté(s) avec succès. Recharger la page pour le voir": "Plugin ajouté(s) avec succès. Recharger la page pour le voir",
         "Market Jeedom": "Market Jeedom",
-        "Sauvegarde effectuée": "Sauvegarde effectuée"
+        "Sauvegarde effectuée": "Sauvegarde effectuée",
+        "Votre plugin est activé.": "Votre plugin est activé.",
+        "Votre plugin est désactivé": "Votre plugin est désactivé"
     },
     "desktop\/modal\/market.comment.php": {
         "Envoyer": "Envoyer"
@@ -1237,5 +1250,64 @@
         "Suppression effectuée avec succès": "Suppression effectuée avec succès",
         "Veuillez d\\'abord sélectionner un objet": "Veuillez d\\'abord sélectionner un objet",
         "Etes-vous sûr de vouloir supprimer l\\'objet": "Etes-vous sûr de vouloir supprimer l\\'objet"
+    },
+    "desktop\/js\/update.js": {
+        "Etes-vous sur de vouloir faire les mises à jour ?": "Etes-vous sur de vouloir faire les mises à jour ?",
+        "Etes-vous sur de vouloir faire la mise à jour de tout et du système, cette opération peut durée plusieurs dizaine de minutes et est risqué ? <b>NE SURTOUT PAS FAIRE CETTE OPERATION SI VOUS UTILISEZ APACHE<\/b>": "Etes-vous sur de vouloir faire la mise à jour de tout et du système, cette opération peut durée plusieurs dizaine de minutes et est risqué ? <b>NE SURTOUT PAS FAIRE CETTE OPERATION SI VOUS UTILISEZ APACHE<\/b>",
+        "Etes vous sur de vouloir changer l\\'état de l\\'objet ?": "Etes vous sur de vouloir changer l\\'état de l\\'objet ?",
+        "Etes vous sur de vouloir mettre a jour cet objet ?": "Etes vous sur de vouloir mettre a jour cet objet ?",
+        "Etes vous sur de vouloir supprimer cet objet ?": "Etes vous sur de vouloir supprimer cet objet ?",
+        "L\\'opération est réussie": "L\\'opération est réussie",
+        "L\\'opération a échoué": "L\\'opération a échoué",
+        "Mettre à jour": "Mettre à jour",
+        "Supprimer": "Supprimer",
+        "Envoyer sur le market": "Envoyer sur le market",
+        "Partager": "Partager",
+        "Voir": "Voir",
+        "Changelog": "Changelog"
+    },
+    "desktop\/js\/view.js": {
+        "Historique": "Historique"
+    },
+    "desktop\/js\/view_edit.js": {
+        "Nom de la vue ?": "Nom de la vue ?",
+        "Modification enregistré": "Modification enregistré",
+        "Etes-vous sûr de vouloir supprimer la vue": "Etes-vous sûr de vouloir supprimer la vue",
+        "30min": "30min",
+        "Jour": "Jour",
+        "Semaine": "Semaine",
+        "Mois": "Mois",
+        "Année": "Année",
+        "Tous": "Tous"
+    },
+    "desktop\/modal\/plan.configure.php": {
+        "Taille du widget": "Taille du widget",
+        "Couleur de fond": "Couleur de fond",
+        "Transparent": "Transparent",
+        "Défaut": "Défaut",
+        "Couleur des icones et textes": "Couleur des icones et textes",
+        "Arrondir les angles (ne pas oublié de mettre %, ex 50%)": "Arrondir les angles (ne pas oublié de mettre %, ex 50%)",
+        "Bordure (attention syntax css, ex : solid 1px black)": "Bordure (attention syntax css, ex : solid 1px black)",
+        "Profondeur": "Profondeur",
+        "Ne pas afficher le nom de l'équipement": "Ne pas afficher le nom de l'équipement",
+        "Ne pas afficher le niveau de batterie": "Ne pas afficher le niveau de batterie",
+        "Ne pas afficher ": "Ne pas afficher "
+    },
+    "desktop\/modal\/icon.selector.php": {
+        "Rechercher": "Rechercher",
+        "animal": "animal",
+        "divers": "divers",
+        "fashion": "fashion",
+        "jeedom": "jeedom",
+        "loisir": "loisir",
+        "maison": "maison",
+        "meteo": "meteo",
+        "nature": "nature",
+        "nourriture": "nourriture",
+        "personne": "personne",
+        "securite": "securite",
+        "techno": "techno",
+        "transport": "transport",
+        "Générale": "Générale"
     }
 }
