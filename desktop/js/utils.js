@@ -283,8 +283,15 @@ setInterval(function () {
         });
     });
 
+    $('#bt_showEventInRealTime').on('click',function(){
+     $('#md_modal').dialog({title: "{{Evenement en temps réel}}"});
+     $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
+ });
+
     initPage();
 });
+
+
 
 function initPage(){
     initTooltips();
@@ -498,10 +505,10 @@ function positionEqLogic(_id, _noResize, _class) {
          offset = (offset < 1) ? -5 : offset-12;
          if (count(verticalAlign) > 0 && verticalAlign != undefined) {
             verticalAlign.css('position', 'relative');
-                verticalAlign.css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - offset);
-                verticalAlign.css('left', (eqLogic.width() - verticalAlign.width()) / 2);
-            }
+            verticalAlign.css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - offset);
+            verticalAlign.css('left', (eqLogic.width() - verticalAlign.width()) / 2);
         }
     }
+}
 });
 }

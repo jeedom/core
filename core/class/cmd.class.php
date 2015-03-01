@@ -681,7 +681,7 @@ class cmd {
 				$options['color'] = cmd::convertColor($options['color']);
 			}
 			if ($this->getType() == 'action') {
-				log::add('event', 'event', __('Execution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . print_r($options, true));
+				log::add('event', 'event', __('Execution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . str_replace(array("\n", '  ', 'Array'), '', print_r($options, true)));
 			}
 			$value = $this->formatValue($this->execute($options));
 		} catch (Exception $e) {
