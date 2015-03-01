@@ -680,6 +680,9 @@ class cmd {
 			if ($this->getSubType() == 'color' && isset($options['color']) && substr($options['color'], 0, 1) != '#') {
 				$options['color'] = cmd::convertColor($options['color']);
 			}
+			if ($this->getType() == 'action') {
+				log::add('event', 'event', __('Execution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . print_r($options, true));
+			}
 			$value = $this->formatValue($this->execute($options));
 		} catch (Exception $e) {
 			//Si impossible de contacter l'équipement
@@ -917,6 +920,7 @@ class cmd {
 		}
 		$_loop++;
 		$value = $this->formatValue($_value);
+		log::add('event', 'event', __('Evenement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $_value);
 		cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
 		scenario::check($this);
 		$this->setCollect(0);
