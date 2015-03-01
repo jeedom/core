@@ -549,7 +549,7 @@ class scenario {
 			$this->persistLog();
 			return;
 		}
-		log::add('event', 'event', __('Lancement du scénario ', __FILE__) . $this->getHumanName() . __(' déclencher par : ', __FILE__) . $_trigger);
+		log::add('event', 'event', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclencher par : ', __FILE__) . $_trigger);
 		if ($this->getConfiguration('speedPriority', 0) == 0) {
 			$this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
 			$this->setDisplay('icon', '');
