@@ -500,7 +500,8 @@
         "Version disponible": "Version disponible",
         "Statut": "Statut",
         "Actions": "Actions",
-        "Informations :": "Informations :"
+        "Informations :": "Informations :",
+        "Vérifier les objets et mises à jour": "Vérifier les objets et mises à jour"
     },
     "desktop\/php\/jeeNetwork.php": {
         "Ajouter un Jeedom": "Ajouter un Jeedom",
