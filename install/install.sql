@@ -11,6 +11,8 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema jeedom
 -- -----------------------------------------------------
 
+ALTER DATABASE CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
 -- -----------------------------------------------------
 -- Table `object`
 -- -----------------------------------------------------
