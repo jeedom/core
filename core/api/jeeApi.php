@@ -100,6 +100,9 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 					throw new Exception('Action non trouvée ou invalide [start,stop,deactivate,activate]');
 			}
 			echo 'ok';
+		} else if ($type == 'message') {
+			log::add('api', 'debug', 'Demande api pour ajouter un message');
+			message::add(init('category'), init('message'));
 		} else {
 			if (class_exists($type)) {
 				if (method_exists($type, 'event')) {
