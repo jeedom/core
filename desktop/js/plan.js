@@ -666,33 +666,38 @@ function displayFrameObject(name, _type, _id, _html, _plan, _noRender) {
 
 function addGraphFrame(name, _plan) {
    var parent = {
-   height: $(name).height(),
-   width: $(name).width(),
+       height: $(name).height(),
+       width: $(name).width(),
    };
    _plan = init(_plan, {});
    _plan.display = init(_plan.display, {});
    _plan.link_id = init(_plan.link_id, Math.round(Math.random() * 99999999) + 9999);
    var options = init(_plan.display.graph, '[]');
-   var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="background-color : white;border : solid 1px black;">';
-   html += '<i class="fa fa-cogs cursor pull-right editMode configureGraph" style="margin-right : 5px;margin-top : 5px;display:none;"></i>';
-   html += '<span class="graphOptions" style="display:none;">' + json_encode(init(_plan.display.graph, '[]')) + '</span>';
-   html += '<div class="graph" id="graph' + _plan.link_id + '" style="width : 100%;height : 100%;"></div>';
-   html += '</div>';
-   displayFrameObject(name, 'graph', _plan.link_id, html, _plan);
-   for (var i in options) {
-      if (init(options[i].link_id) != '') {
-         jeedom.history.drawChart({
-            cmd_id: options[i].link_id,
-            el: 'graph' + _plan.link_id,
-            showLegend: init(_plan.display.showLegend, true),
-            showTimeSelector: init(_plan.display.showTimeSelector, false),
-            showScrollbar: init(_plan.display.showScrollbar, true),
-            dateRange: init(_plan.display.dateRange, '7 days'),
-            option: init(options[i].configuration, {}),
-            global: false,
-         });
-      }
-   }
+   var background_color = 'background-color : white;';
+   if(init(_plan.display.transparentBackground, false)){
+    background_color = '';
+}
+var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="'+background_color+'border : solid 1px black;">';
+html += '<i class="fa fa-cogs cursor pull-right editMode configureGraph" style="margin-right : 5px;margin-top : 5px;display:none;"></i>';
+html += '<span class="graphOptions" style="display:none;">' + json_encode(init(_plan.display.graph, '[]')) + '</span>';
+html += '<div class="graph" id="graph' + _plan.link_id + '" style="width : 100%;height : 100%;"></div>';
+html += '</div>';
+displayFrameObject(name, 'graph', _plan.link_id, html, _plan);
+for (var i in options) {
+  if (init(options[i].link_id) != '') {
+     jeedom.history.drawChart({
+        cmd_id: options[i].link_id,
+        el: 'graph' + _plan.link_id,
+        showLegend: init(_plan.display.showLegend, true),
+        showTimeSelector: init(_plan.display.showTimeSelector, false),
+        showScrollbar: init(_plan.display.showScrollbar, true),
+        dateRange: init(_plan.display.dateRange, '7 days'),
+        option: init(options[i].configuration, {}),
+        transparentBackground : init(_plan.display.transparentBackground, false),
+        global: false,
+    });
+ }
+}
 }
 
 function displayObject(_type, _id, _html, _plan, _noRender) {
@@ -856,7 +861,11 @@ function addGraph(_plan) {
     _plan.display = init(_plan.display, {});
     _plan.link_id = init(_plan.link_id, Math.round(Math.random() * 99999999) + 9999);
     var options = init(_plan.display.graph, '[]');
-    var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="background-color : white;border : solid 1px black;">';
+    var background_color = 'background-color : white;';
+    if(init(_plan.display.transparentBackground, false) == '1'){
+        background_color = '';
+    }
+    var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="'+background_color+'border : solid 1px black;">';
     if ($('#bt_editPlan').attr('data-mode') == "1") {
         html += '<i class="fa fa-cogs cursor pull-right editMode configureGraph" style="margin-right : 5px;margin-top : 5px;"></i>';
     } else {
@@ -873,10 +882,12 @@ function addGraph(_plan) {
                 cmd_id: options[i].link_id,
                 el: 'graph' + _plan.link_id,
                 showLegend: init(_plan.display.showLegend, true),
-                showTimeSelector: init(_plan.display.showTimeSelector, true),
+                showTimeSelector: init(_plan.display.showTimeSelector, false),
                 showScrollbar: init(_plan.display.showScrollbar, true),
                 dateRange: init(_plan.display.dateRange, '7 days'),
                 option: init(options[i].configuration, {}),
+                transparentBackground : init(_plan.display.transparentBackground, false),
+                showNavigator : init(_plan.display.showNavigator, true),
                 global: false,
             });
         }
