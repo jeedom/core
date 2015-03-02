@@ -5,8 +5,11 @@ if (!hasRight('scenarioview', true)) {
 
 $scenarios = array();
 $scenarios[-1] = scenario::all(null);
-foreach (scenario::listGroup() as $group) {
-	$scenarios[$group['group']] = scenario::all($group['group']);
+$scenarioListGroup = scenario::listGroup();
+if (is_array($scenarioListGroup)) {
+	foreach ($scenarioListGroup as $group) {
+		$scenarios[$group['group']] = scenario::all($group['group']);
+	}
 }
 ?>
 
@@ -47,18 +50,20 @@ foreach ($scenarios[-1] as $scenario) {
                         </ul>
                         <?php }?>
                         <?php
-foreach (scenario::listGroup() as $group) {
-	if ($group['group'] != '' && count($scenarios[$group['group']]) > 0) {
-		echo '<li data-jstree=\'{"opened":true}\'>';
-		echo '<a>' . $group['group'] . '</a>';
-		echo '<ul>';
-		foreach ($scenarios[$group['group']] as $scenario) {
-			echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-			echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
+if (is_array($scenarioListGroup)) {
+	foreach ($scenarioListGroup as $group) {
+		if ($group['group'] != '' && count($scenarios[$group['group']]) > 0) {
+			echo '<li data-jstree=\'{"opened":true}\'>';
+			echo '<a>' . $group['group'] . '</a>';
+			echo '<ul>';
+			foreach ($scenarios[$group['group']] as $scenario) {
+				echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
+				echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
+				echo '</li>';
+			}
+			echo '</ul>';
 			echo '</li>';
 		}
-		echo '</ul>';
-		echo '</li>';
 	}
 }
 ?>

@@ -80,6 +80,9 @@ class scenario {
 			}
 			$sql .= ' ORDER BY ob.name,s.group, s.name';
 			$result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+			if (!is_array($result1)) {
+				$result1 = array();
+			}
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
             FROM scenario s
             WHERE s.object_id IS NULL';
@@ -101,6 +104,9 @@ class scenario {
 			}
 			$sql .= ' ORDER BY s.group, s.name';
 			$result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+			if (!is_array($result1)) {
+				$result1 = array();
+			}
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
             FROM scenario s
             WHERE (`group` IS NULL OR `group` = "")
