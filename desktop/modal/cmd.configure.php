@@ -236,6 +236,12 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
 
 
         <?php if ($cmd->getType() == 'action') {?>
+          <div class="form-group">
+            <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Confirmer l'action}}</label>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="actionConfirm" />
+            </div>
+        </div>
         <div class="form-group">
             <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Code d'accès}}</label>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">

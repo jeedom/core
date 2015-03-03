@@ -79,7 +79,51 @@ jeedom.cmd.execute = function(_params) {
 
             });
              }
-         }else{
+         }else if(data.code == -32006){
+             if ($.mobile) {
+                 var result = confirm("Etes vous sur de vouloir faire cette action ?")
+                 if(result){
+                    _params.confirmAction = 1;
+                    jeedom.cmd.execute(_params);
+                }else{
+                    if ('function' != typeof(_params.error)) {
+                        $('#div_alert').showAlert({
+                            message: data.result,
+                            level: 'danger'
+                        });
+                    }
+                    if (notify) {
+                        eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
+                        setTimeout(function() {
+                            eqLogic.find('.statusCmd').empty();
+                        }, 3000);
+                    }
+                    return data;
+                }
+            }else{
+                bootbox.confirm("Etes vous sur de vouloir faire cette action ?", function (result) {
+                    if(result){
+                     _params.confirmAction = 1;
+                     jeedom.cmd.execute(_params);
+                 }else{
+                    if ('function' != typeof(_params.error)) {
+                        $('#div_alert').showAlert({
+                            message: data.result,
+                            level: 'danger'
+                        });
+                    }
+                    if (notify) {
+                        eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
+                        setTimeout(function() {
+                            eqLogic.find('.statusCmd').empty();
+                        }, 3000);
+                    }
+                    return data;
+                }
+
+            });
+            }
+        }else{
             if ('function' != typeof(_params.error)) {
                 $('#div_alert').showAlert({
                     message: data.result,
@@ -120,7 +164,8 @@ if (_params.cache !== undefined) {
 paramsAJAX.data = {
     action: 'execCmd',
     id: _params.id,
-    codeAccess: _params.codeAccess,
+    codeAccess: _params.codeAccess || '',
+    confirmAction: _params.confirmAction || '',
     cache: cache,
     value: _params.value || ''
 };
