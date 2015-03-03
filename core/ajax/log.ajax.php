@@ -17,46 +17,46 @@
  */
 
 try {
-    require_once(dirname(__FILE__) . '/../../core/php/core.inc.php');
-    include_file('core', 'authentification', 'php');
+	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+	include_file('core', 'authentification', 'php');
 
-    if (!isConnect('admin')) {
-        throw new Exception(__('401 - Accès non autorisé', __FILE__));
-    }
+	if (!isConnect('admin')) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__));
+	}
 
-    if (init('action') == 'clear') {
-        log::clear(init('logfile'));
-        ajax::success();
-    }
+	if (init('action') == 'clear') {
+		log::clear(init('logfile'));
+		ajax::success();
+	}
 
-    if (init('action') == 'remove') {
-        log::remove(init('logfile'));
-        ajax::success();
-    }
+	if (init('action') == 'remove') {
+		log::remove(init('logfile'));
+		ajax::success();
+	}
 
-    if (init('action') == 'removeAll') {
-        log::removeAll();
-        ajax::success();
-    }
+	if (init('action') == 'removeAll') {
+		log::removeAll();
+		ajax::success();
+	}
 
-    if (init('action') == 'get') {
-        if (init('jeeNetwork_id') != '') {
-            $jeeNetwork = jeeNetwork::byId(init('jeeNetwork_id'));
-            if (is_object($jeeNetwork)) {
-                $jeeNetwork->getLog(init('log'), init('start', 0), init('nbLine', 3000));
-            }
-        } else {
-            ajax::success(log::get(init('logfile'), init('start', 0), init('nbLine', 3000)));
-        }
-    }
+	if (init('action') == 'get') {
+		if (init('jeeNetwork_id') != '') {
+			$jeeNetwork = jeeNetwork::byId(init('jeeNetwork_id'));
+			if (is_object($jeeNetwork)) {
+				$jeeNetwork->getLog(init('log'), init('start', 0), init('nbLine', 99999));
+			}
+		} else {
+			ajax::success(log::get(init('logfile'), init('start', 0), init('nbLine', 99999)));
+		}
+	}
 
-    if (init('action') == 'getNbLine') {
-        ajax::success(log::nbLine(init('logfile')));
-    }
+	if (init('action') == 'getNbLine') {
+		ajax::success(log::nbLine(init('logfile')));
+	}
 
-    throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
-    /*     * *********Catch exeption*************** */
+	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-    ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayExeption($e), $e->getCode());
 }
 ?>
