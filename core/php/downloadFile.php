@@ -16,15 +16,23 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once(dirname(__FILE__) . '/../../core/php/core.inc.php');
+require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 include_file('core', 'authentification', 'php');
 if (!isConnect()) {
-    throw new Exception(__('401 - Accès non autorisé', __FILE__));
+	throw new Exception(__('401 - Accès non autorisé', __FILE__));
 }
 $pathfile = calculPath(urldecode(init('pathfile')));
-if (!file_exists($pathfile)) {
-    throw new Exception(__('Fichier non trouvé : ', __FILE__) . $pathfile);
+if (strpos($pathfile, '.php') !== false) {
+	throw new Exception(__('401 - Accès non autorisé', __FILE__));
 }
+$rootPath = realpath(dirname(__FILE__) . '/../../');
+if (strpos($pathfile, $rootPath) === false) {
+	throw new Exception(__('401 - Accès non autorisé', __FILE__));
+}
+if (!file_exists($pathfile)) {
+	throw new Exception(__('Fichier non trouvé : ', __FILE__) . $pathfile);
+}
+
 $path_parts = pathinfo($pathfile);
 header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename=' . $path_parts['basename']);
