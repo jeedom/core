@@ -1,5 +1,6 @@
 ==== Description
 La page profils vous permet de configurer certain comportement de jeedom spécifique à votre utilisateur : page d'accueil, 
-themes de la version desktop, de la verison mobile, des graphiques... Elle permet aussi de changer votre mot de passe.
+themes de la version desktop, de la version mobile, des graphiques... Elle permet aussi de changer votre mot de passe et de passer
+en mode expert permettant une configuration plus poussée de jeddom.
 
 image::../images/profils.JPG[]
