@@ -1,4 +1,4 @@
-Page permet de configuration l'affichage de toute votre domotique de maniere très fine. Celle-ci demande du temps mais 
+Cette page permet de configurer l'affichage de toute votre domotique de manière très fine. Celle-ci demande du temps mais 
 sa seule limite est votre imagination.
 
 image::../images/design.JPG[]
