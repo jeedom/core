@@ -25,7 +25,7 @@ Non ce n'est pas possible, mais il existe les vues pour ça
 [panel,primary]
 .Peut on reordonner les commandes d'un équipement
 --
-Oui c'est possible il suffit de glisser/deposer les commandes de votre objets sur ça configuration
+Oui c'est possible il suffit de glisser/deposer les commandes de votre objets sur sa configuration
 --
 
 [panel,primary]
@@ -41,27 +41,27 @@ Non ce n'est pas possible, mais vous pouvez dupliquer celui-ci grace au plugin v
 --
 
 [panel,primary]
-.Comment changer une donner erronée de l'historique
+.Comment changer une donnée erronée de l'historique
 --
-Il suffit sur une courbe historique de la commande de cliquer sur le point en question. Si vous laissez le champs alors la valeur est supprimé
+Il suffit sur une courbe historique de la commande de cliquer sur le point en question. Si vous laissez le champs vierge alors la valeur est supprimée
 --
 
 [panel,primary]
 .Comment enregistrer un ordinateur pour ne plus avoir à s'identifier
 --
-Il suffit lors de la connexion de cocher la case "Enregistrer cer ordinateur"
+Il suffit lors de la connexion de cocher la case "Enregistrer cet ordinateur"
 --
 
 [panel,primary]
-.On me demande de mettre à jour jeedom alors qu'il ne me propose rien meme après verification
+.On me demande de mettre à jour jeedom alors qu'il ne me propose rien meme après vérification
 --
-C'est normale, pendant la pahse de developpement de la futur beta les numéros de version ne sont pas incrementés après chaque mise à jour
+C'est normal, pendant la phase de developpement de la futur beta les numéros de version ne sont pas forcement incrementés après chaque mise à jour
 --
 
 [panel,primary]
 .Combien de temp doit durer un backup
 --
-Il n' a pas de durée standard, cela depend du systeme mais il peut prendre plus de 5min, c'est normale
+Il n'y a pas de durée standard, cela depend du systeme mais il peut prendre plus de 5min, c'est normal
 --
 
 [panel,primary]
@@ -74,7 +74,8 @@ Il est tout à fait possible que des développeurs tiers réalisent dans le futu
 [panel,primary]
 .Quels sont les identifiants pour me connecter la première fois ?
 --
-Lors de votre première connexion à Jeedom (et même après si vous ne les avez pas modifiés) le nom d'utilisateur et le mot de passe par défaut sont admin. Il est fortement conseillé de les modifier pour plus de sécurité.
+Lors de votre première connexion à Jeedom (et même après si vous ne les avez pas modifiés) le nom d'utilisateur et le mot de passe par défaut sont admin.
+A la première connexion, il vous est fortement demandé de modifier ces identifiants pour plus de sécurité
 --
 
 [panel,primary]
@@ -96,7 +97,7 @@ Dans ce fichier se trouve la configuration de la base de données :
     );
 ----
 
-Il suffiit de modifier les paramètres en fonction des identifiants de la base Jeedom sur le serveur MySQL.
+Il suffit de modifier les paramètres en fonction des identifiants de la base Jeedom sur le serveur MySQL.
 On exécute ces changements :
 
 ----
@@ -109,13 +110,13 @@ Le tour est joué !
 [panel,primary]
 .Ou acheter la mini ?
 --
-La Jeedom Mini est commercialisée chez notre partenaire http://www.domadoo.fr/ à partir de 119.00€
+La Jeedom Mini est commercialisée chez notre partenaire http://www.domadoo.fr/.
 --
 
 [panel,primary]
 .Quelle est la date de sortie de la Jeedom Center ?
 --
-La Jeedom Center est prévue pour début l'année 2015.
+La Jeedom Center est prévue dans le courant de cette année.
 --
 
 [panel,primary]
@@ -133,7 +134,9 @@ Par défaut Jeedom est à la racine de Nginx sur les box. Vous n'avez plus à ra
 [panel,primary]
 .Peut on mettre Jeedom en https
 --
-Oui, 2 possibilités, soit avez un DNS et vous savez mettre en place un certificat valide, dans ce cas c'est une installation standard d'un certificat. Soit vous n'avez pas de DNS, et avoir un certificat auto-signé (pour rappel un certificat auto-signé assure le cryptage des données mais pas la validation du site) ne vous gène pas, dans ce cas il faut faire ce qui suit, si ça ne marche pas quand vous mettez https devant l'URL : 
+Oui, 2 possibilités :
+- Soit avez un DNS et vous savez mettre en place un certificat valide, dans ce cas c'est une installation standard d'un certificat.
+ - Soit vous n'avez pas de DNS, et avoir un certificat auto-signé (pour rappel un certificat auto-signé assure le cryptage des données mais pas la validation du site) ne vous gêne pas, dans ce cas il faut faire ce qui suit, si ça ne marche pas quand vous mettez https devant l'URL :
 
 ----
 sudo su -
@@ -154,10 +157,10 @@ Rendez vous sur le market, connectez vous avec votre compte puis aller sur votre
 .Qu'est ce que evenement seulement et  lifetime cache ?
 --
 
-- Évènement seulement : indique à Jeedom de ne jamais demander la valeur (c'est l'équipement qui la remonte). Donc lors de la réception d'une valeur, celle-ci a une durée de vie infinie (jusqu’à la réception suivante).
+- Évènement seulement : indique à Jeedom de ne jamais demander la valeur (c'est l'équipement qui la remonte). Donc lors de la réception d'une valeur, celle-ci à une durée de vie infinie (jusqu’à la réception de la suivante).
 - Lifetime cache : Durée de validité d'une valeur, si vous mettez 60 secondes par exemple, quand la valeur datetera de plus de 60 ET que jeedom en a besoin (dashboard, scénario...) alors il ira interroger le module pour avoir une valeur à jour
 
-Attention ces 2 options sont reservées aux utilisateurs avancés qui comprennent parfaitement leur fonction, une erreur de configuration la dedans peut rendre une installation instable voir inopérante. Par exemple en zwave, rfxcom et enocean la case evenement seulement devrait TOUJOURS etre cochée
+Attention ces 2 options sont reservées aux utilisateurs avancés qui comprennent parfaitement leur fonction, une erreur de configuration dans cette partie peut rendre une installation instable voir inopérante. Par exemple en zwave, rfxcom et enocean la case evenement seulement devrait TOUJOURS etre cochée
 --
 
 [panel,primary]
