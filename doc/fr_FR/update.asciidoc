@@ -1,11 +1,11 @@
 Le centre de mise à jour centralise l'ensemble des fonctions de Jeedom, et permet de mettre à jour toutes les fonctionnalités de Jeedom, incluant le logiciel de base, les plugins, les widgets, etc...
 
-Il présente sous forme de tableau l'ensemble des éléments installés dans Jeedom. Si on est en mode Expert on affiche tous les élements, si non, on affiche uniquement les éléments à mettre à jour.
+Il présente sous forme de tableau l'ensemble des éléments installés dans Jeedom. Rn mode Expert, on affiche tous les élements, 
+si non, on affiche uniquement les éléments à mettre à jour.
 
 Il y a au total jusqu'à 5 boutons qui peuvent être disponibles par élément :
 "Voir" permet de consulter la page du market correspondant à l'élément selectionné.
 "Partager" permet lorsque vous avez créé un élément de le partager sur le market.
-"Bloquer" permet de bloquer les mises à jour sur cet élément.
 "Supprimer" permet de désinstaller un élément.
 "Mettre à jour" permet de mettre à jour l'élément.
 
@@ -13,17 +13,21 @@ A noter que "Core" Jeedom signifie la mise à jour du logiciel de base Jeedom.
 
 image::../images/update.JPG[]
 
-En haut du tableau se trouvent les boutons de commande. Jeedom se connecte périodiquement avec le market pour voir si des mises à jour sont disponibles. Si vous voulez réaliser une vérification mannuellement, vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
+En haut du tableau se trouvent les boutons de commande. Jeedom se connecte périodiquement avec le market 
+pour voir si des mises à jour sont disponibles. Si vous voulez réaliser une vérification manuelle, 
+vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
 
 Le bouton "Mettre à jour" permet de mettre à jour l'ensemble de Jeedom.
 
 image::../images/update2.png[]
 
 En cliquant sur la flêche à côté du bouton "Mettre à jour" on a un certain nombre d'options de mise à jour.
+A noter que l'option "tout + systeme" est à risqué et à faire seulement si l'équipe Jeedom le sollicite
 
 image::../images/update3.png[]
 
 Enfin à droite de la page, la partie "Informations" permet de suivre l'état de la mise à jour.
+Ces informations sont à communiquer à l'équipe en cas de probleme.
 
 image::../images/update4.png[]
 
