@@ -1,18 +1,22 @@
 ===== Description
 Page permettant d'interconnecter plusieurs Jeedom en mode maitre/esclave. Cette possibilité permet par exemple de 
-deporter le zwave, le rfxcom, l'enOcean ou le GSM sur d'autre raspberry piou Jeedom mini. Vous pourrez aussi à partir de 
+déporter le zwave, le rfxcom, l'enOcean ou le GSM sur d'autre raspberry pi ou Jeedom mini. Vous pourrez aussi à partir de 
 cette page avoir un status de vos Jeedom esclave, consulter leur log, les mettres à jour, les arrêter...
 
 image::../images/jeeNetwork.JPG[]
 
 ===== Configuration
-La configuration est assez simple, il faut tout d'abord décider le systeme maitre et esclave. Ensuite sur l'esclave il fuat aller dans Générale -> Administration -> Configuration dans la partie "Configuration réseaux" et cliquer sur esclave : 
+La configuration est assez simple, il faut tout d'abord décider le systeme maitre et esclave. 
+Ensuite sur l'esclave il faut aller dans Générale -> Administration -> Configuration dans la partie "Configuration réseaux" 
+et cliquer sur esclave : 
 
 image::../images/jeeNetwork2.JPG[]
 
-Il vous faut ensuite installer les plugins voulu en déportés (attention tous les plugins ne sont pas forcement compatible), les activer et configurer.
+Il faut ensuite installer les plugins voulus en déportés (attention tous les plugins ne sont pas forcement compatible), 
+les activer et configurer.
 
-Ensuite du coté du maitre vous devez dans Générale -> Administration -> Configuration dans la partie "Configuration réseaux" remplir la partie "Accès interne" : 
+Ensuite du coté du maitre vous devez dans Générale -> Administration -> Configuration dans la partie "Configuration réseaux" 
+remplir la partie "Accès interne" : 
 
 image::../images/jeeNetwork3.JPG[]
 
@@ -28,7 +32,7 @@ Ensuite, toujours sur le maitre aller sur Générale -> Administration -> Résea
 image::../images/jeeNetwork.JPG[]
 
 - donné lui un nom
-- indiquer l'ip de l'esclave (ne pas oublié le /jeedom si vous n'avez pas une mini, center ou pro)
+- indiquer l'IP de l'esclave (ne pas oublié le /jeedom si vous n'avez pas une mini, center ou pro)
 - la clef API de l'esclave (elle se trouve sur l'esclave dans Générale -> Administration -> Configuration)
 - sauvegarder
 
@@ -39,5 +43,5 @@ Si vous avez un message tout est lié, normalement le maitre devrais detecter au
 [panel,danger]
 .Erreur 404 lors d ela sauvegarde
 --
-C'est qu'il y a une erreur sur la configuration reseaux du maitre (en génarale)
+C'est qu'il y a une erreur sur la configuration reseaux du maitre (en général)
 --
