@@ -133,7 +133,7 @@ Par défaut Jeedom est à la racine de Nginx sur les box. Vous n'avez plus à ra
 [panel,primary]
 .Peut on mettre Jeedom en https
 --
-Oui, 2 possibilités, soit avez un DNS et vous savez mettre en place un certificat valide, dans ce cas c'est une installation standard d'un certificat. Soit vous n'avez pas de DNS et un certificat auto-signé (pour rappels un certificat auto-signé assure le cryptage des données mais pas la validation du site) ne vous genes pas, dans ce il faut faire (si quand vous mettez https devant l'URL ca ne marche pas) : 
+Oui, 2 possibilités, soit avez un DNS et vous savez mettre en place un certificat valide, dans ce cas c'est une installation standard d'un certificat. Soit vous n'avez pas de DNS, et avoir un certificat auto-signé (pour rappel un certificat auto-signé assure le cryptage des données mais pas la validation du site) ne vous gène pas, dans ce cas il faut faire ce qui suit, si ça ne marche pas quand vous mettez https devant l'URL : 
 
 ----
 sudo su -
