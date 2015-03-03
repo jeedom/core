@@ -6,11 +6,11 @@ image::../images/interact.JPG[]
 
 Le principe est assez simple on va définir une phrase génératrice qui va générer une à plusieurs centaines d’autres phrases qui seront des variantes de la première, définir des réponses dans le même genre (ça permet à Jeedom d’avoir plusieurs réponses pour une seule et même question) puis la commande à exécuter (je vais aussi rajouter la possibilité de contrôler un scénario).
 
-Au niveau de la configuration, on a le filtre qui permet de filtrer sur un type de commande, un sous type, un objet, un plugin ou une unité, ensuite vient la phrase de commande en elle même, puis la phrase de réponse. En dessous on peut configurer une réponse spécifique pour les commandes binaires et une série de synonymes pour la demande. Sur la colonne type on précise le type de l’action, et si on le désire on peut aussi spécifier la commande exacte à exécuter. L’avant dernière colonne permet de restreindre le droit à une action à une seule est unique personne (utile avec le plugin SARAH ou SMS pour que seul vous puissiez exécuter des ordres). Vous avez aussi le nombre total de phrases générées et le nombre de phrases actives dans celles générées.
+Au niveau de la configuration, on a le filtre qui permet de filtrer sur un type de commande, un sous type, un objet, un plugin ou une unité, ensuite vient la phrase de commande en elle même, puis la phrase de réponse. En dessous on peut configurer une réponse spécifique pour les commandes binaires et une série de synonymes pour la demande. Sur la colonne type on précise le type de l’action, et si on le désire on peut aussi spécifier la commande exacte à exécuter. L’avant dernière colonne permet de restreindre le droit à une action à une seule et unique personne (utile avec le plugin SARAH ou SMS pour que vous seul puissiez exécuter des ordres). Vous avez aussi le nombre total de phrases générées et le nombre de phrases actives dans celles générées.
 
-Vu que ça ne doit pas être encore très clair et que rien ne vaut les exemples en voici :
+Vu que ça ne doit pas être encore très clair et rien ne vaut les exemples que voici :
 
-Le plus simple je veux savoir s’il y a quelqu’un dans la chambre :
+Le plus simple : je veux savoir s’il y a quelqu’un dans la chambre :
 
 - La question est donc “y’a-t-il quelqu’un dans la chambre”
 - La réponse sera “oui il y a quelqu’un dans la chambre” ou “non il n’y a personne dans la chambre”
@@ -18,7 +18,7 @@ Le plus simple je veux savoir s’il y a quelqu’un dans la chambre :
 
 image::../images/interact2.JPG[]
 
-Ici on peut voir la case la question, ensuite en dessous on voit la conversion du binaire en phrase (sinon Jeedom me répondrait “1” ou “0”), puis dans la case en haut à droite la réponse avec #valeur# étant remplacée lors de la réponse. Ensuite dans la colonne type on voit le type de l’ordre, puis la commande à exécuter pour avoir la réponse à la question. Enfin tout à droite on voit bien qu’il y a une seule phrase de générée. 
+Ici on peut voir la case la question, ensuite en dessous on voit la conversion du binaire en phrase (sinon Jeedom me répondrait “1” ou “0”), puis dans la case en haut à droite la réponse avec "##valeur##" étant remplacée lors de la réponse. Ensuite dans la colonne type on voit le type de l’ordre, puis la commande à exécuter pour avoir la réponse à la question. Enfin tout à droite on voit bien qu’il y a une seule phrase de générée. 
 
 Plus compliqué maintenant, on voit bien que là pour chaque commande il faut tout écrire, c’est pas très pratique on va donc utiliser le système de génération. Ici un exemple générique qui me sert à connaître la température, l’humidité, la luminosité des différentes pièces (objet au sens Jeedom) chez moi.
 
@@ -27,7 +27,7 @@ Plus compliqué maintenant, on voit bien que là pour chaque commande il faut to
 
 image::../images/interact3.JPG[]
 
-Il suffit donc de remplir les champs comme ci-dessus. Pour vérifier le resultat il suffit de cliquer sur le nombre de phrases générées pour toutes les voir :
+Il suffit donc de remplir les champs comme ci-dessus. Pour vérifier le résultat il suffit de cliquer sur le nombre de phrases générées pour toutes les voir :
 
 image::../images/interact4.JPG[]
 
@@ -37,7 +37,7 @@ Dernier exemple l’utilisation de filtre. “Quelle est la température du salo
 
 - J’ai donc ma question “Combien fait-il dans le salon” qui pourrait être en version générique “#commande# [dans la |dans le| | sur le ] #objet#” mais en remplaçant “température” par “combien fait-il” ou “il fait combien”. Pour ça rien de plus simple il suffit d’utiliser le champs synonyme en mettant “température=combien fait-il,il fait combien|balcon=balcon,dehors” (j’en profite aussi pour remplacer balcon soit par balcon ou par dehors, ça me permettra d’avoir “combien fait-il dehors” par exemple)
 - Pour la réponse j’aimerais un truc du genre “Il fait 20 °C” ou “La température est de 20 °C” ou même “20°C”, il faut donc mettre : “[il fait |la température est de | ]#valeur# #unite#” (vous remarquerez que dans la liste de choix pour le début de la réponse on a “il fait”, “la température est de” et ” ” soit vide)
-- Enfin dernier problème je veux que cette commande ne soit valable que pour la température, je vais donc utiliser un filtre le plus simple ici étant de filtrer sur l’unité soit “°C”
+- Enfin dernier problème je veux que cette commande ne soit valable que pour la température, je vais donc utiliser un filtre, le plus simple ici étant de filtrer sur l’unité soit “°C”
 
 image::../images/interact5.JPG[]
 
@@ -54,15 +54,15 @@ Le principe est le suivant : une phrase de commande déclenche une unique comman
 ===== Résumé
 
 Demande::
-Vous pouvez utiliser #commande# et #objet# (les 2 doivent absolument être utilisés ensemble) pour générer une liste de commandes (il est possible de filtrer la génération pour réduire la liste). Il est aussi possible d'utiliser #equipement# (utile si plusieurs commandes appartenant au même objet ont le même nom)
-Exemple : Quelle est la #commande# [du |de la |de l']#objet#
+Vous pouvez utiliser "#commande#" et "#objet#" (les 2 doivent absolument être utilisés ensemble) pour générer une liste de commandes (il est possible de filtrer la génération pour réduire la liste). Il est aussi possible d'utiliser "#equipement#" (utile si plusieurs commandes appartenant au même objet ont le même nom)
+Exemple : Quelle est la "#commande#" [du |de la |de l']"#objet#"
 Lors de la génération des commandes vous pouvez utiliser le champ synonyme (syn1=syn2,syn3|syn4=syn5) pour remplacer le nom des objets, des équipements et/ou des commandes
-Pour les actions vous pouvez utiliser #color# (obligatoire si la commande est de type couleur) pour la valeur d'une couleur ou #slider# (obligatoire si la commande est de type slider) pour la valeur d'un slider.
+Pour les actions vous pouvez utiliser "#color#" (obligatoire si la commande est de type couleur) pour la valeur d'une couleur ou "#slider#" (obligatoire si la commande est de type slider) pour la valeur d'un slider.
 
 Réponse::
-Vous pouvez utiliser #valeur# et #unite# dans le retour (ils seront remplacés par la valeur et l'unité de la commande). Toutes les valeurs passées dans demande (#mavaleur#) sont accessibles. Vous avez aussi accès a tous les tag des scénario et à : 
-#profile# => Nom de la personne ayant lancé l'éxecution (peut ne pas etre disponible)
-Exemple : #valeur# #unite#
+Vous pouvez utiliser "#valeur#" et "#unite#" dans le retour (ils seront remplacés par la valeur et l'unité de la commande). Toutes les valeurs passées dans demande ("#mavaleur#") sont accessibles. Vous avez aussi accès a tous les tag des scénario et à : 
+"#profile#" => Nom de la personne ayant lancé l'éxecution (peut ne pas etre disponible)
+Exemple : "#valeur# #unite#"
 Vous pouvez utiliser le champ conversion binaire pour convertir les valeurs binaires (0 et 1) : 
 Exemple : non|oui
 
