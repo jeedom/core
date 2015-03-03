@@ -52,6 +52,9 @@
  	if (!_params['display'].is(':visible')) {
  		return;
  	}
+ 	if(isset(_params['control']) && _params['control'].attr('data-state') != 1){
+ 		return;
+ 	}
  	jeedom.log.get({
  		log : _params['log'],
  		global : false,
@@ -59,9 +62,11 @@
  			var log = '';
  			var regex = /<br\s*[\/]?>/gi;
  			for (var i in result.reverse()) {
- 				log += result[i][0]+' - ';
- 				log += result[i][2].replace(regex, "\n");
- 				log += "\n";
+ 				if(!isset(_params['search']) || _params['search'].value() == '' || result[i][2].toLowerCase().indexOf(_params['search'].value().toLowerCase()) != -1){
+ 					log += result[i][0]+' - ';
+ 					log += result[i][2].replace(regex, "\n");
+ 					log += "\n";
+ 				}
  			}
  			_params['display'].text(log);
  			_params['display'].scrollTop(_params['display'].height() + 200000);
