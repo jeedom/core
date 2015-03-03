@@ -5,7 +5,7 @@
 
 *01/03/2015 _v1.169.0_
 
-- Ajout d'un log d'evenement (execution de commande, reception d'un evenement et lancement d'un scnéario)
+- Ajout d'un log d'evenement (execution de commande, reception d'un evenement et lancement d'un scénario)
 - Correction d'un bug d'encodage de la base sur certaine installation jeedom
 
 *28/02/2015 _v1.168.0_
