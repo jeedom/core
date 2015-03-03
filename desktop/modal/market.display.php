@@ -325,23 +325,21 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
         $('.marketAttr[data-l1key=changelog]').html(html);
         var html = '';
         for(var i in market_display_info.changelog.reverse()){
-         html += '<strong>{{Version}} '+market_display_info.changelog[i].version+' - '+market_display_info.changelog[i].date+'</strong><br/>';
-         html += linkify(market_display_info.changelog[i].change);
-         html += '<br/><br/>';
-     }
-     $('#div_changelog').html(html);
- }else{
-    $('.marketAttr[data-l1key=changelog]').html(linkify(market_display_info.changelog))
-}
-$('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
-$('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
+           html += '<strong>{{Version}} '+market_display_info.changelog[i].version+' - '+market_display_info.changelog[i].date+'</strong><br/>';
+           html += linkify(market_display_info.changelog[i].change);
+           html += '<br/><br/>';
+       }
+       $('#div_changelog').html(html);
+   }
+   $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
+   $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
 
-$('#bt_paypalClick').on('click', function () {
+   $('#bt_paypalClick').on('click', function () {
     $(this).hide();
 });
 
 
-$("#div_comments").dialog({
+   $("#div_comments").dialog({
     autoOpen: false,
     modal: true,
     height: (jQuery(window).height() - 300),
@@ -354,7 +352,7 @@ $("#div_comments").dialog({
     }
 });
 
-$("#div_changelog").dialog({
+   $("#div_changelog").dialog({
     autoOpen: false,
     modal: true,
     height: (jQuery(window).height() - 300),
@@ -367,17 +365,17 @@ $("#div_changelog").dialog({
     }
 });
 
-$("#bt_viewCompleteChangelog").on('click',function(){
+   $("#bt_viewCompleteChangelog").on('click',function(){
     $('#div_changelog').dialog('open');
 });
 
-$('#bt_viewComment').on('click', function () {
+   $('#bt_viewComment').on('click', function () {
     reloadMarketComment();
     $('#div_comments').dialog('open');
 });
 
 
-function reloadMarketComment() {
+   function reloadMarketComment() {
     $('#div_comments').load('index.php?v=d&modal=market.comment&id=' + $('.marketAttr[data-l1key=id]').value());
 }
 
