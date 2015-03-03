@@ -48,7 +48,8 @@
         "Ouverture d'un ticket": "Ouverture d'un ticket",
         "Page générée en": "Page générée en",
         "Mise à jour disponible": "Mise à jour disponible",
-        "Mises à jour disponibles": "Mises à jour disponibles"
+        "Mises à jour disponibles": "Mises à jour disponibles",
+        "Voir les événements en temps réél": "Voir les événements en temps réél"
     },
     "core\/class\/scenario.class.php": {
         "Scénario exécuté automatiquement sur évènement venant de : ": "Scénario exécuté automatiquement sur évènement venant de : ",
@@ -57,7 +58,10 @@
         "Début d'exécution du scénario : ": "Début d'exécution du scénario : ",
         "Scénario exécuté sur évènement : #": "Scénario exécuté sur évènement : #",
         "Erreur : le scénario c'est incident (toujours marqué en cours mais arrêté)": "Erreur : le scénario c'est incident (toujours marqué en cours mais arrêté)",
-        "Echec lors de la suppression. Impossible de trouver le module ": "Echec lors de la suppression. Impossible de trouver le module "
+        "Echec lors de la suppression. Impossible de trouver le module ": "Echec lors de la suppression. Impossible de trouver le module ",
+        "Lancement du scénario ": "Lancement du scénario ",
+        " déclencher par : ": " déclencher par : ",
+        "Exécution du scénario ": "Exécution du scénario "
     },
     "desktop\/php\/plan.php": {
         "Ajouter un design": "Ajouter un design",
@@ -625,7 +629,12 @@
     },
     "core\/com\/http.com.php": {
         "Url : ": "Url : ",
-        "\nReponse : ": "\nReponse : "
+        "\nReponse : ": "\nReponse : ",
+        "Erreur curl : ": "Erreur curl : ",
+        " sur la commande ": " sur la commande ",
+        " après ": " après ",
+        " relance(s)": " relance(s)",
+        "Echec de la requête http : ": "Echec de la requête http : "
     },
     "desktop\/php\/security.php": {
         "Statut": "Statut",
@@ -797,7 +806,8 @@
         "Bienvenue dans Jeedom": "Bienvenue dans Jeedom",
         "Etes-vous sûr de vouloir arreter le système ?": "Etes-vous sûr de vouloir arreter le système ?",
         "Etes-vous sûr de vouloir redemarrer le système ?": "Etes-vous sûr de vouloir redemarrer le système ?",
-        "Choisissez votre icône": "Choisissez votre icône"
+        "Choisissez votre icône": "Choisissez votre icône",
+        "Evenement en temps réel": "Evenement en temps réel"
     },
     "install\/backup.php": {
         "***************Lancement de la sauvegarde de Jeedom***************\n": "***************Lancement de la sauvegarde de Jeedom***************\n",
@@ -881,7 +891,11 @@
     "core\/class\/cmd.class.php": {
         "Aucun": "Aucun",
         "Erreur sur ": "Erreur sur ",
-        "Le nom de la commande ne peut pas être vide :": "Le nom de la commande ne peut pas être vide :"
+        "Le nom de la commande ne peut pas être vide :": "Le nom de la commande ne peut pas être vide :",
+        "Evenement sur la commande ": "Evenement sur la commande ",
+        " valeur : ": " valeur : ",
+        "Execution de la commande ": "Execution de la commande ",
+        " avec les paramètres ": " avec les paramètres "
     },
     "desktop\/modal\/cron.human.insert.php": {
         "A exécuter": "A exécuter",
@@ -955,7 +969,8 @@
         "Ce scénario s'éxécute le plus rapidement possible il n'écris donc pas de log": "Ce scénario s'éxécute le plus rapidement possible il n'écris donc pas de log",
         "Vider les logs": "Vider les logs",
         "Log vidé avec succès": "Log vidé avec succès",
-        "Aucun log n'existe pour votre scénario : ": "Aucun log n'existe pour votre scénario : "
+        "Aucun log n'existe pour votre scénario : ": "Aucun log n'existe pour votre scénario : ",
+        "Télécharger": "Télécharger"
     },
     "desktop\/js\/scenario.js": {
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
@@ -1099,7 +1114,9 @@
         "Valider": "Valider",
         "Enregistrement réussi": "Enregistrement réussi",
         "Modification appliqués avec succès": "Modification appliqués avec succès",
-        "Visible": "Visible"
+        "Visible": "Visible",
+        "Confirmer l'action": "Confirmer l'action",
+        "Formule de calcul (#value# pour la valeur)": "Formule de calcul (#value# pour la valeur)"
     },
     "desktop\/js\/interact.js": {
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
@@ -1291,7 +1308,20 @@
         "Profondeur": "Profondeur",
         "Ne pas afficher le nom de l'équipement": "Ne pas afficher le nom de l'équipement",
         "Ne pas afficher le niveau de batterie": "Ne pas afficher le niveau de batterie",
-        "Ne pas afficher ": "Ne pas afficher "
+        "Ne pas afficher ": "Ne pas afficher ",
+        "Période": "Période",
+        "30min": "30min",
+        "Jour": "Jour",
+        "Semaine": "Semaine",
+        "Mois": "Mois",
+        "Années": "Années",
+        "Tous": "Tous",
+        "Bordure (attention syntax css, ex : solid 1px black": "Bordure (attention syntax css, ex : solid 1px black",
+        "Afficher la légende": "Afficher la légende",
+        "Afficher le selecteur de période": "Afficher le selecteur de période",
+        "Afficher la barre de défilement": "Afficher la barre de défilement",
+        "Fond transparent": "Fond transparent",
+        "Afficher le navigateur": "Afficher le navigateur"
     },
     "desktop\/modal\/icon.selector.php": {
         "Rechercher": "Rechercher",
@@ -1309,5 +1339,39 @@
         "techno": "techno",
         "transport": "transport",
         "Générale": "Générale"
+    },
+    "desktop\/modal\/event.log.php": {
+        "Vous devez activer tous les log de niveau event pour suivre en temps réel toute votre domotique": "Vous devez activer tous les log de niveau event pour suivre en temps réel toute votre domotique",
+        "Rechercher": "Rechercher",
+        "Pause": "Pause",
+        "Reprise": "Reprise"
+    },
+    "core\/php\/downloadFile.php": {
+        "Fichier non trouvé : ": "Fichier non trouvé : "
+    },
+    "desktop\/js\/history.js": {
+        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquel il faut supprimer l\\'historique de ": "Veuillez indiquer la date (Y-m-d H:m:s) avant laquel il faut supprimer l\\'historique de ",
+        "Historique supprimé avec succès": "Historique supprimé avec succès"
+    },
+    "desktop\/modal\/cmd.graph.select.php": {
+        "Objet": "Objet",
+        "Nom": "Nom",
+        "Affichage": "Affichage",
+        "Bleu": "Bleu",
+        "Rouge": "Rouge",
+        "Vert": "Vert",
+        "Violet": "Violet",
+        "Bleu ciel": "Bleu ciel",
+        "Orange": "Orange",
+        "Jaune": "Jaune",
+        "Rose": "Rose",
+        "Noir": "Noir",
+        "Vert\/Bleu": "Vert\/Bleu",
+        "Ligne": "Ligne",
+        "Aire": "Aire",
+        "Colonne": "Colonne"
+    },
+    "core\/ajax\/cmd.ajax.php": {
+        "Cette action nécessite une confirmation": "Cette action nécessite une confirmation"
     }
 }
