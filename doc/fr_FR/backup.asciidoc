@@ -1,4 +1,4 @@
-C'est ici que on va pouvoir gérer ses sauvegardes de Jeedom. Plusieurs options sont disponibles.
+C'est ici que l'on va pouvoir gérer ses sauvegardes de Jeedom. Plusieurs options sont disponibles.
 
 La première rubrique permet de paramétrer ses sauvegardes automatiques. Définir la fréquence, l'emplacement sur le disque, et également le nombre de jour pendant lequel les sauvegardes sont conservées avant d'être éffacées. Vous avez la possibilité d'envoyer automatiquement ces sauvegardes sur le service cloud de sauvegarde. Enfin via le bouton Sauvegarder, vous pouvez réaliser une sauvegarde manuelle.
 
