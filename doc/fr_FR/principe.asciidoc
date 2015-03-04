@@ -27,4 +27,5 @@ le fonctionnement de votre domotique meme si vous n'avez plus internet. Cela gar
 aussi la sécurité de vos données (évite les risques de piratage en masse de comptes).
 
 Le projet étant ouvert et open-source cela lui garanti aussi un fort taux d'évolution 
-grâce aux nombreux developpeurs (et relecteurs) qui y participent.
+grâce aux nombreux contributeurs qui y participent.
+(Administrateurs, Beta-testeurs, Documenteurs, Développeurs Hardware, Développeurs Software, Modérateurs globaux, Traducteurs)
