@@ -41,8 +41,8 @@ $backup_ok = false;
 $update_begin = false;
 try {
     require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-    echo __("***************Installation/Mise a jour de Jeedom " . getVersion('jeedom') . "***************\n", __FILE__);
-    echo "Parametres de la mise à jour : level : " . init('level', -1) . ", mode : " . init('mode') . " \n";
+    echo __("***************Installation/Mise à jour de Jeedom " . getVersion('jeedom') . "***************\n", __FILE__);
+    echo "Paramètres de la mise à jour : level = " . init('level', -1) . ", mode = " . init('mode') . " \n";
 
     try {
         $curentVersion = config::byKey('version');
@@ -92,12 +92,12 @@ try {
             if (init('v') == '') {
                 try {
                     $url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip';
-                    echo __("Adresse de telechargement : " . $url . "\n", __FILE__);
-                    echo __("Telechargement en cours...", __FILE__);
+                    echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
+                    echo __("Téléchargement en cours...", __FILE__);
                     $tmp_dir = dirname(__FILE__) . '/../tmp';
                     $tmp = $tmp_dir . '/jeedom_update.zip';
                     if (!is_writable($tmp_dir)) {
-                        throw new Exception(__('Impossible d\'ecrire dans le repertoire : ', __FILE__) . $tmp . __('. Executer la commande suivante en SSH : chmod 777 -R ', __FILE__) . $tmp_dir);
+                        throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Veuillez exécuter la commande suivante en SSH : chmod 777 -R ', __FILE__) . $tmp_dir);
                     }
                     $url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip';
                     if (file_exists($tmp)) {
@@ -105,10 +105,10 @@ try {
                     }
                     file_put_contents($tmp, fopen($url, 'r'));
                     if (!file_exists($tmp)) {
-                        throw new Exception(__('Impossible de telecharger le fichier depuis : ' . $url . '. Si l\'application est payante, l\'avez vous achetee ?', __FILE__));
+                        throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '. Si l\'application est payante, vérifiez que vous l\'avez bien achetée.', __FILE__));
                     }
                     if (filesize($tmp) < 10) {
-                        throw new Exception(__('Echec lors du telechargement du fichier veuillez reessayer plus tard (taile inferieur a 10 octets)', __FILE__));
+                        throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 10 octets)', __FILE__));
                     }
 
                     $cibDir = dirname(__FILE__) . '/../tmp/jeedom';
@@ -116,18 +116,18 @@ try {
                         rrmdir($cibDir);
                     }
                     if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
-                        throw new Exception(__('Impossible de creer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
+                        throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
                     }
                     echo __("OK\n", __FILE__);
-                    echo __("Decompression en cours...", __FILE__);
+                    echo __("Décompression en cours...", __FILE__);
                     $zip = new ZipArchive;
                     if ($zip->open($tmp) === TRUE) {
                         if (!$zip->extractTo($cibDir)) {
-                            throw new Exception(__('Impossible d\'installer la mise a jour. Les fichiers n\'ont pu être decompresses', __FILE__));
+                            throw new Exception(__('Impossible d\'installer la mise à jour. Les fichiers n\'ont pas pu être décompressés', __FILE__));
                         }
                         $zip->close();
                     } else {
-                        throw new Exception(__('Impossible de decompresser le zip : ', __FILE__) . $tmp);
+                        throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
                     }
                     echo __("OK\n", __FILE__);
                     echo __("Installation en cours...", __FILE__);
@@ -147,9 +147,9 @@ try {
             include dirname(__FILE__) . '/../core/config/version.config.php';
 
             if (init('v') != '') {
-                echo __("La mise a jour ", __FILE__) . init('v') . __(" va être reapliquee. Voulez vous continuer  ? [o/N] ", __FILE__);
+                echo __("La mise à jour ", __FILE__) . init('v') . __(" va être appliquée à nouveau. Voulez-vous continuer ? [o/N] ", __FILE__);
                 if (trim(fgets(STDIN)) !== 'o') {
-                    echo __("Mise a jour forcee de Jeedom est annulee\n", __FILE__);
+                    echo __("La mise à jour forcée de Jeedom est annulée\n", __FILE__);
                     jeedom::start();
                     echo "[END UPDATE SUCCESS]\n";
                     exit(0);
@@ -157,7 +157,7 @@ try {
                 $updateSql = dirname(__FILE__) . '/update/' . init('v') . '.sql';
                 if (file_exists($updateSql)) {
                     try {
-                        echo __("Mise a jour BDD en version : ", __FILE__) . init('v') . "\n";
+                        echo __("Mise à jour de la base de données en version : ", __FILE__) . init('v') . "\n";
                         $sql = file_get_contents($updateSql);
                         DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
                         echo "OK\n";
@@ -172,7 +172,7 @@ try {
                 $updateScript = dirname(__FILE__) . '/update/' . init('v') . '.php';
                 if (file_exists($updateScript)) {
                     try {
-                        echo __("Mise a jour systeme en version : ", __FILE__) . init('v') . "\n";
+                        echo __("Mise à jour du système en version : ", __FILE__) . init('v') . "\n";
                         require_once $updateScript;
                         echo __("OK\n", __FILE__);
                     } catch (Exception $e) {
@@ -189,7 +189,7 @@ try {
                     $updateSql = dirname(__FILE__) . '/update/' . $nextVersion . '.sql';
                     if (file_exists($updateSql)) {
                         try {
-                            echo __("Mise a jour BDD en version : ", __FILE__) . $nextVersion . "...";
+                            echo __("Mise à jour de la base de données en version : ", __FILE__) . $nextVersion . "...";
                             $sql = file_get_contents($updateSql);
                             DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
                             echo "OK\n";
@@ -204,7 +204,7 @@ try {
                     $updateScript = dirname(__FILE__) . '/update/' . $nextVersion . '.php';
                     if (file_exists($updateScript)) {
                         try {
-                            echo __("Mise a jour systeme en version : ", __FILE__) . $nextVersion . "...";
+                            echo __("Mise à jour du système en version : ", __FILE__) . $nextVersion . "...";
                             require_once $updateScript;
                             echo __("OK\n", __FILE__);
                         } catch (Exception $e) {
@@ -219,19 +219,19 @@ try {
                 }
             }
             try {
-                echo __("Verification de la mise a jour...", __FILE__);
+                echo __("Vérification de la mise à jour...", __FILE__);
                 update::checkAllUpdate('core');
                 config::save('version', getVersion('jeedom'));
                 echo __("OK\n", __FILE__);
             } catch (Exception $ex) {
                 echo __("***ERREUR*** ", __FILE__) . $ex->getMessage() . "\n";
             }
-            echo __("***************Jeedom est a jour en version ", __FILE__) . getVersion('jeedom') . "***************\n";
+            echo __("***************Jeedom est à jour en version ", __FILE__) . getVersion('jeedom') . "***************\n";
         }
         if (init('level', -1) > -1) {
-            echo __("***************Mise a jour des plugins***************\n", __FILE__);
+            echo __("***************Mise à jour des plugins***************\n", __FILE__);
             update::updateAll();
-            echo __("***************Mise a jour des plugins reussie***************\n", __FILE__);
+            echo __("***************Mise à jour des plugins réussie***************\n", __FILE__);
         }
         try {
             jeedom::start();
@@ -242,22 +242,22 @@ try {
 
         /*         * ***************************INSTALLATION************************** */
         if (init('mode') != 'force') {
-            echo __("Jeedom va être installe voulez vous continuer ? [o/N] ", __FILE__);
+            echo __("Jeedom va être installé. Voulez-vous continuer ? [o/N] ", __FILE__);
             if (trim(fgets(STDIN)) !== 'o') {
-                echo __("Installation de Jeedom est annulee\n", __FILE__);
+                echo __("L\'installation de Jeedom est annulée\n", __FILE__);
                 echo "[END UPDATE SUCCESS]\n";
                 exit(0);
             }
         }
         echo __("\nInstallation de Jeedom ", __FILE__) . getVersion('jeedom') . "\n";
         $sql = file_get_contents(dirname(__FILE__) . '/install.sql');
-        echo __("Installation de la base de donnees...", __FILE__);
+        echo __("Installation de la base de données...", __FILE__);
         DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
         echo __("OK\n", __FILE__);
         echo __("Post installe...\n", __FILE__);
         nodejs::updateKey();
         config::save('api', config::genKey());
-        echo __("Ajout des taches cron\n", __FILE__);
+        echo __("Ajout des tâches cron\n", __FILE__);
         $cron = new cron();
         $cron->setClass('history');
         $cron->setFunction('historize');
@@ -309,7 +309,7 @@ try {
         $user->save();
         $logLevel = array('info' => 0, 'debug' => 0, 'event' => 0, 'error' => 1);
         if (init('mode') != 'force') {
-            echo __("Jeedom est-il installe sur un Rasberry PI ? [o/N] ", __FILE__);
+            echo __("Jeedom est-il installé sur un Raspberry Pi ? [o/N] ", __FILE__);
             if (trim(fgets(STDIN)) === 'o') {
                 config::save('cronSleepTime', 60);
             }
