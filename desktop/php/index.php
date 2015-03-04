@@ -378,6 +378,9 @@ if (isConnect('admin')) {
 if (!cron::ok()) {
 		echo '<div style="width : 100%" class="alert alert-warning">{{Erreur cron : il n\'y a pas eu de lancement depuis plus de 1h}}</div>';
 	}
+	if (!jeedom::isDateOk()) {
+		echo '<div style="width : 100%" class="alert alert-warning">{{Erreur de date : la date de votre système n\'est pas bonne : }}' . date('Y-m-d H:i:s') . '</div>';
+	}
 	if (config::byKey('enableCron', 'core', 1, true) == 0) {
 		echo '<div style="width : 100%" class="alert alert-warning">{{Erreur cron : les crons sont désactivés. Allez dans Général -> Administration -> Moteur de tâches pour les réactiver}}</div>';
 	}
