@@ -53,14 +53,14 @@ function isset() {
 
 function initApplication(_reinit) {
     $.ajax({// fonction permettant de faire de l'ajax
-        type: 'POST', // methode de transmission des données au fichier php
+        type: 'POST', // méthode de transmission des données au fichier php
         url: 'core/ajax/jeedom.ajax.php', // url du fichier php
         data: {
             action: 'getInfoApplication'
         },
         dataType: 'json',
         error: function (request, status, error) {
-            if (confirm('Erreur de communication.Etes-vous connecté à internet? Voulez-vous ressayer ?')) {
+            if (confirm('Erreur de communication. Êtes-vous connecté à internet ? Voulez-vous réessayer ?')) {
                 window.location.reload();
             }
         },
@@ -79,7 +79,7 @@ function initApplication(_reinit) {
                 if (init(_reinit, false) == false) {
                     modal(false);
                     panel(false);
-                    /*************Initialisation environement********************/
+                    /*************Initialisation environnement********************/
                     nodeJsKey = data.result.nodeJsKey;
                     user_id = data.result.user_id;
                     plugins = data.result.plugins;
