@@ -100,14 +100,16 @@ class update {
 			} else {
 				$updates = self::byType($_filter);
 			}
-			foreach ($updates as $update) {
-				if ($update->getStatus() != 'hold' && $update->getStatus() == 'update') {
-					if ($update->getType() != 'core') {
-						try {
-							$update->doUpdate();
-						} catch (Exception $e) {
-							log::add('update', 'update', $e->getMessage());
-							$error = true;
+			if (is_array($updates)) {
+				foreach ($updates as $update) {
+					if ($update->getStatus() != 'hold' && $update->getStatus() == 'update') {
+						if ($update->getType() != 'core') {
+							try {
+								$update->doUpdate();
+							} catch (Exception $e) {
+								log::add('update', 'update', $e->getMessage());
+								$error = true;
+							}
 						}
 					}
 				}
@@ -121,8 +123,8 @@ class update {
 			'id' => $_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM `update`
-        WHERE id=:id';
+		FROM `update`
+		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -131,8 +133,8 @@ class update {
 			'logicalId' => $_logicalId,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM `update`
-        WHERE logicalId=:logicalId';
+		FROM `update`
+		WHERE logicalId=:logicalId';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -141,8 +143,8 @@ class update {
 			'type' => $_type,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM `update`
-        WHERE type=:type';
+		FROM `update`
+		WHERE type=:type';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -152,9 +154,9 @@ class update {
 			'type' => $_type,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM `update`
-        WHERE logicalId=:logicalId
-        AND type=:type';
+		FROM `update`
+		WHERE logicalId=:logicalId
+		AND type=:type';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -165,7 +167,7 @@ class update {
 	public static function all($_filter = '') {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM `update`';
+		FROM `update`';
 		if ($_filter != '') {
 			$values['type'] = $_filter;
 			$sql .= ' WHERE `type`=:type';
@@ -176,8 +178,8 @@ class update {
 
 	public static function nbNeedUpdate() {
 		$sql = 'SELECT count(*)
-        FROM `update`
-        WHERE `status`="update"';
+		FROM `update`
+		WHERE `status`="update"';
 		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		return $result['count(*)'];
 	}
