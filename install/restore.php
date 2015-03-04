@@ -74,7 +74,7 @@ try {
     }
 
     if (!file_exists($backup)) {
-        throw new Exception(__('Backup non trouve.', __FILE__) . $backup);
+        throw new Exception(__('Sauvegarde non trouvée.', __FILE__) . $backup);
     }
     $jeedom_dir = realpath(dirname(__FILE__) . '/../');
 
@@ -87,12 +87,12 @@ try {
     if (!file_exists($tmp)) {
         mkdir($tmp, 0770, true);
     }
-    echo __("Decompression du backup...", __FILE__);
+    echo __("Décompression de la sauvegarde...", __FILE__);
     $return_var = 0;
     $output = array();
     exec('cd ' . $tmp . '; tar xfz ' . $backup . ' ', $output, $return_var);
     if ($return_var != 0) {
-        throw new Exception(__('Impossible de decompresser l\'archive', __FILE__));
+        throw new Exception(__('Impossible de décompresser l\'archive', __FILE__));
     }
     echo "OK\n";
     if (!file_exists($tmp . "/DB_backup.sql")) {
@@ -101,7 +101,7 @@ try {
     jeedom::stop();
     echo __("Suppression de toutes les tables", __FILE__);
     $tables = DB::Prepare("SHOW TABLES", array(), DB::FETCH_TYPE_ALL);
-    echo __("Desactivation des contraintes...", __FILE__);
+    echo __("Désactivation des contraintes...", __FILE__);
     DB::Prepare("SET foreign_key_checks = 0", array(), DB::FETCH_TYPE_ROW);
     echo __("OK\n", __FILE__);
     foreach ($tables as $table) {
@@ -111,11 +111,11 @@ try {
         DB::Prepare('DROP TABLE IF EXISTS `' . $table . '`', array(), DB::FETCH_TYPE_ROW);
         echo __("OK\n", __FILE__);
     }
-    echo __("Reactivation des contraintes...", __FILE__);
+    echo __("Réactivation des contraintes...", __FILE__);
     DB::Prepare("SET foreign_key_checks = 1", array(), DB::FETCH_TYPE_ROW);
     echo __("OK\n", __FILE__);
 
-    echo __("Restauration de la base de donnees...", __FILE__);
+    echo __("Restauration de la base de données...", __FILE__);
     system("mysql --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  < " . $tmp . "/DB_backup.sql");
     echo __("OK\n", __FILE__);
 
@@ -141,7 +141,7 @@ try {
     }
 
     jeedom::start();
-    echo __("***************Fin de la restoration de Jeedom***************\n", __FILE__);
+    echo __("***************Fin de la restauration de Jeedom***************\n", __FILE__);
     echo "[END RESTORE SUCCESS]\n";
 } catch (Exception $e) {
     echo __('Erreur durant le backup : ', __FILE__) . $e->getMessage();
