@@ -87,7 +87,7 @@ class log {
 	 */
 	public static function clear($_log) {
 		$path = self::getPathToLog($_log);
-		if (file_exists($path)) {
+		if (file_exists($path) && strpos($_log, 'nginx.error') === false) {
 			$log = fopen($path, "w");
 			ftruncate($log, 0);
 			fclose($log);
