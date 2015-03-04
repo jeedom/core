@@ -15,7 +15,7 @@ $pages = array(
     // 'edit' => array('title' => 'Editer')
     ),
     'cron' => array(
-        'title' => 'Moteur de tache',
+        'title' => 'Moteur de tâches',
         'view' => array('title' => 'Voir'),
     // 'edit' => array('title' => 'Editer')
     ),
@@ -25,12 +25,12 @@ $pages = array(
     //  'edit' => array('title' => 'Editer')
     ),
     'interact' => array(
-        'title' => 'Interaction',
+        'title' => 'Interactions',
         'view' => array('title' => 'Voir'),
     //  'edit' => array('title' => 'Editer')
     ),
     'jeeNetwork' => array(
-        'title' => 'Reseaux jeedom',
+        'title' => 'Réseau Jeedom',
         'view' => array('title' => 'Voir'),
     //  'edit' => array('title' => 'Editer')
     ),
@@ -45,22 +45,22 @@ $pages = array(
     // 'edit' => array('title' => 'Editer')
     ),
     'object' => array(
-        'title' => 'Objet',
+        'title' => 'Objets',
         'view' => array('title' => 'Voir'),
     // 'edit' => array('title' => 'Editer')
     ),
     'plan' => array(
-        'title' => 'Design',
+        'title' => 'Designs',
         'view' => array('title' => 'Voir'),
     // 'edit' => array('title' => 'Editer')
     ),
     'plugin' => array(
-        'title' => 'Plugin',
+        'title' => 'Plugins',
         'view' => array('title' => 'Voir'),
     // 'edit' => array('title' => 'Editer')
     ),
     'scenario' => array(
-        'title' => 'Scenario',
+        'title' => 'Scénarios',
         'view' => array('title' => 'Voir'),
     // 'edit' => array('title' => 'Editer')
     ),
@@ -75,12 +75,12 @@ $pages = array(
     //  'edit' => array('title' => 'Editer')
     ),
     'user' => array(
-        'title' => 'Utilisateur',
+        'title' => 'Utilisateurs',
         'view' => array('title' => 'Voir'),
     //  'edit' => array('title' => 'Editer')
     ),
     'view' => array(
-        'title' => 'Vue',
+        'title' => 'Vues',
         'view' => array('title' => 'Voir'),
     //  'edit' => array('title' => 'Editer')
     ),
