@@ -1,3 +1,7 @@
+*04/03/2015 _v1.170.0_
+
+- Ajout d'un surveillant pour mysql, qui le redemarre en cas de soucis
+
 *03/03/2015 _v1.170.0_
 
 - Ajout d'un parametre pour faire de la purge d'historique si plus vieux de x jours/mois
