@@ -428,7 +428,7 @@ class cmd {
 		return $cmd;
 	}
 
-	public static function cmdToValue($_input) {
+	public static function cmdToValue($_input, $_quote = false) {
 		if (is_object($_input)) {
 			$reflections = array();
 			$uuid = spl_object_hash($_input);
@@ -457,7 +457,7 @@ class cmd {
 			if (is_numeric($cmd_id)) {
 				$cmd = self::byId($cmd_id);
 				if (is_object($cmd) && $cmd->getType() == 'info') {
-					$cmd_value = $cmd->execCmd();
+					$cmd_value = $cmd->execCmd(null, 1, true, $_quote);
 					if ($cmd->getSubtype() == "string" && substr($cmd_value, 0, 1) != '"' && substr($cmd_value, -1) != '"') {
 						$cmd_value = '"' . $cmd_value . '"';
 					}
@@ -541,7 +541,7 @@ class cmd {
 
 	/*     * *********************Méthodes d'instance************************* */
 
-	public function formatValue($_value) {
+	public function formatValue($_value, $_quote = false) {
 		if (trim($_value) == '' && $_value !== false) {
 			return '';
 		}
@@ -551,6 +551,11 @@ class cmd {
 		}
 		if ($this->getType() == 'info') {
 			switch ($this->getSubType()) {
+				case 'string':
+					if ($_quote) {
+						return '"' . $_value . '"';
+					}
+					return $_value;
 				case 'binary':
 					$value = strtolower($_value);
 					if ($value == 'on' || $value == 'high' || $value == 'true' || $value === true) {
@@ -646,7 +651,7 @@ class cmd {
 	 * @return command result
 	 * @throws Exception
 	 */
-	public function execCmd($_options = null, $cache = 1, $_sendNodeJsEvent = true) {
+	public function execCmd($_options = null, $cache = 1, $_sendNodeJsEvent = true, $_quote = false) {
 		if ($this->getEventOnly() == 1) {
 			$cache = 2;
 		}
@@ -683,7 +688,7 @@ class cmd {
 			if ($this->getType() == 'action') {
 				log::add('event', 'event', __('Execution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . str_replace(array("\n", '  ', 'Array'), '', print_r($options, true)));
 			}
-			$value = $this->formatValue($this->execute($options));
+			$value = $this->formatValue($this->execute($options), $_quote);
 		} catch (Exception $e) {
 			//Si impossible de contacter l'équipement
 			$type = $eqLogic->getEqType_name();

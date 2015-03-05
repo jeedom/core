@@ -1,5 +1,9 @@
 *04/03/2015 _v1.170.0_
 
+- Ajout automatique des " dans les conditions des scénario si besoin
+
+*04/03/2015 _v1.170.0_
+
 - Ajout d'un surveillant pour mysql, qui le redemarre en cas de soucis
 
 *03/03/2015 _v1.170.0_
