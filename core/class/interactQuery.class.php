@@ -113,7 +113,7 @@ class interactQuery {
 			return $query;
 		}
 
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . ', MATCH LOWER(query) AGAINST (LOWER(:query) IN NATURAL LANGUAGE MODE) as score
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . ', MATCH query AGAINST (:query IN NATURAL LANGUAGE MODE) as score
     FROM interactQuery
     WHERE enable = 1
     GROUP BY id
