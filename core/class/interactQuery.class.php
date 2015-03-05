@@ -105,14 +105,14 @@ class interactQuery {
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
     FROM interactQuery
-    WHERE enable = 1
-    query=:query';
+    WHERE enable = 1 AND
+    LOWER(query)=LOWER(:query)';
 		$query = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 		if (is_object($query)) {
 			return $query;
 		}
 
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . ', MATCH query AGAINST (:query IN NATURAL LANGUAGE MODE) as score
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . ', MATCH LOWER(query) AGAINST (LOWER(:query) IN NATURAL LANGUAGE MODE) as score
     FROM interactQuery
     WHERE enable = 1
     GROUP BY id
