@@ -138,7 +138,7 @@ foreach ($markets as $market) {
 	}
 
 	if ($name == null && $type == 'widget' && isset($widget_found[$widget_name]) && $widget_found[$widget_name] > 1) {
-		echo '<div class="marketMultiple cursor" data-href=' . buildUrl('name', '') . ' data-market_name="' . $widget_name . '|" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+		echo '<div class="marketMultiple cursor" data-href=' . buildUrl('name', '') . ' data-market_name="' . $widget_name . '$" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	} else {
 		$install = 'notInstall';
 		if (!is_object($update)) {
