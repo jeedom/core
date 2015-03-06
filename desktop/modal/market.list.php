@@ -92,6 +92,12 @@ foreach (market::distinctCategorie($type) as $id => $category) {
         <a class="btn btn-success" id="bt_search" data-href='<?php echo buildUrl('name', '');?>'><i class="fa fa-search"></i></a>
     </div>
 </form>
+
+<?php
+if ($name != null && strpos($name, '$') !== false) {
+	echo '<br/><a class="btn btn-default" id="bt_returnMarketList" data-href=' . buildUrl('name', '') . '><i class="fa fa-arrow-circle-left"></i> {{Retour}}</a>';
+}
+?>
 </div>
 <div style="padding : 5px;">
     <?php
@@ -249,6 +255,10 @@ foreach ($markets as $market) {
             if (e.which == 13) {
                 $('#md_modal').load($(this).attr('data-href') + '&name=' + encodeURI($('#in_search').value()));
             }
+        });
+
+        $('#bt_returnMarketList').on('click', function () {
+            $('#md_modal').load($(this).attr('data-href'));
         });
 
         $('.marketMultiple').on('click',function(){
