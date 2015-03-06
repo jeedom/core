@@ -556,6 +556,11 @@ class cmd {
 						return '"' . $_value . '"';
 					}
 					return $_value;
+				case 'other':
+					if ($_quote) {
+						return '"' . $_value . '"';
+					}
+					return $_value;
 				case 'binary':
 					$value = strtolower($_value);
 					if ($value == 'on' || $value == 'high' || $value == 'true' || $value === true) {
