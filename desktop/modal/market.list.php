@@ -1,6 +1,6 @@
 <?php
 if (!isConnect('admin')) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 
 $status = init('status', null);
@@ -8,56 +8,56 @@ $type = init('type', null);
 $categorie = init('categorie', null);
 $name = init('name', null);
 if ($name == 'false') {
-    $name = null;
+	$name = null;
 }
 $markets = market::byFilter(
-    array(
-        'status' => $status,
-        'type' => $type,
-        'categorie' => $categorie,
-        'name' => $name,
-        'cost' => init('cost', null),
-        'timeState' => init('timeState', null),
-        'certification' => init('certification', null)
-        )
-    );
+	array(
+		'status' => $status,
+		'type' => $type,
+		'categorie' => $categorie,
+		'name' => $name,
+		'cost' => init('cost', null),
+		'timeState' => init('timeState', null),
+		'certification' => init('certification', null),
+	)
+);
 
 function buildUrl($_key, $_value) {
-    $url = 'index.php?v=d&modal=market.display&';
-    foreach ($_GET as $key => $value) {
-        if ($_key != $key) {
-            $url .= $key . '=' . urlencode($value) . '&';
-        }
-    }
-    if ($_key != '' && $_value != '') {
-        $url .= $_key . '=' . urlencode($_value);
-    }
-    return $url;
+	$url = 'index.php?v=d&modal=market.display&';
+	foreach ($_GET as $key => $value) {
+		if ($_key != $key) {
+			$url .= $key . '=' . urlencode($value) . '&';
+		}
+	}
+	if ($_key != '' && $_value != '') {
+		$url .= $_key . '=' . urlencode($_value);
+	}
+	return $url;
 }
 ?>
 <div style="margin-bottom: 5px; margin-top : 5px; background-color: #e7e7e7">
     <form class="form-inline" role="form" onsubmit="return false;">
-        <?php if (init('type', 'plugin') == 'plugin') { ?>
+        <?php if (init('type', 'plugin') == 'plugin') {?>
         <div class="form-group">
             <div class="btn-group" >
-                <a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'free') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'free'); ?>">Gratuit</a>
-                <a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'paying'); ?>">Payant</a>
-                <a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('cost', ''); ?>"><i class="fa fa-times"></i></a>
+                <a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'free') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('cost', 'free');?>">Gratuit</a>
+                <a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('cost', 'paying');?>">Payant</a>
+                <a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('cost', '');?>"><i class="fa fa-times"></i></a>
             </div>
         </div>
-        <?php } ?>
+        <?php }?>
         <div class="form-group">
             <div class="btn-group" >
-                <a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'newest') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('timeState', 'newest'); ?>">Nouveau</a>
-                <a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'popular') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('timeState', 'popular'); ?>">Populaire</a>
-                <a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('timeState', ''); ?>"><i class="fa fa-times"></i></a>
+                <a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'newest') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('timeState', 'newest');?>">Nouveau</a>
+                <a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'popular') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('timeState', 'popular');?>">Populaire</a>
+                <a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('timeState', '');?>"><i class="fa fa-times"></i></a>
             </div>
         </div>
         <div class="form-group">
             <div class="btn-group" >
-                <a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Officiel'); ?>">Officiel</a>
-                <a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Recommandé') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Recommandé'); ?>">Recommandé</a>
-                <a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('certification', ''); ?>"><i class="fa fa-times"></i></a>
+                <a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('certification', 'Officiel');?>">Officiel</a>
+                <a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Recommandé') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('certification', 'Recommandé');?>">Recommandé</a>
+                <a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('certification', '');?>"><i class="fa fa-times"></i></a>
             </div>
         </div>
         <div class="form-group">
@@ -68,101 +68,141 @@ function buildUrl($_key, $_value) {
             </div>
         </div>
         <div class="form-group">
-            <select class="form-control" id="sel_categorie" data-href='<?php echo buildUrl('categorie', ''); ?>'>
-                <?php if (init('type', 'plugin') == 'zwave') { ?>
+            <select class="form-control" id="sel_categorie" data-href='<?php echo buildUrl('categorie', '');?>'>
+                <?php if (init('type', 'plugin') == 'zwave') {?>
                 <option value="">Toutes les marques</option>
-                <?php } else { ?>
+                <?php } else {?>
                 <option value="">Toutes les categories</option>
                 <?php
-            }
+}
 
-            foreach (market::distinctCategorie($type) as $id => $category) {
-                if (trim($category) != '' && is_numeric($id)) {
-                    echo '<option value="' . $category . '"';
-                    echo (init('categorie') == $category) ? 'selected >' : '>';
-                    echo $category;
-                    echo '</option>';
-                }
-            }
-            ?>
+foreach (market::distinctCategorie($type) as $id => $category) {
+	if (trim($category) != '' && is_numeric($id)) {
+		echo '<option value="' . $category . '"';
+		echo (init('categorie') == $category) ? 'selected >' : '>';
+		echo $category;
+		echo '</option>';
+	}
+}
+?>
         </select>
     </div>
     <div class="form-group">
-        <input class="form-control" data-href='<?php echo buildUrl('name', ''); ?>' placeholder="Rechercher" id="in_search" value="<?php echo $name ?>"/>
-        <a class="btn btn-success" id="bt_search" data-href='<?php echo buildUrl('name', ''); ?>'><i class="fa fa-search"></i></a>
+        <input class="form-control" data-href='<?php echo buildUrl('name', '');?>' placeholder="Rechercher" id="in_search" value="<?php echo $name?>"/>
+        <a class="btn btn-success" id="bt_search" data-href='<?php echo buildUrl('name', '');?>'><i class="fa fa-search"></i></a>
     </div>
 </form>
 </div>
 <div style="padding : 5px;">
     <?php
-    $categorie = '';
-    $first = true;
-    $nCategory = 0;
-    foreach ($markets as $market) {
-        $update = update::byLogicalId($market->getLogicalId());
-        $category = $market->getCategorie();
-        if ($category == '') {
-            $category = 'Aucune';
-        }
-        if ($categorie != $category) {
-            $categorie = $category;
-            if (!$first) {
-                echo '</div>';
-            }
-            echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '">' . ucfirst($categorie) . '</legend>';
-            echo '<div class="pluginContainer" data-category="' . $nCategory . '">';
-            $first = false;
-            $nCategory++;
-        }
-        $install = 'notInstall';
-        if (!is_object($update)) {
-            $install = 'install';
-        }
-        echo '<div class="market cursor ' . $install . '" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-        if ($market->getType() == 'widget') {
-            if (strpos($market->getName(), 'mobile.') !== false) {
-                echo '<i class="fa fa-mobile pull-left" style="color:#c5c5c5"></i>';
-            } else {
-                echo '<i class="fa fa-desktop pull-left" style="color:#c5c5c5"></i>';
-            }
-        }
-        if (is_object($update)) {
-            echo '<i class="fa fa-check" style="position : absolute; right : 5px;"></i>';
-        }
-        echo "<center>";
-        $urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
-        echo '<img class="lazy" src="core/img/no_image.gif" data-original="' . $urlPath . '" height="105" width="95" />';
-        echo "</center>";
-        echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $market->getName() . '</span>';
-        if ($market->getCertification() == 'Officiel') {
-            echo '<br/><span style="font-size : 0.85em;color:#7f8c8d;position:relative; top : 10px;">Officiel</span>';
-        }
-        if ($market->getCertification() == 'Recommandé') {
-            echo '<br/><span style="font-size : 0.85em;color:#7f8c8d;position:relative; top : 10px;">Recommandé</span>';
-        }
-        $note = $market->getRating();
+$categorie = '';
+$first = true;
+$nCategory = 0;
+$widget_found = array();
+foreach ($markets as &$market) {
+	if ($name == null && $type == 'widget') {
+		$widget_name = explode('.', $market->getLogicalId());
+		$widget_name = $widget_name[3];
+		if (isset($widget_found[$widget_name])) {
+			$widget_found[$widget_name]++;
+		} else {
+			$widget_found[$widget_name] = 1;
+		}
+	}
+}
 
-        echo '<span style="position : absolute;bottom : 5px;left : 5px;font-size : 0.7em;">';
-        for ($i = 1; $i < 6; $i++) {
-            if ($i <= $note) {
-                echo '<i class="fa fa-star"></i>';
-            } else {
-                echo '<i class="fa fa-star-o"></i>';
-            }
-        }
-        echo '</span>';
-        if ($market->getCost() > 0) {
-            echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">';
-            if ($market->getCost() != $market->getRealCost()) {
-                echo '<span style="text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
-            }
-            echo number_format($market->getCost(), 2) . ' €</span>';
-        } else {
-            echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">Gratuit</span>';
-        }
-        echo '</div>';
-    }
-    ?>
+$widget = array();
+foreach ($markets as $market) {
+	if ($name == null && $type == 'widget') {
+		$widget_name = explode('.', $market->getLogicalId());
+		$widget_name = $widget_name[3];
+		if (isset($widget[$widget_name])) {
+			continue;
+		}
+		$widget[$widget_name] = true;
+	}
+	$update = update::byLogicalId($market->getLogicalId());
+
+	$category = $market->getCategorie();
+	if ($category == '') {
+		$category = 'Aucune';
+	}
+	if ($categorie != $category) {
+		$categorie = $category;
+		if (!$first) {
+			echo '</div>';
+		}
+		echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '">' . ucfirst($categorie) . '</legend>';
+		echo '<div class="pluginContainer" data-category="' . $nCategory . '">';
+		$first = false;
+		$nCategory++;
+	}
+
+	if ($name == null && $type == 'widget' && isset($widget_found[$widget_name]) && $widget_found[$widget_name] > 1) {
+		echo '<div class="marketMultiple cursor" data-href=' . buildUrl('name', '') . ' data-market_name="' . $widget_name . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+	} else {
+		$install = 'notInstall';
+		if (!is_object($update)) {
+			$install = 'install';
+		}
+		echo '<div class="market cursor ' . $install . '" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+	}
+	if ($market->getType() == 'widget') {
+		if (strpos($market->getName(), 'mobile.') !== false) {
+			echo '<i class="fa fa-mobile pull-left" style="color:#c5c5c5"></i>';
+		} else {
+			echo '<i class="fa fa-desktop pull-left" style="color:#c5c5c5"></i>';
+		}
+	}
+	if ($name == null && $type == 'widget' && isset($widget_found[$widget_name]) && $widget_found[$widget_name] > 1) {
+
+	} else {
+		if (is_object($update)) {
+			echo '<i class="fa fa-check" style="position : absolute; right : 5px;"></i>';
+		}
+	}
+
+	echo "<center>";
+	$urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
+	echo '<img class="lazy" src="core/img/no_image.gif" data-original="' . $urlPath . '" height="105" width="95" />';
+	echo "</center>";
+
+	if ($name == null && $type == 'widget' && isset($widget_found[$widget_name]) && $widget_found[$widget_name] > 1) {
+		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $widget_name . '</span>';
+		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;" class="badge pull-right tooltips" title="{{Nombre de widgets}}">' . $widget_found[$widget_name] . '</span>';
+	} else {
+		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $market->getName() . '</span>';
+	}
+
+	if ($market->getCertification() == 'Officiel') {
+		echo '<br/><span style="font-size : 0.85em;color:#7f8c8d;position:relative; top : 10px;">Officiel</span>';
+	}
+	if ($market->getCertification() == 'Recommandé') {
+		echo '<br/><span style="font-size : 0.85em;color:#7f8c8d;position:relative; top : 10px;">Recommandé</span>';
+	}
+	$note = $market->getRating();
+
+	echo '<span style="position : absolute;bottom : 5px;left : 5px;font-size : 0.7em;">';
+	for ($i = 1; $i < 6; $i++) {
+		if ($i <= $note) {
+			echo '<i class="fa fa-star"></i>';
+		} else {
+			echo '<i class="fa fa-star-o"></i>';
+		}
+	}
+	echo '</span>';
+	if ($market->getCost() > 0) {
+		echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">';
+		if ($market->getCost() != $market->getRealCost()) {
+			echo '<span style="text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
+		}
+		echo number_format($market->getCost(), 2) . ' €</span>';
+	} else {
+		echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">Gratuit</span>';
+	}
+	echo '</div>';
+}
+?>
 </div>
 <style>
     .market:hover{
@@ -204,6 +244,10 @@ function buildUrl($_key, $_value) {
             if (e.which == 13) {
                 $('#md_modal').load($(this).attr('data-href') + '&name=' + encodeURI($('#in_search').value()));
             }
+        });
+
+        $('.marketMultiple').on('click',function(){
+            $('#md_modal').load($(this).attr('data-href') + '&name=' + encodeURI('.'+$(this).attr('data-market_name')));
         });
 
         $('.bt_installFilter').on('click', function () {
