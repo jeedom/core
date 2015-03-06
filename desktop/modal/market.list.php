@@ -138,7 +138,7 @@ foreach ($markets as $market) {
 	}
 
 	if ($name == null && $type == 'widget' && isset($widget_found[$widget_name]) && $widget_found[$widget_name] > 1) {
-		echo '<div class="marketMultiple cursor" data-href=' . buildUrl('name', '') . ' data-market_name="' . $widget_name . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+		echo '<div class="marketMultiple cursor" data-href=' . buildUrl('name', '') . ' data-market_name="' . $widget_name . '|" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	} else {
 		$install = 'notInstall';
 		if (!is_object($update)) {
@@ -146,16 +146,17 @@ foreach ($markets as $market) {
 		}
 		echo '<div class="market cursor ' . $install . '" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	}
-	if ($market->getType() == 'widget') {
-		if (strpos($market->getName(), 'mobile.') !== false) {
-			echo '<i class="fa fa-mobile pull-left" style="color:#c5c5c5"></i>';
-		} else {
-			echo '<i class="fa fa-desktop pull-left" style="color:#c5c5c5"></i>';
-		}
-	}
+
 	if ($name == null && $type == 'widget' && isset($widget_found[$widget_name]) && $widget_found[$widget_name] > 1) {
 
 	} else {
+		if ($market->getType() == 'widget') {
+			if (strpos($market->getName(), 'mobile.') !== false) {
+				echo '<i class="fa fa-mobile pull-left" style="color:#c5c5c5"></i>';
+			} else {
+				echo '<i class="fa fa-desktop pull-left" style="color:#c5c5c5"></i>';
+			}
+		}
 		if (is_object($update)) {
 			echo '<i class="fa fa-check" style="position : absolute; right : 5px;"></i>';
 		}
