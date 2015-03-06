@@ -103,6 +103,8 @@ if ($type == 'widget' && $name == null) {
 	foreach ($markets as &$market) {
 		$widget_name = explode('.', $market->getName());
 		$widget_name = $widget_name[3];
+		$widget_name = explode('_', $widget_name);
+		$widget_name = $widget_name[0];
 		if (isset($widget_found[$widget_name])) {
 			$widget_found[$widget_name]++;
 		} else {
@@ -116,6 +118,8 @@ foreach ($markets as $market) {
 	if ($name == null && $type == 'widget') {
 		$widget_name = explode('.', $market->getName());
 		$widget_name = $widget_name[3];
+		$widget_name = explode('_', $widget_name);
+		$widget_name = $widget_name[0];
 		if (isset($widget[$widget_name])) {
 			continue;
 		}
