@@ -527,7 +527,7 @@ class scenarioExpression {
 
 		}
 
-		return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)));
+		return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)), $_quote);
 	}
 
 	public static function createAndExec($_type, $_cmd, $_options) {
