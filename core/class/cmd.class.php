@@ -440,14 +440,14 @@ class cmd {
 			foreach ($properties as $property) {
 				$property->setAccessible(true);
 				$value = $property->getValue($_input);
-				$property->setValue($_input, self::cmdToValue($value));
+				$property->setValue($_input, self::cmdToValue($value, $_quote));
 				$property->setAccessible(false);
 			}
 			return $_input;
 		}
 		if (is_array($_input)) {
 			foreach ($_input as $key => $value) {
-				$_input[$key] = self::cmdToValue($value);
+				$_input[$key] = self::cmdToValue($value, $_quote);
 			}
 			return $_input;
 		}
