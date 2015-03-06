@@ -99,8 +99,8 @@ $categorie = '';
 $first = true;
 $nCategory = 0;
 $widget_found = array();
-foreach ($markets as &$market) {
-	if ($name == null && $type == 'widget') {
+if ($type == 'widget' && $name == null) {
+	foreach ($markets as &$market) {
 		$widget_name = explode('.', $market->getLogicalId());
 		$widget_name = $widget_name[3];
 		if (isset($widget_found[$widget_name])) {
@@ -110,7 +110,6 @@ foreach ($markets as &$market) {
 		}
 	}
 }
-
 $widget = array();
 foreach ($markets as $market) {
 	if ($name == null && $type == 'widget') {
