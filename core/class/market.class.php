@@ -49,6 +49,7 @@ class market {
 	private $language;
 	private $private;
 	private $change;
+	private $updateBy;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -76,6 +77,7 @@ class market {
 		$market->setCost($_arrayMarket['cost']);
 		$market->rating = ($_arrayMarket['rating']);
 		$market->setBuyer($_arrayMarket['buyer']);
+		$market->setUpdateBy($_arrayMarket['updateBy']);
 		$market->setNbComment($_arrayMarket['nbComment']);
 		$market->setPrivate($_arrayMarket['private']);
 		$market->img = json_encode($_arrayMarket['img'], JSON_UNESCAPED_UNICODE);
@@ -935,6 +937,14 @@ class market {
 
 	function setChange($change) {
 		$this->change = $change;
+	}
+
+	function getUpdateBy() {
+		return $this->updateBy;
+	}
+
+	function setUpdateBy($updateBy) {
+		$this->updateBy = $updateBy;
 	}
 
 }

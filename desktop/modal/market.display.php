@@ -178,7 +178,9 @@ foreach ($market->getImg('screenshot') as $screenshot) {
         <div class='row'>
             <div class='col-sm-2'>
                 <label class="control-label">{{Auteur}}</label><br/>
-                <span><?php echo $market->getAuthor()?></span>
+                <span><?php echo $market->getAuthor()?></span><br/>
+                <label class="control-label">{{Derniere mise à jour par}}</label><br/>
+                <span><?php echo $market->getUpdateBy()?></span>
             </div>
             <div class='col-sm-2'>
                 <label class="control-label">{{Lien}}</label><br/>
@@ -325,21 +327,21 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
         $('.marketAttr[data-l1key=changelog]').html(html);
         var html = '';
         for(var i in market_display_info.changelog.reverse()){
-           html += '<strong>{{Version}} '+market_display_info.changelog[i].version+' - '+market_display_info.changelog[i].date+'</strong><br/>';
-           html += linkify(market_display_info.changelog[i].change);
-           html += '<br/><br/>';
-       }
-       $('#div_changelog').html(html);
-   }
-   $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
-   $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
+         html += '<strong>{{Version}} '+market_display_info.changelog[i].version+' - '+market_display_info.changelog[i].date+'</strong><br/>';
+         html += linkify(market_display_info.changelog[i].change);
+         html += '<br/><br/>';
+     }
+     $('#div_changelog').html(html);
+ }
+ $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
+ $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
 
-   $('#bt_paypalClick').on('click', function () {
+ $('#bt_paypalClick').on('click', function () {
     $(this).hide();
 });
 
 
-   $("#div_comments").dialog({
+ $("#div_comments").dialog({
     autoOpen: false,
     modal: true,
     height: (jQuery(window).height() - 300),
@@ -352,7 +354,7 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
     }
 });
 
-   $("#div_changelog").dialog({
+ $("#div_changelog").dialog({
     autoOpen: false,
     modal: true,
     height: (jQuery(window).height() - 300),
@@ -365,17 +367,17 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
     }
 });
 
-   $("#bt_viewCompleteChangelog").on('click',function(){
+ $("#bt_viewCompleteChangelog").on('click',function(){
     $('#div_changelog').dialog('open');
 });
 
-   $('#bt_viewComment').on('click', function () {
+ $('#bt_viewComment').on('click', function () {
     reloadMarketComment();
     $('#div_comments').dialog('open');
 });
 
 
-   function reloadMarketComment() {
+ function reloadMarketComment() {
     $('#div_comments').load('index.php?v=d&modal=market.comment&id=' + $('.marketAttr[data-l1key=id]').value());
 }
 
