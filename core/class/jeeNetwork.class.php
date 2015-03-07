@@ -431,6 +431,7 @@ class jeeNetwork {
 		if (!$jsonrpc->sendRequest('message::removeAll', array())) {
 			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 		}
+		$this->save();
 		return true;
 	}
 
