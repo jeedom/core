@@ -1,3 +1,7 @@
+*07/03/2015 _v1.170.0_
+
+- Ajout d'un système de test de reconnaissance d'interaction
+
 *04/03/2015 _v1.170.0_
 
 - Ajout automatique des " dans les conditions des scénario si besoin
