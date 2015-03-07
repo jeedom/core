@@ -519,9 +519,9 @@ class scenarioExpression {
 			} else {
 				if (function_exists($function)) {
 					foreach ($arguments as &$argument) {
-						$argument = cmd::cmdToValue($argument, $_quote);
-						$replace2[$replace_string] = call_user_func_array($function, $arguments);
+						$argument = evaluate(self::setTags($argument, $_scenario, $_quote));
 					}
+					$replace2[$replace_string] = call_user_func_array($function, $arguments);
 				}
 			}
 
