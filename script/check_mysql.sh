@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ -f /tmp/watchdog-mysql ]; then
-    echo "Watchdog déja en cours"
+    exit 0
 else
     echo "" > /tmp/watchdog-mysql
     sudo /etc/init.d/mysql status > /dev/null 2>&1
