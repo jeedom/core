@@ -915,35 +915,35 @@ class market {
 		$this->buyer = $buyer;
 	}
 
-	function getCertification() {
+	public function getCertification() {
 		return $this->certification;
 	}
 
-	function setCertification($certification) {
+	public function setCertification($certification) {
 		$this->certification = $certification;
 	}
 
-	function getNbComment() {
+	public function getNbComment() {
 		return $this->nbComment;
 	}
 
-	function setNbComment($nbComment) {
+	public function setNbComment($nbComment) {
 		$this->nbComment = $nbComment;
 	}
 
-	function getChange() {
+	public function getChange() {
 		return $this->change;
 	}
 
-	function setChange($change) {
+	public function setChange($change) {
 		$this->change = $change;
 	}
 
-	function getUpdateBy() {
+	public function getUpdateBy() {
 		return $this->updateBy;
 	}
 
-	function setUpdateBy($updateBy) {
+	public function setUpdateBy($updateBy) {
 		$this->updateBy = $updateBy;
 	}
 
