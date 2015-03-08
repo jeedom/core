@@ -53,7 +53,7 @@ class market {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	private static function construct($_arrayMarket) {
+	public static function construct($_arrayMarket) {
 		$market = new self();
 		if (!isset($_arrayMarket['id'])) {
 			return;
