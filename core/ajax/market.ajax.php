@@ -61,6 +61,10 @@ try {
 		ajax::success(market::getInfo(init('logicalId')));
 	}
 
+	if (init('action') == 'byLogicalId') {
+		ajax::success(utils::o2a(market::byLogicalId(init('logicalId'))));
+	}
+
 	if (init('action') == 'test') {
 		ajax::success(market::test());
 	}
