@@ -657,9 +657,9 @@ class market {
 						$plugin->setIsEnable(0);
 						foreach (eqLogic::byType() as $eqLogic) {
 							try {
-								 $eqLogic->remove();
-							} catch (  $e) {
-								
+								$eqLogic->remove();
+							} catch (Exception $e) {
+
 							}
 						}
 					}
