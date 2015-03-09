@@ -655,6 +655,13 @@ class market {
 					$plugin = plugin::byId($this->getLogicalId());
 					if (is_object($plugin)) {
 						$plugin->setIsEnable(0);
+						foreach (eqLogic::byType() as $eqLogic) {
+							try {
+								 $eqLogic->remove();
+							} catch (  $e) {
+								
+							}
+						}
 					}
 				} catch (Exception $e) {
 
