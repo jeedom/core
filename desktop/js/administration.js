@@ -196,24 +196,15 @@ $('#bt_testMarketConnection').on('click', function () {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-            $.ajax({// fonction permettant de faire de l'ajax
-                type: "POST", // methode de transmission des données au fichier php
-                url: "core/ajax/market.ajax.php", // url du fichier php
-                data: {
-                    action: "test"
-                },
-                dataType: 'json',
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, error);
-                },
-                success: function (data) { // si l'appel a bien fonctionné
-                if (data.state != 'ok') {
-                    $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                    return;
-                }
-                $('#div_alert').showAlert({message: '{{Connexion au market réussie}}', level: 'success'});
-            }
-        });
+            jeedom.market.test({
+             error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function () {
+               $('#div_alert').showAlert({message: '{{Connexion au market réussie}}', level: 'success'});
+           }
+
+       });
         }
     });
 });

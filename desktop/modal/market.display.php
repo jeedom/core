@@ -384,76 +384,47 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
 $('.bt_installFromMarket').on('click', function () {
     var id = $(this).attr('data-market_id');
     var logicalId = $(this).attr('data-market_logicalId');
-        $.ajax({// fonction permettant de faire de l'ajax
-            type: "POST", // methode de transmission des données au fichier php
-            url: "core/ajax/market.ajax.php", // url du fichier php
-            data: {
-                action: "install",
-                id: id,
-                version: $(this).attr('data-version'),
-            },
-            dataType: 'json',
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error);
-            },
-            success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alertMarketDisplay').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            var url = window.location.href;
-            if (url.indexOf('p=plugin') > 0) {
-                window.location.href = 'index.php?v=d&p=plugin&id=' + logicalId;
-            }
-            $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'});
-        }
-    });
+
+
+    jeedom.market.install({
+        id: id,
+        version: $(this).attr('data-version'),
+        error: function (error) {
+            $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
+        },
+ success: function (data) { // si l'appel a bien fonctionné
+ var url = window.location.href;
+ if (url.indexOf('p=plugin') > 0) {
+    window.location.href = 'index.php?v=d&p=plugin&id=' + logicalId;
+}
+$('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
+}
+});
+
 });
 
 $('#bt_removeFromMarket').on('click', function () {
     var id = $(this).attr('data-market_id');
-        $.ajax({// fonction permettant de faire de l'ajax
-            type: "POST", // methode de transmission des données au fichier php
-            url: "core/ajax/market.ajax.php", // url du fichier php
-            data: {
-                action: "remove",
-                id: id
-            },
-            dataType: 'json',
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error);
-            },
-            success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alertMarketDisplay').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            $.showLoading();
-            window.location.reload();
-        }
-    });
-    });
+    jeedom.market.remove({
+        id: id,
+        error: function (error) {
+            $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
+        },
+ success: function (data) { // si l'appel a bien fonctionné
+ $.showLoading();
+ window.location.reload();
+}
+});
+});
 
 $('#in_myRating').on('change', function () {
     var id = $('.marketAttr[data-l1key=id]').value();
-        $.ajax({// fonction permettant de faire de l'ajax
-            type: "POST", // methode de transmission des données au fichier php
-            url: "core/ajax/market.ajax.php", // url du fichier php
-            data: {
-                action: "setRating",
-                id: id,
-                rating: $(this).val()
-            },
-            dataType: 'json',
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error);
-            },
-            success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-        }
-    });
-    });
+    jeedom.market.setRating({
+     id: id,
+     rating: $(this).val(),
+     error: function (error) {
+        $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
+    }
+});
+});
 </script>
