@@ -409,7 +409,7 @@ class jeedom {
 							message::add('update', 'De nouvelles mises à jour sont disponibles (' . $nbUpdate . ')', '', 'newUpdate');
 						}
 					}
-					config::save('update::check', rand(10, 59) . ' 06 * * *');
+					config::save('update::check', rand(1, 59) . ' ' . rand(4, 7) . ' * * *');
 				}
 			}
 		} catch (Exception $e) {
