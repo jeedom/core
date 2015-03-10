@@ -202,7 +202,7 @@ if (init('type') == 'plugin') {
 </div>
 </form>
 
-<div title="Qu'avez vous changé ?" id="md_marketSendChangeChange">
+<div title="Qu'avez-vous changé ?" id="md_marketSendChangeChange">
     <form class="form-horizontal" role="form">
        <div class="form-group">
         <label class="col-sm-3 control-label">{{Version}}</label>
