@@ -74,12 +74,12 @@ if (is_array($scenarioListGroup)) {
 
 
         <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
-            <legend>{{Mes scenarios}}
+            <legend>{{Mes scénarios}}
 
             </legend>
             <?php
 if (count(scenario::all()) == 0) {
-	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario, cliquez sur ajouter un scénario pour commencer</span></center>";
+	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
 } else {
 	if (count($scenarios[-1]) > 0) {
 		echo '<legend>Aucun</legend>';
@@ -253,7 +253,7 @@ if (count(scenario::all()) == 0) {
                                     <div class='conditionOptions' data-type="info" data-subtype="string" style="display : none;">
                                         <div class="col-xs-4">
                                             <select class="conditionAttr form-control" data-l1key="operator">
-                                                <option value="==">{{égale}}</option>
+                                                <option value="==">{{égal}}</option>
                                                 <option value="!=">{{différent}}</option>
                                                 <option value="~">{{contient}}</option>
                                                 <option value="!~">{{ne contient pas}}</option>
