@@ -361,8 +361,6 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
             </div>
         </div>
 
-
-
         <div class="panel panel-default expertModeVisible">
             <div class="panel-heading">
                 <h3 class="panel-title">
@@ -548,7 +546,7 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_market">
-                        {{Market}}
+                        {{Market et mise à jour}}
                     </a>
                 </h3>
             </div>
@@ -598,25 +596,7 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
                                     <input type="checkbox"  class="configKey" data-l1key="market::showBetaMarket" />
                                 </div>
                             </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default expertModeVisible">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_update">
-                        {{Mise à jour}}
-                    </a>
-                </h3>
-            </div>
-            <div id="configuration_update" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <form class="form-horizontal">
-                        <fieldset>
-                            <div class="form-group expertModeVisible">
+                              <div class="form-group expertModeVisible">
                                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
                                 <div class="col-sm-1">
                                     <input type="checkbox" class="configKey" data-l1key="update::backupBefore"/>
@@ -642,6 +622,7 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
                 </div>
             </div>
         </div>
+
         <div class="panel panel-default expertModeVisible">
             <div class="panel-heading">
                 <h3 class="panel-title">
