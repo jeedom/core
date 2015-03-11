@@ -567,6 +567,7 @@ install_dependency()
 	apt-get install -y systemd
 	apt-get install -y npm
 	apt-get install -y libtinyxml-dev
+	apt-get install -y libav-tools
 
 	pecl install oauth
 	if [ $? -eq 0 ] ; then
