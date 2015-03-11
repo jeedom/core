@@ -62,7 +62,15 @@ try {
 	}
 
 	if (init('action') == 'byLogicalId') {
-		ajax::success(utils::o2a(market::byLogicalId(init('logicalId'))));
+		if (init('noExecption', 0) == 1) {
+			try {
+				ajax::success(utils::o2a(market::byLogicalId(init('logicalId'))));
+			} catch (Exception $e) {
+				ajax::success();
+			}
+		} else {
+			ajax::success(utils::o2a(market::byLogicalId(init('logicalId'))));
+		}
 	}
 
 	if (init('action') == 'test') {

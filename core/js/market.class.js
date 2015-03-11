@@ -37,6 +37,7 @@ jeedom.market = function() {
  	paramsAJAX.data = {
  		action: 'byLogicalId',
  		logicalId: _params.logicalId,
+ 		noExecption: _params.noExecption || 0,
  	};
  	$.ajax(paramsAJAX);
  }
