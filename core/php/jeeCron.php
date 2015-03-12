@@ -44,6 +44,7 @@ $startTime = getmicrotime();
 
 if (init('cron_id') != '') {
 	$datetime = date('Y-m-d H:i:s');
+	$datetimeStart = strtotime('now');
 	$cron = cron::byId(init('cron_id'));
 	if (!is_object($cron)) {
 		echo 'Cron non trouvé';
@@ -64,9 +65,13 @@ if (init('cron_id') != '') {
 					$class::$function($option);
 				} else {
 					while (true) {
+						$cyclStartTime = getmicrotime();
 						$class::$function($option);
-						sleep($cron->getDeamonSleepTime());
-						if ((strtotime('now') - strtotime($datetime)) / 60 >= $cron->getTimeout()) {
+						$cycleDuration = getmicrotime() - $cyclStartTime;
+						if ($cycleDuration < $cron->getDeamonSleepTime()) {
+							usleep(($cron->getDeamonSleepTime() - $cycleDuration) * 1000000);
+						}
+						if ((strtotime('now') - $datetimeStart) / 60 >= $cron->getTimeout()) {
 							die();
 						}
 					}
@@ -86,9 +91,13 @@ if (init('cron_id') != '') {
 					$function($option);
 				} else {
 					while (true) {
+						$cyclStartTime = getmicrotime();
 						$function($option);
-						sleep($cron->getDeamonSleepTime());
-						if ((strtotime('now') - strtotime($datetime)) / 60 >= $cron->getTimeout()) {
+						$cycleDuration = getmicrotime() - $cyclStartTime;
+						if ($cycleDuration < $cron->getDeamonSleepTime()) {
+							usleep(($cron->getDeamonSleepTime() - $cycleDuration) * 1000000);
+						}
+						if ((strtotime('now') - $datetimeStart) / 60 >= $cron->getTimeout()) {
 							die();
 						}
 					}
@@ -112,7 +121,7 @@ if (init('cron_id') != '') {
 			$cron->setState('stop');
 			$cron->setPID();
 			$cron->setServer('');
-			$cron->setDuration(convertDuration(strtotime('now') - strtotime($datetime)));
+			$cron->setDuration(convertDuration(strtotime('now') - $datetimeStart));
 			$cron->save();
 		}
 		die();
