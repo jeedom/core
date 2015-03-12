@@ -556,8 +556,8 @@ class scenario {
 			return;
 		}
 		log::add('event', 'event', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclencher par : ', __FILE__) . $_trigger);
+		$this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
 		if ($this->getConfiguration('speedPriority', 0) == 0) {
-			$this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
 			$this->setDisplay('icon', '');
 			$this->setState('in progress');
 			$this->setPID(getmypid());
@@ -572,8 +572,8 @@ class scenario {
 			$this->setState('stop');
 			$this->setPID('');
 			$this->save();
-			$this->persistLog();
 		}
+		$this->persistLog();
 		if ($this->getReturn() != '') {
 			return $this->getReturn();
 		}
