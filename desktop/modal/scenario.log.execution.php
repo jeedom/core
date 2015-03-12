@@ -6,9 +6,6 @@ $scenario = scenario::byId(init('scenario_id'));
 if (!is_object($scenario)) {
 	throw new Exception(__('Aucun scénario correspondant à : ', __FILE__) . init('scenario_id'));
 }
-if ($scenario->getConfiguration('speedPriority', 0) == 1) {
-	echo '<div class="alert alert-warning">{{Ce scénario s\'éxécute le plus rapidement possible il n\'écris donc pas de log}}</div>';
-}
 ?>
 <div style="display: none;width : 100%" id="div_alertScenarioLog"></div>
 <a class="btn btn-danger pull-right" id="bt_scenarioLogEmpty"><i class="fa fa-trash"></i> {{Vider les logs}}</a>
