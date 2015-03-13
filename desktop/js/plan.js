@@ -84,6 +84,23 @@
     }
 });
 
+ $('#bt_removePlanHeader').on('click',function(){
+    bootbox.confirm('{{Etês vous sur de vouloir supprimer ce design ?}}', function (result) {
+        if (result) {
+            jeedom.plan.removeHeader({
+                id:planHeader_id,
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                   $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
+                   window.location.reload();
+               },
+           });
+        }
+    });
+});
+
  /*****************************PLAN***********************************/
  $('#bt_addEqLogic').on('click', function () {
     jeedom.eqLogic.getSelectModal({}, function (data) {

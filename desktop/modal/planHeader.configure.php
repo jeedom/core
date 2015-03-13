@@ -1,11 +1,11 @@
 <?php
 if (!isConnect('admin')) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 
 $planHeader = planHeader::byId(init('planHeader_id'));
 if (!is_object($planHeader)) {
-    throw new Exception('Impossible de trouver le plan');
+	throw new Exception('Impossible de trouver le plan');
 }
 sendVarToJS('id', $planHeader->getId())
 ?>
@@ -37,21 +37,21 @@ sendVarToJS('id', $planHeader->getId())
         <div class="form-group expertModeVisible">
             <label class="col-lg-4 control-label">{{Ne pas afficher la fleche de retour lors de la mise en pleine écran}}</label>
             <div class="col-lg-4">
-                <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="noReturnFullScreen" /> 
+                <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="noReturnFullScreen" />
             </div>
         </div>
         <legend>{{Tailles}}</legend>
         <div class="form-group expertModeVisible">
             <label class="col-lg-4 control-label">{{Responsive mode (Attention toute les valeurs de taille sont ignorées)}}</label>
             <div class="col-lg-4">
-                <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="responsiveMode" /> 
+                <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="responsiveMode" />
             </div>
         </div>
         <div class="form-group">
             <label class="col-lg-4 control-label">{{Taille (LxH)}}</label>
             <div class="col-lg-4">
-                <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="desktopSizeX" style="width: 80px;display: inline-block;"/> 
-                x 
+                <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="desktopSizeX" style="width: 80px;display: inline-block;"/>
+                x
                 <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key='desktopSizeY' style="width: 80px;display: inline-block;"/>
             </div>
         </div>
@@ -85,84 +85,50 @@ sendVarToJS('id', $planHeader->getId())
     });
 
     $('#bt_saveConfigurePlanHeader').on('click', function () {
-        save();
+      jeedom.plan.saveHeader({
+        planHeader: $('#fd_planHeaderConfigure').getValues('.planHeaderAttr')[0],
+        error: function (error) {
+            $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            $('#div_alertPlanHeaderConfigure').showAlert({message: 'Design sauvegardé', level: 'success'});
+            window.location.reload();
+        },
     });
+  });
 
     $('#bt_removeConfigurePlanHeader').on('click', function () {
         bootbox.confirm('Etes-vous sûr de vouloir supprimer cet object du design ?', function (result) {
             if (result) {
-                remove();
-            }
-        });
+             jeedom.plan.removeHeader({
+                id: $(".planHeaderAttr[data-l1key=id]").value(),
+                error: function (error) {
+                    $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                 $('#div_alertPlanHeaderConfigure').showAlert({message: 'Design supprimé', level: 'success'});
+                 window.location.reload();
+             },
+         });
+         }
+     });
     });
 
     if (isset(id) && id != '') {
-        load(id);
-    }
-
-    function load(_id) {
-        $.ajax({// fonction permettant de faire de l'ajax
-            type: "POST", // methode de transmission des données au fichier php
-            url: "core/ajax/plan.ajax.php", // url du fichier php
-            data: {
-                action: "getPlanHeader",
-                id: _id
-            },
-            dataType: 'json',
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_alertPlanHeaderConfigure'));
-            },
-            success: function (data) { // si l'appel a bien fonctionné
-                if (data.state != 'ok') {
-                    $('#div_alertPlanHeaderConfigure').showAlert({message: data.result, level: 'danger'});
-                    return;
-                }
-                $('#fd_planHeaderConfigure').setValues(data.result, '.planHeaderAttr');
-                $('.planHeaderAttr[data-l1key=configuration][data-l2key=preconfigureDevice]').off().on('change', function () {
-                    $('.planHeaderAttr[data-l1key=configuration][data-l2key=sizeX]').value($(this).find('option:selected').attr('data-width'));
-                    $('.planHeaderAttr[data-l1key=configuration][data-l2key=sizeY]').value($(this).find('option:selected').attr('data-height'));
-                    $('.planHeaderAttr[data-l1key=configuration][data-l2key=maxSizeAllow]').value(1);
-                    $('.planHeaderAttr[data-l1key=configuration][data-l2key=minSizeAllow]').value(1);
-                });
-            }
+       jeedom.plan.getHeader({
+        id: id,
+        error: function (error) {
+            $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (planHeader) {
+         $('#fd_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr');
+         $('.planHeaderAttr[data-l1key=configuration][data-l2key=preconfigureDevice]').off().on('change', function () {
+            $('.planHeaderAttr[data-l1key=configuration][data-l2key=sizeX]').value($(this).find('option:selected').attr('data-width'));
+            $('.planHeaderAttr[data-l1key=configuration][data-l2key=sizeY]').value($(this).find('option:selected').attr('data-height'));
+            $('.planHeaderAttr[data-l1key=configuration][data-l2key=maxSizeAllow]').value(1);
+            $('.planHeaderAttr[data-l1key=configuration][data-l2key=minSizeAllow]').value(1);
         });
-    }
-
-
-    function save() {
-        jeedom.plan.saveHeader({
-            planHeader: $('#fd_planHeaderConfigure').getValues('.planHeaderAttr')[0],
-            error: function (error) {
-                $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-                $('#div_alertPlanHeaderConfigure').showAlert({message: 'Design sauvegardé', level: 'success'});
-                window.location.reload();
-            },
-        });
-    }
-
-    function remove() {
-        $.ajax({// fonction permettant de faire de l'ajax
-            type: "POST", // methode de transmission des données au fichier php
-            url: "core/ajax/plan.ajax.php", // url du fichier php
-            data: {
-                action: "removePlanHeader",
-                id: $(".planHeaderAttr[data-l1key=id]").value()
-            },
-            dataType: 'json',
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_alertPlanHeaderConfigure'));
-            },
-            success: function (data) { // si l'appel a bien fonctionné
-                if (data.state != 'ok') {
-                    $('#div_alertPlanHeaderConfigure').showAlert({message: data.result, level: 'danger'});
-                    return;
-                }
-                $('#div_alertPlanHeaderConfigure').showAlert({message: 'Design supprimé', level: 'success'});
-                window.location.reload();
-            }
-        });
-    }
-
+     },
+ });
+   }
 </script>

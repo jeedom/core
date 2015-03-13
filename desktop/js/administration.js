@@ -117,15 +117,8 @@
     var href = $(this).attr('data-href');
     bootbox.confirm('{{Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et que en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\'accès est enregistré) ?}}', function (result) {
         if (result) {
-            bootbox.prompt("Veuillez indiquer le mot de passe d\'accès à l\'administration de la base ?", function (result) {
-                if (result == 'zgw77VL5') {
-                    var win = window.open(href, '_blank');
-                    win.focus();
-                } else {
-                    $('#div_alert').showAlert({message: '{{Mot de passe incorrect}}', level: 'danger'});
-                }
-            });
-
+            var win = window.open(href, '_blank');
+            win.focus();
         }
     });
 });
@@ -197,14 +190,14 @@ $('#bt_testMarketConnection').on('click', function () {
         },
         success: function () {
             jeedom.market.test({
-             error: function (error) {
+               error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function () {
-               $('#div_alert').showAlert({message: '{{Connexion au market réussie}}', level: 'success'});
-           }
+             $('#div_alert').showAlert({message: '{{Connexion au market réussie}}', level: 'success'});
+         }
 
-       });
+     });
         }
     });
 });
