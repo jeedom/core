@@ -311,6 +311,13 @@ try {
 			echo __("***************Mise à jour des plugins réussie***************\n", __FILE__);
 		}
 		try {
+			echo __("Vérification des mises à jour\n", __FILE__);
+			update::checkAllUpdate();
+			echo __("OK\n", __FILE__);
+		} catch (Exception $ex) {
+			echo __("***ERREUR*** ", __FILE__) . $ex->getMessage() . "\n";
+		}
+		try {
 			jeedom::start();
 		} catch (Exception $ex) {
 			echo __("***ERREUR*** ", __FILE__) . $ex->getMessage() . "\n";
