@@ -18,6 +18,7 @@
 
 if (!isset($_GET['v'])) {
 	$useragent = (isset($_SERVER["HTTP_USER_AGENT"])) ? $_SERVER["HTTP_USER_AGENT"] : 'none';
+	$getParams = '';
 	foreach ($_GET AS $var => $value) {
 		$getParams .= $var . '=' . $value . '&';
 	}
