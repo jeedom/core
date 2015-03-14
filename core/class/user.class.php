@@ -198,7 +198,7 @@ class user {
 	public static function createTemporary($_hours) {
 		$user = new self();
 		$user->setLogin('temp_' . config::genKey());
-		$user->setPassword(config::genKey(64));
+		$user->setPassword(config::genKey(45));
 		$user->setRights('admin', 1);
 		$user->setOptions('validity_limit', date('Y-m-d H:i:s', strtotime('+' . $_hours . ' hour now')));
 		$user->save();
