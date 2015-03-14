@@ -236,8 +236,7 @@ setInterval(function () {
     });
 
     $('body').delegate('.bt_reportBug', 'click', function () {
-        $('#md_reportBug').load('index.php?v=d&modal=report.bug');
-        $('#md_reportBug').dialog('open');
+        $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open');
     });
 
     $(window).bind('beforeunload', function (e) {
