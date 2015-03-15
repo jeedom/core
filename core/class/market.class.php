@@ -662,6 +662,7 @@ class market {
 
 							}
 						}
+						config::remove('*', $this->getLogicalId());
 					}
 				} catch (Exception $e) {
 
