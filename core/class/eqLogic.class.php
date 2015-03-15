@@ -636,6 +636,9 @@ class eqLogic {
 		if ($this->getCategory('energy', 0) == 1) {
 			return 'energy';
 		}
+		if ($this->getCategory('multimedia', 0) == 1) {
+			return 'multimedia';
+		}
 		return '';
 	}
 
