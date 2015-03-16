@@ -30,6 +30,11 @@
             $('#span_plugin_name').html(data.name);
             $('#span_plugin_author').html(data.author);
             $('#span_plugin_description').html(data.description);
+            if(isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.version)){
+                $('#span_plugin_install_version').html(data.update.configuration.version);
+            }else{
+                $('#span_plugin_install_version').html('');
+            }
             $('#span_plugin_licence').html(data.licence);
             $('#span_plugin_installation').html(data.installation);
 
