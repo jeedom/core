@@ -272,7 +272,7 @@ class update {
 		if ($this->getType() == 'core') {
 			jeedom::update();
 		} else {
-			$market = market::byLogicalId($this->getLogicalId());
+			$market = market::byLogicalIdAndType($this->getLogicalId(), $this->getType());
 			if (is_object($market)) {
 				$market->install($this->getConfiguration('version', 'stable'));
 			}
@@ -286,7 +286,7 @@ class update {
 			throw new Exception('Vous ne pouvez pas supprimer le core de Jeedom');
 		} else {
 			try {
-				$market = market::byLogicalId($this->getLogicalId());
+				$market = market::byLogicalIdAndType($this->getLogicalId(), $this->getType());
 			} catch (Exception $e) {
 				$market = new market();
 				$market->setLogicalId($this->getLogicalId());

@@ -42,7 +42,7 @@ class plugin {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function byId($_id,$_translate = true) {
+	public static function byId($_id, $_translate = true) {
 		if (isset(self::$_cache[$_id])) {
 			return self::$_cache[$_id];
 		}
@@ -96,9 +96,9 @@ class plugin {
 			);
 		}
 
-		if($_translate){
-			$plugin->description = __($plugin->description,$_id);
-			$plugin->installation = __($plugin->installation,$_id);
+		if ($_translate) {
+			$plugin->description = __($plugin->description, $_id);
+			$plugin->installation = __($plugin->installation, $_id);
 		}
 
 		self::$_cache[$_id] = $plugin;
@@ -118,7 +118,7 @@ class plugin {
 		}
 	}
 
-	public static function listPlugin($_activateOnly = false, $_orderByCaterogy = false,$_translate = true) {
+	public static function listPlugin($_activateOnly = false, $_orderByCaterogy = false, $_translate = true) {
 		$listPlugin = array();
 		if ($_activateOnly) {
 			$sql = "SELECT plugin
@@ -128,7 +128,7 @@ class plugin {
 			$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 			foreach ($results as $result) {
 				try {
-					$listPlugin[] = plugin::byId($result['plugin'],$_translate);
+					$listPlugin[] = plugin::byId($result['plugin'], $_translate);
 				} catch (Exception $e) {
 					log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $result['plugin']);
 				}
@@ -140,7 +140,7 @@ class plugin {
 					$pathInfoPlugin = $rootPluginPath . '/' . $dirPlugin . '/plugin_info/info.xml';
 					if (file_exists($pathInfoPlugin)) {
 						try {
-							$listPlugin[] = plugin::byId($pathInfoPlugin,$_translate);
+							$listPlugin[] = plugin::byId($pathInfoPlugin, $_translate);
 						} catch (Exception $e) {
 							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
 						}
@@ -296,7 +296,7 @@ class plugin {
 	}
 
 	public function status() {
-		return market::getInfo($this->getId());
+		return market::getInfo(array('logicalId' => $this->getId(), 'type' => 'plugin'));
 	}
 
 	public function launch($_function) {

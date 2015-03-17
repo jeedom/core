@@ -64,12 +64,12 @@ try {
 	if (init('action') == 'byLogicalId') {
 		if (init('noExecption', 0) == 1) {
 			try {
-				ajax::success(utils::o2a(market::byLogicalId(init('logicalId'))));
+				ajax::success(utils::o2a(market::byLogicalId(array('logicalId' => init('logicalId'), 'type' => init('type')))));
 			} catch (Exception $e) {
 				ajax::success();
 			}
 		} else {
-			ajax::success(utils::o2a(market::byLogicalId(init('logicalId'))));
+			ajax::success(utils::o2a(market::byLogicalId(array('logicalId' => init('logicalId'), 'type' => init('type')))));
 		}
 	}
 

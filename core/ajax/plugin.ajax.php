@@ -34,7 +34,7 @@ try {
 		$return['activate'] = $plugin->isActive();
 		$return['configurationPath'] = $plugin->getPathToConfigurationById();
 		$return['checkVersion'] = version_compare(getVersion('jeedom'), $plugin->getRequire());
-		$return['status'] = market::getInfo($plugin->getId());
+		$return['status'] = market::getInfo(array('logicalId' => $plugin->getId(), 'type' => 'plugin'));
 		$return['update'] = utils::o2a(update::byLogicalId($plugin->getId()));
 		ajax::success($return);
 	}
