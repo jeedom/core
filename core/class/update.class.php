@@ -56,9 +56,9 @@ class update {
 				$update->checkUpdate();
 			} else {
 				if ($update->getStatus() != 'hold') {
-					$marketObject['logical_id'][] = $update->getLogicalId();
+					$marketObject['logical_id'][] = array('logicalId' => $update->getLogicalId(), 'type' => $update->getType());
 					$marketObject['version'][] = $update->getConfiguration('version', 'stable');
-					$marketObject[$update->getLogicalId()] = $update;
+					$marketObject[$update->getType() . $update->getLogicalId()] = $update;
 				}
 			}
 		}
@@ -232,7 +232,7 @@ class update {
 			$this->save();
 		} else {
 			try {
-				$market_info = market::getInfo($this->getLogicalId(), $this->getConfiguration('version', 'stable'));
+				$market_info = market::getInfo(array('logicalId' => $this->getLogicalId(), 'type' => $this->getType()), $this->getConfiguration('version', 'stable'));
 				$this->setStatus($market_info['status']);
 				$this->setConfiguration('market_owner', $market_info['market_owner']);
 				$this->setConfiguration('market', $market_info['market']);

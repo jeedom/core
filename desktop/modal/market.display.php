@@ -6,8 +6,8 @@ if (!isConnect('admin')) {
 if (init('id') != '') {
 	$market = market::byId(init('id'));
 }
-if (init('logicalId') != '') {
-	$market = market::byLogicalId(init('logicalId'));
+if (init('logicalId') != '' && init('type') != '') {
+	$market = market::byLogicalIdAndType(init('logicalId'), init('type'));
 }
 if (!isset($market)) {
 	throw new Exception('404 not found');

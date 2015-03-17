@@ -157,6 +157,29 @@ class market {
 		}
 	}
 
+	public static function byLogicalIdAndType($_logicalId, $_type = '') {
+		$market = self::getJsonRpc();
+		$options = array('logicalId' => $_logicalId, 'type' => $_type);
+		if (is_array($_logicalId)) {
+			$options = $_logicalId;
+		}
+		if ($market->sendRequest('market::byLogicalIdAndType', $options)) {
+			if (is_array($_logicalId)) {
+				$return = array();
+				foreach ($market->getResult() as $logicalId => $result) {
+					if (isset($result['id'])) {
+						$return[$logicalId] = self::construct($result);
+					}
+				}
+				return $return;
+			}
+			return self::construct($market->getResult());
+		} else {
+			log::add('market', 'debug', print_r($market, true));
+			throw new Exception($market->getError(), $market->getErrorCode());
+		}
+	}
+
 	public static function byMe() {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('market::byAuthor', array())) {
@@ -319,11 +342,21 @@ class market {
 	public static function getInfo($_logicalId, $_version = 'stable') {
 		$returns = array();
 		if (is_array($_logicalId) && is_array($_version) && count($_logicalId) == count($_version)) {
-			$markets = market::byLogicalId($_logicalId);
+			if (count($_logicalId) > 1 && is_array(reset($_logicalId))) {
+				$markets = market::byLogicalIdAndType($_logicalId);
+			} else {
+				$markets = market::byLogicalId($_logicalId);
+			}
+
 			$returns = array();
 			for ($i = 0; $i < count($_logicalId); $i++) {
+				if (is_array($_logicalId[$i])) {
+					$logicalId = $_logicalId[$i]['type'] . $_logicalId[$i]['logicalId'];
+				} else {
+					$logicalId = $_logicalId[$i];
+				}
 				$return['datetime'] = '0000-01-01 00:00:00';
-				if ($_logicalId[$i] == '' || config::byKey('market::address') == '') {
+				if ($logicalId == '' || config::byKey('market::address') == '') {
 					$return['market'] = 0;
 					$return['market_owner'] = 0;
 					$return['status'] = 'ok';
@@ -338,8 +371,8 @@ class market {
 				$return['market'] = 0;
 
 				try {
-					if (isset($markets[$_logicalId[$i]])) {
-						$market = $markets[$_logicalId[$i]];
+					if (isset($markets[$logicalId])) {
+						$market = $markets[$logicalId];
 						if (!is_object($market)) {
 							$return['status'] = 'depreciated';
 						} else {
@@ -368,13 +401,13 @@ class market {
 					log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
 					$return['status'] = 'ok';
 				}
-				$returns[$_logicalId[$i]] = $return;
+				$returns[$logicalId] = $return;
 			}
 			return $returns;
 		}
 		$return = array();
 		$return['datetime'] = '0000-01-01 00:00:00';
-		if ($_logicalId == '' || config::byKey('market::address') == '') {
+		if (config::byKey('market::address') == '') {
 			$return['market'] = 0;
 			$return['market_owner'] = 0;
 			$return['status'] = 'ok';
@@ -389,7 +422,11 @@ class market {
 		$return['market'] = 0;
 
 		try {
-			$market = market::byLogicalId($_logicalId);
+			if (is_array($_logicalI)) {
+				$market = market::byLogicalIdAndType($_logicalId['logicalId'], $_logicalId['type']);
+			} else {
+				$market = market::byLogicalId($_logicalId);
+			}
 			if (!is_object($market)) {
 				$return['status'] = 'depreciated';
 			} else {

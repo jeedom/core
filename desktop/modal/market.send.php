@@ -8,8 +8,8 @@ sendVarToJS('market_display_info', array(
 ));
 sendVarToJS('market_type', init('type'));
 try {
-	if (init('logicalId') != '') {
-		$market = market::byLogicalId(init('logicalId'));
+	if (init('logicalId') != '' && init('type') != '') {
+		$market = market::byLogicalIdAndType(init('logicalId'), init('type'));
 	}
 } catch (Exception $e) {
 	$market = null;
