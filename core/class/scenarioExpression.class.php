@@ -351,7 +351,7 @@ class scenarioExpression {
 	}
 
 	public static function odd($_value) {
-		return ($_value % 2) ? 0 : 1;
+		return ($_value % 2) ? 1 : 0;
 	}
 
 	public static function lastScenarioExecution($_scenario_id) {
