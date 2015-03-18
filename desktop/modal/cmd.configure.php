@@ -225,7 +225,7 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
             </div>
         </div>
 
-        <?php if ($cmd->getType() == 'info' && $cmd->getSubType() == 'numeric') {?>
+        <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {?>
         <div class="form-group">
             <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 control-label">{{Formule de calcul (#value# pour la valeur)}}</label>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">

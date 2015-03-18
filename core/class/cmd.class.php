@@ -70,15 +70,15 @@ class cmd {
 			'id' => $_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM cmd
-        WHERE id=:id';
+		FROM cmd
+		WHERE id=:id';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM cmd
-        ORDER BY id';
+		FROM cmd
+		ORDER BY id';
 		$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 		$return = array();
 		foreach ($results as $result) {
@@ -89,22 +89,22 @@ class cmd {
 
 	public static function allHistoryCmd($_notEventOnly = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
-        FROM cmd c
-        INNER JOIN eqLogic el ON c.eqLogic_id=el.id
-        INNER JOIN object ob ON el.object_id=ob.id
-        WHERE isHistorized=1
-        AND type=\'info\'';
+		FROM cmd c
+		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
+		INNER JOIN object ob ON el.object_id=ob.id
+		WHERE isHistorized=1
+		AND type=\'info\'';
 		if ($_notEventOnly) {
 			$sql .= ' AND eventOnly=0';
 		}
 		$sql .= ' ORDER BY ob.name,el.name,c.name';
 		$result1 = self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
-        FROM cmd c
-        INNER JOIN eqLogic el ON c.eqLogic_id=el.id
-        WHERE el.object_id IS NULL
-        AND isHistorized=1
-        AND type=\'info\'';
+		FROM cmd c
+		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
+		WHERE el.object_id IS NULL
+		AND isHistorized=1
+		AND type=\'info\'';
 		if ($_notEventOnly) {
 			$sql .= ' AND eventOnly=0';
 		}
@@ -118,8 +118,8 @@ class cmd {
 			'eqLogic_id' => $_eqLogic_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM cmd
-        WHERE eqLogic_id=:eqLogic_id';
+		FROM cmd
+		WHERE eqLogic_id=:eqLogic_id';
 		if ($_type != null) {
 			$values['type'] = $_type;
 			$sql .= ' AND `type`=:type';
@@ -136,8 +136,8 @@ class cmd {
 			'logicalId' => $_logical_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM cmd
-        WHERE logicalId=:logicalId';
+		FROM cmd
+		WHERE logicalId=:logicalId';
 		if ($_type != null) {
 			$values['type'] = $_type;
 			$sql .= ' AND `type`=:type';
@@ -151,8 +151,8 @@ class cmd {
 			'configuration' => '%' . $_configuration . '%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM cmd
-        WHERE configuration LIKE :configuration';
+		FROM cmd
+		WHERE configuration LIKE :configuration';
 		if ($_eqType != null) {
 			$values['eqType'] = $_eqType;
 			$sql .= ' AND eqType=:eqType ';
@@ -167,8 +167,8 @@ class cmd {
 			'eqLogic_id' => $_eqLogic_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM cmd
-        WHERE eqLogic_id=:eqLogic_id';
+		FROM cmd
+		WHERE eqLogic_id=:eqLogic_id';
 		if ($_type != null) {
 			$values['type'] = $_type;
 			$sql .= ' AND type=:type ';
@@ -182,8 +182,8 @@ class cmd {
 			'template' => '%' . $_template . '%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM cmd
-        WHERE template LIKE :template';
+		FROM cmd
+		WHERE template LIKE :template';
 		if ($_eqType != null) {
 			$values['eqType'] = $_eqType;
 			$sql .= ' AND eqType=:eqType ';
@@ -206,9 +206,9 @@ class cmd {
 			'logicalId' => $_logicalId,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM cmd
-        WHERE eqLogic_id=:eqLogic_id
-        AND logicalId=:logicalId';
+		FROM cmd
+		WHERE eqLogic_id=:eqLogic_id
+		AND logicalId=:logicalId';
 		if ($_multiple) {
 			return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 		}
@@ -223,20 +223,20 @@ class cmd {
 
 		if ($_onlyEnable) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
-        FROM cmd c
-        INNER JOIN eqLogic el ON c.eqLogic_id=el.id
-        WHERE ( value=:value OR value LIKE :search)
-        AND el.isEnable=1
-        AND c.id!=:value';
+			FROM cmd c
+			INNER JOIN eqLogic el ON c.eqLogic_id=el.id
+			WHERE ( value=:value OR value LIKE :search)
+			AND el.isEnable=1
+			AND c.id!=:value';
 			if ($_type != null) {
 				$values['type'] = $_type;
 				$sql .= ' AND c.type=:type ';
 			}
 		} else {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM cmd
-        WHERE ( value=:value OR value LIKE :search)
-        AND id!=:value';
+			FROM cmd
+			WHERE ( value=:value OR value LIKE :search)
+			AND id!=:value';
 			if ($_type != null) {
 				$values['type'] = $_type;
 				$sql .= ' AND type=:type ';
@@ -252,11 +252,11 @@ class cmd {
 			'cmd_name' => $_cmd_name,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
-        FROM cmd c
-        INNER JOIN eqLogic el ON c.eqLogic_id=el.id
-        WHERE c.name=:cmd_name
-        AND el.name=:eqLogic_name
-        AND el.eqType_name=:eqType_name';
+		FROM cmd c
+		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
+		WHERE c.name=:cmd_name
+		AND el.name=:eqLogic_name
+		AND el.eqType_name=:eqType_name';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -266,9 +266,9 @@ class cmd {
 			'cmd_name' => $_cmd_name,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
-        FROM cmd c
-        WHERE c.name=:cmd_name
-        AND c.eqLogic_id=:eqLogic_id';
+		FROM cmd c
+		WHERE c.name=:cmd_name
+		AND c.eqLogic_id=:eqLogic_id';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -280,20 +280,20 @@ class cmd {
 
 		if ($_object_name == __('Aucun', __FILE__)) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
-            FROM cmd c
-            INNER JOIN eqLogic el ON c.eqLogic_id=el.id
-            WHERE c.name=:cmd_name
-            AND el.name=:eqLogic_name
-            AND el.object_id IS NULL';
+			FROM cmd c
+			INNER JOIN eqLogic el ON c.eqLogic_id=el.id
+			WHERE c.name=:cmd_name
+			AND el.name=:eqLogic_name
+			AND el.object_id IS NULL';
 		} else {
 			$values['object_name'] = $_object_name;
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
-            FROM cmd c
-            INNER JOIN eqLogic el ON c.eqLogic_id=el.id
-            INNER JOIN object ob ON el.object_id=ob.id
-            WHERE c.name=:cmd_name
-            AND el.name=:eqLogic_name
-            AND ob.name=:object_name';
+			FROM cmd c
+			INNER JOIN eqLogic el ON c.eqLogic_id=el.id
+			INNER JOIN object ob ON el.object_id=ob.id
+			WHERE c.name=:cmd_name
+			AND el.name=:eqLogic_name
+			AND ob.name=:object_name';
 		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
@@ -304,11 +304,11 @@ class cmd {
 			'cmd_name' => $_cmd_name,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
-        FROM cmd c
-        INNER JOIN eqLogic el ON c.eqLogic_id=el.id
-        INNER JOIN object ob ON el.object_id=ob.id
-        WHERE c.name=:cmd_name
-        AND ob.name=:object_name';
+		FROM cmd c
+		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
+		INNER JOIN object ob ON el.object_id=ob.id
+		WHERE c.name=:cmd_name
+		AND ob.name=:object_name';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -317,8 +317,8 @@ class cmd {
 			'type' => $_type,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
-        FROM cmd c
-        WHERE c.type=:type';
+		FROM cmd c
+		WHERE c.type=:type';
 		if ($_subType != '') {
 			$values['subtype'] = $_subType;
 			$sql .= ' AND c.subtype=:subtype';
@@ -470,7 +470,7 @@ class cmd {
 
 	public static function allType() {
 		$sql = 'SELECT distinct(type) as type
-        FROM cmd';
+		FROM cmd';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 	}
 
@@ -487,7 +487,7 @@ class cmd {
 
 	public static function allUnite() {
 		$sql = 'SELECT distinct(unite) as unite
-        FROM cmd';
+		FROM cmd';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 	}
 
@@ -562,6 +562,13 @@ class cmd {
 					}
 					return $_value;
 				case 'binary':
+					if ($this->getConfiguration('calculValueOffset') != '') {
+						try {
+							$_value = evaluate(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
+						} catch (Exception $ex) {
+
+						}
+					}
 					$value = strtolower($_value);
 					if ($value == 'on' || $value == 'high' || $value == 'true' || $value === true) {
 						return 1;
