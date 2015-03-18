@@ -120,6 +120,7 @@ class user {
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
 			$user->save();
 			jeedom::event('user_connect');
+			log::add('event', 'event', __('Connexion de l\'utilisateur ', __FILE__) . $user->getLogin());
 			if ($user->getOptions('validity_limit') != '' && strtotime('now') > strtotime($user->getOptions('validity_limit'))) {
 				$user->remove();
 				return false;
