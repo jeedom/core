@@ -110,7 +110,7 @@ class log {
 		$logs = ls(dirname(__FILE__) . '/../../log/', '*');
 		foreach ($logs as $log) {
 			$path = dirname(__FILE__) . '/../../log/' . $log;
-			if (strpos($_log, 'nginx.error') === false && !is_dir($path)) {
+			if (strpos($log, 'nginx.error') === false && !is_dir($path)) {
 				unlink($path);
 			}
 		}
