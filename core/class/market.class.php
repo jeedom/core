@@ -422,7 +422,7 @@ class market {
 		$return['market'] = 0;
 
 		try {
-			if (is_array($_logicalI)) {
+			if (is_array($_logicalId)) {
 				$market = market::byLogicalIdAndType($_logicalId['logicalId'], $_logicalId['type']);
 			} else {
 				$market = market::byLogicalId($_logicalId);
