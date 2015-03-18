@@ -77,6 +77,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
                                     <select class="configKey form-control" data-l1key="timezone">
                                         <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
+                                        <option value="Pacific/Tahiti">(GMT-10:00) Pacific/Tahiti</option>
                                         <option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
                                         <option value="Etc/GMT+10">(GMT-10:00) Hawaii</option>
                                         <option value="Pacific/Marquesas">(GMT-09:30) Marquesas Islands</option>
