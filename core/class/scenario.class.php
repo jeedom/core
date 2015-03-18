@@ -555,7 +555,12 @@ class scenario {
 			$this->persistLog();
 			return;
 		}
-		log::add('event', 'event', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclencher par : ', __FILE__) . $_trigger);
+		$cmd = cmd::byId(str_replace('#', '', $_trigger));
+		if(is_object(var)){
+			log::add('event', 'event', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclencher par : ', __FILE__) . $cmd->getHumanName());
+		}else{
+			log::add('event', 'event', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclencher par : ', __FILE__) . $_trigger);
+		}
 		$this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
 		if ($this->getConfiguration('speedPriority', 0) == 0) {
 			$this->setDisplay('icon', '');
