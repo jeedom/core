@@ -941,6 +941,7 @@ class cmd {
 			log::add('cmd', 'debug', 'Valeur identique pour la commande : ' . $this->getHumanName() . ' => ' . $value . '==' . $this->execCmd(null, 2));
 			return;
 		}
+		$this->setCollectDate($collectDate);
 		log::add('event', 'event', __('Evenement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $_value);
 		cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
 		scenario::check($this);
