@@ -930,7 +930,7 @@ class cmd {
 		if (trim($_value) === '' || $_loop > 4 || $this->getType() != 'info') {
 			return;
 		}
-		$collectDate = ($this->getCollectDate() != '') ? strtotime($this->getCollectDate()) : '';
+		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
 		$eqLogic = $this->getEqLogic();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
 			return;
@@ -938,7 +938,6 @@ class cmd {
 		$_loop++;
 		$value = $this->formatValue($_value);
 		if ($this->getConfiguration('onlyChangeEvent', 0) == 1 && $this->getEventOnly() == 1 && $value == $this->execCmd(null, 2)) {
-			log::add('cmd', 'debug', 'Valeur identique pour la commande : ' . $this->getHumanName() . ' => ' . $value . '==' . $this->execCmd(null, 2));
 			return;
 		}
 		$this->setCollectDate($collectDate);
@@ -966,7 +965,7 @@ class cmd {
 		}
 		listener::check($this->getId(), $value);
 		if (strpos($_value, 'error') === false) {
-			$eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
+			$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
 			$this->addHistoryValue($value, $this->getCollectDate());
 		}
 		$this->checkReturnState($value);
