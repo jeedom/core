@@ -649,6 +649,9 @@ class eqLogic {
 	}
 
 	public function batteryStatus($_pourcent, $_datetime = '') {
+		if ($this->getConfiguration('batteryStatus', -1) == $_pourcent) {
+			return;
+		}
 		foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
 			$message->remove();
 		}
