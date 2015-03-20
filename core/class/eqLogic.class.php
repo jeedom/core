@@ -669,7 +669,7 @@ class eqLogic {
 		if ($_pourcent <= 0) {
 			$logicalId = 'noBattery' . $this->getId();
 			$message = __('Le module ', __FILE__) . $this->getEqType_name() . ' ';
-			$message .= $this->getHumanName() . __(' a été désactivé car il n\'a plus de batterie (', __FILE__) . $_pourcent . ' %)';
+			$message .= $this->getHumanName() . __(' n\'a plus de batterie (', __FILE__) . $_pourcent . ' %)';
 			message::add($this->getEqType_name(), $message, '', $logicalId);
 		}
 		$this->setConfiguration('batteryStatus', $_pourcent);
