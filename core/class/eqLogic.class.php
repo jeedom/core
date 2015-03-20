@@ -652,7 +652,6 @@ class eqLogic {
 		if ($this->getConfiguration('batteryStatus', -1) == $_pourcent) {
 			return;
 		}
-
 		if ($_pourcent > 20) {
 			foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
 				$message->remove();
@@ -662,11 +661,9 @@ class eqLogic {
 			}
 		} else if ($_pourcent > 0 && $_pourcent <= 20) {
 			$logicalId = 'lowBattery' . $this->getId();
-			if (count(message::byPluginLogicalId($this->getEqType_name(), $logicalId)) == 0) {
-				$message = 'Le module ' . $this->getEqType_name() . ' ';
-				$message .= $this->getHumanName() . ' a moins de ' . $_pourcent . '% de batterie';
-				message::add($this->getEqType_name(), $message, '', $logicalId);
-			}
+			$message = 'Le module ' . $this->getEqType_name() . ' ';
+			$message .= $this->getHumanName() . ' a moins de ' . $_pourcent . '% de batterie';
+			message::add($this->getEqType_name(), $message, '', $logicalId);
 		} else {
 			$logicalId = 'noBattery' . $this->getId();
 			$message = __('Le module ', __FILE__) . $this->getEqType_name() . ' ';
