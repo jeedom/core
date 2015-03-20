@@ -1050,11 +1050,11 @@ class scenario {
 		if (isConnect('admin')) {
 			return true;
 		}
-		if ($_right = 'x') {
+		if ($_right == 'x') {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'action');
-		} elseif ($_right = 'w') {
+		} elseif ($_right == 'w') {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'edit');
-		} elseif ($_right = 'r') {
+		} elseif ($_right == 'r') {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'view');
 		}
 		if (!is_object($rights)) {
