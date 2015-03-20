@@ -124,12 +124,12 @@ class config {
                     AND plugin=:plugin';
 		$value = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		if ($value['value'] == '') {
-			if ($_default != '') {
-				return $_default;
-			}
 			$defaultConfiguration = self::getDefaultConfiguration($_plugin);
 			if (isset($defaultConfiguration[$_plugin][$_key])) {
 				return $defaultConfiguration[$_plugin][$_key];
+			}
+			if ($_default != '') {
+				return $_default;
 			}
 		}
 		if (is_json($value['value'])) {
