@@ -1,98 +1,98 @@
 <?php
 if (!isConnect('admin')) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 
 $pages = array(
-    'administration' => array(
-        'title' => 'Administration',
-        'view' => array('title' => 'Voir'),
-    // 'edit' => array('title' => 'Editer')
-    ),
-    'backup' => array(
-        'title' => 'Utilisateur',
-        'view' => array('title' => 'Voir'),
-    // 'edit' => array('title' => 'Editer')
-    ),
-    'cron' => array(
-        'title' => 'Moteur de tâches',
-        'view' => array('title' => 'Voir'),
-    // 'edit' => array('title' => 'Editer')
-    ),
-    'display' => array(
-        'title' => 'Affichage',
-        'view' => array('title' => 'Voir'),
-    //  'edit' => array('title' => 'Editer')
-    ),
-    'interact' => array(
-        'title' => 'Interactions',
-        'view' => array('title' => 'Voir'),
-    //  'edit' => array('title' => 'Editer')
-    ),
-    'jeeNetwork' => array(
-        'title' => 'Réseau Jeedom',
-        'view' => array('title' => 'Voir'),
-    //  'edit' => array('title' => 'Editer')
-    ),
-    'log' => array(
-        'title' => 'Log',
-        'view' => array('title' => 'Voir'),
-    // 'edit' => array('title' => 'Editer')
-    ),
-    'message' => array(
-        'title' => 'Message',
-        'view' => array('title' => 'Voir'),
-    // 'edit' => array('title' => 'Editer')
-    ),
-    'object' => array(
-        'title' => 'Objets',
-        'view' => array('title' => 'Voir'),
-    // 'edit' => array('title' => 'Editer')
-    ),
-    'plan' => array(
-        'title' => 'Designs',
-        'view' => array('title' => 'Voir'),
-    // 'edit' => array('title' => 'Editer')
-    ),
-    'plugin' => array(
-        'title' => 'Plugins',
-        'view' => array('title' => 'Voir'),
-    // 'edit' => array('title' => 'Editer')
-    ),
-    'scenario' => array(
-        'title' => 'Scénarios',
-        'view' => array('title' => 'Voir'),
-    // 'edit' => array('title' => 'Editer')
-    ),
-    'security' => array(
-        'title' => 'Sécurité',
-        'view' => array('title' => 'Voir'),
-    //  'edit' => array('title' => 'Editer')
-    ),
-    'update' => array(
-        'title' => 'Mise à jour',
-        'view' => array('title' => 'Voir'),
-    //  'edit' => array('title' => 'Editer')
-    ),
-    'user' => array(
-        'title' => 'Utilisateurs',
-        'view' => array('title' => 'Voir'),
-    //  'edit' => array('title' => 'Editer')
-    ),
-    'view' => array(
-        'title' => 'Vues',
-        'view' => array('title' => 'Voir'),
-    //  'edit' => array('title' => 'Editer')
-    ),
-    'custom' => array(
-        'title' => 'Personnalisation avancée',
-        'view' => array('title' => 'Voir'),
-    //  'edit' => array('title' => 'Editer')
-    ),
-    'report' => array(
-        'title' => 'Rapport',
-        'send' => array('title' => 'Envoyer'),
-    ),
+	'administration' => array(
+		'title' => 'Administration',
+		'view' => array('title' => 'Voir'),
+		// 'edit' => array('title' => 'Editer')
+	),
+	'backup' => array(
+		'title' => 'Utilisateur',
+		'view' => array('title' => 'Voir'),
+		// 'edit' => array('title' => 'Editer')
+	),
+	'cron' => array(
+		'title' => 'Moteur de tâches',
+		'view' => array('title' => 'Voir'),
+		// 'edit' => array('title' => 'Editer')
+	),
+	'display' => array(
+		'title' => 'Affichage',
+		'view' => array('title' => 'Voir'),
+		//  'edit' => array('title' => 'Editer')
+	),
+	'interact' => array(
+		'title' => 'Interactions',
+		'view' => array('title' => 'Voir'),
+		//  'edit' => array('title' => 'Editer')
+	),
+	'jeeNetwork' => array(
+		'title' => 'Réseau Jeedom',
+		'view' => array('title' => 'Voir'),
+		//  'edit' => array('title' => 'Editer')
+	),
+	'log' => array(
+		'title' => 'Log',
+		'view' => array('title' => 'Voir'),
+		// 'edit' => array('title' => 'Editer')
+	),
+	'message' => array(
+		'title' => 'Message',
+		'view' => array('title' => 'Voir'),
+		// 'edit' => array('title' => 'Editer')
+	),
+	'object' => array(
+		'title' => 'Objets',
+		'view' => array('title' => 'Voir'),
+		// 'edit' => array('title' => 'Editer')
+	),
+	'plan' => array(
+		'title' => 'Designs',
+		'view' => array('title' => 'Voir'),
+		// 'edit' => array('title' => 'Editer')
+	),
+	'plugin' => array(
+		'title' => 'Plugins',
+		'view' => array('title' => 'Voir'),
+		// 'edit' => array('title' => 'Editer')
+	),
+	'scenario' => array(
+		'title' => 'Scénarios',
+		'view' => array('title' => 'Voir'),
+		// 'edit' => array('title' => 'Editer')
+	),
+	'security' => array(
+		'title' => 'Sécurité',
+		'view' => array('title' => 'Voir'),
+		//  'edit' => array('title' => 'Editer')
+	),
+	'update' => array(
+		'title' => 'Mise à jour',
+		'view' => array('title' => 'Voir'),
+		//  'edit' => array('title' => 'Editer')
+	),
+	'user' => array(
+		'title' => 'Utilisateurs',
+		'view' => array('title' => 'Voir'),
+		//  'edit' => array('title' => 'Editer')
+	),
+	'view' => array(
+		'title' => 'Vues',
+		'view' => array('title' => 'Voir'),
+		//  'edit' => array('title' => 'Editer')
+	),
+	'custom' => array(
+		'title' => 'Personnalisation avancée',
+		'view' => array('title' => 'Voir'),
+		//  'edit' => array('title' => 'Editer')
+	),
+	'report' => array(
+		'title' => 'Rapport',
+		'send' => array('title' => 'Envoyer'),
+	),
 );
 
 include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
@@ -102,10 +102,10 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
 <a class="btn btn-success pull-right" id="bt_saveRights"><i class="fa fa-floppy-o"></i> Sauvegarder</a>
 <select class="form-control pull-right" id="sel_userId" style="display: inline-block; width: 200px;">
     <?php
-    foreach (user::all() as $user) {
-        echo '<option value="' . $user->getId() . '">' . $user->getLogin() . '</option>';
-    }
-    ?>
+foreach (user::all() as $user) {
+	echo '<option value="' . $user->getId() . '">' . $user->getLogin() . '</option>';
+}
+?>
 </select>
 
 <!-- Nav tabs -->
@@ -122,35 +122,35 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
         <table class="table table-bordered table-condensed tablesorter" >
             <thead>
                 <tr>
-                    <td style="width: 250px;">{{Droits}}</td>
+                    <td style="width: 150px;">{{Droits}}</td>
                     <td style="width: 250px;">{{Nom}}</td>
                     <td>{{Description}}</td>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                foreach ($pages as $kpage => $page) {
-                    echo '<tr>';
-                    echo '<td>';
-                    foreach ($page as $kright => $right) {
-                        if ($kright != 'title' && $kright != 'title') {
-                            echo '<span class="rights">';
-                            echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
-                            echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
-                            echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="' . $kpage . $kright . '" />';
-                            echo '<input type="checkbox" class="rightsAttr" data-l1key="right"  checked /> ' . $right['title'] . ' ';
-                            echo '</span>';
-                        }
-                    }
-                    echo '</td>';
-                    echo '<td>';
-                    echo $page['title'];
-                    echo '</td>';
-                    echo '<td>';
-                    echo '</td>';
-                    echo '</tr>';
-                }
-                ?>
+foreach ($pages as $kpage => $page) {
+	echo '<tr>';
+	echo '<td>';
+	foreach ($page as $kright => $right) {
+		if ($kright != 'title' && $kright != 'title') {
+			echo '<span class="rights">';
+			echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
+			echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
+			echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="' . $kpage . $kright . '" />';
+			echo '<input type="checkbox" class="rightsAttr" data-l1key="right"  checked /> ' . $right['title'] . ' ';
+			echo '</span>';
+		}
+	}
+	echo '</td>';
+	echo '<td>';
+	echo $page['title'];
+	echo '</td>';
+	echo '<td>';
+	echo '</td>';
+	echo '</tr>';
+}
+?>
             </tbody>
         </table>
     </div>
@@ -159,30 +159,30 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
         <table class="table table-bordered table-condensed tablesorter" >
             <thead>
                 <tr>
-                    <td style="width: 250px;">{{Droits}}</td>
+                    <td style="width: 150px;">{{Droits}}</td>
                     <td>{{Nom}}</td>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                foreach (eqLogic::all() as $eqLogic) {
-                    echo '<tr>';
-                    echo '<td>';
-                    foreach (array(/* 'edit' => 'Editer', */ 'view' => 'Voir', 'action' => 'Action') as $kright => $right) {
-                        echo '<span class="rights">';
-                        echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
-                        echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
-                        echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="eqLogic' . $eqLogic->getId() . $kright . '" />';
-                        echo '<input type="checkbox" class="rightsAttr" data-l1key="right"  checked /> ' . $right . ' ';
-                        echo '</span>';
-                    }
-                    echo '</td>';
-                    echo '<td>';
-                    echo $eqLogic->getHumanName();
-                    echo '</td>';
-                    echo '</tr>';
-                }
-                ?>
+foreach (eqLogic::all() as $eqLogic) {
+	echo '<tr>';
+	echo '<td>';
+	foreach (array(/* 'edit' => 'Editer', */'view' => 'Voir', 'action' => 'Action') as $kright => $right) {
+		echo '<span class="rights">';
+		echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
+		echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
+		echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="eqLogic' . $eqLogic->getId() . $kright . '" />';
+		echo '<input type="checkbox" class="rightsAttr" data-l1key="right"  checked /> ' . $right . ' ';
+		echo '</span>';
+	}
+	echo '</td>';
+	echo '<td>';
+	echo $eqLogic->getHumanName();
+	echo '</td>';
+	echo '</tr>';
+}
+?>
             </tbody>
         </table>
     </div>
@@ -191,33 +191,33 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'j
         <table class="table table-bordered table-condensed tablesorter" >
             <thead>
                 <tr>
-                    <td style="width: 100px;">{{Droits}}</td>
+                    <td style="width: 150px;">{{Droits}}</td>
                     <td>{{Nom}}</td>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                foreach (scenario::all() as $scenario) {
-                    echo '<tr>';
-                    echo '<td>';
-                    foreach (array('view' => 'Voir', 'edit' => 'Editer', 'action' => 'Action') as $kright => $right) {
-                        echo '<span class="rights">';
-                        echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
-                        echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
-                        echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="scenario' . $scenario->getId() . $kright . '" />';
-                        echo '<input type="checkbox" class="rightsAttr" data-l1key="right"  checked /> ' . $right . ' ';
-                        echo '</span>';
-                    }
-                    echo '</td>';
-                    echo '<td>';
-                    echo $scenario->getHumanName();
-                    echo '</td>';
-                    echo '</tr>';
-                }
-                ?>
+foreach (scenario::all() as $scenario) {
+	echo '<tr>';
+	echo '<td>';
+	foreach (array('view' => 'Voir', 'edit' => 'Editer', 'action' => 'Action') as $kright => $right) {
+		echo '<span class="rights">';
+		echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
+		echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
+		echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="scenario' . $scenario->getId() . $kright . '" />';
+		echo '<input type="checkbox" class="rightsAttr" data-l1key="right"  checked /> ' . $right . ' ';
+		echo '</span>';
+	}
+	echo '</td>';
+	echo '<td>';
+	echo $scenario->getHumanName();
+	echo '</td>';
+	echo '</tr>';
+}
+?>
             </tbody>
         </table>
     </div>
 </div>
 
-<?php include_file("desktop", "rights", "js"); ?>
+<?php include_file("desktop", "rights", "js");?>

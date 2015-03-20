@@ -700,11 +700,9 @@ class eqLogic {
 		if (isConnect('admin')) {
 			return true;
 		}
-		if ($_right = 'x') {
+		if ($_right == 'x') {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'action');
-		} elseif ($_right = 'w') {
-			$rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'edit');
-		} elseif ($_right = 'r') {
+		} elseif ($_right == 'r') {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'view');
 		}
 		if (!is_object($rights)) {
