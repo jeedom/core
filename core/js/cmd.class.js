@@ -209,10 +209,14 @@ jeedom.cmd.test = function(_params) {
                     });
                     break;
                     case 'slider':
+                    var slider = 50;
+                    if(isset(result.configuration) && isset(result.configuration.maxValue) && isset(result.configuration.minValue)){
+                        slider = (result.configuration.maxValue - result.configuration.minValue) / 2;
+                    }
                     jeedom.cmd.execute({
                         id: _params.id,
                         value: {
-                            slider: 50
+                            slider: slider
                         },
                         cache: 0,
                         error: function(error) {
