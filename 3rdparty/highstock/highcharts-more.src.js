@@ -2,7 +2,7 @@
 // @compilation_level SIMPLE_OPTIMIZATIONS
 
 /**
- * @license Highcharts JS v4.1.1 (2015-02-17)
+ * @license Highcharts JS v4.1.4 (2015-03-10)
  *
  * (c) 2009-2014 Torstein Honsi
  *
@@ -975,6 +975,7 @@ seriesTypes.areasplinerange = extendClass(seriesTypes.arearange, {
 				shapeArgs.y = y;
 			});
 		},
+		directTouch: true,
 		trackerGroups: ['group', 'dataLabelsGroup'],
 		drawGraph: noop,
 		pointAttrToOptions: colProto.pointAttrToOptions,
@@ -1487,7 +1488,8 @@ seriesTypes.boxplot = extendClass(seriesTypes.column, {
 			}
 		});
 
-	}
+	},
+	setStackedPoints: noop // #3890
 
 
 });
@@ -1606,10 +1608,12 @@ seriesTypes.waterfall = extendClass(seriesTypes.column, {
 				[0, yValue];
 
 			// override point value for sums
-			if (point.isSum || point.isIntermediateSum) { // #3710 Update point does not propagate to sum
+			// #3710 Update point does not propagate to sum
+			if (point.isSum) {
 				point.y = yValue;
+			} else if (point.isIntermediateSum) {
+				point.y = yValue - previousIntermediate; // #3840
 			}
-
 			// up points
 			y = mathMax(previousY, previousY + point.y) + range[0];
 			shapeArgs.y = yAxis.translate(y, 0, 1);
@@ -1625,15 +1629,15 @@ seriesTypes.waterfall = extendClass(seriesTypes.column, {
 				shapeArgs.height = yAxis.translate(previousIntermediate, 0, 1) - shapeArgs.y;
 				previousIntermediate = range[1];
 
-			// if it's not the sum point, update previous stack end position
+			// If it's not the sum point, update previous stack end position and get 
+			// shape height (#3886)
 			} else {
+				if (previousY !== 0) { // Not the first point
+					shapeArgs.height = yValue > 0 ? 
+						yAxis.translate(previousY, 0, 1) - shapeArgs.y :
+						yAxis.translate(previousY, 0, 1) - yAxis.translate(previousY - yValue, 0, 1);
+				}
 				previousY += yValue;
-			}
-
-			// negative points
-			if (shapeArgs.height < 0) {
-				shapeArgs.y += shapeArgs.height;
-				shapeArgs.height *= -1;
 			}
 
 			point.plotY = shapeArgs.y = mathRound(shapeArgs.y) - (series.borderWidth % 2) / 2;

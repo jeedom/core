@@ -31,24 +31,32 @@
 	// Utilities
 	/*
 	 * Return an intermediate color between two colors, according to pos where 0
-	 * is the from color and 1 is the to color
+	 * is the from color and 1 is the to color. This method is copied from ColorAxis.js
+	 * and should always be kept updated, until we get AMD support.
 	 */
 	function tweenColors(from, to, pos) {
 		// Check for has alpha, because rgba colors perform worse due to lack of
 		// support in WebKit.
-		var hasAlpha;
+		var hasAlpha,
+			ret;
 
-		from = from.rgba;
-		to = to.rgba;
-		hasAlpha = (to[3] !== 1 || from[3] !== 1);
-		if (!to.length || !from.length) {
+		// Unsupported color, return to-color (#3920)
+		if (!to.rgba.length || !from.rgba.length) {
 			Highcharts.error(23);
+			ret = to.raw;
+
+		// Interpolate
+		} else {
+			from = from.rgba;
+			to = to.rgba;
+			hasAlpha = (to[3] !== 1 || from[3] !== 1);
+			ret = (hasAlpha ? 'rgba(' : 'rgb(') + 
+				Math.round(to[0] + (from[0] - to[0]) * (1 - pos)) + ',' + 
+				Math.round(to[1] + (from[1] - to[1]) * (1 - pos)) + ',' + 
+				Math.round(to[2] + (from[2] - to[2]) * (1 - pos)) + 
+				(hasAlpha ? (',' + (to[3] + (from[3] - to[3]) * (1 - pos))) : '') + ')';
 		}
-		return (hasAlpha ? 'rgba(' : 'rgb(') + 
-			Math.round(to[0] + (from[0] - to[0]) * (1 - pos)) + ',' + 
-			Math.round(to[1] + (from[1] - to[1]) * (1 - pos)) + ',' + 
-			Math.round(to[2] + (from[2] - to[2]) * (1 - pos)) + 
-			(hasAlpha ? (',' + (to[3] + (from[3] - to[3]) * (1 - pos))) : '') + ')';
+		return ret;
 	}
 	/**
 	 * Handle animation of the color attributes directly
@@ -518,7 +526,8 @@
 		fireEvent(chart, 'drilldown', { 
 			point: this,
 			seriesOptions: seriesOptions,
-			category: category
+			category: category,
+			points: category !== undefined && this.series.xAxis.ticks[category].label.ddPoints.slice(0)
 		});
 		
 		if (seriesOptions) {
@@ -542,11 +551,26 @@
 		this.chart.applyDrilldown();
 	};
 	
+
+	/**
+	 * On initialization of each point, identify its label and make it clickable. Also, provide a
+	 * list of points associated to that label.
+	 */
 	wrap(H.Point.prototype, 'init', function (proceed, series, options, x) {
 		var point = proceed.call(this, series, options, x),
 			chart = series.chart,
 			tick = series.xAxis && series.xAxis.ticks[x],
 			tickLabel = tick && tick.label;
+
+		// Create a collection of points associated with the label. Reset it for each level.
+		if (tickLabel) {
+			if (!tickLabel.ddPoints) {
+				tickLabel.ddPoints = [];
+			}
+			if (tickLabel.levelNumber !== series.options._levelNumber) {
+				tickLabel.ddPoints.length = 0; // reset
+			}
+		}				
 		
 		if (point.drilldown) {
 			
@@ -574,17 +598,17 @@
 					.on('click', function () {
 						series.xAxis.drilldownCategory(x);
 					});
-				if (!tickLabel.ddPoints) {
-					tickLabel.ddPoints = [];
-				}
+				
 				tickLabel.ddPoints.push(point);
+				tickLabel.levelNumber = series.options._levelNumber;
 					
 			}
-		} else if (tickLabel && tickLabel.basicStyles) {
+		} else if (tickLabel && tickLabel.basicStyles && tickLabel.levelNumber !== series.options._levelNumber) {
 			tickLabel.styles = {}; // reset for full overwrite of styles
 			tickLabel.css(tickLabel.basicStyles);
+			tickLabel.on('click', null); // #3806			
 		}
-		
+
 		return point;
 	});
 

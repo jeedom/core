@@ -1,18 +1,17 @@
 /*! input & select parsers for jQuery 1.7+ & tablesorter 2.7.11+
- * Updated 9/15/2014 (v2.17.8)
+ * Updated 3/5/2015 (v2.21.0)
  * Demo: http://mottie.github.com/tablesorter/docs/example-widget-grouping.html
  */
 /*jshint browser: true, jquery:true, unused:false */
 ;(function($){
 "use strict";
 
-	var resort = true, // resort table after update
-		updateServer = function(event, $table, $input){
-			// do something here to update your server, if needed
-			// event = change event object
-			// $table = jQuery object of the table that was just updated
-			// $input = jQuery object of the input or select that was modified
-		};
+	var updateServer = function(event, $table, $input){
+		// do something here to update your server, if needed
+		// event = change event object
+		// $table = jQuery object of the table that was just updated
+		// $input = jQuery object of the input or select that was modified
+	};
 
 	// Custom parser for parsing input values
 	// updated dynamically using the "change" function below
@@ -37,14 +36,16 @@
 		},
 		format: function(s, table, cell, cellIndex) {
 			var $c = $(cell),
+				wo = table.config.widgetOptions,
+				// returning plain language here because this is what is shown in the
+				// group headers - change it as desired
+				txt = wo.group_checkbox ? wo.group_checkbox : [ 'checked', 'unchecked' ],
 				$input = $c.find('input[type="checkbox"]'),
 				isChecked = $input.length ? $input[0].checked : '';
 			// adding class to row, indicating that a checkbox is checked; includes
 			// a column index in case more than one checkbox happens to be in a row
 			$c.closest('tr').toggleClass('checked-' + cellIndex, isChecked);
-			// returning plain language here because this is what is shown in the
-			// group headers - change it as desired
-			return $input.length ? isChecked ? 'checked' : 'unchecked' : s;
+			return $input.length ? txt[ isChecked ? 0 : 1 ] : s;
 		},
 		parsed : true, // filter widget flag
 		type: "text"
@@ -98,26 +99,21 @@
 	// if this code interferes somehow, target the specific table $('#mytable'), instead of $('table')
 	$(function(){
 		$('table').on('tablesorter-initialized', function(){
-			// this flag prevents the updateCell event from being spammed
-			// it happens when you modify input text and hit enter
-			var focused = false,
-				restoreValue = function(isTbody){
-					// focused = false; // uncomment this line to prevent auto-accepting changes
-					// make sure we restore original values
-					// isTbody is needed to prevent the select from closing in IE
-					// see https://connect.microsoft.com/IE/feedbackdetail/view/962618/
-					if (isTbody) {
-						$(':focus').blur();
-					}
-					return;
-				};
+			var restoreValue = function(isTbody){
+				// make sure we restore original values (trigger blur)
+				// isTbody is needed to prevent the select from closing in IE
+				// see https://connect.microsoft.com/IE/feedbackdetail/view/962618/
+				if (isTbody) {
+					$(':focus').blur();
+				}
+				return;
+			};
 			// bind to .tablesorter (default class name)
 			$(this).children('tbody')
 			.on('mouseleave', function(e){
 				restoreValue(e.target.tagName === 'TBODY');
 			})
 			.on('focus', 'select, input, textarea', function(){
-				focused = true;
 				$(this).data('ts-original-value', this.value);
 			})
 			.on('blur', 'input, textarea', function(){
@@ -132,9 +128,10 @@
 					return;
 				}
 				// Update cell cache using... select: change, input: enter or textarea: alt + enter
-				if ( ( e.type === 'change' && focused ) ||
+				if ( ( e.type === 'change' ) ||
 					( e.type === 'keyup' && e.which === 13 && ( e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' && e.altKey ) ) ) {
-					var $tar = $(e.target),
+					var undef,
+						$tar = $(e.target),
 						$cell = $tar.closest('td'),
 						$table = $cell.closest('table'),
 						indx = $cell[0].cellIndex,
@@ -146,11 +143,11 @@
 						return restoreValue();
 					}
 					// ignore change event if nothing changed
-					if ($tar.val() !== $tar.data('ts-original-value')) {
+					if ($tar.val() !== $tar.data('ts-original-value') || e.target.type === 'checkbox') {
 						$tar.data('ts-original-value', $tar.val());
-						$table.trigger('updateCell', [ $tar.closest('td'), resort, function(){
+						// pass undefined resort value so it falls back to config.resort setting
+						$table.trigger('updateCell', [ $tar.closest('td'), undef, function(){
 							updateServer(e, $table, $tar);
-							setTimeout(function(){ focused = false; }, 10);
 						} ]);
 					}
 				}

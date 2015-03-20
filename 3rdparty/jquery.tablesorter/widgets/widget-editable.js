@@ -1,4 +1,4 @@
-/*! tablesorter Editable Content widget - updated 10/26/2014 (v2.18.0)
+/*! tablesorter Editable Content widget - updated 2/9/2015 (v2.19.1)
  * Requires tablesorter v2.8+ and jQuery 1.7+
  * by Rob Garrison
  */
@@ -35,9 +35,9 @@ var tse = $.tablesorter.editable = {
 
 	update: function( c, wo ) {
 		var indx, tmp, $t,
+			colIndex = [],
 			cols = [];
-
-		if ( $.type( wo.editable_columns ) === 'string' && wo.editable_columns.indexOf( '-' ) >= 0 ) {
+		if ( !wo.editable_columnsArray && $.type( wo.editable_columns ) === 'string' && wo.editable_columns.indexOf( '-' ) >= 0 ) {
 			// editable_columns can contain a range string ( i.e. '2-4' )
 			tmp = wo.editable_columns.split( /\s*-\s*/ );
 			indx = parseInt( tmp[ 0 ], 10 ) || 0;
@@ -46,14 +46,20 @@ var tse = $.tablesorter.editable = {
 				tmp = c.columns - 1;
 			}
 			for ( ; indx <= tmp; indx++ ) {
+				colIndex.push( indx );
 				cols.push( 'td:nth-child(' + ( indx + 1 ) + ')' );
 			}
 		} else if ( $.isArray( wo.editable_columns ) ) {
-			$.each( wo.editable_columns, function( i, col ) {
+			$.each( wo.editable_columnsArray || wo.editable_columns, function( i, col ) {
 				if ( col < c.columns ) {
+					colIndex.push( col );
 					cols.push( 'td:nth-child(' + ( col + 1 ) + ')' );
 				}
 			});
+		}
+		if ( !wo.editable_columnsArray ) {
+			wo.editable_columnsArray = colIndex;
+			wo.editable_columnsArray.sort(function(a,b){ return a - b; });
 		}
 		tmp = $( '<div>' ).wrapInner( wo.editable_wrapContent ).children().length || $.isFunction( wo.editable_wrapContent );
 		// IE does not allow making TR/TH/TD cells directly editable ( issue #404 )
@@ -89,13 +95,13 @@ var tse = $.tablesorter.editable = {
 
 	bindEvents: function( c, wo ) {
 		c.$table
-			.off( 'updateComplete pagerComplete '.split( ' ' ).join( '.tseditable' ) )
-			.on( 'updateComplete pagerComplete '.split( ' ' ).join( '.tseditable' ), function() {
-				tse.update( c, wo );
+			.off( ( 'updateComplete pagerComplete '.split( ' ' ).join( '.tseditable ' ) ).replace( /\s+/g, ' ' ) )
+			.on( 'updateComplete pagerComplete '.split( ' ' ).join( '.tseditable ' ), function() {
+				tse.update( c, c.widgetOptions );
 			});
 
 		c.$tbodies
-			.off( 'mouseleave focus blur focusout keydown '.split( ' ' ).join( '.tseditable ' ) )
+			.off( ( 'mouseleave focus blur focusout keydown '.split( ' ' ).join( '.tseditable ' ) ).replace( /\s+/g, ' ' ) )
 			.on( 'mouseleave.tseditable', function() {
 				if ( c.$table.data( 'contentFocused' ) ) {
 					// change to 'true' instead of element to allow focusout to process
