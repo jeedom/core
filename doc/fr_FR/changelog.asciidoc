@@ -1,5 +1,9 @@
 Stable  : 1.167.0 / Beta : 1.173.0
 
+*21/03/2015 _v1.173.0_
+
+- Ajout d'une option pour desactiver les logs d'un scénario
+
 *20/03/2015 _v1.173.0_
 
 - Correction de bugs divers
