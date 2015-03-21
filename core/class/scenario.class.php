@@ -1064,6 +1064,9 @@ class scenario {
 	}
 
 	public function persistLog() {
+		if ($this->getConfiguration('noLog', 0) == 1) {
+			return;
+		}
 		if (!file_exists(dirname(__FILE__) . '/../../log/scenarioLog')) {
 			mkdir(dirname(__FILE__) . '/../../log/scenarioLog');
 		}
