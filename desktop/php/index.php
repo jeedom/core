@@ -2,7 +2,7 @@
 $startLoadTime = getmicrotime();
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
-
+$title = 'Jeedom';
 if (isConnect()) {
 	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	if (count($homePage) == 2) {
@@ -27,7 +27,7 @@ $plugin = init('m');
 if ($plugin != '') {
 	$plugin = plugin::byId($plugin);
 	if (is_object($plugin)) {
-		$title = $plugin->getName();
+		$title .= ' - ' . $plugin->getName();
 	}
 }
 $plugins_list = plugin::listPlugin(true, true);
@@ -55,12 +55,13 @@ if (count($plugins_list) > 0) {
 		$plugin_menu .= '</li>';
 	}
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title>Jeedom</title>
+    <title><?php echo $title;?></title>
     <link rel="shortcut icon" href="core/img/logo-jeedom-sans-nom-couleur-25x25.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
