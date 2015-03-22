@@ -252,8 +252,14 @@ class market {
 		$jsonrpc = self::getJsonRpc();
 		$_ticket['user_plugin'] = '';
 		foreach (plugin::listPlugin() as $plugin) {
-			$_ticket['user_plugin'] .= $plugin->getId() . ',';
+			$_ticket['user_plugin'] .= $plugin->getId();
+			$update = $plugin->getUpdate();
+			if (is_object($update)) {
+				$_ticket['user_plugin'] .= '[' . $update->getConfiguration('version', 'stable') . ',' . $update->getLocalVersion() . ']';
+			}
+			$_ticket['user_plugin'] .= ',';
 		}
+		trim($_ticket['user_plugin'], ',');
 		jeedom::sick();
 		$cibDir = realpath(dirname(__FILE__) . '/../../log');
 		$tmp = dirname(__FILE__) . '/../../tmp/log.zip';
