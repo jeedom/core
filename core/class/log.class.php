@@ -92,6 +92,9 @@ class log {
 			ftruncate($log, 0);
 			fclose($log);
 		}
+		if (strpos($_log, 'nginx.error') !== false) {
+			shell_exec('cat /dev/null > ' . $path);
+		}
 		return true;
 	}
 
@@ -103,6 +106,9 @@ class log {
 		if (file_exists($path) && strpos($_log, 'nginx.error') === false) {
 			unlink($path);
 		}
+		if (strpos($_log, 'nginx.error') !== false) {
+			shell_exec('cat /dev/null > ' . $path);
+		}
 		return true;
 	}
 
@@ -112,6 +118,8 @@ class log {
 			$path = dirname(__FILE__) . '/../../log/' . $log;
 			if (strpos($log, 'nginx.error') === false && !is_dir($path)) {
 				unlink($path);
+			} else {
+				shell_exec('cat /dev/null > ' . $path);
 			}
 		}
 		return true;
