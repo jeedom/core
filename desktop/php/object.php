@@ -17,14 +17,11 @@ foreach ($allObject as $object) {
 	$margin = 15 * $object->parentNumber();
 	echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '">';
 	echo '<i class="fa fa-arrows-v pull-left cursor"></i>';
-
-	if ($object->getDisplay('tagColor') != '') {
-		echo '<a style="position:relative;left:' . $margin . 'px;"><span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . ';color:' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getDisplay('icon') . ' ' . $object->getName() . '</span></a>';
-	} else {
-		echo '<a style="position:relative;left:' . $margin . 'px;"><span class="label label-primary" style="text-shadow : none;">' . $object->getDisplay('icon') . ' ' . $object->getName() . '</span></a>';
-	}
+	echo '<a style="position:relative;left:' . $margin . 'px;">';
+	echo $object->getHumanName(true);
+	echo '</a>';
+	echo '</li>';
 }
-echo '</li>';
 ?>
             </ul>
         </div>
