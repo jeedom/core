@@ -446,7 +446,13 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		}
 	} else if (file_exists($src)) {
 		if (!in_array(basename($src), $_exclude)) {
-			return copy($src, $dst);
+			if (!$_noError) {
+				return copy($src, $dst);
+			} else {
+				@copy($src, $dst);
+				return true;
+			}
+
 		}
 	}
 	return true;
