@@ -439,7 +439,7 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		$files = scandir($src);
 		foreach ($files as $file) {
 			if ($file != "." && $file != ".." && !in_array($file, $_exclude)) {
-				if (!rcopy("$src/$file", "$dst/$file", $_exclude) && !$_noError) {
+				if (!rcopy("$src/$file", "$dst/$file", $_exclude, $_noError) && !$_noError) {
 					return false;
 				}
 			}
