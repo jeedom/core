@@ -80,6 +80,10 @@ try {
 
 	echo "Restauration de Jeedom avec le fichier : " . $backup . "\n";
 
+	echo "Sauvegarde du fichier de connexion à la base...";
+	copy(dirname(__FILE__) . '/../core/config/common.config.php', dirname(__FILE__) . '/../tmp/common.config.php');
+	echo "OK\n";
+
 	echo "Nettoyage des anciens fichiers...";
 	$tmp = dirname(__FILE__) . '/../tmp/backup';
 	rrmdir($tmp);
@@ -126,10 +130,14 @@ try {
 	echo "OK\n";
 
 	echo "Restauration des fichiers...";
-	if (!rcopy($tmp, dirname(__FILE__) . '/..', false, array(), true)) {
+	if (!rcopy($tmp, dirname(__FILE__) . '/..', false, array('common.config.php'), true)) {
 		echo "NOK\n";
 	} else {
 		echo "OK\n";
+	}
+
+	if (!file_exists(dirname(__FILE__) . '/../core/config/common.config.php')) {
+		copy(dirname(__FILE__) . '/../tmp/common.config.php', dirname(__FILE__) . '/../core/config/common.config.php');
 	}
 
 	if (!file_exists($jeedom_dir . '/install')) {
