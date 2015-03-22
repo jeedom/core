@@ -428,7 +428,7 @@ function getVersion($_name) {
 	return false;
 }
 
-function rcopy($src, $dst, $_emptyDest = true, $_exclude = array()) {
+function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false) {
 	if ($_emptyDest && file_exists($dst)) {
 		rrmdir($dst);
 	}
@@ -439,7 +439,7 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array()) {
 		$files = scandir($src);
 		foreach ($files as $file) {
 			if ($file != "." && $file != ".." && !in_array($file, $_exclude)) {
-				if (!rcopy("$src/$file", "$dst/$file", $_exclude)) {
+				if (!rcopy("$src/$file", "$dst/$file", $_exclude) && !$_noError) {
 					return false;
 				}
 			}
