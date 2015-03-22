@@ -137,8 +137,9 @@ try {
 	}
 
 	if (!file_exists(dirname(__FILE__) . '/../core/config/common.config.php')) {
+		echo "Fichier de connexion a la base absent, restauration...";
 		copy('/tmp/common.config.php', dirname(__FILE__) . '/../core/config/common.config.php');
-		unlink('/tmp/common.config.php');
+		echo "OK\n";
 	}
 
 	if (!file_exists($jeedom_dir . '/install')) {
