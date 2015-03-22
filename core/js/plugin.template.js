@@ -266,11 +266,14 @@ $('body').delegate('.cmd .cmdAttr[data-l1key=eventOnly]', 'change', function () 
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().show();
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().removeClass('hide');
     } else {
+     if($(this).closest('.cmd').find('.cmdAttr[data-l1key=type]').value() != 'action'){
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').show();
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').removeClass('hide');
-        $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().hide();
-        $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().addClass('hide');
     }
+    $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().hide();
+    $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().addClass('hide');
+    
+}
 });
 
 $('body').delegate('.cmd .cmdAction[data-action=remove]', 'click', function () {
