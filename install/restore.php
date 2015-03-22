@@ -81,7 +81,7 @@ try {
 	echo "Restauration de Jeedom avec le fichier : " . $backup . "\n";
 
 	echo "Sauvegarde du fichier de connexion à la base...";
-	copy(dirname(__FILE__) . '/../core/config/common.config.php', dirname(__FILE__) . '/../tmp/common.config.php');
+	@copy(dirname(__FILE__) . '/../core/config/common.config.php', '/tmp/common.config.php');
 	echo "OK\n";
 
 	echo "Nettoyage des anciens fichiers...";
@@ -137,7 +137,8 @@ try {
 	}
 
 	if (!file_exists(dirname(__FILE__) . '/../core/config/common.config.php')) {
-		copy(dirname(__FILE__) . '/../tmp/common.config.php', dirname(__FILE__) . '/../core/config/common.config.php');
+		copy('/tmp/common.config.php', dirname(__FILE__) . '/../core/config/common.config.php');
+		unlink('/tmp/common.config.php');
 	}
 
 	if (!file_exists($jeedom_dir . '/install')) {
