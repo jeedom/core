@@ -126,8 +126,11 @@ try {
 	echo "OK\n";
 
 	echo "Restauration des fichiers...";
-	rcopy($tmp, dirname(__FILE__) . '/..', false, array(), true);
-	echo "OK\n";
+	if (!rcopy($tmp, dirname(__FILE__) . '/..', false, array(), true)) {
+		echo "NOK\n";
+	} else {
+		echo "OK\n";
+	}
 
 	if (!file_exists($jeedom_dir . '/install')) {
 		mkdir($jeedom_dir . '/install');
