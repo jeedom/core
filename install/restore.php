@@ -150,7 +150,7 @@ try {
 	foreach (plugin::listPlugin(true) as $plugin) {
 		$plugin_id = $plugin->getId();
 		if (method_exists($plugin_id, 'restore')) {
-			echo 'Restauration specifique du plugin...' . $plugin_id . '...';
+			echo 'Restauration specifique du plugin ' . $plugin_id . '...';
 			if (file_exists($tmp . '/plugin_backup/' . $plugin_id)) {
 				$plugin_id::restore($tmp . '/plugin_backup/' . $plugin_id);
 			}
