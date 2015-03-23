@@ -18,7 +18,7 @@ foreach ($allObject as $object) {
 	echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '">';
 	echo '<i class="fa fa-arrows-v pull-left cursor"></i>';
 	echo '<a style="position:relative;left:' . $margin . 'px;">';
-	echo $object->getHumanName(true);
+	echo $object->getHumanName(true, true);
 	echo '</a>';
 	echo '</li>';
 }

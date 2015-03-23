@@ -190,12 +190,16 @@ class object {
 		return 0;
 	}
 
-	public function getHumanName($_tag = false) {
+	public function getHumanName($_tag = false, $_prettify = false) {
 		if ($_tag) {
-			if ($this->getDisplay('tagColor') != '') {
-				return '<span class="label" style="text-shadow : none;background-color:' . $this->getDisplay('tagColor') . ';color:' . $this->getDisplay('tagTextColor', 'white') . '">' . $this->getDisplay('icon') . ' ' . $this->getName() . '</span>';
+			if ($_prettify) {
+				if ($this->getDisplay('tagColor') != '') {
+					return '<span class="label" style="text-shadow : none;background-color:' . $this->getDisplay('tagColor') . ';color:' . $this->getDisplay('tagTextColor', 'white') . '">' . $this->getDisplay('icon') . ' ' . $this->getName() . '</span>';
+				} else {
+					return '<span class="label label-primary" style="text-shadow : none;">' . $this->getDisplay('icon') . ' ' . $this->getName() . '</span>';
+				}
 			} else {
-				return '<span class="label label-primary" style="text-shadow : none;">' . $this->getDisplay('icon') . ' ' . $this->getName() . '</span>';
+				return $this->getDisplay('icon') . ' ' . $this->getName();
 			}
 		} else {
 			return $this->getName();
