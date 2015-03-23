@@ -546,25 +546,25 @@ function displayFrameObject(name, _type, _id, _html, _plan, _noRender) {
     var defaultZoom = 1;
     if (_type == 'eqLogic') {
         defaultZoom = 0.65;
-        $('.eqLogic-widget[data-eqLogic_id=' + _id + ']').remove();
+        $(name).find('.eqLogic-widget[data-eqLogic_id=' + _id + ']').remove();
     }
     if (_type == 'scenario') {
-        $('.scenario-widget[data-scenario_id=' + _id + ']').remove();
+        $(name).find('.scenario-widget[data-scenario_id=' + _id + ']').remove();
     }
     if (_type == 'view') {
-        $('.view-link-widget[data-link_id=' + _id + ']').remove();
+        $(name).find('.view-link-widget[data-link_id=' + _id + ']').remove();
     }
     if (_type == 'plan') {
-        $('.plan-link-widget[data-link_id=' + _id + ']').remove();
+        $(name).find('.plan-link-widget[data-link_id=' + _id + ']').remove();
     }
     if (_type == 'graph') {
         for (var i in jeedom.history.chart) {
             delete jeedom.history.chart[i];
         }
-        $('.graph-widget[data-graph_id=' + _id + ']').remove();
+        $(name).find('.graph-widget[data-graph_id=' + _id + ']').remove();
     }
     if (_type == 'text') {
-        $('.graph-widget[data-text_id=' + _id + ']').remove();
+        $(name).find('.graph-widget[data-text_id=' + _id + ']').remove();
     }
     var parent = {
         height: $(name).height(),
