@@ -422,7 +422,7 @@ class jeedom {
 				jeedom::backup();
 			}
 		} catch (Exception $e) {
-
+			log::add('backup', 'error', 'Auto backup error : ' . $e->getMessage());
 		}
 
 	}
