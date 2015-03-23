@@ -47,10 +47,10 @@ class scenario {
 	private $_realTrigger = '';
 	private $_return = '';
 
-	/*     * ***********************Methode static*************************** */
+	/*     * ***********************Méthodes statiques*************************** */
 
 	/**
-	 * Renvoit un object scenario
+	 * Renvoie un objet scenario
 	 * @param int  $_id id du scenario voulu
 	 * @return scenario object scenario
 	 */
@@ -65,7 +65,7 @@ class scenario {
 	}
 
 	/**
-	 * Renvoit tous les objects scenario
+	 * Renvoie tous les objets scenario
 	 * @return [] scenario object scenario
 	 */
 	public static function all($_group = '', $_type = null) {
@@ -503,7 +503,7 @@ class scenario {
 			$zip->extractTo($cibDir . '/');
 			$zip->close();
 		} else {
-			throw new Exception('Impossible de décompresser le zip : ' . $_path);
+			throw new Exception('Impossible de décompresser l\'archive zip : ' . $_path);
 		}
 		$moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
 		if (!file_exists($moduleFile)) {
@@ -557,9 +557,9 @@ class scenario {
 		}
 		$cmd = cmd::byId(str_replace('#', '', $_trigger));
 		if (is_object($cmd)) {
-			log::add('event', 'event', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclencher par : ', __FILE__) . $cmd->getHumanName());
+			log::add('event', 'event', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $cmd->getHumanName());
 		} else {
-			log::add('event', 'event', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclencher par : ', __FILE__) . $_trigger);
+			log::add('event', 'event', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
 		}
 		$this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
 		if ($this->getConfiguration('speedPriority', 0) == 0) {
@@ -681,7 +681,7 @@ class scenario {
 			$this->setTimeout(0);
 		}
 		if ($this->getName() == '') {
-			throw new Exception('Le nom du scénario ne peut être vide.');
+			throw new Exception('Le nom du scénario ne peut pas être vide.');
 		}
 		if (($this->getMode() == 'schedule' || $this->getMode() == 'all') && $this->getSchedule() == '') {
 			throw new Exception(__('Le scénario est de type programmé mais la programmation est vide', __FILE__));
