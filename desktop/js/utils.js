@@ -151,8 +151,8 @@ setInterval(function () {
     $("#md_reportBug").dialog({
         autoOpen: false,
         modal: true,
-        height: 700,
-        width: 1000,
+        height: 600,
+        width: 900,
         open: function () {
             $("body").css({overflow: 'hidden'})
         },
