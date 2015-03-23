@@ -681,6 +681,7 @@ return html;
 function addGraphFrame(name, _plan) {
  var parent = {
      height: $(name).height(),
+     width: $(name).width(),
  };
  _plan = init(_plan, {});
  _plan.display = init(_plan.display, {});
