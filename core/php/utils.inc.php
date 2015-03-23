@@ -420,9 +420,6 @@ function removeCR($_string) {
 }
 
 function getVersion($_name) {
-	if ($_name == 'jeedom' && file_exists(dirname(__FILE__) . '/../config/version')) {
-		return trim(file_get_contents(dirname(__FILE__) . '/../config/version'));
-	}
 	include dirname(__FILE__) . '/../config/version.config.php';
 	global $VERSION;
 	if (isset($VERSION[$_name])) {
