@@ -22,6 +22,7 @@ $(".li_jeeNetwork").on('click', function (event) {
     $.hideAlert();
     $('#pre_logInfo').empty();
     $('#pre_backupInfo').empty();
+    $('#pre_updateInfo').empty();
     $('#div_conf').show();
     $('.li_jeeNetwork').removeClass('active');
     $(this).addClass('active');
