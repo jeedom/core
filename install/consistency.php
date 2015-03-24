@@ -40,14 +40,16 @@ try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
 
 	$crons = cron::all();
-	foreach ($crons as $cron) {
-		$c = new Cron\CronExpression($cron->getSchedule(), new Cron\FieldFactory);
-		try {
-			if (!$c->isDue()) {
-				$c->getNextRunDate();
+	if (is_array($crons)) {
+		foreach ($crons as $cron) {
+			$c = new Cron\CronExpression($cron->getSchedule(), new Cron\FieldFactory);
+			try {
+				if (!$c->isDue()) {
+					$c->getNextRunDate();
+				}
+			} catch (Exception $ex) {
+				$cron->remove();
 			}
-		} catch (Exception $ex) {
-			$cron->remove();
 		}
 	}
 
