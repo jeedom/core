@@ -156,7 +156,7 @@ try {
 					echo __("OK\n", __FILE__);
 					echo __("Installation en cours...", __FILE__);
 					$update_begin = true;
-					@rcopy($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
+					rcopy($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
 					rrmdir($cibDir);
 					unlink($tmp);
 					echo __("OK\n", __FILE__);
