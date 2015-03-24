@@ -78,6 +78,11 @@ $('.displayInteracQuery').on('click', function () {
     $('#md_modal').load('index.php?v=d&modal=interact.query.display&interactDef_id=' + $('.interactAttr[data-l1key=id]').value()).dialog('open');
 });
 
+$('#bt_testInteract').on('click', function () {
+    $('#md_modal').dialog({title: "{{Tester les interactions}}"});
+    $('#md_modal').load('index.php?v=d&modal=interact.test').dialog('open');
+});
+
 $('body').delegate('.listEquipementInfo', 'click', function () {
     jeedom.cmd.getSelectModal({}, function (result) {
         $('.interactAttr[data-l1key=link_id]').atCaret('insert',result.human);

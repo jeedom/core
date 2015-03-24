@@ -1,6 +1,6 @@
 <?php
 if (!hasRight('objectview', true)) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 sendVarToJS('select_id', init('id', '-1'));
 ?>
@@ -12,16 +12,17 @@ sendVarToJS('select_id', init('id', '-1'));
                 <a id="bt_addObject" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter objet}}</a>
                 <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
                 <?php
-                $allObject = object::buildTree(null, false);
-                foreach ($allObject as $object) {
-                    $margin = 15 * $object->parentNumber();
-                    echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '">'
-                    . '<i class="fa fa-arrows-v pull-left cursor"></i>'
-                    . '<span class="pull-left">' . $object->getDisplay('icon') . '</span>'
-                    . '<a style="position:relative;left:' . $margin . 'px;">' . $object->getName() . '</a>'
-                    . '</li>';
-                }
-                ?>
+$allObject = object::buildTree(null, false);
+foreach ($allObject as $object) {
+	$margin = 15 * $object->parentNumber();
+	echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '">';
+	echo '<i class="fa fa-arrows-v pull-left cursor"></i>';
+	echo '<a style="position:relative;left:' . $margin . 'px;">';
+	echo $object->getHumanName(true, true);
+	echo '</a>';
+	echo '</li>';
+}
+?>
             </ul>
         </div>
     </div>
@@ -42,10 +43,10 @@ sendVarToJS('select_id', init('id', '-1'));
                         <select class="form-control objectAttr" data-l1key="father_id">
                             <option value="">{{Aucun}}</option>
                             <?php
-                            foreach ($allObject as $object) {
-                                echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
-                            }
-                            ?>
+foreach ($allObject as $object) {
+	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+}
+?>
                         </select>
                     </div>
                 </div>
@@ -91,4 +92,4 @@ sendVarToJS('select_id', init('id', '-1'));
     </div>
 </div>
 
-<?php include_file("desktop", "object", "js"); ?>
+<?php include_file("desktop", "object", "js");?>

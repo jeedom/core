@@ -1,24 +1,24 @@
 <?php
 if (!isConnect()) {
-    throw new Exception('{{Error 401 Unauthorized');
+	throw new Exception('{{Error 401 Unauthorized');
 }
 
 $notifyTheme = array(
-    'info' => '{{Bleu}}',
-    'error' => '{{Rouge}}',
-    'success' => '{{Vert}}',
-    'warning' => '{{Jaune}}',
-    );
+	'info' => '{{Bleu}}',
+	'error' => '{{Rouge}}',
+	'success' => '{{Vert}}',
+	'warning' => '{{Jaune}}',
+);
 
 $homePage = array(
-    'core::dashboard' => '{{Dashboard}}',
-    'core::view' => '{{Vue}}',
-    'core::plan' => '{{Design}}',
-    );
+	'core::dashboard' => '{{Dashboard}}',
+	'core::view' => '{{Vue}}',
+	'core::plan' => '{{Design}}',
+);
 foreach (plugin::listPlugin() as $pluginList) {
-    if ($pluginList->isActive() == 1 && $pluginList->getDisplay() != '') {
-        $homePage[$pluginList->getId() . '::' . $pluginList->getDisplay()] = $pluginList->getName();
-    }
+	if ($pluginList->isActive() == 1 && $pluginList->getDisplay() != '') {
+		$homePage[$pluginList->getId() . '::' . $pluginList->getDisplay()] = $pluginList->getName();
+	}
 }
 ?>
 <legend>{{Profil}}</legend>
@@ -138,10 +138,10 @@ foreach (plugin::listPlugin() as $pluginList) {
                             <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="homePage">
                                     <?php
-                                    foreach ($homePage as $key => $value) {
-                                        echo "<option value='$key'>$value</option>";
-                                    }
-                                    ?>
+foreach ($homePage as $key => $value) {
+	echo "<option value='$key'>$value</option>";
+}
+?>
                                 </select>
                             </div>
                             <label class="col-sm-1 control-label">{{Mobile}}</label>
@@ -149,10 +149,10 @@ foreach (plugin::listPlugin() as $pluginList) {
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="homePageMobile">
                                     <option value="home">{{Accueil}}</option>
                                     <?php
-                                    foreach ($homePage as $key => $value) {
-                                        echo "<option value='$key'>$value</option>";
-                                    }
-                                    ?>
+foreach ($homePage as $key => $value) {
+	echo "<option value='$key'>$value</option>";
+}
+?>
                                 </select>
                             </div>
                         </div>
@@ -162,20 +162,20 @@ foreach (plugin::listPlugin() as $pluginList) {
                             <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardObject">
                                     <?php
-                                    foreach (object::all() as $object) {
-                                        echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
-                                    }
-                                    ?>
+foreach (object::all() as $object) {
+	echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
+}
+?>
                                 </select>
                             </div>
                             <label class="col-sm-1 control-label">{{Mobile}}</label>
                             <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileObject">
                                     <?php
-                                    foreach (object::all() as $object) {
-                                        echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
-                                    }
-                                    ?>
+foreach (object::all() as $object) {
+	echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
+}
+?>
                                 </select>
                             </div>
                         </div>
@@ -185,20 +185,20 @@ foreach (plugin::listPlugin() as $pluginList) {
                             <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDesktopView">
                                     <?php
-                                    foreach (view::all() as $view) {
-                                        echo "<option value='" . $view->getId() . "'>" . $view->getName() . "</option>";
-                                    }
-                                    ?>
+foreach (view::all() as $view) {
+	echo "<option value='" . $view->getId() . "'>" . $view->getName() . "</option>";
+}
+?>
                                 </select>
                             </div>
                             <label class="col-sm-1 control-label">{{Mobile}}</label>
                             <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileView">
                                     <?php
-                                    foreach (view::all() as $view) {
-                                        echo "<option value='" . $view->getId() . "'>" . $view->getName() . "</option>";
-                                    }
-                                    ?>
+foreach (view::all() as $view) {
+	echo "<option value='" . $view->getId() . "'>" . $view->getName() . "</option>";
+}
+?>
                                 </select>
                             </div>
                         </div>
@@ -208,20 +208,20 @@ foreach (plugin::listPlugin() as $pluginList) {
                             <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardPlan">
                                     <?php
-                                    foreach (planHeader::all() as $plan) {
-                                        echo "<option value='" . $plan->getId() . "'>" . $plan->getName() . "</option>";
-                                    }
-                                    ?>
+foreach (planHeader::all() as $plan) {
+	echo "<option value='" . $plan->getId() . "'>" . $plan->getName() . "</option>";
+}
+?>
                                 </select>
                             </div>
                             <label class="col-sm-1 control-label">{{Mobile}}</label>
                             <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobilePlan">
                                     <?php
-                                    foreach (planHeader::all() as $plan) {
-                                        echo "<option value='" . $plan->getId() . "'>" . $plan->getName() . "</option>";
-                                    }
-                                    ?>
+foreach (planHeader::all() as $plan) {
+	echo "<option value='" . $plan->getId() . "'>" . $plan->getName() . "</option>";
+}
+?>
                                 </select>
                             </div>
                         </div>
@@ -268,10 +268,10 @@ foreach (plugin::listPlugin() as $pluginList) {
                             <div class="col-sm-3">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="notifyEvent">
                                     <?php
-                                    foreach ($notifyTheme as $key => $value) {
-                                        echo "<option value='$key'>$value</option>";
-                                    }
-                                    ?>
+foreach ($notifyTheme as $key => $value) {
+	echo "<option value='$key'>$value</option>";
+}
+?>
                                 </select>
                             </div>
                         </div>
@@ -280,10 +280,10 @@ foreach (plugin::listPlugin() as $pluginList) {
                             <div class="col-sm-3">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="notifyLaunchScenario">
                                     <?php
-                                    foreach ($notifyTheme as $key => $value) {
-                                        echo "<option value='$key'>$value</option>";
-                                    }
-                                    ?>
+foreach ($notifyTheme as $key => $value) {
+	echo "<option value='$key'>$value</option>";
+}
+?>
                                 </select>
                             </div>
                         </div>
@@ -292,10 +292,10 @@ foreach (plugin::listPlugin() as $pluginList) {
                             <div class="col-sm-3">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="notifyNewMessage">
                                     <?php
-                                    foreach ($notifyTheme as $key => $value) {
-                                        echo "<option value='$key'>$value</option>";
-                                    }
-                                    ?>
+foreach ($notifyTheme as $key => $value) {
+	echo "<option value='$key'>$value</option>";
+}
+?>
                                 </select>
                             </div>
                         </div>
@@ -341,9 +341,9 @@ foreach (plugin::listPlugin() as $pluginList) {
         </div>
     </div>
 
-    <br/> 
+    <br/>
     <div class="form-actions">
         <a class="btn btn-success" id="bt_saveProfils"><i class="fa fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
     </div>
 </div>
-<?php include_file("desktop", "profils", "js"); ?>
+<?php include_file("desktop", "profils", "js");?>

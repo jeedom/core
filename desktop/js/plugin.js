@@ -30,6 +30,11 @@
             $('#span_plugin_name').html(data.name);
             $('#span_plugin_author').html(data.author);
             $('#span_plugin_description').html(data.description);
+            if(isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.version)){
+                $('#span_plugin_install_version').html(data.update.configuration.version);
+            }else{
+                $('#span_plugin_install_version').html('');
+            }
             $('#span_plugin_licence').html(data.licence);
             $('#span_plugin_installation').html(data.installation);
 
@@ -54,10 +59,10 @@
             $('#span_plugin_toggleState').empty();
             if (data.checkVersion != -1) {
                 if (data.activate == 1) {
-                    var html = '<div class="alert alert-success">Votre plugin est activé.';
+                    var html = '<div class="alert alert-success">{{Votre plugin est activé.}}';
                     html += '<a class="btn btn-danger togglePlugin" data-state="0" data-plugin_id="' + data.id + '" style="margin : 5px;"><i class="fa fa-times"></i> {{Désactiver}}</a>';
                 } else {
-                    var html = '<div class="alert alert-danger">Votre plugin est désactivé';
+                    var html = '<div class="alert alert-danger">{{Votre plugin est désactivé}}';
                     html += '<a class="btn btn-success togglePlugin" data-state="1" data-plugin_id="' + data.id + '" style="margin : 5px;"><i class="fa fa-check"></i> {{Activer}}</a>';
                 }
                 html += '</div>';

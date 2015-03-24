@@ -51,13 +51,13 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Langue}}</label>
                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                         <select class="configKey form-control" data-l1key="language">
-                                            <option value="fr_FR">{{Français}}</option>
-                                            <option value="en_US">{{English}}</option>
-                                            <option value="de_DE">{{Deutsch}}</option>
-                                            <option value="es_ES">{{Español}}</option>
-                                            <option value="ru_RU">{{Pусский}}</option>
-                                            <option value="id_ID">{{Indonésien}}</option>
-                                            <option value="it_IT">{{Italiano}}</option>
+                                            <option value="fr_FR">Français</option>
+                                            <option value="en_US">English</option>
+                                            <option value="de_DE">Deutsch</option>
+                                            <option value="es_ES">Español</option>
+                                            <option value="ru_RU">Pусский</option>
+                                            <option value="id_ID">Indonesia</option>
+                                            <option value="it_IT">Italiano</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 expertModeVisible">
@@ -77,6 +77,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
                                     <select class="configKey form-control" data-l1key="timezone">
                                         <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
+                                        <option value="Pacific/Tahiti">(GMT-10:00) Pacific/Tahiti</option>
                                         <option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
                                         <option value="Etc/GMT+10">(GMT-10:00) Hawaii</option>
                                         <option value="Pacific/Marquesas">(GMT-09:30) Marquesas Islands</option>
@@ -177,7 +178,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                 </div>
             </div>
         </div>
-        <div class="panel panel-danger expertModeVisible">
+        <div class="panel panel-default expertModeVisible">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_database">
@@ -677,15 +678,33 @@ if (file_exists('/etc/nginx/sites-available/default_ssl')) {
         <div class="panel panel-default expertModeVisible">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_convertColor">
-                        {{Conversion des couleurs en html}}
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_commandeEqlogic">
+                        {{Commandes, Equipements et HTTP}}
                     </a>
                 </h3>
             </div>
-            <div id="configuration_convertColor" class="panel-collapse collapse">
+            <div id="configuration_commandeEqlogic" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <div class="row">
-                        <div class="col-sm-6">
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échecs avant désactivation de l'équipement}}</label>
+                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                    <input type="text"  class="configKey form-control" data-l1key="numberOfTryBeforeEqLogicDisable" />
+                                </div>
+                            </div>
+                            <div class="form-group expertModeVisible">
+                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Timeout de résolution DNS sur les requêtes HTTP}}</label>
+                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                    <input class="configKey form-control" data-l1key="http::ping_timeout"/>
+                                </div>
+                            </div>
+                            <div class="form-group alert alert-danger expertModeVisible">
+                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Désactiver la vérification du ping}}</label>
+                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                    <input type="checkbox" class="configKey" data-l1key="http::ping_disable"/>
+                                </div>
+                            </div>
                             <i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
                             <table class="table table-condensed table-bordered" id="table_convertColor" >
                                 <thead>
@@ -700,53 +719,6 @@ if (file_exists('/etc/nginx/sites-available/default_ssl')) {
                                 <tbody>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default expertModeVisible">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_commandeEqlogic">
-                        {{Commandes & Equipements}}
-                    </a>
-                </h3>
-            </div>
-            <div id="configuration_commandeEqlogic" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <form class="form-horizontal">
-                        <fieldset>
-                            <div class="form-group">
-                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échecs avant désactivation de l'équipement}}</label>
-                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                    <input type="text"  class="configKey form-control" data-l1key="numberOfTryBeforeEqLogicDisable" />
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-
-        <div class="panel panel-default expertModeVisible">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_nodeJS">
-                        {{NodeJS}}
-                    </a>
-                </h3>
-            </div>
-            <div id="configuration_nodeJS" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <form class="form-horizontal">
-                        <fieldset>
-                            <div class="form-group expertModeVisible">
-                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port interne NodeJS}}</label>
-                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                    <input type="text"  class="configKey form-control" data-l1key="nodeJsInternalPort" />
-                                </div>
-                            </div>
                         </fieldset>
                     </form>
                 </div>
@@ -758,7 +730,7 @@ if (file_exists('/etc/nginx/sites-available/default_ssl')) {
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_market">
-                        {{Market}}
+                        {{Market et mise à jour}}
                     </a>
                 </h3>
             </div>
@@ -814,24 +786,6 @@ if (file_exists('/etc/nginx/sites-available/default_ssl')) {
                                     <input type="checkbox"  class="configKey" data-l1key="market::showBetaMarket" />
                                 </div>
                             </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default expertModeVisible">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_update">
-                        {{Mise à jour}}
-                    </a>
-                </h3>
-            </div>
-            <div id="configuration_update" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <form class="form-horizontal">
-                        <fieldset>
                             <div class="form-group expertModeVisible">
                                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
                                 <div class="col-sm-1">
@@ -858,35 +812,7 @@ if (file_exists('/etc/nginx/sites-available/default_ssl')) {
                 </div>
             </div>
         </div>
-        <div class="panel panel-default expertModeVisible">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_http">
-                        {{HTTP}}
-                    </a>
-                </h3>
-            </div>
-            <div id="configuration_http" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <form class="form-horizontal">
-                        <fieldset>
-                            <div class="form-group expertModeVisible">
-                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Timeout de résolution DNS sur les requêtes HTTP}}</label>
-                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                    <input class="configKey form-control" data-l1key="http::ping_timeout"/>
-                                </div>
-                            </div>
-                            <div class="form-group alert alert-danger expertModeVisible">
-                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Désactiver la vérification du ping}}</label>
-                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                    <input type="checkbox" class="configKey" data-l1key="http::ping_disable"/>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-        </div>
+
         <div class="form-actions" style="height: 20px;">
             <a class="btn btn-success" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
         </div>

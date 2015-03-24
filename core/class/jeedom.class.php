@@ -409,7 +409,7 @@ class jeedom {
 							message::add('update', 'De nouvelles mises à jour sont disponibles (' . $nbUpdate . ')', '', 'newUpdate');
 						}
 					}
-					config::save('update::check', rand(10, 59) . ' 06 * * *');
+					config::save('update::check', rand(1, 59) . ' 6 * * *');
 				}
 			}
 		} catch (Exception $e) {
@@ -422,7 +422,7 @@ class jeedom {
 				jeedom::backup();
 			}
 		} catch (Exception $e) {
-
+			log::add('backup', 'error', 'Auto backup error : ' . $e->getMessage());
 		}
 
 	}

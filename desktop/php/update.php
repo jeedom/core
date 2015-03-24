@@ -1,23 +1,23 @@
 <?php
 if (!hasRight('updateview', true)) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
 <div>
     <?php
-    if (config::byKey('market::showPromotion') == 1) {
-        echo market::getPromo();
-    }
-    ?>
+if (config::byKey('market::showPromotion') == 1) {
+	echo market::getPromo();
+}
+?>
 </div><br/>
 <div class="row row-overflow">
     <div class="col-sm-8">
         {{Dernière vérification : }}<span class="label label-info" id="span_lastUpdateCheck" style="margin-bottom: 5px;"></span>
-        <a class="btn btn-warning pull-right" id="bt_checkAllUpdate" style="margin-top:5px;"><i class="fa fa-refresh"></i> Vérifier les objets et mises à jour</a> 
+        <a class="btn btn-warning pull-right" id="bt_checkAllUpdate" style="margin-top:5px;"><i class="fa fa-refresh"></i> {{Vérifier les objets et mises à jour}}</a>
         <div class="btn-group pull-right" style="margin-top:5px;">
             <a href="#" class="bt_updateAll btn btn-default"  data-level="0" data-mode=""><i class="fa fa-check"></i> {{Mettre à jour}}</a>
             <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> 
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
@@ -53,4 +53,4 @@ if (!hasRight('updateview', true)) {
     </div>
 </div>
 
-<?php include_file('desktop', 'update', 'js'); ?>
+<?php include_file('desktop', 'update', 'js');?>

@@ -23,7 +23,7 @@ if (!hasRight('backupview', true)) {
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes}}</label>
                         <div class="col-sm-2 col-xs-2">
-                            <a class="btn btn-default bt_backupJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-floppy-o"></i> Lancer</a>
+                            <a class="btn btn-default bt_backupJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-floppy-o"></i> {{Lancer}}</a>
                         </div>
                         <?php if (config::byKey('backup::cloudUpload') == 1) {?>
                         <div class="col-sm-3 col-xs-2">

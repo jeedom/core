@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v2.1.1 (2015-02-17)
+ * @license Highstock JS v2.1.4 (2015-03-10)
  *
  * (c) 2011-2014 Torstein Honsi
  *
@@ -96,24 +96,33 @@ extend(ColorAxis.prototype, {
 
 	/*
 	 * Return an intermediate color between two colors, according to pos where 0
-	 * is the from color and 1 is the to color
+	 * is the from color and 1 is the to color. 
+	 * NOTE: Changes here should be copied
+	 * to the same function in drilldown.src.js.
 	 */
 	tweenColors: function (from, to, pos) {
 		// Check for has alpha, because rgba colors perform worse due to lack of
 		// support in WebKit.
-		var hasAlpha;
+		var hasAlpha,
+			ret;
 
-		from = from.rgba;
-		to = to.rgba;
-		hasAlpha = (to[3] !== 1 || from[3] !== 1);
-		if (!to.length || !from.length) {
+		// Unsupported color, return to-color (#3920)
+		if (!to.rgba.length || !from.rgba.length) {
 			Highcharts.error(23);
+			ret = to.raw;
+
+		// Interpolate
+		} else {
+			from = from.rgba;
+			to = to.rgba;
+			hasAlpha = (to[3] !== 1 || from[3] !== 1);
+			ret = (hasAlpha ? 'rgba(' : 'rgb(') + 
+				Math.round(to[0] + (from[0] - to[0]) * (1 - pos)) + ',' + 
+				Math.round(to[1] + (from[1] - to[1]) * (1 - pos)) + ',' + 
+				Math.round(to[2] + (from[2] - to[2]) * (1 - pos)) + 
+				(hasAlpha ? (',' + (to[3] + (from[3] - to[3]) * (1 - pos))) : '') + ')';
 		}
-		return (hasAlpha ? 'rgba(' : 'rgb(') + 
-			Math.round(to[0] + (from[0] - to[0]) * (1 - pos)) + ',' + 
-			Math.round(to[1] + (from[1] - to[1]) * (1 - pos)) + ',' + 
-			Math.round(to[2] + (from[2] - to[2]) * (1 - pos)) + 
-			(hasAlpha ? (',' + (to[3] + (from[3] - to[3]) * (1 - pos))) : '') + ')';
+		return ret;
 	},
 
 	initDataClasses: function (userOptions) {
@@ -336,8 +345,7 @@ extend(ColorAxis.prototype, {
 		}
 	},
 	drawCrosshair: function (e, point) {
-		var newCross = !this.cross,
-			plotX = point && point.plotX,
+		var plotX = point && point.plotX,
 			plotY = point && point.plotY,
 			crossPos,
 			axisPos = this.pos,
@@ -357,7 +365,7 @@ extend(ColorAxis.prototype, {
 			point.plotX = plotX;
 			point.plotY = plotY;
 			
-			if (!newCross && this.cross) {
+			if (this.cross) {
 				this.cross
 					.attr({
 						fill: this.crosshair.color
@@ -556,7 +564,8 @@ defaultOptions.plotOptions.heatmap = merge(defaultOptions.plotOptions.scatter, {
 		inside: true,
 		verticalAlign: 'middle',
 		crop: false,
-		overflow: false
+		overflow: false,
+		padding: 0 // #3837
 	},
 	marker: null,
 	tooltip: {

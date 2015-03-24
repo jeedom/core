@@ -98,6 +98,15 @@ WHERE TIMEDIFF(NOW(),`datetime`)>:archiveTime';
 		foreach ($list_sensors as $sensors) {
 			$cmd = cmd::byId($sensors['cmd_id']);
 			if (is_object($cmd) && $cmd->getType() == 'info' && $cmd->getIsHistorized() == 1) {
+				if ($cmd->getConfiguration('historyPurge', '') != '') {
+					$purgeTime = date('Y-m-d H:i:s', strtotime($cmd->getConfiguration('historyPurge', '')));
+					$values = array(
+						'cmd_id' => $cmd->getId(),
+						'datetime' => $purgeTime,
+					);
+					$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+				}
 				if ($cmd->getSubType() == 'binary' || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
 					$values = array(
 						'cmd_id' => $cmd->getId(),

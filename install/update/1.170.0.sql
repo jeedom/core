@@ -1,0 +1,1 @@
+ALTER TABLE eqLogic MODIFY COLUMN specificCapatibilities MEDIUMTEXT;

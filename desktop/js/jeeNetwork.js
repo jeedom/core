@@ -20,6 +20,9 @@
 
 $(".li_jeeNetwork").on('click', function (event) {
     $.hideAlert();
+    $('#pre_logInfo').empty();
+    $('#pre_backupInfo').empty();
+    $('#pre_updateInfo').empty();
     $('#div_conf').show();
     $('.li_jeeNetwork').removeClass('active');
     $(this).addClass('active');
@@ -278,7 +281,7 @@ $('#bt_showMessage').on('click', function () {
                 log += data[i]['message'];
                 log += "\n";
             }
-            $('#pre_updateInfo').text(log);
+            $('#pre_logInfo').text(log);
         }
     });
 });
@@ -292,6 +295,7 @@ $('#bt_emptyMessage').on('click', function () {
         },
         success: function (data) {
             $('.li_jeeNetwork.active').click();
+            $('#pre_logInfo').empty();
             $('#div_alert').showAlert({message: '{{Les messages ont été correctement supprimés}}', level: 'success'});
         }
     });

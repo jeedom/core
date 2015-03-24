@@ -1,105 +1,104 @@
 <?php
 if (!hasRight('scenarioview', true)) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
-
 
 $scenarios = array();
 $scenarios[-1] = scenario::all(null);
 foreach (scenario::listGroup() as $group) {
-    $scenarios[$group['group']] = scenario::all($group['group']);
+	$scenarios[$group['group']] = scenario::all($group['group']);
 }
 ?>
 <div class="row row-overflow">
     <div class="col-lg-2 col-md-3 col-sm-4" id="div_listScenario">
-        <div class="bs-sidebar nav nav-list bs-sidenav" > 
+        <div class="bs-sidebar nav nav-list bs-sidenav" >
             <a class="btn btn-warning form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenarioAssist" style="text-shadow: none;"><i class="fa fa-toggle-on"></i> {{Interface avancée}}</a>
             <center>
                 <div class="col-xs-6">
                     <?php
-                    if (config::byKey('enableScenario') == 0) {
-                        echo '<a class="btn btn-sm btn-success expertModeVisible" id="bt_changeAllScenarioState" data-state="1" style="width : 48%;min-width : 127px;margin-top : 3px;text-shadow: none;" ><i class="fa fa-check"></i> {{Act. scénarios}}</a>';
-                    } else {
-                        echo '<a class="btn btn-sm btn-danger expertModeVisible" id="bt_changeAllScenarioState" data-state="0" style="width : 48%;min-width : 127px;margin-top : 3px;text-shadow: none;" ><i class="fa fa-times"></i> {{Désac. scénarios}}</a>';
-                    }
-                    ?>
+if (config::byKey('enableScenario') == 0) {
+	echo '<a class="btn btn-sm btn-success expertModeVisible" id="bt_changeAllScenarioState" data-state="1" style="width : 48%;min-width : 127px;margin-top : 3px;text-shadow: none;" ><i class="fa fa-check"></i> {{Act. scénarios}}</a>';
+} else {
+	echo '<a class="btn btn-sm btn-danger expertModeVisible" id="bt_changeAllScenarioState" data-state="0" style="width : 48%;min-width : 127px;margin-top : 3px;text-shadow: none;" ><i class="fa fa-times"></i> {{Désac. scénarios}}</a>';
+}
+?>
                 </div>
                 <div class="col-xs-6">
-                    <a class="btn btn-default btn-sm tooltips expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables de scénario}}" style="margin-top : 3px;text-shadow: none;"><i class="fa fa fa-eye"></i> {{Voir variables}}</a>
+                    <a class="btn btn-default btn-sm tooltips expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables des scénarios}}" style="margin-top : 3px;text-shadow: none;"><i class="fa fa fa-eye"></i> {{Voir variables}}</a>
                 </div>
             </center>
-            <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> Nouveau scénario</a>
+            <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> {{Nouveau scénario}}</a>
 
             <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
             <div id="div_tree">
-                <ul id="ul_scenario" >  
+                <ul id="ul_scenario" >
                     <li data-jstree='{"opened":true}'>
                         <a>Aucune</a>
                         <ul>
                             <?php
-                            foreach ($scenarios[-1] as $scenario) {
-                                echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-                                echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
-                                echo '</li>';
-                            }
-                            ?>
+foreach ($scenarios[-1] as $scenario) {
+	echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
+	echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
+	echo '</li>';
+}
+?>
                         </ul>
                         <?php
-                        foreach (scenario::listGroup() as $group) {
-                            if ($group['group'] != '') {
-                                echo '<li data-jstree=\'{"opened":true}\'>';
-                                echo '<a>' . $group['group'] . '</a>';
-                                echo '<ul>';
-                                foreach ($scenarios[$group['group']] as $scenario) {
-                                    echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-                                    echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
-                                    echo '</li>';
-                                }
-                                echo '</ul>';
-                                echo '</li>';
-                            }
-                        }
-                        ?>
+foreach (scenario::listGroup() as $group) {
+	if ($group['group'] != '') {
+		echo '<li data-jstree=\'{"opened":true}\'>';
+		echo '<a>' . $group['group'] . '</a>';
+		echo '<ul>';
+		foreach ($scenarios[$group['group']] as $scenario) {
+			echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
+			echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
+			echo '</li>';
+		}
+		echo '</ul>';
+		echo '</li>';
+	}
+}
+?>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
-            <legend>{{Mes scenarios}}</legend>
+            <legend>{{Mes scénarios}}</legend>
             <?php
-            if (count(scenario::all()) == 0) {
-                echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario, cliquez sur ajouter un scénario pour commencer</span></center>";
-            } else {
-                echo '<legend>Aucun</legend>';
-                echo '<div class="scenarioListContainer">';
-                foreach ($scenarios[-1] as $scenario) {
-                    echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-                    echo "<center>";
-                    echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
-                    echo "</center>";
-                    echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
-                    echo '</div>';
-                }
-                echo '</div>';
+if (count(scenario::all()) == 0) {
+	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
+} else {
+	echo '<legend>Aucun</legend>';
+	echo '<div class="scenarioListContainer">';
+	foreach ($scenarios[-1] as $scenario) {
+		echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+		echo "<center>";
+		echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
+		echo "</center>";
+		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
+		echo '</div>';
+	}
+	echo '</div>';
 
-                foreach (scenario::listGroup() as $group) {
-                    if ($group['group'] != '') {
-                        echo '<legend>' . $group['group'] . '</legend>';
-                        echo '<div class="scenarioListContainer">';
-                        foreach ($scenarios[$group['group']] as $scenario) {
-                            echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-                            echo "<center>";
-                            echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
-                            echo "</center>";
-                            echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
-                            echo '</div>';
-                        }
-                        echo '</div>';
-                    }
-                }
-                ?>
-                <?php } ?>
+	foreach (scenario::listGroup() as $group) {
+		if ($group['group'] != '') {
+			echo '<legend>' . $group['group'] . '</legend>';
+			echo '<div class="scenarioListContainer">';
+			foreach ($scenarios[$group['group']] as $scenario) {
+				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+				echo "<center>";
+				echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
+				echo "</center>";
+				echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
+				echo '</div>';
+			}
+			echo '</div>';
+		}
+	}
+	?>
+                <?php }?>
             </div>
 
             <div id="div_editScenario" style="display: none; border-left: solid 1px #EEE; padding-left: 25px;">
@@ -149,10 +148,10 @@ foreach (scenario::listGroup() as $group) {
                                         <select class="scenarioAttr form-control input-sm" data-l1key="object_id">
                                             <option value="">{{Aucun}}</option>
                                             <?php
-                                            foreach (object::all() as $object) {
-                                                echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
-                                            }
-                                            ?>
+foreach (object::all() as $object) {
+	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+}
+?>
                                         </select>
                                     </div>
                                 </div>
@@ -187,7 +186,7 @@ foreach (scenario::listGroup() as $group) {
                                     <label class="col-xs-3 control-label" >{{Précédent}}</label>
                                     <div class="col-xs-3" ><span class="scenarioAttr label label-primary" data-l1key="forecast" data-l2key="prevDate" data-l3key="date"></span></div>
                                     <label class="col-xs-3 control-label" >{{Prochain}}</label>
-                                    <div class="col-xs-3"><span class="scenarioAttr label label-success" data-l1key="forecast" data-l2key="nextDate" data-l3key="date"></span></div> 
+                                    <div class="col-xs-3"><span class="scenarioAttr label label-success" data-l1key="forecast" data-l2key="nextDate" data-l3key="date"></span></div>
                                 </div>
                                 <div class="scheduleMode"></div>
                             </div>
@@ -206,7 +205,13 @@ foreach (scenario::listGroup() as $group) {
                             <div class="form-group expertModeVisible">
                                 <label class="col-xs-6 control-label">{{Exécuter le plus rapidement possible}}</label>
                                 <div class="col-xs-1">
-                                    <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="speedPriority" titme="{{A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours et aucun log ne sera écris par celui-ci}}">
+                                    <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="speedPriority" titme="{{A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours.}}">
+                                </div>
+                            </div>
+                             <div class="form-group expertModeVisible">
+                                <label class="col-xs-6 control-label">{{Pas de log}}</label>
+                                <div class="col-xs-1">
+                                    <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="noLog" titme="{{Le scénario n'écrit plus de log}}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -273,27 +278,27 @@ foreach (scenario::listGroup() as $group) {
                         </center>
                         <br/>
                         <div class="alert alert-info addElementTypeDescription if">
-                            Permet de faire des conditions dans votre scénario, comme par exemple, Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.
+                            Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.
                         </div>
 
                         <div class="alert alert-info addElementTypeDescription action" style="display:none;">
-                            Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple, passer votre sirène sur ON.
+                            Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : passer votre sirène sur ON.
                         </div>
 
                         <div class="alert alert-info addElementTypeDescription for" style="display:none;">
-                            Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple, permet de répéter une action de 1 à X, c’est à dire X fois.
+                            Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : permet de répéter une action de 1 à X, c’est-à-dire X fois.
                         </div>
 
                         <div class="alert alert-info addElementTypeDescription in" style="display:none;">
-                           Permet de faire une action dans X min. Par exemple, dans 5min éteindre la lumière.
+                           Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
                        </div>
 
                        <div class="alert alert-info addElementTypeDescription at" style="display:none;">
-                           A un temps précis, cet élément permet de lancer une action. Par exemple, à 9h30 ouvrir les volets.
+                           A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
                        </div>
 
                        <div class="alert alert-info addElementTypeDescription code" style="display:none;">
-                        Cet élément permet de rajouter à son scénario de la programmation à l’aide d’un code, PHP/Shell etc...
+                        Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell etc...
                     </div>
 
                     <div class="alert alert-info addElementTypeDescription comment" style="display:none;">
@@ -335,15 +340,15 @@ foreach (scenario::listGroup() as $group) {
                     </div>
 
                     <div class="alert alert-info sel_otherActionDescription wait" style="display:none;">
-                        Attend jusqu’a ce que la condition soit valide (maximum 2h) 
+                        Attend jusqu’à ce que la condition soit valide (maximum 2h)
                     </div>
 
                     <div class="alert alert-info sel_otherActionDescription variable" style="display:none;">
-                        Création/modification d’une ou de la valeur d’une variable 
+                        Création/modification d’une ou de la valeur d’une variable
                     </div>
 
                     <div class="alert alert-info sel_otherActionDescription scenario" style="display:none;">
-                        Permet le controle des scénarios 
+                        Permet le contrôle des scénarios
                     </div>
 
                     <div class="alert alert-info sel_otherActionDescription stop" style="display:none;">
@@ -351,15 +356,15 @@ foreach (scenario::listGroup() as $group) {
                  </div>
 
                  <div class="alert alert-info sel_otherActionDescription say" style="display:none;">
-                    Permet de faire dire un texte à jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur) 
+                    Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)
                 </div>
 
                 <div class="alert alert-info sel_otherActionDescription return" style="display:none;">
-                    Retourne un message à la fin du scénario, ne sert que pour retourner un message spécifique suite a une intération. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ca marche.
+                    Retourne un message à la fin du scénario. Cela ne sert que pour retourner un message spécifique suite à une intération. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ça fonctionne.
                 </div>
 
                 <div class="alert alert-info sel_otherActionDescription gotodesign" style="display:none;">
-                    Change le design afficher sur tous les navigateurs qui affichage un design par le design demandé
+                    Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé
                 </div>
 
             </div>

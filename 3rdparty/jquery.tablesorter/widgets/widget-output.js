@@ -1,4 +1,4 @@
-/* Output widget (beta) for TableSorter 7/17/2014 (v2.17.5)
+/* Output widget for TableSorter 3/5/2015 (v2.21.0)
  * Requires tablesorter v2.8+ and jQuery 1.7+
  * Modified from:
  * HTML Table to CSV: http://www.kunalbabre.com/projects/table2CSV.php (License unknown?)
@@ -16,13 +16,13 @@ output = ts.output = {
 	event      : 'outputTable',
 
 	// wrap line breaks & tabs in quotes
-	regexQuote : /([\n\t]|<[^<]+>)/,    // test
+	regexQuote : /([\n\t\x09\x0d\x0a]|<[^<]+>)/, // test if cell needs wrapping quotes
 	regexBR    : /(<br([\s\/])?>|\n)/g, // replace
 	regexIMG   : /<img[^>]+alt\s*=\s*['"]([^'"]+)['"][^>]*>/i, // match
 	regexHTML  : /<[^<]+>/g, // replace
-	
-	replaceCR  : '\\n',
-	replaceTab : '\\t',
+
+	replaceCR  : '\x0d\x0a',
+	replaceTab : '\x09',
 
 	popupTitle : 'Output',
 	popupStyle : 'width:100%;height:100%;', // for textarea
@@ -120,6 +120,13 @@ output = ts.output = {
 
 		// all tbody rows
 		$rows = $el.children('tbody').children('tr');
+
+		if (wo.output_includeFooter) {
+			// clone, to force the tfoot rows to the end of this selection of rows
+			// otherwise they appear after the thead (the order in the HTML)
+			$rows = $rows.add( $el.children('tfoot').children('tr').clone() );
+		}
+
 		// get (f)iltered, (v)isible or all rows (look for the first letter only)
 		$rows = /f/.test(wo.output_saveRows) ? $rows.not('.' + (wo.filter_filteredRow || 'filtered') ) :
 			/v/.test(wo.output_saveRows) ? $rows.filter(':visible') : $rows;
@@ -192,7 +199,11 @@ output = ts.output = {
 			// replace " with “ if undefined
 			result = input.replace(/\"/g, wo.output_replaceQuote || '\u201c');
 		// replace line breaks with \\n & tabs with \\t
-		result = result.replace(output.regexBR, output.replaceCR).replace(/\t/g, output.replaceTab);
+		if (!wo.output_trimSpaces) {
+			result = result.replace(output.regexBR, output.replaceCR).replace(/\t/g, output.replaceTab);
+		} else {
+			result = result.replace(output.regexBR, '');
+		}
 		// extract img alt text
 		txt = result.match(output.regexIMG);
 		if (!wo.output_includeHTML && txt !== null) {
@@ -283,6 +294,7 @@ ts.addWidget({
 	options: {
 		output_separator     : ',',         // set to "json", "array" or any separator
 		output_ignoreColumns : [],          // columns to ignore [0, 1,... ] (zero-based index)
+		output_includeFooter : false,       // include footer rows in the output
 		output_dataAttrib    : 'data-name', // header attrib containing modified header name
 		output_headerRows    : false,       // if true, include multiple header rows (JSON only)
 		output_delivery      : 'popup',     // popup, download

@@ -48,10 +48,12 @@ class market {
 	private $nbComment;
 	private $language;
 	private $private;
+	private $change;
+	private $updateBy;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	private static function construct($_arrayMarket) {
+	public static function construct($_arrayMarket) {
 		$market = new self();
 		if (!isset($_arrayMarket['id'])) {
 			return;
@@ -75,11 +77,13 @@ class market {
 		$market->setCost($_arrayMarket['cost']);
 		$market->rating = ($_arrayMarket['rating']);
 		$market->setBuyer($_arrayMarket['buyer']);
+		$market->setUpdateBy($_arrayMarket['updateBy']);
 		$market->setNbComment($_arrayMarket['nbComment']);
 		$market->setPrivate($_arrayMarket['private']);
 		$market->img = json_encode($_arrayMarket['img'], JSON_UNESCAPED_UNICODE);
 		$market->link = json_encode($_arrayMarket['link'], JSON_UNESCAPED_UNICODE);
 		$market->language = json_encode($_arrayMarket['language'], JSON_UNESCAPED_UNICODE);
+		$market->change = '';
 
 		$market->setRealcost($_arrayMarket['realCost']);
 		if (!isset($_arrayMarket['api_author'])) {
@@ -137,6 +141,29 @@ class market {
 			$options = $_logicalId;
 		}
 		if ($market->sendRequest('market::byLogicalId', $options)) {
+			if (is_array($_logicalId)) {
+				$return = array();
+				foreach ($market->getResult() as $logicalId => $result) {
+					if (isset($result['id'])) {
+						$return[$logicalId] = self::construct($result);
+					}
+				}
+				return $return;
+			}
+			return self::construct($market->getResult());
+		} else {
+			log::add('market', 'debug', print_r($market, true));
+			throw new Exception($market->getError(), $market->getErrorCode());
+		}
+	}
+
+	public static function byLogicalIdAndType($_logicalId, $_type = '') {
+		$market = self::getJsonRpc();
+		$options = array('logicalId' => $_logicalId, 'type' => $_type);
+		if (is_array($_logicalId)) {
+			$options = $_logicalId;
+		}
+		if ($market->sendRequest('market::byLogicalIdAndType', $options)) {
 			if (is_array($_logicalId)) {
 				$return = array();
 				foreach ($market->getResult() as $logicalId => $result) {
@@ -225,8 +252,14 @@ class market {
 		$jsonrpc = self::getJsonRpc();
 		$_ticket['user_plugin'] = '';
 		foreach (plugin::listPlugin() as $plugin) {
-			$_ticket['user_plugin'] .= $plugin->getId() . ',';
+			$_ticket['user_plugin'] .= $plugin->getId();
+			$update = $plugin->getUpdate();
+			if (is_object($update)) {
+				$_ticket['user_plugin'] .= '[' . $update->getConfiguration('version', 'stable') . ',' . $update->getLocalVersion() . ']';
+			}
+			$_ticket['user_plugin'] .= ',';
 		}
+		trim($_ticket['user_plugin'], ',');
 		jeedom::sick();
 		$cibDir = realpath(dirname(__FILE__) . '/../../log');
 		$tmp = dirname(__FILE__) . '/../../tmp/log.zip';
@@ -315,11 +348,21 @@ class market {
 	public static function getInfo($_logicalId, $_version = 'stable') {
 		$returns = array();
 		if (is_array($_logicalId) && is_array($_version) && count($_logicalId) == count($_version)) {
-			$markets = market::byLogicalId($_logicalId);
+			if (count($_logicalId) > 1 && is_array(reset($_logicalId))) {
+				$markets = market::byLogicalIdAndType($_logicalId);
+			} else {
+				$markets = market::byLogicalId($_logicalId);
+			}
+
 			$returns = array();
 			for ($i = 0; $i < count($_logicalId); $i++) {
+				if (is_array($_logicalId[$i])) {
+					$logicalId = $_logicalId[$i]['type'] . $_logicalId[$i]['logicalId'];
+				} else {
+					$logicalId = $_logicalId[$i];
+				}
 				$return['datetime'] = '0000-01-01 00:00:00';
-				if ($_logicalId[$i] == '' || config::byKey('market::address') == '') {
+				if ($logicalId == '' || config::byKey('market::address') == '') {
 					$return['market'] = 0;
 					$return['market_owner'] = 0;
 					$return['status'] = 'ok';
@@ -334,8 +377,8 @@ class market {
 				$return['market'] = 0;
 
 				try {
-					if (isset($markets[$_logicalId[$i]])) {
-						$market = $markets[$_logicalId[$i]];
+					if (isset($markets[$logicalId])) {
+						$market = $markets[$logicalId];
 						if (!is_object($market)) {
 							$return['status'] = 'depreciated';
 						} else {
@@ -364,13 +407,13 @@ class market {
 					log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
 					$return['status'] = 'ok';
 				}
-				$returns[$_logicalId[$i]] = $return;
+				$returns[$logicalId] = $return;
 			}
 			return $returns;
 		}
 		$return = array();
 		$return['datetime'] = '0000-01-01 00:00:00';
-		if ($_logicalId == '' || config::byKey('market::address') == '') {
+		if (config::byKey('market::address') == '') {
 			$return['market'] = 0;
 			$return['market_owner'] = 0;
 			$return['status'] = 'ok';
@@ -385,7 +428,11 @@ class market {
 		$return['market'] = 0;
 
 		try {
-			$market = market::byLogicalId($_logicalId);
+			if (is_array($_logicalId)) {
+				$market = market::byLogicalIdAndType($_logicalId['logicalId'], $_logicalId['type']);
+			} else {
+				$market = market::byLogicalId($_logicalId);
+			}
 			if (!is_object($market)) {
 				$return['status'] = 'depreciated';
 			} else {
@@ -542,7 +589,7 @@ class market {
 	}
 
 	public function install($_version = 'stable') {
-		log::add('update', 'update', __('Début de la mise à jour de : ', __FILE__). $this->getLogicalId() . "\n");
+		log::add('update', 'update', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
 		$tmp_dir = dirname(__FILE__) . '/../../tmp';
 		$tmp = $tmp_dir . '/' . $this->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
@@ -647,13 +694,29 @@ class market {
 		}
 		switch ($this->getType()) {
 			case 'plugin':
-				$plugin = plugin::byId($this->getLogicalId());
-				if (is_object($plugin)) {
-					$plugin->setIsEnable(0);
+				try {
+					$plugin = plugin::byId($this->getLogicalId());
+					if (is_object($plugin)) {
+						$plugin->setIsEnable(0);
+						foreach (eqLogic::byType($this->getLogicalId()) as $eqLogic) {
+							try {
+								$eqLogic->remove();
+							} catch (Exception $e) {
+
+							}
+						}
+					}
+					config::remove('*', $this->getLogicalId());
+				} catch (Exception $e) {
+
 				}
-				$cibDir = dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId();
-				if (file_exists($cibDir)) {
-					rrmdir($cibDir);
+				try {
+					$cibDir = dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId();
+					if (file_exists($cibDir)) {
+						rrmdir($cibDir);
+					}
+				} catch (Exception $e) {
+
 				}
 				break;
 			default:
@@ -676,6 +739,9 @@ class market {
 		}
 		$market = self::getJsonRpc();
 		$params = utils::o2a($this);
+		if (isset($params['changelog'])) {
+			unset($params['changelog']);
+		}
 		switch ($this->getType()) {
 			case 'plugin':
 				$cibDir = realpath(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId());
@@ -900,20 +966,36 @@ class market {
 		$this->buyer = $buyer;
 	}
 
-	function getCertification() {
+	public function getCertification() {
 		return $this->certification;
 	}
 
-	function setCertification($certification) {
+	public function setCertification($certification) {
 		$this->certification = $certification;
 	}
 
-	function getNbComment() {
+	public function getNbComment() {
 		return $this->nbComment;
 	}
 
-	function setNbComment($nbComment) {
+	public function setNbComment($nbComment) {
 		$this->nbComment = $nbComment;
+	}
+
+	public function getChange() {
+		return $this->change;
+	}
+
+	public function setChange($change) {
+		$this->change = $change;
+	}
+
+	public function getUpdateBy() {
+		return $this->updateBy;
+	}
+
+	public function setUpdateBy($updateBy) {
+		$this->updateBy = $updateBy;
 	}
 
 }

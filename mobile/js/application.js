@@ -76,9 +76,9 @@ function initApplication(_reinit) {
         dataType: 'json',
         error: function (request, status, error) {
             if (confirm('Erreur de communication.Etes-vous connecté à internet? Voulez-vous ressayer ?')) {
-                window.location.reload();
-            }
-        },
+               // window.location.reload();
+           }
+       },
         success: function (data) { // si l'appel a bien fonctionné
         if (data.state != 'ok') {
             modal(false);
@@ -124,6 +124,13 @@ function initApplication(_reinit) {
                     $("head").append(data);
                     $.include(include, function () {
                         deviceInfo = getDeviceType();
+                        if(getUrlVars('p') != '' && getUrlVars('ajax') != 1){
+                           switch (getUrlVars('p')) {
+                            case 'view' :
+                            page('view', 'Vue',getUrlVars('view_id'));
+                            break;
+                        }
+                    }else{
                         if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('page') != 'home') {
                             var res = userProfils.homePageMobile.split("::");
                             if (res[0] == 'core') {
@@ -144,7 +151,8 @@ function initApplication(_reinit) {
                         } else {
                             page('home', 'Accueil');
                         }
-                    });
+                    }
+                });
 });
 }
 }
@@ -160,7 +168,7 @@ function page(_page, _title, _option, _plugin) {
         $('#pageTitle').empty().append(_title);
     }
     if (_page == 'connection') {
-        var page = 'index.php?v=m&p=' + _page;
+        var page = 'index.php?v=m&ajax=1&p=' + _page;
         $('#page').load(page, function () {
             $('#page').trigger('create');
         });
@@ -173,7 +181,7 @@ function page(_page, _title, _option, _plugin) {
                 initApplication(true);
                 return;
             }
-            var page = 'index.php?v=m&p=' + _page;
+            var page = 'index.php?v=m&ajax=1&p=' + _page;
             if (init(_plugin) != '') {
                 page += '&m=' + _plugin;
             }

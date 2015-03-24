@@ -1,4 +1,4 @@
-/* Column Selector/Responsive table widget (beta) for TableSorter - 11/3/2014 (v2.18.1)
+/* Column Selector/Responsive table widget for TableSorter - 3/5/2015 (v2.21.0)
  * Requires tablesorter v2.8+ and jQuery 1.7+
  * by Justin Hallett & Rob Garrison
  */
@@ -21,7 +21,7 @@ tsColSel = ts.columnSelector = {
 		$t = $(wo.columnSelector_layout);
 		if (!$t.find('input').add( $t.filter('input') ).length) {
 			if (c.debug) {
-				ts.log('*** ERROR: Column Selector aborting, no input found in the layout! ***');
+				ts.log('ColumnSelector: >> ERROR: Column Selector aborting, no input found in the layout! ***');
 			}
 			return;
 		}
@@ -45,15 +45,37 @@ tsColSel = ts.columnSelector = {
 		colSel.isInitializing = false;
 		if (colSel.$container.length) {
 			tsColSel.updateCols(c, wo);
+		} else if (c.debug) {
+			ts.log('ColumnSelector: >> container not found');
 		}
 
 		c.$table
 			.off('refreshColumnSelector' + namespace)
-			.on('refreshColumnSelector' + namespace, function(){
+			.on('refreshColumnSelector' + namespace, function(e, opt){
 				// make sure we're using current config settings
-				var c = this.config;
-				tsColSel.updateBreakpoints(c, c.widgetOptions);
-				tsColSel.updateCols(c, c.widgetOptions);
+				var i,
+					isArry = $.isArray(opt),
+					c = this.config,
+					wo = c.widgetOptions;
+				// see #798
+				if (opt && c.selector.$container.length) {
+					if (isArry) {
+						// make sure array contains numbers
+						$.each(opt, function(i,v){
+							opt[i] = parseInt(v, 10);
+						});
+						for (i = 0; i < c.columns; i++) {
+							c.selector.$container
+								.find('input[data-column=' + i + ']')
+								.prop('checked', $.inArray( i, opt ) >= 0 );
+						}
+					}
+					// if passing an array, set auto to false to allow manual column selection & update columns
+					tsColSel.updateAuto( c, wo, colSel.$container.find('input[data-column="auto"]').prop('checked', !isArry) );
+				} else {
+					tsColSel.updateBreakpoints(c, wo);
+					tsColSel.updateCols(c, wo);
+				}
 			});
 
 	},
@@ -91,7 +113,7 @@ tsColSel = ts.columnSelector = {
 			// set default state; storage takes priority
 			colSel.states[colId] = saved && typeof(saved[colId]) !== 'undefined' ?
 				saved[colId] : typeof(wo.columnSelector_columns[colId]) !== 'undefined' ?
-				wo.columnSelector_columns[colId] : (state === 'true' || !(state === 'false'));
+				wo.columnSelector_columns[colId] : (state === 'true' || state !== 'false');
 			colSel.$column[colId] = $(this);
 
 			// set default col title
@@ -103,6 +125,7 @@ tsColSel = ts.columnSelector = {
 					// input may not be wrapped within the layout template
 					.find('input').add( colSel.$wrapper[colId].filter('input') )
 					.attr('data-column', colId)
+					.toggleClass( wo.columnSelector_cssChecked, colSel.states[colId] )
 					.prop('checked', colSel.states[colId])
 					.on('change', function(){
 						colSel.states[colId] = this.checked;
@@ -138,36 +161,46 @@ tsColSel = ts.columnSelector = {
 					.find('input').add( colSel.$auto.filter('input') )
 					.attr('data-column', 'auto')
 					.prop('checked', colSel.auto)
+					.toggleClass( wo.columnSelector_cssChecked, colSel.auto )
 					.on('change', function(){
-						colSel.auto = this.checked;
-						$.each( colSel.$checkbox, function(i, $cb){
-							if ($cb) {
-								$cb[0].disabled = colSel.auto;
-								colSel.$wrapper[i].toggleClass('disabled', colSel.auto);
-							}
-						});
-						if (wo.columnSelector_mediaquery) {
-							tsColSel.updateBreakpoints(c, wo);
-						}
-						tsColSel.updateCols(c, wo);
-						// copy the column selector to a popup/tooltip
-						if (c.selector.$popup) {
-							c.selector.$popup.find('.tablesorter-column-selector')
-								.html( colSel.$container.html() )
-								.find('input').each(function(){
-									var indx = $(this).attr('data-column');
-									$(this).prop( 'checked', indx === 'auto' ? colSel.auto : colSel.states[indx] );
-								});
-						}
-						if (wo.columnSelector_saveColumns && ts.storage) {
-							ts.storage( c.$table[0], 'tablesorter-columnSelector-auto', { auto : colSel.auto } );
-						}
+						tsColSel.updateAuto(c, wo, $(this));
 					}).change();
 			}
 			// Add a bind on update to re-run col setup
 			c.$table.off('update' + namespace).on('update' + namespace, function() {
 				tsColSel.updateCols(c, wo);
 			});
+		}
+	},
+
+	updateAuto: function(c, wo, $el) {
+		var colSel = c.selector;
+		colSel.auto = $el.prop('checked') || false;
+		$.each( colSel.$checkbox, function(i, $cb){
+			if ($cb) {
+				$cb[0].disabled = colSel.auto;
+				colSel.$wrapper[i].toggleClass('disabled', colSel.auto);
+			}
+		});
+		if (wo.columnSelector_mediaquery) {
+			tsColSel.updateBreakpoints(c, wo);
+		}
+		tsColSel.updateCols(c, wo);
+		// copy the column selector to a popup/tooltip
+		if (c.selector.$popup) {
+			c.selector.$popup.find('.tablesorter-column-selector')
+				.html( colSel.$container.html() )
+				.find('input').each(function(){
+					var indx = $(this).attr('data-column');
+					$(this).prop( 'checked', indx === 'auto' ? colSel.auto : colSel.states[indx] );
+				});
+		}
+		if (wo.columnSelector_saveColumns && ts.storage) {
+			ts.storage( c.$table[0], 'tablesorter-columnSelector-auto', { auto : colSel.auto } );
+		}
+		// trigger columnUpdate if auto is true (it gets skipped in updateCols()
+		if (colSel.auto) {
+			c.$table.trigger('columnUpdate');
 		}
 	},
 
@@ -225,6 +258,7 @@ tsColSel = ts.columnSelector = {
 				styles.push(prefix + ' tr th:nth-child(' + column + ')');
 				styles.push(prefix + ' tr td:nth-child(' + column + ')');
 			}
+			$(this).toggleClass( wo.columnSelector_cssChecked, this.checked );
 		});
 		if (wo.columnSelector_mediaquery){
 			colSel.$breakpoints.prop('disabled', true);
@@ -235,6 +269,7 @@ tsColSel = ts.columnSelector = {
 		if (wo.columnSelector_saveColumns && ts.storage) {
 			ts.storage( c.$table[0], 'tablesorter-columnSelector', colSel.states );
 		}
+		c.$table.trigger('columnUpdate');
 	},
 
 	attachTo : function(table, elm) {
@@ -252,12 +287,15 @@ tsColSel = ts.columnSelector = {
 			$popup.find('.tablesorter-column-selector')
 				.html( colSel.$container.html() )
 				.find('input').each(function(){
-					var indx = $(this).attr('data-column');
-					$(this).prop( 'checked', indx === 'auto' ? colSel.auto : colSel.states[indx] );
+					var indx = $(this).attr('data-column'),
+						isChecked = indx === 'auto' ? colSel.auto : colSel.states[indx];
+					$(this)
+						.toggleClass( wo.columnSelector_cssChecked, isChecked )
+						.prop( 'checked', isChecked );
 				});
 			colSel.$popup = $popup.on('change', 'input', function(){
 				// data input
-				indx = $(this).attr('data-column');
+				indx = $(this).toggleClass( wo.columnSelector_cssChecked, this.checked ).attr('data-column');
 				// update original popup
 				colSel.$container.find('input[data-column="' + indx + '"]')
 					.prop('checked', this.checked)
@@ -299,13 +337,17 @@ ts.addWidget({
 		// data attribute containing column priority
 		// duplicates how jQuery mobile uses priorities:
 		// http://view.jquerymobile.com/1.3.2/dist/demos/widgets/table-column-toggle/
-		columnSelector_priority : 'data-priority'
+		columnSelector_priority : 'data-priority',
+		// class name added to checked checkboxes - this fixes an issue with Chrome not updating FontAwesome
+		// applied icons; use this class name (input.checked) instead of input:checked
+		columnSelector_cssChecked : 'checked'
 
 	},
 	init: function(table, thisWidget, c, wo) {
 		tsColSel.init(table, c, wo);
 	},
-	remove: function(table, c){
+	remove: function(table, c, wo, refreshing) {
+		if (refreshing) { return; }
 		var csel = c.selector;
 		csel.$container.empty();
 		if (csel.$popup) { csel.$popup.empty(); }

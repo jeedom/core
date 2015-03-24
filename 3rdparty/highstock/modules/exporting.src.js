@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v2.1.1 (2015-02-17)
+ * @license Highstock JS v2.1.4 (2015-03-10)
  * Exporting module
  *
  * (c) 2010-2014 Torstein Honsi
@@ -23,6 +23,7 @@ var Chart = Highcharts.Chart,
 	merge = Highcharts.merge,
 	each = Highcharts.each,
 	extend = Highcharts.extend,
+	splat = Highcharts.splat,
 	math = Math,
 	mathMax = math.max,
 	doc = document,
@@ -191,6 +192,47 @@ Highcharts.post = function (url, data, formAttributes) {
 extend(Chart.prototype, {
 
 	/**
+	 * A collection of regex fixes on the produces SVG to account for expando properties,
+	 * browser bugs, VML problems and other. Returns a cleaned SVG.
+	 */
+	sanitizeSVG: function (svg) {
+		return svg
+			.replace(/zIndex="[^"]+"/g, '')
+			.replace(/isShadow="[^"]+"/g, '')
+			.replace(/symbolName="[^"]+"/g, '')
+			.replace(/jQuery[0-9]+="[^"]+"/g, '')
+			.replace(/url\([^#]+#/g, 'url(#')
+			.replace(/<svg /, '<svg xmlns:xlink="http://www.w3.org/1999/xlink" ')
+			.replace(/ (NS[0-9]+\:)?href=/g, ' xlink:href=') // #3567
+			.replace(/\n/, ' ')
+			// Any HTML added to the container after the SVG (#894)
+			.replace(/<\/svg>.*?$/, '</svg>') 
+			// Batik doesn't support rgba fills and strokes (#3095)
+			.replace(/(fill|stroke)="rgba\(([ 0-9]+,[ 0-9]+,[ 0-9]+),([ 0-9\.]+)\)"/g, '$1="rgb($2)" $1-opacity="$3"')
+			/* This fails in IE < 8
+			.replace(/([0-9]+)\.([0-9]+)/g, function(s1, s2, s3) { // round off to save weight
+				return s2 +'.'+ s3[0];
+			})*/
+
+			// Replace HTML entities, issue #347
+			.replace(/&nbsp;/g, '\u00A0') // no-break space
+			.replace(/&shy;/g,  '\u00AD') // soft hyphen
+
+			// IE specific
+			.replace(/<IMG /g, '<image ')
+			.replace(/height=([^" ]+)/g, 'height="$1"')
+			.replace(/width=([^" ]+)/g, 'width="$1"')
+			.replace(/hc-svg-href="([^"]+)">/g, 'xlink:href="$1"/>')
+			.replace(/id=([^" >]+)/g, 'id="$1"')
+			.replace(/class=([^" >]+)/g, 'class="$1"')
+			.replace(/ transform /g, ' ')
+			.replace(/:(path|rect)/g, '$1')
+			.replace(/style="([^"]+)"/g, function (s) {
+				return s.toLowerCase();
+			});
+	},
+
+	/**
 	 * Return an SVG representation of the chart
 	 *
 	 * @param additionalOptions {Object} Additional chart options for the generated SVG representation
@@ -262,6 +304,15 @@ extend(Chart.prototype, {
 			}
 		});
 
+		// Axis options must be merged in one by one, since it may be an array or an object (#2022, #3900)
+		if (additionalOptions) {
+			each(['xAxis', 'yAxis'], function (axisType) {
+				each(splat(additionalOptions[axisType]), function (axisOptions, i) {
+					options[axisType][i] = merge(options[axisType][i], axisOptions);
+				});
+			});
+		}
+
 		// generate the chart copy
 		chartCopy = new Highcharts.Chart(options, chart.callback);
 
@@ -288,42 +339,7 @@ extend(Chart.prototype, {
 		discardElement(sandbox);
 
 		// sanitize
-		svg = svg
-			.replace(/zIndex="[^"]+"/g, '')
-			.replace(/isShadow="[^"]+"/g, '')
-			.replace(/symbolName="[^"]+"/g, '')
-			.replace(/jQuery[0-9]+="[^"]+"/g, '')
-			.replace(/url\([^#]+#/g, 'url(#')
-			.replace(/<svg /, '<svg xmlns:xlink="http://www.w3.org/1999/xlink" ')
-			.replace(/ href=/g, ' xlink:href=')
-			.replace(/\n/, ' ')
-			// Any HTML added to the container after the SVG (#894)
-			.replace(/<\/svg>.*?$/, '</svg>') 
-			// Batik doesn't support rgba fills and strokes (#3095)
-			.replace(/(fill|stroke)="rgba\(([ 0-9]+,[ 0-9]+,[ 0-9]+),([ 0-9\.]+)\)"/g, '$1="rgb($2)" $1-opacity="$3"')
-			// An issue with PhantomJS as of 2015-01-11. Revisit with newer versions. (#3649)
-			.replace(/(text-shadow:[ 0-9a-z]+),[^"]+([;"])/g, '$1$2') 
-			/* This fails in IE < 8
-			.replace(/([0-9]+)\.([0-9]+)/g, function(s1, s2, s3) { // round off to save weight
-				return s2 +'.'+ s3[0];
-			})*/
-
-			// Replace HTML entities, issue #347
-			.replace(/&nbsp;/g, '\u00A0') // no-break space
-			.replace(/&shy;/g,  '\u00AD') // soft hyphen
-
-			// IE specific
-			.replace(/<IMG /g, '<image ')
-			.replace(/height=([^" ]+)/g, 'height="$1"')
-			.replace(/width=([^" ]+)/g, 'width="$1"')
-			.replace(/hc-svg-href="([^"]+)">/g, 'xlink:href="$1"/>')
-			.replace(/id=([^" >]+)/g, 'id="$1"')
-			.replace(/class=([^" >]+)/g, 'class="$1"')
-			.replace(/ transform /g, ' ')
-			.replace(/:(path|rect)/g, '$1')
-			.replace(/style="([^"]+)"/g, function (s) {
-				return s.toLowerCase();
-			});
+		svg = this.sanitizeSVG(svg);
 
 		// IE9 beta bugs with innerHTML. Test again with final IE9.
 		svg = svg.replace(/(url\(#highcharts-[0-9]+)&quot;/g, '$1')
@@ -332,30 +348,33 @@ extend(Chart.prototype, {
 		return svg;
 	},
 
+	getSVGForExport: function (options, chartOptions) {
+		var chartExportingOptions = this.options.exporting;
+
+		return this.getSVG(merge(
+			{ chart: { borderRadius: 0 } },
+			chartExportingOptions.chartOptions,
+			chartOptions,
+			{
+				exporting: {
+					sourceWidth: (options && options.sourceWidth) || chartExportingOptions.sourceWidth,
+					sourceHeight: (options && options.sourceHeight) || chartExportingOptions.sourceHeight
+				}
+			}
+		));
+	},
+
 	/**
 	 * Submit the SVG representation of the chart to the server
 	 * @param {Object} options Exporting options. Possible members are url, type, width and formAttributes.
 	 * @param {Object} chartOptions Additional chart options for the SVG representation of the chart
 	 */
 	exportChart: function (options, chartOptions) {
-		options = options || {};
-
-		var chart = this,
-			chartExportingOptions = chart.options.exporting,
-			svg = chart.getSVG(merge(
-				{ chart: { borderRadius: 0 } },
-				chartExportingOptions.chartOptions,
-				chartOptions,
-				{
-					exporting: {
-						sourceWidth: options.sourceWidth || chartExportingOptions.sourceWidth,
-						sourceHeight: options.sourceHeight || chartExportingOptions.sourceHeight
-					}
-				}
-			));
+		
+		var svg = this.getSVGForExport(options, chartOptions);
 
 		// merge the options
-		options = merge(chart.options.exporting, options);
+		options = merge(this.options.exporting, options);
 
 		// do the post
 		Highcharts.post(options.url, {

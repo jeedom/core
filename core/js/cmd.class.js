@@ -79,7 +79,51 @@ jeedom.cmd.execute = function(_params) {
 
             });
              }
-         }else{
+         }else if(data.code == -32006){
+             if ($.mobile) {
+                 var result = confirm("Etes vous sur de vouloir faire cette action ?")
+                 if(result){
+                    _params.confirmAction = 1;
+                    jeedom.cmd.execute(_params);
+                }else{
+                    if ('function' != typeof(_params.error)) {
+                        $('#div_alert').showAlert({
+                            message: data.result,
+                            level: 'danger'
+                        });
+                    }
+                    if (notify) {
+                        eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
+                        setTimeout(function() {
+                            eqLogic.find('.statusCmd').empty();
+                        }, 3000);
+                    }
+                    return data;
+                }
+            }else{
+                bootbox.confirm("Etes vous sur de vouloir faire cette action ?", function (result) {
+                    if(result){
+                     _params.confirmAction = 1;
+                     jeedom.cmd.execute(_params);
+                 }else{
+                    if ('function' != typeof(_params.error)) {
+                        $('#div_alert').showAlert({
+                            message: data.result,
+                            level: 'danger'
+                        });
+                    }
+                    if (notify) {
+                        eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
+                        setTimeout(function() {
+                            eqLogic.find('.statusCmd').empty();
+                        }, 3000);
+                    }
+                    return data;
+                }
+
+            });
+            }
+        }else{
             if ('function' != typeof(_params.error)) {
                 $('#div_alert').showAlert({
                     message: data.result,
@@ -120,7 +164,8 @@ if (_params.cache !== undefined) {
 paramsAJAX.data = {
     action: 'execCmd',
     id: _params.id,
-    codeAccess: _params.codeAccess,
+    codeAccess: _params.codeAccess || '',
+    confirmAction: _params.confirmAction || '',
     cache: cache,
     value: _params.value || ''
 };
@@ -164,10 +209,14 @@ jeedom.cmd.test = function(_params) {
                     });
                     break;
                     case 'slider':
+                    var slider = 50;
+                    if(isset(result.configuration) && isset(result.configuration.maxValue) && isset(result.configuration.minValue)){
+                        slider = (result.configuration.maxValue - result.configuration.minValue) / 2;
+                    }
                     jeedom.cmd.execute({
                         id: _params.id,
                         value: {
-                            slider: 50
+                            slider: slider
                         },
                         cache: 0,
                         error: function(error) {
@@ -447,6 +496,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
                     }
                 } else {
                     for (var j in subtype[i]) {
+
                         var el = _cmd.find('.cmdAttr[data-l1key=' + i + '][data-l2key=' + j + ']');
                         if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
                             el = el.parent();

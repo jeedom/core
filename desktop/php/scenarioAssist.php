@@ -1,66 +1,72 @@
 <?php
 if (!hasRight('scenarioview', true)) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 
 $scenarios = array();
 $scenarios[-1] = scenario::all(null);
-foreach (scenario::listGroup() as $group) {
-    $scenarios[$group['group']] = scenario::all($group['group']);
+$scenarioListGroup = scenario::listGroup();
+if (is_array($scenarioListGroup)) {
+	foreach ($scenarioListGroup as $group) {
+		$scenarios[$group['group']] = scenario::all($group['group']);
+	}
 }
 ?>
 
 <div class="row row-overflow">
     <div class="col-lg-2 col-md-3 col-sm-4" id="div_listScenario">
-        <div class="bs-sidebar nav nav-list bs-sidenav"> 
+        <div class="bs-sidebar nav nav-list bs-sidenav">
             <a class="btn btn-success pull-right form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenario" style="text-shadow: none;"><i class="fa fa-toggle-off"></i> {{Interface simple}}</a>
             <center>
                 <div class="col-xs-6">
                     <?php
-                    if (config::byKey('enableScenario') == 0) {
-                        echo '<a class="btn btn-sm btn-success expertModeVisible" id="bt_changeAllScenarioState" data-state="1" style="margin-top : 3px;text-shadow: none;" ><i class="fa fa-check"></i> {{Act. scénarios}}</a>';
-                    } else {
-                        echo '<a class="btn btn-sm btn-danger expertModeVisible" id="bt_changeAllScenarioState" data-state="0" style="margin-top : 3px;text-shadow: none;" ><i class="fa fa-times"></i> {{Désac. scénarios}}</a>';
-                    }
-                    ?>
+if (config::byKey('enableScenario') == 0) {
+	echo '<a class="btn btn-sm btn-success expertModeVisible" id="bt_changeAllScenarioState" data-state="1" style="margin-top : 3px;text-shadow: none;" ><i class="fa fa-check"></i> {{Act. scénarios}}</a>';
+} else {
+	echo '<a class="btn btn-sm btn-danger expertModeVisible" id="bt_changeAllScenarioState" data-state="0" style="margin-top : 3px;text-shadow: none;" ><i class="fa fa-times"></i> {{Désac. scénarios}}</a>';
+}
+?>
                 </div>
                 <div class="col-xs-6">
                     <a class="btn btn-default btn-sm tooltips expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables de scénario}}" style="margin-top : 3px;text-shadow: none"><i class="fa fa fa-eye"></i> {{Voir variables}}</a>
                 </div>
             </center>
-            <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> Nouveau scénario</a>
+            <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle cursor" ></i> {{Nouveau scénario}}</a>
             <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
             <div id="div_tree">
-                <ul id="ul_scenario" >  
+                <ul id="ul_scenario" >
                     <li data-jstree='{"opened":true}'>
-                        <?php if (count($scenarios[-1]) > 0) { ?>
+                        <?php if (count($scenarios[-1]) > 0) {
+	?>
                         <a>Aucune</a>
                         <ul>
                             <?php
-                            foreach ($scenarios[-1] as $scenario) {
-                                echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-                                echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
-                                echo '</li>';
-                            }
-                            ?>
+foreach ($scenarios[-1] as $scenario) {
+		echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
+		echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
+		echo '</li>';
+	}
+	?>
                         </ul>
-                        <?php } ?>
+                        <?php }?>
                         <?php
-                        foreach (scenario::listGroup() as $group) {
-                            if ($group['group'] != '' && count($scenarios[$group['group']]) > 0) {
-                                echo '<li data-jstree=\'{"opened":true}\'>';
-                                echo '<a>' . $group['group'] . '</a>';
-                                echo '<ul>';
-                                foreach ($scenarios[$group['group']] as $scenario) {
-                                    echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-                                    echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
-                                    echo '</li>';
-                                }
-                                echo '</ul>';
-                                echo '</li>';
-                            }
-                        }
-                        ?>
+if (is_array($scenarioListGroup)) {
+	foreach ($scenarioListGroup as $group) {
+		if ($group['group'] != '' && count($scenarios[$group['group']]) > 0) {
+			echo '<li data-jstree=\'{"opened":true}\'>';
+			echo '<a>' . $group['group'] . '</a>';
+			echo '<ul>';
+			foreach ($scenarios[$group['group']] as $scenario) {
+				echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
+				echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
+				echo '</li>';
+			}
+			echo '</ul>';
+			echo '</li>';
+		}
+	}
+}
+?>
                     </ul>
                 </div>
             </div>
@@ -68,43 +74,43 @@ foreach (scenario::listGroup() as $group) {
 
 
         <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
-            <legend>{{Mes scenarios}}
+            <legend>{{Mes scénarios}}
 
             </legend>
             <?php
-            if (count(scenario::all()) == 0) {
-                echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario, cliquez sur ajouter un scénario pour commencer</span></center>";
-            } else {
-                if (count($scenarios[-1]) > 0) {
-                    echo '<legend>Aucun</legend>';
-                    echo '<div class="scenarioListContainer">';
-                    foreach ($scenarios[-1] as $scenario) {
-                        echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-                        echo "<center>";
-                        echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
-                        echo "</center>";
-                        echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
-                        echo '</div>';
-                    }
-                    echo '</div>';
-                }
-                foreach (scenario::listGroup() as $group) {
-                    if ($group['group'] != '' && count($scenarios[$group['group']]) > 0) {
-                        echo '<legend>' . $group['group'] . '</legend>';
-                        echo '<div class="scenarioListContainer">';
-                        foreach ($scenarios[$group['group']] as $scenario) {
-                            echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-                            echo "<center>";
-                            echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
-                            echo "</center>";
-                            echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
-                            echo '</div>';
-                        }
-                        echo '</div>';
-                    }
-                }
-                ?>
-                <?php } ?>
+if (count(scenario::all()) == 0) {
+	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
+} else {
+	if (count($scenarios[-1]) > 0) {
+		echo '<legend>Aucun</legend>';
+		echo '<div class="scenarioListContainer">';
+		foreach ($scenarios[-1] as $scenario) {
+			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+			echo "<center>";
+			echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
+			echo "</center>";
+			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
+			echo '</div>';
+		}
+		echo '</div>';
+	}
+	foreach (scenario::listGroup() as $group) {
+		if ($group['group'] != '' && count($scenarios[$group['group']]) > 0) {
+			echo '<legend>' . $group['group'] . '</legend>';
+			echo '<div class="scenarioListContainer">';
+			foreach ($scenarios[$group['group']] as $scenario) {
+				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+				echo "<center>";
+				echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
+				echo "</center>";
+				echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
+				echo '</div>';
+			}
+			echo '</div>';
+		}
+	}
+	?>
+                <?php }?>
             </div>
 
             <div id="div_editScenario" style="display: none; border-left: solid 1px #EEE; padding-left: 25px;">
@@ -247,7 +253,7 @@ foreach (scenario::listGroup() as $group) {
                                     <div class='conditionOptions' data-type="info" data-subtype="string" style="display : none;">
                                         <div class="col-xs-4">
                                             <select class="conditionAttr form-control" data-l1key="operator">
-                                                <option value="==">{{égale}}</option>
+                                                <option value="==">{{égal}}</option>
                                                 <option value="!=">{{différent}}</option>
                                                 <option value="~">{{contient}}</option>
                                                 <option value="!~">{{ne contient pas}}</option>
@@ -270,7 +276,7 @@ foreach (scenario::listGroup() as $group) {
                                             </select>
                                         </div>
                                     </div>
-                                </div>    
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -296,5 +302,5 @@ foreach (scenario::listGroup() as $group) {
         </div>
 
         <?php
-        include_file('desktop', 'scenarioAssist', 'js');
-        ?>
+include_file('desktop', 'scenarioAssist', 'js');
+?>

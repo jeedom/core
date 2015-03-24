@@ -1,5 +1,5 @@
 /**
- * @license  Highstock JS v2.1.1 (2015-02-17)
+ * @license  Highstock JS v2.1.4 (2015-03-10)
  * Solid angular gauge module
  *
  * (c) 2010-2014 Torstein Honsi
@@ -172,7 +172,9 @@
 				center = yAxis.center,
 				options = series.options,
 				radius = series.radius = (pInt(pick(options.radius, 100)) * center[2]) / 200,
-				renderer = series.chart.renderer;
+				renderer = series.chart.renderer,
+				overshoot = options.overshoot,
+				overshootVal = overshoot && typeof overshoot === 'number' ? overshoot / 180 * Math.PI : 0;
 
 			H.each(series.points, function (point) {
 				var graphic = point.graphic,
@@ -190,6 +192,9 @@
 					fromColor = point.color;
 					point.color = toColor;
 				}
+
+				// Handle overshoot and clipping to axis max/min
+				rotation = Math.max(yAxis.startAngleRad - overshootVal, Math.min(yAxis.endAngleRad + overshootVal, rotation));
 
 				// Handle the wrap option
 				if (options.wrap === false) {

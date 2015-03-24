@@ -1,6 +1,49 @@
+Stable  : 1.167.0 / Beta : 1.173.0
+
+*21/03/2015 _v1.173.0_
+
+- Ajout d'une option pour desactiver les logs d'un scénario
+
+*20/03/2015 _v1.173.0_
+
+- Correction de bugs divers
+
+*15/03/2015 _v1.173.0_
+
+- Ajout d'une categorie multimedia
+- Correction de bugs divers
+
+*07/03/2015 _v1.170.0_
+
+- Ajout d'un système de test de reconnaissance d'interaction
+
+*04/03/2015 _v1.170.0_
+
+- Ajout automatique des " dans les conditions des scénario si besoin
+
+*04/03/2015 _v1.170.0_
+
+- Ajout d'un surveillant pour mysql, qui le redemarre en cas de soucis
+
+*03/03/2015 _v1.170.0_
+
+- Ajout d'un parametre pour faire de la purge d'historique si plus vieux de x jours/mois
+- Ajout d'une fonction pause et recherche dans le log d'evenements
+
+*01/03/2015 _v1.169.0_
+
+- Ajout d'un log d'evenement (execution de commande, reception d'un evenement et lancement d'un scénario)
+- Correction d'un bug d'encodage de la base sur certaine installation jeedom
+
+*28/02/2015 _v1.168.0_
+
+- Amélioration du systeme de changelog des plugins
+
 *26/02/2015 _v1.167.0_
 
 - Option sur la page Générale -> Affichage pour centrer verticalement ou non les commandes d'un équipement
+- Correction d'un bug empechant la restauration d'un backup
+- Correction de bug d'affichage sur le dashboard
 
 *25/02/2015 _v1.167.0_
 

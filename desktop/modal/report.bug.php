@@ -1,12 +1,12 @@
 <?php
 if (!isConnect()) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 if (config::byKey('market::address') == '') {
-    throw new Exception('{{Aucune addresse pour le market n\'est renseignée}}');
+	throw new Exception('{{Aucune addresse pour le market n\'est renseignée}}');
 }
 if (config::byKey('market::apikey') == '' && config::byKey('market::username') == '') {
-    throw new Exception('{{Aucune clé pour le market n\'est renseignée. Veuillez vous enregistrer sur le market puis renseigner la clé dans Jeedom avant d\'ouvrir un ticket}}');
+	throw new Exception('{{Aucune clé pour le market n\'est renseignée. Veuillez vous enregistrer sur le market puis renseigner la clé dans Jeedom avant d\'ouvrir un ticket}}');
 }
 ?>
 <div id='div_alertReportBug'></div>
@@ -25,24 +25,24 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">{{Titre}}</label>
-        <div class="col-sm-8">
+        <div class="col-sm-9">
             <input class="form-control input-sm ticketAttr" data-l1key="title"/>
-        </div> 
+        </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">{{Catégorie}}</label>
-        <div class="col-sm-2">
+        <div class="col-sm-3">
             <select class="form-control input-sm ticketAttr" data-l1key="category">
                 <option>{{Générale}}</option>
                 <option>{{Scénario}}</option>
                 <option>{{Historique}}</option>
                 <?php
-                foreach (plugin::listPlugin(true) as $plugin) {
-                    echo '<option>plugin::' . $plugin->getId() . '</option>';
-                }
-                ?>
+foreach (plugin::listPlugin(true) as $plugin) {
+	echo '<option>plugin::' . $plugin->getId() . '</option>';
+}
+?>
             </select>
-        </div> 
+        </div>
         <label class="col-sm-1 control-label">{{Type}}</label>
         <div class="col-sm-2">
             <select class="form-control input-sm ticketAttr" data-l1key="type">
@@ -50,7 +50,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
                 <option value='problem'>{{Problème}}</option>
                 <option value='incident'>{{Incident}}</option>
             </select>
-        </div> 
+        </div>
         <label class="col-sm-1 control-label">{{Priorité}}</label>
         <div class="col-sm-2">
             <select class="form-control input-sm ticketAttr" data-l1key="priority">
@@ -59,14 +59,14 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
                 <option value='high'>{{Haute}}</option>
                 <option value='urgent'>{{Urgente}}</option>
             </select>
-        </div> 
+        </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">{{Message}}</label>
-        <div class="col-sm-8">
-            <textarea class="form-control messageAttr input-sm" data-l1key="message" ></textarea>
+        <div class="col-sm-9">
+            <textarea class="form-control messageAttr input-sm" data-l1key="message" rows="6" ></textarea>
             <input class="form-control ticketAttr" data-l1key="options" data-l2key="page" style="display: none;"/>
-        </div> 
+        </div>
     </div>
     <div class="form-actions" style="height: 20px;">
         <a class="btn btn-success pull-right" id="bt_sendBugReport" style="color:white;"><i class="fa fa-check-circle"></i> {{Envoyer}}</a>

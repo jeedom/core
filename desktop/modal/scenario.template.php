@@ -1,10 +1,10 @@
 <?php
 if (!isConnect('admin')) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $scenario = scenario::byId(init('scenario_id'));
 if (!is_object($scenario)) {
-    throw new Exception('Scenario non trouvé : ' . init('scenario_id'));
+	throw new Exception('Scenario non trouvé : ' . init('scenario_id'));
 }
 sendVarToJS('scenario_template_id', init('scenario_id'));
 ?>
@@ -130,6 +130,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
                     },
                     success: function (data) {
                         $('#md_scenarioTemplate').showAlert({message: 'Template appliqué avec succès', level: 'success'});
+                        $('.li_scenario[data-scenario_id='+scenario_template_id+']').click();
                     }
                 });
             }
@@ -165,13 +166,13 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
                     $('#div_scenarioTemplateParametreConfiguration').show();
                 }
             });
-        }
-    });
+}
+});
 
-    $('#div_scenarioTemplate').delegate('.bt_scenarioTemplateSelectCmd', 'click', function () {
-        var el = $(this);
-        jeedom.cmd.getSelectModal({}, function (result) {
-            el.closest('.templateScenario').find('.templateScenarioAttr[data-l1key=end]').value(result.human);
-        });
+$('#div_scenarioTemplate').delegate('.bt_scenarioTemplateSelectCmd', 'click', function () {
+    var el = $(this);
+    jeedom.cmd.getSelectModal({}, function (result) {
+        el.closest('.templateScenario').find('.templateScenarioAttr[data-l1key=end]').value(result.human);
     });
+});
 </script>

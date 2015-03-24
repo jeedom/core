@@ -53,7 +53,7 @@
 });
 
  $("#bt_addView").on('click', function(event) {
-    bootbox.prompt("Nom de la vue ?", function(result) {
+    bootbox.prompt("{{Nom de la vue ?}}", function(result) {
         if (result !== null) {
             editView({id: '', name: result});
         }

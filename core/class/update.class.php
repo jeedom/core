@@ -56,9 +56,9 @@ class update {
 				$update->checkUpdate();
 			} else {
 				if ($update->getStatus() != 'hold') {
-					$marketObject['logical_id'][] = $update->getLogicalId();
+					$marketObject['logical_id'][] = array('logicalId' => $update->getLogicalId(), 'type' => $update->getType());
 					$marketObject['version'][] = $update->getConfiguration('version', 'stable');
-					$marketObject[$update->getLogicalId()] = $update;
+					$marketObject[$update->getType() . $update->getLogicalId()] = $update;
 				}
 			}
 		}
@@ -100,14 +100,16 @@ class update {
 			} else {
 				$updates = self::byType($_filter);
 			}
-			foreach ($updates as $update) {
-				if ($update->getStatus() != 'hold' && $update->getStatus() == 'update') {
-					if ($update->getType() != 'core') {
-						try {
-							$update->doUpdate();
-						} catch (Exception $e) {
-							log::add('update', 'update', $e->getMessage());
-							$error = true;
+			if (is_array($updates)) {
+				foreach ($updates as $update) {
+					if ($update->getStatus() != 'hold' && $update->getStatus() == 'update') {
+						if ($update->getType() != 'core') {
+							try {
+								$update->doUpdate();
+							} catch (Exception $e) {
+								log::add('update', 'update', $e->getMessage());
+								$error = true;
+							}
 						}
 					}
 				}
@@ -121,8 +123,8 @@ class update {
 			'id' => $_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM `update`
-        WHERE id=:id';
+		FROM `update`
+		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -131,8 +133,8 @@ class update {
 			'logicalId' => $_logicalId,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM `update`
-        WHERE logicalId=:logicalId';
+		FROM `update`
+		WHERE logicalId=:logicalId';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -141,8 +143,8 @@ class update {
 			'type' => $_type,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM `update`
-        WHERE type=:type';
+		FROM `update`
+		WHERE type=:type';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -152,9 +154,9 @@ class update {
 			'type' => $_type,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM `update`
-        WHERE logicalId=:logicalId
-        AND type=:type';
+		FROM `update`
+		WHERE logicalId=:logicalId
+		AND type=:type';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -165,19 +167,19 @@ class update {
 	public static function all($_filter = '') {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM `update`';
+		FROM `update`';
 		if ($_filter != '') {
 			$values['type'] = $_filter;
 			$sql .= ' WHERE `type`=:type';
 		}
-		$sql .= ' ORDER BY FIELD( `type`,"plugin","core") DESC,FIELD( `status`, "update","ok","depreciated") ASC, `name` ASC';
+		$sql .= ' ORDER BY FIELD( `status`, "update","ok","depreciated") ASC,FIELD( `type`,"plugin","core") DESC, `name` ASC';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	public static function nbNeedUpdate() {
 		$sql = 'SELECT count(*)
-        FROM `update`
-        WHERE `status`="update"';
+		FROM `update`
+		WHERE `status`="update"';
 		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		return $result['count(*)'];
 	}
@@ -230,7 +232,7 @@ class update {
 			$this->save();
 		} else {
 			try {
-				$market_info = market::getInfo($this->getLogicalId(), $this->getConfiguration('version', 'stable'));
+				$market_info = market::getInfo(array('logicalId' => $this->getLogicalId(), 'type' => $this->getType()), $this->getConfiguration('version', 'stable'));
 				$this->setStatus($market_info['status']);
 				$this->setConfiguration('market_owner', $market_info['market_owner']);
 				$this->setConfiguration('market', $market_info['market']);
@@ -270,7 +272,7 @@ class update {
 		if ($this->getType() == 'core') {
 			jeedom::update();
 		} else {
-			$market = market::byLogicalId($this->getLogicalId());
+			$market = market::byLogicalIdAndType($this->getLogicalId(), $this->getType());
 			if (is_object($market)) {
 				$market->install($this->getConfiguration('version', 'stable'));
 			}
@@ -284,7 +286,7 @@ class update {
 			throw new Exception('Vous ne pouvez pas supprimer le core de Jeedom');
 		} else {
 			try {
-				$market = market::byLogicalId($this->getLogicalId());
+				$market = market::byLogicalIdAndType($this->getLogicalId(), $this->getType());
 			} catch (Exception $e) {
 				$market = new market();
 				$market->setLogicalId($this->getLogicalId());

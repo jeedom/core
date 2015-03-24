@@ -11,6 +11,8 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema jeedom
 -- -----------------------------------------------------
 
+ALTER DATABASE CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
 -- -----------------------------------------------------
 -- Table `object`
 -- -----------------------------------------------------
@@ -63,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `eqLogic` (
   `logicalId` VARCHAR(127) NULL,
   `object_id` INT NULL,
   `eqType_name` VARCHAR(127) NOT NULL,
-  `specificCapatibilities` TEXT NULL,
+  `specificCapatibilities` MEDIUMTEXT NULL,
   `configuration` TEXT NULL,
   `isVisible` TINYINT(1) NULL,
   `eqReal_id` INT NULL,
@@ -143,7 +145,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(45) NULL,
-  `password` VARCHAR(45) NULL,
+  `password` VARCHAR(255) NULL,
   `options` TEXT NULL,
   `hash` VARCHAR(255) NULL,
   `rights` TEXT NULL,

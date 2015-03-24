@@ -151,8 +151,8 @@ setInterval(function () {
     $("#md_reportBug").dialog({
         autoOpen: false,
         modal: true,
-        height: (jQuery(window).height() - 100),
-        width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
+        height: 600,
+        width: 900,
         open: function () {
             $("body").css({overflow: 'hidden'})
         },
@@ -236,8 +236,7 @@ setInterval(function () {
     });
 
     $('body').delegate('.bt_reportBug', 'click', function () {
-        $('#md_reportBug').load('index.php?v=d&modal=report.bug');
-        $('#md_reportBug').dialog('open');
+        $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open');
     });
 
     $(window).bind('beforeunload', function (e) {
@@ -283,8 +282,15 @@ setInterval(function () {
         });
     });
 
+    $('#bt_showEventInRealTime').on('click',function(){
+       $('#md_modal').dialog({title: "{{Evenement en temps réel}}"});
+       $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
+   });
+
     initPage();
 });
+
+
 
 function initPage(){
     initTooltips();
@@ -479,29 +485,29 @@ function positionEqLogic(_id, _noResize, _class) {
             });
             if (!init(_noResize, false) && eqLogic_height_step > 1 && eqLogic_width_step > 1) {
                 if(eqLogic_width_step == 1){
-                 eqLogic.width(eqLogic.width() + 5);
-             }else{
-                 var wMarge = (Math.ceil(eqLogic.width() / eqLogic_width_step) - 1) * 2;
-                 eqLogic.width((Math.ceil(eqLogic.width() / eqLogic_width_step) * eqLogic_width_step) - 6 + wMarge);
-             }
-             if(eqLogic_height_step == 1){
+                   eqLogic.width(eqLogic.width() + 5);
+               }else{
+                   var wMarge = (Math.ceil(eqLogic.width() / eqLogic_width_step) - 1) * 2;
+                   eqLogic.width((Math.ceil(eqLogic.width() / eqLogic_width_step) * eqLogic_width_step) - 6 + wMarge);
+               }
+               if(eqLogic_height_step == 1){
                 eqLogic.height(eqLogic.height() + 5);
             }else{
-             var hMarge = (Math.ceil(eqLogic.height() / eqLogic_height_step) - 1) * 2;
-             eqLogic.height((Math.ceil(eqLogic.height() / eqLogic_height_step) * eqLogic_height_step) - 6 + hMarge);
-         }
+               var hMarge = (Math.ceil(eqLogic.height() / eqLogic_height_step) - 1) * 2;
+               eqLogic.height((Math.ceil(eqLogic.height() / eqLogic_height_step) * eqLogic_height_step) - 6 + hMarge);
+           }
 
-     }
-     if(eqLogic_vertical_align == 1){
-         var verticalAlign = eqLogic.find('.verticalAlign');
-         var offset = eqLogic.find('.widget-name').height();
-         offset = (offset < 1) ? -5 : offset-12;
-         if (count(verticalAlign) > 0 && verticalAlign != undefined) {
+       }
+       if(eqLogic_vertical_align == 1){
+           var verticalAlign = eqLogic.find('.verticalAlign');
+           var offset = eqLogic.find('.widget-name').height();
+           offset = (offset < 1) ? -5 : offset-12;
+           if (count(verticalAlign) > 0 && verticalAlign != undefined) {
             verticalAlign.css('position', 'relative');
-                verticalAlign.css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - offset);
-                verticalAlign.css('left', (eqLogic.width() - verticalAlign.width()) / 2);
-            }
+            verticalAlign.css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - offset);
+            verticalAlign.css('left', (eqLogic.width() - verticalAlign.width()) / 2);
         }
     }
+}
 });
 }

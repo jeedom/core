@@ -126,6 +126,7 @@ jeedom.history.drawChart = function (_params) {
         _params.showLegend = (init(_params.showLegend, true) && init(_params.showLegend, true) != "0") ? true : false;
         _params.showTimeSelector = (init(_params.showTimeSelector, true) && init(_params.showTimeSelector, true) != "0") ? true : false;
         _params.showScrollbar = (init(_params.showScrollbar, true) && init(_params.showScrollbar, true) != "0") ? true : false;
+        _params.showNavigator = (init(_params.showNavigator, true) && init(_params.showNavigator, true) != "0") ? true : false;
 
         var series = {
             dataGrouping: {
@@ -201,97 +202,104 @@ jeedom.history.drawChart = function (_params) {
                 dateRange = 6
                 break;
             }
+            var charts = {
+              zoomType: 'x',
+              renderTo: _params.el,
+              alignTicks: false,
+              spacingBottom: 5,
+              spacingTop: 5,
+              spacingRight: 5,
+              spacingLeft: 5,
 
-            jeedom.history.chart[_params.el].chart = new Highcharts.StockChart({
-                chart: {
-                    zoomType: 'x',
-                    renderTo: _params.el,
-                    alignTicks: false,
-                    spacingBottom: 5,
-                    spacingTop: 5,
-                    spacingRight: 5,
-                    spacingLeft: 5,
-                },
-                credits: {
-                    text: '',
-                    href: '',
-                },
-              
-                rangeSelector: {
-                    buttons: [{
-                        type: 'minute',
-                        count: 30,
-                        text: '30m'
-                    }, {
-                        type: 'hour',
-                        count: 1,
-                        text: 'H'
-                    }, {
-                        type: 'day',
-                        count: 1,
-                        text: 'J'
-                    }, {
-                        type: 'week',
-                        count: 1,
-                        text: 'S'
-                    }, {
-                        type: 'month',
-                        count: 1,
-                        text: 'M'
-                    }, {
-                        type: 'year',
-                        count: 1,
-                        text: 'A'
-                    }, {
-                        type: 'all',
-                        count: 1,
-                        text: 'Tous'
-                    }],
-                    selected: dateRange,
-                    inputEnabled: false,
-                    enabled: _params.showTimeSelector
-                },
-                legend: legend,
-                tooltip: {
-                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
-                    valueDecimals: 2,
-                },
-                yAxis: [{
-                    format: '{value}',
-                    showEmpty: false,
-                    minPadding: 0.001,
-                    maxPadding: 0.001,
-                    showLastLabel: true,
+          }
+          
+          if(isset(_params.transparentBackground) && _params.transparentBackground == "1"){
+            charts.backgroundColor = 'rgba(255, 255, 255, 0)';
+        }
+        jeedom.history.chart[_params.el].chart = new Highcharts.StockChart({
+            chart: charts,
+            credits: {
+                text: '',
+                href: '',
+            },
+            navigator: {
+                enabled:  _params.showNavigator
+            },
+            rangeSelector: {
+                buttons: [{
+                    type: 'minute',
+                    count: 30,
+                    text: '30m'
                 }, {
-                    opposite: false,
-                    format: '{value}',
-                    showEmpty: false,
-                    gridLineWidth: 0,
-                    minPadding: 0.001,
-                    maxPadding: 0.001,
-                    labels: {
-                        align: 'left',
-                        x: 2
-                    }
+                    type: 'hour',
+                    count: 1,
+                    text: 'H'
+                }, {
+                    type: 'day',
+                    count: 1,
+                    text: 'J'
+                }, {
+                    type: 'week',
+                    count: 1,
+                    text: 'S'
+                }, {
+                    type: 'month',
+                    count: 1,
+                    text: 'M'
+                }, {
+                    type: 'year',
+                    count: 1,
+                    text: 'A'
+                }, {
+                    type: 'all',
+                    count: 1,
+                    text: 'Tous'
                 }],
-                xAxis: {
-                    type: 'datetime',
-                    ordinal: false,
-                },
-                scrollbar: {
-                    barBackgroundColor: 'gray',
-                    barBorderRadius: 7,
-                    barBorderWidth: 0,
-                    buttonBackgroundColor: 'gray',
-                    buttonBorderWidth: 0,
-                    buttonBorderRadius: 7,
-                    trackBackgroundColor: 'none', trackBorderWidth: 1,
-                    trackBorderRadius: 8,
-                    trackBorderColor: '#CCC',
-                    enabled: _params.showScrollbar
-                },
-                series: [series]
-            });
+                selected: dateRange,
+                inputEnabled: false,
+                enabled: _params.showTimeSelector
+            },
+            legend: legend,
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
+                valueDecimals: 2,
+            },
+            yAxis: [{
+                format: '{value}',
+                showEmpty: false,
+                minPadding: 0.001,
+                maxPadding: 0.001,
+                showLastLabel: true,
+            }, {
+                opposite: false,
+                format: '{value}',
+                showEmpty: false,
+                gridLineWidth: 0,
+                minPadding: 0.001,
+                maxPadding: 0.001,
+                labels: {
+                    align: 'left',
+                    x: 2
+                }
+            }],
+            xAxis: {
+                type: 'datetime',
+                ordinal: false,
+            },
+            scrollbar: {
+                barBackgroundColor: 'gray',
+                barBorderRadius: 7,
+                barBorderWidth: 0,
+                buttonBackgroundColor: 'gray',
+                buttonBorderWidth: 0,
+                buttonBorderRadius: 7,
+                trackBackgroundColor: 'none', trackBorderWidth: 1,
+                trackBorderRadius: 8,
+                trackBorderColor: '#CCC',
+                enabled: _params.showScrollbar
+            },
+            series: [series]
+        });
 } else {
     jeedom.history.chart[_params.el].chart.addSeries(series);
 }

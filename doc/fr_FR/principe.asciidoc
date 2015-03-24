@@ -16,12 +16,16 @@ Autour de ce core viennent se greffer des plugins qui peuvent être de toute sor
 - organisation (agenda, Google agenda)
 - developpement (script)
 
-Ces plugins peuvent etre récuperés par le biais du market et permettent d'étendre les possibilitées de Jeedom.
+Ces plugins peuvent être récuperé par le biais du market et permettent d'étendre les possibilitées de Jeedom.
 
-Jeedom permet à n'importe quel plugin de discuter avec un autre sur une base normalisée, cela permet par exemple d'utiliser les plugins thermostat ou alarme avec n'importe quel protocole
+Jeedom permet à n'importe quel plugin de discuter avec un autre sur une base normalisée, 
+cela permet par exemple d'utiliser les plugins thermostat ou alarme avec n'importe quel protocole
 domotique ou meme un plugin IP ou objet communiquant...
 
-De plus Jeedom à la particulaté d'etre sans abonnement et sans cloud cela permet de garantir le fonctionnement de votre domotique meme si vous n'avez plus internet. Cela garantie
-aussi la sécurité de vos données (évite les risques de piratage en masse des comptes).
+De plus Jeedom à la particularité d'être sans abonnement et sans cloud cela permet de garantir 
+le fonctionnement de votre domotique meme si vous n'avez plus internet. Cela garantie
+aussi la sécurité de vos données (évite les risques de piratage en masse de comptes).
 
-Le projet étant ouvert et open-source cela lui garanti aussi un fort taux d'évolution grace aux nombreux developpeurs qui y participent.
+Le projet étant ouvert et open-source cela lui garanti aussi un fort taux d'évolution 
+grâce aux nombreux contributeurs qui y participent.
+(Administrateurs, Beta-testeurs, Documenteurs, Développeurs Hardware, Développeurs Software, Modérateurs globaux, Traducteurs)

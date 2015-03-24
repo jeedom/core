@@ -6,6 +6,6 @@ image::../images/cron.JPG[]
 
 En haut à gauche, il y a quelques infos utiles.
 
-Les processus Jeecron donne des informations sur le nombre de processus lancés sur le serveur. Le premier est le nombre de jeecron master qui doit être inférieur à 1, sinon c'est qu'il y a un problème quelque part. Le deuxième indique le nombre de tâches cron en cours. Et enfin le dernier informe du nombre de processus en cours sur le serveur (Il ne doit logiquement pas dépasser les 350).
+Les processus Jeecron donne des informations sur le nombre de processus lancé sur le serveur. Le premier est le nombre de jeecron master qui doit être inférieur à 1, sinon c'est qu'il y a un problème quelque part. Le deuxième indique le nombre de tâches cron en cours. Et enfin le dernier informe du nombre de processus en cours sur le serveur (Il ne doit logiquement pas dépasser les 350).
 
 Le Load avg, symbolise la charge globale de la machine à un instant T. Les 3 colonnes sont les temps moyens de calcul, 1min 5min 15min. Si la troisième valeur est inférieure à 2 (pour un double coeur type Cubieboard V2) alors tout va bien. Sinon cela veut dire que Jeedom ne fonctionne pas à son niveau optimal.

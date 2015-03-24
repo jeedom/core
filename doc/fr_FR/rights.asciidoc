@@ -1,4 +1,4 @@
 ===== Description
-Page permettant de gerer finement les droits de chaque utilisateurs
+Accessible via Général/Administration, cette page permettant de gérer finement les droits de chaque utilisateur
 
 image::../images/rights.JPG[]

@@ -11,17 +11,17 @@ La première requête est utilisée uniquement pour piloter un scénario.
 
 Voici l'URL = http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&id=#ID#&action=#ACTION#
 
-#IP_JEEDOM# correspond à votre url d’accès à Jeedom. Il s’agit (sauf si vous êtes connecté à votre réseau local) de l’adresse internet que vous utilisez pour accéder à Jeedom depuis l’extérieure. N’oubliez pas d’indiquer le port ainsi que /jeedom/.
+#IP_JEEDOM# correspond à votre url d’accès à Jeedom. Il s’agit (sauf si vous êtes connecté à votre réseau local) de l’adresse internet que vous utilisez pour accéder à Jeedom depuis l’extérieure. Ne pas oubliez d’indiquer le port ainsi que /jeedom/.
 
 #API_KEY# correspond à votre clé API, propre à votre installation. Pour la trouver il faut aller dans le menu « Général », puis « Administration » et « Configuration », en activant le mode Expert vous verrez alors une ligne Clef API.
 
 image::../images/apihttp.jpg[]
 
-#ID# correspond à l’id de votre scénario. On peut le trouver facilement sur la page des scénarios...(on doit avoir activer le mode Expert)
+#ID# correspond à l’id de votre scénario. L'ID se trouve sur la page des scénarios...(Ne pas oublier d'activer le mode Expert)
 
 image::../images/apihttp2.png[]
 
-#ACTION# correspond à l'action que vous voulez appliquer au scénario. Les commandes disponibles sont : "start" pour démarrer un scénario ,"stop" pour arrêter un scénario ,"deactivate" pour désactiver un scénario ,"activate" pour activer un scénario.
+#ACTION# correspond à l'action que vous voulez appliquer au scénario. Les commandes disponibles sont : "start" pour démarrer un scénario ,"stop" pour arrêter un scénario ,"désactiver" pour désactiver un scénario ,"activer" pour activer un scénario.
 
 La seconde requête permet tout simplement de piloter tous les autres modules de Jeedom (module domotique/plugin etc).
 
@@ -41,7 +41,7 @@ image::../images/apihttp3.png[]
 
 Il suffit de sélectionner l'élément à piloter ou à interroger et on récupère l'ID pour la placer dans l'URL.
 
-Prenons l'exemple du Plugin Alarme. Pour trouver l'ID correspondant à l'activation (armement) de l'alarme on se rend dans l'arborescence de l'alarme:
+Prenons l'exemple du Plugin Alarme. Pour trouver l'ID correspondant à l'activation (armement) de l'alarme, se rendre dans l'arborescence de l'alarme:
 
 image::../images/apihttp4.png[]
 
@@ -51,7 +51,7 @@ Prenons le cas d'un module pour commander une lumière. Ce sera la commande ON d
 
 image::../images/apihttp5.png[]
 
-Maintenant on peut utiliser la même requête pour récupérer une information. Par exemple nous allons récupérer l'information de température d'une de sonde.
+Maintenant on peut utiliser la même requête pour récupérer une information. Par exemple nous allons récupérer l'information de température d'une sonde.
 
 image::../images/apihttp6.png[]
 
@@ -59,7 +59,7 @@ Si on lance la requête avec l'ID 19 correspondant à la température de cette s
 
 image::../images/apihttp7.png[]
 
-Cependant il y a quelques cas particulier à cette commande URL...
+cas particulier ...
 
 Prenons le cas d'un envoi d'un SMS via le plugin SMS. Si l'ID se récupère toujours de la même façon, il faut pouvoir envoyer un message...
 

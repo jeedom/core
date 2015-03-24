@@ -51,14 +51,8 @@ install_msg_en()
 	msg_php_already_optimized="PHP is already optimized, using : "
 	msg_optimize_webserver_cache_apc="Installing APC cache optimization"
 	msg_optimize_webserver_cache_opcache="Installing Zend OpCache cache optimization"
-	msg_install_razberry_zway="*     Checking for Z-Way for RaZberry installation     *"
-	msg_available_update_razberry_zway="A newer version is available: "
-	msg_ask_update_razberry_zway="Do you wish to update Z-Way?"
 	msg_uptodate="is already installed and up-to-date"
 	msg_needinstallupdate="needs to be installed or to be updated"
-	msg_ask_install_razberry_zway="Do you wish to install Z-Way?"
-	msg_failed_installupdate_razberry_zway="Z-Way for RaZberry installation failed!"
-	msg_succeeded_installupdate_razberry_zway="Z-Way for RaZberry installation succeeded!"
 	msg_ask_install_nginx_ssl="Do you want to install SSL self sign certificat"
 	msg_nginx_ssl_config="*                 NGINX SSL configuration               *"
 }
@@ -105,14 +99,8 @@ install_msg_fr()
 	msg_php_already_optimized="PHP est déjà optimisé, utilisation de : "
 	msg_optimize_webserver_cache_apc="Installation de l'optimisation de cache APC"
 	msg_optimize_webserver_cache_opcache="Installation de l'optimisation de cache Zend OpCache"
-	msg_install_razberry_zway="*         Vérification de Z-Way pour RaZberry          *"
-	msg_available_update_razberry_zway="Une version plus récente est disponible : "
-	msg_ask_update_razberry_zway="Souhaitez-vous mettre à jour Z-Way ?"
 	msg_uptodate="est déjà installé et à jour"
 	msg_needinstallupdate="nécessite une installation ou une mise à jour"
-	msg_ask_install_razberry_zway="Souhaitez-vous installer Z-Way ?"
-	msg_failed_installupdate_razberry_zway="L'installation de Z-Way pour RaZberry a échoué !"
-	msg_succeeded_installupdate_razberry_zway="L'installation de Z-Way pour RaZberry a réussi !"
 	msg_ask_install_nginx_ssl="Voules vous mettre en place un certification SSL auto signé"
 	msg_nginx_ssl_config="*                 NGINX SSL configuration               *"
 }
@@ -159,14 +147,8 @@ install_msg_de()
 	msg_php_already_optimized="PHP wird bereits optimiert, mit:  "
 	msg_optimize_webserver_cache_apc="Installation von APC-Cache-Optimierung"
 	msg_optimize_webserver_cache_opcache="Installation von OpCache-Cache-Optimierung"
-	msg_install_razberry_zway="*     Überprüfen auf Z-Way für Razberry Installation     *"
-	msg_available_update_razberry_zway="Eine neuere Version ist verfügbar: "
-	msg_ask_update_razberry_zway="Wollen Sie Z-Way aktualisieren?"
 	msg_uptodate="ist bereits installiert und auf dem neuesten Stand"
 	msg_needinstallupdate="Muss installiert oder aktualisiert werden!"
-	msg_ask_install_razberry_zway="Wollen Sie Z-Way installieren?"
-	msg_failed_installupdate_razberry_zway="Z-Way für Razberry Installation fehlgeschlagen!"
-	msg_succeeded_installupdate_razberry_zway="Z-Way für Razberry Installation war erfolgreich!"
 	msg_ask_install_nginx_ssl="Möchten Sie SSL installieren, selbst signiertes Zertifikat"
 	msg_nginx_ssl_config="*                 NGINX SSL-Konfiguration               *"
 }
@@ -476,80 +458,6 @@ optimize_webserver_cache_opcache
 esac
 }
 
-# Check for the need to install razberry zway server and install it
-install_razberry_zway()
-{
-	ZWAY_INSTALLED_VERSION="`cat /etc/z-way/VERSION 2>/dev/null | cut -d'v' -f2`"
-
-	# Check if already installed
-	if [ -f /etc/z-way/VERSION ]; then
-		# Get latest zway install
-		wget -q -O - razberry.z-wave.me/install zway-install
-		# Check version
-		ZWAY_AVAIL_VERSION="`cat zway-install | awk '/.*[0-9].[0-9].[0-9].*z-way\/VERSION$/{ print $2 }' | sed 's/["v]//g'`"
-		is_version_greater_or_equal ${ZWAY_INSTALLED_VERSION} ${ZWAY_AVAIL_VERSION} 
-		case $? in
-			0)
-				# A newer version is available, propose update
-				echo "${msg_available_update_razberry_zway}" ${ZWAY_INSTALLED_VERSION} " => " ${ZWAY_AVAIL_VERSION}
-				echo "${msg_ask_update_razberry_zway}"
-				# return on 'no', and process to common install/update
-				;;
-				1)
-				# echo "already installed and up to date"
-				echo "Z-Way ${msg_uptodate}"
-				return
-				;;
-			esac
-		else
-		# Not installed, propose to install
-		echo "${msg_ask_install_razberry_zway}"
-		# return on 'no', and process to common install/update
-	fi
-
-	# Common yes/no processing
-	while true
-	do
-		echo -n "${msg_yesno}"
-		read ANSWER < /dev/tty
-		case $ANSWER in
-			${msg_yes})
-break
-;;
-${msg_no})
-return
-;;
-esac
-echo "${msg_answer_yesno}"
-done
-
-	# Common install/update
-	# Download installer, if not already done
-	[ ! -f zway-install ] && wget -q -O - razberry.z-wave.me/install -O zway-install
-
-	# actual installation
-	bash zway-install
-
-	# Check installation status
-	if [ $? -ne 0 ]; then
-		echo "${msg_failed_installupdate_razberry_zway}"
-	else
-		echo "${msg_succeeded_installupdate_razberry_zway}"
-	fi
-
-	# Cleanup
-	rm -f zway-install
-	for i in mongoose zbw_connect
-	do
-		if [ -f "/etc/init.d/${i}" ]; then
-			service ${i} stop
-			update-rc.d -f ${i} remove
-		fi
-	done
-	ps aux | grep mongoose | awk '{print $2}' | xargs kill -9
-	ps aux | grep zbw_connect | awk '{print $2}' | xargs kill -9 
-}
-
 install_dependency()
 {
 	apt-get update
@@ -567,6 +475,7 @@ install_dependency()
 	apt-get install -y systemd
 	apt-get install -y npm
 	apt-get install -y libtinyxml-dev
+	apt-get install -y libav-tools
 
 	pecl install oauth
 	if [ $? -eq 0 ] ; then
@@ -791,11 +700,6 @@ if [ "${ANSWER}" = "${msg_yes}" ]; then
 	echo "DROP DATABASE IF EXISTS jeedom;" | mysql -uroot -p${MySQL_root}
 	echo "CREATE DATABASE jeedom;" | mysql -uroot -p${MySQL_root}
 	echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p${MySQL_root}
-
-	echo "********************************************************"
-	echo "${msg_install_razberry_zway}"
-	echo "********************************************************"
-	install_razberry_zway
 
 	echo "********************************************************"
 	echo "${msg_install_jeedom}"

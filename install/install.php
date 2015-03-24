@@ -156,7 +156,7 @@ try {
 					echo __("OK\n", __FILE__);
 					echo __("Installation en cours...", __FILE__);
 					$update_begin = true;
-					@rcopy($cibDir . '/', dirname(__FILE__) . '/../', false);
+					@rcopy($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
 					rrmdir($cibDir);
 					unlink($tmp);
 					echo __("OK\n", __FILE__);
@@ -174,7 +174,6 @@ try {
 					}
 				}
 			}
-			include dirname(__FILE__) . '/../core/config/version.config.php';
 
 			if (init('v') != '') {
 				echo __("La mise à jour ", __FILE__) . init('v') . __(" va être appliquée à nouveau. Voulez-vous continuer  ? [o/N] ", __FILE__);
@@ -309,6 +308,13 @@ try {
 			echo __("***************Mise à jour des plugins***************\n", __FILE__);
 			update::updateAll();
 			echo __("***************Mise à jour des plugins réussie***************\n", __FILE__);
+		}
+		try {
+			echo __("Vérification des mises à jour\n", __FILE__);
+			update::checkAllUpdate();
+			echo __("OK\n", __FILE__);
+		} catch (Exception $ex) {
+			echo __("***ERREUR*** ", __FILE__) . $ex->getMessage() . "\n";
 		}
 		try {
 			jeedom::start();

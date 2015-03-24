@@ -1,8 +1,8 @@
-/*! tablesorter CSS Sticky Headers widget - updated 11/7/2014 (v2.18.3)
+/*! tablesorter CSS Sticky Headers widget - updated 2/9/2015 (v2.19.1)
 * Requires a modern browser, tablesorter v2.8+
 */
 /*jshint jquery:true, unused:false */
-;(function($){
+;(function($, window){
 	'use strict';
 
 	var ts = $.tablesorter;
@@ -59,7 +59,7 @@
 			}
 
 			$win
-			.unbind('scroll resize '.split(' ').join(namespace))
+			.unbind( ('scroll resize '.split(' ').join(namespace)).replace(/\s+/g, ' ') )
 			.bind('scroll resize '.split(' ').join(namespace), function() {
 				// make sure "wo" is current otherwise changes to widgetOptions
 				// are not dynamic (like the add caption button in the demo)
@@ -126,19 +126,22 @@
 				setTransform( $cells, finalY );
 
 			});
-			$table.unbind('filterEnd' + namespace).bind('filterEnd' + namespace, function() {
-				if (wo.cssStickyHeaders_filteredToTop) {
-					// scroll top of table into view
-					window.scrollTo(0, $table.position().top);
-				}
-			});
+			$table
+				.unbind( ('filterEnd' + namespace).replace(/\s+/g, ' ') )
+				.bind('filterEnd' + namespace, function() {
+					if (wo.cssStickyHeaders_filteredToTop) {
+						// scroll top of table into view
+						window.scrollTo(0, $table.position().top);
+					}
+				});
 
 		},
-		remove: function(table, c, wo){
+		remove: function(table, c, wo, refreshing) {
+			if (refreshing) { return; }
 			var namespace = c.namespace + 'cssstickyheader ';
-			$(window).unbind('scroll resize '.split(' ').join(namespace));
+			$(window).unbind( ('scroll resize '.split(' ').join(namespace)).replace(/\s+/g, ' ') );
 			c.$table
-				.unbind('filterEnd scroll resize '.split(' ').join(namespace))
+				.unbind( ('filterEnd scroll resize '.split(' ').join(namespace)).replace(/\s+/g, ' ') )
 				.add( c.$table.children('thead').children().children() )
 				.children('thead, caption').css({
 					'transform' : '',
@@ -148,4 +151,4 @@
 		}
 	});
 
-})(jQuery);
+})(jQuery, window);

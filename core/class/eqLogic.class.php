@@ -636,6 +636,9 @@ class eqLogic {
 		if ($this->getCategory('energy', 0) == 1) {
 			return 'energy';
 		}
+		if ($this->getCategory('multimedia', 0) == 1) {
+			return 'multimedia';
+		}
 		return '';
 	}
 
@@ -646,24 +649,25 @@ class eqLogic {
 	}
 
 	public function batteryStatus($_pourcent, $_datetime = '') {
-		foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
-			$message->remove();
+		if ($this->getConfiguration('batteryStatus', -1) == $_pourcent) {
+			return;
 		}
-		foreach (message::byPluginLogicalId($this->getEqType_name(), 'noBattery' . $this->getId()) as $message) {
-			$message->remove();
-		}
-		if ($_pourcent > 0 && $_pourcent <= 20) {
-			$logicalId = 'lowBattery' . $this->getId();
-			if (count(message::byPluginLogicalId($this->getEqType_name(), $logicalId)) == 0) {
-				$message = 'Le module ' . $this->getEqType_name() . ' ';
-				$message .= $this->getHumanName() . ' a moins de ' . $_pourcent . '% de batterie';
-				message::add($this->getEqType_name(), $message, '', $logicalId);
+		if ($_pourcent > 20) {
+			foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
+				$message->remove();
 			}
-		}
-		if ($_pourcent <= 0) {
+			foreach (message::byPluginLogicalId($this->getEqType_name(), 'noBattery' . $this->getId()) as $message) {
+				$message->remove();
+			}
+		} else if ($_pourcent > 0 && $_pourcent <= 20) {
+			$logicalId = 'lowBattery' . $this->getId();
+			$message = 'Le module ' . $this->getEqType_name() . ' ';
+			$message .= $this->getHumanName() . ' a moins de ' . $_pourcent . '% de batterie';
+			message::add($this->getEqType_name(), $message, '', $logicalId);
+		} else {
 			$logicalId = 'noBattery' . $this->getId();
 			$message = __('Le module ', __FILE__) . $this->getEqType_name() . ' ';
-			$message .= $this->getHumanName() . __(' a été désactivé car il n\'a plus de batterie (', __FILE__) . $_pourcent . ' %)';
+			$message .= $this->getHumanName() . __(' n\'a plus de batterie (', __FILE__) . $_pourcent . ' %)';
 			message::add($this->getEqType_name(), $message, '', $logicalId);
 		}
 		$this->setConfiguration('batteryStatus', $_pourcent);
@@ -697,11 +701,9 @@ class eqLogic {
 		if (isConnect('admin')) {
 			return true;
 		}
-		if ($_right = 'x') {
+		if ($_right == 'x') {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'action');
-		} elseif ($_right = 'w') {
-			$rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'edit');
-		} elseif ($_right = 'r') {
+		} elseif ($_right == 'r') {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'view');
 		}
 		if (!is_object($rights)) {

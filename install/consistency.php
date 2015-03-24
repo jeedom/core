@@ -43,7 +43,7 @@ try {
 	foreach ($crons as $cron) {
 		$c = new Cron\CronExpression($cron->getSchedule(), new Cron\FieldFactory);
 		try {
-			if(!$c->isDue()){
+			if (!$c->isDue()) {
 				$c->getNextRunDate();
 			}
 		} catch (Exception $ex) {
@@ -122,9 +122,11 @@ try {
 	}
 
 	$dynamic_apache_path = dirname(__FILE__) . '/../core/config/apache_jeedom_dynamic_rules';
-	if(!file_exists($dynamic_apache_path)){
+	if (!file_exists($dynamic_apache_path)) {
 		touch($dynamic_apache_path);
 	}
+
+	cache::deleteBySearch('widgetHtml');
 } catch (Exception $e) {
 	echo $e->getMessage();
 }

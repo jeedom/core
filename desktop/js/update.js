@@ -240,7 +240,7 @@ function addUpdate(_update) {
     tr += '</td>';
     tr += '<td style="width : 400px;">';
     if (_update.status == 'update') {
-        tr += '<a class="btn btn-info btn-xs pull-right update tooltips" style="color : white;margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fa fa-refresh"></i> Mettre à jour</a>';
+        tr += '<a class="btn btn-info btn-xs pull-right update tooltips" style="color : white;margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fa fa-refresh"></i> {{Mettre à jour}}</a>';
     }
 
     if (_update.type != 'core') {
