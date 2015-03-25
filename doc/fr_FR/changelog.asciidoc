@@ -1,4 +1,9 @@
-Stable  : 1.167.0 / Beta : 1.173.0
+Stable  : 1.175.0 / Beta : 1.176.0
+
+*21/03/2015 _v1.176.0_
+
+- Amélioration de la gestion des commandes en timeout
+
 
 *21/03/2015 _v1.173.0_
 
