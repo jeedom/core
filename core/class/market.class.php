@@ -263,8 +263,9 @@ class market {
 		jeedom::sick();
 		$cibDir = realpath(dirname(__FILE__) . '/../../log');
 		if (file_exists('/var/log/messages')) {
-			copy('/var/log/messages', realpath(dirname(__FILE__) . '/../../log/dmesg'));
+			@copy('/var/log/messages', realpath(dirname(__FILE__) . '/../../log/dmesg_messages'));
 		}
+		@exec('dmesg >> ' . dirname(__FILE__) . '/../../log/dmesg');
 		$tmp = dirname(__FILE__) . '/../../tmp/log.zip';
 		if (file_exists($tmp)) {
 			if (!unlink($tmp)) {
