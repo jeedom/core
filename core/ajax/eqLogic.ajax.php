@@ -157,7 +157,7 @@ try {
 				'state' => 'ok',
 				'lastCommunication' => $eqLogic->getStatus('lastCommunication'),
 			);
-			if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $eqLogic->getTimeout() . ' minutes' . date('Y-m-d H:i:s')))) {
+			if ($eqLogic->getTimeout() > 0 && $eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $eqLogic->getTimeout() . ' minutes' . date('Y-m-d H:i:s')))) {
 				$return['status']['state'] = 'timeout';
 			}
 		}
