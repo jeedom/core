@@ -380,7 +380,7 @@ class market {
 					if (isset($markets[$logicalId])) {
 						$market = $markets[$logicalId];
 						if (!is_object($market)) {
-							$return['status'] = 'depreciated';
+							$return['status'] = 'ok';
 						} else {
 							$return['datetime'] = $market->getDatetime($_version[$i]);
 							$return['market'] = 1;
@@ -401,7 +401,7 @@ class market {
 							}
 						}
 					} else {
-						$return['status'] = 'depreciated';
+						$return['status'] = 'ok';
 					}
 				} catch (Exception $e) {
 					log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
