@@ -3,6 +3,7 @@ Stable  : 1.175.0 / Beta : 1.176.0
 *21/03/2015 _v1.176.0_
 
 - Amélioration de la gestion des commandes en timeout
+- Ajout d'une option pour faire du push sur une url sur evenement d'une commande (global ou spécifique par commande)
 
 
 *21/03/2015 _v1.173.0_

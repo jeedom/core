@@ -287,6 +287,12 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
            </div>
        </div>
        <?php }?>
+        <div class="form-group">
+            <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push url}}</label>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'url à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivant : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
+            </div>
+        </div>
    </fieldset>
 </form>
 </div>
@@ -362,6 +368,9 @@ foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
 
 
 <script>
+initTooltips();
+
+
    $("#md_cmdConfigureSelectMultiple").dialog({
     autoOpen: false,
     modal: true,

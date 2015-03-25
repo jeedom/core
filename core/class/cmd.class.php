@@ -974,6 +974,7 @@ class cmd {
 			$this->addHistoryValue($value, $this->getCollectDate());
 		}
 		$this->checkReturnState($value);
+		$this->pushUrl($_value);
 	}
 
 	public function checkReturnState($_value) {
@@ -991,6 +992,31 @@ class cmd {
 			$cron->setSchedule($schedule);
 			$cron->setLastRun(date('Y-m-d H:i:s'));
 			$cron->save();
+		}
+	}
+
+	public function pushUrl($_value) {
+		$url = $this->getConfiguration('jeedomPushUrl');
+		if ($url == '') {
+			$url = config::byKey('cmdPushUrl');
+		}
+		if ($url == '') {
+			return;
+		}
+		$replace = array(
+			'#value#' => $_value,
+			'#cmd_name#' => $this->getName(),
+			'#cmd_id#' => $this->getId(),
+			'#humanname#' => $this->getHumanName(),
+		);
+		$url = str_replace(array_keys($replace), $replace, $url);
+		log::add('event', 'event', __('Appels de l\'url de push pour la commande ', __FILE__) . $this->getHumanName() . ' : ' . $url);
+		$http = new com_http($url);
+		$http->setLogError(false);
+		try {
+			$http->exec();
+		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur push sur : ', __FILE__) . $url . ' => ' . $e->getMessage());
 		}
 	}
 
