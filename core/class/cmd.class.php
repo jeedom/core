@@ -546,7 +546,7 @@ class cmd {
 			return '';
 		}
 		$_value = trim(trim($_value), '"');
-		if (@strpos(strtolower($_value), 'error') !== false) {
+		if (@strpos(strtolower($_value), 'error::') !== false) {
 			return $_value;
 		}
 		if ($this->getType() == 'info') {
@@ -844,8 +844,13 @@ class cmd {
 			$replace['#state#'] = '';
 			$replace['#tendance#'] = '';
 			$replace['#state#'] = $this->execCmd(null, $_cache);
-			if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
-				$replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
+			if (strpos($replace['#state#'], 'error::') !== false) {
+				$template = getTemplate('core', $version, 'cmd.error');
+				$replace['#state#'] = str_replace('error::', '', $replace['#state#']);
+			} else {
+				if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
+					$replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
+				}
 			}
 			$replace['#collectDate#'] = $this->getCollectDate();
 			if ($this->getIsHistorized() == 1) {

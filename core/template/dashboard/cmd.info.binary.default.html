@@ -1,15 +1,15 @@
 <div style="width:90px;min-height:62px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="binary" data-cmd_id="#id#" title="#collectDate#">
     <center>
         <span style="font-weight: bold;font-size : 12px;" class='cmdName'>#name_display#</span>
-        <span style="font-size: 3em;font-weight: bold;margin-top: 5px;" id="iconCmd#id#"></span>
+        <span style="font-size: 3em;font-weight: bold;margin-top: 5px;" class="iconCmd#id#"></span>
     </center>
 
     <script>
         if ('#state#' == '1' || '#state#' == 1) {
-            $('#iconCmd#id#').addClass('fa fa-check');
+            $('.iconCmd#id#').addClass('fa fa-check');
         }
         if ('#state#' == '0' || '#state#' == 0) {
-            $('#iconCmd#id#').addClass('fa fa-times');
+            $('.iconCmd#id#').addClass('fa fa-times');
         }
     </script>
 </div>
