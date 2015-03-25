@@ -152,6 +152,11 @@ try {
 			throw new Exception(__('EqLogic inconnu verifié l\'id : ', __FILE__) . init('id'));
 		}
 		$return = utils::o2a($eqLogic);
+		if (init('status') == 1) {
+			$return['status'] = array(
+				'lastCommunication' => $eqLogic->getStatus('lastCommunication'),
+			);
+		}
 		$return['cmd'] = utils::o2a($eqLogic->getCmd());
 		ajax::success(jeedom::toHumanReadable($return));
 	}

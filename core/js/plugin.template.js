@@ -48,6 +48,7 @@
     jeedom.eqLogic.print({
         type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
         id: $(this).attr('data-eqLogic_id'),
+        status : 1,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
