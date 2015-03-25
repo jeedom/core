@@ -154,8 +154,12 @@ try {
 		$return = utils::o2a($eqLogic);
 		if (init('status') == 1) {
 			$return['status'] = array(
+				'state' => 'ok',
 				'lastCommunication' => $eqLogic->getStatus('lastCommunication'),
 			);
+			if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $eqLogic->getTimeout() . ' minutes' . date('Y-m-d H:i:s')))) {
+				$return['status']['state'] = 'timeout';
+			}
 		}
 		$return['cmd'] = utils::o2a($eqLogic->getCmd());
 		ajax::success(jeedom::toHumanReadable($return));
