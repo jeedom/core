@@ -546,7 +546,7 @@ class cmd {
 			return '';
 		}
 		$_value = trim(trim($_value), '"');
-		if (@strpos('error', strtolower($_value)) !== false) {
+		if (@strpos(strtolower($_value), 'error') !== false) {
 			return $_value;
 		}
 		if ($this->getType() == 'info') {

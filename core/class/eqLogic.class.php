@@ -283,7 +283,7 @@ class eqLogic {
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM eqLogic
-        WHERE timeout>:timeout';
+        WHERE timeout>=:timeout';
 		if ($_onlyEnable) {
 			$sql .= ' AND isEnable=1';
 		}
