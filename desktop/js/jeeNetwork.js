@@ -18,6 +18,10 @@
     $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
 }
 
+$('#pre_logInfo').height($(window).height() - $('header').height() - $('footer').height() - 200);
+$('#pre_updateInfo').height($(window).height() - $('header').height() - $('footer').height() - 200);
+$('#pre_backupInfo').height($(window).height() - $('header').height() - $('footer').height() - 200);
+
 $(".li_jeeNetwork").on('click', function (event) {
     $.hideAlert();
     $('#pre_logInfo').empty();
@@ -90,7 +94,7 @@ $(".li_jeeNetwork").on('click', function (event) {
     return false;
 });
 
-$('#bt_showLog').on('click', function () {
+$('#sel_logSlave').on('change', function () {
     jeedom.jeeNetwork.getLog({
         id: $('.li_jeeNetwork.active').attr('data-jeeNetwork_id'),
         log: $('#sel_logSlave').value(),
@@ -104,14 +108,20 @@ $('#bt_showLog').on('click', function () {
             var log = '';
             var regex = /<br\s*[\/]?>/gi;
             for (var i in data.reverse()) {
-                log += data[i][0].replace(regex, "\n");
-                log += " - ";
-                log += data[i][1].replace(regex, "\n");
-                log += " - ";
+                if(data[i][0] != ''){
+                    log += data[i][0].replace(regex, "\n");
+                    log += " - ";
+                }
+                if(data[i][1] != ''){
+                    log += data[i][1].replace(regex, "\n");
+                    log += " - ";
+                }
                 log += data[i][2].replace(regex, "\n");
+                log = log.replace(/^\s+|\s+$/g, '');
                 log += "\n";
             }
             $('#pre_logInfo').text(log);
+            $('#pre_logInfo').scrollTop(999999999);
         }
     });
 });

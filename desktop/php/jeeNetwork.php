@@ -129,13 +129,12 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
             <form class="form-horizontal">
                 <fieldset>
                     <select id="sel_logSlave" class="form-control" style="display: inline-block;width: 200px;margin-bottom: 5px;"></select>
-                    <a class="btn btn-success" id="bt_showLog" style="margin-bottom: 5px;"><i class="fa fa-eye"></i> {{Voir}}</a>
                     <a class="btn btn-warning" id="bt_emptyLog" style="margin-bottom: 5px;"><i class="fa fa-times"></i> {{Vider}}</a>
                     <a class="btn btn-danger" id="bt_removeLog" style="margin-bottom: 5px;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
                     <a class="btn btn-default pull-right" id="bt_showMessage" style="margin-bottom: 5px;"><i class="fa fa-eye"></i> {{Voir les messages}} (<span class="jeeNetworkAttr" data-l1key="configuration" data-l2key="nbMessage"></span>)</a>
                     <a class="btn btn-danger pull-right" id="bt_emptyMessage" style="margin-bottom: 5px;"><i class="fa fa-trash-o"></i> {{Vider les messages}}</a>
                     <br/>
-                    <pre id="pre_logInfo"></pre>
+                    <pre id="pre_logInfo" style="overflow: scroll;"></pre>
                 </fieldset>
             </form>
         </div>
@@ -146,7 +145,7 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
             <a class="btn btn-warning pull-right" id="bt_checkUpdateSlave" style="margin-bottom: 5px;"><i class="fa fa-refresh"></i>  {{Vérifier}}</a>
             <a class="btn btn-default pull-right" id="bt_updateSlave" style="margin-bottom: 5px;"><i class="fa fa-check"></i> {{Mettre à jour}} (<span class="jeeNetworkAttr" type="text" data-l1key="configuration" data-l2key="nbUpdate" ></span>)</a>
              <br/> <br/>
-            <pre id="pre_updateInfo"></pre>
+            <pre id="pre_updateInfo" style="overflow: scroll;"></pre>
         </div>
 
 
@@ -156,7 +155,7 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
             <select class="form-control pull-right" id="sel_backupList" style="width : 400px;"></select>
             <a class="btn btn-default pull-right" id="bt_backupSlave"><i class="fa fa-floppy-o"></i> {{Sauvegarder}}</a>
             <br/> <br/>
-            <pre id="pre_backupInfo"></pre>
+            <pre id="pre_backupInfo" style="overflow: scroll;"></pre>
         </div>
 
 
