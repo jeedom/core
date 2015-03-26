@@ -429,7 +429,10 @@ function getVersion($_name) {
 }
 
 function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false) {
-	if ($_emptyDest && file_exists($dst)) {
+	if (!file_exists($src)) {
+		return true;
+	}
+	if ($_emptyDest) {
 		rrmdir($dst);
 	}
 	if (is_dir($src)) {
@@ -439,12 +442,12 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		$files = scandir($src);
 		foreach ($files as $file) {
 			if ($file != "." && $file != ".." && !in_array($file, $_exclude)) {
-				if (!rcopy("$src/$file", "$dst/$file", $_emptyDest, $_exclude, $_noError) && !$_noError) {
+				if (!rcopy($src . '/' . $file, $dst . '/' . $file, $_emptyDest, $_exclude, $_noError) && !$_noError) {
 					return false;
 				}
 			}
 		}
-	} else if (file_exists($src)) {
+	} else {
 		if (!in_array(basename($src), $_exclude)) {
 			if (!$_noError) {
 				return copy($src, $dst);
