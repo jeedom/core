@@ -1,0 +1,182 @@
+==== Description
+
+Il y a deux manières de sauvegarder la Jeedom mini+ et chacune comporte des avantages et des inconvénients.
+
+Il est possible de réaliser une sauvegarde à partir de l'interface Jeedom, cette sauvegarde concerne uniquement le logiciel Jeedom et ses données. Elle à l'avantage de pouvoir être faite à chaud et les fichiers de sauvegardes peuvent être exportés vers d'autrers endroits.
+
+Il est aussi possible de réaliser une sauvegarde en faisant une image disque de la carte microSD contenue dans la mini+. Elle à l'avantage d'être une sauvegarde complète du système ainsi que de Jeedom et ses données. Par contre il faut l'effectuer en éteignant la mini+ et en branchant la carte microSD sur un autre ordinateur.
+
+Le meilleur moyen d'être tranquile est d'utiliser les deux : Faire une sauvegarde de la carte microSD de temps en temps et programmer une sauvegarde régulière de Jeedom.
+
+TIP: La procédure de restauration de la carte microSD peut-être utile pour restaurer une mini+ par défaut à partir de l'image fournie par l'équipe dans votre profil sur le market Jeedom. 
+
+image::../images/save-restore01.JPG[align="center"]
+
+
+==== Sauvegarde/Restauration de Jeedom
+
+Afin de gérer et paramétrer les sauvegardes, il faut se rendre dans le menu _Général > Administration > Sauvegardes_.
+
+	. Configurations
+
+		.Paramètres Généraux
+
+			* Fréquence des sauvegardes ° : Permet de définir la fréquence à laquelle Jeedom va automatiquement lancer une sauvegarde de lui même. Exemple : 00 02 * * * : Lance une sauvegarde tous les jours à 02h00 du matin.
+			* Sauvegardes : Le bouton _Lancer_ permet de lancer manuellement une sauvegarde de Jeedom.
+			* Emplacement des sauvegardes ° : Permet de modifier le répertoire de destination des fichiers de sauvegarde. (Par défaut : backup) Le chemin est relatif par rapport à l'arborescence de Jeedom (/usr/share/nginx/www/jeedom/)
+			* Nombre de jour(s) de mémorisation des sauvegardes ° : Permet de définir le temps de rétention des fichiers de sauvegardes. Les fichiers de sauvegarde plus vieux que ce paramètre seront automatiquement supprimés.
+			* Taille totale maximum des backups (mo) ° : Permet de limiter la taille du fichier de sauvegarde. Si la sauvegarde créée un fichier plus gros que cette taille, elle se met en erreur et vous prévient par une alerte.
+			* Envoyer les sauvegardes dans le cloud : Une fois cette case cochée, les sauvegardes serons automatiquement envoyées sur les serveurs cloud de Jeedom. Attention : Option nécessitant l'achat d'un abonnement à partir de votre profil du market.
+			
+			Ne pas oublier de cliquer sur le bouton vert _Sauvegarder_ afin d'enregistrer les changements de configuration.
+			
+			_Les paramètres suivis d'un ° sont uniquement disponibles en mode expert._
+
+image::../images/save-restore02.JPG[align="center"]
+
+TIP: Afin que Jeedom fasse automatiquement un sauvegarde avant les mises à jour, il y a une case à cocher (_"Faire une sauvegarde avant la mise à jour"_) dans la section _"Market et mise à jour"_ du menu _Général > Administration > Configuration_.
+
+		.Sauvegardes locales
+
+			* Sauvegardes disponbiles : Permet de voir et sélectionner le fichier de sauvegarde local qui sera utilisé pour les actions sur le boutons suivants.
+			* Restaurer la sauvegarde : Le bouton _Restaurer_ permet de lancer une restauration de Jeedom en utilisant le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
+			* Supprimer la sauvegarde : Le bouton _Supprimer_ permet de supprimer le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
+			* Envoyer une sauvegarde : Permet de re-injecter dans Jeedom un fichier de sauvegarde que vous auriez téléchargé sur votre ordinateur, afin de pouvoir l'utiliser pour restaurer Jeedom.
+			* Télécharger la sauvegarde : Le bouton _Télécharger_ permet de récupérer sur son ordinateur le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
+
+image::../images/save-restore03.JPG[align="center"]
+
+		.Sauvegardes cloud
+
+			* Sauvegardes disponibles : Permet de voir et sélectionner le fichier de sauvegarde disponible sur le cloud qui sera utilisé pour la restauration.
+			* Restaurer la sauvegarde : Le bouton _Restaurer_ permet de lancer une restauration de Jeedom en utilisant le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
+
+image::../images/save-restore04.JPG[align="center"]
+
+CAUTION: Afin de pouvoir utiliser la sauvegarde sur le cloud vous devez acheter un abonnement à partir de votre profil sur le market Jeedom. Vous pouvez aussi à cet endroit voir et récupérer les fichiers de backup disponibles.
+
+image::../images/save-restore05.JPG[align="center"]
+
+	. Sauvegarde
+
+		On a vu que l'on peut configurer Jeedom afin qu'il se sauvegarde automatiquement à intervalles réguliers mais aussi avant de lancer des mises à jour. Afin de lancer une sauvegarde manuellement se rendre dans le menu _Général > Administration > Sauvegardes_, cliquer sur le bouton gris _Lancer_, et attendre que Jeedom vous annonce par un bandeau vert que la sauvegarde s'est bien terminée. Un log, sur la droite de la page, vous permet de suivre l'avancement.
+
+		Une fois la sauvegarde terminée, vous pouvez récupérer le fichier sur votre ordinateur. Si vous avez acheté un abonnement sauvegarde cloud, le fichier sera automatiquement envoyé sur les serveurs cloud de Jeedom. Vous pouvez aussi utiliser le plugin Data Transfert afin copier ces fichiers sur un serveur ftp, dropbox, ...
+
+	. Restauration
+
+		La restauration est aussi simple que la sauvegarde.
+
+		Pour une restauration à partir d'une sauvegarde présente, sélectionner le fichier de sauvegarde correspondant à la date voulue dans la liste _Sauvegardes disponibles_ (Sauvegardes locales ou Sauvegardes cloud), puis cliquer sur _Restaurer_, et attendre que Jeedom vous annonce par un bandeau vert que la restauration s'est bien terminée. Un log, sur la droite de la page, vous permet de suivre l'avancement.
+
+		Si vous venez de re-installer complètement votre mini+ (Par exemple à partir d'une image microSD vierge), avant de lancer une restauration vous devez au préalable envoyer un fichier de sauvegarde de votre ordinateur vers Jeedom en utilisant la fonction _Envoyer une sauvegarde_ de la section _Sauvegardes locales_.
+
+==== Sauvegarde/Restauration de la carte microSD
+
+	. Préparatifs
+
+		Ces sauvegardes/restaurations se réalisent à partir d'un autre ordinateur afin de faire une "image propre" de la carte SD. 
+		Il faut dans un premier temps arrêter la mini+. Pour celà, passer Jeedom en mode expert dans le menu utilisateur en haut à droite.
+
+image::../images/save-restore06.JPG[align="center"]
+
+		Et cliquer sur Eteindre
+
+image::../images/save-restore07.JPG[align="center"]
+
+		Ensuite, il faut sortir la carte microSD de la mini+ et la connecter à votre ordinateur via un adapateur/lecteur de carte/...
+
+image::../images/save-restore08.JPG[align="center"]
+
+	. Sous Windows
+
+		Il faudra commencer par télécharger un logiciel tiers par exemple : http://sourceforge.net/projects/win32diskimager/[Win32 Disk Imager]
+
+		.. Sauvegarde
+    
+			Lancer le logiciel et vérifier que la lettre en dessous de _Device_ corresponde bien à celle de votre carte/lecteur de carte.
+			
+			Dans le champ _Image File_, indiquer le nom du fichier image que vous voulez créer ainsi que l'endroit où il sera enregistré.
+			
+			Enfin cliquer sur le bouton _Read_, afin de créer l'image.
+
+image::../images/save-restore09.JPG[align="center"]
+
+		.. Restauration
+
+			Lancer le logiciel et vérifier que la lettre en dessous de _Device_ corresponde bien à celle de votre carte/lecteur de carte.
+			
+			Dans le champ _Image File_, allez chercher le fichier image que vous voulez restaurer.
+			
+			Enfin cliquer sur le bouton _Write_, afin de restaurer cette image sur la carte microSD.
+
+image::../images/save-restore10.JPG[align="center"]
+
+	. Sous MacOSX
+
+		Pour vous faciliter la tâche, vous pouvez télécharger le logiciel http://www.tweaking4all.com/hardware/raspberry-pi/macosx-apple-pi-baker/[ApplePi-Baker]
+
+image::../images/save-restore11.JPG[align="center"]
+
+		.. Sauvegarde
+
+			* Avec ApplePi-Baker : Sélectionner la bonne carte dans la liste _Pi-Crust_, et cliquer sur _Create Backup_ afin de créer un fichier image de votre carte microSD.
+			* En commande shell :
+				** Afin de trouver le disque correspondant à la carte, ouvrir un terminal et saisir la commande : 
+				[source,shell]
+				----
+				diskutil list
+				----
+
+image::../images/save-restore12.JPG[align="center"]
+
+				** Lancer la création de l'image en saisissant la commande :
+				[source,shell]
+				----
+				sudo dd if=/dev/rdisk1 of=~/Desktop/Backup_Jeedom.img bs=1m
+				----
+
+		TIP: Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc saisir dans la commande de sauvegarde /dev/+++<u>r</u>+++disk1
+
+		.. Restauration
+    
+			* Avec ApplePi-Baker : Sélectionner la bonne carte dans la liste _Pi-Crust_, mettre le chemin vers le fichier image à restaurer dans le champ _IMG file_ de la section _Pi-Ingredients_, et cliquer sur _Restore Backup_ afin de restaurer l'image sur la carte microSD.
+			
+			* En commande shell :
+				** Afin de trouver le disque correspondant à la carte, ouvrir un terminal et saisir la même commande que pour la sauvegarde : _diskutil list_ 
+				
+				** Démonter les partitions de la carte en tapant la commande : _sudo diskutil unmountDisk /dev/disk1_
+				
+				** Restaurer l'image sur la carte microsd en tapant la commande : _sudo dd bs=1m if=~/Desktop/Backup_Jeedom.img of=/dev/rdisk1_
+
+		TIP: Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc saisir dans la commande de sauvegarde /dev/+++<u>r</u>+++disk1
+
+	. Sous Linux
+
+    .. Sauvegarde
+    
+			* Afin de trouver le disque correspondant à la carte, ouvrir un terminal et saisir la commande : _sudo fdisk -l | grep Dis_
+
+			[source,shell]
+			----
+			$ sudo fdisk -l | grep Dis
+			Disk /dev/sda: 320.1 GB, 320072933376 bytes
+			Disk /dev/sdb: 16.0 GB, 16012804096 bytes
+			Disk /dev/sdc: 8.0 GB, 8006402048 bytes
+			----
+
+			* Lancer la création de l'image en saisissant la commande : _sudo dd if=/dev/sdc of=Backup_Jeedom.img bs=1m_
+
+			TIP: Dans cet exemple, le nom du disque de la carte est /dev/sdc.
+
+    .. Restauration
+    
+			* Afin de trouver le disque correspondant à la carte, ouvrir un terminal et saisir la commande : _sudo fdisk -l | grep Dis_
+			
+			* Démonter les partitions de la carte en tapant la commande : _sudo umount /dev/sdc?*_
+			
+			* Restaurer l'image sur la carte microsd en tapant la commande : _sudo dd if=Backup_Jeedom.img of=/dev/sdc bs=1m_
+			
+			TIP: Dans cet exemple, le nom du disque de la carte est /dev/sdc.
+
+
