@@ -22,16 +22,9 @@ $('#pre_logInfo').height($(window).height() - $('header').height() - $('footer')
 $('#pre_updateInfo').height($(window).height() - $('header').height() - $('footer').height() - 200);
 $('#pre_backupInfo').height($(window).height() - $('header').height() - $('footer').height() - 200);
 
-$(".li_jeeNetwork").on('click', function (event) {
-    $.hideAlert();
-    $('#pre_logInfo').empty();
-    $('#pre_backupInfo').empty();
-    $('#pre_updateInfo').empty();
-    $('#div_conf').show();
-    $('.li_jeeNetwork').removeClass('active');
-    $(this).addClass('active');
+function loadInfoFromSlave(_id){
     jeedom.jeeNetwork.byId({
-        id: $(this).attr('data-jeeNetwork_id'),
+        id: _id,
         cache: false,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -53,7 +46,7 @@ $(".li_jeeNetwork").on('click', function (event) {
         }
     });
     jeedom.jeeNetwork.loadConfig({
-     id: $(this).attr('data-jeeNetwork_id'),
+     id: _id,
      configuration: $('#administration').getValues('.configKey')[0],
      error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -64,7 +57,7 @@ $(".li_jeeNetwork").on('click', function (event) {
     }
 });
     jeedom.jeeNetwork.listLog({
-        id: $(this).attr('data-jeeNetwork_id'),
+        id: _id,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
@@ -91,6 +84,18 @@ $(".li_jeeNetwork").on('click', function (event) {
             $('#sel_backupList').empty().append(option);
         }
     });
+
+}
+
+$(".li_jeeNetwork").on('click', function (event) {
+    $.hideAlert();
+    $('#pre_logInfo').empty();
+    $('#pre_backupInfo').empty();
+    $('#pre_updateInfo').empty();
+    $('#div_conf').show();
+    $('.li_jeeNetwork').removeClass('active');
+    $(this).addClass('active');
+    loadInfoFromSlave($('.li_jeeNetwork.active').attr('data-jeeNetwork_id'));
     return false;
 });
 
@@ -342,7 +347,7 @@ $("#bt_saveJeeNetwork").on('click', function (event) {
             },
             success: function (data) {
                 modifyWithoutSave = false;
-                $('.li_jeeNetwork.active').click();
+                loadInfoFromSlave($('.li_jeeNetwork.active').attr('data-jeeNetwork_id'));
                 $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
             }
         });
@@ -435,7 +440,7 @@ function getJeedomSlaveLog(_autoUpdate, _log,_el) {
                 if ($.trim(data.result[i][2].replace(regex, "\n")) == '[END ' + _log.toUpperCase() + ' SUCCESS]') {
                     _autoUpdate = 0;
                     $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'});
-                    $("#bt_saveJeeNetwork").click();
+                    loadInfoFromSlave($('.li_jeeNetwork.active').attr('data-jeeNetwork_id'));
                 }
                 if ($.trim(data.result[i][2].replace(regex, "\n")) == '[END ' + _log.toUpperCase() + ' ERROR]') {
                     $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
