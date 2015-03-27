@@ -96,6 +96,9 @@ jeedom.init = function () {
             }
 
         });
+        socket.on('jeedom::alertPopup', function (_message) {
+            alert(_message);
+        });
         socket.on('message::refreshMessageNumber', function (_options) {
             refreshMessageNumber();
         });

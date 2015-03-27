@@ -1,5 +1,9 @@
 Stable  : 1.175.0 / Beta : 1.176.0
 
+*27/03/2015 _v1.176.0_
+
+- Possibilité d'avoir une alert si une commande est dans un été depuis plus de X minute(s)
+
 *21/03/2015 _v1.176.0_
 
 - Amélioration de la gestion des commandes en timeout

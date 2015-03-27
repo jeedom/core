@@ -539,6 +539,18 @@ class cmd {
 		}
 	}
 
+	public static function cmdAlert($_options) {
+		$cmd = cmd::byId($_options['cmd_id']);
+		if (!is_object($cmd)) {
+			return;
+		}
+		$value = $cmd->execCmd();
+		$check = jeedom::evaluateExpression($value . $cmd->getConfiguration('jeedomCheckCmdOperator') . $cmd->getConfiguration('jeedomCheckCmdTest'));
+		if ($check == 1 || $check || $check == '1') {
+			nodejs::pushUpdate('jeedom::alertPopup', $cmd->getHumanName() . __(' est à ', __FILE__) . $value . __(' depuis plus de ', __FILE__) . $cmd->getConfiguration('jeedomCheckCmdTime') . __('min', __FILE__));
+		}
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function formatValue($_value, $_quote = false) {
@@ -974,6 +986,7 @@ class cmd {
 			$this->addHistoryValue($value, $this->getCollectDate());
 		}
 		$this->checkReturnState($value);
+		$this->checkCmdAlert($_value);
 		$this->pushUrl($_value);
 	}
 
@@ -992,6 +1005,33 @@ class cmd {
 			$cron->setSchedule($schedule);
 			$cron->setLastRun(date('Y-m-d H:i:s'));
 			$cron->save();
+		}
+	}
+
+	public function checkCmdAlert($_value) {
+		if ($this->getConfiguration('jeedomCheckCmdOperator') == '' || $this->getConfiguration('jeedomCheckCmdTest') == '' || $this->getConfiguration('jeedomCheckCmdTime') == '' || is_nan($this->getConfiguration('jeedomCheckCmdTime'))) {
+			return;
+		}
+		$check = jeedom::evaluateExpression($_value . $this->getConfiguration('jeedomCheckCmdOperator') . $this->getConfiguration('jeedomCheckCmdTest'));
+		if ($check == 1 || $check || $check == '1') {
+			$cron = cron::byClassAndFunction('cmd', 'cmdAlert', array('cmd_id' => intval($this->getId())));
+			if (!is_object($cron)) {
+				$cron = new cron();
+			}
+			$cron->setClass('cmd');
+			$cron->setFunction('cmdAlert');
+			$cron->setOnce(1);
+			$cron->setOption(array('cmd_id' => intval($this->getId())));
+			$next = strtotime('+ ' . ($this->getConfiguration('jeedomCheckCmdTime') + 1) . ' minutes ' . date('Y-m-d H:i:s'));
+			$schedule = date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next);
+			$cron->setSchedule($schedule);
+			$cron->setLastRun(date('Y-m-d H:i:s'));
+			$cron->save();
+		} else {
+			$cron = cron::byClassAndFunction('cmd', 'cmdAlert', array('cmd_id' => intval($this->getId())));
+			if (is_object($cron)) {
+				$cron->remove();
+			}
 		}
 	}
 

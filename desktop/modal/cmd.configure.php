@@ -236,7 +236,7 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
 
 
         <?php if ($cmd->getType() == 'action') {?>
-          <div class="form-group">
+        <div class="form-group">
             <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Confirmer l'action}}</label>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="actionConfirm" />
@@ -250,50 +250,73 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
         </div>
         <?php }?>
 
-        <?php if ($cmd->getIsHistorized() == 1) {?>
+        <?php if ($cmd->getType() == 'info') {?>
         <div class="form-group">
-            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
-            <div class="col-xs-1">
-                <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
-            </div>
+            <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Alerte sur valeur, si}}</label>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdOperator" >
+                 <option value="==">{{égal}}</option>
+                 <option value=">">{{supérieur}}</option>
+                 <option value="<">{{inférieur}}</option>
+                 <option value="!=">{{différent}}</option>
+             </select>
+         </div>
+         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTest" />
         </div>
-        <div class="form-group">
-            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
-            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
-                    <option value="avg">{{Moyenne}}</option>
-                    <option value="min">{{Minimum}}</option>
-                    <option value="max">{{Maximum}}</option>
-                    <option value="none">{{Aucun}}</option>
-                </select>
-            </div>
+        <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">{{plus de (min)}}</label>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
         </div>
-        <div class="form-group">
-            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi (chiffre après la virgule)}}</label>
-            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
-            </div>
+    </div>
+
+
+    <?php }?>
+
+    <?php if ($cmd->getIsHistorized() == 1) {?>
+    <div class="form-group">
+        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
+        <div class="col-xs-1">
+            <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
         </div>
-        <div class="form-group">
-            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux de }}</label>
-            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-               <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
-                   <option value="">{{Jamais}}</option>
-                   <option value="-1 day">{{1 jour}}</option>
-                   <option value="-7 days">{{7 jours}}</option>
-                   <option value="-1 month">{{1 mois}}</option>
-                   <option value="-6 month">{{6 mois}}</option>
-               </select>
-           </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
+        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+            <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
+                <option value="avg">{{Moyenne}}</option>
+                <option value="min">{{Minimum}}</option>
+                <option value="max">{{Maximum}}</option>
+                <option value="none">{{Aucun}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi (chiffre après la virgule)}}</label>
+        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+            <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux de }}</label>
+        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+           <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
+               <option value="">{{Jamais}}</option>
+               <option value="-1 day">{{1 jour}}</option>
+               <option value="-7 days">{{7 jours}}</option>
+               <option value="-1 month">{{1 mois}}</option>
+               <option value="-6 month">{{6 mois}}</option>
+           </select>
        </div>
-       <?php }?>
-        <div class="form-group">
-            <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push url}}</label>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'url à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivant : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
-            </div>
-        </div>
-   </fieldset>
+   </div>
+   <?php }?>
+   <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push url}}</label>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'url à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivant : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
+    </div>
+</div>
+</fieldset>
 </form>
 </div>
 <div class='col-lg-6 col-md-7 col-sm-8'>
@@ -368,122 +391,122 @@ foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
 
 
 <script>
-initTooltips();
+    initTooltips();
 
 
-   $("#md_cmdConfigureSelectMultiple").dialog({
-    autoOpen: false,
-    modal: true,
-    height: (jQuery(window).height() - 150),
-    width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
-    position: {my: 'center', at: 'center', of: window},
-    open: function () {
-        $("body").css({overflow: 'hidden'});
-    },
-    beforeClose: function (event, ui) {
-        $("body").css({overflow: 'inherit'});
-    }
-});
-
-
-
-   $('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
-    $(this).closest('tr').remove();
-});
-
-   $('#bt_addWidgetParameters').off().on('click', function () {
-    var tr = '<tr>';
-    tr += '<td>';
-    tr += '<input class="form-control key" />';
-    tr += '</td>';
-    tr += '<td>';
-    tr += '<input class="form-control value" />';
-    tr += '</td>';
-    tr += '<td>';
-    tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fa fa-times"></i> Supprimer</a>';
-    tr += '</td>';
-    tr += '</tr>';
-    $('#table_widgetParameters tbody').append(tr);
-});
-
-   $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
-
-   $('#bt_cmdConfigureSave').on('click', function () {
-    var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
-    if (!isset(cmd.display)) {
-        cmd.display = {};
-    }
-    if (!isset(cmd.display.parameters)) {
-        cmd.display.parameters = {};
-    }
-    $('#table_widgetParameters tbody tr').each(function () {
-        cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
-    });
-    jeedom.cmd.save({
-        cmd: cmd,
-        error: function (error) {
-            $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
+    $("#md_cmdConfigureSelectMultiple").dialog({
+        autoOpen: false,
+        modal: true,
+        height: (jQuery(window).height() - 150),
+        width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
+        position: {my: 'center', at: 'center', of: window},
+        open: function () {
+            $("body").css({overflow: 'hidden'});
         },
-        success: function () {
-            $('#md_displayCmdConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
+        beforeClose: function (event, ui) {
+            $("body").css({overflow: 'inherit'});
         }
     });
-});
 
 
 
-
-
-   $('#bt_cmdConfigureSaveOn').on('click',function(){
-    var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
-    if (!isset(cmd.display)) {
-        cmd.display = {};
-    }
-    if (!isset(cmd.display.parameters)) {
-        cmd.display.parameters = {};
-    }
-    $('#table_widgetParameters tbody tr').each(function () {
-        cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
+    $('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
+        $(this).closest('tr').remove();
     });
-    cmd = {display : cmd.display,template : cmd.template };
-    $('#md_cmdConfigureSelectMultiple').dialog('open');
-    initTableSorter();
 
-    $('#bt_cmdConfigureSelectMultipleAlertToogle').off().on('click', function () {
-        var state = false;
-        if ($(this).attr('data-state') == 0) {
-            state = true;
-            $(this).attr('data-state', 1);
-            $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
-        } else {
-            state = false;
-            $(this).attr('data-state', 0);
-            $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
+    $('#bt_addWidgetParameters').off().on('click', function () {
+        var tr = '<tr>';
+        tr += '<td>';
+        tr += '<input class="form-control key" />';
+        tr += '</td>';
+        tr += '<td>';
+        tr += '<input class="form-control value" />';
+        tr += '</td>';
+        tr += '<td>';
+        tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fa fa-times"></i> Supprimer</a>';
+        tr += '</td>';
+        tr += '</tr>';
+        $('#table_widgetParameters tbody').append(tr);
+    });
+
+    $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
+
+    $('#bt_cmdConfigureSave').on('click', function () {
+        var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
+        if (!isset(cmd.display)) {
+            cmd.display = {};
         }
-        $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
-            if ($(this).is(':visible')) {
-                $(this).find('.selectMultipleApplyCmd').prop('checked', state);
+        if (!isset(cmd.display.parameters)) {
+            cmd.display.parameters = {};
+        }
+        $('#table_widgetParameters tbody tr').each(function () {
+            cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
+        });
+        jeedom.cmd.save({
+            cmd: cmd,
+            error: function (error) {
+                $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function () {
+                $('#md_displayCmdConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
             }
         });
     });
 
-    $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
-      $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
-        if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
-            cmd.id = $(this).attr('data-cmd_id');
-            jeedom.cmd.save({
-                cmd: cmd,
-                error: function (error) {
-                    $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'});
-                },
-                success: function () {
 
+
+
+
+    $('#bt_cmdConfigureSaveOn').on('click',function(){
+        var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
+        if (!isset(cmd.display)) {
+            cmd.display = {};
+        }
+        if (!isset(cmd.display.parameters)) {
+            cmd.display.parameters = {};
+        }
+        $('#table_widgetParameters tbody tr').each(function () {
+            cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
+        });
+        cmd = {display : cmd.display,template : cmd.template };
+        $('#md_cmdConfigureSelectMultiple').dialog('open');
+        initTableSorter();
+
+        $('#bt_cmdConfigureSelectMultipleAlertToogle').off().on('click', function () {
+            var state = false;
+            if ($(this).attr('data-state') == 0) {
+                state = true;
+                $(this).attr('data-state', 1);
+                $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
+            } else {
+                state = false;
+                $(this).attr('data-state', 0);
+                $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
+            }
+            $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
+                if ($(this).is(':visible')) {
+                    $(this).find('.selectMultipleApplyCmd').prop('checked', state);
                 }
             });
-        }
-    });
-      $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification appliqués avec succès}}", level: 'success'});
-  });
+        });
 
-});
+        $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
+          $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
+            if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
+                cmd.id = $(this).attr('data-cmd_id');
+                jeedom.cmd.save({
+                    cmd: cmd,
+                    error: function (error) {
+                        $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'});
+                    },
+                    success: function () {
+
+                    }
+                });
+            }
+        });
+          $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification appliqués avec succès}}", level: 'success'});
+      });
+
+    });
 </script>
