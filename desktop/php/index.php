@@ -22,13 +22,13 @@ if (init('p') == '' && isConnect()) {
 $page = '';
 if (isConnect() && init('p') != '') {
 	$page = init('p');
-	$title .= ' - ' . ucfirst($page);
+	$title = ucfirst($page) . ' - ' . $title;
 }
 $plugin = init('m');
 if ($plugin != '') {
 	$plugin = plugin::byId($plugin);
 	if (is_object($plugin)) {
-		$title = 'Jeedom - ' . $plugin->getName();
+		$title = ucfirst($plugin->getName()) . ' - Jeedom';
 	}
 }
 $plugins_list = plugin::listPlugin(true, true);
