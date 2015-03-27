@@ -296,8 +296,9 @@ foreach ($markets as $market) {
 
 	if ($name == null && $type == 'widget' && isset($widget_found[$widget_name]) && $widget_found[$widget_name] > 1) {
 		echo displayWidgetType($market->getName()) . displayWidgetSubtype($market->getName());
-		echo '<strong class="well col-sm-12 text-center" style="font-size : 1em;position:relative;padding: 5px; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $widget_name . '</strong>';
-		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;" class="badge pull-right tooltips" title="{{Nombre de widgets}}">' . $widget_found[$widget_name] . '</span>';
+		echo '<strong class="well col-sm-12 text-center" style="font-size : 1em;position:relative;padding: 5px; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $widget_name;
+		echo '<span style="font-size : 1.1em;" class="badge pull-right tooltips" title="{{Nombre de widgets}}">' . $widget_found[$widget_name] . '</span>';
+		echo '</strong>';
 	} else {
 		if ($market->getType() == 'widget') {
 			echo displayWidgetType($market->getName()) . displayWidgetSubtype($market->getName());
