@@ -836,8 +836,12 @@ function getIpFromString($_string) {
 		$_string = $result['host'];
 	} else {
 		$_string = str_replace(array('https://', 'http://'), '', $_string);
-		$_string = substr($_string, 0, strpos($_string, '/'));
-		$_string = substr($_string, 0, strpos($_string, ':'));
+		if (strpos($_string, '/') !== false) {
+			$_string = substr($_string, 0, strpos($_string, '/'));
+		}
+		if (strpos($_string, ':') !== false) {
+			$_string = substr($_string, 0, strpos($_string, ':'));
+		}
 	}
 	if (!filter_var($_string, FILTER_VALIDATE_IP)) {
 		$_string = gethostbyname($_string);
