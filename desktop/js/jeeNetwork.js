@@ -70,6 +70,7 @@ function loadInfoFromSlave(_id){
                 option += '<option>' + data[i] + '</option>';
             }
             $('#sel_logSlave').empty().append(option);
+            $('#sel_logSlave').trigger('change');
         }
     });
     jeedom.jeeNetwork.listLocalSlaveBackup({
@@ -130,6 +131,39 @@ $('#sel_logSlave').on('change', function () {
         }
     });
 });
+
+$('#bt_refreshLog').on('click', function () {
+    jeedom.jeeNetwork.getLog({
+        id: $('.li_jeeNetwork.active').attr('data-jeeNetwork_id'),
+        log: $('#sel_logSlave').value(),
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            if (!$.isArray(data)) {
+                return;
+            }
+            var log = '';
+            var regex = /<br\s*[\/]?>/gi;
+            for (var i in data.reverse()) {
+                if(data[i][0] != ''){
+                    log += data[i][0].replace(regex, "\n");
+                    log += " - ";
+                }
+                if(data[i][1] != ''){
+                    log += data[i][1].replace(regex, "\n");
+                    log += " - ";
+                }
+                log += data[i][2].replace(regex, "\n");
+                log = log.replace(/^\s+|\s+$/g, '');
+                log += "\n";
+            }
+            $('#pre_logInfo').text(log);
+            $('#pre_logInfo').scrollTop(999999999);
+        }
+    });
+});
+
 
 $('#bt_emptyLog').on('click', function () {
     jeedom.jeeNetwork.emptyLog({
