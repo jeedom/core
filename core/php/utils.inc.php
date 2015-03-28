@@ -324,6 +324,10 @@ function hadFileRight($_allowPath, $_path) {
 	return false;
 }
 
+function getVersion($_name) {
+	return jeedom::version();
+}
+
 function ls($folder = "", $pattern = "*", $recursivly = false, $options = array('files', 'folders')) {
 	if ($folder) {
 		$current_folder = realpath('.');
