@@ -157,7 +157,9 @@ Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc sais
 
 ** Restaurer l'image sur la carte microsd en tapant la commande : _sudo dd bs=1m if=~/Desktop/Backup_Jeedom.img of=/dev/rdisk1_
 
-TIP: Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc saisir dans la commande de sauvegarde /dev/+++<u>r</u>+++disk1
+[icon="../images/plugin/tip.png"]
+[TIP]
+Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc saisir dans la commande de sauvegarde /dev/+++<u>r</u>+++disk1
 
 ===== Sous Linux
 
