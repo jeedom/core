@@ -129,7 +129,7 @@ image::../images/save-restore11.JPG[align="center"]
 * Avec ApplePi-Baker : Sélectionner la bonne carte dans la liste _Pi-Crust_, et cliquer sur _Create Backup_ afin de créer un fichier image de votre carte microSD.
 * En commande shell :
 ** Afin de trouver le disque correspondant à la carte, ouvrir un terminal et saisir la commande : 
-[source,shell]
+
 ----
 diskutil list
 ----
@@ -137,7 +137,7 @@ diskutil list
 image::../images/save-restore12.JPG[align="center"]
 
 ** Lancer la création de l'image en saisissant la commande :
-[source,shell]
+
 ----
 sudo dd if=/dev/rdisk1 of=~/Desktop/Backup_Jeedom.img bs=1m
 ----
@@ -167,7 +167,7 @@ Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc sais
     
 * Afin de trouver le disque correspondant à la carte, ouvrir un terminal et saisir la commande : _sudo fdisk -l | grep Dis_
 
-[source,shell]
+
 ----
 $ sudo fdisk -l | grep Dis
 Disk /dev/sda: 320.1 GB, 320072933376 bytes
