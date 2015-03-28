@@ -225,7 +225,7 @@ class plugin {
 	}
 
 	public function setIsEnable($_state) {
-		if (version_compare(getVersion('jeedom'), $this->getRequire()) == -1 && $_state == 1) {
+		if (version_compare(jeedom::version(), $this->getRequire()) == -1 && $_state == 1) {
 			throw new Exception('Votre version de jeedom n\'est pas assez récente pour activer ce plugin');
 		}
 		$alreadyActive = config::byKey('active', $this->getId(), 0);

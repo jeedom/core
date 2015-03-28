@@ -57,7 +57,7 @@ try {
 		throw new Exception(__('Le dossier des sauvegardes n\'est pas accessible en écriture. Vérifiez les droits : ', __FILE__) . $backup_dir);
 	}
 
-	$bakcup_name = 'backup-' . getVersion('jeedom') . '-' . date("Y-m-d-H\hi") . '.tar.gz';
+	$bakcup_name = 'backup-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz';
 
 	echo __('Sauvegarde des fichiers...', __FILE__);
 	$exclude = array('tmp', 'backup', 'log', str_replace('/', '', jeedom::getCurrentSysInfoFolder()), str_replace('/', '', jeedom::getCurrentSqlBuddyFolder()));

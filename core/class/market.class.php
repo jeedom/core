@@ -281,7 +281,7 @@ class market {
 		$file = array(
 			'file' => '@' . realpath($tmp),
 		);
-		$_ticket['options']['jeedom_version'] = getVersion('jeedom');
+		$_ticket['options']['jeedom_version'] = jeedom::version();
 		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket), 600, $file)) {
 			throw new Exception($jsonrpc->getErrorMessage());
 		}
@@ -317,7 +317,7 @@ class market {
 				'username' => config::byKey('market::username'),
 				'password' => config::byKey('market::password'),
 				'password_type' => 'sha1',
-				'jeedomversion' => getVersion('jeedom'),
+				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
 				'addrProtocol' => config::byKey('externalProtocol'),
 				'addrPort' => config::byKey('externalPort'),
@@ -326,7 +326,7 @@ class market {
 			));
 		} else {
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
-				'jeedomversion' => getVersion('jeedom'),
+				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
 			));
 		}

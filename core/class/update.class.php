@@ -53,7 +53,7 @@ class update {
 					$findCore = true;
 					$update->setType('core');
 					$update->setLogicalId('jeedom');
-					$update->setLocalVersion(getVersion('jeedom'));
+					$update->setLocalVersion(jeedom::version());
 					$update->save();
 					$update->checkUpdate();
 				} else {
@@ -69,7 +69,7 @@ class update {
 			$update = new update();
 			$update->setType('core');
 			$update->setLogicalId('jeedom');
-			$update->setLocalVersion(getVersion('jeedom'));
+			$update->setLocalVersion(jeedom::version());
 			$update->save();
 			$update->checkUpdate();
 		}

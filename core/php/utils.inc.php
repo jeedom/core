@@ -419,15 +419,6 @@ function removeCR($_string) {
 	return trim($_string);
 }
 
-function getVersion($_name) {
-	include dirname(__FILE__) . '/../config/version.config.php';
-	global $VERSION;
-	if (isset($VERSION[$_name])) {
-		return $VERSION[$_name];
-	}
-	return false;
-}
-
 function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false) {
 	if (!file_exists($src)) {
 		return true;

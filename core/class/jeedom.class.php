@@ -319,10 +319,17 @@ class jeedom {
 		return $result;
 	}
 
+	public static function version() {
+		if (file_exists(dirname(__FILE__) . '/../config/version')) {
+			return trim(file_get_contents(dirname(__FILE__) . '/../config/version'));
+		}
+		return '';
+	}
+
 	public static function needUpdate($_refresh = false) {
 		$return = array();
 		$return['currentVersion'] = market::getJeedomCurrentVersion($_refresh);
-		$return['version'] = getVersion('jeedom');
+		$return['version'] = jeedom::version();
 		if (version_compare($return['currentVersion'], $return['version'], '>')) {
 			$return['needUpdate'] = true;
 		} else {
