@@ -216,10 +216,14 @@ $categorie = '';
 $first = true;
 $nCategory = 0;
 $widget_found = array();
-if ($type == 'widget' && $name == null) {
+if ($type == 'widget') {
 	foreach ($markets as &$market) {
 		$widget_name = explode('.', $market->getName());
-		$widget_name = $widget_name[3];
+		if (isset($widget_name[3])) {
+			$widget_name = $widget_name[3];
+		} else {
+			$widget_name = $widget_name[0];
+		}
 		$widget_name = explode('_', $widget_name);
 		$widget_name = $widget_name[0];
 		if (isset($widget_found[$widget_name])) {
@@ -232,7 +236,7 @@ if ($type == 'widget' && $name == null) {
 
 $widget = array();
 foreach ($markets as $market) {
-	if ($name == null && $type == 'widget') {
+	if ($type == 'widget') {
 		$widget_name = explode('.', $market->getName());
 		$widget_name = $widget_name[3];
 		$widget_name = explode('_', $widget_name);
