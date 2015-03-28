@@ -57,7 +57,9 @@ image::../images/save-restore03.JPG[align="center"]
 
 image::../images/save-restore04.JPG[align="center"]
 
-CAUTION: Afin de pouvoir utiliser la sauvegarde sur le cloud vous devez acheter un abonnement à partir de votre profil sur le market Jeedom. Vous pouvez aussi à cet endroit voir et récupérer les fichiers de backup disponibles.
+[icon="../images/plugin/important.png"]
+[IMPORTANT]
+Afin de pouvoir utiliser la sauvegarde sur le cloud vous devez acheter un abonnement à partir de votre profil sur le market Jeedom. Vous pouvez aussi à cet endroit voir et récupérer les fichiers de backup disponibles.
 
 image::../images/save-restore05.JPG[align="center"]
 
