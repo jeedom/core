@@ -54,6 +54,9 @@
         },
         success: function (data) {
             $('body .eqLogicAttr').value('');
+            if(isset(data) && isset(data.timeout) && data.timeout == 0){
+                data.timeout = '';
+            }
             $('body').setValues(data, '.eqLogicAttr');
             if ('function' == typeof (printEqLogic)) {
                 printEqLogic(data);
