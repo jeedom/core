@@ -19,7 +19,7 @@ image::../images/save-restore01.JPG[align="center"]
 
 Afin de gérer et paramétrer les sauvegardes, il faut se rendre dans le menu _Général > Administration > Sauvegardes_.
 
-	. Configurations
+	===== Configurations
 
 		.Paramètres Généraux
 
@@ -63,13 +63,13 @@ Afin de pouvoir utiliser la sauvegarde sur le cloud vous devez acheter un abonne
 
 image::../images/save-restore05.JPG[align="center"]
 
-	. Sauvegarde
+	===== Sauvegarde
 
 		On a vu que l'on peut configurer Jeedom afin qu'il se sauvegarde automatiquement à intervalles réguliers mais aussi avant de lancer des mises à jour. Afin de lancer une sauvegarde manuellement se rendre dans le menu _Général > Administration > Sauvegardes_, cliquer sur le bouton gris _Lancer_, et attendre que Jeedom vous annonce par un bandeau vert que la sauvegarde s'est bien terminée. Un log, sur la droite de la page, vous permet de suivre l'avancement.
 
 		Une fois la sauvegarde terminée, vous pouvez récupérer le fichier sur votre ordinateur. Si vous avez acheté un abonnement sauvegarde cloud, le fichier sera automatiquement envoyé sur les serveurs cloud de Jeedom. Vous pouvez aussi utiliser le plugin Data Transfert afin copier ces fichiers sur un serveur ftp, dropbox, ...
 
-	. Restauration
+	===== Restauration
 
 		La restauration est aussi simple que la sauvegarde.
 
@@ -79,7 +79,7 @@ image::../images/save-restore05.JPG[align="center"]
 
 ==== Sauvegarde/Restauration de la carte microSD
 
-	. Préparatifs
+	===== Préparatifs
 
 		Ces sauvegardes/restaurations se réalisent à partir d'un autre ordinateur afin de faire une "image propre" de la carte SD. 
 		Il faut dans un premier temps arrêter la mini+. Pour celà, passer Jeedom en mode expert dans le menu utilisateur en haut à droite.
@@ -94,11 +94,11 @@ image::../images/save-restore07.JPG[align="center"]
 
 image::../images/save-restore08.JPG[align="center"]
 
-	. Sous Windows
+	===== Sous Windows
 
 		Il faudra commencer par télécharger un logiciel tiers par exemple : http://sourceforge.net/projects/win32diskimager/[Win32 Disk Imager]
 
-		.. Sauvegarde
+		. Sauvegarde
     
 			Lancer le logiciel et vérifier que la lettre en dessous de _Device_ corresponde bien à celle de votre carte/lecteur de carte.
 			
@@ -108,7 +108,7 @@ image::../images/save-restore08.JPG[align="center"]
 
 image::../images/save-restore09.JPG[align="center"]
 
-		.. Restauration
+		. Restauration
 
 			Lancer le logiciel et vérifier que la lettre en dessous de _Device_ corresponde bien à celle de votre carte/lecteur de carte.
 			
@@ -118,13 +118,13 @@ image::../images/save-restore09.JPG[align="center"]
 
 image::../images/save-restore10.JPG[align="center"]
 
-	. Sous MacOSX
+	===== Sous MacOSX
 
 		Pour vous faciliter la tâche, vous pouvez télécharger le logiciel http://www.tweaking4all.com/hardware/raspberry-pi/macosx-apple-pi-baker/[ApplePi-Baker]
 
 image::../images/save-restore11.JPG[align="center"]
 
-		.. Sauvegarde
+		. Sauvegarde
 
 			* Avec ApplePi-Baker : Sélectionner la bonne carte dans la liste _Pi-Crust_, et cliquer sur _Create Backup_ afin de créer un fichier image de votre carte microSD.
 			* En commande shell :
@@ -146,7 +146,7 @@ image::../images/save-restore12.JPG[align="center"]
 		[TIP]		
 		Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc saisir dans la commande de sauvegarde /dev/+++<u>r</u>+++disk1
 
-		.. Restauration
+		. Restauration
     
 			* Avec ApplePi-Baker : Sélectionner la bonne carte dans la liste _Pi-Crust_, mettre le chemin vers le fichier image à restaurer dans le champ _IMG file_ de la section _Pi-Ingredients_, et cliquer sur _Restore Backup_ afin de restaurer l'image sur la carte microSD.
 			
@@ -159,9 +159,9 @@ image::../images/save-restore12.JPG[align="center"]
 
 		TIP: Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc saisir dans la commande de sauvegarde /dev/+++<u>r</u>+++disk1
 
-	. Sous Linux
+	===== Sous Linux
 
-    .. Sauvegarde
+    . Sauvegarde
     
 			* Afin de trouver le disque correspondant à la carte, ouvrir un terminal et saisir la commande : _sudo fdisk -l | grep Dis_
 
@@ -179,7 +179,7 @@ image::../images/save-restore12.JPG[align="center"]
 			[TIP]
 			Dans cet exemple, le nom du disque de la carte est /dev/sdc.
 
-    .. Restauration
+    . Restauration
     
 			* Afin de trouver le disque correspondant à la carte, ouvrir un terminal et saisir la commande : _sudo fdisk -l | grep Dis_
 			
