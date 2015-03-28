@@ -196,7 +196,8 @@ try {
 			if (method_exists($eqLogic, 'preAjax')) {
 				$eqLogic->preAjax();
 			}
-			utils::a2o($eqLogic, jeedom::fromHumanReadable($eqLogicSave));
+			$eqLogicSave = jeedom::fromHumanReadable($eqLogicSave);
+			utils::a2o($eqLogic, $eqLogicSave);
 			$dbList = $typeCmd::byEqLogicId($eqLogic->getId());
 			$eqLogic->save();
 			$enableList = array();
