@@ -547,7 +547,7 @@ class cmd {
 		$value = $cmd->execCmd();
 		$check = jeedom::evaluateExpression($value . $cmd->getConfiguration('jeedomCheckCmdOperator') . $cmd->getConfiguration('jeedomCheckCmdTest'));
 		if ($check == 1 || $check || $check == '1') {
-			log::add('cmd', 'error', $cmd->getHumanName() . __(' est à ', __FILE__) . $value . __(' depuis plus de ', __FILE__) . $cmd->getConfiguration('jeedomCheckCmdTime') . __('min', __FILE__));
+			log::add('cmd', 'error', $cmd->getHumanName() . __(' est à ', __FILE__) . $value . __(' depuis plus de ', __FILE__) . $cmd->getConfiguration('jeedomCheckCmdTime') . __('min', __FILE__), 'alertCmd' . $cmd->getId());
 		}
 	}
 
@@ -1028,6 +1028,7 @@ class cmd {
 			$cron->setLastRun(date('Y-m-d H:i:s'));
 			$cron->save();
 		} else {
+			message::removeAll('cmd', 'alertCmd' . $this->getId());
 			$cron = cron::byClassAndFunction('cmd', 'cmdAlert', array('cmd_id' => intval($this->getId())));
 			if (is_object($cron)) {
 				$cron->remove();
