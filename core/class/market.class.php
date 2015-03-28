@@ -317,7 +317,7 @@ class market {
 				'username' => config::byKey('market::username'),
 				'password' => config::byKey('market::password'),
 				'password_type' => 'sha1',
-				'jeedomversion' => jeedom::version(),
+				'jeedomversion' => (method_exists('jeedom', 'version')) ? jeedom::version() : getVersion('jeedom'),
 				'hwkey' => jeedom::getHardwareKey(),
 				'addrProtocol' => config::byKey('externalProtocol'),
 				'addrPort' => config::byKey('externalPort'),
@@ -326,7 +326,7 @@ class market {
 			));
 		} else {
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
-				'jeedomversion' => jeedom::version(),
+				'jeedomversion' => (method_exists('jeedom', 'version')) ? jeedom::version() : getVersion('jeedom'),
 				'hwkey' => jeedom::getHardwareKey(),
 			));
 		}
