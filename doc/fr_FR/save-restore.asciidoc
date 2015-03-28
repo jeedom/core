@@ -8,7 +8,9 @@ Il est aussi possible de réaliser une sauvegarde en faisant une image disque de
 
 Le meilleur moyen d'être tranquile est d'utiliser les deux : Faire une sauvegarde de la carte microSD de temps en temps et programmer une sauvegarde régulière de Jeedom.
 
-TIP: La procédure de restauration de la carte microSD peut-être utile pour restaurer un Jeedom par défaut à partir de l'image fournie par l'équipe voir link:http://doc.jeedom.fr/fr_FR/doc-installation.html[ici]. 
+[icon="../images/plugin/tip.png"]
+[TIP]
+La procédure de restauration de la carte microSD peut-être utile pour restaurer un Jeedom par défaut à partir de l'image fournie par l'équipe voir link:http://doc.jeedom.fr/fr_FR/doc-installation.html[ici]. 
 
 image::../images/save-restore01.JPG[align="center"]
 
@@ -34,7 +36,9 @@ Afin de gérer et paramétrer les sauvegardes, il faut se rendre dans le menu _G
 
 image::../images/save-restore02.JPG[align="center"]
 
-TIP: Afin que Jeedom fasse automatiquement un sauvegarde avant les mises à jour, il y a une case à cocher (_"Faire une sauvegarde avant la mise à jour"_) dans la section _"Market et mise à jour"_ du menu _Général > Administration > Configuration_.
+[icon="../images/plugin/tip.png"]
+[TIP]
+Afin que Jeedom fasse automatiquement un sauvegarde avant les mises à jour, il y a une case à cocher (_"Faire une sauvegarde avant la mise à jour"_) dans la section _"Market et mise à jour"_ du menu _Général > Administration > Configuration_.
 
 		.Sauvegardes locales
 
@@ -136,7 +140,9 @@ image::../images/save-restore12.JPG[align="center"]
 				sudo dd if=/dev/rdisk1 of=~/Desktop/Backup_Jeedom.img bs=1m
 				----
 
-		TIP: Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc saisir dans la commande de sauvegarde /dev/+++<u>r</u>+++disk1
+		[icon="../images/plugin/tip.png"]
+		[TIP]		
+		Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc saisir dans la commande de sauvegarde /dev/+++<u>r</u>+++disk1
 
 		.. Restauration
     
@@ -167,7 +173,9 @@ image::../images/save-restore12.JPG[align="center"]
 
 			* Lancer la création de l'image en saisissant la commande : _sudo dd if=/dev/sdc of=Backup_Jeedom.img bs=1m_
 
-			TIP: Dans cet exemple, le nom du disque de la carte est /dev/sdc.
+			[icon="../images/plugin/tip.png"]
+			[TIP]
+			Dans cet exemple, le nom du disque de la carte est /dev/sdc.
 
     .. Restauration
     
@@ -177,6 +185,8 @@ image::../images/save-restore12.JPG[align="center"]
 			
 			* Restaurer l'image sur la carte microsd en tapant la commande : _sudo dd if=Backup_Jeedom.img of=/dev/sdc bs=1m_
 			
-			TIP: Dans cet exemple, le nom du disque de la carte est /dev/sdc.
+			[icon="../images/plugin/tip.png"]
+			[TIP]
+			Dans cet exemple, le nom du disque de la carte est /dev/sdc.
 
 
