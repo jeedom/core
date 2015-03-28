@@ -547,7 +547,7 @@ class cmd {
 		$value = $cmd->execCmd();
 		$check = jeedom::evaluateExpression($value . $cmd->getConfiguration('jeedomCheckCmdOperator') . $cmd->getConfiguration('jeedomCheckCmdTest'));
 		if ($check == 1 || $check || $check == '1') {
-			nodejs::pushUpdate('jeedom::alertPopup', $cmd->getHumanName() . __(' est à ', __FILE__) . $value . __(' depuis plus de ', __FILE__) . $cmd->getConfiguration('jeedomCheckCmdTime') . __('min', __FILE__));
+			log::add('cmd', 'error', $cmd->getHumanName() . __(' est à ', __FILE__) . $value . __(' depuis plus de ', __FILE__) . $cmd->getConfiguration('jeedomCheckCmdTime') . __('min', __FILE__));
 		}
 	}
 
