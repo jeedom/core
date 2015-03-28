@@ -1,14 +1,14 @@
 ==== Description
 
-Il y a deux manières de sauvegarder la Jeedom mini+ et chacune comporte des avantages et des inconvénients.
+Il y a deux manières de sauvegarder la Jeedom et chacune comporte des avantages et des inconvénients.
 
 Il est possible de réaliser une sauvegarde à partir de l'interface Jeedom, cette sauvegarde concerne uniquement le logiciel Jeedom et ses données. Elle à l'avantage de pouvoir être faite à chaud et les fichiers de sauvegardes peuvent être exportés vers d'autrers endroits.
 
-Il est aussi possible de réaliser une sauvegarde en faisant une image disque de la carte microSD contenue dans la mini+. Elle à l'avantage d'être une sauvegarde complète du système ainsi que de Jeedom et ses données. Par contre il faut l'effectuer en éteignant la mini+ et en branchant la carte microSD sur un autre ordinateur.
+Il est aussi possible de réaliser une sauvegarde en faisant une image disque de la carte microSD (mini et mini+). Elle à l'avantage d'être une sauvegarde complète du système ainsi que de Jeedom et ses données. Par contre il faut l'effectuer en éteignant Jeedom et en branchant la carte microSD sur un autre ordinateur.
 
 Le meilleur moyen d'être tranquile est d'utiliser les deux : Faire une sauvegarde de la carte microSD de temps en temps et programmer une sauvegarde régulière de Jeedom.
 
-TIP: La procédure de restauration de la carte microSD peut-être utile pour restaurer une mini+ par défaut à partir de l'image fournie par l'équipe dans votre profil sur le market Jeedom. 
+TIP: La procédure de restauration de la carte microSD peut-être utile pour restaurer un Jeedom par défaut à partir de l'image fournie par l'équipe voir link:http://doc.jeedom.fr/fr_FR/doc-installation.html[ici]. 
 
 image::../images/save-restore01.JPG[align="center"]
 
@@ -41,8 +41,8 @@ TIP: Afin que Jeedom fasse automatiquement un sauvegarde avant les mises à jour
 			* Sauvegardes disponbiles : Permet de voir et sélectionner le fichier de sauvegarde local qui sera utilisé pour les actions sur le boutons suivants.
 			* Restaurer la sauvegarde : Le bouton _Restaurer_ permet de lancer une restauration de Jeedom en utilisant le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
 			* Supprimer la sauvegarde : Le bouton _Supprimer_ permet de supprimer le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
-			* Envoyer une sauvegarde : Permet de re-injecter dans Jeedom un fichier de sauvegarde que vous auriez téléchargé sur votre ordinateur, afin de pouvoir l'utiliser pour restaurer Jeedom.
 			* Télécharger la sauvegarde : Le bouton _Télécharger_ permet de récupérer sur son ordinateur le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
+			* Envoyer une sauvegarde : Permet de re-injecter dans Jeedom un fichier de sauvegarde que vous auriez téléchargé sur votre ordinateur, afin de pouvoir l'utiliser pour restaurer Jeedom.
 
 image::../images/save-restore03.JPG[align="center"]
 

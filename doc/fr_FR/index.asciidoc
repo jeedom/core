@@ -41,8 +41,8 @@ include::administration.asciidoc[]
 
 '''
 [[backup]]
-==== Sauvegarde
-include::backup.asciidoc[]
+=== Sauvegarde/Restauration
+include::save-restore.asciidoc[]
 
 '''
 [[cron]]
