@@ -1,3 +1,4 @@
+:icons:
 == Core
 
 === Description
