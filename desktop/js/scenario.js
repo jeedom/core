@@ -824,7 +824,7 @@ function addTrigger(_trigger) {
   div += '<input class="scenarioAttr input-sm form-control" data-l1key="trigger" value="' + _trigger + '" >';
   div += '</div>';
   div += '<div class="col-xs-1">';
-  div += '<a class="btn btn-default btn-xs cursor bt_selectTrigger"><i class="fa fa-list-alt"></i></a>';
+  div += '<a class="btn btn-default btn-sm cursor bt_selectTrigger"><i class="fa fa-list-alt"></i></a>';
   div += '</div>';
   div += '<div class="col-xs-1">';
   div += '<i class="fa fa-minus-circle bt_removeTrigger cursor"></i>';
