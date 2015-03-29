@@ -78,6 +78,7 @@
  $('body').delegate('.plan-link-widget', 'click', function () {
     if ($('#bt_editPlan').attr('data-mode') != "1") {
         if (planHeader_id != $(this).attr('data-link_id')) {
+            $('#sel_planHeader').value($(this).attr('data-link_id'));
             planHeader_id = $(this).attr('data-link_id');
             displayPlan($(this).attr('data-offsetX'), $(this).attr('data-offsetX'));
         }
@@ -273,7 +274,7 @@ $('#bt_switchFullScreen').on('click', function () {
     }
 });
 
-$('.view-link-widget,.plan-link-widget').on('click', function () {
+$('.view-link-widget').on('click', function () {
     if ($('#bt_editPlan').attr('data-mode') == '0') {
         $(this).find('a').click();
     }
