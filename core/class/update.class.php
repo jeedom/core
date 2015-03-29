@@ -55,6 +55,8 @@ class update {
 					$update->setLogicalId('jeedom');
 					if (method_exists('jeedom', 'version')) {
 						$update->setLocalVersion(jeedom::version());
+					} else {
+						$update->setLocalVersion(getVersion('jeedom'));
 					}
 					$update->save();
 					$update->checkUpdate();
@@ -73,6 +75,8 @@ class update {
 			$update->setLogicalId('jeedom');
 			if (method_exists('jeedom', 'version')) {
 				$update->setLocalVersion(jeedom::version());
+			} else {
+				$update->setLocalVersion(getVersion('jeedom'));
 			}
 			$update->save();
 			$update->checkUpdate();
