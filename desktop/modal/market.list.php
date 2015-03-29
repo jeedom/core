@@ -299,7 +299,6 @@ foreach ($markets as $market) {
 	echo "</center>";
 
 	if ($name == null && $type == 'widget' && isset($widget_found[$widget_name]) && $widget_found[$widget_name] > 1) {
-		echo displayWidgetType($market->getName()) . displayWidgetSubtype($market->getName());
 		echo '<strong class="well col-sm-12 text-center" style="font-size : 1em;position:relative;padding: 5px; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $widget_name;
 		echo '<span style="font-size : 1.1em;" class="badge pull-right tooltips" title="{{Nombre de widgets}}">' . $widget_found[$widget_name] . '</span>';
 		echo '</strong>';
@@ -311,12 +310,13 @@ foreach ($markets as $market) {
 			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $market->getName() . '</span>';
 		}
 	}
-
-	if ($market->getCertification() == 'Officiel') {
-		echo '<br/><span style="font-size : 0.85em;color:#7f8c8d;position:relative; top : 10px;">Officiel</span>';
-	}
-	if ($market->getCertification() == 'Recommandé') {
-		echo '<br/><span style="font-size : 0.85em;color:#7f8c8d;position:relative; top : 10px;">Recommandé</span>';
+	if ($market->getType() != 'widget') {
+		if ($market->getCertification() == 'Officiel') {
+			echo '<br/><span style="font-size : 0.85em;color:#7f8c8d;position:relative; top : 10px;">Officiel</span>';
+		}
+		if ($market->getCertification() == 'Recommandé') {
+			echo '<br/><span style="font-size : 0.85em;color:#7f8c8d;position:relative; top : 10px;">Recommandé</span>';
+		}
 	}
 	$note = $market->getRating();
 
