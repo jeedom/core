@@ -217,7 +217,7 @@ $first = true;
 $nCategory = 0;
 $widget_found = array();
 if ($type == 'widget') {
-	foreach ($markets as &$market) {
+	foreach ($markets as $market) {
 		$widget_name = explode('.', $market->getName());
 		if (isset($widget_name[3])) {
 			$widget_name = $widget_name[3];
@@ -241,7 +241,7 @@ foreach ($markets as $market) {
 		$widget_name = $widget_name[3];
 		$widget_name = explode('_', $widget_name);
 		$widget_name = $widget_name[0];
-		if (isset($widget[$widget_name])) {
+		if (isset($widget[$widget_name]) && $name == null) {
 			continue;
 		}
 		$widget[$widget_name] = true;
