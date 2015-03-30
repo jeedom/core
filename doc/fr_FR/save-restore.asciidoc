@@ -12,7 +12,7 @@ Le meilleur moyen d'être tranquile est d'utiliser les deux : Faire une sauvegar
 [TIP]
 La procédure de restauration de la carte microSD peut-être utile pour restaurer un Jeedom par défaut à partir de l'image fournie par l'équipe voir link:http://doc.jeedom.fr/fr_FR/doc-installation.html[ici]. 
 
-image::../images/save-restore01.JPG[align="center"]
+image::../images/save-restore01.jpg[align="center"]
 
 '''
 
@@ -35,7 +35,7 @@ Ne pas oublier de cliquer sur le bouton vert _Sauvegarder_ afin d'enregistrer le
 +
 _Les paramètres suivis d'un ° sont uniquement disponibles en mode expert._
 +
-image::../images/save-restore02.JPG[align="center"]
+image::../images/save-restore02.jpg[align="center"]
 +
 [icon="../images/plugin/tip.png"]
 [TIP]
@@ -49,20 +49,20 @@ Afin que Jeedom fasse automatiquement un sauvegarde avant les mises à jour, il 
 * Télécharger la sauvegarde : Le bouton _Télécharger_ permet de récupérer sur son ordinateur le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
 * Envoyer une sauvegarde : Permet de re-injecter dans Jeedom un fichier de sauvegarde que vous auriez téléchargé sur votre ordinateur, afin de pouvoir l'utiliser pour restaurer Jeedom.
 +
-image::../images/save-restore03.JPG[align="center"]
+image::../images/save-restore03.jpg[align="center"]
 
 . [underline]#Sauvegardes cloud#
 
 * Sauvegardes disponibles : Permet de voir et sélectionner le fichier de sauvegarde disponible sur le cloud qui sera utilisé pour la restauration.
 * Restaurer la sauvegarde : Le bouton _Restaurer_ permet de lancer une restauration de Jeedom en utilisant le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
 +
-image::../images/save-restore04.JPG[align="center"]
+image::../images/save-restore04.jpg[align="center"]
 +
 [icon="../images/plugin/important.png"]
 [IMPORTANT]
 Afin de pouvoir utiliser la sauvegarde sur le cloud vous devez acheter un abonnement à partir de votre profil sur le market Jeedom. Vous pouvez aussi à cet endroit voir et récupérer les fichiers de backup disponibles.
 +
-image::../images/save-restore05.JPG[align="center"]
+image::../images/save-restore05.jpg[align="center"]
 
 ===== [underline]#II) Sauvegarde#
 
@@ -87,15 +87,15 @@ Si vous venez de re-installer complètement votre mini+ (Par exemple à partir d
 Ces sauvegardes/restaurations se réalisent à partir d'un autre ordinateur afin de faire une "image propre" de la carte SD. 
 Il faut dans un premier temps arrêter la mini+. Pour celà, passer Jeedom en mode expert dans le menu utilisateur en haut à droite.
 
-image::../images/save-restore06.JPG[align="center"]
+image::../images/save-restore06.jpg[align="center"]
 
 Et cliquer sur Eteindre
 
-image::../images/save-restore07.JPG[align="center"]
+image::../images/save-restore07.jpg[align="center"]
 
 Ensuite, il faut sortir la carte microSD de la mini+ et la connecter à votre ordinateur via un adapateur/lecteur de carte/...
 
-image::../images/save-restore08.JPG[align="center"]
+image::../images/save-restore08.jpg[align="center"]
 
 ===== [underline]#II) Sous Windows#
 
@@ -109,7 +109,7 @@ Dans le champ _Image File_, indiquer le nom du fichier image que vous voulez cr�
 +
 Enfin cliquer sur le bouton _Read_, afin de créer l'image.
 +
-image::../images/save-restore09.JPG[align="center"]
+image::../images/save-restore09.jpg[align="center"]
 
 . [underline]#Restauration#
 +
@@ -119,13 +119,13 @@ Dans le champ _Image File_, allez chercher le fichier image que vous voulez rest
 +
 Enfin cliquer sur le bouton _Write_, afin de restaurer cette image sur la carte microSD.
 +
-image::../images/save-restore10.JPG[align="center"]
+image::../images/save-restore10.jpg[align="center"]
 
 ===== [underline]#III) Sous MacOSX#
 
 Pour vous faciliter la tâche, vous pouvez télécharger le logiciel http://www.tweaking4all.com/hardware/raspberry-pi/macosx-apple-pi-baker/[ApplePi-Baker]
 
-image::../images/save-restore11.JPG[align="center"]
+image::../images/save-restore11.jpg[align="center"]
 
 . [underline]#Sauvegarde#
 +
@@ -133,7 +133,7 @@ image::../images/save-restore11.JPG[align="center"]
 * En commande shell :
 ** Afin de trouver le disque correspondant à la carte, ouvrir un terminal et saisir la commande : _diskutil list_
 +
-image::../images/save-restore12.JPG[align="center"]
+image::../images/save-restore12.jpg[align="center"]
 +
 ** Lancer la création de l'image en saisissant la commande : _sudo dd if=/dev/rdisk1 of=~/Desktop/Backup_Jeedom.img bs=1m_
 +
