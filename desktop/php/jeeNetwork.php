@@ -49,6 +49,12 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
                                 <input class="form-control jeeNetworkAttr" type="text" data-l1key="ip" placeholder="IP"/>
                             </div>
                         </div>
+                          <div class="form-group">
+                            <label class="col-sm-4 col-xs-6 control-label">{{Complement}}</label>
+                            <div class="col-sm-4 col-xs-6">
+                                <input class="form-control jeeNetworkAttr" type="text" data-l1key="configuration" data-l2key="addrComplement" placeholder="ex : /jeedom"/>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-4 col-xs-6 control-label">{{Clef API}}</label>
                             <div class="col-sm-6 col-xs-6">
