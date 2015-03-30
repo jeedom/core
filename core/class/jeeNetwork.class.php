@@ -232,7 +232,7 @@ class jeeNetwork {
 			$this->handshake();
 		} catch (Exception $e) {
 			$old_ip = $this->getIp();
-			if (strpos($this->getIp(), '/jeedom') === false) {
+			if ($this->getConfiguration('addrComplement') != '/jeedom') {
 				try {
 					$this->setIp($this->getIp());
 					$this->setConfiguration('addrComplement', '/jeedom');
