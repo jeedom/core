@@ -528,14 +528,19 @@ jeedom.cmd.changeSubType = function(_cmd) {
             if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
                 _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
                 _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').show();
-            }
-            _cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('change');
-            modifyWithoutSave = false;
-            if ('function' == typeof(initExpertMode)) {
-                initExpertMode();
-            }
+                _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').hide();
+                _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').hide();
+            }else{
+             _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').show();
+             _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').show();
+         }
+         _cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('change');
+         modifyWithoutSave = false;
+         if ('function' == typeof(initExpertMode)) {
+            initExpertMode();
         }
-    });
+    }
+});
 };
 
 jeedom.cmd.availableType = function() {
