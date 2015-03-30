@@ -135,7 +135,7 @@ if (count(scenario::all()) == 0) {
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <textarea class="form-control scenarioAttr" data-l1key="description" placeholder="Description" rows="3"></textarea>
+                                    <textarea class="form-control scenarioAttr" data-l1key="description" placeholder="Description" rows="5"></textarea>
                                 </div>
                             </div>
                         </form>
@@ -144,19 +144,25 @@ if (count(scenario::all()) == 0) {
                     <div class="col-sm-6">
                         <form class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-3 col-xs-3 control-label">{{Actif}}</label>
+                                <label class="col-sm-4 col-xs-4 control-label">{{Actif}}</label>
                                 <div class="col-sm-1 col-xs-1">
                                     <input type="checkbox" class="scenarioAttr" data-l1key="isActive">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-xs-3 control-label" for="span_lastCheck">{{Dernier lancement}}</label>
+                                <label class="col-sm-4 col-xs-4 control-label">{{Executer le plus rapidement}}</label>
+                                <div class="col-sm-1 col-xs-1">
+                                    <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="speedPriority" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label" for="span_lastCheck">{{Dernier lancement}}</label>
                                 <div class="col-xs-3">
                                     <div><span id="span_lastLaunch" class="label label-info" style="position: relative; top: 4px;"></span></div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-xs-3 control-label" for="span_ongoing">{{Etat}}</label>
+                                <label class="col-xs-4 control-label" for="span_ongoing">{{Etat}}</label>
                                 <div class="col-xs-3">
                                     <div><span id="span_ongoing" class="label" style="position: relative; top: 4px;"></span></div>
                                 </div>
