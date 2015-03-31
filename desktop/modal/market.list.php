@@ -218,18 +218,21 @@ $nCategory = 0;
 $widget_found = array();
 if ($type == 'widget') {
 	foreach ($markets as $market) {
-		$widget_name = explode('.', $market->getName());
-		if (isset($widget_name[3])) {
-			$widget_name = $widget_name[3];
+		$widget_id = explode('.', $market->getLogicalId());
+		if (isset($widget_id[3])) {
+			$widget_id = $widget_id[3];
 		} else {
-			$widget_name = $widget_name[0];
+			$widget_id = $widget_id[0];
 		}
-		$widget_name = explode('_', $widget_name);
-		$widget_name = $widget_name[0];
-		if (isset($widget_found[$widget_name])) {
-			$widget_found[$widget_name]++;
+		$widget_id = explode('_', $widget_id);
+		$widget_id = $widget_id[0];
+		if (trim($widget_id) == '') {
+			$widget_id = $market->getLogicalId();
+		}
+		if (isset($widget_found[$widget_id])) {
+			$widget_found[$widget_id]++;
 		} else {
-			$widget_found[$widget_name] = 1;
+			$widget_found[$widget_id] = 1;
 		}
 	}
 }
@@ -237,15 +240,23 @@ if ($type == 'widget') {
 $widget = array();
 foreach ($markets as $market) {
 	if ($type == 'widget') {
+		$widget_id = explode('.', $market->getLogicalId());
+		$widget_id = $widget_id[3];
+		$widget_id = explode('_', $widget_id);
+		$widget_id = $widget_id[0];
+		if (isset($widget[$widget_id]) && $name == null) {
+			continue;
+		}
+		$widget[$widget_id] = true;
+		if (trim($widget_id) == '') {
+			$widget_id = $market->getLogicalId();
+		}
 		$widget_name = explode('.', $market->getName());
 		$widget_name = $widget_name[3];
 		$widget_name = explode('_', $widget_name);
 		$widget_name = $widget_name[0];
-		if (isset($widget[$widget_name]) && $name == null) {
-			continue;
-		}
-		$widget[$widget_name] = true;
 
+		$widget[$widget_name] = true;
 		if (trim($widget_name) == '') {
 			$widget_name = $market->getName();
 		}
@@ -268,8 +279,8 @@ foreach ($markets as $market) {
 		$nCategory++;
 	}
 
-	if ($name == null && $type == 'widget' && isset($widget_found[$widget_name]) && $widget_found[$widget_name] > 1) {
-		echo '<div class="marketMultiple cursor" data-href=' . buildUrl('name', '') . ' data-market_name="' . $widget_name . '$" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+	if ($name == null && $type == 'widget' && isset($widget_found[$widget_id]) && $widget_found[$widget_id] > 1) {
+		echo '<div class="marketMultiple cursor" data-href=' . buildUrl('name', '') . ' data-market_name="' . $widget_id . '$" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	} else {
 		$install = 'notInstall';
 		if (!is_object($update)) {
@@ -278,7 +289,7 @@ foreach ($markets as $market) {
 		echo '<div class="market cursor ' . $install . '" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	}
 
-	if ($name == null && $type == 'widget' && isset($widget_found[$widget_name]) && $widget_found[$widget_name] > 1) {
+	if ($name == null && $type == 'widget' && isset($widget_found[$widget_id]) && $widget_found[$widget_id] > 1) {
 
 	} else {
 		if ($market->getType() == 'widget') {
@@ -303,9 +314,9 @@ foreach ($markets as $market) {
 
 	echo "</center>";
 
-	if ($name == null && $type == 'widget' && isset($widget_found[$widget_name]) && $widget_found[$widget_name] > 1) {
-		echo '<strong class="well col-sm-12 text-center" style="font-size : 1em;position:relative;padding: 5px; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $widget_name;
-		echo '<span style="font-size : 1.1em;" class="badge pull-right tooltips" title="{{Nombre de widgets}}">' . $widget_found[$widget_name] . '</span>';
+	if ($name == null && $type == 'widget' && isset($widget_found[$widget_id]) && $widget_found[$widget_id] > 1) {
+		echo '<strong class="well col-sm-12 text-center" style="font-size : 1em;position:relative;padding: 5px; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $widget_id;
+		echo '<span style="font-size : 1.1em;" class="badge pull-right tooltips" title="{{Nombre de widgets}}">' . $widget_found[$widget_id] . '</span>';
 		echo '</strong>';
 	} else {
 		if ($market->getType() == 'widget') {
