@@ -234,6 +234,7 @@ if ($type == 'widget') {
 	}
 }
 
+var_dump($widget);
 $widget = array();
 foreach ($markets as $market) {
 	if ($type == 'widget') {
@@ -245,6 +246,10 @@ foreach ($markets as $market) {
 			continue;
 		}
 		$widget[$widget_name] = true;
+
+		if (trim($widget_name) == '') {
+			$widget_name = $market->getName();
+		}
 	}
 	$update = update::byLogicalId($market->getLogicalId());
 
@@ -252,6 +257,7 @@ foreach ($markets as $market) {
 	if ($category == '') {
 		$category = 'Aucune';
 	}
+
 	if ($categorie != $category) {
 		$categorie = $category;
 		if (!$first) {
