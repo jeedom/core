@@ -29,7 +29,6 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		$plugin = plugin::byId(init('id'));
-
 		$return = utils::o2a($plugin);
 		$return['activate'] = $plugin->isActive();
 		$return['configurationPath'] = $plugin->getPathToConfigurationById();
