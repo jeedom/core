@@ -1,8 +1,8 @@
 ==== Description
 
-Il y a deux manières de sauvegarder la Jeedom et chacune comporte des avantages et des inconvénients.
+Il y a deux manières de sauvegarder Jeedom et chacune comporte des avantages et des inconvénients.
 
-Il est possible de réaliser une sauvegarde à partir de l'interface Jeedom, cette sauvegarde concerne uniquement le logiciel Jeedom et ses données. Elle à l'avantage de pouvoir être faite à chaud et les fichiers de sauvegardes peuvent être exportés vers d'autrers endroits.
+Il est possible de réaliser une sauvegarde à partir de l'interface Jeedom, cette sauvegarde concerne uniquement le logiciel Jeedom et ses données. Elle à l'avantage de pouvoir être faite à chaud et les fichiers de sauvegardes peuvent être exportés vers d'autres endroits.
 
 Il est aussi possible de réaliser une sauvegarde en faisant une image disque de la carte microSD (mini et mini+). Elle à l'avantage d'être une sauvegarde complète du système ainsi que de Jeedom et ses données. Par contre il faut l'effectuer en éteignant Jeedom et en branchant la carte microSD sur un autre ordinateur.
 
@@ -16,7 +16,7 @@ image::../images/save-restore01.jpg[align="center"]
 
 '''
 
-==== [underline]#A - Sauvegarde/Restauration de Jeedom#
+==== Sauvegarde/Restauration de Jeedom#
 
 Afin de gérer et paramétrer les sauvegardes, il faut se rendre dans le menu _Général > Administration > Sauvegardes_.
 
@@ -43,7 +43,7 @@ Afin que Jeedom fasse automatiquement un sauvegarde avant les mises à jour, il 
 
 . [underline]#Sauvegardes locales#
 
-* Sauvegardes disponbiles : Permet de voir et sélectionner le fichier de sauvegarde local qui sera utilisé pour les actions sur le boutons suivants.
+* Sauvegardes disponbiles : Permet de voir et sélectionner le fichier de sauvegarde local qui sera utilisé pour les actions sur les boutons suivants.
 * Restaurer la sauvegarde : Le bouton _Restaurer_ permet de lancer une restauration de Jeedom en utilisant le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
 * Supprimer la sauvegarde : Le bouton _Supprimer_ permet de supprimer le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
 * Télécharger la sauvegarde : Le bouton _Télécharger_ permet de récupérer sur son ordinateur le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
@@ -60,7 +60,7 @@ image::../images/save-restore04.jpg[align="center"]
 +
 [icon="../images/plugin/important.png"]
 [IMPORTANT]
-Afin de pouvoir utiliser la sauvegarde sur le cloud vous devez acheter un abonnement à partir de votre profil sur le market Jeedom. Vous pouvez aussi à cet endroit voir et récupérer les fichiers de backup disponibles.
+Afin de pouvoir utiliser la sauvegarde sur le cloud vous devez acheter un abonnement à partir de votre profil sur le market Jeedom. Vous pouvez aussi à cet endroit voir et récupérer les fichiers de sauvegarde disponibles.
 +
 image::../images/save-restore05.jpg[align="center"]
 
@@ -80,7 +80,7 @@ Si vous venez de re-installer complètement votre mini+ (Par exemple à partir d
 
 '''
 
-==== [underline]#B - Sauvegarde/Restauration de la carte microSD#
+==== Sauvegarde/Restauration de la carte microSD#
 
 ===== [underline]#I) Préparatifs#
 

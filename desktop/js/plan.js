@@ -94,10 +94,10 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                 $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
-                 window.location.reload();
-             },
-         });
+                   $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
+                   window.location.reload();
+               },
+           });
         }
     });
 });
@@ -577,9 +577,9 @@ function displayFrameObject(name, _type, _id, _html, _plan, _noRender) {
         $(name).find('.eqLogic-widget[data-eqLogic_id=' + _id + ']').remove();
     } 
     if (_type == 'scenario') { 
-       $(name).find('.scenario-widget[data-scenario_id=' + _id + ']').remove();
-   } 
-   if (_type == 'view') { 
+     $(name).find('.scenario-widget[data-scenario_id=' + _id + ']').remove();
+ } 
+ if (_type == 'view') { 
     $(name).find('.view-link-widget[data-link_id=' + _id + ']').remove();
 } 
 if (_type == 'plan') { 
@@ -680,16 +680,16 @@ return html;
 }
 
 function addGraphFrame(name, _plan) {
- var parent = {
-     height: $(name).height(),
-     width: $(name).width(),
- };
- _plan = init(_plan, {});
- _plan.display = init(_plan.display, {});
- _plan.link_id = init(_plan.link_id, Math.round(Math.random() * 99999999) + 9999);
- var options = init(_plan.display.graph, '[]');
- var background_color = 'background-color : white;';
- if(init(_plan.display.transparentBackground, false)){
+   var parent = {
+       height: $(name).height(),
+       width: $(name).width(),
+   };
+   _plan = init(_plan, {});
+   _plan.display = init(_plan.display, {});
+   _plan.link_id = init(_plan.link_id, Math.round(Math.random() * 99999999) + 9999);
+   var options = init(_plan.display.graph, '[]');
+   var background_color = 'background-color : white;';
+   if(init(_plan.display.transparentBackground, false)){
     background_color = '';
 }
 var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="'+background_color+'border : solid 1px black;">';
@@ -700,18 +700,18 @@ html += '</div>';
 displayFrameObject(name, 'graph', _plan.link_id, html, _plan);
 for (var i in options) {
   if (init(options[i].link_id) != '') {
-   jeedom.history.drawChart({
-    cmd_id: options[i].link_id,
-    el: 'graph' + _plan.link_id,
-    showLegend: init(_plan.display.showLegend, true),
-    showTimeSelector: init(_plan.display.showTimeSelector, false),
-    showScrollbar: init(_plan.display.showScrollbar, true),
-    dateRange: init(_plan.display.dateRange, '7 days'),
-    option: init(options[i].configuration, {}),
-    transparentBackground : init(_plan.display.transparentBackground, false),
-    global: false,
-});
-}
+     jeedom.history.drawChart({
+        cmd_id: options[i].link_id,
+        el: 'graph' + _plan.link_id,
+        showLegend: init(_plan.display.showLegend, true),
+        showTimeSelector: init(_plan.display.showTimeSelector, false),
+        showScrollbar: init(_plan.display.showScrollbar, true),
+        dateRange: init(_plan.display.dateRange, '7 days'),
+        option: init(options[i].configuration, {}),
+        transparentBackground : init(_plan.display.transparentBackground, false),
+        global: false,
+    });
+ }
 }
 }
 
