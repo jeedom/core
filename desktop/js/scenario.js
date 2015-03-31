@@ -62,6 +62,10 @@ $("#div_listScenario").resizable({
   }
 });
 
+setTimeout(function(){
+  $('.scenarioListContainer').packery();
+},100);
+
 $("#div_listScenario").trigger('resize');
 
 $('.scenarioListContainer').packery();
