@@ -16,7 +16,7 @@ image::../images/save-restore01.jpg[align="center"]
 
 '''
 
-==== Sauvegarde/Restauration de Jeedom#
+==== Sauvegarde/Restauration de Jeedom
 
 Afin de gérer et paramétrer les sauvegardes, il faut se rendre dans le menu _Général > Administration > Sauvegardes_.
 
@@ -33,7 +33,7 @@ Afin de gérer et paramétrer les sauvegardes, il faut se rendre dans le menu _G
 +
 Ne pas oublier de cliquer sur le bouton vert _Sauvegarder_ afin d'enregistrer les changements de configuration.
 +
-_Les paramètres suivis d'un ° sont uniquement disponibles en mode expert._
+_Rmq : Les paramètres suivis d'un ° sont uniquement disponibles en mode expert._
 +
 image::../images/save-restore02.jpg[align="center"]
 +
@@ -80,7 +80,7 @@ Si vous venez de re-installer complètement votre mini+ (Par exemple à partir d
 
 '''
 
-==== Sauvegarde/Restauration de la carte microSD#
+==== Sauvegarde/Restauration de la carte microSD
 
 ===== [underline]#I) Préparatifs#
 
@@ -137,9 +137,7 @@ image::../images/save-restore12.jpg[align="center"]
 +
 ** Lancer la création de l'image en saisissant la commande : _sudo dd if=/dev/rdisk1 of=~/Desktop/Backup_Jeedom.img bs=1m_
 +
-[icon="../images/plugin/tip.png"]
-[TIP]
-Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc saisir dans la commande de sauvegarde /dev/+++<u>r</u>+++disk1
+_Rmq : Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc saisir dans la commande de sauvegarde /dev/+++<u>r</u>+++disk1_
 
 . [underline]#Restauration#
 +    
@@ -152,9 +150,7 @@ Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc sais
 +
 ** Restaurer l'image sur la carte microsd en tapant la commande : _sudo dd bs=1m if=~/Desktop/Backup_Jeedom.img of=/dev/rdisk1_
 +
-[icon="../images/plugin/tip.png"]
-[TIP]
-Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc saisir dans la commande de sauvegarde /dev/+++<u>r</u>+++disk1
+_Rmq : Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc saisir dans la commande de sauvegarde /dev/+++<u>r</u>+++disk1_
 
 ===== [underline]#IV) Sous Linux#
 
@@ -171,9 +167,7 @@ Disk /dev/sdc: 8.0 GB, 8006402048 bytes
 +
 * Lancer la création de l'image en saisissant la commande : _sudo dd if=/dev/sdc of=Backup_Jeedom.img bs=1m_
 +
-[icon="../images/plugin/tip.png"]
-[TIP]
-Dans cet exemple, le nom du disque de la carte est /dev/sdc.
+_Rmq : Dans cet exemple, le nom du disque de la carte est /dev/sdc._
 
 . [underline]#Restauration#
 +    
