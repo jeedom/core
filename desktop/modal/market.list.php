@@ -234,7 +234,6 @@ if ($type == 'widget') {
 	}
 }
 
-var_dump($widget);
 $widget = array();
 foreach ($markets as $market) {
 	if ($type == 'widget') {
