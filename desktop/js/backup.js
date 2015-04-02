@@ -19,6 +19,8 @@ jwerty.key('ctrl+s', function (e) {
     $("#bt_saveBackup").click();
 });
 
+$('#pre_backupInfo').height($(window).height() - $('header').height() - $('footer').height() - 150);
+
 $("#bt_saveBackup").on('click', function (event) {
     $.hideAlert();
     jeedom.config.save({
@@ -190,7 +192,7 @@ function getJeedomLog(_autoUpdate, _log) {
                     _autoUpdate = 0;
                 }
             }
-            $('#pre_' + _log + 'Info').text(log);
+            $('#pre_backupInfo').text(log);
             if (init(_autoUpdate, 0) == 1) {
                 setTimeout(function () {
                     getJeedomLog(_autoUpdate, _log)

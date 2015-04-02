@@ -48,11 +48,15 @@
     jeedom.eqLogic.print({
         type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
         id: $(this).attr('data-eqLogic_id'),
+        status : 1,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
             $('body .eqLogicAttr').value('');
+            if(isset(data) && isset(data.timeout) && data.timeout == 0){
+                data.timeout = '';
+            }
             $('body').setValues(data, '.eqLogicAttr');
             if ('function' == typeof (printEqLogic)) {
                 printEqLogic(data);

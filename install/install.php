@@ -41,7 +41,7 @@ $backup_ok = false;
 $update_begin = false;
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-	echo "****Installation/Mise à jour de Jeedom " . getVersion('jeedom') . " (" . date('Y-m-d H:i:s') . ")****\n";
+	echo "****Installation/Mise à jour de Jeedom " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
 	echo "Paramètres de la mise à jour : level : " . init('level', -1) . ", mode : " . init('mode') . ", system : " . init('system', 'no') . " \n";
 
 	try {
@@ -101,7 +101,7 @@ try {
 					echo __('***ERREUR*** ', __FILE__) . $e->getMessage() . "\n";
 				}
 				try {
-					$url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip';
+					$url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip?timespamp=' . strtotime('now');
 					echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
 					echo __("Téléchargement en cours...", __FILE__);
 					$tmp_dir = dirname(__FILE__) . '/../tmp';
@@ -156,7 +156,7 @@ try {
 					echo __("OK\n", __FILE__);
 					echo __("Installation en cours...", __FILE__);
 					$update_begin = true;
-					@rcopy($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
+					rcopy($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
 					rrmdir($cibDir);
 					unlink($tmp);
 					echo __("OK\n", __FILE__);
@@ -233,7 +233,7 @@ try {
 					}
 				}
 			} else {
-				while (version_compare(getVersion('jeedom'), $curentVersion, '>')) {
+				while (version_compare(jeedom::version(), $curentVersion, '>')) {
 					$nextVersion = incrementVersion($curentVersion);
 					$updateSql = dirname(__FILE__) . '/update/' . $nextVersion . '.sql';
 					if (file_exists($updateSql)) {
@@ -297,12 +297,12 @@ try {
 			try {
 				echo __("Vérification de la mise à jour...", __FILE__);
 				update::checkAllUpdate('core', false);
-				config::save('version', getVersion('jeedom'));
+				config::save('version', jeedom::version());
 				echo __("OK\n", __FILE__);
 			} catch (Exception $ex) {
 				echo __("***ERREUR*** ", __FILE__) . $ex->getMessage() . "\n";
 			}
-			echo __("***************Jeedom est à jour en version ", __FILE__) . getVersion('jeedom') . "***************\n";
+			echo __("***************Jeedom est à jour en version ", __FILE__) . jeedom::version() . "***************\n";
 		}
 		if (init('level', -1) > -1) {
 			echo __("***************Mise à jour des plugins***************\n", __FILE__);
@@ -339,7 +339,7 @@ try {
 				exit(0);
 			}
 		}
-		echo "\nInstallation de Jeedom " . getVersion('jeedom') . "\n";
+		echo "\nInstallation de Jeedom " . jeedom::version() . "\n";
 		$sql = file_get_contents(dirname(__FILE__) . '/install.sql');
 		echo "Installation de la base de données...";
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
@@ -367,7 +367,7 @@ try {
 		echo "OK\n";
 	}
 
-	config::save('version', getVersion('jeedom'));
+	config::save('version', jeedom::version());
 } catch (Exception $e) {
 	if ($update) {
 		if ($backup_ok && $update_begin) {

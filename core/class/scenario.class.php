@@ -551,7 +551,7 @@ class scenario {
 
 	public function execute($_trigger = '', $_message = '') {
 		if ($this->getIsActive() != 1) {
-			$this->setLog(__('Impossible d\'exécuter le scénario : ', __FILE__) . $this->getHumanName() . ' sur : ' . $_message . ' car il est désactivé');
+			$this->setLog(__('Impossible d\'exécuter le scénario : ', __FILE__) . $this->getHumanName() . __(' sur : ', __FILE__) . $_message . __(' car il est désactivé', __FILE__));
 			$this->persistLog();
 			return;
 		}
@@ -578,6 +578,7 @@ class scenario {
 			$this->setPID('');
 			$this->save();
 		}
+		$this->setLog(__('Fin correcte du scénario', __FILE__));
 		$this->persistLog();
 		if ($this->getReturn() != '') {
 			return $this->getReturn();

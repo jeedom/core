@@ -113,6 +113,10 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'execute') {
+		ajax::success(interactQuery::tryToReply(init('query')));
+	}
+
 	if (init('action') == 'test') {
 		$return = array();
 		$interactQuery = interactQuery::recognize(init('query'));
@@ -173,7 +177,7 @@ try {
 			}
 			$reply = $interactDef->selectReply();
 			if (trim($reply) == '') {
-				$reply = self::replyOk();
+				$reply = interactQuery::replyOk();
 			}
 			$return['reply'] = $reply;
 		}

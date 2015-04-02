@@ -283,7 +283,7 @@ class eqLogic {
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM eqLogic
-        WHERE timeout>:timeout';
+        WHERE timeout>=:timeout';
 		if ($_onlyEnable) {
 			$sql .= ' AND isEnable=1';
 		}
@@ -879,6 +879,9 @@ class eqLogic {
 	}
 
 	public function setTimeout($timeout) {
+		if (is_nan($timeout) || $timeout < 1) {
+			$timeout == '';
+		}
 		$this->timeout = $timeout;
 	}
 

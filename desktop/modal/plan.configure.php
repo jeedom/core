@@ -94,17 +94,34 @@ if ($plan->getLink_type() == 'eqLogic') {
     <legend>Spécifique</legend>
     <?php
 if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
+		echo '<table class="table table-condensed">';
+		echo '<thead>';
+		echo '<tr>';
+		echo '<th>{{Commande}}</th>';
+		//echo '<th><center>{{Ne pas afficher les stats}}</center></th>';
+		echo '<th><center>{{Ne pas afficher la commande}}</center></th>';
+		echo '</tr>';
+		echo '</thead>';
+		echo '<tbody>';
 		foreach ($link->getCmd() as $cmd) {
 			if ($cmd->getIsVisible() == 1) {
-				echo '<div class="form-group">';
-				echo '<label class="col-lg-6 control-label">{{Ne pas afficher }}' . $cmd->getHumanName() . '</label>';
-				echo '<div class="col-lg-1">';
-				echo '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmd" data-l3key="' . $cmd->getID() . '" />';
-				echo '</div>';
-				echo '</div>';
+				echo '<tr>';
+				echo '<td>' . $cmd->getHumanName() . '</td>';
+				//echo '<td>';
+				if ($cmd->getIsHistorized() == 1) {
+					//	echo '<center><input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmdStats" data-l3key="' . $cmd->getID() . '" /></center>';
+				}
+				//echo '</td>';
+				echo '<td>';
+				echo '<center><input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmd" data-l3key="' . $cmd->getID() . '" /></center>';
+				echo '</td>';
+				echo '</tr>';
 			}
 		}
+		echo '</tbody>';
+		echo '</table>';
 	}
+
 	if ($plan->getLink_type() == 'scenario') {
 		echo '<div class="form-group">';
 		echo '<label class="col-lg-6 control-label">{{Masquer les commandes}}</label>';
@@ -185,7 +202,7 @@ if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
     </div>
     <?php if ($plan->getLink_type() == 'view') {
 		?>
-    <div class="form-group">
+      <div class="form-group">
         <label class="col-lg-4 control-label">{{Lien}}</label>
         <div class="col-lg-2">
             <select class="form-control planAttr" data-l1key="link_id">
@@ -194,10 +211,10 @@ foreach (view::all() as $views) {
 			echo '<option value="' . $views->getId() . '">' . $views->getName() . '</option>';
 		}
 		?>
-          </select>
-      </div>
-  </div>
-  <?php
+         </select>
+     </div>
+ </div>
+ <?php
 }
 	if ($plan->getLink_type() == 'plan') {
 		?>

@@ -262,6 +262,10 @@ class market {
 		trim($_ticket['user_plugin'], ',');
 		jeedom::sick();
 		$cibDir = realpath(dirname(__FILE__) . '/../../log');
+		if (file_exists('/var/log/messages')) {
+			@copy('/var/log/messages', realpath(dirname(__FILE__) . '/../../log/dmesg_messages'));
+		}
+		@exec('dmesg >> ' . dirname(__FILE__) . '/../../log/dmesg');
 		$tmp = dirname(__FILE__) . '/../../tmp/log.zip';
 		if (file_exists($tmp)) {
 			if (!unlink($tmp)) {
@@ -277,7 +281,7 @@ class market {
 		$file = array(
 			'file' => '@' . realpath($tmp),
 		);
-		$_ticket['options']['jeedom_version'] = getVersion('jeedom');
+		$_ticket['options']['jeedom_version'] = jeedom::version();
 		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket), 600, $file)) {
 			throw new Exception($jsonrpc->getErrorMessage());
 		}
@@ -313,7 +317,7 @@ class market {
 				'username' => config::byKey('market::username'),
 				'password' => config::byKey('market::password'),
 				'password_type' => 'sha1',
-				'jeedomversion' => getVersion('jeedom'),
+				'jeedomversion' => (method_exists('jeedom', 'version')) ? jeedom::version() : getVersion('jeedom'),
 				'hwkey' => jeedom::getHardwareKey(),
 				'addrProtocol' => config::byKey('externalProtocol'),
 				'addrPort' => config::byKey('externalPort'),
@@ -322,7 +326,7 @@ class market {
 			));
 		} else {
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
-				'jeedomversion' => getVersion('jeedom'),
+				'jeedomversion' => (method_exists('jeedom', 'version')) ? jeedom::version() : getVersion('jeedom'),
 				'hwkey' => jeedom::getHardwareKey(),
 			));
 		}
@@ -380,7 +384,7 @@ class market {
 					if (isset($markets[$logicalId])) {
 						$market = $markets[$logicalId];
 						if (!is_object($market)) {
-							$return['status'] = 'depreciated';
+							$return['status'] = 'ok';
 						} else {
 							$return['datetime'] = $market->getDatetime($_version[$i]);
 							$return['market'] = 1;
@@ -401,7 +405,7 @@ class market {
 							}
 						}
 					} else {
-						$return['status'] = 'depreciated';
+						$return['status'] = 'ok';
 					}
 				} catch (Exception $e) {
 					log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());

@@ -225,7 +225,7 @@ class plugin {
 	}
 
 	public function setIsEnable($_state) {
-		if (version_compare(getVersion('jeedom'), $this->getRequire()) == -1 && $_state == 1) {
+		if (version_compare(jeedom::version(), $this->getRequire()) == -1 && $_state == 1) {
 			throw new Exception('Votre version de jeedom n\'est pas assez récente pour activer ce plugin');
 		}
 		$alreadyActive = config::byKey('active', $this->getId(), 0);
@@ -238,6 +238,8 @@ class plugin {
 		}
 		if ($_state == 0) {
 			foreach (eqLogic::byType($this->getId()) as $eqLogic) {
+				$eqLogic->setConfiguration('previousIsEnable', $eqLogic->getIsEnable());
+				$eqLogic->setConfiguration('previousIsVisible', $eqLogic->getIsVisible());
 				$eqLogic->setIsEnable(0);
 				$eqLogic->setIsVisible(0);
 				$eqLogic->save();
@@ -245,8 +247,8 @@ class plugin {
 		}
 		if ($alreadyActive == 0 && $_state == 1) {
 			foreach (eqLogic::byType($this->getId()) as $eqLogic) {
-				$eqLogic->setIsEnable(1);
-				$eqLogic->setIsVisible(1);
+				$eqLogic->setIsEnable($eqLogic->getConfiguration('previousIsEnable', 1));
+				$eqLogic->setIsVisible($eqLogic->getConfiguration('previousIsVisible', 1));
 				$eqLogic->save();
 			}
 		}

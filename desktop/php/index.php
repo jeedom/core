@@ -22,13 +22,13 @@ if (init('p') == '' && isConnect()) {
 $page = '';
 if (isConnect() && init('p') != '') {
 	$page = init('p');
-	$title .= ' - ' . ucfirst($page);
+	$title = ucfirst($page) . ' - ' . $title;
 }
 $plugin = init('m');
 if ($plugin != '') {
 	$plugin = plugin::byId($plugin);
 	if (is_object($plugin)) {
-		$title = 'Jeedom - ' . $plugin->getName();
+		$title = ucfirst($plugin->getName()) . ' - Jeedom';
 	}
 }
 $plugins_list = plugin::listPlugin(true, true);
@@ -436,7 +436,7 @@ if (isConnect()) {
 	?>
 						<footer>
 							<span class="pull-left">Node JS <span class="span_nodeJsState binary red tooltips"></span> - </span>
-							<span class="pull-left">&copy; <a id="bt_jeedomAbout" class="cursor">Jeedom</a> (v<?php echo getVersion('jeedom')?>
+							<span class="pull-left">&copy; <a id="bt_jeedomAbout" class="cursor">Jeedom</a> (v<?php echo jeedom::version();?>
 								<?php
 $nbNeedUpdate = update::nbNeedUpdate();
 	if ($nbNeedUpdate == 1) {

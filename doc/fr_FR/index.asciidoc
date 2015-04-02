@@ -1,3 +1,4 @@
+:icons:
 == Core
 
 === Description
@@ -38,11 +39,6 @@ include::history.asciidoc[]
 [[administration]]
 ==== Administration
 include::administration.asciidoc[]
-
-'''
-[[backup]]
-==== Sauvegarde
-include::backup.asciidoc[]
 
 '''
 [[cron]]
@@ -98,6 +94,11 @@ include::update.asciidoc[]
 [[user]]
 ==== Utilisateurs
 include::user.asciidoc[]
+
+'''
+[[backup]]
+=== Sauvegarde/Restauration
+include::save-restore.asciidoc[]
 
 '''
 [[profils]]

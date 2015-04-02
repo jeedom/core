@@ -152,6 +152,15 @@ try {
 			throw new Exception(__('EqLogic inconnu verifié l\'id : ', __FILE__) . init('id'));
 		}
 		$return = utils::o2a($eqLogic);
+		if (init('status') == 1) {
+			$return['status'] = array(
+				'state' => 'ok',
+				'lastCommunication' => $eqLogic->getStatus('lastCommunication'),
+			);
+			if ($eqLogic->getTimeout() > 0 && $eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $eqLogic->getTimeout() . ' minutes' . date('Y-m-d H:i:s')))) {
+				$return['status']['state'] = 'timeout';
+			}
+		}
 		$return['cmd'] = utils::o2a($eqLogic->getCmd());
 		ajax::success(jeedom::toHumanReadable($return));
 	}
@@ -187,7 +196,8 @@ try {
 			if (method_exists($eqLogic, 'preAjax')) {
 				$eqLogic->preAjax();
 			}
-			utils::a2o($eqLogic, jeedom::fromHumanReadable($eqLogicSave));
+			$eqLogicSave = jeedom::fromHumanReadable($eqLogicSave);
+			utils::a2o($eqLogic, $eqLogicSave);
 			$dbList = $typeCmd::byEqLogicId($eqLogic->getId());
 			$eqLogic->save();
 			$enableList = array();
@@ -204,7 +214,7 @@ try {
 					}
 					$cmd->setEqLogic_id($eqLogic->getId());
 					$cmd->setOrder($cmd_order);
-					utils::a2o($cmd, jeedom::fromHumanReadable($cmd_info));
+					utils::a2o($cmd, $cmd_info);
 					$cmd->save();
 					$cmd_order++;
 					$enableList[$cmd->getId()] = true;

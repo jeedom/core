@@ -15,6 +15,7 @@ if (!isset($market)) {
 include_file('3rdparty', 'bootstrap.rating/bootstrap.rating', 'js');
 include_file('3rdparty', 'slick/slick.min', 'js');
 include_file('3rdparty', 'slick/slick', 'css');
+include_file('3rdparty', 'slick/slick-theme', 'css');
 include_file('3rdparty', 'fancybox/jquery.fancybox', 'js');
 include_file('3rdparty', 'fancybox/jquery.fancybox', 'css');
 
@@ -299,17 +300,13 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
         autoHeight: true,
     });
 
-    $('.variable-width').unslick().slick({
+    $('.variable-width').slick({
         dots: true,
-        speed: 200,
+        speed: 300,
         variableWidth: true,
         accessibility: true,
+        infinite: true,
     });
-    $('.variable-width').slickNext();
-    setTimeout(function () {
-        $('.variable-width').slickGoTo(0);
-    }, 200);
-
 
     $('body').setValues(market_display_info, '.marketAttr');
     if($.isArray(market_display_info.changelog)){
@@ -327,21 +324,21 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
         $('.marketAttr[data-l1key=changelog]').html(html);
         var html = '';
         for(var i in market_display_info.changelog.reverse()){
-         html += '<strong>{{Version}} '+market_display_info.changelog[i].version+' - '+market_display_info.changelog[i].date+'</strong><br/>';
-         html += linkify(market_display_info.changelog[i].change);
-         html += '<br/><br/>';
-     }
-     $('#div_changelog').html(html);
- }
- $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
- $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
+           html += '<strong>{{Version}} '+market_display_info.changelog[i].version+' - '+market_display_info.changelog[i].date+'</strong><br/>';
+           html += linkify(market_display_info.changelog[i].change);
+           html += '<br/><br/>';
+       }
+       $('#div_changelog').html(html);
+   }
+   $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
+   $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
 
- $('#bt_paypalClick').on('click', function () {
+   $('#bt_paypalClick').on('click', function () {
     $(this).hide();
 });
 
 
- $("#div_comments").dialog({
+   $("#div_comments").dialog({
     autoOpen: false,
     modal: true,
     height: (jQuery(window).height() - 300),
@@ -354,7 +351,7 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
     }
 });
 
- $("#div_changelog").dialog({
+   $("#div_changelog").dialog({
     autoOpen: false,
     modal: true,
     height: (jQuery(window).height() - 300),
@@ -367,17 +364,17 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
     }
 });
 
- $("#bt_viewCompleteChangelog").on('click',function(){
+   $("#bt_viewCompleteChangelog").on('click',function(){
     $('#div_changelog').dialog('open');
 });
 
- $('#bt_viewComment').on('click', function () {
+   $('#bt_viewComment').on('click', function () {
     reloadMarketComment();
     $('#div_comments').dialog('open');
 });
 
 
- function reloadMarketComment() {
+   function reloadMarketComment() {
     $('#div_comments').load('index.php?v=d&modal=market.comment&id=' + $('.marketAttr[data-l1key=id]').value());
 }
 
@@ -420,9 +417,9 @@ $('#bt_removeFromMarket').on('click', function () {
 $('#in_myRating').on('change', function () {
     var id = $('.marketAttr[data-l1key=id]').value();
     jeedom.market.setRating({
-     id: id,
-     rating: $(this).val(),
-     error: function (error) {
+       id: id,
+       rating: $(this).val(),
+       error: function (error) {
         $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
     }
 });

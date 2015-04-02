@@ -59,7 +59,7 @@ try {
 				}
 				$link = 'index.php?v=d&p=plan&plan_id=' . $plan_link->getId();
 				$html = '<span class="plan-link-widget label label-success" data-link_id="' . $plan_link->getId() . '" data-offsetX="' . $plan->getDisplay('offsetX') . '" data-offsetY="' . $plan->getDisplay('offsetY') . '">';
-				$html .= '<a href="' . $link . '" style="color:' . $plan->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
+				$html .= '<a style="color:' . $plan->getCss('color', 'white') . ';text-decoration:none;font-size : 1.5em;">';
 				if ($plan->getDisplay('name') != '' || $plan->getDisplay('icon') != '') {
 					$html .= $plan->getDisplay('icon') . ' ' . $plan->getDisplay('name');
 				} else {

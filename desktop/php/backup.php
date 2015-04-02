@@ -138,12 +138,8 @@ try {
                     <?php }?>
                 </div>
                 <div class="col-sm-6">
-                    <legend>{{Informations sauvegardes}}</legend>
-                    <pre id="pre_backupInfo"></pre>
-                    <legend>{{Informations restaurations}}</legend>
-                    <pre id="pre_restoreInfo">
-
-                    </pre>
+                    <legend>{{Informations}}</legend>
+                    <pre id="pre_backupInfo" style="overflow: scroll;"></pre>
                 </div>
             </div>
         </div>

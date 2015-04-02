@@ -48,9 +48,13 @@ class log {
 	}
 
 	public static function chunk($_log = '') {
+		$maxLineLog = config::byKey('maxLineLog');
+		if ($maxLineLog < 200) {
+			$maxLineLog = 200;
+		}
 		if ($_log != '') {
 			$path = self::getPathToLog($_log);
-			shell_exec('echo "$(tail -n ' . config::byKey('maxLineLog') . ' ' . $path . ')" > ' . $path);
+			shell_exec('echo "$(tail -n ' . $maxLineLog . ' ' . $path . ')" > ' . $path);
 			@chown($path, 'www-data');
 			@chgrp($path, 'www-data');
 			@chmod($path, 0777);
@@ -59,7 +63,7 @@ class log {
 			foreach ($logs as $log) {
 				$path = dirname(__FILE__) . '/../../log/' . $log;
 				if (is_file($path)) {
-					shell_exec('echo "$(tail -n ' . config::byKey('maxLineLog') . ' ' . $path . ')" > ' . $path);
+					shell_exec('echo "$(tail -n ' . $maxLineLog . ' ' . $path . ')" > ' . $path);
 					@chown($path, 'www-data');
 					@chgrp($path, 'www-data');
 					@chmod($path, 0777);
@@ -69,7 +73,7 @@ class log {
 			foreach ($logs as $log) {
 				$path = dirname(__FILE__) . '/../../log/scenarioLog/' . $log;
 				if (is_file($path)) {
-					shell_exec('echo "$(tail -n ' . config::byKey('maxLineLog') . ' ' . $path . ')" > ' . $path);
+					shell_exec('echo "$(tail -n ' . $maxLineLog . ' ' . $path . ')" > ' . $path);
 					@chown($path, 'www-data');
 					@chgrp($path, 'www-data');
 					@chmod($path, 0777);

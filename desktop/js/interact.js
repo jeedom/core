@@ -213,7 +213,6 @@ function changeLinkType(_options) {
                 options += '</div>';
                 $('#linkOption').append(options);
                 $('.interactAttr[data-l1key=options][data-l2key=convertBinary]').closest('.form-group').hide();
-                $('.interactAttr[data-l1key=options][data-l2key=synonymes]').closest('.form-group').hide();
                 $('#div_filtre').hide();
                 delete _options.link_type;
                 $('.interact').setValues(_options, '.interactAttr');

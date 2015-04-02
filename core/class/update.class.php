@@ -42,23 +42,30 @@ class update {
 		if ($_findNewObject) {
 			self::findNewUpdateObject();
 		}
-		foreach (self::all($_filter) as $update) {
-			if ($update->getType() == 'core') {
-				if ($findCore) {
-					$update->remove();
-					continue;
-				}
-				$findCore = true;
-				$update->setType('core');
-				$update->setLogicalId('jeedom');
-				$update->setLocalVersion(getVersion('jeedom'));
-				$update->save();
-				$update->checkUpdate();
-			} else {
-				if ($update->getStatus() != 'hold') {
-					$marketObject['logical_id'][] = array('logicalId' => $update->getLogicalId(), 'type' => $update->getType());
-					$marketObject['version'][] = $update->getConfiguration('version', 'stable');
-					$marketObject[$update->getType() . $update->getLogicalId()] = $update;
+		$updates = self::all($_filter);
+		if (is_array($updates)) {
+			foreach (self::all($_filter) as $update) {
+				if ($update->getType() == 'core') {
+					if ($findCore) {
+						$update->remove();
+						continue;
+					}
+					$findCore = true;
+					$update->setType('core');
+					$update->setLogicalId('jeedom');
+					if (method_exists('jeedom', 'version')) {
+						$update->setLocalVersion(jeedom::version());
+					} else {
+						$update->setLocalVersion(getVersion('jeedom'));
+					}
+					$update->save();
+					$update->checkUpdate();
+				} else {
+					if ($update->getStatus() != 'hold') {
+						$marketObject['logical_id'][] = array('logicalId' => $update->getLogicalId(), 'type' => $update->getType());
+						$marketObject['version'][] = $update->getConfiguration('version', 'stable');
+						$marketObject[$update->getType() . $update->getLogicalId()] = $update;
+					}
 				}
 			}
 		}
@@ -66,7 +73,11 @@ class update {
 			$update = new update();
 			$update->setType('core');
 			$update->setLogicalId('jeedom');
-			$update->setLocalVersion(getVersion('jeedom'));
+			if (method_exists('jeedom', 'version')) {
+				$update->setLocalVersion(jeedom::version());
+			} else {
+				$update->setLocalVersion(getVersion('jeedom'));
+			}
 			$update->save();
 			$update->checkUpdate();
 		}

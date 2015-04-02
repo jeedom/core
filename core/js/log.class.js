@@ -32,20 +32,30 @@
  	}
  	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
- 	paramsAJAX.url = 'core/ajax/log.ajax.php';
- 	paramsAJAX.data = {
- 		action: 'get',
- 		logfile: _params.log,
- 	};
+
+ 	if(isset(_params.slaveId) && !isNaN(_params.slaveId) && _params.slaveId != ''){
+ 		paramsAJAX.url = 'core/ajax/jeeNetwork.ajax.php';
+ 		paramsAJAX.data = {
+ 			action: 'getLog',
+ 			log: _params.log,
+ 			id: _params.slaveId
+ 		};
+ 	}else{
+ 		paramsAJAX.url = 'core/ajax/log.ajax.php';
+ 		paramsAJAX.data = {
+ 			action: 'get',
+ 			logfile: _params.log,
+ 		};
+ 	}
  	$.ajax(paramsAJAX);
  }
 
  jeedom.log.autoupdate = function (_params) {
- 	if(!isset(_params['log'])){
+ 	if(!isset(_params.log)){
  		console.log('[jeedom.log.autoupdate] No logfile');
  		return;
  	}
- 	if(!isset(_params['display'])){
+ 	if(!isset(_params.display)){
  		console.log('[jeedom.log.autoupdate] No display');
  		return;
  	}
@@ -56,20 +66,29 @@
  		return;
  	}
  	jeedom.log.get({
- 		log : _params['log'],
+ 		log : _params.log,
+ 		slaveId : _params.slaveId,
  		global : false,
  		success : function(result){
  			var log = '';
  			var regex = /<br\s*[\/]?>/gi;
  			for (var i in result.reverse()) {
  				if(!isset(_params['search']) || _params['search'].value() == '' || result[i][2].toLowerCase().indexOf(_params['search'].value().toLowerCase()) != -1){
- 					log += result[i][0]+' - ';
+ 					if(result[i][0] != ''){
+ 						log += result[i][0].replace(regex, "\n");
+ 						log += " - ";
+ 					}
+ 					if(result[i][1] != ''){
+ 						log += result[i][1].replace(regex, "\n");
+ 						log += " - ";
+ 					}
  					log += result[i][2].replace(regex, "\n");
+ 					log = log.replace(/^\s+|\s+$/g, '');
  					log += "\n";
  				}
  			}
- 			_params['display'].text(log);
- 			_params['display'].scrollTop(_params['display'].height() + 200000);
+ 			_params.display.text(log);
+ 			_params.display.scrollTop(_params.display.height() + 200000);
 
  			setTimeout(function() {
  				jeedom.log.autoupdate(_params)

@@ -57,7 +57,7 @@ try {
 		throw new Exception(__('Le dossier des sauvegardes n\'est pas accessible en écriture. Vérifiez les droits : ', __FILE__) . $backup_dir);
 	}
 
-	$bakcup_name = 'backup-' . getVersion('jeedom') . '-' . date("Y-m-d-H\hi") . '.tar.gz';
+	$bakcup_name = 'backup-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz';
 
 	echo __('Sauvegarde des fichiers...', __FILE__);
 	$exclude = array('tmp', 'backup', 'log', str_replace('/', '', jeedom::getCurrentSysInfoFolder()), str_replace('/', '', jeedom::getCurrentSqlBuddyFolder()));
@@ -82,7 +82,7 @@ try {
 		foreach (plugin::listPlugin(true) as $plugin) {
 			$plugin_id = $plugin->getId();
 			if (method_exists($plugin_id, 'backup')) {
-				echo __('Sauvegarde spécifique pour le plugin...' . $plugin_id . '...', __FILE__);
+				echo __('Sauvegarde spécifique pour le plugin ' . $plugin_id . '...', __FILE__);
 				if (!file_exists($tmp . '/plugin_backup/' . $plugin_id)) {
 					mkdir($tmp . '/plugin_backup/' . $plugin_id, 0770, true);
 				}
@@ -117,6 +117,21 @@ try {
 	while (getDirectorySize($backup_dir) > $max_size) {
 		$older = array('file' => null, 'datetime' => null);
 		foreach (ls($backup_dir, '*') as $file) {
+			if (is_dir($backup_dir . '/' . $file)) {
+				foreach (ls($backup_dir . '/' . $file, '*') as $file2) {
+					if ($older['datetime'] == null) {
+						$older['file'] = $backup_dir . '/' . $file . '/' . $file2;
+						$older['datetime'] = filemtime($backup_dir . '/' . $file . '/' . $file2);
+					}
+					if ($older['datetime'] > filemtime($backup_dir . '/' . $file . '/' . $file2)) {
+						$older['file'] = $backup_dir . '/' . $file . '/' . $file2;
+						$older['datetime'] = filemtime($backup_dir . '/' . $file . '/' . $file2);
+					}
+				}
+			}
+			if (!is_file($backup_dir . '/' . $file)) {
+				continue;
+			}
 			if ($older['datetime'] == null) {
 				$older['file'] = $backup_dir . '/' . $file;
 				$older['datetime'] = filemtime($backup_dir . '/' . $file);
@@ -139,7 +154,6 @@ try {
 			break;
 		}
 	}
-	echo __("OK", __FILE__) . "\n";
 
 	if (config::byKey('backup::cloudUpload') == 1 && init('noCloudUpload', 0) == 0) {
 		echo __('Envoi de la sauvegarde dans le cloud...', __FILE__);

@@ -539,6 +539,18 @@ class cmd {
 		}
 	}
 
+	public static function cmdAlert($_options) {
+		$cmd = cmd::byId($_options['cmd_id']);
+		if (!is_object($cmd)) {
+			return;
+		}
+		$value = $cmd->execCmd();
+		$check = jeedom::evaluateExpression($value . $cmd->getConfiguration('jeedomCheckCmdOperator') . $cmd->getConfiguration('jeedomCheckCmdTest'));
+		if ($check == 1 || $check || $check == '1') {
+			log::add('cmd', 'error', $cmd->getHumanName() . __(' est à ', __FILE__) . $value . __(' depuis plus de ', __FILE__) . $cmd->getConfiguration('jeedomCheckCmdTime') . __('min', __FILE__), 'alertCmd' . $cmd->getId());
+		}
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function formatValue($_value, $_quote = false) {
@@ -546,7 +558,7 @@ class cmd {
 			return '';
 		}
 		$_value = trim(trim($_value), '"');
-		if (@strpos('error', strtolower($_value)) !== false) {
+		if (@strpos(strtolower($_value), 'error::') !== false) {
 			return $_value;
 		}
 		if ($this->getType() == 'info') {
@@ -844,8 +856,13 @@ class cmd {
 			$replace['#state#'] = '';
 			$replace['#tendance#'] = '';
 			$replace['#state#'] = $this->execCmd(null, $_cache);
-			if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
-				$replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
+			if (strpos($replace['#state#'], 'error::') !== false) {
+				$template = getTemplate('core', $version, 'cmd.error');
+				$replace['#state#'] = str_replace('error::', '', $replace['#state#']);
+			} else {
+				if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
+					$replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
+				}
 			}
 			$replace['#collectDate#'] = $this->getCollectDate();
 			if ($this->getIsHistorized() == 1) {
@@ -969,6 +986,8 @@ class cmd {
 			$this->addHistoryValue($value, $this->getCollectDate());
 		}
 		$this->checkReturnState($value);
+		$this->checkCmdAlert($_value);
+		$this->pushUrl($_value);
 	}
 
 	public function checkReturnState($_value) {
@@ -986,6 +1005,59 @@ class cmd {
 			$cron->setSchedule($schedule);
 			$cron->setLastRun(date('Y-m-d H:i:s'));
 			$cron->save();
+		}
+	}
+
+	public function checkCmdAlert($_value) {
+		if ($this->getConfiguration('jeedomCheckCmdOperator') == '' || $this->getConfiguration('jeedomCheckCmdTest') == '' || $this->getConfiguration('jeedomCheckCmdTime') == '' || is_nan($this->getConfiguration('jeedomCheckCmdTime'))) {
+			return;
+		}
+		$check = jeedom::evaluateExpression($_value . $this->getConfiguration('jeedomCheckCmdOperator') . $this->getConfiguration('jeedomCheckCmdTest'));
+		if ($check == 1 || $check || $check == '1') {
+			$cron = cron::byClassAndFunction('cmd', 'cmdAlert', array('cmd_id' => intval($this->getId())));
+			if (!is_object($cron)) {
+				$cron = new cron();
+			}
+			$cron->setClass('cmd');
+			$cron->setFunction('cmdAlert');
+			$cron->setOnce(1);
+			$cron->setOption(array('cmd_id' => intval($this->getId())));
+			$next = strtotime('+ ' . ($this->getConfiguration('jeedomCheckCmdTime') + 1) . ' minutes ' . date('Y-m-d H:i:s'));
+			$schedule = date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next);
+			$cron->setSchedule($schedule);
+			$cron->setLastRun(date('Y-m-d H:i:s'));
+			$cron->save();
+		} else {
+			message::removeAll('cmd', 'alertCmd' . $this->getId());
+			$cron = cron::byClassAndFunction('cmd', 'cmdAlert', array('cmd_id' => intval($this->getId())));
+			if (is_object($cron)) {
+				$cron->remove();
+			}
+		}
+	}
+
+	public function pushUrl($_value) {
+		$url = $this->getConfiguration('jeedomPushUrl');
+		if ($url == '') {
+			$url = config::byKey('cmdPushUrl');
+		}
+		if ($url == '') {
+			return;
+		}
+		$replace = array(
+			'#value#' => $_value,
+			'#cmd_name#' => $this->getName(),
+			'#cmd_id#' => $this->getId(),
+			'#humanname#' => $this->getHumanName(),
+		);
+		$url = str_replace(array_keys($replace), $replace, $url);
+		log::add('event', 'event', __('Appels de l\'url de push pour la commande ', __FILE__) . $this->getHumanName() . ' : ' . $url);
+		$http = new com_http($url);
+		$http->setLogError(false);
+		try {
+			$http->exec();
+		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur push sur : ', __FILE__) . $url . ' => ' . $e->getMessage());
 		}
 	}
 

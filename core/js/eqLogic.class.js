@@ -127,7 +127,8 @@ jeedom.eqLogic.print = function (_params) {
     paramsAJAX.data = {
         action: 'get',
         type: _params.type,
-        id: _params.id
+        id: _params.id,
+        status: _params.status || 0
     };
     $.ajax(paramsAJAX);
 }

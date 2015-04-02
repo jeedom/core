@@ -183,7 +183,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 			/*             * ***********************Version********************************* */
 			if ($jsonrpc->getMethod() == 'version') {
-				$jsonrpc->makeSuccess(getVersion('jeedom'));
+				$jsonrpc->makeSuccess(jeedom::version());
 			}
 
 			/*             * ************************Plugin*************************** */
@@ -483,7 +483,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				$return = array(
 					'mode' => config::byKey('jeeNetwork::mode'),
 					'nbUpdate' => update::nbNeedUpdate(),
-					'version' => getVersion('jeedom'),
+					'version' => jeedom::version(),
 					'nbMessage' => message::nbMessage(),
 					'auiKey' => $auiKey,
 				);
@@ -605,7 +605,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				if (filesize($_file['tmp_name']) > 50000000) {
 					throw new Exception('La taille du fichier est trop importante (maximum 50Mo)');
 				}
-				$bakcup_name = 'backup-' . getVersion('jeedom') . '-' . date("d-m-Y-H\hi") . '.tar.gz';
+				$bakcup_name = 'backup-' . jeedom::version() . '-' . date("d-m-Y-H\hi") . '.tar.gz';
 				$uploadfile = $uploaddir . '/' . $bakcup_name;
 				if (!move_uploaded_file($_file['tmp_name'], $uploadfile)) {
 					throw new Exception('Impossible de téléverser le fichier');

@@ -64,7 +64,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
     <div class="form-group">
         <label class="col-sm-2 control-label">{{Message}}</label>
         <div class="col-sm-9">
-            <textarea class="form-control messageAttr input-sm" data-l1key="message" rows="6" ></textarea>
+            <textarea class="form-control messageAttr input-sm" data-l1key="message" rows="4" ></textarea>
             <input class="form-control ticketAttr" data-l1key="options" data-l2key="page" style="display: none;"/>
         </div>
     </div>

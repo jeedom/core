@@ -232,12 +232,13 @@ class jeeNetwork {
 			$this->handshake();
 		} catch (Exception $e) {
 			$old_ip = $this->getIp();
-			if (strpos($this->getIp(), '/jeedom') === false) {
+			if ($this->getConfiguration('addrComplement') != '/jeedom') {
 				try {
-					$this->setIp($this->getIp() . '/jeedom');
+					$this->setIp($this->getIp());
+					$this->setConfiguration('addrComplement', '/jeedom');
 					$this->handshake();
 				} catch (Exception $e) {
-					$this->setIp($old_ip);
+					$this->setConfiguration('addrComplement', '');
 					DB::save($this, true);
 					throw $e;
 				}
@@ -488,7 +489,7 @@ class jeeNetwork {
 		if ($this->getIp() == '') {
 			throw new Exception(__('Aucune adresse IP renseignée pour : ', __FILE__) . $this->getName());
 		}
-		return new jsonrpcClient($this->getIp() . '/core/api/jeeApi.php', $this->getApikey());
+		return new jsonrpcClient($this->getIp() . $this->getConfiguration('addrComplement') . '/core/api/jeeApi.php', $this->getApikey());
 	}
 
 	public function getRealIp() {

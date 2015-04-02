@@ -29,11 +29,10 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		$plugin = plugin::byId(init('id'));
-
 		$return = utils::o2a($plugin);
 		$return['activate'] = $plugin->isActive();
 		$return['configurationPath'] = $plugin->getPathToConfigurationById();
-		$return['checkVersion'] = version_compare(getVersion('jeedom'), $plugin->getRequire());
+		$return['checkVersion'] = version_compare(jeedom::version(), $plugin->getRequire());
 		$return['status'] = market::getInfo(array('logicalId' => $plugin->getId(), 'type' => 'plugin'));
 		$return['update'] = utils::o2a(update::byLogicalId($plugin->getId()));
 		ajax::success($return);
