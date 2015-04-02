@@ -225,6 +225,9 @@ jeedom.history.drawChart = function (_params) {
             navigator: {
                 enabled:  _params.showNavigator
             },
+            exporting: { 
+                enabled: _params.enableExport || ($.mobile) ? false : true 
+            },
             rangeSelector: {
                 buttons: [{
                     type: 'minute',

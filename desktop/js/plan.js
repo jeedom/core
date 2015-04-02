@@ -709,6 +709,7 @@ for (var i in options) {
         dateRange: init(_plan.display.dateRange, '7 days'),
         option: init(options[i].configuration, {}),
         transparentBackground : init(_plan.display.transparentBackground, false),
+        enableExport : false,
         global: false,
     });
  }
@@ -903,6 +904,7 @@ function addGraph(_plan) {
                 option: init(options[i].configuration, {}),
                 transparentBackground : init(_plan.display.transparentBackground, false),
                 showNavigator : init(_plan.display.showNavigator, true),
+                enableExport : false,
                 global: false,
             });
         }
