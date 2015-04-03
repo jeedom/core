@@ -194,7 +194,7 @@ if (!isConnect()) {
 													<?php if (hasRight('dashboardview')) {
 			?>
 														<li class="dropdown-submenu">
-															<a href="index.php?v=d&p=dashboard" data-toggle="dropdown"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
+															<a href="index.php?v=d&p=dashboard" data-toggle="dropdown" id="bt_gotoDashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
 															<ul class="dropdown-menu">
 																<?php
 foreach (object::buildTree(null, true) as $object_li) {
@@ -208,7 +208,7 @@ foreach (object::buildTree(null, true) as $object_li) {
 		if (hasRight('viewview')) {
 			?>
 														<li class="dropdown-submenu">
-															<a href="index.php?v=d&p=view" data-toggle="dropdown"><i class="fa fa-bars"></i> {{Vue}}</a>
+															<a href="index.php?v=d&p=view" data-toggle="dropdown" id="bt_gotoView"><i class="fa fa-bars"></i> {{Vue}}</a>
 															<ul class="dropdown-menu">
 																<?php
 foreach (view::all() as $view_menu) {
@@ -222,7 +222,7 @@ foreach (view::all() as $view_menu) {
 		if (hasRight('planview')) {
 			?>
 														<li class="dropdown-submenu">
-															<a href="index.php?v=d&p=plan" data-toggle="dropdown"><i class="fa fa-picture-o"></i> {{Design}}</a>
+															<a href="index.php?v=d&p=plan" data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-picture-o"></i> {{Design}}</a>
 															<ul class="dropdown-menu">
 <?php
 foreach (planHeader::all() as $plan_menu) {
