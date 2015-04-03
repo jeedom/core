@@ -22,8 +22,6 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 </ul>
 
 
-
-
 <div class="tab-content" id="div_displayEqLogicConfigure">
    <div role="tabpanel" class="tab-pane active" id="information">
    <br/>
