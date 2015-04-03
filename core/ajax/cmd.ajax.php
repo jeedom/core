@@ -133,7 +133,7 @@ try {
 		if (!is_object($cmd)) {
 			throw new Exception(__('Cmd ID inconnu : ', __FILE__) . init('id'));
 		}
-		$return = utils::o2a($cmd);
+		$return = jeedom::toHumanReadable(utils::o2a($cmd));
 		$eqLogic = $cmd->getEqLogic();
 		$return['eqLogic_name'] = $eqLogic->getName();
 		$return['plugin'] = $eqLogic->getEqType_Name();
@@ -147,7 +147,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		$cmd_ajax = json_decode(init('cmd'), true);
+		$cmd_ajax = jeedom::fromHumanReadable(json_decode(init('cmd'), true));
 		$cmd = cmd::byId($cmd_ajax['id']);
 		if (!is_object($cmd)) {
 			$cmd = new cmd();
@@ -165,9 +165,13 @@ try {
 		if (!is_object($history)) {
 			throw new Exception(__('Aucun point ne correspond pour l\'historique : ', __FILE__) . init('cmd_id') . ' - ' . init('datetime'));
 		}
-		$value = (init('value', null) == '') ? null : init('value', null);
-		$history->setValue($value);
-		$history->save();
+		$value = (init('value', null) === '') ? null : init('value', null);
+		if ($value == null) {
+			$history->remove();
+		} else {
+			$history->setValue($value);
+			$history->save();
+		}
 		ajax::success();
 	}
 

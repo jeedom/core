@@ -547,7 +547,7 @@ class cmd {
 		$value = $cmd->execCmd();
 		$check = jeedom::evaluateExpression($value . $cmd->getConfiguration('jeedomCheckCmdOperator') . $cmd->getConfiguration('jeedomCheckCmdTest'));
 		if ($check == 1 || $check || $check == '1') {
-			log::add('cmd', 'error', $cmd->getHumanName() . __(' est à ', __FILE__) . $value . __(' depuis plus de ', __FILE__) . $cmd->getConfiguration('jeedomCheckCmdTime') . __('min', __FILE__), 'alertCmd' . $cmd->getId());
+			$cmd->executeAlertCmdAction();
 		}
 	}
 
@@ -1014,6 +1014,10 @@ class cmd {
 		}
 		$check = jeedom::evaluateExpression($_value . $this->getConfiguration('jeedomCheckCmdOperator') . $this->getConfiguration('jeedomCheckCmdTest'));
 		if ($check == 1 || $check || $check == '1') {
+			if ($this->getConfiguration('jeedomCheckCmdTime') == 0) {
+				$this->executeAlertCmdAction();
+				return;
+			}
 			$cron = cron::byClassAndFunction('cmd', 'cmdAlert', array('cmd_id' => intval($this->getId())));
 			if (!is_object($cron)) {
 				$cron = new cron();
@@ -1028,10 +1032,41 @@ class cmd {
 			$cron->setLastRun(date('Y-m-d H:i:s'));
 			$cron->save();
 		} else {
-			message::removeAll('cmd', 'alertCmd' . $this->getId());
 			$cron = cron::byClassAndFunction('cmd', 'cmdAlert', array('cmd_id' => intval($this->getId())));
 			if (is_object($cron)) {
 				$cron->remove();
+			}
+		}
+	}
+
+	public function executeAlertCmdAction() {
+		if ($this->getConfiguration('jeedomCheckCmdActionType') == 'cmd') {
+			$cmd = cmd::byId(str_replace('#', '', $this->getConfiguration('jeedomCheckCmdCmdActionId')));
+			if (!is_object($cmd)) {
+				return;
+			}
+			$cmd->execCmd($this->getConfiguration('jeedomCheckCmdCmdActionOption'));
+		}
+		if ($this->getConfiguration('jeedomCheckCmdActionType') == 'scenario') {
+			$scenario = scenario::byId($this->getConfiguration('jeedomCheckCmdScenarioActionId'));
+			if (!is_object($scenario)) {
+				return;
+			}
+			switch ($this->getOptions('jeedomCheckCmdScenarioActionMode')) {
+				case 'start':
+					$scenario->launch(false, __('Lancement direct provoqué par le scénario  : ', __FILE__) . $this->getHumanName());
+					break;
+				case 'stop':
+					$scenario->stop();
+					break;
+				case 'deactivate':
+					$scenario->setIsActive(0);
+					$scenario->save();
+					break;
+				case 'activate':
+					$scenario->setIsActive(1);
+					$scenario->save();
+					break;
 			}
 		}
 	}
