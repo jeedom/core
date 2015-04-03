@@ -534,18 +534,6 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				$jsonrpc->makeSuccess('ok');
 			}
 
-			if ($jsonrpc->getMethod() == 'jeeNetwork::installPlugin') {
-				$market = market::byId($params['plugin_id']);
-				if (!is_object($market)) {
-					throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . $params['plugin_id']);
-				}
-				if (!isset($params['version'])) {
-					$params['version'] = 'stable';
-				}
-				$market->install($params['version']);
-				$jsonrpc->makeSuccess('ok');
-			}
-
 			if ($jsonrpc->getMethod() == 'jeeNetwork::receivedBackup') {
 				if (config::byKey('jeeNetwork::mode') == 'slave') {
 					throw new Exception(__('Seul un maître peut recevoir une sauvegarde', __FILE__));
@@ -655,6 +643,47 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'jeedom::getUsbMapping') {
 				$jsonrpc->makeSuccess(jeedom::getUsbMapping());
 			}
+
+			/*             * ************************Plugin*************************** */
+			if ($jsonrpc->getMethod() == 'plugin::install') {
+				$market = market::byId($params['plugin_id']);
+				if (!is_object($market)) {
+					throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . $params['plugin_id']);
+				}
+				if (!isset($params['version'])) {
+					$params['version'] = 'stable';
+				}
+				$market->install($params['version']);
+				$jsonrpc->makeSuccess('ok');
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::remove') {
+				$market = market::byId($params['plugin_id']);
+				if (!is_object($market)) {
+					throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . $params['plugin_id']);
+				}
+				if (!isset($params['version'])) {
+					$params['version'] = 'stable';
+				}
+				$market->remove();
+				$jsonrpc->makeSuccess('ok');
+			}
+
+			/*             * ************************Update*************************** */
+			if ($jsonrpc->getMethod() == 'update::all') {
+				$jsonrpc->makeSuccess(utils::o2a(update::all()));
+			}
+
+			if ($jsonrpc->getMethod() == 'update::update') {
+				jeedom::update('', 0);
+				$jsonrpc->makeSuccess('ok');
+			}
+
+			if ($jsonrpc->getMethod() == 'update::checkUpdate') {
+				update::checkAllUpdate();
+				$jsonrpc->makeSuccess('ok');
+			}
+
 			/*             * ************************************************************************ */
 		}
 		throw new Exception('Aucune méthode correspondante : ' . $jsonrpc->getMethod(), -32500);

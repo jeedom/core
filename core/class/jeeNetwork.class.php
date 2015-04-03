@@ -329,7 +329,7 @@ class jeeNetwork {
 			return '';
 		}
 		$jsonrpc = $this->getJsonRpc();
-		if (!$jsonrpc->sendRequest('jeeNetwork::update', array())) {
+		if (!$jsonrpc->sendRequest('update::update', array())) {
 			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 		}
 	}
@@ -339,7 +339,7 @@ class jeeNetwork {
 			return '';
 		}
 		$jsonrpc = $this->getJsonRpc();
-		if ($jsonrpc->sendRequest('jeeNetwork::checkUpdate', array())) {
+		if ($jsonrpc->sendRequest('update::checkUpdate', array())) {
 			$this->save();
 		} else {
 			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
@@ -352,7 +352,7 @@ class jeeNetwork {
 			'plugin_id' => $_plugin_id,
 			'version' => $_version,
 		);
-		if (!$jsonrpc->sendRequest('jeeNetwork::installPlugin', $params)) {
+		if (!$jsonrpc->sendRequest('plugin::install', $params)) {
 			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 		}
 	}

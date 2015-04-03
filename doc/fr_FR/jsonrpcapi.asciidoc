@@ -177,6 +177,42 @@ Paramètres:
 
 - query (phrase de la demande)
 
+==== API JSON System
+
+===== jeeNetwork::halt
+Permet d'arreter Jeedom
+
+===== jeeNetwork::reboot
+Permet de redemarrer Jeedom
+
+
+==== API JSON plugin
+
+===== plugin::install
+Installation/Mise à jour d'un plugin donné
+
+Paramètres:
+
+- string plugin_id : nom du plugin (nom logique)
+
+===== plugin::remove
+Suppression d'un plugin donné
+
+Paramètres:
+
+- string plugin_id : nom du plugin (nom logique)
+
+==== API JSON update
+
+===== update::all
+Retour la liste de tous les composants installé, leur versions et les informations associées
+
+===== update::checkUpdate
+Permet de mettre de faire vérifier les mises à jour
+
+===== update::update
+Permet de mettre à jour Jeedom et tous les plugins
+
 ==== API JSON Exemples
 Voici un exemple d'utilisation de l'API. Pour l'exemple si dessous j'utilise cette class php qui permet de simplifier l'utilisation de l'api.
 
