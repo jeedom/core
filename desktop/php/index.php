@@ -207,12 +207,31 @@ foreach (object::buildTree(null, true) as $object_li) {
 }
 		if (hasRight('viewview')) {
 			?>
-														<li><a href="index.php?v=d&p=view"><i class="fa fa-bars"></i> {{Vue}}</a></li>
+														<li class="dropdown-submenu">
+															<a href="index.php?v=d&p=view" data-toggle="dropdown"><i class="fa fa-bars"></i> {{Vue}}</a>
+															<ul class="dropdown-menu">
+																<?php
+foreach (view::all() as $view_menu) {
+				echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . $view_menu->getName() . '</a></li>';
+			}
+			?>
+															</ul>
+														</li>
 														<?php
 }
 		if (hasRight('planview')) {
 			?>
-														<li><a href="index.php?v=d&p=plan"><i class="fa fa-picture-o"></i> {{Design}}</a></li>
+														<li class="dropdown-submenu">
+															<a href="index.php?v=d&p=plan" data-toggle="dropdown"><i class="fa fa-picture-o"></i> {{Design}}</a>
+															<ul class="dropdown-menu">
+<?php
+foreach (planHeader::all() as $plan_menu) {
+				echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . $plan_menu->getName() . '</a></li>';
+			}
+			?>
+
+															</ul>
+														</li>
 														<?php
 }
 		echo $panel_menu;
