@@ -1,21 +1,32 @@
 <?php
 if (!isConnect('admin')) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $eqLogic = eqLogic::byId(init('eqLogic_id'));
 if (!is_object($eqLogic)) {
-    throw new Exception('EqLogic non trouvé : ' . init('eqLogic_id'));
+	throw new Exception('EqLogic non trouvé : ' . init('eqLogic_id'));
 }
 
 sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 ?>
 <div style="display: none;" id="md_displayEqLogicConfigure"></div>
-<div id='div_displayEqLogicConfigure'>
-    <legend>{{Informations}} 
-        <a class="btn btn-danger pull-right btn-xs" id="bt_eqLogicConfigureRemove"><i class="fa fa-times"></i> {{Supprimer}}</a>
-        <a class="btn btn-success pull-right btn-xs" id="bt_eqLogicConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
-        <a class="btn btn-default pull-right btn-xs" id="bt_eqLogicConfigureSaveOn"><i class="fa fa-plus-circle"></i> {{Appliquer à}}</a>
-    </legend>
+
+<a class="btn btn-danger pull-right btn-sm" id="bt_eqLogicConfigureRemove"><i class="fa fa-times"></i> {{Supprimer}}</a>
+<a class="btn btn-success pull-right btn-sm" id="bt_eqLogicConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureSaveOn"><i class="fa fa-plus-circle"></i> {{Appliquer à}}</a>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab">{{Informations}}</a></li>
+    <li role="presentation"><a href="#configuration" aria-controls="profile" role="tab" data-toggle="tab">{{Configuration avancée}}</a></li>
+    <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab">{{Affichage avancée}}</a></li>
+</ul>
+
+
+
+
+<div class="tab-content" id="div_displayEqLogicConfigure">
+   <div role="tabpanel" class="tab-pane active" id="information">
+   <br/>
     <div class="row">
         <div class="col-sm-4" >
             <form class="form-horizontal">
@@ -84,14 +95,14 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                     <div class="form-group">
                         <label class="col-sm-4 control-label">{{Tentative échouée}}</label>
                         <div class="col-sm-4">
-                            <span class="label label-primary"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess',0) ?></span>
+                            <span class="label label-primary"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess', 0)?></span>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label">{{Date de dernière communication}}</label>
                         <div class="col-sm-4">
-                            <span class="label label-primary"><?php echo $eqLogic->getStatus('lastCommunication') ?></span>
+                            <span class="label label-primary"><?php echo $eqLogic->getStatus('lastCommunication')?></span>
                         </div>
                     </div>
 
@@ -105,53 +116,54 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
             </form>
         </div>
     </div>
-    <div class='row'>
-        <div class='col-lg-6 col-md-5 col-sm-4'>
-            <legend>Configuration</legend>
-            <form class="form-horizontal">
-                <fieldset>
-                 <table class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Dashboard et Design</th>
-                            <th>Vue</th>
-                            <th>Mobile</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                       <tr>
-                        <td>{{Ne pas afficher le nom}}</td>
-                        <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
-                        <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
-                        <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnMobile" /></td>
-                    </tr>
-                    <tr>
-                        <td>{{Ne pas afficher le nom de l'objet}}</td>
-                        <td></td>
-                        <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowObjectNameOnView" /></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>{{Ne pas afficher le niveau de batterie}}</td>
-                        <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnDashboard" /></td>
-                        <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnView" /></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+</div>
+<div role="tabpanel" class="tab-pane" id="configuration">
+    <br/>
+    <form class="form-horizontal">
+        <fieldset>
+           <table class="table table-bordered table-condensed">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Dashboard et Design</th>
+                    <th>Vue</th>
+                    <th>Mobile</th>
+                </tr>
+            </thead>
+            <tbody>
+             <tr>
+                <td>{{Ne pas afficher le nom}}</td>
+                <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
+                <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
+                <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowNameOnMobile" /></td>
+            </tr>
+            <tr>
+                <td>{{Ne pas afficher le nom de l'objet}}</td>
+                <td></td>
+                <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotShowObjectNameOnView" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>{{Ne pas afficher le niveau de batterie}}</td>
+                <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnDashboard" /></td>
+                <td><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnView" /></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{Ordre}}</label>
-                <div class="col-sm-2">
-                    <input type="number" class="eqLogicAttr form-control" data-l1key="order" />
-                </div>
-            </div>
-        </fieldset>
-    </form>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">{{Ordre}}</label>
+        <div class="col-sm-2">
+            <input type="number" class="eqLogicAttr form-control" data-l1key="order" />
+        </div>
+    </div>
+</fieldset>
+</form>
 </div>
 
-<div class='col-lg-6 col-md-7 col-sm-8'>
+<div role="tabpanel" class="tab-pane" id="display">
+    <br/>
     <legend>{{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
     <table class="table table-bordered table-condensed" id="table_widgetParameters">
         <thead>
@@ -163,25 +175,24 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
         </thead>
         <tbody>
             <?php
-            if ($eqLogic->getDisplay('parameters') != '') {
-                foreach ($eqLogic->getDisplay('parameters') as $key => $value) {
-                    echo '<tr>';
-                    echo '<td>';
-                    echo '<input class="form-control key" value="' . $key . '" />';
-                    echo '</td>';
-                    echo '<td>';
-                    echo '<input class="form-control value" value="' . $value . '" />';
-                    echo '</td>';
-                    echo '<td>';
-                    echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fa fa-times"></i> Supprimer</a>';
-                    echo '</td>';
-                    echo '</tr>';
-                }
-            }
-            ?>
-        </tbody>
-    </table>
-</div>
+if ($eqLogic->getDisplay('parameters') != '') {
+	foreach ($eqLogic->getDisplay('parameters') as $key => $value) {
+		echo '<tr>';
+		echo '<td>';
+		echo '<input class="form-control key" value="' . $key . '" />';
+		echo '</td>';
+		echo '<td>';
+		echo '<input class="form-control value" value="' . $value . '" />';
+		echo '</td>';
+		echo '<td>';
+		echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fa fa-times"></i> Supprimer</a>';
+		echo '</td>';
+		echo '</tr>';
+	}
+}
+?>
+      </tbody>
+  </table>
 </div>
 </div>
 
@@ -202,27 +213,27 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
         </thead>
         <tbody>
             <?php
-            foreach (eqLogic::all() as $listEqLogic) {
-                echo '<tr data-eqLogic_id="'.$listEqLogic->getId().'" data-eqTypeName="'.$listEqLogic->getEqType_name().'">';
-                echo '<td>';
-                if($listEqLogic->getId() == $eqLogic->getId()){
-                    echo '<input type="checkbox" class="selectMultipleApplyEqlogic" checked/>';
-                }else{
-                    echo '<input type="checkbox" class="selectMultipleApplyEqlogic" />';
-                }
-                echo '</td>';
-                echo '<td>';
-                echo $listEqLogic->getHumanName(true);
-                echo '</td>';
-                echo '</tr>';
-            }
-            ?>
-        </tbody>
-    </table>
+foreach (eqLogic::all() as $listEqLogic) {
+	echo '<tr data-eqLogic_id="' . $listEqLogic->getId() . '" data-eqTypeName="' . $listEqLogic->getEqType_name() . '">';
+	echo '<td>';
+	if ($listEqLogic->getId() == $eqLogic->getId()) {
+		echo '<input type="checkbox" class="selectMultipleApplyEqlogic" checked/>';
+	} else {
+		echo '<input type="checkbox" class="selectMultipleApplyEqlogic" />';
+	}
+	echo '</td>';
+	echo '<td>';
+	echo $listEqLogic->getHumanName(true);
+	echo '</td>';
+	echo '</tr>';
+}
+?>
+      </tbody>
+  </table>
 </div>
 
 <script>
-   $("#md_eqLogicConfigureSelectMultiple").dialog({
+ $("#md_eqLogicConfigureSelectMultiple").dialog({
     autoOpen: false,
     modal: true,
     height: (jQuery(window).height() - 150),
@@ -236,12 +247,12 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
     }
 });
 
-   $('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr');
-   $('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
+ $('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr');
+ $('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
     $(this).closest('tr').remove();
 });
 
-   $('#bt_addWidgetParameters').off().on('click', function () {
+ $('#bt_addWidgetParameters').off().on('click', function () {
     var tr = '<tr>';
     tr += '<td>';
     tr += '<input class="form-control key" />';
@@ -256,7 +267,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
     $('#table_widgetParameters tbody').append(tr);
 });
 
-   $('#bt_eqLogicConfigureSave').on('click', function () {
+ $('#bt_eqLogicConfigureSave').on('click', function () {
     var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
     if (!isset(eqLogic.display)) {
         eqLogic.display = {};
@@ -279,7 +290,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
     });
 });
 
-   $('#bt_eqLogicConfigureRemove').on('click',function(){
+ $('#bt_eqLogicConfigureRemove').on('click',function(){
     bootbox.confirm('{{Etes-vous sûr de vouloir supprimer cette équipement ?}}', function (result) {
         if (result) {
             var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
@@ -297,7 +308,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
     });
 });
 
-   $('#bt_eqLogicConfigureSaveOn').on('click',function(){
+ $('#bt_eqLogicConfigureSaveOn').on('click',function(){
     var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
     if (!isset(eqLogic.display)) {
         eqLogic.display = {};
@@ -313,7 +324,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
     delete eqLogic.configuration.updatetime;
     eqLogic = {display : eqLogic.display,configuration : eqLogic.template };
     console.log(eqLogic);
-    
+
     $('#md_eqLogicConfigureSelectMultiple').dialog('open');
     initTableSorter();
 
