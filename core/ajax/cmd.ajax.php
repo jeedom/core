@@ -170,7 +170,7 @@ try {
 			$history->remove();
 		} else {
 			$history->setValue($value);
-			$history->save();
+			$history->save(null, true);
 		}
 		ajax::success();
 	}

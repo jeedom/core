@@ -504,7 +504,7 @@ LIMIT 1';
 
 	/*     * *********************Methode d'instance************************* */
 
-	public function save($_cmd = null) {
+	public function save($_cmd = null, $_direct = false) {
 		if ($_cmd == null) {
 			$cmd = $this->getCmd();
 		} else {
@@ -516,7 +516,7 @@ LIMIT 1';
 		if ($cmd->getConfiguration('historizeRound') !== '' && is_numeric($cmd->getConfiguration('historizeRound')) && $cmd->getConfiguration('historizeRound') >= 0 && $this->getValue() !== null) {
 			$this->setValue(round($this->getValue(), $cmd->getConfiguration('historizeRound')));
 		}
-		if ($cmd->getSubType() != 'binary' && $cmd->getConfiguration('historizeMode', 'avg') != 'none' && $this->getValue() !== null) {
+		if ($cmd->getSubType() != 'binary' && $cmd->getConfiguration('historizeMode', 'avg') != 'none' && $this->getValue() !== null && $direct = false) {
 			if ($this->getTableName() == 'history') {
 				$time = strtotime($this->getDatetime());
 				$time -= $time % 300;
