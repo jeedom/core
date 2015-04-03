@@ -214,7 +214,7 @@ Permet de mettre de faire vérifier les mises à jour
 Permet de mettre à jour Jeedom et tous les plugins
 
 ==== API JSON Exemples
-Voici un exemple d'utilisation de l'API. Pour l'exemple si dessous j'utilise link::https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php[cette class php] qui permet de simplifier l'utilisation de l'api.
+Voici un exemple d'utilisation de l'API. Pour l'exemple si dessous j'utilise link:https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php[cette class php] qui permet de simplifier l'utilisation de l'api.
 
 Récupération de la liste des objets :
 
