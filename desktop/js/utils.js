@@ -153,6 +153,7 @@ setInterval(function () {
         modal: true,
         height: 600,
         width: 900,
+        position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'})
         },
@@ -167,6 +168,7 @@ setInterval(function () {
         modal: true,
         height: (jQuery(window).height() - 100),
         width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
+        position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'});
         },
@@ -179,8 +181,8 @@ setInterval(function () {
         autoOpen: false,
         modal: true,
         height: (jQuery(window).height() - 100),
-        width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
-        position: {my: 'center', at: 'center', of: window},
+        width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 100) : 1500,
+        position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'});
         },
@@ -194,7 +196,7 @@ setInterval(function () {
         modal: true,
         height: (jQuery(window).height() - 150),
         width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
-        position: {my: 'center', at: 'center', of: window},
+        position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'});
         },
