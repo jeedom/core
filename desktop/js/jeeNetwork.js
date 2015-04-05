@@ -37,7 +37,11 @@ function loadInfoFromSlave(_id){
                 plugin += '<span class="label label-info">' + data.plugin[i] + '</span> ';
             }
             if (isset(data.configuration) && isset(data.configuration.auiKey)) {
-                $('#bt_connectToSlave').attr('href', 'http://' + data.ip + '/index.php?v=d&auiKey=' + data.configuration.auiKey).show();
+                if(isset(data.configuration.url)){
+                    $('#bt_connectToSlave').attr('href', 'http://' + data.configuration.url + '/index.php?v=d&auiKey=' + data.configuration.auiKey).show();
+                }else{
+                    $('#bt_connectToSlave').attr('href', 'http://' + data.ip + '/index.php?v=d&auiKey=' + data.configuration.auiKey).show();
+                }
             } else {
                 $('#bt_connectToSlave').hide();
             }

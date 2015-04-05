@@ -486,6 +486,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 					'version' => jeedom::version(),
 					'nbMessage' => message::nbMessage(),
 					'auiKey' => $auiKey,
+					'jeedom::url' => config::byKey('jeedom::url'),
 				);
 				foreach (plugin::listPlugin(true) as $plugin) {
 					if ($plugin->getAllowRemote() == 1) {
