@@ -696,6 +696,51 @@ class jeedom {
 		}
 	}
 
+/*     * *********************NGROK************************* */
+
+	public static function ngrok_start() {
+		$logfile = log::getPathToLog('ngrok');
+		exec('chmod +x ' . dirname(__FILE__) . '/../../script/ngrok/ngrok');
+		$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok -config=' . dirname(__FILE__) . '/../../script/ngrok/config -log="' . $logfile . '" 80';
+		if (!self::ngrok_run()) {
+			log::remove('ngrok');
+			exec($cmd . ' >> /dev/null 2>&1 &');
+			sleep(2);
+		}
+		$addr = exec('grep "Tunnel established at " ' . $logfile);
+		$addr = substr($addr, strpos($addr, 'http'));
+		$addr = str_replace(array('https://', 'http://', '.ngrok.jeedom.com'), '', $addr);
+		return $addr;
+	}
+
+	public static function ngrok_run() {
+		$logfile = log::getPathToLog('ngrok');
+		$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok -config=' . dirname(__FILE__) . '/../../script/ngrok/config -log="' . $logfile . '" 80';
+		$pid = self::retrievePidThread($cmd);
+		if ($pid == null) {
+			return false;
+		}
+		return posix_getsid($pid);
+	}
+
+	public static function ngrok_stop() {
+		if (!self::ngrok_run()) {
+			return true;
+		}
+		$logfile = log::getPathToLog('ngrok');
+		$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok -config=' . dirname(__FILE__) . '/../../script/ngrok/config -log="' . $logfile . '" 80';
+		$pid = self::retrievePidThread($cmd);
+		if ($pid == null) {
+			return true;
+		}
+		$kill = posix_kill($pid, 15);
+		if (!$kill) {
+			sleep(1);
+			posix_kill($pid, 9);
+		}
+		return !self::ngrok_run();
+	}
+
 /*     * *********************Methode d'instance************************* */
 
 /*     * **********************Getteur Setteur*************************** */
