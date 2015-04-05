@@ -176,6 +176,7 @@ class network {
 		exec('chmod +x ' . $cmd);
 		$cmd .= ' -subdomain=' . config::byKey('ngrok::addr') . $_name . ' -config=' . dirname(__FILE__) . '/../../script/ngrok/config ' . $_port;
 		if (!self::ngrok_run()) {
+			log::add('ngork', 'debug', 'Lancement de ngork : ' . $cmd);
 			log::remove('ngrok');
 			exec($cmd . ' >> /dev/null 2>&1 &');
 			sleep(2);
