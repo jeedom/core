@@ -525,7 +525,7 @@ foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
       cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
     });
     var checkCmdParameter = $('#div_jeedomCheckCmdCmdOption').getValues('.expressionAttr')[0];
-    if (isset(checkCmdParameter.options)) {
+    if (isset(checkCmdParameter) && isset(checkCmdParameter.options)) {
       cmd.configuration.jeedomCheckCmdCmdActionOption = checkCmdParameter.options;
     }
     jeedom.cmd.save({
@@ -553,7 +553,7 @@ foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
     });
     cmd = {display : cmd.display,template : cmd.template };
     var checkCmdParameter = $('#div_jeedomCheckCmdCmdOption').getValues('.expressionAttr')[0];
-    if (isset(checkCmdParameter.options)) {
+    if (isset(checkCmdParameter) && isset(checkCmdParameter.options)) {
       cmd.configuration.jeedomCheckCmdCmdActionOption = checkCmdParameter.options;
     }
     $('#md_cmdConfigureSelectMultiple').dialog('open');
