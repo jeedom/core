@@ -251,7 +251,7 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
 	echo '</div>';
 }
 ?>
-                           <div class="form-group">
+                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                 <select class="configKey form-control" data-l1key="internalProtocol">
@@ -293,13 +293,8 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse URL ou IP}}</label>
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-                                <?php if (config::byKey('market::allowDNS') == 0) {
-	echo '<input type="text"  class="configKey form-control" data-l1key="externalAddr" />';
-} else {
-	echo '<input type="text"  class="configKey form-control" data-l1key="externalAddr" disabled />';
-}
-?>
-                          </div>
+                                <input type="text"  class="configKey form-control" data-l1key="externalAddr" />
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Complément (exemple : /jeedom)}}</label>
@@ -326,9 +321,9 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 	echo '<a class="btn btn-success changeJeeNetworkMode" data-mode="slave">{{Esclave}}</a>';
 }
 ?>
-                           </div>
-                       </div>
-                       <?php
+                         </div>
+                     </div>
+                     <?php
 if (file_exists('/etc/nginx/sites-available/default_ssl')) {
 	echo '<div class="form-group expertModeVisible">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Forcer le https}}</label>';
@@ -344,13 +339,13 @@ if (file_exists('/etc/nginx/sites-available/default_ssl')) {
 	echo '</div>';
 }
 ?>
-                   </fieldset>
-               </form>
-           </div>
-       </div>
-   </div>
+                 </fieldset>
+             </form>
+         </div>
+     </div>
+ </div>
 
-   <?php if (config::byKey('jeeNetwork::mode') == 'master') {?>
+ <?php if (config::byKey('jeeNetwork::mode') == 'master') {?>
 
     <div class="panel panel-default">
         <div class="panel-heading">

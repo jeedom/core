@@ -319,6 +319,7 @@ class market {
 				'password_type' => 'sha1',
 				'jeedomversion' => (method_exists('jeedom', 'version')) ? jeedom::version() : getVersion('jeedom'),
 				'hwkey' => jeedom::getHardwareKey(),
+				'addr' => config::byKey('externalAddr'),
 				'addrProtocol' => config::byKey('externalProtocol'),
 				'addrPort' => config::byKey('externalPort'),
 				'addrComplement' => config::byKey('externalComplement'),
@@ -340,14 +341,16 @@ class market {
 			if (isset($_result['register::datetime'])) {
 				config::save('register::datetime', $_result['register::datetime']);
 			}
-			if (isset($_result['client::ip']) && config::byKey('market::allowDNS') == 1) {
-				config::save('externalAddr', $_result['client::ip']);
-			}
-			if (isset($_result['register::ngrokAddr']) && config::byKey('market::allowDNS') == 1) {
-				config::save('ngrok::addr', $_result['register::ngrokAddr']);
-			}
-			if (isset($_result['jeedom::url']) && config::byKey('market::allowDNS') == 1) {
-				config::save('jeedom::url', $_result['jeedom::url']);
+			if (config::byKey('market::allowDNS') == 1) {
+				if (isset($_result['client::ip']) && (filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP) || config::byKey('externalAddr') == '')) {
+					config::save('externalAddr', $_result['client::ip']);
+				}
+				if (isset($_result['register::ngrokAddr'])) {
+					config::save('ngrok::addr', $_result['register::ngrokAddr']);
+				}
+				if (isset($_result['jeedom::url'])) {
+					config::save('jeedom::url', $_result['jeedom::url']);
+				}
 			}
 		}
 	}
