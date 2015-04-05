@@ -174,7 +174,7 @@ class network {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
 		}
 		exec('chmod +x ' . $cmd);
-		$cmd .= ' -subdomain=' . config::byKey('ngrok::addr') . $_name . ' -config=' . dirname(__FILE__) . '/../../script/ngrok/config -log=' . $logfile . ' ' . $_port;
+		$cmd .= ' -subdomain=' . config::byKey('ngrok::addr') . $_name . ' -config=' . dirname(__FILE__) . '/../../script/ngrok/config ' . $_port;
 		if (!self::ngrok_run()) {
 			log::remove('ngrok');
 			exec($cmd . ' >> /dev/null 2>&1 &');
@@ -191,8 +191,8 @@ class network {
 		} else {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
 		}
-		$cmd .= ' -subdomain=' . config::byKey('ngrok::addr') . $_name . ' -config=' . dirname(__FILE__) . '/../../script/ngrok/config -log=' . $logfile . ' ' . $_port;
-		$pid = self::retrievePidThread($cmd);
+		$cmd .= ' -subdomain=' . config::byKey('ngrok::addr') . $_name . ' -config=' . dirname(__FILE__) . '/../../script/ngrok/config ' . $_port;
+		$pid = jeedom::retrievePidThread($cmd);
 		if ($pid == null) {
 			return false;
 		}
@@ -210,8 +210,8 @@ class network {
 		} else {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
 		}
-		$cmd .= ' -subdomain=' . config::byKey('ngrok::addr') . $_name . ' -config=' . dirname(__FILE__) . '/../../script/ngrok/config -log=' . $logfile . ' ' . $_port;
-		$pid = self::retrievePidThread($cmd);
+		$cmd .= ' -subdomain=' . config::byKey('ngrok::addr') . $_name . ' -config=' . dirname(__FILE__) . '/../../script/ngrok/config ' . $_port;
+		$pid = jeedom::retrievePidThread($cmd);
 		if ($pid == null) {
 			return true;
 		}
