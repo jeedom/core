@@ -30,6 +30,9 @@ class network {
 			}
 		}
 		if ($_mode == 'internal') {
+			if (config::byKey('internalAddr') == '') {
+				self::internalAutoconf();
+			}
 			if ($_protocole == 'ip') {
 				return config::byKey('internalAddr', 'core', $_default);
 			}
@@ -47,6 +50,21 @@ class network {
 				return config::byKey('jeedom::url');
 			}
 			return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . config::byKey('externalComplement');
+		}
+	}
+
+	public static function internalAutoconf() {
+		$internalIp = getHostByName(getHostName());
+		if ($internalIp != '') {
+			config::save('internalAddr', $internalIp);
+		}
+		config::save('internalProtocol', 'http://');
+		config::save('internalPort', 80);
+		if (file_exists('/etc/nginx/sites-available/default')) {
+			$data = file_get_contents('/etc/nginx/sites-available/default');
+			if (strpos($data, 'root /usr/share/nginx/www;') !== false) {
+				config::save('internalComplement', '/jeedom');
+			}
 		}
 	}
 
