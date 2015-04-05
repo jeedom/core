@@ -378,8 +378,10 @@ class jeedom {
 				if (config::byKey('jeeNetwork::mode') != 'slave') {
 					jeeNetwork::pull();
 				}
-				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeeNetwork::mode') == 'master') {
-					market::updateIp();
+				if (config::byKey('market::allowDNS') == 1) {
+					if (!jeedom::ngrok_run()) {
+						jeedom::ngrok_start();
+					}
 				}
 			}
 		} catch (Exception $e) {
@@ -389,6 +391,7 @@ class jeedom {
 			if (date('Gi') == 202) {
 				log::chunk();
 				cron::clean();
+				jeedom::ngrok_stop();
 			}
 		} catch (Exception $e) {
 			log::add('log', 'error', $e->getMessage());
@@ -699,23 +702,37 @@ class jeedom {
 /*     * *********************NGROK************************* */
 
 	public static function ngrok_start() {
+		if (config::byKey('ngrok::addr') == '') {
+			return;
+		}
 		$logfile = log::getPathToLog('ngrok');
-		exec('chmod +x ' . dirname(__FILE__) . '/../../script/ngrok/ngrok');
-		$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok -config=' . dirname(__FILE__) . '/../../script/ngrok/config -log="' . $logfile . '" 80';
+
+		$uname = posix_uname();
+		if (strrpos($uname['machine'], 'arm') !== false) {
+			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
+		} else {
+			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
+		}
+		exec('chmod +x ' . $cmd);
+		$cmd .= ' -subdomain=' . config::byKey('ngrok::addr') . ' -config=' . dirname(__FILE__) . '/../../script/ngrok/config -log=' . $logfile . ' 80';
+		echo $cmd;
 		if (!self::ngrok_run()) {
 			log::remove('ngrok');
 			exec($cmd . ' >> /dev/null 2>&1 &');
 			sleep(2);
 		}
-		$addr = exec('grep "Tunnel established at " ' . $logfile);
-		$addr = substr($addr, strpos($addr, 'http'));
-		$addr = str_replace(array('https://', 'http://', '.ngrok.jeedom.com'), '', $addr);
-		return $addr;
+		return config::byKey('ngrok::addr');
 	}
 
 	public static function ngrok_run() {
 		$logfile = log::getPathToLog('ngrok');
-		$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok -config=' . dirname(__FILE__) . '/../../script/ngrok/config -log="' . $logfile . '" 80';
+		$uname = posix_uname();
+		if (strrpos($uname['machine'], 'arm') !== false) {
+			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
+		} else {
+			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
+		}
+		$cmd .= ' -subdomain=' . config::byKey('ngrok::addr') . ' -config=' . dirname(__FILE__) . '/../../script/ngrok/config -log=' . $logfile . ' 80';
 		$pid = self::retrievePidThread($cmd);
 		if ($pid == null) {
 			return false;
@@ -728,7 +745,13 @@ class jeedom {
 			return true;
 		}
 		$logfile = log::getPathToLog('ngrok');
-		$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok -config=' . dirname(__FILE__) . '/../../script/ngrok/config -log="' . $logfile . '" 80';
+		$uname = posix_uname();
+		if (strrpos($uname['machine'], 'arm') !== false) {
+			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
+		} else {
+			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
+		}
+		$cmd .= ' -subdomain=' . config::byKey('ngrok::addr') . ' -config=' . dirname(__FILE__) . '/../../script/ngrok/config -log=' . $logfile . ' 80';
 		$pid = self::retrievePidThread($cmd);
 		if ($pid == null) {
 			return true;

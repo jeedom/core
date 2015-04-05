@@ -346,6 +346,9 @@ class market {
 			if (isset($_result['client::marketlink']) && config::byKey('market::allowDNS') == 1) {
 				config::save('market::returnLink', $_result['client::marketlink']);
 			}
+			if (isset($_result['register::ngrokAddr']) && config::byKey('market::allowDNS') == 1) {
+				config::save('ngrok::addr', $_result['register::ngrokAddr']);
+			}
 		}
 	}
 
