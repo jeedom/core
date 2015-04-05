@@ -1233,8 +1233,8 @@ class cmd {
 					break;
 			}
 		}
-		if (config::byKey('market::returnLink') != '' && config::byKey('market::allowDNS')) {
-			return config::byKey('market::returnLink') . '&url=' . urlencode($url);
+		if (config::byKey('market::allowDNS') == 1) {
+			return config::byKey('jeedom::url') . $url;
 		}
 		if (config::byKey('externalAddr') != '') {
 			return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . config::byKey('externalComplement') . $url;

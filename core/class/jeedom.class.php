@@ -720,7 +720,7 @@ class jeedom {
 			exec($cmd . ' >> /dev/null 2>&1 &');
 			sleep(2);
 		}
-		return config::byKey('ngrok::addr');
+		return true;
 	}
 
 	public static function ngrok_run() {
