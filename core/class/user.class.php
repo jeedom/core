@@ -245,10 +245,7 @@ class user {
 	}
 
 	public function getDirectUrlAccess() {
-		if (config::byKey('market::allowDNS') == 1) {
-			return config::byKey('jeedom::url') . '/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword();
-		}
-		return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . config::byKey('externalComplement') . '/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword();
+		return network::getNetworkAccess('external') . '/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword();
 	}
 
 	/*     * **********************Getteur Setteur*************************** */

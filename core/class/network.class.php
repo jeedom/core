@@ -21,6 +21,35 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class network {
 
+	public static function getNetworkAccess($_mode = 'auto', $_protocole = '', $_default = '') {
+		if ($_mode == 'auto') {
+			if (netMatch('192.168.*.*', getClientIp()) || netMatch('10.0.*.*', getClientIp())) {
+				$_mode = 'internal';
+			} else {
+				$_mode = 'external';
+			}
+		}
+		if ($_mode == 'internal') {
+			if ($_protocole == 'ip') {
+				return config::byKey('internalAddr', 'core', $_default);
+			}
+			if ($_protocole == 'ip:port') {
+				return config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80);
+			}
+			return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . config::byKey('internalComplement');
+
+		}
+		if ($_mode == 'external') {
+			if ($_protocole == 'ip') {
+				return '';
+			}
+			if (config::byKey('jeedom::url') != '') {
+				return config::byKey('jeedom::url');
+			}
+			return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . config::byKey('externalComplement');
+		}
+	}
+
 /*     * ****************************Nginx management*************************** */
 
 	public static function nginx_saveRule($_rules) {

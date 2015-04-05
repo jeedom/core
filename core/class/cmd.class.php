@@ -1233,14 +1233,7 @@ class cmd {
 					break;
 			}
 		}
-		if (config::byKey('market::allowDNS') == 1) {
-			return config::byKey('jeedom::url') . $url;
-		}
-		if (config::byKey('externalAddr') != '') {
-			return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . config::byKey('externalComplement') . $url;
-		} else {
-			return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . config::byKey('internalComplement') . $url;
-		}
+		return network::getNetworkAccess('external') . $url;
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
