@@ -270,7 +270,7 @@ class jeeNetwork {
 			$this->setStatus('ok');
 			$this->setPlugin($result['plugin']);
 			$this->setConfiguration('nbUpdate', $result['nbUpdate']);
-			$this->setConfiguration('url', $result['url']);
+			$this->setConfiguration('url', $result['jeedom::url']);
 			$this->setConfiguration('version', $result['version']);
 			$this->setConfiguration('auiKey', $result['auiKey']);
 			$this->setConfiguration('lastCommunication', date('Y-m-d H:i:s'));

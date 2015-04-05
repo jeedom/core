@@ -38,7 +38,7 @@ function loadInfoFromSlave(_id){
             }
             if (isset(data.configuration) && isset(data.configuration.auiKey)) {
                 if(isset(data.configuration.url)){
-                    $('#bt_connectToSlave').attr('href', 'http://' + data.configuration.url + '/index.php?v=d&auiKey=' + data.configuration.auiKey).show();
+                    $('#bt_connectToSlave').attr('href', data.configuration.url + '/index.php?v=d&auiKey=' + data.configuration.auiKey).show();
                 }else{
                     $('#bt_connectToSlave').attr('href', 'http://' + data.ip + '/index.php?v=d&auiKey=' + data.configuration.auiKey).show();
                 }
