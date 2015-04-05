@@ -181,10 +181,6 @@ class jeedom {
 		return $usbMapping;
 	}
 
-	public static function persist() {
-
-	}
-
 	public static function backup($_background = false, $_noCloudUpload = 0) {
 		if ($_background) {
 			log::clear('backup');
@@ -471,28 +467,6 @@ class jeedom {
 		return $cache->getValue();
 	}
 
-	public static function isRestrictionOk() {
-		$isRestrictionOk = cache::byKey('isRestrictionOk');
-		if ($isRestrictionOk->getValue(-1) != -1) {
-			return $isRestrictionOk->getValue(0);
-		}
-		$register_datetime = config::save('register::datetime', date('Y-m-d H:i:s'));
-		$restrict_hw = shell_exec("dmesg | grep HummingBoard | wc -l");
-		if ($restrict_hw == 1 && config::byKey('jeedom::licence') < 1) {
-			if (($register_datetime + 604800) > strtotime('now')) {
-				$result = $register_datetime + 604800 - strtotime('now');
-				log::add(__('hardware', 'error', 'Attention vous utilisez Jeedom sur un matériel soumis à une licence, veuillez enregistrer votre compte market et/ou acheter une licence, il vous reste ', __FILE__) . convertDuration($result), 'restrictHardwareTime');
-				cache::set('isRestrictionOk', $result, 86400);
-				return $result;
-			}
-			cache::set('isRestrictionOk', 0, 86400);
-
-			return 0;
-		}
-		cache::set('isRestrictionOk', 1, 86400);
-		return 1;
-	}
-
 	public static function versionAlias($_version) {
 		$alias = array(
 			'mview' => 'mobile',
@@ -576,97 +550,6 @@ class jeedom {
 		$folder = self::getCurrentSysInfoFolder();
 		if ($folder != '') {
 			rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../sysinfo' . config::genKey());
-		}
-	}
-
-/*     * ****************************Nginx management*************************** */
-
-	public static function nginx_saveRule($_rules) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-			throw new Exception('Fichier non trouvé : /etc/nginx/sites-available/jeedom_dynamic_rule');
-		}
-		$nginx_conf = self::nginx_removeRule($_rules, true);
-
-		foreach ($_rules as $rule) {
-			$nginx_conf .= "\n" . $rule . "\n";
-		}
-		file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $nginx_conf);
-		shell_exec('sudo service nginx reload');
-	}
-
-	public static function nginx_removeRule($_rules, $_returnResult = false) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-			return $_rules;
-		}
-		$result = '';
-		$nginx_conf = trim(file_get_contents('/etc/nginx/sites-available/jeedom_dynamic_rule'));
-		$accolade = 0;
-		$change = false;
-		foreach (explode("\n", trim($nginx_conf)) as $conf_line) {
-			if ($accolade > 0 && strpos('{', $conf_line) !== false) {
-				$accolade++;
-			}
-			foreach ($_rules as $rule) {
-				$rule_line = explode("\n", trim($rule));
-				if (trim($conf_line) == trim($rule_line[0])) {
-					$accolade = 1;
-				}
-			}
-			if ($accolade == 0) {
-				$result .= $conf_line . "\n";
-			} else {
-				$change = true;
-			}
-			if ($accolade > 0 && strpos('}', $conf_line) !== false) {
-				$accolade--;
-			}
-		}
-		if ($_returnResult) {
-			return $result;
-		}
-		if ($change) {
-			file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $result);
-			shell_exec('sudo service nginx reload');
-		}
-	}
-
-	public static function apache_saveRule($_rules) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		$jeedom_dynamic_rule_file = dirname(__FILE__) . '/../../core/config/apache_jeedom_dynamic_rules';
-		if (!file_exists($jeedom_dynamic_rule_file)) {
-			throw new Exception('Fichier non trouvé : ' . $jeedom_dynamic_rule_file);
-		}
-		foreach ($_rules as $rule) {
-			$apache_conf .= $rule . "\n";
-		}
-		file_put_contents($jeedom_dynamic_rule_file, $apache_conf);
-	}
-
-	public static function apache_removeRule($_rules, $_returnResult = false) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		$jeedom_dynamic_rule_file = dirname(__FILE__) . '/../../core/config/apache_jeedom_dynamic_rules';
-		if (!file_exists($jeedom_dynamic_rule_file)) {
-			return $_rules;
-		}
-		$apache_conf = trim(file_get_contents($jeedom_dynamic_rule_file));
-		$new_apache_conf = $apache_conf;
-		foreach ($_rules as $rule) {
-			$new_apache_conf = preg_replace($rule, "", $new_apache_conf);
-		}
-		$new_apache_conf = preg_replace("/\n\n*/s", "\n", $new_apache_conf);
-
-		if ($new_apache_conf != $apache_conf) {
-			file_put_contents($jeedom_dynamic_rule_file, $new_apache_conf);
 		}
 	}
 
