@@ -715,7 +715,6 @@ class jeedom {
 		}
 		exec('chmod +x ' . $cmd);
 		$cmd .= ' -subdomain=' . config::byKey('ngrok::addr') . ' -config=' . dirname(__FILE__) . '/../../script/ngrok/config -log=' . $logfile . ' 80';
-		echo $cmd;
 		if (!self::ngrok_run()) {
 			log::remove('ngrok');
 			exec($cmd . ' >> /dev/null 2>&1 &');
