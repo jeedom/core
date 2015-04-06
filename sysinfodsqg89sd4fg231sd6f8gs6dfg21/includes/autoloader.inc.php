@@ -54,8 +54,6 @@ function __autoload($class_name)
     $error->errorsAsXML();
 }
 
-//spl_autoload_register('autoloadSysInfo', true, false);
-
 /**
  * sets a user-defined error handler function
  *
