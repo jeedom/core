@@ -179,7 +179,6 @@ class network {
 		}if ($uname['machine'] == 'x86_64') {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
 		} else {
-			return '';
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
 		}
 		exec('chmod +x ' . $cmd);
@@ -226,7 +225,6 @@ class network {
 		}if ($uname['machine'] == 'x86_64') {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
 		} else {
-			return '';
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
 		}
 		$cmd .= ' -config=' . $config_file . ' start ' . $_name;
@@ -255,7 +253,6 @@ class network {
 		}if ($uname['machine'] == 'x86_64') {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
 		} else {
-			return '';
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
 		}
 		$cmd .= ' -config=' . $config_file . ' start ' . $_name;
