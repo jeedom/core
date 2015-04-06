@@ -388,6 +388,9 @@ class jeedom {
 				log::chunk();
 				cron::clean();
 				network::ngrok_stop();
+				if (!network::ngrok_run()) {
+					network::ngrok_start();
+				}
 			}
 		} catch (Exception $e) {
 			log::add('log', 'error', $e->getMessage());
