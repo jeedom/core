@@ -176,8 +176,11 @@ class network {
 		$uname = posix_uname();
 		if (strrpos($uname['machine'], 'arm') !== false) {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
-		} else {
+		}if ($uname['machine'] == 'x86_64') {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
+		} else {
+			return '';
+			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
 		}
 		exec('chmod +x ' . $cmd);
 		$cmd .= ' -config=' . $config_file . ' start ' . $_name;
@@ -220,8 +223,11 @@ class network {
 		$uname = posix_uname();
 		if (strrpos($uname['machine'], 'arm') !== false) {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
-		} else {
+		}if ($uname['machine'] == 'x86_64') {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
+		} else {
+			return '';
+			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
 		}
 		$cmd .= ' -config=' . $config_file . ' start ' . $_name;
 		$pid = jeedom::retrievePidThread($cmd);
@@ -246,8 +252,11 @@ class network {
 		$uname = posix_uname();
 		if (strrpos($uname['machine'], 'arm') !== false) {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
-		} else {
+		}if ($uname['machine'] == 'x86_64') {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
+		} else {
+			return '';
+			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
 		}
 		$cmd .= ' -config=' . $config_file . ' start ' . $_name;
 		$pid = jeedom::retrievePidThread($cmd);
