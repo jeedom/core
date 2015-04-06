@@ -52,6 +52,31 @@
     });
 });
 
+ $('#bt_restartNgrok').on('click', function () {
+    $.hideAlert();
+    jeedom.network.restartNgrok({
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            window.location.href='index.php?v=d&p=administration&panel=config_network';
+        }
+    });
+});
+
+
+ $('#bt_haltNgrok').on('click', function () {
+    $.hideAlert();
+    jeedom.network.stopNgrok({
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            window.location.href='index.php?v=d&p=administration&panel=config_network';
+        }
+    });
+});
+
  $("#bt_nodeJsKey").on('click', function (event) {
     $.hideAlert();
     genNodeJsKey();
@@ -165,6 +190,10 @@ $('#bt_selectMailCmd').on('click', function () {
     });
 });
 
+if (getUrlVars('panel') != false) {
+   $('a[href=#'+getUrlVars('panel')+']').click();
+}
+
 printConvertColor();
 
 $.showLoading();
@@ -190,14 +219,14 @@ $('#bt_testMarketConnection').on('click', function () {
         },
         success: function () {
             jeedom.market.test({
-               error: function (error) {
+             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function () {
-             $('#div_alert').showAlert({message: '{{Connexion au market réussie}}', level: 'success'});
-         }
+               $('#div_alert').showAlert({message: '{{Connexion au market réussie}}', level: 'success'});
+           }
 
-     });
+       });
         }
     });
 });
