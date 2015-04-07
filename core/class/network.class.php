@@ -254,7 +254,7 @@ class network {
 		if ($pid == null) {
 			return false;
 		}
-		return posix_getsid($pid);
+		return posix_getsid(intval($pid));
 	}
 
 	public static function ngrok_stop($_proto = 'http', $_port = 80, $_name = '') {
