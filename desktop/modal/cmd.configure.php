@@ -354,6 +354,12 @@ foreach (scenario::all() as $scenario) {
 
 });
 </script>
+<div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi (chiffre après la virgule)}}</label>
+  <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
+  </div>
+</div>
 <?php }?>
 <?php if ($cmd->getIsHistorized() == 1) {?>
 <div class="form-group">
@@ -373,12 +379,7 @@ foreach (scenario::all() as $scenario) {
     </select>
   </div>
 </div>
-<div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi (chiffre après la virgule)}}</label>
-  <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
-  </div>
-</div>
+
 <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux de }}</label>
   <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
