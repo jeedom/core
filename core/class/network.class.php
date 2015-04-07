@@ -196,7 +196,22 @@ class network {
 				if (config::byKey('ngrok::port') == '') {
 					return '';
 				}
-				$replace['#remote_port#'] = 'remote_port: ' . config::byKey('ngrok::port');
+				$remote_port = config::byKey('ngrok::port');
+				if ($_port != 22) {
+					$used_port = config::byKey('ngrok::remoteport');
+					if (!is_array($used_port)) {
+						$used_port = array();
+					}
+					for ($i = 1; $i < 5; $i++) {
+						$remote_port++;
+						if (!isset($used_port[$remote_port]) || $used_port[$remote_port] == $_name) {
+							break;
+						}
+					}
+					$used_port[$remote_port] = $_name;
+					config::save('ngrok::remoteport', $used_port);
+				}
+				$replace['#remote_port#'] = 'remote_port: ' . $remote_port;
 			}
 			if (config::byKey('market::userDNS') != '' && config::byKey('market::passwordDNS') != '') {
 				$replace['#auth#'] = 'auth: "' . config::byKey('market::userDNS') . ':' . config::byKey('market::passwordDNS') . '"';
