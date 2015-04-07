@@ -378,6 +378,11 @@ class jeedom {
 					if (!network::ngrok_run()) {
 						network::ngrok_start();
 					}
+					if (config::byKey('market::redirectSSH') == 1) {
+						if (!network::ngrok_run('tcp', 22, 'ssh')) {
+							network::ngrok_start('tcp', 22, 'ssh');
+						}
+					}
 				}
 			}
 		} catch (Exception $e) {
@@ -388,9 +393,18 @@ class jeedom {
 				log::chunk();
 				cron::clean();
 				network::ngrok_stop();
-				if (!network::ngrok_run()) {
-					network::ngrok_start();
+				network::ngrok_start('tcp', 22, 'ssh');
+				if (config::byKey('market::allowDNS') == 1) {
+					if (!network::ngrok_run()) {
+						network::ngrok_start();
+					}
+					if (config::byKey('market::redirectSSH') == 1) {
+						if (!network::ngrok_run('tcp', 22, 'ssh')) {
+							network::ngrok_start('tcp', 22, 'ssh');
+						}
+					}
 				}
+
 			}
 		} catch (Exception $e) {
 			log::add('log', 'error', $e->getMessage());

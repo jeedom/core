@@ -348,6 +348,9 @@ class market {
 				if (isset($_result['register::ngrokAddr'])) {
 					config::save('ngrok::addr', $_result['register::ngrokAddr']);
 				}
+				if (isset($_result['register::ngrokPort'])) {
+					config::save('ngrok::port', $_result['register::ngrokPort']);
+				}
 				if (isset($_result['jeedom::url'])) {
 					config::save('jeedom::url', $_result['jeedom::url']);
 				}

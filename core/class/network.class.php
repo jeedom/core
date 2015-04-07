@@ -161,7 +161,7 @@ class network {
 
 /*     * *********************NGROK************************* */
 
-	public static function ngrok_start($_port = 80, $_name = '') {
+	public static function ngrok_start($_proto = 'http', $_port = 80, $_name = '') {
 		if ($_port != 80 && $_name == '') {
 			throw new Exception(__('Si le port est different de 80 le nom ne peut etre vide', __FILE__));
 		}
@@ -176,21 +176,25 @@ class network {
 		$uname = posix_uname();
 		if (strrpos($uname['machine'], 'arm') !== false) {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
-		}if ($uname['machine'] == 'x86_64') {
+		} else if ($uname['machine'] == 'x86_64') {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
 		} else {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
 		}
 		exec('chmod +x ' . $cmd);
 		$cmd .= ' -config=' . $config_file . ' start ' . $_name;
-		if (!self::ngrok_run($_port, $_name)) {
+		if (!self::ngrok_run($_proto, $_port, $_name)) {
 			$replace = array(
 				'#name#' => $_name,
-				'#proto#' => 'http',
+				'#proto#' => $_proto,
 				'#port#' => $_port,
+				'#remote_port#' => '',
 				'#auth#' => '',
 				'#subdomain#' => config::byKey('ngrok::addr'),
 			);
+			if ($_proto == 'tcp') {
+				$replace['#remote_port#'] = 'remote_port: ' . config::byKey('ngrok::port');
+			}
 			if (config::byKey('market::userDNS') != '' && config::byKey('market::passwordDNS') != '') {
 				$replace['#auth#'] = 'auth: "' . config::byKey('market::userDNS') . ':' . config::byKey('market::passwordDNS') . '"';
 			}
@@ -210,7 +214,7 @@ class network {
 		return true;
 	}
 
-	public static function ngrok_run($_port = 80, $_name = '') {
+	public static function ngrok_run($_proto = 'http', $_port = 80, $_name = '') {
 		if ($_port != 80 && $_name == '') {
 			throw new Exception(__('Si le port est different de 80 le nom ne peut etre vide', __FILE__));
 		}
@@ -222,7 +226,7 @@ class network {
 		$uname = posix_uname();
 		if (strrpos($uname['machine'], 'arm') !== false) {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
-		}if ($uname['machine'] == 'x86_64') {
+		} else if ($uname['machine'] == 'x86_64') {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
 		} else {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
@@ -235,11 +239,11 @@ class network {
 		return posix_getsid($pid);
 	}
 
-	public static function ngrok_stop($_port = 80, $_name = '') {
+	public static function ngrok_stop($_proto = 'http', $_port = 80, $_name = '') {
 		if ($_port != 80 && $_name == '') {
 			throw new Exception(__('Si le port est different de 80 le nom ne peut etre vide', __FILE__));
 		}
-		if (!self::ngrok_run($_port, $_name)) {
+		if (!self::ngrok_run($_proto, $_port, $_name)) {
 			return true;
 		}
 		if ($_name == '') {
@@ -250,7 +254,7 @@ class network {
 		$uname = posix_uname();
 		if (strrpos($uname['machine'], 'arm') !== false) {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
-		}if ($uname['machine'] == 'x86_64') {
+		} else if ($uname['machine'] == 'x86_64') {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
 		} else {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
@@ -265,7 +269,7 @@ class network {
 			sleep(1);
 			posix_kill($pid, 9);
 		}
-		return !self::ngrok_run($_port, $_name);
+		return !self::ngrok_run($_proto, $_port, $_name);
 	}
 
 /*     * *********************Methode d'instance************************* */

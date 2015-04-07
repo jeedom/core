@@ -315,6 +315,13 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                                 <input type="checkbox"  class="configKey" data-l1key="market::allowDNS" />
                             </div>
                         </div>
+                        <div class="alert alert-info">{{Toute modification nécessite de redémarrer le service DNS Jeedom (ligne "Gestion" puis "Redémarrer")}}</div>
+                        <div class="form-group alert alert-danger">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label" title="{{A ne faire que si on vous le demande ou en connaissance de cause}}">{{Rediriger le SSH}}</label>
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <input type="checkbox"  class="configKey" data-l1key="market::redirectSSH" />
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Authentification (optionnelle)}}</label>
                             <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
@@ -325,11 +332,11 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Statut}}</label>
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Statut http}}</label>
                             <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
                                 <?php
 if (network::ngrok_run()) {
-	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank">' . network::getNetworkAccess('external') . '</a></span>';
+	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
 } else {
 	echo '<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
 }
@@ -337,15 +344,27 @@ if (network::ngrok_run()) {
                            </div>
                        </div>
                        <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Statut SSH}}</label>
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                            <?php
+if (network::ngrok_run('tcp', 22, 'ssh')) {
+	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} ngork.jeedom.com:' . config::byKey('ngrok::port') . '</span>';
+} else {
+	echo '<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
+}
+?>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Gestion}}</label>
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                           <a class="btn btn-success" id="bt_restartNgrok"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
-                           <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arreter}}</a>
-                       </div>
+                         <a class="btn btn-success" id="bt_restartNgrok"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
+                         <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arreter}}</a>
+                     </div>
 
-                   </div>
-                   <legend>Autres</legend>
-                   <div class="form-group expertModeVisible alert alert-danger">
+                 </div>
+                 <legend>Autres</legend>
+                 <div class="form-group expertModeVisible alert alert-danger">
                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mode}}</label>
                     <div class="col-sm-6">
                         <?php
@@ -473,7 +492,7 @@ if (file_exists('/etc/nginx/sites-available/default_ssl')) {
                 <legend>{{Push}}</legend>
                 <form class="form-horizontal">
                     <fieldset>
-                     <div class="form-group">
+                       <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Url de push globale}}</label>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <input type="text"  class="configKey form-control tooltips" data-l1key="cmdPushUrl" title="{{Mettez ici l'url à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivant : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>

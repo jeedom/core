@@ -26,12 +26,25 @@ try {
 			network::ngrok_stop();
 		}
 		network::ngrok_start();
+		if (config::byKey('market::redirectSSH') == 1) {
+			if (network::ngrok_run('tcp', 22, 'ssh')) {
+				network::ngrok_stop('tcp', 22, 'ssh');
+			}
+			network::ngrok_start('tcp', 22, 'ssh');
+		} else {
+			if (network::ngrok_run('tcp', 22, 'ssh')) {
+				network::ngrok_stop('tcp', 22, 'ssh');
+			}
+		}
 		ajax::success();
 	}
 
 	if (init('action') == 'stopNgrok') {
 		config::save('market::allowDNS', 0);
 		network::ngrok_stop();
+		if (config::byKey('market::redirectSSH') == 1) {
+			network::ngrok_stop('tcp', 22, 'ssh');
+		}
 		ajax::success();
 	}
 
