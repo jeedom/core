@@ -350,7 +350,7 @@ if (network::ngrok_run()) {
 if (network::ngrok_run('tcp', 22, 'ssh')) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} ngork.jeedom.com:' . config::byKey('ngrok::port') . '</span>';
 } else {
-	echo '<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
+	echo '<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Rediriger le SSH}}">{{Arrêté}}</span>';
 }
 ?>
                         </div>

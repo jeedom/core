@@ -46,49 +46,82 @@ function loadInfoFromSlave(_id){
                 $('#bt_connectToSlave').hide();
             }
             $('#div_pluginList').empty().append(plugin);
+
+            jeedom.jeeNetwork.ngrokRun({
+                id: _id,
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                    if(data == 0){
+                     $('#div_ngrokHttpStatus').html('<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>');
+                 }else{
+                   $('#div_ngrokHttpStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' +init(data.configuration.url)+ '" target="_blank" style="color:white;text-decoration: underline;">' +init(data.configuration.url)+ '</a></span>');
+               }
+           }
+       });
+
+            jeedom.jeeNetwork.ngrokRun({
+                id: _id,
+                proto : 'tcp',
+                port : 22,
+                name : 'ssh',
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                    if(data == 0){
+                     $('#div_ngrokSSHStatus').html('<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Rediriger le SSH}}">{{Arrêté}}</span>');
+                 }else{
+                    $('#div_ngrokSSHStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} ngork.jeedom.com:' + init(data.configuration['ngrok::port']) + '</span>');
+                 }
+             }
+         });
             modifyWithoutSave = false;
         }
     });
-    jeedom.jeeNetwork.loadConfig({
-     id: _id,
-     configuration: $('#administration').getValues('.configKey')[0],
-     error: function (error) {
+jeedom.jeeNetwork.loadConfig({
+ id: _id,
+ configuration: $('#administration').getValues('.configKey')[0],
+ error: function (error) {
+    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+},
+success: function (data) {
+    $('#administration').setValues(data, '.configKey');
+    modifyWithoutSave = false;
+}
+});
+jeedom.jeeNetwork.listLog({
+    id: _id,
+    error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-        $('#administration').setValues(data, '.configKey');
-        modifyWithoutSave = false;
+        if (!$.isArray(data)) {
+            return;
+        }
+        var option = '';
+        for (var i in data) {
+            option += '<option>' + data[i] + '</option>';
+        }
+        $('#sel_logSlave').empty().append(option);
+        $('#sel_logSlave').trigger('change');
     }
 });
-    jeedom.jeeNetwork.listLog({
-        id: _id,
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (data) {
-            if (!$.isArray(data)) {
-                return;
-            }
-            var option = '';
-            for (var i in data) {
-                option += '<option>' + data[i] + '</option>';
-            }
-            $('#sel_logSlave').empty().append(option);
-            $('#sel_logSlave').trigger('change');
+jeedom.jeeNetwork.listLocalSlaveBackup({
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+        var option = '';
+        for (var i in data) {
+            option += '<option value="' + i + '">' + data[i] + '</option>';
         }
-    });
-    jeedom.jeeNetwork.listLocalSlaveBackup({
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (data) {
-            var option = '';
-            for (var i in data) {
-                option += '<option value="' + i + '">' + data[i] + '</option>';
-            }
-            $('#sel_backupList').empty().append(option);
-        }
-    });
+        $('#sel_backupList').empty().append(option);
+    }
+});
+
+
 
 }
 

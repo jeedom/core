@@ -487,6 +487,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 					'nbMessage' => message::nbMessage(),
 					'auiKey' => $auiKey,
 					'jeedom::url' => config::byKey('jeedom::url'),
+					'ngrok::port' => config::byKey('ngrok::port'),
 				);
 				foreach (plugin::listPlugin(true) as $plugin) {
 					if ($plugin->getAllowRemote() == 1) {
@@ -683,6 +684,49 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'update::checkUpdate') {
 				update::checkAllUpdate();
 				$jsonrpc->makeSuccess('ok');
+			}
+
+			/*             * ************************Network*************************** */
+
+			if ($jsonrpc->getMethod() == 'network::restartNgrok') {
+				config::save('market::allowDNS', 1);
+				if (network::ngrok_run()) {
+					network::ngrok_stop();
+				}
+				network::ngrok_start();
+				if (config::byKey('market::redirectSSH') == 1) {
+					if (network::ngrok_run('tcp', 22, 'ssh')) {
+						network::ngrok_stop('tcp', 22, 'ssh');
+					}
+					network::ngrok_start('tcp', 22, 'ssh');
+				} else {
+					if (network::ngrok_run('tcp', 22, 'ssh')) {
+						network::ngrok_stop('tcp', 22, 'ssh');
+					}
+				}
+				$jsonrpc->makeSuccess();
+			}
+
+			if ($jsonrpc->getMethod() == 'network::stopNgrok') {
+				config::save('market::allowDNS', 0);
+				network::ngrok_stop();
+				if (config::byKey('market::redirectSSH') == 1) {
+					network::ngrok_stop('tcp', 22, 'ssh');
+				}
+				$jsonrpc->makeSuccess();
+			}
+
+			if ($jsonrpc->getMethod() == 'network::ngrokRun') {
+				if (!isset($params['proto'])) {
+					$params['proto'] = 'http';
+				}
+				if (!isset($params['port'])) {
+					$params['port'] = 80;
+				}
+				if (!isset($params['name'])) {
+					$params['name'] = '';
+				}
+				$jsonrpc->makeSuccess(network::ngrok_run($params['proto'], $params['port'], $params['name']));
 			}
 
 			/*             * ************************************************************************ */
