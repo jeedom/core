@@ -193,6 +193,9 @@ class network {
 				'#subdomain#' => config::byKey('ngrok::addr'),
 			);
 			if ($_proto == 'tcp') {
+				if (config::byKey('ngrok::port') == '') {
+					return '';
+				}
 				$replace['#remote_port#'] = 'remote_port: ' . config::byKey('ngrok::port');
 			}
 			if (config::byKey('market::userDNS') != '' && config::byKey('market::passwordDNS') != '') {
