@@ -470,8 +470,7 @@ class jeeNetwork {
 		if (!$jsonrpc->sendRequest('network::ngrokRun', array('proto' => $_proto, 'port' => $_port, 'name' => $_name))) {
 			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 		}
-		$this->save();
-		return true;
+		return $jsonrpc->getResult();
 	}
 
 	public function restoreLocalBackup($_backup) {

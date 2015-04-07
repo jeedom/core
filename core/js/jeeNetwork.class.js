@@ -390,7 +390,7 @@ jeedom.jeeNetwork.loadConfig = function (_params) {
     $.ajax(paramsAJAX);
 };
 
-jeedom.jeeNetwork.restarNgrok = function (_params) {
+jeedom.jeeNetwork.restartNgrok = function (_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
@@ -444,7 +444,7 @@ jeedom.jeeNetwork.ngrokRun = function (_params) {
         action: 'ngrokRun',
         id : _params.id,
         proto: _params.proto || 'http',
-        port: _params.port || 22,
+        port: _params.port || 80,
         name : _params.name || ''
     };
     $.ajax(paramsAJAX);

@@ -46,7 +46,7 @@ function loadInfoFromSlave(_id){
                 $('#bt_connectToSlave').hide();
             }
             $('#div_pluginList').empty().append(plugin);
-
+            var jeeNetworkConfig = data;
             jeedom.jeeNetwork.ngrokRun({
                 id: _id,
                 error: function (error) {
@@ -56,7 +56,7 @@ function loadInfoFromSlave(_id){
                     if(data == 0){
                      $('#div_ngrokHttpStatus').html('<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>');
                  }else{
-                   $('#div_ngrokHttpStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' +init(data.configuration.url)+ '" target="_blank" style="color:white;text-decoration: underline;">' +init(data.configuration.url)+ '</a></span>');
+                   $('#div_ngrokHttpStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' +init(jeeNetworkConfig.configuration.url)+ '" target="_blank" style="color:white;text-decoration: underline;">' +init(jeeNetworkConfig.configuration.url)+ '</a></span>');
                }
            }
        });
@@ -73,7 +73,7 @@ function loadInfoFromSlave(_id){
                     if(data == 0){
                      $('#div_ngrokSSHStatus').html('<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Rediriger le SSH}}">{{Arrêté}}</span>');
                  }else{
-                    $('#div_ngrokSSHStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} ngork.jeedom.com:' + init(data.configuration['ngrok::port']) + '</span>');
+                    $('#div_ngrokSSHStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} dns.jeedom.com:' + init(jeeNetworkConfig.configuration['ngrok::port']) + '</span>');
                  }
              }
          });
@@ -329,6 +329,34 @@ $('#bt_updateSlave').on('click', function () {
                     $('#div_alert').showAlert({message: '{{Le système est en cours de mise à jour}}', level: 'success'});
                 }
             });
+        }
+    });
+});
+
+$('#bt_restartNgrok').on('click', function () {
+    $.hideAlert();
+    jeedom.jeeNetwork.restartNgrok({
+        id: $('.li_jeeNetwork.active').attr('data-jeeNetwork_id'),
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            $('.li_jeeNetwork.active').click();
+            $('#div_alert').showAlert({message: '{{Redemarrage eefectué avec succès}}', level: 'success'});
+        }
+    });
+});
+
+$('#bt_haltNgrok').on('click', function () {
+    $.hideAlert();
+    jeedom.jeeNetwork.stopNgrok({
+        id: $('.li_jeeNetwork.active').attr('data-jeeNetwork_id'),
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            $('.li_jeeNetwork.active').click();
+            $('#div_alert').showAlert({message: '{{Arret effectué avec succès}}', level: 'success'});
         }
     });
 });
