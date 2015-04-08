@@ -205,7 +205,7 @@ try {
 		if (!is_object($jeeNetwork)) {
 			throw new Exception(__('JeeNetwork inconnu verifié l\'id : ', __FILE__) . init('id'));
 		}
-		ajax::success($jeeNetwork->ngrokRun(init('proto', 'http'), init('port', 80), init('name')));
+		ajax::success($jeeNetwork->ngrokRun(init('proto', 'https'), init('port', 80), init('name')));
 	}
 
 	if (init('action') == 'listLocalSlaveBackup') {

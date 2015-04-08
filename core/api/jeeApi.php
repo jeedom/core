@@ -718,7 +718,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 			if ($jsonrpc->getMethod() == 'network::ngrokRun') {
 				if (!isset($params['proto'])) {
-					$params['proto'] = 'http';
+					$params['proto'] = 'https';
 				}
 				if (!isset($params['port'])) {
 					$params['port'] = 80;

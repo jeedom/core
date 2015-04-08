@@ -161,7 +161,7 @@ class network {
 
 /*     * *********************NGROK************************* */
 
-	public static function ngrok_start($_proto = 'http', $_port = 80, $_name = '') {
+	public static function ngrok_start($_proto = 'https', $_port = 80, $_name = '') {
 		if ($_port != 80 && $_name == '') {
 			throw new Exception(__('Si le port est different de 80 le nom ne peut etre vide', __FILE__));
 		}
@@ -232,7 +232,7 @@ class network {
 		return true;
 	}
 
-	public static function ngrok_run($_proto = 'http', $_port = 80, $_name = '') {
+	public static function ngrok_run($_proto = 'https', $_port = 80, $_name = '') {
 		if ($_port != 80 && $_name == '') {
 			throw new Exception(__('Si le port est different de 80 le nom ne peut etre vide', __FILE__));
 		}
@@ -257,7 +257,7 @@ class network {
 		return posix_getsid(intval($pid));
 	}
 
-	public static function ngrok_stop($_proto = 'http', $_port = 80, $_name = '') {
+	public static function ngrok_stop($_proto = 'https', $_port = 80, $_name = '') {
 		if ($_port != 80 && $_name == '') {
 			throw new Exception(__('Si le port est different de 80 le nom ne peut etre vide', __FILE__));
 		}

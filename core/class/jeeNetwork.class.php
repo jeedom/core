@@ -462,7 +462,7 @@ class jeeNetwork {
 		return true;
 	}
 
-	public function ngrokRun($_proto = 'http', $_port = 80, $_name = '') {
+	public function ngrokRun($_proto = 'https', $_port = 80, $_name = '') {
 		if ($this->getStatus() == 'error') {
 			return '';
 		}

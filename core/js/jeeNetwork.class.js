@@ -443,7 +443,7 @@ jeedom.jeeNetwork.ngrokRun = function (_params) {
     paramsAJAX.data = {
         action: 'ngrokRun',
         id : _params.id,
-        proto: _params.proto || 'http',
+        proto: _params.proto || 'https',
         port: _params.port || 80,
         name : _params.name || ''
     };
