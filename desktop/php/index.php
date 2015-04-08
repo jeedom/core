@@ -227,7 +227,7 @@ foreach (view::all() as $view_menu) {
 															<ul class="dropdown-menu">
 <?php
 foreach (planHeader::all() as $plan_menu) {
-				echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . $plan_menu->getName() . '</a></li>';
+				echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon') . ' ' . $plan_menu->getName()) . '</a></li>';
 			}
 			?>
 
