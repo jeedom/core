@@ -137,7 +137,7 @@ include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js');
 include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css');
 include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
 include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
-include_file('3rdparty', 'snap.svg/snap.svg-min', 'js');
+//
 if (file_exists(dirname(__FILE__) . '/../custom/custom.css')) {
 	include_file('desktop', '', 'custom.css');
 }
@@ -152,6 +152,7 @@ if (isConnect() && $_SESSION['user']->getOptions('desktop_highcharts_theme') != 
 	}
 }
 ?>
+<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 			</head>
 			<body>
 				<?php
