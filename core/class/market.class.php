@@ -281,6 +281,14 @@ class market {
 		$file = array(
 			'file' => '@' . realpath($tmp),
 		);
+		if (isset($_ticket['allowRemoteAccess']) && $_ticket['allowRemoteAccess'] == 1) {
+			$user = user::createTemporary(72);
+			$_ticket['options']['remoteAccess'] = 'Http : ' . $user->getDirectUrlAccess();
+			if (config::byKey('market::allowDNS') == 1 && config::byKey('market::redirectSSH') == 1 && config::byKey('ngrok::port') != '') {
+				$_ticket['options']['remoteAccess'] .= ' | SSH : dns.jeedom.com:' . config::byKey('ngrok::port');
+			}
+		}
+
 		$_ticket['options']['jeedom_version'] = jeedom::version();
 		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket), 600, $file)) {
 			throw new Exception($jsonrpc->getErrorMessage());

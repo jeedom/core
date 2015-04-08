@@ -151,7 +151,7 @@ setInterval(function () {
     $("#md_reportBug").dialog({
         autoOpen: false,
         modal: true,
-        height: 600,
+        height: 700,
         width: 900,
         position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
