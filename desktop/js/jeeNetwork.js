@@ -547,6 +547,7 @@ function getJeedomSlaveLog(_autoUpdate, _log,_el) {
                 }
             }
             _el.text(log);
+            _el.scrollTop(_el.height() + 200000);
             if (init(_autoUpdate, 0) == 1) {
                 setTimeout(function () {
                     getJeedomSlaveLog(_autoUpdate, _log,_el)
