@@ -1,4 +1,4 @@
-server_addr: ngrok.jeedom.com:4443
+server_addr: dns.jeedom.com:4443
 trust_host_root_certs: false
 tunnels:
   #name#:
