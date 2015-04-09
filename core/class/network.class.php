@@ -85,7 +85,6 @@ class network {
 			if ($_protocole == 'dns:port') {
 				if (config::byKey('jeedom::url') != '') {
 					$url = parse_url(config::byKey('jeedom::url'));
-					$return = '';
 					if (isset($url['host'])) {
 						if (isset($url['port'])) {
 							return $url['host'] . ':' . $url['port'];
