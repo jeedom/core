@@ -39,6 +39,9 @@ class network {
 			if ($_protocole == 'ip:port' || $_protocole == 'dns:port') {
 				return config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80);
 			}
+			if ($_protocole == 'prot:ip:port' || $_protocole == 'proto:dns:port') {
+				return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80);
+			}
 			return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . config::byKey('internalComplement');
 
 		}
@@ -63,18 +66,44 @@ class network {
 				return config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80);
 			}
 			if ($_protocole == 'proto:dns:port') {
-				$url = parse_url(config::byKey('jeedom::url'));
-				$return = '';
-				if (isset($url['scheme'])) {
-					$return = $url['scheme'] . '://';
-				}
-				if (isset($url['host'])) {
-					if (isset($url['port'])) {
-						return $url['host'] . ':' . $url['port'];
-					} else {
-						return $url['host'];
+				if (config::byKey('jeedom::url') != '') {
+					$url = parse_url(config::byKey('jeedom::url'));
+					$return = '';
+					if (isset($url['scheme'])) {
+						$return = $url['scheme'] . '://';
+					}
+					if (isset($url['host'])) {
+						if (isset($url['port'])) {
+							return $return . $url['host'] . ':' . $url['port'];
+						} else {
+							return $return . $url['host'];
+						}
 					}
 				}
+				return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80);
+			}
+			if ($_protocole == 'dns:port') {
+				if (config::byKey('jeedom::url') != '') {
+					$url = parse_url(config::byKey('jeedom::url'));
+					$return = '';
+					if (isset($url['host'])) {
+						if (isset($url['port'])) {
+							return $url['host'] . ':' . $url['port'];
+						} else {
+							return $url['host'];
+						}
+					}
+				}
+				return config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80);
+			}
+			if ($_protocole == 'proto') {
+				if (config::byKey('jeedom::url') != '') {
+					$url = parse_url(config::byKey('jeedom::url'));
+					if (isset($url['scheme'])) {
+						return $url['scheme'] . '://';
+					}
+				}
+				return config::byKey('externalProtocol');
 			}
 			if (config::byKey('jeedom::url') != '') {
 				if (config::byKey('jeedom::url') != '') {
