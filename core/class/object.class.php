@@ -91,7 +91,7 @@ class object {
 						foreach ($eqLogic->getCmd() as $cmd) {
 							$cmd_return = utils::o2a($cmd);
 							if ($cmd->getType() == 'info') {
-								$cmd_return['state'] = $cmd->execCmd();
+								$cmd_return['state'] = $cmd->execCmd(null, 2);
 							}
 							$eqLogic_return['cmds'][] = $cmd_return;
 						}
