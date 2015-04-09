@@ -33,10 +33,10 @@ class network {
 			if (config::byKey('internalAddr') == '') {
 				self::internalAutoconf();
 			}
-			if ($_protocole == 'ip') {
+			if ($_protocole == 'ip' || $_protocole == 'dns') {
 				return config::byKey('internalAddr', 'core', $_default);
 			}
-			if ($_protocole == 'ip:port') {
+			if ($_protocole == 'ip:port' || $_protocole == 'dns:port') {
 				return config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80);
 			}
 			return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . config::byKey('internalComplement');
@@ -44,10 +44,42 @@ class network {
 		}
 		if ($_mode == 'external') {
 			if ($_protocole == 'ip') {
-				return '';
+				if (config::byKey('jeedom::url') != '') {
+					return getIpFromString(config::byKey('jeedom::url'));
+				}
+				return getIpFromString(config::byKey('externalAddr'));
+			}
+			if ($_protocole == 'ip:port') {
+				if (config::byKey('jeedom::url') != '') {
+					$url = parse_url(config::byKey('jeedom::url'));
+					if (isset($url['host'])) {
+						if (isset($url['port'])) {
+							return getIpFromString($url['host']) . ':' . $url['port'];
+						} else {
+							return getIpFromString($url['host']);
+						}
+					}
+				}
+				return config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80);
+			}
+			if ($_protocole == 'proto:dns:port') {
+				$url = parse_url(config::byKey('jeedom::url'));
+				$return = '';
+				if (isset($url['scheme'])) {
+					$return = $url['scheme'] . '://';
+				}
+				if (isset($url['host'])) {
+					if (isset($url['port'])) {
+						return $url['host'] . ':' . $url['port'];
+					} else {
+						return $url['host'];
+					}
+				}
 			}
 			if (config::byKey('jeedom::url') != '') {
-				return config::byKey('jeedom::url');
+				if (config::byKey('jeedom::url') != '') {
+					return config::byKey('jeedom::url');
+				}
 			}
 			return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . config::byKey('externalComplement');
 		}
