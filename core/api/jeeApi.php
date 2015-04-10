@@ -30,6 +30,15 @@ if (trim(config::byKey('api')) == '') {
 	log::add('jeeEvent', 'error', 'Vous n\'avez aucune clé API configurée, veuillez d\'abord en générer une (Page Général -> Administration -> Configuration');
 	die();
 }
+
+if (init('type') == 'getApiKey') {
+	if (config::byKey('market::jeedom_apikey') == init('apikey')) {
+		market::validateTicket(init('ticket'));
+		echo config::byKey('api');
+	}
+	die();
+}
+
 if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 	try {
 		if (config::byKey('api') != init('apikey') && config::byKey('api') != init('api')) {
@@ -139,10 +148,8 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 		if (isset($params['apikey']) || isset($params['api'])) {
 			if (config::byKey('api') == '' || (config::byKey('api') != $params['apikey'] && config::byKey('api') != $params['api'])) {
-				if (config::byKey('market::jeedom_apikey') == '' || config::byKey('market::jeedom_apikey') != $params['apikey']) {
-					connection::failed();
-					throw new Exception('Clé API invalide', -32001);
-				}
+				connection::failed();
+				throw new Exception('Clé API invalide', -32001);
 			}
 		} else if (isset($params['username']) && isset($params['password'])) {
 			$user = user::connect($params['username'], $params['password']);
@@ -173,12 +180,6 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			/*             * ***********************Ping********************************* */
 			if ($jsonrpc->getMethod() == 'ping') {
 				$jsonrpc->makeSuccess('pong');
-			}
-
-			/*             * ***********************Get API Key********************************* */
-			if ($jsonrpc->getMethod() == 'getApiKey' && config::byKey('market::jeedom_apikey') == $params['apikey']) {
-				market::validateTicket($params['ticket']);
-				$jsonrpc->makeSuccess(config::byKey('api'));
 			}
 
 			/*             * ***********************Version********************************* */
