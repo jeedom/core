@@ -139,7 +139,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 		if (isset($params['apikey']) || isset($params['api'])) {
 			if (config::byKey('api') == '' || (config::byKey('api') != $params['apikey'] && config::byKey('api') != $params['api'])) {
-				if (config::byKey('market::jeedom_apikey') == '' || config::byKey('market::jeedom_apikey') != $params['apikey'] || $_SERVER['REMOTE_ADDR'] != '94.23.188.164' || $_SERVER['REMOTE_ADDR'] != '127.0.0.1') {
+				if (config::byKey('market::jeedom_apikey') == '' || config::byKey('market::jeedom_apikey') != $params['apikey']) {
 					connection::failed();
 					throw new Exception('Clé API invalide', -32001);
 				}
