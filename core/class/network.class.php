@@ -249,7 +249,7 @@ class network {
 				'#proto#' => $_proto,
 				'#port#' => $_port,
 				'#remote_port#' => '',
-				'#auth#' => '',
+				'#token#' => config::byKey('ngrok::token'),
 				'#subdomain#' => config::byKey('ngrok::addr'),
 			);
 			if ($_proto == 'tcp') {

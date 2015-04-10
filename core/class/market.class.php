@@ -354,6 +354,7 @@ class market {
 					config::save('externalAddr', $_result['client::ip']);
 				}
 				if (isset($_result['register::ngrokAddr']) && config::byKey('ngrok::addr') != $_result['register::ngrokAddr']) {
+					config::save('ngrok::addr', $_result['register::ngrokAddr']);
 					if (network::ngrok_run()) {
 						network::ngrok_stop();
 					}
@@ -366,9 +367,24 @@ class market {
 							network::ngrok_start('tcp', 22, 'ssh');
 						}
 					}
-					config::save('ngrok::addr', $_result['register::ngrokAddr']);
+				}
+				if (isset($_result['register::ngrokToken']) && config::byKey('ngrok::token') != $_result['register::ngrokToken']) {
+					config::save('ngrok::token', $_result['register::ngrokToken']);
+					if (network::ngrok_run()) {
+						network::ngrok_stop();
+					}
+					if (network::ngrok_run('tcp', 22, 'ssh')) {
+						network::ngrok_stop('tcp', 22, 'ssh');
+					}
+					if (config::byKey('market::allowDNS') == 1) {
+						network::ngrok_run();
+						if (config::byKey('market::redirectSSH') == 1) {
+							network::ngrok_start('tcp', 22, 'ssh');
+						}
+					}
 				}
 				if (isset($_result['register::ngrokPort']) && config::byKey('ngrok::port') != $_result['register::ngrokPort']) {
+					config::save('ngrok::port', $_result['register::ngrokPort']);
 					if (network::ngrok_run('tcp', 22, 'ssh')) {
 						network::ngrok_stop('tcp', 22, 'ssh');
 					}
@@ -377,7 +393,6 @@ class market {
 							network::ngrok_start('tcp', 22, 'ssh');
 						}
 					}
-					config::save('ngrok::port', $_result['register::ngrokPort']);
 				}
 				if (isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
 					config::save('jeedom::url', $_result['jeedom::url']);
