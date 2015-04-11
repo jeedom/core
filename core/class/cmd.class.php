@@ -511,7 +511,9 @@ class cmd {
 			if (!isset($return[$informations[1]][$informations[2]])) {
 				$return[$informations[1]][$informations[2]] = array();
 			}
-			$return[$informations[1]][$informations[2]][] = array('name' => $informations[3]);
+			if (isset($informations[3])) {
+				$return[$informations[1]][$informations[2]][] = array('name' => $informations[3]);
+			}
 		}
 		foreach (plugin::listPlugin(true) as $plugin) {
 			$path = dirname(__FILE__) . '/../../plugins/' . $plugin->getId() . '/core/template/' . $_version;
