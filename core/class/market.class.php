@@ -377,7 +377,7 @@ class market {
 						network::ngrok_stop('tcp', 22, 'ssh');
 					}
 					if (config::byKey('market::allowDNS') == 1) {
-						network::ngrok_run();
+						network::ngrok_start();
 						if (config::byKey('market::redirectSSH') == 1) {
 							network::ngrok_start('tcp', 22, 'ssh');
 						}
