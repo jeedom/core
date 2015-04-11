@@ -53,6 +53,16 @@ try {
 		}
 	}
 
+	$cron = cron::byClassAndFunction('jeedom', 'persist');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
+
+	$cron = cron::byClassAndFunction('plugin', 'cron');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
+
 	$cron = cron::byClassAndFunction('plugin', 'cronDaily');
 	if (!is_object($cron)) {
 		$cron = new cron();
