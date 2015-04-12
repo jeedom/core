@@ -250,6 +250,7 @@ class network {
 				'#port#' => $_port,
 				'#remote_port#' => '',
 				'#token#' => config::byKey('ngrok::token'),
+				'#auth#' => '',
 				'#subdomain#' => config::byKey('ngrok::addr'),
 			);
 			if ($_proto == 'tcp') {
@@ -288,7 +289,7 @@ class network {
 			log::add('ngork', 'debug', 'Lancement de ngork : ' . $cmd);
 			exec($cmd . ' >> /dev/null 2>&1 &');
 			sleep(2);
-			if ($_proto == 'https' && $_port = 80) {
+			if ($_proto == 'https' && $_port == 80) {
 				market::test();
 			}
 		}

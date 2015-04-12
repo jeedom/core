@@ -320,6 +320,9 @@ class market {
 		if (config::byKey('market::address') == '') {
 			throw new Exception(__('Aucune addresse n\'est renseignée pour le market', __FILE__));
 		}
+		if (config::byKey('market::jeedom_apikey') == '') {
+			config::save('market::jeedom_apikey', config::genKey(255));
+		}
 		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
 				'username' => config::byKey('market::username'),
@@ -331,6 +334,7 @@ class market {
 				'addrProtocol' => config::byKey('externalProtocol'),
 				'addrPort' => config::byKey('externalPort'),
 				'addrComplement' => config::byKey('externalComplement'),
+				'marketkey' => config::byKey('market::jeedom_apikey'),
 				'nbMessage' => message::nbMessage(),
 			));
 		} else {
@@ -353,6 +357,7 @@ class market {
 				if (isset($_result['client::ip']) && (filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP) || config::byKey('externalAddr') == '')) {
 					config::save('externalAddr', $_result['client::ip']);
 				}
+
 				if (isset($_result['register::ngrokAddr']) && config::byKey('ngrok::addr') != $_result['register::ngrokAddr']) {
 					config::save('ngrok::addr', $_result['register::ngrokAddr']);
 					if (network::ngrok_run()) {
@@ -362,12 +367,13 @@ class market {
 						network::ngrok_stop('tcp', 22, 'ssh');
 					}
 					if (config::byKey('market::allowDNS') == 1) {
-						network::ngrok_run();
+						network::ngrok_start();
 						if (config::byKey('market::redirectSSH') == 1) {
 							network::ngrok_start('tcp', 22, 'ssh');
 						}
 					}
 				}
+
 				if (isset($_result['register::ngrokToken']) && config::byKey('ngrok::token') != $_result['register::ngrokToken']) {
 					config::save('ngrok::token', $_result['register::ngrokToken']);
 					if (network::ngrok_run()) {
@@ -571,20 +577,6 @@ class market {
 		}
 		if (is_object($market) && $market->getPurchase() == 0) {
 			throw new Exception(__('Vous devez acheter cet article avant de pouvoir l\'activer', __FILE__));
-		}
-	}
-
-	public static function updateIp() {
-		if (config::byKey('market::jeedom_apikey') == '') {
-			config::save('market::jeedom_apikey', config::genKey(255));
-		}
-		$market = self::getJsonRpc();
-		$params = array(
-			'marketkey' => config::byKey('market::jeedom_apikey'),
-			'port' => config::byKey('externalPort', 80),
-		);
-		if (!$market->sendRequest('jeedom::updateip', $params)) {
-			throw new Exception($market->getError());
 		}
 	}
 
@@ -844,7 +836,7 @@ class market {
 			$update->setType($this->getType());
 		}
 		$update->setConfiguration('version', 'beta');
-		$update->setLocalVersion(date('Y-m-d H:i:s', strtotime('+2 minute' . date('Y-m-d H:i:s'))));
+		$update->setLocalVersion(date('Y-m-d H:i:s', strtotime('+5 minute' . date('Y-m-d H:i:s'))));
 		$update->save();
 		$update->checkUpdate();
 	}
