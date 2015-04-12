@@ -78,7 +78,7 @@ if (config::byKey('market::showPromotion') == 1) {
 }
 ?>
    </div>
-   <legend>
+   <legend><i class="fa fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i>
     <span id="span_plugin_name" ></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
 </legend>
 <div>

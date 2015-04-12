@@ -171,9 +171,12 @@ if (getUrlVars('id') != '') {
     } else {
         $('#ul_plugin .li_plugin:first').click();
     }
-} else {
-  //  $('#ul_plugin .li_plugin:first').click();
-}
+} 
+
+$('#bt_returnToThumbnailDisplay').on('click',function(){
+$('#div_resumePluginList').show();
+$('#div_confPlugin').hide();
+});
 
 jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
