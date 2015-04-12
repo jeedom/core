@@ -23,10 +23,21 @@ if (getUrlVars('removeSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
 }
 
-$(".li_object").on('click', function (event) {
+setTimeout(function(){
+  $('.objectListContainer').packery();
+},100);
+
+$('#bt_returnToThumbnailDisplay').on('click',function(){
+$('#div_conf').hide();
+$('#div_resumeObjectList').show();
+});
+
+$(".li_object,.objectDisplayCard").on('click', function (event) {
     $('#div_conf').show();
+    $('#div_resumeObjectList').hide();
     $('.li_object').removeClass('active');
     $(this).addClass('active');
+    $('.li_object[data-object_id='+$(this).attr('data-object_id')+']').addClass('active');
     jeedom.object.byId({
         id: $(this).attr('data-object_id'),
         cache: false,
@@ -46,7 +57,7 @@ $(".li_object").on('click', function (event) {
     return false;
 });
 
-$("#bt_addObject").on('click', function (event) {
+$("#bt_addObject,#bt_addObject2").on('click', function (event) {
     bootbox.prompt("Nom de l'objet ?", function (result) {
         if (result !== null) {
             jeedom.object.save({
@@ -154,9 +165,7 @@ if (is_numeric(getUrlVars('id'))) {
     } else {
         $('#ul_object .li_object:first').click();
     }
-} else {
-    $('#ul_object .li_object:first').click();
-}
+} 
 
 $('body').delegate('.objectAttr', 'change', function () {
     modifyWithoutSave = true;
