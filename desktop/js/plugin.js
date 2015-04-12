@@ -15,10 +15,15 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- $(".li_plugin").on('click', function () {
+ setTimeout(function(){
+  $('.pluginListContainer').packery();
+},100);
+
+ $(".li_plugin,.pluginDisplayCard").on('click', function () {
     $.hideAlert();
+    $('#div_resumePluginList').hide();
     $('.li_plugin').removeClass('active');
-    $(this).addClass('active');
+    $('.li_plugin[data-plugin_id='+$(this).attr('data-plugin_id')+']').addClass('active');
     $.showLoading();
     jeedom.plugin.get({
         id: $(this).attr('data-plugin_id'),
@@ -167,7 +172,7 @@ if (getUrlVars('id') != '') {
         $('#ul_plugin .li_plugin:first').click();
     }
 } else {
-    $('#ul_plugin .li_plugin:first').click();
+  //  $('#ul_plugin .li_plugin:first').click();
 }
 
 jwerty.key('ctrl+s', function (e) {
@@ -180,7 +185,7 @@ $("#bt_savePluginConfig").on('click', function (event) {
     return false;
 });
 
-$('#bt_displayMarket').on('click', function () {
+$('#bt_displayMarket,#bt_displayMarket2').on('click', function () {
     $('#md_modal').dialog({title: "{{Market Jeedom}}"});
     $('#md_modal').load('index.php?v=d&modal=market.list&type=plugin').dialog('open');
 });
