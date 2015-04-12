@@ -686,7 +686,7 @@ class eqLogic {
 
 	public function hasRight($_right, $_needAdmin = false, $_user = null) {
 		if (!is_object($_user)) {
-			if (session_status() != PHP_SESSION_NONE) {
+			if (session_status() != PHP_SESSION_NONE || !isset($_SESSION) || !isset($_SESSION['user'])) {
 				return true;
 			}
 			$_user = $_SESSION['user'];
