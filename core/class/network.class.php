@@ -319,7 +319,7 @@ class network {
 		if ($pid == null) {
 			return false;
 		}
-		return posix_getsid(intval($pid));
+		return @posix_getsid(intval($pid));
 	}
 
 	public static function ngrok_stop($_proto = 'https', $_port = 80, $_name = '') {
@@ -347,10 +347,10 @@ class network {
 		if ($pid == null) {
 			return true;
 		}
-		$kill = posix_kill($pid, 15);
+		$kill = @posix_kill($pid, 15);
 		if (!$kill) {
 			sleep(1);
-			posix_kill($pid, 9);
+			@posix_kill($pid, 9);
 		}
 		return !self::ngrok_run($_proto, $_port, $_name);
 	}
