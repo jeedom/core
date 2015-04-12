@@ -28,7 +28,7 @@ foreach ($allObject as $object) {
    </div>
 
 
-   <div class="col-lg-9 col-md-9 col-sm-8" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
+   <div class="col-lg-10 col-md-10 col-sm-9" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
        <legend>{{Mes objects}}</legend>
        <div class="objectListContainer">
            <div class="cursor" id="bt_addObject2" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
