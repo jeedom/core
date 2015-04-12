@@ -43,17 +43,20 @@ foreach ($plugins_list as $category_name => $category) {
          </ul>
      </div>
  </div>
- <div id="div_resumePluginList">
-    <center id="bt_displayMarket2" class="cursor">
-        <i  class="fa fa-shopping-cart cursor" style="font-size : 6em;color:#94ca02"></i><br/>
-       <span style="font-size : 1.8em;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"> Market </span>
-    </center>
-    <hr/>
+ <div class="col-lg-9 col-md-9 col-sm-8" id="div_resumePluginList" style="border-left: solid 1px #EEE; padding-left: 25px;">
+ <legend>{{Mes plugins}}</legend>
     <div class="pluginListContainer">
+    <div class="cursor" id="bt_displayMarket2" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+       <center>
+        <i class="fa fa-shopping-cart " style="font-size : 4em;color:#94ca02;"></i>
+    </center>
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>Accéder au Market</center></span>
+</div>
+
 <?php
 foreach ($plugins_list as $category_name => $category) {
 	foreach ($category as $plugin) {
-		echo '<div class="pluginDisplayCard cursor"data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+		echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 		echo "<center>";
 		echo '<i class="' . $plugin->getIcon() . '" style="font-size : 4em;color:#767676;"></i>';
 		echo "</center>";
