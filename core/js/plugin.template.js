@@ -40,12 +40,14 @@
         $('#ul_eqLogic').closest('.bs-sidebar').parent().hide();
         $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-lg-12');
         $('.eqLogic').removeClass().addClass('eqLogic col-lg-12');
+        $('.eqLogicThumbnailContainer').packery();
     });
 
     $('.bt_pluginTemplateShowSidebar').on('mouseenter',function(){
         $('#ul_eqLogic').closest('.bs-sidebar').parent().show();
         $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-lg-10 col-md-9 col-sm-8');
         $('.eqLogic').removeClass().addClass('eqLogic col-lg-10 col-md-9 col-sm-8 ');
+        $('.eqLogicThumbnailContainer').packery();
     });
 }
 
