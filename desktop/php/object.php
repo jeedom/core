@@ -5,7 +5,7 @@ if (!hasRight('objectview', true)) {
 sendVarToJS('select_id', init('id', '-1'));
 ?>
 
-<div style="position : fixed;height:100%;width:30px;top:40px;left:0px;z-index:99999" id="bt_displayObject"></div>
+<div style="position : fixed;height:100%;width:30px;top:90px;left:0px;z-index:99999" id="bt_displayObject"></div>
 
 <div class="row row-overflow">
     <div class="col-md-2 col-sm-3" id="sd_objectList">
