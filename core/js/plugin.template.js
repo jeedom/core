@@ -37,16 +37,16 @@
     $('.eqLogic').removeClass().addClass('eqLogic col-lg-12');
 
     $('#ul_eqLogic').closest('.bs-sidebar').parent().on('mouseleave',function(){
-        $('#ul_eqLogic').closest('.bs-sidebar').parent().hide();
+        $('#ul_eqLogic').closest('.bs-sidebar').parent().hide('drop');
         $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-lg-12');
         $('.eqLogic').removeClass().addClass('eqLogic col-lg-12');
         $('.eqLogicThumbnailContainer').packery();
     });
 
     $('.bt_pluginTemplateShowSidebar').on('mouseenter',function(){
-        $('#ul_eqLogic').closest('.bs-sidebar').parent().show();
         $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-lg-10 col-md-9 col-sm-8');
         $('.eqLogic').removeClass().addClass('eqLogic col-lg-10 col-md-9 col-sm-8 ');
+        $('#ul_eqLogic').closest('.bs-sidebar').parent().show('drop');
         $('.eqLogicThumbnailContainer').packery();
     });
 }
@@ -65,7 +65,7 @@ $('.eqLogicAction[data-action=returnToThumbnailDisplay]').on('click', function (
 });
 
 $(".li_eqLogic").on('click', function () {
- if ($('.eqLogicThumbnailDisplay').html() != undefined) {
+   if ($('.eqLogicThumbnailDisplay').html() != undefined) {
     $('.eqLogicThumbnailDisplay').hide();
 }
 
@@ -308,7 +308,7 @@ $('body').delegate('.cmd .cmdAttr[data-l1key=eventOnly]', 'change', function () 
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().show();
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().removeClass('hide');
     } else {
-     if($(this).closest('.cmd').find('.cmdAttr[data-l1key=type]').value() != 'action'){
+       if($(this).closest('.cmd').find('.cmdAttr[data-l1key=type]').value() != 'action'){
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').show();
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').removeClass('hide');
     }

@@ -30,14 +30,14 @@
 
 
     $('#bt_displayPluginList').on('mouseenter',function(){
-     $('#sd_pluginList').show();
      $('#div_resumePluginList').addClass('col-md-9 col-sm-8').removeClass('col-lg-12');
      $('#div_confPlugin').addClass('col-md-9 col-sm-8').removeClass('col-lg-12');
+     $('#sd_pluginList').show('drop');
      $('.pluginListContainer').packery();
  });
 
     $('#sd_pluginList').on('mouseleave',function(){
-     $('#sd_pluginList').hide();
+     $('#sd_pluginList').hide('drop');
      $('#div_resumePluginList').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
      $('#div_confPlugin').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
      $('.pluginListContainer').packery();
