@@ -296,6 +296,13 @@ configure_nginx()
 		cronjob="* * * * * $croncmd"
 		( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
 	fi
+	for i in apache2 apache mongoose
+	do
+		if [ -f "/etc/init.d/${i}" ]; then
+			service ${i} stop
+			update-rc.d -f ${i} remove
+		fi
+	done
 	if [ ! -f '/etc/nginx/sites-enabled/default_ssl' ]; then
 		configure_nginx_ssl         
 	fi          
