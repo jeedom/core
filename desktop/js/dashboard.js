@@ -14,62 +14,43 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-positionEqLogic();
-setTimeout(function () {
+ positionEqLogic();
+ setTimeout(function () {
     $('.div_displayEquipement').packery();
 }, 2);
 
 
 
-$('body').delegate('.eqLogic-widget .history', 'click', function () {
+ $('body').delegate('.eqLogic-widget .history', 'click', function () {
     $('#md_modal').dialog({title: "Historique"});
     $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
 });
 
-$('#bt_displayScenario').on('click', function () {
-    if ($(this).attr('data-display') == 1) {
-        $('#div_displayScenario').hide();
-        if ($('#bt_displayObject').attr('data-display') == 1) {
-            $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-8');
-        } else {
-            $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12');
-        }
-        $('.div_displayEquipement').each(function () {
-            $(this).packery();
-        });
-        $(this).attr('data-display', 0);
-    } else {
-        $('#div_displayScenario').show();
-        if ($('#bt_displayObject').attr('data-display') == 1) {
-            $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-8 col-md-7 col-sm-5');
-        } else {
-            $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-7');
-        }
-        $('.div_displayEquipement').packery();
-        $(this).attr('data-display', 1);
-    }
+
+if(!isset(userProfils.displayScenarioByDefault) || userProfils.displayScenarioByDefault != 1){
+ $('#bt_displayScenario').on('mouseenter', function () {
+     $('#div_displayScenario').show();
+     $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-7');
+     $('.div_displayEquipement').packery();
+ });
+
+ $('#div_displayScenario').on('mouseleave', function () {
+  $('#div_displayScenario').hide();
+  $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12');
+  $('.div_displayEquipement').packery();
 });
 
-$('#bt_displayObject').on('click', function () {
-    if ($(this).attr('data-display') == 1) {
-        $('#div_displayObjectList').hide();
-        if ($('#bt_displayScenario').attr('data-display') == 1) {
-            $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-7');
-        } else {
-            $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12');
-        }
-        $('.div_displayEquipement').each(function () {
-            $(this).packery();
-        });
-        $(this).attr('data-display', 0);
-    } else {
-        $('#div_displayObjectList').show();
-        if ($('#bt_displayScenario').attr('data-display') == 1) {
-            $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-8 col-md-7 col-sm-5');
-        } else {
-            $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-8');
-        }
-        $('.div_displayEquipement').packery();
-        $(this).attr('data-display', 1);
-    }
+}
+
+ if(!isset(userProfils.displayObjetByDefault) || userProfils.displayObjetByDefault != 1){
+   $('#bt_displayObject').on('mouseenter', function () {
+    $('#div_displayObjectList').show();
+    $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-8');
+    $('.div_displayEquipement').packery();
 });
+   $('#div_displayObjectList').on('mouseleave', function () {
+    $('#div_displayObjectList').hide();
+    $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12');
+    $('.div_displayEquipement').packery();
+});
+}

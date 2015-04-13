@@ -2,7 +2,6 @@
 if (!hasRight('dashboardview')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-
 if (init('object_id') == '') {
 	$object = object::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
 } else {
@@ -17,6 +16,9 @@ if (!is_object($object)) {
 $child_object = object::buildTree($object);
 $parentNumber = array();
 ?>
+
+<div style="position : fixed;height:100%;width:30px;top:40px;left:0px;z-index:99999" id="bt_displayObject"></div>
+<div style="position : fixed;height:100%;width:30px;top:40px;right:0px;z-index:99999" id="bt_displayScenario"></div>
 
 <div class="row row-overflow">
     <?php
@@ -61,9 +63,6 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 	}
 }
 ?>
-<i class='fa fa-picture-o cursor tooltips pull-left' id='bt_displayObject' data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault')?>' title="{{Afficher/Masquer les objets}}"></i>
-<i class='fa fa-cogs pull-right cursor tooltips' id='bt_displayScenario' data-display='<?php echo $_SESSION['user']->getOptions('displayScenarioByDefault')?>' title="{{Afficher/Masquer les scénarios}}"></i>
-
 <center>
     <?php
 if (init('category', 'all') == 'all') {
