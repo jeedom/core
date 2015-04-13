@@ -132,6 +132,15 @@ foreach (plugin::listPlugin() as $pluginList) {
             <div class="panel-body">
                 <form class="form-horizontal">
                     <fieldset>
+                        <legend>{{Générale}}</legend>
+                        <div class="form-group">
+                        <label class="col-sm-3 control-label">{{Ne pas masquer les menu automatiquement}}</label>
+                            <div class="col-sm-1">
+                                <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
+                            </div>
+                        </div>
+
+
                         <legend>Page par défaut</legend>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{Desktop}}</label>
@@ -142,208 +151,208 @@ foreach ($homePage as $key => $value) {
 	echo "<option value='$key'>$value</option>";
 }
 ?>
-                                </select>
-                            </div>
-                            <label class="col-sm-1 control-label">{{Mobile}}</label>
-                            <div class="col-sm-2">
-                                <select class="userAttr form-control" data-l1key="options" data-l2key="homePageMobile">
-                                    <option value="home">{{Accueil}}</option>
-                                    <?php
+                               </select>
+                           </div>
+                           <label class="col-sm-1 control-label">{{Mobile}}</label>
+                           <div class="col-sm-2">
+                            <select class="userAttr form-control" data-l1key="options" data-l2key="homePageMobile">
+                                <option value="home">{{Accueil}}</option>
+                                <?php
 foreach ($homePage as $key => $value) {
 	echo "<option value='$key'>$value</option>";
 }
 ?>
-                                </select>
-                            </div>
-                        </div>
-                        <legend>{{Object par défaut sur le dashboard}}</legend>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Desktop}}</label>
-                            <div class="col-sm-2">
-                                <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardObject">
-                                    <?php
+                           </select>
+                       </div>
+                   </div>
+                   <legend>{{Object par défaut sur le dashboard}}</legend>
+                   <div class="form-group">
+                    <label class="col-sm-3 control-label">{{Desktop}}</label>
+                    <div class="col-sm-2">
+                        <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardObject">
+                            <?php
 foreach (object::all() as $object) {
 	echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
 }
 ?>
-                                </select>
-                            </div>
-                            <label class="col-sm-1 control-label">{{Mobile}}</label>
-                            <div class="col-sm-2">
-                                <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileObject">
-                                    <?php
+                       </select>
+                   </div>
+                   <label class="col-sm-1 control-label">{{Mobile}}</label>
+                   <div class="col-sm-2">
+                    <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileObject">
+                        <?php
 foreach (object::all() as $object) {
 	echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
 }
 ?>
-                                </select>
-                            </div>
-                        </div>
-                        <legend>{{Vue par defaut}}</legend>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Desktop}}</label>
-                            <div class="col-sm-2">
-                                <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDesktopView">
-                                    <?php
+                   </select>
+               </div>
+           </div>
+           <legend>{{Vue par defaut}}</legend>
+           <div class="form-group">
+            <label class="col-sm-3 control-label">{{Desktop}}</label>
+            <div class="col-sm-2">
+                <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDesktopView">
+                    <?php
 foreach (view::all() as $view) {
 	echo "<option value='" . $view->getId() . "'>" . $view->getName() . "</option>";
 }
 ?>
-                                </select>
-                            </div>
-                            <label class="col-sm-1 control-label">{{Mobile}}</label>
-                            <div class="col-sm-2">
-                                <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileView">
-                                    <?php
+               </select>
+           </div>
+           <label class="col-sm-1 control-label">{{Mobile}}</label>
+           <div class="col-sm-2">
+            <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileView">
+                <?php
 foreach (view::all() as $view) {
 	echo "<option value='" . $view->getId() . "'>" . $view->getName() . "</option>";
 }
 ?>
-                                </select>
-                            </div>
-                        </div>
-                        <legend>{{Design par defaut}}</legend>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Desktop}}</label>
-                            <div class="col-sm-2">
-                                <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardPlan">
-                                    <?php
+           </select>
+       </div>
+   </div>
+   <legend>{{Design par defaut}}</legend>
+   <div class="form-group">
+    <label class="col-sm-3 control-label">{{Desktop}}</label>
+    <div class="col-sm-2">
+        <select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardPlan">
+            <?php
 foreach (planHeader::all() as $plan) {
 	echo "<option value='" . $plan->getId() . "'>" . $plan->getName() . "</option>";
 }
 ?>
-                                </select>
-                            </div>
-                            <label class="col-sm-1 control-label">{{Mobile}}</label>
-                            <div class="col-sm-2">
-                                <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobilePlan">
-                                    <?php
+       </select>
+   </div>
+   <label class="col-sm-1 control-label">{{Mobile}}</label>
+   <div class="col-sm-2">
+    <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobilePlan">
+        <?php
 foreach (planHeader::all() as $plan) {
 	echo "<option value='" . $plan->getId() . "'>" . $plan->getName() . "</option>";
 }
 ?>
-                                </select>
-                            </div>
-                        </div>
-                        <legend>{{Dashboard}}</legend>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Afficher les scénarios par défaut}}</label>
-                            <div class="col-sm-1">
-                                <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayScenarioByDefault"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Afficher les objets par défaut}}</label>
-                            <div class="col-sm-1">
-                                <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
-                            </div>
-                        </div>
-                        <legend>{{Vue}}</legend>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Afficher les vues par défaut}}</label>
-                            <div class="col-sm-1">
-                                <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayViewByDefault"/>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
+   </select>
+</div>
+</div>
+<legend>{{Dashboard}}</legend>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{Afficher les scénarios par défaut}}</label>
+    <div class="col-sm-1">
+        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayScenarioByDefault"/>
     </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{Afficher les objets par défaut}}</label>
+    <div class="col-sm-1">
+        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
+    </div>
+</div>
+<legend>{{Vue}}</legend>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{Afficher les vues par défaut}}</label>
+    <div class="col-sm-1">
+        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayViewByDefault"/>
+    </div>
+</div>
+</fieldset>
+</form>
+</div>
+</div>
+</div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_notification">
-                    {{Notifications}}
-                </a>
-            </h3>
-        </div>
-        <div id="config_notification" class="panel-collapse collapse">
-            <div class="panel-body">
-                <form class="form-horizontal">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Notifier des événements}}</label>
-                            <div class="col-sm-3">
-                                <select class="userAttr form-control" data-l1key="options" data-l2key="notifyEvent">
-                                    <?php
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_notification">
+                {{Notifications}}
+            </a>
+        </h3>
+    </div>
+    <div id="config_notification" class="panel-collapse collapse">
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">{{Notifier des événements}}</label>
+                        <div class="col-sm-3">
+                            <select class="userAttr form-control" data-l1key="options" data-l2key="notifyEvent">
+                                <?php
 foreach ($notifyTheme as $key => $value) {
 	echo "<option value='$key'>$value</option>";
 }
 ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Notifier du lancement des scénarios}}</label>
-                            <div class="col-sm-3">
-                                <select class="userAttr form-control" data-l1key="options" data-l2key="notifyLaunchScenario">
-                                    <?php
+                           </select>
+                       </div>
+                   </div>
+                   <div class="form-group">
+                    <label class="col-sm-3 control-label">{{Notifier du lancement des scénarios}}</label>
+                    <div class="col-sm-3">
+                        <select class="userAttr form-control" data-l1key="options" data-l2key="notifyLaunchScenario">
+                            <?php
 foreach ($notifyTheme as $key => $value) {
 	echo "<option value='$key'>$value</option>";
 }
 ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Notifier nouveau message}}</label>
-                            <div class="col-sm-3">
-                                <select class="userAttr form-control" data-l1key="options" data-l2key="notifyNewMessage">
-                                    <?php
+                       </select>
+                   </div>
+               </div>
+               <div class="form-group">
+                <label class="col-sm-3 control-label">{{Notifier nouveau message}}</label>
+                <div class="col-sm-3">
+                    <select class="userAttr form-control" data-l1key="options" data-l2key="notifyNewMessage">
+                        <?php
 foreach ($notifyTheme as $key => $value) {
 	echo "<option value='$key'>$value</option>";
 }
 ?>
-                                </select>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
+                   </select>
+               </div>
+           </div>
+       </fieldset>
+   </form>
+</div>
+</div>
+</div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_other">
-                    {{Autre}}
-                </a>
-            </h3>
-        </div>
-        <div id="config_other" class="panel-collapse collapse">
-            <div class="panel-body">
-                <form class="form-horizontal">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Mot de passe}}</label>
-                            <div class="col-sm-3">
-                                <input type="password" class="userAttr form-control" data-l1key="password" />
-                            </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_other">
+                {{Autre}}
+            </a>
+        </h3>
+    </div>
+    <div id="config_other" class="panel-collapse collapse">
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">{{Mot de passe}}</label>
+                        <div class="col-sm-3">
+                            <input type="password" class="userAttr form-control" data-l1key="password" />
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Retapez le mot de passe}}</label>
-                            <div class="col-sm-3">
-                                <input type="password" class="form-control" id="in_passwordCheck" />
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">{{Retapez le mot de passe}}</label>
+                        <div class="col-sm-3">
+                            <input type="password" class="form-control" id="in_passwordCheck" />
                         </div>
-                        <div class="form-group expertModeVisible">
-                            <label class="col-sm-3 control-label">{{Clef de sécurité pour appareils enregistrés}}</label>
-                            <div class="col-sm-3">
-                                <input class="form-control userAttr" data-l1key="options" data-l2key="registerDevice" />
-                            </div>
+                    </div>
+                    <div class="form-group expertModeVisible">
+                        <label class="col-sm-3 control-label">{{Clef de sécurité pour appareils enregistrés}}</label>
+                        <div class="col-sm-3">
+                            <input class="form-control userAttr" data-l1key="options" data-l2key="registerDevice" />
                         </div>
-                    </fieldset>
-                </form>
-            </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
     </div>
+</div>
 
-    <br/>
-    <div class="form-actions">
-        <a class="btn btn-success" id="bt_saveProfils"><i class="fa fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
-    </div>
+<br/>
+<div class="form-actions">
+    <a class="btn btn-success" id="bt_saveProfils"><i class="fa fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+</div>
 </div>
 <?php include_file("desktop", "profils", "js");?>
