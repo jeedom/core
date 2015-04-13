@@ -23,13 +23,33 @@ if (getUrlVars('removeSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
 }
 
+if(!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1){
+    $('#sd_objectList').hide();
+     $('#div_resumeObjectList').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+    $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+
+    $('#bt_displayObject').on('mouseenter',function(){
+     $('#sd_objectList').show();
+      $('#div_resumeObjectList').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+    $('#div_conf').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+ });
+
+    $('#sd_objectList').on('mouseleave',function(){
+     $('#sd_objectList').hide();
+     $('#div_resumeObjectList').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+    $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+});
+}
+
+
+
 setTimeout(function(){
   $('.objectListContainer').packery();
 },100);
 
 $('#bt_returnToThumbnailDisplay').on('click',function(){
-$('#div_conf').hide();
-$('#div_resumeObjectList').show();
+    $('#div_conf').hide();
+    $('#div_resumeObjectList').show();
 });
 
 $(".li_object,.objectDisplayCard").on('click', function (event) {
