@@ -31,12 +31,12 @@ if(!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1){
     $('#bt_displayObject').on('mouseenter',function(){
       $('#div_resumeObjectList').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
       $('#div_conf').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
-      $('#sd_objectList').show('drop');
+      $('#sd_objectList').show();
       $('.objectListContainer').packery();
   });
 
     $('#sd_objectList').on('mouseleave',function(){
-       $('#sd_objectList').hide('drop');
+       $('#sd_objectList').hide();
        $('#div_resumeObjectList').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
        $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
        $('.objectListContainer').packery();
@@ -52,6 +52,7 @@ setTimeout(function(){
 $('#bt_returnToThumbnailDisplay').on('click',function(){
     $('#div_conf').hide();
     $('#div_resumeObjectList').show();
+    $('.objectListContainer').packery();
 });
 
 $(".li_object,.objectDisplayCard").on('click', function (event) {
