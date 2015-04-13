@@ -23,6 +23,8 @@ if (!is_object($view)) {
 sendVarToJS('view_id', $view->getId());
 ?>
 
+<div style="position : fixed;height:100%;width:30px;top:40px;left:0px;z-index:99999" id="bt_displayView"></div>
+
 <div class="row row-overflow">
     <?php
 if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
@@ -56,7 +58,6 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
 	echo '<div class="col-lg-12 col-md-12 col-sm-12" id="div_displayViewContainer">';
 }
 ?>
-<i class='fa fa-picture-o cursor tooltips pull-left' id='bt_displayView' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault')?>' title="{{Afficher/Masquer les vues}}"></i>
 <legend style="height: 35px;color : #563d7c;">Vue <?php
 echo $view->getName();
 if (hasRight('viewedit', true)) {

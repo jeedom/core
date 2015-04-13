@@ -14,7 +14,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (view_id != '') {
+ if (view_id != '') {
     jeedom.view.toHtml({
         id: view_id,
         version: 'dashboard',
@@ -40,18 +40,16 @@ $('body').delegate('.eqLogic-widget .history', 'click', function () {
     $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
 });
 
-$('#bt_displayView').on('click', function () {
-    if ($(this).attr('data-display') == 1) {
-        $('#div_displayViewList').hide();
-        $('#div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12');
-        $('.div_displayEquipement').each(function () {
-            $(this).packery();
-        });
-        $(this).attr('data-display', 0);
-    } else {
-        $('#div_displayViewList').show();
-        $('#div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-8');
-        $('.div_displayEquipement').packery();
-        $(this).attr('data-display', 1);
-    }
+$('#bt_displayView').on('mouseenter', function () {
+    $('#div_displayViewList').show();
+    $('#div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-8');
+    $('.div_displayEquipement').packery();
+});
+
+$('#div_displayViewList').on('mouseleave', function () {
+    $('#div_displayViewList').hide();
+    $('#div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12');
+    $('.div_displayEquipement').each(function () {
+        $(this).packery();
+    });
 });
