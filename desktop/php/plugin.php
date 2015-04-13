@@ -7,8 +7,10 @@ sendVarToJS('select_id', init('id', '-1'));
 $plugins_list = plugin::listPlugin(false, true);
 ?>
 
+<div style="position : fixed;height:100%;width:30px;top:40px;left:0px;z-index:99999" id="bt_displayPluginList"></div>
+
 <div class="row row-overflow">
-    <div class="col-md-3 col-sm-4">
+    <div class="col-md-3 col-sm-4" id="sd_pluginList">
         <div class="bs-sidebar">
             <ul id="ul_plugin" class="nav nav-list bs-sidenav">
                 <center>
@@ -43,7 +45,8 @@ foreach ($plugins_list as $category_name => $category) {
          </ul>
      </div>
  </div>
- <div class="col-lg-9 col-md-9 col-sm-8" id="div_resumePluginList" style="border-left: solid 1px #EEE; padding-left: 25px;">
+
+ <div class="col-md-9 col-sm-8" id="div_resumePluginList" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <legend>{{Mes plugins}}</legend>
     <div class="pluginListContainer">
     <div class="cursor" id="bt_displayMarket2" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
