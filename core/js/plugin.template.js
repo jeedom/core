@@ -16,9 +16,29 @@
  */
  var changeLeftMenuObjectOrEqLogicName = false;
 
+ $('#ul_eqLogic').closest('.bs-sidebar').prepend('<i class="fa fa-eye-slash pull-right cursor" style="margin-right : -12px;margin-top : -1px;" id="bt_pluginTemplateHideSidebar"></i>');
+ $('<i class="fa fa-eye pull-left cursor bt_pluginTemplateShowSidebar" style="margin-left : 2px;"></i>').insertBefore('.eqLogicThumbnailDisplay');
+ $('.bt_pluginTemplateShowSidebar').hide();
+
+
+ $('#bt_pluginTemplateHideSidebar').on('click',function(){
+    $('#ul_eqLogic').closest('.bs-sidebar').parent().hide();
+    $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-lg-12');
+    $('.eqLogic').removeClass().addClass('eqLogic col-lg-12');
+    $('.bt_pluginTemplateShowSidebar').show();
+});
+
+ $('.bt_pluginTemplateShowSidebar').on('click',function(){
+    $('#ul_eqLogic').closest('.bs-sidebar').parent().show();
+    $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-lg-10 col-md-9 col-sm-8');
+    $('.eqLogic').removeClass().addClass('eqLogic col-lg-10 col-md-9 col-sm-8 ');
+    $('.bt_pluginTemplateShowSidebar').hide();
+});
+
  $('.eqLogicDisplayCard').on('click', function () {
     $('.li_eqLogic[data-eqLogic_id=' + $(this).attr('data-eqLogic_id') + ']').click();
 });
+
 
  $('.eqLogicAction[data-action=returnToThumbnailDisplay]').on('click', function () {
     $('.eqLogic').hide();
