@@ -32,12 +32,14 @@ if(!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1){
      $('#sd_objectList').show();
       $('#div_resumeObjectList').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
     $('#div_conf').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+    $('.objectListContainer').packery();
  });
 
     $('#sd_objectList').on('mouseleave',function(){
      $('#sd_objectList').hide();
      $('#div_resumeObjectList').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
     $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+    $('.objectListContainer').packery();
 });
 }
 
