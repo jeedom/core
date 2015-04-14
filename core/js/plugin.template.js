@@ -17,18 +17,6 @@
  var changeLeftMenuObjectOrEqLogicName = false;
 
 
- $('.bt_pluginTemplateShowSidebar').hide();
-
-
- $('#bt_pluginTemplateHideSidebar').on('click',function(){
-    $('#ul_eqLogic').closest('.bs-sidebar').parent().hide();
-    $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-lg-12');
-    $('.eqLogic').removeClass().addClass('eqLogic col-lg-12');
-    $('.bt_pluginTemplateShowSidebar').show();
-});
-
-
-
  if(!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1){
     $('#div_mainContainer').append('<div style="position : fixed;height:100%;width:30px;top:90px;left:0px;" class="bt_pluginTemplateShowSidebar"><div>');
 
