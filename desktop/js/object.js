@@ -36,11 +36,11 @@ if(!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1){
   });
 
     $('#sd_objectList').on('mouseleave',function(){
-       $('#sd_objectList').hide();
-       $('#div_resumeObjectList').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
-       $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
-       $('.objectListContainer').packery();
-   });
+     $('#sd_objectList').hide();
+     $('#div_resumeObjectList').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+     $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+     $('.objectListContainer').packery();
+ });
 }
 
 
@@ -147,34 +147,29 @@ $("#bt_removeObject").on('click', function (event) {
     return false;
 });
 
-$('body').delegate('.bt_sortable', 'mouseenter', function () {
-    $("#ul_object").sortable({
-        axis: "y",
-        cursor: "move",
-        items: ".li_object",
-        placeholder: "ui-state-highlight",
-        tolerance: "intersect",
-        forcePlaceholderSize: true,
-        dropOnEmpty: true,
-        stop: function (event, ui) {
-            var objects = [];
-            $('#ul_object .li_object').each(function () {
-                objects.push($(this).attr('data-object_id'));
-            });
-            jeedom.object.setOrder({
-                objects: objects,
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                }
-            });
-        }
-    });
-    $("#ul_object").sortable("enable");
+$("#ul_object").sortable({
+    axis: "y",
+    cursor: "move",
+    items: ".li_object",
+    placeholder: "ui-state-highlight",
+    tolerance: "intersect",
+    forcePlaceholderSize: true,
+    dropOnEmpty: true,
+    stop: function (event, ui) {
+        var objects = [];
+        $('#ul_object .li_object').each(function () {
+            objects.push($(this).attr('data-object_id'));
+        });
+        jeedom.object.setOrder({
+            objects: objects,
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            }
+        });
+    }
 });
+$("#ul_object").sortable("enable");
 
-$('body').delegate('.bt_sortable', 'mouseout', function () {
-    $("#ul_object").sortable("disable");
-});
 
 $('#bt_chooseIcon').on('click', function () {
     chooseIcon(function (_icon) {

@@ -5,10 +5,10 @@ if (!hasRight('objectview', true)) {
 sendVarToJS('select_id', init('id', '-1'));
 ?>
 
-<div style="position : fixed;height:100%;width:30px;top:90px;left:0px;z-index:99999" id="bt_displayObject"></div>
+<div style="position : fixed;height:100%;width:30px;top:90px;left:0px;z-index:9998" id="bt_displayObject"></div>
 
 <div class="row row-overflow">
-    <div class="col-md-2 col-sm-3" id="sd_objectList">
+    <div class="col-md-2 col-sm-3" id="sd_objectList" style="z-index:9998">
         <div class="bs-sidebar">
             <ul id="ul_object" class="nav nav-list bs-sidenav">
                 <a id="bt_addObject" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter objet}}</a>
@@ -28,7 +28,6 @@ foreach ($allObject as $object) {
            </ul>
        </div>
    </div>
-
 
    <div class="col-lg-10 col-md-10 col-sm-9" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
        <legend>{{Mes objets}}</legend>
