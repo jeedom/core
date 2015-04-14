@@ -33,6 +33,7 @@ class interactDef {
 	private $person;
 	private $options;
 	private $enable;
+	private $group;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -46,11 +47,37 @@ class interactDef {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function all() {
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+	public static function all($_group = '') {
+		$values = array();
+		if ($_group === '') {
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM interactDef
         ORDER BY position';
-		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		} else if ($_group === null) {
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+        FROM interactDef
+        WHERE (`group` IS NULL OR `group` = "")
+        ORDER BY position';
+		} else {
+			$values['group'] = $_group;
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+        FROM interactDef
+        WHERE `group`=:group
+        ORDER BY position';
+		}
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
+	public static function listGroup($_group = null) {
+		$values = array();
+		$sql = 'SELECT DISTINCT(`group`)
+        FROM interactDef';
+		if ($_group != null) {
+			$values['group'] = '%' . $_group . '%';
+			$sql .= ' WHERE `group` LIKE :group';
+		}
+		$sql .= ' ORDER BY `group`';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 	}
 
 	public static function generateTextVariant($_text) {
@@ -267,6 +294,13 @@ class interactDef {
 		return 'index.php?v=d&p=interact&id=' . $this->getId();
 	}
 
+	public function getHumanName() {
+		if ($this->getName() != '') {
+			return $this->getName();
+		}
+		return $this->getQuery();
+	}
+
 /*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {
@@ -355,6 +389,14 @@ class interactDef {
 
 	public function setName($name) {
 		$this->name = $name;
+	}
+
+	public function getGroup() {
+		return $this->group;
+	}
+
+	public function setGroup($group) {
+		$this->group = $group;
 	}
 
 }
