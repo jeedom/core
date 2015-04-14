@@ -63,16 +63,16 @@ $("#div_listScenario").resizable({
 });
 
 if(!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1){
-    $('#div_listScenario').hide();
-    $('#bt_displayScenarioList').on('mouseenter',function(){
-        $('#div_listScenario').show();
-        $('.scenarioListContainer').packery();
-    });
+  $('#div_listScenario').hide();
+  $('#bt_displayScenarioList').on('mouseenter',function(){
+    $('#div_listScenario').show();
+    $('.scenarioListContainer').packery();
+  });
 
-    $('#div_listScenario').on('mouseleave',function(){
-        $('#div_listScenario').hide();
-        $('.scenarioListContainer').packery();
-    });
+  $('#div_listScenario').on('mouseleave',function(){
+    $('#div_listScenario').hide();
+    $('.scenarioListContainer').packery();
+  });
 }
 
 setTimeout(function(){
@@ -475,12 +475,12 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
            condition += ' ' + $('.conditionAttr[data-l1key=next]').value()+' ';
            expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition);
            if($('.conditionAttr[data-l1key=next]').value() != ''){
-              el.click();
-           }
-         }
-       },
-     }
-   });
+            el.click();
+          }
+        }
+      },
+    }
+  });
 
 
   }
@@ -932,6 +932,16 @@ function addExpression(_expression) {
   return retour;
 }
 
+$('body').delegate('.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]','click',function(){
+  if($(this).attr('value') == 0){
+    $(this).attr('value',1);
+    $(this).html('<span class="fa-stack"><i class="fa fa-refresh fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span>');
+  }else{
+    $(this).attr('value',0);
+    $(this).html('<i class="fa fa-refresh"></i>');
+  }
+});
+
 function addSubElement(_subElement) {
   if (!isset(_subElement.type) || _subElement.type == '') {
     return '';
@@ -959,6 +969,11 @@ function addSubElement(_subElement) {
     retour += addExpression(expression);
     retour += '</div>';
     retour += '</div></legend>';
+      if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0){
+      retour += '<a class="btn btn-default btn-xs cursor subElementAttr" data-l1key="options" data-l2key="allowRepeatCondition" style="position : absolute; top : 21px;right:15px;" value="0"><i class="fa fa-refresh"></i></a>';
+    }else{
+      retour += '<a class="btn btn-default btn-xs cursor subElementAttr" data-l1key="options" data-l2key="allowRepeatCondition" style="position : absolute; top : 21px;right:15px;" value="1"><span class="fa-stack"><i class="fa fa-refresh  fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span></a>';
+    }
     break;
     case 'then' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
