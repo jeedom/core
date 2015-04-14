@@ -34,7 +34,7 @@
      $('.div_displayEquipement').packery();
    });
 
-   $('#div_displayScenario').on('mouseleave', function () {
+  $('#div_displayScenario').on('mouseleave', function () {
     $('#div_displayScenario').hide();
     $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12');
     $('.div_displayEquipement').packery();
