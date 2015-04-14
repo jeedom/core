@@ -17,7 +17,7 @@
  var changeLeftMenuObjectOrEqLogicName = false;
 
 
- if(!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1){
+ if((!isset(userProfils.displayScenarioByDefault) || userProfils.displayScenarioByDefault != 1) && !jQuery.support.touch){
     $('#div_mainContainer').append('<div style="position : fixed;height:100%;width:30px;top:90px;left:0px;" class="bt_pluginTemplateShowSidebar"><div>');
 
     $('#ul_eqLogic').closest('.bs-sidebar').parent().hide();

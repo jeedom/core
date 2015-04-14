@@ -33,7 +33,7 @@ $("#div_listInteract").resizable({
 }
 });
 
-if(!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1){
+ if((!isset(userProfils.displayScenarioByDefault) || userProfils.displayScenarioByDefault != 1) && !jQuery.support.touch){
     $('#div_listInteract').hide();
     $('#bt_displayInteractList').on('mouseenter',function(){
         $('#div_listInteract').show();
