@@ -7,10 +7,10 @@ sendVarToJS('select_id', init('id', '-1'));
 $plugins_list = plugin::listPlugin(false, true);
 ?>
 
-<div style="position : fixed;height:100%;width:30px;top:90px;left:0px;z-index:99999" id="bt_displayPluginList"></div>
+<div style="position : fixed;height:100%;width:30px;top:90px;left:0px;z-index:9998" id="bt_displayPluginList"></div>
 
 <div class="row row-overflow">
-    <div class="col-md-3 col-sm-4" id="sd_pluginList">
+    <div class="col-md-3 col-sm-4" id="sd_pluginList" style="z-index:9999">
         <div class="bs-sidebar">
             <ul id="ul_plugin" class="nav nav-list bs-sidenav">
                 <center>

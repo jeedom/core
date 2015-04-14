@@ -23,14 +23,14 @@ if (!is_object($view)) {
 sendVarToJS('view_id', $view->getId());
 ?>
 
-<div style="position : fixed;height:100%;width:30px;top:40px;left:0px;z-index:99999" id="bt_displayView"></div>
+<div style="position : fixed;height:100%;width:30px;top:40px;left:0px;z-index:9998" id="bt_displayView"></div>
 
 <div class="row row-overflow">
     <?php
 if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
-	echo '<div class="col-lg-2 col-md-3 col-sm-4" id="div_displayViewList">';
+	echo '<div class="col-lg-2 col-md-3 col-sm-4" id="div_displayViewList" style="z-index:9999">';
 } else {
-	echo '<div class="col-lg-2 col-md-3 col-sm-4" style="display:none;" id="div_displayViewList">';
+	echo '<div class="col-lg-2 col-md-3 col-sm-4" style="display:none;" id="div_displayViewList" style="z-index:9999">';
 }
 ?>
     <div class="bs-sidebar">

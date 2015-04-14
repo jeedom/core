@@ -1,5 +1,5 @@
 nbproject/
 test.php
 core/config/common.config.php
-plugins
+/plugins
 sftp-config.json

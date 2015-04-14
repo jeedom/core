@@ -12,10 +12,10 @@ if (is_array($interactListGroup)) {
 }
 ?>
 
-<div style="position : fixed;height:100%;width:30px;top:90px;left:0px;z-index:99999" id="bt_displayInteractList"></div>
+<div style="position : fixed;height:100%;width:30px;top:90px;left:0px;z-index:9998" id="bt_displayInteractList"></div>
 
 <div class="row row-overflow">
-    <div class="col-lg-2 col-md-3 col-sm-4" id="div_listInteract">
+    <div class="col-lg-2 col-md-3 col-sm-4" id="div_listInteract" style="z-index:9999">
         <div class="bs-sidebar">
 
             <a id="bt_addInteract" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter interaction}}</a>

@@ -13,10 +13,10 @@ if (is_array($scenarioListGroup)) {
 }
 ?>
 
-<div style="position : fixed;height:100%;width:30px;top:90px;left:0px;z-index:99999" id="bt_displayScenarioList"></div>
+<div style="position : fixed;height:100%;width:30px;top:90px;left:0px;z-index:9998" id="bt_displayScenarioList"></div>
 
 <div class="row row-overflow">
-    <div class="col-lg-2 col-md-3 col-sm-4" id="div_listScenario">
+    <div class="col-lg-2 col-md-3 col-sm-4" id="div_listScenario" style="z-index:9999">
         <div class="bs-sidebar nav nav-list bs-sidenav">
             <a class="btn btn-success pull-right form-control" id="bt_switchToExpertMode" href="index.php?v=d&p=scenario" style="text-shadow: none;"><i class="fa fa-toggle-off"></i> {{Interface simple}}</a>
             <center>
