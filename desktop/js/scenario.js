@@ -87,6 +87,7 @@ $('#bt_scenarioThumbnailDisplay').on('click', function () {
   $('#div_editScenario').hide();
   $('#scenarioThumbnailDisplay').show();
   $('.li_scenario').removeClass('active');
+  $('.scenarioListContainer').packery();
 });
 
 $('.scenarioDisplayCard').on('click', function () {

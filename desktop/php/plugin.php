@@ -53,7 +53,7 @@ foreach ($plugins_list as $category_name => $category) {
        <center>
         <i class="fa fa-shopping-cart" style="font-size : 4em;color:#94ca02;"></i>
     </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>Accéder au Market</center></span>
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Accéder au Market}}</center></span>
 </div>
 
 <?php

@@ -2,41 +2,131 @@
 if (!hasRight('interactview', true)) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-?>
-
-<div class="row row-overflow">
-    <div class="col-lg-2 col-md-3 col-sm-4">
-        <div class="bs-sidebar">
-            <ul id="ul_interact" class="nav nav-list bs-sidenav">
-                <a id="bt_addInteract" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter interaction}}</a>
-                <div class="row">
-                    <div class="col-xs-6">
-                        <a id="bt_regenerateInteract" class="btn btn-warning" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-refresh"></i> {{Regénerer}}</a>
-                    </div>
-                    <div class="col-xs-6">
-                        <a id="bt_testInteract" class="btn btn-primary" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-comment-o"></i> {{Tester}}</a>
-                    </div>
-                </div>
-                <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
-                <?php
-$allObject = object::buildTree();
-foreach (interactDef::all() as $interact) {
-	if ($interact->getName() != '') {
-		echo '<li class="li_interact cursor" data-interact_id="' . $interact->getId() . '"><a>' . $interact->getName() . '</a></li>';
-	} else {
-		echo '<li class="li_interact cursor" data-interact_id="' . $interact->getId() . '"><a>' . $interact->getQuery() . '</a></li>';
+$interacts = array();
+$interacts[-1] = interactDef::all(null);
+$interactListGroup = interactDef::listGroup();
+if (is_array($interactListGroup)) {
+	foreach ($interactListGroup as $group) {
+		$interacts[$group['group']] = interactDef::all($group['group']);
 	}
 }
 ?>
-          </ul>
-      </div>
-  </div>
-  <div class="col-lg-10 col-md-9 col-sm-8 interact" style="display: none;" id="div_conf">
+
+<div style="position : fixed;height:100%;width:30px;top:90px;left:0px;z-index:99999" id="bt_displayInteractList"></div>
+
+<div class="row row-overflow">
+    <div class="col-lg-2 col-md-3 col-sm-4" id="div_listInteract">
+        <div class="bs-sidebar">
+
+            <a id="bt_addInteract" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter interaction}}</a>
+            <div class="row">
+                <div class="col-xs-6">
+                    <a id="bt_regenerateInteract" class="btn btn-warning" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-refresh"></i> {{Regénerer}}</a>
+                </div>
+                <div class="col-xs-6">
+                    <a id="bt_testInteract" class="btn btn-primary" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-comment-o"></i> {{Tester}}</a>
+                </div>
+            </div>
+
+            <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
+            <div id="div_tree">
+                <ul id="ul_interact" >
+                    <li data-jstree='{"opened":true}'>
+                        <a>Aucune</a>
+                        <ul>
+                            <?php
+foreach ($interacts[-1] as $interact) {
+	echo '<li data-jstree=\'{"opened":true,"icon":""}\'>';
+	echo ' <a class="li_interact" id="interact' . $interact->getId() . '" data-interact_id="' . $interact->getId() . '" >' . $interact->getHumanName() . '</a>';
+	echo '</li>';
+}
+?>
+                       </ul>
+                       <?php
+foreach ($interactListGroup as $group) {
+	if ($group['group'] != '') {
+		echo '<li data-jstree=\'{"opened":true}\'>';
+		echo '<a>' . $group['group'] . '</a>';
+		echo '<ul>';
+		foreach ($interacts[$group['group']] as $interact) {
+			echo '<li data-jstree=\'{"opened":true,"icon":""}\'>';
+			echo ' <a class="li_interact" id="interact' . $interact->getId() . '" data-interact_id="' . $interact->getId() . '" >' . $interact->getHumanName() . '</a>';
+			echo '</li>';
+		}
+		echo '</ul>';
+		echo '</li>';
+	}
+}
+?>
+                 </ul>
+             </div>
+
+         </div>
+     </div>
+
+     <div id="interactThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
+       <div class="interactListContainer">
+           <legend>{{Gestion}}</legend>
+           <div class="cursor" id="bt_addInteract2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+             <center>
+                <i class="fa fa-plus-circle" style="font-size : 4em;color:#94ca02;"></i>
+            </center>
+            <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
+        </div>
+        <div class="cursor" id="bt_regenerateInteract2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+         <center>
+         <i class="fa fa-refresh" style="font-size : 4em;color:#f0ad4e;"></i>
+        </center>
+        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#f0ad4e"><center>{{Regénerer}}</center></span>
+    </div>
+    <div class="cursor" id="bt_testInteract2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+     <center>
+        <i class="fa fa-comment-o" style="font-size : 4em;color:#337ab7;"></i>
+    </center>
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Tester}}</center></span>
+</div>
+</div>
+
+<legend>{{Mes intéractions}}</legend>
+<?php
+echo '<legend>Aucun</legend>';
+echo '<div class="interactListContainer">';
+foreach ($interacts[-1] as $interact) {
+	echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+	echo "<center>";
+	echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
+	echo "</center>";
+	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $interact->getHumanName() . '</center></span>';
+	echo '</div>';
+}
+echo '</div>';
+
+foreach ($interactListGroup as $group) {
+	if ($group['group'] != '') {
+		echo '<legend>' . $group['group'] . '</legend>';
+		echo '<div class="interactListContainer">';
+		foreach ($interacts[$group['group']] as $interact) {
+			echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+			echo "<center>";
+			echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
+			echo "</center>";
+			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $interact->getHumanName() . '</center></span>';
+			echo '</div>';
+		}
+		echo '</div>';
+	}
+}
+?>
+</div>
+
+
+
+<div class="interact" style="display: none;" id="div_conf">
     <div class="row">
         <div class="col-sm-6">
             <form class="form-horizontal">
                 <fieldset>
-                    <legend>
+                    <legend><i class="fa fa-arrow-circle-left cursor" id="bt_interactThumbnailDisplay"></i>
                         {{Général}}
                         <a class="btn btn-default btn-xs pull-right" id="bt_duplicate"><i class="fa fa-files-o"></i> {{Dupliquer}}</a>
                     </legend>
@@ -44,6 +134,12 @@ foreach (interactDef::all() as $interact) {
                         <label class="col-sm-3 col-xs-3 control-label">{{Nom}}</label>
                         <div class="col-sm-9 col-xs-9">
                             <input class="form-control interactAttr" type="text" data-l1key="name" placeholder=""/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 col-xs-3 control-label">{{Groupe}}</label>
+                        <div class="col-sm-9 col-xs-9">
+                            <input class="form-control interactAttr" type="text" data-l1key="group" placeholder=""/>
                         </div>
                     </div>
                     <div class="form-group">

@@ -80,14 +80,14 @@ if (is_array($scenarioListGroup)) {
 
             </legend>
             <?php
-if (count(scenario::all()) == 0) {
+if (count($scenarios) == 0) {
 	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
 } else {
 	if (count($scenarios[-1]) > 0) {
 		echo '<legend>Aucun</legend>';
 		echo '<div class="scenarioListContainer">';
 		foreach ($scenarios[-1] as $scenario) {
-			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 			echo "<center>";
 			echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
 			echo "</center>";
@@ -96,12 +96,12 @@ if (count(scenario::all()) == 0) {
 		}
 		echo '</div>';
 	}
-	foreach (scenario::listGroup() as $group) {
+	foreach ($scenarioListGroup as $group) {
 		if ($group['group'] != '' && count($scenarios[$group['group']]) > 0) {
 			echo '<legend>' . $group['group'] . '</legend>';
 			echo '<div class="scenarioListContainer">';
 			foreach ($scenarios[$group['group']] as $scenario) {
-				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 				echo "<center>";
 				echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
 				echo "</center>";

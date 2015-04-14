@@ -5,8 +5,11 @@ if (!hasRight('scenarioview', true)) {
 
 $scenarios = array();
 $scenarios[-1] = scenario::all(null);
-foreach (scenario::listGroup() as $group) {
-	$scenarios[$group['group']] = scenario::all($group['group']);
+$scenarioListGroup = scenario::listGroup();
+if (is_array($scenarioListGroup)) {
+	foreach ($scenarioListGroup as $group) {
+		$scenarios[$group['group']] = scenario::all($group['group']);
+	}
 }
 ?>
 <div style="position : fixed;height:100%;width:30px;top:90px;left:0px;z-index:99999" id="bt_displayScenarioList"></div>
@@ -46,7 +49,7 @@ foreach ($scenarios[-1] as $scenario) {
 ?>
                    </ul>
                    <?php
-foreach (scenario::listGroup() as $group) {
+foreach ($scenarioListGroup as $group) {
 	if ($group['group'] != '') {
 		echo '<li data-jstree=\'{"opened":true}\'>';
 		echo '<a>' . $group['group'] . '</a>';
@@ -69,13 +72,13 @@ foreach (scenario::listGroup() as $group) {
  <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
     <legend>{{Mes scénarios}}</legend>
     <?php
-if (count(scenario::all()) == 0) {
+if (count($scenarios) == 0) {
 	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
 } else {
 	echo '<legend>Aucun</legend>';
 	echo '<div class="scenarioListContainer">';
 	foreach ($scenarios[-1] as $scenario) {
-		echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+		echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 		echo "<center>";
 		echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
 		echo "</center>";
@@ -84,12 +87,12 @@ if (count(scenario::all()) == 0) {
 	}
 	echo '</div>';
 
-	foreach (scenario::listGroup() as $group) {
+	foreach ($scenarioListGroup as $group) {
 		if ($group['group'] != '') {
 			echo '<legend>' . $group['group'] . '</legend>';
 			echo '<div class="scenarioListContainer">';
 			foreach ($scenarios[$group['group']] as $scenario) {
-				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 				echo "<center>";
 				echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
 				echo "</center>";
@@ -291,14 +294,14 @@ foreach (object::all() as $object) {
                 </div>
 
                 <div class="alert alert-info addElementTypeDescription in" style="display:none;">
-                 Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
-             </div>
+                   Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
+               </div>
 
-             <div class="alert alert-info addElementTypeDescription at" style="display:none;">
-                 A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
-             </div>
+               <div class="alert alert-info addElementTypeDescription at" style="display:none;">
+                   A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
+               </div>
 
-             <div class="alert alert-info addElementTypeDescription code" style="display:none;">
+               <div class="alert alert-info addElementTypeDescription code" style="display:none;">
                 Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell etc...
             </div>
 
@@ -353,10 +356,10 @@ foreach (object::all() as $object) {
                 </div>
 
                 <div class="alert alert-info sel_otherActionDescription stop" style="display:none;">
-                   Arrête le scénario
-               </div>
+                 Arrête le scénario
+             </div>
 
-               <div class="alert alert-info sel_otherActionDescription say" style="display:none;">
+             <div class="alert alert-info sel_otherActionDescription say" style="display:none;">
                 Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)
             </div>
 
