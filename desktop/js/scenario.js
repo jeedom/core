@@ -62,6 +62,19 @@ $("#div_listScenario").resizable({
   }
 });
 
+if(!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1){
+    $('#div_listScenario').hide();
+    $('#bt_displayScenarioList').on('mouseenter',function(){
+        $('#div_listScenario').show();
+        $('.scenarioListContainer').packery();
+    });
+
+    $('#div_listScenario').on('mouseleave',function(){
+        $('#div_listScenario').hide();
+        $('.scenarioListContainer').packery();
+    });
+}
+
 setTimeout(function(){
   $('.scenarioListContainer').packery();
 },100);

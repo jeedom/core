@@ -33,6 +33,20 @@ setTimeout(function(){
 },100);
 
 
+if(!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1){
+    $('#div_listScenario').hide();
+    $('#bt_displayScenarioList').on('mouseenter',function(){
+        $('#div_listScenario').show();
+        $('.scenarioListContainer').packery();
+    });
+
+    $('#div_listScenario').on('mouseleave',function(){
+        $('#div_listScenario').hide();
+        $('.scenarioListContainer').packery();
+    });
+}
+
+
 $("#div_listScenario").trigger('resize');
 
 $('.scenarioListContainer').packery();
@@ -336,7 +350,7 @@ $('#sel_scheduleMode').on('change', function () {
                 var hour = (date.getHours() < 10 ? '0' : '') + date.getHours();
                 var strdate = (date.getDate() < 10 ? '0' : '') + date.getDate();
                 var month = ((date.getMonth() + 1) < 10 ? '0' : '') + (date.getMonth() + 1);
-                 var cron = minute + ' ' + hour + ' ' + strdate + ' ' + month + ' ' + date.getDay() + ' ' + date.getFullYear();
+                var cron = minute + ' ' + hour + ' ' + strdate + ' ' + month + ' ' + date.getDay() + ' ' + date.getFullYear();
                 $('#span_cronResult').value(cron);
             }
         });
