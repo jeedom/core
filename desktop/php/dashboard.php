@@ -18,7 +18,9 @@ $parentNumber = array();
 ?>
 
 <div style="position : fixed;height:100%;width:30px;top:40px;left:0px;z-index:1028" id="bt_displayObject"></div>
+<?php if ($_SESSION['user']->getOptions('hideScenarioByDefault', 0) == 0) {?>
 <div style="position : fixed;height:100%;width:30px;top:40px;right:0px;z-index:1028" id="bt_displayScenario"></div>
+<?php }?>
 
 <div class="row row-overflow">
     <?php
@@ -115,25 +117,27 @@ echo '</div>';
 ?>
 </div>
 <?php
-if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
-	echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario" style="z-index:1029">';
-} else {
-	echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario" style="display:none;z-index:1029">';
-}
-?>
+if ($_SESSION['user']->getOptions('hideScenarioByDefault', 0) == 0) {
+	if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
+		echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario" style="z-index:1029">';
+	} else {
+		echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario" style="display:none;z-index:1029">';
+	}
+	?>
 <legend><i class="fa fa-history"></i> {{Scénarios}}</legend>
 <?php
 if (init('object_id') == '') {
-	foreach (scenario::byObjectId(null, false, true) as $scenario) {
+		foreach (scenario::byObjectId(null, false, true) as $scenario) {
+			echo $scenario->toHtml('dashboard');
+		}
+	}
+	foreach ($object->getScenario(false, true) as $scenario) {
 		echo $scenario->toHtml('dashboard');
 	}
-}
-foreach ($object->getScenario(false, true) as $scenario) {
-	echo $scenario->toHtml('dashboard');
-}
-foreach ($child_object as $child) {
-	foreach ($child->getScenario(false, true) as $scenario) {
-		echo $scenario->toHtml('dashboard');
+	foreach ($child_object as $child) {
+		foreach ($child->getScenario(false, true) as $scenario) {
+			echo $scenario->toHtml('dashboard');
+		}
 	}
 }
 ?>

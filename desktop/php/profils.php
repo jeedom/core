@@ -236,20 +236,27 @@ foreach (planHeader::all() as $plan) {
 </div>
 <legend>{{Dashboard}}</legend>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Afficher les scénarios par défaut}}</label>
+    <label class="col-sm-3 control-label">{{Déplier le panneau des scénarios}}</label>
     <div class="col-sm-1">
         <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayScenarioByDefault"/>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Afficher les objets par défaut}}</label>
+    <label class="col-sm-3 control-label">{{Ne pas afficher le panneau des scénarios}}</label>
+    <div class="col-sm-1">
+        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="hideScenarioByDefault"/>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{Déplier le panneau des objets}}</label>
     <div class="col-sm-1">
         <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
     </div>
 </div>
 <legend>{{Vue}}</legend>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Afficher les vues par défaut}}</label>
+    <label class="col-sm-3 control-label">{{Afficher le panneau des vues}}</label>
     <div class="col-sm-1">
         <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayViewByDefault"/>
     </div>
