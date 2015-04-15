@@ -17,8 +17,8 @@ $child_object = object::buildTree($object);
 $parentNumber = array();
 ?>
 
-<div style="position : fixed;height:100%;width:30px;top:40px;left:0px;z-index:998" id="bt_displayObject"></div>
-<div style="position : fixed;height:100%;width:30px;top:40px;right:0px;z-index:998" id="bt_displayScenario"></div>
+<div style="position : fixed;height:100%;width:30px;top:40px;left:0px;z-index:1028" id="bt_displayObject"></div>
+<div style="position : fixed;height:100%;width:30px;top:40px;right:0px;z-index:1028" id="bt_displayScenario"></div>
 
 <div class="row row-overflow">
     <?php
@@ -116,9 +116,9 @@ echo '</div>';
 </div>
 <?php
 if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
-	echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario" style="z-index:999">';
+	echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario" style="z-index:1029">';
 } else {
-	echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario" style="display:none;z-index:999">';
+	echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario" style="display:none;z-index:1029">';
 }
 ?>
 <legend><i class="fa fa-history"></i> {{Scénarios}}</legend>
