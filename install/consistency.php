@@ -142,7 +142,9 @@ try {
 	cache::deleteBySearch('cmdWidgetdashboard');
 	cache::deleteBySearch('cmdWidgetmobile');
 	cache::deleteBySearch('scenarioHtmldashboard');
-	cache::cleanCache();
+	if (method_exists('cache', 'clean')) {
+		cache::clean();
+	}
 } catch (Exception $e) {
 	echo $e->getMessage();
 }

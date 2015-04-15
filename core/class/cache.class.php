@@ -98,7 +98,7 @@ class cache {
 		return $cache->save();
 	}
 
-	public static function cleanCache() {
+	public static function clean() {
 		$sql = "DELETE FROM `cache`  WHERE (UNIX_TIMESTAMP(`datetime`) + lifetime) < UNIX_TIMESTAMP(NOW()) AND lifetime > 0";
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		$sql = "SELECT * FROM `cache`  WHERE `key` LIKE 'cmd%' AND lifetime = 0";
