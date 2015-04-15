@@ -139,6 +139,10 @@ try {
 	}
 
 	cache::deleteBySearch('widgetHtml');
+	cache::deleteBySearch('cmdWidgetdashboard');
+	cache::deleteBySearch('cmdWidgetmobile');
+	cache::deleteBySearch('scenarioHtmldashboard');
+	cache::cleanCache();
 } catch (Exception $e) {
 	echo $e->getMessage();
 }

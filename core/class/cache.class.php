@@ -20,176 +20,251 @@
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class cache {
-    /*     * *************************Attributs****************************** */
+	/*     * *************************Attributs****************************** */
 
-    private $key;
-    private $value = null;
-    private $lifetime = 1;
-    private $datetime;
-    private $options = null;
-    private $_hasExpired = -1;
+	private $key;
+	private $value = null;
+	private $lifetime = 1;
+	private $datetime;
+	private $options = null;
+	private $_hasExpired = -1;
 
-    /*     * ***********************Methode static*************************** */
+	/*     * ***********************Methode static*************************** */
 
-    public static function byKey($_key, $_noRemove = false) {
-        $values = array(
-            'key' => $_key
-            );
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+	public static function byKey($_key, $_noRemove = false) {
+		$values = array(
+			'key' => $_key,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM cache
         WHERE `key`=:key';
-        $cache = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-        if (!is_object($cache)) {
-            $cache = new self();
-            $cache->setKey($_key);
-            $cache->setDatetime(date('Y-m-d H:i:s'));
-            $cache->_hasExpired = true;
-        } else {
-            if (!$_noRemove && $cache->hasExpired()) {
-                $cache->remove();
-            }
-        }
-        return $cache;
-    }
+		$cache = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+		if (!is_object($cache)) {
+			$cache = new self();
+			$cache->setKey($_key);
+			$cache->setDatetime(date('Y-m-d H:i:s'));
+			$cache->_hasExpired = true;
+		} else {
+			if (!$_noRemove && $cache->hasExpired()) {
+				$cache->remove();
+			}
+		}
+		return $cache;
+	}
 
-    public static function search($_search, $_noRemove = false) {
-        $values = array(
-            'key' => '%' . $_search . '%'
-            );
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+	public static function search($_search, $_noRemove = false) {
+		$values = array(
+			'key' => '%' . $_search . '%',
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM cache
         WHERE `key` LIKE :key';
-        $caches = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-        if (!$_noRemove) {
-            foreach ($caches as $cache) {
-                if ($cache->hasExpired()) {
-                    $cache->remove();
-                }
-            }
-        }
-        return $caches;
-    }
+		$caches = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		if (!$_noRemove) {
+			foreach ($caches as $cache) {
+				if ($cache->hasExpired()) {
+					$cache->remove();
+				}
+			}
+		}
+		return $caches;
+	}
 
-    public static function deleteBySearch($_search) {
-        $values = array(
-            'key' => '%' . $_search . '%'
-            );
-        $sql = 'DELETE FROM cache
+	public static function deleteBySearch($_search) {
+		$values = array(
+			'key' => '%' . $_search . '%',
+		);
+		$sql = 'DELETE FROM cache
         WHERE `key` LIKE :key';
-        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-    }
-    
-    public static function flush() {
-        $sql = 'TRUNCATE TABLE cache';
-        return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-    }
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+	}
 
-    public static function set($_key, $_value, $_lifetime = 60, $_options = null) {
-        if ($_lifetime < 0) {
-            $_lifetime = 0;
-        }
-        $cache = new self();
-        $cache->setKey($_key);
-        $cache->setValue($_value);
-        $cache->setLifetime($_lifetime);
-        if ($_options != null) {
-            $cache->options = json_encode($_options, JSON_UNESCAPED_UNICODE);
-        }
-        return $cache->save();
-    }
+	public static function flush() {
+		$sql = 'TRUNCATE TABLE cache';
+		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+	}
 
-    /*     * *********************Methode d'instance************************* */
+	public static function set($_key, $_value, $_lifetime = 60, $_options = null) {
+		if ($_lifetime < 0) {
+			$_lifetime = 0;
+		}
+		$cache = new self();
+		$cache->setKey($_key);
+		$cache->setValue($_value);
+		$cache->setLifetime($_lifetime);
+		if ($_options != null) {
+			$cache->options = json_encode($_options, JSON_UNESCAPED_UNICODE);
+		}
+		return $cache->save();
+	}
 
-    public function save() {
-        $values = array(
-            'key' => $this->getKey(),
-            'value' => $this->getValue(),
-            'datetime' => date('Y-m-d H:i:s'),
-            'lifetime' => $this->getLifetime(),
-            'options' => $this->options
-            );
-        $sql = 'REPLACE cache
+	public static function cleanCache() {
+		$sql = "DELETE FROM `cache`  WHERE (UNIX_TIMESTAMP(`datetime`) + lifetime) < UNIX_TIMESTAMP(NOW()) AND lifetime > 0";
+		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		$sql = "SELECT * FROM `cache`  WHERE `key` LIKE 'cmd%' AND lifetime = 0";
+		$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+		foreach ($results as $result) {
+			$id = str_replace('cmd', '', $result['key']);
+			if (is_numeric($id)) {
+				$cmd = cmd::byId($id);
+				if (!is_object($cmd)) {
+					$sql = "DELETE FROM `cache`  WHERE `key`=:key";
+					$value = array('key' => $result['key']);
+					DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
+				}
+			}
+		}
+
+		$sql = "SELECT * FROM `cache`  WHERE `key` LIKE 'core::eqLogic%::lastCommunication'";
+		$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+		foreach ($results as $result) {
+			$id = str_replace(array('core::eqLogic', '::lastCommunication'), '', $result['key']);
+			if (is_numeric($id)) {
+				$eqLogic = eqLogic::byId($id);
+				if (!is_object($eqLogic)) {
+					$sql = "DELETE FROM `cache`  WHERE `key`=:key";
+					$value = array('key' => $result['key']);
+					DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
+				}
+			}
+		}
+
+		$sql = "SELECT * FROM `cache`  WHERE `key` LIKE 'core::eqLogic%::numberTryWithoutSuccess'";
+		$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+		foreach ($results as $result) {
+			$id = str_replace(array('core::eqLogic', '::numberTryWithoutSuccess'), '', $result['key']);
+			if (is_numeric($id)) {
+				$eqLogic = eqLogic::byId($id);
+				if (!is_object($eqLogic)) {
+					$sql = "DELETE FROM `cache`  WHERE `key`=:key";
+					$value = array('key' => $result['key']);
+					DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
+				}
+			}
+		}
+
+		$sql = "SELECT * FROM `cache`  WHERE `key` LIKE 'core::eqLogic%::numberTryWithoutSuccess'";
+		$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+		foreach ($results as $result) {
+			$id = str_replace(array('core::eqLogic', '::numberTryWithoutSuccess'), '', $result['key']);
+			if (is_numeric($id)) {
+				$eqLogic = eqLogic::byId($id);
+				if (!is_object($eqLogic)) {
+					$sql = "DELETE FROM `cache`  WHERE `key`=:key";
+					$value = array('key' => $result['key']);
+					DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
+				}
+			}
+		}
+
+		$sql = "SELECT * FROM `cache`  WHERE `key` LIKE 'widgetHtmldashboard%'";
+		$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+		foreach ($results as $result) {
+			$id = str_replace(array('widgetHtmldashboard'), '', $result['key']);
+			if (is_numeric($id)) {
+				$eqLogic = eqLogic::byId($id);
+				if (!is_object($eqLogic)) {
+					$sql = "DELETE FROM `cache`  WHERE `key`=:key";
+					$value = array('key' => $result['key']);
+					DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
+				}
+			}
+		}
+
+	}
+
+	/*     * *********************Methode d'instance************************* */
+
+	public function save() {
+		$values = array(
+			'key' => $this->getKey(),
+			'value' => $this->getValue(),
+			'datetime' => date('Y-m-d H:i:s'),
+			'lifetime' => $this->getLifetime(),
+			'options' => $this->options,
+		);
+		$sql = 'REPLACE cache
         SET `key`=:key,
         `value`=:value,
         `datetime`=:datetime,
         `lifetime`=:lifetime,
         `options`=:options';
-        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-    }
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+	}
 
-    public function remove() {
-        DB::remove($this);
-    }
+	public function remove() {
+		DB::remove($this);
+	}
 
-    public function hasExpired() {
-        if ($this->_hasExpired != -1) {
-            return $this->_hasExpired;
-        }
-        if ($this->getLifetime() == 0) {
-            $this->_hasExpired = false;
-            return false;
-        }
-        if ($this->value === null || trim($this->value) === '') {
-            $this->_hasExpired = true;
-            return true;
-        }
-        if ((strtotime($this->getDatetime()) + $this->getLifetime()) < strtotime('now')) {
-            $this->_hasExpired = true;
-            return true;
-        }
-        $this->_hasExpired = false;
-        return false;
-    }
+	public function hasExpired() {
+		if ($this->_hasExpired != -1) {
+			return $this->_hasExpired;
+		}
+		if ($this->getLifetime() == 0) {
+			$this->_hasExpired = false;
+			return false;
+		}
+		if ($this->value === null || trim($this->value) === '') {
+			$this->_hasExpired = true;
+			return true;
+		}
+		if ((strtotime($this->getDatetime()) + $this->getLifetime()) < strtotime('now')) {
+			$this->_hasExpired = true;
+			return true;
+		}
+		$this->_hasExpired = false;
+		return false;
+	}
 
-    public function invalid() {
-        if (!$this->hasExpired()) {
-            $this->setLifetime(1);
-            $this->save();
-        }
-        return true;
-    }
+	public function invalid() {
+		if (!$this->hasExpired()) {
+			$this->setLifetime(1);
+			$this->save();
+		}
+		return true;
+	}
 
-    /*     * **********************Getteur Setteur*************************** */
+	/*     * **********************Getteur Setteur*************************** */
 
-    public function getKey() {
-        return $this->key;
-    }
+	public function getKey() {
+		return $this->key;
+	}
 
-    public function setKey($key) {
-        $this->key = $key;
-    }
+	public function setKey($key) {
+		$this->key = $key;
+	}
 
-    public function getValue($_default = '') {
-        return ($this->value === null || trim($this->value) === '') ? $_default : $this->value;
-    }
+	public function getValue($_default = '') {
+		return ($this->value === null || trim($this->value) === '') ? $_default : $this->value;
+	}
 
-    public function setValue($value) {
-        $this->value = $value;
-    }
+	public function setValue($value) {
+		$this->value = $value;
+	}
 
-    public function getLifetime() {
-        return $this->lifetime;
-    }
+	public function getLifetime() {
+		return $this->lifetime;
+	}
 
-    public function setLifetime($lifetime) {
-        $this->lifetime = $lifetime;
-    }
+	public function setLifetime($lifetime) {
+		$this->lifetime = $lifetime;
+	}
 
-    public function getDatetime() {
-        return $this->datetime;
-    }
+	public function getDatetime() {
+		return $this->datetime;
+	}
 
-    public function setDatetime($datetime) {
-        $this->datetime = $datetime;
-    }
+	public function setDatetime($datetime) {
+		$this->datetime = $datetime;
+	}
 
-    public function getOptions($_key = '', $_default = '') {
-        return utils::getJsonAttr($this->options, $_key, $_default);
-    }
+	public function getOptions($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->options, $_key, $_default);
+	}
 
-    public function setOptions($_key, $_value) {
-        $this->options = utils::setJsonAttr($this->options, $_key, $_value);
-    }
+	public function setOptions($_key, $_value) {
+		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
+	}
 
 }
 
