@@ -448,6 +448,15 @@ class jeedom {
 			log::add('backup', 'error', 'Auto backup error : ' . $e->getMessage());
 		}
 
+		try {
+			$c = new Cron\CronExpression('35 00 * * 0', new Cron\FieldFactory);
+			if ($c->isDue()) {
+				cache::clean();
+			}
+		} catch (Exception $e) {
+			log::add('cache', 'error', 'Clean cache : ' . $e->getMessage());
+		}
+
 	}
 
 	public static function checkOngoingThread($_cmd) {
