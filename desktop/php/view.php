@@ -23,7 +23,7 @@ if (!is_object($view)) {
 sendVarToJS('view_id', $view->getId());
 ?>
 
-<div style="position : fixed;height:100%;width:30px;top:40px;left:0px;z-index:9998" id="bt_displayView"></div>
+<div style="position : fixed;height:100%;width:30px;top:40px;left:0px;z-index:1017" id="bt_displayView"></div>
 
 <div class="row row-overflow">
     <?php
