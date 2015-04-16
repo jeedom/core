@@ -559,6 +559,7 @@ class cmd {
 		if (trim($_value) == '' && $_value !== false) {
 			return '';
 		}
+
 		$_value = trim(trim($_value), '"');
 		if (@strpos(strtolower($_value), 'error::') !== false) {
 			return $_value;

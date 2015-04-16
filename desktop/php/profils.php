@@ -254,6 +254,12 @@ foreach (planHeader::all() as $plan) {
         <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
     </div>
 </div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{Ne pas afficher le panneau des objets}}</label>
+    <div class="col-sm-1">
+        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="hideObjectByDefault"/>
+    </div>
+</div>
 <legend>{{Vue}}</legend>
 <div class="form-group">
     <label class="col-sm-3 control-label">{{Afficher le panneau des vues}}</label>
