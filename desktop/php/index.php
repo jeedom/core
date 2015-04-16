@@ -195,7 +195,7 @@ if (!isConnect()) {
 													<?php if (hasRight('dashboardview')) {
 			?>
 														<li class="dropdown-submenu">
-															<a data-toggle="dropdown" id="bt_gotoDashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
+															<a data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
 															<ul class="dropdown-menu">
 																<?php
 foreach (object::buildTree(null, true) as $object_li) {
