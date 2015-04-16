@@ -481,7 +481,7 @@ $nbNeedUpdate = update::nbNeedUpdate();
 	echo ' - {{Page générée en}} <span id="span_loadPageTime">' . round(getmicrotime() - $startLoadTime, 3) . '</span>s';
 	?>
 </span>
-<span class="pull-right expertModeVisible tooltips cursor" style="margin-right : 10px;font-size : 1.3em;" title="{{Voir les événements en temps réél}}" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i></span>
+<span class="pull-right expertModeVisible tooltips cursor" style="margin-right : 10px;font-size : 1.3em;z-index:1018" title="{{Voir les événements en temps réél}}" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i></span>
 </footer>
 <?php }?>
 </body>

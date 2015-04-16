@@ -17,9 +17,9 @@ $child_object = object::buildTree($object);
 $parentNumber = array();
 ?>
 
-<div style="position : fixed;height:100%;width:30px;top:40px;left:0px;z-index:1028" id="bt_displayObject"></div>
+<div style="position : fixed;height:100%;width:30px;top:40px;left:0px;z-index:1017" id="bt_displayObject"></div>
 <?php if ($_SESSION['user']->getOptions('hideScenarioByDefault', 0) == 0) {?>
-<div style="position : fixed;height:100%;width:30px;top:40px;right:0px;z-index:1028" id="bt_displayScenario"></div>
+<div style="position : fixed;height:85%;width:30px;top:40px;right:0px;z-index:1017;" id="bt_displayScenario"></div>
 <?php }?>
 
 <div class="row row-overflow">
