@@ -378,22 +378,6 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 ?>
                    </div>
                </div>
-               <?php
-if (file_exists('/etc/nginx/sites-available/default_ssl')) {
-	echo '<div class="form-group expertModeVisible">';
-	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Forcer le https}}</label>';
-	echo '<div class="col-xs-1">';
-	echo '<input type="checkbox" class="configKey" data-l1key="forceHttps" />';
-	echo '</div>';
-	echo '<div class="col-sm-3">';
-	echo '<a class="btn btn-default btn-sm" target="_blank" href="https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '"><i class="fa fa-lock"></i> Tester le https</a>';
-	echo '</div>';
-	echo '<div class="col-sm-4 col-xs-12 alert alert-danger">';
-	echo '{{Attention si vous n\'avez pas de HTTPS et que vous activez cette option votre jeedom ne sera plus accessible}}';
-	echo '</div>';
-	echo '</div>';
-}
-?>
            </fieldset>
        </form>
    </div>

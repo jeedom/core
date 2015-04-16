@@ -28,17 +28,6 @@ if (!isset($_GET['v'])) {
 		header("location: index.php?v=d&" . trim($getParams, '&'));
 	}
 } else {
-	try {
-		require_once dirname(__FILE__) . "/core/php/core.inc.php";
-		if ($_SERVER['SERVER_PORT'] != 443 && config::byKey('forceHttps') == 1) {
-			header("HTTP/1.1 301 Moved Permanently");
-			header("Location: https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-			exit();
-		}
-	} catch (Exception $e) {
-		echo $e->getMessage();
-		die();
-	}
 	if ($_GET['v'] == "d") {
 		if (isset($_GET['modal'])) {
 			include_file('core', 'authentification', 'php');
