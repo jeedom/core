@@ -42,6 +42,16 @@ class object {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function byName($_name) {
+		$values = array(
+			'name' => $_name,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+                FROM object
+                WHERE name=:name';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+	}
+
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                 FROM object

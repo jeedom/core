@@ -475,17 +475,17 @@ class jeedom {
 				$rdkey = config::genKey();
 				config::save('jeedom::rdkey', $rdkey);
 			}
-			$ifconfig = shell_exec("/sbin/ifconfig");
+			$ifconfig = shell_exec("ip addr show");
 			if (strpos($ifconfig, 'eth1') !== false) {
-				$key = shell_exec("/sbin/ifconfig eth1 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+				$key = shell_exec(" ip addr show eth0 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
 			} else if (strpos($ifconfig, 'p2p0') !== false) {
-				$key = shell_exec("/sbin/ifconfig p2p0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+				$key = shell_exec(" ip addr show p2p0 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
 			} else if (strpos($ifconfig, 'p2p1') !== false) {
-				$key = shell_exec("/sbin/ifconfig p2p1 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+				$key = shell_exec(" ip addr show p2p1 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
 			} else if (strpos($ifconfig, 'p2p2') !== false) {
-				$key = shell_exec("/sbin/ifconfig p2p2 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+				$key = shell_exec(" ip addr show p2p2 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
 			} else {
-				$key = shell_exec("/sbin/ifconfig eth0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+				$key = shell_exec(" ip addr show eth0 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
 			}
 			$hwkey = sha1($key . $rdkey);
 			cache::set('jeedom::hwkey', $hwkey, 86400);
