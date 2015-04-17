@@ -57,15 +57,13 @@ foreach ($plugins_list as $category_name => $category) {
 </div>
 
 <?php
-foreach ($plugins_list as $category_name => $category) {
-	foreach ($category as $plugin) {
-		echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-		echo "<center>";
-		echo '<i class="' . $plugin->getIcon() . '" style="font-size : 4em;color:#767676;"></i>';
-		echo "</center>";
-		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $plugin->getName() . '</center></span>';
-		echo '</div>';
-	}
+foreach (plugin::listPlugin() as $plugin) {
+	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+	echo "<center>";
+	echo '<i class="' . $plugin->getIcon() . '" style="font-size : 4em;color:#767676;"></i>';
+	echo "</center>";
+	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $plugin->getName() . '</center></span>';
+	echo '</div>';
 }
 ?>
 </div>
