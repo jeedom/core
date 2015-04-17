@@ -132,15 +132,10 @@ $('#bt_duplicate').on('click', function () {
 });
 
 if (is_numeric(getUrlVars('id'))) {
-    if ($('#ul_interact .li_interact[data-interact_id=' + getUrlVars('id') + ']').length != 0) {
-        $('#ul_interact .li_interact[data-interact_id=' + getUrlVars('id') + ']').click();
-    } else {
-        $('#ul_interact .li_interact:first').click();
+    if ($('.li_interact[data-interact_id=' + getUrlVars('id') + ']').length != 0) {
+        $('.li_interact[data-interact_id=' + getUrlVars('id') + ']').click();
     }
-} else {
-    $('#ul_interact .li_interact:first').click();
 }
-
 
 $('.displayInteracQuery').on('click', function () {
     $('#md_modal').dialog({title: "{{Liste des interactions}}"});
@@ -251,7 +246,7 @@ function changeLinkType(_options) {
         options += '<a class="btn btn-default cursor listEquipementInfo input-sm"><i class="fa fa-list-alt "></i></a></td>';
         options += '</div>';
         options += '</div>';
-        $('#linkOption').append(options);
+        $('#linkOption').empty().append(options);
     }
     if (_options.link_type == 'scenario') {
         jeedom.scenario.all({
@@ -280,7 +275,7 @@ function changeLinkType(_options) {
                 options += '</select>';
                 options += '</div>';
                 options += '</div>';
-                $('#linkOption').append(options);
+                $('#linkOption').empty().append(options);
                 $('.interactAttr[data-l1key=options][data-l2key=convertBinary]').closest('.form-group').hide();
                 $('#div_filtre').hide();
                 delete _options.link_type;
