@@ -408,24 +408,30 @@ if (isConnect('admin')) {
 								</header>
 								<main class="container-fluid" id="div_mainContainer">
 									<?php
-if (!cron::ok()) {
-		echo '<div style="width : 100%" class="alert alert-warning">{{Erreur cron : il n\'y a pas eu de lancement depuis plus de 1h}}</div>';
+
+	$alert = '';
+	if (!cron::ok()) {
+		$alert = "{{Erreur cron : il n\'y a pas eu de lancement depuis plus de 1h}}\n";
 	}
 	if (!jeedom::isStarted()) {
-		echo '<div style="width : 100%" class="alert alert-warning">{{Jeedom est en cours de démarrage (peut prendre jusqu\'à 5min)}}</div>';
+		$alert = "{{Jeedom est en cours de démarrage (peut prendre jusqu\'à 5min)}}\n";
 	}
 	if (!jeedom::isDateOk()) {
-		echo '<div style="width : 100%" class="alert alert-warning">{{Erreur de date : la date de votre système n\'est pas bonne : }}' . date('Y-m-d H:i:s') . '</div>';
+		$alert = "{{Erreur de date : la date de votre système n\'est pas bonne : }}" . date('Y-m-d H:i:s') . "\n";
 	}
 	if (config::byKey('enableCron', 'core', 1, true) == 0) {
-		echo '<div style="width : 100%" class="alert alert-warning">{{Erreur cron : les crons sont désactivés. Allez dans Général -> Administration -> Moteur de tâches pour les réactiver}}</div>';
+		$alert = "{{Erreur cron : les crons sont désactivés. Allez dans Général -> Administration -> Moteur de tâches pour les réactiver}}\n";
 	}
 	if (config::byKey('enableScenario') == 0 && count(scenario::all()) > 0) {
-		echo '<div style="width : 100%" class="alert alert-warning">{{Erreur scénario : tous les scénarios sont désactivés. Allez dans Général -> Scénarios pour les réactiver}}</div>';
+		$alert = "{{Erreur scénario : tous les scénarios sont désactivés. Allez dans Général -> Scénarios pour les réactiver}}\n";
 	}
 	if (user::hasDefaultIdentification() == 1) {
-		echo '<div style="width : 100%" class="alert alert-danger">{{Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href="index.php?v=d&p=user">ici</a> pour modifier le mot de passe de l\'utilisateur admin}}</div>';
+		$alert = "{{Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href='index.php?v=d&p=user'>ici</a> pour modifier le mot de passe de l\'utilisateur admin}}\n";
 	}
+	if (trim($alert) != '') {
+		echo '<div style="width : 100%" class="alert alert-warning">' . $alert . '</div>';
+	}
+
 	?>
 									<div style="display: none;width : 100%" id="div_alert"></div>
 
