@@ -2,6 +2,7 @@
 if (!hasRight('dashboardview')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+
 if (init('object_id') == '') {
 	$object = object::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
 } else {
@@ -16,60 +17,55 @@ if (!is_object($object)) {
 $child_object = object::buildTree($object);
 $parentNumber = array();
 ?>
-<?php if ($_SESSION['user']->getOptions('hideObjectByDefault', 0) == 0) {?>
-<div style="position : fixed;height:100%;width:30px;top:40px;left:0px;z-index:998" id="bt_displayObject"></div>
-<?php }?>
-<?php if ($_SESSION['user']->getOptions('hideScenarioByDefault', 0) == 0) {?>
-<div style="position : fixed;height:85%;width:30px;top:40px;right:0px;z-index:998;" id="bt_displayScenario"></div>
-<?php }?>
 
 <div class="row row-overflow">
-	<?php
-if ($_SESSION['user']->getOptions('hideObjectByDefault', 0) == 0) {
-	if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
-		echo '<div class="col-lg-2 col-md-3 col-sm-4" id="div_displayObjectList">';
-	} else {
-		echo '<div class="col-lg-2 col-md-3 col-sm-4" style="display:none;" id="div_displayObjectList">';
-	}
-	?>
-
-		<div class="bs-sidebar">
-			<ul id="ul_object" class="nav nav-list bs-sidenav">
-				<li class="nav-header">{{Liste objets}} </li>
-				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
-				<?php
-$allObject = object::buildTree(null, true);
-	foreach ($allObject as $object_li) {
-		$parentNumber[$object_li->getId()] = $object_li->parentNumber();
-		$margin = 15 * $parentNumber[$object_li->getId()];
-		if ($object_li->getId() == $object->getId()) {
-			echo '<li class="cursor li_object active" ><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="position:relative;left:' . $margin . 'px;">' . $object_li->getHumanName(true) . '</a></li>';
-		} else {
-			echo '<li class="cursor li_object" ><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="position:relative;left:' . $margin . 'px;">' . $object_li->getHumanName(true) . '</a></li>';
-		}
-	}
-	?>
-			</ul>
-		</div>
-	</div>
-	<?php
+    <?php
+if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
+	echo '<div class="col-lg-2 col-md-3 col-sm-4" id="div_displayObjectList">';
+} else {
+	echo '<div class="col-lg-2 col-md-3 col-sm-4" style="display:none;" id="div_displayObjectList">';
 }
-if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1 && $_SESSION['user']->getOptions('hideScenarioByDefault', 0) == 0) {
-	if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1 && $_SESSION['user']->getOptions('hideObjectByDefault', 0) == 0) {
+?>
+
+    <div class="bs-sidebar">
+        <ul id="ul_object" class="nav nav-list bs-sidenav">
+            <li class="nav-header">{{Liste objets}} </li>
+            <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
+            <?php
+$allObject = object::buildTree(null, true);
+foreach ($allObject as $object_li) {
+	$parentNumber[$object_li->getId()] = $object_li->parentNumber();
+	$margin = 15 * $parentNumber[$object_li->getId()];
+	if ($object_li->getId() == $object->getId()) {
+		echo '<li class="cursor li_object active" ><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="position:relative;left:' . $margin . 'px;">' . $object_li->getHumanName(true) . '</a></li>';
+	} else {
+		echo '<li class="cursor li_object" ><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="position:relative;left:' . $margin . 'px;">' . $object_li->getHumanName(true) . '</a></li>';
+	}
+}
+?>
+        </ul>
+    </div>
+</div>
+<?php
+if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
+	if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 		echo '<div class="col-lg-8 col-md-7 col-sm-5" id="div_displayObject">';
 	} else {
 		echo '<div class="col-lg-10 col-md-9 col-sm-7" id="div_displayObject">';
 	}
 } else {
-	if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1 && $_SESSION['user']->getOptions('hideObjectByDefault', 0) == 0) {
+	if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 		echo '<div class="col-lg-10 col-md-9 col-sm-8" id="div_displayObject">';
 	} else {
 		echo '<div class="col-lg-12 col-md-12 col-sm-12" id="div_displayObject">';
 	}
 }
 ?>
+<i class='fa fa-picture-o cursor tooltips pull-left' id='bt_displayObject' data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault')?>' title="{{Afficher/Masquer les objets}}"></i>
+<i class='fa fa-cogs pull-right cursor tooltips' id='bt_displayScenario' data-display='<?php echo $_SESSION['user']->getOptions('displayScenarioByDefault')?>' title="{{Afficher/Masquer les scénarios}}"></i>
+
 <center>
-	<?php
+    <?php
 if (init('category', 'all') == 'all') {
 	echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=all" class="btn btn-primary btn-sm categoryAction" style="margin-bottom: 5px;margin-right: 3px;">{{Tous}}</a>';
 } else {
@@ -120,27 +116,25 @@ echo '</div>';
 ?>
 </div>
 <?php
-if ($_SESSION['user']->getOptions('hideScenarioByDefault', 0) == 0) {
-	if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
-		echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario" style="z-index:1029">';
-	} else {
-		echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario" style="display:none;z-index:1029">';
-	}
-	?>
-	<legend><i class="fa fa-history"></i> {{Scénarios}}</legend>
-	<?php
+if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
+	echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario">';
+} else {
+	echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario" style="display:none;">';
+}
+?>
+<legend><i class="fa fa-history"></i> {{Scénarios}}</legend>
+<?php
 if (init('object_id') == '') {
-		foreach (scenario::byObjectId(null, false, true) as $scenario) {
-			echo $scenario->toHtml('dashboard');
-		}
-	}
-	foreach ($object->getScenario(false, true) as $scenario) {
+	foreach (scenario::byObjectId(null, false, true) as $scenario) {
 		echo $scenario->toHtml('dashboard');
 	}
-	foreach ($child_object as $child) {
-		foreach ($child->getScenario(false, true) as $scenario) {
-			echo $scenario->toHtml('dashboard');
-		}
+}
+foreach ($object->getScenario(false, true) as $scenario) {
+	echo $scenario->toHtml('dashboard');
+}
+foreach ($child_object as $child) {
+	foreach ($child->getScenario(false, true) as $scenario) {
+		echo $scenario->toHtml('dashboard');
 	}
 }
 ?>
