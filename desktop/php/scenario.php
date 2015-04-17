@@ -12,7 +12,7 @@ if (is_array($scenarioListGroup)) {
 	}
 }
 ?>
-<div style="position : fixed;height:100%;width:30px;top:90px;left:0px;z-index:998" id="bt_displayScenarioList"></div>
+<div style="position : fixed;height:100%;width:20px;top:90px;left:0px;z-index:998" id="bt_displayScenarioList"></div>
 
 <div class="row row-overflow">
     <div class="col-lg-2 col-md-3 col-sm-4" id="div_listScenario" style="z-index:999">
