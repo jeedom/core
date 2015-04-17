@@ -33,17 +33,22 @@ $("#div_listInteract").resizable({
 }
 });
 
- if((!isset(userProfils.displayScenarioByDefault) || userProfils.displayScenarioByDefault != 1) && !jQuery.support.touch){
+if((!isset(userProfils.displayScenarioByDefault) || userProfils.displayScenarioByDefault != 1) && !jQuery.support.touch){
     $('#div_listInteract').hide();
     $('#bt_displayInteractList').on('mouseenter',function(){
+       var timer = setTimeout(function(){
         $('#div_listInteract').show();
         $('.interactListContainer').packery();
-    });
+    }, 100);
+       $(this).data('timerMouseleave', timer)
+   }).on("mouseleave", function(){
+      clearTimeout($(this).data('timerMouseleave'));
+  });
 
-    $('#div_listInteract').on('mouseleave',function(){
-        $('#div_listInteract').hide();
-        $('.interactListContainer').packery();
-    });
+   $('#div_listInteract').on('mouseleave',function(){
+    $('#div_listInteract').hide();
+    $('.interactListContainer').packery();
+});
 }
 
 setTimeout(function(){
@@ -173,16 +178,16 @@ $("#bt_saveInteract").on('click', function () {
 
 $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
     bootbox.confirm('{{Etes-vous sûr de vouloir regénerer toutes les intérations (cela peut être très long) ?}}', function (result) {
-     if (result) {
+       if (result) {
         jeedom.interact.regenerateInteract({
             interact: {query: result},
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
-             $('#div_alert').showAlert({message: '{{Toutes les intérations ont été regénerées}}', level: 'success'});
-         }
-     });
+               $('#div_alert').showAlert({message: '{{Toutes les intérations ont été regénerées}}', level: 'success'});
+           }
+       });
     }
 });
 });

@@ -36,9 +36,14 @@ setTimeout(function(){
  if((!isset(userProfils.displayScenarioByDefault) || userProfils.displayScenarioByDefault != 1) && !jQuery.support.touch){
     $('#div_listScenario').hide();
     $('#bt_displayScenarioList').on('mouseenter',function(){
+        var timer = setTimeout(function(){
         $('#div_listScenario').show();
         $('.scenarioListContainer').packery();
-    });
+         }, 100);
+        $(this).data('timerMouseleave', timer)
+    }).on("mouseleave", function(){
+      clearTimeout($(this).data('timerMouseleave'));
+  });
 
     $('#div_listScenario').on('mouseleave',function(){
         $('#div_listScenario').hide();
