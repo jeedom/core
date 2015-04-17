@@ -542,7 +542,7 @@ class eqLogic {
 
 	public function save() {
 		if ($this->getName() == '') {
-			throw new Exception(__('Le nom de l\'équipement ne peut pas être vide', __FILE__));
+			throw new Exception(__('Le nom de l\'équipement ne peut pas être vide : ', __FILE__) . print_r($this, true));
 		}
 		if ($this->getId() != '') {
 			$this->emptyCacheWidget();
