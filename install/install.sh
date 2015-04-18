@@ -483,6 +483,7 @@ install_dependency()
 	apt-get install -y npm
 	apt-get install -y libtinyxml-dev
 	apt-get install -y libav-tools
+	apt-get install -y wicd wicd-cli
 
 	pecl install oauth
 	if [ $? -eq 0 ] ; then

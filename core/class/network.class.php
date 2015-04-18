@@ -355,9 +355,139 @@ class network {
 		return !self::ngrok_run($_proto, $_port, $_name);
 	}
 
-/*     * *********************Methode d'instance************************* */
+/*     * *********************WICD************************* */
 
-/*     * **********************Getteur Setteur*************************** */
+	public static function listWifi($_refresh = false) {
+		$return = array();
+		if ($_refresh) {
+			$results = exec('sudo wicd-cli --wireless --scan --list-networks');
+		} else {
+			$results = exec('sudo wicd-cli --wireless --list-networks');
+		}
+		$results = explode("\n", $results);
+		unset($results[0]);
+		foreach ($results as $result) {
+			$info_network = explode("  ", $result);
+			$return[] = array('id' => $info_network[0], 'BSSID' => $info_network[1], 'ESSID' => $info_network[2]);
+		}
+		return $return;
+	}
+
+	public static function connectToWired() {
+		if (config::byKey('network::fixedIp') != 1) {
+			return;
+		}
+		$replace = array(
+			'#ip#' => 'None',
+			'#netmask#' => 'None',
+			'#gateway#' => 'None',
+			'#hostname#' => gethostname(),
+		);
+		$ip = self::getNetworkAccess('internal', 'ip');
+		$bcmd = 'sudo wicd-cli --wired --network 0 ';
+		if (!filter_var($ip, FILTER_VALIDATE_IP)) {
+			return;
+		}
+		$replace['#ip#'] = $ip;
+		if (config::byKey('network::wired::gateway') != '') {
+			$replace['#gateway#'] = config::byKey('network::wired::gateway');
+		}
+		if (config::byKey('network::wired::netmask') != '') {
+			$replace['#netmask#'] = config::byKey('network::wired::netmask');
+		}
+		exec('sudo service wicd restart');
+		exec('sudo wicd-cli --wired --network 0 --connect');
+	}
+
+	public static function connectToWireless() {
+		$wifi_id = -1;
+		$wifi_name = config::byKey('network::wifi::essid');
+		foreach (self::listWifi() as $wifi) {
+			if ($wifi['ESSID'] == $wifi_name) {
+				$wifi_id = $wifi['id'];
+				break;
+			}
+		}
+		if ($wifi_id == -1) {
+			log::add('wifi', 'error', __('Network not found  : ', __FILE__) . $wifi_name);
+		}
+		$bcmd = 'sudo wicd-cli --wireless --network ' . $wifi_id . ' ';
+		$wifi_enctype = config::byKey('network::wifi::enctype');
+		exec($bcmd . '--network-property enctype --set-to ' . $wifi_enctype);
+		switch ($wifi_enctype) {
+			case 'wpa':
+				exec($bcmd . '--network-property key --set-to ' . config::byKey('network::wifi::key'));
+				break;
+			case 'wpa-peap':
+				exec($bcmd . '--network-property identity --set-to ' . config::byKey('network::wifi::identity'));
+				exec($bcmd . '--network-property domain --set-to ' . config::byKey('network::wifi::domain'));
+				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
+				break;
+			case 'wpa-psk':
+				exec($bcmd . '--network-property apsk --set-to ' . config::byKey('network::wifi::apsk'));
+				break;
+			case 'wpa2-leap':
+				exec($bcmd . '--network-property username --set-to ' . config::byKey('network::wifi::username'));
+				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
+				break;
+			case 'wpa2-peap':
+				exec($bcmd . '--network-property identity --set-to ' . config::byKey('network::wifi::identity'));
+				exec($bcmd . '--network-property domain --set-to ' . config::byKey('network::wifi::domain'));
+				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
+				break;
+			case 'wep-hex':
+				exec($bcmd . '--network-property key --set-to ' . config::byKey('network::wifi::key'));
+				break;
+			case 'wep-passphrase':
+				exec($bcmd . '--network-property passphrase --set-to ' . config::byKey('network::wifi::passphrase'));
+				break;
+			case 'wep-shared':
+				exec($bcmd . '--network-property key --set-to ' . config::byKey('network::wifi::key'));
+				break;
+			case 'leap':
+				exec($bcmd . '--network-property username --set-to ' . config::byKey('network::wifi::username'));
+				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
+				break;
+			case 'ttls':
+				exec($bcmd . '--network-property identity --set-to ' . config::byKey('network::wifi::identity'));
+				exec($bcmd . '--network-property auth --set-to ' . config::byKey('network::wifi::auth'));
+				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
+				break;
+			case 'eap':
+				exec($bcmd . '--network-property username --set-to ' . config::byKey('network::wifi::username'));
+				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
+				break;
+			case 'peap':
+				exec($bcmd . '--network-property identity --set-to ' . config::byKey('network::wifi::identity'));
+				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
+				break;
+			case 'peap-tkip':
+				exec($bcmd . '--network-property identity --set-to ' . config::byKey('network::wifi::identity'));
+				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
+				break;
+			case 'eap-tls':
+				exec($bcmd . '--network-property identity --set-to ' . config::byKey('network::wifi::identity'));
+				exec($bcmd . '--network-property private_key --set-to ' . config::byKey('network::wifi::private_key'));
+				exec($bcmd . '--network-property private_key_passwd --set-to ' . config::byKey('network::wifi::private_key_passwd'));
+				break;
+			case 'psu':
+				exec($bcmd . '--network-property identity --set-to ' . config::byKey('network::wifi::identity'));
+				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
+				break;
+		}
+		$ip = self::getNetworkAccess('internal', 'ip');
+		if (config::byKey('network::fixedIp') != 1 && filter_var($ip, FILTER_VALIDATE_IP)) {
+			exec($bcmd . '--network-property ip --set-to ' . $ip);
+			if (config::byKey('network::wired::gateway') != '') {
+				exec($bcmd . '--network-property gateway --set-to ' . config::byKey('network::wired::gateway'));
+			}
+			if (config::byKey('network::wired::netmask') != '') {
+				exec($bcmd . '--network-property netmask --set-to ' . config::byKey('network::wired::netmask'));
+			}
+		}
+		exec($bcmd . '--connect');
+	}
+
 }
 
 ?>
