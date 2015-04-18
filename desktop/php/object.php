@@ -32,7 +32,7 @@ foreach ($allObject as $object) {
    <div class="col-lg-10 col-md-10 col-sm-9" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
        <legend>{{Mes objets}}</legend>
        <div class="objectListContainer">
-           <div class="cursor" id="bt_addObject2" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+           <div class="cursor" id="bt_addObject2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
              <center>
                 <i class="fa fa-plus-circle" style="font-size : 4em;color:#94ca02;"></i>
             </center>
@@ -40,7 +40,7 @@ foreach ($allObject as $object) {
         </div>
         <?php
 foreach ($allObject as $object) {
-	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center>";
 	echo str_replace('></i>', ' style="font-size : 4em;color:#767676;"></i>', $object->getDisplay('icon', '<i class="fa fa-lemon-o"></i>'));
 	echo "</center>";

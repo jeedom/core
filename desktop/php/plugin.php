@@ -49,7 +49,7 @@ foreach ($plugins_list as $category_name => $category) {
  <div class="col-md-9 col-sm-8" id="div_resumePluginList" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <legend>{{Mes plugins}}</legend>
     <div class="pluginListContainer">
-    <div class="cursor" id="bt_displayMarket2" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+    <div class="cursor" id="bt_displayMarket2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
        <center>
         <i class="fa fa-shopping-cart" style="font-size : 4em;color:#94ca02;"></i>
     </center>
@@ -58,7 +58,7 @@ foreach ($plugins_list as $category_name => $category) {
 
 <?php
 foreach (plugin::listPlugin() as $plugin) {
-	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center>";
 	echo '<i class="' . $plugin->getIcon() . '" style="font-size : 4em;color:#767676;"></i>';
 	echo "</center>";
