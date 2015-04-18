@@ -18,7 +18,7 @@
 
 
  if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
-    $('#div_mainContainer').append('<div style="position : fixed;height:100%;width:30px;top:90px;left:0px;" class="bt_pluginTemplateShowSidebar"><div>');
+    $('#div_mainContainer').append('<div style="position : fixed;height:100%;width:20px;top:90px;left:0px;" class="bt_pluginTemplateShowSidebar"><div>');
 
     $('#ul_eqLogic').closest('.bs-sidebar').parent().hide();
     $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-lg-12');

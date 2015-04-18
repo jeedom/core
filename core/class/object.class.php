@@ -88,22 +88,24 @@ class object {
 		return $return;
 	}
 
-	public static function fullData() {
+	public static function fullData($_restrict = array()) {
 		$return = array();
 		foreach (object::all() as $object) {
-			if ($object->getIsVisible() == 1) {
+			if ($object->getIsVisible() == 1 && (!is_array($_restrict['object']) || isset($_restrict['object'][$object->getId()]))) {
 				$object_return = utils::o2a($object);
 				$object_return['eqLogics'] = array();
 				foreach ($object->getEqLogic() as $eqLogic) {
-					if ($eqLogic->getIsVisible() == 1 && $eqLogic->getIsEnable() == 1) {
+					if ($eqLogic->getIsVisible() == 1 && $eqLogic->getIsEnable() == 1 && (!is_array($_restrict['eqLogic']) || isset($_restrict['eqLogic'][$eqLogic->getId()]))) {
 						$eqLogic_return = utils::o2a($eqLogic);
 						$eqLogic_return['cmds'] = array();
 						foreach ($eqLogic->getCmd() as $cmd) {
-							$cmd_return = utils::o2a($cmd);
-							if ($cmd->getType() == 'info') {
-								$cmd_return['state'] = $cmd->execCmd(null, 2);
+							if (!is_array($_restrict['cmd']) || isset($_restrict['cmd'][$cmd->getId()])) {
+								$cmd_return = utils::o2a($cmd);
+								if ($cmd->getType() == 'info') {
+									$cmd_return['state'] = $cmd->execCmd(null, 2);
+								}
+								$eqLogic_return['cmds'][] = $cmd_return;
 							}
-							$eqLogic_return['cmds'][] = $cmd_return;
 						}
 						$object_return['eqLogics'][] = $eqLogic_return;
 					}
