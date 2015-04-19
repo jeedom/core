@@ -44,6 +44,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'monitoring' => array('name' => 'Monitoring', 'icon' => 'fa-tachometer'),
 			'health' => array('name' => 'Santé', 'icon' => 'icon loisir-runner5'),
 			'nature' => array('name' => 'Nature', 'icon' => 'icon nature-leaf32'),
+			'finance' => array('name' => 'Finance', 'icon' => 'fa fa-eur'),
 		),
 	),
 	'cmd' => array(
