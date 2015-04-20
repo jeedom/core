@@ -67,6 +67,7 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
   $('#bt_displayScenarioList').on('mouseenter',function(){
     var timer = setTimeout(function(){
       $('#div_listScenario').show();
+      $('#bt_displayScenarioList').find('i').hide();
       $('.scenarioListContainer').packery();
     }, 100);
     $(this).data('timerMouseleave', timer)
@@ -75,9 +76,15 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
   });
 
   $('#div_listScenario').on('mouseleave',function(){
+   var timer = setTimeout(function(){
     $('#div_listScenario').hide();
+    $('#bt_displayScenarioList').find('i').show();
     $('.scenarioListContainer').packery();
-  });
+  }, 300);
+   $(this).data('timerMouseleave', timer);
+ }).on("mouseenter", function(){
+  clearTimeout($(this).data('timerMouseleave'));
+});
 }
 
 setTimeout(function(){
