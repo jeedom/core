@@ -23,7 +23,7 @@ if (getUrlVars('removeSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
 }
 
-if((!isset(userProfils.displayScenarioByDefault) || userProfils.displayScenarioByDefault != 1) && !jQuery.support.touch){
+if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
     $('#sd_objectList').hide();
     $('#div_resumeObjectList').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
     $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');

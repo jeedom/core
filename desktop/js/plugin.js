@@ -19,7 +19,7 @@
   $('.pluginListContainer').packery();
 },100);
 
- if((!isset(userProfils.displayScenarioByDefault) || userProfils.displayScenarioByDefault != 1) && !jQuery.support.touch){
+ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
     $('#sd_pluginList').hide();
     $('#div_resumePluginList').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
     $('#div_confPlugin').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');

@@ -33,7 +33,7 @@ setTimeout(function(){
 },100);
 
 
- if((!isset(userProfils.displayScenarioByDefault) || userProfils.displayScenarioByDefault != 1) && !jQuery.support.touch){
+ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
     $('#div_listScenario').hide();
     $('#bt_displayScenarioList').on('mouseenter',function(){
         var timer = setTimeout(function(){
