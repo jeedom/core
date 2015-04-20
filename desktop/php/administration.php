@@ -280,9 +280,7 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                             </div>
                         </div>
                         <legend>Accès externe</legend>
-                        <?php if (config::byKey('jeeNetwork::mode') == 'master') {
-	?>
-                           <div class="form-group">
+                        <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                 <select class="configKey form-control" data-l1key="externalProtocol">
@@ -295,18 +293,8 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse URL ou IP}}</label>
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-                                <?php if (config::byKey('market::allowDNS') == 0) {
-		echo '<input type="text"  class="configKey form-control" data-l1key="externalAddr" />';
-	} else {
-		echo '<input type="text"  class="configKey form-control" data-l1key="externalAddr" disabled />';
-	}
-	?>
-                          </div>
-                          <?php if (config::byKey('market::allowDNS') != 0) {?>
-                            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
-                                <a class="btn btn-default" href="http://market.jeedom.fr/index.php?v=d&p=profils" target="_blank">Configurer</a>
+                                <input type="text"  class="configKey form-control" data-l1key="externalAddr" />
                             </div>
-                            <?php }?>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Complément (exemple : /jeedom)}}</label>
@@ -320,21 +308,66 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                                 <input type="number" class="configKey form-control" data-l1key="externalPort" />
                             </div>
                         </div>
+                        <legend>DNS Jeedom</legend>
                         <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer l'ouverture automatique des ports (UPnP)}}</label>
-                            <div class="col-sm-1">
-                                <input type="checkbox"  class="configKey" data-l1key="allowupnpn" />
-                            </div>
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Utiliser les DNS Jeedom}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <a class="btn btn-default" id="bt_forceApplyUPnP"> {{Appliquer UPnP}}</a>
+                                <input type="checkbox"  class="configKey" data-l1key="market::allowDNS" />
                             </div>
                         </div>
-                        <?php }?>
-                        <legend>Autres</legend>
-                        <div class="form-group expertModeVisible alert alert-danger">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mode}}</label>
-                            <div class="col-sm-6">
+                        <div class="alert alert-info">{{Toute modification nécessite de redémarrer le service DNS Jeedom (ligne "Gestion" puis "Redémarrer")}}</div>
+                        <div class="form-group alert alert-danger">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label" title="{{A ne faire que si on vous le demande ou en connaissance de cause}}">{{Rediriger le SSH}}</label>
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <input type="checkbox"  class="configKey" data-l1key="market::redirectSSH" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Authentification (optionnelle)}}</label>
+                            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                <input  class="configKey form-control" data-l1key="market::userDNS" placeholder="Nom d'utilisateur" />
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                <input type="password" class="configKey form-control" data-l1key="market::passwordDNS" placeholder="Mot de passe" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Statut http}}</label>
+                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
                                 <?php
+if (network::ngrok_run()) {
+	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
+} else {
+	echo '<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
+}
+?>
+                           </div>
+                       </div>
+                       <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Statut SSH}}</label>
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                            <?php
+if (network::ngrok_run('tcp', 22, 'ssh')) {
+	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} dns.jeedom.com:' . config::byKey('ngrok::port') . '</span>';
+} else {
+	echo '<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Rediriger le SSH}}">{{Arrêté}}</span>';
+}
+?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Gestion}}</label>
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                         <a class="btn btn-success" id="bt_restartNgrok"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
+                         <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arreter}}</a>
+                     </div>
+
+                 </div>
+                 <legend>Autres</legend>
+                 <div class="form-group expertModeVisible alert alert-danger">
+                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mode}}</label>
+                    <div class="col-sm-6">
+                        <?php
 if (config::byKey('jeeNetwork::mode') == 'master') {
 	echo '<a class="btn btn-success changeJeeNetworkMode" data-mode="master">{{Maître}}</a> ';
 	echo '<a class="btn btn-default changeJeeNetworkMode" data-mode="slave">{{Esclave}}</a>';
@@ -343,31 +376,15 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 	echo '<a class="btn btn-success changeJeeNetworkMode" data-mode="slave">{{Esclave}}</a>';
 }
 ?>
-                           </div>
-                       </div>
-                       <?php
-if (file_exists('/etc/nginx/sites-available/default_ssl')) {
-	echo '<div class="form-group expertModeVisible">';
-	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Forcer le https}}</label>';
-	echo '<div class="col-xs-1">';
-	echo '<input type="checkbox" class="configKey" data-l1key="forceHttps" />';
-	echo '</div>';
-	echo '<div class="col-sm-3">';
-	echo '<a class="btn btn-default btn-sm" target="_blank" href="https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '"><i class="fa fa-lock"></i> Tester le https</a>';
-	echo '</div>';
-	echo '<div class="col-sm-4 col-xs-12 alert alert-danger">';
-	echo '{{Attention si vous n\'avez pas de HTTPS et que vous activez cette option votre jeedom ne sera plus accessible}}';
-	echo '</div>';
-	echo '</div>';
-}
-?>
-                   </fieldset>
-               </form>
-           </div>
-       </div>
+                   </div>
+               </div>
+           </fieldset>
+       </form>
    </div>
+</div>
+</div>
 
-   <?php if (config::byKey('jeeNetwork::mode') == 'master') {?>
+<?php if (config::byKey('jeeNetwork::mode') == 'master') {?>
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -459,7 +476,7 @@ if (file_exists('/etc/nginx/sites-available/default_ssl')) {
                 <legend>{{Push}}</legend>
                 <form class="form-horizontal">
                     <fieldset>
-                     <div class="form-group">
+                       <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Url de push globale}}</label>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <input type="text"  class="configKey form-control tooltips" data-l1key="cmdPushUrl" title="{{Mettez ici l'url à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivant : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
@@ -769,12 +786,6 @@ if (file_exists('/etc/nginx/sites-available/default_ssl')) {
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Installer automatiquement les widgets manquants}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                 <input type="checkbox"  class="configKey" data-l1key="market::autoInstallMissingWidget" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Utiliser le market comme DNS}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="checkbox"  class="configKey" data-l1key="market::allowDNS" />
                             </div>
                         </div>
                         <div class="form-group">

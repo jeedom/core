@@ -151,8 +151,9 @@ setInterval(function () {
     $("#md_reportBug").dialog({
         autoOpen: false,
         modal: true,
-        height: 600,
+        height: 700,
         width: 900,
+        position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'})
         },
@@ -167,6 +168,7 @@ setInterval(function () {
         modal: true,
         height: (jQuery(window).height() - 100),
         width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
+        position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'});
         },
@@ -179,8 +181,8 @@ setInterval(function () {
         autoOpen: false,
         modal: true,
         height: (jQuery(window).height() - 100),
-        width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
-        position: {my: 'center', at: 'center', of: window},
+        width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
+        position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'});
         },
@@ -194,7 +196,7 @@ setInterval(function () {
         modal: true,
         height: (jQuery(window).height() - 150),
         width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
-        position: {my: 'center', at: 'center', of: window},
+        position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'});
         },
@@ -283,9 +285,21 @@ setInterval(function () {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-       $('#md_modal').dialog({title: "{{Evenement en temps réel}}"});
-       $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
-   });
+     $('#md_modal').dialog({title: "{{Evenement en temps réel}}"});
+     $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
+ });
+
+    $('#bt_gotoDashboard').on('click',function(){
+        window.location.href = 'index.php?v=d&p=dashboard';
+    });
+
+    $('#bt_gotoView').on('click',function(){
+        window.location.href = 'index.php?v=d&p=view';
+    });
+
+    $('#bt_gotoPlan').on('click',function(){
+        window.location.href = 'index.php?v=d&p=plan';
+    });
 
     initPage();
 });
@@ -485,24 +499,24 @@ function positionEqLogic(_id, _noResize, _class) {
             });
             if (!init(_noResize, false) && eqLogic_height_step > 1 && eqLogic_width_step > 1) {
                 if(eqLogic_width_step == 1){
-                   eqLogic.width(eqLogic.width() + 5);
-               }else{
-                   var wMarge = (Math.ceil(eqLogic.width() / eqLogic_width_step) - 1) * 2;
-                   eqLogic.width((Math.ceil(eqLogic.width() / eqLogic_width_step) * eqLogic_width_step) - 6 + wMarge);
-               }
-               if(eqLogic_height_step == 1){
+                 eqLogic.width(eqLogic.width() + 5);
+             }else{
+                 var wMarge = (Math.ceil(eqLogic.width() / eqLogic_width_step) - 1) * 2;
+                 eqLogic.width((Math.ceil(eqLogic.width() / eqLogic_width_step) * eqLogic_width_step) - 6 + wMarge);
+             }
+             if(eqLogic_height_step == 1){
                 eqLogic.height(eqLogic.height() + 5);
             }else{
-               var hMarge = (Math.ceil(eqLogic.height() / eqLogic_height_step) - 1) * 2;
-               eqLogic.height((Math.ceil(eqLogic.height() / eqLogic_height_step) * eqLogic_height_step) - 6 + hMarge);
-           }
+             var hMarge = (Math.ceil(eqLogic.height() / eqLogic_height_step) - 1) * 2;
+             eqLogic.height((Math.ceil(eqLogic.height() / eqLogic_height_step) * eqLogic_height_step) - 6 + hMarge);
+         }
 
-       }
-       if(eqLogic_vertical_align == 1){
-           var verticalAlign = eqLogic.find('.verticalAlign');
-           var offset = eqLogic.find('.widget-name').height();
-           offset = (offset < 1) ? -5 : offset-12;
-           if (count(verticalAlign) > 0 && verticalAlign != undefined) {
+     }
+     if(eqLogic_vertical_align == 1){
+         var verticalAlign = eqLogic.find('.verticalAlign');
+         var offset = eqLogic.find('.widget-name').height();
+         offset = (offset < 1) ? -5 : offset-12;
+         if (count(verticalAlign) > 0 && verticalAlign != undefined) {
             verticalAlign.css('position', 'relative');
             verticalAlign.css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - offset);
             verticalAlign.css('left', (eqLogic.width() - verticalAlign.width()) / 2);

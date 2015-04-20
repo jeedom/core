@@ -30,6 +30,15 @@ if (trim(config::byKey('api')) == '') {
 	log::add('jeeEvent', 'error', 'Vous n\'avez aucune clé API configurée, veuillez d\'abord en générer une (Page Général -> Administration -> Configuration');
 	die();
 }
+
+if (init('type') == 'getApiKey') {
+	if (config::byKey('market::jeedom_apikey') == init('apikey')) {
+		market::validateTicket(init('ticket'));
+		echo config::byKey('api');
+	}
+	die();
+}
+
 if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 	try {
 		if (config::byKey('api') != init('apikey') && config::byKey('api') != init('api')) {
@@ -139,10 +148,8 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 		if (isset($params['apikey']) || isset($params['api'])) {
 			if (config::byKey('api') == '' || (config::byKey('api') != $params['apikey'] && config::byKey('api') != $params['api'])) {
-				if (config::byKey('market::jeedom_apikey') == '' || config::byKey('market::jeedom_apikey') != $params['apikey'] || $_SERVER['REMOTE_ADDR'] != '94.23.188.164') {
-					connection::failed();
-					throw new Exception('Clé API invalide', -32001);
-				}
+				connection::failed();
+				throw new Exception('Clé API invalide', -32001);
 			}
 		} else if (isset($params['username']) && isset($params['password'])) {
 			$user = user::connect($params['username'], $params['password']);
@@ -173,12 +180,6 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			/*             * ***********************Ping********************************* */
 			if ($jsonrpc->getMethod() == 'ping') {
 				$jsonrpc->makeSuccess('pong');
-			}
-
-			/*             * ***********************Get API Key********************************* */
-			if ($jsonrpc->getMethod() == 'getApiKey' && config::byKey('market::jeedom_apikey') == $params['apikey']) {
-				market::validateTicket($params['ticket']);
-				$jsonrpc->makeSuccess(config::byKey('api'));
 			}
 
 			/*             * ***********************Version********************************* */
@@ -486,7 +487,12 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 					'version' => jeedom::version(),
 					'nbMessage' => message::nbMessage(),
 					'auiKey' => $auiKey,
+					'jeedom::url' => config::byKey('jeedom::url'),
+					'ngrok::port' => config::byKey('ngrok::port'),
 				);
+				if (filter_var(network::getNetworkAccess('external', 'ip'), FILTER_VALIDATE_IP) || network::getNetworkAccess('external', 'ip') == '') {
+					$return['jeedom::url'] = network::getNetworkAccess('internal');
+				}
 				foreach (plugin::listPlugin(true) as $plugin) {
 					if ($plugin->getAllowRemote() == 1) {
 						$return['plugin'][] = $plugin->getId();
@@ -531,18 +537,6 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 			if ($jsonrpc->getMethod() == 'jeeNetwork::checkUpdate') {
 				update::checkAllUpdate();
-				$jsonrpc->makeSuccess('ok');
-			}
-
-			if ($jsonrpc->getMethod() == 'jeeNetwork::installPlugin') {
-				$market = market::byId($params['plugin_id']);
-				if (!is_object($market)) {
-					throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . $params['plugin_id']);
-				}
-				if (!isset($params['version'])) {
-					$params['version'] = 'stable';
-				}
-				$market->install($params['version']);
 				$jsonrpc->makeSuccess('ok');
 			}
 
@@ -655,6 +649,90 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'jeedom::getUsbMapping') {
 				$jsonrpc->makeSuccess(jeedom::getUsbMapping());
 			}
+
+			/*             * ************************Plugin*************************** */
+			if ($jsonrpc->getMethod() == 'plugin::install') {
+				$market = market::byId($params['plugin_id']);
+				if (!is_object($market)) {
+					throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . $params['plugin_id']);
+				}
+				if (!isset($params['version'])) {
+					$params['version'] = 'stable';
+				}
+				$market->install($params['version']);
+				$jsonrpc->makeSuccess('ok');
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::remove') {
+				$market = market::byId($params['plugin_id']);
+				if (!is_object($market)) {
+					throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . $params['plugin_id']);
+				}
+				if (!isset($params['version'])) {
+					$params['version'] = 'stable';
+				}
+				$market->remove();
+				$jsonrpc->makeSuccess('ok');
+			}
+
+			/*             * ************************Update*************************** */
+			if ($jsonrpc->getMethod() == 'update::all') {
+				$jsonrpc->makeSuccess(utils::o2a(update::all()));
+			}
+
+			if ($jsonrpc->getMethod() == 'update::update') {
+				jeedom::update('', 0);
+				$jsonrpc->makeSuccess('ok');
+			}
+
+			if ($jsonrpc->getMethod() == 'update::checkUpdate') {
+				update::checkAllUpdate();
+				$jsonrpc->makeSuccess('ok');
+			}
+
+			/*             * ************************Network*************************** */
+
+			if ($jsonrpc->getMethod() == 'network::restartNgrok') {
+				config::save('market::allowDNS', 1);
+				if (network::ngrok_run()) {
+					network::ngrok_stop();
+				}
+				network::ngrok_start();
+				if (config::byKey('market::redirectSSH') == 1) {
+					if (network::ngrok_run('tcp', 22, 'ssh')) {
+						network::ngrok_stop('tcp', 22, 'ssh');
+					}
+					network::ngrok_start('tcp', 22, 'ssh');
+				} else {
+					if (network::ngrok_run('tcp', 22, 'ssh')) {
+						network::ngrok_stop('tcp', 22, 'ssh');
+					}
+				}
+				$jsonrpc->makeSuccess();
+			}
+
+			if ($jsonrpc->getMethod() == 'network::stopNgrok') {
+				config::save('market::allowDNS', 0);
+				network::ngrok_stop();
+				if (config::byKey('market::redirectSSH') == 1) {
+					network::ngrok_stop('tcp', 22, 'ssh');
+				}
+				$jsonrpc->makeSuccess();
+			}
+
+			if ($jsonrpc->getMethod() == 'network::ngrokRun') {
+				if (!isset($params['proto'])) {
+					$params['proto'] = 'https';
+				}
+				if (!isset($params['port'])) {
+					$params['port'] = 80;
+				}
+				if (!isset($params['name'])) {
+					$params['name'] = '';
+				}
+				$jsonrpc->makeSuccess(network::ngrok_run($params['proto'], $params['port'], $params['name']));
+			}
+
 			/*             * ************************************************************************ */
 		}
 		throw new Exception('Aucune méthode correspondante : ' . $jsonrpc->getMethod(), -32500);

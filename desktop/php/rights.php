@@ -19,6 +19,11 @@ $pages = array(
 		'view' => array('title' => 'Voir'),
 		// 'edit' => array('title' => 'Editer')
 	),
+	'dashboard' => array(
+		'title' => 'Dashboard',
+		'view' => array('title' => 'Voir'),
+		// 'edit' => array('title' => 'Editer')
+	),
 	'display' => array(
 		'title' => 'Affichage',
 		'view' => array('title' => 'Voir'),

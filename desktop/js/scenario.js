@@ -62,6 +62,24 @@ $("#div_listScenario").resizable({
   }
 });
 
+if((!isset(userProfils.displayScenarioByDefault) || userProfils.displayScenarioByDefault != 1) && !jQuery.support.touch){
+  $('#div_listScenario').hide();
+  $('#bt_displayScenarioList').on('mouseenter',function(){
+    var timer = setTimeout(function(){
+      $('#div_listScenario').show();
+      $('.scenarioListContainer').packery();
+    }, 100);
+    $(this).data('timerMouseleave', timer)
+  }).on("mouseleave", function(){
+    clearTimeout($(this).data('timerMouseleave'));
+  });
+
+  $('#div_listScenario').on('mouseleave',function(){
+    $('#div_listScenario').hide();
+    $('.scenarioListContainer').packery();
+  });
+}
+
 setTimeout(function(){
   $('.scenarioListContainer').packery();
 },100);
@@ -74,6 +92,7 @@ $('#bt_scenarioThumbnailDisplay').on('click', function () {
   $('#div_editScenario').hide();
   $('#scenarioThumbnailDisplay').show();
   $('.li_scenario').removeClass('active');
+  $('.scenarioListContainer').packery();
 });
 
 $('.scenarioDisplayCard').on('click', function () {
@@ -124,7 +143,7 @@ $('.scenarioAttr[data-l1key=group]').autocomplete({
   minLength: 1,
 });
 
-$("#bt_changeAllScenarioState").on('click', function () {
+$("#bt_changeAllScenarioState,#bt_changeAllScenarioState2").on('click', function () {
   var el = $(this);
   jeedom.config.save({
     configuration: {enableScenario: el.attr('data-state')},
@@ -132,20 +151,12 @@ $("#bt_changeAllScenarioState").on('click', function () {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-      if (el.attr('data-state') == 1) {
-        el.find('i').removeClass('fa-check').addClass('fa-times');
-        el.removeClass('btn-success').addClass('btn-danger').attr('data-state', 0);
-        el.empty().html('<i class="fa fa-times"></i> {{Désac. scénarios}}');
-      } else {
-        el.find('i').removeClass('fa-times').addClass('fa-check');
-        el.removeClass('btn-danger').addClass('btn-success').attr('data-state', 1);
-        el.empty().html('<i class="fa fa-check"></i> {{Act. scénarios}}');
-      }
+      window.location.reload();
     }
   });
 });
 
-$("#bt_addScenario").on('click', function (event) {
+$("#bt_addScenario,#bt_addScenario2").on('click', function (event) {
   bootbox.dialog({
     title: "Ajout d'un nouveau scénario",
     message: '<div class="row">  ' +
@@ -272,7 +283,7 @@ $("#bt_stopScenario").on('click', function () {
   });
 });
 
-$('#bt_displayScenarioVariable').on('click', function () {
+$('#bt_displayScenarioVariable,#bt_displayScenarioVariable2').on('click', function () {
   $('#md_modal').closest('.ui-dialog').css('z-index', '1030');
   $('#md_modal').dialog({title: "{{Variables des scénarios}}"});
   $("#md_modal").load('index.php?v=d&modal=dataStore.management&type=scenario').dialog('open');
@@ -469,12 +480,12 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
            condition += ' ' + $('.conditionAttr[data-l1key=next]').value()+' ';
            expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition);
            if($('.conditionAttr[data-l1key=next]').value() != ''){
-              el.click();
-           }
-         }
-       },
-     }
-   });
+            el.click();
+          }
+        }
+      },
+    }
+  });
 
 
   }
@@ -926,6 +937,16 @@ function addExpression(_expression) {
   return retour;
 }
 
+$('body').delegate('.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]','click',function(){
+  if($(this).attr('value') == 0){
+    $(this).attr('value',1);
+    $(this).html('<span class="fa-stack"><i class="fa fa-refresh fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span>');
+  }else{
+    $(this).attr('value',0);
+    $(this).html('<i class="fa fa-refresh"></i>');
+  }
+});
+
 function addSubElement(_subElement) {
   if (!isset(_subElement.type) || _subElement.type == '') {
     return '';
@@ -953,6 +974,11 @@ function addSubElement(_subElement) {
     retour += addExpression(expression);
     retour += '</div>';
     retour += '</div></legend>';
+    if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0){
+      retour += '<a class="btn btn-default btn-xs cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la meme que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" style="position : absolute; top : 21px;right:15px;" value="0"><i class="fa fa-refresh"></i></a>';
+    }else{
+      retour += '<a class="btn btn-default btn-xs cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la meme que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" style="position : absolute; top : 21px;right:15px;" value="1"><span class="fa-stack"><i class="fa fa-refresh  fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span></a>';
+    }
     break;
     case 'then' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';

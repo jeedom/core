@@ -482,7 +482,7 @@ class scenarioExpression {
 			'#smois#' => '"' . date_fr(date('F')) . '"',
 			'#njour#' => (int) date('w'),
 			'#hostname#' => '"' . gethostname() . '"',
-			'#IP#' => '"' . config::byKey('internalAddr') . '"',
+			'#IP#' => '"' . network::getNetworkAccess('internal', 'ip') . '"',
 		);
 		$replace2 = array();
 		preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);

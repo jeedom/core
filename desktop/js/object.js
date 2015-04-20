@@ -23,10 +23,49 @@ if (getUrlVars('removeSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
 }
 
-$(".li_object").on('click', function (event) {
+if((!isset(userProfils.displayScenarioByDefault) || userProfils.displayScenarioByDefault != 1) && !jQuery.support.touch){
+    $('#sd_objectList').hide();
+    $('#div_resumeObjectList').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+    $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+
+    $('#bt_displayObject').on('mouseenter',function(){
+       var timer = setTimeout(function(){
+          $('#div_resumeObjectList').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+          $('#div_conf').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
+          $('#sd_objectList').show();
+          $('.objectListContainer').packery();
+      }, 100);
+       $(this).data('timerMouseleave', timer)
+   }).on("mouseleave", function(){
+      clearTimeout($(this).data('timerMouseleave'));
+  });
+
+   $('#sd_objectList').on('mouseleave',function(){
+       $('#sd_objectList').hide();
+       $('#div_resumeObjectList').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+       $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
+       $('.objectListContainer').packery();
+   });
+}
+
+
+
+setTimeout(function(){
+  $('.objectListContainer').packery();
+},100);
+
+$('#bt_returnToThumbnailDisplay').on('click',function(){
+    $('#div_conf').hide();
+    $('#div_resumeObjectList').show();
+    $('.objectListContainer').packery();
+});
+
+$(".li_object,.objectDisplayCard").on('click', function (event) {
     $('#div_conf').show();
+    $('#div_resumeObjectList').hide();
     $('.li_object').removeClass('active');
     $(this).addClass('active');
+    $('.li_object[data-object_id='+$(this).attr('data-object_id')+']').addClass('active');
     jeedom.object.byId({
         id: $(this).attr('data-object_id'),
         cache: false,
@@ -46,7 +85,7 @@ $(".li_object").on('click', function (event) {
     return false;
 });
 
-$("#bt_addObject").on('click', function (event) {
+$("#bt_addObject,#bt_addObject2").on('click', function (event) {
     bootbox.prompt("Nom de l'objet ?", function (result) {
         if (result !== null) {
             jeedom.object.save({
@@ -113,34 +152,29 @@ $("#bt_removeObject").on('click', function (event) {
     return false;
 });
 
-$('body').delegate('.bt_sortable', 'mouseenter', function () {
-    $("#ul_object").sortable({
-        axis: "y",
-        cursor: "move",
-        items: ".li_object",
-        placeholder: "ui-state-highlight",
-        tolerance: "intersect",
-        forcePlaceholderSize: true,
-        dropOnEmpty: true,
-        stop: function (event, ui) {
-            var objects = [];
-            $('#ul_object .li_object').each(function () {
-                objects.push($(this).attr('data-object_id'));
-            });
-            jeedom.object.setOrder({
-                objects: objects,
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                }
-            });
-        }
-    });
-    $("#ul_object").sortable("enable");
+$("#ul_object").sortable({
+    axis: "y",
+    cursor: "move",
+    items: ".li_object",
+    placeholder: "ui-state-highlight",
+    tolerance: "intersect",
+    forcePlaceholderSize: true,
+    dropOnEmpty: true,
+    stop: function (event, ui) {
+        var objects = [];
+        $('#ul_object .li_object').each(function () {
+            objects.push($(this).attr('data-object_id'));
+        });
+        jeedom.object.setOrder({
+            objects: objects,
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            }
+        });
+    }
 });
+$("#ul_object").sortable("enable");
 
-$('body').delegate('.bt_sortable', 'mouseout', function () {
-    $("#ul_object").sortable("disable");
-});
 
 $('#bt_chooseIcon').on('click', function () {
     chooseIcon(function (_icon) {
@@ -154,9 +188,7 @@ if (is_numeric(getUrlVars('id'))) {
     } else {
         $('#ul_object .li_object:first').click();
     }
-} else {
-    $('#ul_object .li_object:first').click();
-}
+} 
 
 $('body').delegate('.objectAttr', 'change', function () {
     modifyWithoutSave = true;

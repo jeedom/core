@@ -23,6 +23,15 @@ sendVarToJS('id', $planHeader->getId())
             </div>
         </div>
         <div class="form-group">
+            <label class="col-lg-4 control-label">{{Icône}}</label>
+            <div class="col-lg-2">
+                <div class="planHeaderAttr" data-l1key="configuration" data-l2key="icon" ></div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
+                <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Choisir}}</a>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-lg-4 control-label">{{Disponible sur téléphone}}</label>
             <div class="col-lg-8">
                 <input type="checkbox" class="planHeaderAttr" data-l1key="configuration" data-l2key="enableOnMobile"/>
@@ -72,6 +81,16 @@ sendVarToJS('id', $planHeader->getId())
 
 
 <script>
+    $('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick',function(){
+        $('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').value('');
+    });
+
+    $('#bt_chooseIcon').on('click', function () {
+        chooseIcon(function (_icon) {
+            $('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').empty().append(_icon);
+        });
+    });
+
     $('#bt_uploadImage').fileupload({
         replaceFileInput: false,
         url: 'core/ajax/plan.ajax.php?action=uploadImage&id=' + planHeader_id,
@@ -100,35 +119,35 @@ sendVarToJS('id', $planHeader->getId())
     $('#bt_removeConfigurePlanHeader').on('click', function () {
         bootbox.confirm('Etes-vous sûr de vouloir supprimer cet object du design ?', function (result) {
             if (result) {
-             jeedom.plan.removeHeader({
+               jeedom.plan.removeHeader({
                 id: $(".planHeaderAttr[data-l1key=id]").value(),
                 error: function (error) {
                     $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                 $('#div_alertPlanHeaderConfigure').showAlert({message: 'Design supprimé', level: 'success'});
-                 window.location.reload();
-             },
-         });
-         }
-     });
+                   $('#div_alertPlanHeaderConfigure').showAlert({message: 'Design supprimé', level: 'success'});
+                   window.location.reload();
+               },
+           });
+           }
+       });
     });
 
     if (isset(id) && id != '') {
-       jeedom.plan.getHeader({
+     jeedom.plan.getHeader({
         id: id,
         error: function (error) {
             $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
         },
         success: function (planHeader) {
-         $('#fd_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr');
-         $('.planHeaderAttr[data-l1key=configuration][data-l2key=preconfigureDevice]').off().on('change', function () {
+           $('#fd_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr');
+           $('.planHeaderAttr[data-l1key=configuration][data-l2key=preconfigureDevice]').off().on('change', function () {
             $('.planHeaderAttr[data-l1key=configuration][data-l2key=sizeX]').value($(this).find('option:selected').attr('data-width'));
             $('.planHeaderAttr[data-l1key=configuration][data-l2key=sizeY]').value($(this).find('option:selected').attr('data-height'));
             $('.planHeaderAttr[data-l1key=configuration][data-l2key=maxSizeAllow]').value(1);
             $('.planHeaderAttr[data-l1key=configuration][data-l2key=minSizeAllow]').value(1);
         });
-     },
- });
-   }
+       },
+   });
+ }
 </script>

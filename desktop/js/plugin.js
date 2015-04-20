@@ -15,10 +15,45 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- $(".li_plugin").on('click', function () {
+ setTimeout(function(){
+  $('.pluginListContainer').packery();
+},100);
+
+ if((!isset(userProfils.displayScenarioByDefault) || userProfils.displayScenarioByDefault != 1) && !jQuery.support.touch){
+    $('#sd_pluginList').hide();
+    $('#div_resumePluginList').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
+    $('#div_confPlugin').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
+
+    setTimeout(function(){
+      $('.pluginListContainer').packery();
+  },100);
+
+
+    $('#bt_displayPluginList').on('mouseenter',function(){
+       var timer = setTimeout(function(){
+           $('#div_resumePluginList').addClass('col-md-9 col-sm-8').removeClass('col-lg-12');
+           $('#div_confPlugin').addClass('col-md-9 col-sm-8').removeClass('col-lg-12');
+           $('#sd_pluginList').show();
+           $('.pluginListContainer').packery();
+       }, 100);
+       $(this).data('timerMouseleave', timer)
+   }).on("mouseleave", function(){
+      clearTimeout($(this).data('timerMouseleave'));
+  });
+
+   $('#sd_pluginList').on('mouseleave',function(){
+       $('#sd_pluginList').hide();
+       $('#div_resumePluginList').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
+       $('#div_confPlugin').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
+       $('.pluginListContainer').packery();
+   });
+}
+
+$(".li_plugin,.pluginDisplayCard").on('click', function () {
     $.hideAlert();
+    $('#div_resumePluginList').hide();
     $('.li_plugin').removeClass('active');
-    $(this).addClass('active');
+    $('.li_plugin[data-plugin_id='+$(this).attr('data-plugin_id')+']').addClass('active');
     $.showLoading();
     jeedom.plugin.get({
         id: $(this).attr('data-plugin_id'),
@@ -166,9 +201,13 @@ if (getUrlVars('id') != '') {
     } else {
         $('#ul_plugin .li_plugin:first').click();
     }
-} else {
-    $('#ul_plugin .li_plugin:first').click();
-}
+} 
+
+$('#bt_returnToThumbnailDisplay').on('click',function(){
+    $('#div_resumePluginList').show();
+    $('#div_confPlugin').hide();
+    $('.pluginListContainer').packery();
+});
 
 jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
@@ -180,7 +219,7 @@ $("#bt_savePluginConfig").on('click', function (event) {
     return false;
 });
 
-$('#bt_displayMarket').on('click', function () {
+$('#bt_displayMarket,#bt_displayMarket2').on('click', function () {
     $('#md_modal').dialog({title: "{{Market Jeedom}}"});
     $('#md_modal').load('index.php?v=d&modal=market.list&type=plugin').dialog('open');
 });

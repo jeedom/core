@@ -62,6 +62,12 @@ foreach (plugin::listPlugin(true) as $plugin) {
         </div>
     </div>
     <div class="form-group">
+    <label class="col-sm-2 control-label">{{Donner un accès au support}}</label>
+         <div class="col-sm-9">
+         <input type="checkbox" class="ticketAttr" data-l1key="allowRemoteAccess" />
+         </div>
+    </div>
+    <div class="form-group">
         <label class="col-sm-2 control-label">{{Message}}</label>
         <div class="col-sm-9">
             <textarea class="form-control messageAttr input-sm" data-l1key="message" rows="4" ></textarea>

@@ -36,7 +36,7 @@ if (isset($argv)) {
 
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-	echo __("***************Lancement de la sauvegarde de Jeedom***************\n", __FILE__);
+	echo __("***************Lancement de la sauvegarde de Jeedom le ", __FILE__) . date('Y-m-d H:i:s') . "***************\n";
 	global $CONFIG;
 	$tmp = dirname(__FILE__) . '/../tmp/backup';
 	if (!file_exists($tmp)) {
@@ -60,7 +60,7 @@ try {
 	$bakcup_name = 'backup-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz';
 
 	echo __('Sauvegarde des fichiers...', __FILE__);
-	$exclude = array('tmp', 'backup', 'log', str_replace('/', '', jeedom::getCurrentSysInfoFolder()), str_replace('/', '', jeedom::getCurrentSqlBuddyFolder()));
+	$exclude = array('tmp', 'backup', 'log', 'ngrok', str_replace('/', '', jeedom::getCurrentSysInfoFolder()), str_replace('/', '', jeedom::getCurrentSqlBuddyFolder()));
 	if (strpos('/', config::byKey('backup::path')) === false) {
 		$exclude[] = config::byKey('backup::path');
 	}
@@ -176,7 +176,7 @@ try {
 		}
 		echo __("OK", __FILE__) . "\n";
 	}
-
+	echo __("Nom du backup : ", __FILE__) . $backup_dir . '/' . $bakcup_name . "\n";
 	echo __("***************Fin de la sauvegarde de Jeedom***************\n", __FILE__);
 	echo "[END BACKUP SUCCESS]\n";
 } catch (Exception $e) {

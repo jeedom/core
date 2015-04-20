@@ -49,7 +49,9 @@
         "Page générée en": "Page générée en",
         "Mise à jour disponible": "Mise à jour disponible",
         "Mises à jour disponibles": "Mises à jour disponibles",
-        "Voir les événements en temps réél": "Voir les événements en temps réél"
+        "Voir les événements en temps réél": "Voir les événements en temps réél",
+        "Multimédia": "Multimédia",
+        "Erreur scénario : tous les scénarios sont désactivés. Allez dans Général -> Scénarios pour les réactiver": "Erreur scénario : tous les scénarios sont désactivés. Allez dans Général -> Scénarios pour les réactiver"
     },
     "core\/class\/scenario.class.php": {
         "Scénario exécuté automatiquement sur évènement venant de : ": "Scénario exécuté automatiquement sur évènement venant de : ",
@@ -61,7 +63,9 @@
         "Echec lors de la suppression. Impossible de trouver le module ": "Echec lors de la suppression. Impossible de trouver le module ",
         "Lancement du scénario ": "Lancement du scénario ",
         " déclencher par : ": " déclencher par : ",
-        "Exécution du scénario ": "Exécution du scénario "
+        "Exécution du scénario ": "Exécution du scénario ",
+        " déclenché par : ": " déclenché par : ",
+        "Fin correcte du scénario": "Fin correcte du scénario"
     },
     "desktop\/php\/plan.php": {
         "Ajouter un design": "Ajouter un design",
@@ -147,7 +151,10 @@
         "Couleur du tag": "Couleur du tag",
         "Couleur du texte du tag": "Couleur du texte du tag",
         "Supprimer": "Supprimer",
-        "Sauvegarder": "Sauvegarder"
+        "Sauvegarder": "Sauvegarder",
+        "Mes plugins": "Mes plugins",
+        "Mes objects": "Mes objects",
+        "Mes objets": "Mes objets"
     },
     "desktop\/php\/plugin.php": {
         "Market": "Market",
@@ -160,7 +167,9 @@
         "Version Jeedom requise": "Version Jeedom requise",
         "Auteur": "Auteur",
         "Licence": "Licence",
-        "N'oubliez pas d'activer le plugin pour pouvoir vous servir de celui-ci": "N'oubliez pas d'activer le plugin pour pouvoir vous servir de celui-ci"
+        "N'oubliez pas d'activer le plugin pour pouvoir vous servir de celui-ci": "N'oubliez pas d'activer le plugin pour pouvoir vous servir de celui-ci",
+        "Mes plugins": "Mes plugins",
+        "Accéder au Market": "Accéder au Market"
     },
     "desktop\/php\/interact.php": {
         "Ajouter interaction": "Ajouter interaction",
@@ -207,7 +216,12 @@
         "Supprimer": "Supprimer",
         "Regénerer": "Regénerer",
         "Tester": "Tester",
-        "Multimedia": "Multimedia"
+        "Multimedia": "Multimedia",
+        "Groupe": "Groupe",
+        "Mes scénarios": "Mes scénarios",
+        "Gestion": "Gestion",
+        "Ajouter": "Ajouter",
+        "Mes intéractions": "Mes intéractions"
     },
     "desktop\/php\/display.php": {
         "Arbre domotique": "Arbre domotique",
@@ -284,7 +298,15 @@
         "Retourner": "Retourner",
         "Aller au design": "Aller au design",
         "Valider": "Valider",
-        "Nouveau scénario": "Nouveau scénario"
+        "Nouveau scénario": "Nouveau scénario",
+        "Voir toutes les variables des scénarios": "Voir toutes les variables des scénarios",
+        "Mes scénarios": "Mes scénarios",
+        "A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours.": "A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours.",
+        "Pas de log": "Pas de log",
+        "Le scénario n'écrit plus de log": "Le scénario n'écrit plus de log",
+        "Gestion": "Gestion",
+        "Ajouter": "Ajouter",
+        "Désactiver scénarios": "Désactiver scénarios"
     },
     "desktop\/php\/scenarioAssist.php": {
         "Interface simple": "Interface simple",
@@ -323,7 +345,14 @@
         "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.": "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.",
         "Supprimer": "Supprimer",
         "Sauvegarder": "Sauvegarder",
-        "Nouveau scénario": "Nouveau scénario"
+        "Nouveau scénario": "Nouveau scénario",
+        "Mes scénarios": "Mes scénarios",
+        "Executer le plus rapidement": "Executer le plus rapidement",
+        "Gestion": "Gestion",
+        "Ajouter": "Ajouter",
+        "Activer scénarios": "Activer scénarios",
+        "Désactiver scénarios": "Désactiver scénarios",
+        "Act. scénarios": "Act. scénarios"
     },
     "desktop\/js\/scenarioAssist.js": {
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
@@ -449,7 +478,31 @@
         "Généré les traductions": "Généré les traductions",
         "Option pour les developpeurs permettant à Jeedom de générer les phrases à traduire": "Option pour les developpeurs permettant à Jeedom de générer les phrases à traduire",
         "Commandes, Equipements et HTTP": "Commandes, Equipements et HTTP",
-        "Market et mise à jour": "Market et mise à jour"
+        "Market et mise à jour": "Market et mise à jour",
+        "Configuration des commandes": "Configuration des commandes",
+        "Historiques": "Historiques",
+        "Legende": "Legende",
+        "Durée de vie de du cache (en secondes)": "Durée de vie de du cache (en secondes)",
+        "Push": "Push",
+        "Url de push globale": "Url de push globale",
+        "Mettez ici l'url à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivant : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Mettez ici l'url à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivant : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)",
+        "Utiliser les DNS Jeedom": "Utiliser les DNS Jeedom",
+        "Authentification (optionnelle mais recomandée)": "Authentification (optionnelle mais recomandée)",
+        "Authentification (optionnelle)": "Authentification (optionnelle)",
+        "Gestion": "Gestion",
+        "(Re)démarrer": "(Re)démarrer",
+        "Arreter": "Arreter",
+        "Statut": "Statut",
+        "Démarré": "Démarré",
+        "Démarré : ": "Démarré : ",
+        "Normale si vous n'avez pas coché la case : Utiliser les DNS Jeedom": "Normale si vous n'avez pas coché la case : Utiliser les DNS Jeedom",
+        "Arrêté": "Arrêté",
+        "Rediriger le SSH": "Rediriger le SSH",
+        "Statut http": "Statut http",
+        "Statut SSH": "Statut SSH",
+        "Toute modification nécessite de redémarrer le service DNS Jeedom (ligne \"Gestion\" puis \"Redémarrer\")": "Toute modification nécessite de redémarrer le service DNS Jeedom (ligne \"Gestion\" puis \"Redémarrer\")",
+        "A ne faire que si on vous le demande ou en connaissance de cause": "A ne faire que si on vous le demande ou en connaissance de cause",
+        "Normale si vous n'avez pas coché la case : Rediriger le SSH": "Normale si vous n'avez pas coché la case : Rediriger le SSH"
     },
     "desktop\/php\/user.php": {
         "Liste des utilisateurs :": "Liste des utilisateurs :",
@@ -499,7 +552,8 @@
         "Sauvegardes cloud": "Sauvegardes cloud",
         "Informations sauvegardes": "Informations sauvegardes",
         "Informations restaurations": "Informations restaurations",
-        "Lancer": "Lancer"
+        "Lancer": "Lancer",
+        "Informations": "Informations"
     },
     "desktop\/php\/update.php": {
         "Dernière vérification : ": "Dernière vérification : ",
@@ -608,7 +662,21 @@
         "HTTP": "HTTP",
         "Timeout de résolution DNS sur les requêtes HTTP": "Timeout de résolution DNS sur les requêtes HTTP",
         "Désactiver la vérification du ping": "Désactiver la vérification du ping",
-        "Market et mise à jour": "Market et mise à jour"
+        "Market et mise à jour": "Market et mise à jour",
+        "Rafraichir": "Rafraichir",
+        "Complement": "Complement",
+        "Activer l'ouverture automatique des ports (UPnP)": "Activer l'ouverture automatique des ports (UPnP)",
+        "Appliquer UPnP": "Appliquer UPnP",
+        "Utiliser les DNS Jeedom": "Utiliser les DNS Jeedom",
+        "Toute modification nécessite de redémarrer le service DNS Jeedom (ligne \"Gestion\" puis \"Redémarrer\")": "Toute modification nécessite de redémarrer le service DNS Jeedom (ligne \"Gestion\" puis \"Redémarrer\")",
+        "A ne faire que si on vous le demande ou en connaissance de cause": "A ne faire que si on vous le demande ou en connaissance de cause",
+        "Rediriger le SSH": "Rediriger le SSH",
+        "Authentification (optionnelle)": "Authentification (optionnelle)",
+        "Gestion": "Gestion",
+        "(Re)démarrer": "(Re)démarrer",
+        "Arreter": "Arreter",
+        "Statut http": "Statut http",
+        "Statut SSH": "Statut SSH"
     },
     "desktop\/php\/cron.php": {
         "Processus cron Jeedom :": "Processus cron Jeedom :",
@@ -702,7 +770,9 @@
         "Mot de passe": "Mot de passe",
         "Retapez le mot de passe": "Retapez le mot de passe",
         "Clef de sécurité pour appareils enregistrés": "Clef de sécurité pour appareils enregistrés",
-        "Sauvegarder": "Sauvegarder"
+        "Sauvegarder": "Sauvegarder",
+        "Ne pas masquer les menu automatiquement": "Ne pas masquer les menu automatiquement",
+        "Générale": "Générale"
     },
     "desktop\/modal\/report.bug.php": {
         "Attention lors de l'envoi d'un rapport de bug, tous les logs sont automatiquement envoyés en même temps. Cependant ces logs ne seront accessibles que par vous-même et l'équipe de support.": "Attention lors de l'envoi d'un rapport de bug, tous les logs sont automatiquement envoyés en même temps. Cependant ces logs ne seront accessibles que par vous-même et l'équipe de support.",
@@ -729,7 +799,8 @@
         "Urgente": "Urgente",
         "Message": "Message",
         "Envoyer": "Envoyer",
-        "Votre ticket a bien été ouvert. Un mail va vous être envoyé": "Votre ticket a bien été ouvert. Un mail va vous être envoyé"
+        "Votre ticket a bien été ouvert. Un mail va vous être envoyé": "Votre ticket a bien été ouvert. Un mail va vous être envoyé",
+        "Autoriser l'accès à distance": "Autoriser l'accès à distance"
     },
     "core\/class\/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type [condition] : ": "Exécution du sous-élément de type [condition] : ",
@@ -754,7 +825,9 @@
     "desktop\/modal\/market.list.php": {
         "Market Jeedom": "Market Jeedom",
         "Nombre de widgets": "Nombre de widgets",
-        "Retour": "Retour"
+        "Retour": "Retour",
+        "Widget pour la version mobile": "Widget pour la version mobile",
+        "Widget pour la version bureau": "Widget pour la version bureau"
     },
     "core\/class\/market.class.php": {
         "Erreur market::getinfo : ": "Erreur market::getinfo : ",
@@ -835,7 +908,11 @@
         "\n - Suppression de : ": "\n - Suppression de : ",
         "Envoi de la sauvegarde dans le cloud...": "Envoi de la sauvegarde dans le cloud...",
         "***************Fin de la sauvegarde de Jeedom***************\n": "***************Fin de la sauvegarde de Jeedom***************\n",
-        "OK": "OK"
+        "OK": "OK",
+        "Sauvegarde spécifique pour le plugin zwave...": "Sauvegarde spécifique pour le plugin zwave...",
+        "Plus de 50 sauvegardes supprimées. Je m'arrête.\n": "Plus de 50 sauvegardes supprimées. Je m'arrête.\n",
+        "***************Lancement de la sauvegarde de Jeedom le ": "***************Lancement de la sauvegarde de Jeedom le ",
+        "Nom du backup : ": "Nom du backup : "
     },
     "core\/class\/message.class.php": {
         "Message de ": "Message de ",
@@ -843,7 +920,8 @@
     },
     "core\/php\/authentification.php": {
         "Connexion de l'utilisateur par clef : ": "Connexion de l'utilisateur par clef : ",
-        "Connexion de l'utilisateur : ": "Connexion de l'utilisateur : "
+        "Connexion de l'utilisateur : ": "Connexion de l'utilisateur : ",
+        "Echec de connection par auikey": "Echec de connection par auikey"
     },
     "desktop\/php\/message.php": {
         "Vider": "Vider",
@@ -907,7 +985,14 @@
         " valeur : ": " valeur : ",
         "Execution de la commande ": "Execution de la commande ",
         " avec les paramètres ": " avec les paramètres ",
-        "Le type de la commande ne peut pas être vide :": "Le type de la commande ne peut pas être vide :"
+        "Le type de la commande ne peut pas être vide :": "Le type de la commande ne peut pas être vide :",
+        "Appels de l'url : ": "Appels de l'url : ",
+        "Erreur push sur : ": "Erreur push sur : ",
+        "Appels de l'url de push pour la commande ": "Appels de l'url de push pour la commande ",
+        " est à ": " est à ",
+        " depuis plus de ": " depuis plus de ",
+        "min": "min",
+        "Le sous-type de la commande ne peut pas être vide :": "Le sous-type de la commande ne peut pas être vide :"
     },
     "desktop\/modal\/cron.human.insert.php": {
         "A exécuter": "A exécuter",
@@ -1035,7 +1120,8 @@
         "DANS (min)": "DANS (min)",
         "A (Hmm)": "A (Hmm)",
         "CODE": "CODE",
-        "ACTION": "ACTION"
+        "ACTION": "ACTION",
+        "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la meme que la précédente": "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la meme que la précédente"
     },
     "core\/php\/jeeScenario.php": {
         "Impossible de lancer le scénario car déjà en cours : ": "Impossible de lancer le scénario car déjà en cours : "
@@ -1097,7 +1183,8 @@
         "Connexion échouée :": "Connexion échouée :",
         "Connexion réussie": "Connexion réussie",
         "Connexion au market réussie": "Connexion au market réussie",
-        "Cache vidé": "Cache vidé"
+        "Cache vidé": "Cache vidé",
+        "Action réalisée avec succès": "Action réalisée avec succès"
     },
     "desktop\/modal\/cmd.configure.php": {
         "Informations": "Informations",
@@ -1149,7 +1236,26 @@
         "1 jour": "1 jour",
         "7 jours": "7 jours",
         "1 mois": "1 mois",
-        "6 mois": "6 mois"
+        "6 mois": "6 mois",
+        "Push url": "Push url",
+        "Mettez ici l'url à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivant : #value# (valeur), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Mettez ici l'url à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivant : #value# (valeur), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)",
+        "Mettez ici l'url à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivant : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Mettez ici l'url à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivant : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)",
+        "Alerte sur valeur, si": "Alerte sur valeur, si",
+        "égal": "égal",
+        "supérieur": "supérieur",
+        "inférieur": "inférieur",
+        "différent": "différent",
+        "plus de (min)": "plus de (min)",
+        "Action à faire": "Action à faire",
+        "Commande": "Commande",
+        "Lancer": "Lancer",
+        "Arreter": "Arreter",
+        "Activer": "Activer",
+        "Désactiver": "Désactiver",
+        "Action sur valeur, si": "Action sur valeur, si",
+        "Option": "Option",
+        "Configuration avancée": "Configuration avancée",
+        "Affichage avancée": "Affichage avancée"
     },
     "desktop\/js\/interact.js": {
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
@@ -1176,7 +1282,9 @@
         "Activer": "Activer"
     },
     "core\/ajax\/jeeNetwork.ajax.php": {
-        "Aucune methode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune methode correspondante à : ": "Aucune methode correspondante à : ",
+        "Objet inconnu verifié l'id : ": "Objet inconnu verifié l'id : ",
+        "JeeNetwork inconnu verifié l'id : ": "JeeNetwork inconnu verifié l'id : "
     },
     "desktop\/js\/backup.js": {
         "Sauvegarde réussie": "Sauvegarde réussie",
@@ -1219,7 +1327,9 @@
         "Responsive mode (Attention toute les valeurs de taille sont ignorées)": "Responsive mode (Attention toute les valeurs de taille sont ignorées)",
         "Taille (LxH)": "Taille (LxH)",
         "Proportion tablette (ex : 0.7)": "Proportion tablette (ex : 0.7)",
-        "Proportion téléphone (ex 0.5)": "Proportion téléphone (ex 0.5)"
+        "Proportion téléphone (ex 0.5)": "Proportion téléphone (ex 0.5)",
+        "Icône": "Icône",
+        "Choisir": "Choisir"
     },
     "mobile\/js\/message.js": {
         "Action": "Action",
@@ -1231,7 +1341,8 @@
         "Vérification des mises à jour...": "Vérification des mises à jour...",
         "OK\n": "OK\n",
         "***************Mise à jour des plugins***************\n": "***************Mise à jour des plugins***************\n",
-        "***************Mise à jour des plugins réussie***************\n": "***************Mise à jour des plugins réussie***************\n"
+        "***************Mise à jour des plugins réussie***************\n": "***************Mise à jour des plugins réussie***************\n",
+        "Vérification des mises à jour\n": "Vérification des mises à jour\n"
     },
     "desktop\/js\/jeeNetwork.js": {
         "Suppression effectuée avec succès": "Suppression effectuée avec succès",
@@ -1250,7 +1361,13 @@
         "L\\'opération est réussie": "L\\'opération est réussie",
         "L\\'opération a échoué": "L\\'opération a échoué",
         "Etes-vous sûr de vouloir sauvegarder ce Jeedom esclave ?": "Etes-vous sûr de vouloir sauvegarder ce Jeedom esclave ?",
-        "Sauvegarde effectuée": "Sauvegarde effectuée"
+        "Sauvegarde effectuée": "Sauvegarde effectuée",
+        "Normale si vous n\\'avez pas coché la case : Utiliser les DNS Jeedom": "Normale si vous n\\'avez pas coché la case : Utiliser les DNS Jeedom",
+        "Arrêté": "Arrêté",
+        "Démarré : ": "Démarré : ",
+        "Normale si vous n\\'avez pas coché la case : Rediriger le SSH": "Normale si vous n\\'avez pas coché la case : Rediriger le SSH",
+        "Redemarrage eefectué avec succès": "Redemarrage eefectué avec succès",
+        "Arret effectué avec succès": "Arret effectué avec succès"
     },
     "desktop\/modal\/eqLogic.configure.php": {
         "Informations": "Informations",
@@ -1281,7 +1398,9 @@
         "Enregistrement réussi": "Enregistrement réussi",
         "Etes-vous sûr de vouloir supprimer cette équipement ?": "Etes-vous sûr de vouloir supprimer cette équipement ?",
         "Suppression réalisée avec succès": "Suppression réalisée avec succès",
-        "Modification appliqués avec succès": "Modification appliqués avec succès"
+        "Modification appliqués avec succès": "Modification appliqués avec succès",
+        "Configuration avancée": "Configuration avancée",
+        "Affichage avancée": "Affichage avancée"
     },
     "desktop\/modal\/object.configure.php": {
         "Informations": "Informations",
@@ -1356,7 +1475,12 @@
         "Afficher le selecteur de période": "Afficher le selecteur de période",
         "Afficher la barre de défilement": "Afficher la barre de défilement",
         "Fond transparent": "Fond transparent",
-        "Afficher le navigateur": "Afficher le navigateur"
+        "Afficher le navigateur": "Afficher le navigateur",
+        " les stats ": " les stats ",
+        "les stats": "les stats",
+        "Commande": "Commande",
+        "Ne pas afficher les stats": "Ne pas afficher les stats",
+        "Ne pas afficher la commande": "Ne pas afficher la commande"
     },
     "desktop\/modal\/icon.selector.php": {
         "Rechercher": "Rechercher",
@@ -1448,14 +1572,17 @@
         "Je dois executer la\/les commande(s) : ": "Je dois executer la\/les commande(s) : ",
         "Je dois": "Je dois",
         "Je vais répondre": "Je vais répondre",
-        "Je vais répondre : ": "Je vais répondre : "
+        "Je vais répondre : ": "Je vais répondre : ",
+        "Simuler": "Simuler",
+        "Exécuter": "Exécuter"
     },
     "core\/ajax\/interact.ajax.php": {
         "lancer": "lancer",
         "arreter": "arreter",
         "activer": "activer",
         "desactiver": "desactiver",
-        "erreur": "erreur"
+        "erreur": "erreur",
+        "Aucune methode correspondante à : ": "Aucune methode correspondante à : "
     },
     "core\/ajax\/market.ajax.php": {
         "Aucune methode correspondante à : ": "Aucune methode correspondante à : "
@@ -1471,5 +1598,14 @@
     },
     "core\/class\/user.class.php": {
         "Connexion de l'utilisateur ": "Connexion de l'utilisateur "
+    },
+    "core\/ajax\/plugin.ajax.php": {
+        "Décompression de l'archive...": "Décompression de l'archive...",
+        "OK\n": "OK\n",
+        "Installation de l'objet...": "Installation de l'objet...",
+        "Impossible d'installer le plugin. Le nom du plugin est différent de l'ID ou le plugin n'est pas correctement formé. Veuillez contacter l'auteur.": "Impossible d'installer le plugin. Le nom du plugin est différent de l'ID ou le plugin n'est pas correctement formé. Veuillez contacter l'auteur."
+    },
+    "core\/class\/scenarioElement.class.php": {
+        "Non éxecution des actions pour cause de répétition": "Non éxecution des actions pour cause de répétition"
     }
 }

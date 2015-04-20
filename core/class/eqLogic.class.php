@@ -542,7 +542,7 @@ class eqLogic {
 
 	public function save() {
 		if ($this->getName() == '') {
-			throw new Exception(__('Le nom de l\'équipement ne peut pas être vide', __FILE__));
+			throw new Exception(__('Le nom de l\'équipement ne peut pas être vide : ', __FILE__) . print_r($this, true));
 		}
 		if ($this->getId() != '') {
 			$this->emptyCacheWidget();
@@ -686,7 +686,7 @@ class eqLogic {
 
 	public function hasRight($_right, $_needAdmin = false, $_user = null) {
 		if (!is_object($_user)) {
-			if (session_status() != PHP_SESSION_NONE) {
+			if (session_status() != PHP_SESSION_NONE || !isset($_SESSION) || !isset($_SESSION['user'])) {
 				return true;
 			}
 			$_user = $_SESSION['user'];
@@ -879,7 +879,7 @@ class eqLogic {
 	}
 
 	public function setTimeout($timeout) {
-		if (is_nan($timeout) || $timeout < 1) {
+		if (is_string($timeout) || is_nan(intval($timeout)) || $timeout < 1) {
 			$timeout == '';
 		}
 		$this->timeout = $timeout;

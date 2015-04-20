@@ -92,7 +92,9 @@ class utils {
 							$_object->$method(json_encode($value, JSON_UNESCAPED_UNICODE));
 						}
 					} else {
-						$_object->$method($value);
+						if ($function->getNumberOfRequiredParameters() < 2) {
+							$_object->$method($value);
+						}
 					}
 				}
 			}

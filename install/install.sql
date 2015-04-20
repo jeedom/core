@@ -386,6 +386,7 @@ CREATE TABLE IF NOT EXISTS `interactDef` (
   `options` TEXT NULL,
   `filtres` TEXT NULL,
   `position` INT NULL,
+  `group` VARCHAR(127) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 

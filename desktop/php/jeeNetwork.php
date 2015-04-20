@@ -49,7 +49,7 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
                                 <input class="form-control jeeNetworkAttr" type="text" data-l1key="ip" placeholder="IP"/>
                             </div>
                         </div>
-                          <div class="form-group">
+                        <div class="form-group">
                             <label class="col-sm-4 col-xs-6 control-label">{{Complement}}</label>
                             <div class="col-sm-4 col-xs-6">
                                 <input class="form-control jeeNetworkAttr" type="text" data-l1key="configuration" data-l2key="addrComplement" placeholder="ex : /jeedom"/>
@@ -361,306 +361,376 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
                                 <input type="number" class="configKey form-control" data-l1key="internalPort" />
                             </div>
                         </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="panel panel-default expertModeVisible">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_cron">
-                    {{Configuration des crontask, scripts & démons}}
-                </a>
-            </h3>
-        </div>
-        <div id="configuration_cron" class="panel-collapse collapse">
-            <div class="panel-body">
-                <form class="form-horizontal">
-                    <fieldset>
+                        <legend>Accès externe</legend>
                         <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Rattrapage maximum autorisé (en minutes, -1 pour infini)}}</label>
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text" class="configKey form-control" data-l1key="maxCatchAllow"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Crontask : temps d'exécution max (en minutes)}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text" class="configKey form-control" data-l1key="maxExecTimeCrontask"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Script : temps d'exécution max (en minutes)}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text" class="configKey form-control" data-l1key="maxExecTimeScript"/>
-                            </div>
-                        </div>
-                        <div class="form-group alert alert-danger">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps de sommeil Jeecron}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text" class="configKey form-control" data-l1key="cronSleepTime"/>
-                            </div>
-                        </div>
-                        <div class="form-group alert alert-danger">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps de sommeil des Démons}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text" class="configKey form-control" data-l1key="deamonsSleepTime"/>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="panel panel-default expertModeVisible">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_logMessage">
-                    {{Configuration des logs & messages}}
-                </a>
-            </h3>
-        </div>
-        <div id="configuration_logMessage" class="panel-collapse collapse">
-            <div class="panel-body">
-                <form class="form-horizontal">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ajouter un message à chaque erreur dans les logs}}</label>
-                            <div class="col-sm-1">
-                                <input type="checkbox" class="configKey" data-l1key="addMessageForErrorLog" checked/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre de lignes maximum dans un fichier de log}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text" class="configKey form-control" data-l1key="maxLineLog"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Logs actifs}}</label>
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="debug" checked /> Debug
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="info" checked /> Info
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="event" checked /> Event
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="error" checked /> Error
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="panel panel-default expertModeVisible">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_ldap">
-                    {{Configuration LDAP}}
-                </a>
-            </h3>
-        </div>
-        <div id="config_ldap" class="panel-collapse collapse">
-            <div class="panel-body">
-                <form class="form-horizontal">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer l'authentification LDAP}}</label>
-                            <div class="col-sm-1">
-                                <input type="checkbox" class="configKey" data-l1key="ldap:enable"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hôte}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="ldap:host" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="ldap:port" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Domaine}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="ldap:domain" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Base DN}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="ldap:basedn" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="ldap:username" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="password"  class="configKey form-control" data-l1key="ldap:password" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Filtre (optionnel)}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="ldap:filter" />
-                            </div>
-                        </div>
-                        <div class="form-group alert alert-danger">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Autoriser REMOTE_USER}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <a class="btn btn-default" id="bt_testLdapConnection"><i class="fa fa-cube"></i> Tester</a>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_market">
-                    {{Market et mise à jour}}
-                </a>
-            </h3>
-        </div>
-        <div id="configuration_market" class="panel-collapse collapse">
-            <div class="panel-body">
-                <form class="form-horizontal">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse}}</label>
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                <input class="configKey form-control" data-l1key="market::address"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="market::username" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="password"  class="configKey form-control" data-l1key="market::password" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Installer automatiquement les widgets manquants}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="checkbox"  class="configKey" data-l1key="market::autoInstallMissingWidget" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Utiliser le market comme DNS}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="checkbox"  class="configKey" data-l1key="market::allowDNS" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les plugins mis en avant par le market}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="checkbox"  class="configKey" data-l1key="market::showPromotion" />
-                            </div>
-                        </div>
-                        <div class="form-group alert alert-danger">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Voir les modules en beta (à vos risques et périls)}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="checkbox"  class="configKey" data-l1key="market::showBetaMarket" />
-                            </div>
-                        </div>
-                        <div class="form-group expertModeVisible">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
-                            <div class="col-sm-1">
-                                <input type="checkbox" class="configKey" data-l1key="update::backupBefore"/>
-                            </div>
-                        </div>
-                        <div class="form-group expertModeVisible alert alert-danger">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mettre à jour automatiquement}}</label>
-                            <div class="col-sm-1">
-                                <input type="checkbox" class="configKey" data-l1key="update::auto"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Branche}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <select class="configKey form-control" data-l1key="market::branch">
-                                    <option value="stable">{{Stable}}</option>
-                                    <option value="master">{{Développement}}</option>
+                                <select class="configKey form-control" data-l1key="externalProtocol">
+                                    <option value="">Aucun</option>
+                                    <option value="http://">HTTP</option>
+                                    <option value="https://">HTTPS</option>
                                 </select>
                             </div>
                         </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse URL ou IP}}</label>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+                                <?php if (config::byKey('market::allowDNS') == 0) {
+	echo '<input type="text"  class="configKey form-control" data-l1key="externalAddr" />';
+} else {
+	echo '<input type="text"  class="configKey form-control" data-l1key="externalAddr" disabled />';
+}
+?>
+                           </div>
+                       </div>
+                       <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Complément (exemple : /jeedom)}}</label>
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="externalComplement" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port}}</label>
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                            <input type="number" class="configKey form-control" data-l1key="externalPort" />
+                        </div>
+                    </div>
+                    <legend>DNS Jeedom</legend>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Utiliser les DNS Jeedom}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="checkbox"  class="configKey" data-l1key="market::allowDNS" />
+                        </div>
+                    </div>
+                    <div class="alert alert-info">{{Toute modification nécessite de redémarrer le service DNS Jeedom (ligne "Gestion" puis "Redémarrer")}}</div>
+                    <div class="form-group alert alert-danger">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label" title="{{A ne faire que si on vous le demande ou en connaissance de cause}}">{{Rediriger le SSH}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="checkbox"  class="configKey" data-l1key="market::redirectSSH" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Authentification (optionnelle)}}</label>
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                            <input  class="configKey form-control" data-l1key="market::userDNS" placeholder="Nom d'utilisateur" />
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                            <input type="password" class="configKey form-control" data-l1key="market::passwordDNS" placeholder="Mot de passe" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Statut http}}</label>
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4" id="div_ngrokHttpStatus">
 
-    <div class="panel panel-default expertModeVisible">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_http">
-                    {{HTTP}}
-                </a>
-            </h3>
-        </div>
-        <div id="configuration_http" class="panel-collapse collapse">
-            <div class="panel-body">
-                <form class="form-horizontal">
-                    <fieldset>
-                        <div class="form-group expertModeVisible">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Timeout de résolution DNS sur les requêtes HTTP}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input class="configKey form-control" data-l1key="http::ping_timeout"/>
-                            </div>
                         </div>
-                        <div class="form-group alert alert-danger expertModeVisible">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Désactiver la vérification du ping}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="checkbox" class="configKey" data-l1key="http::ping_disable"/>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Statut SSH}}</label>
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4" id="div_ngrokSSHStatus">
+
                         </div>
-                    </fieldset>
-                </form>
-            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Gestion}}</label>
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                         <a class="btn btn-success" id="bt_restartNgrok"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
+                         <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arreter}}</a>
+                     </div>
+                 </div>
+             </fieldset>
+         </form>
+     </div>
+ </div>
+</div>
+
+<div class="panel panel-default expertModeVisible">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_cron">
+                {{Configuration des crontask, scripts & démons}}
+            </a>
+        </h3>
+    </div>
+    <div id="configuration_cron" class="panel-collapse collapse">
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Rattrapage maximum autorisé (en minutes, -1 pour infini)}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text" class="configKey form-control" data-l1key="maxCatchAllow"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Crontask : temps d'exécution max (en minutes)}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text" class="configKey form-control" data-l1key="maxExecTimeCrontask"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Script : temps d'exécution max (en minutes)}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text" class="configKey form-control" data-l1key="maxExecTimeScript"/>
+                        </div>
+                    </div>
+                    <div class="form-group alert alert-danger">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps de sommeil Jeecron}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text" class="configKey form-control" data-l1key="cronSleepTime"/>
+                        </div>
+                    </div>
+                    <div class="form-group alert alert-danger">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps de sommeil des Démons}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text" class="configKey form-control" data-l1key="deamonsSleepTime"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
     </div>
-    <div class="form-actions" style="height: 20px;">
-        <a class="btn btn-success" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+</div>
+
+<div class="panel panel-default expertModeVisible">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_logMessage">
+                {{Configuration des logs & messages}}
+            </a>
+        </h3>
     </div>
+    <div id="configuration_logMessage" class="panel-collapse collapse">
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ajouter un message à chaque erreur dans les logs}}</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" class="configKey" data-l1key="addMessageForErrorLog" checked/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre de lignes maximum dans un fichier de log}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text" class="configKey form-control" data-l1key="maxLineLog"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Logs actifs}}</label>
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="debug" checked /> Debug
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="info" checked /> Info
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="event" checked /> Event
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="error" checked /> Error
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default expertModeVisible">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_ldap">
+                {{Configuration LDAP}}
+            </a>
+        </h3>
+    </div>
+    <div id="config_ldap" class="panel-collapse collapse">
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer l'authentification LDAP}}</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" class="configKey" data-l1key="ldap:enable"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hôte}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="ldap:host" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="ldap:port" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Domaine}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="ldap:domain" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Base DN}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="ldap:basedn" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="ldap:username" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="password"  class="configKey form-control" data-l1key="ldap:password" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Filtre (optionnel)}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="ldap:filter" />
+                        </div>
+                    </div>
+                    <div class="form-group alert alert-danger">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Autoriser REMOTE_USER}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <a class="btn btn-default" id="bt_testLdapConnection"><i class="fa fa-cube"></i> Tester</a>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_market">
+                {{Market et mise à jour}}
+            </a>
+        </h3>
+    </div>
+    <div id="configuration_market" class="panel-collapse collapse">
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse}}</label>
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                            <input class="configKey form-control" data-l1key="market::address"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="market::username" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="password"  class="configKey form-control" data-l1key="market::password" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Installer automatiquement les widgets manquants}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="checkbox"  class="configKey" data-l1key="market::autoInstallMissingWidget" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les plugins mis en avant par le market}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="checkbox"  class="configKey" data-l1key="market::showPromotion" />
+                        </div>
+                    </div>
+                    <div class="form-group alert alert-danger">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Voir les modules en beta (à vos risques et périls)}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="checkbox"  class="configKey" data-l1key="market::showBetaMarket" />
+                        </div>
+                    </div>
+                    <div class="form-group expertModeVisible">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" class="configKey" data-l1key="update::backupBefore"/>
+                        </div>
+                    </div>
+                    <div class="form-group expertModeVisible alert alert-danger">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mettre à jour automatiquement}}</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" class="configKey" data-l1key="update::auto"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Branche}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <select class="configKey form-control" data-l1key="market::branch">
+                                <option value="stable">{{Stable}}</option>
+                                <option value="master">{{Développement}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default expertModeVisible">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_http">
+                {{HTTP}}
+            </a>
+        </h3>
+    </div>
+    <div id="configuration_http" class="panel-collapse collapse">
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group expertModeVisible">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Timeout de résolution DNS sur les requêtes HTTP}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input class="configKey form-control" data-l1key="http::ping_timeout"/>
+                        </div>
+                    </div>
+                    <div class="form-group alert alert-danger expertModeVisible">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Désactiver la vérification du ping}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="checkbox" class="configKey" data-l1key="http::ping_disable"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="form-actions" style="height: 20px;">
+    <a class="btn btn-success" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+</div>
 </div>
 
 

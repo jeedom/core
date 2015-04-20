@@ -97,6 +97,7 @@ try {
 
 	if (init('action') == 'sendReportBug') {
 		$ticket = json_decode(init('ticket'), true);
+		print_r($ticket);
 		market::saveTicket($ticket);
 		ajax::success(array('url' => config::byKey('market::address') . '/index.php?v=d&p=ticket'));
 	}

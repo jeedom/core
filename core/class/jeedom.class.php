@@ -181,10 +181,6 @@ class jeedom {
 		return $usbMapping;
 	}
 
-	public static function persist() {
-
-	}
-
 	public static function backup($_background = false, $_noCloudUpload = 0) {
 		if ($_background) {
 			log::clear('backup');
@@ -346,7 +342,7 @@ class jeedom {
 		if (file_exists('/tmp/jeedom_dateOk')) {
 			return true;
 		}
-		if (strtotime('now') < strtotime('2014-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
+		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
 			log::add('core', 'error', __('La date du système est incorrect (avant 2014-01-01 ou après 2019-01-01) : ', __FILE__) . date('Y-m-d H:i:s'), 'dateCheckFailed');
 			return false;
 		}
@@ -364,7 +360,6 @@ class jeedom {
 			$cache->remove();
 			jeedom::start();
 			plugin::start();
-			self::doUPnP();
 			touch('/tmp/jeedom_start');
 			self::event('start');
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
@@ -378,8 +373,16 @@ class jeedom {
 				if (config::byKey('jeeNetwork::mode') != 'slave') {
 					jeeNetwork::pull();
 				}
-				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeeNetwork::mode') == 'master') {
-					market::updateIp();
+				if (config::byKey('market::allowDNS') == 1) {
+					market::test();
+					if (!network::ngrok_run()) {
+						network::ngrok_start();
+					}
+					if (config::byKey('market::redirectSSH') == 1) {
+						if (!network::ngrok_run('tcp', 22, 'ssh')) {
+							network::ngrok_start('tcp', 22, 'ssh');
+						}
+					}
 				}
 			}
 		} catch (Exception $e) {
@@ -389,6 +392,19 @@ class jeedom {
 			if (date('Gi') == 202) {
 				log::chunk();
 				cron::clean();
+				network::ngrok_stop();
+				network::ngrok_stop('tcp', 22, 'ssh');
+				if (config::byKey('market::allowDNS') == 1) {
+					if (!network::ngrok_run()) {
+						network::ngrok_start();
+					}
+					if (config::byKey('market::redirectSSH') == 1) {
+						if (!network::ngrok_run('tcp', 22, 'ssh')) {
+							network::ngrok_start('tcp', 22, 'ssh');
+						}
+					}
+				}
+
 			}
 		} catch (Exception $e) {
 			log::add('log', 'error', $e->getMessage());
@@ -432,6 +448,15 @@ class jeedom {
 			log::add('backup', 'error', 'Auto backup error : ' . $e->getMessage());
 		}
 
+		try {
+			$c = new Cron\CronExpression('35 00 * * 0', new Cron\FieldFactory);
+			if ($c->isDue()) {
+				cache::clean();
+			}
+		} catch (Exception $e) {
+			log::add('cache', 'error', 'Clean cache : ' . $e->getMessage());
+		}
+
 	}
 
 	public static function checkOngoingThread($_cmd) {
@@ -450,45 +475,23 @@ class jeedom {
 				$rdkey = config::genKey();
 				config::save('jeedom::rdkey', $rdkey);
 			}
-			$ifconfig = shell_exec("/sbin/ifconfig");
+			$ifconfig = shell_exec("ip addr show");
 			if (strpos($ifconfig, 'eth1') !== false) {
-				$key = shell_exec("/sbin/ifconfig eth1 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+				$key = shell_exec(" ip addr show eth0 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
 			} else if (strpos($ifconfig, 'p2p0') !== false) {
-				$key = shell_exec("/sbin/ifconfig p2p0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+				$key = shell_exec(" ip addr show p2p0 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
 			} else if (strpos($ifconfig, 'p2p1') !== false) {
-				$key = shell_exec("/sbin/ifconfig p2p1 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+				$key = shell_exec(" ip addr show p2p1 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
 			} else if (strpos($ifconfig, 'p2p2') !== false) {
-				$key = shell_exec("/sbin/ifconfig p2p2 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+				$key = shell_exec(" ip addr show p2p2 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
 			} else {
-				$key = shell_exec("/sbin/ifconfig eth0 | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'");
+				$key = shell_exec(" ip addr show eth0 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
 			}
 			$hwkey = sha1($key . $rdkey);
 			cache::set('jeedom::hwkey', $hwkey, 86400);
 			return $hwkey;
 		}
 		return $cache->getValue();
-	}
-
-	public static function isRestrictionOk() {
-		$isRestrictionOk = cache::byKey('isRestrictionOk');
-		if ($isRestrictionOk->getValue(-1) != -1) {
-			return $isRestrictionOk->getValue(0);
-		}
-		$register_datetime = config::save('register::datetime', date('Y-m-d H:i:s'));
-		$restrict_hw = shell_exec("dmesg | grep HummingBoard | wc -l");
-		if ($restrict_hw == 1 && config::byKey('jeedom::licence') < 1) {
-			if (($register_datetime + 604800) > strtotime('now')) {
-				$result = $register_datetime + 604800 - strtotime('now');
-				log::add(__('hardware', 'error', 'Attention vous utilisez Jeedom sur un matériel soumis à une licence, veuillez enregistrer votre compte market et/ou acheter une licence, il vous reste ', __FILE__) . convertDuration($result), 'restrictHardwareTime');
-				cache::set('isRestrictionOk', $result, 86400);
-				return $result;
-			}
-			cache::set('isRestrictionOk', 0, 86400);
-
-			return 0;
-		}
-		cache::set('isRestrictionOk', 1, 86400);
-		return 1;
 	}
 
 	public static function versionAlias($_version) {
@@ -530,34 +533,6 @@ class jeedom {
 
 	public static function forceSyncHour() {
 		exec('sudo service ntp restart');
-	}
-
-	public static function portForwarding($_internalIp, $_internalPort, $_externalPort, $_protocol = 'TCP') {
-		$fp = popen("which upnpc", "r");
-		$result = fgets($fp, 255);
-		$exists = !empty($result);
-		pclose($fp);
-		if (!$exists) {
-			throw new Exception(__('Impossible de trouver : upnpc. Veuillez l\'installer en ssh en faisant : "sudo apt-get install -y miniupnpc"', __FILE__));
-		}
-		shell_exec('upnpc -d ' . $_externalPort . ' ' . $_protocol);
-		$result = exec('upnpc -a ' . $_internalIp . ' ' . $_internalPort . ' ' . $_externalPort . ' ' . $_protocol);
-		if (strpos($result, 'is redirected to internal') === false) {
-			throw new Exception(__('Echec de la redirection de port : ', __FILE__) . $result);
-		}
-	}
-
-	public static function doUPnP() {
-		if (config::byKey('internalAddr') == '') {
-			config::save('internalAddr', exec("/sbin/ifconfig eth0 | grep 'inet adr:' | cut -d: -f2 | awk '{ print $1}'"));
-		}
-		if (config::byKey('allowupnpn') == 1) {
-			try {
-				self::portForwarding(getIpFromString(config::byKey('internalAddr')), 80, config::byKey('externalPort', 80));
-			} catch (Exception $e) {
-				log::add('core', 'error', $e->getMessage());
-			}
-		}
 	}
 
 	public function checkFilesystem() {
@@ -602,97 +577,6 @@ class jeedom {
 		$folder = self::getCurrentSysInfoFolder();
 		if ($folder != '') {
 			rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../sysinfo' . config::genKey());
-		}
-	}
-
-/*     * ****************************Nginx management*************************** */
-
-	public static function nginx_saveRule($_rules) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-			throw new Exception('Fichier non trouvé : /etc/nginx/sites-available/jeedom_dynamic_rule');
-		}
-		$nginx_conf = self::nginx_removeRule($_rules, true);
-
-		foreach ($_rules as $rule) {
-			$nginx_conf .= "\n" . $rule . "\n";
-		}
-		file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $nginx_conf);
-		shell_exec('sudo service nginx reload');
-	}
-
-	public static function nginx_removeRule($_rules, $_returnResult = false) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-			return $_rules;
-		}
-		$result = '';
-		$nginx_conf = trim(file_get_contents('/etc/nginx/sites-available/jeedom_dynamic_rule'));
-		$accolade = 0;
-		$change = false;
-		foreach (explode("\n", trim($nginx_conf)) as $conf_line) {
-			if ($accolade > 0 && strpos('{', $conf_line) !== false) {
-				$accolade++;
-			}
-			foreach ($_rules as $rule) {
-				$rule_line = explode("\n", trim($rule));
-				if (trim($conf_line) == trim($rule_line[0])) {
-					$accolade = 1;
-				}
-			}
-			if ($accolade == 0) {
-				$result .= $conf_line . "\n";
-			} else {
-				$change = true;
-			}
-			if ($accolade > 0 && strpos('}', $conf_line) !== false) {
-				$accolade--;
-			}
-		}
-		if ($_returnResult) {
-			return $result;
-		}
-		if ($change) {
-			file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $result);
-			shell_exec('sudo service nginx reload');
-		}
-	}
-
-	public static function apache_saveRule($_rules) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		$jeedom_dynamic_rule_file = dirname(__FILE__) . '/../../core/config/apache_jeedom_dynamic_rules';
-		if (!file_exists($jeedom_dynamic_rule_file)) {
-			throw new Exception('Fichier non trouvé : ' . $jeedom_dynamic_rule_file);
-		}
-		foreach ($_rules as $rule) {
-			$apache_conf .= $rule . "\n";
-		}
-		file_put_contents($jeedom_dynamic_rule_file, $apache_conf);
-	}
-
-	public static function apache_removeRule($_rules, $_returnResult = false) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		$jeedom_dynamic_rule_file = dirname(__FILE__) . '/../../core/config/apache_jeedom_dynamic_rules';
-		if (!file_exists($jeedom_dynamic_rule_file)) {
-			return $_rules;
-		}
-		$apache_conf = trim(file_get_contents($jeedom_dynamic_rule_file));
-		$new_apache_conf = $apache_conf;
-		foreach ($_rules as $rule) {
-			$new_apache_conf = preg_replace($rule, "", $new_apache_conf);
-		}
-		$new_apache_conf = preg_replace("/\n\n*/s", "\n", $new_apache_conf);
-
-		if ($new_apache_conf != $apache_conf) {
-			file_put_contents($jeedom_dynamic_rule_file, $new_apache_conf);
 		}
 	}
 

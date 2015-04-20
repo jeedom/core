@@ -128,12 +128,31 @@ class scenarioElement {
 	public function execute(&$_scenario) {
 		if ($this->getType() == 'if') {
 			if ($this->getSubElement('if')->execute($_scenario)) {
+				if ($this->getSubElement('if')->getOptions('allowRepeatCondition', 0) == 1) {
+					if ($this->getSubElement('if')->getOptions('previousState', -1) != 1) {
+						$this->getSubElement('if')->setOptions('previousState', 1);
+						$this->getSubElement('if')->save();
+					} else {
+						$_scenario->setLog(__('Non éxecution des actions pour cause de répétition', __FILE__));
+						return;
+					}
+				}
 				return $this->getSubElement('then')->execute($_scenario);
 			}
 			if (!is_object($this->getSubElement('else'))) {
 				return;
 			}
+			if ($this->getSubElement('if')->getOptions('allowRepeatCondition', 0) == 1) {
+				if ($this->getSubElement('if')->getOptions('previousState', -1) != 0) {
+					$this->getSubElement('if')->setOptions('previousState', 0);
+					$this->getSubElement('if')->save();
+				} else {
+					$_scenario->setLog(__('Non éxecution des actions pour cause de répétition', __FILE__));
+					return;
+				}
+			}
 			return $this->getSubElement('else')->execute($_scenario);
+
 		} else if ($this->getType() == 'action') {
 			return $this->getSubElement('action')->execute($_scenario);
 		} else if ($this->getType() == 'code') {

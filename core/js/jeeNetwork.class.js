@@ -389,3 +389,63 @@ jeedom.jeeNetwork.loadConfig = function (_params) {
     };
     $.ajax(paramsAJAX);
 };
+
+jeedom.jeeNetwork.restartNgrok = function (_params) {
+    var paramsRequired = ['id'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/jeeNetwork.ajax.php';
+    paramsAJAX.data = {
+        action: 'restartNgrok',
+        id : _params.id
+    };
+    $.ajax(paramsAJAX);
+};
+
+jeedom.jeeNetwork.stopNgrok = function (_params) {
+    var paramsRequired = ['id'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/jeeNetwork.ajax.php';
+    paramsAJAX.data = {
+        action: 'stopNgrok',
+        id : _params.id
+    };
+    $.ajax(paramsAJAX);
+};
+
+jeedom.jeeNetwork.ngrokRun = function (_params) {
+    var paramsRequired = ['id'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/jeeNetwork.ajax.php';
+    paramsAJAX.data = {
+        action: 'ngrokRun',
+        id : _params.id,
+        proto: _params.proto || 'https',
+        port: _params.port || 80,
+        name : _params.name || ''
+    };
+    $.ajax(paramsAJAX);
+};

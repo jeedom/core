@@ -281,6 +281,14 @@ class market {
 		$file = array(
 			'file' => '@' . realpath($tmp),
 		);
+		if (isset($_ticket['allowRemoteAccess']) && $_ticket['allowRemoteAccess'] == 1) {
+			$user = user::createTemporary(72);
+			$_ticket['options']['remoteAccess'] = 'Http : ' . $user->getDirectUrlAccess();
+			if (config::byKey('market::allowDNS') == 1 && config::byKey('market::redirectSSH') == 1 && config::byKey('ngrok::port') != '') {
+				$_ticket['options']['remoteAccess'] .= ' | SSH : dns.jeedom.com:' . config::byKey('ngrok::port');
+			}
+		}
+
 		$_ticket['options']['jeedom_version'] = jeedom::version();
 		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket), 600, $file)) {
 			throw new Exception($jsonrpc->getErrorMessage());
@@ -312,6 +320,9 @@ class market {
 		if (config::byKey('market::address') == '') {
 			throw new Exception(__('Aucune addresse n\'est renseignée pour le market', __FILE__));
 		}
+		if (config::byKey('market::jeedom_apikey') == '') {
+			config::save('market::jeedom_apikey', config::genKey(255));
+		}
 		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
 				'username' => config::byKey('market::username'),
@@ -319,9 +330,11 @@ class market {
 				'password_type' => 'sha1',
 				'jeedomversion' => (method_exists('jeedom', 'version')) ? jeedom::version() : getVersion('jeedom'),
 				'hwkey' => jeedom::getHardwareKey(),
+				'addr' => config::byKey('externalAddr'),
 				'addrProtocol' => config::byKey('externalProtocol'),
 				'addrPort' => config::byKey('externalPort'),
 				'addrComplement' => config::byKey('externalComplement'),
+				'marketkey' => config::byKey('market::jeedom_apikey'),
 				'nbMessage' => message::nbMessage(),
 			));
 		} else {
@@ -340,11 +353,56 @@ class market {
 			if (isset($_result['register::datetime'])) {
 				config::save('register::datetime', $_result['register::datetime']);
 			}
-			if (isset($_result['client::ip']) && config::byKey('market::allowDNS') == 1) {
-				config::save('externalAddr', $_result['client::ip']);
-			}
-			if (isset($_result['client::marketlink']) && config::byKey('market::allowDNS') == 1) {
-				config::save('market::returnLink', $_result['client::marketlink']);
+			if (config::byKey('market::allowDNS') == 1) {
+				if (isset($_result['client::ip']) && (filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP) || config::byKey('externalAddr') == '')) {
+					config::save('externalAddr', $_result['client::ip']);
+				}
+
+				if (isset($_result['register::ngrokAddr']) && config::byKey('ngrok::addr') != $_result['register::ngrokAddr']) {
+					config::save('ngrok::addr', $_result['register::ngrokAddr']);
+					if (network::ngrok_run()) {
+						network::ngrok_stop();
+					}
+					if (network::ngrok_run('tcp', 22, 'ssh')) {
+						network::ngrok_stop('tcp', 22, 'ssh');
+					}
+					if (config::byKey('market::allowDNS') == 1) {
+						network::ngrok_start();
+						if (config::byKey('market::redirectSSH') == 1) {
+							network::ngrok_start('tcp', 22, 'ssh');
+						}
+					}
+				}
+
+				if (isset($_result['register::ngrokToken']) && config::byKey('ngrok::token') != $_result['register::ngrokToken']) {
+					config::save('ngrok::token', $_result['register::ngrokToken']);
+					if (network::ngrok_run()) {
+						network::ngrok_stop();
+					}
+					if (network::ngrok_run('tcp', 22, 'ssh')) {
+						network::ngrok_stop('tcp', 22, 'ssh');
+					}
+					if (config::byKey('market::allowDNS') == 1) {
+						network::ngrok_start();
+						if (config::byKey('market::redirectSSH') == 1) {
+							network::ngrok_start('tcp', 22, 'ssh');
+						}
+					}
+				}
+				if (isset($_result['register::ngrokPort']) && config::byKey('ngrok::port') != $_result['register::ngrokPort']) {
+					config::save('ngrok::port', $_result['register::ngrokPort']);
+					if (network::ngrok_run('tcp', 22, 'ssh')) {
+						network::ngrok_stop('tcp', 22, 'ssh');
+					}
+					if (config::byKey('market::allowDNS') == 1) {
+						if (config::byKey('market::redirectSSH') == 1) {
+							network::ngrok_start('tcp', 22, 'ssh');
+						}
+					}
+				}
+				if (isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
+					config::save('jeedom::url', $_result['jeedom::url']);
+				}
 			}
 		}
 	}
@@ -519,20 +577,6 @@ class market {
 		}
 		if (is_object($market) && $market->getPurchase() == 0) {
 			throw new Exception(__('Vous devez acheter cet article avant de pouvoir l\'activer', __FILE__));
-		}
-	}
-
-	public static function updateIp() {
-		if (config::byKey('market::jeedom_apikey') == '') {
-			config::save('market::jeedom_apikey', config::genKey(255));
-		}
-		$market = self::getJsonRpc();
-		$params = array(
-			'marketkey' => config::byKey('market::jeedom_apikey'),
-			'port' => config::byKey('externalPort', 80),
-		);
-		if (!$market->sendRequest('jeedom::updateip', $params)) {
-			throw new Exception($market->getError());
 		}
 	}
 
@@ -748,7 +792,16 @@ class market {
 		}
 		switch ($this->getType()) {
 			case 'plugin':
-				$cibDir = realpath(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId());
+				$cibDir = dirname(__FILE__) . '/../../tmp/' . $this->getLogicalId();
+				if (file_exists($cibDir)) {
+					rrmdir($cibDir);
+				}
+				mkdir($cibDir);
+				rcopy(realpath(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId()), $cibDir);
+				if (file_exists($cibDir . '/core/config/devices') && $this->getLogicalId() == 'zwave') {
+					rrmdir($cibDir . '/core/config/devices');
+					mkdir($cibDir . '/core/config/devices');
+				}
 				$tmp = dirname(__FILE__) . '/../../tmp/' . $this->getLogicalId() . '.zip';
 				if (file_exists($tmp)) {
 					if (!unlink($tmp)) {
@@ -783,7 +836,7 @@ class market {
 			$update->setType($this->getType());
 		}
 		$update->setConfiguration('version', 'beta');
-		$update->setLocalVersion(date('Y-m-d H:i:s', strtotime('+2 minute' . date('Y-m-d H:i:s'))));
+		$update->setLocalVersion(date('Y-m-d H:i:s', strtotime('+5 minute' . date('Y-m-d H:i:s'))));
 		$update->save();
 		$update->checkUpdate();
 	}

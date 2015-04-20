@@ -33,6 +33,25 @@ setTimeout(function(){
 },100);
 
 
+ if((!isset(userProfils.displayScenarioByDefault) || userProfils.displayScenarioByDefault != 1) && !jQuery.support.touch){
+    $('#div_listScenario').hide();
+    $('#bt_displayScenarioList').on('mouseenter',function(){
+        var timer = setTimeout(function(){
+        $('#div_listScenario').show();
+        $('.scenarioListContainer').packery();
+         }, 100);
+        $(this).data('timerMouseleave', timer)
+    }).on("mouseleave", function(){
+      clearTimeout($(this).data('timerMouseleave'));
+  });
+
+    $('#div_listScenario').on('mouseleave',function(){
+        $('#div_listScenario').hide();
+        $('.scenarioListContainer').packery();
+    });
+}
+
+
 $("#div_listScenario").trigger('resize');
 
 $('.scenarioListContainer').packery();
@@ -41,6 +60,7 @@ $('#bt_scenarioThumbnailDisplay').on('click', function () {
     $('#div_editScenario').hide();
     $('#scenarioThumbnailDisplay').show();
     $('.li_scenario').removeClass('active');
+    $('.scenarioListContainer').packery();
 });
 
 $('.scenarioDisplayCard').on('click', function () {
@@ -93,7 +113,7 @@ $("#bt_copyScenario").on('click', function () {
 
 $('#md_addScenario').modal('hide');
 
-$("#bt_addScenario").on('click', function (event) {
+$("#bt_addScenario,#bt_addScenario2").on('click', function (event) {
     bootbox.dialog({
         title: "Ajout d'un nouveau scénario",
         message: '<div class="row">  ' +
@@ -149,7 +169,7 @@ $("#bt_addScenario").on('click', function (event) {
     });
 });
 
-$('#bt_displayScenarioVariable').on('click', function () {
+$('#bt_displayScenarioVariable,#bt_displayScenarioVariable2').on('click', function () {
     $('#md_modal').closest('.ui-dialog').css('z-index', '1030');
     $('#md_modal').dialog({title: "{{Variables des scénarios}}"});
     $("#md_modal").load('index.php?v=d&modal=dataStore.management&type=scenario').dialog('open');
@@ -196,7 +216,7 @@ $("#bt_testScenario").on('click', function () {
     });
 });
 
-$("#bt_changeAllScenarioState").on('click', function () {
+$("#bt_changeAllScenarioState,#bt_changeAllScenarioState2").on('click', function () {
     var el = $(this);
     jeedom.config.save({
         configuration: {enableScenario: el.attr('data-state')},
@@ -204,17 +224,9 @@ $("#bt_changeAllScenarioState").on('click', function () {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-            if (el.attr('data-state') == 1) {
-                el.find('i').removeClass('fa-check').addClass('fa-times');
-                el.removeClass('btn-success').addClass('btn-danger').attr('data-state', 0);
-                el.empty().html('<i class="fa fa-times"></i> {{Désac. scénarios}}');
-            } else {
-                el.find('i').removeClass('fa-times').addClass('fa-check');
-                el.removeClass('btn-danger').addClass('btn-success').attr('data-state', 1);
-                el.empty().html('<i class="fa fa-check"></i> {{Act. scénarios}}');
-            }
-        }
-    });
+          window.location.reload();
+      }
+  });
 });
 
 $("#bt_stopScenario").on('click', function () {
@@ -336,7 +348,7 @@ $('#sel_scheduleMode').on('change', function () {
                 var hour = (date.getHours() < 10 ? '0' : '') + date.getHours();
                 var strdate = (date.getDate() < 10 ? '0' : '') + date.getDate();
                 var month = ((date.getMonth() + 1) < 10 ? '0' : '') + (date.getMonth() + 1);
-                 var cron = minute + ' ' + hour + ' ' + strdate + ' ' + month + ' ' + date.getDay() + ' ' + date.getFullYear();
+                var cron = minute + ' ' + hour + ' ' + strdate + ' ' + month + ' ' + date.getDay() + ' ' + date.getFullYear();
                 $('#span_cronResult').value(cron);
             }
         });
