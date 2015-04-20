@@ -18,9 +18,10 @@
 
 
  if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
-    $('#div_mainContainer').append('<div style="position : fixed;height:100%;width:20px;top:90px;left:0px;" class="bt_pluginTemplateShowSidebar"><div>');
+    $('#div_mainContainer').append('<div style="position : fixed;height:100%;width:20px;top:90px;left:0px;z-index:998;" class="bt_pluginTemplateShowSidebar"><div>');
 
     $('#ul_eqLogic').closest('.bs-sidebar').parent().hide();
+    $('#ul_eqLogic').closest('.bs-sidebar').parent().css('z-index','999');
     $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-lg-12');
     $('.eqLogic').removeClass().addClass('eqLogic col-lg-12');
 
