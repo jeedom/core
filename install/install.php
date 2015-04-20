@@ -72,6 +72,14 @@ try {
 			}
 		}
 
+		try {
+			echo __("Mise à plat des droits...", __FILE__);
+			jeedom::cleanFileSytemRight();
+			echo __("OK\n", __FILE__);
+		} catch (Exception $e) {
+			echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+		}
+
 		if (init('level', -1) < 1) {
 			if (config::byKey('update::backupBefore') == 1 && init('mode') != 'force') {
 				try {

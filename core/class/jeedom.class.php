@@ -535,13 +535,22 @@ class jeedom {
 		exec('sudo service ntp restart');
 	}
 
-	public function checkFilesystem() {
+	public static function checkFilesystem() {
 		$result = exec('dmesg | grep "I/O error" | wc -l');
 		if ($result != 0) {
 			log::add('core', 'error', __('Erreur : corruption sur le filesystem detecter (I/O error sur dmesg)', __FILE__));
 			return false;
 		}
 		return true;
+	}
+
+	public static function cleanFileSytemRight() {
+		$processUser = posix_getpwuid(posix_geteuid());
+		$processGroup = posix_getgrgid(posix_getegid());
+		$user = $processUser['name'];
+		$group = $processGroup['name'];
+		$path = dirname(__FILE__) . '/../../';
+		exec('sudo chown -R ' . $user . ':' . $group . ' ' . $path);
 	}
 
 /*     * ****************************SQL BUDDY*************************** */
