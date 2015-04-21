@@ -139,6 +139,16 @@ class update {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function byStatus($_status) {
+		$values = array(
+			'status' => $_status,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM `update`
+		WHERE status=:status';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
 	public static function byLogicalId($_logicalId) {
 		$values = array(
 			'logicalId' => $_logicalId,
@@ -226,6 +236,14 @@ class update {
 				}
 			}
 		}
+	}
+
+	public static function getAllUpdateChangelog() {
+		$params = array();
+		foreach (self::byStatus('update') as $update) {
+			$params[] = array('logicalId' => $update->getLogicalId(), 'datetime' => $update->getLocalVersion());
+		}
+		return market::getMultiChangelog($params);
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
