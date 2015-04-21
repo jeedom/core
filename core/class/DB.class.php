@@ -112,7 +112,7 @@ class DB {
 		foreach ($tables as $table) {
 			$table = array_values($table);
 			$table = $table[0];
-			var_dump(self::Prepare('OPTIMIZE TABLE `' . $table . '`', array(), DB::FETCH_TYPE_ROW));
+			self::Prepare('OPTIMIZE TABLE `' . $table . '`', array(), DB::FETCH_TYPE_ROW);
 		}
 	}
 
