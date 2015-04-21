@@ -392,6 +392,7 @@ class jeedom {
 			if (date('Gi') == 202) {
 				log::chunk();
 				cron::clean();
+				self::checkSpaceLeft();
 				network::ngrok_stop();
 				network::ngrok_stop('tcp', 22, 'ssh');
 				if (config::byKey('market::allowDNS') == 1) {
@@ -551,6 +552,19 @@ class jeedom {
 		$group = $processGroup['name'];
 		$path = dirname(__FILE__) . '/../../';
 		exec('sudo chown -R ' . $user . ':' . $group . ' ' . $path);
+	}
+
+	public static function checkSpaceLeft() {
+		$path = dirname(__FILE__) . '/../../';
+		$free = disk_free_space($path);
+		$total = disk_total_space($path);
+		$pourcent = $free / $total * 100;
+		if ($pourcent < 10) {
+			log::add('space', 'error', __('Vous n\'avez plus beaucoup d\'espace disque : ', __FILE__) . $pourcent . '%', 'noSpaceLeft');
+		}
+		if (($free / 1024 / 1024) < 100) {
+			log::add('space', 'error', __('Vous n\'avez plus beaucoup d\'espace disque : ', __FILE__) . ($free / 1024 / 1024) . ' Mo', 'noSpaceLeft');
+		}
 	}
 
 /*     * ****************************SQL BUDDY*************************** */
