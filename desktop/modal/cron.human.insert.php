@@ -1,6 +1,6 @@
 <?php
 if (!isConnect()) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
 <div class="form-group mode schedule">
@@ -44,7 +44,7 @@ if (!isConnect()) {
             });
             $('#mod_cron_in_dateScenarioTrigger').on('change', function () {
                 if ($(this).value() != '') {
-                    var date = new Date(Date.parse($(this).value()));
+                    var date = new Date(Date.parse($(this).value().replace(/-/g, "/")));
                     var minute = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
                     var hour = (date.getHours() < 10 ? '0' : '') + date.getHours();
                     var strdate = (date.getDate() < 10 ? '0' : '') + date.getDate();
