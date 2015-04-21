@@ -393,7 +393,6 @@ class jeedom {
 				log::chunk();
 				cron::clean();
 				self::checkSpaceLeft();
-				DB::optimize();
 				network::ngrok_stop();
 				network::ngrok_stop('tcp', 22, 'ssh');
 				if (config::byKey('market::allowDNS') == 1) {
@@ -454,6 +453,7 @@ class jeedom {
 			$c = new Cron\CronExpression('35 00 * * 0', new Cron\FieldFactory);
 			if ($c->isDue()) {
 				cache::clean();
+				DB::optimize();
 			}
 		} catch (Exception $e) {
 			log::add('cache', 'error', 'Clean cache : ' . $e->getMessage());
