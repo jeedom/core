@@ -393,6 +393,7 @@ class jeedom {
 				log::chunk();
 				cron::clean();
 				self::checkSpaceLeft();
+				DB::optimize();
 				network::ngrok_stop();
 				network::ngrok_stop('tcp', 22, 'ssh');
 				if (config::byKey('market::allowDNS') == 1) {
