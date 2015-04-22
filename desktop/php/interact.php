@@ -12,7 +12,7 @@ if (is_array($interactListGroup)) {
 }
 ?>
 
-<div style="position : fixed;height:100%;width:30px;top:90px;left:0px;z-index:998" id="bt_displayInteractList"></div>
+<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" id="bt_displayInteractList"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
 
 <div class="row row-overflow">
     <div class="col-lg-2 col-md-3 col-sm-4" id="div_listInteract" style="z-index:999">

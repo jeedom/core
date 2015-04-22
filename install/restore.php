@@ -76,6 +76,15 @@ try {
 	if (!file_exists($backup)) {
 		throw new Exception('Sauvegarde non trouvée.' . $backup);
 	}
+
+	try {
+		echo __("Mise à plat des droits...", __FILE__);
+		jeedom::cleanFileSytemRight();
+		echo __("OK\n", __FILE__);
+	} catch (Exception $e) {
+		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+	}
+
 	$jeedom_dir = realpath(dirname(__FILE__) . '/../');
 
 	echo "Restauration de Jeedom avec le fichier : " . $backup . "\n";

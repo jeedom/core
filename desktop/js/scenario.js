@@ -62,11 +62,12 @@ $("#div_listScenario").resizable({
   }
 });
 
-if((!isset(userProfils.displayScenarioByDefault) || userProfils.displayScenarioByDefault != 1) && !jQuery.support.touch){
+if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
   $('#div_listScenario').hide();
   $('#bt_displayScenarioList').on('mouseenter',function(){
     var timer = setTimeout(function(){
       $('#div_listScenario').show();
+      $('#bt_displayScenarioList').find('i').hide();
       $('.scenarioListContainer').packery();
     }, 100);
     $(this).data('timerMouseleave', timer)
@@ -75,9 +76,15 @@ if((!isset(userProfils.displayScenarioByDefault) || userProfils.displayScenarioB
   });
 
   $('#div_listScenario').on('mouseleave',function(){
+   var timer = setTimeout(function(){
     $('#div_listScenario').hide();
+    $('#bt_displayScenarioList').find('i').show();
     $('.scenarioListContainer').packery();
-  });
+  }, 300);
+   $(this).data('timerMouseleave', timer);
+ }).on("mouseenter", function(){
+  clearTimeout($(this).data('timerMouseleave'));
+});
 }
 
 setTimeout(function(){

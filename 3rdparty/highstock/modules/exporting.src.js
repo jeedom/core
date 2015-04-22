@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v2.1.4 (2015-03-10)
+ * @license Highstock JS v2.1.5 (2015-04-13)
  * Exporting module
  *
  * (c) 2010-2014 Torstein Honsi
@@ -223,7 +223,7 @@ extend(Chart.prototype, {
 			.replace(/height=([^" ]+)/g, 'height="$1"')
 			.replace(/width=([^" ]+)/g, 'width="$1"')
 			.replace(/hc-svg-href="([^"]+)">/g, 'xlink:href="$1"/>')
-			.replace(/id=([^" >]+)/g, 'id="$1"')
+			.replace(/ id=([^" >]+)/g, 'id="$1"') // #4003
 			.replace(/class=([^" >]+)/g, 'class="$1"')
 			.replace(/ transform /g, ' ')
 			.replace(/:(path|rect)/g, '$1')

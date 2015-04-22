@@ -471,7 +471,7 @@ try {
 if (isConnect()) {
 	?>
 							<footer>
-								<span class="pull-left">Node JS <span class="span_nodeJsState binary red tooltips"></span> - </span>
+								<span class="pull-left" style="margin-left : 20px;">Node JS <span class="span_nodeJsState binary red tooltips"></span> - </span>
 								<span class="pull-left">&copy; <a id="bt_jeedomAbout" class="cursor">Jeedom</a> (v<?php echo jeedom::version();?>
 									<?php
 $nbNeedUpdate = update::nbNeedUpdate();

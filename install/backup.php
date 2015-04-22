@@ -57,6 +57,14 @@ try {
 		throw new Exception(__('Le dossier des sauvegardes n\'est pas accessible en écriture. Vérifiez les droits : ', __FILE__) . $backup_dir);
 	}
 
+	try {
+		echo __("Mise à plat des droits...", __FILE__);
+		jeedom::cleanFileSytemRight();
+		echo __("OK\n", __FILE__);
+	} catch (Exception $e) {
+		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+	}
+
 	$bakcup_name = 'backup-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz';
 
 	echo __('Sauvegarde des fichiers...', __FILE__);

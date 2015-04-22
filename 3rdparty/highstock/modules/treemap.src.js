@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v2.1.4 (2015-03-10)
+ * @license Highstock JS v2.1.5 (2015-04-13)
  *
  * (c) 2014 Highsoft AS
  * Authors: Jon Arild Nygard / Oystein Moseng
@@ -773,6 +773,7 @@
 			this.rootNode = id;
 			this.xAxis.setExtremes(val.x, val.x + val.width, false);
 			this.yAxis.setExtremes(val.y, val.y + val.height, false);
+			this.isDirty = true; // Force redraw
 			this.chart.redraw();
 		},
 		showDrillUpButton: function (name) {
@@ -824,6 +825,7 @@
 			// Get the extremes from the y data
 			Series.prototype.getExtremes.call(this);
 		},
+		getExtremesFromAll: true,
 		bindAxes: function () {
 			var treeAxis = {
 				endOnTick: false,

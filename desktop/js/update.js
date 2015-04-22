@@ -15,26 +15,31 @@
  */
 
 
-printUpdate();
+ printUpdate();
+
+ $('#bt_allChangelog').on('click', function () {
+   $('#md_modal2').dialog({title: "{{Changelog}}"});
+   $("#md_modal2").load('index.php?v=d&modal=market.allChangelog').dialog('open');
+});
 
 $('.bt_updateAll').on('click', function () {
-    var level = $(this).attr('data-level');
-    var mode = $(this).attr('data-mode');
-    bootbox.confirm('{{Etes-vous sur de vouloir faire les mises à jour ?}} ', function (result) {
-        if (result) {
-            $.hideAlert();
-            jeedom.update.doAll({
-                mode: mode,
-                level: level,
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                },
-                success: function () {
-                    getJeedomLog(1, 'update');
-                }
-            });
-        }
-    });
+  var level = $(this).attr('data-level');
+  var mode = $(this).attr('data-mode');
+  bootbox.confirm('{{Etes-vous sur de vouloir faire les mises à jour ?}} ', function (result) {
+    if (result) {
+        $.hideAlert();
+        jeedom.update.doAll({
+            mode: mode,
+            level: level,
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function () {
+                getJeedomLog(1, 'update');
+            }
+        });
+    }
+});
 });
 
 $('#bt_updateSystem').on('click', function () {

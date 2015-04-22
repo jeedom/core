@@ -152,7 +152,15 @@ class market {
 			}
 			return self::construct($market->getResult());
 		} else {
-			log::add('market', 'debug', print_r($market, true));
+			throw new Exception($market->getError(), $market->getErrorCode());
+		}
+	}
+
+	public static function getMultiChangelog($_params) {
+		$market = self::getJsonRpc();
+		if ($market->sendRequest('market::changelog', $_params)) {
+			return $market->getResult();
+		} else {
 			throw new Exception($market->getError(), $market->getErrorCode());
 		}
 	}
@@ -348,7 +356,7 @@ class market {
 		return $jsonrpc;
 	}
 
-	public static function postJsonRpc($_result) {
+	public static function postJsonRpc(&$_result) {
 		if (is_array($_result)) {
 			if (isset($_result['register::datetime'])) {
 				config::save('register::datetime', $_result['register::datetime']);
@@ -403,6 +411,27 @@ class market {
 				if (isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
 					config::save('jeedom::url', $_result['jeedom::url']);
 				}
+			}
+			if (isset($_result['register::datetime'])) {
+				unset($_result['register::datetime']);
+			}
+			if (isset($_result['licence'])) {
+				unset($_result['licence']);
+			}
+			if (isset($_result['register::ngrokAddr'])) {
+				unset($_result['register::ngrokAddr']);
+			}
+			if (isset($_result['register::ngrokPort'])) {
+				unset($_result['register::ngrokPort']);
+			}
+			if (isset($_result['register::ngrokToken'])) {
+				unset($_result['register::ngrokToken']);
+			}
+			if (isset($_result['jeedom::url'])) {
+				unset($_result['jeedom::url']);
+			}
+			if (isset($_result['client::ip'])) {
+				unset($_result['client::ip']);
 			}
 		}
 	}
