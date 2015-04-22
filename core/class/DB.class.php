@@ -108,7 +108,7 @@ class DB {
 	}
 
 	public function optimize() {
-		$tables = self::Prepare("SHOW TABLES", array(), DB::FETCH_TYPE_ALL);
+		$tables = self::Prepare("SELECT TABLE_NAME FROM information_schema.TABLES WHERE Data_Free > 0", array(), DB::FETCH_TYPE_ALL);
 		foreach ($tables as $table) {
 			$table = array_values($table);
 			$table = $table[0];
