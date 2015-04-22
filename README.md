@@ -10,9 +10,7 @@ Website (French):  [https://jeedom.fr/](https://jeedom.fr/)
 ```bash
 sudo apt-get update
 sudo apt-get dist-upgrade
-wget -q https://raw.githubusercontent.com/jeedom/core/stable/install/install.sh
-sudo chmod 777 install.sh
-sudo ./install.sh
+curl -sS https://raw.githubusercontent.com/jeedom/core/stable/install/install.sh | sudo bash
 ```
 
 # French #
@@ -21,7 +19,5 @@ sudo ./install.sh
 ```bash
 sudo apt-get update
 sudo apt-get dist-upgrade
-wget -q https://raw.githubusercontent.com/jeedom/core/stable/install/install.sh
-sudo chmod 777 install.sh
-sudo ./install.sh
+curl -sS https://raw.githubusercontent.com/jeedom/core/stable/install/install.sh | sudo bash
 ```
