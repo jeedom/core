@@ -8,9 +8,12 @@ if (count($changelog) == 0) {
 } else {
 	foreach (update::getAllUpdateChangelog() as $plugin_id => $changes) {
 		echo '<legend>' . $plugin_id . '</legend>';
-		foreach ($changes as $change) {
-			echo '<strong>{{Version}} ' . $change['version'] . ' - ' . $change['date'] . '</strong><br\>';
+		foreach (array_reverse($changes) as $change) {
+			echo '<strong>{{Version}} ' . $change['version'] . ' - ' . $change['date'] . '</strong><br/>';
+			echo '<pre>';
 			echo $change['change'];
+			echo '</pre>';
+			echo '<br/>';
 		}
 	}
 }
