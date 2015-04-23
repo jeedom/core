@@ -74,9 +74,6 @@ if (init('cron_id') != '') {
 						if ($cycleDuration < $cron->getDeamonSleepTime()) {
 							usleep(($cron->getDeamonSleepTime() - $cycleDuration) * 1000000);
 						}
-						if ((strtotime('now') - $datetimeStart) / 60 >= $cron->getTimeout()) {
-							die();
-						}
 					}
 				}
 			} else {
@@ -99,9 +96,6 @@ if (init('cron_id') != '') {
 						$cycleDuration = getmicrotime() - $cyclStartTime;
 						if ($cycleDuration < $cron->getDeamonSleepTime()) {
 							usleep(($cron->getDeamonSleepTime() - $cycleDuration) * 1000000);
-						}
-						if ((strtotime('now') - $datetimeStart) / 60 >= $cron->getTimeout()) {
-							die();
 						}
 					}
 				}
