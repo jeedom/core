@@ -42,6 +42,22 @@ require_once dirname(__FILE__) . "/core.inc.php";
 
 $startTime = getmicrotime();
 
+declare (ticks = 1);
+
+global $SIGKILL;
+$SIGKILL = false;
+
+// gestionnaire de signaux système
+function sig_handler($signo) {
+	global $SIGKILL;
+	$SIGKILL = true;
+}
+
+// Installation des gestionnaires de signaux
+pcntl_signal(SIGTERM, "sig_handler");
+pcntl_signal(SIGHUP, "sig_handler");
+pcntl_signal(SIGUSR1, "sig_handler");
+
 if (init('cron_id') != '') {
 	if (config::byKey('enableCron', 'core', 1, true) == 0) {
 		die(__('Tous les crons sont actuellement désactivés', __FILE__));
@@ -68,11 +84,17 @@ if (init('cron_id') != '') {
 					$class::$function($option);
 				} else {
 					while (true) {
+						if ($SIGKILL) {
+							die();
+						}
 						$cyclStartTime = getmicrotime();
 						$class::$function($option);
 						$cycleDuration = getmicrotime() - $cyclStartTime;
 						if ($cycleDuration < $cron->getDeamonSleepTime()) {
 							usleep(($cron->getDeamonSleepTime() - $cycleDuration) * 1000000);
+						}
+						if ($SIGKILL) {
+							die();
 						}
 					}
 				}
@@ -94,8 +116,14 @@ if (init('cron_id') != '') {
 						$cyclStartTime = getmicrotime();
 						$function($option);
 						$cycleDuration = getmicrotime() - $cyclStartTime;
+						if ($SIGKILL) {
+							die();
+						}
 						if ($cycleDuration < $cron->getDeamonSleepTime()) {
 							usleep(($cron->getDeamonSleepTime() - $cycleDuration) * 1000000);
+						}
+						if ($SIGKILL) {
+							die();
 						}
 					}
 				}
