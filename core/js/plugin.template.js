@@ -77,6 +77,7 @@ if ('function' == typeof (prePrintEqLogic)) {
 }
 
 if (isset($(this).attr('data-eqLogic_type')) && isset($('.' + $(this).attr('data-eqLogic_type')))) {
+    $('.eqLogic').hide();
     $('.' + $(this).attr('data-eqLogic_type')).show();
 } else {
     $('.eqLogic').show();
