@@ -50,6 +50,7 @@ class market {
 	private $private;
 	private $change;
 	private $updateBy;
+	private $docOnly;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -1074,6 +1075,14 @@ class market {
 
 	public function setChange($change) {
 		$this->change = $change;
+	}
+
+	public function getDocOnly() {
+		return $this->docOnly;
+	}
+
+	public function setDocOnly($docOnly) {
+		$this->docOnly = $docOnly;
 	}
 
 	public function getUpdateBy() {
