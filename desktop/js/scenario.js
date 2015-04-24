@@ -59,8 +59,22 @@ $("#div_listScenario").resizable({
   grid: [1, 10000],
   stop: function () {
     $('.scenarioListContainer').packery();
+    var value = {options: {scenarioMenuSize: $("#div_listScenario").width()}};
+    jeedom.user.saveProfils({
+      profils: value,
+      global: false,
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function () {
+      }
+    });
   }
 });
+
+if(!isset(userProfils.scenarioMenuSize) || userProfils.scenarioMenuSize > 0){
+  $("#div_listScenario").width( userProfils.scenarioMenuSize);
+}
 
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
   $('#div_listScenario').hide();

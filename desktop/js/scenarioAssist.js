@@ -25,8 +25,22 @@ $("#div_listScenario").resizable({
     grid: [1, 10000],
     stop: function () {
         $('.scenarioListContainer').packery();
+        var value = {options: {scenarioMenuSize: $("#div_listScenario").width()}};
+        jeedom.user.saveProfils({
+          profils: value,
+          global: false,
+          error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+        }
+    });
     }
 });
+
+if(!isset(userProfils.scenarioMenuSize) || userProfils.scenarioMenuSize > 0){
+  $("#div_listScenario").width( userProfils.scenarioMenuSize);
+}
 
 setTimeout(function(){
   $('.scenarioListContainer').packery();
@@ -40,20 +54,20 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
       $('#div_listScenario').show();
       $('#bt_displayScenarioList').find('i').hide();
       $('.scenarioListContainer').packery();
-    }, 100);
+  }, 100);
     $(this).data('timerMouseleave', timer)
-  }).on("mouseleave", function(){
+}).on("mouseleave", function(){
     clearTimeout($(this).data('timerMouseleave'));
-  });
+});
 
-  $('#div_listScenario').on('mouseleave',function(){
-   var timer = setTimeout(function(){
+$('#div_listScenario').on('mouseleave',function(){
+ var timer = setTimeout(function(){
     $('#div_listScenario').hide();
     $('#bt_displayScenarioList').find('i').show();
     $('.scenarioListContainer').packery();
-  }, 300);
-   $(this).data('timerMouseleave', timer);
- }).on("mouseenter", function(){
+}, 300);
+ $(this).data('timerMouseleave', timer);
+}).on("mouseenter", function(){
   clearTimeout($(this).data('timerMouseleave'));
 });
 }
