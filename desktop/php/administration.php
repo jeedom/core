@@ -260,6 +260,7 @@ echo $CONFIG['db']['password'];
                            <thead>
                                <tr>
                                    <th>{{Equipement}}</th>
+                                   <th>{{IP}}</th>
                                    <th>{{Type}}</th>
                                    <th>{{Etat}}</th>
                                    <th>{{Connection}}</th>

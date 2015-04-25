@@ -384,7 +384,7 @@ class network {
 		foreach ($results as $result) {
 			$info_network = explode(":", $result);
 			if (trim($info_network[0]) != '') {
-				$return[] = array('device' => $info_network[0], 'type' => $info_network[1], 'state' => $info_network[2], 'connection' => $info_network[3]);
+				$return[] = array('device' => $info_network[0], 'type' => $info_network[1], 'state' => $info_network[2], 'connection' => $info_network[3], 'ip' => self::getInterfaceIp($info_network[0]));
 			}
 		}
 		return $return;
@@ -420,6 +420,13 @@ class network {
 				exec('sudo nmcli c delete "' . $result . '"');
 			}
 		}
+	}
+
+	public static function getInterfaceIp($_interface) {
+		$results = trim(shell_exec('sudo ip addr show ' . $_interface . '| grep inet | head -1'));
+		$results = explode(' ', $results);
+		$result = $results[1];
+		return substr($result, 0, strrpos($result, '/'));
 	}
 
 }

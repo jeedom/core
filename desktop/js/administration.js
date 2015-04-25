@@ -406,6 +406,7 @@ function printConnectionState(){
             for(var i in data){
               tr += '<tr>'; 
               tr += '<td>'+data[i].device+'</td>'; 
+               tr += '<td>'+data[i].ip+'</td>'; 
               tr += '<td>'+data[i].type+'</td>'; 
               tr += '<td>'+data[i].state+'</td>'; 
               tr += '<td>'+data[i].connection+'</td>'; 
