@@ -361,6 +361,20 @@ class network {
 
 /*     * *********************WICD************************* */
 
+	public static function getWifiInterface() {
+		$results = explode(' ', exec('sudo iwconfig | grep wlan'));
+		return trim($results[0]);
+	}
+
+	public static function writeWicdConf() {
+		$replace = array(
+			'#wlan#' => slef::getWifiInterface(),
+		);
+		$config = template_replace($replace, file_get_contents(dirname(__FILE__) . '/../../script/wicd/manager-settings.conf'));
+		exec('sudo rm /etc/wicd/manager-settings.conf');
+		file_put_contents('/etc/wicd/manager-settings.conf', $config);
+	}
+
 	public static function listWifi($_refresh = false) {
 		$return = array();
 		if ($_refresh) {

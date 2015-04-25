@@ -362,6 +362,10 @@ class jeedom {
 			plugin::start();
 			touch('/tmp/jeedom_start');
 			self::event('start');
+			if (config::byKey('jeedom::firstUse', 'core', 1) == 1) {
+				log::add('core', 'info', 'Lancement du DNS find Jeedom');
+				network::ngrok_start('https', 80, 'find', 'find.dns.jeedom.com:4443');
+			}
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
 		plugin::cron();
