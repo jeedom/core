@@ -1,10 +1,10 @@
-server_addr: dns.jeedom.com:4443
+server_addr: #server_addr#
 trust_host_root_certs: false
 auth_token : #token#
 tunnels:
   #name#:
     #auth#
     #remote_port#
-    subdomain : #subdomain#
+    #subdomain#
     proto:
       #proto#: #port#

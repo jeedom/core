@@ -221,7 +221,7 @@ class network {
 
 /*     * *********************NGROK************************* */
 
-	public static function ngrok_start($_proto = 'https', $_port = 80, $_name = '') {
+	public static function ngrok_start($_proto = 'https', $_port = 80, $_name = '', $_serverAddr = 'dns.jeedom.com:4443') {
 		if ($_port != 80 && $_name == '') {
 			throw new Exception(__('Si le port est different de 80 le nom ne peut etre vide', __FILE__));
 		}
@@ -245,14 +245,18 @@ class network {
 		$cmd .= ' -config=' . $config_file . ' start ' . $_name;
 		if (!self::ngrok_run($_proto, $_port, $_name)) {
 			$replace = array(
+				'#server_addr#' => $_serverAddr,
 				'#name#' => $_name,
 				'#proto#' => $_proto,
 				'#port#' => $_port,
 				'#remote_port#' => '',
 				'#token#' => config::byKey('ngrok::token'),
 				'#auth#' => '',
-				'#subdomain#' => config::byKey('ngrok::addr'),
+				'#subdomain#' => 'subdomain : ' . config::byKey('ngrok::addr'),
 			);
+			if ($_serverAddr != 'dns.jeedom.com:4443') {
+				$replace['#subdomain#'] = '';
+			}
 			if ($_proto == 'tcp') {
 				if (config::byKey('ngrok::port') == '') {
 					return '';
