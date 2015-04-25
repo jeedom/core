@@ -409,6 +409,17 @@ class network {
 				exec('sudo nmcli d disconnect ' . $connection['device']);
 			}
 		}
+		self::cleanStoreWifiConnection();
+	}
+
+	public static function cleanStoreWifiConnection() {
+		$results = shell_exec('sudo nmcli -t -f NAME c show');
+		$results = explode("\n", $results);
+		foreach ($results as $result) {
+			if (trim($result) != '') {
+				exec('sudo nmcli c delete "' . $result . '"');
+			}
+		}
 	}
 
 }
