@@ -368,7 +368,7 @@ class network {
 
 	public static function writeWicdConf() {
 		$replace = array(
-			'#wlan#' => slef::getWifiInterface(),
+			'#wlan#' => self::getWifiInterface(),
 		);
 		$config = template_replace($replace, file_get_contents(dirname(__FILE__) . '/../../script/wicd/manager-settings.conf'));
 		exec('sudo rm /etc/wicd/manager-settings.conf');
@@ -378,17 +378,18 @@ class network {
 	public static function listWifi($_refresh = false) {
 		$return = array();
 		if ($_refresh) {
-			$results = exec('sudo wicd-cli --wireless --scan --list-networks');
+			$results = shell_exec('sudo wicd-cli --wireless --scan --list-networks');
 		} else {
-			$results = exec('sudo wicd-cli --wireless --list-networks');
+			$results = shell_exec('sudo wicd-cli --wireless --list-networks');
 		}
 		$results = explode("\n", $results);
 		unset($results[0]);
 		foreach ($results as $result) {
-			$info_network = explode("  ", $result);
-			$return[] = array('id' => $info_network[0], 'BSSID' => $info_network[1], 'ESSID' => $info_network[2]);
+			$info_network = explode("\t", $result);
+			$return[] = array('id' => $info_network[0], 'BSSID' => $info_network[1], 'channel' => $info_network[2], 'ESSID' => $info_network[3]);
 		}
 		return $return;
+
 	}
 
 	public static function connectToWired() {
