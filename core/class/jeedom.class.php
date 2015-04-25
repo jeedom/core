@@ -366,6 +366,7 @@ class jeedom {
 				log::add('core', 'info', 'Lancement du DNS find Jeedom');
 				network::ngrok_start('https', 80, 'find', 'find.dns.jeedom.com:4443');
 			}
+			network::connectToWireless();
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
 		plugin::cron();

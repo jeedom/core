@@ -20,6 +20,10 @@ try {
 	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 
+	if (!isConnect('admin')) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__));
+	}
+
 	if (init('action') == 'restartNgrok') {
 		config::save('market::allowDNS', 1);
 		if (network::ngrok_run()) {
@@ -42,6 +46,24 @@ try {
 			network::ngrok_stop('tcp', 22, 'ssh');
 		}
 		ajax::success();
+	}
+
+	if (init('action') == 'listWifi') {
+		ajax::success(network::listWifi(init('rescan')));
+	}
+
+	if (init('action') == 'connectionState') {
+		ajax::success(network::connectionState());
+	}
+
+	if (init('action') == 'connectToWireless') {
+		config::save('network::wifi::enable', 1);
+		ajax::success(network::connectToWireless());
+	}
+
+	if (init('action') == 'disconnectFromWireless') {
+		config::save('network::wifi::enable', 0);
+		ajax::success(network::disconnectFromWireless());
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
