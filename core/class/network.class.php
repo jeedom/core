@@ -387,7 +387,7 @@ class network {
 	bond-primary eth0
 	bond-mode active-backup';
 		$interface .= "\n\n";
-		if (config::byKey('network::fixip::enable') == 1 && filter_var(config::byKey('network::fixip::network'), FILTER_VALIDATE_IP) && filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP) && filter_var(config::byKey('network::fixip::gateway'), FILTER_VALIDATE_IP) && filter_var(config::byKey('network::fixip::netmask'), FILTER_VALIDATE_IP)) {
+		if (false && config::byKey('network::fixip::enable') == 1 && filter_var(config::byKey('network::fixip::network'), FILTER_VALIDATE_IP) && filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP) && filter_var(config::byKey('network::fixip::gateway'), FILTER_VALIDATE_IP) && filter_var(config::byKey('network::fixip::netmask'), FILTER_VALIDATE_IP)) {
 			$interface .= 'auto bond0
 	iface bond0 inet static
 	address ' . config::byKey('internalAddr') . '
