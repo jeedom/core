@@ -1,5 +1,5 @@
 <?php
-echo 'Mise à jour des depot';
+echo 'Mise à jour des depots (peut prendre jusqu\'a 30min)';
 echo "\n";
 shell_exec('sudo apt-get update');
 echo "\nok";
