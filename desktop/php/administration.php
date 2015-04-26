@@ -255,35 +255,39 @@ echo $CONFIG['db']['password'];
             <div class="panel-body">
                 <form class="form-horizontal">
                     <fieldset>
-                    <?php
+                        <?php
 $fp = popen("which nmcli", "r");
 $result = fgets($fp, 255);
 $nmexists = !empty($result);
 pclose($fp);
 if ($nmexists) {
 	?>
-                            <legend>{{Statut}} <a class="btn btn-info btn-xs pull-right" id="bt_refresNetworkState"><i class="fa fa-refresh"></i></a></legend>
-                            <table class="table table-condensed" id="table_networkState">
-                             <thead>
-                                 <tr>
-                                     <th>{{Equipement}}</th>
-                                     <th>{{IP}}</th>
-                                     <th>{{Type}}</th>
-                                     <th>{{Etat}}</th>
-                                     <th>{{Connection}}</th>
-                                 </tr>
-                             </thead>
-                             <tbody>
+                           <legend>{{Statut}}
+                            <a class="btn btn-info btn-xs pull-right" id="bt_refresNetworkState"><i class="fa fa-refresh"></i></a>
+                            <a class="btn btn-success btn-xs pull-right tooltips" id="bt_applyFixIp" title="{{Applique les IPs fixent. Attention ca peut changer l\'ip de Jeedom'}}"><i class="fa fa-check"></i></a>
+                        </legend>
+                        <table class="table table-condensed" id="table_networkState">
+                           <thead>
+                               <tr>
+                                   <th>{{Equipement}}</th>
+                                   <th style="width:200px;">{{IP}}</th>
+                                   <th style="width:200px;">{{Fixe IP}}</th>
+                                   <th>{{Type}}</th>
+                                   <th>{{Etat}}</th>
+                                   <th>{{Connection}}</th>
+                               </tr>
+                           </thead>
+                           <tbody>
 
-                             </tbody>
-                         </table>
-                         <?php
+                           </tbody>
+                       </table>
+                       <?php
 }
 ?>
-                     <div class="row">
-                        <div class="col-xs-6">
-                         <legend>Accès interne</legend>
-                         <?php
+                   <div class="row">
+                    <div class="col-xs-6">
+                       <legend>Accès interne</legend>
+                       <?php
 if (config::byKey('jeeNetwork::mode') == 'slave') {
 	echo '<div class="form-group expertModeVisible">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP Maître}}</label>';
@@ -392,95 +396,95 @@ if (!$nmexists) {
                         </div>
                         <label class="col-xs-3 control-label">{{Mode}}</label>
                         <div class="col-xs-3">
-                         <span id="span_wifiMode"></span>
-                     </div>
-                 </div>
-                 <div class="form-group">
-                     <label class="col-xs-4 control-label">{{Channel}}</label>
-                     <div class="col-xs-2">
-                         <span id="span_wifiChannel"></span>
-                     </div>
-                     <label class="col-xs-3 control-label">{{Sécurité}}</label>
-                     <div class="col-xs-3">
-                         <span id="span_wifiSecurity"></span>
-                     </div>
-                 </div>
-                 <div class="form-group">
+                           <span id="span_wifiMode"></span>
+                       </div>
+                   </div>
+                   <div class="form-group">
+                       <label class="col-xs-4 control-label">{{Channel}}</label>
+                       <div class="col-xs-2">
+                           <span id="span_wifiChannel"></span>
+                       </div>
+                       <label class="col-xs-3 control-label">{{Sécurité}}</label>
+                       <div class="col-xs-3">
+                           <span id="span_wifiSecurity"></span>
+                       </div>
+                   </div>
+                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Clef}}</label>
                     <div class="col-xs-8">
                         <input type="password"  class="configKey form-control" data-l1key="network::wifi::password" />
                     </div>
                 </div>
                 <div class="form-group">
-                 <label class="col-xs-4 control-label">{{Gestion}}</label>
-                 <div class="col-xs-8">
-                   <a class="btn btn-success" id="bt_connectToWifi"><i class='fa fa-play'></i> {{Connexion}}</a>
-                   <a class="btn btn-danger" id="bt_disconnectToWifi"><i class='fa fa-stop'></i> {{Deconnection}}</a>
-               </div>
-           </div>
-           <?php
+                   <label class="col-xs-4 control-label">{{Gestion}}</label>
+                   <div class="col-xs-8">
+                     <a class="btn btn-success" id="bt_connectToWifi"><i class='fa fa-play'></i> {{Connexion}}</a>
+                     <a class="btn btn-danger" id="bt_disconnectToWifi"><i class='fa fa-stop'></i> {{Deconnection}}</a>
+                 </div>
+             </div>
+             <?php
 
 }
 ?>
-   </div>
-   <div class="col-xs-6">
-    <legend>DNS Jeedom</legend>
-    <div class="form-group">
-        <label class="col-xs-4 control-label">{{Utiliser les DNS Jeedom}}</label>
-        <div class="col-xs-8">
-            <input type="checkbox" class="configKey" data-l1key="market::allowDNS" />
-        </div>
-    </div>
-    <div class="alert alert-info">{{Toute modification nécessite de redémarrer le service DNS Jeedom (ligne "Gestion" puis "Redémarrer")}}</div>
-    <div class="alert alert-danger">
+     </div>
+     <div class="col-xs-6">
+        <legend>DNS Jeedom</legend>
         <div class="form-group">
-            <label class="col-xs-4 control-label" title="{{A ne faire que si on vous le demande ou en connaissance de cause}}">{{Rediriger le SSH}}</label>
+            <label class="col-xs-4 control-label">{{Utiliser les DNS Jeedom}}</label>
             <div class="col-xs-8">
-                <input type="checkbox" class="configKey" data-l1key="market::redirectSSH" />
+                <input type="checkbox" class="configKey" data-l1key="market::allowDNS" />
             </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-xs-4 control-label">{{Authentification (optionnelle)}}</label>
-        <div class="col-xs-4">
-            <input  class="configKey form-control" data-l1key="market::userDNS" placeholder="Nom d'utilisateur" />
+        <div class="alert alert-info">{{Toute modification nécessite de redémarrer le service DNS Jeedom (ligne "Gestion" puis "Redémarrer")}}</div>
+        <div class="alert alert-danger">
+            <div class="form-group">
+                <label class="col-xs-4 control-label" title="{{A ne faire que si on vous le demande ou en connaissance de cause}}">{{Rediriger le SSH}}</label>
+                <div class="col-xs-8">
+                    <input type="checkbox" class="configKey" data-l1key="market::redirectSSH" />
+                </div>
+            </div>
         </div>
-        <div class="col-xs-4">
-            <input type="password" class="configKey form-control" data-l1key="market::passwordDNS" placeholder="Mot de passe" />
+        <div class="form-group">
+            <label class="col-xs-4 control-label">{{Authentification (optionnelle)}}</label>
+            <div class="col-xs-4">
+                <input  class="configKey form-control" data-l1key="market::userDNS" placeholder="Nom d'utilisateur" />
+            </div>
+            <div class="col-xs-4">
+                <input type="password" class="configKey form-control" data-l1key="market::passwordDNS" placeholder="Mot de passe" />
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-xs-4 control-label">{{Statut http}}</label>
-        <div class="col-xs-8">
-            <?php
+        <div class="form-group">
+            <label class="col-xs-4 control-label">{{Statut http}}</label>
+            <div class="col-xs-8">
+                <?php
 if (network::ngrok_run()) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
 } else {
 	echo '<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
 }
 ?>
+           </div>
        </div>
-   </div>
-   <div class="form-group">
-    <label class="col-xs-4 control-label">{{Statut SSH}}</label>
-    <div class="col-xs-8">
-        <?php
+       <div class="form-group">
+        <label class="col-xs-4 control-label">{{Statut SSH}}</label>
+        <div class="col-xs-8">
+            <?php
 if (network::ngrok_run('tcp', 22, 'ssh')) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} dns.jeedom.com:' . config::byKey('ngrok::port') . '</span>';
 } else {
 	echo '<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Rediriger le SSH}}">{{Arrêté}}</span>';
 }
 ?>
+       </div>
    </div>
-</div>
-<div class="form-group">
- <label class="col-xs-4 control-label">{{Gestion}}</label>
- <div class="col-xs-8">
-   <a class="btn btn-success" id="bt_restartNgrok"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
-   <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arreter}}</a>
-</div>
+   <div class="form-group">
+       <label class="col-xs-4 control-label">{{Gestion}}</label>
+       <div class="col-xs-8">
+         <a class="btn btn-success" id="bt_restartNgrok"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
+         <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arreter}}</a>
+     </div>
 
-</div>
+ </div>
 </div>
 </div>
 
@@ -582,7 +586,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                 <legend>{{Push}}</legend>
                 <form class="form-horizontal">
                     <fieldset>
-                     <div class="form-group">
+                       <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Url de push globale}}</label>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <input type="text"  class="configKey form-control tooltips" data-l1key="cmdPushUrl" title="{{Mettez ici l'url à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivant : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>

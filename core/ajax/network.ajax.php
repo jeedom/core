@@ -66,6 +66,10 @@ try {
 		ajax::success(network::disconnectFromWireless());
 	}
 
+	if (init('action') == 'setFixIP') {
+		ajax::success(network::setFixIP());
+	}
+
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

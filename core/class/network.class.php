@@ -383,7 +383,7 @@ class network {
 		$results = explode("\n", $results);
 		foreach ($results as $result) {
 			$info_network = explode(":", $result);
-			if (trim($info_network[0]) != '') {
+			if (trim($info_network[0]) != '' && $info_network[0] != 'lo') {
 				$return[] = array('device' => $info_network[0], 'type' => $info_network[1], 'state' => $info_network[2], 'connection' => $info_network[3], 'ip' => self::getInterfaceIp($info_network[0]));
 			}
 		}
@@ -431,6 +431,14 @@ class network {
 			return $ip;
 		}
 		return false;
+	}
+
+	public static function setFixIP() {
+		foreach (self::connectionState() as $connexion) {
+			if (config::byKey('network::fixIp::' . $connexion['device']) == 1 && filter_var(config::byKey('network::selectIp::' . $connexion['device']), FILTER_VALIDATE_IP)) {
+				self::fixInterfaceIP($connexion['device'], config::byKey('network::selectIp::' . $connexion['device']));
+			}
+		}
 	}
 
 	public static function fixInterfaceIP($_interface, $_ip) {

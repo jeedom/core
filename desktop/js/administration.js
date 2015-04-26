@@ -403,16 +403,31 @@ function printConnectionState(){
         },
         success: function (data) {
             var tr = '';
+            var config = {};
             for(var i in data){
               tr += '<tr>'; 
               tr += '<td>'+data[i].device+'</td>'; 
-               tr += '<td>'+data[i].ip+'</td>'; 
+              tr += '<td>'+data[i].ip+'</td>'; 
+              tr += '<td><input type="checkbox" class="configKey" data-l1key="network::fixIp::'+data[i].device+'" />'; 
+              tr += '<input class="form-control configKey pull-right" style="width : 90%" data-l1key="network::selectIp::'+data[i].device+'" value="'+data[i].ip+'" /></td>'; 
               tr += '<td>'+data[i].type+'</td>'; 
               tr += '<td>'+data[i].state+'</td>'; 
               tr += '<td>'+data[i].connection+'</td>'; 
               tr += '</tr>';  
+              config['network::fixIp::'+data[i].device] = '';
+              config['network::selectIp::'+data[i].device] = '';
           }
           $('#table_networkState tbody').empty().append(tr);
+          jeedom.config.load({
+            configuration: config,
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function (data) {
+                $('#config').setValues(data, '.configKey');
+                modifyWithoutSave = false;
+            }
+        });
       }
   });
 }
@@ -502,4 +517,27 @@ $('#bt_refreshWifiList').on('click',function(){
 
 $('#bt_refresNetworkState').on('click',function(){
     printConnectionState();
+});
+
+$('#bt_applyFixIp').on('click',function(){
+  bootbox.confirm('{{Etes-vous sûr de vouloir appliquer les IPs fixe ? Cela peut changer la configuration de votre box. Attention une mauvaise configuration peut vous faire perdre l\'accès à votre box et une réinstallation sera necessaire}}', function (result) {
+    if (result) {
+       jeedom.config.save({
+        configuration: $('#config').getValues('.configKey')[0],
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+          jeedom.network.setFixIP({
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function (data) {
+             printConnectionState();
+         }
+     });
+      }
+  });
+   }
+}); 
 });
