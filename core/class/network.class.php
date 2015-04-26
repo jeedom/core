@@ -407,7 +407,8 @@ class network {
 		}
 		$interface .= "\n\n";
 		if (config::byKey('network::wifi::enable') == 1 && config::byKey('network::wifi::ssid') != '' && config::byKey('network::wifi::password') != '') {
-			$interface .= 'iface wlan0 inet manual
+			$interface .= 'auto wlan0
+	iface wlan0 inet manual
 	wpa-ssid ' . config::byKey('network::wifi::ssid') . '
 	wpa-psk ' . config::byKey('network::wifi::password') . '
 	bond-master bond0
