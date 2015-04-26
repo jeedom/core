@@ -429,6 +429,10 @@ class network {
 		return substr($result, 0, strrpos($result, '/'));
 	}
 
+	public static function fixInterfaceIP($_nterface, $_ip) {
+
+	}
+
 }
 
 ?>
