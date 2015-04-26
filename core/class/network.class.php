@@ -368,8 +368,8 @@ class network {
 		foreach ($results as $result) {
 			if (strpos($result, 'ESSID') !== false) {
 				$essid = trim(str_replace(array('ESSID', ':', '"'), '', $result));
-				if ($essid != '') {
-					$return[] = $essid;
+				if ($essid != '' && !isset($return[$essid])) {
+					$return[$essid] = $essid;
 				}
 			}
 		}
@@ -415,7 +415,7 @@ class network {
 	bond-mode active-backup';
 		}
 		file_put_contents('/tmp/interfaces', $interface);
-		$filepath = '/etc/network/interfaces2';
+		$filepath = '/etc/network/interfaces';
 		exec('sudo rm -rf ' . $filepath . '; sudo mv /tmp/interfaces ' . $filepath . ';sudo chown root:root ' . $filepath . ';sudo chmod 644 ' . $filepath);
 	}
 
