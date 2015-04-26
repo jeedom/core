@@ -429,8 +429,8 @@ class network {
 		return substr($result, 0, strrpos($result, '/'));
 	}
 
-	public static function fixInterfaceIP($_nterface, $_ip) {
-
+	public static function fixInterfaceIP($_interface, $_ip) {
+		exec('sudo ip addr add ' . $_ip . ' dev ' . $_interface);
 	}
 
 }
