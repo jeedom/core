@@ -333,7 +333,7 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
 
             <div class="row">
                 <div class="col-xs-6">
-                <legend>{{Wifi et IP fixe}}</legend>
+                <legend>{{Wifi}}</legend>
                     <div class="form-group">
                         <label class="col-xs-4 control-label">{{Activer le wifi}}</label>
                         <div class="col-xs-8">
