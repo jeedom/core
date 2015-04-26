@@ -355,6 +355,8 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                             <input type="password" class="configKey form-control" data-l1key="network::wifi::password" />
                         </div>
                     </div>
+
+                    <!--
                     <div class="form-group expertModeVisible">
                         <label class="col-xs-4 control-label">{{IP fixe}}</label>
                         <div class="col-xs-8">
@@ -384,12 +386,13 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                         <div class="col-xs-8">
                             <input class="configKey form-control" data-l1key="network::fixip::broadcast" />
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                      <label class="col-xs-4 control-label">{{Gestion}}</label>
                      <div class="col-xs-8">
                        <a class="btn btn-success" id="bt_writeInterfaceFile"><i class='fa fa-pencil'></i> {{Ecrire la configure}}</a>
                    </div>
+
                </div>
            </div>
            <div class="col-xs-6">
