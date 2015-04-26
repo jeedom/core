@@ -49,25 +49,11 @@ try {
 	}
 
 	if (init('action') == 'listWifi') {
-		ajax::success(network::listWifi(init('rescan')));
+		ajax::success(network::listWifi());
 	}
 
-	if (init('action') == 'connectionState') {
-		ajax::success(network::connectionState());
-	}
-
-	if (init('action') == 'connectToWireless') {
-		config::save('network::wifi::enable', 1);
-		ajax::success(network::connectToWireless());
-	}
-
-	if (init('action') == 'disconnectFromWireless') {
-		config::save('network::wifi::enable', 0);
-		ajax::success(network::disconnectFromWireless());
-	}
-
-	if (init('action') == 'setFixIP') {
-		ajax::success(network::setFixIP());
+	if (init('action') == 'writeInterfaceFile') {
+		ajax::success(network::writeInterfaceFile());
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));

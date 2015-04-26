@@ -57,7 +57,7 @@ jeedom.network.stopNgrok = function (_params) {
 
 jeedom.network.listWifi = function (_params) {
     var paramsRequired = [];
-    var paramsSpecifics = {};
+    var paramsSpecifics = {global: _params.global || true};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
@@ -74,7 +74,7 @@ jeedom.network.listWifi = function (_params) {
     $.ajax(paramsAJAX);
 };
 
-jeedom.network.connectionState = function (_params) {
+jeedom.network.writeInterfaceFile = function (_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -87,61 +87,7 @@ jeedom.network.connectionState = function (_params) {
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/network.ajax.php';
     paramsAJAX.data = {
-        action: 'connectionState'
-    };
-    $.ajax(paramsAJAX);
-};
-
-jeedom.network.connectToWireless = function (_params) {
-    var paramsRequired = [];
-    var paramsSpecifics = {};
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
-    }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/network.ajax.php';
-    paramsAJAX.data = {
-        action: 'connectToWireless'
-    };
-    $.ajax(paramsAJAX);
-};
-
-jeedom.network.disconnectFromWireless = function (_params) {
-    var paramsRequired = [];
-    var paramsSpecifics = {};
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
-    }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/network.ajax.php';
-    paramsAJAX.data = {
-        action: 'disconnectFromWireless'
-    };
-    $.ajax(paramsAJAX);
-};
-
-jeedom.network.setFixIP = function (_params) {
-    var paramsRequired = [];
-    var paramsSpecifics = {};
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
-    }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/network.ajax.php';
-    paramsAJAX.data = {
-        action: 'setFixIP'
+        action: 'writeInterfaceFile'
     };
     $.ajax(paramsAJAX);
 };

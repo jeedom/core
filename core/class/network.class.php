@@ -361,65 +361,62 @@ class network {
 
 /*     * *********************WICD************************* */
 
-	public static function listWifi($_refresh = false) {
+	public static function listWifi() {
+		$results = shell_exec('sudo iwlist scan | grep ESSID 2> /dev/null');
+		$results = explode("\n", $results);
 		$return = array();
-		if ($_refresh) {
-			shell_exec('sudo nmcli d wifi rescan');
-		}
-		$results = shell_exec('sudo nmcli -t -f SSID,SIGNAL,CHAN,SECURITY,MODE d wifi list');
-		$results = explode("\n", $results);
 		foreach ($results as $result) {
-			$info_network = explode(":", $result);
-			if (trim($info_network[0]) != '' && trim($info_network[0]) != '--') {
-				$return[] = array('ssid' => $info_network[0], 'signal' => $info_network[1], 'channel' => $info_network[2], 'security' => $info_network[3], 'mode' => $info_network[4]);
+			if (strpos($result, 'ESSID') !== false) {
+				$essid = trim(str_replace(array('ESSID', ':', '"'), '', $result));
+				if ($essid != '') {
+					$return[] = $essid;
+				}
 			}
 		}
 		return $return;
 
 	}
 
-	public static function connectionState() {
-		$results = shell_exec('sudo nmcli -t -f DEVICE,TYPE,STATE,CONNECTION d');
-		$results = explode("\n", $results);
-		foreach ($results as $result) {
-			$info_network = explode(":", $result);
-			if (trim($info_network[0]) != '' && $info_network[0] != 'lo') {
-				$return[] = array('device' => $info_network[0], 'type' => $info_network[1], 'state' => $info_network[2], 'connection' => $info_network[3], 'ip' => self::getInterfaceIp($info_network[0]));
-			}
+	public static function writeInterfaceFile() {
+		$interface = 'auto lo
+	iface lo inet loopback';
+		$interface .= "\n\n";
+		$interface .= 'auto eth0
+	iface eth0 inet manual
+	bond-master bond0
+	bond-primary eth0
+	bond-mode active-backup';
+		$interface .= "\n\n";
+		if (config::byKey('network::fixip::enable') == 1 && filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP) && filter_var(config::byKey('network::fixip::gateway'), FILTER_VALIDATE_IP) && filter_var(config::byKey('network::fixip::netmask'), FILTER_VALIDATE_IP)) {
+			$interface .= 'auto bond0
+	iface bond0 inet static
+	address ' . config::byKey('internalAddr') . '
+	gateway ' . config::byKey('network::fixip::gateway') . '
+	netmask ' . config::byKey('network::fixip::netmask') . '
+	bond-slaves none
+	bond-primary eth0
+	bond-mode active-backup
+	bond-miimon 100';
+		} else {
+			$interface .= 'auto bond0
+	iface bond0 inet dhcp
+	bond-slaves none
+	bond-primary eth0
+	bond-mode active-backup
+	bond-miimon 100';
 		}
-		return $return;
-	}
-
-	public static function connectToWireless() {
-		if (config::byKey('network::wifi::enable') != 1) {
-			return;
+		$interface .= "\n\n";
+		if (config::byKey('network::wifi::enable') == 1 && config::byKey('network::wifi::ssid') != '' && config::byKey('network::wifi::password') != '') {
+			$interface .= 'iface wlan0 inet manual
+	wpa-ssid ' . config::byKey('network::wifi::ssid') . '
+	wpa-psk ' . config::byKey('network::wifi::password') . '
+	bond-master bond0
+	bond-primary eth0
+	bond-mode active-backup';
 		}
-		if (config::byKey('network::wifi::ssid') == '' && config::byKey('network::wifi::password') != '') {
-			return;
-		}
-		self::disconnectFromWireless();
-		$ssid = config::byKey('network::wifi::ssid');
-		$password = config::byKey('network::wifi::password');
-		exec("sudo nmcli d wifi connect $ssid password $password");
-	}
-
-	public static function disconnectFromWireless() {
-		foreach (self::connectionState() as $connection) {
-			if ($connection['type'] == 'wifi' && $connection['state'] == 'connected') {
-				exec('sudo nmcli d disconnect ' . $connection['device']);
-			}
-		}
-		self::cleanStoreWifiConnection();
-	}
-
-	public static function cleanStoreWifiConnection() {
-		$results = shell_exec('sudo nmcli -t -f NAME c show');
-		$results = explode("\n", $results);
-		foreach ($results as $result) {
-			if (trim($result) != '') {
-				exec('sudo nmcli c delete "' . $result . '"');
-			}
-		}
+		file_put_contents('/tmp/interfaces', $interface);
+		$filepath = '/etc/network/interfaces2';
+		exec('sudo rm -rf ' . $filepath . '; sudo mv /tmp/interfaces ' . $filepath . ';sudo chown root:root ' . $filepath . ';sudo chmod 644 ' . $filepath);
 	}
 
 	public static function getInterfaceIp($_interface) {
@@ -431,22 +428,6 @@ class network {
 			return $ip;
 		}
 		return false;
-	}
-
-	public static function setFixIP() {
-		foreach (self::connectionState() as $connexion) {
-			if (config::byKey('network::fixIp::' . $connexion['device']) == 1 && filter_var(config::byKey('network::selectIp::' . $connexion['device']), FILTER_VALIDATE_IP)) {
-				self::fixInterfaceIP($connexion['device'], config::byKey('network::selectIp::' . $connexion['device']));
-			}
-		}
-	}
-
-	public static function fixInterfaceIP($_interface, $_ip) {
-		$ip = self::getInterfaceIp();
-		if ($ip == false) {
-			return;
-		}
-		exec('sudo ip addr del ' . $ip . '/24 dev ' . $_interface . '; sudo ip addr add ' . $_ip . ' dev ' . $_interface);
 	}
 
 }

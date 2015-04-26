@@ -41,7 +41,7 @@ jeedom.config.save = function (_params) {
 
 jeedom.config.load = function (_params) {
     var paramsRequired = ['configuration'];
-    var paramsSpecifics = {};
+    var paramsSpecifics = {global: _params.global || true};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {

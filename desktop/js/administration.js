@@ -15,7 +15,6 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- printConnectionState();
  printWifiList();
 
  $("#bt_genKeyAPI").on('click', function (event) {
@@ -168,7 +167,7 @@
                 type: 'POST',
                 url: 'core/ajax/user.ajax.php',
                 data: {
-                    action: 'testLdapConneciton',
+                    action: 'testLdapConnection',
                 },
                 dataType: 'json',
                 error: function (request, status, error) {
@@ -396,30 +395,23 @@ function saveConvertColor() {
 
 /**************************NETWORK***********************************/
 
-function printConnectionState(){
-    jeedom.network.connectionState({
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (data) {
-            var tr = '';
-            var config = {};
-            for(var i in data){
-              tr += '<tr>'; 
-              tr += '<td>'+data[i].device+'</td>'; 
-              tr += '<td>'+data[i].ip+'</td>'; 
-              tr += '<td><input type="checkbox" class="configKey" data-l1key="network::fixIp::'+data[i].device+'" />'; 
-              tr += '<input class="form-control configKey pull-right" style="width : 90%" data-l1key="network::selectIp::'+data[i].device+'" value="'+data[i].ip+'" /></td>'; 
-              tr += '<td>'+data[i].type+'</td>'; 
-              tr += '<td>'+data[i].state+'</td>'; 
-              tr += '<td>'+data[i].connection+'</td>'; 
-              tr += '</tr>';  
-              config['network::fixIp::'+data[i].device] = '';
-              config['network::selectIp::'+data[i].device] = '';
-          }
-          $('#table_networkState tbody').empty().append(tr);
-          jeedom.config.load({
-            configuration: config,
+function printWifiList(_global){
+ jeedom.network.listWifi({
+    global : _global || false,
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+        var option = '';
+        for(var i in data){
+            option += '<option value="'+data[i]+'">'; 
+            option += data[i]; 
+            option += '</option>';  
+        }
+        $('.configKey[data-l1key="network::wifi::ssid"]').empty().append(option);
+        jeedom.config.load({
+            configuration: {"network::wifi::ssid" : ""},
+            global : false,
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
@@ -428,116 +420,34 @@ function printConnectionState(){
                 modifyWithoutSave = false;
             }
         });
-      }
-  });
-}
-
-function printWifiList(_rescan){
- jeedom.network.listWifi({
-    rescan : _rescan || false,
-    error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-        var option = '';
-        for(var i in data){
-          option += '<option value="'+data[i].ssid+'" data-signal="'+data[i].signal+'" data-channel="'+data[i].channel+'" data-security="'+data[i].security+'" data-mode="'+data[i].mode+'">'; 
-          option += data[i].ssid; 
-          option += '</option>';  
-      }
-      $('.configKey[data-l1key="network::wifi::ssid"]').empty().append(option);
-
-      jeedom.config.load({
-        configuration: {"network::wifi::ssid" : ""},
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (data) {
-            $('#config').setValues(data, '.configKey');
-            modifyWithoutSave = false;
-        }
-    });
-  }
+    }
 });
 }
 
-$('.configKey[data-l1key="network::wifi::ssid"]').on('change',function(){
-    var option = $('.configKey[data-l1key="network::wifi::ssid"] option:selected');
-    $('#span_wifiSignal').empty().append(option.attr('data-signal'));
-    $('#span_wifiChannel').empty().append(option.attr('data-channel'));
-    $('#span_wifiSecurity').empty().append(option.attr('data-security'));
-    $('#span_wifiMode').empty().append(option.attr('data-mode'));
-});
-
-$('#bt_connectToWifi').on('click', function () {
-   $.hideAlert();
-   jeedom.config.save({
-    configuration: $('#config').getValues('.configKey')[0],
-    error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-       jeedom.network.connectToWireless({
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (data) {
-         modifyWithoutSave = false;
-         window.location.href='index.php?v=d&p=administration&panel=config_network';
-     }
- });
-   }
-}); 
-});
-
-$('#bt_disconnectToWifi').on('click', function () {
-   $.hideAlert();
-   jeedom.config.save({
-    configuration: $('#config').getValues('.configKey')[0],
-    error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-       jeedom.network.disconnectFromWireless({
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (data) {
-         modifyWithoutSave = false;
-         window.location.href='index.php?v=d&p=administration&panel=config_network';
-     }
- });
-   }
-}); 
+$('#bt_writeInterfaceFile').on('click', function () {
+    bootbox.confirm('{{Etes-vous sûr de vouloir ecrire la configuration réseaux ? La moindre erreur peut rendre votre box inaccessible et vous obligera à une reinstallation. Suite à ce changement un redemarrage est necessaire.}}', function (result) {
+        if (result) {
+           $.hideAlert();
+           jeedom.config.save({
+            configuration: $('#config').getValues('.configKey')[0],
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function () {
+               jeedom.network.writeInterfaceFile({
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                 modifyWithoutSave = false;
+             }
+         });
+           }
+       }); 
+       }
+   });
 });
 
 $('#bt_refreshWifiList').on('click',function(){
     printWifiList(true);
-});
-
-$('#bt_refresNetworkState').on('click',function(){
-    printConnectionState();
-});
-
-$('#bt_applyFixIp').on('click',function(){
-  bootbox.confirm('{{Etes-vous sûr de vouloir appliquer les IPs fixe ? Cela peut changer la configuration de votre box. Attention une mauvaise configuration peut vous faire perdre l\'accès à votre box et une réinstallation sera necessaire}}', function (result) {
-    if (result) {
-       jeedom.config.save({
-        configuration: $('#config').getValues('.configKey')[0],
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-          jeedom.network.setFixIP({
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (data) {
-             printConnectionState();
-         }
-     });
-      }
-  });
-   }
-}); 
 });

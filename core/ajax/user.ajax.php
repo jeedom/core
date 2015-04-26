@@ -166,7 +166,7 @@ try {
 		ajax::success(utils::o2a($_SESSION['user']));
 	}
 
-	if (init('action') == 'testLdapConneciton') {
+	if (init('action') == 'testLdapConnection') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
