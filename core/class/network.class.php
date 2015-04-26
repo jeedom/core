@@ -387,12 +387,14 @@ class network {
 	bond-primary eth0
 	bond-mode active-backup';
 		$interface .= "\n\n";
-		if (config::byKey('network::fixip::enable') == 1 && filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP) && filter_var(config::byKey('network::fixip::gateway'), FILTER_VALIDATE_IP) && filter_var(config::byKey('network::fixip::netmask'), FILTER_VALIDATE_IP)) {
+		if (config::byKey('network::fixip::enable') == 1 && filter_var(config::byKey('network::fixip::network'), FILTER_VALIDATE_IP) && filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP) && filter_var(config::byKey('network::fixip::gateway'), FILTER_VALIDATE_IP) && filter_var(config::byKey('network::fixip::netmask'), FILTER_VALIDATE_IP)) {
 			$interface .= 'auto bond0
 	iface bond0 inet static
 	address ' . config::byKey('internalAddr') . '
 	gateway ' . config::byKey('network::fixip::gateway') . '
 	netmask ' . config::byKey('network::fixip::netmask') . '
+	network  ' . config::byKey('network::fixip::network ') . '
+	broadcast  ' . config::byKey('network::fixip::broadcast ') . '
 	bond-slaves none
 	bond-primary eth0
 	bond-mode active-backup
@@ -416,6 +418,7 @@ class network {
 	bond-primary eth0
 	bond-mode active-backup';
 		}
+		$interface .= "\n";
 		file_put_contents('/tmp/interfaces', $interface);
 		$filepath = '/etc/network/interfaces';
 		exec('sudo rm -rf ' . $filepath . '; sudo mv /tmp/interfaces ' . $filepath . ';sudo chown root:root ' . $filepath . ';sudo chmod 644 ' . $filepath);

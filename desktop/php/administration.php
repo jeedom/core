@@ -243,7 +243,7 @@ echo $CONFIG['db']['password'];
         </div>
     </div>
 
-    <div class="panel panel-default expertModeVisible">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_network">
@@ -284,7 +284,7 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                             <input type="text"  class="configKey form-control" data-l1key="internalAddr" />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group expertModeVisible">
                         <label class="col-xs-4 control-label">{{Complément (exemple : /jeedom)}}</label>
                         <div class="col-xs-8">
                             <input type="text"  class="configKey form-control" data-l1key="internalComplement" />
@@ -315,7 +315,7 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                             <input type="text"  class="configKey form-control" data-l1key="externalAddr" />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group expertModeVisible">
                         <label class="col-xs-4 control-label">{{Complément (exemple : /jeedom)}}</label>
                         <div class="col-xs-8">
                             <input type="text"  class="configKey form-control" data-l1key="externalComplement" />
@@ -355,22 +355,34 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                             <input type="password" class="configKey form-control" data-l1key="network::wifi::password" />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group expertModeVisible">
                         <label class="col-xs-4 control-label">{{IP fixe}}</label>
                         <div class="col-xs-8">
                             <input type="checkbox" class="configKey" data-l1key="network::fixip::enable" />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group expertModeVisible">
                         <label class="col-xs-4 control-label">{{Netmask}}</label>
                         <div class="col-xs-8">
                             <input class="configKey form-control" data-l1key="network::fixip::gateway" />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group expertModeVisible">
                         <label class="col-xs-4 control-label">{{Gateway}}</label>
                         <div class="col-xs-8">
                             <input class="configKey form-control" data-l1key="network::fixip::netmask" />
+                        </div>
+                    </div>
+                      <div class="form-group expertModeVisible">
+                        <label class="col-xs-4 control-label">{{Network}}</label>
+                        <div class="col-xs-8">
+                            <input class="configKey form-control" data-l1key="network::fixip::network" />
+                        </div>
+                    </div>
+                     <div class="form-group expertModeVisible">
+                        <label class="col-xs-4 control-label">{{Boradcast}}</label>
+                        <div class="col-xs-8">
+                            <input class="configKey form-control" data-l1key="network::fixip::broadcast" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -389,7 +401,7 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                 </div>
             </div>
             <div class="alert alert-info">{{Toute modification nécessite de redémarrer le service DNS Jeedom (ligne "Gestion" puis "Redémarrer")}}</div>
-            <div class="alert alert-danger">
+            <div class="alert alert-danger expertModeVisible">
                 <div class="form-group">
                     <label class="col-xs-4 control-label" title="{{A ne faire que si on vous le demande ou en connaissance de cause}}">{{Rediriger le SSH}}</label>
                     <div class="col-xs-8">
@@ -397,7 +409,7 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group expertModeVisible">
                 <label class="col-xs-4 control-label">{{Authentification (optionnelle)}}</label>
                 <div class="col-xs-4">
                     <input  class="configKey form-control" data-l1key="market::userDNS" placeholder="Nom d'utilisateur" />
