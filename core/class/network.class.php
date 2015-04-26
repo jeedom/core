@@ -426,11 +426,19 @@ class network {
 		$results = trim(shell_exec('sudo ip addr show ' . $_interface . '| grep inet | head -1'));
 		$results = explode(' ', $results);
 		$result = $results[1];
-		return substr($result, 0, strrpos($result, '/'));
+		$ip = substr($result, 0, strrpos($result, '/'));
+		if (filter_var($ip, FILTER_VALIDATE_IP)) {
+			return $ip;
+		}
+		return false;
 	}
 
 	public static function fixInterfaceIP($_interface, $_ip) {
-		exec('sudo ip addr add ' . $_ip . ' dev ' . $_interface);
+		$ip = self::getInterfaceIp();
+		if ($ip == false) {
+			return;
+		}
+		exec('sudo ip addr del ' . $ip . '/24 dev ' . $_interface . '; sudo ip addr add ' . $_ip . ' dev ' . $_interface);
 	}
 
 }
