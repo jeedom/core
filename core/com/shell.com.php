@@ -20,33 +20,40 @@
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class com_shell {
-    /*     * ***********************Attributs************************* */
+	/*     * ***********************Attributs************************* */
 
-    private $cmd;
+	private $cmd;
 
-    /*     * ********************Functions static********************* */
+	/*     * ********************Functions static********************* */
 
-    function __construct($_cmd) {
-        $this->cmd = $_cmd;
-    }
+	function __construct($_cmd) {
+		$this->cmd = $_cmd;
+	}
 
-    /*     * ************* Functions ************************************ */
+	/*     * ************* Functions ************************************ */
 
-    function exec() {
-        $output = array();
-        $retval = 0;
-        $return = exec($this->cmd, $output, $retval);
-        if ($retval != 0) {
-            throw new Exception('Error on shell exec, return value : ' . $retval . '. Details : ' . $return);
-        }
-        return $return;
-    }
+	function exec() {
+		$output = array();
+		$retval = 0;
+		$return = exec($this->cmd, $output, $retval);
+		if ($retval != 0) {
+			throw new Exception('Error on shell exec, return value : ' . $retval . '. Details : ' . $return);
+		}
+		return $return;
+	}
 
-    /*     * **********************Getteur Setteur*************************** */
+	function commandExist($_cmd) {
+		$fp = popen("which " . $_cmd, "r");
+		$exists = !empty(fgets($fp, 255));
+		pclose($fp);
+		return $exists;
+	}
 
-    public function getCmd() {
-        return $this->cmd;
-    }
+	/*     * **********************Getteur Setteur*************************** */
+
+	public function getCmd() {
+		return $this->cmd;
+	}
 
 }
 
