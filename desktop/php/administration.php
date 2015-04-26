@@ -364,13 +364,13 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                     <div class="form-group expertModeVisible">
                         <label class="col-xs-4 control-label">{{Netmask}}</label>
                         <div class="col-xs-8">
-                            <input class="configKey form-control" data-l1key="network::fixip::gateway" />
+                            <input class="configKey form-control" data-l1key="network::fixip::netmask" />
                         </div>
                     </div>
                     <div class="form-group expertModeVisible">
                         <label class="col-xs-4 control-label">{{Gateway}}</label>
                         <div class="col-xs-8">
-                            <input class="configKey form-control" data-l1key="network::fixip::netmask" />
+                            <input class="configKey form-control" data-l1key="network::fixip::gateway" />
                         </div>
                     </div>
                       <div class="form-group expertModeVisible">
@@ -380,7 +380,7 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                         </div>
                     </div>
                      <div class="form-group expertModeVisible">
-                        <label class="col-xs-4 control-label">{{Boradcast}}</label>
+                        <label class="col-xs-4 control-label">{{Braadcast}}</label>
                         <div class="col-xs-8">
                             <input class="configKey form-control" data-l1key="network::fixip::broadcast" />
                         </div>
