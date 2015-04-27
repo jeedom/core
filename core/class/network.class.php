@@ -477,8 +477,12 @@ class network {
 			$return[$route['iface']] = array('destination' => $route['destination'], 'gateway' => $route['gateway'], 'iface' => $route['iface']);
 			$output = array();
 			$return_val = -1;
-			exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
-			$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
+			if ($route['gateway'] != '0.0.0.0' && $route['gateway'] != '127.0.0.1') {
+				exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
+				$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
+			} else {
+				$return[$route['iface']]['ping'] = 'nok';
+			}
 		}
 		return $return;
 	}
