@@ -417,10 +417,12 @@ class network {
 	bond-mode active-backup
 	bond-miimon 100';
 		}
-
 		$interface .= "\n";
 		file_put_contents('/tmp/interfaces', $interface);
 		$filepath = '/etc/network/interfaces';
+		if (!file_exists($filepath . '.save')) {
+			exec('sudo cp '$filepath.' '.$filepath . '.save');
+		}
 		exec('sudo rm -rf ' . $filepath . '; sudo mv /tmp/interfaces ' . $filepath . ';sudo chown root:root ' . $filepath . ';sudo chmod 644 ' . $filepath);
 	}
 
@@ -489,9 +491,17 @@ class network {
 					if (config::byKey('network::lastNoGw', 'core', -1) != -1) {
 						config::save('network::lastNoGw', -1);
 					}
+					if (config::byKey('network::failedNumber', 'core', 0) != 0) {
+						config::save('network::failedNumber', 0);
+					}
 					return;
 				}
 			}
+		}
+		$filepath = '/etc/network/interfaces';
+		if(config::byKey('network::failedNumber', 'core', 0) > 3 && file_exists($filepath . '.save')){
+			exec('sudo cp '$filepath.'.save '.$filepath);
+			jeedom::rebootSystem();
 		}
 		$lastNoOk = config::byKey('network::lastNoGw', 'core', -1);
 		if ($lastNoOk < 0) {
@@ -505,6 +515,7 @@ class network {
 			log::add('network', 'error', __('Aucune gateway trouvée, la configuration IP fixe est surement invalide. Désactivation de celle-ci et redemarrage', __FILE__));
 			config::save('network::fixip::enable', 0);
 			config::save('network::lastNoGw', -1);
+			config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
 			self::writeInterfaceFile();
 			jeedom::rebootSystem();
 			return;
@@ -515,10 +526,12 @@ class network {
 			exec('sudo ifdown wlan0');
 			sleep(5);
 			exec('sudo ifup --force wlan0');
+			config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
 			return;
 		}
 		log::add('network', 'error', __('Aucune gateway trouvée, redemarrage de l\'interface filaire', __FILE__));
 		config::save('network::lastNoGw', -1);
+		config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
 		//exec('sudo ifdown eth0');
 		sleep(5);
 		//exec('sudo ifup --force eth0');
