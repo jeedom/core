@@ -387,6 +387,18 @@ class network {
 	bond-primary eth0
 	bond-mode active-backup';
 		$interface .= "\n\n";
+
+		if (config::byKey('network::wifi::enable') == 1 && config::byKey('network::wifi::ssid') != '' && config::byKey('network::wifi::password') != '') {
+			$interface .= 'auto wlan0
+	iface wlan0 inet manual
+	allow-hotplug wlan0
+	wpa-ssid ' . config::byKey('network::wifi::ssid') . '
+	wpa-psk ' . config::byKey('network::wifi::password') . '
+	bond-master bond0
+	bond-primary eth0
+	bond-mode active-backup';
+		}
+		$interface .= "\n\n";
 		if (false && config::byKey('network::fixip::enable') == 1 && filter_var(config::byKey('network::fixip::network'), FILTER_VALIDATE_IP) && filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP) && filter_var(config::byKey('network::fixip::gateway'), FILTER_VALIDATE_IP) && filter_var(config::byKey('network::fixip::netmask'), FILTER_VALIDATE_IP)) {
 			$interface .= 'auto bond0
 	iface bond0 inet static
@@ -406,17 +418,6 @@ class network {
 	bond-primary eth0
 	bond-mode active-backup
 	bond-miimon 100';
-		}
-		$interface .= "\n\n";
-		if (config::byKey('network::wifi::enable') == 1 && config::byKey('network::wifi::ssid') != '' && config::byKey('network::wifi::password') != '') {
-			$interface .= 'auto wlan0
-	iface wlan0 inet manual
-	allow-hotplug wlan0
-	wpa-ssid ' . config::byKey('network::wifi::ssid') . '
-	wpa-psk ' . config::byKey('network::wifi::password') . '
-	bond-master bond0
-	bond-primary eth0
-	bond-mode active-backup';
 		}
 		$interface .= "\n";
 		file_put_contents('/tmp/interfaces', $interface);

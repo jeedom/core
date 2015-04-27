@@ -16,7 +16,7 @@ try {
 }
 if (is_object($market)) {
 	if ($market->getApi_author() == '') {
-		throw new Exception('{{Vous n\'etes pas l\'autheur du plugin}}');
+		throw new Exception('{{Vous n\'etes pas l\'auteur du plugin}}');
 	}
 }
 
