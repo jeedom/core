@@ -489,7 +489,7 @@ class network {
 
 	public static function cron() {
 		$gws = self::checkGw();
-		if (count($gws)) {
+		if (count($gws) != 0) {
 			foreach ($gws as $gw) {
 				if ($gw['ping'] == 'ok') {
 					if (config::byKey('network::lastNoGw', 'core', -1) != -1) {
