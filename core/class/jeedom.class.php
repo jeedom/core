@@ -361,6 +361,7 @@ class jeedom {
 			jeedom::start();
 			plugin::start();
 			touch('/tmp/jeedom_start');
+			config::save('network::lastNoGw', -1);
 			self::event('start');
 			if (config::byKey('jeedom::firstUse', 'core', 1) == 1) {
 				log::add('core', 'info', 'Lancement du DNS find Jeedom');
@@ -461,6 +462,11 @@ class jeedom {
 			}
 		} catch (Exception $e) {
 			log::add('cache', 'error', 'Clean cache : ' . $e->getMessage());
+		}
+		try {
+			network::cron();
+		} catch (Exception $e) {
+			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
 		}
 
 	}
