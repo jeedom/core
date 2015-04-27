@@ -503,9 +503,9 @@ class network {
 			}
 		}
 		$filepath = '/etc/network/interfaces';
-		if (config::byKey('network::failedNumber', 'core', 0) > 3 && file_exists($filepath . '.save')) {
-			exec('sudo cp ' . $filepath . '.save ' . $filepath);
-			jeedom::rebootSystem();
+		if (config::byKey('network::failedNumber', 'core', 0) == 3 && file_exists($filepath . '.save')) {
+			//exec('sudo cp ' . $filepath . '.save ' . $filepath);
+			//jeedom::rebootSystem();
 		}
 		$lastNoOk = config::byKey('network::lastNoGw', 'core', -1);
 		if ($lastNoOk < 0) {
