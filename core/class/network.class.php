@@ -391,7 +391,6 @@ class network {
 		if (config::byKey('network::wifi::enable') == 1 && config::byKey('network::wifi::ssid') != '' && config::byKey('network::wifi::password') != '') {
 			$interface .= 'auto wlan0
 	iface wlan0 inet manual
-	allow-hotplug wlan0
 	wpa-ssid ' . config::byKey('network::wifi::ssid') . '
 	wpa-psk ' . config::byKey('network::wifi::password') . '
 	bond-master bond0
@@ -400,20 +399,12 @@ class network {
 		}
 		$interface .= "\n\n";
 
-		if (false && config::byKey('network::fixip::enable') == 1 && config::byKey('internalAddr') != '' && filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP) && config::byKey('network::fixip::gateway') != '' && filter_var(config::byKey('network::fixip::gateway'), FILTER_VALIDATE_IP) && config::byKey('network::fixip::netmask') != '' && filter_var(config::byKey('network::fixip::netmask'), FILTER_VALIDATE_IP)) {
+		if (config::byKey('network::fixip::enable') == 1 && config::byKey('internalAddr') != '' && filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP) && config::byKey('network::fixip::gateway') != '' && filter_var(config::byKey('network::fixip::gateway'), FILTER_VALIDATE_IP) && config::byKey('network::fixip::netmask') != '' && filter_var(config::byKey('network::fixip::netmask'), FILTER_VALIDATE_IP)) {
 			$interface .= 'auto bond0
 	iface bond0 inet static
 	address ' . config::byKey('internalAddr') . '
 	gateway ' . config::byKey('network::fixip::gateway') . '
 	netmask ' . config::byKey('network::fixip::netmask');
-			if (filter_var(config::byKey('network::fixip::network'), FILTER_VALIDATE_IP)) {
-				$interface .= "\n";
-				$interface .= 'network  ' . config::byKey('network::fixip::network ');
-			}
-			if (filter_var(config::byKey('network::fixip::broadcast'), FILTER_VALIDATE_IP)) {
-				$interface .= "\n";
-				$interface .= 'broadcast  ' . config::byKey('network::fixip::broadcast ');
-			}
 			$interface .= 'bond-slaves none
 	bond-primary eth0
 	bond-mode active-backup
