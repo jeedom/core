@@ -421,7 +421,7 @@ class network {
 		file_put_contents('/tmp/interfaces', $interface);
 		$filepath = '/etc/network/interfaces';
 		if (!file_exists($filepath . '.save')) {
-			exec('sudo cp '$filepath.' '.$filepath . '.save');
+			exec('sudo cp '.$filepath.' '.$filepath . '.save');
 		}
 		exec('sudo rm -rf ' . $filepath . '; sudo mv /tmp/interfaces ' . $filepath . ';sudo chown root:root ' . $filepath . ';sudo chmod 644 ' . $filepath);
 	}
