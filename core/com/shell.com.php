@@ -44,7 +44,8 @@ class com_shell {
 
 	function commandExist($_cmd) {
 		$fp = popen("which " . $_cmd, "r");
-		$exists = !empty(fgets($fp, 255));
+		$value = fgets($fp, 255);
+		$exists = !empty($value);
 		pclose($fp);
 		return $exists;
 	}
