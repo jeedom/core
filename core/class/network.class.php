@@ -489,19 +489,21 @@ class network {
 
 	public static function cron() {
 		$gws = self::checkGw();
-		if (count($gws)) {
-			foreach ($gws as $gw) {
-				if ($gw['ping'] == 'ok') {
-					if (config::byKey('network::lastNoGw', 'core', -1) != -1) {
-						config::save('network::lastNoGw', -1);
-					}
-					if (config::byKey('network::failedNumber', 'core', 0) != 0) {
-						config::save('network::failedNumber', 0);
-					}
-					return;
+		if (count($gws) < 1) {
+			return;
+		}
+		foreach ($gws as $gw) {
+			if ($gw['ping'] == 'ok') {
+				if (config::byKey('network::lastNoGw', 'core', -1) != -1) {
+					config::save('network::lastNoGw', -1);
 				}
+				if (config::byKey('network::failedNumber', 'core', 0) != 0) {
+					config::save('network::failedNumber', 0);
+				}
+				return;
 			}
 		}
+
 		$filepath = '/etc/network/interfaces';
 		if (config::byKey('network::failedNumber', 'core', 0) == 3 && file_exists($filepath . '.save')) {
 			//exec('sudo cp ' . $filepath . '.save ' . $filepath);
