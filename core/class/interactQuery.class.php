@@ -196,7 +196,7 @@ class interactQuery {
 		if (is_object($interactQuery)) {
 			$reply = $interactQuery->executeAndReply($_parameters);
 			if (trim($reply) == '') {
-				$reply = sefl::replyOk();
+				//$reply = sefl::replyOk();
 			}
 		}
 		if (trim($reply) == '' && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
