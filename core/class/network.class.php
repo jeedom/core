@@ -404,8 +404,8 @@ class network {
 	iface bond0 inet static
 	address ' . config::byKey('internalAddr') . '
 	gateway ' . config::byKey('network::fixip::gateway') . '
-	netmask ' . config::byKey('network::fixip::netmask');
-			$interface .= 'bond-slaves none
+	netmask ' . config::byKey('network::fixip::netmask') . '
+    bond-slaves none
 	bond-primary eth0
 	bond-mode active-backup
 	bond-miimon 100';
