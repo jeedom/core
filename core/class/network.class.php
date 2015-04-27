@@ -399,15 +399,21 @@ class network {
 	bond-mode active-backup';
 		}
 		$interface .= "\n\n";
-		if (false && config::byKey('network::fixip::enable') == 1 && filter_var(config::byKey('network::fixip::network'), FILTER_VALIDATE_IP) && filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP) && filter_var(config::byKey('network::fixip::gateway'), FILTER_VALIDATE_IP) && filter_var(config::byKey('network::fixip::netmask'), FILTER_VALIDATE_IP)) {
+		if (false && config::byKey('network::fixip::enable') == 1 && config::byKey('internalAddr') != '' && filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP) && config::byKey('network::fixip::gateway') != '' && filter_var(config::byKey('network::fixip::gateway'), FILTER_VALIDATE_IP) && config::byKey('network::fixip::netmask') != '' && filter_var(config::byKey('network::fixip::netmask'), FILTER_VALIDATE_IP)) {
 			$interface .= 'auto bond0
 	iface bond0 inet static
 	address ' . config::byKey('internalAddr') . '
 	gateway ' . config::byKey('network::fixip::gateway') . '
-	netmask ' . config::byKey('network::fixip::netmask') . '
-	network  ' . config::byKey('network::fixip::network ') . '
-	broadcast  ' . config::byKey('network::fixip::broadcast ') . '
-	bond-slaves none
+	netmask ' . config::byKey('network::fixip::netmask');
+			if (filter_var(config::byKey('network::fixip::network'), FILTER_VALIDATE_IP)) {
+				$interface .= "\n";
+				$interface .= 'network  ' . config::byKey('network::fixip::network ');
+			}
+			if (filter_var(config::byKey('network::fixip::broadcast'), FILTER_VALIDATE_IP)) {
+				$interface .= "\n";
+				$interface .= 'broadcast  ' . config::byKey('network::fixip::broadcast ');
+			}
+			$interface .= 'bond-slaves none
 	bond-primary eth0
 	bond-mode active-backup
 	bond-miimon 100';
@@ -434,6 +440,95 @@ class network {
 			return $ip;
 		}
 		return false;
+	}
+
+	public static function getRoute() {
+		$return = array();
+		$results = trim(shell_exec('sudo route -n'));
+		$results = explode("\n", $results);
+		unset($results[0]);
+		unset($results[1]);
+		foreach ($results as $result) {
+			$info = explode(' ', $result);
+			$destination = null;
+			$gw = null;
+			$iface = $info[count($info) - 1];
+			for ($i = 0; $i < count($info); $i++) {
+				if ($info[$i] != '' && filter_var($info[$i], FILTER_VALIDATE_IP)) {
+					if ($destination == null) {
+						$destination = $info[$i];
+					} else if ($gw == null) {
+						$gw = $info[$i];
+					}
+				}
+			}
+			if (isset($return[$iface])) {
+				if ($destination != '0.0.0.0') {
+					$return[$iface]['destination'] = $destination;
+				}
+				if ($gw != '0.0.0.0') {
+					$return[$iface]['gateway'] = $gw;
+				}
+			} else {
+				$return[$iface] = array('destination' => $destination, 'gateway' => $gw, 'iface' => $iface);
+			}
+		}
+		return $return;
+	}
+
+	public static function checkGw() {
+		$return = array();
+		foreach (self::getRoute() as $route) {
+			$return[$route['iface']] = array('destination' => $route['destination'], 'gateway' => $route['gateway'], 'iface' => $route['iface']);
+			$output = array();
+			$return_val = -1;
+			exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
+			$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
+		}
+		return $return;
+	}
+
+	public static function cron() {
+		$gws = self::checkGw();
+		if (count($gws)) {
+			foreach ($gws as $gw) {
+				if ($gw['ping'] == 'ok') {
+					if (config::byKey('network::lastNoGw', 'core', -1) != -1) {
+						config::save('network::lastNoGw', -1);
+					}
+					return;
+				}
+			}
+		}
+		$lastNoOk = config::byKey('network::lastNoGw', 'core', -1);
+		if ($lastNoOk < 0) {
+			config::save('network::lastNoGw', strtotime('now'));
+			return;
+		}
+		if ((strtotime('now') - $lastNoOk) < 300) {
+			return;
+		}
+		if (config::byKey('network::fixip::enable') == 1) {
+			log::add('network', 'error', __('Aucune gateway trouvée, la configuration IP fixe est surement invalide. Désactivation de celle-ci et redemarrage', __FILE__));
+			config::save('network::fixip::enable', 0);
+			config::save('network::lastNoGw', -1);
+			self::writeInterfaceFile();
+			jeedom::rebootSystem();
+			return;
+		}
+		if (config::byKey('network::wifi::enable') == 1 && config::byKey('network::wifi::ssid') != '' && config::byKey('network::wifi::password') != '') {
+			log::add('network', 'error', __('Aucune gateway trouvée, redemarrage de l\'interface wifi', __FILE__));
+			config::save('network::lastNoGw', -1);
+			exec('sudo ifdown wlan0');
+			sleep(5);
+			exec('sudo ifup --force wlan0');
+			return;
+		}
+		log::add('network', 'error', __('Aucune gateway trouvée, redemarrage de l\'interface filaire', __FILE__));
+		config::save('network::lastNoGw', -1);
+		//exec('sudo ifdown eth0');
+		sleep(5);
+		//exec('sudo ifup --force eth0');
 	}
 
 }
