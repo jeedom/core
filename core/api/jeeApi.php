@@ -490,7 +490,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 					'jeedom::url' => config::byKey('jeedom::url'),
 					'ngrok::port' => config::byKey('ngrok::port'),
 				);
-				if (filter_var(network::getNetworkAccess('external', 'ip'), FILTER_VALIDATE_IP) || network::getNetworkAccess('external', 'ip') == '') {
+				if (!filter_var(network::getNetworkAccess('external', 'ip'), FILTER_VALIDATE_IP) && network::getNetworkAccess('external', 'ip') == '') {
 					$return['jeedom::url'] = network::getNetworkAccess('internal');
 				}
 				foreach (plugin::listPlugin(true) as $plugin) {
