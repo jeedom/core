@@ -6,10 +6,12 @@ $scenario = scenario::byId(init('scenario_id'));
 if (!is_object($scenario)) {
 	throw new Exception(__('Aucun scénario correspondant à : ', __FILE__) . init('scenario_id'));
 }
+sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
 ?>
 <div style="display: none;width : 100%" id="div_alertScenarioLog"></div>
 <a class="btn btn-danger pull-right" id="bt_scenarioLogEmpty"><i class="fa fa-trash"></i> {{Vider les logs}}</a>
 <a class="btn btn-success pull-right" id="bt_scenarioLogDownload"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
+<a class="btn btn-primary pull-right" id="bt_scenarioLogRefresh"><i class="fa fa-refresh"></i> {{Rafraichir}}</a>
 <br/><br/>
 <?php
 if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . init('scenario_id') . '.log')) {
@@ -20,16 +22,20 @@ if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . init('sc
 ?>
 <script>
     $('#bt_scenarioLogEmpty').on('click', function () {
-        jeedom.scenario.emptyLog({
-            id: <?php echo init('scenario_id')?>,
-            error: function (error) {
-                $('#div_alertScenarioLog').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-                $('#div_alertScenarioLog').showAlert({message: '{{Log vidé avec succès}}', level: 'success'});
-                $('#pre_logScenarioDisplay').empty();
-            }
-        });
+     jeedom.scenario.emptyLog({
+        id: <?php echo init('scenario_id')?>,
+        error: function (error) {
+            $('#div_alertScenarioLog').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            $('#div_alertScenarioLog').showAlert({message: '{{Log vidé avec succès}}', level: 'success'});
+            $('#pre_logScenarioDisplay').empty();
+        }
+    });
+ });
+
+    $('#bt_scenarioLogRefresh').on('click',function(){
+        $('#md_modal').load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + scenarioLog_scenario_id).dialog('open');
     });
 
 
