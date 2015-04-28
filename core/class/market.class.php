@@ -42,6 +42,7 @@ class market {
 	private $buyer;
 	private $purchase = 0;
 	private $cost = 0;
+	private $costHt = 0;
 	private $realcost = 0;
 	private $link;
 	private $certification;
@@ -89,6 +90,11 @@ class market {
 		$market->setRealcost($_arrayMarket['realCost']);
 		if (!isset($_arrayMarket['api_author'])) {
 			$_arrayMarket['api_author'] = null;
+		}
+		if (!isset($_arrayMarket['costHt'])) {
+			$market->setCostHt($_arrayMarket['costHt']);
+		} else {
+			$market->setCostHt(0);
 		}
 		$market->setApi_author($_arrayMarket['api_author']);
 
@@ -1091,6 +1097,14 @@ class market {
 
 	public function setUpdateBy($updateBy) {
 		$this->updateBy = $updateBy;
+	}
+
+	public function getCostHt() {
+		return $this->costHt;
+	}
+
+	public function setCostHt($costHt) {
+		$this->costHt = $costHt;
 	}
 
 }
