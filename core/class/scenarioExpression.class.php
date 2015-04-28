@@ -305,6 +305,15 @@ class scenarioExpression {
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
 		return round($historyStatistique['min'], 1);
 	}
+	
+	public static function lastBetween($_cmd_id, $_startDate, $_endDate) {
+		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+			return '';
+		}
+		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
+		return round($historyStatistique['last'], 1);
+	}
 
 	public static function median() {
 		$args = func_get_args();

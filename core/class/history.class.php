@@ -325,7 +325,7 @@ ORDER BY `datetime` ASC ';
 			'startTime' => $_startTime,
 			'endTime' => $_endTime,
 		);
-		$sql = 'SELECT AVG(value) as avg, MIN(value) as min, MAX(value) as max
+		$sql = 'SELECT AVG(value) as avg, MIN(value) as min, MAX(value) as max, value as last
     FROM (
         SELECT *
         FROM history
@@ -338,7 +338,9 @@ ORDER BY `datetime` ASC ';
         WHERE cmd_id=:cmd_id
         AND `datetime`>=:startTime
         AND `datetime`<=:endTime
-        ) as dt';
+        ) as dt
+		ORDER BY  `datetime` DESC
+		LIMIT 1';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 	}
 
