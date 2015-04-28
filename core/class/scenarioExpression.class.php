@@ -160,7 +160,15 @@ class scenarioExpression {
 			if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 				return '';
 			}
-			$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+			if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
+				$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+			}
+			else {
+				$startHist = date('Y-m-d H:i:s', strtotime($_period));
+				if ($startHist == date('Y-m-d H:i:s', strtotime(0))) {
+					return ''; 
+				}
+			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
 			if ($historyStatistique['avg'] == '') {
 				return $cmd->execCmd(null, 2);
@@ -204,7 +212,15 @@ class scenarioExpression {
 			if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 				return '';
 			}
-			$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+			if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
+				$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+			}
+			else {
+				$startHist = date('Y-m-d H:i:s', strtotime($_period));
+				if ($startHist == date('Y-m-d H:i:s', strtotime(0))) {
+					return ''; 
+				}
+			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
 			if ($historyStatistique['max'] == '') {
 				return $cmd->execCmd(null, 2);
@@ -264,7 +280,15 @@ class scenarioExpression {
 			if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 				return '';
 			}
-			$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+			if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
+				$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+			}
+			else {
+				$startHist = date('Y-m-d H:i:s', strtotime($_period));
+				if ($startHist == date('Y-m-d H:i:s', strtotime(0))) {
+					return ''; 
+				}
+			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
 			if ($historyStatistique['min'] == '') {
 				return $cmd->execCmd(null, 2);
@@ -320,7 +344,15 @@ class scenarioExpression {
 			return '';
 		}
 		$endTime = date('Y-m-d H:i:s');
-		$startTime = date('Y-m-d H:i:s', strtotime('-' . $_period . '' . $endTime));
+		if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
+			$startTime = date('Y-m-d H:i:s', strtotime('-' . $_period . '' . $endTime));
+		}
+		else {
+			$startTime = date('Y-m-d H:i:s', strtotime($_period));
+			if ($startTime == date('Y-m-d H:i:s', strtotime(0))) {
+				return ''; 
+			}
+		}
 		$tendance = $cmd->getTendance($startTime, $endTime);
 		if ($_threshold != '') {
 			$maxThreshold = $_threshold;
