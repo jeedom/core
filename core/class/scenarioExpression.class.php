@@ -390,6 +390,53 @@ class scenarioExpression {
 	public static function stateDuration($_cmd_id, $_value = null) {
 		return history::stateDuration(str_replace('#', '', $_cmd_id), $_value);
 	}
+	
+	public static function stateChanges($_cmd_id, $_value = null, $_period = '1 hour') {
+		$cmd_id = str_replace('#', '', $_cmd_id);
+		$cmd = cmd::byId($_cmd_id);
+		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+			return '';
+		}
+		
+		$args = func_num_args();
+		if($args == 2) {
+			if(is_numeric(func_get_arg(1))) {
+				$_value = func_get_arg(1);
+			}
+			else {
+				$_period = func_get_arg(1);
+				$_value = null;
+			}
+		}
+		
+		if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
+			$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+		}
+		else {
+			$startHist = date('Y-m-d H:i:s', strtotime($_period));
+			if ($startHist == date('Y-m-d H:i:s', strtotime(0))) {
+				return ''; 
+			}
+		}
+		return history::stateChanges($_cmd_id, $_value, $startHist, date('Y-m-d H:i:s'));
+	}
+
+	public static function stateChangesBetween($_cmd_id, $_value = null, $_startDate, $_endDate) {
+		$cmd_id = str_replace('#', '', $_cmd_id);
+		$cmd = cmd::byId($_cmd_id);
+		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+			return '';
+		}
+		
+		$args = func_num_args();
+		if($args == 3) {
+			$_endDate = func_get_arg(2);
+			$_startDate = func_get_arg(1);
+			$_value = null;
+		}
+		
+		return history::stateChanges($_cmd_id, $_value, $_startDate, $_endDate);
+	}
 
 	public static function odd($_value) {
 		return ($_value % 2) ? 1 : 0;
