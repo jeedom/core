@@ -381,7 +381,7 @@ class network {
 		if (shell_exec('sudo dpkg --get-selections | grep ifenslave | wc -l') == 0) {
 			return false;
 		}
-		if (shell_exec('sudo cat /etc/modules | grep bonding | wc -l') == 0) {
+		if (shell_exec('sudo lsmod | grep bonding | wc -l') == 0) {
 			return false;
 		}
 		return true;
