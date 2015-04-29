@@ -377,12 +377,18 @@ class network {
 
 	}
 
-	public static function hasIfenslave() {
-		return (shell_exec('dpkg --get-selections | grep ifenslave | wc -l') > 0) ? true : false;
+	public static function canManageNetwork() {
+		if (shell_exec('sudo dpkg --get-selections | grep ifenslave | wc -l') == 0) {
+			return false;
+		}
+		if (shell_exec('sudo cat /etc/modules | grep bonding | wc -l') == 0) {
+			return false;
+		}
+		return true;
 	}
 
 	public static function writeInterfaceFile() {
-		if (!self::hasIfenslave()) {
+		if (!self::canManageNetwork()) {
 			return;
 		}
 

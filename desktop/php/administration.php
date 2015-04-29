@@ -335,8 +335,11 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                 <div class="col-xs-6">
                 <legend>{{Wifi && IP static}}</legend>
                 <?php
-if (!network::hasIfenslave()) {
-	echo '<div class="alert alert-danger">{{ifenslave manquant pour pouvoir gérer le reseaux avec Jeedom, veuillez faire en ssh : sudo apt-get install ifenslave ifenslave-2.6}}</div>';
+if (!network::canManageNetwork()) {
+	echo '<div class="alert alert-danger">{{Jeedom ne peut gerer le reseaux veuillez si}} : <br/>';
+	echo '- {{ifenslave est installé, pour l\'installer, faire en ssh : sudo apt-get install ifenslave ifenslave-2.6}} <br/>';
+	echo '- {{le module bonding est chargé, en ssh regarder si il y a bien "bonding" dans /etc/modules sinon l\'ajouter à la fin}}';
+	echo '</div>';
 } else {
 	?>
                     <div class="form-group">
