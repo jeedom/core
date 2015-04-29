@@ -91,7 +91,7 @@ class market {
 		if (!isset($_arrayMarket['api_author'])) {
 			$_arrayMarket['api_author'] = null;
 		}
-		if (!isset($_arrayMarket['costHt'])) {
+		if (isset($_arrayMarket['costHt'])) {
 			$market->setCostHt($_arrayMarket['costHt']);
 		} else {
 			$market->setCostHt(0);
