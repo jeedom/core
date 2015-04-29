@@ -377,7 +377,15 @@ class network {
 
 	}
 
+	public static function hasIfenslave() {
+		return (shell_exec('dpkg --get-selections | grep ifenslave | wc -l') > 0) ? true : false;
+	}
+
 	public static function writeInterfaceFile() {
+		if (!self::hasIfenslave()) {
+			return;
+		}
+
 		$interface = 'auto lo
 	iface lo inet loopback';
 		$interface .= "\n\n";

@@ -333,7 +333,12 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
 
             <div class="row">
                 <div class="col-xs-6">
-                <legend>{{Wifi}}</legend>
+                <legend>{{Wifi && IP static}}</legend>
+                <?php
+if (!network::hasIfenslave()) {
+	echo '<div class="alert alert-danger">{{ifenslave manquant pour pouvoir gérer le reseaux avec Jeedom, veuillez faire en ssh : sudo apt-get install ifenslave ifenslave-2.6}}</div>';
+} else {
+	?>
                     <div class="form-group">
                         <label class="col-xs-4 control-label">{{Activer le wifi}}</label>
                         <div class="col-xs-8">
@@ -378,8 +383,8 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                      <div class="col-xs-8">
                        <a class="btn btn-success" id="bt_writeInterfaceFile"><i class='fa fa-pencil'></i> {{Ecrire la configure}}</a>
                    </div>
-
                </div>
+                <?php }?>
            </div>
            <div class="col-xs-6">
             <legend>DNS Jeedom</legend>
