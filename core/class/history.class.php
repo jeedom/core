@@ -408,12 +408,10 @@ LIMIT 1';
 			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
 		}
 
-		if($_startTime == null && $_endTime == null) {
-        	$_dateTime = '';
-      	}
-      	else {
-        	$_dateTime = ' AND `datetime`>="'.$_startTime.'" AND `datetime`<="'.$_endTime.'"';
-      	}
+		if($_startTime == null) {$_dateTime = '';}
+		else {$_dateTime = ' AND `datetime`>="'.$_startTime.'"';}
+		if($_endTime == null) {$_dateTime .= ' AND `datetime`<="'.date('Y-m-d H:i:s').'"';}
+		else {$_dateTime .= ' AND `datetime`<="'.$_endTime.'"';}
 		
 		if ($_value == null and !is_numeric($_value)) {
 			$_condition = '';
@@ -451,6 +449,63 @@ LIMIT 1';
 				where prev_value <> value'.$_condition.'';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return $result['changes'];
+	}
+	
+		public static function duration($_cmd_id, $_value, $_startTime = null, $_endTime = null) {
+		$cmd = cmd::byId($_cmd_id);
+		if (!is_object($cmd)) {
+			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
+		}
+
+		if($_startTime == null) {$_dateTime = '';}
+		else {$_dateTime = ' AND `datetime`>="'.$_startTime.'"';}
+		if($_endTime == null) {$_dateTime .= ' AND `datetime`<="'.date('Y-m-d H:i:s').'"';}
+		else {$_dateTime .= ' AND `datetime`<="'.$_endTime.'"';}
+		
+		$_value = str_replace(',', '.', $_value);
+
+		$sql = 'SELECT SUM(TIMESTAMPDIFF(second,prev_datetime,datetime)) as duration
+				FROM (SELECT t1.*,
+						(SELECT value
+							FROM (
+								SELECT *
+								FROM history
+								 WHERE cmd_id='.$_cmd_id.$_dateTime.'
+								 UNION ALL
+								 SELECT *
+								 FROM historyArch
+								 WHERE cmd_id='.$_cmd_id.$_dateTime.'
+							) as t2
+							WHERE t2.datetime < t1.datetime
+							ORDER BY datetime desc LIMIT 1
+						) as prev_value,
+						(SELECT datetime
+							FROM (
+								SELECT *
+								FROM history
+								WHERE cmd_id='.$_cmd_id.$_dateTime.'
+								UNION ALL
+								SELECT *
+								FROM historyArch
+								WHERE cmd_id='.$_cmd_id.$_dateTime.'
+								) as t2
+							WHERE t2.datetime < t1.datetime
+							ORDER BY datetime desc LIMIT 1
+						) as prev_datetime
+						FROM (
+							SELECT *
+							FROM history
+							WHERE cmd_id='.$_cmd_id.$_dateTime.'
+							UNION ALL
+							SELECT *
+							FROM historyArch
+							WHERE cmd_id='.$_cmd_id.$_dateTime.'
+						) as t1
+						WHERE cmd_id='.$_cmd_id.$_dateTime.'
+				) as t1
+				where prev_value <> value AND prev_value = '.$_value.'';
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		return $result['duration'];
 	}
 
 	/**
