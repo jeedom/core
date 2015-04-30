@@ -62,7 +62,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 expertModeVisible">
                                       <label>
-                                          <input type="checkbox" class="configKey tooltips" data-l1key="generateTranslation" title="{{Option pour les developpeurs permettant à Jeedom de générer les phrases à traduire}}" /> {{Généré les traductions}}
+                                          <input type="checkbox" class="configKey tooltips" data-l1key="generateTranslation" title="{{Option pour les developpeurs permettant à Jeedom de générer les phrases à traduire}}" /> {{Générer les traductions}}
                                       </label>
                                   </div>
                               </div>
@@ -333,7 +333,15 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
 
             <div class="row">
                 <div class="col-xs-6">
-                <legend>{{Wifi}}</legend>
+                <legend>{{Wifi && IP static}}</legend>
+                <?php
+if (!network::canManageNetwork()) {
+	echo '<div class="alert alert-danger">{{Jeedom ne peut gerer le reseaux veuillez vérifier si}} : <br/>';
+	echo '- {{ifenslave est installé, pour l\'installer, faire en ssh : sudo apt-get install ifenslave-2.6}} <br/>';
+	echo '- {{le module bonding est chargé, en ssh regarder si il y a bien "bonding" dans /etc/modules sinon l\'ajouter à la fin et redémarrer}}';
+	echo '</div>';
+} else {
+	?>
                     <div class="form-group">
                         <label class="col-xs-4 control-label">{{Activer le wifi}}</label>
                         <div class="col-xs-8">
@@ -378,8 +386,8 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                      <div class="col-xs-8">
                        <a class="btn btn-success" id="bt_writeInterfaceFile"><i class='fa fa-pencil'></i> {{Ecrire la configure}}</a>
                    </div>
-
                </div>
+                <?php }?>
            </div>
            <div class="col-xs-6">
             <legend>DNS Jeedom</legend>

@@ -100,7 +100,11 @@ if ($market->getCost() > 0) {
 	if ($market->getCost() != $market->getRealCost()) {
 		echo '<span data-l1key="rating" style="font-size: 1em;text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
 	}
-	echo '<span data-l1key="rating" style="font-size: 1.5em;">' . number_format($market->getCost(), 2) . ' €</span> (TVA non applicable, article 293 B du CGI)';
+	if ($market->getCostHt() != 0) {
+		echo '<span data-l1key="rating" style="font-size: 1.5em;">' . number_format($market->getCost(), 2) . ' € TTC</span> (' . $market->getCostHt() . '€ HT)';
+	} else {
+		echo '<span data-l1key="rating" style="font-size: 1.5em;">' . number_format($market->getCost(), 2) . ' €</span> (TVA non applicable, article 293 B du CGI)';
+	}
 } else {
 	echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Gratuit}}</span>';
 }

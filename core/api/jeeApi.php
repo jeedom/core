@@ -249,6 +249,22 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				$jsonrpc->makeSuccess($return);
 			}
 
+			/*             * ************************datastore*************************** */
+
+			if ($jsonrpc->getMethod() == 'datastore::byTypeLinkIdKey') {
+				$jsonrpc->makeSuccess(dataStore::byTypeLinkIdKey($params['type'], $params['linkId'], $params['key']));
+			}
+
+			if ($jsonrpc->getMethod() == 'datastore::save') {
+				$dataStore = new dataStore();
+				$dataStore->setType($params['type']);
+				$dataStore->setKey($params['key']);
+				$dataStore->setValue($params['value']);
+				$dataStore->setLink_id($params['linkId']);
+				$dataStore->save();
+				$jsonrpc->makeSuccess('ok');
+			}
+
 			/*             * ************************Equipement*************************** */
 			if ($jsonrpc->getMethod() == 'eqLogic::all') {
 				$jsonrpc->makeSuccess(utils::o2a(eqLogic::all()));
@@ -490,7 +506,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 					'jeedom::url' => config::byKey('jeedom::url'),
 					'ngrok::port' => config::byKey('ngrok::port'),
 				);
-				if (filter_var(network::getNetworkAccess('external', 'ip'), FILTER_VALIDATE_IP) || network::getNetworkAccess('external', 'ip') == '') {
+				if (!filter_var(network::getNetworkAccess('external', 'ip'), FILTER_VALIDATE_IP) && network::getNetworkAccess('external', 'ip') != '') {
 					$return['jeedom::url'] = network::getNetworkAccess('internal');
 				}
 				foreach (plugin::listPlugin(true) as $plugin) {

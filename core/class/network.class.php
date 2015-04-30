@@ -377,7 +377,32 @@ class network {
 
 	}
 
+	public static function canManageNetwork() {
+		if (shell_exec('sudo dpkg --get-selections | grep ifenslave | wc -l') == 0) {
+			return false;
+		}
+		if (shell_exec('sudo lsmod | grep bonding | wc -l') == 0) {
+			return false;
+		}
+		return true;
+	}
+
+	public static function signalStrength() {
+		if (config::byKey('network::wifi::enable') != 1 || config::byKey('network::wifi::ssid') == '' || config::byKey('network::wifi::password') == '') {
+			$return = -1;
+		}
+		return str_replace('.', '', shell_exec("tail -n +3 /proc/net/wireless | awk '{ print $3 }'"));
+	}
+
+	public static function ehtIsUp() {
+		return (trim(shell_exec("cat /sys/class/net/eth0/operstate")) == 'up') ? true : false;
+	}
+
 	public static function writeInterfaceFile() {
+		if (!self::canManageNetwork()) {
+			return;
+		}
+
 		$interface = 'auto lo
 	iface lo inet loopback';
 		$interface .= "\n\n";
@@ -489,22 +514,25 @@ class network {
 
 	public static function cron() {
 		$gws = self::checkGw();
-		if (count($gws) != 0) {
-			foreach ($gws as $gw) {
-				if ($gw['ping'] == 'ok') {
-					if (config::byKey('network::lastNoGw', 'core', -1) != -1) {
-						config::save('network::lastNoGw', -1);
-					}
-					if (config::byKey('network::failedNumber', 'core', 0) != 0) {
-						config::save('network::failedNumber', 0);
-					}
-					return;
+		if (count($gws) < 1) {
+			return;
+		}
+		foreach ($gws as $gw) {
+			if ($gw['ping'] == 'ok') {
+				if (config::byKey('network::lastNoGw', 'core', -1) != -1) {
+					config::save('network::lastNoGw', -1);
 				}
+				if (config::byKey('network::failedNumber', 'core', 0) != 0) {
+					config::save('network::failedNumber', 0);
+				}
+				return;
 			}
 		}
+
 		$filepath = '/etc/network/interfaces';
 		if (config::byKey('network::failedNumber', 'core', 0) == 3 && file_exists($filepath . '.save')) {
-			//exec('sudo cp ' . $filepath . '.save ' . $filepath);
+			log::add('network', 'error', __('Aucune gateway trouvée depuis plus de 30min. Remise par defaut du fichier interface', __FILE__));
+			exec('sudo cp ' . $filepath . '.save ' . $filepath . '; sudo rm ' . $filepath . '.save ');
 			//jeedom::rebootSystem();
 		}
 		$lastNoOk = config::byKey('network::lastNoGw', 'core', -1);
