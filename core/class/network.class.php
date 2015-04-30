@@ -388,16 +388,14 @@ class network {
 	}
 
 	public static function signalStrength() {
-		$cache = cache::byKey('network::signalStrength');
-		if ($cache->getValue(-2) != -2) {
-			return $cache->getValue(-2);
-		}
 		if (config::byKey('network::wifi::enable') != 1 || config::byKey('network::wifi::ssid') == '' || config::byKey('network::wifi::password') == '') {
 			$return = -1;
 		}
-		$return = str_replace('.', '', shell_exec("tail -n +3 /proc/net/wireless | awk '{ print $3 }'"));
-		cache::set('network::signalStrength', $return, 120);
-		return $return;
+		return str_replace('.', '', shell_exec("tail -n +3 /proc/net/wireless | awk '{ print $3 }'"));
+	}
+
+	public static function ehtIsUp() {
+		return (trim(shell_exec("cat /sys/class/net/eth0/operstate")) == 'up') ? true : false;
 	}
 
 	public static function writeInterfaceFile() {
