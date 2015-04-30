@@ -325,7 +325,7 @@ ORDER BY `datetime` ASC ';
 			'startTime' => $_startTime,
 			'endTime' => $_endTime,
 		);
-		$sql = 'SELECT AVG(value) as avg, MIN(value) as min, MAX(value) as max, value as last
+		$sql = 'SELECT AVG(value) as avg, MIN(value) as min, MAX(value) as max, SUM(value) as sum, COUNT(value) as count, STD(value) as std, VARIANCE(value) as variance, value as last
     FROM (
         SELECT *
         FROM history
@@ -463,6 +463,8 @@ LIMIT 1';
 		else {$_dateTime .= ' AND `datetime`<="'.$_endTime.'"';}
 		
 		$_value = str_replace(',', '.', $_value);
+		$_decimal = strlen(substr(strrchr($_value, "."), 1));
+		$_condition = ' and ROUND(prev_value,'.$_decimal.') = '.$_value;
 
 		$sql = 'SELECT SUM(TIMESTAMPDIFF(second,prev_datetime,datetime)) as duration
 				FROM (SELECT t1.*,
@@ -503,7 +505,7 @@ LIMIT 1';
 						) as t1
 						WHERE cmd_id='.$_cmd_id.$_dateTime.'
 				) as t1
-				where prev_value <> value AND prev_value = '.$_value.'';
+				where prev_value <> value'.$_condition.'';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return $result['duration'];
 	}
