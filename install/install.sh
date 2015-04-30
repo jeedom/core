@@ -234,7 +234,7 @@ install_nodejs() {
             echo "********************************************************"
             echo "${msg_manual_install_nodejs_RPI}"
             echo "********************************************************"
-            wget --no-check-certificate https://jeedom.fr/ressources/nodejs/node-raspberry.bin
+            wget --no-check-certificate http://jeedom.fr/ressources/nodejs/node-raspberry.bin
             rm -rf /usr/local/bin/node
             rm -rf /usr/bin/nodejs
             mv node-raspberry.bin /usr/local/bin/node
@@ -244,7 +244,7 @@ install_nodejs() {
             echo "********************************************************"
             echo "${msg_manual_install_nodejs_ARM}"
             echo "********************************************************"
-            wget --no-check-certificate https://jeedom.fr/ressources/nodejs/node-v0.10.21-cubie.tar.xz
+            wget --no-check-certificate http://jeedom.fr/ressources/nodejs/node-v0.10.21-cubie.tar.xz
             tar xJvf node-v0.10.21-cubie.tar.xz -C /usr/local --strip-components 1
             if [ ! -f '/usr/bin/nodejs' ] && [ -f '/usr/local/bin/node' ] ; then
                 ln -s /usr/local/bin/node /usr/bin/nodejs
