@@ -152,7 +152,7 @@ if (isConnect() && $_SESSION['user']->getOptions('desktop_highcharts_theme') != 
 	}
 }
 ?>
-<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
+				<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 			</head>
 			<body>
 				<?php
@@ -225,7 +225,7 @@ foreach (view::all() as $view_menu) {
 														<li class="dropdown-submenu">
 															<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-picture-o"></i> {{Design}}</a>
 															<ul class="dropdown-menu">
-<?php
+																<?php
 foreach (planHeader::all() as $plan_menu) {
 				echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon') . ' ' . $plan_menu->getName()) . '</a></li>';
 			}
@@ -388,6 +388,26 @@ if (isConnect('admin')) {
 														<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
 													</ul>
 												</li>
+
+												<?php
+$signalStrength = network::signalStrength();
+	if ($signalStrength !== '' && $signalStrength >= 0) {
+		if ($signalStrength > 80) {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal5"></i></a></li>';
+		} else if ($signalStrength > 60) {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal4"></i></a></li>';
+		} else if ($signalStrength > 40) {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal3"></i></a></li>';
+		} else if ($signalStrength > 20) {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal2"></i></a></li>';
+		} else if ($signalStrength > 0) {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal1"></i></a></li>';
+		} else {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal0"></i></a></li>';
+		}
+	}
+
+	?>
 												<li>
 													<?php if (isset($plugin) && is_object($plugin)) {?>
 													<a class="cursor tooltips" target="_blank" href="http://doc.jeedom.fr/fr_FR/<?php echo init('m');?>.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>

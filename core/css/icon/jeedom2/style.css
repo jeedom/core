@@ -1,0 +1,304 @@
+@font-face {
+	font-family: 'jeedom2';
+	src:url('fonts/jeedom2.eot?-xz56mj');
+	src:url('fonts/jeedom2.eot?#iefix-xz56mj') format('embedded-opentype'),
+		url('fonts/jeedom2.woff?-xz56mj') format('woff'),
+		url('fonts/jeedom2.ttf?-xz56mj') format('truetype'),
+		url('fonts/jeedom2.svg?-xz56mj#jeedom2') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="jeedom2-"], [class*=" jeedom2-"] {
+	font-family: 'jeedom2';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.jeedom2-black210:before {
+	content: "\e600";
+}
+
+.jeedom2-bright4:before {
+	content: "\e601";
+}
+
+.jeedom2-bulb14:before {
+	content: "\e602";
+}
+
+.jeedom2-bulb19:before {
+	content: "\e603";
+}
+
+.jeedom2-idea13:before {
+	content: "\e604";
+}
+
+.jeedom2-lamp5:before {
+	content: "\e605";
+}
+
+.jeedom2-light-bulb2:before {
+	content: "\e606";
+}
+
+.jeedom2-light-bulb7:before {
+	content: "\e607";
+}
+
+.jeedom2-lightbulb25:before {
+	content: "\e608";
+}
+
+.jeedom2-lightbulb58:before {
+	content: "\e609";
+}
+
+.jeedom2-bitcoin:before {
+	content: "\e60a";
+}
+
+.jeedom2-cartecredit:before {
+	content: "\e60b";
+}
+
+.jeedom2-dollar:before {
+	content: "\e60c";
+}
+
+.jeedom2-finance:before {
+	content: "\e60d";
+}
+
+.jeedom2-money1:before {
+	content: "\e60e";
+}
+
+.jeedom2-money2:before {
+	content: "\e60f";
+}
+
+.jeedom2-money3:before {
+	content: "\e610";
+}
+
+.jeedom2-money4:before {
+	content: "\e611";
+}
+
+.jeedom2-tirelire1:before {
+	content: "\e612";
+}
+
+.jeedom2-tirelire2:before {
+	content: "\e613";
+}
+
+.jeedom2-tirelire3:before {
+	content: "\e614";
+}
+
+.jeedom2-tirelire4:before {
+	content: "\e615";
+}
+
+.jeedom2-tirelire5:before {
+	content: "\e616";
+}
+
+.jeedom2-tirelire6:before {
+	content: "\e617";
+}
+
+.jeedom2-tirelire7:before {
+	content: "\e618";
+}
+
+.jeedom2-tirelire8:before {
+	content: "\e619";
+}
+
+.jeedom2-tirelire9:before {
+	content: "\e61a";
+}
+
+.jeedom2-fdp1-signal0:before {
+	content: "\e61b";
+}
+
+.jeedom2-fdp1-signal1:before {
+	content: "\e61c";
+}
+
+.jeedom2-fdp1-signal02:before {
+	content: "\e61d";
+}
+
+.jeedom2-fdp1-signal3:before {
+	content: "\e61e";
+}
+
+.jeedom2-fdp1-signal4:before {
+	content: "\e61f";
+}
+
+.jeedom2-fdp1-signal5:before {
+	content: "\e620";
+}
+
+.jeedom2-plante_eau1:before {
+	content: "\e621";
+}
+
+.jeedom2-plante_eau2:before {
+	content: "\e622";
+}
+
+.jeedom2-plante_eau3:before {
+	content: "\e623";
+}
+
+.jeedom2-plante_engrais1:before {
+	content: "\e624";
+}
+
+.jeedom2-plante_engrais2:before {
+	content: "\e625";
+}
+
+.jeedom2-plante_engrais3:before {
+	content: "\e626";
+}
+
+.jeedom2-plante_soleil1:before {
+	content: "\e627";
+}
+
+.jeedom2-plante_soleil2:before {
+	content: "\e628";
+}
+
+.jeedom2-plante_soleil3:before {
+	content: "\e629";
+}
+
+.jeedom2-plante_temp1:before {
+	content: "\e62a";
+}
+
+.jeedom2-plante_temp2:before {
+	content: "\e62b";
+}
+
+.jeedom2-plante_temp3:before {
+	content: "\e62c";
+}
+
+.jeedom2-visiophone:before {
+	content: "\e62d";
+}
+
+.jeedom2-chauffe_eau .path1:before {
+	content: "\e62e";
+	color: rgb(0, 0, 0);
+}
+.jeedom2-chauffe_eau .path2:before {
+	content: "\e62f";
+	margin-left: -1.4140625em;
+	color: rgb(255, 255, 255);
+}
+
+.jeedom2-chauffe_eau_on .path1:before {
+	content: "\e630";
+	color: rgb(0, 0, 0);
+}
+.jeedom2-chauffe_eau_on .path2:before {
+	content: "\e631";
+	margin-left: -1.4140625em;
+	color: rgb(255, 255, 255);
+}
+.jeedom2-chauffe_eau_on .path3:before {
+	content: "\e632";
+	margin-left: -1.4140625em;
+	color: rgb(0, 0, 0);
+}
+
+.jeedom2-compteur_eau .path1:before {
+	content: "\e633";
+	color: rgb(0, 0, 0);
+}
+.jeedom2-compteur_eau .path2:before {
+	content: "\e634";
+	margin-left: -1.4140625em;
+	color: rgb(255, 255, 255);
+}
+.jeedom2-compteur_eau .path3:before {
+	content: "\e635";
+	margin-left: -1.4140625em;
+	color: rgb(0, 0, 0);
+}
+.jeedom2-compteur_eau .path4:before {
+	content: "\e636";
+	margin-left: -1.4140625em;
+	color: rgb(0, 0, 0);
+}
+.jeedom2-compteur_eau .path5:before {
+	content: "\e637";
+	margin-left: -1.4140625em;
+	color: rgb(0, 0, 0);
+}
+.jeedom2-compteur_eau .path6:before {
+	content: "\e638";
+	margin-left: -1.4140625em;
+	color: rgb(0, 0, 0);
+}
+
+.jeedom2-compteur_elec_hc:before {
+	content: "\e639";
+}
+
+.jeedom2-compteur_elec_hp:before {
+	content: "\e63a";
+}
+
+.jeedom2-home:before {
+	content: "\e63b";
+}
+
+.jeedom2-home_r1:before {
+	content: "\e63c";
+}
+
+.jeedom2-home_r2:before {
+	content: "\e63d";
+}
+
+.jeedom2-home_r3:before {
+	content: "\e63e";
+}
+
+.jeedom2-home_r-1:before {
+	content: "\e63f";
+}
+
+.jeedom2-home_rdc:before {
+	content: "\e640";
+}
+
+.jeedom2-case_ok:before {
+	content: "\e641";
+}
+
+.jeedom2-case:before {
+	content: "\e642";
+}
+
