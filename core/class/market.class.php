@@ -446,7 +446,7 @@ class market {
 	public static function getInfo($_logicalId, $_version = 'stable') {
 		$returns = array();
 		if (is_array($_logicalId) && is_array($_version) && count($_logicalId) == count($_version)) {
-			if (count($_logicalId) > 1 && is_array(reset($_logicalId))) {
+			if (is_array(reset($_logicalId))) {
 				$markets = market::byLogicalIdAndType($_logicalId);
 			} else {
 				$markets = market::byLogicalId($_logicalId);
