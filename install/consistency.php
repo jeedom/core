@@ -49,6 +49,7 @@ try {
 						$c->getNextRunDate();
 					}
 				} catch (Exception $ex) {
+					echo "Suppression de  : " . $cron->getName() . ' car pas de lancement prévu';
 					$cron->remove();
 				}
 			}
@@ -67,6 +68,7 @@ try {
 
 	$cron = cron::byClassAndFunction('plugin', 'cronDaily');
 	if (!is_object($cron)) {
+		echo "Création de plugin::cronDaily\n";
 		$cron = new cron();
 		$cron->setClass('plugin');
 		$cron->setFunction('cronDaily');
@@ -77,6 +79,7 @@ try {
 
 	$cron = cron::byClassAndFunction('plugin', 'cronHourly');
 	if (!is_object($cron)) {
+		echo "Création de plugin::cronHourly\n";
 		$cron = new cron();
 		$cron->setClass('plugin');
 		$cron->setFunction('cronHourly');
@@ -87,6 +90,7 @@ try {
 
 	$cron = cron::byClassAndFunction('history', 'historize');
 	if (!is_object($cron)) {
+		echo "Création de history::historize\n";
 		$cron = new cron();
 		$cron->setClass('history');
 		$cron->setFunction('historize');
@@ -97,6 +101,7 @@ try {
 
 	$cron = cron::byClassAndFunction('scenario', 'check');
 	if (!is_object($cron)) {
+		echo "Création de scenario::check\n";
 		$cron = new cron();
 		$cron->setClass('scenario');
 		$cron->setFunction('check');
@@ -107,6 +112,7 @@ try {
 
 	$cron = cron::byClassAndFunction('cmd', 'collect');
 	if (!is_object($cron)) {
+		echo "Création de cmd::collect\n";
 		$cron = new cron();
 		$cron->setClass('cmd');
 		$cron->setFunction('collect');
@@ -117,6 +123,7 @@ try {
 
 	$cron = cron::byClassAndFunction('history', 'archive');
 	if (!is_object($cron)) {
+		echo "Création de history::archive\n";
 		$cron = new cron();
 		$cron->setClass('history');
 		$cron->setFunction('archive');
@@ -127,6 +134,7 @@ try {
 
 	$cron = cron::byClassAndFunction('jeedom', 'cron');
 	if (!is_object($cron)) {
+		echo "Création de jeedom::cron\n";
 		$cron = new cron();
 		$cron->setClass('jeedom');
 		$cron->setFunction('cron');
@@ -145,6 +153,7 @@ try {
 	cache::deleteBySearch('cmdWidgetmobile');
 	cache::deleteBySearch('scenarioHtmldashboard');
 } catch (Exception $e) {
+	echo "Error : ";
 	echo $e->getMessage();
 }
 echo "[END CONSISTENCY]\n";
