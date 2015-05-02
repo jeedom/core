@@ -373,6 +373,7 @@ try {
 		}
 		config::save('logLevel', $logLevel);
 		echo "OK\n";
+
 	}
 
 	config::save('version', jeedom::version());
