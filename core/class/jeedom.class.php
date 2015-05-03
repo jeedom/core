@@ -351,6 +351,14 @@ class jeedom {
 			return true;
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
+			shell_exec('sudo  sntp 0.debian.pool.ntp.org');
+			sleep(1);
+		}
+		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
+			shell_exec('sudo  sntp 1.debian.pool.ntp.org');
+			sleep(1);
+		}
+		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
 			log::add('core', 'error', __('La date du système est incorrect (avant 2014-01-01 ou après 2019-01-01) : ', __FILE__) . date('Y-m-d H:i:s'), 'dateCheckFailed');
 			return false;
 		}
