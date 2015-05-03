@@ -351,11 +351,11 @@ class jeedom {
 			return true;
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
-			shell_exec('sudo  sntp 0.debian.pool.ntp.org');
+			shell_exec('sudo sntp ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org'));
 			sleep(1);
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
-			shell_exec('sudo  sntp 1.debian.pool.ntp.org');
+			shell_exec('sudo sntp 1.debian.pool.ntp.org');
 			sleep(1);
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
