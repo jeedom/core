@@ -234,7 +234,11 @@ class jeedom {
 		exec($cmd);
 	}
 
-	public static function getConfiguration($_key, $_default = false) {
+	public static function getConfiguration($_key = '', $_default = false) {
+		global $JEEDOM_INTERNAL_CONFIG;
+		if ($_key == '') {
+			return $JEEDOM_INTERNAL_CONFIG;
+		}
 		if (!is_array(self::$jeedomConfiguration)) {
 			self::$jeedomConfiguration = array();
 		}
@@ -242,7 +246,7 @@ class jeedom {
 			return self::$jeedomConfiguration[$_key];
 		}
 		$keys = explode(':', $_key);
-		global $JEEDOM_INTERNAL_CONFIG;
+
 		$result = $JEEDOM_INTERNAL_CONFIG;
 		foreach ($keys as $key) {
 			if (isset($result[$key])) {
