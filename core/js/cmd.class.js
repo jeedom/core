@@ -496,7 +496,6 @@ jeedom.cmd.changeSubType = function(_cmd) {
                     }
                 } else {
                     for (var j in subtype[i]) {
-
                         var el = _cmd.find('.cmdAttr[data-l1key=' + i + '][data-l2key=' + j + ']');
                         if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
                             el = el.parent();

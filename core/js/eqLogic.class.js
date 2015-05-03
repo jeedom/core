@@ -217,7 +217,6 @@ jeedom.eqLogic.builSelectCmd = function (_params) {
     jeedom.eqLogic.getCmd({
         id: _params.id,
         async: false,
-        noCache: true,
         success: function (cmds) {
             var result = '';
             for (var i in cmds) {
