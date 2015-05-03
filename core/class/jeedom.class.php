@@ -275,6 +275,10 @@ class jeedom {
 		}
 	}
 
+	public static function hasSudo() {
+		return (trim(exec('sudo cat /etc/sudoers')) == "") ? true : false;
+	}
+
 	public static function whatDoYouKnow($_object = null) {
 		$result = array();
 		if (is_object($_object)) {
