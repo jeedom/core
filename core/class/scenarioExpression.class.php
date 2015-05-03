@@ -460,7 +460,7 @@ class scenarioExpression {
 		$_time = self::setTags($_time);
 		if (strlen($_time) > 3) {
 			return substr($_time, 0, 2) . 'h' . substr($_time, 2, 2);
-		} else if (strlen($_time) > 3) {
+		} else if (strlen($_time) > 2) {
 			return substr($_time, 0, 1) . 'h' . substr($_time, 1, 2);
 		} else {
 			return '00h' . substr($_time, 0, 2);
