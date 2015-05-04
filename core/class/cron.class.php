@@ -383,8 +383,7 @@ class cron {
 			} catch (Exception $e) {
 
 			}
-			$prev = $c->getPreviousRunDate();
-			$prev = $prev->getTimestamp();
+			$prev = $c->getPreviousRunDate()->getTimestamp();
 			$diff = abs((strtotime('now') - $prev) / 60);
 			if (strtotime($this->getLastRun()) < $prev && ($diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1)) {
 				return true;
