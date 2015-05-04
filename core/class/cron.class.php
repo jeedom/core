@@ -384,13 +384,13 @@ class cron {
 
 			}
 			$prev = $c->getPreviousRunDate();
-			$lastCheck = new DateTime($this->getLastRun());
-			$diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
-			if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
+			$prev = $prev->getTimestamp();
+			$diff = abs((strtotime('now') - $prev) / 60);
+			if (strtotime($this->getLastRun()) < $prev && ($diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1)) {
 				return true;
 			}
 		} catch (Exception $e) {
-
+			log::add('cron', 'debug', 'Error on isDue : ' . $e->getMessage());
 		}
 		return false;
 	}
