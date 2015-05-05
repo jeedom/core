@@ -112,6 +112,8 @@ Vous pouvez aussi utiliser les tags suivants :
     * Ex : scenario(\#[Salle de bain][Lumière][Auto]#) : Renvoi 1 en cours, 0 si arreté et -1 si desactivé, -2 si le scénario n'éxiste pas et -3 si l'état n'est pas cohérent
 - stateDuration(commande,[valeur]) : donne la durée en seconde depuis le dernier changement de valeur
     * Ex : stateDuration(\#[Salle de bain][Hydrometrie][Humidité]#) : Renvoi 300 si cette valeur est la depuis 5min
+- lastChangeStateDuration(commande,valeur) : renvoi la durée en secondes depuis le dernier changement d'état à la valeur passée en paramètre.
+    * Ex : lastChangeStateDuration(\#[Salle de bain][Hydrometrie][Humidité]#,0) : Renvoi 300 si cette valeur est passée à 0 la depuis 5 minutes (même si depuis sa valeur a changé).
 - lastScenarioExecution(scenario) : donne la durée en seconde depuis le dernier lancement du scénario
     * Ex : lastScenarioExecution(\#[Salle de bain][Lumière][Auto]#) : Renvoi 300 si le scénario c'est lancé pour la derniere fois il y a 5min
 - randomColor(min,max) : donne une couleur aléatoire compris entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu)
