@@ -422,6 +422,10 @@ class scenarioExpression {
 		return history::stateDuration(str_replace('#', '', $_cmd_id), $_value);
 	}
 	
+	public static function lastStateChange($_cmd_id, $_value = null) {
+		return history::lastStateChange(str_replace('#', '', $_cmd_id), $_value);
+	}
+	
 	public static function stateChanges($_cmd_id, $_value = null, $_period = '1 hour') {
 		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
 			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
