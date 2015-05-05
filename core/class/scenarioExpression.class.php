@@ -315,7 +315,7 @@ class scenarioExpression {
 		return round($historyStatistique['last'], 1);
 	}
 	
-	public static function statistics($_cmd_id, $_calc, $_round, $_period = '1 hour') {
+	public static function statistics($_cmd_id, $_calc, $_period = '1 hour') {
 		$args = func_get_args();
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
@@ -334,16 +334,16 @@ class scenarioExpression {
 		if ($historyStatistique['min'] == '') {
 			return $cmd->execCmd(null, 2);
 		}
-		return round($historyStatistique[$_calc], $_round);
+		return $historyStatistique[$_calc];
 	}
 
-	public static function statisticsBetween($_cmd_id, $_calc, $_round, $_startDate, $_endDate) {
+	public static function statisticsBetween($_cmd_id, $_calc, $_startDate, $_endDate) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
-		return round($historyStatistique[$_calc], $_round);
+		return $historyStatistique[$_calc];
 	}
 
 	public static function median() {
@@ -423,11 +423,14 @@ class scenarioExpression {
 	}
 	
 	public static function stateChanges($_cmd_id, $_value = null, $_period = '1 hour') {
-		$cmd_id = str_replace('#', '', $_cmd_id);
-		$cmd = cmd::byId($_cmd_id);
+		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
+			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
+		}
+		else {$cmd = cmd::byId(str_replace('#', '', $_cmd_id));}
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
+		$cmd_id = $cmd->getId();
 		
 		$args = func_num_args();
 		if($args == 2) {
@@ -449,15 +452,18 @@ class scenarioExpression {
 				return ''; 
 			}
 		}
-		return history::stateChanges($_cmd_id, $_value, $startHist, date('Y-m-d H:i:s'));
+		return history::stateChanges($cmd_id, $_value, $startHist, date('Y-m-d H:i:s'));
 	}
 
 	public static function stateChangesBetween($_cmd_id, $_value = null, $_startDate, $_endDate) {
-		$cmd_id = str_replace('#', '', $_cmd_id);
-		$cmd = cmd::byId($_cmd_id);
+		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
+			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
+		}
+		else {$cmd = cmd::byId(str_replace('#', '', $_cmd_id));}
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
+		$cmd_id = $cmd->getId();
 		
 		$args = func_num_args();
 		if($args == 3) {
@@ -466,12 +472,15 @@ class scenarioExpression {
 			$_value = null;
 		}
 		
-		return history::stateChanges($_cmd_id, $_value, $_startDate, $_endDate);
+		return history::stateChanges($cmd_id, $_value, $_startDate, $_endDate);
 	}
 
 	public static function duration($_cmd_id, $_value, $_period = '1 hour') {
 		$cmd_id = str_replace('#', '', $_cmd_id);
-		$cmd = cmd::byId($_cmd_id);
+		if (!is_numeric($cmd_id)) {
+			$cmd_id = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
+		}
+		$cmd = cmd::byId($cmd_id);
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
@@ -485,17 +494,21 @@ class scenarioExpression {
 				return ''; 
 			}
 		}
-		$duration = history::duration($_cmd_id, $_value, $startHist, date('Y-m-d H:i:s'));
+		$duration = history::duration($cmd_id, $_value, $startHist, date('Y-m-d H:i:s'));
 		return floor($duration/60);
 	}
 
 	public static function durationBetween($_cmd_id, $_value, $_startDate, $_endDate) {
-		$cmd_id = str_replace('#', '', $_cmd_id);
-		$cmd = cmd::byId($_cmd_id);
+		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
+			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
+		}
+		else {$cmd = cmd::byId(str_replace('#', '', $_cmd_id));}
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		$duration = history::duration($_cmd_id, $_value, $_startDate, $_endDate);
+		$cmd_id = $cmd->getId();
+		
+		$duration = history::duration($cmd_id, $_value, $_startDate, $_endDate);
 		return floor($duration/60);
 	}
 	

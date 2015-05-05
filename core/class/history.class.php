@@ -451,7 +451,7 @@ LIMIT 1';
 		return $result['changes'];
 	}
 	
-		public static function duration($_cmd_id, $_value, $_startTime = null, $_endTime = null) {
+	public static function duration($_cmd_id, $_value, $_startTime = null, $_endTime = null) {
 		$cmd = cmd::byId($_cmd_id);
 		if (!is_object($cmd)) {
 			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
