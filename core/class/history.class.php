@@ -446,6 +446,44 @@ LIMIT 1';
 		return $result['last'];
 	}
 	
+	public static function lastStateDuration($_cmd_id, $_value = null) {
+		$cmd = cmd::byId($_cmd_id);
+		if (!is_object($cmd)) {
+			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
+		}
+
+		$_value = str_replace(',', '.', $_value);
+		$_decimal = strlen(substr(strrchr($_value, "."), 1));
+		$sql = 'SELECT value, datetime
+				FROM (
+					SELECT *
+					FROM  history
+					WHERE  cmd_id='.$cmd_id.'
+					UNION ALL
+					SELECT *
+					FROM  historyArch
+					WHERE  cmd_id='.$cmd_id.'
+				) as dt
+				ORDER BY  datetime DESC';
+		$histories = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
+		
+		if ($_value == null) { $_value = $histories[0]['value'];}
+		$duration = 0;
+  		$stateChange = 0;
+        $lastDuration = 0;
+  		$lastValue = $histories[0]['value'];
+  		$lastDuration = strtotime($histories[0]['datetime']);
+  
+  		foreach ($histories as $history) {
+        	if (round($lastValue,$_decimal) == $_value) {$duration = $duration + ($lastDuration - strtotime($history['datetime']));}
+        	if ($lastValue != $history['value']) { $stateChange++; }
+          	if ($stateChange > 1) { break; }
+          	$lastDuration = strtotime($history['datetime']);
+          	$lastValue = $history['value'];
+		}
+		return $duration;
+	}
+	
 	public static function stateChanges($_cmd_id, $_value = null, $_startTime = null, $_endTime = null) {
 		$cmd = cmd::byId($_cmd_id);
 		if (!is_object($cmd)) {
