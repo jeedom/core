@@ -537,7 +537,20 @@ class scenarioExpression {
 				return ''; 
 			}
 		}
-		$duration = history::duration($cmd_id, $_value, $startHist, date('Y-m-d H:i:s'));
+		
+		$histories = $cmd->getHistory($startHist, $endHist);
+    	
+  		$duration = 0;
+        $lastDuration = strtotime($histories[0]->getDatetime());
+  		$lastValue = $histories[0]->getValue();
+  
+  		foreach ($histories as $history) {       
+        	if ($lastValue == $_value) {
+            	$duration = $duration + (strtotime($history->getDatetime()) - $lastDuration);
+          	} 
+          	$lastDuration = strtotime($history->getDatetime());
+          	$lastValue = $history->getValue();
+		}
 		return floor($duration/60);
 	}
 
@@ -558,7 +571,19 @@ class scenarioExpression {
     		$_endDate = date('Y-m-d H:i:s', strtotime($_endDate));
   		}
 		
-		$duration = history::duration($cmd_id, $_value, $_startDate, $_endDate);
+		$histories = $cmd->getHistory($_startDate, $_endDate);
+    	
+  		$duration = 0;
+        $lastDuration = strtotime($histories[0]->getDatetime());
+  		$lastValue = $histories[0]->getValue();
+  
+  		foreach ($histories as $history) {       
+        	if ($lastValue == $_value) {
+            	$duration = $duration + (strtotime($history->getDatetime()) - $lastDuration);
+          	} 
+          	$lastDuration = strtotime($history->getDatetime());
+          	$lastValue = $history->getValue();
+		}
 		return floor($duration/60);
 	}
 	
