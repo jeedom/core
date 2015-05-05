@@ -461,16 +461,6 @@ class jeedom {
 
 		}
 		try {
-			$c = new Cron\CronExpression(config::byKey('backup::cron'), new Cron\FieldFactory);
-			if ($c->isDue()) {
-				log::add('backup_launch', 'debug', 'Lancement du backup automatiquement');
-				jeedom::backup();
-			}
-		} catch (Exception $e) {
-			log::add('backup', 'error', 'Auto backup error : ' . $e->getMessage());
-		}
-
-		try {
 			$c = new Cron\CronExpression('35 00 * * 0', new Cron\FieldFactory);
 			if ($c->isDue()) {
 				cache::clean();

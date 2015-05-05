@@ -77,6 +77,17 @@ try {
 		$cron->save();
 	}
 
+	$cron = cron::byClassAndFunction('jeedom', 'backup');
+	if (!is_object($cron)) {
+		echo "Création de jeedom::backup\n";
+		$cron = new cron();
+		$cron->setClass('jeedom');
+		$cron->setFunction('backup');
+		$cron->setSchedule('00 02 * * *');
+		$cron->setTimeout(60);
+		$cron->save();
+	}
+
 	$cron = cron::byClassAndFunction('plugin', 'cronHourly');
 	if (!is_object($cron)) {
 		echo "Création de plugin::cronHourly\n";
