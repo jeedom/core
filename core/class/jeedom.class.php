@@ -586,19 +586,19 @@ class jeedom {
 
 /*     * ****************************SQL BUDDY*************************** */
 
-	public static function getCurrentSqlBuddyFolder() {
+	public static function getCurrentAdminerFolder() {
 		$dir = dirname(__FILE__) . '/../../';
-		$ls = ls($dir, 'sqlbuddy*');
+		$ls = ls($dir, 'adminer*');
 		if (count($ls) != 1) {
 			return '';
 		}
 		return $ls[0];
 	}
 
-	public static function renameSqlBuddyFolder() {
-		$folder = self::getCurrentSqlBuddyFolder();
+	public static function renameAdminerFolder() {
+		$folder = self::getCurrentAdminerFolder();
 		if ($folder != '') {
-			rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../sqlbuddy' . config::genKey());
+			rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../adminer' . config::genKey());
 		}
 	}
 

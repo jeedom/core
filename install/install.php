@@ -136,8 +136,11 @@ try {
 						rrmdir($cibDir);
 					}
 					echo __("OK\n", __FILE__);
-					echo __("Nettoyage sqlbuddy en cours...", __FILE__);
+					echo __("Nettoyage adminer en cours...", __FILE__);
 					foreach (ls(dirname(__FILE__) . '/../', 'sqlbuddy*') as $file) {
+						@rrmdir(dirname(__FILE__) . '/../' . $file);
+					}
+					foreach (ls(dirname(__FILE__) . '/../', 'adminer*') as $file) {
 						@rrmdir(dirname(__FILE__) . '/../' . $file);
 					}
 					echo __("OK\n", __FILE__);
@@ -168,8 +171,8 @@ try {
 					rrmdir($cibDir);
 					unlink($tmp);
 					echo __("OK\n", __FILE__);
-					echo __("Renommage sqlbuddy en cours...", __FILE__);
-					jeedom::renameSqlBuddyFolder();
+					echo __("Renommage adminer en cours...", __FILE__);
+					jeedom::renameAdminerFolder();
 					echo __("OK\n", __FILE__);
 					echo __("Renommage sysinfo en cours...", __FILE__);
 					jeedom::renameSysInfoFolder();
