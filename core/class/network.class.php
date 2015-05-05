@@ -528,7 +528,7 @@ class network {
 		}
 
 		$filepath = '/etc/network/interfaces';
-		if (config::byKey('network::failedNumber', 'core', 0) == 6 && file_exists($filepath . '.save')) {
+		if (config::byKey('network::failedNumber', 'core', 0) == 3 && file_exists($filepath . '.save') && self::ehtIsUp()) {
 			log::add('network', 'error', __('Aucune gateway trouvée depuis plus de 30min. Remise par defaut du fichier interface', __FILE__));
 			exec('sudo cp ' . $filepath . '.save ' . $filepath . '; sudo rm ' . $filepath . '.save ');
 			//jeedom::rebootSystem();
