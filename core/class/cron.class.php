@@ -389,7 +389,7 @@ class cron {
 				return true;
 			}
 		} catch (Exception $e) {
-			log::add('cron', 'debug', 'Error on isDue : ' . $e->getMessage());
+			log::add('cron', 'debug', 'Error on isDue : ' . $e->getMessage() . ', cron : ' . $this->getSchedule());
 		}
 		return false;
 	}
