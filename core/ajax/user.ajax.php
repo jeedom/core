@@ -21,7 +21,17 @@ try {
 	include_file('core', 'authentification', 'php');
 
 	if (init('action') == 'login') {
-		if (!login(init('username'), init('password'), true)) {
+		if (!isConnect() && config::byKey('sso:allowRemoteUser') == 1) {
+			$user = user::byLogin($_SERVER['REMOTE_USER']);
+			if (is_object($user) && $user->getEnable() == 1) {
+				connection::success($user->getLogin());
+				@session_start();
+				$_SESSION['user'] = $user;
+				@session_write_close();
+				log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER : ', __FILE__) . $user->getLogin());
+			}
+		}
+		if (!isConnect() && !login(init('username'), init('password'), true)) {
 			throw new Exception('Mot de passe ou nom d\'utilisateur incorrect');
 		}
 		if (init('storeConnection') == 1) {
@@ -166,7 +176,7 @@ try {
 		ajax::success(utils::o2a($_SESSION['user']));
 	}
 
-	if (init('action') == 'testLdapConneciton') {
+	if (init('action') == 'testLdapConnection') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}

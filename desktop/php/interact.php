@@ -121,7 +121,7 @@ foreach ($interactListGroup as $group) {
 
 
 
-<div class="interact" style="display: none;" id="div_conf">
+<div class="interact" style="display: none;margin-left:20px;" id="div_conf">
     <div class="row">
         <div class="col-sm-6">
             <form class="form-horizontal">

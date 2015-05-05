@@ -20,6 +20,10 @@ try {
 	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 
+	if (!isConnect('admin')) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__));
+	}
+
 	if (init('action') == 'restartNgrok') {
 		config::save('market::allowDNS', 1);
 		if (network::ngrok_run()) {
@@ -42,6 +46,14 @@ try {
 			network::ngrok_stop('tcp', 22, 'ssh');
 		}
 		ajax::success();
+	}
+
+	if (init('action') == 'listWifi') {
+		ajax::success(network::listWifi());
+	}
+
+	if (init('action') == 'writeInterfaceFile') {
+		ajax::success(network::writeInterfaceFile());
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));

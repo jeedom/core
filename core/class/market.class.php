@@ -42,6 +42,7 @@ class market {
 	private $buyer;
 	private $purchase = 0;
 	private $cost = 0;
+	private $costHt = 0;
 	private $realcost = 0;
 	private $link;
 	private $certification;
@@ -50,6 +51,7 @@ class market {
 	private $private;
 	private $change;
 	private $updateBy;
+	private $docOnly;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -88,6 +90,11 @@ class market {
 		$market->setRealcost($_arrayMarket['realCost']);
 		if (!isset($_arrayMarket['api_author'])) {
 			$_arrayMarket['api_author'] = null;
+		}
+		if (isset($_arrayMarket['costHt'])) {
+			$market->setCostHt($_arrayMarket['costHt']);
+		} else {
+			$market->setCostHt(0);
 		}
 		$market->setApi_author($_arrayMarket['api_author']);
 
@@ -439,7 +446,7 @@ class market {
 	public static function getInfo($_logicalId, $_version = 'stable') {
 		$returns = array();
 		if (is_array($_logicalId) && is_array($_version) && count($_logicalId) == count($_version)) {
-			if (count($_logicalId) > 1 && is_array(reset($_logicalId))) {
+			if (is_array(reset($_logicalId))) {
 				$markets = market::byLogicalIdAndType($_logicalId);
 			} else {
 				$markets = market::byLogicalId($_logicalId);
@@ -1076,12 +1083,28 @@ class market {
 		$this->change = $change;
 	}
 
+	public function getDocOnly() {
+		return $this->docOnly;
+	}
+
+	public function setDocOnly($docOnly) {
+		$this->docOnly = $docOnly;
+	}
+
 	public function getUpdateBy() {
 		return $this->updateBy;
 	}
 
 	public function setUpdateBy($updateBy) {
 		$this->updateBy = $updateBy;
+	}
+
+	public function getCostHt() {
+		return $this->costHt;
+	}
+
+	public function setCostHt($costHt) {
+		$this->costHt = $costHt;
 	}
 
 }

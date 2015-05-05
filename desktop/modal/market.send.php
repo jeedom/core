@@ -16,7 +16,7 @@ try {
 }
 if (is_object($market)) {
 	if ($market->getApi_author() == '') {
-		throw new Exception('{{Vous n\'etes pas l\'autheur du plugin}}');
+		throw new Exception('{{Vous n\'etes pas l\'auteur du plugin}}');
 	}
 }
 
@@ -92,9 +92,6 @@ if (init('type') == 'plugin') {
                         <option value="plugin" data-category='plugin'>{{Plugin}}</option>
                         <option value="widget" data-category='widget'>{{Widget}}</option>
                         <option value="zwave" data-category='input'>{{[Zwave] Configuration module}}</option>
-                        <option value="enocean" data-category='input'>{{[EnOcean] Configuration module}}</option>
-                        <option value="rfxcom" data-category='input'>{{[RfxCom] Configuration module}}</option>
-                        <option value="edisio" data-category='input'>{{[Edisio] Configuration module}}</option>
                         <option value="script" data-category='input'>{{Script}}</option>
                         <option value="scenario" data-category='input'>{{Scénario}}</option>
                         <option value="camera" data-category='input'>{{[Camera] Modèle}}</option>
@@ -149,9 +146,9 @@ if (init('type') == 'plugin') {
             </div>
         </div>
         <div class="col-lg-6">
-           <div class="form-group">
-               <label class="col-sm-2 control-label">Video</label>
-               <div class="col-sm-9">
+         <div class="form-group">
+             <label class="col-sm-2 control-label">Video</label>
+             <div class="col-sm-9">
                 <input class="form-control marketAttr" data-l1key="link" data-l2key="video">
             </div>
         </div>
@@ -204,20 +201,27 @@ if (init('type') == 'plugin') {
 
 <div title="Qu'avez-vous changé ?" id="md_marketSendChangeChange">
     <form class="form-horizontal" role="form">
-       <div class="form-group">
+     <div class="form-group">
         <label class="col-sm-3 control-label">{{Version}}</label>
         <div class="col-sm-3">
             <input class="form-control" id="in_marketSendVersion">
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-3 control-label">{{Changement}}</label>
-        <div class="col-sm-9">
-           <textarea class="form-control" id="ta_marketSendChange" placeholder="{{Changement}}" style="height: 150px;"></textarea>
-       </div>
-   </div>
-   <a class="btn btn-success pull-right" id="bt_marketSendValideChange"><i class="fa fa-check"></i> {{Valider}}</a>
-   <a class="btn btn-default pull-right" id="bt_marketSendCancelChange"><i class="fa fa-times"></i> {{Annuler}}</a>
+        <label class="col-sm-3 control-label">{{Documentation seulement}}</label>
+        <div class="col-sm-1">
+         <input type="checkbox" id="cb_marketSendDocOnly" />
+     </div>
+ </div>
+ <div class="form-group">
+    <label class="col-sm-3 control-label">{{Changement}}</label>
+    <div class="col-sm-9">
+     <textarea class="form-control" id="ta_marketSendChange" placeholder="{{Changement}}" style="height: 150px;"></textarea>
+ </div>
+
+</div>
+<a class="btn btn-success pull-right" id="bt_marketSendValideChange"><i class="fa fa-check"></i> {{Valider}}</a>
+<a class="btn btn-default pull-right" id="bt_marketSendCancelChange"><i class="fa fa-times"></i> {{Annuler}}</a>
 </form>
 </div>
 
@@ -230,7 +234,7 @@ if (is_object($market)) {
   $("#md_marketSendChangeChange").dialog({
     autoOpen: false,
     modal: true,
-    height: 350,
+    height: 400,
     width:700,
     position: {my: 'center', at: 'center', of: window},
     open: function () {
@@ -267,11 +271,11 @@ if (is_object($market)) {
   $('body').setValues(market_display_info, '.marketAttr');
   if(market_display_info.id != ''){
     $('#span_directLinkWidget').value('{{Ou en cliquant }}<a href="http://market.jeedom.fr/index.php?v=d&p=addMarket&id='+market_display_info.id+'" target="_blank" >{{ici}}</a>');
-  }else{
+}else{
     $('#span_directLinkWidget').value('');
-  }
+}
 
-  if (market_display_info.realcost == '' || market_display_info.realcost == 0) {
+if (market_display_info.realcost == '' || market_display_info.realcost == 0) {
     $('.rb_price.free').prop('checked', true);
     $('.marketAttr[data-l1key=cost]').value('');
     $('.rb_price.free').closest('.priceChoose').addClass('alert alert-success');
@@ -304,16 +308,18 @@ $('#bt_sendToMarket').on('click', function () {
     });
 
     if(market.id != ''){
-     $('#md_marketSendChangeChange').dialog('open');
-     $('#in_marketSendVersion').value(market_display_info.version);
-     $('#ta_marketSendChange').value('');
-     $('#bt_marketSendCancelChange').off().on('click',function(){
+       $('#md_marketSendChangeChange').dialog('open');
+       $('#in_marketSendVersion').value(market_display_info.version);
+       $('#ta_marketSendChange').value('');
+       $('#cb_marketSendDocOnly').value(0);
+       $('#bt_marketSendCancelChange').off().on('click',function(){
         $('#md_marketSendChangeChange').dialog('close');
     });
-     $('#bt_marketSendValideChange').off().on('click',function(){
+       $('#bt_marketSendValideChange').off().on('click',function(){
 
         market.version = $('#in_marketSendVersion').value();
         market.change = $('#ta_marketSendChange').value();
+        market.docOnly = $('#cb_marketSendDocOnly').value();
 
 
   $.ajax({// fonction permettant de faire de l'ajax
@@ -336,12 +342,12 @@ $('#bt_sendToMarket').on('click', function () {
                 $.showLoading();
                 window.location.reload();
             } else {
-             $('#md_marketSendChangeChange').dialog('close');
-             $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
-         }
+               $('#md_marketSendChangeChange').dialog('close');
+               $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
+           }
 
-     }
- });
+       }
+   });
 });
 
 }else{

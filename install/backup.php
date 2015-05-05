@@ -68,7 +68,7 @@ try {
 	$bakcup_name = 'backup-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz';
 
 	echo __('Sauvegarde des fichiers...', __FILE__);
-	$exclude = array('tmp', 'backup', 'log', 'ngrok', str_replace('/', '', jeedom::getCurrentSysInfoFolder()), str_replace('/', '', jeedom::getCurrentSqlBuddyFolder()));
+	$exclude = array('tmp', 'backup', 'log', 'ngrok', str_replace('/', '', jeedom::getCurrentSysInfoFolder()), str_replace('/', '', jeedom::getCurrentAdminerFolder()));
 	if (strpos('/', config::byKey('backup::path')) === false) {
 		$exclude[] = config::byKey('backup::path');
 	}

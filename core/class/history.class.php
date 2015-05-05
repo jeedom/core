@@ -401,6 +401,37 @@ LIMIT 1';
 	}
 
 	/**
+	* Fonction renvoie la durée depuis le dernier changement d'état
+	* à la valeur passée en paramètre
+	*/
+	public static function lastChangeStateDuration($_cmd_id, $_value) {
+		$cmd = cmd::byId($_cmd_id);
+		if (!is_object($cmd)) {
+			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
+		}
+		$values = array(
+			'cmd_id' => $_cmd_id,
+		);
+		$values['value'] = $_value;
+		$sql = 'SELECT `datetime`
+			FROM (
+			SELECT `datetime`
+			FROM `history`
+			WHERE `cmd_id`=:cmd_id
+			AND `value` =:value
+			UNION ALL
+			SELECT `datetime`
+			FROM `historyArch`
+			WHERE `cmd_id`=:cmd_id
+			AND `value` =:value
+		) as dt
+		ORDER BY `datetime` DESC
+		LIMIT 1';
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		return strtotime('now') - strtotime($result['datetime']);
+	}
+
+	/**
 	 * Fonction qui recupere les valeurs actuellement des capteurs,
 	 * les mets dans la BDD et archive celle-ci
 	 */
@@ -516,7 +547,7 @@ LIMIT 1';
 		if ($cmd->getConfiguration('historizeRound') !== '' && is_numeric($cmd->getConfiguration('historizeRound')) && $cmd->getConfiguration('historizeRound') >= 0 && $this->getValue() !== null) {
 			$this->setValue(round($this->getValue(), $cmd->getConfiguration('historizeRound')));
 		}
-		if ($cmd->getSubType() != 'binary' && $cmd->getConfiguration('historizeMode', 'avg') != 'none' && $this->getValue() !== null && $direct = false) {
+		if ($cmd->getSubType() != 'binary' && $cmd->getConfiguration('historizeMode', 'avg') != 'none' && $this->getValue() !== null && $_direct == false) {
 			if ($this->getTableName() == 'history') {
 				$time = strtotime($this->getDatetime());
 				$time -= $time % 300;

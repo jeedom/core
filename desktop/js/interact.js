@@ -30,8 +30,22 @@ $("#div_listInteract").resizable({
   grid: [1, 10000],
   stop: function () {
     $('.interactListContainer').packery();
+     var value = {options: {interactMenuSize: $("#div_listInteract").width()}};
+        jeedom.user.saveProfils({
+          profils: value,
+          global: false,
+          error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+        }
+    });
 }
 });
+
+if(!isset(userProfils.interactMenuSize) || userProfils.interactMenuSize > 0){
+  $("#div_listInteract").width( userProfils.interactMenuSize);
+}
 
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
     $('#div_listInteract').hide();

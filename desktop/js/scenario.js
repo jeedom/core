@@ -59,8 +59,22 @@ $("#div_listScenario").resizable({
   grid: [1, 10000],
   stop: function () {
     $('.scenarioListContainer').packery();
+    var value = {options: {scenarioMenuSize: $("#div_listScenario").width()}};
+    jeedom.user.saveProfils({
+      profils: value,
+      global: false,
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function () {
+      }
+    });
   }
 });
+
+if(!isset(userProfils.scenarioMenuSize) || userProfils.scenarioMenuSize > 0){
+  $("#div_listScenario").width( userProfils.scenarioMenuSize);
+}
 
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
   $('#div_listScenario').hide();
@@ -483,10 +497,14 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
           callback: function () {
            var condition = result.human;
            condition += ' ' + $('.conditionAttr[data-l1key=operator]').value();
-           condition += ' ' + $('.conditionAttr[data-l1key=operande]').value();
-           condition += ' ' + $('.conditionAttr[data-l1key=next]').value()+' ';
-           expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition);
-           if($('.conditionAttr[data-l1key=next]').value() != ''){
+           if(result.cmd.subType == 'string'){
+             condition += ' "' + $('.conditionAttr[data-l1key=operande]').value()+'"';
+           }else{
+            condition += ' ' + $('.conditionAttr[data-l1key=operande]').value();
+          }
+          condition += ' ' + $('.conditionAttr[data-l1key=next]').value()+' ';
+          expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition);
+          if($('.conditionAttr[data-l1key=next]').value() != ''){
             el.click();
           }
         }
@@ -495,7 +513,7 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
   });
 
 
-  }
+}
 });
 });
 

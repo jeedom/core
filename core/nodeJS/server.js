@@ -34,12 +34,9 @@
     message.title = req.query['title'];
     message.text = req.query['text'];
     message.category = req.query['category'];
-    message.userFromId = req.query['userFromId'];
-    message.userDestId = req.query['userDestId'];
     message.message = req.query['message'];
     message.options = req.query['options'];
     handleMessage(message);
-  //  addMessage(message);
   res.status(200).send('OK');
 });
 
@@ -52,34 +49,12 @@
             user_id : user_id,
             socket : socket,
         };
-     /*   addMessage(null);
-        for (var i in messages) {
-            handleMessage(messages[i]);
-        }*/
     });
 
     socket.on('disconnect', function(key) {
         delete clients[socket.id];
     });
 });
-
- function addMessage(message) {
-    var tmp_message = [];
-    var now = new Date().getTime();
-    for (var i in messages) {
-        if (messages[i].datetime > (now - 2000)) {
-            if (message == null || (messages[i].type != message.type || messages[i].options != message.options)) {
-                tmp_message.push(messages[i]);
-            }
-        }
-    }
-    if (message != null) {
-     if (message.type == 'eventScenario' || message.type == 'eventEqLogic' || message.type == 'eventCmd') {
-        tmp_message.push(message);
-    }
-}
-messages = tmp_message;
-}
 
 function handleMessage(message) {
     for (var i in clients) {

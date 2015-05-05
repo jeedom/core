@@ -51,7 +51,8 @@
         "Mises à jour disponibles": "Mises à jour disponibles",
         "Voir les événements en temps réél": "Voir les événements en temps réél",
         "Multimédia": "Multimédia",
-        "Erreur scénario : tous les scénarios sont désactivés. Allez dans Général -> Scénarios pour les réactiver": "Erreur scénario : tous les scénarios sont désactivés. Allez dans Général -> Scénarios pour les réactiver"
+        "Erreur scénario : tous les scénarios sont désactivés. Allez dans Général -> Scénarios pour les réactiver": "Erreur scénario : tous les scénarios sont désactivés. Allez dans Général -> Scénarios pour les réactiver",
+        "Finance": "Finance"
     },
     "core\/class\/scenario.class.php": {
         "Scénario exécuté automatiquement sur évènement venant de : ": "Scénario exécuté automatiquement sur évènement venant de : ",
@@ -88,7 +89,8 @@
         "inconnue": "inconnue",
         "Aucun": "Aucun",
         "Le module ": "Le module ",
-        " a été désactivé car il n'a plus de batterie (": " a été désactivé car il n'a plus de batterie ("
+        " a été désactivé car il n'a plus de batterie (": " a été désactivé car il n'a plus de batterie (",
+        "Le nom de l'équipement ne peut pas être vide : ": "Le nom de l'équipement ne peut pas être vide : "
     },
     "desktop\/php\/dashboard.php": {
         "Liste objets": "Liste objets",
@@ -502,7 +504,23 @@
         "Statut SSH": "Statut SSH",
         "Toute modification nécessite de redémarrer le service DNS Jeedom (ligne \"Gestion\" puis \"Redémarrer\")": "Toute modification nécessite de redémarrer le service DNS Jeedom (ligne \"Gestion\" puis \"Redémarrer\")",
         "A ne faire que si on vous le demande ou en connaissance de cause": "A ne faire que si on vous le demande ou en connaissance de cause",
-        "Normale si vous n'avez pas coché la case : Rediriger le SSH": "Normale si vous n'avez pas coché la case : Rediriger le SSH"
+        "Normale si vous n'avez pas coché la case : Rediriger le SSH": "Normale si vous n'avez pas coché la case : Rediriger le SSH",
+        "Wifi": "Wifi",
+        "Activer le wifi": "Activer le wifi",
+        "Reseaux wifi": "Reseaux wifi",
+        "Clef": "Clef",
+        "IP fixe": "IP fixe",
+        "Netmask": "Netmask",
+        "Gateway": "Gateway",
+        "Network": "Network",
+        "Braadcast": "Braadcast",
+        "Ecrire la configure": "Ecrire la configure",
+        "Générer les traductions": "Générer les traductions",
+        "Wifi && IP static": "Wifi && IP static",
+        "ifenslave manquant pour pouvoir gérer le reseaux avec Jeedom, veuillez faire en ssh : sudo apt-get install ifenslave ifenslave-2.6": "ifenslave manquant pour pouvoir gérer le reseaux avec Jeedom, veuillez faire en ssh : sudo apt-get install ifenslave ifenslave-2.6",
+        "Jeedom ne peut gerer le reseaux veuillez si": "Jeedom ne peut gerer le reseaux veuillez si",
+        "ifenslave est installé, pour l'installer, faire en ssh : sudo apt-get install ifenslave ifenslave-2.6": "ifenslave est installé, pour l'installer, faire en ssh : sudo apt-get install ifenslave ifenslave-2.6",
+        "le module bonding est chargé, en ssh regarder si il y a bien \"bonding\" dans \/etc\/modules": "le module bonding est chargé, en ssh regarder si il y a bien \"bonding\" dans \/etc\/modules"
     },
     "desktop\/php\/user.php": {
         "Liste des utilisateurs :": "Liste des utilisateurs :",
@@ -572,7 +590,8 @@
         "Statut": "Statut",
         "Actions": "Actions",
         "Informations :": "Informations :",
-        "Vérifier les objets et mises à jour": "Vérifier les objets et mises à jour"
+        "Vérifier les objets et mises à jour": "Vérifier les objets et mises à jour",
+        "Changelog": "Changelog"
     },
     "desktop\/php\/jeeNetwork.php": {
         "Ajouter un Jeedom": "Ajouter un Jeedom",
@@ -912,7 +931,8 @@
         "Sauvegarde spécifique pour le plugin zwave...": "Sauvegarde spécifique pour le plugin zwave...",
         "Plus de 50 sauvegardes supprimées. Je m'arrête.\n": "Plus de 50 sauvegardes supprimées. Je m'arrête.\n",
         "***************Lancement de la sauvegarde de Jeedom le ": "***************Lancement de la sauvegarde de Jeedom le ",
-        "Nom du backup : ": "Nom du backup : "
+        "Nom du backup : ": "Nom du backup : ",
+        "Mise à plat des droits...": "Mise à plat des droits..."
     },
     "core\/class\/message.class.php": {
         "Message de ": "Message de ",
@@ -961,7 +981,7 @@
         "Espagnole": "Espagnole",
         "Russe": "Russe",
         "Votre objet a été envoyé avec succès sur le market": "Votre objet a été envoyé avec succès sur le market",
-        "Vous n'etes pas l'autheur du plugin": "Vous n'etes pas l'autheur du plugin",
+        "Vous n'etes pas l'auteur du plugin": "Vous n'etes pas l'auteur du plugin",
         "English": "English",
         "Deutsch": "Deutsch",
         "Español": "Español",
@@ -975,7 +995,8 @@
         "N'oubliez pas de rajouter une image à votre création": "N'oubliez pas de rajouter une image à votre création",
         "N'oubliez pas de rajouter une image à votre création en passant par le market.": "N'oubliez pas de rajouter une image à votre création en passant par le market.",
         "Ou en cliquant ": "Ou en cliquant ",
-        "ici": "ici"
+        "ici": "ici",
+        "Documentation seulement": "Documentation seulement"
     },
     "core\/class\/cmd.class.php": {
         "Aucun": "Aucun",
@@ -1075,7 +1096,8 @@
         "Vider les logs": "Vider les logs",
         "Log vidé avec succès": "Log vidé avec succès",
         "Aucun log n'existe pour votre scénario : ": "Aucun log n'existe pour votre scénario : ",
-        "Télécharger": "Télécharger"
+        "Télécharger": "Télécharger",
+        "Rafraichir": "Rafraichir"
     },
     "desktop\/js\/scenario.js": {
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
@@ -1607,5 +1629,10 @@
     },
     "core\/class\/scenarioElement.class.php": {
         "Non éxecution des actions pour cause de répétition": "Non éxecution des actions pour cause de répétition"
+    },
+    "core\/class\/network.class.php": {
+        "network::cron je passe": "network::cron je passe",
+        "Aucune gateway trouvée, redemarrage de l'interface wifi": "Aucune gateway trouvée, redemarrage de l'interface wifi",
+        "Aucune gateway trouvée, redemarrage de l'interface filaire": "Aucune gateway trouvée, redemarrage de l'interface filaire"
     }
 }

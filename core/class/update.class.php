@@ -234,6 +234,13 @@ class update {
 						$update->remove();
 					}
 				}
+			} else {
+				$values = array(
+					'type' => $plugin_id,
+				);
+				$sql = 'DELETE FROM `update`
+						WHERE type=:type';
+				DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 			}
 		}
 	}

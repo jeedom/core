@@ -104,10 +104,8 @@ class network {
 				}
 				return config::byKey('externalProtocol');
 			}
-			if (config::byKey('jeedom::url') != '') {
-				if (config::byKey('jeedom::url') != '') {
-					return config::byKey('jeedom::url');
-				}
+			if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
+				return config::byKey('jeedom::url');
 			}
 			return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . config::byKey('externalComplement');
 		}
@@ -221,7 +219,7 @@ class network {
 
 /*     * *********************NGROK************************* */
 
-	public static function ngrok_start($_proto = 'https', $_port = 80, $_name = '') {
+	public static function ngrok_start($_proto = 'https', $_port = 80, $_name = '', $_serverAddr = 'dns.jeedom.com:4443') {
 		if ($_port != 80 && $_name == '') {
 			throw new Exception(__('Si le port est different de 80 le nom ne peut etre vide', __FILE__));
 		}
@@ -245,14 +243,18 @@ class network {
 		$cmd .= ' -config=' . $config_file . ' start ' . $_name;
 		if (!self::ngrok_run($_proto, $_port, $_name)) {
 			$replace = array(
+				'#server_addr#' => $_serverAddr,
 				'#name#' => $_name,
 				'#proto#' => $_proto,
 				'#port#' => $_port,
 				'#remote_port#' => '',
 				'#token#' => config::byKey('ngrok::token'),
 				'#auth#' => '',
-				'#subdomain#' => config::byKey('ngrok::addr'),
+				'#subdomain#' => 'subdomain : ' . config::byKey('ngrok::addr'),
 			);
+			if ($_serverAddr != 'dns.jeedom.com:4443') {
+				$replace['#subdomain#'] = '';
+			}
 			if ($_proto == 'tcp') {
 				if (config::byKey('ngrok::port') == '') {
 					return '';
@@ -357,135 +359,212 @@ class network {
 
 /*     * *********************WICD************************* */
 
-	public static function listWifi($_refresh = false) {
+	public static function listWifi() {
+		$results = shell_exec('sudo ifconfig wlan0 up;sudo iwlist scan | grep ESSID 2> /dev/null');
+		$results = explode("\n", $results);
 		$return = array();
-		if ($_refresh) {
-			$results = exec('sudo wicd-cli --wireless --scan --list-networks');
-		} else {
-			$results = exec('sudo wicd-cli --wireless --list-networks');
+		foreach ($results as $result) {
+			if (strpos($result, 'ESSID') !== false) {
+				$essid = trim(str_replace(array('ESSID', ':', '"'), '', $result));
+				if ($essid != '' && !isset($return[$essid])) {
+					$return[$essid] = $essid;
+				}
+			}
 		}
+		return $return;
+
+	}
+
+	public static function canManageNetwork() {
+		if (shell_exec('sudo dpkg --get-selections | grep ifenslave | wc -l') == 0) {
+			return false;
+		}
+		if (shell_exec('sudo lsmod | grep bonding | wc -l') == 0) {
+			return false;
+		}
+		return true;
+	}
+
+	public static function signalStrength() {
+		if (config::byKey('network::wifi::enable') != 1 || config::byKey('network::wifi::ssid') == '' || config::byKey('network::wifi::password') == '') {
+			$return = -1;
+		}
+		return str_replace('.', '', shell_exec("tail -n +3 /proc/net/wireless | awk '{ print $3 }'"));
+	}
+
+	public static function ehtIsUp() {
+		return (trim(shell_exec("cat /sys/class/net/eth0/operstate")) == 'up') ? true : false;
+	}
+
+	public static function writeInterfaceFile() {
+		if (!self::canManageNetwork()) {
+			return;
+		}
+
+		$interface = 'auto lo
+	iface lo inet loopback';
+		$interface .= "\n\n";
+		$interface .= 'auto eth0
+	iface eth0 inet manual
+	bond-master bond0
+	bond-primary eth0
+	bond-mode active-backup';
+		$interface .= "\n\n";
+
+		if (config::byKey('network::wifi::enable') == 1 && config::byKey('network::wifi::ssid') != '' && config::byKey('network::wifi::password') != '') {
+			$interface .= 'auto wlan0
+	iface wlan0 inet manual
+	wpa-ssid ' . config::byKey('network::wifi::ssid') . '
+	wpa-psk ' . config::byKey('network::wifi::password') . '
+	bond-master bond0
+	bond-primary eth0
+	bond-mode active-backup';
+		}
+		$interface .= "\n\n";
+
+		if (config::byKey('network::fixip::enable') == 1 && config::byKey('internalAddr') != '' && filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP) && config::byKey('network::fixip::gateway') != '' && filter_var(config::byKey('network::fixip::gateway'), FILTER_VALIDATE_IP) && config::byKey('network::fixip::netmask') != '' && filter_var(config::byKey('network::fixip::netmask'), FILTER_VALIDATE_IP)) {
+			$interface .= 'auto bond0
+	iface bond0 inet static
+	address ' . config::byKey('internalAddr') . '
+	gateway ' . config::byKey('network::fixip::gateway') . '
+	netmask ' . config::byKey('network::fixip::netmask') . '
+    bond-slaves none
+	bond-primary eth0
+	bond-mode active-backup
+	bond-miimon 100';
+		} else {
+			$interface .= 'auto bond0
+	iface bond0 inet dhcp
+	bond-slaves none
+	bond-primary eth0
+	bond-mode active-backup
+	bond-miimon 100';
+		}
+		$interface .= "\n";
+		file_put_contents('/tmp/interfaces', $interface);
+		$filepath = '/etc/network/interfaces';
+		if (!file_exists($filepath . '.save')) {
+			exec('sudo cp ' . $filepath . ' ' . $filepath . '.save');
+		}
+		exec('sudo rm -rf ' . $filepath . '; sudo mv /tmp/interfaces ' . $filepath . ';sudo chown root:root ' . $filepath . ';sudo chmod 644 ' . $filepath);
+	}
+
+	public static function getInterfaceIp($_interface) {
+		$results = trim(shell_exec('sudo ip addr show ' . $_interface . '| grep inet | head -1'));
+		$results = explode(' ', $results);
+		$result = $results[1];
+		$ip = substr($result, 0, strrpos($result, '/'));
+		if (filter_var($ip, FILTER_VALIDATE_IP)) {
+			return $ip;
+		}
+		return false;
+	}
+
+	public static function getRoute() {
+		$return = array();
+		$results = trim(shell_exec('sudo route -n'));
 		$results = explode("\n", $results);
 		unset($results[0]);
+		unset($results[1]);
 		foreach ($results as $result) {
-			$info_network = explode("  ", $result);
-			$return[] = array('id' => $info_network[0], 'BSSID' => $info_network[1], 'ESSID' => $info_network[2]);
+			$info = explode(' ', $result);
+			$destination = null;
+			$gw = null;
+			$iface = $info[count($info) - 1];
+			for ($i = 0; $i < count($info); $i++) {
+				if ($info[$i] != '' && filter_var($info[$i], FILTER_VALIDATE_IP)) {
+					if ($destination == null) {
+						$destination = $info[$i];
+					} else if ($gw == null) {
+						$gw = $info[$i];
+					}
+				}
+			}
+			if (isset($return[$iface])) {
+				if ($destination != '0.0.0.0') {
+					$return[$iface]['destination'] = $destination;
+				}
+				if ($gw != '0.0.0.0') {
+					$return[$iface]['gateway'] = $gw;
+				}
+			} else {
+				$return[$iface] = array('destination' => $destination, 'gateway' => $gw, 'iface' => $iface);
+			}
 		}
 		return $return;
 	}
 
-	public static function connectToWired() {
-		if (config::byKey('network::fixedIp') != 1) {
-			return;
+	public static function checkGw() {
+		$return = array();
+		foreach (self::getRoute() as $route) {
+			$return[$route['iface']] = array('destination' => $route['destination'], 'gateway' => $route['gateway'], 'iface' => $route['iface']);
+			$output = array();
+			$return_val = -1;
+			if ($route['gateway'] != '0.0.0.0' && $route['gateway'] != '127.0.0.1') {
+				exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
+				$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
+			} else {
+				$return[$route['iface']]['ping'] = 'nok';
+			}
 		}
-		$replace = array(
-			'#ip#' => 'None',
-			'#netmask#' => 'None',
-			'#gateway#' => 'None',
-			'#hostname#' => gethostname(),
-		);
-		$ip = self::getNetworkAccess('internal', 'ip');
-		$bcmd = 'sudo wicd-cli --wired --network 0 ';
-		if (!filter_var($ip, FILTER_VALIDATE_IP)) {
-			return;
-		}
-		$replace['#ip#'] = $ip;
-		if (config::byKey('network::wired::gateway') != '') {
-			$replace['#gateway#'] = config::byKey('network::wired::gateway');
-		}
-		if (config::byKey('network::wired::netmask') != '') {
-			$replace['#netmask#'] = config::byKey('network::wired::netmask');
-		}
-		exec('sudo service wicd restart');
-		exec('sudo wicd-cli --wired --network 0 --connect');
+		return $return;
 	}
 
-	public static function connectToWireless() {
-		$wifi_id = -1;
-		$wifi_name = config::byKey('network::wifi::essid');
-		foreach (self::listWifi() as $wifi) {
-			if ($wifi['ESSID'] == $wifi_name) {
-				$wifi_id = $wifi['id'];
-				break;
+	public static function cron() {
+		$gws = self::checkGw();
+		if (count($gws) < 1) {
+			return;
+		}
+		foreach ($gws as $gw) {
+			if ($gw['ping'] == 'ok') {
+				if (config::byKey('network::lastNoGw', 'core', -1) != -1) {
+					config::save('network::lastNoGw', -1);
+				}
+				if (config::byKey('network::failedNumber', 'core', 0) != 0) {
+					config::save('network::failedNumber', 0);
+				}
+				return;
 			}
 		}
-		if ($wifi_id == -1) {
-			log::add('wifi', 'error', __('Network not found  : ', __FILE__) . $wifi_name);
+
+		$filepath = '/etc/network/interfaces';
+		if (config::byKey('network::failedNumber', 'core', 0) > 2 && file_exists($filepath . '.save') && self::ehtIsUp()) {
+			log::add('network', 'error', __('Aucune gateway trouvée depuis plus de 30min. Remise par defaut du fichier interface', __FILE__));
+			exec('sudo cp ' . $filepath . '.save ' . $filepath . '; sudo rm ' . $filepath . '.save ');
+			//jeedom::rebootSystem();
 		}
-		$bcmd = 'sudo wicd-cli --wireless --network ' . $wifi_id . ' ';
-		$wifi_enctype = config::byKey('network::wifi::enctype');
-		exec($bcmd . '--network-property enctype --set-to ' . $wifi_enctype);
-		switch ($wifi_enctype) {
-			case 'wpa':
-				exec($bcmd . '--network-property key --set-to ' . config::byKey('network::wifi::key'));
-				break;
-			case 'wpa-peap':
-				exec($bcmd . '--network-property identity --set-to ' . config::byKey('network::wifi::identity'));
-				exec($bcmd . '--network-property domain --set-to ' . config::byKey('network::wifi::domain'));
-				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
-				break;
-			case 'wpa-psk':
-				exec($bcmd . '--network-property apsk --set-to ' . config::byKey('network::wifi::apsk'));
-				break;
-			case 'wpa2-leap':
-				exec($bcmd . '--network-property username --set-to ' . config::byKey('network::wifi::username'));
-				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
-				break;
-			case 'wpa2-peap':
-				exec($bcmd . '--network-property identity --set-to ' . config::byKey('network::wifi::identity'));
-				exec($bcmd . '--network-property domain --set-to ' . config::byKey('network::wifi::domain'));
-				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
-				break;
-			case 'wep-hex':
-				exec($bcmd . '--network-property key --set-to ' . config::byKey('network::wifi::key'));
-				break;
-			case 'wep-passphrase':
-				exec($bcmd . '--network-property passphrase --set-to ' . config::byKey('network::wifi::passphrase'));
-				break;
-			case 'wep-shared':
-				exec($bcmd . '--network-property key --set-to ' . config::byKey('network::wifi::key'));
-				break;
-			case 'leap':
-				exec($bcmd . '--network-property username --set-to ' . config::byKey('network::wifi::username'));
-				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
-				break;
-			case 'ttls':
-				exec($bcmd . '--network-property identity --set-to ' . config::byKey('network::wifi::identity'));
-				exec($bcmd . '--network-property auth --set-to ' . config::byKey('network::wifi::auth'));
-				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
-				break;
-			case 'eap':
-				exec($bcmd . '--network-property username --set-to ' . config::byKey('network::wifi::username'));
-				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
-				break;
-			case 'peap':
-				exec($bcmd . '--network-property identity --set-to ' . config::byKey('network::wifi::identity'));
-				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
-				break;
-			case 'peap-tkip':
-				exec($bcmd . '--network-property identity --set-to ' . config::byKey('network::wifi::identity'));
-				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
-				break;
-			case 'eap-tls':
-				exec($bcmd . '--network-property identity --set-to ' . config::byKey('network::wifi::identity'));
-				exec($bcmd . '--network-property private_key --set-to ' . config::byKey('network::wifi::private_key'));
-				exec($bcmd . '--network-property private_key_passwd --set-to ' . config::byKey('network::wifi::private_key_passwd'));
-				break;
-			case 'psu':
-				exec($bcmd . '--network-property identity --set-to ' . config::byKey('network::wifi::identity'));
-				exec($bcmd . '--network-property password --set-to ' . config::byKey('network::wifi::password'));
-				break;
+		$lastNoOk = config::byKey('network::lastNoGw', 'core', -1);
+		if ($lastNoOk < 0) {
+			config::save('network::lastNoGw', strtotime('now'));
+			return;
 		}
-		$ip = self::getNetworkAccess('internal', 'ip');
-		if (config::byKey('network::fixedIp') != 1 && filter_var($ip, FILTER_VALIDATE_IP)) {
-			exec($bcmd . '--network-property ip --set-to ' . $ip);
-			if (config::byKey('network::wired::gateway') != '') {
-				exec($bcmd . '--network-property gateway --set-to ' . config::byKey('network::wired::gateway'));
-			}
-			if (config::byKey('network::wired::netmask') != '') {
-				exec($bcmd . '--network-property netmask --set-to ' . config::byKey('network::wired::netmask'));
-			}
+		if ((strtotime('now') - $lastNoOk) < 300) {
+			return;
 		}
-		exec($bcmd . '--connect');
+		if (config::byKey('network::fixip::enable') == 1) {
+			log::add('network', 'error', __('Aucune gateway trouvée, la configuration IP fixe est surement invalide. Désactivation de celle-ci et redemarrage', __FILE__));
+			config::save('network::fixip::enable', 0);
+			config::save('network::lastNoGw', -1);
+			config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
+			self::writeInterfaceFile();
+			jeedom::rebootSystem();
+			return;
+		}
+		if (config::byKey('network::wifi::enable') == 1 && config::byKey('network::wifi::ssid') != '' && config::byKey('network::wifi::password') != '') {
+			log::add('network', 'error', __('Aucune gateway trouvée, redemarrage de l\'interface wifi', __FILE__));
+			config::save('network::lastNoGw', -1);
+			exec('sudo ifdown wlan0');
+			sleep(5);
+			exec('sudo ifup --force wlan0');
+			config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
+			return;
+		}
+		log::add('network', 'error', __('Aucune gateway trouvée, redemarrage de l\'interface filaire', __FILE__));
+		config::save('network::lastNoGw', -1);
+		config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
+		//exec('sudo ifdown eth0');
+		sleep(5);
+		//exec('sudo ifup --force eth0');
 	}
 
 }

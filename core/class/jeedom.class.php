@@ -234,7 +234,11 @@ class jeedom {
 		exec($cmd);
 	}
 
-	public static function getConfiguration($_key, $_default = false) {
+	public static function getConfiguration($_key = '', $_default = false) {
+		global $JEEDOM_INTERNAL_CONFIG;
+		if ($_key == '') {
+			return $JEEDOM_INTERNAL_CONFIG;
+		}
 		if (!is_array(self::$jeedomConfiguration)) {
 			self::$jeedomConfiguration = array();
 		}
@@ -242,7 +246,7 @@ class jeedom {
 			return self::$jeedomConfiguration[$_key];
 		}
 		$keys = explode(':', $_key);
-		global $JEEDOM_INTERNAL_CONFIG;
+
 		$result = $JEEDOM_INTERNAL_CONFIG;
 		foreach ($keys as $key) {
 			if (isset($result[$key])) {
@@ -273,6 +277,10 @@ class jeedom {
 			$config = config::byKey($_key);
 			return ($config == '') ? $_value : $config;
 		}
+	}
+
+	public static function hasSudo() {
+		return (trim(exec('sudo cat /etc/sudoers')) == "") ? true : false;
 	}
 
 	public static function whatDoYouKnow($_object = null) {
@@ -343,6 +351,14 @@ class jeedom {
 			return true;
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
+			shell_exec('sudo sntp ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org'));
+			sleep(1);
+		}
+		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
+			shell_exec('sudo sntp 1.debian.pool.ntp.org');
+			sleep(1);
+		}
+		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
 			log::add('core', 'error', __('La date du système est incorrect (avant 2014-01-01 ou après 2019-01-01) : ', __FILE__) . date('Y-m-d H:i:s'), 'dateCheckFailed');
 			return false;
 		}
@@ -361,7 +377,12 @@ class jeedom {
 			jeedom::start();
 			plugin::start();
 			touch('/tmp/jeedom_start');
+			config::save('network::lastNoGw', -1);
 			self::event('start');
+			if (config::byKey('jeedom::firstUse', 'core', 1) == 1) {
+				log::add('core', 'info', 'Lancement du DNS find Jeedom');
+				network::ngrok_start('https', 80, 'find', 'find.dns.jeedom.com:4443');
+			}
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
 		plugin::cron();
@@ -440,16 +461,6 @@ class jeedom {
 
 		}
 		try {
-			$c = new Cron\CronExpression(config::byKey('backup::cron'), new Cron\FieldFactory);
-			if ($c->isDue()) {
-				log::add('backup_launch', 'debug', 'Lancement du backup automatiquement');
-				jeedom::backup();
-			}
-		} catch (Exception $e) {
-			log::add('backup', 'error', 'Auto backup error : ' . $e->getMessage());
-		}
-
-		try {
 			$c = new Cron\CronExpression('35 00 * * 0', new Cron\FieldFactory);
 			if ($c->isDue()) {
 				cache::clean();
@@ -457,6 +468,11 @@ class jeedom {
 			}
 		} catch (Exception $e) {
 			log::add('cache', 'error', 'Clean cache : ' . $e->getMessage());
+		}
+		try {
+			network::cron();
+		} catch (Exception $e) {
+			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
 		}
 
 	}
@@ -570,19 +586,19 @@ class jeedom {
 
 /*     * ****************************SQL BUDDY*************************** */
 
-	public static function getCurrentSqlBuddyFolder() {
+	public static function getCurrentAdminerFolder() {
 		$dir = dirname(__FILE__) . '/../../';
-		$ls = ls($dir, 'sqlbuddy*');
+		$ls = ls($dir, 'adminer*');
 		if (count($ls) != 1) {
 			return '';
 		}
 		return $ls[0];
 	}
 
-	public static function renameSqlBuddyFolder() {
-		$folder = self::getCurrentSqlBuddyFolder();
+	public static function renameAdminerFolder() {
+		$folder = self::getCurrentAdminerFolder();
 		if ($folder != '') {
-			rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../sqlbuddy' . config::genKey());
+			rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../adminer' . config::genKey());
 		}
 	}
 

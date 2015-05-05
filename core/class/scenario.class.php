@@ -567,11 +567,11 @@ class scenario {
 			log::add('event', 'event', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
 		}
 		$this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
+		$this->setLastLaunch(date('Y-m-d H:i:s'));
 		if ($this->getConfiguration('speedPriority', 0) == 0) {
 			$this->setDisplay('icon', '');
 			$this->setState('in progress');
 			$this->setPID(getmypid());
-			$this->setLastLaunch(date('Y-m-d H:i:s'));
 			$this->save();
 		}
 		$this->setRealTrigger($_trigger);
@@ -581,10 +581,10 @@ class scenario {
 		if ($this->getConfiguration('speedPriority', 0) == 0) {
 			$this->setState('stop');
 			$this->setPID('');
-			$this->save();
 		}
 		$this->setLog(__('Fin correcte du scénario', __FILE__));
 		$this->persistLog();
+		$this->save();
 		if ($this->getReturn() != '') {
 			return $this->getReturn();
 		}

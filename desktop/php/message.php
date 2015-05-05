@@ -1,27 +1,27 @@
 <?php
 if (!hasRight('messageview')) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 
 $selectPlugin = init('plugin');
 if ($selectPlugin != '') {
-    $listMessage = message::byPlugin($selectPlugin);
+	$listMessage = message::byPlugin($selectPlugin);
 } else {
-    $listMessage = message::all();
+	$listMessage = message::all();
 }
 ?>
 <a class="btn btn-danger pull-right" id="bt_clearMessage"><i class="fa fa-trash-o icon-white"></i> {{Vider}}</a>
 <select id="sel_plugin" class="form-control" style="width: 200px;">
     <option value="" selected>{{Tout}}</option>
     <?php
-    foreach (message::listPlugin() as $plugin) {
-        if ($selectPlugin == $plugin['plugin']) {
-            echo '<option value="' . $plugin['plugin'] . '" selected>' . $plugin['plugin'] . '</option>';
-        } else {
-            echo '<option value="' . $plugin['plugin'] . '">' . $plugin['plugin'] . '</option>';
-        }
-    }
-    ?>
+foreach (message::listPlugin() as $plugin) {
+	if ($selectPlugin == $plugin['plugin']) {
+		echo '<option value="' . $plugin['plugin'] . '" selected>' . $plugin['plugin'] . '</option>';
+	} else {
+		echo '<option value="' . $plugin['plugin'] . '">' . $plugin['plugin'] . '</option>';
+	}
+}
+?>
 </select>
 
 <table class="table table-condensed table-bordered tablesorter" id="table_message" style="margin-top: 5px;">
@@ -32,17 +32,17 @@ if ($selectPlugin != '') {
     </thead>
     <tbody>
         <?php
-        foreach ($listMessage as $message) {
-            echo '<tr data-message_id="' . $message->getId() . '">';
-            echo '<td><center><i class="fa fa-trash-o cursor removeMessage"></i></center></td>';
-            echo '<td class="datetime">' . $message->getDate() . '</td>';
-            echo '<td class="plugin">' . $message->getPlugin() . '</td>';
-            echo '<td class="message">' . $message->getMessage() . '</td>';
-            echo '<td class="message_action">' . $message->getAction() . '</td>';
-            echo '</tr>';
-        }
-        ?>
+foreach ($listMessage as $message) {
+	echo '<tr data-message_id="' . $message->getId() . '">';
+	echo '<td><center><i class="fa fa-trash-o cursor removeMessage"></i></center></td>';
+	echo '<td class="datetime">' . $message->getDate() . '</td>';
+	echo '<td class="plugin">' . $message->getPlugin() . '</td>';
+	echo '<td class="message">' . htmlentities($message->getMessage()) . '</td>';
+	echo '<td class="message_action">' . $message->getAction() . '</td>';
+	echo '</tr>';
+}
+?>
     </tbody>
 </table>
 
-<?php include_file('desktop', 'message', 'js'); ?>
+<?php include_file('desktop', 'message', 'js');?>
