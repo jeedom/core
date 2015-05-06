@@ -34,7 +34,17 @@ class DB {
 
 	private function __construct() {
 		global $CONFIG;
-		$this->connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
+		try {
+			$this->connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
+		} catch (Exception $e) {
+			if ($CONFIG['db']['host'] != '127.0.0.1' && $CONFIG['db']['host'] != 'localhost') {
+				throw $e;
+			}
+			if (strpos($e->getMessage(), 'Can\'t connect to local MySQL server through socket') !== false || strpos($e->getMessage(), 'SQLSTATE[HY000] [2002] No such file or directory') !== false) {
+				shell_exec('/bin/bash ' . dirname(__FILE__) . '/../../script/check_mysql.sh >> /dev/null 2>&1');
+			}
+			$this->connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
+		}
 	}
 
 	public static function getLastInsertId() {
@@ -98,6 +108,9 @@ class DB {
 
 		$errorInfo = $stmt->errorInfo();
 		if ($errorInfo[0] != 0000) {
+			if (strpos($errorInfo[2], 'Can\'t connect to local MySQL server through socket') !== false) {
+				shell_exec('/bin/bash ' . dirname(__FILE__) . '/../../script/check_mysql.sh >> ' . dirname(__FILE__) . '/../../log/watchdog 2>&1');
+			}
 			throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2]);
 		}
 		return $res;
