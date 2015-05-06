@@ -57,13 +57,13 @@ if (init('type') == 'plugin') {
         <div class="col-lg-3">
             <div style="height: 100px;" class="priceChoose">
                 <center><input type="radio" name="rb_price" class="rb_price" data-value="4" /> <h4 style="display: inline-block">4€</h4></center>
-                <center>{{Sur ce prix seront 50% seront reversé au développeur}}</center>
+                <center>{{Sur ce prix seront 60% seront reversé au développeur}}</center>
             </div>
         </div>
         <div class="col-lg-3">
             <div style="height: 100px;" class="priceChoose">
                 <center><input type="radio" name="rb_price" class="rb_price" data-value="custom" /> <h4 style="display: inline-block">Libre</h4> <input class="form-control marketAttr input-sm" data-l1key="cost" placeholder="Prix" style="display : inline-block; width : 80px;"> €</center>
-                <center>{{Sur ce prix seront 60% seront reversé au développeur (doit etre supérieur ou égale à 5€)}}</center>
+                <center>{{Sur ce prix seront 65% seront reversé au développeur (doit etre supérieur ou égale à 5€)}}</center>
             </div>
         </div>
     </div>
