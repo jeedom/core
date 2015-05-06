@@ -545,7 +545,7 @@ class scenarioExpression {
 		$histories = $cmd->getHistory($startHist, $endHist);
     	
   		$duration = 0;
-        $lastDuration = strtotime($histories[0]->getDatetime());
+		$lastDuration = strtotime($histories[0]->getDatetime());
   		$lastValue = $histories[0]->getValue();
   
   		foreach ($histories as $history) {       
@@ -578,7 +578,7 @@ class scenarioExpression {
 		$histories = $cmd->getHistory($_startDate, $_endDate);
     	
   		$duration = 0;
-        $lastDuration = strtotime($histories[0]->getDatetime());
+		$lastDuration = strtotime($histories[0]->getDatetime());
   		$lastValue = $histories[0]->getValue();
   
   		foreach ($histories as $history) {       
