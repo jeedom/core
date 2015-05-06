@@ -502,7 +502,7 @@ LIMIT 1';
 		);
 		$values['value'] = $_value;
 
-		$sql = 'select max(`datetime`) as lastcmdstatus 
+		$sql = 'select max(`datetime`) as lastCmdDuration
 			from (
 				select min(`datetime`) as datetime 
 				from `history` 
@@ -514,7 +514,7 @@ LIMIT 1';
 				`datetime` > (select max(`datetime`) from `historyArch` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from historyArch where `cmd_id`=:cmd_id and `value` =:value)) 
 			) as t';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		return strtotime('now') - strtotime($result['lastcmdstatus']);
+		return strtotime('now') - strtotime($result['lastCmdDuration']);
 	}
 
 
