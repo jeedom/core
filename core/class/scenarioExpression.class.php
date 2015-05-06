@@ -350,6 +350,10 @@ class scenarioExpression {
 		return history::stateDuration(str_replace('#', '', $_cmd_id), $_value);
 	}
 
+	public static function lastChangeStateDuration($_cmd_id, $_value) {
+		return history::lastChangeStateDuration(str_replace('#', '', $_cmd_id), $_value);
+	}
+
 	public static function odd($_value) {
 		return ($_value % 2) ? 1 : 0;
 	}
