@@ -257,8 +257,8 @@ class eqLogic {
 				$noReponseTimeLimit = $eqLogic->getTimeout();
 				if (count(message::byPluginLogicalId('core', $logicalId)) == 0) {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
-						$message = __('Attention', __FILE__) . ' <a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName();
-						$message .= '</a>' . __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifier les piles)', __FILE__);
+						$message = __('Attention', __FILE__) . ' ' . $eqLogic->getHumanName();
+						$message .= __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifier les piles)', __FILE__);
 						message::add('core', $message, '', $logicalId);
 						foreach ($cmds as $cmd) {
 							if ($cmd->getEventOnly() == 1) {
