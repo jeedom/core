@@ -252,7 +252,11 @@ foreach ($markets as $market) {
 			$widget_id = $market->getLogicalId();
 		}
 		$widget_name = explode('.', $market->getName());
-		$widget_name = $widget_name[3];
+		if (isset($widget_name[3])) {
+			$widget_name = $widget_name[3];
+		} else {
+			$widget_name = $market->getName();
+		}
 		$widget_name = explode('_', $widget_name);
 		$widget_name = $widget_name[0];
 
