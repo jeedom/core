@@ -90,48 +90,97 @@ Vous pouvez aussi utiliser les tags suivants :
 - \#smois# : pour le nom du mois (ex : Janvier)
 - \#IP# : IP interne de jeedom
 - \#hostname# : nom de la machine Jeedom
-- rand(1,10) : pour un nombre aléatoire de 1 à 10
-- average(commande,période) : donne la moyenne de la commande sur la période (period=[month,day,hour,min])
-    * Ex : average(\#[Salle de bain][Hydrometrie][Humidité]#,1 hour) : Renvoi la moyenne de la commande sur la dernière heure
-- min(commande,période) : donne le minimum de la commande sur la période (period=[month,day,hour,min])
-    * Ex : min(\#[Salle de bain][Hydrometrie][Humidité]#,15 min) : Renvoi le minimum de la commande sur les 15 dernières minutes
-- max(commande,période) : donne le maximum de la commande sur la période (period=[month,day,hour,min])
-    * Ex : max(\#[Salle de bain][Hydrometrie][Humidité]#,7 day) : Renvoi le maximum de la commande sur les 7 derniers jours
-- averageBetween(commande,start,end) : donne la moyenne de la commande entre les 2 bornes demandées (sous la forme Y-m-d H:i:s)
-    * Ex : averageBetween(\#[Salle de bain][Hydrometrie][Humidité]#,2015-01-01 00:00:00,2015-01-15 00:00:00) : Renvoi la moyenne de la commande entre le 1 janvier 2015 et le 15 janvier 2015
-- maxBetween(commande,start,end) : donne le maximum de la commande entre les 2 bornes demandées (sous la forme Y-m-d H:i:s)
-    * Ex : maxBetween(\#[Salle de bain][Hydrometrie][Humidité]#,2015-01-01 00:00:00,2015-01-15 00:00:00) : Renvoi le maximum de la commande entre le 1 janvier 2015 et le 15 janvier 2015
-- minBetween(commande,start,end) : donne le minimum de la commande entre les 2 bornes demandées (sous la forme Y-m-d H:i:s)
-    * Ex : minBetween(\#[Salle de bain][Hydrometrie][Humidité]#,2015-01-01 00:00:00,2015-01-15 00:00:00) : Renvoi le minimum de la commande entre le 1 janvier 2015 et le 15 janvier 2015
-- tendance(commande,période,seuil) : donne la tendance de la commande sur la période (period=[month,day,hour,min])
-    * Ex : tendance(\#[Salle de bain][Hydrometrie][Humidité]#,1 hour,0.1) : Renvoi 1 si en augmentation, 0 si constant et -1 si en diminution
+    
+Plusieurs fonctions sont disponibles pour les équipements :
+
+- **average**(commande,période) et **averageBetween**(commande,start,end) : donnent la moyenne de la commande sur la période (period=[month,day,hour,min] ou link:/http://php.net/manual/fr/datetime.formats.relative.php[expression PHP]) ou entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou link:/http://php.net/manual/fr/datetime.formats.relative.php[expression PHP])
+    * Ex : average(\#[Salle de bain][Hydrometrie][Humidité]#,1 hour) : Renvoie la moyenne de la commande sur la dernière heure
+    * Ex : averageBetween(\#[Salle de bain][Hydrometrie][Humidité]#,2015-01-01 00:00:00,2015-01-15 00:00:00) : Renvoie la moyenne de la commande entre le 1 janvier 2015 et le 15 janvier 2015
+- **min**(commande,période) et **minBetween**(commande,start,end) : donnent le minimum de la commande sur la période (period=[month,day,hour,min] ou link:/http://php.net/manual/fr/datetime.formats.relative.php[expression PHP]) ou entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou link:/http://php.net/manual/fr/datetime.formats.relative.php[expression PHP])
+    * Ex : min(\#[Salle de bain][Hydrometrie][Humidité]#,15 min) : Renvoie le minimum de la commande sur les 15 dernières minutes
+    * Ex : minBetween(\#[Salle de bain][Hydrometrie][Humidité]#,2015-01-01 00:00:00,2015-01-15 00:00:00) : Renvoie le minimum de la commande entre le 1 janvier 2015 et le 15 janvier 2015
+- **max**(commande,période) et **maxBetween**(commande,start,end) : donnent le maximum de la commande sur la période (period=[month,day,hour,min] ou link:/http://php.net/manual/fr/datetime.formats.relative.php[expression PHP]) ou entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou link:/http://php.net/manual/fr/datetime.formats.relative.php[expression PHP])
+    * Ex : max(\#[Salle de bain][Hydrometrie][Humidité]#,7 day) : Renvoie le maximum de la commande sur les 7 derniers jours
+    * Ex : maxBetween(\#[Salle de bain][Hydrometrie][Humidité]#,2015-01-01 00:00:00,2015-01-15 00:00:00) : Renvoie le maximum de la commande entre le 1 janvier 2015 et le 15 janvier 2015
+- **duration**(commande, valeur, période) et **durationbetween**(commande,valeur,start,end) : donnent la durée en minutes pendant laquelle l'équipement avait la valeur choisie sur la période (period=[month,day,hour,min] ou link:/http://php.net/manual/fr/datetime.formats.relative.php[expression PHP]) ou entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou link:/http://php.net/manual/fr/datetime.formats.relative.php[expression PHP])
+    * Ex : duration(#[Salon][Prise][Etat]#,1,Today) : Renvoie la durée en minutes pendant laquelle la prise était allumée depuis le début de la journée.
+    * Ex : durationBetween(#[Salon][Prise][Etat]#,0,Last Monday,Now) : Renvoie la durée en minutes pendant laquelle la prise était éteinte depuis lundi dernier.
+- **statistics**(commande,calcul,période) et **statisticsBetween**(commande,calcul,start,end) : donnent le résultat de différents calculs statistique (sum, count, std, variance, avg, min, max) sur la période (period=[month,day,hour,min] ou link:/http://php.net/manual/fr/datetime.formats.relative.php[expression PHP]) ou entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou link:/http://php.net/manual/fr/datetime.formats.relative.php[expression PHP])
+    * Ex : statistics(\#[Salle de bain][Hydrometrie][Humidité]#,std,1 mois) : Renvoie link:/http://fr.wikipedia.org/wiki/%C3%89cart_type[l'écart-type] de température sur un mois.
+- **tendance**(commande,période,seuil) : donne la tendance de la commande sur la période (period=[month,day,hour,min] ou link:/http://php.net/manual/fr/datetime.formats.relative.php[expression PHP])
+    * Ex : tendance(\#[Salle de bain][Hydrometrie][Humidité]#,1 hour,0.1) : Renvoie 1 si en augmentation, 0 si constant et -1 si en diminution
            Le seuil permet de definir la sensibilitée, attention le calcul du seuil utilise la calcul de link:/http://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s[moindre carrés]
-- variable(mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
+- **stateDuration**(commande,[valeur]) : donne la durée en seconde depuis le dernier changement de valeur
+    * Ex : stateDuration(\#[Salle de bain][Hydrometrie][Humidité]#) : Renvoie 300 si cette valeur est la depuis 5min
+- **lastStateChange**(commande,valeur) : donne la durée en secondes depuis le dernier changement d'état à la valeur passée en paramètre.
+    * Ex : lastStateChange(\#[Salle de bain][Hydrometrie][Humidité]#,0) : Renvoie 300 si cette valeur est passée à 0 la dernière fois il y a 5 minutes (même si depuis sa valeur a changé).
+- **lastStateDuration**(commande,valeur) : donne la durée en secondes pendant laquelle l'équipement a dernièrement eu la valeur choisie.
+    * Ex : lastStateDuration(\#[Salle de bain][Hydrometrie][Humidité]#,0) : Renvoie 300 si la valeur 0 est là depuis 5 minutes ou si elle a été là pendant 5 minutes précédemment.
+- **stateChanges**(commande,[valeur], période) et **stateChangesBetween**(commande, [valeur], start, end) : donnent le nombre de changements d'état (vers une certaine valeur si indiquée, ou au total sinon) sur la période (period=[month,day,hour,min] ou link:/http://php.net/manual/fr/datetime.formats.relative.php[expression PHP]) ou entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou link:/http://php.net/manual/fr/datetime.formats.relative.php[expression PHP])
+    * Ex : stateChanges(\#[Salon][Prise][Etat]#,1,Today) : Renvoie le nombre d'allumages (passage à 1) de la prise aujourd'hui
+    * Ex : stateChangesBetween(\#[Salon][Prise][Etat]#,0,2015-01-01 00:00:00,2015-01-15 00:00:00) : Renvoie le nombre d'extinctions (passage à 0) de la prise entre le 1 janvier 2015 et le 15 janvier 2015
+- **lastBetween**(commande,start,end) : donne la dernière valeur enregistrée pour l'équipement entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou link:/http://php.net/manual/fr/datetime.formats.relative.php[expression PHP])
+    * Ex : lastBetween(\#[Salle de bain][Hydrometrie][Humidité]#,Yesterday,Today) : Renvoie la dernière température enregistrée hier.
+- **variable**(mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
     * Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas
-- scenario(scenario) : donne le statut du scenario
+- **scenario**(scenario) : donne le statut du scenario
     * Ex : scenario(\#[Salle de bain][Lumière][Auto]#) : Renvoi 1 en cours, 0 si arreté et -1 si desactivé, -2 si le scénario n'éxiste pas et -3 si l'état n'est pas cohérent
-- stateDuration(commande,[valeur]) : donne la durée en seconde depuis le dernier changement de valeur
-    * Ex : stateDuration(\#[Salle de bain][Hydrometrie][Humidité]#) : Renvoi 300 si cette valeur est la depuis 5min
-- lastChangeStateDuration(commande,valeur) : renvoi la durée en secondes depuis le dernier changement d'état à la valeur passée en paramètre.
-    * Ex : lastChangeStateDuration(\#[Salle de bain][Hydrometrie][Humidité]#,0) : Renvoi 300 si cette valeur est passée à 0 la depuis 5 minutes (même si depuis sa valeur a changé).
-- lastScenarioExecution(scenario) : donne la durée en seconde depuis le dernier lancement du scénario
+- **lastScenarioExecution**(scenario) : donne la durée en seconde depuis le dernier lancement du scénario
     * Ex : lastScenarioExecution(\#[Salle de bain][Lumière][Auto]#) : Renvoi 300 si le scénario c'est lancé pour la derniere fois il y a 5min
-- randomColor(min,max) : donne une couleur aléatoire compris entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu)
-    * Ex : randomColor(40,60) : Pour avoir une couleur aléatoire proche du vert
-- trigger(commande) : permet de connaitre le declencheur du scénario ou de savoir si c'est bien la commande passé en parametre qui a declenchée le scénario
-    * Ex : trigger(\#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien #[Salle de bain][Hydrometrie][Humidité]# qui a declenché le scénario sinon 0
-- round(valeur,[decimal]) :permet un arrondit au dessus, [decimal] nombre de decimal après la virgule
-    * Ex : round(\#[Salle de bain][Hydrometrie][Humidité]# / 10) : renverra 9 si le pourcentage d'humidité et 85
-- odd(valeur) : permet de savoir si un nombre est impaire ou non. Renvoi 1 si impaire 0 sinon
-    * Ex : odd(1) :  renverra 1
-- median(commande1,commande2....commandeN) : renvoit la médiane de valeur
-    * Ex : median(15,25,20) :  renverra 20
-- time(value) : permet d'addition #time# avec une durée
-    * Ex : time(\#time\# + 30) : s'il est 16h50 renverra : 1650 + 30 = 1720
-- formatTime(time) : permet de formater le retour d'une chaine #time#
-    * Ex : formatTime(1650) : renverra 16h50
-- collectDate(cmd,[format]) : renvoit la date de la derniere donnée pour la commande donnée en paramètre, le 2eme paramètre optionel permet de spécifier le format de retour (détails link:http://php.net/manual/fr/function.date.php[ici]). Un retour de -1 signifi que la commande est introuvable, et -2 que la commande n'est pas de type info
+- **collectDate**(cmd,[format]) : renvoie la date de la derniere donnée pour la commande donnée en paramètre, le 2eme paramètre optionel permet de spécifier le format de retour (détails link:http://php.net/manual/fr/function.date.php[ici]). Un retour de -1 signifi que la commande est introuvable, et -2 que la commande n'est pas de type info
     * Ex : collectDate(\#[Salle de bain][Hydrometrie][Humidité]#) : renverra 2015-01-01 17:45:12
+
+Les périodes et intervalles de ces fonctions peuvent également s'utiliser avec link:/http://php.net/manual/fr/datetime.formats.relative.php[des expressions PHP] comme par exemple :
+
+- 'Now' : maintenant
+- 'Today' : 00:00 aujourd'hui (permet par exemple d'obtenir des résultats de la journée si entre 'Today' et 'Now')
+- 'Last Monday' : lundi dernier à 00:00
+- '5 days ago' : il y a 5 jours
+- 'Yesterday noon' : hier midi
+- Etc ...
+
+Voici un exemple pratique pour comprendre les valeurs retournées par ces différentes fonctions :
+
+[options="header",width="50%"]
+|======================
+| Prise ayant pour valeurs :        | 000 (pendant 10 minutes) 11 (pendant 1 heure) 000 (pendant 10 minutes)
+| average(prise,période)        | Renvoie la moyenne des 0 et 1 (peut être influencée par le polling)
+| min(prise,période)            | Renvoie 0 : la prise a bien été éteinte dans la période
+| max(prise,période)            | Renvoie 1 : la prise a bien été allumée dans la période
+| duration(prise,1,période)         | Renvoie 60 : la prise était allumée (à 1) pendant 60 minutes dans la période
+| duration(prise,0,période)         | Renvoie 20 : la prise était éteinte (à 0) pendant 20 minutes dans la période
+| statistics(prise,count,période)   | Renvoie 8 : il y a eu 8 remontées d'état dans la période
+| tendance(prise,période,0.1)       | Renvoie -1 : tendance à la baisse
+| stateDuration(prise)          | Renvoie 600 : la prise est dans son état actuel depuis 600 secondes (10 minutes)
+| stateDuration(prise,0)        | Renvoie 600 : la prise est éteinte (à 0) depuis 600 secondes (10 minutes)
+| stateDuration(prise,1)        | Renvoie une valeur comprise entre 0 et stateDuration(prise) (selon votre polling) : la prise n'est pas dans cet état
+| lastStateChange(prise,0)      | Renvoie 600 : la prise s'est éteinte (passage à 0) pour la dernière fois il y a 600 secondes (10 minutes)
+| lastStateChange(prise,1)      | Renvoie 4200 : la prise s'est allumée (passage à 1) pour la dernière fois il y a 4200 secondes (1h10)
+| lastStateDuration(prise,0)        | Renvoie 600 : la prise est éteinte depuis 600 secondes (10 minutes)
+| lastStateDuration(prise,1)        | Renvoie 3600 : la prise a été allumée pour la dernière fois pendant 3600 secondes (1h)
+| stateChanges(prise,période)       | Renvoie 3 : la prise a changé 3 fois d'état pendant la période
+| stateChanges(prise,0,période)     | Renvoie 2 : la prise s'est éteinte (passage à 0) deux fois pendant la période
+| stateChanges(prise,1,période)     | Renvoie 1 : la prise s'est allumée (passage à 1) une fois pendant la période
+|======================
+Une boîte à outils de fonctions génériques peut également servir à effectuer des conversions ou calculs :
+
+- **rand**(1,10) : pour un nombre aléatoire de 1 à 10
+- **randomColor**(min,max) : donne une couleur aléatoire compris entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu)
+    * Ex : randomColor(40,60) : Pour avoir une couleur aléatoire proche du vert
+- **trigger**(commande) : permet de connaitre le declencheur du scénario ou de savoir si c'est bien la commande passé en parametre qui a declenchée le scénario
+    * Ex : trigger(\#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien #[Salle de bain][Hydrometrie][Humidité]# qui a declenché le scénario sinon 0
+- **round**(valeur,[decimal]) :permet un arrondit au dessus, [decimal] nombre de decimal après la virgule
+    * Ex : round(\#[Salle de bain][Hydrometrie][Humidité]# / 10) : renverra 9 si le pourcentage d'humidité et 85
+- **odd**(valeur) : permet de savoir si un nombre est impaire ou non. Renvoi 1 si impaire 0 sinon
+    * Ex : odd(1) :  renverra 1
+- **median**(commande1,commande2....commandeN) : renvoit la médiane de valeur
+    * Ex : median(15,25,20) :  renverra 20
+- **time**(value) : permet d'addition #time# avec une durée
+    * Ex : time(\#time\# + 30) : s'il est 16h50 renverra : 1650 + 30 = 1720
+- **formatTime**(time) : permet de formater le retour d'une chaine #time#
+    * Ex : formatTime(1650) : renverra 16h50
+- **floor**(time/60) : permet de convertir des secondes en minutes, ou des minutes en heures (floor(time/3600) pour des secondes en heures)
+    * Ex : floor(130/60) : renverra 2 (minutes si 130s, ou heures si 130m)
             
 ==== Action
 En plus des commandes domotiques vous avez accès aux fonctions suivantes : 

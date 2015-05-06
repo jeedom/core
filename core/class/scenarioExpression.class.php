@@ -160,7 +160,14 @@ class scenarioExpression {
 			if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 				return '';
 			}
-			$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+			if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
+				$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+			} else {
+				$startHist = date('Y-m-d H:i:s', strtotime($_period));
+				if ($startHist == date('Y-m-d H:i:s', strtotime(0))) {
+					return '';
+				}
+			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
 			if ($historyStatistique['avg'] == '') {
 				return $cmd->execCmd(null, 2);
@@ -173,6 +180,12 @@ class scenarioExpression {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
+		}
+		if (DateTime::createFromFormat('Y-m-d H:i:s', $_startDate) == false) {
+			$_startDate = date('Y-m-d H:i:s', strtotime($_startDate));
+		}
+		if (DateTime::createFromFormat('Y-m-d H:i:s', $_endDate) == false) {
+			$_endDate = date('Y-m-d H:i:s', strtotime($_endDate));
 		}
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
 		return round($historyStatistique['avg'], 1);
@@ -204,7 +217,14 @@ class scenarioExpression {
 			if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 				return '';
 			}
-			$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+			if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
+				$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+			} else {
+				$startHist = date('Y-m-d H:i:s', strtotime($_period));
+				if ($startHist == date('Y-m-d H:i:s', strtotime(0))) {
+					return '';
+				}
+			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
 			if ($historyStatistique['max'] == '') {
 				return $cmd->execCmd(null, 2);
@@ -217,6 +237,12 @@ class scenarioExpression {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
+		}
+		if (DateTime::createFromFormat('Y-m-d H:i:s', $_startDate) == false) {
+			$_startDate = date('Y-m-d H:i:s', strtotime($_startDate));
+		}
+		if (DateTime::createFromFormat('Y-m-d H:i:s', $_endDate) == false) {
+			$_endDate = date('Y-m-d H:i:s', strtotime($_endDate));
 		}
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
 		return round($historyStatistique['max'], 1);
@@ -264,7 +290,14 @@ class scenarioExpression {
 			if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 				return '';
 			}
-			$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+			if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
+				$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+			} else {
+				$startHist = date('Y-m-d H:i:s', strtotime($_period));
+				if ($startHist == date('Y-m-d H:i:s', strtotime(0))) {
+					return '';
+				}
+			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
 			if ($historyStatistique['min'] == '') {
 				return $cmd->execCmd(null, 2);
@@ -277,6 +310,12 @@ class scenarioExpression {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
+		}
+		if (DateTime::createFromFormat('Y-m-d H:i:s', $_startDate) == false) {
+			$_startDate = date('Y-m-d H:i:s', strtotime($_startDate));
+		}
+		if (DateTime::createFromFormat('Y-m-d H:i:s', $_endDate) == false) {
+			$_endDate = date('Y-m-d H:i:s', strtotime($_endDate));
 		}
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
 		return round($historyStatistique['min'], 1);
@@ -320,7 +359,14 @@ class scenarioExpression {
 			return '';
 		}
 		$endTime = date('Y-m-d H:i:s');
-		$startTime = date('Y-m-d H:i:s', strtotime('-' . $_period . '' . $endTime));
+		if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
+			$startTime = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+		} else {
+			$startTime = date('Y-m-d H:i:s', strtotime($_period));
+			if ($startTime == date('Y-m-d H:i:s', strtotime(0))) {
+				return '';
+			}
+		}
 		$tendance = $cmd->getTendance($startTime, $endTime);
 		if ($_threshold != '') {
 			$maxThreshold = $_threshold;
@@ -336,6 +382,184 @@ class scenarioExpression {
 			return -1;
 		}
 		return 0;
+	}
+
+	public static function lastStateChange($_cmd_id, $_value = null) {
+		return history::lastStateChange(str_replace('#', '', $_cmd_id), $_value);
+	}
+
+	public static function lastStateDuration($_cmd_id, $_value = null) {
+		return history::lastStateChange(str_replace('#', '', $_cmd_id), $_value);
+	}
+
+	public static function stateChanges($_cmd_id, $_value = null, $_period = '1 hour') {
+		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
+			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
+		} else { $cmd = cmd::byId(str_replace('#', '', $_cmd_id));}
+		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+			return '';
+		}
+		$cmd_id = $cmd->getId();
+
+		$args = func_num_args();
+		if ($args == 2) {
+			if (is_numeric(func_get_arg(1))) {
+				$_value = func_get_arg(1);
+			} else {
+				$_period = func_get_arg(1);
+				$_value = null;
+			}
+		}
+
+		if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
+			$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+		} else {
+			$startHist = date('Y-m-d H:i:s', strtotime($_period));
+			if ($startHist == date('Y-m-d H:i:s', strtotime(0))) {
+				return '';
+			}
+		}
+		return history::stateChanges($cmd_id, $_value, $startHist, date('Y-m-d H:i:s'));
+	}
+
+	public static function stateChangesBetween($_cmd_id, $_value = null, $_startDate, $_endDate) {
+		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
+			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
+		} else { $cmd = cmd::byId(str_replace('#', '', $_cmd_id));}
+		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+			return '';
+		}
+		$cmd_id = $cmd->getId();
+
+		$args = func_num_args();
+		if ($args == 3) {
+			$_endDate = func_get_arg(2);
+			$_startDate = func_get_arg(1);
+			$_value = null;
+		}
+
+		if (DateTime::createFromFormat('Y-m-d H:i:s', $_startDate) == false) {
+			$_startDate = date('Y-m-d H:i:s', strtotime($_startDate));
+		}
+		if (DateTime::createFromFormat('Y-m-d H:i:s', $_endDate) == false) {
+			$_endDate = date('Y-m-d H:i:s', strtotime($_endDate));
+		}
+
+		return history::stateChanges($cmd_id, $_value, $_startDate, $_endDate);
+	}
+
+	public static function duration($_cmd_id, $_value, $_period = '1 hour') {
+		$cmd_id = str_replace('#', '', $_cmd_id);
+		if (!is_numeric($cmd_id)) {
+			$cmd_id = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
+		}
+		$cmd = cmd::byId($cmd_id);
+		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+			return '';
+		}
+
+		if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
+			$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+		} else {
+			$startHist = date('Y-m-d H:i:s', strtotime($_period));
+			if ($startHist == date('Y-m-d H:i:s', strtotime(0))) {
+				return '';
+			}
+		}
+
+		$histories = $cmd->getHistory($startHist, $endHist);
+
+		$duration = 0;
+		$lastDuration = strtotime($histories[0]->getDatetime());
+		$lastValue = $histories[0]->getValue();
+
+		foreach ($histories as $history) {
+			if ($lastValue == $_value) {
+				$duration = $duration + (strtotime($history->getDatetime()) - $lastDuration);
+			}
+			$lastDuration = strtotime($history->getDatetime());
+			$lastValue = $history->getValue();
+		}
+		return floor($duration / 60);
+	}
+
+	public static function durationBetween($_cmd_id, $_value, $_startDate, $_endDate) {
+		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
+			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
+		} else { $cmd = cmd::byId(str_replace('#', '', $_cmd_id));}
+		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+			return '';
+		}
+		$cmd_id = $cmd->getId();
+
+		if (DateTime::createFromFormat('Y-m-d H:i:s', $_startDate) == false) {
+			$_startDate = date('Y-m-d H:i:s', strtotime($_startDate));
+		}
+		if (DateTime::createFromFormat('Y-m-d H:i:s', $_endDate) == false) {
+			$_endDate = date('Y-m-d H:i:s', strtotime($_endDate));
+		}
+
+		$histories = $cmd->getHistory($_startDate, $_endDate);
+
+		$duration = 0;
+		$lastDuration = strtotime($histories[0]->getDatetime());
+		$lastValue = $histories[0]->getValue();
+
+		foreach ($histories as $history) {
+			if ($lastValue == $_value) {
+				$duration = $duration + (strtotime($history->getDatetime()) - $lastDuration);
+			}
+			$lastDuration = strtotime($history->getDatetime());
+			$lastValue = $history->getValue();
+		}
+		return floor($duration / 60);
+	}
+
+	public static function lastBetween($_cmd_id, $_startDate, $_endDate) {
+		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+			return '';
+		}
+
+		if (DateTime::createFromFormat('Y-m-d H:i:s', $_startDate) == false) {
+			$_startDate = date('Y-m-d H:i:s', strtotime($_startDate));
+		}
+		if (DateTime::createFromFormat('Y-m-d H:i:s', $_endDate) == false) {
+			$_endDate = date('Y-m-d H:i:s', strtotime($_endDate));
+		}
+
+		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
+		return round($historyStatistique['last'], 1);
+	}
+
+	public static function statistics($_cmd_id, $_calc, $_period = '1 hour') {
+		$args = func_get_args();
+		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+			return '';
+		}
+		if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
+			$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
+		} else {
+			$startHist = date('Y-m-d H:i:s', strtotime($_period));
+			if ($startHist == date('Y-m-d H:i:s', strtotime(0))) {
+				return '';
+			}
+		}
+		$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
+		if ($historyStatistique['min'] == '') {
+			return $cmd->execCmd(null, 2);
+		}
+		return $historyStatistique[$_calc];
+	}
+
+	public static function statisticsBetween($_cmd_id, $_calc, $_startDate, $_endDate) {
+		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+			return '';
+		}
+		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
+		return $historyStatistique[$_calc];
 	}
 
 	public static function variable($_name, $_default = '') {
