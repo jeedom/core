@@ -279,15 +279,15 @@ if (market_display_info.realcost == '' || market_display_info.realcost == 0) {
     $('.rb_price.free').prop('checked', true);
     $('.marketAttr[data-l1key=cost]').value('');
     $('.rb_price.free').closest('.priceChoose').addClass('alert alert-success');
-} else if (market_display_info.realcost == 1) {
-    $('.rb_price[data-value=1]').prop('checked', true);
-    $('.marketAttr[data-l1key=cost]').value('');
-    $('.rb_price[data-value=1]').closest('.priceChoose').addClass('alert alert-success');
-    $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
 } else if (market_display_info.realcost == 2) {
     $('.rb_price[data-value=2]').prop('checked', true);
     $('.marketAttr[data-l1key=cost]').value('');
     $('.rb_price[data-value=2]').closest('.priceChoose').addClass('alert alert-success');
+    $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
+} else if (market_display_info.realcost == 4) {
+    $('.rb_price[data-value=4]').prop('checked', true);
+    $('.marketAttr[data-l1key=cost]').value('');
+    $('.rb_price[data-value=4]').closest('.priceChoose').addClass('alert alert-success');
     $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
     $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
 } else {
