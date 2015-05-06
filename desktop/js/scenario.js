@@ -44,6 +44,7 @@
  {val: 'randomColor(debut,fin)'},
  {val: 'lastScenarioExecution(scenario)'},
  {val: 'stateDuration(commande)'},
+ {val: 'lastChangeStateDuration(commande,value)'},
  {val: 'median(commande1,commande2)'},
  {val: 'time(value)'},
  {val: 'collectDate(cmd)'}
