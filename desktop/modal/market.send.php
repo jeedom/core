@@ -49,21 +49,21 @@ if (init('type') == 'plugin') {
             </div>
         </div>
         <div class="col-lg-3">
-            <div style="height: 130px;" class="priceChoose">
-                <center><input type="radio" name="rb_price" class="rb_price" data-value="1" /> <h4 style="display: inline-block">1€</h4></center>
-                <center>Sur ce prix seront prélevés 0,25€ de frais paypal puis 35% destinés à l'équipe du projet Jeedom</center>
+            <div style="height: 100px;" class="priceChoose">
+                <center><input type="radio" name="rb_price" class="rb_price" data-value="1" /> <h4 style="display: inline-block">2€</h4></center>
+                <center>{{Sur ce prix seront 40% seront reversé au développeur}}</center>
             </div>
         </div>
         <div class="col-lg-3">
-            <div style="height: 130px;" class="priceChoose">
-                <center><input type="radio" name="rb_price" class="rb_price" data-value="2" /> <h4 style="display: inline-block">2€</h4></center>
-                <center>Sur ce prix seront prélevés 0,25€ de frais paypal puis 30% destinés à l'équipe du projet Jeedom</center>
+            <div style="height: 100px;" class="priceChoose">
+                <center><input type="radio" name="rb_price" class="rb_price" data-value="2" /> <h4 style="display: inline-block">4€</h4></center>
+                <center>{{Sur ce prix seront 50% seront reversé au développeur}}</center>
             </div>
         </div>
         <div class="col-lg-3">
-            <div style="height: 130px;" class="priceChoose">
+            <div style="height: 100px;" class="priceChoose">
                 <center><input type="radio" name="rb_price" class="rb_price" data-value="custom" /> <h4 style="display: inline-block">Libre</h4> <input class="form-control marketAttr input-sm" data-l1key="cost" placeholder="Prix" style="display : inline-block; width : 80px;"> €</center>
-                <center>Sur ce prix seront prélevés 0,25€ de frais paypal puis 25% destinés à l'équipe du projet Jeedom (le prix doit etre >= 3€)</center>
+                <center>{{Sur ce prix seront 60% seront reversé au développeur (doit etre supérieur ou égale à 5€)}}</center>
             </div>
         </div>
     </div>
