@@ -501,23 +501,22 @@ LIMIT 1';
 			'cmd_id' => $_cmd_id,
 		);
 		$values['value'] = $_value;
-		$sql = 'SELECT `datetime`
-			FROM (
-			SELECT `datetime`
-			FROM `history`
-			WHERE `cmd_id`=:cmd_id
-			AND `value` =:value
-			UNION ALL
-			SELECT `datetime`
-			FROM `historyArch`
-			WHERE `cmd_id`=:cmd_id
-			AND `value` =:value
-		) as dt
-		ORDER BY `datetime` DESC
-		LIMIT 1';
+
+		$sql = 'select max(`datetime`) as lastcmdstatus 
+			from (
+				select min(`datetime`) as datetime 
+				from `history` 
+				where `cmd_id`=:cmd_id and `value`=:value and 
+				datetime > (select max(`datetime`) from `history` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from history where `cmd_id`=:cmd_id and `value` = :value)) 
+				union all
+				select min(`datetime`) as datetime from `historyArch`
+				where `cmd_id`=:cmd_id and `value`=:value and
+				`datetime` > (select max(`datetime`) from `historyArch` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from historyArch where `cmd_id`=:cmd_id and `value` =:value)) 
+			) as t';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		return strtotime('now') - strtotime($result['datetime']);
+		return strtotime('now') - strtotime($result['lastcmdstatus']);
 	}
+
 
 	public static function stateChanges($_cmd_id, $_value = null, $_startTime = null, $_endTime = null) {
 		$cmd = cmd::byId($_cmd_id);
