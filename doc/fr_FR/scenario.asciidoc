@@ -112,7 +112,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
            Le seuil permet de definir la sensibilitée, attention le calcul du seuil utilise la calcul de link:/http://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s[moindre carrés]
 - **stateDuration**(commande,[valeur]) : donne la durée en seconde depuis le dernier changement de valeur
     * Ex : stateDuration(\#[Salle de bain][Hydrometrie][Humidité]#) : Renvoie 300 si cette valeur est la depuis 5min
-- **lastStateChange**(commande,valeur) : donne la durée en secondes depuis le dernier changement d'état à la valeur passée en paramètre.
+- **lastChangeStateDuration**(commande,valeur) : donne la durée en secondes depuis le dernier changement d'état à la valeur passée en paramètre.
     * Ex : lastStateChange(\#[Salle de bain][Hydrometrie][Humidité]#,0) : Renvoie 300 si cette valeur est passée à 0 la dernière fois il y a 5 minutes (même si depuis sa valeur a changé).
 - **lastStateDuration**(commande,valeur) : donne la durée en secondes pendant laquelle l'équipement a dernièrement eu la valeur choisie. Attention, la valeur de l'équipement doit être historisée.
     * Ex : lastStateDuration(\#[Salle de bain][Hydrometrie][Humidité]#,0) : Renvoie 300 si la valeur 0 est là depuis 5 minutes ou si elle a été là pendant 5 minutes précédemment.
@@ -144,18 +144,18 @@ Voici un exemple pratique pour comprendre les valeurs retournées par ces diffé
 [options="header",width="50%"]
 |======================
 | Prise ayant pour valeurs :        | 000 (pendant 10 minutes) 11 (pendant 1 heure) 000 (pendant 10 minutes)
-| average(prise,période)        | Renvoie la moyenne des 0 et 1 (peut être influencée par le polling)
-| min(prise,période)            | Renvoie 0 : la prise a bien été éteinte dans la période
-| max(prise,période)            | Renvoie 1 : la prise a bien été allumée dans la période
+| average(prise,période)            | Renvoie la moyenne des 0 et 1 (peut être influencée par le polling)
+| min(prise,période)                | Renvoie 0 : la prise a bien été éteinte dans la période
+| max(prise,période)                | Renvoie 1 : la prise a bien été allumée dans la période
 | duration(prise,1,période)         | Renvoie 60 : la prise était allumée (à 1) pendant 60 minutes dans la période
 | duration(prise,0,période)         | Renvoie 20 : la prise était éteinte (à 0) pendant 20 minutes dans la période
 | statistics(prise,count,période)   | Renvoie 8 : il y a eu 8 remontées d'état dans la période
 | tendance(prise,période,0.1)       | Renvoie -1 : tendance à la baisse
-| stateDuration(prise)          | Renvoie 600 : la prise est dans son état actuel depuis 600 secondes (10 minutes)
-| stateDuration(prise,0)        | Renvoie 600 : la prise est éteinte (à 0) depuis 600 secondes (10 minutes)
-| stateDuration(prise,1)        | Renvoie une valeur comprise entre 0 et stateDuration(prise) (selon votre polling) : la prise n'est pas dans cet état
-| lastStateChange(prise,0)      | Renvoie 600 : la prise s'est éteinte (passage à 0) pour la dernière fois il y a 600 secondes (10 minutes)
-| lastStateChange(prise,1)      | Renvoie 4200 : la prise s'est allumée (passage à 1) pour la dernière fois il y a 4200 secondes (1h10)
+| stateDuration(prise)              | Renvoie 600 : la prise est dans son état actuel depuis 600 secondes (10 minutes)
+| stateDuration(prise,0)            | Renvoie 600 : la prise est éteinte (à 0) depuis 600 secondes (10 minutes)
+| stateDuration(prise,1)            | Renvoie une valeur comprise entre 0 et stateDuration(prise) (selon votre polling) : la prise n'est pas dans cet état
+| lastChangeStateDuration(prise,0)  | Renvoie 600 : la prise s'est éteinte (passage à 0) pour la dernière fois il y a 600 secondes (10 minutes)
+| lastChangeStateDuration(prise,1)  | Renvoie 4200 : la prise s'est allumée (passage à 1) pour la dernière fois il y a 4200 secondes (1h10)
 | lastStateDuration(prise,0)        | Renvoie 600 : la prise est éteinte depuis 600 secondes (10 minutes)
 | lastStateDuration(prise,1)        | Renvoie 3600 : la prise a été allumée pour la dernière fois pendant 3600 secondes (1h)
 | stateChanges(prise,période)       | Renvoie 3 : la prise a changé 3 fois d'état pendant la période
