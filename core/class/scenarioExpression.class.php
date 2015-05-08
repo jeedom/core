@@ -182,13 +182,9 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		if (DateTime::createFromFormat('Y-m-d H:i:s', $_startDate) == false) {
-			$_startDate = date('Y-m-d H:i:s', strtotime($_startDate));
-		}
-		if (DateTime::createFromFormat('Y-m-d H:i:s', $_endDate) == false) {
-			$_endDate = date('Y-m-d H:i:s', strtotime($_endDate));
-		}
-		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
+		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
+		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+		$historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
 		return round($historyStatistique['avg'], 1);
 	}
 
@@ -239,12 +235,9 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		if (DateTime::createFromFormat('Y-m-d H:i:s', $_startDate) == false) {
-			$_startDate = date('Y-m-d H:i:s', strtotime($_startDate));
-		}
-		if (DateTime::createFromFormat('Y-m-d H:i:s', $_endDate) == false) {
-			$_endDate = date('Y-m-d H:i:s', strtotime($_endDate));
-		}
+		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
+		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+		$historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
 		return round($historyStatistique['max'], 1);
 	}
@@ -312,13 +305,9 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		if (DateTime::createFromFormat('Y-m-d H:i:s', $_startDate) == false) {
-			$_startDate = date('Y-m-d H:i:s', strtotime($_startDate));
-		}
-		if (DateTime::createFromFormat('Y-m-d H:i:s', $_endDate) == false) {
-			$_endDate = date('Y-m-d H:i:s', strtotime($_endDate));
-		}
-		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
+		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
+		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+		$historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
 		return round($historyStatistique['min'], 1);
 	}
 
@@ -434,14 +423,8 @@ class scenarioExpression {
 			$_startDate = func_get_arg(1);
 			$_value = null;
 		}
-
-		if (DateTime::createFromFormat('Y-m-d H:i:s', $_startDate) == false) {
-			$_startDate = date('Y-m-d H:i:s', strtotime($_startDate));
-		}
-		if (DateTime::createFromFormat('Y-m-d H:i:s', $_endDate) == false) {
-			$_endDate = date('Y-m-d H:i:s', strtotime($_endDate));
-		}
-
+		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
+		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		return history::stateChanges($cmd_id, $_value, $_startDate, $_endDate);
 	}
 
@@ -551,15 +534,9 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-
-		if (DateTime::createFromFormat('Y-m-d H:i:s', $_startDate) == false) {
-			$_startDate = date('Y-m-d H:i:s', strtotime($_startDate));
-		}
-		if (DateTime::createFromFormat('Y-m-d H:i:s', $_endDate) == false) {
-			$_endDate = date('Y-m-d H:i:s', strtotime($_endDate));
-		}
-
-		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
+		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
+		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+		$historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
 		return round($historyStatistique['last'], 1);
 	}
 
