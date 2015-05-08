@@ -400,53 +400,6 @@ LIMIT 1';
 		return strtotime('now') - strtotime($result['datetime']);
 	}
 
-	public static function lastStateChange($_cmd_id, $_value = null) {
-		$cmd = cmd::byId($_cmd_id);
-		if (!is_object($cmd)) {
-			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
-		}
-
-		if ($_value == null and !is_numeric($_value)) {
-			$_condition = '';
-		} else {
-			$_value = str_replace(',', '.', $_value);
-			$_decimal = strlen(substr(strrchr($_value, "."), 1));
-			$_condition = ' and ROUND(value,' . $_decimal . ') = ' . $_value;
-		}
-		$values = array(
-			'cmd_id' => $_cmd_id,
-		);
-		$sql = 'SELECT TIMESTAMPDIFF(SECOND,datetime,CURRENT_TIMESTAMP()) as last
-				FROM (SELECT t1.*,
-						(SELECT value
-							FROM (
-								SELECT *
-								FROM history
-								 WHERE cmd_id=:cmd_id
-								 UNION ALL
-								 SELECT *
-								 FROM historyArch
-								 WHERE cmd_id=:cmd_id
-							) as t2
-							WHERE t2.datetime < t1.datetime
-							ORDER BY datetime desc LIMIT 1
-						) as prev_value
-						FROM (
-							SELECT *
-							FROM history
-							WHERE cmd_id=:cmd_id
-							UNION ALL
-							SELECT *
-							FROM historyArch
-							WHERE cmd_id=:cmd_id
-						) as t1
-						WHERE cmd_id=' . $_cmd_id . '
-				) as t1
-				where prev_value <> value' . $_condition . ' ORDER BY datetime DESC LIMIT 1';
-		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		return $result['last'];
-	}
-
 	public static function lastStateDuration($_cmd_id, $_value = null) {
 		$cmd = cmd::byId($_cmd_id);
 		if (!is_object($cmd)) {
