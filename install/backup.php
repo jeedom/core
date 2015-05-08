@@ -104,7 +104,10 @@ try {
 	system("mysqlcheck --host=" . $CONFIG['db']['host'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . ' --auto-repair --silent');
 
 	echo __('Sauvegarde de la base de données...', __FILE__);
-	system("mysqldump --host=" . $CONFIG['db']['host'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  > " . $tmp . "/DB_backup.sql");
+	$rc = system("mysqldump --host=" . $CONFIG['db']['host'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  > " . $tmp . "/DB_backup.sql");
+	if ($rc != 0) {
+		throw new Exception('Echec lors de la sauvegarde de la BDD, verifier que mysqldump est bien présent. Code retour : ' . $rc);
+	}
 	echo __("OK", __FILE__) . "\n";
 
 	echo __('Création de l\'archive...', __FILE__);

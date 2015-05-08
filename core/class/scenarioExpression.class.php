@@ -117,7 +117,8 @@ class scenarioExpression {
 	}
 
 	public static function scenario($_scenario) {
-		$scenario = scenario::byId(str_replace(array('scenario', '#'), '', trim($_scenario)));
+		$id = str_replace(array('scenario', '#'), '', trim($_scenario));
+		$scenario = scenario::byId($id);
 		if (!is_object($scenario)) {
 			return -2;
 		}
