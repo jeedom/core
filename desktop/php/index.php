@@ -11,6 +11,9 @@ if (isConnect()) {
 		} else {
 			$homeLink = 'index.php?v=d&m=' . $homePage[0] . '&p=' . $homePage[1];
 		}
+		if ($homePage[1] == 'plan' && $_SESSION['user']->getOptions('defaultPlanFullScreen') == 1) {
+			$homeLink .= '&fullscreen=1';
+		}
 	} else {
 		$homeLink = 'index.php?v=d&p=dashboard';
 	}

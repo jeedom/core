@@ -134,7 +134,7 @@ foreach (plugin::listPlugin() as $pluginList) {
                     <fieldset>
                         <legend>{{Générale}}</legend>
                         <div class="form-group">
-                        <label class="col-sm-3 control-label">{{Ne pas masquer les menu automatiquement}}</label>
+                            <label class="col-sm-3 control-label">{{Ne pas masquer les menu automatiquement}}</label>
                             <div class="col-sm-1">
                                 <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
                             </div>
@@ -234,6 +234,13 @@ foreach (planHeader::all() as $plan) {
    </select>
 </div>
 </div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{Plein écran}}</label>
+    <div class="col-sm-1">
+        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultPlanFullScreen" />
+    </div>
+</div>
+
 <legend>{{Dashboard}}</legend>
 <div class="form-group">
     <label class="col-sm-3 control-label">{{Déplier le panneau des scénarios}}</label>
