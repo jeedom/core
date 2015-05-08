@@ -440,42 +440,39 @@ class scenarioExpression {
 
 		if (str_word_count($_period) == 1 && is_numeric(trim($_period)[0])) {
 			$_startDate = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $_period));
-		}
-		else {
+		} else {
 			$_startDate = date('Y-m-d H:i:s', strtotime($_period));
 			if ($_startDate == date('Y-m-d H:i:s', strtotime(0))) {
-				return ''; 
+				return '';
 			}
 		}
 		$_endDate = date('Y-m-d H:i:s');
 		$_value = str_replace(',', '.', $_value);
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
-		
+
 		$histories = $cmd->getHistory();
-    	
-  		$duration = 0;
+
+		$duration = 0;
 		$lastDuration = strtotime($histories[0]->getDatetime());
-  		$lastValue = $histories[0]->getValue();
-  
-  		foreach ($histories as $history) {
+		$lastValue = $histories[0]->getValue();
+
+		foreach ($histories as $history) {
 			if ($history->getDatetime() >= $_startDate) {
 				if ($history->getDatetime() <= $_endDate) {
 					if ($lastValue == $_value) {
 						$duration = $duration + (strtotime($history->getDatetime()) - $lastDuration);
 					}
-				}
-				else {
+				} else {
 					if ($lastValue == $_value) {
 						$duration = $duration + (strtotime($_endDate) - $lastDuration);
 					}
 					break;
 				}
 				$lastDuration = strtotime($history->getDatetime());
-			}
-			else {
+			} else {
 				$lastDuration = strtotime($_startDate);
 			}
-          		$lastValue = round($history->getValue(),$_decimal);
+			$lastValue = round($history->getValue(), $_decimal);
 		}
 		if ($lastValue == $_value AND $lastDuration <= strtotime($_endDate)) {
 			$duration = $duration + (strtotime($_endDate) - $lastDuration);
@@ -493,35 +490,33 @@ class scenarioExpression {
 		$cmd_id = $cmd->getId();
 
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
-  		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$_value = str_replace(',', '.', $_value);
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
-		
+
 		$histories = $cmd->getHistory();
-    	
-  		$duration = 0;
+
+		$duration = 0;
 		$lastDuration = strtotime($histories[0]->getDatetime());
-  		$lastValue = $histories[0]->getValue();
-  
- 		foreach ($histories as $history) {
+		$lastValue = $histories[0]->getValue();
+
+		foreach ($histories as $history) {
 			if ($history->getDatetime() >= $_startDate) {
 				if ($history->getDatetime() <= $_endDate) {
 					if ($lastValue == $_value) {
 						$duration = $duration + (strtotime($history->getDatetime()) - $lastDuration);
 					}
-				}
-				else {
+				} else {
 					if ($lastValue == $_value) {
 						$duration = $duration + (strtotime($_endDate) - $lastDuration);
 					}
 					break;
 				}
 				$lastDuration = strtotime($history->getDatetime());
-			}
-			else {
+			} else {
 				$lastDuration = strtotime($_startDate);
 			}
-          		$lastValue = round($history->getValue(),$_decimal);
+			$lastValue = round($history->getValue(), $_decimal);
 		}
 		if ($lastValue == $_value AND $lastDuration <= strtotime($_endDate)) {
 			$duration = $duration + (strtotime($_endDate) - $lastDuration);
@@ -702,8 +697,10 @@ class scenarioExpression {
 			return substr($_time, 0, 2) . 'h' . substr($_time, 2, 2);
 		} else if (strlen($_time) > 2) {
 			return substr($_time, 0, 1) . 'h' . substr($_time, 1, 2);
-		} else {
+		} else if (strlen($_time) > 2) {
 			return '00h' . substr($_time, 0, 2);
+		} else {
+			return '00h0' . substr($_time, 0, 1);
 		}
 	}
 
