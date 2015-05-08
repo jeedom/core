@@ -396,6 +396,10 @@ class network {
 		return (trim(shell_exec("cat /sys/class/net/eth0/operstate")) == 'up') ? true : false;
 	}
 
+	public static function wlanIsUp() {
+		return (trim(shell_exec("cat /sys/class/net/wlan0/operstate")) == 'up') ? true : false;
+	}
+
 	public static function writeInterfaceFile() {
 		if (!self::canManageNetwork()) {
 			return;
@@ -531,7 +535,7 @@ class network {
 		if (config::byKey('network::failedNumber', 'core', 0) > 2 && file_exists($filepath . '.save') && self::ehtIsUp()) {
 			log::add('network', 'error', __('Aucune gateway trouvée depuis plus de 30min. Remise par defaut du fichier interface', __FILE__));
 			exec('sudo cp ' . $filepath . '.save ' . $filepath . '; sudo rm ' . $filepath . '.save ');
-			//jeedom::rebootSystem();
+			jeedom::rebootSystem();
 		}
 		$lastNoOk = config::byKey('network::lastNoGw', 'core', -1);
 		if ($lastNoOk < 0) {
@@ -562,9 +566,9 @@ class network {
 		log::add('network', 'error', __('Aucune gateway trouvée, redemarrage de l\'interface filaire', __FILE__));
 		config::save('network::lastNoGw', -1);
 		config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
-		//exec('sudo ifdown eth0');
+		exec('sudo ifdown eth0');
 		sleep(5);
-		//exec('sudo ifup --force eth0');
+		exec('sudo ifup --force eth0');
 	}
 
 }

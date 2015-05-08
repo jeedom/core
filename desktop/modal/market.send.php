@@ -49,21 +49,21 @@ if (init('type') == 'plugin') {
             </div>
         </div>
         <div class="col-lg-3">
-            <div style="height: 130px;" class="priceChoose">
-                <center><input type="radio" name="rb_price" class="rb_price" data-value="1" /> <h4 style="display: inline-block">1€</h4></center>
-                <center>Sur ce prix seront prélevés 0,25€ de frais paypal puis 35% destinés à l'équipe du projet Jeedom</center>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div style="height: 130px;" class="priceChoose">
+            <div style="height: 100px;" class="priceChoose">
                 <center><input type="radio" name="rb_price" class="rb_price" data-value="2" /> <h4 style="display: inline-block">2€</h4></center>
-                <center>Sur ce prix seront prélevés 0,25€ de frais paypal puis 30% destinés à l'équipe du projet Jeedom</center>
+                <center>{{Sur ce prix seront 40% seront reversé au développeur}}</center>
             </div>
         </div>
         <div class="col-lg-3">
-            <div style="height: 130px;" class="priceChoose">
+            <div style="height: 100px;" class="priceChoose">
+                <center><input type="radio" name="rb_price" class="rb_price" data-value="4" /> <h4 style="display: inline-block">4€</h4></center>
+                <center>{{Sur ce prix seront 60% seront reversé au développeur}}</center>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div style="height: 100px;" class="priceChoose">
                 <center><input type="radio" name="rb_price" class="rb_price" data-value="custom" /> <h4 style="display: inline-block">Libre</h4> <input class="form-control marketAttr input-sm" data-l1key="cost" placeholder="Prix" style="display : inline-block; width : 80px;"> €</center>
-                <center>Sur ce prix seront prélevés 0,25€ de frais paypal puis 25% destinés à l'équipe du projet Jeedom (le prix doit etre >= 3€)</center>
+                <center>{{Sur ce prix seront 65% seront reversé au développeur (doit etre supérieur ou égale à 5€)}}</center>
             </div>
         </div>
     </div>
@@ -121,7 +121,6 @@ if (init('type') == 'plugin') {
                     </select>
                     <select class="form-control plugin category" data-l1key="categorie" style="display: none;">
                         <option>Autre</option>
-                        <option>Box</option>
                         <option>Communication</option>
                         <option>Confort</option>
                         <option>Energie</option>
@@ -131,6 +130,7 @@ if (init('type') == 'plugin') {
                         <option>Nature</option>
                         <option>Objets connectés</option>
                         <option>Organisation</option>
+                        <option>passerelle domotique</option>
                         <option>Programmation</option>
                         <option>Protocole domotique</option>
                         <option>Santé</option>
@@ -146,9 +146,9 @@ if (init('type') == 'plugin') {
             </div>
         </div>
         <div class="col-lg-6">
-         <div class="form-group">
-             <label class="col-sm-2 control-label">Video</label>
-             <div class="col-sm-9">
+           <div class="form-group">
+               <label class="col-sm-2 control-label">Video</label>
+               <div class="col-sm-9">
                 <input class="form-control marketAttr" data-l1key="link" data-l2key="video">
             </div>
         </div>
@@ -201,7 +201,7 @@ if (init('type') == 'plugin') {
 
 <div title="Qu'avez-vous changé ?" id="md_marketSendChangeChange">
     <form class="form-horizontal" role="form">
-     <div class="form-group">
+       <div class="form-group">
         <label class="col-sm-3 control-label">{{Version}}</label>
         <div class="col-sm-3">
             <input class="form-control" id="in_marketSendVersion">
@@ -210,14 +210,14 @@ if (init('type') == 'plugin') {
     <div class="form-group">
         <label class="col-sm-3 control-label">{{Documentation seulement}}</label>
         <div class="col-sm-1">
-         <input type="checkbox" id="cb_marketSendDocOnly" />
-     </div>
- </div>
- <div class="form-group">
+           <input type="checkbox" id="cb_marketSendDocOnly" />
+       </div>
+   </div>
+   <div class="form-group">
     <label class="col-sm-3 control-label">{{Changement}}</label>
     <div class="col-sm-9">
-     <textarea class="form-control" id="ta_marketSendChange" placeholder="{{Changement}}" style="height: 150px;"></textarea>
- </div>
+       <textarea class="form-control" id="ta_marketSendChange" placeholder="{{Changement}}" style="height: 150px;"></textarea>
+   </div>
 
 </div>
 <a class="btn btn-success pull-right" id="bt_marketSendValideChange"><i class="fa fa-check"></i> {{Valider}}</a>
@@ -279,15 +279,15 @@ if (market_display_info.realcost == '' || market_display_info.realcost == 0) {
     $('.rb_price.free').prop('checked', true);
     $('.marketAttr[data-l1key=cost]').value('');
     $('.rb_price.free').closest('.priceChoose').addClass('alert alert-success');
-} else if (market_display_info.realcost == 1) {
-    $('.rb_price[data-value=1]').prop('checked', true);
-    $('.marketAttr[data-l1key=cost]').value('');
-    $('.rb_price[data-value=1]').closest('.priceChoose').addClass('alert alert-success');
-    $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
 } else if (market_display_info.realcost == 2) {
     $('.rb_price[data-value=2]').prop('checked', true);
     $('.marketAttr[data-l1key=cost]').value('');
     $('.rb_price[data-value=2]').closest('.priceChoose').addClass('alert alert-success');
+    $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
+} else if (market_display_info.realcost == 4) {
+    $('.rb_price[data-value=4]').prop('checked', true);
+    $('.marketAttr[data-l1key=cost]').value('');
+    $('.rb_price[data-value=4]').closest('.priceChoose').addClass('alert alert-success');
     $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
     $('.rb_price.free').closest('.priceChoose').removeClass('alert alert-success');
 } else {
@@ -308,14 +308,14 @@ $('#bt_sendToMarket').on('click', function () {
     });
 
     if(market.id != ''){
-       $('#md_marketSendChangeChange').dialog('open');
-       $('#in_marketSendVersion').value(market_display_info.version);
-       $('#ta_marketSendChange').value('');
-       $('#cb_marketSendDocOnly').value(0);
-       $('#bt_marketSendCancelChange').off().on('click',function(){
+     $('#md_marketSendChangeChange').dialog('open');
+     $('#in_marketSendVersion').value(market_display_info.version);
+     $('#ta_marketSendChange').value('');
+     $('#cb_marketSendDocOnly').value(0);
+     $('#bt_marketSendCancelChange').off().on('click',function(){
         $('#md_marketSendChangeChange').dialog('close');
     });
-       $('#bt_marketSendValideChange').off().on('click',function(){
+     $('#bt_marketSendValideChange').off().on('click',function(){
 
         market.version = $('#in_marketSendVersion').value();
         market.change = $('#ta_marketSendChange').value();
@@ -342,12 +342,12 @@ $('#bt_sendToMarket').on('click', function () {
                 $.showLoading();
                 window.location.reload();
             } else {
-               $('#md_marketSendChangeChange').dialog('close');
-               $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
-           }
+             $('#md_marketSendChangeChange').dialog('close');
+             $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
+         }
 
-       }
-   });
+     }
+ });
 });
 
 }else{

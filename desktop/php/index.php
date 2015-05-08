@@ -11,6 +11,9 @@ if (isConnect()) {
 		} else {
 			$homeLink = 'index.php?v=d&m=' . $homePage[0] . '&p=' . $homePage[1];
 		}
+		if ($homePage[1] == 'plan' && $_SESSION['user']->getOptions('defaultPlanFullScreen') == 1) {
+			$homeLink .= '&fullscreen=1';
+		}
 	} else {
 		$homeLink = 'index.php?v=d&p=dashboard';
 	}
@@ -392,24 +395,24 @@ if (isConnect('admin')) {
 												<?php
 if (network::ehtIsUp()) {
 		echo '<li><a href="#"><i class="fa fa-sitemap tooltips" title="{{Connecté en filaire}}"></i></a></li>';
-	} else {
-		$signalStrength = network::signalStrength();
-		if ($signalStrength !== '' && $signalStrength >= 0) {
-			if ($signalStrength > 80) {
-				echo '<li><a href="#"><i class="jeedom2-fdp1-signal5 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
-			} else if ($signalStrength > 60) {
-				echo '<li><a href="#"><i class="jeedom2-fdp1-signal4 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
-			} else if ($signalStrength > 40) {
-				echo '<li><a href="#"><i class="jeedom2-fdp1-signal3 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
-			} else if ($signalStrength > 20) {
-				echo '<li><a href="#"><i class="jeedom2-fdp1-signal2 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
-			} else if ($signalStrength > 0) {
-				echo '<li><a href="#"><i class="jeedom2-fdp1-signal1 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
-			} else {
-				echo '<li><a href="#"><i class="jeedom2-fdp1-signal0 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
-			}
+	}
+	$signalStrength = network::signalStrength();
+	if ($signalStrength !== '' && $signalStrength >= 0) {
+		if ($signalStrength > 80) {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal5 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+		} else if ($signalStrength > 60) {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal4 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+		} else if ($signalStrength > 40) {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal3 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+		} else if ($signalStrength > 20) {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal2 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+		} else if ($signalStrength > 0) {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal1 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+		} else {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal0 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
 		}
 	}
+
 	?>
 												<li>
 													<?php if (isset($plugin) && is_object($plugin)) {?>
