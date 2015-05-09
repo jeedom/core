@@ -33,6 +33,9 @@ class network {
 			if (config::byKey('internalAddr') == '') {
 				self::internalAutoconf();
 			}
+			if (strpos(config::byKey('internalAddr', 'core', $_default), 'http://') != false || strpos(config::byKey('internalAddr', 'core', $_default), 'https://') !== false) {
+				config::save('internalAddr', str_replace(array('http://', 'https://'), '', config::byKey('internalAddr', 'core', $_default)));
+			}
 			if ($_protocole == 'ip' || $_protocole == 'dns') {
 				return config::byKey('internalAddr', 'core', $_default);
 			}
@@ -46,6 +49,9 @@ class network {
 
 		}
 		if ($_mode == 'external') {
+			if (strpos(config::byKey('externalAddr', 'core', $_default), 'http://') != false || strpos(config::byKey('externalAddr', 'core', $_default), 'https://') !== false) {
+				config::save('externalAddr', str_replace(array('http://', 'https://'), '', config::byKey('externalAddr', 'core', $_default)));
+			}
 			if ($_protocole == 'ip') {
 				if (config::byKey('jeedom::url') != '') {
 					return getIpFromString(config::byKey('jeedom::url'));
