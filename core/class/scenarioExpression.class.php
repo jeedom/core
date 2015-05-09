@@ -697,7 +697,7 @@ class scenarioExpression {
 			return substr($_time, 0, 2) . 'h' . substr($_time, 2, 2);
 		} else if (strlen($_time) > 2) {
 			return substr($_time, 0, 1) . 'h' . substr($_time, 1, 2);
-		} else if (strlen($_time) > 2) {
+		} else if (strlen($_time) > 1) {
 			return '00h' . substr($_time, 0, 2);
 		} else {
 			return '00h0' . substr($_time, 0, 1);
