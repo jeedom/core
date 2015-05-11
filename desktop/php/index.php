@@ -440,10 +440,10 @@ if (network::ehtIsUp()) {
 		$alert = "{{Erreur cron : il n\'y a pas eu de lancement depuis plus de 1h}}\n";
 	}
 	if (!jeedom::isStarted()) {
-		$alert = "{{Jeedom est en cours de démarrage (peut prendre jusqu\'à 5min)}}\n";
+		$alert = "{{Jeedom est en cours de démarrage (peut prendre jusqu'à 5min)}}\n";
 	}
 	if (!jeedom::isDateOk()) {
-		$alert = "{{Erreur de date : la date de votre système n\'est pas bonne : }}" . date('Y-m-d H:i:s') . "\n";
+		$alert = "{{Erreur de date : la date de votre système n'est pas bonne : }}" . date('Y-m-d H:i:s') . "\n";
 	}
 	if (config::byKey('enableCron', 'core', 1, true) == 0) {
 		$alert = "{{Erreur cron : les crons sont désactivés. Allez dans Général -> Administration -> Moteur de tâches pour les réactiver}}\n";
@@ -452,7 +452,7 @@ if (network::ehtIsUp()) {
 		$alert = "{{Erreur scénario : tous les scénarios sont désactivés. Allez dans Général -> Scénarios pour les réactiver}}\n";
 	}
 	if (user::hasDefaultIdentification() == 1) {
-		$alert = "{{Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href='index.php?v=d&p=user'>ici</a> pour modifier le mot de passe de l\'utilisateur admin}}\n";
+		$alert = "{{Attention vous avez toujours l'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href='index.php?v=d&p=user'>ici</a> pour modifier le mot de passe de l'utilisateur admin}}\n";
 	}
 	if (trim($alert) != '') {
 		echo '<div style="width : 100%" class="alert alert-warning">' . $alert . '</div>';
