@@ -541,6 +541,7 @@ class network {
 		if (config::byKey('network::failedNumber', 'core', 0) > 2 && file_exists($filepath . '.save') && self::ehtIsUp()) {
 			log::add('network', 'error', __('Aucune gateway trouvée depuis plus de 30min. Remise par defaut du fichier interface', __FILE__));
 			exec('sudo cp ' . $filepath . '.save ' . $filepath . '; sudo rm ' . $filepath . '.save ');
+			config::save('network::failedNumber', 0);
 			jeedom::rebootSystem();
 		}
 		$lastNoOk = config::byKey('network::lastNoGw', 'core', -1);
@@ -548,7 +549,7 @@ class network {
 			config::save('network::lastNoGw', strtotime('now'));
 			return;
 		}
-		if ((strtotime('now') - $lastNoOk) < 300) {
+		if ((strtotime('now') - $lastNoOk) < 600) {
 			return;
 		}
 		if (config::byKey('network::fixip::enable') == 1) {
