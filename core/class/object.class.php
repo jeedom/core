@@ -95,11 +95,11 @@ class object {
 				$object_return = utils::o2a($object);
 				$object_return['eqLogics'] = array();
 				foreach ($object->getEqLogic() as $eqLogic) {
-					if ($eqLogic->getIsVisible() == 1 && $eqLogic->getIsEnable() == 1 && (!is_array($_restrict['eqLogic']) || isset($_restrict['eqLogic'][$eqLogic->getId()]))) {
+					if ($eqLogic->getIsVisible() == 1 && $eqLogic->getIsEnable() == 1 && (!isset($_restrict['eqLogic']) || !is_array($_restrict['eqLogic']) || isset($_restrict['eqLogic'][$eqLogic->getId()]))) {
 						$eqLogic_return = utils::o2a($eqLogic);
 						$eqLogic_return['cmds'] = array();
 						foreach ($eqLogic->getCmd() as $cmd) {
-							if (!is_array($_restrict['cmd']) || isset($_restrict['cmd'][$cmd->getId()])) {
+							if (!isset($_restrict['cmd']) || !is_array($_restrict['cmd']) || isset($_restrict['cmd'][$cmd->getId()])) {
 								$cmd_return = utils::o2a($cmd);
 								if ($cmd->getType() == 'info') {
 									$cmd_return['state'] = $cmd->execCmd(null, 2);
