@@ -46,6 +46,9 @@ if ($market->getCertification() == 'Officiel') {
 if ($market->getCertification() == 'Recommandé') {
 	echo '<span style="font-size: 1.5em;font-weight: bold;color:#707070;">Recommandé</span><br/>';
 }
+if ($market->getCertification() == 'Obsolète') {
+	echo '<span style="font-size: 1.5em;font-weight: bold;color:#e74c3c;">Obsolète</span><br/>';
+}
 ?>
        <span class="marketAttr" data-l1key="categorie" style="font-size: 1em;font-weight: bold;"></span>
        <br/><br/>

@@ -337,6 +337,9 @@ foreach ($markets as $market) {
 		if ($market->getCertification() == 'Recommandé') {
 			echo '<br/><span style="font-size : 0.85em;color:#7f8c8d;position:relative; top : 10px;">Recommandé</span>';
 		}
+		if ($market->getCertification() == 'Obsolète') {
+			echo '<br/><span style="font-size : 0.85em;color:#e74c3c;position:relative; top : 10px;">Obsolète</span>';
+		}
 	}
 	$note = $market->getRating();
 
