@@ -129,15 +129,18 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byType($_eqType_name) {
+	public static function byType($_eqType_name, $_onlyEnable = false) {
 		$values = array(
 			'eqType_name' => $_eqType_name,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'el') . '
         FROM eqLogic el
         LEFT JOIN object ob ON el.object_id=ob.id
-        WHERE eqType_name=:eqType_name
-        ORDER BY ob.name,el.name';
+        WHERE eqType_name=:eqType_name ';
+		if ($_onlyEnable) {
+			$sql .= ' AND isEnable=1';
+		}
+		$sql .= ' ORDER BY ob.name,el.name';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
