@@ -322,7 +322,7 @@ foreach ($markets as $market) {
 		}
 	}
 
-	echo "<center>";
+	echo "<br/><center>";
 	$urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
 	if ($market->getType() == 'widget') {
 		echo '<img class="lazy" src="core/img/no_image.gif" data-original="' . $urlPath . '" height="105" width="95" style="margin-left: 20px;border: 1px solid #C5C5C5;border-radius:5px; padding: 3px" />';

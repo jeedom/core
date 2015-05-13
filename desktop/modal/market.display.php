@@ -43,8 +43,8 @@ echo '<img src="core/img/no_image.gif" data-original="' . $urlPath . '"  class="
 if ($market->getCertification() == 'Officiel') {
 	echo '<span style="font-size : 1.5em;color:#707070">Officiel</span><br/>';
 }
-if ($market->getCertification() == 'Recommandé') {
-	echo '<span style="font-size: 1.5em;font-weight: bold;color:#707070;">Recommandé</span><br/>';
+if ($market->getCertification() == 'Conseillé') {
+	echo '<span style="font-size: 1.5em;font-weight: bold;color:#707070;">Conseillé</span><br/>';
 }
 if ($market->getCertification() == 'Obsolète') {
 	echo '<span style="font-size: 1.5em;font-weight: bold;color:#e74c3c;">Obsolète</span><br/>';
