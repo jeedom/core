@@ -295,6 +295,18 @@ foreach ($markets as $market) {
 		echo '<div class="market cursor ' . $install . '" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	}
 
+	if ($market->getType() != 'widget') {
+		if ($market->getCertification() == 'Officiel') {
+			echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Officiel.png" /></div>';
+		}
+		if ($market->getCertification() == 'Conseillé') {
+			echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Conseille.png" /></div>';
+		}
+		if ($market->getCertification() == 'Obsolète') {
+			echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Obsolete.png" /></div>';
+		}
+	}
+
 	if ($name == null && $type == 'widget' && isset($widget_found[$widget_id]) && $widget_found[$widget_id] > 1) {
 
 	} else {
@@ -330,17 +342,6 @@ foreach ($markets as $market) {
 			echo '<strong class="well col-sm-12 text-center" style="font-size : 1em;position:relative;padding: 5px; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $widget_name . '</strong>';
 		} else {
 			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $market->getName() . '</span>';
-		}
-	}
-	if ($market->getType() != 'widget') {
-		if ($market->getCertification() == 'Officiel') {
-			echo '<br/><span style="font-size : 0.85em;color:#7f8c8d;position:relative; top : 10px;">Officiel</span>';
-		}
-		if ($market->getCertification() == 'Recommandé') {
-			echo '<br/><span style="font-size : 0.85em;color:#7f8c8d;position:relative; top : 10px;">Recommandé</span>';
-		}
-		if ($market->getCertification() == 'Obsolète') {
-			echo '<br/><span style="font-size : 0.85em;color:#e74c3c;position:relative; top : 10px;">Obsolète</span>';
 		}
 	}
 	$note = $market->getRating();
