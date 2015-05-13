@@ -167,7 +167,7 @@ function displayWidgetSubtype($_name) {
 			<div class="form-group">
 				<div class="btn-group" >
 					<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('certification', 'Officiel');?>">Officiel</a>
-					<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Recommandé') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('certification', 'Recommandé');?>">Recommandé</a>
+					<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Conseillé') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('certification', 'Conseillé');?>">Conseillé</a>
 					<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('certification', '');?>"><i class="fa fa-times"></i></a>
 				</div>
 			</div>
