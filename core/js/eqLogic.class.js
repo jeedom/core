@@ -114,7 +114,12 @@ jeedom.eqLogic.copy = function (_params) {
 
 jeedom.eqLogic.print = function (_params) {
     var paramsRequired = ['id', 'type'];
-    var paramsSpecifics = {};
+    var paramsSpecifics = {
+        pre_success: function (data) {
+            jeedom.eqLogic.cache.getCmd[_params.id] = data.result.cmd;
+            return data;
+        }
+    };
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
@@ -217,7 +222,6 @@ jeedom.eqLogic.builSelectCmd = function (_params) {
     jeedom.eqLogic.getCmd({
         id: _params.id,
         async: false,
-        noCache: true,
         success: function (cmds) {
             var result = '';
             for (var i in cmds) {

@@ -635,13 +635,16 @@ class cmd {
 			throw new Exception(__('Le nom de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
 		}
 		if ($this->getType() == '') {
-			throw new Exception(__('Le type de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
+			throw new Exception($this->getHumanName() . ' ' . __('Le type de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
 		}
 		if ($this->getSubType() == '') {
-			throw new Exception(__('Le sous-type de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
+			throw new Exception($this->getHumanName() . ' ' . __('Le sous-type de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
 		}
 		if ($this->getEqLogic_id() == '') {
-			throw new Exception(__('Vous ne pouvez pas créer une commande sans la rattacher à un équipement', __FILE__));
+			throw new Exception($this->getHumanName() . ' ' . __('Vous ne pouvez pas créer une commande sans la rattacher à un équipement', __FILE__));
+		}
+		if ($this->getConfiguration('maxValue') != '' && $this->getConfiguration('minValue') != '' && $this->getConfiguration('minValue') > $this->getConfiguration('maxValue')) {
+			throw new Exception($this->getHumanName() . ' ' . __('La valeur minimum de la commande ne peut etre supérieur à la valeur maximum', __FILE__));
 		}
 		if ($this->getEqType() == '') {
 			$this->setEqType($this->getEqLogic()->getEqType_name());

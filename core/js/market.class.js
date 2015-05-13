@@ -22,6 +22,10 @@ jeedom.market = function() {
 
  jeedom.market.byLogicalId = function (_params) {
  	var paramsRequired = ['logicalId'];
+ 	if( _params.logicalId == '' ){
+ 		_params.success({});
+ 		return;
+ 	}
  	var paramsSpecifics = {
  		global: _params.global || true,
  	};

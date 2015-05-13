@@ -173,7 +173,12 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     <a class="btn btn-primary" id="bt_forceSyncHour"><i class="fa fa-clock-o"></i> Forcer la synchronisation de l'heure</a>
                                 </div>
                             </div>
-                            <legend>Autres</legend>
+                             <div class="form-group expertModeVisible">
+                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Serveur de temps optionnel}}</label>
+                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                    <input type="text"  class="configKey form-control" data-l1key="ntp::optionalServer" />
+                                </div>
+                            </div>
                             <div class="form-group expertModeVisible alert alert-danger">
                                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mode}}</label>
                                 <div class="col-sm-6">
@@ -209,7 +214,7 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès à l'interface d'administration}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <a class="btn btn-danger" id="bt_accessDB" data-href="<?php echo jeedom::getCurrentSqlBuddyFolder() . '/index.php'?>"><i class="fa fa-exclamation-triangle"></i> {{Se connecter}}</a>
+                                <a class="btn btn-danger" id="bt_accessDB" data-href="<?php echo jeedom::getCurrentAdminerFolder() . '/index.php'?>"><i class="fa fa-exclamation-triangle"></i> {{Se connecter}}</a>
                             </div>
                         </div>
                         <div class="form-group">

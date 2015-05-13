@@ -34,10 +34,6 @@ if (isset($argv)) {
 	}
 }
 
-if (date('i') % 5 == 0 && !isset($_GET['cron_id'])) {
-	shell_exec('/bin/bash ' . dirname(__FILE__) . '/../../script/check_mysql.sh >> ' . dirname(__FILE__) . '/../../log/watchdog 2>&1');
-}
-
 require_once dirname(__FILE__) . "/core.inc.php";
 
 $startTime = getmicrotime();

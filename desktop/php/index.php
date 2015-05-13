@@ -11,6 +11,9 @@ if (isConnect()) {
 		} else {
 			$homeLink = 'index.php?v=d&m=' . $homePage[0] . '&p=' . $homePage[1];
 		}
+		if ($homePage[1] == 'plan' && $_SESSION['user']->getOptions('defaultPlanFullScreen') == 1) {
+			$homeLink .= '&fullscreen=1';
+		}
 	} else {
 		$homeLink = 'index.php?v=d&p=dashboard';
 	}
@@ -152,7 +155,7 @@ if (isConnect() && $_SESSION['user']->getOptions('desktop_highcharts_theme') != 
 	}
 }
 ?>
-<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
+				<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 			</head>
 			<body>
 				<?php
@@ -225,7 +228,7 @@ foreach (view::all() as $view_menu) {
 														<li class="dropdown-submenu">
 															<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-picture-o"></i> {{Design}}</a>
 															<ul class="dropdown-menu">
-<?php
+																<?php
 foreach (planHeader::all() as $plan_menu) {
 				echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon') . ' ' . $plan_menu->getName()) . '</a></li>';
 			}
@@ -388,6 +391,29 @@ if (isConnect('admin')) {
 														<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
 													</ul>
 												</li>
+
+												<?php
+if (network::ehtIsUp()) {
+		echo '<li><a href="#"><i class="fa fa-sitemap tooltips" title="{{Connecté en filaire}}"></i></a></li>';
+	}
+	$signalStrength = network::signalStrength();
+	if ($signalStrength !== '' && $signalStrength >= 0) {
+		if ($signalStrength > 80) {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal5 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+		} else if ($signalStrength > 60) {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal4 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+		} else if ($signalStrength > 40) {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal3 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+		} else if ($signalStrength > 20) {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal2 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+		} else if ($signalStrength > 0) {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal1 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+		} else {
+			echo '<li><a href="#"><i class="jeedom2-fdp1-signal0 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+		}
+	}
+
+	?>
 												<li>
 													<?php if (isset($plugin) && is_object($plugin)) {?>
 													<a class="cursor tooltips" target="_blank" href="http://doc.jeedom.fr/fr_FR/<?php echo init('m');?>.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
@@ -414,10 +440,10 @@ if (isConnect('admin')) {
 		$alert = "{{Erreur cron : il n\'y a pas eu de lancement depuis plus de 1h}}\n";
 	}
 	if (!jeedom::isStarted()) {
-		$alert = "{{Jeedom est en cours de démarrage (peut prendre jusqu\'à 5min)}}\n";
+		$alert = "{{Jeedom est en cours de démarrage (peut prendre jusqu'à 5min)}}\n";
 	}
 	if (!jeedom::isDateOk()) {
-		$alert = "{{Erreur de date : la date de votre système n\'est pas bonne : }}" . date('Y-m-d H:i:s') . "\n";
+		$alert = "{{Erreur de date : la date de votre système n'est pas bonne : }}" . date('Y-m-d H:i:s') . "\n";
 	}
 	if (config::byKey('enableCron', 'core', 1, true) == 0) {
 		$alert = "{{Erreur cron : les crons sont désactivés. Allez dans Général -> Administration -> Moteur de tâches pour les réactiver}}\n";
@@ -426,7 +452,7 @@ if (isConnect('admin')) {
 		$alert = "{{Erreur scénario : tous les scénarios sont désactivés. Allez dans Général -> Scénarios pour les réactiver}}\n";
 	}
 	if (user::hasDefaultIdentification() == 1) {
-		$alert = "{{Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href='index.php?v=d&p=user'>ici</a> pour modifier le mot de passe de l\'utilisateur admin}}\n";
+		$alert = "{{Attention vous avez toujours l'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href='index.php?v=d&p=user'>ici</a> pour modifier le mot de passe de l'utilisateur admin}}\n";
 	}
 	if (trim($alert) != '') {
 		echo '<div style="width : 100%" class="alert alert-warning">' . $alert . '</div>';

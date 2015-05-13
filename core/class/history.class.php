@@ -325,7 +325,7 @@ ORDER BY `datetime` ASC ';
 			'startTime' => $_startTime,
 			'endTime' => $_endTime,
 		);
-		$sql = 'SELECT AVG(value) as avg, MIN(value) as min, MAX(value) as max
+		$sql = 'SELECT AVG(value) as avg, MIN(value) as min, MAX(value) as max, SUM(value) as sum, COUNT(value) as count, STD(value) as std, VARIANCE(value) as variance, value as last
     FROM (
         SELECT *
         FROM history
@@ -398,6 +398,127 @@ ORDER BY  `datetime` DESC
 LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return strtotime('now') - strtotime($result['datetime']);
+	}
+
+	public static function lastStateDuration($_cmd_id, $_value = null) {
+		$cmd = cmd::byId($_cmd_id);
+		if (!is_object($cmd)) {
+			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
+		}
+
+		$_value = str_replace(',', '.', $_value);
+		$_decimal = strlen(substr(strrchr($_value, "."), 1));
+		$values = array(
+			'cmd_id' => $_cmd_id,
+		);
+		$sql = 'SELECT value, datetime
+				FROM (
+					SELECT *
+					FROM  history
+					WHERE  cmd_id=:cmd_id
+					UNION ALL
+					SELECT *
+					FROM  historyArch
+					WHERE  cmd_id=:cmd_id
+				) as dt
+				ORDER BY  datetime DESC';
+		$histories = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
+
+		if ($_value == null) {$_value = $histories[0]['value'];}
+		$duration = 0;
+		$stateChange = 0;
+		$lastDuration = 0;
+		$lastValue = $histories[0]['value'];
+		$lastDuration = strtotime($histories[0]['datetime']);
+
+		foreach ($histories as $history) {
+			if (round($lastValue, $_decimal) == $_value) {$duration = $duration + ($lastDuration - strtotime($history['datetime']));}
+			if ($lastValue != $history['value']) {$stateChange++;}
+			if ($stateChange > 1) {break;}
+			$lastDuration = strtotime($history['datetime']);
+			$lastValue = $history['value'];
+		}
+		return $duration;
+	}
+
+	/**
+	 * Fonction renvoie la durée depuis le dernier changement d'état
+	 * à la valeur passée en paramètre
+	 */
+	public static function lastChangeStateDuration($_cmd_id, $_value) {
+		$cmd = cmd::byId($_cmd_id);
+		if (!is_object($cmd)) {
+			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
+		}
+		$values = array(
+			'cmd_id' => $_cmd_id,
+		);
+		$values['value'] = $_value;
+
+		$sql = 'select max(`datetime`) as lastCmdDuration
+			from (
+				select min(`datetime`) as datetime 
+				from `history` 
+				where `cmd_id`=:cmd_id and `value`=:value and 
+				datetime > (select max(`datetime`) from `history` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from history where `cmd_id`=:cmd_id and `value` = :value)) 
+				union all
+				select min(`datetime`) as datetime from `historyArch`
+				where `cmd_id`=:cmd_id and `value`=:value and
+				`datetime` > (select max(`datetime`) from `historyArch` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from historyArch where `cmd_id`=:cmd_id and `value` =:value)) 
+			) as t';
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		return strtotime('now') - strtotime($result['lastCmdDuration']);
+	}
+
+
+	public static function stateChanges($_cmd_id, $_value = null, $_startTime = null, $_endTime = null) {
+		$cmd = cmd::byId($_cmd_id);
+		if (!is_object($cmd)) {
+			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
+		}
+
+		if ($_startTime == null) {$_dateTime = '';} else { $_dateTime = ' AND `datetime`>="' . $_startTime . '"';}
+		if ($_endTime == null) {$_dateTime .= ' AND `datetime`<="' . date('Y-m-d H:i:s') . '"';} else { $_dateTime .= ' AND `datetime`<="' . $_endTime . '"';}
+
+		if ($_value == null and !is_numeric($_value)) {
+			$_condition = '';
+		} else {
+			$_value = str_replace(',', '.', $_value);
+			$_decimal = strlen(substr(strrchr($_value, "."), 1));
+			$_condition = ' and ROUND(value,' . $_decimal . ') = ' . $_value;
+		}
+		$values = array(
+			'cmd_id' => $_cmd_id,
+		);
+		$sql = 'SELECT count(*) as changes
+				FROM (SELECT t1.*,
+						(SELECT value
+							FROM (
+								SELECT *
+								FROM history
+								 WHERE cmd_id=:cmd_id ' . $_dateTime . '
+								 UNION ALL
+								 SELECT *
+								 FROM historyArch
+								 WHERE cmd_id=:cmd_id ' . $_dateTime . '
+							) as t2
+							WHERE t2.datetime < t1.datetime
+							ORDER BY datetime desc LIMIT 1
+						) as prev_value
+						FROM (
+							SELECT *
+							FROM history
+							WHERE cmd_id=:cmd_id' . $_dateTime . '
+							UNION ALL
+							SELECT *
+							FROM historyArch
+							WHERE cmd_id=:cmd_id' . $_dateTime . '
+						) as t1
+						WHERE cmd_id=:cmd_id' . $_dateTime . '
+				) as t1
+				where prev_value <> value' . $_condition . '';
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		return $result['changes'];
 	}
 
 	/**

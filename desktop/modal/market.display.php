@@ -43,8 +43,11 @@ echo '<img src="core/img/no_image.gif" data-original="' . $urlPath . '"  class="
 if ($market->getCertification() == 'Officiel') {
 	echo '<span style="font-size : 1.5em;color:#707070">Officiel</span><br/>';
 }
-if ($market->getCertification() == 'Recommandé') {
-	echo '<span style="font-size: 1.5em;font-weight: bold;color:#707070;">Recommandé</span><br/>';
+if ($market->getCertification() == 'Conseillé') {
+	echo '<span style="font-size: 1.5em;font-weight: bold;color:#707070;">Conseillé</span><br/>';
+}
+if ($market->getCertification() == 'Obsolète') {
+	echo '<span style="font-size: 1.5em;font-weight: bold;color:#e74c3c;">Obsolète</span><br/>';
 }
 ?>
        <span class="marketAttr" data-l1key="categorie" style="font-size: 1em;font-weight: bold;"></span>
@@ -100,11 +103,7 @@ if ($market->getCost() > 0) {
 	if ($market->getCost() != $market->getRealCost()) {
 		echo '<span data-l1key="rating" style="font-size: 1em;text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
 	}
-	if ($market->getCostHt() != 0) {
-		echo '<span data-l1key="rating" style="font-size: 1.5em;">' . number_format($market->getCost(), 2) . ' € TTC</span> (' . $market->getCostHt() . '€ HT)';
-	} else {
-		echo '<span data-l1key="rating" style="font-size: 1.5em;">' . number_format($market->getCost(), 2) . ' €</span> (TVA non applicable, article 293 B du CGI)';
-	}
+	echo '<span data-l1key="rating" style="font-size: 1.5em;">' . number_format($market->getCost(), 2) . ' € TTC</span>';
 } else {
 	echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Gratuit}}</span>';
 }
@@ -307,9 +306,11 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
     $('.variable-width').slick({
         dots: true,
         speed: 300,
-        variableWidth: true,
         accessibility: true,
         infinite: true,
+        lazyLoad: 'ondemand',
+        slidesToShow: 3,
+        slidesToScroll: 1
     });
 
     $('body').setValues(market_display_info, '.marketAttr');
@@ -328,21 +329,21 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
         $('.marketAttr[data-l1key=changelog]').html(html);
         var html = '';
         for(var i in market_display_info.changelog.reverse()){
-           html += '<strong>{{Version}} '+market_display_info.changelog[i].version+' - '+market_display_info.changelog[i].date+'</strong><br/>';
-           html += linkify(market_display_info.changelog[i].change);
-           html += '<br/><br/>';
-       }
-       $('#div_changelog').html(html);
-   }
-   $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
-   $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
+         html += '<strong>{{Version}} '+market_display_info.changelog[i].version+' - '+market_display_info.changelog[i].date+'</strong><br/>';
+         html += linkify(market_display_info.changelog[i].change);
+         html += '<br/><br/>';
+     }
+     $('#div_changelog').html(html);
+ }
+ $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
+ $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
 
-   $('#bt_paypalClick').on('click', function () {
+ $('#bt_paypalClick').on('click', function () {
     $(this).hide();
 });
 
 
-   $("#div_comments").dialog({
+ $("#div_comments").dialog({
     autoOpen: false,
     modal: true,
     height: (jQuery(window).height() - 300),
@@ -355,7 +356,7 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
     }
 });
 
-   $("#div_changelog").dialog({
+ $("#div_changelog").dialog({
     autoOpen: false,
     modal: true,
     height: (jQuery(window).height() - 300),
@@ -368,17 +369,17 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
     }
 });
 
-   $("#bt_viewCompleteChangelog").on('click',function(){
+ $("#bt_viewCompleteChangelog").on('click',function(){
     $('#div_changelog').dialog('open');
 });
 
-   $('#bt_viewComment').on('click', function () {
+ $('#bt_viewComment').on('click', function () {
     reloadMarketComment();
     $('#div_comments').dialog('open');
 });
 
 
-   function reloadMarketComment() {
+ function reloadMarketComment() {
     $('#div_comments').load('index.php?v=d&modal=market.comment&id=' + $('.marketAttr[data-l1key=id]').value());
 }
 
@@ -421,9 +422,9 @@ $('#bt_removeFromMarket').on('click', function () {
 $('#in_myRating').on('change', function () {
     var id = $('.marketAttr[data-l1key=id]').value();
     jeedom.market.setRating({
-       id: id,
-       rating: $(this).val(),
-       error: function (error) {
+     id: id,
+     rating: $(this).val(),
+     error: function (error) {
         $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
     }
 });

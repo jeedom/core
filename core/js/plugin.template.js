@@ -67,6 +67,7 @@ $('.eqLogicAction[data-action=returnToThumbnailDisplay]').on('click', function (
 });
 
 $(".li_eqLogic").on('click', function () {
+jeedom.eqLogic.cache.getCmd = Array();
    if ($('.eqLogicThumbnailDisplay').html() != undefined) {
     $('.eqLogicThumbnailDisplay').hide();
 }

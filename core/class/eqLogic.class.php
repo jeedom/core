@@ -129,15 +129,18 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byType($_eqType_name) {
+	public static function byType($_eqType_name, $_onlyEnable = false) {
 		$values = array(
 			'eqType_name' => $_eqType_name,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'el') . '
         FROM eqLogic el
         LEFT JOIN object ob ON el.object_id=ob.id
-        WHERE eqType_name=:eqType_name
-        ORDER BY ob.name,el.name';
+        WHERE eqType_name=:eqType_name ';
+		if ($_onlyEnable) {
+			$sql .= ' AND isEnable=1';
+		}
+		$sql .= ' ORDER BY ob.name,el.name';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -257,8 +260,8 @@ class eqLogic {
 				$noReponseTimeLimit = $eqLogic->getTimeout();
 				if (count(message::byPluginLogicalId('core', $logicalId)) == 0) {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
-						$message = __('Attention', __FILE__) . ' <a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName();
-						$message .= '</a>' . __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifier les piles)', __FILE__);
+						$message = __('Attention', __FILE__) . ' ' . $eqLogic->getHumanName();
+						$message .= __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifier les piles)', __FILE__);
 						message::add('core', $message, '', $logicalId);
 						foreach ($cmds as $cmd) {
 							if ($cmd->getEventOnly() == 1) {

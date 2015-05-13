@@ -23,7 +23,7 @@
  jeedom.display = {};
 
  if (!isset(jeedom.cache.getConfiguration)) {
-    jeedom.cache.getConfiguration = Array();
+    jeedom.cache.getConfiguration = null;
 }
 
 
@@ -81,7 +81,7 @@ jeedom.init = function () {
         });
         socket.on('jeedom::gotoplan', function (_plan_id) {
             if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
-             if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
+               if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
                 planHeader_id = _plan_id;
                 displayPlan();
             }
@@ -140,7 +140,14 @@ jeedom.getConfiguration = function (_params) {
     var paramsRequired = ['key'];
     var paramsSpecifics = {
         pre_success: function (data) {
-            jeedom.cache.getConfiguration[_params.key] = data.result;
+            jeedom.cache.getConfiguration = data.result;
+            var keys = _params.key.split(':');
+            data.result = jeedom.cache.getConfiguration;
+            for(var i in keys){
+                if (data.result[keys[i]]) {
+                    data.result = data.result[keys[i]];
+                }
+            }
             return data;
         }
     };
@@ -151,16 +158,22 @@ jeedom.getConfiguration = function (_params) {
         return;
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    if (isset(jeedom.cache.getConfiguration[params.key])) {
-        _params.success(jeedom.cache.getConfiguration[params.key]);
+    if (jeedom.cache.getConfiguration != null) {
+        var keys = _params.key.split(':');
+        var result = jeedom.cache.getConfiguration;
+        for(var i in keys){
+            if (result[keys[i]]) {
+                result = result[keys[i]];
+            }
+        }
+        _params.success(result);
         return;
     }
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
     paramsAJAX.data = {
         action: 'getConfiguration',
-        key: _params.key,
-        default: init(_params.default, 0)
+        key: ''
     };
     $.ajax(paramsAJAX);
 };

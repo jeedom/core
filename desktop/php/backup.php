@@ -10,17 +10,6 @@ if (!hasRight('backupview', true)) {
             <form class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
-                        <div class="form-group expertModeVisible">
-                            <label class="col-sm-4 col-xs-6 control-label">{{Fréquence des sauvegardes}}</label>
-                            <div class="col-sm-2 col-xs-3">
-                                <input type="text"  class="configKey form-control" data-l1key="backup::cron" />
-                            </div>
-                            <div class="col-sm-2 col-xs-1">
-                                <i class="fa fa-question-circle cursor bt_pageHelp" data-name='cronSyntaxe'></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes}}</label>
                         <div class="col-sm-2 col-xs-2">
                             <a class="btn btn-default bt_backupJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-floppy-o"></i> {{Lancer}}</a>
