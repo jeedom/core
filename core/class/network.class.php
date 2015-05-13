@@ -112,7 +112,7 @@ class network {
 				}
 				return config::byKey('externalProtocol');
 			}
-			if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
+			if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP)) {
 				return config::byKey('jeedom::url');
 			}
 			return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . config::byKey('externalComplement');
@@ -129,7 +129,9 @@ class network {
 		if (!filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP)) {
 			$internalAddr = str_replace(array('http://', 'https://'), '', config::byKey('internalAddr'));
 			$pos = strpos($internalAddr, '/');
-			$internalAddr = substr($internalAddr, 0, $pos);
+			if ($pos !== false) {
+				$internalAddr = substr($internalAddr, 0, $pos);
+			}
 			if ($internalAddr != config::byKey('internalAddr')) {
 				config::save('internalAddr', $internalAddr);
 			}
@@ -144,7 +146,9 @@ class network {
 		if (!filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP)) {
 			$externalAddr = str_replace(array('http://', 'https://'), '', config::byKey('externalAddr'));
 			$pos = strpos($externalAddr, '/');
-			$externalAddr = substr($externalAddr, 0, $pos);
+			if ($pos !== false) {
+				$externalAddr = substr($externalAddr, 0, $pos);
+			}
 			if ($externalAddr != config::byKey('externalAddr')) {
 				config::save('externalAddr', $externalAddr);
 			}
