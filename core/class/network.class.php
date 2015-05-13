@@ -536,7 +536,6 @@ class network {
 				return;
 			}
 		}
-		log::add('network', 'error', __('Il y a un probleme de connectivité réseaux. Aucune gateway d\'accessible. J\'essaye de corriger', __FILE__));
 		$filepath = '/etc/network/interfaces';
 		if (config::byKey('network::failedNumber', 'core', 0) > 2 && file_exists($filepath . '.save') && self::ehtIsUp()) {
 			log::add('network', 'error', __('Aucune gateway trouvée depuis plus de 30min. Remise par defaut du fichier interface', __FILE__));
@@ -552,6 +551,7 @@ class network {
 		if ((strtotime('now') - $lastNoOk) < 600) {
 			return;
 		}
+		log::add('network', 'error', __('Il y a un probleme de connectivité réseaux. Aucune gateway d\'accessible. J\'essaye de corriger : ', __FILE__) . config::byKey('network::failedNumber', 'core', 0));
 		if (config::byKey('network::fixip::enable') == 1) {
 			log::add('network', 'error', __('Aucune gateway trouvée, la configuration IP fixe est surement invalide. Désactivation de celle-ci et redemarrage', __FILE__));
 			config::save('network::fixip::enable', 0);
