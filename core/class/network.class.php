@@ -22,17 +22,19 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 class network {
 
 	public static function getNetworkAccess($_mode = 'auto', $_protocole = '', $_default = '') {
+		self::checkConf();
 		if ($_mode == 'auto') {
 			if (netMatch('192.168.*.*', getClientIp()) || netMatch('10.0.*.*', getClientIp())) {
-				$_mode = 'internal';
+				if (!isset($_SERVER['HTTP_HOST']) || netMatch($_SERVER['HTTP_HOST'], getClientIp()) || netMatch($_SERVER['HTTP_HOST'], getClientIp())) {
+					$_mode = 'internal';
+				} else {
+					$_mode = 'external';
+				}
 			} else {
 				$_mode = 'external';
 			}
 		}
 		if ($_mode == 'internal') {
-			if (config::byKey('internalAddr') == '') {
-				self::internalAutoconf();
-			}
 			if (strpos(config::byKey('internalAddr', 'core', $_default), 'http://') != false || strpos(config::byKey('internalAddr', 'core', $_default), 'https://') !== false) {
 				config::save('internalAddr', str_replace(array('http://', 'https://'), '', config::byKey('internalAddr', 'core', $_default)));
 			}
@@ -117,17 +119,57 @@ class network {
 		}
 	}
 
-	public static function internalAutoconf() {
-		$internalIp = getHostByName(getHostName());
-		if ($internalIp != '') {
-			config::save('internalAddr', $internalIp);
+	public static function checkConf() {
+		if (config::byKey('externalComplement') == '/') {
+			config::save('externalComplement', '');
 		}
-		config::save('internalProtocol', 'http://');
-		config::save('internalPort', 80);
-		if (file_exists('/etc/nginx/sites-available/default')) {
-			$data = file_get_contents('/etc/nginx/sites-available/default');
-			if (strpos($data, 'root /usr/share/nginx/www;') !== false) {
-				config::save('internalComplement', '/jeedom');
+		if (config::byKey('internalComplement') == '/') {
+			config::save('internalComplement', '');
+		}
+		if (!filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP)) {
+			$internalAddr = str_replace(array('http://', 'https://'), '', config::byKey('internalAddr'));
+			$pos = strpos($internalAddr, '/');
+			$internalAddr = substr($internalAddr, 0, $pos);
+			if ($internalAddr != config::byKey('internalAddr')) {
+				config::save('internalAddr', $internalAddr);
+			}
+		}
+		if (config::byKey('internalAddr') == '' || config::byKey('internalAddr') == '127.0.0.1' || config::byKey('internalAddr') == 'localhost') {
+			$internalIp = getHostByName(getHostName());
+			if ($internalIp != '') {
+				config::save('internalAddr', $internalIp);
+			}
+		}
+
+		if (!filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP)) {
+			$externalAddr = str_replace(array('http://', 'https://'), '', config::byKey('externalAddr'));
+			$pos = strpos($externalAddr, '/');
+			$externalAddr = substr($externalAddr, 0, $pos);
+			if ($externalAddr != config::byKey('externalAddr')) {
+				config::save('externalAddr', $externalAddr);
+			}
+		}
+
+		if (config::byKey('internalProtocol') == '') {
+			config::save('internalProtocol', 'http://');
+		}
+		if (config::byKey('internalPort') == '') {
+			config::save('internalPort', 80);
+		}
+		if (config::byKey('internalComplement') == '/') {
+			if (file_exists('/etc/nginx/sites-available/default')) {
+				$data = file_get_contents('/etc/nginx/sites-available/default');
+				if (strpos($data, 'root /usr/share/nginx/www;') !== false) {
+					config::save('internalComplement', '/jeedom');
+				}
+			}
+		}
+		if (config::byKey('externalComplement') == '/') {
+			if (file_exists('/etc/nginx/sites-available/default')) {
+				$data = file_get_contents('/etc/nginx/sites-available/default');
+				if (strpos($data, 'root /usr/share/nginx/www;') !== false) {
+					config::save('externalComplement', '/jeedom');
+				}
 			}
 		}
 	}
