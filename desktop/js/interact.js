@@ -193,7 +193,7 @@ $("#bt_saveInteract").on('click', function () {
 
 
 $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
-    bootbox.confirm('{{Etes-vous sûr de vouloir regénérer toutes les intérations (cela peut être très long) ?}}', function (result) {
+    bootbox.confirm('{{Etes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?}}', function (result) {
      if (result) {
         jeedom.interact.regenerateInteract({
             interact: {query: result},
@@ -201,7 +201,7 @@ $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
-             $('#div_alert').showAlert({message: '{{Toutes les intérations ont été regénérées}}', level: 'success'});
+             $('#div_alert').showAlert({message: '{{Toutes les interations ont été regénérées}}', level: 'success'});
          }
      });
     }
@@ -227,7 +227,7 @@ $("#bt_addInteract,#bt_addInteract2").on('click', function () {
 $("#bt_removeInteract").on('click', function () {
     if ($('.li_interact.active').attr('data-interact_id') != undefined) {
         $.hideAlert();
-        bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'intéraction}} <span style="font-weight: bold ;">' + $('.li_interact.active a').text() + '</span> ?', function (result) {
+        bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'interaction}} <span style="font-weight: bold ;">' + $('.li_interact.active a').text() + '</span> ?', function (result) {
             if (result) {
                 jeedom.interact.remove({
                     id: $('.li_interact.active').attr('data-interact_id'),

@@ -79,7 +79,7 @@ $("#table_user").delegate(".del_user", 'click', function (event) {
 });
 
 $('#bt_addTemporariUser').on('click', function () {
-    bootbox.confirm('{{Etes-vous sûr de vouloir creer un utilisateur d\'accès temporaire ?}}', function (result) {
+    bootbox.confirm('{{Etes-vous sûr de vouloir créer un utilisateur d\'accès temporaire ?}}', function (result) {
         if (result) {
             jeedom.user.createTemporary({
                 error: function (error) {
@@ -87,7 +87,7 @@ $('#bt_addTemporariUser').on('click', function () {
                 },
                 success: function (data) {
                     printUsers();
-                    bootbox.alert("Voici l'url à passer pour donner un accès temporaire : <br\><b style='word-break: break-all;white-space: pre-wrap;word-wrap: break-word;'>" + data.directUrl + "</b>");
+                    bootbox.alert("{{Voici l'URL à passer pour donner un accès temporaire :}} <br\><b style='word-break: break-all;white-space: pre-wrap;word-wrap: break-word;'>" + data.directUrl + "</b>");
                 }
             });
         }

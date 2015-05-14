@@ -58,7 +58,7 @@ foreach (ls('core/css/icon', '*') as $dir) {
 }
 ?>
 <div style="height: 650px;">
-    <legend>{{Générale}}</legend>
+    <legend>{{Général}}</legend>
     <div class="row">
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-glass'></i></span><br/><span class="iconDesc">fa-glass</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fa fa-music'></i></span><br/><span class="iconDesc">fa-music</span></div>

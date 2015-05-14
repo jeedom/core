@@ -57,7 +57,7 @@ $('#bt_saveSecurityConfig').on('click', function() {
 
 $('#table_security').delegate('.remove', 'click', function() {
     var tr = $(this).closest('tr');
-    bootbox.confirm("{{Etes-vous sûr de vouloir supprimer cette connexion ? Si l\'IP :}} " + tr.find('.ip').text() + " {{était banni celle-ci ne le sera plus}}", function(result) {
+    bootbox.confirm("{{Etes-vous sûr de vouloir supprimer cette connexion ? Si l\'IP :}} " + tr.find('.ip').text() + " {{était bannie, celle-ci ne le sera plus}}", function(result) {
         if (result) {
             jeedom.security.remove({
                 id: tr.attr('data-id'),

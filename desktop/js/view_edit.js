@@ -91,7 +91,7 @@
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function() {
-            $('#div_alert').showAlert({message: '{{Modification enregistré}}', level: 'success'});
+            $('#div_alert').showAlert({message: '{{Modification enregistrée}}', level: 'success'});
             modifyWithoutSave = false;
         }
     });
@@ -321,9 +321,9 @@ function addEditviewZone(_viewZone) {
         if (init(_viewZone.type, 'widget') == 'graph') {
             div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;">';
             if (init(_viewZone.configuration.dateRange) == "30 min") {
-                div += '<option value="30 min" selected>{{30min}}</option>';
+                div += '<option value="30 min" selected>{{30 min}}</option>';
             } else {
-                div += '<option value="30 min">{{30min}}</option>';
+                div += '<option value="30 min">{{30 min}}</option>';
             }
             if (init(_viewZone.configuration.dateRange) == "1 day") {
                 div += '<option value="1 day" selected>{{Jour}}</option>';

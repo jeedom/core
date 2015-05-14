@@ -599,7 +599,7 @@ class network {
 		}
 		log::add('network', 'error', __('Il y a un probleme de connectivité réseaux. Aucune gateway d\'accessible. J\'essaye de corriger : ', __FILE__) . config::byKey('network::failedNumber', 'core', 0));
 		if (config::byKey('network::fixip::enable') == 1) {
-			log::add('network', 'error', __('Aucune gateway trouvée, la configuration IP fixe est surement invalide. Désactivation de celle-ci et redemarrage', __FILE__));
+			log::add('network', 'error', __('Aucune gateway trouvée, la configuration IP fixe est surement invalide. Désactivation de celle-ci et redémarrage', __FILE__));
 			config::save('network::fixip::enable', 0);
 			config::save('network::lastNoGw', -1);
 			config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
@@ -608,7 +608,7 @@ class network {
 			return;
 		}
 		if (config::byKey('network::wifi::enable') == 1 && config::byKey('network::wifi::ssid') != '' && config::byKey('network::wifi::password') != '') {
-			log::add('network', 'error', __('Aucune gateway trouvée, redemarrage de l\'interface wifi', __FILE__));
+			log::add('network', 'error', __('Aucune gateway trouvée, redémarrage de l\'interface wifi', __FILE__));
 			config::save('network::lastNoGw', -1);
 			exec('sudo ifdown wlan0');
 			sleep(5);
@@ -616,7 +616,7 @@ class network {
 			config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
 			return;
 		}
-		log::add('network', 'error', __('Aucune gateway trouvée, redemarrage de l\'interface filaire', __FILE__));
+		log::add('network', 'error', __('Aucune gateway trouvée, redémarrage de l\'interface filaire', __FILE__));
 		config::save('network::lastNoGw', -1);
 		config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
 		exec('sudo ifdown eth0');

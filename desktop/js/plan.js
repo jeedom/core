@@ -86,7 +86,7 @@
 });
 
  $('#bt_removePlanHeader').on('click',function(){
-    bootbox.confirm('{{Etês vous sur de vouloir supprimer ce design ?}}', function (result) {
+    bootbox.confirm('{{Etes vous sûr de vouloir supprimer ce design ?}}', function (result) {
         if (result) {
             jeedom.plan.removeHeader({
                 id:planHeader_id,

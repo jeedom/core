@@ -1003,9 +1003,6 @@
     "mobile\/html\/index.html": {
         "Accueil": "Accueil"
     },
-    "core\/ajax\/jeedom.ajax.php": {
-        "401 - Accès non autorisé": "401 - Accès non autorisé"
-    },
     "mobile\/html\/connection.html": {
         "Nom d'utilisateur": "Nom d'utilisateur",
         "Mot de passe": "Mot de passe",
@@ -1069,7 +1066,6 @@
         "Aucun log n'existe pour votre scénario : ": "Aucun log n'existe pour votre scénario : ",
         "Télécharger": "Télécharger",
         "Rafraîchir": "Rafraîchir",
-        "401 - Accès non autorisé":"401 - Accès non autorisé",
         "Aucun scénario ne correspondant à : ":"Aucun scénario ne correspondant à : ",
         "Aucun log n'existe pour votre scénario : ":"Aucun log n'existe pour votre scénario : "
     },
@@ -1255,8 +1251,8 @@
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
         "Suppression effectuée avec succès": "Suppression effectuée avec succès",
         "Liste des interactions": "Liste des interactions",
-        "Etes-vous sûr de vouloir regénérer toutes les intérations (cela peut être très long) ?": "Etes-vous sûr de vouloir regénérer toutes les intérations (cela peut être très long) ?",
-        "Toutes les intérations ont été regénérées": "Toutes les intérations ont été regénérées",
+        "Etes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?": "Etes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?",
+        "Toutes les interations ont été regénérées": "Toutes les interations ont été regénérées",
         "Etes-vous sûr de vouloir supprimer l\\'interaction": "Etes-vous sûr de vouloir supprimer l\\'interaction",
         "Veuillez d\\'abord sélectionner un objet": "Veuillez d\\'abord sélectionner un objet",
         "Commande": "Commande",
@@ -1276,9 +1272,10 @@
         "Activer": "Activer"
     },
     "core\/ajax\/jeeNetwork.ajax.php": {
-        "Aucune methode correspondante à : ": "Aucune methode correspondante à : ",
-        "Objet inconnu verifié l'id : ": "Objet inconnu verifié l'id : ",
-        "JeeNetwork inconnu verifié l'id : ": "JeeNetwork inconnu verifié l'id : "
+        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : ",
+        "Objet inconnu, vérifiez l'ID : ": "Objet inconnu, vérifiez l'ID : ",
+        "JeeNetwork inconnu, vérifiez l'ID : ": "JeeNetwork inconnu, vérifiez l'ID : ",
+        "Aucune clef demandée":"Aucune clef demandée"
     },
     "desktop\/js\/backup.js": {
         "Sauvegarde réussie": "Sauvegarde réussie",
@@ -1309,14 +1306,14 @@
         "Configuration du graph": "Configuration du graph",
         "Quitter le mode édition": "Quitter le mode édition",
         "Mode édition": "Mode édition",
-        "Etês vous sur de vouloir supprimer ce design ?": "Etês vous sur de vouloir supprimer ce design ?"
+        "Etes vous sûr de vouloir supprimer ce design ?": "Etes vous sûr de vouloir supprimer ce design ?"
     },
     "desktop\/modal\/planHeader.configure.php": {
         "Général": "Général",
         "Nom": "Nom",
         "Disponible sur téléphone": "Disponible sur téléphone",
         "Image": "Image",
-        "Ne pas afficher la fleche de retour lors de la mise en pleine écran": "Ne pas afficher la fleche de retour lors de la mise en pleine écran",
+        "Ne pas afficher la flèche de retour lors de la mise en plein écran": "Ne pas afficher la flèche de retour lors de la mise en plein écran",
         "Tailles": "Tailles",
         "Responsive mode (Attention toute les valeurs de taille sont ignorées)": "Responsive mode (Attention toute les valeurs de taille sont ignorées)",
         "Taille (LxH)": "Taille (LxH)",
@@ -1356,12 +1353,12 @@
         "L\\'opération a échoué": "L\\'opération a échoué",
         "Etes-vous sûr de vouloir sauvegarder ce Jeedom esclave ?": "Etes-vous sûr de vouloir sauvegarder ce Jeedom esclave ?",
         "Sauvegarde effectuée": "Sauvegarde effectuée",
-        "Normale si vous n\\'avez pas coché la case : Utiliser les DNS Jeedom": "Normale si vous n\\'avez pas coché la case : Utiliser les DNS Jeedom",
+        "Normal si vous n\\'avez pas coché la case : Utiliser les DNS Jeedom": "Normal si vous n\\'avez pas coché la case : Utiliser les DNS Jeedom",
         "Arrêté": "Arrêté",
         "Démarré : ": "Démarré : ",
-        "Normale si vous n\\'avez pas coché la case : Rediriger le SSH": "Normale si vous n\\'avez pas coché la case : Rediriger le SSH",
-        "Redemarrage eefectué avec succès": "Redemarrage eefectué avec succès",
-        "Arret effectué avec succès": "Arret effectué avec succès"
+        "Normal si vous n\\'avez pas coché la case : Rediriger le SSH": "Normal si vous n\\'avez pas coché la case : Rediriger le SSH",
+        "Redémarrage effectué avec succès": "Redémarrage effectué avec succès",
+        "Arrêt effectué avec succès": "Arrêt effectué avec succès"
     },
     "desktop\/modal\/eqLogic.configure.php": {
         "Informations": "Informations",
@@ -1370,8 +1367,8 @@
         "Appliquer à": "Appliquer à",
         "ID": "ID",
         "Nom": "Nom",
-        "Logical ID": "Logical ID",
-        "Object ID": "Object ID",
+        "ID logique": "ID logique",
+        "ID de l'objet": "ID de l'objet",
         "Date de création": "Date de création",
         "Type": "Type",
         "Activer": "Activer",
@@ -1390,11 +1387,11 @@
         "Basculer": "Basculer",
         "Valider": "Valider",
         "Enregistrement réussi": "Enregistrement réussi",
-        "Etes-vous sûr de vouloir supprimer cette équipement ?": "Etes-vous sûr de vouloir supprimer cette équipement ?",
+        "Etes-vous sûr de vouloir supprimer cet équipement ?": "Etes-vous sûr de vouloir supprimer cet équipement ?",
         "Suppression réalisée avec succès": "Suppression réalisée avec succès",
-        "Modification appliqués avec succès": "Modification appliqués avec succès",
+        "Modification(s) appliquée(s) avec succès": "Modification(s) appliquée(s) avec succès",
         "Configuration avancée": "Configuration avancée",
-        "Affichage avancée": "Affichage avancée"
+        "Affichage avancé": "Affichage avancé"
     },
     "desktop\/modal\/object.configure.php": {
         "Informations": "Informations",
@@ -1407,7 +1404,7 @@
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
         "Sauvegarde réussie": "Sauvegarde réussie",
         "Etes-vous sûr de vouloir supprimer cette connexion ? Si l\\'IP :": "Etes-vous sûr de vouloir supprimer cette connexion ? Si l\\'IP :",
-        "était banni celle-ci ne le sera plus": "était banni celle-ci ne le sera plus",
+        "était bannie, celle-ci ne le sera plus": "était bannie, celle-ci ne le sera plus",
         "Etes-vous sûr de vouloir bannir cette IP  :": "Etes-vous sûr de vouloir bannir cette IP  :"
     },
     "desktop\/js\/object.js": {
@@ -1418,9 +1415,9 @@
     },
     "desktop\/js\/update.js": {
         "Etes-vous sur de vouloir faire les mises à jour ?": "Etes-vous sur de vouloir faire les mises à jour ?",
-        "Etes-vous sur de vouloir faire la mise à jour de tout et du système, cette opération peut durée plusieurs dizaine de minutes et est risqué ? <b>NE SURTOUT PAS FAIRE CETTE OPERATION SI VOUS UTILISEZ APACHE<\/b>": "Etes-vous sur de vouloir faire la mise à jour de tout et du système, cette opération peut durée plusieurs dizaine de minutes et est risqué ? <b>NE SURTOUT PAS FAIRE CETTE OPERATION SI VOUS UTILISEZ APACHE<\/b>",
+        "Etes-vous sur de vouloir faire la mise à jour de tout et du système ? cette opération peut durer plusieurs dizaines de minutes et est risquée. <b>NE SURTOUT PAS FAIRE CETTE OPERATION SI VOUS UTILISEZ APACHE<\/b>": "Etes-vous sur de vouloir faire la mise à jour de tout et du système ? cette opération peut durer plusieurs dizaines de minutes et est risquée. <b>NE SURTOUT PAS FAIRE CETTE OPERATION SI VOUS UTILISEZ APACHE<\/b>",
         "Etes vous sur de vouloir changer l\\'état de l\\'objet ?": "Etes vous sur de vouloir changer l\\'état de l\\'objet ?",
-        "Etes vous sur de vouloir mettre a jour cet objet ?": "Etes vous sur de vouloir mettre a jour cet objet ?",
+        "Etes vous sur de vouloir mettre à jour cet objet ?": "Etes vous sur de vouloir mettre à jour cet objet ?",
         "Etes vous sur de vouloir supprimer cet objet ?": "Etes vous sur de vouloir supprimer cet objet ?",
         "L\\'opération est réussie": "L\\'opération est réussie",
         "L\\'opération a échoué": "L\\'opération a échoué",
@@ -1436,9 +1433,9 @@
     },
     "desktop\/js\/view_edit.js": {
         "Nom de la vue ?": "Nom de la vue ?",
-        "Modification enregistré": "Modification enregistré",
+        "Modification enregistrée": "Modification enregistrée",
         "Etes-vous sûr de vouloir supprimer la vue": "Etes-vous sûr de vouloir supprimer la vue",
-        "30min": "30min",
+        "30 min": "30 min",
         "Jour": "Jour",
         "Semaine": "Semaine",
         "Mois": "Mois",
@@ -1450,9 +1447,9 @@
         "Couleur de fond": "Couleur de fond",
         "Transparent": "Transparent",
         "Défaut": "Défaut",
-        "Couleur des icones et textes": "Couleur des icones et textes",
-        "Arrondir les angles (ne pas oublié de mettre %, ex 50%)": "Arrondir les angles (ne pas oublié de mettre %, ex 50%)",
-        "Bordure (attention syntax css, ex : solid 1px black)": "Bordure (attention syntax css, ex : solid 1px black)",
+        "Couleur des icônes et textes": "Couleur des icônes et textes",
+        "Arrondir les angles (ne pas oublier de mettre %, ex 50%)": "Arrondir les angles (ne pas oublier de mettre %, ex 50%)",
+        "Bordure (attention syntaxe css, ex : solid 1px black)": "Bordure (attention syntaxe css, ex : solid 1px black)",
         "Profondeur": "Profondeur",
         "Ne pas afficher le nom de l'équipement": "Ne pas afficher le nom de l'équipement",
         "Ne pas afficher le niveau de batterie": "Ne pas afficher le niveau de batterie",
@@ -1466,12 +1463,10 @@
         "Tous": "Tous",
         "Bordure (attention syntax css, ex : solid 1px black": "Bordure (attention syntax css, ex : solid 1px black",
         "Afficher la légende": "Afficher la légende",
-        "Afficher le selecteur de période": "Afficher le selecteur de période",
+        "Afficher le sélecteur de période": "Afficher le sélecteur de période",
         "Afficher la barre de défilement": "Afficher la barre de défilement",
         "Fond transparent": "Fond transparent",
         "Afficher le navigateur": "Afficher le navigateur",
-        " les stats ": " les stats ",
-        "les stats": "les stats",
         "Commande": "Commande",
         "Ne pas afficher les stats": "Ne pas afficher les stats",
         "Ne pas afficher la commande": "Ne pas afficher la commande"
@@ -1491,7 +1486,7 @@
         "securite": "securite",
         "techno": "techno",
         "transport": "transport",
-        "Générale": "Générale"
+        "Général": "Général"
     },
     "desktop\/modal\/event.log.php": {
         "Vous devez activer tous les log de niveau event pour suivre en temps réel toute votre domotique": "Vous devez activer tous les log de niveau event pour suivre en temps réel toute votre domotique",
@@ -1503,7 +1498,7 @@
         "Fichier non trouvé : ": "Fichier non trouvé : "
     },
     "desktop\/js\/history.js": {
-        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquel il faut supprimer l\\'historique de ": "Veuillez indiquer la date (Y-m-d H:m:s) avant laquel il faut supprimer l\\'historique de ",
+        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ",
         "Historique supprimé avec succès": "Historique supprimé avec succès"
     },
     "desktop\/modal\/cmd.graph.select.php": {
@@ -1529,18 +1524,18 @@
         "Vous n'êtes pas autorisé à faire cette action": "Vous n'êtes pas autorisé à faire cette action"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
-        "Object": "Object",
+        "Objet": "Objet",
         "Equipement": "Equipement",
         "Aucun": "Aucun"
     },
     "core\/class\/connection.class.php": {
-        "Attention tentative d'intrusion detectée venant de l'IP : ": "Attention tentative d'intrusion detectée venant de l'IP : "
+        "Attention tentative d'intrusion détectée venant de l'IP : ": "Attention tentative d'intrusion détectée venant de l'IP : "
     },
     "core\/class\/evaluate.class.php": {
         "ERREUR deux paramètres sans signe de séparation": "ERREUR deux paramètres sans signe de séparation"
     },
     "core\/class\/interactQuery.class.php": {
-        "Scenario exécuté sur interaction (S.A.R.A.H, SMS...)": "Scenario exécuté sur interaction (S.A.R.A.H, SMS...)",
+        "Scénario exécuté sur interaction (S.A.R.A.H, SMS...)": "Scénario exécuté sur interaction (S.A.R.A.H, SMS...)",
         "Désolé je n'ai pas compris": "Désolé je n'ai pas compris",
         "Désolé je n'ai pas compris la demande": "Désolé je n'ai pas compris la demande",
         "Désolé je ne comprends pas la demande": "Désolé je ne comprends pas la demande",
@@ -1556,39 +1551,37 @@
     },
     "desktop\/modal\/interact.test.php": {
         "OK": "OK",
-        "Resultat": "Resultat",
+        "Résultat": "Résultat",
         "Aucune correspondance trouvée": "Aucune correspondance trouvée",
-        "La demande ne peut etre vide": "La demande ne peut etre vide",
+        "La demande ne peut être vide": "La demande ne peut être vide",
         "J\\'ai reconnu : ": "J\\'ai reconnu : ",
-        "Je vais executer la\/les commande(s) : ": "Je vais executer la\/les commande(s) : ",
-        "Je vais": "Je vais",
         "le scénario : ": "le scénario : ",
         "Je dois executer la\/les commande(s) : ": "Je dois executer la\/les commande(s) : ",
         "Je dois": "Je dois",
-        "Je vais répondre": "Je vais répondre",
         "Je vais répondre : ": "Je vais répondre : ",
         "Simuler": "Simuler",
         "Exécuter": "Exécuter"
     },
     "core\/ajax\/interact.ajax.php": {
         "lancer": "lancer",
-        "arreter": "arreter",
+        "arrêter": "arrêter",
         "activer": "activer",
-        "desactiver": "desactiver",
+        "désactiver": "désactiver",
         "erreur": "erreur",
-        "Aucune methode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
     },
     "core\/ajax\/market.ajax.php": {
-        "Aucune methode correspondante à : ": "Aucune methode correspondante à : "
+        "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
     },
     "desktop\/js\/user.js": {
         "Sauvegarde effectuée": "Sauvegarde effectuée",
         "Etes-vous sûr de vouloir supprimer cet utilisateur ?": "Etes-vous sûr de vouloir supprimer cet utilisateur ?",
         "L\\'utilisateur a bien été supprimé": "L\\'utilisateur a bien été supprimé",
-        "Etes-vous sûr de vouloir creer un utilisateur d\\'accès temporaire ?": "Etes-vous sûr de vouloir creer un utilisateur d\\'accès temporaire ?",
+        "Etes-vous sûr de vouloir créer un utilisateur d\\'accès temporaire ?": "Etes-vous sûr de vouloir créer un utilisateur d\\'accès temporaire ?",
         "Quel est le nouveau mot de passe ?": "Quel est le nouveau mot de passe ?",
         "Supprimer": "Supprimer",
-        "Changer le mot de passe": "Changer le mot de passe"
+        "Changer le mot de passe": "Changer le mot de passe",
+        "Voici l'URL à passer pour donner un accès temporaire :":"Voici l'URL à passer pour donner un accès temporaire :"
     },
     "core\/class\/user.class.php": {
         "Connexion de l'utilisateur ": "Connexion de l'utilisateur "
@@ -1600,11 +1593,11 @@
         "Impossible d'installer le plugin. Le nom du plugin est différent de l'ID ou le plugin n'est pas correctement formé. Veuillez contacter l'auteur.": "Impossible d'installer le plugin. Le nom du plugin est différent de l'ID ou le plugin n'est pas correctement formé. Veuillez contacter l'auteur."
     },
     "core\/class\/scenarioElement.class.php": {
-        "Non éxecution des actions pour cause de répétition": "Non éxecution des actions pour cause de répétition"
+        "Non exécution des actions pour cause de répétition": "Non exécution des actions pour cause de répétition"
     },
     "core\/class\/network.class.php": {
         "network::cron je passe": "network::cron je passe",
-        "Aucune gateway trouvée, redemarrage de l'interface wifi": "Aucune gateway trouvée, redemarrage de l'interface wifi",
-        "Aucune gateway trouvée, redemarrage de l'interface filaire": "Aucune gateway trouvée, redemarrage de l'interface filaire"
+        "Aucune gateway trouvée, redémarrage de l'interface wifi": "Aucune gateway trouvée, redémarrage de l'interface wifi",
+        "Aucune gateway trouvée, redémarrage de l'interface filaire": "Aucune gateway trouvée, redémarrage de l'interface filaire"
     }
 }

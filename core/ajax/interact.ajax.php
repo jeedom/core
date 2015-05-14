@@ -163,13 +163,13 @@ try {
 					$return['action'] = __('lancer', __FILE__);
 					break;
 				case 'stop':
-					$return['action'] = __('arreter', __FILE__);
+					$return['action'] = __('arrêter', __FILE__);
 					break;
 				case 'activate':
 					$return['action'] = __('activer', __FILE__);
 					break;
 				case 'deactivate':
-					$return['action'] = __('desactiver', __FILE__);
+					$return['action'] = __('désactiver', __FILE__);
 					break;
 				default:
 					$return['action'] = __('erreur', __FILE__);
@@ -185,7 +185,7 @@ try {
 		ajax::success($return);
 	}
 
-	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());

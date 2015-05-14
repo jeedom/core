@@ -45,7 +45,7 @@ $('.bt_updateAll').on('click', function () {
 $('#bt_updateSystem').on('click', function () {
     var level = $(this).attr('data-level');
     var mode = $(this).attr('data-mode');
-    bootbox.confirm('{{Etes-vous sur de vouloir faire la mise à jour de tout et du système, cette opération peut durée plusieurs dizaine de minutes et est risqué ? <b>NE SURTOUT PAS FAIRE CETTE OPERATION SI VOUS UTILISEZ APACHE</b>}} ', function (result) {
+    bootbox.confirm('{{Etes-vous sur de vouloir faire la mise à jour de tout et du système ? cette opération peut durer plusieurs dizaines de minutes et est risquée. <b>NE SURTOUT PAS FAIRE CETTE OPERATION SI VOUS UTILISEZ APACHE<\/b>}} ', function (result) {
         if (result) {
             $.hideAlert();
             jeedom.update.doAll({
@@ -98,7 +98,7 @@ $('#table_update').delegate('.changeState', 'click', function () {
 
 $('#table_update').delegate('.update', 'click', function () {
     var id = $(this).closest('tr').attr('data-id');
-    bootbox.confirm('{{Etes vous sur de vouloir mettre a jour cet objet ?}}', function (result) {
+    bootbox.confirm('{{Etes vous sur de vouloir mettre à jour cet objet ?}}', function (result) {
         if (result) {
             $.hideAlert();
             jeedom.update.do({
