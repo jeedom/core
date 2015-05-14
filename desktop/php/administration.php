@@ -56,13 +56,13 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                             <option value="de_DE">Deutsch</option>
                                             <option value="es_ES">Español</option>
                                             <option value="ru_RU">Pусский</option>
-                                            <option value="id_ID">Indonesia</option>
+                                            <option value="id_ID">Bahasa Indonesia</option>
                                             <option value="it_IT">Italiano</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 expertModeVisible">
                                       <label>
-                                          <input type="checkbox" class="configKey tooltips" data-l1key="generateTranslation" title="{{Option pour les developpeurs permettant à Jeedom de générer les phrases à traduire}}" /> {{Générer les traductions}}
+                                          <input type="checkbox" class="configKey tooltips" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à Jeedom de générer les phrases à traduire}}" /> {{Générer les traductions}}
                                       </label>
                                   </div>
                               </div>
@@ -338,12 +338,12 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
 
             <div class="row">
                 <div class="col-xs-6">
-                <legend>{{Wifi && IP static}}</legend>
+                <legend>{{Wifi && IP statique}}</legend>
                 <?php
 if (!network::canManageNetwork()) {
-	echo '<div class="alert alert-danger">{{Jeedom ne peut gerer le reseaux veuillez vérifier si}} : <br/>';
-	echo '- {{ifenslave est installé, pour l\'installer, faire en ssh : sudo apt-get install ifenslave-2.6}} <br/>';
-	echo '- {{le module bonding est chargé, en ssh regarder si il y a bien "bonding" dans /etc/modules sinon l\'ajouter à la fin et redémarrer}}';
+	echo '<div class="alert alert-danger">{{Jeedom ne peut gérer le réseau veuillez vérifier si}} : <br/>';
+	echo '- {{ifenslave n\'est pas installé, pour l\'installer, faire en ssh : sudo apt-get install ifenslave-2.6}} <br/>';
+	echo '- {{le module bonding n\'est pas chargé, en ssh regarder si il y a bien "bonding" dans /etc/modules sinon l\'ajouter à la fin et redémarrer}}';
 	echo '</div>';
 } else {
 	?>
@@ -354,7 +354,7 @@ if (!network::canManageNetwork()) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Reseaux wifi}}</label>
+                        <label class="col-xs-4 control-label">{{Réseau wifi}}</label>
                         <div class="col-xs-6">
                             <select class="configKey form-control" data-l1key="network::wifi::ssid" ></select>
                         </div>
@@ -389,7 +389,7 @@ if (!network::canManageNetwork()) {
                     <div class="form-group">
                      <label class="col-xs-4 control-label">{{Gestion}}</label>
                      <div class="col-xs-8">
-                       <a class="btn btn-success" id="bt_writeInterfaceFile"><i class='fa fa-pencil'></i> {{Ecrire la configure}}</a>
+                       <a class="btn btn-success" id="bt_writeInterfaceFile"><i class='fa fa-pencil'></i> {{Ecrire la configuration}}</a>
                    </div>
                </div>
                 <?php }?>
@@ -427,7 +427,7 @@ if (!network::canManageNetwork()) {
 if (network::ngrok_run()) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
 } else {
-	echo '<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
+	echo '<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
 }
 ?>
                </div>
@@ -439,7 +439,7 @@ if (network::ngrok_run()) {
 if (network::ngrok_run('tcp', 22, 'ssh')) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} dns.jeedom.com:' . config::byKey('ngrok::port') . '</span>';
 } else {
-	echo '<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Rediriger le SSH}}">{{Arrêté}}</span>';
+	echo '<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Rediriger le SSH}}">{{Arrêté}}</span>';
 }
 ?>
            </div>
@@ -448,7 +448,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
          <label class="col-xs-4 control-label">{{Gestion}}</label>
          <div class="col-xs-8">
            <a class="btn btn-success" id="bt_restartNgrok"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
-           <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arreter}}</a>
+           <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arrêter}}</a>
        </div>
 
    </div>
@@ -473,7 +473,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
         </div>
         <div id="config_cmd" class="panel-collapse collapse">
             <div class="panel-body">
-                <legend>{{Historiques}}</legend>
+                <legend>{{Historique}}</legend>
                 <form class="form-horizontal">
                     <fieldset>
                         <div class="form-group">
@@ -521,11 +521,11 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                     </fieldset>
                 </form>
 
-                <legend>{{Legende}}</legend>
+                <legend>{{Légende}}</legend>
                 <form class="form-horizontal">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Durée de vie de du cache (en secondes)}}</label>
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Durée de vie du cache (en secondes)}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                 <input type="text"  class="configKey form-control" data-l1key="lifetimeMemCache" />
                             </div>
@@ -554,9 +554,9 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                 <form class="form-horizontal">
                     <fieldset>
                      <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Url de push globale}}</label>
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{URL de push globale}}</label>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <input type="text"  class="configKey form-control tooltips" data-l1key="cmdPushUrl" title="{{Mettez ici l'url à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivant : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
+                            <input type="text"  class="configKey form-control tooltips" data-l1key="cmdPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
                         </div>
                     </div>
 

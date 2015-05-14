@@ -135,7 +135,7 @@ if (getUrlVars('removeSuccessFull') == 1) {
 /**************************EqLogic*********************************************/
 $('.eqLogicAction[data-action=copy]').on('click', function () {
     if ($('.li_eqLogic.active').attr('data-eqLogic_id') != undefined) {
-        bootbox.prompt("{{Nom la copie de l'équipement ?}}", function (result) {
+        bootbox.prompt("{{Nom de la copie de l'équipement ?}}", function (result) {
             if (result !== null) {
                 jeedom.eqLogic.copy({
                     id: $('.li_eqLogic.active').attr('data-eqLogic_id'),

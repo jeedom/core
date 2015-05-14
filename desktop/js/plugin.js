@@ -162,7 +162,7 @@ return false;
 
 $('#span_plugin_delete').delegate('.removePlugin','click',function(){
     var _el = $(this);
-    bootbox.confirm('{{Etes vous sur de vouloir supprimer ce plugin ?}}', function (result) {
+    bootbox.confirm('{{Etes vous sûr de vouloir supprimer ce plugin ?}}', function (result) {
         if (result) {
             $.hideAlert();
             jeedom.update.remove({
@@ -200,7 +200,7 @@ $('#bt_uploadPlugin').fileupload({
             $('#div_alert').showAlert({message: data.result.result, level: 'danger'});
             return;
         }
-        $('#div_alert').showAlert({message: '{{Plugin ajouté(s) avec succès. Recharger la page pour le voir}}', level: 'success'});
+        $('#div_alert').showAlert({message: '{{Plugin ajouté avec succès. Recharger la page pour le voir.}}', level: 'success'});
     }
 });
 

@@ -716,7 +716,7 @@ class cmd {
 				$options['color'] = cmd::convertColor($options['color']);
 			}
 			if ($this->getType() == 'action') {
-				log::add('event', 'event', __('Execution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . str_replace(array("\n", '  ', 'Array'), '', print_r($options, true)));
+				log::add('event', 'event', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . str_replace(array("\n", '  ', 'Array'), '', print_r($options, true)));
 			}
 			$value = $this->formatValue($this->execute($options), $_quote);
 		} catch (Exception $e) {
@@ -964,7 +964,7 @@ class cmd {
 			return;
 		}
 		$this->setCollectDate($collectDate);
-		log::add('event', 'event', __('Evenement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $_value);
+		log::add('event', 'event', __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $_value);
 		cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
 		scenario::check($this);
 		$this->setCollect(0);
@@ -1092,7 +1092,7 @@ class cmd {
 			'#humanname#' => $this->getHumanName(),
 		);
 		$url = str_replace(array_keys($replace), $replace, $url);
-		log::add('event', 'event', __('Appels de l\'url de push pour la commande ', __FILE__) . $this->getHumanName() . ' : ' . $url);
+		log::add('event', 'event', __('Appels de l\'URL de push pour la commande ', __FILE__) . $this->getHumanName() . ' : ' . $url);
 		$http = new com_http($url);
 		$http->setLogError(false);
 		try {

@@ -166,7 +166,7 @@ foreach ($market->getImg('screenshot') as $screenshot) {
                     </div><br/>
                     <?php }?>
                     <center>
-                        <a class="btn btn-default" id="bt_viewComment"><i class="fa fa-comments-o"></i> {{Commentaires (<?php echo $market->getNbComment();?>)}}</a>
+                        <a class="btn btn-default" id="bt_viewComment"><i class="fa fa-comments-o"></i> {{Commentaires}} (<?php echo $market->getNbComment();?>)</a>
                     </center>
                 </div>
             </div>
@@ -183,7 +183,7 @@ foreach ($market->getImg('screenshot') as $screenshot) {
             <div class='col-sm-2'>
                 <label class="control-label">{{Auteur}}</label><br/>
                 <span><?php echo $market->getAuthor()?></span><br/>
-                <label class="control-label">{{Derniere mise à jour par}}</label><br/>
+                <label class="control-label">{{Dernière mise à jour par}}</label><br/>
                 <span><?php echo $market->getUpdateBy()?></span>
             </div>
             <div class='col-sm-2'>

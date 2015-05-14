@@ -21,7 +21,7 @@ if (is_array($interactListGroup)) {
             <a id="bt_addInteract" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter interaction}}</a>
             <div class="row">
                 <div class="col-xs-6">
-                    <a id="bt_regenerateInteract" class="btn btn-warning" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-refresh"></i> {{Regénerer}}</a>
+                    <a id="bt_regenerateInteract" class="btn btn-warning" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-refresh"></i> {{Regénérer}}</a>
                 </div>
                 <div class="col-xs-6">
                     <a id="bt_testInteract" class="btn btn-primary" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fa fa-comment-o"></i> {{Tester}}</a>
@@ -77,7 +77,7 @@ foreach ($interactListGroup as $group) {
          <center>
          <i class="fa fa-refresh" style="font-size : 4em;color:#f0ad4e;"></i>
         </center>
-        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#f0ad4e"><center>{{Regénerer}}</center></span>
+        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#f0ad4e"><center>{{Regénérer}}</center></span>
     </div>
     <div class="cursor" id="bt_testInteract2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
      <center>
@@ -87,7 +87,7 @@ foreach ($interactListGroup as $group) {
 </div>
 </div>
 
-<legend>{{Mes intéractions}}</legend>
+<legend>{{Mes interactions}}</legend>
 <?php
 echo '<legend>Aucun</legend>';
 echo '<div class="interactListContainer">';
@@ -164,13 +164,13 @@ foreach ($interactListGroup as $group) {
                     <div class="form-group">
                         <label class="col-sm-3 col-xs-3 control-label">{{Conversion binaire}}</label>
                         <div class="col-sm-9 col-xs-9">
-                            <input class="form-control tooltips interactAttr" type="text" data-l1key="options" data-l2key="convertBinary" placeholder="" title="{{Convertir les commandes binaire}}"/>
+                            <input class="form-control tooltips interactAttr" type="text" data-l1key="options" data-l2key="convertBinary" placeholder="" title="{{Convertir les commandes binaires}}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 col-xs-3 control-label">{{Utilisateurs autorisés}}</label>
                         <div class="col-sm-9 col-xs-9">
-                            <input class="form-control tooltips interactAttr" type="text" data-l1key="person" placeholder="" title="{{Liste des utilisateur (login) separé par un |}}"/>
+                            <input class="form-control tooltips interactAttr" type="text" data-l1key="person" placeholder="" title="{{Liste des utilisateurs (login) séparés par un |}}"/>
                         </div>
                     </div>
                 </fieldset>

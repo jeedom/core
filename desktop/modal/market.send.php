@@ -16,7 +16,7 @@ try {
 }
 if (is_object($market)) {
 	if ($market->getApi_author() == '') {
-		throw new Exception('{{Vous n\'etes pas l\'auteur du plugin}}');
+		throw new Exception('{{Vous n\'êtes pas l\'auteur du plugin}}');
 	}
 }
 
@@ -50,20 +50,20 @@ if (init('type') == 'plugin') {
         </div>
         <div class="col-lg-3">
             <div style="height: 100px;" class="priceChoose">
-                <center><input type="radio" name="rb_price" class="rb_price" data-value="2" /> <h4 style="display: inline-block">2€</h4></center>
-                <center>{{Sur ce prix seront 40% seront reversé au développeur}}</center>
+                <center><input type="radio" name="rb_price" class="rb_price" data-value="2" /> <h4 style="display: inline-block">2 €</h4></center>
+                <center>{{Sur ce prix seront 40 % seront reversés au développeur}}</center>
             </div>
         </div>
         <div class="col-lg-3">
             <div style="height: 100px;" class="priceChoose">
-                <center><input type="radio" name="rb_price" class="rb_price" data-value="4" /> <h4 style="display: inline-block">4€</h4></center>
-                <center>{{Sur ce prix seront 60% seront reversé au développeur}}</center>
+                <center><input type="radio" name="rb_price" class="rb_price" data-value="4" /> <h4 style="display: inline-block">4 €</h4></center>
+                <center>{{Sur ce prix seront 60 % seront reversés au développeur}}</center>
             </div>
         </div>
         <div class="col-lg-3">
             <div style="height: 100px;" class="priceChoose">
                 <center><input type="radio" name="rb_price" class="rb_price" data-value="custom" /> <h4 style="display: inline-block">Libre</h4> <input class="form-control marketAttr input-sm" data-l1key="cost" placeholder="Prix" style="display : inline-block; width : 80px;"> €</center>
-                <center>{{Sur ce prix seront 65% seront reversé au développeur (doit etre supérieur ou égale à 5€)}}</center>
+                <center>{{Sur ce prix seront 65 % seront reversés au développeur (doit être supérieur ou égal à 5 €)}}</center>
             </div>
         </div>
     </div>
@@ -91,10 +91,10 @@ if (init('type') == 'plugin') {
                     <select class="form-control marketAttr" data-l1key="type" disabled>
                         <option value="plugin" data-category='plugin'>{{Plugin}}</option>
                         <option value="widget" data-category='widget'>{{Widget}}</option>
-                        <option value="zwave" data-category='input'>{{[Zwave] Configuration module}}</option>
+                        <option value="zwave" data-category='input'>{{[Z-Wave] Configuration module}}</option>
                         <option value="script" data-category='input'>{{Script}}</option>
                         <option value="scenario" data-category='input'>{{Scénario}}</option>
-                        <option value="camera" data-category='input'>{{[Camera] Modèle}}</option>
+                        <option value="camera" data-category='input'>{{[Caméra] Modèle}}</option>
                         <option value="SNMP" data-category='input'>{{[SNMP] Configuration}}</option>
                         <option value="mySensors" data-category='input'>{{[My Sensors] Noeud}}</option>
                     </select>
@@ -187,7 +187,7 @@ if (init('type') == 'plugin') {
                       <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="ru_RU"> {{Pусский}}
                   </label>
                   <label class="checkbox-inline">
-                      <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="id_ID"> {{Indonésien}}
+                      <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="id_ID"> {{Bahasa Indonesia}}
                   </label>
                   <label class="checkbox-inline">
                       <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="it_IT"> {{Italiano}}

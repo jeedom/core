@@ -193,7 +193,7 @@ $("#bt_saveInteract").on('click', function () {
 
 
 $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
-    bootbox.confirm('{{Etes-vous sûr de vouloir regénerer toutes les intérations (cela peut être très long) ?}}', function (result) {
+    bootbox.confirm('{{Etes-vous sûr de vouloir regénérer toutes les intérations (cela peut être très long) ?}}', function (result) {
      if (result) {
         jeedom.interact.regenerateInteract({
             interact: {query: result},
@@ -201,7 +201,7 @@ $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
-             $('#div_alert').showAlert({message: '{{Toutes les intérations ont été regénerées}}', level: 'success'});
+             $('#div_alert').showAlert({message: '{{Toutes les intérations ont été regénérées}}', level: 'success'});
          }
      });
     }

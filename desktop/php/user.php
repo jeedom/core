@@ -16,7 +16,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
             <br/><br/>
         <?php } ?>
         <table class="table table-condensed table-bordered" id="table_user">
-            <thead><th>{{Nom d'utilisateur}}</th><th>{{Actions}}</th><th>{{Actif}}</th><th>{{Droits}}</th><th>{{Date de dernière connection}}</th><th>{{Accès directement}}</th></thead>
+            <thead><th>{{Nom d'utilisateur}}</th><th>{{Actions}}</th><th>{{Actif}}</th><th>{{Droits}}</th><th>{{Date de dernière connexion}}</th><th>{{Accès direct}}</th></thead>
             <tbody></tbody>
         </table>
         <div class="form-actions" style="height: 20px;">

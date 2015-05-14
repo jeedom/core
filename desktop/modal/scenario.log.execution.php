@@ -4,14 +4,14 @@ if (!isConnect()) {
 }
 $scenario = scenario::byId(init('scenario_id'));
 if (!is_object($scenario)) {
-	throw new Exception(__('Aucun scénario correspondant à : ', __FILE__) . init('scenario_id'));
+	throw new Exception(__('Aucun scénario ne correspondant à : ', __FILE__) . init('scenario_id'));
 }
 sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
 ?>
 <div style="display: none;width : 100%" id="div_alertScenarioLog"></div>
 <a class="btn btn-danger pull-right" id="bt_scenarioLogEmpty"><i class="fa fa-trash"></i> {{Vider les logs}}</a>
 <a class="btn btn-success pull-right" id="bt_scenarioLogDownload"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
-<a class="btn btn-primary pull-right" id="bt_scenarioLogRefresh"><i class="fa fa-refresh"></i> {{Rafraichir}}</a>
+<a class="btn btn-primary pull-right" id="bt_scenarioLogRefresh"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
 <br/><br/>
 <?php
 if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . init('scenario_id') . '.log')) {
@@ -28,7 +28,7 @@ if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . init('sc
             $('#div_alertScenarioLog').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-            $('#div_alertScenarioLog').showAlert({message: '{{Log vidé avec succès}}', level: 'success'});
+            $('#div_alertScenarioLog').showAlert({message: '{{Log vidés avec succès}}', level: 'success'});
             $('#pre_logScenarioDisplay').empty();
         }
     });

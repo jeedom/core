@@ -92,7 +92,7 @@ if (trim(init('auiKey')) != '') {
 			}
 		}
 	} else {
-		log::add('connection', 'info', __('Echec de connection par auikey', __FILE__));
+		log::add('connection', 'info', __('Echec de connexion par auikey', __FILE__));
 		connection::failed();
 		sleep(5);
 		if (strpos($_SERVER['PHP_SELF'], 'core') || strpos($_SERVER['PHP_SELF'], 'desktop')) {
