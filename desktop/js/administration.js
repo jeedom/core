@@ -19,7 +19,7 @@
 
  $("#bt_genKeyAPI").on('click', function (event) {
     $.hideAlert();
-    bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API de Jeedom ? Vous devrez reconfigurer tous les équipements communicant avec Jeedom et utilisant la clef API}}', function (result) {
+    bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API de Jeedom ? Vous devrez reconfigurer tous les équipements communiquant avec Jeedom et utilisant la clef API}}', function (result) {
         if (result) {
             genKeyAPI();
         }
@@ -101,7 +101,7 @@
 
  $('.changeJeeNetworkMode').on('click', function () {
     var mode = $(this).attr('data-mode');
-    bootbox.confirm('{{Etes-vous sûr de vouloir changer le mode de Jeedom. Cette opération est très risquée. Si vous passer de Maitre à Esclave cela va supprimer tous vos équipements, objet, vue, plan, plugin non compatible avec le fonctionnement deporté. Aucun retour en arriere n\'est possible ?}}', function (result) {
+    bootbox.confirm('{{Etes-vous sûr de vouloir changer le mode de Jeedom ? Cette opération est très risquée. Si vous passer de Maitre à Esclave cela va supprimer tous vos équipements, objet, vue, plan, plugin non compatibles avec le fonctionnement déporté. Aucun retour en arrière n\'est possible.}}', function (result) {
         if (result) {
             jeedom.jeeNetwork.changeMode({
                 mode: mode,
@@ -147,7 +147,7 @@
 
  $('#bt_accessDB').on('click', function () {
     var href = $(this).attr('data-href');
-    bootbox.confirm('{{Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et que en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\'accès est enregistré) ?}}', function (result) {
+    bootbox.confirm('{{Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\'en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\'accès est enregistrée) ?}}', function (result) {
         if (result) {
             var win = window.open(href, '_blank');
             win.focus();
