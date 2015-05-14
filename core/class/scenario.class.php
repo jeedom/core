@@ -220,7 +220,7 @@ class scenario {
 				$message = __('Scénario exécuté sur évènement : #', __FILE__) . $_event . '#';
 			}
 		} else {
-			$message = __('Scénario évènement automatiquement sur programmation', __FILE__);
+			$message = __('Scénario exécuté automatiquement sur programmation', __FILE__);
 			$scenarios = scenario::all();
 			$dateOk = jeedom::isDateOk();
 			$trigger = '#schedule#';
@@ -237,7 +237,7 @@ class scenario {
 							}
 						}
 					} else {
-						$scenario->setLog(__('Erreur : le scénario c\'est incident (toujours marqué en cours mais arrêté)', __FILE__));
+						$scenario->setLog(__('Erreur : le scénario s\'est incidenté (toujours marqué en cours mais arrêté)', __FILE__));
 						$scenario->setState('error');
 						$scenario->save();
 					}
