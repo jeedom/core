@@ -105,7 +105,7 @@ class com_http {
 			$curl_error = curl_error($ch);
 			if ($this->getNoReportError() === false && $this->getAllowEmptyReponse() == true && strpos($curl_error, 'Empty reply from server') !== false) {
 				curl_close($ch);
-				log::add('http.com', 'Debug', __('Url : ', __FILE__) . $this->url . __("\nReponse : ", __FILE__) . $response);
+				log::add('http.com', 'Debug', __('URL : ', __FILE__) . $this->url . __("\nRéponse : ", __FILE__) . $response);
 				return $response;
 			}
 			if ($this->getNoReportError() === false && $this->getLogError()) {
@@ -117,7 +117,7 @@ class com_http {
 			}
 		}
 		curl_close($ch);
-		log::add('http.com', 'Debug', __('Url : ', __FILE__) . $this->url . __("\nReponse : ", __FILE__) . $response);
+		log::add('http.com', 'Debug', __('Url : ', __FILE__) . $this->url . __("\nRéponse : ", __FILE__) . $response);
 		return $response;
 	}
 

@@ -24,7 +24,7 @@ $("#bt_saveProfils").on('click', function (event) {
     $.hideAlert();
     var profil = $('body').getValues('.userAttr');
     if (profil[0].password != $('#in_passwordCheck').value()) {
-        $('#div_alert').showAlert({message: "{{Les deux mots de passe ne sont identiques}}", level: 'danger'});
+        $('#div_alert').showAlert({message: "{{Les deux mots de passe ne sont pas identiques}}", level: 'danger'});
         return;
     }
     jeedom.user.saveProfils({

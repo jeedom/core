@@ -115,7 +115,7 @@ foreach (user::all() as $user) {
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#general" role="tab" data-toggle="tab">{{Générale}}</a></li>
+    <li role="presentation" class="active"><a href="#general" role="tab" data-toggle="tab">{{Général}}</a></li>
     <li role="presentation"><a href="#eqLogic" role="tab" data-toggle="tab">{{Plugins/Equipements}}</a></li>
     <li role="presentation"><a href="#scenario" role="tab" data-toggle="tab">{{Scénarios}}</a></li>
 </ul>

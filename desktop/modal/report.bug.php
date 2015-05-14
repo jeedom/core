@@ -18,7 +18,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
         {{Merci de vérifier avant toute ouverture de ticket :}}<br/>
         {{- que la question n'a pas déjà été posée sur le <a href='https://forum.jeedom.fr'>forum</a>}}<br/>
         {{- que la question ne porte pas sur un plugin beta (sauf demande d'ouverture d'un ticket du développeur)}}<br/>
-        {{- que la catégorie est bien selectionnée pour que votre ticket soit traité dans les plus courts délais}}<br/>
+        {{- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais}}<br/>
         {{- que la question porte sur un plugin market officiel}}<br/>
         {{- que la réponse n'est pas déjà dans la <a href='http://doc.jeedom.fr'>documentation</a>}}<br/><br/>
         {{N'oubliez pas que poser la question sur le forum vous fournira généralement une réponse plus rapide que par ticket.}}
@@ -33,7 +33,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
         <label class="col-sm-2 control-label">{{Catégorie}}</label>
         <div class="col-sm-3">
             <select class="form-control input-sm ticketAttr" data-l1key="category">
-                <option>{{Générale}}</option>
+                <option>{{Général}}</option>
                 <option>{{Scénario}}</option>
                 <option>{{Historique}}</option>
                 <?php
@@ -103,7 +103,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
                     return;
                 }
                 $('#bt_sendBugReport').hide();
-                $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Un mail va vous être envoyé}}', level: 'success'});
+                $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Un mail va vous être envoyé.}}', level: 'success'});
             }
         });
     });

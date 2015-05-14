@@ -132,9 +132,9 @@ foreach (plugin::listPlugin() as $pluginList) {
             <div class="panel-body">
                 <form class="form-horizontal">
                     <fieldset>
-                        <legend>{{Générale}}</legend>
+                        <legend>{{Général}}</legend>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Ne pas masquer les menu automatiquement}}</label>
+                            <label class="col-sm-3 control-label">{{Ne pas masquer les menus automatiquement}}</label>
                             <div class="col-sm-1">
                                 <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
                             </div>
@@ -165,7 +165,7 @@ foreach ($homePage as $key => $value) {
                            </select>
                        </div>
                    </div>
-                   <legend>{{Object par défaut sur le dashboard}}</legend>
+                   <legend>{{Objet par défaut sur le dashboard}}</legend>
                    <div class="form-group">
                     <label class="col-sm-3 control-label">{{Desktop}}</label>
                     <div class="col-sm-2">
@@ -188,7 +188,7 @@ foreach (object::all() as $object) {
                    </select>
                </div>
            </div>
-           <legend>{{Vue par defaut}}</legend>
+           <legend>{{Vue par défaut}}</legend>
            <div class="form-group">
             <label class="col-sm-3 control-label">{{Desktop}}</label>
             <div class="col-sm-2">
@@ -211,7 +211,7 @@ foreach (view::all() as $view) {
            </select>
        </div>
    </div>
-   <legend>{{Design par defaut}}</legend>
+   <legend>{{Design par défaut}}</legend>
    <div class="form-group">
     <label class="col-sm-3 control-label">{{Desktop}}</label>
     <div class="col-sm-2">
@@ -280,7 +280,7 @@ foreach (planHeader::all() as $plan) {
             <form class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">{{Notifier des événements}}</label>
+                        <label class="col-sm-3 control-label">{{Notifier des évènements}}</label>
                         <div class="col-sm-3">
                             <select class="userAttr form-control" data-l1key="options" data-l2key="notifyEvent">
                                 <?php

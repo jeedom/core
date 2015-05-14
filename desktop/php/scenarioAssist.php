@@ -180,7 +180,7 @@ foreach ($scenarioListGroup as $group) {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 col-xs-4 control-label">{{Executer le plus rapidement}}</label>
+                    <label class="col-sm-4 col-xs-4 control-label">{{Exécuter le plus rapidement}}</label>
                     <div class="col-sm-1 col-xs-1">
                         <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="speedPriority" >
                     </div>

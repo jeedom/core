@@ -243,7 +243,7 @@ setInterval(function () {
 
     $(window).bind('beforeunload', function (e) {
         if (modifyWithoutSave) {
-            return '{{Attention vous quittez une page ayant des données modifiées non sauvegardé. Voulez-vous continuer ?}}';
+            return '{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}';
         }
     });
 
@@ -260,7 +260,7 @@ setInterval(function () {
 
     $('#bt_haltSystem').on('click', function () {
         $.hideAlert();
-        bootbox.confirm('{{Etes-vous sûr de vouloir arreter le système ?}}', function (result) {
+        bootbox.confirm('{{Etes-vous sûr de vouloir arrêter le système ?}}', function (result) {
             if (result) {
                 jeedom.haltSystem({
                     error: function (error) {
@@ -273,7 +273,7 @@ setInterval(function () {
 
     $('#bt_rebootSystem').on('click', function () {
         $.hideAlert();
-        bootbox.confirm('{{Etes-vous sûr de vouloir redemarrer le système ?}}', function (result) {
+        bootbox.confirm('{{Etes-vous sûr de vouloir redémarrer le système ?}}', function (result) {
             if (result) {
                 jeedom.rebootSystem({
                     error: function (error) {
@@ -285,7 +285,7 @@ setInterval(function () {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-     $('#md_modal').dialog({title: "{{Evenement en temps réel}}"});
+     $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
      $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
  });
 
