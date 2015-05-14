@@ -591,7 +591,7 @@ class cmd {
 					if ($value == 'off' || $value == 'low' || $value == 'false' || $value === false) {
 						return 0;
 					}
-					if ((is_numeric(intval($_value)) && intval($_value) > 1) || $_value || $_value == 1) {
+					if ((is_numeric(intval($_value)) && intval($_value) > 1) || $_value === true || $_value == 1) {
 						return 1;
 					}
 					return 0;
