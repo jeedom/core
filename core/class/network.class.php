@@ -25,7 +25,7 @@ class network {
 		self::checkConf();
 		if ($_mode == 'auto') {
 			if (netMatch('192.168.*.*', getClientIp()) || netMatch('10.0.*.*', getClientIp())) {
-				if (!isset($_SERVER['HTTP_HOST']) || netMatch('192.168.*.*',$_SERVER['HTTP_HOST'] || netMatch('10.0.*.*', $_SERVER['HTTP_HOST'])) {
+				if (!isset($_SERVER['HTTP_HOST']) || netMatch('192.168.*.*', $_SERVER['HTTP_HOST']) || netMatch('10.0.*.*', $_SERVER['HTTP_HOST'])) {
 					$_mode = 'internal';
 				} else {
 					$_mode = 'external';
