@@ -622,6 +622,23 @@ class jeedom {
 		}
 	}
 
+/*     * ******************harware restriction*************************** */
+
+	public static function getHardwareName() {
+		if (config::byKey('hardware_name') != '') {
+			return config::byKey('hardware_name');
+		}
+		$result = 'Unknown';
+		$uname = shell_exec('uname -a');
+		if (strpos($uname, 'cubox') !== false) {
+			$result = 'Jeedomboard';
+		}
+
+		config::save('hardware_name', $result);
+		return config::byKey('hardware_name');
+
+	}
+
 /*     * *********************Methode d'instance************************* */
 
 /*     * **********************Getteur Setteur*************************** */
