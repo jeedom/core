@@ -80,15 +80,12 @@ if (init('cron_id') != '') {
 					$class::$function($option);
 				} else {
 					while (true) {
-						if ($SIGKILL) {
-							die();
-						}
-						$cyclStartTime = getmicrotime();
+						$cycleStartTime = getmicrotime();
 						$class::$function($option);
 						if ($cron->getDeamonSleepTime() > 1) {
 							sleep($cron->getDeamonSleepTime());
 						} else {
-							$cycleDuration = getmicrotime() - $cyclStartTime;
+							$cycleDuration = getmicrotime() - $cycleStartTime;
 							if ($cycleDuration < $cron->getDeamonSleepTime()) {
 								usleep(round(($cron->getDeamonSleepTime() - $cycleDuration) * 1000000));
 							}
@@ -113,12 +110,9 @@ if (init('cron_id') != '') {
 					$function($option);
 				} else {
 					while (true) {
-						$cyclStartTime = getmicrotime();
+						$cycleStartTime = getmicrotime();
 						$function($option);
-						$cycleDuration = getmicrotime() - $cyclStartTime;
-						if ($SIGKILL) {
-							die();
-						}
+						$cycleDuration = getmicrotime() - $cycleStartTime;
 						if ($cron->getDeamonSleepTime() > 1) {
 							sleep($cron->getDeamonSleepTime());
 						} else {
