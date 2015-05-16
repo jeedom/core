@@ -73,7 +73,7 @@ class network {
 				}
 				return config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80);
 			}
-			if ($_protocole == 'proto:dns:port') {
+			if ($_protocole == 'proto:dns:port' || $_protocole == 'proto:ip:port') {
 				if (config::byKey('jeedom::url') != '' && filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP)) {
 					$url = parse_url(config::byKey('jeedom::url'));
 					$return = '';
