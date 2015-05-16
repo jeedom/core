@@ -38,6 +38,12 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     </div>
                                 </div>
                                 <?php }?>
+                                 <div class="form-group">
+                                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Système}}</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareName()?></span>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande d'information utilisateur}}</label>
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -345,6 +351,8 @@ if (!network::canManageNetwork()) {
 	echo '- {{ifenslave n\'est pas installé, pour l\'installer, faire en ssh : sudo apt-get install ifenslave-2.6}} <br/>';
 	echo '- {{le module bonding n\'est pas chargé, en ssh regarder si il y a bien "bonding" dans /etc/modules sinon l\'ajouter à la fin et redémarrer}}';
 	echo '</div>';
+} else if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
+	echo '<div class="alert alert-danger">{{Fonctionalité non disponible sur votre système}}</div>';
 } else {
 	?>
                     <div class="form-group">

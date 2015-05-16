@@ -456,6 +456,9 @@ class network {
 		if (!self::canManageNetwork()) {
 			return;
 		}
+		if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
+			return;
+		}
 
 		$interface = 'auto lo
 	iface lo inet loopback';
@@ -567,6 +570,9 @@ class network {
 	}
 
 	public static function cron() {
+		if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
+			return;
+		}
 		$gws = self::checkGw();
 		if (count($gws) < 1) {
 			return;
