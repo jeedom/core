@@ -213,6 +213,10 @@ try {
 			if (!is_object($cmd)) {
 				throw new Exception(__('Cmd ID inconnu : ', __FILE__) . init('id'));
 			}
+			$eqLogic = $cmd->getEqLogic();
+			if (!$eqLogic->hasRight('r')) {
+				throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+			}
 			$histories = $cmd->getHistory($dateStart, $dateEnd);
 			$return['cmd_name'] = $cmd->getName();
 			$return['history_name'] = $cmd->getHumanName();
