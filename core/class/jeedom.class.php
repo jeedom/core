@@ -632,11 +632,11 @@ class jeedom {
 		$uname = shell_exec('uname -a');
 		if (strpos($uname, 'cubox') !== false) {
 			$result = 'Jeedomboard';
-		}
-		if (file_exists('/.dockerinit')) {
+		} else if (file_exists('/.dockerinit')) {
 			$result = 'Docker';
+		} else if (file_exists('/usr/bin/raspi-config')) {
+			$result = 'RPI/RPI2';
 		}
-
 		config::save('hardware_name', $result);
 		return config::byKey('hardware_name');
 
