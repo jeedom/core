@@ -198,7 +198,7 @@ if (init('type') == 'plugin') {
               <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="RPI/RPI2"> RPI/RPI2
           </label>
           <label class="checkbox-inline">
-              <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Docker"> Docker/Synology
+              <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Docker"> Docker
           </label>
           <label class="checkbox-inline">
               <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="DIY"> DIY
