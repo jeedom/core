@@ -349,13 +349,13 @@ class market {
 				'addrComplement' => config::byKey('externalComplement'),
 				'marketkey' => config::byKey('market::jeedom_apikey'),
 				'nbMessage' => message::nbMessage(),
-				'hardware' => jeedom::getHardwareName(),
+				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 			));
 		} else {
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
 				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
-				'hardware' => jeedom::getHardwareName(),
+				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 			));
 		}
 		$jsonrpc->setCb_class('market');
