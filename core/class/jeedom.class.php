@@ -644,7 +644,9 @@ class jeedom {
 
 	public static function isCapable($_function) {
 		global $JEEDOM_COMPATIBILIY_CONFIG;
-
+		if ($_function == 'sudo') {
+			return (shell_exec('sudo -l > /dev/null 2>&1; echo $?') == 0) ? true : false;
+		}
 		$hardware = self::getHardwareName();
 		if (!isset($JEEDOM_COMPATIBILIY_CONFIG[$hardware])) {
 			return false;
