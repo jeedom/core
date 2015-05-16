@@ -85,7 +85,9 @@ class market {
 		$market->img = json_encode($_arrayMarket['img'], JSON_UNESCAPED_UNICODE);
 		$market->link = json_encode($_arrayMarket['link'], JSON_UNESCAPED_UNICODE);
 		$market->language = json_encode($_arrayMarket['language'], JSON_UNESCAPED_UNICODE);
-		$market->hardwareCompatibility = json_encode($_arrayMarket['hardwareCompatibility'], JSON_UNESCAPED_UNICODE);
+		if (isset($_arrayMarket['hardwareCompatibility'])) {
+			$market->hardwareCompatibility = json_encode($_arrayMarket['hardwareCompatibility'], JSON_UNESCAPED_UNICODE);
+		}
 		$market->change = '';
 
 		$market->setRealcost($_arrayMarket['realCost']);
