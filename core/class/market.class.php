@@ -51,6 +51,7 @@ class market {
 	private $change;
 	private $updateBy;
 	private $docOnly;
+	private $hardwareCompatibility;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -84,6 +85,7 @@ class market {
 		$market->img = json_encode($_arrayMarket['img'], JSON_UNESCAPED_UNICODE);
 		$market->link = json_encode($_arrayMarket['link'], JSON_UNESCAPED_UNICODE);
 		$market->language = json_encode($_arrayMarket['language'], JSON_UNESCAPED_UNICODE);
+		$market->hardwareCompatibility = json_encode($_arrayMarket['hardwareCompatibility'], JSON_UNESCAPED_UNICODE);
 		$market->change = '';
 
 		$market->setRealcost($_arrayMarket['realCost']);
@@ -1091,6 +1093,14 @@ class market {
 
 	public function setUpdateBy($updateBy) {
 		$this->updateBy = $updateBy;
+	}
+
+	public function getHardwareCompatibility($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->hardwareCompatibility, $_key, $_default);
+	}
+
+	public function setHardwareCompatibility($_key, $_value) {
+		$this->hardwareCompatibility = utils::setJsonAttr($this->hardwareCompatibility, $_key, $_value);
 	}
 
 }

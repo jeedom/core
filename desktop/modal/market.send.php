@@ -146,9 +146,9 @@ if (init('type') == 'plugin') {
             </div>
         </div>
         <div class="col-lg-6">
-           <div class="form-group">
-               <label class="col-sm-2 control-label">Video</label>
-               <div class="col-sm-9">
+         <div class="form-group">
+             <label class="col-sm-2 control-label">Video</label>
+             <div class="col-sm-9">
                 <input class="form-control marketAttr" data-l1key="link" data-l2key="video">
             </div>
         </div>
@@ -194,14 +194,30 @@ if (init('type') == 'plugin') {
                   </label>
               </div>
           </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">{{Compatibilité matériel}}</label>
+            <div class="col-sm-8">
+             <label class="checkbox-inline">
+              <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Jeedomboard"> Jeedomboard (mini+,center,pro)
+          </label>
+          <label class="checkbox-inline">
+              <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="RPI/RPI2"> RPI/RPI2
+          </label>
+          <label class="checkbox-inline">
+              <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Docker"> Docker/Synology
+          </label>
+          <label class="checkbox-inline">
+              <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="DIY"> DIY
+          </label>
       </div>
   </div>
+</div>
 </div>
 </form>
 
 <div title="Qu'avez-vous changé ?" id="md_marketSendChangeChange">
     <form class="form-horizontal" role="form">
-       <div class="form-group">
+     <div class="form-group">
         <label class="col-sm-3 control-label">{{Version}}</label>
         <div class="col-sm-3">
             <input class="form-control" id="in_marketSendVersion">
@@ -210,14 +226,14 @@ if (init('type') == 'plugin') {
     <div class="form-group">
         <label class="col-sm-3 control-label">{{Documentation seulement}}</label>
         <div class="col-sm-1">
-           <input type="checkbox" id="cb_marketSendDocOnly" />
-       </div>
-   </div>
-   <div class="form-group">
+         <input type="checkbox" id="cb_marketSendDocOnly" />
+     </div>
+ </div>
+ <div class="form-group">
     <label class="col-sm-3 control-label">{{Changement}}</label>
     <div class="col-sm-9">
-       <textarea class="form-control" id="ta_marketSendChange" placeholder="{{Changement}}" style="height: 150px;"></textarea>
-   </div>
+     <textarea class="form-control" id="ta_marketSendChange" placeholder="{{Changement}}" style="height: 150px;"></textarea>
+ </div>
 
 </div>
 <a class="btn btn-success pull-right" id="bt_marketSendValideChange"><i class="fa fa-check"></i> {{Valider}}</a>
@@ -308,14 +324,14 @@ $('#bt_sendToMarket').on('click', function () {
     });
 
     if(market.id != ''){
-     $('#md_marketSendChangeChange').dialog('open');
-     $('#in_marketSendVersion').value(market_display_info.version);
-     $('#ta_marketSendChange').value('');
-     $('#cb_marketSendDocOnly').value(0);
-     $('#bt_marketSendCancelChange').off().on('click',function(){
+       $('#md_marketSendChangeChange').dialog('open');
+       $('#in_marketSendVersion').value(market_display_info.version);
+       $('#ta_marketSendChange').value('');
+       $('#cb_marketSendDocOnly').value(0);
+       $('#bt_marketSendCancelChange').off().on('click',function(){
         $('#md_marketSendChangeChange').dialog('close');
     });
-     $('#bt_marketSendValideChange').off().on('click',function(){
+       $('#bt_marketSendValideChange').off().on('click',function(){
 
         market.version = $('#in_marketSendVersion').value();
         market.change = $('#ta_marketSendChange').value();
@@ -342,12 +358,12 @@ $('#bt_sendToMarket').on('click', function () {
                 $.showLoading();
                 window.location.reload();
             } else {
-             $('#md_marketSendChangeChange').dialog('close');
-             $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
-         }
+               $('#md_marketSendChangeChange').dialog('close');
+               $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
+           }
 
-     }
- });
+       }
+   });
 });
 
 }else{
