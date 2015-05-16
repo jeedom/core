@@ -628,15 +628,31 @@ class jeedom {
 		if (config::byKey('hardware_name') != '') {
 			return config::byKey('hardware_name');
 		}
-		$result = 'Unknown';
+		$result = 'DIY';
 		$uname = shell_exec('uname -a');
 		if (strpos($uname, 'cubox') !== false) {
 			$result = 'Jeedomboard';
+		}
+		if (file_exists('/.dockerinit')) {
+			$result = 'Docker';
 		}
 
 		config::save('hardware_name', $result);
 		return config::byKey('hardware_name');
 
+	}
+
+	public static function isCapable($_function) {
+		global $JEEDOM_COMPATIBILIY_CONFIG;
+
+		$hardware = self::getHardwareName();
+		if (!isset($JEEDOM_COMPATIBILIY_CONFIG[$hardware])) {
+			return false;
+		}
+		if (in_array($_function, $JEEDOM_COMPATIBILIY_CONFIG[$hardware])) {
+			return true;
+		}
+		return false;
 	}
 
 /*     * *********************Methode d'instance************************* */
