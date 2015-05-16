@@ -341,7 +341,7 @@ class market {
 				'username' => config::byKey('market::username'),
 				'password' => config::byKey('market::password'),
 				'password_type' => 'sha1',
-				'jeedomversion' => (method_exists('jeedom', 'version')) ? jeedom::version() : getVersion('jeedom'),
+				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
 				'addr' => config::byKey('externalAddr'),
 				'addrProtocol' => config::byKey('externalProtocol'),
@@ -349,11 +349,13 @@ class market {
 				'addrComplement' => config::byKey('externalComplement'),
 				'marketkey' => config::byKey('market::jeedom_apikey'),
 				'nbMessage' => message::nbMessage(),
+				'hardware' => jeedom::getHardwareName(),
 			));
 		} else {
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
-				'jeedomversion' => (method_exists('jeedom', 'version')) ? jeedom::version() : getVersion('jeedom'),
+				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
+				'hardware' => jeedom::getHardwareName(),
 			));
 		}
 		$jsonrpc->setCb_class('market');
