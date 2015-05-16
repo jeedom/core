@@ -71,12 +71,9 @@ class history {
 		}
 
 		if (config::byKey('historyArchiveTime') < 1) {
-			$archiveTime = '00:' . config::byKey('historyArchiveTime') * 60 . ':00';
+			$archiveDatetime = date('Y-m-d H:i:s', strtotime('- 1 hours'));
 		} else {
-			$archiveTime = config::byKey('historyArchiveTime') . ':00:00';
-			if (strlen($archiveTime) < 8) {
-				$archiveTime = '0' . $archiveTime;
-			}
+			$archiveDatetime = date('Y-m-d H:i:s', strtotime('- ' . config::byKey('historyArchiveTime', 'core', 1) . ' hours'));
 		}
 
 		if (config::byKey('historyArchivePackage') < 1) {
@@ -89,11 +86,11 @@ class history {
 		}
 
 		$values = array(
-			'archiveTime' => $archiveTime,
+			'archiveDatetime' => $archiveDatetime,
 		);
 		$sql = 'SELECT DISTINCT(cmd_id)
 FROM history
-WHERE TIMEDIFF(NOW(),`datetime`)>:archiveTime';
+WHERE `datetime`<:archiveDatetime';
 		$list_sensors = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 		foreach ($list_sensors as $sensors) {
 			$cmd = cmd::byId($sensors['cmd_id']);
@@ -143,11 +140,11 @@ WHERE TIMEDIFF(NOW(),`datetime`)>:archiveTime';
 				} else {
 					$values = array(
 						'cmd_id' => $sensors['cmd_id'],
-						'archiveTime' => $archiveTime,
+						'archiveDatetime' => $archiveDatetime,
 					);
 					$sql = 'SELECT MIN(`datetime`) as oldest
             FROM history
-            WHERE TIMEDIFF(NOW(),`datetime`)>:archiveTime
+            WHERE `datetime`<:archiveDatetime
             AND cmd_id=:cmd_id';
 					$oldest = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 
@@ -186,11 +183,11 @@ WHERE TIMEDIFF(NOW(),`datetime`)>:archiveTime';
 
 						$values = array(
 							'cmd_id' => $sensors['cmd_id'],
-							'archiveTime' => $archiveTime,
+							'archiveDatetime' => $archiveDatetime,
 						);
 						$sql = 'SELECT MIN(`datetime`) as oldest
                 FROM history
-                WHERE TIMEDIFF(NOW(),`datetime`)>:archiveTime
+                WHERE `datetime`<:archiveDatetime
                 AND cmd_id=:cmd_id';
 						$oldest = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 					}
@@ -457,19 +454,18 @@ LIMIT 1';
 
 		$sql = 'select max(`datetime`) as lastCmdDuration
 			from (
-				select min(`datetime`) as datetime 
-				from `history` 
-				where `cmd_id`=:cmd_id and `value`=:value and 
-				datetime > (select max(`datetime`) from `history` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from history where `cmd_id`=:cmd_id and `value` = :value)) 
+				select min(`datetime`) as datetime
+				from `history`
+				where `cmd_id`=:cmd_id and `value`=:value and
+				datetime > (select max(`datetime`) from `history` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from history where `cmd_id`=:cmd_id and `value` = :value))
 				union all
 				select min(`datetime`) as datetime from `historyArch`
 				where `cmd_id`=:cmd_id and `value`=:value and
-				`datetime` > (select max(`datetime`) from `historyArch` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from historyArch where `cmd_id`=:cmd_id and `value` =:value)) 
+				`datetime` > (select max(`datetime`) from `historyArch` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from historyArch where `cmd_id`=:cmd_id and `value` =:value))
 			) as t';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return strtotime('now') - strtotime($result['lastCmdDuration']);
 	}
-
 
 	public static function stateChanges($_cmd_id, $_value = null, $_startTime = null, $_endTime = null) {
 		$cmd = cmd::byId($_cmd_id);
