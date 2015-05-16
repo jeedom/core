@@ -36,20 +36,6 @@ echo '<img src="core/img/no_image.gif" data-original="' . $urlPath . '"  class="
         </center>
     </div>
     <div class='col-sm-8'>
-       <?php
-if ($market->getHardwareCompatibility('DIY') == 1) {
-	echo '<img class="pull-right" src="core/img/logo_diy.png" style="width:80px;height:80px;" />';
-}
-if ($market->getHardwareCompatibility('RPI/RPI2') == 1) {
-	echo '<img class="pull-right" src="core/img/logo_rpi12.png" style="width:80px;height:80px;" />';
-}
-if ($market->getHardwareCompatibility('Docker') == 1) {
-	echo '<img class="pull-right" src="core/img/logo_docker.png" style="width:80px;height:80px;" />';
-}
-if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
-	echo '<img class="pull-right" src="core/img/logo_jeedomboard.png" style="width:80px;height:80px;" />';
-}
-?>
        <input class="form-control marketAttr" data-l1key="id" style="display: none;">
        <span class="marketAttr" data-l1key="name" placeholder="{{Nom}}" style="font-size: 3em;font-weight: bold;"></span>
        <br/>
@@ -157,6 +143,22 @@ foreach ($market->getImg('screenshot') as $screenshot) {
     <div class='col-sm-6'>
         <legend>Description</legend>
         <span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
+              <br/><br/>
+      <legend>{{Compatibilité plateforme}}</legend>
+      <?php
+if ($market->getHardwareCompatibility('DIY') == 1) {
+	echo '<img src="core/img/logo_diy.png" style="width:60px;height:60px;" />';
+}
+if ($market->getHardwareCompatibility('RPI/RPI2') == 1) {
+	echo '<img src="core/img/logo_rpi12.png" style="width:60px;height:60px;" />';
+}
+if ($market->getHardwareCompatibility('Docker') == 1) {
+	echo '<img src="core/img/logo_docker.png" style="width:60px;height:60px;" />';
+}
+if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
+	echo '<img src="core/img/logo_jeedomboard.png" style="width:60px;height:60px;" />';
+}
+?>
     </div>
     <div class='col-sm-6'>
         <legend>Nouveautés <a class="btn btn-xs btn-default pull-right" id="bt_viewCompleteChangelog"><i class="fa fa-eye"></i> {{Tout voir}}</a></legend>
