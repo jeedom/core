@@ -153,12 +153,6 @@ if (init('type') == 'plugin') {
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Wiki</label>
-            <div class="col-sm-9">
-                <input class="form-control marketAttr" data-l1key="link" data-l2key="wiki">
-            </div>
-        </div>
-        <div class="form-group">
             <label class="col-sm-2 control-label">Forum</label>
             <div class="col-sm-9">
                 <input class="form-control marketAttr" data-l1key="link" data-l2key="forum">
