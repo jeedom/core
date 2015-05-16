@@ -1,6 +1,6 @@
 <?php
 if (!isConnect()) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
 <table class="table table-condensed table-bordered" id="table_mod_insertCmdValue_valueEqLogicToMessage">
@@ -17,16 +17,18 @@ if (!isConnect()) {
                 <select class='form-control'>
                     <option value="-1">{{Aucun}}</option>
                     <?php
-                    foreach (object::all() as $object)
-                        echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
-                    ?>
+foreach (object::all() as $object) {
+	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+}
+
+?>
                 </select>
             </td>
             <td class="mod_insertCmdValue_eqLogic"></td>
             <td class="mod_insertCmdValue_cmd"></td>
         </tr>
     </tbody>
-</table> 
+</table>
 <script>
     function mod_insertCmd() {
     }
@@ -67,7 +69,7 @@ if (!isConnect()) {
         }
         return '#[' + object_name + '][' + equipement_name + '][' + cmd_name + ']#';
     }
-    
+
     mod_insertCmd.getCmdId = function () {
         return $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_cmd select').value();
     }
@@ -83,6 +85,7 @@ if (!isConnect()) {
     mod_insertCmd.changeObjectCmd = function (_select) {
         jeedom.object.getEqLogic({
             id: _select.value(),
+            orderByName : true,
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
