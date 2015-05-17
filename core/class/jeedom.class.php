@@ -454,7 +454,7 @@ class jeedom {
 							message::add('update', 'De nouvelles mises à jour sont disponibles (' . $nbUpdate . ')', '', 'newUpdate');
 						}
 					}
-					config::save('update::check', rand(1, 59) . ' 6 * * *');
+					config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
 				}
 			}
 		} catch (Exception $e) {
