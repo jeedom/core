@@ -733,7 +733,7 @@ class cmd {
 					$eqLogic->save();
 				}
 			}
-			log::add($type, 'error', __('Erreur sur ', __FILE__) . $this->getHumanName() . ' : ' . $e->getMessage());
+			log::add($type, 'error', __('Erreur execution de la commande ', __FILE__) . $this->getHumanName() . ' : ' . $e->getMessage());
 			throw $e;
 		}
 		if ($this->getType() == 'info' && $value !== false) {

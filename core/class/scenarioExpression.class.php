@@ -803,7 +803,7 @@ class scenarioExpression {
 			}
 			if (is_array($options) && $this->getExpression() != 'wait') {
 				foreach ($options as $key => $value) {
-					$options[$key] = str_replace('"', '', self::setTags($value, $scenario));
+					$options[$key] = str_replace('"', '', jeedom::evaluateExpression($value, $scenario));
 				}
 			}
 			if ($this->getType() == 'action') {
