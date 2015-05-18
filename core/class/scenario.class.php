@@ -213,11 +213,11 @@ class scenario {
 			if (is_object($_event)) {
 				$scenarios = self::byTrigger($_event->getId());
 				$trigger = '#' . $_event->getId() . '#';
-				$message = __('Scénario exécuté automatiquement sur évènement venant de : ', __FILE__) . $_event->getHumanName();
+				$message = __('Scénario exécuté automatiquement sur événement venant de : ', __FILE__) . $_event->getHumanName();
 			} else {
 				$scenarios = self::byTrigger($_event);
 				$trigger = $_event;
-				$message = __('Scénario exécuté sur évènement : #', __FILE__) . $_event . '#';
+				$message = __('Scénario exécuté sur événement : #', __FILE__) . $_event . '#';
 			}
 		} else {
 			$message = __('Scénario exécuté automatiquement sur programmation', __FILE__);
