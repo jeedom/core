@@ -138,6 +138,15 @@ class network {
 		}
 		if (config::byKey('internalAddr') == '' || config::byKey('internalAddr') == '127.0.0.1' || config::byKey('internalAddr') == 'localhost') {
 			$internalIp = getHostByName(getHostName());
+			if ($internalIp == '127.0.0.1' || $internalIp == '') {
+				$internalIp = getInterfaceIp('eth0');
+			}
+			if ($internalIp == '127.0.0.1' || $internalIp == '') {
+				$internalIp = getInterfaceIp('bond0');
+			}
+			if ($internalIp == '127.0.0.1' || $internalIp == '') {
+				$internalIp = getInterfaceIp('wlan0');
+			}
 			if ($internalIp != '') {
 				config::save('internalAddr', $internalIp);
 			}
@@ -160,7 +169,7 @@ class network {
 		if (config::byKey('internalPort') == '') {
 			config::save('internalPort', 80);
 		}
-		if (config::byKey('internalComplement') == '/') {
+		if (config::byKey('internalComplement') == '/' || config::byKey('internalComplement') == '') {
 			if (file_exists('/etc/nginx/sites-available/default')) {
 				$data = file_get_contents('/etc/nginx/sites-available/default');
 				if (strpos($data, 'root /usr/share/nginx/www;') !== false) {
