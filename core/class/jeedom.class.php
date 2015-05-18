@@ -110,7 +110,7 @@ class jeedom {
 		shell_exec($cmd);
 	}
 
-	public static function getUsbMapping($_name = '') {
+	public static function getUsbMapping($_name = '', $_getGPIO = false) {
 		$cache = cache::byKey('jeedom::usbMapping');
 		if (!is_json($cache->getValue()) || $_name == '') {
 			$usbMapping = array();
@@ -135,6 +135,14 @@ class jeedom {
 						$number++;
 					}
 					$usbMapping[$name] = '/dev/' . $usb;
+				}
+			}
+			if ($_getGPIO) {
+				if (file_exists('/dev/ttyAMA0')) {
+					$usbMapping['Raspberry pi'] = '/dev/ttyAMA0';
+				}
+				if (file_exists('/dev/ttymxc0')) {
+					$usbMapping['Jeedom board'] = '/dev/ttymxc0';
 				}
 			}
 			cache::set('jeedom::usbMapping', json_encode($usbMapping), 0);
