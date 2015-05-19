@@ -124,8 +124,3 @@ include::faq.asciidoc[]
 [[troubleshooting]]
 === Troubleshooting
 include::troubleshooting.asciidoc[]
-
-'''
-[[changelog]]
-=== Changelog
-include::changelog.asciidoc[]
