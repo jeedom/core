@@ -142,13 +142,13 @@ class network {
 		if (config::byKey('internalAddr') == '' || config::byKey('internalAddr') == '127.0.0.1' || config::byKey('internalAddr') == 'localhost') {
 			$internalIp = getHostByName(getHostName());
 			if ($internalIp == '127.0.0.1' || $internalIp == '') {
-				$internalIp = getInterfaceIp('eth0');
+				$internalIp = self::getInterfaceIp('eth0');
 			}
 			if ($internalIp == '127.0.0.1' || $internalIp == '') {
-				$internalIp = getInterfaceIp('bond0');
+				$internalIp = self::getInterfaceIp('bond0');
 			}
 			if ($internalIp == '127.0.0.1' || $internalIp == '') {
-				$internalIp = getInterfaceIp('wlan0');
+				$internalIp = self::getInterfaceIp('wlan0');
 			}
 			if ($internalIp != '') {
 				config::save('internalAddr', $internalIp);
