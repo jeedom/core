@@ -180,6 +180,10 @@ class network {
 			config::save('internalPort', 443);
 		}
 
+		if (config::byKey('internalProtocol') == 'http://' && config::byKey('internalPort') == 443) {
+			config::save('internalPort', 80);
+		}
+
 		if (config::byKey('internalComplement') == '/' || config::byKey('internalComplement') == '') {
 			if (file_exists('/etc/nginx/sites-available/default')) {
 				$data = file_get_contents('/etc/nginx/sites-available/default');
