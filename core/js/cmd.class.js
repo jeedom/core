@@ -37,11 +37,11 @@ jeedom.cmd.execute = function(_params) {
             if (data.state != 'ok') {
                 if(data.code == -32005){
                     if ($.mobile) {
-                       var result = prompt("Veuillez indiquer le code ?", "")
-                       if(result != null){
-                           _params.codeAccess = result;
-                           jeedom.cmd.execute(_params);
-                       }else{
+                     var result = prompt("Veuillez indiquer le code ?", "")
+                     if(result != null){
+                         _params.codeAccess = result;
+                         jeedom.cmd.execute(_params);
+                     }else{
                         if ('function' != typeof(_params.error)) {
                             $('#div_alert').showAlert({
                                 message: data.result,
@@ -57,11 +57,11 @@ jeedom.cmd.execute = function(_params) {
                         return data;
                     }
                 }else{
-                   bootbox.prompt("Veuillez indiquer le code ?", function (result) {
+                 bootbox.prompt("Veuillez indiquer le code ?", function (result) {
                     if(result != null){
-                       _params.codeAccess = result;
-                       jeedom.cmd.execute(_params);
-                   }else{
+                     _params.codeAccess = result;
+                     jeedom.cmd.execute(_params);
+                 }else{
                     if ('function' != typeof(_params.error)) {
                         $('#div_alert').showAlert({
                             message: data.result,
@@ -78,11 +78,11 @@ jeedom.cmd.execute = function(_params) {
                 }
 
             });
-               }
-           }else if(data.code == -32006){
-               if ($.mobile) {
-                   var result = confirm("Etes vous sur de vouloir faire cette action ?")
-                   if(result){
+             }
+         }else if(data.code == -32006){
+             if ($.mobile) {
+                 var result = confirm("Etes vous sur de vouloir faire cette action ?")
+                 if(result){
                     _params.confirmAction = 1;
                     jeedom.cmd.execute(_params);
                 }else{
@@ -103,9 +103,9 @@ jeedom.cmd.execute = function(_params) {
             }else{
                 bootbox.confirm("Etes vous sur de vouloir faire cette action ?", function (result) {
                     if(result){
-                       _params.confirmAction = 1;
-                       jeedom.cmd.execute(_params);
-                   }else{
+                     _params.confirmAction = 1;
+                     jeedom.cmd.execute(_params);
+                 }else{
                     if ('function' != typeof(_params.error)) {
                         $('#div_alert').showAlert({
                             message: data.result,
@@ -523,7 +523,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
             }
 
             if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
-               if (_cmd.find('.cmdAttr[data-l1key=subType]').value() == 'slider' || _cmd.find('.cmdAttr[data-l1key=subType]').value() == 'other' || _cmd.find('.cmdAttr[data-l1key=subType]').value() == 'color') {
+             if (_cmd.find('.cmdAttr[data-l1key=subType]').value() == 'slider' || _cmd.find('.cmdAttr[data-l1key=subType]').value() == 'other' || _cmd.find('.cmdAttr[data-l1key=subType]').value() == 'color') {
                 _cmd.find('.cmdAttr[data-l1key=value]').show();
             }
             _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
@@ -531,15 +531,15 @@ jeedom.cmd.changeSubType = function(_cmd) {
             _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').hide();
             _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').hide();
         }else{
-           _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').show();
-           _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').show();
-           _cmd.find('.cmdAttr[data-l1key=value]').hide();
-            _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').hide();
-            _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').hide();
-       }
-       _cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('change');
-       modifyWithoutSave = false;
-       if ('function' == typeof(initExpertMode)) {
+         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').show();
+         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').show();
+         _cmd.find('.cmdAttr[data-l1key=value]').hide();
+         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').hide();
+         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').hide();
+     }
+     _cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('change');
+     modifyWithoutSave = false;
+     if ('function' == typeof(initExpertMode)) {
         initExpertMode();
     }
 }
