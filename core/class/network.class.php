@@ -47,6 +47,9 @@ class network {
 			if ($_protocole == 'proto:ip:port' || $_protocole == 'proto:dns:port') {
 				return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80);
 			}
+			if ($_protocole == 'proto:127.0.0.1:port:comp') {
+				return config::byKey('internalProtocol') . '127.0.0.1:' . config::byKey('internalPort', 'core', 80) . config::byKey('internalComplement');
+			}
 			return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . config::byKey('internalComplement');
 
 		}
