@@ -584,7 +584,7 @@ class jeedom {
 		$free = disk_free_space($path);
 		$total = disk_total_space($path);
 		$pourcent = $free / $total * 100;
-		if ($pourcent < 10) {
+		if ($pourcent < 5) {
 			log::add('space', 'error', __('Vous n\'avez plus beaucoup d\'espace disque : ', __FILE__) . $pourcent . '%', 'noSpaceLeft');
 			exec('sudo apt-get clean');
 		}
