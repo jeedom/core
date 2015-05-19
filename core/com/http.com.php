@@ -48,17 +48,18 @@ class com_http {
 	/*     * ************* Fonctions ************************************ */
 
 	function exec($_timeout = 2, $_maxRetry = 3) {
-		if ($this->getPing() && config::byKey('http::ping_disable') != 1) {
-			$url = parse_url($this->url);
-			$host = $url['host'];
-			if (!ip2long($host)) {
-				$timeout = config::byKey('http::ping_timeout', 'core', 2);
-				exec("timeout $timeout ping -n -c 1 -W 2 $host", $output, $retval);
-				if ($retval != 0) {
-					throw new Exception(__('Impossible de résoudre le DNS : ', __FILE__) . $host . __('. Pas d\'internet ?', __FILE__));
-				}
-			}
+		/*if ($this->getPing() && config::byKey('http::ping_disable') != 1) {
+		$url = parse_url($this->url);
+		$host = $url['host'];
+		$host = str_replace(array('http://', 'https://'), '', $host);
+		if (!ip2long($host)) {
+		$timeout = config::byKey('http::ping_timeout', 'core', 2);
+		exec("timeout $timeout ping -n -c 1 -W 2 $host", $output, $retval);
+		if ($retval != 0) {
+		throw new Exception(__('Impossible de résoudre le DNS : ', __FILE__) . $host . __('. Pas d\'internet ?', __FILE__));
 		}
+		}
+		}*/
 		$nbRetry = 0;
 		while ($nbRetry < $_maxRetry) {
 			$ch = curl_init();
