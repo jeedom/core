@@ -457,11 +457,13 @@ LIMIT 1';
 				select min(`datetime`) as datetime
 				from `history`
 				where `cmd_id`=:cmd_id and `value`=:value and
-				datetime > (select max(`datetime`) from `history` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from history where `cmd_id`=:cmd_id and `value` = :value))
+				`datetime` > COALESCE((select max(`datetime`) from `history` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from history where `cmd_id`=:cmd_id and `value` =:value)),1) and
+				`datetime` <= COALESCE((select max(`datetime`) from history where `cmd_id`=:cmd_id and `value` =:value),now())
 				union all
 				select min(`datetime`) as datetime from `historyArch`
 				where `cmd_id`=:cmd_id and `value`=:value and
-				`datetime` > (select max(`datetime`) from `historyArch` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from historyArch where `cmd_id`=:cmd_id and `value` =:value))
+				`datetime` > COALESCE((select max(`datetime`) from `historyArch` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from historyArch where `cmd_id`=:cmd_id and `value` =:value)),1) and
+				`datetime` <= COALESCE((select max(`datetime`) from `historyArch` where `cmd_id`=:cmd_id and `value` =:value),now())
 			) as t';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return strtotime('now') - strtotime($result['lastCmdDuration']);
