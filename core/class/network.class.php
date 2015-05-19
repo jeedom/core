@@ -175,6 +175,11 @@ class network {
 		if (config::byKey('internalPort') == '') {
 			config::save('internalPort', 80);
 		}
+
+		if (config::byKey('internalProtocol') == 'https://' && config::byKey('internalPort') == 80) {
+			config::save('internalPort', 443);
+		}
+
 		if (config::byKey('internalComplement') == '/' || config::byKey('internalComplement') == '') {
 			if (file_exists('/etc/nginx/sites-available/default')) {
 				$data = file_get_contents('/etc/nginx/sites-available/default');
