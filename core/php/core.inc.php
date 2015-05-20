@@ -25,6 +25,7 @@ require_once dirname(__FILE__) . '/../class/plugin.class.php';
 require_once dirname(__FILE__) . '/../class/translate.class.php';
 require_once dirname(__FILE__) . '/utils.inc.php';
 include_file('core', 'jeedom', 'config');
+include_file('core', 'compatibility', 'config');
 include_file('core', 'utils', 'class');
 try {
 	date_default_timezone_set(config::byKey('timezone'));

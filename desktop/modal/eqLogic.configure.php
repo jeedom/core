@@ -18,7 +18,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab">{{Informations}}</a></li>
     <li role="presentation"><a href="#configuration" aria-controls="profile" role="tab" data-toggle="tab">{{Configuration avancée}}</a></li>
-    <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab">{{Affichage avancée}}</a></li>
+    <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab">{{Affichage avancé}}</a></li>
 </ul>
 
 
@@ -44,14 +44,14 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">{{Logical ID}}</label>
+                        <label class="col-sm-4 control-label">{{ID logique}}</label>
                         <div class="col-sm-4">
                             <span class="eqLogicAttr label label-primary" data-l1key="logicalId"></span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">{{Object ID}}</label>
+                        <label class="col-sm-4 control-label">{{ID de l'objet}}</label>
                         <div class="col-sm-4">
                             <span class="eqLogicAttr label label-primary" data-l1key="object_id"></span>
                         </div>
@@ -289,7 +289,7 @@ foreach (eqLogic::all() as $listEqLogic) {
 });
 
  $('#bt_eqLogicConfigureRemove').on('click',function(){
-    bootbox.confirm('{{Etes-vous sûr de vouloir supprimer cette équipement ?}}', function (result) {
+    bootbox.confirm('{{Etes-vous sûr de vouloir supprimer cet équipement ?}}', function (result) {
         if (result) {
             var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
             jeedom.eqLogic.remove({
@@ -360,7 +360,7 @@ foreach (eqLogic::all() as $listEqLogic) {
             });
         }
     });
-      $('#md_eqLogicConfigureSelectMultipleAlert').showAlert({message: "{{Modification appliqués avec succès}}", level: 'success'});
+      $('#md_eqLogicConfigureSelectMultipleAlert').showAlert({message: "{{Modification(s) appliquée(s) avec succès}}", level: 'success'});
 
   });
 

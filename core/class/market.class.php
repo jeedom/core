@@ -51,6 +51,7 @@ class market {
 	private $change;
 	private $updateBy;
 	private $docOnly;
+	private $hardwareCompatibility;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -84,6 +85,9 @@ class market {
 		$market->img = json_encode($_arrayMarket['img'], JSON_UNESCAPED_UNICODE);
 		$market->link = json_encode($_arrayMarket['link'], JSON_UNESCAPED_UNICODE);
 		$market->language = json_encode($_arrayMarket['language'], JSON_UNESCAPED_UNICODE);
+		if (isset($_arrayMarket['hardwareCompatibility'])) {
+			$market->hardwareCompatibility = json_encode($_arrayMarket['hardwareCompatibility'], JSON_UNESCAPED_UNICODE);
+		}
 		$market->change = '';
 
 		$market->setRealcost($_arrayMarket['realCost']);
@@ -337,7 +341,7 @@ class market {
 				'username' => config::byKey('market::username'),
 				'password' => config::byKey('market::password'),
 				'password_type' => 'sha1',
-				'jeedomversion' => (method_exists('jeedom', 'version')) ? jeedom::version() : getVersion('jeedom'),
+				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
 				'addr' => config::byKey('externalAddr'),
 				'addrProtocol' => config::byKey('externalProtocol'),
@@ -345,11 +349,13 @@ class market {
 				'addrComplement' => config::byKey('externalComplement'),
 				'marketkey' => config::byKey('market::jeedom_apikey'),
 				'nbMessage' => message::nbMessage(),
+				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 			));
 		} else {
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
-				'jeedomversion' => (method_exists('jeedom', 'version')) ? jeedom::version() : getVersion('jeedom'),
+				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
+				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 			));
 		}
 		$jsonrpc->setCb_class('market');
@@ -1091,6 +1097,14 @@ class market {
 
 	public function setUpdateBy($updateBy) {
 		$this->updateBy = $updateBy;
+	}
+
+	public function getHardwareCompatibility($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->hardwareCompatibility, $_key, $_default);
+	}
+
+	public function setHardwareCompatibility($_key, $_value) {
+		$this->hardwareCompatibility = utils::setJsonAttr($this->hardwareCompatibility, $_key, $_value);
 	}
 
 }

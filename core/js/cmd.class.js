@@ -521,24 +521,28 @@ jeedom.cmd.changeSubType = function(_cmd) {
                     }
                 }
             }
-            if (_cmd.find('.cmdAttr[data-l1key=subType]').value() == 'slider' || _cmd.find('.cmdAttr[data-l1key=subType]').value() == 'other' || _cmd.find('.cmdAttr[data-l1key=subType]').value() == 'color') {
+
+            if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
+             if (_cmd.find('.cmdAttr[data-l1key=subType]').value() == 'slider' || _cmd.find('.cmdAttr[data-l1key=subType]').value() == 'other' || _cmd.find('.cmdAttr[data-l1key=subType]').value() == 'color') {
                 _cmd.find('.cmdAttr[data-l1key=value]').show();
             }
-            if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
-                _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
-                _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').show();
-                _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').hide();
-                _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').hide();
-            }else{
-             _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').show();
-             _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').show();
-         }
-         _cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('change');
-         modifyWithoutSave = false;
-         if ('function' == typeof(initExpertMode)) {
-            initExpertMode();
-        }
+            _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
+            _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').show();
+            _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').hide();
+            _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').hide();
+        }else{
+         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').show();
+         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').show();
+         _cmd.find('.cmdAttr[data-l1key=value]').hide();
+         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').hide();
+         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').hide();
+     }
+     _cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('change');
+     modifyWithoutSave = false;
+     if ('function' == typeof(initExpertMode)) {
+        initExpertMode();
     }
+}
 });
 };
 

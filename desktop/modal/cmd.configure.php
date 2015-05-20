@@ -69,7 +69,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               </div>
 
               <div class="form-group">
-              <label class="col-xs-4 control-label">{{URL direct}}</label>
+              <label class="col-xs-4 control-label">{{URL directe}}</label>
                 <div class="col-xs-8">
                   <?php
 echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa fa-external-link"></i> URL</a>';
@@ -105,7 +105,7 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
               </div>
 
               <div class="form-group">
-                <label class="col-xs-4 control-label">{{Evénement seulement}}</label>
+                <label class="col-xs-4 control-label">{{Evènement seulement}}</label>
                 <div class="col-xs-4">
                   <span class="cmdAttr label label-primary" data-l1key="eventOnly"></span>
                 </div>
@@ -300,7 +300,7 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
    <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdScenarioActionMode" >
      <option value="launch">{{Lancer}}</option>
-     <option value="stop">{{Arreter}}</option>
+     <option value="stop">{{Arrêter}}</option>
      <option value="activate">{{Activer}}</option>
      <option value="deactivate">{{Désactiver}}</option>
    </select>
@@ -394,9 +394,9 @@ foreach (scenario::all() as $scenario) {
 </div>
 <?php }?>
 <div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push url}}</label>
+  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push URL}}</label>
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'url à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivant : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
+    <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
   </div>
 </div>
 </fieldset>
@@ -593,7 +593,7 @@ foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
           });
         }
       });
-      $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification appliqués avec succès}}", level: 'success'});
+      $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification(s) appliquée(s) avec succès}}", level: 'success'});
     });
 
   });

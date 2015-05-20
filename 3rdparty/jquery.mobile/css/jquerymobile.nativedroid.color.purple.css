@@ -1,0 +1,69 @@
+
+/**
+ * 
+ * PURPLE:
+ * 
+ * COLOR GUIDE:
+ * 	Light: #CF9FE7
+ *  Dark: #C58BE2
+ *
+ */
+
+
+.ui-bar-b,.ui-page-theme-b .ui-dialog-contain .ui-title {
+	border-bottom: 2px solid #CF9FE7;
+}
+
+.ui-btn-down-b .ui-btn-inner,.ui-btn-down-b .ui-btn-text .ui-link-inherit,.ui-listview .ui-btn-hover-b,.ui-input-search.ui-page-theme-b {
+	background-color: #CF9FE7;
+}
+
+.ui-page-theme-b form .ui-btn-down-b,.ui-page-theme-b form .ui-mini.ui-checkbox-on,.ui-page-theme-b form .ui-mini.ui-radio-on {
+	background-color: #C58BE2;
+}
+
+.ui-page-theme-b .ui-btn:hover, html .ui-bar-b .ui-btn:hover, html .ui-page-theme-b .ui-btn:hover, html body .ui-group-theme-b .ui-btn:hover, html head+body .ui-btn.ui-btn-b:hover,
+.ui-page-theme-b .ui-btn:active, html .ui-bar-b .ui-btn:active, html .ui-page-theme-b .ui-btn:active, html body .ui-group-theme-b .ui-btn:active, html head+body .ui-btn.ui-btn-b:active {
+	color: #ffffff;
+	background-color: #C58BE2;
+}
+
+.ui-page-theme-b div.ui-input-text.ui-focus:after{background-color: #C58BE2;}
+.ui-page-theme-b div.ui-input-text.ui-focus:before{background-color: #C58BE2;}
+.ui-page-theme-b div.ui-input-text.ui-focus {border-bottom: 1px solid #C58BE2;}
+
+textarea.ui-page-theme-b.ui-input-text:focus {
+	border: 1px solid #C58BE2;
+}
+
+.ui-page-theme-b .ui-slider-bg.ui-btn-active,
+.ui-page-theme-b .ui-panel-open{
+	background-color: #C58BE2;
+}
+
+.ui-page-theme-b .ui-link,.ui-page-theme-b .ui-li a,.nativeDroidCards ul[data-nativedroid-plugin="twitter"] a {
+	color: #C58BE2;
+}
+
+.ui-page-theme-b .table-stroke tr:nth-child(even) .ui-link {
+	color: #CF9FE7;
+}
+
+.ui-slider-track .ui-btn.ui-slider-handle {
+	border: 10px solid rgba(207,159,231,0.3);	
+}
+
+.ui-slider-track .ui-btn.ui-slider-handle.ui-focus {
+	border: 10px solid rgba(207,159,231,0.5);	
+	box-shadow: 0px 0px 2px 0px #C58BE2;
+}
+
+.ui-slider-bg.ui-btn-active {
+	background-color: #CF9FE7;
+}
+progress::-webkit-progress-value {
+	background-color: #C58BE2;
+}
+progress::-moz-progress-bar {
+	background-color: #C58BE2;
+}

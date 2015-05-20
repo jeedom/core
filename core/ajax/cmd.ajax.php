@@ -165,13 +165,8 @@ try {
 		if (!is_object($history)) {
 			throw new Exception(__('Aucun point ne correspond pour l\'historique : ', __FILE__) . init('cmd_id') . ' - ' . init('datetime'));
 		}
-		$value = (init('value', null) === '') ? null : init('value', null);
-		if ($value == null) {
-			$history->remove();
-		} else {
-			$history->setValue($value);
-			$history->save(null, true);
-		}
+		$history->setValue(init('value', null));
+		$history->save(null, true);
 		ajax::success();
 	}
 
@@ -217,6 +212,10 @@ try {
 			$cmd = cmd::byId(init('id'));
 			if (!is_object($cmd)) {
 				throw new Exception(__('Cmd ID inconnu : ', __FILE__) . init('id'));
+			}
+			$eqLogic = $cmd->getEqLogic();
+			if (!$eqLogic->hasRight('r')) {
+				throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 			}
 			$histories = $cmd->getHistory($dateStart, $dateEnd);
 			$return['cmd_name'] = $cmd->getName();

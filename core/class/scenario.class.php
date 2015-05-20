@@ -213,14 +213,14 @@ class scenario {
 			if (is_object($_event)) {
 				$scenarios = self::byTrigger($_event->getId());
 				$trigger = '#' . $_event->getId() . '#';
-				$message = __('Scénario exécuté automatiquement sur évènement venant de : ', __FILE__) . $_event->getHumanName();
+				$message = __('Scénario exécuté automatiquement sur événement venant de : ', __FILE__) . $_event->getHumanName();
 			} else {
 				$scenarios = self::byTrigger($_event);
 				$trigger = $_event;
-				$message = __('Scénario exécuté sur évènement : #', __FILE__) . $_event . '#';
+				$message = __('Scénario exécuté sur événement : #', __FILE__) . $_event . '#';
 			}
 		} else {
-			$message = __('Scénario évènement automatiquement sur programmation', __FILE__);
+			$message = __('Scénario exécuté automatiquement sur programmation', __FILE__);
 			$scenarios = scenario::all();
 			$dateOk = jeedom::isDateOk();
 			$trigger = '#schedule#';
@@ -237,7 +237,7 @@ class scenario {
 							}
 						}
 					} else {
-						$scenario->setLog(__('Erreur : le scénario c\'est incident (toujours marqué en cours mais arrêté)', __FILE__));
+						$scenario->setLog(__('Erreur : le scénario s\'est incidenté (toujours marqué en cours mais arrêté)', __FILE__));
 						$scenario->setState('error');
 						$scenario->save();
 					}

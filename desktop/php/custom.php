@@ -3,7 +3,7 @@ if (!hasRight('customview', true)) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
-<div class="alert alert-warning">{{Attention tout ce que vous écrivez ici est global et inclus sur tout les pages, la moindre erreur peut rendre votre jeedom non fonctionel}}</div>
+<div class="alert alert-warning">{{Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre jeedom non fonctionel}}</div>
 <div role="tabpanel">
     <ul class="nav nav-tabs" role="tablist">
         <li class="active"><a href="#desktop" aria-controls="home" role="tab" data-toggle="tab">Desktop</a></li>

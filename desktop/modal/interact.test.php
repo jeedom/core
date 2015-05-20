@@ -20,13 +20,13 @@ if (!isConnect('admin')) {
 	</div>
 </form>
 
-<legend>{{Resultat}}</legend>
+<legend>{{Résultat}}</legend>
 <div id="div_interactTestResult"></div>
 
 <script>
 	$('#bt_executeInteractOk').on('click',function(){
 		if($('#in_testInteractQuery').value() == ''){
-			$('#div_alertInteractTest').showAlert({message: '{{La demande ne peut etre vide}}', level: 'danger'});
+			$('#div_alertInteractTest').showAlert({message: '{{La demande ne peut être vide}}', level: 'danger'});
 			return;
 		}
 		jeedom.interact.execute({
@@ -45,7 +45,7 @@ if (!isConnect('admin')) {
 
 	$('#bt_simulateInteractOk').on('click',function(){
 		if($('#in_testInteractQuery').value() == ''){
-			$('#div_alertInteractTest').showAlert({message: '{{La demande ne peut etre vide}}', level: 'danger'});
+			$('#div_alertInteractTest').showAlert({message: '{{La demande ne peut être vide}}', level: 'danger'});
 			return;
 		}
 		jeedom.interact.simulate({
@@ -61,7 +61,7 @@ if (!isConnect('admin')) {
 				}
 				$('#div_interactTestResult').append('<div class="alert alert-info">{{J\'ai reconnu : }}<strong>'+data.interactQuery.query+'</strong></div>');
 				if(data.interactQuery.link_type == 'cmd'){
-					$('#div_interactTestResult').append('<div class="alert alert-warning">{{Je dois executer la/les commande(s) : }}<strong>'+data.cmd+'</strong></div>');
+					$('#div_interactTestResult').append('<div class="alert alert-warning">{{Je dois exécuter la/les commande(s) : }}<strong>'+data.cmd+'</strong></div>');
 				}
 				if(data.interactQuery.link_type == 'scenario'){
 					$('#div_interactTestResult').append('<div class="alert alert-warning">{{Je dois}} <strong>'+data.action+'</strong> {{le scénario : }}<strong>'+data.scenario+'</strong></div>');

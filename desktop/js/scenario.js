@@ -396,7 +396,7 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
        '<label class="col-xs-5 control-label" >'+result.human+' {{est}}</label>' +
        '             <div class="col-xs-3">' +
        '                <select class="conditionAttr form-control" data-l1key="operator">' +
-       '                    <option value="==">{{égale}}</option>' +
+       '                    <option value="==">{{égal}}</option>' +
        '                  <option value=">">{{supérieur}}</option>' +
        '                  <option value="<">{{inférieur}}</option>' +
        '                 <option value="!=">{{différent}}</option>' +
@@ -1001,9 +1001,9 @@ function addSubElement(_subElement) {
     retour += '</div>';
     retour += '</div></legend>';
     if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0){
-      retour += '<a class="btn btn-default btn-xs cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la meme que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" style="position : absolute; top : 21px;right:15px;" value="0"><i class="fa fa-refresh"></i></a>';
+      retour += '<a class="btn btn-default btn-xs cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" style="position : absolute; top : 21px;right:15px;" value="0"><i class="fa fa-refresh"></i></a>';
     }else{
-      retour += '<a class="btn btn-default btn-xs cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la meme que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" style="position : absolute; top : 21px;right:15px;" value="1"><span class="fa-stack"><i class="fa fa-refresh  fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span></a>';
+      retour += '<a class="btn btn-default btn-xs cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" style="position : absolute; top : 21px;right:15px;" value="1"><span class="fa-stack"><i class="fa fa-refresh  fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span></a>';
     }
     break;
     case 'then' :

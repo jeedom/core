@@ -47,7 +47,7 @@ if ($plan->getLink_type() == 'eqLogic') {
         </div>
     </div>
     <div class="form-group">
-        <label class="col-lg-4 control-label">{{Couleur des icones et textes}}</label>
+        <label class="col-lg-4 control-label">{{Couleur des icônes et textes}}</label>
         <div class="col-lg-2">
             <input type="color" class="form-control planAttr" data-l1key="css" data-l2key="color" />
         </div>
@@ -175,7 +175,7 @@ if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
     </div>
 </div>
 <div class="form-group">
-    <label class="col-lg-4 control-label">{{Afficher le selecteur de période}}</label>
+    <label class="col-lg-4 control-label">{{Afficher le sélecteur de période}}</label>
     <div class="col-lg-2">
         <input type="checkbox" class="planAttr" checked data-l1key="display" data-l2key="showTimeSelector" >
     </div>
@@ -361,7 +361,7 @@ foreach (planHeader::all() as $planHeader_select) {
     </div>
 </div>
 <div class="form-group">
-    <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black)}}</label>
+    <label class="col-lg-4 control-label">{{Bordure (attention syntaxe css, ex : solid 1px black)}}</label>
     <div class="col-lg-2">
         <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
     </div>

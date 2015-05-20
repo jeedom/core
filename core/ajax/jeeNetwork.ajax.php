@@ -30,7 +30,7 @@ try {
 		}
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('jeeNetwork inconnu verifié l\'id', __FILE__));
+			throw new Exception(__('JeeNetwork inconnu, vérifiez l\'ID', __FILE__));
 		}
 		$jeeNetwork->remove();
 		ajax::success();
@@ -39,7 +39,7 @@ try {
 	if (init('action') == 'byId') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('Objet inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('Objet inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success(utils::o2a($jeeNetwork));
 	}
@@ -47,7 +47,7 @@ try {
 	if (init('action') == 'haltSystem') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('Objet inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('Objet inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success($jeeNetwork->halt());
 	}
@@ -55,7 +55,7 @@ try {
 	if (init('action') == 'rebootSystem') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('Objet inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('Objet inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success($jeeNetwork->reboot());
 	}
@@ -63,7 +63,7 @@ try {
 	if (init('action') == 'update') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('Objet inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('Objet inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success($jeeNetwork->update());
 	}
@@ -71,7 +71,7 @@ try {
 	if (init('action') == 'checkUpdate') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('Objet inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('Objet inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success($jeeNetwork->checkUpdate());
 	}
@@ -79,7 +79,7 @@ try {
 	if (init('action') == 'getLog') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('Objet inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('Objet inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success($jeeNetwork->getLog(init('log'), init('start', 0), init('nbLine', 3000)));
 	}
@@ -87,7 +87,7 @@ try {
 	if (init('action') == 'emptyLog') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('Objet inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('Objet inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success($jeeNetwork->emptyLog(init('log')));
 	}
@@ -95,7 +95,7 @@ try {
 	if (init('action') == 'removeLog') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('Objet inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('Objet inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success($jeeNetwork->removeLog(init('log')));
 	}
@@ -103,7 +103,7 @@ try {
 	if (init('action') == 'getListLog') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('Objet inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('Objet inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success($jeeNetwork->getListLog());
 	}
@@ -111,7 +111,7 @@ try {
 	if (init('action') == 'removeAllMessage') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('Objet inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('Objet inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success($jeeNetwork->removeAllMessage());
 	}
@@ -119,7 +119,7 @@ try {
 	if (init('action') == 'getMessage') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('Objet inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('Objet inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success($jeeNetwork->getMessage());
 	}
@@ -134,7 +134,7 @@ try {
 	if (init('action') == 'restoreLocalBackup') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('JeeNetwork inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('JeeNetwork inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success($jeeNetwork->restoreLocalBackup(init('backup')));
 	}
@@ -142,7 +142,7 @@ try {
 	if (init('action') == 'backup') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('JeeNetwork inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('JeeNetwork inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success($jeeNetwork->backup());
 	}
@@ -181,7 +181,7 @@ try {
 		}
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('JeeNetwork inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('JeeNetwork inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success($jeeNetwork->restartNgrok());
 	}
@@ -192,7 +192,7 @@ try {
 		}
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('JeeNetwork inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('JeeNetwork inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success($jeeNetwork->stopNgrok());
 	}
@@ -203,7 +203,7 @@ try {
 		}
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('JeeNetwork inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('JeeNetwork inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		ajax::success($jeeNetwork->ngrokRun(init('proto', 'https'), init('port', 80), init('name')));
 	}
@@ -229,7 +229,7 @@ try {
 	if (init('action') == 'addKey') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('JeeNetwork inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('JeeNetwork inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		$values = json_decode(init('value'), true);
 		foreach ($values as $key => $value) {
@@ -245,7 +245,7 @@ try {
 	if (init('action') == 'getKey') {
 		$jeeNetwork = jeeNetwork::byId(init('id'));
 		if (!is_object($jeeNetwork)) {
-			throw new Exception(__('JeeNetwork inconnu verifié l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('JeeNetwork inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		$keys = init('key');
 		if ($keys == '') {
@@ -263,7 +263,7 @@ try {
 		}
 	}
 
-	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());

@@ -50,7 +50,7 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 col-xs-6 control-label">{{Complement}}</label>
+                                <label class="col-sm-4 col-xs-6 control-label">{{Complément}}</label>
                                 <div class="col-sm-4 col-xs-6">
                                     <input class="form-control jeeNetworkAttr" type="text" data-l1key="configuration" data-l2key="addrComplement" placeholder="ex : /jeedom"/>
                                 </div>
@@ -135,7 +135,7 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
             <form class="form-horizontal">
                 <fieldset>
                     <select id="sel_logSlave" class="form-control" style="display: inline-block;width: 200px;margin-bottom: 5px;"></select>
-                    <a class="btn btn-primary" id="bt_refreshLog" style="margin-bottom: 5px;"><i class="fa fa-refresh"></i> {{Rafraichir}}</a>
+                    <a class="btn btn-primary" id="bt_refreshLog" style="margin-bottom: 5px;"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
                     <a class="btn btn-warning" id="bt_emptyLog" style="margin-bottom: 5px;"><i class="fa fa-times"></i> {{Vider}}</a>
                     <a class="btn btn-danger" id="bt_removeLog" style="margin-bottom: 5px;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
                     <a class="btn btn-default pull-right" id="bt_showMessage" style="margin-bottom: 5px;"><i class="fa fa-eye"></i> {{Voir les messages}} (<span class="jeeNetworkAttr" data-l1key="configuration" data-l2key="nbMessage"></span>)</a>
@@ -196,7 +196,7 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
                                         </div>
                                         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 expertModeVisible">
                                           <label>
-                                              <input type="checkbox" class="configKey tooltips" data-l1key="generateTranslation" title="{{Option pour les developpeurs permettant à Jeedom de générer les phrases à traduire}}" /> {{Généré les traductions}}
+                                              <input type="checkbox" class="configKey tooltips" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à Jeedom de générer les phrases à traduire}}" /> {{Générer les traductions}}
                                           </label>
                                       </div>
                                   </div>
@@ -445,7 +445,7 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
                         <label class="col-xs-4 control-label">{{Gestion}}</label>
                         <div class="col-xs-8">
                            <a class="btn btn-success" id="bt_restartNgrok"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
-                           <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arreter}}</a>
+                           <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arrêter}}</a>
                        </div>
                    </div>
                     </div>

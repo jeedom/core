@@ -331,7 +331,7 @@ class cron {
 			$this->save();
 			return true;
 		}
-		log::add('cron', 'info', __('Arret de ', __FILE__) . $this->getClass() . '::' . $this->getFunction() . '(), PID : ' . $this->getPID());
+		log::add('cron', 'info', __('Arrêt de ', __FILE__) . $this->getClass() . '::' . $this->getFunction() . '(), PID : ' . $this->getPID());
 		$kill = posix_kill($this->getPID(), 15);
 		$retry = 0;
 		while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {

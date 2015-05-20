@@ -54,7 +54,7 @@ function loadInfoFromSlave(_id){
                 },
                 success: function (data) {
                     if(data == 0){
-                     $('#div_ngrokHttpStatus').html('<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>');
+                     $('#div_ngrokHttpStatus').html('<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>');
                  }else{
                    $('#div_ngrokHttpStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' +init(jeeNetworkConfig.configuration.url)+ '" target="_blank" style="color:white;text-decoration: underline;">' +init(jeeNetworkConfig.configuration.url)+ '</a></span>');
                }
@@ -71,7 +71,7 @@ function loadInfoFromSlave(_id){
                 },
                 success: function (data) {
                     if(data == 0){
-                     $('#div_ngrokSSHStatus').html('<span class="label label-warning tooltips" title="{{Normale si vous n\'avez pas coché la case : Rediriger le SSH}}">{{Arrêté}}</span>');
+                     $('#div_ngrokSSHStatus').html('<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Rediriger le SSH}}">{{Arrêté}}</span>');
                  }else{
                     $('#div_ngrokSSHStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} dns.jeedom.com:' + init(jeeNetworkConfig.configuration['ngrok::port']) + '</span>');
                  }
@@ -342,7 +342,7 @@ $('#bt_restartNgrok').on('click', function () {
         },
         success: function (data) {
             $('.li_jeeNetwork.active').click();
-            $('#div_alert').showAlert({message: '{{Redemarrage eefectué avec succès}}', level: 'success'});
+            $('#div_alert').showAlert({message: '{{Redémarrage effectué avec succès}}', level: 'success'});
         }
     });
 });
@@ -356,7 +356,7 @@ $('#bt_haltNgrok').on('click', function () {
         },
         success: function (data) {
             $('.li_jeeNetwork.active').click();
-            $('#div_alert').showAlert({message: '{{Arret effectué avec succès}}', level: 'success'});
+            $('#div_alert').showAlert({message: '{{Arrêt effectué avec succès}}', level: 'success'});
         }
     });
 });

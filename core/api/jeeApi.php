@@ -663,7 +663,9 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 			/*             * ************************USB mapping*************************** */
 			if ($jsonrpc->getMethod() == 'jeedom::getUsbMapping') {
-				$jsonrpc->makeSuccess(jeedom::getUsbMapping());
+				$name = (isset($params['name'])) ? $params['name'] : '';
+				$gpio = (isset($params['gpio'])) ? $params['gpio'] : false;
+				$jsonrpc->makeSuccess(jeedom::getUsbMapping($name, $gpio));
 			}
 
 			/*             * ************************Plugin*************************** */

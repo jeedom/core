@@ -110,7 +110,7 @@ class jeedom {
 		shell_exec($cmd);
 	}
 
-	public static function getUsbMapping($_name = '') {
+	public static function getUsbMapping($_name = '', $_getGPIO = false) {
 		$cache = cache::byKey('jeedom::usbMapping');
 		if (!is_json($cache->getValue()) || $_name == '') {
 			$usbMapping = array();
@@ -135,6 +135,14 @@ class jeedom {
 						$number++;
 					}
 					$usbMapping[$name] = '/dev/' . $usb;
+				}
+			}
+			if ($_getGPIO) {
+				if (file_exists('/dev/ttyAMA0')) {
+					$usbMapping['Raspberry pi'] = '/dev/ttyAMA0';
+				}
+				if (file_exists('/dev/ttymxc0')) {
+					$usbMapping['Jeedom board'] = '/dev/ttymxc0';
 				}
 			}
 			cache::set('jeedom::usbMapping', json_encode($usbMapping), 0);
@@ -454,7 +462,7 @@ class jeedom {
 							message::add('update', 'De nouvelles mises à jour sont disponibles (' . $nbUpdate . ')', '', 'newUpdate');
 						}
 					}
-					config::save('update::check', rand(1, 59) . ' 6 * * *');
+					config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
 				}
 			}
 		} catch (Exception $e) {
@@ -576,11 +584,13 @@ class jeedom {
 		$free = disk_free_space($path);
 		$total = disk_total_space($path);
 		$pourcent = $free / $total * 100;
-		if ($pourcent < 10) {
+		if ($pourcent < 5) {
 			log::add('space', 'error', __('Vous n\'avez plus beaucoup d\'espace disque : ', __FILE__) . $pourcent . '%', 'noSpaceLeft');
+			exec('sudo apt-get clean');
 		}
 		if (($free / 1024 / 1024) < 100) {
 			log::add('space', 'error', __('Vous n\'avez plus beaucoup d\'espace disque : ', __FILE__) . ($free / 1024 / 1024) . ' Mo', 'noSpaceLeft');
+			exec('sudo apt-get clean');
 		}
 	}
 
@@ -618,6 +628,41 @@ class jeedom {
 		if ($folder != '') {
 			rename(dirname(__FILE__) . '/../../' . $folder, dirname(__FILE__) . '/../../sysinfo' . config::genKey());
 		}
+	}
+
+/*     * ******************harware restriction*************************** */
+
+	public static function getHardwareName() {
+		if (config::byKey('hardware_name') != '') {
+			return config::byKey('hardware_name');
+		}
+		$result = 'DIY';
+		$uname = shell_exec('uname -a');
+		if (strpos($uname, 'cubox') !== false) {
+			$result = 'Jeedomboard';
+		} else if (file_exists('/.dockerinit')) {
+			$result = 'Docker';
+		} else if (file_exists('/usr/bin/raspi-config')) {
+			$result = 'RPI/RPI2';
+		}
+		config::save('hardware_name', $result);
+		return config::byKey('hardware_name');
+
+	}
+
+	public static function isCapable($_function) {
+		global $JEEDOM_COMPATIBILIY_CONFIG;
+		if ($_function == 'sudo') {
+			return (shell_exec('sudo -l > /dev/null 2>&1; echo $?') == 0) ? true : false;
+		}
+		$hardware = self::getHardwareName();
+		if (!isset($JEEDOM_COMPATIBILIY_CONFIG[$hardware])) {
+			return false;
+		}
+		if (in_array($_function, $JEEDOM_COMPATIBILIY_CONFIG[$hardware])) {
+			return true;
+		}
+		return false;
 	}
 
 /*     * *********************Methode d'instance************************* */

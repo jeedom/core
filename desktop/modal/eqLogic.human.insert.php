@@ -1,12 +1,12 @@
 <?php
 if (!isConnect()) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
 <table class="table table-condensed table-bordered" id="table_mod_insertEqLogicValue_valueEqLogicToMessage">
     <thead>
         <tr>
-            <th style="width: 150px;">{{Object}}</th>
+            <th style="width: 150px;">{{Objet}}</th>
             <th style="width: 150px;">{{Equipement}}</th>
         </tr>
     </thead>
@@ -16,15 +16,17 @@ if (!isConnect()) {
                 <select class='form-control'>
                     <option value="-1">{{Aucun}}</option>
                     <?php
-                    foreach (object::all() as $object)
-                        echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
-                    ?>
+foreach (object::all() as $object) {
+	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+}
+
+?>
                 </select>
             </td>
             <td class="mod_insertEqLogicValue_eqLogic"></td>
         </tr>
     </tbody>
-</table> 
+</table>
 <script>
     function mod_insertEqLogic() {
     }
@@ -61,6 +63,7 @@ if (!isConnect()) {
     mod_insertEqLogic.changeObjectCmd = function(_select) {
         jeedom.object.getEqLogic({
             id: _select.value(),
+            orderByName : true,
             error: function(error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },

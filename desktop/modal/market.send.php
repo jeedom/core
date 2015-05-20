@@ -16,7 +16,7 @@ try {
 }
 if (is_object($market)) {
 	if ($market->getApi_author() == '') {
-		throw new Exception('{{Vous n\'etes pas l\'auteur du plugin}}');
+		throw new Exception('{{Vous n\'êtes pas l\'auteur du plugin}}');
 	}
 }
 
@@ -50,20 +50,20 @@ if (init('type') == 'plugin') {
         </div>
         <div class="col-lg-3">
             <div style="height: 100px;" class="priceChoose">
-                <center><input type="radio" name="rb_price" class="rb_price" data-value="2" /> <h4 style="display: inline-block">2€</h4></center>
-                <center>{{Sur ce prix seront 40% seront reversé au développeur}}</center>
+                <center><input type="radio" name="rb_price" class="rb_price" data-value="2" /> <h4 style="display: inline-block">2 €</h4></center>
+                <center>{{Sur ce prix seront 40 % seront reversés au développeur}}</center>
             </div>
         </div>
         <div class="col-lg-3">
             <div style="height: 100px;" class="priceChoose">
-                <center><input type="radio" name="rb_price" class="rb_price" data-value="4" /> <h4 style="display: inline-block">4€</h4></center>
-                <center>{{Sur ce prix seront 60% seront reversé au développeur}}</center>
+                <center><input type="radio" name="rb_price" class="rb_price" data-value="4" /> <h4 style="display: inline-block">4 €</h4></center>
+                <center>{{Sur ce prix seront 60 % seront reversés au développeur}}</center>
             </div>
         </div>
         <div class="col-lg-3">
             <div style="height: 100px;" class="priceChoose">
                 <center><input type="radio" name="rb_price" class="rb_price" data-value="custom" /> <h4 style="display: inline-block">Libre</h4> <input class="form-control marketAttr input-sm" data-l1key="cost" placeholder="Prix" style="display : inline-block; width : 80px;"> €</center>
-                <center>{{Sur ce prix seront 65% seront reversé au développeur (doit etre supérieur ou égale à 5€)}}</center>
+                <center>{{Sur ce prix seront 65 % seront reversés au développeur (doit être supérieur ou égal à 5 €)}}</center>
             </div>
         </div>
     </div>
@@ -91,10 +91,10 @@ if (init('type') == 'plugin') {
                     <select class="form-control marketAttr" data-l1key="type" disabled>
                         <option value="plugin" data-category='plugin'>{{Plugin}}</option>
                         <option value="widget" data-category='widget'>{{Widget}}</option>
-                        <option value="zwave" data-category='input'>{{[Zwave] Configuration module}}</option>
+                        <option value="zwave" data-category='input'>{{[Z-Wave] Configuration module}}</option>
                         <option value="script" data-category='input'>{{Script}}</option>
                         <option value="scenario" data-category='input'>{{Scénario}}</option>
-                        <option value="camera" data-category='input'>{{[Camera] Modèle}}</option>
+                        <option value="camera" data-category='input'>{{[Caméra] Modèle}}</option>
                         <option value="SNMP" data-category='input'>{{[SNMP] Configuration}}</option>
                         <option value="mySensors" data-category='input'>{{[My Sensors] Noeud}}</option>
                     </select>
@@ -146,16 +146,10 @@ if (init('type') == 'plugin') {
             </div>
         </div>
         <div class="col-lg-6">
-           <div class="form-group">
-               <label class="col-sm-2 control-label">Video</label>
-               <div class="col-sm-9">
+         <div class="form-group">
+             <label class="col-sm-2 control-label">Video</label>
+             <div class="col-sm-9">
                 <input class="form-control marketAttr" data-l1key="link" data-l2key="video">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Wiki</label>
-            <div class="col-sm-9">
-                <input class="form-control marketAttr" data-l1key="link" data-l2key="wiki">
             </div>
         </div>
         <div class="form-group">
@@ -187,21 +181,37 @@ if (init('type') == 'plugin') {
                       <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="ru_RU"> {{Pусский}}
                   </label>
                   <label class="checkbox-inline">
-                      <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="id_ID"> {{Indonésien}}
+                      <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="id_ID"> {{Bahasa Indonesia}}
                   </label>
                   <label class="checkbox-inline">
                       <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="it_IT"> {{Italiano}}
                   </label>
               </div>
           </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">{{Compatibilité matériel}}</label>
+            <div class="col-sm-8">
+             <label class="checkbox-inline">
+              <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Jeedomboard"> Jeedomboard (mini+,center,pro)
+          </label>
+          <label class="checkbox-inline">
+              <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="RPI/RPI2"> RPI/RPI2
+          </label>
+          <label class="checkbox-inline">
+              <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Docker"> Docker
+          </label>
+          <label class="checkbox-inline">
+              <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="DIY"> DIY
+          </label>
       </div>
   </div>
+</div>
 </div>
 </form>
 
 <div title="Qu'avez-vous changé ?" id="md_marketSendChangeChange">
     <form class="form-horizontal" role="form">
-       <div class="form-group">
+     <div class="form-group">
         <label class="col-sm-3 control-label">{{Version}}</label>
         <div class="col-sm-3">
             <input class="form-control" id="in_marketSendVersion">
@@ -210,14 +220,14 @@ if (init('type') == 'plugin') {
     <div class="form-group">
         <label class="col-sm-3 control-label">{{Documentation seulement}}</label>
         <div class="col-sm-1">
-           <input type="checkbox" id="cb_marketSendDocOnly" />
-       </div>
-   </div>
-   <div class="form-group">
+         <input type="checkbox" id="cb_marketSendDocOnly" />
+     </div>
+ </div>
+ <div class="form-group">
     <label class="col-sm-3 control-label">{{Changement}}</label>
     <div class="col-sm-9">
-       <textarea class="form-control" id="ta_marketSendChange" placeholder="{{Changement}}" style="height: 150px;"></textarea>
-   </div>
+     <textarea class="form-control" id="ta_marketSendChange" placeholder="{{Changement}}" style="height: 150px;"></textarea>
+ </div>
 
 </div>
 <a class="btn btn-success pull-right" id="bt_marketSendValideChange"><i class="fa fa-check"></i> {{Valider}}</a>
@@ -308,14 +318,14 @@ $('#bt_sendToMarket').on('click', function () {
     });
 
     if(market.id != ''){
-     $('#md_marketSendChangeChange').dialog('open');
-     $('#in_marketSendVersion').value(market_display_info.version);
-     $('#ta_marketSendChange').value('');
-     $('#cb_marketSendDocOnly').value(0);
-     $('#bt_marketSendCancelChange').off().on('click',function(){
+       $('#md_marketSendChangeChange').dialog('open');
+       $('#in_marketSendVersion').value(market_display_info.version);
+       $('#ta_marketSendChange').value('');
+       $('#cb_marketSendDocOnly').value(0);
+       $('#bt_marketSendCancelChange').off().on('click',function(){
         $('#md_marketSendChangeChange').dialog('close');
     });
-     $('#bt_marketSendValideChange').off().on('click',function(){
+       $('#bt_marketSendValideChange').off().on('click',function(){
 
         market.version = $('#in_marketSendVersion').value();
         market.change = $('#ta_marketSendChange').value();
@@ -342,12 +352,12 @@ $('#bt_sendToMarket').on('click', function () {
                 $.showLoading();
                 window.location.reload();
             } else {
-             $('#md_marketSendChangeChange').dialog('close');
-             $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
-         }
+               $('#md_marketSendChangeChange').dialog('close');
+               $('#div_alertMarketSend').showAlert({message: '{{Votre objet a été envoyé avec succès sur le market}}', level: 'success'});
+           }
 
-     }
- });
+       }
+   });
 });
 
 }else{

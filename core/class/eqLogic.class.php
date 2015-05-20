@@ -86,7 +86,7 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
+	public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null, $_orderByName = false) {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM eqLogic';
@@ -110,7 +110,11 @@ class eqLogic {
 			$values['logicalId'] = $_logicalId;
 			$sql .= ' AND logicalId=:logicalId';
 		}
-		$sql .= ' ORDER BY `order`,category';
+		if ($_orderByName) {
+			$sql .= ' ORDER BY `name`';
+		} else {
+			$sql .= ' ORDER BY `order`,category';
+		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -129,15 +133,18 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byType($_eqType_name) {
+	public static function byType($_eqType_name, $_onlyEnable = false) {
 		$values = array(
 			'eqType_name' => $_eqType_name,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'el') . '
         FROM eqLogic el
         LEFT JOIN object ob ON el.object_id=ob.id
-        WHERE eqType_name=:eqType_name
-        ORDER BY ob.name,el.name';
+        WHERE eqType_name=:eqType_name ';
+		if ($_onlyEnable) {
+			$sql .= ' AND isEnable=1';
+		}
+		$sql .= ' ORDER BY ob.name,el.name';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 

@@ -133,7 +133,7 @@ class scenarioElement {
 						$this->getSubElement('if')->setOptions('previousState', 1);
 						$this->getSubElement('if')->save();
 					} else {
-						$_scenario->setLog(__('Non éxecution des actions pour cause de répétition', __FILE__));
+						$_scenario->setLog(__('Non exécution des actions pour cause de répétition', __FILE__));
 						return;
 					}
 				}
@@ -147,7 +147,7 @@ class scenarioElement {
 					$this->getSubElement('if')->setOptions('previousState', 0);
 					$this->getSubElement('if')->save();
 				} else {
-					$_scenario->setLog(__('Non éxecution des actions pour cause de répétition', __FILE__));
+					$_scenario->setLog(__('Non exécution des actions pour cause de répétition', __FILE__));
 					return;
 				}
 			}
@@ -216,7 +216,7 @@ class scenarioElement {
 				}
 			}
 			if (!is_numeric($next) || $next < 0) {
-				$_scenario->setLog(__('Erreur dans bloc (type A) : ', __FILE__) . $this->getId() . __(', heure programmé invalide : ', __FILE__) . $next);
+				$_scenario->setLog(__('Erreur dans bloc (type A) : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . $next);
 			}
 			if ($next < (date('Gi') + 1)) {
 				if (strlen($next) == 3) {
@@ -248,7 +248,7 @@ class scenarioElement {
 			$cron->setOnce(1);
 			$cron->setSchedule(date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next));
 			$cron->save();
-			$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmé à : ', __FILE__) . date('Y-m-d H:i:00', $next));
+			$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmée à : ', __FILE__) . date('Y-m-d H:i:00', $next));
 			return true;
 		}
 	}

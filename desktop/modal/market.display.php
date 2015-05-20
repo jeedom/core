@@ -36,15 +36,18 @@ echo '<img src="core/img/no_image.gif" data-original="' . $urlPath . '"  class="
         </center>
     </div>
     <div class='col-sm-8'>
-        <input class="form-control marketAttr" data-l1key="id" style="display: none;">
-        <span class="marketAttr" data-l1key="name" placeholder="{{Nom}}" style="font-size: 3em;font-weight: bold;"></span>
-        <br/>
-        <?php
+       <input class="form-control marketAttr" data-l1key="id" style="display: none;">
+       <span class="marketAttr" data-l1key="name" placeholder="{{Nom}}" style="font-size: 3em;font-weight: bold;"></span>
+       <br/>
+       <?php
 if ($market->getCertification() == 'Officiel') {
 	echo '<span style="font-size : 1.5em;color:#707070">Officiel</span><br/>';
 }
-if ($market->getCertification() == 'Recommandé') {
-	echo '<span style="font-size: 1.5em;font-weight: bold;color:#707070;">Recommandé</span><br/>';
+if ($market->getCertification() == 'Conseillé') {
+	echo '<span style="font-size: 1.5em;font-weight: bold;color:#707070;">Conseillé</span><br/>';
+}
+if ($market->getCertification() == 'Obsolète') {
+	echo '<span style="font-size: 1.5em;font-weight: bold;color:#e74c3c;">Obsolète</span><br/>';
 }
 ?>
        <span class="marketAttr" data-l1key="categorie" style="font-size: 1em;font-weight: bold;"></span>
@@ -110,7 +113,10 @@ if ($market->getCost() > 0) {
 <?php
 if ($market->getCertification() != 'Officiel') {
 	echo '<div class="alert alert-warning">{{Attention ce plugin n\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée}}</div>';
-
+}
+$compatibilityHardware = $market->getHardwareCompatibility();
+if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && $compatibilityHardware[jeedom::getHardwareName()] != 1) {
+	echo '<div class="alert alert-danger">{{Attention ce plugin ne semble pas être compatible avec votre système}}</div>';
 }
 ?>
 <div style="display: none;width : 100%" id="div_alertMarketDisplay"></div>
@@ -137,6 +143,22 @@ foreach ($market->getImg('screenshot') as $screenshot) {
     <div class='col-sm-6'>
         <legend>Description</legend>
         <span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
+              <br/><br/>
+      <legend>{{Compatibilité plateforme}}</legend>
+      <?php
+if ($market->getHardwareCompatibility('DIY') == 1) {
+	echo '<img src="core/img/logo_diy.png" style="width:60px;height:60px;" />';
+}
+if ($market->getHardwareCompatibility('RPI/RPI2') == 1) {
+	echo '<img src="core/img/logo_rpi12.png" style="width:60px;height:60px;" />';
+}
+if ($market->getHardwareCompatibility('Docker') == 1) {
+	echo '<img src="core/img/logo_docker.png" style="width:60px;height:60px;" />';
+}
+if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
+	echo '<img src="core/img/logo_jeedomboard.png" style="width:60px;height:60px;" />';
+}
+?>
     </div>
     <div class='col-sm-6'>
         <legend>Nouveautés <a class="btn btn-xs btn-default pull-right" id="bt_viewCompleteChangelog"><i class="fa fa-eye"></i> {{Tout voir}}</a></legend>
@@ -163,7 +185,7 @@ foreach ($market->getImg('screenshot') as $screenshot) {
                     </div><br/>
                     <?php }?>
                     <center>
-                        <a class="btn btn-default" id="bt_viewComment"><i class="fa fa-comments-o"></i> {{Commentaires (<?php echo $market->getNbComment();?>)}}</a>
+                        <a class="btn btn-default" id="bt_viewComment"><i class="fa fa-comments-o"></i> {{Commentaires}} (<?php echo $market->getNbComment();?>)</a>
                     </center>
                 </div>
             </div>
@@ -180,14 +202,11 @@ foreach ($market->getImg('screenshot') as $screenshot) {
             <div class='col-sm-2'>
                 <label class="control-label">{{Auteur}}</label><br/>
                 <span><?php echo $market->getAuthor()?></span><br/>
-                <label class="control-label">{{Derniere mise à jour par}}</label><br/>
+                <label class="control-label">{{Dernière mise à jour par}}</label><br/>
                 <span><?php echo $market->getUpdateBy()?></span>
             </div>
             <div class='col-sm-2'>
                 <label class="control-label">{{Lien}}</label><br/>
-                <?php if ($market->getLink('wiki') != '' && $market->getLink('wiki') != 'null') {?>
-                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('wiki');?>"><i class="fa fa-krw"></i> Wiki</a><br/>
-                <?php }?>
                 <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video');?>"><i class="fa fa-youtube"></i> Video</a><br/>
                 <?php }?>
