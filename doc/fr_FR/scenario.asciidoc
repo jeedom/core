@@ -90,6 +90,7 @@ Vous pouvez aussi utiliser les tags suivants :
 - \#smois# : pour le nom du mois (ex : Janvier)
 - \#IP# : IP interne de jeedom
 - \#hostname# : nom de la machine Jeedom
+- \#trigger# : nom de la commande qui a déclenché le scénario
     
 Plusieurs fonctions sont disponibles pour les équipements :
 

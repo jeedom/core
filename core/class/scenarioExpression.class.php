@@ -722,6 +722,7 @@ class scenarioExpression {
 			'#njour#' => (int) date('w'),
 			'#hostname#' => '"' . gethostname() . '"',
 			'#IP#' => '"' . network::getNetworkAccess('internal', 'ip') . '"',
+			'#trigger#' => (is_object($_scenario)) ? $_scenario->getRealTrigger() : '',
 		);
 		$replace2 = array();
 		preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
