@@ -23,13 +23,12 @@ if (config::byKey('market::showPromotion') == 1) {
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="#" class="bt_updateAll" data-level="0" data-mode="">{{Tout}}</a></li>
-                    <li><a href="#" class="bt_updateAll expertModeVisible" data-level="0" data-mode="force">{{Tout forcer}}</a></li>
-                    <li><a href="#" class="bt_updateAll" data-level="1" data-mode="">{{Plugins seulement}}</a></li>
-                    <li><a href="#" class="bt_updateAll expertModeVisible" data-level="1" data-mode="force">{{Plugins seulement forcés}}</a></li>
-                    <li><a href="#" class="bt_updateAll" data-level="-1" data-mode="">{{Jeedom seulement}}</a></li>
-                    <li><a href="#" class="bt_updateAll expertModeVisible" data-level="-1" data-mode="force">{{Jeedom seulement forcé}}</a></li>
-                    <li><a href="#" class="expertModeVisible" id="bt_reapplyUpdate">{{Réappliquer une mise à jour}}</a></li>
+                    <li><a href="#" class="bt_updateAll expertModeVisible" data-level="0" data-mode="force"> <i class="fa fa-gavel"></i> {{Tout forcer}}</a></li>
+                    <li><a href="#" class="bt_updateAll" data-level="1" data-mode=""><i class="fa fa-cube"></i> {{Plugins seulement}}</a></li>
+                    <li><a href="#" class="bt_updateAll expertModeVisible" data-level="1" data-mode="force"><i class="fa fa-cube"></i> <i class="fa fa-gavel"></i> {{Plugins seulement forcés}}</a></li>
+                    <li><a href="#" class="bt_updateAll" data-level="-1" data-mode=""><i class="fa fa-database"></i> {{Jeedom seulement}}</a></li>
+                    <li><a href="#" class="bt_updateAll expertModeVisible" data-level="-1" data-mode="force"><i class="fa fa-database"></i> <i class="fa fa-gavel"></i> {{Jeedom seulement forcé}}</a></li>
+                    <li><a href="#" class="expertModeVisible" id="bt_reapplyUpdate"><i class="fa fa-retweet"></i> {{Réappliquer une mise à jour}}</a></li>
                 </ul>
             </div>
         </div>
