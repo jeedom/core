@@ -471,7 +471,6 @@ install_dependency() {
     apt-get -y install \
         build-essential \
         curl \
-        ffmpeg \
         libarchive-dev \
         libav-tools \
         libjsoncpp-dev \
@@ -499,6 +498,9 @@ install_dependency() {
         systemd \
         unzip \
         usb-modeswitch
+
+    apt-get -y install \
+        ffmpeg \
 
     apt-get -y install \
         avconv \
