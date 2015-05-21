@@ -235,9 +235,9 @@ class jeedom {
 		}
 	}
 
-	public static function update($_mode = '', $_level = -1, $_system = 'no') {
+	public static function update($_mode = '', $_level = -1, $_version = '', $__onlyThisVersion = '') {
 		log::clear('update');
-		$cmd = 'php ' . dirname(__FILE__) . '/../../install/install.php mode=' . $_mode . ' level=' . $_level . ' system=' . $_system;
+		$cmd = 'php ' . dirname(__FILE__) . '/../../install/install.php mode=' . $_mode . ' level=' . $_level . ' version=' . $_version . ' onlyThisVersion=' . $__onlyThisVersion;
 		$cmd .= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
 		exec($cmd);
 	}
