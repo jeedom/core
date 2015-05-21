@@ -469,7 +469,6 @@ optimize_webserver_cache() {
 install_dependency() {
     apt-get update && \
     apt-get -y install \
-        avconv \
         build-essential \
         curl \
         ffmpeg \
@@ -479,7 +478,6 @@ install_dependency() {
         libpcre3-dev \
         libssh2-php \
         libtinyxml-dev \
-        libudev1 \
         libxml2 \
         make \
         miniupnpc \
@@ -500,8 +498,11 @@ install_dependency() {
         python-serial \
         systemd \
         unzip \
-        usb-modeswitch \
-    && apt-get clean
+        usb-modeswitch
+
+    apt-get -y install \
+        avconv \
+        libudev1
 
     pecl install oauth
     if [ $? -eq 0 ] ; then
@@ -514,6 +515,7 @@ install_dependency() {
     fi
 
     install_nodejs
+
     apt-get autoremove
 }
 
