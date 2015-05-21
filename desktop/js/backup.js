@@ -181,7 +181,7 @@
                 return;
             }
             var log = '';
-            if(isset(data.result) && $.isArray(data.result)){
+            if($.isArray(data.result)){
                 for (var i in data.result.reverse()) {
                     log += data.result[i][2];
                     if ($.trim(data.result[i][2]) == '[END ' + _log.toUpperCase() + ' SUCCESS]') {
