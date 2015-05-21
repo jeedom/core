@@ -31,7 +31,7 @@
 });
 
  $('#bt_reapplyUpdate').on('click', function () {
-  $('#md_specifyUpdate').dialog({title: "{{Reapplication d'une mise à jour spécifique}}"});
+  $('#md_specifyUpdate').dialog({title: "{{Options}}"});
   $("#md_specifyUpdate").dialog('open');
 });
 
@@ -45,7 +45,7 @@
         mode: mode,
         level: level,
         version : $('#sel_updateVersion').value(),
-        onlyThisVersion : ($('#cb_allFromThisUpdate').value() == 1) ? 'no','yes',
+        onlyThisVersion : ($('#cb_allFromThisUpdate').value() == 1) ? 'no':'yes',
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },

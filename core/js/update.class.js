@@ -36,8 +36,8 @@ jeedom.update.doAll = function (_params) {
         action: 'updateAll',
         level: _params.level,
         mode: _params.mode,
-        version: _params.version || ''
-        onlyThisVersion: _params.onlyThisVersion || ''
+        version: _params.version || '',
+        onlyThisVersion: _params.onlyThisVersion || '',
     };
     $.ajax(paramsAJAX);
 }
