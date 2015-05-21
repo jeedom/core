@@ -500,7 +500,7 @@ install_dependency() {
         usb-modeswitch
 
     apt-get -y install \
-        ffmpeg \
+        ffmpeg
 
     apt-get -y install \
         avconv \
