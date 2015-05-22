@@ -606,7 +606,7 @@ class scenarioExpression {
 			return -2;
 		}
 		$cmd->execCmd(null, 2);
-		return '"' . date($_format, strtotime($cmd->getCollectDate())) . '"';
+		return date($_format, strtotime($cmd->getCollectDate()));
 	}
 
 	public static function randomColor($_rangeLower, $_rangeHighter) {
