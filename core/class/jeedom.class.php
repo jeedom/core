@@ -393,60 +393,10 @@ class jeedom {
 			}
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
+		$minute = date('i');
+		$gi = date('Gi');
 		plugin::cron();
 
-		try {
-			if (date('i') % 10 == 0) {
-				eqLogic::checkAlive();
-				connection::cron();
-				if (config::byKey('jeeNetwork::mode') != 'slave') {
-					jeeNetwork::pull();
-				}
-				if (config::byKey('market::allowDNS') == 1) {
-					market::test();
-					if (!network::ngrok_run()) {
-						network::ngrok_start();
-					}
-					if (config::byKey('market::redirectSSH') == 1) {
-						if (!network::ngrok_run('tcp', 22, 'ssh')) {
-							network::ngrok_start('tcp', 22, 'ssh');
-						}
-					}
-				}
-			}
-		} catch (Exception $e) {
-
-		}
-		try {
-			if (date('Gi') == 202) {
-				log::chunk();
-				cron::clean();
-				self::checkSpaceLeft();
-				network::ngrok_stop();
-				network::ngrok_stop('tcp', 22, 'ssh');
-				if (config::byKey('market::allowDNS') == 1) {
-					if (!network::ngrok_run()) {
-						network::ngrok_start();
-					}
-					if (config::byKey('market::redirectSSH') == 1) {
-						if (!network::ngrok_run('tcp', 22, 'ssh')) {
-							network::ngrok_start('tcp', 22, 'ssh');
-						}
-					}
-				}
-
-			}
-		} catch (Exception $e) {
-			log::add('log', 'error', $e->getMessage());
-		}
-		try {
-			if (date('Gi') == 2320) {
-				scenario::cleanTable();
-				user::cleanOutdatedUser();
-			}
-		} catch (Exception $e) {
-			log::add('scenario', 'error', $e->getMessage());
-		}
 		try {
 			$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
 			if ($c->isDue()) {
@@ -477,6 +427,60 @@ class jeedom {
 		} catch (Exception $e) {
 			log::add('cache', 'error', 'Clean cache : ' . $e->getMessage());
 		}
+
+		try {
+			if ($minute % 10 == 0) {
+				eqLogic::checkAlive();
+				connection::cron();
+				if (config::byKey('jeeNetwork::mode') != 'slave') {
+					jeeNetwork::pull();
+				}
+				if (config::byKey('market::allowDNS') == 1) {
+					market::test();
+					if (!network::ngrok_run()) {
+						network::ngrok_start();
+					}
+					if (config::byKey('market::redirectSSH') == 1) {
+						if (!network::ngrok_run('tcp', 22, 'ssh')) {
+							network::ngrok_start('tcp', 22, 'ssh');
+						}
+					}
+				}
+			}
+		} catch (Exception $e) {
+
+		}
+		try {
+			if ($gi == 202) {
+				log::chunk();
+				cron::clean();
+				self::checkSpaceLeft();
+				network::ngrok_stop();
+				network::ngrok_stop('tcp', 22, 'ssh');
+				if (config::byKey('market::allowDNS') == 1) {
+					if (!network::ngrok_run()) {
+						network::ngrok_start();
+					}
+					if (config::byKey('market::redirectSSH') == 1) {
+						if (!network::ngrok_run('tcp', 22, 'ssh')) {
+							network::ngrok_start('tcp', 22, 'ssh');
+						}
+					}
+				}
+
+			}
+		} catch (Exception $e) {
+			log::add('log', 'error', $e->getMessage());
+		}
+		try {
+			if ($gi == 2320) {
+				scenario::cleanTable();
+				user::cleanOutdatedUser();
+			}
+		} catch (Exception $e) {
+			log::add('scenario', 'error', $e->getMessage());
+		}
+
 		try {
 			network::cron();
 		} catch (Exception $e) {
