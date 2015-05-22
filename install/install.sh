@@ -467,23 +467,44 @@ optimize_webserver_cache() {
 
 
 install_dependency() {
-    apt-get update
-    apt-get install -y mysql-client mysql-common mysql-server mysql-server-core-5.5
-    apt-get install -y miniupnpc
-    apt-get install -y libssh2-php
-    apt-get install -y ntp
-    apt-get install -y unzip
-    apt-get install -y ffmpeg
-    apt-get install -y avconv
-    apt-get install -y php5-common php5-fpm php5-dev php5-cli php5-curl php5-json php5-mysql
-    apt-get install -y usb-modeswitch
-    apt-get install -y python-serial make php-pear libpcre3-dev build-essential
-    apt-get install -y libudev1
-    apt-get install -y systemd
-    apt-get install -y npm
-    apt-get install -y libtinyxml-dev
-    apt-get install -y libav-tools
-    apt-get install -y curl
+    apt-get update && \
+    apt-get -y install \
+        build-essential \
+        curl \
+        libarchive-dev \
+        libav-tools \
+        libjsoncpp-dev \
+        libpcre3-dev \
+        libssh2-php \
+        libtinyxml-dev \
+        libxml2 \
+        make \
+        miniupnpc \
+        mysql-client \
+        mysql-common \
+        mysql-server \
+        mysql-server-core-5.5 \
+        npm \
+        ntp \
+        php5-cli \
+        php5-common \
+        php5-curl \
+        php5-dev \
+        php5-fpm \
+        php5-json \
+        php5-mysql \
+        php-pear \
+        python-serial \
+        systemd \
+        unzip \
+        usb-modeswitch
+
+    apt-get -y install \
+        ffmpeg
+
+    apt-get -y install \
+        avconv \
+        libudev1
 
     pecl install oauth
     if [ $? -eq 0 ] ; then
@@ -495,9 +516,8 @@ install_dependency() {
         done
     fi
 
-    apt-get install -y libjsoncpp-dev libtinyxml-dev 
-    apt-get install -y libxml2 libarchive-dev 
     install_nodejs
+
     apt-get autoremove
 }
 
