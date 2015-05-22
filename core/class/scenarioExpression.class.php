@@ -605,8 +605,8 @@ class scenarioExpression {
 		if ($cmd->getType() != 'info') {
 			return -2;
 		}
-		$cmd->execCmd();
-		return date($_format, strtotime($cmd->getCollectDate()));
+		$cmd->execCmd(null, 2);
+		return '"' . date($_format, strtotime($cmd->getCollectDate())) . '"';
 	}
 
 	public static function randomColor($_rangeLower, $_rangeHighter) {
@@ -805,9 +805,6 @@ class scenarioExpression {
 			if (is_array($options) && $this->getExpression() != 'wait') {
 				foreach ($options as $key => $value) {
 					$options[$key] = str_replace('"', '', self::setTags($value, $scenario));
-					if (evaluate($options[$key]) != 0) {
-						$options[$key] = evaluate($options[$key]);
-					}
 				}
 			}
 			if ($this->getType() == 'action') {
@@ -945,6 +942,11 @@ class scenarioExpression {
 							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName() . __(" avec comme option(s) : \n", __FILE__) . print_r($options, true));
 						} else {
 							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName());
+						}
+						if ($cmd->getSubtype() == 'slider') {
+							foreach ($options as $key => $value) {
+								$options[$key] = evaluate($value);
+							}
 						}
 						return $cmd->execCmd($options);
 					}
