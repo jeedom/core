@@ -347,12 +347,12 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                 <legend>{{Wifi && IP statique}}</legend>
                 <?php
 if (!network::canManageNetwork()) {
-	echo '<div class="alert alert-danger">{{Jeedom ne peut gérer le réseau veuillez vérifier si}} : <br/>';
+	echo '<div class="alert alert-warning">{{Jeedom ne peut gérer le réseau veuillez vérifier si}} : <br/>';
 	echo '- {{ifenslave n\'est pas installé, pour l\'installer, faire en ssh : sudo apt-get install ifenslave-2.6}} <br/>';
 	echo '- {{le module bonding n\'est pas chargé, en ssh regarder si il y a bien "bonding" dans /etc/modules sinon l\'ajouter à la fin et redémarrer}}';
 	echo '</div>';
 } else if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
-	echo '<div class="alert alert-danger">{{Fonctionalité non disponible sur votre système}}</div>';
+	echo '<div class="alert alert-warning">{{Fonctionalité non disponible sur votre système}}</div>';
 } else {
 	?>
                     <div class="form-group">
@@ -411,7 +411,7 @@ if (!network::canManageNetwork()) {
                 </div>
             </div>
             <div class="alert alert-info">{{Toute modification nécessite de redémarrer le service DNS Jeedom (ligne "Gestion" puis "Redémarrer")}}</div>
-            <div class="alert alert-danger expertModeVisible">
+            <div class="alert alert-warning expertModeVisible">
                 <div class="form-group">
                     <label class="col-xs-4 control-label" title="{{A ne faire que si on vous le demande ou en connaissance de cause}}">{{Rediriger le SSH}}</label>
                     <div class="col-xs-8">
