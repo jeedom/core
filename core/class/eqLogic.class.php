@@ -798,7 +798,7 @@ class eqLogic {
 
 	public function getCmd($_type = null, $_logicalId = null, $_visible = null, $_multiple = false) {
 		if ($_logicalId != null) {
-			return cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple);
+			return cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple, $_type);
 		}
 		return cmd::byEqLogicId($this->id, $_type, $_visible, $this);
 	}
