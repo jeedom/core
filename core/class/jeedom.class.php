@@ -393,14 +393,10 @@ class jeedom {
 			}
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
-		$currentTime = new \DateTime($currentTime);
-		$minute = date('i');
 		$gi = date('Gi');
-		plugin::cron();
-
 		try {
 			$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
-			if ($c->isDue($currentTime)) {
+			if ($c->isDue()) {
 				$lastCheck = strtotime(config::byKey('update::lastCheck'));
 				if ((strtotime('now') - $lastCheck) > 3600) {
 					if (config::byKey('update::auto') == 1) {
@@ -417,14 +413,15 @@ class jeedom {
 				}
 			}
 			$c = new Cron\CronExpression('35 00 * * 0', new Cron\FieldFactory);
-			if ($c->isDue($currentTime)) {
+			if ($c->isDue()) {
 				cache::clean();
 				DB::optimize();
 			}
 		} catch (Exception $e) {
 
 		}
-		if ($minute % 10 == 0) {
+		plugin::cron();
+		if ($gi % 10 == 0) {
 			try {
 				eqLogic::checkAlive();
 				connection::cron();
