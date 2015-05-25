@@ -156,7 +156,8 @@ function displayWidgetSubtype($_name) {
 					<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('cost', '');?>"><i class="fa fa-times"></i></a>
 				</div>
 			</div>
-			<?php }?>
+			<?php }
+?>
 			<div class="form-group">
 				<div class="btn-group" >
 					<a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'newest') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('timeState', 'newest');?>">Nouveau</a>
@@ -201,6 +202,22 @@ foreach (market::distinctCategorie($type) as $id => $category) {
 		<div class="form-group">
 			<input class="form-control" data-href='<?php echo buildUrl('name', '');?>' placeholder="Rechercher" id="in_search" value="<?php echo $name?>"/>
 			<a class="btn btn-success" id="bt_search" data-href='<?php echo buildUrl('name', '');?>'><i class="fa fa-search"></i></a>
+		</div>
+		<div class="form-group">
+<?php
+if (config::byKey('market::username') != '') {
+	echo '<span class="label label-info pull-right" style="font-size : 1em;">' . config::byKey('market::username');
+	try {
+		market::test();
+		echo ' <i class="fa fa-check"></i>';
+	} catch (Exception $e) {
+		echo ' <i class="fa fa-times"></i>';
+	}
+	echo '</span>';
+}
+
+?>
+
 		</div>
 	</form>
 </div>
