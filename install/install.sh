@@ -14,11 +14,10 @@
 install_msg_en() {
     msg_installer_welcome="*      Welcome to the Jeedom installer/updater        *"
     msg_usage1="Usage: $0 [<webserver_name>]"
-    msg_usage2="            webserver_name can be 'apache' or 'nginx_ssl' or 'nginx' (default)"
+    msg_usage2="            webserver_name can be 'nginx_ssl' or 'nginx' (default)"
     msg_manual_install_nodejs_ARM="*          Manual installation of nodeJS for ARM       *"
     msg_manual_install_nodejs_RPI="*     Manual installation of nodeJS for Raspberry      *"
     msg_nginx_config="*                  NGINX configuration                 *"
-    msg_apache_config="*                  APACHE configuration                *"
     msg_question_install_jeedom="Are you sure you want to install Jeedom?"
     msg_warning_install_jeedom="Warning: this will overwrite the default ${ws_upname} configuration if it exists!"
     msg_warning_overwrite_jeedom="Warning: your existing Jeedom installation will be overwritten!"
@@ -62,11 +61,10 @@ install_msg_en() {
 install_msg_fr() {
     msg_installer_welcome="*Bienvenue dans l'assistant d'intallation/mise à jour de Jeedom*"
     msg_usage1="Utilisation: $0 [<nom_du_webserver>]"
-    msg_usage2="             nom_du_webserver peut être 'apache' ou 'nginx_ssl' ou 'nginx' (par défaut)"
+    msg_usage2="             nom_du_webserver peut être 'nginx_ssl' ou 'nginx' (par défaut)"
     msg_manual_install_nodejs_ARM="*        Installation manuelle de nodeJS pour ARM       *"
     msg_manual_install_nodejs_RPI="*     Installation manuelle de nodeJS pour Raspberry    *"
     msg_nginx_config="*                Configuration de NGINX                *"
-    msg_apache_config="*                Configuration de APACHE               *"
     msg_question_install_jeedom="Etes-vous sûr de vouloir installer Jeedom ?"
     msg_warning_install_jeedom="Attention : ceci écrasera la configuration par défaut de ${ws_upname} si elle existe !"
     msg_warning_overwrite_jeedom="Attention : votre installation existante de Jeedom va être écrasée !"
@@ -110,11 +108,10 @@ install_msg_fr() {
 install_msg_de() {
     msg_installer_welcome="*      Willkommen beim Jeedom Installer / Updater        *"
     msg_usage1="Einsatz: $0 [<Name_des_Webservers>]"
-    msg_usage2="            Webserver_Name kann "Apache" oder "nginx_ssl" oder "nginx" (Standard) sein"
+    msg_usage2="            Webserver_Name kann "nginx_ssl" oder "nginx" (Standard) sein"
     msg_manual_install_nodejs_ARM="*          Manuelle Installation von nodejs für ARM      *"
     msg_manual_install_nodejs_RPI="*     Manuelle Installation von nodejs für Raspberry     *"
     msg_nginx_config="*                  NGINX Konfiguration                 *"
-    msg_apache_config="*                  APACHE Konfiguration                *"
     msg_question_install_jeedom="Sind Sie sicher, dass Sie Jeedom installieren wollen?"
     msg_warning_install_jeedom="Warnung: Diese überschreibt die Standard Konfiguration ${ws_upname}, falls vorhanden!"
     msg_warning_overwrite_jeedom="Warnung: Ihr vorhandene Jeedom Installation wird überschrieben!"
@@ -345,24 +342,6 @@ configure_nginx_ssl() {
 }
 
 
-configure_apache() {
-    echo "********************************************************"
-    echo "${msg_apache_config}"
-    echo "********************************************************"
-    cp install/apache_default /etc/apache2/sites-available/000-default.conf
-    if [ ! -f '/etc/apache2/sites-enabled/000-default.conf' ] ; then
-        a2ensite 000-default.conf
-    fi
-    service apache2 restart
-
-    croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
-    cronjob="* * * * * $croncmd"
-    ( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
-
-    configure_php
-}
-
-
 is_version_greater_or_equal() {
     # Compare two "X.Y.Z" formated versions
     # Return 0 if $1 is lesser than $2
@@ -468,22 +447,39 @@ optimize_webserver_cache() {
 
 install_dependency() {
     apt-get update
-    apt-get install -y mysql-client mysql-common mysql-server mysql-server-core-5.5
-    apt-get install -y miniupnpc
-    apt-get install -y libssh2-php
-    apt-get install -y ntp
-    apt-get install -y unzip
-    apt-get install -y ffmpeg
-    apt-get install -y avconv
-    apt-get install -y php5-common php5-fpm php5-dev php5-cli php5-curl php5-json php5-mysql
-    apt-get install -y usb-modeswitch
-    apt-get install -y python-serial make php-pear libpcre3-dev build-essential
-    apt-get install -y libudev1
-    apt-get install -y systemd
-    apt-get install -y npm
-    apt-get install -y libtinyxml-dev
-    apt-get install -y libav-tools
-    apt-get install -y curl
+    apt-get -y install
+    apt-get -y install build-essential
+    apt-get -y install curl
+    apt-get -y install libarchive-dev
+    apt-get -y install libav-tools
+    apt-get -y install libjsoncpp-dev
+    apt-get -y install libpcre3-dev
+    apt-get -y install libssh2-php
+    apt-get -y install libtinyxml-dev
+    apt-get -y install libxml2
+    apt-get -y install make
+    apt-get -y install miniupnpc
+    apt-get -y install mysql-client
+    apt-get -y install mysql-common
+    apt-get -y install mysql-server
+    apt-get -y install mysql-server-core-5.5
+    apt-get -y install npm
+    apt-get -y install ntp
+    apt-get -y install php5-cli
+    apt-get -y install php5-common
+    apt-get -y install php5-curl
+    apt-get -y install php5-dev
+    apt-get -y install php5-fpm
+    apt-get -y install php5-json
+    apt-get -y install php5-mysql
+    apt-get -y install php-pear
+    apt-get -y install python-serial
+    apt-get -y install systemd
+    apt-get -y install unzip
+    apt-get -y install usb-modeswitch
+    apt-get -y install ffmpeg
+    apt-get -y install avconv
+    apt-get -y install libudev1
 
     pecl install oauth
     if [ $? -eq 0 ] ; then
@@ -495,37 +491,14 @@ install_dependency() {
         done
     fi
 
-    apt-get install -y libjsoncpp-dev libtinyxml-dev 
-    apt-get install -y libxml2 libarchive-dev 
     install_nodejs
+
     apt-get autoremove
 }
 
 
 install_dependency_nginx() {
     apt-get install -y nginx-common nginx-full
-}
-
-
-install_dependency_apache() {
-    # Packages dependencies
-    apt-get install -y apache2 libapache2-mod-php5 autoconf make subversion
-    svn checkout http://svn.apache.org/repos/asf/httpd/httpd/tags/2.2.22/ httpd-2.2.22
-    wget --no-check-certificate http://cafarelli.fr/gentoo/apache-2.2.24-wstunnel.patch
-    cd httpd-2.2.22
-    patch -p1 < ../apache-2.2.24-wstunnel.patch
-    svn co http://svn.apache.org/repos/asf/apr/apr/branches/1.4.x srclib/apr
-    svn co http://svn.apache.org/repos/asf/apr/apr-util/branches/1.3.x srclib/apr-util
-    ./buildconf
-    ./configure --enable-proxy=shared --enable-proxy_wstunnel=shared
-    make
-    cp modules/proxy/.libs/mod_proxy{_wstunnel,}.so /usr/lib/apache2/modules/
-    chmod 644 /usr/lib/apache2/modules/mod_proxy{_wstunnel,}.so
-    echo "# Depends: proxy\nLoadModule proxy_wstunnel_module /usr/lib/apache2/modules/mod_proxy_wstunnel.so" | tee -a /etc/apache2/mods-available/proxy_wstunnel.load
-    a2enmod proxy_wstunnel
-    a2enmod proxy_http
-    a2enmod proxy
-    service apache2 restart
 }
 
 
@@ -549,17 +522,12 @@ if [ $(id -u) != 0 ] ; then
     exit 1
 fi
 
-# Check that the provided ${webserver} is supported [nginx,apache]
+# Check that the provided ${webserver} is supported [nginx]
 case ${webserver} in
     nginx)
         # Configuration
         webserver_home="/usr/share/nginx/www"
         croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
-    ;;
-    apache)
-        # Configuration
-        webserver_home="/var/www"
-        croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
     ;;
     nginx_ssl)
         # Configuration
@@ -626,10 +594,6 @@ install_dependency
 if [ "${webserver}" = "nginx" ] ; then 
     # Packages dependencies
     install_dependency_nginx
-fi
-
-if [ "${webserver}" = "apache" ] ; then 
-    install_dependency_apache
 fi
 
 echo "${msg_passwd_mysql}"
@@ -719,9 +683,6 @@ case ${webserver} in
     nginx)
         configure_nginx
     ;;
-    apache)
-        configure_apache
-    ;;
 esac
 
 echo "********************************************************"
@@ -751,12 +712,6 @@ if [ -d /etc/systemd/system ] ; then
     systemctl enable jeedom
 fi
 
-if [ "${webserver}" = "apache" ] ; then 
-    sed -i 's%PATH_TO_JEEDOM="/usr/share/nginx/www/jeedom"%PATH_TO_JEEDOM="/var/www/jeedom"%g' /etc/init.d/jeedom
-    if [ -d /etc/systemd/system ] ; then
-        sed -i 's%/usr/share/nginx/www/jeedom%/var/www/jeedom%g' /etc/systemd/system/jeedom.service
-    fi
-fi
 service jeedom start
 
 echo "********************************************************"
