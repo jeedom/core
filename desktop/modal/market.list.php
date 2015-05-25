@@ -217,7 +217,6 @@ if (config::byKey('market::username') != '') {
 }
 
 ?>
-
 		</div>
 	</form>
 </div>
