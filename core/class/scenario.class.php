@@ -438,10 +438,15 @@ class scenario {
 		return $text;
 	}
 
-	public static function byUsedCommand($_cmd_id) {
+	public static function byUsedCommand($_cmd_id, $_variable = false) {
 		$scenarios = null;
-		$return = self::byTrigger($_cmd_id);
-		$expressions = scenarioExpression::searchExpression('#' . $_cmd_id . '#');
+		if ($_variable) {
+			$return = array();
+			$expressions = scenarioExpression::searchExpression($_cmd_id);
+		} else {
+			$return = self::byTrigger($_cmd_id);
+			$expressions = scenarioExpression::searchExpression('#' . $_cmd_id . '#');
+		}
 		if (is_array($expressions)) {
 			foreach ($expressions as $expression) {
 				$scenarios[] = $expression->getSubElement()->getElement()->getScenario();

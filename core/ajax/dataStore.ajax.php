@@ -17,46 +17,57 @@
  */
 
 try {
-    require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
-    include_file('core', 'authentification', 'php');
+	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+	include_file('core', 'authentification', 'php');
 
-    if (!isConnect()) {
-        throw new Exception(__('401 - Accès non autorisé', __FILE__));
-    }
+	if (!isConnect()) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__));
+	}
 
-    if (init('action') == 'remove') {
-        $dataStore = dataStore::byId(init('id'));
-        if (!is_object($dataStore)) {
-            throw new Exception(__('Data store inconnu vérifer l\'id : ', __FILE__) . init('id'));
-        }
-        $dataStore->remove();
-        ajax::success();
-    }
+	if (init('action') == 'remove') {
+		$dataStore = dataStore::byId(init('id'));
+		if (!is_object($dataStore)) {
+			throw new Exception(__('Data store inconnu vérifer l\'id : ', __FILE__) . init('id'));
+		}
+		$dataStore->remove();
+		ajax::success();
+	}
 
-    if (init('action') == 'save') {
-        if (init('id') == '') {
-            $dataStore = new dataStore();
-            $dataStore->setKey(init('key'));
-            $dataStore->setLink_id(init('link_id'));
-            $dataStore->setType(init('type'));
-        } else {
-            $dataStore = dataStore::byId(init('id'));
-        }
-        if (!is_object($dataStore)) {
-            throw new Exception(__('Data store inconnu vérifer l\'id : ', __FILE__) . init('id'));
-        }
-        $dataStore->setValue(init('value'));
-        $dataStore->save();
-        ajax::success();
-    }
+	if (init('action') == 'save') {
+		if (init('id') == '') {
+			$dataStore = new dataStore();
+			$dataStore->setKey(init('key'));
+			$dataStore->setLink_id(init('link_id'));
+			$dataStore->setType(init('type'));
+		} else {
+			$dataStore = dataStore::byId(init('id'));
+		}
+		if (!is_object($dataStore)) {
+			throw new Exception(__('Data store inconnu vérifer l\'id : ', __FILE__) . init('id'));
+		}
+		$dataStore->setValue(init('value'));
+		$dataStore->save();
+		ajax::success();
+	}
 
-    if (init('action') == 'all') {
-        ajax::success(utils::o2a(dataStore::byTypeLinkId(init('type'))));
-    }
+	if (init('action') == 'all') {
+		$datastores = utils::o2a(dataStore::byTypeLinkId(init('type')));
+		if (init('usedBy') == 1) {
+			foreach ($datastores as &$datastore) {
+				$datastore['usedBy'] = array(
+					'scenario' => array(),
+				);
+				foreach (scenario::byUsedCommand($datastore['key'], true) as $scenario) {
+					$datastore['usedBy']['scenario'][] = $scenario->getHumanName();
+				}
+			}
+		}
+		ajax::success($datastores);
+	}
 
-    throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
-    /*     * *********Catch exeption*************** */
+	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-    ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayExeption($e), $e->getCode());
 }
 ?>

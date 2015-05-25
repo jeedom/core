@@ -66,7 +66,8 @@ class scenarioExpression {
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM ' . __CLASS__ . '
-        WHERE expression LIKE :expression';
+        WHERE expression LIKE :expression
+        	OR options LIKE :expression';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
