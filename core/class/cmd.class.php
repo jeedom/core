@@ -995,6 +995,8 @@ class cmd {
 		if (strpos($_value, 'error') === false) {
 			$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
 			$this->addHistoryValue($value, $this->getCollectDate());
+		} else {
+			$this->addHistoryValue(null, $this->getCollectDate());
 		}
 		$this->checkReturnState($value);
 		$this->checkCmdAlert($_value);
@@ -1117,7 +1119,7 @@ class cmd {
 	}
 
 	public function addHistoryValue($_value, $_datetime = '') {
-		if ($_value !== '' && $this->getIsHistorized() == 1 && $this->getType() == 'info' && $_value <= $this->getConfiguration('maxValue', $_value) && $_value >= $this->getConfiguration('minValue', $_value)) {
+		if ($_value === null || ($_value !== '' && $this->getIsHistorized() == 1 && $this->getType() == 'info' && $_value <= $this->getConfiguration('maxValue', $_value) && $_value >= $this->getConfiguration('minValue', $_value))) {
 			$hitory = new history();
 			$hitory->setCmd_id($this->getId());
 			$hitory->setValue($_value);
