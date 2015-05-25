@@ -373,12 +373,13 @@ foreach ($markets as $market) {
 	echo '</span>';
 	if ($market->getCost() > 0) {
 		echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">';
-		if ($market->getCost() != $market->getRealCost()) {
-			echo '<span style="text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
-		}
-		echo number_format($market->getCost(), 2) . ' €';
 		if ($market->getPurchase() == 1) {
-			echo ' <i class="fa fa-check"></i>';
+			echo ' <i class="fa fa-check-circle"></i>';
+		} else {
+			if ($market->getCost() != $market->getRealCost()) {
+				echo '<span style="text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
+			}
+			echo number_format($market->getCost(), 2) . ' €';
 		}
 		echo '</span>';
 	} else {
