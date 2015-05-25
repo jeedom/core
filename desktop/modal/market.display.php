@@ -96,7 +96,8 @@ if ($market->getPurchase() == 1) {
 if (is_object($update)) {
 	?>
     <a class="btn btn-danger" style="color : white;" id="bt_removeFromMarket" data-market_id="<?php echo $market->getId();?>" ><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
-    <?php }?>
+    <?php }
+?>
     <br/><br/>
     <?php
 if ($market->getCost() > 0) {
@@ -136,16 +137,17 @@ foreach ($market->getImg('screenshot') as $screenshot) {
 	?>
       </div>
   </div>
-  <?php }?>
+  <?php }
+?>
 
   <br/>
   <div class='row'>
     <div class='col-sm-6'>
         <legend>Description</legend>
         <span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
-              <br/><br/>
-      <legend>{{Compatibilité plateforme}}</legend>
-      <?php
+        <br/><br/>
+        <legend>{{Compatibilité plateforme}}</legend>
+        <?php
 if ($market->getHardwareCompatibility('DIY') == 1) {
 	echo '<img src="core/img/logo_diy.png" style="width:60px;height:60px;" />';
 }
@@ -159,11 +161,11 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
 	echo '<img src="core/img/logo_jeedomboard.png" style="width:60px;height:60px;" />';
 }
 ?>
-    </div>
-    <div class='col-sm-6'>
-        <legend>Nouveautés <a class="btn btn-xs btn-default pull-right" id="bt_viewCompleteChangelog"><i class="fa fa-eye"></i> {{Tout voir}}</a></legend>
-        <span class="marketAttr" data-l1key="changelog" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
-    </div>
+   </div>
+   <div class='col-sm-6'>
+    <legend>Nouveautés <a class="btn btn-xs btn-default pull-right" id="bt_viewCompleteChangelog"><i class="fa fa-eye"></i> {{Tout voir}}</a></legend>
+    <span class="marketAttr" data-l1key="changelog" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
+</div>
 </div>
 <br/>
 <div class='row'>
@@ -183,7 +185,8 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
                             <span><input type="number" class="rating" id="in_myRating" data-max="5" data-empty-value="0" data-min="1" data-clearable="Effacer" value="<?php echo $market->getRating('user')?>" /></span>
                         </div>
                     </div><br/>
-                    <?php }?>
+                    <?php }
+?>
                     <center>
                         <a class="btn btn-default" id="bt_viewComment"><i class="fa fa-comments-o"></i> {{Commentaires}} (<?php echo $market->getNbComment();?>)</a>
                     </center>
@@ -209,31 +212,40 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
                 <label class="control-label">{{Lien}}</label><br/>
                 <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video');?>"><i class="fa fa-youtube"></i> Video</a><br/>
-                <?php }?>
+                <?php }
+?>
                 <?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') {?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum');?>"><i class="fa fa-users"></i> Forum</a><br/>
-                <?php }?>
+                <?php }
+?>
                 <?php if ($market->getLink('doc_fr_FR') != '' && $market->getLink('doc_fr_FR') != 'null') {?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_fr_FR');?>"><i class="fa fa-book"></i> Doc FR</a><br/>
-                <?php }?>
+                <?php }
+?>
                 <?php if ($market->getLink('doc_us_US') != '' && $market->getLink('doc_us_US') != 'null') {?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_us_US');?>"><i class="fa fa-book"></i> Doc US</a><br/>
-                <?php }?>
+                <?php }
+?>
                 <?php if ($market->getLink('doc_de_DE') != '' && $market->getLink('doc_de_DE') != 'null') {?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_de_DE');?>"><i class="fa fa-book"></i> Doc DE</a><br/>
-                <?php }?>
+                <?php }
+?>
                 <?php if ($market->getLink('doc_sp_SP') != '' && $market->getLink('doc_sp_SP') != 'null') {?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_sp_SP');?>"><i class="fa fa-book"></i> Doc SP</a><br/>
-                <?php }?>
+                <?php }
+?>
                 <?php if ($market->getLink('doc_ru_RU') != '' && $market->getLink('doc_ru_RU') != 'null') {?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_ru_RU');?>"><i class="fa fa-book"></i> Doc RU</a><br/>
-                <?php }?>
+                <?php }
+?>
                 <?php if ($market->getLink('doc_id_ID') != '' && $market->getLink('doc_id_ID') != 'null') {?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_id_ID');?>"><i class="fa fa-book"></i> Doc ID</a><br/>
-                <?php }?>
+                <?php }
+?>
                 <?php if ($market->getLink('doc_it_IT') != '' && $market->getLink('doc_it_IT') != 'null') {?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_it_IT');?>"><i class="fa fa-book"></i> Doc IT</a><br/>
-                <?php }?>
+                <?php }
+?>
             </div>
             <div class='col-sm-2'>
                 <label class="control-label">{{Nombre de téléchargements}}</label><br/>
@@ -402,8 +414,6 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
 $('.bt_installFromMarket').on('click', function () {
     var id = $(this).attr('data-market_id');
     var logicalId = $(this).attr('data-market_logicalId');
-
-
     jeedom.market.install({
         id: id,
         version: $(this).attr('data-version'),
@@ -411,9 +421,12 @@ $('.bt_installFromMarket').on('click', function () {
             $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
         },
  success: function (data) { // si l'appel a bien fonctionné
- var url = window.location.href;
- if (url.indexOf('p=plugin') > 0) {
-    window.location.href = 'index.php?v=d&p=plugin&id=' + logicalId;
+ if(market_display_info.type == 'plugin'){
+   bootbox.confirm('{{Voulez vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
+     if (result) {
+       window.location.href = 'index.php?v=d&p=plugin&id=' + logicalId;
+   }
+});
 }
 $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
 }
