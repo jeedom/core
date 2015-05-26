@@ -456,6 +456,7 @@ class jeedom {
 			try {
 				scenario::cleanTable();
 				user::cleanOutdatedUser();
+				scenario::consystencyCheck();
 
 			} catch (Exception $e) {
 				log::add('scenario', 'error', $e->getMessage());
