@@ -45,6 +45,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'health' => array('name' => 'Santé', 'icon' => 'icon loisir-runner5'),
 			'nature' => array('name' => 'Nature', 'icon' => 'icon nature-leaf32'),
 			'finance' => array('name' => 'Finance', 'icon' => 'fa fa-eur'),
+			'automatisation' => array('name' => 'Automatisme', 'icon' => 'fa fa-magic'),
 		),
 	),
 	'cmd' => array(
