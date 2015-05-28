@@ -433,7 +433,7 @@ class cmd {
 		return $cmd;
 	}
 
-	public static function cmdToValue($_input, $_quote = false) {
+	public static function cmdToValue($_input, $_quote = false, $_cacheOnly = false) {
 		if (is_object($_input)) {
 			$reflections = array();
 			$uuid = spl_object_hash($_input);
@@ -462,7 +462,11 @@ class cmd {
 			if (is_numeric($cmd_id)) {
 				$cmd = self::byId($cmd_id);
 				if (is_object($cmd) && $cmd->getType() == 'info') {
-					$cmd_value = $cmd->execCmd(null, 1, true, $_quote);
+					if ($_cacheOnly) {
+						$cmd_value = $cmd->execCmd(null, 2, true, $_quote);
+					} else {
+						$cmd_value = $cmd->execCmd(null, 1, true, $_quote);
+					}
 					if ($cmd->getSubtype() == "string" && substr($cmd_value, 0, 1) != '"' && substr($cmd_value, -1) != '"') {
 						$cmd_value = '"' . $cmd_value . '"';
 					}
