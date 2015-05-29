@@ -16,7 +16,7 @@
  */
 positionEqLogic();
 setTimeout(function () {
-    $('.div_displayEquipement').packery();
+    $('.div_displayEquipement').packery({"gutter" : 6,"rowHeight": 80});
 }, 2);
 
 
