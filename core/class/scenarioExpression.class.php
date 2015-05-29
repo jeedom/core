@@ -939,15 +939,13 @@ class scenarioExpression {
 				} else {
 					$cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
 					if (is_object($cmd)) {
+						if ($cmd->getSubtype() == 'slider' && isset($options['slider'])) {
+							$options['slider'] = evaluate($options['slider']);
+						}
 						if (is_array($options) && count($options) != 0) {
 							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName() . __(" avec comme option(s) : \n", __FILE__) . print_r($options, true));
 						} else {
 							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName());
-						}
-						if ($cmd->getSubtype() == 'slider') {
-							foreach ($options as $key => $value) {
-								$options[$key] = evaluate($value);
-							}
 						}
 						return $cmd->execCmd($options);
 					}
