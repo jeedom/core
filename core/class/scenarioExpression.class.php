@@ -920,7 +920,6 @@ class scenarioExpression {
 					try {
 						$result = evaluate($options['value']);
 						if (!is_numeric($result)) {
-							//Alors la valeur n'est pas un calcul
 							$result = $options['value'];
 						}
 					} catch (Exception $ex) {
@@ -940,7 +939,7 @@ class scenarioExpression {
 					$cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
 					if (is_object($cmd)) {
 						if ($cmd->getSubtype() == 'slider' && isset($options['slider'])) {
-							$options['slider'] = evaluate(scenarioExpression::setTags($options['slider']));
+							$options['slider'] = evaluate($options['slider']);
 						}
 						if (is_array($options) && count($options) != 0) {
 							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName() . __(" avec comme option(s) : \n", __FILE__) . print_r($options, true));
