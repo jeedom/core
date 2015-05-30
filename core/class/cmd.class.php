@@ -481,7 +481,6 @@ class cmd {
 						$replace['#' . $cmd_id . '#'] = trim(json_encode($cmd_value), '"');
 						$replace['#collectDate' . $cmd_id . '#'] = trim(json_encode($cmd->getCollectDate()), '"');
 					}
-
 				}
 			}
 		}
