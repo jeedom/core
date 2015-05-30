@@ -51,6 +51,8 @@ class log {
 		$maxLineLog = config::byKey('maxLineLog');
 		if ($maxLineLog < 200) {
 			$maxLineLog = 200;
+		} else {
+			$maxLineLog -= 2 * ($maxLineLog / 3);
 		}
 		if ($_log != '') {
 			$path = self::getPathToLog($_log);
