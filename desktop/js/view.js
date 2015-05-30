@@ -27,7 +27,7 @@ if (view_id != '') {
             setTimeout(function () {
                 positionEqLogic();
                 $('.eqLogicZone').each(function () {
-                    $(this).packery({"gutter" : 3});
+                    $(this).packery();
                 });
                 initTooltips();
             }, 10);
@@ -45,13 +45,13 @@ $('#bt_displayView').on('click', function () {
         $('#div_displayViewList').hide();
         $('#div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12');
         $('.div_displayEquipement').each(function () {
-            $(this).packery({"gutter" : 3});
+            $(this).packery();
         });
         $(this).attr('data-display', 0);
     } else {
         $('#div_displayViewList').show();
         $('#div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-8');
-        $('.div_displayEquipement').packery({"gutter" : 3});
+        $('.div_displayEquipement').packery();
         $(this).attr('data-display', 1);
     }
 });
