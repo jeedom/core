@@ -364,17 +364,20 @@ class cmd {
 			}
 			return $_input;
 		}
-		$text = $_input;
-		preg_match_all("/#([0-9]*)#/", $text, $matches);
+		$replace = array();
+		preg_match_all("/#([0-9]*)#/", $_input, $matches);
 		foreach ($matches[1] as $cmd_id) {
+			if (isset($replace['#' . $cmd_id . '#'])) {
+				continue;
+			}
 			if (is_numeric($cmd_id)) {
 				$cmd = self::byId($cmd_id);
 				if (is_object($cmd)) {
-					$text = str_replace('#' . $cmd_id . '#', '#' . $cmd->getHumanName() . '#', $text);
+					$replace['#' . $cmd_id . '#'] = '#' . $cmd->getHumanName() . '#';
 				}
 			}
 		}
-		return $text;
+		return str_replace(array_keys($replace), $replace, $_input);
 	}
 
 	public static function humanReadableToCmd($_input) {
@@ -408,21 +411,22 @@ class cmd {
 			}
 			return $_input;
 		}
-		$text = $_input;
-
-		preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $text, $matches);
+		$replace = array();
+		preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $_input, $matches);
 		if (count($matches) == 4) {
 			for ($i = 0; $i < count($matches[0]); $i++) {
+				if (isset($replace[$matches[0][$i]])) {
+					continue;
+				}
 				if (isset($matches[1][$i]) && isset($matches[2][$i]) && isset($matches[3][$i])) {
 					$cmd = self::byObjectNameEqLogicNameCmdName($matches[1][$i], $matches[2][$i], $matches[3][$i]);
 					if (is_object($cmd)) {
-						$text = str_replace($matches[0][$i], '#' . $cmd->getId() . '#', $text);
+						$replace[$matches[0][$i]] = '#' . $cmd->getId() . '#';
 					}
 				}
 			}
 		}
-
-		return $text;
+		return str_replace(array_keys($replace), $replace, $_input);
 	}
 
 	public static function byString($_string) {
@@ -457,26 +461,25 @@ class cmd {
 			return $_input;
 		}
 		$json = is_json($_input);
-		$text = $_input;
-		preg_match_all("/#([0-9]*)#/", $text, $matches);
+		$replace = array();
+		preg_match_all("/#([0-9]*)#/", $_input, $matches);
 		foreach ($matches[1] as $cmd_id) {
+			if (isset($replace['#' . $cmd_id . '#'])) {
+				continue;
+			}
 			if (is_numeric($cmd_id)) {
 				$cmd = self::byId($cmd_id);
 				if (is_object($cmd) && $cmd->getType() == 'info') {
-					if ($_cacheOnly) {
-						$cmd_value = $cmd->execCmd(null, 2, true, $_quote);
-					} else {
-						$cmd_value = $cmd->execCmd(null, 1, true, $_quote);
+					$cmd_value = ($_cacheOnly) ? $cmd->execCmd(null, 2, true, $_quote) : $cmd->execCmd(null, 1, true, $_quote);
+					if (!$json && $cmd->getSubtype() == "string") {
+						$cmd_value = '"' . trim($cmd_value, '"') . '"';
 					}
-					if (!$json && $cmd->getSubtype() == "string" && substr($cmd_value, 0, 1) != '"' && substr($cmd_value, -1) != '"') {
-						$cmd_value = '"' . $cmd_value . '"';
-					}
-					$text = str_replace('#' . $cmd_id . '#', trim(json_encode($cmd_value), '"'), $text);
-					$text = str_replace('#collectDate' . $cmd_id . '#', trim(json_encode($cmd->getCollectDate()), '"'), $text);
+					$replace['#' . $cmd_id . '#'] = trim(json_encode($cmd_value), '"');
+					$replace['#collectDate' . $cmd_id . '#'] = trim(json_encode($cmd->getCollectDate()), '"');
 				}
 			}
 		}
-		return $text;
+		return str_replace(array_keys($replace), $replace, $_input);
 	}
 
 	public static function allType() {
