@@ -456,6 +456,7 @@ class cmd {
 			}
 			return $_input;
 		}
+		$json = is_json($_input);
 		$text = $_input;
 		preg_match_all("/#([0-9]*)#/", $text, $matches);
 		foreach ($matches[1] as $cmd_id) {
@@ -467,10 +468,11 @@ class cmd {
 					} else {
 						$cmd_value = $cmd->execCmd(null, 1, true, $_quote);
 					}
-					if ($cmd->getSubtype() == "string" && substr($cmd_value, 0, 1) != '"' && substr($cmd_value, -1) != '"') {
+					if (!$json && $cmd->getSubtype() == "string" && substr($cmd_value, 0, 1) != '"' && substr($cmd_value, -1) != '"') {
 						$cmd_value = '"' . $cmd_value . '"';
 					}
-					$text = str_replace('#' . $cmd_id . '#', $cmd_value, $text);
+					$text = str_replace('#' . $cmd_id . '#', trim(json_encode($cmd_value), '"'), $text);
+					$text = str_replace('#collectDate' . $cmd_id . '#', trim(json_encode($cmd->getCollectDate()), '"'), $text);
 				}
 			}
 		}
