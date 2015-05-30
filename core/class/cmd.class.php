@@ -474,8 +474,14 @@ class cmd {
 					if (!$json && $cmd->getSubtype() == "string") {
 						$cmd_value = '"' . trim($cmd_value, '"') . '"';
 					}
-					$replace['#' . $cmd_id . '#'] = trim(json_encode($cmd_value), '"');
-					$replace['#collectDate' . $cmd_id . '#'] = trim(json_encode($cmd->getCollectDate()), '"');
+					if (!$json) {
+						$replace['#' . $cmd_id . '#'] = $cmd_value;
+						$replace['#collectDate' . $cmd_id . '#'] = $cmd->getCollectDate();
+					} else {
+						$replace['#' . $cmd_id . '#'] = trim(json_encode($cmd_value), '"');
+						$replace['#collectDate' . $cmd_id . '#'] = trim(json_encode($cmd->getCollectDate()), '"');
+					}
+
 				}
 			}
 		}
