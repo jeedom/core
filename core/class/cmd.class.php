@@ -437,7 +437,7 @@ class cmd {
 		return $cmd;
 	}
 
-	public static function cmdToValue($_input, $_quote = false, $_cacheOnly = false) {
+	public static function cmdToValue($_input, $_quote = false) {
 		if (is_object($_input)) {
 			$reflections = array();
 			$uuid = spl_object_hash($_input);
@@ -468,7 +468,7 @@ class cmd {
 				continue;
 			}
 			$mc = cache::byKey('cmd' . $cmd_id);
-			if (!$mc->hasExpired()) {
+			if (!$mc->hasExpired() && $mc->getValue() !== '') {
 				$collectDate = $mc->getOptions('collectDate', $mc->getDatetime());
 				$cmd_value = $mc->getValue();
 			} else {
@@ -476,7 +476,7 @@ class cmd {
 				if (!is_object($cmd)) {
 					continue;
 				}
-				$cmd_value = ($_cacheOnly) ? $cmd->execCmd(null, 2, true, $_quote) : $cmd->execCmd(null, 1, true, $_quote);
+				$cmd_value = $cmd->execCmd(null, 1, true, $_quote);
 				$collectDate = $cmd->getCollectDate();
 			}
 			if (!$json) {
