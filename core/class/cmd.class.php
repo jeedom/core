@@ -467,21 +467,24 @@ class cmd {
 			if (isset($replace['#' . $cmd_id . '#'])) {
 				continue;
 			}
-			if (is_numeric($cmd_id)) {
+			$mc = cache::byKey('cmd' . $cmd_id);
+			if (!$mc->hasExpired()) {
+				$collectDate = $mc->getOptions('collectDate', $mc->getDatetime());
+				$cmd_value = $mc->getValue();
+			} else {
 				$cmd = self::byId($cmd_id);
-				if (is_object($cmd) && $cmd->getType() == 'info') {
-					$cmd_value = ($_cacheOnly) ? $cmd->execCmd(null, 2, true, $_quote) : $cmd->execCmd(null, 1, true, $_quote);
-					if (!$json && $cmd->getSubtype() == "string") {
-						$cmd_value = '"' . trim($cmd_value, '"') . '"';
-					}
-					if (!$json) {
-						$replace['#' . $cmd_id . '#'] = $cmd_value;
-						$replace['#collectDate' . $cmd_id . '#'] = $cmd->getCollectDate();
-					} else {
-						$replace['#' . $cmd_id . '#'] = trim(json_encode($cmd_value), '"');
-						$replace['#collectDate' . $cmd_id . '#'] = trim(json_encode($cmd->getCollectDate()), '"');
-					}
+				if (!is_object($cmd)) {
+					continue;
 				}
+				$cmd_value = ($_cacheOnly) ? $cmd->execCmd(null, 2, true, $_quote) : $cmd->execCmd(null, 1, true, $_quote);
+				$collectDate = $cmd->getCollectDate();
+			}
+			if (!$json) {
+				$replace['#' . $cmd_id . '#'] = $cmd_value;
+				$replace['#collectDate' . $cmd_id . '#'] = $collectDate;
+			} else {
+				$replace['#' . $cmd_id . '#'] = trim(json_encode($cmd_value), '"');
+				$replace['#collectDate' . $cmd_id . '#'] = trim(json_encode($collectDate), '"');
 			}
 		}
 		return str_replace(array_keys($replace), $replace, $_input);
