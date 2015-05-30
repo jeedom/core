@@ -544,7 +544,7 @@ class jeedom {
 	}
 
 	public static function haltSystem() {
-		exec('sudo halt');
+		exec('sudo shutdown -h now');
 	}
 
 	public static function rebootSystem() {
