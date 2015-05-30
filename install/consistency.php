@@ -163,6 +163,7 @@ try {
 	cache::deleteBySearch('cmdWidgetdashboard');
 	cache::deleteBySearch('cmdWidgetmobile');
 	cache::deleteBySearch('scenarioHtmldashboard');
+	config::save('hardware_name', '');
 } catch (Exception $e) {
 	echo "Error : ";
 	echo $e->getMessage();
