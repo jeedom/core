@@ -36,35 +36,35 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{ID}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="id"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="id" style="font-size : 1em;"></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Logical ID}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="logicalId"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="logicalId" style="font-size : 1em;"></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Nom}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="name"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="name" style="font-size : 1em;"></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Type}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="type"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="type" style="font-size : 1em;"></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Sous-type}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="subType"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="subType" style="font-size : 1em;"></span>
                 </div>
               </div>
 
@@ -85,29 +85,29 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Unité}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="unite"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="unite" style="font-size : 1em;"></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Commande déclenchant une mise à jour}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="value"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="value" style="font-size : 1em;"></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Memcache}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary tooltips" data-l1key="cache" data-l2key="enable" title="{{Actif}}"></span>
-                  <span class="label label-default tooltips" title="{{Durée du cache}}"><span class="cmdAttr" data-l1key="cache" data-l2key="lifetime"></span> {{seconde(s)}}</span>
+                  <span class="cmdAttr label label-primary tooltips" data-l1key="cache" data-l2key="enable" title="{{Actif}}" style="font-size : 1em;"></span>
+                  <span class="label label-default tooltips" title="{{Durée du cache}}" style="font-size : 1em;"><span class="cmdAttr" data-l1key="cache" data-l2key="lifetime"></span> {{seconde(s)}}</span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Evènement seulement}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="eventOnly"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="eventOnly" style="font-size : 1em;"></span>
                 </div>
               </div>
 
@@ -134,7 +134,7 @@ $usedBy = $cmd->getUsedBy();
             <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
               <?php
 foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
-	echo '<span class="label label-primary cursor"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
+	echo '<span class="label label-primary cursor" style="font-size : 1em;"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
 }
 ?>
            </div>
@@ -144,7 +144,7 @@ foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
           <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
             <?php
 foreach ($usedBy['cmd'] as $usedByCmd) {
-	echo '<span class="label label-primary cursor"><a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" style="color : white;">' . $usedByCmd->getHumanName() . '</a></span><br/>';
+	echo '<span class="label label-primary cursor" style="font-size : 1em;"><a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" style="color : white;">' . $usedByCmd->getHumanName() . '</a></span><br/>';
 }
 ?>
          </div>
@@ -154,7 +154,7 @@ foreach ($usedBy['cmd'] as $usedByCmd) {
         <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
           <?php
 foreach ($usedBy['scenario'] as $usedByScneario) {
-	echo '<span class="label label-primary cursor"><a href="' . $usedByScneario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScneario->getHumanName() . '</a></span><br/>';
+	echo '<span class="label label-primary cursor" style="font-size : 1em;"><a href="' . $usedByScneario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScneario->getHumanName() . '</a></span><br/>';
 }
 ?>
        </div>
@@ -164,7 +164,7 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
       <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
         <?php
 foreach ($usedBy['interact'] as $usedByInteract) {
-	echo '<span class="label label-primary cursor"><a href="' . $usedByInteract->getLinkToConfiguration() . '" style="color : white;">' . $usedByInteract->getQuery() . '</a></span><br/>';
+	echo '<span class="label label-primary cursor" style="font-size : 1em;"><a href="' . $usedByInteract->getLinkToConfiguration() . '" style="color : white;">' . $usedByInteract->getQuery() . '</a></span><br/>';
 }
 ?>
      </div>
@@ -240,7 +240,8 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
       <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />
     </div>
   </div>
-  <?php }?>
+  <?php }
+?>
 
 
   <?php if ($cmd->getType() == 'action') {?>
@@ -256,7 +257,8 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
       <input type="password" class="cmdAttr form-control" data-l1key="configuration" data-l2key="actionCodeAccess" />
     </div>
   </div>
-  <?php }?>
+  <?php }
+?>
 
   <?php if ($cmd->getType() == 'info') {
 	?>
@@ -360,7 +362,8 @@ foreach (scenario::all() as $scenario) {
     <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
   </div>
 </div>
-<?php }?>
+<?php }
+?>
 <?php if ($cmd->getIsHistorized() == 1) {?>
 <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
@@ -392,7 +395,8 @@ foreach (scenario::all() as $scenario) {
    </select>
  </div>
 </div>
-<?php }?>
+<?php }
+?>
 <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push URL}}</label>
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
