@@ -799,10 +799,10 @@ class cmd {
 				$value = $this->getConfiguration('updateCmdToValue');
 				switch ($this->getSubType()) {
 					case 'slider':
-						$value = str_replace('#slider#', $_options['slider'], $value);
+						$value = str_replace('#slider#', $options['slider'], $value);
 						break;
 					case 'color':
-						$value = str_replace('#color#', $_options['color'], $value);
+						$value = str_replace('#color#', $options['color'], $value);
 						break;
 				}
 				$cmd->event($value);
