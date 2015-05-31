@@ -1,4 +1,4 @@
-/* Output widget for TableSorter 3/5/2015 (v2.21.0)
+/*! Widget: output - updated 5/17/2015 (v2.22.0) *//*
  * Requires tablesorter v2.8+ and jQuery 1.7+
  * Modified from:
  * HTML Table to CSV: http://www.kunalbabre.com/projects/table2CSV.php (License unknown?)
@@ -79,8 +79,8 @@ output = ts.output = {
 					}
 				}
 
-				// don't include hidden columns
-				if ( $this.css('display') !== 'none' ) {
+				// don't include hidden columns, unless option is set
+				if ( !wo.output_hiddenColumns && $this.css('display') !== 'none' ) {
 					// skip column if already defined
 					while (typeof tmpRow[rowIndex][cellIndex] !== 'undefined') { cellIndex++; }
 					tmpRow[rowIndex][cellIndex] = tmpRow[rowIndex][cellIndex] ||
@@ -160,7 +160,7 @@ output = ts.output = {
 		// callback; if true returned, continue processing
 		if ($.isFunction(wo.output_callback) && !wo.output_callback(c, mydata)) { return; }
 
-		if ( /p/.test( (wo.output_delivery || '').toLowerCase() ) ) {
+		if ( /p/i.test( wo.output_delivery || '' ) ) {
 			output.popup(mydata, wo.output_popupStyle, outputJSON || outputArray);
 		} else {
 			output.download(wo, mydata);
@@ -255,8 +255,9 @@ output = ts.output = {
 		// Use HTML5 Blob if browser supports it
 		if ( gotBlob ) {
 
-			window.URL = window.webkitURL || window.URL;
-			blob = new Blob([data], {type: wo.output_encoding});
+			window.URL = window.URL || window.webkitURL;
+			// prepend BOM for utf-8 encoding - see https://github.com/eligrey/FileSaver.js/blob/master/FileSaver.js#L140
+			blob = new Blob( [ '\ufeff', data ], { type: wo.output_encoding } );
 
 			if (nav.msSaveBlob) {
 				// IE 10+
@@ -294,6 +295,7 @@ ts.addWidget({
 	options: {
 		output_separator     : ',',         // set to "json", "array" or any separator
 		output_ignoreColumns : [],          // columns to ignore [0, 1,... ] (zero-based index)
+		output_hiddenColumns : false,       // include hidden columns in the output
 		output_includeFooter : false,       // include footer rows in the output
 		output_dataAttrib    : 'data-name', // header attrib containing modified header name
 		output_headerRows    : false,       // if true, include multiple header rows (JSON only)
@@ -314,7 +316,6 @@ ts.addWidget({
 		output_callbackJSON  : function($cell, txt, cellIndex) { return txt + '(' + (cellIndex) + ')'; },
 		// the need to modify this for Excel no longer exists
 		output_encoding      : 'data:application/octet-stream;charset=utf8,'
-
 	},
 	init: function(table, thisWidget, c) {
 		output.init(c);

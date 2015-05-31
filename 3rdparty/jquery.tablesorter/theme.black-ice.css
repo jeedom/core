@@ -17,7 +17,8 @@
 .tablesorter-blackice th,
 .tablesorter-blackice thead td  {
 	padding: 4px;
-	font: bold 13px/20px Arial, Sans-serif;
+	font: 13px/20px Arial, Sans-serif;
+	font-weight: bold;
 	color: #e5e5e5;
 	text-align: left;
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.7);
@@ -69,17 +70,18 @@
 }
 
 /* hovered row colors */
+.tablesorter-blackice tbody > tr.hover > td,
 .tablesorter-blackice tbody > tr:hover > td,
 .tablesorter-blackice tbody > tr.even:hover > td,
 .tablesorter-blackice tbody > tr.odd:hover > td {
-	background: #000;
+	background-color: #000;
 }
 
 /* table processing indicator */
 .tablesorter-blackice .tablesorter-processing {
 	background-position: center center !important;
 	background-repeat: no-repeat !important;
-	/* background-image: url(../addons/pager/icons/loading.gif) !important; */
+	/* background-image: url(images/loading.gif) !important; */
 	background-image: url('data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQBCgACACwAAAAAFAAUAAACQZRvoIDtu1wLQUAlqKTVxqwhXIiBnDg6Y4eyx4lKW5XK7wrLeK3vbq8J2W4T4e1nMhpWrZCTt3xKZ8kgsggdJmUFACH5BAEKAAIALAcAAAALAAcAAAIUVB6ii7jajgCAuUmtovxtXnmdUAAAIfkEAQoAAgAsDQACAAcACwAAAhRUIpmHy/3gUVQAQO9NetuugCFWAAAh+QQBCgACACwNAAcABwALAAACE5QVcZjKbVo6ck2AF95m5/6BSwEAIfkEAQoAAgAsBwANAAsABwAAAhOUH3kr6QaAcSrGWe1VQl+mMUIBACH5BAEKAAIALAIADQALAAcAAAIUlICmh7ncTAgqijkruDiv7n2YUAAAIfkEAQoAAgAsAAAHAAcACwAAAhQUIGmHyedehIoqFXLKfPOAaZdWAAAh+QQFCgACACwAAAIABwALAAACFJQFcJiXb15zLYRl7cla8OtlGGgUADs=') !important;
 }
 
@@ -116,12 +118,15 @@
 
 /* caption */
 caption {
-	background: #fff;
+	background-color: #fff;
 }
 
 /* filter widget */
+.tablesorter-blackice .tablesorter-filter-row {
+	background-color: #222;
+}
 .tablesorter-blackice .tablesorter-filter-row td {
-	background: #222;
+	background-color: #222;
 	line-height: normal;
 	text-align: center; /* center the input */
 	-webkit-transition: line-height 0.1s ease;
@@ -157,7 +162,8 @@ caption {
 	filter: alpha(opacity=0);
 }
 /* filters */
-.tablesorter-blackice .tablesorter-filter {
+.tablesorter-blackice input.tablesorter-filter,
+.tablesorter-blackice select.tablesorter-filter {
 	width: 98%;
 	height: auto;
 	margin: 0;
