@@ -479,6 +479,9 @@ class cmd {
 				$cmd_value = $cmd->execCmd(null, 1, true, $_quote);
 				$collectDate = $cmd->getCollectDate();
 			}
+			if ($_quote && strpos($cmd_value, ' ') !== false) {
+				$cmd_value = '"' . $cmd_value . '"';
+			}
 			if (!$json) {
 				$replace['#' . $cmd_id . '#'] = $cmd_value;
 				$replace['#collectDate' . $cmd_id . '#'] = $collectDate;
