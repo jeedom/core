@@ -233,7 +233,8 @@ WHERE `datetime`<:archiveDatetime';
 			$sql .= ' AND `datetime`<=:endTime';
 		}
 		$sql .= ' ) as dt
-ORDER BY `datetime` ASC ';
+ORDER BY `datetime` ASC
+LIMIT 15000 ';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
