@@ -239,11 +239,11 @@ jwerty.key('ctrl+s', function (e) {
   saveScenario();
 });
 
-$("#bt_saveScenario").on('click', function (event) {
+$("#bt_saveScenario,#bt_saveScenario2").on('click', function (event) {
   saveScenario();
 });
 
-$("#bt_delScenario").on('click', function (event) {
+$("#bt_delScenario,#bt_delScenario2").on('click', function (event) {
   $.hideAlert();
   bootbox.confirm('{{Etes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + $('.scenarioAttr[data-l1key=name]').value() + '</span> ?', function (result) {
     if (result) {
@@ -261,7 +261,7 @@ $("#bt_delScenario").on('click', function (event) {
   });
 });
 
-$("#bt_testScenario").on('click', function () {
+$("#bt_testScenario,#bt_testScenario2").on('click', function () {
   $.hideAlert();
   jeedom.scenario.changeState({
     id: $('.scenarioAttr[data-l1key=id]').value(),
