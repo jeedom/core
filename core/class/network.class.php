@@ -216,6 +216,10 @@ class network {
 		foreach ($_rules as $rule) {
 			$nginx_conf .= "\n" . $rule . "\n";
 		}
+		if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
+			touch('/etc/nginx/sites-available/jeedom_dynamic_rule');
+		}
+		shell_exec('sudo chmod 777 /etc/nginx/sites-available/jeedom_dynamic_rule');
 		file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $nginx_conf);
 		shell_exec('sudo service nginx reload');
 	}
@@ -254,6 +258,10 @@ class network {
 			return $result;
 		}
 		if ($change) {
+			if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
+				touch('/etc/nginx/sites-available/jeedom_dynamic_rule');
+			}
+			shell_exec('sudo chmod 777 /etc/nginx/sites-available/jeedom_dynamic_rule');
 			file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $result);
 			shell_exec('sudo service nginx reload');
 		}
