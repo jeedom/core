@@ -135,7 +135,7 @@ function refreshDataStoreMangementTable() {
                 tr += '</td>';
                 tr += '<td>';
                 for(var j in data.result[i].usedBy.scenario){
-                    tr += '<span class="label label-primary">'+data.result[i].usedBy.scenario[j]+'</span>';
+                    tr += '<span class="label label-primary">'+data.result[i].usedBy.scenario[j]+'</span> ';
                 }
                 tr += '</td>';
                 tr += '<td>';
