@@ -60,14 +60,21 @@ class scenarioExpression {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function searchExpression($_expression) {
+	public static function searchExpression($_expression, $_options = null, $_and = true) {
 		$values = array(
 			'expression' => '%' . $_expression . '%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM ' . __CLASS__ . '
-        WHERE expression LIKE :expression
-        	OR options LIKE :expression';
+        WHERE expression LIKE :expression';
+		if ($_options != null) {
+			$values['options'] = '%' . $_options . '%';
+			if ($_and) {
+				$sql .= ' AND options LIKE :options';
+			} else {
+				$sql .= ' OR options LIKE :options';
+			}
+		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 

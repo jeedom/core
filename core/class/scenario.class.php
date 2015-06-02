@@ -486,10 +486,10 @@ class scenario {
 		$scenarios = null;
 		if ($_variable) {
 			$return = array();
-			$expressions = scenarioExpression::searchExpression($_cmd_id);
+			$expressions = array_merge(scenarioExpression::searchExpression('variable(' . $_cmd_id . ')'), scenarioExpression::searchExpression('variable', $_cmd_id, true));
 		} else {
 			$return = self::byTrigger($_cmd_id);
-			$expressions = scenarioExpression::searchExpression('#' . $_cmd_id . '#');
+			$expressions = scenarioExpression::searchExpression('#' . $_cmd_id . '#', '#' . $_cmd_id . '#', false);
 		}
 		if (is_array($expressions)) {
 			foreach ($expressions as $expression) {
@@ -584,6 +584,7 @@ class scenario {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 			return false;
 		}
+
 		if ($this->getConfiguration('speedPriority', 0) == 0) {
 			$cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
 			$cmd .= ' scenario_id=' . $this->getId();

@@ -34,7 +34,7 @@ try {
 		}
 		switch (init('state')) {
 			case 'start':
-				$scenario->launch(init('force', false), 'Scenario lance manuellement par l\'utilisateur');
+				$scenario->launch(init('force', false), 'user', 'Scenario lance manuellement');
 				break;
 			case 'stop':
 				$scenario->stop();
