@@ -97,8 +97,8 @@ $('#bt_dataStoreManagementAdd').on('click', function() {
     tr += '<td>';
     tr += '</td>';
     tr += '<td>';
-    tr += '<a class="btn btn-success pull-right btn-xs bt_saveDataStore" style="color : white"><i class="fa fa-check"></i> {{Enregistrer}}</a>';
-    tr += '<a class="btn btn-danger pull-right btn-xs bt_removeDataStore" style="color : white"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
+    tr += '<a class="btn btn-success pull-right btn-xs bt_saveDataStore" style="color : white"><i class="fa fa-check"></i></a>';
+    tr += '<a class="btn btn-danger pull-right btn-xs bt_removeDataStore" style="color : white"><i class="fa fa-trash-o"></i></a>';
     tr += '</td>';
     tr += '</tr>';
     $('#table_dataStore tbody').append(tr);
