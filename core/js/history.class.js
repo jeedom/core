@@ -195,11 +195,8 @@ jeedom.history.drawChart = function (_params) {
                 case '1 month' :
                 dateRange = 4
                 break;
-                case '1 year' :
-                dateRange = 5
-                break;
                 case 'all' :
-                dateRange = 6
+                dateRange = 5
                 break;
             }
             var charts = {
@@ -249,10 +246,6 @@ jeedom.history.drawChart = function (_params) {
                     type: 'month',
                     count: 1,
                     text: 'M'
-                }, {
-                    type: 'year',
-                    count: 1,
-                    text: 'A'
                 }, {
                     type: 'all',
                     count: 1,
