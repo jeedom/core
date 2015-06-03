@@ -605,6 +605,12 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                             <input type="text" class="configKey form-control" data-l1key="interact::confidence"/>
                         </div>
                     </div>
+                     <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas répondre si l'interaction n'est pas comprise}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="checkbox" class="configKey" data-l1key="interact::noResponseIfEmpty"/>
+                        </div>
+                    </div>
                 </fieldset>
             </form>
         </div>
