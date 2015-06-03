@@ -428,8 +428,8 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
       '             <div class="col-xs-3">' +
       '                <select class="conditionAttr form-control" data-l1key="operator">' +
       '                    <option value="==">{{égale}}</option>' +
-      '                  <option value=">">{{supérieur}}</option>' +
-      '                  <option value="<">{{inférieur}}</option>' +
+      '                  <option value="~">{{contient}}</option>' +
+      '                  <option value="!~">{{ne contient pas}}</option>' +
       '                 <option value="!=">{{différent}}</option>' +
       '            </select>' +
       '       </div>' +
