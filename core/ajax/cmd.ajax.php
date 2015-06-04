@@ -194,6 +194,9 @@ try {
 		}
 		if (init('dateEnd') != '') {
 			$dateEnd = init('dateEnd');
+			if ($dateEnd == date('Y-m-d')) {
+				$dateEnd = date('Y-m-d H:i:s');
+			}
 		}
 		$return['maxValue'] = '';
 		$return['minValue'] = '';

@@ -479,7 +479,7 @@ class cmd {
 				$cmd_value = $cmd->execCmd(null, 1, true, $_quote);
 				$collectDate = $cmd->getCollectDate();
 			}
-			if ($_quote && (strpos($cmd_value, ' ') !== false || !ctype_digit($cmd_value)) || $cmd_value === '')) {
+			if ($_quote && (strpos($cmd_value, ' ') !== false || !ctype_digit(trim($cmd_value, '"')) || $cmd_value === '')) {
 				$cmd_value = '"' . trim($cmd_value, '"') . '"';
 			}
 			if (!$json) {
