@@ -382,13 +382,17 @@ class jeedom {
 						update::checkAllUpdate();
 						jeedom::update('', 0);
 					} else {
+						config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
 						update::checkAllUpdate();
-						$nbUpdate = update::nbNeedUpdate();
-						if ($nbUpdate > 0) {
-							message::add('update', 'De nouvelles mises à jour sont disponibles (' . $nbUpdate . ')', '', 'newUpdate');
+						$updates = update::byStatus('update');
+						if (count($updates) > 0) {
+							$toUpdate = '';
+							foreach ($updates as $update) {
+								$toUpdate .= $update->getLogicalId() . ',';
+							}
+							message::add('update', 'De nouvelles mises à jour sont disponibles : ', '', 'newUpdate') . trim($toUpdate, ',');
 						}
 					}
-					config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
 				}
 			}
 			$c = new Cron\CronExpression('35 00 * * 0', new Cron\FieldFactory);
