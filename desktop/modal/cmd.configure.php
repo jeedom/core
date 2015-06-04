@@ -134,7 +134,7 @@ $usedBy = $cmd->getUsedBy();
             <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
               <?php
 foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
-	echo '<span class="label label-primary cursor" style="font-size : 1em;"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
+	echo '<span class="label label-primary cursor"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
 }
 ?>
            </div>
@@ -144,7 +144,7 @@ foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
           <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
             <?php
 foreach ($usedBy['cmd'] as $usedByCmd) {
-	echo '<span class="label label-primary cursor" style="font-size : 1em;"><a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" style="color : white;">' . $usedByCmd->getHumanName() . '</a></span><br/>';
+	echo '<span class="label label-primary cursor"><a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" style="color : white;">' . $usedByCmd->getHumanName() . '</a></span><br/>';
 }
 ?>
          </div>
@@ -154,7 +154,7 @@ foreach ($usedBy['cmd'] as $usedByCmd) {
         <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
           <?php
 foreach ($usedBy['scenario'] as $usedByScneario) {
-	echo '<span class="label label-primary cursor" style="font-size : 1em;"><a href="' . $usedByScneario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScneario->getHumanName() . '</a></span><br/>';
+	echo '<span class="label label-primary cursor"><a href="' . $usedByScneario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScneario->getHumanName() . '</a></span><br/>';
 }
 ?>
        </div>
@@ -164,7 +164,7 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
       <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
         <?php
 foreach ($usedBy['interact'] as $usedByInteract) {
-	echo '<span class="label label-primary cursor" style="font-size : 1em;"><a href="' . $usedByInteract->getLinkToConfiguration() . '" style="color : white;">' . $usedByInteract->getQuery() . '</a></span><br/>';
+	echo '<span class="label label-primary cursor"><a href="' . $usedByInteract->getLinkToConfiguration() . '" style="color : white;">' . $usedByInteract->getQuery() . '</a></span><br/>';
 }
 ?>
      </div>
