@@ -156,31 +156,7 @@ class jeedom {
 			if (isset($usbMapping[$_name])) {
 				return $usbMapping[$_name];
 			}
-			$usbMapping = array();
-			foreach (ls('/dev/', 'ttyUSB*') as $usb) {
-				$vendor = '';
-				$model = '';
-				foreach (explode("\n", shell_exec('/sbin/udevadm info --name=/dev/' . $usb . ' --query=all')) as $line) {
-					if (strpos($line, 'E: ID_MODEL=') !== false) {
-						$model = trim(str_replace(array('E: ID_MODEL=', '"'), '', $line));
-					}
-					if (strpos($line, 'E: ID_VENDOR=') !== false) {
-						$vendor = trim(str_replace(array('E: ID_VENDOR=', '"'), '', $line));
-					}
-				}
-				if ($vendor == '' && $model == '') {
-					$usbMapping['/dev/' . $usb] = '/dev/' . $usb;
-				} else {
-					$name = trim($vendor . ' ' . $model);
-					$number = 2;
-					while (isset($usbMapping[$name])) {
-						$name = trim($vendor . ' ' . $model . ' ' . $number);
-						$number++;
-					}
-					$usbMapping[$name] = '/dev/' . $usb;
-				}
-			}
-			cache::set('jeedom::usbMapping', json_encode($usbMapping), 0);
+			$usbMapping = self::getUsbMapping('', $_getGPIO);
 			if (isset($usbMapping[$_name])) {
 				return $usbMapping[$_name];
 			}
