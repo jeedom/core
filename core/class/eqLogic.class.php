@@ -490,13 +490,12 @@ class eqLogic {
 			'#logicalId#' => $this->getLogicalId(),
 			'#battery#' => $this->getConfiguration('batteryStatus', -2),
 			'#batteryDatetime#' => $this->getConfiguration('batteryStatusDatetime', __('inconnue', __FILE__)),
+			'#object_name#' => '',
 		);
 
 		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowObjectNameOnView', 0) == 0) {
 			$object = $this->getObject();
 			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
-		} else {
-			$replace['#object_name#'] = '';
 		}
 		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
 			$replace['#name#'] = '';
