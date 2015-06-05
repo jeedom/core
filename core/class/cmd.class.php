@@ -978,6 +978,9 @@ class cmd {
 		if (trim($_value) === '' || $_loop > 4 || $this->getType() != 'info') {
 			return;
 		}
+		if ($this->getSubType() != 'string' && $_value > $this->getConfiguration('maxValue', $_value) && $_value < $this->getConfiguration('minValue', $_value) && strpos($_value, 'error') === false) {
+			return;
+		}
 		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
 		$eqLogic = $this->getEqLogic();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
