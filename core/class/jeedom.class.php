@@ -390,7 +390,7 @@ class jeedom {
 							foreach ($updates as $update) {
 								$toUpdate .= $update->getLogicalId() . ',';
 							}
-							message::add('update', 'De nouvelles mises à jour sont disponibles : ', '', 'newUpdate') . trim($toUpdate, ',');
+							message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
 						}
 					}
 				}
