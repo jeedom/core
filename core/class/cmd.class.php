@@ -993,7 +993,9 @@ class cmd {
 		}
 		$this->setCollectDate($collectDate);
 		log::add('event', 'event', __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $_value);
-		cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
+		if ($this->getSubType() != 'binary' || $value != $this->execCmd(null, 2)) {
+			cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
+		}
 		scenario::check($this);
 		$this->setCollect(0);
 		$eqLogic->emptyCacheWidget();
