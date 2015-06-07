@@ -163,6 +163,12 @@ class jeedom {
 			if (file_exists($_name)) {
 				return $_name;
 			}
+			if ($_name == 'Raspberry pi') {
+				return '/dev/ttyAMA0';
+			}
+			if ($_name == 'Jeedom board') {
+				return '/dev/ttymxc0';
+			}
 			return '';
 		}
 		return $usbMapping;
