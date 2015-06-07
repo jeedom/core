@@ -981,12 +981,12 @@ class cmd {
 		if ($this->getSubType() != 'string' && $_value > $this->getConfiguration('maxValue', $_value) && $_value < $this->getConfiguration('minValue', $_value) && strpos($_value, 'error') === false) {
 			return;
 		}
+		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
 		$value = $this->formatValue($_value);
 		if ($this->getConfiguration('allowRepeatEvent', 0) != 1 && $this->execCmd(null, 2) == $_value) {
 			return;
 		}
 
-		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
 		$eqLogic = $this->getEqLogic();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
 			return;
