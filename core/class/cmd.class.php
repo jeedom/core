@@ -981,6 +981,7 @@ class cmd {
 		if ($this->getSubType() != 'string' && $_value > $this->getConfiguration('maxValue', $_value) && $_value < $this->getConfiguration('minValue', $_value) && strpos($_value, 'error') === false) {
 			return;
 		}
+		$prevValue = $this->execCmd(null, 2);
 		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
 		$eqLogic = $this->getEqLogic();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
@@ -988,35 +989,39 @@ class cmd {
 		}
 		$_loop++;
 		$value = $this->formatValue($_value);
-		if ($this->getConfiguration('onlyChangeEvent', 0) == 1 && $this->getEventOnly() == 1 && $value == $this->execCmd(null, 2)) {
+		if ($this->getConfiguration('onlyChangeEvent', 0) == 1 && $this->getEventOnly() == 1 && $value == $prevValue) {
 			return;
 		}
 		$this->setCollectDate($collectDate);
 		log::add('event', 'event', __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $_value);
-		if ($this->getSubType() != 'binary' || $value != $this->execCmd(null, 2)) {
+		if ($this->getSubType() != 'binary' || $value != $prevValue) {
 			cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
 		}
 		scenario::check($this);
 		$this->setCollect(0);
-		$eqLogic->emptyCacheWidget();
-		$nodeJs = array(array('cmd_id' => $this->getId()));
-		$foundInfo = false;
-		foreach (self::byValue($this->getId(), null, true) as $cmd) {
-			if ($cmd->getType() == 'action') {
-				$nodeJs[] = array('cmd_id' => $cmd->getId());
-			} else {
-				if ($_loop > 1) {
-					$cmd->event($cmd->execute(), $_loop);
+
+		if ($value != $prevValue) {
+			$eqLogic->emptyCacheWidget();
+			$nodeJs = array(array('cmd_id' => $this->getId()));
+			$foundInfo = false;
+			foreach (self::byValue($this->getId(), null, true) as $cmd) {
+				if ($cmd->getType() == 'action') {
+					$nodeJs[] = array('cmd_id' => $cmd->getId());
 				} else {
-					$foundInfo = true;
+					if ($_loop > 1) {
+						$cmd->event($cmd->execute(), $_loop);
+					} else {
+						$foundInfo = true;
+					}
 				}
 			}
+			nodejs::pushUpdate('eventCmd', $nodeJs);
+			if ($foundInfo) {
+				listener::backgroundCalculDependencyCmd($this->getId());
+			}
+			listener::check($this->getId(), $value);
 		}
-		nodejs::pushUpdate('eventCmd', $nodeJs);
-		if ($foundInfo) {
-			listener::backgroundCalculDependencyCmd($this->getId());
-		}
-		listener::check($this->getId(), $value);
+
 		if (strpos($_value, 'error') === false) {
 			$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
 			$this->addHistoryValue($value, $this->getCollectDate());
