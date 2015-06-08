@@ -985,6 +985,9 @@ class cmd {
 		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
 
 		if ($this->getConfiguration('allowRepeatEvent', 0) != 1 && $this->execCmd(null, 2) == $value) {
+			if (strpos($value, 'error') === false) {
+				$eqLogic->setStatus('lastCommunication', $collectDate);
+			}
 			return;
 		}
 

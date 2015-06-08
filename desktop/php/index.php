@@ -7,7 +7,7 @@ if (isConnect()) {
 	if (config::byKey('jeeNetwork::mode') == 'master') {
 		$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	} else {
-		$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::plugin'));
+		$homePage = array('core', 'plugin');
 	}
 	if (count($homePage) == 2) {
 		if ($homePage[0] == 'core') {
@@ -19,11 +19,7 @@ if (isConnect()) {
 			$homeLink .= '&fullscreen=1';
 		}
 	} else {
-		if (config::byKey('jeeNetwork::mode') == 'master') {
-			$homeLink = 'index.php?v=d&p=dashboard';
-		} else {
-			$homeLink = 'index.php?v=d&p=plugin';
-		}
+		$homeLink = 'index.php?v=d&p=dashboard';
 	}
 }
 
