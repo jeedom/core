@@ -986,6 +986,7 @@ class cmd {
 
 		if ($this->getConfiguration('allowRepeatEvent', 0) != 1 && $this->execCmd(null, 2) == $value) {
 			if (strpos($value, 'error') === false) {
+				$eqLogic = $this->getEqLogic();
 				$eqLogic->setStatus('lastCommunication', $collectDate);
 			}
 			return;
