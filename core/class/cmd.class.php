@@ -978,12 +978,13 @@ class cmd {
 		if (trim($_value) === '' || $_loop > 4 || $this->getType() != 'info') {
 			return;
 		}
-		if ($this->getSubType() != 'string' && $_value > $this->getConfiguration('maxValue', $_value) && $_value < $this->getConfiguration('minValue', $_value) && strpos($_value, 'error') === false) {
+		$value = $this->formatValue($_value);
+		if ($this->getSubType() != 'string' && $value > $this->getConfiguration('maxValue', $value) && $value < $this->getConfiguration('minValue', $value) && strpos($value, 'error') === false) {
 			return;
 		}
 		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
-		$value = $this->formatValue($_value);
-		if ($this->getConfiguration('allowRepeatEvent', 0) != 1 && $this->execCmd(null, 2) == $_value) {
+
+		if ($this->getConfiguration('allowRepeatEvent', 0) != 1 && $this->execCmd(null, 2) == $value) {
 			return;
 		}
 
@@ -993,7 +994,7 @@ class cmd {
 		}
 		$_loop++;
 		$this->setCollectDate($collectDate);
-		log::add('event', 'event', __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $_value);
+		log::add('event', 'event', __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $value);
 		cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
 		scenario::check($this);
 		$this->setCollect(0);
@@ -1016,15 +1017,15 @@ class cmd {
 			listener::backgroundCalculDependencyCmd($this->getId());
 		}
 		listener::check($this->getId(), $value);
-		if (strpos($_value, 'error') === false) {
+		if (strpos($value, 'error') === false) {
 			$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
 			$this->addHistoryValue($value, $this->getCollectDate());
 		} else {
 			$this->addHistoryValue(null, $this->getCollectDate());
 		}
 		$this->checkReturnState($value);
-		$this->checkCmdAlert($_value);
-		$this->pushUrl($_value);
+		$this->checkCmdAlert($value);
+		$this->pushUrl($value);
 	}
 
 	public function checkReturnState($_value) {
