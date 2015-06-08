@@ -4,7 +4,11 @@ include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
 $title = 'Jeedom';
 if (isConnect()) {
-	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
+	if (config::byKey('jeeNetwork::mode') == 'master') {
+		$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
+	} else {
+		$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::plugin'));
+	}
 	if (count($homePage) == 2) {
 		if ($homePage[0] == 'core') {
 			$homeLink = 'index.php?v=d&p=' . $homePage[1];
@@ -15,7 +19,11 @@ if (isConnect()) {
 			$homeLink .= '&fullscreen=1';
 		}
 	} else {
-		$homeLink = 'index.php?v=d&p=dashboard';
+		if (config::byKey('jeeNetwork::mode') == 'master') {
+			$homeLink = 'index.php?v=d&p=dashboard';
+		} else {
+			$homeLink = 'index.php?v=d&p=plugin';
+		}
 	}
 }
 
@@ -243,7 +251,8 @@ foreach (planHeader::all() as $plan_menu) {
 												</ul>
 											</li>
 											<li><a href="index.php?v=d&p=history"><i class="fa fa-bar-chart-o"></i> {{Historique}}</a></li>
-											<?php }?>
+											<?php }
+	?>
 
 											<?php
 if (hasRight('administrationview', true) || hasRight('userview', true) || hasRight('backupview', true) || hasRight('updateview', true) || hasRight('cronview', true) || hasRight('securityview', true) || hasRight('logview', true)
@@ -280,7 +289,8 @@ if (hasRight('backupview', true)) {
 		if (config::byKey('jeeNetwork::mode') == 'master') {
 			?>
 																	<li class="expertModeVisible"><a href="index.php?v=d&p=jeeNetwork"><i class="fa fa-sitemap"></i> {{Réseau Jeedom}}</a></li>
-																	<?php }?>
+																	<?php }
+		?>
 																	<?php if (hasRight('cronview', true)) {?>
 																	<li class="expertModeVisible"><a href="index.php?v=d&p=cron"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
 																	<?php
@@ -352,7 +362,8 @@ if (count($plugins_list) == 0) {
 		?>
 														</ul>
 													</li>
-													<?php }?>
+													<?php }
+	?>
 												</ul>
 
 												<ul class="nav navbar-nav navbar-right">
@@ -419,7 +430,8 @@ if (network::ehtIsUp()) {
 													<a class="cursor tooltips" target="_blank" href="http://doc.jeedom.fr/fr_FR/<?php echo init('m');?>.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
 													<?php } else {?>
 													<a class="cursor tooltips" target="_blank" href="http://doc.jeedom.fr/fr_FR/core.html#<?php echo init('p');?>" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
-													<?php }?>
+													<?php }
+	?>
 												</li>
 												<?php if (hasRight('reportsend', true)) {?>
 												<li>
@@ -427,7 +439,8 @@ if (network::ehtIsUp()) {
 														<i class="fa fa-exclamation-circle" ></i>
 													</a>
 												</li>
-												<?php }?>
+												<?php }
+	?>
 											</ul>
 										</nav><!--/.nav-collapse -->
 									</div>
@@ -515,6 +528,7 @@ $nbNeedUpdate = update::nbNeedUpdate();
 </span>
 <span class="pull-right expertModeVisible tooltips cursor" style="margin-right : 10px;font-size : 1.3em;z-index:1018" title="{{Voir les évènements en temps réél}}" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i></span>
 </footer>
-<?php }?>
+<?php }
+?>
 </body>
 </html>
