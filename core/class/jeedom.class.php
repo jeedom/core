@@ -147,6 +147,9 @@ class jeedom {
 				if (file_exists('/dev/S2')) {
 					$usbMapping['Banana PI'] = '/dev/S2';
 				}
+				if (file_exists('/dev/S0')) {
+					$usbMapping['Cubiboard'] = '/dev/S0';
+				}
 				foreach (ls('/dev/', 'ttyACM*') as $value) {
 					$usbMapping['/dev/' . $value] = '/dev/' . $value;
 				}
