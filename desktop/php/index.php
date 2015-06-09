@@ -423,9 +423,9 @@ if (network::ehtIsUp()) {
 	?>
 												<li>
 													<?php if (isset($plugin) && is_object($plugin)) {?>
-													<a class="cursor tooltips" target="_blank" href="http://doc.jeedom.fr/fr_FR/<?php echo init('m');?>.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
+													<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/plugins/<?php echo init('m');?>/fr_FR/<?php echo init('m');?>.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
 													<?php } else {?>
-													<a class="cursor tooltips" target="_blank" href="http://doc.jeedom.fr/fr_FR/core.html#<?php echo init('p');?>" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
+													<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/core.html#<?php echo init('p');?>" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
 													<?php }
 	?>
 												</li>
