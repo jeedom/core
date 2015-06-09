@@ -989,10 +989,13 @@ class cmd {
 		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
 		$repeat = false;
 		if ($this->execCmd(null, 2) == $value) {
-			$collectDate = $this->getCollectDate();
 			if (strpos($value, 'error') === false) {
 				$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
 			}
+			if ($this->getConfiguration('doNotRepeatEvent', 0) == 1) {
+				return;
+			}
+			$collectDate = $this->getCollectDate();
 			$repeat = true;
 		}
 		$_loop++;
@@ -1221,8 +1224,7 @@ class cmd {
 		if ($collect == 1) {
 			cache::set('collect' . $this->getId(), $this->getId());
 		} else {
-			$cache = cache::byKey('collect' . $this->getId());
-			$cache->remove();
+			cache::deleteBySearch('collect' . $this->getId());
 		}
 	}
 
