@@ -990,7 +990,7 @@ class cmd {
 		$repeat = false;
 		if ($this->execCmd(null, 2) == $value) {
 			if (strpos($value, 'error') === false) {
-				$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
+				$eqLogic->setStatus('lastCommunication', $collectDate);
 			}
 			if ($this->getConfiguration('doNotRepeatEvent', 0) == 1) {
 				return;
