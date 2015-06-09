@@ -3,7 +3,7 @@ if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $date = array(
-	'start' => date('Y-m-d', strtotime('-1 month ' . date('Y-m-d'))),
+	'start' => date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d'))),
 	'end' => date('Y-m-d'),
 );
 ?>
