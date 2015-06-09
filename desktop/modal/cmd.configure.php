@@ -351,12 +351,6 @@ foreach (scenario::all() as $scenario) {
 <?php if ($cmd->getType() == 'info') {?>
 <legend>{{Autres}}</legend>
 <div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Autoriser la répétition des valeurs}}</label>
-  <div class="col-xs-1">
-    <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="allowRepeatEvent" />
-  </div>
-</div>
-<div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push URL}}</label>
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
