@@ -987,7 +987,6 @@ class cmd {
 			return;
 		}
 		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
-		$repeat = false;
 		if ($this->execCmd(null, 2) == $value) {
 			if (strpos($value, 'error') === false) {
 				$eqLogic->setStatus('lastCommunication', $collectDate);
@@ -996,7 +995,6 @@ class cmd {
 				return;
 			}
 			$collectDate = $this->getCollectDate();
-			$repeat = true;
 		}
 		$_loop++;
 		$this->setCollectDate($collectDate);
@@ -1004,33 +1002,31 @@ class cmd {
 		cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
 		scenario::check($this);
 		$this->setCollect(0);
-		if (!$repeat) {
-			$eqLogic->emptyCacheWidget();
-			$nodeJs = array(array('cmd_id' => $this->getId()));
-			$foundInfo = false;
-			foreach (self::byValue($this->getId(), null, true) as $cmd) {
-				if ($cmd->getType() == 'action') {
-					$nodeJs[] = array('cmd_id' => $cmd->getId());
+		$eqLogic->emptyCacheWidget();
+		$nodeJs = array(array('cmd_id' => $this->getId()));
+		$foundInfo = false;
+		foreach (self::byValue($this->getId(), null, true) as $cmd) {
+			if ($cmd->getType() == 'action') {
+				$nodeJs[] = array('cmd_id' => $cmd->getId());
+			} else {
+				if ($_loop > 1) {
+					$cmd->event($cmd->execute(), $_loop);
 				} else {
-					if ($_loop > 1) {
-						$cmd->event($cmd->execute(), $_loop);
-					} else {
-						$foundInfo = true;
-					}
+					$foundInfo = true;
 				}
 			}
-			nodejs::pushUpdate('eventCmd', $nodeJs);
-			if ($foundInfo) {
-				listener::backgroundCalculDependencyCmd($this->getId());
-			}
-			listener::check($this->getId(), $value);
+		}
+		nodejs::pushUpdate('eventCmd', $nodeJs);
+		if ($foundInfo) {
+			listener::backgroundCalculDependencyCmd($this->getId());
+		}
+		listener::check($this->getId(), $value);
 
-			if (strpos($value, 'error') === false) {
-				$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
-				$this->addHistoryValue($value, $this->getCollectDate());
-			} else {
-				$this->addHistoryValue(null, $this->getCollectDate());
-			}
+		if (strpos($value, 'error') === false) {
+			$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
+			$this->addHistoryValue($value, $this->getCollectDate());
+		} else {
+			$this->addHistoryValue(null, $this->getCollectDate());
 		}
 		$this->checkReturnState($value);
 		$this->checkCmdAlert($value);
