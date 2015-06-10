@@ -121,7 +121,7 @@ jeedom.history.drawChart = function (_params) {
                 _params.option.graphType = 'line';
             }
         }
-
+        var stacking = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? null : 'value';
         _params.option.graphStack = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? Math.floor(Math.random() * 10000 + 2) : 1;
         _params.option.graphScale = (_params.option.graphScale == undefined) ? 0 : parseInt(_params.option.graphScale);
         _params.showLegend = (init(_params.showLegend, true) && init(_params.showLegend, true) != "0") ? true : false;
@@ -142,7 +142,7 @@ jeedom.history.drawChart = function (_params) {
             stack: _params.option.graphStack,
             step: _params.option.graphStep,
             yAxis: _params.option.graphScale,
-            stacking : 'value',
+            stacking : stacking,
             tooltip: {
                 valueDecimals: 2
             },
