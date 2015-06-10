@@ -77,6 +77,7 @@ jeedom.history.drawChart = function (_params) {
             $('#div_alert').showAlert({message: data.result, level: 'danger'});
             return;
         }
+
         if (data.result.data.length < 1) {
             var message = '{{Il n\'existe encore aucun historique pour cette commande :}} ' + data.result.history_name;
             if (init(data.result.dateStart) != '') {
@@ -141,6 +142,7 @@ jeedom.history.drawChart = function (_params) {
             stack: _params.option.graphStack,
             step: _params.option.graphStep,
             yAxis: _params.option.graphScale,
+            stacking : 'value',
             tooltip: {
                 valueDecimals: 2
             },
