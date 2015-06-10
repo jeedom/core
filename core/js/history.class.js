@@ -178,27 +178,22 @@ jeedom.history.drawChart = function (_params) {
             jeedom.history.chart[_params.el].cmd = new Array();
             jeedom.history.chart[_params.el].color = 0;
 
-            var dateRange = 3;
-            switch (_params.dateRange) {
-                case '30 min' :
-                dateRange = 0
-                break;
-                case '1 hour' :
-                dateRange = 1
-                break;
-                case '1 day' :
-                dateRange = 2
-                break;
-                case '7 days' :
-                dateRange = 3
-                break;
-                case '1 month' :
-                dateRange = 4
-                break;
-                case 'all' :
-                dateRange = 5
-                break;
+            if(_params.dateRange == '30 min'){
+                var dateRange = 0
+            }else  if(_params.dateRange == '1 hour'){
+                var dateRange = 1
+            }else  if(_params.dateRange == '1 day'){
+                var dateRange = 2
+            }else  if(_params.dateRange == '7 days'){
+                var dateRange = 3
+            }else  if(_params.dateRange == '1 month'){
+                var dateRange = 4
+            }else  if(_params.dateRange == 'all'){
+                var dateRange = 5
+            }else{
+                var dateRange = 3;  
             }
+            
             var charts = {
               zoomType: 'x',
               renderTo: _params.el,
