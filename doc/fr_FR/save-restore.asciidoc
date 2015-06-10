@@ -4,7 +4,7 @@ Il y a deux manières de sauvegarder Jeedom et chacune comporte des avantages et
 
 Il est possible de réaliser une sauvegarde à partir de l'interface Jeedom, cette sauvegarde concerne uniquement 
 le logiciel Jeedom et ses données. Elle a l'avantage de pouvoir être faite à chaud et 
-le fichier de sauvegarde peuvent être exportés vers d'autres supports.
+le fichier de sauvegarde peut être exporté vers d'autres supports.
 
 Il est aussi possible de réaliser une sauvegarde en faisant une image disque de la carte microSD (mini et mini+). 
 Elle a l'avantage d'être une sauvegarde complète du système ainsi que de Jeedom et ses données. 
@@ -27,12 +27,12 @@ Afin de gérer et paramétrer les sauvegardes, il faut se rendre dans le menu _G
 
 . [underline]#Paramètres Généraux#
 
-* Fréquence des sauvegardes ° : Permet de définir la fréquence à laquelle Jeedom va automatiquement lancer une sauvegarde de lui même. Exemple : 00 02 * * * : Lance une sauvegarde tous les jours à 02h00 du matin.
+* Fréquence des sauvegardes ° : Permet de définir la fréquence à laquelle Jeedom va automatiquement lancer une sauvegarde de lui même. Exemple : `00 02 * * *` : Lance une sauvegarde tous les jours à 02h00 du matin.
 * Sauvegardes : Le bouton _Lancer_ permet de lancer manuellement une sauvegarde de Jeedom.
-* Emplacement des sauvegardes ° : Permet de modifier le répertoire de destination des fichiers de sauvegarde. (Par défaut : backup) Le chemin est relatif par rapport à l'arborescence de Jeedom (/usr/share/nginx/www/jeedom/)
-* Nombre de jour(s) de mémorisation des sauvegardes ° : Permet de définir le temps de rétention des fichiers de sauvegarde. Les fichiers de sauvegarde plus vieux que ce paramètre seront automatiquement supprimé.
-* Taille totale maximum des backups (mo) ° : Permet de limiter la taille du fichier de sauvegarde. Si la sauvegarde créée un fichier plus gros que cette taille, elle se met en erreur et vous prévient par une alerte.
-* Envoyer les sauvegardes dans le cloud : Une fois cette case cochée, les sauvegardes serons automatiquement envoyées sur les serveurs cloud de Jeedom. Attention : Cette option nécessite l'achat d'un abonnement à partir de votre profil du market.
+* Emplacement des sauvegardes ° : Permet de modifier le répertoire de destination des fichiers de sauvegarde. (Par défaut : `backup`) Le chemin est relatif par rapport à l'arborescence de Jeedom (`/usr/share/nginx/www/jeedom/`)
+* Nombre de jour(s) de conservation des sauvegardes ° : Permet de définir le temps de rétention des fichiers de sauvegarde. Les fichiers de sauvegarde plus vieux que ce paramètre seront automatiquement supprimés.
+* Taille totale maximum d'une sauvegarde (Mo) ° : Permet de limiter la taille du fichier de sauvegarde. Si la sauvegarde créée un fichier plus gros que cette taille, elle se met en erreur et vous prévient par une alerte.
+* Envoyer les sauvegardes dans le cloud : Une fois cette case cochée, les sauvegardes seront automatiquement envoyées sur les serveurs cloud de Jeedom. Attention : Cette option nécessite l'achat d'un abonnement à partir de votre profil du market.
 +
 Ne pas oublier de cliquer sur le bouton vert _Sauvegarder_ afin d'enregistrer les changements de configuration.
 +
@@ -47,7 +47,7 @@ il y a une case à cocher (_"Faire une sauvegarde avant la mise à jour"_) dans 
 
 . [underline]#Sauvegardes locales#
 
-* Sauvegardes disponiles : Permet de voir et sélectionner le fichier de sauvegarde local qui sera utilisé pour les actions sur les boutons suivants.
+* Sauvegardes disponibles : Permet de voir et sélectionner le fichier de sauvegarde locale qui sera utilisé pour les actions sur les boutons suivants.
 * Restaurer la sauvegarde : Le bouton _Restaurer_ permet de lancer une restauration de Jeedom en utilisant le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
 * Supprimer la sauvegarde : Le bouton _Supprimer_ permet de supprimer le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
 * Télécharger la sauvegarde : Le bouton _Télécharger_ permet de récupérer sur son ordinateur le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
@@ -70,7 +70,7 @@ image::../images/save-restore05.jpg[align="center"]
 
 ===== [underline]#II) Sauvegarde#
 
-On a vu que l'on peut configurer Jeedom afin qu'il se sauvegarde automatiquement à interval régulier 
+On a vu que l'on peut configurer Jeedom afin qu'il se sauvegarde automatiquement à intervalle régulier 
 mais aussi avant de lancer des mises à jour. Afin de lancer une sauvegarde manuellement se rendre dans 
 le menu _Général > Administration > Sauvegardes_, cliquer sur le bouton gris _Lancer_, 
 et attendre que Jeedom vous annonce par un bandeau vert que la sauvegarde s'est bien terminée. 
@@ -79,7 +79,7 @@ Un log, sur la droite de la page, vous permet de suivre l'avancement.
 Une fois la sauvegarde terminée, vous pouvez récupérer le fichier sur votre ordinateur. 
 Si vous avez acheté un abonnement sauvegarde cloud, le fichier sera automatiquement 
 envoyé sur les serveurs cloud de Jeedom. Vous pouvez aussi utiliser le plugin Data Transfert afin 
-de copier ces fichiers sur un serveur ftp, dropbox, ...
+de copier ces fichiers sur un serveur FTP, SFTP, Dropbox...
 
 ===== [underline]#III) Restauration#
 
@@ -105,7 +105,7 @@ en haut à droite.
 
 image::../images/save-restore06.jpg[align="center"]
 
-Et cliquer sur Eteindre
+Et cliquer sur Éteindre
 
 image::../images/save-restore07.jpg[align="center"]
 
