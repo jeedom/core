@@ -18,7 +18,8 @@ if (!hasRight('backupview', true)) {
                         <div class="col-sm-3 col-xs-2">
                             <a class="btn btn-default bt_backupJeedom" data-noCloudBackup="1" ><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-floppy-o"></i> Lancer sans envoi sur le cloud</a>
                         </div>
-                        <?php }?>
+                        <?php }
+?>
                     </div>
                     <div class="form-group expertModeVisible">
                         <label class="col-sm-4 col-xs-6 control-label">{{Emplacement des sauvegardes}}</label>
@@ -42,10 +43,11 @@ if (!hasRight('backupview', true)) {
                         <div class="form-group">
                             <label class="col-sm-4 col-xs-6 control-label">{{Envoyer les sauvegardes dans le cloud}}</label>
                             <div class="col-sm-4 col-xs-6">
-                                <input type="checkbox" class="configKey" data-l1key="backup::cloudUpload" />
+                                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="backup::cloudUpload" />
                             </div>
                         </div>
-                        <?php }?>
+                        <?php }
+?>
                     </fieldset>
                 </form>
                 <div class="form-actions" style="height: 20px;">
@@ -124,7 +126,8 @@ try {
                             </div>
                         </fieldset>
                     </form>
-                    <?php }?>
+                    <?php }
+?>
                 </div>
                 <div class="col-sm-6">
                     <legend>{{Informations}}</legend>

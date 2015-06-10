@@ -113,9 +113,9 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
               </div>
 
               <div class="form-group">
-                <label class="col-xs-4 control-label">{{Visible}}</label>
+                <label class="col-xs-4 control-label"></label>
                 <div class="col-xs-4">
-                  <input type="checkbox" class="cmdAttr" data-l1key="isVisible" />
+                  <input type="checkbox" data-label-text="{{Visible}}" class="cmdAttr bootstrapSwitch" data-l1key="isVisible" />
                 </div>
               </div>
 
@@ -203,7 +203,7 @@ foreach ($usedBy['interact'] as $usedByInteract) {
       <div class="form-group">
         <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Confirmer l'action}}</label>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-          <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="actionConfirm" />
+          <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="configuration" data-l2key="actionConfirm" />
         </div>
       </div>
       <div class="form-group">
@@ -319,7 +319,7 @@ foreach (scenario::all() as $scenario) {
 <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
   <div class="col-xs-1">
-    <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
+    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="isHistorized" />
   </div>
 </div>
 <div class="form-group">
@@ -353,7 +353,7 @@ foreach (scenario::all() as $scenario) {
 <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ne pas répéter si la valeur ne change pas}}</label>
   <div class="col-xs-1">
-    <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="doNotRepeatEvent" />
+    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="configuration" data-l2key="doNotRepeatEvent" />
   </div>
 </div>
 <div class="form-group">
@@ -403,26 +403,26 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
    </tr>
    <tr>
     <td>{{Ne pas afficher le nom}}</td>
-    <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
-    <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
     <td></td>
   </tr>
   <tr>
     <td>{{Ne pas afficher les statistiques}}</td>
-    <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowStatOnDashboard" /></td>
-    <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowStatOnView" /></td>
-    <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowStatOnMobile" /></td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnDashboard" /></td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnView" /></td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnMobile" /></td>
   </tr>
 </tbody>
 </table>
 <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
   <div class="col-xs-1">
-    <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineBefore" />
+    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="forceReturnLineBefore" />
   </div>
   <label class="col-xs-2 control-label">{{après le widget}}</label>
   <div class="col-xs-1">
-    <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" />
+    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="forceReturnLineAfter" />
   </div>
 </div>
 <br/><br/>
@@ -479,9 +479,9 @@ foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
 	echo '<tr data-cmd_id="' . $listCmd->getId() . '">';
 	echo '<td>';
 	if ($listCmd->getId() == $cmd->getId()) {
-		echo '<input type="checkbox" class="selectMultipleApplyCmd" checked/>';
+		echo '<input type="checkbox" class="selectMultipleApplyCmd bootstrapSwitch" checked/>';
 	} else {
-		echo '<input type="checkbox" class="selectMultipleApplyCmd" />';
+		echo '<input type="checkbox" class="selectMultipleApplyCmd bootstrapSwitch" />';
 	}
 	echo '</td>';
 	echo '<td>';
@@ -497,6 +497,7 @@ foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
 
 <script>
   initTooltips();
+  initCheckBox();
 
 
   $("#md_cmdConfigureSelectMultiple").dialog({

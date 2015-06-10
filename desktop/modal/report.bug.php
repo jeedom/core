@@ -41,45 +41,46 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	echo '<option>plugin::' . $plugin->getId() . '</option>';
 }
 ?>
-            </select>
-        </div>
-        <label class="col-sm-1 control-label">{{Type}}</label>
-        <div class="col-sm-2">
-            <select class="form-control input-sm ticketAttr" data-l1key="type">
-                <option value='question'>{{Question}}</option>
-                <option value='problem'>{{Problème}}</option>
-                <option value='incident'>{{Incident}}</option>
-            </select>
-        </div>
-        <label class="col-sm-1 control-label">{{Priorité}}</label>
-        <div class="col-sm-2">
-            <select class="form-control input-sm ticketAttr" data-l1key="priority">
-                <option value='low'>{{Basse}}</option>
-                <option value='normal'>{{Normale}}</option>
-                <option value='high'>{{Haute}}</option>
-                <option value='urgent'>{{Urgente}}</option>
-            </select>
-        </div>
+           </select>
+       </div>
+       <label class="col-sm-1 control-label">{{Type}}</label>
+       <div class="col-sm-2">
+        <select class="form-control input-sm ticketAttr" data-l1key="type">
+            <option value='question'>{{Question}}</option>
+            <option value='problem'>{{Problème}}</option>
+            <option value='incident'>{{Incident}}</option>
+        </select>
     </div>
-    <div class="form-group">
+    <label class="col-sm-1 control-label">{{Priorité}}</label>
+    <div class="col-sm-2">
+        <select class="form-control input-sm ticketAttr" data-l1key="priority">
+            <option value='low'>{{Basse}}</option>
+            <option value='normal'>{{Normale}}</option>
+            <option value='high'>{{Haute}}</option>
+            <option value='urgent'>{{Urgente}}</option>
+        </select>
+    </div>
+</div>
+<div class="form-group">
     <label class="col-sm-2 control-label">{{Donner un accès au support}}</label>
-         <div class="col-sm-9">
-         <input type="checkbox" class="ticketAttr" data-l1key="allowRemoteAccess" />
-         </div>
+    <div class="col-sm-9">
+       <input type="checkbox" class="ticketAttr bootstrapSwitch" data-l1key="allowRemoteAccess" />
+   </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">{{Message}}</label>
+    <div class="col-sm-9">
+        <textarea class="form-control messageAttr input-sm" data-l1key="message" rows="4" ></textarea>
+        <input class="form-control ticketAttr" data-l1key="options" data-l2key="page" style="display: none;"/>
     </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">{{Message}}</label>
-        <div class="col-sm-9">
-            <textarea class="form-control messageAttr input-sm" data-l1key="message" rows="4" ></textarea>
-            <input class="form-control ticketAttr" data-l1key="options" data-l2key="page" style="display: none;"/>
-        </div>
-    </div>
-    <div class="form-actions" style="height: 20px;">
-        <a class="btn btn-success pull-right" id="bt_sendBugReport" style="color:white;"><i class="fa fa-check-circle"></i> {{Envoyer}}</a>
-    </div>
+</div>
+<div class="form-actions" style="height: 20px;">
+    <a class="btn btn-success pull-right" id="bt_sendBugReport" style="color:white;"><i class="fa fa-check-circle"></i> {{Envoyer}}</a>
+</div>
 </form>
 
 <script>
+    initCheckBox();
     $('.ticketAttr[data-l1key=options][data-l2key=page]').value(location.href);
 
     $('#bt_sendBugReport').on('click', function () {
@@ -98,13 +99,13 @@ foreach (plugin::listPlugin(true) as $plugin) {
                 handleAjaxError(request, status, error, $('#div_alertReportBug'));
             },
             success: function (data) { // si l'appel a bien fonctionné
-                if (data.state != 'ok') {
-                    $('#div_alertReportBug').showAlert({message: data.result, level: 'danger'});
-                    return;
-                }
-                $('#bt_sendBugReport').hide();
-                $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Un mail va vous être envoyé.}}', level: 'success'});
+            if (data.state != 'ok') {
+                $('#div_alertReportBug').showAlert({message: data.result, level: 'danger'});
+                return;
             }
-        });
+            $('#bt_sendBugReport').hide();
+            $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Un mail va vous être envoyé.}}', level: 'success'});
+        }
+    });
     });
 </script>

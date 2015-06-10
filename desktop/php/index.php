@@ -144,7 +144,9 @@ include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js');
 include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css');
 include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
 include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
-//
+include_file('3rdparty', 'bootstrap-switch/bootstrap-switch.min', 'js');
+include_file('3rdparty', 'bootstrap-switch/bootstrap-switch.min', 'css');
+
 if (file_exists(dirname(__FILE__) . '/../custom/custom.css')) {
 	include_file('desktop', '', 'custom.css');
 }

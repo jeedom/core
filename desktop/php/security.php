@@ -1,6 +1,6 @@
 <?php
-if (!hasRight('securityview',true)) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+if (!hasRight('securityview', true)) {
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
 <ul class="nav nav-tabs" id="security_tab">
@@ -25,38 +25,38 @@ if (!hasRight('securityview',true)) {
                     <th class="username" style="width: 200px;">{{Action}}</th>
                 </tr>
             </thead>
-            <tbody> 
+            <tbody>
                 <?php
-                foreach (connection::all() as $connection) {
-                    echo '<tr data-id="' . $connection->getId() . '">';
-                    echo '<td class="ip">';
-                    echo $connection->getIp();
-                    echo '</td>';
-                    echo '<td>';
-                    echo $connection->getUsername();
-                    echo '</td>';
-                    echo '<td>';
-                    echo $connection->getLocalisation();
-                    echo '</td>';
-                    echo '<td>';
-                    echo $connection->getFailure();
-                    echo '</td>';
-                    echo '<td>';
-                    echo $connection->getDatetime();
-                    echo '</td>';
-                    echo '<td>';
-                    echo $connection->getStatus();
-                    echo '</td>';
-                    echo '<td>';
-                    echo $connection->getInformations('org');
-                    echo '</td>';
-                    echo '<td>';
-                    echo '<a class="btn btn-warning btn-xs remove pull-right" style="color : white;margin-bottom: 5px;"><i class="fa fa-trash-o"></i> Supprimer</a> ';
-                    echo '<a class="btn btn-danger btn-xs ban pull-right" style="color : white;margin-bottom: 5px;"><i class="fa fa-thumbs-down"></i> Bannir</a>';
-                    echo '</td>';
-                    echo '</tr>';
-                }
-                ?>
+foreach (connection::all() as $connection) {
+	echo '<tr data-id="' . $connection->getId() . '">';
+	echo '<td class="ip">';
+	echo $connection->getIp();
+	echo '</td>';
+	echo '<td>';
+	echo $connection->getUsername();
+	echo '</td>';
+	echo '<td>';
+	echo $connection->getLocalisation();
+	echo '</td>';
+	echo '<td>';
+	echo $connection->getFailure();
+	echo '</td>';
+	echo '<td>';
+	echo $connection->getDatetime();
+	echo '</td>';
+	echo '<td>';
+	echo $connection->getStatus();
+	echo '</td>';
+	echo '<td>';
+	echo $connection->getInformations('org');
+	echo '</td>';
+	echo '<td>';
+	echo '<a class="btn btn-warning btn-xs remove pull-right" style="color : white;margin-bottom: 5px;"><i class="fa fa-trash-o"></i> Supprimer</a> ';
+	echo '<a class="btn btn-danger btn-xs ban pull-right" style="color : white;margin-bottom: 5px;"><i class="fa fa-thumbs-down"></i> Bannir</a>';
+	echo '</td>';
+	echo '</tr>';
+}
+?>
             </tbody>
         </table>
     </div>
@@ -68,7 +68,7 @@ if (!hasRight('securityview',true)) {
                 <div class="form-group">
                     <label class="col-sm-2 col-xs-6 control-label">{{Activer la sécurité anti-piratage}}</label>
                     <div class="col-sm-3 col-xs-6">
-                        <input type="checkbox" class="configKey" data-l1key="security::enable"/>
+                        <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="security::enable"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -103,4 +103,4 @@ if (!hasRight('securityview',true)) {
 </div>
 
 
-<?php include_file("desktop", "security", "js"); ?>
+<?php include_file("desktop", "security", "js");?>

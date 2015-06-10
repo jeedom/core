@@ -19,26 +19,25 @@ $date = array(
 
         <?php
 if (init('derive', 0) == 1) {
-	echo '<span class="pull-right">Variation : <input type="checkbox" data-cmd_id="#id#" class="cb_derive" checked /></span>';
+	echo '<span class="pull-right"><input type="checkbox" id="toto" class="bootstrapSwitch cb_derive" data-label-text="{{Variation}}" data-cmd_id="#id#" checked /></span>';
 } else {
-	echo '<span class="pull-right">Variation : <input type="checkbox" data-cmd_id="#id#" class="cb_derive" /></span>';
+	echo '<span class="pull-right"><input type="checkbox" id="toto" class="bootstrapSwitch cb_derive" data-label-text="{{Variation}}" data-cmd_id="#id#" /></span>';
 }
 if (init('step', 0) == 1) {
-	echo '<span class="pull-right">Escalier : <input type="checkbox" data-cmd_id="#id#" class="cb_step" checked /></span>';
+	echo '<span class="pull-right"><input type="checkbox" class="bootstrapSwitch cb_step" data-label-text="{{Escalier}}" data-cmd_id="#id#" checked /></span>';
 } else {
-	echo '<span class="pull-right">Escalier : <input type="checkbox" data-cmd_id="#id#" class="cb_step" /></span>';
+	echo '<span class="pull-right"><input type="checkbox" class="bootstrapSwitch cb_step" data-label-text="{{Escalier}}" data-cmd_id="#id#" /></span>';
 }
 ?>
-
-
        <center><div id="div_historyChart"></div></center>
        <script>
-         $(".in_datepicker").datepicker();
-         $('#ui-datepicker-div').hide();
+           initCheckBox();
+           $(".in_datepicker").datepicker();
+           $('#ui-datepicker-div').hide();
 
-         $('#div_historyChart').css('position', 'relative').css('width', '100%');
-         delete jeedom.history.chart['div_historyChart'];
-         jeedom.history.drawChart({
+           $('#div_historyChart').css('position', 'relative').css('width', '100%');
+           delete jeedom.history.chart['div_historyChart'];
+           jeedom.history.drawChart({
             cmd_id: "<?php echo init('id')?>",
             el: 'div_historyChart',
             dateRange : 'all',
@@ -69,7 +68,7 @@ if (init('step', 0) == 1) {
                     });
 
                 });
-                $('.cb_derive[data-cmd_id=#id#]').on('change', function () {
+                $('.cb_derive[data-cmd_id=#id#]').on('switchChange.bootstrapSwitch', function () {
                     jeedom.cmd.save({
                         cmd: {id: <?php echo init('id')?>, display: {graphDerive: $(this).value()}},
                         error: function (error) {
@@ -81,7 +80,7 @@ if (init('step', 0) == 1) {
                         }
                     });
                 });
-                $('.cb_step[data-cmd_id=#id#]').on('change', function () {
+                $('.cb_step[data-cmd_id=#id#]').on('switchChange.bootstrapSwitch', function () {
                     jeedom.cmd.save({
                         cmd: {id: <?php echo init('id')?>, display: {graphStep: $(this).value()}},
                         error: function (error) {

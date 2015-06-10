@@ -78,7 +78,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 expertModeVisible">
                                       <label>
-                                          <input type="checkbox" class="configKey tooltips" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à Jeedom de générer les phrases à traduire}}" /> {{Générer les traductions}}
+                                          <input type="checkbox" class="configKey tooltips bootstrapSwitch" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à Jeedom de générer les phrases à traduire}}" /> {{Générer les traductions}}
                                       </label>
                                   </div>
                               </div>
@@ -195,7 +195,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                     <input type="text"  class="configKey form-control" data-l1key="ntp::optionalServer" />
                                 </div>
                             </div>
-                            <div class="form-group expertModeVisible alert alert-danger">
+                            <div class="form-group expertModeVisible has-error">
                                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mode}}</label>
                                 <div class="col-sm-6">
                                     <?php
@@ -368,7 +368,7 @@ if (!network::canManageNetwork()) {
                        <div class="form-group">
                         <label class="col-xs-4 control-label">{{Activer le wifi}}</label>
                         <div class="col-xs-8">
-                            <input type="checkbox" class="configKey" data-l1key="network::wifi::enable" />
+                            <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="network::wifi::enable" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -389,7 +389,7 @@ if (!network::canManageNetwork()) {
                     <div class="form-group expertModeVisible">
                         <label class="col-xs-4 control-label">{{IP fixe}}</label>
                         <div class="col-xs-8">
-                            <input type="checkbox" class="configKey" data-l1key="network::fixip::enable" />
+                            <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="network::fixip::enable" />
                         </div>
                     </div>
                     <div class="form-group expertModeVisible">
@@ -418,16 +418,14 @@ if (!network::canManageNetwork()) {
             <div class="form-group">
                 <label class="col-xs-4 control-label">{{Utiliser les DNS Jeedom}}</label>
                 <div class="col-xs-8">
-                    <input type="checkbox" class="configKey" data-l1key="market::allowDNS" />
+                    <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="market::allowDNS" />
                 </div>
             </div>
             <div class="alert alert-info">{{Toute modification nécessite de redémarrer le service DNS Jeedom (ligne "Gestion" puis "Redémarrer")}}</div>
-            <div class="alert alert-warning expertModeVisible">
-                <div class="form-group">
-                    <label class="col-xs-4 control-label" title="{{A ne faire que si on vous le demande ou en connaissance de cause}}">{{Rediriger le SSH}}</label>
-                    <div class="col-xs-8">
-                        <input type="checkbox" class="configKey" data-l1key="market::redirectSSH" />
-                    </div>
+            <div class="form-group has-warning expertModeVisible">
+                <label class="col-xs-4 control-label" title="{{A ne faire que si on vous le demande ou en connaissance de cause}}">{{Rediriger le SSH}}</label>
+                <div class="col-xs-8">
+                    <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="market::redirectSSH" />
                 </div>
             </div>
             <div class="form-group expertModeVisible">
@@ -498,7 +496,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les statistiques sur les widgets}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="checkbox"  class="configKey" data-l1key="displayStatsWidget" />
+                                <input type="checkbox"  class="configKey bootstrapSwitch" data-l1key="displayStatsWidget" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -564,7 +562,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Vider toutes les données en cache}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <a class="btn btn-warning" id="bt_flushMemcache">{{Vider}}</a>
+                                <a class="btn btn-warning" id="bt_flushMemcache"><i class="fa fa-trash"></i> {{Vider}}</a>
                             </div>
                         </div>
 
@@ -619,7 +617,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas répondre si l'interaction n'est pas comprise}}</label>
                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="checkbox" class="configKey" data-l1key="interact::noResponseIfEmpty"/>
+                            <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="interact::noResponseIfEmpty"/>
                         </div>
                     </div>
                 </fieldset>
@@ -658,13 +656,13 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                             <input type="text" class="configKey form-control" data-l1key="maxExecTimeScript"/>
                         </div>
                     </div>
-                    <div class="form-group alert alert-danger">
+                    <div class="form-group has-error">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps de sommeil Jeecron}}</label>
                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                             <input type="text" class="configKey form-control" data-l1key="cronSleepTime"/>
                         </div>
                     </div>
-                    <div class="form-group alert alert-danger">
+                    <div class="form-group has-error">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps de sommeil des Démons}}</label>
                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                             <input type="text" class="configKey form-control" data-l1key="deamonsSleepTime"/>
@@ -691,7 +689,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ajouter un message à chaque erreur dans les logs}}</label>
                         <div class="col-sm-1">
-                            <input type="checkbox" class="configKey" data-l1key="addMessageForErrorLog" checked/>
+                            <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="addMessageForErrorLog" checked/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -702,27 +700,11 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Logs actifs}}</label>
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="debug" checked /> Debug
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="info" checked /> Info
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="event" checked /> Event
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" class="configKey" data-l1key="logLevel" data-l2key="error" checked /> Error
-                                </label>
-                            </div>
+                        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+                            <input type="checkbox" data-label-text="{{Debug}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="debug" />
+                            <input type="checkbox" data-label-text="{{Info}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="info" />
+                            <input type="checkbox" data-label-text="{{Event}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="event" />
+                            <input type="checkbox" data-label-text="{{Error}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="error" />
                         </div>
                     </div>
                 </fieldset>
@@ -746,7 +728,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer l'authentification LDAP}}</label>
                         <div class="col-sm-1">
-                            <input type="checkbox" class="configKey" data-l1key="ldap:enable"/>
+                            <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="ldap:enable"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -791,10 +773,10 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                             <input type="text"  class="configKey form-control" data-l1key="ldap:filter" />
                         </div>
                     </div>
-                    <div class="form-group alert alert-danger">
+                    <div class="form-group has-error">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Autoriser REMOTE_USER}}</label>
                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
+                            <input type="checkbox"  class="configKey bootstrapSwitch" data-l1key="sso:allowRemoteUser" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -831,12 +813,6 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Timeout de résolution DNS sur les requêtes HTTP}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                 <input class="configKey form-control" data-l1key="http::ping_timeout"/>
-                            </div>
-                        </div>
-                        <div class="form-group alert alert-danger expertModeVisible">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Désactiver la vérification du ping}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="checkbox" class="configKey" data-l1key="http::ping_disable"/>
                             </div>
                         </div>
                         <i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
@@ -878,6 +854,9 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                 <input class="configKey form-control" data-l1key="market::address"/>
                             </div>
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <a class="btn btn-default" id="bt_testMarketConnection"><i class="fa fa-cube"></i> Tester</a>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
@@ -892,39 +871,33 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <a class="btn btn-default" id="bt_testMarketConnection"><i class="fa fa-cube"></i> Tester</a>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Installer automatiquement les widgets manquants}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="checkbox"  class="configKey" data-l1key="market::autoInstallMissingWidget" />
+                                <input type="checkbox"  class="configKey bootstrapSwitch" data-l1key="market::autoInstallMissingWidget" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les plugins mis en avant par le market}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="checkbox"  class="configKey" data-l1key="market::showPromotion" />
+                                <input type="checkbox"  class="configKey bootstrapSwitch" data-l1key="market::showPromotion" />
                             </div>
                         </div>
-                        <div class="form-group alert alert-danger">
+                        <div class="form-group has-error">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Voir les modules en beta (à vos risques et périls)}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="checkbox"  class="configKey" data-l1key="market::showBetaMarket" />
+                                <input type="checkbox"  class="configKey bootstrapSwitch" data-l1key="market::showBetaMarket" />
                             </div>
                         </div>
                         <div class="form-group expertModeVisible">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
                             <div class="col-sm-1">
-                                <input type="checkbox" class="configKey" data-l1key="update::backupBefore"/>
+                                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="update::backupBefore"/>
                             </div>
                         </div>
-                        <div class="form-group expertModeVisible alert alert-danger">
+                        <div class="form-group expertModeVisible has-error">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mettre à jour automatiquement}}</label>
                             <div class="col-sm-1">
-                                <input type="checkbox" class="configKey" data-l1key="update::auto"/>
+                                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="update::auto"/>
                             </div>
                         </div>
                         <div class="form-group">

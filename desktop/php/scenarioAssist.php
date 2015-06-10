@@ -50,7 +50,8 @@ foreach ($scenarios[-1] as $scenario) {
 	}
 	?>
                   </ul>
-                  <?php }?>
+                  <?php }
+?>
                   <?php
 if (is_array($scenarioListGroup)) {
 	foreach ($scenarioListGroup as $group) {
@@ -99,7 +100,8 @@ if (is_array($scenarioListGroup)) {
          </center>
          <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
      </div>
-     <?php }?>
+     <?php }
+?>
 
      <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
          <center>
@@ -174,27 +176,27 @@ foreach ($scenarioListGroup as $group) {
         <div class="col-sm-6">
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label class="col-sm-4 col-xs-4 control-label">{{Actif}}</label>
-                    <div class="col-sm-1 col-xs-1">
-                        <input type="checkbox" class="scenarioAttr" data-l1key="isActive">
+                    <label class="col-sm-4 col-xs-4 control-label"></label>
+                    <div class="col-sm-8 col-xs-8">
+                        <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-label-text="{{Actif}}" data-l1key="isActive">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4 col-xs-4 control-label">{{Exécuter le plus rapidement}}</label>
                     <div class="col-sm-1 col-xs-1">
-                        <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="speedPriority" >
+                        <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="speedPriority" >
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-xs-4 control-label" for="span_lastCheck">{{Dernier lancement}}</label>
                     <div class="col-xs-3">
-                        <div><span id="span_lastLaunch" class="label label-info" style="position: relative; top: 4px;"></span></div>
+                        <div><span id="span_lastLaunch" class="label label-info" style="font-size : 1em;"></span></div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-xs-4 control-label" for="span_ongoing">{{Etat}}</label>
                     <div class="col-xs-3">
-                        <div><span id="span_ongoing" class="label" style="position: relative; top: 4px;"></span></div>
+                        <div><span id="span_ongoing" class="label" style="font-size : 1em;"></span></div>
                     </div>
                 </div>
             </form>
@@ -259,7 +261,7 @@ foreach ($scenarioListGroup as $group) {
                     <div class="form-group">
                         <label class="col-xs-3 control-label" >{{Condition optionnelle}}</label>
                         <div class="col-xs-2">
-                            <input type="checkbox" id="cb_conditionStart" />
+                            <input type="checkbox" class="bootstrapSwitch" id="cb_conditionStart" />
                         </div>
                     </div>
                     <div class="form-group condition" style="display: none;">

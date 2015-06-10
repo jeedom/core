@@ -41,7 +41,8 @@ foreach (eqLogic::byObjectId(null, false) as $eqLogic) {
 	?>
                                 </ul>
                             </li>
-                        <?php }?>
+                        <?php }
+?>
                         <?php
 foreach (object::all() as $object) {
 	echo '<li>';
@@ -139,7 +140,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                         </a>
                     </h4>
                 </div>
-                <div id="collapse_size" class="panel-collapse collapse in">
+                <div id="collapse_size" class="panel-collapse collapse">
                     <div class="panel-body">
                         <form class="form-horizontal">
                             <fieldset>
@@ -160,9 +161,9 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                                     <div class="col-sm-2">
                                     <?php
 if (config::byKey('eqLogic::widget::verticalAlign') == 1) {
-	echo '<input type="checkbox" class="configKey cursor" data-l1key="eqLogic::widget::verticalAlign" checked />';
+	echo '<input type="checkbox" class="configKey cursor bootstrapSwitch" data-l1key="eqLogic::widget::verticalAlign" checked />';
 } else {
-	echo '<input type="checkbox" class="configKey cursor" data-l1key="eqLogic::widget::verticalAlign" />';
+	echo '<input type="checkbox" class="configKey cursor bootstrapSwitch" data-l1key="eqLogic::widget::verticalAlign" />';
 }
 ?>
 

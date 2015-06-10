@@ -39,11 +39,11 @@ if ($plan->getLink_type() == 'eqLogic') {
         </div>
         <label class="col-lg-1 control-label">{{Transparent}}</label>
         <div class="col-lg-1">
-            <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-transparent" />
+            <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="background-transparent" />
         </div>
         <label class="col-lg-1 control-label">{{Défaut}}</label>
         <div class="col-lg-1">
-            <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-defaut" checked />
+            <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="background-defaut" checked />
         </div>
     </div>
     <div class="form-group">
@@ -53,7 +53,7 @@ if ($plan->getLink_type() == 'eqLogic') {
         </div>
         <label class="col-lg-1 control-label">{{Défaut}}</label>
         <div class="col-lg-1">
-            <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="color-defaut" checked />
+            <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="color-defaut" checked />
         </div>
     </div>
     <div class="form-group">
@@ -82,13 +82,13 @@ if ($plan->getLink_type() == 'eqLogic') {
     <div class="form-group">
         <label class="col-lg-4 control-label">{{Ne pas afficher le nom de l'équipement}}</label>
         <div class="col-lg-2">
-            <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="name" >
+            <input type="checkbox bootstrapSwitch" class="planAttr" data-l1key="display" data-l2key="name" >
         </div>
     </div>
     <div class="form-group">
         <label class="col-lg-4 control-label">{{Ne pas afficher le niveau de batterie}}</label>
         <div class="col-lg-2">
-            <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="batteryLevel" >
+            <input type="checkbox bootstrapSwitch" class="planAttr" data-l1key="display" data-l2key="batteryLevel" >
         </div>
     </div>
     <legend>Spécifique</legend>
@@ -113,7 +113,7 @@ if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
 				}
 				//echo '</td>';
 				echo '<td>';
-				echo '<center><input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmd" data-l3key="' . $cmd->getID() . '" /></center>';
+				echo '<center><input type="checkbox" data-size="small" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="cmd" data-l3key="' . $cmd->getID() . '" /></center>';
 				echo '</td>';
 				echo '</tr>';
 			}
@@ -126,7 +126,7 @@ if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
 		echo '<div class="form-group">';
 		echo '<label class="col-lg-6 control-label">{{Masquer les commandes}}</label>';
 		echo '<div class="col-lg-1">';
-		echo '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="hideCmd" />';
+		echo '<input type="checkbox" data-size="small" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="hideCmd" />';
 		echo '</div>';
 		echo '</div>';
 	}
@@ -165,31 +165,31 @@ if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
 <div class="form-group">
     <label class="col-lg-4 control-label">{{Afficher la légende}}</label>
     <div class="col-lg-2">
-        <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="showLegend" >
+        <input type="checkbox" checked class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="showLegend" >
     </div>
 </div>
 <div class="form-group">
     <label class="col-lg-4 control-label">{{Afficher le navigateur}}</label>
     <div class="col-lg-2">
-        <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="showNavigator" >
+        <input type="checkbox" checked class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="showNavigator" >
     </div>
 </div>
 <div class="form-group">
     <label class="col-lg-4 control-label">{{Afficher le sélecteur de période}}</label>
     <div class="col-lg-2">
-        <input type="checkbox" class="planAttr" checked data-l1key="display" data-l2key="showTimeSelector" >
+        <input type="checkbox" class="planAttr bootstrapSwitch" checked data-l1key="display" data-l2key="showTimeSelector" >
     </div>
 </div>
 <div class="form-group">
     <label class="col-lg-4 control-label">{{Afficher la barre de défilement}}</label>
     <div class="col-lg-2">
-        <input type="checkbox" class="planAttr" checked data-l1key="display" data-l2key="showScrollbar" >
+        <input type="checkbox" class="planAttr bootstrapSwitch" checked data-l1key="display" data-l2key="showScrollbar" >
     </div>
 </div>
 <div class="form-group">
     <label class="col-lg-4 control-label">{{Fond transparent}}</label>
     <div class="col-lg-2">
-        <input type="checkbox" class="planAttr" checked data-l1key="display" data-l2key="transparentBackground" >
+        <input type="checkbox" class="planAttr bootstrapSwitch" checked data-l1key="display" data-l2key="transparentBackground" >
     </div>
 </div>
 <?php } else if ($plan->getLink_type() == 'plan' || $plan->getLink_type() == 'view') {
@@ -242,7 +242,8 @@ foreach (planHeader::all() as $planHeader_select) {
         <input class="planAttr form-control" data-l1key="display" data-l2key="offsetY" />
     </div>
 </div>
-<?php }?>
+<?php }
+	?>
 <div class="form-group">
     <label class="col-lg-4 control-label">{{Icône}}</label>
     <div class="col-lg-2">
@@ -259,11 +260,11 @@ foreach (planHeader::all() as $planHeader_select) {
     </div>
     <label class="col-lg-1 control-label">{{Transparent}}</label>
     <div class="col-lg-2">
-        <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-transparent" />
+        <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="background-transparent" />
     </div>
     <label class="col-lg-1 control-label">{{Défaut}}</label>
     <div class="col-lg-1">
-        <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-defaut" checked />
+        <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="background-defaut" checked />
     </div>
 </div>
 <div class="form-group">
@@ -273,7 +274,7 @@ foreach (planHeader::all() as $planHeader_select) {
     </div>
     <label class="col-lg-1 control-label">{{Défaut}}</label>
     <div class="col-lg-1">
-        <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="color-defaut" checked />
+        <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="color-defaut" checked />
     </div>
 </div>
 <div class="form-group">
@@ -337,11 +338,11 @@ foreach (planHeader::all() as $planHeader_select) {
     </div>
     <label class="col-lg-1 control-label">{{Transparent}}</label>
     <div class="col-lg-1">
-        <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-transparent" />
+        <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="background-transparent" />
     </div>
     <label class="col-lg-1 control-label">{{Défaut}}</label>
     <div class="col-lg-1">
-        <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-defaut" checked />
+        <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="background-defaut" checked />
     </div>
 </div>
 <div class="form-group">
@@ -351,7 +352,7 @@ foreach (planHeader::all() as $planHeader_select) {
     </div>
     <label class="col-lg-1 control-label">{{Défaut}}</label>
     <div class="col-lg-1">
-        <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="color-defaut" checked />
+        <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="color-defaut" checked />
     </div>
 </div>
 <div class="form-group">
@@ -375,7 +376,7 @@ foreach (planHeader::all() as $planHeader_select) {
 <div class="form-group expertModeVisible">
     <label class="col-lg-4 control-label">{{Ne pas prendre en compte la taille predefinie)}}</label>
     <div class="col-lg-4">
-        <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="noPredefineSize" />
+        <input type="checkbox" class="planHeaderAttr bootstrapSwitch" data-l1key='configuration' data-l2key="noPredefineSize" />
     </div>
 </div>
 <div class="form-group">
@@ -398,12 +399,14 @@ foreach (planHeader::all() as $planHeader_select) {
         </select>
     </div>
 </div>
-<?php }?>
+<?php }
+?>
 </fieldset>
 </form>
 
 
 <script>
+    initCheckBox();
     editor = [];
 
     $('#bt_chooseIcon').on('click', function () {
