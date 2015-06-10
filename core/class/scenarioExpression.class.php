@@ -732,6 +732,9 @@ class scenarioExpression {
 			'#IP#' => '"' . network::getNetworkAccess('internal', 'ip') . '"',
 			'#trigger#' => (is_object($_scenario)) ? $_scenario->getRealTrigger() : '',
 		);
+		if ($_scenario != null) {
+			$replace1 = array_merge($replace1, $_scenario->getTags());
+		}
 		$replace2 = array();
 		preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
 		foreach ($matches as $match) {

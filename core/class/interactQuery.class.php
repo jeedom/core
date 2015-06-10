@@ -322,7 +322,11 @@ class interactQuery {
 			$reply = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
 			switch ($interactDef->getOptions('scenario_action')) {
 				case 'start':
-					$return = $scenario->launch(false, 'interact', __('Scénario exécuté sur interaction (S.A.R.A.H, SMS...)', __FILE__));
+					$scenario->setTags(array(
+						'#query#' => $this->getQuery(),
+						'#profile#' => $replace['#profile#'],
+					));
+					$return = $scenario->launch(false, 'interact', __('Scénario exécuté sur interaction (S.A.R.A.H, SMS...)', __FILE__), 1);
 					if (is_string($return) && $return != '') {
 						$return = str_replace(array_keys($replace), $replace, $return);
 						return $return;

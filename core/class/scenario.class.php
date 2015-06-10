@@ -46,6 +46,7 @@ class scenario {
 	private $_changeState = false;
 	private $_realTrigger = '';
 	private $_return = '';
+	private $_tags = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -580,12 +581,12 @@ class scenario {
 
 /*     * *********************Méthodes d'instance************************* */
 
-	public function launch($_force = false, $_trigger = '', $_message = '') {
+	public function launch($_force = false, $_trigger = '', $_message = '', $_speedPriority = 0) {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 			return false;
 		}
 
-		if ($this->getConfiguration('speedPriority', 0) == 0) {
+		if ($this->getConfiguration('speedPriority', 0) == 0 && $_speedPriority == 0) {
 			$cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
 			$cmd .= ' scenario_id=' . $this->getId();
 			$cmd .= ' force=' . $_force;
@@ -1311,6 +1312,14 @@ class scenario {
 
 	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+	}
+
+	public function setTags($_tags) {
+		$this->_tags = $_tags;
+	}
+
+	public function getTags() {
+		return $this->_tags;
 	}
 
 	function getRealTrigger() {

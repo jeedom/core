@@ -91,6 +91,15 @@ Vous pouvez aussi utiliser les tags suivants :
 - \#IP# : IP interne de jeedom
 - \#hostname# : nom de la machine Jeedom
 - \#trigger# : nom de la commande qui a déclenché le scénario
+
+Vous avez aussi les tags suivant en plus si votre scénario à été déclenché par une interaction : 
+
+- \#query# : interaction ayant déclenché le scénario
+- \#profil# : profil de l'utilisateur ayant déclenché le scénario (peut etre vide)
+
+[icon="../images/plugin/important.png"]
+[IMPORTANT]
+Lorsqu'un scénario est déclenché par une interaction celui-ci est forcément executé en mode rapide
     
 Plusieurs fonctions sont disponibles pour les équipements :
 
