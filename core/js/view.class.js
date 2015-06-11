@@ -90,7 +90,7 @@ jeedom.view.handleViewAjax = function (_params) {
         var viewZone = _params.view.viewZone[i];
         result.html += '<div>';
         result.html += '<legend style="color : #716b7a">' + viewZone.name + '</legend>';
-        var div_id = 'div_viewZone' + viewZone.id+Math.floor((Math.random() * 100) + 1);
+        var div_id = 'div_viewZone' + viewZone.id;
         /*         * *****************viewZone widget***************** */
         if (viewZone.type == 'widget') {
             result.html += '<div id="' + div_id + '" class="eqLogicZone">';
