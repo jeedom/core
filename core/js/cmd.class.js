@@ -538,6 +538,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
          _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').hide();
      }
      _cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('change');
+      _cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('switchChange.bootstrapSwitch');
      modifyWithoutSave = false;
      if ('function' == typeof(initExpertMode)) {
         initExpertMode();

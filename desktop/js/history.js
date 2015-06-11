@@ -110,7 +110,7 @@ function initHistoryTrigger() {
             }
         });
     });
-    $('#cb_derive').on('change', function () {
+    $('#cb_derive').on('change switchChange.bootstrapSwitch', function () {
         $('.li_history[data-cmd_id=' + lastId + '] .history').click();
         jeedom.cmd.save({
             cmd: {id: lastId, display: {graphDerive: $(this).value()}},
@@ -122,7 +122,7 @@ function initHistoryTrigger() {
             }
         });
     });
-    $('#cb_step').on('change', function () {
+    $('#cb_step').on('change switchChange.bootstrapSwitch', function () {
         $('.li_history[data-cmd_id=' + lastId + '] .history').click();
         jeedom.cmd.save({
             cmd: {id: lastId, display: {graphStep: $(this).value()}},

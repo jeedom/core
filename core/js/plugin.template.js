@@ -304,7 +304,7 @@ $('body').delegate('.cmd .cmdAttr[data-l1key=display][data-l2key=icon]', 'click'
     $(this).empty();
 });
 
-$('body').delegate('.cmd .cmdAttr[data-l1key=eventOnly]', 'change', function () {
+$('body').delegate('.cmd .cmdAttr[data-l1key=eventOnly]', 'change switchChange.bootstrapSwitch', function () {
     if ($(this).value() == 1) {
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').hide();
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').addClass('hide');
@@ -424,10 +424,10 @@ load: function () {
 }
 });
 
-$('body').delegate('.cmdAttr', 'change', function () {
+$('body').delegate('.cmdAttr', 'change switchChange.bootstrapSwitch', function () {
     modifyWithoutSave = true;
 });
 
-$('body').delegate('.eqLogicAttr', 'change', function () {
+$('body').delegate('.eqLogicAttr', 'change switchChange.bootstrapSwitch', function () {
     modifyWithoutSave = true;
 });

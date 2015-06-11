@@ -379,6 +379,9 @@
                             $(this).bootstrapSwitch('destroy');
                             $(this).prop('checked', (init(_value) == 1) ? true : false);
                             $(this).bootstrapSwitch();
+                            $("input[type=checkbox].bootstrapSwitch").off('switchChange.bootstrapSwitch').on('switchChange.bootstrapSwitch',function(){
+                                $(this).trigger('change');
+                            });
                         }else{
                             $(this).prop('checked', (init(_value) == 1) ? true : false);
                         }
