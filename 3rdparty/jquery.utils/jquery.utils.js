@@ -378,6 +378,7 @@
                         if($(this).hasClass('bootstrapSwitch')){
                             $(this).bootstrapSwitch('destroy');
                             $(this).prop('checked', (init(_value) == 1) ? true : false);
+                            $(this).bootstrapSwitch();
                         }else{
                             $(this).prop('checked', (init(_value) == 1) ? true : false);
                         }
