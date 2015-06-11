@@ -303,6 +303,8 @@ setInterval(function () {
 
     $.fn.bootstrapSwitch.defaults.onText = '{{Oui}}';
     $.fn.bootstrapSwitch.defaults.offText = '{{Non}}';
+    $.fn.bootstrapSwitch.defaults.onColor = 'success';
+    $.fn.bootstrapSwitch.defaults.offColor = 'danger';
 
     initPage();
 });
