@@ -670,7 +670,11 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 			/*             * ************************Plugin*************************** */
 			if ($jsonrpc->getMethod() == 'plugin::install') {
-				$market = market::byId($params['plugin_id']);
+				try {
+					$market = market::byId($params['plugin_id']);
+				} catch (Exception $e) {
+					$market = market::byLogicalId($params['plugin_id']);
+				}
 				if (!is_object($market)) {
 					throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . $params['plugin_id']);
 				}
