@@ -23,7 +23,9 @@ if (view_id != '') {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (html) {
-            $('#div_displayView').empty().html(html.html);
+            $('#div_displayView').empty();
+            jeedom.history.chart = [];
+            $('#div_displayView').html(html.html);
             setTimeout(function () {
                 positionEqLogic();
                 $('.eqLogicZone').each(function () {
