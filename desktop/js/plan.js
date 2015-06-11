@@ -75,12 +75,10 @@
     }
 });
 
- $('body').undelegate('.plan-link-widget', 'click').delegate('.plan-link-widget', 'click', function () {
+ $('body').delegate('.plan-link-widget', 'click', function () {
     if ($('#bt_editPlan').attr('data-mode') != "1") {
         if (planHeader_id != $(this).attr('data-link_id')) {
             $('#sel_planHeader').value($(this).attr('data-link_id'));
-            planHeader_id = $(this).attr('data-link_id');
-            displayPlan($(this).attr('data-offsetX'), $(this).attr('data-offsetX'));
         }
     }
 });
