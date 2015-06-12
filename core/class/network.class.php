@@ -459,6 +459,10 @@ class network {
 
 	}
 
+	public static function getMac($_interface = 'eth0') {
+		return shell_exec("ip addr show $_interface | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
+	}
+
 	public static function canManageNetwork() {
 		if (shell_exec('sudo dpkg --get-selections | grep ifenslave | wc -l') == 0) {
 			return false;
