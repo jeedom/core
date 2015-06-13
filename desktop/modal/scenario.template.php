@@ -29,7 +29,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
   </div>
 </div>
 
-<div class="col-lg-9 col-md-8 col-sm-6" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
+<div class="col-lg-9 col-md-8 col-sm-6" id="div_listScenarioTemplate" style="border-left: solid 1px #EEE; padding-left: 25px;display : none;">
     <form class="form-horizontal">
         <legend>{{Général}}</legend>
         <div class="form-group">
@@ -135,6 +135,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
     });
 
 $('#ul_scenarioTemplateList').delegate('.li_scenarioTemplate','click', function () {
+    $('#div_listScenarioTemplate').show();
    $('#ul_scenarioTemplateList .li_scenarioTemplate').removeClass('active');
    $(this).addClass('active');
    jeedom.scenario.loadTemplateDiff({
