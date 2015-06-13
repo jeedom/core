@@ -989,7 +989,7 @@ class cmd {
 		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
 		if ($this->execCmd(null, 2) == $value) {
 			if (strpos($value, 'error') === false) {
-				$eqLogic->setStatus('lastCommunication', $collectDate);
+				$eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
 			}
 			if ($this->getConfiguration('doNotRepeatEvent', 0) == 1) {
 				return;
