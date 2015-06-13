@@ -11,15 +11,13 @@ if (!hasRight('backupview', true)) {
                 <fieldset>
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes}}</label>
-                        <div class="col-sm-2 col-xs-2">
-                            <a class="btn btn-default bt_backupJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-floppy-o"></i> {{Lancer}}</a>
-                        </div>
-                        <?php if (config::byKey('backup::cloudUpload') == 1) {?>
-                            <div class="col-sm-3 col-xs-2">
+                        <div class="col-sm-8 col-xs-6">
+                            <a class="btn btn-success bt_backupJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-floppy-o"></i> {{Lancer}}</a>
+                            <?php if (config::byKey('backup::cloudUpload') == 1) {?>
                                 <a class="btn btn-default bt_backupJeedom" data-noCloudBackup="1" ><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-floppy-o"></i> Lancer sans envoi sur le cloud</a>
-                            </div>
-                            <?php }
+                                <?php }
 ?>
+                            </div>
                         </div>
                         <div class="form-group expertModeVisible">
                             <label class="col-sm-4 col-xs-6 control-label">{{Emplacement des sauvegardes}}</label>
