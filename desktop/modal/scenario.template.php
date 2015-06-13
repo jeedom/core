@@ -13,16 +13,21 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
 
 
 <div class="row row-overflow" id='div_scenarioTemplate'>
- <div class="col-lg-3 col-md-4 col-sm-6" id="div_listScenario" style="z-index:999">
+ <div class="col-lg-2 col-md-3 col-sm-5" id="div_listScenario" style="z-index:999">
     <div class="bs-sidebar nav nav-list bs-sidenav" >
-    <center><input class="expertModeVisible" id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload" style="display : inline-block;"></center><br/>
+        <center>
+            <span class="btn btn-default btn-file">
+                <i class="fa fa-cloud-upload"></i> {{Envoyer un template}}<input class="expertModeVisible" id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload" style="display : inline-block;">
+            </span>
+        </center>
+        <br/>
         <center><a class="btn btn-default" id="bt_scenarioTemplateDisplayMarket" style="width : 91%"><i class="fa fa-shopping-cart"></i> {{Market}}</a></center><br/>
-        <div class="form-group">
-          <div class="col-xs-8">
+        <div class="form-group" style="position:relative;left : -5px;">
+          <div class="col-xs-9">
               <input class='form-control' id='in_newTemplateName' placeholder="{{Nom du template}}" />
           </div>
-          <div class="col-xs-4">
-              <a class="btn btn-default" id="bt_scenarioTemplateConvert"><i class="fa fa-plus-circle cursor" ></i> {{Créer}}</a>
+          <div class="col-xs-2">
+              <a class="btn btn-default" id="bt_scenarioTemplateConvert"><i class="fa fa-plus-circle cursor" ></i></a>
           </div>
       </div><br/><br/>
       <legend>{{Template}}</legend>
@@ -30,7 +35,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
   </div>
 </div>
 
-<div class="col-lg-9 col-md-8 col-sm-6" id="div_listScenarioTemplate" style="border-left: solid 1px #EEE; padding-left: 25px;display : none;">
+<div class="col-lg-10 col-md-9 col-sm-7" id="div_listScenarioTemplate" style="border-left: solid 1px #EEE; padding-left: 25px;display : none;">
     <form class="form-horizontal">
         <legend>{{Général}}</legend>
         <div class="form-group">
@@ -47,6 +52,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
         </div>
     </form>
 </div>
+<div class="col-lg-10 col-md-9 col-sm-7" id="div_marketScenarioTemplate" style="border-left: solid 1px #EEE; padding-left: 25px;display : none;"></div>
 </div>
 
 <script>
@@ -69,9 +75,9 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
     refreshScenarioTemplateList();
 
     $('#bt_scenarioTemplateDisplayMarket').on('click', function () {
-        $('#md_modal').dialog({title: "{{Partager sur le market}}"});
-        $('#md_modal').load('index.php?v=d&modal=market.list&type=scenario').dialog('open');
-    });
+     $('#div_listScenarioTemplate').hide();
+     $('#div_marketScenarioTemplate').load('index.php?v=d&modal=market.list&type=scenario').show();
+ });
 
     $('#bt_scenarioTemplateShare').on('click', function () {
         if($('#ul_scenarioTemplateList li.active').attr('data-template') == undefined){
@@ -115,7 +121,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
     });
 
     $('#bt_scenarioTemplateApply').on('click', function () {
-        bootbox.confirm('{{Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario', function (result) {
+        bootbox.confirm('{{Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario}}', function (result) {
             if (result) {
                 var convert = $('.templateScenario').getValues('.templateScenarioAttr');
                 jeedom.scenario.applyTemplate({
@@ -136,6 +142,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
 
 $('#ul_scenarioTemplateList').delegate('.li_scenarioTemplate','click', function () {
     $('#div_listScenarioTemplate').show();
+    $('#div_marketScenarioTemplate').hide();
     $('#ul_scenarioTemplateList .li_scenarioTemplate').removeClass('active');
     $(this).addClass('active');
     jeedom.scenario.loadTemplateDiff({
