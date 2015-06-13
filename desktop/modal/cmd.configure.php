@@ -459,40 +459,7 @@ if ($cmd->getDisplay('parameters') != '') {
 </div>
 
 
-<div id="md_cmdConfigureSelectMultiple" title="{{Sélection multiple de commandes}}">
-  <div style="display: none;" id="md_cmdConfigureSelectMultipleAlert"></div>
-  <div>
-    <a class="btn btn-default" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="fa fa-check-circle-o"></i> {{Basculer}}</a>
-    <a class="btn btn-success pull-right" id="bt_cmdConfigureSelectMultipleAlertApply" style="color : white;" ><i class="fa fa-check"></i> {{Valider}}</a>
-  </div>
-  <br/>
-  <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureSelectMultiple">
-    <thead>
-      <tr>
-        <th></th>
-        <th>{{Nom}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
-	echo '<tr data-cmd_id="' . $listCmd->getId() . '">';
-	echo '<td>';
-	if ($listCmd->getId() == $cmd->getId()) {
-		echo '<input type="checkbox" class="selectMultipleApplyCmd bootstrapSwitch" checked/>';
-	} else {
-		echo '<input type="checkbox" class="selectMultipleApplyCmd bootstrapSwitch" />';
-	}
-	echo '</td>';
-	echo '<td>';
-	echo $listCmd->getHumanName(true);
-	echo '</td>';
-	echo '</tr>';
-}
-?>
-  </tbody>
-</table>
-</div>
+<div id="md_cmdConfigureSelectMultiple" title="{{Sélection multiple de commandes}}"></div>
 
 
 <script>
@@ -580,7 +547,7 @@ foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
     if (isset(checkCmdParameter) && isset(checkCmdParameter.options)) {
       cmd.configuration.jeedomCheckCmdCmdActionOption = checkCmdParameter.options;
     }
-    $('#md_cmdConfigureSelectMultiple').dialog('open');
+    $('#md_cmdConfigureSelectMultiple').load('index.php?v=d&modal=cmd.selectMultiple&cmd_id='+cmdInfo.id).dialog('open');
     initTableSorter();
 
     $('#bt_cmdConfigureSelectMultipleAlertToogle').off().on('click', function () {
