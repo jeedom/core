@@ -27,9 +27,9 @@ foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
 	echo '<tr data-cmd_id="' . $listCmd->getId() . '">';
 	echo '<td>';
 	if ($listCmd->getId() == $cmd->getId()) {
-		echo '<input type="checkbox" class="selectMultipleApplyCmd bootstrapSwitch" checked/>';
+		echo '<input type="checkbox" data-size="mini" class="selectMultipleApplyCmd bootstrapSwitch" checked/>';
 	} else {
-		echo '<input type="checkbox" class="selectMultipleApplyCmd bootstrapSwitch" />';
+		echo '<input type="checkbox" data-size="mini" class="selectMultipleApplyCmd bootstrapSwitch" />';
 	}
 	echo '</td>';
 	echo '<td>';

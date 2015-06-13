@@ -547,44 +547,46 @@ if ($cmd->getDisplay('parameters') != '') {
     if (isset(checkCmdParameter) && isset(checkCmdParameter.options)) {
       cmd.configuration.jeedomCheckCmdCmdActionOption = checkCmdParameter.options;
     }
-    $('#md_cmdConfigureSelectMultiple').load('index.php?v=d&modal=cmd.selectMultiple&cmd_id='+cmdInfo.id).dialog('open');
-    initTableSorter();
-
-    $('#bt_cmdConfigureSelectMultipleAlertToogle').off().on('click', function () {
-      var state = false;
-      if ($(this).attr('data-state') == 0) {
-        state = true;
-        $(this).attr('data-state', 1);
-        $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
-      } else {
-        state = false;
-        $(this).attr('data-state', 0);
-        $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
-      }
-      $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
-        if ($(this).is(':visible')) {
-          $(this).find('.selectMultipleApplyCmd').prop('checked', state);
+    $('#md_cmdConfigureSelectMultiple').load('index.php?v=d&modal=cmd.selectMultiple&cmd_id='+cmdInfo.id, function() {
+      initTableSorter();
+      initCheckBox();
+      $('#bt_cmdConfigureSelectMultipleAlertToogle').off().on('click', function () {
+        var state = false;
+        if ($(this).attr('data-state') == 0) {
+          state = true;
+          $(this).attr('data-state', 1);
+          $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
+        } else {
+          state = false;
+          $(this).attr('data-state', 0);
+          $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
         }
+        $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
+          if ($(this).is(':visible')) {
+           $(this).find('.selectMultipleApplyCmd').bootstrapSwitch('destroy');
+           $(this).find('.selectMultipleApplyCmd').prop('checked', state);
+           $(this).find('.selectMultipleApplyCmd').bootstrapSwitch();
+         }
+       });
       });
-    });
 
-    $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
-      $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
-        if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
-          cmd.id = $(this).attr('data-cmd_id');
-          jeedom.cmd.save({
-            cmd: cmd,
-            error: function (error) {
-              $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
+      $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
+        $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
+          if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
+            cmd.id = $(this).attr('data-cmd_id');
+            jeedom.cmd.save({
+              cmd: cmd,
+              error: function (error) {
+                $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'});
+              },
+              success: function () {
 
-            }
-          });
-        }
+              }
+            });
+          }
+        });
+        $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification(s) appliquée(s) avec succès}}", level: 'success'});
       });
-      $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification(s) appliquée(s) avec succès}}", level: 'success'});
-    });
-
-  });
+    }).dialog('open');
+});
 </script>
