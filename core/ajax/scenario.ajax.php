@@ -78,14 +78,9 @@ try {
 			mkdir($path);
 		}
 		if (init('template') == '') {
-			if ($scenario->getGroup() == '') {
-				$name = config::genKey(5) . '.' . str_replace(' ', '', $scenario->getName()) . '.json';
-			} else {
-				$name = config::genKey(5) . '.' . str_replace(' ', '', $scenario->getGroup() . '_' . $scenario->getName()) . '.json';
-			}
-		} else {
-			$name = init('template');
+			throw new Exception(__('Le nom du template ne peut être vide ', __FILE__));
 		}
+		$name = init('template');
 		file_put_contents($path . '/' . $name, json_encode($scenario->export('array'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 		if (!file_exists($path . '/' . $name)) {
 			throw new Exception(__('Impossible de creer le template, vérifiez les droits : ', __FILE__) . $path . '/' . $name);
@@ -309,6 +304,34 @@ try {
 
 	if (init('action') == 'actionToHtml') {
 		ajax::success(scenarioExpression::getExpressionOptions(init('expression'), init('option')));
+	}
+
+	if (init('action') == 'templateupload') {
+		$uploaddir = dirname(__FILE__) . '/../../core/config/scenario/';
+		if (!file_exists($uploaddir)) {
+			mkdir($uploaddir);
+		}
+		if (!file_exists($uploaddir)) {
+			throw new Exception(__('Répertoire d\'upload non trouvé : ', __FILE__) . $uploaddir);
+		}
+		if (!isset($_FILES['file'])) {
+			throw new Exception(__('Aucun fichier trouvé. Vérifié parametre PHP (post size limit)', __FILE__));
+		}
+		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
+		if (!in_array($extension, array('.json'))) {
+			throw new Exception('Extension du fichier non valide (autorisé .json) : ' . $extension);
+		}
+		if (filesize($_FILES['file']['tmp_name']) > 10000000) {
+			throw new Exception(__('Le fichier est trop gros (maximum 10mo)', __FILE__));
+		}
+		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $_FILES['file']['name'])) {
+			throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
+		}
+		if (!file_exists($uploaddir . '/' . $_FILES['file']['name'])) {
+			throw new Exception(__('Impossible d\'uploader le fichier (limite du serveur web ?)', __FILE__));
+		}
+		ajax::success();
+
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
