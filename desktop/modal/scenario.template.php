@@ -13,9 +13,10 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
 
 
 <div class="row row-overflow" id='div_scenarioTemplate'>
-   <div class="col-lg-3 col-md-4 col-sm-6" id="div_listScenario" style="z-index:999">
+ <div class="col-lg-3 col-md-4 col-sm-6" id="div_listScenario" style="z-index:999">
     <div class="bs-sidebar nav nav-list bs-sidenav" >
-        <center><input class="expertModeVisible" id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload" style="display : inline-block;"></center><br/>
+    <center><input class="expertModeVisible" id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload" style="display : inline-block;"></center><br/>
+        <center><a class="btn btn-default" id="bt_scenarioTemplateDisplayMarket" style="width : 91%"><i class="fa fa-shopping-cart"></i> {{Market}}</a></center><br/>
         <div class="form-group">
           <div class="col-xs-8">
               <input class='form-control' id='in_newTemplateName' placeholder="{{Nom du template}}" />
@@ -23,8 +24,8 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
           <div class="col-xs-4">
               <a class="btn btn-default" id="bt_scenarioTemplateConvert"><i class="fa fa-plus-circle cursor" ></i> {{Créer}}</a>
           </div>
-      </div>
-      <hr/>
+      </div><br/><br/>
+      <legend>{{Template}}</legend>
       <ul id="ul_scenarioTemplateList" class="nav nav-list bs-sidenav"></ul>
   </div>
 </div>
@@ -37,7 +38,6 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
             <div class="col-xs-6">
                 <a class='btn btn-warning' id='bt_scenarioTemplateShare'><i class="fa fa-cloud-upload"></i> {{Partager}}</a>
                 <a class='btn btn-danger' id='bt_scenarioTemplateRemove'><i class="fa fa-times"></i> {{Supprimer}}</a>
-                <a class="btn btn-default" id="bt_scenarioTemplateDisplayMarket"><i class="fa fa-shopping-cart"></i> {{Market}}</a>
                 <a class="btn btn-primary" id="bt_scenarioTemplateDownload"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
             </div>
         </div>
@@ -136,32 +136,32 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
 
 $('#ul_scenarioTemplateList').delegate('.li_scenarioTemplate','click', function () {
     $('#div_listScenarioTemplate').show();
-   $('#ul_scenarioTemplateList .li_scenarioTemplate').removeClass('active');
-   $(this).addClass('active');
-   jeedom.scenario.loadTemplateDiff({
-    template: $(this).attr('data-template'),
-    id: scenario_template_id,
-    error: function (error) {
-        $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-        var html = '';
-        for (var i in data) {
-            html += '<div class="form-group templateScenario">';
-            html += '<label class="col-xs-4 control-label">' + data[i] + ' <i class="fa fa-arrow-right"></i></label>';
-            html += '<div class="col-xs-4">';
-            html += '<span class="templateScenarioAttr" data-l1key="begin" style="display : none;" >' + data[i] + '</span>';
-            html += '<input class="form-control templateScenarioAttr" data-l1key="end" />';
-            html += '</div>';
-            html += '<div class="col-xs-2">';
-            html += '<a class="btn btn-default cursor bt_scenarioTemplateSelectCmd"><i class="fa fa-list-alt"></i></a>';
-            html += '</div>';
-            html += '</div>';
+    $('#ul_scenarioTemplateList .li_scenarioTemplate').removeClass('active');
+    $(this).addClass('active');
+    jeedom.scenario.loadTemplateDiff({
+        template: $(this).attr('data-template'),
+        id: scenario_template_id,
+        error: function (error) {
+            $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            var html = '';
+            for (var i in data) {
+                html += '<div class="form-group templateScenario">';
+                html += '<label class="col-xs-4 control-label">' + data[i] + ' <i class="fa fa-arrow-right"></i></label>';
+                html += '<div class="col-xs-4">';
+                html += '<span class="templateScenarioAttr" data-l1key="begin" style="display : none;" >' + data[i] + '</span>';
+                html += '<input class="form-control templateScenarioAttr" data-l1key="end" />';
+                html += '</div>';
+                html += '<div class="col-xs-2">';
+                html += '<a class="btn btn-default cursor bt_scenarioTemplateSelectCmd"><i class="fa fa-list-alt"></i></a>';
+                html += '</div>';
+                html += '</div>';
+            }
+            $('#div_scenarioTemplateParametreList').empty().html(html);
+            $('#div_scenarioTemplateParametreConfiguration').show();
         }
-        $('#div_scenarioTemplateParametreList').empty().html(html);
-        $('#div_scenarioTemplateParametreConfiguration').show();
-    }
-});
+    });
 
 });
 
