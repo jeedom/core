@@ -82,13 +82,13 @@ if ($plan->getLink_type() == 'eqLogic') {
     <div class="form-group">
         <label class="col-lg-4 control-label">{{Ne pas afficher le nom de l'équipement}}</label>
         <div class="col-lg-2">
-            <input type="checkbox bootstrapSwitch" class="planAttr" data-l1key="display" data-l2key="name" >
+            <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="name" >
         </div>
     </div>
     <div class="form-group">
         <label class="col-lg-4 control-label">{{Ne pas afficher le niveau de batterie}}</label>
         <div class="col-lg-2">
-            <input type="checkbox bootstrapSwitch" class="planAttr" data-l1key="display" data-l2key="batteryLevel" >
+            <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="batteryLevel" >
         </div>
     </div>
     <legend>Spécifique</legend>
