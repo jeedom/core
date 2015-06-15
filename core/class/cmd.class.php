@@ -979,7 +979,7 @@ class cmd {
 			return;
 		}
 		$value = $this->formatValue($_value);
-		if ($this->getSubType() != 'string' && $value > $this->getConfiguration('maxValue', $value) && $value < $this->getConfiguration('minValue', $value) && strpos($value, 'error') === false) {
+		if ($this->getSubType() == 'numeric' && $value > $this->getConfiguration('maxValue', $value) && $value < $this->getConfiguration('minValue', $value) && strpos($value, 'error') === false) {
 			return;
 		}
 		$eqLogic = $this->getEqLogic();
@@ -989,7 +989,7 @@ class cmd {
 		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
 		if ($this->execCmd(null, 2) == $value) {
 			if (strpos($value, 'error') === false) {
-				$eqLogic->setStatus('lastCommunication', $collectDate);
+				$eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
 			}
 			if ($this->getConfiguration('doNotRepeatEvent', 0) == 1) {
 				return;
@@ -1023,7 +1023,7 @@ class cmd {
 		listener::check($this->getId(), $value);
 
 		if (strpos($value, 'error') === false) {
-			$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
+			$eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
 			$this->addHistoryValue($value, $this->getCollectDate());
 		} else {
 			$this->addHistoryValue(null, $this->getCollectDate());
