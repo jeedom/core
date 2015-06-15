@@ -1,3 +1,5 @@
+:icons:
+
 [panel,danger]
 .J'ai une page blanche
 --

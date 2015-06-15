@@ -1,4 +1,6 @@
-==== Description
+:icons:
+
+== Description
 
 Il y a deux manières de sauvegarder Jeedom et chacune comporte des avantages et des inconvénients.
 
@@ -19,11 +21,11 @@ La procédure de restauration de la carte microSD peut-être utile pour restaure
 fournie par l'équipe voir link:http://doc.jeedom.fr/fr_FR/doc-installation.html[ici]. 
 
 
-==== Sauvegarde/Restauration de Jeedom
+== Sauvegarde/Restauration de Jeedom
 
 Afin de gérer et paramétrer les sauvegardes, il faut se rendre dans le menu _Général > Administration > Sauvegardes_.
 
-===== [underline]#I) Configurations#
+=== [underline]#I) Configurations#
 
 . [underline]#Paramètres Généraux#
 
@@ -68,7 +70,7 @@ Afin de pouvoir utiliser la sauvegarde sur le cloud vous devez acheter un abonne
 +
 image::../images/save-restore05.jpg[align="center"]
 
-===== [underline]#II) Sauvegarde#
+=== [underline]#II) Sauvegarde#
 
 On a vu que l'on peut configurer Jeedom afin qu'il se sauvegarde automatiquement à intervalle régulier 
 mais aussi avant de lancer des mises à jour. Afin de lancer une sauvegarde manuellement se rendre dans 
@@ -81,7 +83,7 @@ Si vous avez acheté un abonnement sauvegarde cloud, le fichier sera automatique
 envoyé sur les serveurs cloud de Jeedom. Vous pouvez aussi utiliser le plugin Data Transfert afin 
 de copier ces fichiers sur un serveur FTP, SFTP, Dropbox...
 
-===== [underline]#III) Restauration#
+=== [underline]#III) Restauration#
 
 La restauration est aussi simple que la sauvegarde.
 
@@ -95,9 +97,9 @@ avant de lancer une restauration vous devez au préalable envoyer un fichier de 
 ordinateur vers Jeedom en utilisant la fonction _Envoyer une sauvegarde_ de la section _Sauvegardes locales_.
 
 
-==== Sauvegarde/Restauration de la carte microSD
+== Sauvegarde/Restauration de la carte microSD
 
-===== [underline]#I) Préparatifs#
+=== [underline]#I) Préparatifs#
 
 Ces sauvegardes/restaurations se réalisent à partir d'un autre ordinateur afin de faire une "image propre" de la carte SD. 
 Il faut dans un premier temps arrêter la mini+. Pour cela, passer Jeedom en mode expert dans le menu utilisateur 
@@ -113,7 +115,7 @@ Ensuite, il faut sortir la carte microSD de la mini+ et la connecter à votre or
 
 image::../images/save-restore08.jpg[align="center"]
 
-===== [underline]#II) Sous Windows#
+=== [underline]#II) Sous Windows#
 
 Il faudra commencer par télécharger un logiciel tiers par exemple : http://sourceforge.net/projects/win32diskimager/[Win32 Disk Imager]
 
@@ -137,7 +139,7 @@ Enfin cliquer sur le bouton _Write_, afin de restaurer cette image sur la carte 
 +
 image::../images/save-restore10.jpg[align="center"]
 
-===== [underline]#III) Sous MacOSX#
+=== [underline]#III) Sous MacOSX#
 
 Pour vous faciliter la tâche, vous pouvez télécharger le logiciel http://www.tweaking4all.com/hardware/raspberry-pi/macosx-apple-pi-baker/[ApplePi-Baker]
 
@@ -170,7 +172,7 @@ restaurer l'image sur la carte microSD.
 +
 _Rmq : Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc saisir dans la commande de sauvegarde /dev/+++<u>r</u>+++disk1_
 
-===== [underline]#IV) Sous Linux#
+=== [underline]#IV) Sous Linux#
 
 . [underline]#Sauvegarde#
 +    

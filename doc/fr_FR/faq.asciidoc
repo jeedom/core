@@ -1,3 +1,5 @@
+:icons:
+
 [panel,primary]
 .Jeedom nécessite t'il un abonnement ?
 --
