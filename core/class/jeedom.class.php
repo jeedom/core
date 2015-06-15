@@ -272,10 +272,6 @@ class jeedom {
 		}
 	}
 
-	public static function hasSudo() {
-		return (trim(exec('sudo cat /etc/sudoers')) == "") ? true : false;
-	}
-
 	public static function whatDoYouKnow($_object = null) {
 		$result = array();
 		if (is_object($_object)) {
@@ -533,10 +529,12 @@ class jeedom {
 	}
 
 	public static function haltSystem() {
+		plugin::stop();
 		exec('sudo shutdown -h now');
 	}
 
 	public static function rebootSystem() {
+		plugin::stop();
 		exec('sudo reboot');
 	}
 

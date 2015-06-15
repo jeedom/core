@@ -218,6 +218,15 @@ class plugin {
 		}
 	}
 
+	public static function stop() {
+		foreach (self::listPlugin(true) as $plugin) {
+			if (method_exists($plugin->getId(), 'stop')) {
+				$plugin->launch('stop');
+			}
+		}
+		sleep(10);
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function isActive() {
