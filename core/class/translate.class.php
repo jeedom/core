@@ -53,33 +53,34 @@ class translate {
 		$translate = self::getTranslation();
 		preg_match_all("/{{(.*?)}}/s", $_content, $matches);
 		foreach ($matches[1] as $text) {
-			$replace = false;
+			if (trim($text) == '') {
+				$replace["{{" . $text . "}}"] = $text;
+			}
 			if (isset($translate[$_name]) && isset($translate[$_name][$text])) {
-				$replace = $translate[$_name][$text];
+				$replace["{{" . $text . "}}"] = $translate[$_name][$text];
 			}
-			if ($replace === false && isset($translate['common']) && isset($translate['common'][$text])) {
-				$replace = $translate['common'][$text];
+			if (!isset($replace["{{" . $text . "}}"]) && isset($translate['common']) && isset($translate['common'][$text])) {
+				$replace["{{" . $text . "}}"] = $translate['common'][$text];
 			}
-			if ($replace === false) {
+			if (!isset($replace["{{" . $text . "}}"])) {
 				$modify = true;
 				if (!isset($translate[$_name])) {
 					$translate[$_name] = array();
 				}
 				$translate[$_name][$text] = $text;
 			}
-			if ($_backslash && $replace !== false) {
-				$replace = str_replace("'", "\'", str_replace("\'", "'", $replace));
+			if ($_backslash && !isset($replace["{{" . $text . "}}"])) {
+				$replace["{{" . $text . "}}"] = str_replace("'", "\'", str_replace("\'", "'", $replace));
 			}
-			if ($replace === false) {
-				$replace = $text;
+			if (!isset($replace["{{" . $text . "}}"])) {
+				$replace["{{" . $text . "}}"] = $text;
 			}
-			$_content = str_replace("{{" . $text . "}}", $replace, $_content);
 		}
 		if ($language == 'fr_FR' && $modify) {
 			static::$translation[self::getLanguage()] = $translate;
 			self::saveTranslation($language);
 		}
-		return $_content;
+		return str_replace(array_keys($replace), $replace, $_content);
 	}
 
 	public static function getPathTranslationFile($_language) {
