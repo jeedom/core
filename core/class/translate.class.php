@@ -51,6 +51,7 @@ class translate {
 		}
 		$modify = false;
 		$translate = self::getTranslation();
+		$replace = array();
 		preg_match_all("/{{(.*?)}}/s", $_content, $matches);
 		foreach ($matches[1] as $text) {
 			if (trim($text) == '') {
