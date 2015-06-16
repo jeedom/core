@@ -145,47 +145,46 @@ function displayWidgetSubtype($_name) {
 	}
 </style>
 
-<div style="position:fixed;z-index:1000;background-color : #e7e7e7;height : 50px;margin-top:-7px;">
-	<div style="margin-bottom: 5px; margin-top : 5px; background-color: #e7e7e7">
-		<form class="form-inline" role="form" onsubmit="return false;">
-			<?php if (init('type', 'plugin') == 'plugin') {?>
-			<div class="form-group">
-				<div class="btn-group" >
-					<a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'free') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('cost', 'free');?>">Gratuit</a>
-					<a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('cost', 'paying');?>">Payant</a>
-					<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('cost', '');?>"><i class="fa fa-times"></i></a>
-				</div>
+<div style="margin-bottom: 5px; margin-top : 5px; background-color: #e7e7e7">
+	<form class="form-inline" role="form" onsubmit="return false;">
+		<?php if (init('type', 'plugin') == 'plugin') {?>
+		<div class="form-group">
+			<div class="btn-group" >
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'free') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('cost', 'free');?>">Gratuit</a>
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('cost', 'paying');?>">Payant</a>
+				<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('cost', '');?>"><i class="fa fa-times"></i></a>
 			</div>
-			<?php }
+		</div>
+		<?php }
 ?>
-			<div class="form-group">
-				<div class="btn-group" >
-					<a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'newest') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('timeState', 'newest');?>">Nouveau</a>
-					<a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'popular') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('timeState', 'popular');?>">Populaire</a>
-					<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('timeState', '');?>"><i class="fa fa-times"></i></a>
-				</div>
+		<div class="form-group">
+			<div class="btn-group" >
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'newest') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('timeState', 'newest');?>">Nouveau</a>
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('timeState') == 'popular') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('timeState', 'popular');?>">Populaire</a>
+				<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('timeState', '');?>"><i class="fa fa-times"></i></a>
 			</div>
-			<div class="form-group">
-				<div class="btn-group" >
-					<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('certification', 'Officiel');?>">Officiel</a>
-					<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Conseillé') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('certification', 'Conseillé');?>">Conseillé</a>
-					<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('certification', '');?>"><i class="fa fa-times"></i></a>
-				</div>
+		</div>
+		<div class="form-group">
+			<div class="btn-group" >
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('certification', 'Officiel');?>">Officiel</a>
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Conseillé') ? 'btn-primary' : ''?>" data-href="<?php echo buildUrl('certification', 'Conseillé');?>">Conseillé</a>
+				<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('certification', '');?>"><i class="fa fa-times"></i></a>
 			</div>
-			<div class="form-group">
-				<div class="btn-group" >
-					<a class="btn btn-default bt_installFilter" data-state="-1">Installé</a>
-					<a class="btn btn-default bt_installFilter" data-state="1">Non installé</a>
-					<a class="btn btn-default bt_installFilter" data-state="0"><i class="fa fa-times"></i></a>
-				</div>
+		</div>
+		<div class="form-group">
+			<div class="btn-group" >
+				<a class="btn btn-default bt_installFilter" data-state="-1">Installé</a>
+				<a class="btn btn-default bt_installFilter" data-state="1">Non installé</a>
+				<a class="btn btn-default bt_installFilter" data-state="0"><i class="fa fa-times"></i></a>
 			</div>
-			<div class="form-group">
-				<select class="form-control" id="sel_categorie" data-href='<?php echo buildUrl('categorie', '');?>'>
-					<?php if (init('type', 'plugin') == 'zwave') {?>
-					<option value="">Toutes les marques</option>
-					<?php } else {?>
-					<option value="">Toutes les categories</option>
-					<?php
+		</div>
+		<div class="form-group">
+			<select class="form-control" id="sel_categorie" data-href='<?php echo buildUrl('categorie', '');?>'>
+				<?php if (init('type', 'plugin') == 'zwave') {?>
+				<option value="">Toutes les marques</option>
+				<?php } else {?>
+				<option value="">Toutes les categories</option>
+				<?php
 }
 
 foreach (market::distinctCategorie($type) as $id => $category) {
@@ -197,14 +196,14 @@ foreach (market::distinctCategorie($type) as $id => $category) {
 	}
 }
 ?>
-			</select>
-		</div>
-		<div class="form-group">
-			<input class="form-control" data-href='<?php echo buildUrl('name', '');?>' placeholder="Rechercher" id="in_search" value="<?php echo $name?>"/>
-			<a class="btn btn-success" id="bt_search" data-href='<?php echo buildUrl('name', '');?>'><i class="fa fa-search"></i></a>
-		</div>
-		<div class="form-group">
-<?php
+		</select>
+	</div>
+	<div class="form-group">
+		<input class="form-control" data-href='<?php echo buildUrl('name', '');?>' placeholder="Rechercher" id="in_search" value="<?php echo $name?>"/>
+		<a class="btn btn-success" id="bt_search" data-href='<?php echo buildUrl('name', '');?>'><i class="fa fa-search"></i></a>
+	</div>
+	<div class="form-group">
+		<?php
 if (config::byKey('market::username') != '') {
 	echo '<span class="label label-info pull-right" style="font-size : 1em;">' . config::byKey('market::username');
 	try {
@@ -217,9 +216,8 @@ if (config::byKey('market::username') != '') {
 }
 
 ?>
-		</div>
-	</form>
-</div>
+	</div>
+</form>
 </div>
 <?php
 if ($name != null && strpos($name, '$') !== false) {
@@ -228,7 +226,7 @@ if ($name != null && strpos($name, '$') !== false) {
 ?>
 
 
-<div style="padding : 5px; margin-top : 50px;">
+<div style="padding : 5px;">
 	<?php
 $categorie = '';
 $first = true;

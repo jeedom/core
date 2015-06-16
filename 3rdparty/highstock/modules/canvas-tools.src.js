@@ -422,7 +422,7 @@ if(!Array.prototype.indexOf){
 		svg.trim = function(s) { return s.replace(/^\s+|\s+$/g, ''); }
 		
 		// compress spaces
-		svg.compressSpaces = function(s) { return s.replace(/[\s\r\t\n]+/gm,' '); }
+		svg.compressSpaces = function(s) { return s ? s.replace(/[\s\r\t\n]+/gm,' ') : ''; }
 		
 		// ajax
 		svg.ajax = function(url) {
@@ -2132,14 +2132,14 @@ if(!Array.prototype.indexOf){
 						child.x = x;
 					}
 					
-					var childLength = child.measureText(ctx);
+					var childLength = child.measureText ? child.measureText(ctx) : 0;
 					if (textAnchor != 'start' && (i==0 || child.attribute('x').hasValue())) { // new group?
 						// loop through rest of children
 						var groupLength = childLength;
 						for (var j=i+1; j<this.children.length; j++) {
 							var childInGroup = this.children[j];
 							if (childInGroup.attribute('x').hasValue()) break; // new group
-							groupLength += childInGroup.measureText(ctx);
+							groupLength += childInGroup.measureText ? childInGroup.measureText(ctx) : 0;
 						}
 						child.x -= (textAnchor == 'end' ? groupLength : groupLength / 2.0);
 					}
@@ -2908,7 +2908,7 @@ if (CanvasRenderingContext2D) {
 		});
 	}
 }/**
- * @license Highstock JS v2.1.5 (2015-04-13)
+ * @license Highstock JS v2.1.6 (2015-06-12)
  * CanVGRenderer Extension module
  *
  * (c) 2011-2012 Torstein Honsi, Erik Olsson
