@@ -3,13 +3,7 @@ if (!hasRight('updateview', true)) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
-<div>
-    <?php
-if (config::byKey('market::showPromotion') == 1) {
-	echo market::getPromo();
-}
-?>
-</div><br/>
+<br/>
 <div class="row row-overflow">
     <div class="col-sm-8">
         {{Dernière vérification : }}<span class="label label-info" id="span_lastUpdateCheck" style="margin-bottom: 5px;"></span>
