@@ -99,19 +99,6 @@ class market {
 		return $market;
 	}
 
-	public static function getPromo() {
-		try {
-			$market = self::getJsonRpc();
-			if ($market->sendRequest('market::getPromotion')) {
-				return $market->getResult();
-			} else {
-
-			}
-		} catch (Exception $e) {
-
-		}
-	}
-
 	public static function test() {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('market::test')) {

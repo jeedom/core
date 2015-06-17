@@ -70,18 +70,9 @@ foreach (plugin::listPlugin() as $plugin) {
 }
 ?>
 </div>
-
-
 </div>
 <div class="col-md-9 col-sm-8" id="div_confPlugin" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
 
-    <div>
-        <?php
-if (config::byKey('market::showPromotion') == 1) {
-	echo market::getPromo();
-}
-?>
-   </div>
    <legend><i class="fa fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i>
     <span id="span_plugin_name" ></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
 </legend>
