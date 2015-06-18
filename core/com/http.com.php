@@ -59,7 +59,11 @@ class com_http {
 			}
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $this->getHeader());
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_TIMEOUT, $_timeout);
+			if ($_timeout < 1 && $_timeout > 0) {
+				curl_setopt($ch, CURLOPT_TIMEOUT_MS, $_timeout * 1000);
+			} else {
+				curl_setopt($ch, CURLOPT_TIMEOUT, $_timeout);
+			}
 			if ($this->getCookiesession()) {
 				curl_setopt($ch, CURLOPT_COOKIESESSION, true);
 			} else {
