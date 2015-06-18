@@ -244,9 +244,15 @@ foreach (object::all() as $object) {
                 </div>
             </div>
             <div class="form-group expertModeVisible">
-                <label class="col-xs-6 control-label">{{Exécuter le plus rapidement possible}}</label>
+                <label class="col-xs-6 control-label">{{Exécuter en avant plan}}</label>
                 <div class="col-xs-1">
                     <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="speedPriority" titme="{{A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours.}}">
+                </div>
+            </div>
+              <div class="form-group expertModeVisible">
+                <label class="col-xs-6 control-label">{{Enchainer les commandes sans attendre}}</label>
+                <div class="col-xs-1">
+                    <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="cmdNoWait" titme="{{Enchaine les commandes sans verification que la commande précedente c'est bien éxecutée (Attention il faut que le plugin le supporte)}}">
                 </div>
             </div>
             <div class="form-group expertModeVisible">
