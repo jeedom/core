@@ -44,8 +44,13 @@ class jsonrpcClient {
 		}
 
 		if (!((is_string($this->rawResult) && (is_object(json_decode($this->rawResult)) || is_array(json_decode($this->rawResult)))))) {
-			$this->error = '9999<br/>Reponse is not json : ' . $this->rawResult;
-			$this->errorMessage = $this->rawResult;
+			if ($this->rawResult === false) {
+				$this->error = '9998<br/>Reponse false, internal curl error (timeout)';
+				$this->errorMessage = $this->rawResult;
+			} else {
+				$this->error = '9999<br/>Reponse is not json : ' . $this->rawResult;
+				$this->errorMessage = $this->rawResult;
+			}
 			return false;
 		}
 		$result = json_decode(trim($this->rawResult), true);
