@@ -67,60 +67,67 @@ $('.eqLogicAction[data-action=returnToThumbnailDisplay]').on('click', function (
 });
 
 $(".li_eqLogic").on('click', function () {
-jeedom.eqLogic.cache.getCmd = Array();
-   if ($('.eqLogicThumbnailDisplay').html() != undefined) {
-    $('.eqLogicThumbnailDisplay').hide();
-}
-
-$('.eqLogic').hide();
-if ('function' == typeof (prePrintEqLogic)) {
-    prePrintEqLogic();
-}
-
-if (isset($(this).attr('data-eqLogic_type')) && isset($('.' + $(this).attr('data-eqLogic_type')))) {
-    $('.' + $(this).attr('data-eqLogic_type')).show();
-} else {
-    $('.eqLogic').show();
-}
-$('.li_eqLogic').removeClass('active');
-$(this).addClass('active');
-$.showLoading();
-
-jeedom.eqLogic.print({
-    type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
-    id: $(this).attr('data-eqLogic_id'),
-    status : 1,
-    error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-        $('body .eqLogicAttr').value('');
-        if(isset(data) && isset(data.timeout) && data.timeout == 0){
-            data.timeout = '';
-        }
-        $('body').setValues(data, '.eqLogicAttr');
-        if ('function' == typeof (printEqLogic)) {
-            printEqLogic(data);
-        }
-        if ('function' == typeof (addCmdToTable)) {
-            $('.cmd').remove();
-            for (var i in data.cmd) {
-                addCmdToTable(data.cmd[i]);
-            }
-        }
-        initTooltips();
-        modifyWithoutSave = false;
-        $('body').delegate('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
-            jeedom.cmd.changeType($(this).closest('.cmd'));
-        });
-
-        $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
-            jeedom.cmd.changeSubType($(this).closest('.cmd'));
-        });
-        initExpertMode();
-        changeLeftMenuObjectOrEqLogicName = false;
+    jeedom.eqLogic.cache.getCmd = Array();
+    if ($('.eqLogicThumbnailDisplay').html() != undefined) {
+        $('.eqLogicThumbnailDisplay').hide();
     }
-});
+
+    $('.eqLogic').hide();
+    if ('function' == typeof (prePrintEqLogic)) {
+        prePrintEqLogic();
+    }
+
+    if (isset($(this).attr('data-eqLogic_type')) && isset($('.' + $(this).attr('data-eqLogic_type')))) {
+        $('.' + $(this).attr('data-eqLogic_type')).show();
+    } else {
+        $('.eqLogic').show();
+    }
+    $('.li_eqLogic').removeClass('active');
+    $(this).addClass('active');
+    $.showLoading();
+
+    jeedom.eqLogic.print({
+        type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
+        id: $(this).attr('data-eqLogic_id'),
+        status : 1,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            $('body .eqLogicAttr').value('');
+            if(isset(data) && isset(data.timeout) && data.timeout == 0){
+                data.timeout = '';
+            }
+            $('body').setValues(data, '.eqLogicAttr');
+            if ('function' == typeof (printEqLogic)) {
+                printEqLogic(data);
+            }
+            if ('function' == typeof (addCmdToTable)) {
+                $('.cmd').remove();
+                for (var i in data.cmd) {
+                    addCmdToTable(data.cmd[i]);
+                }
+            }
+            $('.cmd .cmdAttr.bootstrapSwitch').each(function(){
+                if($(this).attr('data-label-width') == undefined && $(this).attr('data-label-text') != undefined){
+                    $(this).bootstrapSwitch('destroy');
+                    $(this).attr('data-label-width',"75");
+                    $(this).bootstrapSwitch();
+                }
+            });
+            initTooltips();
+            modifyWithoutSave = false;
+            $('body').delegate('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
+                jeedom.cmd.changeType($(this).closest('.cmd'));
+            });
+
+            $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
+                jeedom.cmd.changeSubType($(this).closest('.cmd'));
+            });
+            initExpertMode();
+            changeLeftMenuObjectOrEqLogicName = false;
+        }
+    });
 return false;
 });
 
@@ -311,7 +318,7 @@ $('body').delegate('.cmd .cmdAttr[data-l1key=eventOnly]', 'change switchChange.b
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().show();
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().removeClass('hide');
     } else {
-       if($(this).closest('.cmd').find('.cmdAttr[data-l1key=type]').value() != 'action'){
+     if($(this).closest('.cmd').find('.cmdAttr[data-l1key=type]').value() != 'action'){
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').show();
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').removeClass('hide');
     }
