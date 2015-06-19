@@ -30,16 +30,16 @@ $("#div_listInteract").resizable({
   grid: [1, 10000],
   stop: function () {
     $('.interactListContainer').packery();
-     var value = {options: {interactMenuSize: $("#div_listInteract").width()}};
-        jeedom.user.saveProfils({
-          profils: value,
-          global: false,
-          error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-        }
-    });
+    var value = {options: {interactMenuSize: $("#div_listInteract").width()}};
+    jeedom.user.saveProfils({
+      profils: value,
+      global: false,
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+    }
+});
 }
 });
 
@@ -50,24 +50,24 @@ if(!isset(userProfils.interactMenuSize) || userProfils.interactMenuSize > 0){
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
     $('#div_listInteract').hide();
     $('#bt_displayInteractList').on('mouseenter',function(){
-     var timer = setTimeout(function(){
+       var timer = setTimeout(function(){
         $('#div_listInteract').show();
         $('#bt_displayInteractList').find('i').hide();
         $('.interactListContainer').packery();
     }, 100);
-     $(this).data('timerMouseleave', timer)
- }).on("mouseleave", function(){
-  clearTimeout($(this).data('timerMouseleave'));
-});
+       $(this).data('timerMouseleave', timer)
+   }).on("mouseleave", function(){
+      clearTimeout($(this).data('timerMouseleave'));
+  });
 
- $('#div_listInteract').on('mouseleave',function(){
-   var timer = setTimeout(function(){
-    $('#div_listInteract').hide();
-    $('#bt_displayInteractList').find('i').show();
-    $('.interactListContainer').packery();
-}, 300);
-   $(this).data('timerMouseleave', timer);
-}).on("mouseenter", function(){
+   $('#div_listInteract').on('mouseleave',function(){
+     var timer = setTimeout(function(){
+        $('#div_listInteract').hide();
+        $('#bt_displayInteractList').find('i').show();
+        $('.interactListContainer').packery();
+    }, 300);
+     $(this).data('timerMouseleave', timer);
+ }).on("mouseenter", function(){
   clearTimeout($(this).data('timerMouseleave'));
 });
 }
@@ -177,6 +177,12 @@ $('body').delegate('.listEquipementInfo', 'click', function () {
     });
 });
 
+$('body').delegate('.listEquipementInfoReply', 'click', function () {
+    jeedom.cmd.getSelectModal({cmd : {type : 'info'}}, function (result) {
+        $('.interactAttr[data-l1key=reply]').atCaret('insert',result.human);
+    });
+});
+
 jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
     $("#bt_saveInteract").click();
@@ -197,16 +203,16 @@ $("#bt_saveInteract").on('click', function () {
 
 $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
     bootbox.confirm('{{Etes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?}}', function (result) {
-     if (result) {
+       if (result) {
         jeedom.interact.regenerateInteract({
             interact: {query: result},
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
-             $('#div_alert').showAlert({message: '{{Toutes les interations ont été regénérées}}', level: 'success'});
-         }
-     });
+               $('#div_alert').showAlert({message: '{{Toutes les interations ont été regénérées}}', level: 'success'});
+           }
+       });
     }
 });
 });

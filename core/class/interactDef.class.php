@@ -157,18 +157,16 @@ class interactDef {
 		$findInteractQuery = array();
 		$allInteractQueries = interactQuery::byInteractDefId($this->getId());
 		foreach ($queries as $query) {
-			if ($query['link_id'] != '' || $query['link_type'] == 'whatDoYouKnow') {
-				$interactQuery = interactQuery::byQuery($query['query'], $this->getId());
-				if (!is_object($interactQuery)) {
-					$interactQuery = new interactQuery();
-				}
-				$interactQuery->setInteractDef_id($this->getId());
-				$interactQuery->setQuery($query['query']);
-				$interactQuery->setLink_type($query['link_type']);
-				$interactQuery->setLink_id($query['link_id']);
-				$interactQuery->save();
-				$findInteractQuery[$interactQuery->getId()] = true;
+			$interactQuery = interactQuery::byQuery($query['query'], $this->getId());
+			if (!is_object($interactQuery)) {
+				$interactQuery = new interactQuery();
 			}
+			$interactQuery->setInteractDef_id($this->getId());
+			$interactQuery->setQuery($query['query']);
+			$interactQuery->setLink_type($query['link_type']);
+			$interactQuery->setLink_id($query['link_id']);
+			$interactQuery->save();
+			$findInteractQuery[$interactQuery->getId()] = true;
 		}
 		foreach ($allInteractQueries as $interactQueries) {
 			if (!isset($findInteractQuery[$interactQueries->getId()])) {
