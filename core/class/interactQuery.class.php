@@ -195,11 +195,8 @@ class interactQuery {
 		$interactQuery = interactQuery::recognize($_query);
 		if (is_object($interactQuery)) {
 			$reply = $interactQuery->executeAndReply($_parameters);
-			if (trim($reply) == '') {
-				//$reply = sefl::replyOk();
-			}
 		}
-		if (trim($reply) == '' && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
+		if (trim($reply) == '' && config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
 			$reply = self::dontUnderstand($_parameters);
 		}
 		if (is_object($interactQuery)) {
@@ -325,7 +322,11 @@ class interactQuery {
 			$reply = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
 			switch ($interactDef->getOptions('scenario_action')) {
 				case 'start':
-					$return = $scenario->launch(false, 'interact', __('Scénario exécuté sur interaction (S.A.R.A.H, SMS...)', __FILE__));
+					$scenario->setTags(array(
+						'#query#' => $this->getQuery(),
+						'#profile#' => $replace['#profile#'],
+					));
+					$return = $scenario->launch(false, 'interact', __('Scénario exécuté sur interaction (S.A.R.A.H, SMS...)', __FILE__), 1);
 					if (is_string($return) && $return != '') {
 						$return = str_replace(array_keys($replace), $replace, $return);
 						return $return;

@@ -29,6 +29,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   <div class="tab-content" id="div_displayCmdConfigure">
     <div role="tabpanel" class="tab-pane active" id="information">
       <br/>
+      <legend>{{Général}}</legend>
       <div class="row">
         <div class="col-sm-6" >
           <form class="form-horizontal">
@@ -36,40 +37,40 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{ID}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="id"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="id" style="font-size : 1em;"></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Logical ID}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="logicalId"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="logicalId" style="font-size : 1em;"></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Nom}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="name"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="name" style="font-size : 1em;"></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Type}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="type"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="type" style="font-size : 1em;"></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Sous-type}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="subType"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="subType" style="font-size : 1em;"></span>
                 </div>
               </div>
 
               <div class="form-group">
-              <label class="col-xs-4 control-label">{{URL directe}}</label>
+                <label class="col-xs-4 control-label">{{URL directe}}</label>
                 <div class="col-xs-8">
                   <?php
 echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa fa-external-link"></i> URL</a>';
@@ -85,36 +86,36 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Unité}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="unite"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="unite" style="font-size : 1em;"></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Commande déclenchant une mise à jour}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="value"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="value" style="font-size : 1em;"></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Memcache}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary tooltips" data-l1key="cache" data-l2key="enable" title="{{Actif}}"></span>
-                  <span class="label label-default tooltips" title="{{Durée du cache}}"><span class="cmdAttr" data-l1key="cache" data-l2key="lifetime"></span> {{seconde(s)}}</span>
+                  <span class="cmdAttr label label-primary tooltips" data-l1key="cache" data-l2key="enable" title="{{Actif}}" style="font-size : 1em;"></span>
+                  <span class="label label-default tooltips" title="{{Durée du cache}}" style="font-size : 1em;"><span class="cmdAttr" data-l1key="cache" data-l2key="lifetime"></span> {{seconde(s)}}</span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Evènement seulement}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="eventOnly"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="eventOnly" style="font-size : 1em;"></span>
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="col-xs-4 control-label">{{Visible}}</label>
+                <label class="col-xs-4 control-label"></label>
                 <div class="col-xs-4">
-                  <input type="checkbox" class="cmdAttr" data-l1key="isVisible" />
+                  <input type="checkbox" data-label-text="{{Visible}}" class="cmdAttr bootstrapSwitch" data-l1key="isVisible" />
                 </div>
               </div>
 
@@ -176,124 +177,81 @@ foreach ($usedBy['interact'] as $usedByInteract) {
   <br/>
   <form class="form-horizontal">
     <fieldset>
-      <table class="table table-bordered table-condensed">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Dashboard et design</th>
-            <th>Vue</th>
-            <th>Mobile</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{Widget}}</td>
-            <td colspan="2">
-              <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
-                <?php
-foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $widget) {
-	echo '<option>' . $widget['name'] . '</option>';
-}
-?>
-             </select>
-           </td>
-           <td>
-            <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
-              <?php
-foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
-	echo '<option>' . $widget['name'] . '</option>';
-}
-?>
-           </select>
-         </td>
-       </tr>
-       <tr>
-        <td>{{Ne pas afficher le nom}}</td>
-        <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
-        <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>{{Ne pas afficher les statistiques}}</td>
-        <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowStatOnDashboard" /></td>
-        <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowStatOnView" /></td>
-        <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="doNotShowStatOnMobile" /></td>
-      </tr>
-    </tbody>
-  </table>
 
-  <div class="form-group">
-    <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
-    <div class="col-xs-1">
-      <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineBefore" />
-    </div>
-    <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 control-label">{{après le widget}}</label>
-    <div class="col-xs-1">
-      <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" />
-    </div>
-  </div>
-
-  <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {?>
-  <div class="form-group">
-    <label class="col-lg-5 col-md-5 col-sm-6 col-xs-6 control-label">{{Formule de calcul (#value# pour la valeur)}}</label>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-      <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />
-    </div>
-  </div>
-  <?php }?>
-
-
-  <?php if ($cmd->getType() == 'action') {?>
-  <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Confirmer l'action}}</label>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-      <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="actionConfirm" />
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Code d'accès}}</label>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-      <input type="password" class="cmdAttr form-control" data-l1key="configuration" data-l2key="actionCodeAccess" />
-    </div>
-  </div>
-  <?php }?>
-
-  <?php if ($cmd->getType() == 'info') {
+      <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {
 	?>
-   <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action sur valeur, si}}</label>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-      <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdOperator" >
-       <option value="==">{{égal}}</option>
-       <option value=">">{{supérieur}}</option>
-       <option value="<">{{inférieur}}</option>
-       <option value="!=">{{différent}}</option>
+       <legend>{{Calcul et arrondit}}</legend>
+       <div class="form-group">
+        <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Formule de calcul (#value# pour la valeur)}}</label>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />
+        </div>
+      </div>
+      <?php if ($cmd->getSubType() == 'numeric') {?>
+      <div class="form-group">
+        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi (chiffre après la virgule)}}</label>
+        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+          <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
+        </div>
+      </div>
+      <?php }
+	?>
+      <?php }
+?>
+      <?php if ($cmd->getType() == 'action') {?>
+      <legend>{{Restriction de l'action}}</legend>
+      <div class="form-group">
+        <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Confirmer l'action}}</label>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="configuration" data-l2key="actionConfirm" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Code d'accès}}</label>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <input type="password" class="cmdAttr form-control" data-l1key="configuration" data-l2key="actionCodeAccess" />
+        </div>
+      </div>
+      <?php }
+?>
+
+      <?php if ($cmd->getType() == 'info') {
+	?>
+       <legend>{{Action sur la valeur}}</legend>
+       <div class="form-group">
+        <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action sur valeur, si}}</label>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+          <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdOperator" >
+           <option value="==">{{égal}}</option>
+           <option value=">">{{supérieur}}</option>
+           <option value="<">{{inférieur}}</option>
+           <option value="!=">{{différent}}</option>
+         </select>
+       </div>
+       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTest" />
+      </div>
+      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">{{plus de (min)}}</label>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
+      </div>
+    </div>
+    <div class="form-group">
+     <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action à faire}}</label>
+     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+      <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdActionType" >
+       <option value="cmd">{{Commande}}</option>
+       <option value="scenario">{{Scénario}}</option>
      </select>
    </div>
-   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTest" />
-  </div>
-  <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">{{plus de (min)}}</label>
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-    <input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
-  </div>
-</div>
-<div class="form-group">
- <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action à faire}}</label>
- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-  <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdActionType" >
-   <option value="cmd">{{Commande}}</option>
-   <option value="scenario">{{Scénario}}</option>
- </select>
-</div>
 
-<div class="cmdCheckAction cmd">
-  <div class="col-xs-6">
-   <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdCmdActionId" />
- </div>
- <div class="col-xs-1">
-  <a class="btn btn-default btn-sm cursor" id="bt_checkCmdActionGetCmd"><i class="fa fa-list-alt"></i></a>
-</div>
+   <div class="cmdCheckAction cmd">
+    <div class="col-xs-6">
+     <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdCmdActionId" />
+   </div>
+   <div class="col-xs-1">
+    <a class="btn btn-default btn-sm cursor" id="bt_checkCmdActionGetCmd"><i class="fa fa-list-alt"></i></a>
+  </div>
 </div>
 
 <div class="cmdCheckAction scenario" style="display : none;">
@@ -354,18 +312,14 @@ foreach (scenario::all() as $scenario) {
 
 });
 </script>
-<div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi (chiffre après la virgule)}}</label>
-  <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
-  </div>
-</div>
-<?php }?>
-<?php if ($cmd->getIsHistorized() == 1) {?>
+<?php }
+?>
+<?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {?>
+<legend>{{Historique}}</legend>
 <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
   <div class="col-xs-1">
-    <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
+    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="isHistorized" />
   </div>
 </div>
 <div class="form-group">
@@ -392,29 +346,97 @@ foreach (scenario::all() as $scenario) {
    </select>
  </div>
 </div>
-<?php }?>
+<?php }
+?>
+<?php if ($cmd->getType() == 'info') {?>
+<legend>{{Autres}}</legend>
+<div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ne pas répéter si la valeur ne change pas}}</label>
+  <div class="col-xs-1">
+    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="configuration" data-l2key="doNotRepeatEvent" />
+  </div>
+</div>
 <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push URL}}</label>
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
   </div>
 </div>
+<?php }
+?>
 </fieldset>
 </form>
 </div>
 <div role="tabpanel" class="tab-pane" id="display">
   <br/>
-  <legend>{{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
-  <table class="table table-bordered table-condensed" id="table_widgetParameters">
-    <thead class="table table-bordered">
+  <legend>{{Widget}}</legend>
+  <table class="table table-bordered table-condensed">
+    <thead>
       <tr>
-        <th>Nom</th>
-        <th>Valeur</th>
-        <th>Action</th>
+        <th></th>
+        <th>Dashboard et design</th>
+        <th>Vue</th>
+        <th>Mobile</th>
       </tr>
     </thead>
     <tbody>
-      <?php
+      <tr>
+        <td>{{Widget}}</td>
+        <td colspan="2">
+          <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
+            <?php
+foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $widget) {
+	echo '<option>' . $widget['name'] . '</option>';
+}
+?>
+         </select>
+       </td>
+       <td>
+        <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
+          <?php
+foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
+	echo '<option>' . $widget['name'] . '</option>';
+}
+?>
+       </select>
+     </td>
+   </tr>
+   <tr>
+    <td>{{Ne pas afficher le nom}}</td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>{{Ne pas afficher les statistiques}}</td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnDashboard" /></td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnView" /></td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnMobile" /></td>
+  </tr>
+</tbody>
+</table>
+<div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
+  <div class="col-xs-1">
+    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="forceReturnLineBefore" />
+  </div>
+  <label class="col-xs-2 control-label">{{après le widget}}</label>
+  <div class="col-xs-1">
+    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="forceReturnLineAfter" />
+  </div>
+</div>
+<br/><br/>
+<legend>{{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
+<table class="table table-bordered table-condensed" id="table_widgetParameters">
+  <thead class="table table-bordered">
+    <tr>
+      <th>Nom</th>
+      <th>Valeur</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
 if ($cmd->getDisplay('parameters') != '') {
 	foreach ($cmd->getDisplay('parameters') as $key => $value) {
 		echo '<tr>';
@@ -431,50 +453,18 @@ if ($cmd->getDisplay('parameters') != '') {
 	}
 }
 ?>
-  </tbody>
+</tbody>
 </table>
 </div>
 </div>
 
 
-<div id="md_cmdConfigureSelectMultiple" title="{{Sélection multiple de commandes}}">
-  <div style="display: none;" id="md_cmdConfigureSelectMultipleAlert"></div>
-  <div>
-    <a class="btn btn-default" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="fa fa-check-circle-o"></i> {{Basculer}}</a>
-    <a class="btn btn-success pull-right" id="bt_cmdConfigureSelectMultipleAlertApply" style="color : white;" ><i class="fa fa-check"></i> {{Valider}}</a>
-  </div>
-  <br/>
-  <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureSelectMultiple">
-    <thead>
-      <tr>
-        <th></th>
-        <th>{{Nom}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
-	echo '<tr data-cmd_id="' . $listCmd->getId() . '">';
-	echo '<td>';
-	if ($listCmd->getId() == $cmd->getId()) {
-		echo '<input type="checkbox" class="selectMultipleApplyCmd" checked/>';
-	} else {
-		echo '<input type="checkbox" class="selectMultipleApplyCmd" />';
-	}
-	echo '</td>';
-	echo '<td>';
-	echo $listCmd->getHumanName(true);
-	echo '</td>';
-	echo '</tr>';
-}
-?>
-  </tbody>
-</table>
-</div>
+<div id="md_cmdConfigureSelectMultiple" title="{{Sélection multiple de commandes}}"></div>
 
 
 <script>
   initTooltips();
+  initCheckBox();
 
 
   $("#md_cmdConfigureSelectMultiple").dialog({
@@ -557,44 +547,46 @@ foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
     if (isset(checkCmdParameter) && isset(checkCmdParameter.options)) {
       cmd.configuration.jeedomCheckCmdCmdActionOption = checkCmdParameter.options;
     }
-    $('#md_cmdConfigureSelectMultiple').dialog('open');
-    initTableSorter();
-
-    $('#bt_cmdConfigureSelectMultipleAlertToogle').off().on('click', function () {
-      var state = false;
-      if ($(this).attr('data-state') == 0) {
-        state = true;
-        $(this).attr('data-state', 1);
-        $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
-      } else {
-        state = false;
-        $(this).attr('data-state', 0);
-        $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
-      }
-      $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
-        if ($(this).is(':visible')) {
-          $(this).find('.selectMultipleApplyCmd').prop('checked', state);
+    $('#md_cmdConfigureSelectMultiple').load('index.php?v=d&modal=cmd.selectMultiple&cmd_id='+cmdInfo.id, function() {
+      initTableSorter();
+      initCheckBox();
+      $('#bt_cmdConfigureSelectMultipleAlertToogle').off().on('click', function () {
+        var state = false;
+        if ($(this).attr('data-state') == 0) {
+          state = true;
+          $(this).attr('data-state', 1);
+          $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
+        } else {
+          state = false;
+          $(this).attr('data-state', 0);
+          $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
         }
+        $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
+          if ($(this).is(':visible')) {
+           $(this).find('.selectMultipleApplyCmd').bootstrapSwitch('destroy');
+           $(this).find('.selectMultipleApplyCmd').prop('checked', state);
+           $(this).find('.selectMultipleApplyCmd').bootstrapSwitch();
+         }
+       });
       });
-    });
 
-    $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
-      $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
-        if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
-          cmd.id = $(this).attr('data-cmd_id');
-          jeedom.cmd.save({
-            cmd: cmd,
-            error: function (error) {
-              $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
+      $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
+        $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
+          if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
+            cmd.id = $(this).attr('data-cmd_id');
+            jeedom.cmd.save({
+              cmd: cmd,
+              error: function (error) {
+                $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'});
+              },
+              success: function () {
 
-            }
-          });
-        }
+              }
+            });
+          }
+        });
+        $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification(s) appliquée(s) avec succès}}", level: 'success'});
       });
-      $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification(s) appliquée(s) avec succès}}", level: 'success'});
-    });
-
-  });
+    }).dialog('open');
+});
 </script>

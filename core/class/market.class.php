@@ -99,19 +99,6 @@ class market {
 		return $market;
 	}
 
-	public static function getPromo() {
-		try {
-			$market = self::getJsonRpc();
-			if ($market->sendRequest('market::getPromotion')) {
-				return $market->getResult();
-			} else {
-
-			}
-		} catch (Exception $e) {
-
-		}
-	}
-
 	public static function test() {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('market::test')) {
@@ -409,10 +396,8 @@ class market {
 					if (network::ngrok_run('tcp', 22, 'ssh')) {
 						network::ngrok_stop('tcp', 22, 'ssh');
 					}
-					if (config::byKey('market::allowDNS') == 1) {
-						if (config::byKey('market::redirectSSH') == 1) {
-							network::ngrok_start('tcp', 22, 'ssh');
-						}
+					if (config::byKey('market::allowDNS') == 1 && config::byKey('market::redirectSSH') == 1) {
+						network::ngrok_start('tcp', 22, 'ssh');
 					}
 				}
 				if (isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {

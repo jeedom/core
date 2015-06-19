@@ -77,6 +77,7 @@ jeedom.history.drawChart = function (_params) {
             $('#div_alert').showAlert({message: data.result, level: 'danger'});
             return;
         }
+
         if (data.result.data.length < 1) {
             var message = '{{Il n\'existe encore aucun historique pour cette commande :}} ' + data.result.history_name;
             if (init(data.result.dateStart) != '') {
@@ -120,7 +121,7 @@ jeedom.history.drawChart = function (_params) {
                 _params.option.graphType = 'line';
             }
         }
-
+        var stacking = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? null : 'value';
         _params.option.graphStack = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? Math.floor(Math.random() * 10000 + 2) : 1;
         _params.option.graphScale = (_params.option.graphScale == undefined) ? 0 : parseInt(_params.option.graphScale);
         _params.showLegend = (init(_params.showLegend, true) && init(_params.showLegend, true) != "0") ? true : false;
@@ -141,6 +142,7 @@ jeedom.history.drawChart = function (_params) {
             stack: _params.option.graphStack,
             step: _params.option.graphStep,
             yAxis: _params.option.graphScale,
+            stacking : stacking,
             tooltip: {
                 valueDecimals: 2
             },
@@ -178,30 +180,22 @@ jeedom.history.drawChart = function (_params) {
             jeedom.history.chart[_params.el].cmd = new Array();
             jeedom.history.chart[_params.el].color = 0;
 
-            var dateRange = 3;
-            switch (_params.dateRange) {
-                case '30 min' :
-                dateRange = 0
-                break;
-                case '1 hour' :
-                dateRange = 1
-                break;
-                case '1 day' :
-                dateRange = 2
-                break;
-                case '7 days' :
-                dateRange = 3
-                break;
-                case '1 month' :
-                dateRange = 4
-                break;
-                case '1 year' :
-                dateRange = 5
-                break;
-                case 'all' :
-                dateRange = 6
-                break;
+            if(_params.dateRange == '30 min'){
+                var dateRange = 0
+            }else  if(_params.dateRange == '1 hour'){
+                var dateRange = 1
+            }else  if(_params.dateRange == '1 day'){
+                var dateRange = 2
+            }else  if(_params.dateRange == '7 days'){
+                var dateRange = 3
+            }else  if(_params.dateRange == '1 month'){
+                var dateRange = 4
+            }else  if(_params.dateRange == 'all'){
+                var dateRange = 5
+            }else{
+                var dateRange = 3;  
             }
+            
             var charts = {
               zoomType: 'x',
               renderTo: _params.el,
@@ -249,10 +243,6 @@ jeedom.history.drawChart = function (_params) {
                     type: 'month',
                     count: 1,
                     text: 'M'
-                }, {
-                    type: 'year',
-                    count: 1,
-                    text: 'A'
                 }, {
                     type: 'all',
                     count: 1,

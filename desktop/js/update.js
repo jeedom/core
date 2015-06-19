@@ -17,12 +17,51 @@
 
  printUpdate();
 
+ $("#md_specifyUpdate").dialog({
+    autoOpen: false,
+    modal: true,
+    height: 300,
+    width: 400,
+    open: function () {
+        $("body").css({overflow: 'hidden'});
+    },
+    beforeClose: function (event, ui) {
+        $("body").css({overflow: 'inherit'});
+    }
+});
+
+ $('#bt_reapplyUpdate').on('click', function () {
+  $('#md_specifyUpdate').dialog({title: "{{Options}}"});
+  $("#md_specifyUpdate").dialog('open');
+});
+
+ $('#bt_reapplySpecifyUpdate').on('click',function(){
+   var level = "-1";
+   var mode = '';
+   if($('#cb_forceReapplyUpdate').value() == 1){
+    mode = 'force';
+}
+jeedom.update.doAll({
+    mode: mode,
+    level: level,
+    version : $('#sel_updateVersion').value(),
+    onlyThisVersion : ($('#cb_allFromThisUpdate').value() == 1) ? 'no':'yes',
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+     $("#md_specifyUpdate").dialog('close');
+     getJeedomLog(1, 'update');
+ }
+});
+});
+
  $('#bt_allChangelog').on('click', function () {
    $('#md_modal2').dialog({title: "{{Changelog}}"});
    $("#md_modal2").load('index.php?v=d&modal=market.allChangelog').dialog('open');
 });
 
-$('.bt_updateAll').on('click', function () {
+ $('.bt_updateAll').on('click', function () {
   var level = $(this).attr('data-level');
   var mode = $(this).attr('data-mode');
   bootbox.confirm('{{Etes-vous sur de vouloir faire les mises à jour ?}} ', function (result) {
@@ -42,28 +81,7 @@ $('.bt_updateAll').on('click', function () {
 });
 });
 
-$('#bt_updateSystem').on('click', function () {
-    var level = $(this).attr('data-level');
-    var mode = $(this).attr('data-mode');
-    bootbox.confirm('{{Etes-vous sur de vouloir faire la mise à jour de tout et du système ? cette opération peut durer plusieurs dizaines de minutes et est risquée. <b>NE SURTOUT PAS FAIRE CETTE OPERATION SI VOUS UTILISEZ APACHE<\/b>}} ', function (result) {
-        if (result) {
-            $.hideAlert();
-            jeedom.update.doAll({
-                mode: mode,
-                level: level,
-                system: 'yes',
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                },
-                success: function () {
-                    getJeedomLog(1, 'update');
-                }
-            });
-        }
-    });
-});
-
-$('#bt_checkAllUpdate').on('click', function () {
+ $('#bt_checkAllUpdate').on('click', function () {
     $.hideAlert();
     jeedom.update.checkAll({
         error: function (error) {
@@ -75,7 +93,7 @@ $('#bt_checkAllUpdate').on('click', function () {
     });
 });
 
-$('#table_update').delegate('.changeState', 'click', function () {
+ $('#table_update').delegate('.changeState', 'click', function () {
     var id = $(this).closest('tr').attr('data-id');
     var state = $(this).attr('data-state');
     bootbox.confirm('{{Etes vous sur de vouloir changer l\'état de l\'objet ?}}', function (result) {
@@ -96,7 +114,7 @@ $('#table_update').delegate('.changeState', 'click', function () {
 
 });
 
-$('#table_update').delegate('.update', 'click', function () {
+ $('#table_update').delegate('.update', 'click', function () {
     var id = $(this).closest('tr').attr('data-id');
     bootbox.confirm('{{Etes vous sur de vouloir mettre à jour cet objet ?}}', function (result) {
         if (result) {
@@ -114,7 +132,7 @@ $('#table_update').delegate('.update', 'click', function () {
     });
 });
 
-$('#table_update').delegate('.remove', 'click', function () {
+ $('#table_update').delegate('.remove', 'click', function () {
     var id = $(this).closest('tr').attr('data-id');
     bootbox.confirm('{{Etes vous sur de vouloir supprimer cet objet ?}}', function (result) {
         if (result) {
@@ -132,21 +150,21 @@ $('#table_update').delegate('.remove', 'click', function () {
     });
 });
 
-$('#table_update').delegate('.view', 'click', function () {
+ $('#table_update').delegate('.view', 'click', function () {
     $('#md_modal').dialog({title: "Market"});
     $('#md_modal').load('index.php?v=d&modal=market.display&type=' + $(this).closest('tr').attr('data-type') + '&logicalId=' + encodeURI($(this).closest('tr').attr('data-logicalId'))).dialog('open');
 });
 
-$('#table_update').delegate('.sendToMarket', 'click', function () {
+ $('#table_update').delegate('.sendToMarket', 'click', function () {
     $('#md_modal').dialog({title: "Partager sur le market"});
     $('#md_modal').load('index.php?v=d&modal=market.send&type=' + $(this).closest('tr').attr('data-type') + '&logicalId=' + encodeURI($(this).closest('tr').attr('data-logicalId')) + '&name=' + encodeURI($(this).closest('tr').attr('data-logicalId'))).dialog('open');
 });
 
-$('#bt_expertMode').on('click', function () {
+ $('#bt_expertMode').on('click', function () {
     printUpdate();
 });
 
-function getJeedomLog(_autoUpdate, _log) {
+ function getJeedomLog(_autoUpdate, _log) {
     $.ajax({
         type: 'POST',
         url: 'core/ajax/log.ajax.php',
@@ -170,17 +188,19 @@ function getJeedomLog(_autoUpdate, _log) {
             }
             var log = '';
             var regex = /<br\s*[\/]?>/gi;
-            for (var i in data.result.reverse()) {
-                log += data.result[i][2].replace(regex, "\n");
-                if ($.trim(data.result[i][2].replace(regex, "\n")) == '[END ' + _log.toUpperCase() + ' SUCCESS]') {
-                    printUpdate();
-                    $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'});
-                    _autoUpdate = 0;
-                }
-                if ($.trim(data.result[i][2].replace(regex, "\n")) == '[END ' + _log.toUpperCase() + ' ERROR]') {
-                    printUpdate();
-                    $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
-                    _autoUpdate = 0;
+            if($.isArray(data.result)){
+                for (var i in data.result.reverse()) {
+                    log += data.result[i][2].replace(regex, "\n");
+                    if ($.trim(data.result[i][2].replace(regex, "\n")) == '[END ' + _log.toUpperCase() + ' SUCCESS]') {
+                        printUpdate();
+                        $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'});
+                        _autoUpdate = 0;
+                    }
+                    if ($.trim(data.result[i][2].replace(regex, "\n")) == '[END ' + _log.toUpperCase() + ' ERROR]') {
+                        printUpdate();
+                        $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
+                        _autoUpdate = 0;
+                    }
                 }
             }
             $('#pre_' + _log + 'Info').text(log);

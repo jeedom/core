@@ -101,6 +101,11 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'resetHwKey') {
+		jeedom::resetHwKey();
+		ajax::success();
+	}
+
 	if (init('action') == 'backupupload') {
 		$uploaddir = dirname(__FILE__) . '/../../backup';
 		if (!file_exists($uploaddir)) {

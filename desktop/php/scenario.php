@@ -93,7 +93,8 @@ foreach ($scenarioListGroup as $group) {
          </center>
          <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
      </div>
-     <?php }?>
+     <?php }
+?>
 
      <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
          <center>
@@ -135,7 +136,8 @@ if (count($scenarios) == 0) {
 			echo '</div>';
 		}
 	}
-}?>
+}
+?>
 </div>
 
 <div id="div_editScenario" style="display: none; border-left: solid 1px #EEE; padding-left: 25px;">
@@ -146,6 +148,9 @@ if (count($scenarios) == 0) {
         <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
         <a class="btn btn-danger btn-xs pull-right expertModeVisible" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
         <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_templateScenario"><i class="fa fa-cubes"></i> {{Template}}</a>
+        <a class="btn btn-success btn-xs pull-right" id="bt_saveScenario2"><i class="fa fa-check-circle"></i> {{Sauvegarde}}</a>
+        <a class="btn btn-danger btn-xs pull-right" id="bt_delScenario2"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+        <a class="btn btn-warning btn-xs pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Executer}}</a>
     </legend>
     <div class="row">
         <div class="col-sm-4">
@@ -170,13 +175,12 @@ if (count($scenarios) == 0) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-6 col-xs-3 control-label">{{Actif}}</label>
-                        <div class="col-sm-1 col-xs-1">
-                            <input type="checkbox" class="scenarioAttr" data-l1key="isActive">
+                        <label class="col-sm-6 col-xs-3 control-label"></label>
+                        <div class="col-sm-3 col-xs-4">
+                            <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-label-text="{{Actif}}" data-l1key="isActive">
                         </div>
-                        <label class="col-sm-3 col-xs-3 control-label">{{Visible}}</label>
-                        <div class="col-sm-1 col-xs-1">
-                            <input type="checkbox" class="scenarioAttr" data-l1key="isVisible">
+                        <div class="col-sm-3 col-xs-4">
+                            <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-label-text="{{Visible}}" data-l1key="isVisible">
                         </div>
                     </div>
                     <div class="form-group">
@@ -240,21 +244,27 @@ foreach (object::all() as $object) {
                 </div>
             </div>
             <div class="form-group expertModeVisible">
-                <label class="col-xs-6 control-label">{{Exécuter le plus rapidement possible}}</label>
+                <label class="col-xs-6 control-label">{{Exécuter en avant plan}}</label>
                 <div class="col-xs-1">
-                    <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="speedPriority" titme="{{A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours.}}">
+                    <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="speedPriority" titme="{{A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours.}}">
+                </div>
+            </div>
+              <div class="form-group expertModeVisible">
+                <label class="col-xs-6 control-label">{{Enchainer les commandes sans attendre}}</label>
+                <div class="col-xs-1">
+                    <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="cmdNoWait" titme="{{Enchaine les commandes sans verification que la commande précedente c'est bien éxecutée (Attention il faut que le plugin le supporte)}}">
                 </div>
             </div>
             <div class="form-group expertModeVisible">
                 <label class="col-xs-6 control-label">{{Pas de log}}</label>
                 <div class="col-xs-1">
-                    <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="noLog" titme="{{Le scénario n'écrit plus de log}}">
+                    <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="noLog" titme="{{Le scénario n'écrit plus de log}}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-xs-6 control-label" for="span_ongoing">{{Etat}}</label>
                 <div class="col-xs-6">
-                    <div><span id="span_ongoing" class="label" style="position: relative; top: 4px;"></span></div>
+                    <div><span id="span_ongoing" class="label" style="font-size : 1em;"></span></div>
                 </div>
             </div>
 

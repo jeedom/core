@@ -3,13 +3,7 @@ if (!hasRight('updateview', true)) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
-<div>
-    <?php
-if (config::byKey('market::showPromotion') == 1) {
-	echo market::getPromo();
-}
-?>
-</div><br/>
+<br/>
 <div class="row row-overflow">
     <div class="col-sm-8">
         {{Dernière vérification : }}<span class="label label-info" id="span_lastUpdateCheck" style="margin-bottom: 5px;"></span>
@@ -23,13 +17,12 @@ if (config::byKey('market::showPromotion') == 1) {
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="#" class="bt_updateAll" data-level="0" data-mode="">{{Tout}}</a></li>
-                    <li><a href="#" class="bt_updateAll expertModeVisible" data-level="0" data-mode="force">{{Tout forcer}}</a></li>
-                    <li><a href="#" class="bt_updateAll" data-level="1" data-mode="">{{Plugins seulement}}</a></li>
-                    <li><a href="#" class="bt_updateAll expertModeVisible" data-level="1" data-mode="force">{{Plugins seulement forcés}}</a></li>
-                    <li><a href="#" class="bt_updateAll" data-level="-1" data-mode="">{{Jeedom seulement}}</a></li>
-                    <li><a href="#" class="bt_updateAll expertModeVisible" data-level="-1" data-mode="force">{{Jeedom seulement forcé}}</a></li>
-                    <li><a href="#" class="expertModeVisible" id="bt_updateSystem" data-level="0" data-mode="">{{Tout + système (risqué)}}</a></li>
+                    <li><a href="#" class="bt_updateAll expertModeVisible" data-level="0" data-mode="force"> <i class="fa fa-gavel"></i> {{Tout forcer}}</a></li>
+                    <li><a href="#" class="bt_updateAll" data-level="1" data-mode=""><i class="fa fa-cube"></i> {{Plugins seulement}}</a></li>
+                    <li><a href="#" class="bt_updateAll expertModeVisible" data-level="1" data-mode="force"><i class="fa fa-cube"></i> <i class="fa fa-gavel"></i> {{Plugins seulement forcés}}</a></li>
+                    <li><a href="#" class="bt_updateAll" data-level="-1" data-mode=""><i class="fa fa-database"></i> {{Jeedom seulement}}</a></li>
+                    <li><a href="#" class="bt_updateAll expertModeVisible" data-level="-1" data-mode="force"><i class="fa fa-database"></i> <i class="fa fa-gavel"></i> {{Jeedom seulement forcé}}</a></li>
+                    <li><a href="#" class="expertModeVisible" id="bt_reapplyUpdate"><i class="fa fa-retweet"></i> {{Réappliquer une mise à jour}}</a></li>
                 </ul>
             </div>
         </div>
@@ -53,6 +46,43 @@ if (config::byKey('market::showPromotion') == 1) {
         <legend>{{Informations :}}</legend>
         <pre id="pre_updateInfo"></pre>
     </div>
+</div>
+
+<div id="md_specifyUpdate">
+   <form class="form-horizontal">
+    <fieldset>
+     <div class="form-group">
+         <label class="col-xs-6 control-label">{{Mise à jour à réappliquer}}</label>
+         <div class="col-xs-6">
+            <select id="sel_updateVersion" class="form-control">
+                <option value="">{{Aucune}}</option>
+                <?php
+foreach (update::listCoreUpdate() as $value) {
+	$value = str_replace(array('.php', '.sql'), '', $value);
+	echo '<option value="' . $value . '">' . $value . '</option>';
+}
+?>
+           </select>
+       </div>
+   </div>
+   <div class="form-group">
+    <label class="col-xs-6 control-label">{{Mode forcé}}</label>
+    <div class="col-xs-4">
+    <input type="checkbox" id="cb_forceReapplyUpdate" checked />
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-xs-6 control-label">{{Tout depuis cette version}}</label>
+    <div class="col-xs-4">
+        <input type="checkbox" id="cb_allFromThisUpdate" checked />
+    </div>
+</div>
+</fieldset>
+</form>
+<a class="btn btn-success pull-right" style="color:white;" id="bt_reapplySpecifyUpdate"><i class="fa fa-check"></i> {{Valider}}</a>
+</div>
+
+
 </div>
 
 <?php include_file('desktop', 'update', 'js');?>

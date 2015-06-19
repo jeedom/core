@@ -17,81 +17,81 @@
  */
 
 try {
-    require_once(dirname(__FILE__) . '/../../core/php/core.inc.php');
-    include_file('core', 'authentification', 'php');
+	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+	include_file('core', 'authentification', 'php');
 
-    if (!isConnect('admin')) {
-        throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
-    }
+	if (!isConnect('admin')) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
+	}
 
-    if (init('action') == 'all') {
-        ajax::success(utils::o2a(update::all(init('filter'))));
-    }
+	if (init('action') == 'all') {
+		ajax::success(utils::o2a(update::all(init('filter'))));
+	}
 
-    if (init('action') == 'checkAllUpdate') {
-        update::checkAllUpdate();
-        ajax::success();
-    }
+	if (init('action') == 'checkAllUpdate') {
+		update::checkAllUpdate();
+		ajax::success();
+	}
 
-    if (init('action') == 'update') {
-        log::clear('update');
-        $update = update::byId(init('id'));
-        if (!is_object($update)) {
-            throw new Exception(__('Aucune correspondance pour l\'ID : ' . init('id'), __FILE__));
-        }
-        try {
-            if ($update->getType() != 'core') {
-                log::add('update', 'update', __("[START UPDATE]\n", __FILE__));
-            }
-            $update->doUpdate();
-            if ($update->getType() != 'core') {
-                log::add('update', 'update', __("[END UPDATE SUCCESS]\n", __FILE__));
-            }
-        } catch (Exception $e) {
-            if ($update->getType() != 'core') {
-                log::add('update', 'update', $e->getMessage());
-                log::add('update', 'update', __("[END UPDATE ERROR]\n", __FILE__));
-            }
-        }
-        ajax::success();
-    }
+	if (init('action') == 'update') {
+		log::clear('update');
+		$update = update::byId(init('id'));
+		if (!is_object($update)) {
+			throw new Exception(__('Aucune correspondance pour l\'ID : ' . init('id'), __FILE__));
+		}
+		try {
+			if ($update->getType() != 'core') {
+				log::add('update', 'update', __("[START UPDATE]\n", __FILE__));
+			}
+			$update->doUpdate();
+			if ($update->getType() != 'core') {
+				log::add('update', 'update', __("[END UPDATE SUCCESS]\n", __FILE__));
+			}
+		} catch (Exception $e) {
+			if ($update->getType() != 'core') {
+				log::add('update', 'update', $e->getMessage());
+				log::add('update', 'update', __("[END UPDATE ERROR]\n", __FILE__));
+			}
+		}
+		ajax::success();
+	}
 
-    if (init('action') == 'remove') {
-        $update = update::byId(init('id'));
-        if (!is_object($update)) {
-            $update = update::byLogicalId(init('id'));
-        }
-        if (!is_object($update)) {
-            throw new Exception(__('Aucune correspondance pour l\'ID : ' . init('id'), __FILE__));
-        }
-        $update->deleteObjet();
-        ajax::success();
-    }
+	if (init('action') == 'remove') {
+		$update = update::byId(init('id'));
+		if (!is_object($update)) {
+			$update = update::byLogicalId(init('id'));
+		}
+		if (!is_object($update)) {
+			throw new Exception(__('Aucune correspondance pour l\'ID : ' . init('id'), __FILE__));
+		}
+		$update->deleteObjet();
+		ajax::success();
+	}
 
-    if (init('action') == 'updateAll') {
-        update::makeUpdateLevel(init('mode'), init('level'), init('system', 'no'));
-        ajax::success();
-    }
+	if (init('action') == 'updateAll') {
+		update::makeUpdateLevel(init('mode'), init('level'), init('version', ''), init('onlyThisVersion', ''));
+		ajax::success();
+	}
 
-    if (init('action') == 'changeState') {
-        $update = update::byId(init('id'));
-        if (!is_object($update)) {
-            throw new Exception(__('Aucune correspondance pour l\'ID : ' . init('id'), __FILE__));
-        }
-        if (init('state') == '') {
-            throw new Exception(__('Le status ne peut être vide', __FILE__));
-        }
-        if (init('state') == 'hold') {
-            $update->setStatus('hold');
-            $update->save();
-        } else {
-            $update->checkUpdate();
-        }
-        ajax::success();
-    }
+	if (init('action') == 'changeState') {
+		$update = update::byId(init('id'));
+		if (!is_object($update)) {
+			throw new Exception(__('Aucune correspondance pour l\'ID : ' . init('id'), __FILE__));
+		}
+		if (init('state') == '') {
+			throw new Exception(__('Le status ne peut être vide', __FILE__));
+		}
+		if (init('state') == 'hold') {
+			$update->setStatus('hold');
+			$update->save();
+		} else {
+			$update->checkUpdate();
+		}
+		ajax::success();
+	}
 
-    throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
-    /*     * *********Catch exeption*************** */
+	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-    ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayExeption($e), $e->getCode());
 }

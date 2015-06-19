@@ -42,7 +42,7 @@ $update_begin = false;
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
 	echo "****Installation/Mise à jour de Jeedom " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
-	echo "Paramètres de la mise à jour : level : " . init('level', -1) . ", mode : " . init('mode') . ", system : " . init('system', 'no') . " \n";
+	echo "Paramètres de la mise à jour : level : " . init('level', -1) . ", mode : " . init('mode') . ", version : " . init('version', 'no') . ", onlyThisVersion : " . init('onlyThisVersion', 'no') . " \n";
 
 	try {
 		$curentVersion = config::byKey('version');
@@ -52,7 +52,7 @@ try {
 	} catch (Exception $e) {
 
 	}
-	if (init('v') != '') {
+	if (init('version') != '') {
 		$update = true;
 	}
 
@@ -99,7 +99,7 @@ try {
 				echo __("/!\ Mise à jour en mode forcé /!\ \n", __FILE__);
 			}
 			jeedom::stop();
-			if (init('v') == '') {
+			if (init('version') == '') {
 				try {
 					echo __('Nettoyage du dossier temporaire (tmp)...', __FILE__);
 					exec('rm -rf ' . dirname(__FILE__) . '/../tmp/*.zip');
@@ -186,15 +186,8 @@ try {
 				}
 			}
 
-			if (init('v') != '') {
-				echo __("La mise à jour ", __FILE__) . init('v') . __(" va être appliquée à nouveau. Voulez-vous continuer  ? [o/N] ", __FILE__);
-				if (trim(fgets(STDIN)) !== 'o') {
-					echo __("La mise à jour forcée de Jeedom est annulée\n", __FILE__);
-					jeedom::start();
-					echo "[END UPDATE SUCCESS]\n";
-					exit(0);
-				}
-				$updateSql = dirname(__FILE__) . '/update/' . init('v') . '.sql';
+			if (init('version') != '') {
+				$updateSql = dirname(__FILE__) . '/update/' . init('version') . '.sql';
 				if (file_exists($updateSql)) {
 					try {
 						echo __("Désactivation des contraintes...", __FILE__);
@@ -204,10 +197,14 @@ try {
 						DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 						echo __("OK\n", __FILE__);
 					} catch (Exception $e) {
-						echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+						if (init('mode') != 'force') {
+							throw $e;
+						} else {
+							echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+						}
 					}
 					try {
-						echo __("Mise à jour de la base de données en version : ", __FILE__) . init('v') . "\n";
+						echo __("Mise à jour de la base de données en version : ", __FILE__) . init('version') . "\n";
 						$sql = file_get_contents($updateSql);
 						DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 						echo "OK\n";
@@ -226,13 +223,17 @@ try {
 						DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 						echo __("OK\n", __FILE__);
 					} catch (Exception $e) {
-						echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+						if (init('mode') != 'force') {
+							throw $e;
+						} else {
+							echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+						}
 					}
 				}
-				$updateScript = dirname(__FILE__) . '/update/' . init('v') . '.php';
+				$updateScript = dirname(__FILE__) . '/update/' . init('version') . '.php';
 				if (file_exists($updateScript)) {
 					try {
-						echo __("Mise à jour du système en version : ", __FILE__) . init('v') . "\n";
+						echo __("Mise à jour du système en version : ", __FILE__) . init('version') . "\n";
 						require_once $updateScript;
 						echo __("OK\n", __FILE__);
 					} catch (Exception $e) {
@@ -243,7 +244,10 @@ try {
 						}
 					}
 				}
-			} else {
+				$curentVersion = init('version');
+			}
+
+			if (init('version') == '' || init('onlyThisVersion', 'no') == 'no') {
 				while (version_compare(jeedom::version(), $curentVersion, '>')) {
 					$nextVersion = incrementVersion($curentVersion);
 					$updateSql = dirname(__FILE__) . '/update/' . $nextVersion . '.sql';
@@ -256,7 +260,11 @@ try {
 							DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 							echo __("OK\n", __FILE__);
 						} catch (Exception $e) {
-							echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+							if (init('mode') != 'force') {
+								throw $e;
+							} else {
+								echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+							}
 						}
 						try {
 							echo __("Mise à jour de la base de données en version : ", __FILE__) . $nextVersion . "...";
@@ -278,7 +286,11 @@ try {
 							DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 							echo __("OK\n", __FILE__);
 						} catch (Exception $e) {
-							echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+							if (init('mode') != 'force') {
+								throw $e;
+							} else {
+								echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
+							}
 						}
 					}
 					$updateScript = dirname(__FILE__) . '/update/' . $nextVersion . '.php';
@@ -331,13 +343,6 @@ try {
 			jeedom::start();
 		} catch (Exception $ex) {
 			echo __("***ERREUR*** ", __FILE__) . $ex->getMessage() . "\n";
-		}
-		if (init('system', 'no') == 'yes') {
-			echo __("***************Lancement mise à jour systeme***************\n", __FILE__);
-			$cmd = 'sudo ' . dirname(__FILE__) . '/install.sh update_nginx';
-			$cmd .= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
-			exec($cmd);
-			die();
 		}
 	} else {
 

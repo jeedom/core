@@ -142,10 +142,10 @@ function printUsers() {
                 }
                 ligne += '</center></td>';
                 ligne += '<td>';
-                ligne += '<input type="checkbox" class="userAttr" data-l1key="enable" />';
+                ligne += '<input type="checkbox" data-size="mini" class="userAttr bootstrapSwitch" data-l1key="enable" />';
                 ligne += '</td>';
                 ligne += '<td>';
-                ligne += '<input type="checkbox" class="userAttr" data-l1key="rights" data-l2key="admin"/> Admin';
+                ligne += '<input type="checkbox" data-size="mini" class="userAttr bootstrapSwitch" data-label-text="{{Admin}}" data-l1key="rights" data-l2key="admin"/>';
                 ligne += '</td>';
                 ligne += '<td>';
                 ligne += '<span class="userAttr" data-l1key="options" data-l2key="lastConnection"></span>';
@@ -158,6 +158,7 @@ function printUsers() {
                 $('#table_user tbody tr:last').setValues(data[i], '.userAttr');
                 modifyWithoutSave = false;
             }
+            initCheckBox();
         }
     });
 }

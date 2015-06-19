@@ -1,0 +1,266 @@
+:icons:
+
+Voici une documentation (qui évoluera) sur les méthodes de l'API. Tout d'abord voici les spécifications (JSON RPC 2.0) : http://www.jsonrpc.org/specification
+
+L'accès à l'API se fait par l'url : #URL_JEEDOM#/core/api/jeeApi.php
+
+== API JSON Plugin
+
+=== plugin::listPlugin
+Retourne la liste de tous les plugins
+
+Paramètres :
+
+- int activateOnly = 0 (ne retourne que la liste des plugins activés)
+- int orderByCaterogy = 0 (retourne la liste des plugins triés par catégorie)
+
+
+== API JSON Objet
+
+=== object::all
+Retourne la liste de tous les objets
+
+=== object::full
+Retourne la liste de tous les objets, avec pour chaque objet tous ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
+
+=== object::byId
+Retourne l'objet spécifié
+
+Paramètres:
+
+- int id
+
+=== object::fullById
+Retourne un objet, ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
+
+== API JSON EqLogic
+=== eqLogic::all
+Retourne la liste de tous les équipements
+
+=== eqLogic::fullById
+Retourne un équipement et ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
+
+=== eqLogic::byId
+Retourne l'équipement spécifié
+
+Paramètres:
+
+- int id
+
+=== eqLogic::byType
+
+Retourne tous les équipements appartenant au type (plugin) spécifié
+
+Paramètres:
+
+- string type
+
+=== eqLogic::byObjectId
+Retourne tous les équipements appartenant à l'objet spécifié
+
+Paramètres:
+- int object_id
+
+=== eqLogic::byTypeAndId
+Renvoi un tableau d'équipement en fonction des paramètres. Le retour sera de la forme array('eqType1' =>array( 'id'=>...,'cmds' => array(....)),'eqType2' =>array( 'id'=>...,'cmds' => array(....))....,id1 => array( 'id'=>...,'cmds' => array(....)),id2 => array( 'id'=>...,'cmds' => array(....))..)
+
+Paramètres:
+
+- string[] eqType = tableau des types d'équipement voulu
+- int[] id = tableau des ID d'équipements personnalisé voulu
+
+=== eqLogic::save
+Retourne l'équipement enregistré/créé
+
+Paramètres:
+
+- int id (vide si c'est une création)
+- string eqType_name (type de l'équipement script, virtuel...)
+- string $name
+- string $logicalId = <nowiki>''</nowiki>
+- int $object_id = null
+- int $eqReal_id = null;
+- int $isVisible = 0;
+- int $isEnable = 0;
+- array $configuration;
+- array $specificCapatibilities;
+- int $timeout;
+- array $category;
+
+== API JSON Cmd
+
+=== cmd::all
+Retourne la liste de toutes les commandes
+
+===== cmd::byId
+Retourne la commande spécifiée
+
+Paramètres:
+
+- int id
+
+=== cmd::byEqLogicId
+Retourne toutes les commandes appartenant à l'équipement spécifié
+
+Paramètres:
+
+- int eqLogic_id
+
+=== cmd::execCmd
+Exécute la commande spécifiée
+
+Paramètres:
+
+- int id
+- [options] Liste des options de la commandes (dépend du type et du sous-type de la commande)
+
+=== cmd::getStatistique
+Retourne les statistiques sur la commande (ne marche que sur les commandes de type info et historisée)
+
+Paramètres:
+
+- int id
+- string startTime : date de début de calcul des statistiques
+- string endTime : date de fin de calcul des statistiques
+
+=== cmd::getTendance
+Retourne la tendance sur la commande (ne marche que sur les commandes de type info et historisée)
+
+Paramètres:
+
+- int id
+- string startTime : date de début de calcul de la tendance
+- string endTime : date de fin de calcul de la tendance
+
+=== cmd::getHistory
+Retourne l'historique de la commande (ne marche que sur les commandes de type info et historisée)
+
+Paramètres:
+
+- int id
+- string startTime : date de début de l'historique
+- string endTime : date de fin de l'historique
+
+
+== API JSON Scenario
+
+=== scenario::all
+Retourne la liste de tous les scénarios
+
+=== scenario::byId
+Retourne le scénario spécifié
+
+Paramètres:
+
+- int id
+
+=== scenario::changeState
+Change l'état du scénario spécifié.
+
+Paramètres:
+
+- int id
+- string state : [run,stop,enable,disable]
+
+== API JSON datastore (variable)
+
+=== datastore::byTypeLinkIdKey
+Recupere la valeur d'une variable stocké dans le datastore
+
+Paramètres:
+
+- string type : type de la valeur stockée (pour les scénarios c'est scenario)
+- id linkId : -1 pour le global (valeur pour les scénarios par defaut, ou l'id du scénario)
+- string key : nom de la valeur
+
+=== datastore::save
+Enregistre la valeur d'une variable dans le datastore
+
+Paramètres:
+
+- string type : type de la valeur stockée (pour les scénarios c'est scenario)
+- id linkId : -1 pour le global (valeur pour les scénarios par defaut, ou l'id du scénario)
+- string key : nom de la valeur
+- mixte value : valeur à enregistrer
+
+== API JSON Message
+
+=== message::all
+Retourne la liste de tous les messages
+
+=== message::removeAll
+Supprime tous les messages
+
+== API JSON Interaction
+
+=== interact::tryToReply
+Essaye de faire correspondre une demande avec une interaction, exécute l'action et répond en conséquence
+
+Paramètres:
+
+- query (phrase de la demande)
+
+== API JSON System
+
+=== jeeNetwork::halt
+Permet d'arreter Jeedom
+
+=== jeeNetwork::reboot
+Permet de redemarrer Jeedom
+
+
+== API JSON plugin
+
+=== plugin::install
+Installation/Mise à jour d'un plugin donné
+
+Paramètres:
+
+- string plugin_id : nom du plugin (nom logique)
+
+=== plugin::remove
+Suppression d'un plugin donné
+
+Paramètres:
+
+- string plugin_id : nom du plugin (nom logique)
+
+== API JSON update
+
+=== update::all
+Retour la liste de tous les composants installé, leur versions et les informations associées
+
+=== update::checkUpdate
+Permet de mettre de faire vérifier les mises à jour
+
+=== update::update
+Permet de mettre à jour Jeedom et tous les plugins
+
+== API JSON Exemples
+Voici un exemple d'utilisation de l'API. Pour l'exemple si dessous j'utilise https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php[cette class php] qui permet de simplifier l'utilisation de l'api.
+
+Récupération de la liste des objets :
+
+
+----
+ $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+ if($jsonrpc->sendRequest('object::all', array())){
+    print_r($jsonrpc->getResult());
+ }else{
+    echo $jsonrpc->getError();
+ }
+----
+ 
+Exécution d'une commande (avec comme option un titre et un message)
+
+
+----
+ $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+ if($jsonrpc->sendRequest('cmd::execCmd', array('id' => #cmd_id#, 'options' => array('title' => 'Coucou', 'message' => 'Ca marche')))){
+    echo 'OK';
+ }else{
+    echo $jsonrpc->getError();
+ }
+----
+ 
+L'API est bien sur utilisable avec d'autre langage (simplement un post sur une page) 

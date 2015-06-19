@@ -1,3 +1,0 @@
-Les vues permettent simplement de créer un affichage personnalisé. Ce n'est pas aussi puissant que les désigns, mais ça permet en quelques minutes d'avoir un affichage plus personnalisé.
-
-image::../images/view.JPG[]

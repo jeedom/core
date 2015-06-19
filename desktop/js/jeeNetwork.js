@@ -54,12 +54,12 @@ function loadInfoFromSlave(_id){
                 },
                 success: function (data) {
                     if(data == 0){
-                     $('#div_ngrokHttpStatus').html('<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>');
-                 }else{
-                   $('#div_ngrokHttpStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' +init(jeeNetworkConfig.configuration.url)+ '" target="_blank" style="color:white;text-decoration: underline;">' +init(jeeNetworkConfig.configuration.url)+ '</a></span>');
-               }
-           }
-       });
+                       $('#div_ngrokHttpStatus').html('<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>');
+                   }else{
+                     $('#div_ngrokHttpStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' +init(jeeNetworkConfig.configuration.url)+ '" target="_blank" style="color:white;text-decoration: underline;">' +init(jeeNetworkConfig.configuration.url)+ '</a></span>');
+                 }
+             }
+         });
 
             jeedom.jeeNetwork.ngrokRun({
                 id: _id,
@@ -71,19 +71,19 @@ function loadInfoFromSlave(_id){
                 },
                 success: function (data) {
                     if(data == 0){
-                     $('#div_ngrokSSHStatus').html('<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Rediriger le SSH}}">{{Arrêté}}</span>');
-                 }else{
+                       $('#div_ngrokSSHStatus').html('<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Rediriger le SSH}}">{{Arrêté}}</span>');
+                   }else{
                     $('#div_ngrokSSHStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} dns.jeedom.com:' + init(jeeNetworkConfig.configuration['ngrok::port']) + '</span>');
-                 }
-             }
-         });
+                }
+            }
+        });
             modifyWithoutSave = false;
         }
     });
 jeedom.jeeNetwork.loadConfig({
- id: _id,
- configuration: $('#administration').getValues('.configKey')[0],
- error: function (error) {
+   id: _id,
+   configuration: $('#administration').getValues('.configKey')[0],
+   error: function (error) {
     $('#div_alert').showAlert({message: error.message, level: 'danger'});
 },
 success: function (data) {
@@ -150,18 +150,20 @@ $('#sel_logSlave').on('change', function () {
             }
             var log = '';
             var regex = /<br\s*[\/]?>/gi;
-            for (var i in data.reverse()) {
-                if(data[i][0] != ''){
-                    log += data[i][0].replace(regex, "\n");
-                    log += " - ";
+            if($.isArray(data)){
+                for (var i in data.reverse()) {
+                    if(data[i][0] != ''){
+                        log += data[i][0].replace(regex, "\n");
+                        log += " - ";
+                    }
+                    if(data[i][1] != ''){
+                        log += data[i][1].replace(regex, "\n");
+                        log += " - ";
+                    }
+                    log += data[i][2].replace(regex, "\n");
+                    log = log.replace(/^\s+|\s+$/g, '');
+                    log += "\n";
                 }
-                if(data[i][1] != ''){
-                    log += data[i][1].replace(regex, "\n");
-                    log += " - ";
-                }
-                log += data[i][2].replace(regex, "\n");
-                log = log.replace(/^\s+|\s+$/g, '');
-                log += "\n";
             }
             $('#pre_logInfo').text(log);
             $('#pre_logInfo').scrollTop(999999999);
@@ -182,18 +184,20 @@ $('#bt_refreshLog').on('click', function () {
             }
             var log = '';
             var regex = /<br\s*[\/]?>/gi;
-            for (var i in data.reverse()) {
-                if(data[i][0] != ''){
-                    log += data[i][0].replace(regex, "\n");
-                    log += " - ";
+            if($.isArray(data)){
+                for (var i in data.reverse()) {
+                    if(data[i][0] != ''){
+                        log += data[i][0].replace(regex, "\n");
+                        log += " - ";
+                    }
+                    if(data[i][1] != ''){
+                        log += data[i][1].replace(regex, "\n");
+                        log += " - ";
+                    }
+                    log += data[i][2].replace(regex, "\n");
+                    log = log.replace(/^\s+|\s+$/g, '');
+                    log += "\n";
                 }
-                if(data[i][1] != ''){
-                    log += data[i][1].replace(regex, "\n");
-                    log += " - ";
-                }
-                log += data[i][2].replace(regex, "\n");
-                log = log.replace(/^\s+|\s+$/g, '');
-                log += "\n";
             }
             $('#pre_logInfo').text(log);
             $('#pre_logInfo').scrollTop(999999999);
@@ -534,16 +538,18 @@ function getJeedomSlaveLog(_autoUpdate, _log,_el) {
             }
             var log = '';
             var regex = /<br\s*[\/]?>/gi;
-            for (var i in data.result.reverse()) {
-                log += data.result[i][2].replace(regex, "\n");
-                if ($.trim(data.result[i][2].replace(regex, "\n")) == '[END ' + _log.toUpperCase() + ' SUCCESS]') {
-                    _autoUpdate = 0;
-                    $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'});
-                    loadInfoFromSlave($('.li_jeeNetwork.active').attr('data-jeeNetwork_id'));
-                }
-                if ($.trim(data.result[i][2].replace(regex, "\n")) == '[END ' + _log.toUpperCase() + ' ERROR]') {
-                    $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
-                    _autoUpdate = 0;
+            if($.isArray(data.result)){
+                for (var i in data.result.reverse()) {
+                    log += data.result[i][2].replace(regex, "\n");
+                    if ($.trim(data.result[i][2].replace(regex, "\n")) == '[END ' + _log.toUpperCase() + ' SUCCESS]') {
+                        _autoUpdate = 0;
+                        $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'});
+                        loadInfoFromSlave($('.li_jeeNetwork.active').attr('data-jeeNetwork_id'));
+                    }
+                    if ($.trim(data.result[i][2].replace(regex, "\n")) == '[END ' + _log.toUpperCase() + ' ERROR]') {
+                        $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
+                        _autoUpdate = 0;
+                    }
                 }
             }
             _el.text(log);

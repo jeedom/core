@@ -301,10 +301,18 @@ setInterval(function () {
         window.location.href = 'index.php?v=d&p=plan';
     });
 
+    $.fn.bootstrapSwitch.defaults.onText = '{{Oui}}';
+    $.fn.bootstrapSwitch.defaults.offText = '{{Non}}';
+    $.fn.bootstrapSwitch.defaults.onColor = 'success';
+    $.fn.bootstrapSwitch.defaults.offColor = 'danger';
+
     initPage();
 });
 
 
+function initCheckBox(){
+    $("input[type=checkbox].bootstrapSwitch").bootstrapSwitch();
+}
 
 function initPage(){
     initTooltips();
@@ -312,6 +320,7 @@ function initPage(){
     initExpertMode();
     $.initTableFilter();
     initRowOverflow();
+    initCheckBox();
 }
 
 function linkify(inputText) {
@@ -499,24 +508,24 @@ function positionEqLogic(_id, _noResize, _class) {
             });
             if (!init(_noResize, false) && eqLogic_height_step > 1 && eqLogic_width_step > 1) {
                 if(eqLogic_width_step == 1){
-                 eqLogic.width(eqLogic.width() + 5);
-             }else{
-                 var wMarge = (Math.ceil(eqLogic.width() / eqLogic_width_step) - 1) * 2;
-                 eqLogic.width((Math.ceil(eqLogic.width() / eqLogic_width_step) * eqLogic_width_step) - 6 + wMarge);
-             }
-             if(eqLogic_height_step == 1){
+                   eqLogic.width(eqLogic.width() + 5);
+               }else{
+                   var wMarge = (Math.ceil(eqLogic.width() / eqLogic_width_step) - 1) * 2;
+                   eqLogic.width((Math.ceil(eqLogic.width() / eqLogic_width_step) * eqLogic_width_step) - 6 + wMarge);
+               }
+               if(eqLogic_height_step == 1){
                 eqLogic.height(eqLogic.height() + 5);
             }else{
-             var hMarge = (Math.ceil(eqLogic.height() / eqLogic_height_step) - 1) * 2;
-             eqLogic.height((Math.ceil(eqLogic.height() / eqLogic_height_step) * eqLogic_height_step) - 6 + hMarge);
-         }
+               var hMarge = (Math.ceil(eqLogic.height() / eqLogic_height_step) - 1) * 2;
+               eqLogic.height((Math.ceil(eqLogic.height() / eqLogic_height_step) * eqLogic_height_step) - 6 + hMarge);
+           }
 
-     }
-     if(eqLogic_vertical_align == 1){
-         var verticalAlign = eqLogic.find('.verticalAlign');
-         var offset = eqLogic.find('.widget-name').height();
-         offset = (offset < 1) ? -5 : offset-12;
-         if (count(verticalAlign) > 0 && verticalAlign != undefined) {
+       }
+       if(eqLogic_vertical_align == 1){
+           var verticalAlign = eqLogic.find('.verticalAlign');
+           var offset = eqLogic.find('.widget-name').height();
+           offset = (offset < 1) ? -5 : offset-12;
+           if (count(verticalAlign) > 0 && verticalAlign != undefined) {
             verticalAlign.css('position', 'relative');
             verticalAlign.css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - offset);
             verticalAlign.css('left', (eqLogic.width() - verticalAlign.width()) / 2);

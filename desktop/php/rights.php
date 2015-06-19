@@ -143,7 +143,7 @@ foreach ($pages as $kpage => $page) {
 			echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
 			echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
 			echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="' . $kpage . $kright . '" />';
-			echo '<input type="checkbox" class="rightsAttr" data-l1key="right"  checked /> ' . $right['title'] . ' ';
+			echo '<input type="checkbox" data-size="mini" class="rightsAttr bootstrapSwitch" data-l1key="right" data-label-text="' . $right['title'] . '" checked />';
 			echo '</span>';
 		}
 	}
@@ -173,12 +173,12 @@ foreach ($pages as $kpage => $page) {
 foreach (eqLogic::all() as $eqLogic) {
 	echo '<tr>';
 	echo '<td>';
-	foreach (array(/* 'edit' => 'Editer', */'view' => 'Voir', 'action' => 'Action') as $kright => $right) {
+	foreach (array( /* 'edit' => 'Editer', */'view' => 'Voir', 'action' => 'Action') as $kright => $right) {
 		echo '<span class="rights">';
 		echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="eqLogic' . $eqLogic->getId() . $kright . '" />';
-		echo '<input type="checkbox" class="rightsAttr" data-l1key="right"  checked /> ' . $right . ' ';
+		echo '<input type="checkbox" data-size="mini" class="rightsAttr bootstrapSwitch" data-l1key="right" data-label-text="' . $right . '" checked /> ';
 		echo '</span>';
 	}
 	echo '</td>';
@@ -210,7 +210,7 @@ foreach (scenario::all() as $scenario) {
 		echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="scenario' . $scenario->getId() . $kright . '" />';
-		echo '<input type="checkbox" class="rightsAttr" data-l1key="right"  checked /> ' . $right . ' ';
+		echo '<input type="checkbox" data-size="mini" class="rightsAttr bootstrapSwitch" data-l1key="right" data-label-text="' . $right . '" checked /> ';
 		echo '</span>';
 	}
 	echo '</td>';

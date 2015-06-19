@@ -46,6 +46,7 @@ class scenario {
 	private $_changeState = false;
 	private $_realTrigger = '';
 	private $_return = '';
+	private $_tags = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -312,6 +313,50 @@ class scenario {
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 	}
 
+	public static function consystencyCheck() {
+		foreach (self::all() as $scenario) {
+			if ($scenario->getIsActive() != 1) {
+				continue;
+			}
+			if ($scenario->getMode() == 'provoke' || $scenario->getMode() == 'all') {
+				$trigger_list = '';
+				if (is_array($scenario->getTrigger())) {
+					foreach ($scenario->getTrigger() as $trigger) {
+						$trigger_list .= cmd::cmdToHumanReadable($trigger);
+					}
+				} else {
+					$trigger_list = cmd::cmdToHumanReadable($scenario->getTrigger());
+				}
+				preg_match_all("/#([0-9]*)#/", $trigger_list, $matches);
+				foreach ($matches[1] as $cmd_id) {
+					if (is_numeric($cmd_id)) {
+						log::add('scenario', 'error', __('Un déclencheur du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+					}
+				}
+			}
+
+			$expression_list = '';
+			foreach ($scenario->getElement() as $element) {
+				foreach ($element->getSubElement() as $subElement) {
+					foreach ($subElement->getExpression() as $expression) {
+						$expression_list .= cmd::cmdToHumanReadable($expression->getExpression()) . ' _ ';
+						if (is_array($expression->getOptions())) {
+							foreach ($expression->getOptions() as $key => $value) {
+								$expression_list .= cmd::cmdToHumanReadable($value) . ' _ ';
+							}
+						}
+					}
+				}
+			}
+			preg_match_all("/#([0-9]*)#/", $expression_list, $matches);
+			foreach ($matches[1] as $cmd_id) {
+				if (is_numeric($cmd_id)) {
+					log::add('scenario', 'error', __('Une commande du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+				}
+			}
+		}
+	}
+
 	public static function byObjectNameGroupNameScenarioName($_object_name, $_group_name, $_scenario_name) {
 		$values = array(
 			'scenario_name' => html_entity_decode($_scenario_name),
@@ -438,10 +483,15 @@ class scenario {
 		return $text;
 	}
 
-	public static function byUsedCommand($_cmd_id) {
+	public static function byUsedCommand($_cmd_id, $_variable = false) {
 		$scenarios = null;
-		$return = self::byTrigger($_cmd_id);
-		$expressions = scenarioExpression::searchExpression('#' . $_cmd_id . '#');
+		if ($_variable) {
+			$return = array();
+			$expressions = array_merge(scenarioExpression::searchExpression('variable(' . $_cmd_id . ')'), scenarioExpression::searchExpression('variable', $_cmd_id, true));
+		} else {
+			$return = self::byTrigger($_cmd_id);
+			$expressions = scenarioExpression::searchExpression('#' . $_cmd_id . '#', '#' . $_cmd_id . '#', false);
+		}
 		if (is_array($expressions)) {
 			foreach ($expressions as $expression) {
 				$scenarios[] = $expression->getSubElement()->getElement()->getScenario();
@@ -531,11 +581,12 @@ class scenario {
 
 /*     * *********************Méthodes d'instance************************* */
 
-	public function launch($_force = false, $_trigger = '', $_message = '') {
+	public function launch($_force = false, $_trigger = '', $_message = '', $_speedPriority = 0) {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 			return false;
 		}
-		if ($this->getConfiguration('speedPriority', 0) == 0) {
+
+		if ($this->getConfiguration('speedPriority', 0) == 0 && $_speedPriority == 0) {
 			$cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
 			$cmd .= ' scenario_id=' . $this->getId();
 			$cmd .= ' force=' . $_force;
@@ -1261,6 +1312,14 @@ class scenario {
 
 	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+	}
+
+	public function setTags($_tags) {
+		$this->_tags = $_tags;
+	}
+
+	public function getTags() {
+		return $this->_tags;
 	}
 
 	function getRealTrigger() {

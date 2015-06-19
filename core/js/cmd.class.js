@@ -538,6 +538,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
          _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').hide();
      }
      _cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('change');
+      _cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('switchChange.bootstrapSwitch');
      modifyWithoutSave = false;
      if ('function' == typeof(initExpertMode)) {
         initExpertMode();
@@ -635,9 +636,7 @@ return html;
 jeedom.cmd.normalizeName = function(_tagname) {
     var arrayOn = ['on', 'marche', 'go', 'lock'];
     var arrayOff = ['off', 'arret', 'arrêt', 'stop', 'unlock'];
-    var name = _tagname.toLowerCase().replace('<br/>','').replace('<br>','');
-    /^([^0-9]+)[0-9]*$/.exec(name);
-    name = RegExp.$1;
+    var name = $.trim(_tagname.toLowerCase().replace('<br/>','').replace('<br>',''));
     if (arrayOn.indexOf(name) >= 0) { //Test si name cmd équivalent à "on"
         return 'on';
     } else if (arrayOff.indexOf(name) >= 0) { //Test si name cmd équivalent à "off"
@@ -658,5 +657,5 @@ if (name.indexOf("on") != -1) {
 if (name.indexOf("off") != -1) {
     return 'off';
 }
-return name;
+return _tagname;
 }

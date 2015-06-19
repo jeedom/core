@@ -180,7 +180,7 @@ usage_help() {
 configure_php() {
     [ -z "`getent group dialout | grep www-data`" ] && adduser www-data dialout
     GPIO_GROUP="`cat /etc/group | grep -e 'gpio'`"
-    if [ -z "${JEEDOM_CRON}" ] ; then
+    if [ -z "${GPIO_GROUP}" ] ; then
         [ -z "`getent group gpio | grep www-data`" ] && adduser www-data gpio
     fi
     sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /etc/php5/fpm/php.ini

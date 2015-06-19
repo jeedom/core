@@ -22,6 +22,8 @@
 
  initHistoryTrigger();
 
+ $(".in_datepicker").datepicker();
+
  $(".li_history .history").on('click', function (event) {
     $.hideAlert();
     if ($(this).closest('.li_history').hasClass('active')) {
@@ -108,7 +110,7 @@ function initHistoryTrigger() {
             }
         });
     });
-    $('#cb_derive').on('change', function () {
+    $('#cb_derive').on('change switchChange.bootstrapSwitch', function () {
         $('.li_history[data-cmd_id=' + lastId + '] .history').click();
         jeedom.cmd.save({
             cmd: {id: lastId, display: {graphDerive: $(this).value()}},
@@ -120,7 +122,7 @@ function initHistoryTrigger() {
             }
         });
     });
-    $('#cb_step').on('change', function () {
+    $('#cb_step').on('change switchChange.bootstrapSwitch', function () {
         $('.li_history[data-cmd_id=' + lastId + '] .history').click();
         jeedom.cmd.save({
             cmd: {id: lastId, display: {graphStep: $(this).value()}},
@@ -134,6 +136,16 @@ function initHistoryTrigger() {
     });
 }
 
+$('#bt_validChangeDate').on('click',function(){
+    $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie){
+     if(!isNaN(serie.options.id)){
+        var cmd_id = serie.options.id;
+        addChart(cmd_id, 0);
+        addChart(cmd_id, 1);
+     }
+ });
+});
+
 function addChart(_cmd_id, _action) {
     if (_action == 0) {
         if (isset(jeedom.history.chart['div_graph'])) {
@@ -143,7 +155,9 @@ function addChart(_cmd_id, _action) {
         jeedom.history.drawChart({
             cmd_id: _cmd_id,
             el: 'div_graph',
-            daterange: 'all',
+            dateRange : 'all',
+            dateStart : $('#in_startDate').value(),
+            dateEnd :  $('#in_endDate').value(),
             success: function (data) {
                 if(isset(data.cmd.display)){
                     if (init(data.cmd.display.graphStep) != '') {

@@ -95,8 +95,8 @@ class update {
 		config::save('update::lastCheck', date('Y-m-d H:i:s'));
 	}
 
-	public static function makeUpdateLevel($_mode = '', $_level = 1, $_system = 'no') {
-		jeedom::update($_mode, $_level, $_system);
+	public static function makeUpdateLevel($_mode = '', $_level = 1, $_version = '', $_onlyThisVersion = '') {
+		jeedom::update($_mode, $_level, $_version, $_onlyThisVersion);
 	}
 
 	public static function updateAll($_filter = '') {
@@ -251,6 +251,10 @@ class update {
 			$params[] = array('logicalId' => $update->getLogicalId(), 'datetime' => $update->getLocalVersion());
 		}
 		return market::getMultiChangelog($params);
+	}
+
+	public static function listCoreUpdate() {
+		return ls(dirname(__FILE__) . '/../../install/update', '*');
 	}
 
 	/*     * *********************Méthodes d'instance************************* */

@@ -1,3 +1,5 @@
+:icons:
+
 Le sous-menu Plugins, permet de gérer ses plugins, à savoir : les télécharger, les mettre à jour et les activer
 
 Sur la partie gauche on a la liste des plugins que l'on a téléchargé depuis le Market Jeedom.

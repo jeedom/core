@@ -34,7 +34,7 @@ sendVarToJS('id', $planHeader->getId())
         <div class="form-group">
             <label class="col-lg-4 control-label">{{Disponible sur téléphone}}</label>
             <div class="col-lg-8">
-                <input type="checkbox" class="planHeaderAttr" data-l1key="configuration" data-l2key="enableOnMobile"/>
+                <input type="checkbox" class="planHeaderAttr bootstrapSwitch" data-l1key="configuration" data-l2key="enableOnMobile"/>
             </div>
         </div>
         <div class="form-group">
@@ -46,14 +46,14 @@ sendVarToJS('id', $planHeader->getId())
         <div class="form-group expertModeVisible">
             <label class="col-lg-4 control-label">{{Ne pas afficher la flèche de retour lors de la mise en plein écran}}</label>
             <div class="col-lg-4">
-                <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="noReturnFullScreen" />
+                <input type="checkbox" class="planHeaderAttr bootstrapSwitch" data-l1key='configuration' data-l2key="noReturnFullScreen" />
             </div>
         </div>
         <legend>{{Tailles}}</legend>
         <div class="form-group expertModeVisible">
             <label class="col-lg-4 control-label">{{Responsive mode (Attention toute les valeurs de taille sont ignorées)}}</label>
             <div class="col-lg-4">
-                <input type="checkbox" class="planHeaderAttr" data-l1key='configuration' data-l2key="responsiveMode" />
+                <input type="checkbox" class="planHeaderAttr bootstrapSwitch" data-l1key='configuration' data-l2key="responsiveMode" />
             </div>
         </div>
         <div class="form-group">
@@ -81,6 +81,7 @@ sendVarToJS('id', $planHeader->getId())
 
 
 <script>
+    initCheckBox();
     $('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick',function(){
         $('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').value('');
     });
@@ -119,35 +120,35 @@ sendVarToJS('id', $planHeader->getId())
     $('#bt_removeConfigurePlanHeader').on('click', function () {
         bootbox.confirm('Etes-vous sûr de vouloir supprimer cet object du design ?', function (result) {
             if (result) {
-               jeedom.plan.removeHeader({
+             jeedom.plan.removeHeader({
                 id: $(".planHeaderAttr[data-l1key=id]").value(),
                 error: function (error) {
                     $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                   $('#div_alertPlanHeaderConfigure').showAlert({message: 'Design supprimé', level: 'success'});
-                   window.location.reload();
-               },
-           });
-           }
-       });
+                 $('#div_alertPlanHeaderConfigure').showAlert({message: 'Design supprimé', level: 'success'});
+                 window.location.reload();
+             },
+         });
+         }
+     });
     });
 
     if (isset(id) && id != '') {
-     jeedom.plan.getHeader({
+       jeedom.plan.getHeader({
         id: id,
         error: function (error) {
             $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
         },
         success: function (planHeader) {
-           $('#fd_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr');
-           $('.planHeaderAttr[data-l1key=configuration][data-l2key=preconfigureDevice]').off().on('change', function () {
+         $('#fd_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr');
+         $('.planHeaderAttr[data-l1key=configuration][data-l2key=preconfigureDevice]').off().on('change', function () {
             $('.planHeaderAttr[data-l1key=configuration][data-l2key=sizeX]').value($(this).find('option:selected').attr('data-width'));
             $('.planHeaderAttr[data-l1key=configuration][data-l2key=sizeY]').value($(this).find('option:selected').attr('data-height'));
             $('.planHeaderAttr[data-l1key=configuration][data-l2key=maxSizeAllow]').value(1);
             $('.planHeaderAttr[data-l1key=configuration][data-l2key=minSizeAllow]').value(1);
         });
-       },
-   });
- }
+     },
+ });
+   }
 </script>

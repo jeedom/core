@@ -200,7 +200,7 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byEqLogicIdAndLogicalId($_eqLogic_id, $_logicalId, $_multiple = false) {
+	public static function byEqLogicIdAndLogicalId($_eqLogic_id, $_logicalId, $_multiple = false, $_type = null) {
 		$values = array(
 			'eqLogic_id' => $_eqLogic_id,
 			'logicalId' => $_logicalId,
@@ -209,6 +209,11 @@ class cmd {
 		FROM cmd
 		WHERE eqLogic_id=:eqLogic_id
 		AND logicalId=:logicalId';
+
+		if ($_type != null) {
+			$values['type'] = $_type;
+			$sql .= ' AND type=:type';
+		}
 		if ($_multiple) {
 			return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 		}
@@ -359,17 +364,20 @@ class cmd {
 			}
 			return $_input;
 		}
-		$text = $_input;
-		preg_match_all("/#([0-9]*)#/", $text, $matches);
+		$replace = array();
+		preg_match_all("/#([0-9]*)#/", $_input, $matches);
 		foreach ($matches[1] as $cmd_id) {
+			if (isset($replace['#' . $cmd_id . '#'])) {
+				continue;
+			}
 			if (is_numeric($cmd_id)) {
 				$cmd = self::byId($cmd_id);
 				if (is_object($cmd)) {
-					$text = str_replace('#' . $cmd_id . '#', '#' . $cmd->getHumanName() . '#', $text);
+					$replace['#' . $cmd_id . '#'] = '#' . $cmd->getHumanName() . '#';
 				}
 			}
 		}
-		return $text;
+		return str_replace(array_keys($replace), $replace, $_input);
 	}
 
 	public static function humanReadableToCmd($_input) {
@@ -403,21 +411,22 @@ class cmd {
 			}
 			return $_input;
 		}
-		$text = $_input;
-
-		preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $text, $matches);
+		$replace = array();
+		preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $_input, $matches);
 		if (count($matches) == 4) {
 			for ($i = 0; $i < count($matches[0]); $i++) {
+				if (isset($replace[$matches[0][$i]])) {
+					continue;
+				}
 				if (isset($matches[1][$i]) && isset($matches[2][$i]) && isset($matches[3][$i])) {
 					$cmd = self::byObjectNameEqLogicNameCmdName($matches[1][$i], $matches[2][$i], $matches[3][$i]);
 					if (is_object($cmd)) {
-						$text = str_replace($matches[0][$i], '#' . $cmd->getId() . '#', $text);
+						$replace[$matches[0][$i]] = '#' . $cmd->getId() . '#';
 					}
 				}
 			}
 		}
-
-		return $text;
+		return str_replace(array_keys($replace), $replace, $_input);
 	}
 
 	public static function byString($_string) {
@@ -451,21 +460,37 @@ class cmd {
 			}
 			return $_input;
 		}
-		$text = $_input;
-		preg_match_all("/#([0-9]*)#/", $text, $matches);
+		$json = is_json($_input);
+		$replace = array();
+		preg_match_all("/#([0-9]*)#/", $_input, $matches);
 		foreach ($matches[1] as $cmd_id) {
-			if (is_numeric($cmd_id)) {
+			if (isset($replace['#' . $cmd_id . '#'])) {
+				continue;
+			}
+			$mc = cache::byKey('cmd' . $cmd_id);
+			if (!$mc->hasExpired() && $mc->getValue() !== '') {
+				$collectDate = $mc->getOptions('collectDate', $mc->getDatetime());
+				$cmd_value = $mc->getValue();
+			} else {
 				$cmd = self::byId($cmd_id);
-				if (is_object($cmd) && $cmd->getType() == 'info') {
-					$cmd_value = $cmd->execCmd(null, 1, true, $_quote);
-					if ($cmd->getSubtype() == "string" && substr($cmd_value, 0, 1) != '"' && substr($cmd_value, -1) != '"') {
-						$cmd_value = '"' . $cmd_value . '"';
-					}
-					$text = str_replace('#' . $cmd_id . '#', $cmd_value, $text);
+				if (!is_object($cmd)) {
+					continue;
 				}
+				$cmd_value = $cmd->execCmd(null, 1, true, $_quote);
+				$collectDate = $cmd->getCollectDate();
+			}
+			if ($_quote && (strpos($cmd_value, ' ') !== false || preg_match("/[a-zA-Z]/", $cmd_value) || $cmd_value === '')) {
+				$cmd_value = '"' . trim($cmd_value, '"') . '"';
+			}
+			if (!$json) {
+				$replace['#' . $cmd_id . '#'] = $cmd_value;
+				$replace['#collectDate' . $cmd_id . '#'] = $collectDate;
+			} else {
+				$replace['#' . $cmd_id . '#'] = trim(json_encode($cmd_value), '"');
+				$replace['#collectDate' . $cmd_id . '#'] = trim(json_encode($collectDate), '"');
 			}
 		}
-		return $text;
+		return str_replace(array_keys($replace), $replace, $_input);
 	}
 
 	public static function allType() {
@@ -774,10 +799,10 @@ class cmd {
 				$value = $this->getConfiguration('updateCmdToValue');
 				switch ($this->getSubType()) {
 					case 'slider':
-						$value = str_replace('#slider#', $_options['slider'], $value);
+						$value = str_replace('#slider#', $options['slider'], $value);
 						break;
 					case 'color':
-						$value = str_replace('#color#', $_options['color'], $value);
+						$value = str_replace('#color#', $options['color'], $value);
 						break;
 				}
 				$cmd->event($value);
@@ -953,18 +978,27 @@ class cmd {
 		if (trim($_value) === '' || $_loop > 4 || $this->getType() != 'info') {
 			return;
 		}
-		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
+		$value = $this->formatValue($_value);
+		if ($this->getSubType() == 'numeric' && $value > $this->getConfiguration('maxValue', $value) && $value < $this->getConfiguration('minValue', $value) && strpos($value, 'error') === false) {
+			return;
+		}
 		$eqLogic = $this->getEqLogic();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
 			return;
 		}
-		$_loop++;
-		$value = $this->formatValue($_value);
-		if ($this->getConfiguration('onlyChangeEvent', 0) == 1 && $this->getEventOnly() == 1 && $value == $this->execCmd(null, 2)) {
-			return;
+		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
+		if ($this->execCmd(null, 2) == $value) {
+			if (strpos($value, 'error') === false) {
+				$eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
+			}
+			if ($this->getConfiguration('doNotRepeatEvent', 0) == 1) {
+				return;
+			}
+			$collectDate = $this->getCollectDate();
 		}
+		$_loop++;
 		$this->setCollectDate($collectDate);
-		log::add('event', 'event', __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $_value);
+		log::add('event', 'event', __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $value);
 		cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
 		scenario::check($this);
 		$this->setCollect(0);
@@ -987,13 +1021,16 @@ class cmd {
 			listener::backgroundCalculDependencyCmd($this->getId());
 		}
 		listener::check($this->getId(), $value);
-		if (strpos($_value, 'error') === false) {
-			$eqLogic->setStatus('lastCommunication', $this->getCollectDate());
+
+		if (strpos($value, 'error') === false) {
+			$eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
 			$this->addHistoryValue($value, $this->getCollectDate());
+		} else {
+			$this->addHistoryValue(null, $this->getCollectDate());
 		}
 		$this->checkReturnState($value);
-		$this->checkCmdAlert($_value);
-		$this->pushUrl($_value);
+		$this->checkCmdAlert($value);
+		$this->pushUrl($value);
 	}
 
 	public function checkReturnState($_value) {
@@ -1112,7 +1149,7 @@ class cmd {
 	}
 
 	public function addHistoryValue($_value, $_datetime = '') {
-		if ($_value !== '' && $this->getIsHistorized() == 1 && $this->getType() == 'info' && $_value <= $this->getConfiguration('maxValue', $_value) && $_value >= $this->getConfiguration('minValue', $_value)) {
+		if ($_value === null || ($_value !== '' && $this->getIsHistorized() == 1 && $this->getType() == 'info' && $_value <= $this->getConfiguration('maxValue', $_value) && $_value >= $this->getConfiguration('minValue', $_value))) {
 			$hitory = new history();
 			$hitory->setCmd_id($this->getId());
 			$hitory->setValue($_value);
@@ -1183,8 +1220,7 @@ class cmd {
 		if ($collect == 1) {
 			cache::set('collect' . $this->getId(), $this->getId());
 		} else {
-			$cache = cache::byKey('collect' . $this->getId());
-			$cache->remove();
+			cache::deleteBySearch('collect' . $this->getId());
 		}
 	}
 

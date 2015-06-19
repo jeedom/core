@@ -16,12 +16,12 @@
  */
 
 
-jeedom.view = function () {
-};
+ jeedom.view = function () {
+ };
 
-jeedom.view.cache = Array();
+ jeedom.view.cache = Array();
 
-if (!isset(jeedom.view.cache.html)) {
+ if (!isset(jeedom.view.cache.html)) {
     jeedom.view.cache.html = Array();
 }
 
@@ -108,7 +108,7 @@ jeedom.view.handleViewAjax = function (_params) {
             for (var j in viewZone.viewData) {
                 var viewData = viewZone.viewData[j];
                 var configuration = json_encode(viewData.configuration);
-                result.html += 'jeedom.history.drawChart({cmd_id : ' + viewData.link_id + ',el : "' + div_id + '",dateRange : "' + viewZone.configuration.dateRange + ' ",option : jQuery.parseJSON("' + configuration.replace(/\"/g, "\\\"") + '")});';
+                result.html += 'jeedom.history.drawChart({cmd_id : ' + viewData.link_id + ',el : "' + div_id + '",dateRange : "' + viewZone.configuration.dateRange + '",option : jQuery.parseJSON("' + configuration.replace(/\"/g, "\\\"") + '")});';
             }
             result.html += '</script>';
             result.html += '</div>';

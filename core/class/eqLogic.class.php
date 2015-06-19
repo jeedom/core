@@ -481,7 +481,7 @@ class eqLogic {
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
-			'#eqLink#' => $this->getLinkToConfiguration(),
+			'#eqLink#' => ($this->hasRight('w')) ? $this->getLinkToConfiguration() : '#',
 			'#category#' => $this->getPrimaryCategory(),
 			'#background_color#' => $this->getBackgroundColor($version),
 			'#cmd#' => $cmd_html,
@@ -490,13 +490,11 @@ class eqLogic {
 			'#logicalId#' => $this->getLogicalId(),
 			'#battery#' => $this->getConfiguration('batteryStatus', -2),
 			'#batteryDatetime#' => $this->getConfiguration('batteryStatusDatetime', __('inconnue', __FILE__)),
+			'#object_name#' => '',
 		);
-
 		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowObjectNameOnView', 0) == 0) {
 			$object = $this->getObject();
 			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
-		} else {
-			$replace['#object_name#'] = '';
 		}
 		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
 			$replace['#name#'] = '';
@@ -798,7 +796,7 @@ class eqLogic {
 
 	public function getCmd($_type = null, $_logicalId = null, $_visible = null, $_multiple = false) {
 		if ($_logicalId != null) {
-			return cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple);
+			return cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple, $_type);
 		}
 		return cmd::byEqLogicId($this->id, $_type, $_visible, $this);
 	}

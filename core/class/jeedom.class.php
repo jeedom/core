@@ -144,6 +144,18 @@ class jeedom {
 				if (file_exists('/dev/ttymxc0')) {
 					$usbMapping['Jeedom board'] = '/dev/ttymxc0';
 				}
+				if (file_exists('/dev/S2')) {
+					$usbMapping['Banana PI'] = '/dev/S2';
+				}
+				if (file_exists('/dev/ttyS2')) {
+					$usbMapping['Banana PI (2)'] = '/dev/ttyS2';
+				}
+				if (file_exists('/dev/ttyS0')) {
+					$usbMapping['Cubiboard'] = '/dev/ttyS0';
+				}
+				foreach (ls('/dev/', 'ttyACM*') as $value) {
+					$usbMapping['/dev/' . $value] = '/dev/' . $value;
+				}
 			}
 			cache::set('jeedom::usbMapping', json_encode($usbMapping), 0);
 		} else {
@@ -153,31 +165,7 @@ class jeedom {
 			if (isset($usbMapping[$_name])) {
 				return $usbMapping[$_name];
 			}
-			$usbMapping = array();
-			foreach (ls('/dev/', 'ttyUSB*') as $usb) {
-				$vendor = '';
-				$model = '';
-				foreach (explode("\n", shell_exec('/sbin/udevadm info --name=/dev/' . $usb . ' --query=all')) as $line) {
-					if (strpos($line, 'E: ID_MODEL=') !== false) {
-						$model = trim(str_replace(array('E: ID_MODEL=', '"'), '', $line));
-					}
-					if (strpos($line, 'E: ID_VENDOR=') !== false) {
-						$vendor = trim(str_replace(array('E: ID_VENDOR=', '"'), '', $line));
-					}
-				}
-				if ($vendor == '' && $model == '') {
-					$usbMapping['/dev/' . $usb] = '/dev/' . $usb;
-				} else {
-					$name = trim($vendor . ' ' . $model);
-					$number = 2;
-					while (isset($usbMapping[$name])) {
-						$name = trim($vendor . ' ' . $model . ' ' . $number);
-						$number++;
-					}
-					$usbMapping[$name] = '/dev/' . $usb;
-				}
-			}
-			cache::set('jeedom::usbMapping', json_encode($usbMapping), 0);
+			$usbMapping = self::getUsbMapping('', $_getGPIO);
 			if (isset($usbMapping[$_name])) {
 				return $usbMapping[$_name];
 			}
@@ -235,9 +223,9 @@ class jeedom {
 		}
 	}
 
-	public static function update($_mode = '', $_level = -1, $_system = 'no') {
+	public static function update($_mode = '', $_level = -1, $_version = '', $__onlyThisVersion = '') {
 		log::clear('update');
-		$cmd = 'php ' . dirname(__FILE__) . '/../../install/install.php mode=' . $_mode . ' level=' . $_level . ' system=' . $_system;
+		$cmd = 'php ' . dirname(__FILE__) . '/../../install/install.php mode=' . $_mode . ' level=' . $_level . ' version=' . $_version . ' onlyThisVersion=' . $__onlyThisVersion;
 		$cmd .= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
 		exec($cmd);
 	}
@@ -285,10 +273,6 @@ class jeedom {
 			$config = config::byKey($_key);
 			return ($config == '') ? $_value : $config;
 		}
-	}
-
-	public static function hasSudo() {
-		return (trim(exec('sudo cat /etc/sudoers')) == "") ? true : false;
 	}
 
 	public static function whatDoYouKnow($_object = null) {
@@ -393,10 +377,40 @@ class jeedom {
 			}
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
-		plugin::cron();
-
+		$gi = date('Gi');
 		try {
-			if (date('i') % 10 == 0) {
+			$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
+			if ($c->isDue()) {
+				$lastCheck = strtotime(config::byKey('update::lastCheck'));
+				if ((strtotime('now') - $lastCheck) > 3600) {
+					if (config::byKey('update::auto') == 1) {
+						update::checkAllUpdate();
+						jeedom::update('', 0);
+					} else {
+						config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
+						update::checkAllUpdate();
+						$updates = update::byStatus('update');
+						if (count($updates) > 0) {
+							$toUpdate = '';
+							foreach ($updates as $update) {
+								$toUpdate .= $update->getLogicalId() . ',';
+							}
+							message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
+						}
+					}
+				}
+			}
+			$c = new Cron\CronExpression('35 00 * * 0', new Cron\FieldFactory);
+			if ($c->isDue()) {
+				cache::clean();
+				DB::optimize();
+			}
+		} catch (Exception $e) {
+
+		}
+		plugin::cron();
+		if ($gi % 10 == 0) {
+			try {
 				eqLogic::checkAlive();
 				connection::cron();
 				if (config::byKey('jeeNetwork::mode') != 'slave') {
@@ -413,69 +427,28 @@ class jeedom {
 						}
 					}
 				}
-			}
-		} catch (Exception $e) {
+			} catch (Exception $e) {
 
+			}
 		}
-		try {
-			if (date('Gi') == 202) {
+		if ($gi == 202) {
+			try {
 				log::chunk();
 				cron::clean();
 				self::checkSpaceLeft();
-				network::ngrok_stop();
-				network::ngrok_stop('tcp', 22, 'ssh');
-				if (config::byKey('market::allowDNS') == 1) {
-					if (!network::ngrok_run()) {
-						network::ngrok_start();
-					}
-					if (config::byKey('market::redirectSSH') == 1) {
-						if (!network::ngrok_run('tcp', 22, 'ssh')) {
-							network::ngrok_start('tcp', 22, 'ssh');
-						}
-					}
-				}
-
+			} catch (Exception $e) {
+				log::add('log', 'error', $e->getMessage());
 			}
-		} catch (Exception $e) {
-			log::add('log', 'error', $e->getMessage());
 		}
-		try {
-			if (date('Gi') == 2320) {
+		if ($gi == 2320) {
+			try {
 				scenario::cleanTable();
 				user::cleanOutdatedUser();
-			}
-		} catch (Exception $e) {
-			log::add('scenario', 'error', $e->getMessage());
-		}
-		try {
-			$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
-			if ($c->isDue()) {
-				$lastCheck = strtotime(config::byKey('update::lastCheck'));
-				if ((strtotime('now') - $lastCheck) > 3600) {
-					if (config::byKey('update::auto') == 1) {
-						update::checkAllUpdate();
-						jeedom::update('', 0);
-					} else {
-						update::checkAllUpdate();
-						$nbUpdate = update::nbNeedUpdate();
-						if ($nbUpdate > 0) {
-							message::add('update', 'De nouvelles mises à jour sont disponibles (' . $nbUpdate . ')', '', 'newUpdate');
-						}
-					}
-					config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
-				}
-			}
-		} catch (Exception $e) {
+				scenario::consystencyCheck();
 
-		}
-		try {
-			$c = new Cron\CronExpression('35 00 * * 0', new Cron\FieldFactory);
-			if ($c->isDue()) {
-				cache::clean();
-				DB::optimize();
+			} catch (Exception $e) {
+				log::add('scenario', 'error', $e->getMessage());
 			}
-		} catch (Exception $e) {
-			log::add('cache', 'error', 'Clean cache : ' . $e->getMessage());
 		}
 		try {
 			network::cron();
@@ -491,6 +464,15 @@ class jeedom {
 
 	public static function retrievePidThread($_cmd) {
 		return shell_exec('ps ax | grep "' . $_cmd . '$" | grep -v "grep" | awk \'{print $1}\'');
+	}
+
+	public static function resetHwKey() {
+		$rdkey = config::genKey();
+		config::save('jeedom::rdkey', $rdkey);
+		$cache = cache::byKey('jeedom::hwkey');
+		if ($cache->getValue(0) != 0) {
+			$cache->remove();
+		}
 	}
 
 	public static function getHardwareKey() {
@@ -550,10 +532,12 @@ class jeedom {
 	}
 
 	public static function haltSystem() {
-		exec('sudo halt');
+		plugin::stop();
+		exec('sudo shutdown -h now');
 	}
 
 	public static function rebootSystem() {
+		plugin::stop();
 		exec('sudo reboot');
 	}
 

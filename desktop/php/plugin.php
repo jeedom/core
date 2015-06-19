@@ -14,8 +14,10 @@ $plugins_list = plugin::listPlugin(false, true);
         <div class="bs-sidebar">
             <ul id="ul_plugin" class="nav nav-list bs-sidenav">
                 <center>
-                    <a class="btn btn-default btn-sm tooltips" id="bt_displayMarket" style="display: inline-block;"><i class="fa fa-shopping-cart"></i> {{Market}}</a>
-                    <input class="expertModeVisible" id="bt_uploadPlugin" type="file" name="file" data-url="core/ajax/plugin.ajax.php?action=pluginupload" style="display : inline-block;">
+                    <a class="btn btn-default tooltips" id="bt_displayMarket" style="display: inline-block;"><i class="fa fa-shopping-cart"></i> {{Market}}</a>
+                    <span class="btn btn-default btn-file">
+                         <i class="fa fa-cloud-upload"></i> {{Envoyer un plugin}}<input class="expertModeVisible" id="bt_uploadPlugin" type="file" name="file" data-url="core/ajax/plugin.ajax.php?action=pluginupload" style="display : inline-block;">
+                    </span>
                 </center>
                 <li class="filter" style="margin-bottom: 5px;margin-top: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
                 <?php
@@ -47,10 +49,10 @@ foreach ($plugins_list as $category_name => $category) {
  </div>
 
  <div class="col-md-9 col-sm-8" id="div_resumePluginList" style="border-left: solid 1px #EEE; padding-left: 25px;">
- <legend>{{Mes plugins}}</legend>
-    <div class="pluginListContainer">
+   <legend>{{Mes plugins}}</legend>
+   <div class="pluginListContainer">
     <div class="cursor" id="bt_displayMarket2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-       <center>
+     <center>
         <i class="fa fa-shopping-cart" style="font-size : 4em;color:#94ca02;"></i>
     </center>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Accéder au Market}}</center></span>
@@ -68,18 +70,9 @@ foreach (plugin::listPlugin() as $plugin) {
 }
 ?>
 </div>
-
-
 </div>
 <div class="col-md-9 col-sm-8" id="div_confPlugin" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
 
-    <div>
-        <?php
-if (config::byKey('market::showPromotion') == 1) {
-	echo market::getPromo();
-}
-?>
-   </div>
    <legend><i class="fa fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i>
     <span id="span_plugin_name" ></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
 </legend>

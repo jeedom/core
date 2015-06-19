@@ -15,7 +15,7 @@ foreach ($_GET AS $var => $value) {
 	}
 }
 ?>
-            <form method="post" name="login" action="index.php?v=d<?php print htmlspecialchars($getParams);?>" class="form-signin">
+            <form method="post" name="login" action="index.php?v=d<?php echo htmlspecialchars($getParams);?>" class="form-signin">
                 <h2 class="form-signin-heading">{{Connectez-vous}}</h2>
                 <input type="text" name="connect" id="connect" hidden value="1" style="display: none;"/>
                 <br/><input class="input-block-level" type="text" name="login" id="login" placeholder="{{Nom d'utilisateur}}"/><br/>

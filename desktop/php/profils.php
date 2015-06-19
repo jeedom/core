@@ -136,7 +136,7 @@ foreach (plugin::listPlugin() as $pluginList) {
                         <div class="form-group">
                             <label class="col-sm-3 control-label">{{Ne pas masquer les menus automatiquement}}</label>
                             <div class="col-sm-1">
-                                <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
+                                <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
                             </div>
                         </div>
 
@@ -237,7 +237,7 @@ foreach (planHeader::all() as $plan) {
 <div class="form-group">
     <label class="col-sm-3 control-label">{{Plein écran}}</label>
     <div class="col-sm-1">
-        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultPlanFullScreen" />
+        <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="defaultPlanFullScreen" />
     </div>
 </div>
 
@@ -245,20 +245,20 @@ foreach (planHeader::all() as $plan) {
 <div class="form-group">
     <label class="col-sm-3 control-label">{{Déplier le panneau des scénarios}}</label>
     <div class="col-sm-1">
-        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayScenarioByDefault"/>
+        <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="displayScenarioByDefault"/>
     </div>
 </div>
 <div class="form-group">
     <label class="col-sm-3 control-label">{{Déplier le panneau des objets}}</label>
     <div class="col-sm-1">
-        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
+        <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="displayObjetByDefault"/>
     </div>
 </div>
 <legend>{{Vue}}</legend>
 <div class="form-group">
     <label class="col-sm-3 control-label">{{Déplier le panneau des vues}}</label>
     <div class="col-sm-1">
-        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayViewByDefault"/>
+        <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="displayViewByDefault"/>
     </div>
 </div>
 </fieldset>

@@ -60,13 +60,21 @@ class scenarioExpression {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function searchExpression($_expression) {
+	public static function searchExpression($_expression, $_options = null, $_and = true) {
 		$values = array(
 			'expression' => '%' . $_expression . '%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM ' . __CLASS__ . '
         WHERE expression LIKE :expression';
+		if ($_options != null) {
+			$values['options'] = '%' . $_options . '%';
+			if ($_and) {
+				$sql .= ' AND options LIKE :options';
+			} else {
+				$sql .= ' OR options LIKE :options';
+			}
+		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -605,7 +613,7 @@ class scenarioExpression {
 		if ($cmd->getType() != 'info') {
 			return -2;
 		}
-		$cmd->execCmd();
+		$cmd->execCmd(null, 2);
 		return date($_format, strtotime($cmd->getCollectDate()));
 	}
 
@@ -722,7 +730,11 @@ class scenarioExpression {
 			'#njour#' => (int) date('w'),
 			'#hostname#' => '"' . gethostname() . '"',
 			'#IP#' => '"' . network::getNetworkAccess('internal', 'ip') . '"',
+			'#trigger#' => (is_object($_scenario)) ? $_scenario->getRealTrigger() : '',
 		);
+		if ($_scenario != null) {
+			$replace1 = array_merge($replace1, $_scenario->getTags());
+		}
 		$replace2 = array();
 		preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
 		foreach ($matches as $match) {
@@ -804,9 +816,6 @@ class scenarioExpression {
 			if (is_array($options) && $this->getExpression() != 'wait') {
 				foreach ($options as $key => $value) {
 					$options[$key] = str_replace('"', '', self::setTags($value, $scenario));
-					if (evaluate($options[$key]) != 0) {
-						$options[$key] = evaluate($options[$key]);
-					}
 				}
 			}
 			if ($this->getType() == 'action') {
@@ -921,7 +930,6 @@ class scenarioExpression {
 					try {
 						$result = evaluate($options['value']);
 						if (!is_numeric($result)) {
-							//Alors la valeur n'est pas un calcul
 							$result = $options['value'];
 						}
 					} catch (Exception $ex) {
@@ -940,10 +948,16 @@ class scenarioExpression {
 				} else {
 					$cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
 					if (is_object($cmd)) {
+						if ($cmd->getSubtype() == 'slider' && isset($options['slider'])) {
+							$options['slider'] = evaluate($options['slider']);
+						}
 						if (is_array($options) && count($options) != 0) {
 							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName() . __(" avec comme option(s) : \n", __FILE__) . print_r($options, true));
 						} else {
 							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName());
+						}
+						if (is_object($scenario) && $scenario->getConfiguration('cmdNoWait', 0) == 1) {
+							$options['speedAndNoErrorReport'] = true;
 						}
 						return $cmd->execCmd($options);
 					}
