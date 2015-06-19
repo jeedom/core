@@ -111,7 +111,7 @@ $(".li_eqLogic").on('click', function () {
             $('.cmd .cmdAttr.bootstrapSwitch').each(function(){
                 if($(this).attr('data-label-width') == undefined && $(this).attr('data-label-text') != undefined){
                     $(this).bootstrapSwitch('destroy');
-                    $(this).attr('data-label-width',"75");
+                    $(this).attr('data-label-width',"80");
                     $(this).bootstrapSwitch();
                 }
             });
@@ -300,7 +300,7 @@ $('.cmdAction[data-action=add]').on('click', function () {
     $('.cmd .cmdAttr.bootstrapSwitch').each(function(){
         if($(this).attr('data-label-width') == undefined && $(this).attr('data-label-text') != undefined){
             $(this).bootstrapSwitch('destroy');
-            $(this).attr('data-label-width',"75");
+            $(this).attr('data-label-width',"80");
         }
     });
     initCheckBox();
