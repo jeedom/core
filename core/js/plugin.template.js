@@ -297,6 +297,13 @@ $('.eqLogic .eqLogicAction[data-action=configure]').on('click', function () {
 /**************************CMD*********************************************/
 $('.cmdAction[data-action=add]').on('click', function () {
     addCmdToTable();
+    $('.cmd .cmdAttr.bootstrapSwitch').each(function(){
+        if($(this).attr('data-label-width') == undefined && $(this).attr('data-label-text') != undefined){
+            $(this).bootstrapSwitch('destroy');
+            $(this).attr('data-label-width',"75");
+        }
+    });
+    initCheckBox();
     $('.cmd:last .cmdAttr[data-l1key=type]').trigger('change');
 });
 
@@ -318,7 +325,7 @@ $('body').delegate('.cmd .cmdAttr[data-l1key=eventOnly]', 'change switchChange.b
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().show();
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().removeClass('hide');
     } else {
-     if($(this).closest('.cmd').find('.cmdAttr[data-l1key=type]').value() != 'action'){
+       if($(this).closest('.cmd').find('.cmdAttr[data-l1key=type]').value() != 'action'){
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').show();
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').removeClass('hide');
     }
