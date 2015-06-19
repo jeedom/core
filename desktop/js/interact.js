@@ -125,6 +125,9 @@ function displayInteract(_id){
             $('.interactAttr').value('');
             $(".interactAttr[data-l1key=link_type]").off();
             $('.interact').setValues(data, '.interactAttr');
+            if(!isset(data.link_type)){
+                data.link_type = 'cmd';
+            }
             changeLinkType(data);
             $(".interactAttr[data-l1key=link_type]").on('change', function () {
                 changeLinkType({link_type: $(this).value()});
