@@ -108,13 +108,6 @@ $(".li_eqLogic").on('click', function () {
                     addCmdToTable(data.cmd[i]);
                 }
             }
-            $('.cmd .cmdAttr.bootstrapSwitch').each(function(){
-                if($(this).attr('data-label-width') == undefined && $(this).attr('data-label-text') != undefined){
-                    $(this).bootstrapSwitch('destroy');
-                    $(this).attr('data-label-width',"80");
-                    $(this).bootstrapSwitch();
-                }
-            });
             initTooltips();
             modifyWithoutSave = false;
             $('body').delegate('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
@@ -297,12 +290,6 @@ $('.eqLogic .eqLogicAction[data-action=configure]').on('click', function () {
 /**************************CMD*********************************************/
 $('.cmdAction[data-action=add]').on('click', function () {
     addCmdToTable();
-    $('.cmd .cmdAttr.bootstrapSwitch').each(function(){
-        if($(this).attr('data-label-width') == undefined && $(this).attr('data-label-text') != undefined){
-            $(this).bootstrapSwitch('destroy');
-            $(this).attr('data-label-width',"80");
-        }
-    });
     initCheckBox();
     $('.cmd:last .cmdAttr[data-l1key=type]').trigger('change');
 });
