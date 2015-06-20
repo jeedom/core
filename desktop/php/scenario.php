@@ -71,41 +71,41 @@ foreach ($scenarioListGroup as $group) {
 
  <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
 
-   <div class="scenarioListContainer">
-       <legend>{{Gestion}}</legend>
-       <div class="cursor" id="bt_addScenario2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-         <center>
+     <div class="scenarioListContainer">
+         <legend>{{Gestion}}</legend>
+         <div class="cursor" id="bt_addScenario2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+           <center>
             <i class="fa fa-plus-circle" style="font-size : 4em;color:#94ca02;"></i>
         </center>
         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
     </div>
     <?php if (config::byKey('enableScenario') == 0) {?>
         <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="1" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-         <center>
-             <i class="fa fa-check" style="font-size : 4em;color:#5cb85c;"></i>
-         </center>
-         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
-     </div>
-     <?php } else {?>
-   <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-         <center>
-             <i class="fa fa-times" style="font-size : 4em;color:#d9534f;"></i>
-         </center>
-         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
-     </div>
-     <?php }
+           <center>
+               <i class="fa fa-check" style="font-size : 4em;color:#5cb85c;"></i>
+           </center>
+           <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
+       </div>
+       <?php } else {?>
+       <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+           <center>
+               <i class="fa fa-times" style="font-size : 4em;color:#d9534f;"></i>
+           </center>
+           <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
+       </div>
+       <?php }
 ?>
 
-     <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-         <center>
+       <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+           <center>
             <i class="fa fa-eye" style="font-size : 4em;color:#337ab7;"></i>
         </center>
         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
     </div>
 </div>
 
-    <legend>{{Mes scénarios}}</legend>
-    <?php
+<legend>{{Mes scénarios}}</legend>
+<?php
 if (count($scenarios) == 0) {
 	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
 } else {
@@ -175,11 +175,9 @@ if (count($scenarios) == 0) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-6 col-xs-3 control-label"></label>
-                        <div class="col-sm-3 col-xs-4">
+                        <label class="col-xs-6 control-label"></label>
+                        <div class="col-xs-6">
                             <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-label-text="{{Actif}}" data-l1key="isActive">
-                        </div>
-                        <div class="col-sm-3 col-xs-4">
                             <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-label-text="{{Visible}}" data-l1key="isVisible">
                         </div>
                     </div>
@@ -249,7 +247,7 @@ foreach (object::all() as $object) {
                     <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="speedPriority" titme="{{A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours.}}">
                 </div>
             </div>
-              <div class="form-group expertModeVisible">
+            <div class="form-group expertModeVisible">
                 <label class="col-xs-6 control-label">{{Enchainer les commandes sans attendre}}</label>
                 <div class="col-xs-1">
                     <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="cmdNoWait" titme="{{Enchaine les commandes sans verification que la commande précedente c'est bien éxecutée (Attention il faut que le plugin le supporte)}}">
@@ -337,14 +335,14 @@ foreach (object::all() as $object) {
                 </div>
 
                 <div class="alert alert-info addElementTypeDescription in" style="display:none;">
-                   Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
-               </div>
+                 Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
+             </div>
 
-               <div class="alert alert-info addElementTypeDescription at" style="display:none;">
-                   A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
-               </div>
+             <div class="alert alert-info addElementTypeDescription at" style="display:none;">
+                 A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
+             </div>
 
-               <div class="alert alert-info addElementTypeDescription code" style="display:none;">
+             <div class="alert alert-info addElementTypeDescription code" style="display:none;">
                 Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell etc...
             </div>
 
@@ -399,10 +397,10 @@ foreach (object::all() as $object) {
                 </div>
 
                 <div class="alert alert-info sel_otherActionDescription stop" style="display:none;">
-                 Arrête le scénario
-             </div>
+                   Arrête le scénario
+               </div>
 
-             <div class="alert alert-info sel_otherActionDescription say" style="display:none;">
+               <div class="alert alert-info sel_otherActionDescription say" style="display:none;">
                 Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)
             </div>
 
