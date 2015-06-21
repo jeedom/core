@@ -1,18 +1,13 @@
 {
-    "core\/com\/http.com.php": {
-        "Url : ": "Url : ",
-        "\nRéponse : ": "\nRéponse : ",
-        "Erreur curl : ": "Erreur curl : ",
-        " sur la commande ": " sur la commande ",
-        " après ": " après ",
-        " relance(s)": " relance(s)",
-        "Echec de la requête http : ": "Echec de la requête http : "
-    },
     "core\/class\/cmd.class.php": {
         "Evènement sur la commande ": "Evènement sur la commande ",
         " valeur : ": " valeur : ",
         "Exécution de la commande ": "Exécution de la commande ",
-        " avec les paramètres ": " avec les paramètres "
+        " avec les paramètres ": " avec les paramètres ",
+        "Aucun": "Aucun",
+        "Erreur execution de la commande ": "Erreur execution de la commande ",
+        "Le type de la commande ne peut pas être vide :": "Le type de la commande ne peut pas être vide :",
+        "Le sous-type de la commande ne peut pas être vide :": "Le sous-type de la commande ne peut pas être vide :"
     },
     "core\/class\/scenario.class.php": {
         "Scénario exécuté automatiquement sur événement venant de : ": "Scénario exécuté automatiquement sur événement venant de : ",
@@ -21,7 +16,9 @@
         "Début d'exécution du scénario : ": "Début d'exécution du scénario : ",
         "Fin correcte du scénario": "Fin correcte du scénario",
         "Scénario exécuté automatiquement sur programmation": "Scénario exécuté automatiquement sur programmation",
-        "Aucun": "Aucun"
+        "Scénario exécuté sur événement : #": "Scénario exécuté sur événement : #",
+        "Aucun": "Aucun",
+        "Erreur : le scénario s'est incidenté (toujours marqué en cours mais arrêté)": "Erreur : le scénario s'est incidenté (toujours marqué en cours mais arrêté)"
     },
     "core\/class\/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type [condition] : ": "Exécution du sous-élément de type [condition] : ",
@@ -32,51 +29,42 @@
         "Vrai": "Vrai",
         "Exécution de la commande ": "Exécution de la commande ",
         " avec comme option(s) : \n": " avec comme option(s) : \n",
-        "Exécution d'un bloc élément : ": "Exécution d'un bloc élément : ",
         "Faux": "Faux",
+        "Exécution d'un bloc élément : ": "Exécution d'un bloc élément : ",
         "Activation du scénario : ": "Activation du scénario : ",
         "Désactivation du scénario : ": "Désactivation du scénario : ",
-        "Pause de ": "Pause de ",
-        " seconde(s)": " seconde(s)",
         "Lancement du scénario : ": "Lancement du scénario : ",
-        "Lancement provoqué": "Lancement provoqué"
+        "Lancement provoqué": "Lancement provoqué",
+        "Pause de ": "Pause de ",
+        " seconde(s)": " seconde(s)"
+    },
+    "core\/com\/http.com.php": {
+        "Url : ": "Url : ",
+        "\nRéponse : ": "\nRéponse : ",
+        "Echec de la requête http : ": "Echec de la requête http : "
+    },
+    "core\/php\/jeeScenario.php": {
+        "Impossible de lancer le scénario car déjà en cours : ": "Impossible de lancer le scénario car déjà en cours : "
     },
     "core\/class\/eqLogic.class.php": {
         "inconnue": "inconnue",
         "Aucun": "Aucun"
     },
-    "core\/php\/jeeScenario.php": {
-        "Impossible de lancer le scénario car déjà en cours : ": "Impossible de lancer le scénario car déjà en cours : "
-    },
-    "core\/class\/jeedom.class.php": {
-        "De nouvelles mises à jour sont disponibles : ": "De nouvelles mises à jour sont disponibles : "
-    },
-    "core\/class\/message.class.php": {
-        "Message de ": "Message de ",
-        "Impossible de trouver la commande correspondant à :": "Impossible de trouver la commande correspondant à :"
-    },
-    "core\/class\/cron.class.php": {
-        "Arrêt de ": "Arrêt de "
-    },
-    "core\/php\/authentification.php": {
-        "Connexion de l'utilisateur par clef : ": "Connexion de l'utilisateur par clef : "
-    },
-    "desktop\/php\/plan.php": {
-        "Ajouter un design": "Ajouter un design",
-        "Supprimer le design": "Supprimer le design",
-        "Editer\/configurer le design": "Editer\/configurer le design",
-        "Dupliquer le design": "Dupliquer le design",
-        "Plein écran": "Plein écran",
-        "Mode édition": "Mode édition",
+    "desktop\/php\/plugin.php": {
+        "Market": "Market",
+        "Envoyer un plugin": "Envoyer un plugin",
+        "Rechercher": "Rechercher",
+        "Mes plugins": "Mes plugins",
+        "Accéder au Market": "Accéder au Market",
+        "N'oubliez pas d'activer le plugin pour pouvoir vous servir de celui-ci": "N'oubliez pas d'activer le plugin pour pouvoir vous servir de celui-ci",
+        "Installation": "Installation",
+        "Configuration": "Configuration",
         "Sauvegarder": "Sauvegarder",
-        "Graph": "Graph",
-        "Lien": "Lien",
-        "Scénario": "Scénario",
-        "Texte\/html": "Texte\/html",
-        "Equipement": "Equipement",
-        "Sélectionnez un lien": "Sélectionnez un lien",
-        "Annuler": "Annuler",
-        "Valider": "Valider"
+        "Description": "Description",
+        "Version plugin": "Version plugin",
+        "Version Jeedom requise": "Version Jeedom requise",
+        "Auteur": "Auteur",
+        "Licence": "Licence"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "Toggle navigation",
@@ -103,9 +91,9 @@
         "Interactions": "Interactions",
         "Affichage": "Affichage",
         "Scénarios": "Scénarios",
-        "Panel": "Panel",
         "Protocole domotique": "Protocole domotique",
         "Communication": "Communication",
+        "Energie": "Energie",
         "Finance": "Finance",
         "Santé": "Santé",
         "Monitoring": "Monitoring",
@@ -131,33 +119,7 @@
         "Mise à jour disponible": "Mise à jour disponible",
         "Page générée en": "Page générée en",
         "Voir les évènements en temps réél": "Voir les évènements en temps réél",
-        "energy": "energy",
-        "Energie": "Energie",
         "Mises à jour disponibles": "Mises à jour disponibles"
-    },
-    "desktop\/php\/message.php": {
-        "Vider": "Vider",
-        "Tout": "Tout",
-        "Date et heure": "Date et heure",
-        "Plugin": "Plugin",
-        "Description": "Description",
-        "Action": "Action"
-    },
-    "desktop\/php\/plugin.php": {
-        "Market": "Market",
-        "Envoyer un plugin": "Envoyer un plugin",
-        "Rechercher": "Rechercher",
-        "Mes plugins": "Mes plugins",
-        "Accéder au Market": "Accéder au Market",
-        "N'oubliez pas d'activer le plugin pour pouvoir vous servir de celui-ci": "N'oubliez pas d'activer le plugin pour pouvoir vous servir de celui-ci",
-        "Installation": "Installation",
-        "Configuration": "Configuration",
-        "Sauvegarder": "Sauvegarder",
-        "Description": "Description",
-        "Version plugin": "Version plugin",
-        "Version Jeedom requise": "Version Jeedom requise",
-        "Auteur": "Auteur",
-        "Licence": "Licence"
     },
     "desktop\/modal\/market.send.php": {
         "Envoyer": "Envoyer",
@@ -195,46 +157,6 @@
         "Ou en cliquant ": "Ou en cliquant ",
         "ici": "ici",
         "Votre objet a été envoyé avec succès sur le market": "Votre objet a été envoyé avec succès sur le market"
-    },
-    "desktop\/php\/update.php": {
-        "Dernière vérification : ": "Dernière vérification : ",
-        "Vérifier les objets et mises à jour": "Vérifier les objets et mises à jour",
-        "Changelog": "Changelog",
-        "Mettre à jour": "Mettre à jour",
-        "Tout forcer": "Tout forcer",
-        "Plugins seulement": "Plugins seulement",
-        "Plugins seulement forcés": "Plugins seulement forcés",
-        "Jeedom seulement": "Jeedom seulement",
-        "Jeedom seulement forcé": "Jeedom seulement forcé",
-        "Réappliquer une mise à jour": "Réappliquer une mise à jour",
-        "Type": "Type",
-        "Nom": "Nom",
-        "Version actuelle": "Version actuelle",
-        "Version disponible": "Version disponible",
-        "Statut": "Statut",
-        "Actions": "Actions",
-        "Informations :": "Informations :",
-        "Mise à jour à réappliquer": "Mise à jour à réappliquer",
-        "Aucune": "Aucune",
-        "Mode forcé": "Mode forcé",
-        "Tout depuis cette version": "Tout depuis cette version",
-        "Valider": "Valider"
-    },
-    "desktop\/php\/dashboard.php": {
-        "Liste objets": "Liste objets",
-        "Rechercher": "Rechercher",
-        "Afficher\/Masquer les objets": "Afficher\/Masquer les objets",
-        "Afficher\/Masquer les scénarios": "Afficher\/Masquer les scénarios",
-        "Tous": "Tous",
-        "Chauffage": "Chauffage",
-        "Sécurité": "Sécurité",
-        "Energie": "Energie",
-        "Lumière": "Lumière",
-        "Automatisme": "Automatisme",
-        "Multimedia": "Multimedia",
-        "Defaut": "Defaut",
-        "Autre": "Autre",
-        "Scénarios": "Scénarios"
     },
     "desktop\/php\/connection.php": {
         "Nom d'utilisateur ou mot de passe incorrect !": "Nom d'utilisateur ou mot de passe incorrect !",
@@ -279,77 +201,6 @@
         "Non": "Non",
         "Choisissez votre icône": "Choisissez votre icône"
     },
-    "\/usr\/share\/nginx\/www\/jeedom\/desktop\/php\/history.php": {
-        "Aucun": "Aucun"
-    },
-    "desktop\/php\/history.php": {
-        "Historique": "Historique",
-        "Rechercher": "Rechercher",
-        "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher",
-        "Ok": "Ok",
-        "Ligne": "Ligne",
-        "Areaspline": "Areaspline",
-        "Barre": "Barre",
-        "Variation": "Variation",
-        "Escalier": "Escalier"
-    },
-    "desktop\/php\/scenarioAssist.php": {
-        "Interface simple": "Interface simple",
-        "Désac. scénarios": "Désac. scénarios",
-        "Voir toutes les variables de scénario": "Voir toutes les variables de scénario",
-        "Voir variables": "Voir variables",
-        "Nouveau scénario": "Nouveau scénario",
-        "Rechercher": "Rechercher",
-        "Gestion": "Gestion",
-        "Ajouter": "Ajouter",
-        "Désactiver scénarios": "Désactiver scénarios",
-        "Mes scénarios": "Mes scénarios",
-        "Scénario": "Scénario",
-        "Dupliquer": "Dupliquer",
-        "Log": "Log",
-        "Exporter": "Exporter",
-        "Arrêter": "Arrêter",
-        "Nom du scénario": "Nom du scénario",
-        "Actif": "Actif",
-        "Exécuter le plus rapidement": "Exécuter le plus rapidement",
-        "Dernier lancement": "Dernier lancement",
-        "Etat": "Etat",
-        "A exécuter": "A exécuter",
-        "Par": "Par",
-        "Condition optionnelle": "Condition optionnelle",
-        "Si": "Si",
-        "Est": "Est",
-        "égal": "égal",
-        "supérieur": "supérieur",
-        "inférieur": "inférieur",
-        "différent": "différent",
-        "contient": "contient",
-        "ne contient pas": "ne contient pas",
-        "Ouvert": "Ouvert",
-        "Fermé": "Fermé",
-        "Allumé": "Allumé",
-        "Eteint": "Eteint",
-        "Déclenché": "Déclenché",
-        "Au repos": "Au repos",
-        "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.": "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.",
-        "Supprimer": "Supprimer",
-        "Sauvegarder": "Sauvegarder"
-    },
-    "desktop\/modal\/dataStore.management.php": {
-        "Ajouter": "Ajouter",
-        "Nom": "Nom",
-        "Valeur": "Valeur",
-        "Utilisée dans": "Utilisée dans",
-        "Action": "Action",
-        "Data store supprimé": "Data store supprimé",
-        "Data store sauvegardé": "Data store sauvegardé"
-    },
-    "desktop\/modal\/cmd.human.insert.php": {
-        "Objet": "Objet",
-        "Equipement": "Equipement",
-        "Commande": "Commande",
-        "Aucun": "Aucun"
-    },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner la commande": "Sélectionner la commande"
     },
@@ -361,90 +212,6 @@
         "Info": "Info",
         "Action": "Action",
         "Sélectionner la commande": "Sélectionner la commande"
-    },
-    "mobile\/html\/home.html": {
-        "Equipements": "Equipements",
-        "Scénarios": "Scénarios",
-        "Scénario": "Scénario",
-        "Vues": "Vues",
-        "Design": "Design",
-        "Messages": "Messages",
-        "Message(s)": "Message(s)",
-        "Plugins": "Plugins",
-        "Version desktop": "Version desktop",
-        "Déconnexion": "Déconnexion"
-    },
-    "mobile\/html\/index.html": {
-        "Accueil": "Accueil"
-    },
-    "mobile\/html\/connection.html": {
-        "Nom d'utilisateur": "Nom d'utilisateur",
-        "Mot de passe": "Mot de passe",
-        "Enregistrer cet appareil": "Enregistrer cet appareil",
-        "Connexion": "Connexion"
-    },
-    "mobile\/html\/message.html": {
-        "Date": "Date",
-        "Plugin": "Plugin",
-        "Description": "Description"
-    },
-    "core\/ajax\/jeedom.ajax.php": {
-        "401 - Accès non autorisé": "401 - Accès non autorisé"
-    },
-    "core\/class\/market.class.php": {
-        "Erreur market::getinfo : ": "Erreur market::getinfo : "
-    },
-    "desktop\/php\/display.php": {
-        "Arbre domotique": "Arbre domotique",
-        "Configuration de l'affichage": "Configuration de l'affichage",
-        "Arbre des commandes": "Arbre des commandes",
-        "Rechercher": "Rechercher",
-        "Sans objet": "Sans objet",
-        "Catégories": "Catégories",
-        "Dashboard couleur de fond": "Dashboard couleur de fond",
-        "Remettre par défaut": "Remettre par défaut",
-        "Dashboard couleur commande": "Dashboard couleur commande",
-        "Mobile couleur de fond": "Mobile couleur de fond",
-        "Mobile couleur commande": "Mobile couleur commande",
-        "Dimension": "Dimension",
-        "Largeur pas widget (px)": "Largeur pas widget (px)",
-        "Hauteur pas widget (px)": "Hauteur pas widget (px)",
-        "Centrer verticalement les commandes sur la tuile": "Centrer verticalement les commandes sur la tuile",
-        "Sauvegarder": "Sauvegarder"
-    },
-    "desktop\/modal\/eqLogic.configure.php": {
-        "Supprimer": "Supprimer",
-        "Enregistrer": "Enregistrer",
-        "Appliquer à": "Appliquer à",
-        "Informations": "Informations",
-        "Configuration avancée": "Configuration avancée",
-        "Affichage avancé": "Affichage avancé",
-        "ID": "ID",
-        "Nom": "Nom",
-        "ID logique": "ID logique",
-        "ID de l'objet": "ID de l'objet",
-        "Date de création": "Date de création",
-        "Type": "Type",
-        "Activer": "Activer",
-        "Visible": "Visible",
-        "Tentative échouée": "Tentative échouée",
-        "Date de dernière communication": "Date de dernière communication",
-        "Dernière mise à jour": "Dernière mise à jour",
-        "Ordre": "Ordre",
-        "Widget": "Widget",
-        "Ne pas afficher le nom": "Ne pas afficher le nom",
-        "Ne pas afficher le nom de l'objet": "Ne pas afficher le nom de l'objet",
-        "Ne pas afficher le niveau de batterie": "Ne pas afficher le niveau de batterie",
-        "Paramètres optionnels sur la tuile": "Paramètres optionnels sur la tuile",
-        "Valeur": "Valeur",
-        "Action": "Action",
-        "Sélection multiple d'équipements": "Sélection multiple d'équipements",
-        "Basculer": "Basculer",
-        "Valider": "Valider",
-        "Enregistrement réussi": "Enregistrement réussi",
-        "Etes-vous sûr de vouloir supprimer cet équipement ?": "Etes-vous sûr de vouloir supprimer cet équipement ?",
-        "Suppression réalisée avec succès": "Suppression réalisée avec succès",
-        "Modification(s) appliquée(s) avec succès": "Modification(s) appliquée(s) avec succès"
     },
     "install\/backup.php": {
         "***************Lancement de la sauvegarde de Jeedom le ": "***************Lancement de la sauvegarde de Jeedom le ",
@@ -463,6 +230,173 @@
         "Envoi de la sauvegarde dans le cloud...": "Envoi de la sauvegarde dans le cloud...",
         "Nom du backup : ": "Nom du backup : ",
         "***************Fin de la sauvegarde de Jeedom***************\n": "***************Fin de la sauvegarde de Jeedom***************\n"
+    },
+    "core\/class\/jeedom.class.php": {
+        "De nouvelles mises à jour sont disponibles : ": "De nouvelles mises à jour sont disponibles : "
+    },
+    "core\/class\/message.class.php": {
+        "Message de ": "Message de ",
+        "Impossible de trouver la commande correspondant à :": "Impossible de trouver la commande correspondant à :"
+    },
+    "core\/class\/cron.class.php": {
+        "Arrêt de ": "Arrêt de "
+    },
+    "mobile\/html\/connection.html": {
+        "Nom d'utilisateur": "Nom d'utilisateur",
+        "Mot de passe": "Mot de passe",
+        "Enregistrer cet appareil": "Enregistrer cet appareil",
+        "Connexion": "Connexion"
+    },
+    "mobile\/html\/index.html": {
+        "Accueil": "Accueil"
+    },
+    "mobile\/html\/message.html": {
+        "Date": "Date",
+        "Plugin": "Plugin",
+        "Description": "Description"
+    },
+    "core\/php\/authentification.php": {
+        "Connexion de l'utilisateur par clef : ": "Connexion de l'utilisateur par clef : ",
+        "Connexion de l'utilisateur : ": "Connexion de l'utilisateur : "
+    },
+    "desktop\/php\/plan.php": {
+        "Ajouter un design": "Ajouter un design",
+        "Supprimer le design": "Supprimer le design",
+        "Editer\/configurer le design": "Editer\/configurer le design",
+        "Dupliquer le design": "Dupliquer le design",
+        "Plein écran": "Plein écran",
+        "Mode édition": "Mode édition",
+        "Sauvegarder": "Sauvegarder",
+        "Graph": "Graph",
+        "Lien": "Lien",
+        "Scénario": "Scénario",
+        "Texte\/html": "Texte\/html",
+        "Equipement": "Equipement",
+        "Sélectionnez un lien": "Sélectionnez un lien",
+        "Annuler": "Annuler",
+        "Valider": "Valider"
+    },
+    "desktop\/modal\/market.list.php": {
+        "Market Jeedom": "Market Jeedom"
+    },
+    "desktop\/php\/message.php": {
+        "Vider": "Vider",
+        "Tout": "Tout",
+        "Date et heure": "Date et heure",
+        "Plugin": "Plugin",
+        "Description": "Description",
+        "Action": "Action"
+    },
+    "desktop\/php\/update.php": {
+        "Dernière vérification : ": "Dernière vérification : ",
+        "Vérifier les objets et mises à jour": "Vérifier les objets et mises à jour",
+        "Changelog": "Changelog",
+        "Mettre à jour": "Mettre à jour",
+        "Tout forcer": "Tout forcer",
+        "Plugins seulement": "Plugins seulement",
+        "Plugins seulement forcés": "Plugins seulement forcés",
+        "Jeedom seulement": "Jeedom seulement",
+        "Jeedom seulement forcé": "Jeedom seulement forcé",
+        "Réappliquer une mise à jour": "Réappliquer une mise à jour",
+        "Type": "Type",
+        "Nom": "Nom",
+        "Version actuelle": "Version actuelle",
+        "Version disponible": "Version disponible",
+        "Statut": "Statut",
+        "Actions": "Actions",
+        "Informations :": "Informations :",
+        "Mise à jour à réappliquer": "Mise à jour à réappliquer",
+        "Aucune": "Aucune",
+        "Mode forcé": "Mode forcé",
+        "Tout depuis cette version": "Tout depuis cette version",
+        "Valider": "Valider"
+    },
+    "desktop\/modal\/market.allChangelog.php": {
+        "Version": "Version"
+    },
+    "core\/ajax\/update.ajax.php": {
+        "[START UPDATE]\n": "[START UPDATE]\n",
+        "[END UPDATE SUCCESS]\n": "[END UPDATE SUCCESS]\n"
+    },
+    "core\/class\/market.class.php": {
+        "Début de la mise à jour de : ": "Début de la mise à jour de : ",
+        "Téléchargement de l'objet...": "Téléchargement de l'objet...",
+        "OK\n": "OK\n",
+        "Décompression de l'archive...": "Décompression de l'archive...",
+        "Installation de l'objet...": "Installation de l'objet...",
+        "Erreur market::getinfo : ": "Erreur market::getinfo : "
+    },
+    "desktop\/php\/cron.php": {
+        "Processus cron Jeedom :": "Processus cron Jeedom :",
+        "Nombre de processus Jeedom cron maître (doit toujours être inférieur à 2)": "Nombre de processus Jeedom cron maître (doit toujours être inférieur à 2)",
+        "Nombre total de processus Jeedom en cours": "Nombre total de processus Jeedom en cours",
+        "Nombre total de processus en cours sur la machine": "Nombre total de processus en cours sur la machine",
+        "Charge moyenne": "Charge moyenne",
+        "Charge moyenne du système sur la dernière minute": "Charge moyenne du système sur la dernière minute",
+        "Charge moyenne du système sur les 5 dernières minutes": "Charge moyenne du système sur les 5 dernières minutes",
+        "Charge moyenne du système sur les 15 dernières minutes": "Charge moyenne du système sur les 15 dernières minutes",
+        "Enregistrer": "Enregistrer",
+        "Ajouter": "Ajouter",
+        "Rafraîchir": "Rafraîchir",
+        "Désactiver le système cron": "Désactiver le système cron",
+        "Actif": "Actif",
+        "PID": "PID",
+        "Démon": "Démon",
+        "Unique": "Unique",
+        "Classe": "Classe",
+        "Fonction": "Fonction",
+        "Programmation": "Programmation",
+        "Timeout (min)": "Timeout (min)",
+        "Dernier lancement": "Dernier lancement",
+        "Statut": "Statut"
+    },
+    "core\/class\/connection.class.php": {
+        "Attention tentative d'intrusion détectée venant de l'IP : ": "Attention tentative d'intrusion détectée venant de l'IP : "
+    },
+    "desktop\/modal\/market.display.php": {
+        "Nom": "Nom",
+        "Installer beta": "Installer beta",
+        "Supprimer": "Supprimer",
+        "Gratuit": "Gratuit",
+        "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée",
+        "Compatibilité plateforme": "Compatibilité plateforme",
+        "Tout voir": "Tout voir",
+        "Ma Note": "Ma Note",
+        "Commentaires": "Commentaires",
+        "Auteur": "Auteur",
+        "Dernière mise à jour par": "Dernière mise à jour par",
+        "Lien": "Lien",
+        "Nombre de téléchargements": "Nombre de téléchargements",
+        "Type": "Type",
+        "Version": "Version",
+        "Changelog": "Changelog",
+        "Voulez vous aller sur la page de configuration de votre nouveau plugin ?": "Voulez vous aller sur la page de configuration de votre nouveau plugin ?",
+        "Objet installé avec succès": "Objet installé avec succès",
+        "Installer stable": "Installer stable",
+        "Le retour à la version stable est dangereux": "Le retour à la version stable est dangereux",
+        "Attention ce plugin ne semble pas être compatible avec votre système": "Attention ce plugin ne semble pas être compatible avec votre système"
+    },
+    "desktop\/php\/dashboard.php": {
+        "Liste objets": "Liste objets",
+        "Rechercher": "Rechercher",
+        "Afficher\/Masquer les objets": "Afficher\/Masquer les objets",
+        "Afficher\/Masquer les scénarios": "Afficher\/Masquer les scénarios",
+        "Tous": "Tous",
+        "Chauffage": "Chauffage",
+        "Sécurité": "Sécurité",
+        "Energie": "Energie",
+        "Lumière": "Lumière",
+        "Automatisme": "Automatisme",
+        "Multimedia": "Multimedia",
+        "Defaut": "Defaut",
+        "Autre": "Autre",
+        "Scénarios": "Scénarios"
+    },
+    "core\/class\/user.class.php": {
+        "Connexion de l'utilisateur ": "Connexion de l'utilisateur "
+    },
+    "core\/php\/jeeCron.php": {
+        "[Erreur] Classe ou fonction non trouvée ": "[Erreur] Classe ou fonction non trouvée "
     },
     "desktop\/php\/administration.php": {
         "Configuration générale": "Configuration générale",
@@ -576,26 +510,279 @@
         "Développement": "Développement",
         "Sauvegarder": "Sauvegarder"
     },
-    "desktop\/php\/object.php": {
-        "Ajouter objet": "Ajouter objet",
+    "desktop\/php\/scenarioAssist.php": {
+        "Interface simple": "Interface simple",
+        "Désac. scénarios": "Désac. scénarios",
+        "Voir toutes les variables de scénario": "Voir toutes les variables de scénario",
+        "Voir variables": "Voir variables",
+        "Nouveau scénario": "Nouveau scénario",
         "Rechercher": "Rechercher",
-        "Mes objets": "Mes objets",
-        "Général": "Général",
-        "Nom de l'objet": "Nom de l'objet",
-        "Père": "Père",
-        "Aucun": "Aucun",
-        "Visible": "Visible",
-        "Icône": "Icône",
-        "Choisir": "Choisir",
-        "Couleur du tag": "Couleur du tag",
-        "Couleur du texte du tag": "Couleur du texte du tag",
+        "Gestion": "Gestion",
+        "Ajouter": "Ajouter",
+        "Désactiver scénarios": "Désactiver scénarios",
+        "Mes scénarios": "Mes scénarios",
+        "Scénario": "Scénario",
+        "Dupliquer": "Dupliquer",
+        "Log": "Log",
+        "Exporter": "Exporter",
+        "Arrêter": "Arrêter",
+        "Nom du scénario": "Nom du scénario",
+        "Actif": "Actif",
+        "Exécuter le plus rapidement": "Exécuter le plus rapidement",
+        "Dernier lancement": "Dernier lancement",
+        "Etat": "Etat",
+        "A exécuter": "A exécuter",
+        "Par": "Par",
+        "Condition optionnelle": "Condition optionnelle",
+        "Si": "Si",
+        "Est": "Est",
+        "égal": "égal",
+        "supérieur": "supérieur",
+        "inférieur": "inférieur",
+        "différent": "différent",
+        "contient": "contient",
+        "ne contient pas": "ne contient pas",
+        "Ouvert": "Ouvert",
+        "Fermé": "Fermé",
+        "Allumé": "Allumé",
+        "Eteint": "Eteint",
+        "Déclenché": "Déclenché",
+        "Au repos": "Au repos",
+        "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.": "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.",
         "Supprimer": "Supprimer",
         "Sauvegarder": "Sauvegarder"
     },
-    "desktop\/js\/object.js": {
+    "desktop\/js\/scenarioAssist.js": {
+        "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
+        "Nom": "Nom",
+        "Nom de votre scénario": "Nom de votre scénario",
+        "Type": "Type",
+        "Simple": "Simple",
+        "Avancée": "Avancée",
+        "Variables des scénarios": "Variables des scénarios",
+        "Etes-vous sûr de vouloir supprimer le scénario": "Etes-vous sûr de vouloir supprimer le scénario",
+        "Lancement du scénario réussi": "Lancement du scénario réussi",
+        "Log d'exécution du scénario": "Log d'exécution du scénario",
+        "Export du scénario": "Export du scénario",
+        "En date du": "En date du",
+        "Jamais": "Jamais"
+    },
+    "desktop\/php\/scenario.php": {
+        "Interface avancée": "Interface avancée",
+        "Désac. scénarios": "Désac. scénarios",
+        "Voir toutes les variables des scénarios": "Voir toutes les variables des scénarios",
+        "Voir variables": "Voir variables",
+        "Nouveau scénario": "Nouveau scénario",
+        "Rechercher": "Rechercher",
+        "Gestion": "Gestion",
+        "Ajouter": "Ajouter",
+        "Désactiver scénarios": "Désactiver scénarios",
+        "Mes scénarios": "Mes scénarios",
+        "Scénario": "Scénario",
+        "Dupliquer": "Dupliquer",
+        "Log": "Log",
+        "Exporter": "Exporter",
+        "Arrêter": "Arrêter",
+        "Template": "Template",
+        "Sauvegarde": "Sauvegarde",
+        "Supprimer": "Supprimer",
+        "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.": "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.",
+        "Executer": "Executer",
+        "Nom du scénario": "Nom du scénario",
+        "Nom à afficher": "Nom à afficher",
+        "Ne rien mettre pour laisser le nom par défaut": "Ne rien mettre pour laisser le nom par défaut",
+        "Groupe": "Groupe",
+        "Groupe du scénario": "Groupe du scénario",
+        "Actif": "Actif",
+        "Visible": "Visible",
+        "Objet parent": "Objet parent",
+        "Aucun": "Aucun",
+        "Timeout secondes (0 = illimité)": "Timeout secondes (0 = illimité)",
+        "Mode du scénario": "Mode du scénario",
+        "Provoqué": "Provoqué",
+        "Programmé": "Programmé",
+        "Les deux": "Les deux",
+        "Déclencheur": "Déclencheur",
+        "Programmation": "Programmation",
+        "Précédent": "Précédent",
+        "Prochain": "Prochain",
+        "Exécuter le plus rapidement possible": "Exécuter le plus rapidement possible",
+        "A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours.": "A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours.",
+        "Pas de log": "Pas de log",
+        "Le scénario n'écrit plus de log": "Le scénario n'écrit plus de log",
+        "Etat": "Etat",
+        "Sauvegarder": "Sauvegarder",
+        "Dupliquer le scénario": "Dupliquer le scénario",
+        "Annuler": "Annuler",
+        "Enregistrer": "Enregistrer",
+        "Ajouter élément": "Ajouter élément",
+        "Si\/Alors\/Sinon": "Si\/Alors\/Sinon",
+        "Action": "Action",
+        "Boucle": "Boucle",
+        "Dans": "Dans",
+        "A": "A",
+        "Code": "Code",
+        "Commentaire": "Commentaire",
+        "Sélectionner le mot-clé": "Sélectionner le mot-clé",
+        "Pause": "Pause",
+        "Variable": "Variable",
+        "Stop": "Stop",
+        "Dit": "Dit",
+        "Attendre": "Attendre",
+        "Retourner": "Retourner",
+        "Aller au design": "Aller au design",
+        "Valider": "Valider",
+        "Exécuter en avant plan": "Exécuter en avant plan",
+        "Enchainer les commandes sans attendre": "Enchainer les commandes sans attendre",
+        "Enchaine les commandes sans verification que la commande précedente c'est bien éxecutée (Attention il faut que le plugin le supporte)": "Enchaine les commandes sans verification que la commande précedente c'est bien éxecutée (Attention il faut que le plugin le supporte)"
+    },
+    "core\/template\/scenario\/scenario.default": {
+        "Start": "Start",
+        "Stop": "Stop",
+        "Activer": "Activer",
+        "Désactiver": "Désactiver"
+    },
+    "desktop\/modal\/scenario.log.execution.php": {
+        "Vider les logs": "Vider les logs",
+        "Télécharger": "Télécharger",
+        "Rafraîchir": "Rafraîchir",
+        "Log vidés avec succès": "Log vidés avec succès"
+    },
+    "desktop\/php\/log.php": {
+        "Supprimer tous les logs": "Supprimer tous les logs",
+        "Supprimer": "Supprimer",
+        "Vider": "Vider",
+        "Télécharger": "Télécharger",
+        "Rafraîchir": "Rafraîchir",
+        "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sur de vouloir supprimer tous les logs ?"
+    },
+    "core\/ajax\/jeedom.ajax.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé"
+    },
+    "mobile\/html\/home.html": {
+        "Equipements": "Equipements",
+        "Scénarios": "Scénarios",
+        "Scénario": "Scénario",
+        "Vues": "Vues",
+        "Design": "Design",
+        "Messages": "Messages",
+        "Message(s)": "Message(s)",
+        "Plugins": "Plugins",
+        "Version desktop": "Version desktop",
+        "Déconnexion": "Déconnexion"
+    },
+    "core\/ajax\/user.ajax.php": {
+        "Demande de récupération de mot de passe pour : ": "Demande de récupération de mot de passe pour : "
+    },
+    "\/usr\/share\/nginx\/www\/jeedom\/desktop\/php\/history.php": {
+        "Aucun": "Aucun"
+    },
+    "desktop\/php\/history.php": {
+        "Historique": "Historique",
+        "Rechercher": "Rechercher",
+        "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher",
+        "Ok": "Ok",
+        "Ligne": "Ligne",
+        "Areaspline": "Areaspline",
+        "Barre": "Barre",
+        "Variation": "Variation",
+        "Escalier": "Escalier"
+    },
+    "core\/js\/plugin.template.js": {
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
         "Suppression effectuée avec succès": "Suppression effectuée avec succès",
+        "Nom de la copie de l'équipement ?": "Nom de la copie de l'équipement ?",
+        "Etes-vous sûr de vouloir supprimer l\\'équipement": "Etes-vous sûr de vouloir supprimer l\\'équipement",
+        "Veuillez d\\'abord sélectionner un": "Veuillez d\\'abord sélectionner un",
+        "Nom de l'équipement ?": "Nom de l'équipement ?",
+        "Configuration commande": "Configuration commande",
+        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Veuillez activer l\\'équipement avant de tester une de ses commandes"
+    },
+    "desktop\/php\/interact.php": {
+        "Ajouter interaction": "Ajouter interaction",
+        "Regénérer": "Regénérer",
+        "Tester": "Tester",
+        "Rechercher": "Rechercher",
+        "Gestion": "Gestion",
+        "Ajouter": "Ajouter",
+        "Mes interactions": "Mes interactions",
+        "Général": "Général",
+        "Dupliquer": "Dupliquer",
+        "Nom": "Nom",
+        "Groupe": "Groupe",
+        "Demande": "Demande",
+        "Synonyme": "Synonyme",
+        "Remplace les mots par leur synonymes lors de la génération des commandes": "Remplace les mots par leur synonymes lors de la génération des commandes",
+        "Réponse": "Réponse",
+        "Conversion binaire": "Conversion binaire",
+        "Convertir les commandes binaires": "Convertir les commandes binaires",
+        "Utilisateurs autorisés": "Utilisateurs autorisés",
+        "Liste des utilisateurs (login) séparés par un |": "Liste des utilisateurs (login) séparés par un |",
+        "Phrases générées": "Phrases générées",
+        "Voir": "Voir",
+        "Nombre de phrases générées": "Nombre de phrases générées",
+        "Nombre de phrases actives": "Nombre de phrases actives",
+        "Action": "Action",
+        "Type d'action": "Type d'action",
+        "Commande": "Commande",
+        "Que sais tu ?": "Que sais tu ?",
+        "Scénario": "Scénario",
+        "Aucun": "Aucun",
+        "Filtres": "Filtres",
+        "Limiter aux commandes de type": "Limiter aux commandes de type",
+        "Limiter aux commandes ayant pour sous-type": "Limiter aux commandes ayant pour sous-type",
+        "Tous": "Tous",
+        "Limiter aux commandes ayant pour unité": "Limiter aux commandes ayant pour unité",
+        "Limiter aux commandes appartenant à l'objet": "Limiter aux commandes appartenant à l'objet",
+        "Limiter à l'équipement": "Limiter à l'équipement",
+        "Limiter au plugin": "Limiter au plugin",
+        "Limiter à la catégorie": "Limiter à la catégorie",
+        "Toutes": "Toutes",
+        "Chauffage": "Chauffage",
+        "Sécurité": "Sécurité",
+        "Energie": "Energie",
+        "Lumière": "Lumière",
+        "Automatisme": "Automatisme",
+        "Multimedia": "Multimedia",
+        "Defaut": "Defaut",
+        "Enregistrer": "Enregistrer",
+        "Supprimer": "Supprimer"
+    },
+    "desktop\/js\/interact.js": {
+        "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
+        "Suppression effectuée avec succès": "Suppression effectuée avec succès",
+        "Liste des interactions": "Liste des interactions",
+        "Tester les interactions": "Tester les interactions",
+        "Etes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?": "Etes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?",
+        "Toutes les interations ont été regénérées": "Toutes les interations ont été regénérées",
+        "Etes-vous sûr de vouloir supprimer l\\'interaction": "Etes-vous sûr de vouloir supprimer l\\'interaction",
         "Veuillez d\\'abord sélectionner un objet": "Veuillez d\\'abord sélectionner un objet",
-        "Etes-vous sûr de vouloir supprimer l\\'objet": "Etes-vous sûr de vouloir supprimer l\\'objet"
+        "Commande": "Commande",
+        "Scénario": "Scénario",
+        "Action": "Action",
+        "Start": "Start",
+        "Stop": "Stop",
+        "Activer": "Activer",
+        "Désactiver": "Désactiver"
+    },
+    "desktop\/modal\/interact.query.display.php": {
+        "Aucune phrase trouvée": "Aucune phrase trouvée",
+        "Phrase": "Phrase",
+        "Commande": "Commande",
+        "Action": "Action",
+        "Désactiver": "Désactiver",
+        "Activer": "Activer"
+    },
+    "desktop\/modal\/cmd.human.insert.php": {
+        "Objet": "Objet",
+        "Equipement": "Equipement",
+        "Commande": "Commande",
+        "Aucun": "Aucun"
+    },
+    "core\/class\/interactQuery.class.php": {
+        "Commande : ": "Commande : ",
+        " introuvable veuillez renvoyer les listes des commandes": " introuvable veuillez renvoyer les listes des commandes",
+        "Commande introuvable - vérifiez si elle existe toujours": "Commande introuvable - vérifiez si elle existe toujours",
+        "Vous n'êtes pas autorisé à exécuter cette action": "Vous n'êtes pas autorisé à exécuter cette action"
     }
 }

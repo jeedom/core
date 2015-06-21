@@ -59,11 +59,11 @@ try {
 			}
 			$result['link_id'] = trim(trim($link_id), '&&');
 		}
-		ajax::success($result);
+		ajax::success(jeedom::toHumanReadable($result));
 	}
 
 	if (init('action') == 'save') {
-		$interact_json = json_decode(init('interact'), true);
+		$interact_json = jeedom::fromHumanReadable(json_decode(init('interact'), true));
 		if (isset($interact_json['id'])) {
 			$interact = interactDef::byId($interact_json['id']);
 		}

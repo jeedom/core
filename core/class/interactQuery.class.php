@@ -270,9 +270,6 @@ class interactQuery {
 		if ($this->getInteractDef_id() == '') {
 			throw new Exception(__('SarahDef_id ne peut pas être vide', __FILE__));
 		}
-		if ($this->getLink_id() == '' && $this->getLink_type() != 'whatDoYouKnow') {
-			throw new Exception(__('Cet ordre vocal n\'est associé à aucune commande : ', __FILE__) . $this->getQuery());
-		}
 		return DB::save($this);
 	}
 
@@ -362,12 +359,9 @@ class interactQuery {
 		if ($this->getLink_type() == 'cmd') {
 			foreach (explode('&&', $this->getLink_id()) as $cmd_id) {
 				$cmd = cmd::byId($cmd_id);
-
 				if (!is_object($cmd)) {
-					log::add('interact', 'error', __('Commande : ', __FILE__) . $this->getLink_id() . __(' introuvable veuillez renvoyer les listes des commandes', __FILE__));
-					return __('Commande introuvable - vérifiez si elle existe toujours', __FILE__);
+					continue;
 				}
-
 				$replace['#commande#'] = $cmd->getName();
 				if (isset($synonymes[strtolower($cmd->getName())])) {
 					$replace['#commande#'] = $synonymes[strtolower($cmd->getName())][rand(0, count($synonymes[strtolower($cmd->getName())]) - 1)];

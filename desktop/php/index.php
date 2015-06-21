@@ -334,7 +334,7 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 																<li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interactions}}</a></li>
 																<?php }if (hasRight('displayview')) {
 				?>
-																	<li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Affichage}}</a></li>
+																	<li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Arbre domotique}}</a></li>
 																	<?php
 }
 		}
