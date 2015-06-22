@@ -123,7 +123,7 @@ try {
 					}
 					exec('wget ' . $url . ' -O ' . $tmp);
 					if (!file_exists($tmp)) {
-						throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '. Si l\'application est payante, l\'avez-vous achetée ?', __FILE__));
+						throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
 					}
 					if (filesize($tmp) < 10) {
 						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 10 octets)', __FILE__));
