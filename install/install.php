@@ -121,7 +121,7 @@ try {
 					if (file_exists($tmp)) {
 						unlink($tmp);
 					}
-					file_put_contents($tmp, fopen($url, 'r'));
+					exec('wget ' . $url . ' -O ' . $tmp);
 					if (!file_exists($tmp)) {
 						throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '. Si l\'application est payante, l\'avez-vous achetée ?', __FILE__));
 					}
