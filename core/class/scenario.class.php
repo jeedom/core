@@ -211,6 +211,7 @@ class scenario {
 	public static function check($_event = null) {
 		$message = '';
 		if ($_event != null) {
+			$speedPriority = null;
 			if (is_object($_event)) {
 				$scenarios = self::byTrigger($_event->getId());
 				$trigger = '#' . $_event->getId() . '#';
@@ -221,6 +222,7 @@ class scenario {
 				$message = __('Scénario exécuté sur événement : #', __FILE__) . $_event . '#';
 			}
 		} else {
+			$speedPriority = 0;
 			$message = __('Scénario exécuté automatiquement sur programmation', __FILE__);
 			$scenarios = scenario::all();
 			$dateOk = jeedom::isDateOk();
@@ -256,7 +258,7 @@ class scenario {
 			return true;
 		}
 		foreach ($scenarios as $scenario_) {
-			$scenario_->launch(false, $trigger, $message);
+			$scenario_->launch(false, $trigger, $message, $speedPriority);
 		}
 		return true;
 	}
@@ -581,12 +583,16 @@ class scenario {
 
 /*     * *********************Méthodes d'instance************************* */
 
-	public function launch($_force = false, $_trigger = '', $_message = '', $_speedPriority = 0) {
+	public function launch($_force = false, $_trigger = '', $_message = '', $_speedPriority = null) {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 			return false;
 		}
-
-		if ($this->getConfiguration('speedPriority', 0) == 0 && $_speedPriority == 0) {
+		if ($_speedPriority === null) {
+			$_speedPriority = $this->getConfiguration('speedPriority', 0);
+		}
+		if ($_speedPriority == 1) {
+			return $this->execute($_trigger, $_message);
+		} else {
 			$cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
 			$cmd .= ' scenario_id=' . $this->getId();
 			$cmd .= ' force=' . $_force;
@@ -594,8 +600,6 @@ class scenario {
 			$cmd .= ' message=' . escapeshellarg($_message);
 			$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
 			exec($cmd);
-		} else {
-			return $this->execute($_trigger, $_message);
 		}
 		return true;
 	}
