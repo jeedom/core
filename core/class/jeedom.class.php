@@ -417,7 +417,9 @@ class jeedom {
 					jeeNetwork::pull();
 				}
 				if (config::byKey('market::allowDNS') == 1) {
-					market::test();
+					if ($gi % 100 == 0) {
+						market::test();
+					}
 					if (!network::ngrok_run()) {
 						network::ngrok_start();
 					}
