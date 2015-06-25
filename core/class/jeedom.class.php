@@ -378,6 +378,7 @@ class jeedom {
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
 		$gi = date('Gi');
+		$i = date('i');
 		try {
 			$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
 			if ($c->isDue()) {
@@ -417,7 +418,12 @@ class jeedom {
 					jeeNetwork::pull();
 				}
 				if (config::byKey('market::allowDNS') == 1) {
-					if ($gi % 100 == 0) {
+					$minute = config::byKey('testMarketMinute');
+					if ($minute === '') {
+						$minute = rand(0, 59);
+						config::save('testMarketMinute', $minute);
+					}
+					if ($i == $minute) {
 						market::test();
 					}
 					if (!network::ngrok_run()) {
