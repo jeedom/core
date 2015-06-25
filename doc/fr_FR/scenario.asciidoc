@@ -105,7 +105,7 @@ Lorsqu'un scénario est déclenché par une interaction, celui-ci est forcément
     
 Plusieurs fonctions sont disponibles pour les équipements :
 
-- **average**(commande,période) et **averageBetween**(commande,start,end) : donnent la moyenne de la commande sur la période (period=[month,day,hour,min] ou link::http://php.net/manual/fr/datetime.formats.relative.php[expression PHP]) ou entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou link::http://php.net/manual/fr/datetime.formats.relative.php[expression PHP])
+- **average**(commande,période) et **averageBetween**(commande,start,end) : donnent la moyenne de la commande sur la période (period=[month,day,hour,min] ou link::http://php.net/manual/fr/datetime.formats.relative.php[expression PHP]) ou entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou link:http://php.net/manual/fr/datetime.formats.relative.php[expression PHP])
     * Ex : average(\#[Salle de bain][Hydrometrie][Humidité]#,1 hour) : renvoie la moyenne de la commande sur la dernière heure
     * Ex : averageBetween(\#[Salle de bain][Hydrometrie][Humidité]#,2015-01-01 00:00:00,2015-01-15 00:00:00) : renvoie la moyenne de la commande entre le 1 janvier 2015 et le 15 janvier 2015
 - **min**(commande,période) et **minBetween**(commande,start,end) : donnent le minimum de la commande sur la période (period=[month,day,hour,min] ou link::http://php.net/manual/fr/datetime.formats.relative.php[expression PHP]) ou entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou link::http://php.net/manual/fr/datetime.formats.relative.php[expression PHP])
