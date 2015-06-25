@@ -16,7 +16,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
     </div>
     <div class='alert alert-warning'>
         {{Merci de vérifier avant toute ouverture de ticket :}}<br/>
-        {{- que la question n'a pas déjà été posée sur le <a href='https://forum.jeedom.fr'>forum</a>}}<br/>
+        {{- que la question n'a pas déjà été posée sur le <a href='https://jeedom.fr/forum'>forum</a>}}<br/>
         {{- que la question ne porte pas sur un plugin beta (sauf demande d'ouverture d'un ticket du développeur)}}<br/>
         {{- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais}}<br/>
         {{- que la question porte sur un plugin market officiel}}<br/>
