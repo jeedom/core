@@ -111,6 +111,35 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'setOrder') {
+		$eqLogics = json_decode(init('eqLogics'), true);
+		foreach ($eqLogics as $eqLogic_json) {
+			$eqLogic = eqLogic::byId($eqLogic_json['id']);
+			if (!is_object($eqLogic)) {
+				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $eqLogic_json['id']);
+			}
+			if ($eqLogic_json['object_id'] < 0) {
+				$eqLogic_json['object_id'] = null;
+			}
+			$eqLogic->setOrder($eqLogic_json['order']);
+			$eqLogic->setObject_id($eqLogic_json['object_id']);
+			$eqLogic->save();
+		}
+		ajax::success();
+	}
+
+	if (init('action') == 'removes') {
+		$eqLogics = json_decode(init('eqLogics'), true);
+		foreach ($eqLogics as $id) {
+			$eqLogic = eqLogic::byId($id);
+			if (!is_object($eqLogic)) {
+				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $id);
+			}
+			$eqLogic->remove();
+		}
+		ajax::success();
+	}
+
 	/*     * **************************Gloabl Method******************************** */
 
 	if (init('action') == 'copy') {

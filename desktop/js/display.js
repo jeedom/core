@@ -14,33 +14,159 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+ $( ".eqLogicSortable" ).sortable({
+  connectWith: ".eqLogicSortable",
+  stop: function (event, ui) {
+    var eqLogics = [];
+    var object = ui.item.closest('.object');
+    order = 1;
+    object.find('.eqLogic').each(function(){
+        eqLogic = {};
+        eqLogic.object_id = object.attr('data-id');
+        eqLogic.id = $(this).attr('data-id');
+        eqLogic.order = order;
+        eqLogics.push(eqLogic);
+        order++;
+    });
+    jeedom.eqLogic.setOrder({
+        eqLogics: eqLogics,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            $( ".eqLogicSortable" ).sortable( "cancel" );
+        }
+    });
+}
+}).disableSelection();
 
 
-$('#div_tree').on('select_node.jstree', function (node, selected) {
-    if (selected.node.a_attr.class == 'infoObject') {
-        $('#div_displayInfo').empty().load('index.php?v=d&modal=object.configure&object_id=' + selected.node.a_attr['data-object_id']);
-    }
-    if (selected.node.a_attr.class == 'infoEqLogic') {
-        $('#div_displayInfo').empty().load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + selected.node.a_attr['data-eqlogic_id']);
-    }
-    if (selected.node.a_attr.class == 'infoCmd') {
-        $('#div_displayInfo').empty().load('index.php?v=d&modal=cmd.configure&cmd_id=' + selected.node.a_attr['data-cmd_id']);
+ $( ".cmdSortable" ).sortable({
+  stop: function (event, ui) {
+    var cmds = [];
+    var eqLogic = ui.item.closest('.eqLogic');
+    order = 1;
+    eqLogic.find('.cmd').each(function(){
+        cmd = {};
+        cmd.id = $(this).attr('data-id');
+        cmd.order = order;
+        cmds.push(cmd);
+        order++;
+    });
+    jeedom.cmd.setOrder({
+        cmds: cmds,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        }
+    });
+}
+}).disableSelection();
+
+ $( ".eqLogic" ).on('dblclick',function(){
+   $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"});
+   $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).attr('data-id')).dialog('open');
+});
+
+ $('.configureEqLogic').on('click',function(){
+     $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"});
+     $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-id')).dialog('open');
+ });
+
+ $('.configureObject').on('click',function(){
+     $('#md_modal').dialog({title: "{{Configuration de l'objet}}"});
+     $('#md_modal').load('index.php?v=d&modal=object.configure&object_id=' + $(this).closest('.object').attr('data-id')).dialog('open');
+ });
+
+ $('.showCmd').on('click',function(){
+    if($(this).hasClass('fa-chevron-right')){
+        $(this).removeClass('fa-chevron-right').addClass('fa-chevron-down');
+        $(this).closest('.eqLogic').find('.cmdSortable').show();
+    }else{
+        $(this).removeClass('fa-chevron-down').addClass('fa-chevron-right');
+        $(this).closest('.eqLogic').find('.cmdSortable').hide();
     }
 });
 
-$("#div_tree").jstree({
-    "plugins": ["search"]
-});
-$('#in_treeSearch').keyup(function () {
-    $('#div_tree').jstree(true).search($('#in_treeSearch').val());
+ $( ".cmd" ).on('dblclick',function(){
+   $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
+   $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
 });
 
-$("#bt_displayConfig").on('click', function (event) {
+ $('.configureCmd').on('click',function(){
+     $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
+     $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-id')).dialog('open');
+ });
+
+ $('#in_search').on('keyup',function(){
+    var search = $(this).value().toLowerCase();
+    $('.eqLogic').show().removeClass('alert-success').addClass('alert-info');
+    $('.cmd').show().removeClass('alert-success').addClass('alert-warning');
+    $('.cmdSortable').hide();
+    if(search == ''){
+        return;
+    }
+    $('.eqLogic').each(function(){
+        var eqLogic = $(this);
+        var name = eqLogic.attr('data-name').toLowerCase();
+        if(name.indexOf(search) < 0){
+            eqLogic.hide();
+        }else{
+           eqLogic.removeClass('alert-info').addClass('alert-success'); 
+       }
+       $(this).find('.cmd').each(function(){
+        var cmd = $(this);
+        var name = cmd.attr('data-name').toLowerCase();
+        if(name.indexOf(search) >= 0){
+            eqLogic.show();
+            eqLogic.find('.cmdSortable').show();
+            cmd.removeClass('alert-warning').addClass('alert-success'); 
+        }
+    });
+   });
+});
+
+ $('.cb_selEqLogic').on('change',function(){
+    var found = false;
+    $('.cb_selEqLogic').each(function(){
+        if($(this).value() == 1){
+            found = true;
+        }
+    });
+    if(found){
+        $('#bt_removeEqlogic').show();
+    }else{
+        $('#bt_removeEqlogic').hide();
+    }
+});
+
+ $('#bt_removeEqlogic').on('click',function(){
+    bootbox.confirm('{{Etes-vous sûr de vouloir supprimer tous ces équipement ?}}', function (result) {
+        if (result) {
+            var eqLogics = [];
+            $('.cb_selEqLogic').each(function(){
+                if($(this).value() == 1){
+                    eqLogics.push($(this).closest('.eqLogic').attr('data-id'));
+                }
+            });
+            jeedom.eqLogic.removes({
+                eqLogics: eqLogics,
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success : function(){
+                    window.location.reload();
+                }
+            });
+        }
+    });
+});
+
+
+
+ $("#bt_displayConfig").on('click', function (event) {
     $.hideAlert();
     saveConfiguration($('#display_configuration'));
 });
 
-$('.bt_resetColor').on('click', function () {
+ $('.bt_resetColor').on('click', function () {
     var el = $(this);
     jeedom.getConfiguration({
         key: $(this).attr('data-l1key'),
@@ -55,7 +181,7 @@ $('.bt_resetColor').on('click', function () {
 });
 
 
-function saveConfiguration(_el) {
+ function saveConfiguration(_el) {
     jeedom.config.save({
         configuration: _el.getValues('.configKey')[0],
         error: function (error) {
