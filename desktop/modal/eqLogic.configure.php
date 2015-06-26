@@ -16,7 +16,6 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab">{{Informations}}</a></li>
-    <li role="presentation"><a href="#configuration" aria-controls="profile" role="tab" data-toggle="tab">{{Configuration avancée}}</a></li>
     <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab">{{Affichage avancé}}</a></li>
 </ul>
 
@@ -112,21 +111,6 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
             </form>
         </div>
     </div>
-</div>
-<div role="tabpanel" class="tab-pane" id="configuration">
-    <br/>
-    <form class="form-horizontal">
-        <fieldset>
-
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{Ordre}}</label>
-                <div class="col-sm-2">
-                    <input type="number" class="eqLogicAttr form-control" data-l1key="order" />
-                </div>
-            </div>
-        </fieldset>
-    </form>
 </div>
 
 <div role="tabpanel" class="tab-pane" id="display">
