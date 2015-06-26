@@ -72,9 +72,9 @@ foreach ($eqLogics[-1] as $eqLogic) {
 	echo '<input type="checkbox" class="cb_selEqLogic" /> ';
 	echo $eqLogic->getName() . ' ';
 	echo '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i>';
-	echo '<i class="fa fa-chevron-right pull-right showCmd"></i> ';
-	echo '<i class="fa fa-cog pull-right configureEqLogic"></i>';
-	echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right"><i class="fa fa-external-link"></i></a>';
+	echo '<i class="fa fa-chevron-right pull-right showCmd tooltips" title="{{Voir les commandes}}"></i> ';
+	echo '<i class="fa fa-cog pull-right configureEqLogic tooltips" title="{{Configuration avancée}}"></i>';
+	echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right tooltips" title="{{Aller sur la configuration de l\'équipement}}"><i class="fa fa-external-link"></i></a>';
 
 	echo '<ul class="cmdSortable" style="display:none;" >';
 	foreach ($cmds[$eqLogic->getId()] as $cmd) {
@@ -91,13 +91,14 @@ foreach ($eqLogics[-1] as $eqLogic) {
   <?php
 $i = 1;
 foreach ($objects as $object) {
+	$defaultTextColor = ($object->getDisplay('tagColor') == '') ? 'black' : 'white';
 	if ($i == 0) {
 		echo '<div class="row row-same-height">';
 	}
-	echo '<div class="col-sm-3 object col-xs-height" data-id="' . $object->getId() . '" style="background-color : ' . $object->getDisplay('tagColor') . ';color : ' . $object->getDisplay('tagTextColor', 'white') . '">';
-	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName();
-	echo '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject"></i>';
-	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', 'white') . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right"><i class="fa fa-external-link"></i></a>';
+	echo '<div class="col-sm-3 object col-xs-height" data-id="' . $object->getId() . '" style="background-color : ' . $object->getDisplay('tagColor') . ';color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">';
+	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">' . $object->getName();
+	echo '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject tooltips" title="{{Configuration avancée}}"></i>';
+	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right tooltips" title="{{Aller sur la configuration de l\'objet}}"><i class="fa fa-external-link"></i></a>';
 	echo '</legend>';
 	echo '<ul class="eqLogicSortable">';
 	foreach ($eqLogics[$object->getId()] as $eqLogic) {
@@ -105,13 +106,13 @@ foreach ($objects as $object) {
 		echo '<input type="checkbox" class="cb_selEqLogic" /> ';
 		echo $eqLogic->getName() . ' ';
 		echo '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i>';
-		echo '<i class="fa fa-chevron-right pull-right showCmd"></i> ';
-		echo '<i class="fa fa-cog pull-right configureEqLogic"></i>';
-		echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right"><i class="fa fa-external-link"></i></a>';
+		echo '<i class="fa fa-chevron-right pull-right showCmd tooltips" title="{{Voir les commandes}}"></i> ';
+		echo '<i class="fa fa-cog pull-right configureEqLogic tooltips" title="{{Configuration avancée}}"></i>';
+		echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right tooltips" title="{{Aller sur la configuration de l\'équipement}}"><i class="fa fa-external-link"></i></a>';
 		echo '<ul class="cmdSortable" style="display:none;" >';
 		foreach ($cmds[$eqLogic->getId()] as $cmd) {
 			echo '<li class="alert alert-warning cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' . $cmd->getName();
-			echo '<i class="fa fa-cog pull-right configureCmd"></i>';
+			echo '<i class="fa fa-cog pull-right configureCmd tooltips" title="{{Configuration avancée}}"></i>';
 			echo '</li>';
 		}
 		echo '</ul>';
