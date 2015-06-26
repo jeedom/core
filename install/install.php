@@ -121,7 +121,7 @@ try {
 					if (file_exists($tmp)) {
 						unlink($tmp);
 					}
-					exec('wget ' . $url . ' -O ' . $tmp);
+					exec('wget --progress=dot --show-progress --quiet --dot=mega ' . $url . ' -O ' . $tmp);
 					if (!file_exists($tmp)) {
 						throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
 					}
