@@ -198,7 +198,7 @@ Une boîte à outils de fonctions génériques peut également servir à effectu
 En plus des commandes domotiques vous avez accès aux fonctions suivantes : 
 
 - sleep : pause de x seconde(s)
-- wait : attend jusqu'a ce que la condition soit valide (maximum 2h)                         
+- wait : attend jusqu'a ce que la condition soit valide (maximum 2h), le timeout est en seconde                   
 - variable : création/modification d'une ou de la valeur d'une variable
 - scenario : permet le controle des scénarios
 - stop : arrête le scénario
