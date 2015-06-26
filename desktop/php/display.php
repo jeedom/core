@@ -9,6 +9,7 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
     .eqLogicSortable{
         list-style-type: none;
         min-height: 20px;
+        padding-left: 0px;
     }
     .eqLogicSortable li {
         margin: 0 2px 2px 2px;
@@ -18,6 +19,7 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
     .cmdSortable{
         list-style-type: none;
         min-height: 20px;
+        padding-left: 0px;
     }
     .cmdSortable li {
         margin: 0 2px 2px 2px;
@@ -36,8 +38,8 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
     <a class="btn btn-danger btn-sm" id="bt_removeEqlogic" style="display:none;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
     <br/>
     <br/>
-    <div class="row">
-        <div class="col-sm-4 object" data-id="-1">
+    <div class="row row-same-height">
+        <div class="col-sm-3 object col-xs-height" data-id="-1">
             <legend>{{Aucun}}</legend>
             <ul class="eqLogicSortable">
                 <?php
@@ -66,10 +68,10 @@ foreach (eqLogic::byObjectId(null, false) as $eqLogic) {
 $i = 1;
 foreach (object::all() as $object) {
 	if ($i == 0) {
-		echo '<div class="row">';
+		echo '<div class="row row-same-height">';
 	}
-	echo '<div class="col-sm-4 object" data-id="' . $object->getId() . '">';
-	echo '<legend>' . $object->getName() . '<i class="fa fa-cog pull-right cursor configureObject"></i></legend>';
+	echo '<div class="col-sm-3 object col-xs-height" data-id="' . $object->getId() . '" style="background-color : ' . $object->getDisplay('tagColor') . ';color : ' . $object->getDisplay('tagTextColor', 'white') . '">';
+	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject"></i></legend>';
 	echo '<ul class="eqLogicSortable">';
 	foreach ($object->getEqLogic(false, false) as $eqLogic) {
 		echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-name="' . $eqLogic->getName() . '">';
@@ -91,7 +93,7 @@ foreach (object::all() as $object) {
 	echo '</ul>';
 	echo '</div>';
 	$i++;
-	if ($i > 2) {
+	if ($i > 3) {
 		$i = 0;
 	}
 	if ($i == 0) {
