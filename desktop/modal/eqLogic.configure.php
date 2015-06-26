@@ -66,51 +66,47 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
         <div class="col-sm-4" >
             <form class="form-horizontal">
                 <fieldset>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">{{Type}}</label>
-                        <div class="col-sm-4">
-                            <span class="eqLogicAttr label label-primary" data-l1key="eqType_name" style="font-size : 1em;"></span>
-                        </div>
-                    </div>
+
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">{{Activer}}</label>
-                        <div class="col-sm-4">
-                            <span class="eqLogicAttr label label-primary" data-l1key="isEnable" style="font-size : 1em;"></span>
-                        </div>
-                    </div>
+                        <label class="col-sm-4 control-label"></label>
+                        <div class="col-sm-8">
+                         <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Activer}}" data-l1key="isEnable" checked/>
+                         <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Visible}}" data-l1key="isVisible" checked/>
+                     </div>
+                 </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">{{Visible}}</label>
-                        <div class="col-sm-4">
-                            <span class="eqLogicAttr label label-primary" data-l1key="isVisible" style="font-size : 1em;"></span>
-                        </div>
+                 <div class="form-group">
+                    <label class="col-sm-4 control-label">{{Type}}</label>
+                    <div class="col-sm-4">
+                        <span class="eqLogicAttr label label-primary" data-l1key="eqType_name" style="font-size : 1em;"></span>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">{{Tentative échouée}}</label>
-                        <div class="col-sm-4">
-                            <span class="label label-primary" style="font-size : 1em;"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess', 0)?></span>
-                        </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">{{Tentative échouée}}</label>
+                    <div class="col-sm-4">
+                        <span class="label label-primary" style="font-size : 1em;"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess', 0)?></span>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">{{Date de dernière communication}}</label>
-                        <div class="col-sm-4">
-                            <span class="label label-primary" style="font-size : 1em;"><?php echo $eqLogic->getStatus('lastCommunication')?></span>
-                        </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">{{Date de dernière communication}}</label>
+                    <div class="col-sm-4">
+                        <span class="label label-primary" style="font-size : 1em;"><?php echo $eqLogic->getStatus('lastCommunication')?></span>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">{{Dernière mise à jour}}</label>
-                        <div class="col-sm-4">
-                            <span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="updatetime" style="font-size : 1em;"></span>
-                        </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">{{Dernière mise à jour}}</label>
+                    <div class="col-sm-4">
+                        <span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="updatetime" style="font-size : 1em;"></span>
                     </div>
-                </fieldset>
-            </form>
-        </div>
+                </div>
+            </fieldset>
+        </form>
     </div>
+</div>
 </div>
 
 <div role="tabpanel" class="tab-pane" id="display">

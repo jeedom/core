@@ -105,7 +105,10 @@ foreach ($objects as $object) {
 		echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 		echo '<input type="checkbox" class="cb_selEqLogic" /> ';
 		echo $eqLogic->getName() . ' ';
-		echo '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i>';
+		echo '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
+		if ($eqLogic->getIsEnable() != 1) {
+			echo '<i class="fa fa-times"></i>';
+		}
 		echo '<i class="fa fa-chevron-right pull-right showCmd tooltips" title="{{Voir les commandes}}"></i> ';
 		echo '<i class="fa fa-cog pull-right configureEqLogic tooltips" title="{{Configuration avancée}}"></i>';
 		echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right tooltips" title="{{Aller sur la configuration de l\'équipement}}"><i class="fa fa-external-link"></i></a>';
