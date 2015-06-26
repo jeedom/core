@@ -73,7 +73,10 @@ foreach (object::all() as $object) {
 		echo '<div class="row row-same-height">';
 	}
 	echo '<div class="col-sm-3 object col-xs-height" data-id="' . $object->getId() . '" style="background-color : ' . $object->getDisplay('tagColor') . ';color : ' . $object->getDisplay('tagTextColor', 'white') . '">';
-	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject"></i></legend>';
+	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName();
+	echo '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject"></i>';
+	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', 'white') . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right"><i class="fa fa-external-link"></i></a>';
+	echo '</legend>';
 	echo '<ul class="eqLogicSortable">';
 	foreach ($object->getEqLogic(false, false) as $eqLogic) {
 		echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
