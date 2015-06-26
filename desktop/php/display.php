@@ -2,8 +2,7 @@
 if (!hasRight('displayview', true)) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-sendVarToJS('cmd_widgetDashboard', cmd::availableWidget('dashboard'));
-sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
+
 ?>
 <style>
   .eqLogicSortable{
@@ -104,6 +103,14 @@ foreach (object::all() as $object) {
 	if ($i == 0) {
 		echo '</div>';
 	}
+}
+if ($i != 0) {
+	while ($i <= 3) {
+		echo '<div class="col-sm-3 col-xs-height">';
+		echo '</div>';
+		$i++;
+	}
+	echo '</div>';
 }
 ?>
 </div>
