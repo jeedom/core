@@ -6,43 +6,45 @@ sendVarToJS('cmd_widgetDashboard', cmd::availableWidget('dashboard'));
 sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
 ?>
 <style>
-    .eqLogicSortable{
-        list-style-type: none;
-        min-height: 20px;
-        padding-left: 0px;
-    }
-    .eqLogicSortable li {
-        margin: 0 2px 2px 2px;
-        padding: 5px;
-    }
+  .eqLogicSortable{
+    list-style-type: none;
+    min-height: 20px;
+    padding-left: 0px;
+  }
+  .eqLogicSortable li {
+    margin: 0 2px 2px 2px;
+    padding: 5px;
+  }
 
-    .cmdSortable{
-        list-style-type: none;
-        min-height: 20px;
-        padding-left: 0px;
-    }
-    .cmdSortable li {
-        margin: 0 2px 2px 2px;
-        padding: 5px;
-    }
+  .cmdSortable{
+    list-style-type: none;
+    min-height: 20px;
+    padding-left: 0px;
+  }
+  .cmdSortable li {
+    margin: 0 2px 2px 2px;
+    padding: 5px;
+  }
 </style>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#display_order" data-toggle="tab">{{Ma domotique}}</a></li>
-    <li><a href="#display_configuration" data-toggle="tab">{{Configuration de l'affichage}}</a></li>
+  <li class="active"><a href="#display_order" data-toggle="tab">{{Ma domotique}}</a></li>
+  <li><a href="#display_configuration" data-toggle="tab">{{Configuration de l'affichage}}</a></li>
 </ul>
 
-<div class="tab-pane active" id="display_order">
+<div class="tab-content">
+
+  <div class="tab-pane active" id="display_order">
     <br/>
     <input class="form-control pull-right" id="in_search" placeholder="{{Rechercher}}" style="width : 200px;"/>
     <a class="btn btn-danger btn-sm" id="bt_removeEqlogic" style="display:none;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
     <br/>
     <br/>
     <div class="row row-same-height">
-        <div class="col-sm-3 object col-xs-height" data-id="-1">
-            <legend>{{Aucun}}</legend>
-            <ul class="eqLogicSortable">
-                <?php
+      <div class="col-sm-3 object col-xs-height" data-id="-1">
+        <legend>{{Aucun}}</legend>
+        <ul class="eqLogicSortable">
+          <?php
 foreach (eqLogic::byObjectId(null, false) as $eqLogic) {
 	echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-name="' . $eqLogic->getName() . '">';
 	echo '<input type="checkbox" class="cb_selEqLogic" /> ';
@@ -62,9 +64,9 @@ foreach (eqLogic::byObjectId(null, false) as $eqLogic) {
 	echo '</li>';
 }
 ?>
-          </ul>
-      </div>
-      <?php
+      </ul>
+    </div>
+    <?php
 $i = 1;
 foreach (object::all() as $object) {
 	if ($i == 0) {
@@ -103,22 +105,22 @@ foreach (object::all() as $object) {
 ?>
 </div>
 
-<div class="tab-content">
-    <div class="tab-pane" id="display_configuration">
-        <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse_category">
-                            {{Catégories}}
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapse_category" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <form class="form-horizontal">
-                            <fieldset>
-                                <?php
+
+<div class="tab-pane" id="display_configuration">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse_category">
+            {{Catégories}}
+          </a>
+        </h4>
+      </div>
+      <div id="collapse_category" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <fieldset>
+              <?php
 foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 	echo '<legend>' . $category['name'] . '</legend>';
 	echo '<div class="form-group">';
@@ -155,40 +157,40 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 	echo '</div>';
 }
 ?>
-                           </fieldset>
-                       </form>
-                   </div>
-               </div>
-           </div>
+           </fieldset>
+         </form>
+       </div>
+     </div>
+   </div>
 
-           <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse_size">
-                        {{Dimension}}
-                    </a>
-                </h4>
+   <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse_size">
+          {{Dimension}}
+        </a>
+      </h4>
+    </div>
+    <div id="collapse_size" class="panel-collapse collapse">
+      <div class="panel-body">
+        <form class="form-horizontal">
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">{{Largeur pas widget (px)}}</label>
+              <div class="col-sm-2">
+                <input class="configKey form-control cursor" data-l1key="eqLogic::widget::stepWidth" value="<?php echo config::byKey('eqLogic::widget::stepWidth')?>" />
+              </div>
             </div>
-            <div id="collapse_size" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <form class="form-horizontal">
-                        <fieldset>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">{{Largeur pas widget (px)}}</label>
-                                <div class="col-sm-2">
-                                    <input class="configKey form-control cursor" data-l1key="eqLogic::widget::stepWidth" value="<?php echo config::byKey('eqLogic::widget::stepWidth')?>" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">{{Hauteur pas widget (px)}}</label>
-                                <div class="col-sm-2">
-                                    <input class="configKey form-control cursor" data-l1key="eqLogic::widget::stepHeight" value="<?php echo config::byKey('eqLogic::widget::stepHeight')?>" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">{{Centrer verticalement les commandes sur la tuile}}</label>
-                                <div class="col-sm-2">
-                                    <?php
+            <div class="form-group">
+              <label class="col-sm-3 control-label">{{Hauteur pas widget (px)}}</label>
+              <div class="col-sm-2">
+                <input class="configKey form-control cursor" data-l1key="eqLogic::widget::stepHeight" value="<?php echo config::byKey('eqLogic::widget::stepHeight')?>" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">{{Centrer verticalement les commandes sur la tuile}}</label>
+              <div class="col-sm-2">
+                <?php
 if (config::byKey('eqLogic::widget::verticalAlign') == 1) {
 	echo '<input type="checkbox" class="configKey cursor bootstrapSwitch" data-l1key="eqLogic::widget::verticalAlign" checked />';
 } else {
@@ -196,16 +198,16 @@ if (config::byKey('eqLogic::widget::verticalAlign') == 1) {
 }
 ?>
 
-                               </div>
-                           </div>
-                       </fieldset>
-                   </form>
-               </div>
+             </div>
            </div>
-       </div>
+         </fieldset>
+       </form>
+     </div>
    </div>
-   <div class="form-actions" style="height: 20px;">
-    <a class="btn btn-success" id="bt_displayConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+ </div>
+</div>
+<div class="form-actions" style="height: 20px;">
+  <a class="btn btn-success" id="bt_displayConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
 </div>
 </div>
 </div>
