@@ -46,7 +46,7 @@ sendVarToJS('cmd_widgetMobile', cmd::availableWidget('mobile'));
         <ul class="eqLogicSortable">
           <?php
 foreach (eqLogic::byObjectId(null, false) as $eqLogic) {
-	echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-name="' . $eqLogic->getName() . '">';
+	echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 	echo '<input type="checkbox" class="cb_selEqLogic" /> ';
 	echo $eqLogic->getName() . ' ';
 	echo '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i>';
@@ -76,7 +76,7 @@ foreach (object::all() as $object) {
 	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject"></i></legend>';
 	echo '<ul class="eqLogicSortable">';
 	foreach ($object->getEqLogic(false, false) as $eqLogic) {
-		echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-name="' . $eqLogic->getName() . '">';
+		echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 		echo '<input type="checkbox" class="cb_selEqLogic" /> ';
 		echo $eqLogic->getName() . ' ';
 		echo '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i>';

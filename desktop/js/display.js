@@ -97,7 +97,6 @@
 
  $('#in_search').on('keyup',function(){
     var search = $(this).value().toLowerCase();
-    $('.eqLogic').show().removeClass('alert-success').addClass('alert-info');
     $('.cmd').show().removeClass('alert-success').addClass('alert-warning');
     $('.cmdSortable').hide();
     if(search == ''){
@@ -106,11 +105,10 @@
     $('.eqLogic').each(function(){
         var eqLogic = $(this);
         var name = eqLogic.attr('data-name').toLowerCase();
-        if(name.indexOf(search) < 0){
+        var type = eqLogic.attr('data-type').toLowerCase();
+        if(name.indexOf(search) < 0 && type.indexOf(search) < 0){
             eqLogic.hide();
-        }else{
-           eqLogic.removeClass('alert-info').addClass('alert-success'); 
-       }
+        }
        $(this).find('.cmd').each(function(){
         var cmd = $(this);
         var name = cmd.attr('data-name').toLowerCase();
