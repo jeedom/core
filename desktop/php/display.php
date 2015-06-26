@@ -2,7 +2,25 @@
 if (!hasRight('displayview', true)) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-
+$nbEqlogic = 0;
+$nbCmd = 0;
+$objects = object::all();
+$eqLogics = array();
+$cmds = array();
+$eqLogics[-1] = eqLogic::byObjectId(null, false);
+foreach ($eqLogics[-1] as $eqLogic) {
+	$cmds[$eqLogic->getId()] = $eqLogic->getCmd();
+	$nbCmd += count($cmds[$eqLogic->getId()]);
+}
+$nbEqlogic += count($eqLogics[-1]);
+foreach ($objects as $object) {
+	$eqLogics[$object->getId()] = $object->getEqLogic(false, false);
+	foreach ($eqLogics[$object->getId()] as $eqLogic) {
+		$cmds[$eqLogic->getId()] = $eqLogic->getCmd();
+		$nbCmd += count($cmds[$eqLogic->getId()]);
+	}
+	$nbEqlogic += count($eqLogics[$object->getId()]);
+}
 ?>
 <style>
   .eqLogicSortable{
@@ -36,15 +54,20 @@ if (!hasRight('displayview', true)) {
   <div class="tab-pane active" id="display_order">
     <br/>
     <input class="form-control pull-right" id="in_search" placeholder="{{Rechercher}}" style="width : 200px;"/>
-    <a class="btn btn-danger btn-sm" id="bt_removeEqlogic" style="display:none;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
-    <br/>
-    <br/>
-    <div class="row row-same-height">
-      <div class="col-sm-3 object col-xs-height" data-id="-1">
-        <legend>{{Aucun}}</legend>
-        <ul class="eqLogicSortable">
-          <?php
-foreach (eqLogic::byObjectId(null, false) as $eqLogic) {
+    <center>
+     <span class="label label-default" style="font-size : 1em;">{{Nombre d'objet :}} <?php echo count($objects)?></span>
+     <span class="label label-info" style="font-size : 1em;">{{Nombre d'équipement :}} <?php echo $nbEqlogic?></span>
+      <span class="label label-primary" style="font-size : 1em;">{{Nombre de commande :}} <?php echo $nbCmd?></span>
+   </center>
+   <a class="btn btn-danger btn-sm" id="bt_removeEqlogic" style="display:none;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
+   <br/>
+   <br/>
+   <div class="row row-same-height">
+    <div class="col-sm-3 object col-xs-height" data-id="-1">
+      <legend>{{Aucun}}</legend>
+      <ul class="eqLogicSortable">
+        <?php
+foreach ($eqLogics[-1] as $eqLogic) {
 	echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 	echo '<input type="checkbox" class="cb_selEqLogic" /> ';
 	echo $eqLogic->getName() . ' ';
@@ -54,7 +77,7 @@ foreach (eqLogic::byObjectId(null, false) as $eqLogic) {
 	echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right"><i class="fa fa-external-link"></i></a>';
 
 	echo '<ul class="cmdSortable" style="display:none;" >';
-	foreach ($eqLogic->getCmd() as $cmd) {
+	foreach ($cmds[$eqLogic->getId()] as $cmd) {
 		echo '<li class="alert alert-warning cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' . $cmd->getName();
 		echo '<i class="fa fa-cog pull-right configureCmd"></i>';
 		echo '</li>';
@@ -63,11 +86,11 @@ foreach (eqLogic::byObjectId(null, false) as $eqLogic) {
 	echo '</li>';
 }
 ?>
-      </ul>
-    </div>
-    <?php
+    </ul>
+  </div>
+  <?php
 $i = 1;
-foreach (object::all() as $object) {
+foreach ($objects as $object) {
 	if ($i == 0) {
 		echo '<div class="row row-same-height">';
 	}
@@ -77,7 +100,7 @@ foreach (object::all() as $object) {
 	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', 'white') . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right"><i class="fa fa-external-link"></i></a>';
 	echo '</legend>';
 	echo '<ul class="eqLogicSortable">';
-	foreach ($object->getEqLogic(false, false) as $eqLogic) {
+	foreach ($eqLogics[$object->getId()] as $eqLogic) {
 		echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 		echo '<input type="checkbox" class="cb_selEqLogic" /> ';
 		echo $eqLogic->getName() . ' ';
@@ -86,7 +109,7 @@ foreach (object::all() as $object) {
 		echo '<i class="fa fa-cog pull-right configureEqLogic"></i>';
 		echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right"><i class="fa fa-external-link"></i></a>';
 		echo '<ul class="cmdSortable" style="display:none;" >';
-		foreach ($eqLogic->getCmd() as $cmd) {
+		foreach ($cmds[$eqLogic->getId()] as $cmd) {
 			echo '<li class="alert alert-warning cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' . $cmd->getName();
 			echo '<i class="fa fa-cog pull-right configureCmd"></i>';
 			echo '</li>';
