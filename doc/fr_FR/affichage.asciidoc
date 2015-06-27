@@ -1,4 +1,4 @@
-:icons:
+= Affichage
 
 Le sous-menu affichage est composé de deux onglets. Le premier onglet "Arbre domotique", et le deuxième "Configuration de l'affichage".
 

@@ -1,4 +1,4 @@
-:icons:
+= Backup
 
 == Description
 
@@ -15,7 +15,6 @@ Par contre il faut l'effectuer en éteignant Jeedom et en branchant la carte mic
 Le meilleur moyen d'être tranquille est d'utiliser les deux : 
 Faire une sauvegarde de la carte microSD de temps en temps et programmer une sauvegarde régulière de Jeedom.
 
-[icon="../images/plugin/tip.png"]
 [TIP]
 La procédure de restauration de la carte microSD peut-être utile pour restaurer un Jeedom par défaut à partir de l'image 
 fournie par l'équipe voir https://www.jeedom.fr/doc/documentation/installation/fr_FR/doc-installation.html[ici]. 
@@ -35,14 +34,14 @@ Afin de gérer et paramétrer les sauvegardes, il faut se rendre dans le menu _G
 * Nombre de jour(s) de conservation des sauvegardes ° : Permet de définir le temps de rétention des fichiers de sauvegarde. Les fichiers de sauvegarde plus vieux que ce paramètre seront automatiquement supprimés.
 * Taille totale maximum d'une sauvegarde (Mo) ° : Permet de limiter la taille du fichier de sauvegarde. Si la sauvegarde créée un fichier plus gros que cette taille, elle se met en erreur et vous prévient par une alerte.
 * Envoyer les sauvegardes dans le cloud : Une fois cette case cochée, les sauvegardes seront automatiquement envoyées sur les serveurs cloud de Jeedom. Attention : Cette option nécessite l'achat d'un abonnement à partir de votre profil du market.
-+
+
 Ne pas oublier de cliquer sur le bouton vert _Sauvegarder_ afin d'enregistrer les changements de configuration.
-+
+
 _Rmq : Les paramètres suivis d'un ° sont uniquement disponibles en mode expert._
-+
+
 image::../images/save-restore02.jpg[align="center"]
-+
-[icon="../images/plugin/tip.png"]
+
+
 [TIP]
 Afin que Jeedom fasse automatiquement une sauvegarde avant les mises à jour, 
 il y a une case à cocher (_"Faire une sauvegarde avant la mise à jour"_) dans la section _"Market et mise à jour"_ du menu _Général > Administration > Configuration_.
@@ -63,11 +62,10 @@ image::../images/save-restore03.jpg[align="center"]
 * Restaurer la sauvegarde : Le bouton _Restaurer_ permet de lancer une restauration de Jeedom en utilisant le fichier de sauvegarde sélectionné dans la liste _Sauvegardes disponibles_.
 +
 image::../images/save-restore04.jpg[align="center"]
-+
-[icon="../images/plugin/important.png"]
+
 [IMPORTANT]
 Afin de pouvoir utiliser la sauvegarde sur le cloud vous devez acheter un abonnement à partir de votre profil sur le market Jeedom. Vous pouvez aussi à cet endroit voir et récupérer les fichiers de sauvegarde disponible.
-+
+
 image::../images/save-restore05.jpg[align="center"]
 
 === [underline]#II) Sauvegarde#
@@ -120,23 +118,23 @@ image::../images/save-restore08.jpg[align="center"]
 Il faudra commencer par télécharger un logiciel tiers par exemple : http://sourceforge.net/projects/win32diskimager/[Win32 Disk Imager]
 
 . [underline]#Sauvegarde#
-+    
+ 
 Lancer le logiciel et vérifier que la lettre en dessous de _Device_ corresponde bien à celle de votre carte/lecteur de carte.
-+
+
 Dans le champ _Image File_, indiquer le nom du fichier image que vous voulez créer ainsi que l'endroit où il sera enregistré.
-+
+
 Enfin cliquer sur le bouton _Read_, afin de créer l'image.
-+
+
 image::../images/save-restore09.jpg[align="center"]
 
 . [underline]#Restauration#
-+
+
 Lancer le logiciel et vérifier que la lettre en dessous de _Device_ corresponde bien à celle de votre carte/lecteur de carte.
-+
+
 Dans le champ _Image File_, allez chercher le fichier image que vous voulez restaurer.
-+
+
 Enfin cliquer sur le bouton _Write_, afin de restaurer cette image sur la carte microSD.
-+
+
 image::../images/save-restore10.jpg[align="center"]
 
 === [underline]#III) Sous MacOSX#
@@ -146,55 +144,46 @@ Pour vous faciliter la tâche, vous pouvez télécharger le logiciel http://www.
 image::../images/save-restore11.jpg[align="center"]
 
 . [underline]#Sauvegarde#
-+
 * Avec ApplePi-Baker : Sélectionner la bonne carte dans la liste _Pi-Crust_, et cliquer sur _Create Backup_ afin de créer un fichier image de votre carte microSD.
 * En commande shell :
 ** Afin de trouver le disque correspondant à la carte, ouvrir un terminal et saisir la commande : _diskutil list_
-+
 image::../images/save-restore12.jpg[align="center"]
-+
 ** Lancer la création de l'image en saisissant la commande : _sudo dd if=/dev/rdisk1 of=~/Desktop/Backup_Jeedom.img bs=1m_
-+
+
 _Rmq : Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc saisir dans la commande de sauvegarde /dev/+++<u>r</u>+++disk1_
 
 . [underline]#Restauration#
-+    
+    
 * Avec ApplePi-Baker : Sélectionner la bonne carte dans la liste _Pi-Crust_, mettre le chemin vers le fichier image 
 à restaurer dans le champ _IMG file_ de la section _Pi-Ingredients_, et cliquer sur _Restore Backup_ afin de 
 restaurer l'image sur la carte microSD.
-+
+
 * En commande shell :
 ** Afin de trouver le disque correspondant à la carte, ouvrir un terminal et saisir la même commande que pour la sauvegarde : _diskutil list_ 
-+
 ** Démonter les partitions de la carte en tapant la commande : _sudo diskutil unmountDisk /dev/disk1_
-+
 ** Restaurer l'image sur la carte microsd en tapant la commande : _sudo dd bs=1m if=~/Desktop/Backup_Jeedom.img of=/dev/rdisk1_
-+
+
 _Rmq : Dans cet exemple, le nom du disque de la carte est /dev/disk1, il faut donc saisir dans la commande de sauvegarde /dev/+++<u>r</u>+++disk1_
 
 === [underline]#IV) Sous Linux#
 
-. [underline]#Sauvegarde#
-+    
+. [underline]#Sauvegarde#   
 * Afin de trouver le disque correspondant à la carte, ouvrir un terminal et saisir la commande : _sudo fdisk -l | grep Dis_
-+
-----
+
+[source,bash]
 $ sudo fdisk -l | grep Dis
 Disk /dev/sda: 320.1 GB, 320072933376 bytes
 Disk /dev/sdb: 16.0 GB, 16012804096 bytes
 Disk /dev/sdc: 8.0 GB, 8006402048 bytes
-----
-+
+
 * Lancer la création de l'image en saisissant la commande : _sudo dd if=/dev/sdc of=Backup_Jeedom.img bs=1m_
-+
+
 _Rmq : Dans cet exemple, le nom du disque de la carte est /dev/sdc._
 
 . [underline]#Restauration#
-+    
-* Afin de trouver le disque correspondant à la carte, ouvrir un terminal et saisir la commande : _sudo fdisk -l | grep Dis_
-+
+    
+* Afin de trouver le disque correspondant à la carte, ouvrir un terminal et saisir la commande : _sudo fdisk -l | grep Dis_+
 * Démonter les partitions de la carte en tapant la commande : _sudo umount /dev/sdc?*_
-+
 * Restaurer l'image sur la carte microsd en tapant la commande : _sudo dd if=Backup_Jeedom.img of=/dev/sdc bs=1m_
-+
+
 _Rmq : Dans cet exemple, le nom du disque de la carte est /dev/sdc._

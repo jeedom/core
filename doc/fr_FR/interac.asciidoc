@@ -1,4 +1,4 @@
-:icons:
+= Intéractions
 
 Vaste sujet, avec énormément de possibilités.
 

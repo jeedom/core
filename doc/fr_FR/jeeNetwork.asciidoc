@@ -1,4 +1,4 @@
-:icons:
+= Réseaux Jeedom
 
 == Description
 Page permettant d'interconnecter plusieurs Jeedom en mode maitre/esclave. Cette possibilité permet par exemple de 

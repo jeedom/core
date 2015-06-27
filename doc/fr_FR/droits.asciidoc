@@ -1,4 +1,4 @@
-:icons:
+= Droits
 
 == Description
 Accessible via Général/Administration, cette page permettant de gérer finement les droits de chaque utilisateur

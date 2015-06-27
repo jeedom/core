@@ -1,4 +1,4 @@
-:icons:
+= Profils
 
 == Description
 La page profils vous permet de configurer certain comportement de jeedom spécifique à votre utilisateur : page d'accueil, 

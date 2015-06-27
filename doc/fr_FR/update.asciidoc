@@ -1,4 +1,4 @@
-:icons:
+= Mise à jour
 
 Le centre de mise à jour centralise l'ensemble des fonctions de Jeedom, et permet de mettre à jour toutes les fonctionnalités de Jeedom, incluant le logiciel de base, les plugins, les widgets, etc...
 

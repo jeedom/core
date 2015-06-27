@@ -1,4 +1,4 @@
-:icons:
+= Plugin
 
 Le sous-menu Plugins, permet de gérer ses plugins, à savoir : les télécharger, les mettre à jour et les activer
 

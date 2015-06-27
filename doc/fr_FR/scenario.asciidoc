@@ -1,4 +1,4 @@
-:icons:
+= Scenario
 
 == Description
 Voici pour moi la partie la plus importante dans la domotique : les scénarios. Véritable cerveau de la domotique 

@@ -1,5 +1,4 @@
-
-:icons:
+= Log
 
 Le menu Logs, permet de suivre ce qui se passe sur sa domotique. Dans la plupart des cas ils ne serviront qu'à effectuer du debuggage et à résoudre des problèmes par l'équipe de support. Ce menu est d'ailleurs accessible uniquement en mode expert.
 
