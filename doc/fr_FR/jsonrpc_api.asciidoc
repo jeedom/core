@@ -92,7 +92,7 @@ Paramètres:
 === cmd::all
 Retourne la liste de toutes les commandes
 
-===== cmd::byId
+=== cmd::byId
 Retourne la commande spécifiée
 
 Paramètres:

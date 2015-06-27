@@ -43,7 +43,6 @@ Si vous avez un message tout est lié, normalement le maitre devrais detecter au
 
 == Troubleshooting
 
-[panel,danger]
 .Erreur 404 lors de la sauvegarde
 --
 C'est qu'il y a une erreur sur la configuration reseaux du maitre (en général)
