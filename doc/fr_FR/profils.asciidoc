@@ -1,8 +1,72 @@
 = Profils
 
-== Description
-La page profils vous permet de configurer certain comportement de jeedom spécifique à votre utilisateur : page d'accueil, 
-themes de la version desktop, de la version mobile, des graphiques... Elle permet aussi de changer votre mot de passe et de passer
-en mode expert permettant une configuration plus poussée de jeddom.
+La page profils vous permet de configurer certain comportement de jeedom spécifique à votre utilisateur : page d'accueil, themes de la version desktop, de la version mobile, des graphiques... Elle permet aussi de changer votre mot de passe et de passer en mode expert permettant une configuration plus poussée de jeddom.
 
-image::../images/profils.JPG[]
+== Menu profils
+
+Vous retourver en haut à droite sur chaque page de Jeedom le menu profils : 
+
+image::../images/profils1.png[]
+
+Vous retrouvez a coté de ce menu profil, une information sur le nombre de message dans le centre de message (ces messages sont important sinon Jeedom ne vous les remonterez pas), l'heure Jeedom (attention c'est bine l'heure de Jeedom et non de votre PC), le menu profils, une icone indiquant la connexion (ici filaire, mais il est possible si vous etes en wifi d'avoir celle-ci), l'icone pour l'accès à l'aide de la page en cours et l'icone pour faire une demande de support.
+
+Si vous cliquez sur le menu profils vous obtenez : 
+
+image::../images/profils2.png[]
+
+A partir de ce menu vous avez accès à la page profils, à l'activation ou non du mode expert, au redemarrage de Jeedom, à l'arret de Jeedom, au passage en version mobile et un bouton pour se deconnecter.
+
+[IMPORTANT]
+En DIY les actions de redemarrage et d'arret ne marche que si vous avez bien fait les actions visudo, voir link:https://jeedom.fr/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom[ici]
+
+== Page profils
+
+La page profils ressemble à ca : 
+
+image::../images/profils3.png[]
+
+Vous retrouver ici différent panneau qui vous permettront de configurer Jeedom, tous ces reglages sont uniquement liée à votre utilisateur il vous sont donc propre
+
+=== Thèmes
+
+image::../images/profils4.png[]
+
+Le panneau thèmes vous permet de regler des paramètres d'interface : 
+
+* *Desktop* : thèmes à utiliser en mode desktop, attention seul le thèmes par defaut est officiellement supporté par Jeedom
+* *Mobile* : permet de legerement configurer le thème mobile (ici tout est supporté), soit clair soit sombre, ainsi que la couleur dominant de celui-ci
+* *Graphique  Desktop* : permet de definir le thème par defaut des graphiques en mode desktop
+* *Graphique Mobile* : permet de definir le thème par defaut des graphiques en mode mobile
+
+=== Interface
+
+image::../images/profils5.png[]
+
+Vous permet de definir certain comportement de l'interface :
+
+* *Général*
+** *Ne pas masquer les menus automatiquement* : indique à Jeedom de ne pas masquer le panneau de gauche, lorsqu'il existe, pour rappel ce panneau est disponible sur la pluspart des pages des plugins, ainsi que la page des scénario, des interactions, des objets....
+* *Page par défaut*
+** *Desktop* : page par defaut à afficher lors de la connexion en desktop
+** *Mobile* : page par defaut à afficher lors de la connexion en mobile
+* *Objet par défaut sur le dashboard* : objet à afficher par defaut lors l'arrivé sur le dashboard
+* *Vue par défaut* : vue à afficher par defaut lors l'arrivé sur le dashboard
+* *Design par défaut* : design à afficher par defaut lors l'arrivé sur le dashboard
+** *Plein écran* : affichage par defaut en pleine écran lors de l'arrivé sur les designs
+* *Dashboard*
+** *Déplier le panneau des scénarios* : permet de rendre visible par defaut le menu des scénarios (à droite) sur le dashboard
+** *Déplier le panneau des objets* : permet de rendre visible par defaut le menu des objets (à gauche) sur le dashboard
+* *Vue*
+** *Déplier le panneau des vues* : permet de rendre visible par defaut le menu des vue (à gauche) sur les vues
+
+=== Notifications
+
+image::../images/profils6.png[]
+
+Ici vous pouvez regler la couleur des notifications qui arrivent sur l'interface
+
+=== Autres
+
+image::../images/profils7.png[]
+
+C'est ici que vous pouvez changer votre mot de passe ainsi que la clef de sécurité pour les appareils (ordinateur,téléphone...) enregistrés. Un changement de cette clef obligera tous les péripherique se connectant automatiquement avec votre compte à se réauthentifier

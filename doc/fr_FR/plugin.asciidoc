@@ -73,3 +73,6 @@ Il n'est vraiment pas recommandé de mettre un plugin beta sur un Jeedom beta, b
 
 [IMPORTANT]
 Certain plugin son payant, dans ce cas la fiche du plugin vous proposera de l'acheter, une fois cela fait il faut attendre une dizaine de minutes (temps de validation du paiement), puis retrouner sur la fiche du plugin pour l'installer normalement
+
+[TIP]
+Vous pouvez aussi en mode expert pousser directement l'archive ZIP d'un plugin a Jeedom, pour cela il faut mettre la souris tout a gauche pour faire apparaitre le menu de la page plugin puis cliquer sur envoyer un plugins. Attention le nom du zip doit etre le meme que l'id du plugin et dès l'ouverture du ZIP un dossier plugin_info doit etre présent
