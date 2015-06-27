@@ -63,7 +63,7 @@ foreach ($objects as $object) {
    <br/>
    <br/>
    <div class="row row-same-height">
-    <div class="col-sm-3 object col-xs-height" data-id="-1">
+    <div class="col-xs-4 object col-xs-height" data-id="-1">
       <legend>{{Aucun}}</legend>
       <ul class="eqLogicSortable">
         <?php
@@ -95,7 +95,7 @@ foreach ($objects as $object) {
 	if ($i == 0) {
 		echo '<div class="row row-same-height">';
 	}
-	echo '<div class="col-sm-3 object col-xs-height" data-id="' . $object->getId() . '" style="background-color : ' . $object->getDisplay('tagColor') . ';color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">';
+	echo '<div class="col-xs-4 object col-xs-height" data-id="' . $object->getId() . '" style="background-color : ' . $object->getDisplay('tagColor') . ';color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">';
 	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">' . $object->getName();
 	echo '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject tooltips" title="{{Configuration avancée}}"></i>';
 	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right tooltips" title="{{Aller sur la configuration de l\'objet}}"><i class="fa fa-external-link"></i></a>';
@@ -124,7 +124,7 @@ foreach ($objects as $object) {
 	echo '</ul>';
 	echo '</div>';
 	$i++;
-	if ($i > 3) {
+	if ($i > 2) {
 		$i = 0;
 	}
 	if ($i == 0) {
@@ -132,8 +132,8 @@ foreach ($objects as $object) {
 	}
 }
 if ($i != 0) {
-	while ($i <= 3) {
-		echo '<div class="col-sm-3 col-xs-height">';
+	while ($i <= 2) {
+		echo '<div class="col-xs-4 col-xs-height">';
 		echo '</div>';
 		$i++;
 	}
