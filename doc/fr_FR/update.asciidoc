@@ -1,35 +1,84 @@
 = Mise à jour
 
+== Centre de mise à jour
+
 Le centre de mise à jour centralise l'ensemble des fonctions de Jeedom, et permet de mettre à jour toutes les fonctionnalités de Jeedom, incluant le logiciel de base, les plugins, les widgets, etc...
 
-Il présente sous forme de tableau l'ensemble des éléments installés dans Jeedom. Rn mode Expert, on affiche tous les élements, 
-si non, on affiche uniquement les éléments à mettre à jour.
-
-Il y a au total jusqu'à 5 boutons qui peuvent être disponibles par élément :
-"Voir" permet de consulter la page du market correspondant à l'élément selectionné.
-"Partager" permet lorsque vous avez créé un élément de le partager sur le market.
-"Supprimer" permet de désinstaller un élément.
-"Mettre à jour" permet de mettre à jour l'élément.
-
-A noter que "Core" Jeedom signifie la mise à jour du logiciel de base Jeedom.
+Il est accessible par le menu Général -> Administration -> Centre de mise à jour : 
 
 image::../images/update.JPG[]
 
-En haut du tableau se trouvent les boutons de commande. Jeedom se connecte périodiquement avec le market 
-pour voir si des mises à jour sont disponibles. Si vous voulez réaliser une vérification manuelle, 
-vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
-
-Le bouton "Mettre à jour" permet de mettre à jour l'ensemble de Jeedom.
+Une fois dessus vous obtenez : 
 
 image::../images/update2.png[]
 
-En cliquant sur la flêche à côté du bouton "Mettre à jour" on a un certain nombre d'options de mise à jour.
-A noter que l'option "tout + systeme" est à risqué et à faire seulement si l'équipe Jeedom le sollicite
+Il présente sous forme de tableau l'ensemble des éléments installés dans Jeedom. 
+[TIP]
+En mode Expert, on affiche tous les élements, si non, on affiche uniquement les éléments à mettre à jour.
+
+
+Il y a au total jusqu'à 5 boutons qui peuvent être disponibles par élément :
+
+* *Voir* : permet de consulter la page du market correspondant à l'élément selectionné.
+* *Partager* : permet lorsque vous avez créé un élément de le partager sur le market.
+* *Supprimer* : permet de désinstaller un élément.
+* *Mettre à jour* : permet de mettre à jour l'élément.
+
+[TIP]
+A noter que "Core" Jeedom signifie la mise à jour du logiciel de base Jeedom.
+
+
+En haut du tableau se trouvent les boutons de commande. Jeedom se connecte périodiquement avec le market pour voir si des mises à jour sont disponibles (la date de derniere verificaiton est indiquée tout en haut du tableau à gauche). Si vous voulez réaliser une vérification manuelle, vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
+
+Le bouton "Mettre à jour" permet de mettre à jour l'ensemble de Jeedom.
 
 image::../images/update3.png[]
+
+[TIP]
+Sur la branche beta le numéro de version n'est pas toujours mise à jour après chaque modification, il faut donc cliquer sur "Mettre à jour" regulierement pour etre sur d'avoir la derniere version. Ce n'est le cas bien sur que sur la branche beta.
+
+[IMPORTANT]
+Avant une mise à jour Jeedom va par defaut faire une sauvegarde, en cas de soucis lors de l'application d'une mise à jour Jeedom va automatiquement restaurer la sauvegarde faite juste avant. Ce principe n'est bien sur valable que pour les mises à jour de Jeedom et non des plugins
+
+En cliquant sur la flêche à côté du bouton "Mettre à jour" on a un certain nombre d'options de mise à jour.
+
+image::../images/update5.png[]
+
+* *Tout forcer* : Met à jour Jeedom et les plugin en mode forcé c'est a dire que meme si il y a une erreur Jeedom continue et restaura pas la sauvegarde
+* *Plugins seulement* : Met à jour seulement les plugins
+* *Plugins seulement forcés* : Met à jour seulement les plugins en mode forcé (continue en cas d'erreur)
+* *Jeedom seulement* : Met à jour seulement Jeedom
+* *Jeedom seulement forcés* : Met à jour suelement Jeedom en mode forcé c'est a dire que meme si il y a une erreur Jeedom continue et restaura pas la sauvegarde 
+* *Réappliquer une mise à jour* : Permet de reappliquer une mise à jour. Toute les mise à jour ne peuvent etre réappliquée. En cliquant dessus vous obtenez cette fenetre : 
+
+image::../images/update6.png[]
+
+Ici vous choissiez d'abord la mise à jour a réapliquer, si c'est en mode forcé ou non (vivement conseillé dans ce cas la) et si il faut aussi appliquer les mise à jour suivante (vivement conseillé aussi)
 
 Enfin à droite de la page, la partie "Informations" permet de suivre l'état de la mise à jour.
 Ces informations sont à communiquer à l'équipe en cas de probleme.
 
 image::../images/update4.png[]
 
+== Paramètres de mise à jour
+
+Il est possible dans Général -> Administration -> Configuration puis dans la partie "Market et mise à jour" de configurer certain paramètre de mise à jour : 
+
+image::../images/update7.png[]
+
+Ici on retrouve : 
+
+* *Addresse* : Addresse du market, à ne surtout jamais changer a moins que ca soit sur demande de l'équipe de support
+* *Nom d'utilisateur* : nom d'utilisateur du market
+* *Mot de passe* : mot de passe du market
+* *Installer automatiquement les widgets manquants* : indique à Jeedom d'installer automatiquement les widgets dont il a besoin (attention à bien avoir installé le plugin widget)
+* *Voir les modules en beta (à vos risques et périls)* : Permet de voir les plugins, widget... qui sont en beta et de les installer
+* *Faire une sauvegarde avant la mise à jour* : indique a jeedom de faire une sauvegarde avant chaque mise à jour (vivement recommandé)
+* *Mettre à jour automatiquement* : Indique à Jeedom d'installer automatiquement les mises à jour (non recommandé)
+* *Branche* : Indique la version de Jeedom à utiliser soit la stable soit la developpement (beta)
+
+[IMPORTANT]
+Il faut eviter de mélanger les plugins beta avec un Jeedom stable et vise versa. De nombreuses erreurs sont remonté à l'équipe de support car cette réglès n'est pas respectée
+
+[IMPORTANT]
+Il n'est pas possible de choisir l'heure de la verification des mises à jour ou le moment de la mise à jour en automatique, cela pour permettre une repartition des demandes sur le market. A noter toutefois ques ces deux actions on forcement lieu entre 6h00 et 7h59
