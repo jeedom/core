@@ -191,7 +191,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		$user = user::createTemporary(12);
+		$user = user::createTemporary(24);
 		$return = utils::o2a($user);
 		$return['directUrl'] = $user->getDirectUrlAccess();
 		ajax::success($return);
