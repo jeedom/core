@@ -109,16 +109,16 @@
         if(name.indexOf(search) < 0 && type.indexOf(search) < 0){
             eqLogic.hide();
         }
-       $(this).find('.cmd').each(function(){
-        var cmd = $(this);
-        var name = cmd.attr('data-name').toLowerCase();
-        if(name.indexOf(search) >= 0){
-            eqLogic.show();
-            eqLogic.find('.cmdSortable').show();
-            cmd.removeClass('alert-warning').addClass('alert-success'); 
-        }
+        $(this).find('.cmd').each(function(){
+            var cmd = $(this);
+            var name = cmd.attr('data-name').toLowerCase();
+            if(name.indexOf(search) >= 0){
+                eqLogic.show();
+                eqLogic.find('.cmdSortable').show();
+                cmd.removeClass('alert-warning').addClass('alert-success'); 
+            }
+        });
     });
-   });
 });
 
  $('.cb_selEqLogic').on('change',function(){
@@ -130,8 +130,12 @@
     });
     if(found){
         $('#bt_removeEqlogic').show();
+        $('.bt_setIsVisible').show();
+        $('.bt_setIsEnable').show();
     }else{
         $('#bt_removeEqlogic').hide();
+        $('.bt_setIsVisible').hide();
+        $('.bt_setIsEnable').hide();
     }
 });
 
@@ -153,6 +157,44 @@
                     window.location.reload();
                 }
             });
+        }
+    });
+});
+
+ $('.bt_setIsVisible').on('click',function(){
+    var eqLogics = [];
+    $('.cb_selEqLogic').each(function(){
+        if($(this).value() == 1){
+            eqLogics.push($(this).closest('.eqLogic').attr('data-id'));
+        }
+    });
+    jeedom.eqLogic.setIsVisibles({
+        eqLogics: eqLogics,
+        isVisible : $(this).attr('data-value'),
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success : function(){
+            window.location.reload();
+        }
+    });
+});
+
+ $('.bt_setIsEnable').on('click',function(){
+    var eqLogics = [];
+    $('.cb_selEqLogic').each(function(){
+        if($(this).value() == 1){
+            eqLogics.push($(this).closest('.eqLogic').attr('data-id'));
+        }
+    });
+    jeedom.eqLogic.setIsEnables({
+        eqLogics: eqLogics,
+        isEnable : $(this).attr('data-value'),
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success : function(){
+            window.location.reload();
         }
     });
 });

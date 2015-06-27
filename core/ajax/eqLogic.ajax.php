@@ -140,6 +140,32 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'setIsVisibles') {
+		$eqLogics = json_decode(init('eqLogics'), true);
+		foreach ($eqLogics as $id) {
+			$eqLogic = eqLogic::byId($id);
+			if (!is_object($eqLogic)) {
+				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $id);
+			}
+			$eqLogic->setIsVisible(init('isVisible'));
+			$eqLogic->save();
+		}
+		ajax::success();
+	}
+
+	if (init('action') == 'setIsEnables') {
+		$eqLogics = json_decode(init('eqLogics'), true);
+		foreach ($eqLogics as $id) {
+			$eqLogic = eqLogic::byId($id);
+			if (!is_object($eqLogic)) {
+				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $id);
+			}
+			$eqLogic->setIsEnable(init('isEnable'));
+			$eqLogic->save();
+		}
+		ajax::success();
+	}
+
 	/*     * **************************Gloabl Method******************************** */
 
 	if (init('action') == 'copy') {
