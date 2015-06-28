@@ -429,3 +429,15 @@ En dessous vous avez la partie pour appliquer votre template au scénario couran
 Etant donnée que d'un Jeedom à l'autre ou d'une installation à une autre les commandes peuvent etre differente Jeedom vous demande la correspondance des commandes entre celle résente lors de la création du template et celle presente chez vous
 
 Il vous suffit de remplir la correspondance des commandes puis de faire appliquer
+
+== Les logs
+
+Vous pouvez acceder aux logs d'éxecution d'un scénario en cliquant sur le bouton log de celui-ci : 
+
+image::../images/scenario17.JPG[]
+
+Vous obtenez : 
+
+image::../images/scenario19.JPG[]
+
+En haut vous pouvez rafraichir le log, le télécharger ou le supprimer. La taille des logs n'est pas limité en execution mais en nombre de ligne (en fonction de la valeur mise dans la configuration de Jeedom)
