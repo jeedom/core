@@ -1,6 +1,29 @@
 = Dashboard
 
-Une des pages principale de Jeedom celle-ci affiche un compte rendu de toute votre domotique. 
-Ce compte-rendu (contrairement aux vues et design) est auto-generé par Jeedom.
+Une des pages principale de Jeedom celle-ci affiche un compte rendu de toute votre domotique. Ce compte-rendu (contrairement aux vues et design) est auto-generé par Jeedom.
+
+Il est accessible en cliquant sur accueil -> Dashboard
+
+image::../images/dashboard2.JPG[]
+
+[TIP]
+Comme vous pouvez le voir sur la capture il est possible d'aller directement sur un objet de votre domotique. Cela permet de n'avoir que les équipements qui vous interesse et donc de charger la page plus rapidement
+
+Voici un exemple de dashboard
 
 image::../images/dashboard.JPG[]
+
+Vous avez en haut à gauche une petite icone pour faire afficher/masquer l'arbre des objets : 
+
+image::../images/dashboard1.JPG[]
+
+Au milieu vous pouvez choisir de ne filtrer que sur certain type d'équipement :
+
+image::../images/dashboard3.JPG[]
+
+Enfin tout à droite vous avez un bouton pour afficher/masquer les scénarios :
+
+image::../images/dashboard4.JPG[]
+
+[TIP]
+Il est possible à partir de votre profils de configurer Jeedom pour que l'arbre des objets et/ou les scénarios soit visible par defaut lorsque vous arrivez sur le Dashboard
