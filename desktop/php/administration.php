@@ -276,10 +276,10 @@ echo $CONFIG['db']['password'];
             <div class="panel-body">
                 <form class="form-horizontal">
                     <fieldset>
-                       <div class="row">
+                     <div class="row">
                         <div class="col-xs-6">
-                           <legend>Accès interne</legend>
-                           <?php
+                         <legend>Accès interne</legend>
+                         <?php
 if (config::byKey('jeeNetwork::mode') == 'slave') {
 	echo '<div class="form-group expertModeVisible">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP Maître}}</label>';
@@ -289,73 +289,73 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
 	echo '</div>';
 }
 ?>
-                           <div class="form-group">
-                            <label class="col-xs-4 control-label">{{Protocole}}</label>
-                            <div class="col-xs-8">
-                                <select class="configKey form-control" data-l1key="internalProtocol">
-                                    <option value="">Aucun</option>
-                                    <option value="http://">HTTP</option>
-                                    <option value="https://">HTTPS</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">{{Adresse URL ou IP}}</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="configKey form-control" data-l1key="internalAddr" />
-                            </div>
-                        </div>
-                        <div class="form-group expertModeVisible">
-                            <label class="col-xs-4 control-label">{{Complément (exemple : /jeedom)}}</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="configKey form-control" data-l1key="internalComplement" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">{{Port}}</label>
-                            <div class="col-xs-8">
-                                <input type="number"class="configKey form-control" data-l1key="internalPort" />
-                            </div>
+                       <div class="form-group">
+                        <label class="col-xs-4 control-label">{{Protocole}}</label>
+                        <div class="col-xs-8">
+                            <select class="configKey form-control" data-l1key="internalProtocol">
+                                <option value="">Aucun</option>
+                                <option value="http://">HTTP</option>
+                                <option value="https://">HTTPS</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="col-xs-6">
-                        <legend>Accès externe</legend>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">{{Protocole}}</label>
-                            <div class="col-xs-8">
-                                <select class="configKey form-control" data-l1key="externalProtocol">
-                                    <option value="">Aucun</option>
-                                    <option value="http://">HTTP</option>
-                                    <option value="https://">HTTPS</option>
-                                </select>
-                            </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">{{Adresse URL ou IP}}</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="configKey form-control" data-l1key="internalAddr" />
                         </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">{{Adresse URL ou IP}}</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="configKey form-control" data-l1key="externalAddr" />
-                            </div>
+                    </div>
+                    <div class="form-group expertModeVisible">
+                        <label class="col-xs-4 control-label">{{Complément (exemple : /jeedom)}}</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="configKey form-control" data-l1key="internalComplement" />
                         </div>
-                        <div class="form-group expertModeVisible">
-                            <label class="col-xs-4 control-label">{{Complément (exemple : /jeedom)}}</label>
-                            <div class="col-xs-8">
-                                <input type="text"  class="configKey form-control" data-l1key="externalComplement" />
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">{{Port}}</label>
+                        <div class="col-xs-8">
+                            <input type="number"class="configKey form-control" data-l1key="internalPort" />
                         </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">{{Port}}</label>
-                            <div class="col-xs-8">
-                                <input type="number" class="configKey form-control" data-l1key="externalPort" />
-                            </div>
-                        </div>
-
                     </div>
                 </div>
+                <div class="col-xs-6">
+                    <legend>Accès externe</legend>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">{{Protocole}}</label>
+                        <div class="col-xs-8">
+                            <select class="configKey form-control" data-l1key="externalProtocol">
+                                <option value="">Aucun</option>
+                                <option value="http://">HTTP</option>
+                                <option value="https://">HTTPS</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">{{Adresse URL ou IP}}</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="configKey form-control" data-l1key="externalAddr" />
+                        </div>
+                    </div>
+                    <div class="form-group expertModeVisible">
+                        <label class="col-xs-4 control-label">{{Complément (exemple : /jeedom)}}</label>
+                        <div class="col-xs-8">
+                            <input type="text"  class="configKey form-control" data-l1key="externalComplement" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">{{Port}}</label>
+                        <div class="col-xs-8">
+                            <input type="number" class="configKey form-control" data-l1key="externalPort" />
+                        </div>
+                    </div>
 
-                <div class="row">
-                    <div class="col-xs-6">
-                        <legend>{{Wifi && IP statique}}</legend>
-                        <?php
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <legend>{{Wifi && IP statique}}</legend>
+                    <?php
 if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
 	echo '<div class="alert alert-warning">{{Fonctionalité non disponible sur votre système}}</div>';
 } else if (!network::canManageNetwork()) {
@@ -365,120 +365,120 @@ if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
 	echo '</div>';
 } else {
 	?>
-                           <div class="form-group">
-                            <label class="col-xs-4 control-label">{{Adresse MAC}}</label>
-                            <div class="col-xs-8">
-                                <span class="label label-default" style="font-size:1em;"><?php echo network::getMac('bond0')?></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">{{Activer le wifi}}</label>
-                            <div class="col-xs-8">
-                                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="network::wifi::enable" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">{{Réseau wifi}}</label>
-                            <div class="col-xs-6">
-                                <select class="configKey form-control" data-l1key="network::wifi::ssid" ></select>
-                            </div>
-                            <div class="col-xs-2">
-                                <a class="btn btn-info" id="bt_refreshWifiList"><i class="fa fa-refresh"></i></a>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">{{Clef}}</label>
-                            <div class="col-xs-8">
-                                <input type="password" class="configKey form-control" data-l1key="network::wifi::password" />
-                            </div>
-                        </div>
-                        <div class="form-group expertModeVisible">
-                            <label class="col-xs-4 control-label">{{IP fixe}}</label>
-                            <div class="col-xs-8">
-                                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="network::fixip::enable" />
-                            </div>
-                        </div>
-                        <div class="form-group expertModeVisible">
-                            <label class="col-xs-4 control-label">{{Netmask}}</label>
-                            <div class="col-xs-8">
-                                <input class="configKey form-control" data-l1key="network::fixip::netmask" placeholder="255.255.255.0"/>
-                            </div>
-                        </div>
-                        <div class="form-group expertModeVisible">
-                            <label class="col-xs-4 control-label">{{Gateway}}</label>
-                            <div class="col-xs-8">
-                                <input class="configKey form-control" data-l1key="network::fixip::gateway" placeholder="192.168.0.1" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                           <label class="col-xs-4 control-label">{{Gestion}}</label>
-                           <div class="col-xs-8">
-                             <a class="btn btn-success" id="bt_writeInterfaceFile"><i class='fa fa-pencil'></i> {{Ecrire la configuration}}</a>
-                         </div>
-                     </div>
-                     <?php }
-?>
-                 </div>
-                 <div class="col-xs-6">
-                    <legend>DNS Jeedom</legend>
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Utiliser les DNS Jeedom}}</label>
+                       <div class="form-group">
+                        <label class="col-xs-4 control-label">{{Adresse MAC}}</label>
                         <div class="col-xs-8">
-                            <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="market::allowDNS" />
+                            <span class="label label-default" style="font-size:1em;"><?php echo network::getMac('bond0')?></span>
                         </div>
                     </div>
-                    <div class="alert alert-info">{{Toute modification nécessite de redémarrer le service DNS Jeedom (ligne "Gestion" puis "Redémarrer")}}</div>
-                    <div class="form-group has-warning expertModeVisible">
-                        <label class="col-xs-4 control-label" title="{{A ne faire que si on vous le demande ou en connaissance de cause}}">{{Rediriger le SSH}}</label>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">{{Activer le wifi}}</label>
                         <div class="col-xs-8">
-                            <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="market::redirectSSH" />
+                            <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="network::wifi::enable" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">{{Réseau wifi}}</label>
+                        <div class="col-xs-6">
+                            <select class="configKey form-control" data-l1key="network::wifi::ssid" ></select>
+                        </div>
+                        <div class="col-xs-2">
+                            <a class="btn btn-info" id="bt_refreshWifiList"><i class="fa fa-refresh"></i></a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">{{Clef}}</label>
+                        <div class="col-xs-8">
+                            <input type="password" class="configKey form-control" data-l1key="network::wifi::password" />
                         </div>
                     </div>
                     <div class="form-group expertModeVisible">
-                        <label class="col-xs-4 control-label">{{Authentification (optionnelle)}}</label>
-                        <div class="col-xs-4">
-                            <input  class="configKey form-control" data-l1key="market::userDNS" placeholder="Nom d'utilisateur" />
+                        <label class="col-xs-4 control-label">{{IP fixe}}</label>
+                        <div class="col-xs-8">
+                            <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="network::fixip::enable" />
                         </div>
-                        <div class="col-xs-4">
-                            <input type="password" class="configKey form-control" data-l1key="market::passwordDNS" placeholder="Mot de passe" />
+                    </div>
+                    <div class="form-group expertModeVisible">
+                        <label class="col-xs-4 control-label">{{Netmask}}</label>
+                        <div class="col-xs-8">
+                            <input class="configKey form-control" data-l1key="network::fixip::netmask" placeholder="255.255.255.0"/>
+                        </div>
+                    </div>
+                    <div class="form-group expertModeVisible">
+                        <label class="col-xs-4 control-label">{{Gateway}}</label>
+                        <div class="col-xs-8">
+                            <input class="configKey form-control" data-l1key="network::fixip::gateway" placeholder="192.168.0.1" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Statut http}}</label>
-                        <div class="col-xs-8">
-                            <?php
+                     <label class="col-xs-4 control-label">{{Gestion}}</label>
+                     <div class="col-xs-8">
+                       <a class="btn btn-success" id="bt_writeInterfaceFile"><i class='fa fa-pencil'></i> {{Ecrire la configuration}}</a>
+                   </div>
+               </div>
+               <?php }
+?>
+           </div>
+           <div class="col-xs-6">
+            <legend>DNS Jeedom</legend>
+            <div class="form-group">
+                <label class="col-xs-4 control-label">{{Utiliser les DNS Jeedom}}</label>
+                <div class="col-xs-8">
+                    <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="market::allowDNS" />
+                </div>
+            </div>
+            <div class="alert alert-info">{{Toute modification nécessite de redémarrer le service DNS Jeedom (ligne "Gestion" puis "Redémarrer")}}</div>
+            <div class="form-group has-warning expertModeVisible">
+                <label class="col-xs-4 control-label" title="{{A ne faire que si on vous le demande ou en connaissance de cause}}">{{Rediriger le SSH}}</label>
+                <div class="col-xs-8">
+                    <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="market::redirectSSH" />
+                </div>
+            </div>
+            <div class="form-group expertModeVisible">
+                <label class="col-xs-4 control-label">{{Authentification (optionnelle)}}</label>
+                <div class="col-xs-4">
+                    <input  class="configKey form-control" data-l1key="market::userDNS" placeholder="Nom d'utilisateur" />
+                </div>
+                <div class="col-xs-4">
+                    <input type="password" class="configKey form-control" data-l1key="market::passwordDNS" placeholder="Mot de passe" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-4 control-label">{{Statut http}}</label>
+                <div class="col-xs-8">
+                    <?php
 if (network::ngrok_run()) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
 } else {
 	echo '<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
 }
 ?>
-                       </div>
-                   </div>
-                   <div class="form-group">
-                    <label class="col-xs-4 control-label">{{Statut SSH}}</label>
-                    <div class="col-xs-8">
-                        <?php
+               </div>
+           </div>
+           <div class="form-group">
+            <label class="col-xs-4 control-label">{{Statut SSH}}</label>
+            <div class="col-xs-8">
+                <?php
 if (network::ngrok_run('tcp', 22, 'ssh')) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} dns.jeedom.com:' . config::byKey('ngrok::port') . '</span>';
 } else {
 	echo '<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Rediriger le SSH}}">{{Arrêté}}</span>';
 }
 ?>
-                   </div>
-               </div>
-               <div class="form-group">
-                   <label class="col-xs-4 control-label">{{Gestion}}</label>
-                   <div class="col-xs-8">
-                     <a class="btn btn-success" id="bt_restartNgrok"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
-                     <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arrêter}}</a>
-                 </div>
+           </div>
+       </div>
+       <div class="form-group">
+         <label class="col-xs-4 control-label">{{Gestion}}</label>
+         <div class="col-xs-8">
+           <a class="btn btn-success" id="bt_restartNgrok"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
+           <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arrêter}}</a>
+       </div>
 
-             </div>
-         </div>
-     </div>
+   </div>
+</div>
+</div>
 
- </fieldset>
+</fieldset>
 </form>
 </div>
 </div>
@@ -587,7 +587,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                 <legend>{{Push}}</legend>
                 <form class="form-horizontal">
                     <fieldset>
-                       <div class="form-group">
+                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{URL de push globale}}</label>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <input type="text"  class="configKey form-control tooltips" data-l1key="cmdPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
@@ -626,6 +626,20 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                             <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="interact::noResponseIfEmpty"/>
                         </div>
                     </div>
+                    <i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
+                    <table class="table table-condensed table-bordered" id="table_convertColor" >
+                        <thead>
+                            <tr>
+                                <th>{{Nom}}</th><th>{{Code HTML}}</th>
+                            </tr>
+                            <tr class="filter" style="display : none;">
+                                <td class="color"><input class="filter form-control" filterOn="color" /></td>
+                                <td class="codeHtml"><input class="filter form-control" filterOn="codeHtml" /></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </fieldset>
             </form>
         </div>
@@ -801,7 +815,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
         <div class="panel-heading">
             <h3 class="panel-title">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_commandeEqlogic">
-                    {{Commandes, Equipements et HTTP}}
+                    {{Equipements et HTTP}}
                 </a>
             </h3>
         </div>
@@ -821,20 +835,6 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                                 <input class="configKey form-control" data-l1key="http::ping_timeout"/>
                             </div>
                         </div>
-                        <i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
-                        <table class="table table-condensed table-bordered" id="table_convertColor" >
-                            <thead>
-                                <tr>
-                                    <th>{{Nom}}</th><th>{{Code HTML}}</th>
-                                </tr>
-                                <tr class="filter" style="display : none;">
-                                    <td class="color"><input class="filter form-control" filterOn="color" /></td>
-                                    <td class="codeHtml"><input class="filter form-control" filterOn="codeHtml" /></td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
                     </fieldset>
                 </form>
             </div>

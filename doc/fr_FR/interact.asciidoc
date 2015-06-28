@@ -1,31 +1,74 @@
 = Intéractions
 
-Vaste sujet, avec énormément de possibilités.
+Le principe est le suivant : une phrase de commande déclenche des actions. Pour simplifier la création des phrases il est possible d'utiliser des mots clef afin que jeedom génère automatiquement une liste de phrases.
 
-La page d’intéraction permet de configurer toutes les intéractions orales (via le module SARAH) ou écrites ( les sms par exemple…) que l’on peut avoir avec Jeedom :
+== Principe
+
+Pour accèder à la page d'interaction il faut aller sur Général -> Intérations : 
+
+image::../images/interact1.JPG[]
+
+La page d’intéraction permet de configurer toutes les intéractions orales (via le module SARAH, ou tasker + autovoice, voir https://jeedom.fr/doc/documentation/howto/fr_FR/doc-howto-android.autovoice.html[ici]) ou écrites ( les sms ou le plugin Slack par exemple…) que l’on peut avoir avec Jeedom :
+
+image::../images/interact6.JPG[]
+
+[TIP]
+Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
+
+Ici on retrouve en haut un bouton d'ajout d'intéraction, un bouton pour toute les regenerer (peut etre très long > 5min) et un bouton pour tester.
+
+Le principe est assez simple on va définir une phrase génératrice qui va générer une à plusieurs centaines d’autres phrases qui seront des variantes de la première, définir des réponses dans le même genre (ça permet à Jeedom d’avoir plusieurs réponses pour une seule et même question) puis la commande à exécuter (il est aussi possible d'executer un scénario, de controler plusieurs commandes...).
+
+== Configuration
+
+Une fois une interaction ajouté ou un clique sur une interaction existante vous obtenez :
 
 image::../images/interact.JPG[]
 
-Le principe est assez simple on va définir une phrase génératrice qui va générer une à plusieurs centaines d’autres phrases qui seront des variantes de la première, définir des réponses dans le même genre (ça permet à Jeedom d’avoir plusieurs réponses pour une seule et même question) puis la commande à exécuter (je vais aussi rajouter la possibilité de contrôler un scénario).
+Ici vous pouvez : 
 
-Au niveau de la configuration, on a le filtre qui permet de filtrer sur un type de commande, un sous type, un objet, un plugin ou une unité, ensuite vient la phrase de commande en elle même, puis la phrase de réponse. En dessous on peut configurer une réponse spécifique pour les commandes binaires et une série de synonymes pour la demande. Sur la colonne type on précise le type de l’action, et si on le désire on peut aussi spécifier la commande exacte à exécuter. L’avant dernière colonne permet de restreindre le droit à une action à une seule et unique personne (utile avec le plugin SARAH ou SMS pour que vous seul puissiez exécuter des ordres). Vous avez aussi le nombre total de phrases générées et le nombre de phrases actives dans celles générées.
+* *Général*
+** *Nom* : nom de l'interaction (peut etre vide)
+** *Groupe* : groupe de l'intération, cela permet de les organiser (peut etre vide)
+** *Demande* : la phrases génératrice en elle meme (voir plus bas)
+** *Synonyme* : permet de definir des synonymes sur les noms des commandes
+** *Réponse* : la reponse à fournir
+** *Conversion binaire* : permet de convertir les valeurs binaire en ouvert/fermé par exemple
+** *Utilisateur autorisés* : limite l'interaction à certain utilisateur (les logins séparé par des |)
+* *Action*
+** *Type d'action* : le type d'action, peut etre commande, scénario, que sais-tu ou aucun
+** *Commande/Scénario* : option en fonction du type de la commande, en mode commande il est possible d'en mettre plusieurs séparé par des &&
+* *Phrases générées*
+** *Phrases générées* : affiche toute les phrases générées pour l'intéraction
+** *Nombre de phrases générées* : nombre de phrases générées
+** *Nombre de phrases actives* : nom de phrases active
+* *Filtres*
+** *Limiter aux commandes de type* : permet de filtrer sur les actions ou infos seulement
+** *Limiter aux commandes ayant pour sous-type* : permet de limiter la génération à un sous-type
+** *Limiter aux commandes ayant pour unité* : permet de limiter la génération à un certain type d'unité
+** *Limiter aux commandes appartenant à l'objet* : permet de limiter la génération à un objet
+** *Limiter à l'équipement* : permet de limiter la génération à un équipement
+** *Limiter au plugin* : permet de limiter la génération à un plugin
+** *Limiter à la catégorie* : permet de limiter la génération à une catégorie
 
-Vu que ça ne doit pas être encore très clair et rien ne vaut les exemples que voici :
+== Exemples
 
-Le plus simple : je veux savoir s’il y a quelqu’un dans la chambre :
+=== Y a-t-il quelqu'un dans la chambre ?
 
-- La question est donc “y’a-t-il quelqu’un dans la chambre”
-- La réponse sera “oui il y a quelqu’un dans la chambre” ou “non il n’y a personne dans la chambre”
-- La commande qui répond à ça est “#[Chambre][Multi-Sensor][Présence]#”
+* La question est donc "y’a-t-il quelqu’un dans la chambre"
+* La réponse sera "oui il y a quelqu’un dans la chambre" ou "non il n’y a personne dans la chambre"
+* La commande qui répond à ça est "\#[Chambre][Multi-Sensor][Présence]#"
 
 image::../images/interact2.JPG[]
 
-Ici on peut voir la case la question, ensuite en dessous on voit la conversion du binaire en phrase (sinon Jeedom me répondrait “1” ou “0”), puis dans la case en haut à droite la réponse avec "##valeur##" étant remplacée lors de la réponse. Ensuite dans la colonne type on voit le type de l’ordre, puis la commande à exécuter pour avoir la réponse à la question. Enfin tout à droite on voit bien qu’il y a une seule phrase de générée. 
+Ici on peut voir la case la question, ensuite en dessous on voit la conversion du binaire en phrase (sinon Jeedom répondrait "1" ou "0"), puis dans la case en haut à droite la réponse avec "\#valeur#" étant remplacée lors de la réponse. Ensuite dans la colonne type on voit le type de l’ordre, puis la commande à exécuter pour avoir la réponse à la question. Enfin tout à droite on voit bien qu’il y a une seule phrase de générée. 
 
-Plus compliqué maintenant, on voit bien que là pour chaque commande il faut tout écrire, c’est pas très pratique on va donc utiliser le système de génération. Ici un exemple générique qui me sert à connaître la température, l’humidité, la luminosité des différentes pièces (objet au sens Jeedom) chez moi.
+=== Connaitre la température/huminité/luminosité
 
-- Une phrase générique type “Quelle est la température du salon” ou “Quelle est la luminosité de la chambre” qui peut être convertie en  : “quelle est [la |l\']#commande# [du |de la |de l'| sur le |dans le | dans la ]#objet#” (l’utilisation de [mot1 | mot2] permet de générer toutes les variantes possibles de la phrase avec mot1 ou mot2). Lors de la génération Jeedom va générer toutes les combinaisons possibles de phrase avec toutes les commandes existantes en remplaçant #commande# par le nom de la commande et #objet# par le nom de l’objet.
-- La réponse sera de type “21 °C” ou “200 lux” il suffit de mettre : #valeur# #unite#
+Plus compliqué maintenant, on voit bien que là pour chaque commande il faut tout écrire, c’est pas très pratique on va donc utiliser le système de génération. Ici un exemple générique qui sert à connaître la température, l’humidité, la luminosité des différentes pièces (objet au sens Jeedom).
+
+* Une phrase générique type "Quelle est la température du salon" ou "Quelle est la luminosité de la chambre" qui peut être convertie en  : "quelle est [la |l\']\#commande# [du |de la |de l'| sur le |dans le | dans la ]#objet#" (l’utilisation de [mot1 | mot2] permet de générer toutes les variantes possibles de la phrase avec mot1 ou mot2). Lors de la génération Jeedom va générer toutes les combinaisons possibles de phrase avec toutes les commandes existantes en remplaçant \#commande# par le nom de la commande et \#objet# par le nom de l’objet.
+* La réponse sera de type "21 °C" ou "200 lux" il suffit de mettre : \#valeur# \#unite#
 
 image::../images/interact3.JPG[]
 
@@ -33,38 +76,139 @@ Il suffit donc de remplir les champs comme ci-dessus. Pour vérifier le résulta
 
 image::../images/interact4.JPG[]
 
-On peut voir ici tout en haut “Quelle est la température du salon”, à partir de cet écran on peut aussi désactiver certaines phrases générées (permet d’éviter les faux positifs).
+On peut voir ici tout en haut "Quelle est la température du salon", à partir de cet écran on peut aussi désactiver certaines phrases générées (permet d’éviter les faux positifs).
 
-Dernier exemple l’utilisation de filtre. “Quelle est la température du salon” est sympa mais des fois je préfère demander “Combien fait-il dans le salon” et j’aimerais aussi une réponse moins formelle. Seul problème dans la phrase “Combien fait-il dans le salon” je n’ai pas le nom de la commande.
+[IMPORTANT]
+A moins d'avoir des faux positif (phrase reconnu non correcte) il n'est pas recommandé de désactiver les phrases grammaticalement incorrect car elles aident quand meme Jeedom à reconnaitre la demande
 
-- J’ai donc ma question “Combien fait-il dans le salon” qui pourrait être en version générique “#commande# [dans la |dans le| | sur le ] #objet#” mais en remplaçant “température” par “combien fait-il” ou “il fait combien”. Pour ça rien de plus simple il suffit d’utiliser le champs synonyme en mettant “température=combien fait-il,il fait combien|balcon=balcon,dehors” (j’en profite aussi pour remplacer balcon soit par balcon ou par dehors, ça me permettra d’avoir “combien fait-il dehors” par exemple)
-- Pour la réponse j’aimerais un truc du genre “Il fait 20 °C” ou “La température est de 20 °C” ou même “20°C”, il faut donc mettre : “[il fait |la température est de | ]#valeur# #unite#” (vous remarquerez que dans la liste de choix pour le début de la réponse on a “il fait”, “la température est de” et ” ” soit vide)
-- Enfin dernier problème je veux que cette commande ne soit valable que pour la température, je vais donc utiliser un filtre, le plus simple ici étant de filtrer sur l’unité soit “°C”
+=== Combien fait-il dans le salon
+
+Dernier exemple l’utilisation de filtre. "Quelle est la température du salon" est sympa mais des fois je préfère demander "Combien fait-il dans le salon" et j’aimerais aussi une réponse moins formelle. Seul problème dans la phrase "Combien fait-il dans le salon" je n’ai pas le nom de la commande.
+
+* La question "Combien fait-il dans le salon" qui pourrait être en version générique "\#commande# [dans la |dans le| | sur le ] \#objet#"" mais en remplaçant "température" par "combien fait-il" ou "il fait combien". Pour ça rien de plus simple il suffit d’utiliser le champs synonyme en mettant "température=combien fait-il,il fait combien|balcon=balcon,dehors" (j’en profite aussi pour remplacer balcon soit par balcon ou par dehors, ça me permettra d’avoir "combien fait-il dehors" par exemple)
+* Pour la réponse j’aimerais un truc du genre "Il fait 20 °C" ou "La température est de 20 °C" ou même "20°C", il faut donc mettre : "[il fait |la température est de | ]\#valeur# \#unite#" (vous remarquerez que dans la liste de choix pour le début de la réponse on a "il fait", "la température est de" et " " soit vide)
+* Enfin dernier problème je veux que cette commande ne soit valable que pour la température, je vais donc utiliser un filtre, le plus simple ici étant de filtrer sur l’unité soit "°C"
 
 image::../images/interact5.JPG[]
 
 On a donc au dessus le résultat avec un filtre sur les commandes ayant pour unité °C. On peut aussi regarder les phrases générées :
 
+image::../images/interact7.JPG[]
 
 On voit bien ici que j’ai les phrases que je souhaitais.
 
-Voila pour la présentation des interactions (un peu longue mais je pense assez puissante pour tout imaginer).
+=== Que sais-tu ?
 
-== Description
-Le principe est le suivant : une phrase de commande déclenche une unique commande. Pour simplifier la création des phrases il est possible d'utiliser des mots clef afin que jeedom génère automatiquement une liste de phrases.
+Le type de commande que sais-tu est un peu particulier il permet à Jeedom de vous dire tous ce qu'il sait sur l'ensemble de votre domotique ou sur un objet particulier, voici un exemple : 
+
+image::../images/interact8.JPG[]
+
+Et voila le résulat (à travers le plugin Slack) : 
+
+image::../images/interact9.JPG[]
+
+Comme on peut le voir c'est assez complet car Jeedom dis tous ce qu'il sait mais ca peut etre utile pour tout avoir d'un coup
+
+=== Réponse composé de plusieurs commandes
+
+Il est aussi possible de mettre plusieurs commande dans une réponse :
+
+image::../images/interact10.JPG[]
+
+On voit ici que j'ai mit 2 commandes dans la réponse sans rien préciser dans les actions, il n'y a donc qu'une seule phrase de générée (il faudra donc bien poser celle la) mais dans la reponse j'ai 2 informations le CO2 et la température.
+
+=== Piloter un dimmer ou un thermostat (slider)
+
+Il est possible de piloter une lampe en pourcentage ou un themrostat avec les interactions. Voici un exemple pour piloter son themrostat au travers des intérations : 
+
+image::../images/interact19.JPG[]
+
+Jeedom va ici rechercher le premier chiffre (il ne doit donc pas etre écris en toute lettre) et l'appliquer à la commande (ici thermostat)
+
+=== Piloter la couleur d'un bandeau de LED
+
+Il est possible de piloté une commande couleur par les interactions en demandant par exemple à Jeedom d'allumer un bandeau de led en bleu. Voila l'interaction à faire : 
+
+image::../images/interact18.JPG[]
+
+Ici rien de bien compliqué, il faut en revanche avoir configuré les couleurs dans Jeedom, cela se passe sur la page Général -> Administration -> Configuration  puis dans la partie "Gestion des intéractions" : 
+
+image::../images/interact14.JPG[]
+
+Dans le tableau vous pouvez ajouter des nom de couleur et la correspondance de la couleur pour Jeedom.
+
+Avec ceci si vous dite "Allume la salle de bain en vert", Jeedom va rechercher dans la demande une couleur et l'appliquer à la commande
+
+=== Executer plusieurs commande
+
+Voici une interaction qui permet par exemple d'eteindre 3 lumieres : 
+
+image::../images/interact20.JPG[]
+
+=== Utilisation couplé a un scénario
+
+Il est possible de coupler un scénario a une interaction et de generer la reponse avec le scénario (cela permet de changer la reponse en fonction de different paramètres). Voici un exemple d'interaction : 
+
+image::../images/interact15.JPG[]
+
+La rien de compliqué l'interaction lance le scénario.
+
+Voila le details du scénario : 
+
+image::../images/interact16.JPG[]
+
+Ici assez simple aussi un scénario tout simple avec aucun déclencheur et un simple test sur la témpérature, et une action de type return qui indique la phrase de reponse à l'interaction (seule un déclenchement sur interaction utilise l'action return sinon elle ne sert à rien)
+
+Et voila le retour (a travers Slack) : 
+
+image::../images/interact17.JPG[]
+
+[TIP]
+Il est possible de recuperer dans le scénario la demande qui a déclenché celui-ci à l'aide du tag \#tag#
+
+== Tester
+
+Le bouton tester vous permet de simuler ou d'executer une interaction : 
+
+image::../images/interact11.JPG[]
+
+Vous avez juste à mettre la demande en haut et Jeedom vous expliquera la réponse : 
+
+image::../images/interact12.JPG[]
+
+Ici en mode simulation Jeedom vous explique juste ce qu'il a reconnu, la commande qu'il va executer et la reponse (avec les tag car il n'execute pas en vrai l'interaction) qu'il va faire
+
+image::../images/interact13.JPG[]
+
+Ici en mode execution ou l'on ne voit que la réponse
+
+== Configuration
+
+La configuration est accessible à partir de Général -> Administration -> Configuration puis la partie "Gestion des intéractions" :
+
+image::../images/interact14.JPG[]
+
+Vous avez ici 2 parametres : 
+
+* *Sensibilité (par défaut 10)* : niveau de correspondance minimum entre la phrase recu et les phrases générées de 1 à 99
+* *Ne pas répondre si l'interaction n'est pas comprise* : par defaut Jeedom répond "je n'ai pas compris" si l'intéraction n'est pas comprise, il est possible de desactiver ce fonctionement pour que jeedom ne réponde rien
+
+Et vous retrouvez la partie conversion de couleur (nom de la couleur vers sa valeur réel)
+
+[TIP]
+Si vous activez les logs au niveau debug vous avez un log interact qui vous donne la niveau de sensibilité pour chaque comparaison de phrase, cela peut permettre de regler celui-ci plus facilement
 
 == Résumé
 
 Demande::
-Vous pouvez utiliser "#commande#" et "#objet#" (les 2 doivent absolument être utilisés ensemble) pour générer une liste de commandes (il est possible de filtrer la génération pour réduire la liste). Il est aussi possible d'utiliser "#equipement#" (utile si plusieurs commandes appartenant au même objet ont le même nom)
-Exemple : Quelle est la "#commande#" [du |de la |de l']"#objet#"
+Vous pouvez utiliser "\#commande#" et "\#objet#" (les 2 doivent absolument être utilisés ensemble) pour générer une liste de commandes (il est possible de filtrer la génération pour réduire la liste). Il est aussi possible d'utiliser "\#equipement#" (utile si plusieurs commandes appartenant au même objet ont le même nom)
+Exemple : Quelle est la "\#commande# [du |de la |de l']\#objet#"
 Lors de la génération des commandes vous pouvez utiliser le champ synonyme (syn1=syn2,syn3|syn4=syn5) pour remplacer le nom des objets, des équipements et/ou des commandes
-Pour les actions vous pouvez utiliser "#color#" (obligatoire si la commande est de type couleur) pour la valeur d'une couleur ou "#slider#" (obligatoire si la commande est de type slider) pour la valeur d'un slider.
 
 Réponse::
-Vous pouvez utiliser "#valeur#" et "#unite#" dans le retour (ils seront remplacés par la valeur et l'unité de la commande). Toutes les valeurs passées dans demande ("#mavaleur#") sont accessibles. Vous avez aussi accès a tous les tag des scénario et à : 
-"#profile#" => Nom de la personne ayant lancé l'éxecution (peut ne pas etre disponible)
-Exemple : "#valeur# #unite#"
+Vous pouvez utiliser "\#valeur#" et "\#unite#" dans le retour (ils seront remplacés par la valeur et l'unité de la commande). Vous avez aussi accès a tous les tag des scénario et à : 
+"\#profile#" => Nom de la personne ayant lancé l'éxecution (peut ne pas etre disponible)
+Exemple : "\#valeur# \#unite#"
 Vous pouvez utiliser le champ conversion binaire pour convertir les valeurs binaires (0 et 1) : 
 Exemple : non|oui
 
