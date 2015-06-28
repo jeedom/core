@@ -14,7 +14,7 @@ La première requête est utilisée uniquement pour piloter un scénario.
 
 Voici l'URL = http://\#IP_JEEDOM#/core/api/jeeApi.php?apikey=\#APIKEY#&type=scenario&id=\#ID#&action=\#ACTION#
 
-\#IP_JEEDOM# correspond à votre url d’accès à Jeedom. Il s’agit (sauf si vous êtes connecté à votre réseau local) de l’adresse internet que vous utilisez pour accéder à Jeedom depuis l’extérieure. Ne pas oubliez d’indiquer le port ainsi que /jeedom/.
+\#IP_JEEDOM# correspond à votre url d’accès à Jeedom. Il s’agit (sauf si vous êtes connecté à votre réseau local) de l’adresse internet que vous utilisez pour accéder à Jeedom depuis l’extérieure.
 
 \#API_KEY# correspond à votre clé API, propre à votre installation. Pour la trouver il faut aller dans le menu « Général », puis « Administration » et « Configuration », en activant le mode Expert vous verrez alors une ligne Clef API.
 
