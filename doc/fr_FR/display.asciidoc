@@ -126,7 +126,9 @@ En dessous vous retrouvez la liste des differents équipement, commandes, scéna
 
 image::../images/display13.png[]
 
-Pas mal d'option ici (elles peuvent varier en fonction du type et du sous-type de la commande) : 
+Pas mal d'option ici (elles peuvent varier en fonction du type et du sous-type de la commande). 
+
+Pour une commande de type info :
 
 * *Calcul et arrondit*
 ** *Formule de calcul (\#value# pour la valeur)* : vous pouvez ici faire une opération sur la valeur de la commande avant le traitement par Jeedom, exemple : \#valeur# - 0.2 pour retrancher 0.2 (offset sur un capteur de température)
@@ -136,6 +138,13 @@ Pas mal d'option ici (elles peuvent varier en fonction du type et du sous-type d
 * *Autres*
 ** *Ne pas répéter si la valeur ne change pas* : Si la commande remonte 2 fois la meme valeur d'affiler alors Jeedom ne prend pas en compte la 2eme remonté (evite de déclencher plusieurs fois un scénario par exemple si la valeur ne change pas)
 ** *Push URL* : permet de rajouter une URL à appeler en cas de mise à jour de la commande. Vous pouvez utiliser les tags suivant : \#value# pour la valeur de la commande, \#cmd_name# pour le nom de la commande, \#cmd_id# pour l'identifiant unique de la commande, \#humanname# pour le nom complet de la commande (ex : \#[Salle de bain][Hydrometrie][Humidité]#)
+
+Si vous etes sur une commande type action vous avez : 
+
+image::../images/display15.png[]
+
+* *Confirmer l'action* : lors d'une action a partir de l'interface sur cette commande Jeedom demandera une confirmation
+* *Code d'accès* : lors d'une action a partir de l'interface sur cette commande Jeedom demandera le code
 
 ==== Affichage avancé
 
