@@ -144,6 +144,12 @@ La page d'historique donne accès quelques options en plus :
 
 image::../images/history15.JPG[]
 
+[TIP]
+Il suffit de cliquer sur le nom de l'objet pour le deplier et voir apparaitrent les commandes historisé qui peuvent etre graphées le composant
+
+[TIP]
+La couleur d'arriere plan des objets de cette liste peuvent etre modifiées a partir de la configuration de l'objet
+
 Devant chaque données pouvant etre grapher vous retrouvez 2 icones : 
 
 * *Poubelle* : permet de supprimer les données enregistrée, lors du clique dessus jeedom va vous demander si il faut supprimer les données avant une certaine date ou toute les données
