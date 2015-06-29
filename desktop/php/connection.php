@@ -2,7 +2,7 @@
 <div id="wrap">
     <div class="container">
         <center>
-            <img src="core/img/logo-jeedom-grand-nom-couleur.svg"/><br/><br/>
+            <img src="core/img/logo-jeedom-grand-nom-couleur.svg" class="img-responsive" /><br/><br/>
             <div style="display: none;width : 100%" id="div_alert"></div>
             <?php
 if (init('error') == 1) {
