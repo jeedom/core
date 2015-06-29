@@ -1,6 +1,6 @@
 = Service Pack
 
-Les services pack vous permetent d'avoir accès a des fonctionalités cloud exclusive sur Jeedom.
+Les services pack vous permettent d'avoir accès a des fonctionalités cloud exclusive sur Jeedom.
 
 [cols=">,^,^,^,^"]
 
@@ -8,7 +8,7 @@ Les services pack vous permetent d'avoir accès a des fonctionalités cloud excl
 | |Community |Power User| Ultimate| Pro
 
 |*Inclus avec* | - |Box Center/Mini+| Box Ultimate et en option Center/Mini+| Box Pro
-|*Tous les plugins officiels gratuits* | - | - | Inclus | Inclus
+|*Tous les plugins officiels gratuits* | - | Alarme et RFXcom seulement | Inclus | Inclus
 
 |*Passerelle SMS crédit Offert (web)* | - | 60 SMS | 60 SMS | 100 SMS
 
