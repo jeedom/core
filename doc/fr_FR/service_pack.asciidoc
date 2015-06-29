@@ -1,6 +1,6 @@
 = Service Pack
 
-Les services pack vous permet d'avoir accès a des fonctionalités cloud exclusive sur Jeedom.
+Les services pack vous permetent d'avoir accès a des fonctionalités cloud exclusive sur Jeedom.
 
 [cols=">,^,^,^,^"]
 
