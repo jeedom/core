@@ -19,7 +19,7 @@ Ici on retrouve en haut un bouton d'ajout d'intéraction, un bouton pour toute l
 
 Le principe est assez simple on va définir une phrase génératrice qui va générer une à plusieurs centaines d’autres phrases qui seront des variantes de la première, définir des réponses dans le même genre (ça permet à Jeedom d’avoir plusieurs réponses pour une seule et même question) puis la commande à exécuter (il est aussi possible d'executer un scénario, de controler plusieurs commandes...).
 
-== Configuration
+== Configuration des intéractions
 
 Une fois une interaction ajouté ou un clique sur une interaction existante vous obtenez :
 

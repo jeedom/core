@@ -695,30 +695,6 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
         </div>
     </div>
 </div>
-
-<div class="panel panel-default expertModeVisible">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_http">
-                {{HTTP}}
-            </a>
-        </h3>
-    </div>
-    <div id="configuration_http" class="panel-collapse collapse">
-        <div class="panel-body">
-            <form class="form-horizontal">
-                <fieldset>
-                    <div class="form-group expertModeVisible">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Timeout de résolution DNS sur les requêtes HTTP}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input class="configKey form-control" data-l1key="http::ping_timeout"/>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-</div>
 <div class="form-actions" style="height: 20px;">
     <a class="btn btn-success" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
 </div>

@@ -555,7 +555,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                     </fieldset>
                 </form>
 
-                <legend>{{Légende}}</legend>
+                <legend>{{Cache}}</legend>
                 <form class="form-horizontal">
                     <fieldset>
                         <div class="form-group">
@@ -569,16 +569,6 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Vider toutes les données en cache}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                 <a class="btn btn-warning" id="bt_flushMemcache"><i class="fa fa-trash"></i> {{Vider}}</a>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Cron persistance du cache}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="persist::cron" />
-                            </div>
-                            <div class="col-sm-1">
-                                <i class="fa fa-question-circle cursor bt_pageHelp" data-name='cronSyntaxe'></i>
                             </div>
                         </div>
                     </fieldset>
@@ -815,7 +805,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
         <div class="panel-heading">
             <h3 class="panel-title">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_commandeEqlogic">
-                    {{Equipements et HTTP}}
+                    {{Configuration des équipements}}
                 </a>
             </h3>
         </div>
@@ -827,12 +817,6 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échecs avant désactivation de l'équipement}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                 <input type="text"  class="configKey form-control" data-l1key="numberOfTryBeforeEqLogicDisable" />
-                            </div>
-                        </div>
-                        <div class="form-group expertModeVisible">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Timeout de résolution DNS sur les requêtes HTTP}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input class="configKey form-control" data-l1key="http::ping_timeout"/>
                             </div>
                         </div>
                     </fieldset>
