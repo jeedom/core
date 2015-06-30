@@ -113,18 +113,14 @@ try {
 
 	if (init('action') == 'setOrder') {
 		$eqLogics = json_decode(init('eqLogics'), true);
+		$sql = '';
 		foreach ($eqLogics as $eqLogic_json) {
-			$eqLogic = eqLogic::byId($eqLogic_json['id']);
-			if (!is_object($eqLogic)) {
-				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $eqLogic_json['id']);
+			if (!is_numeric($eqLogic_json['id']) || !is_numeric($eqLogic_json['order']) || !is_numeric($eqLogic_json['object_id'])) {
+				throw new Exception("Erreur une des valeurs n'est pas un numérique");
 			}
-			if ($eqLogic_json['object_id'] < 0) {
-				$eqLogic_json['object_id'] = null;
-			}
-			$eqLogic->setOrder($eqLogic_json['order']);
-			$eqLogic->setObject_id($eqLogic_json['object_id']);
-			$eqLogic->save();
+			$sql .= 'UPDATE eqLogic SET `order`= ' . $eqLogic_json['order'] . ', object_id=' . $eqLogic_json['object_id'] . '  WHERE id=' . $eqLogic_json['id'] . ' ;';
 		}
+		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		ajax::success();
 	}
 
