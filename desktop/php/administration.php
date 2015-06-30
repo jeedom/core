@@ -447,7 +447,7 @@ if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
                 <label class="col-xs-4 control-label">{{Statut http}}</label>
                 <div class="col-xs-8">
                     <?php
-if (network::ngrok_run()) {
+if (network::ngrok_run() && network::ngrok_http_ok()) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
 } else {
 	echo '<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';

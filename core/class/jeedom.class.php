@@ -426,7 +426,7 @@ class jeedom {
 					if ($i == $minute) {
 						market::test();
 					}
-					if (!network::ngrok_run()) {
+					if (!network::ngrok_run() || !network::ngrok_http_ok()) {
 						network::ngrok_start();
 					}
 					if (config::byKey('market::redirectSSH') == 1) {

@@ -408,6 +408,31 @@ class network {
 		return @posix_getsid(intval($pid));
 	}
 
+	public static function ngrok_http_ok() {
+		$url = network::getNetworkAccess('external') . '/index.php?v=d';
+		if (strpos($url, 'dns.jeedom.com') === false) {
+			return true;
+		}
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		$data = curl_exec($ch);
+		if (curl_errno($ch)) {
+			var_dump(curl_errno($ch));
+			curl_close($ch);
+			return false;
+		}
+		curl_close($ch);
+		if (strpos($data, 'Tunnel ' . $url . ' not found') !== false || trim($data) == '') {
+			return false;
+		}
+		return true;
+	}
+
 	public static function ngrok_stop($_proto = 'https', $_port = 80, $_name = '') {
 		if ($_port != 80 && $_name == '') {
 			throw new Exception(__('Si le port est different de 80 le nom ne peut etre vide', __FILE__));
