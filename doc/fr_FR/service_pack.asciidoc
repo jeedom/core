@@ -39,3 +39,5 @@ Les services pack vous permettent d'avoir accès a des fonctionalités cloud exc
 | | *Gratuit !* | *45€* | *85€ option à 45€* | -
 
 |===
+
+Pour acheter un service pack rien de plus simple, il suffit d'aller sur votre page profils sur le market puis l'onglet "Mes Jeedoms"
