@@ -1,6 +1,229 @@
 = Design
 
-Cette page permet de configurer l'affichage de toute votre domotique de manière très fine. Celle-ci demande du temps mais 
-sa seule limite est votre imagination.
+Cette page permet de configurer l'affichage de toute votre domotique de manière très fine. Celle-ci demande du temps mais sa seule limite est votre imagination.
 
-image::../images/design.JPG[]
+Elle est accessible par 
+
+image::../images/plan1.png[]
+
+[TIP]
+Comme vous pouvez le voir sur la capture il est possible d'aller directement sur un design grace au sous-menu
+
+Voici un exemple de design :
+
+image::../images/plan2.png[]
+
+Sur cette pas on retrouve, en haut (et dans l'ordre) : 
+
+* un menu pour changer de design
+* un menu pour creer un nouveau desgin
+* un pour le supprimer
+* un bouton pour editer le design en cours
+* un pour passer en mode plein écran
+
+Il vous sufffit donc pour en creer de cliquer sur le bouton d'ajout, une fenetre va vous demander le nom de celui-ci : 
+
+image::../images/plan3.png[]
+
+Vous arrivez donc sur un design vide : 
+
+image::../images/plan4.png[]
+
+Il faut donc cliquer le bouton d'édition pour passer en mode édition : 
+
+image::../images/plan5.png[]
+
+Comme on peut le voir il y a un peu plus de boutons maintenant maintenant, ainsi que le cadre du design (que l'on peut changer bien sur).
+
+En haut à gauche on retrouve 2 boutons celui pour éditer les proprietés du design en cours et celui pour le dupliquer.
+
+[TIP]
+N'oubliez pas de sauvegarder après chaque modification
+
+== Edition des proprietés du designs
+
+image::../images/plan6.png[]
+
+On retrouve ici : 
+
+* *Général*
+** *Nom* : Le nom de votre design
+** *Icône* : Une icone pour celui-ci (apparait dans le menu de choix de design)
+** *Disponible sur téléphone* : Rend ce design visible dans la liste des designs en version mobile
+** *Image* : permet d'ajouter une image de fond au design
+** *Ne pas afficher la flèche de retour lors de la mise en plein écran* : en mode pleine ecran cette option masque le bouton de retour au mode fenetré (idéal pour une tablette murale)
+* *Tailles*
+** *Responsive mode (Attention toute les valeurs de taille sont ignorées)* : passe le design en mode responsive pour le faire s'adapter à l'écran. Attention dans ce cas les paramètres de taille sont ignoré
+** *Taille (LxH)* : Permet de fixé la taille de votre design (cadre gris en mode édition)
+** *Proportion tablette (ex : 0.7)* : permet de changer la proportion du design sur tablette (pour le reduire par exemple tout en maitrisant encore la taille ce qui ne serait pas le cas en mode responsive)
+** *Proportion téléphone (ex 0.5)* : permet de changer la proportion du design sur téléphone (pour le reduire par exemple tout en maitrisant encore la taille ce qui ne serait pas le cas en mode responsive)
+
+== Ajout d'un widget
+
+Ensuite il faut ajouter des widgets à votre design, pour cela il faut cliquer sur le bouton d'ajout de widget : 
+
+image::../images/plan7.png[]
+
+Une fois cliquer il vous faut choisir le widget : 
+
+image::../images/plan8.png[]
+
+Vous voyez apparaitre votre widget :
+
+image::../images/plan9.png[]
+
+[TIP]
+Vous pouvez le déplacer en cliquant/glissant le widget
+
+Vous avez accès a la configuration avancé de l'affichage du widget en double cliquant sur celui-ci :
+
+image::../images/plan10.png[]
+
+Ici on a : 
+
+* *Général*
+** *Taille du widget* : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
+** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
+** *Couleur des icônes et textes* : permet de changer la couleur des icones et des textes (attention à bien passer defaut sur Non)
+** *Arrondir les angles (ne pas oublié de mettre %, ex 50%)* : permet d'arrondir les angles du widget, ne pas oublier de mettre le %
+** *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+** *Profondeur* : pertme de choisir le niveau de la profondeur, pour par exemple passer un widget par dessus un autre
+** *Ne pas afficher le nom de l'équipement* : masque le nom du widget, s'applique uniquement sur le design
+** *Ne pas afficher le niveau de batterie* : masque le niveau de batterie du widget (si il en a un), s'applique uniquement sur le design
+* *Spécifique* : permet de masquer certaine commande du widget uniquement sur le design
+
+[IMPORTANT]
+En fonction des plugins certaines options peuvent ne pas marcher
+
+[TIP]
+Vous pouvez en bas à droite redimmensionner les widgets
+
+== Ajout texte/html
+
+image::../images/plan11.png[]
+
+Permet d'ajouter un texte ou du code html/javascript, une fois cliqué dessus vous obtenez : 
+
+image::../images/plan12.png[]
+
+Un double clique dessus vous ammene à la fenetre de configuration : 
+
+image::../images/plan13.png[]
+
+* *Nom* : permet de rentrer le texte ou le code html/javascript
+* *Icone* : permet de mettre une icone à la place du texte
+* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
+* *Couleur du textes* : permet de changer la couleur des icones et des textes (attention à bien passer defaut sur Non)
+* *Arrondir les angles (ne pas oublié de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
+* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
+* *Ne pas prendre en compte la taille predefinie* : permet d'ignorer la taille prédefini du widget
+* *Profondeur* : pertme de choisir le niveau de la profondeur
+* *Gras* : met le texte en gras
+
+[TIP]
+Vous pouvez en bas à droite le redimmensionner
+
+== Ajout d'un scénario
+
+image::../images/plan14.png[]
+
+Un clique dessus et Jeedom vous demandera le scénario en question : 
+
+image::../images/plan15.png[]
+
+Une fois choisi celui-ci apparait sur le design : 
+
+image::../images/plan16.png[]
+
+Un double clic dessus vous amenera à la configuration de cette élement scénario : 
+
+image::../images/plan17.png[]
+
+* *Général*
+** *Taille du widget* : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
+** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
+** *Couleur des icônes et textes* : permet de changer la couleur des icones et des textes (attention à bien passer defaut sur Non)
+** *Arrondir les angles (ne pas oublié de mettre %, ex 50%)* : permet d'arrondir les angles du widget, ne pas oublier de mettre le %
+** *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+** *Profondeur* : pertme de choisir le niveau de la profondeur, pour par exemple passer un widget par dessus un autre
+* *Spécifique* : permet de masquer les commandes d'action sur le scénario
+
+[TIP]
+Vous pouvez en bas à droite le redimmensionner
+
+== Ajout d'un lien
+
+image::../images/plan18.png[]
+
+Permet d'ajouter un lien vers une vue ou un autre design : 
+
+image::../images/plan19.png[]
+
+Celui-ci apparait ensuite sur le design : 
+
+image::../images/plan20.png[]
+
+Un double clic dessus vous amene sur la configuration avancé : 
+
+image::../images/plan21.png[]
+
+On retrouve ici : 
+
+* *Nom* : permet de changer le nom du lien
+* *Lien* : destination du lien
+* *Position* : permet de regler finement la position du lien sur la destination (pour par exemple arriver directement sur la cuisine)
+* *Icone* : permet de mettre une icone à la place du texte
+* *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
+* *Couleur du textes* : permet de changer la couleur des icones et des textes (attention à bien passer defaut sur Non)
+* *Arrondir les angles (ne pas oublié de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
+* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Profondeur* : pertme de choisir le niveau de la profondeur
+* *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
+* *Ne pas prendre en compte la taille predefinie* : permet d'ignorer la taille prédefini du widget
+* *Gras* : met le texte en gras
+
+[TIP]
+Vous pouvez en bas à droite le redimmensionner
+
+== Ajout d'un graph
+
+image::../images/plan22.png[]
+
+Une fois cliqué dessus vous obtenez : 
+
+image::../images/plan23.png[]
+
+Un double clic dessus vous amene à la configuration de l'élement graph
+
+image::../images/plan24.png[]
+
+Ici on retrouve : 
+
+* *Période* : permet de choisir la période d'affichage
+* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Profondeur* : pertme de choisir le niveau de la profondeur
+* *Afficher la légende* : permet d'afficher ou non la légende
+* *Afficher le navigateur* : permet d'afficher ou non le navigateur (deuxieme graph plus leger en dessous du premier)
+* *Afficher le sélecteur de période* : affiche ou non le selecteur de période en haut à gauche
+* *Afficher la barre de défilement* : affiche ou non la barre de defilement
+* *Fond transparent* : rend le fond transparent
+
+Pour choisir les données à afficher il faut cliquer sur les 3 roues cranté : 
+
+image::../images/plan25.png[]
+
+Vous obtenez (ca peut être un peu long à charger) : 
+
+image::../images/plan26.png[]
+
+* *Activer* : le premier bouton permet d'activer ou non l'affichage de la donnée sur le graphique
+* *Couleur* : la couleur de la courbe
+* *Type* : le type de graph (aire, ligne ou colonne)
+* *Escalier* : permet d'afficher la courbe sous la forme d'un escalier au d'un affichage continue
+* *Empiler* : permet d'empiler les valeurs des courbes (voir en dessous pour le résultat)
+* *Variation* : affichage la difference de valeur par rapport au point precedent
+* *Echelle* : vu que vous pouvez mettre plusieurs courbe (donnée) sur le meme graphe il est possible de distingué les echelles (droite ou gauche)
+
+[TIP]
+Vous pouvez en bas à droite le redimmensionner

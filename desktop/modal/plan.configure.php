@@ -79,6 +79,7 @@ if ($plan->getLink_type() == 'eqLogic') {
             </select>
         </div>
     </div>
+    <?php if ($plan->getLink_type() == 'eqLogic') {?>
     <div class="form-group">
         <label class="col-lg-4 control-label">{{Ne pas afficher le nom de l'équipement}}</label>
         <div class="col-lg-2">
@@ -91,6 +92,8 @@ if ($plan->getLink_type() == 'eqLogic') {
             <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="batteryLevel" >
         </div>
     </div>
+    <?php }
+	?>
     <legend>Spécifique</legend>
     <?php
 if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
@@ -307,7 +310,7 @@ foreach (planHeader::all() as $planHeader_select) {
     </div>
 </div>
 <div class="form-group">
-    <label class="col-lg-4 control-label">{{Gras)}}</label>
+<label class="col-lg-4 control-label">{{Gras}}</label>
     <div class="col-lg-2">
         <select class="planAttr form-control" data-l1key="css" data-l2key="font-weight">
             <option value="bold">Gras</option>
@@ -374,7 +377,7 @@ foreach (planHeader::all() as $planHeader_select) {
     </div>
 </div>
 <div class="form-group expertModeVisible">
-    <label class="col-lg-4 control-label">{{Ne pas prendre en compte la taille predefinie)}}</label>
+    <label class="col-lg-4 control-label">{{Ne pas prendre en compte la taille predefinie}}</label>
     <div class="col-lg-4">
         <input type="checkbox" class="planHeaderAttr bootstrapSwitch" data-l1key='configuration' data-l2key="noPredefineSize" />
     </div>
@@ -391,7 +394,7 @@ foreach (planHeader::all() as $planHeader_select) {
     </div>
 </div>
 <div class="form-group">
-    <label class="col-lg-4 control-label">{{Gras)}}</label>
+    <label class="col-lg-4 control-label">{{Gras}}</label>
     <div class="col-lg-2">
         <select class="planAttr form-control" data-l1key="css" data-l2key="font-weight">
             <option value="bold">Gras</option>
