@@ -422,7 +422,6 @@ class network {
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		$data = curl_exec($ch);
 		if (curl_errno($ch)) {
-			var_dump(curl_errno($ch));
 			curl_close($ch);
 			return false;
 		}
