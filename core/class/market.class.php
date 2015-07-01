@@ -324,20 +324,24 @@ class market {
 			config::save('market::jeedom_apikey', config::genKey(255));
 		}
 		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
-			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
+			$params = array(
 				'username' => config::byKey('market::username'),
 				'password' => config::byKey('market::password'),
 				'password_type' => 'sha1',
 				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
-				'addr' => config::byKey('externalAddr'),
-				'addrProtocol' => config::byKey('externalProtocol'),
-				'addrPort' => config::byKey('externalPort'),
-				'addrComplement' => config::byKey('externalComplement'),
 				'marketkey' => config::byKey('market::jeedom_apikey'),
 				'nbMessage' => message::nbMessage(),
 				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
-			));
+			);
+			if (config::byKey('market::allowDNS') != 1) {
+				$params['addr'] = config::byKey('externalAddr');
+				$params['addrProtocol'] = config::byKey('externalProtocol');
+				$params['addrPort'] = config::byKey('externalPort');
+				$params['addrComplement'] = config::byKey('externalComplement');
+			}
+			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
+
 		} else {
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
 				'jeedomversion' => jeedom::version(),
@@ -356,47 +360,30 @@ class market {
 				config::save('register::datetime', $_result['register::datetime']);
 			}
 			if (config::byKey('market::allowDNS') == 1) {
-				if (isset($_result['client::ip']) && (filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP) || config::byKey('externalAddr') == '')) {
-					config::save('externalAddr', $_result['client::ip']);
-				}
-
+				$ngrokRestart = false;
 				if (isset($_result['register::ngrokAddr']) && config::byKey('ngrok::addr') != $_result['register::ngrokAddr']) {
 					config::save('ngrok::addr', $_result['register::ngrokAddr']);
-					if (network::ngrok_run()) {
-						network::ngrok_stop();
-					}
-					if (network::ngrok_run('tcp', 22, 'ssh')) {
-						network::ngrok_stop('tcp', 22, 'ssh');
-					}
-					if (config::byKey('market::allowDNS') == 1) {
-						network::ngrok_start();
-						if (config::byKey('market::redirectSSH') == 1) {
-							network::ngrok_start('tcp', 22, 'ssh');
-						}
-					}
+					$ngrokRestart = true;
 				}
 
 				if (isset($_result['register::ngrokToken']) && config::byKey('ngrok::token') != $_result['register::ngrokToken']) {
 					config::save('ngrok::token', $_result['register::ngrokToken']);
+					$ngrokRestart = true;
+
+				}
+				if (isset($_result['register::ngrokPort']) && config::byKey('ngrok::port') != $_result['register::ngrokPort']) {
+					config::save('ngrok::port', $_result['register::ngrokPort']);
+					$ngrokRestart = true;
+				}
+				if ($ngrokRestart && config::byKey('market::allowDNS') == 1) {
 					if (network::ngrok_run()) {
 						network::ngrok_stop();
 					}
 					if (network::ngrok_run('tcp', 22, 'ssh')) {
 						network::ngrok_stop('tcp', 22, 'ssh');
 					}
-					if (config::byKey('market::allowDNS') == 1) {
-						network::ngrok_start();
-						if (config::byKey('market::redirectSSH') == 1) {
-							network::ngrok_start('tcp', 22, 'ssh');
-						}
-					}
-				}
-				if (isset($_result['register::ngrokPort']) && config::byKey('ngrok::port') != $_result['register::ngrokPort']) {
-					config::save('ngrok::port', $_result['register::ngrokPort']);
-					if (network::ngrok_run('tcp', 22, 'ssh')) {
-						network::ngrok_stop('tcp', 22, 'ssh');
-					}
-					if (config::byKey('market::allowDNS') == 1 && config::byKey('market::redirectSSH') == 1) {
+					network::ngrok_start();
+					if (config::byKey('market::redirectSSH') == 1) {
 						network::ngrok_start('tcp', 22, 'ssh');
 					}
 				}
@@ -406,9 +393,6 @@ class market {
 			}
 			if (isset($_result['register::datetime'])) {
 				unset($_result['register::datetime']);
-			}
-			if (isset($_result['licence'])) {
-				unset($_result['licence']);
 			}
 			if (isset($_result['register::ngrokAddr'])) {
 				unset($_result['register::ngrokAddr']);
@@ -421,9 +405,6 @@ class market {
 			}
 			if (isset($_result['jeedom::url'])) {
 				unset($_result['jeedom::url']);
-			}
-			if (isset($_result['client::ip'])) {
-				unset($_result['client::ip']);
 			}
 		}
 	}
