@@ -46,11 +46,13 @@ Partie très importante dans Jeedom, il faut absolument la configurer correcteme
 ** *Adresse URL ou IP* : IP de Jeedom, à renseigner
 ** *Complément (exemple : /jeedom)* : le complement type /jeedom, pour savoir si vous avez besoin regardez si quand vous vous connectez à Jeedom vous mettant /jeedom après l'IP
 ** *Port* : le port, en général 80. Attention changer le port ici ne change absolument le port reel de Jeedom qui restera le meme
+** *Statut* : Indique si la configuration réseaux interne est correcte
 * *Accès externe* : information pour joindre Jeedom de l'exetieur. A ne remplir que si vous n'utilisez pas le DNS Jeedom
 ** *Protocole* : protocole utilisé pour l'accès extérieure
 ** *Adresse URL ou IP* : addresse ou ip externe si fixe
 ** *Complément (exemple : /jeedom)* :  le complement type /jeedom, pour savoir si vous avez besoin regardez si quand vous vous connectez à Jeedom vous mettant /jeedom après l'IP
 ** *Port* : le port, en général 80. Attention changer le port ici ne change absolument le port reel de Jeedom qui restera le meme
+** *Statut* : Indique si la configuration réseaux externe est correcte
 * *Wifi && IP statique* : peut ne pas apparaitre en fonction de la compatibilité avec votre matériel
 ** *Adresse MAC* : Addresse mac de l'interface réseaux
 ** *Activer le wifi* : permet d'activer la connexion wifi
