@@ -418,14 +418,6 @@ class jeedom {
 					jeeNetwork::pull();
 				}
 				if (config::byKey('market::allowDNS') == 1) {
-					$minute = config::byKey('testMarketMinute');
-					if ($minute === '') {
-						$minute = rand(0, 59);
-						config::save('testMarketMinute', $minute);
-					}
-					if ($i == $minute) {
-						market::test();
-					}
 					if (!network::ngrok_run() || !network::ngrok_http_ok()) {
 						network::ngrok_start();
 					}
