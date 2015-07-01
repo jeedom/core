@@ -21,8 +21,7 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class network {
 
-	public static function getNetworkAccess($_mode = 'auto', $_protocole = '', $_default = '') {
-		self::checkConf();
+	public static function getNetworkAccess($_mode = 'auto', $_protocole = '', $_default = '', $_test = true) {
 		if ($_mode == 'auto') {
 			if (netMatch('192.168.*.*', getClientIp()) || netMatch('10.0.*.*', getClientIp())) {
 				if (!isset($_SERVER['HTTP_HOST']) || netMatch('192.168.*.*', $_SERVER['HTTP_HOST']) || netMatch('10.0.*.*', $_SERVER['HTTP_HOST'])) {
@@ -33,6 +32,9 @@ class network {
 			} else {
 				$_mode = 'external';
 			}
+		}
+		if ($_test && !self::test($_mode, false)) {
+			self::checkConf();
 		}
 		if ($_mode == 'internal') {
 			if (strpos(config::byKey('internalAddr', 'core', $_default), 'http://') != false || strpos(config::byKey('internalAddr', 'core', $_default), 'https://') !== false) {
@@ -126,10 +128,10 @@ class network {
 	}
 
 	public static function checkConf() {
-		if (config::byKey('externalComplement') == '/') {
+		if (trim(config::byKey('externalComplement')) == '/') {
 			config::save('externalComplement', '');
 		}
-		if (config::byKey('internalComplement') == '/') {
+		if (trim(config::byKey('internalComplement')) == '/') {
 			config::save('internalComplement', '');
 		}
 		if (!filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP)) {
@@ -141,8 +143,7 @@ class network {
 			if ($internalAddr != config::byKey('internalAddr')) {
 				config::save('internalAddr', $internalAddr);
 			}
-		}
-		if (config::byKey('internalAddr') == '' || config::byKey('internalAddr') == '127.0.0.1' || config::byKey('internalAddr') == 'localhost') {
+		} else {
 			$internalIp = getHostByName(getHostName());
 			if ($internalIp == '127.0.0.1' || $internalIp == '') {
 				$internalIp = self::getInterfaceIp('eth0');
@@ -184,22 +185,37 @@ class network {
 			config::save('internalPort', 80);
 		}
 
-		if (config::byKey('internalComplement') == '/' || config::byKey('internalComplement') == '') {
-			if (file_exists('/etc/nginx/sites-available/default')) {
-				$data = file_get_contents('/etc/nginx/sites-available/default');
-				if (strpos($data, 'root /usr/share/nginx/www;') !== false) {
-					config::save('internalComplement', '/jeedom');
-				}
+		if (file_exists('/etc/nginx/sites-available/default')) {
+			$data = file_get_contents('/etc/nginx/sites-available/default');
+			if (strpos($data, 'root /usr/share/nginx/www;') !== false) {
+				config::save('internalComplement', '/jeedom');
+				config::save('externalComplement', '/jeedom');
+			} else {
+				config::save('internalComplement', '');
+				config::save('externalComplement', '');
 			}
 		}
-		if (config::byKey('externalComplement') == '/') {
-			if (file_exists('/etc/nginx/sites-available/default')) {
-				$data = file_get_contents('/etc/nginx/sites-available/default');
-				if (strpos($data, 'root /usr/share/nginx/www;') !== false) {
-					config::save('externalComplement', '/jeedom');
-				}
-			}
+	}
+
+	public static function test($_mode = 'external', $_test = true) {
+		$url = self::getNetworkAccess($_mode, '', '', $_test) . '/here.html';
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		$data = curl_exec($ch);
+		if (curl_errno($ch)) {
+			curl_close($ch);
+			return false;
 		}
+		curl_close($ch);
+		if (trim($data) != 'ok') {
+			return false;
+		}
+		return true;
 	}
 
 /*     * ****************************Nginx management*************************** */
@@ -406,30 +422,6 @@ class network {
 			return false;
 		}
 		return @posix_getsid(intval($pid));
-	}
-
-	public static function ngrok_http_ok() {
-		$url = network::getNetworkAccess('external') . '/here.html';
-		if (strpos($url, 'dns.jeedom.com') === false) {
-			return false;
-		}
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-		curl_setopt($ch, CURLOPT_HEADER, false);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		$data = curl_exec($ch);
-		if (curl_errno($ch)) {
-			curl_close($ch);
-			return false;
-		}
-		curl_close($ch);
-		if (trim($data) != 'ok') {
-			return false;
-		}
-		return true;
 	}
 
 	public static function ngrok_stop($_proto = 'https', $_port = 80, $_name = '') {
