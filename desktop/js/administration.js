@@ -20,15 +20,12 @@
     if($(this).value() == 1){
        $('.configKey[data-l1key=externalProtocol]').attr('disabled',true);
        $('.configKey[data-l1key=externalAddr]').attr('disabled',true);
-       $('.configKey[data-l1key=externalComplement]').attr('disabled',true);
        $('.configKey[data-l1key=externalPort]').attr('disabled',true);
        $('.configKey[data-l1key=externalAddr]').value('');
-       $('.configKey[data-l1key=externalComplement]').value('');
        $('.configKey[data-l1key=externalPort]').value('');
    }else{
     $('.configKey[data-l1key=externalProtocol]').attr('disabled',false);
     $('.configKey[data-l1key=externalAddr]').attr('disabled',false);
-    $('.configKey[data-l1key=externalComplement]').attr('disabled',false);
     $('.configKey[data-l1key=externalPort]').attr('disabled',false);
 }
 });

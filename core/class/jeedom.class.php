@@ -418,13 +418,11 @@ class jeedom {
 					jeeNetwork::pull();
 				}
 				if (config::byKey('market::allowDNS') == 1) {
-					if (!network::ngrok_run() || !network::ngrok_http_ok()) {
+					if (!network::ngrok_http_ok()) {
 						network::ngrok_start();
 					}
-					if (config::byKey('market::redirectSSH') == 1) {
-						if (!network::ngrok_run('tcp', 22, 'ssh')) {
-							network::ngrok_start('tcp', 22, 'ssh');
-						}
+					if (config::byKey('market::redirectSSH') == 1 && !network::ngrok_run('tcp', 22, 'ssh')) {
+						network::ngrok_start('tcp', 22, 'ssh');
 					}
 				}
 			} catch (Exception $e) {

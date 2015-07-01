@@ -331,6 +331,7 @@ class market {
 				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
 				'marketkey' => config::byKey('market::jeedom_apikey'),
+				'addrComplement' => config::byKey('externalComplement'),
 				'nbMessage' => message::nbMessage(),
 				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 			);
@@ -338,7 +339,6 @@ class market {
 				$params['addr'] = config::byKey('externalAddr');
 				$params['addrProtocol'] = config::byKey('externalProtocol');
 				$params['addrPort'] = config::byKey('externalPort');
-				$params['addrComplement'] = config::byKey('externalComplement');
 			}
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
 
