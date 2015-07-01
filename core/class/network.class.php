@@ -409,9 +409,9 @@ class network {
 	}
 
 	public static function ngrok_http_ok() {
-		$url = network::getNetworkAccess('external') . '/index.php?v=d';
+		$url = network::getNetworkAccess('external') . '/here.html';
 		if (strpos($url, 'dns.jeedom.com') === false) {
-			return true;
+			return false;
 		}
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_TIMEOUT, 2);
@@ -426,7 +426,7 @@ class network {
 			return false;
 		}
 		curl_close($ch);
-		if (strpos($data, 'Tunnel ' . $url . ' not found') !== false || trim($data) == '') {
+		if (trim($data) != 'ok') {
 			return false;
 		}
 		return true;
