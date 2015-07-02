@@ -34,7 +34,7 @@ class network {
 			}
 		}
 		if ($_test && !self::test($_mode, false)) {
-			self::checkConf();
+			self::checkConf($_mode);
 		}
 		if ($_mode == 'internal') {
 			if (strpos(config::byKey('internalAddr', 'core', $_default), 'http://') != false || strpos(config::byKey('internalAddr', 'core', $_default), 'https://') !== false) {
@@ -127,72 +127,84 @@ class network {
 		}
 	}
 
-	public static function checkConf() {
-		if (trim(config::byKey('externalComplement')) == '/') {
-			config::save('externalComplement', '');
-		}
-		if (trim(config::byKey('internalComplement')) == '/') {
-			config::save('internalComplement', '');
-		}
-		if (!filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP)) {
-			$internalAddr = str_replace(array('http://', 'https://'), '', config::byKey('internalAddr'));
-			$pos = strpos($internalAddr, '/');
-			if ($pos !== false) {
-				$internalAddr = substr($internalAddr, 0, $pos);
-			}
-			if ($internalAddr != config::byKey('internalAddr')) {
-				config::save('internalAddr', $internalAddr);
-			}
-		} else {
-			$internalIp = getHostByName(getHostName());
-			if ($internalIp == '127.0.0.1' || $internalIp == '') {
-				$internalIp = self::getInterfaceIp('eth0');
-			}
-			if ($internalIp == '127.0.0.1' || $internalIp == '') {
-				$internalIp = self::getInterfaceIp('bond0');
-			}
-			if ($internalIp == '127.0.0.1' || $internalIp == '') {
-				$internalIp = self::getInterfaceIp('wlan0');
-			}
-			if ($internalIp != '') {
-				config::save('internalAddr', $internalIp);
-			}
-		}
+	public static function checkConf($_mode = 'external') {
 
-		if (!filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP)) {
-			$externalAddr = str_replace(array('http://', 'https://'), '', config::byKey('externalAddr'));
-			$pos = strpos($externalAddr, '/');
-			if ($pos !== false) {
-				$externalAddr = substr($externalAddr, 0, $pos);
+		if ($_mode == 'internal') {
+			if (trim(config::byKey('internalComplement')) == '/') {
+				config::save('internalComplement', '');
 			}
-			if ($externalAddr != config::byKey('externalAddr')) {
-				config::save('externalAddr', $externalAddr);
+			if (!filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP)) {
+				$internalAddr = str_replace(array('http://', 'https://'), '', config::byKey('internalAddr'));
+				$pos = strpos($internalAddr, '/');
+				if ($pos !== false) {
+					$internalAddr = substr($internalAddr, 0, $pos);
+				}
+				if ($internalAddr != config::byKey('internalAddr')) {
+					config::save('internalAddr', $internalAddr);
+				}
+			} else {
+				$internalIp = getHostByName(getHostName());
+				if ($internalIp == '127.0.0.1' || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+					$internalIp = self::getInterfaceIp('eth0');
+				}
+				if ($internalIp == '127.0.0.1' || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+					$internalIp = self::getInterfaceIp('bond0');
+				}
+				if ($internalIp == '127.0.0.1' || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+					$internalIp = self::getInterfaceIp('wlan0');
+				}
+				if ($internalIp != '' && filter_var($internalIp, FILTER_VALIDATE_IP)) {
+					config::save('internalAddr', $internalIp);
+				}
+			}
+
+			if (config::byKey('internalProtocol') == '') {
+				config::save('internalProtocol', 'http://');
+			}
+			if (config::byKey('internalPort') == '') {
+				config::save('internalPort', 80);
+			}
+
+			if (config::byKey('internalProtocol') == 'https://' && config::byKey('internalPort') == 80) {
+				config::save('internalPort', 443);
+			}
+
+			if (config::byKey('internalProtocol') == 'http://' && config::byKey('internalPort') == 443) {
+				config::save('internalPort', 80);
 			}
 		}
-
-		if (config::byKey('internalProtocol') == '') {
-			config::save('internalProtocol', 'http://');
-		}
-		if (config::byKey('internalPort') == '') {
-			config::save('internalPort', 80);
-		}
-
-		if (config::byKey('internalProtocol') == 'https://' && config::byKey('internalPort') == 80) {
-			config::save('internalPort', 443);
-		}
-
-		if (config::byKey('internalProtocol') == 'http://' && config::byKey('internalPort') == 443) {
-			config::save('internalPort', 80);
+		if ($_mode == 'external') {
+			if ($_mode == 'external' && trim(config::byKey('externalComplement')) == '/') {
+				config::save('externalComplement', '');
+			}
+			if (!filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP)) {
+				$externalAddr = str_replace(array('http://', 'https://'), '', config::byKey('externalAddr'));
+				$pos = strpos($externalAddr, '/');
+				if ($pos !== false) {
+					$externalAddr = substr($externalAddr, 0, $pos);
+				}
+				if ($externalAddr != config::byKey('externalAddr')) {
+					config::save('externalAddr', $externalAddr);
+				}
+			}
 		}
 
 		if (file_exists('/etc/nginx/sites-available/default')) {
 			$data = file_get_contents('/etc/nginx/sites-available/default');
 			if (strpos($data, 'root /usr/share/nginx/www;') !== false) {
-				config::save('internalComplement', '/jeedom');
-				config::save('externalComplement', '/jeedom');
+				if ($_mode == 'internal') {
+					config::save('internalComplement', '/jeedom');
+				}
+				if ($_mode == 'external') {
+					config::save('externalComplement', '/jeedom');
+				}
 			} else {
-				config::save('internalComplement', '');
-				config::save('externalComplement', '');
+				if ($_mode == 'internal') {
+					config::save('internalComplement', '');
+				}
+				if ($_mode == 'external') {
+					config::save('externalComplement', '');
+				}
 			}
 		}
 	}
