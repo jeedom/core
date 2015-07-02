@@ -419,9 +419,11 @@ class jeedom {
 				}
 				if (config::byKey('market::allowDNS') == 1) {
 					if (!network::test('external')) {
+						network::ngrok_stop();
 						network::ngrok_start();
 					}
 					if (config::byKey('market::redirectSSH') == 1 && !network::ngrok_run('tcp', 22, 'ssh')) {
+						network::ngrok_stop('tcp', 22, 'ssh');
 						network::ngrok_start('tcp', 22, 'ssh');
 					}
 				}
