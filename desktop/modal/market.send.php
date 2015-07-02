@@ -14,10 +14,8 @@ try {
 } catch (Exception $e) {
 	$market = null;
 }
-if (is_object($market)) {
-	if ($market->getApi_author() == '') {
-		throw new Exception('{{Vous n\'êtes pas l\'auteur du plugin}}');
-	}
+if (is_object($market) && !$market->getIsAuthor()) {
+	throw new Exception('{{Vous n\'êtes pas l\'auteur du plugin}}');
 }
 
 if (init('type') == 'plugin') {
@@ -68,7 +66,8 @@ if (init('type') == 'plugin') {
         </div>
     </div>
     <hr/>
-    <?php }?>
+    <?php }
+?>
     <div class="alert alert-info">{{N'oubliez pas de rajouter une image à votre création en passant par le market.}}<span id="span_directLinkWidget"></span></div>
     <div class="row">
         <div class="col-lg-6">

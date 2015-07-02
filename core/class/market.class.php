@@ -37,7 +37,7 @@ class market {
 	private $logicalId;
 	private $rating;
 	private $utilization;
-	private $api_author;
+	private $isAuthor;
 	private $img;
 	private $buyer;
 	private $purchase = 0;
@@ -91,10 +91,10 @@ class market {
 		$market->change = '';
 
 		$market->setRealcost($_arrayMarket['realCost']);
-		if (!isset($_arrayMarket['api_author'])) {
-			$_arrayMarket['api_author'] = null;
+		if (!isset($_arrayMarket['isAuthor'])) {
+			$_arrayMarket['isAuthor'] = true;
 		}
-		$market->setApi_author($_arrayMarket['api_author']);
+		$market->setIsAuthor($_arrayMarket['isAuthor']);
 
 		return $market;
 	}
@@ -448,11 +448,7 @@ class market {
 						} else {
 							$return['datetime'] = $market->getDatetime($_version[$i]);
 							$return['market'] = 1;
-							if ($market->getApi_author() != '') {
-								$return['market_owner'] = 1;
-							} else {
-								$return['market_owner'] = 0;
-							}
+							$return['market_owner'] = $market->getIsAuthor();
 							$update = update::byTypeAndLogicalId($market->getType(), $market->getLogicalId());
 							$updateDateTime = '0000-01-01 00:00:00';
 							if (is_object($update)) {
@@ -502,12 +498,7 @@ class market {
 			} else {
 				$return['datetime'] = $market->getDatetime($_version);
 				$return['market'] = 1;
-				if ($market->getApi_author() != '') {
-					$return['market_owner'] = 1;
-				} else {
-					$return['market_owner'] = 0;
-				}
-
+				$return['market_owner'] = $market->getIsAuthor();
 				$update = update::byTypeAndLogicalId($market->getType(), $market->getLogicalId());
 				$updateDateTime = '0000-01-01 00:00:00';
 				if (is_object($update)) {
@@ -980,12 +971,12 @@ class market {
 		$this->private = $private;
 	}
 
-	public function getApi_author() {
-		return $this->api_author;
+	public function getIsAuthor() {
+		return $this->isAuthor;
 	}
 
-	public function setApi_author($api_author) {
-		$this->api_author = $api_author;
+	public function setIsAuthor($isAuthor) {
+		$this->isAuthor = $isAuthor;
 	}
 
 	public function getUtilization() {
