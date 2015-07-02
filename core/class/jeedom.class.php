@@ -366,6 +366,11 @@ class jeedom {
 		if (!self::isStarted()) {
 			$cache = cache::byKey('jeedom::usbMapping');
 			$cache->remove();
+			foreach (cron::all() as $cron) {
+				if ($cron->running() && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
+					$cron->halt();
+				}
+			}
 			jeedom::start();
 			plugin::start();
 			touch('/tmp/jeedom_start');
