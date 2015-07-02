@@ -209,10 +209,10 @@ class network {
 		}
 	}
 
-	public static function test($_mode = 'external', $_test = true) {
+	public static function test($_mode = 'external', $_test = true, $_timeout = 1) {
 		$url = self::getNetworkAccess($_mode, '', '', $_test) . '/here.html';
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_TIMEOUT, 1);
+		curl_setopt($ch, CURLOPT_TIMEOUT, $_timeout);
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);

@@ -418,7 +418,7 @@ class jeedom {
 					jeeNetwork::pull();
 				}
 				if (config::byKey('market::allowDNS') == 1) {
-					if (!network::test('external')) {
+					if (!network::test('external', false, 60)) {
 						log::add('ngork', 'debug', 'Restart service');
 						network::ngrok_stop();
 						network::ngrok_start();
