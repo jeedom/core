@@ -53,7 +53,10 @@ foreach ($objects as $object) {
 
 	<div class="tab-pane active" id="display_order">
 		<br/>
+		<span class="pull-right">
 		<input class="form-control pull-right" id="in_search" placeholder="{{Rechercher}}" style="width : 200px;"/>
+		<input type="checkbox" class="bootstrapSwitch pull-right" id="cb_actifDisplay" data-on-text="{{Afficher}}" data-off-text="{{Masquer}}" data-label-text="{{Inactif}}" checked />
+		</span>
 		<center>
 			<span class="label label-default" style="font-size : 1em;">{{Nombre d'objet :}} <?php echo count($objects)?></span>
 			<span class="label label-info" style="font-size : 1em;">{{Nombre d'équipement :}} <?php echo $nbEqlogic?></span>
@@ -72,7 +75,7 @@ foreach ($objects as $object) {
 				<ul class="eqLogicSortable">
 					<?php
 foreach ($eqLogics[-1] as $eqLogic) {
-	echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
+	echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 	echo '<input type="checkbox" class="cb_selEqLogic" /> ';
 	echo $eqLogic->getName() . ' ';
 	echo '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
@@ -112,7 +115,7 @@ foreach ($objects as $object) {
 	echo '</legend>';
 	echo '<ul class="eqLogicSortable">';
 	foreach ($eqLogics[$object->getId()] as $eqLogic) {
-		echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
+		echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 		echo '<input type="checkbox" class="cb_selEqLogic" /> ';
 		echo $eqLogic->getName() . ' ';
 		echo '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';

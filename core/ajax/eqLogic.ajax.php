@@ -118,6 +118,9 @@ try {
 			if (!is_numeric($eqLogic_json['id']) || !is_numeric($eqLogic_json['order']) || !is_numeric($eqLogic_json['object_id'])) {
 				throw new Exception("Erreur une des valeurs n'est pas un numérique");
 			}
+			if ($eqLogic_json['object_id'] == -1) {
+				$eqLogic_json['object_id'] = "NULL";
+			}
 			$sql .= 'UPDATE eqLogic SET `order`= ' . $eqLogic_json['order'] . ', object_id=' . $eqLogic_json['object_id'] . '  WHERE id=' . $eqLogic_json['id'] . ' ;';
 		}
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
