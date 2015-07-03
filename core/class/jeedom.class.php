@@ -483,29 +483,15 @@ class jeedom {
 
 	public static function getHardwareKey() {
 		$cache = cache::byKey('jeedom::hwkey');
-		if ($cache->getValue(0) == 0) {
-			$rdkey = config::byKey('jeedom::rdkey');
-			if ($rdkey == '') {
-				$rdkey = config::genKey();
-				config::save('jeedom::rdkey', $rdkey);
-			}
-			$ifconfig = shell_exec("ip addr show");
-			if (strpos($ifconfig, 'eth1') !== false) {
-				$key = shell_exec(" ip addr show eth0 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
-			} else if (strpos($ifconfig, 'p2p0') !== false) {
-				$key = shell_exec(" ip addr show p2p0 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
-			} else if (strpos($ifconfig, 'p2p1') !== false) {
-				$key = shell_exec(" ip addr show p2p1 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
-			} else if (strpos($ifconfig, 'p2p2') !== false) {
-				$key = shell_exec(" ip addr show p2p2 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
-			} else {
-				$key = shell_exec(" ip addr show eth0 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
-			}
-			$hwkey = sha1($key . $rdkey);
-			cache::set('jeedom::hwkey', $hwkey, 86400);
-			return $hwkey;
+		if ($cache->getValue(0) != 0) {
+			config::save('jeedom::installKey', $cache->getValue());
 		}
-		return $cache->getValue();
+		$return = config::byKey('jeedom::installKey');
+		if ($return == '') {
+			$return = sha1(microtime() . config::genKey());
+			config::save('jeedom::installKey', $return);
+		}
+		return $return;
 	}
 
 	public static function versionAlias($_version) {
