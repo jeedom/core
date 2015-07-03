@@ -331,8 +331,10 @@ class market {
 				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
 				'addrComplement' => config::byKey('externalComplement'),
-				'nbMessage' => message::nbMessage(),
-				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
+				'information' => array(
+					'nbMessage' => message::nbMessage(),
+					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
+				),
 			);
 			if (config::byKey('market::allowDNS') != 1) {
 				$params['addr'] = config::byKey('externalAddr');
@@ -345,7 +347,6 @@ class market {
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
 				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
-				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 			));
 		}
 		$jsonrpc->setCb_class('market');
