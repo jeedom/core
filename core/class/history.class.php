@@ -386,12 +386,12 @@ ORDER BY `datetime` ASC';
 		SELECT `datetime`
 		FROM  `history`
 		WHERE  `cmd_id`=:cmd_id
-		AND  `value` !=:value
+		AND  `value` =:value
 		UNION ALL
 		SELECT `datetime`
 		FROM  `historyArch`
 		WHERE  `cmd_id`=:cmd_id
-		AND  `value` !=:value
+		AND  `value` =:value
 		) as dt
 ORDER BY  `datetime` DESC
 LIMIT 1';
