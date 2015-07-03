@@ -243,7 +243,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 * **stateDuration**(commande,[valeur]) : donne la durée en secondes depuis le dernier changement de valeur
     ** Ex : stateDuration(\#[Salle de bain][Hydrometrie][Humidité]#) : renvoie 300 si cette valeur est la depuis 5min
 * **lastChangeStateDuration**(commande,valeur) : donne la durée en secondes depuis le dernier changement d'état à la valeur passée en paramètre.
-    ** Ex : lastStateChange(\#[Salle de bain][Hydrometrie][Humidité]#,0) : renvoie 300 si cette valeur est passée à 0 la dernière fois il y a 5 minutes (même si depuis sa valeur a changé).
+    ** Ex : lastChangeStateDuration(\#[Salle de bain][Hydrometrie][Humidité]#,0) : renvoie 300 si cette valeur est passée à 0 la dernière fois il y a 5 minutes (même si depuis sa valeur a changé).
 * **lastStateDuration**(commande,valeur) : donne la durée en secondes pendant laquelle l'équipement a dernièrement eu la valeur choisie. Attention, la valeur de l'équipement doit être historisée.
     ** Ex : lastStateDuration(\#[Salle de bain][Hydrometrie][Humidité]#,0) : renvoie 300 si la valeur 0 est là depuis 5 minutes ou si elle a été là pendant 5 minutes précédemment.
 * **stateChanges**(commande,[valeur], période) et **stateChangesBetween**(commande, [valeur], start, end) : donnent le nombre de changements d'état (vers une certaine valeur si indiquée, ou au total sinon) sur la période (period=[month,day,hour,min] ou http://php.net/manual/fr/datetime.formats.relative.php[expression PHP]) ou entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou http://php.net/manual/fr/datetime.formats.relative.php[expression PHP])
