@@ -355,9 +355,6 @@ class market {
 
 	public static function postJsonRpc(&$_result) {
 		if (is_array($_result)) {
-			if (isset($_result['register::datetime'])) {
-				config::save('register::datetime', $_result['register::datetime']);
-			}
 			if (config::byKey('market::allowDNS') == 1) {
 				$ngrokRestart = false;
 				if (isset($_result['register::ngrokAddr']) && config::byKey('ngrok::addr') != $_result['register::ngrokAddr']) {
@@ -389,9 +386,6 @@ class market {
 				if (isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
 					config::save('jeedom::url', $_result['jeedom::url']);
 				}
-			}
-			if (isset($_result['register::datetime'])) {
-				unset($_result['register::datetime']);
 			}
 			if (isset($_result['register::ngrokAddr'])) {
 				unset($_result['register::ngrokAddr']);
@@ -570,21 +564,6 @@ class market {
 		if (is_object($market) && $market->getPurchase() == 0) {
 			throw new Exception(__('Vous devez acheter cet article avant de pouvoir l\'activer', __FILE__));
 		}
-	}
-
-	public static function validateTicket($_ticket) {
-		if (config::byKey('market::jeedom_apikey') == '') {
-			config::save('market::jeedom_apikey', config::genKey(255));
-		}
-		$market = self::getJsonRpc();
-		$params = array(
-			'marketkey' => config::byKey('market::jeedom_apikey'),
-			'ticket' => $_ticket,
-		);
-		if (!$market->sendRequest('jeedom::checkTicket', $params)) {
-			throw new Exception($market->getError());
-		}
-		return true;
 	}
 
 	public static function distinctCategorie($_type) {
