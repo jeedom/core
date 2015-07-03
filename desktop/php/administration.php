@@ -572,6 +572,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                                     <option value="-3 month">3 mois</option>
                                     <option value="-1 month">1 mois</option>
                                     <option value="-1 week">1 semaine</option>
+                                    <option value="-1 day">1 jour</option>
                                 </select>
                             </div>
                         </div>
