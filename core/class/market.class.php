@@ -318,9 +318,6 @@ class market {
 		if (config::byKey('market::address') == '') {
 			throw new Exception(__('Aucune addresse n\'est renseignée pour le market', __FILE__));
 		}
-		if (config::byKey('market::jeedom_apikey') == '') {
-			config::save('market::jeedom_apikey', config::genKey(255));
-		}
 		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
 			$params = array(
 				'username' => config::byKey('market::username'),
@@ -425,7 +422,7 @@ class market {
 					return $return;
 				}
 
-				if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
+				if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
 					$return['market_owner'] = 1;
 				} else {
 					$return['market_owner'] = 0;
@@ -472,7 +469,7 @@ class market {
 			return $return;
 		}
 
-		if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
+		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
 			$return['market_owner'] = 1;
 		} else {
 			$return['market_owner'] = 0;
