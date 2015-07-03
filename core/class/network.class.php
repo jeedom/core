@@ -153,7 +153,7 @@ class network {
 				if ($internalIp == '127.0.0.1' || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
 					$internalIp = self::getInterfaceIp('wlan0');
 				}
-				if ($internalIp != '' && filter_var($internalIp, FILTER_VALIDATE_IP)) {
+				if ($internalIp != '' && filter_var($internalIp, FILTER_VALIDATE_IP) && $internalIp != '127.0.0.1') {
 					config::save('internalAddr', $internalIp);
 				}
 			}
