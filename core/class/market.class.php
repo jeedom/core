@@ -330,7 +330,6 @@ class market {
 				'password_type' => 'sha1',
 				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
-				'marketkey' => config::byKey('market::jeedom_apikey'),
 				'addrComplement' => config::byKey('externalComplement'),
 				'nbMessage' => message::nbMessage(),
 				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',

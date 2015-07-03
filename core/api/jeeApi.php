@@ -31,14 +31,6 @@ if (trim(config::byKey('api')) == '') {
 	die();
 }
 
-if (init('type') == 'getApiKey') {
-	if (config::byKey('market::jeedom_apikey') == init('apikey')) {
-		market::validateTicket(init('ticket'));
-		echo config::byKey('api');
-	}
-	die();
-}
-
 if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 	try {
 		if (config::byKey('api') != init('apikey') && config::byKey('api') != init('api')) {
