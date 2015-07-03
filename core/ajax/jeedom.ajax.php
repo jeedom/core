@@ -102,7 +102,7 @@ try {
 	}
 
 	if (init('action') == 'resetHwKey') {
-		jeedom::resetHwKey();
+		config::save('jeedom::installKey', '');
 		ajax::success();
 	}
 

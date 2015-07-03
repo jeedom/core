@@ -472,15 +472,6 @@ class jeedom {
 		return shell_exec('ps ax | grep "' . $_cmd . '$" | grep -v "grep" | awk \'{print $1}\'');
 	}
 
-	public static function resetHwKey() {
-		$rdkey = config::genKey();
-		config::save('jeedom::rdkey', $rdkey);
-		$cache = cache::byKey('jeedom::hwkey');
-		if ($cache->getValue(0) != 0) {
-			$cache->remove();
-		}
-	}
-
 	public static function getHardwareKey() {
 		$cache = cache::byKey('jeedom::hwkey');
 		if ($cache->getValue(0) != 0) {
