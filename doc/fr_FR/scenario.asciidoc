@@ -242,7 +242,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
            Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise la calcul de http://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s[moindre carrés]
 * **stateDuration**(commande,[valeur]) : donne la durée en secondes depuis le dernier changement de valeur
     ** Ex : stateDuration(\#[Salle de bain][Hydrometrie][Humidité]#) : renvoie 300 si cette valeur est la depuis 5min
-* **lastChangeStateDuration**(commande,valeur) : donne la durée en secondes depuis le dernier changement d'état à la valeur passée en paramètre.
+* **lastChangeStateDuration**(commande,valeur) : donne la durée en secondes depuis le dernier changement d'état à la valeur passée en paramètre.Attention, la valeur de l'équipement doit être historisée.
     ** Ex : lastChangeStateDuration(\#[Salle de bain][Hydrometrie][Humidité]#,0) : renvoie 300 si cette valeur est passée à 0 la dernière fois il y a 5 minutes (même si depuis sa valeur a changé).
 * **lastStateDuration**(commande,valeur) : donne la durée en secondes pendant laquelle l'équipement a dernièrement eu la valeur choisie. Attention, la valeur de l'équipement doit être historisée.
     ** Ex : lastStateDuration(\#[Salle de bain][Hydrometrie][Humidité]#,0) : renvoie 300 si la valeur 0 est là depuis 5 minutes ou si elle a été là pendant 5 minutes précédemment.
