@@ -143,7 +143,9 @@ foreach ($market->getImg('screenshot') as $screenshot) {
   <br/>
   <div class='row'>
     <div class='col-sm-6'>
-        <legend>Description</legend>
+        <legend>{{Description}}
+<a class="btn btn-default btn-xs pull-right" target="_blank" href="https://jeedom.fr/doc/documentation/plugins/<?php echo $market->getLogicalId() . '/fr_FR/' . $market->getLogicalId() . '.html'?>"><i class="fa fa-book"></i> {{Documentation}}</a><br/>
+        </legend>
         <span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
         <br/><br/>
         <legend>{{Compatibilité plateforme}}</legend>
@@ -213,34 +215,6 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
 ?>
                 <?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') {?>
                 <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum');?>"><i class="fa fa-users"></i> Forum</a><br/>
-                <?php }
-?>
-                <?php if ($market->getLink('doc_fr_FR') != '' && $market->getLink('doc_fr_FR') != 'null') {?>
-                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_fr_FR');?>"><i class="fa fa-book"></i> Doc FR</a><br/>
-                <?php }
-?>
-                <?php if ($market->getLink('doc_us_US') != '' && $market->getLink('doc_us_US') != 'null') {?>
-                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_us_US');?>"><i class="fa fa-book"></i> Doc US</a><br/>
-                <?php }
-?>
-                <?php if ($market->getLink('doc_de_DE') != '' && $market->getLink('doc_de_DE') != 'null') {?>
-                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_de_DE');?>"><i class="fa fa-book"></i> Doc DE</a><br/>
-                <?php }
-?>
-                <?php if ($market->getLink('doc_sp_SP') != '' && $market->getLink('doc_sp_SP') != 'null') {?>
-                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_sp_SP');?>"><i class="fa fa-book"></i> Doc SP</a><br/>
-                <?php }
-?>
-                <?php if ($market->getLink('doc_ru_RU') != '' && $market->getLink('doc_ru_RU') != 'null') {?>
-                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_ru_RU');?>"><i class="fa fa-book"></i> Doc RU</a><br/>
-                <?php }
-?>
-                <?php if ($market->getLink('doc_id_ID') != '' && $market->getLink('doc_id_ID') != 'null') {?>
-                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_id_ID');?>"><i class="fa fa-book"></i> Doc ID</a><br/>
-                <?php }
-?>
-                <?php if ($market->getLink('doc_it_IT') != '' && $market->getLink('doc_it_IT') != 'null') {?>
-                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('doc_it_IT');?>"><i class="fa fa-book"></i> Doc IT</a><br/>
                 <?php }
 ?>
             </div>
