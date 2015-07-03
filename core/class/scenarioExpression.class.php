@@ -383,7 +383,7 @@ class scenarioExpression {
 	}
 
 	public static function lastStateDuration($_cmd_id, $_value = null) {
-		return history::lastStateChange(str_replace('#', '', $_cmd_id), $_value);
+		return history::lastStateDuration(str_replace('#', '', $_cmd_id), $_value);
 	}
 
 	public static function stateChanges($_cmd_id, $_value = null, $_period = '1 hour') {
