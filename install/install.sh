@@ -237,16 +237,6 @@ install_nodejs() {
             mv node-raspberry.bin /usr/local/bin/node
             ln -s /usr/local/bin/node /usr/bin/nodejs
             chmod +x /usr/local/bin/node
-        elif [ ${ARM} -ne 0 ] ; then
-            echo "********************************************************"
-            echo "${msg_manual_install_nodejs_ARM}"
-            echo "********************************************************"
-            wget --no-check-certificate http://jeedom.fr/ressources/nodejs/node-v0.10.21-cubie.tar.xz
-            tar xJvf node-v0.10.21-cubie.tar.xz -C /usr/local --strip-components 1
-            if [ ! -f '/usr/bin/nodejs' ] && [ -f '/usr/local/bin/node' ] ; then
-                ln -s /usr/local/bin/node /usr/bin/nodejs
-            fi
-            rm -rf node-v0.10.21-cubie.tar.xz
         fi
     fi
     
