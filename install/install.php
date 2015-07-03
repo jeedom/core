@@ -121,9 +121,9 @@ try {
 					if (file_exists($tmp)) {
 						unlink($tmp);
 					}
-					file_put_contents($tmp, fopen($url, 'r'));
+					exec('wget --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
 					if (!file_exists($tmp)) {
-						throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '. Si l\'application est payante, l\'avez-vous achetée ?', __FILE__));
+						throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
 					}
 					if (filesize($tmp) < 10) {
 						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 10 octets)', __FILE__));
@@ -333,6 +333,7 @@ try {
 			echo __("***************Mise à jour des plugins réussie***************\n", __FILE__);
 		}
 		try {
+			message::removeAll('update', 'newUpdate');
 			echo __("Vérification des mises à jour\n", __FILE__);
 			update::checkAllUpdate();
 			echo __("OK\n", __FILE__);

@@ -37,7 +37,7 @@ class market {
 	private $logicalId;
 	private $rating;
 	private $utilization;
-	private $api_author;
+	private $isAuthor;
 	private $img;
 	private $buyer;
 	private $purchase = 0;
@@ -45,7 +45,6 @@ class market {
 	private $realcost = 0;
 	private $link;
 	private $certification;
-	private $nbComment;
 	private $language;
 	private $private;
 	private $change;
@@ -80,7 +79,6 @@ class market {
 		$market->rating = ($_arrayMarket['rating']);
 		$market->setBuyer($_arrayMarket['buyer']);
 		$market->setUpdateBy($_arrayMarket['updateBy']);
-		$market->setNbComment($_arrayMarket['nbComment']);
 		$market->setPrivate($_arrayMarket['private']);
 		$market->img = json_encode($_arrayMarket['img'], JSON_UNESCAPED_UNICODE);
 		$market->link = json_encode($_arrayMarket['link'], JSON_UNESCAPED_UNICODE);
@@ -91,10 +89,10 @@ class market {
 		$market->change = '';
 
 		$market->setRealcost($_arrayMarket['realCost']);
-		if (!isset($_arrayMarket['api_author'])) {
-			$_arrayMarket['api_author'] = null;
+		if (!isset($_arrayMarket['isAuthor'])) {
+			$_arrayMarket['isAuthor'] = true;
 		}
-		$market->setApi_author($_arrayMarket['api_author']);
+		$market->setIsAuthor($_arrayMarket['isAuthor']);
 
 		return $market;
 	}
@@ -324,25 +322,29 @@ class market {
 			config::save('market::jeedom_apikey', config::genKey(255));
 		}
 		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
-			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
+			$params = array(
 				'username' => config::byKey('market::username'),
 				'password' => config::byKey('market::password'),
 				'password_type' => 'sha1',
 				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
-				'addr' => config::byKey('externalAddr'),
-				'addrProtocol' => config::byKey('externalProtocol'),
-				'addrPort' => config::byKey('externalPort'),
 				'addrComplement' => config::byKey('externalComplement'),
-				'marketkey' => config::byKey('market::jeedom_apikey'),
-				'nbMessage' => message::nbMessage(),
-				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
-			));
+				'information' => array(
+					'nbMessage' => message::nbMessage(),
+					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
+				),
+			);
+			if (config::byKey('market::allowDNS') != 1) {
+				$params['addr'] = config::byKey('externalAddr');
+				$params['addrProtocol'] = config::byKey('externalProtocol');
+				$params['addrPort'] = config::byKey('externalPort');
+			}
+			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
+
 		} else {
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
 				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
-				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 			));
 		}
 		$jsonrpc->setCb_class('market');
@@ -352,63 +354,37 @@ class market {
 
 	public static function postJsonRpc(&$_result) {
 		if (is_array($_result)) {
-			if (isset($_result['register::datetime'])) {
-				config::save('register::datetime', $_result['register::datetime']);
-			}
 			if (config::byKey('market::allowDNS') == 1) {
-				if (isset($_result['client::ip']) && (filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP) || config::byKey('externalAddr') == '')) {
-					config::save('externalAddr', $_result['client::ip']);
-				}
-
+				$ngrokRestart = false;
 				if (isset($_result['register::ngrokAddr']) && config::byKey('ngrok::addr') != $_result['register::ngrokAddr']) {
 					config::save('ngrok::addr', $_result['register::ngrokAddr']);
-					if (network::ngrok_run()) {
-						network::ngrok_stop();
-					}
-					if (network::ngrok_run('tcp', 22, 'ssh')) {
-						network::ngrok_stop('tcp', 22, 'ssh');
-					}
-					if (config::byKey('market::allowDNS') == 1) {
-						network::ngrok_start();
-						if (config::byKey('market::redirectSSH') == 1) {
-							network::ngrok_start('tcp', 22, 'ssh');
-						}
-					}
+					$ngrokRestart = true;
 				}
 
 				if (isset($_result['register::ngrokToken']) && config::byKey('ngrok::token') != $_result['register::ngrokToken']) {
 					config::save('ngrok::token', $_result['register::ngrokToken']);
+					$ngrokRestart = true;
+
+				}
+				if (isset($_result['register::ngrokPort']) && config::byKey('ngrok::port') != $_result['register::ngrokPort']) {
+					config::save('ngrok::port', $_result['register::ngrokPort']);
+					$ngrokRestart = true;
+				}
+				if ($ngrokRestart && config::byKey('market::allowDNS') == 1) {
 					if (network::ngrok_run()) {
 						network::ngrok_stop();
 					}
 					if (network::ngrok_run('tcp', 22, 'ssh')) {
 						network::ngrok_stop('tcp', 22, 'ssh');
 					}
-					if (config::byKey('market::allowDNS') == 1) {
-						network::ngrok_start();
-						if (config::byKey('market::redirectSSH') == 1) {
-							network::ngrok_start('tcp', 22, 'ssh');
-						}
-					}
-				}
-				if (isset($_result['register::ngrokPort']) && config::byKey('ngrok::port') != $_result['register::ngrokPort']) {
-					config::save('ngrok::port', $_result['register::ngrokPort']);
-					if (network::ngrok_run('tcp', 22, 'ssh')) {
-						network::ngrok_stop('tcp', 22, 'ssh');
-					}
-					if (config::byKey('market::allowDNS') == 1 && config::byKey('market::redirectSSH') == 1) {
+					network::ngrok_start();
+					if (config::byKey('market::redirectSSH') == 1) {
 						network::ngrok_start('tcp', 22, 'ssh');
 					}
 				}
 				if (isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
 					config::save('jeedom::url', $_result['jeedom::url']);
 				}
-			}
-			if (isset($_result['register::datetime'])) {
-				unset($_result['register::datetime']);
-			}
-			if (isset($_result['licence'])) {
-				unset($_result['licence']);
 			}
 			if (isset($_result['register::ngrokAddr'])) {
 				unset($_result['register::ngrokAddr']);
@@ -421,9 +397,6 @@ class market {
 			}
 			if (isset($_result['jeedom::url'])) {
 				unset($_result['jeedom::url']);
-			}
-			if (isset($_result['client::ip'])) {
-				unset($_result['client::ip']);
 			}
 		}
 	}
@@ -467,11 +440,7 @@ class market {
 						} else {
 							$return['datetime'] = $market->getDatetime($_version[$i]);
 							$return['market'] = 1;
-							if ($market->getApi_author() != '') {
-								$return['market_owner'] = 1;
-							} else {
-								$return['market_owner'] = 0;
-							}
+							$return['market_owner'] = $market->getIsAuthor();
 							$update = update::byTypeAndLogicalId($market->getType(), $market->getLogicalId());
 							$updateDateTime = '0000-01-01 00:00:00';
 							if (is_object($update)) {
@@ -521,12 +490,7 @@ class market {
 			} else {
 				$return['datetime'] = $market->getDatetime($_version);
 				$return['market'] = 1;
-				if ($market->getApi_author() != '') {
-					$return['market_owner'] = 1;
-				} else {
-					$return['market_owner'] = 0;
-				}
-
+				$return['market_owner'] = $market->getIsAuthor();
 				$update = update::byTypeAndLogicalId($market->getType(), $market->getLogicalId());
 				$updateDateTime = '0000-01-01 00:00:00';
 				if (is_object($update)) {
@@ -601,21 +565,6 @@ class market {
 		}
 	}
 
-	public static function validateTicket($_ticket) {
-		if (config::byKey('market::jeedom_apikey') == '') {
-			config::save('market::jeedom_apikey', config::genKey(255));
-		}
-		$market = self::getJsonRpc();
-		$params = array(
-			'marketkey' => config::byKey('market::jeedom_apikey'),
-			'ticket' => $_ticket,
-		);
-		if (!$market->sendRequest('jeedom::checkTicket', $params)) {
-			throw new Exception($market->getError());
-		}
-		return true;
-	}
-
 	public static function distinctCategorie($_type) {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('market::distinctCategorie', array('type' => $_type))) {
@@ -626,21 +575,6 @@ class market {
 	}
 
 	/*     * *********************Methode d'instance************************* */
-
-	public function getComment() {
-		$market = self::getJsonRpc();
-		if (!$market->sendRequest('market::getComment', array('id' => $this->getId()))) {
-			throw new Exception($market->getError());
-		}
-		return $market->getResult();
-	}
-
-	public function setComment($_comment = null, $_order = null) {
-		$market = self::getJsonRpc();
-		if (!$market->sendRequest('market::setComment', array('id' => $this->getId(), 'comment' => $_comment, 'order' => $_order))) {
-			throw new Exception($market->getError());
-		}
-	}
 
 	public function setRating($_rating) {
 		$market = self::getJsonRpc();
@@ -999,12 +933,12 @@ class market {
 		$this->private = $private;
 	}
 
-	public function getApi_author() {
-		return $this->api_author;
+	public function getIsAuthor() {
+		return $this->isAuthor;
 	}
 
-	public function setApi_author($api_author) {
-		$this->api_author = $api_author;
+	public function setIsAuthor($isAuthor) {
+		$this->isAuthor = $isAuthor;
 	}
 
 	public function getUtilization() {
@@ -1053,14 +987,6 @@ class market {
 
 	public function setCertification($certification) {
 		$this->certification = $certification;
-	}
-
-	public function getNbComment() {
-		return $this->nbComment;
-	}
-
-	public function setNbComment($nbComment) {
-		$this->nbComment = $nbComment;
 	}
 
 	public function getChange() {

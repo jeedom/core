@@ -187,9 +187,6 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
                     </div><br/>
                     <?php }
 ?>
-                    <center>
-                        <a class="btn btn-default" id="bt_viewComment"><i class="fa fa-comments-o"></i> {{Commentaires}} (<?php echo $market->getNbComment();?>)</a>
-                    </center>
                 </div>
             </div>
         </div>
@@ -401,15 +398,6 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
     $('#div_changelog').dialog('open');
 });
 
- $('#bt_viewComment').on('click', function () {
-    reloadMarketComment();
-    $('#div_comments').dialog('open');
-});
-
-
- function reloadMarketComment() {
-    $('#div_comments').load('index.php?v=d&modal=market.comment&id=' + $('.marketAttr[data-l1key=id]').value());
-}
 
 $('.bt_installFromMarket').on('click', function () {
     var id = $(this).attr('data-market_id');

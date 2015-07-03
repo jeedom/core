@@ -38,6 +38,7 @@ class cmd {
 	protected $template;
 	protected $display;
 	protected $_collectDate = '';
+	protected $_valueDate = '';
 	protected $value = null;
 	protected $isVisible = 1;
 	protected $_eqLogic = null;
@@ -470,6 +471,7 @@ class cmd {
 			$mc = cache::byKey('cmd' . $cmd_id);
 			if (!$mc->hasExpired() && $mc->getValue() !== '') {
 				$collectDate = $mc->getOptions('collectDate', $mc->getDatetime());
+				$valueDate = $mc->getOptions('valueDate', $mc->getDatetime());
 				$cmd_value = $mc->getValue();
 			} else {
 				$cmd = self::byId($cmd_id);
@@ -478,6 +480,7 @@ class cmd {
 				}
 				$cmd_value = $cmd->execCmd(null, 1, true, $_quote);
 				$collectDate = $cmd->getCollectDate();
+				$valueDate = $cmd->getValueDate();
 			}
 			if ($_quote && (strpos($cmd_value, ' ') !== false || preg_match("/[a-zA-Z]/", $cmd_value) || $cmd_value === '')) {
 				$cmd_value = '"' . trim($cmd_value, '"') . '"';
@@ -485,8 +488,10 @@ class cmd {
 			if (!$json) {
 				$replace['#' . $cmd_id . '#'] = $cmd_value;
 				$replace['#collectDate' . $cmd_id . '#'] = $collectDate;
+				$replace['#valueDate' . $cmd_id . '#'] = $valueDate;
 			} else {
 				$replace['#' . $cmd_id . '#'] = trim(json_encode($cmd_value), '"');
+				$replace['#valueDate' . $cmd_id . '#'] = trim(json_encode($valueDate), '"');
 				$replace['#collectDate' . $cmd_id . '#'] = trim(json_encode($collectDate), '"');
 			}
 		}
@@ -717,6 +722,7 @@ class cmd {
 					$this->setCollect(1);
 				}
 				$this->setCollectDate($mc->getOptions('collectDate', $mc->getDatetime()));
+				$this->setValueDate($mc->getOptions('valueDate', $mc->getDatetime()));
 				return $mc->getValue();
 			}
 		}
@@ -765,7 +771,10 @@ class cmd {
 			if ($this->getCollectDate() == '') {
 				$this->setCollectDate(date('Y-m-d H:i:s'));
 			}
-			cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
+			if ($this->getValueDate() == '') {
+				$this->setValueDate(date('Y-m-d H:i:s'));
+			}
+			cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
 			$this->setCollect(0);
 			$nodeJs = array(
 				array(
@@ -896,6 +905,7 @@ class cmd {
 				}
 			}
 			$replace['#collectDate#'] = $this->getCollectDate();
+			$replace['#valueDate#'] = $this->getValueDate();
 			if ($this->getIsHistorized() == 1) {
 				$replace['#history#'] = 'history cursor';
 
@@ -987,19 +997,21 @@ class cmd {
 			return;
 		}
 		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
+		$valueDate = $collectDate;
 		if ($this->execCmd(null, 2) == $value) {
 			if (strpos($value, 'error') === false) {
-				$eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
+				$eqLogic->setStatus('lastCommunication', $collectDate);
 			}
 			if ($this->getConfiguration('doNotRepeatEvent', 0) == 1) {
 				return;
 			}
-			$collectDate = $this->getCollectDate();
+			$valueDate = $this->getValueDate();
 		}
 		$_loop++;
 		$this->setCollectDate($collectDate);
+		$this->setValueDate($valueDate);
 		log::add('event', 'event', __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $value);
-		cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate()));
+		cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
 		scenario::check($this);
 		$this->setCollect(0);
 		$eqLogic->emptyCacheWidget();
@@ -1023,7 +1035,7 @@ class cmd {
 		listener::check($this->getId(), $value);
 
 		if (strpos($value, 'error') === false) {
-			$eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
+			$eqLogic->setStatus('lastCommunication', $collectDate);
 			$this->addHistoryValue($value, $this->getCollectDate());
 		} else {
 			$this->addHistoryValue(null, $this->getCollectDate());
@@ -1397,6 +1409,14 @@ class cmd {
 
 	public function setCollectDate($_collectDate) {
 		$this->_collectDate = $_collectDate;
+	}
+
+	public function getValueDate() {
+		return $this->_valueDate;
+	}
+
+	public function setValueDate($_valueDate) {
+		$this->_valueDate = $_valueDate;
 	}
 
 	public function getValue() {

@@ -366,6 +366,11 @@ class jeedom {
 		if (!self::isStarted()) {
 			$cache = cache::byKey('jeedom::usbMapping');
 			$cache->remove();
+			foreach (cron::all() as $cron) {
+				if ($cron->running() && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
+					$cron->halt();
+				}
+			}
 			jeedom::start();
 			plugin::start();
 			touch('/tmp/jeedom_start');
@@ -378,6 +383,7 @@ class jeedom {
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
 		$gi = date('Gi');
+		$i = date('i');
 		try {
 			$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
 			if ($c->isDue()) {
@@ -417,14 +423,14 @@ class jeedom {
 					jeeNetwork::pull();
 				}
 				if (config::byKey('market::allowDNS') == 1) {
-					market::test();
-					if (!network::ngrok_run()) {
+					if (!network::test('external', false, 60)) {
+						log::add('ngork', 'debug', 'Restart service');
+						network::ngrok_stop();
 						network::ngrok_start();
 					}
-					if (config::byKey('market::redirectSSH') == 1) {
-						if (!network::ngrok_run('tcp', 22, 'ssh')) {
-							network::ngrok_start('tcp', 22, 'ssh');
-						}
+					if (config::byKey('market::redirectSSH') == 1 && !network::ngrok_run('tcp', 22, 'ssh')) {
+						network::ngrok_stop('tcp', 22, 'ssh');
+						network::ngrok_start('tcp', 22, 'ssh');
 					}
 				}
 			} catch (Exception $e) {

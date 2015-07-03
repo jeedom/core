@@ -291,18 +291,6 @@ foreach ($notifyTheme as $key => $value) {
                            </select>
                        </div>
                    </div>
-                   <div class="form-group">
-                    <label class="col-sm-3 control-label">{{Notifier du lancement des scénarios}}</label>
-                    <div class="col-sm-3">
-                        <select class="userAttr form-control" data-l1key="options" data-l2key="notifyLaunchScenario">
-                            <?php
-foreach ($notifyTheme as $key => $value) {
-	echo "<option value='$key'>$value</option>";
-}
-?>
-                       </select>
-                   </div>
-               </div>
                <div class="form-group">
                 <label class="col-sm-3 control-label">{{Notifier nouveau message}}</label>
                 <div class="col-sm-3">

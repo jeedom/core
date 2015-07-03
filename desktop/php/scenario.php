@@ -112,9 +112,10 @@ if (count($scenarios) == 0) {
 	echo '<legend>Aucun</legend>';
 	echo '<div class="scenarioListContainer">';
 	foreach ($scenarios[-1] as $scenario) {
+		$color = ($scenario->getIsActive() == 1) ? '#767676' : '#FA5858';
 		echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 		echo "<center>";
-		echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
+		echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:' . $color . ';"></i>';
 		echo "</center>";
 		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
 		echo '</div>';
@@ -126,9 +127,10 @@ if (count($scenarios) == 0) {
 			echo '<legend>' . $group['group'] . '</legend>';
 			echo '<div class="scenarioListContainer">';
 			foreach ($scenarios[$group['group']] as $scenario) {
+				$color = ($scenario->getIsActive() == 1) ? '#767676' : '#FA5858';
 				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 				echo "<center>";
-				echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
+				echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:' . $color . ';"></i>';
 				echo "</center>";
 				echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
 				echo '</div>';
@@ -148,7 +150,7 @@ if (count($scenarios) == 0) {
         <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
         <a class="btn btn-danger btn-xs pull-right expertModeVisible" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
         <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_templateScenario"><i class="fa fa-cubes"></i> {{Template}}</a>
-        <a class="btn btn-success btn-xs pull-right" id="bt_saveScenario2"><i class="fa fa-check-circle"></i> {{Sauvegarde}}</a>
+        <a class="btn btn-success btn-xs pull-right" id="bt_saveScenario2"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
         <a class="btn btn-danger btn-xs pull-right" id="bt_delScenario2"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
         <a class="btn btn-warning btn-xs pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Executer}}</a>
     </legend>

@@ -1,16 +1,51 @@
+= Log
 
-:icons:
+== Affichage
 
 Le menu Logs, permet de suivre ce qui se passe sur sa domotique. Dans la plupart des cas ils ne serviront qu'à effectuer du debuggage et à résoudre des problèmes par l'équipe de support. Ce menu est d'ailleurs accessible uniquement en mode expert.
 
-La page de Logs est assez simple, en haut à gauche une liste déroulante permettant le choix des logs, en haut à droite la possibilité de vider les Logs, et au centre les Logs correspondants.
+Pour y acceder il faut aller dans Général -> Administration -> Log : 
+
+image::../images/log1.JPG[]
+
+Vous obetenez : 
 
 image::../images/log.JPG[]
 
-La liste déroulante permettant de choisir les logs à afficher.
+La page de Logs est assez simple, en haut à gauche une liste déroulante permettant le choix du log à regarder, en haut à droite vous avez 5 boutons qui permettent :
 
-image::../images/log2.png[]
+* *Rafraichir* : permet de rafraichir le log actuel
+* *Télécharger* : permet de télécharger le log actuel
+* *Vider* : vide le log actuel
+* *Supprimer* : supprime le log actuel, si Jeedom en as besoin il le recreera automatiquement
+* *Supprimer tous les logs* : supprime tous les logs présent
 
-Et voici un exemple de logs.
+[TIP]
+A noter que le log nginx.error ne peut etre supprimer, il est essentiel, si vous le supprimez (en ligne de commande par exemple) celui-ci ne se recreer pas tout seul il faut redemarrer Jeedom
 
-image::../images/log3.png[]
+== Configuration
+
+Il existe certain parametre de configuration des log (accessible par Général -> Administation -> Configuration puis la partie "Configuration des logs & messages")
+
+image::../images/log2.JPG[]
+
+Vous avez ici 3 options : 
+
+* *Ajouter un message à chaque erreur dans les logs* : si un plugin ou Jeedom ecrire un message d'erreur dans un log, Jeedom ajoute automatiquement un message dans le centre des message (au moins vous etes sur de ne pas le manquer)
+* *Nombre de lignes maximum dans un fichier de log* : Defini le nombre maximum de ligne dans un fichier de log, il est recommandé de ne pas toucher cette valeur, car une valeur trop grande pourrait remplir le systeme de fichier et/ou rendre Jeedom incapable d'afficher le log
+* *Logs actifs* : permet de definir les niveaux de log actif, attention plus il y a de niveau actif plus Jeedom peut etre lent, cela entraine aussi une usure prématuré de la carte SD, il est conseillé de n'activer que le niveau "Error" ("Event" peut etre activer aussi car il est necessaire pour voir en temps réel ce qu'il se passe sur ca domotique, bien sur c'est seulement si vous en avez besoin)
+
+== Le log event et le niveau de log event
+
+Le log event est un peu particulier, deja pour qu'il marche il faut activer le niveau de log event, ensuite celui recence toute les evenement ou action qu'il se passe sur la domotique. Pour y acceder il faut cliquer sur la petite icone "compteur" en bas a droite dans Jeedom : 
+
+image::../images/log3.JPG[]
+
+Un fois que vous avez cliquez dessus vous obtenez une fenetre qui se mets à jour toute les secondes et vous affiche tous les événements de votre domotique
+
+image::../images/log4.JPG[]
+
+En haut à droite vous avez un champs recherche (ne marche que si vous n'etês pas en pause) et un bouton pour mettre en pause (utile pour faire un copier/coller par exemple)
+
+[IMPORTANT]
+Pour ce que cela marche il faut absolument avoir activé le niveau de log event (voir paragraphe précedent)

@@ -31,14 +31,6 @@ if (trim(config::byKey('api')) == '') {
 	die();
 }
 
-if (init('type') == 'getApiKey') {
-	if (config::byKey('market::jeedom_apikey') == init('apikey')) {
-		market::validateTicket(init('ticket'));
-		echo config::byKey('api');
-	}
-	die();
-}
-
 if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 	try {
 		if (config::byKey('api') != init('apikey') && config::byKey('api') != init('api')) {
@@ -157,6 +149,14 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				connection::failed();
 				throw new Exception('Nom d\'utilisateur ou mot de passe invalide', -32001);
 			}
+			$session_lifetime = config::byKey('session_lifetime', 24);
+			if (!is_numeric($session_lifetime)) {
+				$session_lifetime = 24;
+			}
+			ini_set('session.gc_maxlifetime', $session_lifetime * 3600);
+			@session_start();
+			$_SESSION['user'] = $user;
+			@session_write_close();
 		} else {
 			connection::failed();
 			throw new Exception('Aucune clé API ou nom d\'utilisateur', -32001);

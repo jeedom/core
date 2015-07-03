@@ -2,7 +2,7 @@
 <div id="wrap">
     <div class="container">
         <center>
-            <img src="core/img/logo-jeedom-grand-nom-couleur.svg"/><br/><br/>
+            <img src="core/img/logo-jeedom-grand-nom-couleur-460x320.png" class="img-responsive" />
             <div style="display: none;width : 100%" id="div_alert"></div>
             <?php
 if (init('error') == 1) {
@@ -15,10 +15,9 @@ foreach ($_GET AS $var => $value) {
 	}
 }
 ?>
-            <form method="post" name="login" action="index.php?v=d<?php echo htmlspecialchars($getParams);?>" class="form-signin">
-                <h2 class="form-signin-heading">{{Connectez-vous}}</h2>
+            <form method="post" name="login" action="index.php?v=d<?php echo htmlspecialchars($getParams);?>" style="position : relative;top : -80px;" class="form-signin">
                 <input type="text" name="connect" id="connect" hidden value="1" style="display: none;"/>
-                <br/><input class="input-block-level" type="text" name="login" id="login" placeholder="{{Nom d'utilisateur}}"/><br/>
+                <input class="input-block-level" type="text" name="login" id="login" placeholder="{{Nom d'utilisateur}}"/><br/>
                 <br/><input class="input-block-level" type="password" id="mdp" name="mdp" placeholder="{{Mot de passe}}"/><br/>
                 <br/><input class="input-block-level" type="checkbox" id="registerDevice" name="registerDevice"/> {{Enregistrer cet ordinateur}}<br/>
                 <a class='cursor' id="bt_forgotPassword">{{J'ai oublié mon mot de passe}}</a>

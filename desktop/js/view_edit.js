@@ -44,9 +44,6 @@
     return false;
 });
 
- $('.viewDataOption[data-l1key=configuration][data-l2key=graphColor]').on('change', function() {
-    setColorSelect($(this).closest('select'));
-});
 
  $('#bt_viewResult').on('click', function() {
     window.location.href = 'index.php?v=d&p=view&view_id=' + $(".li_view.active").attr('data-view_id');
@@ -128,30 +125,10 @@
 
 $("#div_viewZones").sortable({axis: "y", cursor: "move", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
-$('.enable').on('click', function() {
+$('body').delegate('#table_addViewData .enable','change switchChange.bootstrapSwitch', function() {
     var selectTr = $(this).closest('tr');
     if ($(this).value() == 1) {
         selectTr.find('div.option').show();
-        if (selectTr.find('.viewDataOption[data-l1key=configuration][data-l2key=graphColor]').length) {
-            var color = selectTr.find('.viewDataOption[data-l1key=configuration][data-l2key=graphColor]').value();
-            var colorChange = true;
-            var colorNumberChange = 0;
-            while (colorChange) {
-                colorChange = false;
-                $('#table_addViewData tbody tr').each(function() {
-                    if ($(this).find('.enable').value() == 1 && color == $(this).closest('tr').find('.viewDataOption[data-l1key=configuration][data-l2key=graphColor]').value()) {
-                        color = selectTr.find('.viewDataOption[data-l1key=configuration][data-l2key=graphColor] option[value=' + color + ']').next().value();
-                        colorChange = true;
-                        colorNumberChange++;
-                    }
-                });
-                if (colorNumberChange > selectTr.find('.viewDataOption[data-l1key=configuration][data-l2key=graphColor] option').length) {
-                    return;
-                }
-            }
-            selectTr.find('.viewDataOption[data-l1key=configuration][data-l2key=graphColor] option[value=' + color + ']').prop('selected', true);
-            setColorSelect(selectTr.find('.viewDataOption[data-l1key=configuration][data-l2key=graphColor]'));
-        }
     } else {
         selectTr.find('div.option').hide();
     }
@@ -220,7 +197,6 @@ $('#div_viewZones').delegate('.bt_addViewData', 'click', function() {
                 viewDatas[i].find('.viewDataAttr').each(function() {
                     viewData.find('.viewDataOption[data-l1key=' + $(this).attr('data-l1key') + '][data-l2key=' + $(this).attr('data-l2key') + ']').value($(this).value());
                 });
-                setColorSelect(viewData.find('.viewDataOption[data-l1key=configuration][data-l2key=graphColor]'));
                 $('#table_addViewData tbody').prepend(viewData);
             }
         }
@@ -274,10 +250,6 @@ $('body').delegate('.viewZoneAttr', 'change', function() {
 $('body').delegate('.viewDataAttr', 'change', function() {
     modifyWithoutSave = true;
 });
-
-function setColorSelect(_select) {
-    _select.css('background-color', _select.find('option:selected').val());
-}
 
 function editView(_view) {
     $.ajax({// fonction permettant de faire de l'ajax

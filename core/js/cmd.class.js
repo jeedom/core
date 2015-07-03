@@ -479,70 +479,86 @@ jeedom.cmd.changeSubType = function(_cmd) {
                         el = el.parent();
                     }
                     if (subtype[i].visible) {
-                        el.show();
-                        el.removeClass('hide');
-                    } else {
-                        el.hide();
-                        el.addClass('hide');
-                    }
-                    if (isset(subtype[i].parentVisible)) {
-                        if (subtype[i].parentVisible) {
-                            el.parent().show();
-                            el.parent().removeClass('hide');
-                        } else {
-                            el.parent().hide();
-                            el.parent().addClass('hide');
-                        }
-                    }
+                     if(el.hasClass('bootstrapSwitch')){
+                         el.parent().parent().show();
+                         el.parent().parent().removeClass('hide');
+                     }
+                     el.show();
+                     el.removeClass('hide');
+                 } else {
+                    if(el.hasClass('bootstrapSwitch')){
+                       el.parent().parent().hide();
+                       el.parent().parent().addClass('hide');
+                   }
+                   el.hide();
+                   el.addClass('hide');
+               }
+               if (isset(subtype[i].parentVisible)) {
+                if (subtype[i].parentVisible) {
+                    el.parent().show();
+                    el.parent().removeClass('hide');
                 } else {
-                    for (var j in subtype[i]) {
-                        var el = _cmd.find('.cmdAttr[data-l1key=' + i + '][data-l2key=' + j + ']');
-                        if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
-                            el = el.parent();
-                        }
-                        if (isset(subtype[i][j].visible)) {
-                            if (subtype[i][j].visible) {
-                                el.show();
-                                el.removeClass('hide');
-                            } else {
-                                el.hide();
-                                el.addClass('hide');
-                            }
-                        }
-                        if (isset(subtype[i][j].parentVisible)) {
-                            if (subtype[i][j].parentVisible) {
-                                el.parent().show();
-                                el.parent().removeClass('hide');
-                            } else {
-                                el.parent().hide();
-                                el.parent().addClass('hide');
-                            }
-                        }
-                    }
+                    el.parent().hide();
+                    el.parent().addClass('hide');
                 }
             }
-
-            if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
-             if (_cmd.find('.cmdAttr[data-l1key=subType]').value() == 'slider' || _cmd.find('.cmdAttr[data-l1key=subType]').value() == 'other' || _cmd.find('.cmdAttr[data-l1key=subType]').value() == 'color') {
-                _cmd.find('.cmdAttr[data-l1key=value]').show();
+        } else {
+            for (var j in subtype[i]) {
+                var el = _cmd.find('.cmdAttr[data-l1key=' + i + '][data-l2key=' + j + ']');
+                if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
+                    el = el.parent();
+                }
+                if (isset(subtype[i][j].visible)) {
+                    if (subtype[i][j].visible) {
+                        if(el.hasClass('bootstrapSwitch')){
+                          el.parent().parent().show();
+                          el.parent().parent().removeClass('hide');
+                      }
+                      el.show();
+                      el.removeClass('hide');
+                  } else {
+                    if(el.hasClass('bootstrapSwitch')){
+                     el.parent().parent().hide();
+                     el.parent().parent().addClass('hide');
+                 }
+                 el.hide();
+                 el.addClass('hide');
+             }
+         }
+         if (isset(subtype[i][j].parentVisible)) {
+            if (subtype[i][j].parentVisible) {
+                el.parent().show();
+                el.parent().removeClass('hide');
+            } else {
+                el.parent().hide();
+                el.parent().addClass('hide');
             }
-            _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
-            _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').show();
-            _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').hide();
-            _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').hide();
-        }else{
-         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').show();
-         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').show();
-         _cmd.find('.cmdAttr[data-l1key=value]').hide();
-         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').hide();
-         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').hide();
-     }
-     _cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('change');
-      _cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('switchChange.bootstrapSwitch');
-     modifyWithoutSave = false;
-     if ('function' == typeof(initExpertMode)) {
-        initExpertMode();
+        }
     }
+}
+}
+
+if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
+ if (_cmd.find('.cmdAttr[data-l1key=subType]').value() == 'slider' || _cmd.find('.cmdAttr[data-l1key=subType]').value() == 'other' || _cmd.find('.cmdAttr[data-l1key=subType]').value() == 'color') {
+    _cmd.find('.cmdAttr[data-l1key=value]').show();
+}
+_cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
+_cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').show();
+_cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').hide();
+_cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').hide();
+}else{
+ _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').show();
+ _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').show();
+ _cmd.find('.cmdAttr[data-l1key=value]').hide();
+ _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').hide();
+ _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').hide();
+}
+_cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('change');
+_cmd.find('.cmdAttr[data-l1key=eventOnly]').trigger('switchChange.bootstrapSwitch');
+modifyWithoutSave = false;
+if ('function' == typeof(initExpertMode)) {
+    initExpertMode();
+}
 }
 });
 };
@@ -659,3 +675,41 @@ if (name.indexOf("off") != -1) {
 }
 return _tagname;
 }
+
+
+jeedom.cmd.setOrder = function(_params) {
+    var paramsRequired = ['cmds'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+    paramsAJAX.data = {
+        action: 'setOrder',
+        cmds: json_encode(_params.cmds)
+    };
+    $.ajax(paramsAJAX);
+};
+
+
+jeedom.cmd.displayDuration = function(_date,_el){
+    var timeInMillis = Date.parse(_date);
+    _el.attr('data-time',timeInMillis);
+    if(timeInMillis < Date.now()){
+     var d = (Date.now() - _el.attr('data-time')) / 1000;
+     var h = Math.floor(d / 3600);
+     var m = Math.floor(d % 3600 / 60);
+     _el.empty().append(((h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+     setInterval(function(){ 
+         var d = (Date.now() - _el.attr('data-time')) / 1000;
+         var h = Math.floor(d / 3600);
+         var m = Math.floor(d % 3600 / 60);
+         _el.empty().append(((h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+     }, 60000);
+ }
+};

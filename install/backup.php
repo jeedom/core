@@ -165,6 +165,7 @@ try {
 			break;
 		}
 	}
+	echo __("OK", __FILE__) . "\n";
 
 	if (config::byKey('backup::cloudUpload') == 1 && init('noCloudUpload', 0) == 0) {
 		echo __('Envoi de la sauvegarde dans le cloud...', __FILE__);

@@ -98,7 +98,7 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
               </div>
 
               <div class="form-group">
-                <label class="col-xs-4 control-label">{Cache}}</label>
+                <label class="col-xs-4 control-label">{{Cache}}</label>
                 <div class="col-xs-4">
                   <span class="cmdAttr label label-primary tooltips" data-l1key="cache" data-l2key="enable" title="{{Actif}}" style="font-size : 1em;"></span>
                   <span class="label label-default tooltips" title="{{Durée du cache}}" style="font-size : 1em;"><span class="cmdAttr" data-l1key="cache" data-l2key="lifetime"></span> {{seconde(s)}}</span>

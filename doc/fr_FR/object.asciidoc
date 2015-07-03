@@ -1,0 +1,34 @@
+= Objet
+
+Le sous-menu Objets, permet de définir l'arborescence de sa domotique. Ceci est fait en créant ce que l'on appel des objets. Accessible à partir de la : 
+
+image::../images/object1.JPG[]
+
+Pour laisser libre choix à la personnalisation, vous pouvez nommer ces objets comme vous le voulez. Mais dans la plupart des cas on y définira les différentes parties de sa maison, comme le nom des pieces (c'est d'ailleurs la configuration recommandée).
+
+En arrivant sur la page vous obtenez (ici avec deja quelques objets) : 
+
+image::../images/object2.JPG[]
+
+[TIP]
+Comme à beaucoup d'endroits sur Jeedom, placer la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez, à partir de votre profil, le laisser toujours visible).
+
+Une fois votre objet ajouté ou après un clique sur un objet existant vous obtenez : 
+
+image::../images/object3.JPG[]
+
+
+A partir de la vous avez differente option : 
+
+* *Nom de l'objet* : le nom de votre objet
+* *Père* : l'objet père de l'objet courant, cela permet de definir une hierarchis type la salon est le fils de l'appartement. Un objet ne peut avoir qu'un seul pere mais il peut avoir autant de fils qu'il le veut
+* *Visible* : permet de définir si cette objet est visible sur le dashboard ou non
+* *Icône* : vous permet de choisir une icone pour votre objet
+* *Couleur du tag* : permet de choisir la couleur de l'objet (cette couleur est par exemple utilisée sur la page de résumé domotique)
+* *Couleur du texte du tag* : permet de choisir la couleur du texte de l'objet (cette couleur est par exemple utilisée sur la page de résumé domotique)
+
+Si vous mettez votre souris tout à gauche vous pourrez faire apparaitre le menu suivant : 
+
+image::../images/object4.JPG[]
+
+Grace à celui-ci vous pourre modifier l'ordre de vos objet en maintenant cliqué sur la double flèche au debut de la ligne et en glissant l'objet vers la position voulue.

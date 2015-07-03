@@ -292,6 +292,19 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'setOrder') {
+		$cmds = json_decode(init('cmds'), true);
+		foreach ($cmds as $cmd_json) {
+			$cmd = cmd::byId($cmd_json['id']);
+			if (!is_object($cmd)) {
+				throw new Exception(__('Commande inconnu verifié l\'id :', __FILE__) . ' ' . $cmd_json['id']);
+			}
+			$cmd->setOrder($cmd_json['order']);
+			$cmd->save();
+		}
+		ajax::success();
+	}
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

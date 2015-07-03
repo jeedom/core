@@ -92,7 +92,7 @@ class jsonrpcClient {
 			} else {
 				$_request = array_merge($_request, $_file);
 			}
-			$_timeout = 120;
+			$_timeout = 1200;
 		}
 		$nbRetry = 0;
 		while ($nbRetry < $_maxRetry) {
