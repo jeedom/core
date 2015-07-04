@@ -402,10 +402,6 @@ class network {
 			log::remove('ngrok');
 			log::add('ngork', 'debug', 'Lancement de ngork : ' . $cmd);
 			exec($cmd . ' >> /dev/null 2>&1 &');
-			sleep(2);
-			if ($_proto == 'https' && $_port == 80) {
-				market::test();
-			}
 		}
 
 		return true;
