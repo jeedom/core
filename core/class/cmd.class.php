@@ -904,6 +904,9 @@ class cmd {
 					$replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
 				}
 			}
+			if (method_exists($this, 'formatValueWidget')) {
+				$replace['#state#'] = $this->formatValueWidget($replace['#state#']);
+			}
 			$replace['#collectDate#'] = $this->getCollectDate();
 			$replace['#valueDate#'] = $this->getValueDate();
 			if ($this->getIsHistorized() == 1) {
