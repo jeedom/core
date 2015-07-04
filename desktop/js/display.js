@@ -85,6 +85,16 @@
     }
 });
 
+ $('.showEqLogic').on('click',function(){
+    if($(this).hasClass('fa-chevron-right')){
+        $(this).removeClass('fa-chevron-right').addClass('fa-chevron-down');
+        $(this).closest('.object').find('.eqLogic').show();
+    }else{
+        $(this).removeClass('fa-chevron-down').addClass('fa-chevron-right');
+        $(this).closest('.object').find('.eqLogic').hide();
+    }
+});
+
  $('#cb_actifDisplay').on('switchChange.bootstrapSwitch chnage',function(){
     if($(this).value() == 1){
 $('.eqLogic[data-enable=0]').show();
