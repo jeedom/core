@@ -493,9 +493,10 @@ function chooseIcon(_callback) {
 
 function positionEqLogic(_id, _noResize, _class) {
  $('.' + init(_class, 'eqLogic-widget')).each(function () {
-    //$('.' + init(_class, 'eqLogic-widget') + ':not(.noResize)').each(function () {
         if (init(_id, '') == '' || $(this).attr('data-eqLogic_id') == _id) {
             var eqLogic = $(this);
+            eqLogic.css('margin','0px');
+            eqLogic.css('padding','0px');
             var maxHeight = 0;
             eqLogic.find('.cmd-widget').each(function () {
                 if ($(this).height() > maxHeight) {

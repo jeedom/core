@@ -33,7 +33,6 @@
                         gutter : 1,
                     });
                 });
-            });
             initTooltips();
         }, 10);
 }
