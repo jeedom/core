@@ -76,6 +76,7 @@ try {
 		realpath(dirname(__FILE__) . '/../3rdparty'),
 		realpath(dirname(__FILE__) . '/../doc'),
 		realpath(dirname(__FILE__) . '/../core/img'),
+		realpath(dirname(__FILE__) . '/../core/nodeJS'),
 		realpath(dirname(__FILE__) . '/../vendor'),
 		str_replace('/', '', jeedom::getCurrentSysInfoFolder()),
 		str_replace('/', '', jeedom::getCurrentAdminerFolder()),
@@ -86,6 +87,14 @@ try {
 	foreach (plugin::listPlugin() as $plugin) {
 		if (!$plugin->isActive()) {
 			$exclude[] = realpath(dirname(__FILE__) . '/../plugins/' . $plugin->getId());
+		} else {
+			$exclude[] = realpath(dirname(__FILE__) . '/../plugins/' . $plugin->getId() . '/doc/fr_FR');
+			$exclude[] = realpath(dirname(__FILE__) . '/../plugins/' . $plugin->getId() . '/doc/us_US');
+			foreach (ls(dirname(__FILE__) . '/../plugins/' . $plugin->getId() . '/doc/images', '*') as $file) {
+				if (strpos($file, 'icon') === false) {
+					$exclude[] = realpath(dirname(__FILE__) . '/../plugins/' . $plugin->getId() . '/doc/images/' . $file);
+				}
+			}
 		}
 	}
 	rcopy(dirname(__FILE__) . '/..', $tmp, true, $exclude, true);
