@@ -19,7 +19,7 @@ $parentNumber = array();
 ?>
 
 <div class="row row-overflow">
-    <?php
+	<?php
 if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 	echo '<div class="col-lg-2 col-md-3 col-sm-4" id="div_displayObjectList">';
 } else {
@@ -27,11 +27,11 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 }
 ?>
 
-    <div class="bs-sidebar">
-        <ul id="ul_object" class="nav nav-list bs-sidenav">
-            <li class="nav-header">{{Liste objets}} </li>
-            <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
-            <?php
+	<div class="bs-sidebar">
+		<ul id="ul_object" class="nav nav-list bs-sidenav">
+			<li class="nav-header">{{Liste objets}} </li>
+			<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
+			<?php
 $allObject = object::buildTree(null, true);
 foreach ($allObject as $object_li) {
 	$parentNumber[$object_li->getId()] = $object_li->parentNumber();
@@ -43,8 +43,8 @@ foreach ($allObject as $object_li) {
 	}
 }
 ?>
-        </ul>
-    </div>
+		</ul>
+	</div>
 </div>
 <?php
 if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
@@ -63,9 +63,12 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 ?>
 <i class='fa fa-picture-o cursor tooltips pull-left' id='bt_displayObject' data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault')?>' title="{{Afficher/Masquer les objets}}"></i>
 <i class='fa fa-cogs pull-right cursor tooltips' id='bt_displayScenario' data-display='<?php echo $_SESSION['user']->getOptions('displayScenarioByDefault')?>' title="{{Afficher/Masquer les scénarios}}"></i>
+<?php if (init('category', 'all') == 'all') {?>
 <i class="fa fa-pencil pull-right cursor" id="bt_editDashboardWidgetOrder" data-mode="0" style="margin-right : 10px;"></i>
+<?php }
+?>
 <center>
-    <?php
+	<?php
 if (init('category', 'all') == 'all') {
 	echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=all" class="btn btn-primary btn-sm categoryAction" style="margin-bottom: 5px;margin-right: 3px;">{{Tous}}</a>';
 } else {
