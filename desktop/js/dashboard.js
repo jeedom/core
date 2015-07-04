@@ -54,7 +54,7 @@ $( function() {
         });
     });
 $('.div_displayEquipement .eqLogic-widget').draggable('disable');
-});
+
 
 $('#bt_editDashboardWidgetOrder').on('click',function(){
     if($(this).attr('data-mode') == 1){
@@ -67,6 +67,9 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
         $(this).css('color','rgb(46, 176, 75)');
     }
 });
+});
+
+
 
 $('body').delegate('.eqLogic-widget .history', 'click', function () {
     $('#md_modal').dialog({title: "Historique"});
