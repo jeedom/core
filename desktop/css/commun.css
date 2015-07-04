@@ -53,8 +53,6 @@ body {
 }
 
 .eqLogic-widget{
-    padding: 3px;
-    margin: 3px;
     background-color: #19bc9c;
     display: inline-block;
     vertical-align: top;
@@ -73,8 +71,6 @@ body {
 }
 
 .scenario-widget{
-    padding: 3px;
-    margin: 3px;
     background-color: #7f8c8d;
     display: inline-block;
     position : relative;

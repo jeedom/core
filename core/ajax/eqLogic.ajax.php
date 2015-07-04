@@ -115,13 +115,17 @@ try {
 		$eqLogics = json_decode(init('eqLogics'), true);
 		$sql = '';
 		foreach ($eqLogics as $eqLogic_json) {
-			if (!is_numeric($eqLogic_json['id']) || !is_numeric($eqLogic_json['order']) || !is_numeric($eqLogic_json['object_id'])) {
+			if (!is_numeric($eqLogic_json['id']) || !is_numeric($eqLogic_json['order']) || (isset($eqLogic_json['object_id']) && !is_numeric($eqLogic_json['object_id']))) {
 				throw new Exception("Erreur une des valeurs n'est pas un numérique");
 			}
-			if ($eqLogic_json['object_id'] == -1) {
-				$eqLogic_json['object_id'] = "NULL";
+			if(isset($eqLogic_json['object_id'])){
+				if ($eqLogic_json['object_id'] == -1) {
+					$eqLogic_json['object_id'] = "NULL";
+				}
+				$sql .= 'UPDATE eqLogic SET `order`= ' . $eqLogic_json['order'] . ', object_id=' . $eqLogic_json['object_id'] . '  WHERE id=' . $eqLogic_json['id'] . ' ;';
+			}else{
+				$sql .= 'UPDATE eqLogic SET `order`= ' . $eqLogic_json['order'] . '  WHERE id=' . $eqLogic_json['id'] . ' ;';
 			}
-			$sql .= 'UPDATE eqLogic SET `order`= ' . $eqLogic_json['order'] . ', object_id=' . $eqLogic_json['object_id'] . '  WHERE id=' . $eqLogic_json['id'] . ' ;';
 		}
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		ajax::success();
@@ -210,7 +214,7 @@ try {
 			$return['status'] = array(
 				'state' => 'ok',
 				'lastCommunication' => $eqLogic->getStatus('lastCommunication'),
-			);
+				);
 			if ($eqLogic->getTimeout() > 0 && $eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $eqLogic->getTimeout() . ' minutes' . date('Y-m-d H:i:s')))) {
 				$return['status']['state'] = 'timeout';
 			}

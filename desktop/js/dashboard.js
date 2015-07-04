@@ -14,12 +14,59 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-positionEqLogic();
-setTimeout(function () {
-    $('.div_displayEquipement').packery();
-}, 2);
+ positionEqLogic();
+ var t = null;
+ function orderItems() {
+    console.log('test')
+}
 
+$( function() {
+    $('.div_displayEquipement').each(function(){
+        $(this).disableSelection();
+        var $container = $(this).packery({
+            itemSelector: ".eqLogic-widget",
+            columnWidth: parseInt(eqLogic_width_step),
+            rowHeight: parseInt(eqLogic_height_step),
+            gutter : 1,
+        });
 
+        var $itemElems =  $container.find('.eqLogic-widget');
+        $itemElems.draggable();
+        $container.packery( 'bindUIDraggableEvents', $itemElems );
+        $container.packery( 'on', 'dragItemPositioned',function(){
+            var $itemElems = $container.packery('getItemElements');
+            var eqLogics = [];
+            $($itemElems).each( function( i, itemElem ) {
+                if($(itemElem).attr('data-eqlogic_id') != undefined){
+                    eqLogic = {};
+                    eqLogic.id =  $(itemElem).attr('data-eqlogic_id');
+                    eqLogic.order = i;
+                    eqLogics.push(eqLogic);
+                }
+            });
+            jeedom.eqLogic.setOrder({
+                eqLogics: eqLogics,
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                }
+
+            });
+        });
+    });
+$('.div_displayEquipement .eqLogic-widget').draggable('disable');
+});
+
+$('#bt_editDashboardWidgetOrder').on('click',function(){
+    if($(this).attr('data-mode') == 1){
+        $(this).attr('data-mode',0);
+        $('.div_displayEquipement .eqLogic-widget').draggable('disable');
+        $(this).css('color','black');
+    }else{
+        $(this).attr('data-mode',1);
+        $('.div_displayEquipement .eqLogic-widget').draggable('enable');
+        $(this).css('color','rgb(46, 176, 75)');
+    }
+});
 
 $('body').delegate('.eqLogic-widget .history', 'click', function () {
     $('#md_modal').dialog({title: "Historique"});

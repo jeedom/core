@@ -63,7 +63,7 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 ?>
 <i class='fa fa-picture-o cursor tooltips pull-left' id='bt_displayObject' data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault')?>' title="{{Afficher/Masquer les objets}}"></i>
 <i class='fa fa-cogs pull-right cursor tooltips' id='bt_displayScenario' data-display='<?php echo $_SESSION['user']->getOptions('displayScenarioByDefault')?>' title="{{Afficher/Masquer les scénarios}}"></i>
-
+<i class="fa fa-pencil pull-right cursor" id="bt_editDashboardWidgetOrder" data-mode="0" style="margin-right : 10px;"></i>
 <center>
     <?php
 if (init('category', 'all') == 'all') {
@@ -89,7 +89,7 @@ if (init('category', 'all') == 'other') {
 <?php
 echo '<div object_id="' . $object->getId() . '">';
 echo '<legend style="margin-bottom : 0px;">' . $object->getDisplay('icon') . ' ' . $object->getName() . '</legend>';
-echo '<div class="div_displayEquipement" style="width: 100%;margin-bottom : 3px;">';
+echo '<div class="div_displayEquipement" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
 foreach ($object->getEqLogic(true, true) as $eqLogic) {
 	if ((init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1)) {
 		echo $eqLogic->toHtml('dashboard');
@@ -99,10 +99,9 @@ echo '</div>';
 foreach ($child_object as $child) {
 	$eqLogics = $child->getEqLogic(true, true);
 	if (count($eqLogics) > 0) {
-		$margin = (isset($parentNumber[$child->getId()])) ? 40 * $parentNumber[$child->getId()] : 0;
-		echo '<div object_id="' . $child->getId() . '" style="margin-left : ' . $margin . 'px;margin-bottom : 3px;">';
+		echo '<div object_id="' . $child->getId() . '" style="margin-bottom : 3px;">';
 		echo '<legend style="margin-bottom : 0px;">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</legend>';
-		echo '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '" style="width: 100%;">';
+		echo '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
 		foreach ($eqLogics as $eqLogic) {
 			if ((init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1)) {
 				echo $eqLogic->toHtml('dashboard');

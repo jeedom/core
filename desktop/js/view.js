@@ -14,7 +14,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (view_id != '') {
+ if (view_id != '') {
     jeedom.view.toHtml({
         id: view_id,
         version: 'dashboard',
@@ -27,12 +27,17 @@ if (view_id != '') {
             setTimeout(function () {
                 positionEqLogic();
                 $('.eqLogicZone').each(function () {
-                    $(this).packery();
+                    var container = $(this).packery({
+                        columnWidth: parseInt(eqLogic_width_step),
+                        rowHeight: parseInt(eqLogic_height_step),
+                        gutter : 1,
+                    });
                 });
-                initTooltips();
-            }, 10);
-        }
-    });
+            });
+            initTooltips();
+        }, 10);
+}
+});
 }
 
 $('body').delegate('.eqLogic-widget .history', 'click', function () {

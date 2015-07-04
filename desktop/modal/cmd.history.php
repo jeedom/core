@@ -5,8 +5,8 @@ if (!isConnect()) {
 $date = array(
 	'start' => init('startDate', date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d')))),
 	'end' => init('endDate', date('Y-m-d')),
-);
-?>
+    );
+    ?>
     <div class="md_history" title="Historique">
         <input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['start']?>"/>
         <input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['end']?>"/>
@@ -18,26 +18,26 @@ $date = array(
         </select>
 
         <?php
-if (init('derive', 0) == 1) {
-	echo '<span class="pull-right"><input type="checkbox" id="toto" class="bootstrapSwitch cb_derive" data-label-text="{{Variation}}" data-cmd_id="#id#" checked /></span>';
-} else {
-	echo '<span class="pull-right"><input type="checkbox" id="toto" class="bootstrapSwitch cb_derive" data-label-text="{{Variation}}" data-cmd_id="#id#" /></span>';
-}
-if (init('step', 0) == 1) {
-	echo '<span class="pull-right"><input type="checkbox" class="bootstrapSwitch cb_step" data-label-text="{{Escalier}}" data-cmd_id="#id#" checked /></span>';
-} else {
-	echo '<span class="pull-right"><input type="checkbox" class="bootstrapSwitch cb_step" data-label-text="{{Escalier}}" data-cmd_id="#id#" /></span>';
-}
-?>
+        if (init('derive', 0) == 1) {
+           echo '<span class="pull-right"><input type="checkbox" id="toto" class="bootstrapSwitch cb_derive" data-label-text="{{Variation}}" data-cmd_id="#id#" checked /></span>';
+       } else {
+           echo '<span class="pull-right"><input type="checkbox" id="toto" class="bootstrapSwitch cb_derive" data-label-text="{{Variation}}" data-cmd_id="#id#" /></span>';
+       }
+       if (init('step', 0) == 1) {
+           echo '<span class="pull-right"><input type="checkbox" class="bootstrapSwitch cb_step" data-label-text="{{Escalier}}" data-cmd_id="#id#" checked /></span>';
+       } else {
+           echo '<span class="pull-right"><input type="checkbox" class="bootstrapSwitch cb_step" data-label-text="{{Escalier}}" data-cmd_id="#id#" /></span>';
+       }
+       ?>
        <center><div id="div_historyChart"></div></center>
        <script>
-           initCheckBox();
-           $(".in_datepicker").datepicker();
-           $('#ui-datepicker-div').hide();
+         initCheckBox();
+         $(".in_datepicker").datepicker();
+         $('#ui-datepicker-div').hide();
 
-           $('#div_historyChart').css('position', 'relative').css('width', '100%');
-           delete jeedom.history.chart['div_historyChart'];
-           jeedom.history.drawChart({
+         $('#div_historyChart').css('position', 'relative').css('width', '100%');
+         delete jeedom.history.chart['div_historyChart'];
+         jeedom.history.drawChart({
             cmd_id: "<?php echo init('id')?>",
             el: 'div_historyChart',
             dateRange : 'all',
@@ -45,14 +45,16 @@ if (init('step', 0) == 1) {
             dateEnd :  $('#in_endDate').value(),
             newGraph : true,
             success: function (data) {
-                if (init(data.cmd.display.graphStep) != '') {
-                    $('.cb_step[data-cmd_id=#id#]').off().value(init(data.cmd.display.graphStep));
-                }
-                if (init(data.cmd.display.graphType) != '') {
-                    $('.sel_chartType[data-cmd_id=#id#]').off().value(init(data.cmd.display.graphType));
-                }
-                if (init(data.cmd.display.graphDerive) != '') {
-                    $('.cb_derive[data-cmd_id=#id#]').off().value(init(data.cmd.display.graphDerive));
+                if(isset(data.cmd.display)){
+                    if (init(data.cmd.display.graphStep) != '') {
+                        $('.cb_step[data-cmd_id=#id#]').off().value(init(data.cmd.display.graphStep));
+                    }
+                    if (init(data.cmd.display.graphType) != '') {
+                        $('.sel_chartType[data-cmd_id=#id#]').off().value(init(data.cmd.display.graphType));
+                    }
+                    if (init(data.cmd.display.graphDerive) != '') {
+                        $('.cb_derive[data-cmd_id=#id#]').off().value(init(data.cmd.display.graphDerive));
+                    }
                 }
 
                 $('.sel_chartType[data-cmd_id=#id#]').on('change', function () {
