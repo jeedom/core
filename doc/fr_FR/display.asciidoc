@@ -12,9 +12,13 @@ Le premiere onglet permet d'orgniser les differents équipement, les commandes, 
 
 image::../images/display2.png[]
 
-On retrouve tout en haut un résumé du nombre d'objet existant, du nombre d'équipement et du nombre de commande. Sur la droite se trouve un champs de recherche pour par exemple chercher un équipement,une commande ou tous les équipements d'un certain type (plugin, par exemple il suffit de taper rfxcom pour avoir tous les équipements rfxcom)
+On retrouve tout en haut un résumé du nombre d'objet existant, du nombre d'équipement et du nombre de commande. Sur la droite se trouve, un bouton pour masquer tous les équipements inactif et  un champs de recherche pour par exemple chercher un équipement,une commande ou tous les équipements d'un certain type (plugin, par exemple il suffit de taper rfxcom pour avoir tous les équipements rfxcom)
 
-En dessous on retrouve un cadre par objet, dans chaque cadre se trouve la liste des équipements (en bleu) contenu dans l'objet.
+En dessous on retrouve un cadre par objet, dans chaque cadre se trouve la liste des équipements (en bleu) contenu dans l'objet. Vous avez sur la ligne du nom de l'objets jusqu'a 3 boutons, dans l'ordre : 
+
+* le premier sert à ouvrir la page de configuration de l'objet dans un nouvel onglet
+* le deuxieme donne un résumé sur l'objet
+* le dernier permet de masquer la liste des équipements (en dessous en bleu)
 
 [TIP]
 La couleur de fond des cadre objet dépend de la couleur mise dans la configuration de l'objet
