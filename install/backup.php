@@ -73,11 +73,8 @@ try {
 		'backup',
 		'log',
 		'ngrok',
-		realpath(dirname(__FILE__) . '/../3rdparty'),
 		realpath(dirname(__FILE__) . '/../doc'),
 		realpath(dirname(__FILE__) . '/../core/img'),
-		realpath(dirname(__FILE__) . '/../core/nodeJS'),
-		realpath(dirname(__FILE__) . '/../vendor'),
 		str_replace('/', '', jeedom::getCurrentSysInfoFolder()),
 		str_replace('/', '', jeedom::getCurrentAdminerFolder()),
 	);
