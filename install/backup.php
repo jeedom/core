@@ -68,9 +68,25 @@ try {
 	$bakcup_name = 'backup-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz';
 
 	echo __('Sauvegarde des fichiers...', __FILE__);
-	$exclude = array('tmp', 'backup', 'log', 'ngrok', str_replace('/', '', jeedom::getCurrentSysInfoFolder()), str_replace('/', '', jeedom::getCurrentAdminerFolder()));
+	$exclude = array(
+		'tmp',
+		'backup',
+		'log',
+		'ngrok',
+		realpath(dirname(__FILE__) . '/../3rdparty'),
+		realpath(dirname(__FILE__) . '/../doc'),
+		realpath(dirname(__FILE__) . '/../core/img'),
+		realpath(dirname(__FILE__) . '/../vendor'),
+		str_replace('/', '', jeedom::getCurrentSysInfoFolder()),
+		str_replace('/', '', jeedom::getCurrentAdminerFolder()),
+	);
 	if (strpos('/', config::byKey('backup::path')) === false) {
 		$exclude[] = config::byKey('backup::path');
+	}
+	foreach (plugin::listPlugin() as $plugin) {
+		if (!$plugin->isActive()) {
+			$exclude[] = realpath(dirname(__FILE__) . '/../plugins/' . $plugin->getId());
+		}
 	}
 	rcopy(dirname(__FILE__) . '/..', $tmp, true, $exclude, true);
 	echo __("OK", __FILE__) . "\n";
