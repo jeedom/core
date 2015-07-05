@@ -20,7 +20,7 @@
     console.log('test')
 }
 
-$( function() {
+setTimeout(function () {
     $('.div_displayEquipement').each(function(){
         $(this).disableSelection();
         var $container = $(this).packery({
@@ -67,7 +67,7 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
         $(this).css('color','rgb(46, 176, 75)');
     }
 });
-});
+}, 2);
 
 
 
