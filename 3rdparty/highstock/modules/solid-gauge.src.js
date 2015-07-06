@@ -1,5 +1,5 @@
 /**
- * @license  Highstock JS v2.1.6 (2015-06-12)
+ * @license  Highstock JS v2.1.7 (2015-06-26)
  * Solid angular gauge module
  *
  * (c) 2010-2014 Torstein Honsi
@@ -161,7 +161,7 @@
 	// The series prototype
 	H.seriesTypes.solidgauge = H.extendClass(H.seriesTypes.gauge, {
 		type: 'solidgauge',
-
+		pointAttrToOptions: {}, // #4301, don't inherit line marker's attribs
 		bindAxes: function () {
 			var axis;
 			H.seriesTypes.gauge.prototype.bindAxes.call(this);
@@ -238,7 +238,9 @@
 				if (graphic) {
 					d = shapeArgs.d;
 					graphic.animate(shapeArgs);
-					shapeArgs.d = d; // animate alters it
+					if (d) {
+						shapeArgs.d = d; // animate alters it
+					}
 				} else {					
 					point.graphic = renderer.arc(shapeArgs)
 						.attr({

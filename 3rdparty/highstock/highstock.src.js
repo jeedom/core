@@ -2,7 +2,7 @@
 // @compilation_level SIMPLE_OPTIMIZATIONS
 
 /**
- * @license Highstock JS v2.1.6 (2015-06-12)
+ * @license Highstock JS v2.1.7 (2015-06-26)
  *
  * (c) 2009-2014 Torstein Honsi
  *
@@ -56,7 +56,7 @@ var UNDEFINED,
 	charts = [],
 	chartCount = 0,
 	PRODUCT = 'Highstock',
-	VERSION = '2.1.6',
+	VERSION = '2.1.7',
 
 	// some constants for frequently used strings
 	DIV = 'div',
@@ -1268,8 +1268,8 @@ defaultOptions = {
 	global: {
 		useUTC: true,
 		//timezoneOffset: 0,
-		canvasToolsURL: 'http://code.highcharts.com/stock/2.1.6/modules/canvas-tools.js',
-		VMLRadialGradientURL: 'http://code.highcharts.com/stock/2.1.6/gfx/vml-radial-gradient.png'
+		canvasToolsURL: 'http://code.highcharts.com/stock/2.1.7/modules/canvas-tools.js',
+		VMLRadialGradientURL: 'http://code.highcharts.com/stock/2.1.7/gfx/vml-radial-gradient.png'
 	},
 	chart: {
 		//animation: true,
@@ -2843,7 +2843,11 @@ SVGElement.prototype = {
 			titleNode = doc.createElementNS(SVG_NS, 'title');
 			this.element.appendChild(titleNode);
 		}
-		titleNode.textContent = (String(pick(value), '')).replace(/<[^>]*>/g, ''); // #3276 #3895
+		titleNode.appendChild(
+			doc.createTextNode(
+				(String(pick(value), '')).replace(/<[^>]*>/g, '') // #3276, #3895
+			)
+		);
 	},
 	textSetter: function (value) {
 		if (value !== this.textStr) {
@@ -4035,17 +4039,22 @@ SVGRenderer.prototype = {
 	 * Utility to return the baseline offset and total line height from the font size
 	 */
 	fontMetrics: function (fontSize, elem) {
+		var lineHeight,
+			baseline,
+			style;
+
 		fontSize = fontSize || this.style.fontSize;
 		if (elem && win.getComputedStyle) {
 			elem = elem.element || elem; // SVGElement
-			fontSize = win.getComputedStyle(elem, "").fontSize;
+			style = win.getComputedStyle(elem, "");
+			fontSize = style && style.fontSize; // #4309, the style doesn't exist inside a hidden iframe in Firefox
 		}
 		fontSize = /px/.test(fontSize) ? pInt(fontSize) : /em/.test(fontSize) ? parseFloat(fontSize) * 12 : 12;
 
 		// Empirical values found by comparing font size and bounding box height.
 		// Applies to the default font family. http://jsfiddle.net/highcharts/7xvn7/
-		var lineHeight = fontSize < 24 ? fontSize + 3 : mathRound(fontSize * 1.2),
-			baseline = mathRound(lineHeight * 0.8);
+		lineHeight = fontSize < 24 ? fontSize + 3 : mathRound(fontSize * 1.2);
+		baseline = mathRound(lineHeight * 0.8);
 
 		return {
 			h: lineHeight,
@@ -4599,13 +4608,16 @@ extend(SVGRenderer.prototype, {
 
 						// Ensure dynamically updating position when any parent is translated
 						each(parents.reverse(), function (parentGroup) {
-							var htmlGroupStyle;
+							var htmlGroupStyle,
+								cls = attr(parentGroup.element, 'class');
+
+							if (cls) {
+								cls = { className: cls };
+							} // else null
 
 							// Create a HTML div and append it to the parent div to emulate
 							// the SVG group structure
-							htmlGroup = parentGroup.div = parentGroup.div || createElement(DIV, {
-								className: attr(parentGroup.element, 'class')
-							}, {
+							htmlGroup = parentGroup.div = parentGroup.div || createElement(DIV, cls, {
 								position: ABSOLUTE,
 								left: (parentGroup.translateX || 0) + PX,
 								top: (parentGroup.translateY || 0) + PX
@@ -5892,8 +5904,8 @@ Tick.prototype = {
 			pxPos = xy.x,
 			chartWidth = axis.chart.chartWidth,
 			spacing = axis.chart.spacing,
-			leftBound = pick(axis.labelLeft, spacing[3]),
-			rightBound = pick(axis.labelRight, chartWidth - spacing[1]),
+			leftBound = pick(axis.labelLeft, mathMin(axis.pos, spacing[3])),
+			rightBound = pick(axis.labelRight, mathMax(axis.pos + axis.len, chartWidth - spacing[1])),
 			label = this.label,
 			rotation = this.rotation,
 			factor = { left: 0, center: 0.5, right: 1 }[axis.labelAlign],
@@ -5903,7 +5915,8 @@ Tick.prototype = {
 			goRight = 1,
 			leftPos,
 			rightPos,
-			textWidth;
+			textWidth,
+			css = {};
 
 		// Check if the label overshoots the chart spacing box. If it does, move it.
 		// If it now overshoots the slotWidth, add ellipsis.
@@ -5937,10 +5950,11 @@ Tick.prototype = {
 		}
 
 		if (textWidth) {
-			label.css({
-				width: textWidth,
-				textOverflow: 'ellipsis'
-			});
+			css.width = textWidth;
+			if (!axis.options.labels.style.textOverflow) {
+				css.textOverflow = 'ellipsis';
+			}
+			label.css(css);
 		}
 	},
 
@@ -6818,7 +6832,7 @@ Axis.prototype = {
 			// logic to the numberFormatter and enable it by a parameter.
 			while (i-- && ret === UNDEFINED) {
 				multi = Math.pow(1000, i + 1);
-				if (numericSymbolDetector >= multi && numericSymbols[i] !== null) {
+				if (numericSymbolDetector >= multi && (value * 10) % multi === 0 && numericSymbols[i] !== null) {
 					ret = Highcharts.numberFormat(value / multi, -1) + numericSymbols[i];
 				}
 			}
@@ -6826,7 +6840,7 @@ Axis.prototype = {
 
 		if (ret === UNDEFINED) {
 			if (mathAbs(value) >= 10000) { // add thousands separators
-				ret = Highcharts.numberFormat(value, 0);
+				ret = Highcharts.numberFormat(value, -1);
 
 			} else { // small numbers
 				ret = Highcharts.numberFormat(value, -1, UNDEFINED, ''); // #2466
@@ -7841,12 +7855,15 @@ Axis.prototype = {
 	 */
 	getThreshold: function (threshold) {
 		var axis = this,
-			isLog = axis.isLog;
-
-		var realMin = isLog ? lin2log(axis.min) : axis.min,
+			isLog = axis.isLog,
+			realMin = isLog ? lin2log(axis.min) : axis.min,
 			realMax = isLog ? lin2log(axis.max) : axis.max;
 
-		if (realMin > threshold || threshold === null) {
+		// With a threshold of null, make the columns/areas rise from the top or bottom 
+		// depending on the value, assuming an actual threshold of 0 (#4233).
+		if (threshold === null) {
+			threshold = realMax < 0 ? realMax : realMin;
+		} else if (realMin > threshold) {
 			threshold = realMin;
 		} else if (realMax < threshold) {
 			threshold = realMax;
@@ -7951,6 +7968,7 @@ Axis.prototype = {
 			innerWidth = mathMax(1, mathRound(slotWidth - 2 * (labelOptions.padding || 5))),
 			attr = {},
 			labelMetrics = renderer.fontMetrics(labelOptions.style.fontSize, ticks[0] && ticks[0].label),
+			textOverflowOption = labelOptions.style.textOverflow,
 			css,
 			labelLength = 0,
 			label,
@@ -7984,20 +8002,24 @@ Axis.prototype = {
 		// Handle word-wrap or ellipsis on vertical axis
 		} else if (slotWidth) {
 			// For word-wrap or ellipsis
-			css = { width: innerWidth + PX, textOverflow: 'clip' };
+			css = { width: innerWidth + PX };
 
-			// On vertical axis, only allow word wrap if there is room for more lines.
-			i = tickPositions.length;
-			while (!horiz && i--) {
-				pos = tickPositions[i];
-				label = ticks[pos].label;
-				if (label) {
-					// Reset ellipsis in order to get the correct bounding box (#4070)
-					if (label.styles.textOverflow === 'ellipsis') {
-						label.css({ textOverflow: 'clip' });
-					}
-					if (label.getBBox().height > this.len / tickPositions.length - (labelMetrics.h - labelMetrics.f)) {
-						label.specCss = { textOverflow: 'ellipsis' };
+			if (!textOverflowOption) {
+				css.textOverflow = 'clip';
+
+				// On vertical axis, only allow word wrap if there is room for more lines.
+				i = tickPositions.length;
+				while (!horiz && i--) {
+					pos = tickPositions[i];
+					label = ticks[pos].label;
+					if (label) {
+						// Reset ellipsis in order to get the correct bounding box (#4070)
+						if (label.styles.textOverflow === 'ellipsis') {
+							label.css({ textOverflow: 'clip' });
+						}
+						if (label.getBBox().height > this.len / tickPositions.length - (labelMetrics.h - labelMetrics.f)) {
+							label.specCss = { textOverflow: 'ellipsis' };
+						}
 					}
 				}
 			}
@@ -8007,9 +8029,11 @@ Axis.prototype = {
 		// Add ellipsis if the label length is significantly longer than ideal
 		if (attr.rotation) {
 			css = { 
-				width: (labelLength > chart.chartHeight * 0.5 ? chart.chartHeight * 0.33 : chart.chartHeight) + PX,
-				textOverflow: 'ellipsis'
+				width: (labelLength > chart.chartHeight * 0.5 ? chart.chartHeight * 0.33 : chart.chartHeight) + PX
 			};
+			if (!textOverflowOption) {
+				css.textOverflow = 'ellipsis';
+			}
 		}
 
 		// Set the explicit or automatic label alignment
@@ -8031,6 +8055,13 @@ Axis.prototype = {
 
 		// TODO: Why not part of getLabelPosition?
 		this.tickRotCorr = renderer.rotCorr(labelMetrics.b, this.labelRotation || 0, this.side === 2);
+	},
+
+	/**
+	 * Return true if the axis has associated data
+	 */
+	hasData: function () {
+		return this.hasVisibleSeries || (defined(this.min) && defined(this.max) && !!this.tickPositions);
 	},
 
 	/**
@@ -8057,12 +8088,13 @@ Axis.prototype = {
 			labelOffsetPadded,
 			axisOffset = chart.axisOffset,
 			clipOffset = chart.clipOffset,
+			clip,
 			directionFactor = [-1, 1, 1, -1][side],
 			n,
 			lineHeightCorrection;
 
 		// For reuse in Axis.render
-		axis.hasData = hasData = (axis.hasVisibleSeries || (defined(axis.min) && defined(axis.max) && !!tickPositions));
+		hasData = axis.hasData();
 		axis.showAxis = showAxis = hasData || pick(options.showEmpty, true);
 
 		// Set/reset staggerLines
@@ -8165,7 +8197,13 @@ Axis.prototype = {
 			axis.axisTitleMargin + titleOffset + directionFactor * axis.offset,
 			labelOffsetPadded // #3027
 		);
-		clipOffset[invertedSide] = mathMax(clipOffset[invertedSide], mathFloor(options.lineWidth / 2) * 2);
+
+		// Decide the clipping needed to keep the graph inside the plot area and axis lines
+		clip = mathFloor(options.lineWidth / 2) * 2;
+		if (options.offset) {
+			clip = mathMax(0, clip - options.offset);		
+		}
+		clipOffset[invertedSide] = mathMax(clipOffset[invertedSide], clip);
 	},
 
 	/**
@@ -8264,7 +8302,6 @@ Axis.prototype = {
 			linePath,
 			hasRendered = chart.hasRendered,
 			slideInTicks = hasRendered && defined(axis.oldMin) && !isNaN(axis.oldMin),
-			hasData = axis.hasData,
 			showAxis = axis.showAxis,
 			from,
 			to;
@@ -8283,7 +8320,7 @@ Axis.prototype = {
 		});
 
 		// If the series has data draw the ticks. Else only the line and title
-		if (hasData || isLinked) {
+		if (axis.hasData() || isLinked) {
 
 			// minor ticks
 			if (axis.minorTickInterval && !axis.categories) {
@@ -10966,8 +11003,20 @@ Legend.prototype = {
 			arrowSize = navOptions.arrowSize || 12,
 			nav = this.nav,
 			pages = this.pages,
+			padding = this.padding,
 			lastY,
-			allItems = this.allItems;
+			allItems = this.allItems,
+			clipToHeight = function (height) {
+				clipRect.attr({
+					height: height
+				});
+
+				// useHTML
+				if (legend.contentGroup.div) {
+					legend.contentGroup.div.style.clip = 'rect(' + padding + 'px,9999px,' + (padding + height) + 'px,0)';
+				}
+			};
+
 			
 		// Adjust the height
 		if (options.layout === 'horizontal') {
@@ -10979,9 +11028,9 @@ Legend.prototype = {
 		
 		// Reset the legend height and adjust the clipping rectangle
 		pages.length = 0;
-		if (legendHeight > spaceHeight && !options.useHTML) {
+		if (legendHeight > spaceHeight) {
 
-			this.clipHeight = clipHeight = mathMax(spaceHeight - 20 - this.titleHeight - this.padding, 0);
+			this.clipHeight = clipHeight = mathMax(spaceHeight - 20 - this.titleHeight - padding, 0);
 			this.currentPage = pick(this.currentPage, 1);
 			this.fullHeight = legendHeight;
 			
@@ -11007,13 +11056,12 @@ Legend.prototype = {
 
 			// Only apply clipping if needed. Clipping causes blurred legend in PDF export (#1787)
 			if (!clipRect) {
-				clipRect = legend.clipRect = renderer.clipRect(0, this.padding, 9999, 0);
+				clipRect = legend.clipRect = renderer.clipRect(0, padding, 9999, 0);
 				legend.contentGroup.clip(clipRect);
 			}
-			clipRect.attr({
-				height: clipHeight
-			});
-			
+				
+			clipToHeight(clipHeight);
+
 			// Add navigation elements
 			if (!nav) {
 				this.nav = nav = renderer.g().attr({ zIndex: 1 }).add(this.group);
@@ -11038,9 +11086,7 @@ Legend.prototype = {
 			legendHeight = spaceHeight;
 			
 		} else if (nav) {
-			clipRect.attr({
-				height: chart.chartHeight
-			});
+			clipToHeight(chart.chartHeight);
 			nav.hide();
 			this.scrollGroup.attr({
 				translateY: 1
@@ -12911,7 +12957,9 @@ Point.prototype = {
 		if (eventType === 'click' && seriesOptions.allowPointSelect) {
 			defaultFunction = function (event) {
 				// Control key is for Windows, meta (= Cmd key) for Mac, Shift for Opera
-				point.select(null, event.ctrlKey || event.metaKey || event.shiftKey);
+				if (point.select) { // Could be destroyed by prior event handlers (#2911)
+					point.select(null, event.ctrlKey || event.metaKey || event.shiftKey);
+				}
 			};
 		}
 
@@ -13299,7 +13347,9 @@ Series.prototype = {
 		// cheaper, allows animation, and keeps references to points.
 		if (updatePoints !== false && dataLength && oldDataLength === dataLength && !series.cropped && !series.hasGroupedData && series.visible) {
 			each(data, function (point, i) {
-				oldData[i].update(point, false, null, false);
+				if (oldData[i].update) { // Linked, previously hidden series (#3709)
+					oldData[i].update(point, false, null, false);
+				}
 			});
 
 		} else {
@@ -15260,7 +15310,7 @@ extend(Point.prototype, {
 						if (options && options.marker && options.marker.symbol) {
 							point.graphic = graphic.destroy();
 						} else {
-							graphic.attr(point.pointAttr[point.state || ''])[point.visible ? 'show' : 'hide'](true); // #2430
+							graphic.attr(point.pointAttr[point.state || ''])[point.visible === false ? 'hide' : 'show'](); // #2430
 						}
 					}
 					if (options && options.dataLabels && point.dataLabel) { // #2468
@@ -15561,7 +15611,7 @@ extend(Axis.prototype, {
 		newOptions = chart.options[this.coll][this.options.index] = merge(this.userOptions, newOptions);
 
 		this.destroy(true);
-		this._addedPlotLB = UNDEFINED; // #1611, #2887
+		this._addedPlotLB = this.chart._labelPanes = UNDEFINED; // #1611, #2887, #4314
 
 		this.init(chart, extend(newOptions, { events: UNDEFINED }));
 
@@ -16490,6 +16540,11 @@ var PiePoint = extendClass(Point, {
 
 			if (point.legendItem) {
 				chart.legend.colorizeItem(point, vis);
+			}
+
+			// #4170, hide halo after hiding point
+			if (!vis && point.state === 'hover') {
+				point.setState('');
 			}
 			
 			// Handle ignore hidden slices
@@ -17625,7 +17680,7 @@ if (seriesTypes.column) {
 
 
 /**
- * Highstock JS v2.1.6 (2015-06-12)
+ * Highstock JS v2.1.7 (2015-06-26)
  * Highcharts module to hide overlapping data labels. This module is included by default in Highmaps.
  *
  * (c) 2010-2014 Torstein Honsi
@@ -18149,17 +18204,20 @@ extend(Point.prototype, {
 			hoverPoint.onMouseOut();
 		}
 
-		// trigger the event
-		point.firePointEvent('mouseOver');
+		if (point.series) { // It may have been destroyed, #4130
 
-		// update the tooltip
-		if (tooltip && (!tooltip.shared || series.noSharedTooltip)) {
-			tooltip.refresh(point, e);
+			// trigger the event
+			point.firePointEvent('mouseOver');
+
+			// update the tooltip
+			if (tooltip && (!tooltip.shared || series.noSharedTooltip)) {
+				tooltip.refresh(point, e);
+			}
+
+			// hover this
+			point.setState(HOVER_STATE);
+			chart.hoverPoint = point;
 		}
-
-		// hover this
-		point.setState(HOVER_STATE);
-		chart.hoverPoint = point;
 	},
 
 	/**
@@ -18296,6 +18354,7 @@ extend(Point.prototype, {
 
 			if (stateMarkerGraphic) {
 				stateMarkerGraphic[state && chart.isInsidePlot(plotX, plotY, chart.inverted) ? 'show' : 'hide'](); // #2450
+				stateMarkerGraphic.element.point = point; // #4310
 			}
 		}
 
@@ -19176,7 +19235,10 @@ wrap(Series.prototype, 'getSegments', function (proceed) {
 		each(segments, function (segment, no) {
 			var i = segment.length - 1;
 			while (i--) {
-				if (segment[i + 1].x - segment[i].x > xAxis.closestPointRange * gapSize) {
+				if (segment[i].x < xAxis.min && segment[i + 1].x > xAxis.max) {
+					segments.length = 0;
+					break;
+				} else if (segment[i + 1].x - segment[i].x > xAxis.closestPointRange * gapSize) {
 					segments.splice( // insert after this one
 						no + 1,
 						0,
@@ -19192,7 +19254,7 @@ wrap(Series.prototype, 'getSegments', function (proceed) {
  * End ordinal axis logic                                                   *
  *****************************************************************************/
 /**
- * Highstock JS v2.1.6 (2015-06-12)
+ * Highstock JS v2.1.7 (2015-06-26)
  * Highcharts Broken Axis module
  * 
  * Author: Stephane Vanraes, Torstein Honsi
@@ -19230,29 +19292,32 @@ wrap(Series.prototype, 'getSegments', function (proceed) {
 		},
 
 		isInAnyBreak: function (val, testKeep) {
-			// Sanity Check			
-			if (!this.options.breaks) { return false; }
 
 			var breaks = this.options.breaks,
-				i = breaks.length,
-				inbrk = false,
-				keep = false;
+				i = breaks && breaks.length,
+				inbrk,
+				keep,
+				ret;
 
+			
+			if (i) { 
 
-			while (i--) {
-				if (this.isInBreak(breaks[i], val)) {
-					inbrk = true;
-					if (!keep) {
-						keep = pick(breaks[i].showPoints, this.isXAxis ? false : true);
+				while (i--) {
+					if (this.isInBreak(breaks[i], val)) {
+						inbrk = true;
+						if (!keep) {
+							keep = pick(breaks[i].showPoints, this.isXAxis ? false : true);
+						}
 					}
 				}
-			}
 
-			if (inbrk && testKeep) {
-				return inbrk && !keep;
-			} else {
-				return inbrk;
+				if (inbrk && testKeep) {
+					ret = inbrk && !keep;
+				} else {
+					ret = inbrk;
+				}
 			}
+			return ret;
 		}
 	});
 
@@ -19303,7 +19368,7 @@ wrap(Series.prototype, 'getSegments', function (proceed) {
 				for (i = 0; i < axis.breakArray.length; i++) {
 					brk = axis.breakArray[i];
 					if (brk.to <= val) {
-						nval -= (brk.len);
+						nval -= brk.len;
 					} else if (brk.from >= val) {
 						break;
 					} else if (axis.isInBreak(brk, val)) {
@@ -19325,12 +19390,11 @@ wrap(Series.prototype, 'getSegments', function (proceed) {
 					if (brk.from >= nval) {
 						break;
 					} else if (brk.to < nval) {
-						nval += (brk.to - brk.from);
+						nval += brk.len;
 					} else if (axis.isInBreak(brk, nval)) {
-						nval += (brk.to - brk.from);
+						nval += brk.len;
 					}
 				}
-
 				return nval;
 			};
 
@@ -19449,14 +19513,17 @@ wrap(Series.prototype, 'getSegments', function (proceed) {
 			yAxis = series.yAxis,
 			points = series.points,
 			point,
-			i = points.length;
+			i = points.length,
+			connectNulls = series.options.connectNulls,
+			nullGap;
 
 
 		if (xAxis && yAxis && (xAxis.options.breaks || yAxis.options.breaks)) {
 			while (i--) {
 				point = points[i];
 
-				if (xAxis.isInAnyBreak(point.x, true) || yAxis.isInAnyBreak(point.y, true)) {
+				nullGap = point.y === null && connectNulls === false; // respect nulls inside the break (#4275)
+				if (!nullGap && (xAxis.isInAnyBreak(point.x, true) || yAxis.isInAnyBreak(point.y, true))) {
 					points.splice(i, 1);
 					if (this.data[i]) {
 						this.data[i].destroyElements(); // removes the graphics for this point if they exist
@@ -20292,6 +20359,15 @@ var CandlestickSeries = extendClass(OHLCSeries, {
 		// Fill is handled by OHLCSeries' getAttribs.
 		each(series.points, function (point) {
 			if (point.open < point.close) {
+
+				// If an individual line color is set, we need to merge the
+				// point attributes, because they are shared between all up
+				// points by inheritance from OHCLSeries.
+				if (point.lineColor) {
+					point.pointAttr = merge(point.pointAttr);
+					upLineColor = point.lineColor;
+				}
+
 				point.pointAttr[''].stroke = upLineColor;
 				point.pointAttr.hover.stroke = hoverStroke;
 				point.pointAttr.select.stroke = selectStroke;
@@ -20562,7 +20638,7 @@ seriesTypes.flags = extendClass(seriesTypes.column, {
 		while (i--) {
 			point = points[i];
 			outsideRight = point.plotX > series.xAxis.len;
-			plotX = point.plotX - 1;
+			plotX = point.plotX - pick(point.lineWidth, options.lineWidth) % 2; // #4285
 			stackIndex = point.stackIndex;
 			shape = point.options.shape || options.shape;
 			plotY = point.plotY;
@@ -20679,7 +20755,6 @@ symbols.flag = function (x, y, w, h, options) {
 		x + w, y,
 		x + w, y + h,
 		x, y + h,
-		'M', anchorX, anchorY,
 		'Z'
 	];
 };
@@ -21968,6 +22043,8 @@ RangeSelector.prototype = {
 			rangeMin,
 			year,
 			timeName,
+			minSetting,
+			rangeSetting,
 			dataGrouping = rangeOptions.dataGrouping;
 
 		if (dataMin === null || dataMax === null || // chart has no data, base series is removed
@@ -22050,18 +22127,22 @@ RangeSelector.prototype = {
 
 		chart.fixedRange = range;
 
-		// update the chart
-		if (!baseAxis) { // axis not yet instanciated
-			baseXAxisOptions = chart.options.xAxis;
-			baseXAxisOptions[0] = merge(
-				baseXAxisOptions[0],
-				{
-					range: range,
-					min: rangeMin
-				}
-			);
+		// Update the chart
+		if (!baseAxis) { 
+			// Axis not yet instanciated. Temporarily set min and range
+			// options and remove them on chart load (#4317).
+			baseXAxisOptions = chart.options.xAxis[0];
+			rangeSetting = baseXAxisOptions.range;
+			baseXAxisOptions.range = range;
+			minSetting = baseXAxisOptions.min;
+			baseXAxisOptions.min = rangeMin;
 			rangeSelector.setSelected(i);
-		} else { // existing axis object; after render time
+			addEvent(chart, 'load', function resetMinAndRange() {
+				baseXAxisOptions.range = rangeSetting;
+				baseXAxisOptions.min = minSetting;
+			});
+		} else {
+			// Existing axis object. Set extremes after render time.
 			baseAxis.setExtremes(
 				newMin,
 				newMax,
@@ -22408,6 +22489,20 @@ RangeSelector.prototype = {
 		};
 	},
 
+	/** 
+	 * Get the position of the range selector buttons and inputs. This can be overridden from outside for custom positioning.
+	 */
+	getPosition: function () {
+		var chart = this.chart,
+			options = chart.options.rangeSelector,
+			buttonTop = pick((options.buttonPosition || {}).y, chart.plotTop - chart.axisOffset[0] - 35);
+			
+		return {
+			buttonTop: buttonTop,
+			inputTop: buttonTop - 10
+		};
+	},
+
 	/**
 	 * Render the range selector including the buttons and the inputs. The first time render
 	 * is called, the elements are created and positioned. On subsequent calls, they are
@@ -22433,9 +22528,8 @@ RangeSelector.prototype = {
 			inputEnabled = options.inputEnabled,
 			states = buttonTheme && buttonTheme.states,
 			plotLeft = chart.plotLeft,
-			yAlign,
 			buttonLeft,
-			buttonTop,
+			pos = this.getPosition(),
 			buttonGroup = rangeSelector.group,
 			buttonBBox;
 
@@ -22445,19 +22539,18 @@ RangeSelector.prototype = {
 
 			rangeSelector.group = buttonGroup = renderer.g('range-selector-buttons').add();
 
-			rangeSelector.zoomText = renderer.text(lang.rangeSelectorZoom, pick(buttonPosition.x, plotLeft), pick(buttonPosition.y, chart.plotTop - 35) + 15)
+			rangeSelector.zoomText = renderer.text(lang.rangeSelectorZoom, pick(buttonPosition.x, plotLeft), pos.buttonTop + 15)
 				.css(options.labelStyle)
 				.add(buttonGroup);
 
 			// button starting position
 			buttonLeft = pick(buttonPosition.x, plotLeft) + rangeSelector.zoomText.getBBox().width + 5;
-			buttonTop = pick(buttonPosition.y, chart.plotTop - 35);
 
 			each(rangeSelector.buttonOptions, function (rangeOptions, i) {
 				buttons[i] = renderer.button(
 						rangeOptions.text,
 						buttonLeft,
-						buttonTop,
+						pos.buttonTop,
 						function () {
 							rangeSelector.clickButton(i);
 							rangeSelector.isActive = true;
@@ -22506,12 +22599,11 @@ RangeSelector.prototype = {
 		if (inputEnabled !== false) {
 		
 			// Update the alignment to the updated spacing box
-			yAlign = chart.plotTop - 45;		
 			inputGroup.align(extend({
-				y: yAlign,
+				y: pos.inputTop,
 				width: inputGroup.offset,
 				// Detect collision with the exporting buttons
-				x: navButtonOptions && (yAlign < (navButtonOptions.y || 0) + navButtonOptions.height - chart.spacing[0]) ? 
+				x: navButtonOptions && (pos.inputTop < (navButtonOptions.y || 0) + navButtonOptions.height - chart.spacing[0]) ? 
 					-40 : 0
 			}, options.inputPosition), true, chart.spacingBox);
 

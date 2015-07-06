@@ -55,12 +55,13 @@ foreach (cmd::all() as $cmd) {
 		echo '<option value="line">{{Ligne}}</option>';
 		echo '<option value="area">{{Aire}}</option>';
 		echo '<option value="column">{{Colonne}}</option>';
+		echo '<option value="pie">{{Camembert}}</option>';
 		echo '</select> ';
 		echo '</div> ';
 		echo '<div class="form-group">';
-		echo ' <label>Echelle :</label> <select class="viewDataOption form-control input-sm" data-l1key="configuration" data-l2key="graphScale" style="width : 90px;">';
-		echo '<option value="0">Droite</option>';
-		echo '<option value="1">Gauche</option>';
+		echo ' <label>{{Echelle}} :</label> <select class="viewDataOption form-control input-sm" data-l1key="configuration" data-l2key="graphScale" style="width : 90px;">';
+		echo '<option value="0">{{Droite}}</option>';
+		echo '<option value="1">{{Gauche}}</option>';
 		echo '</select>';
 		echo '</div>';
 		echo '<div class="form-group">';

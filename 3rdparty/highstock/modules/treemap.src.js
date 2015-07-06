@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v2.1.6 (2015-06-12)
+ * @license Highstock JS v2.1.7 (2015-06-26)
  *
  * (c) 2014 Highsoft AS
  * Authors: Jon Arild Nygard / Oystein Moseng
@@ -11,11 +11,13 @@
 (function (H) {
 	var seriesTypes = H.seriesTypes,
 		merge = H.merge,
+		extend = H.extend,
 		extendClass = H.extendClass,
 		defaultOptions = H.getOptions(),
 		plotOptions = defaultOptions.plotOptions,
 		noop = function () { return; },
 		each = H.each,
+		grep = HighchartsAdapter.grep,
 		pick = H.pick,
 		Series = H.Series,
 		Color = H.Color;
@@ -96,24 +98,17 @@
 			},
 			setVisible: seriesTypes.pie.prototype.pointClass.prototype.setVisible
 		}),
+		// @todo Move to translate
 		handleLayout: function () {
-			var series = this,
-				tree = this.tree,
+			var tree = this.tree,
 				seriesArea;
 			if (this.points.length) {
 				// Assign variables
-				this.nodeMap = [];
-				tree = this.tree = this.getTree();
 				this.rootNode = pick(this.rootNode, "");
+				tree = this.tree = this.getTree();
 				this.levelMap = this.getLevels();
-				each(series.points, function (point) {
-					// Reset visibility
-					delete point.plotX;
-					delete point.plotY;
-				});
 				seriesArea = this.getSeriesArea(tree.val);
-				this.nodeMap[""].values = seriesArea;
-				this.calculateArea(tree, seriesArea);
+				this.calculateChildrenAreas(tree, seriesArea);
 				this.setPointValues();
 			}
 		},
@@ -123,7 +118,6 @@
 		getTree: function () {
 			var tree,
 				series = this,
-				i = 0,
 				parentList = [],
 				allIds = [],
 				key,
@@ -131,51 +125,13 @@
 					each(parentList[key], function (item) {
 						parentList[""].push(item);
 					});
-				},
-				getNodeTree = function (id, i, level, list, points, parent, visible) {
-					var children = [],
-						childrenTotal = 0,
-						val,
-						point = points[i],
-						nodeTree,
-						node,
-						name;
-
-					// Actions
-					if (visible) {
-						visible = pick(point && point.visible, true);
-					}
-					name = pick(point && point.name, "");
-					if (list[id] !== undefined) {
-						each(list[id], function (i) {
-							node = getNodeTree(points[i].id, i, (level + 1), list, points, id, visible);
-							if (node.visible || !series.options.ignoreHiddenPoint) {
-								childrenTotal += node.val;
-								series.insertElementSorted(children, node, function (el, el2) {
-									return el.val > el2.val; 
-								});
-							}
-						});
-					}
-					val = pick((points[i] && points[i].value), childrenTotal, 0);
-					visible = val > 0 ? visible : false;
-					nodeTree = {
-						id: id,
-						i: i,
-						children: children,
-						childrenTotal: childrenTotal,
-						val: val,
-						level: level,
-						parent: parent,
-						name: name,
-						visible: visible
-					};
-					series.nodeMap[nodeTree.id] = nodeTree;
-					return nodeTree;
 				};
 			// Actions
+			this.nodeMap = [];
+
 			// Map children to index
-			each(this.points, function (point) {
+			// @todo Use data instead of points
+			each(this.points, function (point, index) {
 				var parent = "";
 				allIds.push(point.id);
 				if (point.parent !== undefined) {
@@ -184,8 +140,7 @@
 				if (parentList[parent] === undefined) {
 					parentList[parent] = [];
 				}
-				parentList[parent].push(i);
-				i = i + 1;
+				parentList[parent].push(index);
 			});
 			/* 
 			*  Quality check:
@@ -193,61 +148,141 @@
 			*  - Add node id to parents children list
 			*/  
 			for (key in parentList) {
-				if (parentList.hasOwnProperty(key)) {
-					if (key !== "") {
-						if (HighchartsAdapter.inArray(key, allIds) === -1) {
-							insertItem(key);
-							delete parentList[key];
-						}
-					}
+				if ((parentList.hasOwnProperty(key)) && (key !== "") && (HighchartsAdapter.inArray(key, allIds) === -1)) {
+					insertItem(key);
+					delete parentList[key];
 				}
 			}
-			tree = getNodeTree("", -1, 0, parentList, this.points, null, true);
+			tree = series.buildNode("", -1, 0, parentList, null);
+			this.eachParents(this.nodeMap[this.rootNode], function (node) {
+				node.visible = true;
+			});
+			this.eachChildren(this.nodeMap[this.rootNode], function (node) {
+				node.visible = true;
+			});
+			this.setTreeValues(tree);
 			return tree;
 		},
-		calculateArea: function (node, area) {
-			var childrenValues = [],
-				childValues,
-				series = this,
-				options = series.options,
-				algorithm = options.layoutAlgorithm,
-				alternate = options.alternateStartingDirection,
-				levelRoot = this.nodeMap[this.rootNode].level,							
-				i = 0,
-				level,
-				levelNr = options.levelIsConstant ? node.level : (node.level - levelRoot),
-				point;
-			levelNr = (levelNr > 0) ? levelNr : 0;
-			// If layoutAlgorithm is set for the level of the children, then default is overwritten
-			if (this.levelMap[levelNr + 1]) {
-				level = this.levelMap[levelNr + 1];
-				if (level.layoutAlgorithm && series[level.layoutAlgorithm]) {
-					algorithm = level.layoutAlgorithm;
-				}
-				if (level.layoutStartingDirection) {
-					area.direction = level.layoutStartingDirection === 'vertical' ? 0 : 1;
-				}
+		buildNode: function (id, i, level, list, parent) {
+			var series = this,
+				children = [],
+				point = series.points[i],
+				node,
+				child;
+
+			// Actions
+			each((list[id] || []), function (i) {
+				child = series.buildNode(series.points[i].id, i, (level + 1), list, id);
+				children.push(child);
+			});
+			node = {
+				id: id,
+				i: i,
+				children: children,
+				level: level,
+				parent: parent,
+				visible: false // @todo move this to better location
+			};
+			series.nodeMap[node.id] = node;
+			if (point) {
+				point.node = node;
 			}
-			childrenValues = series[algorithm](area, node.children);
-			each(node.children, function (child) {
-				levelNr = options.levelIsConstant ? child.level : (child.level - levelRoot);
-				point = series.points[child.i];
-				point.level = levelNr;
-				childValues = childrenValues[i];
-				childValues.val = child.childrenTotal;
-				childValues.direction = area.direction;
-				if (alternate) {
-					childValues.direction = 1 - childValues.direction;
+			return node;
+		},
+		setTreeValues: function (tree) {
+			var series = this,
+				childrenTotal = 0,
+				sorted = [],
+				val,
+				point = series.points[tree.i];
+
+			// First give the children some values
+			each(tree.children, function (child) {
+				child = series.setTreeValues(child);
+				series.insertElementSorted(sorted, child, function (el, el2) {
+					return el.val > el2.val; 
+				});
+
+				if (!child.ignore) {
+					childrenTotal += child.val;
+				} else {
+					// @todo Add predicate to avoid looping already ignored children
+					series.eachChildren(child, function (node) {
+						extend(node, {
+							ignore: true,
+							isLeaf: false,
+							visible: false
+						});
+					});
 				}
-				child.values = childValues;
-				point.node = child;
-				point.isLeaf = true;
+			});
+
+			// Set the values
+			val = pick(point && point.value, childrenTotal);
+			extend(tree, {
+				children: sorted,
+				childrenTotal: childrenTotal,
+				// Ignore this node if point is not visible
+				ignore: !(pick(point && point.visible, true) && (val > 0)),
+				isLeaf: tree.visible && !childrenTotal,
+				name: pick(point && point.name, ""),
+				val: val
+			});
+			return tree;
+		},
+		eachChildren: function (node, callback) {
+			var series = this,
+				children = node.children;
+			callback(node);
+			if (children.length) {
+				each(children, function (child) {
+					series.eachChildren(child, callback);
+				});
+			}
+		},
+		eachParents: function (node, callback) {
+			var parent = this.nodeMap[node.parent];
+			callback(node);
+			if (parent) {
+				this.eachParents(parent, callback);
+			}
+		},
+		/**
+		 * Recursive function which calculates the area for all children of a node.
+		 * @param {Object} node The node which is parent to the children.
+		 * @param {Object} area The rectangular area of the parent.
+		 */
+		calculateChildrenAreas: function (parent, area) {
+			var series = this,
+				options = series.options,
+				levelNumber = (options.levelIsConstant ? parent.level : (parent.level - this.nodeMap[this.rootNode].level)),
+				level = this.levelMap[levelNumber + 1],
+				algorithm = pick((series[level && level.layoutAlgorithm] && level.layoutAlgorithm), options.layoutAlgorithm),
+				alternate = options.alternateStartingDirection,
+				childrenValues = [],
+				children,
+				point;
+
+			// Collect all children which should be included
+			children = grep(parent.children, function (n) {
+				return !n.ignore;
+			});
+
+			if (level && level.layoutStartingDirection) {
+				area.direction = level.layoutStartingDirection === 'vertical' ? 0 : 1;
+			}
+			childrenValues = series[algorithm](area, children);
+			each(children, function (child, index) {
+				point = series.points[child.i];
+				point.level = levelNumber + 1;
+				child.values = merge(childrenValues[index], {
+					val: child.childrenTotal,
+					direction: (alternate ? 1 - area.direction : area.direction)
+				});
 				// If node has children, then call method recursively
 				if (child.children.length) {
-					point.isLeaf = false;
-					series.calculateArea(child, childValues);
+					series.calculateChildrenAreas(child, child.values);
 				}
-				i = i + 1;
 			});
 		},
 		setPointValues: function () {
@@ -267,13 +302,14 @@
 					x2,
 					y1,
 					y2;
-				values.x = values.x / series.axisRatio;
-				values.width = values.width / series.axisRatio;
-				x1 = Math.round(xAxis.translate(values.x, 0, 0, 0, 1));
-				x2 = Math.round(xAxis.translate(values.x + values.width, 0, 0, 0, 1));
-				y1 = Math.round(yAxis.translate(values.y, 0, 0, 0, 1));
-				y2 = Math.round(yAxis.translate(values.y + values.height, 0, 0, 0, 1));
-				if (node.visible || !series.options.ignoreHiddenPoint) {
+				// Points which is ignored, have no values.
+				if (values) {
+					values.x = values.x / series.axisRatio;
+					values.width = values.width / series.axisRatio;
+					x1 = Math.round(xAxis.translate(values.x, 0, 0, 0, 1));
+					x2 = Math.round(xAxis.translate(values.x + values.width, 0, 0, 0, 1));
+					y1 = Math.round(yAxis.translate(values.y, 0, 0, 0, 1));
+					y2 = Math.round(yAxis.translate(values.y + values.height, 0, 0, 0, 1));
 					// Set point values
 					point.shapeType = 'rect';
 					point.shapeArgs = {
@@ -284,6 +320,10 @@
 					};
 					point.plotX = point.shapeArgs.x + (point.shapeArgs.width / 2);
 					point.plotY = point.shapeArgs.y + (point.shapeArgs.height / 2);
+				} else {
+					// Reset visibility
+					delete point.plotX;
+					delete point.plotY;
 				}
 			});
 		},
@@ -302,6 +342,7 @@
 					direction: d,
 					val: val
 				};
+				this.nodeMap[""].values = seriesArea;
 			return seriesArea;
 		},
 		getLevels: function () {
@@ -557,11 +598,11 @@
 				level;
 			each(points, function (point) {
 				level = series.levelMap[point.level];
-				// Set options to new object to problems with scope
+				// Set options to new object to avoid problems with scope
 				options = {style: {}};
 
 				// If not a leaf, then label should be disabled as default
-				if (!point.isLeaf) {
+				if (!point.node.isLeaf) {
 					options.enabled = false;
 				}
 
@@ -622,7 +663,7 @@
 				hover.zIndex = 1001;
 				hover.fill = Color(attr.fill).brighten(seriesOptions.states.hover.brightness).get();
 				// If not a leaf, then remove fill
-				if (!point.isLeaf) {
+				if (!point.node.isLeaf) {
 					if (pick(seriesOptions.interactByLeaf, !seriesOptions.allowDrillToNode)) {
 						attr.fill = 'none';
 						delete hover.fill;
@@ -638,6 +679,7 @@
 					delete hover.fill;
 				}
 				point.pointAttr[''] = H.extend(point.pointAttr[''], attr);
+				// @todo Move this to drawDataLabels
 				if (point.dataLabel) {
 					point.dataLabel.attr({ zIndex: (point.pointAttr[''].zIndex + 1) });
 				}
@@ -723,7 +765,7 @@
 		drillToByGroup: function (point) {
 			var series = this,
 				drillId = false;
-			if ((point.node.level - series.nodeMap[series.rootNode].level) === 1 && !point.isLeaf) {
+			if ((point.node.level - series.nodeMap[series.rootNode].level) === 1 && !point.node.isLeaf) {
 				drillId = point.id;
 			}
 			return drillId;
@@ -738,7 +780,7 @@
 			var series = this,
 				drillId = false,
 				nodeParent;
-			if ((point.node.parent !== series.rootNode) && (point.isLeaf)) {
+			if ((point.node.parent !== series.rootNode) && (point.node.isLeaf)) {
 				nodeParent = point.node;
 				while (!drillId) {
 					nodeParent = series.nodeMap[nodeParent.parent];

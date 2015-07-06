@@ -51,6 +51,7 @@ foreach (cmd::all() as $cmd) {
 		echo '<option value="line">{{Ligne}}</option>';
 		echo '<option value="area">{{Aire}}</option>';
 		echo '<option value="column">{{Colonne}}</option>';
+		echo '<option value="pie">{{Camembert}}</option>';
 		echo '</select> ';
 		echo '</div> ';
 		echo '<div class="form-group">';
