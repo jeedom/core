@@ -457,15 +457,6 @@ if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
                     <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="market::redirectSSH" />
                 </div>
             </div>
-            <div class="form-group expertModeVisible">
-                <label class="col-xs-4 control-label">{{Authentification (optionnelle)}}</label>
-                <div class="col-xs-4">
-                    <input  class="configKey form-control" data-l1key="market::userDNS" placeholder="Nom d'utilisateur" />
-                </div>
-                <div class="col-xs-4">
-                    <input type="password" class="configKey form-control" data-l1key="market::passwordDNS" placeholder="Mot de passe" />
-                </div>
-            </div>
             <div class="form-group">
                 <label class="col-xs-4 control-label">{{Statut http}}</label>
                 <div class="col-xs-8">

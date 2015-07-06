@@ -388,9 +388,6 @@ class network {
 				}
 				$replace['#remote_port#'] = 'remote_port: ' . $remote_port;
 			}
-			if (config::byKey('market::userDNS') != '' && config::byKey('market::passwordDNS') != '') {
-				$replace['#auth#'] = 'auth: "' . config::byKey('market::userDNS') . ':' . config::byKey('market::passwordDNS') . '"';
-			}
 			if ($_port != 80) {
 				$replace['#subdomain#'] .= $_name;
 			}
