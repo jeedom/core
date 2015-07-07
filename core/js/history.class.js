@@ -160,11 +160,10 @@ jeedom.history.drawChart = function (_params) {
             type: _params.option.graphType,
             id: parseInt(_params.cmd_id),
             cursor: 'pointer',
-            data: [{y:data.result.data[data.result.data.length - 1][1], name : (isset(_params.option.name)) ? _params.option.name : data.result.history_name}],
+            data: [{y:data.result.data[data.result.data.length - 1][1], name : (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name + ' '+ data.result.unite}],
             color: _params.option.graphColor,
         };
         if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
-
             jeedom.history.chart[_params.el] = {};
             jeedom.history.chart[_params.el].cmd = new Array();
             jeedom.history.chart[_params.el].color = 0;
@@ -182,7 +181,7 @@ jeedom.history.drawChart = function (_params) {
                     enabled: _params.enableExport || ($.mobile) ? false : true 
                 },
                 tooltip: {
-                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> '+data.result.unite+'<br/>',
+                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
                     valueDecimals: 2,
                 },
                 plotOptions: {
@@ -202,7 +201,7 @@ jeedom.history.drawChart = function (_params) {
                 series: [series]
             });
 }else {
-    jeedom.history.chart[_params.el].chart.series[0].addPoint({y:data.result.data[data.result.data.length - 1][1], name : (isset(_params.option.name)) ? _params.option.name : data.result.history_name, color: _params.option.graphColor});
+    jeedom.history.chart[_params.el].chart.series[0].addPoint({y:data.result.data[data.result.data.length - 1][1], name : (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name + ' '+ data.result.unite, color: _params.option.graphColor});
 }
 }else{
     var series = {
@@ -212,7 +211,7 @@ jeedom.history.drawChart = function (_params) {
         type: _params.option.graphType,
         id: parseInt(_params.cmd_id),
         cursor: 'pointer',
-        name: (isset(_params.option.name)) ? _params.option.name : data.result.history_name,
+        name: (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name+ ' '+ data.result.unite,
         data: data.result.data,
         color: _params.option.graphColor,
         stack: _params.option.graphStack,
@@ -305,7 +304,7 @@ jeedom.history.drawChart = function (_params) {
             },
             legend: legend,
             tooltip: {
-                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> '+data.result.unite+'<br/>',
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
                 valueDecimals: 2,
             },
             yAxis: [{
