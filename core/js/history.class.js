@@ -182,7 +182,7 @@ jeedom.history.drawChart = function (_params) {
                     enabled: _params.enableExport || ($.mobile) ? false : true 
                 },
                 tooltip: {
-                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
+                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> '+data.result.unite+'<br/>',
                     valueDecimals: 2,
                 },
                 plotOptions: {
@@ -196,7 +196,7 @@ jeedom.history.drawChart = function (_params) {
                                 color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                             }
                         },
-                    showInLegend: true
+                        showInLegend: true
                     }
                 },
                 series: [series]
@@ -305,7 +305,7 @@ jeedom.history.drawChart = function (_params) {
             },
             legend: legend,
             tooltip: {
-                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> '+data.result.unite+'<br/>',
                 valueDecimals: 2,
             },
             yAxis: [{
