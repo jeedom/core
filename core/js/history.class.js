@@ -171,6 +171,9 @@ jeedom.history.drawChart = function (_params) {
             jeedom.history.chart[_params.el].type = _params.option.graphType;
             jeedom.history.chart[_params.el].chart = new Highcharts.Chart({
                 chart: charts,
+                title: {
+                    text: ''
+                },
                 credits: {
                     text: '',
                     href: '',
@@ -192,13 +195,14 @@ jeedom.history.drawChart = function (_params) {
                             style: {
                                 color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                             }
-                        }
+                        },
+                    showInLegend: true
                     }
                 },
                 series: [series]
             });
 }else {
-    jeedom.history.chart[_params.el].chart.series[0].addPoint({y:data.result.data[data.result.data.length - 1][1], name : (isset(_params.option.name)) ? _params.option.name : data.result.history_name});
+    jeedom.history.chart[_params.el].chart.series[0].addPoint({y:data.result.data[data.result.data.length - 1][1], name : (isset(_params.option.name)) ? _params.option.name : data.result.history_name, color: _params.option.graphColor});
 }
 }else{
     var series = {
