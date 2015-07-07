@@ -14,7 +14,7 @@
 install_msg_en() {
     msg_installer_welcome="*      Welcome to the Jeedom installer/updater        *"
     msg_usage1="Usage: $0 [<webserver_name>]"
-    msg_usage2="            webserver_name can be 'nginx_ssl' or 'nginx' (default)"
+    msg_usage2="            webserver_name can be 'nginx' (default)"
     msg_manual_install_nodejs_ARM="*          Manual installation of nodeJS for ARM       *"
     msg_manual_install_nodejs_RPI="*     Manual installation of nodeJS for Raspberry      *"
     msg_nginx_config="*                  NGINX configuration                 *"
@@ -61,7 +61,7 @@ install_msg_en() {
 install_msg_fr() {
     msg_installer_welcome="*Bienvenue dans l'assistant d'intallation/mise à jour de Jeedom*"
     msg_usage1="Utilisation: $0 [<nom_du_webserver>]"
-    msg_usage2="             nom_du_webserver peut être 'nginx_ssl' ou 'nginx' (par défaut)"
+    msg_usage2="             nom_du_webserver peut être 'nginx' (par défaut)"
     msg_manual_install_nodejs_ARM="*        Installation manuelle de nodeJS pour ARM       *"
     msg_manual_install_nodejs_RPI="*     Installation manuelle de nodeJS pour Raspberry    *"
     msg_nginx_config="*                Configuration de NGINX                *"
@@ -108,7 +108,7 @@ install_msg_fr() {
 install_msg_de() {
     msg_installer_welcome="*      Willkommen beim Jeedom Installer / Updater        *"
     msg_usage1="Einsatz: $0 [<Name_des_Webservers>]"
-    msg_usage2="            Webserver_Name kann "nginx_ssl" oder "nginx" (Standard) sein"
+    msg_usage2="            Webserver_Name kann 'nginx' (Standard) sein"
     msg_manual_install_nodejs_ARM="*          Manuelle Installation von nodejs für ARM      *"
     msg_manual_install_nodejs_RPI="*     Manuelle Installation von nodejs für Raspberry     *"
     msg_nginx_config="*                  NGINX Konfiguration                 *"
@@ -519,39 +519,6 @@ case ${webserver} in
         webserver_home="/usr/share/nginx/www"
         croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
     ;;
-    nginx_ssl)
-        # Configuration
-        webserver_home="/usr/share/nginx/www"
-        configure_nginx_ssl
-        exit 1
-    ;;
-    update_nginx)
-        # Configuration
-        webserver_home="/usr/share/nginx/www"
-        echo "********************************************************"
-        echo "${msg_install_deps}"
-        echo "********************************************************"
-        install_dependency
-        install_dependency_nginx
-
-        cd $webserver_home/jeedom
-        configure_nginx
-
-        echo "********************************************************"
-        echo "${msg_setup_nodejs_service}"
-        echo "********************************************************"
-        cp jeedom /etc/init.d/
-        chmod +x /etc/init.d/jeedom
-        update-rc.d jeedom defaults
-
-        echo "********************************************************"
-        echo "${msg_startup_nodejs_service}"
-        echo "********************************************************"
-        service jeedom restart
-        echo '[END UPDATE SUCCESS]'
-        service php5-fpm restart
-        exit 1
-    ;;
     *)
         usage_help
         exit 1
@@ -581,10 +548,7 @@ echo "${msg_install_deps}"
 echo "********************************************************"
 
 install_dependency
-if [ "${webserver}" = "nginx" ] ; then 
-    # Packages dependencies
-    install_dependency_nginx
-fi
+install_dependency_nginx
 
 echo "${msg_passwd_mysql}"
 while true ; do
