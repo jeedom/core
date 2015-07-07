@@ -14,13 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
- positionEqLogic();
- var t = null;
- function orderItems() {
-    console.log('test')
-}
 
 setTimeout(function () {
+    positionEqLogic();
     $('.div_displayEquipement').each(function(){
         $(this).disableSelection();
         var $container = $(this).packery({
