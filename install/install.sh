@@ -606,7 +606,7 @@ while true ; do
     if [ "${ANSWER}" = "${msg_yes}" ] ; then
         # Test access immediately
         # to ensure that the provided password is valid
-        CMD="`echo "show databases;" | mysql -uroot -p${MySQL_root}`"
+        echo "show databases;" | mysql -uroot -p${MySQL_root}
         if [ $? -eq 0 ] ; then
             # good password
             break
