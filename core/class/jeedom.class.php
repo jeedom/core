@@ -344,11 +344,15 @@ class jeedom {
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
 			shell_exec('sudo sntp ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org'));
-			sleep(1);
+			sleep(3);
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
 			shell_exec('sudo sntp 1.debian.pool.ntp.org');
-			sleep(1);
+			sleep(3);
+		}
+		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
+			shell_exec('sudo service ntp restart');
+			sleep(3);
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
 			log::add('core', 'error', __('La date du système est incorrect (avant 2014-01-01 ou après 2019-01-01) : ', __FILE__) . date('Y-m-d H:i:s'), 'dateCheckFailed');
@@ -380,8 +384,10 @@ class jeedom {
 				log::add('core', 'info', 'Lancement du DNS find Jeedom');
 				network::ngrok_start('https', 80, 'find', 'find.dns.jeedom.com:4443');
 			}
+
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
+		self::isDateOk();
 		$gi = date('Gi');
 		$i = date('i');
 		try {
