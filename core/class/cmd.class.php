@@ -626,7 +626,7 @@ class cmd {
 					}
 					return 0;
 				case 'numeric':
-					$_value = str_replace('.', ',', $_value);
+					$_value = floatval(str_replace(',', '.', $_value));
 					if ($this->getConfiguration('calculValueOffset') != '') {
 						try {
 							$_value = evaluate(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
