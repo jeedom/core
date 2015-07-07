@@ -206,11 +206,11 @@ class network {
 		}
 	}
 
-	public static function test($_mode = 'external', $_test = true, $_timeout = 5) {
+	public static function test($_mode = 'external', $_test = true, $_timeout = 10) {
 		if ($_mode == 'internal' && self::getNetworkAccess($_mode, 'ip', '', false) == '127.0.0.1') {
 			return false;
 		}
-		$url = self::getNetworkAccess($_mode, '', '', $_test) . '/here.html';
+		$url = trim(self::getNetworkAccess($_mode, '', '', $_test), '/') . '/here.html';
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_TIMEOUT, $_timeout);
 		curl_setopt($ch, CURLOPT_URL, $url);
