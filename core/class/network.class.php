@@ -59,9 +59,6 @@ class network {
 
 		}
 		if ($_mode == 'external') {
-			if (strpos(config::byKey('externalAddr', 'core', $_default), 'http://') != false || strpos(config::byKey('externalAddr', 'core', $_default), 'https://') !== false) {
-				config::save('externalAddr', str_replace(array('http://', 'https://'), '', config::byKey('externalAddr', 'core', $_default)));
-			}
 			if ($_protocole == 'ip') {
 				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
 					return getIpFromString(config::byKey('jeedom::url'));
@@ -223,11 +220,13 @@ class network {
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		$data = curl_exec($ch);
 		if (curl_errno($ch)) {
+			log::add('network', 'debug', 'Erreur sur ' . $url . ' => ' . curl_errno($ch));
 			curl_close($ch);
 			return false;
 		}
 		curl_close($ch);
 		if (trim($data) != 'ok') {
+			log::add('network', 'debug', 'Retour NOK sur ' . $url . ' => ' . $data);
 			return false;
 		}
 		return true;
