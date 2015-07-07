@@ -178,7 +178,6 @@ jeedom.history.drawChart = function (_params) {
                 exporting: { 
                     enabled: _params.enableExport || ($.mobile) ? false : true 
                 },
-                legend: legend,
                 tooltip: {
                     pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
                     valueDecimals: 2,
