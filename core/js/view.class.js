@@ -88,7 +88,7 @@ jeedom.view.handleViewAjax = function (_params) {
     var result = {html: '', scenario: [], cmd: [], eqLogic: []};
     for (var i in _params.view.viewZone) {
         var viewZone = _params.view.viewZone[i];
-        result.html += '<div>';
+        result.html += '<div class="col-xs-'+init(viewZone.configuration.zoneCol,12)+'">';
         result.html += '<legend style="color : #716b7a">' + viewZone.name + '</legend>';
         var div_id = 'div_viewZone' + viewZone.id;
         /*         * *****************viewZone widget***************** */

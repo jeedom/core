@@ -58,6 +58,7 @@ image::../images/view6.png[]
 
 Une zone de type widget permet d'ajouter des widgets, elle a 3 boutons sur la droite : 
 
+* *Largeur* : définis la largeur de la zone (en mode desktop seulement)
 * *Ajouter/Editer widget* : permet d'ajouter/modifier des widgets à afficher dans la zone
 * *Editer* : permet de changer le nom de la zone
 * *Supprimer* : permet de supprimer la zone
@@ -81,6 +82,7 @@ image::../images/view8.png[]
 Une zone de type graphique permet d'ajouter des graphiques à votre vue, elle possede les options suivantes : 
 
 * *Periode* : permet de choisir la période d'affichage des graphiques (30 min, 1 jour, 1 semaine, 1 mois, 1 année ou tout)
+* *Largeur* : définis la largeur de la zone (en mode desktop seulement)
 * *Ajouter/Editer widget* : permet d'ajouter/modifier des graphiques
 * *Editer* : permet de changer le nom de la zone
 * *Supprimer* : permet de supprimer la zone

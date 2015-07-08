@@ -289,7 +289,28 @@ function addEditviewZone(_viewZone) {
         div += '<a class="btn btn-danger btn-xs pull-right bt_removeviewZone"><i class="fa fa-trash-o"></i> Supprimer</a>';
         div += ' <a class="btn btn-warning btn-xs pull-right bt_editviewZone"><i class="fa fa-pencil"></i> Editer</a>';
         div += '<a class="btn btn-primary btn-xs pull-right bt_addViewData"><i class="fa fa-plus-circle"></i> Ajouter/Editer ' + init(_viewZone.type, 'widget') + '</a>';
-
+        div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 200px;">';
+        if (init(_viewZone.configuration.zoneCol) == 12) {
+            div += '<option value="12" selected>{{Largeur de 1/1}}</option>';
+        } else {
+            div += '<option value="12">{{Largeur de 1/1}}</option>';
+        }
+        if (init(_viewZone.configuration.zoneCol) == 6) {
+            div += '<option value="6" selected>{{Largeur de 1/2}}</option>';
+        } else {
+            div += '<option value="6">{{Largeur de 1/2}}</option>';
+        }
+        if (init(_viewZone.configuration.zoneCol) == 4) {
+            div += '<option value="4" selected>{{Largeur de 1/3}}</option>';
+        } else {
+            div += '<option value="4">{{Largeur de 1/3}}</option>';
+        }
+         if (init(_viewZone.configuration.zoneCol) == 3) {
+            div += '<option value="3" selected>{{Largeur de 1/4}}</option>';
+        } else {
+            div += '<option value="3">{{Largeur de 1/4}}</option>';
+        }
+        div += '</select>';
         if (init(_viewZone.type, 'widget') == 'graph') {
             div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;">';
             if (init(_viewZone.configuration.dateRange) == "30 min") {
@@ -324,7 +345,6 @@ function addEditviewZone(_viewZone) {
             }
             div += '</select>';
         }
-
         div += '</legend>';
         div += '<input style="display : none;" class="viewZoneAttr" data-l1key="type" value="' + init(_viewZone.type) + '">';
         div += '<div class="div_viewData"></div>';
