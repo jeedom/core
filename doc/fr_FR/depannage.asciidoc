@@ -1,3 +1,5 @@
+:icons: font
+
 = Dépannage
 
 J'ai une page blanche::

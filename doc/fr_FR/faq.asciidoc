@@ -1,3 +1,5 @@
+:icons: font
+
 = FAQ
 
 Jeedom nécessite t'il un abonnement ?::

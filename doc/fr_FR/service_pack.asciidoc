@@ -1,3 +1,5 @@
+:icons: font
+
 = Service Pack
 
 Les services pack vous permettent d'avoir accès a des fonctionalités cloud exclusive sur Jeedom.

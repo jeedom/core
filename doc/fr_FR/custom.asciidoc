@@ -1,3 +1,5 @@
+:icons: font
+
 = Personnalisation avancée
 
 Réservé aux experts cette page permet d'ajouter des script CSS ou JS en plus dans Jeedom, qui sont executé sur chaque page

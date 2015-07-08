@@ -1,3 +1,5 @@
+:icons: font
+
 = Scenario
 
 Voici la partie la plus importante dans la domotique : les scénarios. Véritable cerveau de la domotique c’est ce qui permet d’interagir avec le monde réel de manière "intelligente".

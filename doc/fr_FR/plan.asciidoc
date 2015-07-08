@@ -1,3 +1,5 @@
+:icons: font
+
 = Design
 
 Cette page permet de configurer l'affichage de toute votre domotique de manière très fine. Celle-ci demande du temps mais sa seule limite est votre imagination.

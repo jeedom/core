@@ -1,3 +1,5 @@
+:icons: font
+
 = Market
 
 Doc un peu particulierement car elle va traiter uniquement de votre page profil du market.
