@@ -182,19 +182,9 @@ Pour chaque catégorie, on pourra choisir une couleur différente entre la versi
 
 image::../images/display6.png[]
 
-En cliquant sur la couleur un fenêtre s'ouvre, permettant de choisir sa couleur.
+En cliquant sur la couleur une fenêtre s'ouvre, permettant de choisir sa couleur.
 
 image::../images/display7.png[]
-
-=== Dimension
-
-Tout en bas de la page vous avez une partie sur la gestion des dimmensions des "tuile" (équipement) sur le dashboard et les vues :
-
-image::../images/display8.png[]
-
-La largeur est la hauteur du widget definissent un pas pour le widget. Exemple si vous avez mis un pas de 40px en largeur et que lors de l'affichage le widget fait 60px alors Jeedom va arrondir à largeur au dessus correspondant à un multiple du pas, ici donc 80px (idem pour la hauteur).
-
-L'option de centrage vertical permet de centrer verticalement les widgets des commandes quand la tuile des équipements
 
 [TIP]
 N'oubliez pas de sauvegarder après toute modification

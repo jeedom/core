@@ -86,12 +86,6 @@ if ($plan->getLink_type() == 'eqLogic') {
             <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="name" >
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-lg-4 control-label">{{Ne pas afficher le niveau de batterie}}</label>
-        <div class="col-lg-2">
-            <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="batteryLevel" >
-        </div>
-    </div>
     <?php }
 	?>
     <legend>Spécifique</legend>

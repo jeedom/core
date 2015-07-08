@@ -217,49 +217,6 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 						</div>
 					</div>
 				</div>
-
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapse_size">
-								{{Dimension}}
-							</a>
-						</h4>
-					</div>
-					<div id="collapse_size" class="panel-collapse collapse">
-						<div class="panel-body">
-							<form class="form-horizontal">
-								<fieldset>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">{{Largeur pas widget (px)}}</label>
-										<div class="col-sm-2">
-											<input class="configKey form-control cursor" data-l1key="eqLogic::widget::stepWidth" value="<?php echo config::byKey('eqLogic::widget::stepWidth')?>" />
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">{{Hauteur pas widget (px)}}</label>
-										<div class="col-sm-2">
-											<input class="configKey form-control cursor" data-l1key="eqLogic::widget::stepHeight" value="<?php echo config::byKey('eqLogic::widget::stepHeight')?>" />
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">{{Centrer verticalement les commandes sur la tuile}}</label>
-										<div class="col-sm-2">
-											<?php
-if (config::byKey('eqLogic::widget::verticalAlign') == 1) {
-	echo '<input type="checkbox" class="configKey cursor bootstrapSwitch" data-l1key="eqLogic::widget::verticalAlign" checked />';
-} else {
-	echo '<input type="checkbox" class="configKey cursor bootstrapSwitch" data-l1key="eqLogic::widget::verticalAlign" />';
-}
-?>
-
-										</div>
-									</div>
-								</fieldset>
-							</form>
-						</div>
-					</div>
-				</div>
 			</div>
 			<div class="form-actions" style="height: 20px;">
 				<a class="btn btn-success" id="bt_displayConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>

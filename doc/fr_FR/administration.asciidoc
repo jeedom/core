@@ -18,7 +18,6 @@ image::../images/administration1.png[]
 Dans cette onglet on retrouve des informations général sur Jeedom : 
 
 * *Clef API* : votre clef API, à utiliser pour toute requête vers l'API Jeedom
-* *Clef NodeJS* : clef NodeJs, à titre informatif, sert pour la connexion au NodeJs, elle est changé toute les 24h
 * *Système* : type de votre hardware
 * *Clef hardware* : clef hardware de votre Jeedom sur le market, à ne réinitialiser que sur demande du support
 * *Commande d'information utilisateur* : permet de spécifier une commande de type message qui sera utiliser par Jeedom pour vous communiquer des messages important. Vous pouvez indiquer plusieurs commandes séparées par des &&
