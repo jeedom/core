@@ -667,9 +667,6 @@ if (_type == 'eqLogic') {
     if (isset(_plan.display) && (isset(_plan.display.name) && _plan.display.name == 1)) { 
         html.find('.widget-name').remove(); 
     } 
-    if (isset(_plan.display) && (isset(_plan.display.batteryLevel) && _plan.display.batteryLevel == 1)) { 
-        html.find('.statusBattery').remove(); 
-    } 
 } 
 if (_type == 'scenario' && isset(_plan.display) && isset(_plan.display.hideCmd) && _plan.display.hideCmd == 1) { 
     html.find('.changeScenarioState').remove(); 
