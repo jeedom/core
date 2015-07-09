@@ -43,6 +43,12 @@ Lors d'une sauvegarde Jeedom va sauvegarder tous ces fichiers et la base de donn
 
 Au niveau des protocoles seul le Z-Wave (OpenZwave) est un peu different car il n'est pas possible de sauvegarder les inclusions celle-ci sont directement inclus dans le controleur, il faut donc garder le meme pour tout retrouver
 
+[TIP]
+Il est possible, en cas de soucis, de faire un backup en ligne de commande : `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
+
+[TIP]
+Il est possible aussi de restaurer un backup en ligne de commande (par defaut Jeedom restaure le backup le plus récent présent dans le répertoire de backup) : `sudo php /usr/share/nginx/www/jeedom/install/restore.php`
+
 == Sauvegarde cloud
 
 La sauvegarde dans le cloud permet à Jeedom d'envoyer vos suavegarde directement sur le market, ca vous permet de les restaurer facilement et d'etre sur de ne pas les perdre. Le market conserve les 14 dernieres sauvegarde. Pour vous abonner il suffit d'aller sur votr epage profil sur le market :
