@@ -17,59 +17,61 @@
  */
 
 try {
-    require_once(dirname(__FILE__) . '/../php/core.inc.php');
-    include_file('core', 'authentification', 'php');
+	require_once dirname(__FILE__) . '/../php/core.inc.php';
+	include_file('core', 'authentification', 'php');
 
-    if (!isConnect('admin')) {
-        throw new Exception(__('401 - Accès non autorisé', __FILE__));
-    }
+	if (!isConnect('admin')) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__));
+	}
 
-    if (init('action') == 'save') {
-        utils::processJsonObject('cron', init('crons'));
-        ajax::success();
-    }
+	if (init('action') == 'save') {
+		utils::processJsonObject('cron', init('crons'));
+		ajax::success();
+	}
 
-    if (init('action') == 'remove') {
-        $cron = cron::byId(init('id'));
-        if (!is_object($cron)) {
-            throw new Exception(__('Cron id inconnu', __FILE__));
-        }
-        $cron->remove();
-        ajax::success();
-    }
+	if (init('action') == 'remove') {
+		$cron = cron::byId(init('id'));
+		if (!is_object($cron)) {
+			throw new Exception(__('Cron id inconnu', __FILE__));
+		}
+		$cron->remove();
+		ajax::success();
+	}
 
-    if (init('action') == 'all') {
-        $results = array();
-        $results['crons'] = utils::o2a(cron::all(true));
-        $results['nbCronRun'] = cron::nbCronRun();
-        $results['nbProcess'] = cron::nbProcess();
-        $results['nbMasterCronRun'] = (cron::jeeCronRun()) ? 1 : 0;
-        $results['loadAvg'] = cron::loadAvg();
-        ajax::success($results);
-    }
+	if (init('action') == 'all') {
+		$results = array();
+		$results['crons'] = utils::o2a(cron::all(true));
+		$results['nbCronRun'] = cron::nbCronRun();
+		$results['nbProcess'] = cron::nbProcess();
+		$results['nbMasterCronRun'] = (cron::jeeCronRun()) ? 1 : 0;
+		$results['loadAvg'] = cron::loadAvg();
+		ajax::success($results);
+	}
 
-    if (init('action') == 'start') {
-        $cron = cron::byId(init('id'));
-        if (!is_object($cron)) {
-            throw new Exception(__('Cron id inconnu', __FILE__));
-        }
-        $cron->start();
-        ajax::success();
-    }
+	if (init('action') == 'start') {
+		$cron = cron::byId(init('id'));
+		if (!is_object($cron)) {
+			throw new Exception(__('Cron id inconnu', __FILE__));
+		}
+		$cron->run();
+		sleep(1);
+		ajax::success();
+	}
 
-    if (init('action') == 'stop') {
-        $cron = cron::byId(init('id'));
-        if (!is_object($cron)) {
-            throw new Exception(__('Cron id inconnu', __FILE__));
-        }
-        $cron->stop();
-        ajax::success();
-    }
+	if (init('action') == 'stop') {
+		$cron = cron::byId(init('id'));
+		if (!is_object($cron)) {
+			throw new Exception(__('Cron id inconnu', __FILE__));
+		}
+		$cron->halt();
+		sleep(1);
+		ajax::success();
+	}
 
-    throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 
-    /*     * *********Catch exeption*************** */
+	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-    ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayExeption($e), $e->getCode());
 }
 ?>
