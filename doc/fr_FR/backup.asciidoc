@@ -37,17 +37,17 @@ Sur la gauche on a :
 [TIP]
 Lors d'une reinstallation de Jeedom et en ayant pris l'abonnement de sauvegarde cloud, vous avez juste sur votre nouveau Jeedom a renseigner votre compte market puis a venir ici pour lancer la restauration
 
-== Qu'est ce qui est sauvegardé ?
-
-Lors d'une sauvegarde Jeedom va sauvegarder tous ces fichiers et la base de données. Cela contient donc toute votre configuration (equipement, commande, historique, scénario, design....).
-
-Au niveau des protocoles seul le Z-Wave (OpenZwave) est un peu different car il n'est pas possible de sauvegarder les inclusions celle-ci sont directement inclus dans le controleur, il faut donc garder le meme pour tout retrouver
-
 [TIP]
 Il est possible, en cas de soucis, de faire un backup en ligne de commande : `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
 
 [TIP]
 Il est possible aussi de restaurer un backup en ligne de commande (par defaut Jeedom restaure le backup le plus récent présent dans le répertoire de backup) : `sudo php /usr/share/nginx/www/jeedom/install/restore.php`
+
+== Qu'est ce qui est sauvegardé ?
+
+Lors d'une sauvegarde Jeedom va sauvegarder tous ces fichiers et la base de données. Cela contient donc toute votre configuration (equipement, commande, historique, scénario, design....).
+
+Au niveau des protocoles seul le Z-Wave (OpenZwave) est un peu different car il n'est pas possible de sauvegarder les inclusions celle-ci sont directement inclus dans le controleur, il faut donc garder le meme pour tout retrouver
 
 == Sauvegarde cloud
 
