@@ -15,14 +15,14 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-setTimeout(function () {
+ setTimeout(function () {
     positionEqLogic();
     $('.div_displayEquipement').each(function(){
         $(this).disableSelection();
         var $container = $(this).packery({
             itemSelector: ".eqLogic-widget",
-            columnWidth: parseInt(eqLogic_width_step),
-            rowHeight: parseInt(eqLogic_height_step),
+            columnWidth:40,
+            rowHeight: 80,
             gutter : 1,
         });
 

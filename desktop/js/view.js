@@ -28,8 +28,8 @@
                 positionEqLogic();
                 $('.eqLogicZone').each(function () {
                     var container = $(this).packery({
-                        columnWidth: parseInt(eqLogic_width_step),
-                        rowHeight: parseInt(eqLogic_height_step),
+                        columnWidth: 40,
+                        rowHeight: 80,
                         gutter : 1,
                     });
                 });

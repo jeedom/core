@@ -17,8 +17,6 @@
 
  modifyWithoutSave = false;
  nbActiveAjaxRequest = 0;
- eqLogic_width_step = 40;
- eqLogic_height_step = 80;
 
  $(function () {
 
@@ -285,9 +283,9 @@ setInterval(function () {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-     $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
-     $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
- });
+       $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
+       $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
+   });
 
     $('#bt_gotoDashboard').on('click',function(){
         window.location.href = 'index.php?v=d&p=dashboard';
@@ -491,36 +489,34 @@ function chooseIcon(_callback) {
 }
 
 
-function positionEqLogic(_id, _noResize, _class) {
- $('.' + init(_class, 'eqLogic-widget')).each(function () {
-        if (init(_id, '') == '' || $(this).attr('data-eqLogic_id') == _id) {
-            var eqLogic = $(this);
-            eqLogic.css('margin','0px');
-            eqLogic.css('padding','0px');
-            var maxHeight = 0;
-            eqLogic.find('.cmd-widget').each(function () {
-                if ($(this).height() > maxHeight) {
-                    maxHeight = $(this).height();
-                }
-                var statistiques = $(this).find('.statistiques');
-                if (statistiques != undefined) {
-                    var left = ($(this).width() - statistiques.width()) / 2;
-                    statistiques.css('left', left);
-                }
-            });
-            if (!init(_noResize, false) && eqLogic_height_step > 1 && eqLogic_width_step > 1) {
-               eqLogic.width((Math.ceil(eqLogic.width() / eqLogic_width_step) * eqLogic_width_step));
-               eqLogic.height((Math.ceil(eqLogic.height() / eqLogic_height_step) * eqLogic_height_step));
-           }
-           if(eqLogic_vertical_align == 1){
-               var verticalAlign = eqLogic.find('.verticalAlign');
-               var offset = eqLogic.find('.widget-name').height();
-               offset = (offset < 1) ? -5 : offset-12;
-               if (count(verticalAlign) > 0 && verticalAlign != undefined) {
-                verticalAlign.css('position', 'relative');
-                verticalAlign.css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - offset);
-                verticalAlign.css('left', (eqLogic.width() - verticalAlign.width()) / 2);
+function positionEqLogic(_id) {
+   $('.eqLogic-widget').each(function () {
+    if (init(_id, '') == '' || $(this).attr('data-eqLogic_id') == _id) {
+        var eqLogic = $(this);
+        eqLogic.css('margin','0px');
+        eqLogic.css('padding','0px');
+        var maxHeight = 0;
+        eqLogic.find('.cmd-widget').each(function () {
+            if ($(this).height() > maxHeight) {
+                maxHeight = $(this).height();
             }
+            var statistiques = $(this).find('.statistiques');
+            if (statistiques != undefined) {
+                var left = ($(this).width() - statistiques.width()) / 2;
+                statistiques.css('left', left);
+            }
+        });
+
+        eqLogic.width(Math.ceil(eqLogic.width() / 40) * 40);
+        eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80);
+
+        var verticalAlign = eqLogic.find('.verticalAlign');
+        var offset = eqLogic.find('.widget-name').height();
+        offset = (offset < 1) ? -5 : offset-12;
+        if (count(verticalAlign) > 0 && verticalAlign != undefined) {
+            verticalAlign.css('position', 'relative');
+            verticalAlign.css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - offset);
+            verticalAlign.css('left', (eqLogic.width() - verticalAlign.width()) / 2);
         }
     }
 });
