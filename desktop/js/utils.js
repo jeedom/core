@@ -283,9 +283,9 @@ setInterval(function () {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-       $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
-       $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
-   });
+     $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
+     $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
+ });
 
     $('#bt_gotoDashboard').on('click',function(){
         window.location.href = 'index.php?v=d&p=dashboard';
@@ -490,7 +490,7 @@ function chooseIcon(_callback) {
 
 
 function positionEqLogic(_id) {
-   $('.eqLogic-widget').each(function () {
+ $('.eqLogic-widget').each(function () {
     if (init(_id, '') == '' || $(this).attr('data-eqLogic_id') == _id) {
         var eqLogic = $(this);
         eqLogic.css('margin','0px');
@@ -508,7 +508,7 @@ function positionEqLogic(_id) {
         });
 
         eqLogic.width(Math.ceil(eqLogic.width() / 40) * 40);
-        eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80);
+        eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80 + (Math.ceil(eqLogic.height() / 80)-1) );
 
         var verticalAlign = eqLogic.find('.verticalAlign');
         var offset = eqLogic.find('.widget-name').height();

@@ -309,8 +309,6 @@ jeedom.cmd.refreshValue = function(_params) {
                 initTooltips();
                 if ($.mobile) {
                     $('.cmd[data-cmd_id=' + params.id + ']').trigger("create");
-                } else {
-                    positionEqLogic($('.cmd[data-cmd_id=' + params.id + ']').closest('.eqLogic').attr('data-eqLogic_id'));
                 }
             }
         };
