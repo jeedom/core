@@ -30,7 +30,7 @@
                     var container = $(this).packery({
                         columnWidth: 40,
                         rowHeight: 80,
-                        gutter : 1,
+                        gutter : 2,
                     });
                 });
             initTooltips();
