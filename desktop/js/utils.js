@@ -489,35 +489,14 @@ function chooseIcon(_callback) {
 }
 
 
-function positionEqLogic(_id) {
-   $('.eqLogic-widget').each(function () {
-    if (init(_id, '') == '' || $(this).attr('data-eqLogic_id') == _id) {
-        var eqLogic = $(this);
-        eqLogic.css('margin','0px');
-        eqLogic.css('padding','0px');
-        var maxHeight = 0;
-        eqLogic.find('.cmd-widget').each(function () {
-            if ($(this).height() > maxHeight) {
-                maxHeight = $(this).height();
-            }
-            var statistiques = $(this).find('.statistiques');
-            if (statistiques != undefined) {
-                var left = ($(this).width() - statistiques.width()) / 2;
-                statistiques.css('left', left);
-            }
-        });
-
-        eqLogic.width(Math.ceil(eqLogic.width() / 40) * 40 + (Math.ceil(eqLogic.width() / 40)-1) * 2);
-        eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80 + (Math.ceil(eqLogic.height() / 80)-1) * 2);
-
-        var verticalAlign = eqLogic.find('.verticalAlign');
-        var offset = eqLogic.find('.widget-name').height();
-        offset = (offset < 1) ? -5 : offset-12;
+function positionEqLogic() {
+    $('.eqLogic-widget').css('margin','0px').css('padding','0px');
+    $('.eqLogic-widget').each(function () {
+        $(this).width(Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2);
+        $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
+        var verticalAlign = $(this).find('.verticalAlign');
         if (count(verticalAlign) > 0 && verticalAlign != undefined) {
-            verticalAlign.css('position', 'relative');
-            verticalAlign.css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - offset);
-            verticalAlign.css('left', (eqLogic.width() - verticalAlign.width()) / 2);
+            verticalAlign.css('position', 'relative').css('top', (($(this).height() - verticalAlign.height()) / 2) - $(this).find('.widget-name').height());
         }
-    }
-});
+    });
 }

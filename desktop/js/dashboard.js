@@ -17,22 +17,21 @@
 
  setTimeout(function () {
     positionEqLogic();
+    $('.div_displayEquipement').disableSelection();
     $('.div_displayEquipement').each(function(){
-        $(this).disableSelection();
-        var $container = $(this).packery({
+        var container = $(this).packery({
             itemSelector: ".eqLogic-widget",
             columnWidth:40,
             rowHeight: 80,
             gutter : 2,
         });
-
-        var $itemElems =  $container.find('.eqLogic-widget');
-        $itemElems.draggable();
-        $container.packery( 'bindUIDraggableEvents', $itemElems );
-        $container.packery( 'on', 'dragItemPositioned',function(){
-            var $itemElems = $container.packery('getItemElements');
+        var itemElems =  container.find('.eqLogic-widget');
+        itemElems.draggable();
+        container.packery( 'bindUIDraggableEvents', itemElems );
+        container.packery( 'on', 'dragItemPositioned',function(){
+            var itemElems = container.packery('getItemElements');
             var eqLogics = [];
-            $($itemElems).each( function( i, itemElem ) {
+            $(itemElems).each( function( i, itemElem ) {
                 if($(itemElem).attr('data-eqlogic_id') != undefined){
                     eqLogic = {};
                     eqLogic.id =  $(itemElem).attr('data-eqlogic_id');
@@ -51,7 +50,6 @@
     });
 $('.div_displayEquipement .eqLogic-widget').draggable('disable');
 
-
 $('#bt_editDashboardWidgetOrder').on('click',function(){
     if($(this).attr('data-mode') == 1){
         $(this).attr('data-mode',0);
@@ -63,9 +61,7 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
         $(this).css('color','rgb(46, 176, 75)');
     }
 });
-}, 2);
-
-
+}, 1);
 
 $('body').delegate('.eqLogic-widget .history', 'click', function () {
     $('#md_modal').dialog({title: "Historique"});
