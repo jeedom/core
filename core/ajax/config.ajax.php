@@ -79,7 +79,7 @@ try {
 					if (!network::ngrok_run()) {
 						network::ngrok_start();
 					}
-					if (!network::ngrok_run('tcp', 22, 'ssh')) {
+					if (config::byKey('market::redirectSSH') == 1 && !network::ngrok_run('tcp', 22, 'ssh')) {
 						network::ngrok_start('tcp', 22, 'ssh');
 					}
 				} else {
