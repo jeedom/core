@@ -614,6 +614,17 @@ class market {
 				if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
 					throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
 				}
+				try {
+					$plugin = plugin::byId($this->getLogicalId());
+					if (is_object($plugin)) {
+						log::add('update', 'update', __('Action de pre update...', __FILE__));
+						$plugin->callInstallFunction('pre_update');
+						log::add('update', 'update', __("OK\n", __FILE__));
+					}
+				} catch (Exception $e) {
+
+				}
+
 				log::add('update', 'update', __('Décompression de l\'archive...', __FILE__));
 				$zip = new ZipArchive;
 				$res = $zip->open($tmp);
