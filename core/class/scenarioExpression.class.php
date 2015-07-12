@@ -557,6 +557,7 @@ class scenarioExpression {
 				return '';
 			}
 		}
+		$_calc = str_replace(' ', '', $_calc);
 		$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
 		if ($historyStatistique['min'] == '') {
 			return $cmd->execCmd(null, 2);
@@ -569,6 +570,9 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
+		$_calc = str_replace(' ', '', $_calc);
+		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
+  		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
 		return $historyStatistique[$_calc];
 	}
