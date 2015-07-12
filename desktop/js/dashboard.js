@@ -48,16 +48,40 @@
             });
         });
     });
+
+
+$( ".div_displayEquipement .eqLogic-widget.allowResize" ).resizable({
+  grid: [ 40, 80 ],
+  stop: function( event, ui ) {
+    var el = ui.element;
+    positionEqLogic(el.attr('data-eqlogic_id'));
+    el.closest('.div_displayEquipement').packery();
+    var eqLogic = {id : el.attr('data-eqlogic_id')}
+    eqLogic.display = {};
+    eqLogic.display.width =  Math.floor(el.width() / 40) * 40 + 'px';
+    eqLogic.display.height = Math.floor(el.height() / 80) * 80+ 'px';
+    jeedom.eqLogic.simpleSave({
+        eqLogic : eqLogic,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        }
+    });
+}
+});
+
 $('.div_displayEquipement .eqLogic-widget').draggable('disable');
+$('.div_displayEquipement .eqLogic-widget.allowResize').resizable('disable');
 
 $('#bt_editDashboardWidgetOrder').on('click',function(){
     if($(this).attr('data-mode') == 1){
         $(this).attr('data-mode',0);
         $('.div_displayEquipement .eqLogic-widget').draggable('disable');
+        $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('disable');
         $(this).css('color','black');
     }else{
         $(this).attr('data-mode',1);
         $('.div_displayEquipement .eqLogic-widget').draggable('enable');
+        $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('enable');
         $(this).css('color','rgb(46, 176, 75)');
     }
 });

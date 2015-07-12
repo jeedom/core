@@ -489,14 +489,28 @@ function chooseIcon(_callback) {
 }
 
 
-function positionEqLogic() {
-    $('.eqLogic-widget').css('margin','0px').css('padding','0px');
-    $('.eqLogic-widget').each(function () {
-        $(this).width(Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2);
-        $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
-        var verticalAlign = $(this).find('.verticalAlign');
+function positionEqLogic(_id) {
+    console.log(_id);
+    if(_id != undefined){
+        var eqLogic = $('.eqLogic-widget[data-eqlogic_id='+_id+']');
+        eqLogic.css('margin','0px').css('padding','0px');
+        eqLogic.width(Math.floor(eqLogic.width() / 40) * 40);
+        eqLogic.height(Math.floor(eqLogic.height() / 80) * 80);
+        eqLogic.width(Math.ceil(eqLogic.width() / 40) * 40 + (Math.ceil(eqLogic.width() / 40)-1) * 2);
+        eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80 + (Math.ceil(eqLogic.height() / 80)-1) * 2);
+        var verticalAlign = eqLogic.find('.verticalAlign');
         if (count(verticalAlign) > 0 && verticalAlign != undefined) {
-            verticalAlign.css('position', 'relative').css('top', (($(this).height() - verticalAlign.height()) / 2) - $(this).find('.widget-name').height() + 7);
+            verticalAlign.css('position', 'relative').css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - eqLogic.find('.widget-name').height() + 7);
         }
-    });
+    }else{
+        $('.eqLogic-widget').css('margin','0px').css('padding','0px');
+        $('.eqLogic-widget').each(function () {
+            $(this).width(Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2);
+            $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
+            var verticalAlign = $(this).find('.verticalAlign');
+            if (count(verticalAlign) > 0 && verticalAlign != undefined) {
+                verticalAlign.css('position', 'relative').css('top', (($(this).height() - verticalAlign.height()) / 2) - $(this).find('.widget-name').height() + 7);
+            }
+        });
+    }
 }

@@ -118,12 +118,12 @@ try {
 			if (!is_numeric($eqLogic_json['id']) || !is_numeric($eqLogic_json['order']) || (isset($eqLogic_json['object_id']) && !is_numeric($eqLogic_json['object_id']))) {
 				throw new Exception("Erreur une des valeurs n'est pas un numérique");
 			}
-			if(isset($eqLogic_json['object_id'])){
+			if (isset($eqLogic_json['object_id'])) {
 				if ($eqLogic_json['object_id'] == -1) {
 					$eqLogic_json['object_id'] = "NULL";
 				}
 				$sql .= 'UPDATE eqLogic SET `order`= ' . $eqLogic_json['order'] . ', object_id=' . $eqLogic_json['object_id'] . '  WHERE id=' . $eqLogic_json['id'] . ' ;';
-			}else{
+			} else {
 				$sql .= 'UPDATE eqLogic SET `order`= ' . $eqLogic_json['order'] . '  WHERE id=' . $eqLogic_json['id'] . ' ;';
 			}
 		}
@@ -169,7 +169,23 @@ try {
 		ajax::success();
 	}
 
-	/*     * **************************Gloabl Method******************************** */
+	if (init('action') == 'simpleSave') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$eqLogicSave = json_decode(init('eqLogic'), true);
+		$eqLogic = eqLogic::byId($eqLogicSave['id']);
+		if (!is_object($eqLogic)) {
+			throw new Exception(__('EqLogic inconnu verifié l\'id : ', __FILE__) . $eqLogicsSave['id']);
+		}
+
+		if (!$eqLogic->hasRight('w')) {
+			throw new Exception('Vous n\'etês pas autorisé à faire cette action');
+		}
+		utils::a2o($eqLogic, $eqLogicSave);
+		$eqLogic->save();
+		ajax::success();
+	}
 
 	if (init('action') == 'copy') {
 		if (!isConnect('admin')) {
@@ -214,7 +230,7 @@ try {
 			$return['status'] = array(
 				'state' => 'ok',
 				'lastCommunication' => $eqLogic->getStatus('lastCommunication'),
-				);
+			);
 			if ($eqLogic->getTimeout() > 0 && $eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $eqLogic->getTimeout() . ' minutes' . date('Y-m-d H:i:s')))) {
 				$return['status']['state'] = 'timeout';
 			}
