@@ -163,7 +163,6 @@ Vous pouvez :
 * *Widget* : permet de choisir le widget sur dekstop ou mobile (à noter qu'il faut le plugin widget et que vous pouvez le faire aussi à partir de celui-ci)
 * *Ne pas afficher le nom* : permet de masquer le nom de la commande en fonction du contexte (dashboard et design, vue ou mobile)
 * *Ne pas afficher les statistiques* : permet de ne pas afficher les statistiques en fonction du contexte (dashboard et design, vue ou mobile). Attention il faut avoir activer les statistique dans la configuration de Jeedom pour que cette option ai un impact
-* *Retour à la ligne forcé avant le widget* : permet d'ajouter un retour a la ligne avant ou après le widget (pour forcer par exemple un affichage en colonne des differentes commande l'équipement au lieu de ligne par defaut)
 
 En dessous on retrouve des paramètre optionnel d'affichage que l'on peut passer au widget. Ces parametres dependent du widget en question, il faut donc regarder sa fiche sur le market pour les connaitres.
 

@@ -9,11 +9,5 @@
                 && $('.cmd[data-cmd_id=#id#]').prev().css('display') != 'block') {
             $('.cmd[data-cmd_id=#id#]').prepend('<br/>');
         }
-        setTimeout(function () {
-            if ($('.cmd[data-cmd_id=#id#]').next().data('subtype') != undefined && $('.cmd[data-cmd_id=#id#]').next().data('subtype') != 'other'
-                    && $('.cmd[data-cmd_id=#id#]').next().css('display') != 'block') {
-                $('.cmd[data-cmd_id=#id#]').append('<br/>');
-            }
-        }, 100);
     </script>
 </span>
