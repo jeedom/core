@@ -44,13 +44,12 @@
                 error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 }
-
             });
         });
     });
 
 
-$( ".div_displayEquipement .eqLogic-widget.allowResize" ).resizable({
+$( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
   grid: [ 40, 80 ],
   stop: function( event, ui ) {
     var el = ui.element;
@@ -69,20 +68,53 @@ $( ".div_displayEquipement .eqLogic-widget.allowResize" ).resizable({
 }
 });
 
+$( ".div_displayEquipement .eqLogic-widget.allowReorderCmd").sortable({
+    items: ".cmd",
+    stop: function (event, ui) {
+        var cmds = [];
+        var eqLogic = ui.item.closest('.eqLogic-widget');
+        order = 1;
+        eqLogic.find('.cmd').each(function(){
+            cmd = {};
+            cmd.id = $(this).attr('data-cmd_id');
+            cmd.order = order;
+            cmds.push(cmd);
+            order++;
+        });
+        jeedom.cmd.setOrder({
+            cmds: cmds,
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            }
+        });
+    }
+});
+
 $('.div_displayEquipement .eqLogic-widget').draggable('disable');
 $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('disable');
+$('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('disable');
 
 $('#bt_editDashboardWidgetOrder').on('click',function(){
     if($(this).attr('data-mode') == 1){
         $(this).attr('data-mode',0);
         $('.div_displayEquipement .eqLogic-widget').draggable('disable');
         $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('disable');
+        $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('disable');
+        $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseover');
+        $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseleave');
         $(this).css('color','black');
     }else{
         $(this).attr('data-mode',1);
         $('.div_displayEquipement .eqLogic-widget').draggable('enable');
         $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('enable');
+        $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('enable');
         $(this).css('color','rgb(46, 176, 75)');
+        $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').on('mouseover',function(){
+            $('.div_displayEquipement .eqLogic-widget').draggable('disable');
+        });
+        $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').on('mouseleave',function(){
+            $('.div_displayEquipement .eqLogic-widget').draggable('enable');
+        });
     }
 });
 }, 1);
