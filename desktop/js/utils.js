@@ -500,7 +500,7 @@ function positionEqLogic(_id) {
         eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80 + (Math.ceil(eqLogic.height() / 80)-1) * 2);
         var verticalAlign = eqLogic.find('.verticalAlign');
         if (count(verticalAlign) > 0 && verticalAlign != undefined) {
-            verticalAlign.css('position', 'relative').css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - eqLogic.find('.widget-name').height() + 7);
+            verticalAlign.css('position', 'relative').css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - eqLogic.find('.widget-name').height() + 10);
         }
     }else{
         $('.eqLogic-widget').css('margin','0px').css('padding','0px');
@@ -509,7 +509,7 @@ function positionEqLogic(_id) {
             $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
             var verticalAlign = $(this).find('.verticalAlign');
             if (count(verticalAlign) > 0 && verticalAlign != undefined) {
-                verticalAlign.css('position', 'relative').css('top', (($(this).height() - verticalAlign.height()) / 2) - $(this).find('.widget-name').height() + 7);
+                verticalAlign.css('position', 'relative').css('top', (($(this).height() - verticalAlign.height()) / 2) - $(this).find('.widget-name').height() + 10);
             }
         });
     }
