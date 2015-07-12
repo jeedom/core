@@ -51,7 +51,11 @@
 
 $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
   grid: [ 40, 80 ],
-  stop: function( event, ui ) {
+  resize: function( event, ui ) {
+   var el = ui.element;
+   el.closest('.div_displayEquipement').packery();
+},
+stop: function( event, ui ) {
     var el = ui.element;
     positionEqLogic(el.attr('data-eqlogic_id'));
     el.closest('.div_displayEquipement').packery();
