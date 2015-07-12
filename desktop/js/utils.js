@@ -496,7 +496,7 @@ function positionEqLogic() {
         $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
         var verticalAlign = $(this).find('.verticalAlign');
         if (count(verticalAlign) > 0 && verticalAlign != undefined) {
-            verticalAlign.css('position', 'relative').css('top', (($(this).height() - verticalAlign.height()) / 2) - $(this).find('.widget-name').height() + 5);
+            verticalAlign.css('position', 'relative').css('top', (($(this).height() - verticalAlign.height()) / 2) - $(this).find('.widget-name').height() + 7);
         }
     });
 }
