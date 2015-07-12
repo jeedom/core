@@ -245,7 +245,9 @@ jeedom.eqLogic.builSelectCmd = function (_params) {
             var result = '';
             for (var i in cmds) {
                 if ((init(_params.filter.type, 'all') == 'all' || cmds[i].type == _params.filter.type) &&
-                        (init(_params.filter.subType, 'all') == 'all' || cmds[i].subType == _params.filter.subType)) {
+                        (init(_params.filter.subType, 'all') == 'all' || cmds[i].subType == _params.filter.subType) &&
+                        (init(_params.filter.isHistorized, 'all') == 'all' || cmds[i].isHistorized == _params.filter.isHistorized)
+                    ) {
                     result += '<option value="' + cmds[i].id + '" data-type="' + cmds[i].type + '"  data-subType="' + cmds[i].subType + '" >' + cmds[i].name + '</option>';
                 }
             }
