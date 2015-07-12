@@ -102,12 +102,14 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
         $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('disable');
         $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseover');
         $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseleave');
+        $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').css('border','none');
         $(this).css('color','black');
     }else{
         $(this).attr('data-mode',1);
         $('.div_displayEquipement .eqLogic-widget').draggable('enable');
         $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('enable');
         $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('enable');
+        $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').css('border','1px dotted');
         $(this).css('color','rgb(46, 176, 75)');
         $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').on('mouseover',function(){
             $('.div_displayEquipement .eqLogic-widget').draggable('disable');
