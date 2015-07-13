@@ -125,7 +125,6 @@ class network {
 	}
 
 	public static function checkConf($_mode = 'external') {
-
 		if ($_mode == 'internal') {
 			if (trim(config::byKey('internalComplement')) == '/') {
 				config::save('internalComplement', '');
@@ -136,7 +135,7 @@ class network {
 				if ($pos !== false) {
 					$internalAddr = substr($internalAddr, 0, $pos);
 				}
-				if ($internalAddr != config::byKey('internalAddr')) {
+				if ($internalAddr != config::byKey('internalAddr') && $internalAddr != '127.0.0.1') {
 					config::save('internalAddr', $internalAddr);
 				}
 			} else {

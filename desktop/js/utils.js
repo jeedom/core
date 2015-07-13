@@ -490,7 +490,6 @@ function chooseIcon(_callback) {
 
 
 function positionEqLogic(_id) {
-    console.log(_id);
     if(_id != undefined){
         var eqLogic = $('.eqLogic-widget[data-eqlogic_id='+_id+']');
         eqLogic.css('margin','0px').css('padding','0px');
