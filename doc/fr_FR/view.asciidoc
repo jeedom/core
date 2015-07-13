@@ -69,7 +69,7 @@ Vous pouvez supprimer un widget directement en cliquant sur la poubelle devant c
 [TIP]
 Il est possible de modifier l'ordre des widgets dans la zone en les glissants/deposant
 
-Une fois le bouton d'ajout/edition de widget pressé vous obtenez (le chargement peut etre un peu long) : 
+Une fois le bouton d'ajout/edition de widget pressé vous obtenez : 
 
 image::../images/view7.png[]
 
@@ -93,8 +93,8 @@ Vous pouvez supprimer un une donnée à grapher directement en cliquant sur la p
 [TIP]
 Il est possible de modifier l'ordre des graphique dans la zone en les glissants/deposant
 
-Une fois le bouton d'ajout/edition des graphiques pressé vous obtenez (le chargement peut etre un peu long) : 
+Une fois le bouton d'ajout/edition des graphiques pressé vous obtenez : 
 
 image::../images/view9.png[]
 
-Sur cette fenetre vous avez juste à choisir les données à ajouter à votre graphique. Pour les differentes options elles sont expliquée link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-history.html#_graphique_sur_les_vues_et_les_designs[ici]
+Une fois ajouté vous avez accès à des options de configuraiton : pour les differentes options elles sont expliquée link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-history.html#_graphique_sur_les_vues_et_les_designs[ici]
