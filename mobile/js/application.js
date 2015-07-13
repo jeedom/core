@@ -125,7 +125,7 @@ function initApplication(_reinit) {
                     $.include(include, function () {
                         deviceInfo = getDeviceType();
                         if(getUrlVars('p') != '' && getUrlVars('ajax') != 1){
-                           switch (getUrlVars('p')) {
+                         switch (getUrlVars('p')) {
                             case 'view' :
                             page('view', 'Vue',getUrlVars('view_id'));
                             break;
@@ -256,7 +256,11 @@ function notify(_title, _text) {
 function setTileSize(_filter) {
     $(_filter).each(function () {
         if (!$(this).hasClass('noResize')) {
-            $(this).width(deviceInfo.bSize);
+            if($(this).hasClass('col2')){
+                $(this).width(deviceInfo.bSize * 2);
+            }else{
+                $(this).width(deviceInfo.bSize);
+            }
         }
     });
 }
