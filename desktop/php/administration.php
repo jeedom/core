@@ -352,7 +352,8 @@ if (network::test('internal')) {
             <label class="col-xs-4 control-label">{{Statut}}</label>
             <div class="col-xs-8">
               <?php
-if (network::test('external')) {
+$externalTest = network::test('external');
+if ($externalTest) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
 } else {
 	echo '<span class="label label-warning tooltips">{{NOK}}</span>';
@@ -432,6 +433,7 @@ if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
 </div>
 <div class="col-xs-6">
     <legend>DNS Jeedom</legend>
+    <div class="alert alert-warning">{{Attention cette fonctionalité n'est pas disponible dans le service pack community (à voir sur votre page profils du market)}}</div>
     <div class="form-group">
         <label class="col-xs-4 control-label">{{Utiliser les DNS Jeedom}}</label>
         <div class="col-xs-8">
@@ -449,7 +451,7 @@ if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
         <label class="col-xs-4 control-label">{{Statut http}}</label>
         <div class="col-xs-8">
             <?php
-if (config::byKey('market::allowDNS') == 1 && network::test('external')) {
+if (config::byKey('market::allowDNS') == 1 && $externalTest) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
 } else {
 	echo '<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
