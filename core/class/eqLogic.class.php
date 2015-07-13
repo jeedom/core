@@ -469,7 +469,13 @@ class eqLogic {
 		}
 		if ($this->getIsEnable()) {
 			foreach ($this->getCmd(null, null, true) as $cmd) {
+				if ($cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
+					$cmd_html .= '<br/>';
+				}
 				$cmd_html .= $cmd->toHtml($_version, '', $cmdColor);
+				if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
+					$cmd_html .= '<br/>';
+				}
 			}
 		}
 		$replace = array(

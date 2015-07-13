@@ -415,6 +415,16 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
   </tr>
 </tbody>
 </table>
+<div class="form-group">
+  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
+  <div class="col-xs-1">
+    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="forceReturnLineBefore" />
+  </div>
+  <label class="col-xs-2 control-label">{{après le widget}}</label>
+  <div class="col-xs-1">
+    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="forceReturnLineAfter" />
+  </div>
+</div>
 <br/><br/>
 <legend>{{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
 <table class="table table-bordered table-condensed" id="table_widgetParameters">
