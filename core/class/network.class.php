@@ -135,21 +135,21 @@ class network {
 				if ($pos !== false) {
 					$internalAddr = substr($internalAddr, 0, $pos);
 				}
-				if ($internalAddr != config::byKey('internalAddr') && $internalAddr != '127.0.0.1') {
+				if ($internalAddr != config::byKey('internalAddr') && !netMatch('127.0.*.*', $internalAddr)) {
 					config::save('internalAddr', $internalAddr);
 				}
 			} else {
 				$internalIp = getHostByName(getHostName());
-				if ($internalIp == '127.0.0.1' || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
 					$internalIp = self::getInterfaceIp('eth0');
 				}
-				if ($internalIp == '127.0.0.1' || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
 					$internalIp = self::getInterfaceIp('bond0');
 				}
-				if ($internalIp == '127.0.0.1' || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
 					$internalIp = self::getInterfaceIp('wlan0');
 				}
-				if ($internalIp != '' && filter_var($internalIp, FILTER_VALIDATE_IP) && $internalIp != '127.0.0.1') {
+				if ($internalIp != '' && filter_var($internalIp, FILTER_VALIDATE_IP) && !netMatch('127.0.*.*', $internalIp)) {
 					config::save('internalAddr', $internalIp);
 				}
 			}
