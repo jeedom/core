@@ -763,11 +763,10 @@ class market {
 					rrmdir($cibDir);
 				}
 				mkdir($cibDir);
-				rcopy(realpath(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId()), $cibDir);
-				if (file_exists($cibDir . '/core/config/devices') && $this->getLogicalId() == 'zwave') {
-					rrmdir($cibDir . '/core/config/devices');
-					mkdir($cibDir . '/core/config/devices');
-				}
+				$exclude = array(
+					'tmp',
+				);
+				rcopy(realpath(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId()), $cibDir, true, $exclude, true);
 				$tmp = dirname(__FILE__) . '/../../tmp/' . $this->getLogicalId() . '.zip';
 				if (file_exists($tmp)) {
 					if (!unlink($tmp)) {
