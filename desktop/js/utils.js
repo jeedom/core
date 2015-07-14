@@ -20,50 +20,6 @@
 
  $(function () {
 
-   /* $('body').delegate('a','click',function(event){
-        if($(this).attr('href') != '' && $(this).attr('href') != undefined && $(this).attr('href').indexOf("index.php") == 0 && $(this).attr('href').indexOf("p=") > 0){
-            event.preventDefault();
-            $('#div_pageContainer').empty();
-            $.hideAlert();
-            $( "#md_reportBug" ).dialog( "close" );
-            $( "#md_pageHelp" ).dialog( "close" );
-            $( "#md_modal" ).dialog( "close" );
-            $( "#md_modal2" ).dialog( "close" );
-            window.history.pushState(null, 'Jeedom', $(this).attr('href'));
-            var startTime = Date.now();
-            $.ajax({
-              url: $(this).attr('href')+'&ajax=1',
-              dataType: 'html',
-              success: function(html) {
-                $('#span_loadPageTime').text((Date.now() - startTime)/1000);
-                $('#div_pageContainer').html(html);
-                initPage();
-            }
-        });
-        }
-    });
-
-    window.onpopstate = function(event) {
-        if(document.location.href != '' && document.location.href != undefined && document.location.href.indexOf("index.php") > 0 && document.location.href.indexOf("p=") > 0){
-          $.hideAlert();
-          $('#div_pageContainer').empty();
-          $( "#md_reportBug" ).dialog( "close" );
-          $( "#md_pageHelp" ).dialog( "close" );
-          $( "#md_modal" ).dialog( "close" );
-          $( "#md_modal2" ).dialog( "close" );
-          var startTime = Date.now();
-          $.ajax({
-              url: document.location+'&ajax=1',
-              dataType: 'html',
-              success: function(html) {
-                $('#div_pageContainer').empty().html(html);
-                 $('#span_loadPageTime').text((Date.now() - startTime)/1000);
-                initPage();
-            }
-        });
-      }
-  };*/
-
   $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
@@ -341,7 +297,7 @@ function initRowOverflow() {
     if ($(window).width() < 1180) {
         $('.row-overflow > div').css('height', 'auto').css('overflow-y', 'initial').css('overflow-x', 'initial');
     } else {
-        var hWindow = $(window).height() - $('header').height() - $('footer').height() - 50;
+        var hWindow = $(window).height() - $('header').height() - 40;
         $('.row-overflow > div').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden');
     }
 }
