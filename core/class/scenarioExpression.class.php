@@ -572,7 +572,7 @@ class scenarioExpression {
 		}
 		$_calc = str_replace(' ', '', $_calc);
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
-  		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
 		return $historyStatistique[$_calc];
 	}
@@ -717,6 +717,7 @@ class scenarioExpression {
 	}
 
 	public static function setTags($_expression, &$_scenario = null, $_quote = false) {
+
 		$replace1 = array(
 			'#seconde#' => (int) date('s'),
 			'#heure#' => (int) date('G'),
@@ -734,8 +735,17 @@ class scenarioExpression {
 			'#njour#' => (int) date('w'),
 			'#hostname#' => '"' . gethostname() . '"',
 			'#IP#' => '"' . network::getNetworkAccess('internal', 'ip') . '"',
-			'#trigger#' => (is_object($_scenario)) ? $_scenario->getRealTrigger() : '',
+			'#trigger#' => '',
 		);
+
+		if (is_object($_scenario)) {
+			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
+			if (is_object($cmd)) {
+				$replace1['#trigger#'] = $cmd->getHumanName();
+			} else {
+				$replace1['#trigger#'] = $_scenario->getRealTrigger();
+			}
+		}
 		if ($_scenario != null) {
 			$replace1 = array_merge($replace1, $_scenario->getTags());
 		}
