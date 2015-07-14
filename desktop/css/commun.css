@@ -102,7 +102,9 @@ body {
     -moz-border-radius:3px !important;
     border-radius:3px !important;
 }
-
+.eqLogic-widget .widget-name{
+    text-align:center;
+    }
 .cmd-widget .statistiques{
     position : absolute; 
     bottom: 0;
