@@ -123,21 +123,21 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
         </thead>
         <tbody>
          <tr>
-            <td>{{Ne pas afficher le nom}}</td>
-            <td><input type="checkbox" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
-            <td><input type="checkbox" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
-            <td><input type="checkbox" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnMobile" /></td>
+            <td>{{Afficher le nom}}</td>
+            <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
+            <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
+            <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnMobile" /></td>
         </tr>
         <tr>
-            <td>{{Ne pas afficher le nom de l'objet}}</td>
+            <td>{{Afficher le nom de l'objet}}</td>
             <td></td>
-            <td><input type="checkbox" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowObjectNameOnView" /></td>
+            <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowObjectNameOnView" /></td>
             <td></td>
         </tr>
         <tr>
-            <td>{{Ne pas afficher le niveau de batterie}}</td>
-            <td><input type="checkbox" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnDashboard" /></td>
-            <td><input type="checkbox" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnView" /></td>
+            <td>{{Afficher le niveau de batterie}}</td>
+            <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnDashboard" /></td>
+            <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnView" /></td>
             <td></td>
         </tr>
     </tbody>
