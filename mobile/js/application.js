@@ -257,7 +257,7 @@ function setTileSize(_filter) {
     $(_filter).each(function () {
         if (!$(this).hasClass('noResize')) {
             if($(this).hasClass('col2')){
-                $(this).width(deviceInfo.bSize * 2);
+                $(this).width(deviceInfo.bSize * 2 + 4);
             }else{
                 $(this).width(deviceInfo.bSize);
             }
