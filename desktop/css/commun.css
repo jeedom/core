@@ -70,6 +70,10 @@ body {
     color:inherit;
 }
 
+.eqLogic-widget .widget-name{
+    text-align:center;
+}
+
 .scenario-widget{
     background-color: #7f8c8d;
     display: inline-block;
