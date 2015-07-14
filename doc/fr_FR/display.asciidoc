@@ -90,9 +90,9 @@ Dans cettre partie vous allez pouvoir configurer certain comportement d'affichag
 
 Vous pouvez : 
 
-* *Ne pas afficher le nom* : permet de masquer le nom de l'équipement sur la tuile en fonction du contexte (dashboard et design, vue ou mobile)
-* *Ne pas afficher le nom de l'objet* : uniquement sur les vues cela permet de ne pas afficher le nom de l'objet a coté du nom de l'équipement
-* *Ne pas afficher le niveau de batterie* : uniquement pour le dashboard, les designs et le vues cette option permet de masquer le niveau de batterie de l'équipement (si il est sur batterie bien sur)
+* *Afficher le nom* : permet de masquer le nom de l'équipement sur la tuile en fonction du contexte (dashboard et design, vue ou mobile)
+* *Afficher le nom de l'objet* : uniquement sur les vues cela permet de ne pas afficher le nom de l'objet a coté du nom de l'équipement
+* *Afficher le niveau de batterie* : uniquement pour le dashboard, les designs et le vues cette option permet de masquer le niveau de batterie de l'équipement (si il est sur batterie bien sur)
 
 En dessous on retrouve des paramètre optionnel d'affichage que l'on peut passer à l'équipement. Ces parametres sont composés d'un nom et d'une valeur. Pour les équipements seul le valeur "style" et pour le moment utilisée, elle permet d'inserer du code CSS sur l'équipement en question. Exemple ici pour arrondir les angles : 
 
@@ -161,8 +161,8 @@ Dans cettre partie vous allez pouvoir configurer certain comportement d'affichag
 Vous pouvez : 
 
 * *Widget* : permet de choisir le widget sur dekstop ou mobile (à noter qu'il faut le plugin widget et que vous pouvez le faire aussi à partir de celui-ci)
-* *Ne pas afficher le nom* : permet de masquer le nom de la commande en fonction du contexte (dashboard et design, vue ou mobile)
-* *Ne pas afficher les statistiques* : permet de ne pas afficher les statistiques en fonction du contexte (dashboard et design, vue ou mobile). Attention il faut avoir activer les statistique dans la configuration de Jeedom pour que cette option ai un impact
+* *Afficher le nom* : permet de masquer le nom de la commande en fonction du contexte (dashboard et design, vue ou mobile)
+* *Afficher les statistiques* : permet de ne pas afficher les statistiques en fonction du contexte (dashboard et design, vue ou mobile). Attention il faut avoir activer les statistique dans la configuration de Jeedom pour que cette option ai un impact
 * *Retour à la ligne forcé avant le widget* : permet d'ajouter un retour a la ligne avant ou après le widget (pour forcer par exemple un affichage en colonne des differentes commande l'équipement au lieu de ligne par defaut)
 
 En dessous on retrouve des paramètre optionnel d'affichage que l'on peut passer au widget. Ces parametres dependent du widget en question, il faut donc regarder sa fiche sur le market pour les connaitres.
