@@ -219,32 +219,6 @@ install_nodejs() {
         # else, simply try to install
         apt-get -y install nodejs
     fi
-
-    # Seems buggy on Raspbian (throw 'Illegal instruction')
-    check_nodejs_version
-    [ $? -eq 1 ] && return
-    
-    # Fallback, if APT method failed
-    if [ $? -ne 0 ] ; then
-        ARM=$(uname -a | grep arm | wc -l)
-        if [ $( cat /etc/os-release | grep raspbian | wc -l) -gt 0 ] ; then
-            echo "********************************************************"
-            echo "${msg_manual_install_nodejs_RPI}"
-            echo "********************************************************"
-            wget --no-check-certificate http://jeedom.fr/ressources/nodejs/node-raspberry.bin
-            rm -rf /usr/local/bin/node
-            rm -rf /usr/bin/nodejs
-            mv node-raspberry.bin /usr/local/bin/node
-            ln -s /usr/local/bin/node /usr/bin/nodejs
-            chmod +x /usr/local/bin/node
-        fi
-    fi
-    
-    # Remove wheezy-backports
-    if [ -n "`grep wheezy-backports /etc/apt/sources.list`" ] ; then
-        cat /etc/apt/sources.list | sed 's/deb http:\/\/http.debian.net\/debian wheezy-backports main//' > sources.list
-        mv -f sources.list /etc/apt/sources.list
-    fi
 }
 
 
@@ -470,6 +444,7 @@ install_dependency() {
     apt-get -y install ffmpeg
     apt-get -y install avconv
     apt-get -y install libudev1
+    apt-get -y install curl
 
     pecl install oauth
     if [ $? -eq 0 ] ; then
