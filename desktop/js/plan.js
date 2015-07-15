@@ -426,7 +426,6 @@ function savePlan(_refreshDisplay) {
         };
         var plans = [];
         $('.eqLogic-widget').each(function () {
-            var borderSize = $(this).css('borderWidth').replace("px", "");
             var plan = {};
             plan.position = {};
             plan.display = {};
@@ -441,7 +440,6 @@ function savePlan(_refreshDisplay) {
             plans.push(plan);
         });
         $('.scenario-widget').each(function () {
-            var borderSize = $(this).css('borderWidth').replace("px", "");
             var plan = {};
             plan.position = {};
             plan.display = {};
@@ -456,7 +454,6 @@ function savePlan(_refreshDisplay) {
             plans.push(plan);
         });
         $('.plan-link-widget').each(function () {
-            var borderSize = $(this).css('borderWidth').replace("px", "");
             var plan = {};
             plan.position = {};
             plan.display = {};
@@ -471,7 +468,6 @@ function savePlan(_refreshDisplay) {
             plans.push(plan);
         });
         $('.view-link-widget').each(function () {
-            var borderSize = $(this).css('borderWidth').replace("px", "");
             var plan = {};
             plan.position = {};
             plan.display = {};
@@ -486,7 +482,6 @@ function savePlan(_refreshDisplay) {
             plans.push(plan);
         });
         $('.graph-widget').each(function () {
-            var borderSize = $(this).css('borderWidth').replace("px", "");
             var plan = {};
             plan.position = {};
             plan.display = {};
@@ -502,7 +497,6 @@ function savePlan(_refreshDisplay) {
             plans.push(plan);
         });
         $('.text-widget').each(function () {
-            var borderSize = $(this).css('borderWidth').replace("px", "");
             var plan = {};
             plan.position = {};
             plan.display = {};
