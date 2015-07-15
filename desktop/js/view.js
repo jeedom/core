@@ -26,6 +26,9 @@
             $('#div_displayView').empty().html(html.html);
             setTimeout(function () {
                 positionEqLogic();
+                $('.div_displayEquipement').disableSelection();
+                $( "input").click(function() { $(this).focus(); });
+                $( "textarea").click(function() { $(this).focus(); });
                 $('.eqLogicZone').each(function () {
                     var container = $(this).packery({
                         columnWidth: 40,
@@ -33,10 +36,10 @@
                         gutter : 2,
                     });
                 });
-            initTooltips();
-        }, 10);
-}
-});
+                initTooltips();
+            }, 10);
+        }
+    });
 }
 
 $('body').delegate('.eqLogic-widget .history', 'click', function () {

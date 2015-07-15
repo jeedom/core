@@ -18,6 +18,8 @@
  setTimeout(function () {
     positionEqLogic();
     $('.div_displayEquipement').disableSelection();
+    $( "input").click(function() { $(this).focus(); });
+    $( "textarea").click(function() { $(this).focus(); });
     $('.div_displayEquipement').each(function(){
         var container = $(this).packery({
             itemSelector: ".eqLogic-widget",
@@ -52,10 +54,10 @@
 $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
   grid: [ 40, 80 ],
   resize: function( event, ui ) {
-   var el = ui.element;
-   el.closest('.div_displayEquipement').packery();
-},
-stop: function( event, ui ) {
+     var el = ui.element;
+     el.closest('.div_displayEquipement').packery();
+ },
+ stop: function( event, ui ) {
     var el = ui.element;
     positionEqLogic(el.attr('data-eqlogic_id'));
     el.closest('.div_displayEquipement').packery();
