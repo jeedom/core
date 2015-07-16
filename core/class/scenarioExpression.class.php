@@ -598,6 +598,7 @@ class scenarioExpression {
 	}
 
 	public static function odd($_value) {
+		$_value = intval(self::setTags($_value));
 		return ($_value % 2) ? 1 : 0;
 	}
 
@@ -716,8 +717,10 @@ class scenarioExpression {
 		}
 	}
 
-	public static function setTags($_expression, &$_scenario = null, $_quote = false) {
-
+	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
+		if ($_nbCall > 10) {
+			return $_expression;
+		}
 		$replace1 = array(
 			'#seconde#' => (int) date('s'),
 			'#heure#' => (int) date('G'),
@@ -753,25 +756,27 @@ class scenarioExpression {
 		preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
 		foreach ($matches as $match) {
 			$function = $match[1];
-			$arguments = explode(',', $match[2]);
 			$replace_string = $match[0];
-
 			if (substr_count($match[2], '(') != substr_count($match[2], ')')) {
-				$arguments = self::setTags($match[2] . ')', $_scenario, $_quote);
-				if (substr($_expression, strpos($_expression, $match[2]) + strlen($match[2]) + 1, 1) != ')') {
-					for ($i = strpos($_expression, $match[2]) + strlen($match[2]) + 1; $i < strlen($_expression); $i++) {
-						$car = $_expression[$i];
-						if ($car != ')') {
-							$arguments .= $car;
-							$replace_string .= $car;
-						} else {
-							break;
-						}
+				$pos = strpos($_expression, $match[2]) + strlen($match[2]);
+				while (substr_count($match[2], '(') > substr_count($match[2], ')')) {
+					$match[2] .= $_expression[$pos];
+					$pos++;
+					if ($pos > strlen($_expression)) {
+						break;
 					}
 				}
-				$replace_string .= ')';
-				$arguments = explode(',', $arguments);
+				$arguments = self::setTags($match[2], $_scenario, $_quote, $_nbCall++);
+				$result = str_replace($match[2], $arguments, $_expression);
+				while (substr_count($result, '(') > substr_count($result, ')')) {
+					$result .= ')';
+				}
+				$result = self::setTags($result, $_scenario, $_quote, $_nbCall++);
+				return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), $result), $_quote);
+			} else {
+				$arguments = explode(',', str_replace('","', '$comma$', str_replace("','", '%comma%', $match[2])));
 			}
+
 			if (method_exists(__CLASS__, $function)) {
 				if ($function == 'trigger') {
 					if (!isset($arguments[0])) {
@@ -783,15 +788,21 @@ class scenarioExpression {
 				}
 			} else {
 				if (function_exists($function)) {
+					$classMethod = new ReflectionFunction($function);
+					$argumentCount = count($classMethod->getParameters());
+					if ($argumentCount < count($arguments)) {
+						$arguments[$argumentCount - 1] = implode(',', array_slice($arguments, $argumentCount - 1));
+						$arguments = array_slice($arguments, 0, $argumentCount - 1);
+					}
 					foreach ($arguments as &$argument) {
 						$argument = evaluate(self::setTags($argument, $_scenario, $_quote));
 					}
+
 					$replace2[$replace_string] = call_user_func_array($function, $arguments);
 				}
 			}
 
 		}
-
 		return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)), $_quote);
 	}
 
