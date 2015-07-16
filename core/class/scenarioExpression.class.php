@@ -598,8 +598,8 @@ class scenarioExpression {
 	}
 
 	public static function odd($_value) {
-		$_value = intval(self::setTags($_value));
-		return ($_value % 2) ? 0 : 1;
+		$_value = intval(evaluate(self::setTags($_value)));
+		return ($_value % 2) ? 1 : 0;
 	}
 
 	public static function lastScenarioExecution($_scenario_id) {
