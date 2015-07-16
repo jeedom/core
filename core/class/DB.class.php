@@ -33,27 +33,21 @@ class DB {
 	/*     * **************  Fonctions statiques  ***************** */
 
 	private function __construct() {
-		if (true) {
-			global $CONFIG;
-			try {
-				$this->connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
-			} catch (Exception $e) {
-				if ($CONFIG['db']['host'] != '127.0.0.1' && $CONFIG['db']['host'] != 'localhost') {
-					throw $e;
-				}
-				if (strpos($e->getMessage(), 'Can\'t connect to local MySQL server through socket') !== false || strpos($e->getMessage(), 'SQLSTATE[HY000] [2002] No such file or directory') !== false) {
-					if (!file_exists('/tmp/restart_mysql')) {
-						touch('/tmp/restart_mysql');
-						shell_exec('sudo /etc/init.d/mysql restart  >> /dev/null 2>&1');
-						unlink('/tmp/restart_mysql');
-					}
-				}
-				$this->connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
+		global $CONFIG;
+		try {
+			$this->connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
+		} catch (Exception $e) {
+			if ($CONFIG['db']['host'] != '127.0.0.1' && $CONFIG['db']['host'] != 'localhost') {
+				throw $e;
 			}
-		} else {
-			$this->connection = new PDO('sqlite:' . dirname(__FILE__) . '/../../jeedom.db');
-			$this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-			$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // ERRMODE_WARNING | ERRMODE_EXCEPTION | ERRMODE_SILENT
+			if (strpos($e->getMessage(), 'Can\'t connect to local MySQL server through socket') !== false || strpos($e->getMessage(), 'SQLSTATE[HY000] [2002] No such file or directory') !== false) {
+				if (!file_exists('/tmp/restart_mysql')) {
+					touch('/tmp/restart_mysql');
+					shell_exec('sudo /etc/init.d/mysql restart  >> /dev/null 2>&1');
+					unlink('/tmp/restart_mysql');
+				}
+			}
+			$this->connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
 		}
 	}
 
