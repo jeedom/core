@@ -54,10 +54,10 @@
 $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
   grid: [ 40, 80 ],
   resize: function( event, ui ) {
-     var el = ui.element;
-     el.closest('.div_displayEquipement').packery();
- },
- stop: function( event, ui ) {
+   var el = ui.element;
+   el.closest('.div_displayEquipement').packery();
+},
+stop: function( event, ui ) {
     var el = ui.element;
     positionEqLogic(el.attr('data-eqlogic_id'));
     el.closest('.div_displayEquipement').packery();
@@ -102,6 +102,7 @@ $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('disable');
 
 $('#bt_editDashboardWidgetOrder').on('click',function(){
     if($(this).attr('data-mode') == 1){
+        $.hideAlert();
         $(this).attr('data-mode',0);
         $('.div_displayEquipement .eqLogic-widget').draggable('disable');
         $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('disable');
@@ -110,18 +111,19 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
         $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseleave');
         $(this).css('color','black');
     }else{
-        $(this).attr('data-mode',1);
+       $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets}}", level: 'info'});
+       $(this).attr('data-mode',1);
+       $('.div_displayEquipement .eqLogic-widget').draggable('enable');
+       $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('enable');
+       $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('enable');
+       $(this).css('color','rgb(46, 176, 75)');
+       $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').delegate('.cmd','mouseover',function(){
+        $('.div_displayEquipement .eqLogic-widget').draggable('disable');
+    });
+       $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').delegate('.cmd','mouseleave',function(){
         $('.div_displayEquipement .eqLogic-widget').draggable('enable');
-        $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('enable');
-        $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('enable');
-        $(this).css('color','rgb(46, 176, 75)');
-        $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').delegate('.cmd','mouseover',function(){
-            $('.div_displayEquipement .eqLogic-widget').draggable('disable');
-        });
-        $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').delegate('.cmd','mouseleave',function(){
-            $('.div_displayEquipement .eqLogic-widget').draggable('enable');
-        });
-    }
+    });
+   }
 });
 }, 1);
 
