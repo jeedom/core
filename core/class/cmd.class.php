@@ -839,18 +839,6 @@ class cmd {
 						}
 					}
 				}
-				if ($template == '' && config::byKey('active', 'widget') == 1 && config::byKey('market::autoInstallMissingWidget') == 1) {
-					try {
-						$market = market::byLogicalIdAndType(str_replace('cmd.', '', $version . '.' . $template_name), 'widget');
-						if (is_object($market)) {
-							$market->install();
-							$template = getTemplate('core', $version, $template_name, 'widget');
-						}
-					} catch (Exception $e) {
-						$this->setTemplate($version, 'default');
-						$this->save();
-					}
-				}
 				if ($template == '') {
 					$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.default';
 					$template = getTemplate('core', $version, $template_name);
@@ -968,6 +956,14 @@ class cmd {
 				}
 			}
 			$replace['#valueName#'] .= '<br/>';
+			if ($version == 'scenario' && $this->getType() == 'action' && $this->getSubtype() == 'message') {
+				if (!isset($replace['#title#'])) {
+					$replace['#title#'] = '';
+				}
+				if (!isset($replace['#message#'])) {
+					$replace['#message#'] = '';
+				}
+			}
 			$html .= template_replace($replace, $template);
 			if (trim($html) == '') {
 				return $html;
