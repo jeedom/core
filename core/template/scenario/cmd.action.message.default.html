@@ -1,10 +1,17 @@
-<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="title" placeholder="Titre" value="#title#" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block; width: 30%;"/>
-<textarea class="message expressionAttr form-control " data-l1key="options" data-l2key="message" rows="1" style="resize:vertical;display: inline-block; width: 60%;" placeholder="Message" data-cmd_id="#id#" data-uid="#uid#">#message#</textarea>
+<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="title" placeholder="#title_placeholder#" value="#title#" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block; width: 30%;"/>
+<textarea class="message expressionAttr form-control " data-l1key="options" data-l2key="message" rows="1" style="resize:vertical;display: inline-block; width: 60%;" placeholder="#message_placeholder#" data-cmd_id="#id#" data-uid="#uid#">#message#</textarea>
 <a class="btn btn-default btn-sm listEquipementInfo cursor" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block;"><i class="fa fa-list-alt"></i></a>
 <script>
-    $('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
-        jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
-            $('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#][data-cmd_id=#id#]').atCaret('insert', result.human);
-        });
-    });
+	if('#title_disable#' == '1'){
+		$('.expressionAttr[data-l1key=options][data-l2key=title][data-uid=#uid#][data-cmd_id=#id#]').hide();
+	}
+	if('#message_disable#' == '1'){
+		$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#][data-cmd_id=#id#]').hide();
+		$('.listEquipementInfo[data-uid=#uid#]').hide();
+	}
+	$('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
+		jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+			$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#][data-cmd_id=#id#]').atCaret('insert', result.human);
+		});
+	});
 </script>

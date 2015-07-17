@@ -963,6 +963,10 @@ class cmd {
 				if (!isset($replace['#message#'])) {
 					$replace['#message#'] = '';
 				}
+				$replace['#title_placeholder#'] = $this->getDisplay('title_placeholder', __('Titre', __FILE__));
+				$replace['#message_placeholder#'] = $this->getDisplay('message_placeholder', __('Message', __FILE__));
+				$replace['#message_disable#'] = $this->getDisplay('message_disable', 0);
+				$replace['#title_disable#'] = $this->getDisplay('title_disable', 0);
 			}
 			$html .= template_replace($replace, $template);
 			if (trim($html) == '') {
