@@ -14,4 +14,12 @@
 			$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#][data-cmd_id=#id#]').atCaret('insert', result.human);
 		});
 	});
+	if('#title_possibility_list#' != ''){
+		$('.expressionAttr[data-l1key=options][data-l2key=title][data-uid=#uid#][data-cmd_id=#id#]').autocomplete({
+			source: json_decode('#title_possibility_list#'),
+			close: function (event, ui) {
+				$(this).trigger('focusout');
+			}
+		});
+	}
 </script>

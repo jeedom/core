@@ -984,6 +984,7 @@ class cmd {
 			$replace['#message_placeholder#'] = $this->getDisplay('message_placeholder', __('Message', __FILE__));
 			$replace['#message_disable#'] = $this->getDisplay('message_disable', 0);
 			$replace['#title_disable#'] = $this->getDisplay('title_disable', 0);
+			$replace['#title_possibility_list#'] = $this->getDisplay('title_possibility_list', '');
 			$html = template_replace($replace, $html);
 			return $html;
 		}
