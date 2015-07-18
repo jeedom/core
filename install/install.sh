@@ -193,32 +193,10 @@ install_nodejs() {
     # Check if nodeJS v0.10.25 is installed,
     # otherwise, try to install it from various sources (official,
     # backport, jeedom.fr)
-
+    curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
     check_nodejs_version
     [ $? -eq 1 ] && return
-
-    # If running wheezy, try wheezy-backport
-    if [ -n "`grep wheezy /etc/apt/sources.list`" ] ; then
-        if [ -z "`grep wheezy-backports /etc/apt/sources.list`" ] ; then
-            # apply wheezy-backport patch
-            echo "deb http://http.debian.net/debian wheezy-backports main" >> /etc/apt/sources.list
-
-            # Add wheezy-backport keyring
-            gpg --keyserver pgpkeys.mit.edu --recv 8B48AD6246925553
-            gpg --export --armor 8B48AD6246925553 > missingkey.gpg
-            apt-key add missingkey.gpg
-            rm -f missingkey.gpg
-        fi
-            # otherwise, Jessie is good ; other-otherwise ?
-
-            apt-get update
-
-        # Install nodeJS
-        apt-get -t wheezy-backports -y install nodejs libev4 libv8-3.8.9.20
-    else
-        # else, simply try to install
-        apt-get -y install nodejs
-    fi
+    apt-get -y install nodejs
 }
 
 
@@ -332,9 +310,8 @@ is_version_greater_or_equal() {
 check_nodejs_version() {
     # Check if nodeJS v0.10.25 (or higher) is installed.
     # Return 1 of true, 0 (or else) otherwise
-
     NODEJS_VERSION="`nodejs -v 2>/dev/null  | sed 's/["v]//g'`"
-    is_version_greater_or_equal "${NODEJS_VERSION}" "0.10.25"
+    is_version_greater_or_equal "${NODEJS_VERSION}" "0.12.7"
     RETVAL=$?
     case ${RETVAL} in
         1)
