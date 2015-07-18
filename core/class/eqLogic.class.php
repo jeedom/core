@@ -667,6 +667,9 @@ class eqLogic {
 			$logicalId = 'lowBattery' . $this->getId();
 			$message = 'Le module ' . $this->getEqType_name() . ' ';
 			$message .= $this->getHumanName() . ' a moins de ' . $_pourcent . '% de batterie';
+			if ($this->getConfiguration('battery_type') != '') {
+				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
+			}
 			message::add($this->getEqType_name(), $message, '', $logicalId);
 		} else {
 			$logicalId = 'noBattery' . $this->getId();
