@@ -1107,6 +1107,7 @@ class cmd {
 				return;
 			}
 			$cmd->execCmd($this->getConfiguration('jeedomCheckCmdCmdActionOption'));
+			return;
 		}
 		if ($this->getConfiguration('jeedomCheckCmdActionType') == 'scenario') {
 			$scenario = scenario::byId($this->getConfiguration('jeedomCheckCmdScenarioActionId'));

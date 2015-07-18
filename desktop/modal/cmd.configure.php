@@ -257,7 +257,7 @@ foreach ($usedBy['interact'] as $usedByInteract) {
 <div class="cmdCheckAction scenario" style="display : none;">
  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
    <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdScenarioActionMode" >
-     <option value="launch">{{Lancer}}</option>
+     <option value="start">{{Lancer}}</option>
      <option value="stop">{{Arrêter}}</option>
      <option value="activate">{{Activer}}</option>
      <option value="deactivate">{{Désactiver}}</option>
