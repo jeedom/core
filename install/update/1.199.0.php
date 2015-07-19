@@ -12,7 +12,7 @@ if ($hwname == 'RPI/RPI2') {
 	echo "OK\n";
 } else {
 	echo 'Ajout dépot nodejs v12...';
-	exec("sufo sed -i '/deb http:\/\/repo.gbps.io\/BSP:\/Cubox-i\/Debian_Jessie\/ .\//d' /etc/apt/sources.list");
+	exec("sudo sed -i '/deb http:\/\/repo.gbps.io\/BSP:\/Cubox-i\/Debian_Jessie\/ .\//d' /etc/apt/sources.list");
 	exec('curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -');
 	echo "OK\n";
 	echo 'Mise à jour des depots';
