@@ -58,6 +58,9 @@ class network {
 			return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . config::byKey('internalComplement');
 
 		}
+		if ($_mode == 'dnsjeedom') {
+			return config::byKey('jeedom::url');
+		}
 		if ($_mode == 'external') {
 			if ($_protocole == 'ip') {
 				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
@@ -206,7 +209,7 @@ class network {
 	}
 
 	public static function test($_mode = 'external', $_test = true, $_timeout = 10) {
-		if ($_mode == 'internal' && self::getNetworkAccess($_mode, 'ip', '', false) == '127.0.0.1') {
+		if ($_mode == 'internal' && netMatch('127.0.*.*', self::getNetworkAccess($_mode, 'ip', '', false))) {
 			return false;
 		}
 		$url = trim(self::getNetworkAccess($_mode, '', '', $_test), '/') . '/here.html';
