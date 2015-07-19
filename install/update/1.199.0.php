@@ -8,7 +8,7 @@ if ($hwname == 'RPI/RPI2') {
 	exec('sudo apt-get update');
 	echo "OK\n";
 	echo 'Mise à jour nodejs';
-	exec('sudo apt-get install node');
+	exec('sudo apt-get -y install node');
 	echo "OK\n";
 } else {
 	echo 'Ajout dépot nodejs v12...';
@@ -19,7 +19,7 @@ if ($hwname == 'RPI/RPI2') {
 	exec('sudo apt-get update');
 	echo "OK\n";
 	echo 'Mise à jour nodejs';
-	exec('sudo apt-get install nodejs');
+	exec('sudo apt-get -y install nodejs');
 	echo "OK\n";
 }
 ?>

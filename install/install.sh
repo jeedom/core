@@ -190,13 +190,17 @@ configure_php() {
 
 
 install_nodejs() {
-    # Check if nodeJS v0.10.25 is installed,
-    # otherwise, try to install it from various sources (official,
-    # backport, jeedom.fr)
-    curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
+    # Check if nodeJS v0.12.7 is installed,
+    # otherwise, try to install it from various sources
     check_nodejs_version
     [ $? -eq 1 ] && return
-    apt-get -y install nodejs
+    if [ -f /usr/bin/raspi-config ]; then
+        curl -sLS https://apt.adafruit.com/add | sudo bash
+        apt-get -y install node
+    else
+        curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
+        apt-get -y install nodejs
+    fi
 }
 
 
