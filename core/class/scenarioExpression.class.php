@@ -774,9 +774,8 @@ class scenarioExpression {
 				$result = self::setTags($result, $_scenario, $_quote, $_nbCall++);
 				return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), $result), $_quote);
 			} else {
-				$arguments = explode(',', str_replace('","', '$comma$', str_replace("','", '%comma%', $match[2])));
+				$arguments = explode(',', $match[2]);
 			}
-
 			if (method_exists(__CLASS__, $function)) {
 				if ($function == 'trigger') {
 					if (!isset($arguments[0])) {
@@ -788,16 +787,9 @@ class scenarioExpression {
 				}
 			} else {
 				if (function_exists($function)) {
-					$classMethod = new ReflectionFunction($function);
-					$argumentCount = count($classMethod->getParameters());
-					if ($argumentCount < count($arguments)) {
-						$arguments[$argumentCount - 1] = implode(',', array_slice($arguments, $argumentCount - 1));
-						$arguments = array_slice($arguments, 0, $argumentCount - 1);
-					}
 					foreach ($arguments as &$argument) {
 						$argument = evaluate(self::setTags($argument, $_scenario, $_quote));
 					}
-
 					$replace2[$replace_string] = call_user_func_array($function, $arguments);
 				}
 			}
