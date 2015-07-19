@@ -886,7 +886,7 @@ class eqLogic {
 	}
 
 	public function setTimeout($timeout) {
-		if (is_string($timeout) || is_nan(intval($timeout)) || $timeout < 1) {
+		if ($timeout == '' || is_string($timeout) || is_nan(intval($timeout)) || $timeout < 1) {
 			$timeout == '';
 		}
 		$this->timeout = $timeout;
