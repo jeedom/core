@@ -642,26 +642,11 @@ class network {
 				if (strpos($iface, 'tun') !== false) {
 					continue;
 				}
-				if (strpos($iface, 'wlan') !== false && (config::byKey('network::wifi::enable') != 1 || config::byKey('network::wifi::ssid') == '' || config::byKey('network::wifi::password') == '')) {
-					continue;
-				}
 				log::add('network', 'error', __('La passerelle distance de l\'interface ', __FILE__) . $iface . __(' est injoignable je la redemarre pour essayer de corriger', __FILE__));
 				exec('sudo ifdown ' . $iface);
 				sleep(5);
 				exec('sudo ifup --force ' . $iface);
-				if ($iface == 'eth0') {
-					config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
-				}
-			} else {
-				if ($iface == 'eth0' && config::byKey('network::failedNumber', 'core', 0) != 0) {
-					config::save('network::failedNumber', 0);
-				}
 			}
-		}
-		if (config::byKey('network::failedNumber', 'core', 0) > 2 && file_exists($filepath . '.save')) {
-			config::save('network::failedNumber', 0);
-			exec('sudo cp ' . $filepath . '.save ' . $filepath . '; sudo rm ' . $filepath . '.save ');
-			jeedom::rebootSystem();
 		}
 	}
 
