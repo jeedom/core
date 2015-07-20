@@ -658,10 +658,9 @@ class network {
 				}
 			}
 		}
-		if (config::byKey('network::fixip::enable') == 1 && config::byKey('network::failedNumber', 'core', 0) > 2) {
+		if (config::byKey('network::fixip::enable') == 1 && config::byKey('network::failedNumber', 'core', 0) > 2 && file_exists($filepath . '.save')) {
 			config::save('network::failedNumber', 0);
-			config::save('network::fixip::enable', 0);
-			self::writeInterfaceFile();
+			exec('sudo cp ' . $filepath . '.save ' . $filepath . '; sudo rm ' . $filepath . '.save ');
 			jeedom::rebootSystem();
 		}
 	}
