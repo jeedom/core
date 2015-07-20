@@ -649,7 +649,20 @@ class network {
 				exec('sudo ifdown ' . $iface);
 				sleep(5);
 				exec('sudo ifup --force ' . $iface);
+				if ($iface == 'eth0') {
+					config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
+				}
+			} else {
+				if ($iface == 'eth0' && config::byKey('network::failedNumber', 'core', 0) != 0) {
+					config::save('network::failedNumber', 0);
+				}
 			}
+		}
+		if (config::byKey('network::fixip::enable') == 1 && config::byKey('network::failedNumber', 'core', 0) > 2) {
+			config::save('network::failedNumber', 0);
+			config::save('network::fixip::enable', 0);
+			self::writeInterfaceFile();
+			jeedom::rebootSystem();
 		}
 	}
 
