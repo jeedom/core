@@ -639,6 +639,9 @@ class network {
 		$gws = self::checkGw();
 		foreach ($gws as $iface => $gw) {
 			if ($gw['ping'] != 'ok') {
+				if (strpos($iface, 'tun') !== false) {
+					continue;
+				}
 				if (strpos($iface, 'wlan') !== false && (config::byKey('network::wifi::enable') != 1 || config::byKey('network::wifi::ssid') == '' || config::byKey('network::wifi::password') == '')) {
 					continue;
 				}
