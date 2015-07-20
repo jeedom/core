@@ -71,6 +71,9 @@ Partie très importante dans Jeedom, il faut absolument la configurer correcteme
 ** *Statut SSH* : statut tu DNS SSH
 ** *Gestion* : permet d'arreter et relancer le service DNS
 
+[IMPORTANT]
+En mode IP static toute erreur de configuration vous obligera à soit reinstaller Jeedom, soit a connecter un clavier et un écran dessus pour reconfigurer le réseaux
+
 == Configuration des commandes
 
 image::../images/administration4.png[]
