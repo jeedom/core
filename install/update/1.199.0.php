@@ -22,4 +22,7 @@ if ($hwname == 'RPI/RPI2') {
 	echo shell_exec('sudo apt-get -y install nodejs');
 	echo "OK\n";
 }
+echo 'Redemarrage de nodejs';
+echo shell_exec('sudo service jeedom restart');
+echo "OK\n";
 ?>
