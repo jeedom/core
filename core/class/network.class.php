@@ -637,6 +637,11 @@ class network {
 
 	public static function cron() {
 		$gws = self::checkGw();
+		if (count($gws) == 0) {
+			log::add('network', 'error', __('Aucune interface réseau trouvée, je redemarre tous le réseaux', __FILE__));
+			exec('sudo service networking restart');
+			return;
+		}
 		foreach ($gws as $iface => $gw) {
 			if ($gw['ping'] != 'ok') {
 				if (strpos($iface, 'tun') !== false) {
