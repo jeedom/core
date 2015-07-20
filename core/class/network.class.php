@@ -658,7 +658,7 @@ class network {
 				}
 			}
 		}
-		if (config::byKey('network::fixip::enable') == 1 && config::byKey('network::failedNumber', 'core', 0) > 2 && file_exists($filepath . '.save')) {
+		if (config::byKey('network::failedNumber', 'core', 0) > 2 && file_exists($filepath . '.save')) {
 			config::save('network::failedNumber', 0);
 			exec('sudo cp ' . $filepath . '.save ' . $filepath . '; sudo rm ' . $filepath . '.save ');
 			jeedom::rebootSystem();
