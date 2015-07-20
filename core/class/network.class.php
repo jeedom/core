@@ -623,6 +623,11 @@ class network {
 			if ($route['gateway'] != '0.0.0.0' && $route['gateway'] != '127.0.0.1') {
 				exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
 				$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
+				if ($return[$route['iface']]['ping'] == 'nok') {
+					sleep(5);
+					exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
+					$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
+				}
 			} else {
 				$return[$route['iface']]['ping'] = 'nok';
 			}
@@ -631,64 +636,18 @@ class network {
 	}
 
 	public static function cron() {
-		if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
-			return;
-		}
 		$gws = self::checkGw();
-		if (count($gws) < 1) {
-			return;
-		}
-		foreach ($gws as $gw) {
-			if ($gw['ping'] == 'ok') {
-				if (config::byKey('network::lastNoGw', 'core', -1) != -1) {
-					config::save('network::lastNoGw', -1);
+		foreach ($gws as $iface => $gw) {
+			if ($gw['ping'] != 'ok') {
+				if (strpos($iface, 'wlan') !== false && (config::byKey('network::wifi::enable') != 1 || config::byKey('network::wifi::ssid') == '' || config::byKey('network::wifi::password') == '')) {
+					continue;
 				}
-				if (config::byKey('network::failedNumber', 'core', 0) != 0) {
-					config::save('network::failedNumber', 0);
-				}
-				return;
+				log::add('network', 'error', __('La passerelle distance de l\'interface ', __FILE__) . $iface . __(' est injoignable je la redemarre pour essayer de corriger', __FILE__));
+				exec('sudo ifdown ' . $iface);
+				sleep(5);
+				exec('sudo ifup --force ' . $iface);
 			}
 		}
-		$filepath = '/etc/network/interfaces';
-		if (config::byKey('network::failedNumber', 'core', 0) > 2 && file_exists($filepath . '.save') && self::ehtIsUp()) {
-			log::add('network', 'error', __('Aucune gateway trouvée depuis plus de 30min. Remise par defaut du fichier interface', __FILE__));
-			exec('sudo cp ' . $filepath . '.save ' . $filepath . '; sudo rm ' . $filepath . '.save ');
-			config::save('network::failedNumber', 0);
-			jeedom::rebootSystem();
-		}
-		$lastNoOk = config::byKey('network::lastNoGw', 'core', -1);
-		if ($lastNoOk < 0) {
-			config::save('network::lastNoGw', strtotime('now'));
-			return;
-		}
-		if ((strtotime('now') - $lastNoOk) < 600) {
-			return;
-		}
-		log::add('network', 'error', __('Il y a un probleme de connectivité réseaux. Aucune gateway d\'accessible. J\'essaye de corriger : ', __FILE__) . config::byKey('network::failedNumber', 'core', 0));
-		if (config::byKey('network::fixip::enable') == 1) {
-			log::add('network', 'error', __('Aucune gateway trouvée, la configuration IP fixe est surement invalide. Désactivation de celle-ci et redémarrage', __FILE__));
-			config::save('network::fixip::enable', 0);
-			config::save('network::lastNoGw', -1);
-			config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
-			self::writeInterfaceFile();
-			jeedom::rebootSystem();
-			return;
-		}
-		if (config::byKey('network::wifi::enable') == 1 && config::byKey('network::wifi::ssid') != '' && config::byKey('network::wifi::password') != '') {
-			log::add('network', 'error', __('Aucune gateway trouvée, redémarrage de l\'interface wifi', __FILE__));
-			config::save('network::lastNoGw', -1);
-			exec('sudo ifdown wlan0');
-			sleep(5);
-			exec('sudo ifup --force wlan0');
-			config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
-			return;
-		}
-		log::add('network', 'error', __('Aucune gateway trouvée, redémarrage de l\'interface filaire', __FILE__));
-		config::save('network::lastNoGw', -1);
-		config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
-		exec('sudo ifdown eth0');
-		sleep(5);
-		exec('sudo ifup --force eth0');
 	}
 
 }

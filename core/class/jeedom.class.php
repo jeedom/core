@@ -442,6 +442,12 @@ class jeedom {
 			} catch (Exception $e) {
 
 			}
+			try {
+				network::cron();
+			} catch (Exception $e) {
+				log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+			}
+
 		}
 		if ($gi == 202) {
 			try {
@@ -461,11 +467,6 @@ class jeedom {
 			} catch (Exception $e) {
 				log::add('scenario', 'error', $e->getMessage());
 			}
-		}
-		try {
-			network::cron();
-		} catch (Exception $e) {
-			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
 		}
 
 	}

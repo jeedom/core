@@ -302,7 +302,7 @@ class plugin {
 					$out = $this->callInstallFunction('remove');
 				}
 			}
-			if (trim($out) != '') {
+			if (isset($out) && trim($out) != '') {
 				log::add($this->getId(), 'info', "Installation/remove/update result : " . $out);
 			}
 		} catch (Exception $e) {
