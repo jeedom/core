@@ -423,6 +423,11 @@ class jeedom {
 		plugin::cron();
 		if ($gi % 10 == 0) {
 			try {
+				try {
+					network::cron();
+				} catch (Exception $e) {
+					log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+				}
 				eqLogic::checkAlive();
 				connection::cron();
 				if (config::byKey('jeeNetwork::mode') != 'slave') {
@@ -442,12 +447,6 @@ class jeedom {
 			} catch (Exception $e) {
 
 			}
-			try {
-				network::cron();
-			} catch (Exception $e) {
-				log::add('network', 'error', 'network::cron : ' . $e->getMessage());
-			}
-
 		}
 		if ($gi == 202) {
 			try {
