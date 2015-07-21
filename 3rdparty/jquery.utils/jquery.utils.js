@@ -393,8 +393,6 @@
                     } else {
                      if($(this).hasClass('bootstrapMultiselect')){
                         if(_value.length > 0){
-                            $(this).multiselect('deselectAll',false);
-                            $(this).multiselect('refresh');
                             for(var i in _value){
                                 console.log(i);
                                 $(this).multiselect('select',_value[i]);
