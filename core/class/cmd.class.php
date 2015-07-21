@@ -1114,7 +1114,7 @@ class cmd {
 			if (!is_object($scenario)) {
 				return;
 			}
-			switch ($this->getOptions('jeedomCheckCmdScenarioActionMode')) {
+			switch ($this->getConfiguration('jeedomCheckCmdScenarioActionMode')) {
 				case 'start':
 					$scenario->launch(false, __('Lancement direct provoqué par le scénario  : ', __FILE__) . $this->getHumanName());
 					break;
