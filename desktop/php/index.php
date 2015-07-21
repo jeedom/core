@@ -84,7 +84,7 @@ if (count($plugins_list) > 0) {
 					var clientServerDiffDatetime = (<?php echo strtotime('now');?> * 1000) - clientDatetime.getTime();
 					var io = null;
 				</script>
-				<script type="text/javascript" src="/socket.io/socket.io.js?1.2.1"></script>
+				<script type="text/javascript" src="/socket.io/socket.io.js?1.3.6"></script>
 				<?php
 if (!isConnect() || $_SESSION['user']->getOptions('bootstrap_theme') == '') {
 	include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');

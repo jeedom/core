@@ -59,13 +59,13 @@ function parseEncoding(s, i) {
   };
 }
 
-function getEncodingPriority(encoding, accepted) {
-  var priority = {i: -1, s: 0, q: 0};
+function getEncodingPriority(encoding, accepted, index) {
+  var priority = {o: -1, q: 0, s: 0};
 
   for (var i = 0; i < accepted.length; i++) {
-    var spec = specify(encoding, accepted[i]);
+    var spec = specify(encoding, accepted[i], index);
 
-    if (spec && (priority.s - spec.s || priority.q - spec.q || priority.i - spec.i) < 0) {
+    if (spec && (priority.s - spec.s || priority.q - spec.q || priority.o - spec.o) < 0) {
       priority = spec;
     }
   }
@@ -73,7 +73,7 @@ function getEncodingPriority(encoding, accepted) {
   return priority;
 }
 
-function specify(encoding, spec) {
+function specify(encoding, spec, index) {
   var s = 0;
   if(spec.encoding.toLowerCase() === encoding.toLowerCase()){
     s |= 1;
@@ -82,9 +82,10 @@ function specify(encoding, spec) {
   }
 
   return {
-    s: s,
+    i: index,
+    o: spec.i,
     q: spec.q,
-    i: spec.i
+    s: s
   }
 };
 
@@ -98,8 +99,8 @@ function preferredEncodings(accept, provided) {
     });
   }
 
-  var priorities = provided.map(function getPriority(type) {
-    return getEncodingPriority(type, accepts);
+  var priorities = provided.map(function getPriority(type, index) {
+    return getEncodingPriority(type, accepts, index);
   });
 
   // sorted list of accepted encodings
@@ -109,7 +110,7 @@ function preferredEncodings(accept, provided) {
 }
 
 function compareSpecs(a, b) {
-  return (b.q - a.q) || (b.s - a.s) || (a.i - b.i) || 0;
+  return (b.q - a.q) || (b.s - a.s) || (a.o - b.o) || (a.i - b.i) || 0;
 }
 
 function isQuality(spec) {

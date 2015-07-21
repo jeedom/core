@@ -4,7 +4,8 @@
 
   [![NPM Version][npm-image]][npm-url]
   [![NPM Downloads][downloads-image]][downloads-url]
-  [![Build Status][travis-image]][travis-url]
+  [![Linux Build][travis-image]][travis-url]
+  [![Windows Build][appveyor-image]][appveyor-url]
   [![Test Coverage][coveralls-image]][coveralls-url]
 
 ```js
@@ -86,7 +87,7 @@ $ npm start
 
 ## Examples
 
-  To view the examples, clone the Express repo and install the dependancies:
+  To view the examples, clone the Express repo and install the dependencies:
 
 ```bash
 $ git clone git://github.com/strongloop/express.git --depth 1
@@ -102,7 +103,7 @@ $ node examples/content-negotiation
 
 ## Tests
 
-  To run the test suite, first install the dependancies, then run `npm test`:
+  To run the test suite, first install the dependencies, then run `npm test`:
 
 ```bash
 $ npm install
@@ -121,15 +122,17 @@ The current lead maintainer is [Douglas Christopher Wilson](https://github.com/d
 
   [MIT](LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/express.svg?style=flat
+[npm-image]: https://img.shields.io/npm/v/express.svg
 [npm-url]: https://npmjs.org/package/express
-[downloads-image]: https://img.shields.io/npm/dm/express.svg?style=flat
+[downloads-image]: https://img.shields.io/npm/dm/express.svg
 [downloads-url]: https://npmjs.org/package/express
-[travis-image]: https://img.shields.io/travis/strongloop/express.svg?style=flat
+[travis-image]: https://img.shields.io/travis/strongloop/express/master.svg?label=linux
 [travis-url]: https://travis-ci.org/strongloop/express
-[coveralls-image]: https://img.shields.io/coveralls/strongloop/express.svg?style=flat
+[appveyor-image]: https://img.shields.io/appveyor/ci/dougwilson/express/master.svg?label=windows
+[appveyor-url]: https://ci.appveyor.com/project/dougwilson/express
+[coveralls-image]: https://img.shields.io/coveralls/strongloop/express/master.svg
 [coveralls-url]: https://coveralls.io/r/strongloop/express?branch=master
-[gratipay-image-visionmedia]: https://img.shields.io/gratipay/visionmedia.svg?style=flat
+[gratipay-image-visionmedia]: https://img.shields.io/gratipay/visionmedia.svg
 [gratipay-url-visionmedia]: https://gratipay.com/visionmedia/
-[gratipay-image-dougwilson]: https://img.shields.io/gratipay/dougwilson.svg?style=flat
+[gratipay-image-dougwilson]: https://img.shields.io/gratipay/dougwilson.svg
 [gratipay-url-dougwilson]: https://gratipay.com/dougwilson/

@@ -46,13 +46,13 @@ fresh(req, res);
 
 [MIT](LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/fresh.svg?style=flat
+[npm-image]: https://img.shields.io/npm/v/fresh.svg
 [npm-url]: https://npmjs.org/package/fresh
-[node-version-image]: https://img.shields.io/badge/node.js-%3E%3D_0.6-brightgreen.svg?style=flat
+[node-version-image]: https://img.shields.io/node/v/fresh.svg
 [node-version-url]: http://nodejs.org/download/
-[travis-image]: https://img.shields.io/travis/jshttp/fresh.svg?style=flat
+[travis-image]: https://img.shields.io/travis/jshttp/fresh/master.svg
 [travis-url]: https://travis-ci.org/jshttp/fresh
-[coveralls-image]: https://img.shields.io/coveralls/jshttp/fresh.svg?style=flat
+[coveralls-image]: https://img.shields.io/coveralls/jshttp/fresh/master.svg
 [coveralls-url]: https://coveralls.io/r/jshttp/fresh?branch=master
-[downloads-image]: https://img.shields.io/npm/dm/fresh.svg?style=flat
+[downloads-image]: https://img.shields.io/npm/dm/fresh.svg
 [downloads-url]: https://npmjs.org/package/fresh

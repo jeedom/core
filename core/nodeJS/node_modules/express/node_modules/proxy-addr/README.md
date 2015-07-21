@@ -125,13 +125,13 @@ $ npm run-script bench
 
 [MIT](LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/proxy-addr.svg?style=flat
+[npm-image]: https://img.shields.io/npm/v/proxy-addr.svg
 [npm-url]: https://npmjs.org/package/proxy-addr
-[node-version-image]: https://img.shields.io/node/v/proxy-addr.svg?style=flat
+[node-version-image]: https://img.shields.io/node/v/proxy-addr.svg
 [node-version-url]: http://nodejs.org/download/
-[travis-image]: https://img.shields.io/travis/jshttp/proxy-addr.svg?style=flat
+[travis-image]: https://img.shields.io/travis/jshttp/proxy-addr/master.svg
 [travis-url]: https://travis-ci.org/jshttp/proxy-addr
-[coveralls-image]: https://img.shields.io/coveralls/jshttp/proxy-addr.svg?style=flat
+[coveralls-image]: https://img.shields.io/coveralls/jshttp/proxy-addr/master.svg
 [coveralls-url]: https://coveralls.io/r/jshttp/proxy-addr?branch=master
-[downloads-image]: https://img.shields.io/npm/dm/proxy-addr.svg?style=flat
+[downloads-image]: https://img.shields.io/npm/dm/proxy-addr.svg
 [downloads-url]: https://npmjs.org/package/proxy-addr

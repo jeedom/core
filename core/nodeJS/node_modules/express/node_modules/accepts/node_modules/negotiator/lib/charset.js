@@ -42,13 +42,13 @@ function parseCharset(s, i) {
   };
 }
 
-function getCharsetPriority(charset, accepted) {
-  var priority = {i: -1, s: 0, q: 0};
+function getCharsetPriority(charset, accepted, index) {
+  var priority = {o: -1, q: 0, s: 0};
 
   for (var i = 0; i < accepted.length; i++) {
-    var spec = specify(charset, accepted[i]);
+    var spec = specify(charset, accepted[i], index);
 
-    if (spec && (priority.s - spec.s || priority.q - spec.q || priority.i - spec.i) < 0) {
+    if (spec && (priority.s - spec.s || priority.q - spec.q || priority.o - spec.o) < 0) {
       priority = spec;
     }
   }
@@ -56,7 +56,7 @@ function getCharsetPriority(charset, accepted) {
   return priority;
 }
 
-function specify(charset, spec) {
+function specify(charset, spec, index) {
   var s = 0;
   if(spec.charset.toLowerCase() === charset.toLowerCase()){
     s |= 1;
@@ -65,9 +65,10 @@ function specify(charset, spec) {
   }
 
   return {
-    s: s,
+    i: index,
+    o: spec.i,
     q: spec.q,
-    i: spec.i
+    s: s
   }
 }
 
@@ -82,8 +83,8 @@ function preferredCharsets(accept, provided) {
     });
   }
 
-  var priorities = provided.map(function getPriority(type) {
-    return getCharsetPriority(type, accepts);
+  var priorities = provided.map(function getPriority(type, index) {
+    return getCharsetPriority(type, accepts, index);
   });
 
   // sorted list of accepted charsets
@@ -93,7 +94,7 @@ function preferredCharsets(accept, provided) {
 }
 
 function compareSpecs(a, b) {
-  return (b.q - a.q) || (b.s - a.s) || (a.i - b.i) || 0;
+  return (b.q - a.q) || (b.s - a.s) || (a.o - b.o) || (a.i - b.i) || 0;
 }
 
 function isQuality(spec) {

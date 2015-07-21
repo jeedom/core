@@ -46,13 +46,13 @@ function parseLanguage(s, i) {
   };
 }
 
-function getLanguagePriority(language, accepted) {
-  var priority = {i: -1, s: 0, q: 0};
+function getLanguagePriority(language, accepted, index) {
+  var priority = {o: -1, q: 0, s: 0};
 
   for (var i = 0; i < accepted.length; i++) {
-    var spec = specify(language, accepted[i]);
+    var spec = specify(language, accepted[i], index);
 
-    if (spec && (priority.s - spec.s || priority.q - spec.q || priority.i - spec.i) < 0) {
+    if (spec && (priority.s - spec.s || priority.q - spec.q || priority.o - spec.o) < 0) {
       priority = spec;
     }
   }
@@ -60,7 +60,7 @@ function getLanguagePriority(language, accepted) {
   return priority;
 }
 
-function specify(language, spec) {
+function specify(language, spec, index) {
   var p = parseLanguage(language)
   if (!p) return null;
   var s = 0;
@@ -75,9 +75,10 @@ function specify(language, spec) {
   }
 
   return {
-    s: s,
+    i: index,
+    o: spec.i,
     q: spec.q,
-    i: spec.i
+    s: s
   }
 };
 
@@ -92,8 +93,8 @@ function preferredLanguages(accept, provided) {
     });
   }
 
-  var priorities = provided.map(function getPriority(type) {
-    return getLanguagePriority(type, accepts);
+  var priorities = provided.map(function getPriority(type, index) {
+    return getLanguagePriority(type, accepts, index);
   });
 
   // sorted list of accepted languages
@@ -103,7 +104,7 @@ function preferredLanguages(accept, provided) {
 }
 
 function compareSpecs(a, b) {
-  return (b.q - a.q) || (b.s - a.s) || (a.i - b.i) || 0;
+  return (b.q - a.q) || (b.s - a.s) || (a.o - b.o) || (a.i - b.i) || 0;
 }
 
 function isQuality(spec) {

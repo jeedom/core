@@ -121,13 +121,13 @@ function logerror(err) {
 
 [MIT](LICENSE)
 
-[npm-image]: https://img.shields.io/npm/v/finalhandler.svg?style=flat
+[npm-image]: https://img.shields.io/npm/v/finalhandler.svg
 [npm-url]: https://npmjs.org/package/finalhandler
-[node-image]: https://img.shields.io/node/v/finalhandler.svg?style=flat
+[node-image]: https://img.shields.io/node/v/finalhandler.svg
 [node-url]: http://nodejs.org/download/
-[travis-image]: https://img.shields.io/travis/pillarjs/finalhandler.svg?style=flat
+[travis-image]: https://img.shields.io/travis/pillarjs/finalhandler.svg
 [travis-url]: https://travis-ci.org/pillarjs/finalhandler
-[coveralls-image]: https://img.shields.io/coveralls/pillarjs/finalhandler.svg?style=flat
+[coveralls-image]: https://img.shields.io/coveralls/pillarjs/finalhandler.svg
 [coveralls-url]: https://coveralls.io/r/pillarjs/finalhandler?branch=master
-[downloads-image]: https://img.shields.io/npm/dm/finalhandler.svg?style=flat
+[downloads-image]: https://img.shields.io/npm/dm/finalhandler.svg
 [downloads-url]: https://npmjs.org/package/finalhandler
