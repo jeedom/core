@@ -962,7 +962,7 @@ class cmd {
 				return $html;
 			}
 			if ($options != '') {
-				$options = self::cmdToHumanReadable($options);
+				$options = jeedom::toHumanReadable($options);
 				if (is_json($options)) {
 					$options = json_decode($options, true);
 				}

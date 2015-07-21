@@ -29,7 +29,6 @@ class scenarioExpression {
 	private $expression;
 	private $options;
 	private $order;
-	private $log;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -1190,10 +1189,6 @@ class scenarioExpression {
 
 	public function setOrder($order) {
 		$this->order = $order;
-	}
-
-	public function getLog() {
-		return $this->log;
 	}
 
 	public function setLog(&$_scenario, $log) {
