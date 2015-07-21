@@ -991,7 +991,7 @@ class cmd {
 	}
 
 	public function event($_value, $_loop = 1) {
-		if (trim($_value) === '' || $_loop > 4 || $this->getType() != 'info') {
+		if ((trim($_value) === '' && $_value !== false) || $_loop > 4 || $this->getType() != 'info') {
 			return;
 		}
 		$value = $this->formatValue($_value);
