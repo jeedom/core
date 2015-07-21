@@ -1,7 +1,24 @@
 body {
     padding-top: 60px;
-    padding-bottom: 40px;
+    padding-bottom: 30px;
 }
+
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto;
+    /* Negative indent footer by its height */
+    margin: 0 auto 0px;
+    /* Pad bottom by footer height */
+    padding: 0 0 0px;
+}
+
 .sidebar-nav {
     padding: 9px 0;
 }
@@ -53,8 +70,6 @@ body {
 }
 
 .eqLogic-widget{
-    padding: 3px;
-    margin: 3px;
     background-color: #19bc9c;
     display: inline-block;
     vertical-align: top;
@@ -73,8 +88,6 @@ body {
 }
 
 .scenario-widget{
-    padding: 3px;
-    margin: 3px;
     background-color: #7f8c8d;
     display: inline-block;
     position : relative;
@@ -200,21 +213,6 @@ body {
     border-radius: 3px;
 }
 
-html,
-body {
-    height: 100%;
-    /* The html and body elements cannot have any padding or margin. */
-}
-
-/* Wrapper for page content to push down footer */
-#wrap {
-    min-height: 100%;
-    height: auto;
-    /* Negative indent footer by its height */
-    margin: 0 auto 15px;
-    /* Pad bottom by footer height */
-    padding: 0 0 0px;
-}
 
 .marginBottom-0 {margin-bottom:0;}
 

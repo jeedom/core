@@ -1,3 +1,5 @@
+:icons: font
+
 = Sauvegarde et restauration
 
 La sauvegarde et restauration de Jeedom permet de sauvegarde celui-ci et de le restaurer sur lui meme ou sur un autre Jeedom
@@ -34,6 +36,12 @@ Sur la gauche on a :
 
 [TIP]
 Lors d'une reinstallation de Jeedom et en ayant pris l'abonnement de sauvegarde cloud, vous avez juste sur votre nouveau Jeedom a renseigner votre compte market puis a venir ici pour lancer la restauration
+
+[TIP]
+Il est possible, en cas de soucis, de faire un backup en ligne de commande : `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
+
+[TIP]
+Il est possible aussi de restaurer un backup en ligne de commande (par defaut Jeedom restaure le backup le plus récent présent dans le répertoire de backup) : `sudo php /usr/share/nginx/www/jeedom/install/restore.php`
 
 == Qu'est ce qui est sauvegardé ?
 

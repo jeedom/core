@@ -1,3 +1,5 @@
+:icons: font
+
 = Mise à jour
 
 == Centre de mise à jour

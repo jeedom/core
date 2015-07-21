@@ -1,11 +1,3 @@
 <div class="tooltips cmd cmd-widget" data-type="info" data-subtype="string" data-cmd_id="#id#" title="Valeur du #valueDate#, collectée le #collectDate#" style="display: block;">
 	<center> <span style="font-weight: bold;font-size : 12px;" class="cmdName">#name#</span> <span class='label label-default'>#state#</span></center>
-	<script>
-		if ('#state#' == 'On' || '#state#' == 'Marche') {
-			$('.cmd[data-cmd_id=#id#] span.label').removeClass('label-default').addClass('label-success');
-		}
-		if ('#state#' == 'Off' || '#state#' == 'Arret') {
-			$('.cmd[data-cmd_id=#id#] span.label').removeClass('label-default').addClass('label-danger');
-		}
-	</script>
 </div>

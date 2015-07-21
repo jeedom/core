@@ -8,6 +8,7 @@
             max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
             value: ('#state#' == '') ? 0 : parseInt('#state#')
         });
+        $(".cmd[data-cmd_id=#id#] .slider.slider-horizontal").css('z-index',1);
         $(".cmd[data-cmd_id=#id#] .slider").on('slideStop', function (ev) {
             jeedom.cmd.execute({id: '#id#', value: {slider: ev.value}});
         });

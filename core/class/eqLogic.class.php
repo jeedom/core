@@ -388,19 +388,17 @@ class eqLogic {
 			return $_input;
 		}
 		$text = $_input;
-
 		preg_match_all("/#\[(.*?)\]\[(.*?)\]#/", $text, $matches);
 		if (count($matches) == 3) {
 			for ($i = 0; $i < count($matches[0]); $i++) {
 				if (isset($matches[1][$i]) && isset($matches[2][$i])) {
 					$eqLogic = self::byObjectNameEqLogicName($matches[1][$i], $matches[2][$i]);
-					if (is_object($eqLogic)) {
-						$text = str_replace($matches[0][$i], '#eqLogic' . $eqLogic->getId() . '#', $text);
+					if (isset($eqLogic[0]) && is_object($eqLogic[0])) {
+						$text = str_replace($matches[0][$i], '#eqLogic' . $eqLogic[0]->getId() . '#', $text);
 					}
 				}
 			}
 		}
-
 		return $text;
 	}
 
@@ -491,6 +489,8 @@ class eqLogic {
 			'#battery#' => $this->getConfiguration('batteryStatus', -2),
 			'#batteryDatetime#' => $this->getConfiguration('batteryStatusDatetime', __('inconnue', __FILE__)),
 			'#object_name#' => '',
+			'#height#' => $this->getDisplay('height', 'auto'),
+			'#width#' => $this->getDisplay('width', 'auto'),
 		);
 		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowObjectNameOnView', 0) == 0) {
 			$object = $this->getObject();
@@ -665,6 +665,9 @@ class eqLogic {
 			$logicalId = 'lowBattery' . $this->getId();
 			$message = 'Le module ' . $this->getEqType_name() . ' ';
 			$message .= $this->getHumanName() . ' a moins de ' . $_pourcent . '% de batterie';
+			if ($this->getConfiguration('battery_type') != '') {
+				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
+			}
 			message::add($this->getEqType_name(), $message, '', $logicalId);
 		} else {
 			$logicalId = 'noBattery' . $this->getId();
@@ -881,7 +884,7 @@ class eqLogic {
 	}
 
 	public function setTimeout($timeout) {
-		if (is_string($timeout) || is_nan(intval($timeout)) || $timeout < 1) {
+		if ($timeout == '' || is_string($timeout) || is_nan(intval($timeout)) || $timeout < 1) {
 			$timeout == '';
 		}
 		$this->timeout = $timeout;

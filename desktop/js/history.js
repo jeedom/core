@@ -142,8 +142,8 @@ $('#bt_validChangeDate').on('click',function(){
         var cmd_id = serie.options.id;
         addChart(cmd_id, 0);
         addChart(cmd_id, 1);
-     }
- });
+    }
+});
 });
 
 function addChart(_cmd_id, _action) {

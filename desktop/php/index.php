@@ -174,9 +174,6 @@ if (!isConnect()) {
 	sendVarToJS('user_id', $_SESSION['user']->getId());
 	sendVarToJS('user_login', $_SESSION['user']->getLogin());
 	sendVarToJS('nodeJsKey', config::byKey('nodeJsKey'));
-	sendVarToJS('eqLogic_width_step', config::byKey('eqLogic::widget::stepWidth'));
-	sendVarToJS('eqLogic_height_step', config::byKey('eqLogic::widget::stepHeight'));
-	sendVarToJS('eqLogic_vertical_align', config::byKey('eqLogic::widget::verticalAlign'));
 	sendVarToJS('jeedom_firstUse', config::byKey('jeedom::firstUse', 'core', 1));
 	?>
 					<div id="wrap">
@@ -426,9 +423,16 @@ if (network::ehtIsUp()) {
 												<li>
 													<?php if (isset($plugin) && is_object($plugin)) {?>
 													<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/plugins/<?php echo init('m');?>/fr_FR/<?php echo init('m');?>.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
-													<?php } else {?>
-													<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-<?php echo init('p');?>.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
-													<?php }
+													<?php } else {
+		if (init('p') == 'scenarioAssist') {
+			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-scenario.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+		} else if (init('p') == 'view_edit') {
+			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-view.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+		} else {
+			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-' . init('p') . '.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+		}
+
+	}
 	?>
 												</li>
 												<?php if (hasRight('reportsend', true)) {?>
@@ -502,15 +506,16 @@ try {
 									</div>
 									<div id="md_reportBug" title="{{Ouverture d'un ticket}}"></div>
 								</main>
-							</div>
-							<?php
+								<?php
 }
 if (isConnect()) {
 	?>
-							<footer>
-								<span class="pull-left" style="margin-left : 20px;">Node JS <span class="span_nodeJsState binary red tooltips"></span> - </span>
-								<span class="pull-left">&copy; <a id="bt_jeedomAbout" class="cursor">Jeedom</a> (v<?php echo jeedom::version();?>
-									<?php
+							</div>
+							<footer style="height:30px;margin:0px;padding:0px;">
+								<div style="position:relative;top:5px;">
+									<span class="pull-left" style="margin-left : 20px;">Node JS <span class="span_nodeJsState binary red tooltips"></span> - </span>
+									<span class="pull-left">&copy; <a id="bt_jeedomAbout" class="cursor">Jeedom</a> (v<?php echo jeedom::version();?>
+										<?php
 $nbNeedUpdate = update::nbNeedUpdate();
 	if ($nbNeedUpdate == 1) {
 		echo '<span class="label label-danger"><a href="index.php?v=d&p=update" style="color : white;">' . $nbNeedUpdate . ' {{Mise à jour disponible}}</a></span>';
@@ -524,7 +529,10 @@ $nbNeedUpdate = update::nbNeedUpdate();
 	echo ' - {{Page générée en}} <span id="span_loadPageTime">' . round(getmicrotime() - $startLoadTime, 3) . '</span>s';
 	?>
 </span>
+
 <span class="pull-right expertModeVisible tooltips cursor" style="margin-right : 10px;font-size : 1.3em;z-index:1018" title="{{Voir les évènements en temps réél}}" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i></span>
+
+</div>
 </footer>
 <?php }
 ?>

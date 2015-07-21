@@ -43,7 +43,7 @@ if (config::byKey('enableScenario') == 0) {
                         <?php
 foreach ($scenarios[-1] as $scenario) {
 	echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-	echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
+	echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" title="{{Scénario ID :}} ' . $scenario->getId() . '">' . $scenario->getHumanName(false, true) . '</a>';
 	echo '</li>';
 }
 ?>
@@ -56,7 +56,7 @@ foreach ($scenarioListGroup as $group) {
 		echo '<ul>';
 		foreach ($scenarios[$group['group']] as $scenario) {
 			echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-			echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
+			echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" title="{{Scénario ID :}} ' . $scenario->getId() . '">' . $scenario->getHumanName(false, true) . '</a>';
 			echo '</li>';
 		}
 		echo '</ul>';
@@ -379,6 +379,9 @@ foreach (object::all() as $object) {
                         <option value="wait">{{Attendre}}</option>
                         <option value="return">{{Retourner}}</option>
                         <option value="gotodesign">{{Aller au design}}</option>
+                        <option value="log">{{Ajouter un log}}</option>
+                        <option value="message">{{Creer un message}}</option>
+                        <option value="equipement">{{Activer/Desactiver Masquer/Afficher un équipement}}</option>
                     </select>
                 </center>
                 <br/>
@@ -412,6 +415,18 @@ foreach (object::all() as $object) {
 
             <div class="alert alert-info sel_otherActionDescription gotodesign" style="display:none;">
                 Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé
+            </div>
+
+            <div class="alert alert-info sel_otherActionDescription log" style="display:none;">
+               permet de rajouter un message dans les logs
+            </div>
+
+            <div class="alert alert-info sel_otherActionDescription message" style="display:none;">
+               Permet d'ajouter une message dans le centre de message
+            </div>
+
+            <div class="alert alert-info sel_otherActionDescription equipement" style="display:none;">
+                Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement
             </div>
 
         </div>

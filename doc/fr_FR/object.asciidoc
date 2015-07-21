@@ -1,3 +1,5 @@
+:icons: font
+
 = Objet
 
 Le sous-menu Objets, permet de définir l'arborescence de sa domotique. Ceci est fait en créant ce que l'on appel des objets. Accessible à partir de la : 

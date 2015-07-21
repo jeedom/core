@@ -1,3 +1,5 @@
+:icons: font
+
 = Design
 
 Cette page permet de configurer l'affichage de toute votre domotique de manière très fine. Celle-ci demande du temps mais sa seule limite est votre imagination.
@@ -89,7 +91,6 @@ Ici on a :
 ** *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 ** *Profondeur* : pertme de choisir le niveau de la profondeur, pour par exemple passer un widget par dessus un autre
 ** *Ne pas afficher le nom de l'équipement* : masque le nom du widget, s'applique uniquement sur le design
-** *Ne pas afficher le niveau de batterie* : masque le niveau de batterie du widget (si il en a un), s'applique uniquement sur le design
 * *Spécifique* : permet de masquer certaine commande du widget uniquement sur le design
 
 [IMPORTANT]

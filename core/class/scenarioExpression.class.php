@@ -29,7 +29,6 @@ class scenarioExpression {
 	private $expression;
 	private $options;
 	private $order;
-	private $log;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -557,6 +556,7 @@ class scenarioExpression {
 				return '';
 			}
 		}
+		$_calc = str_replace(' ', '', $_calc);
 		$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
 		if ($historyStatistique['min'] == '') {
 			return $cmd->execCmd(null, 2);
@@ -569,6 +569,9 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
+		$_calc = str_replace(' ', '', $_calc);
+		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
+		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
 		return $historyStatistique[$_calc];
 	}
@@ -594,6 +597,7 @@ class scenarioExpression {
 	}
 
 	public static function odd($_value) {
+		$_value = intval(evaluate(self::setTags($_value)));
 		return ($_value % 2) ? 1 : 0;
 	}
 
@@ -712,7 +716,10 @@ class scenarioExpression {
 		}
 	}
 
-	public static function setTags($_expression, &$_scenario = null, $_quote = false) {
+	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
+		if ($_nbCall > 10) {
+			return $_expression;
+		}
 		$replace1 = array(
 			'#seconde#' => (int) date('s'),
 			'#heure#' => (int) date('G'),
@@ -730,8 +737,17 @@ class scenarioExpression {
 			'#njour#' => (int) date('w'),
 			'#hostname#' => '"' . gethostname() . '"',
 			'#IP#' => '"' . network::getNetworkAccess('internal', 'ip') . '"',
-			'#trigger#' => (is_object($_scenario)) ? $_scenario->getRealTrigger() : '',
+			'#trigger#' => '',
 		);
+
+		if (is_object($_scenario)) {
+			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
+			if (is_object($cmd)) {
+				$replace1['#trigger#'] = $cmd->getHumanName();
+			} else {
+				$replace1['#trigger#'] = $_scenario->getRealTrigger();
+			}
+		}
 		if ($_scenario != null) {
 			$replace1 = array_merge($replace1, $_scenario->getTags());
 		}
@@ -739,24 +755,25 @@ class scenarioExpression {
 		preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
 		foreach ($matches as $match) {
 			$function = $match[1];
-			$arguments = explode(',', $match[2]);
 			$replace_string = $match[0];
-
 			if (substr_count($match[2], '(') != substr_count($match[2], ')')) {
-				$arguments = self::setTags($match[2] . ')', $_scenario, $_quote);
-				if (substr($_expression, strpos($_expression, $match[2]) + strlen($match[2]) + 1, 1) != ')') {
-					for ($i = strpos($_expression, $match[2]) + strlen($match[2]) + 1; $i < strlen($_expression); $i++) {
-						$car = $_expression[$i];
-						if ($car != ')') {
-							$arguments .= $car;
-							$replace_string .= $car;
-						} else {
-							break;
-						}
+				$pos = strpos($_expression, $match[2]) + strlen($match[2]);
+				while (substr_count($match[2], '(') > substr_count($match[2], ')')) {
+					$match[2] .= $_expression[$pos];
+					$pos++;
+					if ($pos > strlen($_expression)) {
+						break;
 					}
 				}
-				$replace_string .= ')';
-				$arguments = explode(',', $arguments);
+				$arguments = self::setTags($match[2], $_scenario, $_quote, $_nbCall++);
+				$result = str_replace($match[2], $arguments, $_expression);
+				while (substr_count($result, '(') > substr_count($result, ')')) {
+					$result .= ')';
+				}
+				$result = self::setTags($result, $_scenario, $_quote, $_nbCall++);
+				return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), $result), $_quote);
+			} else {
+				$arguments = explode(',', $match[2]);
 			}
 			if (method_exists(__CLASS__, $function)) {
 				if ($function == 'trigger') {
@@ -777,7 +794,6 @@ class scenarioExpression {
 			}
 
 		}
-
 		return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)), $_quote);
 	}
 
@@ -880,17 +896,50 @@ class scenarioExpression {
 							$scenario->persistLog();
 						}
 					}
+					return;
 				} else if ($this->getExpression() == 'message') {
 					message::add('scenario', $options['message']);
+					return;
+				} else if ($this->getExpression() == 'equipement') {
+					$eqLogic = eqLogic::byId(str_replace(array('#eqLogic', '#'), '', $this->getOptions('eqLogic')));
+					if (!is_object($eqLogic)) {
+						throw new Exception(__('Action sur l\'équipement impossible. Equipement introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('eqLogic'));
+					}
+					switch ($this->getOptions('action')) {
+						case 'show':
+							$this->setLog($scenario, __('Equipement visible : ', __FILE__) . $eqLogic->getHumanName());
+							$eqLogic->setIsVisible(1);
+							$eqLogic->save();
+							break;
+						case 'hide':
+							$this->setLog($scenario, __('Equipement masqué : ', __FILE__) . $eqLogic->getHumanName());
+							$eqLogic->setIsVisible(0);
+							$eqLogic->save();
+							break;
+						case 'deactivate':
+							$this->setLog($scenario, __('Equipement désactivé : ', __FILE__) . $eqLogic->getHumanName());
+							$eqLogic->setIsActive(0);
+							$eqLogic->save();
+							break;
+						case 'activate':
+							$this->setLog($scenario, __('Equipement activé : ', __FILE__) . $eqLogic->getHumanName());
+							$eqLogic->setIsActive(1);
+							$eqLogic->save();
+							break;
+					}
+					return;
 				} else if ($this->getExpression() == 'say') {
 					$this->setLog($scenario, __('Je dis : ', __FILE__) . $options['message']);
 					nodejs::pushUpdate('jeedom::say', $options['message']);
+					return;
 				} else if ($this->getExpression() == 'gotodesign') {
 					$this->setLog($scenario, __('Changement design : ', __FILE__) . $options['plan_id']);
 					nodejs::pushUpdate('jeedom::gotoplan', $options['plan_id']);
+					return;
 				} else if ($this->getExpression() == 'return') {
 					$this->setLog($scenario, __('Je vais retourner : ', __FILE__) . $options['message']);
 					$scenario->setReturn($scenario->getReturn() . $options['message']);
+					return;
 				} else if ($this->getExpression() == 'scenario') {
 					if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
 						$actionScenario = &$scenario;
@@ -1140,10 +1189,6 @@ class scenarioExpression {
 
 	public function setOrder($order) {
 		$this->order = $order;
-	}
-
-	public function getLog() {
-		return $this->log;
 	}
 
 	public function setLog(&$_scenario, $log) {

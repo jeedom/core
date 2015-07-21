@@ -414,9 +414,5 @@ function incrementVersion($_version) {
 			$version[2] = 0;
 		}
 	}
-	$returnVersion = '';
-	for ($j = 0, $sVersion = count($version); $j < $sVersion; $j++) {
-		$returnVersion .= $version[$j] . '.';
-	}
-	return trim($returnVersion, '.');
+	return $version[0] . '.' . $version[1] . '.' . $version[2];
 }

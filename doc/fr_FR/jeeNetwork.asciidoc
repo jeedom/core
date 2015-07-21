@@ -1,3 +1,5 @@
+:icons: font
+
 = Réseaux Jeedom
 
 Page permettant d'interconnecter plusieurs Jeedom en mode maitre/esclave. Cette possibilité permet par exemple de déporter le zwave, le rfxcom, l'enOcean ou le GSM sur d'autre raspberry pi ou Jeedom mini. Vous pourrez aussi à partir de cette page avoir un status de vos Jeedom esclave, consulter leur log, les mettres à jour, les arrêter...

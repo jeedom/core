@@ -309,8 +309,6 @@ jeedom.cmd.refreshValue = function(_params) {
                 initTooltips();
                 if ($.mobile) {
                     $('.cmd[data-cmd_id=' + params.id + ']').trigger("create");
-                } else {
-                    positionEqLogic($('.cmd[data-cmd_id=' + params.id + ']').closest('.eqLogic').attr('data-eqLogic_id'), true);
                 }
             }
         };
@@ -508,18 +506,19 @@ jeedom.cmd.changeSubType = function(_cmd) {
                 if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
                     el = el.parent();
                 }
+
                 if (isset(subtype[i][j].visible)) {
                     if (subtype[i][j].visible) {
                         if(el.hasClass('bootstrapSwitch')){
-                          el.parent().parent().show();
-                          el.parent().parent().removeClass('hide');
+                          el.parent().parent().parent().show();
+                          el.parent().parent().parent().removeClass('hide');
                       }
                       el.show();
                       el.removeClass('hide');
                   } else {
                     if(el.hasClass('bootstrapSwitch')){
-                     el.parent().parent().hide();
-                     el.parent().parent().addClass('hide');
+                     el.parent().parent().parent().hide();
+                     el.parent().parent().parent().addClass('hide');
                  }
                  el.hide();
                  el.addClass('hide');

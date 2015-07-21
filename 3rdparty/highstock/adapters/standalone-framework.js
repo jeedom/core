@@ -1,5 +1,5 @@
 /*
- Highstock JS v2.1.6 (2015-06-12)
+ Highstock JS v2.1.7 (2015-06-26)
 
  Standalone Highcharts Framework
 

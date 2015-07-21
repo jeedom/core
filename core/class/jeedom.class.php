@@ -344,11 +344,15 @@ class jeedom {
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
 			shell_exec('sudo sntp ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org'));
-			sleep(1);
+			sleep(3);
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
 			shell_exec('sudo sntp 1.debian.pool.ntp.org');
-			sleep(1);
+			sleep(3);
+		}
+		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
+			shell_exec('sudo service ntp restart');
+			sleep(3);
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
 			log::add('core', 'error', __('La date du système est incorrect (avant 2014-01-01 ou après 2019-01-01) : ', __FILE__) . date('Y-m-d H:i:s'), 'dateCheckFailed');
@@ -380,8 +384,10 @@ class jeedom {
 				log::add('core', 'info', 'Lancement du DNS find Jeedom');
 				network::ngrok_start('https', 80, 'find', 'find.dns.jeedom.com:4443');
 			}
+
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
+		self::isDateOk();
 		$gi = date('Gi');
 		$i = date('i');
 		try {
@@ -417,13 +423,18 @@ class jeedom {
 		plugin::cron();
 		if ($gi % 10 == 0) {
 			try {
+				try {
+					network::cron();
+				} catch (Exception $e) {
+					log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+				}
 				eqLogic::checkAlive();
 				connection::cron();
 				if (config::byKey('jeeNetwork::mode') != 'slave') {
 					jeeNetwork::pull();
 				}
 				if (config::byKey('market::allowDNS') == 1) {
-					if (!network::test('external', false, 60)) {
+					if (!network::test('dnsjeedom', false, 60)) {
 						log::add('ngork', 'debug', 'Restart service');
 						network::ngrok_stop();
 						network::ngrok_start();
@@ -456,11 +467,6 @@ class jeedom {
 				log::add('scenario', 'error', $e->getMessage());
 			}
 		}
-		try {
-			network::cron();
-		} catch (Exception $e) {
-			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
-		}
 
 	}
 
@@ -472,40 +478,17 @@ class jeedom {
 		return shell_exec('ps ax | grep "' . $_cmd . '$" | grep -v "grep" | awk \'{print $1}\'');
 	}
 
-	public static function resetHwKey() {
-		$rdkey = config::genKey();
-		config::save('jeedom::rdkey', $rdkey);
-		$cache = cache::byKey('jeedom::hwkey');
-		if ($cache->getValue(0) != 0) {
-			$cache->remove();
-		}
-	}
-
 	public static function getHardwareKey() {
 		$cache = cache::byKey('jeedom::hwkey');
-		if ($cache->getValue(0) == 0) {
-			$rdkey = config::byKey('jeedom::rdkey');
-			if ($rdkey == '') {
-				$rdkey = config::genKey();
-				config::save('jeedom::rdkey', $rdkey);
-			}
-			$ifconfig = shell_exec("ip addr show");
-			if (strpos($ifconfig, 'eth1') !== false) {
-				$key = shell_exec(" ip addr show eth0 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
-			} else if (strpos($ifconfig, 'p2p0') !== false) {
-				$key = shell_exec(" ip addr show p2p0 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
-			} else if (strpos($ifconfig, 'p2p1') !== false) {
-				$key = shell_exec(" ip addr show p2p1 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
-			} else if (strpos($ifconfig, 'p2p2') !== false) {
-				$key = shell_exec(" ip addr show p2p2 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
-			} else {
-				$key = shell_exec(" ip addr show eth0 | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
-			}
-			$hwkey = sha1($key . $rdkey);
-			cache::set('jeedom::hwkey', $hwkey, 86400);
-			return $hwkey;
+		if ($cache->getValue(0) != 0) {
+			config::save('jeedom::installKey', $cache->getValue());
 		}
-		return $cache->getValue();
+		$return = config::byKey('jeedom::installKey');
+		if ($return == '') {
+			$return = sha1(microtime() . config::genKey());
+			config::save('jeedom::installKey', $return);
+		}
+		return $return;
 	}
 
 	public static function versionAlias($_version) {

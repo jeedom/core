@@ -1,3 +1,5 @@
+:icons: font
+
 = Centre des messages
 
 Le centre des messages regroupes tous les messages important que vous devez regarder

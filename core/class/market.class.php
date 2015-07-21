@@ -318,9 +318,6 @@ class market {
 		if (config::byKey('market::address') == '') {
 			throw new Exception(__('Aucune addresse n\'est renseignée pour le market', __FILE__));
 		}
-		if (config::byKey('market::jeedom_apikey') == '') {
-			config::save('market::jeedom_apikey', config::genKey(255));
-		}
 		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
 			$params = array(
 				'username' => config::byKey('market::username'),
@@ -425,7 +422,7 @@ class market {
 					return $return;
 				}
 
-				if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
+				if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
 					$return['market_owner'] = 1;
 				} else {
 					$return['market_owner'] = 0;
@@ -472,7 +469,7 @@ class market {
 			return $return;
 		}
 
-		if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
+		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
 			$return['market_owner'] = 1;
 		} else {
 			$return['market_owner'] = 0;
@@ -617,6 +614,17 @@ class market {
 				if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
 					throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
 				}
+				try {
+					$plugin = plugin::byId($this->getLogicalId());
+					if (is_object($plugin)) {
+						log::add('update', 'update', __('Action de pre update...', __FILE__));
+						$plugin->callInstallFunction('pre_update');
+						log::add('update', 'update', __("OK\n", __FILE__));
+					}
+				} catch (Exception $e) {
+
+				}
+
 				log::add('update', 'update', __('Décompression de l\'archive...', __FILE__));
 				$zip = new ZipArchive;
 				$res = $zip->open($tmp);
@@ -755,11 +763,10 @@ class market {
 					rrmdir($cibDir);
 				}
 				mkdir($cibDir);
-				rcopy(realpath(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId()), $cibDir);
-				if (file_exists($cibDir . '/core/config/devices') && $this->getLogicalId() == 'zwave') {
-					rrmdir($cibDir . '/core/config/devices');
-					mkdir($cibDir . '/core/config/devices');
-				}
+				$exclude = array(
+					'tmp',
+				);
+				rcopy(realpath(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId()), $cibDir, true, $exclude, true);
 				$tmp = dirname(__FILE__) . '/../../tmp/' . $this->getLogicalId() . '.zip';
 				if (file_exists($tmp)) {
 					if (!unlink($tmp)) {

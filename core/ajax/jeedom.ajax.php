@@ -102,7 +102,11 @@ try {
 	}
 
 	if (init('action') == 'resetHwKey') {
-		jeedom::resetHwKey();
+		config::save('jeedom::installKey', '');
+		$cache = cache::byKey('jeedom::hwkey');
+		if ($cache->getValue(0) != 0) {
+			$cache->remove();
+		}
 		ajax::success();
 	}
 

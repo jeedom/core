@@ -1,3 +1,5 @@
+:icons: font
+
 = Vues
 
 Les vues permettent simplement de créer un affichage personnalisé. Ce n'est pas aussi puissant que les désigns, mais ça permet en quelques minutes d'avoir un affichage plus personnalisé.
@@ -56,6 +58,7 @@ image::../images/view6.png[]
 
 Une zone de type widget permet d'ajouter des widgets, elle a 3 boutons sur la droite : 
 
+* *Largeur* : définis la largeur de la zone (en mode desktop seulement)
 * *Ajouter/Editer widget* : permet d'ajouter/modifier des widgets à afficher dans la zone
 * *Editer* : permet de changer le nom de la zone
 * *Supprimer* : permet de supprimer la zone
@@ -66,7 +69,7 @@ Vous pouvez supprimer un widget directement en cliquant sur la poubelle devant c
 [TIP]
 Il est possible de modifier l'ordre des widgets dans la zone en les glissants/deposant
 
-Une fois le bouton d'ajout/edition de widget pressé vous obtenez (le chargement peut etre un peu long) : 
+Une fois le bouton d'ajout/edition de widget pressé vous obtenez : 
 
 image::../images/view7.png[]
 
@@ -79,6 +82,7 @@ image::../images/view8.png[]
 Une zone de type graphique permet d'ajouter des graphiques à votre vue, elle possede les options suivantes : 
 
 * *Periode* : permet de choisir la période d'affichage des graphiques (30 min, 1 jour, 1 semaine, 1 mois, 1 année ou tout)
+* *Largeur* : définis la largeur de la zone (en mode desktop seulement)
 * *Ajouter/Editer widget* : permet d'ajouter/modifier des graphiques
 * *Editer* : permet de changer le nom de la zone
 * *Supprimer* : permet de supprimer la zone
@@ -89,8 +93,8 @@ Vous pouvez supprimer un une donnée à grapher directement en cliquant sur la p
 [TIP]
 Il est possible de modifier l'ordre des graphique dans la zone en les glissants/deposant
 
-Une fois le bouton d'ajout/edition des graphiques pressé vous obtenez (le chargement peut etre un peu long) : 
+Une fois le bouton d'ajout/edition des graphiques pressé vous obtenez : 
 
 image::../images/view9.png[]
 
-Sur cette fenetre vous avez juste à choisir les données à ajouter à votre graphique. Pour les differentes options elles sont expliquée link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-history.html#_graphique_sur_les_vues_et_les_designs[ici]
+Une fois ajouté vous avez accès à des options de configuraiton : pour les differentes options elles sont expliquée link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-history.html#_graphique_sur_les_vues_et_les_designs[ici]

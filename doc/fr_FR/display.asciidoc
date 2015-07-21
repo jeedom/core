@@ -1,3 +1,5 @@
+:icons: font
+
 = Résumé domotique
 
 Cette page permet d'avoir un resumer sur sa domotique et donne aussi a des fonciton d'organisation des équipements et commandes, a de la configuraiton avancée des équipements et commande ainsi qu'a des possibilité de configuration d'affichage. Elle se décompose en un onglet "Ma domotique" et un un onglet "Configuration de l'affichage".
@@ -12,9 +14,13 @@ Le premiere onglet permet d'orgniser les differents équipement, les commandes, 
 
 image::../images/display2.png[]
 
-On retrouve tout en haut un résumé du nombre d'objet existant, du nombre d'équipement et du nombre de commande. Sur la droite se trouve un champs de recherche pour par exemple chercher un équipement,une commande ou tous les équipements d'un certain type (plugin, par exemple il suffit de taper rfxcom pour avoir tous les équipements rfxcom)
+On retrouve tout en haut un résumé du nombre d'objet existant, du nombre d'équipement et du nombre de commande. Sur la droite se trouve, un bouton pour masquer tous les équipements inactif et  un champs de recherche pour par exemple chercher un équipement,une commande ou tous les équipements d'un certain type (plugin, par exemple il suffit de taper rfxcom pour avoir tous les équipements rfxcom)
 
-En dessous on retrouve un cadre par objet, dans chaque cadre se trouve la liste des équipements (en bleu) contenu dans l'objet.
+En dessous on retrouve un cadre par objet, dans chaque cadre se trouve la liste des équipements (en bleu) contenu dans l'objet. Vous avez sur la ligne du nom de l'objets jusqu'a 3 boutons, dans l'ordre : 
+
+* le premier sert à ouvrir la page de configuration de l'objet dans un nouvel onglet
+* le deuxieme donne un résumé sur l'objet
+* le dernier permet de masquer la liste des équipements (en dessous en bleu)
 
 [TIP]
 La couleur de fond des cadre objet dépend de la couleur mise dans la configuration de l'objet
@@ -84,9 +90,9 @@ Dans cettre partie vous allez pouvoir configurer certain comportement d'affichag
 
 Vous pouvez : 
 
-* *Ne pas afficher le nom* : permet de masquer le nom de l'équipement sur la tuile en fonction du contexte (dashboard et design, vue ou mobile)
-* *Ne pas afficher le nom de l'objet* : uniquement sur les vues cela permet de ne pas afficher le nom de l'objet a coté du nom de l'équipement
-* *Ne pas afficher le niveau de batterie* : uniquement pour le dashboard, les designs et le vues cette option permet de masquer le niveau de batterie de l'équipement (si il est sur batterie bien sur)
+* *Afficher le nom* : permet de masquer le nom de l'équipement sur la tuile en fonction du contexte (dashboard et design, vue ou mobile)
+* *Afficher le nom de l'objet* : uniquement sur les vues cela permet de ne pas afficher le nom de l'objet a coté du nom de l'équipement
+* *Afficher le niveau de batterie* : uniquement pour le dashboard, les designs et le vues cette option permet de masquer le niveau de batterie de l'équipement (si il est sur batterie bien sur)
 
 En dessous on retrouve des paramètre optionnel d'affichage que l'on peut passer à l'équipement. Ces parametres sont composés d'un nom et d'une valeur. Pour les équipements seul le valeur "style" et pour le moment utilisée, elle permet d'inserer du code CSS sur l'équipement en question. Exemple ici pour arrondir les angles : 
 
@@ -155,8 +161,8 @@ Dans cettre partie vous allez pouvoir configurer certain comportement d'affichag
 Vous pouvez : 
 
 * *Widget* : permet de choisir le widget sur dekstop ou mobile (à noter qu'il faut le plugin widget et que vous pouvez le faire aussi à partir de celui-ci)
-* *Ne pas afficher le nom* : permet de masquer le nom de la commande en fonction du contexte (dashboard et design, vue ou mobile)
-* *Ne pas afficher les statistiques* : permet de ne pas afficher les statistiques en fonction du contexte (dashboard et design, vue ou mobile). Attention il faut avoir activer les statistique dans la configuration de Jeedom pour que cette option ai un impact
+* *Afficher le nom* : permet de masquer le nom de la commande en fonction du contexte (dashboard et design, vue ou mobile)
+* *Afficher les statistiques* : permet de ne pas afficher les statistiques en fonction du contexte (dashboard et design, vue ou mobile). Attention il faut avoir activer les statistique dans la configuration de Jeedom pour que cette option ai un impact
 * *Retour à la ligne forcé avant le widget* : permet d'ajouter un retour a la ligne avant ou après le widget (pour forcer par exemple un affichage en colonne des differentes commande l'équipement au lieu de ligne par defaut)
 
 En dessous on retrouve des paramètre optionnel d'affichage que l'on peut passer au widget. Ces parametres dependent du widget en question, il faut donc regarder sa fiche sur le market pour les connaitres.
@@ -176,19 +182,9 @@ Pour chaque catégorie, on pourra choisir une couleur différente entre la versi
 
 image::../images/display6.png[]
 
-En cliquant sur la couleur un fenêtre s'ouvre, permettant de choisir sa couleur.
+En cliquant sur la couleur une fenêtre s'ouvre, permettant de choisir sa couleur.
 
 image::../images/display7.png[]
-
-=== Dimension
-
-Tout en bas de la page vous avez une partie sur la gestion des dimmensions des "tuile" (équipement) sur le dashboard et les vues :
-
-image::../images/display8.png[]
-
-La largeur est la hauteur du widget definissent un pas pour le widget. Exemple si vous avez mis un pas de 40px en largeur et que lors de l'affichage le widget fait 60px alors Jeedom va arrondir à largeur au dessus correspondant à un multiple du pas, ici donc 80px (idem pour la hauteur).
-
-L'option de centrage vertical permet de centrer verticalement les widgets des commandes quand la tuile des équipements
 
 [TIP]
 N'oubliez pas de sauvegarder après toute modification

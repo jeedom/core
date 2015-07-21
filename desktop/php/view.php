@@ -35,7 +35,8 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
         <ul id="ul_view" class="nav nav-list bs-sidenav">
             <?php if (hasRight('viewedit', true)) {?>
             <a class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" href="index.php?v=d&p=view_edit"><i class="fa fa-plus-circle"></i> {{Ajouter une vue}}</a>
-            <?php }?>
+            <?php }
+?>
             <li class="filter"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
             <?php
 foreach (view::all() as $view_info) {
@@ -60,8 +61,9 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
 <legend style="height: 35px;color : #563d7c;">Vue <?php
 echo $view->getName();
 if (hasRight('viewedit', true)) {
-	?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId();?>" class="btn btn-warning btn-xs pull-right" id="bt_addviewZone"><i class="fa fa-pencil"></i> {{Editer}}</a><?php }?></legend>
-        <div id="div_displayView"></div>
+	?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId();?>" class="btn btn-warning btn-xs pull-right" id="bt_addviewZone"><i class="fa fa-pencil"></i> {{Editer}}</a><?php }
+?></legend>
+        <div id="div_displayView" class="row"></div>
     </div>
 
 </div>

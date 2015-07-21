@@ -1,4 +1,4 @@
-<div class="eqLogic eqLogic-widget" data-eqLogic_id="#id#" data-version="dashboard" style="background-color: #background_color#;max-width: #max_width#;#style#" data-category="#category#">
+<div class="eqLogic eqLogic-widget allowResize allowReorderCmd" data-eqLogic_id="#id#" data-version="dashboard" style="background-color: #background_color#;width: #width#;height: #height#;#style#" data-category="#category#">
     <center class="widget-name">
         <a href="#eqLink#" style="font-size : 1.5em;">#name#</a> <span style="font-size: 0.85em;position: relative;top:-2px;">#object_name#</span>
     </center>
@@ -9,21 +9,18 @@
     </div>
     <span class="statusCmd" style="position : absolute;left : 5px;bottom : 0px; width : 30px;z-index: 1030;"></span>
     <span class="statusBattery" style="position : absolute;right : 0px;bottom : -10px; width : 30px;"></span>
-</div>
 
-<script>
-    if(!isNaN('#battery#') && parseInt('#battery#') >= 0){
-        if(parseInt('#battery#') >= 75){
-            $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie3 tooltips" title="#battery# % (#batteryDatetime#)" style="font-size : 2em;"></i>');
-        }else if(parseInt('#battery#') >= 50){
-            $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie2 tooltips" title="#battery# % (#batteryDatetime#)" style="font-size : 2em;"></i>');
-        }else if(parseInt('#battery#') >= 25){
-            $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie1 tooltips" title="#battery# % (#batteryDatetime#)" style="font-size : 2em;"></i>');
-        }else{
-            $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie0 tooltips" title="#battery# % (#batteryDatetime#)" style="font-size : 2em;"></i>');
+    <script>
+        if(!isNaN('#battery#') && parseInt('#battery#') >= 0){
+            if(parseInt('#battery#') >= 75){
+                $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie3 tooltips" title="#battery# % (#batteryDatetime#)" style="font-size : 2em;"></i>');
+            }else if(parseInt('#battery#') >= 50){
+                $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie2 tooltips" title="#battery# % (#batteryDatetime#)" style="font-size : 2em;"></i>');
+            }else if(parseInt('#battery#') >= 25){
+                $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie1 tooltips" title="#battery# % (#batteryDatetime#)" style="font-size : 2em;"></i>');
+            }else{
+                $('.eqLogic[data-eqLogic_id=#id#] .statusBattery').append('<i class="icon jeedom-batterie0 tooltips" title="#battery# % (#batteryDatetime#)" style="font-size : 2em;"></i>');
+            }
         }
-    }
-    if ('#noResize#' == 1) {
-        $('.eqLogic[data-eqLogic_id=#id#]').addClass('noResize');
-    }
-</script>
+    </script>
+</div>

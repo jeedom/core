@@ -108,8 +108,9 @@ class com_http {
 			if ($this->getNoReportError() === false) {
 				throw new Exception(__('Echec de la requête http : ', __FILE__) . $this->url . ' Curl error : ' . $curl_error, 404);
 			}
+		} else {
+			curl_close($ch);
 		}
-		curl_close($ch);
 		log::add('http.com', 'Debug', __('Url : ', __FILE__) . $this->url . __("\nRéponse : ", __FILE__) . $response);
 		return $response;
 	}

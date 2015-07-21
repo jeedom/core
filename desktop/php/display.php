@@ -71,7 +71,7 @@ foreach ($objects as $object) {
 		<br/>
 		<div class="row row-same-height">
 			<div class="col-xs-4 object col-xs-height" data-id="-1">
-				<legend>{{Aucun}}</legend>
+				<legend>{{Aucun}} <i class="fa fa-chevron-down pull-right showEqLogic tooltips cursor" title="{{Voir les équipements}}"></i></legend>
 				<ul class="eqLogicSortable">
 					<?php
 foreach ($eqLogics[-1] as $eqLogic) {
@@ -110,8 +110,10 @@ foreach ($objects as $object) {
 	}
 	echo '<div class="col-xs-4 object col-xs-height" data-id="' . $object->getId() . '" style="background-color : ' . $object->getDisplay('tagColor') . ';color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">';
 	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">' . $object->getName();
+	echo '<i class="fa fa-chevron-down pull-right showEqLogic tooltips cursor" title="{{Voir les équipements}}"></i>';
 	echo '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject tooltips" title="{{Configuration avancée}}"></i>';
 	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right tooltips" title="{{Aller sur la configuration de l\'objet}}"><i class="fa fa-external-link"></i></a>';
+
 	echo '</legend>';
 	echo '<ul class="eqLogicSortable">';
 	foreach ($eqLogics[$object->getId()] as $eqLogic) {
@@ -210,49 +212,6 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 	echo '</div>';
 }
 ?>
-								</fieldset>
-							</form>
-						</div>
-					</div>
-				</div>
-
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapse_size">
-								{{Dimension}}
-							</a>
-						</h4>
-					</div>
-					<div id="collapse_size" class="panel-collapse collapse">
-						<div class="panel-body">
-							<form class="form-horizontal">
-								<fieldset>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">{{Largeur pas widget (px)}}</label>
-										<div class="col-sm-2">
-											<input class="configKey form-control cursor" data-l1key="eqLogic::widget::stepWidth" value="<?php echo config::byKey('eqLogic::widget::stepWidth')?>" />
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">{{Hauteur pas widget (px)}}</label>
-										<div class="col-sm-2">
-											<input class="configKey form-control cursor" data-l1key="eqLogic::widget::stepHeight" value="<?php echo config::byKey('eqLogic::widget::stepHeight')?>" />
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">{{Centrer verticalement les commandes sur la tuile}}</label>
-										<div class="col-sm-2">
-											<?php
-if (config::byKey('eqLogic::widget::verticalAlign') == 1) {
-	echo '<input type="checkbox" class="configKey cursor bootstrapSwitch" data-l1key="eqLogic::widget::verticalAlign" checked />';
-} else {
-	echo '<input type="checkbox" class="configKey cursor bootstrapSwitch" data-l1key="eqLogic::widget::verticalAlign" />';
-}
-?>
-
-										</div>
-									</div>
 								</fieldset>
 							</form>
 						</div>

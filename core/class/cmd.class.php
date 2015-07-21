@@ -626,6 +626,7 @@ class cmd {
 					}
 					return 0;
 				case 'numeric':
+					$_value = floatval(str_replace(',', '.', $_value));
 					if ($this->getConfiguration('calculValueOffset') != '') {
 						try {
 							$_value = evaluate(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
@@ -838,18 +839,6 @@ class cmd {
 						}
 					}
 				}
-				if ($template == '' && config::byKey('active', 'widget') == 1 && config::byKey('market::autoInstallMissingWidget') == 1) {
-					try {
-						$market = market::byLogicalIdAndType(str_replace('cmd.', '', $version . '.' . $template_name), 'widget');
-						if (is_object($market)) {
-							$market->install();
-							$template = getTemplate('core', $version, $template_name, 'widget');
-						}
-					} catch (Exception $e) {
-						$this->setTemplate($version, 'default');
-						$this->save();
-					}
-				}
 				if ($template == '') {
 					$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.default';
 					$template = getTemplate('core', $version, $template_name);
@@ -903,6 +892,9 @@ class cmd {
 				if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
 					$replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
 				}
+			}
+			if (method_exists($this, 'formatValueWidget')) {
+				$replace['#state#'] = $this->formatValueWidget($replace['#state#']);
 			}
 			$replace['#collectDate#'] = $this->getCollectDate();
 			$replace['#valueDate#'] = $this->getValueDate();
@@ -964,12 +956,13 @@ class cmd {
 				}
 			}
 			$replace['#valueName#'] .= '<br/>';
+
 			$html .= template_replace($replace, $template);
 			if (trim($html) == '') {
 				return $html;
 			}
 			if ($options != '') {
-				$options = self::cmdToHumanReadable($options);
+				$options = jeedom::toHumanReadable($options);
 				if (is_json($options)) {
 					$options = json_decode($options, true);
 				}
@@ -977,9 +970,22 @@ class cmd {
 					foreach ($options as $key => $value) {
 						$replace['#' . $key . '#'] = $value;
 					}
-					$html = template_replace($replace, $html);
 				}
 			}
+			if ($version == 'scenario' && $this->getType() == 'action' && $this->getSubtype() == 'message') {
+				if (!isset($replace['#title#'])) {
+					$replace['#title#'] = '';
+				}
+				if (!isset($replace['#message#'])) {
+					$replace['#message#'] = '';
+				}
+			}
+			$replace['#title_placeholder#'] = $this->getDisplay('title_placeholder', __('Titre', __FILE__));
+			$replace['#message_placeholder#'] = $this->getDisplay('message_placeholder', __('Message', __FILE__));
+			$replace['#message_disable#'] = $this->getDisplay('message_disable', 0);
+			$replace['#title_disable#'] = $this->getDisplay('title_disable', 0);
+			$replace['#title_possibility_list#'] = $this->getDisplay('title_possibility_list', '');
+			$html = template_replace($replace, $html);
 			return $html;
 		}
 	}
@@ -1101,6 +1107,7 @@ class cmd {
 				return;
 			}
 			$cmd->execCmd($this->getConfiguration('jeedomCheckCmdCmdActionOption'));
+			return;
 		}
 		if ($this->getConfiguration('jeedomCheckCmdActionType') == 'scenario') {
 			$scenario = scenario::byId($this->getConfiguration('jeedomCheckCmdScenarioActionId'));

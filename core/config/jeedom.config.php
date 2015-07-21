@@ -84,7 +84,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'enable' => array('visible' => true),
 						),
 						'display' => array(
-							'invertBinary' => array('visible' => true),
+							'invertBinary' => array('visible' => true, 'parentVisible' => true),
 							'icon' => array('visible' => false, 'parentVisible' => false),
 						),
 					),

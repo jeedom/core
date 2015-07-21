@@ -298,7 +298,8 @@ function cleanPath($path) {
 			$out[] = $fold;
 		}
 
-	}return ($path{0} == '/' ? '/' : '') . join('/', $out);
+	}
+	return ($path{0} == '/' ? '/' : '') . join('/', $out);
 }
 
 function getRootPath() {
@@ -436,14 +437,14 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		}
 		$files = scandir($src);
 		foreach ($files as $file) {
-			if ($file != "." && $file != ".." && !in_array($file, $_exclude)) {
+			if ($file != "." && $file != ".." && !in_array($file, $_exclude) && !in_array(realpath($src . '/' . $file), $_exclude)) {
 				if (!rcopy($src . '/' . $file, $dst . '/' . $file, $_emptyDest, $_exclude, $_noError) && !$_noError) {
 					return false;
 				}
 			}
 		}
 	} else {
-		if (!in_array(basename($src), $_exclude)) {
+		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
 			if (!$_noError) {
 				return copy($src, $dst);
 			} else {

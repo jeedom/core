@@ -58,10 +58,10 @@ class network {
 			return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . config::byKey('internalComplement');
 
 		}
+		if ($_mode == 'dnsjeedom') {
+			return config::byKey('jeedom::url');
+		}
 		if ($_mode == 'external') {
-			if (strpos(config::byKey('externalAddr', 'core', $_default), 'http://') != false || strpos(config::byKey('externalAddr', 'core', $_default), 'https://') !== false) {
-				config::save('externalAddr', str_replace(array('http://', 'https://'), '', config::byKey('externalAddr', 'core', $_default)));
-			}
 			if ($_protocole == 'ip') {
 				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
 					return getIpFromString(config::byKey('jeedom::url'));
@@ -128,7 +128,6 @@ class network {
 	}
 
 	public static function checkConf($_mode = 'external') {
-
 		if ($_mode == 'internal') {
 			if (trim(config::byKey('internalComplement')) == '/') {
 				config::save('internalComplement', '');
@@ -139,21 +138,21 @@ class network {
 				if ($pos !== false) {
 					$internalAddr = substr($internalAddr, 0, $pos);
 				}
-				if ($internalAddr != config::byKey('internalAddr')) {
+				if ($internalAddr != config::byKey('internalAddr') && !netMatch('127.0.*.*', $internalAddr)) {
 					config::save('internalAddr', $internalAddr);
 				}
 			} else {
 				$internalIp = getHostByName(getHostName());
-				if ($internalIp == '127.0.0.1' || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
 					$internalIp = self::getInterfaceIp('eth0');
 				}
-				if ($internalIp == '127.0.0.1' || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
 					$internalIp = self::getInterfaceIp('bond0');
 				}
-				if ($internalIp == '127.0.0.1' || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
 					$internalIp = self::getInterfaceIp('wlan0');
 				}
-				if ($internalIp != '' && filter_var($internalIp, FILTER_VALIDATE_IP) && $internalIp != '127.0.0.1') {
+				if ($internalIp != '' && filter_var($internalIp, FILTER_VALIDATE_IP) && !netMatch('127.0.*.*', $internalIp)) {
 					config::save('internalAddr', $internalIp);
 				}
 			}
@@ -209,8 +208,11 @@ class network {
 		}
 	}
 
-	public static function test($_mode = 'external', $_test = true, $_timeout = 5) {
-		$url = self::getNetworkAccess($_mode, '', '', $_test) . '/here.html';
+	public static function test($_mode = 'external', $_test = true, $_timeout = 10) {
+		if ($_mode == 'internal' && netMatch('127.0.*.*', self::getNetworkAccess($_mode, 'ip', '', false))) {
+			return false;
+		}
+		$url = trim(self::getNetworkAccess($_mode, '', '', $_test), '/') . '/here.html';
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_TIMEOUT, $_timeout);
 		curl_setopt($ch, CURLOPT_URL, $url);
@@ -220,11 +222,13 @@ class network {
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		$data = curl_exec($ch);
 		if (curl_errno($ch)) {
+			log::add('network', 'debug', 'Erreur sur ' . $url . ' => ' . curl_errno($ch));
 			curl_close($ch);
 			return false;
 		}
 		curl_close($ch);
 		if (trim($data) != 'ok') {
+			log::add('network', 'debug', 'Retour NOK sur ' . $url . ' => ' . $data);
 			return false;
 		}
 		return true;
@@ -388,9 +392,6 @@ class network {
 				}
 				$replace['#remote_port#'] = 'remote_port: ' . $remote_port;
 			}
-			if (config::byKey('market::userDNS') != '' && config::byKey('market::passwordDNS') != '') {
-				$replace['#auth#'] = 'auth: "' . config::byKey('market::userDNS') . ':' . config::byKey('market::passwordDNS') . '"';
-			}
 			if ($_port != 80) {
 				$replace['#subdomain#'] .= $_name;
 			}
@@ -402,10 +403,6 @@ class network {
 			log::remove('ngrok');
 			log::add('ngork', 'debug', 'Lancement de ngork : ' . $cmd);
 			exec($cmd . ' >> /dev/null 2>&1 &');
-			sleep(2);
-			if ($_proto == 'https' && $_port == 80) {
-				market::test();
-			}
 		}
 
 		return true;
@@ -626,6 +623,11 @@ class network {
 			if ($route['gateway'] != '0.0.0.0' && $route['gateway'] != '127.0.0.1') {
 				exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
 				$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
+				if ($return[$route['iface']]['ping'] == 'nok') {
+					sleep(5);
+					exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
+					$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
+				}
 			} else {
 				$return[$route['iface']]['ping'] = 'nok';
 			}
@@ -634,64 +636,23 @@ class network {
 	}
 
 	public static function cron() {
-		if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
-			return;
-		}
 		$gws = self::checkGw();
-		if (count($gws) < 1) {
+		if (count($gws) == 0) {
+			log::add('network', 'error', __('Aucune interface réseau trouvée, je redemarre tous le réseaux', __FILE__));
+			exec('sudo service networking restart');
 			return;
 		}
-		foreach ($gws as $gw) {
-			if ($gw['ping'] == 'ok') {
-				if (config::byKey('network::lastNoGw', 'core', -1) != -1) {
-					config::save('network::lastNoGw', -1);
+		foreach ($gws as $iface => $gw) {
+			if ($gw['ping'] != 'ok') {
+				if (strpos($iface, 'tun') !== false) {
+					continue;
 				}
-				if (config::byKey('network::failedNumber', 'core', 0) != 0) {
-					config::save('network::failedNumber', 0);
-				}
-				return;
+				log::add('network', 'error', __('La passerelle distance de l\'interface ', __FILE__) . $iface . __(' est injoignable je la redemarre pour essayer de corriger', __FILE__));
+				exec('sudo ifdown ' . $iface);
+				sleep(5);
+				exec('sudo ifup --force ' . $iface);
 			}
 		}
-		$filepath = '/etc/network/interfaces';
-		if (config::byKey('network::failedNumber', 'core', 0) > 2 && file_exists($filepath . '.save') && self::ehtIsUp()) {
-			log::add('network', 'error', __('Aucune gateway trouvée depuis plus de 30min. Remise par defaut du fichier interface', __FILE__));
-			exec('sudo cp ' . $filepath . '.save ' . $filepath . '; sudo rm ' . $filepath . '.save ');
-			config::save('network::failedNumber', 0);
-			jeedom::rebootSystem();
-		}
-		$lastNoOk = config::byKey('network::lastNoGw', 'core', -1);
-		if ($lastNoOk < 0) {
-			config::save('network::lastNoGw', strtotime('now'));
-			return;
-		}
-		if ((strtotime('now') - $lastNoOk) < 600) {
-			return;
-		}
-		log::add('network', 'error', __('Il y a un probleme de connectivité réseaux. Aucune gateway d\'accessible. J\'essaye de corriger : ', __FILE__) . config::byKey('network::failedNumber', 'core', 0));
-		if (config::byKey('network::fixip::enable') == 1) {
-			log::add('network', 'error', __('Aucune gateway trouvée, la configuration IP fixe est surement invalide. Désactivation de celle-ci et redémarrage', __FILE__));
-			config::save('network::fixip::enable', 0);
-			config::save('network::lastNoGw', -1);
-			config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
-			self::writeInterfaceFile();
-			jeedom::rebootSystem();
-			return;
-		}
-		if (config::byKey('network::wifi::enable') == 1 && config::byKey('network::wifi::ssid') != '' && config::byKey('network::wifi::password') != '') {
-			log::add('network', 'error', __('Aucune gateway trouvée, redémarrage de l\'interface wifi', __FILE__));
-			config::save('network::lastNoGw', -1);
-			exec('sudo ifdown wlan0');
-			sleep(5);
-			exec('sudo ifup --force wlan0');
-			config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
-			return;
-		}
-		log::add('network', 'error', __('Aucune gateway trouvée, redémarrage de l\'interface filaire', __FILE__));
-		config::save('network::lastNoGw', -1);
-		config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
-		exec('sudo ifdown eth0');
-		sleep(5);
-		exec('sudo ifup --force eth0');
 	}
 
 }

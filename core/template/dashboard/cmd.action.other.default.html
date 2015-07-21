@@ -1,19 +1,12 @@
 <span class="cmd" data-type="action" data-subtype="other" data-cmd_id="#id#">
-    <a class="btn btn-xs btn-default action cmdName" style="margin-top : 3px;border: none;border-radius : 0px;color:black;">#name#</a>
+    <a class="btn btn-xs btn-default action cmdName" style="margin-top:5px;">#name#</a>
     <script>
-        $('.cmd[data-cmd_id=#id#] .action').off();
-        $('.cmd[data-cmd_id=#id#] .action').on('click', function () {
+        $('.cmd[data-cmd_id=#id#] .action').off('click').on('click', function () {
             jeedom.cmd.execute({id: '#id#'});
         });
         if ($('.cmd[data-cmd_id=#id#]').prev().data('subtype') != undefined && $('.cmd[data-cmd_id=#id#]').prev().data('subtype') != 'other'
                 && $('.cmd[data-cmd_id=#id#]').prev().css('display') != 'block') {
             $('.cmd[data-cmd_id=#id#]').prepend('<br/>');
         }
-        setTimeout(function () {
-            if ($('.cmd[data-cmd_id=#id#]').next().data('subtype') != undefined && $('.cmd[data-cmd_id=#id#]').next().data('subtype') != 'other'
-                    && $('.cmd[data-cmd_id=#id#]').next().css('display') != 'block') {
-                $('.cmd[data-cmd_id=#id#]').append('<br/>');
-            }
-        }, 100);
     </script>
 </span>

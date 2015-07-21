@@ -14,7 +14,7 @@
 install_msg_en() {
     msg_installer_welcome="*      Welcome to the Jeedom installer/updater        *"
     msg_usage1="Usage: $0 [<webserver_name>]"
-    msg_usage2="            webserver_name can be 'nginx_ssl' or 'nginx' (default)"
+    msg_usage2="            webserver_name can be 'nginx' (default)"
     msg_manual_install_nodejs_ARM="*          Manual installation of nodeJS for ARM       *"
     msg_manual_install_nodejs_RPI="*     Manual installation of nodeJS for Raspberry      *"
     msg_nginx_config="*                  NGINX configuration                 *"
@@ -61,7 +61,7 @@ install_msg_en() {
 install_msg_fr() {
     msg_installer_welcome="*Bienvenue dans l'assistant d'intallation/mise à jour de Jeedom*"
     msg_usage1="Utilisation: $0 [<nom_du_webserver>]"
-    msg_usage2="             nom_du_webserver peut être 'nginx_ssl' ou 'nginx' (par défaut)"
+    msg_usage2="             nom_du_webserver peut être 'nginx' (par défaut)"
     msg_manual_install_nodejs_ARM="*        Installation manuelle de nodeJS pour ARM       *"
     msg_manual_install_nodejs_RPI="*     Installation manuelle de nodeJS pour Raspberry    *"
     msg_nginx_config="*                Configuration de NGINX                *"
@@ -108,7 +108,7 @@ install_msg_fr() {
 install_msg_de() {
     msg_installer_welcome="*      Willkommen beim Jeedom Installer / Updater        *"
     msg_usage1="Einsatz: $0 [<Name_des_Webservers>]"
-    msg_usage2="            Webserver_Name kann "nginx_ssl" oder "nginx" (Standard) sein"
+    msg_usage2="            Webserver_Name kann 'nginx' (Standard) sein"
     msg_manual_install_nodejs_ARM="*          Manuelle Installation von nodejs für ARM      *"
     msg_manual_install_nodejs_RPI="*     Manuelle Installation von nodejs für Raspberry     *"
     msg_nginx_config="*                  NGINX Konfiguration                 *"
@@ -190,60 +190,18 @@ configure_php() {
 
 
 install_nodejs() {
-    # Check if nodeJS v0.10.25 is installed,
-    # otherwise, try to install it from various sources (official,
-    # backport, jeedom.fr)
-
+    # Check if nodeJS v0.12.7 is installed,
+    # otherwise, try to install it from various sources
     check_nodejs_version
     [ $? -eq 1 ] && return
-
-    # If running wheezy, try wheezy-backport
-    if [ -n "`grep wheezy /etc/apt/sources.list`" ] ; then
-        if [ -z "`grep wheezy-backports /etc/apt/sources.list`" ] ; then
-            # apply wheezy-backport patch
-            echo "deb http://http.debian.net/debian wheezy-backports main" >> /etc/apt/sources.list
-
-            # Add wheezy-backport keyring
-            gpg --keyserver pgpkeys.mit.edu --recv 8B48AD6246925553
-            gpg --export --armor 8B48AD6246925553 > missingkey.gpg
-            apt-key add missingkey.gpg
-            rm -f missingkey.gpg
-        fi
-            # otherwise, Jessie is good ; other-otherwise ?
-
-            apt-get update
-
-        # Install nodeJS
-        apt-get -t wheezy-backports -y install nodejs libev4 libv8-3.8.9.20
+    if [ -f /usr/bin/raspi-config ]; then
+        curl -sLS https://apt.adafruit.com/add | sudo bash
+        apt-get -y install node
+        ln -s /usr/bin/node /usr/bin/nodejs
     else
-        # else, simply try to install
+        curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
         apt-get -y install nodejs
-    fi
-
-    # Seems buggy on Raspbian (throw 'Illegal instruction')
-    check_nodejs_version
-    [ $? -eq 1 ] && return
-    
-    # Fallback, if APT method failed
-    if [ $? -ne 0 ] ; then
-        ARM=$(uname -a | grep arm | wc -l)
-        if [ $( cat /etc/os-release | grep raspbian | wc -l) -gt 0 ] ; then
-            echo "********************************************************"
-            echo "${msg_manual_install_nodejs_RPI}"
-            echo "********************************************************"
-            wget --no-check-certificate http://jeedom.fr/ressources/nodejs/node-raspberry.bin
-            rm -rf /usr/local/bin/node
-            rm -rf /usr/bin/nodejs
-            mv node-raspberry.bin /usr/local/bin/node
-            ln -s /usr/local/bin/node /usr/bin/nodejs
-            chmod +x /usr/local/bin/node
-        fi
-    fi
-    
-    # Remove wheezy-backports
-    if [ -n "`grep wheezy-backports /etc/apt/sources.list`" ] ; then
-        cat /etc/apt/sources.list | sed 's/deb http:\/\/http.debian.net\/debian wheezy-backports main//' > sources.list
-        mv -f sources.list /etc/apt/sources.list
+         ln -s /usr/bin/nodejs /usr/bin/node
     fi
 }
 
@@ -358,9 +316,8 @@ is_version_greater_or_equal() {
 check_nodejs_version() {
     # Check if nodeJS v0.10.25 (or higher) is installed.
     # Return 1 of true, 0 (or else) otherwise
-
     NODEJS_VERSION="`nodejs -v 2>/dev/null  | sed 's/["v]//g'`"
-    is_version_greater_or_equal "${NODEJS_VERSION}" "0.10.25"
+    is_version_greater_or_equal "${NODEJS_VERSION}" "0.12.7"
     RETVAL=$?
     case ${RETVAL} in
         1)
@@ -470,6 +427,7 @@ install_dependency() {
     apt-get -y install ffmpeg
     apt-get -y install avconv
     apt-get -y install libudev1
+    apt-get -y install curl
 
     pecl install oauth
     if [ $? -eq 0 ] ; then
@@ -519,39 +477,6 @@ case ${webserver} in
         webserver_home="/usr/share/nginx/www"
         croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
     ;;
-    nginx_ssl)
-        # Configuration
-        webserver_home="/usr/share/nginx/www"
-        configure_nginx_ssl
-        exit 1
-    ;;
-    update_nginx)
-        # Configuration
-        webserver_home="/usr/share/nginx/www"
-        echo "********************************************************"
-        echo "${msg_install_deps}"
-        echo "********************************************************"
-        install_dependency
-        install_dependency_nginx
-
-        cd $webserver_home/jeedom
-        configure_nginx
-
-        echo "********************************************************"
-        echo "${msg_setup_nodejs_service}"
-        echo "********************************************************"
-        cp jeedom /etc/init.d/
-        chmod +x /etc/init.d/jeedom
-        update-rc.d jeedom defaults
-
-        echo "********************************************************"
-        echo "${msg_startup_nodejs_service}"
-        echo "********************************************************"
-        service jeedom restart
-        echo '[END UPDATE SUCCESS]'
-        service php5-fpm restart
-        exit 1
-    ;;
     *)
         usage_help
         exit 1
@@ -581,10 +506,7 @@ echo "${msg_install_deps}"
 echo "********************************************************"
 
 install_dependency
-if [ "${webserver}" = "nginx" ] ; then 
-    # Packages dependencies
-    install_dependency_nginx
-fi
+install_dependency_nginx
 
 echo "${msg_passwd_mysql}"
 while true ; do
@@ -606,7 +528,7 @@ while true ; do
     if [ "${ANSWER}" = "${msg_yes}" ] ; then
         # Test access immediately
         # to ensure that the provided password is valid
-        CMD="`echo "show databases;" | mysql -uroot -p${MySQL_root}`"
+        echo "show databases;" | mysql -uroot -p${MySQL_root}
         if [ $? -eq 0 ] ; then
             # good password
             break

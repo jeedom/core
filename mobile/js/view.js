@@ -30,24 +30,24 @@ function initView(_view_id) {
 
     $(window).on("orientationchange", function (event) {
         if (deviceInfo.type == 'phone') {
-            $('.chartContainer').width((deviceInfo.width - 50));
+            $('.chartContainer').width((deviceInfo.width - 20));
         } else {
-            $('.chartContainer').width(((deviceInfo.width / 2) - 50));
+            $('.chartContainer').width(((deviceInfo.width / 2) - 20));
         }
         setTileSize('.eqLogic');
         setTileSize('.scenario');
-        $('.eqLogicZone').packery();
+        $('.eqLogicZone').packery({gutter : 4});
     });
 }
 
 function displayView(html) {
     $('#div_displayView').empty().html(html.html).trigger('create');
     if (deviceInfo.type == 'phone') {
-        $('.chartContainer').width((deviceInfo.width - 50));
+        $('.chartContainer').width((deviceInfo.width - 20));
     } else {
-        $('.chartContainer').width(((deviceInfo.width / 2) - 50));
+        $('.chartContainer').width(((deviceInfo.width / 2) - 20));
     }
     setTileSize('.eqLogic');
     setTileSize('.scenario');
-    $('.eqLogicZone').packery();
+    $('.eqLogicZone').packery({gutter : 4});
 }

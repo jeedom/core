@@ -257,7 +257,7 @@ foreach ($usedBy['interact'] as $usedByInteract) {
 <div class="cmdCheckAction scenario" style="display : none;">
  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
    <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdScenarioActionMode" >
-     <option value="launch">{{Lancer}}</option>
+     <option value="start">{{Lancer}}</option>
      <option value="stop">{{Arrêter}}</option>
      <option value="activate">{{Activer}}</option>
      <option value="deactivate">{{Désactiver}}</option>
@@ -402,16 +402,16 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
      </td>
    </tr>
    <tr>
-    <td>{{Ne pas afficher le nom}}</td>
-    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
-    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
+    <td>{{Afficher le nom}}</td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
     <td></td>
   </tr>
   <tr>
-    <td>{{Ne pas afficher les statistiques}}</td>
-    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnDashboard" /></td>
-    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnView" /></td>
-    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnMobile" /></td>
+    <td>{{Afficher les statistiques}}</td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnDashboard" /></td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnView" /></td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnMobile" /></td>
   </tr>
 </tbody>
 </table>

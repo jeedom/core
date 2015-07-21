@@ -233,6 +233,35 @@ class plugin {
 		return config::byKey('active', $this->id);
 	}
 
+	public function callInstallFunction($_function) {
+		if (strpos($_function, 'pre_') !== false) {
+			log::add('plugin', 'debug', 'Recherche de ' . dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/pre_install.php');
+			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/pre_install.php')) {
+				log::add('plugin', 'debug', 'Fichier d\'installation trouvé pour  : ' . $this->getId());
+				require_once dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/pre_install.php';
+				ob_start();
+				$function = $this->getId() . '_' . $_function;
+				if (function_exists($this->getId() . '_' . $_function)) {
+					$function();
+				}
+				return ob_get_clean();
+			}
+		} else {
+			log::add('plugin', 'debug', 'Recherche de ' . dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/install.php');
+			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/install.php')) {
+				log::add('plugin', 'debug', 'Fichier d\'installation trouvé pour  : ' . $this->getId());
+				require_once dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/install.php';
+				ob_start();
+				$function = $this->getId() . '_' . $_function;
+				if (function_exists($this->getId() . '_' . $_function)) {
+					$function();
+				}
+				return ob_get_clean();
+			}
+		}
+
+	}
+
 	public function setIsEnable($_state) {
 		if (version_compare(jeedom::version(), $this->getRequire()) == -1 && $_state == 1) {
 			throw new Exception('Votre version de jeedom n\'est pas assez récente pour activer ce plugin');
@@ -262,35 +291,19 @@ class plugin {
 			}
 		}
 		try {
-			log::add('plugin', 'debug', 'Recherche de ' . dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/install.php');
-			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/install.php')) {
-				log::add('plugin', 'debug', 'Fichier d\'installation trouvé pour  : ' . $this->getId());
-				require dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/install.php';
-				ob_start();
-				if ($_state == 1) {
-					if ($alreadyActive == 1) {
-						$function = $this->getId() . '_update';
-						if (function_exists($this->getId() . '_update')) {
-							$function();
-						}
-					} else {
-						$function = $this->getId() . '_install';
-						if (function_exists($function)) {
-							$function();
-						}
-					}
+			if ($_state == 1) {
+				if ($alreadyActive == 1) {
+					$out = $this->callInstallFunction('update');
 				} else {
-					if ($alreadyActive == 1) {
-						$function = $this->getId() . '_remove';
-						if (function_exists($this->getId() . '_remove')) {
-							$function();
-						}
-					}
+					$out = $this->callInstallFunction('install');
 				}
-				$out = ob_get_clean();
-				if (trim($out) != '') {
-					log::add($this->getId(), 'info', "Installation/remove/update result : " . $out);
+			} else {
+				if ($alreadyActive == 1) {
+					$out = $this->callInstallFunction('remove');
 				}
+			}
+			if (isset($out) && trim($out) != '') {
+				log::add($this->getId(), 'info', "Installation/remove/update result : " . $out);
 			}
 		} catch (Exception $e) {
 			config::save('active', $alreadyActive, $this->getId());

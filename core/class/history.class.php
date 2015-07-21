@@ -628,6 +628,10 @@ where prev_value <> value' . $_condition . '';
 	public function save($_cmd = null, $_direct = false) {
 		if ($_cmd == null) {
 			$cmd = $this->getCmd();
+			if (!is_object($cmd)) {
+				self::emptyHistory($this->getCmd_id());
+				return;
+			}
 		} else {
 			$cmd = $_cmd;
 		}

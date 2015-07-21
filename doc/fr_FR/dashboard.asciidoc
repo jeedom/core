@@ -1,3 +1,5 @@
+:icons: font
+
 = Dashboard
 
 Une des pages principale de Jeedom celle-ci affiche un compte rendu de toute votre domotique. Ce compte-rendu (contrairement aux vues et design) est auto-generé par Jeedom.
@@ -21,7 +23,9 @@ Au milieu vous pouvez choisir de ne filtrer que sur certain type d'équipement :
 
 image::../images/dashboard3.JPG[]
 
-Enfin tout à droite vous avez un bouton pour afficher/masquer les scénarios :
+A droite un premier bouton pour passer en mode édition, pour par exemple modifier l'ordre des widgets (à l'aide d'un cliqué déposé sur le widget), vous pouvez aussi dans ce mode édition redimensionner certain widget et reorganiser l'ordre des commandes à l'interieur de celui-ci
+
+Puis un bouton pour afficher/masquer les scénarios :
 
 image::../images/dashboard4.JPG[]
 
