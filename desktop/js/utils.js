@@ -275,7 +275,8 @@ function initMultiSelect(){
         selectAllText: '{{Sélectionner tous}}',
         enableFiltering: true,
         filterPlaceholder: 'Rechercher...',
-         enableCaseInsensitiveFiltering: false
+         enableCaseInsensitiveFiltering: false,
+         nonSelectedText: 'Aucune option selectionnée'
     });
 }
 
