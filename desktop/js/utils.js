@@ -105,8 +105,8 @@ setInterval(function () {
     $("#md_reportBug").dialog({
         autoOpen: false,
         modal: true,
-        height: 700,
-        width: 900,
+        height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
+        width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
         position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'})
