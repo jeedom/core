@@ -708,7 +708,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas autoriser les messages des plugins}}</label>
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas autoriser les messages venant de}}</label>
                         <div class="col-sm-1">
                             <select multiple="multiple" class="configKey bootstrapMultiselect" data-l1key="message::disallowPlugin">
                               <?php
