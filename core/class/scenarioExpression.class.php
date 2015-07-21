@@ -897,17 +897,50 @@ class scenarioExpression {
 							$scenario->persistLog();
 						}
 					}
+					return;
 				} else if ($this->getExpression() == 'message') {
 					message::add('scenario', $options['message']);
+					return;
+				} else if ($this->getExpression() == 'equipement') {
+					$eqLogic = eqLogic::byId(str_replace(array('#eqLogic', '#'), '', $this->getOptions('eqLogic')));
+					if (!is_object($eqLogic)) {
+						throw new Exception(__('Action sur l\'équipement impossible. Equipement introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('eqLogic'));
+					}
+					switch ($this->getOptions('action')) {
+						case 'show':
+							$this->setLog($scenario, __('Equipement visible : ', __FILE__) . $eqLogic->getHumanName());
+							$eqLogic->setIsVisible(1);
+							$eqLogic->save();
+							break;
+						case 'hide':
+							$this->setLog($scenario, __('Equipement masqué : ', __FILE__) . $eqLogic->getHumanName());
+							$eqLogic->setIsVisible(0);
+							$eqLogic->save();
+							break;
+						case 'deactivate':
+							$this->setLog($scenario, __('Equipement désactivé : ', __FILE__) . $eqLogic->getHumanName());
+							$eqLogic->setIsActive(0);
+							$eqLogic->save();
+							break;
+						case 'activate':
+							$this->setLog($scenario, __('Equipement activé : ', __FILE__) . $eqLogic->getHumanName());
+							$eqLogic->setIsActive(1);
+							$eqLogic->save();
+							break;
+					}
+					return;
 				} else if ($this->getExpression() == 'say') {
 					$this->setLog($scenario, __('Je dis : ', __FILE__) . $options['message']);
 					nodejs::pushUpdate('jeedom::say', $options['message']);
+					return;
 				} else if ($this->getExpression() == 'gotodesign') {
 					$this->setLog($scenario, __('Changement design : ', __FILE__) . $options['plan_id']);
 					nodejs::pushUpdate('jeedom::gotoplan', $options['plan_id']);
+					return;
 				} else if ($this->getExpression() == 'return') {
 					$this->setLog($scenario, __('Je vais retourner : ', __FILE__) . $options['message']);
 					$scenario->setReturn($scenario->getReturn() . $options['message']);
+					return;
 				} else if ($this->getExpression() == 'scenario') {
 					if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
 						$actionScenario = &$scenario;

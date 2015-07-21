@@ -328,6 +328,7 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 * *gotodesign* : change le design affiché sur tous les navigateurs qui affichage un design par le design demandé
 * *log* : permet de rajouter un message dans les logs
 * *message* : permet d'ajouter une message dans le centre de message
+* *equipement* : permet de modifier les prorietés visible/invisible actif/inactif d'un équipement
              
 === Code
 

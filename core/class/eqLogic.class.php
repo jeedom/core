@@ -388,19 +388,17 @@ class eqLogic {
 			return $_input;
 		}
 		$text = $_input;
-
 		preg_match_all("/#\[(.*?)\]\[(.*?)\]#/", $text, $matches);
 		if (count($matches) == 3) {
 			for ($i = 0; $i < count($matches[0]); $i++) {
 				if (isset($matches[1][$i]) && isset($matches[2][$i])) {
 					$eqLogic = self::byObjectNameEqLogicName($matches[1][$i], $matches[2][$i]);
-					if (is_object($eqLogic)) {
-						$text = str_replace($matches[0][$i], '#eqLogic' . $eqLogic->getId() . '#', $text);
+					if (isset($eqLogic[0]) && is_object($eqLogic[0])) {
+						$text = str_replace($matches[0][$i], '#eqLogic' . $eqLogic[0]->getId() . '#', $text);
 					}
 				}
 			}
 		}
-
 		return $text;
 	}
 
