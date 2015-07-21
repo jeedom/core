@@ -239,9 +239,9 @@ setInterval(function () {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-       $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
-       $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
-   });
+     $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
+     $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
+ });
 
     $('#bt_gotoDashboard').on('click',function(){
         window.location.href = 'index.php?v=d&p=dashboard';
@@ -268,6 +268,17 @@ function initCheckBox(){
     $("input[type=checkbox].bootstrapSwitch").bootstrapSwitch();
 }
 
+function initMultiSelect(){
+    $("select[multiple=multiple].bootstrapMultiselect").multiselect({ 
+        maxHeight: 300,
+        includeSelectAllOption: true,
+        selectAllText: '{{Sélectionner tous}}',
+        enableFiltering: true,
+        filterPlaceholder: 'Rechercher...',
+         enableCaseInsensitiveFiltering: false
+    });
+}
+
 function initPage(){
     initTooltips();
     initTableSorter();
@@ -275,6 +286,7 @@ function initPage(){
     $.initTableFilter();
     initRowOverflow();
     initCheckBox();
+    initMultiSelect();
 }
 
 function linkify(inputText) {
