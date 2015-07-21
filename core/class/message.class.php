@@ -32,13 +32,8 @@ class message {
 	/*     * ***********************Methode static*************************** */
 
 	public static function add($_type, $_message, $_action = '', $_logicalId = '') {
-		try {
-			plugin::byId($_type);
-			$list_plugin = config::byKey('message::disallowPlugin', 'core', array());
-			if (in_array($_type, $list_plugin)) {
-				return;
-			}
-		} catch (Exception $e) {
+		if (in_array($_type, $list_plugin)) {
+			return;
 		}
 		$message = new message();
 		$message->setPlugin($_type);
