@@ -127,7 +127,7 @@ if (version_compare($version, '0.12', '>=')) {
 		</tr>
 
 				<tr>
-			<td style="font-weight : bold;">{{Espace disque}}</td>
+			<td style="font-weight : bold;">{{Espace disque libre}}</td>
 			<?php
 $value = jeedom::checkSpaceLeft();
 if ($value > 10) {
