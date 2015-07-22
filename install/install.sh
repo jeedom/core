@@ -527,7 +527,7 @@ while true ; do
     if [ "${ANSWER}" = "${msg_yes}" ] ; then
         # Test access immediately
         # to ensure that the provided password is valid
-        echo "show databases;" | mysql -uroot -p${MySQL_root}
+        echo "show databases;" | mysql -uroot -p"${MySQL_root}"
         if [ $? -eq 0 ] ; then
             # good password
             break
@@ -572,11 +572,11 @@ echo "********************************************************"
 echo "${msg_config_db}"
 echo "********************************************************"
 bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
-echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p${MySQL_root}
-echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p${MySQL_root}
-echo "DROP DATABASE IF EXISTS jeedom;" | mysql -uroot -p${MySQL_root}
-echo "CREATE DATABASE jeedom;" | mysql -uroot -p${MySQL_root}
-echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p${MySQL_root}
+echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p"${MySQL_root}"
+echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p"${MySQL_root}"
+echo "DROP DATABASE IF EXISTS jeedom;" | mysql -uroot -p"${MySQL_root}"
+echo "CREATE DATABASE jeedom;" | mysql -uroot -p"${MySQL_root}"
+echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p"${MySQL_root}"
 
 echo "********************************************************"
 echo "${msg_install_jeedom}"
