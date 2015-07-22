@@ -134,9 +134,9 @@ foreach (plugin::listPlugin() as $pluginList) {
                     <fieldset>
                         <legend>{{Général}}</legend>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Ne pas masquer les menus automatiquement}}</label>
+                            <label class="col-sm-3 control-label">{{Masquer les menus automatiquement}}</label>
                             <div class="col-sm-1">
-                                <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
+                                <input type="checkbox" class="userAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
                             </div>
                         </div>
 

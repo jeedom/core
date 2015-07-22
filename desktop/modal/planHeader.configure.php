@@ -44,9 +44,9 @@ sendVarToJS('id', $planHeader->getId())
             </div>
         </div>
         <div class="form-group expertModeVisible">
-            <label class="col-lg-4 control-label">{{Ne pas afficher la flèche de retour lors de la mise en plein écran}}</label>
+            <label class="col-lg-4 control-label">{{Afficher la flèche de retour lors de la mise en plein écran}}</label>
             <div class="col-lg-4">
-                <input type="checkbox" class="planHeaderAttr bootstrapSwitch" data-l1key='configuration' data-l2key="noReturnFullScreen" />
+                <input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" class="planHeaderAttr bootstrapSwitch" data-l1key='configuration' data-l2key="noReturnFullScreen" />
             </div>
         </div>
         <legend>{{Tailles}}</legend>
