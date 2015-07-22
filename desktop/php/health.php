@@ -142,3 +142,39 @@ if ($value > 10) {
 
 	</tbody>
 </table>
+
+<?php
+foreach (plugin::listPlugin(true) as $plugin) {
+	try {
+		if (method_exists($plugin->getId(), 'health')) {
+			echo '<legend>{{Santé }} ' . $plugin->getName() . '</legend>';
+			echo '<table class="table table-condensed table-bordered">';
+			echo '<thead><tr><th style="width : 250px;"></th><th style="width : 150px;">{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>';
+			echo '<tbody>';
+			$name = $plugin->getId();
+			foreach ($name::health() as $result) {
+				echo '<tr>';
+				echo '<td>';
+				echo $result['test'];
+				echo '</td>';
+				if ($result['state']) {
+					echo '<td class="alert alert-success">';
+				} else {
+					echo '<td class="alert alert-danger">';
+				}
+				echo $result['result'];
+				echo '</td>';
+				echo '<td>';
+				echo $result['advice'];
+				echo '</td>';
+				echo '</tr>';
+			}
+			echo '</tbody>';
+			echo '</table>';
+		}
+	} catch (Exception $e) {
+
+	}
+
+}
+?>
