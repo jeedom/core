@@ -7,6 +7,20 @@ if (!hasRight('health', true)) {
 <table class="table table-condensed table-bordered">
 	<thead><tr><th style="width : 250px;"></th><th style="width : 150px;">{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>
 	<tbody>
+	<tr>
+			<td style="font-weight : bold;">{{Système à jour}}</td>
+			<?php
+$nbNeedUpdate = update::nbNeedUpdate();
+if ($nbNeedUpdate > 0) {
+	echo '<td class="alert alert-danger">' . $nbNeedUpdate . '</td>';
+	echo '<td></td>';
+} else {
+	echo '<td class="alert alert-success">{{OK}}</td>';
+	echo '<td></td>';
+}
+?>
+		</tr>
+
 		<tr>
 			<td style="font-weight : bold;">{{Lancement des crons}}</td>
 			<?php
