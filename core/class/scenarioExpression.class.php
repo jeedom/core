@@ -918,12 +918,12 @@ class scenarioExpression {
 							break;
 						case 'deactivate':
 							$this->setLog($scenario, __('Equipement désactivé : ', __FILE__) . $eqLogic->getHumanName());
-							$eqLogic->setIsActive(0);
+							$eqLogic->setIsEnable(0);
 							$eqLogic->save();
 							break;
 						case 'activate':
 							$this->setLog($scenario, __('Equipement activé : ', __FILE__) . $eqLogic->getHumanName());
-							$eqLogic->setIsActive(1);
+							$eqLogic->setIsEnable(1);
 							$eqLogic->save();
 							break;
 					}
