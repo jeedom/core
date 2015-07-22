@@ -629,7 +629,7 @@ class network {
 					$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
 				}
 			} else {
-				$return[$route['iface']]['ping'] = 'nok';
+				$return[$route['iface']]['ping'] = 'ok';
 			}
 		}
 		return $return;
