@@ -5,7 +5,7 @@ if (!hasRight('health', true)) {
 ?>
 <legend>{{Santé de Jeedom}}</legend>
 <table class="table table-condensed table-bordered">
-	<thead><tr><th></th><th>{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>
+	<thead><tr><th style="width : 250px;"></th><th style="width : 150px;">{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>
 	<tbody>
 		<tr>
 			<td style="font-weight : bold;">{{Lancement des crons}}</td>
@@ -47,7 +47,7 @@ if (config::byKey('enableScenario') == 0 && count(scenario::all()) > 0) {
 		</tr>
 
 		<tr>
-			<td style="font-weight : bold;">{{En cours de démarrage}}</td>
+			<td style="font-weight : bold;">{{Démarré}}</td>
 			<?php
 if (!jeedom::isStarted()) {
 	echo '<td class="alert alert-danger">{{NOK}}</td>';
@@ -60,7 +60,7 @@ if (!jeedom::isStarted()) {
 		</tr>
 
 		<tr>
-			<td style="font-weight : bold;">{{Date système OK}}</td>
+			<td style="font-weight : bold;">{{Date système}}</td>
 			<?php
 if (!jeedom::isDateOk()) {
 	echo '<td class="alert alert-danger">' . date('Y-m-d H:i:s') . '</td>';
@@ -87,7 +87,7 @@ if (user::hasDefaultIdentification() == 1) {
 		</tr>
 
 		<tr>
-			<td style="font-weight : bold;">{{Droit sudo}}</td>
+			<td style="font-weight : bold;">{{Droits sudo}}</td>
 			<?php
 if (jeedom::isCapable('sudo')) {
 	echo '<td class="alert alert-success">{{OK}}</td>';
