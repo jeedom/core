@@ -126,5 +126,19 @@ if (version_compare($version, '0.12', '>=')) {
 ?>
 		</tr>
 
+				<tr>
+			<td style="font-weight : bold;">{{Espace disque}}</td>
+			<?php
+$value = jeedom::checkSpaceLeft();
+if ($value > 10) {
+	echo '<td class="alert alert-success">' . $value . ' %</td>';
+	echo '<td></td>';
+} else {
+	echo '<td class="alert alert-danger">' . $value . ' %</td>';
+	echo '<td></td>';
+}
+?>
+		</tr>
+
 	</tbody>
 </table>

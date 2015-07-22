@@ -452,7 +452,6 @@ class jeedom {
 			try {
 				log::chunk();
 				cron::clean();
-				self::checkSpaceLeft();
 			} catch (Exception $e) {
 				log::add('log', 'error', $e->getMessage());
 			}
@@ -556,15 +555,7 @@ class jeedom {
 		$path = dirname(__FILE__) . '/../../';
 		$free = disk_free_space($path);
 		$total = disk_total_space($path);
-		$pourcent = $free / $total * 100;
-		if ($pourcent < 5) {
-			log::add('space', 'error', __('Vous n\'avez plus beaucoup d\'espace disque : ', __FILE__) . $pourcent . '%', 'noSpaceLeft');
-			exec('sudo apt-get clean');
-		}
-		if (($free / 1024 / 1024) < 100) {
-			log::add('space', 'error', __('Vous n\'avez plus beaucoup d\'espace disque : ', __FILE__) . ($free / 1024 / 1024) . ' Mo', 'noSpaceLeft');
-			exec('sudo apt-get clean');
-		}
+		return round($free / $total * 100);
 	}
 
 /*     * ****************************SQL BUDDY*************************** */
