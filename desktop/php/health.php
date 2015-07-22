@@ -173,14 +173,14 @@ if (network::test('external')) {
 foreach (plugin::listPlugin(true) as $plugin) {
 	try {
 		if (method_exists($plugin->getId(), 'health')) {
-			echo '<legend>{{Santé }} ' . $plugin->getName() . '</legend>';
+			echo '<legend><i class="' . $plugin->getIcon() . '"></i> {{Santé }} ' . $plugin->getName() . '</legend>';
 			echo '<table class="table table-condensed table-bordered">';
 			echo '<thead><tr><th style="width : 250px;"></th><th style="width : 150px;">{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>';
 			echo '<tbody>';
 			$name = $plugin->getId();
 			foreach ($name::health() as $result) {
 				echo '<tr>';
-				echo '<td>';
+				echo '<td style="font-weight : bold;">';
 				echo $result['test'];
 				echo '</td>';
 				if ($result['state']) {
