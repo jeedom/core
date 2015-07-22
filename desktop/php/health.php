@@ -126,7 +126,7 @@ if (version_compare($version, '0.12', '>=')) {
 ?>
 		</tr>
 
-				<tr>
+		<tr>
 			<td style="font-weight : bold;">{{Espace disque libre}}</td>
 			<?php
 $value = jeedom::checkSpaceLeft();
@@ -136,6 +136,32 @@ if ($value > 10) {
 } else {
 	echo '<td class="alert alert-danger">' . $value . ' %</td>';
 	echo '<td></td>';
+}
+?>
+		</tr>
+
+		<tr>
+			<td style="font-weight : bold;">{{Configuration réseaux interne}}</td>
+			<?php
+if (network::test('internal')) {
+	echo '<td class="alert alert-success">{{OK}}</td>';
+	echo '<td></td>';
+} else {
+	echo '<td class="alert alert-danger">{{NOK}}</td>';
+	echo '<td>{{Allez sur Général -> Administration -> Configuration puis configurez correctement la partie réseaux}}</td>';
+}
+?>
+		</tr>
+
+		<tr>
+			<td style="font-weight : bold;">{{Configuration réseaux externe}}</td>
+			<?php
+if (network::test('external')) {
+	echo '<td class="alert alert-success">{{OK}}</td>';
+	echo '<td></td>';
+} else {
+	echo '<td class="alert alert-danger">{{NOK}}</td>';
+	echo '<td>{{Allez sur Général -> Administration -> Configuration puis configurez correctement la partie réseaux}}</td>';
 }
 ?>
 		</tr>
