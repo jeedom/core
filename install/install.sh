@@ -427,7 +427,6 @@ install_dependency() {
     apt-get -y install ffmpeg
     apt-get -y install avconv
     apt-get -y install libudev1
-    apt-get -y install curl
 
     pecl install oauth
     if [ $? -eq 0 ] ; then
