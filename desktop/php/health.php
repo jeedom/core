@@ -102,7 +102,7 @@ if (jeedom::isCapable('sudo')) {
 		<tr>
 			<td style="font-weight : bold;">{{Version PHP}}</td>
 			<?php
-if (version_compare(phpversion(), '5.5.0', '>=')) {
+if (version_compare(phpversion(), '5.5', '>=')) {
 	echo '<td class="alert alert-success">' . phpversion() . '</td>';
 	echo '<td></td>';
 } else {
@@ -116,7 +116,7 @@ if (version_compare(phpversion(), '5.5.0', '>=')) {
 			<td style="font-weight : bold;">{{Version NodeJS}}</td>
 			<?php
 $version = str_replace('v', '', shell_exec('nodejs -v'));
-if (version_compare($version, '0.12.0', '>=')) {
+if (version_compare($version, '0.12', '>=')) {
 	echo '<td class="alert alert-success">' . $version . '</td>';
 	echo '<td></td>';
 } else {
