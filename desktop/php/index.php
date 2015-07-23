@@ -309,8 +309,8 @@ if (hasRight('backupview', true)) {
 }
 		if (hasRight('sysinfo', true)) {
 			?>
-<li class="expertModeVisible"><a href="index.php?v=d&p=health"><i class="fa fa-medkit"></i> {{Santé}}</a></li>
-<?php
+																	<li><a href="index.php?v=d&p=health"><i class="fa fa-medkit"></i> {{Santé}}</a></li>
+																	<?php
 }
 
 		if (hasRight('customview', true)) {

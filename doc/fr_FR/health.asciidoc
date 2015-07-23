@@ -1,0 +1,15 @@
+= Santé
+
+La page de santé de Jeedom vous permet d'avoir un aperçu rapide de l'état de santé de votre Jeedom. Il indique aussi (si les plugins l'utilise), l'état de santé par plugin
+
+Il est accessible par Général -> Administration -> Santé
+
+image::../images/health1.png[]
+
+Une fois dessus voila ce que vous avez : 
+
+image::../images/health2.png[]
+
+Vous retrouvé ici un tableau qui donne une description de ce que Jeedom verifie et du statut de celle-ci dans la 2eme colonne, enfin la derniere colonne peut vous donner des conseils de résolution si la vérification n'est pas OK
+
+En dessous vous retrouvez les meme tableau mais par plugin (si le plugin est compatible). Un clic sur le nom du plugin vous amène directement sur sa page de configuration

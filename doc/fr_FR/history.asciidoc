@@ -1,7 +1,5 @@
 = Historique
 
-== Description
-
 Partie importante dans un logiciel : la partie historisation, véritable mémoire de celle-ci. Il est possible dans Jeedom d’historiser n’importe quelle commande de type information (binaire ou numérique). Cela vous permettra donc par exemple d'historique une courbe de température, de consommation ou les ouvertures d'une porte...
 
 image::../images/history.JPG[]
