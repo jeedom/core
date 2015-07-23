@@ -1,5 +1,6 @@
 server_addr: #server_addr#
 trust_host_root_certs: false
+inspect_addr: disabled
 auth_token : #token#
 tunnels:
   #name#:
