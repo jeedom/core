@@ -37,27 +37,25 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
                 <option value='incident'>{{Incident}}</option>
             </select>
         </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">{{Catégorie}}</label>
-            <div class="col-sm-4">
-                <select class="form-control input-sm ticketAttr" data-l1key="category">
-                    <option>{{Général}}</option>
-                    <option>{{Scénario}}</option>
-                    <option>{{Historique}}</option>
-                    <?php
+        <label class="col-sm-2 control-label">{{Catégorie}}</label>
+        <div class="col-sm-4">
+            <select class="form-control input-sm ticketAttr" data-l1key="category">
+                <option>{{Général}}</option>
+                <option>{{Scénario}}</option>
+                <option>{{Historique}}</option>
+                <?php
 foreach (plugin::listPlugin(true) as $plugin) {
 	echo '<option>plugin::' . $plugin->getId() . '</option>';
 }
 ?>
-             </select>
-         </div>
-     </div>
- </div>
- <div class="form-group">
+           </select>
+       </div>
+   </div>
+   <div class="form-group">
     <label class="col-sm-2 control-label">{{Donner un accès au support}}</label>
     <div class="col-sm-9">
-     <input type="checkbox" class="ticketAttr bootstrapSwitch" data-l1key="allowRemoteAccess" />
- </div>
+       <input type="checkbox" class="ticketAttr bootstrapSwitch" data-l1key="allowRemoteAccess" />
+   </div>
 </div>
 <div class="form-group">
     <label class="col-sm-2 control-label">{{Message}}</label>
