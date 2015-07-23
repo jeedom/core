@@ -29,6 +29,13 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
             <input class="form-control input-sm ticketAttr" data-l1key="title"/>
         </div>
     </div>
+    <label class="col-sm-1 control-label">{{Type}}</label>
+    <div class="col-sm-2">
+        <select class="form-control input-sm ticketAttr" data-l1key="type">
+            <option value='question'>{{Question}}</option>
+            <option value='incident'>{{Incident}}</option>
+        </select>
+    </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">{{Catégorie}}</label>
         <div class="col-sm-3">
@@ -43,29 +50,12 @@ foreach (plugin::listPlugin(true) as $plugin) {
 ?>
            </select>
        </div>
-       <label class="col-sm-1 control-label">{{Type}}</label>
-       <div class="col-sm-2">
-        <select class="form-control input-sm ticketAttr" data-l1key="type">
-            <option value='question'>{{Question}}</option>
-            <option value='problem'>{{Problème}}</option>
-            <option value='incident'>{{Incident}}</option>
-        </select>
-    </div>
-    <label class="col-sm-1 control-label">{{Priorité}}</label>
-    <div class="col-sm-2">
-        <select class="form-control input-sm ticketAttr" data-l1key="priority">
-            <option value='low'>{{Basse}}</option>
-            <option value='normal'>{{Normale}}</option>
-            <option value='high'>{{Haute}}</option>
-            <option value='urgent'>{{Urgente}}</option>
-        </select>
-    </div>
-</div>
-<div class="form-group">
+   </div>
+   <div class="form-group">
     <label class="col-sm-2 control-label">{{Donner un accès au support}}</label>
     <div class="col-sm-9">
-       <input type="checkbox" class="ticketAttr bootstrapSwitch" data-l1key="allowRemoteAccess" />
-   </div>
+     <input type="checkbox" class="ticketAttr bootstrapSwitch" data-l1key="allowRemoteAccess" />
+ </div>
 </div>
 <div class="form-group">
     <label class="col-sm-2 control-label">{{Message}}</label>

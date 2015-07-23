@@ -258,27 +258,9 @@ class market {
 			$_ticket['user_plugin'] .= ',';
 		}
 		trim($_ticket['user_plugin'], ',');
-		jeedom::sick();
-		$cibDir = realpath(dirname(__FILE__) . '/../../log');
-		if (file_exists('/var/log/messages')) {
-			@copy('/var/log/messages', realpath(dirname(__FILE__) . '/../../log/dmesg_messages'));
-		}
-		@exec('dmesg >> ' . dirname(__FILE__) . '/../../log/dmesg');
-		$tmp = dirname(__FILE__) . '/../../tmp/log.zip';
-		if (file_exists($tmp)) {
-			if (!unlink($tmp)) {
-				throw new Exception(__('Impossible de supprimer : ', __FILE__) . $tmp . __('. Vérifiez les droits', __FILE__));
-			}
-		}
-		if (!create_zip($cibDir, $tmp)) {
-			throw new Exception(__('Echec de création de l\'archive zip', __FILE__));
-		}
 		if (isset($_ticket['options']['page'])) {
 			$_ticket['options']['page'] = substr($_ticket['options']['page'], strpos($_ticket['options']['page'], 'index.php'));
 		}
-		$file = array(
-			'file' => '@' . realpath($tmp),
-		);
 		if (isset($_ticket['allowRemoteAccess']) && $_ticket['allowRemoteAccess'] == 1) {
 			$user = user::createTemporary(72);
 			$_ticket['options']['remoteAccess'] = 'Http : ' . $user->getDirectUrlAccess();
@@ -286,9 +268,8 @@ class market {
 				$_ticket['options']['remoteAccess'] .= ' | SSH : dns.jeedom.com:' . config::byKey('ngrok::port');
 			}
 		}
-
 		$_ticket['options']['jeedom_version'] = jeedom::version();
-		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket), 600, $file)) {
+		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket))) {
 			throw new Exception($jsonrpc->getErrorMessage());
 		}
 		return $jsonrpc->getResult();
@@ -649,31 +630,31 @@ class market {
 					}
 				} else {
 					switch ($res) {
-					case ZipArchive::ER_EXISTS:
+						case ZipArchive::ER_EXISTS:
 							$ErrMsg = "Le fichier existe déjà.";
 							break;
-					case ZipArchive::ER_INCONS:
+						case ZipArchive::ER_INCONS:
 							$ErrMsg = "L'archive zip est inconsistente.";
 							break;
-					case ZipArchive::ER_MEMORY:
+						case ZipArchive::ER_MEMORY:
 							$ErrMsg = "Erreur mémoire.";
 							break;
-					case ZipArchive::ER_NOENT:
+						case ZipArchive::ER_NOENT:
 							$ErrMsg = "Ce fichier n\'existe pas.";
 							break;
-					case ZipArchive::ER_NOZIP:
+						case ZipArchive::ER_NOZIP:
 							$ErrMsg = "Ceci n\'est pas une archive zip.";
 							break;
-					case ZipArchive::ER_OPEN:
+						case ZipArchive::ER_OPEN:
 							$ErrMsg = "Le fichier ne peut pas être ouvert.";
 							break;
-					case ZipArchive::ER_READ:
+						case ZipArchive::ER_READ:
 							$ErrMsg = "Erreur de lecture.";
 							break;
-					case ZipArchive::ER_SEEK:
+						case ZipArchive::ER_SEEK:
 							$ErrMsg = "Erreur de recherche.";
 							break;
-					default:
+						default:
 							$ErrMsg = "Erreur inconnue (Code $res)";
 							break;
 					}
