@@ -1,5 +1,3 @@
-:icons: font
-
 = API JSON RPC
 
 Voici une documentation (qui évoluera) sur les méthodes de l'API. Tout d'abord voici les spécifications (JSON RPC 2.0) : http://www.jsonrpc.org/specification

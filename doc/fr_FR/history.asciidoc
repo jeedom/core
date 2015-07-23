@@ -1,5 +1,3 @@
-:icons: font
-
 = Historique
 
 == Description

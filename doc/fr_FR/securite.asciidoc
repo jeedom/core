@@ -1,5 +1,3 @@
-:icons: font
-
 = Sécurité
 
 Le menu sécurité permet de configurer le système "Anti-piratage" primaire de Jeedom. Il n'est disponible qu'en mode Expert. Il s'agit d'un système de bannissement d'adresses IP, si une d'entre elles essaye de se connecter plusieurs fois à Jeedom sans succès alors elle ne pourra plus essayer pendant un temps prédefini.

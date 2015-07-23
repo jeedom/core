@@ -1,5 +1,3 @@
-:icons: font
-
 = Droits
 
 C'est ici que vous allez pouvoir gerer les droits finements des utilisateurs sur les pages, équipement et scénario

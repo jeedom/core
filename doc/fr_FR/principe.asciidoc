@@ -1,5 +1,3 @@
-:icons: font
-
 = Principe
 
 Jeedom est composé d'un core qui se charge des fonctions de bases : 

@@ -1,5 +1,3 @@
-:icons: font
-
 = Sauvegarde et restauration
 
 La sauvegarde et restauration de Jeedom permet de sauvegarde celui-ci et de le restaurer sur lui meme ou sur un autre Jeedom
