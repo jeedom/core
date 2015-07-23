@@ -30,8 +30,23 @@ sendVarToJS('market_display_info', $market_array);
     <div class='col-sm-3'>
         <center>
             <?php
+$default_image = 'core/img/no_image.gif';
+switch ($market->getType()) {
+	case 'widget':
+		$default_image = 'core/img/no-image-widget.png';
+		break;
+	case 'plugin':
+		$default_image = 'core/img/no-image-plugin.png';
+		break;
+	case 'camera':
+		$default_image = 'core/img/no-image-camera.png';
+		break;
+	case 'script':
+		$default_image = 'core/img/no-image-script.png';
+		break;
+}
 $urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
-echo '<img src="core/img/no_image.gif" data-original="' . $urlPath . '"  class="lazy img-responsive" style="height : 200px;"/>';
+echo '<img src="' . $default_image . '" data-original="' . $urlPath . '"  class="lazy img-responsive" style="height : 200px;"/>';
 ?>
         </center>
     </div>
