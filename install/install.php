@@ -85,6 +85,8 @@ try {
 				try {
 					global $NO_PLUGIN_BAKCUP;
 					$NO_PLUGIN_BAKCUP = true;
+					global $NO_CLOUD_BAKCUP;
+					$NO_CLOUD_BAKCUP = true;
 					jeedom::backup();
 				} catch (Exception $e) {
 					if (init('mode') != 'force') {
