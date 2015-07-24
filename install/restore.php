@@ -171,7 +171,7 @@ try {
 	echo "***************Fin de la restauration de Jeedom***************\n";
 	echo "[END RESTORE SUCCESS]\n";
 } catch (Exception $e) {
-	echo 'Erreur durant la sauvegarde : ' . $e->getMessage();
+	echo 'Erreur durant la restauration : ' . $e->getMessage();
 	echo 'Détails : ' . print_r($e->getTrace());
 	echo "[END RESTORE ERROR]\n";
 	jeedom::start();
