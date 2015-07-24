@@ -356,7 +356,7 @@ class network {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
 		}
 		exec('chmod +x ' . $cmd);
-		$cmd .= ' -log=stdout -config=' . $config_file . ' start ' . $_name;
+		$cmd .= ' -log=none -config=' . $config_file . ' start ' . $_name;
 		if (!self::ngrok_run($_proto, $_port, $_name)) {
 			$replace = array(
 				'#server_addr#' => $_serverAddr,
@@ -425,7 +425,7 @@ class network {
 		} else {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
 		}
-		$cmd .= ' -log=stdout -config=' . $config_file . ' start ' . $_name;
+		$cmd .= ' -log=none -config=' . $config_file . ' start ' . $_name;
 		$pid = jeedom::retrievePidThread($cmd);
 		if ($pid == null) {
 			return false;
@@ -453,7 +453,7 @@ class network {
 		} else {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
 		}
-		$cmd .= ' -log=stdout -config=' . $config_file . ' start ' . $_name;
+		$cmd .= ' -log=none -config=' . $config_file . ' start ' . $_name;
 		$pid = jeedom::retrievePidThread($cmd);
 		if ($pid == null) {
 			return true;
