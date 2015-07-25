@@ -6,7 +6,7 @@
             <div style="display: none;width : 100%" id="div_alert"></div>
             <?php
 if (init('error') == 1) {
-	echo '<div class="alert alert-danger">{{Nom d\'utilisateur ou mot de passe incorrect !}}</div>';
+	echo '<div class="alert alert-danger">{{Nom d\'utilisateur ou mot de passe incorrect !}}</div><br/><br/><br/>';
 }
 $getParams = "";
 foreach ($_GET AS $var => $value) {

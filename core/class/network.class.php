@@ -21,17 +21,33 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class network {
 
+	public static function getUserLocation() {
+		$client_ip = self::getClientIp();
+		if (netMatch('192.168.*.*', $client_ip) || netMatch('10.0.*.*', $client_ip)) {
+			if (!isset($_SERVER['HTTP_HOST']) || netMatch('192.168.*.*', $_SERVER['HTTP_HOST']) || netMatch('10.0.*.*', $_SERVER['HTTP_HOST'])) {
+				return 'internal';
+			} else {
+				return 'external';
+			}
+		} else {
+			return 'external';
+		}
+	}
+
+	public static function getClientIp() {
+		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			return $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
+			return $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (isset($_SERVER['REMOTE_ADDR'])) {
+			return $_SERVER['REMOTE_ADDR'];
+		}
+		return '';
+	}
+
 	public static function getNetworkAccess($_mode = 'auto', $_protocole = '', $_default = '', $_test = true) {
 		if ($_mode == 'auto') {
-			if (netMatch('192.168.*.*', getClientIp()) || netMatch('10.0.*.*', getClientIp())) {
-				if (!isset($_SERVER['HTTP_HOST']) || netMatch('192.168.*.*', $_SERVER['HTTP_HOST']) || netMatch('10.0.*.*', $_SERVER['HTTP_HOST'])) {
-					$_mode = 'internal';
-				} else {
-					$_mode = 'external';
-				}
-			} else {
-				$_mode = 'external';
-			}
+			$_mode = self::getUserLocation();
 		}
 		if ($_test && !self::test($_mode, false)) {
 			self::checkConf($_mode);
