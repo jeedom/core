@@ -6,14 +6,14 @@ image::../images/history.JPG[]
 
 == Principe
 
-Ici va être décrit le principe d'historisation de Jeedom, il n'est nécessaire de les comprendre que si vous rencontrez des soucis d'historisation ou que vous voulez modifier les réglages de l'historisation. Les réglages par défaut conviennent dans la plupart des cas.
+Ici est décrit le principe d'historisation de Jeedom. Il n'est nécessaire de les comprendre que si vous rencontrez des soucis d'historisation ou que vous voulez modifier les réglages de l'historisation. Les réglages par défaut conviennent dans la plupart des cas.
 
 === Méthode d'historisation
 
 Un des premiers éléments est de savoir si la commande que vous historisez est de type évènement ou non : 
 
 * *Non évènement* : c'est le cas le plus simple. Jeedom va collecter toutes les 5min la valeur de la commande et historiser le résultat.
-* *Evènement* : Jeedom sait qu'il ne peut récupérer la valeur. Il attend donc que le plugin (et indirectement le module) la lui transmette. Ensuite, en fonction de la fréquence et de vos réglages, il se peut qu'un premier lissage intervienne. En effet, si Jeedom reçoit 2 valeurs à moins de 5min d'intervalle, il va par défaut en faire la moyenne pour n'en stocker qu'une. Vous pouvez bien sûr changer ce réglage pour qu'au lieu de la moyenne il prenne le maximum, le minimum ou au contraire qu'il garde les deux. On verra par la suite comment changer ce réglage.
+* *Evènement* : Jeedom sait qu'il ne peut récupérer la valeur. Il attend donc que le plugin (et indirectement le module) la lui transmette. Ensuite, en fonction de la fréquence et de vos réglages, il se peut qu'un premier lissage intervienne. En effet, si Jeedom reçoit 2 valeurs à moins de 5min d'intervalle, il va par défaut en faire la moyenne pour n'en stocker qu'une. Vous pouvez bien sûr changer ce réglage pour qu'au lieu de la moyenne il prenne le maximum, le minimum ou au contraire qu'il garde les deux. Nous verrons par la suite comment changer ce réglage.
 
 === Archivage
 
@@ -33,11 +33,11 @@ Il est possible d'activer sur les widgets l'affichage du minimum, de la moyenne,
 
 Si vous activez cette option, par défaut, Jeedom se fonde sur les données des dernières 24h pour calculer ces statistiques. Les tendances sont par défaut calculées sur 2h. Ce paramètre est bien sûr modifiable (voir plus bas).
 
-La méthode de calcul de tendance est fondé sur le calcul des moindres carrés (voir https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s[ici] pour le détail).
+La méthode de calcul de tendance est fondée sur le calcul des moindres carrés (voir https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s[ici] pour le détail).
 
 == Configuration générale de l'historique
 
-La configuration générals de l'historique se passe sur la page Général -> Administration -> Configuration.
+La configuration générale de l'historique se passe sur la page Général -> Administration -> Configuration.
 
 image::../images/history2.JPG[]
 
