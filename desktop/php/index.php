@@ -3,7 +3,7 @@ $startLoadTime = getmicrotime();
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
 $title = 'Jeedom';
-if (isConnect()) {
+if (init('p') == '' && isConnect()) {
 	if (config::byKey('jeeNetwork::mode') == 'master') {
 		$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	} else {
@@ -21,22 +21,12 @@ if (isConnect()) {
 	} else {
 		$homeLink = 'index.php?v=d&p=dashboard';
 	}
-}
-
-if (init('p') == '' && isConnect()) {
 	redirect($homeLink);
 }
 $page = '';
 if (isConnect() && init('p') != '') {
 	$page = init('p');
 	$title = ucfirst($page) . ' - ' . $title;
-}
-$plugin = init('m');
-if ($plugin != '') {
-	$plugin = plugin::byId($plugin);
-	if (is_object($plugin)) {
-		$title = ucfirst($plugin->getName()) . ' - Jeedom';
-	}
 }
 $plugins_list = plugin::listPlugin(true, true);
 $plugin_menu = '';
@@ -54,6 +44,10 @@ if (count($plugins_list) > 0) {
 		$plugin_menu .= '<li class="dropdown-submenu"><a data-toggle="dropdown"><i class="fa ' . $icon . '"></i> {{' . $name . '}}</a>';
 		$plugin_menu .= '<ul class="dropdown-menu">';
 		foreach ($category as $pluginList) {
+			if ($plugin != '' && $pluginList->getId() == init('m')) {
+				$plugin = $pluginList;
+				$title = ucfirst($plugin->getName()) . ' - Jeedom';
+			}
 			$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() . '"><i class="' . $pluginList->getIcon() . '"></i> ' . $pluginList->getName() . '</a></li>';
 			if ($pluginList->getDisplay() != '') {
 				$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getDisplay() . '"><i class="' . $pluginList->getIcon() . '"></i> ' . $pluginList->getName() . '</a></li>';
@@ -410,23 +404,25 @@ if (isConnect('admin')) {
 if (network::ehtIsUp()) {
 		echo '<li><a href="#"><i class="fa fa-sitemap tooltips" title="{{Connecté en filaire}}"></i></a></li>';
 	}
-	$signalStrength = network::signalStrength();
-	if ($signalStrength !== '' && $signalStrength >= 0) {
-		if ($signalStrength > 80) {
-			echo '<li><a href="#"><i class="jeedom2-fdp1-signal5 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
-		} else if ($signalStrength > 60) {
-			echo '<li><a href="#"><i class="jeedom2-fdp1-signal4 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
-		} else if ($signalStrength > 40) {
-			echo '<li><a href="#"><i class="jeedom2-fdp1-signal3 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
-		} else if ($signalStrength > 20) {
-			echo '<li><a href="#"><i class="jeedom2-fdp1-signal2 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
-		} else if ($signalStrength > 0) {
-			echo '<li><a href="#"><i class="jeedom2-fdp1-signal1 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
-		} else {
-			echo '<li><a href="#"><i class="jeedom2-fdp1-signal0 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+	if (network::wlanIsUp()) {
+		$signalStrength = network::signalStrength();
+		if ($signalStrength !== '' && $signalStrength >= 0) {
+
+			if ($signalStrength > 80) {
+				echo '<li><a href="#"><i class="jeedom2-fdp1-signal5 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+			} else if ($signalStrength > 60) {
+				echo '<li><a href="#"><i class="jeedom2-fdp1-signal4 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+			} else if ($signalStrength > 40) {
+				echo '<li><a href="#"><i class="jeedom2-fdp1-signal3 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+			} else if ($signalStrength > 20) {
+				echo '<li><a href="#"><i class="jeedom2-fdp1-signal2 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+			} else if ($signalStrength > 0) {
+				echo '<li><a href="#"><i class="jeedom2-fdp1-signal1 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+			} else {
+				echo '<li><a href="#"><i class="jeedom2-fdp1-signal0 tooltips" title="{{Connecté en wifi. Signal : ' . $signalStrength . '%}}"></i></a></li>';
+			}
 		}
 	}
-
 	?>
 												<li>
 													<?php if (isset($plugin) && is_object($plugin)) {?>

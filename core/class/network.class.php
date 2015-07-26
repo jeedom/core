@@ -522,11 +522,11 @@ class network {
 	}
 
 	public static function ehtIsUp() {
-		return (trim(shell_exec("cat /sys/class/net/eth0/operstate")) == 'up') ? true : false;
+		return (trim(file_get_contents("/sys/class/net/eth0/operstate")) == 'up') ? true : false;
 	}
 
 	public static function wlanIsUp() {
-		return (trim(shell_exec("cat /sys/class/net/wlan0/operstate")) == 'up') ? true : false;
+		return (trim(file_get_contents("/sys/class/net/wlan0/operstate")) == 'up') ? true : false;
 	}
 
 	public static function writeInterfaceFile() {
