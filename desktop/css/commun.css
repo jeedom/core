@@ -1,22 +1,20 @@
+html,body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+
 body {
     padding-top: 60px;
     padding-bottom: 30px;
 }
 
-html,
-body {
-    height: 100%;
-    /* The html and body elements cannot have any padding or margin. */
-}
-
-/* Wrapper for page content to push down footer */
-#wrap {
-    min-height: 100%;
-    height: auto;
-    /* Negative indent footer by its height */
-    margin: 0 auto 0px;
-    /* Pad bottom by footer height */
-    padding: 0 0 0px;
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  background-color: #f5f5f5;
 }
 
 .sidebar-nav {
