@@ -2,8 +2,7 @@
 $startLoadTime = getmicrotime();
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
-$title = 'Jeedom';
-if (init('p') == '' && isConnect()) {
+if (isConnect()) {
 	if (config::byKey('jeeNetwork::mode') == 'master') {
 		$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	} else {
@@ -21,6 +20,9 @@ if (init('p') == '' && isConnect()) {
 	} else {
 		$homeLink = 'index.php?v=d&p=dashboard';
 	}
+}
+$title = 'Jeedom';
+if (init('p') == '' && isConnect()) {
 	redirect($homeLink);
 }
 $page = '';
@@ -488,9 +490,9 @@ try {
 if (isConnect()) {
 	?>
 							<footer class="footer">
-									<span class="pull-left" style="margin-left : 20px;">Node JS <span class="span_nodeJsState binary red tooltips"></span> - </span>
-									<span class="pull-left">&copy; <a id="bt_jeedomAbout" class="cursor">Jeedom</a> (v<?php echo jeedom::version();?>
-										<?php
+								<span class="pull-left" style="margin-left : 20px;">Node JS <span class="span_nodeJsState binary red tooltips"></span> - </span>
+								<span class="pull-left">&copy; <a id="bt_jeedomAbout" class="cursor">Jeedom</a> (v<?php echo jeedom::version();?>
+									<?php
 $nbNeedUpdate = update::nbNeedUpdate();
 	if ($nbNeedUpdate == 1) {
 		echo '<span class="label label-danger"><a href="index.php?v=d&p=update" style="color : white;">' . $nbNeedUpdate . ' {{Mise à jour disponible}}</a></span>';
