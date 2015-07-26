@@ -1,79 +1,79 @@
 = Historique
 
-Partie importante dans un logiciel : la partie historisation, véritable mémoire de celle-ci. Il est possible dans Jeedom d’historiser n’importe quelle commande de type information (binaire ou numérique). Cela vous permettra donc par exemple d'historique une courbe de température, de consommation ou les ouvertures d'une porte...
+Partie importante dans un logiciel : la partie historisation, véritable mémoire de celle-ci. Il est possible dans Jeedom d'historiser n'importe quelle commande de type information (binaire ou numérique). Cela vous permettra donc par exemple d'historiser une courbe de température, de consommation ou les ouvertures d'une porte...
 
 image::../images/history.JPG[]
 
 == Principe
 
-Ici va etre décris le principe d'historisation de Jeedom, il n'est necessaire de les comprendre que si vous rencontrez des soucis d'historisation ou que vous voulez modifier les reglages de l'historisation, les réglages par defaut conviennent dans la pluspart des cas.
+Ici est décrit le principe d'historisation de Jeedom. Il n'est nécessaire de les comprendre que si vous rencontrez des soucis d'historisation ou que vous voulez modifier les réglages de l'historisation. Les réglages par défaut conviennent dans la plupart des cas.
 
 === Méthode d'historisation
 
-Déja un des premiers élément et de savoir si la commande que vous historisez est de type evenement ou non : 
+Un des premiers éléments est de savoir si la commande que vous historisez est de type évènement ou non : 
 
-* *Non évènement* : cas le plus simple Jeedom va toute les 5min aller collecter la valeur de la commande et historiser le resulat
-* *Evènement* : ici Jeedom sait qu'il ne peut recuperer la valeur il attend donc que le plugin (et indirectement le module donc) lui transmette. Ensuite en fonction de la fréquence et de vos réglage il se peut qu'un premier lissage intervienne. En effet si Jeedom recoit 2 valeurs à moins de 5min d'interval il va par defaut en faire la moyen pour n'en stocker que une. Vous pouvez bien sur changer ce reglage pour qu'au lieu de la moyenne il prenne la maximum, minimum ou au contraire qu'il garde les deux. On verra par la suite comment changer ce reglage
+* *Non évènement* : c'est le cas le plus simple. Jeedom va collecter toutes les 5min la valeur de la commande et historiser le résultat.
+* *Evènement* : Jeedom sait qu'il ne peut récupérer la valeur. Il attend donc que le plugin (et indirectement le module) la lui transmette. Ensuite, en fonction de la fréquence et de vos réglages, il se peut qu'un premier lissage intervienne. En effet, si Jeedom reçoit 2 valeurs à moins de 5min d'intervalle, il va par défaut en faire la moyenne pour n'en stocker qu'une. Vous pouvez bien sûr changer ce réglage pour qu'au lieu de la moyenne il prenne le maximum, le minimum ou au contraire qu'il garde les deux. Nous verrons par la suite comment changer ce réglage.
 
 === Archivage
 
-L'archivage de données permet a Jeeodm de reduire la quantité de données conservé en mémoire, cela permet deja de ne pas utiliser trop de place et surtout de ne pas ralentir le systeme. En effet si vous conservez toute les mesures cela fait d'autant plus de point à afficher et donc peut considerablement allonger les temps pour rendre un graphique et peut meme en cas d'un nombre trop important de point faire planter l'affichage du graphique
+L'archivage de données permet à Jeedom de réduire la quantité de données conservées en mémoire. Cela permet de ne pas utiliser trop de place et de ne pas ralentir le système. En effet, si vous conservez toute les mesures, cela fait d'autant plus de points à afficher et donc peut considérablement allonger les temps pour rendre un graphique. En cas d'un nombre trop important de points, cela peut même faire planter l'affichage du graphique.
 
-L'archivage est un tache qui se lance dans la nuit et va compacter les données recuperées dans la journée, par défaut Jeedom va recuperer toute les données plus veille de 2h et en faire des paquet de 1h (soit une moyen,min ou max en fonction des réglages). On a donc ici 2 parametres, un pour la taille des paquets et un autre pour savoir a partir de quand en faire (pour rappels par defaut c'est des paquets de 1h avec des données qui ont plus de 2h)
+L'archivage est une tâche qui se lance dans la nuit et compacte les données récuperées dans la journée. Par défaut Jeedom récupère toutes les données plus vieille de 2h et en fait des paquets de 1h (soit une moyenne, un minimum ou un maximum en fonction des réglages). On a donc ici 2 paramètres, un pour la taille des paquets et un autre pour savoir à partir de quand en faire (pour rappel par défaut ce sont des paquets de 1h avec des données qui ont plus de 2h d'ancienneté).
 
 [TIP]
-Si vous avez bien suivi vous devriez avoir une haute precision sur les 2 dernieres heures seulement et pourtant quand je me connecte à 17h j'ai une presicion sur les 17 dernieres heures, pourquoi ? En faite c'est très simple pour eviter de consommer des ressources inutilement la tache qui fait l'archivage ne passe que une fois par jour le soir
+Si vous avez bien suivi vous devriez avoir une haute précision sur les 2 dernières heures seulement. Pourtant quand je me connecte à 17h, j'ai une précision sur les 17 dernières heures. Pourquoi ? En fait, pour éviter de consommer des ressources inutilement, la tâche qui fait l'archivage ne se déroule qu'une fois par jour, le soir.
 
 [IMPORTANT]
-Bien sur ce principe d'archivage ne s'applique que aux commande de type numérique, sur les commandes de type binaire jeedom ne conserve que les date de changement d'état
+Bien sûr, ce principe d'archivage ne s'applique qu'aux commandes de type numérique ; sur les commandes de type binaire, Jeedom ne conserve que les dates de changement d'état.
 
-=== Tendance et statistique
+=== Tendances et statistiques
 
-Il est possible d'activer sur les widgets l'affichage du minimum, moyen, maximum et tendance (par défaut c'est désactiver car cela a une tendance à allonger le temps d'affichage du dashboard du aux calculs). 
+Il est possible d'activer sur les widgets l'affichage du minimum, de la moyenne, du maximum et de la tendance (par défaut ceci est désactivé car cela a une tendance à allonger le temps d'affichage du dashboard à cause des calculs). 
 
-Si vous activez cette option par defaut Jeedom se base sur les données des dernieres 24h pour calculer ces statistique, les tendances elles sont par défaut sur 2h vous pouvez bien sur changer ce parametre (voir plus bas).
+Si vous activez cette option, par défaut, Jeedom se fonde sur les données des dernières 24h pour calculer ces statistiques. Les tendances sont par défaut calculées sur 2h. Ce paramètre est bien sûr modifiable (voir plus bas).
 
-La méthode de calcul de tendance et basé sur le calcul des moindre carré voir https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s[ici] pour le détail
+La méthode de calcul de tendance est fondée sur le calcul des moindres carrés (voir https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s[ici] pour le détail).
 
-== Configuration général de l'historique
+== Configuration générale de l'historique
 
-La configuration général de l'historique se passe sur la page Général -> Administration -> Configuration 
+La configuration générale de l'historique se passe sur la page Général -> Administration -> Configuration.
 
 image::../images/history2.JPG[]
 
-Puis dans la partie configuration des commandes qui contient toute une partie sur l'historique, nous allons voir ici le détails : 
+Nous allons voir ici les détails de la partie configuration des commandes, qui contient toute une branche concernant l'historique.
 
 image::../images/history3.JPG[]
 
 On retrouve ici : 
 
-* *Afficher les statistiques sur les widgets* : permet d'afficher ou non les statistiques sur les widgets (il faut que le widget soit compatible, c'est le cas de la pluspart). Il faut aussi que la commande soit de type numérique
-* *Période de calcul pour min, max, moyenne (en heures)* : période de calcul des statistique (par defaut 24h), il n'est pas possible de faire moins d'une heure
-* *Période de calcul pour la tendance (en heures)* : période de calcul des tendances (par defaut 2h), il n'est pas possible de faire moins d'une heure
-* *Délai avant archivage (en heures)* : donne le délai avant archivage, par defaut la valeur est de 24h, c'est a dire que les données historisée doivent avoir plus de 24h pour etre archiver (pour rappel l'archivage va soit moyenner, soit prendre le maximum ou le minimum de la donnée sur une période qui correspond à la taille des paquets)
-* *Archiver par paquet de (en heures)* : ce parametre donne justement la taille des paquets, par defaut 1h cela signifie que Jeedom va prendre des périodes de 1h, moyenner (par exemple cela dépend du reglage de la commande) et stocker cette nouvelle valeur (en supprimant les valeurs moyennées)
-* *Seuil de calcul de tendance bas* : cette valeur correspond au seuil de tendance basse (jeedom indique que la valeur est en baisse), il doit etre négatif (par défaut -0.1)
-* *Seuil de calcul de tendance haut* : idem mais a la tendance haute
-* *Période d'affichage des graphiques par defaut* : pour des questions de performance lors de l'affichage à la volé (en cliquant sur le widget ou par la page historique) Jeedom n'affichage qu'une période restreinte de l'historique (cela permet un affichage plus rapide), vous pouvez ici regler cette valeur par defaut
+* *Afficher les statistiques sur les widgets* : permet d'afficher ou non les statistiques sur les widgets ; il faut que le widget soit compatible, ce qui est le cas pour la plupart ; il faut aussi que la commande soit de type numérique
+* *Période de calcul pour min, max, moyenne (en heures)* : période de calcul des statistiques (par défaut 24h), il n'est pas possible de mettre moins d'une heure
+* *Période de calcul pour la tendance (en heures)* : période de calcul des tendances (par défaut 2h), il n'est pas possible de mettre moins d'une heure
+* *Délai avant archivage (en heures)* : donne le délai avant archivage, par défaut la valeur est de 24h, c'est-à-dire que les données historisées doivent avoir plus de 24h pour être archivées (pour rappel, l'archivage va soit moyenner, soit prendre le maximum ou le minimum de la donnée sur une période qui correspond à la taille des paquets)
+* *Archiver par paquet de (en heures)* : ce paramètre donne justement la taille des paquets, par defaut 1h ; cela signifie que Jeedom va prendre des périodes de 1h, moyenner (par exemple, suivant le réglage de la commande) et stocker cette nouvelle valeur (en supprimant les valeurs moyennées).
+* *Seuil de calcul de tendance basse* : cette valeur correspond au seuil de tendance basse (Jeedom indique que la valeur est en baisse), il doit être négatif (par défaut -0.1).
+* *Seuil de calcul de tendance haut* : idem mais à la tendance haute.
+* *Période d'affichage des graphiques par defaut* : pour des questions de performance lors de l'affichage à la volée (en cliquant sur le widget ou par la page historique) Jeedom n'affiche qu'une période restreinte de l'historique (cela permet un affichage plus rapide) ; il est ici possible de régler cette valeur.
 
 == Configuration spécifique par commande
 
-Pour accèder à ces réglage il faut aller dans la configuration avancée des commandes, 2 possibilités soit en passant par Général -> Résumé domotique : 
+Pour accèder à ces réglages, il faut aller dans la configuration avancée des commandes, en passant par Général -> Résumé domotique : 
 
 image::../images/history8.JPG[]
 
-Puis en depliant la liste des commande d'un équipement (petite flèche à droite) et sois en double cliquant sur la commande soit en cliquant sur la petit roue : 
+Puis en dépliant la liste des commande d'un équipement (petite flèche à droite) et, soit en double-cliquant sur la commande, soit en cliquant sur la petite roue : 
 
 image::../images/history9.JPG[]
 
 [TIP]
-Vous pouvez aussi utiliser le champs de recherche à droite en tapant le nom de la commande que vous voulez
+Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de la commande que vous voulez.
 
-Vous pouvez aussi y accèder par la page de l'équipement en question et en cliquant sur la petite roue tout à droite sur la ligne de la commande (si le plugin a integré cette option) : 
+Vous pouvez également y accèder par la page de l'équipement en question et en cliquant sur la petite roue tout à droite sur la ligne de la commande (si le plugin a intégré cette option) : 
 
 image::../images/history10.JPG[]
 
-A partir de la vous devez avoir la fenetre suivante qui apparait : 
+A partir de là, vous devez avoir la fenêtre suivante qui apparait : 
 
 image::../images/history11.JPG[]
 
@@ -81,33 +81,33 @@ Cliquez sur l'onglet "Configuration avancée" pour avoir :
 
 image::../images/history12.JPG[]
 
-A partir de la vous avez plusieurs possibilité de réglage, en ce qui concerne l'historique il y a : 
+A partir de là, vous avez plusieurs possibilités de réglages. En ce qui concerne l'historique, il y a : 
 
-* *Historiser* : permet de definir si vous voulez historiser ou non cette commande
-* *Mode de lissage* : mode de lissage ou d'archivage permet de choisir la maniere d'archiver la donnée, par defaut c'est une moyen vous pouvez choisir aussi de prendre le maximumn le minimun au aucun. Aucun permet de dire à Jeedom qu'il ne doit pas avoir d'archivage sur cette commande (aussi bien sur la premiere période des 5 min qu'avec la tache d'archivage). Cette option est dangereuse car Jeedom conserve tout il va donc avoir beaucoup plus de données conservées
-* *Purger l'historique si plus vieux de* : cette option permet de dire a Jeedom de supprimer toute les données plus veille qu'une certaine période. Peut etre pratique pour ne pas conservé de données si ca n'est pas nécessaire et donc limité la quantité d'informations enregistré par Jeedom
+* *Historiser* : permet de définir si vous voulez historiser ou non cette commande.
+* *Mode de lissage* : mode de lissage ou d'archivage permet de choisir la manière d'archiver la donnée ; par défaut c'est une moyenne ; il est aussi possible de choisir le maximum, le minimum, ou aucun ; aucun permet de dire à Jeedom qu'il ne doit pas réaliser d'archivage sur cette commande (aussi bien sur la premiere période des 5 min qu'avec la tache d'archivage). Cette option est dangereuse car Jeedom conserve tout : il va donc y avoir beaucoup plus de données conservées.
+* *Purger l'historique si plus vieux de* : cette option permet de dire à Jeedom de supprimer toutes les données plus vieilles qu'une certaine période. Peut être pratique pour ne pas conserver de données si ça n'est pas nécessaire et donc limiter la quantité d'informations enregistrées par Jeedom.
 
 == Affichage d'un graphique
 
-Il existe plusieurs moyens d’accéder à l’historique :
+Il existe plusieurs moyens d'accéder à l'historique :
 
 * en mettant une zone graphe dans une vue (voir plus bas),
 * en cliquant sur la commande voulue dans un widget,
-* ou en allant dans la page historique qui permet de superposer différentes courbes et de combiner les styles (aire, courbe, barre).
+* en allant dans la page historique qui permet de superposer différentes courbes et de combiner les styles (aire, courbe, barre).
 
-Si vous affichez un graphique par la page historique ou en cliquant sur le widget vous avez accès à plusieurs option d'affichage : 
+Si vous affichez un graphique par la page historique ou en cliquant sur le widget, vous avez accès à plusieurs options d'affichage : 
 
 image::../images/history4.JPG[]
 
-On retrouve en haut à droite la période d'affichage (ici sur la derniere semaine car par defaut je veux que ca soit seulement une semaine, voir 2 paragraphes au dessus), ensuite vienne les parametres de la courbe (ces parametres sont gardé d'un affichage a l'autre vous n'avez donc qu'a les configurer une seulement fois)
+On retrouve en haut à droite la période d'affichage (ici sur la dernière semaine car, par défaut je veux que ça soit seulement une semaine - voir 2 paragraphes au-dessus), ensuite viennent les paramètres de la courbe (ces paramètres sont gardés d'un affichage à l'autre ; vous n'avez donc qu'à les configurer une fois).
 
-* *Escalier* : permet d'afficher la courbe sous la forme d'un escalier au d'un affichage continue
-* *Variation* : affichage la difference de valeur par rapport au point precedent
-* *Ligne* : affichage le graphique sous forme de ligne
-* *Aire*  : affichage le graphique sous forme d'une aire 
-* *Colonne** : affiche le graphique sous forme de barre
+* *Escalier* : permet d'afficher la courbe sous la forme d'un escalier ou d'un affichage continu.
+* *Variation* : affiche la différence de valeur par rapport au point précédent.
+* *Ligne* : affiche le graphique sous forme de lignes.
+* *Aire*  : affiche le graphique sous forme d'une aire. 
+* *Colonne** : affiche le graphique sous forme de barres.
 
-Voila quelques exemples : 
+Voici quelques exemples : 
 
 image::../images/history5.JPG[]
 
@@ -115,44 +115,44 @@ image::../images/history6.JPG[]
 
 image::../images/history7.JPG[]
 
-Sur ce dernier on voit bien qu'il y a une plus grande précision sur les dernieres données (principe de l'archivage)
+Sur ce dernier, on remarque une plus grande précision sur les dernières données (principe de l'archivage).
 
 == Graphique sur les vues et les designs
 
-Vous pouvez aussi afficher les graphiques sur les vues (on verra ici les options de configuration et non comment faire, pour cela il faut se rendre sur la documention des vues ou des designs en fonction). Voici les options : 
+Vous pouvez aussi afficher les graphiques sur les vues (nous verrons ici les options de configuration et non comment faire, pour cela il faut se rendre sur la documention des vues ou des designs en fonction). Voici les options : 
 
 image::../images/history13.JPG[]
 
-Une fois une donnée activé vous pouvez choisir : 
+Une fois une donnée activée, vous pouvez choisir : 
 
-* *Couleur* : la couleur de la courbe
-* *Type* : le type de graph (aire, ligne ou colonne)
-* *Echelle* : vu que vous pouvez mettre plusieurs courbe (donnée) sur le meme graphe il est possible de distingué les echelles (droite ou gauche)
-* *Escalier* : permet d'afficher la courbe sous la forme d'un escalier au d'un affichage continue
-* *Empiler* : permet d'empiler les valeurs des courbes (voir en dessous pour le résultat)
-* *Variation* : affichage la difference de valeur par rapport au point precedent
+* *Couleur* : la couleur de la courbe.
+* *Type* : le type de graphique (aire, ligne ou colonne).
+* *Echelle* : vu que vous pouvez mettre plusieurs courbes (données) sur le même graphique, il est possible de distinguer les échelles (droite ou gauche).
+* *Escalier* : permet d'afficher la courbe sous la forme d'un escalier ou d'un affichage continu
+* *Empiler* : permet d'empiler les valeurs des courbes (voir en dessous pour le résultat).
+* *Variation* : affiche la différence de valeur par rapport au point précédent.
 
-Voila un exemple de courbes empilées :
+Voici un exemple de courbes empilées :
 
 image::../images/history14.JPG[]
 
 == Option sur la page d'historique
 
-La page d'historique donne accès quelques options en plus : 
+La page d'historique donne accès à quelques options supplémentaires : 
 
 image::../images/history15.JPG[]
 
 [TIP]
-Il suffit de cliquer sur le nom de l'objet pour le deplier et voir apparaitrent les commandes historisé qui peuvent etre graphées le composant
+Il suffit de cliquer sur le nom de l'objet pour le déplier ; apparaissent les commandes historisées qui peuvent être graphées.
 
 [TIP]
-La couleur d'arriere plan des objets de cette liste peuvent etre modifiées a partir de la configuration de l'objet
+La couleur d'arrière-plan des objets de cette liste peuvent être modifiées à partir de la configuration de l'objet.
 
-Devant chaque données pouvant etre grapher vous retrouvez 2 icones : 
+Devant chaque donnée pouvant être graphée, vous retrouvez deux icônes : 
 
-* *Poubelle* : permet de supprimer les données enregistrée, lors du clique dessus jeedom va vous demander si il faut supprimer les données avant une certaine date ou toute les données
-* *Flèche* : permet d'avoir un export CSV des données historisées
+* *Poubelle* : permet de supprimer les données enregistrées ; lors du clic, Jeedom demande s'il faut supprimer les données avant une certaine date ou toutes les données.
+* *Flèche* : permet d'avoir un export CSV des données historisées.
 
-== Suppression de valeur incoherente
+== Suppression de valeur incohérente
 
-Il se peut que desfois sur les graphiques vous ayez des valeurs incoherente (très elévées) par exemple, cela est souvent du à un soucis d'interpretation de la valeur, dans un premier temps vous pouvez en cliquant sur le point en question sur le graph le supprimer ou changer sa valeur, dans un seconde temps vous pouvez aussi regler le min/max possible pour cette commande pour eviter que cela ne se reproduise
+Parfois, il se peut que vous ayez des valeurs incohérentes sur les graphiques. Cela est souvent dû à un souci d'interprétation de la valeur. Il est possible de supprimer ou changer la valeur du point en question, en cliquant sur celui-ci directement sur le graphique ; de plus, vous pouvez régler le minimum et le maximum autorisés afin d'éviter des problèmes futurs.
