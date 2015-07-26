@@ -916,9 +916,15 @@ class cmd {
 						$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));
 						$replace['#displayHistory#'] = '';
 						$historyStatistique = $this->getStatistique($startHist, date('Y-m-d H:i:s'));
-						$replace['#averageHistoryValue#'] = round($historyStatistique['avg'], 1);
-						$replace['#minHistoryValue#'] = round($historyStatistique['min'], 1);
-						$replace['#maxHistoryValue#'] = round($historyStatistique['max'], 1);
+						if ($historyStatistique['avg'] == 0 && $historyStatistique['min'] == 0 && $historyStatistique['max'] == 0) {
+							$replace['#averageHistoryValue#'] = round($replace['#state#'], 1);
+							$replace['#minHistoryValue#'] = round($replace['#state#'], 1);
+							$replace['#maxHistoryValue#'] = round($replace['#state#'], 1);
+						} else {
+							$replace['#averageHistoryValue#'] = round($historyStatistique['avg'], 1);
+							$replace['#minHistoryValue#'] = round($historyStatistique['min'], 1);
+							$replace['#maxHistoryValue#'] = round($historyStatistique['max'], 1);
+						}
 						$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculTendance') . ' hour'));
 						$tendance = $this->getTendance($startHist, date('Y-m-d H:i:s'));
 						if ($tendance > config::byKey('historyCalculTendanceThresholddMax')) {
