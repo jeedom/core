@@ -299,7 +299,7 @@ jeedom.cmd.test = function(_params) {
 
 jeedom.cmd.refreshValue = function(_params) {
     var cmd = $('.cmd[data-cmd_id=' + _params.id + ']');
-    if (cmd.html() != undefined && cmd.closest('.eqLogic').attr('data-version') != undefined) {
+    if (cmd.html() != undefined && cmd.closest('.eqLogic').attr('data-version') != undefined && !cmd.hasClass('noRefresh')) {
         var version = cmd.closest('.eqLogic').attr('data-version');
         var paramsRequired = ['id'];
         var paramsSpecifics = {
