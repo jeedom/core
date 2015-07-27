@@ -658,6 +658,18 @@ class network {
 	}
 
 	public static function cron() {
+		if (config::byKey('market::allowDNS') == 1) {
+			if (!network::test('dnsjeedom', false, 60)) {
+				log::add('ngork', 'debug', 'Restart service http');
+				network::ngrok_stop();
+				network::ngrok_start();
+			}
+			if (config::byKey('market::redirectSSH') == 1 && !network::ngrok_run('tcp', 22, 'ssh')) {
+				log::add('ngork', 'debug', 'Restart service SSH');
+				network::ngrok_stop('tcp', 22, 'ssh');
+				network::ngrok_start('tcp', 22, 'ssh');
+			}
+		}
 		if (!jeedom::isCapable('sudo')) {
 			return;
 		}

@@ -433,17 +433,6 @@ class jeedom {
 				if (config::byKey('jeeNetwork::mode') != 'slave') {
 					jeeNetwork::pull();
 				}
-				if (config::byKey('market::allowDNS') == 1) {
-					if (!network::test('dnsjeedom', false, 60)) {
-						log::add('ngork', 'debug', 'Restart service');
-						network::ngrok_stop();
-						network::ngrok_start();
-					}
-					if (config::byKey('market::redirectSSH') == 1 && !network::ngrok_run('tcp', 22, 'ssh')) {
-						network::ngrok_stop('tcp', 22, 'ssh');
-						network::ngrok_start('tcp', 22, 'ssh');
-					}
-				}
 			} catch (Exception $e) {
 
 			}
@@ -456,7 +445,7 @@ class jeedom {
 				log::add('log', 'error', $e->getMessage());
 			}
 		}
-		if ($gi == 2320) {
+		if ($gi == 2321) {
 			try {
 				scenario::cleanTable();
 				user::cleanOutdatedUser();
