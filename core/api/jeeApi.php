@@ -113,6 +113,9 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 		} else if ($type == 'command') {
 			log::add('api', 'debug', 'Demande API pour les commandes');
 			echo json_encode(utils::o2a(cmd::byEqLogicId(init('id'))));
+		} else if ($type == 'fulData') {
+			log::add('api', 'debug', 'Demande API pour les commandes');
+			echo json_encode(object::fullData(init('id')));
 		} else {
 			if (class_exists($type)) {
 				if (method_exists($type, 'event')) {
