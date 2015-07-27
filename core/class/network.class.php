@@ -522,10 +522,16 @@ class network {
 	}
 
 	public static function ehtIsUp() {
+		if (!file_exists("/sys/class/net/eth0/operstate")) {
+			return false;
+		}
 		return (trim(file_get_contents("/sys/class/net/eth0/operstate")) == 'up') ? true : false;
 	}
 
 	public static function wlanIsUp() {
+		if (!file_exists("/sys/class/net/wlan0/operstate")) {
+			return false;
+		}
 		return (trim(file_get_contents("/sys/class/net/wlan0/operstate")) == 'up') ? true : false;
 	}
 
