@@ -104,6 +104,15 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 		} else if ($type == 'message') {
 			log::add('api', 'debug', 'Demande API pour ajouter un message');
 			message::add(init('category'), init('message'));
+		} else if ($type == 'object') {
+			log::add('api', 'debug', 'Demande API pour les objets');
+			echo json_encode(utils::o2a(object::all()));
+		} else if ($type == 'eqLogic') {
+			log::add('api', 'debug', 'Demande API pour les équipements');
+			echo json_encode(utils::o2a(eqLogic::byObjectId(init('id'))));
+		} else if ($type == 'command') {
+			log::add('api', 'debug', 'Demande API pour les commandes');
+			echo json_encode(utils::o2a(cmd::byEqLogicId(init('id'))));
 		} else {
 			if (class_exists($type)) {
 				if (method_exists($type, 'event')) {
