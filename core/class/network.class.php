@@ -672,6 +672,9 @@ class network {
 				if (strpos($iface, 'tun') !== false) {
 					continue;
 				}
+				if (strpos($iface, 'br0') !== false) {
+					continue;
+				}
 				log::add('network', 'error', __('La passerelle distance de l\'interface ', __FILE__) . $iface . __(' est injoignable je la redemarre pour essayer de corriger', __FILE__));
 				exec('sudo ifdown ' . $iface);
 				sleep(5);
