@@ -120,8 +120,8 @@ if (version_compare(phpversion(), '5.5', '>=')) {
 	echo '<td class="alert alert-success">' . phpversion() . '</td>';
 	echo '<td></td>';
 } else {
-	echo '<td class="alert alert-danger">' . phpversion() . '</td>';
-	echo '<td></td>';
+	echo '<td class="alert alert-warning">' . phpversion() . '</td>';
+	echo '<td>{{Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire}}</td>';
 }
 ?>
 		</tr>
