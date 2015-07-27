@@ -109,13 +109,13 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			echo json_encode(utils::o2a(object::all()));
 		} else if ($type == 'eqLogic') {
 			log::add('api', 'debug', 'Demande API pour les équipements');
-			echo json_encode(utils::o2a(eqLogic::byObjectId(init('id'))));
+			echo json_encode(utils::o2a(eqLogic::byObjectId(init('object_id'))));
 		} else if ($type == 'command') {
 			log::add('api', 'debug', 'Demande API pour les commandes');
-			echo json_encode(utils::o2a(cmd::byEqLogicId(init('id'))));
+			echo json_encode(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
 		} else if ($type == 'fulData') {
 			log::add('api', 'debug', 'Demande API pour les commandes');
-			echo json_encode(object::fullData(init('id')));
+			echo json_encode(object::fullData());
 		} else {
 			if (class_exists($type)) {
 				if (method_exists($type, 'event')) {
