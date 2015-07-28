@@ -281,7 +281,7 @@ class cmd {
 	public static function byObjectNameEqLogicNameCmdName($_object_name, $_eqLogic_name, $_cmd_name) {
 		$values = array(
 			'eqLogic_name' => $_eqLogic_name,
-			'cmd_name' => html_entity_decode($_cmd_name),
+			'cmd_name' => (html_entity_decode($_cmd_name) != '') ? html_entity_decode($_cmd_name) : $_cmd_name,
 		);
 
 		if ($_object_name == __('Aucun', __FILE__)) {
