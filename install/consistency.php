@@ -170,6 +170,9 @@ try {
 		touch($dynamic_apache_path);
 	}
 
+	if (!file_exists('/var/log/auth.log')) {
+		exec('sudo /var/log/auth.log');
+	}
 	cache::deleteBySearch('widgetHtml');
 	cache::deleteBySearch('cmdWidgetdashboard');
 	cache::deleteBySearch('cmdWidgetmobile');
