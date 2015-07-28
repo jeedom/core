@@ -986,6 +986,12 @@ class cmd {
 					$replace['#message#'] = '';
 				}
 			}
+			if ($version == 'scenario' && $this->getType() == 'action' && $this->getSubtype() == 'slider' && !isset($replace['#color#'])) {
+				$replace['#slider#'] = '';
+			}
+			if ($version == 'scenario' && $this->getType() == 'action' && $this->getSubtype() == 'slider' && !isset($replace['#color#'])) {
+				$replace['#color#'] = '';
+			}
 			$replace['#title_placeholder#'] = $this->getDisplay('title_placeholder', __('Titre', __FILE__));
 			$replace['#message_placeholder#'] = $this->getDisplay('message_placeholder', __('Message', __FILE__));
 			$replace['#message_disable#'] = $this->getDisplay('message_disable', 0);
