@@ -143,6 +143,17 @@ try {
 		$cron->save();
 	}
 
+	$cron = cron::byClassAndFunction('jeedom', 'updateSystem');
+	if (!is_object($cron)) {
+		echo "Création de jeedom::updateSystem\n";
+		$cron = new cron();
+		$cron->setClass('jeedom');
+		$cron->setFunction('cron');
+		$cron->setSchedule('0 4 * * 0');
+		$cron->setTimeout(60);
+		$cron->save();
+	}
+
 	$cron = cron::byClassAndFunction('jeedom', 'cron');
 	if (!is_object($cron)) {
 		echo "Création de jeedom::cron\n";

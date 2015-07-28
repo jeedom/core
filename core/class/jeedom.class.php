@@ -351,7 +351,7 @@ class jeedom {
 			sleep(3);
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
-			shell_exec('sudo service ntp restart');
+			jeedom::forceSyncHour();
 			sleep(3);
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
@@ -524,6 +524,29 @@ class jeedom {
 	public static function rebootSystem() {
 		plugin::stop();
 		exec('sudo reboot');
+	}
+
+	public static function updateSystem() {
+		if (jeedom::getHardwareName() == 'Jeedomboard') {
+			$output = array();
+			$return_val = -1;
+			log::remove('system_update');
+			exec('sudo apt-get -y update >> ' . log::getPathToLog('system_update') . ' 2>&1', $output, $return_val);
+			if ($return_val != 0) {
+				log::add('update', 'error', __('Echec de la mise à jour des dépot, veuillez consulter la log system_update', __FILE__));
+				return;
+			}
+			exec('sudo apt-get -y upgrade >> ' . log::getPathToLog('system_update') . ' 2>&1', $output, $return_val);
+			if ($return_val != 0) {
+				log::add('update', 'error', __('Echec de la mise à jour des paquets, veuillez consulter la log system_update', __FILE__));
+				return;
+			}
+			exec('sudo apt-get -y autoremove >> ' . log::getPathToLog('system_update') . ' 2>&1', $output, $return_val);
+			if ($return_val != 0) {
+				log::add('update', 'error', __('Echec su nettoyage des paquets, veuillez consulter la log system_update', __FILE__));
+				return;
+			}
+		}
 	}
 
 	public static function forceSyncHour() {
