@@ -172,6 +172,7 @@ try {
 
 	if (!file_exists('/var/log/auth.log')) {
 		exec('sudo /var/log/auth.log');
+		exec('sudo service fail2ban restart');
 	}
 	cache::deleteBySearch('widgetHtml');
 	cache::deleteBySearch('cmdWidgetdashboard');
