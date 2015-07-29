@@ -113,6 +113,9 @@ if (count($scenarios) == 0) {
 	echo '<div class="scenarioListContainer">';
 	foreach ($scenarios[-1] as $scenario) {
 		$color = ($scenario->getIsActive() == 1) ? '#767676' : '#FA5858';
+		if ($scenario->getState() == 'in progress') {
+			$color = '#337ab7';
+		}
 		echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 		echo "<center>";
 		echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:' . $color . ';"></i>';
@@ -128,6 +131,9 @@ if (count($scenarios) == 0) {
 			echo '<div class="scenarioListContainer">';
 			foreach ($scenarios[$group['group']] as $scenario) {
 				$color = ($scenario->getIsActive() == 1) ? '#767676' : '#FA5858';
+				if ($scenario->getState() == 'in progress') {
+					$color = '#337ab7';
+				}
 				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 				echo "<center>";
 				echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:' . $color . ';"></i>';
