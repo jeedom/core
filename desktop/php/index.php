@@ -1,5 +1,4 @@
 <?php
-$startLoadTime = getmicrotime();
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
 if (isConnect()) {
@@ -391,13 +390,19 @@ if (isConnect('admin')) {
 		} else {
 			echo '<li class="cursor"><a id="bt_expertMode" state="0"><i class="fa fa-square-o"></i> {{Mode expert}}</a></li>';
 		}
-		echo '<li class="cursor expertModeVisible"><a id="bt_rebootSystem" state="0"><i class="fa fa-repeat"></i> {{Redémarrer}}</a></li>';
-		echo '<li class="cursor expertModeVisible"><a id="bt_haltSystem" state="0"><i class="fa fa-power-off"></i> {{Eteindre}}</a></li>';
+		if (jeedom::isCapable('sudo')) {
+			echo '<li class="cursor expertModeVisible"><a id="bt_rebootSystem" state="0"><i class="fa fa-repeat"></i> {{Redémarrer}}</a></li>';
+			echo '<li class="cursor expertModeVisible"><a id="bt_haltSystem" state="0"><i class="fa fa-power-off"></i> {{Eteindre}}</a></li>';
+		}
 	}
 	?>
+	<li class="expertModeVisible"><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
 													<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
 													<li class="divider"></li>
 													<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
+													<li class="divider"></li>
+													<li><a href="#">{{Node JS}} <span class="span_nodeJsState binary red tooltips"></span></a></li>
+													<li><a href="#" id="bt_jeedomAbout">{{Version}} v<?php echo jeedom::version();?></a></li>
 												</ul>
 											</li>
 
@@ -487,30 +492,6 @@ try {
 							</main>
 							<?php
 }
-if (isConnect()) {
-	?>
-							<footer class="footer">
-								<span class="pull-left" style="margin-left : 20px;">Node JS <span class="span_nodeJsState binary red tooltips"></span> - </span>
-								<span class="pull-left">&copy; <a id="bt_jeedomAbout" class="cursor">Jeedom</a> (v<?php echo jeedom::version();?>
-									<?php
-$nbNeedUpdate = update::nbNeedUpdate();
-	if ($nbNeedUpdate == 1) {
-		echo '<span class="label label-danger"><a href="index.php?v=d&p=update" style="color : white;">' . $nbNeedUpdate . ' {{Mise à jour disponible}}</a></span>';
-	} else {
-		if ($nbNeedUpdate > 1) {
-			echo '<span class="label label-danger"><a href="index.php?v=d&p=update" style="color : white;">' . $nbNeedUpdate . ' {{Mises à jour disponibles}}</a></span>';
-		}
-	}
-	echo ') ';
-	echo date('Y');
-	echo ' - {{Page générée en}} <span id="span_loadPageTime">' . round(getmicrotime() - $startLoadTime, 3) . '</span>s';
-	?>
-</span>
-
-<span class="pull-right expertModeVisible tooltips cursor" style="margin-right : 10px;font-size : 1.3em;z-index:1018" title="{{Voir les évènements en temps réél}}" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i></span>
-
-</footer>
-<?php }
 ?>
 </body>
 </html>

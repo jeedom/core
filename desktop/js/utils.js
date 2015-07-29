@@ -310,8 +310,10 @@ function initRowOverflow() {
     if ($(window).width() < 1180) {
         $('.row-overflow > div').css('height', 'auto').css('overflow-y', 'initial').css('overflow-x', 'initial');
     } else {
-        var hWindow = $(window).outerHeight() - $('header').outerHeight() - 45 - $('#div_alert').outerHeight();
-        $('.row-overflow > div').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden');
+        var hWindow = $(window).outerHeight() - $('header').outerHeight() - $('#div_alert').outerHeight() - 20;
+        if($('.row-overflow > div:visible').length > 1){
+            $('.row-overflow > div').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden');
+        }
     }
 }
 
