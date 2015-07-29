@@ -239,9 +239,9 @@ setInterval(function () {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-     $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
-     $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
- });
+       $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
+       $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
+   });
 
     $('#bt_gotoDashboard').on('click',function(){
         window.location.href = 'index.php?v=d&p=dashboard';
@@ -275,8 +275,8 @@ function initMultiSelect(){
         selectAllText: '{{Sélectionner tous}}',
         enableFiltering: true,
         filterPlaceholder: 'Rechercher...',
-         enableCaseInsensitiveFiltering: false,
-         nonSelectedText: 'Aucune option selectionnée'
+        enableCaseInsensitiveFiltering: false,
+        nonSelectedText: 'Aucune option selectionnée'
     });
 }
 
@@ -311,9 +311,7 @@ function initRowOverflow() {
         $('.row-overflow > div').css('height', 'auto').css('overflow-y', 'initial').css('overflow-x', 'initial');
     } else {
         var hWindow = $(window).outerHeight() - $('header').outerHeight() - $('#div_alert').outerHeight() - 20;
-        if($('.row-overflow > div:visible').length > 1){
-            $('.row-overflow > div').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden');
-        }
+        $('.row-overflow > div').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden');
     }
 }
 
