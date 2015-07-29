@@ -43,15 +43,6 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande d'information utilisateur}}</label>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <input type="text"  class="configKey form-control" data-l1key="emailAdmin" />
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2">
-                                    <a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectMailCmd"><i class="fa fa-list-alt"></i></a>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Langue}}</label>
                                 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                     <select class="configKey form-control" data-l1key="language">
@@ -264,10 +255,10 @@ echo $CONFIG['db']['password'];
         <div class="panel-body">
             <form class="form-horizontal">
                 <fieldset>
-                   <div class="row">
+                 <div class="row">
                     <div class="col-xs-6">
-                       <legend>Accès interne</legend>
-                       <?php
+                     <legend>Accès interne</legend>
+                     <?php
 if (config::byKey('jeeNetwork::mode') == 'slave') {
 	echo '<div class="form-group expertModeVisible">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP Maître}}</label>';
@@ -277,81 +268,81 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
 	echo '</div>';
 }
 ?>
-                       <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Protocole}}</label>
-                        <div class="col-xs-8">
-                            <select class="configKey form-control" data-l1key="internalProtocol">
-                                <option value="">Aucun</option>
-                                <option value="http://">HTTP</option>
-                                <option value="https://">HTTPS</option>
-                            </select>
-                        </div>
+                   <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Protocole}}</label>
+                    <div class="col-xs-8">
+                        <select class="configKey form-control" data-l1key="internalProtocol">
+                            <option value="">Aucun</option>
+                            <option value="http://">HTTP</option>
+                            <option value="https://">HTTPS</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Adresse URL ou IP}}</label>
-                        <div class="col-xs-8">
-                            <input type="text" class="configKey form-control" data-l1key="internalAddr" />
-                        </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Adresse URL ou IP}}</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="configKey form-control" data-l1key="internalAddr" />
                     </div>
-                    <div class="form-group expertModeVisible">
-                        <label class="col-xs-4 control-label">{{Complément (exemple : /jeedom)}}</label>
-                        <div class="col-xs-8">
-                            <input type="text" class="configKey form-control" data-l1key="internalComplement" />
-                        </div>
+                </div>
+                <div class="form-group expertModeVisible">
+                    <label class="col-xs-4 control-label">{{Complément (exemple : /jeedom)}}</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="configKey form-control" data-l1key="internalComplement" />
                     </div>
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Port}}</label>
-                        <div class="col-xs-8">
-                            <input type="number"class="configKey form-control" data-l1key="internalPort" />
-                        </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Port}}</label>
+                    <div class="col-xs-8">
+                        <input type="number"class="configKey form-control" data-l1key="internalPort" />
                     </div>
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Statut}}</label>
-                        <div class="col-xs-8">
-                          <?php
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Statut}}</label>
+                    <div class="col-xs-8">
+                      <?php
 if (network::test('internal')) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
 } else {
 	echo '<span class="label label-warning tooltips">{{NOK}}</span>';
 }
 ?>
-                   </div>
                </div>
            </div>
-           <div class="col-xs-6">
-            <legend>Accès externe</legend>
-            <div class="form-group">
-                <label class="col-xs-4 control-label">{{Protocole}}</label>
-                <div class="col-xs-8">
-                    <select class="configKey form-control" data-l1key="externalProtocol">
-                        <option value="">Aucun</option>
-                        <option value="http://">HTTP</option>
-                        <option value="https://">HTTPS</option>
-                    </select>
-                </div>
+       </div>
+       <div class="col-xs-6">
+        <legend>Accès externe</legend>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">{{Protocole}}</label>
+            <div class="col-xs-8">
+                <select class="configKey form-control" data-l1key="externalProtocol">
+                    <option value="">Aucun</option>
+                    <option value="http://">HTTP</option>
+                    <option value="https://">HTTPS</option>
+                </select>
             </div>
-            <div class="form-group">
-                <label class="col-xs-4 control-label">{{Adresse URL ou IP}}</label>
-                <div class="col-xs-8">
-                    <input type="text" class="configKey form-control" data-l1key="externalAddr" />
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">{{Adresse URL ou IP}}</label>
+            <div class="col-xs-8">
+                <input type="text" class="configKey form-control" data-l1key="externalAddr" />
             </div>
-            <div class="form-group expertModeVisible">
-                <label class="col-xs-4 control-label">{{Complément (exemple : /jeedom)}}</label>
-                <div class="col-xs-8">
-                    <input type="text"  class="configKey form-control" data-l1key="externalComplement" />
-                </div>
+        </div>
+        <div class="form-group expertModeVisible">
+            <label class="col-xs-4 control-label">{{Complément (exemple : /jeedom)}}</label>
+            <div class="col-xs-8">
+                <input type="text"  class="configKey form-control" data-l1key="externalComplement" />
             </div>
-            <div class="form-group">
-                <label class="col-xs-4 control-label">{{Port}}</label>
-                <div class="col-xs-8">
-                    <input type="number" class="configKey form-control" data-l1key="externalPort" />
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">{{Port}}</label>
+            <div class="col-xs-8">
+                <input type="number" class="configKey form-control" data-l1key="externalPort" />
             </div>
-            <div class="form-group">
-                <label class="col-xs-4 control-label">{{Statut}}</label>
-                <div class="col-xs-8">
-                  <?php
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">{{Statut}}</label>
+            <div class="col-xs-8">
+              <?php
 $externalTest = network::test('external');
 if ($externalTest) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
@@ -359,9 +350,9 @@ if ($externalTest) {
 	echo '<span class="label label-warning tooltips">{{NOK}}</span>';
 }
 ?>
-           </div>
        </div>
    </div>
+</div>
 </div>
 
 <div class="row">
@@ -423,15 +414,15 @@ if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
             </div>
         </div>
         <div class="form-group">
-           <label class="col-xs-4 control-label">{{Gestion}}</label>
-           <div class="col-xs-8">
-             <a class="btn btn-success" id="bt_writeInterfaceFile"><i class='fa fa-pencil'></i> {{Ecrire la configuration}}</a>
-         </div>
-     </div>
-     <?php }
+         <label class="col-xs-4 control-label">{{Gestion}}</label>
+         <div class="col-xs-8">
+           <a class="btn btn-success" id="bt_writeInterfaceFile"><i class='fa fa-pencil'></i> {{Ecrire la configuration}}</a>
+       </div>
+   </div>
+   <?php }
 ?>
- </div>
- <div class="col-xs-6">
+</div>
+<div class="col-xs-6">
     <legend>DNS Jeedom</legend>
     <div class="alert alert-warning">{{Attention cette fonctionnalité n'est pas disponible dans le service pack community (voir votre service pack sur  votre page profils sur le market)}}</div>
     <div class="form-group">
@@ -472,11 +463,11 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
    </div>
 </div>
 <div class="form-group">
-   <label class="col-xs-4 control-label">{{Gestion}}</label>
-   <div class="col-xs-8">
-     <a class="btn btn-success" id="bt_restartNgrok"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
-     <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arrêter}}</a>
- </div>
+ <label class="col-xs-4 control-label">{{Gestion}}</label>
+ <div class="col-xs-8">
+   <a class="btn btn-success" id="bt_restartNgrok"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
+   <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arrêter}}</a>
+</div>
 
 </div>
 </div>
@@ -582,7 +573,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                 <legend>{{Push}}</legend>
                 <form class="form-horizontal">
                     <fieldset>
-                       <div class="form-group">
+                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{URL de push globale}}</label>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <input type="text"  class="configKey form-control tooltips" data-l1key="cmdPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
@@ -701,6 +692,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
         <div class="panel-body">
             <form class="form-horizontal">
                 <fieldset>
+                <legend>{{Messages}}</legend>
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ajouter un message à chaque erreur dans les logs}}</label>
                         <div class="col-sm-1">
@@ -723,6 +715,16 @@ foreach (plugin::listPlugin(true) as $plugin) {
                        </div>
                    </div>
                    <div class="form-group">
+                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande d'information utilisateur}}</label>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <input type="text"  class="configKey form-control" data-l1key="emailAdmin" />
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2">
+                        <a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectMailCmd"><i class="fa fa-list-alt"></i></a>
+                    </div>
+                </div>
+                <legend>{{Log}}</legend>
+                <div class="form-group">
                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre de lignes maximum dans un fichier de log}}</label>
                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                         <input type="text" class="configKey form-control" data-l1key="maxLineLog"/>
