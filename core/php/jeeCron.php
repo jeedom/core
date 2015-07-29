@@ -190,7 +190,8 @@ if (init('cron_id') != '') {
 							$cron->start();
 						}
 					} else {
-						$cron->stop();
+						$cron->halt();
+						$cron->start();
 					}
 				}
 				if ($cron->getState() == 'run' && ($duration / 60) >= $cron->getTimeout()) {
