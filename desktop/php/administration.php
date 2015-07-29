@@ -902,6 +902,15 @@ foreach (plugin::listPlugin(true) as $plugin) {
                                 <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="update::auto"/>
                             </div>
                         </div>
+                        <?php if (jeedom::getHardwareName() == 'Jeedomboard' && jeedom::isCapable('sudo')) {?>
+                        <div class="form-group expertModeVisible has-warning">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label" title="{{Elle a lieu le dimanche à 4h du matin}}">{{Autoriser la mise à jour automatique du système}}</label>
+                            <div class="col-sm-1">
+                                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="update::autoSystem"/>
+                            </div>
+                        </div>
+                        <?php }
+?>
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Branche}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
