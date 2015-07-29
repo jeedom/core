@@ -1150,6 +1150,9 @@ class scenario {
 	}
 
 	public function getState() {
+		if ($this->state == 'in progress' && !$scenario->running()) {
+			return 'error';
+		}
 		return $this->state;
 	}
 
