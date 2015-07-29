@@ -148,7 +148,7 @@ try {
 		echo "Création de jeedom::updateSystem\n";
 		$cron = new cron();
 		$cron->setClass('jeedom');
-		$cron->setFunction('cron');
+		$cron->setFunction('updateSystem');
 		$cron->setSchedule('0 4 * * 0');
 		$cron->setTimeout(60);
 		$cron->save();

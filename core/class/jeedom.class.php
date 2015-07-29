@@ -536,7 +536,7 @@ class jeedom {
 				log::add('update', 'error', __('Echec de la mise à jour des dépot, veuillez consulter la log system_update', __FILE__));
 				return;
 			}
-			exec('sudo apt-get -y upgrade >> ' . log::getPathToLog('system_update') . ' 2>&1', $output, $return_val);
+			exec('sudo apt-get -y dist-upgrade >> ' . log::getPathToLog('system_update') . ' 2>&1', $output, $return_val);
 			if ($return_val != 0) {
 				log::add('update', 'error', __('Echec de la mise à jour des paquets, veuillez consulter la log system_update', __FILE__));
 				return;
