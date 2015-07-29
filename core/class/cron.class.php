@@ -331,36 +331,40 @@ class cron {
 			$this->setPID();
 			$this->setServer('');
 			$this->save();
-			return true;
-		}
-		log::add('cron', 'info', __('Arrêt de ', __FILE__) . $this->getClass() . '::' . $this->getFunction() . '(), PID : ' . $this->getPID());
-		$kill = posix_kill($this->getPID(), 15);
-		$retry = 0;
-		while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
-			sleep(1);
-			$kill = posix_kill($this->getPID(), 9);
-			$retry++;
-		}
-		$retry = 0;
-		while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
-			sleep(1);
-			exec('kill -9 ' . $this->getPID());
-			$kill = $this->running();
-			$retry++;
-		}
-		if (!$kill && $this->running()) {
-			$this->setState('error');
-			$this->setServer('');
-			$this->setPID();
-			$this->save();
-			throw new Exception($this->getClass() . '::' . $this->getFunction() . __('() : Impossible d\'arrêter la tâche', __FILE__));
 		} else {
-			$this->setState('stop');
-			$this->setDuration(-1);
-			$this->setPID();
-			$this->setServer('');
-			$this->save();
+			log::add('cron', 'info', __('Arrêt de ', __FILE__) . $this->getClass() . '::' . $this->getFunction() . '(), PID : ' . $this->getPID());
+			$kill = posix_kill($this->getPID(), 15);
+			$retry = 0;
+			while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
+				sleep(1);
+				$kill = posix_kill($this->getPID(), 9);
+				$retry++;
+			}
+			$retry = 0;
+			while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
+				sleep(1);
+				exec('kill -9 ' . $this->getPID());
+				$kill = $this->running();
+				$retry++;
+			}
+			if (!$kill && $this->running()) {
+				$this->setState('error');
+				$this->setServer('');
+				$this->setPID();
+				$this->save();
+				throw new Exception($this->getClass() . '::' . $this->getFunction() . __('() : Impossible d\'arrêter la tâche', __FILE__));
+			} else {
+				$this->setState('stop');
+				$this->setDuration(-1);
+				$this->setPID();
+				$this->setServer('');
+				$this->save();
+			}
 		}
+		if ($this->getDeamon() == 1) {
+			exec("ps aux | grep -ie 'cron_id=" . $this->getId() . "' | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+		}
+		return true;
 	}
 
 	/**
