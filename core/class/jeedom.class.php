@@ -527,7 +527,7 @@ class jeedom {
 	}
 
 	public static function updateSystem() {
-		if (jeedom::getHardwareName() == 'Jeedomboard') {
+		if (jeedom::getHardwareName() == 'Jeedomboard' && jeedom::isCapable('sudo')) {
 			$output = array();
 			$return_val = -1;
 			log::remove('system_update');

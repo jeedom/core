@@ -1,5 +1,5 @@
 <?php
-if (jeedom::getHardwareName() == 'Jeedomboard') {
+if (jeedom::getHardwareName() == 'Jeedomboard' && jeedom::isCapable('sudo')) {
 	echo '**************Mise à jour du système (peut etre très long)**************';
 	echo shell_exec('sudo touch /var/log/auth.log');
 	echo 'Mise à jour des sources';
