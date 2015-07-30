@@ -170,8 +170,8 @@ try {
 		touch($dynamic_apache_path);
 	}
 
-	if (!file_exists('/var/log/auth.log')) {
-		exec('sudo /var/log/auth.log');
+	if (!file_exists('/var/log/auth.log') && jeedom::isCapable('sudo')) {
+		exec('sudo touch /var/log/auth.log');
 		exec('sudo service fail2ban restart');
 	}
 	cache::deleteBySearch('widgetHtml');
