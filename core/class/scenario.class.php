@@ -900,7 +900,12 @@ class scenario {
 
 	public function running() {
 		if ($this->getPID() > 0) {
-			return posix_getsid($this->getPID());
+			if (posix_getsid($this->getPID()) && (!file_exists('/proc/' . $this->getPID() . '/cmdline') || strpos(file_get_contents('/proc/' . $this->getPID() . '/cmdline'), 'scenario_id=' . $this->getId()) !== false)) {
+				return true;
+			}
+		}
+		if (shell_exec('ps ax | grep -ie "scenario_id=' . $this->getId() . ' force" | wc -l') > 0) {
+			return true;
 		}
 		return false;
 	}
@@ -919,6 +924,9 @@ class scenario {
 				sleep(1);
 				exec('kill -9 ' . $this->getPID());
 				$retry++;
+			}
+			if ($this->running()) {
+				exec("ps aux | grep -ie 'scenario_id=" . $this->getId() . " force' | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
 			}
 			if ($this->running()) {
 				throw new Exception(__('Impossible d\'arrêter le scénario : ', __FILE__) . $this->getHumanName() . __('. PID : ', __FILE__) . $this->getPID());

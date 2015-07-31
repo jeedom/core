@@ -292,6 +292,9 @@ class cron {
 				return true;
 			}
 		}
+		if (shell_exec('ps ax | grep -ie "cron_id=' . $this->getId() . '$" | wc -l') > 0) {
+			return true;
+		}
 		return false;
 	}
 
@@ -352,7 +355,10 @@ class cron {
 				$this->setServer('');
 				$this->setPID();
 				$this->save();
-				throw new Exception($this->getClass() . '::' . $this->getFunction() . __('() : Impossible d\'arrêter la tâche', __FILE__));
+				exec("ps aux | grep -ie 'cron_id=" . $this->getId() . "$' | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+				if ($this->running()) {
+					throw new Exception($this->getClass() . '::' . $this->getFunction() . __('() : Impossible d\'arrêter la tâche', __FILE__));
+				}
 			} else {
 				$this->setState('stop');
 				$this->setDuration(-1);
@@ -360,9 +366,6 @@ class cron {
 				$this->setServer('');
 				$this->save();
 			}
-		}
-		if ($this->getDeamon() == 1) {
-			exec("ps aux | grep -ie 'cron_id=" . $this->getId() . "' | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
 		}
 		return true;
 	}
