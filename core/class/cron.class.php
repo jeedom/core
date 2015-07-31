@@ -292,7 +292,7 @@ class cron {
 				return true;
 			}
 		}
-		if (shell_exec('ps ax | grep -ie "cron_id=' . $this->getId() . '$" | wc -l') > 0) {
+		if (shell_exec('ps ax | grep -ie "cron_id=' . $this->getId() . '$" | grep -v grep | wc -l') > 0) {
 			return true;
 		}
 		return false;
@@ -336,27 +336,29 @@ class cron {
 			$this->save();
 		} else {
 			log::add('cron', 'info', __('Arrêt de ', __FILE__) . $this->getClass() . '::' . $this->getFunction() . '(), PID : ' . $this->getPID());
-			$kill = posix_kill($this->getPID(), 15);
-			$retry = 0;
-			while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
-				sleep(1);
-				$kill = posix_kill($this->getPID(), 9);
-				$retry++;
+			if ($this->getPID() > 0) {
+				$kill = posix_kill($this->getPID(), 15);
+				$retry = 0;
+				while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
+					sleep(1);
+					$kill = posix_kill($this->getPID(), 9);
+					$retry++;
+				}
+				$retry = 0;
+				while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
+					sleep(1);
+					exec('kill -9 ' . $this->getPID());
+					$kill = $this->running();
+					$retry++;
+				}
 			}
-			$retry = 0;
-			while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
-				sleep(1);
-				exec('kill -9 ' . $this->getPID());
-				$kill = $this->running();
-				$retry++;
-			}
-			if (!$kill && $this->running()) {
-				$this->setState('error');
-				$this->setServer('');
-				$this->setPID();
-				$this->save();
-				exec("ps aux | grep -ie 'cron_id=" . $this->getId() . "$' | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+			if ($this->running()) {
+				exec("ps aux | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
 				if ($this->running()) {
+					$this->setState('error');
+					$this->setServer('');
+					$this->setPID();
+					$this->save();
 					throw new Exception($this->getClass() . '::' . $this->getFunction() . __('() : Impossible d\'arrêter la tâche', __FILE__));
 				}
 			} else {
