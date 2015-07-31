@@ -904,7 +904,7 @@ class scenario {
 				return true;
 			}
 		}
-		if (shell_exec('ps ax | grep -ie "scenario_id=' . $this->getId() . ' " | grep -v grep | wc -l') > 0) {
+		if (shell_exec('ps ax | grep -ie "scenario_id=' . $this->getId() . ' force" | grep -v grep | wc -l') > 0) {
 			return true;
 		}
 		return false;
@@ -928,7 +928,7 @@ class scenario {
 				}
 			}
 			if ($this->running()) {
-				exec("ps aux | grep -ie 'scenario_id=" . $this->getId() . " ' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+				exec("ps aux | grep -ie 'scenario_id=" . $this->getId() . " force' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
 			}
 			if ($this->running()) {
 				throw new Exception(__('Impossible d\'arrêter le scénario : ', __FILE__) . $this->getHumanName() . __('. PID : ', __FILE__) . $this->getPID());
