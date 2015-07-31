@@ -53,7 +53,6 @@ install_msg_en() {
     msg_optimize_webserver_cache_opcache="Installing Zend OpCache cache optimization"
     msg_uptodate="is already installed and up-to-date"
     msg_needinstallupdate="needs to be installed or to be updated"
-    msg_ask_install_nginx_ssl="Do you want to install SSL self sign certificat"
     msg_nginx_ssl_config="*                 NGINX SSL configuration               *"
 }
 
@@ -248,47 +247,8 @@ configure_nginx() {
             service ${i} stop
             update-rc.d -f ${i} remove
         fi
-    done
-    if [ ! -f '/etc/nginx/sites-enabled/default_ssl' ] ; then
-        configure_nginx_ssl         
-    fi          
+    done          
 }
-
-
-configure_nginx_ssl() {
-    echo "********************************************************"
-    echo "${msg_nginx_ssl_config}"
-    echo "********************************************************"
-    openssl genrsa -out jeedom.key 2048
-    openssl req \
-    -new \
-    -subj "/C=FR/ST=France/L=Paris/O=jeedom/OU=JE/CN=jeedom" \
-    -key jeedom.key \
-    -out jeedom.csr
-    openssl x509 -req -days 9999 -in jeedom.csr -signkey jeedom.key -out jeedom.crt
-    mkdir /etc/nginx/certs
-    cp jeedom.key /etc/nginx/certs
-    cp jeedom.crt /etc/nginx/certs
-    rm jeedom.key jeedom.crt
-
-    JEEDOM_ROOT="`cat /etc/nginx/sites-available/default | grep -e 'root /usr/share/nginx/www/jeedom;'`"
-    cp ${webserver_home}/jeedom/install/nginx_default_ssl /etc/nginx/sites-available/default_ssl
-    if [ ! -f '/etc/nginx/sites-enabled/default_ssl' ] ; then
-        ln -s /etc/nginx/sites-available/default_ssl /etc/nginx/sites-enabled/default_ssl
-    fi
-    if [ ! -z "${JEEDOM_ROOT}" ] ; then
-        sed -i 's%root /usr/share/nginx/www;%root /usr/share/nginx/www/jeedom;%g' /etc/nginx/sites-available/default_ssl
-    fi
-    for i in apache2 apache mongoose ; do
-        if [ -f "/etc/init.d/${i}" ] ; then
-            service ${i} stop
-            update-rc.d -f ${i} remove
-        fi
-    done
-    service nginx reload
-    update-rc.d nginx
-}
-
 
 is_version_greater_or_equal() {
     # Compare two "X.Y.Z" formated versions
