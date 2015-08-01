@@ -73,6 +73,7 @@ try {
 		'backup',
 		'log',
 		'ngrok',
+		'.git',
 		realpath(dirname(__FILE__) . '/../core/nodeJS/node_modules'),
 		realpath(dirname(__FILE__) . '/../doc'),
 		realpath(dirname(__FILE__) . '/../core/img'),
