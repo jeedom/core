@@ -523,7 +523,7 @@ class jeedom {
 	}
 
 	public static function updateSystem() {
-		if (config::byKey('update::autoSystem') == 1 && jeedom::getHardwareName() == 'Jeedomboard' && jeedom::isCapable('sudo')) {
+		if (config::byKey('update::autoSystem') == 1 && jeedom::isCapable('systemUpdate') && jeedom::isCapable('sudo')) {
 			$output = array();
 			$return_val = -1;
 			log::remove('system_update');
