@@ -187,6 +187,10 @@ function page(_page, _title, _option, _plugin) {
             }
             $('#page').load(page, function () {
                 $('#page').trigger('create');
+                var height = screen.height - $('#pageTitle').outerHeight() - 140;
+                if(height > $('#page').height()){
+                    $('#page').height(height)
+                }
                 var functionName = '';
                 if (init(_plugin) != '') {
                     functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
