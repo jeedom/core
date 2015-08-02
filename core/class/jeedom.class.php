@@ -542,6 +542,7 @@ class jeedom {
 				log::add('update', 'error', __('Echec su nettoyage des paquets, veuillez consulter la log system_update', __FILE__));
 				return;
 			}
+			exec('sudo service cron restart');
 		}
 	}
 
