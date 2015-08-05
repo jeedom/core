@@ -354,7 +354,7 @@ class network {
 
 	public static function dns_start() {
 		$cmd = '/usr/bin/nodejs ' . dirname(__FILE__) . '/../../script/localtunnel/bin/client';
-		$cmd .= ' --host http://devdns.jeedom.fr --port 80 --authentification ' . config::byKey('ngrok::token') . ' --subdomain ' . config::byKey('ngrok::addr');
+		$cmd .= ' --host http://dns.jeedom.fr --port 80 --authentification ' . config::byKey('ngrok::token') . ' --subdomain ' . config::byKey('ngrok::addr');
 		exec($cmd . ' >> ' . log::getPathToLog('dns_jeedom') . ' 2>&1 &');
 		return true;
 	}
