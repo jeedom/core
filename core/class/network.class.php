@@ -353,6 +353,7 @@ class network {
 /*     * *********************NGROK************************* */
 
 	public static function dns_start() {
+		log::add('dns_jeedom', 'debug', 'Redemarrage du service DNS');
 		$cmd = '/usr/bin/nodejs ' . dirname(__FILE__) . '/../../script/localtunnel/bin/client';
 		$cmd .= ' --host http://dns.jeedom.fr --port 80 --authentification ' . config::byKey('ngrok::token') . ' --subdomain ' . config::byKey('ngrok::addr');
 		exec($cmd . ' >> ' . log::getPathToLog('dns_jeedom') . ' 2>&1 &');
@@ -543,7 +544,7 @@ class network {
 	}
 
 	public static function cron() {
-		if (config::byKey('market::allowDNS') == 1) {
+		if (config::byKey('market::allowDNS') == 1 && false) {
 			if (!network::test('dnsjeedom', false, 60)) {
 				log::add('ngork', 'debug', 'Restart service http');
 				network::dns_stop();

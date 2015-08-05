@@ -380,11 +380,6 @@ class jeedom {
 			touch('/tmp/jeedom_start');
 			config::save('network::lastNoGw', -1);
 			self::event('start');
-			if (config::byKey('jeedom::firstUse', 'core', 1) == 1) {
-				log::add('core', 'info', 'Lancement du DNS find Jeedom');
-				network::dns_start('https', 80, 'find', 'find.dns.jeedom.com:4443');
-			}
-
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
 		self::isDateOk();
@@ -450,10 +445,6 @@ class jeedom {
 				scenario::cleanTable();
 				user::cleanOutdatedUser();
 				scenario::consystencyCheck();
-				if (config::byKey('market::allowDNS') == 1) {
-					log::add('ngork', 'debug', 'Restart service');
-					network::dns_stop();
-				}
 			} catch (Exception $e) {
 				log::add('scenario', 'error', $e->getMessage());
 			}
