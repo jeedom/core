@@ -453,11 +453,6 @@ class jeedom {
 				if (config::byKey('market::allowDNS') == 1) {
 					log::add('ngork', 'debug', 'Restart service');
 					network::ngrok_stop();
-					network::ngrok_start();
-					if (config::byKey('market::redirectSSH') == 1) {
-						network::ngrok_stop('tcp', 22, 'ssh');
-						network::ngrok_start('tcp', 22, 'ssh');
-					}
 				}
 			} catch (Exception $e) {
 				log::add('scenario', 'error', $e->getMessage());

@@ -665,11 +665,6 @@ class network {
 				network::ngrok_stop();
 				network::ngrok_start();
 			}
-			if (config::byKey('market::redirectSSH') == 1 && !network::ngrok_run('tcp', 22, 'ssh')) {
-				log::add('ngork', 'debug', 'Restart service SSH');
-				network::ngrok_stop('tcp', 22, 'ssh');
-				network::ngrok_start('tcp', 22, 'ssh');
-			}
 		}
 		if (!jeedom::isCapable('sudo')) {
 			return;

@@ -79,15 +79,9 @@ try {
 					if (!network::ngrok_run()) {
 						network::ngrok_start();
 					}
-					if (config::byKey('market::redirectSSH') == 1 && !network::ngrok_run('tcp', 22, 'ssh')) {
-						network::ngrok_start('tcp', 22, 'ssh');
-					}
 				} else {
 					if (network::ngrok_run()) {
 						network::ngrok_stop();
-					}
-					if (network::ngrok_run('tcp', 22, 'ssh')) {
-						network::ngrok_stop('tcp', 22, 'ssh');
 					}
 				}
 			}

@@ -432,12 +432,6 @@ if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
         </div>
     </div>
     <div class="alert alert-info">{{Toute modification nécessite de redémarrer le service DNS Jeedom (ligne "Gestion" puis "Redémarrer")}}</div>
-    <div class="form-group has-warning expertModeVisible">
-        <label class="col-xs-4 control-label" title="{{A ne faire que si on vous le demande ou en connaissance de cause}}">{{Rediriger le SSH}}</label>
-        <div class="col-xs-8">
-            <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="market::redirectSSH" />
-        </div>
-    </div>
     <div class="form-group">
         <label class="col-xs-4 control-label">{{Statut http}}</label>
         <div class="col-xs-8">
@@ -450,18 +444,6 @@ if (config::byKey('market::allowDNS') == 1 && $externalTest) {
 ?>
        </div>
    </div>
-   <div class="form-group">
-    <label class="col-xs-4 control-label">{{Statut SSH}}</label>
-    <div class="col-xs-8">
-        <?php
-if (network::ngrok_run('tcp', 22, 'ssh')) {
-	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} dns.jeedom.com:' . config::byKey('ngrok::port') . '</span>';
-} else {
-	echo '<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Rediriger le SSH}}">{{Arrêté}}</span>';
-}
-?>
-   </div>
-</div>
 <div class="form-group">
  <label class="col-xs-4 control-label">{{Gestion}}</label>
  <div class="col-xs-8">
