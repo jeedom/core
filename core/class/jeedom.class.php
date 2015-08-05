@@ -382,7 +382,7 @@ class jeedom {
 			self::event('start');
 			if (config::byKey('jeedom::firstUse', 'core', 1) == 1) {
 				log::add('core', 'info', 'Lancement du DNS find Jeedom');
-				network::ngrok_start('https', 80, 'find', 'find.dns.jeedom.com:4443');
+				network::dns_start('https', 80, 'find', 'find.dns.jeedom.com:4443');
 			}
 
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
@@ -452,7 +452,7 @@ class jeedom {
 				scenario::consystencyCheck();
 				if (config::byKey('market::allowDNS') == 1) {
 					log::add('ngork', 'debug', 'Restart service');
-					network::ngrok_stop();
+					network::dns_stop();
 				}
 			} catch (Exception $e) {
 				log::add('scenario', 'error', $e->getMessage());

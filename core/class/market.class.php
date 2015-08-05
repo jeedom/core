@@ -349,10 +349,10 @@ class market {
 					$ngrokRestart = true;
 				}
 				if ($ngrokRestart && config::byKey('market::allowDNS') == 1) {
-					if (network::ngrok_run()) {
-						network::ngrok_stop();
+					if (network::dns_run()) {
+						network::dns_stop();
 					}
-					network::ngrok_start();
+					network::dns_start();
 				}
 				if (isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
 					config::save('jeedom::url', $_result['jeedom::url']);

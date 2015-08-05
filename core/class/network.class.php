@@ -352,135 +352,19 @@ class network {
 
 /*     * *********************NGROK************************* */
 
-	public static function ngrok_start($_proto = 'https', $_port = 80, $_name = '', $_serverAddr = 'dns.jeedom.com:4443') {
-		if ($_port != 80 && $_name == '') {
-			throw new Exception(__('Si le port est different de 80 le nom ne peut etre vide', __FILE__));
-		}
-		if (config::byKey('ngrok::addr') == '') {
-			return;
-		}
-		if ($_name == '') {
-			$_name = 'jeedom';
-		}
-		$config_file = '/tmp/ngrok_' . $_name;
-		$logfile = log::getPathToLog('ngrok');
-		$uname = posix_uname();
-		if (strrpos($uname['machine'], 'arm') !== false) {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
-		} else if ($uname['machine'] == 'x86_64') {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
-		} else {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
-		}
-		exec('chmod +x ' . $cmd);
-		$cmd .= ' -log=none -config=' . $config_file . ' start ' . $_name;
-		if (!self::ngrok_run($_proto, $_port, $_name)) {
-			$replace = array(
-				'#server_addr#' => $_serverAddr,
-				'#name#' => $_name,
-				'#proto#' => $_proto,
-				'#port#' => $_port,
-				'#remote_port#' => '',
-				'#token#' => config::byKey('ngrok::token'),
-				'#auth#' => '',
-				'#subdomain#' => 'subdomain : ' . config::byKey('ngrok::addr'),
-			);
-			if ($_serverAddr != 'dns.jeedom.com:4443') {
-				$replace['#subdomain#'] = '';
-			}
-			if ($_proto == 'tcp') {
-				if (config::byKey('ngrok::port') == '') {
-					return '';
-				}
-				$remote_port = config::byKey('ngrok::port');
-				if ($_port != 22) {
-					$used_port = config::byKey('ngrok::remoteport');
-					if (!is_array($used_port)) {
-						$used_port = array();
-					}
-					for ($i = 1; $i < 5; $i++) {
-						$remote_port++;
-						if (!isset($used_port[$remote_port]) || $used_port[$remote_port] == $_name) {
-							break;
-						}
-					}
-					$used_port[$remote_port] = $_name;
-					config::save('ngrok::remoteport', $used_port);
-				}
-				$replace['#remote_port#'] = 'remote_port: ' . $remote_port;
-			}
-			if ($_port != 80) {
-				$replace['#subdomain#'] .= $_name;
-			}
-			$config = template_replace($replace, file_get_contents(dirname(__FILE__) . '/../../script/ngrok/config'));
-			if (file_exists($config_file)) {
-				unlink($config_file);
-			}
-			file_put_contents($config_file, $config);
-			log::remove('ngrok');
-			log::add('ngork', 'debug', 'Lancement de ngork : ' . $cmd);
-			exec($cmd . ' >> /dev/null 2>&1 &');
-		}
-
+	public static function dns_start() {
+		$cmd = '/usr/bin/nodejs ' . dirname(__FILE__) . '/../../script/localtunnel/bin/client';
+		$cmd .= ' --host http://devdns.jeedom.fr --port 80 --authentification ' . config::byKey('ngrok::token') . ' --subdomain ' . config::byKey('ngrok::addr');
+		exec($cmd . ' >> ' . log::getPathToLog('dns_jeedom') . ' 2>&1 &');
 		return true;
 	}
 
-	public static function ngrok_run($_proto = 'https', $_port = 80, $_name = '') {
-		if ($_port != 80 && $_name == '') {
-			throw new Exception(__('Si le port est different de 80 le nom ne peut etre vide', __FILE__));
-		}
-		if ($_name == '') {
-			$_name = 'jeedom';
-		}
-		$config_file = '/tmp/ngrok_' . $_name;
-		$logfile = log::getPathToLog('ngrok');
-		$uname = posix_uname();
-		if (strrpos($uname['machine'], 'arm') !== false) {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
-		} else if ($uname['machine'] == 'x86_64') {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
-		} else {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
-		}
-		$cmd .= ' -log=none -config=' . $config_file . ' start ' . $_name;
-		$pid = jeedom::retrievePidThread($cmd);
-		if ($pid == null) {
-			return false;
-		}
-		return @posix_getsid(intval($pid));
+	public static function dns_run() {
+		return (shell_exec('ps ax | grep -ie "localtunnel/bin/client" | grep -v grep | wc -l') > 0);
 	}
 
-	public static function ngrok_stop($_proto = 'https', $_port = 80, $_name = '') {
-		if ($_port != 80 && $_name == '') {
-			throw new Exception(__('Si le port est different de 80 le nom ne peut etre vide', __FILE__));
-		}
-		if (!self::ngrok_run($_proto, $_port, $_name)) {
-			return true;
-		}
-		if ($_name == '') {
-			$_name = 'jeedom';
-		}
-		$config_file = '/tmp/ngrok_' . $_name;
-		$logfile = log::getPathToLog('ngrok');
-		$uname = posix_uname();
-		if (strrpos($uname['machine'], 'arm') !== false) {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
-		} else if ($uname['machine'] == 'x86_64') {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
-		} else {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
-		}
-		$cmd .= ' -log=none -config=' . $config_file . ' start ' . $_name;
-		$pid = jeedom::retrievePidThread($cmd);
-		if ($pid == null) {
-			return true;
-		}
-		$kill = @posix_kill($pid, 15);
-		if (!$kill) {
-			sleep(1);
-			@posix_kill($pid, 9);
-		}
-		return !self::ngrok_run($_proto, $_port, $_name);
+	public static function dns_stop() {
+		exec("ps aux | grep -ie \"localtunnel/bin/client\" | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
 	}
 
 /*     * *********************WICD************************* */
@@ -662,8 +546,8 @@ class network {
 		if (config::byKey('market::allowDNS') == 1) {
 			if (!network::test('dnsjeedom', false, 60)) {
 				log::add('ngork', 'debug', 'Restart service http');
-				network::ngrok_stop();
-				network::ngrok_start();
+				network::dns_stop();
+				network::dns_start();
 			}
 		}
 		if (!jeedom::isCapable('sudo')) {

@@ -26,16 +26,16 @@ try {
 
 	if (init('action') == 'restartNgrok') {
 		config::save('market::allowDNS', 1);
-		if (network::ngrok_run()) {
-			network::ngrok_stop();
+		if (network::dns_run()) {
+			network::dns_stop();
 		}
-		network::ngrok_start();
+		network::dns_start();
 		ajax::success();
 	}
 
 	if (init('action') == 'stopNgrok') {
 		config::save('market::allowDNS', 0);
-		network::ngrok_stop();
+		network::dns_stop();
 		ajax::success();
 	}
 

@@ -76,12 +76,12 @@ try {
 			}
 			if ($key == 'market::allowDNS') {
 				if ($value == 1) {
-					if (!network::ngrok_run()) {
-						network::ngrok_start();
+					if (!network::dns_run()) {
+						network::dns_start();
 					}
 				} else {
-					if (network::ngrok_run()) {
-						network::ngrok_stop();
+					if (network::dns_run()) {
+						network::dns_stop();
 					}
 				}
 			}

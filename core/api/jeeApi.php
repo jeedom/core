@@ -728,16 +728,16 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 			if ($jsonrpc->getMethod() == 'network::restartNgrok') {
 				config::save('market::allowDNS', 1);
-				if (network::ngrok_run()) {
-					network::ngrok_stop();
+				if (network::dns_run()) {
+					network::dns_stop();
 				}
-				network::ngrok_start();
+				network::dns_start();
 				$jsonrpc->makeSuccess();
 			}
 
 			if ($jsonrpc->getMethod() == 'network::stopNgrok') {
 				config::save('market::allowDNS', 0);
-				network::ngrok_stop();
+				network::dns_stop();
 				$jsonrpc->makeSuccess();
 			}
 
@@ -751,7 +751,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				if (!isset($params['name'])) {
 					$params['name'] = '';
 				}
-				$jsonrpc->makeSuccess(network::ngrok_run($params['proto'], $params['port'], $params['name']));
+				$jsonrpc->makeSuccess(network::dns_run($params['proto'], $params['port'], $params['name']));
 			}
 
 			/*             * ************************************************************************ */
