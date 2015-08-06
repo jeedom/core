@@ -514,6 +514,9 @@ class network {
 	}
 
 	public static function cron() {
+		if (config::byKey('market::allowDNS') == 1 && !network::dns_run()) {
+			network::dns_start();
+		}
 		if (!jeedom::isCapable('sudo')) {
 			return;
 		}
