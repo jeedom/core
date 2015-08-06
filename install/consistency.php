@@ -165,6 +165,17 @@ try {
 		$cron->save();
 	}
 
+	$cron = cron::byClassAndFunction('plugin', 'cron');
+	if (!is_object($cron)) {
+		echo "Création de plugin::cron\n";
+		$cron = new cron();
+		$cron->setClass('plugin');
+		$cron->setFunction('cron');
+		$cron->setSchedule('* * * * * *');
+		$cron->setTimeout(60);
+		$cron->save();
+	}
+
 	$dynamic_apache_path = dirname(__FILE__) . '/../core/config/apache_jeedom_dynamic_rules';
 	if (!file_exists($dynamic_apache_path)) {
 		touch($dynamic_apache_path);

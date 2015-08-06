@@ -405,8 +405,6 @@ class jeedom {
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
 		self::isDateOk();
-		$gi = date('Gi');
-		$i = date('i');
 		try {
 			$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
 			if ($c->isDue()) {
@@ -434,44 +432,45 @@ class jeedom {
 				cache::clean();
 				DB::optimize();
 			}
+			$c = new Cron\CronExpression('*/10 * * * *', new Cron\FieldFactory);
+			if ($c->isDue()) {
+				try {
+					try {
+						network::cron();
+					} catch (Exception $e) {
+						log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+					}
+					eqLogic::checkAlive();
+					connection::cron();
+					if (config::byKey('jeeNetwork::mode') != 'slave') {
+						jeeNetwork::pull();
+					}
+				} catch (Exception $e) {
+
+				}
+			}
+			$c = new Cron\CronExpression('02 02 * * *', new Cron\FieldFactory);
+			if ($c->isDue()) {
+				try {
+					log::chunk();
+					cron::clean();
+				} catch (Exception $e) {
+					log::add('log', 'error', $e->getMessage());
+				}
+			}
+			$c = new Cron\CronExpression('21 23 * * *', new Cron\FieldFactory);
+			if ($c->isDue()) {
+				try {
+					scenario::cleanTable();
+					user::cleanOutdatedUser();
+					scenario::consystencyCheck();
+				} catch (Exception $e) {
+					log::add('scenario', 'error', $e->getMessage());
+				}
+			}
 		} catch (Exception $e) {
 
 		}
-		plugin::cron();
-		if ($gi % 10 == 0) {
-			try {
-				try {
-					network::cron();
-				} catch (Exception $e) {
-					log::add('network', 'error', 'network::cron : ' . $e->getMessage());
-				}
-				eqLogic::checkAlive();
-				connection::cron();
-				if (config::byKey('jeeNetwork::mode') != 'slave') {
-					jeeNetwork::pull();
-				}
-			} catch (Exception $e) {
-
-			}
-		}
-		if ($gi == 202) {
-			try {
-				log::chunk();
-				cron::clean();
-			} catch (Exception $e) {
-				log::add('log', 'error', $e->getMessage());
-			}
-		}
-		if ($gi == 2321) {
-			try {
-				scenario::cleanTable();
-				user::cleanOutdatedUser();
-				scenario::consystencyCheck();
-			} catch (Exception $e) {
-				log::add('scenario', 'error', $e->getMessage());
-			}
-		}
-
 	}
 
 	public static function checkOngoingThread($_cmd) {
