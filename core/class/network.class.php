@@ -324,6 +324,7 @@ class network {
 
 	public static function dns_start() {
 		log::add('dns_jeedom', 'debug', 'Redemarrage du service DNS');
+		self::dns_stop();
 		$cmd = '/usr/bin/nodejs ' . dirname(__FILE__) . '/../../script/localtunnel/bin/client';
 		$cmd .= ' --host http://dns.jeedom.fr --port 80 --authentification ' . config::byKey('ngrok::token') . ' --subdomain ' . config::byKey('ngrok::addr');
 		exec($cmd . ' >> ' . log::getPathToLog('dns_jeedom') . ' 2>&1 &');
