@@ -168,6 +168,10 @@ class network {
 				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
 					$internalIp = self::getInterfaceIp('wlan0');
 				}
+				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+					$internalIp = explode(' ', shell_exec('hostname -I'));
+					$internalIp = $internalIp[0];
+				}
 				if ($internalIp != '' && filter_var($internalIp, FILTER_VALIDATE_IP) && !netMatch('127.0.*.*', $internalIp)) {
 					config::save('internalAddr', $internalIp);
 				}
