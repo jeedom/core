@@ -189,7 +189,11 @@ class plugin {
 	public static function cron() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron')) {
-				$plugin->launch('cron');
+				try {
+					$plugin_id::cron();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron du plugin : ', __FILE__) . $e->getMessage());
+				}
 			}
 		}
 	}
@@ -197,7 +201,11 @@ class plugin {
 	public static function cronDaily() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cronDaily')) {
-				$plugin->launch('cronDaily');
+				try {
+					$plugin_id::cronDaily();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cronDaily du plugin : ', __FILE__) . $e->getMessage());
+				}
 			}
 		}
 	}
@@ -205,7 +213,11 @@ class plugin {
 	public static function cronHourly() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cronHourly')) {
-				$plugin->launch('cronHourly');
+				try {
+					$plugin_id::cronHourly();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cronHourly du plugin : ', __FILE__) . $e->getMessage());
+				}
 			}
 		}
 	}
@@ -213,7 +225,13 @@ class plugin {
 	public static function start() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'start')) {
-				$plugin->launch('start');
+				$plugin_id = $plugin->getId();
+				try {
+					$plugin_id::start();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction start du plugin : ', __FILE__) . $e->getMessage());
+				}
+
 			}
 		}
 	}
@@ -221,10 +239,14 @@ class plugin {
 	public static function stop() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'stop')) {
-				$plugin->launch('stop');
+				$plugin_id = $plugin->getId();
+				try {
+					$plugin_id::stop();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction stop du plugin : ', __FILE__) . $e->getMessage());
+				}
 			}
 		}
-		sleep(10);
 	}
 
 	/*     * *********************Méthodes d'instance************************* */

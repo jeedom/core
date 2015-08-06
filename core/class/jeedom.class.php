@@ -390,8 +390,16 @@ class jeedom {
 					}
 				}
 			}
-			jeedom::start();
-			plugin::start();
+			try {
+				jeedom::start();
+			} catch (Exception $e) {
+
+			}
+			try {
+				plugin::start();
+			} catch (Exception $e) {
+
+			}
 			touch('/tmp/jeedom_start');
 			config::save('network::lastNoGw', -1);
 			self::event('start');
