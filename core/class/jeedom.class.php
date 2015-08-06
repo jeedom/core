@@ -32,8 +32,14 @@ class jeedom {
 			config::save('enableCron', 0);
 			foreach (cron::all() as $cron) {
 				if ($cron->running()) {
-					$cron->halt();
-					echo '.';
+					try {
+						$cron->halt();
+						echo '.';
+					} catch (Exception $e) {
+						sleep(5);
+						$cron->halt();
+					}
+
 				}
 			}
 			echo " OK\n";
@@ -72,8 +78,13 @@ class jeedom {
 			echo "Désactivation de tous les scénarios";
 			config::save('enableScenario', 0);
 			foreach (scenario::all() as $scenario) {
-				$scenario->stop();
-				echo '.';
+				try {
+					$scenario->stop();
+					echo '.';
+				} catch (Exception $e) {
+					sleep(5);
+					$scenario->stop();
+				}
 			}
 			echo " OK\n";
 		} catch (Exception $e) {
