@@ -320,40 +320,6 @@ class network {
 		}
 	}
 
-	public static function apache_saveRule($_rules) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		$jeedom_dynamic_rule_file = dirname(__FILE__) . '/../../core/config/apache_jeedom_dynamic_rules';
-		if (!file_exists($jeedom_dynamic_rule_file)) {
-			throw new Exception('Fichier non trouvé : ' . $jeedom_dynamic_rule_file);
-		}
-		foreach ($_rules as $rule) {
-			$apache_conf .= $rule . "\n";
-		}
-		file_put_contents($jeedom_dynamic_rule_file, $apache_conf);
-	}
-
-	public static function apache_removeRule($_rules, $_returnResult = false) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		$jeedom_dynamic_rule_file = dirname(__FILE__) . '/../../core/config/apache_jeedom_dynamic_rules';
-		if (!file_exists($jeedom_dynamic_rule_file)) {
-			return $_rules;
-		}
-		$apache_conf = trim(file_get_contents($jeedom_dynamic_rule_file));
-		$new_apache_conf = $apache_conf;
-		foreach ($_rules as $rule) {
-			$new_apache_conf = preg_replace($rule, "", $new_apache_conf);
-		}
-		$new_apache_conf = preg_replace("/\n\n*/s", "\n", $new_apache_conf);
-
-		if ($new_apache_conf != $apache_conf) {
-			file_put_contents($jeedom_dynamic_rule_file, $new_apache_conf);
-		}
-	}
-
 /*     * *********************NGROK************************* */
 
 	public static function dns_start() {
@@ -548,13 +514,6 @@ class network {
 	}
 
 	public static function cron() {
-		if (config::byKey('market::allowDNS') == 1 && false) {
-			if (!network::test('dnsjeedom', false, 60)) {
-				log::add('ngork', 'debug', 'Restart service http');
-				network::dns_stop();
-				network::dns_start();
-			}
-		}
 		if (!jeedom::isCapable('sudo')) {
 			return;
 		}

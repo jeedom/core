@@ -333,22 +333,16 @@ class market {
 	public static function postJsonRpc(&$_result) {
 		if (is_array($_result)) {
 			if (config::byKey('market::allowDNS') == 1) {
-				$ngrokRestart = false;
+				$dnsRestart = false;
 				if (isset($_result['register::ngrokAddr']) && config::byKey('ngrok::addr') != $_result['register::ngrokAddr']) {
 					config::save('ngrok::addr', $_result['register::ngrokAddr']);
-					$ngrokRestart = true;
+					$dnsRestart = true;
 				}
-
 				if (isset($_result['register::ngrokToken']) && config::byKey('ngrok::token') != $_result['register::ngrokToken']) {
 					config::save('ngrok::token', $_result['register::ngrokToken']);
-					$ngrokRestart = true;
-
+					$dnsRestart = true;
 				}
-				if (isset($_result['register::ngrokPort']) && config::byKey('ngrok::port') != $_result['register::ngrokPort']) {
-					config::save('ngrok::port', $_result['register::ngrokPort']);
-					$ngrokRestart = true;
-				}
-				if ($ngrokRestart && config::byKey('market::allowDNS') == 1) {
+				if ($dnsRestart) {
 					if (network::dns_run()) {
 						network::dns_stop();
 					}

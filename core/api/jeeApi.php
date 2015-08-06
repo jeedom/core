@@ -751,7 +751,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				if (!isset($params['name'])) {
 					$params['name'] = '';
 				}
-				$jsonrpc->makeSuccess(network::dns_run($params['proto'], $params['port'], $params['name']));
+				$jsonrpc->makeSuccess(network::dns_run());
 			}
 
 			/*             * ************************************************************************ */
