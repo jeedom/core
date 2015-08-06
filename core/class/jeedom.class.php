@@ -383,7 +383,11 @@ class jeedom {
 			$cache->remove();
 			foreach (cron::all() as $cron) {
 				if ($cron->running() && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
-					$cron->halt();
+					try {
+						$cron->halt();
+					} catch (Exception $e) {
+
+					}
 				}
 			}
 			jeedom::start();
