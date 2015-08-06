@@ -401,7 +401,6 @@ class jeedom {
 
 			}
 			touch('/tmp/jeedom_start');
-			config::save('network::lastNoGw', -1);
 			self::event('start');
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
