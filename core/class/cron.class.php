@@ -239,26 +239,6 @@ class cron {
 	}
 
 	/**
-	 * Number of this cron running
-	 * @return int
-	 */
-	public function getNbRun() {
-		$cmd = 'php ' . dirname(__FILE__) . '/../php/jeeCron.php';
-		$cmd .= ' cron_id=' . $this->getId();
-		return jeedom::checkOngoingThread($cmd);
-	}
-
-	/**
-	 * Return pid of this cron (if running)
-	 * @return int
-	 */
-	public function retrievePid() {
-		$cmd = 'php ' . dirname(__FILE__) . '/../php/jeeCron.php';
-		$cmd .= ' cron_id=' . $this->getId();
-		return jeedom::retrievePidThread($cmd);
-	}
-
-	/**
 	 * Launch cron (this method must be only call by jeecron master)
 	 * @throws Exception
 	 */
@@ -266,17 +246,14 @@ class cron {
 		$cmd = '/usr/bin/php ' . dirname(__FILE__) . '/../php/jeeCron.php';
 		$cmd .= ' cron_id=' . $this->getId();
 		if (!$this->running()) {
-			exec($cmd . ' >> /dev/null 2>&1 &');
+			exec($cmd . ' >> ' . log::getPathToLog('cron_execution') . ' 2>&1 &');
 		} else {
 			if (!$_noErrorReport) {
-				$this->setPID($this->retrievePid());
-				$this->setServer(gethostname());
-				$this->setState('run');
 				$this->halt();
 				if (!$this->running()) {
 					exec($cmd . ' >> /dev/null 2>&1 &');
 				} else {
-					throw new Exception(__('Impossible d\'exécuter la tâche car elle est déjà en cours d\'exécution (', __FILE__) . $this->getNbRun() . ') : ' . $cmd);
+					throw new Exception(__('Impossible d\'exécuter la tâche car elle est déjà en cours d\'exécution (', __FILE__) . ' : ' . $cmd);
 				}
 			}
 		}
