@@ -189,6 +189,7 @@ class plugin {
 	public static function cron() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron')) {
+				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::cron();
 				} catch (Exception $e) {
@@ -201,6 +202,7 @@ class plugin {
 	public static function cronDaily() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cronDaily')) {
+				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::cronDaily();
 				} catch (Exception $e) {
@@ -213,6 +215,7 @@ class plugin {
 	public static function cronHourly() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cronHourly')) {
+				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::cronHourly();
 				} catch (Exception $e) {
