@@ -323,8 +323,17 @@ class network {
 /*     * *********************NGROK************************* */
 
 	public static function dns_start() {
-		log::add('dns_jeedom', 'debug', 'Redemarrage du service DNS');
 		self::dns_stop();
+		log::add('dns_jeedom', 'debug', 'Redemarrage du service DNS');
+		if (config::byKey('ngrok::token') == '' || config::byKey('ngrok::addr') == '') {
+			log::add('dns_jeedom', 'info', 'Aucun token ou addresse');
+			return;
+		}
+		if (config::byKey('market::allowDNS') != 1) {
+			log::add('dns_jeedom', 'info', 'L\'utilisation des DNS jeedom n\'est pas autorisée');
+			return;
+		}
+
 		$cmd = '/usr/bin/nodejs ' . dirname(__FILE__) . '/../../script/localtunnel/bin/client';
 		$cmd .= ' --host http://dns.jeedom.fr --port 80 --authentification ' . config::byKey('ngrok::token') . ' --subdomain ' . config::byKey('ngrok::addr');
 		exec($cmd . ' >> ' . log::getPathToLog('dns_jeedom') . ' 2>&1 &');
@@ -461,7 +470,10 @@ class network {
 
 	public static function getRoute() {
 		$return = array();
-		$results = trim(shell_exec('sudo route -n'));
+		$results = trim(shell_exec('sudo route -n 2>&1'));
+		if (strpos($results, 'command not found') !== false) {
+			throw new Exception('Command route not found');
+		}
 		$results = explode("\n", $results);
 		unset($results[0]);
 		unset($results[1]);
@@ -521,28 +533,31 @@ class network {
 		if (!jeedom::isCapable('sudo')) {
 			return;
 		}
-		$gws = self::checkGw();
-		if (count($gws) == 0) {
-			log::add('network', 'error', __('Aucune interface réseau trouvée, je redemarre tous le réseaux', __FILE__));
-			exec('sudo service networking restart');
-			return;
-		}
-		foreach ($gws as $iface => $gw) {
-			if ($gw['ping'] != 'ok') {
-				if (strpos($iface, 'tun') !== false) {
-					continue;
-				}
-				if (strpos($iface, 'br0') !== false) {
-					continue;
-				}
-				log::add('network', 'error', __('La passerelle distance de l\'interface ', __FILE__) . $iface . __(' est injoignable je la redemarre pour essayer de corriger', __FILE__));
-				exec('sudo ifdown ' . $iface);
-				sleep(5);
-				exec('sudo ifup --force ' . $iface);
+		try {
+			$gws = self::checkGw();
+			if (count($gws) == 0) {
+				log::add('network', 'error', __('Aucune interface réseau trouvée, je redemarre tous le réseaux', __FILE__));
+				exec('sudo service networking restart');
+				return;
 			}
+			foreach ($gws as $iface => $gw) {
+				if ($gw['ping'] != 'ok') {
+					if (strpos($iface, 'tun') !== false) {
+						continue;
+					}
+					if (strpos($iface, 'br0') !== false) {
+						continue;
+					}
+					log::add('network', 'error', __('La passerelle distance de l\'interface ', __FILE__) . $iface . __(' est injoignable je la redemarre pour essayer de corriger', __FILE__));
+					exec('sudo ifdown ' . $iface);
+					sleep(5);
+					exec('sudo ifup --force ' . $iface);
+				}
+			}
+		} catch (Exception $e) {
+
 		}
 	}
-
 }
 
 ?>
