@@ -106,17 +106,13 @@ try {
 	$cron->save();
 
 	$cron = cron::byClassAndFunction('history', 'historize');
-	if (!is_object($cron)) {
-		echo "Création de history::historize\n";
-		$cron = new cron();
+	if (is_object($cron)) {
+		$cron->remove();
 	}
-	$cron->setClass('history');
-	$cron->setFunction('historize');
-	$cron->setSchedule('*/5 * * * * *');
-	$cron->setTimeout(5);
-	$cron->setEnable(1);
-	$cron->setDeamon(0);
-	$cron->save();
+	$cron = cron::byClassAndFunction('cmd', 'collect');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
 
 	$cron = cron::byClassAndFunction('scenario', 'check');
 	if (!is_object($cron)) {
@@ -131,13 +127,13 @@ try {
 	$cron->setTimeout(5);
 	$cron->save();
 
-	$cron = cron::byClassAndFunction('cmd', 'collect');
+	$cron = cron::byClassAndFunction('jeedom', 'checkAndCollect');
 	if (!is_object($cron)) {
-		echo "Création de cmd::collect\n";
+		echo "Création de jeedom::checkAndCollect\n";
 		$cron = new cron();
 	}
-	$cron->setClass('cmd');
-	$cron->setFunction('collect');
+	$cron->setClass('jeedom');
+	$cron->setFunction('checkAndCollect');
 	$cron->setSchedule('*/5 * * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
@@ -145,17 +141,9 @@ try {
 	$cron->save();
 
 	$cron = cron::byClassAndFunction('history', 'archive');
-	if (!is_object($cron)) {
-		echo "Création de history::archive\n";
-		$cron = new cron();
+	if (is_object($cron)) {
+		$cron->remove();
 	}
-	$cron->setClass('history');
-	$cron->setFunction('archive');
-	$cron->setSchedule('05 00 * * * *');
-	$cron->setEnable(1);
-	$cron->setDeamon(0);
-	$cron->setTimeout(60);
-	$cron->save();
 
 	$cron = cron::byClassAndFunction('jeedom', 'updateSystem');
 	if (!is_object($cron)) {
@@ -189,6 +177,28 @@ try {
 	$cron->setClass('plugin');
 	$cron->setFunction('cron');
 	$cron->setSchedule('* * * * * *');
+	$cron->setTimeout(60);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('plugin', 'cron15');
+	if (!is_object($cron)) {
+		echo "Création de plugin::cron15\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('cron15');
+	$cron->setSchedule('*/15 * * * * *');
+	$cron->setTimeout(60);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('plugin', 'cron30');
+	if (!is_object($cron)) {
+		echo "Création de plugin::cron30\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('cron30');
+	$cron->setSchedule('*/30 * * * * *');
 	$cron->setTimeout(60);
 	$cron->save();
 

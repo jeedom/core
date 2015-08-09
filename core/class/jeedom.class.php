@@ -377,6 +377,46 @@ class jeedom {
 		scenario::check($_event);
 	}
 
+	public static function checkAndCollect() {
+		try {
+			$c = new Cron\CronExpression('05 00 * * * *', new Cron\FieldFactory);
+			if ($c->isDue()) {
+				history::archive();
+			}
+		} catch (Exception $e) {
+			log::add('history', 'error', 'history::archive : ' . $e->getMessage());
+		}
+		try {
+			$c = new Cron\CronExpression('*/10 * * * *', new Cron\FieldFactory);
+			if ($c->isDue()) {
+
+				try {
+					network::cron();
+				} catch (Exception $e) {
+					log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+				}
+				eqLogic::checkAlive();
+				connection::cron();
+				if (config::byKey('jeeNetwork::mode') != 'slave') {
+					jeeNetwork::pull();
+				}
+
+			}
+		} catch (Exception $e) {
+
+		}
+		try {
+			cmd::collect();
+		} catch (Exception $e) {
+			log::add('cmd', 'error', 'cmd::collect : ' . $e->getMessage());
+		}
+		try {
+			history::historize();
+		} catch (Exception $e) {
+			log::add('history', 'error', 'history::archive : ' . $e->getMessage());
+		}
+	}
+
 	public static function cron() {
 		if (!self::isStarted()) {
 			$cache = cache::byKey('jeedom::usbMapping');
@@ -432,23 +472,7 @@ class jeedom {
 				cache::clean();
 				DB::optimize();
 			}
-			$c = new Cron\CronExpression('*/10 * * * *', new Cron\FieldFactory);
-			if ($c->isDue()) {
-				try {
-					try {
-						network::cron();
-					} catch (Exception $e) {
-						log::add('network', 'error', 'network::cron : ' . $e->getMessage());
-					}
-					eqLogic::checkAlive();
-					connection::cron();
-					if (config::byKey('jeeNetwork::mode') != 'slave') {
-						jeeNetwork::pull();
-					}
-				} catch (Exception $e) {
 
-				}
-			}
 			$c = new Cron\CronExpression('02 02 * * *', new Cron\FieldFactory);
 			if ($c->isDue()) {
 				try {

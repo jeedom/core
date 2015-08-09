@@ -51,7 +51,7 @@ if (init('scenarioElement_id') != '') {
 		if ($scenario->getState() == 'in progress') {
 			sleep(1);
 			if ($scenario->getState() == 'in progress') {
-				die('[' . date('Y-m-d H:i:s') . ']' . __('Impossible de lancer le scénario car déjà en cours : ', __FILE__) . $scenario->getHumanName() . "\n");
+				die('[' . date('Y-m-d H:i:s') . ']' . __('Impossible de lancer le scénario car déjà en cours : ', __FILE__) . $scenario->getHumanName() . ' => ' . $scenario->getState() . "\n");
 			}
 		}
 		$scenario->execute(init('trigger'), init('message'));

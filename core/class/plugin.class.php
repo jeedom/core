@@ -199,6 +199,32 @@ class plugin {
 		}
 	}
 
+	public static function cron15() {
+		foreach (self::listPlugin(true) as $plugin) {
+			if (method_exists($plugin->getId(), 'cron15')) {
+				$plugin_id = $plugin->getId();
+				try {
+					$plugin_id::cron15();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron15 du plugin : ', __FILE__) . $e->getMessage());
+				}
+			}
+		}
+	}
+
+	public static function cron30() {
+		foreach (self::listPlugin(true) as $plugin) {
+			if (method_exists($plugin->getId(), 'cron30')) {
+				$plugin_id = $plugin->getId();
+				try {
+					$plugin_id::cron30();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron30 du plugin : ', __FILE__) . $e->getMessage());
+				}
+			}
+		}
+	}
+
 	public static function cronDaily() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cronDaily')) {
