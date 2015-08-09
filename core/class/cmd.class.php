@@ -332,16 +332,6 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function collect() {
-		$cmd = null;
-		foreach (cache::search('collect') as $cache) {
-			$cmd = self::byId($cache->getValue());
-			if (is_object($cmd) && $cmd->getEqLogic()->getIsEnable() == 1 && $cmd->getEventOnly() == 0) {
-				$cmd->execCmd(null, 0);
-			}
-		}
-	}
-
 	public static function cmdToHumanReadable($_input) {
 		if (is_object($_input)) {
 			$reflections = array();
@@ -708,7 +698,7 @@ class cmd {
 	/**
 	 *
 	 * @param type $_options
-	 * @param type $cache 0 = ignorer le cache , 1 = mode normal, 2 = cache utilisé même si expiré (puis marqué à recollecter)
+	 * @param type $cache 0 = ignorer le cache , 1 = mode normal, 2 = cache utilisé même si expiré
 	 * @return command result
 	 * @throws Exception
 	 */
@@ -719,9 +709,6 @@ class cmd {
 		if ($this->getType() == 'info' && $cache != 0) {
 			$mc = cache::byKey('cmd' . $this->getId(), ($cache == 2) ? true : false);
 			if ($cache == 2 || !$mc->hasExpired()) {
-				if ($mc->hasExpired()) {
-					$this->setCollect(1);
-				}
 				$this->setCollectDate($mc->getOptions('collectDate', $mc->getDatetime()));
 				$this->setValueDate($mc->getOptions('valueDate', $mc->getDatetime()));
 				return $mc->getValue();
@@ -776,7 +763,6 @@ class cmd {
 				$this->setValueDate(date('Y-m-d H:i:s'));
 			}
 			cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
-			$this->setCollect(0);
 			$nodeJs = array(
 				array(
 					'cmd_id' => $this->getId(),
@@ -1032,7 +1018,6 @@ class cmd {
 		log::add('event', 'event', __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $value);
 		cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
 		scenario::check($this);
-		$this->setCollect(0);
 		$eqLogic->emptyCacheWidget();
 		$nodeJs = array(array('cmd_id' => $this->getId()));
 		$foundInfo = false;
@@ -1246,14 +1231,6 @@ class cmd {
 
 	public function getPluralityHistory($_dateStart = null, $_dateEnd = null, $_period = 'day', $_offset = 0) {
 		return history::getPlurality($this->id, $_dateStart, $_dateEnd, $_period, $_offset);
-	}
-
-	public function setCollect($collect) {
-		if ($collect == 1) {
-			cache::set('collect' . $this->getId(), $this->getId());
-		} else {
-			cache::deleteBySearch('collect' . $this->getId());
-		}
 	}
 
 	public function export() {
