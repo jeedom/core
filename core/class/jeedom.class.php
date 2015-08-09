@@ -387,20 +387,15 @@ class jeedom {
 			log::add('history', 'error', 'history::archive : ' . $e->getMessage());
 		}
 		try {
-			$c = new Cron\CronExpression('*/10 * * * *', new Cron\FieldFactory);
-			if ($c->isDue()) {
-
-				try {
-					network::cron();
-				} catch (Exception $e) {
-					log::add('network', 'error', 'network::cron : ' . $e->getMessage());
-				}
-				eqLogic::checkAlive();
-				connection::cron();
-				if (config::byKey('jeeNetwork::mode') != 'slave') {
-					jeeNetwork::pull();
-				}
-
+			network::cron();
+		} catch (Exception $e) {
+			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+		}
+		try {
+			eqLogic::checkAlive();
+			connection::cron();
+			if (config::byKey('jeeNetwork::mode') != 'slave') {
+				jeeNetwork::pull();
 			}
 		} catch (Exception $e) {
 
