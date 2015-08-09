@@ -1006,6 +1006,8 @@ class scenarioExpression {
 					}
 					$limit = (isset($options['timeout'])) ? $options['timeout'] : 300;
 					$this->setLog($scenario, __('Demande ', __FILE__) . print_r($options_cmd, true));
+					$cmd->setConfiguration('storeVariable', $this->getOptions('variable'));
+					$cmd->save();
 					$cmd->execCmd($options_cmd);
 					$occurence = 0;
 					$value = '';
@@ -1022,6 +1024,10 @@ class scenarioExpression {
 						}
 						$occurence++;
 						sleep(1);
+					}
+					if ($value == '') {
+						$cmd->setConfiguration('storeVariable', $this->getOptions('variable'));
+						$cmd->save();
 					}
 					$this->setLog($scenario, __('Réponse ', __FILE__) . $value);
 					return;
