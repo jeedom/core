@@ -988,7 +988,7 @@ class scenarioExpression {
 					$dataStore = new dataStore();
 					$dataStore->setKey($this->getOptions('name'));
 					$dataStore->setValue($result);
-					$dataStore->setValue('');
+					$dataStore->setType('scenario');
 					$dataStore->setLink_id(-1);
 					$dataStore->save();
 					return;
