@@ -225,27 +225,12 @@ class scenario {
 			$speedPriority = 0;
 			$message = __('Scénario exécuté automatiquement sur programmation', __FILE__);
 			$scenarios = scenario::all();
-			$dateOk = jeedom::isDateOk();
 			$trigger = '#schedule#';
+			if (!jeedom::isDateOk()) {
+				return;
+			}
 			foreach ($scenarios as $key => &$scenario) {
-				if ($scenario->getState() == 'in progress') {
-					if ($scenario->running()) {
-						if ($scenario->getTimeout() > 0 && (strtotime('now') - strtotime($scenario->getLastLaunch())) > $scenario->getTimeout()) {
-							$scenario->setLog(__('Erreur : le scénario est en timeout', __FILE__));
-							try {
-								$scenario->stop();
-							} catch (Exception $e) {
-								$scenario->setLog(__('Erreur : le scénario est en timeout et il est impossible de l\'arrêter : ', __FILE__) . $e->getMessage());
-								$scenario->save();
-							}
-						}
-					} else {
-						$scenario->setLog(__('Erreur : le scénario s\'est incidenté (toujours marqué en cours mais arrêté)', __FILE__));
-						$scenario->setState('error');
-						$scenario->save();
-					}
-				}
-				if ($dateOk && $scenario->getIsActive() == 1 && $scenario->getState() != 'in progress' && ($scenario->getMode() == 'schedule' || $scenario->getMode() == 'all')) {
+				if ($scenario->getIsActive() == 1 && $scenario->getState() != 'in progress' && ($scenario->getMode() == 'schedule' || $scenario->getMode() == 'all')) {
 					if (!$scenario->isDue()) {
 						unset($scenarios[$key]);
 					}
