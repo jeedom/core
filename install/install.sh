@@ -198,7 +198,7 @@ install_nodejs() {
         apt-get -y install node
         ln -s /usr/bin/node /usr/bin/nodejs
     else
-        curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
+        curl -sL https://deb.nodesource.com/setup_0.10 | sudo bash -
         apt-get -y install nodejs
          ln -s /usr/bin/nodejs /usr/bin/node
     fi
