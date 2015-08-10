@@ -136,9 +136,13 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 } else {
 	try {
 		$IP = getClientIp();
-		log::add('api', 'info', init('request') . ' - IP :' . $IP);
+		$request = init('request');
+		if ($request == '') {
+			$request = file_get_contents("php://input");
+		}
+		log::add('api', 'info', $request . ' - IP :' . $IP);
 
-		$jsonrpc = new jsonrpc(init('request'));
+		$jsonrpc = new jsonrpc($request);
 
 		if (!mySqlIsHere()) {
 			throw new Exception('Mysql non lancé', -32001);
