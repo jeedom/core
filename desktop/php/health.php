@@ -130,7 +130,7 @@ if (version_compare(phpversion(), '5.5', '>=')) {
 			<td style="font-weight : bold;">{{Version NodeJS}}</td>
 			<?php
 $version = str_replace('v', '', shell_exec('nodejs -v'));
-if (version_compare($version, '0.12', '>=')) {
+if (version_compare($version, '0.10', '>=')) {
 	echo '<td class="alert alert-success">' . $version . '</td>';
 	echo '<td></td>';
 } else {
