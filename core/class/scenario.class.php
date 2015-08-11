@@ -851,8 +851,12 @@ class scenario {
 
 					}
 					$lastCheck = new DateTime($this->getLastLaunch());
-					$prev = $c->getPreviousRunDate();
-					$diff = round(abs((strtotime('now') - strtotime($prev)) / 60));
+					try {
+						$prev = $c->getPreviousRunDate()->getTimestamp();
+					} catch (Exception $e) {
+						return false;
+					}
+					$diff = abs((strtotime('now') - $prev) / 60);
 					if ($lastCheck <= $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
 						return true;
 					}
@@ -870,9 +874,13 @@ class scenario {
 				} catch (Exception $e) {
 
 				}
+				try {
+					$prev = $c->getPreviousRunDate()->getTimestamp();
+				} catch (Exception $e) {
+					return false;
+				}
 				$lastCheck = new DateTime($this->getLastLaunch());
-				$prev = $c->getPreviousRunDate();
-				$diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
+				$diff = abs((strtotime('now') - $prev) / 60);
 				if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
 					return true;
 				}
