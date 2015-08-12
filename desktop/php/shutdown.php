@@ -36,10 +36,9 @@ if (!isConnect('admin')) {
 <script type="text/javascript">
 var rebooti = '0';
 var testjeedom = '0';
-var timestamp = Date.now();
 
 	function reboot_jeedom(rebooti){
-		$('#iframe_reboot').attr('src', 'index.php?v=d&p=reboot_end&shut=1&t='+timestamp);
+		$('#iframe_reboot').attr('src', 'index.php?v=d&p=reboot_end&shut=1&t='+Date.now());
 		$('#div_reboot_jeedom_texte').empty().html('<h6>La Jeedom est &eacute;teinte.</h6>');
 		$('#progressbar_reboot').width('100%');
 		$('#progressbar_reboot').addClass('progress-bar-danger').removeClass('progress-bar-success').removeClass('active');

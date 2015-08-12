@@ -36,11 +36,10 @@ if (!isConnect('admin')) {
 <script type="text/javascript">
 var rebooti = '0';
 var testjeedom = '0';
-var timestamp = Date.now();
   	
 	function refresh() {
 		$.ajax({
-			url: "../../desktop/js/rebootjs.js?t="+timestamp,
+			url: "../../desktop/js/rebootjs.js?t="+Date.now(),
 			success:
 			function(retour){
         		$('reboot_jeedom').html(retour);
@@ -67,7 +66,7 @@ var timestamp = Date.now();
 	}
 	
 	function reboot_jeedom(rebooti){
-		$('#iframe_reboot').attr('src', 'index.php?v=d&p=reboot_end&t='+timestamp);
+		$('#iframe_reboot').attr('src', 'index.php?v=d&p=reboot_end&t='+Date.now());
 		$('#div_reboot_jeedom_texte').empty().html('<h6>Merci de patienter...<br />La box est en cours de redemarrage.</h6>');
 		$('#progressbar_reboot').width('25%');
 		setInterval('page_rebootjs(rebooti)', 15000);
