@@ -39,7 +39,7 @@ var testjeedom = '0';
 
 	function reboot_jeedom(rebooti){
 		$('#iframe_reboot').attr('src', 'index.php?v=d&p=reboot_end&shut=1&t='+Date.now());
-		$('#div_reboot_jeedom_texte').empty().html('<h6>Votre box Jeedom est éteinte.<br /> Pour la redémarrer, débranchez la et rebranchez la.</h6>');
+		$('#div_reboot_jeedom_texte').empty().html('<h6>Votre box Jeedom est &eacute;teinte.<br /> Pour la red&eacute;marrer, d&eacute;branchez la et rebranchez la.</h6>');
 		$('#progressbar_reboot').width('100%');
 		$('#progressbar_reboot').addClass('progress-bar-danger').removeClass('progress-bar-success').removeClass('active');
 	}
