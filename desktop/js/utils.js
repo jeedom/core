@@ -217,11 +217,6 @@ setInterval(function () {
         bootbox.confirm('{{Etes-vous sûr de vouloir arrêter le système ?}}', function (result) {
             if (result) {
             	window.location.href = 'index.php?v=d&p=shutdown';
-                jeedom.haltSystem({
-                    error: function (error) {
-                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                    },
-                });
             }
         });
     });
@@ -231,11 +226,6 @@ setInterval(function () {
         bootbox.confirm('{{Etes-vous sûr de vouloir redémarrer le système ?}}', function (result) {
             if (result) {
             	window.location.href = 'index.php?v=d&p=reboot';
-                jeedom.rebootSystem({
-                    error: function (error) {
-                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                    },
-                });
             }
         });
     });
