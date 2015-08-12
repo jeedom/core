@@ -39,15 +39,25 @@ TunnelCluster.prototype.open = function() {
     });
 
     remote.setKeepAlive(true);
-
+    var retryConnection = 0;
     remote.on('error', function(err) {
         // emit connection refused errors immediately, because they
         // indicate that the tunnel can't be established.
         if (err.code === 'ECONNREFUSED') {
             self.emit('error', new Error('connection refused: ' + remote_host + ':' + remote_port + ' (check your firewall settings)'));
         }
-        remote.end();
-    });
+        if(retryConnection < 5){
+           remote.end();   
+           var remote = net.connect({
+            host: remote_host,
+            port: remote_port
+        });
+           remote.setKeepAlive(true);
+       }else{
+           remote.end();   
+       }
+       retryConnection++;
+   });
 
     function conn_local() {
         if (remote.destroyed) {

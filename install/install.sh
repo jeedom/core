@@ -189,7 +189,7 @@ configure_php() {
 
 
 install_nodejs() {
-    # Check if nodeJS v0.12.7 is installed,
+    # Check if nodeJS v0.10.7 is installed,
     # otherwise, try to install it from various sources
     check_nodejs_version
     [ $? -eq 1 ] && return
@@ -198,9 +198,14 @@ install_nodejs() {
         apt-get -y install node
         ln -s /usr/bin/node /usr/bin/nodejs
     else
-        curl -sL https://deb.nodesource.com/setup_0.10 | sudo bash -
-        apt-get -y install nodejs
-        ln -s /usr/bin/nodejs /usr/bin/node
+        if [  -z "$1" -a $(uname -a | grep cubox | wc -l ) -eq 1 -a ${ARCH} = "armv7l" ]; then
+            apt-get -y install nodejs
+            ln -s /usr/bin/nodejs /usr/bin/node
+        else
+            curl -sL https://deb.nodesource.com/setup_0.10 | sudo bash -
+            apt-get -y install nodejs
+            ln -s /usr/bin/nodejs /usr/bin/node
+        fi
     fi
 }
 
@@ -277,7 +282,7 @@ check_nodejs_version() {
     # Check if nodeJS v0.10.25 (or higher) is installed.
     # Return 1 of true, 0 (or else) otherwise
     NODEJS_VERSION="`nodejs -v 2>/dev/null  | sed 's/["v]//g'`"
-    is_version_greater_or_equal "${NODEJS_VERSION}" "0.12.7"
+    is_version_greater_or_equal "${NODEJS_VERSION}" "0.10.0"
     RETVAL=$?
     case ${RETVAL} in
         1)
