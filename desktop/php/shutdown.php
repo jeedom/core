@@ -18,7 +18,7 @@ if (!isConnect('admin')) {
 </style>
 
 <div id="contenu">
-	<h2>&Eacute;teindre</h2>
+	<h2 style="opacity:0.8;"><span class="glyphicon glyphicon-off"></span> &Eacute;teindre</h2>
 	<div class="progress">
 		<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" id="progressbar_reboot" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
 			<span class="sr-only"></span>
