@@ -188,7 +188,7 @@ if (exec('diff /etc/nginx/sites-available/default ' . dirname(__FILE__) . '/../.
 	echo '<td></td>';
 } else {
 	echo '<td class="alert alert-danger">{{NOK}}</td>';
-	echo '<td>{{Votre fichier de configuration nginx, n\'est pas. Si vous l\'avez modifié cela est normal}}</td>';
+	echo '<td>{{Votre fichier de configuration nginx, n\'est pas à jour. Si vous l\'avez modifié cela est normal}}</td>';
 }
 ?>
 		</tr>
