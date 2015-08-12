@@ -45,6 +45,11 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
 
+	if (init('action') == 'ssh') {
+
+		ajax::success(shell_exec(init('command')));
+	}
+
 	if (init('action') == 'update') {
 		jeedom::update();
 		ajax::success();
