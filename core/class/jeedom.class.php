@@ -379,8 +379,7 @@ class jeedom {
 
 	public static function checkAndCollect() {
 		try {
-			$c = new Cron\CronExpression('05 00 * * * *', new Cron\FieldFactory);
-			if ($c->isDue()) {
+			if (date('Gi') >= 500 && date('Gi') < 505) {
 				history::archive();
 			}
 		} catch (Exception $e) {
