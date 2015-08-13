@@ -179,7 +179,7 @@ if (network::test('external')) {
 }
 ?>
 		</tr>
-
+<!--
 		<tr>
 			<td style="font-weight : bold;">{{Configuration nginx}}</td>
 			<?php
@@ -192,7 +192,7 @@ if (exec('diff /etc/nginx/sites-available/default ' . dirname(__FILE__) . '/../.
 }
 ?>
 		</tr>
-
+-->
 	</tbody>
 </table>
 
