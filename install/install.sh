@@ -207,6 +207,7 @@ install_nodejs() {
             ln -s /usr/bin/nodejs /usr/bin/node
         fi
     fi
+    apt-get -y install npm
 }
 
 
@@ -375,7 +376,6 @@ install_dependency() {
     apt-get -y install mysql-common
     apt-get -y install mysql-server
     apt-get -y install mysql-server-core-5.5
-    apt-get -y install npm
     apt-get -y install ntp
     apt-get -y install php5-cli
     apt-get -y install php5-common
