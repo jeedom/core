@@ -47,7 +47,6 @@ TunnelCluster.prototype.open = function() {
             self.emit('error', new Error('connection refused: ' + remote_host + ':' + remote_port + ' (check your firewall settings)'));
         }
         if(retryConnection < 5){
-           remote.end();   
            var remote = net.connect({
             host: remote_host,
             port: remote_port
