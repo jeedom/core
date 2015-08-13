@@ -229,6 +229,9 @@ class network {
 	}
 
 	public static function test($_mode = 'external', $_test = true, $_timeout = 10) {
+		if (config::byKey('network::disableMangement') == 1) {
+			return true;
+		}
 		if ($_mode == 'internal' && netMatch('127.0.*.*', self::getNetworkAccess($_mode, 'ip', '', false))) {
 			return false;
 		}
@@ -402,6 +405,9 @@ class network {
 	}
 
 	public static function writeInterfaceFile() {
+		if (config::byKey('network::disableMangement') == 1) {
+			return;
+		}
 		if (!self::canManageNetwork()) {
 			return;
 		}
@@ -529,6 +535,9 @@ class network {
 	public static function cron() {
 		if (config::byKey('market::allowDNS') == 1 && !network::dns_run()) {
 			network::dns_start();
+		}
+		if (config::byKey('network::disableMangement') == 1) {
+			return;
 		}
 		if (!jeedom::isCapable('sudo')) {
 			return;

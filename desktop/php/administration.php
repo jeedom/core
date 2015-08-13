@@ -357,7 +357,13 @@ if ($externalTest) {
 
 <div class="row">
     <div class="col-xs-6">
-        <legend>{{Wifi && IP statique}}</legend>
+        <legend>{{Gestion avancée}}</legend>
+         <div class="form-group expertModeVisible has-error">
+            <label class="col-xs-4 control-label">{{Désactiver la gestion du réseaux par Jeedom}}</label>
+            <div class="col-xs-8">
+                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="network::disableMangement" />
+            </div>
+        </div>
         <?php
 if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
 	echo '<div class="alert alert-warning">{{Fonctionalité non disponible sur votre système}}</div>';
@@ -395,24 +401,7 @@ if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
                 <input type="password" class="configKey form-control" data-l1key="network::wifi::password" />
             </div>
         </div>
-        <div class="form-group expertModeVisible">
-            <label class="col-xs-4 control-label">{{IP fixe}}</label>
-            <div class="col-xs-8">
-                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="network::fixip::enable" />
-            </div>
-        </div>
-        <div class="form-group expertModeVisible">
-            <label class="col-xs-4 control-label">{{Netmask}}</label>
-            <div class="col-xs-8">
-                <input class="configKey form-control" data-l1key="network::fixip::netmask" placeholder="255.255.255.0"/>
-            </div>
-        </div>
-        <div class="form-group expertModeVisible">
-            <label class="col-xs-4 control-label">{{Gateway}}</label>
-            <div class="col-xs-8">
-                <input class="configKey form-control" data-l1key="network::fixip::gateway" placeholder="192.168.0.1" />
-            </div>
-        </div>
+
         <div class="form-group">
          <label class="col-xs-4 control-label">{{Gestion}}</label>
          <div class="col-xs-8">
