@@ -533,7 +533,7 @@ class network {
 	}
 
 	public static function cron() {
-		if (config::byKey('market::allowDNS') == 1 && !network::dns_run()) {
+		if (config::byKey('market::allowDNS') == 1 && (!network::dns_run() || network::test('external', false, 30))) {
 			network::dns_start();
 		}
 		if (config::byKey('network::disableMangement') == 1) {
