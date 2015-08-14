@@ -1,0 +1,72 @@
+server {
+        #listen   80; ## listen for ipv4; this line is default and implied
+        #listen   [::]:80 default_server ipv6only=on; ## listen for ipv6
+        root /usr/share/nginx/www/jeedom;
+        index index.html index.htm index.php;
+        access_log off;
+        error_log /usr/share/nginx/www/jeedom/log/nginx.error;
+        client_max_body_size 100M;
+       
+        location / {
+                try_files $uri $uri/ /index.html /index.php;
+        }
+
+        location ~ ^/tmp/(.*)$ {
+                deny all;
+        }
+        
+        location ~ ^/log/(.*)$ {
+                deny all;
+        }
+
+        location ~ ^/backup/(.*)$ {
+                deny all;
+        }
+
+        location ~ \.sql$ {
+                 deny all;
+        }
+
+        location ~ \.tar$ {
+                 deny all;
+        }
+
+        location ~ \.gz$ {
+                 deny all;
+        }
+
+        location ~ ^/(.*)ini$ {
+                deny all;
+        }
+
+        include sites-available/jeedom_dynamic_rule;
+
+        location /socket.io/ {
+                proxy_pass http://127.0.0.1:8070/socket.io/;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "Upgrade";
+                proxy_set_header Host $host;
+                proxy_redirect off;
+                proxy_read_timeout 6000;
+        }
+
+        location ~ ^(.+?\.php)(/.*)?$ {
+                try_files $uri =404;
+                fastcgi_param SCRIPT_FILENAME $document_root$1;
+                fastcgi_param PATH_INFO $2;
+                fastcgi_pass unix:/var/run/php5-fpm.sock;
+                fastcgi_index index.php;
+                include fastcgi_params;
+                fastcgi_buffer_size 128k;
+                fastcgi_buffers 4 256k;
+                fastcgi_busy_buffers_size 256k;
+                fastcgi_read_timeout 300;
+                if ($request_method = 'GET') {
+                        add_header 'Access-Control-Allow-Origin' '*';
+                        add_header 'Access-Control-Allow-Credentials' 'true';
+                        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                        add_header 'Access-Control-Allow-Headers' 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+                }
+        }
+}

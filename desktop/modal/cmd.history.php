@@ -5,9 +5,9 @@ if (!isConnect()) {
 $date = array(
 	'start' => init('startDate', date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d')))),
 	'end' => init('endDate', date('Y-m-d')),
-    );
-    ?>
-    <div class="md_history" title="Historique">
+);
+?>
+    <div class="md_history">
         <input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['start']?>"/>
         <input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['end']?>"/>
         <a class="btn btn-success btn-sm tooltips" id='bt_validChangeDate' title="{{Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher}}">{{Ok}}</a>
@@ -18,17 +18,17 @@ $date = array(
         </select>
 
         <?php
-        if (init('derive', 0) == 1) {
-           echo '<span class="pull-right"><input type="checkbox" id="toto" class="bootstrapSwitch cb_derive" data-label-text="{{Variation}}" data-cmd_id="#id#" checked /></span>';
-       } else {
-           echo '<span class="pull-right"><input type="checkbox" id="toto" class="bootstrapSwitch cb_derive" data-label-text="{{Variation}}" data-cmd_id="#id#" /></span>';
-       }
-       if (init('step', 0) == 1) {
-           echo '<span class="pull-right"><input type="checkbox" class="bootstrapSwitch cb_step" data-label-text="{{Escalier}}" data-cmd_id="#id#" checked /></span>';
-       } else {
-           echo '<span class="pull-right"><input type="checkbox" class="bootstrapSwitch cb_step" data-label-text="{{Escalier}}" data-cmd_id="#id#" /></span>';
-       }
-       ?>
+if (init('derive', 0) == 1) {
+	echo '<span class="pull-right"><input type="checkbox" id="toto" class="bootstrapSwitch cb_derive" data-label-text="{{Variation}}" data-cmd_id="#id#" checked /></span>';
+} else {
+	echo '<span class="pull-right"><input type="checkbox" id="toto" class="bootstrapSwitch cb_derive" data-label-text="{{Variation}}" data-cmd_id="#id#" /></span>';
+}
+if (init('step', 0) == 1) {
+	echo '<span class="pull-right"><input type="checkbox" class="bootstrapSwitch cb_step" data-label-text="{{Escalier}}" data-cmd_id="#id#" checked /></span>';
+} else {
+	echo '<span class="pull-right"><input type="checkbox" class="bootstrapSwitch cb_step" data-label-text="{{Escalier}}" data-cmd_id="#id#" /></span>';
+}
+?>
        <center><div id="div_historyChart"></div></center>
        <script>
          initCheckBox();

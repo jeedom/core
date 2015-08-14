@@ -190,6 +190,7 @@ if (init('cron_id') != '') {
 							$cron->start();
 						}
 					} else {
+						$cron->halt();
 						$cron->start();
 					}
 				}

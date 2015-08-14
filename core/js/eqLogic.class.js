@@ -306,8 +306,8 @@ jeedom.eqLogic.refreshValue = function (_params) {
                     $('.eqLogic[data-eqLogic_id=' + params.id + ']').trigger("create");
                     setTileSize('.eqLogic');
                 }else{
-                    if (typeof editMode == 'function') {
-                       editMode(); 
+                    if (typeof editWidgetMode == 'function') {
+                       editWidgetMode(); 
                    }
                }
            }

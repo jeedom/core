@@ -58,12 +58,12 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
     if($(this).attr('data-mode') == 1){
         $.hideAlert();
         $(this).attr('data-mode',0);
-        editMode(0);
+        editWidgetMode(0);
         $(this).css('color','black');
     }else{
      $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets}}", level: 'info'});
      $(this).attr('data-mode',1);
-     editMode(1);
+     editWidgetMode(1);
      $(this).css('color','rgb(46, 176, 75)');
  }
 });
@@ -122,9 +122,12 @@ $('#bt_displayObject').on('click', function () {
     }
 });
 
-function editMode(_mode){
+function editWidgetMode(_mode){
     if(!isset(_mode)){
-        _mode = $('#bt_editDashboardWidgetOrder').attr('data-mode')
+        _mode = $('#bt_editDashboardWidgetOrder').attr('data-mode');
+        if(_mode == undefined){
+            return;
+        }
     }
     if(_mode == 0){
         if( $('.div_displayEquipement .eqLogic-widget.ui-draggable.ui-resizable.ui-sortable').length > 0){

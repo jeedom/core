@@ -42,6 +42,7 @@ jeedom.cmd.execute = function(_params) {
                          _params.codeAccess = result;
                          jeedom.cmd.execute(_params);
                      }else{
+                        jeedom.cmd.refreshValue({id:_params.id});
                         if ('function' != typeof(_params.error)) {
                             $('#div_alert').showAlert({
                                 message: data.result,
@@ -62,6 +63,7 @@ jeedom.cmd.execute = function(_params) {
                      _params.codeAccess = result;
                      jeedom.cmd.execute(_params);
                  }else{
+                    jeedom.cmd.refreshValue({id:_params.id});
                     if ('function' != typeof(_params.error)) {
                         $('#div_alert').showAlert({
                             message: data.result,
@@ -86,6 +88,7 @@ jeedom.cmd.execute = function(_params) {
                     _params.confirmAction = 1;
                     jeedom.cmd.execute(_params);
                 }else{
+                    jeedom.cmd.refreshValue({id:_params.id});
                     if ('function' != typeof(_params.error)) {
                         $('#div_alert').showAlert({
                             message: data.result,
@@ -106,6 +109,7 @@ jeedom.cmd.execute = function(_params) {
                      _params.confirmAction = 1;
                      jeedom.cmd.execute(_params);
                  }else{
+                    jeedom.cmd.refreshValue({id:_params.id});
                     if ('function' != typeof(_params.error)) {
                         $('#div_alert').showAlert({
                             message: data.result,
@@ -299,7 +303,7 @@ jeedom.cmd.test = function(_params) {
 
 jeedom.cmd.refreshValue = function(_params) {
     var cmd = $('.cmd[data-cmd_id=' + _params.id + ']');
-    if (cmd.html() != undefined && cmd.closest('.eqLogic').attr('data-version') != undefined) {
+    if (cmd.html() != undefined && cmd.closest('.eqLogic').attr('data-version') != undefined && !cmd.hasClass('noRefresh')) {
         var version = cmd.closest('.eqLogic').attr('data-version');
         var paramsRequired = ['id'];
         var paramsSpecifics = {

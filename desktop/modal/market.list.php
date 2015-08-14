@@ -282,11 +282,27 @@ foreach ($markets as $market) {
 	}
 
 	echo "<br/><center>";
+	$default_image = 'core/img/no_image.gif';
+	switch ($market->getType()) {
+		case 'widget':
+			$default_image = 'core/img/no-image-widget.png';
+			break;
+		case 'plugin':
+			$default_image = 'core/img/no-image-plugin.png';
+			break;
+		case 'camera':
+			$default_image = 'core/img/no-image-camera.png';
+			break;
+		case 'script':
+			$default_image = 'core/img/no-image-script.png';
+			break;
+	}
+
 	$urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
 	if ($market->getType() == 'widget') {
-		echo '<img class="lazy" src="core/img/no_image.gif" data-original="' . $urlPath . '" height="105" width="95" style="margin-left: 20px;border: 1px solid #C5C5C5;border-radius:5px; padding: 3px" />';
+		echo '<img class="lazy" src="' . $default_image . '" data-original="' . $urlPath . '" height="105" width="95" style="margin-left: 20px;border: 1px solid #C5C5C5;border-radius:5px; padding: 3px" />';
 	} else {
-		echo '<img class="lazy" src="core/img/no_image.gif" data-original="' . $urlPath . '" height="105" width="95" />';
+		echo '<img class="lazy" src="' . $default_image . '" data-original="' . $urlPath . '" height="105" width="95" />';
 	}
 
 	echo "</center>";

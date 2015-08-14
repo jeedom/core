@@ -1,5 +1,3 @@
-:icons: font
-
 = Informations système
 
 La page systeme information vous permet d'avoir un resumé générale sur votre systeme (hardware + OS)

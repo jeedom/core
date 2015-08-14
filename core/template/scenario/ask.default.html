@@ -1,0 +1,19 @@
+<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="question" placeholder="Questions" value="#question#" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block; width: 40%;"/>
+
+<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="answer" placeholder="Réponses possibles (séparé par des ;)" value="#answer#" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block; width: 40%;"/>
+
+<br/>
+<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="variable" placeholder="Variables" value="#variable#" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block; width: 40%;"/>
+
+<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="timeout" placeholder="Délai en s" value="#timeout#" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block; width: 40%;"/>
+
+<br/>
+<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="cmd" placeholder="Commandes" value="#cmd#" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block; width: 40%;"/>
+<a class="btn btn-default btn-sm listEquipementInfo cursor" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block;"><i class="fa fa-list-alt"></i></a>
+<script>
+	$('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
+		jeedom.cmd.getSelectModal({cmd: {type: 'action',subtype : "message"}}, function(result) {
+			$('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#][data-cmd_id=#id#]').value(result.human);
+		});
+	});
+</script>

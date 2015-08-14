@@ -43,15 +43,6 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande d'information utilisateur}}</label>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <input type="text"  class="configKey form-control" data-l1key="emailAdmin" />
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2">
-                                    <a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectMailCmd"><i class="fa fa-list-alt"></i></a>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Langue}}</label>
                                 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                     <select class="configKey form-control" data-l1key="language">
@@ -366,7 +357,13 @@ if ($externalTest) {
 
 <div class="row">
     <div class="col-xs-6">
-        <legend>{{Wifi && IP statique}}</legend>
+        <legend>{{Gestion avancée}}</legend>
+         <div class="form-group expertModeVisible has-error">
+            <label class="col-xs-4 control-label">{{Désactiver la gestion du réseaux par Jeedom}}</label>
+            <div class="col-xs-8">
+                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="network::disableMangement" />
+            </div>
+        </div>
         <?php
 if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
 	echo '<div class="alert alert-warning">{{Fonctionalité non disponible sur votre système}}</div>';
@@ -404,24 +401,7 @@ if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
                 <input type="password" class="configKey form-control" data-l1key="network::wifi::password" />
             </div>
         </div>
-        <div class="form-group expertModeVisible">
-            <label class="col-xs-4 control-label">{{IP fixe}}</label>
-            <div class="col-xs-8">
-                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="network::fixip::enable" />
-            </div>
-        </div>
-        <div class="form-group expertModeVisible">
-            <label class="col-xs-4 control-label">{{Netmask}}</label>
-            <div class="col-xs-8">
-                <input class="configKey form-control" data-l1key="network::fixip::netmask" placeholder="255.255.255.0"/>
-            </div>
-        </div>
-        <div class="form-group expertModeVisible">
-            <label class="col-xs-4 control-label">{{Gateway}}</label>
-            <div class="col-xs-8">
-                <input class="configKey form-control" data-l1key="network::fixip::gateway" placeholder="192.168.0.1" />
-            </div>
-        </div>
+
         <div class="form-group">
          <label class="col-xs-4 control-label">{{Gestion}}</label>
          <div class="col-xs-8">
@@ -441,12 +421,6 @@ if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
         </div>
     </div>
     <div class="alert alert-info">{{Toute modification nécessite de redémarrer le service DNS Jeedom (ligne "Gestion" puis "Redémarrer")}}</div>
-    <div class="form-group has-warning expertModeVisible">
-        <label class="col-xs-4 control-label" title="{{A ne faire que si on vous le demande ou en connaissance de cause}}">{{Rediriger le SSH}}</label>
-        <div class="col-xs-8">
-            <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="market::redirectSSH" />
-        </div>
-    </div>
     <div class="form-group">
         <label class="col-xs-4 control-label">{{Statut http}}</label>
         <div class="col-xs-8">
@@ -459,18 +433,6 @@ if (config::byKey('market::allowDNS') == 1 && $externalTest) {
 ?>
        </div>
    </div>
-   <div class="form-group">
-    <label class="col-xs-4 control-label">{{Statut SSH}}</label>
-    <div class="col-xs-8">
-        <?php
-if (network::ngrok_run('tcp', 22, 'ssh')) {
-	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} dns.jeedom.com:' . config::byKey('ngrok::port') . '</span>';
-} else {
-	echo '<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Rediriger le SSH}}">{{Arrêté}}</span>';
-}
-?>
-   </div>
-</div>
 <div class="form-group">
  <label class="col-xs-4 control-label">{{Gestion}}</label>
  <div class="col-xs-8">
@@ -701,6 +663,7 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
         <div class="panel-body">
             <form class="form-horizontal">
                 <fieldset>
+                <legend>{{Messages}}</legend>
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ajouter un message à chaque erreur dans les logs}}</label>
                         <div class="col-sm-1">
@@ -708,24 +671,49 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre de lignes maximum dans un fichier de log}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="text" class="configKey form-control" data-l1key="maxLineLog"/>
-                        </div>
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas autoriser les messages venant de}}</label>
+                        <div class="col-sm-1">
+                            <select multiple="multiple" class="configKey bootstrapMultiselect" data-l1key="message::disallowPlugin">
+                                <option value="update">Mise à jour (update)</option>
+                                <option value="connection">Connection</option>
+                                <option value="jeeEvent">jeeEvent</option>
+                                <?php
+foreach (plugin::listPlugin(true) as $plugin) {
+	echo '<option value="' . $plugin->getId() . '">' . $plugin->getName() . '</option>';
+}
+?>
+                           </select>
+                       </div>
+                   </div>
+                   <div class="form-group">
+                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande d'information utilisateur}}</label>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <input type="text"  class="configKey form-control" data-l1key="emailAdmin" />
                     </div>
-                    <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Logs actifs}}</label>
-                        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-                            <input type="checkbox" data-label-text="{{Debug}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="debug" />
-                            <input type="checkbox" data-label-text="{{Info}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="info" />
-                            <input type="checkbox" data-label-text="{{Event}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="event" />
-                            <input type="checkbox" data-label-text="{{Error}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="error" />
-                        </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2">
+                        <a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectMailCmd"><i class="fa fa-list-alt"></i></a>
                     </div>
-                </fieldset>
-            </form>
-        </div>
+                </div>
+                <legend>{{Log}}</legend>
+                <div class="form-group">
+                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre de lignes maximum dans un fichier de log}}</label>
+                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                        <input type="text" class="configKey form-control" data-l1key="maxLineLog"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Logs actifs}}</label>
+                    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+                        <input type="checkbox" data-label-text="{{Debug}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="debug" />
+                        <input type="checkbox" data-label-text="{{Info}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="info" />
+                        <input type="checkbox" data-label-text="{{Event}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="event" />
+                        <input type="checkbox" data-label-text="{{Error}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="error" />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
     </div>
+</div>
 </div>
 
 <div class="panel panel-default expertModeVisible">
@@ -746,58 +734,60 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                             <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="ldap:enable"/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hôte}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="text"  class="configKey form-control" data-l1key="ldap:host" />
+                    <div id="div_config_ldap">
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hôte}}</label>
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <input type="text"  class="configKey form-control" data-l1key="ldap:host" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="text"  class="configKey form-control" data-l1key="ldap:port" />
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port}}</label>
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <input type="text"  class="configKey form-control" data-l1key="ldap:port" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Domaine}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="text"  class="configKey form-control" data-l1key="ldap:domain" />
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Domaine}}</label>
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <input type="text"  class="configKey form-control" data-l1key="ldap:domain" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Base DN}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="text"  class="configKey form-control" data-l1key="ldap:basedn" />
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Base DN}}</label>
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <input type="text"  class="configKey form-control" data-l1key="ldap:basedn" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="text"  class="configKey form-control" data-l1key="ldap:username" />
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <input type="text"  class="configKey form-control" data-l1key="ldap:username" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="password"  class="configKey form-control" data-l1key="ldap:password" />
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <input type="password"  class="configKey form-control" data-l1key="ldap:password" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Filtre (optionnel)}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="text"  class="configKey form-control" data-l1key="ldap:filter" />
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Filtre (optionnel)}}</label>
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <input type="text"  class="configKey form-control" data-l1key="ldap:filter" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group has-error">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Autoriser REMOTE_USER}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="checkbox"  class="configKey bootstrapSwitch" data-l1key="sso:allowRemoteUser" />
+                        <div class="form-group has-error">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Autoriser REMOTE_USER}}</label>
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <input type="checkbox"  class="configKey bootstrapSwitch" data-l1key="sso:allowRemoteUser" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <a class="btn btn-default" id="bt_testLdapConnection"><i class="fa fa-cube"></i> Tester</a>
+                        <div class="form-group">
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <a class="btn btn-default" id="bt_testLdapConnection"><i class="fa fa-cube"></i> Tester</a>
+                            </div>
                         </div>
                     </div>
                 </fieldset>
@@ -883,6 +873,15 @@ if (network::ngrok_run('tcp', 22, 'ssh')) {
                                 <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="update::auto"/>
                             </div>
                         </div>
+                        <?php if (jeedom::getHardwareName() == 'Jeedomboard' && jeedom::isCapable('sudo')) {?>
+                        <div class="form-group expertModeVisible has-warning">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label" title="{{Elle a lieu le dimanche à 4h du matin}}">{{Autoriser la mise à jour automatique du système}}</label>
+                            <div class="col-sm-1">
+                                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="update::autoSystem"/>
+                            </div>
+                        </div>
+                        <?php }
+?>
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Branche}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">

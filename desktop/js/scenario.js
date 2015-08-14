@@ -49,7 +49,7 @@
  {val: 'time(value)'},
  {val: 'collectDate(cmd)'}
  ];
- autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'icon', 'say','wait','return','gotodesign','log','message','equipement'];
+ autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'icon', 'say','wait','return','gotodesign','log','message','equipement','ask'];
 
  if (getUrlVars('saveSuccessFull') == 1) {
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});

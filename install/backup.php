@@ -73,6 +73,8 @@ try {
 		'backup',
 		'log',
 		'ngrok',
+		'.git',
+		realpath(dirname(__FILE__) . '/../core/nodeJS/node_modules'),
 		realpath(dirname(__FILE__) . '/../doc'),
 		realpath(dirname(__FILE__) . '/../core/img'),
 		str_replace('/', '', jeedom::getCurrentSysInfoFolder()),
@@ -188,16 +190,18 @@ try {
 		}
 	}
 	echo __("OK", __FILE__) . "\n";
-
-	if (config::byKey('backup::cloudUpload') == 1 && init('noCloudUpload', 0) == 0) {
-		echo __('Envoi de la sauvegarde dans le cloud...', __FILE__);
-		try {
-			market::sendBackup($backup_dir . '/' . $bakcup_name);
-		} catch (Exception $e) {
-			log::add('backup', 'error', $e->getMessage());
-			echo '/!\ ' . br2nl($e->getMessage()) . ' /!\\';
+	global $NO_CLOUD_BAKCUP;
+	if (!isset($NO_CLOUD_BAKCUP) || $NO_CLOUD_BAKCUP == false) {
+		if (config::byKey('backup::cloudUpload') == 1 && init('noCloudUpload', 0) == 0) {
+			echo __('Envoi de la sauvegarde dans le cloud...', __FILE__);
+			try {
+				market::sendBackup($backup_dir . '/' . $bakcup_name);
+			} catch (Exception $e) {
+				log::add('backup', 'error', $e->getMessage());
+				echo '/!\ ' . br2nl($e->getMessage()) . ' /!\\';
+			}
+			echo __("OK", __FILE__) . "\n";
 		}
-		echo __("OK", __FILE__) . "\n";
 	}
 
 	if (config::byKey('jeeNetwork::mode') == 'slave') {

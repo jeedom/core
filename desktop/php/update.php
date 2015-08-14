@@ -57,8 +57,12 @@ if (!hasRight('updateview', true)) {
             <select id="sel_updateVersion" class="form-control">
                 <option value="">{{Aucune}}</option>
                 <?php
-foreach (update::listCoreUpdate() as $value) {
-	$value = str_replace(array('.php', '.sql'), '', $value);
+$udpates = array();
+foreach (update::listCoreUpdate() as $udpate) {
+	$udpates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
+}
+usort($udpates, 'version_compare');
+foreach ($udpates as $value) {
 	echo '<option value="' . $value . '">' . $value . '</option>';
 }
 ?>

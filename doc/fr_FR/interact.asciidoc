@@ -1,5 +1,3 @@
-:icons: font
-
 = Intéractions
 
 Le principe est le suivant : une phrase de commande déclenche des actions. Pour simplifier la création des phrases il est possible d'utiliser des mots clef afin que jeedom génère automatiquement une liste de phrases.

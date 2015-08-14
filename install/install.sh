@@ -53,7 +53,6 @@ install_msg_en() {
     msg_optimize_webserver_cache_opcache="Installing Zend OpCache cache optimization"
     msg_uptodate="is already installed and up-to-date"
     msg_needinstallupdate="needs to be installed or to be updated"
-    msg_ask_install_nginx_ssl="Do you want to install SSL self sign certificat"
     msg_nginx_ssl_config="*                 NGINX SSL configuration               *"
 }
 
@@ -190,7 +189,7 @@ configure_php() {
 
 
 install_nodejs() {
-    # Check if nodeJS v0.12.7 is installed,
+    # Check if nodeJS v0.10.7 is installed,
     # otherwise, try to install it from various sources
     check_nodejs_version
     [ $? -eq 1 ] && return
@@ -199,10 +198,16 @@ install_nodejs() {
         apt-get -y install node
         ln -s /usr/bin/node /usr/bin/nodejs
     else
-        curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
-        apt-get -y install nodejs
-         ln -s /usr/bin/nodejs /usr/bin/node
+        if [  -z "$1" -a $(uname -a | grep cubox | wc -l ) -eq 1 -a ${ARCH} = "armv7l" ]; then
+            apt-get -y install nodejs
+            ln -s /usr/bin/nodejs /usr/bin/node
+        else
+            curl -sL https://deb.nodesource.com/setup_0.10 | sudo bash -
+            apt-get -y install nodejs
+            ln -s /usr/bin/nodejs /usr/bin/node
+        fi
     fi
+    apt-get -y install npm
 }
 
 
@@ -248,47 +253,8 @@ configure_nginx() {
             service ${i} stop
             update-rc.d -f ${i} remove
         fi
-    done
-    if [ ! -f '/etc/nginx/sites-enabled/default_ssl' ] ; then
-        configure_nginx_ssl         
-    fi          
+    done          
 }
-
-
-configure_nginx_ssl() {
-    echo "********************************************************"
-    echo "${msg_nginx_ssl_config}"
-    echo "********************************************************"
-    openssl genrsa -out jeedom.key 2048
-    openssl req \
-    -new \
-    -subj "/C=FR/ST=France/L=Paris/O=jeedom/OU=JE/CN=jeedom" \
-    -key jeedom.key \
-    -out jeedom.csr
-    openssl x509 -req -days 9999 -in jeedom.csr -signkey jeedom.key -out jeedom.crt
-    mkdir /etc/nginx/certs
-    cp jeedom.key /etc/nginx/certs
-    cp jeedom.crt /etc/nginx/certs
-    rm jeedom.key jeedom.crt
-
-    JEEDOM_ROOT="`cat /etc/nginx/sites-available/default | grep -e 'root /usr/share/nginx/www/jeedom;'`"
-    cp ${webserver_home}/jeedom/install/nginx_default_ssl /etc/nginx/sites-available/default_ssl
-    if [ ! -f '/etc/nginx/sites-enabled/default_ssl' ] ; then
-        ln -s /etc/nginx/sites-available/default_ssl /etc/nginx/sites-enabled/default_ssl
-    fi
-    if [ ! -z "${JEEDOM_ROOT}" ] ; then
-        sed -i 's%root /usr/share/nginx/www;%root /usr/share/nginx/www/jeedom;%g' /etc/nginx/sites-available/default_ssl
-    fi
-    for i in apache2 apache mongoose ; do
-        if [ -f "/etc/init.d/${i}" ] ; then
-            service ${i} stop
-            update-rc.d -f ${i} remove
-        fi
-    done
-    service nginx reload
-    update-rc.d nginx
-}
-
 
 is_version_greater_or_equal() {
     # Compare two "X.Y.Z" formated versions
@@ -317,7 +283,7 @@ check_nodejs_version() {
     # Check if nodeJS v0.10.25 (or higher) is installed.
     # Return 1 of true, 0 (or else) otherwise
     NODEJS_VERSION="`nodejs -v 2>/dev/null  | sed 's/["v]//g'`"
-    is_version_greater_or_equal "${NODEJS_VERSION}" "0.12.7"
+    is_version_greater_or_equal "${NODEJS_VERSION}" "0.10.0"
     RETVAL=$?
     case ${RETVAL} in
         1)
@@ -410,7 +376,6 @@ install_dependency() {
     apt-get -y install mysql-common
     apt-get -y install mysql-server
     apt-get -y install mysql-server-core-5.5
-    apt-get -y install npm
     apt-get -y install ntp
     apt-get -y install php5-cli
     apt-get -y install php5-common
@@ -427,7 +392,6 @@ install_dependency() {
     apt-get -y install ffmpeg
     apt-get -y install avconv
     apt-get -y install libudev1
-    apt-get -y install curl
 
     pecl install oauth
     if [ $? -eq 0 ] ; then
@@ -528,7 +492,7 @@ while true ; do
     if [ "${ANSWER}" = "${msg_yes}" ] ; then
         # Test access immediately
         # to ensure that the provided password is valid
-        echo "show databases;" | mysql -uroot -p${MySQL_root}
+        echo "show databases;" | mysql -uroot -p"${MySQL_root}"
         if [ $? -eq 0 ] ; then
             # good password
             break
@@ -573,11 +537,11 @@ echo "********************************************************"
 echo "${msg_config_db}"
 echo "********************************************************"
 bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
-echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p${MySQL_root}
-echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p${MySQL_root}
-echo "DROP DATABASE IF EXISTS jeedom;" | mysql -uroot -p${MySQL_root}
-echo "CREATE DATABASE jeedom;" | mysql -uroot -p${MySQL_root}
-echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p${MySQL_root}
+echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p"${MySQL_root}"
+echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p"${MySQL_root}"
+echo "DROP DATABASE IF EXISTS jeedom;" | mysql -uroot -p"${MySQL_root}"
+echo "CREATE DATABASE jeedom;" | mysql -uroot -p"${MySQL_root}"
+echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p"${MySQL_root}"
 
 echo "********************************************************"
 echo "${msg_install_jeedom}"

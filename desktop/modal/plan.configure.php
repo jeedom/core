@@ -81,9 +81,9 @@ if ($plan->getLink_type() == 'eqLogic') {
     </div>
     <?php if ($plan->getLink_type() == 'eqLogic') {?>
     <div class="form-group">
-        <label class="col-lg-4 control-label">{{Ne pas afficher le nom de l'équipement}}</label>
+        <label class="col-lg-4 control-label">{{Afficher le nom de l'équipement}}</label>
         <div class="col-lg-2">
-            <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="name" >
+            <input type="checkbox" class="planAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-l1key="display" data-l2key="name" >
         </div>
     </div>
     <?php }
@@ -371,9 +371,9 @@ foreach (planHeader::all() as $planHeader_select) {
     </div>
 </div>
 <div class="form-group expertModeVisible">
-    <label class="col-lg-4 control-label">{{Ne pas prendre en compte la taille predefinie}}</label>
+    <label class="col-lg-4 control-label">{{Prendre en compte la taille predefinie}}</label>
     <div class="col-lg-4">
-        <input type="checkbox" class="planHeaderAttr bootstrapSwitch" data-l1key='configuration' data-l2key="noPredefineSize" />
+        <input type="checkbox" class="planHeaderAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-l1key='configuration' data-l2key="noPredefineSize" />
     </div>
 </div>
 <div class="form-group">

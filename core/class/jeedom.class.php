@@ -32,8 +32,14 @@ class jeedom {
 			config::save('enableCron', 0);
 			foreach (cron::all() as $cron) {
 				if ($cron->running()) {
-					$cron->halt();
-					echo '.';
+					try {
+						$cron->halt();
+						echo '.';
+					} catch (Exception $e) {
+						sleep(5);
+						$cron->halt();
+					}
+
 				}
 			}
 			echo " OK\n";
@@ -72,8 +78,13 @@ class jeedom {
 			echo "Désactivation de tous les scénarios";
 			config::save('enableScenario', 0);
 			foreach (scenario::all() as $scenario) {
-				$scenario->stop();
-				echo '.';
+				try {
+					$scenario->stop();
+					echo '.';
+				} catch (Exception $e) {
+					sleep(5);
+					$scenario->stop();
+				}
 			}
 			echo " OK\n";
 		} catch (Exception $e) {
@@ -351,7 +362,7 @@ class jeedom {
 			sleep(3);
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
-			shell_exec('sudo service ntp restart');
+			jeedom::forceSyncHour();
 			sleep(3);
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
@@ -366,30 +377,63 @@ class jeedom {
 		scenario::check($_event);
 	}
 
+	public static function checkAndCollect() {
+		try {
+			if (date('Gi') >= 500 && date('Gi') < 505) {
+				history::archive();
+			}
+		} catch (Exception $e) {
+			log::add('history', 'error', 'history::archive : ' . $e->getMessage());
+		}
+		try {
+			network::cron();
+		} catch (Exception $e) {
+			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+		}
+		try {
+			eqLogic::checkAlive();
+			connection::cron();
+			if (config::byKey('jeeNetwork::mode') != 'slave') {
+				jeeNetwork::pull();
+			}
+		} catch (Exception $e) {
+
+		}
+		try {
+			history::historize();
+		} catch (Exception $e) {
+			log::add('history', 'error', 'history::archive : ' . $e->getMessage());
+		}
+	}
+
 	public static function cron() {
 		if (!self::isStarted()) {
 			$cache = cache::byKey('jeedom::usbMapping');
 			$cache->remove();
 			foreach (cron::all() as $cron) {
 				if ($cron->running() && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
-					$cron->halt();
+					try {
+						$cron->halt();
+					} catch (Exception $e) {
+
+					}
 				}
 			}
-			jeedom::start();
-			plugin::start();
-			touch('/tmp/jeedom_start');
-			config::save('network::lastNoGw', -1);
-			self::event('start');
-			if (config::byKey('jeedom::firstUse', 'core', 1) == 1) {
-				log::add('core', 'info', 'Lancement du DNS find Jeedom');
-				network::ngrok_start('https', 80, 'find', 'find.dns.jeedom.com:4443');
-			}
+			try {
+				jeedom::start();
+			} catch (Exception $e) {
 
+			}
+			try {
+				plugin::start();
+			} catch (Exception $e) {
+
+			}
+			touch('/tmp/jeedom_start');
+			self::event('start');
 			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
 		self::isDateOk();
-		$gi = date('Gi');
-		$i = date('i');
 		try {
 			$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
 			if ($c->isDue()) {
@@ -417,57 +461,29 @@ class jeedom {
 				cache::clean();
 				DB::optimize();
 			}
+
+			$c = new Cron\CronExpression('02 02 * * *', new Cron\FieldFactory);
+			if ($c->isDue()) {
+				try {
+					log::chunk();
+					cron::clean();
+				} catch (Exception $e) {
+					log::add('log', 'error', $e->getMessage());
+				}
+			}
+			$c = new Cron\CronExpression('21 23 * * *', new Cron\FieldFactory);
+			if ($c->isDue()) {
+				try {
+					scenario::cleanTable();
+					user::cleanOutdatedUser();
+					scenario::consystencyCheck();
+				} catch (Exception $e) {
+					log::add('scenario', 'error', $e->getMessage());
+				}
+			}
 		} catch (Exception $e) {
 
 		}
-		plugin::cron();
-		if ($gi % 10 == 0) {
-			try {
-				try {
-					network::cron();
-				} catch (Exception $e) {
-					log::add('network', 'error', 'network::cron : ' . $e->getMessage());
-				}
-				eqLogic::checkAlive();
-				connection::cron();
-				if (config::byKey('jeeNetwork::mode') != 'slave') {
-					jeeNetwork::pull();
-				}
-				if (config::byKey('market::allowDNS') == 1) {
-					if (!network::test('dnsjeedom', false, 60)) {
-						log::add('ngork', 'debug', 'Restart service');
-						network::ngrok_stop();
-						network::ngrok_start();
-					}
-					if (config::byKey('market::redirectSSH') == 1 && !network::ngrok_run('tcp', 22, 'ssh')) {
-						network::ngrok_stop('tcp', 22, 'ssh');
-						network::ngrok_start('tcp', 22, 'ssh');
-					}
-				}
-			} catch (Exception $e) {
-
-			}
-		}
-		if ($gi == 202) {
-			try {
-				log::chunk();
-				cron::clean();
-				self::checkSpaceLeft();
-			} catch (Exception $e) {
-				log::add('log', 'error', $e->getMessage());
-			}
-		}
-		if ($gi == 2320) {
-			try {
-				scenario::cleanTable();
-				user::cleanOutdatedUser();
-				scenario::consystencyCheck();
-
-			} catch (Exception $e) {
-				log::add('scenario', 'error', $e->getMessage());
-			}
-		}
-
 	}
 
 	public static function checkOngoingThread($_cmd) {
@@ -479,10 +495,6 @@ class jeedom {
 	}
 
 	public static function getHardwareKey() {
-		$cache = cache::byKey('jeedom::hwkey');
-		if ($cache->getValue(0) != 0) {
-			config::save('jeedom::installKey', $cache->getValue());
-		}
 		$return = config::byKey('jeedom::installKey');
 		if ($return == '') {
 			$return = sha1(microtime() . config::genKey());
@@ -530,6 +542,30 @@ class jeedom {
 		exec('sudo reboot');
 	}
 
+	public static function updateSystem() {
+		if (config::byKey('update::autoSystem') == 1 && jeedom::isCapable('systemUpdate') && jeedom::isCapable('sudo')) {
+			$output = array();
+			$return_val = -1;
+			log::remove('system_update');
+			exec('sudo apt-get -y update >> ' . log::getPathToLog('system_update') . ' 2>&1', $output, $return_val);
+			if ($return_val != 0) {
+				log::add('update', 'error', __('Echec de la mise à jour des dépot, veuillez consulter la log system_update', __FILE__));
+				return;
+			}
+			exec('sudo DEBIAN_FRONTEND=noninteractive apt-get -q -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" dist-upgrade >> ' . log::getPathToLog('system_update') . ' 2>&1', $output, $return_val);
+			if ($return_val != 0) {
+				log::add('update', 'error', __('Echec de la mise à jour des paquets, veuillez consulter la log system_update', __FILE__));
+				return;
+			}
+			exec('sudo apt-get -y autoremove >> ' . log::getPathToLog('system_update') . ' 2>&1', $output, $return_val);
+			if ($return_val != 0) {
+				log::add('update', 'error', __('Echec su nettoyage des paquets, veuillez consulter la log system_update', __FILE__));
+				return;
+			}
+			exec('sudo service cron restart');
+		}
+	}
+
 	public static function forceSyncHour() {
 		exec('sudo service ntp restart');
 	}
@@ -556,15 +592,7 @@ class jeedom {
 		$path = dirname(__FILE__) . '/../../';
 		$free = disk_free_space($path);
 		$total = disk_total_space($path);
-		$pourcent = $free / $total * 100;
-		if ($pourcent < 5) {
-			log::add('space', 'error', __('Vous n\'avez plus beaucoup d\'espace disque : ', __FILE__) . $pourcent . '%', 'noSpaceLeft');
-			exec('sudo apt-get clean');
-		}
-		if (($free / 1024 / 1024) < 100) {
-			log::add('space', 'error', __('Vous n\'avez plus beaucoup d\'espace disque : ', __FILE__) . ($free / 1024 / 1024) . ' Mo', 'noSpaceLeft');
-			exec('sudo apt-get clean');
-		}
+		return round($free / $total * 100);
 	}
 
 /*     * ****************************SQL BUDDY*************************** */

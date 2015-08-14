@@ -3,25 +3,6 @@ if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
-<legend>Version et droit</legend>
-<div class="row">
-  <div class="col-lg-2">
-    Jeedom : <?php echo jeedom::version();?><br/>
-    PHP : <?php echo phpversion();?><br/>
-    Node JS : <?php echo shell_exec('node -v')?>
-  </div>
-  <div class="col-lg-2">
-    Sudo (droit root) :
-    <?php
-if (jeedom::isCapable('sudo')) {
-	echo '<span class="label label-success">OK</span>';
-} else {
-	echo '<span class="label label-error">NOK</span>';
-}
-?>
-  </div>
-</div>
-<hr/>
 <div class="row">
   <div class="col-lg-2">
     <h3>{{Auteur(s)}}</h3>

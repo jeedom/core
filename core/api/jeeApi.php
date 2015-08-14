@@ -104,6 +104,18 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 		} else if ($type == 'message') {
 			log::add('api', 'debug', 'Demande API pour ajouter un message');
 			message::add(init('category'), init('message'));
+		} else if ($type == 'object') {
+			log::add('api', 'debug', 'Demande API pour les objets');
+			echo json_encode(utils::o2a(object::all()));
+		} else if ($type == 'eqLogic') {
+			log::add('api', 'debug', 'Demande API pour les équipements');
+			echo json_encode(utils::o2a(eqLogic::byObjectId(init('object_id'))));
+		} else if ($type == 'command') {
+			log::add('api', 'debug', 'Demande API pour les commandes');
+			echo json_encode(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
+		} else if ($type == 'fulData') {
+			log::add('api', 'debug', 'Demande API pour les commandes');
+			echo json_encode(object::fullData());
 		} else {
 			if (class_exists($type)) {
 				if (method_exists($type, 'event')) {
@@ -124,9 +136,13 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 } else {
 	try {
 		$IP = getClientIp();
-		log::add('api', 'info', init('request') . ' - IP :' . $IP);
+		$request = init('request');
+		if ($request == '') {
+			$request = file_get_contents("php://input");
+		}
+		log::add('api', 'info', $request . ' - IP :' . $IP);
 
-		$jsonrpc = new jsonrpc(init('request'));
+		$jsonrpc = new jsonrpc($request);
 
 		if (!mySqlIsHere()) {
 			throw new Exception('Mysql non lancé', -32001);
@@ -716,29 +732,16 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 			if ($jsonrpc->getMethod() == 'network::restartNgrok') {
 				config::save('market::allowDNS', 1);
-				if (network::ngrok_run()) {
-					network::ngrok_stop();
+				if (network::dns_run()) {
+					network::dns_stop();
 				}
-				network::ngrok_start();
-				if (config::byKey('market::redirectSSH') == 1) {
-					if (network::ngrok_run('tcp', 22, 'ssh')) {
-						network::ngrok_stop('tcp', 22, 'ssh');
-					}
-					network::ngrok_start('tcp', 22, 'ssh');
-				} else {
-					if (network::ngrok_run('tcp', 22, 'ssh')) {
-						network::ngrok_stop('tcp', 22, 'ssh');
-					}
-				}
+				network::dns_start();
 				$jsonrpc->makeSuccess();
 			}
 
 			if ($jsonrpc->getMethod() == 'network::stopNgrok') {
 				config::save('market::allowDNS', 0);
-				network::ngrok_stop();
-				if (config::byKey('market::redirectSSH') == 1) {
-					network::ngrok_stop('tcp', 22, 'ssh');
-				}
+				network::dns_stop();
 				$jsonrpc->makeSuccess();
 			}
 
@@ -752,7 +755,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				if (!isset($params['name'])) {
 					$params['name'] = '';
 				}
-				$jsonrpc->makeSuccess(network::ngrok_run($params['proto'], $params['port'], $params['name']));
+				$jsonrpc->makeSuccess(network::dns_run());
 			}
 
 			/*             * ************************************************************************ */

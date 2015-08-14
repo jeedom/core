@@ -20,197 +20,201 @@
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class message {
-    /*     * *************************Attributs****************************** */
+	/*     * *************************Attributs****************************** */
 
-    private $id;
-    private $date;
-    private $logicalId;
-    private $plugin;
-    private $message;
-    private $action;
+	private $id;
+	private $date;
+	private $logicalId;
+	private $plugin;
+	private $message;
+	private $action;
 
-    /*     * ***********************Methode static*************************** */
+	/*     * ***********************Methode static*************************** */
 
-    public static function add($_type, $_message, $_action = '', $_logicalId = '') {
-        $message = new message();
-        $message->setPlugin($_type);
-        $message->setMessage($_message);
-        $message->setAction($_action);
-        $message->setDate(date('Y-m-d H:i:m'));
-        $message->setLogicalId($_logicalId);
-        $message->save();
-    }
+	public static function add($_type, $_message, $_action = '', $_logicalId = '') {
+		$list_plugin = config::byKey('message::disallowPlugin', 'core', array());
+		if (in_array($_type, $list_plugin)) {
+			return;
+		}
+		$message = new message();
+		$message->setPlugin($_type);
+		$message->setMessage($_message);
+		$message->setAction($_action);
+		$message->setDate(date('Y-m-d H:i:m'));
+		$message->setLogicalId($_logicalId);
+		$message->save();
+	}
 
-    public static function removeAll($_plugin = '', $_logicalId = '', $_search = false) {
-        $values = array();
-        $sql = 'DELETE FROM message';
-        if ($_plugin != '') {
-            $values['plugin'] = $_plugin;
-            $sql .= ' WHERE plugin=:plugin';
-            if ($_logicalId != '') {
-                if ($_search) {
-                    $values['logicalId'] = '%' . $_logicalId . '%';
-                    $sql .= ' AND logicalId LIKE :logicalId';
-                } else {
-                    $values['logicalId'] = $_logicalId;
-                    $sql .= ' AND logicalId=:logicalId';
-                }
-            }
-        }
-        DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-        @nodejs::pushUpdate('message::refreshMessageNumber');
-        return true;
-    }
+	public static function removeAll($_plugin = '', $_logicalId = '', $_search = false) {
+		$values = array();
+		$sql = 'DELETE FROM message';
+		if ($_plugin != '') {
+			$values['plugin'] = $_plugin;
+			$sql .= ' WHERE plugin=:plugin';
+			if ($_logicalId != '') {
+				if ($_search) {
+					$values['logicalId'] = '%' . $_logicalId . '%';
+					$sql .= ' AND logicalId LIKE :logicalId';
+				} else {
+					$values['logicalId'] = $_logicalId;
+					$sql .= ' AND logicalId=:logicalId';
+				}
+			}
+		}
+		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		@nodejs::pushUpdate('message::refreshMessageNumber');
+		return true;
+	}
 
-    public static function nbMessage() {
-        $sql = 'SELECT count(*) 
+	public static function nbMessage() {
+		$sql = 'SELECT count(*)
                 FROM message';
-        $count = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-        return $count['count(*)'];
-    }
+		$count = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		return $count['count(*)'];
+	}
 
-    public static function byId($_id) {
-        $values = array(
-            'id' => $_id
-        );
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+	public static function byId($_id) {
+		$values = array(
+			'id' => $_id,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                 FROM message
                 WHERE id=:id';
-        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-    }
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+	}
 
-    public static function byPluginLogicalId($_plugin, $_logicalId) {
-        $values = array(
-            'logicalId' => $_logicalId,
-            'plugin' => $_plugin
-        );
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+	public static function byPluginLogicalId($_plugin, $_logicalId) {
+		$values = array(
+			'logicalId' => $_logicalId,
+			'plugin' => $_plugin,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                 FROM message
                 WHERE logicalId=:logicalId
                     AND plugin=:plugin';
-        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-    }
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
 
-    public static function byPlugin($_plugin) {
-        $values = array(
-            'plugin' => $_plugin
-        );
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+	public static function byPlugin($_plugin) {
+		$values = array(
+			'plugin' => $_plugin,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                 FROM message
                 WHERE plugin=:plugin
                 ORDER BY date DESC';
-        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-    }
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
 
-    public static function listPlugin() {
-        $sql = 'SELECT DISTINCT(plugin)
+	public static function listPlugin() {
+		$sql = 'SELECT DISTINCT(plugin)
                 FROM message';
-        return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
-    }
+		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+	}
 
-    public static function all() {
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+	public static function all() {
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                 FROM message
                 ORDER BY date DESC
                 LIMIT 500';
-        return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-    }
+		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
 
-    /*     * *********************Methode d'instance************************* */
+	/*     * *********************Methode d'instance************************* */
 
-    public function save() {
-        if ($this->getMessage() == '') {
-           return;
-        }
-        if ($this->getLogicalId() == '') {
-            $this->setLogicalId($this->getPlugin() . '::' . config::genKey());
-        }
-        $values = array(
-            'message' => $this->getMessage(),
-            'logicalId' => $this->getLogicalId(),
-            'plugin' => $this->getPlugin()
-        );
-        $sql = 'SELECT count(*)
+	public function save() {
+		if ($this->getMessage() == '') {
+			return;
+		}
+		if ($this->getLogicalId() == '') {
+			$this->setLogicalId($this->getPlugin() . '::' . config::genKey());
+		}
+		$values = array(
+			'message' => $this->getMessage(),
+			'logicalId' => $this->getLogicalId(),
+			'plugin' => $this->getPlugin(),
+		);
+		$sql = 'SELECT count(*)
                 FROM message
                 WHERE plugin=:plugin
-                      AND ( logicalId=:logicalId 
+                      AND ( logicalId=:logicalId
                         OR message=:message ) ';
-        $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-        if ($result['count(*)'] == 0) {
-            DB::save($this);
-            @nodejs::pushNotification(__('Message de ', __FILE__) . $this->getPlugin(), $this->getMessage(), 'message');
-            $cmds = explode(('&&'), config::byKey('emailAdmin'));
-            if (count($cmds) > 0) {
-                foreach ($cmds as $id) {
-                    $cmd = cmd::byId(str_replace('#', '', $id));
-                    if (is_object($cmd)) {
-                        $cmd->execCmd(array(
-                            'title' => __('[JEEDOM] Message de ', __FILE__) . $this->getPlugin(),
-                            'message' => $this->getMessage()
-                        ));
-                    } else {
-                        log::add('message', 'info', __('Impossible de trouver la commande correspondant à :', __FILE__) . $id);
-                    }
-                }
-            }
-        }
-        @nodejs::pushUpdate('message::refreshMessageNumber');
-    }
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		if ($result['count(*)'] == 0) {
+			DB::save($this);
+			@nodejs::pushNotification(__('Message de ', __FILE__) . $this->getPlugin(), $this->getMessage(), 'message');
+			$cmds = explode(('&&'), config::byKey('emailAdmin'));
+			if (count($cmds) > 0) {
+				foreach ($cmds as $id) {
+					$cmd = cmd::byId(str_replace('#', '', $id));
+					if (is_object($cmd)) {
+						$cmd->execCmd(array(
+							'title' => __('[JEEDOM] Message de ', __FILE__) . $this->getPlugin(),
+							'message' => $this->getMessage(),
+						));
+					} else {
+						log::add('message', 'info', __('Impossible de trouver la commande correspondant à :', __FILE__) . $id);
+					}
+				}
+			}
+		}
+		@nodejs::pushUpdate('message::refreshMessageNumber');
+	}
 
-    public function remove() {
-        DB::remove($this);
-        @nodejs::pushUpdate('message::refreshMessageNumber');
-    }
+	public function remove() {
+		DB::remove($this);
+		@nodejs::pushUpdate('message::refreshMessageNumber');
+	}
 
-    /*     * **********************Getteur Setteur*************************** */
+	/*     * **********************Getteur Setteur*************************** */
 
-    public function getId() {
-        return $this->id;
-    }
+	public function getId() {
+		return $this->id;
+	}
 
-    public function getDate() {
-        return $this->date;
-    }
+	public function getDate() {
+		return $this->date;
+	}
 
-    public function getPlugin() {
-        return $this->plugin;
-    }
+	public function getPlugin() {
+		return $this->plugin;
+	}
 
-    public function getMessage() {
-        return $this->message;
-    }
+	public function getMessage() {
+		return $this->message;
+	}
 
-    public function getAction() {
-        return $this->action;
-    }
+	public function getAction() {
+		return $this->action;
+	}
 
-    public function setId($id) {
-        $this->id = $id;
-    }
+	public function setId($id) {
+		$this->id = $id;
+	}
 
-    public function setDate($date) {
-        $this->date = $date;
-    }
+	public function setDate($date) {
+		$this->date = $date;
+	}
 
-    public function setPlugin($plugin) {
-        $this->plugin = $plugin;
-    }
+	public function setPlugin($plugin) {
+		$this->plugin = $plugin;
+	}
 
-    public function setMessage($message) {
-        $this->message = $message;
-    }
+	public function setMessage($message) {
+		$this->message = $message;
+	}
 
-    public function setAction($action) {
-        $this->action = $action;
-    }
+	public function setAction($action) {
+		$this->action = $action;
+	}
 
-    public function getLogicalId() {
-        return $this->logicalId;
-    }
+	public function getLogicalId() {
+		return $this->logicalId;
+	}
 
-    public function setLogicalId($logicalId) {
-        $this->logicalId = $logicalId;
-    }
+	public function setLogicalId($logicalId) {
+		$this->logicalId = $logicalId;
+	}
 
 }
 

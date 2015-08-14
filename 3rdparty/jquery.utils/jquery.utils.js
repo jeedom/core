@@ -331,6 +331,7 @@
                 $(this).text('Hide traces');
             }
         });
+        initRowOverflow();
         return this;
     };
 
@@ -367,6 +368,7 @@
 
 
     $.fn.value = function (_value) {
+
         if (isset(_value)) {
             if ($(this).length > 1) {
                 $(this).each(function () {
@@ -379,6 +381,7 @@
                             $(this).bootstrapSwitch('destroy');
                             $(this).prop('checked', (init(_value) == 1) ? true : false);
                             $(this).bootstrapSwitch();
+                            $(this).trigger('switchChange.bootstrapSwitch');
                         }else{
                             $(this).prop('checked', (init(_value) == 1) ? true : false);
                         }
@@ -390,102 +393,111 @@
                     if (init(_value) == '') {
                         $(this).find('option:first').prop('selected', true);
                     } else {
+                     if($(this).hasClass('bootstrapMultiselect')){
+                        if(_value.length > 0){
+                            for(var i in _value){
+                                console.log(i);
+                                $(this).multiselect('select',_value[i]);
+                            }
+                        }
+                    }else{
                         $(this).val(init(_value));
                     }
                 }
-                if ($(this).is('textarea')) {
-                    $(this).val(init(_value));
-                }
-                if ($(this).is('span') || $(this).is('div') || $(this).is('p')) {
-                    $(this).html(init(_value));
-                }
-                if ($(this).is('pre')) {
-                    $(this).html(init(_value));
-                }
-                $(this).trigger('change');
             }
-        } else {
-            var value = '';
-            if ($(this).is('input') || $(this).is('select') || $(this).is('textarea')) {
-                if ($(this).attr('type') == 'checkbox') {
-                    value = ($(this).is(':checked')) ? '1' : '0';
-                } else {
-                    value = $(this).val();
-                }
+            if ($(this).is('textarea')) {
+                $(this).val(init(_value));
             }
-            if ($(this).is('div') || $(this).is('span') || $(this).is('p')) {
-                value = $(this).text();
-                if (value == '') {
-                    value = $(this).html();
-                }
+            if ($(this).is('span') || $(this).is('div') || $(this).is('p')) {
+                $(this).html(init(_value));
             }
-            if ($(this).is('a') && $(this).attr('value') != undefined) {
-                value = $(this).attr('value');
+            if ($(this).is('pre')) {
+                $(this).html(init(_value));
             }
-            if (value == '') {
+            $(this).trigger('change');
+        }
+    } else {
+        var value = '';
+        if ($(this).is('input') || $(this).is('select') || $(this).is('textarea')) {
+            if ($(this).attr('type') == 'checkbox') {
+                value = ($(this).is(':checked')) ? '1' : '0';
+            } else {
                 value = $(this).val();
             }
-            return value;
-
         }
-    };
+        if ($(this).is('div') || $(this).is('span') || $(this).is('p')) {
+            value = $(this).text();
+            if (value == '') {
+                value = $(this).html();
+            }
+        }
+        if ($(this).is('a') && $(this).attr('value') != undefined) {
+            value = $(this).attr('value');
+        }
+        if (value == '') {
+            value = $(this).val();
+        }
+        return value;
 
-    $.fn.getValues = function (_attr, _depth) {
-        var values = [];
-        if ($(this).length > 1) {
-            $(this).each(function () {
-                var value = {};
-                $(this).findAtDepth(_attr, init(_depth, 0)).each(function () {
-                    var elValue = $(this).value();
-                    try {
-                        if ($.trim(elValue).substr(0, 1) == '{') {
-                            var elValue = JSON.parse($(this).value());
-                        }
-                    } catch (e) {
+    }
+};
 
+$.fn.getValues = function (_attr, _depth) {
+    var values = [];
+    if ($(this).length > 1) {
+        $(this).each(function () {
+            var value = {};
+            $(this).findAtDepth(_attr, init(_depth, 0)).each(function () {
+                var elValue = $(this).value();
+                try {
+                    if ($.trim(elValue).substr(0, 1) == '{') {
+                        var elValue = JSON.parse($(this).value());
                     }
-                    if ($(this).attr('data-l1key') != undefined && $(this).attr('data-l1key') != '') {
-                        var l1key = $(this).attr('data-l1key');
-                        if ($(this).attr('data-l2key') !== undefined) {
-                            var l2key = $(this).attr('data-l2key');
-                            if (!isset(value[l1key])) {
-                                value[l1key] = {};
+                } catch (e) {
+
+                }
+                if ($(this).attr('data-l1key') != undefined && $(this).attr('data-l1key') != '') {
+                    var l1key = $(this).attr('data-l1key');
+                    if ($(this).attr('data-l2key') !== undefined) {
+                        var l2key = $(this).attr('data-l2key');
+                        if (!isset(value[l1key])) {
+                            value[l1key] = {};
+                        }
+                        if ($(this).attr('data-l3key') !== undefined) {
+                            var l3key = $(this).attr('data-l3key');
+                            if (!isset(value[l1key][l2key])) {
+                                value[l1key][l2key] = {};
                             }
-                            if ($(this).attr('data-l3key') !== undefined) {
-                                var l3key = $(this).attr('data-l3key');
-                                if (!isset(value[l1key][l2key])) {
-                                    value[l1key][l2key] = {};
+                            if (isset(value[l1key][l2key][l3key])) {
+                                if (!is_array(value[l1key][l2key][l3key])) {
+                                    value[l1key][l2key][l3key] = [value[l1key][l2key][l3key]];
                                 }
-                                if (isset(value[l1key][l2key][l3key])) {
-                                    if (!is_array(value[l1key][l2key][l3key])) {
-                                        value[l1key][l2key][l3key] = [value[l1key][l2key][l3key]];
-                                    }
-                                    value[l1key][l2key][l3key].push(elValue);
-                                } else {
-                                    value[l1key][l2key][l3key] = elValue;
-                                }
+                                value[l1key][l2key][l3key].push(elValue);
                             } else {
-                                if (isset(value[l1key][l2key])) {
-                                    if (!is_array(value[l1key][l2key])) {
-                                        value[l1key][l2key] = [value[l1key][l2key]];
-                                    }
-                                    value[l1key][l2key].push(elValue);
-                                } else {
-                                    value[l1key][l2key] = elValue;
-                                }
+                                value[l1key][l2key][l3key] = elValue;
                             }
                         } else {
-                            if (isset(value[l1key])) {
-                                if (!is_array(value[l1key])) {
-                                    value[l1key] = [value[l1key]];
+                            if (isset(value[l1key][l2key])) {
+                                if (!is_array(value[l1key][l2key])) {
+                                    value[l1key][l2key] = [value[l1key][l2key]];
                                 }
-                                value[l1key].push(elValue);
+                                value[l1key][l2key].push(elValue);
                             } else {
-                                value[l1key] = elValue;
+                                value[l1key][l2key] = elValue;
                             }
                         }
+                    } else {
+                        if (isset(value[l1key])) {
+                            if (!is_array(value[l1key])) {
+                                value[l1key] = [value[l1key]];
+                            }
+                            value[l1key].push(elValue);
+                        } else {
+                            value[l1key] = elValue;
+                        }
                     }
-                });
+                }
+            });
 values.push(value);
 });
 }
@@ -549,11 +561,11 @@ return values;
 
 $.fn.setValues = function (_object, _attr) {
     for (var i in _object) {
-        if (!is_array(_object[i]) && !is_object(_object[i])) {
+        if ((!is_array(_object[i]) || $(this).find(_attr + '[data-l1key="' + i + '"]').attr('multiple') == 'multiple') && !is_object(_object[i])) {
             $(this).find(_attr + '[data-l1key="' + i + '"]').value(_object[i]);
         } else {
             for (var j in _object[i]) {
-                if (is_array(_object[i][j]) || is_object(_object[i][j])) {
+                if ((is_array(_object[i][j]) ||  $(this).find(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]').attr('multiple') == 'multiple') || is_object(_object[i][j])) {
                     for (var k in _object[i][j]) {
                         $(this).find(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"][data-l3key="' + k + '"]').value(_object[i][j][k]);
                     }

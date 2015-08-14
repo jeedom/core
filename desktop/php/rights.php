@@ -29,6 +29,11 @@ $pages = array(
 		'view' => array('title' => 'Voir'),
 		//  'edit' => array('title' => 'Editer')
 	),
+	'health' => array(
+		'title' => 'Santé',
+		'view' => array('title' => 'Voir'),
+		//  'edit' => array('title' => 'Editer')
+	),
 	'interact' => array(
 		'title' => 'Interactions',
 		'view' => array('title' => 'Voir'),
@@ -71,6 +76,11 @@ $pages = array(
 	),
 	'security' => array(
 		'title' => 'Sécurité',
+		'view' => array('title' => 'Voir'),
+		//  'edit' => array('title' => 'Editer')
+	),
+	'sysinfo' => array(
+		'title' => 'Système info',
 		'view' => array('title' => 'Voir'),
 		//  'edit' => array('title' => 'Editer')
 	),

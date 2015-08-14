@@ -281,7 +281,7 @@ class cmd {
 	public static function byObjectNameEqLogicNameCmdName($_object_name, $_eqLogic_name, $_cmd_name) {
 		$values = array(
 			'eqLogic_name' => $_eqLogic_name,
-			'cmd_name' => html_entity_decode($_cmd_name),
+			'cmd_name' => (html_entity_decode($_cmd_name) != '') ? html_entity_decode($_cmd_name) : $_cmd_name,
 		);
 
 		if ($_object_name == __('Aucun', __FILE__)) {
@@ -330,16 +330,6 @@ class cmd {
 			$sql .= ' AND c.subtype=:subtype';
 		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
-	}
-
-	public static function collect() {
-		$cmd = null;
-		foreach (cache::search('collect') as $cache) {
-			$cmd = self::byId($cache->getValue());
-			if (is_object($cmd) && $cmd->getEqLogic()->getIsEnable() == 1 && $cmd->getEventOnly() == 0) {
-				$cmd->execCmd(null, 0);
-			}
-		}
 	}
 
 	public static function cmdToHumanReadable($_input) {
@@ -708,7 +698,7 @@ class cmd {
 	/**
 	 *
 	 * @param type $_options
-	 * @param type $cache 0 = ignorer le cache , 1 = mode normal, 2 = cache utilisé même si expiré (puis marqué à recollecter)
+	 * @param type $cache 0 = ignorer le cache , 1 = mode normal, 2 = cache utilisé même si expiré
 	 * @return command result
 	 * @throws Exception
 	 */
@@ -719,9 +709,6 @@ class cmd {
 		if ($this->getType() == 'info' && $cache != 0) {
 			$mc = cache::byKey('cmd' . $this->getId(), ($cache == 2) ? true : false);
 			if ($cache == 2 || !$mc->hasExpired()) {
-				if ($mc->hasExpired()) {
-					$this->setCollect(1);
-				}
 				$this->setCollectDate($mc->getOptions('collectDate', $mc->getDatetime()));
 				$this->setValueDate($mc->getOptions('valueDate', $mc->getDatetime()));
 				return $mc->getValue();
@@ -776,7 +763,6 @@ class cmd {
 				$this->setValueDate(date('Y-m-d H:i:s'));
 			}
 			cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
-			$this->setCollect(0);
 			$nodeJs = array(
 				array(
 					'cmd_id' => $this->getId(),
@@ -916,9 +902,15 @@ class cmd {
 						$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));
 						$replace['#displayHistory#'] = '';
 						$historyStatistique = $this->getStatistique($startHist, date('Y-m-d H:i:s'));
-						$replace['#averageHistoryValue#'] = round($historyStatistique['avg'], 1);
-						$replace['#minHistoryValue#'] = round($historyStatistique['min'], 1);
-						$replace['#maxHistoryValue#'] = round($historyStatistique['max'], 1);
+						if ($historyStatistique['avg'] == 0 && $historyStatistique['min'] == 0 && $historyStatistique['max'] == 0) {
+							$replace['#averageHistoryValue#'] = round($replace['#state#'], 1);
+							$replace['#minHistoryValue#'] = round($replace['#state#'], 1);
+							$replace['#maxHistoryValue#'] = round($replace['#state#'], 1);
+						} else {
+							$replace['#averageHistoryValue#'] = round($historyStatistique['avg'], 1);
+							$replace['#minHistoryValue#'] = round($historyStatistique['min'], 1);
+							$replace['#maxHistoryValue#'] = round($historyStatistique['max'], 1);
+						}
 						$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculTendance') . ' hour'));
 						$tendance = $this->getTendance($startHist, date('Y-m-d H:i:s'));
 						if ($tendance > config::byKey('historyCalculTendanceThresholddMax')) {
@@ -980,18 +972,25 @@ class cmd {
 					$replace['#message#'] = '';
 				}
 			}
+			if ($version == 'scenario' && $this->getType() == 'action' && $this->getSubtype() == 'slider' && !isset($replace['#slider#'])) {
+				$replace['#slider#'] = '';
+			}
+			if ($version == 'scenario' && $this->getType() == 'action' && $this->getSubtype() == 'slider' && !isset($replace['#color#'])) {
+				$replace['#color#'] = '';
+			}
 			$replace['#title_placeholder#'] = $this->getDisplay('title_placeholder', __('Titre', __FILE__));
 			$replace['#message_placeholder#'] = $this->getDisplay('message_placeholder', __('Message', __FILE__));
 			$replace['#message_disable#'] = $this->getDisplay('message_disable', 0);
 			$replace['#title_disable#'] = $this->getDisplay('title_disable', 0);
 			$replace['#title_possibility_list#'] = $this->getDisplay('title_possibility_list', '');
+			$replace['#slider_placeholder#'] = $this->getDisplay('slider_placeholder', __('Valeur', __FILE__));
 			$html = template_replace($replace, $html);
 			return $html;
 		}
 	}
 
 	public function event($_value, $_loop = 1) {
-		if (trim($_value) === '' || $_loop > 4 || $this->getType() != 'info') {
+		if ((trim($_value) === '' && $_value !== false) || $_loop > 4 || $this->getType() != 'info') {
 			return;
 		}
 		$value = $this->formatValue($_value);
@@ -1019,7 +1018,6 @@ class cmd {
 		log::add('event', 'event', __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $value);
 		cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
 		scenario::check($this);
-		$this->setCollect(0);
 		$eqLogic->emptyCacheWidget();
 		$nodeJs = array(array('cmd_id' => $this->getId()));
 		$foundInfo = false;
@@ -1114,7 +1112,7 @@ class cmd {
 			if (!is_object($scenario)) {
 				return;
 			}
-			switch ($this->getOptions('jeedomCheckCmdScenarioActionMode')) {
+			switch ($this->getConfiguration('jeedomCheckCmdScenarioActionMode')) {
 				case 'start':
 					$scenario->launch(false, __('Lancement direct provoqué par le scénario  : ', __FILE__) . $this->getHumanName());
 					break;
@@ -1233,14 +1231,6 @@ class cmd {
 
 	public function getPluralityHistory($_dateStart = null, $_dateEnd = null, $_period = 'day', $_offset = 0) {
 		return history::getPlurality($this->id, $_dateStart, $_dateEnd, $_period, $_offset);
-	}
-
-	public function setCollect($collect) {
-		if ($collect == 1) {
-			cache::set('collect' . $this->getId(), $this->getId());
-		} else {
-			cache::deleteBySearch('collect' . $this->getId());
-		}
 	}
 
 	public function export() {

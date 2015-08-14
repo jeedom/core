@@ -918,12 +918,12 @@ class scenarioExpression {
 							break;
 						case 'deactivate':
 							$this->setLog($scenario, __('Equipement désactivé : ', __FILE__) . $eqLogic->getHumanName());
-							$eqLogic->setIsActive(0);
+							$eqLogic->setIsEnable(0);
 							$eqLogic->save();
 							break;
 						case 'activate':
 							$this->setLog($scenario, __('Equipement activé : ', __FILE__) . $eqLogic->getHumanName());
-							$eqLogic->setIsActive(1);
+							$eqLogic->setIsEnable(1);
 							$eqLogic->save();
 							break;
 					}
@@ -947,7 +947,7 @@ class scenarioExpression {
 						$actionScenario = scenario::byId($this->getOptions('scenario_id'));
 					}
 					if (!is_object($actionScenario)) {
-						throw new Exception($scenario, __('Action sur scénario impossible. Scénario introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('scenario_id'));
+						throw new Exception(__('Action sur scénario impossible. Scénario introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('scenario_id'));
 					}
 					switch ($this->getOptions('action')) {
 						case 'start':
@@ -984,15 +984,52 @@ class scenarioExpression {
 					} catch (Exception $ex) {
 						$result = $options['value'];
 					}
-
-					$message = __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' => ', __FILE__) . $options['value'] . ' = ' . $result;
-					$this->setLog($scenario, $message);
+					$this->setLog($scenario, __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' => ', __FILE__) . $options['value'] . ' = ' . $result);
 					$dataStore = new dataStore();
-					$dataStore->setType('scenario');
 					$dataStore->setKey($this->getOptions('name'));
 					$dataStore->setValue($result);
+					$dataStore->setType('scenario');
 					$dataStore->setLink_id(-1);
 					$dataStore->save();
+					return;
+				} else if ($this->getExpression() == 'ask') {
+					$dataStore = new dataStore();
+					$dataStore->setType('scenario');
+					$dataStore->setKey($this->getOptions('variable'));
+					$dataStore->setValue('');
+					$dataStore->setLink_id(-1);
+					$dataStore->save();
+					$options_cmd = array('title' => '', 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'variable' => $this->getOptions('variable'));
+					$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
+					if (!is_object($cmd)) {
+						throw new Exception(__('Commande introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
+					}
+					$limit = (isset($options['timeout'])) ? $options['timeout'] : 300;
+					$this->setLog($scenario, __('Demande ', __FILE__) . print_r($options_cmd, true));
+					$cmd->setConfiguration('storeVariable', $this->getOptions('variable'));
+					$cmd->save();
+					$cmd->execCmd($options_cmd);
+					$occurence = 0;
+					$value = '';
+					while (true) {
+						$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, $this->getOptions('variable'));
+						if (is_object($dataStore)) {
+							$value = $dataStore->getValue();
+						}
+						if ($value != '') {
+							break;
+						}
+						if ($occurence > $limit) {
+							break;
+						}
+						$occurence++;
+						sleep(1);
+					}
+					if ($value == '') {
+						$cmd->setConfiguration('storeVariable', $this->getOptions('variable'));
+						$cmd->save();
+					}
+					$this->setLog($scenario, __('Réponse ', __FILE__) . $value);
 					return;
 				} else {
 					$cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
@@ -1192,7 +1229,7 @@ class scenarioExpression {
 	}
 
 	public function setLog(&$_scenario, $log) {
-		if ($_scenario != null) {
+		if ($_scenario != null && is_object($_scenario)) {
 			$_scenario->setLog($log);
 		}
 	}

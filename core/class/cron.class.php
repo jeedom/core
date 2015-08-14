@@ -239,26 +239,6 @@ class cron {
 	}
 
 	/**
-	 * Number of this cron running
-	 * @return int
-	 */
-	public function getNbRun() {
-		$cmd = 'php ' . dirname(__FILE__) . '/../php/jeeCron.php';
-		$cmd .= ' cron_id=' . $this->getId();
-		return jeedom::checkOngoingThread($cmd);
-	}
-
-	/**
-	 * Return pid of this cron (if running)
-	 * @return int
-	 */
-	public function retrievePid() {
-		$cmd = 'php ' . dirname(__FILE__) . '/../php/jeeCron.php';
-		$cmd .= ' cron_id=' . $this->getId();
-		return jeedom::retrievePidThread($cmd);
-	}
-
-	/**
 	 * Launch cron (this method must be only call by jeecron master)
 	 * @throws Exception
 	 */
@@ -266,17 +246,14 @@ class cron {
 		$cmd = '/usr/bin/php ' . dirname(__FILE__) . '/../php/jeeCron.php';
 		$cmd .= ' cron_id=' . $this->getId();
 		if (!$this->running()) {
-			exec($cmd . ' >> /dev/null 2>&1 &');
+			exec($cmd . ' >> ' . log::getPathToLog('cron_execution') . ' 2>&1 &');
 		} else {
 			if (!$_noErrorReport) {
-				$this->setPID($this->retrievePid());
-				$this->setServer(gethostname());
-				$this->setState('run');
 				$this->halt();
 				if (!$this->running()) {
 					exec($cmd . ' >> /dev/null 2>&1 &');
 				} else {
-					throw new Exception(__('Impossible d\'exécuter la tâche car elle est déjà en cours d\'exécution (', __FILE__) . $this->getNbRun() . ') : ' . $cmd);
+					throw new Exception(__('Impossible d\'exécuter la tâche car elle est déjà en cours d\'exécution (', __FILE__) . ' : ' . $cmd);
 				}
 			}
 		}
@@ -291,6 +268,9 @@ class cron {
 			if (posix_getsid($this->getPID()) && (!file_exists('/proc/' . $this->getPID() . '/cmdline') || strpos(file_get_contents('/proc/' . $this->getPID() . '/cmdline'), 'cron_id=' . $this->getId()) !== false)) {
 				return true;
 			}
+		}
+		if (shell_exec('ps ax | grep -ie "cron_id=' . $this->getId() . '$" | grep -v grep | wc -l') > 0) {
+			return true;
 		}
 		return false;
 	}
@@ -331,36 +311,42 @@ class cron {
 			$this->setPID();
 			$this->setServer('');
 			$this->save();
-			return true;
-		}
-		log::add('cron', 'info', __('Arrêt de ', __FILE__) . $this->getClass() . '::' . $this->getFunction() . '(), PID : ' . $this->getPID());
-		$kill = posix_kill($this->getPID(), 15);
-		$retry = 0;
-		while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
-			sleep(1);
-			$kill = posix_kill($this->getPID(), 9);
-			$retry++;
-		}
-		$retry = 0;
-		while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
-			sleep(1);
-			exec('kill -9 ' . $this->getPID());
-			$kill = $this->running();
-			$retry++;
-		}
-		if (!$kill && $this->running()) {
-			$this->setState('error');
-			$this->setServer('');
-			$this->setPID();
-			$this->save();
-			throw new Exception($this->getClass() . '::' . $this->getFunction() . __('() : Impossible d\'arrêter la tâche', __FILE__));
 		} else {
-			$this->setState('stop');
-			$this->setDuration(-1);
-			$this->setPID();
-			$this->setServer('');
-			$this->save();
+			log::add('cron', 'info', __('Arrêt de ', __FILE__) . $this->getClass() . '::' . $this->getFunction() . '(), PID : ' . $this->getPID());
+			if ($this->getPID() > 0) {
+				$kill = posix_kill($this->getPID(), 15);
+				$retry = 0;
+				while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
+					sleep(1);
+					$kill = posix_kill($this->getPID(), 9);
+					$retry++;
+				}
+				$retry = 0;
+				while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
+					sleep(1);
+					exec('kill -9 ' . $this->getPID());
+					$kill = $this->running();
+					$retry++;
+				}
+			}
+			if ($this->running()) {
+				exec("ps aux | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+				if ($this->running()) {
+					$this->setState('error');
+					$this->setServer('');
+					$this->setPID();
+					$this->save();
+					throw new Exception($this->getClass() . '::' . $this->getFunction() . __('() : Impossible d\'arrêter la tâche', __FILE__));
+				}
+			} else {
+				$this->setState('stop');
+				$this->setDuration(-1);
+				$this->setPID();
+				$this->setServer('');
+				$this->save();
+			}
 		}
+		return true;
 	}
 
 	/**

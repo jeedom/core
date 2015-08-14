@@ -85,6 +85,8 @@ try {
 				try {
 					global $NO_PLUGIN_BAKCUP;
 					$NO_PLUGIN_BAKCUP = true;
+					global $NO_CLOUD_BAKCUP;
+					$NO_CLOUD_BAKCUP = true;
 					jeedom::backup();
 				} catch (Exception $e) {
 					if (init('mode') != 'force') {
@@ -381,6 +383,9 @@ try {
 			config::save('cronSleepTime', 60);
 		}
 		config::save('logLevel', $logLevel);
+		echo "OK\n";
+		echo 'Installation de socket.io et express (peut etre très long > 30min)';
+		echo shell_exec('cd ' . dirname(__FILE__) . '/../core/nodeJS;sudo npm install socket.io;npm install express');
 		echo "OK\n";
 
 	}

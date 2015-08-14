@@ -225,27 +225,12 @@ class scenario {
 			$speedPriority = 0;
 			$message = __('Scénario exécuté automatiquement sur programmation', __FILE__);
 			$scenarios = scenario::all();
-			$dateOk = jeedom::isDateOk();
 			$trigger = '#schedule#';
+			if (!jeedom::isDateOk()) {
+				return;
+			}
 			foreach ($scenarios as $key => &$scenario) {
-				if ($scenario->getState() == 'in progress') {
-					if ($scenario->running()) {
-						if ($scenario->getTimeout() > 0 && (strtotime('now') - strtotime($scenario->getLastLaunch())) > $scenario->getTimeout()) {
-							$scenario->setLog(__('Erreur : le scénario est en timeout', __FILE__));
-							try {
-								$scenario->stop();
-							} catch (Exception $e) {
-								$scenario->setLog(__('Erreur : le scénario est en timeout et il est impossible de l\'arrêter : ', __FILE__) . $e->getMessage());
-								$scenario->save();
-							}
-						}
-					} else {
-						$scenario->setLog(__('Erreur : le scénario s\'est incidenté (toujours marqué en cours mais arrêté)', __FILE__));
-						$scenario->setState('error');
-						$scenario->save();
-					}
-				}
-				if ($dateOk && $scenario->getIsActive() == 1 && $scenario->getState() != 'in progress' && ($scenario->getMode() == 'schedule' || $scenario->getMode() == 'all')) {
+				if ($scenario->getIsActive() == 1 && $scenario->getState() != 'in progress' && ($scenario->getMode() == 'schedule' || $scenario->getMode() == 'all')) {
 					if (!$scenario->isDue()) {
 						unset($scenarios[$key]);
 					}
@@ -865,9 +850,13 @@ class scenario {
 					} catch (Exception $e) {
 
 					}
-					$lastCheck = new DateTime($this->getLastLaunch());
-					$prev = $c->getPreviousRunDate();
-					$diff = round(abs((strtotime('now') - strtotime($prev)) / 60));
+					try {
+						$prev = $c->getPreviousRunDate()->getTimestamp();
+					} catch (Exception $e) {
+						return false;
+					}
+					$lastCheck = strtotime($this->getLastLaunch());
+					$diff = abs((strtotime('now') - $prev) / 60);
 					if ($lastCheck <= $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
 						return true;
 					}
@@ -885,10 +874,14 @@ class scenario {
 				} catch (Exception $e) {
 
 				}
-				$lastCheck = new DateTime($this->getLastLaunch());
-				$prev = $c->getPreviousRunDate();
-				$diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
-				if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
+				try {
+					$prev = $c->getPreviousRunDate()->getTimestamp();
+				} catch (Exception $e) {
+					return false;
+				}
+				$lastCheck = strtotime($this->getLastLaunch());
+				$diff = abs((strtotime('now') - $prev) / 60);
+				if ($lastCheck <= $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
 					return true;
 				}
 			} catch (Exception $exc) {
@@ -899,26 +892,34 @@ class scenario {
 	}
 
 	public function running() {
-		if ($this->getPID() > 0) {
-			return posix_getsid($this->getPID());
+		if ($this->getPID() > 0 && posix_getsid($this->getPID()) && (!file_exists('/proc/' . $this->getPID() . '/cmdline') || strpos(file_get_contents('/proc/' . $this->getPID() . '/cmdline'), 'scenario_id=' . $this->getId()) !== false)) {
+			return true;
+		}
+		if (shell_exec('ps ax | grep -ie "scenario_id=' . $this->getId() . ' force" | grep -v grep | wc -l') > 0) {
+			return true;
 		}
 		return false;
 	}
 
 	public function stop() {
 		if ($this->running()) {
-			$kill = posix_kill($this->getPID(), 15);
-			$retry = 0;
-			while (!$kill && $retry < 5) {
-				sleep(1);
-				$kill = posix_kill($this->getPID(), 9);
-				$retry++;
+			if ($this->getPID() > 0) {
+				$kill = posix_kill($this->getPID(), 15);
+				$retry = 0;
+				while (!$kill && $retry < 5) {
+					sleep(1);
+					$kill = posix_kill($this->getPID(), 9);
+					$retry++;
+				}
+				$retry = 0;
+				while ($this->running() && $retry < 5) {
+					sleep(1);
+					exec('kill -9 ' . $this->getPID());
+					$retry++;
+				}
 			}
-			$retry = 0;
-			while ($this->running() && $retry < 5) {
-				sleep(1);
-				exec('kill -9 ' . $this->getPID());
-				$retry++;
+			if ($this->running()) {
+				exec("ps aux | grep -ie 'scenario_id=" . $this->getId() . " force' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
 			}
 			if ($this->running()) {
 				throw new Exception(__('Impossible d\'arrêter le scénario : ', __FILE__) . $this->getHumanName() . __('. PID : ', __FILE__) . $this->getPID());
@@ -1150,6 +1151,9 @@ class scenario {
 	}
 
 	public function getState() {
+		if ($this->state == 'in progress' && !$this->running()) {
+			return 'error';
+		}
 		return $this->state;
 	}
 

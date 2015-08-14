@@ -105,8 +105,8 @@ setInterval(function () {
     $("#md_reportBug").dialog({
         autoOpen: false,
         modal: true,
-        height: 700,
-        width: 900,
+        height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
+        width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
         position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'})
@@ -216,11 +216,7 @@ setInterval(function () {
         $.hideAlert();
         bootbox.confirm('{{Etes-vous sûr de vouloir arrêter le système ?}}', function (result) {
             if (result) {
-                jeedom.haltSystem({
-                    error: function (error) {
-                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                    },
-                });
+            	window.location.href = 'index.php?v=d&p=shutdown';
             }
         });
     });
@@ -229,11 +225,7 @@ setInterval(function () {
         $.hideAlert();
         bootbox.confirm('{{Etes-vous sûr de vouloir redémarrer le système ?}}', function (result) {
             if (result) {
-                jeedom.rebootSystem({
-                    error: function (error) {
-                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                    },
-                });
+            	window.location.href = 'index.php?v=d&p=reboot';
             }
         });
     });
@@ -268,6 +260,18 @@ function initCheckBox(){
     $("input[type=checkbox].bootstrapSwitch").bootstrapSwitch();
 }
 
+function initMultiSelect(){
+    $("select[multiple=multiple].bootstrapMultiselect").multiselect({ 
+        maxHeight: 300,
+        includeSelectAllOption: true,
+        selectAllText: '{{Sélectionner tous}}',
+        enableFiltering: true,
+        filterPlaceholder: 'Rechercher...',
+        enableCaseInsensitiveFiltering: false,
+        nonSelectedText: 'Aucune option selectionnée'
+    });
+}
+
 function initPage(){
     initTooltips();
     initTableSorter();
@@ -275,6 +279,7 @@ function initPage(){
     $.initTableFilter();
     initRowOverflow();
     initCheckBox();
+    initMultiSelect();
 }
 
 function linkify(inputText) {
@@ -297,7 +302,7 @@ function initRowOverflow() {
     if ($(window).width() < 1180) {
         $('.row-overflow > div').css('height', 'auto').css('overflow-y', 'initial').css('overflow-x', 'initial');
     } else {
-        var hWindow = $(window).height() - $('header').height() - 40;
+        var hWindow = $(window).outerHeight() - $('header').outerHeight() - $('#div_alert').outerHeight() - 20;
         $('.row-overflow > div').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden');
     }
 }
@@ -469,3 +474,4 @@ function positionEqLogic(_id) {
         });
     }
 }
+
