@@ -325,7 +325,7 @@ class network {
 
 /*     * *********************NGROK************************* */
 
-	public static function ngrok_start() {
+	public static function dns_start() {
 		if (config::byKey('ngrok::addr') == '') {
 			return;
 		}
@@ -365,11 +365,11 @@ class network {
 		return true;
 	}
 
-	public static function ngrok_run() {
+	public static function dns_run() {
 		return (shell_exec('ps ax | grep -ie "/tmp/ngrok_jeedom" | grep -v grep | wc -l') > 0);
 	}
 
-	public static function ngrok_stop() {
+	public static function dns_stop() {
 		exec("ps aux | grep -ie '/tmp/ngrok_jeedom' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
 		return self::ngrok_run();
 	}
@@ -557,7 +557,7 @@ class network {
 
 	public static function cron() {
 		if (config::byKey('market::allowDNS') == 1 && !network::test('external', false, 120)) {
-			network::ngork_start();
+			network::dns_start();
 		}
 		if (config::byKey('network::disableMangement') == 1) {
 			return;
