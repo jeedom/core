@@ -329,7 +329,7 @@ class network {
 		if (config::byKey('ngrok::addr') == '') {
 			return;
 		}
-		network::ngrok_stop();
+		network::dns_stop();
 		$config_file = '/tmp/ngrok_jeedom';
 		$logfile = log::getPathToLog('ngrok');
 		$uname = posix_uname();
@@ -342,7 +342,7 @@ class network {
 		}
 		exec('chmod +x ' . $cmd);
 		$cmd .= ' -config=' . $config_file . ' start jeedom';
-		if (!self::ngrok_run()) {
+		if (!self::dns_run()) {
 			$replace = array(
 				'#server_addr#' => 'dns.jeedom.com:4443',
 				'#name#' => 'jeedom',
@@ -371,7 +371,7 @@ class network {
 
 	public static function dns_stop() {
 		exec("ps aux | grep -ie '/tmp/ngrok_jeedom' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
-		return self::ngrok_run();
+		return self::dns_run();
 	}
 
 /*     * *********************WICD************************* */
