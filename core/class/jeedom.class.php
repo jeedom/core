@@ -408,6 +408,8 @@ class jeedom {
 
 	public static function cron() {
 		if (!self::isStarted()) {
+			config::save('enableScenario', 1);
+			config::save('enableCron', 1);
 			$cache = cache::byKey('jeedom::usbMapping');
 			$cache->remove();
 			foreach (cron::all() as $cron) {
