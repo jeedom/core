@@ -325,30 +325,53 @@ class network {
 
 /*     * *********************NGROK************************* */
 
-	public static function dns_start() {
-		self::dns_stop();
-		log::add('dns_jeedom', 'debug', 'Redemarrage du service DNS');
-		if (config::byKey('ngrok::token') == '' || config::byKey('ngrok::addr') == '') {
-			log::add('dns_jeedom', 'info', 'Aucun token ou addresse');
+	public static function ngrok_start() {
+		if (config::byKey('ngrok::addr') == '') {
 			return;
 		}
-		if (config::byKey('market::allowDNS') != 1) {
-			log::add('dns_jeedom', 'info', 'L\'utilisation des DNS jeedom n\'est pas autorisée');
-			return;
+		network::ngrok_stop();
+		$config_file = '/tmp/ngrok_jeedom';
+		$logfile = log::getPathToLog('ngrok');
+		$uname = posix_uname();
+		if (strrpos($uname['machine'], 'arm') !== false) {
+			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
+		} else if ($uname['machine'] == 'x86_64') {
+			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
+		} else {
+			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
 		}
-
-		$cmd = '/usr/bin/nodejs ' . dirname(__FILE__) . '/../../script/localtunnel/bin/client';
-		$cmd .= ' --host http://dns.jeedom.com --port 80 --authentification ' . config::byKey('ngrok::token') . ' --subdomain ' . config::byKey('ngrok::addr');
-		exec($cmd . ' >> ' . log::getPathToLog('dns_jeedom') . ' 2>&1 &');
+		exec('chmod +x ' . $cmd);
+		$cmd .= ' -config=' . $config_file . ' start jeedom';
+		if (!self::ngrok_run()) {
+			$replace = array(
+				'#server_addr#' => 'dns.jeedom.com:4443',
+				'#name#' => 'jeedom',
+				'#proto#' => 'https',
+				'#port#' => 80,
+				'#remote_port#' => '',
+				'#token#' => config::byKey('ngrok::token'),
+				'#auth#' => '',
+				'#subdomain#' => 'subdomain : ' . config::byKey('ngrok::addr'),
+			);
+			$config = template_replace($replace, file_get_contents(dirname(__FILE__) . '/../../script/ngrok/config'));
+			if (file_exists($config_file)) {
+				unlink($config_file);
+			}
+			file_put_contents($config_file, $config);
+			log::remove('ngrok');
+			log::add('ngork', 'debug', 'Lancement de ngork : ' . $cmd);
+			exec($cmd . ' >> /dev/null 2>&1 &');
+		}
 		return true;
 	}
 
-	public static function dns_run() {
-		return (shell_exec('ps ax | grep -ie "localtunnel/bin/client" | grep -v grep | wc -l') > 0);
+	public static function ngrok_run() {
+		return (shell_exec('ps ax | grep -ie "/tmp/ngrok_jeedom" | grep -v grep | wc -l') > 0);
 	}
 
-	public static function dns_stop() {
-		exec("ps aux | grep -ie \"localtunnel/bin/client\" | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+	public static function ngrok_stop() {
+		exec("ps aux | grep -ie '/tmp/ngrok_jeedom' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+		return self::ngrok_run();
 	}
 
 /*     * *********************WICD************************* */
@@ -533,8 +556,8 @@ class network {
 	}
 
 	public static function cron() {
-		if (config::byKey('market::allowDNS') == 1 && (!network::dns_run() || !network::test('external', false, 30))) {
-			network::dns_start();
+		if (config::byKey('market::allowDNS') == 1 && !network::test('external', false, 120)) {
+			network::ngork_start();
 		}
 		if (config::byKey('network::disableMangement') == 1) {
 			return;
