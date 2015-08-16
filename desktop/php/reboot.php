@@ -1,21 +1,21 @@
 <?php
-header ("Cache-Control: no-cache");
+header("Cache-Control: no-cache");
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 if (!isConnect('admin')) {
-            throw new Exception(__('401 - Accès non autorisé', __FILE__));
-        }
+	throw new Exception(__('401 - Accès non autorisé', __FILE__));
+}
 ?>
 
 <style>
-#div_reboot_jeedom_texte{
-	width: 400px;
-    margin: auto;
-    text-align: center;
-}
-#contenu{
-	width: 400px;
-    margin: auto;
-}
+	#div_reboot_jeedom_texte{
+		width: 400px;
+		margin: auto;
+		text-align: center;
+	}
+	#contenu{
+		width: 400px;
+		margin: auto;
+	}
 </style>
 
 <div id="contenu">
@@ -30,24 +30,24 @@ if (!isConnect('admin')) {
 <iframe src="" id="iframe_reboot" style="display:none"></iframe>
 
 <div id="div_reboot_jeedom" style="display:none;">
-<script type="text/javascript" id="reboot_jeedom"></script>
+	<script type="text/javascript" id="reboot_jeedom"></script>
 </div>
 
 <script type="text/javascript">
-var rebooti = '0';
-var testjeedom = '0';
-  	
+	var rebooti = '0';
+	var testjeedom = '0';
+
 	function refresh() {
 		$.ajax({
 			url: "../../desktop/js/rebootjs.js?t="+Date.now(),
 			success:
 			function(retour){
-        		$('reboot_jeedom').html(retour);
+				$('reboot_jeedom').html(retour);
 			}
 		});
- 
+
 	}
-	
+
 	function page_rebootjs(rebooti){
 		refresh();
 		if(rebooti=='1'){
@@ -64,14 +64,14 @@ var testjeedom = '0';
 			}
 		}
 	}
-	
+
 	function reboot_jeedom(rebooti){
-		$('#iframe_reboot').attr('src', 'index.php?v=d&p=reboot_end&t='+Date.now());
+		jeedom.rebootSystem();
 		$('#div_reboot_jeedom_texte').empty().html('<h6>Merci de patienter...<br />La box est en cours de redémarrage.</h6>');
 		$('#progressbar_reboot').width('25%');
 		setInterval('page_rebootjs(rebooti)', 15000);
 	}
-	
-setTimeout('reboot_jeedom(rebooti)', 10000);
-$('#progressbar_reboot').width('5%');
+
+	setTimeout('reboot_jeedom(rebooti)', 10000);
+	$('#progressbar_reboot').width('5%');
 </script>
