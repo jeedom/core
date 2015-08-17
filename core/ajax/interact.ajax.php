@@ -136,7 +136,7 @@ try {
 			$return['cmd'] = trim($return['cmd'], '&& ');
 			$reply = $interactDef->selectReply();
 			if (trim($reply) == '') {
-				$reply = self::replyOk();
+				$reply = interactQuery::replyOk();
 			}
 			$return['reply'] = $reply;
 		}
