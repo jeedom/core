@@ -304,6 +304,16 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	public static function collect() {
+		$cmd = null;
+		foreach (cache::search('collect') as $cache) {
+			$cmd = self::byId($cache->getValue());
+			if (is_object($cmd) && $cmd->getEqLogic()->getIsEnable() == 1 && $cmd->getEventOnly() == 0) {
+				$cmd->execCmd(null, 0);
+			}
+		}
+	}
+
 	public static function byObjectNameCmdName($_object_name, $_cmd_name) {
 		$values = array(
 			'object_name' => $_object_name,
@@ -709,6 +719,9 @@ class cmd {
 		if ($this->getType() == 'info' && $cache != 0) {
 			$mc = cache::byKey('cmd' . $this->getId(), ($cache == 2) ? true : false);
 			if ($cache == 2 || !$mc->hasExpired()) {
+				if ($mc->hasExpired()) {
+					$this->setCollect(1);
+				}
 				$this->setCollectDate($mc->getOptions('collectDate', $mc->getDatetime()));
 				$this->setValueDate($mc->getOptions('valueDate', $mc->getDatetime()));
 				return $mc->getValue();
@@ -763,6 +776,7 @@ class cmd {
 				$this->setValueDate(date('Y-m-d H:i:s'));
 			}
 			cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
+			$this->setCollect(0);
 			$nodeJs = array(
 				array(
 					'cmd_id' => $this->getId(),
@@ -1018,6 +1032,7 @@ class cmd {
 		log::add('event', 'event', __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $value);
 		cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
 		scenario::check($this);
+		$this->setCollect(0);
 		$eqLogic->emptyCacheWidget();
 		$nodeJs = array(array('cmd_id' => $this->getId()));
 		$foundInfo = false;
@@ -1285,6 +1300,14 @@ class cmd {
 			}
 		}
 		return network::getNetworkAccess('external') . $url;
+	}
+
+	public function setCollect($collect) {
+		if ($collect == 1) {
+			cache::set('collect' . $this->getId(), $this->getId());
+		} else {
+			cache::deleteBySearch('collect' . $this->getId());
+		}
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
