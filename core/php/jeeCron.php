@@ -55,7 +55,7 @@ pcntl_signal(SIGHUP, "sig_handler");
 pcntl_signal(SIGUSR1, "sig_handler");
 
 if (init('cron_id') != '') {
-	if (config::byKey('enableCron', 'core', 1, true) == 0) {
+	if (jeedom::isStarted() && config::byKey('enableCron', 'core', 1, true) == 0) {
 		die(__('Tous les crons sont actuellement désactivés', __FILE__));
 	}
 	$datetime = date('Y-m-d H:i:s');
@@ -171,7 +171,7 @@ if (init('cron_id') != '') {
 	set_time_limit(59);
 	cron::setPidFile();
 	while (true) {
-		if (config::byKey('enableCron', 'core', 1, true) == 0) {
+		if ($started && config::byKey('enableCron', 'core', 1, true) == 0) {
 			die(__('Tous les crons sont actuellement désactivés', __FILE__));
 		}
 		foreach (cron::all() as $cron) {

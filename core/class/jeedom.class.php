@@ -400,6 +400,11 @@ class jeedom {
 
 		}
 		try {
+			cmd::collect();
+		} catch (Exception $e) {
+			log::add('cmd', 'error', 'cmd::collect : ' . $e->getMessage());
+		}
+		try {
 			history::historize();
 		} catch (Exception $e) {
 			log::add('history', 'error', 'history::archive : ' . $e->getMessage());
@@ -408,6 +413,8 @@ class jeedom {
 
 	public static function cron() {
 		if (!self::isStarted()) {
+			config::save('enableScenario', 1);
+			config::save('enableCron', 1);
 			$cache = cache::byKey('jeedom::usbMapping');
 			$cache->remove();
 			foreach (cron::all() as $cron) {
