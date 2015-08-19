@@ -36,7 +36,7 @@ Les services pack vous permettent d'avoir accès a des fonctionalités cloud exc
 
 |*Délai de réponse (SLA)* | - | 72h | 72h | 48h
 
-| | *Gratuit !* | *45€* | *85€ option à 45€* | -
+| | *Gratuit !* | *50€* | *85€ option à 45€* | -
 
 |===
 
