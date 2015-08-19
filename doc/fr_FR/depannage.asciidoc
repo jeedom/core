@@ -61,7 +61,7 @@ service nginx status
 Si il n'est pas démarré il faut alors faire : 
 [source,bash]
 sudo su -
-service ngonx start
+service nginx start
 
 ''''
 
