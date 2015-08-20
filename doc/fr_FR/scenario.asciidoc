@@ -305,8 +305,8 @@ Une boîte à outils de fonctions génériques peut également servir à effectu
     ** Ex : odd(1) :  renverra 1
 * **median**(commande1,commande2....commandeN) : renvoie la médiane de valeur
     ** Ex : median(15,25,20) :  renverra 20
-* **time**(value) : permet d'addition \#time# avec une durée
-    ** Ex : time(\#time\# + 30) : s'il est 16h50 renverra : 1650 + 30 = 1720
+* **time_op**(time,value) : permet de faire des opérations sur le temps, avec time=temps (ex 1530) et value=valeur à ajouter ou à soustraire
+    ** Ex : time_op(\#time\#, -30) : s'il est 16h50 renverra : 1650 - 30 = 1620
 * **formatTime**(time) : permet de formater le retour d'une chaine \#time#
     ** Ex : formatTime(1650) : renverra 16h50
 * **floor**(time/60) : permet de convertir des secondes en minutes, ou des minutes en heures (floor(time/3600) pour des secondes en heures)

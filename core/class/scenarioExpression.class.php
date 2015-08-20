@@ -677,6 +677,17 @@ class scenarioExpression {
 		}
 	}
 
+	public static function time_op($_time, $_value) {
+		$_time = self::setTags($_time);
+		$date = date_create_from_format('Gi', $_time);
+		if ($_value > 0) {
+			$date->add(new DateInterval('PT' . $_value . 'M'));
+		} else {
+			$date->sub(new DateInterval('PT' . abs($_value) . 'M'));
+		}
+		return $date->format('Gi');
+	}
+
 	public static function time($_value) {
 		$_value = self::setTags($_value);
 		try {
@@ -691,7 +702,6 @@ class scenarioExpression {
 		if ($result < 0) {
 			return -1;
 		}
-
 		if (($result % 100) > 59) {
 			if (strpos($_value, '-') !== false) {
 				$result -= 40;
