@@ -279,7 +279,7 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Adresse URL ou IP}}</label>
+                        <label class="col-xs-4 control-label">{{Adresse IP}}</label>
                         <div class="col-xs-8">
                             <input type="text" class="configKey form-control" data-l1key="internalAddr" />
                         </div>
