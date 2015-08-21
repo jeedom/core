@@ -679,9 +679,14 @@ class scenarioExpression {
 
 	public static function time_op($_time, $_value) {
 		$_time = self::setTags($_time);
-		$date = date_create_from_format('Gi', $_time);
+		$_value = self::setTags($_value);
+		if (strlen($_time) < 4) {
+			$date = DateTime::createFromFormat('Gi', '0' . intval(trim($_time)));
+		} else {
+			$date = DateTime::createFromFormat('Gi', intval(trim($_time)));
+		}
 		if ($_value > 0) {
-			$date->add(new DateInterval('PT' . $_value . 'M'));
+			$date->add(new DateInterval('PT' . abs($_value) . 'M'));
 		} else {
 			$date->sub(new DateInterval('PT' . abs($_value) . 'M'));
 		}
