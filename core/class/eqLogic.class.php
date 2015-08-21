@@ -545,7 +545,7 @@ class eqLogic {
 		return DB::remove($this);
 	}
 
-	public function save() {
+	public function save($_direct = false) {
 		if ($this->getName() == '') {
 			throw new Exception(__('Le nom de l\'équipement ne peut pas être vide : ', __FILE__) . print_r($this, true));
 		}
@@ -559,7 +559,7 @@ class eqLogic {
 	}
 
 	public function refresh() {
-		DB::refresh($this);
+		DB::refresh($this, $_direct);
 	}
 
 	public function getLinkToConfiguration() {
