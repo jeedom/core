@@ -895,7 +895,11 @@ function addExpression(_expression) {
   if (!isset(_expression.type) || _expression.type == '') {
     return '';
   }
-  var retour = '<div class="expression row sortable" style="margin-top : 4px; margin-right: 0px;margin-left: 0px;">';
+  var sortable = 'sortable';
+  if (_expression.type == 'condition') {
+    sortable = 'noSortable';
+  }
+  var retour = '<div class="expression ' + sortable + ' col-xs-12" style="margin-top : 4px; margin-right: 0px;margin-left: 0px;padding-right: 0px; padding-left: 0px">';
   retour += '<input class="expressionAttr" data-l1key="id" style="display : none;" value="' + init(_expression.id) + '"/>';
   retour += '<input class="expressionAttr" data-l1key="scenarioSubElement_id" style="display : none;" value="' + init(_expression.scenarioSubElement_id) + '"/>';
   retour += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="' + init(_expression.type) + '"/>';
@@ -904,12 +908,14 @@ function addExpression(_expression) {
     if (isset(_expression.expression)) {
       _expression.expression = _expression.expression.replace(/"/g, '&quot;');
     }
-    retour += '<div class="col-xs-11" style="position : relative; top : 5px;">';
+    retour += '<div class="col-xs-11" style="padding-top: 5px; padding-left: 0px; padding-right: 0px;">';
     retour += '<textarea class="expressionAttr form-control input-sm" data-l1key="expression" style="resize: vertical;height : 27px;" rows="1">' + init(_expression.expression) + '</textarea>';
     retour += '</div>';
-    retour += '<div class="col-xs-1">';
-    retour += ' <a class="btn btn-default btn-xs cursor bt_selectCmdExpression" style="position : relative; top : 3px;" title="Rechercher une commande"><i class="fa fa-list-alt"></i></a>';
-    retour += ' <a class="btn btn-default btn-xs cursor bt_selectScenarioExpression" style="position : relative; top : 3px;" title="Rechercher un scenario"><i class="fa fa-history"></i></a>';
+    retour += '<div class="col-xs-1" style="padding-top: 5px; padding-left: 0px; padding-right: 0px;">';
+    retour += '  <div class="btn-group btn-group-sm" role="group">';
+    retour += '    <button type="button" class="btn btn-default cursor bt_selectCmdExpression"  title="Rechercher une commande"><i class="fa fa-list-alt"></i></button>';
+    retour += '    <button type="button" class="btn btn-default cursor bt_selectCmdExpression"  title="Rechercher un scenario"><i class="fa fa-history"></i></button>';
+    retour += '  </div>';
     retour += '</div>';
     break;
     case 'element' :
@@ -957,11 +963,7 @@ function addExpression(_expression) {
     retour += '</div>';
     break;
     case 'comment' :
-    retour += '<div class="col-xs-1">';
-    retour += '</div>';
-    retour += '<div class="col-xs-11">';
     retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
-    retour += '</div>';
     break;
   }
   retour += '</div>';
@@ -996,9 +998,18 @@ function addSubElement(_subElement, _pColor) {
   switch (_subElement.type) {
     case 'if' :
     retour += '  <input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
-    retour += '  <div style="display:table-cell; width: 120px;">';
+    retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
     retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
-    retour += '     <legend style="margin-bottom: 0px; width: 100px; color : white;border : none;">{{SI}}</legend>';
+    retour += '  </div>';
+    retour += '  <div style="display:table-cell; width: 50px;vertical-align: top;">';
+    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{SI}}</legend>';
+    retour += '  </div>';
+    retour += '  <div style="display:table-cell; width: 35px;vertical-align: top; padding-top: 5px;">';
+    if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0){
+      retour += '<a class="btn btn-default btn-xs cursor subElementAttr tooltips pull-right" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><i class="fa fa-refresh"></i></a>';
+    }else{
+      retour += '<a class="btn btn-default btn-xs cursor subElementAttr tooltips pull-right" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span class="fa-stack"><i class="fa fa-refresh fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span></a>';
+    }
     retour += '  </div>';
     retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px;">';
     var expression = {type: 'condition'};
@@ -1006,21 +1017,14 @@ function addSubElement(_subElement, _pColor) {
       expression = _subElement.expressions[0];
     }
     retour += addExpression(expression);
-
-    if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0){
-      retour += '<a class="btn btn-default btn-xs cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" style="position : absolute; top : 21px;right:15px;" value="0"><i class="fa fa-refresh"></i></a>';
-    }else{
-      retour += '<a class="btn btn-default btn-xs cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" style="position : absolute; top : 21px;right:15px;" value="1"><span class="fa-stack"><i class="fa fa-refresh  fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span></a>';
-    }
-
     retour += '  </div>';
-    retour += '  <div style="display:table-cell; width: 10px; "><i class="fa fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
+    retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fa fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
 
     break;
     case 'then' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '  <div style="display:table-cell; width: 120px;">';
-    retour += '     <legend style="margin-bottom: 0px; width: 100px; color : white;border : none;">{{ALORS}}</legend>'; 
+    retour += '  <div style="display:table-cell; width: 100px;vertical-align: top; padding-left: 15px;">';
+    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{ALORS}}</legend>'; 
     retour += '     <div class="dropdown">';
     retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
     retour += '         <i class="fa fa-plus-circle"></i> Ajouter';
@@ -1040,13 +1044,93 @@ function addSubElement(_subElement, _pColor) {
       }
     }
     retour += '  </div>';
-    retour += '  <div style="display:table-cell; width: 10px; "> </div>';
+    retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"> </div>';
     
     break;
     case 'else' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '  <div style="display:table-cell; width: 120px; margin-top:2px;">';
-    retour += '     <legend style="margin-bottom: 0px; width: 100px; color : white;border : none;">{{SINON}}</legend>'; 
+    retour += '  <div style="display:table-cell; width: 100px; vertical-align: top; padding-left: 15px;">';
+    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{SINON}}</legend>'; 
+    retour += '     <div class="dropdown">';
+    retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+    retour += '         <i class="fa fa-plus-circle"></i> Ajouter';
+    retour += '         <span class="caret"></span>';
+    retour += '       </button>';
+    retour += '       <ul class="dropdown-menu">';
+    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)">{{Bloc}}</a></li>';
+    retour += '         <li><a class="bt_addAction" href="#">{{Action}}</a></li>';
+    retour += '       </ul>';
+    retour += '     </div><p> </p>';
+    retour += '   </div>';
+    retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px; background-color: ' + listColor[_pColor] + '; border-top :1px solid ' + listColorStrong[_pColor] + '">';
+    retour += '     <div class="sortable empty" style="height : 30px;"></div>';
+    if (isset(_subElement.expressions)) {
+      for (var k in _subElement.expressions) {
+        retour += addExpression(_subElement.expressions[k]);
+      }
+    }
+    retour += '  </div>';
+    retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"> </div>';
+    
+    break;
+    case 'for' :
+    retour += '  <input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
+    retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
+    retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
+    retour += '  </div>';
+    retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
+    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{DE 1 A}}</legend>';
+    retour += '  </div>';
+    retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px;">';
+    var expression = {type: 'condition'};
+    if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+      expression = _subElement.expressions[0];
+    }
+    retour += addExpression(expression);
+    retour += '  </div>';
+    retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fa fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
+
+    break;
+    case 'in' :
+    retour += '  <input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
+    retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
+    retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
+    retour += '  </div>';
+    retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
+    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{DANS (min)}}</legend>';
+    retour += '  </div>';
+    retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px;">';
+    var expression = {type: 'condition'};
+    if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+      expression = _subElement.expressions[0];
+    }
+    retour += addExpression(expression);
+    retour += '  </div>';
+    retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fa fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
+
+    break;
+    case 'at' :
+
+    retour += '  <input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
+    retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
+    retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
+    retour += '  </div>';
+    retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
+    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{A (Hmm)}}</legend>';
+    retour += '  </div>';
+    retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px;">';
+    var expression = {type: 'condition'};
+    if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+      expression = _subElement.expressions[0];
+    }
+    retour += addExpression(expression);
+    retour += '  </div>';
+    retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fa fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
+    break;
+    case 'do' :
+    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
+    retour += '  <div style="display:table-cell; width: 100px; vertical-align: top; padding-left: 15px;">';
+    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{ALORS}}</legend>'; 
     retour += '     <div class="dropdown">';
     retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
     retour += '         <i class="fa fa-plus-circle"></i> Ajouter';
@@ -1066,89 +1150,50 @@ function addSubElement(_subElement, _pColor) {
       }
     }
     retour += '  </div>';
-    retour += '  <div style="display:table-cell; width: 10px; "> </div>';
+    retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"> </div>';
     
-    break;
-    case 'for' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
-    retour += '<legend style="margin-top : 0px;margin-bottom : 5px;color : inherit;font-weight:bold;border : none;"><span style="position : relative;left:15px;">{{DE 1 A}} ';
-    retour += '<div class="expressions" style="display : inline-block; width : 90%">';
-    var expression = {type: 'condition'};
-    if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-      expression = _subElement.expressions[0];
-    }
-    retour += addExpression(expression);
-    retour += '</div>';
-    retour += '</span></legend>';
-    break;
-    case 'in' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
-    retour += '<legend style="margin-top : 0px;margin-bottom : 5px;color : inherit;font-weight:bold;border : none;"><span style="position : relative;left:15px;">{{DANS (min)}} ';
-    retour += '<div class="expressions" style="display : inline-block; width : 90%">';
-    var expression = {type: 'condition'};
-    if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-      expression = _subElement.expressions[0];
-    }
-    retour += addExpression(expression);
-    retour += '</div>';
-    retour += '</span></legend>';
-    break;
-    case 'at' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
-    retour += '<legend style="margin-top : 0px;margin-bottom : 5px;color : inherit;font-weight:bold;border : none;"><span style="position : relative;left:15px;">{{A (Hmm)}} ';
-    retour += '<div class="expressions" style="display : inline-block; width : 90%">';
-    var expression = {type: 'condition'};
-    if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-      expression = _subElement.expressions[0];
-    }
-    retour += addExpression(expression);
-    retour += '</div>';
-    retour += '</span></legend>';
-    break;
-    case 'do' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '<legend style="margin-top : 3px;margin-bottom : 5px;color : inherit;font-weight:bold;border : none;border-top: 1px solid #e5e5e5;">FAIRE';
-    retour += '<a class="btn btn-xs btn-default bt_addScenarioElement pull-right fromSubElement tootlips" style="position : relative; top : 2px;" title="Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a>';
-    retour += '<a class="btn btn-xs btn-default bt_addAction pull-right" style="position : relative; top : 2px;"><i class="fa fa-plus-circle"></i> {{Ajouter action}}</a>';
-    retour += '</legend>';
-    retour += '<div class="expressions">';
-    retour += '<div class="sortable empty" style="height : 30px;"></div>';
-    if (isset(_subElement.expressions)) {
-      for (var k in _subElement.expressions) {
-        retour += addExpression(_subElement.expressions[k]);
-      }
-    }
-    retour += '</div>';
     break;
     case 'code' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '<legend style="margin-top : 0px;margin-bottom : 5px;color : inherit;border : none;"><div style="position : relative;left:15px;">{{CODE}}';
-    retour += '</div></legend>';
-    retour += '<div class="expressions">';
-    retour += '<div class="sortable empty" style="height : 30px;"></div>';
+    retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
+    retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
+    retour += '  </div>';
+    retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
+    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{CODE}}</legend>'; 
+    retour += '  </div>';
+    retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px; background-color: ' + listColor[_pColor] + ';">';
+    retour += '     <div class="sortable empty" style="height : 30px;"></div>';
     var expression = {type: 'code'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0];
     }
     retour += addExpression(expression);
-    retour += '</div>';
+    retour += '  </div>';
+    retour += '  <div style="display:table-cell; width: 15px; "><i class="fa fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
     break;
     case 'comment' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="comment"/><br/>';
-    retour += '<div class="expressions">';
-    retour += '<div class="sortable empty" style="height : 30px;"></div>';
+    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="comment"/>';
+    retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
+    retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
+    retour += '  </div>';
+    retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px; background-color: ' + listColor[_pColor] + ';">';
+    retour += '     <div class="sortable empty" style="height : 30px;"></div>';
     var expression = {type: 'comment'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0];
     }
     retour += addExpression(expression);
-    retour += '</div>';
+    retour += '  </div>';
+    retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fa fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
+    
     break;
     case 'action' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '  <div style="display:table-cell; width: 120px;">';
+    retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
     retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
-    retour += '     <legend style="margin-bottom: 0px; width: 100px; color : white;border : none;">{{ACTION}}</legend>'; 
+    retour += '  </div>';
+    retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
+    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{ACTION}}</legend>'; 
     retour += '     <div class="dropdown">';
     retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
     retour += '         <i class="fa fa-plus-circle"></i> Ajouter';
@@ -1160,8 +1205,6 @@ function addSubElement(_subElement, _pColor) {
     retour += '       </ul>';
     retour += '     </div><p> </p>';
     retour += '   </div>';
-    //retour += '     <a class="btn btn-xs btn-default bt_addScenarioElement fromSubElement tootlips" title="Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a>';
-    //retour += '     <a class="btn btn-xs btn-default bt_addAction"><i class="fa fa-plus-circle"></i> {{Ajouter action}}</a></div>';
     retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px; background-color: ' + listColor[_pColor] + ';">';
     retour += '     <div class="sortable empty" style="height : 30px;"></div>';
     if (isset(_subElement.expressions)) {
@@ -1170,7 +1213,7 @@ function addSubElement(_subElement, _pColor) {
       }
     }
     retour += '  </div>';
-    retour += '  <div style="display:table-cell; width: 10px; "><i class="fa fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
+    retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fa fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
     break;
   }
   retour += '</div>';
@@ -1187,7 +1230,7 @@ function addElement(_element) {
   }
   color = listColorStrong[pColor];
 
-  var div = '<div class="element" style="color : white;padding-right : 7px;padding-left : 7px;padding-bottom : 0px;padding-top : 2px;margin-bottom : 2px;background-color : ' + color + '">';
+  var div = '<div class="element" style="color : white;padding-right : 7px;padding-left : 7px;padding-bottom : 0px;padding-top : 2px;margin-bottom : 2px;background-color : ' + color + '; border :1px solid ' + color + '">';
   div += '<input class="elementAttr" data-l1key="id" style="display : none;" value="' + init(_element.id) + '"/>';
   div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>';
   switch (_element.type) {
