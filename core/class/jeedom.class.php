@@ -550,27 +550,12 @@ class jeedom {
 	}
 
 	public static function updateSystem() {
-		if (config::byKey('update::autoSystem') == 1 && jeedom::isCapable('systemUpdate') && jeedom::isCapable('sudo')) {
-			$output = array();
-			$return_val = -1;
-			log::remove('system_update');
-			exec('sudo apt-get -y update >> ' . log::getPathToLog('system_update') . ' 2>&1', $output, $return_val);
-			if ($return_val != 0) {
-				log::add('update', 'error', __('Echec de la mise à jour des dépot, veuillez consulter la log system_update', __FILE__));
-				return;
-			}
-			exec('sudo DEBIAN_FRONTEND=noninteractive apt-get -q -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" dist-upgrade >> ' . log::getPathToLog('system_update') . ' 2>&1', $output, $return_val);
-			if ($return_val != 0) {
-				log::add('update', 'error', __('Echec de la mise à jour des paquets, veuillez consulter la log system_update', __FILE__));
-				return;
-			}
-			exec('sudo apt-get -y autoremove >> ' . log::getPathToLog('system_update') . ' 2>&1', $output, $return_val);
-			if ($return_val != 0) {
-				log::add('update', 'error', __('Echec su nettoyage des paquets, veuillez consulter la log system_update', __FILE__));
-				return;
-			}
-			exec('sudo service cron restart');
-		}
+		log::clear('update');
+		$cmd = 'sudo chown wwww-data:www-data ' . dirname(__FILE__) . '/../../install/update_system.sh;';
+		$cmd .= 'sudo chmod +x ' . dirname(__FILE__) . '/../../install/update_system.sh;';
+		$cmd .= 'sudo ' . dirname(__FILE__) . '/../../install/update_system.sh';
+		$cmd .= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
+		exec($cmd);
 	}
 
 	public static function forceSyncHour() {
