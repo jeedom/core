@@ -688,31 +688,33 @@ foreach (plugin::listPlugin(true) as $plugin) {
                    <div class="form-group">
                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande d'information utilisateur}}</label>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                     <div class="input-group">
                         <input type="text"  class="configKey form-control" data-l1key="emailAdmin" />
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2">
-                        <a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectMailCmd"><i class="fa fa-list-alt"></i></a>
-                    </div>
-                </div>
-                <legend>{{Log}}</legend>
-                <div class="form-group">
-                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre de lignes maximum dans un fichier de log}}</label>
-                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                        <input type="text" class="configKey form-control" data-l1key="maxLineLog"/>
+                        <span class="input-group-btn">
+                            <a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectMailCmd"><i class="fa fa-list-alt"></i></a>
+                        </span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Logs actifs}}</label>
-                    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-                        <input type="checkbox" data-label-text="{{Debug}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="debug" />
-                        <input type="checkbox" data-label-text="{{Info}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="info" />
-                        <input type="checkbox" data-label-text="{{Event}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="event" />
-                        <input type="checkbox" data-label-text="{{Error}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="error" />
-                    </div>
+            </div>
+            <legend>{{Log}}</legend>
+            <div class="form-group">
+                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre de lignes maximum dans un fichier de log}}</label>
+                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                    <input type="text" class="configKey form-control" data-l1key="maxLineLog"/>
                 </div>
-            </fieldset>
-        </form>
-    </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Logs actifs}}</label>
+                <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+                    <input type="checkbox" data-label-text="{{Debug}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="debug" />
+                    <input type="checkbox" data-label-text="{{Info}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="info" />
+                    <input type="checkbox" data-label-text="{{Event}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="event" />
+                    <input type="checkbox" data-label-text="{{Error}}" data-size="mini" class="configKey bootstrapSwitch" data-l1key="logLevel" data-l2key="error" />
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
 </div>
 </div>
 
@@ -837,10 +839,12 @@ foreach (plugin::listPlugin(true) as $plugin) {
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse}}</label>
                             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                <input class="configKey form-control" data-l1key="market::address"/>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <a class="btn btn-default" id="bt_testMarketConnection"><i class="fa fa-cube"></i> Tester</a>
+                                <div class="input-group">
+                                    <input class="configKey form-control" data-l1key="market::address"/>
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-default" id="bt_testMarketConnection"><i class="fa fa-cube"></i> Tester</a>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
