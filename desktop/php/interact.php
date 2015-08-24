@@ -215,7 +215,7 @@ foreach ($interactListGroup as $group) {
                     <div class="form-group">
                         <label class="col-sm-3 col-xs-6 control-label">{{Type d'action}}</label>
                         <div class="col-sm-9 col-xs-6">
-                            <select class="interactAttr form-control input-sm" data-l1key="link_type">';
+                            <select class="interactAttr form-control" data-l1key="link_type">';
                                 <option value="cmd">{{Commande}}</option>
                                 <option value="whatDoYouKnow">{{Que sais tu ?}}</option>
                                 <option value="scenario">{{Scénario}}</option>
