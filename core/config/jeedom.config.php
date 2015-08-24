@@ -47,6 +47,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'finance' => array('name' => 'Finance', 'icon' => 'fa fa-eur'),
 			'automatisation' => array('name' => 'Automatisme', 'icon' => 'fa fa-magic'),
 			'energy' => array('name' => 'Energie', 'icon' => 'fa fa-bolt'),
+			'travel' => array('name' => 'Déplacement', 'icon' => 'fa fa-car'),
 		),
 	),
 	'cmd' => array(
