@@ -71,10 +71,10 @@ try {
 					}
 				}
 			}
-			if (!$found) {
-				market::sendUserMessage(__('[JEEDOM] Récuperation de mot de passe', __FILE__), 'Voici votre nouveau mot de passe pour votre installation jeedom : ' . $newPassword);
-			}
 		} catch (Exception $e) {
+			throw new Exception(__('Aucune commande trouvé pour envoyé le nouveau mot de passe, la demande de récupération a echouée', __FILE__));
+		}
+		if (!$found) {
 			throw new Exception(__('Aucune commande trouvé pour envoyé le nouveau mot de passe, la demande de récupération a echouée', __FILE__));
 		}
 		$user->save();
