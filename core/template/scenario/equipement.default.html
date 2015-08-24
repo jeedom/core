@@ -1,12 +1,19 @@
-<input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="eqLogic" data-option_id="#id#" data-uid="#uid#" style="width: 35%; display: inline-block;" value="#eqLogic#"/>
-<a class="btn btn-default btn-sm listEquipementInfo cursor" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block;"><i class="fa fa-list-alt"></i></a>
-<select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="action" data-option_id="#id#" data-uid="#uid#" style="width: 35%; display: inline-block;">
+<div class="input-group input-group-sm" style="width: 100%">
+    <span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Equipement}}</span>
+    <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="eqLogic" data-option_id="#id#" data-uid="#uid#" value="#eqLogic#"/>
+    <span class="input-group-btn">
+        <button class="btn btn-default listEquipementInfo" data-uid="#uid#" type="button" title="{{Sélectionner la commande}}" data-cmd_id="#id#"><i class="fa fa-list-alt"></i></button>
+    </span>
+</div>
+<div class="input-group input-group-sm" style="width: 100%; padding-top: 1px">
+    <span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Action}}</span>
+    <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="action" data-option_id="#id#" data-uid="#uid#">
     <option value="show">{{Visible}}</option>
     <option value="hide">{{Masquer}}</option>
     <option value="activate">{{Activer}}</option>
     <option value="deactivate">{{Désactiver}}</option>
 </select>
-
+</div>
 <script>
     if ($('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=action] option[value=#action#]').html() != undefined) {
         $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=action]').value('#action#');
@@ -14,7 +21,7 @@
     $('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
         var el = $(this);
         jeedom.eqLogic.getSelectModal({cmd: {type: 'info'}}, function(result) {
-            el.parent().find('.expressionAttr[data-l1key=options][data-l2key=eqLogic]').value(result.human);
+            el.parent().parent().find('.expressionAttr[data-l1key=options][data-l2key=eqLogic]').value(result.human);
         });
     });
 </script>
