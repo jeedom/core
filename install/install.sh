@@ -331,7 +331,6 @@ optimize_webserver_cache_opcache() {
         echo "opcache.fast_shutdown=1"  >> /etc/php5/${i}/php.ini
         echo "opcache.enable_cli=1"  >> /etc/php5/${i}/php.ini
         echo "opcache.enable=1"  >> /etc/php5/${i}/php.ini
-        echo "opcache.enable_cli=1"  >> /etc/php5/${i}/php.ini
     done
 }
 
