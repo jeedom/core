@@ -36,4 +36,13 @@ if [ $? -ne 0 ]; then
 	echo '[END UPDATE ERROR]'
 	exit 1
 fi
+
+echo "*************Disable Apache2*************"
+sudo update-rc.d -f apache2 remove
+if [ $? -ne 0 ]; then
+	echo "Error on disable apache"
+	echo '[END UPDATE ERROR]'
+	exit 1
+fi
+
 echo '[END UPDATE SUCCESS]'
