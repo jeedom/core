@@ -1036,14 +1036,17 @@ class cmd {
 		$eqLogic->emptyCacheWidget();
 		$nodeJs = array(array('cmd_id' => $this->getId()));
 		$foundInfo = false;
-		foreach (self::byValue($this->getId(), null, true) as $cmd) {
-			if ($cmd->getType() == 'action') {
-				$nodeJs[] = array('cmd_id' => $cmd->getId());
-			} else {
-				if ($_loop > 1) {
-					$cmd->event($cmd->execute(), $_loop);
+		$value_cmd = self::byValue($this->getId(), null, true);
+		if (is_array($value_cmd)) {
+			foreach ($value_cmd as $cmd) {
+				if ($cmd->getType() == 'action') {
+					$nodeJs[] = array('cmd_id' => $cmd->getId());
 				} else {
-					$foundInfo = true;
+					if ($_loop > 1) {
+						$cmd->event($cmd->execute(), $_loop);
+					} else {
+						$foundInfo = true;
+					}
 				}
 			}
 		}
