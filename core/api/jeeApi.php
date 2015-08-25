@@ -35,7 +35,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 	try {
 		if (config::byKey('api') != init('apikey') && config::byKey('api') != init('api')) {
 			connection::failed();
-			throw new Exception('Clé API non valide, vous n\'êtes pas autorisé à effectuer cette action (jeeApi). Demande venant de :' . getClientIp() . 'Clé API : ' . init('apikey') . init('api'));
+			throw new Exception('Clé API non valide, vous n\'êtes pas autorisé à effectuer cette action (jeeApi). Demande venant de :' . getClientIp() . 'Clé API : ' . htmlspecialchars(init('apikey') . init('api'), ENT_QUOTES, 'UTF-8'));
 		}
 		connection::success('api');
 		$type = init('type');
@@ -46,7 +46,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				foreach ($ids as $id) {
 					$cmd = cmd::byId($id);
 					if (!is_object($cmd)) {
-						throw new Exception(__('Aucune commande correspondant à l\'id : ', __FILE__) . $id);
+						throw new Exception(__('Aucune commande correspondant à l\'id : ', __FILE__) . htmlspecialchars($id, ENT_QUOTES, 'UTF-8'));
 					}
 					$result[$id] = $cmd->execCmd($_REQUEST);
 				}
@@ -54,7 +54,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			} else {
 				$cmd = cmd::byId(init('id'));
 				if (!is_object($cmd)) {
-					throw new Exception('Aucune commande correspondant à l\'id : ' . init('id'));
+					throw new Exception('Aucune commande correspondant à l\'id : ' . htmlspecialchars(init('id'), ENT_QUOTES, 'UTF-8'));
 				}
 				log::add('api', 'debug', 'Exécution de : ' . $cmd->getHumanName());
 				echo $cmd->execCmd($_REQUEST);
@@ -76,7 +76,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			log::add('api', 'debug', 'Demande api pour les scénarios');
 			$scenario = scenario::byId(init('id'));
 			if (!is_object($scenario)) {
-				throw new Exception('Aucun scénario correspondant à l\'id : ' . init('id'));
+				throw new Exception('Aucun scénario correspondant à l\'id : ' . htmlspecialchars(init('id'), ENT_QUOTES, 'UTF-8'));
 			}
 			switch (init('action')) {
 				case 'start':
@@ -119,13 +119,13 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 		} else {
 			if (class_exists($type)) {
 				if (method_exists($type, 'event')) {
-					log::add('api', 'info', 'Appels de ' . $type . '::event()');
+					log::add('api', 'info', 'Appels de ' . htmlspecialchars($type, ENT_QUOTES, 'UTF-8') . '::event()');
 					$type::event();
 				} else {
-					throw new Exception('Aucune méthode correspondante : ' . $type . '::event()');
+					throw new Exception('Aucune méthode correspondante : ' . htmlspecialchars($type, ENT_QUOTES, 'UTF-8') . '::event()');
 				}
 			} else {
-				throw new Exception('Aucun plugin correspondant : ' . $type);
+				throw new Exception('Aucun plugin correspondant : ' . htmlspecialchars($type, ENT_QUOTES, 'UTF-8'));
 			}
 		}
 	} catch (Exception $e) {
@@ -190,7 +190,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 		}
 
 		if (isset($params['plugin']) && $params['plugin'] != '') {
-			log::add('api', 'info', 'Demande pour le plugin : ' . $params['plugin']);
+			log::add('api', 'info', 'Demande pour le plugin : ' . htmlspecialchars($params['plugin'], ENT_QUOTES, 'UTF-8'));
 			include_file('core', $params['plugin'], 'api', $params['plugin']);
 		} else {
 			/*             * ***********************Ping********************************* */
@@ -218,7 +218,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'object::byId') {
 				$object = object::byId($params['id']);
 				if (!is_object($object)) {
-					throw new Exception('Objet introuvable : ' . $params['id'], -32601);
+					throw new Exception('Objet introuvable : ' . htmlspecialchars($params['id'], ENT_QUOTES, 'UTF-8'), -32601);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($object));
 			}
@@ -246,7 +246,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'object::fullById') {
 				$object = object::byId($params['id']);
 				if (!is_object($object)) {
-					throw new Exception('Objet introuvable : ' . $params['id'], -32601);
+					throw new Exception('Objet introuvable : ' . htmlspecialchars($params['id'], ENT_QUOTES, 'UTF-8'), -32601);
 				}
 				$return = utils::o2a($object);
 				$return['eqLogics'] = array();
@@ -297,7 +297,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'eqLogic::byId') {
 				$eqLogic = eqLogic::byId($params['id']);
 				if (!is_object($eqLogic)) {
-					throw new Exception('EqLogic introuvable : ' . $params['id'], -32602);
+					throw new Exception('EqLogic introuvable : ' . htmlspecialchars($params['id'], ENT_QUOTES, 'UTF-8'), -32602);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($eqLogic));
 			}
@@ -305,7 +305,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'eqLogic::fullById') {
 				$eqLogic = eqLogic::byId($params['id']);
 				if (!is_object($eqLogic)) {
-					throw new Exception('EqLogic introuvable : ' . $params['id'], -32602);
+					throw new Exception('EqLogic introuvable : ' . htmlspecialchars($params['id'], ENT_QUOTES, 'UTF-8'), -32602);
 				}
 				$return = utils::o2a($eqLogic);
 				$return['cmds'] = array();
@@ -323,7 +323,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				$typeEqLogic = $params['eqType_name'];
 				$typeCmd = $typeEqLogic . 'Cmd';
 				if ($typeEqLogic == '' || !class_exists($typeEqLogic) || !class_exists($typeCmd)) {
-					throw new Exception(__('Type incorrect (classe commande inexistante)', __FILE__) . $typeCmd);
+					throw new Exception(__('Type incorrect (classe commande inexistante)', __FILE__) . htmlspecialchars($typeCmd, ENT_QUOTES, 'UTF-8'));
 				}
 				$eqLogic = null;
 				if (isset($params['id'])) {
@@ -419,7 +419,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'cmd::byId') {
 				$cmd = cmd::byId($params['id']);
 				if (!is_object($cmd)) {
-					throw new Exception('Cmd introuvable : ' . $params['id'], -32701);
+					throw new Exception('Cmd introuvable : ' . htmlspecialchars($params['id'], ENT_QUOTES, 'UTF-8'), -32701);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($cmd));
 			}
@@ -430,14 +430,14 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 					foreach ($params['id'] as $id) {
 						$cmd = cmd::byId($id);
 						if (!is_object($cmd)) {
-							throw new Exception('Cmd introuvable : ' . $id, -32702);
+							throw new Exception('Cmd introuvable : ' . htmlspecialchars($id, ENT_QUOTES, 'UTF-8'), -32702);
 						}
 						$return[$id] = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
 					}
 				} else {
 					$cmd = cmd::byId($params['id']);
 					if (!is_object($cmd)) {
-						throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
+						throw new Exception('Cmd introuvable : ' . htmlspecialchars($params['id'], ENT_QUOTES, 'UTF-8'), -32702);
 					}
 					$return = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
 				}
@@ -447,7 +447,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'cmd::getStatistique') {
 				$cmd = cmd::byId($params['id']);
 				if (!is_object($cmd)) {
-					throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
+					throw new Exception('Cmd introuvable : ' . htmlspecialchars($params['id'], ENT_QUOTES, 'UTF-8'), -32702);
 				}
 				$jsonrpc->makeSuccess($cmd->getStatistique($params['startTime'], $params['endTime']));
 			}
@@ -455,7 +455,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'cmd::getTendance') {
 				$cmd = cmd::byId($params['id']);
 				if (!is_object($cmd)) {
-					throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
+					throw new Exception('Cmd introuvable : ' . htmlspecialchars($params['id'], ENT_QUOTES, 'UTF-8'), -32702);
 				}
 				$jsonrpc->makeSuccess($cmd->getTendance($params['startTime'], $params['endTime']));
 			}
@@ -463,7 +463,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'cmd::getHistory') {
 				$cmd = cmd::byId($params['id']);
 				if (!is_object($cmd)) {
-					throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
+					throw new Exception('Cmd introuvable : ' . htmlspecialchars($params['id'], ENT_QUOTES, 'UTF-8'), -32702);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($cmd->getHistory($params['startTime'], $params['endTime'])));
 			}
@@ -476,7 +476,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'scenario::byId') {
 				$scenario = scenario::byId($params['id']);
 				if (!is_object($scenario)) {
-					throw new Exception('Scenario introuvable : ' . $params['id'], -32703);
+					throw new Exception('Scenario introuvable : ' . htmlspecialchars($params['id'], ENT_QUOTES, 'UTF-8'), -32703);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($scenario));
 			}
@@ -484,7 +484,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'scenario::changeState') {
 				$scenario = scenario::byId($params['id']);
 				if (!is_object($scenario)) {
-					throw new Exception('Scenario introuvable : ' . $params['id'], -32702);
+					throw new Exception('Scenario introuvable : ' . htmlspecialchars($params['id'], ENT_QUOTES, 'UTF-8'), -32702);
 				}
 				if ($params['state'] == 'stop') {
 					$jsonrpc->makeSuccess($scenario->stop());
@@ -578,7 +578,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				}
 				$jeeNetwork = jeeNetwork::byId($params['slave_id']);
 				if (!is_object($jeeNetwork)) {
-					throw new Exception(__('Aucun esclave correspondant à l\'id : ', __FILE__) . $params['slave_id']);
+					throw new Exception(__('Aucun esclave correspondant à l\'id : ', __FILE__) . htmlspecialchars($params['slave_id'], ENT_QUOTES, 'UTF-8'));
 				}
 				if (substr(config::byKey('backup::path'), 0, 1) != '/') {
 					$backup_dir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
@@ -590,12 +590,12 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 					mkdir($uploaddir);
 				}
 				if (!file_exists($uploaddir)) {
-					throw new Exception('Répertoire de téléversement non trouvé : ' . $uploaddir);
+					throw new Exception('Répertoire de téléversement non trouvé : ' . htmlspecialchars($uploaddir, ENT_QUOTES, 'UTF-8'));
 				}
 				$_file = $_FILES['file'];
 				$extension = strtolower(strrchr($_file['name'], '.'));
 				if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
-					throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . $extension);
+					throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . htmlspecialchars($extension, ENT_QUOTES, 'UTF-8'));
 				}
 				if (filesize($_file['tmp_name']) > 50000000) {
 					throw new Exception('La taille du fichier est trop importante (maximum 50Mo)');
@@ -621,12 +621,12 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 					mkdir($uploaddir);
 				}
 				if (!file_exists($uploaddir)) {
-					throw new Exception('Repertoire de téléversement non trouvé : ' . $uploaddir);
+					throw new Exception('Repertoire de téléversement non trouvé : ' . htmlspecialchars($uploaddir, ENT_QUOTES, 'UTF-8'));
 				}
 				$_file = $_FILES['file'];
 				$extension = strtolower(strrchr($_file['name'], '.'));
 				if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
-					throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . $extension);
+					throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . htmlspecialchars($extension, ENT_QUOTES, 'UTF-8'));
 				}
 				if (filesize($_file['tmp_name']) > 50000000) {
 					throw new Exception('La taille du fichier est trop importante (maximum 50Mo)');
@@ -692,7 +692,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 					$market = market::byLogicalId($params['plugin_id']);
 				}
 				if (!is_object($market)) {
-					throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . $params['plugin_id']);
+					throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . htmlspecialchars($params['plugin_id'], ENT_QUOTES, 'UTF-8'));
 				}
 				if (!isset($params['version'])) {
 					$params['version'] = 'stable';
@@ -704,7 +704,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'plugin::remove') {
 				$market = market::byId($params['plugin_id']);
 				if (!is_object($market)) {
-					throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . $params['plugin_id']);
+					throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . htmlspecialchars($params['plugin_id'], ENT_QUOTES, 'UTF-8'));
 				}
 				if (!isset($params['version'])) {
 					$params['version'] = 'stable';
@@ -760,7 +760,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 			/*             * ************************************************************************ */
 		}
-		throw new Exception('Aucune méthode correspondante : ' . $jsonrpc->getMethod(), -32500);
+		throw new Exception('Aucune méthode correspondante : ' . htmlspecialchars($jsonrpc->getMethod(), ENT_QUOTES, 'UTF-8'), -32500);
 /*         * *********Catch exeption*************** */
 	} catch (Exception $e) {
 		$message = $e->getMessage();
