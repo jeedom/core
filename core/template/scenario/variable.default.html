@@ -1,12 +1,20 @@
-<input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="name" placeholder="Nom" value="#name#" data-cmd_id="#id#" style="width: 35%; display: inline-block;"/>
-<input class="expressionAttr form-control input-sm autoCompleteCondition" data-l1key="options" data-l2key="value" placeholder="Valeur" value="#value#" data-cmd_id="#id#" style="width: 35%; display: inline-block;"/>
-<a class="btn btn-default listEquipementInfo cursor input-sm" data-cmd_id="#id#" style="display: inline-block;"><span style="position: relative; top: -3px;"><i class="fa fa-list-alt"></i></span></a>
+<div class="input-group input-group-sm" style="width: 100%">
+  	<span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Nom}}</span>
+	<input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="name" placeholder="Nom" value="#name#" data-cmd_id="#id#"/>
+</div>
+<div class="input-group input-group-sm" style="width: 100%; padding-top: 1px">
+  	<span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Valeur}}</span>
+  	<input class="expressionAttr form-control input-sm autoCompleteCondition" data-l1key="options" data-l2key="value" placeholder="Valeur" value="#value#" data-cmd_id="#id#"/>
+	<span class="input-group-btn">
+		<button class="btn btn-default listEquipementInfo" type="button" title="{{Sélectionner la commande}}" data-cmd_id="#id#"><i class="fa fa-list-alt"></i></button>
+	</span>
+</div>
 <script>
     $('.listEquipementInfo').off();
     $('.listEquipementInfo').on('click', function () {
         var el = $(this);
         jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
-            el.parent().find('.expressionAttr[data-l1key=options][data-l2key=value]').atCaret('insert', result.human);
+            el.parent().parent().find('.expressionAttr[data-l1key=options][data-l2key=value]').atCaret('insert', result.human);
         });
     });
 </script>
