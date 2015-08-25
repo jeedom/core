@@ -153,14 +153,15 @@ class log {
 				$line = $log->current(); //get current line
 				$explode = explode("|", $line);
 				if (count($explode) == 3) {
-					$explode[2] = htmlspecialchars($explode[2], ENT_QUOTES, 'UTF-8');
+					//$explode[2] = htmlspecialchars($explode[2], ENT_QUOTES, 'UTF-8');
 					array_unshift($page, array_map('trim', $explode));
 				} else {
 					if (trim($line) != '') {
 						$lineread = array();
 						$lineread[0] = '';
 						$lineread[1] = '';
-						$lineread[2] = htmlspecialchars($line, ENT_QUOTES, 'UTF-8');
+						//$lineread[2] = htmlspecialchars($line, ENT_QUOTES, 'UTF-8');
+						$lineread[2] = $line;
 						array_unshift($page, $lineread);
 					}
 				}
