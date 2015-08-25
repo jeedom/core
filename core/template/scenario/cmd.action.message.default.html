@@ -13,11 +13,10 @@
 
 <script>
 	if('#title_disable#' == '1'){
-		$('.expressionAttr[data-l1key=options][data-l2key=title][data-uid=#uid#][data-cmd_id=#id#]').hide();
+		$('.expressionAttr[data-l1key=options][data-l2key=title][data-uid=#uid#][data-cmd_id=#id#]').parent().hide();
 	}
 	if('#message_disable#' == '1'){
-		$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#][data-cmd_id=#id#]').hide();
-		$('.listEquipementInfo[data-uid=#uid#]').hide();
+		$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#][data-cmd_id=#id#]').parent().hide();
 	}
 	$('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
 		jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
