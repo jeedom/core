@@ -37,11 +37,11 @@ class message {
 			return;
 		}
 		$message = new message();
-		$message->setPlugin($_type);
-		$message->setMessage($_message);
-		$message->setAction($_action);
+		$message->setPlugin(htmlspecialchars($_type, ENT_QUOTES, 'UTF-8'));
+		$message->setMessage(htmlspecialchars($_message, ENT_QUOTES, 'UTF-8'));
+		$message->setAction(htmlspecialchars($_action, ENT_QUOTES, 'UTF-8'));
 		$message->setDate(date('Y-m-d H:i:m'));
-		$message->setLogicalId($_logicalId);
+		$message->setLogicalId(htmlspecialchars($_logicalId, ENT_QUOTES, 'UTF-8'));
 		$message->save();
 	}
 
