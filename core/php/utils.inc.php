@@ -874,3 +874,7 @@ function evaluate($_string) {
 	}
 	return $_string;
 }
+
+function secureXSS($_string) {
+	return str_replace('&amp;', '&', htmlspecialchars(strip_tags($_string), ENT_COMPAT | ENT_HTML401, 'UTF-8'));
+}
