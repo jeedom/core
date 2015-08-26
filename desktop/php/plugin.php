@@ -33,13 +33,14 @@ foreach ($plugins_list as $category_name => $category) {
 	echo '<li><i class="fa ' . $icon . '"></i> ' . $name . '</li>';
 
 	foreach ($category as $plugin) {
-		echo '<li class="cursor li_plugin" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '"><a>';
-		echo '<i class="' . $plugin->getIcon() . '"></i> ' . $plugin->getName();
-		if ($plugin->isActive() == 1) {
-			echo '<span class="pull-right"><i class="fa fa-check"></i></span> ';
+		$opacity = ($plugin->isActive()) ? '' : 'opacity:0.6;';
+		echo '<li class="cursor li_plugin" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="' . $opacity . '"><a>';
+		if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
+			echo '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
 		} else {
-			echo '<span class="pull-right"><i class="fa fa-times"></i></span> ';
+			echo '<i class="' . $plugin->getIcon() . '"></i> ';
 		}
+		echo $plugin->getName();
 		echo '</a></li>';
 	}
 }
@@ -63,8 +64,8 @@ foreach (plugin::listPlugin() as $plugin) {
 	$opacity = ($plugin->isActive()) ? '' : 'opacity:0.3;';
 	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 	echo "<center>";
-	if (file_exists(dirname(__FILE__) . '/../../plugins/' . $plugin->getId() . '/doc/images/' . $plugin->getId() . '_icon.png')) {
-		echo '<img class="img-responsive" style="width : 120px;" src="plugins/' . $plugin->getId() . '/doc/images/' . $plugin->getId() . '_icon.png" />';
+	if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
+		echo '<img class="img-responsive" style="width : 120px;" src="' . $plugin->getPathImgIcon() . '" />';
 		echo "</center>";
 	} else {
 		echo '<i class="' . $plugin->getIcon() . '" style="font-size : 6em;margin-top:20px;"></i>';

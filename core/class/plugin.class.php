@@ -422,6 +422,10 @@ class plugin {
 		return update::byTypeAndLogicalId('plugin', $this->getId());
 	}
 
+	public function getPathImgIcon() {
+		return 'plugins/' . $this->getId() . '/doc/images/' . $this->getId() . '_icon.png';
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {

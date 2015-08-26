@@ -50,14 +50,14 @@ if (count($plugins_list) > 0) {
 				$plugin = $pluginList;
 				$title = ucfirst($plugin->getName()) . ' - Jeedom';
 			}
-			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $pluginList->getId() . '/doc/images/' . $pluginList->getId() . '_icon.png')) {
-				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() . '"><img class="img-responsive" style="width : 20px;display:inline-block;" src="plugins/' . $pluginList->getId() . '/doc/images/' . $pluginList->getId() . '_icon.png" /> ' . $pluginList->getName() . '</a></li>';
+			if (file_exists(dirname(__FILE__) . '/../../' . $pluginList->getPathImgIcon())) {
+				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() . '"><img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
 			} else {
 				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() . '"><i class="' . $pluginList->getIcon() . '"></i> ' . $pluginList->getName() . '</a></li>';
 			}
 			if ($pluginList->getDisplay() != '') {
-				if (file_exists(dirname(__FILE__) . '/../../plugins/' . $pluginList->getId() . '/doc/images/' . $pluginList->getId() . '_icon.png')) {
-					$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getDisplay() . '"><img class="img-responsive" style="width : 20px;display:inline-block;" src="plugins/' . $pluginList->getId() . '/doc/images/' . $pluginList->getId() . '_icon.png" /> ' . $pluginList->getName() . '</a></li>';
+				if (file_exists(dirname(__FILE__) . '/../../' . $pluginList->getPathImgIcon())) {
+					$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getDisplay() . '"><img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
 				} else {
 					$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getDisplay() . '"><i class="' . $pluginList->getIcon() . '"></i> ' . $pluginList->getName() . '</a></li>';
 				}
