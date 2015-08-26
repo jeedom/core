@@ -53,19 +53,25 @@ foreach ($plugins_list as $category_name => $category) {
    <div class="pluginListContainer">
     <div class="cursor" id="bt_displayMarket2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
      <center>
-        <i class="fa fa-shopping-cart" style="font-size : 4em;color:#94ca02;"></i>
+        <i class="fa fa-shopping-cart" style="font-size : 6em;color:#94ca02;margin-top:20px;"></i>
     </center>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Accéder au Market}}</center></span>
 </div>
 
 <?php
 foreach (plugin::listPlugin() as $plugin) {
-	$color = ($plugin->isActive()) ? '#767676' : '#FA5858';
-	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+	$opacity = ($plugin->isActive()) ? '' : 'opacity:0.3;';
+	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 	echo "<center>";
-	echo '<i class="' . $plugin->getIcon() . '" style="font-size : 4em;color:' . $color . ';"></i>';
-	echo "</center>";
-	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $plugin->getName() . '</center></span>';
+	if (file_exists(dirname(__FILE__) . '/../../plugins/' . $plugin->getId() . '/doc/images/' . $plugin->getId() . '_icon.png')) {
+		echo '<img class="img-responsive" style="width : 120px;" src="plugins/' . $plugin->getId() . '/doc/images/' . $plugin->getId() . '_icon.png" />';
+		echo "</center>";
+	} else {
+		echo '<i class="' . $plugin->getIcon() . '" style="font-size : 6em;margin-top:20px;"></i>';
+		echo "</center>";
+		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $plugin->getName() . '</center></span>';
+	}
+
 	echo '</div>';
 }
 ?>
