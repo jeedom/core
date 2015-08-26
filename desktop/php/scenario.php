@@ -112,13 +112,10 @@ if (count($scenarios) == 0) {
 	echo '<legend>Aucun</legend>';
 	echo '<div class="scenarioListContainer">';
 	foreach ($scenarios[-1] as $scenario) {
-		$color = ($scenario->getIsActive() == 1) ? '#767676' : '#FA5858';
-		if ($scenario->getState() == 'in progress') {
-			$color = '#337ab7';
-		}
-		echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+		$opacity = ($scenario->getIsActive()) ? '' : 'opacity:0.5;';
+		echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 		echo "<center>";
-		echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:' . $color . ';"></i>';
+		echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676"></i>';
 		echo "</center>";
 		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
 		echo '</div>';
@@ -130,13 +127,10 @@ if (count($scenarios) == 0) {
 			echo '<legend>' . $group['group'] . '</legend>';
 			echo '<div class="scenarioListContainer">';
 			foreach ($scenarios[$group['group']] as $scenario) {
-				$color = ($scenario->getIsActive() == 1) ? '#767676' : '#FA5858';
-				if ($scenario->getState() == 'in progress') {
-					$color = '#337ab7';
-				}
-				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+				$opacity = ($scenario->getIsActive()) ? '' : 'opacity:0.5;';
+				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 				echo "<center>";
-				echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:' . $color . ';"></i>';
+				echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676"></i>';
 				echo "</center>";
 				echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
 				echo '</div>';

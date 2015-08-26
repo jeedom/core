@@ -61,7 +61,7 @@ foreach ($plugins_list as $category_name => $category) {
 
 <?php
 foreach (plugin::listPlugin() as $plugin) {
-	$opacity = ($plugin->isActive()) ? '' : 'opacity:0.3;';
+	$opacity = ($plugin->isActive()) ? '' : 'opacity:0.5;';
 	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 	echo "<center>";
 	if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
