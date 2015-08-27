@@ -33,7 +33,12 @@ foreach ($plugins_list as $category_name => $category) {
 	echo '<li><i class="fa ' . $icon . '"></i> ' . $name . '</li>';
 
 	foreach ($category as $plugin) {
-		$opacity = ($plugin->isActive()) ? '' : 'opacity:0.6;';
+		$opacity = ($plugin->isActive()) ? '' : '
+		-webkit-filter: grayscale(100%);
+		-moz-filter: grayscale(100);
+		-o-filter: grayscale(100%);
+		-ms-filter: grayscale(100%);
+		filter: grayscale(100%); opacity: 0.2;';
 		echo '<li class="cursor li_plugin" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="' . $opacity . '"><a>';
 		if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
 			echo '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
@@ -61,7 +66,12 @@ foreach ($plugins_list as $category_name => $category) {
 
 <?php
 foreach (plugin::listPlugin() as $plugin) {
-	$opacity = ($plugin->isActive()) ? '' : 'opacity:0.5;';
+	$opacity = ($plugin->isActive()) ? '' : '
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100);
+	-o-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	filter: grayscale(100%); opacity: 0.2;';
 	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 	echo "<center>";
 	if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
