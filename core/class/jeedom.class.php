@@ -353,7 +353,7 @@ class jeedom {
 		if (file_exists('/tmp/jeedom_dateOk')) {
 			return true;
 		}
-		if( config::byKey('ignoreHourCheck') == 1){
+		if (config::byKey('ignoreHourCheck') == 1) {
 			touch('/tmp/jeedom_dateOk');
 			return true;
 		}
