@@ -1040,10 +1040,6 @@ class scenarioExpression {
 						$occurence++;
 						sleep(1);
 					}
-					if ($value == '') {
-						$cmd->setConfiguration('storeVariable', $this->getOptions('variable'));
-						$cmd->save();
-					}
 					$this->setLog($scenario, __('Réponse ', __FILE__) . $value);
 					return;
 				} else {
