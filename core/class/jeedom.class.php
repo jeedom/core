@@ -31,7 +31,7 @@ class jeedom {
 			echo "Desactivation de toutes les tâches";
 			config::save('enableCron', 0);
 			foreach (cron::all() as $cron) {
-				if ($cron->running()) {
+				if ($cron->running() && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
 					try {
 						$cron->halt();
 						echo '.';
