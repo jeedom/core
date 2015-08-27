@@ -35,7 +35,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 	try {
 		if (config::byKey('api') != init('apikey') && config::byKey('api') != init('api')) {
 			connection::failed();
-			throw new Exception('Clé API non valide, vous n\'êtes pas autorisé à effectuer cette action (jeeApi). Demande venant de :' . getClientIp() . 'Clé API : ' . secureXSS(init('apikey') . init('api')));
+			throw new Exception('Clé API non valide, vous n\'êtes pas autorisé à effectuer cette action (jeeApi). Demande venant de :' . getClientIp() . '. Clé API : ' . secureXSS(init('apikey') . init('api')));
 		}
 		connection::success('api');
 		$type = init('type');
