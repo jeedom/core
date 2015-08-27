@@ -748,7 +748,12 @@ class cmd {
 				$options['color'] = cmd::convertColor($options['color']);
 			}
 			if ($this->getType() == 'action') {
-				log::add('event', 'event', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . str_replace(array("\n", '  ', 'Array'), '', print_r($options, true)));
+				if (is_array($options) && count($options) > 0) {
+					log::add('event', 'event', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . str_replace(array("\n", '  ', 'Array', '>'), '', print_r($options, true)));
+				} else {
+					log::add('event', 'event', __('Exécution de la commande ', __FILE__) . $this->getHumanName());
+				}
+
 			}
 			$value = $this->formatValue($this->execute($options), $_quote);
 		} catch (Exception $e) {

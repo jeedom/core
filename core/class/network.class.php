@@ -489,6 +489,9 @@ class network {
 	public static function getInterfaceIp($_interface) {
 		$results = trim(shell_exec('sudo ip addr show ' . $_interface . '| grep inet | head -1'));
 		$results = explode(' ', $results);
+		if (!isset($results[1])) {
+			return false;
+		}
 		$result = $results[1];
 		$ip = substr($result, 0, strrpos($result, '/'));
 		if (filter_var($ip, FILTER_VALIDATE_IP)) {
