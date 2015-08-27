@@ -446,21 +446,26 @@ class jeedom {
 			if ($c->isDue()) {
 				$lastCheck = strtotime(config::byKey('update::lastCheck'));
 				if ((strtotime('now') - $lastCheck) > 3600) {
+					update::checkAllUpdate();
+					$updates = update::byStatus('update');
+					if (count($updates) > 0) {
+						$toUpdate = '';
+						foreach ($updates as $update) {
+							$toUpdate .= $update->getLogicalId() . ',';
+						}
+					}
 					if (config::byKey('update::auto') == 1) {
-						update::checkAllUpdate();
+						if (count($updates) > 0) {
+							message::add('update', __('J\'ai appliqué les mises à jour suivantes : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
+						}
 						jeedom::update('', 0);
 					} else {
-						config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
-						update::checkAllUpdate();
 						$updates = update::byStatus('update');
 						if (count($updates) > 0) {
-							$toUpdate = '';
-							foreach ($updates as $update) {
-								$toUpdate .= $update->getLogicalId() . ',';
-							}
 							message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
 						}
 					}
+					config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
 				}
 			}
 			$c = new Cron\CronExpression('35 00 * * 0', new Cron\FieldFactory);
