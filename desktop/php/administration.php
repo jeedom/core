@@ -174,6 +174,12 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 <input type="text"  class="configKey form-control" data-l1key="ntp::optionalServer" />
                             </div>
                         </div>
+                        <div class="form-group expertModeVisible">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ignorer la vérification de l'heure}}</label>
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                            	<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="ignoreHourCheck" />
+                            </div>
+                        </div>
                         <div class="form-group expertModeVisible has-error">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mode}}</label>
                             <div class="col-sm-6">

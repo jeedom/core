@@ -353,6 +353,10 @@ class jeedom {
 		if (file_exists('/tmp/jeedom_dateOk')) {
 			return true;
 		}
+		if( config::byKey('ignoreHourCheck') == 1){
+			touch('/tmp/jeedom_dateOk');
+			return true;
+		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
 			shell_exec('sudo sntp ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org'));
 			sleep(3);
