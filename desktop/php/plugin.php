@@ -38,7 +38,7 @@ foreach ($plugins_list as $category_name => $category) {
 		-moz-filter: grayscale(100);
 		-o-filter: grayscale(100%);
 		-ms-filter: grayscale(100%);
-		filter: grayscale(100%); opacity: 0.2;';
+		filter: grayscale(100%); opacity: 0.35;';
 		echo '<li class="cursor li_plugin" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="' . $opacity . '"><a>';
 		if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
 			echo '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
@@ -71,7 +71,7 @@ foreach (plugin::listPlugin() as $plugin) {
 	-moz-filter: grayscale(100);
 	-o-filter: grayscale(100%);
 	-ms-filter: grayscale(100%);
-	filter: grayscale(100%); opacity: 0.2;';
+	filter: grayscale(100%); opacity: 0.35;';
 	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 	echo "<center>";
 	if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
