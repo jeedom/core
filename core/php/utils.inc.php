@@ -113,7 +113,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 			echo "<script type=\"text/javascript\" src=\"core/php/getJS.php?file=$_folder/$_fn&md5=" . md5_file($path) . "\"></script>";
 		}
 	} else {
-		throw new Exception("File not found : $_fn at $_folder : $path", 35486);
+		throw new Exception("File not found : $_fn", 35486);
 	}
 }
 
@@ -876,5 +876,5 @@ function evaluate($_string) {
 }
 
 function secureXSS($_string) {
-	return str_replace('&amp;', '&', htmlspecialchars(strip_tags($_string), ENT_COMPAT | ENT_HTML401, 'UTF-8'));
+	return str_replace('&amp;', '&', htmlspecialchars(strip_tags($_string), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 }
