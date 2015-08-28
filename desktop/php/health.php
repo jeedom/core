@@ -7,7 +7,7 @@ if (!hasRight('health', true)) {
 <table class="table table-condensed table-bordered">
 	<thead><tr><th style="width : 250px;"></th><th style="width : 150px;">{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>
 	<tbody>
-	<tr>
+		<tr>
 			<td style="font-weight : bold;">{{Système à jour}}</td>
 			<?php
 $nbNeedUpdate = update::nbNeedUpdate();
@@ -71,6 +71,12 @@ if (!jeedom::isStarted()) {
 	echo '<td></td>';
 }
 ?>
+		</tr>
+
+		<tr>
+			<td style="font-weight : bold;">{{NodeJS actif}}</td>
+			<td class="alert alert-danger" id="td_nodejsState">{{NOK}}</td>
+			<td></td>
 		</tr>
 
 		<tr>
@@ -192,8 +198,8 @@ if (exec('diff /etc/nginx/sites-available/default ' . dirname(__FILE__) . '/../.
 }
 ?>
 		</tr>
--->
-	</tbody>
+	-->
+</tbody>
 </table>
 
 <?php
@@ -231,3 +237,5 @@ foreach (plugin::listPlugin(true) as $plugin) {
 
 }
 ?>
+
+<?php include_file("desktop", "health", "js");?>
