@@ -242,8 +242,10 @@ class network {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($ch, CURLOPT_HEADER, false);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		if ($_mode == 'external') {
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		}
 		$data = curl_exec($ch);
 		if (curl_errno($ch)) {
 			log::add('network', 'debug', 'Erreur sur ' . $url . ' => ' . curl_errno($ch));
