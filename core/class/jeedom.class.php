@@ -126,7 +126,7 @@ class jeedom {
 			return false;
 		}
 		if (config::byKey('api') == '') {
-			return false;
+			config::save('api', config::genKey());
 		}
 		if (config::byKey('api') == $_apikey) {
 			return true;
