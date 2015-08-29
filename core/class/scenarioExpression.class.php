@@ -142,6 +142,15 @@ class scenarioExpression {
 		return -3;
 	}
 
+	public static function eqEnable($_eqLogic_id) {
+		$id = str_replace(array('eqLogic', '#'), '', trim($_eqLogic_id));
+		$eqLogic = eqLogic::byId($id);
+		if (!is_object($eqLogic)) {
+			return -2;
+		}
+		return $eqLogic->getIsEnable();
+	}
+
 	public static function average($_cmd_id, $_period = '1 hour') {
 		$args = func_get_args();
 		if (count($args) > 2 || strpos($_period, '#') !== false || is_numeric($_period)) {

@@ -48,9 +48,10 @@
  {val: 'lastChangeStateDuration(commande,value)'},
  {val: 'median(commande1,commande2)'},
  {val: 'time(value)'},
- {val: 'collectDate(cmd)'}
+ {val: 'collectDate(cmd)'},
+ {val: 'eqEnable(equipement)'}
  ];
- autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'icon', 'say','wait','return','gotodesign','log','message','equipement','ask'];
+ autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'say','wait','return','gotodesign','log','message','equipement','ask'];
 
  if (getUrlVars('saveSuccessFull') == 1) {
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
@@ -547,6 +548,18 @@ $('body').delegate('.bt_selectScenarioExpression', 'click', function (event) {
   });
 });
 
+$('body').delegate('.bt_selectEqLogicExpression', 'click', function (event) {
+  var expression = $(this).closest('.expression');
+  jeedom.eqLogic.getSelectModal({}, function (result) {
+    if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
+      expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
+    }
+    if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
+      expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human);
+    }
+  });
+});
+
 $('body').delegate('.expression .expressionAttr[data-l1key=expression]', 'focusout', function (event) {
   var el = $(this);
   if (el.closest('.expression').find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -911,8 +924,9 @@ function addExpression(_expression) {
     retour += '<div class="input-group input-group-sm" style="width: 100%; padding-top: 5px;">';
     retour += '    <textarea class="expressionAttr form-control" data-l1key="expression" rows="1" style="resize:vertical;">' + init(_expression.expression) + '</textarea>';
     retour += '    <span class="input-group-btn">';
-    retour += '       <button type="button" class="btn btn-default cursor bt_selectCmdExpression"  title="Rechercher une commande"><i class="fa fa-list-alt"></i></button>';
-    retour += '       <button type="button" class="btn btn-default cursor bt_selectCmdExpression"  title="Rechercher un scenario"><i class="fa fa-history"></i></button>';
+    retour += '       <button type="button" class="btn btn-default cursor bt_selectCmdExpression tooltips"  title="{{Rechercher une commande}}"><i class="fa fa-list-alt"></i></button>';
+    retour += '       <button type="button" class="btn btn-default cursor bt_selectScenarioExpression tooltips"  title="{{Rechercher un scenario}}"><i class="fa fa-history"></i></button>';
+    retour += '       <button type="button" class="btn btn-default cursor bt_selectEqLogicExpression tooltips"  title="{{Rechercher un scenario}}"><i class="fa fa-cube"></i></button>';
     retour += '    </span>';
     retour += '</div>';
 

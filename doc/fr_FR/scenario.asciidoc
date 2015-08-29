@@ -259,6 +259,8 @@ Plusieurs fonctions sont disponibles pour les équipements :
     ** Ex : lastScenarioExecution(\#[Salle de bain][Lumière][Auto]#) : renvoie 300 si le scénario c'est lancé pour la dernière fois il y a 5min
 * **collectDate**(cmd,[format]) : renvoie la date de la derniere donnée pour la commande donnée en paramètre, le 2eme paramètre optionel permet de spécifier le format de retour (détails http://php.net/manual/fr/function.date.php[ici]). Un retour de -1 signifie que la commande est introuvable, et -2 que la commande n'est pas de type info
     ** Ex : collectDate(\#[Salle de bain][Hydrometrie][Humidité]#) : renverra 2015-01-01 17:45:12
+ **eqEnable**(equipement) : renvoie l'état de l'équipement (actif ou non)
+    * Ex : eqEnable(\#[Aucun][Basilique]#) : renvoie -2 si l'équipement est introuvable, 1 si l'équipement est actif et 0 si il est inactif
 
 Les périodes et intervalles de ces fonctions peuvent également s'utiliser avec http://php.net/manual/fr/datetime.formats.relative.php[des expressions PHP] comme par exemple :
 
