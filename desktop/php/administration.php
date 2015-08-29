@@ -20,11 +20,11 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                         <fieldset>
                             <div class="form-group expertModeVisible">
                                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef API}}</label>
-                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                     <p class="form-control-static" id="in_keyAPI"><?php echo config::byKey('api');?></p>
                                 </div>
-                                <div class="col-lg-1 col-md-2 col-sm-3">
-                                    <a class="btn btn-default form-control" id="bt_genKeyAPI">{{Générer}}</a>
+                                <div class="col-lg-2 col-md-3 col-sm-3">
+                                    <a class="btn btn-default form-control" id="bt_genKeyAPI"><i class="fa fa-refresh"></i> {{Générer}}</a>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -38,8 +38,8 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                     <span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareKey()?></span>
                                 </div>
-                                <div class="col-lg-1 col-md-2 col-sm-3">
-                                    <a class="btn btn-default form-control" id="bt_resetHwKey" >{{Remise à zéro}}</a>
+                                <div class="col-lg-2 col-md-3 col-sm-3">
+                                    <a class="btn btn-default form-control" id="bt_resetHwKey"><i class="fa fa-refresh"></i> {{Remise à zéro}}</a>
                                 </div>
                             </div>
                             <div class="form-group">
