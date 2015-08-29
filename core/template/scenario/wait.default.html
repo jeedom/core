@@ -1,20 +1,18 @@
 <div class="input-group input-group-sm" style="width: 100%">
-  	<span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Condition}}</span>
-  	<input value="#condition#" class="expressionAttr form-control autoCompleteCondition" data-l1key="options" data-l2key="condition" data-cmd_id="#id#" data-uid="#uid#" />
-	<span class="input-group-btn">
-		<button class="btn btn-default listEquipementInfo" type="button" title="{{Sélectionner la commande}}" data-cmd_id="#id#"><i class="fa fa-list-alt"></i></button>
-	</span>
-</div>
-<div class="input-group input-group-sm" style="width: 100%; padding-top: 1px">
-  	<span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Time out}}</span>
-	<input value="#timeout#" class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="timeout" data-cmd_id="#id#" data-uid="#uid#"/>
+ <span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Condition}}</span>
+ <input value="#condition#" class="expressionAttr form-control autoCompleteCondition" data-l1key="options" data-l2key="condition" data-cmd_id="#id#" data-uid="#uid#" />
+ <span class="input-group-btn">
+  <button class="btn btn-default listEquipementInfo" type="button" title="{{Sélectionner la commande}}" data-cmd_id="#id#"><i class="fa fa-list-alt"></i></button>
+</span>
+<span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Time out}}</span>
+<input value="#timeout#" class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="timeout" data-cmd_id="#id#" data-uid="#uid#"/>
 </div>
 <script>
-    $('.listEquipementInfo').off();
-    $('.listEquipementInfo').on('click', function () {
-        var el = $(this);
-        jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
-            el.parent().parent().find('.expressionAttr[data-l1key=options][data-l2key=condition]').atCaret('insert', result.human);
-        });
+  $('.listEquipementInfo').off();
+  $('.listEquipementInfo').on('click', function () {
+    var el = $(this);
+    jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
+      el.parent().parent().find('.expressionAttr[data-l1key=options][data-l2key=condition]').atCaret('insert', result.human);
     });
+  });
 </script>
