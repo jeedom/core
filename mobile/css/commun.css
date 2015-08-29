@@ -45,6 +45,7 @@ body{
     color : white;
     vertical-align: top;
     text-shadow: initial !important;
+    padding-bottom: 10px;
 }
 
 .view-link-widget,.plan-link-widget{

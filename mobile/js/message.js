@@ -1,9 +1,9 @@
 function initMessage() {
-    var rightPanel = '<ul data-role="listview" data-theme="b" data-dividertheme="b" class="ui-icon-alt">';
+    var rightPanel = '<ul data-role="listview" class="ui-icon-alt">';
     rightPanel += '<li data-role="list-divider">{{Action}}</li>';
     rightPanel += '<li><a id="bt_clearMessage" href="#"><i class="fa fa-trash-o"></i> {{Vider}}</a></li>';
     rightPanel += '</ul>';
-    rightPanel += '<ul data-role="listview" data-theme="b" data-dividertheme="b" class="ui-icon-alt">';
+    rightPanel += '<ul data-role="listview" class="ui-icon-alt">';
     rightPanel += '<li data-role="list-divider">{{Logfile}}</li>';
     rightPanel += '<li><a class="messageFilter" data-plugin="">{{Tout}}</a></li>';
     jeedom.plugin.all({

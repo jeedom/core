@@ -103,10 +103,7 @@ function initApplication(_reinit) {
 
                 if (isset(userProfils) && userProfils != null) {
                     if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '') {
-                        $('#jQMnDColor').attr('href', '3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.color.' + userProfils.mobile_theme_color + '.css');
-                    }
-                    if (isset(userProfils.mobile_theme) && userProfils.mobile_theme != '') {
-                        $('#jQMnDTheme').attr('href', '3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.' + userProfils.mobile_theme + '.css');
+                        $('#jQMnDColor').attr('href', '3rdparty/jquery.mobile/css/nativedroid2.color.' + userProfils.mobile_theme_color + '.css');
                     }
                     if (isset(userProfils.mobile_highcharts_theme) && userProfils.mobile_highcharts_theme != '') {
                         include.push('3rdparty/highstock/themes/' + userProfils.mobile_highcharts_theme + '.js');

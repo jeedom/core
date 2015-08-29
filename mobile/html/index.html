@@ -33,9 +33,8 @@
 
 
     <link rel="stylesheet" href="3rdparty/jquery.mobile/jquery.mobile.min.css" />
-    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.css" />
-    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.dark.css"  id='jQMnDTheme' />
-    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.color.green.css" id='jQMnDColor' />
+    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/nativedroid2.css" />
+    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/nativedroid2.color.blue-grey.css" id="jQMnDColor" />
     <link rel="stylesheet" href="3rdparty/jquery.mobile/css/fonts.css">
 
 
@@ -66,19 +65,19 @@
 </head>
 <body>
     <!-- alert -->
-    <div id="div_alert" data-theme="b"></div>
+    <div id="div_alert"></div>
     <!-- /alert -->
     <!-- page -->
-    <div data-role="page" id="pagecontainer" data-theme='b'>
+    <div data-role="page" id="pagecontainer">
         <!-- panel -->
-        <div data-role="panel" id="panel_right" data-position="right" data-theme="b"></div>
+        <div data-role="panel" id="panel_right" data-position="right" data-display="overlay"></div>
         <!-- /panel -->
         <!-- popup -->
-        <div data-role="popup" id="div_popup" data-theme="b" class="ui-corner-all"></div>
+        <div data-role="popup" id="div_popup" class="ui-corner-all"></div>
         <!-- /popup -->
 
         <!-- header -->
-        <div data-role="header" data-position="fixed" data-theme="b" data-tap-toggle="false" style="height: 30px;">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
             <h1 id="pageTitle"></h1>
             <a class="link" data-page="home" data-title="{{Accueil}}"><i class="fa fa-home"></i></a>
             <a href="#panel_right" id="bt_panel_right"><i class="fa fa-list"></i></a>
@@ -90,9 +89,10 @@
         </div>
         <!-- /header -->
         <!-- content -->
-        <div role="main" class="ui-content" id="page" ></div>
+        <div role="main" class="ui-content" id="page" style="padding : 2px;"></div>
         <!-- /content -->
     </div>
     <!-- /page -->
+    <link rel="stylesheet" href="3rdparty/jquery.mobile/nativedroid2.js" />
 </body>
 </html>

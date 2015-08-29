@@ -1143,7 +1143,7 @@ function addSubElement(_subElement, _pColor) {
     case 'do' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '  <div style="display:table-cell; width: 100px; vertical-align: top; padding-left: 15px;">';
-    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{ALORS}}</legend>'; 
+    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{FAIRE}}</legend>'; 
     retour += '     <div class="dropdown">';
     retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
     retour += '         <i class="fa fa-plus-circle"></i> Ajouter';
