@@ -15,7 +15,8 @@
                 options += '<option value="' + plans[i].id + '">' + plans[i].name + '</option>';
             }
             $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').append(options);
-            if ($('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=plan_id] option[value=#plan_id#]').html() != undefined) {
+
+            if ('#plan_id#' != '' && $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=plan_id] option[value=#plan_id#]').html() != undefined) {
                 $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').value('#plan_id#');
             }
         }
