@@ -230,7 +230,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `history` (
   `cmd_id` INT NOT NULL,
   `datetime` DATETIME NOT NULL,
-  `value` FLOAT NULL,
+  `value` DOUBLE NULL,
   INDEX `fk_history5min_commands1_idx` (`cmd_id` ASC),
   UNIQUE INDEX `unique` (`datetime` ASC, `cmd_id` ASC),
   CONSTRAINT `fk_history_cmd1`
@@ -247,7 +247,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `historyArch` (
   `cmd_id` INT NOT NULL,
   `datetime` DATETIME NOT NULL,
-  `value` FLOAT NULL,
+  `value` DOUBLE NULL,
   INDEX `cmd_id_index` (`cmd_id` ASC),
   UNIQUE INDEX `unique` (`cmd_id` ASC, `datetime` ASC),
   CONSTRAINT `fk_historyArch_cmd1`
