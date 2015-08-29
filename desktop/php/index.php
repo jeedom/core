@@ -375,8 +375,14 @@ if (count($plugins_list) == 0) {
 											<ul class="nav navbar-nav navbar-right">
 												<?php $displayMessage = (message::nbMessage() > 0) ? '' : 'display : none;';?>
 												<li><a href="index.php?v=d&p=message">
-													<span class="label label-warning" id="span_nbMessage" style="<?php echo $displayMessage;?>">
-														<i class="fa fa-envelope"></i> <?php echo message::nbMessage();?> {{message(s)}}
+													<span class="badge tooltips" id="span_nbMessage" title="{{Nombre de messages}}" style="background-color : #ec971f;<?php echo $displayMessage;?>">
+														<?php echo message::nbMessage();?>
+													</span>
+												</a>
+												<?php $displayUpdate = (update::nbNeedUpdate() > 0) ? '' : 'display : none;';?>
+												<li><a href="index.php?v=d&p=update">
+													<span class="badge tooltips" title="{{Nombre de mises à jour}}" style="background-color : #c9302c;<?php echo $displayUpdate;?>">
+														<?php echo update::nbNeedUpdate();?>
 													</span>
 												</a>
 											</li>

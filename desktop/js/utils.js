@@ -377,7 +377,7 @@ function refreshMessageNumber() {
             if (_number == 0 || _number == '0') {
                 $('#span_nbMessage').hide();
             } else {
-                $('#span_nbMessage').html('<i class="fa fa-envelope icon-white"></i> ' + _number + ' message(s)');
+                $('#span_nbMessage').html(_number);
                 $('#span_nbMessage').show();
             }
         }
