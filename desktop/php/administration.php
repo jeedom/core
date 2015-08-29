@@ -21,7 +21,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             <div class="form-group expertModeVisible">
                                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef API}}</label>
                                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                    <p class="form-control-static" id="in_keyAPI"><?php echo config::byKey('api');?></p>
+                                    <span class="label label-info" style="font-size : 1em;" id="in_keyAPI"><?php echo config::byKey('api');?></span>
                                 </div>
                                 <div class="col-lg-2 col-md-3 col-sm-3">
                                     <a class="btn btn-default form-control" id="bt_genKeyAPI"><i class="fa fa-refresh"></i> {{Générer}}</a>

@@ -291,21 +291,21 @@ foreach ($notifyTheme as $key => $value) {
                            </select>
                        </div>
                    </div>
-               <div class="form-group">
-                <label class="col-sm-3 control-label">{{Notifier nouveau message}}</label>
-                <div class="col-sm-3">
-                    <select class="userAttr form-control" data-l1key="options" data-l2key="notifyNewMessage">
-                        <?php
+                   <div class="form-group">
+                    <label class="col-sm-3 control-label">{{Notifier nouveau message}}</label>
+                    <div class="col-sm-3">
+                        <select class="userAttr form-control" data-l1key="options" data-l2key="notifyNewMessage">
+                            <?php
 foreach ($notifyTheme as $key => $value) {
 	echo "<option value='$key'>$value</option>";
 }
 ?>
-                   </select>
+                       </select>
+                   </div>
                </div>
-           </div>
-       </fieldset>
-   </form>
-</div>
+           </fieldset>
+       </form>
+   </div>
 </div>
 </div>
 
@@ -322,21 +322,24 @@ foreach ($notifyTheme as $key => $value) {
             <form class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">{{Mot de passe}}</label>
-                        <div class="col-sm-3">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
+                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                             <input type="password" class="userAttr form-control" data-l1key="password" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">{{Retapez le mot de passe}}</label>
-                        <div class="col-sm-3">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Retapez le mot de passe}}</label>
+                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                             <input type="password" class="form-control" id="in_passwordCheck" />
                         </div>
                     </div>
                     <div class="form-group expertModeVisible">
-                        <label class="col-sm-3 control-label">{{Clef de sécurité pour appareils enregistrés}}</label>
-                        <div class="col-sm-3">
-                            <input class="form-control userAttr" data-l1key="options" data-l2key="registerDevice" />
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef API}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <span class="label label-info userAttr" style="font-size : 1em;" data-l1key="hash" ></span>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-3">
+                        <a class="btn btn-default form-control" id="bt_genUserKeyAPI"><i class="fa fa-refresh"></i> {{Générer}}</a>
                         </div>
                     </div>
                 </fieldset>

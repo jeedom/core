@@ -33,7 +33,7 @@ setcookie('sess_id', session_id(), time() + 24 * 3600, "/", '', false, true);
 @session_write_close();
 
 if (!isConnect() && isset($_COOKIE['registerDevice'])) {
-	if (loginByKey($_COOKIE['registerDevice'], true)) {
+	if (loginByHash($_COOKIE['registerDevice'], true)) {
 		setcookie('registerDevice', $_COOKIE['registerDevice'], time() + 365 * 24 * 3600, "/", '', false, true);
 	} else {
 		setcookie('registerDevice', '', time() - 3600, "/", '', false, true);
@@ -58,8 +58,8 @@ if (ini_get('register_globals') == '1') {
 if (init('login') != '' && init('mdp') != '') {
 	login(init('login'), init('mdp'));
 }
-if (init('login') != '' && init('smdp') != '') {
-	login(init('login'), init('smdp'), false, true);
+if (init('login') != '' && init('hash') != '') {
+	login(init('login'), init('hash'), false, true);
 }
 if (init('connect') == '1' && (init('mdp') == '' || init('login') == '')) {
 	header('Location:../../index.php?v=' . $_GET['v'] . '&p=connection&error=1');
@@ -106,18 +106,14 @@ if (trim(init('auiKey')) != '') {
 
 /* * **************************Definition des function************************** */
 
-function login($_login, $_password, $_ajax = false, $_passAlreadyEncode = false) {
-	$user = user::connect($_login, $_password, $_passAlreadyEncode);
+function login($_login, $_password, $_ajax = false, $_hash = false) {
+	$user = user::connect($_login, $_password, $_hash);
 	if (is_object($user) && $user->getEnable() == 1) {
 		connection::success($user->getLogin());
 		@session_start();
 		$_SESSION['user'] = $user;
 		if (init('v') == 'd' && init('registerDevice') == 'on') {
-			if ($_SESSION['user']->getOptions('registerDevice') == '') {
-				$_SESSION['user']->setOptions('registerDevice', config::genKey(255));
-				$_SESSION['user']->save();
-			}
-			setcookie('registerDevice', $_SESSION['user']->getOptions('registerDevice'), time() + 365 * 24 * 3600, "/", '', false, true);
+			setcookie('registerDevice', $_SESSION['user']->getHash(), time() + 365 * 24 * 3600, "/", '', false, true);
 		}
 		@session_write_close();
 		log::add('connection', 'info', __('Connexion de l\'utilisateur : ', __FILE__) . $_login);
@@ -147,8 +143,8 @@ function login($_login, $_password, $_ajax = false, $_passAlreadyEncode = false)
 	return false;
 }
 
-function loginByKey($_key, $_ajax = false) {
-	$user = user::byKey($_key);
+function loginByHash($_key, $_ajax = false) {
+	$user = user::byHash($_key);
 	if (is_object($user) && $user->getEnable() == 1) {
 		connection::success($user->getLogin());
 		@session_start();

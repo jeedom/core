@@ -25,17 +25,11 @@ if (isset($argv)) {
 		}
 	}
 }
-if (trim(config::byKey('api')) == '') {
-	echo 'Vous n\'avez aucune clé API configurée, veuillez d\'abord en générer une (Page Général -> Administration -> Configuration';
-	log::add('jeeEvent', 'error', 'Vous n\'avez aucune clé API configurée, veuillez d\'abord en générer une (Page Général -> Administration -> Configuration');
-	die();
-}
-
-if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
+if (init('type') != '') {
 	try {
-		if (config::byKey('api') != init('apikey') && config::byKey('api') != init('api')) {
+		if (!jeedom::apiAccess(init('apikey')) && !jeedom::apiAccess(init('api'))) {
 			connection::failed();
-			throw new Exception('Clé API non valide, vous n\'êtes pas autorisé à effectuer cette action (jeeApi). Demande venant de :' . getClientIp() . '. Clé API : ' . secureXSS(init('apikey') . init('api')));
+			throw new Exception('Clé API non valide (ou vide) . Demande venant de :' . getClientIp() . '. Clé API : ' . secureXSS(init('apikey') . init('api')));
 		}
 		connection::success('api');
 		$type = init('type');
@@ -154,28 +148,9 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 		$params = $jsonrpc->getParams();
 
-		if (isset($params['apikey']) || isset($params['api'])) {
-			if (config::byKey('api') == '' || (config::byKey('api') != $params['apikey'] && config::byKey('api') != $params['api'])) {
-				connection::failed();
-				throw new Exception('Clé API invalide', -32001);
-			}
-		} else if (isset($params['username']) && isset($params['password'])) {
-			$user = user::connect($params['username'], $params['password']);
-			if (!is_object($user) || $user->getRights('admin') != 1) {
-				connection::failed();
-				throw new Exception('Nom d\'utilisateur ou mot de passe invalide', -32001);
-			}
-			$session_lifetime = config::byKey('session_lifetime', 24);
-			if (!is_numeric($session_lifetime)) {
-				$session_lifetime = 24;
-			}
-			ini_set('session.gc_maxlifetime', $session_lifetime * 3600);
-			@session_start();
-			$_SESSION['user'] = $user;
-			@session_write_close();
-		} else {
+		if (!jeedom::apiAccess($params['apikey']) && !jeedom::apiAccess($params['api'])) {
 			connection::failed();
-			throw new Exception('Aucune clé API ou nom d\'utilisateur', -32001);
+			throw new Exception('Clé API invalide', -32001);
 		}
 
 		connection::success('api');

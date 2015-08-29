@@ -35,13 +35,7 @@ try {
 			throw new Exception('Mot de passe ou nom d\'utilisateur incorrect');
 		}
 		if (init('storeConnection') == 1) {
-			if ($_SESSION['user']->getOptions('registerDevice') == '') {
-				@session_start();
-				$_SESSION['user']->setOptions('registerDevice', config::genKey(255));
-				$_SESSION['user']->save();
-				@session_write_close();
-			}
-			setcookie('registerDevice', $_SESSION['user']->getOptions('registerDevice'), time() + 365 * 24 * 3600, "/", '', false, true);
+			setcookie('registerDevice', $_SESSION['user']->getHash(), time() + 365 * 24 * 3600, "/", '', false, true);
 		}
 		ajax::success();
 	}
@@ -129,6 +123,7 @@ try {
 			}
 			$user->save();
 		}
+		$_SESSION['user']->refresh();
 		ajax::success();
 	}
 

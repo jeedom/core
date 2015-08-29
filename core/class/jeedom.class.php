@@ -121,6 +121,27 @@ class jeedom {
 		shell_exec($cmd);
 	}
 
+	public static function apiAccess($_apikey = '') {
+		if ($_apikey == '') {
+			return false;
+		}
+		if (config::byKey('api') == '') {
+			return false;
+		}
+		if (config::byKey('api') == $_apikey) {
+			return true;
+		}
+		$user = user::byHash($_apikey);
+		if (is_object($user)) {
+			@session_start();
+			$_SESSION['user'] = $user;
+			@session_write_close();
+			log::add('connection', 'info', __('Connexion par API de l\'utilisateur : ', __FILE__) . $user->getLogin());
+			return true;
+		}
+		return false;
+	}
+
 	public static function getUsbMapping($_name = '', $_getGPIO = false) {
 		$cache = cache::byKey('jeedom::usbMapping');
 		if (!is_json($cache->getValue()) || $_name == '') {

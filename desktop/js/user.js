@@ -115,6 +115,27 @@ $("#table_user").delegate(".change_mdp_user", 'click', function (event) {
     });
 });
 
+$("#table_user").on('click',".bt_changeHash",  function (event) {
+    $.hideAlert();
+    var user = {id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value()};
+    bootbox.confirm("{{Etês vous sur de vouloir changer la clef API de l\'utilisateur ?}}", function (result) {
+        if (result) {
+            user.hash = '';
+            jeedom.user.save({
+                users: [user],
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                    printUsers();
+                    $('#div_alert').showAlert({message: '{{Modification effectuée}}', level: 'success'});
+                    modifyWithoutSave = false;
+                }
+            });
+        }
+    });
+});
+
 $('body').delegate('.userAttr', 'change', function () {
     modifyWithoutSave = true;
 });
@@ -146,6 +167,9 @@ function printUsers() {
                 ligne += '</td>';
                 ligne += '<td>';
                 ligne += '<input type="checkbox" data-size="mini" class="userAttr bootstrapSwitch" data-label-text="{{Admin}}" data-l1key="rights" data-l2key="admin"/>';
+                ligne += '</td>';
+                ligne += '<td>';
+                ligne += '<a class="cursor bt_changeHash" title="{{Renouveler la clef API}}"><i class="fa fa-refresh"></i></a> <span class="userAttr" data-l1key="hash"></span>';
                 ligne += '</td>';
                 ligne += '<td>';
                 ligne += '<span class="userAttr" data-l1key="options" data-l2key="lastConnection"></span>';
