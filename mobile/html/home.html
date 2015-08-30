@@ -5,7 +5,7 @@
 <div class="ui-grid-a">
     <div class="ui-block-a">
         <center>
-            <a class="ui-btn ui-btn-raised clr-primary" style="margin: 5px;" id="bt_showObjectList">
+            <a class="ui-btn ui-btn-raised clr-primary" style="margin: 5px;"href="#bottompanel_objectList">
                 <i class="fa fa fa-tachometer" style="font-size: 3em;"></i><br/>{{Equipements}}
             </a>
         </center>
@@ -20,11 +20,13 @@
     </div>
 
 </div>
-<ul data-role="listview" class="jeedomListView" data-inset="true" style="display: none;" id="ul_objectList"></ul>
+
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_objectList" data-animate="false" data-position='bottom' data-display="overlay"></div>
+
 <div class="ui-grid-a">
     <div class="ui-block-a">
         <center>
-            <a class="ui-btn ui-btn-raised clr-primary" style="margin: 5px;" id="bt_showViewList">
+            <a class="ui-btn ui-btn-raised clr-primary" style="margin: 5px;" href="#bottompanel_viewList">
                 <i class="fa fa-bars" style="font-size: 3em;"></i><br/>{{Vues}}
             </a>
         </center>
@@ -32,15 +34,15 @@
 
     <div class="ui-block-b">
         <center>
-            <a class="ui-btn ui-btn-raised clr-primary" style="margin: 5px;" id="bt_showPlanList">
+            <a class="ui-btn ui-btn-raised clr-primary" style="margin: 5px;" href="#bottompanel_planList">
                 <i class="fa fa-picture-o" style="font-size: 3em;"></i><br/>{{Design}}
             </a>
         </center>
     </div>
 </div>
 
-<ul class="jeedomListView" data-role="listview" data-inset="true" style="display: none;" id="ul_planList"></ul>
-<ul class="jeedomListView" data-role="listview" data-inset="true" style="display: none;" id="ul_viewList"></ul>
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_planList" data-animate="false" data-position='bottom' data-display="overlay"></div>
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_viewList" data-animate="false" data-position='bottom' data-display="overlay"></div>
 
 <div class="ui-grid-a">
     <div class="ui-block-a">
@@ -53,15 +55,15 @@
 
     <div class="ui-block-b">
         <center>
-            <a id="bt_listPlugin" class="ui-btn ui-btn-raised clr-primary" style="margin: 5px;">
+            <a href="#bottompanel_pluginList" class="ui-btn ui-btn-raised clr-primary" style="margin: 5px;">
                 <i class="fa fa-tasks" style="font-size: 3em;"></i><br/>{{Plugins}}
             </a>
         </center>
     </div>
 </div>
-<ul class="jeedomListView" data-role="listview" data-inset="true" style="display: none;" id="ul_pluginList">
-    <li><a href="#">Aucun plugin</a></li>
-</ul>
+
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_pluginList" data-animate="false" data-position='bottom' data-display="overlay"></div>
+
 <div class="ui-grid-a">
     <div class="ui-block-a">
         <center>
