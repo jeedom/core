@@ -52,6 +52,5 @@ function displayView(html) {
         $('.chartContainer').width(((deviceInfo.width / 2) - 20));
     }
     setTileSize('.eqLogic');
-    setTileSize('.scenario');
     $('.eqLogicZone').packery({gutter : 4});
 }
