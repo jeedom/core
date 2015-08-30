@@ -653,7 +653,7 @@ class scenario {
 	WHERE `key`="scenarioHtml' . $_version . $this->getId() . '"';
 		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		if ($result['value'] != '') {
-			//return $result['value'];
+			return $result['value'];
 		}
 		$_version = jeedom::versionAlias($_version);
 		$replace = array(
