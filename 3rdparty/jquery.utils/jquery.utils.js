@@ -282,44 +282,43 @@
                                 options.emptyBefore = init(options.emptyBefore, true);
                                 options.show = init(options.show, true);
                                 if ($.mobile) {
-                                    $(this).empty();
-                                    $(this).addClass('jqAlert');
-                                    $(this).html('<a href="#" data-rel="back" data-role="button" data-theme="h" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>' + options.message);
-                                    $(this).enhanceWithin().popup();
-                                    $(this).popup('open');
-                                } else {
-                                    if (options.emptyBefore == false) {
-                                        var html = $(this).find('.displayError').html();
-                                        if (isset(html)) {
-                                            options.message = html + '<br/>' + options.message;
-                                        }
+                                 new $.nd2Toast({
+                                    message :  options.message, 
+                                    ttl : 3000
+                                });
+                             } else {
+                                if (options.emptyBefore == false) {
+                                    var html = $(this).find('.displayError').html();
+                                    if (isset(html)) {
+                                        options.message = html + '<br/>' + options.message;
                                     }
-                                    $(this).empty();
-                                    $(this).html('<span href="#" class="btn_closeAlert pull-right cursor" style="position : relative; left : 30px;color : grey">×</span><span class="displayError">' + options.message + '</span>');
-                                    $(this).removeClass('alert alert-warning alert-danger alert-info alert-success jqAlert');
-                                    $(this).addClass('alert jqAlert');
-                                    if (options.level != '') {
-                                        $(this).addClass('alert-' + options.level);
-                                    }
-                                    if (options.show) {
-                                        $(this).show();
-                                        $(this).css('padding', '7px 35px 7px 15px');
-                                        $(this).css('margin-bottom', '5px');
-                                        $(this).css('overflow', 'auto');
-                                        $(this).css('max-height', $(window).height() - 100 + 'px');
-                                        $(this).css('z-index', '9999');
-                                    }
-
-                                    if ($(this).offset().top - $(window).scrollTop() < $(this).height()) {
-                                        $('html, body').animate({
-                                            scrollTop: $(this).offset().top - 60
-                                        }, 650);
-                                    }
-
-                                    $(this).find('.btn_closeAlert').on('click', function () {
-                                        $(this).closest('.jqAlert').hide();
-                                    });
                                 }
+                                $(this).empty();
+                                $(this).html('<span href="#" class="btn_closeAlert pull-right cursor" style="position : relative; left : 30px;color : grey">×</span><span class="displayError">' + options.message + '</span>');
+                                $(this).removeClass('alert alert-warning alert-danger alert-info alert-success jqAlert');
+                                $(this).addClass('alert jqAlert');
+                                if (options.level != '') {
+                                    $(this).addClass('alert-' + options.level);
+                                }
+                                if (options.show) {
+                                    $(this).show();
+                                    $(this).css('padding', '7px 35px 7px 15px');
+                                    $(this).css('margin-bottom', '5px');
+                                    $(this).css('overflow', 'auto');
+                                    $(this).css('max-height', $(window).height() - 100 + 'px');
+                                    $(this).css('z-index', '9999');
+                                }
+
+                                if ($(this).offset().top - $(window).scrollTop() < $(this).height()) {
+                                    $('html, body').animate({
+                                        scrollTop: $(this).offset().top - 60
+                                    }, 650);
+                                }
+
+                                $(this).find('.btn_closeAlert').on('click', function () {
+                                    $(this).closest('.jqAlert').hide();
+                                });
+                            }
         //Hide/show debug trace
         $(this).find('.bt_errorShowTrace').on('click', function () {
             var errorTrace = $(this).parent().find('.pre_errorTrace');
@@ -342,9 +341,7 @@
     };
 
     $.hideAlert = function () {
-        if ($.mobile) {
-            $('.jqAlert').popup("close");
-        } else {
+        if (!$.mobile) {
             $('.jqAlert').text('');
             $('.jqAlert').hide();
         }

@@ -122,7 +122,7 @@ function initApplication(_reinit) {
                     $.include(include, function () {
                         deviceInfo = getDeviceType();
                         if(getUrlVars('p') != '' && getUrlVars('ajax') != 1){
-                         switch (getUrlVars('p')) {
+                           switch (getUrlVars('p')) {
                             case 'view' :
                             page('view', 'Vue',getUrlVars('view_id'));
                             break;
@@ -241,13 +241,10 @@ function refreshMessageNumber() {
 }
 
 function notify(_title, _text) {
-    if (_title == '' && _text == '') {
-        return true;
-    }
-    $('#div_alert').html("<center><b>" + _title + "</b></center>" + _text).popup("open", {y: 0});
-    setTimeout(function () {
-        $('#div_alert').popup("close");
-    }, 1000)
+    new $.nd2Toast({
+        message :  _title+'. '+_text,
+        ttl : 3000
+    });
 }
 
 function setTileSize(_filter) {
