@@ -1116,6 +1116,7 @@ class scenario {
 		if (isConnect('admin')) {
 			return true;
 		}
+		$rights = null;
 		if ($_right == 'x') {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'action');
 		} elseif ($_right == 'w') {

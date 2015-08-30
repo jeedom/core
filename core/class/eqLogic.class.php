@@ -706,6 +706,7 @@ class eqLogic {
 		if (isConnect('admin')) {
 			return true;
 		}
+		$_right = null;
 		if ($_right == 'x') {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'action');
 		} elseif ($_right == 'r') {
