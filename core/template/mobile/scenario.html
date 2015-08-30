@@ -1,39 +1,44 @@
-<div class="scenario scenario-widget" data-scenario_id="#id#" data-version="mobile" style="min-height: 150px;">
-    <center>
-        #name#
-        <br/>
+<div class="scenario nd2-card" data-scenario_id="#id#" data-version="mobile" style="min-height: 190px;margin : 0px;">
+   <center>
+    <div class="card-title has-supporting-text">
+        <h3 class="card-primary-title">#shortname#</h3>
+         <h5 class="card-subtitle">#treename#</h5>
+    </div>
+    <div class="card-supporting-text has-title">
         <span class="state" style="font-size: 2em;">#icon#</span>
-        <br/>
-        <a class="ui-btn ui-btn-b ui-mini ui-btn-inline changeScenarioState" data-state="start" style="display: none;"><i class="fa fa-play"></i></a>
-        <a class="ui-btn ui-btn-b ui-mini ui-btn-inline changeScenarioState" data-state="stop" style="display: none;"><i class="fa fa-stop"></i></a>
-        <a class="ui-btn ui-btn-b ui-mini ui-btn-inline changeScenarioState" data-state="activate" style="display: none;"><i class="fa fa-power-off"></i></a>
-        <a class="ui-btn ui-btn-b ui-mini ui-btn-inline changeScenarioState" data-state="deactivate" style="display: none;"><i class="fa fa-power-off"></i></i></a>
-    </center>
-    <script>
-        $('.scenario[data-scenario_id=#id#] .changeScenarioState').on('click', function() {
-            jeedom.scenario.changeState({
-                id: $(this).closest('.scenario').attr('data-scenario_id'),
-                state: $(this).attr('data-state'),
-                error: function(error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                },
-            });
+    </div>
+    <div class="card-action">
+      <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="start" style="display: none;"><i class="fa fa-play"></i></a>
+      <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="stop" style="display: none;"><i class="fa fa-stop"></i></a>
+      <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="activate" style="display: none;"><i class="fa fa-power-off"></i></a>
+      <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="deactivate" style="display: none;"><i class="fa fa-power-off"></i></i></a>
+  </div>
+</center>
+<script>
+    $('.scenario[data-scenario_id=#id#] .changeScenarioState').on('click', function() {
+        jeedom.scenario.changeState({
+            id: $(this).closest('.scenario').attr('data-scenario_id'),
+            state: $(this).attr('data-state'),
+            error: function(error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
         });
-        if ('#isActive#' == '1') {
-            if ('#state#' == 'in progress') {
-                $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=stop]').show();
-                $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
-            }
-            if ('#state#' == 'error') {
-                $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=start]').show();
-                $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
-            }
-            if ('#state#' == 'stop') {
-                $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=start]').show();
-                $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
-            }
-        } else {
-            $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=activate]').show();
+    });
+    if ('#isActive#' == '1') {
+        if ('#state#' == 'in progress') {
+            $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=stop]').show();
+            $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
         }
-    </script>
+        if ('#state#' == 'error') {
+            $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=start]').show();
+            $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
+        }
+        if ('#state#' == 'stop') {
+            $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=start]').show();
+            $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
+        }
+    } else {
+        $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=activate]').show();
+    }
+</script>
 </div>

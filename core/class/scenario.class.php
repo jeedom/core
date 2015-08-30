@@ -60,8 +60,8 @@ class scenario {
 			'id' => $_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM scenario
-        WHERE id=:id';
+		FROM scenario
+		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -73,8 +73,8 @@ class scenario {
 		$values = array();
 		if ($_group === '') {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            INNER JOIN object ob ON s.object_id=ob.id';
+			FROM scenario s
+			INNER JOIN object ob ON s.object_id=ob.id';
 			if ($_type != null) {
 				$values['type'] = $_type;
 				$sql .= ' WHERE `type`=:type';
@@ -85,8 +85,8 @@ class scenario {
 				$result1 = array();
 			}
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            WHERE s.object_id IS NULL';
+			FROM scenario s
+			WHERE s.object_id IS NULL';
 			if ($_type != null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -96,9 +96,9 @@ class scenario {
 			return array_merge($result1, $result2);
 		} else if ($_group === null) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            INNER JOIN object ob ON s.object_id=ob.id
-            WHERE (`group` IS NULL OR `group` = "")';
+			FROM scenario s
+			INNER JOIN object ob ON s.object_id=ob.id
+			WHERE (`group` IS NULL OR `group` = "")';
 			if ($_type != null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -109,9 +109,9 @@ class scenario {
 				$result1 = array();
 			}
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            WHERE (`group` IS NULL OR `group` = "")
-            AND s.object_id IS NULL';
+			FROM scenario s
+			WHERE (`group` IS NULL OR `group` = "")
+			AND s.object_id IS NULL';
 			if ($_type != null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -124,9 +124,9 @@ class scenario {
 				'group' => $_group,
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            INNER JOIN object ob ON s.object_id=ob.id
-            WHERE `group`=:group';
+			FROM scenario s
+			INNER JOIN object ob ON s.object_id=ob.id
+			WHERE `group`=:group';
 			if ($_type != null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -134,9 +134,9 @@ class scenario {
 			$sql .= ' ORDER BY ob.name,s.group, s.name';
 			$result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            WHERE `group`=:group
-            AND s.object_id IS NULL';
+			FROM scenario s
+			WHERE `group`=:group
+			AND s.object_id IS NULL';
 			if ($_type != null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -149,17 +149,17 @@ class scenario {
 
 	public static function schedule() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM scenario
-        WHERE `mode` != "provoke"
-        AND isActive=1
-        AND state!="in progress"';
+		FROM scenario
+		WHERE `mode` != "provoke"
+		AND isActive=1
+		AND state!="in progress"';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	public static function listGroup($_group = null) {
 		$values = array();
 		$sql = 'SELECT DISTINCT(`group`)
-        FROM scenario';
+		FROM scenario';
 		if ($_group != null) {
 			$values['group'] = '%' . $_group . '%';
 			$sql .= ' WHERE `group` LIKE :group';
@@ -173,9 +173,9 @@ class scenario {
 			'cmd_id' => '%#' . $_cmd_id . '#%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM scenario
-        WHERE mode != "schedule"
-        AND `trigger` LIKE :cmd_id';
+		FROM scenario
+		WHERE mode != "schedule"
+		AND `trigger` LIKE :cmd_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -184,15 +184,15 @@ class scenario {
 			'element_id' => '%' . $_element_id . '%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM scenario
-        WHERE `scenarioElement` LIKE :element_id';
+		FROM scenario
+		WHERE `scenarioElement` LIKE :element_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false) {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM scenario';
+		FROM scenario';
 		if ($_object_id == null) {
 			$sql .= ' WHERE object_id IS NULL';
 		} else {
@@ -352,35 +352,35 @@ class scenario {
 		if ($_object_name == __('Aucun', __FILE__)) {
 			if ($_group_name == __('Aucun', __FILE__)) {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            WHERE s.name=:scenario_name
-            AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")
-            AND s.object_id IS NULL';
+			FROM scenario s
+			WHERE s.name=:scenario_name
+			AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")
+			AND s.object_id IS NULL';
 			} else {
 				$values['group_name'] = $_group_name;
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            WHERE s.name=:scenario_name
-            AND s.object_id IS NULL
-            AND `group`=:group_name';
+			FROM scenario s
+			WHERE s.name=:scenario_name
+			AND s.object_id IS NULL
+			AND `group`=:group_name';
 			}
 		} else {
 			$values['object_name'] = $_object_name;
 			if ($_group_name == __('Aucun', __FILE__)) {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            INNER JOIN object ob ON s.object_id=ob.id
-            WHERE s.name=:scenario_name
-            AND ob.name=:object_name
-            AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")';
+			FROM scenario s
+			INNER JOIN object ob ON s.object_id=ob.id
+			WHERE s.name=:scenario_name
+			AND ob.name=:object_name
+			AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")';
 			} else {
 				$values['group_name'] = $_group_name;
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            INNER JOIN object ob ON s.object_id=ob.id
-            WHERE s.name=:scenario_name
-            AND ob.name=:object_name
-            AND `group`=:group_name';
+			FROM scenario s
+			INNER JOIN object ob ON s.object_id=ob.id
+			WHERE s.name=:scenario_name
+			AND ob.name=:object_name
+			AND `group`=:group_name';
 			}
 		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
@@ -650,10 +650,10 @@ class scenario {
 			return '';
 		}
 		$sql = 'SELECT `value` FROM cache
-    WHERE `key`="scenarioHtml' . $_version . $this->getId() . '"';
+	WHERE `key`="scenarioHtml' . $_version . $this->getId() . '"';
 		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		if ($result['value'] != '') {
-			return $result['value'];
+			//return $result['value'];
 		}
 		$_version = jeedom::versionAlias($_version);
 		$replace = array(
@@ -661,6 +661,8 @@ class scenario {
 			'#state#' => $this->getState(),
 			'#isActive#' => $this->getIsActive(),
 			'#name#' => ($this->getDisplay('name') != '') ? $this->getDisplay('name') : $this->getHumanName(),
+			'#shortname#' => ($this->getDisplay('name') != '') ? $this->getDisplay('name') : $this->getName(),
+			'#treename#' => $this->getHumanName(false, false, false, false, true),
 			'#icon#' => $this->getIcon(),
 			'#lastLaunch#' => $this->getLastLaunch(),
 			'#scenarioLink#' => $this->getLinkToConfiguration(),
@@ -678,7 +680,7 @@ class scenario {
 
 	public function emptyCacheWidget() {
 		$sql = 'DELETE FROM cache
-    WHERE `key` LIKE "scenarioHtml%' . $this->getId() . '"';
+	WHERE `key` LIKE "scenarioHtml%' . $this->getId() . '"';
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 	}
 
@@ -1054,7 +1056,7 @@ class scenario {
 		return object::byId($this->object_id);
 	}
 
-	public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false) {
+	public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false, $_withoutScenarioName = false) {
 		$name = '';
 		if (is_numeric($this->getObject_id())) {
 			$object = $this->getObject();
@@ -1088,10 +1090,12 @@ class scenario {
 		if ($_prettify) {
 			$name .= '<br/><strong>';
 		}
-		if ($_tag) {
-			$name .= ' ' . $this->getName();
-		} else {
-			$name .= '[' . $this->getName() . ']';
+		if (!$_withoutScenarioName) {
+			if ($_tag) {
+				$name .= ' ' . $this->getName();
+			} else {
+				$name .= '[' . $this->getName() . ']';
+			}
 		}
 		if ($_prettify) {
 			$name .= '</strong>';
