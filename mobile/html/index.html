@@ -74,7 +74,7 @@
     <!-- page -->
     <div data-role="page" id="pagecontainer">
         <!-- panel -->
-        <div data-role="panel" id="leftpanel" data-position-fixed="true" data-display="overlay" style="overflow:auto"></div>
+        <div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel" data-animate="false" data-position='bottom' data-display="overlay"></div>
 
         <!-- /panel -->
         <!-- popup -->
@@ -84,8 +84,8 @@
         <!-- header -->
         <div data-role="header" data-position="fixed" data-tap-toggle="false">
             <h1 id="pageTitle"></h1>        
-            <a href="#leftpanel" id="bt_leftpanel"><i class="fa fa-bars"></i></a>
             <a class="link" data-page="home" data-title="{{Accueil}}"><i class="fa fa-home"></i></a>
+            <a href="#bottompanel" id="bt_bottompanel"><i class="fa fa-bars"></i></a>
             <div id="div_loadingSpinner" style="display: none;">
                 <div class="break dot1" style="position : relative;top : 0px;"></div>
                 <div class="break dot2" style="position : relative;top : -3px;"></div>

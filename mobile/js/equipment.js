@@ -35,7 +35,7 @@ function initEquipment(_object_id) {
             }
         });
     } else {
-        $('#leftpanel').panel('open');
+        $('#bottompanel').panel('open');
     }
 
     $(window).on("orientationchange", function (event) {
