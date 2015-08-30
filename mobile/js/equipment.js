@@ -4,14 +4,14 @@ function initEquipment(_object_id) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (objects) {
-            var li = ' <ul data-role="listview">';
+            var li = ' <ul data-role="listview" data-inset="false">';
             for (var i in objects) {
                 if (objects[i].isVisible == 1) {
                     var icon = '';
                     if (isset(objects[i].display) && isset(objects[i].display.icon)) {
                         icon = objects[i].display.icon;
                     }
-                    li += '<li></span><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '</a></li>';
+                    li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '</a></li>';
                 }
             }
             li += '</ul>';
@@ -35,7 +35,7 @@ function initEquipment(_object_id) {
             }
         });
     } else {
-        $('#panel_right').panel('open');
+        $('#leftpanel').panel('open');
     }
 
     $(window).on("orientationchange", function (event) {

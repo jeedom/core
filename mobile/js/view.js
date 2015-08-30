@@ -25,7 +25,7 @@ function initView(_view_id) {
                 displayView(html);
             }});
     } else {
-        $('#panel_right').panel('open');
+        $('#leftpanel').panel('open');
     }
 
     $(window).on("orientationchange", function (event) {

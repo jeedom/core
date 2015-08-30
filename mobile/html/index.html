@@ -33,6 +33,7 @@
 
 
     <link rel="stylesheet" href="3rdparty/jquery.mobile/jquery.mobile.min.css" />
+    <link rel="stylesheet" href="3rdparty/wave/wave.min.css"/>
     <link rel="stylesheet" href="3rdparty/jquery.mobile/css/nativedroid2.css" />
     <link rel="stylesheet" href="3rdparty/jquery.mobile/css/nativedroid2.color.blue-grey.css" id="jQMnDColor" />
     <link rel="stylesheet" href="3rdparty/jquery.mobile/css/fonts.css">
@@ -70,7 +71,8 @@
     <!-- page -->
     <div data-role="page" id="pagecontainer">
         <!-- panel -->
-        <div data-role="panel" id="panel_right" data-position="right" data-position-fixed="true" data-display="overlay" style="overflow: scroll;"></div>
+        <div data-role="panel" id="leftpanel" data-position-fixed="true" data-display="overlay" style="overflow:auto"></div>
+
         <!-- /panel -->
         <!-- popup -->
         <div data-role="popup" id="div_popup" class="ui-corner-all"></div>
@@ -78,9 +80,9 @@
 
         <!-- header -->
         <div data-role="header" data-position="fixed" data-tap-toggle="false">
-            <h1 id="pageTitle"></h1>
+            <h1 id="pageTitle"></h1>        
+            <a href="#leftpanel" id="bt_leftpanel"><i class="fa fa-bars"></i></a>
             <a class="link" data-page="home" data-title="{{Accueil}}"><i class="fa fa-home"></i></a>
-            <a href="#panel_right" id="bt_panel_right"><i class="fa fa-list"></i></a>
             <div id="div_loadingSpinner" style="display: none;">
                 <div class="break dot1" style="position : relative;top : 0px;"></div>
                 <div class="break dot2" style="position : relative;top : -3px;"></div>
@@ -89,10 +91,12 @@
         </div>
         <!-- /header -->
         <!-- content -->
-        <div role="main" class="ui-content" id="page" style="padding : 2px;"></div>
+        <div role="main" class="ui-content" id="page" data-inset="false" style="padding : 2px;"></div>
         <!-- /content -->
     </div>
     <!-- /page -->
+    <link rel="stylesheet" href="3rdparty/wave/wave.min.js" />
+    <link rel="stylesheet" href="3rdparty/wow/wow.min.js" />
     <link rel="stylesheet" href="3rdparty/jquery.mobile/nativedroid2.js" />
 </body>
 </html>

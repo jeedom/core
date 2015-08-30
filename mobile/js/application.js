@@ -218,12 +218,12 @@ function modal(_name) {
 
 function panel(_content) {
     if (_content === false) {
-        $('#panel_right').empty().trigger('create');
-        $('#bt_panel_right').hide();
-        $('#panel_right').panel('close');
+        $('#leftpanel').empty().trigger('create');
+        $('#bt_leftpanel').hide();
+        $('#leftpanel').panel('close');
     } else {
-        $('#panel_right').empty().append(_content).trigger('create');
-        $('#bt_panel_right').show();
+        $('#leftpanel').empty().append(_content).trigger('create');
+        $('#bt_leftpanel').show();
     }
 }
 
