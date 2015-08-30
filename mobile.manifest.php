@@ -66,6 +66,7 @@ $other_file = array(
 	'3rdparty/jquery.mobile/css/nativedroid2.color.brown.css',
 	'3rdparty/jquery.mobile/css/nativedroid2.color.green.css',
 	'3rdparty/jquery.mobile/css/fonts.css',
+	'3rdparty/jquery.mobile/css/flexboxgrid.min.css',
 	'3rdparty/waves/waves.min.css',
 	'core/css/core.css',
 	'3rdparty/jquery.utils/jquery.utils.css',
