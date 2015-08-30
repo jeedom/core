@@ -81,20 +81,22 @@ try {
 		$view_ajax = json_decode(init('view'), true);
 		utils::a2o($view, $view_ajax);
 		$view->save();
-		foreach ($view_ajax['zones'] as $viewZone_info) {
-			$viewZone = new viewZone();
-			$viewZone->setView_id($view->getId());
-			utils::a2o($viewZone, $viewZone_info);
-			$viewZone->save();
-			if (isset($viewZone_info['viewData'])) {
-				$order = 0;
-				foreach ($viewZone_info['viewData'] as $viewData_info) {
-					$viewData = new viewData();
-					$viewData->setviewZone_id($viewZone->getId());
-					$viewData->setOrder($order);
-					utils::a2o($viewData, $viewData_info);
-					$viewData->save();
-					$order++;
+		if (count($view_ajax['zones']) > 0) {
+			foreach ($view_ajax['zones'] as $viewZone_info) {
+				$viewZone = new viewZone();
+				$viewZone->setView_id($view->getId());
+				utils::a2o($viewZone, $viewZone_info);
+				$viewZone->save();
+				if (isset($viewZone_info['viewData'])) {
+					$order = 0;
+					foreach ($viewZone_info['viewData'] as $viewData_info) {
+						$viewData = new viewData();
+						$viewData->setviewZone_id($viewZone->getId());
+						$viewData->setOrder($order);
+						utils::a2o($viewData, $viewData_info);
+						$viewData->save();
+						$order++;
+					}
 				}
 			}
 		}
