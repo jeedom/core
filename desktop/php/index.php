@@ -224,7 +224,7 @@ foreach (object::buildTree(null, true) as $object_li) {
 														<ul class="dropdown-menu">
 															<?php
 foreach (view::all() as $view_menu) {
-				echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . $view_menu->getName() . '</a></li>';
+				echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon')) . ' ' . $view_menu->getName() . '</a></li>';
 			}
 			?>
 														</ul>

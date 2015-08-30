@@ -1,6 +1,6 @@
 <?php
 if (!hasRight('viewedit')) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
 
@@ -26,25 +26,27 @@ if (!hasRight('viewedit')) {
                 <a id="bt_addView" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Créer une vue}}</a>
                 <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
                 <?php
-                foreach (view::all() as $view) {
-                    echo '<li class="cursor li_view" data-view_id="' . $view->getId() . '"><a>' . $view->getName() . '</a></li>';
-                }
-                ?>
-            </ul>
-        </div>
-    </div>
+foreach (view::all() as $view) {
+	echo '<li class="cursor li_view" data-view_id="' . $view->getId() . '"><a>' . $view->getName() . '</a></li>';
+}
+?>
+           </ul>
+       </div>
+   </div>
 
-    <div class="col-lg-10 col-md-9 col-sm-8" style="display: none;" id="div_view">
-        <legend style="height: 35px;">
-            <a class="btn btn-default btn-xs" id="bt_editView"><i class="fa fa-pencil"></i> {{Renommer}}</a> {{Vue}}
-            <a class="btn btn-danger btn-xs pull-right" id="bt_removeView"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
-            <a class="btn btn-success btn-xs pull-right" id="bt_saveView"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
-            <a class="btn btn-primary btn-xs pull-right" id="bt_viewResult"><i class="fa fa fa-eye"></i> {{Voir le résultat}}</a>
-            <a class="btn btn-default btn-xs pull-right" id="bt_addviewZone"><i class="fa fa-plus-circle"></i> {{Ajouter une zone}}</a>
-        </legend>
+   <div class="col-lg-10 col-md-9 col-sm-8" style="display: none;" id="div_view">
+    <legend style="height: 35px;">
+        <a class="btn btn-default btn-xs" id="bt_editView"><i class="fa fa-pencil"></i> {{Renommer}}</a>
+        <a class="btn btn-default btn-xs" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Icone}}</a>
+        <span class="viewAttr cursor" data-l1key="display" data-l2key="icon"></span>
+        <a class="btn btn-danger btn-xs pull-right" id="bt_removeView"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+        <a class="btn btn-success btn-xs pull-right" id="bt_saveView"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+        <a class="btn btn-primary btn-xs pull-right" id="bt_viewResult"><i class="fa fa fa-eye"></i> {{Voir le résultat}}</a>
+        <a class="btn btn-default btn-xs pull-right" id="bt_addviewZone"><i class="fa fa-plus-circle"></i> {{Ajouter une zone}}</a>
+    </legend>
 
-        <div id="div_viewZones" style="margin-top: 10px;"></div>
-    </div>
+    <div id="div_viewZones" style="margin-top: 10px;"></div>
+</div>
 
 </div>
 
@@ -84,4 +86,4 @@ if (!hasRight('viewedit')) {
     </div>
 </div>
 
-<?php include_file('desktop', 'view_edit', 'js'); ?>
+<?php include_file('desktop', 'view_edit', 'js');?>

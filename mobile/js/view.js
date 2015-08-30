@@ -6,7 +6,11 @@ function initView(_view_id) {
         success: function (views) {
             var li = ' <ul data-role="listview">';
             for (var i in views) {
-                li += '<li><a href="#" class="link" data-page="view" data-title="' + views[i].name + '" data-option="' + views[i].id + '">' + views[i].name + '</a></li>'
+                var icon = '';
+                if (isset(views[i].display) && isset(views[i].display.icon)) {
+                    icon = views[i].display.icon;
+                }
+                li += '<li><a href="#" class="link" data-page="view" data-title="' + views[i].name + '" data-option="' + views[i].id + '">'+ icon + ' ' + views[i].name + '</a></li>'
             }
             li += '</ul>';
             panel(li);

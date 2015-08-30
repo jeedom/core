@@ -41,9 +41,9 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
             <?php
 foreach (view::all() as $view_info) {
 	if ($view->getId() == $view_info->getId()) {
-		echo '<li class="cursor li_view active"><a href="index.php?v=d&p=view&view_id=' . $view_info->getId() . '">' . $view_info->getName() . '</a></li>';
+		echo '<li class="cursor li_view active"><a href="index.php?v=d&p=view&view_id=' . $view_info->getId() . '">' . trim($view_info->getDisplay('icon')) . ' ' . $view_info->getName() . '</a></li>';
 	} else {
-		echo '<li class="cursor li_view"><a href="index.php?v=d&p=view&view_id=' . $view_info->getId() . '">' . $view_info->getName() . '</a></li>';
+		echo '<li class="cursor li_view"><a href="index.php?v=d&p=view&view_id=' . $view_info->getId() . '">' . trim($view_info->getDisplay('icon')) . ' ' . $view_info->getName() . '</a></li>';
 	}
 }
 ?>

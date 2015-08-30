@@ -26,7 +26,11 @@ function initHome() {
         success: function (views) {
             var li = '';
             for (var i in views) {
-                li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="view" data-title="' + views[i].name + '" data-option="' + views[i].id + '">' + views[i].name + '</a>'
+                var icon = '';
+                if (isset(views[i].display) && isset(views[i].display.icon)) {
+                    icon = views[i].display.icon;
+                }
+                li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="view" data-title="' + views[i].name + '" data-option="' + views[i].id + '">'+ icon + ' ' + views[i].name + '</a>'
             }
             $('#bottompanel_viewList').empty().append(li);
         }

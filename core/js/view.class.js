@@ -140,7 +140,7 @@ jeedom.view.remove = function (_params) {
 
 
 jeedom.view.save = function (_params) {
-    var paramsRequired = ['id', 'viewZones'];
+    var paramsRequired = ['id', 'view'];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -151,11 +151,13 @@ jeedom.view.save = function (_params) {
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/view.ajax.php';
+    console.log(_params);
     paramsAJAX.data = {
         action: 'save',
         view_id: _params.id,
-        viewZones: json_encode(_params.viewZones),
+        view: json_encode(_params.view),
     };
+    console.log(paramsAJAX);
     $.ajax(paramsAJAX);
 }
 
