@@ -322,7 +322,7 @@ class plugin {
 			if (config::byKey('jeeNetwork::mode') != 'master' && $this->getAllowRemote() != 1) {
 				throw new Exception('Vous ne pouvez pas activer ce plugin sur un Jeedom configuré en esclave');
 			}
-			market::checkPayment($this->getId());
+			//market::checkPayment($this->getId());
 			config::save('active', $_state, $this->getId());
 		}
 		if ($_state == 0) {
@@ -363,9 +363,6 @@ class plugin {
 		}
 		if ($_state == 0) {
 			config::save('active', $_state, $this->getId());
-		}
-		if ($alreadyActive == 0) {
-			$this->start();
 		}
 		return true;
 	}
