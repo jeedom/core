@@ -51,7 +51,10 @@ function initHome() {
     if (plugins.length > 0) {
         var li = '';
         for (var i in plugins) {
-            li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="' + plugins[i].mobile + '" data-plugin="' + plugins[i].id + '" data-title="' + plugins[i].name + '">' + plugins[i].name + '</a>'
+            li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="' + plugins[i].mobile + '" data-plugin="' + plugins[i].id + '" data-title="' + plugins[i].name + '">';
+            li += '<img src="plugins/'+plugins[i].id +'/doc/images/'+plugins[i].id +'_icon.png" style="width : 20px;position:relative;top:5px;" onerror=\'this.style.display = "none"\' /> ';
+            li +=  plugins[i].name;
+            li +=  '</a>';
         }
         $('#bottompanel_pluginList').empty().append(li);
     } else {
