@@ -10,7 +10,7 @@ function initView(_view_id) {
                 if (isset(views[i].display) && isset(views[i].display.icon)) {
                     icon = views[i].display.icon;
                 }
-                li += '<li><a href="#" class="link" data-page="view" data-title="' + views[i].name + '" data-option="' + views[i].id + '">'+ icon + ' ' + views[i].name + '</a></li>'
+                li += '<li><a href="#" class="link" data-page="view" data-title="'+ icon.replace(/\"/g, "\'") + ' ' + views[i].name + '" data-option="' + views[i].id + '">'+ icon + ' ' + views[i].name + '</a></li>'
             }
             li += '</ul>';
             panel(li);
