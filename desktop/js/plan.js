@@ -644,10 +644,10 @@ html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + 
 html.addClass('noResize'); 
 if (!isset(_plan.display) || !isset(_plan.display.noPredefineSize) || _plan.display.noPredefineSize == 0) { 
     if (isset(_plan.display) && isset(_plan.display.width)) { 
-        html.css('width', init(_plan.display.width, 10)); 
+        html.css('width', init(_plan.display.width, 50)); 
     } 
     if (isset(_plan.display) && isset(_plan.display.height)) { 
-        html.css('height', init(_plan.display.height, 10)); 
+        html.css('height', init(_plan.display.height, 50)); 
     } 
 } 
 if (_type == 'eqLogic') { 
@@ -795,10 +795,10 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     html.addClass('noResize');
     if (!isset(_plan.display) || !isset(_plan.display.noPredefineSize) || _plan.display.noPredefineSize == 0) {
         if (isset(_plan.display) && isset(_plan.display.width)) {
-            html.css('width', init(_plan.display.width, 10));
+            html.css('width', init(_plan.display.width, 50));
         }
         if (isset(_plan.display) && isset(_plan.display.height)) {
-            html.css('height', init(_plan.display.height, 10));
+            html.css('height', init(_plan.display.height, 50));
         }
     }
     if (_type == 'eqLogic') {
@@ -867,7 +867,7 @@ function addGraph(_plan) {
     if(init(_plan.display.transparentBackground, false) == '1'){
         background_color = '';
     }
-    var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="'+background_color+'border : solid 1px black;">';
+    var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="'+background_color+'border : solid 1px black;min-height:50px;min-width:50px;">';
     if ($('#bt_editPlan').attr('data-mode') == "1") {
         html += '<i class="fa fa-cogs cursor pull-right editMode configureGraph" style="margin-right : 5px;margin-top : 5px;"></i>';
     } else {
