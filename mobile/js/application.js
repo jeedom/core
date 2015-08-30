@@ -197,6 +197,7 @@ function page(_page, _title, _option, _plugin) {
                         window[functionName]();
                     }
                 }
+                Waves.init();
             });
         }
     });
