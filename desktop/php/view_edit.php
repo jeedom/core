@@ -27,7 +27,7 @@ if (!hasRight('viewedit')) {
                 <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
                 <?php
 foreach (view::all() as $view) {
-	echo '<li class="cursor li_view" data-view_id="' . $view->getId() . '"><a>' . $view->getName() . '</a></li>';
+	echo '<li class="cursor li_view" data-view_id="' . $view->getId() . '"><a>' . trim($view->getDisplay('icon')) . ' ' . $view->getName() . '</a></li>';
 }
 ?>
            </ul>
