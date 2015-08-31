@@ -314,9 +314,9 @@ class user {
 
 	public function getHash() {
 		if ($this->hash == '') {
-			$hash = substr(sha1(config::genKey(128)), 0, 255);
+			$hash = sha1(config::genKey(128));
 			while (is_object(self::byHash($hash))) {
-				$hash = substr(sha1(config::genKey(128)), 0, 255);
+				$hash = sha1(config::genKey(128));
 			}
 			$this->setHash($hash);
 			$this->save();
