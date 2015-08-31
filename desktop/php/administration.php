@@ -261,6 +261,7 @@ echo $CONFIG['db']['password'];
         <div class="panel-body">
             <form class="form-horizontal">
                 <fieldset>
+                <div class="alert alert-warning">{{Attention cette configuration n'est la que pour informer Jeedom de sa configuration réseaux et n'a aucun impact sur les ports ou l'IP réelement utilisés pour joindre Jeedom}}</div>
                    <div class="row">
                     <div class="col-sm-6">
                        <legend>Accès interne</legend>
@@ -275,35 +276,31 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
 }
 ?>
                        <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Protocole}}</label>
-                        <div class="col-xs-8">
+                        <label class="col-xs-3 control-label">{{Protocole}}</label>
+                        <div class="col-xs-3">
                             <select class="configKey form-control" data-l1key="internalProtocol">
                                 <option value="">Aucun</option>
                                 <option value="http://">HTTP</option>
                                 <option value="https://">HTTPS</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Adresse IP}}</label>
-                        <div class="col-xs-8">
-                            <input type="text" class="configKey form-control" data-l1key="internalAddr" />
-                        </div>
-                    </div>
-                    <div class="form-group expertModeVisible">
-                        <label class="col-xs-4 control-label">{{Complément (exemple : /jeedom)}}</label>
-                        <div class="col-xs-8">
-                            <input type="text" class="configKey form-control" data-l1key="internalComplement" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Port}}</label>
-                        <div class="col-xs-8">
+                         <label class="col-xs-3 control-label">{{Port}}</label>
+                        <div class="col-xs-3">
                             <input type="number"class="configKey form-control" data-l1key="internalPort" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-4 control-label">{{Statut}}</label>
+                        <label class="col-xs-3 control-label">{{Adresse IP}}</label>
+                        <div class="col-xs-3">
+                            <input type="text" class="configKey form-control" data-l1key="internalAddr" />
+                        </div>
+                         <label class="col-xs-3 control-label">{{Complément}}</label>
+                        <div class="col-xs-3">
+                            <input type="text" class="configKey form-control" data-l1key="internalComplement" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">{{Statut}}</label>
                         <div class="col-xs-8">
                           <?php
 if (network::test('internal')) {
@@ -318,36 +315,32 @@ if (network::test('internal')) {
            <div class="col-sm-6">
             <legend>Accès externe</legend>
             <div class="form-group">
-                <label class="col-xs-4 control-label">{{Protocole}}</label>
-                <div class="col-xs-8">
+                <label class="col-xs-3 control-label">{{Protocole}}</label>
+                <div class="col-xs-3">
                     <select class="configKey form-control" data-l1key="externalProtocol">
                         <option value="">Aucun</option>
                         <option value="http://">HTTP</option>
                         <option value="https://">HTTPS</option>
                     </select>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-xs-4 control-label">{{Adresse URL ou IP}}</label>
-                <div class="col-xs-8">
-                    <input type="text" class="configKey form-control" data-l1key="externalAddr" />
-                </div>
-            </div>
-            <div class="form-group expertModeVisible">
-                <label class="col-xs-4 control-label">{{Complément (exemple : /jeedom)}}</label>
-                <div class="col-xs-8">
-                    <input type="text"  class="configKey form-control" data-l1key="externalComplement" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-xs-4 control-label">{{Port}}</label>
-                <div class="col-xs-8">
+                 <label class="col-xs-3 control-label">{{Port}}</label>
+                <div class="col-xs-3">
                     <input type="number" class="configKey form-control" data-l1key="externalPort" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-xs-4 control-label">{{Statut}}</label>
-                <div class="col-xs-8">
+                <label class="col-xs-3 control-label">{{Adresse URL ou IP}}</label>
+                <div class="col-xs-3">
+                    <input type="text" class="configKey form-control" data-l1key="externalAddr" />
+                </div>
+                 <label class="col-xs-3 control-label">{{Complément}}</label>
+                <div class="col-xs-3">
+                    <input type="text"  class="configKey form-control" data-l1key="externalComplement" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-3 control-label">{{Statut}}</label>
+                <div class="col-xs-3">
                   <?php
 $externalTest = network::test('external');
 if ($externalTest) {
