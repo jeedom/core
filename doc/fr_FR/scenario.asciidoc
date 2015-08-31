@@ -396,6 +396,12 @@ Scénario::
 * *$scenario->removeData($key)*;
     ** Supprime une donnée
 
+* *$scenario->setLog($message)*;
+    ** Ecris message dans le log du scénario
+
+* *$scenario->persistLog()*;
+    ** Force l'écriture du log (sinon il est ecris seulement à la fin du scénario). Attention ceci peut un peu ralentir le scénario
+
 == Les variables
 
 Vous pouvez en cliquant sur le bouton variable voir toute les variables exitant sur votre systeme, changer leur valeur, les supprimer, en ajouter et voir dans quel scénario elles sont utilisée : 
