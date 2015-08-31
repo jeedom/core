@@ -171,7 +171,7 @@ $('#span_plugin_delete').delegate('.removePlugin','click',function(){
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                    window.location.reload();
+                    window.location.href = 'index.php?v=d&p=plugin';
                 }
             });
         }
