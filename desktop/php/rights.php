@@ -153,7 +153,7 @@ foreach ($pages as $kpage => $page) {
 			echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
 			echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
 			echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="' . $kpage . $kright . '" />';
-			echo '<input type="checkbox" data-size="mini" class="rightsAttr bootstrapSwitch" data-l1key="right" data-label-text="' . $right['title'] . '" checked />';
+			echo '<input type="checkbox" data-size="mini" class="rightsAttr" data-l1key="right" checked /> ' . $right['title'];
 			echo '</span>';
 		}
 	}
@@ -188,7 +188,7 @@ foreach (eqLogic::all() as $eqLogic) {
 		echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="eqLogic' . $eqLogic->getId() . $kright . '" />';
-		echo '<input type="checkbox" data-size="mini" class="rightsAttr bootstrapSwitch" data-l1key="right" data-label-text="' . $right . '" checked /> ';
+		echo '<input type="checkbox" data-size="mini" class="rightsAttr" data-l1key="right" checked /> ' . $right;
 		echo '</span>';
 	}
 	echo '</td>';
@@ -220,7 +220,7 @@ foreach (scenario::all() as $scenario) {
 		echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="scenario' . $scenario->getId() . $kright . '" />';
-		echo '<input type="checkbox" data-size="mini" class="rightsAttr bootstrapSwitch" data-l1key="right" data-label-text="' . $right . '" checked /> ';
+		echo '<input type="checkbox" data-size="mini" class="rightsAttr" data-l1key="right" checked /> ' . $right;
 		echo '</span>';
 	}
 	echo '</td>';
