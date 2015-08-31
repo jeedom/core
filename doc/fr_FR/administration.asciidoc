@@ -70,10 +70,10 @@ Partie très importante dans Jeedom, il faut absolument la configurer correcteme
 ** *Gestion* : permet d'arreter et relancer le service DNS
 
 [TIP]
-Si vous êtes en HTTPS le port et le 443 (par defaut) et en HTTP le port est par defaut le 80
+Si vous êtes en HTTPS le port est le 443 (par defaut) et en HTTP le port est par defaut le 80
 
 [IMPORTANT]
-Cette partie est juste la pour expliquer à Jeedom son environement une modification du port ou de l'IP ici ne changera pas le port ou l'IP de Jeedom. Pour cela il faut se connecter en SSH et editer le fichier /etc/network/interfaces pour l'ip et le fichier etc/nginx/sites-available/default et etc/nginx/sites-available/default_ssl (pour le HTTPS). En cas de mauvaise manipulation votre Jeedom l'équipe Jeedom ne pourra etre tenu responsable et pourra refuser toute demande de support.
+Cette partie est juste la pour expliquer à Jeedom son environement une modification du port ou de l'IP ici ne changera pas le port ou l'IP de Jeedom. Pour cela il faut se connecter en SSH et editer le fichier /etc/network/interfaces pour l'ip et le fichier etc/nginx/sites-available/default et etc/nginx/sites-available/default_ssl (pour le HTTPS). En cas de mauvaise manipulation de votre Jeedom l'équipe Jeedom ne pourra etre tenu responsable et pourra refuser toute demande de support.
 
 == Configuration des commandes
 
