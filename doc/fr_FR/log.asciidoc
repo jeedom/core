@@ -37,7 +37,7 @@ Vous avez ici 3 options :
 
 == Le log event et le niveau de log event
 
-Le log event est un peu particulier, deja pour qu'il marche il faut activer le niveau de log event, ensuite celui recence toute les evenement ou action qu'il se passe sur la domotique. Pour y acceder il faut cliquer sur la petite icone "compteur" en bas a droite dans Jeedom : 
+Le log event est un peu particulier, deja pour qu'il marche il faut activer le niveau de log event, ensuite celui-ci recence toute les evenement ou action qu'il se passe sur la domotique. Pour y acceder il faut cliquer sur la petite icone "compteur" en bas a droite dans Jeedom : 
 
 image::../images/log3.JPG[]
 
