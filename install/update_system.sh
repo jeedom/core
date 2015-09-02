@@ -10,11 +10,6 @@ if [ $? -ne 0 ]; then
 fi
 echo "*************Update repository*************"
 sudo apt-get -y update
-if [ $? -ne 0 ]; then
-	echo "Error on update repository"
-	echo '[END UPDATE ERROR]'
-	exit 1
-fi
 echo "*************Upgrade*************"
 sudo DEBIAN_FRONTEND=noninteractive apt-get -q -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" dist-upgrade
 if [ $? -ne 0 ]; then
