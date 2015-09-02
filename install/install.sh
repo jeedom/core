@@ -195,7 +195,7 @@ install_nodejs() {
     check_nodejs_version
     [ $? -eq 1 ] && return
     if [ -f /usr/bin/raspi-config ]; then
-       curl -sL https://deb.nodesource.com/setup_0.12 | bash -
+        curl -sL https://deb.nodesource.com/setup_0.12 | bash -
         apt-get -y install nodejs
         ln -s /usr/bin/nodejs /usr/bin/node
     else
