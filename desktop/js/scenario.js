@@ -615,20 +615,17 @@ $('body').delegate('.bt_selectTrigger', 'click', function (event) {
 
 $('body').delegate('.bt_sortable', 'mouseenter', function () {
   var expressions = $(this).closest('.expressions');
-  if(!expressions.hasClass('ui-sortable-handle')){
-    $("#div_scenarioElement").sortable({
-      axis: "y",
-      cursor: "move",
-      items: ".sortable",
-      //placeholder: "toto",
-     //forcePlaceholderSize: true,
-     forceHelperSize: true,
-     //grid: [0, 11],
-     refreshPositions: true,
-     tolerance: "pointer",
-     dropOnEmpty: false,
-     opacity: 0.5,
-     update: function (event, ui) {
+  $("#div_scenarioElement").sortable({
+    axis: "y",
+    cursor: "move",
+    items: ".sortable",
+    //placeholder: "ui-state-highlight",
+    forcePlaceholderSize: true,
+    forceHelperSize: true,
+    grid: [0, 11],
+    refreshPositions: true,
+    dropOnEmpty: false,
+    update: function (event, ui) {
       if (ui.item.findAtDepth('.element', 2).length == 1 && ui.item.parent().attr('id') == 'div_scenarioElement') {
         ui.item.replaceWith(ui.item.findAtDepth('.element', 2));
       }
@@ -641,24 +638,19 @@ $('body').delegate('.bt_sortable', 'mouseenter', function () {
       if (ui.item.closest('.subElement').hasClass('noSortable')) {
         $("#div_scenarioElement").sortable("cancel");
       }
-      $('.sortable.empty').removeClass('ui-state-highlight');
       updateSortable();
     },
     start: function (event, ui) {
-     $('.subElement .expressions').each(function () {
-      $(this).children('.sortable.empty').show();
-    });
-     $('.sortable.empty').addClass('ui-state-highlight');
-   },
- });
-}
+      if (expressions.find('.sortable').length < 3) {
+        expressions.find('.sortable.empty').show();
+      }
+    },
+  });
 $("#div_scenarioElement").sortable("enable");
-$( "#div_scenarioElement" ).disableSelection();
 });
 
 $('body').delegate('.bt_sortable', 'mouseout', function () {
   $("#div_scenarioElement").sortable("disable");
-  $( "#div_scenarioElement" ).enableSelection();
 
 });
 
@@ -710,7 +702,6 @@ if (is_numeric(getUrlVars('id'))) {
 function updateSortable() {
   $('.element').removeClass('sortable');
   $('#div_scenarioElement > .element').addClass('sortable');
-  
   $('.subElement .expressions').each(function () {
     if ($(this).children('.sortable:not(.empty)').length > 0) {
       $(this).children('.sortable.empty').hide();
@@ -1059,7 +1050,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '     </div><p> </p>';
     retour += '   </div>';
     retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px; background-color: ' + listColor[_pColor] + ';">';
-    retour += '     <div class="sortable empty" style="height : 50px;"></div>';
+    retour += '     <div class="sortable empty" style="height : 30px;"></div>';
     if (isset(_subElement.expressions)) {
       for (var k in _subElement.expressions) {
         retour += addExpression(_subElement.expressions[k]);
@@ -1085,7 +1076,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '     </div><p> </p>';
     retour += '   </div>';
     retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px; background-color: ' + listColor[_pColor] + '; border-top :1px solid ' + listColorStrong[_pColor] + '">';
-    retour += '     <div class="sortable empty" style="height : 50px;"></div>';
+    retour += '     <div class="sortable empty" style="height : 30px;"></div>';
     if (isset(_subElement.expressions)) {
       for (var k in _subElement.expressions) {
         retour += addExpression(_subElement.expressions[k]);
@@ -1165,7 +1156,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '     </div><p> </p>';
     retour += '   </div>';
     retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px; background-color: ' + listColor[_pColor] + ';">';
-    retour += '     <div class="sortable empty" style="height : 50px;"></div>';
+    retour += '     <div class="sortable empty" style="height : 30px;"></div>';
     if (isset(_subElement.expressions)) {
       for (var k in _subElement.expressions) {
         retour += addExpression(_subElement.expressions[k]);
@@ -1184,7 +1175,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{CODE}}</legend>'; 
     retour += '  </div>';
     retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px; background-color: ' + listColor[_pColor] + ';">';
-    retour += '     <div class="sortable empty" style="height : 50px;"></div>';
+    retour += '     <div class="sortable empty" style="height : 30px;"></div>';
     var expression = {type: 'code'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0];
@@ -1199,7 +1190,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
     retour += '  </div>';
     retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px; background-color: ' + listColor[_pColor] + ';">';
-    retour += '     <div class="sortable empty" style="height : 50px;"></div>';
+    retour += '     <div class="sortable empty" style="height : 30px;"></div>';
     var expression = {type: 'comment'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0];
@@ -1228,7 +1219,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '     </div><p> </p>';
     retour += '   </div>';
     retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px; background-color: ' + listColor[_pColor] + ';">';
-    retour += '     <div class="sortable empty" style="height : 50px;"></div>';
+    retour += '     <div class="sortable empty" style="height : 30px;"></div>';
     if (isset(_subElement.expressions)) {
       for (var k in _subElement.expressions) {
         retour += addExpression(_subElement.expressions[k]);
