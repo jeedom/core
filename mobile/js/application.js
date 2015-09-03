@@ -160,7 +160,6 @@ function initApplication(_reinit) {
 function page(_page, _title, _option, _plugin) {
     $.showLoading();
     $('.ui-popup').popup('close');
-    $('#page').empty();
     if (isset(_title)) {
         $('#pageTitle').empty().append(_title);
     }
@@ -182,7 +181,7 @@ function page(_page, _title, _option, _plugin) {
             if (init(_plugin) != '') {
                 page += '&m=' + _plugin;
             }
-            $('#page').load(page, function () {
+            $('#page').hide().load(page, function () {
                 $('#page').trigger('create');
                 var functionName = '';
                 if (init(_plugin) != '') {
@@ -198,6 +197,7 @@ function page(_page, _title, _option, _plugin) {
                     }
                 }
                 Waves.init();
+                $('#page').fadeIn(400)
             });
         }
     });
