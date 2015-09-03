@@ -134,6 +134,9 @@ function getDeviceType() {
     if (navigator.userAgent.match(/(Iphone)/gi)) {
         result.type = 'phone';
     }
+    if (navigator.userAgent.match(/(Lumia)/gi)) {
+        result.type = 'phone';
+    }
     if (navigator.userAgent.match(/(IEMobile)/gi)) {
         result.type = 'phone';
     }
