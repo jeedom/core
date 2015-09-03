@@ -107,6 +107,21 @@ CACHE:
 /socket.io/socket.io.js?1.2.1
 <?php
 foreach (plugin::listPlugin(true) as $plugin) {
+	foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile', '*') as $file) {
+		if (is_dir(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file)) {
+			foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file, '*') as $file2) {
+				if (strpos($file2, '.js') !== false) {
+					$js_file[] = 'plugins/' . $plugin->getId() . '/core/template/mobile/' . $file . $file2;
+				} elseif (strpos($file2, '.css') !== false || strpos($file2, '.png') !== false || strpos($file2, '.jpg') !== false) {
+					$other_file[] = 'plugins/' . $plugin->getId() . '/core/template/mobile/' . $file . $file2;
+				}
+			}
+		} elseif (strpos($file, '.js') !== false) {
+			$js_file[] = 'plugins/' . $plugin->getId() . '/core/template/mobile/' . $file;
+		} elseif (strpos($file, '.css' || strpos($file, '.png') !== false || strpos($file, '.jpg') !== false) !== false) {
+			$other_file[] = 'plugins/' . $plugin->getId() . '/core/template/mobile/' . $file;
+		}
+	}
 	if ($plugin->getMobile() != '') {
 		if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/doc/images/' . $plugin->getId() . '_icon.png')) {
 			$other_file[] = 'plugins/' . $plugin->getId() . '/doc/images/' . $plugin->getId() . '_icon.png';
@@ -119,7 +134,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 				log::add($plugin_id, 'error', __('Erreur sur la fonction mobileManifest du plugin : ', __FILE__) . $e->getMessage());
 			}
 		}
-		foreach (ls('plugins/' . $plugin->getId() . '/mobile/js', '*.js') as $file) {
+		foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/js', '*.js') as $file) {
 			echo "\n";
 			if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/js/' . $file)) {
 				echo '#' . md5_file(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/js/' . $file);
@@ -127,7 +142,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			}
 			echo 'core/php/getJS.php?file=plugins/' . $plugin->getId() . '/mobile/js/' . $file . "\n";
 		}
-		foreach (ls('plugins/' . $plugin->getId() . '/mobile/html', '*.html') as $file) {
+		foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/html', '*.html') as $file) {
 			echo "\n";
 			if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/html/' . $file)) {
 				echo '#' . md5_file(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/html/' . $file);
