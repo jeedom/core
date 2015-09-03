@@ -72,7 +72,9 @@ $other_file = array(
 	'core/css/core.css',
 	'3rdparty/jquery.utils/jquery.utils.css',
 	'mobile/css/commun.css',
-	'3rdparty/jquery.mobile/css/fonts/fontawesome-webfont.woff?v=4.3.0',
+	'3rdparty/jquery.mobile/css/fonts/roboto/Roboto-Regular-webfont.woff',
+	'3rdparty/font-awesome/fonts/fontawesome-webfont.woff2?v=4.4.0',
+	'3rdparty/font-awesome/css/font-awesome.min.css',
 	'3rdparty/jquery.mobile/images/ajax-loader.gif',
 	'3rdparty/jquery.mobile/css/fonts/roboto/Roboto-Thin-webfont.woff',
 	'3rdparty/jquery.mobile/css/fonts/roboto/Roboto-Light-webfont.woff',
@@ -83,6 +85,7 @@ $other_file = array(
 	'//fonts.gstatic.com/s/robotodraft/v4/0xES5Sl_v6oyT7dAKuoni44P5ICox8Kq3LLUNMylGO4.woff2',
 	'//fonts.gstatic.com/s/robotodraft/v4/u0_CMoUf3y3-4Ss4ci-VwbBojE9J5UnpMtv5N3zfxwk.woff2',
 	'//fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,700,900',
+	'//fonts.gstatic.com/s/robotodraft/v4/u0_CMoUf3y3-4Ss4ci-VwYlIZu-HDpmDIZMigmsroc4.woff2',
 );
 if (file_exists(dirname(__FILE__) . '/mobile/custom/custom.css')) {
 	$other_file[] = 'mobile/custom/custom.css';
@@ -98,18 +101,36 @@ foreach (ls($root_dir, '*') as $dir) {
 		}
 	}
 }
-$root_dir = dirname(__FILE__) . '/plugins/';
-foreach (ls($root_dir, '*') as $dir) {
-	if (is_dir($root_dir . $dir) && file_exists($root_dir . $dir . 'doc/images/' . str_replace('/', '', $dir) . '_icon.png')) {
-		$other_file[] = 'plugins/' . $dir . 'doc/images/' . str_replace('/', '', $dir) . '_icon.png';
-	}
-}
 ?>
 CACHE MANIFEST
 
 CACHE:
 /socket.io/socket.io.js?1.2.1
 <?php
+foreach (plugin::listPlugin(true) as $plugin) {
+	if ($plugin->getMobile() != '') {
+		if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/doc/images/' . $plugin->getId() . '_icon.png')) {
+			$other_file[] = 'plugins/' . $plugin->getId() . '/doc/images/' . $plugin->getId() . '_icon.png';
+		}
+		foreach (ls('plugins/' . $plugin->getId() . '/mobile/js', '*.js') as $file) {
+			echo "\n";
+			if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/js/' . $file)) {
+				echo '#' . md5_file(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/js/' . $file);
+				echo "\n";
+			}
+			echo 'core/php/getJS.php?file=plugins/' . $plugin->getId() . '/mobile/js/' . $file . "\n";
+		}
+		foreach (ls('plugins/' . $plugin->getId() . '/mobile/html', '*.html') as $file) {
+			echo "\n";
+			if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/html/' . $file)) {
+				echo '#' . md5_file(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/html/' . $file);
+				echo "\n";
+			}
+			echo 'index.php?v=m&ajax=1&p=' . substr($file, 0, -5) . '&m=' . $plugin->getId() . "\n";
+		}
+	}
+}
+
 foreach ($js_file as $file) {
 	echo "\n";
 	if (file_exists(dirname(__FILE__) . '/' . $file)) {
@@ -149,26 +170,6 @@ foreach (ls('mobile/html', '*.html') as $file) {
 	echo "\n";
 }
 
-foreach (plugin::listPlugin(true) as $plugin) {
-	if ($plugin->getMobile() != '') {
-		foreach (ls('plugins/' . $plugin->getId() . '/mobile/js', '*.js') as $file) {
-			echo "\n";
-			if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/js/' . $file)) {
-				echo '#' . md5_file(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/js/' . $file);
-				echo "\n";
-			}
-			echo 'core/php/getJS.php?file=plugins/' . $plugin->getId() . '/mobile/js/' . $file . "\n";
-		}
-		foreach (ls('plugins/' . $plugin->getId() . '/mobile/html', '*.html') as $file) {
-			echo "\n";
-			if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/html/' . $file)) {
-				echo '#' . md5_file(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/html/' . $file);
-				echo "\n";
-			}
-			echo 'index.php?v=m&m=' . $plugin->getId() . '&p=' . substr($file, 0, -5) . "\n";
-		}
-	}
-}
 ?>
 
 NETWORK:
