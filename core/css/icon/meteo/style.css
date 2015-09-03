@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'meteo';
-	src:url('fonts/meteo.eot?-h10ek8');
-	src:url('fonts/meteo.eot?#iefix-h10ek8') format('embedded-opentype'),
-		url('fonts/meteo.woff?-h10ek8') format('woff'),
-		url('fonts/meteo.ttf?-h10ek8') format('truetype'),
-		url('fonts/meteo.svg?-h10ek8#meteo') format('svg');
+	src:url('fonts/meteo.eot');
+	src:url('fonts/meteo.eot') format('embedded-opentype'),
+		url('fonts/meteo.woff') format('woff'),
+		url('fonts/meteo.ttf') format('truetype'),
+		url('fonts/meteo.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

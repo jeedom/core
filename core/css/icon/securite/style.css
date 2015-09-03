@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'securite';
-	src:url('fonts/securite.eot?m8opnn');
-	src:url('fonts/securite.eot?#iefixm8opnn') format('embedded-opentype'),
-		url('fonts/securite.woff?m8opnn') format('woff'),
-		url('fonts/securite.ttf?m8opnn') format('truetype'),
-		url('fonts/securite.svg?m8opnn#securite') format('svg');
+	src:url('fonts/securite.eot');
+	src:url('fonts/securite.eot') format('embedded-opentype'),
+		url('fonts/securite.woff') format('woff'),
+		url('fonts/securite.ttf') format('truetype'),
+		url('fonts/securite.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'loisir';
-	src:url('fonts/loisir.eot?hf0s66');
-	src:url('fonts/loisir.eot?#iefixhf0s66') format('embedded-opentype'),
-		url('fonts/loisir.woff?hf0s66') format('woff'),
-		url('fonts/loisir.ttf?hf0s66') format('truetype'),
-		url('fonts/loisir.svg?hf0s66#loisir') format('svg');
+	src:url('fonts/loisir.eot');
+	src:url('fonts/loisir.eot') format('embedded-opentype'),
+		url('fonts/loisir.woff') format('woff'),
+		url('fonts/loisir.ttf') format('truetype'),
+		url('fonts/loisir.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
