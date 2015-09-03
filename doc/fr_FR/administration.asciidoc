@@ -75,6 +75,9 @@ Si vous êtes en HTTPS le port est le 443 (par defaut) et en HTTP le port est pa
 [IMPORTANT]
 Cette partie est juste la pour expliquer à Jeedom son environement une modification du port ou de l'IP ici ne changera pas le port ou l'IP de Jeedom. Pour cela il faut se connecter en SSH et editer le fichier /etc/network/interfaces pour l'ip et le fichier etc/nginx/sites-available/default et etc/nginx/sites-available/default_ssl (pour le HTTPS). En cas de mauvaise manipulation de votre Jeedom l'équipe Jeedom ne pourra etre tenu responsable et pourra refuser toute demande de support.
 
+[NOTE]
+Vous pouvez voir link:http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https[ici] un tutorial pour mettre en place un certificat HTTPS auto-signé
+
 == Configuration des commandes
 
 image::../images/administration4.png[]
