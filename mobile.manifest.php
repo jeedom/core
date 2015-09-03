@@ -96,7 +96,6 @@ foreach (ls($root_dir, '*') as $dir) {
 	if (is_dir($root_dir . $dir) && file_exists($root_dir . $dir . '/style.css')) {
 		$other_file[] = 'core/css/icon/' . $dir . 'style.css';
 		foreach (ls($root_dir . $dir . '/fonts', '*') as $font) {
-
 			$other_file[] = 'core/css/icon/' . $dir . 'fonts/' . $font;
 		}
 	}
@@ -111,6 +110,14 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	if ($plugin->getMobile() != '') {
 		if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/doc/images/' . $plugin->getId() . '_icon.png')) {
 			$other_file[] = 'plugins/' . $plugin->getId() . '/doc/images/' . $plugin->getId() . '_icon.png';
+		}
+		if (method_exists($plugin->getId(), 'mobileManifest')) {
+			$plugin_id = $plugin->getId();
+			try {
+				$plugin_id::mobileManifest();
+			} catch (Exception $e) {
+				log::add($plugin_id, 'error', __('Erreur sur la fonction mobileManifest du plugin : ', __FILE__) . $e->getMessage());
+			}
 		}
 		foreach (ls('plugins/' . $plugin->getId() . '/mobile/js', '*.js') as $file) {
 			echo "\n";
