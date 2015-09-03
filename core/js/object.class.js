@@ -21,16 +21,8 @@ jeedom.object = function() {
 
 jeedom.object.cache = Array();
 
-if (!isset(jeedom.object.cache.html)) {
-    jeedom.object.cache.html = Array();
-}
-
 if (!isset(jeedom.object.cache.getEqLogic)) {
     jeedom.object.cache.getEqLogic = Array();
-}
-
-if (!isset(jeedom.object.cache.html)) {
-    jeedom.object.cache.html = Array();
 }
 
 if (!isset(jeedom.object.cache.byId)) {
@@ -82,8 +74,8 @@ jeedom.object.all = function(_params) {
         return;
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    if (isset(jeedom.scenario.cache.all)) {
-        params.success(jeedom.scenario.cache.all);
+    if (isset(jeedom.object.cache.all)) {
+        params.success(jeedom.object.cache.all);
         return;
     }
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
@@ -96,18 +88,7 @@ jeedom.object.all = function(_params) {
 
 jeedom.object.toHtml = function(_params) {
     var paramsRequired = ['id'];
-    var paramsSpecifics = {
-        pre_success: function(data) {
-            if (_params.id == 'all' || $.isArray(_params.id)) {
-                for (var i in data.result) {
-                    jeedom.object.cache.html[i] = data.result[i];
-                }
-            } else {
-                jeedom.object.cache.html[_params.id] = data.result;
-            }
-            return data;
-        }
-    };
+    var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
@@ -115,10 +96,6 @@ jeedom.object.toHtml = function(_params) {
         return;
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    if (init(params.useCache, false) == true && isset(jeedom.object.cache.html[params.id])) {
-        params.success(jeedom.object.cache.html[params.id]);
-        return;
-    }
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/object.ajax.php';
     paramsAJAX.data = {
@@ -136,9 +113,6 @@ jeedom.object.remove = function(_params) {
             if (isset(jeedom.object.cache.all)) {
                 delete jeedom.object.cache.all;
             }
-            if (isset(jeedom.object.cache.html[_params.id])) {
-                delete jeedom.object.cache.html[_params.id];
-            }
             if (isset(jeedom.object.cache.getEqLogic[_params.id])) {
                 delete jeedom.object.cache.getEqLogic[_params.id];
             }
@@ -152,10 +126,6 @@ jeedom.object.remove = function(_params) {
         return;
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    if (init(params.useCache, false) == true && isset(jeedom.object.cache.html[params.id])) {
-        params.success(jeedom.object.cache.html[params.id]);
-        return;
-    }
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/object.ajax.php';
     paramsAJAX.data = {
@@ -172,9 +142,6 @@ jeedom.object.save = function(_params) {
             if (isset(jeedom.object.cache.all)) {
                 delete jeedom.object.cache.all;
             }
-            if (isset(jeedom.object.cache.html[_params.id])) {
-                delete jeedom.object.cache.html[_params.id];
-            }
             if (isset(jeedom.object.cache.getEqLogic[_params.id])) {
                 delete jeedom.object.cache.getEqLogic[_params.id];
             }
@@ -188,10 +155,6 @@ jeedom.object.save = function(_params) {
         return;
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    if (init(params.useCache, false) == true && isset(jeedom.object.cache.html[params.id])) {
-        params.success(jeedom.object.cache.html[params.id]);
-        return;
-    }
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/object.ajax.php';
     paramsAJAX.data = {

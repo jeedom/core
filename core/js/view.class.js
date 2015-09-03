@@ -19,11 +19,7 @@
  jeedom.view = function () {
  };
 
- jeedom.view.cache = Array();
-
- if (!isset(jeedom.view.cache.html)) {
-    jeedom.view.cache.html = Array();
-}
+jeedom.view.cache = Array();
 
 jeedom.view.all = function (_params) {
     var paramsRequired = [];
