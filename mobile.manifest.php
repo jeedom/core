@@ -109,15 +109,23 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile', '*') as $file) {
 		if (is_dir(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file)) {
 			foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file, '*') as $file2) {
-				if (strpos($file2, '.js') !== false) {
+				if (is_dir(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file . $file2)) {
+					foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file . $file2, '*') as $file3) {
+						if (strpos($file3, '.js') !== false) {
+							$js_file[] = 'plugins/' . $plugin->getId() . '/core/template/mobile/' . $file . $file2 . $file3;
+						} elseif (strpos($file3, '.css') !== false || strpos($file3, '.png') !== false || strpos($file3, '.jpg') !== false || strpos($file3, '.ttf') !== false || strpos($file3, '.woff') !== false) {
+							$other_file[] = 'plugins/' . $plugin->getId() . '/core/template/mobile/' . $file . $file2 . $file3;
+						}
+					}
+				} else if (strpos($file2, '.js') !== false) {
 					$js_file[] = 'plugins/' . $plugin->getId() . '/core/template/mobile/' . $file . $file2;
-				} elseif (strpos($file2, '.css') !== false || strpos($file2, '.png') !== false || strpos($file2, '.jpg') !== false) {
+				} elseif (strpos($file2, '.css') !== false || strpos($file2, '.png') !== false || strpos($file2, '.jpg') !== false || strpos($file2, '.ttf') !== false || strpos($file2, '.woff') !== false) {
 					$other_file[] = 'plugins/' . $plugin->getId() . '/core/template/mobile/' . $file . $file2;
 				}
 			}
 		} elseif (strpos($file, '.js') !== false) {
 			$js_file[] = 'plugins/' . $plugin->getId() . '/core/template/mobile/' . $file;
-		} elseif (strpos($file, '.css' || strpos($file, '.png') !== false || strpos($file, '.jpg') !== false) !== false) {
+		} elseif (strpos($file, '.css') !== false || strpos($file, '.png') !== false || strpos($file, '.jpg') !== false || strpos($file, '.ttf') !== false || strpos($file, '.woff') !== false) {
 			$other_file[] = 'plugins/' . $plugin->getId() . '/core/template/mobile/' . $file;
 		}
 	}
