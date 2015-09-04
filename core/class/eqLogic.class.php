@@ -555,11 +555,11 @@ class eqLogic {
 		} else {
 			$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
 		}
-		return DB::save($this);
+		return DB::save($this, $_direct);
 	}
 
 	public function refresh() {
-		DB::refresh($this, $_direct);
+		DB::refresh($this);
 	}
 
 	public function getLinkToConfiguration() {
