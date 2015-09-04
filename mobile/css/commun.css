@@ -29,7 +29,7 @@ body{
     text-shadow:0 0 0 !important; 
 }
 
-.eqLogic-widget .ui-btn{
+.eqLogic-widget .ui-btn:not(.ui-btn-raised){
     background-color: transparent !important;
     border: 2px solid white !important;
     color : white !important;
