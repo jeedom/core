@@ -206,7 +206,7 @@ jeedom.update.doAll({
             var regex = /<br\s*[\/]?>/gi;
             if($.isArray(data.result)){
                 for (var i in data.result.reverse()) {
-                    log += data.result[i][2].replace(regex, "\n");
+                    log += $.trim(data.result[i][2].replace(regex, "\n")) + "\n";
                     if ($.trim(data.result[i][2].replace(regex, "\n")) == '[END ' + _log.toUpperCase() + ' SUCCESS]') {
                         printUpdate();
                         $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'});

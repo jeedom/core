@@ -594,7 +594,7 @@ class market {
 
 				}
 
-				log::add('update', 'update', __('Décompression de l\'archive...', __FILE__));
+				log::add('update', 'update', __('Décompression du zip...', __FILE__));
 				$zip = new ZipArchive;
 				$res = $zip->open($tmp);
 				if ($res === TRUE) {
@@ -604,7 +604,7 @@ class market {
 					}
 					$zip->close();
 					log::add('update', 'update', __("OK\n", __FILE__));
-					log::add('update', 'update', __('Installation de l\'objet...', __FILE__));
+					log::add('update', 'update', __('Installation du plugin,widget...', __FILE__));
 					try {
 						$plugin = plugin::byId($this->getLogicalId());
 					} catch (Exception $e) {
@@ -646,11 +646,11 @@ class market {
 							$ErrMsg = "Erreur inconnue (Code $res)";
 							break;
 					}
-					throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp . __('. Erreur : ', __FILE__) . $ErrMsg . '. Si l\'application est payante, l\'avez-vous achetée ?');
+					throw new Exception(__('Impossible de décompresser le zip : ', __FILE__) . $tmp . __('. Erreur : ', __FILE__) . $ErrMsg . '. Avez vous acheté le plugin ?');
 				}
 				break;
 			default:
-				log::add('update', 'update', __('Installation de l\'objet...', __FILE__));
+				log::add('update', 'update', __('Installation de du plugin,widget...', __FILE__));
 				$type = $this->getType();
 				if (class_exists($type) && method_exists($type, 'getFromMarket')) {
 					$type::getFromMarket($this, $tmp);
