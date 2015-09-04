@@ -1,6 +1,11 @@
 #!/bin/sh
-
 echo '[START UPDATE]'
+NGINX_CONF_VERSION='nginx_default'
+
+if [ $(grep "root /usr/share/nginx/www/jeedom;" /etc/nginx/sites-available/default | wc -l) -eq 1 ]; then
+	NGINX_CONF_VERSION='nginx_default_without_jeedom'
+fi
+
 echo "*************Fix previous update (if needed)*************"
 sudo dpkg --configure -a
 if [ $? -ne 0 ]; then
@@ -39,5 +44,10 @@ if [ $? -ne 0 ]; then
 	echo '[END UPDATE ERROR]'
 	exit 1
 fi
+
+echo "*************Update nginx conf : ${NGINX_CONF_VERSION} *************"
+
+sudo cp /usr/share/nginx/www/jeedom/install/${NGINX_CONF_VERSION} /etc/nginx/sites-available/default
+sudo service nginx reload
 
 echo '[END UPDATE SUCCESS]'
