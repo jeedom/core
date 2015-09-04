@@ -398,7 +398,11 @@ class evaluate {
 		}
 		//ERREUR SI UN CARACTERE OUVRANT " ' ( ou { n'a pas été fermé
 		if ($nbCaractOuvrant > 0) {
-			throw new Exception(__("ERREUR dans l'espression, caractère fermant attendu : ", __FILE__) . $caracOuvrant[sizeof($caracOuvrant)]);
+			if (isset($caracOuvrant[sizeof($caracOuvrant)])) {
+				throw new Exception(__("ERREUR dans l'espression, caractère fermant attendu : ", __FILE__) . $caracOuvrant[sizeof($caracOuvrant)]);
+			} else {
+				throw new Exception(__("ERREUR dans l'espression, caractère fermant attendu : ", __FILE__));
+			}
 		}
 		return $lstP;
 	}
