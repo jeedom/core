@@ -307,6 +307,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `view` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(127) NULL,
+  `display` text NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB
