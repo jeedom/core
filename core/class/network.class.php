@@ -489,7 +489,7 @@ class network {
 	}
 
 	public static function getInterfaceIp($_interface) {
-		$results = trim(shell_exec('sudo ip addr show ' . $_interface . '| grep inet | head -1'));
+		$results = trim(shell_exec('sudo ip addr show ' . $_interface . '| grep inet | head -1 2>&1'));
 		$results = explode(' ', $results);
 		if (!isset($results[1])) {
 			return false;
