@@ -106,24 +106,26 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		$users = json_decode(init('users'), true);
+		$user = null;
 		foreach ($users as $user_json) {
 			if (isset($user_json['id'])) {
 				$user = user::byId($user_json['id']);
-				if (!is_object($user)) {
-					if (config::byKey('ldap::enable') == '1') {
-						throw new Exception(__('Vous devez desactiver l\'authentification LDAP pour pouvoir ajouter un utilisateur', __FILE__));
-					}
-					$user = new user();
-				}
-				utils::a2o($user, $user_json);
-				if (isset($user_json['password'])) {
-					if (config::byKey('ldap::enable') == '1') {
-						throw new Exception(__('Vous devez desactiver l\'authentification LDAP pour pouvoir editer un utilisateur', __FILE__));
-					}
-					$user->setPassword(sha1($user_json['password']));
-				}
-				$user->save();
 			}
+			if (!is_object($user)) {
+				if (config::byKey('ldap::enable') == '1') {
+					throw new Exception(__('Vous devez desactiver l\'authentification LDAP pour pouvoir ajouter un utilisateur', __FILE__));
+				}
+				$user = new user();
+			}
+			utils::a2o($user, $user_json);
+			if (isset($user_json['password'])) {
+				if (config::byKey('ldap::enable') == '1') {
+					throw new Exception(__('Vous devez desactiver l\'authentification LDAP pour pouvoir editer un utilisateur', __FILE__));
+				}
+				$user->setPassword(sha1($user_json['password']));
+			}
+			$user->save();
+
 		}
 		$_SESSION['user']->refresh();
 		ajax::success();

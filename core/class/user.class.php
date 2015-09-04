@@ -313,7 +313,7 @@ class user {
 	}
 
 	public function getHash() {
-		if ($this->hash == '') {
+		if ($this->hash == '' && $this->id != '') {
 			$hash = sha1(config::genKey(128));
 			while (is_object(self::byHash($hash))) {
 				$hash = sha1(config::genKey(128));
