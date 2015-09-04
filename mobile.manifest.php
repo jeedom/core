@@ -35,7 +35,6 @@ $js_file = array(
 	'core/js/scenario.class.js',
 	'core/js/plan.class.js',
 	'3rdparty/jquery.packery/jquery.packery.js',
-	//'3rdparty/responsivevoices/responsivevoices.js',
 );
 if (file_exists(dirname(__FILE__) . '/mobile/custom/custom.js')) {
 	$js_file[] = 'mobile/custom/custom.js';
