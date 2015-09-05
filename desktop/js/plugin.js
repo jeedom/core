@@ -89,7 +89,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
                 $('#span_plugin_market').append('<a class="btn btn-warning btn-xs sendOnMarket" data-market_logicalId="' + data.id + '"><i class="fa fa-cloud-upload"></i> {{Envoyer sur le market}}</a>')
             }
             $('#span_plugin_delete').empty().append('<a class="btn btn-danger btn-xs removePlugin" data-market_logicalId="' + data.id + '"><i class="fa fa-trash"></i> {{Supprimer}}</a>');
-            $('#span_plugin_doc').empty().append('<a class="btn btn-primary btn-xs" target="_blank" href="http://doc.jeedom.fr/fr_FR/' + data.id + '.html"><i class="fa fa-book"></i> {{Documentation}}</a>');
+            $('#span_plugin_doc').empty().append('<a class="btn btn-primary btn-xs" target="_blank" href="https://www.jeedom.fr/doc/documentation/plugins/' + data.id + '/fr_FR/' + data.id + '.html"><i class="fa fa-book"></i> {{Documentation}}</a>');
 
             if (data.checkVersion != -1) {
                 $('#span_plugin_require').html('<span>' + data.require + '</span>');
@@ -171,7 +171,7 @@ $('#span_plugin_delete').delegate('.removePlugin','click',function(){
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                    window.location.reload();
+                    window.location.href = 'index.php?v=d&p=plugin';
                 }
             });
         }

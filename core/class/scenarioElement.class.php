@@ -339,11 +339,7 @@ class scenarioElement {
 						}
 					}
 				}
-				if ($_mode == 'array') {
-					$expression_ajax = jeedom::toHumanReadable($expression_ajax);
-				} else {
-					$expression_ajax['expression'] = jeedom::toHumanReadable($expression_ajax['expression']);
-				}
+				$expression_ajax = jeedom::toHumanReadable($expression_ajax);
 				$subElement_ajax['expressions'][] = $expression_ajax;
 			}
 			$return['subElements'][] = $subElement_ajax;

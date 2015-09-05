@@ -21,18 +21,36 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class network {
 
-	public static function getNetworkAccess($_mode = 'auto', $_protocole = '', $_default = '') {
-		self::checkConf();
-		if ($_mode == 'auto') {
-			if (netMatch('192.168.*.*', getClientIp()) || netMatch('10.0.*.*', getClientIp())) {
-				if (!isset($_SERVER['HTTP_HOST']) || netMatch('192.168.*.*', $_SERVER['HTTP_HOST']) || netMatch('10.0.*.*', $_SERVER['HTTP_HOST'])) {
-					$_mode = 'internal';
-				} else {
-					$_mode = 'external';
-				}
+	public static function getUserLocation() {
+		$client_ip = self::getClientIp();
+		if (netMatch('192.168.*.*', $client_ip) || netMatch('10.0.*.*', $client_ip)) {
+			if (!isset($_SERVER['HTTP_HOST']) || netMatch('192.168.*.*', $_SERVER['HTTP_HOST']) || netMatch('10.0.*.*', $_SERVER['HTTP_HOST'])) {
+				return 'internal';
 			} else {
-				$_mode = 'external';
+				return 'external';
 			}
+		} else {
+			return 'external';
+		}
+	}
+
+	public static function getClientIp() {
+		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			return $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
+			return $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (isset($_SERVER['REMOTE_ADDR'])) {
+			return $_SERVER['REMOTE_ADDR'];
+		}
+		return '';
+	}
+
+	public static function getNetworkAccess($_mode = 'auto', $_protocole = '', $_default = '', $_test = true) {
+		if ($_mode == 'auto') {
+			$_mode = self::getUserLocation();
+		}
+		if ($_test && !self::test($_mode, false)) {
+			self::checkConf($_mode);
 		}
 		if ($_mode == 'internal') {
 			if (strpos(config::byKey('internalAddr', 'core', $_default), 'http://') != false || strpos(config::byKey('internalAddr', 'core', $_default), 'https://') !== false) {
@@ -56,18 +74,18 @@ class network {
 			return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . config::byKey('internalComplement');
 
 		}
+		if ($_mode == 'dnsjeedom') {
+			return config::byKey('jeedom::url');
+		}
 		if ($_mode == 'external') {
-			if (strpos(config::byKey('externalAddr', 'core', $_default), 'http://') != false || strpos(config::byKey('externalAddr', 'core', $_default), 'https://') !== false) {
-				config::save('externalAddr', str_replace(array('http://', 'https://'), '', config::byKey('externalAddr', 'core', $_default)));
-			}
 			if ($_protocole == 'ip') {
-				if (config::byKey('jeedom::url') != '' && filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP)) {
+				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
 					return getIpFromString(config::byKey('jeedom::url'));
 				}
 				return getIpFromString(config::byKey('externalAddr'));
 			}
 			if ($_protocole == 'ip:port') {
-				if (config::byKey('jeedom::url') != '' && filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP)) {
+				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
 					$url = parse_url(config::byKey('jeedom::url'));
 					if (isset($url['host'])) {
 						if (isset($url['port'])) {
@@ -80,7 +98,7 @@ class network {
 				return config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80);
 			}
 			if ($_protocole == 'proto:dns:port' || $_protocole == 'proto:ip:port') {
-				if (config::byKey('jeedom::url') != '' && filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP)) {
+				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
 					$url = parse_url(config::byKey('jeedom::url'));
 					$return = '';
 					if (isset($url['scheme'])) {
@@ -97,7 +115,7 @@ class network {
 				return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80);
 			}
 			if ($_protocole == 'dns:port') {
-				if (config::byKey('jeedom::url') != '' && filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP)) {
+				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
 					$url = parse_url(config::byKey('jeedom::url'));
 					if (isset($url['host'])) {
 						if (isset($url['port'])) {
@@ -110,7 +128,7 @@ class network {
 				return config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80);
 			}
 			if ($_protocole == 'proto') {
-				if (config::byKey('jeedom::url') != '' && filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP)) {
+				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
 					$url = parse_url(config::byKey('jeedom::url'));
 					if (isset($url['scheme'])) {
 						return $url['scheme'] . '://';
@@ -118,88 +136,128 @@ class network {
 				}
 				return config::byKey('externalProtocol');
 			}
-			if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP)) {
+			if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
 				return config::byKey('jeedom::url');
 			}
 			return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . config::byKey('externalComplement');
 		}
 	}
 
-	public static function checkConf() {
-		if (config::byKey('externalComplement') == '/') {
-			config::save('externalComplement', '');
+	public static function checkConf($_mode = 'external') {
+		if ($_mode == 'internal') {
+			if (trim(config::byKey('internalComplement')) == '/') {
+				config::save('internalComplement', '');
+			}
+			if (!filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP)) {
+				$internalAddr = str_replace(array('http://', 'https://'), '', config::byKey('internalAddr'));
+				$pos = strpos($internalAddr, '/');
+				if ($pos !== false) {
+					$internalAddr = substr($internalAddr, 0, $pos);
+				}
+				if ($internalAddr != config::byKey('internalAddr') && !netMatch('127.0.*.*', $internalAddr)) {
+					config::save('internalAddr', $internalAddr);
+				}
+			} else {
+				$internalIp = getHostByName(getHostName());
+				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+					$internalIp = self::getInterfaceIp('eth0');
+				}
+				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+					$internalIp = self::getInterfaceIp('bond0');
+				}
+				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+					$internalIp = self::getInterfaceIp('wlan0');
+				}
+				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+					$internalIp = explode(' ', shell_exec('hostname -I'));
+					$internalIp = $internalIp[0];
+				}
+				if ($internalIp != '' && filter_var($internalIp, FILTER_VALIDATE_IP) && !netMatch('127.0.*.*', $internalIp)) {
+					config::save('internalAddr', $internalIp);
+				}
+			}
+
+			if (config::byKey('internalProtocol') == '') {
+				config::save('internalProtocol', 'http://');
+			}
+			if (config::byKey('internalPort') == '') {
+				config::save('internalPort', 80);
+			}
+
+			if (config::byKey('internalProtocol') == 'https://' && config::byKey('internalPort') == 80) {
+				config::save('internalPort', 443);
+			}
+
+			if (config::byKey('internalProtocol') == 'http://' && config::byKey('internalPort') == 443) {
+				config::save('internalPort', 80);
+			}
 		}
-		if (config::byKey('internalComplement') == '/') {
-			config::save('internalComplement', '');
-		}
-		if (!filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP)) {
-			$internalAddr = str_replace(array('http://', 'https://'), '', config::byKey('internalAddr'));
-			$pos = strpos($internalAddr, '/');
-			if ($pos !== false) {
-				$internalAddr = substr($internalAddr, 0, $pos);
+		if ($_mode == 'external') {
+			if ($_mode == 'external' && trim(config::byKey('externalComplement')) == '/') {
+				config::save('externalComplement', '');
 			}
-			if ($internalAddr != config::byKey('internalAddr')) {
-				config::save('internalAddr', $internalAddr);
-			}
-		}
-		if (config::byKey('internalAddr') == '' || config::byKey('internalAddr') == '127.0.0.1' || config::byKey('internalAddr') == 'localhost') {
-			$internalIp = getHostByName(getHostName());
-			if ($internalIp == '127.0.0.1' || $internalIp == '') {
-				$internalIp = self::getInterfaceIp('eth0');
-			}
-			if ($internalIp == '127.0.0.1' || $internalIp == '') {
-				$internalIp = self::getInterfaceIp('bond0');
-			}
-			if ($internalIp == '127.0.0.1' || $internalIp == '') {
-				$internalIp = self::getInterfaceIp('wlan0');
-			}
-			if ($internalIp != '') {
-				config::save('internalAddr', $internalIp);
+			if (!filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP)) {
+				$externalAddr = str_replace(array('http://', 'https://'), '', config::byKey('externalAddr'));
+				$pos = strpos($externalAddr, '/');
+				if ($pos !== false) {
+					$externalAddr = substr($externalAddr, 0, $pos);
+				}
+				if ($externalAddr != config::byKey('externalAddr')) {
+					config::save('externalAddr', $externalAddr);
+				}
 			}
 		}
 
-		if (!filter_var(config::byKey('externalAddr'), FILTER_VALIDATE_IP)) {
-			$externalAddr = str_replace(array('http://', 'https://'), '', config::byKey('externalAddr'));
-			$pos = strpos($externalAddr, '/');
-			if ($pos !== false) {
-				$externalAddr = substr($externalAddr, 0, $pos);
-			}
-			if ($externalAddr != config::byKey('externalAddr')) {
-				config::save('externalAddr', $externalAddr);
-			}
-		}
-
-		if (config::byKey('internalProtocol') == '') {
-			config::save('internalProtocol', 'http://');
-		}
-		if (config::byKey('internalPort') == '') {
-			config::save('internalPort', 80);
-		}
-
-		if (config::byKey('internalProtocol') == 'https://' && config::byKey('internalPort') == 80) {
-			config::save('internalPort', 443);
-		}
-
-		if (config::byKey('internalProtocol') == 'http://' && config::byKey('internalPort') == 443) {
-			config::save('internalPort', 80);
-		}
-
-		if (config::byKey('internalComplement') == '/' || config::byKey('internalComplement') == '') {
-			if (file_exists('/etc/nginx/sites-available/default')) {
-				$data = file_get_contents('/etc/nginx/sites-available/default');
-				if (strpos($data, 'root /usr/share/nginx/www;') !== false) {
+		if (file_exists('/etc/nginx/sites-available/default')) {
+			$data = file_get_contents('/etc/nginx/sites-available/default');
+			if (strpos($data, 'root /usr/share/nginx/www;') !== false) {
+				if ($_mode == 'internal') {
 					config::save('internalComplement', '/jeedom');
 				}
-			}
-		}
-		if (config::byKey('externalComplement') == '/') {
-			if (file_exists('/etc/nginx/sites-available/default')) {
-				$data = file_get_contents('/etc/nginx/sites-available/default');
-				if (strpos($data, 'root /usr/share/nginx/www;') !== false) {
+				if ($_mode == 'external') {
 					config::save('externalComplement', '/jeedom');
+				}
+			} else {
+				if ($_mode == 'internal') {
+					config::save('internalComplement', '');
+				}
+				if ($_mode == 'external') {
+					config::save('externalComplement', '');
 				}
 			}
 		}
+	}
+
+	public static function test($_mode = 'external', $_test = true, $_timeout = 10) {
+		if (config::byKey('network::disableMangement') == 1) {
+			return true;
+		}
+		if ($_mode == 'internal' && netMatch('127.0.*.*', self::getNetworkAccess($_mode, 'ip', '', false))) {
+			return false;
+		}
+		$url = trim(self::getNetworkAccess($_mode, '', '', $_test), '/') . '/here.html';
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_TIMEOUT, $_timeout);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		if ($_mode == 'external') {
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		}
+		$data = curl_exec($ch);
+		if (curl_errno($ch)) {
+			log::add('network', 'debug', 'Erreur sur ' . $url . ' => ' . curl_errno($ch));
+			curl_close($ch);
+			return false;
+		}
+		curl_close($ch);
+		if (trim($data) != 'ok') {
+			log::add('network', 'debug', 'Retour NOK sur ' . $url . ' => ' . $data);
+			return false;
+		}
+		return true;
 	}
 
 /*     * ****************************Nginx management*************************** */
@@ -216,6 +274,10 @@ class network {
 		foreach ($_rules as $rule) {
 			$nginx_conf .= "\n" . $rule . "\n";
 		}
+		if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
+			touch('/etc/nginx/sites-available/jeedom_dynamic_rule');
+		}
+		shell_exec('sudo chmod 777 /etc/nginx/sites-available/jeedom_dynamic_rule');
 		file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $nginx_conf);
 		shell_exec('sudo service nginx reload');
 	}
@@ -254,58 +316,23 @@ class network {
 			return $result;
 		}
 		if ($change) {
+			if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
+				touch('/etc/nginx/sites-available/jeedom_dynamic_rule');
+			}
+			shell_exec('sudo chmod 777 /etc/nginx/sites-available/jeedom_dynamic_rule');
 			file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $result);
 			shell_exec('sudo service nginx reload');
 		}
 	}
 
-	public static function apache_saveRule($_rules) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		$jeedom_dynamic_rule_file = dirname(__FILE__) . '/../../core/config/apache_jeedom_dynamic_rules';
-		if (!file_exists($jeedom_dynamic_rule_file)) {
-			throw new Exception('Fichier non trouvé : ' . $jeedom_dynamic_rule_file);
-		}
-		foreach ($_rules as $rule) {
-			$apache_conf .= $rule . "\n";
-		}
-		file_put_contents($jeedom_dynamic_rule_file, $apache_conf);
-	}
-
-	public static function apache_removeRule($_rules, $_returnResult = false) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		$jeedom_dynamic_rule_file = dirname(__FILE__) . '/../../core/config/apache_jeedom_dynamic_rules';
-		if (!file_exists($jeedom_dynamic_rule_file)) {
-			return $_rules;
-		}
-		$apache_conf = trim(file_get_contents($jeedom_dynamic_rule_file));
-		$new_apache_conf = $apache_conf;
-		foreach ($_rules as $rule) {
-			$new_apache_conf = preg_replace($rule, "", $new_apache_conf);
-		}
-		$new_apache_conf = preg_replace("/\n\n*/s", "\n", $new_apache_conf);
-
-		if ($new_apache_conf != $apache_conf) {
-			file_put_contents($jeedom_dynamic_rule_file, $new_apache_conf);
-		}
-	}
-
 /*     * *********************NGROK************************* */
 
-	public static function ngrok_start($_proto = 'https', $_port = 80, $_name = '', $_serverAddr = 'dns.jeedom.com:4443') {
-		if ($_port != 80 && $_name == '') {
-			throw new Exception(__('Si le port est different de 80 le nom ne peut etre vide', __FILE__));
-		}
+	public static function dns_start() {
 		if (config::byKey('ngrok::addr') == '') {
 			return;
 		}
-		if ($_name == '') {
-			$_name = 'jeedom';
-		}
-		$config_file = '/tmp/ngrok_' . $_name;
+		network::dns_stop();
+		$config_file = '/tmp/ngrok_jeedom';
 		$logfile = log::getPathToLog('ngrok');
 		$uname = posix_uname();
 		if (strrpos($uname['machine'], 'arm') !== false) {
@@ -316,48 +343,18 @@ class network {
 			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
 		}
 		exec('chmod +x ' . $cmd);
-		$cmd .= ' -config=' . $config_file . ' start ' . $_name;
-		if (!self::ngrok_run($_proto, $_port, $_name)) {
+		$cmd .= ' -config=' . $config_file . ' start jeedom';
+		if (!self::dns_run()) {
 			$replace = array(
-				'#server_addr#' => $_serverAddr,
-				'#name#' => $_name,
-				'#proto#' => $_proto,
-				'#port#' => $_port,
+				'#server_addr#' => 'dns.jeedom.com:4443',
+				'#name#' => 'jeedom',
+				'#proto#' => 'https',
+				'#port#' => 80,
 				'#remote_port#' => '',
 				'#token#' => config::byKey('ngrok::token'),
 				'#auth#' => '',
 				'#subdomain#' => 'subdomain : ' . config::byKey('ngrok::addr'),
 			);
-			if ($_serverAddr != 'dns.jeedom.com:4443') {
-				$replace['#subdomain#'] = '';
-			}
-			if ($_proto == 'tcp') {
-				if (config::byKey('ngrok::port') == '') {
-					return '';
-				}
-				$remote_port = config::byKey('ngrok::port');
-				if ($_port != 22) {
-					$used_port = config::byKey('ngrok::remoteport');
-					if (!is_array($used_port)) {
-						$used_port = array();
-					}
-					for ($i = 1; $i < 5; $i++) {
-						$remote_port++;
-						if (!isset($used_port[$remote_port]) || $used_port[$remote_port] == $_name) {
-							break;
-						}
-					}
-					$used_port[$remote_port] = $_name;
-					config::save('ngrok::remoteport', $used_port);
-				}
-				$replace['#remote_port#'] = 'remote_port: ' . $remote_port;
-			}
-			if (config::byKey('market::userDNS') != '' && config::byKey('market::passwordDNS') != '') {
-				$replace['#auth#'] = 'auth: "' . config::byKey('market::userDNS') . ':' . config::byKey('market::passwordDNS') . '"';
-			}
-			if ($_port != 80) {
-				$replace['#subdomain#'] .= $_name;
-			}
 			$config = template_replace($replace, file_get_contents(dirname(__FILE__) . '/../../script/ngrok/config'));
 			if (file_exists($config_file)) {
 				unlink($config_file);
@@ -366,71 +363,17 @@ class network {
 			log::remove('ngrok');
 			log::add('ngork', 'debug', 'Lancement de ngork : ' . $cmd);
 			exec($cmd . ' >> /dev/null 2>&1 &');
-			sleep(2);
-			if ($_proto == 'https' && $_port == 80) {
-				market::test();
-			}
 		}
-
 		return true;
 	}
 
-	public static function ngrok_run($_proto = 'https', $_port = 80, $_name = '') {
-		if ($_port != 80 && $_name == '') {
-			throw new Exception(__('Si le port est different de 80 le nom ne peut etre vide', __FILE__));
-		}
-		if ($_name == '') {
-			$_name = 'jeedom';
-		}
-		$config_file = '/tmp/ngrok_' . $_name;
-		$logfile = log::getPathToLog('ngrok');
-		$uname = posix_uname();
-		if (strrpos($uname['machine'], 'arm') !== false) {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
-		} else if ($uname['machine'] == 'x86_64') {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
-		} else {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
-		}
-		$cmd .= ' -config=' . $config_file . ' start ' . $_name;
-		$pid = jeedom::retrievePidThread($cmd);
-		if ($pid == null) {
-			return false;
-		}
-		return @posix_getsid(intval($pid));
+	public static function dns_run() {
+		return (shell_exec('ps ax | grep -ie "/tmp/ngrok_jeedom" | grep -v grep | wc -l') > 0);
 	}
 
-	public static function ngrok_stop($_proto = 'https', $_port = 80, $_name = '') {
-		if ($_port != 80 && $_name == '') {
-			throw new Exception(__('Si le port est different de 80 le nom ne peut etre vide', __FILE__));
-		}
-		if (!self::ngrok_run($_proto, $_port, $_name)) {
-			return true;
-		}
-		if ($_name == '') {
-			$_name = 'jeedom';
-		}
-		$config_file = '/tmp/ngrok_' . $_name;
-		$logfile = log::getPathToLog('ngrok');
-		$uname = posix_uname();
-		if (strrpos($uname['machine'], 'arm') !== false) {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
-		} else if ($uname['machine'] == 'x86_64') {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
-		} else {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
-		}
-		$cmd .= ' -config=' . $config_file . ' start ' . $_name;
-		$pid = jeedom::retrievePidThread($cmd);
-		if ($pid == null) {
-			return true;
-		}
-		$kill = @posix_kill($pid, 15);
-		if (!$kill) {
-			sleep(1);
-			@posix_kill($pid, 9);
-		}
-		return !self::ngrok_run($_proto, $_port, $_name);
+	public static function dns_stop() {
+		exec("ps aux | grep -ie '/tmp/ngrok_jeedom' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+		return self::dns_run();
 	}
 
 /*     * *********************WICD************************* */
@@ -451,6 +394,10 @@ class network {
 
 	}
 
+	public static function getMac($_interface = 'eth0') {
+		return shell_exec("ip addr show $_interface | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
+	}
+
 	public static function canManageNetwork() {
 		if (shell_exec('sudo dpkg --get-selections | grep ifenslave | wc -l') == 0) {
 			return false;
@@ -469,14 +416,23 @@ class network {
 	}
 
 	public static function ehtIsUp() {
-		return (trim(shell_exec("cat /sys/class/net/eth0/operstate")) == 'up') ? true : false;
+		if (!file_exists("/sys/class/net/eth0/operstate")) {
+			return false;
+		}
+		return (trim(file_get_contents("/sys/class/net/eth0/operstate")) == 'up') ? true : false;
 	}
 
 	public static function wlanIsUp() {
-		return (trim(shell_exec("cat /sys/class/net/wlan0/operstate")) == 'up') ? true : false;
+		if (!file_exists("/sys/class/net/wlan0/operstate")) {
+			return false;
+		}
+		return (trim(file_get_contents("/sys/class/net/wlan0/operstate")) == 'up') ? true : false;
 	}
 
 	public static function writeInterfaceFile() {
+		if (config::byKey('network::disableMangement') == 1) {
+			return;
+		}
 		if (!self::canManageNetwork()) {
 			return;
 		}
@@ -533,8 +489,11 @@ class network {
 	}
 
 	public static function getInterfaceIp($_interface) {
-		$results = trim(shell_exec('sudo ip addr show ' . $_interface . '| grep inet | head -1'));
+		$results = trim(shell_exec('sudo ip addr show ' . $_interface . '| grep inet | head -1 2>&1'));
 		$results = explode(' ', $results);
+		if (!isset($results[1])) {
+			return false;
+		}
 		$result = $results[1];
 		$ip = substr($result, 0, strrpos($result, '/'));
 		if (filter_var($ip, FILTER_VALIDATE_IP)) {
@@ -545,7 +504,10 @@ class network {
 
 	public static function getRoute() {
 		$return = array();
-		$results = trim(shell_exec('sudo route -n'));
+		$results = trim(shell_exec('sudo route -n 2>&1'));
+		if (strpos($results, 'command not found') !== false) {
+			throw new Exception('Command route not found');
+		}
 		$results = explode("\n", $results);
 		unset($results[0]);
 		unset($results[1]);
@@ -586,74 +548,53 @@ class network {
 			if ($route['gateway'] != '0.0.0.0' && $route['gateway'] != '127.0.0.1') {
 				exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
 				$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
+				if ($return[$route['iface']]['ping'] == 'nok') {
+					sleep(5);
+					exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
+					$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
+				}
 			} else {
-				$return[$route['iface']]['ping'] = 'nok';
+				$return[$route['iface']]['ping'] = 'ok';
 			}
 		}
 		return $return;
 	}
 
 	public static function cron() {
-		if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
+		if (config::byKey('market::allowDNS') == 1 && !network::test('external', false, 120)) {
+			network::dns_start();
+		}
+		if (config::byKey('network::disableMangement') == 1) {
 			return;
 		}
-		$gws = self::checkGw();
-		if (count($gws) < 1) {
+		if (!jeedom::isCapable('sudo')) {
 			return;
 		}
-		foreach ($gws as $gw) {
-			if ($gw['ping'] == 'ok') {
-				if (config::byKey('network::lastNoGw', 'core', -1) != -1) {
-					config::save('network::lastNoGw', -1);
-				}
-				if (config::byKey('network::failedNumber', 'core', 0) != 0) {
-					config::save('network::failedNumber', 0);
-				}
+		try {
+			$gws = self::checkGw();
+			if (count($gws) == 0) {
+				log::add('network', 'error', __('Aucune interface réseau trouvée, je redemarre tous le réseaux', __FILE__));
+				exec('sudo service networking restart');
 				return;
 			}
-		}
-		$filepath = '/etc/network/interfaces';
-		if (config::byKey('network::failedNumber', 'core', 0) > 2 && file_exists($filepath . '.save') && self::ehtIsUp()) {
-			log::add('network', 'error', __('Aucune gateway trouvée depuis plus de 30min. Remise par defaut du fichier interface', __FILE__));
-			exec('sudo cp ' . $filepath . '.save ' . $filepath . '; sudo rm ' . $filepath . '.save ');
-			config::save('network::failedNumber', 0);
-			jeedom::rebootSystem();
-		}
-		$lastNoOk = config::byKey('network::lastNoGw', 'core', -1);
-		if ($lastNoOk < 0) {
-			config::save('network::lastNoGw', strtotime('now'));
-			return;
-		}
-		if ((strtotime('now') - $lastNoOk) < 600) {
-			return;
-		}
-		log::add('network', 'error', __('Il y a un probleme de connectivité réseaux. Aucune gateway d\'accessible. J\'essaye de corriger : ', __FILE__) . config::byKey('network::failedNumber', 'core', 0));
-		if (config::byKey('network::fixip::enable') == 1) {
-			log::add('network', 'error', __('Aucune gateway trouvée, la configuration IP fixe est surement invalide. Désactivation de celle-ci et redémarrage', __FILE__));
-			config::save('network::fixip::enable', 0);
-			config::save('network::lastNoGw', -1);
-			config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
-			self::writeInterfaceFile();
-			jeedom::rebootSystem();
-			return;
-		}
-		if (config::byKey('network::wifi::enable') == 1 && config::byKey('network::wifi::ssid') != '' && config::byKey('network::wifi::password') != '') {
-			log::add('network', 'error', __('Aucune gateway trouvée, redémarrage de l\'interface wifi', __FILE__));
-			config::save('network::lastNoGw', -1);
-			exec('sudo ifdown wlan0');
-			sleep(5);
-			exec('sudo ifup --force wlan0');
-			config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
-			return;
-		}
-		log::add('network', 'error', __('Aucune gateway trouvée, redémarrage de l\'interface filaire', __FILE__));
-		config::save('network::lastNoGw', -1);
-		config::save('network::failedNumber', config::byKey('network::failedNumber', 'core', 0) + 1);
-		exec('sudo ifdown eth0');
-		sleep(5);
-		exec('sudo ifup --force eth0');
-	}
+			foreach ($gws as $iface => $gw) {
+				if ($gw['ping'] != 'ok') {
+					if (strpos($iface, 'tun') !== false) {
+						continue;
+					}
+					if (strpos($iface, 'br0') !== false) {
+						continue;
+					}
+					log::add('network', 'error', __('La passerelle distance de l\'interface ', __FILE__) . $iface . __(' est injoignable je la redemarre pour essayer de corriger', __FILE__));
+					exec('sudo ifdown ' . $iface);
+					sleep(5);
+					exec('sudo ifup --force ' . $iface);
+				}
+			}
+		} catch (Exception $e) {
 
+		}
+	}
 }
 
 ?>

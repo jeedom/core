@@ -111,7 +111,81 @@ try {
 		ajax::success();
 	}
 
-	/*     * **************************Gloabl Method******************************** */
+	if (init('action') == 'setOrder') {
+		$eqLogics = json_decode(init('eqLogics'), true);
+		$sql = '';
+		foreach ($eqLogics as $eqLogic_json) {
+			if (!is_numeric($eqLogic_json['id']) || !is_numeric($eqLogic_json['order']) || (isset($eqLogic_json['object_id']) && !is_numeric($eqLogic_json['object_id']))) {
+				throw new Exception("Erreur une des valeurs n'est pas un numérique");
+			}
+			if (isset($eqLogic_json['object_id'])) {
+				if ($eqLogic_json['object_id'] == -1) {
+					$eqLogic_json['object_id'] = "NULL";
+				}
+				$sql .= 'UPDATE eqLogic SET `order`= ' . $eqLogic_json['order'] . ', object_id=' . $eqLogic_json['object_id'] . '  WHERE id=' . $eqLogic_json['id'] . ' ;';
+			} else {
+				$sql .= 'UPDATE eqLogic SET `order`= ' . $eqLogic_json['order'] . '  WHERE id=' . $eqLogic_json['id'] . ' ;';
+			}
+		}
+		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		ajax::success();
+	}
+
+	if (init('action') == 'removes') {
+		$eqLogics = json_decode(init('eqLogics'), true);
+		foreach ($eqLogics as $id) {
+			$eqLogic = eqLogic::byId($id);
+			if (!is_object($eqLogic)) {
+				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $id);
+			}
+			$eqLogic->remove();
+		}
+		ajax::success();
+	}
+
+	if (init('action') == 'setIsVisibles') {
+		$eqLogics = json_decode(init('eqLogics'), true);
+		foreach ($eqLogics as $id) {
+			$eqLogic = eqLogic::byId($id);
+			if (!is_object($eqLogic)) {
+				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $id);
+			}
+			$eqLogic->setIsVisible(init('isVisible'));
+			$eqLogic->save();
+		}
+		ajax::success();
+	}
+
+	if (init('action') == 'setIsEnables') {
+		$eqLogics = json_decode(init('eqLogics'), true);
+		foreach ($eqLogics as $id) {
+			$eqLogic = eqLogic::byId($id);
+			if (!is_object($eqLogic)) {
+				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $id);
+			}
+			$eqLogic->setIsEnable(init('isEnable'));
+			$eqLogic->save();
+		}
+		ajax::success();
+	}
+
+	if (init('action') == 'simpleSave') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$eqLogicSave = json_decode(init('eqLogic'), true);
+		$eqLogic = eqLogic::byId($eqLogicSave['id']);
+		if (!is_object($eqLogic)) {
+			throw new Exception(__('EqLogic inconnu verifié l\'id : ', __FILE__) . $eqLogicsSave['id']);
+		}
+
+		if (!$eqLogic->hasRight('w')) {
+			throw new Exception('Vous n\'etês pas autorisé à faire cette action');
+		}
+		utils::a2o($eqLogic, $eqLogicSave);
+		$eqLogic->save();
+		ajax::success();
+	}
 
 	if (init('action') == 'copy') {
 		if (!isConnect('admin')) {

@@ -1,31 +1,27 @@
+= Principe
+
 Jeedom est composé d'un core qui se charge des fonctions de bases : 
 
-- scenario
-- historisation
-- affichage
-- interaction
-- mise à jour et sauvegarde
+* scenario
+* historisation
+* affichage
+* interaction
+* mise à jour et sauvegarde
 
 Autour de ce core viennent se greffer des plugins qui peuvent être de toute sorte :
  
-- protocole domotique (zwave, rfxcom, enOcean...)
-- protocole IP (knx,xPL...)
-- objet communiquant (nest, netatmo...)
-- haut niveau (alarme, thermostat...)
-- interface (widget)
-- organisation (agenda, Google agenda)
-- developpement (script)
+* protocole domotique (zwave, rfxcom, enOcean...)
+* protocole IP (knx,xPL...)
+* objet communiquant (nest, netatmo...)
+* haut niveau (alarme, thermostat...)
+* interface (widget)
+* organisation (agenda, Google agenda)
+* developpement (script)
 
 Ces plugins peuvent être récuperé par le biais du market et permettent d'étendre les possibilitées de Jeedom.
 
-Jeedom permet à n'importe quel plugin de discuter avec un autre sur une base normalisée, 
-cela permet par exemple d'utiliser les plugins thermostat ou alarme avec n'importe quel protocole
-domotique ou meme un plugin IP ou objet communiquant...
+Jeedom permet à n'importe quel plugin de discuter avec un autre sur une base normalisée, cela permet par exemple d'utiliser les plugins thermostat ou alarme avec n'importe quel protocoledomotique ou meme un plugin IP ou objet communiquant...
 
-De plus Jeedom à la particularité d'être sans abonnement et sans cloud cela permet de garantir 
-le fonctionnement de votre domotique meme si vous n'avez plus internet. Cela garantie
-aussi la sécurité de vos données (évite les risques de piratage en masse de comptes).
+De plus Jeedom à la particularité d'être sans abonnement et sans cloud cela permet de garantir le fonctionnement de votre domotique meme si vous n'avez plus internet. Cela garantieaussi la sécurité de vos données (évite les risques de piratage en masse de comptes).
 
-Le projet étant ouvert et open-source cela lui garanti aussi un fort taux d'évolution 
-grâce aux nombreux contributeurs qui y participent.
-(Administrateurs, Beta-testeurs, Documenteurs, Développeurs Hardware, Développeurs Software, Modérateurs globaux, Traducteurs)
+Le projet étant ouvert et open-source cela lui garanti aussi un fort taux d'évolution grâce aux nombreux contributeurs qui y participent.

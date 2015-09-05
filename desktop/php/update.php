@@ -3,13 +3,7 @@ if (!hasRight('updateview', true)) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
-<div>
-    <?php
-if (config::byKey('market::showPromotion') == 1) {
-	echo market::getPromo();
-}
-?>
-</div><br/>
+<br/>
 <div class="row row-overflow">
     <div class="col-sm-8">
         {{Dernière vérification : }}<span class="label label-info" id="span_lastUpdateCheck" style="margin-bottom: 5px;"></span>
@@ -29,6 +23,7 @@ if (config::byKey('market::showPromotion') == 1) {
                     <li><a href="#" class="bt_updateAll" data-level="-1" data-mode=""><i class="fa fa-database"></i> {{Jeedom seulement}}</a></li>
                     <li><a href="#" class="bt_updateAll expertModeVisible" data-level="-1" data-mode="force"><i class="fa fa-database"></i> <i class="fa fa-gavel"></i> {{Jeedom seulement forcé}}</a></li>
                     <li><a href="#" class="expertModeVisible" id="bt_reapplyUpdate"><i class="fa fa-retweet"></i> {{Réappliquer une mise à jour}}</a></li>
+                    <li><a href="#" class="expertModeVisible" id="bt_updateSystem"><i class="fa fa-linux"></i> {{Mettre à jour l'OS}}</a></li>
                 </ul>
             </div>
         </div>
@@ -63,8 +58,12 @@ if (config::byKey('market::showPromotion') == 1) {
             <select id="sel_updateVersion" class="form-control">
                 <option value="">{{Aucune}}</option>
                 <?php
-foreach (update::listCoreUpdate() as $value) {
-	$value = str_replace(array('.php', '.sql'), '', $value);
+$udpates = array();
+foreach (update::listCoreUpdate() as $udpate) {
+	$udpates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
+}
+usort($udpates, 'version_compare');
+foreach ($udpates as $value) {
 	echo '<option value="' . $value . '">' . $value . '</option>';
 }
 ?>

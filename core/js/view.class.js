@@ -16,14 +16,10 @@
  */
 
 
-jeedom.view = function () {
-};
+ jeedom.view = function () {
+ };
 
 jeedom.view.cache = Array();
-
-if (!isset(jeedom.view.cache.html)) {
-    jeedom.view.cache.html = Array();
-}
 
 jeedom.view.all = function (_params) {
     var paramsRequired = [];
@@ -88,7 +84,11 @@ jeedom.view.handleViewAjax = function (_params) {
     var result = {html: '', scenario: [], cmd: [], eqLogic: []};
     for (var i in _params.view.viewZone) {
         var viewZone = _params.view.viewZone[i];
-        result.html += '<div>';
+        if ($.mobile) {
+            result.html += '<div>';
+        }else{
+            result.html += '<div class="col-xs-'+init(viewZone.configuration.zoneCol,12)+'">';
+        }
         result.html += '<legend style="color : #716b7a">' + viewZone.name + '</legend>';
         var div_id = 'div_viewZone' + viewZone.id;
         /*         * *****************viewZone widget***************** */
@@ -108,7 +108,7 @@ jeedom.view.handleViewAjax = function (_params) {
             for (var j in viewZone.viewData) {
                 var viewData = viewZone.viewData[j];
                 var configuration = json_encode(viewData.configuration);
-                result.html += 'jeedom.history.drawChart({cmd_id : ' + viewData.link_id + ',el : "' + div_id + '",dateRange : "' + viewZone.configuration.dateRange + ' ",option : jQuery.parseJSON("' + configuration.replace(/\"/g, "\\\"") + '")});';
+                result.html += 'jeedom.history.drawChart({cmd_id : ' + viewData.link_id + ',el : "' + div_id + '",dateRange : "' + viewZone.configuration.dateRange + '",option : jQuery.parseJSON("' + configuration.replace(/\"/g, "\\\"") + '")});';
             }
             result.html += '</script>';
             result.html += '</div>';
@@ -140,7 +140,7 @@ jeedom.view.remove = function (_params) {
 
 
 jeedom.view.save = function (_params) {
-    var paramsRequired = ['id', 'viewZones'];
+    var paramsRequired = ['id', 'view'];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -151,11 +151,13 @@ jeedom.view.save = function (_params) {
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/view.ajax.php';
+    console.log(_params);
     paramsAJAX.data = {
         action: 'save',
         view_id: _params.id,
-        viewZones: json_encode(_params.viewZones),
+        view: json_encode(_params.view),
     };
+    console.log(paramsAJAX);
     $.ajax(paramsAJAX);
 }
 

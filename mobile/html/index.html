@@ -19,23 +19,24 @@
     <link rel="apple-touch-icon" href="core/img/logo-jeedom-petit-nom-couleur-128x128.png" />
     <link rel="apple-touch-icon-precomposed" href="core/img/logo-jeedom-petit-nom-couleur-256x256.png">
     <!-- iPhone SPLASHSCREEN-->
-    <link href="core/img/logo-jeedom-petit-nom-couleur-460x320.png" media="(device-width: 320px)" rel="apple-touch-startup-image">
+    <link href="core/img/logo-jeedom-grand-nom-couleur-460x320.png" media="(device-width: 320px)" rel="apple-touch-startup-image">
     <!-- iPhone (Retina) SPLASHSCREEN-->
-    <link href="core/img/logo-jeedom-petit-nom-couleur-920x640.png" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <link href="core/img/logo-jeedom-grand-nom-couleur-920x640.png" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
     <!-- iPad (portrait) SPLASHSCREEN-->
-    <link href="core/img/logo-jeedom-petit-nom-couleur-1004x768.png" media="(device-width: 768px) and (orientation: portrait)" rel="apple-touch-startup-image">
+    <link href="core/img/logo-jeedom-grand-nom-couleur-1004x768.png" media="(device-width: 768px) and (orientation: portrait)" rel="apple-touch-startup-image">
     <!-- iPad (landscape) SPLASHSCREEN-->
-    <link href="core/img/logo-jeedom-petit-nom-couleur-1024x748.png" media="(device-width: 768px) and (orientation: landscape)" rel="apple-touch-startup-image">
+    <link href="core/img/logo-jeedom-grand-nom-couleur-1024x748.png" media="(device-width: 768px) and (orientation: landscape)" rel="apple-touch-startup-image">
     <!-- iPad (Retina, portrait) SPLASHSCREEN-->
-    <link href="core/img/logo-jeedom-petit-nom-couleur-2008x1536.png" media="(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <link href="core/img/logo-jeedom-grand-nom-couleur-2008x1536.png" media="(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
     <!-- iPad (Retina, landscape) SPLASHSCREEN-->
-    <link href="core/img/logo-jeedom-petit-nom-couleur-2048x1496.png" media="(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <link href="core/img/logo-jeedom-grand-nom-couleur-2048x1496.png" media="(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
 
 
     <link rel="stylesheet" href="3rdparty/jquery.mobile/jquery.mobile.min.css" />
-    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.css" />
-    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.dark.css"  id='jQMnDTheme' />
-    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.color.green.css" id='jQMnDColor' />
+    <link rel="stylesheet" href="3rdparty/waves/waves.min.css"/>
+    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/flexboxgrid.min.css">
+    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/nativedroid2.css" />
+    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/nativedroid2.color.blue-grey.css" id="jQMnDColor" />
     <link rel="stylesheet" href="3rdparty/jquery.mobile/css/fonts.css">
 
 
@@ -63,25 +64,29 @@
     <script src="core/php/getJS.php?file=core/js/view.class.js"></script>
     <script src="core/php/getJS.php?file=core/js/plan.class.js"></script>
     <script src="core/php/getJS.php?file=mobile/js/application.js"></script>
+    <script src="core/php/getJS.php?file=3rdparty/waves/waves.min.js" ></script>
+    <script src="core/php/getJS.php?file=3rdparty/wow/wow.min.js" ></script>
+    <script src="core/php/getJS.php?file=3rdparty/jquery.mobile/nativedroid2.js" ></script>
 </head>
 <body>
     <!-- alert -->
-    <div id="div_alert" data-theme="b"></div>
+    <div id="div_alert"></div>
     <!-- /alert -->
     <!-- page -->
-    <div data-role="page" id="pagecontainer" data-theme='b'>
+    <div data-role="page" id="pagecontainer">
         <!-- panel -->
-        <div data-role="panel" id="panel_right" data-position="right" data-theme="b"></div>
+        <div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel" data-animate="false" data-position='bottom' data-display="overlay"></div>
+
         <!-- /panel -->
         <!-- popup -->
-        <div data-role="popup" id="div_popup" data-theme="b" class="ui-corner-all"></div>
+        <div data-role="popup" id="div_popup" class="ui-corner-all"></div>
         <!-- /popup -->
 
         <!-- header -->
-        <div data-role="header" data-position="fixed" data-theme="b" data-tap-toggle="false" style="height: 30px;">
-            <h1 id="pageTitle"></h1>
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1 id="pageTitle"></h1>        
             <a class="link" data-page="home" data-title="{{Accueil}}"><i class="fa fa-home"></i></a>
-            <a href="#panel_right" id="bt_panel_right"><i class="fa fa-list"></i></a>
+            <a href="#bottompanel" id="bt_bottompanel"><i class="fa fa-bars"></i></a>
             <div id="div_loadingSpinner" style="display: none;">
                 <div class="break dot1" style="position : relative;top : 0px;"></div>
                 <div class="break dot2" style="position : relative;top : -3px;"></div>
@@ -90,9 +95,10 @@
         </div>
         <!-- /header -->
         <!-- content -->
-        <div role="main" class="ui-content" id="page" ></div>
+        <div role="main" class="ui-content" id="page" data-inset="false" style="padding : 2px;padding-top : 4px;"></div>
         <!-- /content -->
     </div>
     <!-- /page -->
+
 </body>
 </html>

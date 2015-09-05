@@ -1,11 +1,34 @@
+= Moteur de tâche
+
 Le menu Moteur de tâches n'est accessible qu'en mode expert. Il informe de toutes les tâches applicatives Jeedom qui tournent sur le serveur. Ce menu est à utiliser en connaissance de cause, ou à la demande du support technique.
 
-Il présente sous forme de tableau les différentes tâches. Sur la colonne de gauche il y a les commandes qui permettent de les arrêter ou de les démarrer. Tout à droite, on a l'information sur l'état de la tâche, si elle est démarrée ou arrêtée. On retrouve également des informations sur la fonction, la périodicité... Des boutons en haut à droite permettent de désactiver le système cron ou bien de rafraichir les données si elles ne l'ont pas été automatiquement.
+[IMPORTANT]
+En cas de mauvaise manipulation sur cette page toute demande de support peut vous etês refusée
+
+Pour y accèder il faut aller dans Général -> Administration -> Moteur de tâche : 
 
 image::../images/cron.JPG[]
 
-En haut à gauche, il y a quelques infos utiles.
+Une fois dessus vous obtenez
 
-Les processus Jeecron donne des informations sur le nombre de processus lancé sur le serveur. Le premier est le nombre de jeecron master qui doit être inférieur à 1, sinon c'est qu'il y a un problème quelque part. Le deuxième indique le nombre de tâches cron en cours. Et enfin le dernier informe du nombre de processus en cours sur le serveur (Il ne doit logiquement pas dépasser les 350).
+image::../images/cron1.JPG[]
 
-Le Load avg, symbolise la charge globale de la machine à un instant T. Les 3 colonnes sont les temps moyens de calcul, 1min 5min 15min. Si la troisième valeur est inférieure à 2 (pour un double coeur type Cubieboard V2) alors tout va bien. Sinon cela veut dire que Jeedom ne fonctionne pas à son niveau optimal.
+En haut à droite vous retrouvez un resumé des processus Jeedom, le premier chiffre indique le nombre de tache principale (doit toujours etre égale à 0 ou 1), le second le nombre de tache secondaire et le dernier le nombre de tache total sur le systeme (Jeedom et hors Jeedom).
+En dessous vous avez les chiffre de la charge moyenne de votre systeme, il est recommandé que ce chiffre soit inferieur au nombre total de coeur de la machine
+
+A droite vous avez un bouton pour desactiver ou reactiver toute les taches (si vous les désactivées toute plus rien ne sera fonctionnel sur votre Jeedom), un bouton pour rafraichir le tableau des taches (juste en dessous), un bouton pour ajouter une tache et un bouton pour enregistrer vos modifications
+
+Enfin en dessous vous avez le tableau de toute les taches existante (attention certaine tache peuvent lancer des sous-tache il est donc vivement recommandé de ne jamais modifier d'information sur cette page). Dans ce tableau on retrouve : 
+
+* *#* : ID de la tache, peut etre utile pour faire le lien entre un processus qui tourne et ce qu'il fait vraiment
+* *Action* : un bouton pour lancer ou arreter la tache en fonction de son statut
+* *Actif* : indique si la tache est active (peut etre lancer par Jeedom) ou non
+* *PID* : indique le process ID actuel
+* *Démon* : si cette case est à oui alors la tache doit toujours etre en cours, a coté vous retrouvez la fréquence du démon, il est conseillé de ne jamais toucher cette valeur et surtout de ne jamais la diminuer
+* *Unique* : si c'est a oui alors la tache se lancera une fois puis se supprimera
+* *Classe* : classe PHP appellée pour éxecuter la tache (peut etre vide)
+* *Fonction* : fonction  PHP appellé dans la classe (ou non si la classe est vide) appellée
+* *Timeout* : durée maximum de fonctionnement de la tache, si la tache est un démon alors elle sera automatiquement arretée et redemarrée à la fin du timeout
+* *Dernier lancement* : date de dernier lancement de la tâche
+* *Statut* : etat actuel de la tache (pour rappel une tâche démon est toujours à "run")
+* *Suppression* : permet de supprimer la tache

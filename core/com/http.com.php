@@ -25,7 +25,7 @@ class com_http {
 	private $url;
 	private $username = '';
 	private $password = '';
-	private $logError = true;
+	private $logError = false;
 	private $ping = false;
 	private $noSslCheck = true;
 	private $sleepTime = 500000;
@@ -48,18 +48,6 @@ class com_http {
 	/*     * ************* Fonctions ************************************ */
 
 	function exec($_timeout = 2, $_maxRetry = 3) {
-		/*if ($this->getPing() && config::byKey('http::ping_disable') != 1) {
-		$url = parse_url($this->url);
-		$host = $url['host'];
-		$host = str_replace(array('http://', 'https://'), '', $host);
-		if (!ip2long($host)) {
-		$timeout = config::byKey('http::ping_timeout', 'core', 2);
-		exec("timeout $timeout ping -n -c 1 -W 2 $host", $output, $retval);
-		if ($retval != 0) {
-		throw new Exception(__('Impossible de résoudre le DNS : ', __FILE__) . $host . __('. Pas d\'internet ?', __FILE__));
-		}
-		}
-		}*/
 		$nbRetry = 0;
 		while ($nbRetry < $_maxRetry) {
 			$ch = curl_init();
@@ -71,7 +59,11 @@ class com_http {
 			}
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $this->getHeader());
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_TIMEOUT, $_timeout);
+			if ($_timeout < 1 && $_timeout > 0) {
+				curl_setopt($ch, CURLOPT_TIMEOUT_MS, $_timeout * 1000);
+			} else {
+				curl_setopt($ch, CURLOPT_TIMEOUT, $_timeout);
+			}
 			if ($this->getCookiesession()) {
 				curl_setopt($ch, CURLOPT_COOKIESESSION, true);
 			} else {
@@ -116,8 +108,9 @@ class com_http {
 			if ($this->getNoReportError() === false) {
 				throw new Exception(__('Echec de la requête http : ', __FILE__) . $this->url . ' Curl error : ' . $curl_error, 404);
 			}
+		} else {
+			curl_close($ch);
 		}
-		curl_close($ch);
 		log::add('http.com', 'Debug', __('Url : ', __FILE__) . $this->url . __("\nRéponse : ", __FILE__) . $response);
 		return $response;
 	}

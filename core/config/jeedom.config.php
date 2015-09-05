@@ -28,6 +28,9 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'multimedia' => array('name' => 'Multimedia', 'color' => '#34495e', 'mcolor' => '#34495e', 'cmdColor' => '#576E84', 'mcmdColor' => '#576E84'),
 			'default' => array('name' => 'Defaut', 'color' => '#19bc9c', 'mcolor' => '#19bc9c', 'cmdColor' => '#5DFFDF', 'mcmdColor' => '#5DFFDF'),
 		),
+		'style' => array(
+			'noactive' => '-webkit-filter: grayscale(100%);-moz-filter: grayscale(100);-o-filter: grayscale(100%);-ms-filter: grayscale(100%);filter: grayscale(100%); opacity: 0.35;',
+		),
 	),
 	'plugin' => array(
 		'category' => array(
@@ -45,6 +48,9 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'health' => array('name' => 'Santé', 'icon' => 'icon loisir-runner5'),
 			'nature' => array('name' => 'Nature', 'icon' => 'icon nature-leaf32'),
 			'finance' => array('name' => 'Finance', 'icon' => 'fa fa-eur'),
+			'automatisation' => array('name' => 'Automatisme', 'icon' => 'fa fa-magic'),
+			'energy' => array('name' => 'Energie', 'icon' => 'fa fa-bolt'),
+			'travel' => array('name' => 'Déplacement', 'icon' => 'fa fa-car'),
 		),
 	),
 	'cmd' => array(
@@ -82,7 +88,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'enable' => array('visible' => true),
 						),
 						'display' => array(
-							'invertBinary' => array('visible' => true),
+							'invertBinary' => array('visible' => true, 'parentVisible' => true),
 							'icon' => array('visible' => false, 'parentVisible' => false),
 						),
 					),

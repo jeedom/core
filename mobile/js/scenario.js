@@ -12,9 +12,11 @@ function initScenario() {
             }
             $('#div_displayScenario').empty().html(html).trigger('create');
             setTileSize('.scenario');
+            $('#div_displayScenario').packery({gutter : 4});
         }
     });
     $(window).on("orientationchange", function (event) {
         setTileSize('.scenario');
+        $('#div_displayScenario').packery({gutter : 4});
     });
 }

@@ -14,7 +14,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (view_id != '') {
+ if (view_id != '') {
     jeedom.view.toHtml({
         id: view_id,
         version: 'dashboard',
@@ -26,8 +26,15 @@ if (view_id != '') {
             $('#div_displayView').empty().html(html.html);
             setTimeout(function () {
                 positionEqLogic();
+                $('.div_displayEquipement').disableSelection();
+                $( "input").click(function() { $(this).focus(); });
+                $( "textarea").click(function() { $(this).focus(); });
                 $('.eqLogicZone').each(function () {
-                    $(this).packery();
+                    var container = $(this).packery({
+                        columnWidth: 40,
+                        rowHeight: 80,
+                        gutter : 2,
+                    });
                 });
                 initTooltips();
             }, 10);

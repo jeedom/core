@@ -1,5 +1,5 @@
 /**
- * @license  Highstock JS v2.1.5 (2015-04-13)
+ * @license  Highstock JS v2.1.7 (2015-06-26)
  * Solid angular gauge module
  *
  * (c) 2010-2014 Torstein Honsi
@@ -161,7 +161,7 @@
 	// The series prototype
 	H.seriesTypes.solidgauge = H.extendClass(H.seriesTypes.gauge, {
 		type: 'solidgauge',
-
+		pointAttrToOptions: {}, // #4301, don't inherit line marker's attribs
 		bindAxes: function () {
 			var axis;
 			H.seriesTypes.gauge.prototype.bindAxes.call(this);
@@ -191,8 +191,8 @@
 			H.each(series.points, function (point) {
 				var graphic = point.graphic,
 					rotation = yAxis.startAngleRad + yAxis.translate(point.y, null, null, null, true),
-					radius = (pInt(pick(point.options.radius, options.radius, 100)) * center[2]) / 200, // docs: series<solidgauge>.data.radius http://jsfiddle.net/highcharts/7nwebu4b/
-					innerRadius = (pInt(pick(point.options.innerRadius, options.innerRadius, 60)) * center[2]) / 200, // docs: series<solidgauge>.data.innerRadius
+					radius = (pInt(pick(point.options.radius, options.radius, 100)) * center[2]) / 200,
+					innerRadius = (pInt(pick(point.options.innerRadius, options.innerRadius, 60)) * center[2]) / 200,
 					shapeArgs,
 					d,
 					toColor = yAxis.toColor(point.y, point),
@@ -238,7 +238,9 @@
 				if (graphic) {
 					d = shapeArgs.d;
 					graphic.animate(shapeArgs);
-					shapeArgs.d = d; // animate alters it
+					if (d) {
+						shapeArgs.d = d; // animate alters it
+					}
 				} else {					
 					point.graphic = renderer.arc(shapeArgs)
 						.attr({

@@ -41,7 +41,11 @@ class DB {
 				throw $e;
 			}
 			if (strpos($e->getMessage(), 'Can\'t connect to local MySQL server through socket') !== false || strpos($e->getMessage(), 'SQLSTATE[HY000] [2002] No such file or directory') !== false) {
-				shell_exec('/bin/bash ' . dirname(__FILE__) . '/../../script/check_mysql.sh >> /dev/null 2>&1');
+				if (!file_exists('/tmp/restart_mysql')) {
+					touch('/tmp/restart_mysql');
+					shell_exec('sudo /etc/init.d/mysql restart  >> /dev/null 2>&1');
+					unlink('/tmp/restart_mysql');
+				}
 			}
 			$this->connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
 		}

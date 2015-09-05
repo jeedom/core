@@ -45,6 +45,11 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
 
+	if (init('action') == 'ssh') {
+
+		ajax::success(shell_exec(init('command')));
+	}
+
 	if (init('action') == 'update') {
 		jeedom::update();
 		ajax::success();
@@ -98,6 +103,15 @@ try {
 
 	if (init('action') == 'flushcache') {
 		cache::flush();
+		ajax::success();
+	}
+
+	if (init('action') == 'resetHwKey') {
+		config::save('jeedom::installKey', '');
+		$cache = cache::byKey('jeedom::hwkey');
+		if ($cache->getValue(0) != 0) {
+			$cache->remove();
+		}
 		ajax::success();
 	}
 

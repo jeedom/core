@@ -29,7 +29,6 @@ class scenarioExpression {
 	private $expression;
 	private $options;
 	private $order;
-	private $log;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -60,13 +59,21 @@ class scenarioExpression {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function searchExpression($_expression) {
+	public static function searchExpression($_expression, $_options = null, $_and = true) {
 		$values = array(
 			'expression' => '%' . $_expression . '%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM ' . __CLASS__ . '
         WHERE expression LIKE :expression';
+		if ($_options != null) {
+			$values['options'] = '%' . $_options . '%';
+			if ($_and) {
+				$sql .= ' AND options LIKE :options';
+			} else {
+				$sql .= ' OR options LIKE :options';
+			}
+		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -133,6 +140,15 @@ class scenarioExpression {
 				return 1;
 		}
 		return -3;
+	}
+
+	public static function eqEnable($_eqLogic_id) {
+		$id = str_replace(array('eqLogic', '#'), '', trim($_eqLogic_id));
+		$eqLogic = eqLogic::byId($id);
+		if (!is_object($eqLogic)) {
+			return -2;
+		}
+		return $eqLogic->getIsEnable();
 	}
 
 	public static function average($_cmd_id, $_period = '1 hour') {
@@ -375,7 +391,7 @@ class scenarioExpression {
 	}
 
 	public static function lastStateDuration($_cmd_id, $_value = null) {
-		return history::lastStateChange(str_replace('#', '', $_cmd_id), $_value);
+		return history::lastStateDuration(str_replace('#', '', $_cmd_id), $_value);
 	}
 
 	public static function stateChanges($_cmd_id, $_value = null, $_period = '1 hour') {
@@ -549,6 +565,7 @@ class scenarioExpression {
 				return '';
 			}
 		}
+		$_calc = str_replace(' ', '', $_calc);
 		$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
 		if ($historyStatistique['min'] == '') {
 			return $cmd->execCmd(null, 2);
@@ -561,6 +578,9 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
+		$_calc = str_replace(' ', '', $_calc);
+		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
+		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startDate), self::setTags($_endDate));
 		return $historyStatistique[$_calc];
 	}
@@ -586,6 +606,7 @@ class scenarioExpression {
 	}
 
 	public static function odd($_value) {
+		$_value = intval(evaluate(self::setTags($_value)));
 		return ($_value % 2) ? 1 : 0;
 	}
 
@@ -665,6 +686,22 @@ class scenarioExpression {
 		}
 	}
 
+	public static function time_op($_time, $_value) {
+		$_time = self::setTags($_time);
+		$_value = self::setTags($_value);
+		if (strlen($_time) < 4) {
+			$date = DateTime::createFromFormat('Gi', '0' . intval(trim($_time)));
+		} else {
+			$date = DateTime::createFromFormat('Gi', intval(trim($_time)));
+		}
+		if ($_value > 0) {
+			$date->add(new DateInterval('PT' . abs($_value) . 'M'));
+		} else {
+			$date->sub(new DateInterval('PT' . abs($_value) . 'M'));
+		}
+		return $date->format('Gi');
+	}
+
 	public static function time($_value) {
 		$_value = self::setTags($_value);
 		try {
@@ -679,7 +716,6 @@ class scenarioExpression {
 		if ($result < 0) {
 			return -1;
 		}
-
 		if (($result % 100) > 59) {
 			if (strpos($_value, '-') !== false) {
 				$result -= 40;
@@ -704,7 +740,10 @@ class scenarioExpression {
 		}
 	}
 
-	public static function setTags($_expression, &$_scenario = null, $_quote = false) {
+	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
+		if ($_nbCall > 10) {
+			return $_expression;
+		}
 		$replace1 = array(
 			'#seconde#' => (int) date('s'),
 			'#heure#' => (int) date('G'),
@@ -722,30 +761,43 @@ class scenarioExpression {
 			'#njour#' => (int) date('w'),
 			'#hostname#' => '"' . gethostname() . '"',
 			'#IP#' => '"' . network::getNetworkAccess('internal', 'ip') . '"',
-			'#trigger#' => (is_object($_scenario)) ? $_scenario->getRealTrigger() : '',
+			'#trigger#' => '',
 		);
+
+		if (is_object($_scenario)) {
+			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
+			if (is_object($cmd)) {
+				$replace1['#trigger#'] = $cmd->getHumanName();
+			} else {
+				$replace1['#trigger#'] = $_scenario->getRealTrigger();
+			}
+		}
+		if ($_scenario != null) {
+			$replace1 = array_merge($replace1, $_scenario->getTags());
+		}
 		$replace2 = array();
 		preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
 		foreach ($matches as $match) {
 			$function = $match[1];
-			$arguments = explode(',', $match[2]);
 			$replace_string = $match[0];
-
 			if (substr_count($match[2], '(') != substr_count($match[2], ')')) {
-				$arguments = self::setTags($match[2] . ')', $_scenario, $_quote);
-				if (substr($_expression, strpos($_expression, $match[2]) + strlen($match[2]) + 1, 1) != ')') {
-					for ($i = strpos($_expression, $match[2]) + strlen($match[2]) + 1; $i < strlen($_expression); $i++) {
-						$car = $_expression[$i];
-						if ($car != ')') {
-							$arguments .= $car;
-							$replace_string .= $car;
-						} else {
-							break;
-						}
+				$pos = strpos($_expression, $match[2]) + strlen($match[2]);
+				while (substr_count($match[2], '(') > substr_count($match[2], ')')) {
+					$match[2] .= $_expression[$pos];
+					$pos++;
+					if ($pos > strlen($_expression)) {
+						break;
 					}
 				}
-				$replace_string .= ')';
-				$arguments = explode(',', $arguments);
+				$arguments = self::setTags($match[2], $_scenario, $_quote, $_nbCall++);
+				$result = str_replace($match[2], $arguments, $_expression);
+				while (substr_count($result, '(') > substr_count($result, ')')) {
+					$result .= ')';
+				}
+				$result = self::setTags($result, $_scenario, $_quote, $_nbCall++);
+				return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), $result), $_quote);
+			} else {
+				$arguments = explode(',', $match[2]);
 			}
 			if (method_exists(__CLASS__, $function)) {
 				if ($function == 'trigger') {
@@ -766,7 +818,6 @@ class scenarioExpression {
 			}
 
 		}
-
 		return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)), $_quote);
 	}
 
@@ -869,17 +920,50 @@ class scenarioExpression {
 							$scenario->persistLog();
 						}
 					}
+					return;
 				} else if ($this->getExpression() == 'message') {
 					message::add('scenario', $options['message']);
+					return;
+				} else if ($this->getExpression() == 'equipement') {
+					$eqLogic = eqLogic::byId(str_replace(array('#eqLogic', '#'), '', $this->getOptions('eqLogic')));
+					if (!is_object($eqLogic)) {
+						throw new Exception(__('Action sur l\'équipement impossible. Equipement introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('eqLogic'));
+					}
+					switch ($this->getOptions('action')) {
+						case 'show':
+							$this->setLog($scenario, __('Equipement visible : ', __FILE__) . $eqLogic->getHumanName());
+							$eqLogic->setIsVisible(1);
+							$eqLogic->save();
+							break;
+						case 'hide':
+							$this->setLog($scenario, __('Equipement masqué : ', __FILE__) . $eqLogic->getHumanName());
+							$eqLogic->setIsVisible(0);
+							$eqLogic->save();
+							break;
+						case 'deactivate':
+							$this->setLog($scenario, __('Equipement désactivé : ', __FILE__) . $eqLogic->getHumanName());
+							$eqLogic->setIsEnable(0);
+							$eqLogic->save();
+							break;
+						case 'activate':
+							$this->setLog($scenario, __('Equipement activé : ', __FILE__) . $eqLogic->getHumanName());
+							$eqLogic->setIsEnable(1);
+							$eqLogic->save();
+							break;
+					}
+					return;
 				} else if ($this->getExpression() == 'say') {
 					$this->setLog($scenario, __('Je dis : ', __FILE__) . $options['message']);
 					nodejs::pushUpdate('jeedom::say', $options['message']);
+					return;
 				} else if ($this->getExpression() == 'gotodesign') {
 					$this->setLog($scenario, __('Changement design : ', __FILE__) . $options['plan_id']);
 					nodejs::pushUpdate('jeedom::gotoplan', $options['plan_id']);
+					return;
 				} else if ($this->getExpression() == 'return') {
 					$this->setLog($scenario, __('Je vais retourner : ', __FILE__) . $options['message']);
 					$scenario->setReturn($scenario->getReturn() . $options['message']);
+					return;
 				} else if ($this->getExpression() == 'scenario') {
 					if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
 						$actionScenario = &$scenario;
@@ -887,7 +971,7 @@ class scenarioExpression {
 						$actionScenario = scenario::byId($this->getOptions('scenario_id'));
 					}
 					if (!is_object($actionScenario)) {
-						throw new Exception($scenario, __('Action sur scénario impossible. Scénario introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('scenario_id'));
+						throw new Exception(__('Action sur scénario impossible. Scénario introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('scenario_id'));
 					}
 					switch ($this->getOptions('action')) {
 						case 'start':
@@ -919,34 +1003,72 @@ class scenarioExpression {
 					try {
 						$result = evaluate($options['value']);
 						if (!is_numeric($result)) {
-							//Alors la valeur n'est pas un calcul
 							$result = $options['value'];
 						}
 					} catch (Exception $ex) {
 						$result = $options['value'];
 					}
-
-					$message = __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' => ', __FILE__) . $options['value'] . ' = ' . $result;
-					$this->setLog($scenario, $message);
+					$this->setLog($scenario, __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' => ', __FILE__) . $options['value'] . ' = ' . $result);
 					$dataStore = new dataStore();
-					$dataStore->setType('scenario');
 					$dataStore->setKey($this->getOptions('name'));
 					$dataStore->setValue($result);
+					$dataStore->setType('scenario');
 					$dataStore->setLink_id(-1);
 					$dataStore->save();
+					return;
+				} else if ($this->getExpression() == 'ask') {
+					$dataStore = new dataStore();
+					$dataStore->setType('scenario');
+					$dataStore->setKey($this->getOptions('variable'));
+					$dataStore->setValue('');
+					$dataStore->setLink_id(-1);
+					$dataStore->save();
+					$options_cmd = array('title' => '', 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'variable' => $this->getOptions('variable'));
+					$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
+					if (!is_object($cmd)) {
+						throw new Exception(__('Commande introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
+					}
+					$limit = (isset($options['timeout'])) ? $options['timeout'] : 300;
+					$this->setLog($scenario, __('Demande ', __FILE__) . print_r($options_cmd, true));
+					$cmd->setConfiguration('storeVariable', $this->getOptions('variable'));
+					$cmd->save();
+					$cmd->execCmd($options_cmd);
+					$occurence = 0;
+					$value = '';
+					while (true) {
+						$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, $this->getOptions('variable'));
+						if (is_object($dataStore)) {
+							$value = $dataStore->getValue();
+						}
+						if ($value != '') {
+							break;
+						}
+						if ($occurence > $limit) {
+							break;
+						}
+						$occurence++;
+						sleep(1);
+					}
+					if ($value == '') {
+						$value = __('Aucune réponse', __FILE__);
+						$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, $this->getOptions('variable'));
+						$dataStore->setValue($value);
+					}
+					$this->setLog($scenario, __('Réponse ', __FILE__) . $value);
 					return;
 				} else {
 					$cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
 					if (is_object($cmd)) {
+						if ($cmd->getSubtype() == 'slider' && isset($options['slider'])) {
+							$options['slider'] = evaluate($options['slider']);
+						}
 						if (is_array($options) && count($options) != 0) {
 							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName() . __(" avec comme option(s) : \n", __FILE__) . print_r($options, true));
 						} else {
 							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName());
 						}
-						if ($cmd->getSubtype() == 'slider') {
-							foreach ($options as $key => $value) {
-								$options[$key] = evaluate($value);
-							}
+						if (is_object($scenario) && $scenario->getConfiguration('cmdNoWait', 0) == 1) {
+							$options['speedAndNoErrorReport'] = true;
 						}
 						return $cmd->execCmd($options);
 					}
@@ -1131,12 +1253,8 @@ class scenarioExpression {
 		$this->order = $order;
 	}
 
-	public function getLog() {
-		return $this->log;
-	}
-
 	public function setLog(&$_scenario, $log) {
-		if ($_scenario != null) {
+		if ($_scenario != null && is_object($_scenario)) {
 			$_scenario->setLog($log);
 		}
 	}

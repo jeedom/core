@@ -41,7 +41,7 @@
 	cursor: pointer;
 }
 .tablesorter-grey .header i,
-.tablesorter-grey .tablesorter-header i {
+.tablesorter-grey .tablesorter-header i.tablesorter-icon {
 	width: 18px;
 	height: 10px;
 	position: absolute;
@@ -69,22 +69,22 @@
 	background-image: linear-gradient(to bottom, #195c93, #0e4776);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#195c93', endColorstr='#0e4776',GradientType=0 );
 }
-.tablesorter-grey .headerSortUp i,
-.tablesorter-grey .tablesorter-headerSortUp i,
-.tablesorter-grey .tablesorter-headerAsc i {
+.tablesorter-grey .headerSortUp i.tablesorter-icon,
+.tablesorter-grey .tablesorter-headerSortUp i.tablesorter-icon,
+.tablesorter-grey .tablesorter-headerAsc i.tablesorter-icon {
 	/* white asc arrow */
 	background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
 }
-.tablesorter-grey .headerSortDown i,
-.tablesorter-grey .tablesorter-headerSortDown i,
-.tablesorter-grey .tablesorter-headerDesc i {
+.tablesorter-grey .headerSortDown i.tablesorter-icon,
+.tablesorter-grey .tablesorter-headerSortDown i.tablesorter-icon,
+.tablesorter-grey .tablesorter-headerDesc i.tablesorter-icon {
 	/* white desc arrow */
 	background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
 }
 .tablesorter-grey thead .sorter-false {
 	cursor: default;
 }
-.tablesorter-grey thead .sorter-false i {
+.tablesorter-grey thead .sorter-false i.tablesorter-icon {
 	background-image: none;
 	padding: 4px;
 }
@@ -114,25 +114,28 @@
  you'll need to add additional lines for
  rows with more than 2 child rows
  */
+.tablesorter-grey tbody > tr.hover > td,
 .tablesorter-grey tbody > tr:hover > td,
 .tablesorter-grey tbody > tr:hover + tr.tablesorter-childRow > td,
 .tablesorter-grey tbody > tr:hover + tr.tablesorter-childRow + tr.tablesorter-childRow > td,
+.tablesorter-grey tbody > tr.even.hover > td,
 .tablesorter-grey tbody > tr.even:hover > td,
 .tablesorter-grey tbody > tr.even:hover + tr.tablesorter-childRow > td,
 .tablesorter-grey tbody > tr.even:hover + tr.tablesorter-childRow + tr.tablesorter-childRow > td {
-	background: #134b78;
+	background-color: #134b78;
 }
+.tablesorter-grey tbody > tr.odd.hover > td,
 .tablesorter-grey tbody > tr.odd:hover > td,
 .tablesorter-grey tbody > tr.odd:hover + tr.tablesorter-childRow > td,
 .tablesorter-grey tbody > tr.odd:hover + tr.tablesorter-childRow + tr.tablesorter-childRow > td {
-	background: #134b78;
+	background-color: #134b78;
 }
 
 /* table processing indicator */
 .tablesorter-grey .tablesorter-processing {
 	background-position: center center !important;
 	background-repeat: no-repeat !important;
-	/* background-image: url(../addons/pager/icons/loading.gif) !important; */
+	/* background-image: url(images/loading.gif) !important; */
 	background-image: url('data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQBCgACACwAAAAAFAAUAAACQZRvoIDtu1wLQUAlqKTVxqwhXIiBnDg6Y4eyx4lKW5XK7wrLeK3vbq8J2W4T4e1nMhpWrZCTt3xKZ8kgsggdJmUFACH5BAEKAAIALAcAAAALAAcAAAIUVB6ii7jajgCAuUmtovxtXnmdUAAAIfkEAQoAAgAsDQACAAcACwAAAhRUIpmHy/3gUVQAQO9NetuugCFWAAAh+QQBCgACACwNAAcABwALAAACE5QVcZjKbVo6ck2AF95m5/6BSwEAIfkEAQoAAgAsBwANAAsABwAAAhOUH3kr6QaAcSrGWe1VQl+mMUIBACH5BAEKAAIALAIADQALAAcAAAIUlICmh7ncTAgqijkruDiv7n2YUAAAIfkEAQoAAgAsAAAHAAcACwAAAhQUIGmHyedehIoqFXLKfPOAaZdWAAAh+QQFCgACACwAAAIABwALAAACFJQFcJiXb15zLYRl7cla8OtlGGgUADs=') !important;
 }
 
@@ -175,12 +178,15 @@
 
 /* caption */
 caption {
-	background: #fff;
+	background-color: #fff;
 }
 
 /* filter widget */
+.tablesorter-grey .tablesorter-filter-row {
+	background-color: #3c3c3c;
+}
 .tablesorter-grey .tablesorter-filter-row td {
-	background: #3c3c3c;
+	background-color: #3c3c3c;
 	line-height: normal;
 	text-align: center; /* center the input */
 	-webkit-transition: line-height 0.1s ease;
@@ -216,7 +222,8 @@ caption {
 	filter: alpha(opacity=0);
 }
 /* filters */
-.tablesorter-grey .tablesorter-filter {
+.tablesorter-grey input.tablesorter-filter,
+.tablesorter-grey select.tablesorter-filter {
 	width: 98%;
 	height: auto;
 	margin: 0;

@@ -73,7 +73,7 @@ class log {
 			foreach ($logs as $log) {
 				$path = dirname(__FILE__) . '/../../log/scenarioLog/' . $log;
 				if (is_file($path)) {
-					shell_exec('echo "$(tail -n ' . $maxLineLog . ' ' . $path . ')" > ' . $path);
+					shell_exec('echo "$(head -n ' . $maxLineLog . ' ' . $path . ')" > ' . $path);
 					@chown($path, 'www-data');
 					@chgrp($path, 'www-data');
 					@chmod($path, 0777);
@@ -151,13 +151,16 @@ class log {
 			$linesRead = 0;
 			while ($log->valid() && $linesRead != $_nbLines) {
 				$line = $log->current(); //get current line
-				if (count(explode("|", $line)) == 3) {
-					array_unshift($page, array_map('trim', explode("|", $line)));
+				$explode = explode("|", $line);
+				if (count($explode) == 3) {
+					$explode[2] = secureXSS($explode[2]);
+					array_unshift($page, array_map('trim', $explode));
 				} else {
 					if (trim($line) != '') {
 						$lineread = array();
 						$lineread[0] = '';
 						$lineread[1] = '';
+						$lineread[2] = htmlspecialchars($line);
 						$lineread[2] = $line;
 						array_unshift($page, $lineread);
 					}

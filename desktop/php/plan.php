@@ -49,7 +49,8 @@ foreach ($planHeaders as $planHeader_select) {
    <?php if (is_object($planHeader)) {?>
    <a class="btn btn-default btn-sm editMode tooltips" style="margin-bottom: 3px;display: none;" id='bt_duplicatePlanHeader' title="{{Dupliquer le design}}"><i class="fa fa-files-o"></i></a>
 
-   <?php }?>
+   <?php }
+	?>
    <a class="btn btn-default pull-right btn-sm" style="margin-bottom: 3px;" id="bt_switchFullScreen" ><i class="fa fa-pencil"></i> {{Plein écran}}</a>
    <a class="btn btn-warning pull-right btn-sm" style="margin-bottom: 3px;" id="bt_editPlan" data-mode="0"><i class="fa fa-pencil"></i> {{Mode édition}}</a>
    <?php if (is_object($planHeader)) {?>

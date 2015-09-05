@@ -76,15 +76,15 @@ foreach ($allObject as $object) {
                </div>
            </div>
            <div class="form-group">
-            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Visible}}</label>
+            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label"></label>
             <div class="col-sm-1">
-                <input class="objectAttr" type="checkbox"  data-l1key="isVisible" checked/>
+                <input class="objectAttr bootstrapSwitch" type="checkbox" data-label-text="{{Visible}}" data-l1key="isVisible" checked/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Icône}}</label>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                <div class="objectAttr" data-l1key="display" data-l2key="icon" ></div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                <div class="objectAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
                 <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fa fa-flag"></i> {{Choisir}}</a>

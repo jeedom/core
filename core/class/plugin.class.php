@@ -189,7 +189,38 @@ class plugin {
 	public static function cron() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron')) {
-				$plugin->launch('cron');
+				$plugin_id = $plugin->getId();
+				try {
+					$plugin_id::cron();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron du plugin : ', __FILE__) . $e->getMessage());
+				}
+			}
+		}
+	}
+
+	public static function cron15() {
+		foreach (self::listPlugin(true) as $plugin) {
+			if (method_exists($plugin->getId(), 'cron15')) {
+				$plugin_id = $plugin->getId();
+				try {
+					$plugin_id::cron15();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron15 du plugin : ', __FILE__) . $e->getMessage());
+				}
+			}
+		}
+	}
+
+	public static function cron30() {
+		foreach (self::listPlugin(true) as $plugin) {
+			if (method_exists($plugin->getId(), 'cron30')) {
+				$plugin_id = $plugin->getId();
+				try {
+					$plugin_id::cron30();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron30 du plugin : ', __FILE__) . $e->getMessage());
+				}
 			}
 		}
 	}
@@ -197,7 +228,12 @@ class plugin {
 	public static function cronDaily() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cronDaily')) {
-				$plugin->launch('cronDaily');
+				$plugin_id = $plugin->getId();
+				try {
+					$plugin_id::cronDaily();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cronDaily du plugin : ', __FILE__) . $e->getMessage());
+				}
 			}
 		}
 	}
@@ -205,7 +241,12 @@ class plugin {
 	public static function cronHourly() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cronHourly')) {
-				$plugin->launch('cronHourly');
+				$plugin_id = $plugin->getId();
+				try {
+					$plugin_id::cronHourly();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cronHourly du plugin : ', __FILE__) . $e->getMessage());
+				}
 			}
 		}
 	}
@@ -213,7 +254,29 @@ class plugin {
 	public static function start() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'start')) {
-				$plugin->launch('start');
+				$plugin_id = $plugin->getId();
+				echo 'Start plugin : ' . $plugin_id . '...';
+				try {
+					$plugin_id::start();
+					echo "OK\n";
+				} catch (Exception $e) {
+					echo "NOK\n";
+					log::add($plugin_id, 'error', __('Erreur sur la fonction start du plugin : ', __FILE__) . $e->getMessage());
+				}
+
+			}
+		}
+	}
+
+	public static function stop() {
+		foreach (self::listPlugin(true) as $plugin) {
+			if (method_exists($plugin->getId(), 'stop')) {
+				$plugin_id = $plugin->getId();
+				try {
+					$plugin_id::stop();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction stop du plugin : ', __FILE__) . $e->getMessage());
+				}
 			}
 		}
 	}
@@ -222,6 +285,35 @@ class plugin {
 
 	public function isActive() {
 		return config::byKey('active', $this->id);
+	}
+
+	public function callInstallFunction($_function) {
+		if (strpos($_function, 'pre_') !== false) {
+			log::add('plugin', 'debug', 'Recherche de ' . dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/pre_install.php');
+			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/pre_install.php')) {
+				log::add('plugin', 'debug', 'Fichier d\'installation trouvé pour  : ' . $this->getId());
+				require_once dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/pre_install.php';
+				ob_start();
+				$function = $this->getId() . '_' . $_function;
+				if (function_exists($this->getId() . '_' . $_function)) {
+					$function();
+				}
+				return ob_get_clean();
+			}
+		} else {
+			log::add('plugin', 'debug', 'Recherche de ' . dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/install.php');
+			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/install.php')) {
+				log::add('plugin', 'debug', 'Fichier d\'installation trouvé pour  : ' . $this->getId());
+				require_once dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/install.php';
+				ob_start();
+				$function = $this->getId() . '_' . $_function;
+				if (function_exists($this->getId() . '_' . $_function)) {
+					$function();
+				}
+				return ob_get_clean();
+			}
+		}
+
 	}
 
 	public function setIsEnable($_state) {
@@ -233,7 +325,7 @@ class plugin {
 			if (config::byKey('jeeNetwork::mode') != 'master' && $this->getAllowRemote() != 1) {
 				throw new Exception('Vous ne pouvez pas activer ce plugin sur un Jeedom configuré en esclave');
 			}
-			market::checkPayment($this->getId());
+			//market::checkPayment($this->getId());
 			config::save('active', $_state, $this->getId());
 		}
 		if ($_state == 0) {
@@ -253,35 +345,19 @@ class plugin {
 			}
 		}
 		try {
-			log::add('plugin', 'debug', 'Recherche de ' . dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/install.php');
-			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/install.php')) {
-				log::add('plugin', 'debug', 'Fichier d\'installation trouvé pour  : ' . $this->getId());
-				require dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/install.php';
-				ob_start();
-				if ($_state == 1) {
-					if ($alreadyActive == 1) {
-						$function = $this->getId() . '_update';
-						if (function_exists($this->getId() . '_update')) {
-							$function();
-						}
-					} else {
-						$function = $this->getId() . '_install';
-						if (function_exists($function)) {
-							$function();
-						}
-					}
+			if ($_state == 1) {
+				if ($alreadyActive == 1) {
+					$out = $this->callInstallFunction('update');
 				} else {
-					if ($alreadyActive == 1) {
-						$function = $this->getId() . '_remove';
-						if (function_exists($this->getId() . '_remove')) {
-							$function();
-						}
-					}
+					$out = $this->callInstallFunction('install');
 				}
-				$out = ob_get_clean();
-				if (trim($out) != '') {
-					log::add($this->getId(), 'info', "Installation/remove/update result : " . $out);
+			} else {
+				if ($alreadyActive == 1) {
+					$out = $this->callInstallFunction('remove');
 				}
+			}
+			if (isset($out) && trim($out) != '') {
+				log::add($this->getId(), 'info', "Installation/remove/update result : " . $out);
 			}
 		} catch (Exception $e) {
 			config::save('active', $alreadyActive, $this->getId());
@@ -290,9 +366,6 @@ class plugin {
 		}
 		if ($_state == 0) {
 			config::save('active', $_state, $this->getId());
-		}
-		if ($alreadyActive == 0) {
-			$this->start();
 		}
 		return true;
 	}
@@ -347,6 +420,10 @@ class plugin {
 
 	public function getUpdate() {
 		return update::byTypeAndLogicalId('plugin', $this->getId());
+	}
+
+	public function getPathImgIcon() {
+		return 'plugins/' . $this->getId() . '/doc/images/' . $this->getId() . '_icon.png';
 	}
 
 	/*     * **********************Getteur Setteur*************************** */

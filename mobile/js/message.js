@@ -1,23 +1,8 @@
 function initMessage() {
-    var rightPanel = '<ul data-role="listview" data-theme="b" data-dividertheme="b" class="ui-icon-alt">';
-    rightPanel += '<li data-role="list-divider">{{Action}}</li>';
+    var rightPanel = '<ul data-role="listview" class="ui-icon-alt">';
     rightPanel += '<li><a id="bt_clearMessage" href="#"><i class="fa fa-trash-o"></i> {{Vider}}</a></li>';
     rightPanel += '</ul>';
-    rightPanel += '<ul data-role="listview" data-theme="b" data-dividertheme="b" class="ui-icon-alt">';
-    rightPanel += '<li data-role="list-divider">{{Logfile}}</li>';
-    rightPanel += '<li><a class="messageFilter" data-plugin="">{{Tout}}</a></li>';
-    jeedom.plugin.all({
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (plugins) {
-            for (var i in plugins) {
-                rightPanel += '<li><a class="messageFilter" data-plugin="' + plugins[i].name + '">' + plugins[i].name + '</a></li>';
-            }
-            rightPanel += '</ul>';
-            panel(rightPanel);
-        }
-    });
+    panel(rightPanel);
 
     getAllMessage();
 

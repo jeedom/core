@@ -14,10 +14,8 @@ try {
 } catch (Exception $e) {
 	$market = null;
 }
-if (is_object($market)) {
-	if ($market->getApi_author() == '') {
-		throw new Exception('{{Vous n\'êtes pas l\'auteur du plugin}}');
-	}
+if (is_object($market) && !$market->getIsAuthor()) {
+	throw new Exception('{{Vous n\'êtes pas l\'auteur du plugin}}');
 }
 
 if (init('type') == 'plugin') {
@@ -51,24 +49,25 @@ if (init('type') == 'plugin') {
         <div class="col-lg-3">
             <div style="height: 100px;" class="priceChoose">
                 <center><input type="radio" name="rb_price" class="rb_price" data-value="2" /> <h4 style="display: inline-block">2 €</h4></center>
-                <center>{{Sur ce prix seront 40 % seront reversés au développeur}}</center>
+                <center>{{Sur ce prix 40 % seront reversés au développeur}}</center>
             </div>
         </div>
         <div class="col-lg-3">
             <div style="height: 100px;" class="priceChoose">
                 <center><input type="radio" name="rb_price" class="rb_price" data-value="4" /> <h4 style="display: inline-block">4 €</h4></center>
-                <center>{{Sur ce prix seront 60 % seront reversés au développeur}}</center>
+                <center>{{Sur ce prix 60 % seront reversés au développeur}}</center>
             </div>
         </div>
         <div class="col-lg-3">
             <div style="height: 100px;" class="priceChoose">
                 <center><input type="radio" name="rb_price" class="rb_price" data-value="custom" /> <h4 style="display: inline-block">Libre</h4> <input class="form-control marketAttr input-sm" data-l1key="cost" placeholder="Prix" style="display : inline-block; width : 80px;"> €</center>
-                <center>{{Sur ce prix seront 65 % seront reversés au développeur (doit être supérieur ou égal à 5 €)}}</center>
+                <center>{{Sur ce prix 65 % seront reversés au développeur (doit être supérieur ou égal à 5 €)}}</center>
             </div>
         </div>
     </div>
     <hr/>
-    <?php }?>
+    <?php }
+?>
     <div class="alert alert-info">{{N'oubliez pas de rajouter une image à votre création en passant par le market.}}<span id="span_directLinkWidget"></span></div>
     <div class="row">
         <div class="col-lg-6">

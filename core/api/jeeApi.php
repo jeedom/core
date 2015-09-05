@@ -25,25 +25,11 @@ if (isset($argv)) {
 		}
 	}
 }
-if (trim(config::byKey('api')) == '') {
-	echo 'Vous n\'avez aucune clé API configurée, veuillez d\'abord en générer une (Page Général -> Administration -> Configuration';
-	log::add('jeeEvent', 'error', 'Vous n\'avez aucune clé API configurée, veuillez d\'abord en générer une (Page Général -> Administration -> Configuration');
-	die();
-}
-
-if (init('type') == 'getApiKey') {
-	if (config::byKey('market::jeedom_apikey') == init('apikey')) {
-		market::validateTicket(init('ticket'));
-		echo config::byKey('api');
-	}
-	die();
-}
-
-if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
+if (init('type') != '') {
 	try {
-		if (config::byKey('api') != init('apikey') && config::byKey('api') != init('api')) {
+		if (!jeedom::apiAccess(init('apikey')) && !jeedom::apiAccess(init('api'))) {
 			connection::failed();
-			throw new Exception('Clé API non valide, vous n\'êtes pas autorisé à effectuer cette action (jeeApi). Demande venant de :' . getClientIp() . 'Clé API : ' . init('apikey') . init('api'));
+			throw new Exception('Clé API non valide (ou vide) . Demande venant de :' . getClientIp() . '. Clé API : ' . secureXSS(init('apikey') . init('api')));
 		}
 		connection::success('api');
 		$type = init('type');
@@ -54,7 +40,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				foreach ($ids as $id) {
 					$cmd = cmd::byId($id);
 					if (!is_object($cmd)) {
-						throw new Exception(__('Aucune commande correspondant à l\'id : ', __FILE__) . $id);
+						throw new Exception(__('Aucune commande correspondant à l\'id : ', __FILE__) . secureXSS($id));
 					}
 					$result[$id] = $cmd->execCmd($_REQUEST);
 				}
@@ -62,7 +48,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			} else {
 				$cmd = cmd::byId(init('id'));
 				if (!is_object($cmd)) {
-					throw new Exception('Aucune commande correspondant à l\'id : ' . init('id'));
+					throw new Exception('Aucune commande correspondant à l\'id : ' . secureXSS(init('id')));
 				}
 				log::add('api', 'debug', 'Exécution de : ' . $cmd->getHumanName());
 				echo $cmd->execCmd($_REQUEST);
@@ -84,7 +70,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			log::add('api', 'debug', 'Demande api pour les scénarios');
 			$scenario = scenario::byId(init('id'));
 			if (!is_object($scenario)) {
-				throw new Exception('Aucun scénario correspondant à l\'id : ' . init('id'));
+				throw new Exception('Aucun scénario correspondant à l\'id : ' . secureXSS(init('id')));
 			}
 			switch (init('action')) {
 				case 'start':
@@ -112,16 +98,28 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 		} else if ($type == 'message') {
 			log::add('api', 'debug', 'Demande API pour ajouter un message');
 			message::add(init('category'), init('message'));
+		} else if ($type == 'object') {
+			log::add('api', 'debug', 'Demande API pour les objets');
+			echo json_encode(utils::o2a(object::all()));
+		} else if ($type == 'eqLogic') {
+			log::add('api', 'debug', 'Demande API pour les équipements');
+			echo json_encode(utils::o2a(eqLogic::byObjectId(init('object_id'))));
+		} else if ($type == 'command') {
+			log::add('api', 'debug', 'Demande API pour les commandes');
+			echo json_encode(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
+		} else if ($type == 'fulData') {
+			log::add('api', 'debug', 'Demande API pour les commandes');
+			echo json_encode(object::fullData());
 		} else {
 			if (class_exists($type)) {
 				if (method_exists($type, 'event')) {
-					log::add('api', 'info', 'Appels de ' . $type . '::event()');
+					log::add('api', 'info', 'Appels de ' . secureXSS($type) . '::event()');
 					$type::event();
 				} else {
-					throw new Exception('Aucune méthode correspondante : ' . $type . '::event()');
+					throw new Exception('Aucune méthode correspondante : ' . secureXSS($type) . '::event()');
 				}
 			} else {
-				throw new Exception('Aucun plugin correspondant : ' . $type);
+				throw new Exception('Aucun plugin correspondant : ' . secureXSS($type));
 			}
 		}
 	} catch (Exception $e) {
@@ -132,9 +130,13 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 } else {
 	try {
 		$IP = getClientIp();
-		log::add('api', 'info', init('request') . ' - IP :' . $IP);
+		$request = init('request');
+		if ($request == '') {
+			$request = file_get_contents("php://input");
+		}
+		log::add('api', 'info', $request . ' - IP :' . $IP);
 
-		$jsonrpc = new jsonrpc(init('request'));
+		$jsonrpc = new jsonrpc($request);
 
 		if (!mySqlIsHere()) {
 			throw new Exception('Mysql non lancé', -32001);
@@ -146,20 +148,9 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 		$params = $jsonrpc->getParams();
 
-		if (isset($params['apikey']) || isset($params['api'])) {
-			if (config::byKey('api') == '' || (config::byKey('api') != $params['apikey'] && config::byKey('api') != $params['api'])) {
-				connection::failed();
-				throw new Exception('Clé API invalide', -32001);
-			}
-		} else if (isset($params['username']) && isset($params['password'])) {
-			$user = user::connect($params['username'], $params['password']);
-			if (!is_object($user) || $user->getRights('admin') != 1) {
-				connection::failed();
-				throw new Exception('Nom d\'utilisateur ou mot de passe invalide', -32001);
-			}
-		} else {
+		if (!jeedom::apiAccess($params['apikey']) && !jeedom::apiAccess($params['api'])) {
 			connection::failed();
-			throw new Exception('Aucune clé API ou nom d\'utilisateur', -32001);
+			throw new Exception('Clé API invalide', -32001);
 		}
 
 		connection::success('api');
@@ -174,7 +165,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 		}
 
 		if (isset($params['plugin']) && $params['plugin'] != '') {
-			log::add('api', 'info', 'Demande pour le plugin : ' . $params['plugin']);
+			log::add('api', 'info', 'Demande pour le plugin : ' . secureXSS($params['plugin']));
 			include_file('core', $params['plugin'], 'api', $params['plugin']);
 		} else {
 			/*             * ***********************Ping********************************* */
@@ -202,7 +193,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'object::byId') {
 				$object = object::byId($params['id']);
 				if (!is_object($object)) {
-					throw new Exception('Objet introuvable : ' . $params['id'], -32601);
+					throw new Exception('Objet introuvable : ' . secureXSS($params['id']), -32601);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($object));
 			}
@@ -230,7 +221,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'object::fullById') {
 				$object = object::byId($params['id']);
 				if (!is_object($object)) {
-					throw new Exception('Objet introuvable : ' . $params['id'], -32601);
+					throw new Exception('Objet introuvable : ' . secureXSS($params['id']), -32601);
 				}
 				$return = utils::o2a($object);
 				$return['eqLogics'] = array();
@@ -281,7 +272,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'eqLogic::byId') {
 				$eqLogic = eqLogic::byId($params['id']);
 				if (!is_object($eqLogic)) {
-					throw new Exception('EqLogic introuvable : ' . $params['id'], -32602);
+					throw new Exception('EqLogic introuvable : ' . secureXSS($params['id']), -32602);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($eqLogic));
 			}
@@ -289,7 +280,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'eqLogic::fullById') {
 				$eqLogic = eqLogic::byId($params['id']);
 				if (!is_object($eqLogic)) {
-					throw new Exception('EqLogic introuvable : ' . $params['id'], -32602);
+					throw new Exception('EqLogic introuvable : ' . secureXSS($params['id']), -32602);
 				}
 				$return = utils::o2a($eqLogic);
 				$return['cmds'] = array();
@@ -307,7 +298,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				$typeEqLogic = $params['eqType_name'];
 				$typeCmd = $typeEqLogic . 'Cmd';
 				if ($typeEqLogic == '' || !class_exists($typeEqLogic) || !class_exists($typeCmd)) {
-					throw new Exception(__('Type incorrect (classe commande inexistante)', __FILE__) . $typeCmd);
+					throw new Exception(__('Type incorrect (classe commande inexistante)', __FILE__) . secureXSS($typeCmd));
 				}
 				$eqLogic = null;
 				if (isset($params['id'])) {
@@ -403,7 +394,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'cmd::byId') {
 				$cmd = cmd::byId($params['id']);
 				if (!is_object($cmd)) {
-					throw new Exception('Cmd introuvable : ' . $params['id'], -32701);
+					throw new Exception('Cmd introuvable : ' . secureXSS($params['id']), -32701);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($cmd));
 			}
@@ -414,14 +405,14 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 					foreach ($params['id'] as $id) {
 						$cmd = cmd::byId($id);
 						if (!is_object($cmd)) {
-							throw new Exception('Cmd introuvable : ' . $id, -32702);
+							throw new Exception('Cmd introuvable : ' . secureXSS($id), -32702);
 						}
 						$return[$id] = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
 					}
 				} else {
 					$cmd = cmd::byId($params['id']);
 					if (!is_object($cmd)) {
-						throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
+						throw new Exception('Cmd introuvable : ' . secureXSS($params['id']), -32702);
 					}
 					$return = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
 				}
@@ -431,7 +422,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'cmd::getStatistique') {
 				$cmd = cmd::byId($params['id']);
 				if (!is_object($cmd)) {
-					throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
+					throw new Exception('Cmd introuvable : ' . secureXSS($params['id']), -32702);
 				}
 				$jsonrpc->makeSuccess($cmd->getStatistique($params['startTime'], $params['endTime']));
 			}
@@ -439,7 +430,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'cmd::getTendance') {
 				$cmd = cmd::byId($params['id']);
 				if (!is_object($cmd)) {
-					throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
+					throw new Exception('Cmd introuvable : ' . secureXSS($params['id']), -32702);
 				}
 				$jsonrpc->makeSuccess($cmd->getTendance($params['startTime'], $params['endTime']));
 			}
@@ -447,7 +438,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'cmd::getHistory') {
 				$cmd = cmd::byId($params['id']);
 				if (!is_object($cmd)) {
-					throw new Exception('Cmd introuvable : ' . $params['id'], -32702);
+					throw new Exception('Cmd introuvable : ' . secureXSS($params['id']), -32702);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($cmd->getHistory($params['startTime'], $params['endTime'])));
 			}
@@ -460,7 +451,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'scenario::byId') {
 				$scenario = scenario::byId($params['id']);
 				if (!is_object($scenario)) {
-					throw new Exception('Scenario introuvable : ' . $params['id'], -32703);
+					throw new Exception('Scenario introuvable : ' . secureXSS($params['id']), -32703);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($scenario));
 			}
@@ -468,7 +459,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'scenario::changeState') {
 				$scenario = scenario::byId($params['id']);
 				if (!is_object($scenario)) {
-					throw new Exception('Scenario introuvable : ' . $params['id'], -32702);
+					throw new Exception('Scenario introuvable : ' . secureXSS($params['id']), -32702);
 				}
 				if ($params['state'] == 'stop') {
 					$jsonrpc->makeSuccess($scenario->stop());
@@ -562,7 +553,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				}
 				$jeeNetwork = jeeNetwork::byId($params['slave_id']);
 				if (!is_object($jeeNetwork)) {
-					throw new Exception(__('Aucun esclave correspondant à l\'id : ', __FILE__) . $params['slave_id']);
+					throw new Exception(__('Aucun esclave correspondant à l\'id : ', __FILE__) . secureXSS($params['slave_id']));
 				}
 				if (substr(config::byKey('backup::path'), 0, 1) != '/') {
 					$backup_dir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
@@ -574,12 +565,12 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 					mkdir($uploaddir);
 				}
 				if (!file_exists($uploaddir)) {
-					throw new Exception('Répertoire de téléversement non trouvé : ' . $uploaddir);
+					throw new Exception('Répertoire de téléversement non trouvé : ' . secureXSS($uploaddir));
 				}
 				$_file = $_FILES['file'];
 				$extension = strtolower(strrchr($_file['name'], '.'));
 				if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
-					throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . $extension);
+					throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . secureXSS($extension));
 				}
 				if (filesize($_file['tmp_name']) > 50000000) {
 					throw new Exception('La taille du fichier est trop importante (maximum 50Mo)');
@@ -605,12 +596,12 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 					mkdir($uploaddir);
 				}
 				if (!file_exists($uploaddir)) {
-					throw new Exception('Repertoire de téléversement non trouvé : ' . $uploaddir);
+					throw new Exception('Repertoire de téléversement non trouvé : ' . secureXSS($uploaddir));
 				}
 				$_file = $_FILES['file'];
 				$extension = strtolower(strrchr($_file['name'], '.'));
 				if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
-					throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . $extension);
+					throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . secureXSS($extension));
 				}
 				if (filesize($_file['tmp_name']) > 50000000) {
 					throw new Exception('La taille du fichier est trop importante (maximum 50Mo)');
@@ -670,9 +661,13 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 			/*             * ************************Plugin*************************** */
 			if ($jsonrpc->getMethod() == 'plugin::install') {
-				$market = market::byId($params['plugin_id']);
+				try {
+					$market = market::byId($params['plugin_id']);
+				} catch (Exception $e) {
+					$market = market::byLogicalId($params['plugin_id']);
+				}
 				if (!is_object($market)) {
-					throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . $params['plugin_id']);
+					throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . secureXSS($params['plugin_id']));
 				}
 				if (!isset($params['version'])) {
 					$params['version'] = 'stable';
@@ -684,7 +679,7 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 			if ($jsonrpc->getMethod() == 'plugin::remove') {
 				$market = market::byId($params['plugin_id']);
 				if (!is_object($market)) {
-					throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . $params['plugin_id']);
+					throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . secureXSS($params['plugin_id']));
 				}
 				if (!isset($params['version'])) {
 					$params['version'] = 'stable';
@@ -712,29 +707,16 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 
 			if ($jsonrpc->getMethod() == 'network::restartNgrok') {
 				config::save('market::allowDNS', 1);
-				if (network::ngrok_run()) {
-					network::ngrok_stop();
+				if (network::dns_run()) {
+					network::dns_stop();
 				}
-				network::ngrok_start();
-				if (config::byKey('market::redirectSSH') == 1) {
-					if (network::ngrok_run('tcp', 22, 'ssh')) {
-						network::ngrok_stop('tcp', 22, 'ssh');
-					}
-					network::ngrok_start('tcp', 22, 'ssh');
-				} else {
-					if (network::ngrok_run('tcp', 22, 'ssh')) {
-						network::ngrok_stop('tcp', 22, 'ssh');
-					}
-				}
+				network::dns_start();
 				$jsonrpc->makeSuccess();
 			}
 
 			if ($jsonrpc->getMethod() == 'network::stopNgrok') {
 				config::save('market::allowDNS', 0);
-				network::ngrok_stop();
-				if (config::byKey('market::redirectSSH') == 1) {
-					network::ngrok_stop('tcp', 22, 'ssh');
-				}
+				network::dns_stop();
 				$jsonrpc->makeSuccess();
 			}
 
@@ -748,12 +730,12 @@ if ((init('apikey') != '' || init('api') != '') && init('type') != '') {
 				if (!isset($params['name'])) {
 					$params['name'] = '';
 				}
-				$jsonrpc->makeSuccess(network::ngrok_run($params['proto'], $params['port'], $params['name']));
+				$jsonrpc->makeSuccess(network::dns_run());
 			}
 
 			/*             * ************************************************************************ */
 		}
-		throw new Exception('Aucune méthode correspondante : ' . $jsonrpc->getMethod(), -32500);
+		throw new Exception('Aucune méthode correspondante : ' . secureXSS($jsonrpc->getMethod()), -32500);
 /*         * *********Catch exeption*************** */
 	} catch (Exception $e) {
 		$message = $e->getMessage();

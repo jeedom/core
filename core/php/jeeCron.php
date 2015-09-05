@@ -55,7 +55,7 @@ pcntl_signal(SIGHUP, "sig_handler");
 pcntl_signal(SIGUSR1, "sig_handler");
 
 if (init('cron_id') != '') {
-	if (config::byKey('enableCron', 'core', 1, true) == 0) {
+	if (jeedom::isStarted() && config::byKey('enableCron', 'core', 1, true) == 0) {
 		die(__('Tous les crons sont actuellement désactivés', __FILE__));
 	}
 	$datetime = date('Y-m-d H:i:s');
@@ -159,7 +159,14 @@ if (init('cron_id') != '') {
 			$logicalId = $cron->getName() . '::' . $e->getCode();
 		}
 		echo '[Erreur] ' . $cron->getName() . ' : ' . print_r($e, true);
-		log::add('cron', 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
+		if (isset($class) && $class != '') {
+			log::add($class, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
+		} else if (isset($function) && $function != '') {
+			log::add($function, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
+		} else {
+			log::add('cron', 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
+		}
+
 	}
 } else {
 	if (cron::jeeCronRun()) {
@@ -171,7 +178,7 @@ if (init('cron_id') != '') {
 	set_time_limit(59);
 	cron::setPidFile();
 	while (true) {
-		if (config::byKey('enableCron', 'core', 1, true) == 0) {
+		if ($started && config::byKey('enableCron', 'core', 1, true) == 0) {
 			die(__('Tous les crons sont actuellement désactivés', __FILE__));
 		}
 		foreach (cron::all() as $cron) {
@@ -190,6 +197,7 @@ if (init('cron_id') != '') {
 							$cron->start();
 						}
 					} else {
+						$cron->halt();
 						$cron->start();
 					}
 				}

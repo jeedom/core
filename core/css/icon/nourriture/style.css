@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'nourriture';
-	src:url('fonts/nourriture.eot?s1f6ij');
-	src:url('fonts/nourriture.eot?#iefixs1f6ij') format('embedded-opentype'),
-		url('fonts/nourriture.woff?s1f6ij') format('woff'),
-		url('fonts/nourriture.ttf?s1f6ij') format('truetype'),
-		url('fonts/nourriture.svg?s1f6ij#nourriture') format('svg');
+	src:url('fonts/nourriture.eot');
+	src:url('fonts/nourriture.eot') format('embedded-opentype'),
+		url('fonts/nourriture.woff') format('woff'),
+		url('fonts/nourriture.ttf') format('truetype'),
+		url('fonts/nourriture.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

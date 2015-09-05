@@ -388,19 +388,17 @@ class eqLogic {
 			return $_input;
 		}
 		$text = $_input;
-
 		preg_match_all("/#\[(.*?)\]\[(.*?)\]#/", $text, $matches);
 		if (count($matches) == 3) {
 			for ($i = 0; $i < count($matches[0]); $i++) {
 				if (isset($matches[1][$i]) && isset($matches[2][$i])) {
 					$eqLogic = self::byObjectNameEqLogicName($matches[1][$i], $matches[2][$i]);
-					if (is_object($eqLogic)) {
-						$text = str_replace($matches[0][$i], '#eqLogic' . $eqLogic->getId() . '#', $text);
+					if (isset($eqLogic[0]) && is_object($eqLogic[0])) {
+						$text = str_replace($matches[0][$i], '#eqLogic' . $eqLogic[0]->getId() . '#', $text);
 					}
 				}
 			}
 		}
-
 		return $text;
 	}
 
@@ -481,7 +479,7 @@ class eqLogic {
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
-			'#eqLink#' => $this->getLinkToConfiguration(),
+			'#eqLink#' => ($this->hasRight('w')) ? $this->getLinkToConfiguration() : '#',
 			'#category#' => $this->getPrimaryCategory(),
 			'#background_color#' => $this->getBackgroundColor($version),
 			'#cmd#' => $cmd_html,
@@ -490,13 +488,13 @@ class eqLogic {
 			'#logicalId#' => $this->getLogicalId(),
 			'#battery#' => $this->getConfiguration('batteryStatus', -2),
 			'#batteryDatetime#' => $this->getConfiguration('batteryStatusDatetime', __('inconnue', __FILE__)),
+			'#object_name#' => '',
+			'#height#' => $this->getDisplay('height', 'auto'),
+			'#width#' => $this->getDisplay('width', 'auto'),
 		);
-
 		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowObjectNameOnView', 0) == 0) {
 			$object = $this->getObject();
 			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
-		} else {
-			$replace['#object_name#'] = '';
 		}
 		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
 			$replace['#name#'] = '';
@@ -547,7 +545,7 @@ class eqLogic {
 		return DB::remove($this);
 	}
 
-	public function save() {
+	public function save($_direct = false) {
 		if ($this->getName() == '') {
 			throw new Exception(__('Le nom de l\'équipement ne peut pas être vide : ', __FILE__) . print_r($this, true));
 		}
@@ -557,7 +555,7 @@ class eqLogic {
 		} else {
 			$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
 		}
-		return DB::save($this);
+		return DB::save($this, $_direct);
 	}
 
 	public function refresh() {
@@ -656,9 +654,6 @@ class eqLogic {
 	}
 
 	public function batteryStatus($_pourcent, $_datetime = '') {
-		if ($this->getConfiguration('batteryStatus', -1) == $_pourcent) {
-			return;
-		}
 		if ($_pourcent > 20) {
 			foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
 				$message->remove();
@@ -670,6 +665,9 @@ class eqLogic {
 			$logicalId = 'lowBattery' . $this->getId();
 			$message = 'Le module ' . $this->getEqType_name() . ' ';
 			$message .= $this->getHumanName() . ' a moins de ' . $_pourcent . '% de batterie';
+			if ($this->getConfiguration('battery_type') != '') {
+				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
+			}
 			message::add($this->getEqType_name(), $message, '', $logicalId);
 		} else {
 			$logicalId = 'noBattery' . $this->getId();
@@ -683,7 +681,7 @@ class eqLogic {
 		} else {
 			$this->setConfiguration('batteryStatusDatetime', date('Y-m-d H:i:s'));
 		}
-
+		$this->emptyCacheWidget();
 		$this->save();
 	}
 
@@ -708,6 +706,7 @@ class eqLogic {
 		if (isConnect('admin')) {
 			return true;
 		}
+		$rights = null;
 		if ($_right == 'x') {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'action');
 		} elseif ($_right == 'r') {
@@ -798,7 +797,7 @@ class eqLogic {
 
 	public function getCmd($_type = null, $_logicalId = null, $_visible = null, $_multiple = false) {
 		if ($_logicalId != null) {
-			return cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple);
+			return cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple, $_type);
 		}
 		return cmd::byEqLogicId($this->id, $_type, $_visible, $this);
 	}
@@ -886,7 +885,7 @@ class eqLogic {
 	}
 
 	public function setTimeout($timeout) {
-		if (is_string($timeout) || is_nan(intval($timeout)) || $timeout < 1) {
+		if ($timeout == '' || is_string($timeout) || is_nan(intval($timeout)) || $timeout < 1) {
 			$timeout == '';
 		}
 		$this->timeout = $timeout;

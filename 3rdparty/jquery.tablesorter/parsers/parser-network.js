@@ -1,24 +1,25 @@
-/*! Network parsers - IPv4, IPv6 and MAC Addresses - 10/26/2014 (v2.18.0) */
+/*! Parser: network - updated 5/17/2015 (v2.22.0) */
+/* IPv4, IPv6 and MAC Addresses */
 /*global jQuery: false */
 ;(function($){
-	"use strict";
+	'use strict';
 
 	var ts = $.tablesorter,
 		ipv4Format,
 		ipv4Is;
 
-	/*! IPv6 Address parser (WIP)
+	/*! IPv6 Address parser (WIP) *//*
 	* IPv6 Address (ffff:0000:0000:0000:0000:0000:0000:0000)
-	* needs to support short versions like "::8" or "1:2::7:8"
-	* and "::00:192.168.10.184" (embedded IPv4 address)
+	* needs to support short versions like '::8' or '1:2::7:8'
+	* and '::00:192.168.10.184' (embedded IPv4 address)
 	* see http://www.intermapper.com/support/tools/IPV6-Validator.aspx
 	*/
 	$.extend( ts.regex, {}, {
 		ipv4Validate : /((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})/,
 		ipv4Extract  : /([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})/,
 
-	// simplified regex from http://www.intermapper.com/support/tools/IPV6-Validator.aspx
-	// (specifically from http://download.dartware.com/thirdparty/ipv6validator.js)
+		// simplified regex from http://www.intermapper.com/support/tools/IPV6-Validator.aspx
+		// (specifically from http://download.dartware.com/thirdparty/ipv6validator.js)
 		ipv6Validate : /^\s*((([0-9a-f]{1,4}:){7}([0-9a-f]{1,4}|:))|(([0-9a-f]{1,4}:){6}(:[0-9a-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9a-f]{1,4}:){5}(((:[0-9a-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9a-f]{1,4}:){4}(((:[0-9a-f]{1,4}){1,3})|((:[0-9a-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9a-f]{1,4}:){3}(((:[0-9a-f]{1,4}){1,4})|((:[0-9a-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9a-f]{1,4}:){2}(((:[0-9a-f]{1,4}){1,5})|((:[0-9a-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9a-f]{1,4}:){1}(((:[0-9a-f]{1,4}){1,6})|((:[0-9a-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9a-f]{1,4}){1,7})|((:[0-9a-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$/i
 	});
 
@@ -83,15 +84,16 @@
 	};
 	ipv4Format = function(s, table) {
 		var i, a = s ? s.split('.') : '',
-		r = '',
-		l = a.length;
+			r = '',
+			l = a.length;
 		for (i = 0; i < l; i++) {
 			r += ('000' + a[i]).slice(-3);
 		}
 		return s ? ts.formatFloat(r, table) : s;
 	};
 
-	// duplicate "ipAddress" as "ipv4Address" (to maintain backwards compatility)
+	/*! Parser: ipv4Address (a.k.a. ipAddress) */
+	// duplicate 'ipAddress' as 'ipv4Address' (to maintain backwards compatility)
 	ts.addParser({
 		id: 'ipAddress',
 		is: ipv4Is,
@@ -105,21 +107,31 @@
 		type: 'numeric'
 	});
 
+	/*! Parser: MAC address */
+	/* MAC examples: 12:34:56:78:9A:BC, 1234.5678.9ABC, 12-34-56-78-9A-BC, and 123456789ABC
+	*/
 	ts.addParser({
-		id: 'MAC',
-		is: function(s) {
-			return ts.regex.ipv6Validate.test(s);
+		id : 'MAC',
+		is : function( str ) {
+			return false;
 		},
-		format: function(s) {
-			var t = '',
-				val = s.replace(/[:.-]/g, '').match(/\w{2}/g);
-			$.each(val, function(i, v){
-				t += ( '000' + parseInt(v, 16) ).slice(-3);
-			});
-			return t;
+		format : function( str ) {
+			var indx, len,
+				mac = '',
+				val = ( str || '' ).replace( /[:.-]/g, '' ).match( /\w{2}/g );
+			if ( val ) {
+				// not assuming all mac addresses in the column will end up with six
+				// groups of two to process, so it's not actually validating the address
+				len = val.length;
+				for ( indx = 0; indx < len; indx++ ) {
+					mac += ( '000' + parseInt( val[ indx ], 16 ) ).slice( -3 );
+				}
+				return mac;
+			}
+			return str;
 		},
 		// uses natural sort hex compare
-		type: 'numeric'
+		type : 'numeric'
 	});
 
-})(jQuery);
+})( jQuery );

@@ -20,7 +20,8 @@
 /* header */
 .tablesorter-blue th,
 .tablesorter-blue thead td {
-	font: bold 12px/18px Arial, Sans-serif;
+	font: 12px/18px Arial, Sans-serif;
+	font-weight: bold;
 	color: #000;
 	background-color: #99bfe6;
 	border-collapse: collapse;
@@ -96,25 +97,28 @@
  you'll need to add additional lines for
  rows with more than 2 child rows
  */
+.tablesorter-blue tbody > tr.hover > td,
 .tablesorter-blue tbody > tr:hover > td,
 .tablesorter-blue tbody > tr:hover + tr.tablesorter-childRow > td,
 .tablesorter-blue tbody > tr:hover + tr.tablesorter-childRow + tr.tablesorter-childRow > td,
+.tablesorter-blue tbody > tr.even.hover > td,
 .tablesorter-blue tbody > tr.even:hover > td,
 .tablesorter-blue tbody > tr.even:hover + tr.tablesorter-childRow > td,
 .tablesorter-blue tbody > tr.even:hover + tr.tablesorter-childRow + tr.tablesorter-childRow > td {
-	background: #d9d9d9;
+	background-color: #d9d9d9;
 }
+.tablesorter-blue tbody > tr.odd.hover > td,
 .tablesorter-blue tbody > tr.odd:hover > td,
 .tablesorter-blue tbody > tr.odd:hover + tr.tablesorter-childRow > td,
 .tablesorter-blue tbody > tr.odd:hover + tr.tablesorter-childRow + tr.tablesorter-childRow > td {
-	background: #bfbfbf;
+	background-color: #bfbfbf;
 }
 
 /* table processing indicator */
 .tablesorter-blue .tablesorter-processing {
 	background-position: center center !important;
 	background-repeat: no-repeat !important;
-	/* background-image: url(../addons/pager/icons/loading.gif) !important; */
+	/* background-image: url(images/loading.gif) !important; */
 	background-image: url('data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQBCgACACwAAAAAFAAUAAACQZRvoIDtu1wLQUAlqKTVxqwhXIiBnDg6Y4eyx4lKW5XK7wrLeK3vbq8J2W4T4e1nMhpWrZCTt3xKZ8kgsggdJmUFACH5BAEKAAIALAcAAAALAAcAAAIUVB6ii7jajgCAuUmtovxtXnmdUAAAIfkEAQoAAgAsDQACAAcACwAAAhRUIpmHy/3gUVQAQO9NetuugCFWAAAh+QQBCgACACwNAAcABwALAAACE5QVcZjKbVo6ck2AF95m5/6BSwEAIfkEAQoAAgAsBwANAAsABwAAAhOUH3kr6QaAcSrGWe1VQl+mMUIBACH5BAEKAAIALAIADQALAAcAAAIUlICmh7ncTAgqijkruDiv7n2YUAAAIfkEAQoAAgAsAAAHAAcACwAAAhQUIGmHyedehIoqFXLKfPOAaZdWAAAh+QQFCgACACwAAAIABwALAAACFJQFcJiXb15zLYRl7cla8OtlGGgUADs=') !important;
 }
 
@@ -151,12 +155,15 @@
 
 /* caption */
 caption {
-	background: #fff;
+	background-color: #fff;
 }
 
 /* filter widget */
+.tablesorter-blue .tablesorter-filter-row {
+	background-color: #eee;
+}
 .tablesorter-blue .tablesorter-filter-row td {
-	background: #eee;
+	background-color: #eee;
 	line-height: normal;
 	text-align: center; /* center the input */
 	-webkit-transition: line-height 0.1s ease;
@@ -192,7 +199,8 @@ caption {
 	filter: alpha(opacity=0);
 }
 /* filters */
-.tablesorter-blue .tablesorter-filter {
+.tablesorter-blue input.tablesorter-filter,
+.tablesorter-blue select.tablesorter-filter {
 	width: 98%;
 	height: auto;
 	margin: 0;

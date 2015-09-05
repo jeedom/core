@@ -1,11 +1,14 @@
-<select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="scenario_id" data-option_id="#id#" data-uid="#uid#" style="width: 35%; display: inline-block;"></select>
-<select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="action" data-option_id="#id#" data-uid="#uid#" style="width: 35%; display: inline-block;">
-    <option value="start">{{Start}}</option>
-    <option value="stop">{{Stop}}</option>
-    <option value="activate">{{Activer}}</option>
-    <option value="deactivate">{{Désactiver}}</option>
-</select>
-
+<div class="input-group input-group-sm" style="width: 100%">
+    <span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Scénario}}</span>
+    <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="scenario_id" data-option_id="#id#" data-uid="#uid#"></select>
+    <span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Action}}</span>
+    <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="action" data-option_id="#id#" data-uid="#uid#">
+        <option value="start">{{Start}}</option>
+        <option value="stop">{{Stop}}</option>
+        <option value="activate">{{Activer}}</option>
+        <option value="deactivate">{{Désactiver}}</option>
+    </select>
+</div>
 <script>
     if ($('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=action] option[value=#action#]').html() != undefined) {
         $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=action]').value('#action#');
@@ -16,6 +19,7 @@
         },
         success: function (scenarios) {
             var options = '';
+             options += '<option value="-1">Aucun</option>';
             for (var i in scenarios) {
                 options += '<option value="' + scenarios[i].id + '">' + scenarios[i].humanName + '</option>';
             }

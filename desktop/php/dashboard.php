@@ -12,14 +12,14 @@ if (!is_object($object)) {
 	$object = object::rootObject();
 }
 if (!is_object($object)) {
-	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Général -> Objet.<br/> Si vous ne savez pas quoi faire ou que c\'est la première fois que vous utilisez Jeedom n\'hésitez pas à consulter cette <a href="http://jeedom.fr/premier_pas.php" target="_blank">page</a>}}');
+	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Général -> Objet.<br/> Si vous ne savez pas quoi faire ou que c\'est la première fois que vous utilisez Jeedom n\'hésitez pas à consulter cette <a href="https://jeedom.fr/doc/documentation/premiers-pas/fr_FR/doc-premiers-pas.html" target="_blank">page</a> et celle la si vous avez un pack : <a href="https://jeedom.fr/start" target="_blank">page</a>}}');
 }
 $child_object = object::buildTree($object);
 $parentNumber = array();
 ?>
 
 <div class="row row-overflow">
-    <?php
+	<?php
 if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 	echo '<div class="col-lg-2 col-md-3 col-sm-4" id="div_displayObjectList">';
 } else {
@@ -27,11 +27,11 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 }
 ?>
 
-    <div class="bs-sidebar">
-        <ul id="ul_object" class="nav nav-list bs-sidenav">
-            <li class="nav-header">{{Liste objets}} </li>
-            <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
-            <?php
+	<div class="bs-sidebar">
+		<ul id="ul_object" class="nav nav-list bs-sidenav">
+			<li class="nav-header">{{Liste objets}} </li>
+			<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
+			<?php
 $allObject = object::buildTree(null, true);
 foreach ($allObject as $object_li) {
 	$parentNumber[$object_li->getId()] = $object_li->parentNumber();
@@ -43,8 +43,8 @@ foreach ($allObject as $object_li) {
 	}
 }
 ?>
-        </ul>
-    </div>
+		</ul>
+	</div>
 </div>
 <?php
 if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
@@ -63,9 +63,12 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 ?>
 <i class='fa fa-picture-o cursor tooltips pull-left' id='bt_displayObject' data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault')?>' title="{{Afficher/Masquer les objets}}"></i>
 <i class='fa fa-cogs pull-right cursor tooltips' id='bt_displayScenario' data-display='<?php echo $_SESSION['user']->getOptions('displayScenarioByDefault')?>' title="{{Afficher/Masquer les scénarios}}"></i>
-
+<?php if (init('category', 'all') == 'all') {?>
+<i class="fa fa-pencil pull-right cursor" id="bt_editDashboardWidgetOrder" data-mode="0" style="margin-right : 10px;"></i>
+<?php }
+?>
 <center>
-    <?php
+	<?php
 if (init('category', 'all') == 'all') {
 	echo '<a href="index.php?v=d&p=dashboard&object_id=' . init('object_id') . '&category=all" class="btn btn-primary btn-sm categoryAction" style="margin-bottom: 5px;margin-right: 3px;">{{Tous}}</a>';
 } else {
@@ -89,7 +92,7 @@ if (init('category', 'all') == 'other') {
 <?php
 echo '<div object_id="' . $object->getId() . '">';
 echo '<legend style="margin-bottom : 0px;">' . $object->getDisplay('icon') . ' ' . $object->getName() . '</legend>';
-echo '<div class="div_displayEquipement" style="width: 100%;margin-bottom : 3px;">';
+echo '<div class="div_displayEquipement" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
 foreach ($object->getEqLogic(true, true) as $eqLogic) {
 	if ((init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1)) {
 		echo $eqLogic->toHtml('dashboard');
@@ -99,10 +102,9 @@ echo '</div>';
 foreach ($child_object as $child) {
 	$eqLogics = $child->getEqLogic(true, true);
 	if (count($eqLogics) > 0) {
-		$margin = (isset($parentNumber[$child->getId()])) ? 40 * $parentNumber[$child->getId()] : 0;
-		echo '<div object_id="' . $child->getId() . '" style="margin-left : ' . $margin . 'px;margin-bottom : 3px;">';
+		echo '<div object_id="' . $child->getId() . '" style="margin-bottom : 3px;">';
 		echo '<legend style="margin-bottom : 0px;">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</legend>';
-		echo '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '" style="width: 100%;">';
+		echo '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
 		foreach ($eqLogics as $eqLogic) {
 			if ((init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1)) {
 				echo $eqLogic->toHtml('dashboard');

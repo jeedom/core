@@ -85,6 +85,8 @@ try {
 				try {
 					global $NO_PLUGIN_BAKCUP;
 					$NO_PLUGIN_BAKCUP = true;
+					global $NO_CLOUD_BAKCUP;
+					$NO_CLOUD_BAKCUP = true;
 					jeedom::backup();
 				} catch (Exception $e) {
 					if (init('mode') != 'force') {
@@ -121,9 +123,9 @@ try {
 					if (file_exists($tmp)) {
 						unlink($tmp);
 					}
-					file_put_contents($tmp, fopen($url, 'r'));
+					exec('wget --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
 					if (!file_exists($tmp)) {
-						throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '. Si l\'application est payante, l\'avez-vous achetée ?', __FILE__));
+						throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
 					}
 					if (filesize($tmp) < 10) {
 						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 10 octets)', __FILE__));
@@ -333,6 +335,7 @@ try {
 			echo __("***************Mise à jour des plugins réussie***************\n", __FILE__);
 		}
 		try {
+			message::removeAll('update', 'newUpdate');
 			echo __("Vérification des mises à jour\n", __FILE__);
 			update::checkAllUpdate();
 			echo __("OK\n", __FILE__);
@@ -381,6 +384,9 @@ try {
 		}
 		config::save('logLevel', $logLevel);
 		echo "OK\n";
+		echo 'Installation de socket.io et express (peut etre très long > 30min)';
+		echo shell_exec('cd ' . dirname(__FILE__) . '/../core/nodeJS;sudo npm install socket.io;npm install express');
+		echo "OK\n";
 
 	}
 
@@ -413,9 +419,5 @@ function incrementVersion($_version) {
 			$version[2] = 0;
 		}
 	}
-	$returnVersion = '';
-	for ($j = 0, $sVersion = count($version); $j < $sVersion; $j++) {
-		$returnVersion .= $version[$j] . '.';
-	}
-	return trim($returnVersion, '.');
+	return $version[0] . '.' . $version[1] . '.' . $version[2];
 }

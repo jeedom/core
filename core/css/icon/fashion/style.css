@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'fashion';
-	src:url('fonts/fashion.eot?poztq0');
-	src:url('fonts/fashion.eot?#iefixpoztq0') format('embedded-opentype'),
-		url('fonts/fashion.woff?poztq0') format('woff'),
-		url('fonts/fashion.ttf?poztq0') format('truetype'),
-		url('fonts/fashion.svg?poztq0#fashion') format('svg');
+	src:url('fonts/fashion.eot');
+	src:url('fonts/fashion.eot') format('embedded-opentype'),
+		url('fonts/fashion.woff') format('woff'),
+		url('fonts/fashion.ttf') format('truetype'),
+		url('fonts/fashion.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

@@ -30,16 +30,16 @@ $("#div_listInteract").resizable({
   grid: [1, 10000],
   stop: function () {
     $('.interactListContainer').packery();
-     var value = {options: {interactMenuSize: $("#div_listInteract").width()}};
-        jeedom.user.saveProfils({
-          profils: value,
-          global: false,
-          error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-        }
-    });
+    var value = {options: {interactMenuSize: $("#div_listInteract").width()}};
+    jeedom.user.saveProfils({
+      profils: value,
+      global: false,
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+    }
+});
 }
 });
 
@@ -125,6 +125,9 @@ function displayInteract(_id){
             $('.interactAttr').value('');
             $(".interactAttr[data-l1key=link_type]").off();
             $('.interact').setValues(data, '.interactAttr');
+            if(!isset(data.link_type) || data.link_type == undefined || data.link_type == ''){
+                data.link_type = 'cmd';
+            }
             changeLinkType(data);
             $(".interactAttr[data-l1key=link_type]").on('change', function () {
                 changeLinkType({link_type: $(this).value()});
@@ -171,6 +174,12 @@ $('#bt_testInteract,#bt_testInteract2').on('click', function () {
 $('body').delegate('.listEquipementInfo', 'click', function () {
     jeedom.cmd.getSelectModal({}, function (result) {
         $('.interactAttr[data-l1key=link_id]').atCaret('insert',result.human);
+    });
+});
+
+$('body').delegate('.listEquipementInfoReply', 'click', function () {
+    jeedom.cmd.getSelectModal({cmd : {type : 'info'}}, function (result) {
+        $('.interactAttr[data-l1key=reply]').atCaret('insert',result.human);
     });
 });
 
@@ -260,11 +269,13 @@ function changeLinkType(_options) {
     if (_options.link_type == 'cmd') {
         var options = '<div class="form-group">';
         options += '<label class="col-sm-3 control-label">{{Commande}}</label>';
-        options += '<div class="col-sm-8">';
-        options += '<input class="interactAttr form-control input-sm" data-l1key="link_id"/>';
+        options += '<div class="col-sm-9">';
+        options += '<div class="input-group">';
+        options += '<input class="interactAttr form-control" data-l1key="link_id"/>';
+        options += '<span class="input-group-btn">';
+        options += '<a class="btn btn-default cursor listEquipementInfo"><i class="fa fa-list-alt "></i></a>';
+        options += '</span>';
         options += '</div>';
-        options += '<div class="col-sm-1">';
-        options += '<a class="btn btn-default cursor listEquipementInfo input-sm"><i class="fa fa-list-alt "></i></a></td>';
         options += '</div>';
         options += '</div>';
         $('#linkOption').empty().append(options);
@@ -288,7 +299,7 @@ function changeLinkType(_options) {
                 options += '<div class="form-group">';
                 options += '<label class="col-sm-3 control-label">{{Action}}</label>';
                 options += '<div class="col-sm-9">';
-                options += '<select class="interactAttr form-control input-sm" data-l1key="options" data-l2key="scenario_action">';
+                options += '<select class="interactAttr form-control" data-l1key="options" data-l2key="scenario_action">';
                 options += '<option value="start">{{Start}}</option>';
                 options += '<option value="stop">{{Stop}}</option>';
                 options += '<option value="activate">{{Activer}}</option>';

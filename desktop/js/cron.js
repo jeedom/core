@@ -16,23 +16,23 @@
  */
 
 
-printCron();
+ printCron();
 
-$("#bt_refreshCron").on('click', function () {
+ $("#bt_refreshCron").on('click', function () {
     printCron();
 
 });
 
-$("#bt_addCron").on('click', function () {
-    addCron({});
+ $("#bt_addCron").on('click', function () {
+    $('#table_cron tbody').append(addCron({}));
 });
 
-jwerty.key('ctrl+s', function (e) {
+ jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
     $("#bt_save").click();
 });
 
-$("#bt_save").on('click', function () {
+ $("#bt_save").on('click', function () {
     jeedom.cron.save({
         crons: $('#table_cron tbody tr').getValues('.cronAttr'),
         error: function (error) {
@@ -42,7 +42,7 @@ $("#bt_save").on('click', function () {
     });
 });
 
-$("#bt_changeCronState").on('click', function () {
+ $("#bt_changeCronState").on('click', function () {
     var el = $(this);
     jeedom.config.save({
         configuration: {enableCron: el.attr('data-state')},
@@ -61,11 +61,11 @@ $("#bt_changeCronState").on('click', function () {
     });
 });
 
-$("#table_cron").delegate(".remove", 'click', function () {
+ $("#table_cron").delegate(".remove", 'click', function () {
     $(this).closest('tr').remove();
 });
 
-$("#table_cron").delegate(".stop", 'click', function () {
+ $("#table_cron").delegate(".stop", 'click', function () {
     jeedom.cron.setState({
         state: 'stop',
         id: $(this).closest('tr').attr('id'),
@@ -76,7 +76,7 @@ $("#table_cron").delegate(".stop", 'click', function () {
     });
 });
 
-$("#table_cron").delegate(".start", 'click', function () {
+ $("#table_cron").delegate(".start", 'click', function () {
     jeedom.cron.setState({
         state: 'start',
         id: $(this).closest('tr').attr('id'),
@@ -87,7 +87,7 @@ $("#table_cron").delegate(".start", 'click', function () {
     });
 });
 
-$('#table_cron').delegate('.cronAttr[data-l1key=deamon]', 'change', function () {
+ $('#table_cron').delegate('.cronAttr[data-l1key=deamon]', 'change', function () {
     if ($(this).value() == 1) {
         $(this).closest('tr').find('.cronAttr[data-l1key=deamonSleepTime]').show();
     } else {
@@ -95,27 +95,32 @@ $('#table_cron').delegate('.cronAttr[data-l1key=deamon]', 'change', function () 
     }
 });
 
-$('body').delegate('.cronAttr', 'change', function () {
+ $('body').delegate('.cronAttr', 'change', function () {
     modifyWithoutSave = true;
 });
 
-function printCron() {
+ function printCron() {
+    $.showLoading();
     jeedom.cron.all({
         success: function (data) {
-            $('#table_cron tbody').empty();
-            for (var i in data.crons) {
-                addCron(data.crons[i]);
-            }
-            $('#span_jeecronMasterRuns').html(data.nbMasterCronRun);
-            $('#span_jeecronRuns').html(data.nbCronRun);
-            $('#span_nbProcess').html(data.nbProcess);
-            $('#span_loadAvg1').html(data.loadAvg[0]);
-            $('#span_loadAvg5').html(data.loadAvg[1]);
-            $('#span_loadAvg15').html(data.loadAvg[2]);
-            $("#table_cron").trigger("update");
-            modifyWithoutSave = false;
-        }
-    });
+           $.showLoading();
+           $('#table_cron tbody').empty();
+           var tr = [];
+           for (var i in data.crons) {
+             tr.push(addCron(data.crons[i]));
+         }
+         $('#table_cron tbody').append(tr);
+         $('#span_jeecronMasterRuns').html(data.nbMasterCronRun);
+         $('#span_jeecronRuns').html(data.nbCronRun);
+         $('#span_nbProcess').html(data.nbProcess);
+         $('#span_loadAvg1').html(data.loadAvg[0]);
+         $('#span_loadAvg5').html(data.loadAvg[1]);
+         $('#span_loadAvg15').html(data.loadAvg[2]);
+         $("#table_cron").trigger("update");
+         modifyWithoutSave = false;
+         $.hideLoading();
+     }
+ });
 }
 
 function addCron(_cron) {
@@ -131,20 +136,17 @@ function addCron(_cron) {
     }
     tr += '</td>';
     tr += '<td class="enable"><center>';
-    tr += '<input type="checkbox" class="cronAttr" data-l1key="enable" checked/>';
+    tr += '<input type="checkbox" data-size="mini" class="cronAttr bootstrapSwitch" data-l1key="enable" checked/>';
     tr += '</center></td>';
-    tr += '<td>';
-    tr += init(_cron.server);
-    tr += '</td>';
     tr += '<td>';
     tr += init(_cron.pid);
     tr += '</td>';
     tr += '<td class="deamons">';
-    tr += '<input type="checkbox" class="cronAttr" data-l1key="deamon" /></span> ';
+    tr += '<input type="checkbox" data-size="mini" class="cronAttr bootstrapSwitch" data-l1key="deamon" /></span> ';
     tr += '<input class="cronAttr form-control input-sm" data-l1key="deamonSleepTime" style="width : 50px; display : inline-block;"/>';
     tr += '</td>';
     tr += '<td class="once">';
-    tr += '<input type="checkbox" class="cronAttr" data-l1key="once" /></span> ';
+    tr += '<input type="checkbox" class="cronAttr bootstrapSwitch" data-size="mini" data-l1key="once" /></span> ';
     tr += '</td>';
     tr += '<td class="class"><input class="form-control cronAttr input-sm" data-l1key="class" /></td>';
     tr += '<td class="function"><input class="form-control cronAttr input-sm" data-l1key="function" /></td>';
@@ -173,6 +175,7 @@ function addCron(_cron) {
     tr += '<i class="fa fa-minus-circle remove pull-right cursor"></i>';
     tr += '</td>';
     tr += '</tr>';
-    $('#table_cron').append(tr);
-    $('#table_cron tbody tr:last').setValues(_cron, '.cronAttr');
+    var result = $(tr);
+    result.setValues(_cron, '.cronAttr');
+    return result;
 }

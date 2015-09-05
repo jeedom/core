@@ -2,7 +2,7 @@
 // @compilation_level SIMPLE_OPTIMIZATIONS
 
 /**
- * @license Highcharts JS v4.1.5 (2015-04-13)
+ * @license Highcharts JS v4.1.7 (2015-06-26)
  *
  * (c) 2009-2014 Torstein Honsi
  *
@@ -60,11 +60,8 @@ extend(Pane.prototype, {
 		
 		pane.chart = chart;
 		
-		// Set options
-		if (chart.angular) { // gauges
-			defaultOptions.background = {}; // gets extended by this.defaultBackgroundOptions
-		}
-		pane.options = options = merge(defaultOptions, options);
+		// Set options. Angular charts have a default background (#3318)
+		pane.options = options = merge(defaultOptions, chart.angular ? { background: {} } : undefined, options);
 		
 		backgroundOption = options.background;
 		
@@ -832,6 +829,7 @@ seriesTypes.arearange = extendClass(seriesTypes.area, {
 			dataLabelOptions = this.options.dataLabels,
 			align = dataLabelOptions.align,
 			point,
+			up,
 			inverted = this.chart.inverted;
 			
 		if (dataLabelOptions.enabled || this._hasPointLabels) {
@@ -840,26 +838,29 @@ seriesTypes.arearange = extendClass(seriesTypes.area, {
 			i = length;
 			while (i--) {
 				point = data[i];
-				
-				// Set preliminary values
-				point.y = point.high;
-				point._plotY = point.plotY;
-				point.plotY = point.plotHigh;
-				
-				// Store original data labels and set preliminary label objects to be picked up 
-				// in the uber method
-				originalDataLabels[i] = point.dataLabel;
-				point.dataLabel = point.dataLabelUpper;
-				
-				// Set the default offset
-				point.below = false;
-				if (inverted) {
-					if (!align) {
-						dataLabelOptions.align = 'left';
+				if (point) {
+					up = point.plotHigh > point.plotLow;
+					
+					// Set preliminary values
+					point.y = point.high;
+					point._plotY = point.plotY;
+					point.plotY = point.plotHigh;
+					
+					// Store original data labels and set preliminary label objects to be picked up 
+					// in the uber method
+					originalDataLabels[i] = point.dataLabel;
+					point.dataLabel = point.dataLabelUpper;
+					
+					// Set the default offset
+					point.below = up;
+					if (inverted) {
+						if (!align) {
+							dataLabelOptions.align = up ? 'right' : 'left';
+						}
+						dataLabelOptions.x = dataLabelOptions.xHigh;								
+					} else {
+						dataLabelOptions.y = dataLabelOptions.yHigh;
 					}
-					dataLabelOptions.x = dataLabelOptions.xHigh;								
-				} else {
-					dataLabelOptions.y = dataLabelOptions.yHigh;
 				}
 			}
 			
@@ -871,24 +872,27 @@ seriesTypes.arearange = extendClass(seriesTypes.area, {
 			i = length;
 			while (i--) {
 				point = data[i];
-				
-				// Move the generated labels from step 1, and reassign the original data labels
-				point.dataLabelUpper = point.dataLabel;
-				point.dataLabel = originalDataLabels[i];
-				
-				// Reset values
-				point.y = point.low;
-				point.plotY = point._plotY;
-				
-				// Set the default offset
-				point.below = true;
-				if (inverted) {
-					if (!align) {
-						dataLabelOptions.align = 'right';
+				if (point) {
+					up = point.plotHigh > point.plotLow;
+					
+					// Move the generated labels from step 1, and reassign the original data labels
+					point.dataLabelUpper = point.dataLabel;
+					point.dataLabel = originalDataLabels[i];
+					
+					// Reset values
+					point.y = point.low;
+					point.plotY = point._plotY;
+					
+					// Set the default offset
+					point.below = !up;
+					if (inverted) {
+						if (!align) {
+							dataLabelOptions.align = up ? 'left' : 'right';
+						}
+						dataLabelOptions.x = dataLabelOptions.xLow;
+					} else {
+						dataLabelOptions.y = dataLabelOptions.yLow;
 					}
-					dataLabelOptions.x = dataLabelOptions.xLow;
-				} else {
-					dataLabelOptions.y = dataLabelOptions.yLow;
 				}
 			}
 			if (seriesProto.drawDataLabels) {
@@ -966,11 +970,18 @@ seriesTypes.areasplinerange = extendClass(seriesTypes.arearange, {
 				y = plotHigh;
 				height = point.plotY - plotHigh;
 
-				if (height < minPointLength) {
+				// Adjust for minPointLength
+				if (Math.abs(height) < minPointLength) {
 					heightDifference = (minPointLength - height);
 					height += heightDifference;
 					y -= heightDifference / 2;
+
+				// Adjust for negative ranges or reversed Y axis (#1457)
+				} else if (height < 0) {
+					height *= -1;
+					y -= height;
 				}
+
 				shapeArgs.height = height;
 				shapeArgs.y = y;
 			});
@@ -1620,11 +1631,11 @@ seriesTypes.waterfall = extendClass(seriesTypes.column, {
 			// sum points
 			if (point.isSum) {
 				shapeArgs.y = yAxis.translate(range[1], 0, 1);
-				shapeArgs.height = yAxis.translate(range[0], 0, 1) - shapeArgs.y;
+				shapeArgs.height = Math.min(yAxis.translate(range[0], 0, 1), yAxis.len) - shapeArgs.y; // #4256
 
 			} else if (point.isIntermediateSum) {
 				shapeArgs.y = yAxis.translate(range[1], 0, 1);
-				shapeArgs.height = yAxis.translate(previousIntermediate, 0, 1) - shapeArgs.y;
+				shapeArgs.height = Math.min(yAxis.translate(previousIntermediate, 0, 1), yAxis.len) - shapeArgs.y;
 				previousIntermediate = range[1];
 
 			// If it's not the sum point, update previous stack end position and get 
@@ -2171,7 +2182,6 @@ Axis.prototype.beforePadding = function () {
 				this.searchPoint = this.searchPointByAngle;
 			} else {
 				this.kdDimensions = 2;
-				this.kdComparer = 'distR';
 			}
 		}
 		proceed.apply(this);
@@ -2364,7 +2374,7 @@ Axis.prototype.beforePadding = function () {
 	
 		// Postprocess plot coordinates
 		if (chart.polar) {
-			this.kdByAngle = chart.tooltip.shared;
+			this.kdByAngle = chart.tooltip && chart.tooltip.shared;
 	
 			if (!this.preventPostTranslate) {
 				points = this.points;

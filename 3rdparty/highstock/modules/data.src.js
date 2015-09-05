@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v2.1.5 (2015-04-13)
+ * @license Highstock JS v2.1.7 (2015-06-26)
  * Data module
  *
  * (c) 2012-2014 Torstein Honsi

@@ -46,6 +46,7 @@ class scenario {
 	private $_changeState = false;
 	private $_realTrigger = '';
 	private $_return = '';
+	private $_tags = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -59,8 +60,8 @@ class scenario {
 			'id' => $_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM scenario
-        WHERE id=:id';
+		FROM scenario
+		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -72,8 +73,8 @@ class scenario {
 		$values = array();
 		if ($_group === '') {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            INNER JOIN object ob ON s.object_id=ob.id';
+			FROM scenario s
+			INNER JOIN object ob ON s.object_id=ob.id';
 			if ($_type != null) {
 				$values['type'] = $_type;
 				$sql .= ' WHERE `type`=:type';
@@ -84,8 +85,8 @@ class scenario {
 				$result1 = array();
 			}
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            WHERE s.object_id IS NULL';
+			FROM scenario s
+			WHERE s.object_id IS NULL';
 			if ($_type != null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -95,9 +96,9 @@ class scenario {
 			return array_merge($result1, $result2);
 		} else if ($_group === null) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            INNER JOIN object ob ON s.object_id=ob.id
-            WHERE (`group` IS NULL OR `group` = "")';
+			FROM scenario s
+			INNER JOIN object ob ON s.object_id=ob.id
+			WHERE (`group` IS NULL OR `group` = "")';
 			if ($_type != null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -108,9 +109,9 @@ class scenario {
 				$result1 = array();
 			}
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            WHERE (`group` IS NULL OR `group` = "")
-            AND s.object_id IS NULL';
+			FROM scenario s
+			WHERE (`group` IS NULL OR `group` = "")
+			AND s.object_id IS NULL';
 			if ($_type != null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -123,9 +124,9 @@ class scenario {
 				'group' => $_group,
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            INNER JOIN object ob ON s.object_id=ob.id
-            WHERE `group`=:group';
+			FROM scenario s
+			INNER JOIN object ob ON s.object_id=ob.id
+			WHERE `group`=:group';
 			if ($_type != null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -133,9 +134,9 @@ class scenario {
 			$sql .= ' ORDER BY ob.name,s.group, s.name';
 			$result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            WHERE `group`=:group
-            AND s.object_id IS NULL';
+			FROM scenario s
+			WHERE `group`=:group
+			AND s.object_id IS NULL';
 			if ($_type != null) {
 				$values['type'] = $_type;
 				$sql .= ' AND `type`=:type';
@@ -148,17 +149,17 @@ class scenario {
 
 	public static function schedule() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM scenario
-        WHERE `mode` != "provoke"
-        AND isActive=1
-        AND state!="in progress"';
+		FROM scenario
+		WHERE `mode` != "provoke"
+		AND isActive=1
+		AND state!="in progress"';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	public static function listGroup($_group = null) {
 		$values = array();
 		$sql = 'SELECT DISTINCT(`group`)
-        FROM scenario';
+		FROM scenario';
 		if ($_group != null) {
 			$values['group'] = '%' . $_group . '%';
 			$sql .= ' WHERE `group` LIKE :group';
@@ -172,9 +173,9 @@ class scenario {
 			'cmd_id' => '%#' . $_cmd_id . '#%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM scenario
-        WHERE mode != "schedule"
-        AND `trigger` LIKE :cmd_id';
+		FROM scenario
+		WHERE mode != "schedule"
+		AND `trigger` LIKE :cmd_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -183,15 +184,15 @@ class scenario {
 			'element_id' => '%' . $_element_id . '%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM scenario
-        WHERE `scenarioElement` LIKE :element_id';
+		FROM scenario
+		WHERE `scenarioElement` LIKE :element_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false) {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM scenario';
+		FROM scenario';
 		if ($_object_id == null) {
 			$sql .= ' WHERE object_id IS NULL';
 		} else {
@@ -210,6 +211,7 @@ class scenario {
 	public static function check($_event = null) {
 		$message = '';
 		if ($_event != null) {
+			$speedPriority = null;
 			if (is_object($_event)) {
 				$scenarios = self::byTrigger($_event->getId());
 				$trigger = '#' . $_event->getId() . '#';
@@ -220,29 +222,15 @@ class scenario {
 				$message = __('Scénario exécuté sur événement : #', __FILE__) . $_event . '#';
 			}
 		} else {
+			$speedPriority = 0;
 			$message = __('Scénario exécuté automatiquement sur programmation', __FILE__);
 			$scenarios = scenario::all();
-			$dateOk = jeedom::isDateOk();
 			$trigger = '#schedule#';
+			if (!jeedom::isDateOk()) {
+				return;
+			}
 			foreach ($scenarios as $key => &$scenario) {
-				if ($scenario->getState() == 'in progress') {
-					if ($scenario->running()) {
-						if ($scenario->getTimeout() > 0 && (strtotime('now') - strtotime($scenario->getLastLaunch())) > $scenario->getTimeout()) {
-							$scenario->setLog(__('Erreur : le scénario est en timeout', __FILE__));
-							try {
-								$scenario->stop();
-							} catch (Exception $e) {
-								$scenario->setLog(__('Erreur : le scénario est en timeout et il est impossible de l\'arrêter : ', __FILE__) . $e->getMessage());
-								$scenario->save();
-							}
-						}
-					} else {
-						$scenario->setLog(__('Erreur : le scénario s\'est incidenté (toujours marqué en cours mais arrêté)', __FILE__));
-						$scenario->setState('error');
-						$scenario->save();
-					}
-				}
-				if ($dateOk && $scenario->getIsActive() == 1 && $scenario->getState() != 'in progress' && ($scenario->getMode() == 'schedule' || $scenario->getMode() == 'all')) {
+				if ($scenario->getIsActive() == 1 && $scenario->getState() != 'in progress' && ($scenario->getMode() == 'schedule' || $scenario->getMode() == 'all')) {
 					if (!$scenario->isDue()) {
 						unset($scenarios[$key]);
 					}
@@ -255,7 +243,7 @@ class scenario {
 			return true;
 		}
 		foreach ($scenarios as $scenario_) {
-			$scenario_->launch(false, $trigger, $message);
+			$scenario_->launch(false, $trigger, $message, $speedPriority);
 		}
 		return true;
 	}
@@ -312,6 +300,50 @@ class scenario {
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 	}
 
+	public static function consystencyCheck() {
+		foreach (self::all() as $scenario) {
+			if ($scenario->getIsActive() != 1) {
+				continue;
+			}
+			if ($scenario->getMode() == 'provoke' || $scenario->getMode() == 'all') {
+				$trigger_list = '';
+				if (is_array($scenario->getTrigger())) {
+					foreach ($scenario->getTrigger() as $trigger) {
+						$trigger_list .= cmd::cmdToHumanReadable($trigger);
+					}
+				} else {
+					$trigger_list = cmd::cmdToHumanReadable($scenario->getTrigger());
+				}
+				preg_match_all("/#([0-9]*)#/", $trigger_list, $matches);
+				foreach ($matches[1] as $cmd_id) {
+					if (is_numeric($cmd_id)) {
+						log::add('scenario', 'error', __('Un déclencheur du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+					}
+				}
+			}
+
+			$expression_list = '';
+			foreach ($scenario->getElement() as $element) {
+				foreach ($element->getSubElement() as $subElement) {
+					foreach ($subElement->getExpression() as $expression) {
+						$expression_list .= cmd::cmdToHumanReadable($expression->getExpression()) . ' _ ';
+						if (is_array($expression->getOptions())) {
+							foreach ($expression->getOptions() as $key => $value) {
+								$expression_list .= cmd::cmdToHumanReadable($value) . ' _ ';
+							}
+						}
+					}
+				}
+			}
+			preg_match_all("/#([0-9]*)#/", $expression_list, $matches);
+			foreach ($matches[1] as $cmd_id) {
+				if (is_numeric($cmd_id)) {
+					log::add('scenario', 'error', __('Une commande du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+				}
+			}
+		}
+	}
+
 	public static function byObjectNameGroupNameScenarioName($_object_name, $_group_name, $_scenario_name) {
 		$values = array(
 			'scenario_name' => html_entity_decode($_scenario_name),
@@ -320,35 +352,35 @@ class scenario {
 		if ($_object_name == __('Aucun', __FILE__)) {
 			if ($_group_name == __('Aucun', __FILE__)) {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            WHERE s.name=:scenario_name
-            AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")
-            AND s.object_id IS NULL';
+			FROM scenario s
+			WHERE s.name=:scenario_name
+			AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")
+			AND s.object_id IS NULL';
 			} else {
 				$values['group_name'] = $_group_name;
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            WHERE s.name=:scenario_name
-            AND s.object_id IS NULL
-            AND `group`=:group_name';
+			FROM scenario s
+			WHERE s.name=:scenario_name
+			AND s.object_id IS NULL
+			AND `group`=:group_name';
 			}
 		} else {
 			$values['object_name'] = $_object_name;
 			if ($_group_name == __('Aucun', __FILE__)) {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            INNER JOIN object ob ON s.object_id=ob.id
-            WHERE s.name=:scenario_name
-            AND ob.name=:object_name
-            AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")';
+			FROM scenario s
+			INNER JOIN object ob ON s.object_id=ob.id
+			WHERE s.name=:scenario_name
+			AND ob.name=:object_name
+			AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")';
 			} else {
 				$values['group_name'] = $_group_name;
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
-            FROM scenario s
-            INNER JOIN object ob ON s.object_id=ob.id
-            WHERE s.name=:scenario_name
-            AND ob.name=:object_name
-            AND `group`=:group_name';
+			FROM scenario s
+			INNER JOIN object ob ON s.object_id=ob.id
+			WHERE s.name=:scenario_name
+			AND ob.name=:object_name
+			AND `group`=:group_name';
 			}
 		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
@@ -438,10 +470,15 @@ class scenario {
 		return $text;
 	}
 
-	public static function byUsedCommand($_cmd_id) {
+	public static function byUsedCommand($_cmd_id, $_variable = false) {
 		$scenarios = null;
-		$return = self::byTrigger($_cmd_id);
-		$expressions = scenarioExpression::searchExpression('#' . $_cmd_id . '#');
+		if ($_variable) {
+			$return = array();
+			$expressions = array_merge(scenarioExpression::searchExpression('variable(' . $_cmd_id . ')'), scenarioExpression::searchExpression('variable', $_cmd_id, true));
+		} else {
+			$return = self::byTrigger($_cmd_id);
+			$expressions = scenarioExpression::searchExpression('#' . $_cmd_id . '#', '#' . $_cmd_id . '#', false);
+		}
 		if (is_array($expressions)) {
 			foreach ($expressions as $expression) {
 				$scenarios[] = $expression->getSubElement()->getElement()->getScenario();
@@ -531,11 +568,16 @@ class scenario {
 
 /*     * *********************Méthodes d'instance************************* */
 
-	public function launch($_force = false, $_trigger = '', $_message = '') {
+	public function launch($_force = false, $_trigger = '', $_message = '', $_speedPriority = null) {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 			return false;
 		}
-		if ($this->getConfiguration('speedPriority', 0) == 0) {
+		if ($_speedPriority === null) {
+			$_speedPriority = $this->getConfiguration('speedPriority', 0);
+		}
+		if ($_speedPriority == 1) {
+			return $this->execute($_trigger, $_message);
+		} else {
 			$cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
 			$cmd .= ' scenario_id=' . $this->getId();
 			$cmd .= ' force=' . $_force;
@@ -543,8 +585,6 @@ class scenario {
 			$cmd .= ' message=' . escapeshellarg($_message);
 			$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
 			exec($cmd);
-		} else {
-			return $this->execute($_trigger, $_message);
 		}
 		return true;
 	}
@@ -610,7 +650,7 @@ class scenario {
 			return '';
 		}
 		$sql = 'SELECT `value` FROM cache
-    WHERE `key`="scenarioHtml' . $_version . $this->getId() . '"';
+	WHERE `key`="scenarioHtml' . $_version . $this->getId() . '"';
 		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		if ($result['value'] != '') {
 			return $result['value'];
@@ -621,6 +661,8 @@ class scenario {
 			'#state#' => $this->getState(),
 			'#isActive#' => $this->getIsActive(),
 			'#name#' => ($this->getDisplay('name') != '') ? $this->getDisplay('name') : $this->getHumanName(),
+			'#shortname#' => ($this->getDisplay('name') != '') ? $this->getDisplay('name') : $this->getName(),
+			'#treename#' => $this->getHumanName(false, false, false, false, true),
 			'#icon#' => $this->getIcon(),
 			'#lastLaunch#' => $this->getLastLaunch(),
 			'#scenarioLink#' => $this->getLinkToConfiguration(),
@@ -638,7 +680,7 @@ class scenario {
 
 	public function emptyCacheWidget() {
 		$sql = 'DELETE FROM cache
-    WHERE `key` LIKE "scenarioHtml%' . $this->getId() . '"';
+	WHERE `key` LIKE "scenarioHtml%' . $this->getId() . '"';
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 	}
 
@@ -810,9 +852,13 @@ class scenario {
 					} catch (Exception $e) {
 
 					}
-					$lastCheck = new DateTime($this->getLastLaunch());
-					$prev = $c->getPreviousRunDate();
-					$diff = round(abs((strtotime('now') - strtotime($prev)) / 60));
+					try {
+						$prev = $c->getPreviousRunDate()->getTimestamp();
+					} catch (Exception $e) {
+						return false;
+					}
+					$lastCheck = strtotime($this->getLastLaunch());
+					$diff = abs((strtotime('now') - $prev) / 60);
 					if ($lastCheck <= $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
 						return true;
 					}
@@ -830,10 +876,14 @@ class scenario {
 				} catch (Exception $e) {
 
 				}
-				$lastCheck = new DateTime($this->getLastLaunch());
-				$prev = $c->getPreviousRunDate();
-				$diff = round(abs((strtotime('now') - $prev->getTimestamp()) / 60));
-				if ($lastCheck < $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
+				try {
+					$prev = $c->getPreviousRunDate()->getTimestamp();
+				} catch (Exception $e) {
+					return false;
+				}
+				$lastCheck = strtotime($this->getLastLaunch());
+				$diff = abs((strtotime('now') - $prev) / 60);
+				if ($lastCheck <= $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
 					return true;
 				}
 			} catch (Exception $exc) {
@@ -844,26 +894,34 @@ class scenario {
 	}
 
 	public function running() {
-		if ($this->getPID() > 0) {
-			return posix_getsid($this->getPID());
+		if ($this->getPID() > 0 && posix_getsid($this->getPID()) && (!file_exists('/proc/' . $this->getPID() . '/cmdline') || strpos(file_get_contents('/proc/' . $this->getPID() . '/cmdline'), 'scenario_id=' . $this->getId()) !== false)) {
+			return true;
+		}
+		if (shell_exec('ps ax | grep -ie "scenario_id=' . $this->getId() . ' force" | grep -v ' . getmypid() . ' | grep -v grep | wc -l') > 0) {
+			return true;
 		}
 		return false;
 	}
 
 	public function stop() {
 		if ($this->running()) {
-			$kill = posix_kill($this->getPID(), 15);
-			$retry = 0;
-			while (!$kill && $retry < 5) {
-				sleep(1);
-				$kill = posix_kill($this->getPID(), 9);
-				$retry++;
+			if ($this->getPID() > 0) {
+				$kill = posix_kill($this->getPID(), 15);
+				$retry = 0;
+				while (!$kill && $retry < 5) {
+					sleep(1);
+					$kill = posix_kill($this->getPID(), 9);
+					$retry++;
+				}
+				$retry = 0;
+				while ($this->running() && $retry < 5) {
+					sleep(1);
+					exec('kill -9 ' . $this->getPID());
+					$retry++;
+				}
 			}
-			$retry = 0;
-			while ($this->running() && $retry < 5) {
-				sleep(1);
-				exec('kill -9 ' . $this->getPID());
-				$retry++;
+			if ($this->running()) {
+				exec("ps aux | grep -ie 'scenario_id=" . $this->getId() . " force' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
 			}
 			if ($this->running()) {
 				throw new Exception(__('Impossible d\'arrêter le scénario : ', __FILE__) . $this->getHumanName() . __('. PID : ', __FILE__) . $this->getPID());
@@ -998,7 +1056,7 @@ class scenario {
 		return object::byId($this->object_id);
 	}
 
-	public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false) {
+	public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false, $_withoutScenarioName = false) {
 		$name = '';
 		if (is_numeric($this->getObject_id())) {
 			$object = $this->getObject();
@@ -1032,10 +1090,12 @@ class scenario {
 		if ($_prettify) {
 			$name .= '<br/><strong>';
 		}
-		if ($_tag) {
-			$name .= ' ' . $this->getName();
-		} else {
-			$name .= '[' . $this->getName() . ']';
+		if (!$_withoutScenarioName) {
+			if ($_tag) {
+				$name .= ' ' . $this->getName();
+			} else {
+				$name .= '[' . $this->getName() . ']';
+			}
 		}
 		if ($_prettify) {
 			$name .= '</strong>';
@@ -1056,6 +1116,7 @@ class scenario {
 		if (isConnect('admin')) {
 			return true;
 		}
+		$rights = null;
 		if ($_right == 'x') {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'action');
 		} elseif ($_right == 'w') {
@@ -1095,6 +1156,9 @@ class scenario {
 	}
 
 	public function getState() {
+		if ($this->state == 'in progress' && !$this->running()) {
+			return 'error';
+		}
 		return $this->state;
 	}
 
@@ -1261,6 +1325,14 @@ class scenario {
 
 	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+	}
+
+	public function setTags($_tags) {
+		$this->_tags = $_tags;
+	}
+
+	public function getTags() {
+		return $this->_tags;
 	}
 
 	function getRealTrigger() {

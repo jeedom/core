@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'divers';
-	src:url('fonts/divers.eot?7wdkzz');
-	src:url('fonts/divers.eot?#iefix7wdkzz') format('embedded-opentype'),
-		url('fonts/divers.woff?7wdkzz') format('woff'),
-		url('fonts/divers.ttf?7wdkzz') format('truetype'),
-		url('fonts/divers.svg?7wdkzz#divers') format('svg');
+	src:url('fonts/divers.eot');
+	src:url('fonts/divers.eot') format('embedded-opentype'),
+		url('fonts/divers.woff') format('woff'),
+		url('fonts/divers.ttfz') format('truetype'),
+		url('fonts/divers.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

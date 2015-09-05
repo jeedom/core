@@ -68,9 +68,33 @@ try {
 	$bakcup_name = 'backup-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz';
 
 	echo __('Sauvegarde des fichiers...', __FILE__);
-	$exclude = array('tmp', 'backup', 'log', 'ngrok', str_replace('/', '', jeedom::getCurrentSysInfoFolder()), str_replace('/', '', jeedom::getCurrentAdminerFolder()));
+	$exclude = array(
+		'tmp',
+		'backup',
+		'log',
+		'ngrok',
+		'.git',
+		realpath(dirname(__FILE__) . '/../core/nodeJS/node_modules'),
+		realpath(dirname(__FILE__) . '/../doc'),
+		realpath(dirname(__FILE__) . '/../core/img'),
+		str_replace('/', '', jeedom::getCurrentSysInfoFolder()),
+		str_replace('/', '', jeedom::getCurrentAdminerFolder()),
+	);
 	if (strpos('/', config::byKey('backup::path')) === false) {
 		$exclude[] = config::byKey('backup::path');
+	}
+	foreach (plugin::listPlugin() as $plugin) {
+		if (!$plugin->isActive()) {
+			$exclude[] = realpath(dirname(__FILE__) . '/../plugins/' . $plugin->getId());
+		} else {
+			$exclude[] = realpath(dirname(__FILE__) . '/../plugins/' . $plugin->getId() . '/doc/fr_FR');
+			$exclude[] = realpath(dirname(__FILE__) . '/../plugins/' . $plugin->getId() . '/doc/us_US');
+			foreach (ls(dirname(__FILE__) . '/../plugins/' . $plugin->getId() . '/doc/images', '*') as $file) {
+				if (strpos($file, 'icon') === false) {
+					$exclude[] = realpath(dirname(__FILE__) . '/../plugins/' . $plugin->getId() . '/doc/images/' . $file);
+				}
+			}
+		}
 	}
 	rcopy(dirname(__FILE__) . '/..', $tmp, true, $exclude, true);
 	echo __("OK", __FILE__) . "\n";
@@ -165,16 +189,19 @@ try {
 			break;
 		}
 	}
-
-	if (config::byKey('backup::cloudUpload') == 1 && init('noCloudUpload', 0) == 0) {
-		echo __('Envoi de la sauvegarde dans le cloud...', __FILE__);
-		try {
-			market::sendBackup($backup_dir . '/' . $bakcup_name);
-		} catch (Exception $e) {
-			log::add('backup', 'error', $e->getMessage());
-			echo '/!\ ' . br2nl($e->getMessage()) . ' /!\\';
+	echo __("OK", __FILE__) . "\n";
+	global $NO_CLOUD_BAKCUP;
+	if (!isset($NO_CLOUD_BAKCUP) || $NO_CLOUD_BAKCUP == false) {
+		if (config::byKey('backup::cloudUpload') == 1 && init('noCloudUpload', 0) == 0) {
+			echo __('Envoi de la sauvegarde dans le cloud...', __FILE__);
+			try {
+				market::sendBackup($backup_dir . '/' . $bakcup_name);
+			} catch (Exception $e) {
+				log::add('backup', 'error', $e->getMessage());
+				echo '/!\ ' . br2nl($e->getMessage()) . ' /!\\';
+			}
+			echo __("OK", __FILE__) . "\n";
 		}
-		echo __("OK", __FILE__) . "\n";
 	}
 
 	if (config::byKey('jeeNetwork::mode') == 'slave') {

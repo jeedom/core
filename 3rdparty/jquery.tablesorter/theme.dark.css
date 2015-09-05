@@ -15,7 +15,8 @@
 .tablesorter-dark th,
 .tablesorter-dark thead td {
 	padding: 4px;
-	font: bold 12px/20px Arial, Sans-serif;
+	font: 12px/20px Arial, Sans-serif;
+	font-weight: bold;
 	color: #fff;
 	background-color: #000;
 	border-collapse: collapse;
@@ -68,17 +69,18 @@
 }
 
 /* hovered row colors */
+.tablesorter-dark tbody > tr.hover > td,
 .tablesorter-dark tbody > tr:hover > td,
 .tablesorter-dark tbody > tr.even:hover > td,
 .tablesorter-dark tbody > tr.odd:hover > td {
-	background: #000;
+	background-color: #000;
 }
 
 /* table processing indicator */
 .tablesorter-dark .tablesorter-processing {
 	background-position: center center !important;
 	background-repeat: no-repeat !important;
-	/* background-image: url(../addons/pager/icons/loading.gif) !important; */
+	/* background-image: url(images/loading.gif) !important; */
 	background-image: url('data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQBCgACACwAAAAAFAAUAAACQZRvoIDtu1wLQUAlqKTVxqwhXIiBnDg6Y4eyx4lKW5XK7wrLeK3vbq8J2W4T4e1nMhpWrZCTt3xKZ8kgsggdJmUFACH5BAEKAAIALAcAAAALAAcAAAIUVB6ii7jajgCAuUmtovxtXnmdUAAAIfkEAQoAAgAsDQACAAcACwAAAhRUIpmHy/3gUVQAQO9NetuugCFWAAAh+QQBCgACACwNAAcABwALAAACE5QVcZjKbVo6ck2AF95m5/6BSwEAIfkEAQoAAgAsBwANAAsABwAAAhOUH3kr6QaAcSrGWe1VQl+mMUIBACH5BAEKAAIALAIADQALAAcAAAIUlICmh7ncTAgqijkruDiv7n2YUAAAIfkEAQoAAgAsAAAHAAcACwAAAhQUIGmHyedehIoqFXLKfPOAaZdWAAAh+QQFCgACACwAAAIABwALAAACFJQFcJiXb15zLYRl7cla8OtlGGgUADs=') !important;
 }
 
@@ -115,12 +117,15 @@
 
 /* caption */
 caption {
-	background: #202020;
+	background-color: #202020;
 }
 
 /* filter widget */
+.tablesorter-dark .tablesorter-filter-row {
+	background-color: #202020;
+}
 .tablesorter-dark .tablesorter-filter-row td {
-	background: #202020;
+	background-color: #202020;
 	line-height: normal;
 	text-align: center; /* center the input */
 	-webkit-transition: line-height 0.1s ease;
@@ -158,10 +163,11 @@ caption {
 }
 
 /* filters */
-.tablesorter-dark .tablesorter-filter {
+.tablesorter-dark input.tablesorter-filter,
+.tablesorter-dark select.tablesorter-filter {
 	width: 98%;
 	height: auto;
-	margin: 4px;
+	margin: 0;
 	padding: 4px;
 	background-color: #111;
 	border: 1px solid #222;

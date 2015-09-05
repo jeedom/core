@@ -14,8 +14,10 @@ $plugins_list = plugin::listPlugin(false, true);
         <div class="bs-sidebar">
             <ul id="ul_plugin" class="nav nav-list bs-sidenav">
                 <center>
-                    <a class="btn btn-default btn-sm tooltips" id="bt_displayMarket" style="display: inline-block;"><i class="fa fa-shopping-cart"></i> {{Market}}</a>
-                    <input class="expertModeVisible" id="bt_uploadPlugin" type="file" name="file" data-url="core/ajax/plugin.ajax.php?action=pluginupload" style="display : inline-block;">
+                    <a class="btn btn-default tooltips" id="bt_displayMarket" style="display: inline-block;"><i class="fa fa-shopping-cart"></i> {{Market}}</a>
+                    <span class="btn btn-default btn-file">
+                         <i class="fa fa-cloud-upload"></i> {{Envoyer un plugin}}<input class="expertModeVisible" id="bt_uploadPlugin" type="file" name="file" data-url="core/ajax/plugin.ajax.php?action=pluginupload" style="display : inline-block;">
+                    </span>
                 </center>
                 <li class="filter" style="margin-bottom: 5px;margin-top: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
                 <?php
@@ -31,13 +33,14 @@ foreach ($plugins_list as $category_name => $category) {
 	echo '<li><i class="fa ' . $icon . '"></i> ' . $name . '</li>';
 
 	foreach ($category as $plugin) {
-		echo '<li class="cursor li_plugin" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '"><a>';
-		echo '<i class="' . $plugin->getIcon() . '"></i> ' . $plugin->getName();
-		if ($plugin->isActive() == 1) {
-			echo '<span class="pull-right"><i class="fa fa-check"></i></span> ';
+		$opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+		echo '<li class="cursor li_plugin" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="' . $opacity . '"><a>';
+		if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
+			echo '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
 		} else {
-			echo '<span class="pull-right"><i class="fa fa-times"></i></span> ';
+			echo '<i class="' . $plugin->getIcon() . '"></i> ';
 		}
+		echo $plugin->getName();
 		echo '</a></li>';
 	}
 }
@@ -47,39 +50,36 @@ foreach ($plugins_list as $category_name => $category) {
  </div>
 
  <div class="col-md-9 col-sm-8" id="div_resumePluginList" style="border-left: solid 1px #EEE; padding-left: 25px;">
- <legend>{{Mes plugins}}</legend>
-    <div class="pluginListContainer">
+   <legend>{{Mes plugins}}</legend>
+   <div class="pluginListContainer">
     <div class="cursor" id="bt_displayMarket2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-       <center>
-        <i class="fa fa-shopping-cart" style="font-size : 4em;color:#94ca02;"></i>
+     <center>
+        <i class="fa fa-shopping-cart" style="font-size : 6em;color:#94ca02;margin-top:20px;"></i>
     </center>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Accéder au Market}}</center></span>
 </div>
 
 <?php
 foreach (plugin::listPlugin() as $plugin) {
-	$color = ($plugin->isActive()) ? '#767676' : '#FA5858';
-	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+	$opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 	echo "<center>";
-	echo '<i class="' . $plugin->getIcon() . '" style="font-size : 4em;color:' . $color . ';"></i>';
-	echo "</center>";
-	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $plugin->getName() . '</center></span>';
+	if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
+		echo '<img class="img-responsive" style="width : 120px;" src="' . $plugin->getPathImgIcon() . '" />';
+		echo "</center>";
+	} else {
+		echo '<i class="' . $plugin->getIcon() . '" style="font-size : 6em;margin-top:20px;"></i>';
+		echo "</center>";
+		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $plugin->getName() . '</center></span>';
+	}
+
 	echo '</div>';
 }
 ?>
 </div>
-
-
 </div>
 <div class="col-md-9 col-sm-8" id="div_confPlugin" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
 
-    <div>
-        <?php
-if (config::byKey('market::showPromotion') == 1) {
-	echo market::getPromo();
-}
-?>
-   </div>
    <legend><i class="fa fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i>
     <span id="span_plugin_name" ></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
 </legend>

@@ -28,6 +28,7 @@ class user {
 	private $options;
 	private $rights;
 	private $enable = 1;
+	private $hash;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -47,13 +48,11 @@ class user {
 	 * @param string $_mdp motsz de passe en sha1
 	 * @return user object user
 	 */
-	public static function connect($_login, $_mdp, $_passAlreadyEncode = false) {
-		if ($_passAlreadyEncode) {
-			$sMdp = $_mdp;
-		} else {
+	public static function connect($_login, $_mdp, $_hash = false) {
+		if (!$_hash) {
 			$sMdp = sha1($_mdp);
 		}
-		if (config::byKey('ldap:enable') == '1') {
+		if (config::byKey('ldap:enable') == '1' && !$_hash) {
 			log::add("connection", "debug", __('Authentification par LDAP', __FILE__));
 			$ad = self::connectToLDAP();
 			if ($ad !== false) {
@@ -108,16 +107,13 @@ class user {
 				log::add("connection", "info", __('Impossible de se connecter au LDAP', __FILE__));
 			}
 		}
-		$values = array(
-			'login' => $_login,
-			'password' => $sMdp,
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM user
-        WHERE login=:login
-        AND password=:password';
-		$user = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+		if (!$_hash) {
+			$user = user::byLoginAndPassword($_login, $sMdp);
+		} else {
+			$user = user::byLoginAndHash($_login, $_mdp);
+		}
 		if (is_object($user)) {
+			$user->getHash();
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
 			$user->save();
 			jeedom::event('user_connect');
@@ -158,21 +154,38 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byKey($_key) {
+	public static function byHash($_hash) {
 		$values = array(
-			'key' => '%' . $_key . '%',
+			'hash' => $_hash,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM user
-        WHERE options LIKE :key';
-		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-		if (is_object($result)) {
+        WHERE hash=:hash';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+	}
 
-			if ($result->getOptions('registerDevice') == $_key || $result->getOptions('registerDesktop') == $_key) {
-				return $result;
-			}
-		}
-		return null;
+	public static function byLoginAndHash($_login, $_hash) {
+		$values = array(
+			'login' => $_login,
+			'hash' => $_hash,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		        FROM user
+		        WHERE login=:login
+		        AND hash=:hash';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+	}
+
+	public static function byLoginAndPassword($_login, $_password) {
+		$values = array(
+			'login' => $_login,
+			'password' => $_password,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		        FROM user
+		        WHERE login=:login
+		        AND password=:password';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	/**
@@ -211,7 +224,8 @@ class user {
 		$sql = 'SELECT count(id) as nb
         FROM user
         WHERE login="admin"
-        AND password=SHA1("admin")';
+        AND password=SHA1("admin")
+        AND `enable` = 1';
 		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		return $result['nb'];
 	}
@@ -245,7 +259,7 @@ class user {
 	}
 
 	public function getDirectUrlAccess() {
-		return network::getNetworkAccess('external') . '/core/php/authentification.php?login=' . $this->getLogin() . '&smdp=' . $this->getPassword();
+		return network::getNetworkAccess('external') . '/core/php/authentification.php?login=' . $this->getLogin() . '&hash=' . $this->getHash();
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -290,12 +304,28 @@ class user {
 		$this->rights = utils::setJsonAttr($this->rights, $_key, $_value);
 	}
 
-	function getEnable() {
+	public function getEnable() {
 		return $this->enable;
 	}
 
-	function setEnable($enable) {
+	public function setEnable($enable) {
 		$this->enable = $enable;
+	}
+
+	public function getHash() {
+		if ($this->hash == '' && $this->id != '') {
+			$hash = sha1(config::genKey(128));
+			while (is_object(self::byHash($hash))) {
+				$hash = sha1(config::genKey(128));
+			}
+			$this->setHash($hash);
+			$this->save();
+		}
+		return $this->hash;
+	}
+
+	public function setHash($hash) {
+		$this->hash = $hash;
 	}
 
 }

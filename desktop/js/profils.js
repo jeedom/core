@@ -15,20 +15,20 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-jwerty.key('ctrl+s', function (e) {
+ jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
     $("#bt_saveProfils").click();
 });
 
-$("#bt_saveProfils").on('click', function (event) {
+ $("#bt_saveProfils").on('click', function (event) {
     $.hideAlert();
-    var profil = $('body').getValues('.userAttr');
-    if (profil[0].password != $('#in_passwordCheck').value()) {
+    var profil = $('body').getValues('.userAttr')[0];
+    if (profil.password != $('#in_passwordCheck').value()) {
         $('#div_alert').showAlert({message: "{{Les deux mots de passe ne sont pas identiques}}", level: 'danger'});
         return;
     }
     jeedom.user.saveProfils({
-        profils: profil[0],
+        profils: profil,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
@@ -46,6 +46,29 @@ $("#bt_saveProfils").on('click', function (event) {
         }
     });
     return false;
+});
+
+$('#bt_genUserKeyAPI').on('click',function(){
+    var profil = $('body').getValues('.userAttr')[0];
+    profil.hash = '';
+    jeedom.user.saveProfils({
+        profils: profil,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            $('#div_alert').showAlert({message: "{{Opération effectuée}}", level: 'success'});
+            jeedom.user.get({
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                    $('body').setValues(data, '.userAttr');
+                    modifyWithoutSave = false;
+                }
+            });
+        }
+    });
 });
 
 $('.userAttr[data-l1key=options][data-l2key=bootstrap_theme]').on('change', function () {

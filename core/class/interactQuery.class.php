@@ -195,11 +195,8 @@ class interactQuery {
 		$interactQuery = interactQuery::recognize($_query);
 		if (is_object($interactQuery)) {
 			$reply = $interactQuery->executeAndReply($_parameters);
-			if (trim($reply) == '') {
-				//$reply = sefl::replyOk();
-			}
 		}
-		if (trim($reply) == '' && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
+		if (trim($reply) == '' && config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
 			$reply = self::dontUnderstand($_parameters);
 		}
 		if (is_object($interactQuery)) {
@@ -273,9 +270,6 @@ class interactQuery {
 		if ($this->getInteractDef_id() == '') {
 			throw new Exception(__('SarahDef_id ne peut pas être vide', __FILE__));
 		}
-		if ($this->getLink_id() == '' && $this->getLink_type() != 'whatDoYouKnow') {
-			throw new Exception(__('Cet ordre vocal n\'est associé à aucune commande : ', __FILE__) . $this->getQuery());
-		}
 		return DB::save($this);
 	}
 
@@ -325,7 +319,11 @@ class interactQuery {
 			$reply = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
 			switch ($interactDef->getOptions('scenario_action')) {
 				case 'start':
-					$return = $scenario->launch(false, 'interact', __('Scénario exécuté sur interaction (S.A.R.A.H, SMS...)', __FILE__));
+					$scenario->setTags(array(
+						'#query#' => $this->getQuery(),
+						'#profile#' => $replace['#profile#'],
+					));
+					$return = $scenario->launch(false, 'interact', __('Scénario exécuté sur interaction (S.A.R.A.H, SMS...)', __FILE__), 1);
 					if (is_string($return) && $return != '') {
 						$return = str_replace(array_keys($replace), $replace, $return);
 						return $return;
@@ -361,12 +359,9 @@ class interactQuery {
 		if ($this->getLink_type() == 'cmd') {
 			foreach (explode('&&', $this->getLink_id()) as $cmd_id) {
 				$cmd = cmd::byId($cmd_id);
-
 				if (!is_object($cmd)) {
-					log::add('interact', 'error', __('Commande : ', __FILE__) . $this->getLink_id() . __(' introuvable veuillez renvoyer les listes des commandes', __FILE__));
-					return __('Commande introuvable - vérifiez si elle existe toujours', __FILE__);
+					continue;
 				}
-
 				$replace['#commande#'] = $cmd->getName();
 				if (isset($synonymes[strtolower($cmd->getName())])) {
 					$replace['#commande#'] = $synonymes[strtolower($cmd->getName())][rand(0, count($synonymes[strtolower($cmd->getName())]) - 1)];

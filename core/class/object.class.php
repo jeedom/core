@@ -52,10 +52,13 @@ class object {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function all() {
+	public static function all($_onlyVisible = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM object
-                ORDER BY name,father_id,position';
+                FROM object ';
+		if ($_onlyVisible) {
+			$sql .= ' WhERE isVisible = 1';
+		}
+		$sql .= ' ORDER BY name,father_id,position';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -90,12 +93,12 @@ class object {
 
 	public static function fullData($_restrict = array()) {
 		$return = array();
-		foreach (object::all() as $object) {
-			if ($object->getIsVisible() == 1 && (!is_array($_restrict['object']) || isset($_restrict['object'][$object->getId()]))) {
+		foreach (object::all(true) as $object) {
+			if (!is_array($_restrict['object']) || isset($_restrict['object'][$object->getId()])) {
 				$object_return = utils::o2a($object);
 				$object_return['eqLogics'] = array();
-				foreach ($object->getEqLogic() as $eqLogic) {
-					if ($eqLogic->getIsVisible() == 1 && $eqLogic->getIsEnable() == 1 && (!isset($_restrict['eqLogic']) || !is_array($_restrict['eqLogic']) || isset($_restrict['eqLogic'][$eqLogic->getId()]))) {
+				foreach ($object->getEqLogic(true, true) as $eqLogic) {
+					if (!isset($_restrict['eqLogic']) || !is_array($_restrict['eqLogic']) || isset($_restrict['eqLogic'][$eqLogic->getId()])) {
 						$eqLogic_return = utils::o2a($eqLogic);
 						$eqLogic_return['cmds'] = array();
 						foreach ($eqLogic->getCmd() as $cmd) {

@@ -67,60 +67,60 @@ $('.eqLogicAction[data-action=returnToThumbnailDisplay]').on('click', function (
 });
 
 $(".li_eqLogic").on('click', function () {
-jeedom.eqLogic.cache.getCmd = Array();
-   if ($('.eqLogicThumbnailDisplay').html() != undefined) {
-    $('.eqLogicThumbnailDisplay').hide();
-}
-
-$('.eqLogic').hide();
-if ('function' == typeof (prePrintEqLogic)) {
-    prePrintEqLogic();
-}
-
-if (isset($(this).attr('data-eqLogic_type')) && isset($('.' + $(this).attr('data-eqLogic_type')))) {
-    $('.' + $(this).attr('data-eqLogic_type')).show();
-} else {
-    $('.eqLogic').show();
-}
-$('.li_eqLogic').removeClass('active');
-$(this).addClass('active');
-$.showLoading();
-
-jeedom.eqLogic.print({
-    type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
-    id: $(this).attr('data-eqLogic_id'),
-    status : 1,
-    error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-        $('body .eqLogicAttr').value('');
-        if(isset(data) && isset(data.timeout) && data.timeout == 0){
-            data.timeout = '';
-        }
-        $('body').setValues(data, '.eqLogicAttr');
-        if ('function' == typeof (printEqLogic)) {
-            printEqLogic(data);
-        }
-        if ('function' == typeof (addCmdToTable)) {
-            $('.cmd').remove();
-            for (var i in data.cmd) {
-                addCmdToTable(data.cmd[i]);
-            }
-        }
-        initTooltips();
-        modifyWithoutSave = false;
-        $('body').delegate('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
-            jeedom.cmd.changeType($(this).closest('.cmd'));
-        });
-
-        $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
-            jeedom.cmd.changeSubType($(this).closest('.cmd'));
-        });
-        initExpertMode();
-        changeLeftMenuObjectOrEqLogicName = false;
+    jeedom.eqLogic.cache.getCmd = Array();
+    if ($('.eqLogicThumbnailDisplay').html() != undefined) {
+        $('.eqLogicThumbnailDisplay').hide();
     }
-});
+
+    $('.eqLogic').hide();
+    if ('function' == typeof (prePrintEqLogic)) {
+        prePrintEqLogic();
+    }
+
+    if (isset($(this).attr('data-eqLogic_type')) && isset($('.' + $(this).attr('data-eqLogic_type')))) {
+        $('.' + $(this).attr('data-eqLogic_type')).show();
+    } else {
+        $('.eqLogic').show();
+    }
+    $('.li_eqLogic').removeClass('active');
+    $(this).addClass('active');
+    $.showLoading();
+
+    jeedom.eqLogic.print({
+        type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
+        id: $(this).attr('data-eqLogic_id'),
+        status : 1,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            $('body .eqLogicAttr').value('');
+            if(isset(data) && isset(data.timeout) && data.timeout == 0){
+                data.timeout = '';
+            }
+            $('body').setValues(data, '.eqLogicAttr');
+            if ('function' == typeof (printEqLogic)) {
+                printEqLogic(data);
+            }
+            if ('function' == typeof (addCmdToTable)) {
+                $('.cmd').remove();
+                for (var i in data.cmd) {
+                    addCmdToTable(data.cmd[i]);
+                }
+            }
+            initTooltips();
+            modifyWithoutSave = false;
+            $('body').delegate('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
+                jeedom.cmd.changeType($(this).closest('.cmd'));
+            });
+
+            $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
+                jeedom.cmd.changeSubType($(this).closest('.cmd'));
+            });
+            initExpertMode();
+            changeLeftMenuObjectOrEqLogicName = false;
+        }
+    });
 return false;
 });
 
@@ -290,6 +290,7 @@ $('.eqLogic .eqLogicAction[data-action=configure]').on('click', function () {
 /**************************CMD*********************************************/
 $('.cmdAction[data-action=add]').on('click', function () {
     addCmdToTable();
+    initCheckBox();
     $('.cmd:last .cmdAttr[data-l1key=type]').trigger('change');
 });
 
@@ -304,7 +305,7 @@ $('body').delegate('.cmd .cmdAttr[data-l1key=display][data-l2key=icon]', 'click'
     $(this).empty();
 });
 
-$('body').delegate('.cmd .cmdAttr[data-l1key=eventOnly]', 'change', function () {
+$('body').delegate('.cmd .cmdAttr[data-l1key=eventOnly]', 'change switchChange.bootstrapSwitch', function () {
     if ($(this).value() == 1) {
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').hide();
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').addClass('hide');
@@ -424,10 +425,10 @@ load: function () {
 }
 });
 
-$('body').delegate('.cmdAttr', 'change', function () {
+$('body').delegate('.cmdAttr', 'change switchChange.bootstrapSwitch', function () {
     modifyWithoutSave = true;
 });
 
-$('body').delegate('.eqLogicAttr', 'change', function () {
+$('body').delegate('.eqLogicAttr', 'change switchChange.bootstrapSwitch', function () {
     modifyWithoutSave = true;
 });

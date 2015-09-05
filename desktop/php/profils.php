@@ -66,21 +66,28 @@ foreach (plugin::listPlugin() as $pluginList) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Mobile}}</label>
-                            <div class="col-sm-2">
-                                <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme">
-                                    <option value="dark">Sombre</option>
-                                    <option value="light">Clair</option>
-                                </select>
-                            </div>
-                            <label class="col-sm-3 control-label">{{Couleur}}</label>
+                            <label class="col-sm-3 control-label">{{Mobile couleur}}</label>
                             <div class="col-sm-2">
                                 <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color">
-                                    <option value="green" style="background-color: #B6DB49">Vert</option>
-                                    <option value="yellow" style="background-color: #FFBD21">Jaune</option>
-                                    <option value="red" style="background-color: #FF4444">Rouge</option>
-                                    <option value="blue" style="background-color: #33B5E5">Bleu</option>
-                                    <option value="purple" style="background-color: #C58BE2">Violet</option>
+                                    <option value="amber">Ambre</option>
+                                    <option value="blue">Bleu</option>
+                                    <option value="blue-grey">Bleu-gris</option>
+                                    <option value="brown">Marron</option>
+                                    <option value="cyan">Cyan</option>
+                                    <option value="deep-orange">Orange foncé</option>
+                                    <option value="deep-purple">Violet foncé</option>
+                                    <option value="green">Vert</option>
+                                    <option value="grey">Gris</option>
+                                    <option value="indigo">Indigo</option>
+                                    <option value="light-blue">Bleu clair</option>
+                                    <option value="light-green">Vert clair</option>
+                                    <option value="lime">Citron</option>
+                                    <option value="orange">Orange</option>
+                                    <option value="pink">Rose</option>
+                                    <option value="purple">Violet</option>
+                                    <option value="red">Rouge</option>
+                                    <option value="teal">Bleu-vert foncé</option>
+                                    <option value="yellow">Jaune</option>
                                 </select>
                             </div>
                         </div>
@@ -134,9 +141,9 @@ foreach (plugin::listPlugin() as $pluginList) {
                     <fieldset>
                         <legend>{{Général}}</legend>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Ne pas masquer les menus automatiquement}}</label>
+                            <label class="col-sm-3 control-label">{{Masquer les menus automatiquement}}</label>
                             <div class="col-sm-1">
-                                <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
+                                <input type="checkbox" class="userAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
                             </div>
                         </div>
 
@@ -237,7 +244,7 @@ foreach (planHeader::all() as $plan) {
 <div class="form-group">
     <label class="col-sm-3 control-label">{{Plein écran}}</label>
     <div class="col-sm-1">
-        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultPlanFullScreen" />
+        <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="defaultPlanFullScreen" />
     </div>
 </div>
 
@@ -245,20 +252,20 @@ foreach (planHeader::all() as $plan) {
 <div class="form-group">
     <label class="col-sm-3 control-label">{{Déplier le panneau des scénarios}}</label>
     <div class="col-sm-1">
-        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayScenarioByDefault"/>
+        <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="displayScenarioByDefault"/>
     </div>
 </div>
 <div class="form-group">
     <label class="col-sm-3 control-label">{{Déplier le panneau des objets}}</label>
     <div class="col-sm-1">
-        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
+        <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="displayObjetByDefault"/>
     </div>
 </div>
 <legend>{{Vue}}</legend>
 <div class="form-group">
     <label class="col-sm-3 control-label">{{Déplier le panneau des vues}}</label>
     <div class="col-sm-1">
-        <input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayViewByDefault"/>
+        <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="displayViewByDefault"/>
     </div>
 </div>
 </fieldset>
@@ -292,9 +299,9 @@ foreach ($notifyTheme as $key => $value) {
                        </div>
                    </div>
                    <div class="form-group">
-                    <label class="col-sm-3 control-label">{{Notifier du lancement des scénarios}}</label>
+                    <label class="col-sm-3 control-label">{{Notifier nouveau message}}</label>
                     <div class="col-sm-3">
-                        <select class="userAttr form-control" data-l1key="options" data-l2key="notifyLaunchScenario">
+                        <select class="userAttr form-control" data-l1key="options" data-l2key="notifyNewMessage">
                             <?php
 foreach ($notifyTheme as $key => $value) {
 	echo "<option value='$key'>$value</option>";
@@ -303,21 +310,9 @@ foreach ($notifyTheme as $key => $value) {
                        </select>
                    </div>
                </div>
-               <div class="form-group">
-                <label class="col-sm-3 control-label">{{Notifier nouveau message}}</label>
-                <div class="col-sm-3">
-                    <select class="userAttr form-control" data-l1key="options" data-l2key="notifyNewMessage">
-                        <?php
-foreach ($notifyTheme as $key => $value) {
-	echo "<option value='$key'>$value</option>";
-}
-?>
-                   </select>
-               </div>
-           </div>
-       </fieldset>
-   </form>
-</div>
+           </fieldset>
+       </form>
+   </div>
 </div>
 </div>
 
@@ -334,21 +329,24 @@ foreach ($notifyTheme as $key => $value) {
             <form class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">{{Mot de passe}}</label>
-                        <div class="col-sm-3">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                             <input type="password" class="userAttr form-control" data-l1key="password" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">{{Retapez le mot de passe}}</label>
-                        <div class="col-sm-3">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Retapez le mot de passe}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                             <input type="password" class="form-control" id="in_passwordCheck" />
                         </div>
                     </div>
                     <div class="form-group expertModeVisible">
-                        <label class="col-sm-3 control-label">{{Clef de sécurité pour appareils enregistrés}}</label>
-                        <div class="col-sm-3">
-                            <input class="form-control userAttr" data-l1key="options" data-l2key="registerDevice" />
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef API}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <span class="label label-info userAttr" style="font-size : 1em;" data-l1key="hash" ></span>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-3">
+                            <a class="btn btn-default form-control" id="bt_genUserKeyAPI"><i class="fa fa-refresh"></i> {{Générer}}</a>
                         </div>
                     </div>
                 </fieldset>

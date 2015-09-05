@@ -82,7 +82,7 @@ class evaluate {
 		//PARCOUR DES PARAMETRES
 		for ($i = 0; $i < sizeof($lstParam); $i++) {
 			//OPERATEUR SPECIAL
-			if ($lstParam[$i]["operateur"] == "|") {
+			if (isset($lstParam[$i]["operateur"]) && $lstParam[$i]["operateur"] == "|") {
 				throw new Exception(__("ERREUR opérateur '|' Inconnu", __FILE__));
 			}
 			//CAS DES ( et des {
@@ -138,7 +138,7 @@ class evaluate {
 		} else {
 			//SINON ON CALCUL
 			while (sizeof($lstParam) > 1) {
-				if (in_array($lstParam[0]["operateur"], $tabOperateursoperation)) {
+				if (isset($lstParam[0]["operateur"]) && in_array($lstParam[0]["operateur"], $tabOperateursoperation)) {
 					$lstParam[1]["valeur"] = $this->Eval_Faire_Operation($lstParam[0]["valeur"], $lstParam[1]["valeur"], $lstParam[0]["operateur"]);
 				}
 				array_shift($lstParam);
@@ -398,7 +398,11 @@ class evaluate {
 		}
 		//ERREUR SI UN CARACTERE OUVRANT " ' ( ou { n'a pas été fermé
 		if ($nbCaractOuvrant > 0) {
-			throw new Exception(__("ERREUR dans l'espression, caractère fermant attendu : ", __FILE__) . $caracOuvrant[sizeof($caracOuvrant)]);
+			if (isset($caracOuvrant[sizeof($caracOuvrant)])) {
+				throw new Exception(__("ERREUR dans l'espression, caractère fermant attendu : ", __FILE__) . $caracOuvrant[sizeof($caracOuvrant)]);
+			} else {
+				throw new Exception(__("ERREUR dans l'espression, caractère fermant attendu : ", __FILE__));
+			}
 		}
 		return $lstP;
 	}

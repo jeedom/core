@@ -81,6 +81,22 @@ jeedom.update.doAll({
 });
 });
 
+ $('#bt_updateSystem').on('click', function () {
+    bootbox.confirm('{{Etes-vous sur de vouloir mettre à jour le systeme, cette opération peut être risquée ?}} ', function (result) {
+        if (result) {
+            $.hideAlert();
+            jeedom.update.doSystem({
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                    getJeedomLog(1, 'update');
+                }
+            });
+        }
+    });
+});
+
  $('#bt_checkAllUpdate').on('click', function () {
     $.hideAlert();
     jeedom.update.checkAll({
@@ -190,7 +206,7 @@ jeedom.update.doAll({
             var regex = /<br\s*[\/]?>/gi;
             if($.isArray(data.result)){
                 for (var i in data.result.reverse()) {
-                    log += data.result[i][2].replace(regex, "\n");
+                    log += $.trim(data.result[i][2].replace(regex, "\n")) + "\n";
                     if ($.trim(data.result[i][2].replace(regex, "\n")) == '[END ' + _log.toUpperCase() + ' SUCCESS]') {
                         printUpdate();
                         $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'});

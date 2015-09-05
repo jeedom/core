@@ -75,16 +75,16 @@ foreach ($interactListGroup as $group) {
         </div>
         <div class="cursor" id="bt_regenerateInteract2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
          <center>
-         <i class="fa fa-refresh" style="font-size : 4em;color:#f0ad4e;"></i>
+             <i class="fa fa-refresh" style="font-size : 4em;color:#f0ad4e;"></i>
+         </center>
+         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#f0ad4e"><center>{{Regénérer}}</center></span>
+     </div>
+     <div class="cursor" id="bt_testInteract2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
+         <center>
+            <i class="fa fa-comment-o" style="font-size : 4em;color:#337ab7;"></i>
         </center>
-        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#f0ad4e"><center>{{Regénérer}}</center></span>
+        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Tester}}</center></span>
     </div>
-    <div class="cursor" id="bt_testInteract2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
-     <center>
-        <i class="fa fa-comment-o" style="font-size : 4em;color:#337ab7;"></i>
-    </center>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Tester}}</center></span>
-</div>
 </div>
 
 <legend>{{Mes interactions}}</legend>
@@ -157,8 +157,11 @@ foreach ($interactListGroup as $group) {
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 col-xs-3 control-label">{{Réponse}}</label>
-                        <div class="col-sm-9 col-xs-9">
-                            <input class="form-control interactAttr" type="text" data-l1key="reply" placeholder=""/>
+                        <div class="col-sm-8 col-xs-8">
+                            <textarea class="form-control interactAttr" type="text" data-l1key="reply" placeholder=""></textarea>
+                        </div>
+                        <div class="col-sm-1">
+                            <a class="btn btn-default cursor listEquipementInfoReply input-sm"><i class="fa fa-list-alt "></i></a>
                         </div>
                     </div>
                     <div class="form-group">
@@ -212,7 +215,7 @@ foreach ($interactListGroup as $group) {
                     <div class="form-group">
                         <label class="col-sm-3 col-xs-6 control-label">{{Type d'action}}</label>
                         <div class="col-sm-9 col-xs-6">
-                            <select class="interactAttr form-control input-sm" data-l1key="link_type">';
+                            <select class="interactAttr form-control" data-l1key="link_type">';
                                 <option value="cmd">{{Commande}}</option>
                                 <option value="whatDoYouKnow">{{Que sais tu ?}}</option>
                                 <option value="scenario">{{Scénario}}</option>
@@ -332,10 +335,9 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
 <form class="form-horizontal">
     <fieldset>
         <div class="form-actions">
-            <a class="btn btn-success" id="bt_saveInteract"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
             <a class="btn btn-danger" id="bt_removeInteract"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+            <a class="btn btn-success" id="bt_saveInteract"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
         </div>
-
     </fieldset>
 </form>
 </div>

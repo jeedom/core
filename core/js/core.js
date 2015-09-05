@@ -82,18 +82,22 @@ function init(_value, _default) {
 }
 
 function getUrlVars(_key) {
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    var vars = [], hash, nbVars = 0;
+    var hashes = window.location.search.replace('?','').split('&');
     for (var i = 0; i < hashes.length; i++) {
-        hash = hashes[i].split('=');
-        vars[hash[0]] = hash[1];
-        if (isset(_key) && _key == hash[0]) {
-            return hash[1];
+        if (hashes[i] !== "" && hashes[i] !== "?") {
+            hash = hashes[i].split('=');
+            nbVars++;
+            vars[hash[0]] = hash[1];
+            if (isset(_key) && _key == hash[0]) {
+                return hash[1];
+            }
         }
     }
     if (isset(_key)) {
         return false;
     }
+    vars.length = nbVars;
     return vars;
 }
 
@@ -130,6 +134,12 @@ function getDeviceType() {
     if (navigator.userAgent.match(/(Iphone)/gi)) {
         result.type = 'phone';
     }
+    if (navigator.userAgent.match(/(Lumia)/gi)) {
+        result.type = 'phone';
+    }
+    if (navigator.userAgent.match(/(IEMobile)/gi)) {
+        result.type = 'phone';
+    }
     if (navigator.userAgent.match(/(Ipad)/gi)) {
         result.type = 'tablet';
     }
@@ -137,9 +147,9 @@ function getDeviceType() {
     if (result.type == 'phone') {
         var ori = window.orientation;
         if (ori == 90 || ori == -90) {
-            result.bSize = (result.width / 3) - 28;
+            result.bSize = (result.width / 3) - 20;
         } else {
-            result.bSize = (result.width / 2) - 15;
+            result.bSize = (result.width / 2) - 6;
         }
     }
     return result;

@@ -79,8 +79,6 @@
     if ($('#bt_editPlan').attr('data-mode') != "1") {
         if (planHeader_id != $(this).attr('data-link_id')) {
             $('#sel_planHeader').value($(this).attr('data-link_id'));
-            planHeader_id = $(this).attr('data-link_id');
-            displayPlan($(this).attr('data-offsetX'), $(this).attr('data-offsetX'));
         }
     }
 });
@@ -94,10 +92,10 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                   $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
-                   window.location.reload();
-               },
-           });
+                 $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
+                 window.location.reload();
+             },
+         });
         }
     });
 });
@@ -428,75 +426,70 @@ function savePlan(_refreshDisplay) {
         };
         var plans = [];
         $('.eqLogic-widget').each(function () {
-            var borderSize = $(this).css('borderWidth').replace("px", "");
             var plan = {};
             plan.position = {};
             plan.display = {};
             plan.link_type = 'eqLogic';
             plan.link_id = $(this).attr('data-eqLogic_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).height() + 6 + (2 * borderSize);
-            plan.display.width = $(this).width() + 6 + (2 * borderSize);
+            plan.display.height = $(this).outerHeight();
+            plan.display.width = $(this).outerWidth();
             var position = $(this).position();
             plan.position.top = (((position.top)) / parent.height) * 100;
             plan.position.left = (((position.left)) / parent.width) * 100;
             plans.push(plan);
         });
         $('.scenario-widget').each(function () {
-            var borderSize = $(this).css('borderWidth').replace("px", "");
             var plan = {};
             plan.position = {};
             plan.display = {};
             plan.link_type = 'scenario';
             plan.link_id = $(this).attr('data-scenario_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).height() + 6 + (2 * borderSize);
-            plan.display.width = $(this).width() + 6 + (2 * borderSize);
+            plan.display.height = $(this).outerHeight();
+            plan.display.width = $(this).outerWidth();
             var position = $(this).position();
             plan.position.top = (((position.top)) / parent.height) * 100;
             plan.position.left = (((position.left)) / parent.width) * 100;
             plans.push(plan);
         });
         $('.plan-link-widget').each(function () {
-            var borderSize = $(this).css('borderWidth').replace("px", "");
             var plan = {};
             plan.position = {};
             plan.display = {};
             plan.link_type = 'plan';
             plan.link_id = $(this).attr('data-link_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).height() + 6 + (2 * borderSize);
-            plan.display.width = $(this).width() + 6 + (2 * borderSize);
+            plan.display.height = $(this).outerHeight();
+            plan.display.width = $(this).outerWidth();
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;
             plans.push(plan);
         });
         $('.view-link-widget').each(function () {
-            var borderSize = $(this).css('borderWidth').replace("px", "");
             var plan = {};
             plan.position = {};
             plan.display = {};
             plan.link_type = 'view';
             plan.link_id = $(this).attr('data-link_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).height() + 6 + (2 * borderSize);
-            plan.display.width = $(this).width() + 6 + (2 * borderSize);
+            plan.display.height = $(this).outerHeight();
+            plan.display.width = $(this).outerWidth();
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;
             plans.push(plan);
         });
         $('.graph-widget').each(function () {
-            var borderSize = $(this).css('borderWidth').replace("px", "");
             var plan = {};
             plan.position = {};
             plan.display = {};
             plan.link_type = 'graph';
             plan.link_id = $(this).attr('data-graph_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).height() + 2 + (2 * borderSize);
-            plan.display.width = $(this).width() + 2 + (2 * borderSize);
+            plan.display.height = $(this).outerHeight();
+            plan.display.width = $(this).outerWidth();
             plan.display.graph = json_decode($(this).find('.graphOptions').value());
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
@@ -504,15 +497,14 @@ function savePlan(_refreshDisplay) {
             plans.push(plan);
         });
         $('.text-widget').each(function () {
-            var borderSize = $(this).css('borderWidth').replace("px", "");
             var plan = {};
             plan.position = {};
             plan.display = {};
             plan.link_type = 'text';
             plan.link_id = $(this).attr('data-text_id');
             plan.planHeader_id = planHeader_id;
-            plan.display.height = $(this).height() + (2 * borderSize);
-            plan.display.width = $(this).width() + (2 * borderSize);
+            plan.display.height = $(this).outerHeight();
+            plan.display.width = $(this).outerWidth();
             var position = $(this).position();
             plan.position.top = ((position.top) / parent.height) * 100;
             plan.position.left = ((position.left) / parent.width) * 100;
@@ -577,9 +569,9 @@ function displayFrameObject(name, _type, _id, _html, _plan, _noRender) {
         $(name).find('.eqLogic-widget[data-eqLogic_id=' + _id + ']').remove();
     } 
     if (_type == 'scenario') { 
-     $(name).find('.scenario-widget[data-scenario_id=' + _id + ']').remove();
- } 
- if (_type == 'view') { 
+       $(name).find('.scenario-widget[data-scenario_id=' + _id + ']').remove();
+   } 
+   if (_type == 'view') { 
     $(name).find('.view-link-widget[data-link_id=' + _id + ']').remove();
 } 
 if (_type == 'plan') { 
@@ -603,6 +595,13 @@ var html = $(_html);
 $(name).append(html) 
 html.css('z-index', 1000);
 
+
+if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
+    if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
+        html.css('border-radius', '0px'); 
+        html.css('box-shadow', 'none'); 
+    }
+}
 for (var key in _plan.css) { 
     if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate') { 
         if (key == 'background-color') { 
@@ -620,6 +619,7 @@ for (var key in _plan.css) {
         html.css(key, _plan.css[key]); 
     } 
 } 
+
 if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) { 
     if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) { 
         html.css('background-color', 'transparent'); 
@@ -628,7 +628,6 @@ if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan
         }); 
     } 
 }
-
 html.css('position', 'absolute'); 
 var position = { 
     top: init(_plan.position.top, '10') * parent.height / 100, 
@@ -652,10 +651,10 @@ html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + 
 html.addClass('noResize'); 
 if (!isset(_plan.display) || !isset(_plan.display.noPredefineSize) || _plan.display.noPredefineSize == 0) { 
     if (isset(_plan.display) && isset(_plan.display.width)) { 
-        html.css('width', init(_plan.display.width, 10)); 
+        html.css('width', init(_plan.display.width, 50)); 
     } 
     if (isset(_plan.display) && isset(_plan.display.height)) { 
-        html.css('height', init(_plan.display.height, 10)); 
+        html.css('height', init(_plan.display.height, 50)); 
     } 
 } 
 if (_type == 'eqLogic') { 
@@ -669,9 +668,6 @@ if (_type == 'eqLogic') {
     if (isset(_plan.display) && (isset(_plan.display.name) && _plan.display.name == 1)) { 
         html.find('.widget-name').remove(); 
     } 
-    if (isset(_plan.display) && (isset(_plan.display.batteryLevel) && _plan.display.batteryLevel == 1)) { 
-        html.find('.statusBattery').remove(); 
-    } 
 } 
 if (_type == 'scenario' && isset(_plan.display) && isset(_plan.display.hideCmd) && _plan.display.hideCmd == 1) { 
     html.find('.changeScenarioState').remove(); 
@@ -680,16 +676,16 @@ return html;
 }
 
 function addGraphFrame(name, _plan) {
-   var parent = {
-       height: $(name).height(),
-       width: $(name).width(),
-   };
-   _plan = init(_plan, {});
-   _plan.display = init(_plan.display, {});
-   _plan.link_id = init(_plan.link_id, Math.round(Math.random() * 99999999) + 9999);
-   var options = init(_plan.display.graph, '[]');
-   var background_color = 'background-color : white;';
-   if(init(_plan.display.transparentBackground, false)){
+ var parent = {
+     height: $(name).height(),
+     width: $(name).width(),
+ };
+ _plan = init(_plan, {});
+ _plan.display = init(_plan.display, {});
+ _plan.link_id = init(_plan.link_id, Math.round(Math.random() * 99999999) + 9999);
+ var options = init(_plan.display.graph, '[]');
+ var background_color = 'background-color : white;';
+ if(init(_plan.display.transparentBackground, false)){
     background_color = '';
 }
 var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="'+background_color+'border : solid 1px black;">';
@@ -700,19 +696,19 @@ html += '</div>';
 displayFrameObject(name, 'graph', _plan.link_id, html, _plan);
 for (var i in options) {
   if (init(options[i].link_id) != '') {
-     jeedom.history.drawChart({
-        cmd_id: options[i].link_id,
-        el: 'graph' + _plan.link_id,
-        showLegend: init(_plan.display.showLegend, true),
-        showTimeSelector: init(_plan.display.showTimeSelector, false),
-        showScrollbar: init(_plan.display.showScrollbar, true),
-        dateRange: init(_plan.display.dateRange, '7 days'),
-        option: init(options[i].configuration, {}),
-        transparentBackground : init(_plan.display.transparentBackground, false),
-        enableExport : false,
-        global: false,
-    });
- }
+   jeedom.history.drawChart({
+    cmd_id: options[i].link_id,
+    el: 'graph' + _plan.link_id,
+    showLegend: init(_plan.display.showLegend, true),
+    showTimeSelector: init(_plan.display.showTimeSelector, false),
+    showScrollbar: init(_plan.display.showScrollbar, true),
+    dateRange: init(_plan.display.dateRange, '7 days'),
+    option: init(options[i].configuration, {}),
+    transparentBackground : init(_plan.display.transparentBackground, false),
+    enableExport : false,
+    global: false,
+});
+}
 }
 }
 
@@ -753,7 +749,12 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     }
 
     html.css('z-index', 1000);
-
+    if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
+        if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
+            html.css('border-radius', '0px'); 
+            html.css('box-shadow', 'none'); 
+        }
+    }
     for (var key in _plan.css) {
         if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate') {
             if (key == 'background-color') {
@@ -779,6 +780,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
             });
         }
     }
+
 
     html.css('position', 'absolute');
     var position = {
@@ -806,10 +808,10 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     html.addClass('noResize');
     if (!isset(_plan.display) || !isset(_plan.display.noPredefineSize) || _plan.display.noPredefineSize == 0) {
         if (isset(_plan.display) && isset(_plan.display.width)) {
-            html.css('width', init(_plan.display.width, 10));
+            html.css('width', init(_plan.display.width, 50));
         }
         if (isset(_plan.display) && isset(_plan.display.height)) {
-            html.css('height', init(_plan.display.height, 10));
+            html.css('height', init(_plan.display.height, 50));
         }
     }
     if (_type == 'eqLogic') {
@@ -822,9 +824,6 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
         }
         if (isset(_plan.display) && (isset(_plan.display.name) && _plan.display.name == 1)) {
             html.find('.widget-name').remove();
-        }
-        if (isset(_plan.display) && (isset(_plan.display.batteryLevel) && _plan.display.batteryLevel == 1)) {
-            html.find('.statusBattery').remove();
         }
     }
     if (_type == 'scenario' && isset(_plan.display) && (isset(_plan.display.hideCmd) && _plan.display.hideCmd == 1)) {
@@ -881,7 +880,7 @@ function addGraph(_plan) {
     if(init(_plan.display.transparentBackground, false) == '1'){
         background_color = '';
     }
-    var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="'+background_color+'border : solid 1px black;">';
+    var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="'+background_color+'border : solid 1px black;min-height:50px;min-width:50px;">';
     if ($('#bt_editPlan').attr('data-mode') == "1") {
         html += '<i class="fa fa-cogs cursor pull-right editMode configureGraph" style="margin-right : 5px;margin-top : 5px;"></i>';
     } else {

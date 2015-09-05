@@ -43,7 +43,7 @@ if (config::byKey('enableScenario') == 0) {
                         <?php
 foreach ($scenarios[-1] as $scenario) {
 	echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-	echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
+	echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" title="{{Scénario ID :}} ' . $scenario->getId() . '">' . $scenario->getHumanName(false, true) . '</a>';
 	echo '</li>';
 }
 ?>
@@ -56,7 +56,7 @@ foreach ($scenarioListGroup as $group) {
 		echo '<ul>';
 		foreach ($scenarios[$group['group']] as $scenario) {
 			echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-			echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" >' . $scenario->getHumanName(false, true) . '</a>';
+			echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" title="{{Scénario ID :}} ' . $scenario->getId() . '">' . $scenario->getHumanName(false, true) . '</a>';
 			echo '</li>';
 		}
 		echo '</ul>';
@@ -71,49 +71,51 @@ foreach ($scenarioListGroup as $group) {
 
  <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
 
-   <div class="scenarioListContainer">
-       <legend>{{Gestion}}</legend>
-       <div class="cursor" id="bt_addScenario2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-         <center>
+     <div class="scenarioListContainer">
+         <legend>{{Gestion}}</legend>
+         <div class="cursor" id="bt_addScenario2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+           <center>
             <i class="fa fa-plus-circle" style="font-size : 4em;color:#94ca02;"></i>
         </center>
         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
     </div>
     <?php if (config::byKey('enableScenario') == 0) {?>
         <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="1" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-         <center>
-             <i class="fa fa-check" style="font-size : 4em;color:#5cb85c;"></i>
-         </center>
-         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
-     </div>
-     <?php } else {?>
-   <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-         <center>
-             <i class="fa fa-times" style="font-size : 4em;color:#d9534f;"></i>
-         </center>
-         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
-     </div>
-     <?php }?>
+           <center>
+               <i class="fa fa-check" style="font-size : 4em;color:#5cb85c;"></i>
+           </center>
+           <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
+       </div>
+       <?php } else {?>
+       <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+           <center>
+               <i class="fa fa-times" style="font-size : 4em;color:#d9534f;"></i>
+           </center>
+           <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
+       </div>
+       <?php }
+?>
 
-     <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-         <center>
+       <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+           <center>
             <i class="fa fa-eye" style="font-size : 4em;color:#337ab7;"></i>
         </center>
         <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
     </div>
 </div>
 
-    <legend>{{Mes scénarios}}</legend>
-    <?php
+<legend>{{Mes scénarios}}</legend>
+<?php
 if (count($scenarios) == 0) {
 	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
 } else {
 	echo '<legend>Aucun</legend>';
 	echo '<div class="scenarioListContainer">';
 	foreach ($scenarios[-1] as $scenario) {
-		echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+		$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+		echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 		echo "<center>";
-		echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
+		echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676"></i>';
 		echo "</center>";
 		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
 		echo '</div>';
@@ -125,9 +127,10 @@ if (count($scenarios) == 0) {
 			echo '<legend>' . $group['group'] . '</legend>';
 			echo '<div class="scenarioListContainer">';
 			foreach ($scenarios[$group['group']] as $scenario) {
-				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+				$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 				echo "<center>";
-				echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676;"></i>';
+				echo '<i class="icon jeedom-clap_cinema" style="font-size : 4em;color:#767676"></i>';
 				echo "</center>";
 				echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
 				echo '</div>';
@@ -135,7 +138,8 @@ if (count($scenarios) == 0) {
 			echo '</div>';
 		}
 	}
-}?>
+}
+?>
 </div>
 
 <div id="div_editScenario" style="display: none; border-left: solid 1px #EEE; padding-left: 25px;">
@@ -146,6 +150,9 @@ if (count($scenarios) == 0) {
         <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
         <a class="btn btn-danger btn-xs pull-right expertModeVisible" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
         <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_templateScenario"><i class="fa fa-cubes"></i> {{Template}}</a>
+        <a class="btn btn-success btn-xs pull-right" id="bt_saveScenario2"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+        <a class="btn btn-danger btn-xs pull-right" id="bt_delScenario2"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+        <a class="btn btn-warning btn-xs pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Executer}}</a>
     </legend>
     <div class="row">
         <div class="col-sm-4">
@@ -170,13 +177,10 @@ if (count($scenarios) == 0) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-6 col-xs-3 control-label">{{Actif}}</label>
-                        <div class="col-sm-1 col-xs-1">
-                            <input type="checkbox" class="scenarioAttr" data-l1key="isActive">
-                        </div>
-                        <label class="col-sm-3 col-xs-3 control-label">{{Visible}}</label>
-                        <div class="col-sm-1 col-xs-1">
-                            <input type="checkbox" class="scenarioAttr" data-l1key="isVisible">
+                        <label class="col-xs-6 control-label"></label>
+                        <div class="col-xs-6">
+                            <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-label-text="{{Actif}}" data-l1key="isActive">
+                            <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-label-text="{{Visible}}" data-l1key="isVisible">
                         </div>
                     </div>
                     <div class="form-group">
@@ -206,16 +210,18 @@ foreach (object::all() as $object) {
         <form class="form-horizontal">
             <div class="form-group">
                 <label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
-                <div class="col-sm-3 col-xs-6">
-                    <select class="form-control scenarioAttr input-sm" data-l1key="mode">
-                        <option value="provoke">{{Provoqué}}</option>
-                        <option value="schedule">{{Programmé}}</option>
-                        <option value="all">{{Les deux}}</option>
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <a class="btn btn-default btn-sm" id="bt_addTrigger"><i class="fa fa-plus-square"></i> {{Déclencheur}}</a>
-                    <a class="btn btn-default btn-sm" id="bt_addSchedule"><i class="fa fa-plus-square"></i> {{Programmation}}</a>
+                <div class="col-sm-9 col-xs-6">
+                    <div class="input-group">
+                        <select class="form-control scenarioAttr input-sm" data-l1key="mode">
+                            <option value="provoke">{{Provoqué}}</option>
+                            <option value="schedule">{{Programmé}}</option>
+                            <option value="all">{{Les deux}}</option>
+                        </select>
+                        <span class="input-group-btn">
+                            <a class="btn btn-default btn-sm" id="bt_addTrigger"><i class="fa fa-plus-square"></i> {{Déclencheur}}</a>
+                            <a class="btn btn-default btn-sm" id="bt_addSchedule"><i class="fa fa-plus-square"></i> {{Programmation}}</a>
+                        </span>
+                    </div>
                 </div>
             </div>
             <div class="scheduleDisplay" style="display: none;">
@@ -240,21 +246,27 @@ foreach (object::all() as $object) {
                 </div>
             </div>
             <div class="form-group expertModeVisible">
-                <label class="col-xs-6 control-label">{{Exécuter le plus rapidement possible}}</label>
+                <label class="col-xs-6 control-label">{{Exécuter en avant plan}}</label>
                 <div class="col-xs-1">
-                    <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="speedPriority" titme="{{A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours.}}">
+                    <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="speedPriority" titme="{{A ne surtout pas utiliser si vous avez des 'sleep' dans le scénario. Attention dans ce mode vous ne pouvez savoir si le scénario est en cours.}}">
+                </div>
+            </div>
+            <div class="form-group expertModeVisible">
+                <label class="col-xs-6 control-label">{{Enchainer les commandes sans attendre}}</label>
+                <div class="col-xs-1">
+                    <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="cmdNoWait" titme="{{Enchaine les commandes sans verification que la commande précedente c'est bien éxecutée (Attention il faut que le plugin le supporte)}}">
                 </div>
             </div>
             <div class="form-group expertModeVisible">
                 <label class="col-xs-6 control-label">{{Pas de log}}</label>
                 <div class="col-xs-1">
-                    <input type="checkbox" class="scenarioAttr input-sm" data-l1key="configuration" data-l2key="noLog" titme="{{Le scénario n'écrit plus de log}}">
+                    <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="noLog" titme="{{Le scénario n'écrit plus de log}}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-xs-6 control-label" for="span_ongoing">{{Etat}}</label>
                 <div class="col-xs-6">
-                    <div><span id="span_ongoing" class="label" style="position: relative; top: 4px;"></span></div>
+                    <div><span id="span_ongoing" class="label" style="font-size : 1em;"></span></div>
                 </div>
             </div>
 
@@ -327,14 +339,14 @@ foreach (object::all() as $object) {
                 </div>
 
                 <div class="alert alert-info addElementTypeDescription in" style="display:none;">
-                   Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
-               </div>
+                 Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
+             </div>
 
-               <div class="alert alert-info addElementTypeDescription at" style="display:none;">
-                   A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
-               </div>
+             <div class="alert alert-info addElementTypeDescription at" style="display:none;">
+                 A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
+             </div>
 
-               <div class="alert alert-info addElementTypeDescription code" style="display:none;">
+             <div class="alert alert-info addElementTypeDescription code" style="display:none;">
                 Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell etc...
             </div>
 
@@ -369,47 +381,67 @@ foreach (object::all() as $object) {
                         <option value="wait">{{Attendre}}</option>
                         <option value="return">{{Retourner}}</option>
                         <option value="gotodesign">{{Aller au design}}</option>
+                        <option value="log">{{Ajouter un log}}</option>
+                        <option value="message">{{Creer un message}}</option>
+                        <option value="equipement">{{Activer/Desactiver Masquer/Afficher un équipement}}</option>
+                        <option value="ask">{{Faire une demande}}</option>
                     </select>
                 </center>
                 <br/>
                 <div class="alert alert-info sel_otherActionDescription sleep">
-                    Pause de x seconde(s)
+                    {{Pause de x seconde(s)}}
                 </div>
 
                 <div class="alert alert-info sel_otherActionDescription wait" style="display:none;">
-                    Attend jusqu’à ce que la condition soit valide (maximum 2h)
+                    {{Attend jusqu’à ce que la condition soit valide (maximum 2h)}}
                 </div>
 
                 <div class="alert alert-info sel_otherActionDescription variable" style="display:none;">
-                    Création/modification d’une ou de la valeur d’une variable
+                    {{Création/modification d’une ou de la valeur d’une variable}}
                 </div>
 
                 <div class="alert alert-info sel_otherActionDescription scenario" style="display:none;">
-                    Permet le contrôle des scénarios
+                    {{Permet le contrôle des scénarios}}
                 </div>
 
                 <div class="alert alert-info sel_otherActionDescription stop" style="display:none;">
-                 Arrête le scénario
-             </div>
+                   {{Arrête le scénario}}
+               </div>
 
-             <div class="alert alert-info sel_otherActionDescription say" style="display:none;">
-                Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)
+               <div class="alert alert-info sel_otherActionDescription say" style="display:none;">
+                {{Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)}}
             </div>
 
             <div class="alert alert-info sel_otherActionDescription return" style="display:none;">
-                Retourne un message à la fin du scénario. Cela ne sert que pour retourner un message spécifique suite à une intération. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ça fonctionne.
+                {{Retourne un message à la fin du scénario. Cela ne sert que pour retourner un message spécifique suite à une intération. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ça fonctionne.}}
             </div>
 
             <div class="alert alert-info sel_otherActionDescription gotodesign" style="display:none;">
-                Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé
+                {{Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé}}
             </div>
 
+            <div class="alert alert-info sel_otherActionDescription log" style="display:none;">
+               {{Permet de rajouter un message dans les logs}}
+           </div>
+
+           <div class="alert alert-info sel_otherActionDescription message" style="display:none;">
+               {{Permet d'ajouter une message dans le centre de message}}
+           </div>
+
+           <div class="alert alert-info sel_otherActionDescription equipement" style="display:none;">
+            {{Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement}}
         </div>
-        <div class="modal-footer">
-            <a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-            <a class="btn btn-primary" id="bt_selectOtherActionSave">{{Valider}}</a>
+
+        <div class="alert alert-info sel_otherActionDescription ask" style="display:none;">
+            {{Action qui permet à Jeedom de faire une demande puis de stocker la réponde dans une variable. Cette action est bloquant et ne finie que : si jeedom reçoit une réponde ou si le timeout est atteind. Pour le moment cette action n'est compatible qu'avec le plugin SMS ou Slack.}}
         </div>
+
     </div>
+    <div class="modal-footer">
+        <a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
+        <a class="btn btn-primary" id="bt_selectOtherActionSave">{{Valider}}</a>
+    </div>
+</div>
 </div>
 </div>
 

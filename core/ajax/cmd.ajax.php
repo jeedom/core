@@ -186,7 +186,7 @@ try {
 				}
 			} else {
 				$dateEnd = date('Y-m-d H:i:s');
-				$dateStart = date('Y-m-d H:i:s', strtotime('- ' . init('dateRange') . ' ' . $dateEnd));
+				$dateStart = date('Y-m-d 00:00:00', strtotime('- ' . init('dateRange') . ' ' . $dateEnd));
 			}
 		}
 		if (init('dateStart') != '') {
@@ -194,6 +194,9 @@ try {
 		}
 		if (init('dateEnd') != '') {
 			$dateEnd = init('dateEnd');
+			if ($dateEnd == date('Y-m-d')) {
+				$dateEnd = date('Y-m-d H:i:s');
+			}
 		}
 		$return['maxValue'] = '';
 		$return['minValue'] = '';
@@ -286,6 +289,19 @@ try {
 			throw new Exception(__('Cmd ID inconnu : ', __FILE__) . init('id'));
 		}
 		$cmd->emptyHistory(init('date'));
+		ajax::success();
+	}
+
+	if (init('action') == 'setOrder') {
+		$cmds = json_decode(init('cmds'), true);
+		foreach ($cmds as $cmd_json) {
+			$cmd = cmd::byId($cmd_json['id']);
+			if (!is_object($cmd)) {
+				throw new Exception(__('Commande inconnu verifié l\'id :', __FILE__) . ' ' . $cmd_json['id']);
+			}
+			$cmd->setOrder($cmd_json['order']);
+			$cmd->save();
+		}
 		ajax::success();
 	}
 

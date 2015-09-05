@@ -1,39 +1,78 @@
-Le sous-menu Plugins, permet de gérer ses plugins, à savoir : les télécharger, les mettre à jour et les activer
+= Plugin
 
-Sur la partie gauche on a la liste des plugins que l'on a téléchargé depuis le Market Jeedom.
+Le sous-menu Plugins, permet de gérer ses plugins, à savoir : les télécharger, les mettre à jour et les activer.
 
-image::../images/plugin.JPG[]
+== Gestion des plugins
 
-Le bouton en haut, "Télécharger du market" permet d'accéder au Market Jeedom. 
-En dessous on a la liste des modules, avec un V ou X qui signale si le plugin est activé ou non.
+Vous pouvez accèder à la page plugin à partir de Général -> Plugins : 
 
-Sur la partie central, on a quelques informations concernant le plugin, avec une partie intéressante, 
-la partie rouge Installation qui détaille si des procédures sont à réaliser.
+image::../images/plugin1.png[]
+
+Une fois que l'on clique dessus on retrouve la page qui nous presente la liste des plugins : 
+
+image::../images/plugin2.png[]
+
+[TIP]
+Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
+
+Sur cette page vous retrouvez tous les plugins présent sur votre Jeedom. Ceux en rouge sont ceux qui sont désactivés. En cliquant sur un plugin vous accèdez à sa configuration : 
 
 image::../images/plugin3.png[]
 
-Au centre on trouve 2 ou 3 boutons, qui permettent d'activer ou désactiver un plugin, 
-de voir ce plugin sur le Market, et de partager un plugin que l'on a créé.
+En haut vous retrouver l'ID et le nom du plugin, ainsi que la version installée (ici beta). En dessous vous avez le bouton d'activation/desactivation d'un plugin
+
+[IMPORTANT]
+Lors du téléchagement d'un plugin celui-ci n'est pas activer il donc que vous l'activiez
+
+En dessous vous retrouver 4 boutons : 
+
+* *Voir sur le market* : permet de voir la fiche du plugin 
+* *Envoyer sur le market* : permet d'envoyé le plugin sur le market (uniquement disponible si vous en etes l'auteur)
+* *Supprimer* : Supprime le plugin de votre Jeedom. Attention cela supprime définitivement tous les équipements de ce plugin aussi
+* *Documentation* : Permet d'acceder directement à la page de documentation du plugin
+
+[TIP]
+Certain plugin on une partie configuration, il faut dans ce cas se referer à la doc du plugin en question pour savoir comment le configurer
+
+== Installation d'un plugin
+
+Pour en installer un nouveau il suffit de cliquer sur le bouton "Accéder au market" :
 
 image::../images/plugin4.png[]
 
-Ou...
+Après un petit temps de chargement vous obtenez :
 
 image::../images/plugin5.png[]
 
-La gestion des mises à jour des plugins est centralisée dans le centre de mise à jour 
-disponible dans le menu Général/Administration/Centre de mise a jour.
+Tout en haut comme sur le market vous avez des filtres : 
 
-En cliquant sur le bouton en haut à gauche "Télécharger du market" on obtient cette page, 
-il suffit de cliquer sur le plugin de son choix pour ensuite l'installer.
+* *Gratuit/Payant* : permet de ne filtrer que sur les gratuits ou les payants, la petite croix permet de reinitialiser le filtre
+* *Nouveau/Populaire* : permet d'afficher les dernieres plugin ou ceux les plus téléchargé, la petite croix permet de reinitialiser le filtre
+* *Installé/Non installé* : permet de n'afficher que les plugins installé ou non, la petite croix permet de reinitialiser le filtre
+* *Catégorie* : permet n'afficher que certain categorie de plugin
+* *Rechercher* : permet de rechercher un plugin (dans le nom ou la description de celui-ci)
+* *Nom d'utilisateur* : affiche le nom d'utilisateur utilisé pour la connexion au market ainsi que le statut de la connexion (ici ok)
 
-image::../images/plugin8.png[]
+Un fois le plugin voulu trouvé il suffit de cliquer sur celui-ci pour faire apparaitre la fiche du plugin :
 
-Certains plugins ont besoin d'être configurés avant d'être activés, c'est le cas par exemple du plugin RFXCOM ou Z-Wave, 
-souvent ces paramètres sont déjà inscrits par défaut.
+image::../images/plugin6.png[]
 
-image::../images/plugin9.png[]
+Cette fiche vous donne plein d'information sur le plugin en autre : 
 
-image::../images/plugin10.png[]
+* Si il est officiel/recommandé ou si il est obselete (il faut vraiment eviter d'installer des plugins obselete)
+* 3 actions : 
+** *Installer stable* : permet d'installer le plugin dans sa version stable
+** *Installer beta* : permet d'installer le plugin dans sa version beta
+** *Supprimer* : si le plugin est actuellement installé ce bouton permet de le supprimer
 
-Ne pas oublier de sauvegarder pour toutes modifications.
+En dessous vous retrouver sur la gauche la description du plugin, la compatibilité (si Jeedom detecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter), les commentaire sur celui-ci et des information complementaire (l'auteur, la personne ayant fait la derniere mise à jour, un lien vers la doc, le nombre de téléchagement).
+Sur la droite vous retrouvez la liste des dernieres mise à jour (un bouton tout voir vous permet d'avoir tout l'historique), une documentation rapide d'utilisation (il est recommandé quand meme de lire la documentation complete) et enfin le type (plugin, widget...), la langue et les diverses informations sur la date de la derniere stable, la beta et si vous pouvez sans crainte revenir sur la beta
+
+[IMPORTANT]
+Il n'est vraiment pas recommandé de mettre un plugin beta sur un Jeedom beta, beaucoup de soucis de fonctionnement peuvent en resulter
+
+[IMPORTANT]
+Certain plugin son payant, dans ce cas la fiche du plugin vous proposera de l'acheter, une fois cela fait il faut attendre une dizaine de minutes (temps de validation du paiement), puis retrouner sur la fiche du plugin pour l'installer normalement
+
+[TIP]
+Vous pouvez aussi en mode expert pousser directement l'archive ZIP d'un plugin a Jeedom, pour cela il faut mettre la souris tout a gauche pour faire apparaitre le menu de la page plugin puis cliquer sur envoyer un plugins. Attention le nom du zip doit etre le meme que l'id du plugin et dès l'ouverture du ZIP un dossier plugin_info doit etre présent

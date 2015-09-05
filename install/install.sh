@@ -14,11 +14,10 @@
 install_msg_en() {
     msg_installer_welcome="*      Welcome to the Jeedom installer/updater        *"
     msg_usage1="Usage: $0 [<webserver_name>]"
-    msg_usage2="            webserver_name can be 'apache' or 'nginx_ssl' or 'nginx' (default)"
+    msg_usage2="            webserver_name can be 'nginx' (default)"
     msg_manual_install_nodejs_ARM="*          Manual installation of nodeJS for ARM       *"
     msg_manual_install_nodejs_RPI="*     Manual installation of nodeJS for Raspberry      *"
     msg_nginx_config="*                  NGINX configuration                 *"
-    msg_apache_config="*                  APACHE configuration                *"
     msg_question_install_jeedom="Are you sure you want to install Jeedom?"
     msg_warning_install_jeedom="Warning: this will overwrite the default ${ws_upname} configuration if it exists!"
     msg_warning_overwrite_jeedom="Warning: your existing Jeedom installation will be overwritten!"
@@ -54,7 +53,6 @@ install_msg_en() {
     msg_optimize_webserver_cache_opcache="Installing Zend OpCache cache optimization"
     msg_uptodate="is already installed and up-to-date"
     msg_needinstallupdate="needs to be installed or to be updated"
-    msg_ask_install_nginx_ssl="Do you want to install SSL self sign certificat"
     msg_nginx_ssl_config="*                 NGINX SSL configuration               *"
 }
 
@@ -62,11 +60,10 @@ install_msg_en() {
 install_msg_fr() {
     msg_installer_welcome="*Bienvenue dans l'assistant d'intallation/mise à jour de Jeedom*"
     msg_usage1="Utilisation: $0 [<nom_du_webserver>]"
-    msg_usage2="             nom_du_webserver peut être 'apache' ou 'nginx_ssl' ou 'nginx' (par défaut)"
+    msg_usage2="             nom_du_webserver peut être 'nginx' (par défaut)"
     msg_manual_install_nodejs_ARM="*        Installation manuelle de nodeJS pour ARM       *"
     msg_manual_install_nodejs_RPI="*     Installation manuelle de nodeJS pour Raspberry    *"
     msg_nginx_config="*                Configuration de NGINX                *"
-    msg_apache_config="*                Configuration de APACHE               *"
     msg_question_install_jeedom="Etes-vous sûr de vouloir installer Jeedom ?"
     msg_warning_install_jeedom="Attention : ceci écrasera la configuration par défaut de ${ws_upname} si elle existe !"
     msg_warning_overwrite_jeedom="Attention : votre installation existante de Jeedom va être écrasée !"
@@ -110,11 +107,10 @@ install_msg_fr() {
 install_msg_de() {
     msg_installer_welcome="*      Willkommen beim Jeedom Installer / Updater        *"
     msg_usage1="Einsatz: $0 [<Name_des_Webservers>]"
-    msg_usage2="            Webserver_Name kann "Apache" oder "nginx_ssl" oder "nginx" (Standard) sein"
+    msg_usage2="            Webserver_Name kann 'nginx' (Standard) sein"
     msg_manual_install_nodejs_ARM="*          Manuelle Installation von nodejs für ARM      *"
     msg_manual_install_nodejs_RPI="*     Manuelle Installation von nodejs für Raspberry     *"
     msg_nginx_config="*                  NGINX Konfiguration                 *"
-    msg_apache_config="*                  APACHE Konfiguration                *"
     msg_question_install_jeedom="Sind Sie sicher, dass Sie Jeedom installieren wollen?"
     msg_warning_install_jeedom="Warnung: Diese überschreibt die Standard Konfiguration ${ws_upname}, falls vorhanden!"
     msg_warning_overwrite_jeedom="Warnung: Ihr vorhandene Jeedom Installation wird überschrieben!"
@@ -183,81 +179,36 @@ usage_help() {
 configure_php() {
     [ -z "`getent group dialout | grep www-data`" ] && adduser www-data dialout
     GPIO_GROUP="`cat /etc/group | grep -e 'gpio'`"
-    if [ -z "${JEEDOM_CRON}" ] ; then
+    if [ -z "${GPIO_GROUP}" ] ; then
         [ -z "`getent group gpio | grep www-data`" ] && adduser www-data gpio
     fi
     sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /etc/php5/fpm/php.ini
     sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' /etc/php5/fpm/php.ini
     sed -i 's/post_max_size = 8M/post_max_size = 1G/g' /etc/php5/fpm/php.ini
+    sed -i 's/expose_php = On/expose_php = Off/g' /etc/php5/fpm/php.ini
 }
 
 
 install_nodejs() {
-    # Check if nodeJS v0.10.25 is installed,
-    # otherwise, try to install it from various sources (official,
-    # backport, jeedom.fr)
-
+    # Check if nodeJS v0.10.7 is installed,
+    # otherwise, try to install it from various sources
     check_nodejs_version
     [ $? -eq 1 ] && return
-
-    # If running wheezy, try wheezy-backport
-    if [ -n "`grep wheezy /etc/apt/sources.list`" ] ; then
-        if [ -z "`grep wheezy-backports /etc/apt/sources.list`" ] ; then
-            # apply wheezy-backport patch
-            echo "deb http://http.debian.net/debian wheezy-backports main" >> /etc/apt/sources.list
-
-            # Add wheezy-backport keyring
-            gpg --keyserver pgpkeys.mit.edu --recv 8B48AD6246925553
-            gpg --export --armor 8B48AD6246925553 > missingkey.gpg
-            apt-key add missingkey.gpg
-            rm -f missingkey.gpg
-        fi
-            # otherwise, Jessie is good ; other-otherwise ?
-
-            apt-get update
-
-        # Install nodeJS
-        apt-get -t wheezy-backports -y install nodejs libev4 libv8-3.8.9.20
-    else
-        # else, simply try to install
+    if [ -f /usr/bin/raspi-config ]; then
+        curl -sL https://deb.nodesource.com/setup_0.12 | bash -
         apt-get -y install nodejs
-    fi
-
-    # Seems buggy on Raspbian (throw 'Illegal instruction')
-    check_nodejs_version
-    [ $? -eq 1 ] && return
-    
-    # Fallback, if APT method failed
-    if [ $? -ne 0 ] ; then
-        ARM=$(uname -a | grep arm | wc -l)
-        if [ $( cat /etc/os-release | grep raspbian | wc -l) -gt 0 ] ; then
-            echo "********************************************************"
-            echo "${msg_manual_install_nodejs_RPI}"
-            echo "********************************************************"
-            wget --no-check-certificate http://jeedom.fr/ressources/nodejs/node-raspberry.bin
-            rm -rf /usr/local/bin/node
-            rm -rf /usr/bin/nodejs
-            mv node-raspberry.bin /usr/local/bin/node
-            ln -s /usr/local/bin/node /usr/bin/nodejs
-            chmod +x /usr/local/bin/node
-        elif [ ${ARM} -ne 0 ] ; then
-            echo "********************************************************"
-            echo "${msg_manual_install_nodejs_ARM}"
-            echo "********************************************************"
-            wget --no-check-certificate http://jeedom.fr/ressources/nodejs/node-v0.10.21-cubie.tar.xz
-            tar xJvf node-v0.10.21-cubie.tar.xz -C /usr/local --strip-components 1
-            if [ ! -f '/usr/bin/nodejs' ] && [ -f '/usr/local/bin/node' ] ; then
-                ln -s /usr/local/bin/node /usr/bin/nodejs
-            fi
-            rm -rf node-v0.10.21-cubie.tar.xz
+        ln -s /usr/bin/nodejs /usr/bin/node
+    else
+        if [  -z "$1" -a $(uname -a | grep cubox | wc -l ) -eq 1 -a ${ARCH} = "armv7l" ]; then
+            apt-get -y install nodejs
+            ln -s /usr/bin/nodejs /usr/bin/node
+        else
+            curl -sL https://deb.nodesource.com/setup_0.10 | sudo bash -
+            apt-get -y install nodejs
+            ln -s /usr/bin/nodejs /usr/bin/node
         fi
     fi
-    
-    # Remove wheezy-backports
-    if [ -n "`grep wheezy-backports /etc/apt/sources.list`" ] ; then
-        cat /etc/apt/sources.list | sed 's/deb http:\/\/http.debian.net\/debian wheezy-backports main//' > sources.list
-        mv -f sources.list /etc/apt/sources.list
-    fi
+    apt-get -y install npm
 }
 
 
@@ -303,65 +254,8 @@ configure_nginx() {
             service ${i} stop
             update-rc.d -f ${i} remove
         fi
-    done
-    if [ ! -f '/etc/nginx/sites-enabled/default_ssl' ] ; then
-        configure_nginx_ssl         
-    fi          
+    done          
 }
-
-
-configure_nginx_ssl() {
-    echo "********************************************************"
-    echo "${msg_nginx_ssl_config}"
-    echo "********************************************************"
-    openssl genrsa -out jeedom.key 2048
-    openssl req \
-    -new \
-    -subj "/C=FR/ST=France/L=Paris/O=jeedom/OU=JE/CN=jeedom" \
-    -key jeedom.key \
-    -out jeedom.csr
-    openssl x509 -req -days 9999 -in jeedom.csr -signkey jeedom.key -out jeedom.crt
-    mkdir /etc/nginx/certs
-    cp jeedom.key /etc/nginx/certs
-    cp jeedom.crt /etc/nginx/certs
-    rm jeedom.key jeedom.crt
-
-    JEEDOM_ROOT="`cat /etc/nginx/sites-available/default | grep -e 'root /usr/share/nginx/www/jeedom;'`"
-    cp ${webserver_home}/jeedom/install/nginx_default_ssl /etc/nginx/sites-available/default_ssl
-    if [ ! -f '/etc/nginx/sites-enabled/default_ssl' ] ; then
-        ln -s /etc/nginx/sites-available/default_ssl /etc/nginx/sites-enabled/default_ssl
-    fi
-    if [ ! -z "${JEEDOM_ROOT}" ] ; then
-        sed -i 's%root /usr/share/nginx/www;%root /usr/share/nginx/www/jeedom;%g' /etc/nginx/sites-available/default_ssl
-    fi
-    for i in apache2 apache mongoose ; do
-        if [ -f "/etc/init.d/${i}" ] ; then
-            service ${i} stop
-            update-rc.d -f ${i} remove
-        fi
-    done
-    service nginx reload
-    update-rc.d nginx
-}
-
-
-configure_apache() {
-    echo "********************************************************"
-    echo "${msg_apache_config}"
-    echo "********************************************************"
-    cp install/apache_default /etc/apache2/sites-available/000-default.conf
-    if [ ! -f '/etc/apache2/sites-enabled/000-default.conf' ] ; then
-        a2ensite 000-default.conf
-    fi
-    service apache2 restart
-
-    croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
-    cronjob="* * * * * $croncmd"
-    ( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
-
-    configure_php
-}
-
 
 is_version_greater_or_equal() {
     # Compare two "X.Y.Z" formated versions
@@ -389,9 +283,8 @@ is_version_greater_or_equal() {
 check_nodejs_version() {
     # Check if nodeJS v0.10.25 (or higher) is installed.
     # Return 1 of true, 0 (or else) otherwise
-
     NODEJS_VERSION="`nodejs -v 2>/dev/null  | sed 's/["v]//g'`"
-    is_version_greater_or_equal "${NODEJS_VERSION}" "0.10.25"
+    is_version_greater_or_equal "${NODEJS_VERSION}" "0.10.0"
     RETVAL=$?
     case ${RETVAL} in
         1)
@@ -467,44 +360,40 @@ optimize_webserver_cache() {
 
 
 install_dependency() {
-    apt-get update && \
-    apt-get -y install \
-        build-essential \
-        curl \
-        libarchive-dev \
-        libav-tools \
-        libjsoncpp-dev \
-        libpcre3-dev \
-        libssh2-php \
-        libtinyxml-dev \
-        libxml2 \
-        make \
-        miniupnpc \
-        mysql-client \
-        mysql-common \
-        mysql-server \
-        mysql-server-core-5.5 \
-        npm \
-        ntp \
-        php5-cli \
-        php5-common \
-        php5-curl \
-        php5-dev \
-        php5-fpm \
-        php5-json \
-        php5-mysql \
-        php-pear \
-        python-serial \
-        systemd \
-        unzip \
-        usb-modeswitch
-
-    apt-get -y install \
-        ffmpeg
-
-    apt-get -y install \
-        avconv \
-        libudev1
+    apt-get update
+    apt-get -y install
+    apt-get -y install build-essential
+    apt-get -y install curl
+    apt-get -y install libarchive-dev
+    apt-get -y install libav-tools
+    apt-get -y install libjsoncpp-dev
+    apt-get -y install libpcre3-dev
+    apt-get -y install libssh2-php
+    apt-get -y install libtinyxml-dev
+    apt-get -y install libxml2
+    apt-get -y install make
+    apt-get -y install miniupnpc
+    apt-get -y install mysql-client
+    apt-get -y install mysql-common
+    apt-get -y install mysql-server
+    apt-get -y install mysql-server-core-5.5
+    apt-get -y install ntp
+    apt-get -y install php5-cli
+    apt-get -y install php5-common
+    apt-get -y install php5-curl
+    apt-get -y install php5-dev
+    apt-get -y install php5-fpm
+    apt-get -y install php5-json
+    apt-get -y install php5-mysql
+    apt-get -y install php5-ldap
+    apt-get -y install php-pear
+    apt-get -y install python-serial
+    apt-get -y install systemd
+    apt-get -y install unzip
+    apt-get -y install usb-modeswitch
+    apt-get -y install ffmpeg
+    apt-get -y install avconv
+    apt-get -y install libudev1
 
     pecl install oauth
     if [ $? -eq 0 ] ; then
@@ -524,28 +413,6 @@ install_dependency() {
 
 install_dependency_nginx() {
     apt-get install -y nginx-common nginx-full
-}
-
-
-install_dependency_apache() {
-    # Packages dependencies
-    apt-get install -y apache2 libapache2-mod-php5 autoconf make subversion
-    svn checkout http://svn.apache.org/repos/asf/httpd/httpd/tags/2.2.22/ httpd-2.2.22
-    wget --no-check-certificate http://cafarelli.fr/gentoo/apache-2.2.24-wstunnel.patch
-    cd httpd-2.2.22
-    patch -p1 < ../apache-2.2.24-wstunnel.patch
-    svn co http://svn.apache.org/repos/asf/apr/apr/branches/1.4.x srclib/apr
-    svn co http://svn.apache.org/repos/asf/apr/apr-util/branches/1.3.x srclib/apr-util
-    ./buildconf
-    ./configure --enable-proxy=shared --enable-proxy_wstunnel=shared
-    make
-    cp modules/proxy/.libs/mod_proxy{_wstunnel,}.so /usr/lib/apache2/modules/
-    chmod 644 /usr/lib/apache2/modules/mod_proxy{_wstunnel,}.so
-    echo "# Depends: proxy\nLoadModule proxy_wstunnel_module /usr/lib/apache2/modules/mod_proxy_wstunnel.so" | tee -a /etc/apache2/mods-available/proxy_wstunnel.load
-    a2enmod proxy_wstunnel
-    a2enmod proxy_http
-    a2enmod proxy
-    service apache2 restart
 }
 
 
@@ -569,50 +436,12 @@ if [ $(id -u) != 0 ] ; then
     exit 1
 fi
 
-# Check that the provided ${webserver} is supported [nginx,apache]
+# Check that the provided ${webserver} is supported [nginx]
 case ${webserver} in
     nginx)
         # Configuration
         webserver_home="/usr/share/nginx/www"
         croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /usr/share/nginx/www/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
-    ;;
-    apache)
-        # Configuration
-        webserver_home="/var/www"
-        croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php /var/www/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
-    ;;
-    nginx_ssl)
-        # Configuration
-        webserver_home="/usr/share/nginx/www"
-        configure_nginx_ssl
-        exit 1
-    ;;
-    update_nginx)
-        # Configuration
-        webserver_home="/usr/share/nginx/www"
-        echo "********************************************************"
-        echo "${msg_install_deps}"
-        echo "********************************************************"
-        install_dependency
-        install_dependency_nginx
-
-        cd $webserver_home/jeedom
-        configure_nginx
-
-        echo "********************************************************"
-        echo "${msg_setup_nodejs_service}"
-        echo "********************************************************"
-        cp jeedom /etc/init.d/
-        chmod +x /etc/init.d/jeedom
-        update-rc.d jeedom defaults
-
-        echo "********************************************************"
-        echo "${msg_startup_nodejs_service}"
-        echo "********************************************************"
-        service jeedom restart
-        echo '[END UPDATE SUCCESS]'
-        service php5-fpm restart
-        exit 1
     ;;
     *)
         usage_help
@@ -643,14 +472,7 @@ echo "${msg_install_deps}"
 echo "********************************************************"
 
 install_dependency
-if [ "${webserver}" = "nginx" ] ; then 
-    # Packages dependencies
-    install_dependency_nginx
-fi
-
-if [ "${webserver}" = "apache" ] ; then 
-    install_dependency_apache
-fi
+install_dependency_nginx
 
 echo "${msg_passwd_mysql}"
 while true ; do
@@ -672,7 +494,7 @@ while true ; do
     if [ "${ANSWER}" = "${msg_yes}" ] ; then
         # Test access immediately
         # to ensure that the provided password is valid
-        CMD="`echo "show databases;" | mysql -uroot -p${MySQL_root}`"
+        echo "show databases;" | mysql -uroot -p"${MySQL_root}"
         if [ $? -eq 0 ] ; then
             # good password
             break
@@ -717,11 +539,11 @@ echo "********************************************************"
 echo "${msg_config_db}"
 echo "********************************************************"
 bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
-echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p${MySQL_root}
-echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p${MySQL_root}
-echo "DROP DATABASE IF EXISTS jeedom;" | mysql -uroot -p${MySQL_root}
-echo "CREATE DATABASE jeedom;" | mysql -uroot -p${MySQL_root}
-echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p${MySQL_root}
+echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p"${MySQL_root}"
+echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p"${MySQL_root}"
+echo "DROP DATABASE IF EXISTS jeedom;" | mysql -uroot -p"${MySQL_root}"
+echo "CREATE DATABASE jeedom;" | mysql -uroot -p"${MySQL_root}"
+echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p"${MySQL_root}"
 
 echo "********************************************************"
 echo "${msg_install_jeedom}"
@@ -738,9 +560,6 @@ echo "********************************************************"
 case ${webserver} in
     nginx)
         configure_nginx
-    ;;
-    apache)
-        configure_apache
     ;;
 esac
 
@@ -771,12 +590,6 @@ if [ -d /etc/systemd/system ] ; then
     systemctl enable jeedom
 fi
 
-if [ "${webserver}" = "apache" ] ; then 
-    sed -i 's%PATH_TO_JEEDOM="/usr/share/nginx/www/jeedom"%PATH_TO_JEEDOM="/var/www/jeedom"%g' /etc/init.d/jeedom
-    if [ -d /etc/systemd/system ] ; then
-        sed -i 's%/usr/share/nginx/www/jeedom%/var/www/jeedom%g' /etc/systemd/system/jeedom.service
-    fi
-fi
 service jeedom start
 
 echo "********************************************************"

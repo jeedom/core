@@ -23,6 +23,7 @@ class com_shell {
 	/*     * ***********************Attributs************************* */
 
 	private $cmd;
+	private $background = false;
 
 	/*     * ********************Functions static********************* */
 
@@ -35,7 +36,13 @@ class com_shell {
 	function exec() {
 		$output = array();
 		$retval = 0;
-		$return = exec($this->cmd, $output, $retval);
+		if ($this->getBackground()) {
+			exec($this->cmd . ' >> /dev/null 2>&1 &');
+			return;
+		} else {
+			$return = exec($this->cmd, $output, $retval);
+		}
+
 		if ($retval != 0) {
 			throw new Exception('Error on shell exec, return value : ' . $retval . '. Details : ' . $return);
 		}
@@ -54,6 +61,14 @@ class com_shell {
 
 	public function getCmd() {
 		return $this->cmd;
+	}
+
+	public function setBackground($background) {
+		$this->background = $background;
+	}
+
+	public function getBackground() {
+		return $this->background;
 	}
 
 }
