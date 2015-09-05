@@ -471,6 +471,9 @@ class eqLogic {
 		}
 		if ($this->getIsEnable()) {
 			foreach ($this->getCmd(null, null, true) as $cmd) {
+				if ($cmd->getDisplay('hideOn' . $version) == 1) {
+					continue;
+				}
 				if ($cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
 					$cmd_html .= '<br/>';
 				}
