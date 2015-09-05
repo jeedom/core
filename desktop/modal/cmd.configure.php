@@ -214,7 +214,6 @@ foreach ($usedBy['interact'] as $usedByInteract) {
       </div>
       <?php }
 ?>
-
       <?php if ($cmd->getType() == 'info') {
 	?>
        <legend>{{Action sur la valeur}}</legend>
@@ -400,6 +399,11 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
 ?>
        </select>
      </td>
+   </tr>
+    <tr>
+    <td>{{Visible}}</td>
+    <td colspan="2"><input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="hideOndashboard" /></td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="hideOnmobile" /></td>
    </tr>
    <tr>
     <td>{{Afficher le nom}}</td>

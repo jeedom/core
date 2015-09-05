@@ -828,6 +828,9 @@ class cmd {
 
 	public function toHtml($_version = 'dashboard', $options = '', $_cmdColor = null, $_cache = 2) {
 		$version = jeedom::versionAlias($_version);
+		if ($this->getDisplay('hideOn' . $version) == 1) {
+			return '';
+		}
 		$html = '';
 		$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $this->getTemplate($version, 'default');
 		$template = '';
