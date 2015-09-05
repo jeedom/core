@@ -444,6 +444,10 @@ class eqLogic {
 		if (!$this->hasRight('r')) {
 			return '';
 		}
+		$version = jeedom::versionAlias($_version);
+		if ($this->getDisplay('hideOn' . $version) == 1) {
+			return '';
+		}
 		$hasOnlyEventOnly = $this->hasOnlyEventOnlyCmd();
 		if ($hasOnlyEventOnly) {
 			$sql = 'SELECT `value` FROM cache
@@ -455,7 +459,7 @@ class eqLogic {
 		}
 
 		$cmd_html = '';
-		$version = jeedom::versionAlias($_version);
+
 		$vcolor = 'cmdColor';
 		if ($version == 'mobile') {
 			$vcolor = 'mcmdColor';
