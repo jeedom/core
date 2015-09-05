@@ -212,7 +212,7 @@ foreach (object::buildTree(null, true) as $object_li) {
 		if (hasRight('viewview')) {
 			?>
 														<li class="dropdown-submenu">
-															<a data-toggle="dropdown" id="bt_gotoView"><i class="fa fa-bars"></i> {{Vue}}</a>
+															<a data-toggle="dropdown" id="bt_gotoView"><i class="fa fa-picture-o"></i> {{Vue}}</a>
 															<ul class="dropdown-menu">
 																<?php
 foreach (view::all() as $view_menu) {
@@ -226,7 +226,7 @@ foreach (view::all() as $view_menu) {
 		if (hasRight('planview')) {
 			?>
 														<li class="dropdown-submenu">
-															<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-picture-o"></i> {{Design}}</a>
+															<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-paint-brush"></i> {{Design}}</a>
 															<ul class="dropdown-menu">
 																<?php
 foreach (planHeader::all() as $plan_menu) {
