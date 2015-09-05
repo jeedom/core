@@ -82,3 +82,28 @@ Il faut eviter de mélanger les plugins beta avec un Jeedom stable et vise versa
 
 [IMPORTANT]
 Il n'est pas possible de choisir l'heure de la verification des mises à jour ou le moment de la mise à jour en automatique, cela pour permettre une repartition des demandes sur le market. A noter toutefois ques ces deux actions on forcement lieu entre 6h00 et 7h59
+
+== Mise à jour en ligne de commande
+
+Il est possible de faire une mise à jour de jeedom directement en SSH, voila comment faire : 
+
+----
+sudo php /usr/share/nginx/www/jeedom/install/install.php
+----
+
+Voila les paramètres possible :
+
+* *mode* : force pour lancer une mise à jour en mode forcé (ne tiens pas compte des erreurs)
+* *version* : numéro de version, pour réapliquer les changements depuis cette version
+
+Exemple pour faire une mise à jour forcé en réapliquant les changements depuis la 1.188.0 : 
+
+----
+sudo php /usr/share/nginx/www/jeedom/install/install.php mode=force version=1.188.0
+----
+
+Attention après une mise à jour en ligne de commande il faut réapliquer les droits sur le dossier jeedom :
+
+----
+chown -R www-data:www-data /usr/share/nginx/www/jeedom
+----
