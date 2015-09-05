@@ -38,7 +38,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                     <span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareKey()?></span>
                                 </div>
-                                <div class="col-lg-2 col-md-3 col-sm-3">
+                                <div class="col-lg-3 col-md-4 col-sm-3">
                                     <a class="btn btn-default form-control" id="bt_resetHwKey"><i class="fa fa-refresh"></i> {{Remise à zéro}}</a>
                                 </div>
                             </div>
@@ -837,7 +837,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
                     <fieldset>
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse}}</label>
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                            <div class="col-lg-4 col-md-6 col-sm-8 col-xs-6">
                                 <div class="input-group">
                                     <input class="configKey form-control" data-l1key="market::address"/>
                                     <span class="input-group-btn">
