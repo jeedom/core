@@ -255,9 +255,12 @@ class plugin {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'start')) {
 				$plugin_id = $plugin->getId();
+				echo 'Start plugin : ' . $plugin_id . '...';
 				try {
 					$plugin_id::start();
+					echo "OK\n";
 				} catch (Exception $e) {
+					echo "NOK\n";
 					log::add($plugin_id, 'error', __('Erreur sur la fonction start du plugin : ', __FILE__) . $e->getMessage());
 				}
 

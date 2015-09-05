@@ -456,14 +456,14 @@ class jeedom {
 			} catch (Exception $e) {
 
 			}
+			touch('/tmp/jeedom_start');
+			self::event('start');
+			log::add('core', 'info', 'Démarrage de Jeedom OK');
 			try {
 				plugin::start();
 			} catch (Exception $e) {
 
 			}
-			touch('/tmp/jeedom_start');
-			self::event('start');
-			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
 		self::isDateOk();
 		try {
