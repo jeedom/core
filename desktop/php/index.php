@@ -32,6 +32,7 @@ if (isConnect() && init('p') != '') {
 $plugins_list = plugin::listPlugin(true, true);
 $plugin_menu = '';
 $panel_menu = '';
+$nodejs_plugin = array();
 if (count($plugins_list) > 0) {
 	foreach ($plugins_list as $category_name => $category) {
 		$icon = '';
@@ -61,6 +62,9 @@ if (count($plugins_list) > 0) {
 				} else {
 					$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getDisplay() . '"><i class="' . $pluginList->getIcon() . '"></i> ' . $pluginList->getName() . '</a></li>';
 				}
+			}
+			if ($pluginList->getNodejs() == 1) {
+				$nodejs_plugin[] = $pluginList->getId();
 			}
 		}
 		$plugin_menu .= '</ul>';
@@ -175,12 +179,20 @@ sendVarToJS('jeedom_langage', config::byKey('language'));
 if (!isConnect()) {
 	include_file('desktop', 'connection', 'php');
 } else {
-
 	sendVarToJS('userProfils', $_SESSION['user']->getOptions());
 	sendVarToJS('user_id', $_SESSION['user']->getId());
 	sendVarToJS('user_login', $_SESSION['user']->getLogin());
 	sendVarToJS('nodeJsKey', config::byKey('nodeJsKey'));
 	sendVarToJS('jeedom_firstUse', config::byKey('jeedom::firstUse', 'core', 1));
+	if (count($nodejs_plugin) > 0) {
+		foreach ($nodejs_plugin as $value) {
+			try {
+				include_file('desktop', 'node', 'js', $value);
+			} catch (Exception $e) {
+				log::add($value, 'error', 'Node JS file not found');
+			}
+		}
+	}
 	?>
 					<header class="navbar navbar-fixed-top navbar-default">
 						<div class="container-fluid">
