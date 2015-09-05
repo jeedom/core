@@ -179,10 +179,11 @@
                 ligne += '<a target="blank" href="' + data[i].directUrl + '">URL</a>';
                 ligne += '</td>';
                 ligne += '</tr>';
-                $('#table_user tbody').append(ligne);
-                $('#table_user tbody tr:last').setValues(data[i], '.userAttr');
-                modifyWithoutSave = false;
+                var result = $(ligne);
+                result.setValues(data[i], '.userAttr')
+                $('#table_user tbody').append(result);
             }
+            modifyWithoutSave = false;
             initCheckBox();
             $.hideLoading();
         }
