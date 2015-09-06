@@ -463,8 +463,8 @@ function positionEqLogic(_id) {
             verticalAlign.css('position', 'relative').css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - eqLogic.find('.widget-name').height() + 10);
         }
     }else{
-        $('.eqLogic-widget').css('margin','0px').css('padding','0px');
-        $('.eqLogic-widget').each(function () {
+        $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
+        $('.eqLogic-widget:not(.jeedomAlreadyPosition)').each(function () {
             $(this).width(Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2);
             $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
             var verticalAlign = $(this).find('.verticalAlign');
@@ -472,6 +472,7 @@ function positionEqLogic(_id) {
                 verticalAlign.css('position', 'relative').css('top', (($(this).height() - verticalAlign.height()) / 2) - $(this).find('.widget-name').height() + 10);
             }
         });
+        $('.eqLogic-widget').addClass('jeedomAlreadyPosition');
     }
 }
 
