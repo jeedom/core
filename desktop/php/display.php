@@ -200,7 +200,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 	echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':mcolor" value="' . $category['mcolor'] . '"/>';
 	echo '</div>';
 	echo '<div class="col-sm-1">';
-	echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':cmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+	echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':mcolor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
 	echo '</div>';
 	echo '<label class="col-sm-3 control-label">{{Mobile couleur commande}}</label>';
 	echo '<div class="col-sm-2">';
