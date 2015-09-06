@@ -17,7 +17,7 @@
 
  modifyWithoutSave = false;
  nbActiveAjaxRequest = 0;
-
+ utid = Date.now();
  $(function () {
 
   $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
@@ -231,9 +231,9 @@ setInterval(function () {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-       $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
-       $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
-   });
+     $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
+     $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
+ });
 
     $('#bt_gotoDashboard').on('click',function(){
         window.location.href = 'index.php?v=d&p=dashboard';

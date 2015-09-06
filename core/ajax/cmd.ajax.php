@@ -50,7 +50,11 @@ try {
 		if ($cmd->getType() == 'action' && $cmd->getConfiguration('actionConfirm') == 1 && init('confirmAction') != 1) {
 			throw new Exception(__('Cette action nécessite une confirmation', __FILE__), -32006);
 		}
-		ajax::success($cmd->execCmd(init('value', null), init('cache', 1)));
+		$options = json_decode(init('value', '{}'), true);
+		if (init('utid') != '') {
+			$options['utid'] = init('utid');
+		}
+		ajax::success($cmd->execCmd($options, init('cache', 1)));
 	}
 
 	if (init('action') == 'getByObjectNameEqNameCmdName') {

@@ -2,6 +2,7 @@
 $(function () {
     MESSAGE_NUMBER = null;
     nbActiveAjaxRequest = 0;
+    utid = Date.now();
 
     $.mobile.orientationChangeEnabled = false;
 
@@ -127,7 +128,7 @@ function initApplication(_reinit) {
                     $.include(include, function () {
                         deviceInfo = getDeviceType();
                         if(getUrlVars('p') != '' && getUrlVars('ajax') != 1){
-                         switch (getUrlVars('p')) {
+                           switch (getUrlVars('p')) {
                             case 'view' :
                             page('view', 'Vue',getUrlVars('view_id'));
                             break;
