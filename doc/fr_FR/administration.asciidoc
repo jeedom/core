@@ -17,12 +17,13 @@ Dans cette onglet on retrouve des informations général sur Jeedom :
 
 * *Clef API* : votre clef API, à utiliser pour toute requête vers l'API Jeedom
 * *Système* : type de votre hardware
-* *Clef hardware* : clef hardware de votre Jeedom sur le market, à ne réinitialiser que sur demande du support
+* *Clef hardware* : clef hardware de votre Jeedom sur le market. Si votre jeedom n'apparait pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton
 * *Commande d'information utilisateur* : permet de spécifier une commande de type message qui sera utiliser par Jeedom pour vous communiquer des messages important. Vous pouvez indiquer plusieurs commandes séparées par des &&
 * *Langue* : Langue de votre Jeedom
 * *Durée de vie des sessions (heure)* : durée de vie des sessions PHP, il est conseillé de ne pas y toucher
 * *Date et heure* : votre fuseau horraire
 * *Serveur de temps optionnel* : permet d'ajouter un serveur de temps optionnel (à reserver aux experts)
+* *Ignorer la vérification de l'heure* : indique à Jeedom de ne pas vérifié si l'heure est coherente. Utile par exemple si vous ne connecté pas Jeedom à internet et qu'il n'a pas de pile RTC
 * *Mode* : Mode de votre Jeedom maitre ou esclave, attention lors du passage en esclave tous vos équipements, scénario, design... seront supprimé
 
 == Base de données
@@ -53,20 +54,15 @@ Partie très importante dans Jeedom, il faut absolument la configurer correcteme
 ** *Port* : le port, en général 80. Attention changer le port ici ne change absolument le port reel de Jeedom qui restera le meme
 ** *Statut* : Indique si la configuration réseaux externe est correcte
 * *Wifi && IP statique* : peut ne pas apparaitre en fonction de la compatibilité avec votre matériel
+** *Désactiver la gestion du réseaux par Jeedom* : indique à Jeedom de ne pas monitorer le réseaux (à activer si jeedom n'est connecté à aucun réseaux)
 ** *Adresse MAC* : Addresse mac de l'interface réseaux
 ** *Activer le wifi* : permet d'activer la connexion wifi
 ** *Réseau wifi* : réseaux wifi sur lequel se connecter
 ** *Clef* : la clef d'accès au wifi
-** *IP fixe* : active l'utilisation d'une IP fixe (par rapport à l'IP renseigné dans accès interne)
-** *Netmask* : netmask de votre réseaux
-** *Gateway* : gateway de votre réseaux
 ** *Gestion* : lance la generation et la mise en place de la configuration défini plus haut. Attention en cas d'erreur votre Jeedom peux devenir inaccessible
 * *DNS Jeedom* : permet un accès distant a votre Jeedom sans avoir besoin d'un DNS, d'une IP fixe ou d'ouvrir les ports de votre box
 ** *Utiliser les DNS Jeedom* : active les DNS Jeedom (attention cela necessite au moins un service pack)
-** *Rediriger le SSH* : active la redirection SSH à travers le DNS, attention si vous avez laissé les mots de passe par defaut cela constitue une faille de sécurité
-** *Authentification (optionnelle)* : ajout une authentification HTTP en plus, non recommandé
 ** *Statut http* : statut du DNS http
-** *Statut SSH* : statut tu DNS SSH
 ** *Gestion* : permet d'arreter et relancer le service DNS
 
 [TIP]
