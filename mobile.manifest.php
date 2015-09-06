@@ -129,6 +129,9 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			$other_file[] = 'plugins/' . $plugin->getId() . '/core/template/mobile/' . $file;
 		}
 	}
+	if ($plugin->getNodejs() == 1 && file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/js/node.js')) {
+		$js_file[] = 'plugins/' . $plugin->getId() . '/mobile/js/node.js';
+	}
 	if ($plugin->getMobile() != '') {
 		if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/doc/images/' . $plugin->getId() . '_icon.png')) {
 			$other_file[] = 'plugins/' . $plugin->getId() . '/doc/images/' . $plugin->getId() . '_icon.png';

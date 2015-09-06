@@ -117,12 +117,17 @@ function initApplication(_reinit) {
                         include.push('mobile/custom/custom.js');
                     }
                 }
+                for(var i in plugins){
+                    if(plugins[i].nodejs == 1){
+                        include.push('plugins/'+plugins[i].id+'/mobile/js/node.js');
+                    }
+                }
                 $.get("core/php/icon.inc.php", function (data) {
                     $("head").append(data);
                     $.include(include, function () {
                         deviceInfo = getDeviceType();
                         if(getUrlVars('p') != '' && getUrlVars('ajax') != 1){
-                           switch (getUrlVars('p')) {
+                         switch (getUrlVars('p')) {
                             case 'view' :
                             page('view', 'Vue',getUrlVars('view_id'));
                             break;
@@ -157,10 +162,10 @@ function initApplication(_reinit) {
 });
 }
 
-function page(_page, _title, _option, _plugin) {
+function page(_page, _title, _option, _plugin,_dialog) {
     $.showLoading();
     $('.ui-popup').popup('close');
-    if (isset(_title)) {
+    if (isset(_title) && (!isset(_dialog) || !_dialog)) {
         $('#pageTitle').empty().append(_title);
     }
     if (_page == 'connection') {
@@ -181,26 +186,55 @@ function page(_page, _title, _option, _plugin) {
             if (init(_plugin) != '') {
                 page += '&m=' + _plugin;
             }
-            $('#page').hide().load(page, function () {
-                $('#page').trigger('create');
-                var functionName = '';
-                if (init(_plugin) != '') {
-                    functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
-                } else {
-                    functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
-                }
-                if ('function' == typeof (window[functionName])) {
-                    if (init(_option) != '') {
-                        window[functionName](_option);
+            if(isset(_dialog) && _dialog){
+                $('#popupDialog .content').load(page, function () {
+                    var functionName = '';
+                    if (init(_plugin) != '') {
+                        functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
                     } else {
-                        window[functionName]();
+                        functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
                     }
-                }
-                Waves.init();
-                $('#page').fadeIn(400)
-            });
+                    if ('function' == typeof (window[functionName])) {
+                        if (init(_option) != '') {
+                            window[functionName](_option);
+                        } else {
+                            window[functionName]();
+                        }
+                    }
+                    Waves.init();
+                    $("#popupDialog").popup({
+                        beforeposition: function () {
+                            $(this).css({
+                                width: window.innerWidth - 40,
+                            });
+                        },
+                        x: 5,
+                        y: 70
+                    });
+                    $('#popupDialog').popup('open');
+                });
+}else{
+    $('#page').hide().load(page, function () {
+        $('#page').trigger('create');
+        var functionName = '';
+        if (init(_plugin) != '') {
+            functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+        } else {
+            functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
         }
+        if ('function' == typeof (window[functionName])) {
+            if (init(_option) != '') {
+                window[functionName](_option);
+            } else {
+                window[functionName]();
+            }
+        }
+        Waves.init();
+        $('#page').fadeIn(400)
     });
+}
+}
+});
 }
 
 function modal(_name) {
