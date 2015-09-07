@@ -27,7 +27,7 @@ $("#bt_clearMessage").on('click', function(event) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function() {
-            window.location.reload();
+            $("#table_message tbody").remove();
         }
     });
 });
