@@ -263,7 +263,6 @@ setInterval(function () {
 
 function initCheckBox(){
     $("input[type=checkbox].bootstrapSwitch").bootstrapSwitch();
-    $("input[type=checkbox]:not(.bootstrapSwitch)").addClass('checkbox');
 }
 
 function initMultiSelect(){
