@@ -85,5 +85,7 @@ function initHome() {
         }
     });
     });
+    setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
+
 }
 
