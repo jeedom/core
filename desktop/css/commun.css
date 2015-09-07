@@ -1,11 +1,28 @@
+@import url(//fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic);
+@import url(//fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,700,900);
+
 html {
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
 }
 
 body {
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 1.42em;
   padding-top: 60px;
   padding-bottom: 5px;
+}
+
+header{
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.btn,.bootstrap-switch{
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.form-control{
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
 .sidebar-nav {
@@ -290,4 +307,55 @@ body {
 .col-xs-height {
   display: table-cell;
   float: none !important;
+}
+
+
+.checkbox {
+  position: relative;
+  top: -0.375rem;
+  margin: 0 1rem 0 0;
+  cursor: pointer;
+  display: inline-block;
+  top : 5px;
+  min-height : 0px !important;
+}
+
+.form-horizontal .checkbox-inline{
+  padding-top: 0px !important;
+}
+
+.checkbox:before {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  content: "";
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #f2f2f2;
+}
+
+.checkbox:checked:before {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+ height: .5rem;
+  border-color: #009688;
+  border-top-style: none;
+  border-right-style: none;
+}
+
+.checkbox:after {
+  content: "";
+  position: absolute;
+  top: -0.125rem;
+  left: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  background: #fff;
+  cursor: pointer;
 }
