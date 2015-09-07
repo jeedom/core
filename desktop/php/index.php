@@ -386,7 +386,7 @@ if (count($plugins_list) == 0) {
 
 											<ul class="nav navbar-nav navbar-right">
 												<?php $displayMessage = (message::nbMessage() > 0) ? '' : 'display : none;';?>
-												<li><a href="index.php?v=d&p=message">
+												<li><a href="#" id="bt_messageModal">
 													<span class="badge tooltips" id="span_nbMessage" title="{{Nombre de messages}}" style="background-color : #ec971f;<?php echo $displayMessage;?>">
 														<?php echo message::nbMessage();?>
 													</span>

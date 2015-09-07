@@ -231,9 +231,9 @@ setInterval(function () {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-     $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
-     $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
- });
+       $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
+       $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
+   });
 
     $('#bt_gotoDashboard').on('click',function(){
         window.location.href = 'index.php?v=d&p=dashboard';
@@ -245,6 +245,11 @@ setInterval(function () {
 
     $('#bt_gotoPlan').on('click',function(){
         window.location.href = 'index.php?v=d&p=plan';
+    });
+
+    $('#bt_messageModal').on('click',function(){
+        $('#md_modal').dialog({title: "{{Message Jeedom}}"});
+        $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
     });
 
     $.fn.bootstrapSwitch.defaults.onText = '{{Oui}}';

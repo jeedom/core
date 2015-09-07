@@ -282,11 +282,11 @@
                                 options.emptyBefore = init(options.emptyBefore, true);
                                 options.show = init(options.show, true);
                                 if ($.mobile) {
-                                 new $.nd2Toast({
+                                   new $.nd2Toast({
                                     message :  options.message, 
                                     ttl : 3000
                                 });
-                             } else {
+                               } else {
                                 if (options.emptyBefore == false) {
                                     var html = $(this).find('.displayError').html();
                                     if (isset(html)) {
@@ -388,9 +388,11 @@
                 }
                 if ($(this).is('select')) {
                     if (init(_value) == '') {
-                        $(this).find('option:first').prop('selected', true);
+                        if(!$(this).hasClass('bootstrapMultiselect')) { 
+                            $(this).find('option:first').prop('selected', true);
+                        }
                     } else {
-                     if($(this).hasClass('bootstrapMultiselect')){
+                       if($(this).hasClass('bootstrapMultiselect')){
                         if(_value.length > 0){
                             for(var i in _value){
                                 console.log(i);
