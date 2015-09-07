@@ -175,6 +175,7 @@ function page(_page, _title, _option, _plugin,_dialog) {
         $('#page').load(page, function () {
             $('#page').trigger('create');
             $('#pagecontainer').css('padding-top','64px');
+            setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
         });
         return;
     }
@@ -236,6 +237,7 @@ function page(_page, _title, _option, _plugin,_dialog) {
         Waves.init();
         $('#pagecontainer').css('padding-top','64px');
         $('#page').fadeIn(400);
+        setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
     });
 }
 }
