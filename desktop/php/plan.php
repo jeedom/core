@@ -28,21 +28,22 @@ if (is_object($planHeader)) {
 } else {
 	sendVarToJS('planHeader_id', -1);
 }
-?>
+if (init('noControl') == '') {
+	?>
 <div id="div_planHeader">
     <select class="form-control input-sm" style="width: 200px;display: inline-block" id="sel_planHeader">
         <?php
 foreach ($planHeaders as $planHeader_select) {
-	if ($planHeader_select->getId() == $planHeader->getId()) {
-		echo '<option selected value="' . $planHeader_select->getId() . '">' . $planHeader_select->getName() . '</option>';
-	} else {
-		echo '<option value="' . $planHeader_select->getId() . '">' . $planHeader_select->getName() . '</option>';
+		if ($planHeader_select->getId() == $planHeader->getId()) {
+			echo '<option selected value="' . $planHeader_select->getId() . '">' . $planHeader_select->getName() . '</option>';
+		} else {
+			echo '<option value="' . $planHeader_select->getId() . '">' . $planHeader_select->getName() . '</option>';
+		}
 	}
-}
-?>
+	?>
   </select>
   <?php if (isConnect('admin')) {
-	?>
+		?>
    <a class="btn btn-success btn-sm" style="margin-bottom: 3px;" id="bt_addPlanHeader" title="{{Ajouter un design}}"><i class="fa fa-plus-circle"></i></a>
    <a class="btn btn-danger btn-sm tooltips" style="margin-bottom: 3px;" id='bt_removePlanHeader' title="{{Supprimer le design}}"><i class="fa fa-trash"></i></a>
    <a class="btn btn-default btn-sm editMode tooltips" style="margin-bottom: 3px;display: none;" id="bt_configurePlanHeader" title="{{Editer/configurer le design}}"><i class="fa fa-cogs"></i></a>
@@ -50,7 +51,7 @@ foreach ($planHeaders as $planHeader_select) {
    <a class="btn btn-default btn-sm editMode tooltips" style="margin-bottom: 3px;display: none;" id='bt_duplicatePlanHeader' title="{{Dupliquer le design}}"><i class="fa fa-files-o"></i></a>
 
    <?php }
-	?>
+		?>
    <a class="btn btn-default pull-right btn-sm" style="margin-bottom: 3px;" id="bt_switchFullScreen" ><i class="fa fa-pencil"></i> {{Plein écran}}</a>
    <a class="btn btn-warning pull-right btn-sm" style="margin-bottom: 3px;" id="bt_editPlan" data-mode="0"><i class="fa fa-pencil"></i> {{Mode édition}}</a>
    <?php if (is_object($planHeader)) {?>
@@ -62,10 +63,11 @@ foreach ($planHeaders as $planHeader_select) {
    <a class="btn btn-info pull-right btn-sm editMode" style="margin-bottom: 3px;display: none;" id="bt_addEqLogic"><i class="fa fa-plus-circle"></i> {{Equipement}}</a>
    <?php
 }
+	}
 }
 ?>
 </div>
-<div id="div_displayObject" class="container-fluid" style="position: relative;padding:0;"></div>
+<div class="container-fluid div_displayObject" style="position: relative;padding:0;"></div>
 
 <div class="modal fade" id="md_selectLink">
     <div class="modal-dialog">
