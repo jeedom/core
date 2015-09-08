@@ -347,7 +347,7 @@ function addGraphService(_viewData){
 $('#div_viewZones').delegate('.bt_addViewWidget','click',function(){
     var el = $(this);
     jeedom.eqLogic.getSelectModal({}, function (result) {
-       el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human,link_id : result.id,type : 'eqLogic'}));
+       el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'eqLogic'}));
    });
 });
 
