@@ -1,4 +1,4 @@
-<?php
+    <?php
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -20,16 +20,16 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab">{{Informations}}</a></li>
-    <li role="presentation"><a href="#configuration" aria-controls="profile" role="tab" data-toggle="tab">{{Configuration avancée}}</a></li>
-    <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab">{{Affichage avancé}}</a></li>
+    <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
+    <li role="presentation"><a href="#configuration" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> {{Configuration avancée}}</a></li>
+    <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
   </ul>
 
 
   <div class="tab-content" id="div_displayCmdConfigure">
     <div role="tabpanel" class="tab-pane active" id="information">
       <br/>
-      <legend>{{Général}}</legend>
+      <legend><i class="fa fa-list-alt"></i> {{Général}}</legend>
       <div class="row">
         <div class="col-sm-6" >
           <form class="form-horizontal">
@@ -124,7 +124,7 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
         </div>
       </div>
 
-      <legend>{{Utilisé par}}</legend>
+      <legend><i class="fa fa-search"></i> {{Utilisé par}}</legend>
       <form class="form-horizontal">
         <fieldset id="fd_cmdUsedBy">
           <?php
@@ -180,7 +180,7 @@ foreach ($usedBy['interact'] as $usedByInteract) {
 
       <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {
 	?>
-       <legend>{{Calcul et arrondit}}</legend>
+       <legend><i class="fa fa-table"></i> {{Calcul et arrondit}}</legend>
        <div class="form-group">
         <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Formule de calcul (#value# pour la valeur)}}</label>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -199,7 +199,7 @@ foreach ($usedBy['interact'] as $usedByInteract) {
       <?php }
 ?>
       <?php if ($cmd->getType() == 'action') {?>
-      <legend>{{Restriction de l'action}}</legend>
+      <legend><i class="fa fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
       <div class="form-group">
         <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Confirmer l'action}}</label>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -216,7 +216,7 @@ foreach ($usedBy['interact'] as $usedByInteract) {
 ?>
       <?php if ($cmd->getType() == 'info') {
 	?>
-       <legend>{{Action sur la valeur}}</legend>
+       <legend><i class="fa fa-sign-out"></i> {{Action sur la valeur}}</legend>
        <div class="form-group">
         <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action sur valeur, si}}</label>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -314,7 +314,7 @@ foreach (scenario::all() as $scenario) {
 <?php }
 ?>
 <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {?>
-<legend>{{Historique}}</legend>
+<legend><i class="fa fa-bar-chart-o"></i> {{Historique}}</legend>
 <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
   <div class="col-xs-1">
@@ -348,7 +348,7 @@ foreach (scenario::all() as $scenario) {
 <?php }
 ?>
 <?php if ($cmd->getType() == 'info') {?>
-<legend>{{Autres}}</legend>
+<legend><i class="fa fa-plus"></i> {{Autres}}</legend>
 <div class="form-group">
   <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ne pas répéter si la valeur ne change pas}}</label>
   <div class="col-xs-1">
@@ -368,7 +368,7 @@ foreach (scenario::all() as $scenario) {
 </div>
 <div role="tabpanel" class="tab-pane" id="display">
   <br/>
-  <legend>{{Widget}}</legend>
+  <legend><i class="fa fa-tint"></i> {{Widget}}</legend>
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
@@ -430,7 +430,7 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
   </div>
 </div>
 <br/><br/>
-<legend>{{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
+<legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels widget}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
 <table class="table table-bordered table-condensed" id="table_widgetParameters">
   <thead class="table table-bordered">
     <tr>

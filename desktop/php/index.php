@@ -231,10 +231,10 @@ foreach (object::buildTree(null, true) as $object_li) {
 }
 		if (hasRight('viewview')) {
 			?>
-														<li class="dropdown-submenu">
-															<a data-toggle="dropdown" id="bt_gotoView"><i class="fa fa-picture-o"></i> {{Vue}}</a>
-															<ul class="dropdown-menu">
-																<?php
+													<li class="dropdown-submenu">
+														<a data-toggle="dropdown" id="bt_gotoView"><i class="fa fa-picture-o"></i> {{Vue}}</a>
+														<ul class="dropdown-menu">
+															<?php
 foreach (view::all() as $view_menu) {
 				echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon')) . ' ' . $view_menu->getName() . '</a></li>';
 			}
@@ -245,10 +245,10 @@ foreach (view::all() as $view_menu) {
 }
 		if (hasRight('planview')) {
 			?>
-														<li class="dropdown-submenu">
-															<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-paint-brush"></i> {{Design}}</a>
-															<ul class="dropdown-menu">
-																<?php
+													<li class="dropdown-submenu">
+														<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-paint-brush"></i> {{Design}}</a>
+														<ul class="dropdown-menu">
+															<?php
 foreach (planHeader::all() as $plan_menu) {
 				echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon') . ' ' . $plan_menu->getName()) . '</a></li>';
 			}
@@ -423,7 +423,7 @@ if (isConnect('admin')) {
 		}
 	}
 	?>
-	<li class="expertModeVisible"><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
+													<li class="expertModeVisible"><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
 													<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
 													<li class="divider"></li>
 													<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
@@ -520,5 +520,5 @@ try {
 							<?php
 }
 ?>
-</body>
-</html>
+					</body>
+					</html>
