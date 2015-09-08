@@ -26,9 +26,9 @@ sendVarToJS('view_id', $view->getId());
 <div class="row row-overflow">
     <?php
 if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
-	echo '<div class="col-lg-2 col-md-3 col-sm-4" id="div_displayViewList">';
+	echo '<div class="col-lg-2 col-md-3 col-sm-4 div_displayViewList">';
 } else {
-	echo '<div class="col-lg-2 col-md-3 col-sm-4" style="display:none;" id="div_displayViewList">';
+	echo '<div class="col-lg-2 col-md-3 col-sm-4 div_displayViewList" style="display:none;">';
 }
 ?>
     <div class="bs-sidebar">
@@ -52,18 +52,18 @@ foreach (view::all() as $view_info) {
 </div>
 <?php
 if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
-	echo '<div class="col-lg-10 col-md-9 col-sm-8" id="div_displayViewContainer">';
+	echo '<div class="col-lg-10 col-md-9 col-sm-8 div_displayViewContainer">';
 } else {
-	echo '<div class="col-lg-12 col-md-12 col-sm-12" id="div_displayViewContainer">';
+	echo '<div class="col-lg-12 col-md-12 col-sm-12 div_displayViewContainer">';
 }
 ?>
-<i class='fa fa-picture-o cursor tooltips pull-left' id='bt_displayView' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault')?>' title="{{Afficher/Masquer les vues}}"></i>
+<i class='fa fa-picture-o cursor tooltips pull-left bt_displayView' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault')?>' title="{{Afficher/Masquer les vues}}"></i>
 <legend style="height: 35px;color : #563d7c;">Vue <?php
 echo $view->getName();
 if (hasRight('viewedit', true)) {
-	?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId();?>" class="btn btn-warning btn-xs pull-right" id="bt_addviewZone"><i class="fa fa-pencil"></i> {{Editer}}</a><?php }
+	?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId();?>" class="btn btn-warning btn-xs pull-right"><i class="fa fa-pencil"></i> {{Editer}}</a><?php }
 ?></legend>
-        <div id="div_displayView" class="row"></div>
+        <div class="row div_displayView"></div>
     </div>
 
 </div>
