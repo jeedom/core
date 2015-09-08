@@ -68,7 +68,8 @@ foreach ($planHeaders as $planHeader_select) {
 ?>
 </div>
 <div class="container-fluid div_displayObject" style="position: relative;padding:0;"></div>
-
+<?php if (init('noControl') == '') {
+	?>
 <div class="modal fade" id="md_selectLink">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -86,18 +87,18 @@ foreach ($planHeaders as $planHeader_select) {
                     <select class="form-control linkId">
                         <?php
 foreach ($planHeaders as $planHeader_select) {
-	echo '<option value="' . $planHeader_select->getId() . '">' . $planHeader_select->getName() . '</option>';
-}
-?>
+		echo '<option value="' . $planHeader_select->getId() . '">' . $planHeader_select->getName() . '</option>';
+	}
+	?>
                    </select>
                </div>
                <div class="linkview linkOption" style="display: none;">
                 <select class="form-control linkId">
                     <?php
 foreach (view::all() as $views) {
-	echo '<option value="' . $views->getId() . '">' . $views->getName() . '</option>';
-}
-?>
+		echo '<option value="' . $views->getId() . '">' . $views->getName() . '</option>';
+	}
+	?>
                </select>
            </div>
        </div>
@@ -110,5 +111,7 @@ foreach (view::all() as $views) {
 </div><!-- /.modal -->
 
 <div id="md_addViewData" title="Ajouter widget/graph"></div>
+<?php }
+?>
 
 <?php include_file('desktop', 'plan', 'js');?>
