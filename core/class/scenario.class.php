@@ -624,6 +624,10 @@ class scenario {
 		}
 		$this->setLog(__('Fin correcte du scénario', __FILE__));
 		$this->persistLog();
+		$scenario = scenario::byId($this->getId());
+		if ($scenario->getIsActive() != $this->getIsActive()) {
+			$this->setIsActive($scenario->getIsActive());
+		}
 		$this->save();
 		if ($this->getReturn() != '') {
 			return $this->getReturn();
