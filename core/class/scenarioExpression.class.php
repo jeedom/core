@@ -906,6 +906,10 @@ class scenarioExpression {
 					return;
 				} else if ($this->getExpression() == 'stop') {
 					if ($scenario != null) {
+						$scenario2 = scenario::byId($scenario->getId());
+						if ($scenario->getIsActive() != $scenario2->getIsActive()) {
+							$scenario->setIsActive($scenario2->getIsActive());
+						}
 						$this->setLog($scenario, __('Arret du scénario', __FILE__));
 						$scenario->setState('stop');
 						$scenario->setPID('');
