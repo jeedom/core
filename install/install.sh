@@ -598,6 +598,8 @@ echo "********************************************************"
 cp install/motd /etc
 chown root:root /etc/motd
 chmod 644 /etc/motd
+chown -R www-data:www-data /usr/share/nginx/www/jeedom
+chmod -R 775 /usr/share/nginx/www/jeedom
 service php5-fpm restart
 
 echo "********************************************************"
