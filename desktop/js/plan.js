@@ -26,8 +26,8 @@
 
  $('body').delegate('.eqLogic-widget .history', 'click', function () {
     if ($('#bt_editPlan').attr('data-mode') != "1") {
-        $('#md_modal22').dialog({title: "Historique"});
-        $("#md_modal22").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+        $('#md_modal2').dialog({title: "Historique"});
+        $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
     }
 });
 
