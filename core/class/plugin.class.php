@@ -334,12 +334,21 @@ class plugin {
 			config::save('active', $_state, $this->getId());
 		}
 		if ($_state == 0) {
-			foreach (eqLogic::byType($this->getId()) as $eqLogic) {
-				$eqLogic->setConfiguration('previousIsEnable', $eqLogic->getIsEnable());
-				$eqLogic->setConfiguration('previousIsVisible', $eqLogic->getIsVisible());
-				$eqLogic->setIsEnable(0);
-				$eqLogic->setIsVisible(0);
-				$eqLogic->save();
+			$eqLogics = eqLogic::byType($this->getId());
+			if (is_array($eqLogics)) {
+				foreach ($eqLogics as $eqLogic) {
+					$eqLogic->setConfiguration('previousIsEnable', $eqLogic->getIsEnable());
+					$eqLogic->setConfiguration('previousIsVisible', $eqLogic->getIsVisible());
+					$eqLogic->setIsEnable(0);
+					$eqLogic->setIsVisible(0);
+					$eqLogic->save();
+				}
+			}
+			$listeners = listener::byClass($this->getId());
+			if (is_array($listeners)) {
+				foreach ($listeners as $listener) {
+					$listener->remove();
+				}
 			}
 		}
 		if ($alreadyActive == 0 && $_state == 1) {
