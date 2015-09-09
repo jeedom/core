@@ -464,11 +464,7 @@ class eqLogic {
 		if ($version == 'mobile') {
 			$vcolor = 'mcmdColor';
 		}
-		if ($this->getPrimaryCategory() == '') {
-			$cmdColor = '';
-		} else {
-			$cmdColor = jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
-		}
+		$cmdColor = ($this->getPrimaryCategory() == '') ? '' : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
 		if ($this->getIsEnable()) {
 			foreach ($this->getCmd(null, null, true) as $cmd) {
 				if ($cmd->getDisplay('hideOn' . $version) == 1) {

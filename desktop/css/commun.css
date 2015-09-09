@@ -88,7 +88,7 @@ header{
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-.eqLogic-widget .btn{
+.eqLogic-widget .btn:not(.btn-circle){
   border : none !important;
 }
 
