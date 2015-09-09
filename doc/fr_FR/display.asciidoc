@@ -6,8 +6,6 @@ Cette page est accessible par Général -> Résumé domotique :
 
 image::../images/display.png[]
 
-== Ma domotique
-
 Le premiere onglet permet d'orgniser les differents équipement, les commandes, d'avoir accès a la configuration avancé ainsi qu'a de la configuration de masse. Voila celui-ci :
 
 image::../images/display2.png[]
@@ -54,7 +52,7 @@ image::../images/display5.png[]
 
 Chaque bloc jaune correspond à une commande de votre équipement (un nouveau sur la petite fleche de l'équipement permet de les masquer). Si vous faite un double clique sur la commande ou que vous cliquez sur la petite roue cranté cela fera apparaitre la fenetre de configuration
 
-=== Configuration avancée d'un équipement
+== Configuration avancée d'un équipement
 
 La fenetre de configuration avancée d'un équipement est composée de 2 onglets : Informations et Affichages avancé. 
 
@@ -63,7 +61,7 @@ En haut vous retrouvez aussi un bouton sauvegardé et un bouton de suppression d
 [TIP]
 Il est possible d'acceder (si le plugin le supporte) directement à cette fenetre a partir de la page de configuration de l'équipement en cliquant sur les 3 petite roue crantées (souvent placé tout en haut à coté du titre "General")
 
-==== Informations
+=== Informations
 
 image::../images/display9.png[]
 
@@ -80,7 +78,7 @@ L'onglet information contient les informations général de l'équipement :
 * *Tentative échoué* : nombre de tentative de communication consecutive avec l'équipement qui ont échoué
 * *Derniere mise à jour* : date de derniere communication avec l'équipement
 
-==== Affichage avancé
+=== Affichage avancé
 
 image::../images/display10.png[]
 
@@ -101,13 +99,13 @@ image::../images/display11.png[]
 N'oubliez pas de sauvegarder après toute modification
 
 
-=== Configuration avancée d'une commande
+== Configuration avancée d'une commande
 
 La fenetre de configuration avancée d'une commande est composée de 3 onglets : Informations, Configuration avancée et Affichages avancé. 
 
 Elle a aussi 2 boutons un pour sauvegarder et un pour appliquer les memes parametres de configuration à une autre commande
 
-==== Informations
+=== Informations
 
 image::../images/display12.png[]
 
@@ -127,7 +125,7 @@ L'onglet information contient les informations général sur la commande :
 
 En dessous vous retrouvez la liste des differents équipement, commandes, scénarios ou interactions qui utilisent cette commande. Un clique dessus permet d'aller directement sur leur configuration respective
 
-==== Configuration avancée
+=== Configuration avancée
 
 image::../images/display13.png[]
 
@@ -151,7 +149,7 @@ image::../images/display15.png[]
 * *Confirmer l'action* : lors d'une action a partir de l'interface sur cette commande Jeedom demandera une confirmation
 * *Code d'accès* : lors d'une action a partir de l'interface sur cette commande Jeedom demandera le code
 
-==== Affichage avancé
+=== Affichage avancé
 
 image::../images/display14.png[]
 
@@ -166,25 +164,6 @@ Vous pouvez :
 * *Retour à la ligne forcé avant le widget* : permet d'ajouter un retour a la ligne avant ou après le widget (pour forcer par exemple un affichage en colonne des differentes commande l'équipement au lieu de ligne par defaut)
 
 En dessous on retrouve des paramètre optionnel d'affichage que l'on peut passer au widget. Ces parametres dependent du widget en question, il faut donc regarder sa fiche sur le market pour les connaitres.
-
-[TIP]
-N'oubliez pas de sauvegarder après toute modification
-
-== Configuration de l'affichage
-
-=== Catégorie
-
-Le deuxième onglet "Configuration de l'affichage" permet de paramétrer les couleurs des différents widgets (modules domotiques) qui apparaissent dans Jeedom.
-
-La colorisation de ces widgets est effectuée en fonction de la catégorie d'appartenance du widget qui est définie dans la configuration de chaque module (voir plugin Z-Wave, RFXCOM...etc). Parmi les catégories on retrouve le chauffage, les lumières, les automatismes etc...
-
-Pour chaque catégorie, on pourra choisir une couleur différente entre la version desktop et la version mobile. Il y a également 2 types de couleurs, les couleurs de fond des widgets, et les couleurs des commandes lorsque le widget est de type graduel, par exemple les lumières, les volets, les températures.
-
-image::../images/display6.png[]
-
-En cliquant sur la couleur une fenêtre s'ouvre, permettant de choisir sa couleur.
-
-image::../images/display7.png[]
 
 [TIP]
 N'oubliez pas de sauvegarder après toute modification

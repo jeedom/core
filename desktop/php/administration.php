@@ -463,6 +463,7 @@ if (config::byKey('market::allowDNS') == 1 && $externalTest) {
     <div id="config_color" class="panel-collapse collapse">
         <form class="form-horizontal">
             <fieldset>
+               <div  style="margin-left:10px;">
                 <?php
 foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 		echo '<legend>' . $category['name'] . '</legend>';
@@ -500,6 +501,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 		echo '</div>';
 	}
 	?>
+    </div>
             </fieldset>
         </form>
 

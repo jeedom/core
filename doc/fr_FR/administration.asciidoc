@@ -74,6 +74,21 @@ Cette partie est juste la pour expliquer à Jeedom son environement une modifica
 [NOTE]
 Vous pouvez voir link:http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https[ici] un tutorial pour mettre en place un certificat HTTPS auto-signé
 
+== Configuration des couleurs
+
+La colorisation des widgets est effectuée en fonction de la catégorie d'appartenance du widget qui est définie dans la configuration de chaque module (voir plugin Z-Wave, RFXCOM...etc). Parmi les catégories on retrouve le chauffage, les lumières, les automatismes etc...
+
+Pour chaque catégorie, on pourra choisir une couleur différente entre la version desktop et la version mobile. Il y a également 2 types de couleurs, les couleurs de fond des widgets, et les couleurs des commandes lorsque le widget est de type graduel, par exemple les lumières, les volets, les températures.
+
+image::../images/display6.png[]
+
+En cliquant sur la couleur une fenêtre s'ouvre, permettant de choisir sa couleur.
+
+image::../images/display7.png[]
+
+[TIP]
+N'oubliez pas de sauvegarder après toute modification
+
 == Configuration des commandes
 
 image::../images/administration4.png[]
