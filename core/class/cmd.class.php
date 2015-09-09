@@ -1003,6 +1003,7 @@ class cmd {
 			$replace['#title_disable#'] = $this->getDisplay('title_disable', 0);
 			$replace['#title_possibility_list#'] = str_replace("'", "\'", $this->getDisplay('title_possibility_list', ''));
 			$replace['#slider_placeholder#'] = $this->getDisplay('slider_placeholder', __('Valeur', __FILE__));
+			$replace['#other_tooltips#'] = $this->getDisplay('other_tooltips', '');
 			$html = template_replace($replace, $html);
 			return $html;
 		}
