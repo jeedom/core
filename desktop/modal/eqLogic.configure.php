@@ -15,8 +15,8 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 <a class="btn btn-success pull-right btn-sm" id="bt_eqLogicConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
 
 <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab">{{Informations}}</a></li>
-    <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab">{{Affichage avancé}}</a></li>
+    <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
+    <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
 </ul>
 
 <div class="tab-content" id="div_displayEqLogicConfigure">
@@ -111,7 +111,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 
 <div role="tabpanel" class="tab-pane" id="display">
     <br/>
-    <legend>{{Widget}}</legend>
+    <legend><i class="fa fa-tint"></i> {{Widget}}</legend>
     <table class="table table-bordered table-condensed">
         <thead>
             <tr>
@@ -147,7 +147,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
             </tr>
         </tbody>
     </table>
-    <legend>{{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
+    <legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
     <table class="table table-bordered table-condensed" id="table_widgetParameters">
         <thead>
             <tr>
