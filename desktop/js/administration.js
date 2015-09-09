@@ -154,7 +154,7 @@
         },
         success: function () {
             jeedom.config.load({
-                configuration: $('#config').getValues('.configKey')[0],
+                configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
                 error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
@@ -228,7 +228,7 @@ printConvertColor();
 
 $.showLoading();
 jeedom.config.load({
-    configuration: $('#config').getValues('.configKey')[0],
+    configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
     error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
@@ -500,3 +500,18 @@ $('#bt_refreshWifiList').on('click',function(){
 });
 
 
+/*CMD color*/
+
+ $('.bt_resetColor').on('click', function () {
+    var el = $(this);
+    jeedom.getConfiguration({
+        key: $(this).attr('data-l1key'),
+        default: 1,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            $('.configKey[data-l1key="' + el.attr('data-l1key') + '"]').value(data);
+        }
+    });
+});

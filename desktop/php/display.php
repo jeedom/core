@@ -44,36 +44,27 @@ foreach ($objects as $object) {
 	}
 </style>
 
-<ul class="nav nav-tabs">
-	<li class="active"><a href="#display_order" data-toggle="tab">{{Ma domotique}}</a></li>
-	<li><a href="#display_configuration" data-toggle="tab">{{Configuration de l'affichage}}</a></li>
-</ul>
-
-<div class="tab-content">
-
-	<div class="tab-pane active" id="display_order">
-		<br/>
-		<span class="pull-right">
-		<input class="form-control pull-right" id="in_search" placeholder="{{Rechercher}}" style="width : 200px;"/>
-		<input type="checkbox" class="bootstrapSwitch pull-right" id="cb_actifDisplay" data-on-text="{{Afficher}}" data-off-text="{{Masquer}}" data-label-text="{{Inactif}}" checked />
-		</span>
-		<center>
-			<span class="label label-default" style="font-size : 1em;">{{Nombre d'objet :}} <?php echo count($objects)?></span>
-			<span class="label label-info" style="font-size : 1em;">{{Nombre d'équipement :}} <?php echo $nbEqlogic?></span>
-			<span class="label label-primary" style="font-size : 1em;">{{Nombre de commande :}} <?php echo $nbCmd?></span>
-		</center>
-		<a class="btn btn-danger btn-sm" id="bt_removeEqlogic" style="display:none;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
-		<a class="btn btn-success btn-sm bt_setIsVisible" data-value="1" style="display:none;"><i class="fa fa-eye"></i> {{Visible}}</a>
-		<a class="btn btn-warning btn-sm bt_setIsVisible" data-value="0" style="display:none;"><i class="fa fa-eye-slash"></i> {{Invisible}}</a>
-		<a class="btn btn-success btn-sm bt_setIsEnable" data-value="1" style="display:none;"><i class="fa fa-check"></i> {{Actif}}</a>
-		<a class="btn btn-warning btn-sm bt_setIsEnable" data-value="0" style="display:none;"><i class="fa fa-times"></i> {{Inactif}}</a>
-		<br/>
-		<br/>
-		<div class="row row-same-height">
-			<div class="col-xs-4 object col-xs-height" data-id="-1">
-				<legend>{{Aucun}} <i class="fa fa-chevron-down pull-right showEqLogic tooltips cursor" title="{{Voir les équipements}}"></i></legend>
-				<ul class="eqLogicSortable">
-					<?php
+<span class="pull-right">
+	<input class="form-control pull-right" id="in_search" placeholder="{{Rechercher}}" style="width : 200px;"/>
+	<input type="checkbox" class="bootstrapSwitch pull-right" id="cb_actifDisplay" data-on-text="{{Afficher}}" data-off-text="{{Masquer}}" data-label-text="{{Inactif}}" checked />
+</span>
+<center>
+	<span class="label label-default" style="font-size : 1em;">{{Nombre d'objet :}} <?php echo count($objects)?></span>
+	<span class="label label-info" style="font-size : 1em;">{{Nombre d'équipement :}} <?php echo $nbEqlogic?></span>
+	<span class="label label-primary" style="font-size : 1em;">{{Nombre de commande :}} <?php echo $nbCmd?></span>
+</center>
+<a class="btn btn-danger btn-sm" id="bt_removeEqlogic" style="display:none;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
+<a class="btn btn-success btn-sm bt_setIsVisible" data-value="1" style="display:none;"><i class="fa fa-eye"></i> {{Visible}}</a>
+<a class="btn btn-warning btn-sm bt_setIsVisible" data-value="0" style="display:none;"><i class="fa fa-eye-slash"></i> {{Invisible}}</a>
+<a class="btn btn-success btn-sm bt_setIsEnable" data-value="1" style="display:none;"><i class="fa fa-check"></i> {{Actif}}</a>
+<a class="btn btn-warning btn-sm bt_setIsEnable" data-value="0" style="display:none;"><i class="fa fa-times"></i> {{Inactif}}</a>
+<br/>
+<br/>
+<div class="row row-same-height">
+	<div class="col-xs-4 object col-xs-height" data-id="-1">
+		<legend>{{Aucun}} <i class="fa fa-chevron-down pull-right showEqLogic tooltips cursor" title="{{Voir les équipements}}"></i></legend>
+		<ul class="eqLogicSortable">
+			<?php
 foreach ($eqLogics[-1] as $eqLogic) {
 	echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 	echo '<input type="checkbox" class="cb_selEqLogic" /> ';
@@ -99,9 +90,9 @@ foreach ($eqLogics[-1] as $eqLogic) {
 	echo '</li>';
 }
 ?>
-				</ul>
-			</div>
-			<?php
+		</ul>
+	</div>
+	<?php
 $i = 1;
 foreach ($objects as $object) {
 	$defaultTextColor = ($object->getDisplay('tagColor') == '') ? 'black' : 'white';
@@ -158,70 +149,6 @@ if ($i != 0) {
 	echo '</div>';
 }
 ?>
-		</div>
 
-
-		<div class="tab-pane" id="display_configuration">
-			<div class="panel-group" id="accordion">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapse_category">
-								{{Catégories}}
-							</a>
-						</h4>
-					</div>
-					<div id="collapse_category" class="panel-collapse collapse in">
-						<div class="panel-body">
-							<form class="form-horizontal">
-								<fieldset>
-									<?php
-foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
-	echo '<legend>' . $category['name'] . '</legend>';
-	echo '<div class="form-group">';
-	echo '<label class="col-sm-3 control-label">{{Dashboard couleur de fond}}</label>';
-	echo '<div class="col-sm-2">';
-	echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':color" value="' . $category['color'] . '" />';
-	echo '</div>';
-	echo '<div class="col-sm-1">';
-	echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':color" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
-	echo '</div>';
-	echo '<label class="col-sm-3 control-label">{{Dashboard couleur commande}}</label>';
-	echo '<div class="col-sm-2">';
-	echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':cmdColor" value="' . $category['cmdColor'] . '" />';
-	echo '</div>';
-	echo '<div class="col-sm-1">';
-	echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':cmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
-	echo '</div>';
-	echo '</div>';
-	echo '<div class="form-group">';
-	echo '<label class="col-sm-3 control-label">{{Mobile couleur de fond}}</label>';
-	echo '<div class="col-sm-2">';
-	echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':mcolor" value="' . $category['mcolor'] . '"/>';
-	echo '</div>';
-	echo '<div class="col-sm-1">';
-	echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':mcolor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
-	echo '</div>';
-	echo '<label class="col-sm-3 control-label">{{Mobile couleur commande}}</label>';
-	echo '<div class="col-sm-2">';
-	echo '<input type="color" class="configKey form-control cursor" data-l1key="eqLogic:category:' . $key . ':mcmdColor" value="' . $category['mcmdColor'] . '" />';
-	echo '</div>';
-	echo '<div class="col-sm-1">';
-	echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':mcmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
-	echo '</div>';
-	echo '</div>';
-}
-?>
-								</fieldset>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="form-actions" style="height: 20px;">
-				<a class="btn btn-success" id="bt_displayConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
-			</div>
-		</div>
-	</div>
 
 	<?php include_file('desktop', 'display', 'js');?>

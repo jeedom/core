@@ -261,11 +261,11 @@ echo $CONFIG['db']['password'];
         <div class="panel-body">
             <form class="form-horizontal">
                 <fieldset>
-                <div class="alert alert-warning">{{Attention cette configuration n'est la que pour informer Jeedom de sa configuration réseaux et n'a aucun impact sur les ports ou l'IP réelement utilisés pour joindre Jeedom}}</div>
-                   <div class="row">
-                    <div class="col-sm-6">
-                       <legend>Accès interne</legend>
-                       <?php
+                    <div class="alert alert-warning">{{Attention cette configuration n'est la que pour informer Jeedom de sa configuration réseaux et n'a aucun impact sur les ports ou l'IP réelement utilisés pour joindre Jeedom}}</div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                           <legend>Accès interne</legend>
+                           <?php
 if (config::byKey('jeeNetwork::mode') == 'slave') {
 	echo '<div class="form-group expertModeVisible">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP Maître}}</label>';
@@ -275,73 +275,73 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
 	echo '</div>';
 }
 ?>
-                       <div class="form-group">
-                        <label class="col-xs-3 control-label">{{Protocole}}</label>
-                        <div class="col-xs-3">
-                            <select class="configKey form-control" data-l1key="internalProtocol">
-                                <option value="">Aucun</option>
-                                <option value="http://">HTTP</option>
-                                <option value="https://">HTTPS</option>
-                            </select>
+                           <div class="form-group">
+                            <label class="col-xs-3 control-label">{{Protocole}}</label>
+                            <div class="col-xs-3">
+                                <select class="configKey form-control" data-l1key="internalProtocol">
+                                    <option value="">Aucun</option>
+                                    <option value="http://">HTTP</option>
+                                    <option value="https://">HTTPS</option>
+                                </select>
+                            </div>
+                            <label class="col-xs-3 control-label">{{Port}}</label>
+                            <div class="col-xs-3">
+                                <input type="number"class="configKey form-control" data-l1key="internalPort" />
+                            </div>
                         </div>
-                         <label class="col-xs-3 control-label">{{Port}}</label>
-                        <div class="col-xs-3">
-                            <input type="number"class="configKey form-control" data-l1key="internalPort" />
+                        <div class="form-group">
+                            <label class="col-xs-3 control-label">{{Adresse IP}}</label>
+                            <div class="col-xs-3">
+                                <input type="text" class="configKey form-control" data-l1key="internalAddr" />
+                            </div>
+                            <label class="col-xs-3 control-label">{{Complément}}</label>
+                            <div class="col-xs-3">
+                                <input type="text" class="configKey form-control" data-l1key="internalComplement" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label">{{Adresse IP}}</label>
-                        <div class="col-xs-3">
-                            <input type="text" class="configKey form-control" data-l1key="internalAddr" />
-                        </div>
-                         <label class="col-xs-3 control-label">{{Complément}}</label>
-                        <div class="col-xs-3">
-                            <input type="text" class="configKey form-control" data-l1key="internalComplement" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label">{{Statut}}</label>
-                        <div class="col-xs-8">
-                          <?php
+                        <div class="form-group">
+                            <label class="col-xs-3 control-label">{{Statut}}</label>
+                            <div class="col-xs-8">
+                              <?php
 if (network::test('internal')) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
 } else {
 	echo '<span class="label label-warning tooltips">{{NOK}}</span>';
 }
 ?>
+                       </div>
                    </div>
                </div>
-           </div>
-           <div class="col-sm-6">
-            <legend>Accès externe</legend>
-            <div class="form-group">
-                <label class="col-xs-3 control-label">{{Protocole}}</label>
-                <div class="col-xs-3">
-                    <select class="configKey form-control" data-l1key="externalProtocol">
-                        <option value="">Aucun</option>
-                        <option value="http://">HTTP</option>
-                        <option value="https://">HTTPS</option>
-                    </select>
+               <div class="col-sm-6">
+                <legend>Accès externe</legend>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label">{{Protocole}}</label>
+                    <div class="col-xs-3">
+                        <select class="configKey form-control" data-l1key="externalProtocol">
+                            <option value="">Aucun</option>
+                            <option value="http://">HTTP</option>
+                            <option value="https://">HTTPS</option>
+                        </select>
+                    </div>
+                    <label class="col-xs-3 control-label">{{Port}}</label>
+                    <div class="col-xs-3">
+                        <input type="number" class="configKey form-control" data-l1key="externalPort" />
+                    </div>
                 </div>
-                 <label class="col-xs-3 control-label">{{Port}}</label>
-                <div class="col-xs-3">
-                    <input type="number" class="configKey form-control" data-l1key="externalPort" />
+                <div class="form-group">
+                    <label class="col-xs-3 control-label">{{Adresse URL ou IP}}</label>
+                    <div class="col-xs-3">
+                        <input type="text" class="configKey form-control" data-l1key="externalAddr" />
+                    </div>
+                    <label class="col-xs-3 control-label">{{Complément}}</label>
+                    <div class="col-xs-3">
+                        <input type="text"  class="configKey form-control" data-l1key="externalComplement" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-xs-3 control-label">{{Adresse URL ou IP}}</label>
-                <div class="col-xs-3">
-                    <input type="text" class="configKey form-control" data-l1key="externalAddr" />
-                </div>
-                 <label class="col-xs-3 control-label">{{Complément}}</label>
-                <div class="col-xs-3">
-                    <input type="text"  class="configKey form-control" data-l1key="externalComplement" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-xs-3 control-label">{{Statut}}</label>
-                <div class="col-xs-3">
-                  <?php
+                <div class="form-group">
+                    <label class="col-xs-3 control-label">{{Statut}}</label>
+                    <div class="col-xs-3">
+                      <?php
 $externalTest = network::test('external');
 if ($externalTest) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
@@ -349,12 +349,12 @@ if ($externalTest) {
 	echo '<span class="label label-warning tooltips">{{NOK}}</span>';
 }
 ?>
+               </div>
            </div>
        </div>
    </div>
-</div>
 
-<div class="row">
+   <div class="row">
     <div class="col-sm-6">
         <legend>{{Gestion avancée}}</legend>
         <div class="form-group expertModeVisible has-error">
@@ -449,111 +449,167 @@ if (config::byKey('market::allowDNS') == 1 && $externalTest) {
 </div>
 </div>
 
-<?php if (config::byKey('jeeNetwork::mode') == 'master') {?>
+<?php if (config::byKey('jeeNetwork::mode') == 'master') {
+	?>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_cmd">
-                    {{Configuration des commandes}}
-                </a>
-            </h3>
-        </div>
-        <div id="config_cmd" class="panel-collapse collapse">
-            <div class="panel-body">
-                <legend>{{Historique}}</legend>
-                <form class="form-horizontal">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les statistiques sur les widgets}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="checkbox"  class="configKey bootstrapSwitch" data-l1key="displayStatsWidget" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période de calcul pour min, max, moyenne (en heures)}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="historyCalculPeriod" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période de calcul pour la tendance (en heures)}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="historyCalculTendance" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Délai avant archivage (en heures)}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="historyArchiveTime" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Archiver par paquet de (en heures)}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="historyArchivePackage" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Seuil de calcul de tendance bas}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="historyCalculTendanceThresholddMin" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Seuil de calcul de tendance haut}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="historyCalculTendanceThresholddMax" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période d'affichage des graphiques par defaut}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <select  class="configKey form-control" data-l1key="history::defautShowPeriod" >
-                                    <option value="-6 month">6 mois</option>
-                                    <option value="-3 month">3 mois</option>
-                                    <option value="-1 month">1 mois</option>
-                                    <option value="-1 week">1 semaine</option>
-                                    <option value="-1 day">1 jour</option>
-                                </select>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_color">
+                {{Configuration des couleurs}}
+            </a>
+        </h3>
+    </div>
+    <div id="config_color" class="panel-collapse collapse">
+        <form class="form-horizontal">
+            <fieldset>
+                <?php
+foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
+		echo '<legend>' . $category['name'] . '</legend>';
+		echo '<div class="form-group">';
+		echo '<label class="col-sm-3 control-label">{{Dashboard couleur de fond}}</label>';
+		echo '<div class="col-sm-2">';
+		echo '<input type="color" class="configKey form-control cursor noSet" data-l1key="eqLogic:category:' . $key . ':color" value="' . $category['color'] . '" />';
+		echo '</div>';
+		echo '<div class="col-sm-1">';
+		echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':color" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+		echo '</div>';
+		echo '<label class="col-sm-3 control-label">{{Dashboard couleur commande}}</label>';
+		echo '<div class="col-sm-2">';
+		echo '<input type="color" class="configKey form-control cursor noSet" data-l1key="eqLogic:category:' . $key . ':cmdColor" value="' . $category['cmdColor'] . '" />';
+		echo '</div>';
+		echo '<div class="col-sm-1">';
+		echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':cmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+		echo '</div>';
+		echo '</div>';
+		echo '<div class="form-group">';
+		echo '<label class="col-sm-3 control-label">{{Mobile couleur de fond}}</label>';
+		echo '<div class="col-sm-2">';
+		echo '<input type="color" class="configKey form-control cursor noSet" data-l1key="eqLogic:category:' . $key . ':mcolor" value="' . $category['mcolor'] . '"/>';
+		echo '</div>';
+		echo '<div class="col-sm-1">';
+		echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':mcolor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+		echo '</div>';
+		echo '<label class="col-sm-3 control-label">{{Mobile couleur commande}}</label>';
+		echo '<div class="col-sm-2">';
+		echo '<input type="color" class="configKey form-control cursor noSet" data-l1key="eqLogic:category:' . $key . ':mcmdColor" value="' . $category['mcmdColor'] . '" />';
+		echo '</div>';
+		echo '<div class="col-sm-1">';
+		echo '<a class="btn btn-default bt_resetColor tooltips" data-l1key="eqLogic:category:' . $key . ':mcmdColor" title="{{Remettre par défaut}}"><i class="fa fa-times"></i></a>';
+		echo '</div>';
+		echo '</div>';
+	}
+	?>
+            </fieldset>
+        </form>
 
-                <legend>{{Cache}}</legend>
-                <form class="form-horizontal">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Durée de vie du cache (en secondes)}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="lifetimeMemCache" />
-                            </div>
-                        </div>
+    </div>
+</div>
 
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Vider toutes les données en cache}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <a class="btn btn-warning" id="bt_flushMemcache"><i class="fa fa-trash"></i> {{Vider}}</a>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
 
-                <legend>{{Push}}</legend>
-                <form class="form-horizontal">
-                    <fieldset>
-                       <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{URL de push globale}}</label>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <input type="text"  class="configKey form-control tooltips" data-l1key="cmdPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_cmd">
+                {{Configuration des commandes}}
+            </a>
+        </h3>
+    </div>
+    <div id="config_cmd" class="panel-collapse collapse">
+        <div class="panel-body">
+            <legend>{{Historique}}</legend>
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les statistiques sur les widgets}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="checkbox"  class="configKey bootstrapSwitch" data-l1key="displayStatsWidget" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période de calcul pour min, max, moyenne (en heures)}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="historyCalculPeriod" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période de calcul pour la tendance (en heures)}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="historyCalculTendance" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Délai avant archivage (en heures)}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="historyArchiveTime" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Archiver par paquet de (en heures)}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="historyArchivePackage" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Seuil de calcul de tendance bas}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="historyCalculTendanceThresholddMin" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Seuil de calcul de tendance haut}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="historyCalculTendanceThresholddMax" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période d'affichage des graphiques par defaut}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <select  class="configKey form-control" data-l1key="history::defautShowPeriod" >
+                                <option value="-6 month">6 mois</option>
+                                <option value="-3 month">3 mois</option>
+                                <option value="-1 month">1 mois</option>
+                                <option value="-1 week">1 semaine</option>
+                                <option value="-1 day">1 jour</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+            <legend>{{Cache}}</legend>
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Durée de vie du cache (en secondes)}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="lifetimeMemCache" />
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Vider toutes les données en cache}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <a class="btn btn-warning" id="bt_flushMemcache"><i class="fa fa-trash"></i> {{Vider}}</a>
+                        </div>
+                    </div>
                 </fieldset>
             </form>
-        </div>
+
+            <legend>{{Push}}</legend>
+            <form class="form-horizontal">
+                <fieldset>
+                   <div class="form-group">
+                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{URL de push globale}}</label>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <input type="text"  class="configKey form-control tooltips" data-l1key="cmdPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
     </div>
+</div>
 </div>
 <?php }
 ?>
