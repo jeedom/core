@@ -130,7 +130,7 @@ function editWidgetMode(_mode){
         }
     }
     if(_mode == 0){
-        if( $('.div_displayEquipement .eqLogic-widget.ui-draggable.ui-resizable.ui-sortable').length > 0){
+        if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
            $('.div_displayEquipement .eqLogic-widget').draggable('disable');
            $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('destroy');
            $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('destroy');
