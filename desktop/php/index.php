@@ -104,6 +104,7 @@ if (!isConnect() || $_SESSION['user']->getOptions('bootstrap_theme') == '') {
 	}
 }
 include_file('core', 'icon.inc', 'php');
+include_file('3rdparty', 'roboto/roboto', 'css');
 include_file('desktop', 'commun', 'css');
 include_file('core', 'core', 'css');
 include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
