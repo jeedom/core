@@ -38,6 +38,21 @@ else
 	echo "${VERT}OK${NORMAL}"
 fi
 
+echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Check ${ROSE}apache2${NORMAL}..."
+sudo service apache2 status >> /dev/null 2>&1
+if [ $? -eq 0 ]; then
+	echo -n "${JAUNE}NOK, try to restart...${NORMAL}"
+	sudo service apache2 stop 
+	sudo update-rc.d apache2 remove
+	sudo service apache2 status >> /dev/null 2>&1
+	if [ $? -eq 0 ]; then
+		echo "${ROUGE}[$(date +%d-%m-%Y\ %H:%M:%S)] Can not stop it${NORMAL}"
+		exit 1
+	fi	
+else
+	echo "${VERT}OK${NORMAL}"
+fi
+
 echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Check ${ROSE}php5-fpm${NORMAL}..."
 sudo service php5-fpm status >> /dev/null 2>&1
 if [ $? -ne 0 ]; then
