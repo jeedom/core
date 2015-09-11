@@ -113,6 +113,7 @@ setInterval(function () {
         },
         beforeClose: function (event, ui) {
             $("body").css({overflow: 'inherit'})
+            $("#md_reportBug").empty();
         }
     });
 
@@ -128,6 +129,7 @@ setInterval(function () {
         },
         beforeClose: function (event, ui) {
             $("body").css({overflow: 'inherit'});
+            $("#md_pageHelp").empty();
         }
     });
 
@@ -142,6 +144,7 @@ setInterval(function () {
         },
         beforeClose: function (event, ui) {
             $("body").css({overflow: 'inherit'});
+            $("#md_modal").empty();
         }
     });
 
@@ -156,6 +159,7 @@ setInterval(function () {
         },
         beforeClose: function (event, ui) {
             $("body").css({overflow: 'inherit'});
+            $("#md_modal2").empty();
         }
     });
 
@@ -231,9 +235,9 @@ setInterval(function () {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-       $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
-       $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
-   });
+     $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
+     $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
+ });
 
     $('#bt_gotoDashboard').on('click',function(){
         window.location.href = 'index.php?v=d&p=dashboard';
