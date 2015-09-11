@@ -79,3 +79,11 @@ if [ ${USERSPACE} -gt 95 ]; then
 else
 	echo "${VERT}OK${NORMAL}"
 fi
+
+echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Check access to ${ROSE}market${NORMAL}..."
+sudo ping -c 2 market.jeedom.fr >> /dev/null 2>&1
+if [ $? -ne 0 ]; then
+	echo "${ROUGE}NOK${NORMAL}"
+else
+	echo "${VERT}OK${NORMAL}"
+fi
