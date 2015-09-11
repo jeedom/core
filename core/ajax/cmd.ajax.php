@@ -277,8 +277,8 @@ try {
 			$return['unite'] = init('unite');
 		}
 		$last = end($data);
-		if ($last[0] < (strtotime('now UTC') * 1000)) {
-			$data[] = array((strtotime('now UTC') * 1000), $last[1]);
+		if ($last[0] < (strtotime($dateEnd) * 1000)) {
+			$data[] = array((strtotime($dateEnd) * 1000), $last[1]);
 		}
 		$return['data'] = $data;
 		ajax::success($return);
