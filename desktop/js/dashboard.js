@@ -185,10 +185,10 @@ function editWidgetMode(_mode){
         }
     });
 
-     $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').delegate('.cmd','mouseover',function(){
+     $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseover','.cmd',function(){
         $('.div_displayEquipement .eqLogic-widget').draggable('disable');
     });
-     $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').delegate('.cmd','mouseleave',function(){
+     $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseleave','.cmd',function(){
         $('.div_displayEquipement .eqLogic-widget').draggable('enable');
     });
 

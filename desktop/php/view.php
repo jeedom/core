@@ -58,11 +58,15 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
 }
 ?>
 <i class='fa fa-picture-o cursor tooltips pull-left bt_displayView' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault')?>' title="{{Afficher/Masquer les vues}}"></i>
+
 <legend style="height: 35px;color : #563d7c;">Vue <?php
 echo $view->getName();
 if (hasRight('viewedit', true)) {
-	?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId();?>" class="btn btn-warning btn-xs pull-right"><i class="fa fa-pencil"></i> {{Editer}}</a><?php }
-?></legend>
+	?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId();?>" class="btn btn-warning btn-xs pull-right"><i class="fa fa-pencil"></i> {{Edition complète}}</a><?php }
+?>
+
+ <i class="fa fa-pencil pull-right cursor" id="bt_editViewWidgetOrder" data-mode="0"></i>
+</legend>
         <div class="row div_displayView"></div>
     </div>
 

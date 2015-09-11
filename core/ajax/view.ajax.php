@@ -118,6 +118,21 @@ try {
 		ajax::success($return);
 	}
 
+	if (init('action') == 'setEqLogicOrder') {
+		$eqLogics = json_decode(init('eqLogics'), true);
+		$sql = '';
+		foreach ($eqLogics as $eqLogic_json) {
+			if (!isset($eqLogic_json['viewZone_id']) || !is_numeric($eqLogic_json['viewZone_id']) || !is_numeric($eqLogic_json['id']) || !is_numeric($eqLogic_json['order']) || (isset($eqLogic_json['object_id']) && !is_numeric($eqLogic_json['object_id']))) {
+				throw new Exception("Erreur une des valeurs n'est pas un numérique");
+			}
+			$sql .= 'UPDATE viewData SET `order`= ' . $eqLogic_json['order'] . '  WHERE link_id=' . $eqLogic_json['id'] . ' AND  viewZone_id=' . $eqLogic_json['viewZone_id'] . ';';
+		}
+		if ($sql != '') {
+			DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		}
+		ajax::success();
+	}
+
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
