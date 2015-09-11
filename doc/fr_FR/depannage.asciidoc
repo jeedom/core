@@ -7,7 +7,7 @@ Il faut se connecter en SSH à jeedom et lancer un script d'auto-diagnostique :
 sudo chmod+x /usr/share/nginx/www/jeedom/health.sh;sudo /usr/share/nginx/www/jeedom/health.sh
 
 Voila le résultat si tout est bon : 
-image::../images/depannage.png
+image::../images/depannage.png[]
 
 S'il y a un soucis le script essaye de corriger si il n'y arrive pas il vous l'indiquera.
 
