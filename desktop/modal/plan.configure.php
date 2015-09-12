@@ -304,7 +304,7 @@ foreach (planHeader::all() as $planHeader_select) {
     </div>
 </div>
 <div class="form-group">
-<label class="col-lg-4 control-label">{{Gras}}</label>
+    <label class="col-lg-4 control-label">{{Gras}}</label>
     <div class="col-lg-2">
         <select class="planAttr form-control" data-l1key="css" data-l2key="font-weight">
             <option value="bold">Gras</option>
@@ -404,6 +404,26 @@ foreach (planHeader::all() as $planHeader_select) {
 
 <script>
     initCheckBox();
+
+    $('#fd_planConfigure').on('change switchChange.bootstrapSwitch','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
+        if($(this).value() == 1){
+            $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0);
+        }
+    });
+
+    $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
+     if($(this).value() != '#000000'){
+        $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0);
+    }
+});
+
+    $('#fd_planConfigure').on('change switchChange.bootstrapSwitch','.planAttr[data-l1key=display][data-l2key=background-defaut]', function() {
+        if($(this).value() == 1){
+            $('.planAttr[data-l1key=display][data-l2key=background-transparent]').value(0);
+            $('.planAttr[data-l1key=css][data-l2key=background-color]').value('#000000');
+        }
+    });
+
     editor = [];
 
     $('#bt_chooseIcon').on('click', function () {
