@@ -315,7 +315,7 @@ header{
 
 input[type=checkbox] {
   position: relative;
-  top: -0.375rem;
+  /*top: -0.375rem;*/
   margin: 0 1rem 0 0;
   cursor: pointer;
   display: inline-block;
@@ -335,9 +335,9 @@ input[type=checkbox]:before {
   position: absolute;
   left: 0;
   z-index: 1;
-  width: 1rem;
-  height: 1rem;
-  border: 2px solid #f2f2f2;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid #CDCDCD;
 }
 
 input[type=checkbox]:checked:before {
@@ -355,10 +355,10 @@ input[type=checkbox]:checked:before {
 input[type=checkbox]:after {
   content: "";
   position: absolute;
-  top: -0.125rem;
+  top: -0.1rem;
   left: 0;
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1.2rem;
+  height: 1.4rem;
   background: #fff;
   cursor: pointer;
 }
