@@ -74,6 +74,9 @@ Cette partie est juste la pour expliquer à Jeedom son environement une modifica
 [NOTE]
 Vous pouvez voir link:http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https[ici] un tutorial pour mettre en place un certificat HTTPS auto-signé
 
+[IMPORTANT]
+Si vous n'arrivez pas a faire fonctionner le DNS Jeedom regarder la configuration du pare-feu et filtre parental de votre box (sur livebox il faut par exemple le pare-feu en moyen)
+
 == Configuration des couleurs
 
 La colorisation des widgets est effectuée en fonction de la catégorie d'appartenance du widget qui est définie dans la configuration de chaque module (voir plugin Z-Wave, RFXCOM...etc). Parmi les catégories on retrouve le chauffage, les lumières, les automatismes etc...
