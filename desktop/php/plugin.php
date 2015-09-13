@@ -98,7 +98,7 @@ foreach (plugin::listPlugin() as $plugin) {
     <h5 style="display: inline-block;font-weight: bold;">{{Installation}} : </h5> <span id="span_plugin_installation"></span>
 </div>
 <div class="alert alert-warning">
-    <legend>{{Configuration}}</legend>
+    <legend><i class="fa fa-wrench"></i> {{Configuration}}</legend>
     <div id="div_plugin_configuration"></div>
 
     <div class="form-actions">
