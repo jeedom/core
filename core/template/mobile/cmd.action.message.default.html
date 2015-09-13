@@ -1,7 +1,7 @@
 <div class="cmd cmd-widget" data-type="action" data-subtype="message" data-cmd_id="#id#">
 	<input class="title" placeholder="#title_placeholder#" data-cmd_id="#id#"/>
 	<textarea rows="2" class="message" style="margin-top : 5px; resize:vertical;height: 50px;" placeholder="#message_placeholder#" data-cmd_id="#id#"></textarea>
-	<center><a class="action ui-btn ui-mini ui-btn-inline execute ui-btn-raised clr-primary" >#name#</a></center>
+	<center><a class="action ui-btn ui-mini ui-btn-inline execute ui-btn-raised" style="background-color:#cmdColor# !important;">#name#</a></center>
 	<script>
 		if('#title_disable#' == '1'){
 			$('.cmd[data-cmd_id=#id#] .title').hide();

@@ -90,6 +90,9 @@ header{
 
 .eqLogic-widget .btn:not(.btn-circle){
   border : none !important;
+  color : white !important;
+  margin-top: 5px !important;
+  font-weight: bold;
 }
 
 .view-link-widget,.plan-link-widget{
@@ -266,12 +269,6 @@ header{
   line-height: 1.33;
   border-radius: 35px;
 }
-
-.eqLogic-widget .btn-default:not(.btn-circle){
-  color : black !important;
-  margin-top: 5px !important;
-}
-
 
 .btn-file {
   position: relative;
