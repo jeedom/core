@@ -491,6 +491,7 @@ class eqLogic {
 			'#logicalId#' => $this->getLogicalId(),
 			'#battery#' => $this->getConfiguration('batteryStatus', -2),
 			'#batteryDatetime#' => $this->getConfiguration('batteryStatusDatetime', __('inconnue', __FILE__)),
+			'#batteryType#' => $this->getConfiguration('battery_type', ''),
 			'#object_name#' => '',
 			'#height#' => $this->getDisplay('height', 'auto'),
 			'#width#' => $this->getDisplay('width', 'auto'),
