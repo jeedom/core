@@ -770,7 +770,7 @@ class market {
 			$update->setType($this->getType());
 		}
 		$update->setConfiguration('version', 'beta');
-		$update->setLocalVersion(date('Y-m-d H:i:s', strtotime('+5 minute' . date('Y-m-d H:i:s'))));
+		$update->setLocalVersion(date('Y-m-d H:i:s', strtotime('+10 minute' . date('Y-m-d H:i:s'))));
 		$update->save();
 		$update->checkUpdate();
 	}
