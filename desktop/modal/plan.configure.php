@@ -37,11 +37,11 @@ if ($plan->getLink_type() == 'eqLogic') {
         <div class="col-lg-2">
             <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
         </div>
-        <label class="col-lg-1 control-label">{{Transparent}}</label>
+        <label class="col-lg-2 control-label">{{Transparent}}</label>
         <div class="col-lg-1">
             <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="background-transparent" />
         </div>
-        <label class="col-lg-1 control-label">{{Défaut}}</label>
+        <label class="col-lg-2 control-label">{{Défaut}}</label>
         <div class="col-lg-1">
             <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="background-defaut" checked />
         </div>
@@ -51,7 +51,7 @@ if ($plan->getLink_type() == 'eqLogic') {
         <div class="col-lg-2">
             <input type="color" class="form-control planAttr" data-l1key="css" data-l2key="color" />
         </div>
-        <label class="col-lg-1 control-label">{{Défaut}}</label>
+        <label class="col-lg-2 control-label">{{Défaut}}</label>
         <div class="col-lg-1">
             <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="color-defaut" checked />
         </div>
@@ -304,7 +304,7 @@ foreach (planHeader::all() as $planHeader_select) {
     </div>
 </div>
 <div class="form-group">
-<label class="col-lg-4 control-label">{{Gras}}</label>
+    <label class="col-lg-4 control-label">{{Gras}}</label>
     <div class="col-lg-2">
         <select class="planAttr form-control" data-l1key="css" data-l2key="font-weight">
             <option value="bold">Gras</option>
@@ -404,6 +404,26 @@ foreach (planHeader::all() as $planHeader_select) {
 
 <script>
     initCheckBox();
+
+    $('#fd_planConfigure').on('change switchChange.bootstrapSwitch','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
+        if($(this).value() == 1){
+            $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0);
+        }
+    });
+
+    $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
+     if($(this).value() != '#000000'){
+        $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0);
+    }
+});
+
+    $('#fd_planConfigure').on('change switchChange.bootstrapSwitch','.planAttr[data-l1key=display][data-l2key=background-defaut]', function() {
+        if($(this).value() == 1){
+            $('.planAttr[data-l1key=display][data-l2key=background-transparent]').value(0);
+            $('.planAttr[data-l1key=css][data-l2key=background-color]').value('#000000');
+        }
+    });
+
     editor = [];
 
     $('#bt_chooseIcon').on('click', function () {

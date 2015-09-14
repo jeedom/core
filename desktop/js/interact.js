@@ -50,24 +50,24 @@ if(!isset(userProfils.interactMenuSize) || userProfils.interactMenuSize > 0){
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
     $('#div_listInteract').hide();
     $('#bt_displayInteractList').on('mouseenter',function(){
-       var timer = setTimeout(function(){
+     var timer = setTimeout(function(){
         $('#div_listInteract').show();
         $('#bt_displayInteractList').find('i').hide();
         $('.interactListContainer').packery();
     }, 100);
-       $(this).data('timerMouseleave', timer)
-   }).on("mouseleave", function(){
-      clearTimeout($(this).data('timerMouseleave'));
-  });
+     $(this).data('timerMouseleave', timer)
+ }).on("mouseleave", function(){
+  clearTimeout($(this).data('timerMouseleave'));
+});
 
-   $('#div_listInteract').on('mouseleave',function(){
-     var timer = setTimeout(function(){
-        $('#div_listInteract').hide();
-        $('#bt_displayInteractList').find('i').show();
-        $('.interactListContainer').packery();
-    }, 300);
-     $(this).data('timerMouseleave', timer);
- }).on("mouseenter", function(){
+ $('#div_listInteract').on('mouseleave',function(){
+   var timer = setTimeout(function(){
+    $('#div_listInteract').hide();
+    $('#bt_displayInteractList').find('i').show();
+    $('.interactListContainer').packery();
+}, 300);
+   $(this).data('timerMouseleave', timer);
+}).on("mouseenter", function(){
   clearTimeout($(this).data('timerMouseleave'));
 });
 }
@@ -203,16 +203,16 @@ $("#bt_saveInteract").on('click', function () {
 
 $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
     bootbox.confirm('{{Etes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?}}', function (result) {
-       if (result) {
+     if (result) {
         jeedom.interact.regenerateInteract({
             interact: {query: result},
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
-               $('#div_alert').showAlert({message: '{{Toutes les interations ont été regénérées}}', level: 'success'});
-           }
-       });
+             $('#div_alert').showAlert({message: '{{Toutes les interations ont été regénérées}}', level: 'success'});
+         }
+     });
     }
 });
 });
@@ -269,11 +269,13 @@ function changeLinkType(_options) {
     if (_options.link_type == 'cmd') {
         var options = '<div class="form-group">';
         options += '<label class="col-sm-3 control-label">{{Commande}}</label>';
-        options += '<div class="col-sm-8">';
-        options += '<input class="interactAttr form-control input-sm" data-l1key="link_id"/>';
+        options += '<div class="col-sm-9">';
+        options += '<div class="input-group">';
+        options += '<input class="interactAttr form-control" data-l1key="link_id"/>';
+        options += '<span class="input-group-btn">';
+        options += '<a class="btn btn-default cursor listEquipementInfo"><i class="fa fa-list-alt "></i></a>';
+        options += '</span>';
         options += '</div>';
-        options += '<div class="col-sm-1">';
-        options += '<a class="btn btn-default cursor listEquipementInfo input-sm"><i class="fa fa-list-alt "></i></a></td>';
         options += '</div>';
         options += '</div>';
         $('#linkOption').empty().append(options);
@@ -297,7 +299,7 @@ function changeLinkType(_options) {
                 options += '<div class="form-group">';
                 options += '<label class="col-sm-3 control-label">{{Action}}</label>';
                 options += '<div class="col-sm-9">';
-                options += '<select class="interactAttr form-control input-sm" data-l1key="options" data-l2key="scenario_action">';
+                options += '<select class="interactAttr form-control" data-l1key="options" data-l2key="scenario_action">';
                 options += '<option value="start">{{Start}}</option>';
                 options += '<option value="stop">{{Stop}}</option>';
                 options += '<option value="activate">{{Activer}}</option>';

@@ -12,10 +12,10 @@ function initHome() {
                     if (isset(objects[i].display) && isset(objects[i].display.icon)) {
                         icon = objects[i].display.icon;
                     }
-                    li += '<li></span><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name.replace(/\"/g, "\'") + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '</a></li>';
+                    li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name.replace(/\"/g, "\'") + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '</a>';
                 }
             }
-            $('#ul_objectList').empty().append(li).listview("refresh");
+            $('#bottompanel_objectList').empty().append(li);
         }
     });
 
@@ -26,9 +26,13 @@ function initHome() {
         success: function (views) {
             var li = '';
             for (var i in views) {
-                li += '<li><a href="#" class="link" data-page="view" data-title="' + views[i].name + '" data-option="' + views[i].id + '">' + views[i].name + '</a></li>'
+                var icon = '';
+                if (isset(views[i].display) && isset(views[i].display.icon)) {
+                    icon = views[i].display.icon;
+                }
+                li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="view" data-title="'+ icon.replace(/\"/g, "\'") + ' ' + views[i].name + '" data-option="' + views[i].id + '">'+ icon + ' ' + views[i].name + '</a>'
             }
-            $('#ul_viewList').empty().append(li).listview("refresh");
+            $('#bottompanel_viewList').empty().append(li);
         }
     });
 
@@ -40,10 +44,10 @@ function initHome() {
             var li = '';
             for (var i in planHeader) {
                 if (deviceInfo.type != 'phone' || (deviceInfo.type == 'phone' && planHeader[i].configuration.enableOnMobile == "1")) {
-                    li += '<li><a href="index.php?v=d&p=plan&plan_id=' + planHeader[i].id + '" data-ajax="false">' +init(planHeader[i].configuration['icon'])+ planHeader[i].name + '</a></li>'
+                    li += '<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d&p=plan&plan_id=' + planHeader[i].id + '" data-ajax="false">' +init(planHeader[i].configuration['icon'])+' '+ planHeader[i].name + '</a>'
                 }
             }
-            $('#ul_planList').empty().append(li).listview("refresh");
+            $('#bottompanel_planList').empty().append(li);
         }
     });
 
@@ -51,9 +55,12 @@ function initHome() {
     if (plugins.length > 0) {
         var li = '';
         for (var i in plugins) {
-            li += '<li><a href="#" class="link" data-page="' + plugins[i].mobile + '" data-plugin="' + plugins[i].id + '" data-title="' + plugins[i].name + '">' + plugins[i].name + '</a></li>'
+            li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="' + plugins[i].mobile + '" data-plugin="' + plugins[i].id + '" data-title="' + plugins[i].name + '">';
+            li += '<img src="plugins/'+plugins[i].id +'/doc/images/'+plugins[i].id +'_icon.png" style="width : 20px;position:relative;top:5px;" onerror=\'this.style.display = "none"\' /> ';
+            li +=  plugins[i].name;
+            li +=  '</a>';
         }
-        $('#ul_pluginList').empty().append(li).listview("refresh");
+        $('#bottompanel_pluginList').empty().append(li);
     } else {
         $('#bt_listPlugin').hide();
     }
@@ -70,52 +77,15 @@ function initHome() {
                 handleAjaxError(request, status, error, $('#div_alert'));
             },
             success: function (data) { // si l'appel a bien fonctionné
-                if (data.state != 'ok') {
-                    $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                    return;
-                }
-                initApplication();
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
             }
-        });
+            initApplication();
+        }
     });
+    });
+    setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
 
-    $('#bt_showObjectList').off().on('click', function () {
-        if ($('#ul_objectList').is(':visible')) {
-            $('#ul_objectList').hide();
-        } else {
-            $('.jeedomListView').hide();
-            $('#ul_objectList').show();
-        }
-    });
-
-    $('#bt_showViewList').off().on('click', function () {
-        if ($('#ul_viewList').is(':visible')) {
-            $('#ul_viewList').hide();
-        } else {
-            $('.jeedomListView').hide();
-            $('#ul_viewList').show();
-        }
-    });
-
-    $('#bt_showPlanList').off().on('click', function () {
-        if ($('#ul_planList').is(':visible')) {
-            $('#ul_planList').hide();
-        } else {
-            $('.jeedomListView').hide();
-            $('#ul_planList').show();
-        }
-    });
-    
-    $('#bt_listPlugin').off().on('click', function () {
-        if ($('#ul_pluginList').is(':visible')) {
-            $('#ul_pluginList').hide();
-        } else {
-            $('.jeedomListView').hide();
-            $('#ul_pluginList').show();
-        }
-    });
-    
-    
-    
 }
 

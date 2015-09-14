@@ -301,6 +301,9 @@ try {
 					}
 				}
 			}
+			if (method_exists($eqLogic, 'postAjax')) {
+				$eqLogic->postAjax();
+			}
 		}
 		ajax::success(utils::o2a($eqLogic));
 	}

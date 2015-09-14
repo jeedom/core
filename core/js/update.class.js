@@ -42,6 +42,24 @@ jeedom.update.doAll = function (_params) {
     $.ajax(paramsAJAX);
 }
 
+jeedom.update.doSystem = function (_params) {
+    var paramsRequired = [];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/update.ajax.php';
+    paramsAJAX.data = {
+        action: 'updateSystem',
+    };
+    $.ajax(paramsAJAX);
+}
+
 jeedom.update.changeState = function (_params) {
     var paramsRequired = ['id', 'state'];
     var paramsSpecifics = {};

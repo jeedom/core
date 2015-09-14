@@ -748,7 +748,12 @@ class cmd {
 				$options['color'] = cmd::convertColor($options['color']);
 			}
 			if ($this->getType() == 'action') {
-				log::add('event', 'event', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . str_replace(array("\n", '  ', 'Array'), '', print_r($options, true)));
+				if (is_array($options) && count($options) > 0) {
+					log::add('event', 'event', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . str_replace(array("\n", '  ', 'Array', '>'), '', print_r($options, true)));
+				} else {
+					log::add('event', 'event', __('Exécution de la commande ', __FILE__) . $this->getHumanName());
+				}
+
 			}
 			$value = $this->formatValue($this->execute($options), $_quote);
 		} catch (Exception $e) {
@@ -996,15 +1001,16 @@ class cmd {
 			$replace['#message_placeholder#'] = $this->getDisplay('message_placeholder', __('Message', __FILE__));
 			$replace['#message_disable#'] = $this->getDisplay('message_disable', 0);
 			$replace['#title_disable#'] = $this->getDisplay('title_disable', 0);
-			$replace['#title_possibility_list#'] = $this->getDisplay('title_possibility_list', '');
+			$replace['#title_possibility_list#'] = str_replace("'", "\'", $this->getDisplay('title_possibility_list', ''));
 			$replace['#slider_placeholder#'] = $this->getDisplay('slider_placeholder', __('Valeur', __FILE__));
+			$replace['#other_tooltips#'] = ($replace['#name#'] != $this->getName()) ? $this->getName() : '';
 			$html = template_replace($replace, $html);
 			return $html;
 		}
 	}
 
 	public function event($_value, $_loop = 1) {
-		if ((trim($_value) === '' && $_value !== false) || $_loop > 4 || $this->getType() != 'info') {
+		if ($_loop > 4 || $this->getType() != 'info') {
 			return;
 		}
 		$value = $this->formatValue($_value);
@@ -1036,14 +1042,17 @@ class cmd {
 		$eqLogic->emptyCacheWidget();
 		$nodeJs = array(array('cmd_id' => $this->getId()));
 		$foundInfo = false;
-		foreach (self::byValue($this->getId(), null, true) as $cmd) {
-			if ($cmd->getType() == 'action') {
-				$nodeJs[] = array('cmd_id' => $cmd->getId());
-			} else {
-				if ($_loop > 1) {
-					$cmd->event($cmd->execute(), $_loop);
+		$value_cmd = self::byValue($this->getId(), null, true);
+		if (is_array($value_cmd)) {
+			foreach ($value_cmd as $cmd) {
+				if ($cmd->getType() == 'action') {
+					$nodeJs[] = array('cmd_id' => $cmd->getId());
 				} else {
-					$foundInfo = true;
+					if ($_loop > 1) {
+						$cmd->event($cmd->execute(), $_loop);
+					} else {
+						$foundInfo = true;
+					}
 				}
 			}
 		}

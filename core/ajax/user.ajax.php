@@ -35,13 +35,7 @@ try {
 			throw new Exception('Mot de passe ou nom d\'utilisateur incorrect');
 		}
 		if (init('storeConnection') == 1) {
-			if ($_SESSION['user']->getOptions('registerDevice') == '') {
-				@session_start();
-				$_SESSION['user']->setOptions('registerDevice', config::genKey(255));
-				$_SESSION['user']->save();
-				@session_write_close();
-			}
-			setcookie('registerDevice', $_SESSION['user']->getOptions('registerDevice'), time() + 365 * 24 * 3600, "/", '', false, true);
+			setcookie('registerDevice', $_SESSION['user']->getHash(), time() + 365 * 24 * 3600, "/", '', false, true);
 		}
 		ajax::success();
 	}
@@ -71,11 +65,11 @@ try {
 					}
 				}
 			}
-			if (!$found) {
-				market::sendUserMessage(__('[JEEDOM] Récuperation de mot de passe', __FILE__), 'Voici votre nouveau mot de passe pour votre installation jeedom : ' . $newPassword);
-			}
 		} catch (Exception $e) {
 			throw new Exception(__('Aucune commande trouvé pour envoyé le nouveau mot de passe, la demande de récupération a echouée', __FILE__));
+		}
+		if (!$found) {
+			throw new Exception(__('Aucune commande trouvé pour envoyé le nouveau mot de passe, la demande de récupération a echouée, vous pouvez trouver une procedure <a href="https://www.jeedom.fr/doc/documentation/howto/fr_FR/doc-howto-reset.password.html" target="_blank">ici</a>', __FILE__));
 		}
 		$user->save();
 		ajax::success();
@@ -112,8 +106,11 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		$users = json_decode(init('users'), true);
+		$user = null;
 		foreach ($users as $user_json) {
-			$user = user::byId($user_json['id']);
+			if (isset($user_json['id'])) {
+				$user = user::byId($user_json['id']);
+			}
 			if (!is_object($user)) {
 				if (config::byKey('ldap::enable') == '1') {
 					throw new Exception(__('Vous devez desactiver l\'authentification LDAP pour pouvoir ajouter un utilisateur', __FILE__));
@@ -128,7 +125,9 @@ try {
 				$user->setPassword(sha1($user_json['password']));
 			}
 			$user->save();
+
 		}
+		$_SESSION['user']->refresh();
 		ajax::success();
 	}
 

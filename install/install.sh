@@ -185,6 +185,7 @@ configure_php() {
     sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /etc/php5/fpm/php.ini
     sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' /etc/php5/fpm/php.ini
     sed -i 's/post_max_size = 8M/post_max_size = 1G/g' /etc/php5/fpm/php.ini
+    sed -i 's/expose_php = On/expose_php = Off/g' /etc/php5/fpm/php.ini
 }
 
 
@@ -194,9 +195,9 @@ install_nodejs() {
     check_nodejs_version
     [ $? -eq 1 ] && return
     if [ -f /usr/bin/raspi-config ]; then
-        curl -sLS https://apt.adafruit.com/add | sudo bash
-        apt-get -y install node
-        ln -s /usr/bin/node /usr/bin/nodejs
+        curl -sL https://deb.nodesource.com/setup_0.12 | bash -
+        apt-get -y install nodejs
+        ln -s /usr/bin/nodejs /usr/bin/node
     else
         if [  -z "$1" -a $(uname -a | grep cubox | wc -l ) -eq 1 -a ${ARCH} = "armv7l" ]; then
             apt-get -y install nodejs
@@ -384,6 +385,7 @@ install_dependency() {
     apt-get -y install php5-fpm
     apt-get -y install php5-json
     apt-get -y install php5-mysql
+    apt-get -y install php5-ldap
     apt-get -y install php-pear
     apt-get -y install python-serial
     apt-get -y install systemd
@@ -392,6 +394,7 @@ install_dependency() {
     apt-get -y install ffmpeg
     apt-get -y install avconv
     apt-get -y install libudev1
+    apt-get -y install ca-certificates
 
     pecl install oauth
     if [ $? -eq 0 ] ; then
@@ -596,6 +599,8 @@ echo "********************************************************"
 cp install/motd /etc
 chown root:root /etc/motd
 chmod 644 /etc/motd
+chown -R www-data:www-data /usr/share/nginx/www/jeedom
+chmod -R 775 /usr/share/nginx/www/jeedom
 service php5-fpm restart
 
 echo "********************************************************"

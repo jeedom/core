@@ -32,6 +32,7 @@ if (isConnect() && init('p') != '') {
 $plugins_list = plugin::listPlugin(true, true);
 $plugin_menu = '';
 $panel_menu = '';
+$nodejs_plugin = array();
 if (count($plugins_list) > 0) {
 	foreach ($plugins_list as $category_name => $category) {
 		$icon = '';
@@ -42,6 +43,7 @@ if (count($plugins_list) > 0) {
 		if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'])) {
 			$name = $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'];
 		}
+
 		$plugin_menu .= '<li class="dropdown-submenu"><a data-toggle="dropdown"><i class="fa ' . $icon . '"></i> {{' . $name . '}}</a>';
 		$plugin_menu .= '<ul class="dropdown-menu">';
 		foreach ($category as $pluginList) {
@@ -49,9 +51,20 @@ if (count($plugins_list) > 0) {
 				$plugin = $pluginList;
 				$title = ucfirst($plugin->getName()) . ' - Jeedom';
 			}
-			$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() . '"><i class="' . $pluginList->getIcon() . '"></i> ' . $pluginList->getName() . '</a></li>';
+			if (file_exists(dirname(__FILE__) . '/../../' . $pluginList->getPathImgIcon())) {
+				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() . '"><img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
+			} else {
+				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() . '"><i class="' . $pluginList->getIcon() . '"></i> ' . $pluginList->getName() . '</a></li>';
+			}
 			if ($pluginList->getDisplay() != '') {
-				$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getDisplay() . '"><i class="' . $pluginList->getIcon() . '"></i> ' . $pluginList->getName() . '</a></li>';
+				if (file_exists(dirname(__FILE__) . '/../../' . $pluginList->getPathImgIcon())) {
+					$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getDisplay() . '"><img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
+				} else {
+					$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getDisplay() . '"><i class="' . $pluginList->getIcon() . '"></i> ' . $pluginList->getName() . '</a></li>';
+				}
+			}
+			if ($pluginList->getNodejs() == 1) {
+				$nodejs_plugin[] = $pluginList->getId();
 			}
 		}
 		$plugin_menu .= '</ul>';
@@ -91,6 +104,7 @@ if (!isConnect() || $_SESSION['user']->getOptions('bootstrap_theme') == '') {
 	}
 }
 include_file('core', 'icon.inc', 'php');
+include_file('3rdparty', 'roboto/roboto', 'css');
 include_file('desktop', 'commun', 'css');
 include_file('core', 'core', 'css');
 include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
@@ -166,12 +180,20 @@ sendVarToJS('jeedom_langage', config::byKey('language'));
 if (!isConnect()) {
 	include_file('desktop', 'connection', 'php');
 } else {
-
 	sendVarToJS('userProfils', $_SESSION['user']->getOptions());
 	sendVarToJS('user_id', $_SESSION['user']->getId());
 	sendVarToJS('user_login', $_SESSION['user']->getLogin());
 	sendVarToJS('nodeJsKey', config::byKey('nodeJsKey'));
 	sendVarToJS('jeedom_firstUse', config::byKey('jeedom::firstUse', 'core', 1));
+	if (count($nodejs_plugin) > 0) {
+		foreach ($nodejs_plugin as $value) {
+			try {
+				include_file('desktop', 'node', 'js', $value);
+			} catch (Exception $e) {
+				log::add($value, 'error', 'Node JS file not found');
+			}
+		}
+	}
 	?>
 					<header class="navbar navbar-fixed-top navbar-default">
 						<div class="container-fluid">
@@ -211,11 +233,11 @@ foreach (object::buildTree(null, true) as $object_li) {
 		if (hasRight('viewview')) {
 			?>
 													<li class="dropdown-submenu">
-														<a data-toggle="dropdown" id="bt_gotoView"><i class="fa fa-bars"></i> {{Vue}}</a>
+														<a data-toggle="dropdown" id="bt_gotoView"><i class="fa fa-picture-o"></i> {{Vue}}</a>
 														<ul class="dropdown-menu">
 															<?php
 foreach (view::all() as $view_menu) {
-				echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . $view_menu->getName() . '</a></li>';
+				echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon')) . ' ' . $view_menu->getName() . '</a></li>';
 			}
 			?>
 														</ul>
@@ -225,7 +247,7 @@ foreach (view::all() as $view_menu) {
 		if (hasRight('planview')) {
 			?>
 													<li class="dropdown-submenu">
-														<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-picture-o"></i> {{Design}}</a>
+														<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fa fa-paint-brush"></i> {{Design}}</a>
 														<ul class="dropdown-menu">
 															<?php
 foreach (planHeader::all() as $plan_menu) {
@@ -365,9 +387,15 @@ if (count($plugins_list) == 0) {
 
 											<ul class="nav navbar-nav navbar-right">
 												<?php $displayMessage = (message::nbMessage() > 0) ? '' : 'display : none;';?>
-												<li><a href="index.php?v=d&p=message">
-													<span class="label label-warning" id="span_nbMessage" style="<?php echo $displayMessage;?>">
-														<i class="fa fa-envelope"></i> <?php echo message::nbMessage();?> {{message(s)}}
+												<li><a href="#" id="bt_messageModal">
+													<span class="badge tooltips" id="span_nbMessage" title="{{Nombre de messages}}" style="background-color : #ec971f;<?php echo $displayMessage;?>">
+														<?php echo message::nbMessage();?>
+													</span>
+												</a>
+												<?php $displayUpdate = (update::nbNeedUpdate() > 0) ? '' : 'display : none;';?>
+												<li><a href="index.php?v=d&p=update">
+													<span class="badge tooltips" title="{{Nombre de mises à jour}}" style="background-color : #c9302c;<?php echo $displayUpdate;?>">
+														<?php echo update::nbNeedUpdate();?>
 													</span>
 												</a>
 											</li>
@@ -396,7 +424,7 @@ if (isConnect('admin')) {
 		}
 	}
 	?>
-	<li class="expertModeVisible"><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
+													<li class="expertModeVisible"><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
 													<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
 													<li class="divider"></li>
 													<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
@@ -439,7 +467,7 @@ if (network::ehtIsUp()) {
 		} else if (init('p') == 'view_edit') {
 			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-view.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
 		} else {
-			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-' . init('p') . '.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-' . secureXSS(init('p')) . '.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
 		}
 
 	}
@@ -493,5 +521,5 @@ try {
 							<?php
 }
 ?>
-</body>
-</html>
+					</body>
+					</html>

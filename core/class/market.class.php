@@ -571,7 +571,7 @@ class market {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
 		}
 		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . config::byKey('market::password') . '&password_type=sha1';
-		log::add('update', 'update', __('Téléchargement de l\'objet...', __FILE__));
+		log::add('update', 'update', __('Téléchargement de ', __FILE__) . $this->getLogicalId() . '...');
 		file_put_contents($tmp, fopen($url, 'r'));
 		if (!file_exists($tmp)) {
 			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '. Si l\'application est payante, l\'avez-vous achetée ?', __FILE__));
@@ -594,7 +594,7 @@ class market {
 
 				}
 
-				log::add('update', 'update', __('Décompression de l\'archive...', __FILE__));
+				log::add('update', 'update', __('Décompression du zip...', __FILE__));
 				$zip = new ZipArchive;
 				$res = $zip->open($tmp);
 				if ($res === TRUE) {
@@ -604,7 +604,7 @@ class market {
 					}
 					$zip->close();
 					log::add('update', 'update', __("OK\n", __FILE__));
-					log::add('update', 'update', __('Installation de l\'objet...', __FILE__));
+					log::add('update', 'update', __('Installation de ', __FILE__) . $this->getLogicalId() . '...');
 					try {
 						$plugin = plugin::byId($this->getLogicalId());
 					} catch (Exception $e) {
@@ -622,7 +622,7 @@ class market {
 							$ErrMsg = "Le fichier existe déjà.";
 							break;
 						case ZipArchive::ER_INCONS:
-							$ErrMsg = "L'archive zip est inconsistente.";
+							$ErrMsg = "Archive zip est inconsistente.";
 							break;
 						case ZipArchive::ER_MEMORY:
 							$ErrMsg = "Erreur mémoire.";
@@ -646,11 +646,11 @@ class market {
 							$ErrMsg = "Erreur inconnue (Code $res)";
 							break;
 					}
-					throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp . __('. Erreur : ', __FILE__) . $ErrMsg . '. Si l\'application est payante, l\'avez-vous achetée ?');
+					throw new Exception(__('Impossible de décompresser le zip : ', __FILE__) . $tmp . __('. Erreur : ', __FILE__) . $ErrMsg . '. Avez vous acheté le plugin ?');
 				}
 				break;
 			default:
-				log::add('update', 'update', __('Installation de l\'objet...', __FILE__));
+				log::add('update', 'update', __('Installation de du plugin,widget...', __FILE__));
 				$type = $this->getType();
 				if (class_exists($type) && method_exists($type, 'getFromMarket')) {
 					$type::getFromMarket($this, $tmp);
@@ -770,7 +770,7 @@ class market {
 			$update->setType($this->getType());
 		}
 		$update->setConfiguration('version', 'beta');
-		$update->setLocalVersion(date('Y-m-d H:i:s', strtotime('+5 minute' . date('Y-m-d H:i:s'))));
+		$update->setLocalVersion(date('Y-m-d H:i:s', strtotime('+10 minute' . date('Y-m-d H:i:s'))));
 		$update->save();
 		$update->checkUpdate();
 	}

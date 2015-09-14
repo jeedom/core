@@ -29,15 +29,19 @@ Il existe certain parametre de configuration des log (accessible par Général -
 
 image::../images/log2.JPG[]
 
-Vous avez ici 3 options : 
+Vous avez ici les options suivantes :
 
-* *Ajouter un message à chaque erreur dans les logs* : si un plugin ou Jeedom ecrire un message d'erreur dans un log, Jeedom ajoute automatiquement un message dans le centre des message (au moins vous etes sur de ne pas le manquer)
-* *Nombre de lignes maximum dans un fichier de log* : Defini le nombre maximum de ligne dans un fichier de log, il est recommandé de ne pas toucher cette valeur, car une valeur trop grande pourrait remplir le systeme de fichier et/ou rendre Jeedom incapable d'afficher le log
-* *Logs actifs* : permet de definir les niveaux de log actif, attention plus il y a de niveau actif plus Jeedom peut etre lent, cela entraine aussi une usure prématuré de la carte SD, il est conseillé de n'activer que le niveau "Error" ("Event" peut etre activer aussi car il est necessaire pour voir en temps réel ce qu'il se passe sur ca domotique, bien sur c'est seulement si vous en avez besoin)
+* *Message*
+** *Ajouter un message à chaque erreur dans les logs* : si un plugin ou Jeedom ecrire un message d'erreur dans un log, Jeedom ajoute automatiquement un message dans le centre des message (au moins vous etes sur de ne pas le manquer)
+** *Ne pas autoriser les messages venant de* : permet d'interdire certain message vanant de plugin ou autre
+** *Commande d'information utilisateur* : permet de selectionner une ou plusieurs commandes (à séparer par des &&) de type message qui seront utilisé lors de nouveaux messages (permet d'être tout de suite prévenu)
+* *Log* 
+** *Nombre de lignes maximum dans un fichier de log* : Defini le nombre maximum de ligne dans un fichier de log, il est recommandé de ne pas toucher cette valeur, car une valeur trop grande pourrait remplir le systeme de fichier et/ou rendre Jeedom incapable d'afficher le log
+** *Logs actifs* : permet de definir les niveaux de log actif, attention plus il y a de niveau actif plus Jeedom peut etre lent, cela entraine aussi une usure prématuré de la carte SD, il est conseillé de n'activer que le niveau "Error" ("Event" peut etre activer aussi car il est necessaire pour voir en temps réel ce qu'il se passe sur ca domotique, bien sur c'est seulement si vous en avez besoin)
 
 == Le log event et le niveau de log event
 
-Le log event est un peu particulier, deja pour qu'il marche il faut activer le niveau de log event, ensuite celui recence toute les evenement ou action qu'il se passe sur la domotique. Pour y acceder il faut cliquer sur la petite icone "compteur" en bas a droite dans Jeedom : 
+Le log event est un peu particulier, deja pour qu'il marche il faut activer le niveau de log event, ensuite celui-ci recence toute les evenement ou action qu'il se passe sur la domotique. Pour y acceder il faut cliquer sur la petite icone "compteur" en bas a droite dans Jeedom : 
 
 image::../images/log3.JPG[]
 

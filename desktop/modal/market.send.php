@@ -49,19 +49,19 @@ if (init('type') == 'plugin') {
         <div class="col-lg-3">
             <div style="height: 100px;" class="priceChoose">
                 <center><input type="radio" name="rb_price" class="rb_price" data-value="2" /> <h4 style="display: inline-block">2 €</h4></center>
-                <center>{{Sur ce prix seront 40 % seront reversés au développeur}}</center>
+                <center>{{Sur ce prix 40 % seront reversés au développeur}}</center>
             </div>
         </div>
         <div class="col-lg-3">
             <div style="height: 100px;" class="priceChoose">
                 <center><input type="radio" name="rb_price" class="rb_price" data-value="4" /> <h4 style="display: inline-block">4 €</h4></center>
-                <center>{{Sur ce prix seront 60 % seront reversés au développeur}}</center>
+                <center>{{Sur ce prix 60 % seront reversés au développeur}}</center>
             </div>
         </div>
         <div class="col-lg-3">
             <div style="height: 100px;" class="priceChoose">
                 <center><input type="radio" name="rb_price" class="rb_price" data-value="custom" /> <h4 style="display: inline-block">Libre</h4> <input class="form-control marketAttr input-sm" data-l1key="cost" placeholder="Prix" style="display : inline-block; width : 80px;"> €</center>
-                <center>{{Sur ce prix seront 65 % seront reversés au développeur (doit être supérieur ou égal à 5 €)}}</center>
+                <center>{{Sur ce prix 65 % seront reversés au développeur (doit être supérieur ou égal à 5 €)}}</center>
             </div>
         </div>
     </div>

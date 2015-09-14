@@ -113,7 +113,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 			echo "<script type=\"text/javascript\" src=\"core/php/getJS.php?file=$_folder/$_fn&md5=" . md5_file($path) . "\"></script>";
 		}
 	} else {
-		throw new Exception("File not found : $_fn at $_folder : $path", 35486);
+		throw new Exception("File not found : $_fn", 35486);
 	}
 }
 
@@ -861,7 +861,7 @@ function evaluate($_string) {
 			$expr = str_replace('====', '===', $expr);
 			return $GLOBALS['ExpressionLanguage']->evaluate($expr);
 		} catch (Exception $e) {
-			log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
+			//log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
 		}
 	}
 	if (!isset($GLOBALS['evaluate'])) {
@@ -870,7 +870,11 @@ function evaluate($_string) {
 	try {
 		return $GLOBALS['evaluate']->Evaluer($_string);
 	} catch (Exception $e) {
-		log::add('expression', 'debug', '[Parser 2] Expression : ' . $_string . ' => ' . $e->getMessage());
+		//log::add('expression', 'debug', '[Parser 2] Expression : ' . $_string . ' => ' . $e->getMessage());
 	}
 	return $_string;
+}
+
+function secureXSS($_string) {
+	return str_replace('&amp;', '&', htmlspecialchars(strip_tags($_string), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 }

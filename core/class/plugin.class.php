@@ -37,6 +37,7 @@ class plugin {
 	private $display;
 	private $mobile;
 	private $allowRemote;
+	private $nodejs;
 	private $include = array();
 	private static $_cache = array();
 
@@ -75,6 +76,10 @@ class plugin {
 		$plugin->allowRemote = 0;
 		if (isset($plugin_xml->allowRemote)) {
 			$plugin->allowRemote = $plugin_xml->allowRemote;
+		}
+		$plugin->nodejs = 0;
+		if (isset($plugin_xml->nodejs)) {
+			$plugin->nodejs = 1;
 		}
 		$plugin->filepath = $_id;
 		$plugin->index = (isset($plugin_xml->index)) ? (string) $plugin_xml->index : $plugin_xml->id;
@@ -255,9 +260,12 @@ class plugin {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'start')) {
 				$plugin_id = $plugin->getId();
+				echo 'Start plugin : ' . $plugin_id . '...';
 				try {
 					$plugin_id::start();
+					echo "OK\n";
 				} catch (Exception $e) {
+					echo "NOK\n";
 					log::add($plugin_id, 'error', __('Erreur sur la fonction start du plugin : ', __FILE__) . $e->getMessage());
 				}
 
@@ -322,16 +330,25 @@ class plugin {
 			if (config::byKey('jeeNetwork::mode') != 'master' && $this->getAllowRemote() != 1) {
 				throw new Exception('Vous ne pouvez pas activer ce plugin sur un Jeedom configuré en esclave');
 			}
-			market::checkPayment($this->getId());
+			//market::checkPayment($this->getId());
 			config::save('active', $_state, $this->getId());
 		}
 		if ($_state == 0) {
-			foreach (eqLogic::byType($this->getId()) as $eqLogic) {
-				$eqLogic->setConfiguration('previousIsEnable', $eqLogic->getIsEnable());
-				$eqLogic->setConfiguration('previousIsVisible', $eqLogic->getIsVisible());
-				$eqLogic->setIsEnable(0);
-				$eqLogic->setIsVisible(0);
-				$eqLogic->save();
+			$eqLogics = eqLogic::byType($this->getId());
+			if (is_array($eqLogics)) {
+				foreach ($eqLogics as $eqLogic) {
+					$eqLogic->setConfiguration('previousIsEnable', $eqLogic->getIsEnable());
+					$eqLogic->setConfiguration('previousIsVisible', $eqLogic->getIsVisible());
+					$eqLogic->setIsEnable(0);
+					$eqLogic->setIsVisible(0);
+					$eqLogic->save();
+				}
+			}
+			$listeners = listener::byClass($this->getId());
+			if (is_array($listeners)) {
+				foreach ($listeners as $listener) {
+					$listener->remove();
+				}
 			}
 		}
 		if ($alreadyActive == 0 && $_state == 1) {
@@ -363,9 +380,6 @@ class plugin {
 		}
 		if ($_state == 0) {
 			config::save('active', $_state, $this->getId());
-		}
-		if ($alreadyActive == 0) {
-			$this->start();
 		}
 		return true;
 	}
@@ -420,6 +434,10 @@ class plugin {
 
 	public function getUpdate() {
 		return update::byTypeAndLogicalId('plugin', $this->getId());
+	}
+
+	public function getPathImgIcon() {
+		return 'plugins/' . $this->getId() . '/doc/images/' . $this->getId() . '_icon.png';
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -492,12 +510,20 @@ class plugin {
 		$this->mobile = $mobile;
 	}
 
-	function getAllowRemote() {
+	public function getAllowRemote() {
 		return $this->allowRemote;
 	}
 
-	function setAllowRemote($allowRemote) {
+	public function setAllowRemote($allowRemote) {
 		$this->allowRemote = $allowRemote;
+	}
+
+	public function getNodejs() {
+		return $this->nodejs;
+	}
+
+	public function setNodejs($nodejs) {
+		$this->nodejs = $nodejs;
 	}
 
 }

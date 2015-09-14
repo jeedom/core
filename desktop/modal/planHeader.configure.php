@@ -14,7 +14,7 @@ sendVarToJS('id', $planHeader->getId())
 <a class='btn btn-danger  btn-xs pull-right cursor' style="color: white;" id='bt_removeConfigurePlanHeader'><i class="fa fa-times"></i> Supprimer</a>
 <form class="form-horizontal">
     <fieldset id="fd_planHeaderConfigure">
-        <legend>{{Général}}</legend>
+        <legend><i class="fa fa-cog"></i> {{Général}}</legend>
         <input type="text"  class="planHeaderAttr form-control" data-l1key="id" style="display: none;"/>
         <div class="form-group">
             <label class="col-lg-4 control-label">{{Nom}}</label>
@@ -49,7 +49,7 @@ sendVarToJS('id', $planHeader->getId())
                 <input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" class="planHeaderAttr bootstrapSwitch" data-l1key='configuration' data-l2key="noReturnFullScreen" />
             </div>
         </div>
-        <legend>{{Tailles}}</legend>
+        <legend><i class="icon techno-fleches"></i> {{Tailles}}</legend>
         <div class="form-group expertModeVisible">
             <label class="col-lg-4 control-label">{{Responsive mode (Attention toute les valeurs de taille sont ignorées)}}</label>
             <div class="col-lg-4">

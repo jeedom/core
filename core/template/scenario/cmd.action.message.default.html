@@ -1,13 +1,22 @@
-<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="title" placeholder="#title_placeholder#" value="#title#" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block; width: 30%;"/>
-<textarea class="message expressionAttr form-control " data-l1key="options" data-l2key="message" rows="1" style="resize:vertical;display: inline-block; width: 60%;" placeholder="#message_placeholder#" data-cmd_id="#id#" data-uid="#uid#">#message#</textarea>
-<a class="btn btn-default btn-sm listEquipementInfo cursor" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block;"><i class="fa fa-list-alt"></i></a>
+<div class="input-group input-group-sm" style="width: 100%">
+  	<span class="input-group-addon" id="basic-addon1" style="width: 100px">#title_placeholder#</span>
+	<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="title" value="#title#" data-cmd_id="#id#" data-uid="#uid#"/>
+</div>
+
+<div class="input-group input-group-sm" style="width: 100%; padding-top: 1px">
+    <span class="input-group-addon" id="basic-addon1" style="width: 100px">#message_placeholder#</span>
+    <textarea class="message expressionAttr form-control " data-l1key="options" data-l2key="message" rows="1" style="resize:vertical;" data-cmd_id="#id#" data-uid="#uid#">#message#</textarea>
+    <span class="input-group-btn">
+		<button class="btn btn-default listEquipementInfo" type="button" title="{{Sélectionner la commande}}" data-cmd_id="#id#"  data-uid="#uid#"><i class="fa fa-list-alt"></i></button>
+	</span>
+</div>
+
 <script>
 	if('#title_disable#' == '1'){
-		$('.expressionAttr[data-l1key=options][data-l2key=title][data-uid=#uid#][data-cmd_id=#id#]').hide();
+		$('.expressionAttr[data-l1key=options][data-l2key=title][data-uid=#uid#][data-cmd_id=#id#]').parent().hide();
 	}
 	if('#message_disable#' == '1'){
-		$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#][data-cmd_id=#id#]').hide();
-		$('.listEquipementInfo[data-uid=#uid#]').hide();
+		$('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#][data-cmd_id=#id#]').parent().hide();
 	}
 	$('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
 		jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {

@@ -70,8 +70,8 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
 }, 1);
 
 $('body').delegate('.eqLogic-widget .history', 'click', function () {
-    $('#md_modal').dialog({title: "Historique"});
-    $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+    $('#md_modal2').dialog({title: "Historique"});
+    $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
 });
 
 $('#bt_displayScenario').on('click', function () {
@@ -130,7 +130,7 @@ function editWidgetMode(_mode){
         }
     }
     if(_mode == 0){
-        if( $('.div_displayEquipement .eqLogic-widget.ui-draggable.ui-resizable.ui-sortable').length > 0){
+        if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
            $('.div_displayEquipement .eqLogic-widget').draggable('disable');
            $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('destroy');
            $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('destroy');
@@ -185,10 +185,10 @@ function editWidgetMode(_mode){
         }
     });
 
-     $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').delegate('.cmd','mouseover',function(){
+     $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseover','.cmd',function(){
         $('.div_displayEquipement .eqLogic-widget').draggable('disable');
     });
-     $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').delegate('.cmd','mouseleave',function(){
+     $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseleave','.cmd',function(){
         $('.div_displayEquipement .eqLogic-widget').draggable('enable');
     });
 

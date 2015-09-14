@@ -18,7 +18,7 @@
 
 
  if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch && $('.eqLogicThumbnailDisplay').html() != undefined){
-    $('#div_mainContainer').append('<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="bt_pluginTemplateShowSidebar"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i><div>');
+    $('#div_mainContainer').append('<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="bt_pluginTemplateShowSidebar div_smallSideBar"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i><div>');
     $('#ul_eqLogic').closest('.bs-sidebar').parent().hide();
     $('#ul_eqLogic').closest('.bs-sidebar').parent().css('z-index','999');
     $('#ul_eqLogic').closest('.bs-sidebar').parent().removeClass().addClass('col-lg-2');

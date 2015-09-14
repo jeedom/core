@@ -97,6 +97,7 @@ if (!hasRight('backupview', true)) {
 try {
 		$listeCloudBackup = market::listeBackup();
 	} catch (Exception $e) {
+		$listeCloudBackup = array();
 		echo '<div class="alert alert-danger">' . $e->getMessage() . '</div>';
 	}
 	?>

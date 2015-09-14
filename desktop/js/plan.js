@@ -26,13 +26,13 @@
 
  $('body').delegate('.eqLogic-widget .history', 'click', function () {
     if ($('#bt_editPlan').attr('data-mode') != "1") {
-        $('#md_modal').dialog({title: "Historique"});
-        $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+        $('#md_modal2').dialog({title: "Historique"});
+        $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
     }
 });
 
  /*****************************PLAN HEADER***********************************/
- $('#bt_addPlanHeader').on('click', function () {
+ $('#bt_addPlanHeader').off('click').on('click', function () {
     bootbox.prompt("Nom du design ?", function (result) {
         if (result !== null) {
             jeedom.plan.saveHeader({
@@ -48,7 +48,7 @@
     });
 });
 
- $('#bt_duplicatePlanHeader').on('click', function () {
+ $('#bt_duplicatePlanHeader').off('click').on('click', function () {
     bootbox.prompt("{{Nom la copie du design ?}}", function (result) {
         if (result !== null) {
             jeedom.plan.copyHeader({
@@ -65,21 +65,18 @@
     });
 });
 
- $('#sel_planHeader').on('change', function () {
-    if (planHeader_id != $(this).attr('data-link_id')) {
-        if($('#bt_editPlan').attr('data-mode') == 1){
-            $('#bt_editPlan').click();
-        }
-        planHeader_id = $(this).value();
-        displayPlan();
+ $('#sel_planHeader').off('change').on('change', function () {
+    if($('#bt_editPlan').attr('data-mode') == 1){
+        $('#bt_editPlan').click();
     }
+    planHeader_id = $(this).value();
+    displayPlan();
 });
 
  $('body').delegate('.plan-link-widget', 'click', function () {
     if ($('#bt_editPlan').attr('data-mode') != "1") {
-        if (planHeader_id != $(this).attr('data-link_id')) {
-            $('#sel_planHeader').value($(this).attr('data-link_id'));
-        }
+        planHeader_id = $(this).attr('data-link_id');
+        displayPlan();
     }
 });
 
@@ -101,28 +98,28 @@
 });
 
  /*****************************PLAN***********************************/
- $('#bt_addEqLogic').on('click', function () {
+ $('#bt_addEqLogic').off('click').on('click', function () {
     jeedom.eqLogic.getSelectModal({}, function (data) {
         addEqLogic(data.id);
     });
 });
 
- $('#bt_addScenario').on('click', function () {
+ $('#bt_addScenario').off('click').on('click', function () {
     jeedom.scenario.getSelectModal({}, function (data) {
         addScenario(data.id);
     });
 });
 
- $('#bt_addLink').on('click', function () {
+ $('#bt_addLink').off('click').on('click', function () {
     $('#md_selectLink').modal('show');
 });
 
- $('#bt_addGraph').on('click', function () {
+ $('#bt_addGraph').off('click').on('click', function () {
     addGraph({});
     savePlan();
 });
 
- $('#bt_addTexte').on('click', function () {
+ $('#bt_addTexte').off('click').on('click', function () {
     addText({display: {text: 'Texte à insérer ici'}});
     savePlan();
 });
@@ -134,60 +131,60 @@
     savePlan();
 });
 
- $('#bt_savePlan').on('click', function () {
+ $('#bt_savePlan').off('click').on('click', function () {
     savePlan();
 });
 
  $('#bt_configurePlanHeader').on('click', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
-        $('#md_modal').dialog({title: "{{Configuration du design}}"});
-        $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
+        $('#md_modal2').dialog({title: "{{Configuration du design}}"});
+        $('#md_modal2').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
- $('#div_displayObject').delegate('.eqLogic-widget', 'dblclick', function () {
+ $('.div_displayObject:last').delegate('.eqLogic-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
-        $('#md_modal').dialog({title: "{{Configuration du widget}}"});
-        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=eqLogic&link_id=' + $(this).attr('data-eqLogic_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+        $('#md_modal2').dialog({title: "{{Configuration du widget}}"});
+        $('#md_modal2').load('index.php?v=d&modal=plan.configure&link_type=eqLogic&link_id=' + $(this).attr('data-eqLogic_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
- $('#div_displayObject').delegate('.scenario-widget', 'dblclick', function () {
+ $('.div_displayObject:last').delegate('.scenario-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
-        $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
-        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=scenario&link_id=' + $(this).attr('data-scenario_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+        $('#md_modal2').dialog({title: "{{Configuration du scénario}}"});
+        $('#md_modal2').load('index.php?v=d&modal=plan.configure&link_type=scenario&link_id=' + $(this).attr('data-scenario_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
- $('#div_displayObject').delegate('.plan-link-widget', 'dblclick', function () {
+ $('.div_displayObject:last').delegate('.plan-link-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
-        $('#md_modal').dialog({title: "{{Configuration du lien}}"});
-        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=plan&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+        $('#md_modal2').dialog({title: "{{Configuration du lien}}"});
+        $('#md_modal2').load('index.php?v=d&modal=plan.configure&link_type=plan&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
- $('#div_displayObject').delegate('.text-widget', 'dblclick', function () {
+ $('.div_displayObject:visible:last').delegate('.text-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
-        $('#md_modal').dialog({title: "{{Configuration du texte}}"});
-        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=text&link_id=' + $(this).attr('data-text_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+        $('#md_modal2').dialog({title: "{{Configuration du texte}}"});
+        $('#md_modal2').load('index.php?v=d&modal=plan.configure&link_type=text&link_id=' + $(this).attr('data-text_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
- $('#div_displayObject').delegate('.view-link-widget', 'dblclick', function () {
+ $('.div_displayObject:last').delegate('.view-link-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
-        $('#md_modal').dialog({title: "{{Configuration du lien}}"});
-        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=view&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+        $('#md_modal2').dialog({title: "{{Configuration du lien}}"});
+        $('#md_modal2').load('index.php?v=d&modal=plan.configure&link_type=view&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
- $('#div_displayObject').delegate('.graph-widget', 'dblclick', function () {
+ $('.div_displayObject:last').delegate('.graph-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
-        $('#md_modal').dialog({title: "{{Configuration du graph}}"});
-        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=graph&link_id=' + $(this).attr('data-graph_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+        $('#md_modal2').dialog({title: "{{Configuration du graph}}"});
+        $('#md_modal2').load('index.php?v=d&modal=plan.configure&link_type=graph&link_id=' + $(this).attr('data-graph_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
- $('.planHeaderAttr').on('change', function () {
+ $('.planHeaderAttr').off('change').on('change', function () {
     var planHeader = $('#div_planHeader').getValues('.planHeaderAttr')[0];
     planHeader.id = planHeader_id;
     jeedom.plan.saveHeader({
@@ -206,11 +203,11 @@
     _select.css('background-color', _select.find('option:selected').val());
 }
 
-$('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]').on('change', function () {
+$('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]').off('change').on('change', function () {
     setColorSelect($(this).closest('select'));
 });
 
-$('#div_displayObject').delegate('.configureGraph', 'click', function () {
+$('.div_displayObject:last').delegate('.configureGraph', 'click', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
         var el = $(this).closest('.graph-widget');
         $("#md_addViewData").load('index.php?v=d&modal=cmd.graph.select', function () {
@@ -248,31 +245,31 @@ $('#div_displayObject').delegate('.configureGraph', 'click', function () {
 }
 });
 
-$('#bt_editPlan').on('click', function () {
+$('#bt_editPlan').off('click').on('click', function () {
     if ($(this).attr('data-mode') == '0') {
         initDraggable(1);
         $('.editMode').show();
         $(this).html('<i class="fa fa-pencil"></i> {{Quitter le mode édition}}');
         $(this).attr('data-mode', '1');
-        $('#div_displayObject').css('background-color', '#bdc3c7');
+        $('.div_displayObject:visible:last').css('background-color', '#bdc3c7');
         $('#bt_switchFullScreen').hide();
     } else {
         initDraggable(0);
         $('.editMode').hide();
         $(this).html('<i class="fa fa-pencil"></i> {{Mode édition}}');
         $(this).attr('data-mode', '0');
-        $('#div_displayObject').css('background-color', 'transparent');
+        $('.div_displayObject:visible:last').css('background-color', 'transparent');
         $('#bt_switchFullScreen').show();
     }
 });
 
-$('#bt_switchFullScreen').on('click', function () {
+$('#bt_switchFullScreen').off('click').on('click', function () {
     if ($('#bt_editPlan').attr('data-mode') == '0') {
         fullScreen('desktop');
     }
 });
 
-$('.view-link-widget').on('click', function () {
+$('.view-link-widget').off('click').on('click', function () {
     if ($('#bt_editPlan').attr('data-mode') == '0') {
         $(this).find('a').click();
     }
@@ -310,7 +307,7 @@ function initDraggable(_state) {
 
     $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable();
 
-    $('#div_displayObject a').each(function () {
+    $('.div_displayObject:visible:last a').each(function () {
         if ($(this).attr('href') != '#') {
             $(this).attr('data-href', $(this).attr('href'));
             $(this).removeAttr('href');
@@ -319,7 +316,7 @@ function initDraggable(_state) {
     if (_state != 1 && _state != '1') {
         $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').draggable("destroy");
         $('.plan-link-widget,.view-link-widget,.graph-widget,.eqLogic-widget,.scenario-widget,.text-widget').resizable("destroy");
-        $('#div_displayObject a').each(function () {
+        $('.div_displayObject:visible:last a').each(function () {
             $(this).attr('href', $(this).attr('data-href'));
         });
     }
@@ -340,11 +337,11 @@ function displayPlan(_offsetX, _offsetY) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-            $('#div_displayObject').empty();
-            $('#div_displayObject').height('auto');
-            $('#div_displayObject').width('auto');
+            $('.div_displayObject:visible:last').empty();
+            $('.div_displayObject:visible:last').height('auto');
+            $('.div_displayObject:visible:last').width('auto');
             if (isset(data.image)) {
-                $('#div_displayObject').append(data.image);
+                $('.div_displayObject:visible:last').append(data.image);
             }
             if (!isset(data.configuration) || !isset(data.configuration.responsiveMode) || data.configuration.responsiveMode != 1) {
                 var proportion = 1;
@@ -355,22 +352,22 @@ function displayPlan(_offsetX, _offsetY) {
                     proportion = data.configuration.mobileProportion;
                 }
                 if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
-                    $('#div_displayObject').height(data.configuration.desktopSizeY * proportion);
-                    $('#div_displayObject').width(data.configuration.desktopSizeX * proportion);
-                    $('#div_displayObject img').height(data.configuration.desktopSizeY * proportion);
-                    $('#div_displayObject img').width(data.configuration.desktopSizeX * proportion);
+                    $('.div_displayObject:visible:last').height(data.configuration.desktopSizeY * proportion);
+                    $('.div_displayObject:visible:last').width(data.configuration.desktopSizeX * proportion);
+                    $('.div_displayObject:visible:last img').height(data.configuration.desktopSizeY * proportion);
+                    $('.div_displayObject:visible:last img').width(data.configuration.desktopSizeX * proportion);
                 } else {
-                    $('#div_displayObject').width($('#div_displayObject img').attr('data-sixe_x') * proportion);
-                    $('#div_displayObject').height($('#div_displayObject img').attr('data-sixe_y') * proportion);
-                    $('#div_displayObject img').css('height', ($('#div_displayObject img').attr('data-sixe_y') * proportion) + 'px');
-                    $('#div_displayObject img').css('width', ($('#div_displayObject img').attr('data-sixe_x') * proportion) + 'px');
+                    $('.div_displayObject:visible:last').width($('.div_displayObject:visible:last img').attr('data-sixe_x') * proportion);
+                    $('.div_displayObject:visible:last').height($('.div_displayObject:visible:last img').attr('data-sixe_y') * proportion);
+                    $('.div_displayObject:visible:last img').css('height', ($('.div_displayObject:visible:last img').attr('data-sixe_y') * proportion) + 'px');
+                    $('.div_displayObject:visible:last img').css('width', ($('.div_displayObject:visible:last img').attr('data-sixe_x') * proportion) + 'px');
                 }
                 if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
                     fullScreen(deviceInfo.type);
                     if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '' && isNaN(data.configuration.desktopSizeX) && isNaN(data.configuration.desktopSizeY)) {
 
                     } else {
-                        $('meta[name="viewport"]').prop('content', 'width=' + $('#div_displayObject').width() + ',height=' + $('#div_displayObject').height());
+                        $('meta[name="viewport"]').prop('content', 'width=' + $('.div_displayObject:visible:last').width() + ',height=' + $('.div_displayObject:visible:last').height());
                     }
                 }
             }
@@ -389,7 +386,7 @@ function displayPlan(_offsetX, _offsetY) {
                 $('#bt_editPlan').show();
             }
 
-            $('.eqLogic-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
+           $('.div_displayObject:visible:last').find('eqLogic-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
             if (planHeader_id != -1) {
                 jeedom.plan.byPlanHeader({
                     id: planHeader_id,
@@ -405,7 +402,7 @@ function displayPlan(_offsetX, _offsetY) {
                                 objects.push(displayObject(plans[i].plan.link_type, plans[i].plan.link_id, plans[i].html, plans[i].plan, true));
                             }
                         }
-                        $('#div_displayObject').append(objects);
+                        $('.div_displayObject:visible:last').append(objects);
                         initDraggable($('#bt_editPlan').attr('data-mode'));
                         if (!isNaN(_offsetX) && _offsetX != 0 && !isNaN(_offsetY) && _offsetY != 0) {
                             $('body').scrollTop(_offsetX);
@@ -421,8 +418,8 @@ function displayPlan(_offsetX, _offsetY) {
 function savePlan(_refreshDisplay) {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
         var parent = {
-            height: $('#div_displayObject').height(),
-            width: $('#div_displayObject').width(),
+            height: $('.div_displayObject:visible:last').height(),
+            width: $('.div_displayObject:visible:last').width(),
         };
         var plans = [];
         $('.eqLogic-widget').each(function () {
@@ -595,6 +592,13 @@ var html = $(_html);
 $(name).append(html) 
 html.css('z-index', 1000);
 
+
+if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
+    if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
+        html.css('border-radius', '0px'); 
+        html.css('box-shadow', 'none'); 
+    }
+}
 for (var key in _plan.css) { 
     if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate') { 
         if (key == 'background-color') { 
@@ -612,6 +616,7 @@ for (var key in _plan.css) {
         html.css(key, _plan.css[key]); 
     } 
 } 
+
 if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) { 
     if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) { 
         html.css('background-color', 'transparent'); 
@@ -620,7 +625,6 @@ if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan
         }); 
     } 
 }
-
 html.css('position', 'absolute'); 
 var position = { 
     top: init(_plan.position.top, '10') * parent.height / 100, 
@@ -644,10 +648,10 @@ html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + 
 html.addClass('noResize'); 
 if (!isset(_plan.display) || !isset(_plan.display.noPredefineSize) || _plan.display.noPredefineSize == 0) { 
     if (isset(_plan.display) && isset(_plan.display.width)) { 
-        html.css('width', init(_plan.display.width, 10)); 
+        html.css('width', init(_plan.display.width, 50)); 
     } 
     if (isset(_plan.display) && isset(_plan.display.height)) { 
-        html.css('height', init(_plan.display.height, 10)); 
+        html.css('height', init(_plan.display.height, 50)); 
     } 
 } 
 if (_type == 'eqLogic') { 
@@ -712,37 +716,42 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     var defaultZoom = 1;
     if (_type == 'eqLogic') {
         defaultZoom = 0.65;
-        $('.eqLogic-widget[data-eqLogic_id=' + _id + ']').remove();
+        $('.div_displayObject:visible:last .eqLogic-widget[data-eqLogic_id=' + _id + ']').remove();
     }
     if (_type == 'scenario') {
-        $('.scenario-widget[data-scenario_id=' + _id + ']').remove();
+        $('.div_displayObject:visible:last .scenario-widget[data-scenario_id=' + _id + ']').remove();
     }
     if (_type == 'view') {
-        $('.view-link-widget[data-link_id=' + _id + ']').remove();
+        $('.div_displayObject:visible:last .view-link-widget[data-link_id=' + _id + ']').remove();
     }
     if (_type == 'plan') {
-        $('.plan-link-widget[data-link_id=' + _id + ']').remove();
+        $('.div_displayObject:visible:last .plan-link-widget[data-link_id=' + _id + ']').remove();
     }
     if (_type == 'graph') {
         for (var i in jeedom.history.chart) {
             delete jeedom.history.chart[i];
         }
-        $('.graph-widget[data-graph_id=' + _id + ']').remove();
+        $('.div_displayObject:visible:last .graph-widget[data-graph_id=' + _id + ']').remove();
     }
     if (_type == 'text') {
-        $('.graph-widget[data-text_id=' + _id + ']').remove();
+        $('.div_displayObject:visible:last .graph-widget[data-text_id=' + _id + ']').remove();
     }
     var parent = {
-        height: $('#div_displayObject').height(),
-        width: $('#div_displayObject').width(),
+        height: $('.div_displayObject:visible:last').height(),
+        width: $('.div_displayObject:visible:last').width(),
     };
     var html = $(_html);
     if (init(_noRender, false) == false) {
-        $('#div_displayObject').append(html);
+        $('.div_displayObject:visible:last').append(html);
     }
 
     html.css('z-index', 1000);
-
+    if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
+        if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
+            html.css('border-radius', '0px'); 
+            html.css('box-shadow', 'none'); 
+        }
+    }
     for (var key in _plan.css) {
         if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate') {
             if (key == 'background-color') {
@@ -768,6 +777,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
             });
         }
     }
+
 
     html.css('position', 'absolute');
     var position = {
@@ -795,10 +805,10 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     html.addClass('noResize');
     if (!isset(_plan.display) || !isset(_plan.display.noPredefineSize) || _plan.display.noPredefineSize == 0) {
         if (isset(_plan.display) && isset(_plan.display.width)) {
-            html.css('width', init(_plan.display.width, 10));
+            html.css('width', init(_plan.display.width, 50));
         }
         if (isset(_plan.display) && isset(_plan.display.height)) {
-            html.css('height', init(_plan.display.height, 10));
+            html.css('height', init(_plan.display.height, 50));
         }
     }
     if (_type == 'eqLogic') {
@@ -856,8 +866,8 @@ function addScenario(_id, _plan) {
 /**********************************GRAPH************************************/
 function addGraph(_plan) {
     var parent = {
-        height: $('#div_displayObject').height(),
-        width: $('#div_displayObject').width(),
+        height: $('.div_displayObject:visible:last').height(),
+        width: $('.div_displayObject:visible:last').width(),
     };
     _plan = init(_plan, {});
     _plan.display = init(_plan.display, {});
@@ -867,7 +877,7 @@ function addGraph(_plan) {
     if(init(_plan.display.transparentBackground, false) == '1'){
         background_color = '';
     }
-    var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="'+background_color+'border : solid 1px black;">';
+    var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="'+background_color+'border : solid 1px black;min-height:50px;min-width:50px;">';
     if ($('#bt_editPlan').attr('data-mode') == "1") {
         html += '<i class="fa fa-cogs cursor pull-right editMode configureGraph" style="margin-right : 5px;margin-top : 5px;"></i>';
     } else {
@@ -898,7 +908,7 @@ function addGraph(_plan) {
 }
 
 
-$('#div_displayObject').delegate('.graph-widget', 'resize', function () {
+$('.div_displayObject:visible:last').delegate('.graph-widget', 'resize', function () {
     if (isset(jeedom.history.chart['graph' + $(this).attr('data-graph_id')])) {
         jeedom.history.chart['graph' + $(this).attr('data-graph_id')].chart.reflow();
     }

@@ -15,14 +15,14 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 <a class="btn btn-success pull-right btn-sm" id="bt_eqLogicConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
 
 <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab">{{Informations}}</a></li>
-    <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab">{{Affichage avancé}}</a></li>
+    <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
+    <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
 </ul>
 
 <div class="tab-content" id="div_displayEqLogicConfigure">
-   <div role="tabpanel" class="tab-pane active" id="information">
-       <br/>
-       <div class="row">
+ <div role="tabpanel" class="tab-pane active" id="information">
+     <br/>
+     <div class="row">
         <div class="col-sm-4" >
             <form class="form-horizontal">
                 <fieldset>
@@ -71,12 +71,12 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                     <div class="form-group">
                         <label class="col-sm-4 control-label"></label>
                         <div class="col-sm-8">
-                         <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Activer}}" data-l1key="isEnable" checked/>
-                         <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Visible}}" data-l1key="isVisible" checked/>
-                     </div>
-                 </div>
+                           <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Activer}}" data-l1key="isEnable" checked/>
+                           <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Visible}}" data-l1key="isVisible" checked/>
+                       </div>
+                   </div>
 
-                 <div class="form-group">
+                   <div class="form-group">
                     <label class="col-sm-4 control-label">{{Type}}</label>
                     <div class="col-sm-4">
                         <span class="eqLogicAttr label label-primary" data-l1key="eqType_name" style="font-size : 1em;"></span>
@@ -111,7 +111,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 
 <div role="tabpanel" class="tab-pane" id="display">
     <br/>
-    <legend>{{Widget}}</legend>
+    <legend><i class="fa fa-tint"></i> {{Widget}}</legend>
     <table class="table table-bordered table-condensed">
         <thead>
             <tr>
@@ -122,37 +122,42 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
             </tr>
         </thead>
         <tbody>
-         <tr>
-            <td>{{Afficher le nom}}</td>
-            <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
-            <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
-            <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnMobile" /></td>
-        </tr>
-        <tr>
-            <td>{{Afficher le nom de l'objet}}</td>
-            <td></td>
-            <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowObjectNameOnView" /></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>{{Afficher le niveau de batterie}}</td>
-            <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnDashboard" /></td>
-            <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnView" /></td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
-<legend>{{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
-<table class="table table-bordered table-condensed" id="table_widgetParameters">
-    <thead>
-        <tr>
-            <th>{{Nom}}</th>
-            <th>{{Valeur}}</th>
-            <th>{{Action}}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
+            <tr>
+                <td>{{Visible}}</td>
+                <td colspan="2"><input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="hideOndashboard" /></td>
+                <td><input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="hideOnmobile" /></td>
+            </tr>
+            <tr>
+                <td>{{Afficher le nom}}</td>
+                <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
+                <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
+                <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnMobile" /></td>
+            </tr>
+            <tr>
+                <td>{{Afficher le nom de l'objet}}</td>
+                <td></td>
+                <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowObjectNameOnView" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>{{Afficher le niveau de batterie}}</td>
+                <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnDashboard" /></td>
+                <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnView" /></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
+    <table class="table table-bordered table-condensed" id="table_widgetParameters">
+        <thead>
+            <tr>
+                <th>{{Nom}}</th>
+                <th>{{Valeur}}</th>
+                <th>{{Action}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
 if ($eqLogic->getDisplay('parameters') != '') {
 	foreach ($eqLogic->getDisplay('parameters') as $key => $value) {
 		echo '<tr>';
@@ -169,8 +174,8 @@ if ($eqLogic->getDisplay('parameters') != '') {
 	}
 }
 ?>
-  </tbody>
-</table>
+      </tbody>
+  </table>
 </div>
 </div>
 

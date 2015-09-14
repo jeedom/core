@@ -6,7 +6,11 @@ function initView(_view_id) {
         success: function (views) {
             var li = ' <ul data-role="listview">';
             for (var i in views) {
-                li += '<li><a href="#" class="link" data-page="view" data-title="' + views[i].name + '" data-option="' + views[i].id + '">' + views[i].name + '</a></li>'
+                var icon = '';
+                if (isset(views[i].display) && isset(views[i].display.icon)) {
+                    icon = views[i].display.icon;
+                }
+                li += '<li><a href="#" class="link" data-page="view" data-title="'+ icon.replace(/\"/g, "\'") + ' ' + views[i].name + '" data-option="' + views[i].id + '">'+ icon + ' ' + views[i].name + '</a></li>'
             }
             li += '</ul>';
             panel(li);
@@ -25,7 +29,7 @@ function initView(_view_id) {
                 displayView(html);
             }});
     } else {
-        $('#panel_right').panel('open');
+        $('#bottompanel').panel('open');
     }
 
     $(window).on("orientationchange", function (event) {
@@ -48,6 +52,5 @@ function displayView(html) {
         $('.chartContainer').width(((deviceInfo.width / 2) - 20));
     }
     setTileSize('.eqLogic');
-    setTileSize('.scenario');
     $('.eqLogicZone').packery({gutter : 4});
 }

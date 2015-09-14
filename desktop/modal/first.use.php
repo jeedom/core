@@ -9,7 +9,7 @@ if (!isConnect()) {
 </legend>
 <div id="div_alertFirstUse"></div>
 <center>
-{{Bienvenue dans Jeedom, et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec Jeedom : }}
+    {{Bienvenue dans Jeedom, et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec Jeedom : }}
 </center>
 <br/><br/>
 
@@ -25,7 +25,7 @@ if (!isConnect()) {
 <div class="col-xs-4">
    <center>
     <a href="https://jeedom.fr/doc/documentation/premiers-pas/fr_FR/doc-premiers-pas.html" target="_blank">
-    <i class="fa fa-check-square" style="font-size:12em;"></i><br/>
+        <i class="fa fa-check-square" style="font-size:12em;"></i><br/>
         {{Documentation de démarrage}}
     </a>
 </center>
@@ -48,8 +48,26 @@ if (!isConnect()) {
                 $('#div_alertFirstUse').showAlert({message: error.message, level: 'danger'});
             },
             success: function () {
+                $.ajax({// fonction permettant de faire de l'ajax
+                        type: "POST", // methode de transmission des données au fichier php
+                        url: "core/ajax/config.ajax.php", // url du fichier php
+                        data: {
+                            action: "genKeyAPI"
+                        },
+                        dataType: 'json',
+                        error: function (request, status, error) {
+                            handleAjaxError(request, status, error);
+                        },
+                        success: function (data) { // si l'appel a bien fonctionné
+                        if (data.state != 'ok') {
+                            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                            return;
+                        }
+                        $('#in_keyAPI').value(data.result);
+                    }
+                });
                 $('#div_alertFirstUse').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'});
             }
         });
-    });
+});
 </script>

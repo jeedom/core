@@ -142,6 +142,15 @@ class scenarioExpression {
 		return -3;
 	}
 
+	public static function eqEnable($_eqLogic_id) {
+		$id = str_replace(array('eqLogic', '#'), '', trim($_eqLogic_id));
+		$eqLogic = eqLogic::byId($id);
+		if (!is_object($eqLogic)) {
+			return -2;
+		}
+		return $eqLogic->getIsEnable();
+	}
+
 	public static function average($_cmd_id, $_period = '1 hour') {
 		$args = func_get_args();
 		if (count($args) > 2 || strpos($_period, '#') !== false || is_numeric($_period)) {
@@ -677,6 +686,22 @@ class scenarioExpression {
 		}
 	}
 
+	public static function time_op($_time, $_value) {
+		$_time = self::setTags($_time);
+		$_value = self::setTags($_value);
+		if (strlen($_time) < 4) {
+			$date = DateTime::createFromFormat('Gi', '0' . intval(trim($_time)));
+		} else {
+			$date = DateTime::createFromFormat('Gi', intval(trim($_time)));
+		}
+		if ($_value > 0) {
+			$date->add(new DateInterval('PT' . abs($_value) . 'M'));
+		} else {
+			$date->sub(new DateInterval('PT' . abs($_value) . 'M'));
+		}
+		return $date->format('Gi');
+	}
+
 	public static function time($_value) {
 		$_value = self::setTags($_value);
 		try {
@@ -691,7 +716,6 @@ class scenarioExpression {
 		if ($result < 0) {
 			return -1;
 		}
-
 		if (($result % 100) > 59) {
 			if (strpos($_value, '-') !== false) {
 				$result -= 40;
@@ -882,6 +906,10 @@ class scenarioExpression {
 					return;
 				} else if ($this->getExpression() == 'stop') {
 					if ($scenario != null) {
+						$scenario2 = scenario::byId($scenario->getId());
+						if ($scenario->getIsActive() != $scenario2->getIsActive()) {
+							$scenario->setIsActive($scenario2->getIsActive());
+						}
 						$this->setLog($scenario, __('Arret du scénario', __FILE__));
 						$scenario->setState('stop');
 						$scenario->setPID('');
@@ -1026,8 +1054,9 @@ class scenarioExpression {
 						sleep(1);
 					}
 					if ($value == '') {
-						$cmd->setConfiguration('storeVariable', $this->getOptions('variable'));
-						$cmd->save();
+						$value = __('Aucune réponse', __FILE__);
+						$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, $this->getOptions('variable'));
+						$dataStore->setValue($value);
 					}
 					$this->setLog($scenario, __('Réponse ', __FILE__) . $value);
 					return;

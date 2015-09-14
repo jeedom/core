@@ -1,15 +1,28 @@
-<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="question" placeholder="Questions" value="#question#" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block; width: 40%;"/>
+<div class="input-group input-group-sm" style="width: 100%">
+  	<span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Question}}</span>
+	<input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="question" placeholder="Questions" value="#question#" data-cmd_id="#id#" data-uid="#uid#"/>
+</div>
 
-<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="answer" placeholder="Réponses possibles (séparé par des ;)" value="#answer#" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block; width: 40%;"/>
+<div class="input-group input-group-sm" style="width: 100%; padding-top: 1px">
+  	<span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Réponse}}</span>
+	<input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="answer" placeholder="Réponses possibles (séparé par des ;)" value="#answer#" data-cmd_id="#id#" data-uid="#uid#"/>
+</div>
 
-<br/>
-<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="variable" placeholder="Variables" value="#variable#" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block; width: 40%;"/>
+<div class="input-group input-group-sm" style="width: 100%; padding-top: 1px">
+  	<span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Variable}}</span>
+	<input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="variable" placeholder="Variables" value="#variable#" data-cmd_id="#id#" data-uid="#uid#"/>
+  	<span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Délai}} (sec)</span>
+	<input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="timeout" placeholder="Délai en s" value="#timeout#" data-cmd_id="#id#" data-uid="#uid#"/>
+</div>
 
-<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="timeout" placeholder="Délai en s" value="#timeout#" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block; width: 40%;"/>
+<div class="input-group input-group-sm" style="width: 100%; padding-top: 1px">
+  	<span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Commandes}}</span>
+  	<input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="cmd" placeholder="Commandes" value="#cmd#" data-cmd_id="#id#" data-uid="#uid#"/>
+	<span class="input-group-btn">
+		<button class="btn btn-default listEquipementInfo" type="button" title="{{Sélectionner la commande}}" data-uid="#uid#" data-cmd_id="#id#"><i class="fa fa-list-alt"></i></button>
+	</span>
+</div>
 
-<br/>
-<input class="title expressionAttr form-control input-sm" data-l1key="options" data-l2key="cmd" placeholder="Commandes" value="#cmd#" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block; width: 40%;"/>
-<a class="btn btn-default btn-sm listEquipementInfo cursor" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block;"><i class="fa fa-list-alt"></i></a>
 <script>
 	$('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
 		jeedom.cmd.getSelectModal({cmd: {type: 'action',subtype : "message"}}, function(result) {

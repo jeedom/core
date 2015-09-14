@@ -41,7 +41,7 @@ Il n'y a pas d'application mobile en développement par l'équipe actuellement. 
 Il est tout à fait possible que des développeurs tiers réalisent dans le future des applications dédiées pour Jeedom.
 
 '''
-Quels sont les identifiants pour me connecter la première fois ?
+Quels sont les identifiants pour me connecter la première fois ?::
 Lors de votre première connexion à Jeedom (et même après si vous ne les avez pas modifiés) le nom d'utilisateur et le mot de passe par défaut sont admin.
 A la première connexion, il vous est fortement demandé de modifier ces identifiants pour plus de sécurité
 
@@ -83,7 +83,7 @@ Quelle est le tarif de la Jeedom Center ?::
 Il n'y a pas de tarif annoncé pour le moment.
 
 '''
-Impossible d'accéder à Jeedom de l'extérieur depuis l'achat d'une box
+Impossible d'accéder à Jeedom de l'extérieur depuis l'achat d'une box::
 Par défaut Jeedom est à la racine de Nginx sur les box. Vous n'avez plus à rajouter /jeedom/ dans l'adresse d'accès. L'adresse exacte sera donc : votre_ip_public:votre_port/
 
 '''

@@ -159,7 +159,14 @@ if (init('cron_id') != '') {
 			$logicalId = $cron->getName() . '::' . $e->getCode();
 		}
 		echo '[Erreur] ' . $cron->getName() . ' : ' . print_r($e, true);
-		log::add('cron', 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
+		if (isset($class) && $class != '') {
+			log::add($class, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
+		} else if (isset($function) && $function != '') {
+			log::add($function, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
+		} else {
+			log::add('cron', 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
+		}
+
 	}
 } else {
 	if (cron::jeeCronRun()) {

@@ -134,7 +134,7 @@ jeedom.user.get = function(_params) {
 };
 
 jeedom.user.isConnect = function(_params) {
-    if (Math.round(+new Date() / 1000) > (jeedom.user.connectCheck + 20)) {
+    if (Math.round(+new Date() / 1000) > (jeedom.user.connectCheck + 300)) {
         var paramsRequired = [];
         var paramsSpecifics = {
             pre_success: function(data) {

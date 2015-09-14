@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'personne';
-	src:url('fonts/personne.eot?4zj6oh');
-	src:url('fonts/personne.eot?#iefix4zj6oh') format('embedded-opentype'),
-		url('fonts/personne.woff?4zj6oh') format('woff'),
-		url('fonts/personne.ttf?4zj6oh') format('truetype'),
-		url('fonts/personne.svg?4zj6oh#personne') format('svg');
+	src:url('fonts/personne.eot');
+	src:url('fonts/personne.eot') format('embedded-opentype'),
+		url('fonts/personne.woff') format('woff'),
+		url('fonts/personne.ttf') format('truetype'),
+		url('fonts/personne.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

@@ -151,13 +151,16 @@ class log {
 			$linesRead = 0;
 			while ($log->valid() && $linesRead != $_nbLines) {
 				$line = $log->current(); //get current line
-				if (count(explode("|", $line)) == 3) {
-					array_unshift($page, array_map('trim', explode("|", $line)));
+				$explode = explode("|", $line);
+				if (count($explode) == 3) {
+					$explode[2] = secureXSS($explode[2]);
+					array_unshift($page, array_map('trim', $explode));
 				} else {
 					if (trim($line) != '') {
 						$lineread = array();
 						$lineread[0] = '';
 						$lineread[1] = '';
+						$lineread[2] = htmlspecialchars($line);
 						$lineread[2] = $line;
 						array_unshift($page, $lineread);
 					}

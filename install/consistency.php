@@ -210,6 +210,10 @@ try {
 	cache::deleteBySearch('cmdWidgetmobile');
 	cache::deleteBySearch('scenarioHtmldashboard');
 	config::save('hardware_name', '');
+
+	if (config::byKey('api') == '') {
+		config::save('api', config::genKey());
+	}
 } catch (Exception $e) {
 	echo "Error : ";
 	echo $e->getMessage();

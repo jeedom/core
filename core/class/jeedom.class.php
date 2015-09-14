@@ -31,7 +31,7 @@ class jeedom {
 			echo "Desactivation de toutes les tâches";
 			config::save('enableCron', 0);
 			foreach (cron::all() as $cron) {
-				if ($cron->running()) {
+				if ($cron->running() && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
 					try {
 						$cron->halt();
 						echo '.';
@@ -119,6 +119,27 @@ class jeedom {
 		$cmd = 'php ' . dirname(__FILE__) . '/../../sick.php';
 		$cmd .= ' >> ' . log::getPathToLog('sick') . ' 2>&1';
 		shell_exec($cmd);
+	}
+
+	public static function apiAccess($_apikey = '') {
+		if ($_apikey == '') {
+			return false;
+		}
+		if (config::byKey('api') == '') {
+			config::save('api', config::genKey());
+		}
+		if (config::byKey('api') == $_apikey) {
+			return true;
+		}
+		$user = user::byHash($_apikey);
+		if (is_object($user)) {
+			@session_start();
+			$_SESSION['user'] = $user;
+			@session_write_close();
+			log::add('connection', 'info', __('Connexion par API de l\'utilisateur : ', __FILE__) . $user->getLogin());
+			return true;
+		}
+		return false;
 	}
 
 	public static function getUsbMapping($_name = '', $_getGPIO = false) {
@@ -353,6 +374,10 @@ class jeedom {
 		if (file_exists('/tmp/jeedom_dateOk')) {
 			return true;
 		}
+		if (config::byKey('ignoreHourCheck') == 1) {
+			touch('/tmp/jeedom_dateOk');
+			return true;
+		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
 			shell_exec('sudo sntp ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org'));
 			sleep(3);
@@ -413,6 +438,7 @@ class jeedom {
 
 	public static function cron() {
 		if (!self::isStarted()) {
+			echo date('Y-m-d H:i:s') . ' starting Jeedom';
 			config::save('enableScenario', 1);
 			config::save('enableCron', 1);
 			$cache = cache::byKey('jeedom::usbMapping');
@@ -431,14 +457,14 @@ class jeedom {
 			} catch (Exception $e) {
 
 			}
+			touch('/tmp/jeedom_start');
+			self::event('start');
+			log::add('core', 'info', 'Démarrage de Jeedom OK');
 			try {
 				plugin::start();
 			} catch (Exception $e) {
 
 			}
-			touch('/tmp/jeedom_start');
-			self::event('start');
-			log::add('core', 'info', 'Démarrage de Jeedom OK');
 		}
 		self::isDateOk();
 		try {
@@ -446,21 +472,26 @@ class jeedom {
 			if ($c->isDue()) {
 				$lastCheck = strtotime(config::byKey('update::lastCheck'));
 				if ((strtotime('now') - $lastCheck) > 3600) {
+					update::checkAllUpdate();
+					$updates = update::byStatus('update');
+					if (count($updates) > 0) {
+						$toUpdate = '';
+						foreach ($updates as $update) {
+							$toUpdate .= $update->getLogicalId() . ',';
+						}
+					}
 					if (config::byKey('update::auto') == 1) {
-						update::checkAllUpdate();
+						if (count($updates) > 0) {
+							message::add('update', __('J\'ai appliqué les mises à jour suivantes : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
+						}
 						jeedom::update('', 0);
 					} else {
-						config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
-						update::checkAllUpdate();
 						$updates = update::byStatus('update');
 						if (count($updates) > 0) {
-							$toUpdate = '';
-							foreach ($updates as $update) {
-								$toUpdate .= $update->getLogicalId() . ',';
-							}
 							message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
 						}
 					}
+					config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
 				}
 			}
 			$c = new Cron\CronExpression('35 00 * * 0', new Cron\FieldFactory);
@@ -503,7 +534,7 @@ class jeedom {
 
 	public static function getHardwareKey() {
 		$return = config::byKey('jeedom::installKey');
-		if ($return == '') {
+		if ($return == '' || $return == '0a648c4a615e13680d2d6d23d15ea3b959d6ca30' || $return == '50967e5266d480d1363794dc6777fd0b5a6df30d') {
 			$return = sha1(microtime() . config::genKey());
 			config::save('jeedom::installKey', $return);
 		}
@@ -550,27 +581,12 @@ class jeedom {
 	}
 
 	public static function updateSystem() {
-		if (config::byKey('update::autoSystem') == 1 && jeedom::isCapable('systemUpdate') && jeedom::isCapable('sudo')) {
-			$output = array();
-			$return_val = -1;
-			log::remove('system_update');
-			exec('sudo apt-get -y update >> ' . log::getPathToLog('system_update') . ' 2>&1', $output, $return_val);
-			if ($return_val != 0) {
-				log::add('update', 'error', __('Echec de la mise à jour des dépot, veuillez consulter la log system_update', __FILE__));
-				return;
-			}
-			exec('sudo DEBIAN_FRONTEND=noninteractive apt-get -q -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" dist-upgrade >> ' . log::getPathToLog('system_update') . ' 2>&1', $output, $return_val);
-			if ($return_val != 0) {
-				log::add('update', 'error', __('Echec de la mise à jour des paquets, veuillez consulter la log system_update', __FILE__));
-				return;
-			}
-			exec('sudo apt-get -y autoremove >> ' . log::getPathToLog('system_update') . ' 2>&1', $output, $return_val);
-			if ($return_val != 0) {
-				log::add('update', 'error', __('Echec su nettoyage des paquets, veuillez consulter la log system_update', __FILE__));
-				return;
-			}
-			exec('sudo service cron restart');
-		}
+		log::clear('update');
+		$cmd = 'sudo chown wwww-data:www-data ' . dirname(__FILE__) . '/../../install/update_system.sh;';
+		$cmd .= 'sudo chmod +x ' . dirname(__FILE__) . '/../../install/update_system.sh;';
+		$cmd .= 'sudo ' . dirname(__FILE__) . '/../../install/update_system.sh';
+		$cmd .= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
+		exec($cmd);
 	}
 
 	public static function forceSyncHour() {

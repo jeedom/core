@@ -12,7 +12,7 @@ if (is_array($interactListGroup)) {
 }
 ?>
 
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" id="bt_displayInteractList"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
+<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayInteractList"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
 
 <div class="row row-overflow">
     <div class="col-lg-2 col-md-3 col-sm-4" id="div_listInteract" style="z-index:999">
@@ -215,7 +215,7 @@ foreach ($interactListGroup as $group) {
                     <div class="form-group">
                         <label class="col-sm-3 col-xs-6 control-label">{{Type d'action}}</label>
                         <div class="col-sm-9 col-xs-6">
-                            <select class="interactAttr form-control input-sm" data-l1key="link_type">';
+                            <select class="interactAttr form-control" data-l1key="link_type">';
                                 <option value="cmd">{{Commande}}</option>
                                 <option value="whatDoYouKnow">{{Que sais tu ?}}</option>
                                 <option value="scenario">{{Scénario}}</option>

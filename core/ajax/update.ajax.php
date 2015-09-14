@@ -73,6 +73,11 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'updateSystem') {
+		jeedom::updateSystem();
+		ajax::success();
+	}
+
 	if (init('action') == 'changeState') {
 		$update = update::byId(init('id'));
 		if (!is_object($update)) {

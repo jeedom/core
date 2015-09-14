@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'techno';
-	src:url('fonts/techno.eot?-hn98ry');
-	src:url('fonts/techno.eot?#iefix-hn98ry') format('embedded-opentype'),
-		url('fonts/techno.woff?-hn98ry') format('woff'),
-		url('fonts/techno.ttf?-hn98ry') format('truetype'),
-		url('fonts/techno.svg?-hn98ry#techno') format('svg');
+	src:url('fonts/techno.eoty');
+	src:url('fonts/techno.eot') format('embedded-opentype'),
+		url('fonts/techno.woff') format('woff'),
+		url('fonts/techno.ttf') format('truetype'),
+		url('fonts/techno.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

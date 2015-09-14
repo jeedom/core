@@ -64,8 +64,8 @@ if (init('step', 0) == 1) {
                             $('#div_alert').showAlert({message: error.message, level: 'danger'});
                         },
                         success: function () {
-                            $('#md_modal').dialog({title: "{{Historique}}"});
-                            $("#md_modal").load('index.php?v=d&modal=cmd.history&id=<?php echo init('id')?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
+                            $('#md_modal2').dialog({title: "{{Historique}}"});
+                            $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=<?php echo init('id')?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
                         }
                     });
 
@@ -77,8 +77,8 @@ if (init('step', 0) == 1) {
                             $('#div_alert').showAlert({message: error.message, level: 'danger'});
                         },
                         success: function () {
-                            $('#md_modal').dialog({title: "{{Historique}}"});
-                            $("#md_modal").load('index.php?v=d&modal=cmd.history&id=<?php echo init('id')?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
+                            $('#md_modal2').dialog({title: "{{Historique}}"});
+                            $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=<?php echo init('id')?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
                         }
                     });
                 });
@@ -89,14 +89,14 @@ if (init('step', 0) == 1) {
                             $('#div_alert').showAlert({message: error.message, level: 'danger'});
                         },
                         success: function () {
-                            $('#md_modal').dialog({title: "{{Historique}}"});
-                            $("#md_modal").load('index.php?v=d&modal=cmd.history&id=<?php echo init('id')?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
+                            $('#md_modal2').dialog({title: "{{Historique}}"});
+                            $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=<?php echo init('id')?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
                         }
                     });
                 });
                 $('#bt_validChangeDate').on('click',function(){
-                    $('#md_modal').dialog({title: "{{Historique}}"});
-                    $("#md_modal").load('index.php?v=d&modal=cmd.history&id=<?php echo init('id')?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
+                    $('#md_modal2').dialog({title: "{{Historique}}"});
+                    $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=<?php echo init('id')?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
                 });
             }
         });

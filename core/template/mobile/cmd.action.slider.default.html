@@ -1,6 +1,6 @@
 <div class="cmd" data-type="action" data-subtype="slider" data-cmd_id="#id#">
-	<div class="slider full-width-slider" style="width: 96%;text-align: right;min-width : 100px;">
-		<input type="range" min="#minValue#" max="#maxValue#" data-theme="a" value="#state#"/>
+	<div class="slider full-width-slider" style="width: 96%;text-align: right;min-width : 100px;" style="background-color:#cmdColor# !important;">
+		<input type="range" min="#minValue#" max="#maxValue#" data-theme="a" value="#state#" style="background-color:#cmdColor# !important;"/>
 	</div>
 
 	<script>
@@ -9,4 +9,12 @@
 			jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_id=#id#] .slider input").value()}});
 		});
 	</script>
+	<style>
+        .cmd[data-cmd_id="#id#"] .ui-slider-handle{
+            background-color:#cmdColor# !important;
+        }
+        .cmd[data-cmd_id="#id#"] .ui-slider-bg{
+            background-color:#cmdColor# !important;
+        }
+    </style>
 </div>

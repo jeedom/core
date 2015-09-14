@@ -6,11 +6,14 @@ server {
         access_log off;
         error_log /usr/share/nginx/www/jeedom/log/nginx.error;
         client_max_body_size 100M;
+        server_tokens off;
        
         location / {
                 try_files $uri $uri/ /index.html /index.php;
         }
-
+        location /jeedom {
+                rewrite ^/jeedom$ / redirect;
+        }
         location ~ ^/tmp/(.*)$ {
                 deny all;
         }
@@ -36,6 +39,10 @@ server {
         }
 
         location ~ ^/(.*)ini$ {
+                deny all;
+        }
+
+        location ~ ^/core/config/version$ {
                 deny all;
         }
 

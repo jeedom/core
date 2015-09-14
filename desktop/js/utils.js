@@ -17,7 +17,7 @@
 
  modifyWithoutSave = false;
  nbActiveAjaxRequest = 0;
-
+ utid = Date.now();
  $(function () {
 
   $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
@@ -113,6 +113,7 @@ setInterval(function () {
         },
         beforeClose: function (event, ui) {
             $("body").css({overflow: 'inherit'})
+            $("#md_reportBug").empty();
         }
     });
 
@@ -128,6 +129,7 @@ setInterval(function () {
         },
         beforeClose: function (event, ui) {
             $("body").css({overflow: 'inherit'});
+            $("#md_pageHelp").empty();
         }
     });
 
@@ -142,6 +144,7 @@ setInterval(function () {
         },
         beforeClose: function (event, ui) {
             $("body").css({overflow: 'inherit'});
+            $("#md_modal").empty();
         }
     });
 
@@ -156,6 +159,7 @@ setInterval(function () {
         },
         beforeClose: function (event, ui) {
             $("body").css({overflow: 'inherit'});
+            $("#md_modal2").empty();
         }
     });
 
@@ -231,9 +235,9 @@ setInterval(function () {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-       $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
-       $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
-   });
+     $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
+     $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
+ });
 
     $('#bt_gotoDashboard').on('click',function(){
         window.location.href = 'index.php?v=d&p=dashboard';
@@ -245,6 +249,11 @@ setInterval(function () {
 
     $('#bt_gotoPlan').on('click',function(){
         window.location.href = 'index.php?v=d&p=plan';
+    });
+
+    $('#bt_messageModal').on('click',function(){
+        $('#md_modal').dialog({title: "{{Message Jeedom}}"});
+        $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
     });
 
     $.fn.bootstrapSwitch.defaults.onText = '{{Oui}}';
@@ -302,7 +311,7 @@ function initRowOverflow() {
     if ($(window).width() < 1180) {
         $('.row-overflow > div').css('height', 'auto').css('overflow-y', 'initial').css('overflow-x', 'initial');
     } else {
-        var hWindow = $(window).outerHeight() - $('header').outerHeight() - $('#div_alert').outerHeight() - 20;
+        var hWindow = $(window).outerHeight() - $('header').outerHeight() - $('#div_alert').outerHeight() - 25;
         $('.row-overflow > div').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden');
     }
 }
@@ -377,7 +386,7 @@ function refreshMessageNumber() {
             if (_number == 0 || _number == '0') {
                 $('#span_nbMessage').hide();
             } else {
-                $('#span_nbMessage').html('<i class="fa fa-envelope icon-white"></i> ' + _number + ' message(s)');
+                $('#span_nbMessage').html(_number);
                 $('#span_nbMessage').show();
             }
         }
@@ -463,8 +472,8 @@ function positionEqLogic(_id) {
             verticalAlign.css('position', 'relative').css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - eqLogic.find('.widget-name').height() + 10);
         }
     }else{
-        $('.eqLogic-widget').css('margin','0px').css('padding','0px');
-        $('.eqLogic-widget').each(function () {
+        $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
+        $('.eqLogic-widget:not(.jeedomAlreadyPosition)').each(function () {
             $(this).width(Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2);
             $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
             var verticalAlign = $(this).find('.verticalAlign');
@@ -472,6 +481,7 @@ function positionEqLogic(_id) {
                 verticalAlign.css('position', 'relative').css('top', (($(this).height() - verticalAlign.height()) / 2) - $(this).find('.widget-name').height() + 10);
             }
         });
+        $('.eqLogic-widget').addClass('jeedomAlreadyPosition');
     }
 }
 

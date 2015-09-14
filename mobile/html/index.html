@@ -33,10 +33,12 @@
 
 
     <link rel="stylesheet" href="3rdparty/jquery.mobile/jquery.mobile.min.css" />
-    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.css" />
-    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.dark.css"  id='jQMnDTheme' />
-    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/jquery.mobile.nativedroid.color.green.css" id='jQMnDColor' />
+    <link rel="stylesheet" href="3rdparty/waves/waves.min.css"/>
+    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/flexboxgrid.min.css">
+    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/nativedroid2.css" />
+    <link rel="stylesheet" href="3rdparty/jquery.mobile/css/nativedroid2.color.blue-grey.css" id="jQMnDColor" />
     <link rel="stylesheet" href="3rdparty/jquery.mobile/css/fonts.css">
+    <link rel="stylesheet" href="3rdparty/roboto/roboto.css">
 
 
     <link rel="stylesheet" href="core/css/core.css">
@@ -63,25 +65,29 @@
     <script src="core/php/getJS.php?file=core/js/view.class.js"></script>
     <script src="core/php/getJS.php?file=core/js/plan.class.js"></script>
     <script src="core/php/getJS.php?file=mobile/js/application.js"></script>
+    <script src="core/php/getJS.php?file=3rdparty/waves/waves.min.js" ></script>
+    <script src="core/php/getJS.php?file=3rdparty/wow/wow.min.js" ></script>
+    <script src="core/php/getJS.php?file=3rdparty/jquery.mobile/nativedroid2.js" ></script>
 </head>
 <body>
     <!-- alert -->
-    <div id="div_alert" data-theme="b"></div>
+    <div id="div_alert"></div>
     <!-- /alert -->
     <!-- page -->
-    <div data-role="page" id="pagecontainer" data-theme='b'>
+    <div data-role="page" id="pagecontainer" style="padding-top: 64px !important;">
         <!-- panel -->
-        <div data-role="panel" id="panel_right" data-position="right" data-theme="b"></div>
+        <div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel" data-animate="false" data-position='bottom' data-display="overlay"></div>
+
         <!-- /panel -->
         <!-- popup -->
-        <div data-role="popup" id="div_popup" data-theme="b" class="ui-corner-all"></div>
+        <div data-role="popup" id="div_popup" class="ui-corner-all"></div>
         <!-- /popup -->
 
         <!-- header -->
-        <div data-role="header" data-position="fixed" data-theme="b" data-tap-toggle="false" style="height: 30px;">
-            <h1 id="pageTitle"></h1>
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <h1 id="pageTitle"></h1>        
             <a class="link" data-page="home" data-title="{{Accueil}}"><i class="fa fa-home"></i></a>
-            <a href="#panel_right" id="bt_panel_right"><i class="fa fa-list"></i></a>
+            <a href="#bottompanel" id="bt_bottompanel"><i class="fa fa-bars"></i></a>
             <div id="div_loadingSpinner" style="display: none;">
                 <div class="break dot1" style="position : relative;top : 0px;"></div>
                 <div class="break dot2" style="position : relative;top : -3px;"></div>
@@ -90,9 +96,18 @@
         </div>
         <!-- /header -->
         <!-- content -->
-        <div role="main" class="ui-content" id="page" ></div>
-        <!-- /content -->
-    </div>
-    <!-- /page -->
+        <div role="main" class="ui-content" id="page" data-inset="false" style="padding : 2px;padding-top : 4px;"></div>
+
+        <div data-role="popup" id="popupDialog" style="width : 100%">
+           <div data-role="header">
+               <h1 class='nd-title'>Dialog</h1>
+               <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+           </div>
+           <div data-role="content" class="content"></div>
+       </div>
+       <!-- /content -->
+   </div>
+   <!-- /page -->
+
 </body>
 </html>

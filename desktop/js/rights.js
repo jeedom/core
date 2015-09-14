@@ -26,7 +26,6 @@ jwerty.key('ctrl+s', function (e) {
 
 
 $('#bt_saveRights').on('click', function () {
-    console.log($('.rights').getValues('.rightsAttr'));
     jeedom.rights.save({
         rights: $('.rights').getValues('.rightsAttr'),
         error: function (error) {

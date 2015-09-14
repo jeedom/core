@@ -444,6 +444,10 @@ class eqLogic {
 		if (!$this->hasRight('r')) {
 			return '';
 		}
+		$version = jeedom::versionAlias($_version);
+		if ($this->getDisplay('hideOn' . $version) == 1) {
+			return '';
+		}
 		$hasOnlyEventOnly = $this->hasOnlyEventOnlyCmd();
 		if ($hasOnlyEventOnly) {
 			$sql = 'SELECT `value` FROM cache
@@ -455,18 +459,17 @@ class eqLogic {
 		}
 
 		$cmd_html = '';
-		$version = jeedom::versionAlias($_version);
+
 		$vcolor = 'cmdColor';
 		if ($version == 'mobile') {
 			$vcolor = 'mcmdColor';
 		}
-		if ($this->getPrimaryCategory() == '') {
-			$cmdColor = '';
-		} else {
-			$cmdColor = jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
-		}
+		$cmdColor = ($this->getPrimaryCategory() == '') ? '' : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
 		if ($this->getIsEnable()) {
 			foreach ($this->getCmd(null, null, true) as $cmd) {
+				if ($cmd->getDisplay('hideOn' . $version) == 1) {
+					continue;
+				}
 				if ($cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
 					$cmd_html .= '<br/>';
 				}
@@ -488,6 +491,7 @@ class eqLogic {
 			'#logicalId#' => $this->getLogicalId(),
 			'#battery#' => $this->getConfiguration('batteryStatus', -2),
 			'#batteryDatetime#' => $this->getConfiguration('batteryStatusDatetime', __('inconnue', __FILE__)),
+			'#batteryType#' => $this->getConfiguration('battery_type', ''),
 			'#object_name#' => '',
 			'#height#' => $this->getDisplay('height', 'auto'),
 			'#width#' => $this->getDisplay('width', 'auto'),
@@ -545,7 +549,7 @@ class eqLogic {
 		return DB::remove($this);
 	}
 
-	public function save() {
+	public function save($_direct = false) {
 		if ($this->getName() == '') {
 			throw new Exception(__('Le nom de l\'équipement ne peut pas être vide : ', __FILE__) . print_r($this, true));
 		}
@@ -555,7 +559,7 @@ class eqLogic {
 		} else {
 			$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
 		}
-		return DB::save($this);
+		return DB::save($this, $_direct);
 	}
 
 	public function refresh() {
@@ -706,6 +710,7 @@ class eqLogic {
 		if (isConnect('admin')) {
 			return true;
 		}
+		$rights = null;
 		if ($_right == 'x') {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'action');
 		} elseif ($_right == 'r') {

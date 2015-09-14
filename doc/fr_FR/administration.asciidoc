@@ -17,12 +17,13 @@ Dans cette onglet on retrouve des informations général sur Jeedom :
 
 * *Clef API* : votre clef API, à utiliser pour toute requête vers l'API Jeedom
 * *Système* : type de votre hardware
-* *Clef hardware* : clef hardware de votre Jeedom sur le market, à ne réinitialiser que sur demande du support
+* *Clef hardware* : clef hardware de votre Jeedom sur le market. Si votre jeedom n'apparait pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton
 * *Commande d'information utilisateur* : permet de spécifier une commande de type message qui sera utiliser par Jeedom pour vous communiquer des messages important. Vous pouvez indiquer plusieurs commandes séparées par des &&
 * *Langue* : Langue de votre Jeedom
 * *Durée de vie des sessions (heure)* : durée de vie des sessions PHP, il est conseillé de ne pas y toucher
 * *Date et heure* : votre fuseau horraire
 * *Serveur de temps optionnel* : permet d'ajouter un serveur de temps optionnel (à reserver aux experts)
+* *Ignorer la vérification de l'heure* : indique à Jeedom de ne pas vérifié si l'heure est coherente. Utile par exemple si vous ne connecté pas Jeedom à internet et qu'il n'a pas de pile RTC
 * *Mode* : Mode de votre Jeedom maitre ou esclave, attention lors du passage en esclave tous vos équipements, scénario, design... seront supprimé
 
 == Base de données
@@ -53,24 +54,43 @@ Partie très importante dans Jeedom, il faut absolument la configurer correcteme
 ** *Port* : le port, en général 80. Attention changer le port ici ne change absolument le port reel de Jeedom qui restera le meme
 ** *Statut* : Indique si la configuration réseaux externe est correcte
 * *Wifi && IP statique* : peut ne pas apparaitre en fonction de la compatibilité avec votre matériel
+** *Désactiver la gestion du réseaux par Jeedom* : indique à Jeedom de ne pas monitorer le réseaux (à activer si jeedom n'est connecté à aucun réseaux)
 ** *Adresse MAC* : Addresse mac de l'interface réseaux
 ** *Activer le wifi* : permet d'activer la connexion wifi
 ** *Réseau wifi* : réseaux wifi sur lequel se connecter
 ** *Clef* : la clef d'accès au wifi
-** *IP fixe* : active l'utilisation d'une IP fixe (par rapport à l'IP renseigné dans accès interne)
-** *Netmask* : netmask de votre réseaux
-** *Gateway* : gateway de votre réseaux
 ** *Gestion* : lance la generation et la mise en place de la configuration défini plus haut. Attention en cas d'erreur votre Jeedom peux devenir inaccessible
 * *DNS Jeedom* : permet un accès distant a votre Jeedom sans avoir besoin d'un DNS, d'une IP fixe ou d'ouvrir les ports de votre box
 ** *Utiliser les DNS Jeedom* : active les DNS Jeedom (attention cela necessite au moins un service pack)
-** *Rediriger le SSH* : active la redirection SSH à travers le DNS, attention si vous avez laissé les mots de passe par defaut cela constitue une faille de sécurité
-** *Authentification (optionnelle)* : ajout une authentification HTTP en plus, non recommandé
 ** *Statut http* : statut du DNS http
-** *Statut SSH* : statut tu DNS SSH
 ** *Gestion* : permet d'arreter et relancer le service DNS
 
+[TIP]
+Si vous êtes en HTTPS le port est le 443 (par defaut) et en HTTP le port est par defaut le 80
+
 [IMPORTANT]
-En mode IP static toute erreur de configuration vous obligera à soit reinstaller Jeedom, soit a connecter un clavier et un écran dessus pour reconfigurer le réseaux
+Cette partie est juste la pour expliquer à Jeedom son environement une modification du port ou de l'IP ici ne changera pas le port ou l'IP de Jeedom. Pour cela il faut se connecter en SSH et editer le fichier /etc/network/interfaces pour l'ip et le fichier etc/nginx/sites-available/default et etc/nginx/sites-available/default_ssl (pour le HTTPS). En cas de mauvaise manipulation de votre Jeedom l'équipe Jeedom ne pourra etre tenu responsable et pourra refuser toute demande de support.
+
+[NOTE]
+Vous pouvez voir link:http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https[ici] un tutorial pour mettre en place un certificat HTTPS auto-signé
+
+[IMPORTANT]
+Si vous n'arrivez pas a faire fonctionner le DNS Jeedom regarder la configuration du pare-feu et filtre parental de votre box (sur livebox il faut par exemple le pare-feu en moyen)
+
+== Configuration des couleurs
+
+La colorisation des widgets est effectuée en fonction de la catégorie d'appartenance du widget qui est définie dans la configuration de chaque module (voir plugin Z-Wave, RFXCOM...etc). Parmi les catégories on retrouve le chauffage, les lumières, les automatismes etc...
+
+Pour chaque catégorie, on pourra choisir une couleur différente entre la version desktop et la version mobile. Il y a également 2 types de couleurs, les couleurs de fond des widgets, et les couleurs des commandes lorsque le widget est de type graduel, par exemple les lumières, les volets, les températures.
+
+image::../images/display6.png[]
+
+En cliquant sur la couleur une fenêtre s'ouvre, permettant de choisir sa couleur.
+
+image::../images/display7.png[]
+
+[TIP]
+N'oubliez pas de sauvegarder après toute modification
 
 == Configuration des commandes
 

@@ -1,67 +1,18 @@
 = Dépannage
 
 J'ai une page blanche::
-Il faut regarder le fichier /usr/share/nginx/www/jeedom/log/nginx.error, celui-ci indique l'erreur, 
-les causes les plus courante sont : 
+Il faut se connecter en SSH à jeedom et lancer un script d'auto-diagnostique : 
 
-* probleme de place sur le système de fichiers
-* MySQL est arreté
-* PHP non démarré
-* NGINX non démarré
-
-Pour verifier les différents points :
-
-.Probleme de place
-Il faut en SSH faire : 
 [source,bash]
-df -h
+sudo chmod+x /usr/share/nginx/www/jeedom/health.sh;sudo /usr/share/nginx/www/jeedom/health.sh
 
-Il faut regarder cette cette ligne (la ou mounted on vaut /): 
-[source,bash]
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/root        28G  3.6G   23G  14% /
+Voila le résultat si tout est bon : 
 
-Et regarder le pourcentage occupé
+image::../images/depannage.png[]
 
-.Problème avec MySQL
-Il faut en SSH : 
-[source,bash]
-sudo su -
-service mysql status
+S'il y a un soucis le script essaye de corriger si il n'y arrive pas il vous l'indiquera.
 
-Si il n'est pas démarré il faut alors faire : 
-[source,bash]
-sudo su -
-service mysql start
-
-Si celui-ci ne démarre toujours pas alors essayer de la lancer en mode direct : 
-[source,bash]
-sudo su -
-mysqld
-
-La il devrait vous dire ce qui ne va pas, si vous n'arrivez pas à interpreter n'hesité pas à poster sur le forum
-
-.PHP non démarré
-Il faut en SSH : 
-[source,bash]
-sudo su -
-service php5-fpm status
-
-Si il n'est pas démarré il faut alors faire : 
-[source,bash]
-sudo su -
-service php5-fpm start
-
-.NGINX non démarré
-Il faut en SSH : 
-[source,bash]
-sudo su -
-service nginx status
-
-Si il n'est pas démarré il faut alors faire : 
-[source,bash]
-sudo su -
-service ngonx start
+Vous pouvez aussi regarder le log /usr/share/nginx/www/jeedom/log/nginx.error, très souvent celui-ci indique le soucis
 
 ''''
 

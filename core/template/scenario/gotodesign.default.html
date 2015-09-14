@@ -1,4 +1,7 @@
-<select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="plan_id" data-option_id="#id#" data-uid="#uid#" style="width: 35%; display: inline-block;"></select>
+<div class="input-group input-group-sm" style="width: 100%">
+    <span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Design}}</span>
+    <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="plan_id" data-option_id="#id#" data-uid="#uid#"></select>
+</div>
 
 
 <script>
@@ -12,7 +15,8 @@
                 options += '<option value="' + plans[i].id + '">' + plans[i].name + '</option>';
             }
             $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').append(options);
-            if ($('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=plan_id] option[value=#plan_id#]').html() != undefined) {
+
+            if ('#plan_id#' != '' && $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=plan_id] option[value=#plan_id#]').html() != undefined) {
                 $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').value('#plan_id#');
             }
         }

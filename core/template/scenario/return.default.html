@@ -1,10 +1,16 @@
-<textarea class="message expressionAttr form-control " data-l1key="options" data-l2key="message" rows="1" style="resize:vertical;display: inline-block; width: 80%;" placeholder="Message" data-cmd_id="#id#" data-uid="#uid#">#message#</textarea>
-<a class="btn btn-default btn-sm listEquipementInfo cursor" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block;"><i class="fa fa-list-alt"></i></a>
+<div class="input-group input-group-sm" style="width: 100%">
+    <span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Message}}</span>
+    <textarea class="message expressionAttr form-control " data-l1key="options" data-l2key="message" rows="1" style="resize:vertical;" placeholder="Message" data-cmd_id="#id#" data-uid="#uid#">#message#</textarea>
+    <span class="input-group-btn">
+		<button class="btn btn-default listEquipementInfo" type="button" title="{{Sélectionner la commande}}" data-cmd_id="#id#"  data-uid="#uid#"><i class="fa fa-list-alt"></i></button>
+	</span>
+</div>
+
 <script>
     $('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
         var el = $(this);
         jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
-            el.parent().find('.expressionAttr[data-l1key=options][data-l2key=message]').atCaret('insert', result.human);
+            el.parent().parent().find('.expressionAttr[data-l1key=options][data-l2key=message]').atCaret('insert', result.human);
         });
     });
 </script>

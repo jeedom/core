@@ -5,7 +5,7 @@ if (!hasRight('objectview', true)) {
 sendVarToJS('select_id', init('id', '-1'));
 ?>
 
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" id="bt_displayObject"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
+<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayObject"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
 
 <div class="row row-overflow">
     <div class="col-md-2 col-sm-3" id="sd_objectList" style="z-index:999">

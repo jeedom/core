@@ -216,38 +216,3 @@ $('.eqLogic[data-enable=0]').hide();
         }
     });
 });
-
-
-
- $("#bt_displayConfig").on('click', function (event) {
-    $.hideAlert();
-    saveConfiguration($('#display_configuration'));
-});
-
- $('.bt_resetColor').on('click', function () {
-    var el = $(this);
-    jeedom.getConfiguration({
-        key: $(this).attr('data-l1key'),
-        default: 1,
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (data) {
-            $('.configKey[data-l1key="' + el.attr('data-l1key') + '"]').value(data);
-        }
-    });
-});
-
-
- function saveConfiguration(_el) {
-    jeedom.config.save({
-        configuration: _el.getValues('.configKey')[0],
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-            $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
-            modifyWithoutSave = false;
-        }
-    });
-}

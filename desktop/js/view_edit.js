@@ -15,7 +15,15 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+$('#bt_chooseIcon').on('click', function () {
+    chooseIcon(function (_icon) {
+        $('.viewAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+    });
+});
 
+$('.viewAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
+    $('.viewAttr[data-l1key=display][data-l2key=icon]').value('');
+});
 
  $(".li_view").on('click', function(event) {
     $.hideAlert();
@@ -29,6 +37,7 @@
         },
         success: function(data) {
             $('#div_viewZones').empty();
+            $('#div_view').setValues(data,'.viewAttr');
             for (var i in data.viewZone) {
                 var viewZone = data.viewZone[i];
                 addEditviewZone(viewZone);
@@ -39,7 +48,6 @@
                    }else{
                        $('#div_viewZones .viewZone:last .div_viewData tbody').append(addWidgetService(viewData));
                    }
-
                }
            }
            initCheckBox();
@@ -76,18 +84,18 @@ jwerty.key('ctrl+s', function (e) {
 
 $('#bt_saveView').on('click', function(event) {
     $.hideAlert();
-    var viewZones = [];
+    var view = $('#div_view').getValues('.viewAttr')[0];
+    view.zones = [];
     $('.viewZone').each(function() {
         viewZoneInfo = {};
         var viewZoneInfo = $(this).getValues('.viewZoneAttr');
         viewZoneInfo = viewZoneInfo[0];
         viewZoneInfo.viewData = $(this).find('tr.viewData').getValues('.viewDataAttr');
-        viewZones.push(viewZoneInfo);
+        view.zones.push(viewZoneInfo);
     });
-
     jeedom.view.save({
         id: $(".li_view.active").attr('data-view_id'),
-        viewZones: viewZones,
+        view: view,
         error: function(error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
@@ -339,7 +347,7 @@ function addGraphService(_viewData){
 $('#div_viewZones').delegate('.bt_addViewWidget','click',function(){
     var el = $(this);
     jeedom.eqLogic.getSelectModal({}, function (result) {
-       el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human,link_id : result.id,type : 'eqLogic'}));
+       el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'eqLogic'}));
    });
 });
 
