@@ -206,7 +206,14 @@ if (exec('diff /etc/nginx/sites-available/default ' . dirname(__FILE__) . '/../.
 foreach (plugin::listPlugin(true) as $plugin) {
 	try {
 		if (method_exists($plugin->getId(), 'health')) {
-			echo '<legend><i class="' . $plugin->getIcon() . '"></i> {{Santé }} <a target="_blank" href="index.php?v=d&p=plugin&id=' . $plugin->getId() . '">' . $plugin->getName() . '</a></legend>';
+			echo '<legend>';
+			if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
+				echo '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
+			} else {
+				echo '<i class="' . $plugin->getIcon() . '"></i> ';
+			}
+
+			echo '{{Santé }} <a target="_blank" href="index.php?v=d&p=plugin&id=' . $plugin->getId() . '">' . $plugin->getName() . '</a></legend>';
 			echo '<table class="table table-condensed table-bordered">';
 			echo '<thead><tr><th style="width : 250px;"></th><th style="width : 150px;">{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>';
 			echo '<tbody>';
