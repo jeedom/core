@@ -459,7 +459,10 @@ class cron {
 		$this->state = $state;
 	}
 
-	public function setPID($pid = '') {
+	public function setPID($pid = null) {
+		if (trim($pid) == '') {
+			$pid = null;
+		}
 		$this->pid = $pid;
 	}
 
