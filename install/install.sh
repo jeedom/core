@@ -395,6 +395,7 @@ install_dependency() {
     apt-get -y install avconv
     apt-get -y install libudev1
     apt-get -y install ca-certificates
+    apt-get -y install htop
 
     pecl install oauth
     if [ $? -eq 0 ] ; then
