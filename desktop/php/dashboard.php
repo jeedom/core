@@ -144,3 +144,9 @@ foreach ($child_object as $child) {
 </div>
 
 <?php include_file('desktop', 'dashboard', 'js');?>
+
+<style>
+.scenario-widget{
+	margin-top: 2px !important;
+}
+</style>
