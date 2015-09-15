@@ -364,6 +364,9 @@ class market {
 			if (isset($_result['jeedom::url'])) {
 				unset($_result['jeedom::url']);
 			}
+			if (isset($_result['register::hwkey_nok']) && $_result['register::hwkey_nok'] == 1) {
+				config::save('jeedom::installKey', '');
+			}
 		}
 	}
 

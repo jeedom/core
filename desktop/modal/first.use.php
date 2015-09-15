@@ -43,7 +43,7 @@ if (!isConnect()) {
 <script>
     $('#bt_doNotDisplayFirstUse').on('click', function () {
         jeedom.config.save({
-            configuration: {'jeedom::firstUse': 0,'jeedom::installKey' : ''},
+            configuration: {'jeedom::firstUse': 0},
             error: function (error) {
                 $('#div_alertFirstUse').showAlert({message: error.message, level: 'danger'});
             },

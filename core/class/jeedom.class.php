@@ -534,7 +534,7 @@ class jeedom {
 
 	public static function getHardwareKey() {
 		$return = config::byKey('jeedom::installKey');
-		if ($return == '' || $return == '0a648c4a615e13680d2d6d23d15ea3b959d6ca30' || $return == '50967e5266d480d1363794dc6777fd0b5a6df30d') {
+		if ($return == '') {
 			$return = sha1(microtime() . config::genKey());
 			config::save('jeedom::installKey', $return);
 		}
