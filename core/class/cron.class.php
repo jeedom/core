@@ -30,7 +30,7 @@ class cron {
 	private $lastRun = '0000-00-00 00:00:00';
 	private $duration = '0';
 	private $state = 'stop';
-	private $pid = '';
+	private $pid = null;
 	private $schedule = '';
 	private $timeout;
 	private $deamon = 0;
