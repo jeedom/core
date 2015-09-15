@@ -6,6 +6,7 @@ function initHome() {
         },
         success: function (objects) {
             var li = '';
+            li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="<i class=\'fa fa-circle-o-notch\'></i> {{Tout}}" data-option="all"><span><i class=\'fa fa-circle-o-notch\'></i> {{Tout}}</a>';
             for (var i in objects) {
                 if (objects[i].isVisible == 1) {
                     var icon = '';

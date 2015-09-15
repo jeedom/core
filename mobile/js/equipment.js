@@ -5,6 +5,7 @@ function initEquipment(_object_id) {
         },
         success: function (objects) {
             var li = ' <ul data-role="listview" data-inset="false">';
+            li += '<li><a href="#" class="link" data-page="equipment" data-title="<i class=\'fa fa-circle-o-notch\'></i> {{Tout}}" data-option="all"><span><i class=\'fa fa-circle-o-notch\'></i> {{Tout}}</a></li>';
             for (var i in objects) {
                 if (objects[i].isVisible == 1) {
                     var icon = '';
@@ -19,28 +20,63 @@ function initEquipment(_object_id) {
         }
     });
 
-    if (isset(_object_id) && is_numeric(_object_id)) {
-        jeedom.object.toHtml({
-            id: _object_id,
-            version: 'mobile',
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (html) {
-                $('#div_displayEquipement').empty().html(html).trigger('create');
+if (isset(_object_id)) {
+    jeedom.object.toHtml({
+        id: _object_id,
+        version: 'mobile',
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (html) {
+            if(_object_id == 'all'){
+
+             jeedom.object.all({
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (objects) {
+                   var div = '';
+                   for(var i in html){
+                    div += '<div class="div_displayEquipement">';
+                    div += '<legend>';
+                    for(var j in objects){
+                        if(objects[j].id == i){
+                             div += objects[j].name;
+                        }
+                    }
+                    div += '</legend>';
+                    div += html[i]
+                    div += '</div>';
+                }
+                $('#div_displayEquipement').empty().html(div).trigger('create');
                 setTileSize('.eqLogic');
                 setTimeout(function () {
-                    $('#div_displayEquipement').packery({gutter : 4});
+                    $('.div_displayEquipement').packery({gutter : 4});
                 }, 10);
             }
-        });
-    } else {
-        $('#bottompanel').panel('open');
-    }
+        });  
 
-    $(window).on("orientationchange", function (event) {
-        deviceInfo = getDeviceType();
-        setTileSize('.eqLogic');
-        $('#div_displayEquipement').packery({gutter : 4});
-    });
+         }else{
+           $('#div_displayEquipement').empty().html(html).trigger('create');
+           setTileSize('.eqLogic');
+           setTimeout(function () {
+            $('#div_displayEquipement').packery({gutter : 4});
+        }, 10);
+       }
+
+   }
+});
+} else {
+    $('#bottompanel').panel('open');
+}
+
+$(window).on("orientationchange", function (event) {
+    deviceInfo = getDeviceType();
+    setTileSize('.eqLogic');
+    if(_object_id == 'all'){
+        $('.div_displayEquipement').packery({gutter : 4});
+    }else{
+     $('#div_displayEquipement').packery({gutter : 4}); 
+ }
+});
 }
