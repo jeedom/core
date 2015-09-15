@@ -457,7 +457,7 @@ class eqLogic {
 				return $result['value'];
 			}
 		}
-
+		$parameters = $this->getDisplay('parameters');
 		$cmd_html = '';
 
 		$vcolor = 'cmdColor';
@@ -465,6 +465,9 @@ class eqLogic {
 			$vcolor = 'mcmdColor';
 		}
 		$cmdColor = ($this->getPrimaryCategory() == '') ? '' : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
+		if (is_array($parameters) && isset($parameters['background_cmd_color'])) {
+			$cmdColor = $parameters['background_cmd_color'];
+		}
 		if ($this->getIsEnable()) {
 			foreach ($this->getCmd(null, null, true) as $cmd) {
 				if ($cmd->getDisplay('hideOn' . $version) == 1) {
@@ -513,7 +516,6 @@ class eqLogic {
 			$replace['#battery#'] = -1;
 		}
 
-		$parameters = $this->getDisplay('parameters');
 		if (is_array($parameters)) {
 			foreach ($parameters as $key => $value) {
 				$replace['#' . $key . '#'] = $value;
