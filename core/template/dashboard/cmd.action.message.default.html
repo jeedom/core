@@ -9,11 +9,11 @@
 		if('#message_disable#' == '1'){
 			$('.cmd[data-cmd_id=#id#] .message').hide();
 		}
-		$('.cmd[data-cmd_id=#id#] .execute').on('click', function() {
+		$('.cmd[data-cmd_id=#id#]:last .execute').on('click', function() {
 			jeedom.cmd.execute({id: '#id#', value: {title: $('.cmd[data-cmd_id=#id#] .title').value(), message: $('.cmd[data-cmd_id=#id#] .message').value()}});
 		});
 		if('#title_possibility_list#' != ''){
-			$('.cmd[data-cmd_id=#id#] .title').autocomplete({
+			$('.cmd[data-cmd_id=#id#]:last .title').autocomplete({
 				source: json_decode('#title_possibility_list#'),
 				close: function (event, ui) {
 					$(this).trigger('focusout');

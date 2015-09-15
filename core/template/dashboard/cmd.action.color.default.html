@@ -3,11 +3,11 @@
     <a class="btn btn-black action_colorpicker_off" style="background-color:#cmdColor# !important;position: relative; top: -5px;color:black;border: transparent !important;height35px;">Off</a>
 
     <script>
-        $('.cmd[data-cmd_id=#id#] .action_colorpicker_change').value(('#state#' != '') ? '#state#'.substr(0,7) : '#000000');
-        $('.cmd[data-cmd_id=#id#] .action_colorpicker_off').on('click', function() {
-            $('.cmd[data-cmd_id=#id#] .action_colorpicker_change').value('#000000');
+        $('.cmd[data-cmd_id=#id#]:last .action_colorpicker_change').value(('#state#' != '') ? '#state#'.substr(0,7) : '#000000');
+        $('.cmd[data-cmd_id=#id#]:last .action_colorpicker_off').on('click', function() {
+            $('.cmd[data-cmd_id=#id#]:last .action_colorpicker_change').value('#000000');
         });
-        $('.cmd[data-cmd_id=#id#] .action_colorpicker_change').on('change', function() {
+        $('.cmd[data-cmd_id=#id#]:last .action_colorpicker_change').on('change', function() {
             jeedom.cmd.execute({id: '#id#', value: {color: $(this).value()}});
         });
     </script>

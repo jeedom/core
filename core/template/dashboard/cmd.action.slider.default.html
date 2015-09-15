@@ -3,13 +3,13 @@
     <div class="slider" style="margin : 5px 10px 8px 10px;width: 80px;" value="#state#"></div>
 
     <script>
-        $(".cmd[data-cmd_id=#id#] .slider").bootstrapSlider({
+        $(".cmd[data-cmd_id=#id#]:last .slider").bootstrapSlider({
             min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
             max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
             value: ('#state#' == '') ? 0 : parseInt('#state#')
         });
-        $(".cmd[data-cmd_id=#id#] .slider.slider-horizontal").css('z-index',1);
-        $(".cmd[data-cmd_id=#id#] .slider").on('slideStop', function (ev) {
+        $(".cmd[data-cmd_id=#id#]:last .slider.slider-horizontal").css('z-index',1);
+        $(".cmd[data-cmd_id=#id#]:last .slider").on('slideStop', function (ev) {
             jeedom.cmd.execute({id: '#id#', value: {slider: ev.value}});
         });
     </script>
