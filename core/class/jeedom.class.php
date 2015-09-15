@@ -441,6 +441,10 @@ class jeedom {
 			echo date('Y-m-d H:i:s') . ' starting Jeedom';
 			config::save('enableScenario', 1);
 			config::save('enableCron', 1);
+			cache::deleteBySearch('widgetHtml');
+			cache::deleteBySearch('cmdWidgetdashboard');
+			cache::deleteBySearch('cmdWidgetmobile');
+			cache::deleteBySearch('scenarioHtmldashboard');
 			$cache = cache::byKey('jeedom::usbMapping');
 			$cache->remove();
 			foreach (cron::all() as $cron) {
