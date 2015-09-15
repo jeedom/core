@@ -173,7 +173,7 @@ paramsAJAX.data = {
     cache: cache,
     value: _params.value || '',
 };
-if(window.location.href.indexOf('p=dashboard') >= 0 || window.location.href.indexOf('p=plan') >= 0 || window.location.href.indexOf('p=view') >= 0){
+if(window.location.href.indexOf('p=dashboard') >= 0 || window.location.href.indexOf('p=plan') >= 0 || window.location.href.indexOf('p=view') >= 0 || $.mobile){
   paramsAJAX.data.utid = utid; 
 }
 $.ajax(paramsAJAX);
