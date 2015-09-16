@@ -8,7 +8,7 @@
         if (is_numeric('#state#')) {
 
         // The speed gauge
-        $('.cmd[data-cmd_id=#id#]:last .gauge').highcharts({
+        $('.cmd[data-cmd_id=#id#] .gauge').empty().highcharts({
             chart: {
                 events: {
                     click: function (event) {
