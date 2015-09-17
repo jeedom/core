@@ -161,7 +161,7 @@ class market {
 		if (is_array($_logicalId)) {
 			$options = $_logicalId;
 		}
-		if ($market->sendRequest('market::byLogicalIdAndType', $options)) {
+		if ($market->sendRequest('market::byLogicalIdAndType', $options, 2, null, 1)) {
 			if (is_array($_logicalId)) {
 				$return = array();
 				foreach ($market->getResult() as $logicalId => $result) {
