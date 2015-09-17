@@ -367,3 +367,7 @@ input[type=checkbox]:after {
   background: #fff;
   cursor: pointer;
 }
+
+.-sew-list-container{
+  z-index: 3;
+}
