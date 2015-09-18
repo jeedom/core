@@ -360,10 +360,10 @@ input[type=checkbox]:checked:before {
 input[type=checkbox]:after {
   content: "";
   position: absolute;
-  top: -0.1rem;
+  top: -0rem;
   left: 0;
-  width: 1.2rem;
-  height: 1.4rem;
+  width: 1.1rem;
+  height: 1rem;
   background: #fff;
   cursor: pointer;
 }
