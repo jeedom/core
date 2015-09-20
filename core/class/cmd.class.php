@@ -865,7 +865,7 @@ class cmd {
 			'#minValue#' => $this->getConfiguration('minValue', 0),
 			'#maxValue#' => $this->getConfiguration('maxValue', 100),
 			'#logicalId#' => $this->getLogicalId(),
-			'#uid#' => 'cmd' . $this->getId() . mt_rand(),
+			'#uid#' => 'cmd' . $this->getId() . eqLogic::UIDDELIMITER . mt_rand() . eqLogic::UIDDELIMITER,
 		);
 		if ($_cmdColor == null && $version != 'scenario') {
 			$eqLogic = $this->getEqLogic();

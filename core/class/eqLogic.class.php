@@ -21,7 +21,7 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class eqLogic {
 	/*     * *************************Attributs****************************** */
-
+	const UIDDELIMITER = '__-_-__';
 	protected $id;
 	protected $name;
 	protected $logicalId = '';
@@ -454,7 +454,7 @@ class eqLogic {
            WHERE `key`="widgetHtml' . $_version . $this->getId() . '"';
 			$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 			if ($result['value'] != '') {
-				return $result['value'];
+				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $result['value']);
 			}
 		}
 		$parameters = $this->getDisplay('parameters');
@@ -498,7 +498,7 @@ class eqLogic {
 			'#object_name#' => '',
 			'#height#' => $this->getDisplay('height', 'auto'),
 			'#width#' => $this->getDisplay('width', 'auto'),
-			'#uid#' => 'eqLogic' . $this->getId() . mt_rand(),
+			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
 		);
 		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowObjectNameOnView', 0) == 0) {
 			$object = $this->getObject();
