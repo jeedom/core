@@ -1,13 +1,13 @@
-<div class="cmd cmd-widget" data-type="action" data-subtype="color" data-cmd_id="#id#" style="width: 146px;height: 34px;">
+<div class="cmd cmd-widget" data-type="action" data-subtype="color" data-cmd_id="#id#" data-cmd_uid="#uid#" style="width: 146px;height: 34px;">
     <input class="action_colorpicker_change form-control cursor" type="color" style="display: inline;width: 90px;height:32px;">
     <a class="btn btn-black action_colorpicker_off" style="background-color:#cmdColor# !important;position: relative; top: -3px;color:black;border: transparent !important;height35px;">Off</a>
 
     <script>
-        $('.cmd[data-cmd_id=#id#]:last .action_colorpicker_change').value(('#state#' != '') ? '#state#'.substr(0,7) : '#000000');
-        $('.cmd[data-cmd_id=#id#]:last .action_colorpicker_off').on('click', function() {
-            $('.cmd[data-cmd_id=#id#]:last .action_colorpicker_change').value('#000000');
+        $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').value(('#state#' != '') ? '#state#'.substr(0,7) : '#000000');
+        $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_off').on('click', function() {
+            $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').value('#000000');
         });
-        $('.cmd[data-cmd_id=#id#]:last .action_colorpicker_change').on('change', function() {
+        $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').on('change', function() {
             jeedom.cmd.execute({id: '#id#', value: {color: $(this).value()}});
         });
     </script>

@@ -1,4 +1,4 @@
-<div style="min-width:115px;min-height:100px;position: relative; top : -7px;padding:0px !important;" class="container-fluid tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
+<div style="min-width:115px;min-height:100px;position: relative; top : -7px;padding:0px !important;" class="container-fluid tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" title="Valeur du #valueDate#, collectée le #collectDate#" >
     <div style="width:95px;height : 95px;" class="gauge cursor" ></div>
 
     <div style="#displayHistory# font-size: 0.8em;" class="col-xs-12 center-block" class="cmdStats">
@@ -8,7 +8,7 @@
         if (is_numeric('#state#')) {
 
         // The speed gauge
-        $('.cmd[data-cmd_id=#id#] .gauge').empty().highcharts({
+        $('.cmd[data-cmd_uid=#uid#] .gauge').empty().highcharts({
             chart: {
                 events: {
                     click: function (event) {
@@ -92,7 +92,7 @@
                 }]
             });
 } else {
-    $('.cmd[data-cmd_id=#id#] .gauge').append('<center><span class="label label-danger" style="margin-top : 5px;">#state#</span></center>');
+    $('.cmd[data-cmd_uid=#uid#] .gauge').append('<center><span class="label label-danger" style="margin-top : 5px;">#state#</span></center>');
 }
 </script>
 
