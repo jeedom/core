@@ -315,7 +315,6 @@ jeedom.cmd.refreshValue = function(_params) {
               var html = $(result.html);
               var uid = html.attr('data-cmd_uid');
               if(uid != 'undefined'){
-                console.log(uid+' previous '+cmd.attr('data-cmd_uid'));
                 cmd.attr('data-cmd_uid',uid);
             }
             cmd.show();
