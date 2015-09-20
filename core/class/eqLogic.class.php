@@ -498,7 +498,7 @@ class eqLogic {
 			'#object_name#' => '',
 			'#height#' => $this->getDisplay('height', 'auto'),
 			'#width#' => $this->getDisplay('width', 'auto'),
-			'#uid#' => 'cmd' . mt_rand(),
+			'#uid#' => 'eqLogic' . $this->getId() . mt_rand(),
 		);
 		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowObjectNameOnView', 0) == 0) {
 			$object = $this->getObject();
