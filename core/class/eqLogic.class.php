@@ -21,7 +21,7 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class eqLogic {
 	/*     * *************************Attributs****************************** */
-	const UIDDELIMITER = '__-_-__';
+	const UIDDELIMITER = '____';
 	protected $id;
 	protected $name;
 	protected $logicalId = '';
