@@ -426,7 +426,14 @@ class interactQuery {
 				}
 			}
 		}
-		return scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
+		$result = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
+		if ($interactDef->getOptions('convertBinary') != '') {
+			$convertBinary = $interactDef->getOptions('convertBinary');
+			$convertBinary = explode('|', $convertBinary);
+			$result = str_replace(' 1', $convertBinary[1], $result);
+			$result = str_replace(' 0', $convertBinary[0], $result);
+		}
+		return $result;
 	}
 
 	public function getInteractDef() {
