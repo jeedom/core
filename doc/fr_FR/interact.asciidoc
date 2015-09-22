@@ -164,7 +164,7 @@ Et voila le retour (a travers Slack) :
 image::../images/interact17.JPG[]
 
 [TIP]
-Il est possible de recuperer dans le scénario la demande qui a déclenché celui-ci à l'aide du tag \#tag#
+Il est possible de recuperer dans le scénario la demande qui a déclenché celui-ci à l'aide du tag \#query#
 
 == Tester
 
