@@ -1,16 +1,16 @@
-<div class="cmd cmd-widget" data-type="action" data-subtype="message" data-cmd_id="#id#">
+<div class="cmd cmd-widget" data-type="action" data-subtype="message" data-cmd_id="#id#"  data-cmd_uid="#uid#">
 	<input class="title" placeholder="#title_placeholder#" data-cmd_id="#id#"/>
 	<textarea rows="2" class="message" style="margin-top : 5px; resize:vertical;height: 50px;" placeholder="#message_placeholder#" data-cmd_id="#id#"></textarea>
 	<center><a class="action ui-btn ui-mini ui-btn-inline execute ui-btn-raised" style="background-color:#cmdColor# !important;">#name#</a></center>
 	<script>
 		if('#title_disable#' == '1'){
-			$('.cmd[data-cmd_id=#id#] .title').hide();
+			$('.cmd[data-cmd_uid=#uid#] .title').hide();
 		}
 		if('#message_disable#' == '1'){
-			$('.cmd[data-cmd_id=#id#] .message').hide();
+			$('.cmd[data-cmd_uid=#uid#] .message').hide();
 		}
-		$('.cmd[data-cmd_id=#id#] .execute').on('click', function () {
-			jeedom.cmd.execute({id: '#id#', value: {title: $('.cmd[data-cmd_id=#id#] .title').value(), message: $('.cmd[data-cmd_id=#id#] .message').value()}});
+		$('.cmd[data-cmd_uid=#uid#] .execute').on('click', function () {
+			jeedom.cmd.execute({id: '#id#', value: {title: $('.cmd[data-cmd_uid=#uid#] .title').value(), message: $('.cmd[data-cmd_uid=#uid#] .message').value()}});
 		});
 	</script>
 </div>
