@@ -10,7 +10,7 @@
 			$('.cmd[data-cmd_uid=#uid#] .message').hide();
 		}
 		$('.cmd[data-cmd_uid=#uid#]:last .execute').on('click', function() {
-			jeedom.cmd.execute({id: '#uid#', value: {title: $('.cmd[data-cmd_id=#uid#] .title').value(), message: $('.cmd[data-cmd_uid=#uid#] .message').value()}});
+			jeedom.cmd.execute({id: '#id#', value: {title: $('.cmd[data-cmd_id=#uid#] .title').value(), message: $('.cmd[data-cmd_uid=#uid#] .message').value()}});
 		});
 		if('#title_possibility_list#' != ''){
 			$('.cmd[data-cmd_uid=#uid#]:last .title').autocomplete({
