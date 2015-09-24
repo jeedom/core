@@ -157,11 +157,14 @@ class market {
 
 	public static function byLogicalIdAndType($_logicalId, $_type = '') {
 		$market = self::getJsonRpc();
-		$options = array('logicalId' => $_logicalId, 'type' => $_type);
 		if (is_array($_logicalId)) {
 			$options = $_logicalId;
+			$timeout = 120;
+		} else {
+			$options = array('logicalId' => $_logicalId, 'type' => $_type);
+			$timeout = 2;
 		}
-		if ($market->sendRequest('market::byLogicalIdAndType', $options, 2, null, 1)) {
+		if ($market->sendRequest('market::byLogicalIdAndType', $options, $timeout, null, 1)) {
 			if (is_array($_logicalId)) {
 				$return = array();
 				foreach ($market->getResult() as $logicalId => $result) {
