@@ -136,6 +136,23 @@ class interactDef {
 		}
 	}
 
+	public static function getTagFromQuery($_def, $_query) {
+		$options = null;
+		$regexp = preg_quote(strtolower($_def));
+		preg_match_all("/#(.*?)#/", $_def, $tags);
+		if (count($tags[1]) > 0) {
+			foreach ($tags[1] as $match) {
+				$regexp = str_replace('#' . $match . '#', '(.*?)', $regexp);
+			}
+			preg_match_all("/" . $regexp . "$/", strtolower($_query), $matches, PREG_SET_ORDER);
+			$options = array();
+			for ($i = 0; $i < count($tags[1]); $i++) {
+				$options[$tags[1][$i]] = $matches[0][$i + 1];
+			}
+		}
+		return $options;
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function selectReply() {

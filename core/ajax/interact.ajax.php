@@ -134,6 +134,8 @@ try {
 				}
 			}
 			$return['cmd'] = trim($return['cmd'], '&& ');
+
+			$return['options'] = interactDef::getTagFromQuery($interactQuery->getQuery(), init('query'));
 			$reply = $interactDef->selectReply();
 			if (trim($reply) == '') {
 				$reply = interactQuery::replyOk();
@@ -157,6 +159,7 @@ try {
 			if (!is_object($scenario)) {
 				$return['scenario'] = __('Impossible de trouver le scénario correspondant', __FILE__);
 			}
+			$return['options'] = interactDef::getTagFromQuery($interactQuery->getQuery(), init('query'));
 			$return['scenario'] = '#' . $scenario->getHumanName() . '#';
 			switch ($interactDef->getOptions('scenario_action')) {
 				case 'start':

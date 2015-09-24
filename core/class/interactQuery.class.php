@@ -282,6 +282,7 @@ class interactQuery {
 		if (!is_object($interactDef)) {
 			return __('Inconsistance de la base de données', __FILE__);
 		}
+		$options = interactDef::getTagFromQuery($this->getQuery(), $_parameters['dictation']);
 		if (isset($_parameters['profile']) && trim($interactDef->getPerson()) != '') {
 			$person = strtolower($interactDef->getPerson());
 			$person = explode('|', $person);
@@ -319,10 +320,14 @@ class interactQuery {
 			$reply = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
 			switch ($interactDef->getOptions('scenario_action')) {
 				case 'start':
-					$scenario->setTags(array(
+					$tags = array(
 						'#query#' => $this->getQuery(),
 						'#profile#' => $replace['#profile#'],
-					));
+					);
+					foreach ($options as $key => $value) {
+						$tags['#' . $key . '#'] = $value;
+					}
+					$scenario->setTags($tags);
 					$return = $scenario->launch(false, 'interact', __('Scénario exécuté sur interaction (S.A.R.A.H, SMS...)', __FILE__), 1);
 					if (is_string($return) && $return != '') {
 						$return = str_replace(array_keys($replace), $replace, $return);
@@ -380,21 +385,10 @@ class interactQuery {
 
 				$replace['#unite#'] = $cmd->getUnite();
 				if ($cmd->getType() == 'action') {
-					$options = null;
-					if ($cmd->getSubType() == 'slider') {
-						preg_match_all("/([0-9]*)/", $_parameters['dictation'], $matches);
-						foreach ($matches[1] as $number) {
-							if (is_numeric($number)) {
-								$options['slider'] = $number;
-							}
-						}
-					}
 					if ($cmd->getSubType() == 'color') {
 						$colors = config::byKey('convertColor');
-						foreach (explode(' ', $_parameters['dictation']) as $word) {
-							if (isset($colors[strtolower($word)])) {
-								$options['color'] = $colors[strtolower($word)];
-							}
+						if (isset($colors[strtolower($options['color'])])) {
+							$options['color'] = $colors[strtolower($options['color'])];
 						}
 					}
 					try {

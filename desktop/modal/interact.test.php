@@ -61,10 +61,26 @@ if (!isConnect('admin')) {
 				}
 				$('#div_interactTestResult').append('<div class="alert alert-info">{{J\'ai reconnu : }}<strong>'+data.interactQuery.query+'</strong></div>');
 				if(data.interactQuery.link_type == 'cmd'){
-					$('#div_interactTestResult').append('<div class="alert alert-warning">{{Je dois exécuter la/les commande(s) : }}<strong>'+data.cmd+'</strong></div>');
+					var result = '<div class="alert alert-warning">{{Je dois exécuter la/les commande(s) : }}<strong>'+data.cmd;
+					if(data.options != null){
+						result += ' {{avec les options :}} ';
+						for(var i in data.options){
+							result += '['+i+' => '+data.options[i]+'] ';
+						}
+					}
+					result += '</strong></div>';
+					$('#div_interactTestResult').append(result);
 				}
 				if(data.interactQuery.link_type == 'scenario'){
-					$('#div_interactTestResult').append('<div class="alert alert-warning">{{Je dois}} <strong>'+data.action+'</strong> {{le scénario : }}<strong>'+data.scenario+'</strong></div>');
+					var result = '<div class="alert alert-warning">{{Je dois}} <strong>'+data.action+'</strong> {{le scénario :}} <strong>'+data.scenario+'</strong>';
+					if(data.options != null){
+						result += ' {{avec les options :}} ';
+						for(var i in data.options){
+							result += '['+i+' => '+data.options[i]+'] ';
+						}
+					}
+					result += '</strong></div>';
+					$('#div_interactTestResult').append(result);
 				}
 				if(data.reply != ''){
 					$('#div_interactTestResult').append('<div class="alert alert-success">{{Je vais répondre : }} <pre>'+data.reply+'</pre></div>');
