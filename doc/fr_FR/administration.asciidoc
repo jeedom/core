@@ -1,81 +1,81 @@
 = Administration
 
-C’est ici que se trouve la plupart des paramètres de configuration. Bien que nombreux ils sont pré-configurés par défaut.
+C’est ici que se trouvent la plupart des paramètres de configuration. Bien que nombreux, ils sont pré-configurés par défaut.
 
 La page est accessible par Général -> Administration -> Configuration : 
 
 image::../images/administration.png[]
 
 [IMPORTANT]
-Si vous n'etes pas en mode expert certain paramètres peuvent ne pas etre visible
+Si vous n'etes pas en mode expert certains paramètres peuvent ne pas etre visibles
 
 == Configuration générale
 
 image::../images/administration1.png[]
 
-Dans cette onglet on retrouve des informations général sur Jeedom : 
+Dans cet onglet on retrouve des informations générales sur Jeedom : 
 
 * *Clef API* : votre clef API, à utiliser pour toute requête vers l'API Jeedom
 * *Système* : type de votre hardware
 * *Clef hardware* : clef hardware de votre Jeedom sur le market. Si votre jeedom n'apparait pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton
-* *Commande d'information utilisateur* : permet de spécifier une commande de type message qui sera utiliser par Jeedom pour vous communiquer des messages important. Vous pouvez indiquer plusieurs commandes séparées par des &&
+* *Commande d'information utilisateur* : permet de spécifier une commande de type message qui sera utilisée par Jeedom pour vous communiquer des messages importants. Vous pouvez indiquer plusieurs commandes séparées par des &&
 * *Langue* : Langue de votre Jeedom
 * *Durée de vie des sessions (heure)* : durée de vie des sessions PHP, il est conseillé de ne pas y toucher
-* *Date et heure* : votre fuseau horraire
+* *Date et heure* : votre fuseau horaire
 * *Serveur de temps optionnel* : permet d'ajouter un serveur de temps optionnel (à reserver aux experts)
-* *Ignorer la vérification de l'heure* : indique à Jeedom de ne pas vérifié si l'heure est coherente. Utile par exemple si vous ne connecté pas Jeedom à internet et qu'il n'a pas de pile RTC
-* *Mode* : Mode de votre Jeedom maitre ou esclave, attention lors du passage en esclave tous vos équipements, scénario, design... seront supprimé
+* *Ignorer la vérification de l'heure* : indique à Jeedom de ne pas vérifier si l'heure est cohérente. Utile par exemple si vous ne connectez pas Jeedom à internet et qu'il n'a pas de pile RTC
+* *Mode* : Mode de votre Jeedom maitre ou esclave, attention lors du passage en esclave : tous vos équipements, scénario, design... seront supprimés
 
 == Base de données
 
 image::../images/administration2.png[]
 
-* *Accès à l'interface d'administration* : permet d'accèder à une interface d'administration de la base, les informations a renseigner sont en dessous
+* *Accès à l'interface d'administration* : permet d'accèder à une interface d'administration de la base, les informations à renseigner sont en dessous
 * *Machine (hostname)* : localisation de la base
 * *Utilisateur* : nom d'utilisateur utilisé par Jeedom
-* *Mot de passe* : mot de passe d'accès a la base utilisé par Jeedom
+* *Mot de passe* : mot de passe d'accès à la base utilisé par Jeedom
 
-== Configuration réseaux
+== Configuration réseau
 
 image::../images/administration3.png[]
 
-Partie très importante dans Jeedom, il faut absolument la configurer correctement sinon beaucoup de plugin risque d'etre non fonctionnel
+Partie très importante dans Jeedom, il faut absolument la configurer correctement sinon beaucoup de plugin risquent d'etre non fonctionnels
 
-* *Accès interne* : information pour joindre Jeedom à partir d'un équipement sur le meme réseaux
-** *Protocole* : le protocole a utiliser, souvent HTTP
+* *Accès interne* : information pour joindre Jeedom à partir d'un équipement sur le meme réseau
+** *Protocole* : le protocole à utiliser, souvent HTTP
 ** *Adresse URL ou IP* : IP de Jeedom, à renseigner
-** *Complément (exemple : /jeedom)* : le complement type /jeedom, pour savoir si vous avez besoin regardez si quand vous vous connectez à Jeedom vous mettant /jeedom après l'IP
-** *Port* : le port, en général 80. Attention changer le port ici ne change absolument le port reel de Jeedom qui restera le meme
-** *Statut* : Indique si la configuration réseaux interne est correcte
-* *Accès externe* : information pour joindre Jeedom de l'exetieur. A ne remplir que si vous n'utilisez pas le DNS Jeedom
-** *Protocole* : protocole utilisé pour l'accès extérieure
-** *Adresse URL ou IP* : addresse ou ip externe si fixe
-** *Complément (exemple : /jeedom)* :  le complement type /jeedom, pour savoir si vous avez besoin regardez si quand vous vous connectez à Jeedom vous mettant /jeedom après l'IP
-** *Port* : le port, en général 80. Attention changer le port ici ne change absolument le port reel de Jeedom qui restera le meme
-** *Statut* : Indique si la configuration réseaux externe est correcte
+** *Complément (exemple : /jeedom)* : le fragment d'URL complémentaire (type /jeedom). Pour savoir si vous avez besoin de définir une valeur ici, regardez si quand vous vous connectez à Jeedom vous devez renseigner /jeedom après l'IP
+** *Port* : le port, en général 80. Attention changer le port ici ne change pas le port réel de Jeedom qui restera le même
+** *Statut* : Indique si la configuration réseau interne est correcte
+* *Accès externe* : information pour joindre Jeedom de l'extérieur. A ne remplir que si vous n'utilisez pas le DNS Jeedom
+** *Protocole* : protocole utilisé pour l'accès extérieur
+** *Adresse URL ou IP* : adresse ou ip externe si fixe
+** *Complément (exemple : /jeedom)* :  le fragment d'URL complémentaire (type /jeedom). Pour savoir si vous avez besoin de définir une valeur ici, regardez si quand vous vous connectez à Jeedom vous devez renseigner /jeedom après l'IP
+** *Port* : le port, en général 80. Attention changer le port ici ne change pas le port réel de Jeedom qui restera le même
+** *Statut* : Indique si la configuration réseau externe est correcte
 * *Wifi && IP statique* : peut ne pas apparaitre en fonction de la compatibilité avec votre matériel
-** *Désactiver la gestion du réseaux par Jeedom* : indique à Jeedom de ne pas monitorer le réseaux (à activer si jeedom n'est connecté à aucun réseaux)
-** *Adresse MAC* : Addresse mac de l'interface réseaux
+** *Désactiver la gestion du réseaux par Jeedom* : indique à Jeedom de ne pas monitorer le réseau (à activer si jeedom n'est connecté à aucun réseau)
+** *Adresse MAC* : Adresse mac de l'interface réseau
 ** *Activer le wifi* : permet d'activer la connexion wifi
-** *Réseau wifi* : réseaux wifi sur lequel se connecter
+** *Réseau wifi* : réseau wifi sur lequel se connecter
 ** *Clef* : la clef d'accès au wifi
-** *Gestion* : lance la generation et la mise en place de la configuration défini plus haut. Attention en cas d'erreur votre Jeedom peux devenir inaccessible
-* *DNS Jeedom* : permet un accès distant a votre Jeedom sans avoir besoin d'un DNS, d'une IP fixe ou d'ouvrir les ports de votre box
-** *Utiliser les DNS Jeedom* : active les DNS Jeedom (attention cela necessite au moins un service pack)
+** *Gestion* : lance la génération et la mise en place de la configuration définie plus haut. Attention en cas d'erreur votre Jeedom peux devenir inaccessible
+* *DNS Jeedom* : permet un accès distant à votre Jeedom sans avoir besoin d'un DNS, d'une IP fixe ou d'ouvrir les ports de votre box
+** *Utiliser les DNS Jeedom* : active les DNS Jeedom (attention cela nécessite au moins un service pack)
 ** *Statut http* : statut du DNS http
-** *Gestion* : permet d'arreter et relancer le service DNS
+** *Gestion* : permet d'arrêter et relancer le service DNS
 
 [TIP]
 Si vous êtes en HTTPS le port est le 443 (par defaut) et en HTTP le port est par defaut le 80
 
 [IMPORTANT]
-Cette partie est juste la pour expliquer à Jeedom son environement une modification du port ou de l'IP ici ne changera pas le port ou l'IP de Jeedom. Pour cela il faut se connecter en SSH et editer le fichier /etc/network/interfaces pour l'ip et le fichier etc/nginx/sites-available/default et etc/nginx/sites-available/default_ssl (pour le HTTPS). En cas de mauvaise manipulation de votre Jeedom l'équipe Jeedom ne pourra etre tenu responsable et pourra refuser toute demande de support.
+Cette partie est juste là pour expliquer à Jeedom son environnement : une modification du port ou de l'IP ici ne changera pas le port ou l'IP de Jeedom. Pour cela il faut se connecter en SSH et éditer le fichier /etc/network/interfaces pour l'IP et les fichiers etc/nginx/sites-available/default et etc/nginx/sites-available/default_ssl (pour le HTTPS). En cas de mauvaise manipulation de votre Jeedom, l'équipe Jeedom ne pourra etre tenue responsable et pourra refuser toute demande de support.
 
 [NOTE]
-Vous pouvez voir link:http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https[ici] un tutorial pour mettre en place un certificat HTTPS auto-signé
+Vous pouvez voir link:http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https[ici] un tutoriel pour mettre en place un certificat HTTPS auto-signé
 
 [IMPORTANT]
-Si vous n'arrivez pas a faire fonctionner le DNS Jeedom regarder la configuration du pare-feu et filtre parental de votre box (sur livebox il faut par exemple le pare-feu en moyen)
+Si vous n'arrivez pas à faire fonctionner le DNS Jeedom, regardez la configuration du pare-feu et filtre parental de votre box (sur livebox il faut par exemple le pare-feu en moyen)
 
 == Configuration des couleurs
 
@@ -97,7 +97,7 @@ N'oubliez pas de sauvegarder après toute modification
 image::../images/administration4.png[]
 
 * *Historique* : voir link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_général_de_l_historique[ici]
-* *Cache* : gestion du cache des commande
+* *Cache* : gestion du cache des commandes
 ** *Durée de vie du cache (en secondes)* : durée de vie par defaut d'une valeur en cache
 ** *Vider toutes les données en cache* : vide tout le cache
 * *Push*
@@ -114,12 +114,12 @@ Voir link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-interact.html#
 image::../images/administration6.png[]
 
 [IMPORTANT]
-Il n'est pas recomandé de modifier ces paramètres
+Il n'est pas recommandé de modifier ces paramètres
 
-* *Rattrapage maximum autorisé (en minutes, -1 pour infini)* : délai de rattrapge maximum en minute pour un Job au cas ou son lancement soit passé
-* *Crontask : temps d'exécution max (en minutes)* : duré maximum par defaut d'une tache cron
-* *Script : temps d'exécution max (en minutes)* : temps maximum d'éxecution d'un script par defaut
-* *Temps de sommeil Jeecron* : temps de someil du cron principal (entre 1 et 59 secondes)
+* *Rattrapage maximum autorisé (en minutes, -1 pour infini)* : délai de rattrapage maximum en minute pour un Job au cas où son lancement serait passé
+* *Crontask : temps d'exécution max (en minutes)* : durée maximum par défaut d'une tache cron
+* *Script : temps d'exécution max (en minutes)* : temps maximum d'exécution d'un script par defaut
+* *Temps de sommeil Jeecron* : temps de sommeil du cron principal (entre 1 et 59 secondes)
 * *Temps de sommeil des Démons* : temps de sommeil entre 2 cycles par defaut des démons
 
 == Configuration des logs & messages
@@ -133,7 +133,7 @@ Voir link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-log.html#_conf
 image::../images/administration8.png[]
 
 * *Activer l'authentification LDAP* : active l'authentification à travers un AD (LDAP)
-* *Hôte* : serveur hebergeant l'AD
+* *Hôte* : serveur hébergeant l'AD
 * *Domaine* : domaine de votre AD
 * *Base DN* : base DN de votre AD
 * *Nom d'utilisateur* : nom d'utilisateur pour que Jeedom se connecte à l'AD
@@ -145,17 +145,17 @@ image::../images/administration8.png[]
 
 image::../images/administration9.png[]
 
-* *Nombre d'échecs avant désactivation de l'équipement* : nombre d'échec de communication avec l'équipement avant desactivation de celui-ci (un message vous préviendra si ca arrive)
+* *Nombre d'échecs avant désactivation de l'équipement* : nombre d'échecs de communication avec l'équipement avant desactivation de celui-ci (un message vous préviendra si cela arrive)
 
 == Market et mise à jour
 
 image::../images/administration10.png[]
 
-* *Adresse* : addresse du market
+* *Adresse* : adresse du market
 * *Nom d'utilisateur* : votre nom d'utilisateur sur le market
 * *Mot de passe* : votre mot de passe du market
-* *Installer automatiquement les widgets manquants* : autorise Jeedom à installer automatiquement les widgets manquant (il faut le plugin widget)
-* *Voir les modules en beta (à vos risques et périls)* : permet de voir les plugins,widgets... beta
+* *Installer automatiquement les widgets manquants* : autorise Jeedom à installer automatiquement les widgets manquants (il faut le plugin widget)
+* *Voir les modules en beta (à vos risques et périls)* : permet de voir les plugins, widgets... beta
 * *Faire une sauvegarde avant la mise à jour* : indique à Jeedom de faire un backup avant chaque mise à jour
-* *Mettre à jour automatiquement* : autorise Jeedom à se mettre à Jour automatiquement (non recommandé)
+* *Mettre à jour automatiquement* : autorise Jeedom à se mettre à jour automatiquement (non recommandé)
 * *Branche* : permet de changer la version de Jeedom (developpement = beta)
