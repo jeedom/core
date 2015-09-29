@@ -44,7 +44,7 @@ class plugin {
 	/*     * ***********************Méthodes statiques*************************** */
 
 	public static function byId($_id, $_translate = true) {
-		if (isset(self::$_cache[$_id])) {
+		if (is_string($_id) && isset(self::$_cache[$_id])) {
 			return self::$_cache[$_id];
 		}
 		if (!file_exists($_id) || strpos($_id, '.xml') === false) {

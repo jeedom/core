@@ -240,6 +240,15 @@ class interactQuery {
 		return $reply[$random];
 	}
 
+	public static function doIn($_params) {
+		$interactQuery = self::byId($_params['interactQuery_id']);
+		if (!is_object($interactQuery)) {
+			return;
+		}
+		$_params['execNow'] = 1;
+		$interactQuery->executeAndReply($_params);
+	}
+
 /*     * *********************Méthodes d'instance************************* */
 
 	public function save() {
@@ -268,12 +277,57 @@ class interactQuery {
 				return __('Vous n\'êtes pas autorisé à exécuter cette action', __FILE__);
 			}
 		}
+		$reply = $interactDef->selectReply();
 		$replace = array();
 		$tags = interactDef::getTagFromQuery($this->getQuery(), $_parameters['dictation']);
 		$tags_replace = array();
 		foreach ($tags as $key => $value) {
 			$tags_replace['#' . $key . '#'] = $value;
+			$replace['#' . $key . '#'] = $value;
 		}
+		$executeDate = null;
+		if (isset($tags_replace['#duration#'])) {
+			$tags_replace['#duration#'] = str_replace(array('heures', 'heure'), array('hours', 'hour'), $tags_replace['#duration#']);
+			$executeDate = strtotime('+' . $tags_replace['#duration#']);
+		}
+		if (isset($tags_replace['#time#'])) {
+			$time = str_replace(array('h'), array(':'), $tags_replace['#time#']);
+			if (strlen($time) == 2) {
+				$time .= ':00';
+			} else if (strlen($time) == 3) {
+				$time .= '00';
+			}
+			$executeDate = strtotime($time);
+
+		}
+		if ($executeDate !== null && !isset($_parameters['execNow'])) {
+			if (date('Y', $executeDate) < 2000) {
+				return __('Erreur impossible de calculer la date de programmation', __FILE__);
+			}
+			if ($executeDate < (strtotime() + 60)) {
+				$executeDate = strtotime() + 60;
+			}
+			$crons = cron::searchClassAndFunction('interactQuery', 'doIn', '"interactQuery_id":' . $this->getId());
+			if (is_array($crons)) {
+				foreach ($crons as $cron) {
+					if ($cron->getState() != 'run') {
+						$cron->remove();
+					}
+				}
+			}
+			$cron = new cron();
+			$cron->setClass('interactQuery');
+			$cron->setFunction('doIn');
+			$cron->setOption(array_merge(array('interactQuery_id' => intval($this->getId())), $_parameters));
+			$cron->setLastRun(date('Y-m-d H:i:s'));
+			$cron->setOnce(1);
+			$cron->setSchedule(date('i', $executeDate) . ' ' . date('H', $executeDate) . ' ' . date('d', $executeDate) . ' ' . date('m', $executeDate) . ' * ' . date('Y', $executeDate));
+			$cron->save();
+			$replace['#value#'] = date('Y-m-d H:i:s', $executeDate);
+			$result = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
+			return $result;
+		}
+
 		$colors = config::byKey('convertColor');
 		foreach ($this->getActions('cmd') as $action) {
 			try {
@@ -314,7 +368,7 @@ class interactQuery {
 				log::add('interact', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
 			}
 		}
-		$reply = $interactDef->selectReply();
+
 		$replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
 		if ($interactDef->getOptions('convertBinary') != '') {
 			$convertBinary = $interactDef->getOptions('convertBinary');
