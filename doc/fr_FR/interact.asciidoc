@@ -154,12 +154,12 @@ image::../images/interact22.JPG[]
 
 === Programmation d'une action avec les intéractions
 
-Les intéractions permettent de faire beaucoup de chose ne particulier vous pouvez programmer dynamiquement une action. Exemple : "Met le chauffage à 22 pour 14h50". Pour cela rien de plus il suffit d'utiliser les tags #time# (si on défini une heure précise) ou  #duration# (pour dans X temps, exemple dans 1 heure) : 
+Les intéractions permettent de faire beaucoup de chose ne particulier vous pouvez programmer dynamiquement une action. Exemple : "Met le chauffage à 22 pour 14h50". Pour cela rien de plus il suffit d'utiliser les tags \#time# (si on défini une heure précise) ou  \#duration# (pour dans X temps, exemple dans 1 heure) : 
 
 image::../images/interact23.JPG[]
 
 [NOTE]
-Vous remarquerez dans la réponse le tag #value# celui-ci contient dans le cas d'une intéraction programmé l'heure de programmation effective
+Vous remarquerez dans la réponse le tag \#value# celui-ci contient dans le cas d'une intéraction programmé l'heure de programmation effective
 
 Voila le résultat : 
 
