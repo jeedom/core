@@ -140,11 +140,16 @@ class interactQuery {
 			}
 
 		}
-		if (str_word_count($_query) == 1 && $shortest > 1) {
-			log::add('interact', 'debug', 'Correspondance trop éloigné (limite à 1 du à la presence d\'un seul mots) : ' . $shortest);
+		if (str_word_count($_query) == 1 && config::byKey('interact::confidence1') > 0 && $shortest > config::byKey('interact::confidence1')) {
+			log::add('interact', 'debug', 'Correspondance trop éloigné : ' . $shortest);
 			return null;
-		}
-		if (config::byKey('interact::confidence') > 0 && $shortest > config::byKey('interact::confidence')) {
+		} else if (str_word_count($_query) == 2 && config::byKey('interact::confidence2') > 0 && $shortest > config::byKey('interact::confidence2')) {
+			log::add('interact', 'debug', 'Correspondance trop éloigné : ' . $shortest);
+			return null;
+		} else if (str_word_count($_query) == 3 && config::byKey('interact::confidence3') > 0 && $shortest > config::byKey('interact::confidence3')) {
+			log::add('interact', 'debug', 'Correspondance trop éloigné : ' . $shortest);
+			return null;
+		} else if (str_word_count($_query) > 3 && config::byKey('interact::confidence') > 0 && $shortest > config::byKey('interact::confidence')) {
 			log::add('interact', 'debug', 'Correspondance trop éloigné : ' . $shortest);
 			return null;
 		}
