@@ -157,5 +157,4 @@ image::../images/administration10.png[]
 * *Installer automatiquement les widgets manquants* : autorise Jeedom à installer automatiquement les widgets manquant (il faut le plugin widget)
 * *Voir les modules en beta (à vos risques et périls)* : permet de voir les plugins,widgets... beta
 * *Faire une sauvegarde avant la mise à jour* : indique à Jeedom de faire un backup avant chaque mise à jour
-* *Mettre à jour automatiquement* : autorise Jeedom à se mettre à Jour automatiquement (non recommandé)
 * *Branche* : permet de changer la version de Jeedom (developpement = beta)

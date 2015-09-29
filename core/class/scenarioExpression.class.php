@@ -776,49 +776,56 @@ class scenarioExpression {
 			$replace1 = array_merge($replace1, $_scenario->getTags());
 		}
 		$replace2 = array();
-		preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
-		foreach ($matches as $match) {
-			$function = $match[1];
-			$replace_string = $match[0];
-			if (substr_count($match[2], '(') != substr_count($match[2], ')')) {
-				$pos = strpos($_expression, $match[2]) + strlen($match[2]);
-				while (substr_count($match[2], '(') > substr_count($match[2], ')')) {
-					$match[2] .= $_expression[$pos];
-					$pos++;
-					if ($pos > strlen($_expression)) {
-						break;
+		if (is_string($_expression)) {
+			preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
+			if (is_array($matches)) {
+				foreach ($matches as $match) {
+					$function = $match[1];
+					$replace_string = $match[0];
+					if (substr_count($match[2], '(') != substr_count($match[2], ')')) {
+						$pos = strpos($_expression, $match[2]) + strlen($match[2]);
+						while (substr_count($match[2], '(') > substr_count($match[2], ')')) {
+							$match[2] .= $_expression[$pos];
+							$pos++;
+							if ($pos > strlen($_expression)) {
+								break;
+							}
+						}
+						$arguments = self::setTags($match[2], $_scenario, $_quote, $_nbCall++);
+						$result = str_replace($match[2], $arguments, $_expression);
+						while (substr_count($result, '(') > substr_count($result, ')')) {
+							$result .= ')';
+						}
+						$result = self::setTags($result, $_scenario, $_quote, $_nbCall++);
+						return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), $result), $_quote);
+					} else {
+						$arguments = explode(',', $match[2]);
 					}
-				}
-				$arguments = self::setTags($match[2], $_scenario, $_quote, $_nbCall++);
-				$result = str_replace($match[2], $arguments, $_expression);
-				while (substr_count($result, '(') > substr_count($result, ')')) {
-					$result .= ')';
-				}
-				$result = self::setTags($result, $_scenario, $_quote, $_nbCall++);
-				return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), $result), $_quote);
-			} else {
-				$arguments = explode(',', $match[2]);
-			}
-			if (method_exists(__CLASS__, $function)) {
-				if ($function == 'trigger') {
-					if (!isset($arguments[0])) {
-						$arguments[0] = '';
+					if (method_exists(__CLASS__, $function)) {
+						if ($function == 'trigger') {
+							if (!isset($arguments[0])) {
+								$arguments[0] = '';
+							}
+							$replace2[$replace_string] = self::trigger($arguments[0], $_scenario, $_quote);
+						} else {
+							$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
+						}
+					} else {
+						if (function_exists($function)) {
+							foreach ($arguments as &$argument) {
+								$argument = evaluate(self::setTags($argument, $_scenario, $_quote));
+							}
+							$replace2[$replace_string] = call_user_func_array($function, $arguments);
+						}
 					}
-					$replace2[$replace_string] = self::trigger($arguments[0], $_scenario, $_quote);
-				} else {
-					$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
-				}
-			} else {
-				if (function_exists($function)) {
-					foreach ($arguments as &$argument) {
-						$argument = evaluate(self::setTags($argument, $_scenario, $_quote));
-					}
-					$replace2[$replace_string] = call_user_func_array($function, $arguments);
-				}
-			}
 
+				}
+			}
+		} else {
+			log::add('scenario', 'debug', print_r($_expression, true));
 		}
 		return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)), $_quote);
+
 	}
 
 	public static function createAndExec($_type, $_cmd, $_options) {
@@ -855,7 +862,9 @@ class scenarioExpression {
 			}
 			if (is_array($options) && $this->getExpression() != 'wait') {
 				foreach ($options as $key => $value) {
-					$options[$key] = str_replace('"', '', self::setTags($value, $scenario));
+					if (is_string($value)) {
+						$options[$key] = str_replace('"', '', self::setTags($value, $scenario));
+					}
 				}
 			}
 			if ($this->getType() == 'action') {
@@ -980,10 +989,13 @@ class scenarioExpression {
 					switch ($this->getOptions('action')) {
 						case 'start':
 							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
+							if (isset($options['tags'])) {
+								$actionScenario->setTags($options['tags']);
+							}
 							if ($scenario != null) {
-								$actionScenario->launch(false, __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName());
+								return $actionScenario->launch(false, __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName());
 							} else {
-								$actionScenario->launch(false, __('Lancement provoqué', __FILE__));
+								return $actionScenario->launch(false, __('Lancement provoqué', __FILE__));
 							}
 							break;
 						case 'stop':

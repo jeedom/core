@@ -48,17 +48,6 @@ try {
 		$result = utils::o2a(interactDef::byId(init('id')));
 		$result['nbInteractQuery'] = count(interactQuery::byInteractDefId($result['id']));
 		$result['nbEnableInteractQuery'] = count(interactQuery::byInteractDefId($result['id'], true));
-		if ($result['link_type'] == 'cmd' && $result['link_id'] != '') {
-			$link_id = '';
-			foreach (explode('&&', $result['link_id']) as $cmd_id) {
-				$cmd = cmd::byId($cmd_id);
-				if (is_object($cmd)) {
-					$link_id .= cmd::cmdToHumanReadable('#' . $cmd->getId() . '# && ');
-				}
-
-			}
-			$result['link_id'] = trim(trim($link_id), '&&');
-		}
 		ajax::success(jeedom::toHumanReadable($result));
 	}
 
@@ -115,77 +104,6 @@ try {
 
 	if (init('action') == 'execute') {
 		ajax::success(interactQuery::tryToReply(init('query')));
-	}
-
-	if (init('action') == 'test') {
-		$return = array();
-		$interactQuery = interactQuery::recognize(init('query'));
-		if ($interactQuery == null) {
-			ajax::success(array('interactQuery' => null));
-		}
-		$interactDef = interactDef::byId($interactQuery->getInteractDef_id());
-		$return['interactQuery'] = utils::o2a($interactQuery);
-		if ($interactQuery->getLink_type() == 'cmd') {
-			$return['cmd'] = '';
-			foreach (explode('&&', $interactQuery->getLink_id()) as $cmd_id) {
-				$cmd = cmd::byId($cmd_id);
-				if (is_object($cmd)) {
-					$return['cmd'] .= '#' . $cmd->getHumanName() . '# && ';
-				}
-			}
-			$return['cmd'] = trim($return['cmd'], '&& ');
-
-			$return['options'] = interactDef::getTagFromQuery($interactQuery->getQuery(), init('query'));
-			$reply = $interactDef->selectReply();
-			if (trim($reply) == '') {
-				$reply = interactQuery::replyOk();
-			}
-			$return['reply'] = $reply;
-		}
-		if ($interactQuery->getLink_type() == 'whatDoYouKnow') {
-			$object = object::byId($interactQuery->getLink_id());
-			if (is_object($object)) {
-				$reply = interactQuery::whatDoYouKnow($object);
-				if (trim($reply) == '') {
-					$return['reply'] = __('Je ne sais rien sur ', __FILE__) . $object->getName();
-				}
-				$return['reply'] = $reply;
-			}
-			$return['reply'] = interactQuery::whatDoYouKnow();
-		}
-		if ($interactQuery->getLink_type() == 'scenario') {
-			$return['scenario'] = '';
-			$scenario = scenario::byId($interactQuery->getLink_id());
-			if (!is_object($scenario)) {
-				$return['scenario'] = __('Impossible de trouver le scénario correspondant', __FILE__);
-			}
-			$return['options'] = interactDef::getTagFromQuery($interactQuery->getQuery(), init('query'));
-			$return['scenario'] = '#' . $scenario->getHumanName() . '#';
-			switch ($interactDef->getOptions('scenario_action')) {
-				case 'start':
-					$return['action'] = __('lancer', __FILE__);
-					break;
-				case 'stop':
-					$return['action'] = __('arrêter', __FILE__);
-					break;
-				case 'activate':
-					$return['action'] = __('activer', __FILE__);
-					break;
-				case 'deactivate':
-					$return['action'] = __('désactiver', __FILE__);
-					break;
-				default:
-					$return['action'] = __('erreur', __FILE__);
-					break;
-			}
-			$reply = $interactDef->selectReply();
-			if (trim($reply) == '') {
-				$reply = interactQuery::replyOk();
-			}
-			$return['reply'] = $reply;
-		}
-
-		ajax::success($return);
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));

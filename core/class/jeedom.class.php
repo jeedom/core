@@ -31,7 +31,7 @@ class jeedom {
 			echo "Desactivation de toutes les tâches";
 			config::save('enableCron', 0);
 			foreach (cron::all() as $cron) {
-				if ($cron->running() && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
+				if ($cron->running()) {
 					try {
 						$cron->halt();
 						echo '.';
@@ -484,16 +484,9 @@ class jeedom {
 							$toUpdate .= $update->getLogicalId() . ',';
 						}
 					}
-					if (config::byKey('update::auto') == 1) {
-						if (count($updates) > 0) {
-							message::add('update', __('J\'ai appliqué les mises à jour suivantes : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
-						}
-						jeedom::update('', 0);
-					} else {
-						$updates = update::byStatus('update');
-						if (count($updates) > 0) {
-							message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
-						}
+					$updates = update::byStatus('update');
+					if (count($updates) > 0) {
+						message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
 					}
 					config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
 				}

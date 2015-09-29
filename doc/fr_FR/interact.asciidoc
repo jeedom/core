@@ -35,13 +35,6 @@ Ici vous pouvez :
 ** *Réponse* : la reponse à fournir
 ** *Conversion binaire* : permet de convertir les valeurs binaire en ouvert/fermé par exemple
 ** *Utilisateur autorisés* : limite l'interaction à certain utilisateur (les logins séparé par des |)
-* *Action*
-** *Type d'action* : le type d'action, peut etre commande, scénario, que sais-tu ou aucun
-** *Commande/Scénario* : option en fonction du type de la commande, en mode commande il est possible d'en mettre plusieurs séparé par des &&
-* *Phrases générées*
-** *Phrases générées* : affiche toute les phrases générées pour l'intéraction
-** *Nombre de phrases générées* : nombre de phrases générées
-** *Nombre de phrases actives* : nom de phrases active
 * *Filtres*
 ** *Limiter aux commandes de type* : permet de filtrer sur les actions ou infos seulement
 ** *Limiter aux commandes ayant pour sous-type* : permet de limiter la génération à un sous-type
@@ -50,6 +43,9 @@ Ici vous pouvez :
 ** *Limiter à l'équipement* : permet de limiter la génération à un équipement
 ** *Limiter au plugin* : permet de limiter la génération à un plugin
 ** *Limiter à la catégorie* : permet de limiter la génération à une catégorie
+* *Action* : à utiliser si vous voulez cibler une ou plusieurs commande(s) spécifique(s) ou passer des paramètre particulier
+* *Phrases générées*
+** *Nombre de phrases générées* : nombre de phrases générées
 
 == Exemples
 
@@ -61,7 +57,7 @@ Ici vous pouvez :
 
 image::../images/interact2.JPG[]
 
-Ici on peut voir la case la question, ensuite en dessous on voit la conversion du binaire en phrase (sinon Jeedom répondrait "1" ou "0"), puis dans la case en haut à droite la réponse avec "\#valeur#" étant remplacée lors de la réponse. Ensuite dans la colonne type on voit le type de l’ordre, puis la commande à exécuter pour avoir la réponse à la question. Enfin tout à droite on voit bien qu’il y a une seule phrase de générée. 
+Ici on peut voir la case la question, ensuite en dessous on voit la conversion du binaire en phrase (sinon Jeedom répondrait "1" ou "0"), puis dans la case en haut à droite la réponse avec "\#valeur#" étant remplacée lors de la réponse. Ensuite on voit la commande à exécuter pour avoir la réponse à la question. Enfin tout à droite on voit bien qu’il y a une seule phrase de générée. 
 
 === Connaitre la température/huminité/luminosité
 
@@ -72,14 +68,7 @@ Plus compliqué maintenant, on voit bien que là pour chaque commande il faut to
 
 image::../images/interact3.JPG[]
 
-Il suffit donc de remplir les champs comme ci-dessus. Pour vérifier le résultat il suffit de cliquer sur le nombre de phrases générées pour toutes les voir :
-
-image::../images/interact4.JPG[]
-
-On peut voir ici tout en haut "Quelle est la température du salon", à partir de cet écran on peut aussi désactiver certaines phrases générées (permet d’éviter les faux positifs).
-
-[IMPORTANT]
-A moins d'avoir des faux positif (phrase reconnu non correcte) il n'est pas recommandé de désactiver les phrases grammaticalement incorrect car elles aident quand meme Jeedom à reconnaitre la demande
+Il suffit donc de remplir les champs comme ci-dessus.
 
 === Combien fait-il dans le salon
 
@@ -91,23 +80,7 @@ Dernier exemple l’utilisation de filtre. "Quelle est la température du salon"
 
 image::../images/interact5.JPG[]
 
-On a donc au dessus le résultat avec un filtre sur les commandes ayant pour unité °C. On peut aussi regarder les phrases générées :
-
-image::../images/interact7.JPG[]
-
-On voit bien ici que j’ai les phrases que je souhaitais.
-
-=== Que sais-tu ?
-
-Le type de commande que sais-tu est un peu particulier il permet à Jeedom de vous dire tous ce qu'il sait sur l'ensemble de votre domotique ou sur un objet particulier, voici un exemple : 
-
-image::../images/interact8.JPG[]
-
-Et voila le résulat (à travers le plugin Slack) : 
-
-image::../images/interact9.JPG[]
-
-Comme on peut le voir c'est assez complet car Jeedom dis tous ce qu'il sait mais ca peut etre utile pour tout avoir d'un coup
+On a donc au dessus le résultat avec un filtre sur les commandes ayant pour unité °C.
 
 === Réponse composé de plusieurs commandes
 
@@ -119,11 +92,14 @@ On voit ici que j'ai mit 2 commandes dans la réponse sans rien préciser dans l
 
 === Piloter un dimmer ou un thermostat (slider)
 
-Il est possible de piloter une lampe en pourcentage ou un themrostat avec les interactions. Voici un exemple pour piloter son themrostat au travers des intérations : 
+Il est possible de piloter une lampe en pourcentage ou un themrostat avec les interactions. Voici un exemple pour piloter son thermostat au travers des intérations : 
 
 image::../images/interact19.JPG[]
 
-Jeedom va ici rechercher le premier chiffre (il ne doit donc pas etre écris en toute lettre) et l'appliquer à la commande (ici thermostat)
+Comme on le voit il y ici dans la demande le tag #consigne# (on peut mettre ce que l'on veut) qui est repris dans la commande du thermostat pour passer la valeur voulu
+
+[NOTE]
+On peut utiliser n'importe quel tag, il peut en avoir plusieurs pour piloter par exemple plusieurs commandes. A noter aussi que tous les tags sont passé aux scénario que l'interaction lance (il faut toute fois que le scénario soit en "Exécuter en avant plan")
 
 === Piloter la couleur d'un bandeau de LED
 
@@ -137,17 +113,11 @@ image::../images/interact14.JPG[]
 
 Dans le tableau vous pouvez ajouter des nom de couleur et la correspondance de la couleur pour Jeedom.
 
-Avec ceci si vous dite "Allume la salle de bain en vert", Jeedom va rechercher dans la demande une couleur et l'appliquer à la commande
-
-=== Executer plusieurs commande
-
-Voici une interaction qui permet par exemple d'eteindre 3 lumieres : 
-
-image::../images/interact20.JPG[]
+Avec ceci si vous dite "Allume la chambre en vert", Jeedom va rechercher dans la demande une couleur et l'appliquer à la commande
 
 === Utilisation couplé a un scénario
 
-Il est possible de coupler un scénario a une interaction et de generer la reponse avec le scénario (cela permet de changer la reponse en fonction de different paramètres). Voici un exemple d'interaction : 
+Il est possible de coupler un scénario à une interaction et de générer la réponse avec le scénario (cela permet de changer la réponse en fonction de différent paramètres). Voici un exemple d'intéraction : 
 
 image::../images/interact15.JPG[]
 
@@ -159,12 +129,28 @@ image::../images/interact16.JPG[]
 
 Ici assez simple aussi un scénario tout simple avec aucun déclencheur et un simple test sur la témpérature, et une action de type return qui indique la phrase de reponse à l'interaction (seule un déclenchement sur interaction utilise l'action return sinon elle ne sert à rien)
 
+[IMPORTANT]
+Il faut absokument que le scénario soit en "Exécuter en avant plan"
+
 Et voila le retour (a travers Slack) : 
 
 image::../images/interact17.JPG[]
 
 [TIP]
 Il est possible de recuperer dans le scénario la demande qui a déclenché celui-ci à l'aide du tag \#query#
+
+=== Utilisation couplé a un scénario avec passage de tags
+
+Lors de l'utilisation de tags dans la demande ceux-ci sont automatiquement passé aux scénario.
+
+[IMPORTANT]
+Il faut absokument que le scénario soit en "Exécuter en avant plan". Voila un exemple : 
+
+image::../images/interact21.JPG[]
+
+Et la scénario qui va avec : 
+
+image::../images/interact22.JPG[]
 
 == Tester
 

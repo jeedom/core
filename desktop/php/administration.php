@@ -928,12 +928,6 @@ foreach (plugin::listPlugin(true) as $plugin) {
                                 <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="update::backupBefore"/>
                             </div>
                         </div>
-                        <div class="form-group expertModeVisible has-error">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mettre à jour automatiquement}}</label>
-                            <div class="col-sm-1">
-                                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="update::auto"/>
-                            </div>
-                        </div>
                         <div class="form-group">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Branche}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">

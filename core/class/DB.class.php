@@ -133,6 +133,18 @@ class DB {
 		}
 	}
 
+	public function beginTransaction() {
+		self::getConnection()->beginTransaction();
+	}
+
+	public function commit() {
+		self::getConnection()->commit();
+	}
+
+	public function rollBack() {
+		self::getConnection()->rollBack();
+	}
+
 	/**
 	 * Saves an entity inside the repository. If the entity is new a new row
 	 * will be created. If the entity is not new the row will be updated.

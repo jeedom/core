@@ -50,24 +50,24 @@ if(!isset(userProfils.interactMenuSize) || userProfils.interactMenuSize > 0){
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
     $('#div_listInteract').hide();
     $('#bt_displayInteractList').on('mouseenter',function(){
-     var timer = setTimeout(function(){
+       var timer = setTimeout(function(){
         $('#div_listInteract').show();
         $('#bt_displayInteractList').find('i').hide();
         $('.interactListContainer').packery();
     }, 100);
-     $(this).data('timerMouseleave', timer)
- }).on("mouseleave", function(){
-  clearTimeout($(this).data('timerMouseleave'));
-});
+       $(this).data('timerMouseleave', timer)
+   }).on("mouseleave", function(){
+      clearTimeout($(this).data('timerMouseleave'));
+  });
 
- $('#div_listInteract').on('mouseleave',function(){
-   var timer = setTimeout(function(){
-    $('#div_listInteract').hide();
-    $('#bt_displayInteractList').find('i').show();
-    $('.interactListContainer').packery();
-}, 300);
-   $(this).data('timerMouseleave', timer);
-}).on("mouseenter", function(){
+   $('#div_listInteract').on('mouseleave',function(){
+     var timer = setTimeout(function(){
+        $('#div_listInteract').hide();
+        $('#bt_displayInteractList').find('i').show();
+        $('.interactListContainer').packery();
+    }, 300);
+     $(this).data('timerMouseleave', timer);
+ }).on("mouseenter", function(){
   clearTimeout($(this).data('timerMouseleave'));
 });
 }
@@ -113,29 +113,6 @@ $('.interactDisplayCard').on('click',function(){
     displayInteract($(this).attr('data-interact_id'));
 });
 
-
-function displayInteract(_id){
-    $('#div_conf').show();
-    $('#interactThumbnailDisplay').hide();
-    $('.li_interact').removeClass('active');
-    $('.li_interact[data-interact_id='+_id+']').addClass('active');
-    jeedom.interact.get({
-        id: _id,
-        success: function (data) {
-            $('.interactAttr').value('');
-            $(".interactAttr[data-l1key=link_type]").off();
-            $('.interact').setValues(data, '.interactAttr');
-            if(!isset(data.link_type) || data.link_type == undefined || data.link_type == ''){
-                data.link_type = 'cmd';
-            }
-            changeLinkType(data);
-            $(".interactAttr[data-l1key=link_type]").on('change', function () {
-                changeLinkType({link_type: $(this).value()});
-            });
-        }
-    });
-}
-
 $('#bt_duplicate').on('click', function () {
     bootbox.prompt("Nom ?", function (result) {
         if (result !== null) {
@@ -161,20 +138,9 @@ if (is_numeric(getUrlVars('id'))) {
     }
 }
 
-$('.displayInteracQuery').on('click', function () {
-    $('#md_modal').dialog({title: "{{Liste des interactions}}"});
-    $('#md_modal').load('index.php?v=d&modal=interact.query.display&interactDef_id=' + $('.interactAttr[data-l1key=id]').value()).dialog('open');
-});
-
 $('#bt_testInteract,#bt_testInteract2').on('click', function () {
     $('#md_modal').dialog({title: "{{Tester les interactions}}"});
     $('#md_modal').load('index.php?v=d&modal=interact.test').dialog('open');
-});
-
-$('body').delegate('.listEquipementInfo', 'click', function () {
-    jeedom.cmd.getSelectModal({}, function (result) {
-        $('.interactAttr[data-l1key=link_id]').atCaret('insert',result.human);
-    });
 });
 
 $('body').delegate('.listEquipementInfoReply', 'click', function () {
@@ -189,13 +155,16 @@ jwerty.key('ctrl+s', function (e) {
 });
 
 $("#bt_saveInteract").on('click', function () {
+    var interact = $('.interact').getValues('.interactAttr')[0];
+    interact.actions = {};
+    interact.actions.cmd = $('#div_action .action').getValues('.expressionAttr');
     jeedom.interact.save({
-        interact: $('.interact').getValues('.interactAttr')[0],
+        interact: interact,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-            window.location.replace('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
+            displayInteract(data.id);
         }
     });
 });
@@ -203,16 +172,16 @@ $("#bt_saveInteract").on('click', function () {
 
 $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
     bootbox.confirm('{{Etes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?}}', function (result) {
-     if (result) {
+       if (result) {
         jeedom.interact.regenerateInteract({
             interact: {query: result},
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
-             $('#div_alert').showAlert({message: '{{Toutes les interations ont été regénérées}}', level: 'success'});
-         }
-     });
+               $('#div_alert').showAlert({message: '{{Toutes les interations ont été regénérées}}', level: 'success'});
+           }
+       });
     }
 });
 });
@@ -254,67 +223,79 @@ $("#bt_removeInteract").on('click', function () {
     }
 });
 
-function changeLinkType(_options) {
-    $('#linkOption').empty();
-    $('.interactAttr[data-l1key=reply]').closest('.form-group').show();
-    $('#div_filtre').show();
-    $('.interactAttr[data-l1key=options][data-l2key=convertBinary]').closest('.form-group').show();
-    $('.interactAttr[data-l1key=options][data-l2key=synonymes]').closest('.form-group').show();
-    if (_options.link_type == 'whatDoYouKnow') {
-        $('.interactAttr[data-l1key=options][data-l2key=convertBinary]').closest('.form-group').hide();
-        $('.interactAttr[data-l1key=options][data-l2key=synonymes]').closest('.form-group').hide();
-        $('.interactAttr[data-l1key=reply]').closest('.form-group').hide();
-        $('#div_filtre').hide();
-    }
-    if (_options.link_type == 'cmd') {
-        var options = '<div class="form-group">';
-        options += '<label class="col-sm-3 control-label">{{Commande}}</label>';
-        options += '<div class="col-sm-9">';
-        options += '<div class="input-group">';
-        options += '<input class="interactAttr form-control" data-l1key="link_id"/>';
-        options += '<span class="input-group-btn">';
-        options += '<a class="btn btn-default cursor listEquipementInfo"><i class="fa fa-list-alt "></i></a>';
-        options += '</span>';
-        options += '</div>';
-        options += '</div>';
-        options += '</div>';
-        $('#linkOption').empty().append(options);
-    }
-    if (_options.link_type == 'scenario') {
-        jeedom.scenario.all({
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (scenarios) {
-                var options = '<div class="form-group">';
-                options += '<label class="col-sm-3 control-label">{{Scénario}}</label>';
-                options += '<div class="col-sm-9">';
-                options += '<select class="interactAttr form-control input-sm" data-l1key="link_id" style="margin-top : 5px;">';
-                for (var i in scenarios) {
-                    options += '<option value="' + scenarios[i].id + '">' + scenarios[i].humanName + '</option>';
-                }
-                options += '</select>';
-                options += '</div>';
-                options += '</div>';
-                options += '<div class="form-group">';
-                options += '<label class="col-sm-3 control-label">{{Action}}</label>';
-                options += '<div class="col-sm-9">';
-                options += '<select class="interactAttr form-control" data-l1key="options" data-l2key="scenario_action">';
-                options += '<option value="start">{{Start}}</option>';
-                options += '<option value="stop">{{Stop}}</option>';
-                options += '<option value="activate">{{Activer}}</option>';
-                options += '<option value="deactivate">{{Désactiver}}</option>';
-                options += '</select>';
-                options += '</div>';
-                options += '</div>';
-                $('#linkOption').empty().append(options);
-                $('.interactAttr[data-l1key=options][data-l2key=convertBinary]').closest('.form-group').hide();
-                $('#div_filtre').hide();
-                delete _options.link_type;
-                $('.interact').setValues(_options, '.interactAttr');
-            }
+$('#bt_addAction').off('click').on('click',function(){
+    addAction({}, 'action','{{Action}}');
+});
+
+$('body').undelegate(".cmdAction.expressionAttr[data-l1key=cmd]", 'focusout').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', function (event) {
+    var type = $(this).attr('data-type')
+    var expression = $(this).closest('.' + type).getValues('.expressionAttr');
+    var el = $(this);
+    jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function (html) {
+        el.closest('.' + type).find('.actionOptions').html(html);
+    })
+});
+
+$("body").undelegate(".listCmd", 'click').delegate(".listCmd", 'click', function () {
+    var type = $(this).attr('data-type');
+    var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
+    jeedom.cmd.getSelectModal({}, function (result) {
+        el.value(result.human);
+        jeedom.cmd.displayActionOption(el.value(), '', function (html) {
+            el.closest('.' + type).find('.actionOptions').html(html);
         });
+    });
+});
+
+$("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', 'click', function () {
+    var type = $(this).attr('data-type');
+    $(this).closest('.' + type).remove();
+});
+
+function displayInteract(_id){
+    $('#div_conf').show();
+    $('#interactThumbnailDisplay').hide();
+    $('.li_interact').removeClass('active');
+    $('.li_interact[data-interact_id='+_id+']').addClass('active');
+    jeedom.interact.get({
+        id: _id,
+        success: function (data) {
+            $('#div_action').empty();
+            $('.interactAttr').value('');
+            $(".interactAttr[data-l1key=link_type]").off();
+            $('.interact').setValues(data, '.interactAttr');
+            if(isset(data.actions.cmd) && $.isArray(data.actions.cmd) && data.actions.cmd.length != null){
+                for(var i in data.actions.cmd){
+                    addAction(data.actions.cmd[i], 'action','{{Action}}');
+                }
+            }
+        }
+    });
 }
-delete _options.link_type;
-$('.interact').setValues(_options, '.interactAttr');
+
+function addAction(_action, _type, _name) {
+    if (!isset(_action)) {
+        _action = {};
+    }
+    if (!isset(_action.options)) {
+        _action.options = {};
+    }
+    var div = '<div class="' + _type + '">';
+    div += '<div class="form-group ">';
+    div += '<div class="col-sm-5">';
+    div += '<div class="input-group">';
+    div += '<span class="input-group-btn">';
+    div += '<a class="btn btn-default btn-sm bt_removeAction" data-type="' + _type + '"><i class="fa fa-minus-circle"></i></a>';
+    div += '</span>';
+    div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
+    div += '<span class="input-group-btn">';
+    div += '<a class="btn btn-default btn-sm listCmd" data-type="' + _type + '"><i class="fa fa-list-alt"></i></a>';
+    div += '</span>';
+    div += '</div>';
+    div += '</div>';
+    div += '<div class="col-sm-7 actionOptions">';
+    div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options);
+    div += '</div>';
+    $('#div_' + _type).append(div);
+    $('#div_' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
 }
