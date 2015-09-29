@@ -75,13 +75,14 @@ try {
 		if (filesize($_FILES['file']['tmp_name']) > 100000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 100mo)', __FILE__));
 		}
-		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $_FILES['file']['name'])) {
+		$filename = str_replace(array(' ', '(', ')'), '', $_FILES['file']['name']);
+		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $filename)) {
 			throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
 		}
-		if (!file_exists($uploaddir . '/' . $_FILES['file']['name'])) {
+		if (!file_exists($uploaddir . '/' . $filename)) {
 			throw new Exception(__('Impossible d\'uploader le fichier (limite du serveur web ?)', __FILE__));
 		}
-		$logicalId = str_replace(array('.zip', ' '), '', $_FILES['file']['name']);
+		$logicalId = str_replace(array('.zip'), '', $filename);
 		$tmp = $uploaddir . '/' . $logicalId . '.zip';
 		$tmp_dir = $uploaddir . '/' . $logicalId;
 		if (file_exists($tmp_dir)) {
