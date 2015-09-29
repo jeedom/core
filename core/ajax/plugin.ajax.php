@@ -81,10 +81,14 @@ try {
 		if (!file_exists($uploaddir . '/' . $_FILES['file']['name'])) {
 			throw new Exception(__('Impossible d\'uploader le fichier (limite du serveur web ?)', __FILE__));
 		}
-		$logicalId = str_replace('.zip', '', $_FILES['file']['name']);
+		$logicalId = str_replace(array('plugin-', '-master', '.zip'), '', $_FILES['file']['name']);
 		$cibDir = dirname(__FILE__) . '/../../plugins/' . $logicalId;
 		$tmp = $uploaddir . '/' . $logicalId . '.zip';
-
+		$tmp_dir = $uploaddir . '/' . $logicalId;
+		if (file_exists($tmp_dir)) {
+			rrmdir($tmp_dir);
+		}
+		mkdir($tmp_dir);
 		if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
 			throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
 		}
@@ -92,13 +96,22 @@ try {
 		$zip = new ZipArchive;
 		$res = $zip->open($tmp);
 		if ($res === TRUE) {
-			if (!$zip->extractTo($cibDir . '/')) {
+			if (!$zip->extractTo($tmp_dir . '/')) {
 				$content = file_get_contents($tmp);
 				throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
 			}
 			$zip->close();
 			log::add('update', 'update', __("OK\n", __FILE__));
 			log::add('update', 'update', __('Installation de l\'objet...', __FILE__));
+			if (!file_exists($tmp_dir . '/plugin_info')) {
+				log::add('update', 'update', __('Plugin info non trouvé, je le recherche...', __FILE__));
+				$files = ls($tmp_dir, '*');
+				if (count($files) == 1 && file_exists($tmp_dir . $files[0] . '/plugin_info')) {
+					shell_exec('mv ' . $tmp_dir . $files[0] . '/* ' . $tmp_dir);
+					shell_exec('rm -rf ' . $tmp_dir . $files[0]);
+				}
+			}
+			shell_exec('mv ' . $tmp_dir . '/* ' . $cibDir);
 			try {
 				$plugin = plugin::byId($logicalId);
 			} catch (Exception $e) {
