@@ -57,6 +57,7 @@ try {
 	}
 
 	if (init('action') == 'remove') {
+		update::findNewUpdateObject();
 		$update = update::byId(init('id'));
 		if (!is_object($update)) {
 			$update = update::byLogicalId(init('id'));
@@ -79,6 +80,7 @@ try {
 	}
 
 	if (init('action') == 'changeState') {
+		update::findNewUpdateObject();
 		$update = update::byId(init('id'));
 		if (!is_object($update)) {
 			throw new Exception(__('Aucune correspondance pour l\'ID : ' . init('id'), __FILE__));

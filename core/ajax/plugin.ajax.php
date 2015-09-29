@@ -81,17 +81,14 @@ try {
 		if (!file_exists($uploaddir . '/' . $_FILES['file']['name'])) {
 			throw new Exception(__('Impossible d\'uploader le fichier (limite du serveur web ?)', __FILE__));
 		}
-		$logicalId = str_replace(array('plugin-', '-master', '.zip'), '', $_FILES['file']['name']);
-		$cibDir = dirname(__FILE__) . '/../../plugins/' . $logicalId;
+		$logicalId = str_replace(array('.zip', ' '), '', $_FILES['file']['name']);
 		$tmp = $uploaddir . '/' . $logicalId . '.zip';
 		$tmp_dir = $uploaddir . '/' . $logicalId;
 		if (file_exists($tmp_dir)) {
 			rrmdir($tmp_dir);
 		}
 		mkdir($tmp_dir);
-		if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
-			throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
-		}
+
 		log::add('update', 'update', __('Décompression de l\'archive...', __FILE__));
 		$zip = new ZipArchive;
 		$res = $zip->open($tmp);
@@ -106,12 +103,24 @@ try {
 			if (!file_exists($tmp_dir . '/plugin_info')) {
 				log::add('update', 'update', __('Plugin info non trouvé, je le recherche...', __FILE__));
 				$files = ls($tmp_dir, '*');
-				if (count($files) == 1 && file_exists($tmp_dir . $files[0] . '/plugin_info')) {
-					shell_exec('mv ' . $tmp_dir . $files[0] . '/* ' . $tmp_dir);
-					shell_exec('rm -rf ' . $tmp_dir . $files[0]);
+				if (count($files) == 1 && file_exists($tmp_dir . '/' . $files[0] . 'plugin_info')) {
+					shell_exec('mv ' . $tmp_dir . '/' . $files[0] . '* ' . $tmp_dir);
+					rmdir($tmp_dir . '/' . $files[0]);
+					log::add('update', 'update', __('OK', __FILE__));
 				}
 			}
-			shell_exec('mv ' . $tmp_dir . '/* ' . $cibDir);
+			if (file_exists($tmp_dir . '/plugin_info/info.xml')) {
+				log::add('update', 'update', __('Fichier info.xml trouvé', __FILE__));
+				libxml_use_internal_errors(true);
+				$plugin_xml = @simplexml_load_file($tmp_dir . '/plugin_info/info.xml');
+				$logicalId = $plugin_xml->id;
+			}
+			$cibDir = dirname(__FILE__) . '/../../plugins/' . $logicalId;
+			if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
+				throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
+			}
+			rcopy($tmp_dir, $cibDir);
+			rmdir($tmp_dir);
 			try {
 				$plugin = plugin::byId($logicalId);
 			} catch (Exception $e) {
