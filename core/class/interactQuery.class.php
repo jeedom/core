@@ -291,8 +291,14 @@ class interactQuery {
 			$replace['#' . $key . '#'] = $value;
 		}
 		$executeDate = null;
+		$dateConvert = array(
+			'heure' => 'hour',
+			'mois' => 'month',
+			'semaine' => 'week',
+			'année' => 'year',
+		);
 		if (isset($tags_replace['#duration#'])) {
-			$tags_replace['#duration#'] = str_replace(array('heures', 'heure'), array('hours', 'hour'), $tags_replace['#duration#']);
+			$tags_replace['#duration#'] = str_replace(array_keys($dateConvert), $dateConvert, $tags_replace['#duration#']);
 			$executeDate = strtotime('+' . $tags_replace['#duration#']);
 		}
 		if (isset($tags_replace['#time#'])) {
@@ -303,7 +309,9 @@ class interactQuery {
 				$time .= '00';
 			}
 			$executeDate = strtotime($time);
-
+			if ($executeDate < strtotime()) {
+				$executeDate += 3600;
+			}
 		}
 		if ($executeDate !== null && !isset($_parameters['execNow'])) {
 			if (date('Y', $executeDate) < 2000) {
