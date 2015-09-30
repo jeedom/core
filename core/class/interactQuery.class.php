@@ -309,7 +309,7 @@ class interactQuery {
 				$time .= '00';
 			}
 			$executeDate = strtotime($time);
-			if ($executeDate < strtotime()) {
+			if ($executeDate < strtotime('now')) {
 				$executeDate += 3600;
 			}
 		}
@@ -317,8 +317,8 @@ class interactQuery {
 			if (date('Y', $executeDate) < 2000) {
 				return __('Erreur impossible de calculer la date de programmation', __FILE__);
 			}
-			if ($executeDate < (strtotime() + 60)) {
-				$executeDate = strtotime() + 60;
+			if ($executeDate < (strtotime('now') + 60)) {
+				$executeDate = strtotime('now') + 60;
 			}
 			$crons = cron::searchClassAndFunction('interactQuery', 'doIn', '"interactQuery_id":' . $this->getId());
 			if (is_array($crons)) {
