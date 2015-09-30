@@ -135,6 +135,10 @@ class log {
 	 * @return string Ligne du fichier de log
 	 */
 	public static function get($_log = 'core', $_begin, $_nbLines) {
+		$replace = array(
+			'&gt;' => '>',
+			'&apos;' => '',
+		);
 		self::chunk($_log);
 		$page = array();
 		if (!file_exists($_log) || !is_file($_log)) {
@@ -160,7 +164,7 @@ class log {
 						$lineread = array();
 						$lineread[0] = '';
 						$lineread[1] = '';
-						$lineread[2] = htmlspecialchars($line);
+						$lineread[2] = str_replace(array_keys($replace), $replace, htmlspecialchars($line));
 						$lineread[2] = $line;
 						array_unshift($page, $lineread);
 					}
