@@ -94,7 +94,7 @@ echo '<div class="interactListContainer">';
 foreach ($interacts[-1] as $interact) {
 	echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center>";
-	echo '<i class="fa fa-bullhorn" style="font-size : 4em;color:#767676;"></i>';
+	echo '<img src="core/img/interaction.png" height="90" width="85" />';
 	echo "</center>";
 	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $interact->getHumanName() . '</center></span>';
 	echo '</div>';
@@ -108,7 +108,7 @@ foreach ($interactListGroup as $group) {
 		foreach ($interacts[$group['group']] as $interact) {
 			echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 			echo "<center>";
-			echo '<i class="fa fa-bullhorn" style="font-size : 4em;color:#767676;"></i>';
+			echo '<img src="core/img/interaction.png" height="90" width="85" />';
 			echo "</center>";
 			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $interact->getHumanName() . '</center></span>';
 			echo '</div>';
