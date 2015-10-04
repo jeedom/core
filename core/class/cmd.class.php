@@ -1364,7 +1364,10 @@ class cmd {
 		return $this->eventOnly;
 	}
 
-	public function setId($id = '') {
+	public function setId($id = null) {
+		if (trim($id) == '') {
+			$id = null;
+		}
 		$this->id = $id;
 	}
 

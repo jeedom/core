@@ -361,6 +361,9 @@ class update {
 	}
 
 	public function setId($id) {
+		if (trim($id) == '') {
+			$id = null;
+		}
 		$this->id = $id;
 	}
 
