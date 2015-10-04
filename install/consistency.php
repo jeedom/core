@@ -205,10 +205,6 @@ try {
 		}
 		exec('sudo service cron restart');
 	}
-	cache::deleteBySearch('widgetHtml');
-	cache::deleteBySearch('cmdWidgetdashboard');
-	cache::deleteBySearch('cmdWidgetmobile');
-	cache::deleteBySearch('scenarioHtmldashboard');
 	config::save('hardware_name', '');
 
 	if (config::byKey('api') == '') {

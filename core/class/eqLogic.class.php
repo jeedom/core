@@ -450,11 +450,9 @@ class eqLogic {
 		}
 		$hasOnlyEventOnly = $this->hasOnlyEventOnlyCmd();
 		if ($hasOnlyEventOnly) {
-			$sql = 'SELECT `value` FROM cache
-           WHERE `key`="widgetHtml' . $_version . $this->getId() . '"';
-			$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-			if ($result['value'] != '') {
-				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $result['value']);
+			$mc = cache::byKey('widgetHtml' . $_version . $this->getId());
+			if ($mc->getValue() != '') {
+				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 			}
 		}
 		$parameters = $this->getDisplay('parameters');
@@ -533,9 +531,14 @@ class eqLogic {
 	}
 
 	public function emptyCacheWidget() {
-		$sql = 'DELETE FROM cache
-    WHERE `key` LIKE "widgetHtml%' . $this->getId() . '"';
-		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		$mc = cache::byKey('widgetHtmldashboard' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('widgetHtmlmobile' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('widgetHtmlmview' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('widgetHtmldview' . $this->getId());
+		$mc->remove();
 	}
 
 	public function getShowOnChild() {

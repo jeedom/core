@@ -305,6 +305,7 @@ class cmd {
 	}
 
 	public static function collect() {
+		return;
 		$cmd = null;
 		foreach (cache::search('collect') as $cache) {
 			$cmd = self::byId($cache->getValue());
@@ -469,7 +470,7 @@ class cmd {
 				continue;
 			}
 			$mc = cache::byKey('cmd' . $cmd_id);
-			if (!$mc->hasExpired() && $mc->getValue() !== '') {
+			if ($mc->getValue() !== null) {
 				$collectDate = $mc->getOptions('collectDate', $mc->getDatetime());
 				$valueDate = $mc->getOptions('valueDate', $mc->getDatetime());
 				$cmd_value = $mc->getValue();
@@ -717,11 +718,8 @@ class cmd {
 			$cache = 2;
 		}
 		if ($this->getType() == 'info' && $cache != 0) {
-			$mc = cache::byKey('cmd' . $this->getId(), ($cache == 2) ? true : false);
-			if ($cache == 2 || !$mc->hasExpired()) {
-				if ($mc->hasExpired()) {
-					$this->setCollect(1);
-				}
+			$mc = cache::byKey('cmd' . $this->getId());
+			if ($mc->getValue() !== null) {
 				$this->setCollectDate($mc->getOptions('collectDate', $mc->getDatetime()));
 				$this->setValueDate($mc->getOptions('valueDate', $mc->getDatetime()));
 				return $mc->getValue();
@@ -1182,8 +1180,7 @@ class cmd {
 	}
 
 	public function invalidCache() {
-		$mc = cache::byKey('cmd' . $this->getId());
-		$mc->invalid();
+		$mc->remove();
 	}
 
 	public function emptyHistory($_date = '') {
@@ -1315,7 +1312,7 @@ class cmd {
 		if ($collect == 1) {
 			cache::set('collect' . $this->getId(), $this->getId());
 		} else {
-			cache::deleteBySearch('collect' . $this->getId());
+			cache::byKey('collect' . $this->getId())->remove();
 		}
 	}
 
