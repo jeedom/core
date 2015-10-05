@@ -18,11 +18,11 @@
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 class log {
 	/*     * *************************Attributs****************************** */
-
-	private static $logLevel;
 
 	/*     * ***********************Methode static*************************** */
 
@@ -33,17 +33,27 @@ class log {
 	 * @param string $_message message à mettre dans les logs
 	 */
 	public static function add($_log, $_type, $_message, $_logicalId = '') {
-		$_type = strtolower($_type);
-		if ($_log != '' && $_type != '' && trim($_message) != '' && self::isTypeLog($_type)) {
-			$_message = str_replace(";", ',', str_replace("\n", '<br/>', $_message));
-			$path = self::getPathToLog($_log);
-			$message = date("d-m-Y H:i:s") . ' | ' . $_type . ' | ' . $_message . "\r\n";
-			$log = fopen($path, "a+");
-			fputs($log, $message);
-			fclose($log);
-			if ($_type == 'error' && config::byKey('addMessageForErrorLog') == 1) {
-				@message::add($_log, $_message, '', $_logicalId);
-			}
+		$logger = new Logger($_log);
+		$logger->pushHandler(new StreamHandler(self::getPathToLog($_log), config::byKey('log::level')));
+		switch (strtolower($_type)) {
+			case 'debug':
+				$logger->addDebug($_message);
+				break;
+			case 'info':
+				$logger->addInfo($_message);
+				break;
+			case 'notice':
+				$logger->addNotice($_message);
+				break;
+			case 'warning':
+				$logger->addWarning($_message);
+				break;
+			case 'error':
+				$logger->addError($_message);
+				if (config::byKey('addMessageForErrorLog') == 1) {
+					@message::add($_log, $_message, '', $_logicalId);
+				}
+				break;
 		}
 	}
 
@@ -53,33 +63,30 @@ class log {
 			$maxLineLog = 200;
 		}
 		if ($_log != '') {
-			$path = self::getPathToLog($_log);
-			shell_exec('echo "$(tail -n ' . $maxLineLog . ' ' . $path . ')" > ' . $path);
-			@chown($path, 'www-data');
-			@chgrp($path, 'www-data');
-			@chmod($path, 0777);
+			self::chunkLog(self::getPathToLog($_log), $maxLineLog);
 		} else {
 			$logs = ls(dirname(__FILE__) . '/../../log/', '*');
 			foreach ($logs as $log) {
 				$path = dirname(__FILE__) . '/../../log/' . $log;
 				if (is_file($path)) {
-					shell_exec('echo "$(tail -n ' . $maxLineLog . ' ' . $path . ')" > ' . $path);
-					@chown($path, 'www-data');
-					@chgrp($path, 'www-data');
-					@chmod($path, 0777);
+					self::chunkLog($path, $maxLineLog);
 				}
 			}
 			$logs = ls(dirname(__FILE__) . '/../../log/scenarioLog', '*');
 			foreach ($logs as $log) {
 				$path = dirname(__FILE__) . '/../../log/scenarioLog/' . $log;
 				if (is_file($path)) {
-					shell_exec('echo "$(head -n ' . $maxLineLog . ' ' . $path . ')" > ' . $path);
-					@chown($path, 'www-data');
-					@chgrp($path, 'www-data');
-					@chmod($path, 0777);
+					self::chunkLog($path, $maxLineLog);
 				}
 			}
 		}
+	}
+
+	public static function chunkLog($_path, $maxLineLog = 500) {
+		shell_exec('echo "$(head -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+		@chown($_path, 'www-data');
+		@chgrp($_path, 'www-data');
+		@chmod($_path, 0777);
 	}
 
 	public static function getPathToLog($_log = 'core') {
@@ -154,20 +161,9 @@ class log {
 			$log->seek($_begin); //Seek to the begening of lines
 			$linesRead = 0;
 			while ($log->valid() && $linesRead != $_nbLines) {
-				$line = $log->current(); //get current line
-				$explode = explode("|", $line);
-				if (count($explode) == 3) {
-					$explode[2] = secureXSS($explode[2]);
-					array_unshift($page, array_map('trim', $explode));
-				} else {
-					if (trim($line) != '') {
-						$lineread = array();
-						$lineread[0] = '';
-						$lineread[1] = '';
-						$lineread[2] = str_replace(array_keys($replace), $replace, htmlspecialchars($line));
-						$lineread[2] = $line;
-						array_unshift($page, $lineread);
-					}
+				$line = trim($log->current()); //get current line
+				if ($line != '') {
+					array_unshift($page, $line);
 				}
 				$log->next(); //go to next line
 				$linesRead++;
@@ -183,16 +179,6 @@ class log {
 		}
 		$log_file = file($path);
 		return count($log_file);
-	}
-
-	private static function isTypeLog($_type) {
-		if (!is_array(self::$logLevel)) {
-			self::$logLevel = config::byKey('logLevel');
-		}
-		if (!isset(self::$logLevel[$_type]) || self::$logLevel[$_type] == 1) {
-			return true;
-		}
-		return false;
 	}
 
 	public static function liste() {
