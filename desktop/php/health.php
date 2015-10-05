@@ -194,7 +194,7 @@ if (count($cmds) == 0) {
 	echo '<td></td>';
 } else {
 	echo '<td class="alert alert-warning">' . count($cmds) . ' </td>';
-	echo '<td>{{Les commandes info qui ne sont pas en évenement seulement ralentisse fortement l\'affichage de jeedom veuillez contacter les développeurs des plugins : }}';
+	echo '<td>{{Les commandes info qui ne sont pas en évenement seulement ralentissent fortement l\'affichage de jeedom veuillez contacter les développeurs des plugins : }}';
 	$plugins = array();
 	foreach ($cmds as $cmd) {
 		$plugins[$cmd->getEqType()] = $cmd->getEqType();
