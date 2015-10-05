@@ -38,6 +38,11 @@
     }
 });
 
+$('body').delegate('.configKey[data-l1key="cache::engine"]', 'change', function () {
+   $('.cacheEngine').hide();
+   $('.cacheEngine.'+$(this).value()).show();
+});
+
  printWifiList();
 
  $("#bt_genKeyAPI").on('click', function (event) {
