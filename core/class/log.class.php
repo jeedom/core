@@ -25,8 +25,30 @@ use Monolog\Logger;
 
 class log {
 	/*     * *************************Attributs****************************** */
-
+	private static $logger = array();
 	/*     * ***********************Methode static*************************** */
+
+	public static function getLogger($_log) {
+		if (isset(self::$logger[$_log])) {
+			return self::$logger[$_log];
+		}
+		self::$logger[$_log] = new Logger($_log);
+		switch (config::byKey('log::engine')) {
+			case 'StreamHandler':
+				self::$logger[$_log]->pushHandler(new StreamHandler(self::getPathToLog($_log), config::byKey('log::level')));
+				break;
+			case 'SyslogHandler':
+				self::$logger[$_log]->pushHandler(new SyslogHandler(config::byKey('log::level')));
+				break;
+			case 'SyslogUdp':
+				self::$logger[$_log]->pushHandler(new SyslogUdpHandler(config::byKey('log::syslogudphost'), config::byKey('log::syslogudpport')));
+				break;
+			default:
+				self::$logger[$_log]->pushHandler(new StreamHandler(self::getPathToLog($_log), config::byKey('log::level')));
+				break;
+		}
+		return self::$logger[$_log];
+	}
 
 	/**
 	 * Ajoute un message dans les log et fait en sorte qu'il n'y
@@ -35,21 +57,7 @@ class log {
 	 * @param string $_message message à mettre dans les logs
 	 */
 	public static function add($_log, $_type, $_message, $_logicalId = '') {
-		$logger = new Logger($_log);
-		switch (config::byKey('log::engine')) {
-			case 'StreamHandler':
-				$logger->pushHandler(new StreamHandler(self::getPathToLog($_log), config::byKey('log::level')));
-				break;
-			case 'SyslogHandler':
-				$logger->pushHandler(new SyslogHandler(config::byKey('log::level')));
-				break;
-			case 'SyslogUdp':
-				$logger->pushHandler(new SyslogUdpHandler(config::byKey('log::syslogudphost'), config::byKey('log::syslogudpport')));
-				break;
-			default:
-				$logger->pushHandler(new StreamHandler(self::getPathToLog($_log), config::byKey('log::level')));
-				break;
-		}
+		$logger = self::getLogger($_log);
 		switch (strtolower($_type)) {
 			case 'debug':
 				$logger->addDebug($_message);
