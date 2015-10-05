@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v2.1.7 (2015-06-26)
+ * @license Highstock JS v2.1.8 (2015-08-20)
  *
  * (c) 2014 Highsoft AS
  * Authors: Jon Arild Nygard / Oystein Moseng

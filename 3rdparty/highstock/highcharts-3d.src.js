@@ -2,7 +2,7 @@
 // @compilation_level SIMPLE_OPTIMIZATIONS
 
 /**
- * @license Highcharts JS v4.1.7 (2015-06-26)
+ * @license Highcharts JS v4.1.8 (2015-08-20)
  *
  * (c) 2009-2013 Torstein Hønsi
  *
@@ -380,6 +380,18 @@ Highcharts.SVGRenderer.prototype.arc3d = function (shapeArgs) {
 				_args: args	
 			}, {
 				duration: duration,
+				start: function () {
+					var args = arguments,
+						fx = args[0],					
+						elem = fx.elem,
+						end = elem._shapeArgs;
+
+					if (end.fill !== elem.color) {
+						elem.attr({
+							fill: end.fill
+						});
+					}
+				},
 				step: function () {
 					var args = arguments,
 						fx = args[1],
@@ -647,15 +659,16 @@ Highcharts.Chart.prototype.retrieveStacks = function (stacking) {
 /***
 	EXTENSION TO THE AXIS
 ***/
-Highcharts.wrap(Highcharts.Axis.prototype, 'init', function (proceed) {
-	var args = arguments;
-	if (args[1].is3d()) {
-		args[2].tickWidth = Highcharts.pick(args[2].tickWidth, 0);
-		args[2].gridLineWidth = Highcharts.pick(args[2].gridLineWidth, 1);
+Highcharts.wrap(Highcharts.Axis.prototype, 'setOptions', function (proceed, userOptions) {
+	var options;
+	proceed.call(this, userOptions);
+	if (this.chart.is3d()) {
+		options = this.options;
+		options.tickWidth = Highcharts.pick(options.tickWidth, 0);
+		options.gridLineWidth = Highcharts.pick(options.gridLineWidth, 1);
 	}
+});
 
-	proceed.apply(this, [].slice.call(arguments, 1));
-});	
 Highcharts.wrap(Highcharts.Axis.prototype, 'render', function (proceed) {
 	proceed.apply(this, [].slice.call(arguments, 1));
 
@@ -774,9 +787,9 @@ Highcharts.wrap(Highcharts.Axis.prototype, 'getPlotLinePath', function (proceed)
 	return path;
 });
 
-Highcharts.wrap(Highcharts.Axis.prototype, 'getLinePath', function () {
-	// do not draw axislines in 3D ?
-	return [];
+// Do not draw axislines in 3D
+Highcharts.wrap(Highcharts.Axis.prototype, 'getLinePath', function (proceed) {
+	return this.chart.is3d() ? [] : proceed.apply(this, [].slice.call(arguments, 1));
 });
 
 Highcharts.wrap(Highcharts.Axis.prototype, 'getPlotBandPath', function (proceed) {
