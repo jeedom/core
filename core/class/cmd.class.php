@@ -715,12 +715,9 @@ class cmd {
 	 * @throws Exception
 	 */
 	public function execCmd($_options = null, $cache = 1, $_sendNodeJsEvent = true, $_quote = false) {
-		if ($this->getEventOnly() == 1) {
-			$cache = 2;
-		}
-		if ($this->getType() == 'info' && $cache != 0) {
+		if ($this->getType() == 'info' && ($cache != 0 || $this->getEventOnly() == 1)) {
 			$mc = cache::byKey('cmd' . $this->getId());
-			if ($mc->getValue() !== null) {
+			if ($mc->getValue() !== null || $this->getEventOnly() == 1) {
 				$this->setCollectDate($mc->getOptions('collectDate', $mc->getDatetime()));
 				$this->setValueDate($mc->getOptions('valueDate', $mc->getDatetime()));
 				return $mc->getValue();
