@@ -43,6 +43,11 @@ $('body').delegate('.configKey[data-l1key="cache::engine"]', 'change', function 
    $('.cacheEngine.'+$(this).value()).show();
 });
 
+$('body').delegate('.configKey[data-l1key="log::engine"]', 'change', function () {
+   $('.logEngine').hide();
+   $('.logEngine.'+$(this).value()).show();
+});
+
  printWifiList();
 
  $("#bt_genKeyAPI").on('click', function (event) {
