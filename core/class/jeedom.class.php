@@ -425,11 +425,6 @@ class jeedom {
 
 		}
 		try {
-			cmd::collect();
-		} catch (Exception $e) {
-			log::add('cmd', 'error', 'cmd::collect : ' . $e->getMessage());
-		}
-		try {
 			history::historize();
 		} catch (Exception $e) {
 			log::add('history', 'error', 'history::archive : ' . $e->getMessage());

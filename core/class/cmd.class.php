@@ -304,17 +304,6 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function collect() {
-		return;
-		$cmd = null;
-		foreach (cache::search('collect') as $cache) {
-			$cmd = self::byId($cache->getValue());
-			if (is_object($cmd) && $cmd->getEqLogic()->getIsEnable() == 1 && $cmd->getEventOnly() == 0) {
-				$cmd->execCmd(null, 0);
-			}
-		}
-	}
-
 	public static function byObjectNameCmdName($_object_name, $_cmd_name) {
 		$values = array(
 			'object_name' => $_object_name,
@@ -340,6 +329,18 @@ class cmd {
 			$values['subtype'] = $_subType;
 			$sql .= ' AND c.subtype=:subtype';
 		}
+		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+
+	public static function byTypeEventonly($_type, $_eventOnly = 1) {
+		$values = array(
+			'type' => $_type,
+			'eventOnly' => $_eventOnly,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
+		FROM cmd c
+		WHERE c.type=:type
+			AND c.eventOnly=:eventOnly';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
