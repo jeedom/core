@@ -313,7 +313,7 @@ if (hasRight('backupview', true)) {
 																<li class="expertModeVisible"><a href="index.php?v=d&p=security"><i class="fa fa-lock"></i> {{Sécurité}}</a></li>
 																<?php
 }
-		if (hasRight('logview', true)) {
+		if (hasRight('logview', true) && config::byKey('log::engine') == 'StreamHandler') {
 			?>
 																<li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
 																<?php
@@ -424,7 +424,11 @@ if (isConnect('admin')) {
 		}
 	}
 	?>
+													<?php
+if (config::byKey('log::engine') == 'StreamHandler') {?>
 													<li class="expertModeVisible"><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
+													<?php }
+	?>
 													<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
 													<li class="divider"></li>
 													<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>

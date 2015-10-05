@@ -19,6 +19,8 @@
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 use Monolog\Handler\StreamHandler;
+use Monolog\Handler\SyslogHandler;
+use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Logger;
 
 class log {
@@ -34,7 +36,20 @@ class log {
 	 */
 	public static function add($_log, $_type, $_message, $_logicalId = '') {
 		$logger = new Logger($_log);
-		$logger->pushHandler(new StreamHandler(self::getPathToLog($_log), config::byKey('log::level')));
+		switch (config::byKey('log::engine')) {
+			case 'StreamHandler':
+				$logger->pushHandler(new StreamHandler(self::getPathToLog($_log), config::byKey('log::level')));
+				break;
+			case 'SyslogHandler':
+				$logger->pushHandler(new SyslogHandler(config::byKey('log::level')));
+				break;
+			case 'SyslogUdp':
+				$logger->pushHandler(new SyslogUdpHandler(config::byKey('log::syslogudphost'), config::byKey('log::syslogudpport')));
+				break;
+			default:
+				$logger->pushHandler(new StreamHandler(self::getPathToLog($_log), config::byKey('log::level')));
+				break;
+		}
 		switch (strtolower($_type)) {
 			case 'debug':
 				$logger->addDebug($_message);
@@ -97,6 +112,9 @@ class log {
 	 * Vide le fichier de log
 	 */
 	public static function clear($_log) {
+		if (config::byKey('log::engine') != 'StreamHandler') {
+			return;
+		}
 		$path = self::getPathToLog($_log);
 		if (file_exists($path) && strpos($_log, 'nginx.error') === false) {
 			$log = fopen($path, "w");
@@ -113,6 +131,9 @@ class log {
 	 * Vide le fichier de log
 	 */
 	public static function remove($_log) {
+		if (config::byKey('log::engine') != 'StreamHandler') {
+			return;
+		}
 		$path = self::getPathToLog($_log);
 		if (file_exists($path) && strpos($_log, 'nginx.error') === false) {
 			unlink($path);
@@ -124,6 +145,9 @@ class log {
 	}
 
 	public static function removeAll() {
+		if (config::byKey('log::engine') != 'StreamHandler') {
+			return;
+		}
 		$logs = ls(dirname(__FILE__) . '/../../log/', '*');
 		foreach ($logs as $log) {
 			$path = dirname(__FILE__) . '/../../log/' . $log;
@@ -142,11 +166,11 @@ class log {
 	 * @return string Ligne du fichier de log
 	 */
 	public static function get($_log = 'core', $_begin, $_nbLines) {
+		self::chunk($_log);
 		$replace = array(
 			'&gt;' => '>',
 			'&apos;' => '',
 		);
-		self::chunk($_log);
 		$page = array();
 		if (!file_exists($_log) || !is_file($_log)) {
 			$path = self::getPathToLog($_log);
@@ -172,16 +196,10 @@ class log {
 		return $page;
 	}
 
-	public static function nbLine($_log = 'core') {
-		$path = self::getPathToLog($_log);
-		if (!file_exists($path)) {
-			return 0;
-		}
-		$log_file = file($path);
-		return count($log_file);
-	}
-
 	public static function liste() {
+		if (config::byKey('log::engine') != 'StreamHandler') {
+			return array();
+		}
 		$return = array();
 		foreach (ls(dirname(__FILE__) . '/../../log/', '*') as $log) {
 			if (!is_dir(dirname(__FILE__) . '/../../log/' . $log)) {
