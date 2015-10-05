@@ -94,6 +94,10 @@ class cache {
 		shell_exec('rm -rf /tmp/jeedom-cache 2>&1 > /dev/null');
 	}
 
+	public static function search() {
+		return array();
+	}
+
 	/*     * *********************Methode d'instance************************* */
 
 	public function save() {
