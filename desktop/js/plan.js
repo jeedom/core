@@ -41,7 +41,7 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                    window.location.replace('index.php?v=d&p=plan&plan_id=' + data.id);
+                    loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
                 }
             });
         }
@@ -58,7 +58,7 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                    window.location.replace('index.php?v=d&p=plan&plan_id=' + data.id);
+                     loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
                 },
             });
         }
@@ -90,7 +90,7 @@
                 },
                 success: function () {
                  $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
-                 window.location.reload();
+                  loadPage('index.php?v=d&p=plan');
              },
          });
         }

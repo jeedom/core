@@ -173,7 +173,7 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success : function(){
-                    window.location.reload();
+                    loadPage('index.php?v=d&p=display');
                 }
             });
         }
@@ -194,7 +194,7 @@
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success : function(){
-            window.location.reload();
+           loadPage('index.php?v=d&p=display');
         }
     });
 });
@@ -213,7 +213,7 @@
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success : function(){
-            window.location.reload();
+            loadPage('index.php?v=d&p=display');
         }
     });
 });

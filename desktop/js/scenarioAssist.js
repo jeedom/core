@@ -61,12 +61,12 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
 });
 
 $('#div_listScenario').on('mouseleave',function(){
- var timer = setTimeout(function(){
+   var timer = setTimeout(function(){
     $('#div_listScenario').hide();
     $('#bt_displayScenarioList').find('i').show();
     $('.scenarioListContainer').packery();
 }, 300);
- $(this).data('timerMouseleave', timer);
+   $(this).data('timerMouseleave', timer);
 }).on("mouseenter", function(){
   clearTimeout($(this).data('timerMouseleave'));
 });
@@ -180,7 +180,7 @@ $("#bt_addScenario,#bt_addScenario2").on('click', function (event) {
                             }
                             url += 'id=' + data.id + '&saveSuccessFull=1';
                             modifyWithoutSave = false;
-                            window.location.href = url;
+                            loadPage(url);
                         }
                     });
                 }
@@ -244,9 +244,9 @@ $("#bt_changeAllScenarioState,#bt_changeAllScenarioState2").on('click', function
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-          window.location.reload();
-      }
-  });
+         loadPage('index.php?v=d&p=scenarioAssist');
+     }
+ });
 });
 
 $("#bt_stopScenario").on('click', function () {
@@ -607,7 +607,7 @@ function saveScenario() {
                     }
                 }
                 url += 'id=' + data.id + '&saveSuccessFull=1';
-                window.location.href = url;
+                loadPage(url);
             }
         }
     });

@@ -175,9 +175,9 @@ $("#bt_changeAllScenarioState,#bt_changeAllScenarioState2").on('click', function
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-      window.location.reload();
-    }
-  });
+     loadPage('index.php?v=d&p=scenario');
+   }
+ });
 });
 
 $("#bt_addScenario,#bt_addScenario2").on('click', function (event) {
@@ -227,7 +227,7 @@ $("#bt_addScenario,#bt_addScenario2").on('click', function (event) {
               }
               url += 'id=' + data.id + '&saveSuccessFull=1';
               modifyWithoutSave = false;
-              window.location.href = url;
+              loadPage(url);
             }
           });
         }
@@ -869,7 +869,7 @@ function saveScenario() {
           }
         }
         url += 'id=' + data.id + '&saveSuccessFull=1';
-        window.location.href = url;
+        loadPage(url);
       }
     }
   });
