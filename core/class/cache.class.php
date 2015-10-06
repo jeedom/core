@@ -98,6 +98,37 @@ class cache {
 		return array();
 	}
 
+	public static function persist() {
+		switch (config::byKey('cache::engine')) {
+			case 'FilesystemCache':
+				$cache_dir = '/tmp/jeedom-cache';
+				break;
+			case 'PhpFileCache':
+				$cache_dir = '/tmp/jeedom-cache-php';
+				break;
+			default:
+				return;
+		}
+		shell_exec('rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz *');
+	}
+
+	public static function restore() {
+		if (!file_exists(dirname(__FILE__) . '/../../cache.tar.gz')) {
+			return;
+		}
+		switch (config::byKey('cache::engine')) {
+			case 'FilesystemCache':
+				$cache_dir = '/tmp/jeedom-cache';
+				break;
+			case 'PhpFileCache':
+				$cache_dir = '/tmp/jeedom-cache-php';
+				break;
+			default:
+				return;
+		}
+		shell_exec('rm -rf ' . $cache_dir . ';mkdir ' . $cache_dir . ';cd ' . $cache_dir . ';tar  xfz ' . dirname(__FILE__) . '/../../cache.tar.gz');
+	}
+
 	/*     * *********************Methode d'instance************************* */
 
 	public function save() {

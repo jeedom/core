@@ -194,6 +194,17 @@ try {
 	$cron->setTimeout(60);
 	$cron->save();
 
+	$cron = cron::byClassAndFunction('cache', 'persist');
+	if (!is_object($cron)) {
+		echo "Création de cache::persist\n";
+		$cron = new cron();
+	}
+	$cron->setClass('cache');
+	$cron->setFunction('persist');
+	$cron->setSchedule('*/30 * * * * *');
+	$cron->setTimeout(60);
+	$cron->save();
+
 	$dynamic_apache_path = dirname(__FILE__) . '/../core/config/apache_jeedom_dynamic_rules';
 	if (!file_exists($dynamic_apache_path)) {
 		touch($dynamic_apache_path);
