@@ -256,7 +256,7 @@ $("#bt_delScenario,#bt_delScenario2").on('click', function (event) {
         },
         success: function () {
           modifyWithoutSave = false;
-          window.location.replace('index.php?v=d&p=scenario');
+          loadPage('index.php?v=d&p=scenario');
         }
       });
     }
@@ -287,7 +287,7 @@ $("#bt_copyScenario").on('click', function () {
           $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-          window.location.replace('index.php?v=d&p=scenario&id=' + data.id);
+          loadPage('index.php?v=d&p=scenario&id=' + data.id);
         }
       });
     }

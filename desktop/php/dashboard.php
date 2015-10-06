@@ -92,13 +92,13 @@ if (init('category', 'all') == 'other') {
 <?php include_file('desktop', 'dashboard', 'js');?>
 <?php
 echo '<div data-object_id="' . $object->getId() . '" class="div_object">';
-echo '<legend style="margin-bottom : 0px;"><i class="fa fa-spinner fa-pulse"></i> ' . $object->getDisplay('icon') . ' ' . $object->getName() . '</legend>';
+echo '<legend style="margin-bottom : 0px;">' . $object->getDisplay('icon') . ' ' . $object->getName() . '</legend>';
 echo '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
 echo '<script>getObjectHtml(' . $object->getId() . ')</script>';
 echo '</div>';
 foreach ($child_object as $child) {
 	echo '<div data-object_id="' . $child->getId() . '" style="margin-bottom : 3px;" class="div_object">';
-	echo '<legend style="margin-bottom : 0px;"><i class="fa fa-spinner fa-pulse"></i> ' . $child->getDisplay('icon') . ' ' . $child->getName() . '</legend>';
+	echo '<legend style="margin-bottom : 0px;">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</legend>';
 	echo '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
 	echo '<script>getObjectHtml(' . $child->getId() . ')</script>';
 	echo '</div>';

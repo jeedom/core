@@ -190,7 +190,6 @@ function getObjectHtml(_object_id){
             });
         });
 $('#div_ob'+_object_id+'.div_displayEquipement .eqLogic-widget').draggable('disable');
-$('#div_ob'+_object_id).closest('.div_object').find('legend .fa-spinner').hide();
 }
 });
 }
