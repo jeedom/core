@@ -29,7 +29,7 @@ if (isConnect() && init('p') != '') {
 	$page = init('p');
 	$title = ucfirst($page) . ' - ' . $title;
 }
-$plugins_list = plugin::listPlugin(true, true);
+$plugins_list = plugin::listPlugin(true, true, false);
 $plugin_menu = '';
 $panel_menu = '';
 $nodejs_plugin = array();
@@ -171,10 +171,12 @@ if (isConnect() && $_SESSION['user']->getOptions('desktop_highcharts_theme') != 
 
 	}
 }
+
 ?>
 				<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 			</head>
 			<body>
+
 				<?php
 sendVarToJS('jeedom_langage', config::byKey('language'));
 if (!isConnect()) {
@@ -195,6 +197,7 @@ if (!isConnect()) {
 		}
 	}
 	?>
+
 					<header class="navbar navbar-fixed-top navbar-default">
 						<div class="container-fluid">
 							<div class="navbar-header">
