@@ -373,16 +373,8 @@ try {
 		$user->setPassword(sha1('admin'));
 		$user->setRights('admin', 1);
 		$user->save();
-		$logLevel = array('info' => 0, 'debug' => 0, 'event' => 0, 'error' => 1);
-		if (init('mode') != 'force') {
-			echo "Jeedom est-il installé sur un Rasberry PI ? [o/N] ";
-			if (trim(fgets(STDIN)) === 'o') {
-				config::save('cronSleepTime', 60);
-			}
-		} else {
-			config::save('cronSleepTime', 60);
-		}
-		config::save('logLevel', $logLevel);
+		config::save('cronSleepTime', 60);
+		config::save('log::level', 400);
 		echo "OK\n";
 		echo 'Installation de socket.io et express (peut etre très long > 30min)';
 		echo shell_exec('cd ' . dirname(__FILE__) . '/../core/nodeJS;sudo npm install socket.io;npm install express');
