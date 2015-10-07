@@ -381,13 +381,12 @@ CREATE TABLE IF NOT EXISTS `interactDef` (
   `enable` INT NULL DEFAULT 1,
   `query` TEXT NULL,
   `reply` TEXT NULL,
-  `link_type` VARCHAR(127) NULL,
-  `link_id` VARCHAR(255) NULL,
   `person` VARCHAR(255) NULL,
   `options` TEXT NULL,
   `filtres` TEXT NULL,
   `position` INT NULL,
   `group` VARCHAR(127) NULL DEFAULT NULL,
+  `actions` TEXT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -398,10 +397,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `interactQuery` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `interactDef_id` INT NOT NULL,
-  `enable` INT NULL DEFAULT 1,
   `query` TEXT NULL,
-  `link_type` VARCHAR(127) NULL,
-  `link_id` VARCHAR(255) NULL,
+  `actions` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_sarahQuery_sarahDef1_idx` (`interactDef_id` ASC),
   FULLTEXT INDEX `query` (`query` ASC))
