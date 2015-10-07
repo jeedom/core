@@ -434,7 +434,7 @@ if (config::byKey('log::engine') == 'StreamHandler') {?>
 	?>
 													<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
 													<li class="divider"></li>
-													<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
+													<li><a href="index.php?v=d&logout=1" data-direct="1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
 													<li class="divider"></li>
 													<li><a href="#">{{Node JS}} <span class="span_nodeJsState binary red tooltips"></span></a></li>
 													<li><a href="#" id="bt_jeedomAbout">{{Version}} v<?php echo jeedom::version();?></a></li>

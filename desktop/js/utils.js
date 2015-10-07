@@ -20,19 +20,22 @@
  utid = Date.now();
 
  function loadPage(_url){
-     $.hideAlert();
-     $('#div_pageContainer').empty();
-     $( "#md_reportBug" ).dialog( "close" );
-     $( "#md_pageHelp" ).dialog( "close" );
-     $( "#md_modal" ).dialog( "close" );
-     $( "#md_modal2" ).dialog( "close" );
-     $('.div_smallSideBar').remove();
-     window.history.pushState(null, 'Jeedom', $(this).attr('href'));
-     var startTime = Date.now();
-     $.ajax({
+   $.hideAlert();
+   $('#div_pageContainer').empty();
+   $( "#md_reportBug" ).dialog( "close" );
+   $( "#md_pageHelp" ).dialog( "close" );
+   $( "#md_modal" ).dialog( "close" );
+   $( "#md_modal2" ).dialog( "close" );
+   $('.div_smallSideBar').remove();
+   window.history.pushState(null, 'Jeedom', $(this).attr('href'));
+   var startTime = Date.now();
+   $.ajax({
       url: _url+'&ajax=1',
       dataType: 'html',
-      success: function(html) {
+      error: function(request, status, error) {
+        handleAjaxError(request, status, error);
+    },
+    success: function(html) {
         window.history.pushState('Object', 'Title',_url);
         var page = getUrlVars('p');
         $('head title').text(page[0].toUpperCase() + page.slice(1)+' - Jeedom');
@@ -40,29 +43,31 @@
         initPage();
     }
 });
- }
+}
 
- $(function () {
+$(function () {
     $('body').delegate('a','click',function(event){
-        if($(this).attr('href') != '' && $(this).attr('href') != undefined && $(this).attr('href').indexOf("index.php") == 0 && $(this).attr('href').indexOf("p=") > 0){
+        console.log($(this).attr('href'));
+        if($(this).attr('data-direct') != 1 && $(this).attr('href') != '' && $(this).attr('href') != undefined && $(this).attr('href') != '#' && $(this).attr('href').indexOf("index.php") == 0 && $(this).attr('href').indexOf("p=") > 0){
+           console.log('je passe');
           event.preventDefault();
           loadPage($(this).attr('href'));
       }
   });
 
     window.onpopstate = function(event) {
-        if(document.location.href != '' && document.location.href != undefined && document.location.href.indexOf("index.php") > 0 && document.location.href.indexOf("p=") > 0){
-         loadPage(document.location);
-     }
- };
+        if(document.location.href != '' && document.location.href != undefined && document.location.href.indexOf("index.php") > 0 && document.location.href.indexOf("p=") > 0 && document.location.href.indexOf("#") == -1){
+           loadPage(document.location);
+       }
+   };
 
- $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+   $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
     $(this).parent().siblings().removeClass('open');
     $(this).parent().toggleClass('open');
 });
- if (!navigator.userAgent.match(/Android/i)
+   if (!navigator.userAgent.match(/Android/i)
     && !navigator.userAgent.match(/webOS/i)
     && !navigator.userAgent.match(/iPhone/i)
     && !navigator.userAgent.match(/iPad/i)
@@ -275,9 +280,9 @@ setInterval(function () {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-     $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
-     $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
- });
+       $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
+       $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
+   });
 
     $('#bt_gotoDashboard').on('click',function(){
         $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
