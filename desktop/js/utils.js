@@ -27,7 +27,11 @@
    $( "#md_modal" ).dialog( "close" );
    $( "#md_modal2" ).dialog( "close" );
    $('.div_smallSideBar').remove();
-   window.history.pushState(null, 'Jeedom', $(this).attr('href'));
+   window.history.pushState(null, 'Jeedom', _url);
+
+
+
+
    var startTime = Date.now();
    $.ajax({
       url: _url+'&ajax=1',
@@ -39,6 +43,21 @@
         window.history.pushState('Object', 'Title',_url);
         var page = getUrlVars('p');
         $('head title').text(page[0].toUpperCase() + page.slice(1)+' - Jeedom');
+        var plugin = getUrlVars('m');
+        var help = '#';
+        if(plugin != false){
+            help = 'https://jeedom.fr/doc/documentation/plugins/'+plugin+'/fr_FR/'+plugin+'.html';
+        }else{
+            if (page == 'scenarioAssist') {
+                help = 'https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-scenario.html';
+            } else if (page == 'view_edit') {
+                help = 'https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-view.html';
+            } else {
+                help = 'https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-' +page+ '.html';
+            }
+        }
+
+        $('#bt_globalHelp').attr('href',help);
         $('#div_pageContainer').empty().html(html);
         initPage();
     }
