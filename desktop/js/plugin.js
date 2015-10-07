@@ -187,7 +187,7 @@ $("#span_plugin_toggleState").delegate(".togglePlugin", 'click', function () {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-             loadPage('index.php?v=d&p=plugin&id=' + _el.attr('data-plugin_id'));
+             window.location.href = 'index.php?v=d&p=plugin&id=' + _el.attr('data-plugin_id');
         }
     });
 });
