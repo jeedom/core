@@ -448,16 +448,12 @@ class eqLogic {
 		if ($this->getDisplay('hideOn' . $version) == 1) {
 			return '';
 		}
-		$hasOnlyEventOnly = $this->hasOnlyEventOnlyCmd();
-		if ($hasOnlyEventOnly) {
-			$mc = cache::byKey('widgetHtml' . $_version . $this->getId());
-			if ($mc->getValue() != '') {
-				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
-			}
+		$mc = cache::byKey('widgetHtml' . $_version . $this->getId());
+		if ($mc->getValue() != '') {
+			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 		}
 		$parameters = $this->getDisplay('parameters');
 		$cmd_html = '';
-
 		$vcolor = 'cmdColor';
 		if ($version == 'mobile') {
 			$vcolor = 'mcmdColor';
@@ -524,9 +520,7 @@ class eqLogic {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
 		}
 		$html = template_replace($replace, self::$_templateArray[$version]);
-		if ($hasOnlyEventOnly) {
-			cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
-		}
+		cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
 		return $html;
 	}
 
