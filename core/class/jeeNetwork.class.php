@@ -75,12 +75,6 @@ class jeeNetwork {
 					$cron->setTimeout(5);
 					$cron->save();
 					$cron = new cron();
-					$cron->setClass('cmd');
-					$cron->setFunction('collect');
-					$cron->setSchedule('*/5 * * * * *');
-					$cron->setTimeout(5);
-					$cron->save();
-					$cron = new cron();
 					$cron->setClass('history');
 					$cron->setFunction('archive');
 					$cron->setSchedule('00 * * * * *');
@@ -99,9 +93,9 @@ class jeeNetwork {
 					}
 					foreach (update::all() as $update) {
 						switch ($update->getType()) {
-						case 'core':
+							case 'core':
 								break;
-						case 'plugin':
+							case 'plugin':
 								try {
 									$plugin = plugin::byId($update->getLogicalId());
 									if (is_object($plugin) && $plugin->getAllowRemote() != 1) {
@@ -111,7 +105,7 @@ class jeeNetwork {
 
 								}
 								break;
-						default:
+							default:
 								$update->deleteObjet();
 								break;
 						}
@@ -133,10 +127,6 @@ class jeeNetwork {
 						$cron->remove();
 					}
 					$cron = cron::byClassAndFunction('scenario', 'check');
-					if (is_object($cron)) {
-						$cron->remove();
-					}
-					$cron = cron::byClassAndFunction('cmd', 'collect');
 					if (is_object($cron)) {
 						$cron->remove();
 					}

@@ -570,22 +570,6 @@ class eqLogic {
 		return 'index.php?v=d&p=' . $this->getEqType_name() . '&m=' . $this->getEqType_name() . '&id=' . $this->getId();
 	}
 
-	public function collectInProgress() {
-		$values = array(
-			'eqLogic_id' => $this->getId(),
-		);
-		$sql = 'SELECT count(*)
-    FROM cmd
-    WHERE eqLogic_id=:eqLogic_id
-    AND collect=1
-    AND eventOnly=0';
-		$results = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		if ($results['count(*)'] > 0) {
-			return true;
-		}
-		return false;
-	}
-
 	public function getHumanName($_tag = false, $_prettify = false) {
 		$name = '';
 		$object = $this->getObject();
