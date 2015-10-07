@@ -128,7 +128,7 @@ function initApplication(_reinit) {
                     $.include(include, function () {
                         deviceInfo = getDeviceType();
                         if(getUrlVars('p') != '' && getUrlVars('ajax') != 1){
-                         switch (getUrlVars('p')) {
+                           switch (getUrlVars('p')) {
                             case 'view' :
                             page('view', 'Vue',getUrlVars('view_id'));
                             break;
@@ -270,16 +270,12 @@ function panel(_content) {
 }
 
 function refreshMessageNumber() {
-    if (MESSAGE_NUMBER !== null) {
-        $('.span_nbMessage').html(MESSAGE_NUMBER);
-    } else {
-        jeedom.message.number({
-            success: function (_number) {
-                MESSAGE_NUMBER = _number;
-                $('.span_nbMessage').html(_number);
-            }
-        });
-    }
+    jeedom.message.number({
+        success: function (_number) {
+            MESSAGE_NUMBER = _number;
+            $('.span_nbMessage').html(_number);
+        }
+    });
 }
 
 function notify(_title, _text) {
