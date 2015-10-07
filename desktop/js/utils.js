@@ -28,10 +28,6 @@
    $( "#md_modal2" ).dialog( "close" );
    $('.div_smallSideBar').remove();
    window.history.pushState(null, 'Jeedom', _url);
-
-
-
-
    var startTime = Date.now();
    $.ajax({
       url: _url+'&ajax=1',
