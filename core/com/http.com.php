@@ -97,18 +97,25 @@ class com_http {
 				$nbRetry = $_maxRetry + 1;
 			}
 		}
+		if (!isset($response)) {
+			$response = '';
+		}
 
 		if (curl_errno($ch)) {
 			$curl_error = curl_error($ch);
 			if ($this->getNoReportError() === false && $this->getAllowEmptyReponse() == true && strpos($curl_error, 'Empty reply from server') !== false) {
-				curl_close($ch);
+				if (is_resource($ch)) {
+					curl_close($ch);
+				}
 				log::add('http.com', 'Debug', __('URL : ', __FILE__) . $this->url . __("\nRéponse : ", __FILE__) . $response);
 				return $response;
 			}
 			if ($this->getNoReportError() === false && $this->getLogError()) {
 				log::add('http.com', 'error', __('Erreur curl : ', __FILE__) . $curl_error . __(' sur la commande ', __FILE__) . $this->url . __(' après ', __FILE__) . $nbRetry . __(' relance(s)', __FILE__));
 			}
-			curl_close($ch);
+			if (is_resource($ch)) {
+				curl_close($ch);
+			}
 			if ($this->getNoReportError() === false) {
 				throw new Exception(__('Echec de la requête http : ', __FILE__) . $this->url . ' Curl error : ' . $curl_error, 404);
 			}
