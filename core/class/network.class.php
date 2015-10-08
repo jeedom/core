@@ -379,7 +379,7 @@ class network {
 /*     * *********************WICD************************* */
 
 	public static function listWifi() {
-		$results = shell_exec('sudo ifconfig wlan0 up;sudo iwlist scan | grep ESSID 2> /dev/null');
+		$results = shell_exec('sudo ifconfig wlan0 up;sudo iwlist wlan0 scan 2> /dev/null | grep ESSID');
 		$results = explode("\n", $results);
 		$return = array();
 		foreach ($results as $result) {
