@@ -86,7 +86,9 @@ class log {
 			$maxLineLog = 200;
 		}
 		if ($_log != '') {
-			self::chunkLog(self::getPathToLog($_log), $maxLineLog);
+			if (is_file(self::getPathToLog($_log))) {
+				self::chunkLog(self::getPathToLog($_log), $maxLineLog);
+			}
 		} else {
 			$logs = ls(dirname(__FILE__) . '/../../log/', '*');
 			foreach ($logs as $log) {
@@ -124,7 +126,7 @@ class log {
 			return;
 		}
 		$path = self::getPathToLog($_log);
-		if (file_exists($path) && strpos($_log, 'nginx.error') === false) {
+		if (file_exists($path) && is_file($path) && strpos($_log, 'nginx.error') === false) {
 			$log = fopen($path, "w");
 			ftruncate($log, 0);
 			fclose($log);
@@ -143,11 +145,13 @@ class log {
 			return;
 		}
 		$path = self::getPathToLog($_log);
-		if (file_exists($path) && strpos($_log, 'nginx.error') === false) {
-			unlink($path);
-		}
-		if (strpos($_log, 'nginx.error') !== false) {
-			shell_exec('cat /dev/null > ' . $path);
+		if (file_exists($path) && is_file($path)) {
+			if (strpos($_log, 'nginx.error') === false) {
+				unlink($path);
+			}
+			if (strpos($_log, 'nginx.error') !== false) {
+				shell_exec('cat /dev/null > ' . $path);
+			}
 		}
 		return true;
 	}
@@ -159,10 +163,12 @@ class log {
 		$logs = ls(dirname(__FILE__) . '/../../log/', '*');
 		foreach ($logs as $log) {
 			$path = dirname(__FILE__) . '/../../log/' . $log;
-			if (strpos($log, 'nginx.error') === false && !is_dir($path)) {
-				unlink($path);
-			} else {
-				shell_exec('cat /dev/null > ' . $path);
+			if (is_file($path)) {
+				if (strpos($log, 'nginx.error') === false) {
+					unlink($path);
+				} else {
+					shell_exec('cat /dev/null > ' . $path);
+				}
 			}
 		}
 		return true;
