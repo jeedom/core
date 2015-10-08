@@ -546,11 +546,10 @@ class network {
 			$output = array();
 			$return_val = -1;
 			if ($route['gateway'] != '0.0.0.0' && $route['gateway'] != '127.0.0.1') {
-				exec('sudo ping -n -c 1 -t 256 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
+				exec('sudo ping -n -c 1 -t 255 ' . $route['gateway'] . ' 2>&1 > /dev/null', $output, $return_val);
 				$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
 				if ($return[$route['iface']]['ping'] == 'nok') {
-					sleep(5);
-					exec('sudo ping -n -c 1 -t 256 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
+					exec('sudo ping -n -c 1 -t 255 ' . $route['gateway'] . ' 2>&1 > /dev/null', $output, $return_val);
 					$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
 				}
 			} else {
