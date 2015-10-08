@@ -100,7 +100,7 @@ class com_http {
 		if (!isset($response)) {
 			$response = '';
 		}
-		if (is_resource($ch)) {
+		if (isset($ch) && is_resource($ch)) {
 			if (curl_errno($ch)) {
 				$curl_error = curl_error($ch);
 				curl_close($ch);
