@@ -89,21 +89,4 @@ spl_autoload_register('jeedomCoreAutoload', true, true);
 spl_autoload_register('jeedomPluginAutoload', true, true);
 spl_autoload_register('jeedomComAutoload', true, true);
 require_once dirname(__FILE__) . '/../../vendor/autoload.php';
-
-/* * *******************Securité anti piratage**************************** */
-try {
-	if (config::byKey('security::enable') == 1) {
-		$connection = connection::byIp(getClientIp());
-		if (is_object($connection) && $connection->getStatus() == 'Ban') {
-			header("Status: 404 Not Found");
-			header('HTTP/1.0 404 Not Found');
-			$_SERVER['REDIRECT_STATUS'] = 404;
-			echo "<h1>404 Not Found</h1>";
-			echo "The page that you have requested could not be found.";
-			exit();
-		}
-	}
-} catch (Exception $e) {
-
-}
 ?>
