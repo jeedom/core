@@ -62,7 +62,6 @@
 
 $(function () {
     $('body').delegate('a','click',function(event){
-        console.log($(this).attr('href'));
         if($(this).attr('data-direct') != 1 && $(this).attr('href') != '' && $(this).attr('href') != undefined && $(this).attr('href') != '#' && $(this).attr('href').indexOf("index.php") == 0 && $(this).attr('href').indexOf("p=") > 0){
           event.preventDefault();
           loadPage($(this).attr('href'));
