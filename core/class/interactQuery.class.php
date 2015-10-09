@@ -286,9 +286,11 @@ class interactQuery {
 		$replace = array();
 		$tags = interactDef::getTagFromQuery($this->getQuery(), $_parameters['dictation']);
 		$tags_replace = array();
-		foreach ($tags as $key => $value) {
-			$tags_replace['#' . $key . '#'] = $value;
-			$replace['#' . $key . '#'] = $value;
+		if (is_array($tags)) {
+			foreach ($tags as $key => $value) {
+				$tags_replace['#' . $key . '#'] = $value;
+				$replace['#' . $key . '#'] = $value;
+			}
 		}
 		$executeDate = null;
 		$dateConvert = array(
