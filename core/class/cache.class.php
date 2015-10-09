@@ -109,7 +109,7 @@ class cache {
 			default:
 				return;
 		}
-		shell_exec('rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz *');
+		shell_exec('rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';tar --ignore-failed-read cfz ' . dirname(__FILE__) . '/../../cache.tar.gz *');
 	}
 
 	public static function restore() {
