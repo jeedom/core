@@ -409,6 +409,9 @@ class eqLogic {
 		$eqLogicCopy->setName($_name);
 		$eqLogicCopy->setId('');
 		$eqLogicCopy->save();
+		foreach ($eqLogicCopy->getCmd() as $cmd) {
+			$cmd->remove();
+		}
 		foreach ($this->getCmd() as $cmd) {
 			$cmdCopy = clone $cmd;
 			$cmdCopy->setId('');
