@@ -7,7 +7,7 @@ La page est accessible par Général -> Administration -> Configuration :
 image::../images/administration.png[]
 
 [IMPORTANT]
-Si vous n'etes pas en mode expert certains paramètres peuvent ne pas etre visibles
+Si vous n'êtes pas en mode expert certains paramètres peuvent ne pas être visibles.
 
 == Configuration générale
 
@@ -17,20 +17,20 @@ Dans cet onglet on retrouve des informations générales sur Jeedom :
 
 * *Clef API* : votre clef API, à utiliser pour toute requête vers l'API Jeedom
 * *Système* : type de votre hardware
-* *Clef hardware* : clef hardware de votre Jeedom sur le market. Si votre jeedom n'apparait pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton
+* *Clef hardware* : clef hardware de votre Jeedom sur le market. Si votre Jeedom n'apparait pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton
 * *Commande d'information utilisateur* : permet de spécifier une commande de type message qui sera utilisée par Jeedom pour vous communiquer des messages importants. Vous pouvez indiquer plusieurs commandes séparées par des &&
 * *Langue* : Langue de votre Jeedom
 * *Durée de vie des sessions (heure)* : durée de vie des sessions PHP, il est conseillé de ne pas y toucher
 * *Date et heure* : votre fuseau horaire
 * *Serveur de temps optionnel* : permet d'ajouter un serveur de temps optionnel (à reserver aux experts)
 * *Ignorer la vérification de l'heure* : indique à Jeedom de ne pas vérifier si l'heure est cohérente. Utile par exemple si vous ne connectez pas Jeedom à internet et qu'il n'a pas de pile RTC
-* *Mode* : Mode de votre Jeedom maitre ou esclave, attention lors du passage en esclave : tous vos équipements, scénario, design... seront supprimés
+* *Mode* : Mode de votre Jeedom maître ou esclave, attention lors du passage en esclave : tous vos équipements, scénario, design... seront supprimés.
 
 == Base de données
 
 image::../images/administration2.png[]
 
-* *Accès à l'interface d'administration* : permet d'accèder à une interface d'administration de la base, les informations à renseigner sont en dessous
+* *Accès à l'interface d'administration* : permet d'accèder à une interface d'administration de la base, les informations à renseigner sont en-dessous
 * *Machine (hostname)* : localisation de la base
 * *Utilisateur* : nom d'utilisateur utilisé par Jeedom
 * *Mot de passe* : mot de passe d'accès à la base utilisé par Jeedom
@@ -39,9 +39,9 @@ image::../images/administration2.png[]
 
 image::../images/administration3.png[]
 
-Partie très importante dans Jeedom, il faut absolument la configurer correctement sinon beaucoup de plugin risquent d'etre non fonctionnels
+Partie très importante dans Jeedom, il faut absolument la configurer correctement sinon beaucoup de plugin risquent d'être non fonctionnels
 
-* *Accès interne* : information pour joindre Jeedom à partir d'un équipement sur le meme réseau
+* *Accès interne* : information pour joindre Jeedom à partir d'un équipement sur le même réseau
 ** *Protocole* : le protocole à utiliser, souvent HTTP
 ** *Adresse URL ou IP* : IP de Jeedom, à renseigner
 ** *Complément (exemple : /jeedom)* : le fragment d'URL complémentaire (type /jeedom). Pour savoir si vous avez besoin de définir une valeur ici, regardez si quand vous vous connectez à Jeedom vous devez renseigner /jeedom après l'IP
