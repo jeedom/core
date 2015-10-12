@@ -283,7 +283,7 @@ $('.eqLogicAction[data-action=add]').on('click', function () {
 });
 
 $('.eqLogic .eqLogicAction[data-action=configure]').on('click', function () {
-    $('#md_modal').dialog({title: "{{Configuration commande}}"});
+    $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"});
     $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $('.li_eqLogic.active').attr('data-eqLogic_id')).dialog('open');
 });
 
