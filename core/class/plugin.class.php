@@ -86,7 +86,7 @@ class plugin {
 		$plugin->display = (isset($plugin_xml->display)) ? (string) $plugin_xml->display : '';
 
 		$plugin->mobile = '';
-		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $plugin_xml->id . '/mobile')) {
+		if (file_exists(dirname(__FILE__) . '/../../plugins/' . $plugin_xml->id . '/mobile/html')) {
 			$plugin->mobile = (isset($plugin_xml->mobile)) ? (string) $plugin_xml->mobile : $plugin_xml->id;
 		}
 		if (isset($plugin_xml->include)) {
