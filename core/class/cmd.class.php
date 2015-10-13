@@ -955,6 +955,9 @@ class cmd {
 				$replace['#state#'] = $cmdValue->execCmd(null, 2);
 				$replace['#valueName#'] = $cmdValue->getName();
 				$replace['#unite#'] = $cmdValue->getUnite();
+				if (trim($replace['#state#']) === '' && ($cmdValue->getSubtype() == 'binary' || $cmdValue->getSubtype() == 'numeric')) {
+					$replace['#state#'] = 0;
+				}
 			} else {
 				$replace['#state#'] = ($this->getLastValue() != null) ? $this->getLastValue() : '';
 				$replace['#valueName#'] = $this->getName();
