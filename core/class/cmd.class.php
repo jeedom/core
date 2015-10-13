@@ -894,6 +894,9 @@ class cmd {
 				if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
 					$replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
 				}
+				if ($this->getSubType() == 'numeric' && trim($replace['#state#']) === '') {
+					$replace['#state#'] = 0;
+				}
 			}
 			if (method_exists($this, 'formatValueWidget')) {
 				$replace['#state#'] = $this->formatValueWidget($replace['#state#']);
