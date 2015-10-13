@@ -81,32 +81,58 @@ function editWidgetMode(_mode){
         }
     }
     if(_mode == 0){
-        if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
-           $('.div_displayEquipement .eqLogic-widget').draggable('disable');
-           $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('destroy');
-           $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('destroy');
-           $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseover');
-           $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseleave');
-       }
-   }else{
-     $('.div_displayEquipement .eqLogic-widget').draggable('enable');
+       if( $('.div_displayEquipement .eqLogic-widget.ui-resizable').length > 0){
+        $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('destroy');
+    }
+    if( $('.div_displayEquipement .eqLogic-widget.ui-sortable').length > 0){
+       $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('destroy');
+   }
+   if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
+       $('.div_displayEquipement .eqLogic-widget').draggable('disable');
+       $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseover');
+       $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseleave');
+   }
+}else{
+ $('.div_displayEquipement .eqLogic-widget').draggable('enable');
 
-     $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
-      grid: [ 40, 80 ],
-      resize: function( event, ui ) {
-         var el = ui.element;
-         el.closest('.div_displayEquipement').packery();
-     },
-     stop: function( event, ui ) {
-        var el = ui.element;
-        positionEqLogic(el.attr('data-eqlogic_id'));
-        el.closest('.div_displayEquipement').packery();
-        var eqLogic = {id : el.attr('data-eqlogic_id')}
-        eqLogic.display = {};
-        eqLogic.display.width =  Math.floor(el.width() / 40) * 40 + 'px';
-        eqLogic.display.height = Math.floor(el.height() / 80) * 80+ 'px';
-        jeedom.eqLogic.simpleSave({
-            eqLogic : eqLogic,
+ $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
+  grid: [ 40, 80 ],
+  resize: function( event, ui ) {
+     var el = ui.element;
+     el.closest('.div_displayEquipement').packery();
+ },
+ stop: function( event, ui ) {
+    var el = ui.element;
+    positionEqLogic(el.attr('data-eqlogic_id'));
+    el.closest('.div_displayEquipement').packery();
+    var eqLogic = {id : el.attr('data-eqlogic_id')}
+    eqLogic.display = {};
+    eqLogic.display.width =  Math.floor(el.width() / 40) * 40 + 'px';
+    eqLogic.display.height = Math.floor(el.height() / 80) * 80+ 'px';
+    jeedom.eqLogic.simpleSave({
+        eqLogic : eqLogic,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        }
+    });
+}
+});
+
+ $( ".div_displayEquipement .eqLogic-widget.allowReorderCmd").sortable({
+    items: ".cmd",
+    stop: function (event, ui) {
+        var cmds = [];
+        var eqLogic = ui.item.closest('.eqLogic-widget');
+        order = 1;
+        eqLogic.find('.cmd').each(function(){
+            cmd = {};
+            cmd.id = $(this).attr('data-cmd_id');
+            cmd.order = order;
+            cmds.push(cmd);
+            order++;
+        });
+        jeedom.cmd.setOrder({
+            cmds: cmds,
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             }
@@ -114,36 +140,14 @@ function editWidgetMode(_mode){
     }
 });
 
-     $( ".div_displayEquipement .eqLogic-widget.allowReorderCmd").sortable({
-        items: ".cmd",
-        stop: function (event, ui) {
-            var cmds = [];
-            var eqLogic = ui.item.closest('.eqLogic-widget');
-            order = 1;
-            eqLogic.find('.cmd').each(function(){
-                cmd = {};
-                cmd.id = $(this).attr('data-cmd_id');
-                cmd.order = order;
-                cmds.push(cmd);
-                order++;
-            });
-            jeedom.cmd.setOrder({
-                cmds: cmds,
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                }
-            });
-        }
-    });
+ $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseover','.cmd',function(){
+    $('.div_displayEquipement .eqLogic-widget').draggable('disable');
+});
+ $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseleave','.cmd',function(){
+    $('.div_displayEquipement .eqLogic-widget').draggable('enable');
+});
 
-     $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseover','.cmd',function(){
-        $('.div_displayEquipement .eqLogic-widget').draggable('disable');
-    });
-     $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseleave','.cmd',function(){
-        $('.div_displayEquipement .eqLogic-widget').draggable('enable');
-    });
-
- }
+}
 }
 
 function getObjectHtml(_object_id){
