@@ -24,7 +24,7 @@ global $CONFIG;
 $CONFIG = array(
     //MySQL parametres
     'db' => array(
-        'host' => '#PORT#',
+        'host' => '#HOST#',
         'port' => #PORT#,
         'dbname' => '#DBNAME#',
         'username' => '#USERNAME#',
