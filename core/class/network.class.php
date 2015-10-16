@@ -379,7 +379,7 @@ class network {
 /*     * *********************WICD************************* */
 
 	public static function listWifi() {
-		$results = shell_exec('sudo ifconfig wlan0 up;sudo iwlist scan | grep ESSID 2> /dev/null');
+		$results = shell_exec('sudo ifconfig wlan0 up;sudo iwlist wlan0 scan 2> /dev/null | grep ESSID');
 		$results = explode("\n", $results);
 		$return = array();
 		foreach ($results as $result) {
@@ -546,11 +546,10 @@ class network {
 			$output = array();
 			$return_val = -1;
 			if ($route['gateway'] != '0.0.0.0' && $route['gateway'] != '127.0.0.1') {
-				exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
+				exec('sudo ping -n -c 1 -t 255 ' . $route['gateway'] . ' 2>&1 > /dev/null', $output, $return_val);
 				$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
 				if ($return[$route['iface']]['ping'] == 'nok') {
-					sleep(5);
-					exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
+					exec('sudo ping -n -c 1 -t 255 ' . $route['gateway'] . ' 2>&1 > /dev/null', $output, $return_val);
 					$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
 				}
 			} else {
@@ -573,7 +572,7 @@ class network {
 		try {
 			$gws = self::checkGw();
 			if (count($gws) == 0) {
-				log::add('network', 'error', __('Aucune interface réseau trouvée, je redemarre tous les réseaux', __FILE__));
+				log::add('network', 'error', __('Aucune interface réseau trouvée, je redemarre tous le réseaux', __FILE__));
 				exec('sudo service networking restart');
 				return;
 			}
@@ -585,7 +584,7 @@ class network {
 					if (strpos($iface, 'br0') !== false) {
 						continue;
 					}
-					log::add('network', 'error', __('La passerelle distante de l\'interface ', __FILE__) . $iface . __(' est injoignable, je la redemarre pour essayer de corriger', __FILE__));
+					log::add('network', 'error', __('La passerelle distance de l\'interface ', __FILE__) . $iface . __(' est injoignable je la redemarre pour essayer de corriger', __FILE__));
 					exec('sudo ifdown ' . $iface);
 					sleep(5);
 					exec('sudo ifup --force ' . $iface);

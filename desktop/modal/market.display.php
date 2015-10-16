@@ -401,7 +401,7 @@ $('.bt_installFromMarket').on('click', function () {
  if(market_display_info.type == 'plugin'){
    bootbox.confirm('{{Voulez vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
      if (result) {
-       window.location.href = 'index.php?v=d&p=plugin&id=' + logicalId;
+        loadPage('index.php?v=d&p=plugin&id=' + logicalId);
    }
 });
 }

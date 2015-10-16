@@ -29,7 +29,7 @@ if (isConnect() && init('p') != '') {
 	$page = init('p');
 	$title = ucfirst($page) . ' - ' . $title;
 }
-$plugins_list = plugin::listPlugin(true, true);
+$plugins_list = plugin::listPlugin(true, true, false);
 $plugin_menu = '';
 $panel_menu = '';
 $nodejs_plugin = array();
@@ -171,10 +171,12 @@ if (isConnect() && $_SESSION['user']->getOptions('desktop_highcharts_theme') != 
 
 	}
 }
+
 ?>
 				<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 			</head>
 			<body>
+
 				<?php
 sendVarToJS('jeedom_langage', config::byKey('language'));
 if (!isConnect()) {
@@ -195,6 +197,7 @@ if (!isConnect()) {
 		}
 	}
 	?>
+
 					<header class="navbar navbar-fixed-top navbar-default">
 						<div class="container-fluid">
 							<div class="navbar-header">
@@ -313,7 +316,7 @@ if (hasRight('backupview', true)) {
 																<li class="expertModeVisible"><a href="index.php?v=d&p=security"><i class="fa fa-lock"></i> {{Sécurité}}</a></li>
 																<?php
 }
-		if (hasRight('logview', true)) {
+		if (hasRight('logview', true) && config::byKey('log::engine') == 'StreamHandler') {
 			?>
 																<li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
 																<?php
@@ -424,10 +427,14 @@ if (isConnect('admin')) {
 		}
 	}
 	?>
+													<?php
+if (config::byKey('log::engine') == 'StreamHandler') {?>
 													<li class="expertModeVisible"><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
+													<?php }
+	?>
 													<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
 													<li class="divider"></li>
-													<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
+													<li><a href="index.php?v=d&logout=1" data-direct="1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
 													<li class="divider"></li>
 													<li><a href="#">{{Node JS}} <span class="span_nodeJsState binary red tooltips"></span></a></li>
 													<li><a href="#" id="bt_jeedomAbout">{{Version}} v<?php echo jeedom::version();?></a></li>
@@ -460,14 +467,14 @@ if (network::ehtIsUp()) {
 	?>
 											<li>
 												<?php if (isset($plugin) && is_object($plugin)) {?>
-												<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/plugins/<?php echo init('m');?>/fr_FR/<?php echo init('m');?>.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
+												<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/plugins/<?php echo init('m');?>/fr_FR/<?php echo init('m');?>.html" title="{{Aide sur la page en cours}}" id="bt_globalHelp"><i class="fa fa-question-circle" ></i></a>
 												<?php } else {
 		if (init('p') == 'scenarioAssist') {
-			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-scenario.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-scenario.html" title="{{Aide sur la page en cours}}" id="bt_globalHelp"><i class="fa fa-question-circle" ></i></a>';
 		} else if (init('p') == 'view_edit') {
-			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-view.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-view.html" title="{{Aide sur la page en cours}}" id="bt_globalHelp"><i class="fa fa-question-circle" ></i></a>';
 		} else {
-			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-' . secureXSS(init('p')) . '.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-' . secureXSS(init('p')) . '.html" title="{{Aide sur la page en cours}}" id="bt_globalHelp"><i class="fa fa-question-circle" ></i></a>';
 		}
 
 	}

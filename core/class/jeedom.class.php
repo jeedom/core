@@ -425,11 +425,6 @@ class jeedom {
 
 		}
 		try {
-			cmd::collect();
-		} catch (Exception $e) {
-			log::add('cmd', 'error', 'cmd::collect : ' . $e->getMessage());
-		}
-		try {
 			history::historize();
 		} catch (Exception $e) {
 			log::add('history', 'error', 'history::archive : ' . $e->getMessage());
@@ -441,10 +436,6 @@ class jeedom {
 			echo date('Y-m-d H:i:s') . ' starting Jeedom';
 			config::save('enableScenario', 1);
 			config::save('enableCron', 1);
-			cache::deleteBySearch('widgetHtml');
-			cache::deleteBySearch('cmdWidgetdashboard');
-			cache::deleteBySearch('cmdWidgetmobile');
-			cache::deleteBySearch('scenarioHtmldashboard');
 			$cache = cache::byKey('jeedom::usbMapping');
 			$cache->remove();
 			foreach (cron::all() as $cron) {
@@ -458,6 +449,11 @@ class jeedom {
 			}
 			try {
 				jeedom::start();
+			} catch (Exception $e) {
+
+			}
+			try {
+				cache::restore();
 			} catch (Exception $e) {
 
 			}
@@ -493,7 +489,6 @@ class jeedom {
 			}
 			$c = new Cron\CronExpression('35 00 * * 0', new Cron\FieldFactory);
 			if ($c->isDue()) {
-				cache::clean();
 				DB::optimize();
 			}
 

@@ -304,16 +304,6 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function collect() {
-		$cmd = null;
-		foreach (cache::search('collect') as $cache) {
-			$cmd = self::byId($cache->getValue());
-			if (is_object($cmd) && $cmd->getEqLogic()->getIsEnable() == 1 && $cmd->getEventOnly() == 0) {
-				$cmd->execCmd(null, 0);
-			}
-		}
-	}
-
 	public static function byObjectNameCmdName($_object_name, $_cmd_name) {
 		$values = array(
 			'object_name' => $_object_name,
@@ -339,6 +329,18 @@ class cmd {
 			$values['subtype'] = $_subType;
 			$sql .= ' AND c.subtype=:subtype';
 		}
+		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+
+	public static function byTypeEventonly($_type, $_eventOnly = 1) {
+		$values = array(
+			'type' => $_type,
+			'eventOnly' => $_eventOnly,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
+		FROM cmd c
+		WHERE c.type=:type
+			AND c.eventOnly=:eventOnly';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -469,7 +471,7 @@ class cmd {
 				continue;
 			}
 			$mc = cache::byKey('cmd' . $cmd_id);
-			if (!$mc->hasExpired() && $mc->getValue() !== '') {
+			if ($mc->getValue() !== null) {
 				$collectDate = $mc->getOptions('collectDate', $mc->getDatetime());
 				$valueDate = $mc->getOptions('valueDate', $mc->getDatetime());
 				$cmd_value = $mc->getValue();
@@ -713,15 +715,9 @@ class cmd {
 	 * @throws Exception
 	 */
 	public function execCmd($_options = null, $cache = 1, $_sendNodeJsEvent = true, $_quote = false) {
-		if ($this->getEventOnly() == 1) {
-			$cache = 2;
-		}
-		if ($this->getType() == 'info' && $cache != 0) {
-			$mc = cache::byKey('cmd' . $this->getId(), ($cache == 2) ? true : false);
-			if ($cache == 2 || !$mc->hasExpired()) {
-				if ($mc->hasExpired()) {
-					$this->setCollect(1);
-				}
+		if ($this->getType() == 'info' && ($cache != 0 || $this->getEventOnly() == 1)) {
+			$mc = cache::byKey('cmd' . $this->getId());
+			if ($mc->getValue() !== null || $this->getEventOnly() == 1) {
 				$this->setCollectDate($mc->getOptions('collectDate', $mc->getDatetime()));
 				$this->setValueDate($mc->getOptions('valueDate', $mc->getDatetime()));
 				return $mc->getValue();
@@ -749,9 +745,9 @@ class cmd {
 			}
 			if ($this->getType() == 'action') {
 				if (is_array($options) && count($options) > 0) {
-					log::add('event', 'event', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . str_replace(array("\n", '  ', 'Array', '>'), '', print_r($options, true)));
+					log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . str_replace(array("\n", '  ', 'Array', '>'), '', print_r($options, true)));
 				} else {
-					log::add('event', 'event', __('Exécution de la commande ', __FILE__) . $this->getHumanName());
+					log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName());
 				}
 
 			}
@@ -898,6 +894,9 @@ class cmd {
 				if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
 					$replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
 				}
+				if ($this->getSubType() == 'numeric' && trim($replace['#state#']) === '') {
+					$replace['#state#'] = 0;
+				}
 			}
 			if (method_exists($this, 'formatValueWidget')) {
 				$replace['#state#'] = $this->formatValueWidget($replace['#state#']);
@@ -956,6 +955,9 @@ class cmd {
 				$replace['#state#'] = $cmdValue->execCmd(null, 2);
 				$replace['#valueName#'] = $cmdValue->getName();
 				$replace['#unite#'] = $cmdValue->getUnite();
+				if (trim($replace['#state#']) === '' && ($cmdValue->getSubtype() == 'binary' || $cmdValue->getSubtype() == 'numeric')) {
+					$replace['#state#'] = 0;
+				}
 			} else {
 				$replace['#state#'] = ($this->getLastValue() != null) ? $this->getLastValue() : '';
 				$replace['#valueName#'] = $this->getName();
@@ -1036,7 +1038,7 @@ class cmd {
 		$_loop++;
 		$this->setCollectDate($collectDate);
 		$this->setValueDate($valueDate);
-		log::add('event', 'event', __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $value);
+		log::add('event', 'info', __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $value);
 		cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
 		scenario::check($this);
 		$this->setCollect(0);
@@ -1171,7 +1173,7 @@ class cmd {
 			'#humanname#' => $this->getHumanName(),
 		);
 		$url = str_replace(array_keys($replace), $replace, $url);
-		log::add('event', 'event', __('Appels de l\'URL de push pour la commande ', __FILE__) . $this->getHumanName() . ' : ' . $url);
+		log::add('event', 'info', __('Appels de l\'URL de push pour la commande ', __FILE__) . $this->getHumanName() . ' : ' . $url);
 		$http = new com_http($url);
 		$http->setLogError(false);
 		try {
@@ -1182,8 +1184,7 @@ class cmd {
 	}
 
 	public function invalidCache() {
-		$mc = cache::byKey('cmd' . $this->getId());
-		$mc->invalid();
+		$mc->remove();
 	}
 
 	public function emptyHistory($_date = '') {
@@ -1315,7 +1316,7 @@ class cmd {
 		if ($collect == 1) {
 			cache::set('collect' . $this->getId(), $this->getId());
 		} else {
-			cache::deleteBySearch('collect' . $this->getId());
+			cache::byKey('collect' . $this->getId())->remove();
 		}
 	}
 

@@ -1,4 +1,5 @@
 <?php
+
 if (!hasRight('dashboardview')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -88,31 +89,20 @@ if (init('category', 'all') == 'other') {
 }
 ?>
 </center>
-
+<?php include_file('desktop', 'dashboard', 'js');?>
 <?php
-echo '<div object_id="' . $object->getId() . '">';
+echo '<div data-object_id="' . $object->getId() . '" class="div_object">';
 echo '<legend style="margin-bottom : 0px;">' . $object->getDisplay('icon') . ' ' . $object->getName() . '</legend>';
-echo '<div class="div_displayEquipement" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
-foreach ($object->getEqLogic(true, true) as $eqLogic) {
-	if ((init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1)) {
-		echo $eqLogic->toHtml('dashboard');
-	}
-}
+echo '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
+echo '<script>getObjectHtml(' . $object->getId() . ')</script>';
 echo '</div>';
 foreach ($child_object as $child) {
-	$eqLogics = $child->getEqLogic(true, true);
-	if (count($eqLogics) > 0) {
-		echo '<div object_id="' . $child->getId() . '" style="margin-bottom : 3px;">';
-		echo '<legend style="margin-bottom : 0px;">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</legend>';
-		echo '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
-		foreach ($eqLogics as $eqLogic) {
-			if ((init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1)) {
-				echo $eqLogic->toHtml('dashboard');
-			}
-		}
-		echo '</div>';
-		echo '</div>';
-	}
+	echo '<div data-object_id="' . $child->getId() . '" style="margin-bottom : 3px;" class="div_object">';
+	echo '<legend style="margin-bottom : 0px;">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</legend>';
+	echo '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
+	echo '<script>getObjectHtml(' . $child->getId() . ')</script>';
+	echo '</div>';
+	echo '</div>';
 }
 echo '</div>';
 ?>
@@ -142,9 +132,6 @@ foreach ($child_object as $child) {
 ?>
 </div>
 </div>
-
-<?php include_file('desktop', 'dashboard', 'js');?>
-
 <style>
 .scenario-widget{
 	margin-top: 2px !important;

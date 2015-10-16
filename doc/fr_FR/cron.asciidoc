@@ -1,34 +1,34 @@
-= Moteur de tâches
+= Moteur de tâche
 
 Le menu Moteur de tâches n'est accessible qu'en mode expert. Il informe de toutes les tâches applicatives Jeedom qui tournent sur le serveur. Ce menu est à utiliser en connaissance de cause, ou à la demande du support technique.
 
 [IMPORTANT]
-En cas de mauvaise manipulation sur cette page, toute demande de support peut vous être refusée.
+En cas de mauvaise manipulation sur cette page toute demande de support peut vous etês refusée
 
-Pour y accèder il faut aller dans Général -> Administration -> Moteur de tâches : 
+Pour y accèder il faut aller dans Général -> Administration -> Moteur de tâche : 
 
 image::../images/cron.JPG[]
 
-Une fois dessus vous obtenez :
+Une fois dessus vous obtenez
 
 image::../images/cron1.JPG[]
 
-En haut à droite vous retrouvez un resumé des processus Jeedom. Le premier chiffre indique le nombre de tâche principale (doit toujours être égal à 0 ou 1), le second le nombre de tâches secondaires et le dernier le nombre de tâches totales sur le système (Jeedom et hors Jeedom).
-En-dessous vous avez les chiffres de la charge moyenne de votre système, il est recommandé que ce chiffre soit inférieur au nombre total de coeurs de la machine.
+En haut à droite vous retrouvez un resumé des processus Jeedom, le premier chiffre indique le nombre de tache principale (doit toujours etre égale à 0 ou 1), le second le nombre de tache secondaire et le dernier le nombre de tache total sur le systeme (Jeedom et hors Jeedom).
+En dessous vous avez les chiffre de la charge moyenne de votre systeme, il est recommandé que ce chiffre soit inferieur au nombre total de coeur de la machine
 
-A droite, vous avez un bouton pour désactiver ou réactiver toutes les tâches (si vous les désactivées toutes, plus rien ne sera fonctionnel sur votre Jeedom), un bouton pour rafraîchir le tableau des tâches (juste en-dessous), un bouton pour ajouter une tâche et un bouton pour enregistrer vos modifications.
+A droite vous avez un bouton pour desactiver ou reactiver toute les taches (si vous les désactivées toute plus rien ne sera fonctionnel sur votre Jeedom), un bouton pour rafraichir le tableau des taches (juste en dessous), un bouton pour ajouter une tache et un bouton pour enregistrer vos modifications
 
-Enfin en-dessous vous avez le tableau de toutes les tâches existantes (attention certaines tâches peuvent lancer des sous-tâches, il est donc vivement recommandé de ne jamais modifier d'informations sur cette page). Dans ce tableau on retrouve : 
+Enfin en dessous vous avez le tableau de toute les taches existante (attention certaine tache peuvent lancer des sous-tache il est donc vivement recommandé de ne jamais modifier d'information sur cette page). Dans ce tableau on retrouve : 
 
-* *#* : ID de la tâche, peut être utile pour faire le lien entre un processus qui tourne et ce qu'il fait vraiment
-* *Action* : un bouton pour lancer ou arrêter la tâche en fonction de son statut
-* *Actif* : indique si la tâche est active (peut être lancée par Jeedom) ou non
+* *#* : ID de la tache, peut etre utile pour faire le lien entre un processus qui tourne et ce qu'il fait vraiment
+* *Action* : un bouton pour lancer ou arreter la tache en fonction de son statut
+* *Actif* : indique si la tache est active (peut etre lancer par Jeedom) ou non
 * *PID* : indique le process ID actuel
-* *Démon* : si cette case est à "oui" alors la tâche doit toujours être en cours. A coté vous retrouvez la fréquence du démon, il est conseillé de ne jamais toucher cette valeur et surtout de ne jamais la diminuer
-* *Unique* : si c'est à "oui" alors la tâche se lancera une fois puis se supprimera
-* *Classe* : classe PHP appelée pour exécuter la tâche (peut être vide)
-* *Fonction* : fonction  PHP appelée dans la classe appelée e(ou non si la classe est vide) 
-* *Timeout* : durée maximale de fonctionnement de la tâche. Si la tâche est un démon alors elle sera automatiquement arrêtée et redémarrée à la fin du timeout
+* *Démon* : si cette case est à oui alors la tache doit toujours etre en cours, a coté vous retrouvez la fréquence du démon, il est conseillé de ne jamais toucher cette valeur et surtout de ne jamais la diminuer
+* *Unique* : si c'est a oui alors la tache se lancera une fois puis se supprimera
+* *Classe* : classe PHP appellée pour éxecuter la tache (peut etre vide)
+* *Fonction* : fonction  PHP appellé dans la classe (ou non si la classe est vide) appellée
+* *Timeout* : durée maximum de fonctionnement de la tache, si la tache est un démon alors elle sera automatiquement arretée et redemarrée à la fin du timeout
 * *Dernier lancement* : date de dernier lancement de la tâche
-* *Statut* : état actuel de la tâche (pour rappel une tâche démon est toujours à "run")
-* *Suppression* : permet de supprimer la tâche
+* *Statut* : etat actuel de la tache (pour rappel une tâche démon est toujours à "run")
+* *Suppression* : permet de supprimer la tache

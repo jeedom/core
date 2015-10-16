@@ -102,6 +102,7 @@ jeedom.object.toHtml = function(_params) {
         action: 'toHtml',
         id: ($.isArray(_params.id)) ? json_encode(_params.id) : _params.id,
         version: _params.version || 'dashboard',
+        category :  _params.category || 'all',
     };
     $.ajax(paramsAJAX);
 };

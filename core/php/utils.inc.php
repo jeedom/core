@@ -134,15 +134,6 @@ function template_replace($_array, $_subject) {
 }
 
 function init($_name, $_default = '') {
-	static $cache;
-	if (isset($cache[$_name])) {
-		return $cache[$_name];
-	}
-	$cache = array();
-	if (isset($_REQUEST[$_name])) {
-		$cache[$_name] = $_REQUEST[$_name];
-		return $_REQUEST[$_name];
-	}
 	if (isset($_GET[$_name])) {
 		$cache[$_name] = $_GET[$_name];
 		return $_GET[$_name];
@@ -150,6 +141,10 @@ function init($_name, $_default = '') {
 	if (isset($_POST[$_name])) {
 		$cache[$_name] = $_POST[$_name];
 		return $_POST[$_name];
+	}
+	if (isset($_REQUEST[$_name])) {
+		$cache[$_name] = $_REQUEST[$_name];
+		return $_REQUEST[$_name];
 	}
 	return $_default;
 }

@@ -61,7 +61,7 @@ class DB {
 	public static function getConnection() {
 		if (!isset(self::$sharedInstance)) {
 			self::$sharedInstance = new self();
-		} else if (self::$sharedInstance->lastConnection + 59 < strtotime('now')) {
+		} else if (self::$sharedInstance->lastConnection + 120 < strtotime('now')) {
 			try {
 				if (!self::$sharedInstance->connection->query('select 1;')) {
 					self::$sharedInstance = new self();

@@ -151,6 +151,14 @@ try {
 		echo "OK\n";
 	}
 
+	echo "Restauration du cache...";
+	try {
+		cache::restore();
+	} catch (Exception $e) {
+
+	}
+	echo "OK\n";
+
 	if (!file_exists($jeedom_dir . '/install')) {
 		mkdir($jeedom_dir . '/install');
 		exec('cd ' . $jeedom_dir . '/install;wget https://raw.githubusercontent.com/jeedom/core/master/install/backup.php;wget https://raw.githubusercontent.com/jeedom/core/master/install/install.php;wget https://raw.githubusercontent.com/jeedom/core/master/install/restore.php');

@@ -38,22 +38,6 @@ require_once dirname(__FILE__) . "/core.inc.php";
 
 $startTime = getmicrotime();
 
-declare (ticks = 1);
-
-global $SIGKILL;
-$SIGKILL = false;
-
-// gestionnaire de signaux système
-function sig_handler($signo) {
-	global $SIGKILL;
-	$SIGKILL = true;
-}
-
-// Installation des gestionnaires de signaux
-pcntl_signal(SIGTERM, "sig_handler");
-pcntl_signal(SIGHUP, "sig_handler");
-pcntl_signal(SIGUSR1, "sig_handler");
-
 if (init('cron_id') != '') {
 	if (jeedom::isStarted() && config::byKey('enableCron', 'core', 1, true) == 0) {
 		die(__('Tous les crons sont actuellement désactivés', __FILE__));
@@ -90,9 +74,6 @@ if (init('cron_id') != '') {
 								usleep(round(($cron->getDeamonSleepTime() - $cycleDuration) * 1000000));
 							}
 						}
-						if ($SIGKILL) {
-							die();
-						}
 					}
 				}
 			} else {
@@ -119,9 +100,6 @@ if (init('cron_id') != '') {
 							if ($cycleDuration < $cron->getDeamonSleepTime()) {
 								usleep(round(($cron->getDeamonSleepTime() - $cycleDuration) * 1000000));
 							}
-						}
-						if ($SIGKILL) {
-							die();
 						}
 					}
 				}

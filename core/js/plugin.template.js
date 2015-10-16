@@ -156,7 +156,7 @@ $('.eqLogicAction[data-action=copy]').on('click', function () {
                                 }
                             }
                             url += 'id=' + data.id + '&saveSuccessFull=1';
-                            window.location.href = url;
+                            loadPage(url);
                         }
                     }
                 });
@@ -210,7 +210,7 @@ $('.eqLogicAction[data-action=save]').on('click', function () {
                     }
                 }
                 url += 'id=' + data.id + '&saveSuccessFull=1';
-                window.location.href = url;
+                loadPage(url);
             }
         }
     });
@@ -245,7 +245,7 @@ $('.eqLogicAction[data-action=remove]').on('click', function () {
                         }
                         modifyWithoutSave = false;
                         url += 'removeSuccessFull=1';
-                        window.location.href = url;
+                        loadPage(url);
                     }
                 });
             }
@@ -275,7 +275,7 @@ $('.eqLogicAction[data-action=add]').on('click', function () {
                     }
                     modifyWithoutSave = false;
                     url += 'id=' + _data.id + '&saveSuccessFull=1';
-                    window.location.href = url;
+                    loadPage(url);
                 }
             });
         }
@@ -283,7 +283,7 @@ $('.eqLogicAction[data-action=add]').on('click', function () {
 });
 
 $('.eqLogic .eqLogicAction[data-action=configure]').on('click', function () {
-    $('#md_modal').dialog({title: "{{Configuration commande}}"});
+    $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"});
     $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $('.li_eqLogic.active').attr('data-eqLogic_id')).dialog('open');
 });
 
