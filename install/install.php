@@ -111,7 +111,12 @@ try {
 					echo __('***ERREUR*** ', __FILE__) . $e->getMessage() . "\n";
 				}
 				try {
-					$url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip?timespamp=' . strtotime('now');
+
+					if (config::byKey('market::branch') == 'url') {
+						$url = config::byKey('update::url');
+					} else {
+						$url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip?timespamp=' . strtotime('now');
+					}
 					echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
 					echo __("Téléchargement en cours...", __FILE__);
 					$tmp_dir = dirname(__FILE__) . '/../tmp';
@@ -169,6 +174,12 @@ try {
 					echo __("OK\n", __FILE__);
 					echo __("Installation en cours...", __FILE__);
 					$update_begin = true;
+					if (!file_exists($cibDir . '/core')) {
+						$files = ls($cibDir, '*');
+						if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'core')) {
+							$cibDir = $cibDir . '/' . $files[0];
+						}
+					}
 					rcopy($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
 					rrmdir($cibDir);
 					unlink($tmp);
