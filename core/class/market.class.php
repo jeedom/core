@@ -767,6 +767,9 @@ class market {
 					'tmp',
 				);
 				rcopy(realpath(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId()), $cibDir, true, $exclude, true);
+				if (file_exists($cibDir . '/data')) {
+					rrmdir($cibDir . '/data');
+				}
 				$tmp = dirname(__FILE__) . '/../../tmp/' . $this->getLogicalId() . '.zip';
 				if (file_exists($tmp)) {
 					if (!unlink($tmp)) {
