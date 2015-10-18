@@ -108,6 +108,9 @@ class log {
 	}
 
 	public static function chunkLog($_path, $maxLineLog = 500) {
+		if (strpos($_path, '.htaccess') !== false) {
+			return;
+		}
 		shell_exec('echo "$(head -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		@chown($_path, 'www-data');
 		@chgrp($_path, 'www-data');
@@ -126,12 +129,12 @@ class log {
 			return;
 		}
 		$path = self::getPathToLog($_log);
-		if (file_exists($path) && is_file($path) && strpos($_log, 'nginx.error') === false) {
+		if (file_exists($path) && is_file($path) && strpos($_log, 'nginx.error') === false && strpos($_log, '.htaccess') === false) {
 			$log = fopen($path, "w");
 			ftruncate($log, 0);
 			fclose($log);
 		}
-		if (strpos($_log, 'nginx.error') !== false) {
+		if (strpos($_log, 'nginx.error') !== false && strpos($log, '.htaccess') === false) {
 			shell_exec('cat /dev/null > ' . $path);
 		}
 		return true;
@@ -145,7 +148,7 @@ class log {
 			return;
 		}
 		$path = self::getPathToLog($_log);
-		if (file_exists($path) && is_file($path)) {
+		if (file_exists($path) && is_file($path) && strpos($_log, '.htaccess') === false) {
 			if (strpos($_log, 'nginx.error') === false) {
 				unlink($path);
 			}
@@ -163,7 +166,7 @@ class log {
 		$logs = ls(dirname(__FILE__) . '/../../log/', '*');
 		foreach ($logs as $log) {
 			$path = dirname(__FILE__) . '/../../log/' . $log;
-			if (is_file($path)) {
+			if (is_file($path) && strpos($log, '.htaccess') === false) {
 				if (strpos($log, 'nginx.error') === false) {
 					unlink($path);
 				} else {
