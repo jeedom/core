@@ -103,6 +103,8 @@ class jeeNetwork {
 									}
 								} catch (Exception $e) {
 
+								} catch (Error $e) {
+
 								}
 								break;
 							default:
@@ -152,11 +154,15 @@ class jeeNetwork {
 					$jeeNetwork->save();
 				} catch (Exception $e) {
 					log::add('jeeNetwork', 'error', $e->getMessage());
+				} catch (Error $e) {
+					log::add('jeeNetwork', 'error', $e->getMessage());
 				}
 			} else {
 				try {
 					$jeeNetwork->save();
 				} catch (Exception $e) {
+
+				} catch (Error $e) {
 
 				}
 			}

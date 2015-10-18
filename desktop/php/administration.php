@@ -1026,7 +1026,14 @@ foreach (plugin::listPlugin(true) as $plugin) {
                                 <select class="configKey form-control" data-l1key="market::branch">
                                     <option value="stable">{{Stable}}</option>
                                     <option value="master">{{Développement}}</option>
+                                    <option value="url">{{URL (github)}}</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group" id="div_githubupdate">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Addresse}}</label>
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <input class="configKey form-control" data-l1key="update::url"/>
                             </div>
                         </div>
                     </fieldset>

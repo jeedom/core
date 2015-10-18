@@ -32,6 +32,13 @@ try {
 } catch (Exception $e) {
 	date_default_timezone_set('Europe/Brussels');
 }
+function jeedomErrorHandler($errno, $errstr, $errfile, $errline) {
+	if ($errno == E_USER_ERROR || $errno == E_RECOVERABLE_ERROR) {
+		throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
+	}
+	return false;
+}
+set_error_handler('jeedomErrorHandler');
 
 function jeedomCoreAutoload($classname) {
 	try {
@@ -39,6 +46,24 @@ function jeedomCoreAutoload($classname) {
 	} catch (Exception $e) {
 
 	}
+}
+
+switch (config::byKey('log::level')) {
+	case 100: //debug
+		error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+		break;
+	case 200: //Info
+		error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+		break;
+	case 250: //Notice
+		error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+		break;
+	case 300: //Warning
+		error_reporting(E_ERROR | E_WARNING | E_PARSE);
+		break;
+	case 400: //Error
+		error_reporting(E_ERROR | E_PARSE);
+		break;
 }
 
 function jeedomComAutoload($classname) {

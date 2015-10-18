@@ -38,12 +38,21 @@ class jeedom {
 					} catch (Exception $e) {
 						sleep(5);
 						$cron->halt();
+					} catch (Error $e) {
+						sleep(5);
+						$cron->halt();
 					}
 
 				}
 			}
 			echo " OK\n";
 		} catch (Exception $e) {
+			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
+				throw $e;
+			} else {
+				echo "\n***ERREUR*** " . $e->getMessage();
+			}
+		} catch (Error $e) {
 			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
 				throw $e;
 			} else {
@@ -71,6 +80,12 @@ class jeedom {
 			} else {
 				echo '***ERREUR*** ' . $e->getMessage();
 			}
+		} catch (Error $e) {
+			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
+				throw $e;
+			} else {
+				echo '***ERREUR*** ' . $e->getMessage();
+			}
 		}
 
 		/*         * *********Arrêt des scénarios**************** */
@@ -84,10 +99,19 @@ class jeedom {
 				} catch (Exception $e) {
 					sleep(5);
 					$scenario->stop();
+				} catch (Error $e) {
+					sleep(5);
+					$scenario->stop();
 				}
 			}
 			echo " OK\n";
 		} catch (Exception $e) {
+			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
+				throw $e;
+			} else {
+				echo '***ERREUR*** ' . $e->getMessage();
+			}
+		} catch (Error $e) {
 			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
 				throw $e;
 			} else {
@@ -107,6 +131,12 @@ class jeedom {
 			config::save('enableCron', 1);
 			echo "OK\n";
 		} catch (Exception $e) {
+			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
+				throw $e;
+			} else {
+				echo '***ERREUR*** ' . $e->getMessage();
+			}
+		} catch (Error $e) {
 			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
 				throw $e;
 			} else {
@@ -338,6 +368,8 @@ class jeedom {
 								$result[$object->getId()]['eqLogic'][$eqLogic->getId()]['cmd'][$cmd->getId()]['value'] = $value;
 							} catch (Exception $exc) {
 
+							} catch (Error $exc) {
+
 							}
 						}
 					}
@@ -409,10 +441,14 @@ class jeedom {
 			}
 		} catch (Exception $e) {
 			log::add('history', 'error', 'history::archive : ' . $e->getMessage());
+		} catch (Error $e) {
+			log::add('history', 'error', 'history::archive : ' . $e->getMessage());
 		}
 		try {
 			network::cron();
 		} catch (Exception $e) {
+			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+		} catch (Error $e) {
 			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
 		}
 		try {
@@ -423,10 +459,14 @@ class jeedom {
 			}
 		} catch (Exception $e) {
 
+		} catch (Error $e) {
+
 		}
 		try {
 			history::historize();
 		} catch (Exception $e) {
+			log::add('history', 'error', 'history::archive : ' . $e->getMessage());
+		} catch (Error $e) {
 			log::add('history', 'error', 'history::archive : ' . $e->getMessage());
 		}
 	}
@@ -444,6 +484,8 @@ class jeedom {
 						$cron->halt();
 					} catch (Exception $e) {
 
+					} catch (Error $e) {
+
 					}
 				}
 			}
@@ -451,10 +493,14 @@ class jeedom {
 				jeedom::start();
 			} catch (Exception $e) {
 
+			} catch (Error $e) {
+
 			}
 			try {
 				cache::restore();
 			} catch (Exception $e) {
+
+			} catch (Error $e) {
 
 			}
 			touch('/tmp/jeedom_start');
@@ -463,6 +509,8 @@ class jeedom {
 			try {
 				plugin::start();
 			} catch (Exception $e) {
+
+			} catch (Error $e) {
 
 			}
 		}
@@ -499,6 +547,8 @@ class jeedom {
 					cron::clean();
 				} catch (Exception $e) {
 					log::add('log', 'error', $e->getMessage());
+				} catch (Error $e) {
+					log::add('log', 'error', $e->getMessage());
 				}
 			}
 			$c = new Cron\CronExpression('21 23 * * *', new Cron\FieldFactory);
@@ -509,9 +559,13 @@ class jeedom {
 					scenario::consystencyCheck();
 				} catch (Exception $e) {
 					log::add('scenario', 'error', $e->getMessage());
+				} catch (Error $e) {
+					log::add('scenario', 'error', $e->getMessage());
 				}
 			}
 		} catch (Exception $e) {
+
+		} catch (Error $e) {
 
 		}
 	}

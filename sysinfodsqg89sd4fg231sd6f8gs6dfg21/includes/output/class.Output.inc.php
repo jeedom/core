@@ -12,7 +12,7 @@
  * @version   SVN: $Id: class.Output.inc.php 569 2012-04-16 06:08:18Z namiltd $
  * @link      http://phpsysinfo.sourceforge.net
  */
- /**
+/**
  * basic output functions for all output formats
  *
  * @category  PHP
@@ -23,38 +23,35 @@
  * @version   Release: 3.0
  * @link      http://phpsysinfo.sourceforge.net
  */
-abstract class Output
-{
-    /**
-     * error object for logging errors
-     *
-     * @var Error
-     */
-    protected $error;
+abstract class Output {
+	/**
+	 * error object for logging errors
+	 *
+	 * @var Error
+	 */
+	protected $error;
 
-    /**
-     * call the parent constructor and check for needed extensions
-     */
-    public function __construct()
-    {
-        $this->error = Error::singleton();
-        $this->_checkConfig();
-        CommonFunctions::checkForExtensions();
-//        $this->error = Error::singleton();
-//        $this->_checkConfig();
-    }
+	/**
+	 * call the parent constructor and check for needed extensions
+	 */
+	public function __construct() {
+		$this->error = Error2::singleton();
+		$this->_checkConfig();
+		CommonFunctions::checkForExtensions();
+//        $this->error = Error2::singleton();
+		//        $this->_checkConfig();
+	}
 
-    /**
-     * read the config file and check for existence
-     *
-     * @return void
-     */
-    private function _checkConfig()
-    {
-        include_once APP_ROOT.'/read_config.php';
+	/**
+	 * read the config file and check for existence
+	 *
+	 * @return void
+	 */
+	private function _checkConfig() {
+		include_once APP_ROOT . '/read_config.php';
 
-        if ($this->error->errorsExist()) {
-            $this->error->errorsAsXML();
-        }
-    }
+		if ($this->error->errorsExist()) {
+			$this->error->errorsAsXML();
+		}
+	}
 }

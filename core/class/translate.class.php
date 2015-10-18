@@ -126,6 +126,8 @@ class translate {
 				$plugin->saveTranslation(self::getLanguage(), $translation);
 			} catch (Exception $e) {
 
+			} catch (Error $e) {
+
 			}
 		}
 	}

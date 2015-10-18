@@ -381,6 +381,8 @@ class interactQuery {
 
 			} catch (Exception $e) {
 				log::add('interact', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+			} catch (Error $e) {
+				log::add('interact', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
 			}
 		}
 

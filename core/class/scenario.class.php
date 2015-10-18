@@ -817,6 +817,8 @@ class scenario {
 					$calculatedDate_tmp['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
 				} catch (Exception $exc) {
 					//echo $exc->getTraceAsString();
+				} catch (Error $exc) {
+					//echo $exc->getTraceAsString();
 				}
 				if ($calculatedDate['prevDate'] == '' || strtotime($calculatedDate['prevDate']) < strtotime($calculatedDate_tmp['prevDate'])) {
 					$calculatedDate['prevDate'] = $calculatedDate_tmp['prevDate'];
@@ -831,6 +833,8 @@ class scenario {
 				$calculatedDate['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 				$calculatedDate['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
 			} catch (Exception $exc) {
+				//echo $exc->getTraceAsString();
+			} catch (Error $exc) {
 				//echo $exc->getTraceAsString();
 			}
 		}
@@ -855,10 +859,14 @@ class scenario {
 						}
 					} catch (Exception $e) {
 
+					} catch (Error $e) {
+
 					}
 					try {
 						$prev = $c->getPreviousRunDate()->getTimestamp();
 					} catch (Exception $e) {
+						return false;
+					} catch (Error $e) {
 						return false;
 					}
 					$lastCheck = strtotime($this->getLastLaunch());
@@ -867,6 +875,8 @@ class scenario {
 						return true;
 					}
 				} catch (Exception $e) {
+
+				} catch (Error $e) {
 
 				}
 			}
@@ -879,10 +889,14 @@ class scenario {
 					}
 				} catch (Exception $e) {
 
+				} catch (Error $e) {
+
 				}
 				try {
 					$prev = $c->getPreviousRunDate()->getTimestamp();
 				} catch (Exception $e) {
+					return false;
+				} catch (Error $e) {
 					return false;
 				}
 				$lastCheck = strtotime($this->getLastLaunch());
@@ -891,6 +905,8 @@ class scenario {
 					return true;
 				}
 			} catch (Exception $exc) {
+
+			} catch (Error $exc) {
 
 			}
 		}

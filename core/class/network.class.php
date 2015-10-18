@@ -566,7 +566,7 @@ class network {
 		if (config::byKey('network::disableMangement') == 1) {
 			return;
 		}
-		if (!jeedom::isCapable('sudo')) {
+		if (!jeedom::isCapable('sudo') || jeedom::getHardwareName() == 'docker') {
 			return;
 		}
 		try {
@@ -591,6 +591,8 @@ class network {
 				}
 			}
 		} catch (Exception $e) {
+
+		} catch (Error $e) {
 
 		}
 	}

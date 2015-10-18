@@ -614,6 +614,8 @@ class cmd {
 							$_value = evaluate(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
 						} catch (Exception $ex) {
 
+						} catch (Error $ex) {
+
 						}
 					}
 					$value = strtolower($_value);
@@ -633,6 +635,8 @@ class cmd {
 						try {
 							$_value = evaluate(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
 						} catch (Exception $ex) {
+
+						} catch (Error $ex) {
 
 						}
 					}
@@ -1179,6 +1183,8 @@ class cmd {
 		try {
 			$http->exec();
 		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur push sur : ', __FILE__) . $url . ' => ' . $e->getMessage());
+		} catch (Error $e) {
 			log::add('cmd', 'error', __('Erreur push sur : ', __FILE__) . $url . ' => ' . $e->getMessage());
 		}
 	}
