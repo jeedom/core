@@ -435,14 +435,14 @@ class jeedom {
 	}
 
 	public static function checkAndCollect() {
-		try {
-			if (date('Gi') >= 500 && date('Gi') < 505) {
+		if (date('Gi') >= 500 && date('Gi') < 505) {
+			try {
 				history::archive();
+			} catch (Exception $e) {
+				log::add('history', 'error', 'history::archive : ' . $e->getMessage());
+			} catch (Error $e) {
+				log::add('history', 'error', 'history::archive : ' . $e->getMessage());
 			}
-		} catch (Exception $e) {
-			log::add('history', 'error', 'history::archive : ' . $e->getMessage());
-		} catch (Error $e) {
-			log::add('history', 'error', 'history::archive : ' . $e->getMessage());
 		}
 		try {
 			network::cron();
