@@ -45,6 +45,24 @@ function jeedomCoreAutoload($classname) {
 	}
 }
 
+switch (config::byKey('log::level')) {
+	case 100: //debug
+		error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+		break;
+	case 200: //Info
+		error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+		break;
+	case 250: //Notice
+		error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+		break;
+	case 300: //Warning
+		error_reporting(E_ERROR | E_WARNING | E_PARSE);
+		break;
+	case 400: //Error
+		error_reporting(E_ERROR | E_PARSE);
+		break;
+}
+
 function jeedomComAutoload($classname) {
 	try {
 		include_file('core', substr($classname, 4), 'com');
