@@ -118,6 +118,8 @@ class cron {
 				}
 			} catch (Exception $ex) {
 				$cron->remove();
+			} catch (Error $ex) {
+				$cron->remove();
 			}
 		}
 	}
@@ -370,10 +372,14 @@ class cron {
 				}
 			} catch (Exception $e) {
 
+			} catch (Error $e) {
+
 			}
 			try {
 				$prev = $c->getPreviousRunDate()->getTimestamp();
 			} catch (Exception $e) {
+				return false;
+			} catch (Error $e) {
 				return false;
 			}
 			$diff = abs((strtotime('now') - $prev) / 60);
@@ -381,6 +387,8 @@ class cron {
 				return true;
 			}
 		} catch (Exception $e) {
+			log::add('cron', 'debug', 'Error on isDue : ' . $e->getMessage() . ', cron : ' . $this->getSchedule());
+		} catch (Error $e) {
 			log::add('cron', 'debug', 'Error on isDue : ' . $e->getMessage() . ', cron : ' . $this->getSchedule());
 		}
 		return false;

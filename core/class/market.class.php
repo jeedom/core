@@ -294,6 +294,8 @@ class market {
 			}
 		} catch (Exception $e) {
 
+		} catch (Error $e) {
+
 		}
 		return null;
 	}
@@ -430,6 +432,9 @@ class market {
 				} catch (Exception $e) {
 					log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
 					$return['status'] = 'ok';
+				} catch (Error $e) {
+					log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
+					$return['status'] = 'ok';
 				}
 				$returns[$logicalId] = $return;
 			}
@@ -475,6 +480,9 @@ class market {
 				}
 			}
 		} catch (Exception $e) {
+			log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
+			$return['status'] = 'ok';
+		} catch (Error $e) {
 			log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
 			$return['status'] = 'ok';
 		}
@@ -598,6 +606,8 @@ class market {
 					}
 				} catch (Exception $e) {
 
+				} catch (Error $e) {
+
 				}
 
 				log::add('update', 'update', __('Décompression du zip...', __FILE__));
@@ -614,6 +624,9 @@ class market {
 					try {
 						$plugin = plugin::byId($this->getLogicalId());
 					} catch (Exception $e) {
+						$this->remove();
+						throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
+					} catch (Error $e) {
 						$this->remove();
 						throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
 					}
@@ -690,17 +703,23 @@ class market {
 							$plugin->setIsEnable(0);
 						} catch (Exception $e) {
 
+						} catch (Error $e) {
+
 						}
 						foreach (eqLogic::byType($this->getLogicalId()) as $eqLogic) {
 							try {
 								$eqLogic->remove();
 							} catch (Exception $e) {
 
+							} catch (Error $e) {
+
 							}
 						}
 					}
 					config::remove('*', $this->getLogicalId());
 				} catch (Exception $e) {
+
+				} catch (Error $e) {
 
 				}
 				try {
@@ -709,6 +728,8 @@ class market {
 						rrmdir($cibDir);
 					}
 				} catch (Exception $e) {
+
+				} catch (Error $e) {
 
 				}
 				break;

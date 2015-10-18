@@ -110,6 +110,8 @@ class scenarioExpression {
 				$return['html'] = template_replace(cmd::cmdToHumanReadable($replace), $return['html']);
 			} catch (Exception $e) {
 
+			} catch (Error $e) {
+
 			}
 		}
 		$replace = array('#uid#' => 'exp' . mt_rand());
@@ -167,6 +169,8 @@ class scenarioExpression {
 							$values[] = evaluate($value);
 						} catch (Exception $ex) {
 
+						} catch (Error $ex) {
+
 						}
 					}
 				}
@@ -219,6 +223,8 @@ class scenarioExpression {
 						try {
 							$values[] = evaluate($value);
 						} catch (Exception $ex) {
+
+						} catch (Error $ex) {
 
 						}
 					}
@@ -290,6 +296,8 @@ class scenarioExpression {
 							$values[] = evaluate($value);
 						} catch (Exception $ex) {
 
+						} catch (Error $ex) {
+
 						}
 					}
 				}
@@ -341,6 +349,8 @@ class scenarioExpression {
 					try {
 						$values[] = evaluate($value);
 					} catch (Exception $ex) {
+
+					} catch (Error $ex) {
 
 					}
 				}
@@ -901,6 +911,8 @@ class scenarioExpression {
 							$options['duration'] = evaluate($options['duration']);
 						} catch (Exception $e) {
 
+						} catch (Error $e) {
+
 						}
 						if (is_numeric($options['duration']) && $options['duration'] > 0) {
 							$this->setLog($scenario, __('Pause de ', __FILE__) . $options['duration'] . __(' seconde(s)', __FILE__));
@@ -1023,6 +1035,8 @@ class scenarioExpression {
 						}
 					} catch (Exception $ex) {
 						$result = $options['value'];
+					} catch (Error $ex) {
+						$result = $options['value'];
 					}
 					$this->setLog($scenario, __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' => ', __FILE__) . $options['value'] . ' = ' . $result);
 					$dataStore = new dataStore();
@@ -1112,6 +1126,8 @@ class scenarioExpression {
 				return eval($this->getExpression());
 			}
 		} catch (Exception $e) {
+			$this->setLog($scenario, $message . $e->getMessage());
+		} catch (Error $e) {
 			$this->setLog($scenario, $message . $e->getMessage());
 		}
 	}

@@ -136,6 +136,8 @@ class plugin {
 					$listPlugin[] = plugin::byId($result['plugin'], $_translate);
 				} catch (Exception $e) {
 					log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $result['plugin']);
+				} catch (Error $e) {
+					log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $result['plugin']);
 				}
 			}
 		} else {
@@ -147,6 +149,8 @@ class plugin {
 						try {
 							$listPlugin[] = plugin::byId($pathInfoPlugin, $_translate);
 						} catch (Exception $e) {
+							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
+						} catch (Error $e) {
 							log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
 						}
 					}
@@ -199,6 +203,8 @@ class plugin {
 					$plugin_id::cron();
 				} catch (Exception $e) {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction cron du plugin : ', __FILE__) . $e->getMessage());
+				} catch (Error $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron du plugin : ', __FILE__) . $e->getMessage());
 				}
 			}
 		}
@@ -211,6 +217,8 @@ class plugin {
 				try {
 					$plugin_id::cron15();
 				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron15 du plugin : ', __FILE__) . $e->getMessage());
+				} catch (Error $e) {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction cron15 du plugin : ', __FILE__) . $e->getMessage());
 				}
 			}
@@ -225,6 +233,8 @@ class plugin {
 					$plugin_id::cron30();
 				} catch (Exception $e) {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction cron30 du plugin : ', __FILE__) . $e->getMessage());
+				} catch (Error $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron30 du plugin : ', __FILE__) . $e->getMessage());
 				}
 			}
 		}
@@ -238,6 +248,8 @@ class plugin {
 					$plugin_id::cronDaily();
 				} catch (Exception $e) {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction cronDaily du plugin : ', __FILE__) . $e->getMessage());
+				} catch (Error $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cronDaily du plugin : ', __FILE__) . $e->getMessage());
 				}
 			}
 		}
@@ -250,6 +262,8 @@ class plugin {
 				try {
 					$plugin_id::cronHourly();
 				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cronHourly du plugin : ', __FILE__) . $e->getMessage());
+				} catch (Error $e) {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction cronHourly du plugin : ', __FILE__) . $e->getMessage());
 				}
 			}
@@ -267,6 +281,9 @@ class plugin {
 				} catch (Exception $e) {
 					echo "NOK\n";
 					log::add($plugin_id, 'error', __('Erreur sur la fonction start du plugin : ', __FILE__) . $e->getMessage());
+				} catch (Error $e) {
+					echo "NOK\n";
+					log::add($plugin_id, 'error', __('Erreur sur la fonction start du plugin : ', __FILE__) . $e->getMessage());
 				}
 
 			}
@@ -280,6 +297,8 @@ class plugin {
 				try {
 					$plugin_id::stop();
 				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction stop du plugin : ', __FILE__) . $e->getMessage());
+				} catch (Error $e) {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction stop du plugin : ', __FILE__) . $e->getMessage());
 				}
 			}
@@ -345,6 +364,8 @@ class plugin {
 						$eqLogic->save();
 					} catch (Exception $e) {
 
+					} catch (Error $e) {
+
 					}
 				}
 			}
@@ -362,6 +383,8 @@ class plugin {
 					$eqLogic->setIsVisible($eqLogic->getConfiguration('previousIsVisible', 1));
 					$eqLogic->save();
 				} catch (Exception $e) {
+
+				} catch (Error $e) {
 
 				}
 			}
@@ -382,6 +405,10 @@ class plugin {
 				log::add($this->getId(), 'info', "Installation/remove/update result : " . $out);
 			}
 		} catch (Exception $e) {
+			config::save('active', $alreadyActive, $this->getId());
+			log::add('plugin', 'error', $e->getMessage());
+			throw $e;
+		} catch (Error $e) {
 			config::save('active', $alreadyActive, $this->getId());
 			log::add('plugin', 'error', $e->getMessage());
 			throw $e;

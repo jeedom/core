@@ -592,6 +592,8 @@ class network {
 			}
 		} catch (Exception $e) {
 
+		} catch (Error $e) {
+
 		}
 	}
 }
