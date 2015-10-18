@@ -32,6 +32,10 @@ try {
 } catch (Exception $e) {
 	date_default_timezone_set('Europe/Brussels');
 }
+function jeedomErrorHandler($errno, $errstr, $errfile, $errline) {
+	throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
+}
+set_error_handler('jeedomErrorHandler');
 
 function jeedomCoreAutoload($classname) {
 	try {
