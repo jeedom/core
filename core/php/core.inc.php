@@ -33,7 +33,10 @@ try {
 	date_default_timezone_set('Europe/Brussels');
 }
 function jeedomErrorHandler($errno, $errstr, $errfile, $errline) {
-	throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
+	if ($errno == E_USER_ERROR || $errno == E_RECOVERABLE_ERROR) {
+		throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
+	}
+	return false;
 }
 set_error_handler('jeedomErrorHandler');
 
