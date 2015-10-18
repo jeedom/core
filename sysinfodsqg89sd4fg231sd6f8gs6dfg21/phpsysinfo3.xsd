@@ -90,7 +90,19 @@
 
     <complexType name="SCSI">
     	<sequence>
-    		<element name="SCSI" type="tns:SCSI" minOccurs="0" maxOccurs="unbounded"></element>
+    		<element name="SCSI" type="tns:HWDevice" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="TB">
+    	<sequence>
+    		<element name="TB" type="tns:HWDevice" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="I2C">
+    	<sequence>
+    		<element name="I2C" type="tns:HWDevice" minOccurs="0" maxOccurs="unbounded"></element>
     	</sequence>
     </complexType>
 
@@ -168,6 +180,8 @@
     		<element name="USB" type="tns:USB" minOccurs="1" maxOccurs="1"></element>
     		<element name="IDE" type="tns:IDE" minOccurs="1" maxOccurs="1"></element>
     		<element name="SCSI" type="tns:SCSI" minOccurs="1" maxOccurs="1"></element>
+    		<element name="TB" type="tns:TB" minOccurs="1" maxOccurs="1"></element>
+    		<element name="I2C" type="tns:I2C" minOccurs="1" maxOccurs="1"></element>
     		<element name="CPU" type="tns:CPU" minOccurs="1" maxOccurs="1"></element>
     	</sequence>
     </complexType>
