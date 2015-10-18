@@ -22,67 +22,15 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 class cache {
 	/*     * *************************Attributs****************************** */
 
+	private static $cache = null;
+
 	private $key;
 	private $value = null;
-	private $lifetime = 1;
+	private $lifetime = 0;
 	private $datetime;
 	private $options = null;
-	private $_hasExpired = -1;
 
 	/*     * ***********************Methode static*************************** */
-
-	public static function byKey($_key, $_noRemove = false) {
-		$values = array(
-			'key' => $_key,
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM cache
-        WHERE `key`=:key';
-		$cache = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-		if (!is_object($cache)) {
-			$cache = new self();
-			$cache->setKey($_key);
-			$cache->setDatetime(date('Y-m-d H:i:s'));
-			$cache->_hasExpired = true;
-		} else {
-			if (!$_noRemove && $cache->hasExpired()) {
-				$cache->remove();
-			}
-		}
-		return $cache;
-	}
-
-	public static function search($_search, $_noRemove = false) {
-		$values = array(
-			'key' => '%' . $_search . '%',
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM cache
-        WHERE `key` LIKE :key';
-		$caches = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-		if (!$_noRemove) {
-			foreach ($caches as $cache) {
-				if ($cache->hasExpired()) {
-					$cache->remove();
-				}
-			}
-		}
-		return $caches;
-	}
-
-	public static function deleteBySearch($_search) {
-		$values = array(
-			'key' => '%' . $_search . '%',
-		);
-		$sql = 'DELETE FROM cache
-        WHERE `key` LIKE :key';
-		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-	}
-
-	public static function flush() {
-		$sql = 'TRUNCATE TABLE cache';
-		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-	}
 
 	public static function set($_key, $_value, $_lifetime = 60, $_options = null) {
 		if ($_lifetime < 0) {
@@ -98,128 +46,105 @@ class cache {
 		return $cache->save();
 	}
 
-	public static function clean() {
-		$sql = "DELETE FROM `cache`  WHERE (UNIX_TIMESTAMP(`datetime`) + lifetime) < UNIX_TIMESTAMP(NOW()) AND lifetime > 0";
-		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-		$sql = "SELECT * FROM `cache`  WHERE `key` LIKE 'cmd%' AND lifetime = 0";
-		$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
-		foreach ($results as $result) {
-			$id = str_replace('cmd', '', $result['key']);
-			if (is_numeric($id)) {
-				$cmd = cmd::byId($id);
-				if (!is_object($cmd)) {
-					$sql = "DELETE FROM `cache`  WHERE `key`=:key";
-					$value = array('key' => $result['key']);
-					DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
-				}
-			}
+	public static function getCache() {
+		if (self::$cache !== null) {
+			return self::$cache;
+		}
+		$engine = config::byKey('cache::engine');
+		switch ($engine) {
+			case 'FilesystemCache':
+				self::$cache = new \Doctrine\Common\Cache\FilesystemCache("/tmp/jeedom-cache");
+				break;
+			case 'PhpFileCache':
+				self::$cache = new \Doctrine\Common\Cache\PhpFileCache("/tmp/jeedom-cache-php");
+				break;
+			case 'MemcachedCache':
+				$memcached = new Memcached();
+				$memcached->connect(config::byKey('cache::memcacheaddr'), config::byKey('cache::memcacheport'));
+				self::$cache = new \Doctrine\Common\Cache\MemcachedCache();
+				self::$cache->setMemcached($memcached);
+				break;
+			case 'RedisCache':
+				$redis = new Redis();
+				$redis->connect(config::byKey('cache::redisaddr'), config::byKey('cache::redisport'));
+				self::$cache = new \Doctrine\Common\Cache\RedisCache();
+				self::$cache->setRedis($redis);
+				break;
+			default:
+				self::$cache = new \Doctrine\Common\Cache\FilesystemCache("/tmp/jeedom-cache");
+				break;
 		}
 
-		$sql = "SELECT * FROM `cache`  WHERE `key` LIKE 'core::eqLogic%::lastCommunication'";
-		$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
-		foreach ($results as $result) {
-			$id = str_replace(array('core::eqLogic', '::lastCommunication'), '', $result['key']);
-			if (is_numeric($id)) {
-				$eqLogic = eqLogic::byId($id);
-				if (!is_object($eqLogic)) {
-					$sql = "DELETE FROM `cache`  WHERE `key`=:key";
-					$value = array('key' => $result['key']);
-					DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
-				}
-			}
-		}
+		return self::$cache;
+	}
 
-		$sql = "SELECT * FROM `cache`  WHERE `key` LIKE 'core::eqLogic%::numberTryWithoutSuccess'";
-		$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
-		foreach ($results as $result) {
-			$id = str_replace(array('core::eqLogic', '::numberTryWithoutSuccess'), '', $result['key']);
-			if (is_numeric($id)) {
-				$eqLogic = eqLogic::byId($id);
-				if (!is_object($eqLogic)) {
-					$sql = "DELETE FROM `cache`  WHERE `key`=:key";
-					$value = array('key' => $result['key']);
-					DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
-				}
-			}
+	public static function byKey($_key, $_noRemove = false) {
+		$cache = self::getCache()->fetch($_key);
+		if (!is_object($cache)) {
+			$cache = new self();
+			$cache->setKey($_key);
+			$cache->setDatetime(date('Y-m-d H:i:s'));
 		}
+		return $cache;
+	}
 
-		$sql = "SELECT * FROM `cache`  WHERE `key` LIKE 'core::eqLogic%::numberTryWithoutSuccess'";
-		$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
-		foreach ($results as $result) {
-			$id = str_replace(array('core::eqLogic', '::numberTryWithoutSuccess'), '', $result['key']);
-			if (is_numeric($id)) {
-				$eqLogic = eqLogic::byId($id);
-				if (!is_object($eqLogic)) {
-					$sql = "DELETE FROM `cache`  WHERE `key`=:key";
-					$value = array('key' => $result['key']);
-					DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
-				}
-			}
-		}
+	public static function flush() {
+		self::getCache()->deleteAll();
+		shell_exec('sudo rm -rf /tmp/jeedom-cache 2>&1 > /dev/null');
+		shell_exec('rm -rf /tmp/jeedom-cache 2>&1 > /dev/null');
+	}
 
-		$sql = "SELECT * FROM `cache`  WHERE `key` LIKE 'widgetHtmldashboard%'";
-		$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
-		foreach ($results as $result) {
-			$id = str_replace(array('widgetHtmldashboard'), '', $result['key']);
-			if (is_numeric($id)) {
-				$eqLogic = eqLogic::byId($id);
-				if (!is_object($eqLogic)) {
-					$sql = "DELETE FROM `cache`  WHERE `key`=:key";
-					$value = array('key' => $result['key']);
-					DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
-				}
-			}
+	public static function search() {
+		return array();
+	}
+
+	public static function persist() {
+		switch (config::byKey('cache::engine')) {
+			case 'FilesystemCache':
+				$cache_dir = '/tmp/jeedom-cache';
+				break;
+			case 'PhpFileCache':
+				$cache_dir = '/tmp/jeedom-cache-php';
+				break;
+			default:
+				return;
 		}
+		shell_exec('rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null');
+	}
+
+	public static function restore() {
+		if (!file_exists(dirname(__FILE__) . '/../../cache.tar.gz')) {
+			return;
+		}
+		switch (config::byKey('cache::engine')) {
+			case 'FilesystemCache':
+				$cache_dir = '/tmp/jeedom-cache';
+				break;
+			case 'PhpFileCache':
+				$cache_dir = '/tmp/jeedom-cache-php';
+				break;
+			default:
+				return;
+		}
+		shell_exec('rm -rf ' . $cache_dir . ';mkdir ' . $cache_dir . ';cd ' . $cache_dir . ';tar  xfz ' . dirname(__FILE__) . '/../../cache.tar.gz');
 	}
 
 	/*     * *********************Methode d'instance************************* */
 
 	public function save() {
-		$values = array(
-			'key' => $this->getKey(),
-			'value' => $this->getValue(),
-			'datetime' => date('Y-m-d H:i:s'),
-			'lifetime' => $this->getLifetime(),
-			'options' => $this->options,
-		);
-		$sql = 'REPLACE cache
-        SET `key`=:key,
-        `value`=:value,
-        `datetime`=:datetime,
-        `lifetime`=:lifetime,
-        `options`=:options';
-		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		$this->setDatetime(date('Y-m-d H:i:s'));
+		if ($this->getLifetime() < 2) {
+			return self::getCache()->save($this->getKey(), $this);
+		} else {
+			return self::getCache()->save($this->getKey(), $this, $this->getLifetime());
+		}
 	}
 
 	public function remove() {
-		DB::remove($this);
+		self::getCache()->delete($this->getKey());
 	}
 
 	public function hasExpired() {
-		if ($this->_hasExpired != -1) {
-			return $this->_hasExpired;
-		}
-		if ($this->getLifetime() == 0) {
-			$this->_hasExpired = false;
-			return false;
-		}
-		if ($this->value === null || trim($this->value) === '') {
-			$this->_hasExpired = true;
-			return true;
-		}
-		if ((strtotime($this->getDatetime()) + $this->getLifetime()) < strtotime('now')) {
-			$this->_hasExpired = true;
-			return true;
-		}
-		$this->_hasExpired = false;
-		return false;
-	}
-
-	public function invalid() {
-		if (!$this->hasExpired()) {
-			$this->setLifetime(1);
-			$this->save();
-		}
 		return true;
 	}
 

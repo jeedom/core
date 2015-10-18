@@ -50,24 +50,24 @@ if(!isset(userProfils.interactMenuSize) || userProfils.interactMenuSize > 0){
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
     $('#div_listInteract').hide();
     $('#bt_displayInteractList').on('mouseenter',function(){
-       var timer = setTimeout(function(){
+     var timer = setTimeout(function(){
         $('#div_listInteract').show();
         $('#bt_displayInteractList').find('i').hide();
         $('.interactListContainer').packery();
     }, 100);
-       $(this).data('timerMouseleave', timer)
-   }).on("mouseleave", function(){
-      clearTimeout($(this).data('timerMouseleave'));
-  });
+     $(this).data('timerMouseleave', timer)
+ }).on("mouseleave", function(){
+  clearTimeout($(this).data('timerMouseleave'));
+});
 
-   $('#div_listInteract').on('mouseleave',function(){
-     var timer = setTimeout(function(){
-        $('#div_listInteract').hide();
-        $('#bt_displayInteractList').find('i').show();
-        $('.interactListContainer').packery();
-    }, 300);
-     $(this).data('timerMouseleave', timer);
- }).on("mouseenter", function(){
+ $('#div_listInteract').on('mouseleave',function(){
+   var timer = setTimeout(function(){
+    $('#div_listInteract').hide();
+    $('#bt_displayInteractList').find('i').show();
+    $('.interactListContainer').packery();
+}, 300);
+   $(this).data('timerMouseleave', timer);
+}).on("mouseenter", function(){
   clearTimeout($(this).data('timerMouseleave'));
 });
 }
@@ -125,9 +125,9 @@ $('#bt_duplicate').on('click', function () {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                    window.location.replace('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
-                }
-            });
+                   loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
+               }
+           });
         }
     });
 });
@@ -172,16 +172,16 @@ $("#bt_saveInteract").on('click', function () {
 
 $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
     bootbox.confirm('{{Etes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?}}', function (result) {
-       if (result) {
+     if (result) {
         jeedom.interact.regenerateInteract({
             interact: {query: result},
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
-               $('#div_alert').showAlert({message: '{{Toutes les interations ont été regénérées}}', level: 'success'});
-           }
-       });
+             $('#div_alert').showAlert({message: '{{Toutes les interations ont été regénérées}}', level: 'success'});
+         }
+     });
     }
 });
 });
@@ -195,9 +195,9 @@ $("#bt_addInteract,#bt_addInteract2").on('click', function () {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                    window.location.replace('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
-                }
-            });
+                   loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
+               }
+           });
         }
     });
 });
@@ -213,9 +213,9 @@ $("#bt_removeInteract").on('click', function () {
                         $('#div_alert').showAlert({message: error.message, level: 'danger'});
                     },
                     success: function () {
-                        window.location.replace('index.php?v=d&p=interact&removeSuccessFull=1');
-                    }
-                });
+                       loadPage('index.php?v=d&p=interact&removeSuccessFull=1');
+                   }
+               });
             }
         });
     } else {

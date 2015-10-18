@@ -74,16 +74,8 @@
  			var regex = /<br\s*[\/]?>/gi;
  			if($.isArray(result)){
  				for (var i in result.reverse()) {
- 					if(!isset(_params['search']) || _params['search'].value() == '' || result[i][2].toLowerCase().indexOf(_params['search'].value().toLowerCase()) != -1){
- 						if(result[i][0] != ''){
- 							log += result[i][0].replace(regex, "\n");
- 							log += " - ";
- 						}
- 						if(result[i][1] != ''){
- 							log += result[i][1].replace(regex, "\n");
- 							log += " - ";
- 						}
- 						log += result[i][2].replace(regex, "\n");
+ 					if(!isset(_params['search']) || _params['search'].value() == '' || result[i].toLowerCase().indexOf(_params['search'].value().toLowerCase()) != -1){
+ 						log += result[i].replace(regex, "\n");
  						log = log.replace(/^\s+|\s+$/g, '');
  						log += "\n";
  					}
@@ -91,7 +83,6 @@
  			}
  			_params.display.text(log);
  			_params.display.scrollTop(_params.display.height() + 200000);
-
  			setTimeout(function() {
  				jeedom.log.autoupdate(_params)
  			}, 1000);

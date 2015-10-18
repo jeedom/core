@@ -41,7 +41,7 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                    window.location.replace('index.php?v=d&p=plan&plan_id=' + data.id);
+                    loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
                 }
             });
         }
@@ -58,7 +58,7 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                    window.location.replace('index.php?v=d&p=plan&plan_id=' + data.id);
+                     loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
                 },
             });
         }
@@ -89,10 +89,10 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                   $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
-                   window.location.reload();
-               },
-           });
+                 $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
+                  loadPage('index.php?v=d&p=plan');
+             },
+         });
         }
     });
 });
@@ -386,7 +386,7 @@ function displayPlan(_offsetX, _offsetY) {
                 $('#bt_editPlan').show();
             }
 
-           $('.div_displayObject:visible:last').find('eqLogic-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
+            $('.div_displayObject:visible:last').find('eqLogic-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
             if (planHeader_id != -1) {
                 jeedom.plan.byPlanHeader({
                     id: planHeader_id,
@@ -566,9 +566,9 @@ function displayFrameObject(name, _type, _id, _html, _plan, _noRender) {
         $(name).find('.eqLogic-widget[data-eqLogic_id=' + _id + ']').remove();
     } 
     if (_type == 'scenario') { 
-     $(name).find('.scenario-widget[data-scenario_id=' + _id + ']').remove();
- } 
- if (_type == 'view') { 
+       $(name).find('.scenario-widget[data-scenario_id=' + _id + ']').remove();
+   } 
+   if (_type == 'view') { 
     $(name).find('.view-link-widget[data-link_id=' + _id + ']').remove();
 } 
 if (_type == 'plan') { 
@@ -673,16 +673,16 @@ return html;
 }
 
 function addGraphFrame(name, _plan) {
-   var parent = {
-       height: $(name).height(),
-       width: $(name).width(),
-   };
-   _plan = init(_plan, {});
-   _plan.display = init(_plan.display, {});
-   _plan.link_id = init(_plan.link_id, Math.round(Math.random() * 99999999) + 9999);
-   var options = init(_plan.display.graph, '[]');
-   var background_color = 'background-color : white;';
-   if(init(_plan.display.transparentBackground, false)){
+ var parent = {
+     height: $(name).height(),
+     width: $(name).width(),
+ };
+ _plan = init(_plan, {});
+ _plan.display = init(_plan.display, {});
+ _plan.link_id = init(_plan.link_id, Math.round(Math.random() * 99999999) + 9999);
+ var options = init(_plan.display.graph, '[]');
+ var background_color = 'background-color : white;';
+ if(init(_plan.display.transparentBackground, false)){
     background_color = '';
 }
 var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="'+background_color+'border : solid 1px black;">';
@@ -693,19 +693,19 @@ html += '</div>';
 displayFrameObject(name, 'graph', _plan.link_id, html, _plan);
 for (var i in options) {
   if (init(options[i].link_id) != '') {
-     jeedom.history.drawChart({
-        cmd_id: options[i].link_id,
-        el: 'graph' + _plan.link_id,
-        showLegend: init(_plan.display.showLegend, true),
-        showTimeSelector: init(_plan.display.showTimeSelector, false),
-        showScrollbar: init(_plan.display.showScrollbar, true),
-        dateRange: init(_plan.display.dateRange, '7 days'),
-        option: init(options[i].configuration, {}),
-        transparentBackground : init(_plan.display.transparentBackground, false),
-        enableExport : false,
-        global: false,
-    });
- }
+   jeedom.history.drawChart({
+    cmd_id: options[i].link_id,
+    el: 'graph' + _plan.link_id,
+    showLegend: init(_plan.display.showLegend, true),
+    showTimeSelector: init(_plan.display.showTimeSelector, false),
+    showScrollbar: init(_plan.display.showScrollbar, true),
+    dateRange: init(_plan.display.dateRange, '7 days'),
+    option: init(options[i].configuration, {}),
+    transparentBackground : init(_plan.display.transparentBackground, false),
+    enableExport : false,
+    global: false,
+});
+}
 }
 }
 
@@ -744,7 +744,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     if (init(_noRender, false) == false) {
         $('.div_displayObject:visible:last').append(html);
     }
-
+    html.addClass('jeedomAlreadyPosition');
     html.css('z-index', 1000);
     if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {

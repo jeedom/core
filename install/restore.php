@@ -127,7 +127,7 @@ try {
 	}
 
 	echo "Restauration de la base de donnees...";
-	system("mysql --host=" . $CONFIG['db']['host'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  < " . $tmp . "/DB_backup.sql");
+	system("mysql --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  < " . $tmp . "/DB_backup.sql");
 	echo "OK\n";
 
 	echo "Réactivation des contraintes...";
@@ -150,6 +150,14 @@ try {
 		copy('/tmp/common.config.php', dirname(__FILE__) . '/../core/config/common.config.php');
 		echo "OK\n";
 	}
+
+	echo "Restauration du cache...";
+	try {
+		cache::restore();
+	} catch (Exception $e) {
+
+	}
+	echo "OK\n";
 
 	if (!file_exists($jeedom_dir . '/install')) {
 		mkdir($jeedom_dir . '/install');

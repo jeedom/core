@@ -32,6 +32,13 @@ try {
 } catch (Exception $e) {
 	date_default_timezone_set('Europe/Brussels');
 }
+function jeedomErrorHandler($errno, $errstr, $errfile, $errline) {
+	if ($errno == E_USER_ERROR || $errno == E_RECOVERABLE_ERROR) {
+		throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
+	}
+	return false;
+}
+set_error_handler('jeedomErrorHandler');
 
 function jeedomCoreAutoload($classname) {
 	try {
@@ -39,6 +46,24 @@ function jeedomCoreAutoload($classname) {
 	} catch (Exception $e) {
 
 	}
+}
+
+switch (config::byKey('log::level')) {
+	case 100: //debug
+		error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+		break;
+	case 200: //Info
+		error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+		break;
+	case 250: //Notice
+		error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+		break;
+	case 300: //Warning
+		error_reporting(E_ERROR | E_WARNING | E_PARSE);
+		break;
+	case 400: //Error
+		error_reporting(E_ERROR | E_PARSE);
+		break;
 }
 
 function jeedomComAutoload($classname) {
@@ -89,21 +114,4 @@ spl_autoload_register('jeedomCoreAutoload', true, true);
 spl_autoload_register('jeedomPluginAutoload', true, true);
 spl_autoload_register('jeedomComAutoload', true, true);
 require_once dirname(__FILE__) . '/../../vendor/autoload.php';
-
-/* * *******************Securité anti piratage**************************** */
-try {
-	if (config::byKey('security::enable') == 1) {
-		$connection = connection::byIp(getClientIp());
-		if (is_object($connection) && $connection->getStatus() == 'Ban') {
-			header("Status: 404 Not Found");
-			header('HTTP/1.0 404 Not Found');
-			$_SERVER['REDIRECT_STATUS'] = 404;
-			echo "<h1>404 Not Found</h1>";
-			echo "The page that you have requested could not be found.";
-			exit();
-		}
-	}
-} catch (Exception $e) {
-
-}
 ?>

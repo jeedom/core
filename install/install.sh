@@ -386,6 +386,8 @@ install_dependency() {
     apt-get -y install php5-json
     apt-get -y install php5-mysql
     apt-get -y install php5-ldap
+    apt-get -y install php5-memcached
+    apt-get -y install php5-redis
     apt-get -y install php-pear
     apt-get -y install python-serial
     apt-get -y install systemd
@@ -537,21 +539,30 @@ chown -R www-data:www-data "${webserver_home}"
 rm -rf jeedom.zip
 cd jeedom
 
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_JEEDOM_USER=jeedom
+MYSQL_JEEDOM_DBNAME=jeedom
+
 echo "********************************************************"
 echo "${msg_config_db}"
 echo "********************************************************"
 bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
-echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p"${MySQL_root}"
-echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p"${MySQL_root}"
-echo "DROP DATABASE IF EXISTS jeedom;" | mysql -uroot -p"${MySQL_root}"
-echo "CREATE DATABASE jeedom;" | mysql -uroot -p"${MySQL_root}"
-echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p"${MySQL_root}"
+echo "DROP USER '${MYSQL_JEEDOM_USER}'@'%'" | mysql -uroot -p"${MySQL_root}"
+echo "CREATE USER '${MYSQL_JEEDOM_USER}'@'%' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p"${MySQL_root}"
+echo "DROP DATABASE IF EXISTS ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot -p"${MySQL_root}"
+echo "CREATE DATABASE ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot -p"${MySQL_root}"
+echo "GRANT ALL PRIVILEGES ON ${MYSQL_JEEDOM_DBNAME}.* TO '${MYSQL_JEEDOM_USER}'@'%';" | mysql -uroot -p"${MySQL_root}"
 
 echo "********************************************************"
 echo "${msg_install_jeedom}"
 echo "********************************************************"
 cp core/config/common.config.sample.php core/config/common.config.php
 sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php 
+sed -i -e "s/#DBNAME#/${MYSQL_JEEDOM_DBNAME}/g" core/config/common.config.php 
+sed -i -e "s/#USERNAME#/${MYSQL_JEEDOM_USER}/g" core/config/common.config.php 
+sed -i -e "s/#PORT#/${MYSQL_PORT}/g" core/config/common.config.php 
+sed -i -e "s/#HOST#/${MYSQL_HOST}/g" core/config/common.config.php 
 chown www-data:www-data core/config/common.config.php
 php install/install.php mode=force
 

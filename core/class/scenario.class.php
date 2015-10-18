@@ -602,9 +602,9 @@ class scenario {
 		}
 		$cmd = cmd::byId(str_replace('#', '', $_trigger));
 		if (is_object($cmd)) {
-			log::add('event', 'event', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $cmd->getHumanName());
+			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $cmd->getHumanName());
 		} else {
-			log::add('event', 'event', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
+			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
 		}
 		$this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
@@ -817,6 +817,8 @@ class scenario {
 					$calculatedDate_tmp['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
 				} catch (Exception $exc) {
 					//echo $exc->getTraceAsString();
+				} catch (Error $exc) {
+					//echo $exc->getTraceAsString();
 				}
 				if ($calculatedDate['prevDate'] == '' || strtotime($calculatedDate['prevDate']) < strtotime($calculatedDate_tmp['prevDate'])) {
 					$calculatedDate['prevDate'] = $calculatedDate_tmp['prevDate'];
@@ -831,6 +833,8 @@ class scenario {
 				$calculatedDate['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 				$calculatedDate['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
 			} catch (Exception $exc) {
+				//echo $exc->getTraceAsString();
+			} catch (Error $exc) {
 				//echo $exc->getTraceAsString();
 			}
 		}
@@ -855,10 +859,14 @@ class scenario {
 						}
 					} catch (Exception $e) {
 
+					} catch (Error $e) {
+
 					}
 					try {
 						$prev = $c->getPreviousRunDate()->getTimestamp();
 					} catch (Exception $e) {
+						return false;
+					} catch (Error $e) {
 						return false;
 					}
 					$lastCheck = strtotime($this->getLastLaunch());
@@ -867,6 +875,8 @@ class scenario {
 						return true;
 					}
 				} catch (Exception $e) {
+
+				} catch (Error $e) {
 
 				}
 			}
@@ -879,10 +889,14 @@ class scenario {
 					}
 				} catch (Exception $e) {
 
+				} catch (Error $e) {
+
 				}
 				try {
 					$prev = $c->getPreviousRunDate()->getTimestamp();
 				} catch (Exception $e) {
+					return false;
+				} catch (Error $e) {
 					return false;
 				}
 				$lastCheck = strtotime($this->getLastLaunch());
@@ -891,6 +905,8 @@ class scenario {
 					return true;
 				}
 			} catch (Exception $exc) {
+
+			} catch (Error $exc) {
 
 			}
 		}
@@ -901,7 +917,7 @@ class scenario {
 		if ($this->getPID() > 0 && posix_getsid($this->getPID()) && (!file_exists('/proc/' . $this->getPID() . '/cmdline') || strpos(file_get_contents('/proc/' . $this->getPID() . '/cmdline'), 'scenario_id=' . $this->getId()) !== false)) {
 			return true;
 		}
-		if (shell_exec('ps ax | grep -ie "scenario_id=' . $this->getId() . ' force" | grep -v ' . getmypid() . ' | grep -v grep | wc -l') > 0) {
+		if (shell_exec('(ps ax || ps w) | grep -ie "scenario_id=' . $this->getId() . ' force" | grep -v ' . getmypid() . ' | grep -v grep | wc -l') > 0) {
 			return true;
 		}
 		return false;
@@ -925,7 +941,7 @@ class scenario {
 				}
 			}
 			if ($this->running()) {
-				exec("ps aux | grep -ie 'scenario_id=" . $this->getId() . " force' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+				exec("(ps ax || ps w) | grep -ie 'scenario_id=" . $this->getId() . " force' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
 			}
 			if ($this->running()) {
 				throw new Exception(__('Impossible d\'arrêter le scénario : ', __FILE__) . $this->getHumanName() . __('. PID : ', __FILE__) . $this->getPID());

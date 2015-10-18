@@ -76,18 +76,6 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'getUpdateLog') {
-		ajax::success(log::get('update', 0, 3000));
-	}
-
-	if (init('action') == 'getBackupLog') {
-		ajax::success(log::get('backup', 0, 3000));
-	}
-
-	if (init('action') == 'getRestoreLog') {
-		ajax::success(log::get('restore', 0, 3000));
-	}
-
 	if (init('action') == 'removeBackup') {
 		jeedom::removeBackup(init('backup'));
 		ajax::success();

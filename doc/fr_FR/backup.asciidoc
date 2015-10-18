@@ -1,6 +1,6 @@
 = Sauvegarde et restauration
 
-La sauvegarde et restauration de Jeedom permet de sauvegarder celui-ci et de le restaurer sur lui-même ou sur un autre Jeedom.
+La sauvegarde et restauration de Jeedom permet de sauvegarde celui-ci et de le restaurer sur lui meme ou sur un autre Jeedom
 
 == Configuration
 
@@ -8,48 +8,48 @@ Accessible depuis Général -> Administration -> Sauvegarde :
 
 image::../images/backup.png[]
 
-Cette page permet la gestion des sauvegardes : 
+Cette page page permet la gestion des sauvegardes : 
 
 image::../images/backup2.png[]
 
-Sur cette page vous retrouvez à gauche les paramètres et les boutons d'action, et à droite le statut en temps réel de l'action en cours (sauvegarde en cours ou restauration), si vous en avez lancée une.
+Sur cette page vous retrouvez à gauche les parametres et les boutons d'action et à droite le statut en temps réel de l'action en cours (sauvegarde en cours ou restauration), si vous en avez lancé une.
 
 Sur la gauche on a : 
 
 * *Sauvegardes*
-** *Sauvegarde* : permet de lancer une sauvegarde immédiatement (utile si vous voulez faire un changement critique, cela vous permettra de revenir en arrière). Vous avez aussi un bouton pour lancer une sauvegarde sans envoyer l'archive sur le cloud (nécessite un abonnement voir plus bas), l'envoi de l'archive peut prendre du temps cela permet donc d'en gagner un peu.
-** *Emplacement des sauvegardes* : endroit où Jeedom met les sauvegardes, il est recommandé de ne pas le changer. Si vous êtes en chemin relatif, alors son origine est l'endroit ou Jeedom est installé (/usr/share/nginx/www/jeedom).
-** *Nombre de jour(s) de mémorisation des sauvegardes* : nombre de jours de sauvegarde à garder. Une fois ce délai passé les sauvegardes sont supprimées. Attention à ne pas mettre un nombre de jours trop élevé, sinon vous pouvez remplir votre système de fichiers.
-** *Taille totale maximale des backups (Mo)* : Permet de limiter la taille totale des suavegardes. Si cette valeur est dépassée alors Jeedom va supprimer les sauvegardes les plus veillez jusqu'à retomber en-dessous de la taille maximale.
-** *Envoyer les sauvegardes dans le cloud* : indique à Jeedom d'envoyer les sauvegardes au market, attention il faut avoir pris l'abonnement.
+** *Sauvegardes* : permet de lancer une sauvegarde immédiatement (utile si vous voulez faire un changement critique ca vous permettra de revenir en arrière), vous avez aussi un bouton pour lancer une sauvegarder sans envoyer l'archive sur le cloud (necessite un abonnement voir plus bas), l'envoi de l'archive peut prendre du temps cela permet donc d'en gagner un peu
+** *Emplacement des sauvegardes* : endroit ou Jeedom met les sauvegardes, il est recommandé de ne pas le changer. Si vous etes en chemin relatif alors son origine est l'endroit ou Jeedom est installé (/usr/share/nginx/www/jeedom)
+** *Nombre de jour(s) de mémorisation des sauvegardes* : nombre de jour de suavegarde à garder. Une fois ce délai passé les sauvegardes sont supprimé. Attention a ne pas mettre un nombre de jour trop elevé sinon vous pouvez remplir votre système de fichier
+** *Taille totale maximale des backups (Mo)* : Permet de limité la taille total des suavegardes. Si cette valeur est dépassé alors Jeedom va supprimer les sauvegardes les plus veille jusqu'a retomber en dessous de la taille maximum
+** *Envoyer les sauvegardes dans le cloud* : indique à Jeedom d'envoyer les sauvegardes au market, attention il faut avoir pris l'abonnement
 * *Sauvegardes locales*
-** *Sauvegardes disponibles* : liste des sauvegardes disponibles
-** *Restaurer la sauvegarde* : lance la restauration de la sauvegarde sélectionnée au-dessus
-** *Supprimer la sauvegarde* : supprime la sauvegarde sélectionnée au-dessus
-** *Envoyer une sauvegarde* : vous permet d'envoyer à Jeedom une archive de sauvegarde (permet par exemple de restaurer une archive précédemment récupérée sur un nouveau Jeedom ou une réinstallation)
-** *Télécharger la sauvegarde* : vous permet de récupérer l'archive de la sauvegarde sélectionnée au-dessus
+** *Sauvegardes disponibles* : liste des sauvegarde disponible
+** *Restaurer la sauvegarde* : lance la restauration de la sauvegarde sélectionnée au dessus
+** *Supprimer la sauvegarde* : supprime la sauvegarde sélectionnée au dessus
+** *Envoyer une sauvegarde* : vous permet d'envoyer a Jeedom une archive de sauvegarde (permet par exemple de restaurer une archive precedement recuperer sur un nouveau Jeedom ou une reinstallation)
+** *Télécharger la sauvegarde* : vous permet de recuperer l'archive de la sauvegarde sélectionnée au dessus
 * *Sauvegardes cloud* 
-** *Sauvegardes disponibles* : liste des sauvegardes cloud disponibles
+** *Sauvegardes disponibles* : liste des sauvegarde cloud disponible
 ** *Restaurer la sauvegarde* : lance la restauration d'une sauvegarde cloud
 
 [TIP]
-Lors d'une réinstallation de Jeedom et en ayant pris l'abonnement de sauvegarde cloud, vous avez juste sur votre nouveau Jeedom à renseigner votre compte market puis à venir ici pour lancer la restauration.
+Lors d'une reinstallation de Jeedom et en ayant pris l'abonnement de sauvegarde cloud, vous avez juste sur votre nouveau Jeedom a renseigner votre compte market puis a venir ici pour lancer la restauration
 
 [TIP]
-Il est possible, en cas de soucis, de faire un backup en ligne de commandes : `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
+Il est possible, en cas de soucis, de faire un backup en ligne de commande : `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
 
 [TIP]
-Il est possible aussi de restaurer un backup en ligne de commandes (par défaut Jeedom restaure le backup le plus récent présent dans le répertoire de backup) : `sudo php /usr/share/nginx/www/jeedom/install/restore.php`
+Il est possible aussi de restaurer un backup en ligne de commande (par defaut Jeedom restaure le backup le plus récent présent dans le répertoire de backup) : `sudo php /usr/share/nginx/www/jeedom/install/restore.php`
 
-== Qu'est-ce qui est sauvegardé ?
+== Qu'est ce qui est sauvegardé ?
 
-Lors d'une sauvegarde, Jeedom va sauvegarder tous ses fichiers et la base de données. Cela contient donc toute votre configuration (équipement, commande, historique, scénario, design...).
+Lors d'une sauvegarde Jeedom va sauvegarder tous ces fichiers et la base de données. Cela contient donc toute votre configuration (equipement, commande, historique, scénario, design....).
 
-Au niveau des protocoles, seul le Z-Wave (OpenZwave) est un peu différent car il n'est pas possible de sauvegarder les inclusions. Celles-ci sont directement incluses dans le contrôleur, il faut donc garder le même pour tout retrouver.
+Au niveau des protocoles seul le Z-Wave (OpenZwave) est un peu different car il n'est pas possible de sauvegarder les inclusions celle-ci sont directement inclus dans le controleur, il faut donc garder le meme pour tout retrouver
 
 == Sauvegarde cloud
 
-La sauvegarde dans le cloud permet à Jeedom d'envoyer vos sauvegardes directement sur le market. Cela vous permet de les restaurer facilement et d'être sûr de ne pas les perdre. Le market conserve les 14 dernières sauvegardes. Pour vous abonner il suffit d'aller sur votre page profil sur le market :
+La sauvegarde dans le cloud permet à Jeedom d'envoyer vos suavegarde directement sur le market, ca vous permet de les restaurer facilement et d'etre sur de ne pas les perdre. Le market conserve les 14 dernieres sauvegarde. Pour vous abonner il suffit d'aller sur votr epage profil sur le market :
 
 image::../images/backup3.png[]
 
@@ -57,16 +57,16 @@ Puis dans l'onglet mes backups :
 
 image::../images/backup4.png[]
 
-Vous pouvez, à partir de cette page, récupérer un backup ou acheter un abonnement (pour 1, 3, 6 ou 12 mois).
+Vous pouvez a partir de cette page récupérer un backup ou acheter un abonnement (pour 1,3,6 ou 12 mois)
 
 [TIP]
-Vous pouvez mettre un nom de sauvegarde plus sympa à partir de l'onglet "Mes Jeedoms" en donnant un nom à ceux-ci.
+Vous pouvez mettre un nom de sauvegarde plus sympa à partir de l'onglet "Mes Jeedoms" en donnant un nom à ceux-ci
 
 == Fréquence des backups
 
-Jeedom effectue une sauvegarde tous les jours à 2h du matin. Vous pouvez modifier cette heure à partir du "Moteur de tâche" (la tâche est la Jeedom backup) mais ce n'est pas recommandé car cette heure est calculée par rapport à la charge et l'heure de la sauvegarde du market.
+Jeedom effectue une sauvegarde tous les jours à 2h du matin. Vous pouvez modifier cette heure à partir du "Moteur de tâche" (la tache et la jeedom backup) mais ce n'est pas recommandé car cette heure est calculé par rapport à la charge et l'heure de la sauvegarde du market
 
 == Cas d'un esclave
 
-Le cas d'un esclave est un peu particulier, car il va après chaque sauvegarde envoyer celle-ci sur son maître (et sur le market si vous avez un abonnement au service de sauvegarde cloud). Vous pouvez donc à partir du maître récupérer une sauvegarde de l'esclave pour l'installer sur un autre esclave par exemple.
+Le cas d'un esclave est un peu particulier, car il va après chaque sauvegarde envoyer celle-ci sur son maitre (et sur le market si vous avez un abonnement au service de sauvegarde cloud). Vous pouvez donc a partir du maitre recuperer une sauvegarde de l'esclave pour l'installer sur un autre esclave par exemple
 

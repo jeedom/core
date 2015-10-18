@@ -381,13 +381,12 @@ CREATE TABLE IF NOT EXISTS `interactDef` (
   `enable` INT NULL DEFAULT 1,
   `query` TEXT NULL,
   `reply` TEXT NULL,
-  `link_type` VARCHAR(127) NULL,
-  `link_id` VARCHAR(255) NULL,
   `person` VARCHAR(255) NULL,
   `options` TEXT NULL,
   `filtres` TEXT NULL,
   `position` INT NULL,
   `group` VARCHAR(127) NULL DEFAULT NULL,
+  `actions` TEXT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -398,33 +397,12 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `interactQuery` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `interactDef_id` INT NOT NULL,
-  `enable` INT NULL DEFAULT 1,
   `query` TEXT NULL,
-  `link_type` VARCHAR(127) NULL,
-  `link_id` VARCHAR(255) NULL,
+  `actions` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_sarahQuery_sarahDef1_idx` (`interactDef_id` ASC),
   FULLTEXT INDEX `query` (`query` ASC))
 ENGINE = MyISAM;
-
-
--- -----------------------------------------------------
--- Table `calendar_event`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `calendar_event` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `eqLogic_id` INT(11) NOT NULL,
-  `cmd_param` TEXT NULL DEFAULT NULL,
-  `value` VARCHAR(127) NULL DEFAULT NULL,
-  `startDate` DATETIME NULL DEFAULT NULL,
-  `endDate` DATETIME NULL DEFAULT NULL,
-  `until` DATETIME NULL DEFAULT NULL,
-  `repeat` TEXT NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 8
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
@@ -484,21 +462,6 @@ CREATE TABLE IF NOT EXISTS `scenarioExpression` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `cache`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cache` (
-  `key` VARCHAR(127) NOT NULL,
-  `datetime` DATETIME NULL,
-  `lifetime` VARCHAR(127) NOT NULL,
-  `value` MEDIUMTEXT NULL,
-  `options` MEDIUMTEXT NULL,
-  PRIMARY KEY (`key`),
-  INDEX `lifetime` (`lifetime` ASC))
-ENGINE = MyISAM;
-
 
 -- -----------------------------------------------------
 -- Table `update`

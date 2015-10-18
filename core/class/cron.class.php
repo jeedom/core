@@ -118,6 +118,8 @@ class cron {
 				}
 			} catch (Exception $ex) {
 				$cron->remove();
+			} catch (Error $ex) {
+				$cron->remove();
 			}
 		}
 	}
@@ -127,7 +129,7 @@ class cron {
 	 * @return int
 	 */
 	public static function nbCronRun() {
-		return shell_exec('ps ax | grep jeeCron.php | grep -v "grep" | grep -v "sudo" | grep -v "shell=/bin/bash - " | grep -v "/bin/bash -c " | grep -v "/bin/sh -c " | grep -v ' . posix_getppid() . ' | grep -v ' . getmypid() . ' | wc -l');
+		return shell_exec('(ps ax || ps w) | grep jeeCron.php | grep -v "grep" | grep -v "sudo" | grep -v "shell=/bin/bash - " | grep -v "/bin/bash -c " | grep -v "/bin/sh -c " | grep -v ' . posix_getppid() . ' | grep -v ' . getmypid() . ' | wc -l');
 	}
 
 	/**
@@ -269,7 +271,7 @@ class cron {
 				return true;
 			}
 		}
-		if (shell_exec('ps ax | grep -ie "cron_id=' . $this->getId() . '$" | grep -v grep | wc -l') > 0) {
+		if (shell_exec('(ps ax || ps w) | grep -ie "cron_id=' . $this->getId() . '$" | grep -v grep | wc -l') > 0) {
 			return true;
 		}
 		return false;
@@ -330,7 +332,7 @@ class cron {
 				}
 			}
 			if ($this->running()) {
-				exec("ps aux | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+				exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
 				if ($this->running()) {
 					$this->setState('error');
 					$this->setServer('');
@@ -370,10 +372,14 @@ class cron {
 				}
 			} catch (Exception $e) {
 
+			} catch (Error $e) {
+
 			}
 			try {
 				$prev = $c->getPreviousRunDate()->getTimestamp();
 			} catch (Exception $e) {
+				return false;
+			} catch (Error $e) {
 				return false;
 			}
 			$diff = abs((strtotime('now') - $prev) / 60);
@@ -381,6 +387,8 @@ class cron {
 				return true;
 			}
 		} catch (Exception $e) {
+			log::add('cron', 'debug', 'Error on isDue : ' . $e->getMessage() . ', cron : ' . $this->getSchedule());
+		} catch (Error $e) {
 			log::add('cron', 'debug', 'Error on isDue : ' . $e->getMessage() . ', cron : ' . $this->getSchedule());
 		}
 		return false;

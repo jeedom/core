@@ -75,6 +75,11 @@ if (init('type') != '') {
 			switch (init('action')) {
 				case 'start':
 					log::add('api', 'debug', 'Démarrage scénario de : ' . $scenario->getHumanName());
+					$tags = array();
+					foreach ($_REQUEST as $key => $value) {
+						$tags['#' . $key . '#'] = $value;
+					}
+					$scenario->setTags($tags);
 					$scenario->launch(false, __('Exécution provoquée par un appel API ', __FILE__));
 					break;
 				case 'stop':

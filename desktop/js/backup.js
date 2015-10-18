@@ -183,12 +183,12 @@
             var log = '';
             if($.isArray(data.result)){
                 for (var i in data.result.reverse()) {
-                    log += data.result[i][2];
-                    if ($.trim(data.result[i][2]) == '[END ' + _log.toUpperCase() + ' SUCCESS]') {
+                    log += data.result[i]+"\n";
+                    if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1){
                         $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'});
                         _autoUpdate = 0;
                     }
-                    if ($.trim(data.result[i][2]) == '[END ' + _log.toUpperCase() + ' ERROR]') {
+                   if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
                         $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
                         _autoUpdate = 0;
                     }
