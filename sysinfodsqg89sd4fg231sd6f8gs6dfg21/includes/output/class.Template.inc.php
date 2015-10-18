@@ -23,71 +23,67 @@
  * @version   Release: 3.0
  * @link      http://phpsysinfo.sourceforge.net
  */
-class Template
-{
-    /**
-     * Vars used in the template
-     *
-     * @Array
-     */
-    private $_vars;
+class Template {
+	/**
+	 * Vars used in the template
+	 *
+	 * @Array
+	 */
+	private $_vars;
 
-    /**
-     * Template file
-     *
-     * @String
-     */
-    private $_file;
+	/**
+	 * Template file
+	 *
+	 * @String
+	 */
+	private $_file;
 
-    /**
-     * Constructor
-     *
-     * @param String $file the template file name
-     */
-    public function __construct($file=null)
-    {
-        $this->_file = $file;
-        $this->_vars = array();
-    }
+	/**
+	 * Constructor
+	 *
+	 * @param String $file the template file name
+	 */
+	public function __construct($file = null) {
+		$this->_file = $file;
+		$this->_vars = array();
+	}
 
-    /**
-     * Set a template variable.
-     *
-     * @param string variable name
-     * @param string variable value
-     */
-    public function set($name, $value)
-    {
-        $this->_vars[$name] = is_object($value) ? $value->fetch() : $value;
-    }
+	/**
+	 * Set a template variable.
+	 *
+	 * @param string variable name
+	 * @param string variable value
+	 */
+	public function set($name, $value) {
+		$this->_vars[$name] = is_object($value) ? $value->fetch() : $value;
+	}
 
-    /**
-     * Open, parse, and return the template file.
-     *
-     * @param string $file
-     *
-     * @return string
-     */
-    public function fetch($file=null)
-    {
-        if (!$file) {
-            $file = $this->_file;
-        }
+	/**
+	 * Open, parse, and return the template file.
+	 *
+	 * @param string $file
+	 *
+	 * @return string
+	 */
+	public function fetch($file = null) {
+		if (!$file) {
+			$file = $this->_file;
+		}
 
-        // Extract the vars to local namespace
-        extract($this->_vars);
+		// Extract the vars to local namespace
+		extract($this->_vars);
 
-        // Start output buffering
-        ob_start();
+		// Start output buffering
+		ob_start();
 
-        include(APP_ROOT.$file);
+		include APP_ROOT . $file;
 
-        // Get the contents of the buffer
-        $contents = ob_get_contents();
+		// Get the contents of the buffer
+		$contents = ob_get_contents();
 
-        // End buffering and discard
-        ob_end_clean();
+		// End buffering and discard
+		ob_end_clean();
 
-        return $contents;
-    }
+		return $contents;
+	}
 }
