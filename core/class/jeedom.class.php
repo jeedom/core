@@ -462,13 +462,6 @@ class jeedom {
 		} catch (Error $e) {
 
 		}
-		try {
-			history::historize();
-		} catch (Exception $e) {
-			log::add('history', 'error', 'history::archive : ' . $e->getMessage());
-		} catch (Error $e) {
-			log::add('history', 'error', 'history::archive : ' . $e->getMessage());
-		}
 	}
 
 	public static function cron() {
