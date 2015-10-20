@@ -267,13 +267,18 @@ foreach (planHeader::all() as $plan_menu) {
 											<a data-toggle="dropdown"><i class="fa fa-qrcode"></i> {{Analyse}} <b class="caret"></b></a>
 											<ul class="dropdown-menu" role="menu">
 												<li><a href="index.php?v=d&p=history"><i class="fa fa-bar-chart-o"></i> {{Historique}}</a></li>
+												<li class="divider"></li>
+												<li class="expertModeVisible"><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
 												<?php
 if (hasRight('logview', true)) {
 			?>
+
 													<li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
 													<?php
 }
-		if (hasRight('sysinfo', true)) {
+		?>
+												<li class="divider"></li>
+												<?php	if (hasRight('sysinfo', true)) {
 			?>
 													<li class="expertModeVisible"><a href="index.php?v=d&p=sysinfo"><i class="fa fa-tachometer"></i> {{Informations système}}</a></li>
 													<?php
@@ -283,7 +288,7 @@ if (hasRight('logview', true)) {
 													<?php
 }
 		?>
-												<li class="expertModeVisible"><a href="#" id="bt_showEventInRealTime"><i class="fa fa-tachometer"></i> {{Temps réel}}</a></li>
+
 											</ul>
 										</li>
 										<?php }
@@ -421,15 +426,15 @@ if (isConnect('admin')) {
 			echo '<li class="cursor"><a id="bt_expertMode" state="0"><i class="fa fa-square-o"></i> {{Mode expert}}</a></li>';
 		}
 		?>
-	<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
-<li class="divider"></li>
-	<?php	if (jeedom::isCapable('sudo')) {
+													<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
+													<li class="divider"></li>
+													<?php	if (jeedom::isCapable('sudo')) {
 			echo '<li class="cursor expertModeVisible"><a id="bt_rebootSystem" state="0"><i class="fa fa-repeat"></i> {{Redémarrer}}</a></li>';
 			echo '<li class="cursor expertModeVisible"><a id="bt_haltSystem" state="0"><i class="fa fa-power-off"></i> {{Eteindre}}</a></li>';
 		}
 	}
 	?>
-	<li class="divider"></li>
+												<li class="divider"></li>
 												<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
 												<li class="divider"></li>
 												<li><a href="#">{{Node JS}} <span class="span_nodeJsState binary red tooltips"></span></a></li>
