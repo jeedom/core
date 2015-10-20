@@ -175,9 +175,9 @@ $("#bt_changeAllScenarioState,#bt_changeAllScenarioState2").on('click', function
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-      window.location.reload();
-    }
-  });
+     loadPage('index.php?v=d&p=scenario');
+   }
+ });
 });
 
 $("#bt_addScenario,#bt_addScenario2").on('click', function (event) {
@@ -227,7 +227,7 @@ $("#bt_addScenario,#bt_addScenario2").on('click', function (event) {
               }
               url += 'id=' + data.id + '&saveSuccessFull=1';
               modifyWithoutSave = false;
-              window.location.href = url;
+              loadPage(url);
             }
           });
         }
@@ -256,7 +256,7 @@ $("#bt_delScenario,#bt_delScenario2").on('click', function (event) {
         },
         success: function () {
           modifyWithoutSave = false;
-          window.location.replace('index.php?v=d&p=scenario');
+          loadPage('index.php?v=d&p=scenario');
         }
       });
     }
@@ -287,7 +287,7 @@ $("#bt_copyScenario").on('click', function () {
           $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-          window.location.replace('index.php?v=d&p=scenario&id=' + data.id);
+          loadPage('index.php?v=d&p=scenario&id=' + data.id);
         }
       });
     }
@@ -869,7 +869,7 @@ function saveScenario() {
           }
         }
         url += 'id=' + data.id + '&saveSuccessFull=1';
-        window.location.href = url;
+        loadPage(url);
       }
     }
   });

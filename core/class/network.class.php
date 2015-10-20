@@ -260,71 +260,6 @@ class network {
 		return true;
 	}
 
-/*     * ****************************Nginx management*************************** */
-
-	public static function nginx_saveRule($_rules) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-			throw new Exception('Fichier non trouvé : /etc/nginx/sites-available/jeedom_dynamic_rule');
-		}
-		$nginx_conf = self::nginx_removeRule($_rules, true);
-
-		foreach ($_rules as $rule) {
-			$nginx_conf .= "\n" . $rule . "\n";
-		}
-		if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-			touch('/etc/nginx/sites-available/jeedom_dynamic_rule');
-		}
-		shell_exec('sudo chmod 777 /etc/nginx/sites-available/jeedom_dynamic_rule');
-		file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $nginx_conf);
-		shell_exec('sudo service nginx reload');
-	}
-
-	public static function nginx_removeRule($_rules, $_returnResult = false) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-			return $_rules;
-		}
-		$result = '';
-		$nginx_conf = trim(file_get_contents('/etc/nginx/sites-available/jeedom_dynamic_rule'));
-		$accolade = 0;
-		$change = false;
-		foreach (explode("\n", trim($nginx_conf)) as $conf_line) {
-			if ($accolade > 0 && strpos('{', $conf_line) !== false) {
-				$accolade++;
-			}
-			foreach ($_rules as $rule) {
-				$rule_line = explode("\n", trim($rule));
-				if (trim($conf_line) == trim($rule_line[0])) {
-					$accolade = 1;
-				}
-			}
-			if ($accolade == 0) {
-				$result .= $conf_line . "\n";
-			} else {
-				$change = true;
-			}
-			if ($accolade > 0 && strpos('}', $conf_line) !== false) {
-				$accolade--;
-			}
-		}
-		if ($_returnResult) {
-			return $result;
-		}
-		if ($change) {
-			if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-				touch('/etc/nginx/sites-available/jeedom_dynamic_rule');
-			}
-			shell_exec('sudo chmod 777 /etc/nginx/sites-available/jeedom_dynamic_rule');
-			file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $result);
-			shell_exec('sudo service nginx reload');
-		}
-	}
-
 /*     * *********************NGROK************************* */
 
 	public static function dns_start() {
@@ -379,7 +314,7 @@ class network {
 /*     * *********************WICD************************* */
 
 	public static function listWifi() {
-		$results = shell_exec('sudo ifconfig wlan0 up;sudo iwlist scan | grep ESSID 2> /dev/null');
+		$results = shell_exec('sudo ifconfig wlan0 up;sudo iwlist wlan0 scan 2> /dev/null | grep ESSID');
 		$results = explode("\n", $results);
 		$return = array();
 		foreach ($results as $result) {
@@ -546,11 +481,10 @@ class network {
 			$output = array();
 			$return_val = -1;
 			if ($route['gateway'] != '0.0.0.0' && $route['gateway'] != '127.0.0.1') {
-				exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
+				exec('sudo ping -n -c 1 -t 255 ' . $route['gateway'] . ' 2>&1 > /dev/null', $output, $return_val);
 				$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
 				if ($return[$route['iface']]['ping'] == 'nok') {
-					sleep(5);
-					exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
+					exec('sudo ping -n -c 1 -t 255 ' . $route['gateway'] . ' 2>&1 > /dev/null', $output, $return_val);
 					$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
 				}
 			} else {
@@ -567,7 +501,7 @@ class network {
 		if (config::byKey('network::disableMangement') == 1) {
 			return;
 		}
-		if (!jeedom::isCapable('sudo')) {
+		if (!jeedom::isCapable('sudo') || jeedom::getHardwareName() == 'docker') {
 			return;
 		}
 		try {
@@ -592,6 +526,8 @@ class network {
 				}
 			}
 		} catch (Exception $e) {
+
+		} catch (Error $e) {
 
 		}
 	}

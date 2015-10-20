@@ -434,7 +434,7 @@ $("#bt_addJeeNetwork").on('click', function (event) {
                 },
                 success: function (data) {
                     modifyWithoutSave = false;
-                    window.location.replace('index.php?v=d&p=jeeNetwork&id=' + data.id + '&saveSuccessFull=1');
+                    loadPage('index.php?v=d&p=jeeNetwork&id=' + data.id + '&saveSuccessFull=1');
                 }
             });
         }
@@ -477,7 +477,7 @@ $("#bt_removeJeeNetwork").on('click', function (event) {
                     },
                     success: function () {
                         modifyWithoutSave = false;
-                        window.location.replace('index.php?v=d&p=jeeNetwork&removeSuccessFull=1');
+                         loadPage('index.php?v=d&p=jeeNetwork&removeSuccessFull=1');
                     }
                 });
             }

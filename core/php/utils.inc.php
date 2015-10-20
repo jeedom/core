@@ -134,15 +134,6 @@ function template_replace($_array, $_subject) {
 }
 
 function init($_name, $_default = '') {
-	static $cache;
-	if (isset($cache[$_name])) {
-		return $cache[$_name];
-	}
-	$cache = array();
-	if (isset($_REQUEST[$_name])) {
-		$cache[$_name] = $_REQUEST[$_name];
-		return $_REQUEST[$_name];
-	}
 	if (isset($_GET[$_name])) {
 		$cache[$_name] = $_GET[$_name];
 		return $_GET[$_name];
@@ -150,6 +141,10 @@ function init($_name, $_default = '') {
 	if (isset($_POST[$_name])) {
 		$cache[$_name] = $_POST[$_name];
 		return $_POST[$_name];
+	}
+	if (isset($_REQUEST[$_name])) {
+		$cache[$_name] = $_REQUEST[$_name];
+		return $_REQUEST[$_name];
 	}
 	return $_default;
 }
@@ -864,14 +859,14 @@ function evaluate($_string) {
 			//log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
 		}
 	}
-	if (!isset($GLOBALS['evaluate'])) {
-		$GLOBALS['evaluate'] = new evaluate();
+	/*if (!isset($GLOBALS['evaluate'])) {
+	$GLOBALS['evaluate'] = new evaluate();
 	}
 	try {
-		return $GLOBALS['evaluate']->Evaluer($_string);
+	return $GLOBALS['evaluate']->Evaluer($_string);
 	} catch (Exception $e) {
-		//log::add('expression', 'debug', '[Parser 2] Expression : ' . $_string . ' => ' . $e->getMessage());
-	}
+	//log::add('expression', 'debug', '[Parser 2] Expression : ' . $_string . ' => ' . $e->getMessage());
+	}*/
 	return $_string;
 }
 

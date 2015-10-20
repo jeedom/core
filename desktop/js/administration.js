@@ -38,6 +38,25 @@
     }
 });
 
+ $('body').delegate('.configKey[data-l1key="cache::engine"]', 'change', function () {
+   $('.cacheEngine').hide();
+   $('.cacheEngine.'+$(this).value()).show();
+});
+
+ $('body').delegate('.configKey[data-l1key="log::engine"]', 'change', function () {
+   $('.logEngine').hide();
+   $('.logEngine.'+$(this).value()).show();
+});
+
+ $('body').delegate('.configKey[data-l1key="market::branch"]', 'change', function () {
+    if($(this).value() == 'url'){
+        $('#div_githubupdate').show();
+    }else{
+        $('#div_githubupdate').hide();
+    }
+});
+
+
  printWifiList();
 
  $("#bt_genKeyAPI").on('click', function (event) {
@@ -75,7 +94,7 @@
             },
             success: function (data) {
                modifyWithoutSave = false;
-               window.location.href='index.php?v=d&p=administration&panel=config_network';
+               loadPage('index.php?v=d&p=administration&panel=config_network');
            }
        });
      }
@@ -97,7 +116,7 @@
             },
             success: function (data) {
                modifyWithoutSave = false;
-               window.location.href='index.php?v=d&p=administration&panel=config_network';
+               loadPage('index.php?v=d&p=administration&panel=config_network');
            }
        });
      }
@@ -132,9 +151,9 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                    window.location.reload();
-                }
-            });
+                 loadPage('index.php?v=d&p=administration');
+             }
+         });
         }
     });
 });
@@ -280,7 +299,7 @@ $('#bt_resetHwKey').on('click',function(){
             $('#div_alert').showAlert({message: data.result, level: 'danger'});
             return;
         }
-        window.location.reload();
+        loadPage('index.php?v=d&p=administration');
     }
 });
 });
@@ -502,7 +521,7 @@ $('#bt_refreshWifiList').on('click',function(){
 
 /*CMD color*/
 
- $('.bt_resetColor').on('click', function () {
+$('.bt_resetColor').on('click', function () {
     var el = $(this);
     jeedom.getConfiguration({
         key: $(this).attr('data-l1key'),

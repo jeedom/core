@@ -197,6 +197,26 @@ class history {
 	}
 
 	/**
+	 * Fonction qui recupere les valeurs actuellement des capteurs,
+	 * les mets dans la BDD et archive celle-ci
+	 */
+	public static function historize() {
+		$listHistorizedCmd = cmd::allHistoryCmd(true);
+		foreach ($listHistorizedCmd as $cmd) {
+			try {
+				if ($cmd->getEqLogic()->getIsEnable() == 1) {
+					$value = $cmd->execCmd(null, 0);
+					if ($value !== false) {
+						$cmd->addHistoryValue($value);
+					}
+				}
+			} catch (Exception $e) {
+				log::add('historized', 'error', 'Erreur sur ' . $cmd->getHumanName() . ' : ' . $e->getMessage(), 'historized::cmd::' . $cmd->getId());
+			}
+		}
+	}
+
+	/**
 	 *
 	 * @param int $_equipement_id id de l'équipement dont on veut l'historique des valeurs
 	 * @return array des valeurs de l'équipement
@@ -521,26 +541,6 @@ where prev_value <> value' . $_condition . '';
 		return $result['changes'];
 	}
 
-	/**
-	 * Fonction qui recupere les valeurs actuellement des capteurs,
-	 * les mets dans la BDD et archive celle-ci
-	 */
-	public static function historize() {
-		$listHistorizedCmd = cmd::allHistoryCmd(true);
-		foreach ($listHistorizedCmd as $cmd) {
-			try {
-				if ($cmd->getEqLogic()->getIsEnable() == 1) {
-					$value = $cmd->execCmd(null, 0);
-					if ($value !== false) {
-						$cmd->addHistoryValue($value);
-					}
-				}
-			} catch (Exception $e) {
-				log::add('historized', 'error', 'Erreur sur ' . $cmd->getHumanName() . ' : ' . $e->getMessage(), 'historized::cmd::' . $cmd->getId());
-			}
-		}
-	}
-
 	public static function emptyHistory($_cmd_id, $_date = '') {
 		$values = array(
 			'cmd_id' => $_cmd_id,
@@ -611,6 +611,8 @@ where prev_value <> value' . $_condition . '';
 					$result = floatval(evaluate($calcul));
 					$value[$datetime] = $result;
 				} catch (Exception $e) {
+
+				} catch (Error $e) {
 
 				}
 			}

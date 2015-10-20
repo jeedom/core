@@ -18,13 +18,37 @@
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+use Monolog\Handler\StreamHandler;
+use Monolog\Handler\SyslogHandler;
+use Monolog\Handler\SyslogUdpHandler;
+use Monolog\Logger;
 
 class log {
 	/*     * *************************Attributs****************************** */
-
-	private static $logLevel;
-
+	private static $logger = array();
 	/*     * ***********************Methode static*************************** */
+
+	public static function getLogger($_log) {
+		if (isset(self::$logger[$_log])) {
+			return self::$logger[$_log];
+		}
+		self::$logger[$_log] = new Logger($_log);
+		switch (config::byKey('log::engine')) {
+			case 'StreamHandler':
+				self::$logger[$_log]->pushHandler(new StreamHandler(self::getPathToLog($_log), config::byKey('log::level')));
+				break;
+			case 'SyslogHandler':
+				self::$logger[$_log]->pushHandler(new SyslogHandler(config::byKey('log::level')));
+				break;
+			case 'SyslogUdp':
+				self::$logger[$_log]->pushHandler(new SyslogUdpHandler(config::byKey('log::syslogudphost'), config::byKey('log::syslogudpport')));
+				break;
+			default:
+				self::$logger[$_log]->pushHandler(new StreamHandler(self::getPathToLog($_log), config::byKey('log::level')));
+				break;
+		}
+		return self::$logger[$_log];
+	}
 
 	/**
 	 * Ajoute un message dans les log et fait en sorte qu'il n'y
@@ -33,17 +57,26 @@ class log {
 	 * @param string $_message message à mettre dans les logs
 	 */
 	public static function add($_log, $_type, $_message, $_logicalId = '') {
-		$_type = strtolower($_type);
-		if ($_log != '' && $_type != '' && trim($_message) != '' && self::isTypeLog($_type)) {
-			$_message = str_replace(";", ',', str_replace("\n", '<br/>', $_message));
-			$path = self::getPathToLog($_log);
-			$message = date("d-m-Y H:i:s") . ' | ' . $_type . ' | ' . $_message . "\r\n";
-			$log = fopen($path, "a+");
-			fputs($log, $message);
-			fclose($log);
-			if ($_type == 'error' && config::byKey('addMessageForErrorLog') == 1) {
-				@message::add($_log, $_message, '', $_logicalId);
-			}
+		$logger = self::getLogger($_log);
+		switch (strtolower($_type)) {
+			case 'debug':
+				$logger->addDebug($_message);
+				break;
+			case 'info':
+				$logger->addInfo($_message);
+				break;
+			case 'notice':
+				$logger->addNotice($_message);
+				break;
+			case 'warning':
+				$logger->addWarning($_message);
+				break;
+			case 'error':
+				$logger->addError($_message);
+				if (config::byKey('addMessageForErrorLog') == 1) {
+					@message::add($_log, $_message, '', $_logicalId);
+				}
+				break;
 		}
 	}
 
@@ -53,33 +86,35 @@ class log {
 			$maxLineLog = 200;
 		}
 		if ($_log != '') {
-			$path = self::getPathToLog($_log);
-			shell_exec('echo "$(tail -n ' . $maxLineLog . ' ' . $path . ')" > ' . $path);
-			@chown($path, 'www-data');
-			@chgrp($path, 'www-data');
-			@chmod($path, 0777);
+			if (is_file(self::getPathToLog($_log))) {
+				self::chunkLog(self::getPathToLog($_log), $maxLineLog);
+			}
 		} else {
 			$logs = ls(dirname(__FILE__) . '/../../log/', '*');
 			foreach ($logs as $log) {
 				$path = dirname(__FILE__) . '/../../log/' . $log;
 				if (is_file($path)) {
-					shell_exec('echo "$(tail -n ' . $maxLineLog . ' ' . $path . ')" > ' . $path);
-					@chown($path, 'www-data');
-					@chgrp($path, 'www-data');
-					@chmod($path, 0777);
+					self::chunkLog($path, $maxLineLog);
 				}
 			}
 			$logs = ls(dirname(__FILE__) . '/../../log/scenarioLog', '*');
 			foreach ($logs as $log) {
 				$path = dirname(__FILE__) . '/../../log/scenarioLog/' . $log;
 				if (is_file($path)) {
-					shell_exec('echo "$(head -n ' . $maxLineLog . ' ' . $path . ')" > ' . $path);
-					@chown($path, 'www-data');
-					@chgrp($path, 'www-data');
-					@chmod($path, 0777);
+					self::chunkLog($path, $maxLineLog);
 				}
 			}
 		}
+	}
+
+	public static function chunkLog($_path, $maxLineLog = 500) {
+		if (strpos($_path, '.htaccess') !== false) {
+			return;
+		}
+		shell_exec('echo "$(head -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+		@chown($_path, 'www-data');
+		@chgrp($_path, 'www-data');
+		@chmod($_path, 0777);
 	}
 
 	public static function getPathToLog($_log = 'core') {
@@ -90,13 +125,16 @@ class log {
 	 * Vide le fichier de log
 	 */
 	public static function clear($_log) {
+		if (config::byKey('log::engine') != 'StreamHandler') {
+			return;
+		}
 		$path = self::getPathToLog($_log);
-		if (file_exists($path) && strpos($_log, 'nginx.error') === false) {
+		if (file_exists($path) && is_file($path) && strpos($_log, 'nginx.error') === false && strpos($_log, '.htaccess') === false) {
 			$log = fopen($path, "w");
 			ftruncate($log, 0);
 			fclose($log);
 		}
-		if (strpos($_log, 'nginx.error') !== false) {
+		if (strpos($_log, 'nginx.error') !== false && strpos($log, '.htaccess') === false) {
 			shell_exec('cat /dev/null > ' . $path);
 		}
 		return true;
@@ -106,24 +144,34 @@ class log {
 	 * Vide le fichier de log
 	 */
 	public static function remove($_log) {
-		$path = self::getPathToLog($_log);
-		if (file_exists($path) && strpos($_log, 'nginx.error') === false) {
-			unlink($path);
+		if (config::byKey('log::engine') != 'StreamHandler') {
+			return;
 		}
-		if (strpos($_log, 'nginx.error') !== false) {
-			shell_exec('cat /dev/null > ' . $path);
+		$path = self::getPathToLog($_log);
+		if (file_exists($path) && is_file($path) && strpos($_log, '.htaccess') === false) {
+			if (strpos($_log, 'nginx.error') === false) {
+				unlink($path);
+			}
+			if (strpos($_log, 'nginx.error') !== false) {
+				shell_exec('cat /dev/null > ' . $path);
+			}
 		}
 		return true;
 	}
 
 	public static function removeAll() {
+		if (config::byKey('log::engine') != 'StreamHandler') {
+			return;
+		}
 		$logs = ls(dirname(__FILE__) . '/../../log/', '*');
 		foreach ($logs as $log) {
 			$path = dirname(__FILE__) . '/../../log/' . $log;
-			if (strpos($log, 'nginx.error') === false && !is_dir($path)) {
-				unlink($path);
-			} else {
-				shell_exec('cat /dev/null > ' . $path);
+			if (is_file($path) && strpos($log, '.htaccess') === false) {
+				if (strpos($log, 'nginx.error') === false) {
+					unlink($path);
+				} else {
+					shell_exec('cat /dev/null > ' . $path);
+				}
 			}
 		}
 		return true;
@@ -135,11 +183,11 @@ class log {
 	 * @return string Ligne du fichier de log
 	 */
 	public static function get($_log = 'core', $_begin, $_nbLines) {
+		self::chunk($_log);
 		$replace = array(
 			'&gt;' => '>',
 			'&apos;' => '',
 		);
-		self::chunk($_log);
 		$page = array();
 		if (!file_exists($_log) || !is_file($_log)) {
 			$path = self::getPathToLog($_log);
@@ -154,20 +202,9 @@ class log {
 			$log->seek($_begin); //Seek to the begening of lines
 			$linesRead = 0;
 			while ($log->valid() && $linesRead != $_nbLines) {
-				$line = $log->current(); //get current line
-				$explode = explode("|", $line);
-				if (count($explode) == 3) {
-					$explode[2] = secureXSS($explode[2]);
-					array_unshift($page, array_map('trim', $explode));
-				} else {
-					if (trim($line) != '') {
-						$lineread = array();
-						$lineread[0] = '';
-						$lineread[1] = '';
-						$lineread[2] = str_replace(array_keys($replace), $replace, htmlspecialchars($line));
-						$lineread[2] = $line;
-						array_unshift($page, $lineread);
-					}
+				$line = trim($log->current()); //get current line
+				if ($line != '') {
+					array_unshift($page, $line);
 				}
 				$log->next(); //go to next line
 				$linesRead++;
@@ -176,26 +213,10 @@ class log {
 		return $page;
 	}
 
-	public static function nbLine($_log = 'core') {
-		$path = self::getPathToLog($_log);
-		if (!file_exists($path)) {
-			return 0;
-		}
-		$log_file = file($path);
-		return count($log_file);
-	}
-
-	private static function isTypeLog($_type) {
-		if (!is_array(self::$logLevel)) {
-			self::$logLevel = config::byKey('logLevel');
-		}
-		if (!isset(self::$logLevel[$_type]) || self::$logLevel[$_type] == 1) {
-			return true;
-		}
-		return false;
-	}
-
 	public static function liste() {
+		if (config::byKey('log::engine') != 'StreamHandler') {
+			return array();
+		}
 		$return = array();
 		foreach (ls(dirname(__FILE__) . '/../../log/', '*') as $log) {
 			if (!is_dir(dirname(__FILE__) . '/../../log/' . $log)) {

@@ -111,7 +111,12 @@ try {
 					echo __('***ERREUR*** ', __FILE__) . $e->getMessage() . "\n";
 				}
 				try {
-					$url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip?timespamp=' . strtotime('now');
+
+					if (config::byKey('market::branch') == 'url') {
+						$url = config::byKey('update::url');
+					} else {
+						$url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip?timespamp=' . strtotime('now');
+					}
 					echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
 					echo __("Téléchargement en cours...", __FILE__);
 					$tmp_dir = dirname(__FILE__) . '/../tmp';
@@ -119,7 +124,6 @@ try {
 					if (!is_writable($tmp_dir)) {
 						throw new Exception(__('Impossible d\'écrire dans le dossier : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : chmod 777 -R ', __FILE__) . $tmp_dir);
 					}
-					$url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip';
 					if (file_exists($tmp)) {
 						unlink($tmp);
 					}
@@ -169,6 +173,12 @@ try {
 					echo __("OK\n", __FILE__);
 					echo __("Installation en cours...", __FILE__);
 					$update_begin = true;
+					if (!file_exists($cibDir . '/core')) {
+						$files = ls($cibDir, '*');
+						if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'core')) {
+							$cibDir = $cibDir . '/' . $files[0];
+						}
+					}
 					rcopy($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
 					rrmdir($cibDir);
 					unlink($tmp);
@@ -373,16 +383,8 @@ try {
 		$user->setPassword(sha1('admin'));
 		$user->setRights('admin', 1);
 		$user->save();
-		$logLevel = array('info' => 0, 'debug' => 0, 'event' => 0, 'error' => 1);
-		if (init('mode') != 'force') {
-			echo "Jeedom est-il installé sur un Rasberry PI ? [o/N] ";
-			if (trim(fgets(STDIN)) === 'o') {
-				config::save('cronSleepTime', 60);
-			}
-		} else {
-			config::save('cronSleepTime', 60);
-		}
-		config::save('logLevel', $logLevel);
+		config::save('cronSleepTime', 60);
+		config::save('log::level', 400);
 		echo "OK\n";
 		echo 'Installation de socket.io et express (peut etre très long > 30min)';
 		echo shell_exec('cd ' . dirname(__FILE__) . '/../core/nodeJS;sudo npm install socket.io;npm install express');
