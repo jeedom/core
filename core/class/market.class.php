@@ -572,7 +572,7 @@ class market {
 	}
 
 	public function install($_version = 'stable') {
-		log::add('update', 'update', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
+		log::add('update', 'alert', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
 		$tmp_dir = dirname(__FILE__) . '/../../tmp';
 		$tmp = $tmp_dir . '/' . $this->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
@@ -585,12 +585,12 @@ class market {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
 		}
 		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . config::byKey('market::password') . '&password_type=sha1';
-		log::add('update', 'update', __('Téléchargement de ', __FILE__) . $this->getLogicalId() . '...');
+		log::add('update', 'alert', __('Téléchargement de ', __FILE__) . $this->getLogicalId() . '...');
 		file_put_contents($tmp, fopen($url, 'r'));
 		if (!file_exists($tmp)) {
 			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '. Si l\'application est payante, l\'avez-vous achetée ?', __FILE__));
 		}
-		log::add('update', 'update', __("OK\n", __FILE__));
+		log::add('update', 'alert', __("OK\n", __FILE__));
 		switch ($this->getType()) {
 			case 'plugin':
 				$cibDir = dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId();
@@ -600,9 +600,9 @@ class market {
 				try {
 					$plugin = plugin::byId($this->getLogicalId());
 					if (is_object($plugin)) {
-						log::add('update', 'update', __('Action de pre update...', __FILE__));
+						log::add('update', 'alert', __('Action de pre update...', __FILE__));
 						$plugin->callInstallFunction('pre_update');
-						log::add('update', 'update', __("OK\n", __FILE__));
+						log::add('update', 'alert', __("OK\n", __FILE__));
 					}
 				} catch (Exception $e) {
 
@@ -610,7 +610,7 @@ class market {
 
 				}
 
-				log::add('update', 'update', __('Décompression du zip...', __FILE__));
+				log::add('update', 'alert', __('Décompression du zip...', __FILE__));
 				$zip = new ZipArchive;
 				$res = $zip->open($tmp);
 				if ($res === TRUE) {
@@ -619,8 +619,8 @@ class market {
 						throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
 					}
 					$zip->close();
-					log::add('update', 'update', __("OK\n", __FILE__));
-					log::add('update', 'update', __('Installation de ', __FILE__) . $this->getLogicalId() . '...');
+					log::add('update', 'alert', __("OK\n", __FILE__));
+					log::add('update', 'alert', __('Installation de ', __FILE__) . $this->getLogicalId() . '...');
 					try {
 						$plugin = plugin::byId($this->getLogicalId());
 					} catch (Exception $e) {
@@ -630,7 +630,7 @@ class market {
 						$this->remove();
 						throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
 					}
-					log::add('update', 'update', __("OK\n", __FILE__));
+					log::add('update', 'alert', __("OK\n", __FILE__));
 					$update = update::byTypeAndLogicalId($this->getType(), $this->getLogicalId());
 					if (is_object($plugin) && $plugin->isActive()) {
 						$plugin->setIsEnable(1);
@@ -669,12 +669,12 @@ class market {
 				}
 				break;
 			default:
-				log::add('update', 'update', __('Installation de du plugin,widget...', __FILE__));
+				log::add('update', 'alert', __('Installation de du plugin,widget...', __FILE__));
 				$type = $this->getType();
 				if (class_exists($type) && method_exists($type, 'getFromMarket')) {
 					$type::getFromMarket($this, $tmp);
 				}
-				log::add('update', 'update', __("OK\n", __FILE__));
+				log::add('update', 'alert', __("OK\n", __FILE__));
 				break;
 		}
 		$update = update::byTypeAndLogicalId($this->getType(), $this->getLogicalId());
