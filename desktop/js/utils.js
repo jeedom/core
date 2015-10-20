@@ -20,65 +20,11 @@
  utid = Date.now();
 
  function loadPage(_url){
-     $.hideAlert();
-     $('#div_pageContainer').empty();
-     $( "#md_reportBug" ).dialog( "close" );
-     $( "#md_pageHelp" ).dialog( "close" );
-     $( "#md_modal" ).dialog( "close" );
-     $( "#md_modal2" ).dialog( "close" );
-     $('.div_smallSideBar').remove();
-     delete printEqLogic;
-     printEqLogic = undefined;
-     delete addCmdToTable;
-     addCmdToTable = undefined;
-     delete prePrintEqLogic;
-     prePrintEqLogic = undefined;
-     window.history.pushState(null, 'Jeedom', _url);
-     var startTime = Date.now();
-     $.ajax({
-      url: _url+'&ajax=1',
-      dataType: 'html',
-      error: function(request, status, error) {
-        handleAjaxError(request, status, error);
-    },
-    success: function(html) {
-        window.history.pushState('Object', 'Title',_url);
-        var page = getUrlVars('p');
-        $('head title').text(page[0].toUpperCase() + page.slice(1)+' - Jeedom');
-        var plugin = getUrlVars('m');
-        var help = '#';
-        if(plugin != false){
-            help = 'https://jeedom.fr/doc/documentation/plugins/'+plugin+'/fr_FR/'+plugin+'.html';
-        }else{
-            if (page == 'scenarioAssist') {
-                help = 'https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-scenario.html';
-            } else if (page == 'view_edit') {
-                help = 'https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-view.html';
-            } else {
-                help = 'https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-' +page+ '.html';
-            }
-        }
-
-        $('#bt_globalHelp').attr('href',help);
-        $('#div_pageContainer').empty().html(html);
-        initPage();
-    }
-});
+    window.location.href = _url;
+    return;
 }
 
 $(function () {
-    $('body').delegate('a','click',function(event){
-        if($(this).attr('data-direct') != 1 && $(this).attr('href') != '' && $(this).attr('href') != undefined && $(this).attr('href') != '#' && $(this).attr('href').indexOf("index.php") == 0 && $(this).attr('href').indexOf("p=") > 0){
-          event.preventDefault();
-          loadPage($(this).attr('href'));
-      }
-  });
-
-    window.onpopstate = function(event) {
-        if(document.location.href != '' && document.location.href != undefined && document.location.href.indexOf("index.php") > 0 && document.location.href.indexOf("p=") > 0 && document.location.href.indexOf("#") == -1){
-         loadPage(document.location);
-     }
- };
 
  $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
     event.preventDefault();
