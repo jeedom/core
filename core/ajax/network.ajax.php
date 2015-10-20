@@ -39,14 +39,6 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'listWifi') {
-		ajax::success(network::listWifi());
-	}
-
-	if (init('action') == 'writeInterfaceFile') {
-		ajax::success(network::writeInterfaceFile());
-	}
-
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

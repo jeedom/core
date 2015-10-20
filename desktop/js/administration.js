@@ -56,9 +56,6 @@
     }
 });
 
-
- printWifiList();
-
  $("#bt_genKeyAPI").on('click', function (event) {
     $.hideAlert();
     bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API de Jeedom ? Vous devrez reconfigurer tous les équipements communiquant avec Jeedom et utilisant la clef API}}', function (result) {
@@ -460,64 +457,6 @@ function saveConvertColor() {
 }
 
 /**************************NETWORK***********************************/
-
-function printWifiList(_global){
-   jeedom.network.listWifi({
-    global : _global || false,
-    error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-        var option = '';
-        for(var i in data){
-            option += '<option value="'+data[i]+'">'; 
-            option += data[i]; 
-            option += '</option>';  
-        }
-        $('.configKey[data-l1key="network::wifi::ssid"]').empty().append(option);
-        jeedom.config.load({
-            configuration: {"network::wifi::ssid" : ""},
-            global : false,
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (data) {
-                $('#config').setValues(data, '.configKey');
-                modifyWithoutSave = false;
-            }
-        });
-    }
-});
-}
-
-$('#bt_writeInterfaceFile').on('click', function () {
-    bootbox.confirm('{{Etes-vous sûr de vouloir ecrire la configuration réseaux ? La moindre erreur peut rendre votre box inaccessible et vous obligera à une reinstallation. Suite à ce changement un redemarrage est necessaire.}}', function (result) {
-        if (result) {
-         $.hideAlert();
-         jeedom.config.save({
-            configuration: $('#config').getValues('.configKey')[0],
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-             jeedom.network.writeInterfaceFile({
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                },
-                success: function (data) {
-                   modifyWithoutSave = false;
-               }
-           });
-         }
-     }); 
-     }
- });
-});
-
-$('#bt_refreshWifiList').on('click',function(){
-    printWifiList(true);
-});
-
 
 /*CMD color*/
 
