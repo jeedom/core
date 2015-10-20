@@ -26,13 +26,13 @@
 
 $(function () {
 
- $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+   $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
     $(this).parent().siblings().removeClass('open');
     $(this).parent().toggleClass('open');
 });
- if (!navigator.userAgent.match(/Android/i)
+   if (!navigator.userAgent.match(/Android/i)
     && !navigator.userAgent.match(/webOS/i)
     && !navigator.userAgent.match(/iPhone/i)
     && !navigator.userAgent.match(/iPad/i)
@@ -245,9 +245,9 @@ setInterval(function () {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-     $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
-     $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
- });
+       $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
+       $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
+   });
 
     $('#bt_gotoDashboard').on('click',function(){
         $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
@@ -480,19 +480,19 @@ function positionEqLogic(_id) {
         eqLogic.height(Math.floor(eqLogic.height() / 80) * 80);
         eqLogic.width(Math.ceil(eqLogic.width() / 40) * 40 + (Math.ceil(eqLogic.width() / 40)-1) * 2);
         eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80 + (Math.ceil(eqLogic.height() / 80)-1) * 2);
-        /* var verticalAlign = eqLogic.find('.verticalAlign');
+        var verticalAlign = eqLogic.find('.verticalAlign');
         if (count(verticalAlign) > 0 && verticalAlign != undefined) {
             verticalAlign.css('position', 'relative').css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - eqLogic.find('.widget-name').height() + 10);
-        }*/
+        }
     }else{
         $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
         $('.eqLogic-widget:not(.jeedomAlreadyPosition)').each(function () {
             $(this).width(Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2);
             $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
-           /* var verticalAlign = $(this).find('.verticalAlign');
+            var verticalAlign = $(this).find('.verticalAlign');
             if (count(verticalAlign) > 0 && verticalAlign != undefined) {
                 verticalAlign.css('position', 'relative').css('top', (($(this).height() - verticalAlign.height()) / 2) - $(this).find('.widget-name').height() + 10);
-            }*/
+            }
         });
         $('.eqLogic-widget').addClass('jeedomAlreadyPosition');
     }
