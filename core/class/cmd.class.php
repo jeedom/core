@@ -1326,6 +1326,37 @@ class cmd {
 		}
 	}
 
+	public function getGenericType() {
+		if ($this->getDisplay('generic_type') != '') {
+			return $this->getDisplay('generic_type');
+		}
+		$category = $this->getEqLogic()->getPrimaryCategory();
+		$type = strtoupper($category) . '_';
+		if ($this->getType() == 'action') {
+			if ($this->getSubtype() == 'other') {
+				$name = strtolower($this->getName());
+				if ($category = 'heating' && strpos($name, 'cool') !== false) {
+					$type = 'COOL_';
+				}
+				if (strpos($name, 'off') !== false) {
+					return $type . 'OFF';
+				}
+				if (strpos($name, 'on') !== false) {
+					return $type . 'ON';
+				}
+			}
+			return $type . strtoupper($this->getSubtype());
+		} else {
+			switch ($this->getUnite()) {
+				case 'W':
+					return $type . 'POWER';
+				case 'kWh':
+					return $type . 'CONSUMPTION';
+			}
+			return $type . 'STATE';
+		}
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {
