@@ -645,14 +645,14 @@ class eqLogic {
 	}
 
 	public function batteryStatus($_pourcent, $_datetime = '') {
-		if ($_pourcent > 20) {
+		if ($_pourcent > config::byKey('battery::warning')) {
 			foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
 				$message->remove();
 			}
 			foreach (message::byPluginLogicalId($this->getEqType_name(), 'noBattery' . $this->getId()) as $message) {
 				$message->remove();
 			}
-		} else if ($_pourcent > 0 && $_pourcent <= 20) {
+		} else if ($_pourcent > config::byKey('battery::danger') && $_pourcent <= config::byKey('battery::warning')) {
 			$logicalId = 'lowBattery' . $this->getId();
 			$message = 'Le module ' . $this->getEqType_name() . ' ';
 			$message .= $this->getHumanName() . ' a moins de ' . $_pourcent . '% de batterie';
