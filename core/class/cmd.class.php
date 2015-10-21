@@ -1228,7 +1228,7 @@ class cmd {
 			return 0;
 		}
 		if ($this->getCache('enable', 0) == 0 && $this->getCache('lifetime') == '') {
-			return 10;
+			return config::byKey('lifeTimeMemCache');
 		}
 		$lifetime = $this->getCache('lifetime', config::byKey('lifeTimeMemCache'));
 		return ($lifetime < 10) ? 10 : $lifetime;

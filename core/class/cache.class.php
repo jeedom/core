@@ -133,7 +133,7 @@ class cache {
 
 	public function save() {
 		$this->setDatetime(date('Y-m-d H:i:s'));
-		if ($this->getLifetime() < 2) {
+		if ($this->getLifetime() == 0) {
 			return self::getCache()->save($this->getKey(), $this);
 		} else {
 			return self::getCache()->save($this->getKey(), $this, $this->getLifetime());
