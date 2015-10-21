@@ -141,7 +141,11 @@ class cache {
 	}
 
 	public function remove() {
-		self::getCache()->delete($this->getKey());
+		try {
+			self::getCache()->delete($this->getKey());
+		} catch (Exception $e) {
+
+		}
 	}
 
 	public function hasExpired() {
