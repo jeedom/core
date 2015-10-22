@@ -297,7 +297,7 @@ if (hasRight('logview', true)) {
 if (config::byKey('jeeNetwork::mode') == 'master' && (hasRight('objectview', true) || hasRight('interactview', true) || hasRight('displayview', true) || hasRight('scenarioview', true))) {
 		?>
 											<li class="dropdown cursor">
-												<a data-toggle="dropdown"><i class="fa fa-qrcode"></i> {{Outils}} <b class="caret"></b></a>
+												<a data-toggle="dropdown"><i class="fa fa-wrench"></i> {{Outils}} <b class="caret"></b></a>
 												<ul class="dropdown-menu" role="menu">
 													<?php
 if (config::byKey('jeeNetwork::mode') == 'master' && hasRight('objectview', true)) {
