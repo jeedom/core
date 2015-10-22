@@ -121,7 +121,7 @@ try {
 				throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
 			}
 			rcopy($tmp_dir, $cibDir);
-			rmdir($tmp_dir);
+			rrmdir($tmp_dir);
 			try {
 				$plugin = plugin::byId($logicalId);
 			} catch (Exception $e) {
