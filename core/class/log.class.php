@@ -137,7 +137,7 @@ class log {
 			ftruncate($log, 0);
 			fclose($log);
 		}
-		if (strpos($_log, 'nginx.error') !== false && strpos($log, '.htaccess') === false) {
+		if (strpos($_log, 'nginx.error') !== false && strpos($_log, '.htaccess') === false) {
 			shell_exec('cat /dev/null > ' . $path);
 		}
 		return true;
