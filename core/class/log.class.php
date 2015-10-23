@@ -77,6 +77,9 @@ class log {
 					@message::add($_log, $_message, '', $_logicalId);
 				}
 				break;
+			case 'alert':
+				$logger->addAlert($_message);
+				break;
 		}
 	}
 
