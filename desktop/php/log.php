@@ -9,7 +9,7 @@ $list_logfile = array();
 $dir = opendir('log/');
 $logExist = false;
 while ($file = readdir($dir)) {
-	if ($file != '.' && $file != '..' && !is_dir('log/' . $file)) {
+	if ($file != '.' && $file != '..' && $file != '.htaccess' && !is_dir('log/' . $file)) {
 		$list_logfile[] = $file;
 		if ($logfile == $file) {
 			$logExist = true;
