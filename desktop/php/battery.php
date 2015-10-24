@@ -6,15 +6,11 @@ echo '<div class="div_displayEquipement" style="width: 100%;padding-top:3px;marg
 foreach (object::all() as $object) {
 	foreach ($object->getEqLogic() as $eqLogic) {
 		if ($eqLogic->getConfiguration('batteryStatus', -2) != -2) {
-			$color = '#e74c3c';
-			if ($eqLogic->getConfiguration('batteryStatus') > 25) {
-				$color = '#e67e22';
-			}
-			if ($eqLogic->getConfiguration('batteryStatus') > 50) {
+			$color = '#2ecc71';
+			if ($eqLogic->getConfiguration('batteryStatus') <= $eqLogic->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'))) {
+				$color = '#e74c3c';
+			} else if ($eqLogic->getConfiguration('batteryStatus') <= $eqLogic->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'))) {
 				$color = '#f1c40f';
-			}
-			if ($eqLogic->getConfiguration('batteryStatus') > 75) {
-				$color = '#2ecc71';
 			}
 			echo '<div class="eqLogic eqLogic-widget" style="min-width:80px;background-color:' . $color . '">';
 			echo '<center class="widget-name"><span style="font-size : 1.5em;">' . $eqLogic->getName() . '</span><br/><span style="font-size: 0.95em;position:relative;top:-5px;">' . $object->getName() . '</span></center>';
