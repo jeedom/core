@@ -651,18 +651,13 @@ class eqLogic {
 			foreach (message::byPluginLogicalId($this->getEqType_name(), 'noBattery' . $this->getId()) as $message) {
 				$message->remove();
 			}
-		} else if ($_pourcent > $danger_threshold && $_pourcent <= $warning_threshold) {
+		} else {
 			$logicalId = 'lowBattery' . $this->getId();
 			$message = 'Le module ' . $this->getEqType_name() . ' ';
 			$message .= $this->getHumanName() . ' a moins de ' . $_pourcent . '% de batterie';
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
-			message::add($this->getEqType_name(), $message, '', $logicalId);
-		} else {
-			$logicalId = 'noBattery' . $this->getId();
-			$message = __('Le module ', __FILE__) . $this->getEqType_name() . ' ';
-			$message .= $this->getHumanName() . __(' n\'a plus de batterie (', __FILE__) . $_pourcent . ' %)';
 			message::add($this->getEqType_name(), $message, '', $logicalId);
 		}
 		$this->setConfiguration('batteryStatus', $_pourcent);
