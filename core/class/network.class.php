@@ -260,55 +260,86 @@ class network {
 		return true;
 	}
 
-/*     * *********************NGROK************************* */
+/*     * *********************DNS************************* */
 
-	public static function dns_start() {
-		if (config::byKey('ngrok::addr') == '') {
+	public static function dns_create() {
+		if (config::byKey('dns::addr') == '') {
 			return;
 		}
-		network::dns_stop();
-		$config_file = '/tmp/ngrok_jeedom';
-		$logfile = log::getPathToLog('ngrok');
-		$uname = posix_uname();
-		if (strrpos($uname['machine'], 'arm') !== false) {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
-		} else if ($uname['machine'] == 'x86_64') {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
-		} else {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
+		if (config::byKey('market::allowDNS') != 1) {
+			return;
 		}
-		exec('chmod +x ' . $cmd);
-		$cmd .= ' -config=' . $config_file . ' start jeedom';
-		if (!self::dns_run()) {
-			$replace = array(
-				'#server_addr#' => 'dns.jeedom.com:4443',
-				'#name#' => 'jeedom',
-				'#proto#' => 'https',
-				'#port#' => 80,
-				'#remote_port#' => '',
-				'#token#' => config::byKey('ngrok::token'),
-				'#auth#' => '',
-				'#subdomain#' => 'subdomain : ' . config::byKey('ngrok::addr'),
-			);
-			$config = template_replace($replace, file_get_contents(dirname(__FILE__) . '/../../script/ngrok/config'));
-			if (file_exists($config_file)) {
-				unlink($config_file);
-			}
-			file_put_contents($config_file, $config);
-			log::remove('ngrok');
-			log::add('ngork', 'debug', 'Lancement de ngork : ' . $cmd);
-			exec($cmd . ' >> /dev/null 2>&1 &');
+		$plugin = plugin::byId('openvpn');
+		if (!is_object($plugin)) {
+			throw new Exception(__('Le plugin openvpn doit être installé', __FILE__));
 		}
-		return true;
+		$openvpn = eqLogic::byLogicalId('dnsjeedom', 'openvpn');
+		if (!is_object($openvpn)) {
+			$openvpn = new openvpn();
+			$openvpn->setName('DNS Jeedom');
+		}
+		$openvpn->setIsEnable(1);
+		$openvpn->setLogicalId('dnsjeedom');
+		$openvpn->setEqType_name('openvpn');
+		$openvpn->setConfiguration('dev', 'tun');
+		$openvpn->setConfiguration('proto', 'tcp');
+		$openvpn->setConfiguration('remote_host', '149.202.5.242');
+		$openvpn->setConfiguration('username', jeedom::getHardwareKey());
+		$openvpn->setConfiguration('password', config::byKey('dns::token'));
+		$openvpn->setConfiguration('compression', 'comp-lzo');
+		$openvpn->setConfiguration('remote_port', 5678);
+		$openvpn->setConfiguration('auth_mode', 'password');
+		$openvpn->save();
+		if (!file_exists(dirname(__FILE__) . '/../../plugins/openvpn/data')) {
+			shell_exec('mkdir -p ' . dirname(__FILE__) . '/../../plugins/openvpn/data');
+		}
+		copy(dirname(__FILE__) . '/../../script/ca_dns.crt', dirname(__FILE__) . '/../../plugins/openvpn/data/ca_' . $openvpn->getConfiguration('key') . '.crt');
+		return $openvpn;
+	}
+
+	public static function dns_start() {
+		if (config::byKey('dns::addr') == '') {
+			return;
+		}
+		if (config::byKey('market::allowDNS') != 1) {
+			return;
+		}
+		$openvpn = self::dns_create();
+		$cmd = $openvpn->getCmd('action', 'start');
+		if (!is_object($cmd)) {
+			throw new Exception(__('La commande de start du DNS est introuvable', __FILE__));
+		}
+		$cmd->execCmd();
 	}
 
 	public static function dns_run() {
-		return (shell_exec('ps ax | grep -ie "/tmp/ngrok_jeedom" | grep -v grep | wc -l') > 0);
+		if (config::byKey('dns::addr') == '') {
+			return false;
+		}
+		if (config::byKey('market::allowDNS') != 1) {
+			return false;
+		}
+		$openvpn = self::dns_create();
+		$cmd = $openvpn->getCmd('info', 'state');
+		if (!is_object($cmd)) {
+			throw new Exception(__('La commande de status du DNS est introuvable', __FILE__));
+		}
+		return $cmd->execCmd();
 	}
 
 	public static function dns_stop() {
-		exec("ps aux | grep -ie '/tmp/ngrok_jeedom' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
-		return self::dns_run();
+		if (config::byKey('dns::addr') == '') {
+			return;
+		}
+		if (config::byKey('market::allowDNS') != 1) {
+			return;
+		}
+		$openvpn = self::dns_create();
+		$cmd = $openvpn->getCmd('action', 'stop');
+		if (!is_object($cmd)) {
+			throw new Exception(__('La commande de stop du DNS est introuvable', __FILE__));
+		}
+		$cmd->execCmd();
 	}
 
 /*     * *********************WICD************************* */
@@ -385,9 +416,6 @@ class network {
 	}
 
 	public static function cron() {
-		if (config::byKey('market::allowDNS') == 1 && !network::test('external', false, 120)) {
-			network::dns_start();
-		}
 		if (config::byKey('network::disableMangement') == 1) {
 			return;
 		}

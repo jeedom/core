@@ -77,7 +77,7 @@
     });
 });
 
- $('#bt_restartNgrok').on('click', function () {
+ $('#bt_restartDns').on('click', function () {
      $.hideAlert();
      jeedom.config.save({
         configuration: $('#config').getValues('.configKey')[0],
@@ -85,7 +85,7 @@
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         jeedom.network.restartNgrok({
+         jeedom.network.restartDns({
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
@@ -99,7 +99,7 @@
  });
 
 
- $('#bt_haltNgrok').on('click', function () {
+ $('#bt_haltDns').on('click', function () {
      $.hideAlert();
      jeedom.config.save({
         configuration: $('#config').getValues('.configKey')[0],
@@ -107,7 +107,7 @@
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         jeedom.network.stopNgrok({
+         jeedom.network.stopDns({
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },

@@ -500,7 +500,6 @@ if (init('type') != '') {
 					'nbMessage' => message::nbMessage(),
 					'auiKey' => $auiKey,
 					'jeedom::url' => config::byKey('jeedom::url'),
-					'ngrok::port' => config::byKey('ngrok::port'),
 				);
 				if (!filter_var(network::getNetworkAccess('external', 'ip'), FILTER_VALIDATE_IP) && network::getNetworkAccess('external', 'ip') != '') {
 					$return['jeedom::url'] = network::getNetworkAccess('internal');
@@ -710,22 +709,19 @@ if (init('type') != '') {
 
 			/*             * ************************Network*************************** */
 
-			if ($jsonrpc->getMethod() == 'network::restartNgrok') {
+			if ($jsonrpc->getMethod() == 'network::restartDns') {
 				config::save('market::allowDNS', 1);
-				if (network::dns_run()) {
-					network::dns_stop();
-				}
 				network::dns_start();
 				$jsonrpc->makeSuccess();
 			}
 
-			if ($jsonrpc->getMethod() == 'network::stopNgrok') {
+			if ($jsonrpc->getMethod() == 'network::stopDns') {
 				config::save('market::allowDNS', 0);
 				network::dns_stop();
 				$jsonrpc->makeSuccess();
 			}
 
-			if ($jsonrpc->getMethod() == 'network::ngrokRun') {
+			if ($jsonrpc->getMethod() == 'network::dnsRun') {
 				if (!isset($params['proto'])) {
 					$params['proto'] = 'https';
 				}

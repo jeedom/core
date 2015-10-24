@@ -267,9 +267,6 @@ class market {
 		if (isset($_ticket['allowRemoteAccess']) && $_ticket['allowRemoteAccess'] == 1) {
 			$user = user::createTemporary(72);
 			$_ticket['options']['remoteAccess'] = 'Http : ' . $user->getDirectUrlAccess();
-			if (config::byKey('market::allowDNS') == 1 && config::byKey('market::redirectSSH') == 1 && config::byKey('ngrok::port') != '') {
-				$_ticket['options']['remoteAccess'] .= ' | SSH : dns.jeedom.com:' . config::byKey('ngrok::port');
-			}
 		}
 		$_ticket['options']['jeedom_version'] = jeedom::version();
 		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket))) {
@@ -339,18 +336,15 @@ class market {
 		if (is_array($_result)) {
 			if (config::byKey('market::allowDNS') == 1) {
 				$dnsRestart = false;
-				if (isset($_result['register::ngrokAddr']) && config::byKey('ngrok::addr') != $_result['register::ngrokAddr']) {
-					config::save('ngrok::addr', $_result['register::ngrokAddr']);
+				if (isset($_result['register::ngrokAddr']) && config::byKey('dns::addr') != $_result['register::ngrokAddr']) {
+					config::save('dns::addr', $_result['register::ngrokAddr']);
 					$dnsRestart = true;
 				}
-				if (isset($_result['register::ngrokToken']) && config::byKey('ngrok::token') != $_result['register::ngrokToken']) {
-					config::save('ngrok::token', $_result['register::ngrokToken']);
+				if (isset($_result['register::ngrokToken']) && config::byKey('dns::token') != $_result['register::ngrokToken']) {
+					config::save('dns::token', $_result['register::ngrokToken']);
 					$dnsRestart = true;
 				}
 				if ($dnsRestart) {
-					if (network::dns_run()) {
-						network::dns_stop();
-					}
 					network::dns_start();
 				}
 				if (isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {

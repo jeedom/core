@@ -431,21 +431,15 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
                         </div>
                         <div class="form-group">
                             <label class="col-xs-4 control-label">{{Statut http}}</label>
-                            <div class="col-xs-8" id="div_ngrokHttpStatus">
-
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">{{Statut SSH}}</label>
-                            <div class="col-xs-8" id="div_ngrokSSHStatus">
+                            <div class="col-xs-8" id="div_dnsHttpStatus">
 
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-4 control-label">{{Gestion}}</label>
                             <div class="col-xs-8">
-                             <a class="btn btn-success" id="bt_restartNgrok"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
-                             <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arrêter}}</a>
+                             <a class="btn btn-success" id="bt_restartDns"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
+                             <a class="btn btn-danger" id="bt_haltDns"><i class='fa fa-stop'></i> {{Arrêter}}</a>
                          </div>
                      </div>
                  </div>

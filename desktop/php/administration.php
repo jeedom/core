@@ -342,7 +342,7 @@ if (network::test('internal')) {
                     <label class="col-xs-3 control-label">{{Statut}}</label>
                     <div class="col-xs-3">
                       <?php
-$externalTest = network::test('external');
+$externalTest = network::dns_run();
 if ($externalTest) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
 } else {
@@ -389,8 +389,8 @@ if (config::byKey('market::allowDNS') == 1 && $externalTest) {
        <div class="form-group">
            <label class="col-xs-4 control-label">{{Gestion}}</label>
            <div class="col-xs-8">
-             <a class="btn btn-success" id="bt_restartNgrok"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
-             <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arrêter}}</a>
+             <a class="btn btn-success" id="bt_restartDns"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
+             <a class="btn btn-danger" id="bt_haltDns"><i class='fa fa-stop'></i> {{Arrêter}}</a>
          </div>
 
      </div>

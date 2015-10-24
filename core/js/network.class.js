@@ -19,7 +19,7 @@
  jeedom.network = function () {
  };
 
- jeedom.network.restartNgrok = function (_params) {
+ jeedom.network.restartDns = function (_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -32,12 +32,12 @@
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/network.ajax.php';
     paramsAJAX.data = {
-        action: 'restartNgrok',
+        action: 'restartDns',
     };
     $.ajax(paramsAJAX);
 };
 
-jeedom.network.stopNgrok = function (_params) {
+jeedom.network.stopDns = function (_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -50,7 +50,7 @@ jeedom.network.stopNgrok = function (_params) {
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/network.ajax.php';
     paramsAJAX.data = {
-        action: 'stopNgrok',
+        action: 'stopDns',
     };
     $.ajax(paramsAJAX);
 };

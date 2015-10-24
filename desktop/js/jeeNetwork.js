@@ -40,7 +40,7 @@ function loadInfoFromSlave(_id){
                 if(isset(data.configuration.url)){
                     $('#bt_connectToSlave').attr('href', data.configuration.url + '/index.php?v=d&auiKey=' + data.configuration.auiKey).show();
                 }else{
-                   if(isset(data.configuration.addrComplement)){
+                 if(isset(data.configuration.addrComplement)){
                     $('#bt_connectToSlave').attr('href', 'http://' + data.ip+data.configuration.addrComplement + '/index.php?v=d&auiKey=' + data.configuration.auiKey).show();
                 }else{
                     $('#bt_connectToSlave').attr('href', 'http://' + data.ip + '/index.php?v=d&auiKey=' + data.configuration.auiKey).show();
@@ -52,43 +52,26 @@ function loadInfoFromSlave(_id){
         }
         $('#div_pluginList').empty().append(plugin);
         var jeeNetworkConfig = data;
-        jeedom.jeeNetwork.ngrokRun({
+        jeedom.jeeNetwork.dnsRun({
             id: _id,
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
                 if(data == 0){
-                 $('#div_ngrokHttpStatus').html('<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>');
-             }else{
-               $('#div_ngrokHttpStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' +init(jeeNetworkConfig.configuration.url)+ '" target="_blank" style="color:white;text-decoration: underline;">' +init(jeeNetworkConfig.configuration.url)+ '</a></span>');
-           }
-       }
-   });
-
-        jeedom.jeeNetwork.ngrokRun({
-            id: _id,
-            proto : 'tcp',
-            port : 22,
-            name : 'ssh',
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (data) {
-                if(data == 0){
-                 $('#div_ngrokSSHStatus').html('<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Rediriger le SSH}}">{{Arrêté}}</span>');
-             }else{
-                $('#div_ngrokSSHStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} dns.jeedom.com:' + init(jeeNetworkConfig.configuration['ngrok::port']) + '</span>');
-            }
-        }
-    });
+                    $('#div_dnsHttpStatus').html('<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>');
+               }else{
+                 $('#div_dnsHttpStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' +init(jeeNetworkConfig.configuration.url)+ '" target="_blank" style="color:white;text-decoration: underline;">' +init(jeeNetworkConfig.configuration.url)+ '</a></span>');
+             }
+         }
+     });
         modifyWithoutSave = false;
     }
 });
 jeedom.jeeNetwork.loadConfig({
- id: _id,
- configuration: $('#administration').getValues('.configKey')[0],
- error: function (error) {
+   id: _id,
+   configuration: $('#administration').getValues('.configKey')[0],
+   error: function (error) {
     $('#div_alert').showAlert({message: error.message, level: 'danger'});
 },
 success: function (data) {
@@ -342,9 +325,9 @@ $('#bt_updateSlave').on('click', function () {
     });
 });
 
-$('#bt_restartNgrok').on('click', function () {
+$('#bt_restartDns').on('click', function () {
     $.hideAlert();
-    jeedom.jeeNetwork.restartNgrok({
+    jeedom.jeeNetwork.restartDns({
         id: $('.li_jeeNetwork.active').attr('data-jeeNetwork_id'),
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -356,9 +339,9 @@ $('#bt_restartNgrok').on('click', function () {
     });
 });
 
-$('#bt_haltNgrok').on('click', function () {
+$('#bt_haltDns').on('click', function () {
     $.hideAlert();
-    jeedom.jeeNetwork.stopNgrok({
+    jeedom.jeeNetwork.stopDns({
         id: $('.li_jeeNetwork.active').attr('data-jeeNetwork_id'),
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -477,7 +460,7 @@ $("#bt_removeJeeNetwork").on('click', function (event) {
                     },
                     success: function () {
                         modifyWithoutSave = false;
-                         loadPage('index.php?v=d&p=jeeNetwork&removeSuccessFull=1');
+                        loadPage('index.php?v=d&p=jeeNetwork&removeSuccessFull=1');
                     }
                 });
             }
