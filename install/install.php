@@ -115,6 +115,9 @@ try {
 					if (config::byKey('market::branch') == 'url') {
 						$url = config::byKey('update::url');
 					} else {
+						if (config::byKey('market::allowBeta') != 1 && config::byKey('market::branch') == 'master') {
+							//config::save('market::branch', 'stable');
+						}
 						$url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip?timespamp=' . strtotime('now');
 					}
 					echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
