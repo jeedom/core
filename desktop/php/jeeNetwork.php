@@ -657,12 +657,6 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
                             <input type="checkbox"  class="configKey bootstrapSwitch" data-l1key="market::showPromotion" />
                         </div>
                     </div>
-                    <div class="form-group has-error">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Voir les modules en beta (à vos risques et périls)}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="checkbox"  class="configKey bootstrapSwitch" data-l1key="market::showBetaMarket" />
-                        </div>
-                    </div>
                     <div class="form-group expertModeVisible">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
                         <div class="col-sm-1">

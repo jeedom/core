@@ -116,7 +116,7 @@ try {
 						$url = config::byKey('update::url');
 					} else {
 						if (config::byKey('market::allowBeta') != 1 && config::byKey('market::branch') == 'master') {
-							//config::save('market::branch', 'stable');
+							config::save('market::branch', 'stable');
 						}
 						$url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip?timespamp=' . strtotime('now');
 					}
