@@ -643,7 +643,6 @@ class eqLogic {
 
 	public function batteryStatus($_pourcent, $_datetime = '') {
 		$warning_threshold = $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
-		$danger_threshold = $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
 		if ($_pourcent > $warning_threshold) {
 			foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
 				$message->remove();
