@@ -336,11 +336,8 @@ class market {
 		if (is_array($_result)) {
 			if (config::byKey('market::allowDNS') == 1) {
 				$dnsRestart = false;
-				if (isset($_result['register::ngrokToken']) && config::byKey('dns::token') != $_result['register::ngrokToken']) {
+				if (isset($_result['register::dnsToken']) && config::byKey('dns::token') != $_result['register::dnsToken']) {
 					config::save('dns::token', $_result['register::ngrokToken']);
-					$dnsRestart = true;
-				}
-				if ($dnsRestart) {
 					network::dns_start();
 				}
 				if (isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
@@ -358,6 +355,12 @@ class market {
 			}
 			if (isset($_result['register::ngrokToken'])) {
 				unset($_result['register::ngrokToken']);
+			}
+			if (isset($_result['register::dnsAddr'])) {
+				unset($_result['register::dnsAddr']);
+			}
+			if (isset($_result['register::dnsToken'])) {
+				unset($_result['register::dnsToken']);
 			}
 			if (isset($_result['jeedom::url'])) {
 				unset($_result['jeedom::url']);
