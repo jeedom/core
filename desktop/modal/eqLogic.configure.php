@@ -139,12 +139,6 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                 <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowObjectNameOnView" /></td>
                 <td></td>
             </tr>
-            <tr>
-                <td>{{Afficher le niveau de batterie}}</td>
-                <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnDashboard" /></td>
-                <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotDisplayBatteryLevelOnView" /></td>
-                <td></td>
-            </tr>
         </tbody>
     </table>
     <legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
