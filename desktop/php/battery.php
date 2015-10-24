@@ -1,5 +1,4 @@
 <?php
-
 if (!hasRight('batteryview')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -27,10 +26,8 @@ foreach (object::all() as $object) {
 			echo '</div>';
 		}
 	}
-
 }
 echo '</div>';
 echo '</div>';
 ?>
-
 <?php include_file('desktop', 'battery', 'js');?>
