@@ -274,6 +274,7 @@ foreach (planHeader::all() as $plan_menu) {
 if (hasRight('logview', true)) {
 		?>
 													<li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
+													<li class="expertModeVisible"><a href="index.php?v=d&p=battery"><i class="fa fa-battery-full"></i> {{Batteries}}</a></li>
 													<?php
 }
 	?>
