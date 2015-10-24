@@ -336,10 +336,6 @@ class market {
 		if (is_array($_result)) {
 			if (config::byKey('market::allowDNS') == 1) {
 				$dnsRestart = false;
-				if (isset($_result['register::ngrokAddr']) && config::byKey('dns::addr') != $_result['register::ngrokAddr']) {
-					config::save('dns::addr', $_result['register::ngrokAddr']);
-					$dnsRestart = true;
-				}
 				if (isset($_result['register::ngrokToken']) && config::byKey('dns::token') != $_result['register::ngrokToken']) {
 					config::save('dns::token', $_result['register::ngrokToken']);
 					$dnsRestart = true;

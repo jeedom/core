@@ -263,7 +263,7 @@ class network {
 /*     * *********************DNS************************* */
 
 	public static function dns_create() {
-		if (config::byKey('dns::addr') == '') {
+		if (config::byKey('dns::token') == '') {
 			return;
 		}
 		if (config::byKey('market::allowDNS') != 1) {
@@ -301,7 +301,7 @@ class network {
 	}
 
 	public static function dns_start() {
-		if (config::byKey('dns::addr') == '') {
+		if (config::byKey('dns::token') == '') {
 			return;
 		}
 		if (config::byKey('market::allowDNS') != 1) {
@@ -316,7 +316,7 @@ class network {
 	}
 
 	public static function dns_run() {
-		if (config::byKey('dns::addr') == '') {
+		if (config::byKey('dns::token') == '') {
 			return false;
 		}
 		if (config::byKey('market::allowDNS') != 1) {
@@ -331,7 +331,7 @@ class network {
 	}
 
 	public static function dns_stop() {
-		if (config::byKey('dns::addr') == '') {
+		if (config::byKey('dns::token') == '') {
 			return;
 		}
 		if (config::byKey('market::allowDNS') != 1) {
