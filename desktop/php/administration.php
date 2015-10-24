@@ -264,8 +264,8 @@ echo $CONFIG['db']['password'];
                     <div class="alert alert-warning">{{Attention cette configuration n'est la que pour informer Jeedom de sa configuration réseaux et n'a aucun impact sur les ports ou l'IP réelement utilisés pour joindre Jeedom}}</div>
                     <div class="row">
                         <div class="col-sm-6">
-                           <legend>Accès interne</legend>
-                           <?php
+                         <legend>Accès interne</legend>
+                         <?php
 if (config::byKey('jeeNetwork::mode') == 'slave') {
 	echo '<div class="form-group expertModeVisible">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP Maître}}</label>';
@@ -275,85 +275,85 @@ if (config::byKey('jeeNetwork::mode') == 'slave') {
 	echo '</div>';
 }
 ?>
-                           <div class="form-group">
-                            <label class="col-xs-3 control-label">{{Protocole}}</label>
-                            <div class="col-xs-3">
-                                <select class="configKey form-control" data-l1key="internalProtocol">
-                                    <option value="">Aucun</option>
-                                    <option value="http://">HTTP</option>
-                                    <option value="https://">HTTPS</option>
-                                </select>
-                            </div>
-                            <label class="col-xs-3 control-label">{{Port}}</label>
-                            <div class="col-xs-3">
-                                <input type="number"class="configKey form-control" data-l1key="internalPort" />
-                            </div>
+                       <div class="form-group">
+                        <label class="col-xs-3 control-label">{{Protocole}}</label>
+                        <div class="col-xs-3">
+                            <select class="configKey form-control" data-l1key="internalProtocol">
+                                <option value="">Aucun</option>
+                                <option value="http://">HTTP</option>
+                                <option value="https://">HTTPS</option>
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label class="col-xs-3 control-label">{{Adresse IP}}</label>
-                            <div class="col-xs-3">
-                                <input type="text" class="configKey form-control" data-l1key="internalAddr" />
-                            </div>
-                            <label class="col-xs-3 control-label">{{Complément}}</label>
-                            <div class="col-xs-3">
-                                <input type="text" class="configKey form-control" data-l1key="internalComplement" />
-                            </div>
+                        <label class="col-xs-3 control-label">{{Port}}</label>
+                        <div class="col-xs-3">
+                            <input type="number"class="configKey form-control" data-l1key="internalPort" />
                         </div>
-                        <div class="form-group">
-                            <label class="col-xs-3 control-label">{{Statut}}</label>
-                            <div class="col-xs-8">
-                              <?php
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">{{Adresse IP}}</label>
+                        <div class="col-xs-3">
+                            <input type="text" class="configKey form-control" data-l1key="internalAddr" />
+                        </div>
+                        <label class="col-xs-3 control-label">{{Complément}}</label>
+                        <div class="col-xs-3">
+                            <input type="text" class="configKey form-control" data-l1key="internalComplement" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">{{Statut}}</label>
+                        <div class="col-xs-8">
+                          <?php
 if (network::test('internal')) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
 } else {
 	echo '<span class="label label-warning tooltips">{{NOK}}</span>';
 }
 ?>
-                       </div>
                    </div>
                </div>
-               <div class="col-sm-6">
-                <legend>Accès externe</legend>
-                <div class="form-group">
-                    <label class="col-xs-3 control-label">{{Protocole}}</label>
-                    <div class="col-xs-3">
-                        <select class="configKey form-control" data-l1key="externalProtocol">
-                            <option value="">Aucun</option>
-                            <option value="http://">HTTP</option>
-                            <option value="https://">HTTPS</option>
-                        </select>
-                    </div>
-                    <label class="col-xs-3 control-label">{{Port}}</label>
-                    <div class="col-xs-3">
-                        <input type="number" class="configKey form-control" data-l1key="externalPort" />
-                    </div>
+           </div>
+           <div class="col-sm-6">
+            <legend>Accès externe</legend>
+            <div class="form-group">
+                <label class="col-xs-3 control-label">{{Protocole}}</label>
+                <div class="col-xs-3">
+                    <select class="configKey form-control" data-l1key="externalProtocol">
+                        <option value="">Aucun</option>
+                        <option value="http://">HTTP</option>
+                        <option value="https://">HTTPS</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label class="col-xs-3 control-label">{{Adresse URL ou IP}}</label>
-                    <div class="col-xs-3">
-                        <input type="text" class="configKey form-control" data-l1key="externalAddr" />
-                    </div>
-                    <label class="col-xs-3 control-label">{{Complément}}</label>
-                    <div class="col-xs-3">
-                        <input type="text"  class="configKey form-control" data-l1key="externalComplement" />
-                    </div>
+                <label class="col-xs-3 control-label">{{Port}}</label>
+                <div class="col-xs-3">
+                    <input type="number" class="configKey form-control" data-l1key="externalPort" />
                 </div>
-                <div class="form-group">
-                    <label class="col-xs-3 control-label">{{Statut}}</label>
-                    <div class="col-xs-3">
-                      <?php
+            </div>
+            <div class="form-group">
+                <label class="col-xs-3 control-label">{{Adresse URL ou IP}}</label>
+                <div class="col-xs-3">
+                    <input type="text" class="configKey form-control" data-l1key="externalAddr" />
+                </div>
+                <label class="col-xs-3 control-label">{{Complément}}</label>
+                <div class="col-xs-3">
+                    <input type="text"  class="configKey form-control" data-l1key="externalComplement" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-3 control-label">{{Statut}}</label>
+                <div class="col-xs-3">
+                  <?php
 if (network::test('external')) {
 	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
 } else {
 	echo '<span class="label label-warning tooltips">{{NOK}}</span>';
 }
 ?>
-               </div>
            </div>
        </div>
    </div>
+</div>
 
-   <div class="row">
+<div class="row">
     <div class="col-sm-6">
         <legend>{{Gestion avancée}}</legend>
         <div class="form-group expertModeVisible has-error">
@@ -365,35 +365,39 @@ if (network::test('external')) {
     </div>
     <div class="col-sm-6">
         <legend>DNS Jeedom</legend>
-        <div class="alert alert-warning">{{Attention cette fonctionnalité n'est pas disponible dans le service pack community (voir votre service pack sur  votre page profils sur le market)}}</div>
-        <div class="form-group">
-            <label class="col-xs-4 control-label">{{Utiliser les DNS Jeedom}}</label>
-            <div class="col-xs-8">
-                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="market::allowDNS" />
+        <?php if (config::byKey('dns::token') == '') {?>
+            <div class="alert alert-warning">{{Attention cette fonctionnalité n'est pas disponible dans le service pack community (voir votre service pack sur  votre page profils sur le market)}}</div>
+            <?php } else {
+	?>
+            <div class="form-group">
+                <label class="col-xs-4 control-label">{{Utiliser les DNS Jeedom}}</label>
+                <div class="col-xs-8">
+                    <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="market::allowDNS" />
+                </div>
             </div>
-        </div>
-        <div class="alert alert-info">{{Toute modification nécessite de redémarrer le service DNS Jeedom (ligne "Gestion" puis "Redémarrer")}}</div>
-        <div class="form-group">
-            <label class="col-xs-4 control-label">{{Statut http}}</label>
-            <div class="col-xs-8">
-                <?php
+            <div class="form-group">
+                <label class="col-xs-4 control-label">{{Statut DNS}}</label>
+                <div class="col-xs-8">
+                    <?php
 if (config::byKey('market::allowDNS') == 1 && network::dns_run()) {
-	echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
-} else {
-	echo '<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
-}
-?>
+		echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
+	} else {
+		echo '<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
+	}
+	?>
+               </div>
            </div>
-       </div>
-       <div class="form-group">
-           <label class="col-xs-4 control-label">{{Gestion}}</label>
-           <div class="col-xs-8">
-             <a class="btn btn-success" id="bt_restartDns"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
-             <a class="btn btn-danger" id="bt_haltDns"><i class='fa fa-stop'></i> {{Arrêter}}</a>
-         </div>
+           <div class="form-group">
+             <label class="col-xs-4 control-label">{{Gestion}}</label>
+             <div class="col-xs-8">
+               <a class="btn btn-success" id="bt_restartDns"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
+               <a class="btn btn-danger" id="bt_haltDns"><i class='fa fa-stop'></i> {{Arrêter}}</a>
+           </div>
 
-     </div>
- </div>
+       </div>
+       <?php }
+?>
+   </div>
 </div>
 
 </fieldset>
@@ -416,7 +420,7 @@ if (config::byKey('market::allowDNS') == 1 && network::dns_run()) {
     <div id="config_color" class="panel-collapse collapse">
         <form class="form-horizontal">
             <fieldset>
-               <div  style="margin-left:10px;">
+             <div  style="margin-left:10px;">
                 <?php
 foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 		echo '<legend>' . $category['name'] . '</legend>';
@@ -534,7 +538,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
             <legend>{{Push}}</legend>
             <form class="form-horizontal">
                 <fieldset>
-                   <div class="form-group">
+                 <div class="form-group">
                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{URL de push globale}}</label>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <input type="text"  class="configKey form-control tooltips" data-l1key="cmdPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
@@ -639,42 +643,42 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sensibilité}}</label>
                         <div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
-                         <div class="input-group">
-                          <span class="input-group-addon">1 mot</span>
-                          <input type="text" class="configKey form-control" data-l1key="interact::confidence1"/>
-                          <span class="input-group-addon">2 mots</span>
-                          <input type="text" class="configKey form-control" data-l1key="interact::confidence2"/>
-                          <span class="input-group-addon">3 mots</span>
-                          <input type="text" class="configKey form-control" data-l1key="interact::confidence3"/>
-                          <span class="input-group-addon">> 3 mots</span>
-                          <input type="text" class="configKey form-control" data-l1key="interact::confidence"/>
-                      </div>
+                           <div class="input-group">
+                              <span class="input-group-addon">1 mot</span>
+                              <input type="text" class="configKey form-control" data-l1key="interact::confidence1"/>
+                              <span class="input-group-addon">2 mots</span>
+                              <input type="text" class="configKey form-control" data-l1key="interact::confidence2"/>
+                              <span class="input-group-addon">3 mots</span>
+                              <input type="text" class="configKey form-control" data-l1key="interact::confidence3"/>
+                              <span class="input-group-addon">> 3 mots</span>
+                              <input type="text" class="configKey form-control" data-l1key="interact::confidence"/>
+                          </div>
 
+                      </div>
                   </div>
-              </div>
-              <div class="form-group">
-                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas répondre si l'interaction n'est pas comprise}}</label>
-                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                    <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="interact::noResponseIfEmpty"/>
+                  <div class="form-group">
+                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas répondre si l'interaction n'est pas comprise}}</label>
+                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                        <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="interact::noResponseIfEmpty"/>
+                    </div>
                 </div>
-            </div>
-            <i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
-            <table class="table table-condensed table-bordered" id="table_convertColor" >
-                <thead>
-                    <tr>
-                        <th>{{Nom}}</th><th>{{Code HTML}}</th>
-                    </tr>
-                    <tr class="filter" style="display : none;">
-                        <td class="color"><input class="filter form-control" filterOn="color" /></td>
-                        <td class="codeHtml"><input class="filter form-control" filterOn="codeHtml" /></td>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </fieldset>
-    </form>
-</div>
+                <i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
+                <table class="table table-condensed table-bordered" id="table_convertColor" >
+                    <thead>
+                        <tr>
+                            <th>{{Nom}}</th><th>{{Code HTML}}</th>
+                        </tr>
+                        <tr class="filter" style="display : none;">
+                            <td class="color"><input class="filter form-control" filterOn="color" /></td>
+                            <td class="codeHtml"><input class="filter form-control" filterOn="codeHtml" /></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </fieldset>
+        </form>
+    </div>
 </div>
 </div>
 
@@ -763,7 +767,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
                    <div class="form-group">
                     <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande d'information utilisateur}}</label>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                     <div class="input-group">
+                       <div class="input-group">
                         <input type="text"  class="configKey form-control" data-l1key="emailAdmin" />
                         <span class="input-group-btn">
                             <a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectMailCmd"><i class="fa fa-list-alt"></i></a>
@@ -979,29 +983,29 @@ foreach (plugin::listPlugin(true) as $plugin) {
                                 <select class="configKey form-control" data-l1key="market::branch">
                                     <option value="stable">{{Stable}}</option>
                                     <?php if (config::byKey('market::allowBeta') == 1) {?>
-                                    <option value="master">{{Développement}}</option>
-                                    <?php }
+                                        <option value="master">{{Développement}}</option>
+                                        <?php }
 ?>
-                                    <option value="url">{{URL (github)}}</option>
-                                </select>
+                                        <option value="url">{{URL (github)}}</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group" id="div_githubupdate">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Addresse}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input class="configKey form-control" data-l1key="update::url"/>
+                            <div class="form-group" id="div_githubupdate">
+                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Addresse}}</label>
+                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                    <input class="configKey form-control" data-l1key="update::url"/>
+                                </div>
                             </div>
-                        </div>
-                    </fieldset>
-                </form>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-actions" style="height: 20px;">
-        <a class="btn btn-success" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+        <div class="form-actions" style="height: 20px;">
+            <a class="btn btn-success" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+        </div>
     </div>
-</div>
 </div>
 
 <?php include_file("desktop", "administration", "js");?>
