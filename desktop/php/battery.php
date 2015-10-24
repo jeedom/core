@@ -21,7 +21,7 @@ foreach (object::all() as $object) {
 			echo '<center><span style="font-size:2.2em;font-weight: bold;">' . $eqLogic->getConfiguration('batteryStatus', -2) . '</span><span>%</span></center>';
 			echo '<center>{{Le }}' . $eqLogic->getConfiguration('batteryStatusDatetime', __('inconnue', __FILE__)) . '</center>';
 			if ($eqLogic->getConfiguration('battery_type', '') != '') {
-				echo '<center>{{Type : }}' . $eqLogic->getConfiguration('battery_type', '') . '</center>';
+				echo '<center>' . $eqLogic->getConfiguration('battery_type', '') . '</center>';
 			}
 			echo '</div>';
 		}
