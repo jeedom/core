@@ -393,7 +393,7 @@ class interactQuery {
 			$replace['1'] = $convertBinary[1];
 			$replace['0'] = $convertBinary[0];
 		}
-		$result = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
+		$result = str_replace(array_keys($replace), $replace, scenarioExpression::setTags($reply));
 		return $result;
 	}
 
