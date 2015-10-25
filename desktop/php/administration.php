@@ -922,6 +922,19 @@ foreach (plugin::listPlugin(true) as $plugin) {
                                 <input type="text"  class="configKey form-control" data-l1key="numberOfTryBeforeEqLogicDisable" />
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Seuils des piles}}</label>
+                            <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1 eqLogicAttr label label-danger" style="font-size : 1.4em">{{Danger}}</label>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                 <input class="configKey form-control" data-l1key="battery::danger" >
+                                 </input>
+                           </div>
+                           <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1 label label-warning" style="font-size : 1.4em">{{Warning}}</label>
+                           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                 <input class="configKey form-control" data-l1key="battery::warning"/>
+                           </div>
+                           <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1 label label-success" style="font-size : 1.4em">{{Ok}}</label>
+                      </div>
                     </fieldset>
                 </form>
             </div>

@@ -17,6 +17,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
     <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
+    <li role="presentation"><a href="#battery" aria-controls="messages" role="tab" data-toggle="tab"><i class="icon techno-charging"></i> {{Batterie}}</a></li>
 </ul>
 
 <div class="tab-content" id="div_displayEqLogicConfigure">
@@ -171,17 +172,88 @@ if ($eqLogic->getDisplay('parameters') != '') {
       </tbody>
   </table>
 </div>
+<div role="tabpanel" class="tab-pane" id="battery">
+ <br/>
+    <legend><i class="fa fa-info-circle"></i> {{Informations}}</legend>
+        <div class="row" id="nobattery">
+        <label class="col-sm-12 label label-primary" style="font-size : 1.2em">{{Cet équipement ne possède pas de batterie/piles ou il n'a pas encore remonté sa valeur}}</label>
+        </div>
+        <div id="hasbattery">
+        <div class="row">
+        <div class="col-sm-4" >
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">{{Type de batterie}}</label>
+                        <div class="col-sm-4">
+                            <span class="eqLogicAttr label label-primary" data-l1key="configuration"data-l2key="battery_type" style="font-size : 1em;"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">{{Mis à jour le}}</label>
+                        <div class="col-sm-4">
+                            <span class="eqLogicAttr label label-primary" data-l1key="configuration"data-l2key="batteryStatusDatetime" style="font-size : 1em;"></span>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-sm-4" >
+            <form class="form-horizontal">
+                <fieldset>
+                   <div class="form-group">
+                    <label class="col-sm-4 control-label">{{Niveau de batterie}}</label>
+                    <div class="col-sm-4" id="batterylevel">
+                        <span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="batteryStatus" style="font-size : 1em;"></span>
+                    </div>
+                    </div>
+               </fieldset>
+           </form>
+       </div>
+    </div>
+    <legend><i class="icon techno-fleches"></i> {{Seuils spécifiques}}</legend>
+        <div class="form-group">
+        <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" >
+         </input>
+       </div>
+       <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
+       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
+      </div>
+      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
+     </div>
+    </div>
+    </div>
 </div>
 
 
 <script>
     initCheckBox();
+ $(document).ready(function() {
+  if(typeof $('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').value() != null) {
+     console.log($('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').html());
+     $( "#nobattery" ).show();
+     $( "#hasbattery" ).hide();
+}else{
+    $( "#nobattery" ).hide();
+     $( "#hasbattery" ).show();
+}
+ });
 
     $('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr');
     $('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
         $(this).closest('tr').remove();
     });
-
+    if($('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').html() != '') {
+		console.log($('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').html());
+        $( "#nobattery" ).hide();
+        $( "#hasbattery" ).show();
+    }else{
+        $( "#nobattery" ).show();
+        $( "#hasbattery" ).hide();
+    }
     $('#bt_addWidgetParameters').off().on('click', function () {
         var tr = '<tr>';
         tr += '<td>';
