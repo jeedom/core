@@ -778,7 +778,6 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
         }
     }
 
-
     html.css('position', 'absolute');
     var position = {
         top: init(_plan.position.top, '10') * parent.height / 100,
@@ -788,19 +787,12 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     html.css('top', position.top);
     html.css('left', position.left);
 
-
-    var rotate = '';
-    if (isset(_plan.css) && isset(_plan.css.rotate) && _plan.css.rotate != 0) {
-        //    rotate = ' rotate(' + _plan.css.rotate + 'deg)';
-    }
-
-
     html.css('transform-origin', '0 0');
-    html.css('transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
+    html.css('transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
     html.css('-webkit-transform-origin', '0 0');
-    html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
+    html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
     html.css('-moz-transform-origin', '0 0');
-    html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
+    html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
 
     html.addClass('noResize');
     if (!isset(_plan.display) || !isset(_plan.display.noPredefineSize) || _plan.display.noPredefineSize == 0) {
