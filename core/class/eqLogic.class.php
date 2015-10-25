@@ -665,7 +665,6 @@ class eqLogic {
 		} else {
 			$this->setConfiguration('batteryStatusDatetime', date('Y-m-d H:i:s'));
 		}
-		$this->emptyCacheWidget();
 		$this->save();
 	}
 
