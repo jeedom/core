@@ -174,12 +174,12 @@ if ($eqLogic->getDisplay('parameters') != '') {
 </div>
 <div role="tabpanel" class="tab-pane" id="battery">
  <br/>
-    <legend><i class="fa fa-info-circle"></i> {{Informations}}</legend>
-        <div class="row" id="nobattery">
-        <label class="col-sm-12 label label-primary" style="font-size : 1.2em">{{Cet équipement ne possède pas de batterie/piles ou il n'a pas encore remonté sa valeur}}</label>
-        </div>
-        <div id="hasbattery">
-        <div class="row">
+ <legend><i class="fa fa-info-circle"></i> {{Informations}}</legend>
+ <div class="alert alert-info" id="nobattery">
+    {{Cet équipement ne possède pas de batterie/piles ou il n'a pas encore remonté sa valeur}}
+</div>
+<div id="hasbattery">
+    <div class="row">
         <div class="col-sm-4" >
             <form class="form-horizontal">
                 <fieldset>
@@ -206,107 +206,107 @@ if ($eqLogic->getDisplay('parameters') != '') {
                     <div class="col-sm-4" id="batterylevel">
                         <span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="batteryStatus" style="font-size : 1em;"></span>
                     </div>
-                    </div>
-               </fieldset>
-           </form>
-       </div>
+                </div>
+            </fieldset>
+        </form>
     </div>
-    <legend><i class="icon techno-fleches"></i> {{Seuils spécifiques}}</legend>
-        <div class="form-group">
-        <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-          <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" >
-         </input>
-       </div>
-       <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
-       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
-      </div>
-      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
-     </div>
-    </div>
-    </div>
+</div>
+<legend><i class="icon techno-fleches"></i> {{Seuils spécifiques}}</legend>
+<div class="form-group">
+    <label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
+    <div class="col-xs-2">
+    <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
+  </input>
+</div>
+<label class="col-xs-2 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
+<div class="col-xs-2">
+    <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
+</div>
+<label class="col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
+</div>
+</div>
+</div>
 </div>
 
 
 <script>
     initCheckBox();
- $(document).ready(function() {
-  if(typeof $('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').value() != null) {
-     console.log($('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').html());
-     $( "#nobattery" ).show();
-     $( "#hasbattery" ).hide();
-}else{
-    $( "#nobattery" ).hide();
-     $( "#hasbattery" ).show();
-}
- });
+    $(document).ready(function() {
+      if(typeof $('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').value() != null) {
+         console.log($('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').html());
+         $( "#nobattery" ).show();
+         $( "#hasbattery" ).hide();
+     }else{
+        $( "#nobattery" ).hide();
+        $( "#hasbattery" ).show();
+    }
+});
 
     $('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr');
     $('#table_widgetParameters').delegate('.removeWidgetParameter', 'click', function () {
         $(this).closest('tr').remove();
     });
     if($('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').html() != '') {
-		console.log($('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').html());
-        $( "#nobattery" ).hide();
-        $( "#hasbattery" ).show();
-    }else{
-        $( "#nobattery" ).show();
-        $( "#hasbattery" ).hide();
+      console.log($('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').html());
+      $( "#nobattery" ).hide();
+      $( "#hasbattery" ).show();
+  }else{
+    $( "#nobattery" ).show();
+    $( "#hasbattery" ).hide();
+}
+$('#bt_addWidgetParameters').off().on('click', function () {
+    var tr = '<tr>';
+    tr += '<td>';
+    tr += '<input class="form-control key" />';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<input class="form-control value" />';
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fa fa-times"></i> Supprimer</a>';
+    tr += '</td>';
+    tr += '</tr>';
+    $('#table_widgetParameters tbody').append(tr);
+});
+
+$('#bt_eqLogicConfigureSave').on('click', function () {
+    var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
+    if (!isset(eqLogic.display)) {
+        eqLogic.display = {};
     }
-    $('#bt_addWidgetParameters').off().on('click', function () {
-        var tr = '<tr>';
-        tr += '<td>';
-        tr += '<input class="form-control key" />';
-        tr += '</td>';
-        tr += '<td>';
-        tr += '<input class="form-control value" />';
-        tr += '</td>';
-        tr += '<td>';
-        tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fa fa-times"></i> Supprimer</a>';
-        tr += '</td>';
-        tr += '</tr>';
-        $('#table_widgetParameters tbody').append(tr);
+    if (!isset(eqLogic.display.parameters)) {
+        eqLogic.display.parameters = {};
+    }
+    $('#table_widgetParameters tbody tr').each(function () {
+        eqLogic.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
     });
-
-    $('#bt_eqLogicConfigureSave').on('click', function () {
-        var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
-        if (!isset(eqLogic.display)) {
-            eqLogic.display = {};
+    jeedom.eqLogic.save({
+        eqLogics: [eqLogic],
+        type: eqLogic.eqType_name,
+        error: function (error) {
+            $('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            $('#md_displayEqLogicConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
         }
-        if (!isset(eqLogic.display.parameters)) {
-            eqLogic.display.parameters = {};
-        }
-        $('#table_widgetParameters tbody tr').each(function () {
-            eqLogic.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
-        });
-        jeedom.eqLogic.save({
-            eqLogics: [eqLogic],
-            type: eqLogic.eqType_name,
-            error: function (error) {
-                $('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-                $('#md_displayEqLogicConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
-            }
-        });
     });
+});
 
-    $('#bt_eqLogicConfigureRemove').on('click',function(){
-        bootbox.confirm('{{Etes-vous sûr de vouloir supprimer cet équipement ?}}', function (result) {
-            if (result) {
-                var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
-                jeedom.eqLogic.remove({
-                    id : eqLogic.id,
-                    type : eqLogic.eqType_name,
-                    error: function (error) {
-                        $('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
-                    },
-                    success: function (data) {
-                        $('#md_displayEqLogicConfigure').showAlert({message: '{{Suppression réalisée avec succès}}', level: 'success'});
-                    }
-                });
-            }
-        });
+$('#bt_eqLogicConfigureRemove').on('click',function(){
+    bootbox.confirm('{{Etes-vous sûr de vouloir supprimer cet équipement ?}}', function (result) {
+        if (result) {
+            var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
+            jeedom.eqLogic.remove({
+                id : eqLogic.id,
+                type : eqLogic.eqType_name,
+                error: function (error) {
+                    $('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                    $('#md_displayEqLogicConfigure').showAlert({message: '{{Suppression réalisée avec succès}}', level: 'success'});
+                }
+            });
+        }
     });
+});
 </script>
