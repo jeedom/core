@@ -708,7 +708,7 @@ class jeedom {
 		}
 		$result = 'DIY';
 		$uname = shell_exec('uname -a');
-		if (strpos($uname, 'cubox') !== false) {
+		if (strpos($uname, 'cubox') !== false || strpos($uname, 'jeedom') !== false) {
 			$result = 'Jeedomboard';
 		} else if (file_exists('/.dockerinit')) {
 			$result = 'Docker';
