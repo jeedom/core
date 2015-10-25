@@ -118,7 +118,7 @@ $("#bt_removeView").on('click', function(event) {
                 },
                 success: function() {
                     modifyWithoutSave = false;
-                   loadPage('index.php?v=d&p=viewEdit');
+                   loadPage('index.php?v=d&p=view_edit');
                 }
             });
         }
