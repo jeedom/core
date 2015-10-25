@@ -163,8 +163,9 @@ function getObjectHtml(_object_id){
         setTimeout(function(){
             positionEqLogic();
             $('#div_ob'+_object_id+'.div_displayEquipement').disableSelection();
-            $( "input").click(function() { $(this).focus(); });
-            $( "textarea").click(function() { $(this).focus(); });
+            $("input").click(function() { $(this).focus(); });
+            $("textarea").click(function() { $(this).focus(); });
+            $("select").click(function() { $(this).focus(); });
             $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
                 var container = $(this).packery({
                     itemSelector: ".eqLogic-widget",
