@@ -15,7 +15,14 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- if( isset(jeedom.nodeJs.state) &&  jeedom.nodeJs.state){
+ if(isset(jeedom.nodeJs.state) &&  jeedom.nodeJs.state){
  	$('#td_nodejsState').text('OK');
  	$('#td_nodejsState').removeClass('alert-danger').addClass('alert-success');
  }
+
+ $('body').one('nodeJsConnect', function () {
+ 	if(isset(jeedom.nodeJs.state) &&  jeedom.nodeJs.state){
+ 		$('#td_nodejsState').text('OK');
+ 		$('#td_nodejsState').removeClass('alert-danger').addClass('alert-success');
+ 	}
+ });
