@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v2.1.8 (2015-08-20)
+ * @license Highstock JS v2.1.9 (2015-10-07)
  * Exporting module
  *
  * (c) 2010-2014 Torstein Honsi
@@ -293,7 +293,8 @@ extend(Chart.prototype, {
 		extend(options.chart, {
 			animation: false,
 			renderTo: sandbox,
-			forExport: !allowHTML,
+			forExport: true,
+			renderer: 'SVGRenderer',
 			width: sourceWidth,
 			height: sourceHeight
 		});
@@ -353,7 +354,7 @@ extend(Chart.prototype, {
 		if (allowHTML) {
 			html = svg.match(/<\/svg>(.*?$)/);
 			if (html) {
-				html = '<foreignObject x="0" y="0 width="200" height="200">' +
+				html = '<foreignObject x="0" y="0" width="200" height="200">' +
 					'<body xmlns="http://www.w3.org/1999/xhtml">' +
 					html[1] +
 					'</body>' + 

@@ -145,8 +145,8 @@
         hasExtremes: function (checkX) {
             var options = this.options,
                 data = options.data,
-                xAxis = this.xAxis.options,
-                yAxis = this.yAxis.options;
+                xAxis = this.xAxis && this.xAxis.options,
+                yAxis = this.yAxis && this.yAxis.options;
             return data.length > (options.boostThreshold || Number.MAX_VALUE) && typeof yAxis.min === 'number' && typeof yAxis.max === 'number' &&
                 (!checkX || (typeof xAxis.min === 'number' && typeof xAxis.max === 'number'));
         },
@@ -538,8 +538,8 @@
     /**
      * Return a point instance from the k-d-tree
      */
-    wrap(Series.prototype, 'searchPoint', function (proceed, e) {
-        var point = proceed.call(this, e),
+    wrap(Series.prototype, 'searchPoint', function (proceed) {
+        var point = proceed.apply(this, [].slice.call(arguments, 1)),
             ret = point;
 
         if (point && !(point instanceof this.pointClass)) {

@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v2.1.8 (2015-08-20)
+ * @license Highstock JS v2.1.9 (2015-10-07)
  * Client side exporting module
  *
  * (c) 2015 Torstein Honsi / Oystein Moseng
@@ -85,7 +85,8 @@ Highcharts.Chart.prototype.exportChartLocal = function (exportingOptions, chartO
 		svgToDataUrl = function (svg) {
 			try {
 				// Safari requires data URI since it doesn't allow navigation to blob URLs
-				if (!webKit) {
+				// Firefox has an issue with Blobs and internal references, leading to gradients not working using Blobs (#4550)
+				if (!webKit && navigator.userAgent.toLowerCase().indexOf('firefox') < 0) {
 					return domurl.createObjectURL(new Blob([svg], { type: 'image/svg+xml;charset-utf-16'}));
 				}
 			} catch (e) {

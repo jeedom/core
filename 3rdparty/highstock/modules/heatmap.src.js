@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v2.1.8 (2015-08-20)
+ * @license Highstock JS v2.1.9 (2015-10-07)
  *
  * (c) 2011-2014 Torstein Honsi
  *
@@ -256,20 +256,23 @@ extend(ColorAxis.prototype, {
 		return color;
 	},
 
+	/**
+	 * Override the getOffset method to add the whole axis groups inside the legend.
+	 */
 	getOffset: function () {
 		var group = this.legendGroup,
 			sideOffset = this.chart.axisOffset[this.side];
 		
 		if (group) {
 
-			Axis.prototype.getOffset.call(this);
-			
-			if (!this.axisGroup.parentGroup) {
+			// Hook for the getOffset method to add groups to this parent group
+			this.axisParent = group;
 
-				// Move the axis elements inside the legend group
-				this.axisGroup.add(group);
-				this.gridGroup.add(group);
-				this.labelGroup.add(group);
+			// Call the base
+			Axis.prototype.getOffset.call(this);
+
+			// First time only
+			if (!this.added) {
 
 				this.added = true;
 
@@ -644,17 +647,20 @@ seriesTypes.heatmap = extendClass(seriesTypes.scatter, merge(colorSeriesMixin, {
 		var series = this,
 			options = series.options,
 			xAxis = series.xAxis,
-			yAxis = series.yAxis;
+			yAxis = series.yAxis,
+			between = function (x, a, b) {
+				return Math.min(Math.max(a, x), b);
+			};
 
 		series.generatePoints();
 
 		each(series.points, function (point) {
 			var xPad = (options.colsize || 1) / 2,
 				yPad = (options.rowsize || 1) / 2,
-				x1 = Math.round(xAxis.len - xAxis.translate(point.x - xPad, 0, 1, 0, 1)),
-				x2 = Math.round(xAxis.len - xAxis.translate(point.x + xPad, 0, 1, 0, 1)),
-				y1 = Math.round(yAxis.translate(point.y - yPad, 0, 1, 0, 1)),
-				y2 = Math.round(yAxis.translate(point.y + yPad, 0, 1, 0, 1));
+				x1 = between(Math.round(xAxis.len - xAxis.translate(point.x - xPad, 0, 1, 0, 1)), 0, xAxis.len),
+				x2 = between(Math.round(xAxis.len - xAxis.translate(point.x + xPad, 0, 1, 0, 1)), 0, xAxis.len),
+				y1 = between(Math.round(yAxis.translate(point.y - yPad, 0, 1, 0, 1)), 0, yAxis.len),
+				y2 = between(Math.round(yAxis.translate(point.y + yPad, 0, 1, 0, 1)), 0, yAxis.len);
 
 			// Set plotX and plotY for use in K-D-Tree and more
 			point.plotX = point.clientX = (x1 + x2) / 2;
