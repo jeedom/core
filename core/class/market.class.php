@@ -334,12 +334,13 @@ class market {
 
 	public static function postJsonRpc(&$_result) {
 		if (is_array($_result)) {
-			if (config::byKey('market::allowDNS') == 1) {
-				$dnsRestart = false;
-				if (isset($_result['register::dnsToken']) && config::byKey('dns::token') != $_result['register::dnsToken']) {
-					config::save('dns::token', $_result['register::ngrokToken']);
+			if (isset($_result['register::dnsToken']) && config::byKey('dns::token') != $_result['register::dnsToken']) {
+				config::save('dns::token', $_result['register::dnsToken']);
+				if (config::byKey('market::allowDNS') == 1) {
 					network::dns_start();
 				}
+			}
+			if (config::byKey('market::allowDNS') == 1) {
 				if (isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
 					config::save('jeedom::url', $_result['jeedom::url']);
 				}
