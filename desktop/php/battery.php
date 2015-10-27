@@ -22,7 +22,7 @@ foreach ($list as $eqLogic) {
 		$color = '#f1c40f';
 	}
 	echo '<div class="eqLogic eqLogic-widget" style="min-width:80px;background-color:' . $color . '">';
-	echo '<center class="widget-name"><a href="' . $eqLogic->getLinkToConfiguration() . '" style="font-size : 1.5em;">' . $eqLogic->getName() . '</a><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $object->getName() . '</span></center>';
+	echo '<center class="widget-name"><a href="' . $eqLogic->getLinkToConfiguration() . '" style="font-size : 1.5em;">' . $eqLogic->getName() . '</a><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $eqLogic->getobject()->getName() . '</span></center>';
 	echo '<center><span style="font-size:2.2em;font-weight: bold;cursor:default;">' . $eqLogic->getConfiguration('batteryStatus', -2) . '</span><span>%</span></center>';
 	echo '<center style="cursor:default;">{{Le }}' . $eqLogic->getConfiguration('batteryStatusDatetime', __('inconnue', __FILE__)) . '</center>';
 	if ($eqLogic->getConfiguration('battery_type', '') != '') {
