@@ -1,0 +1,9 @@
+<div class="cmd cmd-widget" data-type="action" data-subtype="message" data-cmd_id="#id#">
+	<textarea rows="2" class="text" style="margin-top : 5px; resize:vertical;height: 50px;" placeholder="Texte" data-cmd_id="#id#"></textarea>
+	<center><a class="action ui-btn ui-mini ui-btn-inline execute" >#name#</a></center>
+	<script>
+		$('.cmd[data-cmd_id=#id#] .execute').on('click', function () {
+			jeedom.cmd.execute({id: '#id#', value: {text: $('.cmd[data-cmd_id=#id#] .text').value()}});
+		});
+	</script>
+</div>
