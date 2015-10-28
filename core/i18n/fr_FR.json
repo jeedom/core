@@ -437,7 +437,7 @@
     },
     "desktop\/js\/plan.js": {
         "Nom la copie du design ?": "Nom la copie du design ?",
-        "Etes vous sûr de vouloir supprimer ce design ?": "Etes vous sûr de vouloir supprimer ce design ?",
+        "Etes vous sûr de vouloir supprimer ce design ?": "Etes-vous sûr de vouloir supprimer ce design ?",
         "Configuration du design": "Configuration du design",
         "Configuration du widget": "Configuration du widget",
         "Configuration du scénario": "Configuration du scénario",
@@ -454,9 +454,9 @@
         "Afficher": "Afficher",
         "Masquer": "Masquer",
         "Inactif": "Inactif",
-        "Nombre d'objet :": "Nombre d'objet :",
-        "Nombre d'équipement :": "Nombre d'équipement :",
-        "Nombre de commande :": "Nombre de commande :",
+        "Nombre d'objet :": "Nombre d'objets :",
+        "Nombre d'équipement :": "Nombre d'équipements :",
+        "Nombre de commande :": "Nombre de commandes :",
         "Supprimer": "Supprimer",
         "Visible": "Visible",
         "Invisible": "Invisible",
@@ -727,7 +727,7 @@
         "Nettoyage des anciennes sauvegardes...": "Nettoyage des anciennes sauvegardes...",
         "Limite de la taille totale des sauvegardes à ": "Limite de la taille totale des sauvegardes à ",
         "Envoi de la sauvegarde dans le cloud...": "Envoi de la sauvegarde dans le cloud...",
-        "Nom du backup : ": "Nom du backup : ",
+        "Nom du backup : ": "Nom de la sauvegarde : ",
         "***************Fin de la sauvegarde de Jeedom***************\n": "***************Fin de la sauvegarde de Jeedom***************\n"
     },
     "core\/class\/jeedom.class.php": {
@@ -830,7 +830,7 @@
         "Vider": "Vider",
         "Télécharger": "Télécharger",
         "Rafraîchir": "Rafraîchir",
-        "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sur de vouloir supprimer tous les logs ?"
+        "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sûr de vouloir supprimer tous les logs ?"
     },
     "core\/class\/connection.class.php": {
         "Attention tentative d'intrusion détectée venant de l'IP : ": "Attention tentative d'intrusion détectée venant de l'IP : "
@@ -863,11 +863,11 @@
     "desktop\/js\/update.js": {
         "Options": "Options",
         "Changelog": "Changelog",
-        "Etes-vous sur de vouloir faire les mises à jour ?": "Etes-vous sur de vouloir faire les mises à jour ?",
-        "Etes-vous sur de vouloir mettre à jour le systeme, cette opération peut être risquée ?": "Etes-vous sur de vouloir mettre à jour le systeme, cette opération peut être risquée ?",
-        "Etes vous sur de vouloir changer l\\'état de l\\'objet ?": "Etes vous sur de vouloir changer l\\'état de l\\'objet ?",
-        "Etes vous sur de vouloir mettre à jour cet objet ?": "Etes vous sur de vouloir mettre à jour cet objet ?",
-        "Etes vous sur de vouloir supprimer cet objet ?": "Etes vous sur de vouloir supprimer cet objet ?",
+        "Etes-vous sur de vouloir faire les mises à jour ?": "Etes-vous sûr de vouloir faire les mises à jour ?",
+        "Etes-vous sur de vouloir mettre à jour le systeme, cette opération peut être risquée ?": "Etes-vous sûr de vouloir mettre à jour le systeme, cette opération peut être risquée ?",
+        "Etes vous sur de vouloir changer l\\'état de l\\'objet ?": "Etes vous sûr de vouloir changer l\\'état de l\\'objet ?",
+        "Etes vous sur de vouloir mettre à jour cet objet ?": "Etes vous sûr de vouloir mettre à jour cet objet ?",
+        "Etes vous sur de vouloir supprimer cet objet ?": "Etes vous sûr de vouloir supprimer cet objet ?",
         "L\\'opération est réussie": "L\\'opération est réussie",
         "L\\'opération a échoué": "L\\'opération a échoué",
         "Mettre à jour": "Mettre à jour",
@@ -963,7 +963,7 @@
         "Le retour à la version stable est dangereux": "Le retour à la version stable est dangereux",
         "Commentaires": "Commentaires",
         "Changelog": "Changelog",
-        "Voulez vous aller sur la page de configuration de votre nouveau plugin ?": "Voulez vous aller sur la page de configuration de votre nouveau plugin ?",
+        "Voulez vous aller sur la page de configuration de votre nouveau plugin ?": "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?",
         "Objet installé avec succès": "Objet installé avec succès",
         "Gratuit": "Gratuit",
         "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée"
@@ -981,7 +981,7 @@
         "OK\n": "OK\n",
         "Action de pre update...": "Action de pre update...",
         "Décompression du zip...": "Décompression du zip...",
-        "Installation du plugin,widget...": "Installation du plugin,widget...",
+        "Installation du plugin,widget...": "Installation du plugin, widget...",
         "Téléchargement de ": "Téléchargement de ",
         "Installation de ": "Installation de ",
         "Erreur market::getinfo : ": "Erreur market::getinfo : "
