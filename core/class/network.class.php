@@ -286,7 +286,7 @@ class network {
 		$openvpn->setEqType_name('openvpn');
 		$openvpn->setConfiguration('dev', 'tun');
 		$openvpn->setConfiguration('proto', 'udp');
-		$openvpn->setConfiguration('remote_host', 'dns.jeedom.fr');
+		$openvpn->setConfiguration('remote_host', 'vpn1.jeedom.com');
 		$openvpn->setConfiguration('username', jeedom::getHardwareKey());
 		$openvpn->setConfiguration('password', config::byKey('dns::token'));
 		$openvpn->setConfiguration('compression', 'comp-lzo');
