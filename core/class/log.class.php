@@ -114,7 +114,7 @@ class log {
 		if (strpos($_path, '.htaccess') !== false) {
 			return;
 		}
-		shell_exec('echo "$(head -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+		shell_exec('echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		@chown($_path, 'www-data');
 		@chgrp($_path, 'www-data');
 		@chmod($_path, 0777);
