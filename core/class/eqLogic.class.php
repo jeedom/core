@@ -672,14 +672,14 @@ class eqLogic {
 		nodejs::pushUpdate('eventEqLogic', $this->getId());
 	}
 
-	public function hasRight($_right, $_needAdmin = false, $_user = null) {
-		if (!is_object($_user)) {
-			if (session_status() != PHP_SESSION_NONE || !isset($_SESSION) || !isset($_SESSION['user'])) {
-				return true;
-			}
-			$_user = $_SESSION['user'];
+	public function hasRight($_right) {
+		if (config::byKey('rights::enable') != 0) {
+			return true;
 		}
-
+		if (session_status() != PHP_SESSION_NONE || !isset($_SESSION) || !isset($_SESSION['user'])) {
+			return true;
+		}
+		$_user = $_SESSION['user'];
 		if (!is_object($_user)) {
 			return false;
 		}
@@ -696,7 +696,7 @@ class eqLogic {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'view');
 		}
 		if (!is_object($rights)) {
-			return ($_needAdmin) ? false : true;
+			return false;
 		}
 		return $rights->getRight();
 	}

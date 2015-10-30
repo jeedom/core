@@ -221,9 +221,12 @@ function hasRight($_right, $_needAdmin = false) {
 	if (isConnect('admin')) {
 		return true;
 	}
+	if (config::byKey('rights::enable') != 0) {
+		return !$_needAdmin;
+	}
 	$rights = rights::byuserIdAndEntity($_SESSION['user']->getId(), $_right);
 	if (!is_object($rights)) {
-		return ($_needAdmin) ? false : true;
+		return !$_needAdmin;
 	}
 	return $rights->getRight();
 }

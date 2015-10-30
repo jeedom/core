@@ -180,6 +180,12 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             	<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="ignoreHourCheck" />
                             </div>
                         </div>
+                        <div class="form-group expertModeVisible">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer la gestion des droits avancés}}</label>
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="rights::enable" />
+                            </div>
+                        </div>
                         <div class="form-group expertModeVisible has-error">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mode}}</label>
                             <div class="col-sm-6">

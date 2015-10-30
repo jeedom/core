@@ -405,8 +405,11 @@ if (hasRight('securityview', true)) {
 														<li><a href="index.php?v=d&p=user"><i class="fa fa-users"></i> {{Utilisateurs}}</a></li>
 														<?php
 }
-	?>
+	if (config::byKey('rights::enable') != 0 && isConnect('admin')) {
+		?>
 													<li><a href="index.php?v=d&p=rights"><i class="fa fa-graduation-cap"></i> {{Gestion des droits avancés}}</a></li>
+													<?php }
+	?>
 												</ul>
 											</li>
 											<li class="dropdown">
