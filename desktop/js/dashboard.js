@@ -196,7 +196,7 @@ function getObjectHtml(_object_id){
                 });
             });
 $('#div_ob'+_object_id+'.div_displayEquipement .eqLogic-widget').draggable('disable');
-},1);
+},10);
 }
 });
 }
