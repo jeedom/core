@@ -57,9 +57,6 @@ class log {
 	 * @param string $_message message à mettre dans les logs
 	 */
 	public static function add($_log, $_type, $_message, $_logicalId = '') {
-		if (trim($_message) == '') {
-			return;
-		}
 		$logger = self::getLogger($_log);
 		switch (strtolower($_type)) {
 			case 'debug':
