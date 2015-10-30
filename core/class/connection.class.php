@@ -62,6 +62,9 @@ class connection {
 	}
 
 	public static function failed() {
+		if (config::byKey('security::enable') != 1) {
+			return;
+		}
 		$connection = connection::byIp(getClientIp());
 		if (!is_object($connection)) {
 			$connection = new connection();
@@ -95,6 +98,9 @@ class connection {
 	}
 
 	public static function success($_username = '') {
+		if (config::byKey('security::enable') != 1) {
+			return;
+		}
 		$connection = connection::byIp(getClientIp());
 		if (!is_object($connection)) {
 			$connection = new connection();
@@ -113,6 +119,9 @@ class connection {
 	}
 
 	public static function cron() {
+		if (config::byKey('security::enable') != 1) {
+			return;
+		}
 		$sql = 'DELETE FROM `connection`
                 WHERE id NOT IN
                 (SELECT * FROM (

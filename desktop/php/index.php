@@ -395,7 +395,7 @@ if (config::byKey('jeeNetwork::mode') == 'master' && hasRight('objectview', true
 	?>
 													<li role="separator" class="divider"></li>
 													<?php
-if (hasRight('securityview', true)) {
+if (config::byKey('security::enable') != 0 && hasRight('securityview', true)) {
 		?>
 														<li class="expertModeVisible"><a href="index.php?v=d&p=security"><i class="fa fa-lock"></i> {{Sécurité}}</a></li>
 														<?php

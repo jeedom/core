@@ -27,7 +27,7 @@ if (isset($argv)) {
 }
 if (init('type') != '') {
 	try {
-		if (!jeedom::apiAccess(init('apikey')) && !jeedom::apiAccess(init('api'))) {
+		if (!jeedom::apiAccess(init('apikey', init('api')))) {
 			connection::failed();
 			throw new Exception('Clé API non valide (ou vide) . Demande venant de :' . getClientIp() . '. Clé API : ' . secureXSS(init('apikey') . init('api')));
 		}
@@ -153,7 +153,7 @@ if (init('type') != '') {
 
 		$params = $jsonrpc->getParams();
 
-		if (!jeedom::apiAccess($params['apikey']) && !jeedom::apiAccess($params['api'])) {
+		if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) && (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
 			connection::failed();
 			throw new Exception('Clé API invalide', -32001);
 		}

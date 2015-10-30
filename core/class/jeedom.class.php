@@ -169,6 +169,7 @@ class jeedom {
 			log::add('connection', 'info', __('Connexion par API de l\'utilisateur : ', __FILE__) . $user->getLogin());
 			return true;
 		}
+		sleep(5);
 		return false;
 	}
 

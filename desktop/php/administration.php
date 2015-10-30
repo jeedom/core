@@ -180,12 +180,6 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             	<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="ignoreHourCheck" />
                             </div>
                         </div>
-                        <div class="form-group expertModeVisible">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer la gestion des droits avancés}}</label>
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="rights::enable" />
-                            </div>
-                        </div>
                         <div class="form-group expertModeVisible has-error">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mode}}</label>
                             <div class="col-sm-6">
@@ -205,7 +199,39 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
            </div>
        </div>
    </div>
+
    <div class="panel panel-default expertModeVisible">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_component">
+                {{Composants Jeedom}}
+            </a>
+        </h3>
+    </div>
+    <div id="config_component" class="panel-collapse collapse">
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <fieldset>
+                   <div class="form-group expertModeVisible">
+                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer la gestion des droits avancés}}</label>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                        <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="rights::enable" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-xs-6 control-label">{{Activer la sécurité anti-piratage}}</label>
+                    <div class="col-sm-3 col-xs-6">
+                        <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="security::enable"/>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+</div>
+
+
+<div class="panel panel-default expertModeVisible">
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_database">
@@ -375,7 +401,7 @@ if (network::test('external')) {
             <div class="alert alert-warning">{{Attention cette fonctionnalité n'est pas disponible dans le service pack community (voir votre service pack sur  votre page profils sur le market)}}</div>
             <?php } else {
 	?>
-            <div class="form-group">
+               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Utiliser les DNS Jeedom}}</label>
                 <div class="col-xs-8">
                     <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="market::allowDNS" />
@@ -391,9 +417,9 @@ if (config::byKey('market::allowDNS') == 1 && network::dns_run()) {
 		echo '<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
 	}
 	?>
-               </div>
-           </div>
-           <div class="form-group">
+              </div>
+          </div>
+          <div class="form-group">
              <label class="col-xs-4 control-label">{{Gestion}}</label>
              <div class="col-xs-8">
                <a class="btn btn-success" id="bt_restartDns"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
@@ -932,92 +958,92 @@ foreach (plugin::listPlugin(true) as $plugin) {
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Seuils des piles}}</label>
                             <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1 eqLogicAttr label label-danger" style="font-size : 1.4em">{{Danger}}</label>
                             <div class="col-xs-1">
-                                 <input class="configKey form-control" data-l1key="battery::danger" />
-                           </div>
-                           <label class="col-xs-1 label label-warning" style="font-size : 1.4em">{{Warning}}</label>
-                           <div class="col-xs-1">
-                                 <input class="configKey form-control" data-l1key="battery::warning" />
-                           </div>
-                           <label class="col-xs-1 label label-success" style="font-size : 1.4em">{{Ok}}</label>
-                      </div>
+                             <input class="configKey form-control" data-l1key="battery::danger" />
+                         </div>
+                         <label class="col-xs-1 label label-warning" style="font-size : 1.4em">{{Warning}}</label>
+                         <div class="col-xs-1">
+                             <input class="configKey form-control" data-l1key="battery::warning" />
+                         </div>
+                         <label class="col-xs-1 label label-success" style="font-size : 1.4em">{{Ok}}</label>
+                     </div>
+                 </fieldset>
+             </form>
+         </div>
+     </div>
+ </div>
+ <?php }
+?>
+
+ <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_market">
+                {{Market et mise à jour}}
+            </a>
+        </h3>
+    </div>
+    <div id="configuration_market" class="panel-collapse collapse">
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse}}</label>
+                        <div class="col-lg-4 col-md-6 col-sm-8 col-xs-6">
+                            <div class="input-group">
+                                <input class="configKey form-control" data-l1key="market::address"/>
+                                <span class="input-group-btn">
+                                    <a class="btn btn-default" id="bt_testMarketConnection"><i class="fa fa-cube"></i> Tester</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="text"  class="configKey form-control" data-l1key="market::username" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="password"  class="configKey form-control" data-l1key="market::password" />
+                        </div>
+                    </div>
+                    <div class="form-group expertModeVisible">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="update::backupBefore"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Branche}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <select class="configKey form-control" data-l1key="market::branch">
+                                <option value="stable">{{Stable}}</option>
+                                <?php if (config::byKey('market::allowBeta') == 1) {?>
+                                    <option value="master">{{Développement}}</option>
+                                    <?php }
+?>
+                                    <option value="url">{{URL (github)}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" id="div_githubupdate">
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Addresse}}</label>
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <input class="configKey form-control" data-l1key="update::url"/>
+                            </div>
+                        </div>
                     </fieldset>
                 </form>
             </div>
         </div>
     </div>
-    <?php }
-?>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_market">
-                    {{Market et mise à jour}}
-                </a>
-            </h3>
-        </div>
-        <div id="configuration_market" class="panel-collapse collapse">
-            <div class="panel-body">
-                <form class="form-horizontal">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse}}</label>
-                            <div class="col-lg-4 col-md-6 col-sm-8 col-xs-6">
-                                <div class="input-group">
-                                    <input class="configKey form-control" data-l1key="market::address"/>
-                                    <span class="input-group-btn">
-                                        <a class="btn btn-default" id="bt_testMarketConnection"><i class="fa fa-cube"></i> Tester</a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="text"  class="configKey form-control" data-l1key="market::username" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <input type="password"  class="configKey form-control" data-l1key="market::password" />
-                            </div>
-                        </div>
-                        <div class="form-group expertModeVisible">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
-                            <div class="col-sm-1">
-                                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="update::backupBefore"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Branche}}</label>
-                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                <select class="configKey form-control" data-l1key="market::branch">
-                                    <option value="stable">{{Stable}}</option>
-                                    <?php if (config::byKey('market::allowBeta') == 1) {?>
-                                        <option value="master">{{Développement}}</option>
-                                        <?php }
-?>
-                                        <option value="url">{{URL (github)}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group" id="div_githubupdate">
-                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Addresse}}</label>
-                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                    <input class="configKey form-control" data-l1key="update::url"/>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-actions" style="height: 20px;">
-            <a class="btn btn-success" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
-        </div>
+    <div class="form-actions" style="height: 20px;">
+        <a class="btn btn-success" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
     </div>
+</div>
 </div>
 
 <?php include_file("desktop", "administration", "js");?>
