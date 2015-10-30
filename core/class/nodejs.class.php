@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 /* This file is part of Jeedom.
  *
@@ -20,46 +20,46 @@
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class nodejs {
-    /*     * *************************Attributs****************************** */
+	/*     * *************************Attributs****************************** */
 
-    /*     * ***********************Methode static*************************** */
+	/*     * ***********************Methode static*************************** */
 
-    public static function pushNotification($_title, $_text, $_category = '') {
-        self::send(self::baseUrl() . 'type=notify&category=' . $_category . '&title=' . urlencode($_title) . '&text=' . urlencode($_text));
-    }
+	public static function pushNotification($_title, $_text, $_category = '') {
+		self::send(self::baseUrl() . 'type=notify&category=' . $_category . '&title=' . urlencode($_title) . '&text=' . urlencode($_text));
+	}
 
-    public static function pushUpdate($_event, $_option) {
-        if (is_object($_option) || is_array($_option)) {
-            $_option = json_encode($_option, JSON_UNESCAPED_UNICODE);
-        }
-        $url = self::baseUrl() . 'type=' . urlencode($_event) . '&options=' . urlencode($_option);
-        self::send($url);
-    }
+	public static function pushUpdate($_event, $_option) {
+		if (is_object($_option) || is_array($_option)) {
+			$_option = json_encode($_option, JSON_UNESCAPED_UNICODE);
+		}
+		$url = self::baseUrl() . 'type=' . urlencode($_event) . '&options=' . urlencode($_option);
+		self::send($url);
+	}
 
-    public static function updateKey() {
-        config::save('nodeJsKey', config::genKey());
-    }
+	public static function updateKey() {
+		config::save('nodeJsKey', config::genKey());
+	}
 
-    private static function baseUrl() {
-        if (config::byKey('nodeJsKey') == '') {
-            self::updateKey();
-        }
-        return '127.0.0.1:' . config::byKey('nodeJsInternalPort') . '?key=' . config::byKey('nodeJsKey') . '&';
-    }
+	private static function baseUrl() {
+		if (config::byKey('nodeJsKey') == '') {
+			self::updateKey();
+		}
+		return '127.0.0.1:' . config::byKey('nodeJsInternalPort') . '?key=' . config::byKey('nodeJsKey') . '&';
+	}
 
-    private static function send($_url) {
-        $c = curl_init();
-        curl_setopt($c, CURLOPT_URL, $_url);
-        curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($c, CURLOPT_HEADER, false);
-        curl_setopt($c, CURLOPT_TIMEOUT, 1);
-        curl_exec($c);
-        curl_close($c);
-    }
+	private static function send($_url) {
+		$c = curl_init();
+		curl_setopt($c, CURLOPT_URL, $_url);
+		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($c, CURLOPT_HEADER, false);
+		curl_setopt($c, CURLOPT_TIMEOUT, 1);
+		curl_exec($c);
+		curl_close($c);
+	}
 
-    /*     * *********************Methode d'instance************************* */
+	/*     * *********************Methode d'instance************************* */
 
-    /*     * **********************Getteur Setteur*************************** */
+	/*     * **********************Getteur Setteur*************************** */
 }
 
 ?>
