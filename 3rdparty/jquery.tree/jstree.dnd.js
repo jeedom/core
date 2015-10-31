@@ -39,7 +39,7 @@
 		 */
 		open_timeout : 500,
 		/**
-		 * a function invoked each time a node is about to be dragged, invoked in the tree's scope and receives the nodes about to be dragged as an argument (array) - return `false` to prevent dragging
+		 * a function invoked each time a node is about to be dragged, invoked in the tree's scope and receives the nodes about to be dragged as an argument (array) and the event that started the drag - return `false` to prevent dragging
 		 * @name $.jstree.defaults.dnd.is_draggable
 		 * @plugin dnd
 		 */
@@ -73,7 +73,19 @@
 		 * @name $.jstree.defaults.dnd.touch
 		 * @plugin dnd
 		 */
-		touch : true
+		touch : true,
+		/**
+		 * controls whether items can be dropped anywhere on the node, not just on the anchor, by default only the node anchor is a valid drop target. Works best with the wholerow plugin. If enabled on mobile depending on the interface it might be hard for the user to cancel the drop, since the whole tree container will be a valid drop target.
+		 * @name $.jstree.defaults.dnd.large_drop_target
+		 * @plugin dnd
+		 */
+		large_drop_target : false,
+		/**
+		 * controls whether a drag can be initiated from any part of the node and not just the text/icon part, works best with the wholerow plugin. Keep in mind it can cause problems with tree scrolling on mobile depending on the interface - in that case set the touch option to "selected".
+		 * @name $.jstree.defaults.dnd.large_drag_target
+		 * @plugin dnd
+		 */
+		large_drag_target : false
 	};
 	// TODO: now check works by checking for each node individually, how about max_children, unique, etc?
 	$.jstree.plugins.dnd = function (options, parent) {
@@ -81,21 +93,24 @@
 			parent.bind.call(this);
 
 			this.element
-				.on('mousedown.jstree touchstart.jstree', '.jstree-anchor', $.proxy(function (e) {
-					if(e.type === "touchstart" && (!this.settings.dnd.touch || (this.settings.dnd.touch === 'selected' && !$(e.currentTarget).hasClass('jstree-clicked')))) {
+				.on('mousedown.jstree touchstart.jstree', this.settings.dnd.large_drag_target ? '.jstree-node' : '.jstree-anchor', $.proxy(function (e) {
+					if(this.settings.dnd.large_drag_target && $(e.target).closest('.jstree-node')[0] !== e.currentTarget) {
+						return true;
+					}
+					if(e.type === "touchstart" && (!this.settings.dnd.touch || (this.settings.dnd.touch === 'selected' && !$(e.currentTarget).closest('.jstree-node').children('.jstree-anchor').hasClass('jstree-clicked')))) {
 						return true;
 					}
 					var obj = this.get_node(e.target),
-						mlt = this.is_selected(obj) && this.settings.drag_selection ? this.get_selected().length : 1,
+						mlt = this.is_selected(obj) && this.settings.dnd.drag_selection ? this.get_top_selected().length : 1,
 						txt = (mlt > 1 ? mlt + ' ' + this.get_string('nodes') : this.get_text(e.currentTarget));
 					if(this.settings.core.force_text) {
-						txt = $('<div />').text(txt).html();
+						txt = $.vakata.html.escape(txt);
 					}
-					if(obj && obj.id && obj.id !== "#" && (e.which === 1 || e.type === "touchstart") &&
-						(this.settings.dnd.is_draggable === true || ($.isFunction(this.settings.dnd.is_draggable) && this.settings.dnd.is_draggable.call(this, (mlt > 1 ? this.get_selected(true) : [obj]))))
+					if(obj && obj.id && obj.id !== $.jstree.root && (e.which === 1 || e.type === "touchstart") &&
+						(this.settings.dnd.is_draggable === true || ($.isFunction(this.settings.dnd.is_draggable) && this.settings.dnd.is_draggable.call(this, (mlt > 1 ? this.get_top_selected(true) : [obj]), e)))
 					) {
 						this.element.trigger('mousedown.jstree');
-						return $.vakata.dnd.start(e, { 'jstree' : true, 'origin' : this, 'obj' : this.get_node(obj,true), 'nodes' : mlt > 1 ? this.get_selected() : [obj.id] }, '<div id="jstree-dnd" class="jstree-' + this.get_theme() + ' jstree-' + this.get_theme() + '-' + this.get_theme_variant() + ' ' + ( this.settings.core.themes.responsive ? ' jstree-dnd-responsive' : '' ) + '"><i class="jstree-icon jstree-er"></i>' + txt + '<ins class="jstree-copy" style="display:none;">+</ins></div>');
+						return $.vakata.dnd.start(e, { 'jstree' : true, 'origin' : this, 'obj' : this.get_node(obj,true), 'nodes' : mlt > 1 ? this.get_top_selected() : [obj.id] }, '<div id="jstree-dnd" class="jstree-' + this.get_theme() + ' jstree-' + this.get_theme() + '-' + this.get_theme_variant() + ' ' + ( this.settings.core.themes.responsive ? ' jstree-dnd-responsive' : '' ) + '"><i class="jstree-icon jstree-er"></i>' + txt + '<ins class="jstree-copy" style="display:none;">+</ins></div>');
 					}
 				}, this));
 		};
@@ -105,12 +120,14 @@
 		// bind only once for all instances
 		var lastmv = false,
 			laster = false,
+			lastev = false,
 			opento = false,
 			marker = $('<div id="jstree-marker">&#160;</div>').hide(); //.appendTo('body');
 
 		$(document)
 			.on('dnd_start.vakata.jstree', function (e, data) {
 				lastmv = false;
+				lastev = false;
 				if(!data || !data.data || !data.data.jstree) { return; }
 				marker.appendTo('body'); //.show();
 			})
@@ -122,12 +139,13 @@
 				if(data.event.target.id && data.event.target.id === 'jstree-marker') {
 					return;
 				}
+				lastev = data.event;
 
 				var ins = $.jstree.reference(data.event.target),
 					ref = false,
 					off = false,
 					rel = false,
-					l, t, h, p, i, o, ok, t1, t2, op, ps, pr, ip, tm;
+					tmp, l, t, h, p, i, o, ok, t1, t2, op, ps, pr, ip, tm;
 				// if we are over an instance
 				if(ins && ins._data && ins._data.dnd) {
 					marker.attr('class', 'jstree-' + ins.get_theme() + ( ins.settings.core.themes.responsive ? ' jstree-dnd-responsive' : '' ));
@@ -140,11 +158,11 @@
 					if( (data.event.target === ins.element[0] || data.event.target === ins.get_container_ul()[0]) && ins.get_container_ul().children().length === 0) {
 						ok = true;
 						for(t1 = 0, t2 = data.data.nodes.length; t1 < t2; t1++) {
-							ok = ok && ins.check( (data.data.origin && (data.data.origin.settings.dnd.always_copy || (data.data.origin.settings.dnd.copy && (data.event.metaKey || data.event.ctrlKey)) ) ? "copy_node" : "move_node"), (data.data.origin && data.data.origin !== ins ? data.data.origin.get_node(data.data.nodes[t1]) : data.data.nodes[t1]), '#', 'last', { 'dnd' : true, 'ref' : ins.get_node('#'), 'pos' : 'i', 'is_multi' : (data.data.origin && data.data.origin !== ins), 'is_foreign' : (!data.data.origin) });
+							ok = ok && ins.check( (data.data.origin && (data.data.origin.settings.dnd.always_copy || (data.data.origin.settings.dnd.copy && (data.event.metaKey || data.event.ctrlKey)) ) ? "copy_node" : "move_node"), (data.data.origin && data.data.origin !== ins ? data.data.origin.get_node(data.data.nodes[t1]) : data.data.nodes[t1]), $.jstree.root, 'last', { 'dnd' : true, 'ref' : ins.get_node($.jstree.root), 'pos' : 'i', 'origin' : data.data.origin, 'is_multi' : (data.data.origin && data.data.origin !== ins), 'is_foreign' : (!data.data.origin) });
 							if(!ok) { break; }
 						}
 						if(ok) {
-							lastmv = { 'ins' : ins, 'par' : '#', 'pos' : 'last' };
+							lastmv = { 'ins' : ins, 'par' : $.jstree.root, 'pos' : 'last' };
 							marker.hide();
 							data.helper.find('.jstree-icon').first().removeClass('jstree-er').addClass('jstree-ok');
 							return;
@@ -152,11 +170,11 @@
 					}
 					else {
 						// if we are hovering a tree node
-						ref = $(data.event.target).closest('.jstree-anchor');
+						ref = ins.settings.dnd.large_drop_target ? $(data.event.target).closest('.jstree-node').children('.jstree-anchor') : $(data.event.target).closest('.jstree-anchor');
 						if(ref && ref.length && ref.parent().is('.jstree-closed, .jstree-open, .jstree-leaf')) {
 							off = ref.offset();
 							rel = data.event.pageY - off.top;
-							h = ref.height();
+							h = ref.outerHeight();
 							if(rel < h / 3) {
 								o = ['b', 'i', 'a'];
 							}
@@ -199,7 +217,7 @@
 											ps -= 1;
 										}
 									}
-									ok = ok && ( (ins && ins.settings && ins.settings.dnd && ins.settings.dnd.check_while_dragging === false) || ins.check(op, (data.data.origin && data.data.origin !== ins ? data.data.origin.get_node(data.data.nodes[t1]) : data.data.nodes[t1]), p, ps, { 'dnd' : true, 'ref' : ins.get_node(ref.parent()), 'pos' : v, 'is_multi' : (data.data.origin && data.data.origin !== ins), 'is_foreign' : (!data.data.origin) }) );
+									ok = ok && ( (ins && ins.settings && ins.settings.dnd && ins.settings.dnd.check_while_dragging === false) || ins.check(op, (data.data.origin && data.data.origin !== ins ? data.data.origin.get_node(data.data.nodes[t1]) : data.data.nodes[t1]), p, ps, { 'dnd' : true, 'ref' : ins.get_node(ref.parent()), 'pos' : v, 'origin' : data.data.origin, 'is_multi' : (data.data.origin && data.data.origin !== ins), 'is_foreign' : (!data.data.origin) }) );
 									if(!ok) {
 										if(ins && ins.last_error) { laster = ins.last_error(); }
 										break;
@@ -229,6 +247,7 @@
 				if(!data || !data.data || !data.data.jstree) { return; }
 				marker.hide();
 				lastmv = false;
+				lastev = false;
 				data.helper.find('.jstree-icon').first().removeClass('jstree-ok').addClass('jstree-er');
 			})
 			.on('dnd_stop.vakata.jstree', function (e, data) {
@@ -239,16 +258,8 @@
 				if(lastmv) {
 					for(i = 0, j = data.data.nodes.length; i < j; i++) {
 						nodes[i] = data.data.origin ? data.data.origin.get_node(data.data.nodes[i]) : data.data.nodes[i];
-						if(data.data.origin) {
-							nodes[i].instance = data.data.origin;
-						}
 					}
-					lastmv.ins[ data.data.origin && (data.data.origin.settings.dnd.always_copy || (data.data.origin.settings.dnd.copy && (data.event.metaKey || data.event.ctrlKey))) ? 'copy_node' : 'move_node' ](nodes, lastmv.par, lastmv.pos);
-					for(i = 0, j = nodes.length; i < j; i++) {
-						if(nodes[i].instance) {
-							nodes[i].instance = null;
-						}
-					}
+					lastmv.ins[ data.data.origin && (data.data.origin.settings.dnd.always_copy || (data.data.origin.settings.dnd.copy && (data.event.metaKey || data.event.ctrlKey))) ? 'copy_node' : 'move_node' ](nodes, lastmv.par, lastmv.pos, false, false, false, data.data.origin);
 				}
 				else {
 					i = $(data.event.target).closest('.jstree');
@@ -259,17 +270,33 @@
 						}
 					}
 				}
+				lastev = false;
+				lastmv = false;
 			})
 			.on('keyup.jstree keydown.jstree', function (e, data) {
 				data = $.vakata.dnd._get();
 				if(data && data.data && data.data.jstree) {
 					data.helper.find('.jstree-copy').first()[ data.data.origin && (data.data.origin.settings.dnd.always_copy || (data.data.origin.settings.dnd.copy && (e.metaKey || e.ctrlKey))) ? 'show' : 'hide' ]();
+					if(lastev) {
+						lastev.metaKey = e.metaKey;
+						lastev.ctrlKey = e.ctrlKey;
+						$.vakata.dnd._trigger('move', lastev);
+					}
 				}
 			});
 	});
 
 	// helpers
 	(function ($) {
+		$.vakata.html = {
+			div : $('<div />'),
+			escape : function (str) {
+				return $.vakata.html.div.text(str).html();
+			},
+			strip : function (str) {
+				return $.vakata.html.div.empty().append($.parseHTML(str)).text();
+			}
+		};
 		// private variable
 		var vakata_dnd = {
 			element	: false,
