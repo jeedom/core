@@ -334,16 +334,22 @@ class market {
 
 	public static function postJsonRpc(&$_result) {
 		if (is_array($_result)) {
+			$restart_dns = false;
 			if (isset($_result['register::dnsToken']) && config::byKey('dns::token') != $_result['register::dnsToken']) {
 				config::save('dns::token', $_result['register::dnsToken']);
-				if (config::byKey('market::allowDNS') == 1) {
-					network::dns_start();
-				}
+				$restart_dns = true;
+			}
+			if (isset($_result['register::dnsNumber']) && config::byKey('dns::number') != $_result['register::dnsNumber']) {
+				config::save('dns::number', $_result['register::dnsNumber']);
+				$restart_dns = true;
 			}
 			if (config::byKey('market::allowDNS') == 1) {
 				if (isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
 					config::save('jeedom::url', $_result['jeedom::url']);
 				}
+			}
+			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
+				network::dns_start();
 			}
 			if (isset($_result['market::allowBeta']) && config::byKey('market::allowBeta') != $_result['market::allowBeta']) {
 				config::save('market::allowBeta', $_result['market::allowBeta']);
@@ -357,8 +363,8 @@ class market {
 			if (isset($_result['register::ngrokToken'])) {
 				unset($_result['register::ngrokToken']);
 			}
-			if (isset($_result['register::dnsAddr'])) {
-				unset($_result['register::dnsAddr']);
+			if (isset($_result['register::dnsNumber'])) {
+				unset($_result['register::dnsNumber']);
 			}
 			if (isset($_result['register::dnsToken'])) {
 				unset($_result['register::dnsToken']);
