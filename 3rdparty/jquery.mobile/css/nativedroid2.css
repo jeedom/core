@@ -18,13 +18,13 @@
 /*@import url("nativedroid2.color.deep-orange.css");*/
 /*@import url("nativedroid2.color.brown.css");*/
 /*@import url("nativedroid2.color.grey.css");*/
-/*@import url("nativedroid2.color.blue-grey.css");*/
+@import url("nativedroid2.color.blue-grey.css");
 
 
 @import url("flexboxgrid.min.css");
 @import url("material-design-iconic-font.min.css");
-/*@import url(//fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic);
-@import url(//fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,700,900);*/
+@import url(//fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic);
+@import url(//fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,700,900);
 
 body {
 	-webkit-transition: opacity 0.4s;
@@ -923,6 +923,22 @@ textarea.ui-input-text.ui-textinput-autogrow {
 textarea.ui-input-text.ui-textinput-autogrow {
 	margin-top: 4px;
 	border-bottom: 2px solid #cccccc;
+}
+
+.ui-input-text:after,
+.ui-input-search:after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 1px;
+	background-color: #cccccc;
+
+	-webkit-transition: width 0.4s, height 0.4s, background 0.4s;
+	-moz-transition: width 0.4s, height 0.4s, background 0.4s;
+	-ms-transition: width 0.4s, height 0.4s, background 0.4s;
+	-o-transition: width 0.4s, height 0.4s, background 0.4s;
+	transition: width 0.4s, height 0.4s, background 0.4s;
+
 }
 
 .ui-input-search {
