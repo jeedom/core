@@ -194,17 +194,6 @@ try {
 	$cron->setTimeout(60);
 	$cron->save();
 
-	$dynamic_apache_path = dirname(__FILE__) . '/../core/config/apache_jeedom_dynamic_rules';
-	if (!file_exists($dynamic_apache_path)) {
-		touch($dynamic_apache_path);
-	}
-	if (jeedom::isCapable('sudo')) {
-		if (!file_exists('/var/log/auth.log')) {
-			exec('sudo touch /var/log/auth.log');
-			exec('sudo service fail2ban restart');
-		}
-		exec('sudo service cron restart');
-	}
 	cache::deleteBySearch('widgetHtml');
 	cache::deleteBySearch('cmdWidgetdashboard');
 	cache::deleteBySearch('cmdWidgetmobile');
