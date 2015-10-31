@@ -282,18 +282,6 @@ function initCheckBox(){
     $("input[type=checkbox].bootstrapSwitch").bootstrapSwitch();
 }
 
-function initMultiSelect(){
-    $("select[multiple=multiple].bootstrapMultiselect").multiselect({ 
-        maxHeight: 300,
-        includeSelectAllOption: true,
-        selectAllText: '{{Sélectionner tous}}',
-        enableFiltering: true,
-        filterPlaceholder: 'Rechercher...',
-        enableCaseInsensitiveFiltering: false,
-        nonSelectedText: 'Aucune option selectionnée'
-    });
-}
-
 function initPage(){
     initTooltips();
     initTableSorter();
@@ -301,7 +289,6 @@ function initPage(){
     $.initTableFilter();
     initRowOverflow();
     initCheckBox();
-    initMultiSelect();
 }
 
 function linkify(inputText) {

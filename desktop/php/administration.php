@@ -783,17 +783,16 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas autoriser les messages venant de}}</label>
-                        <div class="col-sm-1">
-                            <select multiple="multiple" class="configKey bootstrapMultiselect" data-l1key="message::disallowPlugin">
-                                <option value="update">Mise à jour (update)</option>
-                                <option value="connection">Connection</option>
-                                <option value="jeeEvent">jeeEvent</option>
+                        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+                                <label style="margin-right : 15px;"><input type="checkbox" class="configKey" data-l1key="message::disallowPlugin" data-l2key="update" /> Mise à jour (update)</label>
+                                <label style="margin-right : 15px;"><input type="checkbox" class="configKey" data-l1key="message::disallowPlugin" data-l2key="connection" /> Connection</label>
+                                <label style="margin-right : 15px;"><input type="checkbox" class="configKey" data-l1key="message::disallowPlugin" data-l2key="jeeEvent" /> jeeEvent</label>
+
                                 <?php
 foreach (plugin::listPlugin(true) as $plugin) {
-	echo '<option value="' . $plugin->getId() . '">' . $plugin->getName() . '</option>';
+	echo '<label style="margin-right : 15px;"><input type="checkbox" class="configKey" data-l1key="message::disallowPlugin" data-l2key="' . $plugin->getId() . '" />' . $plugin->getName() . '</label>';
 }
 ?>
-                           </select>
                        </div>
                    </div>
                    <div class="form-group">
