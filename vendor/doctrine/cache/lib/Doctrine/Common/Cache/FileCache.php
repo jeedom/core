@@ -24,6 +24,7 @@ namespace Doctrine\Common\Cache;
  *
  * @since  2.3
  * @author Fabio B. Silva <fabio.bat.silva@gmail.com>
+ * @author Tobias Schultze <http://tobion.de>
  */
 abstract class FileCache extends CacheProvider
 {
@@ -40,19 +41,6 @@ abstract class FileCache extends CacheProvider
      * @var string
      */
     private $extension;
-
-    /**
-     * @var string[] regular expressions for replacing disallowed characters in file name
-     */
-    private $disallowedCharacterPatterns = array(
-        '/\-/', // replaced to disambiguate original `-` and `-` derived from replacements
-        '/[^a-zA-Z0-9\-_\[\]]/' // also excludes non-ascii chars (not supported, depending on FS)
-    );
-
-    /**
-     * @var string[] replacements for disallowed file characters
-     */
-    private $replacementCharacters = array('__', '-');
 
     /**
      * @var int
@@ -110,7 +98,7 @@ abstract class FileCache extends CacheProvider
     /**
      * Gets the cache file extension.
      *
-     * @return string|null
+     * @return string
      */
     public function getExtension()
     {
@@ -124,11 +112,23 @@ abstract class FileCache extends CacheProvider
      */
     protected function getFilename($id)
     {
+        $hash = hash('sha256', $id);
+
+        // This ensures that the filename is unique and that there are no invalid chars in it.
+        if ('' === $id || strlen($id) > ((255 - strlen($this->extension)) / 2)) {
+            // Most filesystems have a limit of 255 chars for each path component. So if the id in hex representation
+            // plus the extension would surpass the limit, we use the hash instead. The prefix prevents collisions
+            // between the hash and bin2hex.
+            $filename = '_' . $hash;
+        } else {
+            $filename = bin2hex($id);
+        }
+
         return $this->directory
             . DIRECTORY_SEPARATOR
-            . implode(str_split(hash('sha256', $id), 2), DIRECTORY_SEPARATOR)
+            . substr($hash, 0, 2)
             . DIRECTORY_SEPARATOR
-            . preg_replace($this->disallowedCharacterPatterns, $this->replacementCharacters, $id)
+            . $filename
             . $this->extension;
     }
 
@@ -137,7 +137,9 @@ abstract class FileCache extends CacheProvider
      */
     protected function doDelete($id)
     {
-        return @unlink($this->getFilename($id));
+        $filename = $this->getFilename($id);
+
+        return @unlink($filename) || ! file_exists($filename);
     }
 
     /**
@@ -146,7 +148,16 @@ abstract class FileCache extends CacheProvider
     protected function doFlush()
     {
         foreach ($this->getIterator() as $name => $file) {
-            @unlink($name);
+            if ($file->isDir()) {
+                // Remove the intermediate directories which have been created to balance the tree. It only takes effect
+                // if the directory is empty. If several caches share the same directory but with different file extensions,
+                // the other ones are not removed.
+                @rmdir($name);
+            } elseif ($this->isFilenameEndingWithExtension($name)) {
+                // If an extension is set, only remove files which end with the given extension.
+                // If no extension is set, we have no other choice than removing everything.
+                @unlink($name);
+            }
         }
 
         return true;
@@ -158,8 +169,10 @@ abstract class FileCache extends CacheProvider
     protected function doGetStats()
     {
         $usage = 0;
-        foreach ($this->getIterator() as $file) {
-            $usage += $file->getSize();
+        foreach ($this->getIterator() as $name => $file) {
+            if (! $file->isDir() && $this->isFilenameEndingWithExtension($name)) {
+                $usage += $file->getSize();
+            }
         }
 
         $free = disk_free_space($this->directory);
@@ -229,9 +242,20 @@ abstract class FileCache extends CacheProvider
      */
     private function getIterator()
     {
-        return new \RegexIterator(
-            new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->directory)),
-            '/^.+' . preg_quote($this->extension, '/') . '$/i'
+        return new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($this->directory, \FilesystemIterator::SKIP_DOTS),
+            \RecursiveIteratorIterator::CHILD_FIRST
         );
+    }
+
+    /**
+     * @param string $name The filename
+     *
+     * @return bool
+     */
+    private function isFilenameEndingWithExtension($name)
+    {
+        return '' === $this->extension
+            || strrpos($name, $this->extension) === (strlen($name) - strlen($this->extension));
     }
 }

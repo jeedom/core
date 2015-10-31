@@ -2,7 +2,7 @@
 
 namespace Doctrine\Common\Cache;
 
-use Predis\Client;
+use Predis\ClientInterface;
 
 /**
  * Predis cache provider.
@@ -12,16 +12,16 @@ use Predis\Client;
 class PredisCache extends CacheProvider
 {
     /**
-     * @var Client
+     * @var ClientInterface
      */
     private $client;
 
     /**
-     * @param Client $client
+     * @param ClientInterface $client
      *
      * @return void
      */
-    public function __construct(Client $client)
+    public function __construct(ClientInterface $client)
     {
         $this->client = $client;
     }
@@ -48,6 +48,7 @@ class PredisCache extends CacheProvider
 
         return array_filter(array_combine($keys, array_map('unserialize', $fetchedItems)));
     }
+
     /**
      * {@inheritdoc}
      */
@@ -76,7 +77,7 @@ class PredisCache extends CacheProvider
      */
     protected function doDelete($id)
     {
-        return $this->client->del($id) > 0;
+        return $this->client->del($id) >= 0;
     }
 
     /**

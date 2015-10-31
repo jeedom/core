@@ -11,7 +11,7 @@ class PredisCacheTest extends CacheTest
 {
     private $client;
 
-    public function setUp()
+    protected function setUp()
     {
         if (!class_exists('Predis\Client')) {
             $this->markTestSkipped('Predis\Client is missing. Make sure to "composer install" to have all dev dependencies.');
@@ -22,7 +22,7 @@ class PredisCacheTest extends CacheTest
         try {
             $this->client->connect();
         } catch (ConnectionException $e) {
-            $this->markTestSkipped('The ' . __CLASS__ .' requires the use of redis');
+            $this->markTestSkipped('Cannot connect to Redis because of: ' . $e);
         }
     }
 
@@ -46,9 +46,9 @@ class PredisCacheTest extends CacheTest
     /**
      * {@inheritDoc}
      *
-     * @dataProvider falseCastedValuesProvider
+     * @dataProvider provideDataToCache
      */
-    public function testFalseCastedValues($value)
+    public function testSetContainsFetchDelete($value)
     {
         if (array() === $value) {
             $this->markTestIncomplete(
@@ -57,6 +57,31 @@ class PredisCacheTest extends CacheTest
             );
         }
 
-        parent::testFalseCastedValues($value);
+        parent::testSetContainsFetchDelete($value);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @dataProvider provideDataToCache
+     */
+    public function testUpdateExistingEntry($value)
+    {
+        if (array() === $value) {
+            $this->markTestIncomplete(
+                'Predis currently doesn\'t support saving empty array values. '
+                . 'See https://github.com/nrk/predis/issues/241'
+            );
+        }
+
+        parent::testUpdateExistingEntry($value);
+    }
+
+    public function testAllowsGenericPredisClient()
+    {
+        /* @var $predisClient \Predis\ClientInterface */
+        $predisClient = $this->getMock('Predis\\ClientInterface');
+
+        $this->assertInstanceOf('Doctrine\\Common\\Cache\\PredisCache', new PredisCache($predisClient));
     }
 }
