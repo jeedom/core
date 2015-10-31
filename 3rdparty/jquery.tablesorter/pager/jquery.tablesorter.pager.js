@@ -1,10 +1,10 @@
 /*!
  * tablesorter (FORK) pager plugin
- * updated 5/17/2015 (v2.22.0)
+ * updated 10/31/2015 (v2.24.0)
  */
 /*jshint browser:true, jquery:true, unused:false */
 ;(function($) {
-	"use strict";
+	'use strict';
 	/*jshint supernew:true */
 	var ts = $.tablesorter;
 
@@ -24,6 +24,11 @@
 
 			// modify the url after all processing has been applied
 			customAjaxUrl: function(table, url) { return url; },
+
+			// ajax error callback from $.tablesorter.showError function
+			// ajaxError: function( config, xhr, settings, exception ){ return exception; };
+			// returning false will abort the error message
+			ajaxError: null,
 
 			// modify the $.ajax object to allow complete control over your ajax requests
 			ajaxObject: {
@@ -114,7 +119,7 @@
 
 		};
 
-		var pagerEvents = 'filterInit filterStart filterEnd sortEnd disable enable destroy updateComplete ' +
+		var pagerEvents = 'filterInit filterStart filterEnd sortEnd disablePager enablePager destroyPager updateComplete ' +
 			'pageSize pageSet pageAndSize pagerUpdate refreshComplete ',
 
 		$this = this,
@@ -139,7 +144,7 @@
 				c = table.config,
 				hasFilters = c.$table.hasClass('hasFilters');
 			if (hasFilters && !p.ajaxUrl) {
-				if ($.isEmptyObject(c.cache)) {
+				if (ts.isEmptyObject(c.cache)) {
 					// delayInit: true so nothing is in the cache
 					p.filteredRows = p.totalRows = c.$tbodies.eq(0).children('tr').not( p.countChildRows ? '' : '.' + c.cssChildRow ).length;
 				} else {
@@ -159,10 +164,12 @@
 			if ( p.initializing ) { return; }
 			var s, t, $out, indx, len, options,
 				c = table.config,
-				sz = p.size || p.settings.size || 10; // don't allow dividing by zero
+				namespace = c.namespace + 'pager',
+				sz = parsePageSize( p, p.size, 'get' ); // don't allow dividing by zero
 			if (p.countChildRows) { t.push(c.cssChildRow); }
 			p.totalPages = Math.ceil( p.totalRows / sz ); // needed for "pageSize" method
 			c.totalRows = p.totalRows;
+			parsePageNumber( p );
 			calcFilters(table, p);
 			c.filteredRows = p.filteredRows;
 			p.filteredPages = Math.ceil( p.filteredRows / sz ) || 0;
@@ -175,13 +182,13 @@
 				// form the output string (can now get a new output string from the server)
 				s = ( p.ajaxData && p.ajaxData.output ? p.ajaxData.output || p.output : p.output )
 					// {page} = one-based index; {page+#} = zero based index +/- value
-					.replace(/\{page([\-+]\d+)?\}/gi, function(m,n){
+					.replace(/\{page([\-+]\d+)?\}/gi, function(m, n){
 						return p.totalPages ? p.page + (n ? parseInt(n, 10) : 1) : 0;
 					})
 					// {totalPages}, {extra}, {extra:0} (array) or {extra : key} (object)
 					.replace(/\{\w+(\s*:\s*\w+)?\}/gi, function(m){
 						var len, indx,
-							str = m.replace(/[{}\s]/g,''),
+							str = m.replace(/[{}\s]/g, ''),
 							extra = str.split(':'),
 							data = p.ajaxData,
 							// return zero for default page/row numbers
@@ -206,10 +213,10 @@
 				if ($out.length) {
 					$out[ ($out[0].nodeName === 'INPUT') ? 'val' : 'html' ](s);
 					// rebind startRow/page inputs
-					$out.find('.ts-startRow, .ts-page').unbind('change.pager').bind('change.pager', function(){
+					$out.find('.ts-startRow, .ts-page').unbind('change' + namespace).bind('change' + namespace, function(){
 						var v = $(this).val(),
-							pg = $(this).hasClass('ts-startRow') ? Math.floor( v/p.size ) + 1 : v;
-						c.$table.trigger('pageSet.pager', [ pg ]);
+							pg = $(this).hasClass('ts-startRow') ? Math.floor( v / p.size ) + 1 : v;
+						c.$table.trigger('pageSet' + namespace, [ pg ]);
 					});
 				}
 			}
@@ -217,7 +224,7 @@
 			fixHeight(table, p);
 			if (p.initialized && completed !== false) {
 				if (c.debug) {
-					ts.log('Pager: Triggering pagerComplete');
+					console.log('Pager: Triggering pagerComplete');
 				}
 				c.$table.trigger('pagerComplete', p);
 				// save pager info to storage
@@ -241,7 +248,7 @@
 				current_page = p.page + 1,
 				start_page = skip_set_size,
 				end_page = pg - skip_set_size,
-				option_pages = [1],
+				option_pages = [ 1 ],
 				// construct default options pages array
 				option_pages_start_page = (large_collection) ? skip_set_size : 1;
 
@@ -285,7 +292,7 @@
 			option_pages = $.grep(option_pages, function(value, indx) {
 				return $.inArray(value, option_pages) === indx;
 			})
-			.sort(function(a,b) { return a - b; });
+			.sort(function(a, b) { return a - b; });
 
 			return option_pages;
 		},
@@ -362,20 +369,21 @@
 		},
 
 		hideRowsSetup = function(table, p){
-			p.size = parseInt( p.$size.val(), 10 ) || p.size || p.settings.size || 10;
+			p.size = parsePageSize( p, p.$size.val(), 'get' );
+			p.$size.val( parsePageSize( p, p.size, 'set' ) );
 			$.data(table, 'pagerLastSize', p.size);
 			pagerArrows(p);
 			if ( !p.removeRows ) {
 				hideRows(table, p);
-				$(table).bind('sortEnd.pager filterEnd.pager', function(){
+				$(table).bind('sortEnd filterEnd '.split(' ').join(table.config.namespace + 'pager '), function(){
 					hideRows(table, p);
 				});
 			}
 		},
 
-		renderAjax = function(data, table, p, xhr, exception){
+		renderAjax = function(data, table, p, xhr, settings, exception){
 			// process data
-			if ( typeof(p.ajaxProcessing) === "function" ) {
+			if ( typeof p.ajaxProcessing === 'function' ) {
 				// ajaxProcessing result: [ total, rows, headers ]
 				var i, j, t, hsh, $f, $sh, $headers, $h, icon, th, d, l, rr_count, len,
 					c = table.config,
@@ -385,20 +393,13 @@
 					hl = $table.find('thead th').length;
 
 				// Clean up any previous error.
-				ts.showError(table);
+				ts.showError( table );
 
 				if ( exception ) {
 					if (c.debug) {
-						ts.log('Pager: >> Ajax Error', xhr, exception);
+						console.error('Pager: >> Ajax Error', xhr, settings, exception);
 					}
-					ts.showError(table,
-						xhr.status === 0 ? 'Not connected, verify Network' :
-						xhr.status === 404 ? 'Requested page not found [404]' :
-						xhr.status === 500 ? 'Internal Server Error [500]' :
-						exception === 'parsererror' ? 'Requested JSON parse failed' :
-						exception === 'timeout' ? 'Time out error' :
-						exception === 'abort' ? 'Ajax Request aborted' :
-						'Uncaught error: ' + xhr.statusText + ' [' + xhr.status + ']' );
+					ts.showError( table, xhr, settings, exception );
 					c.$tbodies.eq(0).children('tr').detach();
 					p.totalRows = 0;
 				} else {
@@ -425,7 +426,7 @@
 					if (d instanceof jQuery) {
 						if (p.processAjaxOnInit) {
 							// append jQuery object
-							c.$tbodies.eq(0).children('tr').detach();
+							c.$tbodies.eq(0).empty();
 							c.$tbodies.eq(0).append(d);
 						}
 					} else if (l) {
@@ -442,6 +443,9 @@
 						if (p.processAjaxOnInit) {
 							c.$tbodies.eq(0).html( tds );
 						}
+					} else {
+						// nothing returned by ajax, empty out the table; see #1032
+						c.$tbodies.eq(0).empty();
 					}
 					p.processAjaxOnInit = true;
 					// only add new header text if the length matches
@@ -477,53 +481,53 @@
 				}
 				// make sure last pager settings are saved, prevents multiple server side calls with
 				// the same parameters
-				p.totalPages = Math.ceil( p.totalRows / ( p.size || p.settings.size || 10 ) );
+				p.totalPages = Math.ceil( p.totalRows / parsePageSize( p, p.size, 'get' ) );
 				p.last.totalRows = p.totalRows;
 				p.last.currentFilters = p.currentFilters;
 				p.last.sortList = (c.sortList || []).join(',');
 				updatePageDisplay(table, p, false);
-				$table.trigger('updateCache', [function(){
+				// tablesorter core updateCache (not pager)
+				ts.updateCache( c, function(){
 					if (p.initialized) {
 						// apply widgets after table has rendered & after a delay to prevent
 						// multiple applyWidget blocking code from blocking this trigger
 						setTimeout(function(){
 							if (c.debug) {
-								ts.log('Pager: Triggering pagerChange');
+								console.log('Pager: Triggering pagerChange');
 							}
-							$table
-								.trigger('applyWidgets')
-								.trigger('pagerChange', p);
+							$table.trigger( 'pagerChange', p );
+							ts.applyWidget( table );
 							updatePageDisplay(table, p, true);
-							}, 0);
+						}, 0);
 					}
-				}]);
+				});
 
 			}
 			if (!p.initialized) {
 				p.initialized = true;
 				p.initializing = false;
 				if (table.config.debug) {
-					ts.log('Pager: Triggering pagerInitialized');
+					console.log('Pager: Triggering pagerInitialized');
 				}
-				$(table)
-					.trigger('applyWidgets')
-					.trigger('pagerInitialized', p);
+				$(table).trigger( 'pagerInitialized', p );
+				ts.applyWidget( table );
 				updatePageDisplay(table, p);
 			}
 		},
 
-		getAjax = function(table, p){
+		getAjax = function(table, p) {
 			var url = getAjaxUrl(table, p),
-			$doc = $(document),
-			counter,
-			c = table.config;
+				$doc = $(document),
+				counter,
+				c = table.config,
+				namespace = c.namespace + 'pager';
 			if ( url !== '' ) {
 				if (c.showProcessing) {
 					ts.isProcessing(table, true); // show loading icon
 				}
-				$doc.bind('ajaxError.pager', function(e, xhr, settings, exception) {
-					renderAjax(null, table, p, xhr, exception);
-					$doc.unbind('ajaxError.pager');
+				$doc.bind('ajaxError' + namespace, function(e, xhr, settings, exception) {
+					renderAjax(null, table, p, xhr, settings, exception);
+					$doc.unbind('ajaxError' + namespace);
 				});
 
 				counter = ++p.ajaxCounter;
@@ -536,13 +540,13 @@
 						return;
 					}
 					renderAjax(data, table, p, jqxhr);
-					$doc.unbind('ajaxError.pager');
+					$doc.unbind('ajaxError' + namespace);
 					if (typeof p.oldAjaxSuccess === 'function') {
 						p.oldAjaxSuccess(data);
 					}
 				};
 				if (c.debug) {
-					ts.log('Pager: Ajax initialized', p.ajaxObject);
+					console.log('Pager: Ajax initialized', p.ajaxObject);
 				}
 				$.ajax(p.ajaxObject);
 			}
@@ -553,7 +557,7 @@
 				c = table.config,
 				url = (p.ajaxUrl) ? p.ajaxUrl
 				// allow using "{page+1}" in the url string to switch to a non-zero based index
-				.replace(/\{page([\-+]\d+)?\}/, function(s,n){ return p.page + (n ? parseInt(n, 10) : 0); })
+				.replace(/\{page([\-+]\d+)?\}/, function(s, n){ return p.page + (n ? parseInt(n, 10) : 0); })
 				.replace(/\{size\}/g, p.size) : '',
 			sortList = c.sortList,
 			filterList = p.currentFilters || $(table).data('lastSearch') || [],
@@ -582,11 +586,11 @@
 				url = url.replace(/\{\s*filter(?:List)?\s*:\s*(\w*)\s*\}/g, arry.length ? arry.join('&') : filterCol );
 				p.currentFilters = filterList;
 			}
-			if ( typeof(p.customAjaxUrl) === "function" ) {
+			if ( typeof p.customAjaxUrl === 'function' ) {
 				url = p.customAjaxUrl(table, url);
 			}
 			if (c.debug) {
-				ts.log('Pager: Ajax url = ' + url);
+				console.log('Pager: Ajax url = ' + url);
 			}
 			return url;
 		},
@@ -601,7 +605,7 @@
 				e = p.size;
 			if ( l < 1 ) {
 				if (c.debug) {
-					ts.log('Pager: >> No rows for pager to render');
+					console.warn('Pager: >> No rows for pager to render');
 				}
 				// empty table, abort!
 				return;
@@ -614,11 +618,10 @@
 			p.isDisabled = false; // needed because sorting will change the page and re-enable the pager
 			if (p.initialized) {
 				if (c.debug) {
-					ts.log('Pager: Triggering pagerChange');
+					console.log('Pager: Triggering pagerChange');
 				}
-				$t.trigger('pagerChange', p);
+				$t.trigger( 'pagerChange', p );
 			}
-
 			if ( !p.removeRows ) {
 				hideRows(table, p);
 			} else {
@@ -645,18 +648,17 @@
 			updatePageDisplay(table, p);
 			if (table.isUpdating) {
 				if (c.debug) {
-					ts.log('Pager: Triggering updateComplete');
+					console.log('Pager: Triggering updateComplete');
 				}
 				$t.trigger('updateComplete', [ table, true ]);
 			}
 		},
 
-		showAllRows = function(table, p){
+		showAllRows = function(table, p) {
 			var index, $controls, len;
 			if ( p.ajax ) {
 				pagerArrows(p, true);
 			} else {
-				p.isDisabled = true;
 				$.data(table, 'pagerLastPage', p.page);
 				$.data(table, 'pagerLastSize', p.size);
 				p.page = 0;
@@ -667,9 +669,10 @@
 					.removeAttr('aria-describedby')
 					.find('tr.pagerSavedHeightSpacer').remove();
 				renderTable(table, table.config.rowsCopy, p);
-				$(table).trigger('applyWidgets');
+				p.isDisabled = true;
+				ts.applyWidget( table );
 				if (table.config.debug) {
-					ts.log('Pager: Disabled');
+					console.log('Pager: Disabled');
 				}
 			}
 			// disable size selector
@@ -688,7 +691,8 @@
 		updateCache = function(table) {
 			var c = table.config,
 				p = c.pager;
-			c.$table.trigger('updateCache', [ function(){
+			// tablesorter core updateCache (not pager)
+			ts.updateCache( c, function(){
 				var i,
 					rows = [],
 					n = table.config.cache[0].normalized;
@@ -698,23 +702,22 @@
 				}
 				c.rowsCopy = rows;
 				moveToPage(table, p, true);
-			} ]);
+			});
 		},
 
 		moveToPage = function(table, p, pageMoved) {
 			if ( p.isDisabled ) { return; }
-			var pg, c = table.config,
+			var c = table.config,
 				$t = $(table),
 				l = p.last;
-			if ( pageMoved !== false && p.initialized && $.isEmptyObject(c.cache)) {
+			if ( pageMoved !== false && p.initialized && ts.isEmptyObject(c.cache)) {
 				return updateCache(table);
 			}
 			// abort page move if the table has filters and has not been initialized
 			if (p.ajax && ts.hasWidget(table, 'filter') && !c.widgetOptions.filter_initialized) { return; }
+
+			parsePageNumber( p );
 			calcFilters(table, p);
-			pg = Math.min( p.totalPages, p.filteredPages );
-			if ( p.page < 0 ) { p.page = 0; }
-			if ( p.page > ( pg - 1 ) && pg !== 0 ) { p.page = pg - 1; }
 			// fixes issue where one currentFilter is [] and the other is ['','',''],
 			// making the next if comparison think the filters are different (joined by commas). Fixes #202.
 			l.currentFilters = (l.currentFilters || []).join('') === '' ? [] : l.currentFilters;
@@ -728,7 +731,7 @@
 				(l.optAjaxUrl || '') === (p.ajaxUrl || '') &&
 				l.sortList === (c.sortList || []).join(',') ) { return; }
 			if (c.debug) {
-				ts.log('Pager: Changing to page ' + p.page);
+				console.log('Pager: Changing to page ' + p.page);
 			}
 			p.last = {
 				page : p.page,
@@ -748,24 +751,42 @@
 			$.data(table, 'pagerLastPage', p.page);
 			if (p.initialized && pageMoved !== false) {
 				if (c.debug) {
-					ts.log('Pager: Triggering pageMoved');
+					console.log('Pager: Triggering pageMoved');
 				}
-				$t
-					.trigger('pageMoved', p)
-					.trigger('applyWidgets');
+				$t.trigger('pageMoved', p);
+				ts.applyWidget( table );
 				if (table.isUpdating) {
 					if (c.debug) {
-						ts.log('Pager: Triggering updateComplete');
+						console.log('Pager: Triggering updateComplete');
 					}
 					$t.trigger('updateComplete', [ table, true ]);
 				}
 			}
 		},
 
+		// set to either set or get value
+		parsePageSize = function( p, size, mode ) {
+			var s = parseInt( size, 10 ) || p.size || p.settings.size || 10,
+				// if select does not contain an "all" option, use size
+				setAll = p.$size.find( 'option[value="all"]' ).length ? 'all' : p.totalRows;
+			return /all/i.test( size ) || s === p.totalRows ?
+				// "get" to set `p.size` or "set" to set `p.$size.val()`
+				( mode === 'get' ? p.totalRows : setAll ) :
+				( mode === 'get' ? s : p.size );
+		},
+
+		parsePageNumber = function( p ) {
+			var min = Math.min( p.totalPages, p.filteredPages ) - 1;
+			p.page = parseInt( p.page, 10 );
+			if ( p.page < 0 || isNaN( p.page ) ) { p.page = 0; }
+			if ( p.page > min && p.page !== 0 ) { p.page = min; }
+			return p.page;
+		},
+
 		setPageSize = function(table, size, p) {
-			p.size = size || p.size || p.settings.size || 10;
-			p.$size.val(p.size);
-			$.data(table, 'pagerLastPage', p.page);
+			p.size = parsePageSize( p, size, 'get' );
+			p.$size.val( parsePageSize( p, p.size, 'set' ) );
+			$.data(table, 'pagerLastPage', parsePageNumber( p ) );
 			$.data(table, 'pagerLastSize', p.size);
 			p.totalPages = Math.ceil( p.totalRows / p.size );
 			p.filteredPages = Math.ceil( p.filteredRows / p.size );
@@ -798,20 +819,28 @@
 			moveToPage(table, p);
 		},
 
-		destroyPager = function(table, p){
+		destroyPager = function(table, p) {
+			var c = table.config,
+				namespace = c.namespace + 'pager',
+				ctrls = [ p.cssFirst, p.cssPrev, p.cssNext, p.cssLast, p.cssGoto, p.cssPageSize ].join( ',' );
 			showAllRows(table, p);
-			p.$container.hide(); // hide pager
-			table.config.appender = null; // remove pager appender function
-			p.initialized = false;
-			delete table.config.rowsCopy;
-			$(table).unbind( pagerEvents.split(' ').join('.pager ').replace(/\s+/g, ' ') );
+			p.$container
+				// hide pager controls
+				.hide()
+				// unbind
+				.find( ctrls )
+				.unbind( namespace );
+			c.appender = null; // remove pager appender function
+			c.$table.unbind( namespace );
 			if (ts.storage) {
 				ts.storage(table, p.storageKey, '');
 			}
+			delete c.pager;
+			delete c.rowsCopy;
 		},
 
-		enablePager = function(table, p, triggered){
-			var info,
+		enablePager = function(table, p, triggered) {
+			var info, size,
 				c = table.config;
 			p.$size.add(p.$goto).add(p.$container.find('.ts-startRow, .ts-page'))
 				.removeClass(p.cssDisabled)
@@ -819,8 +848,9 @@
 				.attr('aria-disabled', 'false');
 			p.isDisabled = false;
 			p.page = $.data(table, 'pagerLastPage') || p.page || 0;
-			p.size = $.data(table, 'pagerLastSize') || parseInt(p.$size.find('option[selected]').val(), 10) || p.size || p.settings.size || 10;
-			p.$size.val(p.size); // set page size
+			size = p.$size.find('option[selected]').val();
+			p.size = $.data(table, 'pagerLastSize') || parsePageSize( p, p.size, 'get' );
+			p.$size.val( parsePageSize( p, p.size, 'set' ) ); // set page size
 			p.totalPages = Math.ceil( Math.min( p.totalRows, p.filteredRows ) / p.size );
 			// if table id exists, include page display with aria info
 			if ( table.id ) {
@@ -830,11 +860,12 @@
 			}
 			changeHeight(table, p);
 			if ( triggered ) {
-				c.$table.trigger('updateRows');
+				// tablesorter core update table
+				ts.update( c );
 				setPageSize(table, p.size, p);
 				hideRowsSetup(table, p);
 				if (c.debug) {
-					ts.log('Pager: Enabled');
+					console.log('Pager: Enabled');
 				}
 			}
 		};
@@ -863,12 +894,13 @@
 					wo = c.widgetOptions,
 					p = c.pager = $.extend( true, {}, $.tablesorterPager.defaults, settings ),
 					$t = c.$table,
+					namespace = c.namespace + 'pager',
 					// added in case the pager is reinitialized after being destroyed.
 					pager = p.$container = $(p.container).addClass('tablesorter-pager').show();
 				// save a copy of the original settings
 				p.settings = $.extend( true, {}, $.tablesorterPager.defaults, settings );
 				if (c.debug) {
-					ts.log('Pager: Initializing');
+					console.log('Pager: Initializing');
 				}
 				p.oldAjaxSuccess = p.oldAjaxSuccess || p.ajaxObject.success;
 				c.appender = $this.appender;
@@ -884,8 +916,9 @@
 				p.regexRows = new RegExp('(' + (wo.filter_filteredRow || 'filtered') + '|' + c.selectorRemove.slice(1) + '|' + c.cssChildRow + ')');
 
 				$t
-					.unbind( pagerEvents.split(' ').join('.pager ').replace(/\s+/g, ' ') )
-					.bind('filterInit.pager filterStart.pager', function(e, filters) {
+					// .unbind( namespace ) adding in jQuery 1.4.3 ( I think )
+					.unbind( pagerEvents.split(' ').join(namespace + ' ').replace(/\s+/g, ' ') )
+					.bind('filterInit filterStart '.split(' ').join(namespace + ' '), function(e, filters) {
 						p.currentFilters = $.isArray(filters) ? filters : c.$table.data('lastSearch');
 						// don't change page if filters are the same (pager updating, etc)
 						if (e.type === 'filterStart' && p.pageReset !== false && (c.lastCombinedFilter || '') !== (p.currentFilters || []).join('')) {
@@ -893,7 +926,7 @@
 						}
 					})
 					// update pager after filter widget completes
-					.bind('filterEnd.pager sortEnd.pager', function() {
+					.bind('filterEnd sortEnd '.split(' ').join(namespace + ' '), function() {
 						p.currentFilters = c.$table.data('lastSearch');
 						if (p.initialized || p.initializing) {
 							if (c.delayInit && c.rowsCopy && c.rowsCopy.length === 0) {
@@ -902,22 +935,22 @@
 							}
 							updatePageDisplay(table, p, false);
 							moveToPage(table, p, false);
-							c.$table.trigger('applyWidgets');
+							ts.applyWidget( table );
 						}
 					})
-					.bind('disable.pager', function(e){
+					.bind('disablePager' + namespace, function(e){
 						e.stopPropagation();
 						showAllRows(table, p);
 					})
-					.bind('enable.pager', function(e){
+					.bind('enablePager' + namespace, function(e){
 						e.stopPropagation();
 						enablePager(table, p, true);
 					})
-					.bind('destroy.pager', function(e){
+					.bind('destroyPager' + namespace, function(e){
 						e.stopPropagation();
 						destroyPager(table, p);
 					})
-					.bind('updateComplete.pager', function(e, table, triggered){
+					.bind('updateComplete' + namespace, function(e, table, triggered){
 						e.stopPropagation();
 						// table can be unintentionally undefined in tablesorter v2.17.7 and earlier
 						// don't recalculate total rows/pages if using ajax
@@ -936,27 +969,27 @@
 						changeHeight(table, p);
 						updatePageDisplay(table, p, true);
 					})
-					.bind('pageSize.pager refreshComplete.pager', function(e,v){
+					.bind('pageSize refreshComplete '.split(' ').join(namespace + ' '), function(e, size){
 						e.stopPropagation();
-						setPageSize(table, parseInt(v, 10) || p.settings.size || 10, p);
+						setPageSize(table, parsePageSize( p, size, 'get' ), p);
 						hideRows(table, p);
 						updatePageDisplay(table, p, false);
 					})
-					.bind('pageSet.pager pagerUpdate.pager', function(e,v){
+					.bind('pageSet pagerUpdate '.split(' ').join(namespace + ' '), function(e, num){
 						e.stopPropagation();
 						// force pager refresh
 						if (e.type === 'pagerUpdate') {
-							v = typeof v === 'undefined' ? p.page + 1 : v;
+							num = typeof num === 'undefined' ? p.page + 1 : num;
 							p.last.page = true;
 						}
-						p.page = (parseInt(v, 10) || 1) - 1;
+						p.page = (parseInt(num, 10) || 1) - 1;
 						moveToPage(table, p, true);
 						updatePageDisplay(table, p, false);
 					})
-					.bind('pageAndSize.pager', function(e, page, size){
+					.bind('pageAndSize' + namespace, function(e, page, size){
 						e.stopPropagation();
 						p.page = (parseInt(page, 10) || 1) - 1;
-						setPageSize(table, parseInt(size, 10) || p.settings.size || 10, p);
+						setPageSize(table, parsePageSize( p, size, 'get' ), p);
 						moveToPage(table, p, true);
 						hideRows(table, p);
 						updatePageDisplay(table, p, false);
@@ -966,12 +999,12 @@
 				ctrls = [ p.cssFirst, p.cssPrev, p.cssNext, p.cssLast ];
 				fxn = [ moveToFirstPage, moveToPrevPage, moveToNextPage, moveToLastPage ];
 				if (c.debug && !pager.length) {
-					ts.log('Pager: >> Container not found');
+					console.warn('Pager: >> Container not found');
 				}
 				pager.find(ctrls.join(','))
-					.attr("tabindex", 0)
-					.unbind('click.pager')
-					.bind('click.pager', function(e){
+					.attr('tabindex', 0)
+					.unbind('click' + namespace)
+					.bind('click' + namespace, function(e){
 						e.stopPropagation();
 						var i, $t = $(this), l = ctrls.length;
 						if ( !$t.hasClass(p.cssDisabled) ) {
@@ -988,30 +1021,31 @@
 				p.$goto = pager.find(p.cssGoto);
 				if ( p.$goto.length ) {
 					p.$goto
-						.unbind('change.pager')
-						.bind('change.pager', function(){
+						.unbind('change' + namespace)
+						.bind('change' + namespace, function(){
 							p.page = $(this).val() - 1;
 							moveToPage(table, p, true);
 							updatePageDisplay(table, p, false);
 						});
 				} else if (c.debug) {
-					ts.log('Pager: >> Goto selector not found');
+					console.warn('Pager: >> Goto selector not found');
 				}
 				// page size selector
 				p.$size = pager.find(p.cssPageSize);
 				if ( p.$size.length ) {
 					// setting an option as selected appears to cause issues with initial page size
 					p.$size.find('option').removeAttr('selected');
-					p.$size.unbind('change.pager').bind('change.pager', function() {
-						p.$size.val( $(this).val() ); // in case there are more than one pagers
+					p.$size.unbind('change' + namespace).bind('change' + namespace, function() {
 						if ( !$(this).hasClass(p.cssDisabled) ) {
-							setPageSize(table, parseInt( $(this).val(), 10 ), p);
+							var size = $(this).val();
+							p.$size.val( size ); // in case there are more than one pagers
+							setPageSize(table, size, p);
 							changeHeight(table, p);
 						}
 						return false;
 					});
 				} else if (c.debug) {
-					ts.log('Pager: >> Size selector not found');
+					console.warn('Pager: >> Size selector not found');
 				}
 
 				// clear initialized flag
@@ -1020,17 +1054,18 @@
 				$t.trigger('pagerBeforeInitialized', p);
 
 				enablePager(table, p, false);
-				if ( typeof(p.ajaxUrl) === 'string' ) {
+				if ( typeof p.ajaxUrl === 'string' ) {
 					// ajax pager; interact with database
 					p.ajax = true;
-					//When filtering with ajax, allow only custom filtering function, disable default filtering since it will be done server side.
+					// When filtering with ajax, allow only custom filtering function, disable default
+					// filtering since it will be done server side.
 					c.widgetOptions.filter_serversideFiltering = true;
 					c.serverSideSorting = true;
 					moveToPage(table, p);
 				} else {
 					p.ajax = false;
 					// Regular pager; all rows stored in memory
-					$(this).trigger("appendCache", true);
+					ts.appendCache( c, true ); // true = don't apply widgets
 					hideRowsSetup(table, p);
 				}
 
@@ -1040,9 +1075,9 @@
 					p.initialized = true;
 					moveToPage(table, p);
 					if (c.debug) {
-						ts.log('Pager: Triggering pagerInitialized');
+						console.log('Pager: Triggering pagerInitialized');
 					}
-					c.$table.trigger('pagerInitialized', p);
+					c.$table.trigger( 'pagerInitialized', p );
 					if ( !( c.widgetOptions.filter_initialized && ts.hasWidget(table, 'filter') ) ) {
 						updatePageDisplay(table, p, false);
 					}
@@ -1056,36 +1091,80 @@
 	}() });
 
 	// see #486
-	ts.showError = function(table, message) {
-		var index, $row, c, errorRow,
+	ts.showError = function( table, xhr, settings, exception ) {
+		var $row,
 			$table = $( table ),
-			len = $table.length;
-		for ( index = 0; index < len; index++ ) {
-			c = $table[ index ].config;
-			if ( c ) {
-				errorRow = c.pager && c.pager.cssErrorRow || c.widgetOptions.pager_css && c.widgetOptions.pager_css.errorRow || 'tablesorter-errorRow';
-				if ( typeof message === 'undefined' ) {
-					c.$table.find('thead').find(c.selectorRemove).remove();
-				} else {
-					$row = ( /tr\>/.test(message) ? $(message) : $('<tr><td colspan="' + c.columns + '">' + message + '</td></tr>') )
-						.click(function(){
-							$(this).remove();
-						})
-						// add error row to thead instead of tbody, or clicking on the header will result in a parser error
-						.appendTo( c.$table.find('thead:first') )
-						.addClass( errorRow + ' ' + c.selectorRemove.slice(1) )
-						.attr({
-							role : 'alert',
-							'aria-live' : 'assertive'
-						});
-				}
+			c = $table[0].config,
+			wo = c && c.widgetOptions,
+			errorRow = c.pager && c.pager.cssErrorRow ||
+				wo && wo.pager_css && wo.pager_css.errorRow ||
+				'tablesorter-errorRow',
+			typ = typeof xhr,
+			valid = true,
+			message = '',
+			removeRow = function(){
+				c.$table.find( 'thead' ).find( '.' + errorRow ).remove();
+			};
+
+		if ( !$table.length ) {
+			console.error('tablesorter showError: no table parameter passed');
+			return;
+		}
+
+		// ajaxError callback for plugin or widget - see #992
+		if ( typeof c.pager.ajaxError === 'function' ) {
+			valid = c.pager.ajaxError( c, xhr, settings, exception );
+			if ( valid === false ) {
+				return removeRow();
+			} else {
+				message = valid;
+			}
+		} else if ( typeof wo.pager_ajaxError === 'function' ) {
+			valid = wo.pager_ajaxError( c, xhr, settings, exception );
+			if ( valid === false ) {
+				return removeRow();
+			} else {
+				message = valid;
 			}
 		}
+
+		if ( message === '' ) {
+			if ( typ === 'object' ) {
+				message =
+					xhr.status === 0 ? 'Not connected, verify Network' :
+					xhr.status === 404 ? 'Requested page not found [404]' :
+					xhr.status === 500 ? 'Internal Server Error [500]' :
+					exception === 'parsererror' ? 'Requested JSON parse failed' :
+					exception === 'timeout' ? 'Time out error' :
+					exception === 'abort' ? 'Ajax Request aborted' :
+					'Uncaught error: ' + xhr.statusText + ' [' + xhr.status + ']';
+			} else if ( typ === 'string'  ) {
+				// keep backward compatibility (external usage just passes a message string)
+				message = xhr;
+			} else {
+				// remove all error rows
+				return removeRow();
+			}
+		}
+
+		// allow message to include entire row HTML!
+		$row = ( /tr\>/.test(message) ? $(message) : $('<tr><td colspan="' + c.columns + '">' + message + '</td></tr>') )
+			.click( function() {
+				$( this ).remove();
+			})
+			// add error row to thead instead of tbody, or clicking on the header will result in a parser error
+			.appendTo( c.$table.find( 'thead:first' ) )
+			.addClass( errorRow + ' ' + c.selectorRemove.slice(1) )
+			.attr({
+				role : 'alert',
+				'aria-live' : 'assertive'
+			});
+
 	};
 
-// extend plugin scope
-$.fn.extend({
-	tablesorterPager: $.tablesorterPager.construct
-});
+	// extend plugin scope
+	$.fn.extend({
+		tablesorterPager: $.tablesorterPager.construct
+	});
 
 })(jQuery);
