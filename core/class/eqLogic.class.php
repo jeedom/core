@@ -21,7 +21,7 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class eqLogic {
 	/*     * *************************Attributs****************************** */
-
+	const UIDDELIMITER = '____';
 	protected $id;
 	protected $name;
 	protected $logicalId = '';
@@ -454,10 +454,10 @@ class eqLogic {
            WHERE `key`="widgetHtml' . $_version . $this->getId() . '"';
 			$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 			if ($result['value'] != '') {
-				return $result['value'];
+				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $result['value']);
 			}
 		}
-
+		$parameters = $this->getDisplay('parameters');
 		$cmd_html = '';
 
 		$vcolor = 'cmdColor';
@@ -465,6 +465,9 @@ class eqLogic {
 			$vcolor = 'mcmdColor';
 		}
 		$cmdColor = ($this->getPrimaryCategory() == '') ? '' : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
+		if (is_array($parameters) && isset($parameters['background_cmd_color'])) {
+			$cmdColor = $parameters['background_cmd_color'];
+		}
 		if ($this->getIsEnable()) {
 			foreach ($this->getCmd(null, null, true) as $cmd) {
 				if ($cmd->getDisplay('hideOn' . $version) == 1) {
@@ -495,6 +498,7 @@ class eqLogic {
 			'#object_name#' => '',
 			'#height#' => $this->getDisplay('height', 'auto'),
 			'#width#' => $this->getDisplay('width', 'auto'),
+			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
 		);
 		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowObjectNameOnView', 0) == 0) {
 			$object = $this->getObject();
@@ -513,7 +517,6 @@ class eqLogic {
 			$replace['#battery#'] = -1;
 		}
 
-		$parameters = $this->getDisplay('parameters');
 		if (is_array($parameters)) {
 			foreach ($parameters as $key => $value) {
 				$replace['#' . $key . '#'] = $value;

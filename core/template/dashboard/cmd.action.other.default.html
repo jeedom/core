@@ -1,12 +1,12 @@
-<span class="cmd" data-type="action" data-subtype="other" data-cmd_id="#id#">
+<span class="cmd" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#">
     <a class="btn btn-sm btn-default action cmdName tooltips" title="#other_tooltips#" style="background-color:#cmdColor# !important;border-color : transparent !important;">#name#</a>
     <script>
-        $('.cmd[data-cmd_id=#id#]:last .action').off('click').on('click', function () {
+        $('.cmd[data-cmd_uid=#uid#]:last .action').off('click').on('click', function () {
             jeedom.cmd.execute({id: '#id#'});
         });
-        if ($('.cmd[data-cmd_id=#id#]:last').prev().data('subtype') != undefined && $('.cmd[data-cmd_id=#id#]:last').prev().data('subtype') != 'other'
-                && $('.cmd[data-cmd_id=#id#]:last').prev().css('display') != 'block') {
-            $('.cmd[data-cmd_id=#id#]:last').prepend('<br/>');
+        if ($('.cmd[data-cmd_uid=#uid#]:last').prev().data('subtype') != undefined && $('.cmd[data-cmd_id=#id#]:last').prev().data('subtype') != 'other'
+                && $('.cmd[data-cmd_uid=#uid#]:last').prev().css('display') != 'block') {
+            $('.cmd[data-cmd_uid=#uid#]:last').prepend('<br/>');
         }
     </script>
 </span>

@@ -28,6 +28,7 @@ $("#bt_clearMessage").on('click', function(event) {
         },
         success: function() {
             $("#table_message tbody").remove();
+            refreshMessageNumber();
         }
     });
 });
@@ -42,6 +43,7 @@ $("#table_message").delegate(".removeMessage", 'click', function(event) {
         success: function() {
             tr.remove();
             $("#table_message").trigger("update");
+            refreshMessageNumber();
         }
     });
 });

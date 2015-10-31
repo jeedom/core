@@ -1,12 +1,14 @@
-<div class="scenario-widget scenario" data-scenario_id="#id#" data-version="dashboard" style="margin-top: 0px;width: 100%;max-width: 290px;">
-    <a class="btn btn-success btn-xs changeScenarioState tooltips" data-state="activate" title="Activer" style="display: none;"><i class="fa fa-power-off"></i></a>
-    <a class="btn btn-danger btn-xs changeScenarioState tooltips" data-state="deactivate" title="Desactiver" style="display: none;"><i class="fa fa-power-off"></i></a>
-    <a class="btn btn-success btn-xs changeScenarioState" data-state="start" style="display: none;"><i class="fa fa-play"></i></a>
-    <a class="btn btn-danger btn-xs changeScenarioState" data-state="stop" style="display: none;"><i class="fa fa-stop"></i></a>
+<div class="scenario-widget scenario" data-scenario_id="#id#" data-version="dashboard" style="margin-top: 0px;width: 100%;max-width: 290px;height : 30px;">
+<div style="margin-top : 4px;margin-left:4px;margin-right:4px;">
+        <a class="btn btn-success btn-xs changeScenarioState tooltips" data-state="activate" title="Activer" style="display: none;"><i class="fa fa-power-off"></i></a>
+        <a class="btn btn-danger btn-xs changeScenarioState tooltips" data-state="deactivate" title="Desactiver" style="display: none;"><i class="fa fa-power-off"></i></a>
+        <a class="btn btn-success btn-xs changeScenarioState" data-state="start" style="display: none;"><i class="fa fa-play"></i></a>
+        <a class="btn btn-danger btn-xs changeScenarioState" data-state="stop" style="display: none;"><i class="fa fa-stop"></i></a>
 
-    <a href="#scenarioLink#" class="tooltips" title="Dernier lancement : #lastLaunch#" style="font-size: 0.85em;position: relative;left: 3px;">#name#</a>
+        <a href="#scenarioLink#" class="tooltips" title="Dernier lancement : #lastLaunch#" style="font-size: 0.85em;position: relative;left: 3px;">#name#</a>
 
-    <span class="state pull-right" style="width : 15px;font-size: 1.15em;">#icon#</span>
+        <span class="state pull-right" style="width : 15px;font-size: 1.15em;">#icon#</span>
+    </div>
 
     <script>
         $('.scenario[data-scenario_id=#id#] .changeScenarioState').on('click', function () {

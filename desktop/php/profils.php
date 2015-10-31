@@ -187,6 +187,7 @@ foreach (object::all() as $object) {
                    <label class="col-sm-1 control-label">{{Mobile}}</label>
                    <div class="col-sm-2">
                     <select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileObject">
+                        <option value='all'>{{Tout}}</option>
                         <?php
 foreach (object::all() as $object) {
 	echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";

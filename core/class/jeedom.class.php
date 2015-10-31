@@ -31,7 +31,7 @@ class jeedom {
 			echo "Desactivation de toutes les tâches";
 			config::save('enableCron', 0);
 			foreach (cron::all() as $cron) {
-				if ($cron->running() && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
+				if ($cron->running()) {
 					try {
 						$cron->halt();
 						echo '.';
@@ -441,6 +441,10 @@ class jeedom {
 			echo date('Y-m-d H:i:s') . ' starting Jeedom';
 			config::save('enableScenario', 1);
 			config::save('enableCron', 1);
+			cache::deleteBySearch('widgetHtml');
+			cache::deleteBySearch('cmdWidgetdashboard');
+			cache::deleteBySearch('cmdWidgetmobile');
+			cache::deleteBySearch('scenarioHtmldashboard');
 			$cache = cache::byKey('jeedom::usbMapping');
 			$cache->remove();
 			foreach (cron::all() as $cron) {
@@ -480,16 +484,9 @@ class jeedom {
 							$toUpdate .= $update->getLogicalId() . ',';
 						}
 					}
-					if (config::byKey('update::auto') == 1) {
-						if (count($updates) > 0) {
-							message::add('update', __('J\'ai appliqué les mises à jour suivantes : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
-						}
-						jeedom::update('', 0);
-					} else {
-						$updates = update::byStatus('update');
-						if (count($updates) > 0) {
-							message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
-						}
+					$updates = update::byStatus('update');
+					if (count($updates) > 0) {
+						message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
 					}
 					config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
 				}
@@ -534,7 +531,7 @@ class jeedom {
 
 	public static function getHardwareKey() {
 		$return = config::byKey('jeedom::installKey');
-		if ($return == '' || $return == '0a648c4a615e13680d2d6d23d15ea3b959d6ca30' || $return == '50967e5266d480d1363794dc6777fd0b5a6df30d') {
+		if ($return == '') {
 			$return = sha1(microtime() . config::genKey());
 			config::save('jeedom::installKey', $return);
 		}

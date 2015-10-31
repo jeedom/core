@@ -44,7 +44,7 @@ class plugin {
 	/*     * ***********************Méthodes statiques*************************** */
 
 	public static function byId($_id, $_translate = true) {
-		if (isset(self::$_cache[$_id])) {
+		if (is_string($_id) && isset(self::$_cache[$_id])) {
 			return self::$_cache[$_id];
 		}
 		if (!file_exists($_id) || strpos($_id, '.xml') === false) {
@@ -337,11 +337,15 @@ class plugin {
 			$eqLogics = eqLogic::byType($this->getId());
 			if (is_array($eqLogics)) {
 				foreach ($eqLogics as $eqLogic) {
-					$eqLogic->setConfiguration('previousIsEnable', $eqLogic->getIsEnable());
-					$eqLogic->setConfiguration('previousIsVisible', $eqLogic->getIsVisible());
-					$eqLogic->setIsEnable(0);
-					$eqLogic->setIsVisible(0);
-					$eqLogic->save();
+					try {
+						$eqLogic->setConfiguration('previousIsEnable', $eqLogic->getIsEnable());
+						$eqLogic->setConfiguration('previousIsVisible', $eqLogic->getIsVisible());
+						$eqLogic->setIsEnable(0);
+						$eqLogic->setIsVisible(0);
+						$eqLogic->save();
+					} catch (Exception $e) {
+
+					}
 				}
 			}
 			$listeners = listener::byClass($this->getId());
@@ -353,9 +357,13 @@ class plugin {
 		}
 		if ($alreadyActive == 0 && $_state == 1) {
 			foreach (eqLogic::byType($this->getId()) as $eqLogic) {
-				$eqLogic->setIsEnable($eqLogic->getConfiguration('previousIsEnable', 1));
-				$eqLogic->setIsVisible($eqLogic->getConfiguration('previousIsVisible', 1));
-				$eqLogic->save();
+				try {
+					$eqLogic->setIsEnable($eqLogic->getConfiguration('previousIsEnable', 1));
+					$eqLogic->setIsVisible($eqLogic->getConfiguration('previousIsVisible', 1));
+					$eqLogic->save();
+				} catch (Exception $e) {
+
+				}
 			}
 		}
 		try {

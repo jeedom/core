@@ -35,6 +35,7 @@ class com_http {
 	private $cookiesession = false;
 	private $allowEmptyReponse = false;
 	private $noReportError = false;
+	private $userAgent = '';
 	private $CURLOPT_HTTPAUTH = '';
 
 	/*     * ********************Fonctions statiques********************* */
@@ -83,6 +84,9 @@ class com_http {
 			if ($this->getPut() != '') {
 				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $this->getPut());
+			}
+			if ($this->getUserAgent() != '') {
+				curl_setopt($ch, CURLOPT_USERAGENT, $this->getUserAgent());
 			}
 			$response = curl_exec($ch);
 			$nbRetry++;
@@ -209,6 +213,14 @@ class com_http {
 
 	function setPut($put) {
 		$this->put = $put;
+	}
+
+	function getUserAgent() {
+		return $this->userAgent;
+	}
+
+	function setUserAgent($userAgent) {
+		$this->userAgent = $userAgent;
 	}
 
 }

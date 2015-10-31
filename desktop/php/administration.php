@@ -501,11 +501,11 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 		echo '</div>';
 	}
 	?>
-    </div>
-            </fieldset>
-        </form>
+          </div>
+      </fieldset>
+  </form>
 
-    </div>
+</div>
 </div>
 
 
@@ -628,36 +628,49 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
         <div class="panel-body">
             <form class="form-horizontal">
                 <fieldset>
-                    <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sensibilité (par défaut 10)}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="text" class="configKey form-control" data-l1key="interact::confidence"/>
-                        </div>
+                    <div class="alert alert-info">
+                        {{Plus la sensibilité est basse (proche de 1) plus la corrrespondance doit être exacte}}
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas répondre si l'interaction n'est pas comprise}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="interact::noResponseIfEmpty"/>
-                        </div>
-                    </div>
-                    <i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
-                    <table class="table table-condensed table-bordered" id="table_convertColor" >
-                        <thead>
-                            <tr>
-                                <th>{{Nom}}</th><th>{{Code HTML}}</th>
-                            </tr>
-                            <tr class="filter" style="display : none;">
-                                <td class="color"><input class="filter form-control" filterOn="color" /></td>
-                                <td class="codeHtml"><input class="filter form-control" filterOn="codeHtml" /></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </fieldset>
-            </form>
-        </div>
-    </div>
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sensibilité}}</label>
+                        <div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
+                         <div class="input-group">
+                          <span class="input-group-addon">1 mot</span>
+                          <input type="text" class="configKey form-control" data-l1key="interact::confidence1"/>
+                          <span class="input-group-addon">2 mots</span>
+                          <input type="text" class="configKey form-control" data-l1key="interact::confidence2"/>
+                          <span class="input-group-addon">3 mots</span>
+                          <input type="text" class="configKey form-control" data-l1key="interact::confidence3"/>
+                          <span class="input-group-addon">> 3 mots</span>
+                          <input type="text" class="configKey form-control" data-l1key="interact::confidence"/>
+                      </div>
+
+                  </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas répondre si l'interaction n'est pas comprise}}</label>
+                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                    <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="interact::noResponseIfEmpty"/>
+                </div>
+            </div>
+            <i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
+            <table class="table table-condensed table-bordered" id="table_convertColor" >
+                <thead>
+                    <tr>
+                        <th>{{Nom}}</th><th>{{Code HTML}}</th>
+                    </tr>
+                    <tr class="filter" style="display : none;">
+                        <td class="color"><input class="filter form-control" filterOn="color" /></td>
+                        <td class="codeHtml"><input class="filter form-control" filterOn="codeHtml" /></td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </fieldset>
+    </form>
+</div>
+</div>
 </div>
 
 <div class="panel panel-default expertModeVisible">
@@ -926,12 +939,6 @@ foreach (plugin::listPlugin(true) as $plugin) {
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Faire une sauvegarde avant la mise à jour}}</label>
                             <div class="col-sm-1">
                                 <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="update::backupBefore"/>
-                            </div>
-                        </div>
-                        <div class="form-group expertModeVisible has-error">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mettre à jour automatiquement}}</label>
-                            <div class="col-sm-1">
-                                <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="update::auto"/>
                             </div>
                         </div>
                         <div class="form-group">

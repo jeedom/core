@@ -108,10 +108,6 @@ try {
 
 	if (init('action') == 'resetHwKey') {
 		config::save('jeedom::installKey', '');
-		$cache = cache::byKey('jeedom::hwkey');
-		if ($cache->getValue(0) != 0) {
-			$cache->remove();
-		}
 		ajax::success();
 	}
 
@@ -152,13 +148,6 @@ try {
 
 	if (init('action') == 'forceSyncHour') {
 		ajax::success(jeedom::forceSyncHour());
-	}
-
-	if (init('action') == 'doUPnP') {
-		if (config::byKey('allowupnpn') != 1) {
-			throw new Exception(__('Vous devez d\'abord activer l\'UPnP avant de forcer sa mise en place', __FILE__));
-		}
-		ajax::success(jeedom::doUPnP());
 	}
 
 	if (init('action') == 'saveCustom') {

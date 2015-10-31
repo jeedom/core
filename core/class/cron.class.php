@@ -30,7 +30,7 @@ class cron {
 	private $lastRun = '0000-00-00 00:00:00';
 	private $duration = '0';
 	private $state = 'stop';
-	private $pid = '';
+	private $pid = null;
 	private $schedule = '';
 	private $timeout;
 	private $deamon = 0;
@@ -459,7 +459,10 @@ class cron {
 		$this->state = $state;
 	}
 
-	public function setPID($pid = '') {
+	public function setPID($pid = null) {
+		if (trim($pid) == '') {
+			$pid = null;
+		}
 		$this->pid = $pid;
 	}
 

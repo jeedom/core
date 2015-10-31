@@ -300,19 +300,24 @@ jeedom.eqLogic.refreshValue = function (_params) {
         var paramsSpecifics = {
             global: false,
             success: function (result) {
-                $('.eqLogic[data-eqLogic_id=' + params.id + ']').empty().html($(result.html).children());
+                var html = $(result.html);
+                var uid = html.attr('data-eqLogic_uid');
+                if(uid != 'undefined'){
+                    $('.eqLogic[data-eqLogic_id=' + params.id + ']').attr('data-eqLogic_uid',uid);
+                }
+                $('.eqLogic[data-eqLogic_id=' + params.id + ']').empty().html(html.children());
                 initTooltips();
                 if ($.mobile) {
                     $('.eqLogic[data-eqLogic_id=' + params.id + ']').trigger("create");
                     setTileSize('.eqLogic');
                 }else{
                     if (typeof editWidgetMode == 'function') {
-                       editWidgetMode(); 
-                   }
-               }
-           }
-       };
-       try {
+                     editWidgetMode(); 
+                 }
+             }
+         }
+     };
+     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);

@@ -28,12 +28,11 @@ class interactDef {
 	private $filtres;
 	private $query;
 	private $reply;
-	private $link_type;
-	private $link_id;
 	private $person;
 	private $options;
 	private $enable;
 	private $group;
+	private $actions;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -111,29 +110,27 @@ class interactDef {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byUsedCommand($_cmd_id) {
-		$return = array();
-		$interactQueries = interactQuery::byTypeAndLinkId('cmd', $_cmd_id);
-		foreach ($interactQueries as $interactQuery) {
-			$interactDef = $interactQuery->getInteractDef();
-			$find = false;
-			foreach ($return as $existInteractDef) {
-				if ($interactDef->getId() == $existInteractDef->getId()) {
-					$find = true;
-					break;
-				}
-			}
-			if (!$find) {
-				$return[] = $interactDef;
-			}
-		}
-		return $return;
-	}
-
 	public static function regenerateInteract() {
 		foreach (self::all() as $interactDef) {
 			$interactDef->save();
 		}
+	}
+
+	public static function getTagFromQuery($_def, $_query) {
+		$options = null;
+		$regexp = preg_quote(strtolower($_def));
+		preg_match_all("/#(.*?)#/", $_def, $tags);
+		if (count($tags[1]) > 0) {
+			foreach ($tags[1] as $match) {
+				$regexp = str_replace('#' . $match . '#', '(.*?)', $regexp);
+			}
+			preg_match_all("/" . $regexp . "$/", strtolower($_query), $matches, PREG_SET_ORDER);
+			$options = array();
+			for ($i = 0; $i < count($tags[1]); $i++) {
+				$options[$tags[1][$i]] = $matches[0][$i + 1];
+			}
+		}
+		return $options;
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
@@ -148,31 +145,21 @@ class interactDef {
 		if ($this->getQuery() == '') {
 			throw new Exception(__('La commande (demande) ne peut pas être vide', __FILE__));
 		}
-		$this->setLink_id(str_replace('#', '', jeedom::fromHumanReadable($this->getLink_id())));
 		return DB::save($this);
 	}
 
 	public function postSave() {
 		$queries = $this->generateQueryVariant();
-		$findInteractQuery = array();
-		$allInteractQueries = interactQuery::byInteractDefId($this->getId());
+		interactQuery::removeByInteractDefId($this->getId());
+		DB::beginTransaction();
 		foreach ($queries as $query) {
-			$interactQuery = interactQuery::byQuery($query['query'], $this->getId());
-			if (!is_object($interactQuery)) {
-				$interactQuery = new interactQuery();
-			}
+			$interactQuery = new interactQuery();
 			$interactQuery->setInteractDef_id($this->getId());
 			$interactQuery->setQuery($query['query']);
-			$interactQuery->setLink_type($query['link_type']);
-			$interactQuery->setLink_id($query['link_id']);
+			$interactQuery->setActions('cmd', $query['cmd']);
 			$interactQuery->save();
-			$findInteractQuery[$interactQuery->getId()] = true;
 		}
-		foreach ($allInteractQueries as $interactQueries) {
-			if (!isset($findInteractQuery[$interactQueries->getId()])) {
-				$interactQueries->remove();
-			}
-		}
+		DB::commit();
 	}
 
 	public function remove() {
@@ -189,28 +176,39 @@ class interactDef {
 		foreach ($inputs as $input) {
 			preg_match_all("/#(.*?)#/", $input, $matches);
 			$matches = $matches[1];
-			if ($this->getLink_type() == 'cmd') {
-				if (in_array('commande', $matches) && (in_array('objet', $matches) || in_array('equipement', $matches))) {
-					foreach (object::all() as $object) {
-						if (($this->getFiltres('object_id', 'all') == 'all' || $object->getId() == $this->getFiltres('object_id'))) {
-							foreach ($object->getEqLogic() as $eqLogic) {
-								if (($this->getFiltres('eqLogic_id', 'all') == 'all' || $eqLogic->getId() == $this->getFiltres('eqLogic_id'))) {
-									if (($this->getFiltres('plugin', 'all') == 'all' || $eqLogic->getEqType_name() == $this->getFiltres('plugin'))) {
-										if (($this->getFiltres('eqLogic_category', 'all') == 'all' || $eqLogic->getCategory($this->getFiltres('eqLogic_category', 'all'), 0) == 1)) {
-											foreach ($eqLogic->getCmd() as $cmd) {
-												if ($this->getFiltres('subtype') == 'all' || $this->getFiltres('subtype') == $cmd->getSubType()) {
-													if ($cmd->getType() == $this->getFiltres('cmd_type') && ($this->getFiltres('cmd_unite', 'all') == 'all' || $cmd->getUnite() == $this->getFiltres('cmd_unite'))) {
-														$replace = array(
-															'#objet#' => strtolower($object->getName()),
-															'#commande#' => strtolower($cmd->getName()),
-															'#equipement#' => strtolower($eqLogic->getName()),
-														);
-														$return[] = array(
-															'query' => str_replace(array_keys($replace), $replace, $input),
-															'link_type' => $this->getLink_type(),
-															'link_id' => $cmd->getId(),
-														);
+			if (in_array('commande', $matches) && (in_array('objet', $matches) || in_array('equipement', $matches))) {
+				foreach (object::all() as $object) {
+					if (($this->getFiltres('object_id', 'all') == 'all' || $object->getId() == $this->getFiltres('object_id'))) {
+						foreach ($object->getEqLogic() as $eqLogic) {
+							if (($this->getFiltres('eqLogic_id', 'all') == 'all' || $eqLogic->getId() == $this->getFiltres('eqLogic_id'))) {
+								if (($this->getFiltres('plugin', 'all') == 'all' || $eqLogic->getEqType_name() == $this->getFiltres('plugin'))) {
+									if (($this->getFiltres('eqLogic_category', 'all') == 'all' || $eqLogic->getCategory($this->getFiltres('eqLogic_category', 'all'), 0) == 1)) {
+										foreach ($eqLogic->getCmd() as $cmd) {
+											if ($this->getFiltres('subtype') == 'all' || $this->getFiltres('subtype') == $cmd->getSubType()) {
+												if ($cmd->getType() == $this->getFiltres('cmd_type') && ($this->getFiltres('cmd_unite', 'all') == 'all' || $cmd->getUnite() == $this->getFiltres('cmd_unite'))) {
+													$replace = array(
+														'#objet#' => strtolower($object->getName()),
+														'#commande#' => strtolower($cmd->getName()),
+														'#equipement#' => strtolower($eqLogic->getName()),
+													);
+													$options = array();
+													if ($cmd->getType() == 'action') {
+														if ($cmd->getSubtype() == 'color') {
+															$options['#color#'] = '#color#';
+														}
+														if ($cmd->getSubtype() == 'slider') {
+															$options['#slider#'] = '#slider#';
+														}
+														if ($cmd->getSubtype() == 'message') {
+															$options['#message#'] = '#message#';
+															$options['#title#'] = '#title#';
+														}
 													}
+													$query = str_replace(array_keys($replace), $replace, $input);
+													$return[$query] = array(
+														'query' => $query,
+														'cmd' => array(array('cmd' => '#' . $cmd->getId() . '#')),
+													);
 												}
 											}
 										}
@@ -221,32 +219,17 @@ class interactDef {
 					}
 				}
 			}
-			if ($this->getLink_type() == 'whatDoYouKnow') {
-				if (in_array('objet', $matches)) {
-					foreach (object::all() as $object) {
-						$replace = array(
-							'#objet#' => strtolower($object->getName()),
-						);
-						$return[] = array(
-							'query' => str_replace(array_keys($replace), $replace, $input),
-							'link_type' => $this->getLink_type(),
-							'link_id' => $object->getId(),
-						);
-					}
-				}
-			}
 		}
 
 		if (count($return) == 0) {
 			foreach ($inputs as $input) {
 				$return[] = array(
 					'query' => $input,
-					'link_type' => $this->getLink_type(),
-					'link_id' => $this->getLink_id(),
+					'cmd' => $this->getActions('cmd'),
 				);
 			}
 		}
-		if ($this->getOptions('synonymes') != '' && $this->getLink_type() == 'cmd') {
+		if ($this->getOptions('synonymes') != '') {
 			$queries = $return;
 			$synonymes = array();
 			foreach (explode('|', $this->getOptions('synonymes')) as $value) {
@@ -258,7 +241,7 @@ class interactDef {
 				foreach (self::generateSynonymeVariante($query['query'], $synonymes) as $synonyme) {
 					$query_info = $query;
 					$query_info['query'] = $synonyme;
-					$return[] = $query_info;
+					$return[$synonyme] = $query_info;
 				}
 			}
 		}
@@ -325,22 +308,6 @@ class interactDef {
 		$this->reply = $reply;
 	}
 
-	public function getLink_type() {
-		return $this->link_type;
-	}
-
-	public function setLink_type($link_type) {
-		$this->link_type = $link_type;
-	}
-
-	public function getLink_id() {
-		return $this->link_id;
-	}
-
-	public function setLink_id($link_id) {
-		$this->link_id = $link_id;
-	}
-
 	public function getPerson() {
 		return $this->person;
 	}
@@ -395,6 +362,14 @@ class interactDef {
 
 	public function setGroup($group) {
 		$this->group = $group;
+	}
+
+	public function getActions($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->actions, $_key, $_default);
+	}
+
+	public function setActions($_key, $_value) {
+		$this->actions = utils::setJsonAttr($this->actions, $_key, $_value);
 	}
 
 }

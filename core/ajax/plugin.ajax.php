@@ -75,30 +75,53 @@ try {
 		if (filesize($_FILES['file']['tmp_name']) > 100000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 100mo)', __FILE__));
 		}
-		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $_FILES['file']['name'])) {
+		$filename = str_replace(array(' ', '(', ')'), '', $_FILES['file']['name']);
+		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $filename)) {
 			throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
 		}
-		if (!file_exists($uploaddir . '/' . $_FILES['file']['name'])) {
+		if (!file_exists($uploaddir . '/' . $filename)) {
 			throw new Exception(__('Impossible d\'uploader le fichier (limite du serveur web ?)', __FILE__));
 		}
-		$logicalId = str_replace('.zip', '', $_FILES['file']['name']);
-		$cibDir = dirname(__FILE__) . '/../../plugins/' . $logicalId;
+		$logicalId = str_replace(array('.zip'), '', $filename);
 		$tmp = $uploaddir . '/' . $logicalId . '.zip';
-
-		if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
-			throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
+		$tmp_dir = $uploaddir . '/' . $logicalId;
+		if (file_exists($tmp_dir)) {
+			rrmdir($tmp_dir);
 		}
+		mkdir($tmp_dir);
+
 		log::add('update', 'update', __('Décompression de l\'archive...', __FILE__));
 		$zip = new ZipArchive;
 		$res = $zip->open($tmp);
 		if ($res === TRUE) {
-			if (!$zip->extractTo($cibDir . '/')) {
+			if (!$zip->extractTo($tmp_dir . '/')) {
 				$content = file_get_contents($tmp);
 				throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
 			}
 			$zip->close();
 			log::add('update', 'update', __("OK\n", __FILE__));
 			log::add('update', 'update', __('Installation de l\'objet...', __FILE__));
+			if (!file_exists($tmp_dir . '/plugin_info')) {
+				log::add('update', 'update', __('Plugin info non trouvé, je le recherche...', __FILE__));
+				$files = ls($tmp_dir, '*');
+				if (count($files) == 1 && file_exists($tmp_dir . '/' . $files[0] . 'plugin_info')) {
+					shell_exec('mv ' . $tmp_dir . '/' . $files[0] . '* ' . $tmp_dir);
+					rmdir($tmp_dir . '/' . $files[0]);
+					log::add('update', 'update', __('OK', __FILE__));
+				}
+			}
+			if (file_exists($tmp_dir . '/plugin_info/info.xml')) {
+				log::add('update', 'update', __('Fichier info.xml trouvé', __FILE__));
+				libxml_use_internal_errors(true);
+				$plugin_xml = @simplexml_load_file($tmp_dir . '/plugin_info/info.xml');
+				$logicalId = $plugin_xml->id;
+			}
+			$cibDir = dirname(__FILE__) . '/../../plugins/' . $logicalId;
+			if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
+				throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
+			}
+			rcopy($tmp_dir, $cibDir);
+			rmdir($tmp_dir);
 			try {
 				$plugin = plugin::byId($logicalId);
 			} catch (Exception $e) {

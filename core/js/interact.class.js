@@ -95,26 +95,6 @@ jeedom.interact.regenerateInteract = function(_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.interact.simulate = function(_params) {
-    var paramsRequired = ['query'];
-    var paramsSpecifics = {};
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
-    }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/interact.ajax.php';
-    paramsAJAX.data = {
-        action: 'test',
-        query: _params.query,
-    };
-    $.ajax(paramsAJAX);
-}
-
-
 jeedom.interact.execute = function(_params) {
     var paramsRequired = ['query'];
     var paramsSpecifics = {};

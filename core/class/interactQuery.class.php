@@ -25,9 +25,7 @@ class interactQuery {
 	private $id;
 	private $interactDef_id;
 	private $query;
-	private $link_type;
-	private $link_id;
-	private $enable = 1;
+	private $actions;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -56,29 +54,14 @@ class interactQuery {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byInteractDefId($_interactDef_id, $_enable = false) {
+	public static function byInteractDefId($_interactDef_id) {
 		$values = array(
 			'interactDef_id' => $_interactDef_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
     FROM interactQuery
-    WHERE interactDef_id=:interactDef_id';
-		if ($_enable) {
-			$sql .= ' AND enable=1';
-		}
-		$sql .= ' ORDER BY `query`';
-		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-	}
-
-	public static function byTypeAndLinkId($_type, $_link_id) {
-		$values = array(
-			'type' => $_type,
-			'link_id' => $_link_id,
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-    FROM interactQuery
-    WHERE link_type=:type
-    AND link_id=:link_id';
+    WHERE interactDef_id=:interactDef_id
+    ORDER BY `query`';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -105,8 +88,7 @@ class interactQuery {
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
     FROM interactQuery
-    WHERE enable = 1 AND
-    LOWER(query)=LOWER(:query)';
+    WHERE LOWER(query)=LOWER(:query)';
 		$query = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 		if (is_object($query)) {
 			log::add('interact', 'debug', 'Je prend : ' . $query->getQuery());
@@ -115,22 +97,19 @@ class interactQuery {
 
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . ', MATCH query AGAINST (:query IN NATURAL LANGUAGE MODE) as score
     FROM interactQuery
-    WHERE enable = 1
     GROUP BY id
     HAVING score > 1';
 		$queries = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 		if (count($queries) == 0) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM interactQuery
-        WHERE enable = 1
-        AND query=:query';
+        WHERE query=:query';
 			$queries = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 			if (is_object($queries)) {
 				return $queries;
 			}
 			$queries = self::all();
 		}
-		log::add('interact', 'debug', 'Result : ' . print_r($queries, true));
 		$caracteres = array(
 			'À' => 'a', 'Á' => 'a', 'Â' => 'a', 'Ä' => 'a', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ä' => 'a', '@' => 'a',
 			'È' => 'e', 'É' => 'e', 'Ê' => 'e', 'Ë' => 'e', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', '€' => 'e',
@@ -161,11 +140,16 @@ class interactQuery {
 			}
 
 		}
-		if (str_word_count($_query) == 1 && $shortest > 1) {
-			log::add('interact', 'debug', 'Correspondance trop éloigné (limite à 1 du à la presence d\'un seul mots) : ' . $shortest);
+		if (str_word_count($_query) == 1 && config::byKey('interact::confidence1') > 0 && $shortest > config::byKey('interact::confidence1')) {
+			log::add('interact', 'debug', 'Correspondance trop éloigné : ' . $shortest);
 			return null;
-		}
-		if (config::byKey('interact::confidence') > 0 && $shortest > config::byKey('interact::confidence')) {
+		} else if (str_word_count($_query) == 2 && config::byKey('interact::confidence2') > 0 && $shortest > config::byKey('interact::confidence2')) {
+			log::add('interact', 'debug', 'Correspondance trop éloigné : ' . $shortest);
+			return null;
+		} else if (str_word_count($_query) == 3 && config::byKey('interact::confidence3') > 0 && $shortest > config::byKey('interact::confidence3')) {
+			log::add('interact', 'debug', 'Correspondance trop éloigné : ' . $shortest);
+			return null;
+		} else if (str_word_count($_query) > 3 && config::byKey('interact::confidence') > 0 && $shortest > config::byKey('interact::confidence')) {
 			log::add('interact', 'debug', 'Correspondance trop éloigné : ' . $shortest);
 			return null;
 		}
@@ -261,6 +245,15 @@ class interactQuery {
 		return $reply[$random];
 	}
 
+	public static function doIn($_params) {
+		$interactQuery = self::byId($_params['interactQuery_id']);
+		if (!is_object($interactQuery)) {
+			return;
+		}
+		$_params['execNow'] = 1;
+		$interactQuery->executeAndReply($_params);
+	}
+
 /*     * *********************Méthodes d'instance************************* */
 
 	public function save() {
@@ -289,144 +282,115 @@ class interactQuery {
 				return __('Vous n\'êtes pas autorisé à exécuter cette action', __FILE__);
 			}
 		}
-		if ($this->getLink_type() == 'whatDoYouKnow') {
-			$object = object::byId($this->getLink_id());
-			if (is_object($object)) {
-				$reply = self::whatDoYouKnow($object);
-				if (trim($reply) == '') {
-					return __('Je ne sais rien sur ', __FILE__) . $object->getName();
-				}
-				return $reply;
-			}
-			return self::whatDoYouKnow();
-		}
-		if ($this->getLink_type() == 'scenario') {
-			$scenario = scenario::byId($this->getLink_id());
-			if (!is_object($scenario)) {
-				return __('Impossible de trouver le scénario correspondant', __FILE__);
-			}
-			log::add('interact', 'debug', 'Execution du scénario : ' . $scenario->getHumanName() . ' => ' . $interactDef->getOptions('scenario_action'));
-			$interactDef = $this->getInteractDef();
-			if (!is_object($interactDef)) {
-				return __('Impossible de trouver la définition de l\'interaction', __FILE__);
-			}
-			$reply = $interactDef->selectReply();
-			if (trim($reply) == '') {
-				$reply = self::replyOk();
-			}
-			$replace = array();
-			$replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
-			$reply = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
-			switch ($interactDef->getOptions('scenario_action')) {
-				case 'start':
-					$scenario->setTags(array(
-						'#query#' => $this->getQuery(),
-						'#profile#' => $replace['#profile#'],
-					));
-					$return = $scenario->launch(false, 'interact', __('Scénario exécuté sur interaction (S.A.R.A.H, SMS...)', __FILE__), 1);
-					if (is_string($return) && $return != '') {
-						$return = str_replace(array_keys($replace), $replace, $return);
-						return $return;
-					}
-					return $reply;
-				case 'stop':
-					$scenario->stop();
-					return $reply;
-				case 'activate':
-					$scenario->setIsActive(1);
-					$scenario->save();
-					return $reply;
-				case 'deactivate':
-					$scenario->setIsActive(0);
-					$scenario->save();
-					return $reply;
-				default:
-					return __('Aucune action n\'est définie dans l\'interaction sur le scénario : ', __FILE__) . $scenario->getHumanName();
-			}
-		}
-
 		$reply = $interactDef->selectReply();
-		$synonymes = array();
-		if ($interactDef->getOptions('synonymes') != '') {
-			foreach (explode('|', $interactDef->getOptions('synonymes')) as $value) {
-				$values = explode('=', $value);
-				$synonymes[strtolower($values[0])] = explode(',', $values[1]);
-			}
-		}
 		$replace = array();
-		$replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
-
-		if ($this->getLink_type() == 'cmd') {
-			foreach (explode('&&', $this->getLink_id()) as $cmd_id) {
-				$cmd = cmd::byId($cmd_id);
-				if (!is_object($cmd)) {
-					continue;
-				}
-				$replace['#commande#'] = $cmd->getName();
-				if (isset($synonymes[strtolower($cmd->getName())])) {
-					$replace['#commande#'] = $synonymes[strtolower($cmd->getName())][rand(0, count($synonymes[strtolower($cmd->getName())]) - 1)];
-				}
-				$replace['#objet#'] = '';
-				$replace['#equipement#'] = '';
-
-				$eqLogic = $cmd->getEqLogic();
-				if (is_object($eqLogic)) {
-					$replace['#equipement#'] = $eqLogic->getName();
-					$object = $eqLogic->getObject();
-					if (is_object($object)) {
-						$replace['#objet#'] = $object->getName();
-					}
-				}
-
-				$replace['#unite#'] = $cmd->getUnite();
-				if ($cmd->getType() == 'action') {
-					$options = null;
-					if ($cmd->getSubType() == 'slider') {
-						preg_match_all("/([0-9]*)/", $_parameters['dictation'], $matches);
-						foreach ($matches[1] as $number) {
-							if (is_numeric($number)) {
-								$options['slider'] = $number;
-							}
-						}
-					}
-					if ($cmd->getSubType() == 'color') {
-						$colors = config::byKey('convertColor');
-						foreach (explode(' ', $_parameters['dictation']) as $word) {
-							if (isset($colors[strtolower($word)])) {
-								$options['color'] = $colors[strtolower($word)];
-							}
-						}
-					}
-					try {
-						log::add('interact', 'debug', 'Execution de la commande : ' . $cmd->getHumanName() . ' => ' . print_r($options, true));
-						if ($cmd->execCmd($options) === false) {
-							return __('Impossible d\'exécuter la commande', __FILE__);
-						}
-					} catch (Exception $exc) {
-						return $exc->getMessage();
-					}
-					if ($options != null) {
-						foreach ($options as $key => $value) {
-							$replace['#' . $key . '#'] = $value;
-						}
-					}
-				}
-				if ($cmd->getType() == 'info') {
-					$value = $cmd->execCmd();
-					if ($value === null) {
-						return __('Impossible de récupérer la valeur de la commande', __FILE__);
-					} else {
-						$replace['#valeur#'] = $value;
-						if ($cmd->getSubType() == 'binary' && $interactDef->getOptions('convertBinary') != '') {
-							$convertBinary = $interactDef->getOptions('convertBinary');
-							$convertBinary = explode('|', $convertBinary);
-							$replace['#valeur#'] = $convertBinary[$replace['#valeur#']];
-						}
+		$tags = interactDef::getTagFromQuery($this->getQuery(), $_parameters['dictation']);
+		$tags_replace = array();
+		foreach ($tags as $key => $value) {
+			$tags_replace['#' . $key . '#'] = $value;
+			$replace['#' . $key . '#'] = $value;
+		}
+		$executeDate = null;
+		$dateConvert = array(
+			'heure' => 'hour',
+			'mois' => 'month',
+			'semaine' => 'week',
+			'année' => 'year',
+		);
+		if (isset($tags_replace['#duration#'])) {
+			$tags_replace['#duration#'] = str_replace(array_keys($dateConvert), $dateConvert, $tags_replace['#duration#']);
+			$executeDate = strtotime('+' . $tags_replace['#duration#']);
+		}
+		if (isset($tags_replace['#time#'])) {
+			$time = str_replace(array('h'), array(':'), $tags_replace['#time#']);
+			if (strlen($time) == 2) {
+				$time .= ':00';
+			} else if (strlen($time) == 3) {
+				$time .= '00';
+			}
+			$executeDate = strtotime($time);
+			if ($executeDate < strtotime('now')) {
+				$executeDate += 3600;
+			}
+		}
+		if ($executeDate !== null && !isset($_parameters['execNow'])) {
+			if (date('Y', $executeDate) < 2000) {
+				return __('Erreur impossible de calculer la date de programmation', __FILE__);
+			}
+			if ($executeDate < (strtotime('now') + 60)) {
+				$executeDate = strtotime('now') + 60;
+			}
+			$crons = cron::searchClassAndFunction('interactQuery', 'doIn', '"interactQuery_id":' . $this->getId());
+			if (is_array($crons)) {
+				foreach ($crons as $cron) {
+					if ($cron->getState() != 'run') {
+						$cron->remove();
 					}
 				}
 			}
+			$cron = new cron();
+			$cron->setClass('interactQuery');
+			$cron->setFunction('doIn');
+			$cron->setOption(array_merge(array('interactQuery_id' => intval($this->getId())), $_parameters));
+			$cron->setLastRun(date('Y-m-d H:i:s'));
+			$cron->setOnce(1);
+			$cron->setSchedule(date('i', $executeDate) . ' ' . date('H', $executeDate) . ' ' . date('d', $executeDate) . ' ' . date('m', $executeDate) . ' * ' . date('Y', $executeDate));
+			$cron->save();
+			$replace['#value#'] = date('Y-m-d H:i:s', $executeDate);
+			$result = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
+			return $result;
 		}
-		return scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
+
+		$colors = config::byKey('convertColor');
+		foreach ($this->getActions('cmd') as $action) {
+			try {
+				$options = array();
+				if (isset($action['options'])) {
+					$options = $action['options'];
+				}
+				if ($tags != null) {
+					foreach ($options as &$option) {
+						$option = str_replace(array_keys($tags_replace), $tags_replace, $option);
+					}
+					if (isset($options['color']) && isset($colors[strtolower($options['color'])])) {
+						$options['color'] = $colors[strtolower($options['color'])];
+					}
+				}
+				$cmd = cmd::byId(str_replace('#', '', $action['cmd']));
+				if (is_object($cmd) && $cmd->getType() == 'info') {
+					$replace['#unite#'] = $cmd->getUnite();
+					$replace['#commande#'] = $cmd->getName();
+					$replace['#objet#'] = '';
+					$replace['#equipement#'] = '';
+					$eqLogic = $cmd->getEqLogic();
+					if (is_object($eqLogic)) {
+						$replace['#equipement#'] = $eqLogic->getName();
+						$object = $eqLogic->getObject();
+						if (is_object($object)) {
+							$replace['#objet#'] = $object->getName();
+						}
+					}
+				}
+				$options['tags'] = $tags_replace;
+				$return = scenarioExpression::createAndExec('action', $action['cmd'], $options);
+				if (trim($return) != '') {
+					$replace['#valeur#'] = $return;
+				}
+
+			} catch (Exception $e) {
+				log::add('interact', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+			}
+		}
+
+		$replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
+		if ($interactDef->getOptions('convertBinary') != '') {
+			$convertBinary = $interactDef->getOptions('convertBinary');
+			$convertBinary = explode('|', $convertBinary);
+			$replace['1'] = $convertBinary[1];
+			$replace['0'] = $convertBinary[0];
+		}
+		$result = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
+		return $result;
 	}
 
 	public function getInteractDef() {
@@ -459,28 +423,12 @@ class interactQuery {
 		$this->query = $query;
 	}
 
-	public function getLink_type() {
-		return $this->link_type;
+	public function getActions($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->actions, $_key, $_default);
 	}
 
-	public function setLink_type($link_type) {
-		$this->link_type = $link_type;
-	}
-
-	public function getLink_id() {
-		return $this->link_id;
-	}
-
-	public function setLink_id($link_id) {
-		$this->link_id = $link_id;
-	}
-
-	public function getEnable() {
-		return $this->enable;
-	}
-
-	public function setEnable($enable) {
-		$this->enable = $enable;
+	public function setActions($_key, $_value) {
+		$this->actions = utils::setJsonAttr($this->actions, $_key, $_value);
 	}
 
 }

@@ -160,16 +160,6 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
 ?>
        </div>
      </div>
-     <div class="form-group">
-      <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Interaction}}</label>
-      <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
-        <?php
-foreach ($usedBy['interact'] as $usedByInteract) {
-	echo '<span class="label label-primary cursor"><a href="' . $usedByInteract->getLinkToConfiguration() . '" style="color : white;">' . $usedByInteract->getQuery() . '</a></span><br/>';
-}
-?>
-     </div>
-   </div>
  </fieldset>
 </form>
 </div>
@@ -209,7 +199,7 @@ foreach ($usedBy['interact'] as $usedByInteract) {
       <div class="form-group">
         <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Code d'accès}}</label>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-          <input type="password" class="cmdAttr form-control" data-l1key="configuration" data-l2key="actionCodeAccess" />
+          <input type="password" class="cmdAttr form-control" data-l1key="configuration" data-l2key="actionCodeAccess" autocomplete="off" />
         </div>
       </div>
       <?php }

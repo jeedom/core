@@ -1,19 +1,19 @@
-<div class="cmd cmd-widget" data-type="action" data-subtype="message" data-cmd_id="#id#" style="width: 146px;">
+<div class="cmd cmd-widget" data-type="action" data-subtype="message" data-cmd_id="#id#" data-cmd_uid="#uid#" style="width: 146px;">
 	<input class="form-control input-sm title" placeholder="#title_placeholder#" data-cmd_id="#id#"/>
-	<textarea class="form-control input-sm message" rows="2" style="margin-top : 5px; resize:vertical;height: 50px;" placeholder="#message_placeholder#" data-cmd_id="#id#"></textarea>
+	<textarea class="form-control input-sm message" rows="2" style="margin-top : 5px; resize:vertical;height: 50px;" placeholder="#message_placeholder#" data-cmd_uid="#uid#" data-cmd_id="#id#"></textarea>
 	<center><a class='btn btn-success btn-xs execute cmdName'>#name#</a></center>
 	<script>
 		if('#title_disable#' == '1'){
-			$('.cmd[data-cmd_id=#id#] .title').hide();
+			$('.cmd[data-cmd_uid=#uid#] .title').hide();
 		}
 		if('#message_disable#' == '1'){
-			$('.cmd[data-cmd_id=#id#] .message').hide();
+			$('.cmd[data-cmd_uid=#uid#] .message').hide();
 		}
-		$('.cmd[data-cmd_id=#id#] .execute').on('click', function() {
-			jeedom.cmd.execute({id: '#id#', value: {title: $('.cmd[data-cmd_id=#id#] .title').value(), message: $('.cmd[data-cmd_id=#id#] .message').value()}});
+		$('.cmd[data-cmd_uid=#uid#]:last .execute').on('click', function() {
+			jeedom.cmd.execute({id: '#id#', value: {title: $('.cmd[data-cmd_uid=#uid#] .title').value(), message: $('.cmd[data-cmd_uid=#uid#] .message').value()}});
 		});
 		if('#title_possibility_list#' != ''){
-			$('.cmd[data-cmd_id=#id#] .title').autocomplete({
+			$('.cmd[data-cmd_uid=#uid#] .title').autocomplete({
 				source: json_decode('#title_possibility_list#'),
 				close: function (event, ui) {
 					$(this).trigger('focusout');

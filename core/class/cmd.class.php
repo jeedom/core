@@ -865,6 +865,7 @@ class cmd {
 			'#minValue#' => $this->getConfiguration('minValue', 0),
 			'#maxValue#' => $this->getConfiguration('maxValue', 100),
 			'#logicalId#' => $this->getLogicalId(),
+			'#uid#' => 'cmd' . $this->getId() . eqLogic::UIDDELIMITER . mt_rand() . eqLogic::UIDDELIMITER,
 		);
 		if ($_cmdColor == null && $version != 'scenario') {
 			$eqLogic = $this->getEqLogic();
@@ -1204,7 +1205,6 @@ class cmd {
 		$return['cmd'] = self::searchConfiguration('#' . $this->getId() . '#');
 		$return['eqLogic'] = eqLogic::searchConfiguration('#' . $this->getId() . '#');
 		$return['scenario'] = scenario::byUsedCommand($this->getId());
-		$return['interact'] = interactDef::byUsedCommand($this->getId());
 		return $return;
 	}
 

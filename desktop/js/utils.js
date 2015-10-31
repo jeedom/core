@@ -110,6 +110,7 @@ setInterval(function () {
         position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'})
+             $(this).closest( ".ui-dialog" ).find(":button").blur();
         },
         beforeClose: function (event, ui) {
             $("body").css({overflow: 'inherit'})
@@ -126,6 +127,7 @@ setInterval(function () {
         position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'});
+             $(this).closest( ".ui-dialog" ).find(":button").blur();
         },
         beforeClose: function (event, ui) {
             $("body").css({overflow: 'inherit'});
@@ -141,6 +143,7 @@ setInterval(function () {
         position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'});
+            $(this).closest( ".ui-dialog" ).find(":button").blur();
         },
         beforeClose: function (event, ui) {
             $("body").css({overflow: 'inherit'});
@@ -156,6 +159,7 @@ setInterval(function () {
         position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'});
+             $(this).closest( ".ui-dialog" ).find(":button").blur();
         },
         beforeClose: function (event, ui) {
             $("body").css({overflow: 'inherit'});

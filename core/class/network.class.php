@@ -573,7 +573,7 @@ class network {
 		try {
 			$gws = self::checkGw();
 			if (count($gws) == 0) {
-				log::add('network', 'error', __('Aucune interface réseau trouvée, je redemarre tous le réseaux', __FILE__));
+				log::add('network', 'error', __('Aucune interface réseau trouvée, je redemarre tous les réseaux', __FILE__));
 				exec('sudo service networking restart');
 				return;
 			}
@@ -585,7 +585,7 @@ class network {
 					if (strpos($iface, 'br0') !== false) {
 						continue;
 					}
-					log::add('network', 'error', __('La passerelle distance de l\'interface ', __FILE__) . $iface . __(' est injoignable je la redemarre pour essayer de corriger', __FILE__));
+					log::add('network', 'error', __('La passerelle distante de l\'interface ', __FILE__) . $iface . __(' est injoignable, je la redemarre pour essayer de corriger', __FILE__));
 					exec('sudo ifdown ' . $iface);
 					sleep(5);
 					exec('sudo ifup --force ' . $iface);
