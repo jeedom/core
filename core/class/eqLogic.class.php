@@ -673,7 +673,7 @@ class eqLogic {
 	}
 
 	public function hasRight($_right) {
-		if (config::byKey('rights::enable') != 0) {
+		if (config::byKey('rights::enable') != 1) {
 			return true;
 		}
 		if (session_status() != PHP_SESSION_NONE || !isset($_SESSION) || !isset($_SESSION['user'])) {
