@@ -343,13 +343,13 @@ class market {
 				config::save('dns::number', $_result['register::dnsNumber']);
 				$restart_dns = true;
 			}
+			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
+				network::dns_start();
+			}
 			if (config::byKey('market::allowDNS') == 1) {
 				if (isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
 					config::save('jeedom::url', $_result['jeedom::url']);
 				}
-			}
-			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
-				network::dns_start();
 			}
 			if (isset($_result['market::allowBeta']) && config::byKey('market::allowBeta') != $_result['market::allowBeta']) {
 				config::save('market::allowBeta', $_result['market::allowBeta']);
