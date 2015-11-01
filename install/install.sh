@@ -231,10 +231,6 @@ configure_nginx() {
     if [ ! -z "${JEEDOM_ROOT}" ] ; then
         sed -i 's%root /usr/share/nginx/www;%root /usr/share/nginx/www/jeedom;%g' /etc/nginx/sites-available/default
     fi
-    if [ ! -f '/etc/nginx/sites-available/jeedom_dynamic_rule' ] ; then
-        cp install/nginx_jeedom_dynamic_rules /etc/nginx/sites-available/jeedom_dynamic_rule
-    fi
-    chmod 777 /etc/nginx/sites-available/jeedom_dynamic_rule
     if [ ! -f '/etc/nginx/sites-enabled/default' ] ; then
         ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
     fi
