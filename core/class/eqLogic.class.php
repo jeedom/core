@@ -780,9 +780,18 @@ class eqLogic {
 
 	public function getCmd($_type = null, $_logicalId = null, $_visible = null, $_multiple = false) {
 		if ($_logicalId != null) {
-			return cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple, $_type);
+			$cmds = cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple, $_type);
+		} else {
+			$cmds = cmd::byEqLogicId($this->id, $_type, $_visible, $this);
 		}
-		return cmd::byEqLogicId($this->id, $_type, $_visible, $this);
+		if (is_array($cmds)) {
+			foreach ($cmds as $cmd) {
+				$cmd->setEqLogic($this);
+			}
+		} elseif (is_object($cmds)) {
+			$cmds->setEqLogic($this);
+		}
+		return $cmds;
 	}
 
 	public function searchCmdByConfiguration($_configuration, $_type = null) {

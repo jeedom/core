@@ -1396,9 +1396,13 @@ class cmd {
 
 	public function getEqLogic() {
 		if ($this->_eqLogic == null) {
-			$this->_eqLogic = eqLogic::byId($this->eqLogic_id);
+			$this->setEqLogic(eqLogic::byId($this->eqLogic_id));
 		}
 		return $this->_eqLogic;
+	}
+
+	public function setEqLogic($_eqLogic) {
+		$this->_eqLogic = $_eqLogic;
 	}
 
 	public function getEventOnly() {
