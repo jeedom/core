@@ -338,7 +338,7 @@ class interactQuery {
 			$cron->setOnce(1);
 			$cron->setSchedule(date('i', $executeDate) . ' ' . date('H', $executeDate) . ' ' . date('d', $executeDate) . ' ' . date('m', $executeDate) . ' * ' . date('Y', $executeDate));
 			$cron->save();
-			$replace['#value#'] = date('Y-m-d H:i:s', $executeDate);
+			$replace['#valeur#'] = date('Y-m-d H:i:s', $executeDate);
 			$result = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
 			return $result;
 		}
