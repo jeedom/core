@@ -761,9 +761,13 @@ class eqLogic {
 
 	public function getObject() {
 		if ($this->_object == null) {
-			$this->_object = object::byId($this->object_id);
+			$this->setObject(object::byId($this->object_id));
 		}
 		return $this->_object;
+	}
+
+	public function setObject($_object) {
+		$this->_object = $_object;
 	}
 
 	public function getEqType_name() {
