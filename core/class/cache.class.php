@@ -50,31 +50,35 @@ class cache {
 		if (self::$cache !== null) {
 			return self::$cache;
 		}
+		$arrayCache = new \Doctrine\Common\Cache\ArrayCache();
 		$engine = config::byKey('cache::engine');
 		switch ($engine) {
 			case 'FilesystemCache':
-				self::$cache = new \Doctrine\Common\Cache\FilesystemCache("/tmp/jeedom-cache");
+				$cache = new \Doctrine\Common\Cache\FilesystemCache("/tmp/jeedom-cache");
 				break;
 			case 'PhpFileCache':
-				self::$cache = new \Doctrine\Common\Cache\PhpFileCache("/tmp/jeedom-cache-php");
+				$cache = new \Doctrine\Common\Cache\PhpFileCache("/tmp/jeedom-cache-php");
 				break;
 			case 'MemcachedCache':
 				$memcached = new Memcached();
 				$memcached->connect(config::byKey('cache::memcacheaddr'), config::byKey('cache::memcacheport'));
-				self::$cache = new \Doctrine\Common\Cache\MemcachedCache();
-				self::$cache->setMemcached($memcached);
+				$cache = new \Doctrine\Common\Cache\MemcachedCache();
+				$cache->setMemcached($memcached);
 				break;
 			case 'RedisCache':
 				$redis = new Redis();
 				$redis->connect(config::byKey('cache::redisaddr'), config::byKey('cache::redisport'));
-				self::$cache = new \Doctrine\Common\Cache\RedisCache();
-				self::$cache->setRedis($redis);
+				$cache = new \Doctrine\Common\Cache\RedisCache();
+				$cache->setRedis($redis);
 				break;
 			default:
-				self::$cache = new \Doctrine\Common\Cache\FilesystemCache("/tmp/jeedom-cache");
+				$cache = new \Doctrine\Common\Cache\FilesystemCache("/tmp/jeedom-cache");
 				break;
 		}
-
+		self::$cache = new \Doctrine\Common\Cache\ChainCache([
+			$arrayCache,
+			$cache,
+		]);
 		return self::$cache;
 	}
 
