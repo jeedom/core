@@ -359,7 +359,7 @@ class interactQuery {
 					}
 				}
 				$cmd = cmd::byId(str_replace('#', '', $action['cmd']));
-				if (is_object($cmd) && $cmd->getType() == 'info') {
+				if (is_object($cmd)) {
 					$replace['#unite#'] = $cmd->getUnite();
 					$replace['#commande#'] = $cmd->getName();
 					$replace['#objet#'] = '';
