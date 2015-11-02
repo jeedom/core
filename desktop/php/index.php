@@ -272,11 +272,11 @@ foreach (planHeader::all() as $plan_menu) {
 if (hasRight('logview', true)) {
 		?>
 													<li class="expertModeVisible"><a href="index.php?v=d&p=log"><i class="fa fa-file-o"></i> {{Logs}}</a></li>
-													<li class="expertModeVisible"><a href="index.php?v=d&p=battery"><i class="fa fa-battery-full"></i> {{Batteries}}</a></li>
-													<li class="divider"></li>
 													<?php
 }
 	?>
+												<li><a href="index.php?v=d&p=battery"><i class="fa fa-battery-full"></i> {{Batteries}}</a></li>
+												<li class="divider"></li>
 
 												<?php if (hasRight('sysinfo', true)) {
 		?>
@@ -406,20 +406,20 @@ if (config::byKey('security::enable') != 0 && hasRight('securityview', true)) {
 }
 	if (config::byKey('rights::enable') != 0 && isConnect('admin')) {
 		?>
-													<li><a href="index.php?v=d&p=rights"><i class="fa fa-graduation-cap"></i> {{Gestion des droits avancés}}</a></li>
-													<?php }
+														<li><a href="index.php?v=d&p=rights"><i class="fa fa-graduation-cap"></i> {{Gestion des droits avancés}}</a></li>
+														<?php }
 	?>
-												</ul>
-											</li>
-											<li class="dropdown">
-												<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-													<i class="fa fa-user"></i>
-													<span class="caret"></span>
-												</a>
-												<ul class="dropdown-menu">
-													<li><a href="index.php?v=d&p=profils"><i class="fa fa-briefcase"></i> {{Profil}} <?php echo $_SESSION['user']->getLogin();?></a></li>
+													</ul>
+												</li>
+												<li class="dropdown">
+													<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+														<i class="fa fa-user"></i>
+														<span class="caret"></span>
+													</a>
+													<ul class="dropdown-menu">
+														<li><a href="index.php?v=d&p=profils"><i class="fa fa-briefcase"></i> {{Profil}} <?php echo $_SESSION['user']->getLogin();?></a></li>
 
-													<?php
+														<?php
 if (isConnect('admin')) {
 		if ($_SESSION['user']->getOptions('expertMode') == 1) {
 			echo '<li class="cursor"><a id="bt_expertMode" state="1"><i class="fa fa-check-square-o"></i> {{Mode expert}}</a></li>';
@@ -427,25 +427,25 @@ if (isConnect('admin')) {
 			echo '<li class="cursor"><a id="bt_expertMode" state="0"><i class="fa fa-square-o"></i> {{Mode expert}}</a></li>';
 		}
 		?>
-														<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
-														<li class="divider"></li>
-														<?php	if (jeedom::isCapable('sudo')) {
+															<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
+															<li class="divider"></li>
+															<?php	if (jeedom::isCapable('sudo')) {
 			echo '<li class="cursor expertModeVisible"><a id="bt_rebootSystem" state="0"><i class="fa fa-repeat"></i> {{Redémarrer}}</a></li>';
 			echo '<li class="cursor expertModeVisible"><a id="bt_haltSystem" state="0"><i class="fa fa-power-off"></i> {{Eteindre}}</a></li>';
 		}
 	}
 	?>
-													<li class="divider"></li>
-													<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
-													<li class="divider"></li>
-													<li><a href="#">{{Node JS}} <span class="span_nodeJsState binary red tooltips"></span></a></li>
-													<li><a href="#" id="bt_jeedomAbout">{{Version}} v<?php echo jeedom::version();?></a></li>
-												</ul>
-											</li>
-											<li>
-												<?php if (isset($plugin) && is_object($plugin)) {?>
-												<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/plugins/<?php echo init('m');?>/fr_FR/<?php echo init('m');?>.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
-												<?php } else {
+														<li class="divider"></li>
+														<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
+														<li class="divider"></li>
+														<li><a href="#">{{Node JS}} <span class="span_nodeJsState binary red tooltips"></span></a></li>
+														<li><a href="#" id="bt_jeedomAbout">{{Version}} v<?php echo jeedom::version();?></a></li>
+													</ul>
+												</li>
+												<li>
+													<?php if (isset($plugin) && is_object($plugin)) {?>
+													<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/plugins/<?php echo init('m');?>/fr_FR/<?php echo init('m');?>.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
+													<?php } else {
 		if (init('p') == 'scenarioAssist') {
 			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-scenario.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
 		} else if (init('p') == 'view_edit') {
@@ -456,30 +456,30 @@ if (isConnect('admin')) {
 
 	}
 	?>
-											</li>
-											<?php if (hasRight('reportsend', true)) {?>
-											<li>
-												<a class="bt_reportBug cursor tooltips" title="{{Envoyer un rapport de bug}}">
-													<i class="fa fa-exclamation-circle" ></i>
-												</a>
-											</li>
-											<?php }
+												</li>
+												<?php if (hasRight('reportsend', true)) {?>
+												<li>
+													<a class="bt_reportBug cursor tooltips" title="{{Envoyer un rapport de bug}}">
+														<i class="fa fa-exclamation-circle" ></i>
+													</a>
+												</li>
+												<?php }
 	?>
-											<li>
-												<a href="#">
-													<span id="horloge"><?php echo date('H:i:s');?></span>
-												</a>
-											</li>
-										</ul>
+												<li>
+													<a href="#">
+														<span id="horloge"><?php echo date('H:i:s');?></span>
+													</a>
+												</li>
+											</ul>
 
-									</nav><!--/.nav-collapse -->
-								</div>
-							</header>
-							<main class="container-fluid" id="div_mainContainer">
-								<div style="display: none;width : 100%" id="div_alert"></div>
+										</nav><!--/.nav-collapse -->
+									</div>
+								</header>
+								<main class="container-fluid" id="div_mainContainer">
+									<div style="display: none;width : 100%" id="div_alert"></div>
 
-								<div id="div_pageContainer">
-									<?php
+									<div id="div_pageContainer">
+										<?php
 try {
 		if (isset($plugin) && is_object($plugin)) {
 			include_file('desktop', $page, 'php', $plugin->getId());
@@ -498,23 +498,23 @@ try {
 		echo '</div>';
 	}
 	?>
-								</div>
-								<div id="md_modal"></div>
-								<div id="md_modal2"></div>
-								<div id="md_pageHelp" style="display: none;" title="Aide">
-									<ul class="nav nav-tabs">
-										<li class="active"><a href="#div_helpWebsite" data-toggle="tab">{{Générale}}</a></li>
-										<li><a href="#div_helpSpe" data-toggle="tab">{{Détaillée}}</a></li>
-									</ul>
-									<div class="tab-content">
-										<div class="tab-pane active" id="div_helpWebsite" ></div>
-										<div class="tab-pane" id="div_helpSpe" ></div>
 									</div>
-								</div>
-								<div id="md_reportBug" title="{{Ouverture d'un ticket}}"></div>
-							</main>
-							<?php
+									<div id="md_modal"></div>
+									<div id="md_modal2"></div>
+									<div id="md_pageHelp" style="display: none;" title="Aide">
+										<ul class="nav nav-tabs">
+											<li class="active"><a href="#div_helpWebsite" data-toggle="tab">{{Générale}}</a></li>
+											<li><a href="#div_helpSpe" data-toggle="tab">{{Détaillée}}</a></li>
+										</ul>
+										<div class="tab-content">
+											<div class="tab-pane active" id="div_helpWebsite" ></div>
+											<div class="tab-pane" id="div_helpSpe" ></div>
+										</div>
+									</div>
+									<div id="md_reportBug" title="{{Ouverture d'un ticket}}"></div>
+								</main>
+								<?php
 }
 ?>
-					</body>
-					</html>
+						</body>
+						</html>
