@@ -330,8 +330,11 @@ class network {
 			throw new Exception(__('La commande de status du DNS est introuvable', __FILE__));
 		}
 		$cmd->execCmd();
-		shell_exec('sudo iptables -A INPUT -i tun0 -p tcp  --destination-port 80 -j ACCEPT');
-		shell_exec('sudo iptables -A INPUT -i tun0 -j DROP');
+		$interface = $openvpn->getInterfaceName();
+		if ($interface != null && $interface != '') {
+			shell_exec('sudo iptables -A INPUT -i ' . $interface . ' -p tcp  --destination-port 80 -j ACCEPT');
+			shell_exec('sudo iptables -A INPUT -i ' . $interface . ' -j DROP');
+		}
 	}
 
 	public static function dns_stop() {
