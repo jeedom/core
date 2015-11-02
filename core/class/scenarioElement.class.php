@@ -199,7 +199,7 @@ class scenarioElement {
 				$cron->setLastRun(date('Y-m-d H:i:s'));
 				$cron->setOnce(1);
 				$next = strtotime('+ ' . $time . ' min');
-				$cron->setSchedule(date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next));
+				$cron->setSchedule(cron::convertDateToCron($next));
 				$cron->save();
 				$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmé à : ', __FILE__) . date('Y-m-d H:i:00', $next) . ' (+ ' . $time . ' min)');
 			}
@@ -246,7 +246,7 @@ class scenarioElement {
 			$cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
 			$cron->setLastRun(date('Y-m-d H:i:s'));
 			$cron->setOnce(1);
-			$cron->setSchedule(date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next));
+			$cron->setSchedule(cron::convertDateToCron($next));
 			$cron->save();
 			$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmée à : ', __FILE__) . date('Y-m-d H:i:00', $next));
 			return true;
