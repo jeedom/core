@@ -329,7 +329,9 @@ class network {
 		if (!is_object($cmd)) {
 			throw new Exception(__('La commande de status du DNS est introuvable', __FILE__));
 		}
-		return $cmd->execCmd();
+		$cmd->execCmd();
+		shell_exec('sudo iptables -A INPUT -i tun0 -p tcp  --destination-port 80 -j ACCEPT');
+		shell_exec('sudo iptables -A INPUT -i tun0 -j DROP');
 	}
 
 	public static function dns_stop() {
