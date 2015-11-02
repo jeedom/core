@@ -16,13 +16,7 @@
  */
 
 
- if (getUrlVars('saveSuccessFull') == 1) {
-    $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
-}
 
-if (getUrlVars('removeSuccessFull') == 1) {
-    $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
-}
 
 
 $("#div_listInteract").resizable({
@@ -138,6 +132,14 @@ if (is_numeric(getUrlVars('id'))) {
     }
 }
 
+ if (getUrlVars('saveSuccessFull') == 1) {
+    $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
+}
+
+if (getUrlVars('removeSuccessFull') == 1) {
+    $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
+}
+
 $('#bt_testInteract,#bt_testInteract2').on('click', function () {
     $('#md_modal').dialog({title: "{{Tester les interactions}}"});
     $('#md_modal').load('index.php?v=d&modal=interact.test').dialog('open');
@@ -164,7 +166,7 @@ $("#bt_saveInteract").on('click', function () {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-            displayInteract(data.id);
+           loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
         }
     });
 });
