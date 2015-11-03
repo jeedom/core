@@ -4,7 +4,7 @@ if (!hasRight('logview', true)) {
 }
 
 $page = init('page', 1);
-$logfile = init('logfile', 'core');
+$logfile = init('logfile', 'nginx.error');
 $list_logfile = array();
 $dir = opendir('log/');
 $logExist = false;

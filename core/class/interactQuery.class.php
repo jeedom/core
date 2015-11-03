@@ -344,45 +344,47 @@ class interactQuery {
 		}
 
 		$colors = config::byKey('convertColor');
-		foreach ($this->getActions('cmd') as $action) {
-			try {
-				$options = array();
-				if (isset($action['options'])) {
-					$options = $action['options'];
-				}
-				if ($tags != null) {
-					foreach ($options as &$option) {
-						$option = str_replace(array_keys($tags_replace), $tags_replace, $option);
+		if (is_array($this->getActions('cmd'))) {
+			foreach ($this->getActions('cmd') as $action) {
+				try {
+					$options = array();
+					if (isset($action['options'])) {
+						$options = $action['options'];
 					}
-					if (isset($options['color']) && isset($colors[strtolower($options['color'])])) {
-						$options['color'] = $colors[strtolower($options['color'])];
-					}
-				}
-				$cmd = cmd::byId(str_replace('#', '', $action['cmd']));
-				if (is_object($cmd)) {
-					$replace['#unite#'] = $cmd->getUnite();
-					$replace['#commande#'] = $cmd->getName();
-					$replace['#objet#'] = '';
-					$replace['#equipement#'] = '';
-					$eqLogic = $cmd->getEqLogic();
-					if (is_object($eqLogic)) {
-						$replace['#equipement#'] = $eqLogic->getName();
-						$object = $eqLogic->getObject();
-						if (is_object($object)) {
-							$replace['#objet#'] = $object->getName();
+					if ($tags != null) {
+						foreach ($options as &$option) {
+							$option = str_replace(array_keys($tags_replace), $tags_replace, $option);
+						}
+						if (isset($options['color']) && isset($colors[strtolower($options['color'])])) {
+							$options['color'] = $colors[strtolower($options['color'])];
 						}
 					}
-				}
-				$options['tags'] = $tags_replace;
-				$return = scenarioExpression::createAndExec('action', $action['cmd'], $options);
-				if (trim($return) != '') {
-					$replace['#valeur#'] = $return;
-				}
+					$cmd = cmd::byId(str_replace('#', '', $action['cmd']));
+					if (is_object($cmd)) {
+						$replace['#unite#'] = $cmd->getUnite();
+						$replace['#commande#'] = $cmd->getName();
+						$replace['#objet#'] = '';
+						$replace['#equipement#'] = '';
+						$eqLogic = $cmd->getEqLogic();
+						if (is_object($eqLogic)) {
+							$replace['#equipement#'] = $eqLogic->getName();
+							$object = $eqLogic->getObject();
+							if (is_object($object)) {
+								$replace['#objet#'] = $object->getName();
+							}
+						}
+					}
+					$options['tags'] = $tags_replace;
+					$return = scenarioExpression::createAndExec('action', $action['cmd'], $options);
+					if (trim($return) != '') {
+						$replace['#valeur#'] = $return;
+					}
 
-			} catch (Exception $e) {
-				log::add('interact', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
-			} catch (Error $e) {
-				log::add('interact', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+				} catch (Exception $e) {
+					log::add('interact', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+				} catch (Error $e) {
+					log::add('interact', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+				}
 			}
 		}
 
@@ -393,8 +395,7 @@ class interactQuery {
 			$replace['1'] = $convertBinary[1];
 			$replace['0'] = $convertBinary[0];
 		}
-		$result = str_replace(array_keys($replace), $replace, scenarioExpression::setTags($reply));
-		return $result;
+		return str_replace(array_keys($replace), $replace, scenarioExpression::setTags($reply));
 	}
 
 	public function getInteractDef() {
