@@ -873,3 +873,17 @@ function evaluate($_string) {
 function secureXSS($_string) {
 	return str_replace('&amp;', '&', htmlspecialchars(strip_tags($_string), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 }
+
+function minify($buffer) {
+	$search = array(
+		'/\>[^\S ]+/s', // strip whitespaces after tags, except space
+		'/[^\S ]+\</s', // strip whitespaces before tags, except space
+		'/(\s)+/s', // shorten multiple whitespace sequences
+	);
+	$replace = array(
+		'>',
+		'<',
+		'\\1',
+	);
+	return preg_replace($search, $replace, $buffer);
+}

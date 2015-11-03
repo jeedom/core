@@ -36,6 +36,6 @@ if (file_exists($file)) {
 		header("HTTP/1.1 304 Not Modified");
 		exit;
 	}
-	echo translate::exec(file_get_contents($file), init('file'), true);
+	echo file_get_contents($file);
 	exit;
 }
