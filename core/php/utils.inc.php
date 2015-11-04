@@ -108,7 +108,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 			require_once $path;
 			echo translate::exec(ob_get_clean(), "$_folder/$_fn");
 		} else if ($type == 'css') {
-			echo "<link href=\"core/php/getCSS.php?file=$_folder/$_fn&md5=" . md5_file($path) . "\" rel=\"stylesheet\" />";
+			echo "<link href=\"$_folder/$_fn?md5=" . md5_file($path) . "\" rel=\"stylesheet\" />";
 		} else if ($type == 'js') {
 			echo "<script type=\"text/javascript\" src=\"core/php/getJS.php?file=$_folder/$_fn&md5=" . md5_file($path) . "\"></script>";
 		}

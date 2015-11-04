@@ -232,96 +232,92 @@
                                     if (jQuery.inArray(_path[i], scriptsCache) == -1) {
                                         var extension = _path[i].substr(_path[i].length - 3);
                                         if (extension == 'css') {
-                                           if (_path[i].indexOf('core/php/getCSS.php?file=') >= 0) {
                                             $('<link rel="stylesheet" href="' + _path[i] + '" type="text/css" />').appendTo('head');
-                                        } else {
-                                            $('<link rel="stylesheet" href="core/php/getCSS.php?file=' + _path[i] + '" type="text/css" />').appendTo('head');
                                         }
-                                    }
-                                    if (extension == '.js') {
-                                        if (_path[i].indexOf('core/php/getJS.php?file=') >= 0) {
-                                            $('<script type="text/javascript" src="' + _path[i] + '"></script>').appendTo('head');
-                                        } else {
-                                            $('<script type="text/javascript" src="core/php/getJS.php?file=' + _path[i] + '"></script>').appendTo('head');
+                                        if (extension == '.js') {
+                                            if (_path[i].indexOf('core/php/getJS.php?file=') >= 0) {
+                                                $('<script type="text/javascript" src="' + _path[i] + '"></script>').appendTo('head');
+                                            } else {
+                                                $('<script type="text/javascript" src="core/php/getJS.php?file=' + _path[i] + '"></script>').appendTo('head');
+                                            }
                                         }
+
+                                        scriptsCache.push(_path[i]);
                                     }
-
-                                    scriptsCache.push(_path[i]);
                                 }
-                            }
-                            $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-                                if (options.dataType == 'script' || originalOptions.dataType == 'script') {
-                                    options.cache = false;
+                                $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+                                    if (options.dataType == 'script' || originalOptions.dataType == 'script') {
+                                        options.cache = false;
+                                    }
+                                });
+                                _callback();
+                                return;
+                            };
+
+                            /********************************loading************************/
+                            $.showLoading = function () {
+                                if ($.mobile) {
+                                    $('#div_loadingSpinner').show()
+                                } else {
+                                    if ($('#jqueryLoadingDiv').length == 0) {
+                                        $('body').append('<div id="jqueryLoadingDiv"><div class="overlay"></div><i class="fa fa-cog fa-spin loadingImg"></i></div>');
+                                    }
+                                    $('#jqueryLoadingDiv').show();
                                 }
-                            });
-                            _callback();
-                            return;
-                        };
-
-                        /********************************loading************************/
-                        $.showLoading = function () {
-                            if ($.mobile) {
-                                $('#div_loadingSpinner').show()
-                            } else {
-                                if ($('#jqueryLoadingDiv').length == 0) {
-                                    $('body').append('<div id="jqueryLoadingDiv"><div class="overlay"></div><i class="fa fa-cog fa-spin loadingImg"></i></div>');
+                            };
+                            $.hideLoading = function () {
+                                if ($.mobile) {
+                                    $('#div_loadingSpinner').hide()
+                                } else {
+                                    $('#jqueryLoadingDiv').hide();
                                 }
-                                $('#jqueryLoadingDiv').show();
-                            }
-                        };
-                        $.hideLoading = function () {
-                            if ($.mobile) {
-                                $('#div_loadingSpinner').hide()
-                            } else {
-                                $('#jqueryLoadingDiv').hide();
-                            }
-                        };
+                            };
 
-                        /*********************jquery alert*************************************/
-                        $.fn.showAlert = function (_options) {
-                            var options = init(_options, {});
-                            options.message = init(options.message, '');
-                            options.level = init(options.level, '');
-                            options.emptyBefore = init(options.emptyBefore, true);
-                            options.show = init(options.show, true);
-                            if ($.mobile) {
-                               new $.nd2Toast({
-                                message :  options.message, 
-                                ttl : 3000
-                            });
-                           } else {
-                            if (options.emptyBefore == false) {
-                                var html = $(this).find('.displayError').html();
-                                if (isset(html)) {
-                                    options.message = html + '<br/>' + options.message;
+                            /*********************jquery alert*************************************/
+                            $.fn.showAlert = function (_options) {
+                                var options = init(_options, {});
+                                options.message = init(options.message, '');
+                                options.level = init(options.level, '');
+                                options.emptyBefore = init(options.emptyBefore, true);
+                                options.show = init(options.show, true);
+                                if ($.mobile) {
+                                 new $.nd2Toast({
+                                    message :  options.message, 
+                                    ttl : 3000
+                                });
+                             } else {
+                                if (options.emptyBefore == false) {
+                                    var html = $(this).find('.displayError').html();
+                                    if (isset(html)) {
+                                        options.message = html + '<br/>' + options.message;
+                                    }
                                 }
-                            }
-                            $(this).empty();
-                            $(this).html('<span href="#" class="btn_closeAlert pull-right cursor" style="position : relative; left : 30px;color : grey">×</span><span class="displayError">' + options.message + '</span>');
-                            $(this).removeClass('alert alert-warning alert-danger alert-info alert-success jqAlert');
-                            $(this).addClass('alert jqAlert');
-                            if (options.level != '') {
-                                $(this).addClass('alert-' + options.level);
-                            }
-                            if (options.show) {
-                                $(this).show();
-                                $(this).css('padding', '7px 35px 7px 15px');
-                                $(this).css('margin-bottom', '5px');
-                                $(this).css('overflow', 'auto');
-                                $(this).css('max-height', $(window).height() - 100 + 'px');
-                                $(this).css('z-index', '9999');
-                            }
+                                $(this).empty();
+                                $(this).html('<span href="#" class="btn_closeAlert pull-right cursor" style="position : relative; left : 30px;color : grey">×</span><span class="displayError">' + options.message + '</span>');
+                                $(this).removeClass('alert alert-warning alert-danger alert-info alert-success jqAlert');
+                                $(this).addClass('alert jqAlert');
+                                if (options.level != '') {
+                                    $(this).addClass('alert-' + options.level);
+                                }
+                                if (options.show) {
+                                    $(this).show();
+                                    $(this).css('padding', '7px 35px 7px 15px');
+                                    $(this).css('margin-bottom', '5px');
+                                    $(this).css('overflow', 'auto');
+                                    $(this).css('max-height', $(window).height() - 100 + 'px');
+                                    $(this).css('z-index', '9999');
+                                }
 
-                            if ($(this).offset().top - $(window).scrollTop() < $(this).height()) {
-                                $('html, body').animate({
-                                    scrollTop: $(this).offset().top - 60
-                                }, 650);
-                            }
+                                if ($(this).offset().top - $(window).scrollTop() < $(this).height()) {
+                                    $('html, body').animate({
+                                        scrollTop: $(this).offset().top - 60
+                                    }, 650);
+                                }
 
-                            $(this).find('.btn_closeAlert').on('click', function () {
-                                $(this).closest('.jqAlert').hide();
-                            });
-                        }
+                                $(this).find('.btn_closeAlert').on('click', function () {
+                                    $(this).closest('.jqAlert').hide();
+                                });
+                            }
         //Hide/show debug trace
         $(this).find('.bt_errorShowTrace').on('click', function () {
             var errorTrace = $(this).parent().find('.pre_errorTrace');

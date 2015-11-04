@@ -26,13 +26,13 @@
 
 $(function () {
 
- $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+   $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
     $(this).parent().siblings().removeClass('open');
     $(this).parent().toggleClass('open');
 });
- if (!navigator.userAgent.match(/Android/i)
+   if (!navigator.userAgent.match(/Android/i)
     && !navigator.userAgent.match(/webOS/i)
     && !navigator.userAgent.match(/iPhone/i)
     && !navigator.userAgent.match(/iPad/i)
@@ -245,9 +245,9 @@ setInterval(function () {
     });
 
     $('#bt_showEventInRealTime').on('click',function(){
-     $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
-     $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
- });
+       $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
+       $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
+   });
 
     $('#bt_gotoDashboard').on('click',function(){
         $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
