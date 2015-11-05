@@ -364,42 +364,42 @@ Log::
                            
 Scénario::
 
-* *$scenario->getName()*;
+* *$scenario\->getName()*;
     ** Retourne le nom du scénario courant
                               
-* *$scenario->getGroup()*;
+* *$scenario\->getGroup()*;
     ** Retourne le groupe du scénario
                            
-* *$scenario->getIsActive()*;
+* *$scenario\->getIsActive()*;
     ** Retourne l'état du scénario
                               
-* *$scenario->setIsActive($active)*;
+* *$scenario\->setIsActive($active)*;
     ** Permet d'activer ou non le scénario
     ** $active => 1 actif , 0 non actif
                               
-* *$scenario->setOnGoing($onGoing)*;
+* *$scenario\->setOnGoing($onGoing)*;
     ** Permet de dire si le scénario est en cours ou non
     ** $onGoing => 1 en cours , 0 arrêté
                                
-* *$scenario->save()*;
+* *$scenario\->save()*;
     ** Sauvegarde les modifications
                              
-* *$scenario->setData($key, $value)*;
-    ** Sauvegarde une donnée
+* *$scenario\->setData($key, $value)*;
+    ** Sauvegarde une donnée (variable)
     ** $key => clef de la valeur (int ou string)
     ** $value => valeur à stocker (int, string, array ou object)
                                
-* *$scenario->getData($key)*;
-    ** Récupère une donnée
+* *$scenario\->getData($key)*;
+    ** Récupère une donnée (variable)
     ** $key => clef de la valeur (int ou string)
                              
-* *$scenario->removeData($key)*;
+* *$scenario\->removeData($key)*;
     ** Supprime une donnée
 
-* *$scenario->setLog($message)*;
+* *$scenario\->setLog($message)*;
     ** Ecris message dans le log du scénario
 
-* *$scenario->persistLog()*;
+* *$scenario\->persistLog()*;
     ** Force l'écriture du log (sinon il est ecris seulement à la fin du scénario). Attention ceci peut un peu ralentir le scénario
 
 == Les variables
