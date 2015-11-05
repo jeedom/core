@@ -1,6 +1,6 @@
 = Utilisateur
 
-C'est ici que l'on va pouvoir définir la liste des utilisateurs autorisés à se connecter à Jeedom, mais également leurs droits d'administrateur
+C'est ici que l'on va pouvoir définir la liste des utilisateurs autorisés à se connecter à Jeedom, mais également leurs droits d'administrateur.
 
 Accessible par Général -> Administration -> Utilisateurs : 
 
@@ -16,12 +16,12 @@ image::../images/user3.png[]
 
 En dessous vous avez un tableau :
 
-* *Nom d'utilisateur* : le login de l'utilisateur
-* *Actions* : La possibilité de changer le mot de passe de l'utilisateur ou de supprimer son compte
-* *Actif* : la possibilité de desactiver le compte
-* *Droits* : la possibilité de passer ou non l'utilisateur en mode administrateur (permet d'avoir accès a tous ce qui est configuration de jeedom, création des scénarios, gestion des plugin, configuration des équipement, des désign, des vues...)
-* *Date de dernière connexion* : date de derniere connexion de l'utilisateur. Attention ici c'est la date de connexion reel, ainsi si vous enregistré votre ordinateur la date de connexion n'est pas mise à jour à chaque fois que vous y retournez
-* *Accès direct* : donne une url pour se connecter directement a Jeedom avec le compte en question
+* *Nom d'utilisateur* : le login de l'utilisateur,
+* *Actions* : la possibilité de changer le mot de passe de l'utilisateur ou de supprimer son compte,
+* *Actif* : la possibilité de désactiver le compte,
+* *Droits* : la possibilité de passer ou non l'utilisateur en mode administrateur (permet d'avoir accès à tout ce qui est configuration de jeedom, création des scénarios, gestion des plugin, configuration des équipement, des désign, des vues...),
+* *Date de dernière connexion* : date de dernière connexion de l'utilisateur. Attention ici c'est la date de connexion réelle, ainsi si vous enregistrez votre ordinateur, la date de connexion n'est pas mise à jour à chaque fois que vous y retournez,
+* *Accès direct* : donne une url pour se connecter directement à Jeedom avec le compte en question.
 
 [TIP]
-En cas de changement n'oubliez pas de cliquer sur sauvegarder
+En cas de changement n'oubliez pas de cliquer sur sauvegarder.
