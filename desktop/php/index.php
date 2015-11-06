@@ -84,7 +84,6 @@ if (count($plugins_list) > 0) {
 	<meta name="author" content="">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<META HTTP-EQUIV="Pragma" CONTENT="private">
 				<script>
 					var clientDatetime = new Date();
 					var clientServerDiffDatetime = (<?php echo strtotime('now');?> * 1000) - clientDatetime.getTime();
@@ -416,6 +415,7 @@ if (config::byKey('security::enable') != 0 && hasRight('securityview', true)) {
 													</a>
 													<ul class="dropdown-menu">
 														<li><a href="index.php?v=d&p=profils"><i class="fa fa-briefcase"></i> {{Profil}} <?php echo $_SESSION['user']->getLogin();?></a></li>
+														<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
 
 														<?php
 if (isConnect('admin')) {
@@ -425,7 +425,7 @@ if (isConnect('admin')) {
 			echo '<li class="cursor"><a id="bt_expertMode" state="0"><i class="fa fa-square-o"></i> {{Mode expert}}</a></li>';
 		}
 		?>
-															<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
+
 															<li class="divider"></li>
 															<?php	if (jeedom::isCapable('sudo')) {
 			echo '<li class="cursor expertModeVisible"><a id="bt_rebootSystem" state="0"><i class="fa fa-repeat"></i> {{Redémarrer}}</a></li>';

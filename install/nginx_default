@@ -7,6 +7,7 @@ server {
         error_log /usr/share/nginx/www/jeedom/log/nginx.error;
         client_max_body_size 100M;
         server_tokens off;
+        add_header Cache-Control "public";
        
         location /jeedom/ {
                 try_files $uri $uri/ /index.html /index.php;

@@ -21,7 +21,7 @@ $root_dir = dirname(__FILE__) . '/../../core/css/icon/';
 
 foreach (ls($root_dir, '*') as $dir) {
 	if (is_dir($root_dir . $dir) && file_exists($root_dir . $dir . '/style.css')) {
-		echo '<link rel="stylesheet" href="core/css/icon/' . $dir . 'style.css">' . "\n";
+		echo '<link rel="stylesheet" href="core/css/icon/' . $dir . 'style.css?md5=' . md5($root_dir . $dir . '/style.css') . '">' . "\n";
 	}
 }
 ?>
