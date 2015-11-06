@@ -331,7 +331,7 @@ class network {
 		}
 		$cmd->execCmd();
 		$interface = $openvpn->getInterfaceName();
-		if ($interface != null && $interface != '') {
+		if ($interface != null && $interface != '' && $interface !== false) {
 			shell_exec('sudo iptables -A INPUT -i ' . $interface . ' -p tcp  --destination-port 80 -j ACCEPT');
 			shell_exec('sudo iptables -A INPUT -i ' . $interface . ' -j DROP');
 		}
