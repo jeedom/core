@@ -20,6 +20,8 @@
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class interactDef {
+
+	private static $_DEFAUT_EXCLUDE_REGEXP = "l'c|l'p|l't|l's|l'g|l'm|l'd|l'b|l'r|l'v|l'l|l'j|l'n|l'f|la a|la e";
 	/*     * *************************Attributs****************************** */
 
 	private $id;
@@ -141,6 +143,10 @@ class interactDef {
 		return $replies[$random];
 	}
 
+	public function preInsert() {
+		$this->setOptions('exclude_regexp', self::$_DEFAUT_EXCLUDE_REGEXP);
+	}
+
 	public function save() {
 		if ($this->getQuery() == '') {
 			throw new Exception(__('La commande (demande) ne peut pas être vide', __FILE__));
@@ -151,8 +157,13 @@ class interactDef {
 	public function postSave() {
 		$queries = $this->generateQueryVariant();
 		interactQuery::removeByInteractDefId($this->getId());
+		$exclude_regexp = '/' . $this->getOptions('exclude_regexp') . '/';
 		DB::beginTransaction();
 		foreach ($queries as $query) {
+			$query['query'] = str_replace(array("\'", '  '), array("'", ' '), $query['query']);
+			if (preg_match($exclude_regexp, $query['query'])) {
+				continue;
+			}
 			$interactQuery = new interactQuery();
 			$interactQuery->setInteractDef_id($this->getId());
 			$interactQuery->setQuery($query['query']);
