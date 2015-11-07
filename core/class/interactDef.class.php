@@ -21,7 +21,7 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class interactDef {
 
-	private static $_DEFAUT_EXCLUDE_REGEXP = "l'c|l'p|l't|l's|l'g|l'm|l'd|l'b|l'r|l'v|l'l|l'j|l'n|l'f|la a|la e";
+	private static $_DEFAUT_EXCLUDE_REGEXP = "l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n)|la a|la e";
 	/*     * *************************Attributs****************************** */
 
 	private $id;
