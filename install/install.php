@@ -389,10 +389,6 @@ try {
 		config::save('cronSleepTime', 60);
 		config::save('log::level', 400);
 		echo "OK\n";
-		echo 'Installation de socket.io et express (peut etre très long > 30min)';
-		echo shell_exec('cd ' . dirname(__FILE__) . '/../core/nodeJS;sudo npm install socket.io;npm install express');
-		echo "OK\n";
-
 	}
 
 	config::save('version', jeedom::version());
@@ -403,8 +399,8 @@ try {
 		}
 		jeedom::start();
 	}
-	echo __('Erreur durant l\'installation : ', __FILE__) . $e->getMessage();
-	echo __('Details : ', __FILE__) . print_r($e->getTrace());
+	echo 'Error during install : ' . $e->getMessage();
+	echo 'Details : ' . print_r($e->getTrace());
 	echo "[END UPDATE ERROR]\n";
 	throw $e;
 }
