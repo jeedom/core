@@ -143,12 +143,60 @@ class interactDef {
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function checkQuery($_query) {
-		$exclude_regexp = "/l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n)|( |^)la (a|e|y|u|i|o)|( |^)le (a|e|y|u|i|o)/i";
+		$exclude_regexp = "/l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n)|( |^)la (a|e|y|u|i|o)|( |^)le (a|e|y|u|i|o)|( |^)du (a|e|y|u|i|o)/i";
 		if (preg_match($exclude_regexp, $_query)) {
 			return false;
 		}
-		$disallow = array('( |^)le salle', '( |^)le chambre', '( |^)la dressing', '( |^)la salon', '( |^)le cuisine', '( |^)la jours', '( |^)la total', '( |^)(le|la) dehors', '( |^)la balcon');
-		if (preg_match('/' . implode('|', $disallow) . '/i', $_query)) {
+		$disallow = array(
+			'le salle',
+			'le chambre',
+			'la dressing',
+			'la salon',
+			'le cuisine',
+			'la jours',
+			'la total',
+			'(le|la) dehors',
+			'la balcon',
+			'du chambre',
+			'du salle',
+			'du cuisine',
+			'la homecinema',
+			'la led',
+			'le led',
+			'la pc',
+			'la sol',
+			'la conseil',
+			'la lave\-vaisselle',
+			'la lave\-linge',
+			'la sonos',
+			'la humidité',
+			'la genre',
+			'la résumé',
+			'le bouton',
+			'la status',
+			'la volume',
+			'le piste',
+			'le consommation',
+			'le position',
+			'le puissance',
+			'le luminosité',
+			'le température',
+			'la micro\-onde',
+			'la mirroir',
+			'la lapin',
+			'le greenmomit',
+			'le prise',
+			'le frigo',
+			'le lumière',
+			'la boutton',
+			'la sommeil',
+			'la temps',
+			'la poids',
+			'la heartbeat',
+			'la heure',
+			'le heure',
+		);
+		if (preg_match('/( |^)' . implode('( |$)|( |^)', $disallow) . '( |$)/i', $_query)) {
 			return false;
 		}
 		if ($this->getOptions('exclude_regexp') != '' && preg_match('/' . $this->getOptions('exclude_regexp') . '/i', $_query)) {
