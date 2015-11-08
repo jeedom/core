@@ -1053,12 +1053,12 @@ class scenarioExpression {
 					$dataStore->setValue('');
 					$dataStore->setLink_id(-1);
 					$dataStore->save();
-					$options_cmd = array('title' => '', 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'variable' => $this->getOptions('variable'));
+					$limit = (isset($options['timeout'])) ? $options['timeout'] : 300;
+					$options_cmd = array('title' => '', 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'timeout' => $limit, 'variable' => $this->getOptions('variable'));
 					$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
 					if (!is_object($cmd)) {
 						throw new Exception(__('Commande introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
 					}
-					$limit = (isset($options['timeout'])) ? $options['timeout'] : 300;
 					$this->setLog($scenario, __('Demande ', __FILE__) . print_r($options_cmd, true));
 					$cmd->setConfiguration('storeVariable', $this->getOptions('variable'));
 					$cmd->save();
