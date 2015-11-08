@@ -34,6 +34,7 @@ sort($battery);
     <div class="col-md-3 col-sm-4" id="sd_filterList" style="z-index:999">
         <div class="bs-sidebar">
             <ul id="ul_object" class="nav nav-list bs-sidenav">
+            	<sup><i class="fa fa-question-circle tooltips pull-right" style="font-size : 1em;color:grey;" title="Les 'NON' sont prioritaires aux 'OUI'. Si vous voulez voir uniquement les piles salons (par exemple), il faut mettre oui partout dans les catégories Santé, Piles, Plugins ; et dans la catégorie Objets avoir uniquement Salon sur Oui. Ainsi vous verrez toutes les piles dans le salon et pas ailleurs et ceci quelquesoit le plugin, la santé et le type de piles. Pour voir les piles salons uniquement AAA, il faut OUI partout dans santé, OUI partout dans plugins ; dans Objets uniquement Salon sur OUI et dans Piles uniquement AAA sur oui etc...."></i></sup>
                 <li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="icon divers-caduceus3"></i>  {{Santé}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor tooltips  pull-right bt_globalsanteoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor tooltips pull-right bt_globalsantetoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor tooltips pull-right bt_globalsanteon" title="Tout afficher" style="color : grey;"></i></li>
                 <li><div class="col-md-8 col-sm-9" style="cursor :default;">{{Critique}}</div>
                 <div class="col-md-4 col-sm-3">
