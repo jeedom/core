@@ -82,7 +82,6 @@ class interactQuery {
 	}
 
 	public static function recognize($_query) {
-
 		$values = array(
 			'query' => $_query,
 		);
@@ -179,13 +178,9 @@ class interactQuery {
 		$interactQuery = interactQuery::recognize($_query);
 		if (is_object($interactQuery)) {
 			$reply = $interactQuery->executeAndReply($_parameters);
-		}
-		if (trim($reply) == '' && config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
-			$reply = self::dontUnderstand($_parameters);
-		}
-		if (is_object($interactQuery)) {
 			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJ'ai compris : " . $interactQuery->getQuery() . "\nJ'ai répondu : " . $reply);
-		} else {
+		} else if (config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
+			$reply = self::dontUnderstand($_parameters);
 			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJe n'ai rien compris\nJ'ai répondu : " . $reply);
 		}
 		return ucfirst($reply);
