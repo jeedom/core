@@ -19,16 +19,15 @@
   $('.pluginListContainer').packery();
 },100);
 
- if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
-    $('#sd_pluginList').hide();
-    $('#div_resumePluginList').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
-    $('#div_confPlugin').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
-
+ if((isset(userProfils.doNotAutoHideMenu) && userProfils.doNotAutoHideMenu == 1) || jQuery.support.touch){
+    $('#sd_pluginList').show();
     setTimeout(function(){
       $('.pluginListContainer').packery();
   },100);
-
-
+}
+if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
+    $('#div_resumePluginList').addClass('col-lg-12').removeClass('col-md-9 col-sm-8');
+    $('#div_confPlugin').addClass('col-lg-12').removeClass('col-md-9 col-sm-8');
     $('#bt_displayPluginList').on('mouseenter',function(){
      var timer = setTimeout(function(){
         $('#bt_displayPluginList').find('i').hide();
