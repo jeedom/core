@@ -177,7 +177,7 @@ foreach ($interactListGroup as $group) {
             </div>
           </div>
           <div class="form-group">
-          <label class="col-xs-3 control-label">{{Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes}}</label>
+            <label class="col-xs-3 control-label">{{Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes}}</label>
             <div class="col-xs-6">
               <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="allowSyntaxCheck">
             </div>
@@ -313,6 +313,12 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
       <fieldset>
         <legend>{{Phrases générées}}</legend>
         <div class="form-group">
+          <label class="col-sm-4 col-xs-7 control-label">{{Phrases générées}}</label>
+          <div class="col-sm-8 col-xs-4">
+            <a class="btn btn-default displayInteracQuery"><i class="fa fa-eye"></i> {{Voir}}</a>
+          </div>
+        </div>
+        <div class="form-group">
           <label class="col-sm-4 col-xs-7 control-label">{{Nombre de phrases générées}}</label>
           <div class="col-sm-8 col-xs-2">
             <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span>
@@ -321,8 +327,6 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
       </fieldset>
     </form>
   </div>
-
-
 </div>
 <form class="form-horizontal">
   <fieldset>

@@ -218,6 +218,19 @@ class interactDef {
 				'la statut',
 				'la dns',
 				'la thym',
+				'lumière cuisine',
+				'lumière salon',
+				'lumière chambre',
+				'lumière salle de bain',
+				'la thumbnail',
+				'la bouton',
+				'la co',
+				'la co2',
+				'la répéter',
+				'fait-il chambre',
+				'fait-il salon',
+				'fait-il cuisine',
+				'fait-il salle',
 			);
 			if (preg_match('/( |^)' . implode('( |$)|( |^)', $disallow) . '( |$)/i', $_query)) {
 				return false;

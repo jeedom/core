@@ -41,6 +41,11 @@ if(!isset(userProfils.interactMenuSize) || userProfils.interactMenuSize > 0){
   $("#div_listInteract").width( userProfils.interactMenuSize);
 }
 
+$('.displayInteracQuery').on('click', function () {
+    $('#md_modal').dialog({title: "{{Liste des interactions}}"});
+    $('#md_modal').load('index.php?v=d&modal=interact.query.display&interactDef_id=' + $('.interactAttr[data-l1key=id]').value()).dialog('open');
+});
+
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
     $('#div_listInteract').hide();
     $('#bt_displayInteractList').on('mouseenter',function(){
