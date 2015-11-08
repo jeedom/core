@@ -20,8 +20,6 @@
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class interactDef {
-
-	private static $_DEFAUT_EXCLUDE_REGEXP = "l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n)|( la|^la) (a|e|y|u|i|o)|( le|^le) (a|e|y|u|i|o)";
 	/*     * *************************Attributs****************************** */
 
 	private $id;
@@ -135,16 +133,34 @@ class interactDef {
 		return $options;
 	}
 
+	public static function sanitizeQuery($_query) {
+		$_query = str_replace(array("\'"), array("'"), $_query);
+		$_query = preg_replace('/\s+/', ' ', $_query);
+		$_query = ucfirst(strtolower($_query));
+		return $_query;
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
+
+	public function checkQuery($_query) {
+		$exclude_regexp = "/l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n)|( |^)la (a|e|y|u|i|o)|( |^)le (a|e|y|u|i|o)/i";
+		if (preg_match($exclude_regexp, $_query)) {
+			return false;
+		}
+		$disallow = array('( |^)le salle', '( |^)le chambre', '( |^)la dressing', '( |^)la salon', '( |^)le cuisine', '( |^)la jours', '( |^)la total', '( |^)(le|la) dehors', '( |^)la balcon');
+		if (preg_match('/' . implode('|', $disallow) . '/i', $_query)) {
+			return false;
+		}
+		if ($this->getOptions('exclude_regexp') != '' && preg_match('/' . $this->getOptions('exclude_regexp') . '/i', $_query)) {
+			return false;
+		}
+		return true;
+	}
 
 	public function selectReply() {
 		$replies = self::generateTextVariant($this->getReply());
 		$random = rand(0, count($replies) - 1);
 		return $replies[$random];
-	}
-
-	public function preInsert() {
-		$this->setOptions('exclude_regexp', self::$_DEFAUT_EXCLUDE_REGEXP);
 	}
 
 	public function save() {
@@ -157,11 +173,10 @@ class interactDef {
 	public function postSave() {
 		$queries = $this->generateQueryVariant();
 		interactQuery::removeByInteractDefId($this->getId());
-		$exclude_regexp = '/' . $this->getOptions('exclude_regexp') . '/';
 		DB::beginTransaction();
 		foreach ($queries as $query) {
-			$query['query'] = str_replace(array("\'", '  '), array("'", ' '), $query['query']);
-			if (preg_match($exclude_regexp, $query['query'])) {
+			$query['query'] = self::sanitizeQuery($query['query']);
+			if (!$this->checkQuery($query['query'])) {
 				continue;
 			}
 			$interactQuery = new interactQuery();
