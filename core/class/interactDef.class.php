@@ -130,7 +130,7 @@ class interactDef {
 				$options[$tags[1][$i]] = $matches[0][$i + 1];
 			}
 		}
-		return $options;
+
 	}
 
 	public static function sanitizeQuery($_query) {
@@ -138,6 +138,15 @@ class interactDef {
 		$_query = preg_replace('/\s+/', ' ', $_query);
 		$_query = ucfirst(strtolower($_query));
 		return $_query;
+	}
+
+	public static function cleanInteract() {
+		$list_id = array();
+		foreach (self::all() as $interactDef) {
+			$list_id[$interactDef->getId()] = $interactDef->getId();
+		}
+		$sql = 'DELETE FROM interactQuery WHERE interactDef_id NOT IN (' . implode(',', $list_id) . ')';
+		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
@@ -227,10 +236,11 @@ class interactDef {
 				'la co',
 				'la co2',
 				'la répéter',
-				'fait-il chambre',
-				'fait-il salon',
-				'fait-il cuisine',
-				'fait-il salle',
+				'(fait-il|combien) chambre',
+				'(fait-il|combien) salon',
+				'(fait-il|combien) cuisine',
+				'(fait-il|combien) salle',
+				'(fait-il|combien) entrée',
 			);
 			if (preg_match('/( |^)' . implode('( |$)|( |^)', $disallow) . '( |$)/i', $_query)) {
 				return false;
@@ -277,6 +287,7 @@ class interactDef {
 			$interactQuery->save();
 		}
 		DB::commit();
+		self::cleanInteract();
 	}
 
 	public function remove() {
@@ -285,6 +296,10 @@ class interactDef {
 
 	public function preRemove() {
 		interactQuery::removeByInteractDefId($this->getId());
+	}
+
+	public function postRemove() {
+		self::cleanInteract();
 	}
 
 	public function generateQueryVariant() {
