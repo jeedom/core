@@ -241,12 +241,17 @@ class interactDef {
 				'(fait-il|combien) cuisine',
 				'(fait-il|combien) salle',
 				'(fait-il|combien) entrée',
+				'(fait-il|combien) balcon',
+				'dans le balcon',
 			);
 			if (preg_match('/( |^)' . implode('( |$)|( |^)', $disallow) . '( |$)/i', $_query)) {
 				return false;
 			}
 		}
-		if ($this->getOptions('exclude_regexp') != '' && preg_match('/' . $this->getOptions('exclude_regexp') . '/i', $_query)) {
+		if ($this->getOptions('exclude_regexp') != '' && preg_match($this->getOptions('exclude_regexp'), $_query)) {
+			return false;
+		}
+		if (config::byKey('interact::regexpExcludGlobal') != '' && preg_match(config::byKey('interact::regexpExcludGlobal'), $_query)) {
 			return false;
 		}
 		return true;
