@@ -697,7 +697,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
             <div class="form-group">
                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Regex général d'exclusion pour les interactions}}</label>
                 <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-                    <input type="text" class="configKey form-control" data-l1key="interact::regexpExcludGlobal"/>
+                    <textarea type="text" class="configKey form-control" data-l1key="interact::regexpExcludGlobal"></textarea>
                 </div>
             </div>
             <i class="fa fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>

@@ -198,93 +198,65 @@ foreach ($interactListGroup as $group) {
           <legend>{{Filtres}}</legend>
 
           <div class="form-group">
-            <label class="col-sm-6 control-label">{{Limiter aux commandes de type}}</label>
-            <div class="col-sm-4">
-              <select class="interactAttr form-control" data-l1key="filtres" data-l2key="cmd_type">
-                <?php
+            <label class="col-sm-3 control-label">{{Limiter aux commandes de type}}</label>
+            <div class="col-sm-9">
+              <?php
 foreach (jeedom::getConfiguration('cmd:type') as $id => $type) {
-	echo '<option value="' . $id . '">' . $type['name'] . '</option>';
+	echo '<label><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="type" data-l3key="' . $id . '" checked="true" />' . $type['name'] . '</label> ';
 }
 ?>
-             </select>
            </div>
          </div>
          <div class="form-group">
-          <label class="col-sm-6 control-label">{{Limiter aux commandes ayant pour sous-type}}</label>
-          <div class="col-sm-4">
-            <select class="interactAttr form-control" data-l1key="filtres" data-l2key="subtype">
-              <option value="all">{{Tous}}</option>
-              <?php
+          <label class="col-sm-3 control-label">{{Limiter aux commandes ayant pour sous-type}}</label>
+          <div class="col-sm-9">
+            <?php
 foreach (jeedom::getConfiguration('cmd:type') as $type) {
 	foreach ($type['subtype'] as $id => $subtype) {
-		echo '<option value="' . $id . '">' . $subtype['name'] . '</option>';
+		echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="subtype" data-l3key="' . $id . '" checked="true" />' . $subtype['name'] . '</label> ';
 	}
 }
 ?>
-          </select>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-6 control-label">{{Limiter aux commandes ayant pour unité}}</label>
-        <div class="col-sm-4">
-          <select class='interactAttr form-control' data-l1key='filtres' data-l2key='cmd_unite'>
-            <option value="all">{{Tous}}</option>
-            <?php
+        <label class="col-sm-3 control-label">{{Limiter aux commandes ayant pour unité}}</label>
+        <div class="col-sm-9">
+          <?php
 foreach (cmd::allUnite() as $unite) {
-	echo '<option value="' . $unite['unite'] . '" >' . $unite['unite'] . '</option>';
+	echo '<label><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="' . $unite['unite'] . '" checked="true" />' . $unite['unite'] . '</label> ';
 }
 ?>
-         </select>
        </div>
      </div>
      <div class="form-group">
-      <label class="col-sm-6 control-label">{{Limiter aux commandes appartenant à l'objet}}</label>
-      <div class="col-sm-4">
-        <select class='interactAttr form-control' data-l1key='filtres' data-l2key='object_id' >
-          <option value="all">{{Tous}}</option>
-          <?php
+      <label class="col-sm-3 control-label">{{Limiter aux commandes appartenant à l'objet}}</label>
+      <div class="col-sm-9">
+        <?php
 foreach (object::all() as $object) {
-	echo '<option value="' . $object->getId() . '" >' . $object->getName() . '</option>';
+	echo '<label><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="object" data-l3key="' . $object->getId() . '" checked="true" />' . $object->getName() . '</label> ';
 }
 ?>
-       </select>
      </div>
    </div>
    <div class="form-group">
-    <label class="col-sm-6 control-label">{{Limiter à l'équipement}}</label>
-    <div class="col-sm-4">
-      <select class='interactAttr form-control' data-l1key='filtres' data-l2key='eqLogic_id' >
-        <option value="all">{{Tous}}</option>
-        <?php
-foreach (eqLogic::all() as $eqLogic) {
-	echo '<option value="' . $eqLogic->getId() . '" >' . $eqLogic->getHumanName() . '</option>';
+    <label class="col-sm-3 control-label">{{Limiter au plugin}}</label>
+    <div class="col-sm-9">
+      <?php
+foreach (eqLogic::allType() as $type) {
+	echo '<label><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="plugin" data-l3key="' . $type['type'] . '" checked="true" />' . $type['type'] . '</label> ';
 }
 ?>
-     </select>
    </div>
  </div>
  <div class="form-group">
-  <label class="col-sm-6 control-label">{{Limiter au plugin}}</label>
-  <div class="col-sm-4">
-    <select class='interactAttr form-control' data-l1key='filtres' data-l2key='plugin'>
+  <label class="col-sm-3 control-label">{{Limiter à l'équipement}}</label>
+  <div class="col-sm-6">
+    <select class='interactAttr form-control' data-l1key='filtres' data-l2key='eqLogic_id' >
       <option value="all">{{Tous}}</option>
       <?php
-foreach (eqLogic::allType() as $type) {
-	echo '<option value="' . $type['type'] . '" >' . $type['type'] . '</option>';
-}
-?>
-   </select>
- </div>
-</div>
-
-<div class="form-group">
-  <label class="col-sm-6 control-label">{{Limiter à la catégorie}}</label>
-  <div class="col-sm-4">
-    <select class='interactAttr form-control' data-l1key='filtres' data-l2key='eqLogic_category'>
-      <option value="all">{{Toutes}}</option>
-      <?php
-foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-	echo '<option value="' . $key . '">{{' . $value['name'] . '}}</option>';
+foreach (eqLogic::all() as $eqLogic) {
+	echo '<option value="' . $eqLogic->getId() . '" >' . $eqLogic->getHumanName() . '</option>';
 }
 ?>
    </select>

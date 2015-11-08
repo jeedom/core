@@ -19,7 +19,7 @@
 
 
 
-$("#div_listInteract").resizable({
+ $("#div_listInteract").resizable({
   handles: "all",
   grid: [1, 10000],
   stop: function () {
@@ -37,7 +37,7 @@ $("#div_listInteract").resizable({
 }
 });
 
-if(!isset(userProfils.interactMenuSize) || userProfils.interactMenuSize > 0){
+ if(!isset(userProfils.interactMenuSize) || userProfils.interactMenuSize > 0){
   $("#div_listInteract").width( userProfils.interactMenuSize);
 }
 
@@ -49,24 +49,24 @@ $('.displayInteracQuery').on('click', function () {
 if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
     $('#div_listInteract').hide();
     $('#bt_displayInteractList').on('mouseenter',function(){
-     var timer = setTimeout(function(){
+       var timer = setTimeout(function(){
         $('#div_listInteract').show();
         $('#bt_displayInteractList').find('i').hide();
         $('.interactListContainer').packery();
     }, 100);
-     $(this).data('timerMouseleave', timer)
- }).on("mouseleave", function(){
-  clearTimeout($(this).data('timerMouseleave'));
-});
+       $(this).data('timerMouseleave', timer)
+   }).on("mouseleave", function(){
+      clearTimeout($(this).data('timerMouseleave'));
+  });
 
- $('#div_listInteract').on('mouseleave',function(){
-   var timer = setTimeout(function(){
-    $('#div_listInteract').hide();
-    $('#bt_displayInteractList').find('i').show();
-    $('.interactListContainer').packery();
-}, 300);
-   $(this).data('timerMouseleave', timer);
-}).on("mouseenter", function(){
+   $('#div_listInteract').on('mouseleave',function(){
+     var timer = setTimeout(function(){
+        $('#div_listInteract').hide();
+        $('#bt_displayInteractList').find('i').show();
+        $('.interactListContainer').packery();
+    }, 300);
+     $(this).data('timerMouseleave', timer);
+ }).on("mouseenter", function(){
   clearTimeout($(this).data('timerMouseleave'));
 });
 }
@@ -124,9 +124,9 @@ $('#bt_duplicate').on('click', function () {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                   loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
-               }
-           });
+                 loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
+             }
+         });
         }
     });
 });
@@ -137,7 +137,7 @@ if (is_numeric(getUrlVars('id'))) {
     }
 }
 
- if (getUrlVars('saveSuccessFull') == 1) {
+if (getUrlVars('saveSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }
 
@@ -171,24 +171,24 @@ $("#bt_saveInteract").on('click', function () {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-           loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
-        }
-    });
+         loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
+     }
+ });
 });
 
 
 $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
     bootbox.confirm('{{Etes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?}}', function (result) {
-     if (result) {
+       if (result) {
         jeedom.interact.regenerateInteract({
             interact: {query: result},
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
-             $('#div_alert').showAlert({message: '{{Toutes les interations ont été regénérées}}', level: 'success'});
-         }
-     });
+               $('#div_alert').showAlert({message: '{{Toutes les interations ont été regénérées}}', level: 'success'});
+           }
+       });
     }
 });
 });
@@ -202,9 +202,9 @@ $("#bt_addInteract,#bt_addInteract2").on('click', function () {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                   loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
-               }
-           });
+                 loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
+             }
+         });
         }
     });
 });
@@ -220,9 +220,9 @@ $("#bt_removeInteract").on('click', function () {
                         $('#div_alert').showAlert({message: error.message, level: 'danger'});
                     },
                     success: function () {
-                       loadPage('index.php?v=d&p=interact&removeSuccessFull=1');
-                   }
-               });
+                     loadPage('index.php?v=d&p=interact&removeSuccessFull=1');
+                 }
+             });
             }
         });
     } else {
@@ -269,15 +269,44 @@ function displayInteract(_id){
         success: function (data) {
             $('#div_action').empty();
             $('.interactAttr').value('');
-            $(".interactAttr[data-l1key=link_type]").off();
             $('.interact').setValues(data, '.interactAttr');
-            if(isset(data.actions.cmd) && $.isArray(data.actions.cmd) && data.actions.cmd.length != null){
-                for(var i in data.actions.cmd){
-                    addAction(data.actions.cmd[i], 'action','{{Action}}');
-                }
-            }
-        }
-    });
+            $('.interactAttr[data-l1key=filtres][data-l2key=type]').value(1);
+            $('.interactAttr[data-l1key=filtres][data-l2key=subtype]').value(1);
+            $('.interactAttr[data-l1key=filtres][data-l2key=unite]').value(1);
+            $('.interactAttr[data-l1key=filtres][data-l2key=object]').value(1);
+            $('.interactAttr[data-l1key=filtres][data-l2key=plugin]').value(1);
+            if(isset(data.filtres) && isset(data.filtres.type) && $.isPlainObject(data.filtres.type)){
+                for(var i in data.filtres.type){
+                 $('.interactAttr[data-l1key=filtres][data-l2key=type][data-l3key='+i+']').value(data.filtres.type[i]);
+             }
+         }
+         if(isset(data.filtres) && isset(data.filtres.subtype) && $.isPlainObject(data.filtres.subtype)){
+            for(var i in data.filtres.subtype){
+             $('.interactAttr[data-l1key=filtres][data-l2key=subtype][data-l3key='+i+']').value(data.filtres.subtype[i]);
+         }
+     }
+     if(isset(data.filtres) && isset(data.filtres.unite) && $.isPlainObject(data.filtres.unite)){
+        for(var i in data.filtres.unite){
+         $('.interactAttr[data-l1key=filtres][data-l2key=unite][data-l3key="'+i+'"]').value(data.filtres.unite[i]);
+     }
+ }
+ if(isset(data.filtres) && isset(data.filtres.object) && $.isPlainObject(data.filtres.object)){
+    for(var i in data.filtres.object){
+     $('.interactAttr[data-l1key=filtres][data-l2key=object][data-l3key='+i+']').value(data.filtres.object[i]);
+ }
+}
+if(isset(data.filtres) && isset(data.filtres.plugin) && $.isPlainObject(data.filtres.plugin)){
+    for(var i in data.filtres.plugin){
+     $('.interactAttr[data-l1key=filtres][data-l2key=plugin][data-l3key='+i+']').value(data.filtres.plugin[i]);
+ }
+}
+if(isset(data.actions.cmd) && $.isArray(data.actions.cmd) && data.actions.cmd.length != null){
+    for(var i in data.actions.cmd){
+        addAction(data.actions.cmd[i], 'action','{{Action}}');
+    }
+}
+}
+});
 }
 
 function addAction(_action, _type, _name) {

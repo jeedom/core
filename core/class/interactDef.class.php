@@ -197,7 +197,7 @@ class interactDef {
 				'la greenmomit',
 				'le prise',
 				'le frigo',
-				'le (petite|) lumière',
+				'le (petite | )lumière',
 				'la boutton',
 				'la sommeil',
 				'la temps',
@@ -240,6 +240,7 @@ class interactDef {
 				'(fait-il|combien) salle',
 				'(fait-il|combien) entrée',
 				'(fait-il|combien) balcon',
+				'(fait-il|combien) appartement',
 				'dans le balcon',
 				'le calorie',
 				'le chansons',
@@ -331,48 +332,60 @@ class interactDef {
 	public function generateQueryVariant() {
 		$inputs = self::generateTextVariant($this->getQuery());
 		$return = array();
+		$object_filter = $this->getFiltres('object');
+		$type_filter = $this->getFiltres('type');
+		$subtype_filter = $this->getFiltres('subtype');
+		$unite_filter = $this->getFiltres('unite');
+		$plugin_filter = $this->getFiltres('plugin');
+		$eqLogic_category_filter = $this->getFiltres('eqLogic_category');
 		foreach ($inputs as $input) {
 			preg_match_all("/#(.*?)#/", $input, $matches);
 			$matches = $matches[1];
 			if (in_array('commande', $matches) && (in_array('objet', $matches) || in_array('equipement', $matches))) {
 				foreach (object::all() as $object) {
-					if (($this->getFiltres('object_id', 'all') == 'all' || $object->getId() == $this->getFiltres('object_id'))) {
-						foreach ($object->getEqLogic() as $eqLogic) {
-							if (($this->getFiltres('eqLogic_id', 'all') == 'all' || $eqLogic->getId() == $this->getFiltres('eqLogic_id'))) {
-								if (($this->getFiltres('plugin', 'all') == 'all' || $eqLogic->getEqType_name() == $this->getFiltres('plugin'))) {
-									if (($this->getFiltres('eqLogic_category', 'all') == 'all' || $eqLogic->getCategory($this->getFiltres('eqLogic_category', 'all'), 0) == 1)) {
-										foreach ($eqLogic->getCmd() as $cmd) {
-											if ($this->getFiltres('subtype') == 'all' || $this->getFiltres('subtype') == $cmd->getSubType()) {
-												if ($cmd->getType() == $this->getFiltres('cmd_type') && ($this->getFiltres('cmd_unite', 'all') == 'all' || $cmd->getUnite() == $this->getFiltres('cmd_unite'))) {
-													$replace = array(
-														'#objet#' => strtolower($object->getName()),
-														'#commande#' => strtolower($cmd->getName()),
-														'#equipement#' => strtolower($eqLogic->getName()),
-													);
-													$options = array();
-													if ($cmd->getType() == 'action') {
-														if ($cmd->getSubtype() == 'color') {
-															$options['#color#'] = '#color#';
-														}
-														if ($cmd->getSubtype() == 'slider') {
-															$options['#slider#'] = '#slider#';
-														}
-														if ($cmd->getSubtype() == 'message') {
-															$options['#message#'] = '#message#';
-															$options['#title#'] = '#title#';
-														}
-													}
-													$query = str_replace(array_keys($replace), $replace, $input);
-													$return[$query] = array(
-														'query' => $query,
-														'cmd' => array(array('cmd' => '#' . $cmd->getId() . '#')),
-													);
-												}
-											}
-										}
-									}
+					if (isset($object_filter[$object->getId()]) && $object_filter[$object->getId()] == 0) {
+						continue;
+					}
+					foreach ($object->getEqLogic() as $eqLogic) {
+						if ($this->getFiltres('eqLogic_id', 'all') != 'all' && $eqLogic->getId() != $this->getFiltres('eqLogic_id')) {
+							continue;
+						}
+						if (isset($plugin_filter[$eqLogic->getEqType_name()]) && $plugin_filter[$eqLogic->getEqType_name()] == 0) {
+							continue;
+						}
+						foreach ($eqLogic->getCmd() as $cmd) {
+							if (isset($subtype_filter[$cmd->getSubType()]) && $subtype_filter[$cmd->getSubType()] == 0) {
+								continue;
+							}
+							if (isset($type_filter[$cmd->getType()]) && $type_filter[$cmd->getType()] == 0) {
+								continue;
+							}
+							if ($cmd->getUnite() == '' && isset($unite_filter[$cmd->getUnite()]) && $unite_filter[$cmd->getUnite()] == 0) {
+								continue;
+							}
+							$replace = array(
+								'#objet#' => strtolower($object->getName()),
+								'#commande#' => strtolower($cmd->getName()),
+								'#equipement#' => strtolower($eqLogic->getName()),
+							);
+							$options = array();
+							if ($cmd->getType() == 'action') {
+								if ($cmd->getSubtype() == 'color') {
+									$options['#color#'] = '#color#';
+								}
+								if ($cmd->getSubtype() == 'slider') {
+									$options['#slider#'] = '#slider#';
+								}
+								if ($cmd->getSubtype() == 'message') {
+									$options['#message#'] = '#message#';
+									$options['#title#'] = '#title#';
 								}
 							}
+							$query = str_replace(array_keys($replace), $replace, $input);
+							$return[$query] = array(
+								'query' => $query,
+								'cmd' => array(array('cmd' => '#' . $cmd->getId() . '#')),
+							);
 						}
 					}
 				}
