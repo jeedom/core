@@ -40,7 +40,7 @@ sort($battery);
                 <input type="checkbox" data-size="mini" id="critical" class="globalsante bootstrapSwitch" checked/></div></li>
                <li><div class="col-md-8 col-sm-9" style="cursor :default;">{{Warning}}</div>
                <div class="col-md-4 col-sm-3">
-                <input type="checkbox" id="test" data-size="mini" id="warning" class="globalsante bootstrapSwitch" checked/></div></li>
+                <input type="checkbox" data-size="mini" id="warning" class="globalsante bootstrapSwitch" checked/></div></li>
                <li><div class="col-md-8 col-sm-9" style="cursor :default;">{{Bonne}}</div>
                <div class="col-md-4 col-sm-3">
                 <input type="checkbox" data-size="mini" id="good" class="globalsante bootstrapSwitch" checked/></div></li>
@@ -89,7 +89,8 @@ foreach ($list as $eqLogic) {
         $level = 'warning';
     }
     $classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $objets;
-    echo '<div class="eqLogic eqLogic-widget ' . $classAttr . '" style="min-width:80px;background-color:' . $color . '">';
+    $idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $objets;
+    echo '<div class="eqLogic eqLogic-widget ' . $classAttr . '" style="min-width:80px;background-color:' . $color . '" id="' . $idAttr . '">';
     echo '<center class="widget-name"><a href="' . $eqLogic->getLinkToConfiguration() . '" style="font-size : 1.5em;">' . $eqLogic->getName() . '</a><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $eqLogic->getobject()->getName() . '</span></center>';
     echo '<center><span style="font-size:2.2em;font-weight: bold;cursor:default;">' . $eqLogic->getConfiguration('batteryStatus', -2) . '</span><span>%</span></center>';
     echo '<center style="cursor:default;">{{Le }}' . $eqLogic->getConfiguration('batteryStatusDatetime', __('inconnue', __FILE__)) . '</center>';

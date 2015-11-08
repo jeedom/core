@@ -67,7 +67,26 @@ $('.bootstrapSwitch').on('switchChange.bootstrapSwitch', function (event, state)
             gutter : 2,
         });
     } else {
-        $('.'+event.currentTarget.id).show();
+        var listclass = new Array();
+        $('.bootstrapSwitch').each(function( index ) {
+            if ($(this).bootstrapSwitch('state') === true){
+                if (listclass.indexOf($(this)[0].id) == -1){
+                    listclass.push($(this)[0].id);
+                }
+            }
+        });
+        $('.eqLogic-widget').each(function( index ) {
+            var count = 0;
+            var listclasswidget = $(this)[0].id.split("__");
+            listclasswidget.forEach(function(entry) {
+                if (listclass.indexOf(entry) == -1){
+                    count += 1; 
+                }
+            });
+            if (count == 0) {
+                $('#'+$(this)[0].id).show();
+            }
+        });
         $('.batteryListContainer').packery({
             itemSelector: ".eqLogic-widget",
             columnWidth:40,
