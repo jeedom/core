@@ -8,16 +8,16 @@ $battery = array();
 $objects = array();
 foreach (object::all() as $object) {
 	foreach ($object->getEqLogic() as $eqLogic) {
-		$battery_type = $eqLogic->getConfiguration('battery_type', '');
+		$battery_type = str_replace(array('(', ')'), array('', ''), $eqLogic->getConfiguration('battery_type', ''));
 		if ($eqLogic->getConfiguration('batteryStatus', -2) != -2) {
 			array_push($list, $eqLogic);
 			array_push($plugins, $eqLogic->getEqType_name());
 			array_push($objects, $eqLogic->getobject()->getName());
 			if ($battery_type != '') {
-				if (strpos($battery_type,' ') === false) {
-					array_push($battery,$battery_type);
+				if (strpos($battery_type, ' ') === false) {
+					array_push($battery, $battery_type);
 				} else {
-					array_push($battery,substr(strrchr($battery_type, " "), 1));
+					array_push($battery, substr(strrchr($battery_type, " "), 1));
 				}
 			}
 		}
@@ -48,25 +48,25 @@ sort($battery);
 				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="icon techno-charging"></i>  {{Piles}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor tooltips  pull-right bt_globalpileoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor tooltips pull-right bt_globalpiletoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor tooltips pull-right bt_globalpileon" title="Tout afficher" style="color : grey;"></i></li>
 				<li><div class="col-md-8 col-sm-9" style="cursor :default;">{{Non définies}}</div><div class="col-md-4 col-sm-3"><input type="checkbox" data-size="mini" id="none" class="globalpile bootstrapSwitch" checked/></div></li>
                 <?php
-				foreach (array_unique($battery) as $battery_type) {
-				echo '<li><div class="col-md-8 col-sm-9" style="cursor :default;">' .$battery_type.'</div><div class="col-md-4 col-sm-3">';
-                echo '<input type="checkbox" data-size="mini" id="' . $battery_type . '" class="globalpile bootstrapSwitch" checked/></div></li>';
-				}
-				?>
+foreach (array_unique($battery) as $battery_type) {
+	echo '<li><div class="col-md-8 col-sm-9" style="cursor :default;">' . $battery_type . '</div><div class="col-md-4 col-sm-3">';
+	echo '<input type="checkbox" data-size="mini" id="' . $battery_type . '" class="globalpile bootstrapSwitch" checked/></div></li>';
+}
+?>
 				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="fa fa-tasks"></i>  {{Plugins}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor tooltips  pull-right bt_globalpluginoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor tooltips pull-right bt_globalplugintoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor tooltips pull-right bt_globalpluginon" title="Tout afficher" style="color : grey;"></i></li>
                 <?php
-				foreach (array_unique($plugins) as $plugins_type) {
-				echo '<li><div class="col-md-8 col-sm-9" style="cursor :default;">' .ucfirst($plugins_type).'</div><div class="col-md-4 col-sm-3">';
-                echo '<input type="checkbox" data-size="mini" id="' . $plugins_type . '" class="globalplugin bootstrapSwitch" checked/></div></li>';
-				}
-				?>
+foreach (array_unique($plugins) as $plugins_type) {
+	echo '<li><div class="col-md-8 col-sm-9" style="cursor :default;">' . ucfirst($plugins_type) . '</div><div class="col-md-4 col-sm-3">';
+	echo '<input type="checkbox" data-size="mini" id="' . $plugins_type . '" class="globalplugin bootstrapSwitch" checked/></div></li>';
+}
+?>
 				<li><div class="col-md-8 col-sm-9" style="cursor :default;"><legend><i class="fa fa-picture-o" ></i>  {{Objets}}</legend></div><div class="col-md-4 col-sm-3" style="margin-top:15px;"><i class="fa fa-times cursor tooltips  pull-right bt_globalobjetoff" title="Tout masquer" style="color : grey;"></i><i class="fa fa-refresh cursor tooltips pull-right bt_globalobjettoggle" title="Inverser" style="color : grey;"></i><i class="fa fa-check cursor tooltips pull-right bt_globalobjeton" title="Tout afficher" style="color : grey;"></i></li>
                 <?php
-				foreach (array_unique($objects) as $objets_type) {
-				echo '<li><div class="col-md-8 col-sm-9" style="cursor :default;">' .$objets_type.'</div><div class="col-md-4 col-sm-3">';
-                echo '<input type="checkbox" data-size="mini" id="' . str_replace(' ','_',$objets_type) . '" class="globalobjet bootstrapSwitch" checked/></div></li>';
-				}
-				?>
+foreach (array_unique($objects) as $objets_type) {
+	echo '<li><div class="col-md-8 col-sm-9" style="cursor :default;">' . $objets_type . '</div><div class="col-md-4 col-sm-3">';
+	echo '<input type="checkbox" data-size="mini" id="' . str_replace(array(' ', '(', ')'), array('_', '', ''), $objets_type) . '" class="globalobjet bootstrapSwitch" checked/></div></li>';
+}
+?>
            </ul>
        </div>
    </div>
@@ -77,11 +77,11 @@ foreach ($list as $eqLogic) {
 	$color = '#2ecc71';
 	$level = 'good';
 	$battery = $eqLogic->getConfiguration('battery_type', 'none');
-	if (strpos($battery,' ') !== false) {
-		$battery=substr(strrchr($battery, " "), 1);
+	if (strpos($battery, ' ') !== false) {
+		$battery = substr(strrchr($battery, " "), 1);
 	}
 	$plugins = $eqLogic->getEqType_name();
-	$objets = str_replace(' ','_',$eqLogic->getobject()->getName());
+	$objets = str_replace(array(' ', '(', ')'), array('_', '', ''), $eqLogic->getobject()->getName());
 	if ($eqLogic->getConfiguration('batteryStatus') <= $eqLogic->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'))) {
 		$color = '#e74c3c';
 		$level = 'critical';
