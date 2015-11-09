@@ -459,7 +459,7 @@ if (isConnect('admin')) {
 												<?php }
 	?>
 												<li>
-													<a href="#">
+													<a href="#" style="cursor:default;">
 														<span id="horloge"><?php echo date('H:i:s');?></span>
 													</a>
 												</li>
