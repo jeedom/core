@@ -342,22 +342,17 @@ if (config::byKey('jeeNetwork::mode') == 'master' && hasRight('objectview', true
 											</ul>
 
 											<ul class="nav navbar-nav navbar-right">
-												<?php $displayMessage = (message::nbMessage() > 0) ? '' : 'display : none;';?>
-												<li>
-													<a href="#" id="bt_messageModal">
-														<span class="badge tooltips" id="span_nbMessage" title="{{Nombre de messages}}" style="background-color : #ec971f;<?php echo $displayMessage;?>">
-															<?php echo message::nbMessage();?>
-														</span>
-													</a>
-												</li>
-												<?php $displayUpdate = (update::nbNeedUpdate() > 0) ? '' : 'display : none;';?>
-												<li>
+												<?php $nbMessage = message::nbMessage();
+                                                if ($nbMessage > 0) {
+                                                    echo '<li><a href="#" id="bt_messageModal"><span class="badge tooltips" id="span_nbMessage" title="{{Nombre de messages}}" style="background-color : #ec971f;">' . $nbMessage . '</span></a></li>';
+                                                }?>
+												<?php $nbUpdate = update::nbNeedUpdate();
+                                                if ($nbUpdate > 0) {
+                                                    echo '<li>
 													<a href="index.php?v=d&p=update">
-														<span class="badge tooltips" title="{{Nombre de mises à jour}}" style="background-color : #c9302c;<?php echo $displayUpdate;?>">
-															<?php echo update::nbNeedUpdate();?>
-														</span>
-													</a>
-												</li>
+														<span class="badge tooltips" title="{{Nombre de mises à jour}}" style="background-color : #c9302c;">' . $nbUpdate . '</span></a></li>';
+                                                }
+                                                ?>
 												<li class="dropdown">
 													<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cogs"></i><span class="caret"></span></a>
 													<ul class="dropdown-menu">
