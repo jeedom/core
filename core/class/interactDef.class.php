@@ -360,7 +360,7 @@ class interactDef {
 							if (isset($type_filter[$cmd->getType()]) && $type_filter[$cmd->getType()] == 0) {
 								continue;
 							}
-							if ($cmd->getUnite() == '' && isset($unite_filter[$cmd->getUnite()]) && $unite_filter[$cmd->getUnite()] == 0) {
+							if ($cmd->getUnite() != '' && isset($unite_filter[$cmd->getUnite()]) && $unite_filter[$cmd->getUnite()] == 0) {
 								continue;
 							}
 							$replace = array(
