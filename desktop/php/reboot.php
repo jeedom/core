@@ -37,7 +37,7 @@ if (!isConnect('admin')) {
 
 	function refresh() {
 		$.ajax({
-			url: "../../desktop/js/rebootjs.js?t="+Date.now(),
+			url: "desktop/js/rebootjs.js?t="+Date.now(),
 			success:
 			function(retour){
 				$('reboot_jeedom').html(retour);
