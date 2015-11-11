@@ -280,7 +280,10 @@ class interactQuery {
 		$reply = $interactDef->selectReply();
 		$replace = array();
 		$tags = interactDef::getTagFromQuery($this->getQuery(), $_parameters['dictation']);
-		$tags_replace = array('#query#' => $this->getQuery(), '#dictation#' => $_parameters['dictation']);
+		$tags_replace = array('#query#' => $this->getQuery());
+		if (isset($_parameters['dictation'])) {
+			$tags_replace['#dictation#'] = $_parameters['dictation'];
+		}
 		if (is_array($tags)) {
 			foreach ($tags as $key => $value) {
 				$tags_replace['#' . $key . '#'] = $value;
@@ -385,8 +388,7 @@ class interactQuery {
 
 		$replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
 		if ($interactDef->getOptions('convertBinary') != '') {
-			$convertBinary = $interactDef->getOptions('convertBinary');
-			$convertBinary = explode('|', $convertBinary);
+			$convertBinary = explode('|', $interactDef->getOptions('convertBinary'));
 			$replace['1'] = $convertBinary[1];
 			$replace['0'] = $convertBinary[0];
 		}
