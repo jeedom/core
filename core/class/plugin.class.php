@@ -37,7 +37,7 @@ class plugin {
 	private $display;
 	private $mobile;
 	private $allowRemote;
-	private $nodejs;
+	private $eventjs;
 	private $include = array();
 	private static $_cache = array();
 
@@ -77,9 +77,9 @@ class plugin {
 		if (isset($plugin_xml->allowRemote)) {
 			$plugin->allowRemote = $plugin_xml->allowRemote;
 		}
-		$plugin->nodejs = 0;
-		if (isset($plugin_xml->nodejs)) {
-			$plugin->nodejs = 1;
+		$plugin->eventjs = 0;
+		if (isset($plugin_xml->eventjs)) {
+			$plugin->eventjs = 1;
 		}
 		$plugin->filepath = $_id;
 		$plugin->index = (isset($plugin_xml->index)) ? (string) $plugin_xml->index : $plugin_xml->id;
@@ -553,12 +553,12 @@ class plugin {
 		$this->allowRemote = $allowRemote;
 	}
 
-	public function getNodejs() {
-		return $this->nodejs;
+	public function getEventjs() {
+		return $this->eventjs;
 	}
 
-	public function setNodejs($nodejs) {
-		$this->nodejs = $nodejs;
+	public function setEventjs($eventjs) {
+		$this->eventjs = $eventjs;
 	}
 
 }

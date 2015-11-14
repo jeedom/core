@@ -58,18 +58,8 @@
                 deny from all
         </Directory>
 
-                ProxyPreserveHost On
-                ProxyRequests On
-
-        <Location /nodeJS/>
-                ProxyPass http://127.0.0.1:8070/
-                ProxyPassReverse http://127.0.0.1:8070/
-        </Location>
-                                                                                                                                                                                
-        <Location /socket.io/>
-                ProxyPass  http://127.0.0.1:8070/socket.io/
-                ProxyPassReverse http://127.0.0.1:8070/socket.io/
-        </Location>
+        ProxyPreserveHost On
+        ProxyRequests On
 
         <ProxyMatch ^((?!127\.0\.0\.1).)*$>
                 Order deny,allow

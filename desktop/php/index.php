@@ -32,7 +32,7 @@ if (isConnect() && init('p') != '') {
 $plugins_list = plugin::listPlugin(true, true);
 $plugin_menu = '';
 $panel_menu = '';
-$nodejs_plugin = array();
+$eventjs_plugin = array();
 if (count($plugins_list) > 0) {
 	foreach ($plugins_list as $category_name => $category) {
 		$icon = '';
@@ -63,8 +63,8 @@ if (count($plugins_list) > 0) {
 					$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getDisplay() . '"><i class="' . $pluginList->getIcon() . '"></i> ' . $pluginList->getName() . '</a></li>';
 				}
 			}
-			if ($pluginList->getNodejs() == 1) {
-				$nodejs_plugin[] = $pluginList->getId();
+			if ($pluginList->getEventjs() == 1) {
+				$eventjs_plugin[] = $pluginList->getId();
 			}
 		}
 		$plugin_menu .= '</ul>';
@@ -180,12 +180,12 @@ if (!isConnect()) {
 	sendVarToJS('user_id', $_SESSION['user']->getId());
 	sendVarToJS('user_login', $_SESSION['user']->getLogin());
 	sendVarToJS('jeedom_firstUse', config::byKey('jeedom::firstUse', 'core', 1));
-	if (count($nodejs_plugin) > 0) {
-		foreach ($nodejs_plugin as $value) {
+	if (count($eventjs_plugin) > 0) {
+		foreach ($eventjs_plugin as $value) {
 			try {
-				include_file('desktop', 'node', 'js', $value);
+				include_file('desktop', 'event', 'js', $value);
 			} catch (Exception $e) {
-				log::add($value, 'error', 'Node JS file not found');
+				log::add($value, 'error', 'Event JS file not found');
 			}
 		}
 	}

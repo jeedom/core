@@ -120,8 +120,8 @@ function initApplication(_reinit) {
                     }
                 }
                 for(var i in plugins){
-                    if(plugins[i].nodejs == 1){
-                        include.push('plugins/'+plugins[i].id+'/mobile/js/node.js');
+                    if(plugins[i].eventjs == 1){
+                        include.push('plugins/'+plugins[i].id+'/mobile/js/event.js');
                     }
                 }
                 $.get("core/php/icon.inc.php", function (data) {

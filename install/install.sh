@@ -588,20 +588,6 @@ fi
 optimize_webserver_cache
 
 echo "********************************************************"
-echo "${msg_setup_nodejs_service}"
-echo "********************************************************"
-cp install/jeedom /etc/init.d/
-chmod +x /etc/init.d/jeedom
-update-rc.d jeedom defaults
-
-if [ -d /etc/systemd/system ] ; then
-    cp install/jeedom.service /etc/systemd/system
-    systemctl enable jeedom
-fi
-
-service jeedom start
-
-echo "********************************************************"
 echo "${msg_post_install_actions}"
 echo "********************************************************"
 cp install/motd /etc
