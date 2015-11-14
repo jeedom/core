@@ -782,15 +782,10 @@ class cmd {
 			}
 			cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
 			$this->setCollect(0);
-			$nodeJs = array(
-				array(
-					'cmd_id' => $this->getId(),
-				),
-			);
+			event::add('cmd::update', array('cmd_id' => $this->getId()));
 			foreach (self::byValue($this->getId()) as $cmd) {
-				$nodeJs[] = array('cmd_id' => $cmd->getId());
+				event::add('cmd::update', array('cmd_id' => $cmd->getId()));
 			}
-			event::add('cmd::update', $nodeJs);
 		}
 		if ($this->getType() != 'action' && !is_array($value) && strpos($value, 'error') === false) {
 			if ($eqLogic->getStatus('numberTryWithoutSuccess') != 0) {

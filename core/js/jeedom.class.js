@@ -18,7 +18,6 @@
  }
 
  jeedom.cache = [];
- jeedom.nodeJs = {state: -1};
  jeedom.display = {};
 
  if (!isset(jeedom.cache.getConfiguration)) {

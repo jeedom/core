@@ -74,12 +74,6 @@ if (!jeedom::isStarted()) {
 		</tr>
 
 		<tr>
-			<td style="font-weight : bold;">{{NodeJS actif}}</td>
-			<td class="alert alert-danger" id="td_nodejsState">{{NOK}}</td>
-			<td></td>
-		</tr>
-
-		<tr>
 			<td style="font-weight : bold;">{{Date système}}</td>
 			<?php
 if (!jeedom::isDateOk()) {

@@ -1,4 +1,3 @@
-<?php sendVarToJS('nodeJsKey', '');?>
 <div id="wrap">
     <div class="container">
     <center>

@@ -49,10 +49,6 @@ try {
 		}
 	}
 
-	if (init('action') == 'getNodeJsKey') {
-		ajax::success(config::byKey('nodeJsKey'));
-	}
-
 	if (init('action') == 'addKey') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));

@@ -179,7 +179,6 @@ if (!isConnect()) {
 	sendVarToJS('userProfils', $_SESSION['user']->getOptions());
 	sendVarToJS('user_id', $_SESSION['user']->getId());
 	sendVarToJS('user_login', $_SESSION['user']->getLogin());
-	sendVarToJS('nodeJsKey', config::byKey('nodeJsKey'));
 	sendVarToJS('jeedom_firstUse', config::byKey('jeedom::firstUse', 'core', 1));
 	if (count($nodejs_plugin) > 0) {
 		foreach ($nodejs_plugin as $value) {
@@ -436,7 +435,6 @@ if (isConnect('admin')) {
 												<li class="divider"></li>
 												<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
 												<li class="divider"></li>
-												<li><a href="#">{{Node JS}} <span class="span_nodeJsState binary red tooltips"></span></a></li>
 												<li><a href="#" id="bt_jeedomAbout">{{Version}} v<?php echo jeedom::version();?></a></li>
 											</ul>
 										</li>
