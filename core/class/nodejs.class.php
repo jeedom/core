@@ -40,12 +40,12 @@ class nodejs {
 			$values = array();
 			if (isset($_option['cmd_id'])) {
 				if (isset($_option['value'])) {
-					$values['cmd' . $_option['cmd_id']] = array('datetime' => strtotime('now'), 'type' => 'cmd', 'value' => $_option['value'], 'cmd_id' => $_option['cmd_id']);
+					$values['cmd' . $_option['cmd_id']] = array('datetime' => strtotime('now'), 'type' => 'cmd', 'value' => $_option['value'], 'id' => $_option['cmd_id']);
 				}
 			} else {
 				foreach ($_option as $option) {
 					if (isset($option['value'])) {
-						$values['cmd' . $option['cmd_id']] = array('datetime' => strtotime('now'), 'type' => 'cmd', 'value' => $option['value'], 'cmd_id' => $option['cmd_id']);
+						$values['cmd' . $option['cmd_id']] = array('datetime' => strtotime('now'), 'type' => 'cmd', 'value' => $option['value'], 'id' => $option['cmd_id']);
 					}
 				}
 			}
