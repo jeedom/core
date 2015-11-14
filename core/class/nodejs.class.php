@@ -20,46 +20,77 @@
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class nodejs {
-    /*     * *************************Attributs****************************** */
+	/*     * *************************Attributs****************************** */
 
-    /*     * ***********************Methode static*************************** */
+	/*     * ***********************Methode static*************************** */
 
-    public static function pushNotification($_title, $_text, $_category = '') {
-        self::send(self::baseUrl() . 'type=notify&category=' . $_category . '&title=' . urlencode($_title) . '&text=' . urlencode($_text));
-    }
+	public static function pushNotification($_title, $_text, $_category = '') {
+		self::send(self::baseUrl() . 'type=notify&category=' . $_category . '&title=' . urlencode($_title) . '&text=' . urlencode($_text));
+	}
 
-    public static function pushUpdate($_event, $_option) {
-        if (is_object($_option) || is_array($_option)) {
-            $_option = json_encode($_option, JSON_UNESCAPED_UNICODE);
-        }
-        $url = self::baseUrl() . 'type=' . urlencode($_event) . '&options=' . urlencode($_option);
-        self::send($url);
-    }
+	public static function pushUpdate($_event, $_option) {
+		if (is_object($_option) || is_array($_option)) {
+			$option = json_encode($_option, JSON_UNESCAPED_UNICODE);
+		} else {
+			$option = $_option;
+		}
+		$url = self::baseUrl() . 'type=' . urlencode($_event) . '&options=' . urlencode($option);
+		self::send($url);
+		if ($_event == 'eventCmd' && is_array($_option)) {
+			$values = array();
+			if (isset($_option['cmd_id'])) {
+				if (isset($_option['value'])) {
+					$values['cmd' . $_option['cmd_id']] = array('datetime' => strtotime('now'), 'type' => 'cmd', 'value' => $_option['value'], 'cmd_id' => $_option['cmd_id']);
+				}
+			} else {
+				foreach ($_option as $option) {
+					if (isset($option['value'])) {
+						$values['cmd' . $option['cmd_id']] = array('datetime' => strtotime('now'), 'type' => 'cmd', 'value' => $option['value'], 'cmd_id' => $option['cmd_id']);
+					}
+				}
+			}
+			if (count($values) > 0) {
+				$cache = cache::byKey('nodejs_event');
+				$value = json_decode($cache->getValue('[]'), true);
+				$value = array_slice($value, 0, 250);
+				$value = array_merge($value, $values);
+				uasort($value, 'nodejs::datetimeOrder');
+				cache::set('nodejs_event', json_encode($value), 0);
+			}
+		}
+	}
 
-    public static function updateKey() {
-        config::save('nodeJsKey', config::genKey());
-    }
+	public static function updateKey() {
+		config::save('nodeJsKey', config::genKey());
+	}
 
-    private static function baseUrl() {
-        if (config::byKey('nodeJsKey') == '') {
-            self::updateKey();
-        }
-        return '127.0.0.1:' . config::byKey('nodeJsInternalPort') . '?key=' . config::byKey('nodeJsKey') . '&';
-    }
+	private static function baseUrl() {
+		if (config::byKey('nodeJsKey') == '') {
+			self::updateKey();
+		}
+		return '127.0.0.1:' . config::byKey('nodeJsInternalPort') . '?key=' . config::byKey('nodeJsKey') . '&';
+	}
 
-    private static function send($_url) {
-        $c = curl_init();
-        curl_setopt($c, CURLOPT_URL, $_url);
-        curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($c, CURLOPT_HEADER, false);
-        curl_setopt($c, CURLOPT_TIMEOUT, 1);
-        curl_exec($c);
-        curl_close($c);
-    }
+	private static function send($_url) {
+		$c = curl_init();
+		curl_setopt($c, CURLOPT_URL, $_url);
+		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($c, CURLOPT_HEADER, false);
+		curl_setopt($c, CURLOPT_TIMEOUT, 1);
+		curl_exec($c);
+		curl_close($c);
+	}
 
-    /*     * *********************Methode d'instance************************* */
+	private static function datetimeOrder($a, $b) {
+		if ($a['datetime'] == $b['datetime']) {
+			return 0;
+		}
+		return ($a['datetime'] > $b['datetime']) ? -1 : 1;
+	}
 
-    /*     * **********************Getteur Setteur*************************** */
+	/*     * *********************Methode d'instance************************* */
+
+	/*     * **********************Getteur Setteur*************************** */
 }
 
 ?>

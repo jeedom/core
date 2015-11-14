@@ -1050,7 +1050,7 @@ class cmd {
 		scenario::check($this);
 		$this->setCollect(0);
 		$eqLogic->emptyCacheWidget();
-		$nodeJs = array(array('cmd_id' => $this->getId()));
+		$nodeJs = array(array('cmd_id' => $this->getId(), 'value' => $value));
 		$foundInfo = false;
 		$value_cmd = self::byValue($this->getId(), null, true);
 		if (is_array($value_cmd)) {

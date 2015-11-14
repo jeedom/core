@@ -169,7 +169,7 @@ if (init('type') != '') {
 			$jsonrpc->makeSuccess(config::save($params['key'], $params['value'], $params['plugin']));
 		}
 
-		if (isset($params['plugin']) && $params['plugin'] != '') {
+		if (isset($params['plugin']) && $params['plugin'] != '' && $params['plugin'] != 'core') {
 			log::add('api', 'info', 'Demande pour le plugin : ' . secureXSS($params['plugin']));
 			include_file('core', $params['plugin'], 'api', $params['plugin']);
 		} else {
