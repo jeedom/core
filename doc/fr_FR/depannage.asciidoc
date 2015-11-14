@@ -40,11 +40,6 @@ Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom est e
 
 ''''
 
-J'ai des erreurs timeout sur socket.io dans les logs::
-Cela est normal, c'est le nodeJS qui redemarre sa connexion
-
-''''
-
 Je n'ai plus accès a Jeedom ni en SSH::
 Cette erreur n'est pas dû à Jeedom mais à un probleme avec le système. 
 Si celui ci persiste suite à une reinstallation il est conseillé de voir avec le SAV pour un soucis hardware

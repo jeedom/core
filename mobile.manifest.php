@@ -109,7 +109,6 @@ foreach (ls($root_dir, '*') as $dir) {
 CACHE MANIFEST
 
 CACHE:
-/socket.io/socket.io.js?1.2.1
 <?php
 foreach (plugin::listPlugin(true) as $plugin) {
 	foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile', '*') as $file) {

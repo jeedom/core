@@ -90,7 +90,6 @@ if (count($plugins_list) > 0) {
 		var serverDatetime = <?php echo getmicrotime();?>;
 		var io = null;
 	</script>
-	<script type="text/javascript" src="/socket.io/socket.io.js?1.2.1"></script>
 	<?php
 if (!isConnect() || $_SESSION['user']->getOptions('bootstrap_theme') == '') {
 	include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
