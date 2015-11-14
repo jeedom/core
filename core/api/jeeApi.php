@@ -185,7 +185,7 @@ if (init('type') != '') {
 
 			/*             * ***********************changes********************************* */
 			if ($jsonrpc->getMethod() == 'changes') {
-				$jsonrpc->makeSuccess(event::change($params['datetime']));
+				$jsonrpc->makeSuccess(event::changes($params['datetime']));
 			}
 
 			/*             * ************************Plugin*************************** */

@@ -669,7 +669,7 @@ class eqLogic {
 	}
 
 	public function refreshWidget() {
-		event::add('eventEqLogic', $this->getId());
+		event::add('eqLogic::update', $this->getId());
 	}
 
 	public function hasRight($_right) {

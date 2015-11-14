@@ -72,14 +72,14 @@ jeedom.init = function () {
         }
     });
 
-    $('body').on('eventCmd', function (_event,_options) {
+    $('body').on('cmd::update', function (_event,_options) {
         jeedom.cmd.refreshValue({id: _options.cmd_id});
     });
 
-    $('body').on('eventScenario', function (_event,scenario_id) {
+    $('body').on('scenario::update', function (_event,scenario_id) {
         jeedom.scenario.refreshValue({id: scenario_id});
     });
-    $('body').on('eventEqLogic', function (_event,eqLogic_id) {
+    $('body').on('eqLogic::update', function (_event,eqLogic_id) {
         jeedom.eqLogic.refreshValue({id: eqLogic_id});
     });
     $('body').on('jeedom::say', function (_event,_message) {
