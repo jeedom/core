@@ -95,7 +95,6 @@ jeedom.init = function () {
 });
 
     $('body').on('jeedom::alert', function (_event,_options) {
-        _options = json_decode(_options);
         if (!isset(_options.message) || $.trim(_options.message) == '') {
             $.hideAlert();
         } else {
