@@ -19,44 +19,34 @@
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
-class nodejs {
+class event {
 	/*     * *************************Attributs****************************** */
+
+	static $limit = 250;
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function pushNotification($_title, $_text, $_category = '') {
-		self::send(self::baseUrl() . 'type=notify&category=' . $_category . '&title=' . urlencode($_title) . '&text=' . urlencode($_text));
+	public static function add($_event, $_option) {
+		$cache = cache::byKey('event');
+		$value = json_decode($cache->getValue('[]'), true);
+		$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $_option);
+		uasort($value, 'event::datetimeOrder');
+		cache::set('event', json_encode(array_slice($value, 0, self::$limit)), 0);
 	}
 
-	public static function pushUpdate($_event, $_option) {
-		if (is_object($_option) || is_array($_option)) {
-			$option = json_encode($_option, JSON_UNESCAPED_UNICODE);
-		} else {
-			$option = $_option;
+	public static function changes($_datetime) {
+		$return = array('datetime' => getmicrotime(), 'result' => array());
+		$cache = cache::byKey('event');
+		$values = json_decode($cache->getValue('[]'), true);
+		if (count($values) > 0) {
+			foreach ($values as $value) {
+				if ($value['datetime'] <= $_datetime) {
+					break;
+				}
+				$return['result'][] = $value;
+			}
 		}
-		$url = self::baseUrl() . 'type=' . urlencode($_event) . '&options=' . urlencode($option);
-		self::send($url);
-	}
-
-	public static function updateKey() {
-		config::save('nodeJsKey', config::genKey());
-	}
-
-	private static function baseUrl() {
-		if (config::byKey('nodeJsKey') == '') {
-			self::updateKey();
-		}
-		return '127.0.0.1:' . config::byKey('nodeJsInternalPort') . '?key=' . config::byKey('nodeJsKey') . '&';
-	}
-
-	private static function send($_url) {
-		$c = curl_init();
-		curl_setopt($c, CURLOPT_URL, $_url);
-		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($c, CURLOPT_HEADER, false);
-		curl_setopt($c, CURLOPT_TIMEOUT, 1);
-		curl_exec($c);
-		curl_close($c);
+		return $return;
 	}
 
 	private static function datetimeOrder($a, $b) {

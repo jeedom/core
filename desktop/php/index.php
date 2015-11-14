@@ -87,6 +87,7 @@ if (count($plugins_list) > 0) {
 	<script>
 		var clientDatetime = new Date();
 		var clientServerDiffDatetime = (<?php echo strtotime('now');?> * 1000) - clientDatetime.getTime();
+		var serverDatetime = <?php echo getmicrotime();?>;
 		var io = null;
 	</script>
 	<script type="text/javascript" src="/socket.io/socket.io.js?1.2.1"></script>

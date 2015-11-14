@@ -790,7 +790,7 @@ class cmd {
 			foreach (self::byValue($this->getId()) as $cmd) {
 				$nodeJs[] = array('cmd_id' => $cmd->getId());
 			}
-			nodejs::pushUpdate('eventCmd', $nodeJs);
+			event::add('eventCmd', $nodeJs);
 		}
 		if ($this->getType() != 'action' && !is_array($value) && strpos($value, 'error') === false) {
 			if ($eqLogic->getStatus('numberTryWithoutSuccess') != 0) {
@@ -1050,13 +1050,13 @@ class cmd {
 		scenario::check($this);
 		$this->setCollect(0);
 		$eqLogic->emptyCacheWidget();
-		$nodeJs = array(array('cmd_id' => $this->getId(), 'value' => $value));
+		event::add('eventCmd', array('cmd_id' => $this->getId(), 'value' => $value));
 		$foundInfo = false;
 		$value_cmd = self::byValue($this->getId(), null, true);
 		if (is_array($value_cmd)) {
 			foreach ($value_cmd as $cmd) {
 				if ($cmd->getType() == 'action') {
-					$nodeJs[] = array('cmd_id' => $cmd->getId());
+					event::add('eventCmd', array('cmd_id' => $cmd->getId()));
 				} else {
 					if ($_loop > 1) {
 						$cmd->event($cmd->execute(), $_loop);
@@ -1066,7 +1066,6 @@ class cmd {
 				}
 			}
 		}
-		nodejs::pushUpdate('eventCmd', $nodeJs);
 		if ($foundInfo) {
 			listener::backgroundCalculDependencyCmd($this->getId());
 		}

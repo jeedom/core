@@ -979,11 +979,11 @@ class scenarioExpression {
 					return;
 				} else if ($this->getExpression() == 'say') {
 					$this->setLog($scenario, __('Je dis : ', __FILE__) . $options['message']);
-					nodejs::pushUpdate('jeedom::say', $options['message']);
+					event::add('jeedom::say', $options['message']);
 					return;
 				} else if ($this->getExpression() == 'gotodesign') {
 					$this->setLog($scenario, __('Changement design : ', __FILE__) . $options['plan_id']);
-					nodejs::pushUpdate('jeedom::gotoplan', $options['plan_id']);
+					event::add('jeedom::gotoplan', $options['plan_id']);
 					return;
 				} else if ($this->getExpression() == 'return') {
 					$this->setLog($scenario, __('Je vais retourner : ', __FILE__) . $options['message']);

@@ -750,7 +750,7 @@ class scenario {
 		}
 		DB::save($this);
 		if ($this->_changeState) {
-			@nodejs::pushUpdate('eventScenario', $this->getId());
+			event::add('eventScenario', $this->getId());
 		}
 	}
 

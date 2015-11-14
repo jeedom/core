@@ -62,13 +62,13 @@ class message {
 			}
 		}
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		@nodejs::pushUpdate('message::refreshMessageNumber');
+		event::add('message::refreshMessageNumber');
 		return true;
 	}
 
 	public static function nbMessage() {
 		$sql = 'SELECT count(*)
-                FROM message';
+		FROM message';
 		$count = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		return $count['count(*)'];
 	}
@@ -78,8 +78,8 @@ class message {
 			'id' => $_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM message
-                WHERE id=:id';
+		FROM message
+		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -89,9 +89,9 @@ class message {
 			'plugin' => $_plugin,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM message
-                WHERE logicalId=:logicalId
-                    AND plugin=:plugin';
+		FROM message
+		WHERE logicalId=:logicalId
+		AND plugin=:plugin';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -100,23 +100,23 @@ class message {
 			'plugin' => $_plugin,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM message
-                WHERE plugin=:plugin
-                ORDER BY date DESC';
+		FROM message
+		WHERE plugin=:plugin
+		ORDER BY date DESC';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	public static function listPlugin() {
 		$sql = 'SELECT DISTINCT(plugin)
-                FROM message';
+		FROM message';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 	}
 
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM message
-                ORDER BY date DESC
-                LIMIT 500';
+		FROM message
+		ORDER BY date DESC
+		LIMIT 500';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -135,14 +135,14 @@ class message {
 			'plugin' => $this->getPlugin(),
 		);
 		$sql = 'SELECT count(*)
-                FROM message
-                WHERE plugin=:plugin
-                      AND ( logicalId=:logicalId
-                        OR message=:message ) ';
+		FROM message
+		WHERE plugin=:plugin
+		AND ( logicalId=:logicalId
+			OR message=:message ) ';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		if ($result['count(*)'] == 0) {
 			DB::save($this);
-			@nodejs::pushNotification(__('Message de ', __FILE__) . $this->getPlugin(), $this->getMessage(), 'message');
+			event::add('notify', array('title' => __('Message de ', __FILE__) . $this->getPlugin(), 'message' => $this->getMessage(), 'category' => 'message'));
 			$cmds = explode(('&&'), config::byKey('emailAdmin'));
 			if (count($cmds) > 0) {
 				foreach ($cmds as $id) {
@@ -158,15 +158,15 @@ class message {
 				}
 			}
 		}
-		@nodejs::pushUpdate('message::refreshMessageNumber');
+		event::add('message::refreshMessageNumber');
 	}
 
 	public function remove() {
 		DB::remove($this);
-		@nodejs::pushUpdate('message::refreshMessageNumber');
+		event::add('message::refreshMessageNumber');
 	}
 
-	/*     * **********************Getteur Setteur*************************** */
+/*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {
 		return $this->id;

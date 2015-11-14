@@ -49,14 +49,6 @@ try {
 		}
 	}
 
-	if (init('action') == 'genNodeJsKey') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
-		nodejs::updateKey();
-		ajax::success(config::byKey('nodeJsKey'));
-	}
-
 	if (init('action') == 'getNodeJsKey') {
 		ajax::success(config::byKey('nodeJsKey'));
 	}

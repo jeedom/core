@@ -27,7 +27,7 @@ try {
 		$_SESSION['user']->refresh();
 		$return = array();
 		$return['user_id'] = $_SESSION['user']->getId();
-		$return['nodeJsKey'] = config::byKey('nodeJsKey');
+		$return['serverDatetime'] = getmicrotime();
 		$return['userProfils'] = $_SESSION['user']->getOptions();
 		$return['plugins'] = array();
 		foreach (plugin::listPlugin(true) as $plugin) {

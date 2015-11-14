@@ -96,10 +96,11 @@ function initApplication(_reinit) {
                 modal(false);
                 panel(false);
                 /*************Initialisation environement********************/
-                nodeJsKey = data.result.nodeJsKey;
+                serverDatetime  = data.result.serverDatetime ;
                 user_id = data.result.user_id;
                 plugins = data.result.plugins;
                 userProfils = data.result.userProfils;
+                jeedom.init();
                 var include = ['core/js/core.js'];
 
                 if (isset(userProfils) && userProfils != null) {

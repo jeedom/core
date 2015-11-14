@@ -183,6 +183,11 @@ if (init('type') != '') {
 				$jsonrpc->makeSuccess(jeedom::version());
 			}
 
+			/*             * ***********************changes********************************* */
+			if ($jsonrpc->getMethod() == 'changes') {
+				$jsonrpc->makeSuccess(event::change($params['datetime']));
+			}
+
 			/*             * ************************Plugin*************************** */
 			if ($jsonrpc->getMethod() == 'plugin::listPlugin') {
 				$activateOnly = (isset($params['activateOnly']) && $params['activateOnly'] == 1) ? true : false;

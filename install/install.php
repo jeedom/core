@@ -377,7 +377,6 @@ try {
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		echo "OK\n";
 		echo "Post installe...\n";
-		nodejs::updateKey();
 		config::save('api', config::genKey());
 		require_once dirname(__FILE__) . '/consistency.php';
 		echo "Ajout de l\'utilisateur (admin,admin)\n";
