@@ -36,6 +36,9 @@ jeedom.changes = function(){
             }
         }
         setTimeout(jeedom.changes, 1000);
+    },
+    error: function(){
+        setTimeout(jeedom.changes, 1000);
     }
 };
 try {
