@@ -30,14 +30,13 @@ class event {
 		$cache = cache::byKey('event');
 		$value = json_decode($cache->getValue('[]'), true);
 		$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $_option);
-		uasort($value, 'event::datetimeOrder');
-		cache::set('event', json_encode(array_slice($value, 0, self::$limit)), 0);
+		cache::set('event', json_encode(array_slice($value, -self::$limit, self::$limit)), 0);
 	}
 
 	public static function changes($_datetime) {
 		$return = array('datetime' => getmicrotime(), 'result' => array());
 		$cache = cache::byKey('event');
-		$values = json_decode($cache->getValue('[]'), true);
+		$values = array_reverse(json_decode($cache->getValue('[]'), true));
 		if (count($values) > 0) {
 			foreach ($values as $value) {
 				if ($value['datetime'] <= $_datetime) {
@@ -47,13 +46,6 @@ class event {
 			}
 		}
 		return $return;
-	}
-
-	private static function datetimeOrder($a, $b) {
-		if ($a['datetime'] == $b['datetime']) {
-			return 0;
-		}
-		return ($a['datetime'] > $b['datetime']) ? -1 : 1;
 	}
 
 	/*     * *********************Methode d'instance************************* */
