@@ -25,6 +25,7 @@ if (isset($argv)) {
 		}
 	}
 }
+
 if (init('type') != '') {
 	try {
 		if (!jeedom::apiAccess(init('apikey', init('api')))) {
@@ -143,17 +144,26 @@ if (init('type') != '') {
 
 		$jsonrpc = new jsonrpc($request);
 
-		if (!mySqlIsHere()) {
-			throw new Exception('Mysql non lancé', -32001);
-		}
-
 		if ($jsonrpc->getJsonrpc() != '2.0') {
 			throw new Exception('Requête invalide. Version Jsonrpc invalide : ' . $jsonrpc->getJsonrpc(), -32001);
 		}
 
 		$params = $jsonrpc->getParams();
 
-		if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) && (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
+		if ($jsonrpc->getMethod() == 'user::getHash') {
+			if (!isset($params['login']) || !isset($params['password']) || $params['login'] == '' || $params['password'] == '') {
+				connection::failed();
+				throw new Exception('Le login ou le password ne peuvent être vide', -32001);
+			}
+			$user = user::connect($params['login'], $params['password']);
+			if (!is_object($user) || $user->getEnable() != 1) {
+				connection::failed();
+				throw new Exception('Echec de l\'authentification', -32001);
+			}
+			$jsonrpc->makeSuccess($user->getHash());
+		}
+
+		if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) || (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
 			connection::failed();
 			throw new Exception('Clé API invalide', -32001);
 		}
