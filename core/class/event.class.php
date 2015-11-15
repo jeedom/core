@@ -26,7 +26,7 @@ class event {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function add($_event, $_option) {
+	public static function add($_event, $_option = array()) {
 		$cache = cache::byKey('event');
 		$value = json_decode($cache->getValue('[]'), true);
 		$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $_option);
