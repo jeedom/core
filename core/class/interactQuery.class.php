@@ -279,9 +279,10 @@ class interactQuery {
 		}
 		$reply = $interactDef->selectReply();
 		$replace = array();
-		$tags = interactDef::getTagFromQuery($this->getQuery(), $_parameters['dictation']);
 		$tags_replace = array('#query#' => $this->getQuery());
+		$tags = null;
 		if (isset($_parameters['dictation'])) {
+			$tags = interactDef::getTagFromQuery($this->getQuery(), $_parameters['dictation']);
 			$tags_replace['#dictation#'] = $_parameters['dictation'];
 		}
 		if (is_array($tags)) {
@@ -389,8 +390,10 @@ class interactQuery {
 		$replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
 		if ($interactDef->getOptions('convertBinary') != '') {
 			$convertBinary = explode('|', $interactDef->getOptions('convertBinary'));
-			$replace['1'] = $convertBinary[1];
-			$replace['0'] = $convertBinary[0];
+			if (is_array($convertBinary) && count($convertBinary) == 2) {
+				$replace['1'] = $convertBinary[1];
+				$replace['0'] = $convertBinary[0];
+			}
 		}
 		return str_replace(array_keys($replace), $replace, scenarioExpression::setTags($reply));
 	}
