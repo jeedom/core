@@ -249,11 +249,7 @@ if (init('type') != '') {
 					$eqLogic_return = utils::o2a($eqLogic);
 					$eqLogic_return['cmds'] = array();
 					foreach ($eqLogic->getCmd() as $cmd) {
-						$cmd_return = utils::o2a($cmd);
-						if ($cmd->getType() == 'info') {
-							$cmd_return['state'] = $cmd->execCmd();
-						}
-						$eqLogic_return['cmds'][] = $cmd_return;
+						$return['cmds'][] = $cmd->exportApi();
 					}
 					$return['eqLogics'][] = $eqLogic_return;
 				}
