@@ -1307,6 +1307,7 @@ class cmd {
 			return $this->getDisplay('generic_type');
 		}
 		$category = $this->getEqLogic()->getPrimaryCategory();
+		$name_eq = strtolower($this->getEqLogic()->getName());
 		$type = strtoupper($category) . '_';
 		if ($this->getType() == 'action') {
 			if ($this->getSubtype() == 'other') {
@@ -1320,6 +1321,12 @@ class cmd {
 				if (strpos($name, 'on') !== false) {
 					return $type . 'ON';
 				}
+				if (strpos($name, 'up') !== false) {
+					return $type . 'UP';
+				}
+				if (strpos($name, 'down') !== false) {
+					return $type . 'DOWN';
+				}
 			}
 			return $type . strtoupper($this->getSubtype());
 		} else {
@@ -1328,6 +1335,32 @@ class cmd {
 					return $type . 'POWER';
 				case 'kWh':
 					return $type . 'CONSUMPTION';
+				case '°C':
+					return 'TEMPERATURE';
+				case 'Lux':
+					return 'BRIGHTNESS';
+			}
+			$name = strtolower($this->getName());
+			if (strpos($name, 'présence') !== false) {
+				return 'PRESENCE';
+			}
+			if (strpos($name, 'batterie') !== false) {
+				return 'BATTERY';
+			}
+			if (strpos($name, 'fumées') !== false) {
+				return 'FUMES';
+			}
+			if (strpos($name, 'température') !== false) {
+				return 'TEMPERATURE';
+			}
+			if (strpos($name, 'luminosité') !== false) {
+				return 'BRIGHTNESS';
+			}
+			if (strpos($name, 'fuite') !== false) {
+				return 'FLIGHT';
+			}
+			if (strpos($name_eq, 'porte') !== false || strpos($name_eq, 'door') !== false || strpos($name_eq, 'fenetre') !== false || strpos($name_eq, 'fenêtre') !== false) {
+				return 'OPENING';
 			}
 			return $type . 'STATE';
 		}
