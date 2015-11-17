@@ -6,7 +6,9 @@ $cmd = cmd::byId(init('cmd_id'));
 if (!is_object($cmd)) {
 	throw new Exception('Commande non trouvé : ' . init('cmd_id'));
 }
-sendVarToJS('cmdInfo', jeedom::toHumanReadable(utils::o2a($cmd)));
+$cmdInfo = jeedom::toHumanReadable(utils::o2a($cmd));
+$cmdInfo['auto_generic_type'] = $cmd->getGenericType();
+sendVarToJS('cmdInfo', $cmdInfo);
 $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
 ?>
@@ -188,6 +190,41 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
 	?>
       <?php }
 ?>
+      <legend><i class="fa fa-building"></i> {{Type générique}}</legend>
+      <div class="form-group">
+        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{Type actuel}}</label>
+        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+          <span class="cmdAttr label label-default" style="font-size : 1em;" data-l1key="auto_generic_type" ></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Forcer à}}</label>
+        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+          <select class="cmdAttr form-control" data-l1key="display" data-l2key="generic_type">
+            <option value="">{{Automatique}}</option>
+            <option value="COOLING_ON">{{COOLING_ON}}</option>
+            <option value="COOLING_OFF">{{COOLING_OFF}}</option>
+            <option value="COOLING_STATE">{{COOLING_STATE}}</option>
+            <option value="HEATING_ON">{{HEATING_ON}}</option>
+            <option value="HEATING_OFF">{{HEATING_OFF}}</option>
+            <option value="HEATING_STATE">{{HEATING_STATE}}</option>
+            <option value="POWER">{{POWER}}</option>
+            <option value="CONSUMPTION">{{CONSUMPTION}}</option>
+            <option value="TEMPERATURE">{{TEMPERATURE}}</option>
+            <option value="BRIGHTNESS">{{BRIGHTNESS}}</option>
+            <option value="PRESENCE">{{PRESENCE}}</option>
+            <option value="BATTERY">{{BATTERY}}</option>
+            <option value="FUMES">{{FUMES}}</option>
+            <option value="TEMPERATURE">{{TEMPERATURE}}</option>
+            <option value="BRIGHTNESS">{{BRIGHTNESS}}</option>
+            <option value="FLIGHT">{{FLIGHT}}</option>
+            <option value="OPENING">{{OPENING}}</option>
+            <option value="SECURITY_STATE">{{SECURITY_STATE}}</option>
+          </select>
+        </div>
+      </div>
+
       <?php if ($cmd->getType() == 'action') {?>
       <legend><i class="fa fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
       <div class="form-group">
