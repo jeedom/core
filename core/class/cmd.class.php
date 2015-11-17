@@ -1125,34 +1125,15 @@ class cmd {
 	}
 
 	public function executeAlertCmdAction() {
-		if ($this->getConfiguration('jeedomCheckCmdActionType') == 'cmd') {
-			$cmd = cmd::byId(str_replace('#', '', $this->getConfiguration('jeedomCheckCmdCmdActionId')));
-			if (!is_object($cmd)) {
-				return;
-			}
-			$cmd->execCmd($this->getConfiguration('jeedomCheckCmdCmdActionOption'));
-			return;
-		}
-		if ($this->getConfiguration('jeedomCheckCmdActionType') == 'scenario') {
-			$scenario = scenario::byId($this->getConfiguration('jeedomCheckCmdScenarioActionId'));
-			if (!is_object($scenario)) {
-				return;
-			}
-			switch ($this->getConfiguration('jeedomCheckCmdScenarioActionMode')) {
-				case 'start':
-					$scenario->launch(false, __('Lancement direct provoqué par le scénario  : ', __FILE__) . $this->getHumanName());
-					break;
-				case 'stop':
-					$scenario->stop();
-					break;
-				case 'deactivate':
-					$scenario->setIsActive(0);
-					$scenario->save();
-					break;
-				case 'activate':
-					$scenario->setIsActive(1);
-					$scenario->save();
-					break;
+		foreach ($this->getConfiguration('actionCheckCmd') as $action) {
+			try {
+				$options = array();
+				if (isset($action['options'])) {
+					$options = $action['options'];
+				}
+				scenarioExpression::createAndExec('action', $action['cmd'], $options);
+			} catch (Exception $e) {
+				log::add('cmd', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
 			}
 		}
 	}
