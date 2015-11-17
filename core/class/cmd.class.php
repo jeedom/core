@@ -1303,10 +1303,7 @@ class cmd {
 	}
 
 	public function exportApi() {
-		$value = null;
-		if ($this->getType() == 'info') {
-			$value = $this->execCmd(null, 2);
-		}
+		$value = ($_cmd->getType() !== 'action') ? $_cmd->execCmd(null, 2) : $_cmd->getConfiguration('lastCmdValue', null);
 		$return = utils::o2a($this);
 		$return['generic_type'] = $this->getGenericType();
 		$return['currentValue'] = $value;
@@ -1324,7 +1321,7 @@ class cmd {
 			if ($this->getSubtype() == 'other') {
 				$name = strtolower($this->getName());
 				if ($category = 'heating' && strpos($name, 'cool') !== false) {
-					$type = 'COOL_';
+					$type = 'COOLING_';
 				}
 				if (strpos($name, 'off') !== false) {
 					return $type . 'OFF';
