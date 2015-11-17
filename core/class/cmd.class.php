@@ -1302,6 +1302,17 @@ class cmd {
 		}
 	}
 
+	public function exportApi() {
+		$value = null;
+		if ($this->getType() == 'info') {
+			$value = $this->execCmd(null, 2);
+		}
+		$return = utils::o2a($this);
+		$return['generic_type'] = $this->getGenericType();
+		$return['currentValue'] = $value;
+		return $return;
+	}
+
 	public function getGenericType() {
 		if ($this->getDisplay('generic_type') != '') {
 			return $this->getDisplay('generic_type');
