@@ -235,6 +235,8 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
     <div id="div_actionCheckCmd"></div>
 
     <script type="text/javascript">
+      $("#div_actionCheckCmd").sortable({axis: "y", cursor: "move", items: ".actionCheckCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+
       $('#bt_addActionCheckCmd').off('click').on('click',function(){
         addActionCheckCmd({}, 'actionCheckCmd','{{Action}}');
       });

@@ -14,10 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
-
-
-
+ $("#div_action").sortable({axis: "y", cursor: "move", items: ".action", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
  $("#div_listInteract").resizable({
   handles: "all",
@@ -311,6 +308,7 @@ if(isset(data.actions.cmd) && $.isArray(data.actions.cmd) && data.actions.cmd.le
 });
 }
 
+
 function addAction(_action, _type, _name) {
   if (!isset(_action)) {
     _action = {};
@@ -337,3 +335,4 @@ function addAction(_action, _type, _name) {
   $('#div_' + _type).append(div);
   $('#div_' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
 }
+
