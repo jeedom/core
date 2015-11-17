@@ -220,6 +220,8 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
             <option value="BRIGHTNESS">{{BRIGHTNESS}}</option>
             <option value="FLIGHT">{{FLIGHT}}</option>
             <option value="OPENING">{{OPENING}}</option>
+            <option value="SECURITY_ON">{{SECURITY_ON}}</option>
+            <option value="SECURITY_OFF">{{SECURITY_OFF}}</option>
             <option value="SECURITY_STATE">{{SECURITY_STATE}}</option>
           </select>
         </div>
