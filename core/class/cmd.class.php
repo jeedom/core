@@ -1125,6 +1125,9 @@ class cmd {
 	}
 
 	public function executeAlertCmdAction() {
+		if (!is_array($this->getConfiguration('actionCheckCmd'))) {
+			return;
+		}
 		foreach ($this->getConfiguration('actionCheckCmd') as $action) {
 			try {
 				$options = array();
