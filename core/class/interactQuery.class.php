@@ -395,6 +395,11 @@ class interactQuery {
 				$replace['0'] = $convertBinary[0];
 			}
 		}
+		foreach ($replace as $key => $value) {
+			if (is_array($value)) {
+				unset($replace[$key]);
+			}
+		}
 		return str_replace(array_keys($replace), $replace, scenarioExpression::setTags($reply));
 	}
 
