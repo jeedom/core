@@ -128,6 +128,11 @@ class interactQuery {
 			}
 			$lev = levenshtein($input, $_query);
 			log::add('interact', 'debug', 'Je compare : ' . $_query . ' avec ' . $input . ' => ' . $lev);
+			if (trim($_query) == trim($input)) {
+				$shortest = 0;
+				$closest = $query;
+				break;
+			}
 			if ($lev == 0) {
 				$shortest = 0;
 				$closest = $query;
