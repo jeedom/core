@@ -952,7 +952,7 @@ function addExpression(_expression) {
     if (!isset(_expression.options) || !isset(_expression.options.enable) || _expression.options.enable == 1) {
       retour += '<input type="checkbox" class="expressionAttr pull-right " data-l1key="options" data-l2key="enable" checked style="margin-top : 9px;" title="Décocher pour desactiver l\'action"/>';
     } else {
-      retour += '<input type="checkbox" class="expressionAttr pull-right " data-l1key="options" data-l2key="enable" style="margin-top : 9px;" title="Decocher pour desactiver l\'action"/>';
+      retour += '<input type="checkbox" class="expressionAttr pull-right " data-l1key="options" data-l2key="enable" style="margin-top : 9px;" title="Décocher pour désactiver l\'action"/>';
     }
     retour += '<i class="fa fa-arrows-v pull-right cursor bt_sortable" style="margin-top : 9px; margin-right: 10px; "></i>';
     retour += '</div>';
@@ -1016,9 +1016,14 @@ function addSubElement(_subElement, _pColor) {
     retour += '  <input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
     retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
+    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément"/>';
+    }else{
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="Décocher pour désactiver l\'élément"/>';
+    }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 50px;vertical-align: top;">';
-    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{SI}}</legend>';
+    retour += '  <legend style="margin-bottom: 0px; color : white;border : none;">{{SI}}</legend>';
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 35px;vertical-align: top; padding-top: 5px;">';
     if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0){
@@ -1061,7 +1066,7 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"> </div>';
-    
+
     break;
     case 'else' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
@@ -1087,12 +1092,17 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"> </div>';
-    
+
     break;
     case 'for' :
     retour += '  <input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
     retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
+    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément"/>';
+    }else{
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="Décocher pour désactiver l\'élément"/>';
+    }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
     retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{DE 1 A}}</legend>';
@@ -1105,12 +1115,16 @@ function addSubElement(_subElement, _pColor) {
     retour += addExpression(expression);
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fa fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
-
     break;
     case 'in' :
     retour += '  <input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
     retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
+    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément"/>';
+    }else{
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="Décocher pour désactiver l\'élément"/>';
+    }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
     retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{DANS (min)}}</legend>';
@@ -1126,10 +1140,14 @@ function addSubElement(_subElement, _pColor) {
 
     break;
     case 'at' :
-
     retour += '  <input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
     retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
+    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément"/>';
+    }else{
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="Décocher pour désactiver l\'élément"/>';
+    }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
     retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{A (Hmm)}}</legend>';
@@ -1167,12 +1185,17 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"> </div>';
-    
+
     break;
     case 'code' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
     retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
+    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément"/>';
+    }else{
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="Décocher pour désactiver l\'élément"/>';
+    }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
     retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{CODE}}</legend>'; 
@@ -1201,15 +1224,20 @@ function addSubElement(_subElement, _pColor) {
     retour += addExpression(expression);
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fa fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
-    
+
     break;
     case 'action' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
     retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
+    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément"/>';
+    }else{
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="Décocher pour désactiver l\'élément"/>';
+    }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
-    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{ACTION}}</legend>'; 
+    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{ACTION}}</legend><br/>';
     retour += '     <div class="dropdown">';
     retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
     retour += '         <i class="fa fa-plus-circle"></i> Ajouter';
@@ -1244,7 +1272,7 @@ function addElement(_element) {
   if (!isset(_element.type) || _element.type == '') {
     return '';
   }
-  
+
   pColor++;
   if (pColor > 4) {
     pColor = 0;

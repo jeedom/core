@@ -127,6 +127,9 @@ class scenarioElement {
 
 	public function execute(&$_scenario) {
 		if ($this->getType() == 'if') {
+			if ($this->getSubElement('if')->getOptions('enable', 1) == 0) {
+				return true;
+			}
 			if ($this->getSubElement('if')->execute($_scenario)) {
 				if ($this->getSubElement('if')->getOptions('allowRepeatCondition', 0) == 1) {
 					if ($this->getSubElement('if')->getOptions('previousState', -1) != 1) {
@@ -154,11 +157,20 @@ class scenarioElement {
 			return $this->getSubElement('else')->execute($_scenario);
 
 		} else if ($this->getType() == 'action') {
+			if ($this->getSubElement('action')->getOptions('enable', 1) == 0) {
+				return true;
+			}
 			return $this->getSubElement('action')->execute($_scenario);
 		} else if ($this->getType() == 'code') {
+			if ($this->getSubElement('code')->getOptions('enable', 1) == 0) {
+				return true;
+			}
 			return $this->getSubElement('code')->execute($_scenario);
 		} else if ($this->getType() == 'for') {
 			$for = $this->getSubElement('for');
+			if ($for->getOptions('enable', 1) == 0) {
+				return true;
+			}
 			$limits = $for->getExpression();
 			$limits = intval(jeedom::evaluateExpression($limits[0]->getExpression()));
 			if (!is_numeric($limits)) {
@@ -172,6 +184,9 @@ class scenarioElement {
 			return $return;
 		} else if ($this->getType() == 'in') {
 			$in = $this->getSubElement('in');
+			if ($in->getOptions('enable', 1) == 0) {
+				return true;
+			}
 			$in = $in->getExpression();
 			$time = ceil(str_replace('.', ',', jeedom::evaluateExpression($in[0]->getExpression())));
 			if (!is_numeric($time) || $time < 0) {
@@ -206,6 +221,9 @@ class scenarioElement {
 			return true;
 		} else if ($this->getType() == 'at') {
 			$at = $this->getSubElement('at');
+			if ($at->getOptions('enable', 1) == 0) {
+				return true;
+			}
 			$at = $at->getExpression();
 			$next = jeedom::evaluateExpression($at[0]->getExpression());
 			if (($next % 100) > 59) {
