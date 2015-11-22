@@ -19,7 +19,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                     <form class="form-horizontal">
                         <fieldset>
                             <div class="form-group expertModeVisible">
-                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef API}}</label>
+                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API global de Jeedom}}">{{Clef API}}</label>
                                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                     <span class="label label-info" style="font-size : 1em;" id="in_keyAPI"><?php echo config::byKey('api'); ?></span>
                                 </div>
@@ -28,13 +28,13 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Système}}</label>
+                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Indique votre type de matériel}}">{{Système}}</label>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                     <span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareName() ?></span>
                                 </div>
                             </div>
                             <div class="form-group expertModeVisible">
-                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef hardware}}</label>
+                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef d'installation qui permet d'identifier votre Jeedom quand il communique avec le market}}">{{Clef d'installation}}</label>
                                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                     <span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareKey() ?></span>
                                 </div>
@@ -43,7 +43,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Langue}}</label>
+                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Langue de votre Jeedom}}">{{Langue}}</label>
                                 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                     <select class="configKey form-control" data-l1key="language">
                                         <option value="fr_FR">Français</option>
@@ -62,13 +62,13 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                               </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Durée de vie des sessions (heure)}}</label>
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Durée de vie de votre connexion à Jeedom si vous n'avez pas coché la case enregistrer cet ordinateur}}">{{Durée de vie des sessions (heure)}}</label>
                             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                 <input type="text"  class="configKey form-control" data-l1key="session_lifetime" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Date et heure}}</label>
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Fuseau horraire de votre Jeedom}}">{{Date et heure}}</label>
                             <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
                                 <select class="configKey form-control" data-l1key="timezone">
                                     <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
@@ -169,19 +169,19 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             </div>
                         </div>
                         <div class="form-group expertModeVisible">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Serveur de temps optionnel}}</label>
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Permet d'ajouter un serveur de temps à Jeedom utilisé lorsque Jeedom force la synchronisation de l'heure}}">{{Serveur de temps optionnel}}</label>
                             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                 <input type="text"  class="configKey form-control" data-l1key="ntp::optionalServer" />
                             </div>
                         </div>
                         <div class="form-group expertModeVisible">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ignorer la vérification de l'heure}}</label>
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Indique à Jeedom de ne pas prendre en compte l'heure du système}}">{{Ignorer la vérification de l'heure}}</label>
                             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
                             	<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="ignoreHourCheck" />
                             </div>
                         </div>
                         <div class="form-group expertModeVisible has-error">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mode}}</label>
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Permet de passer Jeedom en mode exclave.}}">{{Mode}}</label>
                             <div class="col-sm-6">
                                 <?php
 if (config::byKey('jeeNetwork::mode') == 'master') {
