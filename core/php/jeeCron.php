@@ -144,7 +144,24 @@ if (init('cron_id') != '') {
 		} else {
 			log::add('cron', 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
 		}
-
+	} catch (Error $e) {
+		$cron->setState('error');
+		$cron->setPID('');
+		$cron->setServer('');
+		$cron->setDuration(-1);
+		$cron->save();
+		$logicalId = config::genKey();
+		if ($e->getCode() != 0) {
+			$logicalId = $cron->getName() . '::' . $e->getCode();
+		}
+		echo '[Erreur] ' . $cron->getName() . ' : ' . print_r($e, true);
+		if (isset($class) && $class != '') {
+			log::add($class, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
+		} else if (isset($function) && $function != '') {
+			log::add($function, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
+		} else {
+			log::add('cron', 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
+		}
 	}
 } else {
 	if (cron::jeeCronRun()) {
@@ -195,6 +212,16 @@ if (init('cron_id') != '') {
 						break;
 				}
 			} catch (Exception $e) {
+				if ($cron->getOnce() != 1) {
+					$cron->setState('error');
+					$cron->setPID('');
+					$cron->setServer('');
+					$cron->setDuration(-1);
+					$cron->save();
+					echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true);
+					log::add('cron', 'error', __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . $e->getMessage());
+				}
+			} catch (Error $e) {
 				if ($cron->getOnce() != 1) {
 					$cron->setState('error');
 					$cron->setPID('');
