@@ -119,7 +119,7 @@ class interactDef {
 	public static function getTagFromQuery($_def, $_query) {
 		$_def = trim($_def);
 		$_query = trim($_query);
-		$options = null;
+		$options = array();
 		$regexp = preg_quote(strtolower($_def));
 		preg_match_all("/#(.*?)#/", $_def, $tags);
 		if (count($tags[1]) > 0) {
@@ -127,9 +127,12 @@ class interactDef {
 				$regexp = str_replace('#' . $match . '#', '(.*?)', $regexp);
 			}
 			preg_match_all("/" . $regexp . "$/", strtolower($_query), $matches, PREG_SET_ORDER);
-			$options = array();
-			for ($i = 0; $i < count($tags[1]); $i++) {
-				$options[$tags[1][$i]] = $matches[0][$i + 1];
+			if (isset($matches[0])) {
+				for ($i = 0; $i < count($tags[1]); $i++) {
+					if (isset($matches[0][$i + 1])) {
+						$options[$tags[1][$i]] = $matches[0][$i + 1];
+					}
+				}
 			}
 		}
 		return $options;
