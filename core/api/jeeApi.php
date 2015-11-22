@@ -193,7 +193,7 @@ if (init('type') != '') {
 				$jsonrpc->makeSuccess(jeedom::version());
 			}
 
-			/*             * ***********************Version********************************* */
+			/*             * ***********************Datetime********************************* */
 			if ($jsonrpc->getMethod() == 'datetime') {
 				$jsonrpc->makeSuccess(getmicrotime());
 			}
