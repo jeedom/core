@@ -21,7 +21,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             <div class="form-group expertModeVisible">
                                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef API}}</label>
                                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                    <span class="label label-info" style="font-size : 1em;" id="in_keyAPI"><?php echo config::byKey('api');?></span>
+                                    <span class="label label-info" style="font-size : 1em;" id="in_keyAPI"><?php echo config::byKey('api'); ?></span>
                                 </div>
                                 <div class="col-lg-2 col-md-3 col-sm-3">
                                     <a class="btn btn-default form-control" id="bt_genKeyAPI"><i class="fa fa-refresh"></i> {{Générer}}</a>
@@ -30,13 +30,13 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             <div class="form-group">
                                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Système}}</label>
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    <span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareName()?></span>
+                                    <span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareName() ?></span>
                                 </div>
                             </div>
                             <div class="form-group expertModeVisible">
                                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef hardware}}</label>
                                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                                    <span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareKey()?></span>
+                                    <span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareKey() ?></span>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-3">
                                     <a class="btn btn-default form-control" id="bt_resetHwKey"><i class="fa fa-refresh"></i> {{Remise à zéro}}</a>
@@ -247,7 +247,7 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès à l'interface d'administration}}</label>
                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <a class="btn btn-danger" id="bt_accessDB" data-href="<?php echo jeedom::getCurrentAdminerFolder() . '/index.php'?>"><i class="fa fa-exclamation-triangle"></i> {{Se connecter}}</a>
+                            <a class="btn btn-danger" id="bt_accessDB" data-href="<?php echo jeedom::getCurrentAdminerFolder() . '/index.php' ?>"><i class="fa fa-exclamation-triangle"></i> {{Se connecter}}</a>
                         </div>
                     </div>
                     <div class="form-group">
@@ -997,7 +997,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
                             <div class="input-group">
                                 <input class="configKey form-control" data-l1key="market::address"/>
                                 <span class="input-group-btn">
-                                    <a class="btn btn-default" id="bt_testMarketConnection"><i class="fa fa-cube"></i> Tester</a>
+                                    <a class="btn btn-default" id="bt_testMarketConnection"><i class="fa fa-cube"></i> {{Tester/Synchroniser}}</a>
                                 </span>
                             </div>
                         </div>
