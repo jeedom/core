@@ -80,6 +80,11 @@ try {
 		$cron->remove();
 	}
 
+	$cron = cron::byClassAndFunction('DB', 'optimize');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
+
 	$cron = cron::byClassAndFunction('plugin', 'cronDaily');
 	if (!is_object($cron)) {
 		echo "Création de plugin::cronDaily\n";
@@ -127,6 +132,19 @@ try {
 	$cron->setClass('scenario');
 	$cron->setFunction('check');
 	$cron->setSchedule('* * * * * *');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(5);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('jeedom', 'cronDaily');
+	if (!is_object($cron)) {
+		echo "Création de jeedom::cronDaily\n";
+		$cron = new cron();
+	}
+	$cron->setClass('jeedom');
+	$cron->setFunction('cronDaily');
+	$cron->setSchedule('00 00 * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(5);
@@ -213,18 +231,6 @@ try {
 	$cron->setClass('history');
 	$cron->setFunction('archive');
 	$cron->setSchedule('00 5 * * * *');
-	$cron->setTimeout(240);
-	$cron->setDeamon(0);
-	$cron->save();
-
-	$cron = cron::byClassAndFunction('DB', 'optimize');
-	if (!is_object($cron)) {
-		echo "Création de DB::optimize\n";
-		$cron = new cron();
-	}
-	$cron->setClass('DB');
-	$cron->setFunction('optimize');
-	$cron->setSchedule('35 00 * * 0');
 	$cron->setTimeout(240);
 	$cron->setDeamon(0);
 	$cron->save();
