@@ -8,7 +8,7 @@
 	}
 }(function($) {
 
-/*! TableSorter (FORK) v2.24.0 *//*
+/*! TableSorter (FORK) v2.24.5 *//*
 * Client-side table sorting with ease!
 * @requires jQuery v1.2.6+
 *
@@ -31,7 +31,7 @@
 	'use strict';
 	var ts = $.tablesorter = {
 
-		version : '2.24.0',
+		version : '2.24.5',
 
 		parsers : [],
 		widgets : [],
@@ -149,12 +149,13 @@
 
 		// labels applied to sortable headers for accessibility (aria) support
 		language : {
-			sortAsc  : 'Ascending sort applied, ',
-			sortDesc : 'Descending sort applied, ',
-			sortNone : 'No sort applied, ',
-			nextAsc  : 'activate to apply an ascending sort',
-			nextDesc : 'activate to apply a descending sort',
-			nextNone : 'activate to remove the sort'
+			sortAsc      : 'Ascending sort applied, ',
+			sortDesc     : 'Descending sort applied, ',
+			sortNone     : 'No sort applied, ',
+			sortDisabled : 'sorting is disabled',
+			nextAsc      : 'activate to apply an ascending sort',
+			nextDesc     : 'activate to apply a descending sort',
+			nextNone     : 'activate to remove the sort'
 		},
 
 		regex : {
@@ -1003,7 +1004,7 @@
 		▀████▀ ██     █████▀ ██  ██   ██   ██████
 		*/
 		setHeadersCss : function( c ) {
-			var $sorted, header, indx, column, $header, nextSort, txt, tmp,
+			var $sorted, indx, column,
 				list = c.sortList,
 				len = list.length,
 				none = ts.css.sortNone + ' ' + c.cssNone,
@@ -1029,12 +1030,13 @@
 				if ( list[ indx ][ 1 ] !== 2 ) {
 					// multicolumn sorting updating - see #1005
 					// .not(function(){}) needs jQuery 1.4
-					$sorted = c.$headers.filter( function( i, el ) {
+					// filter(function(i, el){}) <- el is undefined in jQuery v1.2.6
+					$sorted = c.$headers.filter( function( i ) {
 						// only include headers that are in the sortList (this includes colspans)
 						var include = true,
-							$el = $( el ),
+							$el = c.$headers.eq( i ),
 							col = parseInt( $el.attr( 'data-column' ), 10 ),
-							end = col + el.colSpan;
+							end = col + c.$headers[ i ].colSpan;
 						for ( ; col < end; col++ ) {
 							include = include ? ts.isValueInArray( col, c.sortList ) > -1 : false;
 						}
@@ -1070,50 +1072,62 @@
 			}
 			// add verbose aria labels
 			len = c.$headers.length;
-			$headers = c.$headers.not( '.sorter-false' );
 			for ( indx = 0; indx < len; indx++ ) {
-				$header = $headers.eq( indx );
-				if ( $header.length ) {
-					header = $headers[ indx ];
-					column = parseInt( $header.attr( 'data-column' ), 10 );
-					nextSort = c.sortVars[ column ].order[ ( c.sortVars[ column ].count + 1 ) % ( c.sortReset ? 3 : 2 ) ];
+				ts.setColumnAriaLabel( c, c.$headers.eq( indx ) );
+			}
+		},
+
+		// nextSort (optional), lets you disable next sort text
+		setColumnAriaLabel : function( c, $header, nextSort ) {
+			if ( $header.length ) {
+				var column = parseInt( $header.attr( 'data-column' ), 10 ),
 					tmp = $header.hasClass( ts.css.sortAsc ) ?
 						'sortAsc' :
-						$header.hasClass( ts.css.sortDesc ) ? 'sortDesc' : 'sortNone';
-					txt = $.trim( $header.text() ) + ': ' +
-						ts.language[ tmp ] +
-						ts.language[ nextSort === 0 ? 'nextAsc' : nextSort === 1 ? 'nextDesc' : 'nextNone' ];
-					$header.attr( 'aria-label', txt );
+						$header.hasClass( ts.css.sortDesc ) ? 'sortDesc' : 'sortNone',
+					txt = $.trim( $header.text() ) + ': ' + ts.language[ tmp ];
+				if ( $header.hasClass( 'sorter-false' ) || nextSort === false ) {
+					txt += ts.language.sortDisabled;
+				} else {
+					nextSort = c.sortVars[ column ].order[ ( c.sortVars[ column ].count + 1 ) % ( c.sortReset ? 3 : 2 ) ];
+					// if nextSort
+					txt += ts.language[ nextSort === 0 ? 'nextAsc' : nextSort === 1 ? 'nextDesc' : 'nextNone' ];
 				}
+				$header.attr( 'aria-label', txt );
 			}
 		},
 
 		updateHeader : function( c ) {
-			var index, isDisabled, $th, col,
+			var index, isDisabled, $header, col,
 				table = c.table,
 				len = c.$headers.length;
 			for ( index = 0; index < len; index++ ) {
-				$th = c.$headers.eq( index );
+				$header = c.$headers.eq( index );
 				col = ts.getColumnData( table, c.headers, index, true );
 				// add 'sorter-false' class if 'parser-false' is set
-				isDisabled = ts.getData( $th, col, 'sorter' ) === 'false' || ts.getData( $th, col, 'parser' ) === 'false';
-				$th[ 0 ].sortDisabled = isDisabled;
-				$th[ isDisabled ? 'addClass' : 'removeClass' ]( 'sorter-false' ).attr( 'aria-disabled', '' + isDisabled );
-				// disable tab index on disabled cells
-				if ( c.tabIndex ) {
-					if ( isDisabled ) {
-						$th.removeAttr( 'tabindex' );
-					} else {
-						$th.attr( 'tabindex', '0' );
-					}
+				isDisabled = ts.getData( $header, col, 'sorter' ) === 'false' || ts.getData( $header, col, 'parser' ) === 'false';
+				ts.setColumnSort( c, $header, isDisabled );
+			}
+		},
+
+		setColumnSort : function( c, $header, isDisabled ) {
+			var id = c.table.id;
+			$header[ 0 ].sortDisabled = isDisabled;
+			$header[ isDisabled ? 'addClass' : 'removeClass' ]( 'sorter-false' )
+				.attr( 'aria-disabled', '' + isDisabled );
+			// disable tab index on disabled cells
+			if ( c.tabIndex ) {
+				if ( isDisabled ) {
+					$header.removeAttr( 'tabindex' );
+				} else {
+					$header.attr( 'tabindex', '0' );
 				}
-				// aria-controls - requires table ID
-				if ( table.id ) {
-					if ( isDisabled ) {
-						$th.removeAttr( 'aria-controls' );
-					} else {
-						$th.attr( 'aria-controls', table.id );
-					}
+			}
+			// aria-controls - requires table ID
+			if ( id ) {
+				if ( isDisabled ) {
+					$header.removeAttr( 'aria-controls' );
+				} else {
+					$header.attr( 'aria-controls', id );
 				}
 			}
 		},
@@ -1411,13 +1425,12 @@
 				event[ c.sortResetKey ] ? 2 : ( c.sortVars[ col ].count + 1 ) % ( c.sortReset ? 3 : 2 );
 			// reset all sorts on non-current column - issue #30
 			if ( c.sortRestart ) {
-				tmp = cell;
 				for ( headerIndx = 0; headerIndx < len; headerIndx++ ) {
 					$header = c.$headers.eq( headerIndx );
+					tmp = parseInt( $header.attr( 'data-column' ), 10 );
 					// only reset counts on columns that weren't just clicked on and if not included in a multisort
-					if ( $header[ 0 ] !== tmp &&
-						( notMultiSort || !$header.is( '.' + ts.css.sortDesc + ',.' + ts.css.sortAsc ) ) ) {
-						c.sortVars[ col ].count = -1;
+					if ( col !== tmp && ( notMultiSort || $header.hasClass( ts.css.sortNone ) ) ) {
+						c.sortVars[ tmp ].count = -1;
 					}
 				}
 			}
@@ -2176,14 +2189,14 @@
 
 		// *** Process table ***
 		// add processing indicator
-		isProcessing : function( $table, toggle, $ths ) {
+		isProcessing : function( $table, toggle, $headers ) {
 			$table = $( $table );
 			var c = $table[ 0 ].config,
 				// default to all headers
-				$header = $ths || $table.find( '.' + ts.css.header );
+				$header = $headers || $table.find( '.' + ts.css.header );
 			if ( toggle ) {
-				// don't use sortList if custom $ths used
-				if ( typeof $ths !== 'undefined' && c.sortList.length > 0 ) {
+				// don't use sortList if custom $headers used
+				if ( typeof $headers !== 'undefined' && c.sortList.length > 0 ) {
 					// get headers from the sortList
 					$header = $header.filter( function() {
 						// get data-column from attr to keep compatibility with jQuery 1.2.6
@@ -2495,6 +2508,21 @@
 	// XXY covers MDY & DMY formats
 	ts.regex.shortDateXXY = /(\d{1,2})[\/\s](\d{1,2})[\/\s](\d{4})/;
 	ts.regex.shortDateYMD = /(\d{4})[\/\s](\d{1,2})[\/\s](\d{1,2})/;
+	ts.convertFormat = function( dateString, format ) {
+		dateString = ( dateString || '' )
+			.replace( ts.regex.spaces, ' ' )
+			.replace( ts.regex.shortDateReplace, '/' );
+		if ( format === 'mmddyyyy' ) {
+			dateString = dateString.replace( ts.regex.shortDateXXY, '$3/$1/$2' );
+		} else if ( format === 'ddmmyyyy' ) {
+			dateString = dateString.replace( ts.regex.shortDateXXY, '$3/$2/$1' );
+		} else if ( format === 'yyyymmdd' ) {
+			dateString = dateString.replace( ts.regex.shortDateYMD, '$1/$2/$3' );
+		}
+		var date = new Date( dateString );
+		return date instanceof Date && isFinite( date ) ? date.getTime() : '';
+	};
+
 	ts.addParser({
 		id : 'shortDate', // 'mmddyyyy', 'ddmmyyyy' or 'yyyymmdd'
 		is : function( str ) {
@@ -2503,37 +2531,45 @@
 		},
 		format : function( str, table, cell, cellIndex ) {
 			if ( str ) {
-				var date, d,
-					c = table.config,
-					ci = c.$headerIndexed[ cellIndex ],
-					format = ci.length && ci[ 0 ].dateFormat ||
-						ts.getData( ci, ts.getColumnData( table, c.headers, cellIndex ), 'dateFormat' ) ||
+				var c = table.config,
+					$header = c.$headerIndexed[ cellIndex ],
+					format = $header.length && $header.data( 'dateFormat' ) ||
+						ts.getData( $header, ts.getColumnData( table, c.headers, cellIndex ), 'dateFormat' ) ||
 						c.dateFormat;
-				d = str.replace( ts.regex.spaces, ' ' ).replace( ts.regex.shortDateReplace, '/' );
-				if ( format === 'mmddyyyy' ) {
-					d = d.replace( ts.regex.shortDateXXY, '$3/$1/$2' );
-				} else if ( format === 'ddmmyyyy' ) {
-					d = d.replace( ts.regex.shortDateXXY, '$3/$2/$1' );
-				} else if ( format === 'yyyymmdd' ) {
-					d = d.replace( ts.regex.shortDateYMD, '$1/$2/$3' );
+				// save format because getData can be slow...
+				if ( $header.length ) {
+					$header.data( 'dateFormat', format );
 				}
-				date = new Date( d );
-				return date instanceof Date && isFinite( date ) ? date.getTime() : str;
+				return ts.convertFormat( str, format ) || str;
 			}
 			return str;
 		},
 		type : 'numeric'
 	});
 
-	ts.regex.timeTest = /^(([0-2]?\d:[0-5]\d)|([0-1]?\d:[0-5]\d\s?([AP]M)))$/i;
+	// match 24 hour time & 12 hours time + am/pm - see http://regexr.com/3c3tk
+	ts.regex.timeTest = /^([1-9]|1[0-2]):([0-5]\d)(\s[AP]M)|((?:[01]\d|[2][0-4]):[0-5]\d)$/i;
+	ts.regex.timeMatch = /([1-9]|1[0-2]):([0-5]\d)(\s[AP]M)|((?:[01]\d|[2][0-4]):[0-5]\d)/i;
 	ts.addParser({
 		id : 'time',
 		is : function( str ) {
 			return ts.regex.timeTest.test( str );
 		},
 		format : function( str, table ) {
-			var date = str ? new Date( '2000/01/01 ' + str.replace( ts.regex.dateReplace, '$1 $2' ) ) : str;
-			return date instanceof Date && isFinite( date ) ? date.getTime() : str;
+			// isolate time... ignore month, day and year
+			var temp,
+				timePart = ( str || '' ).match( ts.regex.timeMatch ),
+				orig = new Date( str ),
+				// no time component? default to 00:00 by leaving it out, but only if str is defined
+				time = str && ( timePart !== null ? timePart[ 0 ] : '00:00 AM' ),
+				date = time ? new Date( '2000/01/01 ' + time.replace( ts.regex.dateReplace, '$1 $2' ) ) : time;
+			if ( date instanceof Date && isFinite( date ) ) {
+				temp = orig instanceof Date && isFinite( orig ) ? orig.getTime() : 0;
+				// if original string was a valid date, add it to the decimal so the column sorts in some kind of order
+				// luckily new Date() ignores the decimals
+				return temp ? parseFloat( date.getTime() + '.' + orig.getTime() ) : date.getTime();
+			}
+			return str;
 		},
 		type : 'numeric'
 	});

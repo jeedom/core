@@ -1,6 +1,6 @@
 /*!
  * tablesorter (FORK) pager plugin
- * updated 10/31/2015 (v2.24.0)
+ * updated 11/10/2015 (v2.24.5)
  */
 /*jshint browser:true, jquery:true, unused:false */
 ;(function($) {
@@ -54,7 +54,8 @@
 			ajaxProcessing: function(ajax){ return [ 0, [], null ]; },
 
 			// output default: '{page}/{totalPages}'
-			// possible variables: {page}, {totalPages}, {filteredPages}, {startRow}, {endRow}, {filteredRows} and {totalRows}
+			// possible variables: {size}, {page}, {totalPages}, {filteredPages}, {startRow},
+			// {endRow}, {filteredRows} and {totalRows}
 			output: '{startRow} to {endRow} of {totalRows} rows', // '{page}/{totalPages}'
 
 			// apply disabled classname to the pager arrows when the rows at either extreme is visible
@@ -384,6 +385,12 @@
 		renderAjax = function(data, table, p, xhr, settings, exception){
 			// process data
 			if ( typeof p.ajaxProcessing === 'function' ) {
+
+				// in case nothing is returned by ajax, empty out the table; see #1032
+				// but do it before calling pager_ajaxProcessing because that function may add content
+				// directly to the table
+				table.config.$tbodies.eq(0).empty();
+
 				// ajaxProcessing result: [ total, rows, headers ]
 				var i, j, t, hsh, $f, $sh, $headers, $h, icon, th, d, l, rr_count, len,
 					c = table.config,
@@ -443,9 +450,6 @@
 						if (p.processAjaxOnInit) {
 							c.$tbodies.eq(0).html( tds );
 						}
-					} else {
-						// nothing returned by ajax, empty out the table; see #1032
-						c.$tbodies.eq(0).empty();
 					}
 					p.processAjaxOnInit = true;
 					// only add new header text if the length matches
