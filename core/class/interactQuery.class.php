@@ -160,20 +160,6 @@ class interactQuery {
 		return $closest;
 	}
 
-	public static function whatDoYouKnow($_object = null) {
-		$results = jeedom::whatDoYouKnow($_object);
-		$reply = '';
-		foreach ($results as $object) {
-			$reply .= __('*** Je sais que pour ', __FILE__) . $object['name'] . " : \n";
-			foreach ($object['eqLogic'] as $eqLogic) {
-				foreach ($eqLogic['cmd'] as $cmd) {
-					$reply .= $eqLogic['name'] . ' ' . $cmd['name'] . ' = ' . $cmd['value'] . ' ' . $cmd['unite'] . "\n";
-				}
-			}
-		}
-		return $reply;
-	}
-
 	public static function tryToReply($_query, $_parameters = array()) {
 		$_parameters['dictation'] = $_query;
 		if (isset($_parameters['profile'])) {

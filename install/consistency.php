@@ -61,7 +61,21 @@ try {
 		$cron->remove();
 	}
 
-	$cron = cron::byClassAndFunction('plugin', 'cron');
+	$cron = cron::byClassAndFunction('history', 'historize');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
+	$cron = cron::byClassAndFunction('cmd', 'collect');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
+
+	$cron = cron::byClassAndFunction('jeedom', 'updateSystem');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
+
+	$cron = cron::byClassAndFunction('jeedom', 'checkAndCollect');
 	if (is_object($cron)) {
 		$cron->remove();
 	}
@@ -105,15 +119,6 @@ try {
 	$cron->setTimeout(5);
 	$cron->save();
 
-	$cron = cron::byClassAndFunction('history', 'historize');
-	if (is_object($cron)) {
-		$cron->remove();
-	}
-	$cron = cron::byClassAndFunction('cmd', 'collect');
-	if (is_object($cron)) {
-		$cron->remove();
-	}
-
 	$cron = cron::byClassAndFunction('scenario', 'check');
 	if (!is_object($cron)) {
 		echo "Création de scenario::check\n";
@@ -127,28 +132,18 @@ try {
 	$cron->setTimeout(5);
 	$cron->save();
 
-	$cron = cron::byClassAndFunction('jeedom', 'checkAndCollect');
+	$cron = cron::byClassAndFunction('jeedom', 'cron5');
 	if (!is_object($cron)) {
-		echo "Création de jeedom::checkAndCollect\n";
+		echo "Création de jeedom::cron5\n";
 		$cron = new cron();
 	}
 	$cron->setClass('jeedom');
-	$cron->setFunction('checkAndCollect');
+	$cron->setFunction('cron5');
 	$cron->setSchedule('*/5 * * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(5);
 	$cron->save();
-
-	$cron = cron::byClassAndFunction('history', 'archive');
-	if (is_object($cron)) {
-		$cron->remove();
-	}
-
-	$cron = cron::byClassAndFunction('jeedom', 'updateSystem');
-	if (is_object($cron)) {
-		$cron->remove();
-	}
 
 	$cron = cron::byClassAndFunction('jeedom', 'cron');
 	if (!is_object($cron)) {
@@ -159,6 +154,7 @@ try {
 	$cron->setFunction('cron');
 	$cron->setSchedule('* * * * * *');
 	$cron->setTimeout(60);
+	$cron->setDeamon(0);
 	$cron->save();
 
 	$cron = cron::byClassAndFunction('plugin', 'cron');
@@ -170,6 +166,7 @@ try {
 	$cron->setFunction('cron');
 	$cron->setSchedule('* * * * * *');
 	$cron->setTimeout(60);
+	$cron->setDeamon(0);
 	$cron->save();
 
 	$cron = cron::byClassAndFunction('plugin', 'cron15');
@@ -181,6 +178,7 @@ try {
 	$cron->setFunction('cron15');
 	$cron->setSchedule('*/15 * * * * *');
 	$cron->setTimeout(60);
+	$cron->setDeamon(0);
 	$cron->save();
 
 	$cron = cron::byClassAndFunction('plugin', 'cron30');
@@ -192,6 +190,7 @@ try {
 	$cron->setFunction('cron30');
 	$cron->setSchedule('*/30 * * * * *');
 	$cron->setTimeout(60);
+	$cron->setDeamon(0);
 	$cron->save();
 
 	$cron = cron::byClassAndFunction('cache', 'persist');
@@ -203,6 +202,31 @@ try {
 	$cron->setFunction('persist');
 	$cron->setSchedule('*/30 * * * * *');
 	$cron->setTimeout(60);
+	$cron->setDeamon(0);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('history', 'archive');
+	if (!is_object($cron)) {
+		echo "Création de history::archive\n";
+		$cron = new cron();
+	}
+	$cron->setClass('history');
+	$cron->setFunction('archive');
+	$cron->setSchedule('00 5 * * * *');
+	$cron->setTimeout(240);
+	$cron->setDeamon(0);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('DB', 'optimize');
+	if (!is_object($cron)) {
+		echo "Création de DB::optimize\n";
+		$cron = new cron();
+	}
+	$cron->setClass('DB');
+	$cron->setFunction('optimize');
+	$cron->setSchedule('35 00 * * 0');
+	$cron->setTimeout(240);
+	$cron->setDeamon(0);
 	$cron->save();
 
 	if (jeedom::isCapable('sudo')) {

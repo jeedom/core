@@ -338,48 +338,6 @@ class jeedom {
 		}
 	}
 
-	public static function whatDoYouKnow($_object = null) {
-		$result = array();
-		if (is_object($_object)) {
-			$objects = array($_object);
-		} else {
-			$objects = object::all();
-		}
-		foreach ($objects as $object) {
-			foreach ($object->getEqLogic() as $eqLogic) {
-				if ($eqLogic->getIsEnable() == 1) {
-					foreach ($eqLogic->getCmd() as $cmd) {
-						if ($cmd->getIsVisible() == 1 && $cmd->getType() == 'info') {
-							try {
-								$value = $cmd->execCmd();
-								if (!isset($result[$object->getId()])) {
-									$result[$object->getId()] = array();
-									$result[$object->getId()]['name'] = $object->getName();
-									$result[$object->getId()]['eqLogic'] = array();
-								}
-								if (!isset($result[$object->getId()]['eqLogic'][$eqLogic->getId()])) {
-									$result[$object->getId()]['eqLogic'][$eqLogic->getId()] = array();
-									$result[$object->getId()]['eqLogic'][$eqLogic->getId()]['name'] = $eqLogic->getName();
-									$result[$object->getId()]['eqLogic'][$eqLogic->getId()]['cmd'] = array();
-								}
-
-								$result[$object->getId()]['eqLogic'][$eqLogic->getId()]['cmd'][$cmd->getId()] = array();
-								$result[$object->getId()]['eqLogic'][$eqLogic->getId()]['cmd'][$cmd->getId()]['name'] = $cmd->getName();
-								$result[$object->getId()]['eqLogic'][$eqLogic->getId()]['cmd'][$cmd->getId()]['unite'] = $cmd->getUnite();
-								$result[$object->getId()]['eqLogic'][$eqLogic->getId()]['cmd'][$cmd->getId()]['value'] = $value;
-							} catch (Exception $exc) {
-
-							} catch (Error $exc) {
-
-							}
-						}
-					}
-				}
-			}
-		}
-		return $result;
-	}
-
 	public static function version() {
 		if (file_exists(dirname(__FILE__) . '/../config/version')) {
 			return trim(file_get_contents(dirname(__FILE__) . '/../config/version'));
@@ -435,16 +393,7 @@ class jeedom {
 		scenario::check($_event);
 	}
 
-	public static function checkAndCollect() {
-		if (date('Gi') >= 500 && date('Gi') < 505) {
-			try {
-				history::archive();
-			} catch (Exception $e) {
-				log::add('history', 'error', 'history::archive : ' . $e->getMessage());
-			} catch (Error $e) {
-				log::add('history', 'error', 'history::archive : ' . $e->getMessage());
-			}
-		}
+	public static function cron5() {
 		try {
 			network::cron();
 		} catch (Exception $e) {
@@ -462,13 +411,6 @@ class jeedom {
 
 		} catch (Error $e) {
 
-		}
-		try {
-			history::historize();
-		} catch (Exception $e) {
-			log::add('history', 'error', 'history::historize : ' . $e->getMessage());
-		} catch (Error $e) {
-			log::add('history', 'error', 'history::historize : ' . $e->getMessage());
 		}
 	}
 
@@ -625,15 +567,6 @@ class jeedom {
 	public static function rebootSystem() {
 		plugin::stop();
 		exec('sudo reboot');
-	}
-
-	public static function updateSystem() {
-		log::clear('update');
-		$cmd = 'sudo chown wwww-data:www-data ' . dirname(__FILE__) . '/../../install/update_system.sh;';
-		$cmd .= 'sudo chmod +x ' . dirname(__FILE__) . '/../../install/update_system.sh;';
-		$cmd .= 'sudo ' . dirname(__FILE__) . '/../../install/update_system.sh';
-		$cmd .= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
-		exec($cmd);
 	}
 
 	public static function forceSyncHour() {

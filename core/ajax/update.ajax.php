@@ -74,11 +74,6 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'updateSystem') {
-		jeedom::updateSystem();
-		ajax::success();
-	}
-
 	if (init('action') == 'changeState') {
 		update::findNewUpdateObject();
 		$update = update::byId(init('id'));
