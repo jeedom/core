@@ -590,7 +590,7 @@ class jeedom {
 		}
 	}
 
-/*     * ******************harware management*************************** */
+/*     * ******************hardware management*************************** */
 
 	public static function getHardwareKey() {
 		$return = config::byKey('jeedom::installKey');
