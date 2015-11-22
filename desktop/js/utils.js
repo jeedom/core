@@ -352,7 +352,7 @@ function initTableSorter() {
 function initHelp(){
     $('.help').each(function(){
         if($(this).attr('data-help') != undefined){
-            $(this).append(' <i class="fa fa-question-circle tooltips" title="'+$(this).attr('data-help')+'" style="font-size : 1em;color:grey;"></i>');
+            $(this).append(' <sup><i class="fa fa-question-circle tooltips" title="'+$(this).attr('data-help')+'" style="font-size : 1em;color:grey;"></i></sup>');
         }
     });
     initTooltips();
