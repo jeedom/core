@@ -2,7 +2,7 @@
 
 Réservé aux experts cette page permet d'ajouter des script CSS ou JS en plus dans Jeedom, qui sont executé sur chaque page
 
-Accessible par Général -> Administration -> Personnalisation avancée : 
+Accessible par Administration -> Personnalisation avancée : 
 
 image::../images/custom.png[]
 

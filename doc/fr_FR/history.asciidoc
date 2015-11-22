@@ -37,9 +37,9 @@ La méthode de calcul de tendance est fondée sur le calcul des moindres carrés
 
 == Configuration générale de l'historique
 
-La configuration générale de l'historique se passe sur la page Général -> Administration -> Configuration.
+La configuration générale de l'historique se passe sur la page Administration -> Configuration.
 
-image::../images/history2.JPG[]
+image::../images/administration.png[]
 
 Nous allons voir ici les détails de la partie configuration des commandes, qui contient toute une branche concernant l'historique.
 
@@ -58,9 +58,9 @@ On retrouve ici :
 
 == Configuration spécifique par commande
 
-Pour accèder à ces réglages, il faut aller dans la configuration avancée des commandes, en passant par Général -> Résumé domotique : 
+Pour accèder à ces réglages, il faut aller dans la configuration avancée des commandes, en passant par Outils -> Résumé domotique : 
 
-image::../images/history8.JPG[]
+image::../images/display.png[]
 
 Puis en dépliant la liste des commande d'un équipement (petite flèche à droite) et, soit en double-cliquant sur la commande, soit en cliquant sur la petite roue : 
 
@@ -73,13 +73,9 @@ Vous pouvez également y accèder par la page de l'équipement en question et en
 
 image::../images/history10.JPG[]
 
-A partir de là, vous devez avoir la fenêtre suivante qui apparait : 
+A partir de là, vous devez avoir une fenetre qui apparait, il faut cliquer sur "Configuration avancée" : 
 
-image::../images/history11.JPG[]
-
-Cliquez sur l'onglet "Configuration avancée" pour avoir : 
-
-image::../images/history12.JPG[]
+image::../images/display13.JPG[]
 
 A partir de là, vous avez plusieurs possibilités de réglages. En ce qui concerne l'historique, il y a : 
 

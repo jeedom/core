@@ -2,7 +2,7 @@
 
 C’est ici que se trouvent la plupart des paramètres de configuration. Bien que nombreux, ils sont pré-configurés par défaut.
 
-La page est accessible par Général -> Administration -> Configuration : 
+La page est accessible par Administration -> Configuration : 
 
 image::../images/administration.png[]
 
@@ -25,6 +25,15 @@ Dans cet onglet on retrouve des informations générales sur Jeedom :
 * *Serveur de temps optionnel* : permet d'ajouter un serveur de temps optionnel (à reserver aux experts)
 * *Ignorer la vérification de l'heure* : indique à Jeedom de ne pas vérifier si l'heure est cohérente. Utile par exemple si vous ne connectez pas Jeedom à internet et qu'il n'a pas de pile RTC
 * *Mode* : Mode de votre Jeedom maître ou esclave, attention lors du passage en esclave : tous vos équipements, scénario, design... seront supprimés.
+
+== Composants Jeedom
+
+image::../images/administration11.png[]
+
+Cette partie permet d'activer/désactiver certain composant du core jeedom : 
+
+* *Droits avancés* : permet de désactiver la gestion des droits avancés (si vous ne vous en servez pas cela peut rendre jeedom plus réactif)
+* *Sécruté* : permet d'activer ou non la sécurité anti-piratage de Jeedom (brute force sur le mot de passe). 
 
 == Base de données
 
@@ -53,13 +62,8 @@ Partie très importante dans Jeedom, il faut absolument la configurer correcteme
 ** *Complément (exemple : /jeedom)* :  le fragment d'URL complémentaire (type /jeedom). Pour savoir si vous avez besoin de définir une valeur ici, regardez si quand vous vous connectez à Jeedom vous devez renseigner /jeedom après l'IP
 ** *Port* : le port, en général 80. Attention changer le port ici ne change pas le port réel de Jeedom qui restera le même
 ** *Statut* : Indique si la configuration réseau externe est correcte
-* *Wifi && IP statique* : peut ne pas apparaitre en fonction de la compatibilité avec votre matériel
+* *Gestion avancée* : peut ne pas apparaitre en fonction de la compatibilité avec votre matériel
 ** *Désactiver la gestion du réseaux par Jeedom* : indique à Jeedom de ne pas monitorer le réseau (à activer si jeedom n'est connecté à aucun réseau)
-** *Adresse MAC* : Adresse mac de l'interface réseau
-** *Activer le wifi* : permet d'activer la connexion wifi
-** *Réseau wifi* : réseau wifi sur lequel se connecter
-** *Clef* : la clef d'accès au wifi
-** *Gestion* : lance la génération et la mise en place de la configuration définie plus haut. Attention en cas d'erreur votre Jeedom peux devenir inaccessible
 * *DNS Jeedom* : permet un accès distant à votre Jeedom sans avoir besoin d'un DNS, d'une IP fixe ou d'ouvrir les ports de votre box
 ** *Utiliser les DNS Jeedom* : active les DNS Jeedom (attention cela nécessite au moins un service pack)
 ** *Statut http* : statut du DNS http
@@ -97,9 +101,6 @@ N'oubliez pas de sauvegarder après toute modification
 image::../images/administration4.png[]
 
 * *Historique* : voir link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_général_de_l_historique[ici]
-* *Cache* : gestion du cache des commandes
-** *Durée de vie du cache (en secondes)* : durée de vie par defaut d'une valeur en cache
-** *Vider toutes les données en cache* : vide tout le cache
 * *Push*
 ** *URL de push globale* :  permet de rajouter une URL à appeler en cas de mise à jour d'une commande. Vous pouvez utiliser les tags suivant : \#value# pour la valeur de la commande, \#cmd_name# pour le nom de la commande, \#cmd_id# pour l'identifiant unique de la commande, \#humanname# pour le nom complet de la commande (ex : \#[Salle de bain][Hydrometrie][Humidité]#)
 
@@ -146,6 +147,7 @@ image::../images/administration8.png[]
 image::../images/administration9.png[]
 
 * *Nombre d'échecs avant désactivation de l'équipement* : nombre d'échecs de communication avec l'équipement avant desactivation de celui-ci (un message vous préviendra si cela arrive)
+* *Seuils des piles* : permet de gerer les seuils d'alertes globaux sur les piles
 
 == Market et mise à jour
 
@@ -157,4 +159,10 @@ image::../images/administration10.png[]
 * *Installer automatiquement les widgets manquants* : autorise Jeedom à installer automatiquement les widgets manquants (il faut le plugin widget)
 * *Voir les modules en beta (à vos risques et périls)* : permet de voir les plugins, widgets... beta
 * *Faire une sauvegarde avant la mise à jour* : indique à Jeedom de faire un backup avant chaque mise à jour
-* *Branche* : permet de changer la version de Jeedom (developpement = beta)
+* *Branche* : permet de changer la version de Jeedom.
+
+[NOTE]
+Seul les betatesteurs peuvent voir la branche beta de Jeedom
+
+[ATTENTION]
+L'option URL est dangereuse et reserver à un public d'expert. Toute demande de support après la mise en place de cette option sera systématiquement refusé

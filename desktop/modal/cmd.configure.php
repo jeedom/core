@@ -192,7 +192,7 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
 ?>
       <legend><i class="fa fa-building"></i> {{Type générique}}</legend>
       <div class="form-group">
-        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{Type actuel}}</label>
+        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Type actuel}}</label>
         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
           <span class="cmdAttr label label-default" style="font-size : 1em;" data-l1key="auto_generic_type" ></span>
         </div>

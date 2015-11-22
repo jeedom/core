@@ -4,7 +4,7 @@ Le principe est le suivant : une phrase de commande déclenche des actions. Pour
 
 == Principe
 
-Pour accèder à la page d'interaction il faut aller sur Général -> Intérations : 
+Pour accèder à la page d'interaction il faut aller sur Outils -> Intérations : 
 
 image::../images/interact1.JPG[]
 
@@ -37,12 +37,12 @@ Ici vous pouvez :
 ** *Utilisateur autorisés* : limite l'interaction à certain utilisateur (les logins séparé par des |)
 * *Filtres*
 ** *Limiter aux commandes de type* : permet de filtrer sur les actions ou infos seulement
-** *Limiter aux commandes ayant pour sous-type* : permet de limiter la génération à un sous-type
-** *Limiter aux commandes ayant pour unité* : permet de limiter la génération à un certain type d'unité
-** *Limiter aux commandes appartenant à l'objet* : permet de limiter la génération à un objet
+** *Limiter aux commandes ayant pour sous-type* : permet de limiter la génération à un ou plusieurs sous-type
+** *Limiter aux commandes ayant pour unité* : permet de limiter la génération à une ou plusieures d'unité
+** *Limiter aux commandes appartenant à l'objet* : permet de limiter la génération à un ou plusieurs objet
 ** *Limiter à l'équipement* : permet de limiter la génération à un équipement
-** *Limiter au plugin* : permet de limiter la génération à un plugin
-** *Limiter à la catégorie* : permet de limiter la génération à une catégorie
+** *Limiter au plugin* : permet de limiter la génération à un ou plusieurs plugin
+** *Limiter à la catégorie* : permet de limiter la génération à une ou plusieures catégorie
 * *Action* : à utiliser si vous voulez cibler une ou plusieurs commande(s) spécifique(s) ou passer des paramètre particulier
 * *Phrases générées*
 ** *Nombre de phrases générées* : nombre de phrases générées
@@ -107,7 +107,7 @@ Il est possible de piloté une commande couleur par les interactions en demandan
 
 image::../images/interact18.JPG[]
 
-Ici rien de bien compliqué, il faut en revanche avoir configuré les couleurs dans Jeedom, cela se passe sur la page Général -> Administration -> Configuration  puis dans la partie "Gestion des intéractions" : 
+Ici rien de bien compliqué, il faut en revanche avoir configuré les couleurs dans Jeedom, cela se passe sur la page Administration -> Configuration  puis dans la partie "Gestion des intéractions" : 
 
 image::../images/interact14.JPG[]
 
@@ -167,15 +167,11 @@ image::../images/interact24.JPG[]
 
 == Tester
 
-Le bouton tester vous permet de simuler ou d'executer une interaction : 
+Le bouton tester vous permet d'executer une interaction : 
 
 image::../images/interact11.JPG[]
 
 Vous avez juste à mettre la demande en haut et Jeedom vous expliquera la réponse : 
-
-image::../images/interact12.JPG[]
-
-Ici en mode simulation Jeedom vous explique juste ce qu'il a reconnu, la commande qu'il va executer et la reponse (avec les tag car il n'execute pas en vrai l'interaction) qu'il va faire
 
 image::../images/interact13.JPG[]
 
@@ -183,14 +179,15 @@ Ici en mode execution ou l'on ne voit que la réponse
 
 == Configuration
 
-La configuration est accessible à partir de Général -> Administration -> Configuration puis la partie "Gestion des intéractions" :
+La configuration est accessible à partir de Administration -> Configuration puis la partie "Gestion des intéractions" :
 
 image::../images/interact14.JPG[]
 
-Vous avez ici 2 parametres : 
+Vous avez ici 3 parametres : 
 
 * *Sensibilité (par défaut 10)* : niveau de correspondance minimum entre la phrase recu et les phrases générées de 1 à 99
 * *Ne pas répondre si l'interaction n'est pas comprise* : par defaut Jeedom répond "je n'ai pas compris" si l'intéraction n'est pas comprise, il est possible de desactiver ce fonctionement pour que jeedom ne réponde rien
+* *Regex général d'exclusion pour les interactions* : permet de definir une regexp qui si elle correspond à une interaction supprimera automatiquement cette phrase de la génération (reservé aux experts)
 
 Et vous retrouvez la partie conversion de couleur (nom de la couleur vers sa valeur réel)
 

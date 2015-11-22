@@ -4,7 +4,7 @@ Le sous-menu Plugins, permet de gérer ses plugins, à savoir : les télécharge
 
 == Gestion des plugins
 
-Vous pouvez accèder à la page plugin à partir de Général -> Plugins : 
+Vous pouvez accèder à la page plugin à partir de Plugins -> Gestion des plugins : 
 
 image::../images/plugin1.png[]
 

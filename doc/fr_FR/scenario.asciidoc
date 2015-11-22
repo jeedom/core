@@ -4,7 +4,7 @@ Voici la partie la plus importante dans la domotique : les scénarios. Véritabl
 
 == La page scénario
 
-Pour y acceder rien de plus simple, il suffit d'aller sur Général -> Scénario : 
+Pour y acceder rien de plus simple, il suffit d'aller sur Outils -> Scénario : 
 
 image::../images/scenario1.JPG[]
 
@@ -124,6 +124,12 @@ image::../images/scenario4.JPG[]
 * *A* : permet de dire à Jeedom de lancer les actions action du bloc A à une heure donnée (sous la forme hhmm). Ce bloc est non bloquant
 * *Code* : permet d’écrire directement en code PHP (demande certaines connaissances et peut être risqué mais permet de n’avoir plus aucune contrainte).
 * *Commentaire* : permet d'ajouter des commentaires à son scénario
+
+[TIP]
+Devant chaque bloc (en dessous de la double fleche vertical qui permet de deplacer les blocs) vous avez une petit coche pour désactiver completement le bloc sans pour autant supprimer celui-ci (permet de faire des tests pour le réactiver plus tard par exemple)
+
+[NOTE]
+Sur les blocs de type Si/Alors/Sinon vous avez tout devant des flèches circulaire, elles permets d'activer ou non la répétition des actions si l'évaluation de la condition donne le meme résultat que la précedente évaluation
 
 Pour les conditions, Jeedom essaye de faire en sorte qu’on puisse les écrire le plus possible en langage naturel tout en restant souple. On a donc un bouton permettant de sélectionner un équipement puis on écrit la condition. Il existe une liste de tag permettant d’avoir accès à des variables issues du scénario ou d’un autre, à l’heure, à la date, à un nombre aléatoire….
 

@@ -4,7 +4,7 @@ La sauvegarde et restauration de Jeedom permet de sauvegarder celui-ci et de le 
 
 == Configuration
 
-Accessible depuis Général -> Administration -> Sauvegarde : 
+Accessible depuis Administration -> Sauvegarde : 
 
 image::../images/backup.png[]
 

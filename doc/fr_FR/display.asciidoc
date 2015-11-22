@@ -2,7 +2,7 @@
 
 Cette page permet d'avoir un resumer sur sa domotique et donne aussi a des fonciton d'organisation des équipements et commandes, a de la configuraiton avancée des équipements et commande ainsi qu'a des possibilité de configuration d'affichage. Elle se décompose en un onglet "Ma domotique" et un un onglet "Configuration de l'affichage".
 
-Cette page est accessible par Général -> Résumé domotique : 
+Cette page est accessible par Outils -> Résumé domotique : 
 
 image::../images/display.png[]
 
@@ -98,6 +98,11 @@ image::../images/display11.png[]
 [TIP]
 N'oubliez pas de sauvegarder après toute modification
 
+=== Batterie
+
+image::../images/display16.png[]
+
+Cet onglet permet d'avoir les informations sur la batterie de l'équipement : type de pile, derniere remonte de l'information, niveau restant (si bien sur votre équipement fonctionne sur pile). Vous pourrez aussi à partir de celui-ci configurer les seuils specifique pour cette équipement
 
 == Configuration avancée d'une commande
 
@@ -136,13 +141,14 @@ Pour une commande de type info :
 * *Calcul et arrondit*
 ** *Formule de calcul (\#value# pour la valeur)* : vous pouvez ici faire une opération sur la valeur de la commande avant le traitement par Jeedom, exemple : \#valeur# - 0.2 pour retrancher 0.2 (offset sur un capteur de température)
 ** *Arrondi (chiffre après la virgule)* : permet d'arrondir la valeur de la commande, exemple : mettre 2 pour tranformer 16.643345 en 16.64
+* *Type générique* : cette partie permet de configurer le type generique de la commande (jeedom essaye de le trouver par lui meme en mode auto). Cette information est utilisée par l'application mobile.
 * *Action sur la valeur* : cette partie permet de faire des sorte de mini scénario, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire tel action. Cela permet par exemple d'eteindre une lumiere X minutes après que celle-ci se soit allumée
 * *Historique* : voir link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_spécifique_par_commande[ici]
 * *Autres*
 ** *Ne pas répéter si la valeur ne change pas* : Si la commande remonte 2 fois la meme valeur d'affiler alors Jeedom ne prend pas en compte la 2eme remonté (evite de déclencher plusieurs fois un scénario par exemple si la valeur ne change pas)
 ** *Push URL* : permet de rajouter une URL à appeler en cas de mise à jour de la commande. Vous pouvez utiliser les tags suivant : \#value# pour la valeur de la commande, \#cmd_name# pour le nom de la commande, \#cmd_id# pour l'identifiant unique de la commande, \#humanname# pour le nom complet de la commande (ex : \#[Salle de bain][Hydrometrie][Humidité]#)
 
-Si vous etes sur une commande type action vous avez : 
+Si vous êtes sur une commande type action vous avez : 
 
 image::../images/display15.png[]
 

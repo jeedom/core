@@ -4,7 +4,7 @@
 
 Le centre de mise à jour centralise l'ensemble des fonctions de Jeedom, et permet de mettre à jour toutes les fonctionnalités de Jeedom, incluant le logiciel de base, les plugins, les widgets, etc...
 
-Il est accessible par le menu Général -> Administration -> Centre de mise à jour : 
+Il est accessible par le menu Administration -> Centre de mise à jour : 
 
 image::../images/update.JPG[]
 
@@ -62,9 +62,9 @@ image::../images/update4.png[]
 
 == Paramètres de mise à jour
 
-Il est possible dans Général -> Administration -> Configuration puis dans la partie "Market et mise à jour" de configurer certain paramètre de mise à jour : 
+Il est possible dans Administration -> Configuration puis dans la partie "Market et mise à jour" de configurer certain paramètre de mise à jour : 
 
-image::../images/update7.png[]
+image::../images/administration10.png[]
 
 Ici on retrouve : 
 

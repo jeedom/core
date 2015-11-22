@@ -4,7 +4,7 @@ Page permettant d'interconnecter plusieurs Jeedom en mode maitre/esclave. Cette 
 
 == Le réseaux Jeedom
 
-Accessible depuis Général -> Administration -> Réseaux Jeedom :
+Accessible depuis Administration -> Réseaux Jeedom :
 
 image::../images/jeeNetwork4.JPG[]
 
@@ -20,7 +20,7 @@ Cette documentation ne décris pas volontairement tous les menus disponible car 
 == Configuration
 
 La configuration est assez simple, il faut tout d'abord décider le systeme maitre et esclave. 
-Ensuite sur l'esclave il faut aller dans Générale -> Administration -> Configuration dans la partie "Configuration réseaux" 
+Ensuite sur l'esclave il faut aller dans Administration -> Configuration dans la partie "Configuration réseaux" 
 et cliquer sur esclave : 
 
 image::../images/jeeNetwork2.JPG[]
@@ -28,7 +28,7 @@ image::../images/jeeNetwork2.JPG[]
 Il faut ensuite installer les plugins voulus en déportés (attention tous les plugins ne sont pas forcement compatible), 
 les activer et configurer.
 
-Ensuite du coté du maitre vous devez dans Générale -> Administration -> Configuration dans la partie "Configuration réseaux" 
+Ensuite du coté du maitre vous devez dans Administration -> Configuration dans la partie "Configuration réseaux" 
 remplir la partie "Accès interne" : 
 
 image::../images/jeeNetwork3.JPG[]
@@ -40,14 +40,14 @@ Voici le details :
 * *Complement* : si vous avez une mini, center ou pro vous n'avez rien a mettre sinon vous devez mettre /jeedom
 * *Port* : 80 si vous n'avez pas modifier la configuration nginx
 
-Ensuite, toujours sur le maitre aller sur Générale -> Administration -> Réseaux Jeedom et la faites "Ajouter un Jeedom" : 
+Ensuite, toujours sur le maitre aller sur Administration -> Réseaux Jeedom et la faites "Ajouter un Jeedom" : 
 
 image::../images/jeeNetwork.JPG[]
 
 - donné lui un nom
 - indiquer l'IP de l'esclave
 - indiquer le complement si nécessaire (ex : /jeedom si vous n'avez une mini/center/pro et que vous utilisez le /jeedom pour vous connecter sur l'esclave)
-- la clef API de l'esclave (elle se trouve sur l'esclave dans Générale -> Administration -> Configuration)
+- la clef API de l'esclave (elle se trouve sur l'esclave dans Administration -> Configuration)
 - sauvegarder
 
 Si vous avez un message vous disant que c'est OK alors tout est lié, normalement le maitre devrais detecter automatiquement les plugins de l'esclave.

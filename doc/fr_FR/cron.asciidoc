@@ -5,7 +5,7 @@ Le menu Moteur de tâches n'est accessible qu'en mode expert. Il informe de tout
 [IMPORTANT]
 En cas de mauvaise manipulation sur cette page, toute demande de support peut vous être refusée.
 
-Pour y accèder il faut aller dans Général -> Administration -> Moteur de tâches : 
+Pour y accèder il faut aller dans Administration -> Moteur de tâches : 
 
 image::../images/cron.JPG[]
 
