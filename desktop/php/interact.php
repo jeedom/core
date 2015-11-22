@@ -202,7 +202,7 @@ foreach ($interactListGroup as $group) {
             <div class="col-sm-9">
               <?php
 foreach (jeedom::getConfiguration('cmd:type') as $id => $type) {
-	echo '<label><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="type" data-l3key="' . $id . '" checked="true" />' . $type['name'] . '</label> ';
+	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="type" data-l3key="' . $id . '" checked="true" />' . $type['name'] . '</label> ';
 }
 ?>
            </div>
@@ -224,7 +224,7 @@ foreach (jeedom::getConfiguration('cmd:type') as $type) {
         <div class="col-sm-9">
           <?php
 foreach (cmd::allUnite() as $unite) {
-	echo '<label><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="' . $unite['unite'] . '" checked="true" />' . $unite['unite'] . '</label> ';
+	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="' . $unite['unite'] . '" checked="true" />' . $unite['unite'] . '</label> ';
 }
 ?>
        </div>
@@ -234,7 +234,7 @@ foreach (cmd::allUnite() as $unite) {
       <div class="col-sm-9">
         <?php
 foreach (object::all() as $object) {
-	echo '<label><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="object" data-l3key="' . $object->getId() . '" checked="true" />' . $object->getName() . '</label> ';
+	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="object" data-l3key="' . $object->getId() . '" checked="true" />' . $object->getName() . '</label> ';
 }
 ?>
      </div>
@@ -244,7 +244,7 @@ foreach (object::all() as $object) {
     <div class="col-sm-9">
       <?php
 foreach (eqLogic::allType() as $type) {
-	echo '<label><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="plugin" data-l3key="' . $type['type'] . '" checked="true" />' . $type['type'] . '</label> ';
+	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="plugin" data-l3key="' . $type['type'] . '" checked="true" />' . $type['type'] . '</label> ';
 }
 ?>
    </div>
