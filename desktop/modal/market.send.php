@@ -217,9 +217,9 @@ if (init('type') == 'plugin') {
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-3 control-label">{{Documentation seulement}}</label>
+        <label class="col-sm-3 control-label">{{Directe release}}</label>
         <div class="col-sm-1">
-         <input type="checkbox" id="cb_marketSendDocOnly" />
+         <input type="checkbox" id="cb_marketSendRelease" />
      </div>
  </div>
  <div class="form-group">
@@ -328,7 +328,7 @@ $('#bt_sendToMarket').on('click', function () {
 
         market.version = $('#in_marketSendVersion').value();
         market.change = $('#ta_marketSendChange').value();
-        market.docOnly = $('#cb_marketSendDocOnly').value();
+        market.release = $('#cb_marketSendRelease').value();
 
 
   $.ajax({// fonction permettant de faire de l'ajax

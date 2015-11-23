@@ -49,7 +49,7 @@ class market {
 	private $private;
 	private $change;
 	private $updateBy;
-	private $docOnly;
+	private $release;
 	private $hardwareCompatibility;
 
 	/*     * ***********************Méthodes statiques*************************** */
@@ -1013,12 +1013,12 @@ class market {
 		$this->change = $change;
 	}
 
-	public function getDocOnly() {
-		return $this->docOnly;
+	public function getRelease() {
+		return $this->release;
 	}
 
-	public function setDocOnly($docOnly) {
-		$this->docOnly = $docOnly;
+	public function setRelease($release) {
+		$this->release = $release;
 	}
 
 	public function getUpdateBy() {
