@@ -4,21 +4,6 @@ if (!isConnect('admin')) {
 }
 
 $pages = array(
-	'administration' => array(
-		'title' => 'Administration',
-		'view' => array('title' => 'Voir'),
-		// 'edit' => array('title' => 'Editer')
-	),
-	'backup' => array(
-		'title' => 'Utilisateur',
-		'view' => array('title' => 'Voir'),
-		// 'edit' => array('title' => 'Editer')
-	),
-	'cron' => array(
-		'title' => 'Moteur de tâches',
-		'view' => array('title' => 'Voir'),
-		// 'edit' => array('title' => 'Editer')
-	),
 	'dashboard' => array(
 		'title' => 'Dashboard',
 		'view' => array('title' => 'Voir'),
@@ -36,11 +21,6 @@ $pages = array(
 	),
 	'interact' => array(
 		'title' => 'Interactions',
-		'view' => array('title' => 'Voir'),
-		//  'edit' => array('title' => 'Editer')
-	),
-	'jeeNetwork' => array(
-		'title' => 'Réseau Jeedom',
 		'view' => array('title' => 'Voir'),
 		//  'edit' => array('title' => 'Editer')
 	),
@@ -84,23 +64,8 @@ $pages = array(
 		'view' => array('title' => 'Voir'),
 		//  'edit' => array('title' => 'Editer')
 	),
-	'update' => array(
-		'title' => 'Mise à jour',
-		'view' => array('title' => 'Voir'),
-		//  'edit' => array('title' => 'Editer')
-	),
-	'user' => array(
-		'title' => 'Utilisateurs',
-		'view' => array('title' => 'Voir'),
-		//  'edit' => array('title' => 'Editer')
-	),
 	'view' => array(
 		'title' => 'Vues',
-		'view' => array('title' => 'Voir'),
-		//  'edit' => array('title' => 'Editer')
-	),
-	'custom' => array(
-		'title' => 'Personnalisation avancée',
 		'view' => array('title' => 'Voir'),
 		//  'edit' => array('title' => 'Editer')
 	),
