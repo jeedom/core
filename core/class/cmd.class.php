@@ -33,7 +33,7 @@ class cmd {
 	protected $isHistorized = 0;
 	protected $unite = '';
 	protected $cache;
-	protected $eventOnly = 0;
+	protected $eventOnly = 1;
 	protected $configuration;
 	protected $template;
 	protected $display;
