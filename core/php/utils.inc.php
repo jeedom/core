@@ -704,8 +704,8 @@ function getDirectorySize($path) {
 				}
 			}
 		}
+		closedir($handle);
 	}
-	closedir($handle);
 	return $totalsize;
 }
 
@@ -860,13 +860,13 @@ function evaluate($_string) {
 		}
 	}
 	/*if (!isset($GLOBALS['evaluate'])) {
-	$GLOBALS['evaluate'] = new evaluate();
-	}
-	try {
-	return $GLOBALS['evaluate']->Evaluer($_string);
-	} catch (Exception $e) {
-	//log::add('expression', 'debug', '[Parser 2] Expression : ' . $_string . ' => ' . $e->getMessage());
-	}*/
+		$GLOBALS['evaluate'] = new evaluate();
+		}
+		try {
+		return $GLOBALS['evaluate']->Evaluer($_string);
+		} catch (Exception $e) {
+		//log::add('expression', 'debug', '[Parser 2] Expression : ' . $_string . ' => ' . $e->getMessage());
+	*/
 	return $_string;
 }
 
