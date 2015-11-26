@@ -35,10 +35,10 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             </div>
                             <div class="form-group expertModeVisible">
                                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef d'installation qui permet d'identifier votre Jeedom quand il communique avec le market}}">{{Clef d'installation}}</label>
-                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                                <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
                                     <span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareKey() ?></span>
                                 </div>
-                                <div class="col-lg-3 col-md-4 col-sm-3">
+                                <div class="col-lg-3 col-md-4 col-sm-2">
                                     <a class="btn btn-default form-control" id="bt_resetHwKey"><i class="fa fa-refresh"></i> {{Remise à zéro}}</a>
                                 </div>
                             </div>
