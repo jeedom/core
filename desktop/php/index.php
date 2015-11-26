@@ -77,7 +77,7 @@ if (count($plugins_list) > 0) {
 <html lang="fr">
 <head>
 	<meta charset="utf-8">
-	<title><?php echo $title;?></title>
+	<title><?php echo $title; ?></title>
 	<link rel="shortcut icon" href="core/img/logo-jeedom-sans-nom-couleur-25x25.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
@@ -86,8 +86,8 @@ if (count($plugins_list) > 0) {
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<script>
 		var clientDatetime = new Date();
-		var clientServerDiffDatetime = (<?php echo strtotime('now');?> * 1000) - clientDatetime.getTime();
-		var serverDatetime = <?php echo getmicrotime();?>;
+		var clientServerDiffDatetime = (<?php echo strtotime('now'); ?> * 1000) - clientDatetime.getTime();
+		var serverDatetime = <?php echo getmicrotime(); ?>;
 		var io = null;
 	</script>
 	<?php
@@ -192,7 +192,7 @@ if (!isConnect()) {
 		<header class="navbar navbar-fixed-top navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="<?php echo $homeLink?>">
+					<a class="navbar-brand" href="<?php echo $homeLink ?>">
 						<img src="core/img/logo-jeedom-grand-nom-couleur.svg" height="30" style="position: relative; top:-5px;"/>
 					</a>
 					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -327,11 +327,12 @@ if (config::byKey('jeeNetwork::mode') == 'master' && hasRight('objectview', true
 											<?php if (hasRight('pluginview', true)) {
 			?>
 												<li><a href="index.php?v=d&p=plugin"><i class="fa fa-tags"></i> {{Gestion des plugins}}</a></li>
-												<?php if (config::byKey('jeeNetwork::mode') == 'master') {?>
+												<?php if (config::byKey('jeeNetwork::mode') == 'master') {
+				?>
 													<li role="separator" class="divider"></li>
 													<?php
-}
-			echo $plugin_menu;
+echo $plugin_menu;
+			}
 			?>
 											</ul>
 										</li>
@@ -344,8 +345,8 @@ if (config::byKey('jeeNetwork::mode') == 'master' && hasRight('objectview', true
 									<?php $displayMessage = (message::nbMessage() > 0) ? '' : 'display : none;';?>
 									<li>
 										<a href="#" id="bt_messageModal">
-											<span class="badge tooltips" id="span_nbMessage" title="{{Nombre de messages}}" style="background-color : #ec971f;<?php echo $displayMessage;?>">
-												<?php echo message::nbMessage();?>
+											<span class="badge tooltips" id="span_nbMessage" title="{{Nombre de messages}}" style="background-color : #ec971f;<?php echo $displayMessage; ?>">
+												<?php echo message::nbMessage(); ?>
 											</span>
 										</a>
 									</li>
@@ -412,7 +413,7 @@ if (config::byKey('security::enable') != 0 && hasRight('securityview', true)) {
 												<span class="caret"></span>
 											</a>
 											<ul class="dropdown-menu">
-												<li><a href="index.php?v=d&p=profils"><i class="fa fa-briefcase"></i> {{Profil}} <?php echo $_SESSION['user']->getLogin();?></a></li>
+												<li><a href="index.php?v=d&p=profils"><i class="fa fa-briefcase"></i> {{Profil}} <?php echo $_SESSION['user']->getLogin(); ?></a></li>
 												<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
 
 												<?php
@@ -434,12 +435,12 @@ if (isConnect('admin')) {
 												<li class="divider"></li>
 												<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
 												<li class="divider"></li>
-												<li><a href="#" id="bt_jeedomAbout">{{Version}} v<?php echo jeedom::version();?></a></li>
+												<li><a href="#" id="bt_jeedomAbout">{{Version}} v<?php echo jeedom::version(); ?></a></li>
 											</ul>
 										</li>
 										<li>
 											<?php if (isset($plugin) && is_object($plugin)) {?>
-											<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/plugins/<?php echo init('m');?>/fr_FR/<?php echo init('m');?>.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
+											<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/plugins/<?php echo init('m'); ?>/fr_FR/<?php echo init('m'); ?>.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
 											<?php } else {
 		if (init('p') == 'scenarioAssist') {
 			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-scenario.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
@@ -462,7 +463,7 @@ if (isConnect('admin')) {
 	?>
 										<li>
 											<a href="#" style="cursor:default;">
-												<span id="horloge"><?php echo date('H:i:s');?></span>
+												<span id="horloge"><?php echo date('H:i:s'); ?></span>
 											</a>
 										</li>
 									</ul>
