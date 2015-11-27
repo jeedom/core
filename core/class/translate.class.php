@@ -70,7 +70,7 @@ class translate {
 				}
 				$translate[$_name][$text] = $text;
 			}
-			if ($_backslash && !isset($replace["{{" . $text . "}}"])) {
+			if ($_backslash && isset($replace["{{" . $text . "}}"])) {
 				$replace["{{" . $text . "}}"] = str_replace("'", "\'", str_replace("\'", "'", $replace));
 			}
 			if (!isset($replace["{{" . $text . "}}"]) || is_array($replace["{{" . $text . "}}"])) {
