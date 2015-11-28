@@ -13,7 +13,7 @@ Une fois que l'on clique dessus on retrouve la page qui nous presente la liste d
 image::../images/plugin2.png[]
 
 [TIP]
-Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
+Comme a beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
 
 Sur cette page vous retrouvez tous les plugins présent sur votre Jeedom. Ceux en rouge sont ceux qui sont désactivés. En cliquant sur un plugin vous accèdez à sa configuration : 
 
@@ -22,14 +22,14 @@ image::../images/plugin3.png[]
 En haut vous retrouver l'ID et le nom du plugin, ainsi que la version installée (ici beta). En dessous vous avez le bouton d'activation/desactivation d'un plugin
 
 [IMPORTANT]
-Lors du téléchagement d'un plugin celui-ci n'est pas activer il donc que vous l'activiez
+Lors du téléchagement d'un plugin celui-ci n'est pas activé, il faut donc que vous l'activiez
 
 En dessous vous retrouver 4 boutons : 
 
 * *Voir sur le market* : permet de voir la fiche du plugin 
-* *Envoyer sur le market* : permet d'envoyé le plugin sur le market (uniquement disponible si vous en etes l'auteur)
+* *Envoyer sur le market* : permet d'envoyer le plugin sur le market (uniquement disponible si vous en êtes l'auteur)
 * *Supprimer* : Supprime le plugin de votre Jeedom. Attention cela supprime définitivement tous les équipements de ce plugin aussi
-* *Documentation* : Permet d'acceder directement à la page de documentation du plugin
+* *Documentation* : Permet d'accéder directement à la page de documentation du plugin
 
 [TIP]
 Certain plugin on une partie configuration, il faut dans ce cas se referer à la doc du plugin en question pour savoir comment le configurer
@@ -65,7 +65,7 @@ Cette fiche vous donne plein d'information sur le plugin en autre :
 ** *Installer beta* : permet d'installer le plugin dans sa version beta
 ** *Supprimer* : si le plugin est actuellement installé ce bouton permet de le supprimer
 
-En dessous vous retrouver sur la gauche la description du plugin, la compatibilité (si Jeedom detecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter), les commentaire sur celui-ci et des information complementaire (l'auteur, la personne ayant fait la derniere mise à jour, un lien vers la doc, le nombre de téléchagement).
+En dessous vous retrouver sur la gauche la description du plugin, la compatibilité (si Jeedom detecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter), les commentaires sur celui-ci et des informations complementaires (l'auteur, la personne ayant fait la derniere mise à jour, un lien vers la doc, le nombre de téléchagement).
 Sur la droite vous retrouvez la liste des dernieres mise à jour (un bouton tout voir vous permet d'avoir tout l'historique), une documentation rapide d'utilisation (il est recommandé quand meme de lire la documentation complete) et enfin le type (plugin, widget...), la langue et les diverses informations sur la date de la derniere stable, la beta et si vous pouvez sans crainte revenir sur la beta
 
 [IMPORTANT]
