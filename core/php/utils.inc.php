@@ -854,6 +854,18 @@ function evaluate($_string) {
 			$expr = str_replace('!==', '!=', $expr);
 			$expr = str_replace('!===', '!==', $expr);
 			$expr = str_replace('====', '===', $expr);
+			$expr = str_replace('"', '', $expr);
+			preg_match_all('/([a-z \']+)/i', $expr, $matches);
+			$replace = array();
+			foreach ($matches[0] as $value) {
+				if (trim($value) == '') {
+					continue;
+				}
+				$replace[trim($value)] = '"' . trim($value) . '"';
+			}
+			if (count($replace) > 0) {
+				$expr = str_replace(array_keys($replace), $replace, $expr);
+			}
 			return $GLOBALS['ExpressionLanguage']->evaluate($expr);
 		} catch (Exception $e) {
 			//log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
