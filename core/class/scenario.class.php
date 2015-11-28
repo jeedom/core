@@ -1130,6 +1130,7 @@ class scenario {
 		if (session_status() != PHP_SESSION_NONE || !isset($_SESSION) || !isset($_SESSION['user'])) {
 			return true;
 		}
+		$_user = $_SESSION['user'];
 		if (!is_object($_user)) {
 			return false;
 		}
