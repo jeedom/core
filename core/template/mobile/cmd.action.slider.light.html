@@ -1,0 +1,39 @@
+<div style="width:100px;min-height:90px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
+    <center>
+        <span class="cursor" style="font-size: 3em;font-weight: bold;" id="iconCmd#uid#"></span>
+        <div class="slider full-width-slider ui-slider" style="width: 96%;text-align: right;min-width : 120px;">
+            <input type="number" data-type="range" min="#minValue#" max="#maxValue#" value="#state#" data-highlight="true" />
+        </div>
+    </center>
+    <script>
+        if ('#state#' > '1' || '#state#' > 0) {
+            $('#iconCmd#uid#').append('<i class="icon jeedom-lumiere-on"></i>');
+            $('#iconCmd#uid#').attr('data-state', 'on');
+        }
+        if ('#state#' == '0' || '#state#' == 0) {
+            $('#iconCmd#uid#').append('<i class="icon jeedom-lumiere-off"></i>');
+            $('#iconCmd#uid#').attr('data-state', 'off');
+        }
+
+        $('#iconCmd#uid#').on('click', function() {
+            if ($(this).attr('data-state') == 'on') {
+                jeedom.cmd.execute({id: '#id#', value: {slider: ('#minValue#' == '') ? 0 : parseInt('#minValue#')}});
+            } else {
+                jeedom.cmd.execute({id: '#id#', value: {slider: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')}});
+            }
+        });
+
+        $("body").undelegate(".cmd[data-cmd_uid=#uid#] .slider");
+        $("body").delegate(".cmd[data-cmd_uid=#uid#] .slider",'slidestop', function (event, ui) {
+            jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}});
+        });
+    </script>
+    <style>
+        .cmd[data-cmd_uid="#uid#"] .ui-slider-handle{
+            background-color:#f1c40f !important;
+        }
+        .cmd[data-cmd_uid="#uid#"] .ui-slider-bg{
+            background-color:#f1c40f !important;
+        }
+    </style>
+</div>

@@ -827,7 +827,8 @@ class cmd {
 		$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $this->getTemplate($version, 'default');
 		$template = '';
 		if (!isset(self::$_templateArray[$version . '::' . $template_name])) {
-			if ($this->getTemplate($version, 'default') != 'default') {
+			$template = getTemplate('core', $version, $template_name);
+			if ($template == '') {
 				if (config::byKey('active', 'widget') == 1) {
 					$template = getTemplate('core', $version, $template_name, 'widget');
 				}
@@ -843,8 +844,6 @@ class cmd {
 					$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.default';
 					$template = getTemplate('core', $version, $template_name);
 				}
-			} else {
-				$template = getTemplate('core', $version, $template_name);
 			}
 			self::$_templateArray[$version . '::' . $template_name] = $template;
 		} else {
