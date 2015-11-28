@@ -1104,7 +1104,7 @@ class scenarioExpression {
 					return;
 				}
 			} else if ($this->getType() == 'condition') {
-				$expression = self::setTags($this->getExpression(), $scenario, true);
+				$expression = self::setTags($this->getExpression(), $scenario);
 				$message = __('Evaluation de la condition : [', __FILE__) . $expression . '] = ';
 				$result = evaluate($expression);
 				if (is_bool($result)) {
