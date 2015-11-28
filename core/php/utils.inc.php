@@ -868,7 +868,7 @@ function evaluate($_string) {
 			}
 			return $GLOBALS['ExpressionLanguage']->evaluate($expr);
 		} catch (Exception $e) {
-			//log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
+			log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
 		}
 	}
 	/*if (!isset($GLOBALS['evaluate'])) {
