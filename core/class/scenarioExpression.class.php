@@ -804,7 +804,7 @@ class scenarioExpression {
 							$result .= ')';
 						}
 						$result = self::setTags($result, $_scenario, $_quote, $_nbCall++);
-						return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), $result));
+						return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), $result), $_quote);
 					} else {
 						$arguments = explode(',', $match[2]);
 					}
@@ -816,6 +816,7 @@ class scenarioExpression {
 							$replace2[$replace_string] = self::trigger($arguments[0], $_scenario);
 						} else {
 							$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
+
 						}
 					} else {
 						if (function_exists($function)) {
@@ -825,7 +826,9 @@ class scenarioExpression {
 							$replace2[$replace_string] = call_user_func_array($function, $arguments);
 						}
 					}
-
+					if ($_quote && (strpos($replace2[$replace_string], ' ') !== false || preg_match("/[a-zA-Z]/", $replace2[$replace_string]) || $replace2[$replace_string] === '')) {
+						$replace2[$replace_string] = '"' . trim($replace2[$replace_string], '"') . '"';
+					}
 				}
 			}
 		} else {
