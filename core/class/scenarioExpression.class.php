@@ -747,7 +747,7 @@ class scenarioExpression {
 		}
 	}
 
-	public static function setTags($_expression, &$_scenario = null, $_nbCall = 0) {
+	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
 		if ($_nbCall > 10) {
 			return $_expression;
 		}
@@ -798,12 +798,12 @@ class scenarioExpression {
 								break;
 							}
 						}
-						$arguments = self::setTags($match[2], $_scenario, $_nbCall++);
+						$arguments = self::setTags($match[2], $_scenario, $_quote, $_nbCall++);
 						$result = str_replace($match[2], $arguments, $_expression);
 						while (substr_count($result, '(') > substr_count($result, ')')) {
 							$result .= ')';
 						}
-						$result = self::setTags($result, $_scenario, $_nbCall++);
+						$result = self::setTags($result, $_scenario, $_quote, $_nbCall++);
 						return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), $result));
 					} else {
 						$arguments = explode(',', $match[2]);
@@ -820,7 +820,7 @@ class scenarioExpression {
 					} else {
 						if (function_exists($function)) {
 							foreach ($arguments as &$argument) {
-								$argument = evaluate(self::setTags($argument, $_scenario));
+								$argument = evaluate(self::setTags($argument, $_scenario, $_quote));
 							}
 							$replace2[$replace_string] = call_user_func_array($function, $arguments);
 						}
@@ -831,7 +831,7 @@ class scenarioExpression {
 		} else {
 			log::add('scenario', 'debug', print_r($_expression, true));
 		}
-		return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)));
+		return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)), $_quote);
 
 	}
 
@@ -1104,7 +1104,7 @@ class scenarioExpression {
 					return;
 				}
 			} else if ($this->getType() == 'condition') {
-				$expression = self::setTags($this->getExpression(), $scenario);
+				$expression = self::setTags($this->getExpression(), $scenario, true);
 				$message = __('Evaluation de la condition : [', __FILE__) . $expression . '] = ';
 				$result = evaluate($expression);
 				if (is_bool($result)) {

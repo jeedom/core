@@ -853,24 +853,7 @@ function evaluate($_string) {
 		$expr = str_replace('!==', '!=', $expr);
 		$expr = str_replace('!===', '!==', $expr);
 		$expr = str_replace('====', '===', $expr);
-		$expr = str_replace(array(' matches ', 'not(', 'not ('), array(' ~ ', '!(', '!('), $expr);
-		preg_match_all('/([a-z \'êâéèàûïüû\#]+)/i', $expr, $matches);
-		$replace = array();
-		foreach ($matches[0] as $value) {
-			if (trim($value) == '') {
-				continue;
-			}
-			if (substr($_string, strpos(trim($_string), trim($value)) - 1, 1) == '"' || substr($_string, strpos(trim($_string), trim($value)) - 2, 1) == '"') {
-				continue;
-			}
-			$replace[trim($value)] = '"' . trim($value) . '"';
-		}
-		if (count($replace) > 0) {
-			$expr = str_replace(array_keys($replace), $replace, $expr);
-		}
-		$expr = str_replace(array(' ~ ', '!('), array(' matches ', 'not('), $expr);
-		//echo '===> ' . $expr . '<===';
-		return $GLOBALS['ExpressionLanguage']->evaluate($expr);
+		return $GLOBALS['ExpressionLanguage']->evaluate($expr, $params);
 	} catch (Exception $e) {
 		log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
 	}
