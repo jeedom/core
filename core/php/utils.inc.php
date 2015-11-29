@@ -855,7 +855,7 @@ function evaluate($_string) {
 			$expr = str_replace('!===', '!==', $expr);
 			$expr = str_replace('====', '===', $expr);
 			$expr = str_replace('"', '', $expr);
-			preg_match_all('/([a-z \'éèàûïüû]+)/i', $expr, $matches);
+			preg_match_all('/([a-z \'éèàûïüû\#]+)/i', $expr, $matches);
 			$replace = array();
 			foreach ($matches[0] as $value) {
 				if (trim($value) == '') {
