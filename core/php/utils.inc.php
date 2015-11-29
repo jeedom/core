@@ -844,32 +844,30 @@ function evaluate($_string) {
 	if (!isset($GLOBALS['ExpressionLanguage'])) {
 		$GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
 	}
-	if (strpos($_string, '~') === false) {
-		try {
-			$expr = str_replace(array(' et ', ' ET ', ' AND ', ' and ', ' ou ', ' OR ', ' or ', ' OU '), array(' && ', ' && ', ' && ', ' && ', ' || ', ' || ', ' || ', ' || '), $_string);
-			$expr = str_replace('==', '=', $expr);
-			$expr = str_replace('=', '==', $expr);
-			$expr = str_replace('<==', '<=', $expr);
-			$expr = str_replace('>==', '>=', $expr);
-			$expr = str_replace('!==', '!=', $expr);
-			$expr = str_replace('!===', '!==', $expr);
-			$expr = str_replace('====', '===', $expr);
-			$expr = str_replace('"', '', $expr);
-			preg_match_all('/([a-z \'éèàûïüû\#]+)/i', $expr, $matches);
-			$replace = array();
-			foreach ($matches[0] as $value) {
-				if (trim($value) == '') {
-					continue;
-				}
-				$replace[trim($value)] = '"' . trim($value) . '"';
+	try {
+		$expr = str_replace(array(' et ', ' ET ', ' AND ', ' and ', ' ou ', ' OR ', ' or ', ' OU '), array(' && ', ' && ', ' && ', ' && ', ' || ', ' || ', ' || ', ' || '), $_string);
+		$expr = str_replace('==', '=', $expr);
+		$expr = str_replace('=', '==', $expr);
+		$expr = str_replace('<==', '<=', $expr);
+		$expr = str_replace('>==', '>=', $expr);
+		$expr = str_replace('!==', '!=', $expr);
+		$expr = str_replace('!===', '!==', $expr);
+		$expr = str_replace('====', '===', $expr);
+		$expr = str_replace('"', '', $expr);
+		preg_match_all('/([a-z \'êâéèàûïüû\#]+)/i', $expr, $matches);
+		$replace = array();
+		foreach ($matches[0] as $value) {
+			if (trim($value) == '') {
+				continue;
 			}
-			if (count($replace) > 0) {
-				$expr = str_replace(array_keys($replace), $replace, $expr);
-			}
-			return $GLOBALS['ExpressionLanguage']->evaluate($expr);
-		} catch (Exception $e) {
-			log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
+			$replace[trim($value)] = '"' . trim($value) . '"';
 		}
+		if (count($replace) > 0) {
+			$expr = str_replace(array_keys($replace), $replace, $expr);
+		}
+		return $GLOBALS['ExpressionLanguage']->evaluate($expr);
+	} catch (Exception $e) {
+		log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
 	}
 	/*if (!isset($GLOBALS['evaluate'])) {
 		$GLOBALS['evaluate'] = new evaluate();
