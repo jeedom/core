@@ -294,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `cron` (
   `option` VARCHAR(255) NULL DEFAULT NULL,
   `once` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `class_function` (`class` ASC, `function` ASC, `option` ASC),
+  UNIQUE INDEX `class_function_option` (`class` ASC, `function` ASC, `option` ASC),
   INDEX `type` (`class` ASC),
   INDEX `logicalId_Type` (`class` ASC),
   INDEX `deamon` (`deamon` ASC))
