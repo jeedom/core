@@ -3,6 +3,14 @@ if (config::byKey('update1.212first', 'core', 0) == 0) {
 	echo 'Relance de la mise à jour (normal) pour passer au nouveau systeme de cache. La log peut etre illisible pour suivre l\'avancement allez sur dans log puis choissiez update';
 	sleep(20);
 	config::save('update1.212first', 1);
+	try {
+		$sql = 'ALTER TABLE `cron` DROP INDEX `class_function`';
+		DB::Prepare($sql, array());
+		$sql = 'ALTER TABLE `cron` ADD UNIQUE `class_function_option` (`class`, `function`, `option`)';
+		DB::Prepare($sql, array());
+	} catch (Exception $e) {
+
+	}
 	jeedom::update();
 	die();
 } else {
@@ -18,3 +26,5 @@ if (config::byKey('update1.212first', 'core', 0) == 0) {
 	}
 }
 ?>
+
+
