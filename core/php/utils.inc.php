@@ -853,7 +853,7 @@ function evaluate($_string) {
 		$expr = str_replace('!==', '!=', $expr);
 		$expr = str_replace('!===', '!==', $expr);
 		$expr = str_replace('====', '===', $expr);
-		return $GLOBALS['ExpressionLanguage']->evaluate($expr, $params);
+		return $GLOBALS['ExpressionLanguage']->evaluate($expr);
 	} catch (Exception $e) {
 		log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
 	}
