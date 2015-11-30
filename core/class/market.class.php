@@ -372,6 +372,15 @@ class market {
 			if (isset($_result['jeedom::url'])) {
 				unset($_result['jeedom::url']);
 			}
+			if (isset($_result['market::allowBeta'])) {
+				unset($_result['market::allowBeta']);
+			}
+			if (isset($_result['register::dnsToken'])) {
+				unset($_result['register::dnsToken']);
+			}
+			if (isset($_result['register::dnsNumber'])) {
+				unset($_result['register::dnsNumber']);
+			}
 			if (isset($_result['register::hwkey_nok']) && $_result['register::hwkey_nok'] == 1) {
 				config::save('jeedom::installKey', '');
 			}
