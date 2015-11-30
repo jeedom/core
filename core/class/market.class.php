@@ -584,9 +584,6 @@ class market {
 	}
 
 	public function install($_version = 'stable') {
-		if ($_version == 'beta' && config::byKey('market::allowBeta') != 1) {
-			$_version == 'stable';
-		}
 		log::add('update', 'alert', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
 		$tmp_dir = dirname(__FILE__) . '/../../tmp';
 		$tmp = $tmp_dir . '/' . $this->getLogicalId() . '.zip';
