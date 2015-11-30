@@ -105,6 +105,7 @@ foreach (ls($root_dir, '*') as $dir) {
 		}
 	}
 }
+echo '#LANG : ' . translate::getLanguage();
 ?>
 CACHE MANIFEST
 

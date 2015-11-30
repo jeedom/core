@@ -110,7 +110,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		} else if ($type == 'css') {
 			echo "<link href=\"$_folder/$_fn?md5=" . md5_file($path) . "\" rel=\"stylesheet\" />";
 		} else if ($type == 'js') {
-			echo "<script type=\"text/javascript\" src=\"core/php/getJS.php?file=$_folder/$_fn&md5=" . md5_file($path) . "\"></script>";
+			echo "<script type=\"text/javascript\" src=\"core/php/getJS.php?file=$_folder/$_fn&md5=" . md5_file($path) . "&lang=" . translate::getLanguage() . "\"></script>";
 		}
 	} else {
 		throw new Exception("File not found : $_fn", 35486);
