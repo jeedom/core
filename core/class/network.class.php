@@ -324,7 +324,11 @@ class network {
 		if (config::byKey('market::allowDNS') != 1) {
 			return false;
 		}
-		$openvpn = self::dns_create();
+		try {
+			$openvpn = self::dns_create();
+		} catch (Exception $e) {
+			return false;
+		}
 		$cmd = $openvpn->getCmd('info', 'state');
 		if (!is_object($cmd)) {
 			throw new Exception(__('La commande de status du DNS est introuvable', __FILE__));
