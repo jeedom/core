@@ -520,9 +520,9 @@ echo "********************************************************"
 if [ -d "jeedom" ] ; then
     rm -rf jeedom
 fi
-wget --no-check-certificate -O jeedom.zip https://market.jeedom.fr/jeedom/stable/jeedom.zip
+wget --no-check-certificate -O jeedom.zip https://github.com/jeedom/core/archive/stable.zip
 if [  $? -ne 0 ] ; then
-    wget --no-check-certificate -O jeedom.zip https://market.jeedom.fr/jeedom/stable/jeedom.zip
+    wget --no-check-certificate -O jeedom.zip https://github.com/jeedom/core/archive/stable.zip
     if [  $? -ne 0 ] ; then
         echo "${msg_unable_to_download_file}"
         exit 0
