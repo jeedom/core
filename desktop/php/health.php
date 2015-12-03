@@ -114,6 +114,14 @@ if (jeedom::isCapable('sudo')) {
 		</tr>
 
 		<tr>
+			<td style="font-weight : bold;">{{Version Jeedom}}</td>
+			<?php
+echo '<td class="alert alert-success">' . jeedom::version() . '</td>';
+echo '<td></td>';
+?>
+		</tr>
+
+		<tr>
 			<td style="font-weight : bold;">{{Version PHP}}</td>
 			<?php
 if (version_compare(phpversion(), '5.5', '>=')) {
