@@ -34,17 +34,6 @@ class MongoDBCacheTest extends CacheTest
         }
     }
 
-    public function testSaveWithNonUtf8String()
-    {
-        // Invalid 2-octet sequence
-        $data = "\xc3\x28";
-
-        $cache = $this->_getCacheDriver();
-
-        $this->assertTrue($cache->save('key', $data));
-        $this->assertEquals($data, $cache->fetch('key'));
-    }
-
     public function testGetStats()
     {
         $cache = $this->_getCacheDriver();
@@ -55,6 +44,21 @@ class MongoDBCacheTest extends CacheTest
         $this->assertGreaterThan(0, $stats[Cache::STATS_UPTIME]);
         $this->assertEquals(0, $stats[Cache::STATS_MEMORY_USAGE]);
         $this->assertNull($stats[Cache::STATS_MEMORY_AVAILABLE]);
+    }
+
+    /**
+     * @group 108
+     */
+    public function testMongoCursorExceptionsDoNotBubbleUp()
+    {
+        /* @var $collection \MongoCollection|\PHPUnit_Framework_MockObject_MockObject */
+        $collection = $this->getMock('MongoCollection');
+
+        $collection->expects(self::once())->method('update')->willThrowException(new \MongoCursorException());
+
+        $cache = new MongoDBCache($collection);
+
+        self::assertFalse($cache->save('foo', 'bar'));
     }
 
     protected function _getCacheDriver()
