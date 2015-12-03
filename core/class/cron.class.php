@@ -210,6 +210,12 @@ class cron {
 		if ($this->getSchedule() == '') {
 			throw new Exception(__('La programmation ne peut pas être vide : ', __FILE__) . print_r($this, true));
 		}
+		if (count($this->getOption()) == 0 || $this->getOption() == '') {
+			$cron = cron::byClassAndFunction($this->getClass(), $this->getFunction());
+			if (is_object($cron)) {
+				$this->setId($cron->getId());
+			}
+		}
 	}
 
 	/**
@@ -297,8 +303,8 @@ class cron {
 	}
 
 	/*
-	 * Set this cron to stop
-	 */
+		 * Set this cron to stop
+	*/
 
 	public function stop() {
 		if ($this->running()) {
@@ -308,8 +314,8 @@ class cron {
 	}
 
 	/*
-	 * Stop immediatly cron (this method must be only call by jeecron master)
-	 */
+		 * Stop immediatly cron (this method must be only call by jeecron master)
+	*/
 
 	public function halt() {
 		if (!$this->running()) {
