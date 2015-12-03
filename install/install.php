@@ -114,7 +114,7 @@ try {
 					if (config::byKey('market::branch') == 'url') {
 						$url = config::byKey('update::url');
 					} else {
-						$url = 'https://github.com/jeedom/core/archive/' . config::byKey('market::branch') . '.zip';
+						$url = 'https://github.com/jeedom/core/archive/' . config::byKey('market::branch', 'core', 'stable') . '.zip';
 					}
 					echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
 					echo __("Téléchargement en cours...", __FILE__);

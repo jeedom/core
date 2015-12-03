@@ -281,14 +281,19 @@ class market {
 			if (!$_refresh && $cache->getValue('') != '') {
 				return $cache->getValue();
 			}
-			$jsonrpc = self::getJsonRpc();
-			if ($jsonrpc->sendRequest('jeedom::getCurrentVersion', array('branch' => config::byKey('market::branch')))) {
-				$version = trim($jsonrpc->getResult());
-				cache::set('jeedom::lastVersion', $version, 86400);
-				return $version;
+			if (config::byKey('market::branch') == 'url') {
+				$url = config::byKey('update::url');
+				$url = str_replace('archive/', '', $url);
+				$url = str_replace('.zip', '', $url);
+				$url .= '/core/config/version';
+				$url = str_replace('https://github.com', 'https://raw.githubusercontent.com', $url);
 			} else {
-				log::add('market', 'error', $jsonrpc->getErrorMessage());
+				$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('market::branch', 'core', 'stable') . '/core/config/version';
 			}
+			$request_http = new com_http($url);
+			$version = trim($request_http->exec());
+			cache::set('jeedom::lastVersion', $version, 86400);
+			return $version;
 		} catch (Exception $e) {
 
 		} catch (Error $e) {
