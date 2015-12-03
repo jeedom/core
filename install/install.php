@@ -130,8 +130,8 @@ try {
 					if (!file_exists($tmp)) {
 						throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
 					}
-					if (filesize($tmp) < 10) {
-						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 10 octets)', __FILE__));
+					if (filesize($tmp) < 100) {
+						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
 					}
 					echo __("OK\n", __FILE__);
 
