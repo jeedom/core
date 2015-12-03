@@ -1028,7 +1028,8 @@ foreach (plugin::listPlugin(true) as $plugin) {
                             <select class="configKey form-control" data-l1key="market::branch">
                                 <option value="stable">{{Stable}}</option>
                                 <?php if (config::byKey('market::allowBeta') == 1) {?>
-                                    <option value="master">{{Développement}}</option>
+                                    <option value="release">{{Release}}</option>
+                                     <option value="beta">{{Beta (developpement, instable)}}</option>
                                     <?php }
 ?>
                                     <option value="url">{{URL (github)}}</option>

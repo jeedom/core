@@ -257,7 +257,7 @@ class cron {
 			if (!$_noErrorReport) {
 				$this->halt();
 				if (!$this->running()) {
-					exec($cmd . ' >> /dev/null 2>&1 &');
+					exec($cmd . ' >> ' . log::getPathToLog('cron_execution') . ' 2>&1 &');
 				} else {
 					throw new Exception(__('Impossible d\'exécuter la tâche car elle est déjà en cours d\'exécution (', __FILE__) . ' : ' . $cmd);
 				}
@@ -297,8 +297,8 @@ class cron {
 	}
 
 	/*
-	 * Set this cron to stop
-	 */
+		 * Set this cron to stop
+	*/
 
 	public function stop() {
 		if ($this->running()) {
@@ -308,8 +308,8 @@ class cron {
 	}
 
 	/*
-	 * Stop immediatly cron (this method must be only call by jeecron master)
-	 */
+		 * Stop immediatly cron (this method must be only call by jeecron master)
+	*/
 
 	public function halt() {
 		if (!$this->running()) {

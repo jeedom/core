@@ -111,14 +111,10 @@ try {
 					echo __('***ERREUR*** ', __FILE__) . $e->getMessage() . "\n";
 				}
 				try {
-
 					if (config::byKey('market::branch') == 'url') {
 						$url = config::byKey('update::url');
 					} else {
-						if (config::byKey('market::allowBeta') != 1 && config::byKey('market::branch') == 'master') {
-							config::save('market::branch', 'stable');
-						}
-						$url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip?timespamp=' . strtotime('now');
+						$url = 'https://github.com/jeedom/core/archive/' . config::byKey('market::branch') . '.zip';
 					}
 					echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
 					echo __("Téléchargement en cours...", __FILE__);
