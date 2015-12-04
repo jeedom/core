@@ -2,6 +2,6 @@ language: php
 sudo: required
 install:
   - sudo ./install/install.sh
-  - php install/install.php
+  - php install/install.php mode=force
 php:
   - 5.6
