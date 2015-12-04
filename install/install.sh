@@ -261,7 +261,6 @@ install_dependency() {
     apt-get -y install php5-redis
     apt-get -y install php-pear
     apt-get -y install python-serial
-    apt-get -y install systemd
     apt-get -y install unzip
     apt-get -y install usb-modeswitch
     apt-get -y install ffmpeg
