@@ -321,24 +321,6 @@ case ${webserver} in
     ;;
 esac
 
-echo "${msg_question_install_jeedom}"
-echo "${msg_warning_install_jeedom}"
-[ -d "${webserver_home}/jeedom/" ] && echo "${msg_warning_overwrite_jeedom}"
-while true ; do
-    echo -n "${msg_yesno}"
-    read ANSWER < /dev/tty
-    case $ANSWER in
-        ${msg_yes})
-            break
-        ;;
-        ${msg_no})
-            echo "${msg_cancel_install}"
-            exit 1
-        ;;
-    esac
-    echo "${msg_answer_yesno}"
-done
-
 echo "********************************************************"
 echo "${msg_install_deps}"
 echo "********************************************************"
