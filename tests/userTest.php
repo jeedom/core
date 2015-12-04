@@ -20,10 +20,10 @@ class userTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testGet($_user) {
 		$user = user::byId($_user->getId());
-		$this->assertSame($user, $_user);
+		$this->assertEquals($user, $_user);
 
 		$user = user::byLogin($_user->getLogin());
-		$this->assertSame($user, $_user);
+		$this->assertEquals($user, $_user);
 	}
 }
 ?>
