@@ -1,9 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<phpunit bootstrap="./test/run.php" colors="true">
-    <testsuites>
-        <testsuite name="KitpagesDataGridBundle test suite">
-            <directory suffix="Test.php">./Tests</directory>
-        </testsuite>
-    </testsuites>
+<phpunit bootstrap="./test/bootstrap.php" colors="true">
+    <testsuite>
+        <directory suffix="Test.php">tests</directory>
+    </testsuite>
 </phpunit>
