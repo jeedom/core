@@ -116,13 +116,16 @@ install_mysql(){
     apt-get -y install mysql-client
     apt-get -y install mysql-common
     apt-get -y install mysql-server
-
+    service mysql stop
+    bdd_root_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+    mysqladmin -u root password ${bdd_root_password}
+    service mysql start
     bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
-    echo "DROP USER '${MYSQL_JEEDOM_USER}'@'%'" | mysql -uroot -proot
-    echo "CREATE USER '${MYSQL_JEEDOM_USER}'@'%' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -proot
-    echo "DROP DATABASE IF EXISTS ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot -proot
-    echo "CREATE DATABASE ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot -proot
-    echo "GRANT ALL PRIVILEGES ON ${MYSQL_JEEDOM_DBNAME}.* TO '${MYSQL_JEEDOM_USER}'@'%';" | mysql -uroot -proot
+    echo "DROP USER '${MYSQL_JEEDOM_USER}'@'%'" | mysql -uroot -p${bdd_root_password}
+    echo "CREATE USER '${MYSQL_JEEDOM_USER}'@'%' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p${bdd_root_password}
+    echo "DROP DATABASE IF EXISTS ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot -p${bdd_root_password}
+    echo "CREATE DATABASE ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot -p${bdd_root_password}
+    echo "GRANT ALL PRIVILEGES ON ${MYSQL_JEEDOM_DBNAME}.* TO '${MYSQL_JEEDOM_USER}'@'%';" | mysql -uroot -p${bdd_root_password}
 
     cp core/config/common.config.sample.php core/config/common.config.php
     sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php 
