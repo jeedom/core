@@ -114,7 +114,7 @@ cd ${WEBSERVER_HOME}
 echo "********************************************************"
 echo "${msg_install_jeedom}"
 echo "********************************************************"
-
+php -v
 php ${WEBSERVER_HOME}/install/install.php mode=force
 
 echo "********************************************************"
