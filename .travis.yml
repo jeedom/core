@@ -1,7 +1,5 @@
 language: php
 sudo: required
-services:
-  - mysql
 install:
   - sudo ./install/install.sh
 php:
