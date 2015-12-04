@@ -72,13 +72,10 @@ MYSQL_JEEDOM_USER=jeedom
 MYSQL_JEEDOM_DBNAME=jeedom
 echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
-apt-get -y install mysql-client
-apt-get -y install mysql-common
-apt-get -y install mysql-server
+apt-get -y install mysql-client mysql-common mysql-server
 bdd_root_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 mysqladmin -u root password ${bdd_root_password}
 bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
-echo "DROP USER '${MYSQL_JEEDOM_USER}'@'%'" | mysql -uroot -p${bdd_root_password}
 echo "CREATE USER '${MYSQL_JEEDOM_USER}'@'%' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p${bdd_root_password}
 echo "DROP DATABASE IF EXISTS ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot -p${bdd_root_password}
 echo "CREATE DATABASE ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot -p${bdd_root_password}
@@ -118,10 +115,10 @@ echo "********************************************************"
 echo "${msg_copy_jeedom_files}"
 echo "********************************************************"
 
-mkdir ${webserver_home}/jeedom/tmp
+mkdir ${webserver_home}/tmp
 chmod 775 -R ${webserver_home}
 chown -R www-data:www-data ${webserver_home}
-cd ${webserver_home}/jeedom
+cd ${webserver_home}
 
 echo "********************************************************"
 echo "${msg_install_jeedom}"
