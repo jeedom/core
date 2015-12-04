@@ -15,8 +15,6 @@ install_msg_en() {
     msg_installer_welcome="*      Welcome to the Jeedom installer/updater        *"
     msg_usage1="Usage: $0 [<webserver_name>]"
     msg_usage2="            webserver_name can be 'nginx' (default)"
-    msg_manual_install_nodejs_ARM="*          Manual installation of nodeJS for ARM       *"
-    msg_manual_install_nodejs_RPI="*     Manual installation of nodeJS for Raspberry      *"
     msg_nginx_config="*                  NGINX configuration                 *"
     msg_question_install_jeedom="Are you sure you want to install Jeedom?"
     msg_warning_install_jeedom="Warning: this will overwrite the default ${ws_upname} configuration if it exists!"
@@ -37,8 +35,6 @@ install_msg_en() {
     msg_install_jeedom="*                 Installing de Jeedom                 *"
     msg_update_jeedom="*                  Updating de Jeedom                  *"
     msg_setup_cron="*                   Setting up cron                    *"
-    msg_setup_nodejs_service="*               Setting up nodeJS service              *"
-    msg_startup_nodejs_service="*             Starting the nodeJS service              *"
     msg_post_install_actions="*             Post-installation actions                *"
     msg_post_update_actions="*               Post-update actions                    *"
     msg_install_complete="*                Installation complete                 *"
@@ -46,11 +42,8 @@ install_msg_en() {
     msg_or="or"
     msg_login_info1="You can log in to Jeedom by going on:"
     msg_login_info2="Your credentials are:"
-    msg_optimize_webserver_cache="*      Checking for webserver cache optimization       *"
     msg_php_version="PHP version found : "
     msg_php_already_optimized="PHP is already optimized, using : "
-    msg_optimize_webserver_cache_apc="Installing APC cache optimization"
-    msg_optimize_webserver_cache_opcache="Installing Zend OpCache cache optimization"
     msg_uptodate="is already installed and up-to-date"
     msg_needinstallupdate="needs to be installed or to be updated"
     msg_nginx_ssl_config="*                 NGINX SSL configuration               *"
@@ -61,8 +54,6 @@ install_msg_fr() {
     msg_installer_welcome="*Bienvenue dans l'assistant d'intallation/mise à jour de Jeedom*"
     msg_usage1="Utilisation: $0 [<nom_du_webserver>]"
     msg_usage2="             nom_du_webserver peut être 'nginx' (par défaut)"
-    msg_manual_install_nodejs_ARM="*        Installation manuelle de nodeJS pour ARM       *"
-    msg_manual_install_nodejs_RPI="*     Installation manuelle de nodeJS pour Raspberry    *"
     msg_nginx_config="*                Configuration de NGINX                *"
     msg_question_install_jeedom="Etes-vous sûr de vouloir installer Jeedom ?"
     msg_warning_install_jeedom="Attention : ceci écrasera la configuration par défaut de ${ws_upname} si elle existe !"
@@ -83,8 +74,6 @@ install_msg_fr() {
     msg_install_jeedom="*                Installation de Jeedom                *"
     msg_update_jeedom="*                Mise à jour de Jeedom                 *"
     msg_setup_cron="*                Mise en place du cron                 *"
-    msg_setup_nodejs_service="*            Mise en place du service nodeJS           *"
-    msg_startup_nodejs_service="*             Démarrage du service nodeJS              *"
     msg_post_install_actions="*             Action post installation                 *"
     msg_post_update_actions="*              Action post mise à jour                 *"
     msg_install_complete="*                Installation terminée                 *"
@@ -92,11 +81,8 @@ install_msg_fr() {
     msg_or="ou"
     msg_login_info1="Vous pouvez vous connecter sur Jeedom en allant sur :"
     msg_login_info2="Vos identifiants sont :"
-    msg_optimize_webserver_cache="*       Vérification de l'optimisation de cache        *"
     msg_php_version="PHP version trouvé : "
     msg_php_already_optimized="PHP est déjà optimisé, utilisation de : "
-    msg_optimize_webserver_cache_apc="Installation de l'optimisation de cache APC"
-    msg_optimize_webserver_cache_opcache="Installation de l'optimisation de cache Zend OpCache"
     msg_uptodate="est déjà installé et à jour"
     msg_needinstallupdate="nécessite une installation ou une mise à jour"
     msg_ask_install_nginx_ssl="Voules vous mettre en place un certification SSL auto signé"
@@ -108,8 +94,6 @@ install_msg_de() {
     msg_installer_welcome="*      Willkommen beim Jeedom Installer / Updater        *"
     msg_usage1="Einsatz: $0 [<Name_des_Webservers>]"
     msg_usage2="            Webserver_Name kann 'nginx' (Standard) sein"
-    msg_manual_install_nodejs_ARM="*          Manuelle Installation von nodejs für ARM      *"
-    msg_manual_install_nodejs_RPI="*     Manuelle Installation von nodejs für Raspberry     *"
     msg_nginx_config="*                  NGINX Konfiguration                 *"
     msg_question_install_jeedom="Sind Sie sicher, dass Sie Jeedom installieren wollen?"
     msg_warning_install_jeedom="Warnung: Diese überschreibt die Standard Konfiguration ${ws_upname}, falls vorhanden!"
@@ -130,8 +114,6 @@ install_msg_de() {
     msg_install_jeedom="*                Installieren von Jeedom                *"
     msg_update_jeedom="*                  Aktualisieren von Jeedom                  *"
     msg_setup_cron="*                    Cron einrichten                   *"
-    msg_setup_nodejs_service="*               Einrichten von nodejs Dienst              *"
-    msg_startup_nodejs_service="*             Starten von nodejs Dienst              *"
     msg_post_install_actions="*             Aktionen nach der Installation                *"
     msg_post_update_actions="*               Aktionen nach Update                    *"
     msg_install_complete="*                Installation abgeschlossen                *"
@@ -139,11 +121,8 @@ install_msg_de() {
     msg_or="or"
     msg_login_info1="Sie können sich in Jeedom einzloggen, indem Sie auf:"
     msg_login_info2="Ihre Anmeldedaten sind:"
-    msg_optimize_webserver_cache="*      Überprüfen auf Webserver-Caching-Optimierung       *"
     msg_php_version="PHP Version gefunden: "
     msg_php_already_optimized="PHP wird bereits optimiert, mit:  "
-    msg_optimize_webserver_cache_apc="Installation von APC-Cache-Optimierung"
-    msg_optimize_webserver_cache_opcache="Installation von OpCache-Cache-Optimierung"
     msg_uptodate="ist bereits installiert und auf dem neuesten Stand"
     msg_needinstallupdate="Muss installiert oder aktualisiert werden!"
     msg_ask_install_nginx_ssl="Möchten Sie SSL installieren, selbst signiertes Zertifikat"
@@ -188,35 +167,11 @@ configure_php() {
     sed -i 's/expose_php = On/expose_php = Off/g' /etc/php5/fpm/php.ini
 }
 
-
-install_nodejs() {
-    # Check if nodeJS v0.10.7 is installed,
-    # otherwise, try to install it from various sources
-    check_nodejs_version
-    [ $? -eq 1 ] && return
-    if [ -f /usr/bin/raspi-config ]; then
-        curl -sL https://deb.nodesource.com/setup_0.12 | bash -
-        apt-get -y install nodejs
-        ln -s /usr/bin/nodejs /usr/bin/node
-    else
-        if [  -z "$1" -a $(uname -a | grep cubox | wc -l ) -eq 1 -a ${ARCH} = "armv7l" ]; then
-            apt-get -y install nodejs
-            ln -s /usr/bin/nodejs /usr/bin/node
-        else
-            curl -sL https://deb.nodesource.com/setup_0.10 | sudo bash -
-            apt-get -y install nodejs
-            ln -s /usr/bin/nodejs /usr/bin/node
-        fi
-    fi
-    apt-get -y install npm
-}
-
-
 configure_nginx() {
     echo "********************************************************"
     echo "${msg_nginx_config}"
     echo "********************************************************"
-    for i in apache2 apache mongoose ; do
+    for i in apache2 apache ; do
         if [ -f "/etc/init.d/${i}" ] ; then
             service ${i} stop
             update-rc.d -f ${i} remove
@@ -275,86 +230,6 @@ is_version_greater_or_equal() {
     return 1
 }
 
-
-check_nodejs_version() {
-    # Check if nodeJS v0.10.25 (or higher) is installed.
-    # Return 1 of true, 0 (or else) otherwise
-    NODEJS_VERSION="`nodejs -v 2>/dev/null  | sed 's/["v]//g'`"
-    is_version_greater_or_equal "${NODEJS_VERSION}" "0.10.0"
-    RETVAL=$?
-    case ${RETVAL} in
-        1)
-            # Already installed and up to date
-            echo "===> nodeJS ${msg_uptodate}"
-        ;;
-        0)
-            # continue...
-            echo "===> nodeJS ${msg_needinstallupdate}"
-        ;;
-    esac
-
-    return ${RETVAL}
-}
-
-
-optimize_webserver_cache_apc() {
-    # php < 5.5 => APC
-    echo "${msg_optimize_webserver_cache_apc}"
-    apt-get install -y php-apc php-pear php5-dev build-essential libpcre3-dev
-    pear config-set php_ini /etc/php5/fpm/php_ini
-    pear config-set php_ini /etc/php5/cli/php_ini
-    pecl config-set php_ini /etc/php5/fpm/php_ini
-    pecl config-set php_ini /etc/php5/cli/php_ini
-    # Force pecl unattended mode
-    yes '' | pecl install -fs apc
-    echo 'apc.enable_cli = 1' >> /etc/php5/cli/conf.d/20-apc.ini
-}
-
-
-optimize_webserver_cache_opcache() {
-    # php >= 5.5 => OPcache
-    echo "${msg_optimize_webserver_cache_opcache}"
-    apt-get install -y php-pear php5-dev build-essential
-    # Force pecl unattended mode
-    yes '' | pecl install -fs zendopcache-7.0.3
-
-    # Enable cache for FPM and CLI
-    for i in fpm cli ; do
-        echo "zend_extension=opcache.so" >> /etc/php5/${i}/php.ini
-        echo "opcache.memory_consumption=256"  >> /etc/php5/${i}/php.ini
-        echo "opcache.interned_strings_buffer=8"  >> /etc/php5/${i}/php.ini
-        echo "opcache.max_accelerated_files=4000"  >> /etc/php5/${i}/php.ini
-        echo "opcache.revalidate_freq=1"  >> /etc/php5/${i}/php.ini
-        echo "opcache.fast_shutdown=1"  >> /etc/php5/${i}/php.ini
-        echo "opcache.enable_cli=1"  >> /etc/php5/${i}/php.ini
-        echo "opcache.enable=1"  >> /etc/php5/${i}/php.ini
-    done
-}
-
-
-optimize_webserver_cache() {
-    # Check the version of PHP, and if already optimized
-    # Otherwise, install cache optimization according to PHP version
-
-    echo "${msg_php_version}${PHP_VERSION}"
-    # Check if PHP is already optimized or not (empty string)
-    if [ -n "${PHP_OPTIMIZATION}" ] ; then
-        echo "${msg_php_already_optimized}${PHP_OPTIMIZATION}"
-        return
-    fi
-
-    is_version_greater_or_equal "${PHP_VERSION}" "5.5.0"
-    case $? in
-        0)
-            optimize_webserver_cache_apc
-        ;;
-        1)
-            optimize_webserver_cache_opcache
-        ;;
-    esac
-}
-
-
 install_dependency() {
     apt-get update
     apt-get -y install
@@ -404,8 +279,6 @@ install_dependency() {
             fi
         done
     fi
-
-    install_nodejs
 
     apt-get autoremove
 }
@@ -575,21 +448,6 @@ case ${webserver} in
         configure_nginx
     ;;
 esac
-
-echo "********************************************************"
-echo "${msg_optimize_webserver_cache}"
-echo "********************************************************"
-# Get the currently installed php version
-PHP_VERSION="`php -v | awk '/PHP [0-9].[0-9].[0-9].*/{ print $2 }' | cut -d'-' -f1`"
-PHP_OPTIMIZATION="`php -v | grep -e 'OPcache' -o -e 'APC'`"
-# Workaround APC detection: APC is not exposed in 'php -v'
-if [ -z "${PHP_OPTIMIZATION}" ] ; then
-    APC_INI="/etc/php5/cli/conf.d/20-apc.ini"
-    if [ -f /etc/php5/cli/conf.d/20-apc.ini ] ; then
-        PHP_OPTIMIZATION="APC"
-    fi
-fi
-optimize_webserver_cache
 
 echo "********************************************************"
 echo "${msg_post_install_actions}"
