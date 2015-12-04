@@ -12,9 +12,6 @@ server {
         location / {
                 try_files $uri $uri/ /index.html /index.php;
         }
-        location /jeedom {
-                rewrite ^/jeedom$ / redirect;
-        }
         location ~ ^/tmp/(.*)$ {
                 deny all;
         }

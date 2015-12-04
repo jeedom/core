@@ -145,7 +145,7 @@ cp ${WEBSERVER_HOME}/install/nginx_default /etc/nginx/sites-available/default
 if [ ! -f '/etc/nginx/sites-enabled/default' ] ; then
     ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 fi
-sed -i "s/#ROOTJEEDOM#/${WEBSERVER_HOME}/g" /etc/nginx/sites-enabled/default
+sed -i "s%#ROOTJEEDOM#%${WEBSERVER_HOME}%g" /etc/nginx/sites-enabled/default
 service nginx restart
 update-rc.d nginx defaults  
 
