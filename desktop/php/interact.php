@@ -240,11 +240,22 @@ foreach (object::all() as $object) {
      </div>
    </div>
    <div class="form-group">
-    <label class="col-sm-3 control-label">{{Limiter au plugin}}</label>
+    <label class="col-sm-3 control-label">{{Limiter aux plugins}}</label>
     <div class="col-sm-9">
       <?php
 foreach (eqLogic::allType() as $type) {
 	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="plugin" data-l3key="' . $type['type'] . '" checked="true" />' . $type['type'] . '</label> ';
+}
+?>
+   </div>
+ </div>
+
+    <div class="form-group">
+    <label class="col-sm-3 control-label">{{Limiter aux categories}}</label>
+    <div class="col-sm-9">
+      <?php
+foreach (jeedom::getConfiguration('eqLogic:category') as $id => $category) {
+	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="category" data-l3key="' . $id . '" checked="true" />' . $category['name'] . '</label> ';
 }
 ?>
    </div>

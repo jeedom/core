@@ -342,6 +342,7 @@ class interactDef {
 		$subtype_filter = $this->getFiltres('subtype');
 		$unite_filter = $this->getFiltres('unite');
 		$plugin_filter = $this->getFiltres('plugin');
+		$category_filter = $this->getFiltres('category');
 		$eqLogic_category_filter = $this->getFiltres('eqLogic_category');
 		foreach ($inputs as $input) {
 			preg_match_all("/#(.*?)#/", $input, $matches);
@@ -356,6 +357,20 @@ class interactDef {
 							continue;
 						}
 						if (isset($plugin_filter[$eqLogic->getEqType_name()]) && $plugin_filter[$eqLogic->getEqType_name()] == 0) {
+							continue;
+						}
+						$eq_caterogy = $eqLogic->getCategory();
+						$category_ok = true;
+						if (is_array($category_filter)) {
+							$category_ok = false;
+							foreach ($category_filter as $category => $value) {
+								if ($value == 1 && $eqLogic->getCategory($category) == 1) {
+									$category_ok = true;
+									break;
+								}
+							}
+						}
+						if (!$category_ok) {
 							continue;
 						}
 						foreach ($eqLogic->getCmd() as $cmd) {
