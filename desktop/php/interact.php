@@ -179,7 +179,7 @@ foreach ($interactListGroup as $group) {
           <div class="form-group">
             <label class="col-xs-3 control-label">{{Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes}}</label>
             <div class="col-xs-6">
-              <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="options" data-l2key="allowSyntaxCheck">
+              <input type="checkbox" class="interactAttr bootstrapSwitch" data-l1key="options" data-l2key="allowSyntaxCheck">
             </div>
           </div>
           <div class="form-group">
