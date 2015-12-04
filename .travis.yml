@@ -1,3 +1,8 @@
 language: php
+sudo: required
+services:
+  - mysql
+install:
+  - ./install/install.sh
 php:
   - 5.6
