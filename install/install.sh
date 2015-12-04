@@ -115,6 +115,7 @@ echo "********************************************************"
 echo "${msg_install_jeedom}"
 echo "********************************************************"
 phpenv versions
+phpenv global 5.6.13
 php -v
 php ${WEBSERVER_HOME}/install/install.php mode=force
 
