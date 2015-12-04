@@ -85,10 +85,6 @@ install_dependency() {
     apt-get -y install libtinyxml-dev
     apt-get -y install libxml2
     apt-get -y install make
-    apt-get -y install mysql-client
-    apt-get -y install mysql-common
-    apt-get -y install mysql-server
-    apt-get -y install mysql-server-core-5.5
     apt-get -y install ntp
     apt-get -y install php5-cli
     apt-get -y install php5-common
@@ -117,7 +113,9 @@ install_mysql(){
     MYSQL_JEEDOM_DBNAME=jeedom
     echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
     echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
-    apt-get install -y mysql-server mysql-client
+    apt-get -y install mysql-client
+    apt-get -y install mysql-common
+    apt-get -y install mysql-server
 
     bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
     echo "DROP USER '${MYSQL_JEEDOM_USER}'@'%'" | mysql -uroot -proot
@@ -155,42 +153,16 @@ webserver_home="/var/www"
 croncmd="su --shell=/bin/bash - www-data -c 'nice -n 19 /usr/bin/php ${webserver_home}/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
 
 echo "********************************************************"
+echo "${msg_config_db}"
+echo "********************************************************"
+
+install_mysql
+
+echo "********************************************************"
 echo "${msg_install_deps}"
 echo "********************************************************"
 
 install_dependency
-
-echo "${msg_passwd_mysql}"
-while true ; do
-    read MySQL_root < /dev/tty
-    echo "${msg_confirm_passwd_mysql} ${MySQL_root}"
-    while true ; do
-        echo -n "${msg_yesno}"
-        read ANSWER < /dev/tty
-        case $ANSWER in
-            ${msg_yes})
-                break
-            ;;
-            ${msg_no})
-                break
-            ;;
-        esac
-        echo "${msg_answer_yesno}"
-    done    
-    if [ "${ANSWER}" = "${msg_yes}" ] ; then
-        # Test access immediately
-        # to ensure that the provided password is valid
-        echo "show databases;" | mysql -uroot -p"${MySQL_root}"
-        if [ $? -eq 0 ] ; then
-            # good password
-            break
-        else
-            echo "${msg_bad_passwd_mysql}"
-            echo "${msg_passwd_mysql}"
-            continue
-        fi
-    fi
-done
 
 echo "********************************************************"
 echo "${msg_setup_dirs_and_privs}"
@@ -224,12 +196,6 @@ chmod 775 -R "${webserver_home}"
 chown -R www-data:www-data "${webserver_home}"
 rm -rf jeedom.zip
 cd jeedom
-
-echo "********************************************************"
-echo "${msg_config_db}"
-echo "********************************************************"
-
-install_mysql
 
 echo "********************************************************"
 echo "${msg_install_jeedom}"
