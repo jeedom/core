@@ -47,7 +47,7 @@ server {
                 deny all;
         }
         
-        include sites-available/jeedom.d/*.conf
+        include sites-available/jeedom.d/*.conf;
 
         location ~ ^(.+?\.php)(/.*)?$ {
                 if (!-f $document_root$fastcgi_script_name) {
