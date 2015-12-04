@@ -60,7 +60,7 @@ if [ $(id -u) != 0 ] ; then
     exit 1
 fi
 
-webserver_home="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+WEBSERVER_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"/..
 
 echo "********************************************************"
 echo "${msg_config_db}"
@@ -106,9 +106,9 @@ echo "********************************************************"
 echo "${msg_copy_jeedom_files}"
 echo "********************************************************"
 
-chmod 775 -R ${webserver_home}
-chown -R www-data:www-data ${webserver_home}
-cd ${webserver_home}
+chmod 775 -R ${WEBSERVER_HOME}
+chown -R www-data:www-data ${WEBSERVER_HOME}
+cd ${WEBSERVER_HOME}
 
 echo "********************************************************"
 echo "${msg_install_jeedom}"
@@ -123,7 +123,7 @@ echo "********************************************************"
 JEEDOM_CRON="`crontab -l | grep -e 'jeeCron.php'`"
 
 if [ -z "${JEEDOM_CRON}" ] ; then
-    croncmd="su --shell=/bin/bash - www-data -c '/usr/bin/php ${webserver_home}/jeedom/core/php/jeeCron.php' >> /dev/null 2>&1"
+    croncmd="su --shell=/bin/bash - www-data -c '/usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php' >> /dev/null 2>&1"
     cronjob="* * * * * $croncmd"
     ( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
 fi
@@ -144,6 +144,7 @@ cp install/nginx_default /etc/nginx/sites-available/default
 if [ ! -f '/etc/nginx/sites-enabled/default' ] ; then
     ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 fi
+sed -i -e "s/#ROOTJEEDOM#/${WEBSERVER_HOME}/g" /etc/nginx/sites-enabled/default
 service nginx restart
 update-rc.d nginx defaults  
 
