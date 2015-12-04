@@ -94,14 +94,9 @@ echo "${msg_install_deps}"
 echo "********************************************************"
 
 apt-get update
-apt-get -y install nginx-common nginx-full ca-certificates libudev1 unzip curl sudo
-apt-get -y install build-essential
-apt-get -y install libarchive-dev
-apt-get -y install libpcre3-dev
-apt-get -y install libssh2-php
-apt-get -y install libtinyxml-dev libxml2 libjsoncpp-dev
-apt-get -y install make ntp usb-modeswitch python-serial
-apt-get -y install php5-cli php5-common php5-curl php5-dev php5-fpm php5-json php5-mysql php5-ldap php5-memcached php5-redis php-pear
+apt-get -y install nginx-common nginx-full ca-certificates unzip curl sudo
+apt-get -y install ntp
+apt-get -y install php5-cli php5-common php5-curl php5-fpm php5-json php5-mysql
 apt-get autoremove
 
 echo "********************************************************"
