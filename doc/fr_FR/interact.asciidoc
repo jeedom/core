@@ -1,51 +1,145 @@
-= Intéractions
+:Author:    Skyline-ch
+:Email:     <skyline-ch@play-4-fun.net>
+:Date:      15.12.2015
+:Revision:  2.0.0
 
-Le principe est le suivant : une phrase de commande déclenche des actions. Pour simplifier la création des phrases il est possible d'utiliser des mots clef afin que jeedom génère automatiquement une liste de phrases.
+Dès Jeedom V2
 
-== Principe
+= Interactions - Principe
 
-Pour accèder à la page d'interaction il faut aller sur Outils -> Intérations : 
+Le système d'interaction dans Jeedom permet de réaliser des actions à partir de phrase texte.
 
-image::../images/interact1.JPG[]
+Ses phrases peuvent être obtenu par la rédaction manuel comme SMS, requête http ou autre, ainsi que par la conversion de commande vocal en texte grâce à des applications comme Siri, Google Now, SARHA....
 
-La page d’intéraction permet de configurer toutes les intéractions orales (via le module SARAH, ou tasker + autovoice, voir https://jeedom.fr/doc/documentation/howto/fr_FR/doc-howto-android.autovoice.html[ici]) ou écrites ( les sms ou le plugin Slack par exemple…) que l’on peut avoir avec Jeedom :
+La page d’interaction permet de configurer toutes les interactions orales (via le module SARAH, ou tasker (+ autovoice), voir https://jeedom.fr/doc/documentation/howto/fr_FR/doc-howto-android.autovoice.html[ici]) ou écrites ( les sms ou le plugin Slack par exemple…) que l’on peut trouver sur le Market Jeedom.
 
-image::../images/interact6.JPG[]
+
+Pour simplifier la création des phrases il est possible d'utiliser des mots clef ou/et mettre des variation possible dans une même phrase afin que jeedom génère automatiquement une liste de phrases avec toutes les possibilités de combinaison et commande autorisée pour l'interaction.
+
+On obtient donc avec une seul configuration, une ou plusieurs 10ène de phrases possible pour divers commandes.
+
+L'intérêt des interactions réside dans l'intégration simplifié dans d'autre système comme smartphone, tablette, autre box domotique, ect...
+
+Avec une seul requête SMS, http ou autre (voir doc sur API) ont peux donc contrôler tout Jeedom, ce qui permet une grande souplesse et d'éviter les bug en cas de modification de la configuration de vos équipements comme se serais le cas avec un accès direct via l'url de chaque commande.
+
+== Premier pas
+
+=== Page accueil des interactions
+
+Pour accéder à la page d'interaction il faut aller sur Outils -> interactions: 
+
+image::../images/interact001.png[]
+
+Liste des interactions et action général :
+
+image::../images/interact002.png[]
 
 [TIP]
 Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
 
-Ici on retrouve en haut un bouton d'ajout d'intéraction, un bouton pour toute les regenerer (peut etre très long > 5min) et un bouton pour tester.
+* En haut de page, on trouve 3 boutons :
+** *1* Le bouton "Ajouter" qui permet de créer de nouvelle interaction
+** *2* Le bouton "Régénérer" qui vas recréer toutes les interactions (peut être très long > 5min)
+** *3* Le bouton "Tester" qui permet d'ouvrir un boite de dialogue pour écrire et tester une phrase
 
-Le principe est assez simple on va définir une phrase génératrice qui va générer une à plusieurs centaines d’autres phrases qui seront des variantes de la première, définir des réponses dans le même genre (ça permet à Jeedom d’avoir plusieurs réponses pour une seule et même question) puis la commande à exécuter (il est aussi possible d'executer un scénario, de controler plusieurs commandes...).
+[TIP]
+Si vous avez une interaction qui génère les phrase pour les lumières par exemple, et que vous ajoutez un nouveau module de commande de lumière, il vous faudra soit régénérer toutes les interactions soit aller dans l'interaction en question et la re-sauver pour créer les phrase de ce nouveau module.
 
-== Configuration des intéractions
 
-Une fois une interaction ajouté ou un clique sur une interaction existante vous obtenez :
+=== Créer-Modifier une interaction
 
-image::../images/interact.JPG[]
+Le principe de création est assez simple, on va définir une phrase modèle génératrice qui va permettre à Jeedom de créer une ou plusieurs centaines d’autres phrases qui seront des combinaisons possibles du modèle.
 
-Ici vous pouvez : 
+Ont vas définir de la même façon des réponses avec un modèle (ça permet à Jeedom d’avoir plusieurs réponses pour une seule et même question).
+
+Ont peu aussi définir une commande à exécuter si par exemple l'interaction n'est pas liée à une action mais une information ou si on souhaite réaliser une action particulière après celle-ci (il est aussi possible d'exécuter un scénario, de contrôler plusieurs commandes...).
+
+==== Interphase de configuration
+
+Une fois une interaction ajouté ou un clique sur une interaction existante pour la modifier vous arriver sur la page de configuration de l'interaction :
+
+image::../images/interact003.png[]
+
+Ici vous Trouvez 2 zones avec plusieurs élément en leur sien : 
 
 * *Général*
-** *Nom* : nom de l'interaction (peut etre vide)
-** *Groupe* : groupe de l'intération, cela permet de les organiser (peut etre vide)
-** *Demande* : la phrases génératrice en elle meme (voir plus bas)
-** *Synonyme* : permet de definir des synonymes sur les noms des commandes
-** *Réponse* : la reponse à fournir
-** *Conversion binaire* : permet de convertir les valeurs binaire en ouvert/fermé par exemple
+** *Nom* : nom de l'interaction (peut être vide, le nom remplace le texte de la demande dans la liste des interactions)
+** *Groupe* : groupe de l'interaction, cela permet de les organiser (peut être vide, sera donc dans le groupe "aucun")
+** *Demande* : la phrase modèle génératrice (obligatoire)
+** *Synonyme* : permet de définir des synonymes sur les noms des commandes
+** *Réponse* : la réponse à fournir
+** *Conversion binaire* : permet de convertir les valeurs binaire en ouvert/fermé par exemple (uniquement pour les commandes de type info binaire)
 ** *Utilisateur autorisés* : limite l'interaction à certain utilisateur (les logins séparé par des |)
-* *Filtres*
-** *Limiter aux commandes de type* : permet de filtrer sur les actions ou infos seulement
+* *Filtres (limite le champ d'application pour le modèle aux éléments sélectionner)*
+** *Limiter aux commandes de type* : permet de n'utiliser que les type actions, infos ou les 2 type 
 ** *Limiter aux commandes ayant pour sous-type* : permet de limiter la génération à un ou plusieurs sous-type
-** *Limiter aux commandes ayant pour unité* : permet de limiter la génération à une ou plusieures d'unité
-** *Limiter aux commandes appartenant à l'objet* : permet de limiter la génération à un ou plusieurs objet
-** *Limiter à l'équipement* : permet de limiter la génération à un équipement
-** *Limiter au plugin* : permet de limiter la génération à un ou plusieurs plugin
-** *Limiter à la catégorie* : permet de limiter la génération à une ou plusieures catégorie
-* *Action* : à utiliser si vous voulez cibler une ou plusieurs commande(s) spécifique(s) ou passer des paramètre particulier
+** *Limiter aux commandes ayant pour unité* : permet de limiter la génération à une ou plusieurs d'unité (Jeedom crée la liste automatiquement à partir des unités définie dans vos commandes)
+** *Limiter aux commandes appartenant à l'objet* : permet de limiter la génération à un ou plusieurs objet (Jeedom crée la liste automatiquement à partir des objets que vous avez créé)
+** *Limiter au plugin* : permet de limiter la génération à un ou plusieurs plugin (Jeedom crée la liste automatiquement à partir des plugins installer)
+** *Limiter à la catégorie* : permet de limiter la génération à une ou plusieurs catégorie
+** *Limiter à l'équipement* : permet de limiter la génération à un seul équipement/module (Jeedom crée la liste automatiquement à partir des équipement/module que vous avez)
+* *Action* : à utiliser si vous voulez cibler une ou plusieurs commande(s) spécifique(s) ou passer des paramètres particulier
 * *Phrases générées*
+** *Phrases générées* : Bouton qui permet de voir les phrases générer par la phrase modèle génératrice (Vous devez sauver l'interaction pour générer ou régénérer les phrases)
 ** *Nombre de phrases générées* : nombre de phrases générées
+
+==== Interaction simple
+
+La façon la plus simple de configurer une interaction c'est de lui donner un modèle générateur rigide sans variation possible, cette méthode ciblera très précisément une commande, ou scénario
+
+Dans l'exemple qui suit ont peux voir dans demande la phrase exacte à fournir pour déclencher l'interaction, ici pour allumer le plafonnier du salon
+
+image::../images/interact004.png[]
+
+Ont peux voir sur cette capture la configuration pour avoir une interaction liée à une action spécifique, cette action est définie dans la partie "Action" de la page.
+
+Ont peux très bien imaginer faire de même avec plusieurs action pour allumer plusieurs lampe dans le salon comme l'exemple qui suit :
+
+image::../images/interact005.png[]
+
+Dans les 2 exemples si dessus, la phrase modèle est identique mais les actions qui en découle change en fonction de ce qui est configurer dans la partie "Action", ont peux donc déjà avec une interaction simple à phrase unique imaginer des actions combinée entre divers commande et scénario (ont peux aussi déclencher des scénarios dans la partie action des interactions)
+
+[TIP]
+Pour ajouter un scénario, créer une nouvelle action, écrire "scenario" sans accent appuyer sur la touche tabulation de votre clavier pour faire apparaitre le sélecteur de scénario
+
+
+==== Interaction multiple commande
+
+Nous allons ici voir tout l'intérêt et puissance des interactions, avec une phrase modèle nous allons pouvoir générer des phrases pour tout un groupe de commande.
+
+Ont vas reprendre ce qui a été fait plus haut, supprimer les actions que l'on avait ajouté et à la place de la phrase fixe dans demande, nous allons utiliser les tags *\#commande#* et *\#equipement#*, Jeedom vas donc remplacer ses tags par le nom des commandes et nom de l'équipement (ont peux voir l'importance d'avoir des noms de commande/équipement cohérant)
+
+image::../images/interact006.png[]
+
+Ont peux donc constater ici que Jeedom à générer 152 phrases à partir de notre modèle, tout fois elle ne sont pas très bien construite et l'on a un peu de tout.
+
+Pour faire de l'ordre dans tout cela ont vas utiliser les filtres (partie de droit de notre page de configuration).
+Dans cette exemple ont veux générer des phrases pour allumer des lumières, ont peux donc décocher le type de commande info (si je sauve il ne me reste plus que 95 phrase générer), puis dans les sous-types, ont peux ne garder cocher que défaut qui correspond au bouton d'action (reste donc plus que 16 phrases).
+
+image::../images/interact007.png[]
+
+c'est mieux mais ont peux faire encore plus naturel, si je prends l'exemple générer "On entrée", il serais bien de pouvoir transformer cette phrase en "allume l'entrée" ou en "allumer l'entrée".
+Pour faire cela Jeedom dispose sous le champ demande, un champ Synonyme qui vas nous permettre de nommer différemment le nom des commandes dans nos phrases générer, ici c'est "on", j'ai même des "on2" dans les modules qui peuvent contrôler 2 sorties.
+
+Ont vas donc dans les synonymes indiquer le nom de la commande et le(s) synonyme(s) à utiliser : 
+
+image::../images/interact008.png[]
+
+Ont peux voir ici une syntaxe un peux nouvelle pour les synonymes, un nom de commande peux avoir plusieurs synonyme, ici "on" a comme synonyme "allume" et "allumer", la syntaxe c'est donc "#nom de la commande#" *#=#* "#synonyme 1#"*#,#* "#synonyme 2#" (ont peux mettre autant de synonyme que l'on veut), puis pour ajouter des synonymes pour un autre nom de commande il suffit d'ajouter après le denier synonyme une barre verticale "#|#" suite de laquelle vous pouvez à nouveau nommer la commande qui vas avoir des synonymes comme pour la première partie.
+
+Bien c'est déjà mieux mais il manque encore pour la commande "on" "entrée" le "l' " et pour d'autre le "la" ou "le" ou "un" ect...
+Ont pourrais modifier le nom de l'équipement pour l'ajouter, ce serais une solution, si non ont peux utiliser les variations dans la demande, cela consiste à lister une série de mot possible à un emplacement de la phrase, Jeedom va donc générer des phrases avec ses variations.
+
+image::../images/interact009.png[]
+
+Comme vous pouvez le voir dans la liste à gauche ont as maintenant des phrases un peux plus correcte avec des phrases qui ne sont pas juste, pour notre exemple "on" "entrée", on trouve donc "Allume entrée", "Allume un entrée", "Allume une entrée", "Allume l'entrée" ect... ont as donc toute les variantes possible avec ce que l'on a ajouté entre les "[ ]" et se si pour chaque synonyme, ce qui génère rapidement beaucoup de phrase (ici 130).
+
+Il devient donc importent de bien construire ses phrases modèle et synonyme ainsi que de sélectionner les bon filtres pour ne pas générer trop de phrase inutile.
+Personnellement je trouve intéressent d'avoir quelques incohérence du style "un entrée" car si chez vous vous avez une personne étrangère qui ne parle pas correctement le Français les interactions fonctionnerons tout de même.
+
+==== Interaction fonction Avancé
+
+
 
 == Exemples
 
