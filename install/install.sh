@@ -60,8 +60,8 @@ if [ $(id -u) != 0 ] ; then
     exit 1
 fi
 
-WEBSERVER_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-WEBSERVER_HOME=$(realpath ${WEBSERVER_HOME}/..)
+WEBSERVER_HOME=pwd
+
 echo "********************************************************"
 echo "${msg_config_db}"
 echo "********************************************************"
