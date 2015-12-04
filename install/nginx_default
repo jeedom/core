@@ -1,31 +1,29 @@
 server {
         #listen   80; ## listen for ipv4; this line is default and implied
         #listen   [::]:80 default_server ipv6only=on; ## listen for ipv6
-        root /usr/share/nginx/www;
+        root /var/www/jeedom;
         index index.html index.htm index.php;
         access_log off;
-        error_log /usr/share/nginx/www/jeedom/log/nginx.error;
+        error_log /var/www/jeedom/log/nginx.error;
         client_max_body_size 100M;
         server_tokens off;
         add_header Cache-Control "public";
        
-        location /jeedom/ {
+        location / {
                 try_files $uri $uri/ /index.html /index.php;
         }
-
-        location ~ ^/jeedom/tmp/(.*)$ {
+        location /jeedom {
+                rewrite ^/jeedom$ / redirect;
+        }
+        location ~ ^/tmp/(.*)$ {
                 deny all;
         }
         
-        location ~ ^/jeedom/log/(.*)$ {
+        location ~ ^/log/(.*)$ {
                 deny all;
         }
 
-        location ~ ^/jeedom/backup/(.*)$ {
-                deny all;
-        }
-
-        location ~ ^/jeedom/core/config/version$ {
+        location ~ ^/backup/(.*)$ {
                 deny all;
         }
 
@@ -45,6 +43,10 @@ server {
                 deny all;
         }
 
+        location ~ ^/core/config/version$ {
+                deny all;
+        }
+        
         include sites-available/jeedom.d/*.conf
 
         location ~ ^(.+?\.php)(/.*)?$ {
