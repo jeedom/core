@@ -81,13 +81,13 @@ echo "DROP DATABASE IF EXISTS ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot -p${bdd_ro
 echo "CREATE DATABASE ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot -p${bdd_root_password}
 echo "GRANT ALL PRIVILEGES ON ${MYSQL_JEEDOM_DBNAME}.* TO '${MYSQL_JEEDOM_USER}'@'%';" | mysql -uroot -p${bdd_root_password}
 
-cp core/config/common.config.sample.php core/config/common.config.php
-sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php 
-sed -i -e "s/#DBNAME#/${MYSQL_JEEDOM_DBNAME}/g" core/config/common.config.php 
-sed -i -e "s/#USERNAME#/${MYSQL_JEEDOM_USER}/g" core/config/common.config.php 
-sed -i -e "s/#PORT#/${MYSQL_PORT}/g" core/config/common.config.php 
-sed -i -e "s/#HOST#/${MYSQL_HOST}/g" core/config/common.config.php 
-chown www-data:www-data core/config/common.config.php
+cp core/config/common.config.sample.php ${WEBSERVER_HOME}/core/config/common.config.php
+sed -i "s/#PASSWORD#/${bdd_password}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
+sed -i "s/#DBNAME#/${MYSQL_JEEDOM_DBNAME}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
+sed -i "s/#USERNAME#/${MYSQL_JEEDOM_USER}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
+sed -i "s/#PORT#/${MYSQL_PORT}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
+sed -i "s/#HOST#/${MYSQL_HOST}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
+chown www-data:www-data ${WEBSERVER_HOME}/core/config/common.config.php
 
 echo "********************************************************"
 echo "${msg_install_deps}"
@@ -114,7 +114,7 @@ echo "********************************************************"
 echo "${msg_install_jeedom}"
 echo "********************************************************"
 
-php install/install.php mode=force
+php ${WEBSERVER_HOME}/install/install.php mode=force
 
 echo "********************************************************"
 echo "${msg_setup_cron}"
@@ -140,11 +140,11 @@ for i in apache2 apache ; do
     fi
 done
 service nginx stop
-cp install/nginx_default /etc/nginx/sites-available/default
+cp ${WEBSERVER_HOME}/install/nginx_default /etc/nginx/sites-available/default
 if [ ! -f '/etc/nginx/sites-enabled/default' ] ; then
     ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 fi
-sed -i -e "s/#ROOTJEEDOM#/${WEBSERVER_HOME}/g" /etc/nginx/sites-enabled/default
+sed -i "s/#ROOTJEEDOM#/${WEBSERVER_HOME}/g" /etc/nginx/sites-enabled/default
 service nginx restart
 update-rc.d nginx defaults  
 
