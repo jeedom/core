@@ -2,5 +2,6 @@ language: php
 sudo: required
 install:
   - sudo ./install/install.sh
+  - php install/install.php
 php:
   - 5.6
