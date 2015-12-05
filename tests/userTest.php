@@ -9,7 +9,8 @@ class userTest extends \PHPUnit_Framework_TestCase {
 		utils::a2o($user, $user_array);
 		$user->setPassword(sha1($user_array['password']));
 		$user->save();
-		$this->assertEquals(2, $user->getId());
+
+		$this->assertTrue((is_numeric($user->getId()) && $user->getId() != ''));
 		$this->assertEquals($user_array['login'], $user->getLogin());
 		$this->assertEquals(sha1($user_array['password']), $user->getPassword());
 		return $user;
@@ -25,5 +26,13 @@ class userTest extends \PHPUnit_Framework_TestCase {
 		$user = user::byLogin($_user->getLogin());
 		$this->assertEquals($user, $_user);
 	}
+
+	/**
+	 * @depends testCreate
+	 */
+	public function testRemove($_user) {
+		$_user->remove();
+	}
+
 }
 ?>

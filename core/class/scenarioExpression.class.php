@@ -838,7 +838,7 @@ class scenarioExpression {
 
 	}
 
-	public static function createAndExec($_type, $_cmd, $_options) {
+	public static function createAndExec($_type, $_cmd, $_options = null) {
 		$scenarioExpression = new self();
 		$scenarioExpression->setType($_type);
 		$scenarioExpression->setExpression($_cmd);
