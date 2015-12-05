@@ -3,141 +3,250 @@
 :Date:      15.12.2015
 :Revision:  2.0.0
 
-DÃ¨s Jeedom V2
+Dès Jeedom V2
 
 = Interactions - Principe
 
-Le systÃ¨me d'interaction dans Jeedom permet de rÃ©aliser des actions Ã  partir de phrase texte.
+Le système d'interaction dans Jeedom permet de réaliser des actions à partir de phrase texte.
 
-Ses phrases peuvent Ãªtre obtenu par la rÃ©daction manuel comme SMS, requÃªte http ou autre, ainsi que par la conversion de commande vocal en texte grÃ¢ce Ã  des applications comme Siri, Google Now, SARHA....
+Ses phrases peuvent être obtenu par la rédaction manuel comme SMS, requête http ou autre, ainsi que par la conversion de commande vocal en texte grâce à des applications comme Siri, Google Now, SARHA....
 
-La page dâ€™interaction permet de configurer toutes les interactions orales (via le module SARAH, ou tasker (+ autovoice), voir https://jeedom.fr/doc/documentation/howto/fr_FR/doc-howto-android.autovoice.html[ici]) ou Ã©crites ( les sms ou le plugin Slack par exempleâ€¦) que lâ€™on peut trouver sur le Market Jeedom.
+La page d’interaction permet de configurer toutes les interactions orales (via le module SARAH, ou tasker (+ autovoice), voir https://jeedom.fr/doc/documentation/howto/fr_FR/doc-howto-android.autovoice.html[ici]) ou écrites ( les sms ou le plugin Slack par exemple…) que l’on peut trouver sur le Market Jeedom.
 
 
-Pour simplifier la crÃ©ation des phrases il est possible d'utiliser des mots clef ou/et mettre des variation possible dans une mÃªme phrase afin que jeedom gÃ©nÃ¨re automatiquement une liste de phrases avec toutes les possibilitÃ©s de combinaison et commande autorisÃ©e pour l'interaction.
+Pour simplifier la création des phrases il est possible d'utiliser des mots clef ou/et mettre des variation possible dans une même phrase afin que jeedom génère automatiquement une liste de phrases avec toutes les possibilités de combinaison et commande autorisée pour l'interaction.
 
-On obtient donc avec une seul configuration, une ou plusieurs 10Ã¨ne de phrases possible pour divers commandes.
+On obtient donc avec une seul configuration, une ou plusieurs 10ène de phrases possible pour divers commandes.
 
-L'intÃ©rÃªt des interactions rÃ©side dans l'intÃ©gration simplifiÃ© dans d'autre systÃ¨me comme smartphone, tablette, autre box domotique, ect...
+L'intérêt des interactions réside dans l'intégration simplifié dans d'autre système comme smartphone, tablette, autre box domotique, ect...
 
-Avec une seul requÃªte SMS, http ou autre (voir doc sur API) ont peux donc contrÃ´ler tout Jeedom, ce qui permet une grande souplesse et d'Ã©viter les bug en cas de modification de la configuration de vos Ã©quipements comme se serais le cas avec un accÃ¨s direct via l'url de chaque commande.
+Avec une seul requête SMS, http ou autre (voir doc sur API) ont peux donc contrôler tout Jeedom, ce qui permet une grande souplesse et d'éviter les bug en cas de modification de la configuration de vos équipements comme se serais le cas avec un accès direct via l'url de chaque commande.
 
 == Premier pas
 
 === Page accueil des interactions
 
-Pour accÃ©der Ã  la page d'interaction il faut aller sur Outils -> interactions: 
+Pour accéder à la page d'interaction il faut aller sur Outils -> interactions: 
 
 image::../images/interact001.png[]
 
-Liste des interactions et action gÃ©nÃ©ral :
+Liste des interactions et action général :
 
 image::../images/interact002.png[]
 
 [TIP]
-Comme Ã  beaucoup d'endroits sur Jeedom, mettre la souris tout Ã  gauche permet de faire apparaÃ®tre un menu d'accÃ¨s rapide (vous pouvez Ã  partir de votre profil le laisser toujours visible).
+Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
 
 * En haut de page, on trouve 3 boutons :
-** *1* Le bouton "Ajouter" qui permet de crÃ©er de nouvelle interaction
-** *2* Le bouton "RÃ©gÃ©nÃ©rer" qui vas recrÃ©er toutes les interactions (peut Ãªtre trÃ¨s long > 5min)
-** *3* Le bouton "Tester" qui permet d'ouvrir un boite de dialogue pour Ã©crire et tester une phrase
+** *1* Le bouton "Ajouter" qui permet de créer de nouvelle interaction
+** *2* Le bouton "Régénérer" qui vas recréer toutes les interactions (peut être très long > 5min)
+** *3* Le bouton "Tester" qui permet d'ouvrir un boite de dialogue pour écrire et tester une phrase
 
 [TIP]
-Si vous avez une interaction qui gÃ©nÃ¨re les phrase pour les lumiÃ¨res par exemple, et que vous ajoutez un nouveau module de commande de lumiÃ¨re, il vous faudra soit rÃ©gÃ©nÃ©rer toutes les interactions soit aller dans l'interaction en question et la re-sauver pour crÃ©er les phrase de ce nouveau module.
+Si vous avez une interaction qui génère les phrase pour les lumières par exemple, et que vous ajoutez un nouveau module de commande de lumière, il vous faudra soit régénérer toutes les interactions soit aller dans l'interaction en question et la re-sauver pour créer les phrase de ce nouveau module.
 
 
-=== CrÃ©er-Modifier une interaction
+=== Créer-Modifier une interaction
 
-Le principe de crÃ©ation est assez simple, on va dÃ©finir une phrase modÃ¨le gÃ©nÃ©ratrice qui va permettre Ã  Jeedom de crÃ©er une ou plusieurs centaines dâ€™autres phrases qui seront des combinaisons possibles du modÃ¨le.
+Le principe de création est assez simple, on va définir une phrase modèle génératrice qui va permettre à Jeedom de créer une ou plusieurs centaines d’autres phrases qui seront des combinaisons possibles du modèle.
 
-Ont vas dÃ©finir de la mÃªme faÃ§on des rÃ©ponses avec un modÃ¨le (Ã§a permet Ã  Jeedom dâ€™avoir plusieurs rÃ©ponses pour une seule et mÃªme question).
+Ont vas définir de la même façon des réponses avec un modèle (ça permet à Jeedom d’avoir plusieurs réponses pour une seule et même question).
 
-Ont peu aussi dÃ©finir une commande Ã  exÃ©cuter si par exemple l'interaction n'est pas liÃ©e Ã  une action mais une information ou si on souhaite rÃ©aliser une action particuliÃ¨re aprÃ¨s celle-ci (il est aussi possible d'exÃ©cuter un scÃ©nario, de contrÃ´ler plusieurs commandes...).
+Ont peu aussi définir une commande à exécuter si par exemple l'interaction n'est pas liée à une action mais une information ou si on souhaite réaliser une action particulière après celle-ci (il est aussi possible d'exécuter un scénario, de contrôler plusieurs commandes...).
 
 ==== Interphase de configuration
 
-Une fois une interaction ajoutÃ© ou un clique sur une interaction existante pour la modifier vous arriver sur la page de configuration de l'interaction :
+Une fois une interaction ajouté ou un clique sur une interaction existante pour la modifier vous arriver sur la page de configuration de l'interaction :
 
 image::../images/interact003.png[]
 
-Ici vous Trouvez 2 zones avec plusieurs Ã©lÃ©ment en leur sien : 
+Ici vous Trouvez 2 zones avec plusieurs élément en leur sien : 
 
-* *GÃ©nÃ©ral*
-** *Nom* : nom de l'interaction (peut Ãªtre vide, le nom remplace le texte de la demande dans la liste des interactions)
-** *Groupe* : groupe de l'interaction, cela permet de les organiser (peut Ãªtre vide, sera donc dans le groupe "aucun")
-** *Demande* : la phrase modÃ¨le gÃ©nÃ©ratrice (obligatoire)
-** *Synonyme* : permet de dÃ©finir des synonymes sur les noms des commandes
-** *RÃ©ponse* : la rÃ©ponse Ã  fournir
-** *Conversion binaire* : permet de convertir les valeurs binaire en ouvert/fermÃ© par exemple (uniquement pour les commandes de type info binaire)
-** *Utilisateur autorisÃ©s* : limite l'interaction Ã  certain utilisateur (les logins sÃ©parÃ© par des |)
-* *Filtres (limite le champ d'application pour le modÃ¨le aux Ã©lÃ©ments sÃ©lectionner)*
+* *Général*
+** *Nom* : nom de l'interaction (peut être vide, le nom remplace le texte de la demande dans la liste des interactions)
+** *Groupe* : groupe de l'interaction, cela permet de les organiser (peut être vide, sera donc dans le groupe "aucun")
+** *Demande* : la phrase modèle génératrice (obligatoire)
+** *Synonyme* : permet de définir des synonymes sur les noms des commandes
+** *Réponse* : la réponse à fournir
+** *Conversion binaire* : permet de convertir les valeurs binaire en ouvert/fermé par exemple (uniquement pour les commandes de type info binaire)
+** *Utilisateur autorisés* : limite l'interaction à certain utilisateur (les logins séparé par des |)
+* *Filtres (limite le champ d'application pour le modèle aux éléments sélectionner)*
 ** *Limiter aux commandes de type* : permet de n'utiliser que les type actions, infos ou les 2 type 
-** *Limiter aux commandes ayant pour sous-type* : permet de limiter la gÃ©nÃ©ration Ã  un ou plusieurs sous-type
-** *Limiter aux commandes ayant pour unitÃ©* : permet de limiter la gÃ©nÃ©ration Ã  une ou plusieurs d'unitÃ© (Jeedom crÃ©e la liste automatiquement Ã  partir des unitÃ©s dÃ©finie dans vos commandes)
-** *Limiter aux commandes appartenant Ã  l'objet* : permet de limiter la gÃ©nÃ©ration Ã  un ou plusieurs objet (Jeedom crÃ©e la liste automatiquement Ã  partir des objets que vous avez crÃ©Ã©)
-** *Limiter au plugin* : permet de limiter la gÃ©nÃ©ration Ã  un ou plusieurs plugin (Jeedom crÃ©e la liste automatiquement Ã  partir des plugins installer)
-** *Limiter Ã  la catÃ©gorie* : permet de limiter la gÃ©nÃ©ration Ã  une ou plusieurs catÃ©gorie
-** *Limiter Ã  l'Ã©quipement* : permet de limiter la gÃ©nÃ©ration Ã  un seul Ã©quipement/module (Jeedom crÃ©e la liste automatiquement Ã  partir des Ã©quipement/module que vous avez)
-* *Action* : Ã  utiliser si vous voulez cibler une ou plusieurs commande(s) spÃ©cifique(s) ou passer des paramÃ¨tres particulier
-* *Phrases gÃ©nÃ©rÃ©es*
-** *Phrases gÃ©nÃ©rÃ©es* : Bouton qui permet de voir les phrases gÃ©nÃ©rer par la phrase modÃ¨le gÃ©nÃ©ratrice (Vous devez sauver l'interaction pour gÃ©nÃ©rer ou rÃ©gÃ©nÃ©rer les phrases)
-** *Nombre de phrases gÃ©nÃ©rÃ©es* : nombre de phrases gÃ©nÃ©rÃ©es
+** *Limiter aux commandes ayant pour sous-type* : permet de limiter la génération à un ou plusieurs sous-type
+** *Limiter aux commandes ayant pour unité* : permet de limiter la génération à une ou plusieurs d'unité (Jeedom crée la liste automatiquement à partir des unités définie dans vos commandes)
+** *Limiter aux commandes appartenant à l'objet* : permet de limiter la génération à un ou plusieurs objet (Jeedom crée la liste automatiquement à partir des objets que vous avez créé)
+** *Limiter au plugin* : permet de limiter la génération à un ou plusieurs plugin (Jeedom crée la liste automatiquement à partir des plugins installer)
+** *Limiter à la catégorie* : permet de limiter la génération à une ou plusieurs catégorie
+** *Limiter à l'équipement* : permet de limiter la génération à un seul équipement/module (Jeedom crée la liste automatiquement à partir des équipement/module que vous avez)
+* *Action* : à utiliser si vous voulez cibler une ou plusieurs commande(s) spécifique(s) ou passer des paramètres particulier
+* *Phrases générées*
+** *Phrases générées* : Bouton qui permet de voir les phrases générer par la phrase modèle génératrice (Vous devez sauver l'interaction pour générer ou régénérer les phrases)
+** *Nombre de phrases générées* : nombre de phrases générées
 
 ==== Interaction simple
 
-La faÃ§on la plus simple de configurer une interaction c'est de lui donner un modÃ¨le gÃ©nÃ©rateur rigide sans variation possible, cette mÃ©thode ciblera trÃ¨s prÃ©cisÃ©ment une commande, ou scÃ©nario
+La façon la plus simple de configurer une interaction c'est de lui donner un modèle générateur rigide sans variation possible, cette méthode ciblera très précisément une commande, ou scénario
 
-Dans l'exemple qui suit ont peux voir dans demande la phrase exacte Ã  fournir pour dÃ©clencher l'interaction, ici pour allumer le plafonnier du salon
+Dans l'exemple qui suit ont peux voir dans demande la phrase exacte à fournir pour déclencher l'interaction, ici pour allumer le plafonnier du salon
 
 image::../images/interact004.png[]
 
-Ont peux voir sur cette capture la configuration pour avoir une interaction liÃ©e Ã  une action spÃ©cifique, cette action est dÃ©finie dans la partie "Action" de la page.
+Ont peux voir sur cette capture la configuration pour avoir une interaction liée à une action spécifique, cette action est définie dans la partie "Action" de la page.
 
-Ont peux trÃ¨s bien imaginer faire de mÃªme avec plusieurs action pour allumer plusieurs lampe dans le salon comme l'exemple qui suit :
+Ont peux très bien imaginer faire de même avec plusieurs action pour allumer plusieurs lampe dans le salon comme l'exemple qui suit :
 
 image::../images/interact005.png[]
 
-Dans les 2 exemples si dessus, la phrase modÃ¨le est identique mais les actions qui en dÃ©coule change en fonction de ce qui est configurer dans la partie "Action", ont peux donc dÃ©jÃ  avec une interaction simple Ã  phrase unique imaginer des actions combinÃ©e entre divers commande et scÃ©nario (ont peux aussi dÃ©clencher des scÃ©narios dans la partie action des interactions)
+Dans les 2 exemples si dessus, la phrase modèle est identique mais les actions qui en découle change en fonction de ce qui est configurer dans la partie "Action", ont peux donc déjà avec une interaction simple à phrase unique imaginer des actions combinée entre divers commande et scénario (ont peux aussi déclencher des scénarios dans la partie action des interactions)
 
 [TIP]
-Pour ajouter un scÃ©nario, crÃ©er une nouvelle action, Ã©crire "scenario" sans accent appuyer sur la touche tabulation de votre clavier pour faire apparaitre le sÃ©lecteur de scÃ©nario
+Pour ajouter un scénario, créer une nouvelle action, écrire "scenario" sans accent appuyer sur la touche tabulation de votre clavier pour faire apparaitre le sélecteur de scénario
 
 
 ==== Interaction multiple commande
 
-Nous allons ici voir tout l'intÃ©rÃªt et puissance des interactions, avec une phrase modÃ¨le nous allons pouvoir gÃ©nÃ©rer des phrases pour tout un groupe de commande.
+Nous allons ici voir tout l'intérêt et puissance des interactions, avec une phrase modèle nous allons pouvoir générer des phrases pour tout un groupe de commande.
 
-Ont vas reprendre ce qui a Ã©tÃ© fait plus haut, supprimer les actions que l'on avait ajoutÃ© et Ã  la place de la phrase fixe dans demande, nous allons utiliser les tags *\#commande#* et *\#equipement#*, Jeedom vas donc remplacer ses tags par le nom des commandes et nom de l'Ã©quipement (ont peux voir l'importance d'avoir des noms de commande/Ã©quipement cohÃ©rant)
+Ont vas reprendre ce qui a été fait plus haut, supprimer les actions que l'on avait ajouté et à la place de la phrase fixe dans demande, nous allons utiliser les tags *\#commande#* et *\#equipement#*, Jeedom vas donc remplacer ses tags par le nom des commandes et nom de l'équipement (ont peux voir l'importance d'avoir des noms de commande/équipement cohérant)
 
 image::../images/interact006.png[]
 
-Ont peux donc constater ici que Jeedom Ã  gÃ©nÃ©rer 152 phrases Ã  partir de notre modÃ¨le, tout fois elle ne sont pas trÃ¨s bien construite et l'on a un peu de tout.
+Ont peux donc constater ici que Jeedom à générer 152 phrases à partir de notre modèle, tout fois elle ne sont pas très bien construite et l'on a un peu de tout.
 
 Pour faire de l'ordre dans tout cela ont vas utiliser les filtres (partie de droit de notre page de configuration).
-Dans cette exemple ont veux gÃ©nÃ©rer des phrases pour allumer des lumiÃ¨res, ont peux donc dÃ©cocher le type de commande info (si je sauve il ne me reste plus que 95 phrase gÃ©nÃ©rer), puis dans les sous-types, ont peux ne garder cocher que dÃ©faut qui correspond au bouton d'action (reste donc plus que 16 phrases).
+Dans cette exemple ont veux générer des phrases pour allumer des lumières, ont peux donc décocher le type de commande info (si je sauve il ne me reste plus que 95 phrase générer), puis dans les sous-types, ont peux ne garder cocher que défaut qui correspond au bouton d'action (reste donc plus que 16 phrases).
 
 image::../images/interact007.png[]
 
-c'est mieux mais ont peux faire encore plus naturel, si je prends l'exemple gÃ©nÃ©rer "On entrÃ©e", il serais bien de pouvoir transformer cette phrase en "allume l'entrÃ©e" ou en "allumer l'entrÃ©e".
-Pour faire cela Jeedom dispose sous le champ demande, un champ Synonyme qui vas nous permettre de nommer diffÃ©remment le nom des commandes dans nos phrases gÃ©nÃ©rer, ici c'est "on", j'ai mÃªme des "on2" dans les modules qui peuvent contrÃ´ler 2 sorties.
+c'est mieux mais ont peux faire encore plus naturel, si je prends l'exemple générer "On entrée", il serais bien de pouvoir transformer cette phrase en "allume l'entrée" ou en "allumer l'entrée".
+Pour faire cela Jeedom dispose sous le champ demande, un champ Synonyme qui vas nous permettre de nommer différemment le nom des commandes dans nos phrases générer, ici c'est "on", j'ai même des "on2" dans les modules qui peuvent contrôler 2 sorties.
 
-Ont vas donc dans les synonymes indiquer le nom de la commande et le(s) synonyme(s) Ã  utiliser : 
+Ont vas donc dans les synonymes indiquer le nom de la commande et le(s) synonyme(s) à utiliser : 
 
 image::../images/interact008.png[]
 
-Ont peux voir ici une syntaxe un peux nouvelle pour les synonymes, un nom de commande peux avoir plusieurs synonyme, ici "on" a comme synonyme "allume" et "allumer", la syntaxe c'est donc "#nom de la commande#" *#=#* "#synonyme 1#"*#,#* "#synonyme 2#" (ont peux mettre autant de synonyme que l'on veut), puis pour ajouter des synonymes pour un autre nom de commande il suffit d'ajouter aprÃ¨s le denier synonyme une barre verticale "#|#" suite de laquelle vous pouvez Ã  nouveau nommer la commande qui vas avoir des synonymes comme pour la premiÃ¨re partie.
+Ont peux voir ici une syntaxe un peux nouvelle pour les synonymes, un nom de commande peux avoir plusieurs synonyme, ici "on" a comme synonyme "allume" et "allumer", la syntaxe c'est donc "#nom de la commande#" *#=#* "#synonyme 1#"*#,#* "#synonyme 2#" (ont peux mettre autant de synonyme que l'on veut), puis pour ajouter des synonymes pour un autre nom de commande il suffit d'ajouter après le denier synonyme une barre verticale "#|#" suite de laquelle vous pouvez à nouveau nommer la commande qui vas avoir des synonymes comme pour la première partie.
 
-Bien c'est dÃ©jÃ  mieux mais il manque encore pour la commande "on" "entrÃ©e" le "l' " et pour d'autre le "la" ou "le" ou "un" ect...
-Ont pourrais modifier le nom de l'Ã©quipement pour l'ajouter, ce serais une solution, si non ont peux utiliser les variations dans la demande, cela consiste Ã  lister une sÃ©rie de mot possible Ã  un emplacement de la phrase, Jeedom va donc gÃ©nÃ©rer des phrases avec ses variations.
+Bien c'est déjà mieux mais il manque encore pour la commande "on" "entrée" le "l' " et pour d'autre le "la" ou "le" ou "un" ect...
+Ont pourrais modifier le nom de l'équipement pour l'ajouter, ce serais une solution, si non ont peux utiliser les variations dans la demande, cela consiste à lister une série de mot possible à un emplacement de la phrase, Jeedom va donc générer des phrases avec ses variations.
 
 image::../images/interact009.png[]
 
-Comme vous pouvez le voir dans la liste Ã  gauche ont as maintenant des phrases un peux plus correcte avec des phrases qui ne sont pas juste, pour notre exemple "on" "entrÃ©e", on trouve donc "Allume entrÃ©e", "Allume un entrÃ©e", "Allume une entrÃ©e", "Allume l'entrÃ©e" ect... ont as donc toute les variantes possible avec ce que l'on a ajoutÃ© entre les "[ ]" et se si pour chaque synonyme, ce qui gÃ©nÃ¨re rapidement beaucoup de phrase (ici 130).
+Comme vous pouvez le voir dans la liste à gauche ont as maintenant des phrases un peux plus correcte avec des phrases qui ne sont pas juste, pour notre exemple "on" "entrée", on trouve donc "Allume entrée", "Allume un entrée", "Allume une entrée", "Allume l'entrée" ect... ont as donc toute les variantes possible avec ce que l'on a ajouté entre les "[ ]" et se si pour chaque synonyme, ce qui génère rapidement beaucoup de phrase (ici 168).
 
-Il devient donc importent de bien construire ses phrases modÃ¨le et synonyme ainsi que de sÃ©lectionner les bon filtres pour ne pas gÃ©nÃ©rer trop de phrase inutile.
-Personnellement je trouve intÃ©ressent d'avoir quelques incohÃ©rence du style "un entrÃ©e" car si chez vous vous avez une personne Ã©trangÃ¨re qui ne parle pas correctement le FranÃ§ais les interactions fonctionnerons tout de mÃªme.
+Afin de rendre encore un peu plus fin et de ne pas avoir des choses improbable telle que "allume l'télé", ont peux autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes, il va donc supprimer ce qui est trop éloigne de la syntaxe réel d'une phrase.
+Dans notre cas ont pace de 168 phrases à 130 phrases.
 
-==== Interaction fonction AvancÃ©
+image::../images/interact010.png[]
+
+
+Il devient donc importent de bien construire ses phrases modèle et synonyme ainsi que de sélectionner les bon filtres pour ne pas générer trop de phrase inutile.
+Personnellement je trouve intéressent d'avoir quelques incohérence du style "un entrée" car si chez vous vous avez une personne étrangère qui ne parle pas correctement le Français les interactions fonctionnerons tout de même.
+
+==== Interaction fonction Avancé
+
+===== Personnaliser les réponses
+
+Jusqu'à présent comme réponse à une interaction nous avions une simple phrase qui n'indique pas grand-chose à part que quelque chose c'est passer.
+L'idée serait que Jeedom nous indique ce qu'il a fait un peu plus précisément.
+C'est là qu'interviens le champ réponse dans le quelle ont vas pouvoir personnaliser le retour en fonction de la commande exécuter.
+
+Pour se faire nous allons à nouveau utiliser les Tag Jeedom
+Pour nos lumières ont peux utiliser une phrase du style : J'ai bien allumé \#equipement# (voir capture ci-dessous)
+
+image::../images/interact011.png[]
+
+Ont peux aussi ajouter n'importe quelle valeur d'une autre commande comme une température, un nombre de personnes .ect....
+
+image::../images/interact012.png[]
+
+===== Conversion binaire
+Les conversions binaire s'applique au commande de type info dont le sous-type est binaire (retourne 0 ou 1 uniquement) il faut donc activer les bon filtre comme ont peux le voir sur la capture un peux plus bas (pour les catégories ont peux toutes les coché, pour l'exemple j'ai gardé que lumière).
+
+image::../images/interact013.png[]
+
+Comme ont peux le voir ici j'ai conservé quasiment la même structure pour la demande (c'est volontaire pour se concentrer sur les spécificités), ont adapté bien sur les synonymes pour avoir quelque chose de cohérant, par contre pour la réponse il est #impératif# de mettre uniquement \#valeur# qui représente le 0 ou 1 que Jeedom vas remplacer par la conversion binaire qui suit.
+
+Le champ conversion binaire dois contenir 2 réponses, en premier la réponse si la valeur de la commande vaut 0 puis pour la séparer de la réponse si la commande vaut 1 une barre vertical "|".
+Ici les réponse sont simplement non et oui mais ont pourrais y mettre une phrase un peux plus longue..
+
+[WARNING]
+Les tags ne fonctionnent pas dans les conversions binaires
+
+====== Utilisateurs autorisés
+
+Le champ "Utilisateurs autorisés" permet de n’autoriser que certaines personnes à exécuter la commande, vous pouvez mettre plusieurs profils en les séparant par "|"
+
+Exemple : personne1|personne2
+
+Ont peux imaginer qu'une alarme ne peux être activé ou désactivée par un enfant ou un voisin qui viendrais arroser les plantes en votre absence...
+
+====== Regexp d'exclusion
+[IMPORTANT]
+Fonction réservé au connaisseur ou téméraire qui savent utiliser Google
+
+Depuis Jeedom V2.00 ont as la possibilité de créer des https://fr.wikipedia.org/wiki/Expression_rationnelle[Regexp] d'exclusion, si une phrase générer correspond à se(s) Regexp elle sera supprimée.
+L'intérêt c'est de pouvoir supprimer des faux positif, c'est a dire une phrase généré par Jeedom qui active quelque chose qui ne correspond pas à ce que l'on veut ou qui viendrais parasité une autre interaction qui aurais une phrase similaire.
+
+Ont as 2 endroits pour appliquer une Regexp :
+
+* dans l'interaction même dans le champ "Regexp d'exclusion"
+
+* Dans le menu "configuration"->"Configuration des interactions"->champ "Regex général d'exclusion pour les interactions"
+
+Pour le champ "Regex général d'exclusion pour les interactions", cette règle sera appliquer à toutes les interactions, qui seront créer ou re-sauver par la suite, si on veut l’appliquer a toutes les interactions existante il faut régénérer les interactions.
+Généralement on l'utilise pour effacer des phrase incorrectement formée se retrouvent dans la plus part des interactions générer.
+
+Pour le champ "Regexp d'exclusion" dans la page de config de chaque interaction, l'ont peux mettre une Regexp spécifique qui vas agir uniquement sur la dite interaction, elle vous permet donc de supprimer plus précisément  pour une interaction, cela peut aussi permettre d'effacer une interaction pour une commande spécifique pour laquelle on ne veut pas offrir cette possibilité dans le cadre d'une génération multiple commande.
+
+La capture d'écran qui suit montre l'interaction sans le Regexp, dans la liste de gauche, je filtre les phrases pour vous montrer que les phrase qui vont être supprimer, en réalité il y as 76 phrase générer avec la configuration de l'interaction.
+
+image::../images/interact014.png[]
+
+
+Comme vous pouvez le voir sur la capture, j'ai ajouté un regexp simple qui vas chercher le mot "Julie" dans les phrases générer et les supprimer, toute fois ont peux voir dans la liste de gauche qu'il y as toujours des phrases avec le mot "julie", dans les expressions régulière, Julie n'ai pas égale à julie, ont appelle cela une sensibilisée à la case ou en bon français une majuscule est différente d'une minuscule.
+Comme ont peux le voir dans la capture suivante, il ne reste plus que 71 phrases, les 5 avec un Julie ont été supprimée
+
+Une expression régulière se compose comme suit :
+
+* En premier un délimiteur, ici c'est une barre oblique "/" placée en début et fin de l'expression
+
+* le point qui suit la barre oblique représente n'importe quelle caractère, espace, ou nombre.
+
+* Le "*" quant a lui indique qui peux y avoir 0 ou plusieurs fois le caractère qui le précède, ici un point, donc en bon français n'importe quelle élément
+
+* Puis Julie, qui est le mot à rechercher (mot ou autre schéma d'expression), suivi a nouveau d'un point barre oblique.
+
+Si on traduit cette expression en une phrase cela donnerais "cherche le mot Julie qui est précéder par n'importe quoi et suivi de n'importe quoi".
+
+C'est une version extrêmement simple des expressions régulière mais déjà très compliquer à comprendre, il m’a fallu un moment pour en saisir le fonctionnement, pour exemple un peux plus complexe, une regexp pour vérifier une adresse url : 
+
+/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]\*)*\/?$/ 
+
+Une fois que tu peux écrire ça tu as compris les expressions régulière
+
+image::../images/interact015.png[]
+
+Pour résoudre le problème de majuscule et minuscule, ont peux ajouter à notre expression une option qui vas la rendre insensible à la case, ou autrement dis, qui considère une lettre en minuscule égale à une majuscule, pour ce faire ont dois simplement jouter à la fin de notre expression un "i".
+
+image::../images/interact016.png[]
+
+Avec l'ajout de l'option "i" on constate qu'il ne reste plus que 55 Phrases générer, et dans la liste de gauche avec le filtre julie pour rechercher les phrases qui contiennent se mot, on constate qu'il ni en as bien plus.
+
+Comme c'est un sujet extrêmement complexe je vais pas aller plus en détail ici, il y as suffisamment de tuto sur le net pour vous aider, et n'oublier pas Google est ton amis aussi car oui, c'est mon amis c'est lui qui m’a appris à comprendre les Regexp et même à coder, donc si il ma aider il peut aussi t'aider si tu y met de la bonne volonté.
+
+Lien utile : 
+
+* http://google.fr
+
+* http://www.commentcamarche.net/contents/585-javascript-l-objet-regexp
+
+* https://www.lucaswillems.com/fr/articles/25/tutoriel-pour-maitriser-les-expressions-regulieres
+
+* https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql/les-expressions-regulieres-partie-1-2
+
+
+
 
 
 
@@ -145,20 +254,20 @@ Personnellement je trouve intÃ©ressent d'avoir quelques incohÃ©rence du style "u
 
 === Y a-t-il quelqu'un dans la chambre ?
 
-* La question est donc "yâ€™a-t-il quelquâ€™un dans la chambre"
-* La rÃ©ponse sera "oui il y a quelquâ€™un dans la chambre" ou "non il nâ€™y a personne dans la chambre"
-* La commande qui rÃ©pond Ã  Ã§a est "\#[Chambre][Multi-Sensor][PrÃ©sence]#"
+* La question est donc "y’a-t-il quelqu’un dans la chambre"
+* La réponse sera "oui il y a quelqu’un dans la chambre" ou "non il n’y a personne dans la chambre"
+* La commande qui répond à ça est "\#[Chambre][Multi-Sensor][Présence]#"
 
 image::../images/interact2.JPG[]
 
-Ici on peut voir la case la question, ensuite en dessous on voit la conversion du binaire en phrase (sinon Jeedom rÃ©pondrait "1" ou "0"), puis dans la case en haut Ã  droite la rÃ©ponse avec "\#valeur#" Ã©tant remplacÃ©e lors de la rÃ©ponse. Ensuite on voit la commande Ã  exÃ©cuter pour avoir la rÃ©ponse Ã  la question. Enfin tout Ã  droite on voit bien quâ€™il y a une seule phrase de gÃ©nÃ©rÃ©e. 
+Ici on peut voir la case la question, ensuite en dessous on voit la conversion du binaire en phrase (sinon Jeedom répondrait "1" ou "0"), puis dans la case en haut à droite la réponse avec "\#valeur#" étant remplacée lors de la réponse. Ensuite on voit la commande à exécuter pour avoir la réponse à la question. Enfin tout à droite on voit bien qu’il y a une seule phrase de générée. 
 
-=== Connaitre la tempÃ©rature/huminitÃ©/luminositÃ©
+=== Connaitre la température/huminité/luminosité
 
-Plus compliquÃ© maintenant, on voit bien que lÃ  pour chaque commande il faut tout Ã©crire, câ€™est pas trÃ¨s pratique on va donc utiliser le systÃ¨me de gÃ©nÃ©ration. Ici un exemple gÃ©nÃ©rique qui sert Ã  connaÃ®tre la tempÃ©rature, lâ€™humiditÃ©, la luminositÃ© des diffÃ©rentes piÃ¨ces (objet au sens Jeedom).
+Plus compliqué maintenant, on voit bien que là pour chaque commande il faut tout écrire, c’est pas très pratique on va donc utiliser le système de génération. Ici un exemple générique qui sert à connaître la température, l’humidité, la luminosité des différentes pièces (objet au sens Jeedom).
 
-* Une phrase gÃ©nÃ©rique type "Quelle est la tempÃ©rature du salon" ou "Quelle est la luminositÃ© de la chambre" qui peut Ãªtre convertie en  : "quelle est [la |l\']\#commande# [du |de la |de l'| sur le |dans le | dans la ]#objet#" (lâ€™utilisation de [mot1 | mot2] permet de gÃ©nÃ©rer toutes les variantes possibles de la phrase avec mot1 ou mot2). Lors de la gÃ©nÃ©ration Jeedom va gÃ©nÃ©rer toutes les combinaisons possibles de phrase avec toutes les commandes existantes en remplaÃ§ant \#commande# par le nom de la commande et \#objet# par le nom de lâ€™objet.
-* La rÃ©ponse sera de type "21 Â°C" ou "200 lux" il suffit de mettre : \#valeur# \#unite#
+* Une phrase générique type "Quelle est la température du salon" ou "Quelle est la luminosité de la chambre" qui peut être convertie en  : "quelle est [la |l\']\#commande# [du |de la |de l'| sur le |dans le | dans la ]#objet#" (l’utilisation de [mot1 | mot2] permet de générer toutes les variantes possibles de la phrase avec mot1 ou mot2). Lors de la génération Jeedom va générer toutes les combinaisons possibles de phrase avec toutes les commandes existantes en remplaçant \#commande# par le nom de la commande et \#objet# par le nom de l’objet.
+* La réponse sera de type "21 °C" ou "200 lux" il suffit de mettre : \#valeur# \#unite#
 
 image::../images/interact3.JPG[]
 
@@ -166,96 +275,96 @@ Il suffit donc de remplir les champs comme ci-dessus.
 
 === Combien fait-il dans le salon
 
-Dernier exemple lâ€™utilisation de filtre. "Quelle est la tempÃ©rature du salon" est sympa mais des fois je prÃ©fÃ¨re demander "Combien fait-il dans le salon" et jâ€™aimerais aussi une rÃ©ponse moins formelle. Seul problÃ¨me dans la phrase "Combien fait-il dans le salon" je nâ€™ai pas le nom de la commande.
+Dernier exemple l’utilisation de filtre. "Quelle est la température du salon" est sympa mais des fois je préfère demander "Combien fait-il dans le salon" et j’aimerais aussi une réponse moins formelle. Seul problème dans la phrase "Combien fait-il dans le salon" je n’ai pas le nom de la commande.
 
-* La question "Combien fait-il dans le salon" qui pourrait Ãªtre en version gÃ©nÃ©rique "\#commande# [dans la |dans le| | sur le ] \#objet#"" mais en remplaÃ§ant "tempÃ©rature" par "combien fait-il" ou "il fait combien". Pour Ã§a rien de plus simple il suffit dâ€™utiliser le champs synonyme en mettant "tempÃ©rature=combien fait-il,il fait combien|balcon=balcon,dehors" (jâ€™en profite aussi pour remplacer balcon soit par balcon ou par dehors, Ã§a me permettra dâ€™avoir "combien fait-il dehors" par exemple)
-* Pour la rÃ©ponse jâ€™aimerais un truc du genre "Il fait 20 Â°C" ou "La tempÃ©rature est de 20 Â°C" ou mÃªme "20Â°C", il faut donc mettre : "[il fait |la tempÃ©rature est de | ]\#valeur# \#unite#" (vous remarquerez que dans la liste de choix pour le dÃ©but de la rÃ©ponse on a "il fait", "la tempÃ©rature est de" et " " soit vide)
-* Enfin dernier problÃ¨me je veux que cette commande ne soit valable que pour la tempÃ©rature, je vais donc utiliser un filtre, le plus simple ici Ã©tant de filtrer sur lâ€™unitÃ© soit "Â°C"
+* La question "Combien fait-il dans le salon" qui pourrait être en version générique "\#commande# [dans la |dans le| | sur le ] \#objet#"" mais en remplaçant "température" par "combien fait-il" ou "il fait combien". Pour ça rien de plus simple il suffit d’utiliser le champs synonyme en mettant "température=combien fait-il,il fait combien|balcon=balcon,dehors" (j’en profite aussi pour remplacer balcon soit par balcon ou par dehors, ça me permettra d’avoir "combien fait-il dehors" par exemple)
+* Pour la réponse j’aimerais un truc du genre "Il fait 20 °C" ou "La température est de 20 °C" ou même "20°C", il faut donc mettre : "[il fait |la température est de | ]\#valeur# \#unite#" (vous remarquerez que dans la liste de choix pour le début de la réponse on a "il fait", "la température est de" et " " soit vide)
+* Enfin dernier problème je veux que cette commande ne soit valable que pour la température, je vais donc utiliser un filtre, le plus simple ici étant de filtrer sur l’unité soit "°C"
 
 image::../images/interact5.JPG[]
 
-On a donc au dessus le rÃ©sultat avec un filtre sur les commandes ayant pour unitÃ© Â°C.
+On a donc au dessus le résultat avec un filtre sur les commandes ayant pour unité °C.
 
-=== RÃ©ponse composÃ© de plusieurs commandes
+=== Réponse composé de plusieurs commandes
 
-Il est aussi possible de mettre plusieurs commande dans une rÃ©ponse :
+Il est aussi possible de mettre plusieurs commande dans une réponse :
 
 image::../images/interact10.JPG[]
 
-On voit ici que j'ai mit 2 commandes dans la rÃ©ponse sans rien prÃ©ciser dans les actions, il n'y a donc qu'une seule phrase de gÃ©nÃ©rÃ©e (il faudra donc bien poser celle la) mais dans la reponse j'ai 2 informations le CO2 et la tempÃ©rature.
+On voit ici que j'ai mit 2 commandes dans la réponse sans rien préciser dans les actions, il n'y a donc qu'une seule phrase de générée (il faudra donc bien poser celle la) mais dans la reponse j'ai 2 informations le CO2 et la température.
 
 === Piloter un dimmer ou un thermostat (slider)
 
-Il est possible de piloter une lampe en pourcentage ou un themrostat avec les interactions. Voici un exemple pour piloter son thermostat au travers des intÃ©rations : 
+Il est possible de piloter une lampe en pourcentage ou un themrostat avec les interactions. Voici un exemple pour piloter son thermostat au travers des intérations : 
 
 image::../images/interact19.JPG[]
 
 Comme on le voit il y ici dans la demande le tag #consigne# (on peut mettre ce que l'on veut) qui est repris dans la commande du thermostat pour passer la valeur voulu
 
 [NOTE]
-On peut utiliser n'importe quel tag, il peut en avoir plusieurs pour piloter par exemple plusieurs commandes. A noter aussi que tous les tags sont passÃ© aux scÃ©nario que l'interaction lance (il faut toute fois que le scÃ©nario soit en "ExÃ©cuter en avant plan")
+On peut utiliser n'importe quel tag, il peut en avoir plusieurs pour piloter par exemple plusieurs commandes. A noter aussi que tous les tags sont passé aux scénario que l'interaction lance (il faut toute fois que le scénario soit en "Exécuter en avant plan")
 
 === Piloter la couleur d'un bandeau de LED
 
-Il est possible de pilotÃ© une commande couleur par les interactions en demandant par exemple Ã  Jeedom d'allumer un bandeau de led en bleu. Voila l'interaction Ã  faire : 
+Il est possible de piloté une commande couleur par les interactions en demandant par exemple à Jeedom d'allumer un bandeau de led en bleu. Voila l'interaction à faire : 
 
 image::../images/interact18.JPG[]
 
-Ici rien de bien compliquÃ©, il faut en revanche avoir configurÃ© les couleurs dans Jeedom, cela se passe sur la page Administration -> Configuration  puis dans la partie "Gestion des intÃ©ractions" : 
+Ici rien de bien compliqué, il faut en revanche avoir configuré les couleurs dans Jeedom, cela se passe sur la page Administration -> Configuration  puis dans la partie "Gestion des intéractions" : 
 
 image::../images/interact14.JPG[]
 
 Dans le tableau vous pouvez ajouter des nom de couleur et la correspondance de la couleur pour Jeedom.
 
-Avec ceci si vous dite "Allume la chambre en vert", Jeedom va rechercher dans la demande une couleur et l'appliquer Ã  la commande
+Avec ceci si vous dite "Allume la chambre en vert", Jeedom va rechercher dans la demande une couleur et l'appliquer à la commande
 
-=== Utilisation couplÃ© a un scÃ©nario
+=== Utilisation couplé a un scénario
 
-Il est possible de coupler un scÃ©nario Ã  une interaction et de gÃ©nÃ©rer la rÃ©ponse avec le scÃ©nario (cela permet de changer la rÃ©ponse en fonction de diffÃ©rent paramÃ¨tres). Voici un exemple d'intÃ©raction : 
+Il est possible de coupler un scénario à une interaction et de générer la réponse avec le scénario (cela permet de changer la réponse en fonction de différent paramètres). Voici un exemple d'intéraction : 
 
 image::../images/interact15.JPG[]
 
-La rien de compliquÃ© l'interaction lance le scÃ©nario.
+La rien de compliqué l'interaction lance le scénario.
 
-Voila le details du scÃ©nario : 
+Voila le details du scénario : 
 
 image::../images/interact16.JPG[]
 
-Ici assez simple aussi un scÃ©nario tout simple avec aucun dÃ©clencheur et un simple test sur la tÃ©mpÃ©rature, et une action de type return qui indique la phrase de reponse Ã  l'interaction (seule un dÃ©clenchement sur interaction utilise l'action return sinon elle ne sert Ã  rien)
+Ici assez simple aussi un scénario tout simple avec aucun déclencheur et un simple test sur la témpérature, et une action de type return qui indique la phrase de reponse à l'interaction (seule un déclenchement sur interaction utilise l'action return sinon elle ne sert à rien)
 
 [IMPORTANT]
-Il faut absokument que le scÃ©nario soit en "ExÃ©cuter en avant plan"
+Il faut absokument que le scénario soit en "Exécuter en avant plan"
 
 Et voila le retour (a travers Slack) : 
 
 image::../images/interact17.JPG[]
 
 [TIP]
-Il est possible de recuperer dans le scÃ©nario la demande qui a dÃ©clenchÃ© celui-ci Ã  l'aide du tag \#query#
+Il est possible de recuperer dans le scénario la demande qui a déclenché celui-ci à l'aide du tag \#query#
 
-=== Utilisation couplÃ© a un scÃ©nario avec passage de tags
+=== Utilisation couplé a un scénario avec passage de tags
 
-Lors de l'utilisation de tags dans la demande ceux-ci sont automatiquement passÃ© aux scÃ©nario.
+Lors de l'utilisation de tags dans la demande ceux-ci sont automatiquement passé aux scénario.
 
 [IMPORTANT]
-Il faut absokument que le scÃ©nario soit en "ExÃ©cuter en avant plan". Voila un exemple : 
+Il faut absokument que le scénario soit en "Exécuter en avant plan". Voila un exemple : 
 
 image::../images/interact21.JPG[]
 
-Et la scÃ©nario qui va avec : 
+Et la scénario qui va avec : 
 
 image::../images/interact22.JPG[]
 
-=== Programmation d'une action avec les intÃ©ractions
+=== Programmation d'une action avec les intéractions
 
-Les intÃ©ractions permettent de faire beaucoup de chose ne particulier vous pouvez programmer dynamiquement une action. Exemple : "Met le chauffage Ã  22 pour 14h50". Pour cela rien de plus il suffit d'utiliser les tags \#time# (si on dÃ©fini une heure prÃ©cise) ou  \#duration# (pour dans X temps, exemple dans 1 heure) : 
+Les intéractions permettent de faire beaucoup de chose ne particulier vous pouvez programmer dynamiquement une action. Exemple : "Met le chauffage à 22 pour 14h50". Pour cela rien de plus il suffit d'utiliser les tags \#time# (si on défini une heure précise) ou  \#duration# (pour dans X temps, exemple dans 1 heure) : 
 
 image::../images/interact23.JPG[]
 
 [NOTE]
-Vous remarquerez dans la rÃ©ponse le tag \#value# celui-ci contient dans le cas d'une intÃ©raction programmÃ© l'heure de programmation effective
+Vous remarquerez dans la réponse le tag \#value# celui-ci contient dans le cas d'une intéraction programmé l'heure de programmation effective
 
-Voila le rÃ©sultat : 
+Voila le résultat : 
 
 image::../images/interact24.JPG[]
 
@@ -265,44 +374,44 @@ Le bouton tester vous permet d'executer une interaction :
 
 image::../images/interact11.JPG[]
 
-Vous avez juste Ã  mettre la demande en haut et Jeedom vous expliquera la rÃ©ponse : 
+Vous avez juste à mettre la demande en haut et Jeedom vous expliquera la réponse : 
 
 image::../images/interact13.JPG[]
 
-Ici en mode execution ou l'on ne voit que la rÃ©ponse
+Ici en mode execution ou l'on ne voit que la réponse
 
 == Configuration
 
-La configuration est accessible Ã  partir de Administration -> Configuration puis la partie "Gestion des intÃ©ractions" :
+La configuration est accessible à partir de Administration -> Configuration puis la partie "Gestion des intéractions" :
 
 image::../images/interact14.JPG[]
 
 Vous avez ici 3 parametres : 
 
-* *SensibilitÃ© (par dÃ©faut 10)* : niveau de correspondance minimum entre la phrase recu et les phrases gÃ©nÃ©rÃ©es de 1 Ã  99
-* *Ne pas rÃ©pondre si l'interaction n'est pas comprise* : par defaut Jeedom rÃ©pond "je n'ai pas compris" si l'intÃ©raction n'est pas comprise, il est possible de desactiver ce fonctionement pour que jeedom ne rÃ©ponde rien
-* *Regex gÃ©nÃ©ral d'exclusion pour les interactions* : permet de definir une regexp qui si elle correspond Ã  une interaction supprimera automatiquement cette phrase de la gÃ©nÃ©ration (reservÃ© aux experts)
+* *Sensibilité (par défaut 10)* : niveau de correspondance minimum entre la phrase recu et les phrases générées de 1 à 99
+* *Ne pas répondre si l'interaction n'est pas comprise* : par defaut Jeedom répond "je n'ai pas compris" si l'intéraction n'est pas comprise, il est possible de desactiver ce fonctionement pour que jeedom ne réponde rien
+* *Regex général d'exclusion pour les interactions* : permet de definir une regexp qui si elle correspond à une interaction supprimera automatiquement cette phrase de la génération (reservé aux experts)
 
-Et vous retrouvez la partie conversion de couleur (nom de la couleur vers sa valeur rÃ©el)
+Et vous retrouvez la partie conversion de couleur (nom de la couleur vers sa valeur réel)
 
 [TIP]
-Si vous activez les logs au niveau debug vous avez un log interact qui vous donne la niveau de sensibilitÃ© pour chaque comparaison de phrase, cela peut permettre de regler celui-ci plus facilement
+Si vous activez les logs au niveau debug vous avez un log interact qui vous donne la niveau de sensibilité pour chaque comparaison de phrase, cela peut permettre de regler celui-ci plus facilement
 
-== RÃ©sumÃ©
+== Résumé
 
 Demande::
-Vous pouvez utiliser "\#commande#" et "\#objet#" (les 2 doivent absolument Ãªtre utilisÃ©s ensemble) pour gÃ©nÃ©rer une liste de commandes (il est possible de filtrer la gÃ©nÃ©ration pour rÃ©duire la liste). Il est aussi possible d'utiliser "\#equipement#" (utile si plusieurs commandes appartenant au mÃªme objet ont le mÃªme nom)
+Vous pouvez utiliser "\#commande#" et "\#objet#" (les 2 doivent absolument être utilisés ensemble) pour générer une liste de commandes (il est possible de filtrer la génération pour réduire la liste). Il est aussi possible d'utiliser "\#equipement#" (utile si plusieurs commandes appartenant au même objet ont le même nom)
 Exemple : Quelle est la "\#commande# [du |de la |de l']\#objet#"
-Lors de la gÃ©nÃ©ration des commandes vous pouvez utiliser le champ synonyme (syn1=syn2,syn3|syn4=syn5) pour remplacer le nom des objets, des Ã©quipements et/ou des commandes
+Lors de la génération des commandes vous pouvez utiliser le champ synonyme (syn1=syn2,syn3|syn4=syn5) pour remplacer le nom des objets, des équipements et/ou des commandes
 
-RÃ©ponse::
-Vous pouvez utiliser "\#valeur#" et "\#unite#" dans le retour (ils seront remplacÃ©s par la valeur et l'unitÃ© de la commande). Vous avez aussi accÃ¨s a tous les tag des scÃ©nario et Ã  : 
-"\#profile#" => Nom de la personne ayant lancÃ© l'Ã©xecution (peut ne pas etre disponible)
+Réponse::
+Vous pouvez utiliser "\#valeur#" et "\#unite#" dans le retour (ils seront remplacés par la valeur et l'unité de la commande). Vous avez aussi accès a tous les tag des scénario et à : 
+"\#profile#" => Nom de la personne ayant lancé l'éxecution (peut ne pas etre disponible)
 Exemple : "\#valeur# \#unite#"
 Vous pouvez utiliser le champ conversion binaire pour convertir les valeurs binaires (0 et 1) : 
 Exemple : non|oui
 
 Personne::
-Le champ personne permet de n'autoriser que certaines personnes Ã  exÃ©cuter la commande, vous pouvez mettre plusieurs profils en les sÃ©parant par |.
+Le champ personne permet de n'autoriser que certaines personnes à exécuter la commande, vous pouvez mettre plusieurs profils en les séparant par |.
 Exemple : personne1|personne2
 
