@@ -30,6 +30,14 @@ class userTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @depends testCreate
 	 */
+	public function testConnect($_user) {
+		$user = user::connect('test', 'test');
+		$this->assertEquals($user->getId(), $_user->getId());
+	}
+
+	/**
+	 * @depends testCreate
+	 */
 	public function testRemove($_user) {
 		$_user->remove();
 	}
