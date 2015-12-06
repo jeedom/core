@@ -96,11 +96,7 @@ echo "********************************************************"
 apt-get update
 apt-get -y install nginx-common nginx-full ca-certificates unzip curl sudo
 apt-get -y install ntp
-which php
-if [ $? -ne 0 ]; then
-    apt-get -y install php5-cli
-fi
-apt-get -y install php5-common php5-curl php5-fpm php5-json php5-mysql
+apt-get -y install php5-cli php5-common php5-curl php5-fpm php5-json php5-mysql
 apt-get autoremove
 
 echo "********************************************************"
