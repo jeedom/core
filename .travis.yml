@@ -6,6 +6,8 @@ php:
 install:
   - sudo ./install/install.sh
   - php install/install.php mode=force
-  - sudo chmod 777 -R *
+  - sudo mkdir /home/travis/build/jeedom/plugins
+  - sudo chmod 777 -R /home/travis/build/jeedom
+  - sudo chown www-data:www-data -R /home/travis/build/jeedom
 after_script:
   - sudo ./travis/after_script.sh
