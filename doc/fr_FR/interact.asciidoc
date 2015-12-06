@@ -204,7 +204,7 @@ La capture d'écran qui suit montre l'interaction sans le Regexp, dans la liste d
 image::../images/interact014.png[]
 
 
-Comme vous pouvez le voir sur la capture, j'ai ajouté un regexp simple qui vas chercher le mot "Julie" dans les phrases générer et les supprimer, toute fois ont peux voir dans la liste de gauche qu'il y as toujours des phrases avec le mot "julie", dans les expressions régulière, Julie n'ai pas égale à julie, ont appelle cela une sensibilisée à la case ou en bon français une majuscule est différente d'une minuscule.
+Comme vous pouvez le voir sur la capture suivente, j'ai ajouté un regexp simple qui vas chercher le mot "Julie" dans les phrases générer et les supprimer, toute fois ont peux voir dans la liste de gauche qu'il y as toujours des phrases avec le mot "julie", dans les expressions régulière, Julie n'ai pas égale à julie, ont appelle cela une sensibilisée à la case ou en bon français une majuscule est différente d'une minuscule.
 Comme ont peux le voir dans la capture suivante, il ne reste plus que 71 phrases, les 5 avec un Julie ont été supprimée
 
 Une expression régulière se compose comme suit :
@@ -254,19 +254,34 @@ Lien utile :
 
 === Y a-t-il quelqu'un dans la chambre ?
 
+==== Version basique
+
 * La question est donc "y’a-t-il quelqu’un dans la chambre"
-* La réponse sera "oui il y a quelqu’un dans la chambre" ou "non il n’y a personne dans la chambre"
-* La commande qui répond à ça est "\#[Chambre][Multi-Sensor][Présence]#"
+* La réponse sera "non il n’y a personne dans la chambre" ou "oui il y a quelqu’un dans la chambre"
+* La commande qui répond à ça est "\#[Chambre de julie][FGMS-001-2][Présence]#"
 
-image::../images/interact2.JPG[]
+image::../images/interact017.png[]
 
-Ici on peut voir la case la question, ensuite en dessous on voit la conversion du binaire en phrase (sinon Jeedom répondrait "1" ou "0"), puis dans la case en haut à droite la réponse avec "\#valeur#" étant remplacée lors de la réponse. Ensuite on voit la commande à exécuter pour avoir la réponse à la question. Enfin tout à droite on voit bien qu’il y a une seule phrase de générée. 
+Cette exemple cible précisément un équipement spécifique ce qui permet d'avoir une réponse personnaliser, ont pourrais donc imaginer remplacer la réponse de l'exemple par "non il n’y a personne dans la chambre de #julie#|oui il y a quelqu’un dans la chambre #julie#"
 
-=== Connaitre la température/huminité/luminosité
+==== Evolution 
+
+* La question est donc "\#commande# [dans la |dans le] \#objet#"
+* La réponse sera "non il n’y a personne dans la pièce" ou "oui il y a quelqu’un dans la pièce"
+* Il ni as pas de commande qui répond à ça dans la partie Action vu que c'est une interaction Multiple commande
+* En ajoutent une expression régulière ont peux nettoyer les commandes que l'on ne veut pas voir pour n'avoir que les phrases sur les commandes "Présence"
+
+image::../images/interact018.png[]
+
+Sans le Regexp ont obtient ici 11 phrases, hors mon interaction a pour but de générer des phrases uniquement pour demander si il y as quelqu'un dans une pièce, donc j'ai pas besoin d'état de lampe ou autre comme les prises, ce qui peux être résolu avec le filtrage regexp.
+Pour rendre encore plus flexible ont peux ajouter des synonymes, mais dans ce cas il faudra pas oublier de modifier le regexp.
+
+
+=== Connaitre la température/humidité/luminosité
 
 Plus compliqué maintenant, on voit bien que là pour chaque commande il faut tout écrire, c’est pas très pratique on va donc utiliser le système de génération. Ici un exemple générique qui sert à connaître la température, l’humidité, la luminosité des différentes pièces (objet au sens Jeedom).
 
-* Une phrase générique type "Quelle est la température du salon" ou "Quelle est la luminosité de la chambre" qui peut être convertie en  : "quelle est [la |l\']\#commande# [du |de la |de l'| sur le |dans le | dans la ]#objet#" (l’utilisation de [mot1 | mot2] permet de générer toutes les variantes possibles de la phrase avec mot1 ou mot2). Lors de la génération Jeedom va générer toutes les combinaisons possibles de phrase avec toutes les commandes existantes en remplaçant \#commande# par le nom de la commande et \#objet# par le nom de l’objet.
+* Une phrase générique type "Quelle est la température du salon" ou "Quelle est la luminosité de la chambre" qui peut être convertie en : "quelle est [la |l\']\#commande# [du |de la |de l'| sur le |dans le | dans la ]#objet#" (l’utilisation de [mot1 | mot2] permet de générer toutes les variantes possibles de la phrase avec mot1 ou mot2). Lors de la génération Jeedom va générer toutes les combinaisons possibles de phrase avec toutes les commandes existantes en remplaçant \#commande# par le nom de la commande et \#objet# par le nom de l’objet.
 * La réponse sera de type "21 °C" ou "200 lux" il suffit de mettre : \#valeur# \#unite#
 
 image::../images/interact3.JPG[]
