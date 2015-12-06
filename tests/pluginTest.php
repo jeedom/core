@@ -140,6 +140,19 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		$cmd->setConfiguration('value', 'plop');
 		$cmd->save();
 		$this->assertTrue((is_numeric($cmd->getId()) && $cmd->getId() != ''));
+
+		$info = virtualCmd::byEqLogicIdCmdName($virtual->getId(), 'test_action_other_info');
+		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
+		$cmd = new virtualCmd();
+		$cmd->setName('test_action_other_toggle');
+		$cmd->setType('action');
+		$cmd->setSubtype('other');
+		$cmd->setLogicalId('virtual_test_7');
+		$cmd->setEqLogic_id($virtual->getId());
+		$cmd->setConfiguration('infoName', 'test_action_other_info');
+		$cmd->setConfiguration('value', 'not(#' . $info->getId() . '#)');
+		$cmd->save();
+		$this->assertTrue((is_numeric($cmd->getId()) && $cmd->getId() != ''));
 	}
 
 	public function testCmdVirtualActionOther() {
@@ -152,6 +165,10 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		$action_off = $virtual->getCmd(null, 'virtual_test_5');
 		$action_off->execCmd();
 		$this->assertSame(0, intval($info->execCmd()));
+
+		$action_toggle = $virtual->getCmd(null, 'virtual_test_7');
+		$action_toggle->execCmd();
+		$this->assertSame(1, intval($info->execCmd()));
 
 		$action_other = $virtual->getCmd(null, 'virtual_test_6');
 		$action_other->execCmd();
