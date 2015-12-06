@@ -5,3 +5,4 @@ install:
   - php install/install.php mode=force
 php:
   - 5.6
+  - 7.0

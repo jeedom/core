@@ -28,5 +28,17 @@ class cacheTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals(null, $cache->getValue());
 	}
 
+	/**
+	 * @depends testDefault
+	 */
+	public function testTime() {
+		cache::set('toto', 'toto', 1);
+		$cache = cache::byKey('toto');
+		$this->assertEquals('toto', $cache->getValue());
+		sleep(2);
+		$cache = cache::byKey('toto');
+		$this->assertEquals(null, $cache->getValue());
+	}
+
 }
 ?>
