@@ -12,6 +12,8 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 			$plugin->setIsEnable(1);
 		}
 		$this->assertSame('1', $plugin->isActive());
+		$include = $plugin->getInclude();
+		include_file('core', $include['file'], $include['type'], $plugin->getId());
 	}
 
 	/**
