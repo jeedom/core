@@ -6,5 +6,3 @@ php:
 install:
   - sudo ./install/install.sh
   - php install/install.php mode=force
-after_success:
-	- sudo ./travis/after_success.sh
