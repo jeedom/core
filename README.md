@@ -27,7 +27,7 @@ install/install.sh
 
 ## Installation manuel
 
-### Pre-requis : 
+### Pre-requis
 - mysql d'installé
 - un serveur web d'installé (apache ou nginx)
 - php (5.6 minimum) d'installé avec les extensions : curl, json et mysql
