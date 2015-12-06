@@ -2,8 +2,15 @@
 class scenarioExpressionTest extends \PHPUnit_Framework_TestCase {
 	public function testCalculCondition() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
-		$result = scenarioExpression::createAndExec('condition', '1+1');
-		$this->assertEquals(2, $result);
+		$tests = array(
+			'1+1' => 2,
+		);
+		foreach ($tests as $key => $value) {
+			echo "\n\t " . $key . ' = ' . $value;
+			$result = scenarioExpression::createAndExec('condition', $key);
+			$this->assertEquals(2, $value);
+		}
+		echo "\n";
 	}
 
 	public function testVariable() {
