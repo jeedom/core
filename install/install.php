@@ -375,7 +375,7 @@ try {
 		echo "Post installe...\n";
 		config::save('api', config::genKey());
 		require_once dirname(__FILE__) . '/consistency.php';
-		echo "Ajout de l\'utilisateur (admin,admin)\n";
+		echo "Ajout de l'utilisateur (admin,admin)\n";
 		$user = new user();
 		$user->setLogin('admin');
 		$user->setPassword(sha1('admin'));
