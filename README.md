@@ -25,10 +25,9 @@ cd jeedom
 install/install.sh
 ```
 
-
 ## Installation manuel
 
-Pre-requis : 
+### Pre-requis : 
 - mysql d'installé
 - un serveur web d'installé (apache ou nginx)
 - php (5.6 minimum) d'installé avec les extensions : curl, json et mysql
@@ -75,3 +74,7 @@ su --shell=/bin/bash - www-data -c '/usr/bin/php #REP_JEEDOM#/core/php/jeeCron.p
 ATTENTION : si votre serveur web n'utilise pas www-data il faut adapter la ligne de commande
 
 ATTENTION : à bien adapter #REP_JEEDOM# en fonction de la ou est installé jeedom
+
+### Configuration PHP
+
+Il est recommandé d'autoriser un temps d'éxecution de 300 secondes pour php (max_execution_time) et d'autoriser des upload de 1G (upload_max_filesize et post_max_size)
