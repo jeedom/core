@@ -88,21 +88,21 @@ if ($market->getPurchase() == 1) {
 		if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id']) && isset($purchase_info['paypal::url']) && isset($purchase_info['paypal::marchandMail'])) {
 			?>
              <a class="btn btn-default" href='https://market.jeedom.fr/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> Code promo</a>
-             <form action="<?php echo $purchase_info['paypal::url'] ?>/cgi-bin/webscr" method="post" style="display: inline-block;position: relative;top: 5px;" target="_blank" id='form_paypal'>
-                <input type='hidden' name="amount" value="<?php echo $market->getCost() ?>" />
+             <form action="<?php echo $purchase_info['paypal::url']; ?>/cgi-bin/webscr" method="post" style="display: inline-block;position: relative;top: 5px;" target="_blank" id='form_paypal'>
+                <input type='hidden' name="amount" value="<?php echo $market->getCost(); ?>" />
                 <input name="currency_code" type="hidden" value="EUR" />
                 <input name="shipping" type="hidden" value="0.00" />
                 <input name="tax" type="hidden" value="0.00" />
-                <input name="return" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=resultBuy&success=1' ?>" />
-                <input name="cancel_return" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=resultBuy&success=0' ?>" />
-                <input name="notify_url" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=registerBuy' ?>" />
+                <input name="return" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=resultBuy&success=1'; ?>" />
+                <input name="cancel_return" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=resultBuy&success=0'; ?>" />
+                <input name="notify_url" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=registerBuy'; ?>" />
                 <input name="cmd" type="hidden" value="_xclick" />
-                <input name="business" type="hidden" value="<?php echo $purchase_info['paypal::marchandMail'] ?>" />
-                <input name="item_name" type="hidden" value="<?php echo '[' . $market->getType() . '] ' . $market->getLogicalId() ?>" />
+                <input name="business" type="hidden" value="<?php echo $purchase_info['paypal::marchandMail']; ?>" />
+                <input name="item_name" type="hidden" value="<?php echo '[' . $market->getType() . '] ' . $market->getLogicalId(); ?>" />
                 <input name="no_note" type="hidden" value="1" />
                 <input name="lc" type="hidden" value="FR" />
                 <input name="bn" type="hidden" value="PP-BuyNowBF" />
-                <input name="custom" type="hidden" value="<?php echo $purchase_info['user_id'] . ':' . $market->getId() ?>" />
+                <input name="custom" type="hidden" value="<?php echo $purchase_info['user_id'] . ':' . $market->getId(); ?>" />
                 <input id='bt_paypalClick' alt="{{Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée}}" name="submit" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif" type="image" style="display: inline-block;position: relative;top: 5px;"/><img class="pull-right" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" style="display: inline-block;"/>
             </form>
             <?php
@@ -223,9 +223,9 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
         <div class='row'>
             <div class='col-sm-2'>
                 <label class="control-label">{{Auteur}}</label><br/>
-                <span><?php echo $market->getAuthor() ?></span><br/>
+                <span><?php echo $market->getAuthor(); ?></span><br/>
                 <label class="control-label">{{Dernière mise à jour par}}</label><br/>
-                <span><?php echo $market->getUpdateBy() ?></span>
+                <span><?php echo $market->getUpdateBy(); ?></span>
             </div>
             <div class='col-sm-2'>
                 <label class="control-label">{{Lien}}</label><br/>
