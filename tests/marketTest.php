@@ -1,7 +1,7 @@
 <?php
 class marketTest extends \PHPUnit_Framework_TestCase {
 	public function testConnexion() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		try {
 			$result = market::test();
 		} catch (Exception $e) {
