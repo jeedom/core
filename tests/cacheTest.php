@@ -1,6 +1,7 @@
 <?php
 class cacheTest extends \PHPUnit_Framework_TestCase {
 	public function testSave() {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		cache::set('toto', 'toto');
 	}
 
@@ -8,6 +9,7 @@ class cacheTest extends \PHPUnit_Framework_TestCase {
 	 * @depends testSave
 	 */
 	public function testLoad() {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$cache = cache::byKey('toto');
 		$this->assertEquals('toto', $cache->getValue());
 	}
@@ -16,6 +18,7 @@ class cacheTest extends \PHPUnit_Framework_TestCase {
 	 * @depends testLoad
 	 */
 	public function testRemove() {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$cache = cache::byKey('toto');
 		$cache->remove();
 	}
@@ -24,6 +27,7 @@ class cacheTest extends \PHPUnit_Framework_TestCase {
 	 * @depends testRemove
 	 */
 	public function testDefault() {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$cache = cache::byKey('toto');
 		$this->assertEquals(null, $cache->getValue());
 	}
@@ -32,6 +36,7 @@ class cacheTest extends \PHPUnit_Framework_TestCase {
 	 * @depends testDefault
 	 */
 	public function testTime() {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		cache::set('toto', 'toto', 1);
 		$cache = cache::byKey('toto');
 		$this->assertEquals('toto', $cache->getValue());

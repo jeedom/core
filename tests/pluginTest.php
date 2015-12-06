@@ -1,6 +1,7 @@
 <?php
 class pluginTest extends \PHPUnit_Framework_TestCase {
 	public function testInstall() {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		try {
 			$plugin = plugin::byId('virtual');
 		} catch (Exception $e) {
@@ -12,14 +13,13 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 			$plugin->setIsEnable(1);
 		}
 		$this->assertSame('1', $plugin->isActive());
-		$include = $plugin->getInclude();
-		include_file('core', $include['file'], $include['type'], $plugin->getId());
 	}
 
 	/**
 	 * @depends testInstall
 	 */
 	public function testCreateEqVirtual() {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
 		if (is_object($virtual)) {
 			$virtual->remove();
@@ -31,13 +31,14 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		$virtual->setIsEnable(1);
 		$virtual->save();
 		$this->assertTrue((is_numeric($virtual->getId()) && $virtual->getId() != ''));
+		return $virtual;
 	}
 
 	/**
 	 * @depends testCreateEqVirtual
 	 */
-	public function testCreateCmdVirtualBinary() {
-		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
+	public function testCreateCmdVirtualBinary($virtual) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$cmd = new virtualCmd();
 		$cmd->setName('test_calcul_binary');
 		$cmd->setType('info');
@@ -49,8 +50,11 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue((is_numeric($cmd->getId()) && $cmd->getId() != ''));
 	}
 
-	public function testCmdVirtualBinary() {
-		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
+/**
+ * @depends testCreateEqVirtual
+ */
+	public function testCmdVirtualBinary($virtual) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$cmd = $virtual->getCmd(null, 'virtual_test_1');
 		$this->assertSame(1, $cmd->execCmd());
 		$cmd->event(0);
@@ -60,8 +64,8 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @depends testCreateEqVirtual
 	 */
-	public function testCreateCmdVirtualNumeric() {
-		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
+	public function testCreateCmdVirtualNumeric($virtual) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$cmd = new virtualCmd();
 		$cmd->setName('test_calcul_numeric');
 		$cmd->setType('info');
@@ -73,8 +77,11 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue((is_numeric($cmd->getId()) && $cmd->getId() != ''));
 	}
 
-	public function testCmdVirtualNumeric() {
-		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
+/**
+ * @depends testCreateEqVirtual
+ */
+	public function testCmdVirtualNumeric($virtual) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$cmd = $virtual->getCmd(null, 'virtual_test_2');
 		$this->assertSame(2.0, $cmd->execCmd());
 	}
@@ -82,8 +89,8 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @depends testCreateEqVirtual
 	 */
-	public function testCreateCmdVirtualString() {
-		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
+	public function testCreateCmdVirtualString($virtual) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$cmd = new virtualCmd();
 		$cmd->setName('test_calcul_string');
 		$cmd->setType('info');
@@ -95,8 +102,11 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue((is_numeric($cmd->getId()) && $cmd->getId() != ''));
 	}
 
-	public function testCmdVirtualString() {
-		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
+/**
+ * @depends testCreateEqVirtual
+ */
+	public function testCmdVirtualString($virtual) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$cmd = $virtual->getCmd(null, 'virtual_test_3');
 		$this->assertSame('toto', $cmd->execCmd());
 		$cmd->event('tata');
@@ -106,8 +116,8 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @depends testCreateEqVirtual
 	 */
-	public function testCreateCmdVirtualActionOther() {
-		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
+	public function testCreateCmdVirtualActionOther($virtual) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$cmd = new virtualCmd();
 		$cmd->setName('test_action_other_on');
 		$cmd->setType('action');
@@ -157,8 +167,11 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue((is_numeric($cmd->getId()) && $cmd->getId() != ''));
 	}
 
-	public function testCmdVirtualActionOther() {
-		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
+/**
+ * @depends testCreateEqVirtual
+ */
+	public function testCmdVirtualActionOther($virtual) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$info = virtualCmd::byEqLogicIdCmdName($virtual->getId(), 'test_action_other_info');
 		$action_on = $virtual->getCmd(null, 'virtual_test_4');
 		$action_on->execCmd();
@@ -180,8 +193,8 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @depends testCreateEqVirtual
 	 */
-	public function testCreateCmdVirtualActionNumeric() {
-		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
+	public function testCreateCmdVirtualActionNumeric($virtual) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$cmd = new virtualCmd();
 		$cmd->setName('test_action_slider');
 		$cmd->setType('action');
@@ -193,8 +206,11 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue((is_numeric($cmd->getId()) && $cmd->getId() != ''));
 	}
 
-	public function testCmdVirtualActionNumeric() {
-		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
+/**
+ * @depends testCreateEqVirtual
+ */
+	public function testCmdVirtualActionNumeric($virtual) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$action = $virtual->getCmd(null, 'virtual_test_8');
 		$info = virtualCmd::byEqLogicIdCmdName($virtual->getId(), 'test_action_slider_info');
 		$action->execCmd(array('slider' => 12));
@@ -206,8 +222,8 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @depends testCreateEqVirtual
 	 */
-	public function testCreateCmdVirtualActionColor() {
-		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
+	public function testCreateCmdVirtualActionColor($virtual) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$cmd = new virtualCmd();
 		$cmd->setName('test_action_color');
 		$cmd->setType('action');
@@ -219,8 +235,11 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue((is_numeric($cmd->getId()) && $cmd->getId() != ''));
 	}
 
-	public function testCmdVirtualActionColor() {
-		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
+/**
+ * @depends testCreateEqVirtual
+ */
+	public function testCmdVirtualActionColor($virtual) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$action = $virtual->getCmd(null, 'virtual_test_9');
 		$info = virtualCmd::byEqLogicIdCmdName($virtual->getId(), 'test_action_color_info');
 		$action->execCmd(array('color' => '#451256'));
@@ -232,8 +251,8 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @depends testCreateEqVirtual
 	 */
-	public function testRemove() {
-		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
+	public function testRemove($virtual) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__;
 		$virtual->remove();
 	}
 
