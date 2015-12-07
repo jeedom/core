@@ -6,7 +6,7 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 			$plugin = plugin::byId('virtual');
 		} catch (Exception $e) {
 			$plugin = market::byLogicalIdAndType('virtual', 'plugin');
-			$plugin->install();
+			$plugin->install('beta');
 			$plugin = plugin::byId('virtual');
 		}
 		if (!$plugin->isActive()) {
