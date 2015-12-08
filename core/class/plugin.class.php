@@ -38,6 +38,7 @@ class plugin {
 	private $mobile;
 	private $allowRemote;
 	private $eventjs;
+	private $hasDependency;
 	private $include = array();
 	private static $_cache = array();
 
@@ -76,6 +77,10 @@ class plugin {
 		$plugin->allowRemote = 0;
 		if (isset($plugin_xml->allowRemote)) {
 			$plugin->allowRemote = $plugin_xml->allowRemote;
+		}
+		$plugin->hasDependency = 0;
+		if (isset($plugin_xml->hasDependency)) {
+			$plugin->hasDependency = $plugin_xml->hasDependency;
 		}
 		$plugin->eventjs = 0;
 		if (isset($plugin_xml->eventjs)) {
@@ -391,6 +396,15 @@ class plugin {
 		}
 		try {
 			if ($_state == 1) {
+				if ($this->getHasDependency() == 1) {
+					$plugin_id = $this->getId();
+					if (function_exists($this->id . '::dependancy_info') && function_exists($this->id . '::dependancy_install')) {
+						$dependancy_info = $plugin_id::dependancy_info();
+						if ($dependancy_info['state'] == 'nok') {
+							$plugin_id::dependancy_install();
+						}
+					}
+				}
 				if ($alreadyActive == 1) {
 					$out = $this->callInstallFunction('update');
 				} else {
@@ -559,6 +573,14 @@ class plugin {
 
 	public function setEventjs($eventjs) {
 		$this->eventjs = $eventjs;
+	}
+
+	public function getHasDependency() {
+		return $this->hasDependency;
+	}
+
+	public function setHasDependency($hasDependency) {
+		$this->hasDependency = $hasDependency;
 	}
 
 }

@@ -695,6 +695,16 @@ if (init('type') != '') {
 				$jsonrpc->makeSuccess('ok');
 			}
 
+			if ($jsonrpc->getMethod() == 'plugin::dependancyInfo') {
+				$plugin_id = $params['plugin_id'];
+				$jsonrpc->makeSuccess($plugin_id::dependancy_info());
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::dependancyInstall') {
+				$plugin_id = $params['plugin_id'];
+				$jsonrpc->makeSuccess($plugin_id::dependancy_install());
+			}
+
 			/*             * ************************Update*************************** */
 			if ($jsonrpc->getMethod() == 'update::all') {
 				$jsonrpc->makeSuccess(utils::o2a(update::all()));

@@ -77,8 +77,20 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
                 $('#span_plugin_install_version').html('');
             }
             $('#span_plugin_licence').html(data.licence);
-            $('#span_plugin_installation').html(data.installation);
+            if($.trim(data.installation) == ''){
+                $('#span_plugin_installation').closest('.alert').hide();
+            }else{
+                $('#span_plugin_installation').closest('.alert').show();
+                $('#span_plugin_installation').html(data.installation);
+            }
 
+            if(data.hasDependency == 0){
+                $('#div_plugin_dependancy').closest('.alert').hide();
+            }else{
+                $('#div_plugin_dependancy').closest('.alert').show();
+                $("#div_plugin_dependancy").load('index.php?v=d&modal=plugin.dependancy&plugin_id='+data.id);
+            }
+            
             $('#span_plugin_market').empty();
             if (data.status.market == 1) {
                 $('#span_plugin_market').append('<a class="btn btn-default btn-xs viewOnMarket" data-market_logicalId="' + data.id + '" style="margin-right : 5px;"><i class="fa fa-cloud-download"></i> {{Voir sur le market}}</a>')

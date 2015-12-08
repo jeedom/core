@@ -166,6 +166,32 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'getDependancyInfo') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$plugin_id = init('id');
+		if (init('slave_id', 0) == 0) {
+			ajax::success($plugin_id::dependancy_info());
+		} else {
+			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
+			ajax::success($jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => $plugin_id)));
+		}
+	}
+
+	if (init('action') == 'dependancyInstall') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$plugin_id = init('id');
+		if (init('slave_id', 0) == 0) {
+			ajax::success($plugin_id::dependancy_install());
+		} else {
+			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
+			ajax::success($jeeNetwork->sendRawRequest('plugin::dependancyInstall', array('plugin_id' => $plugin_id)));
+		}
+	}
+
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

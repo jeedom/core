@@ -87,3 +87,45 @@ jeedom.plugin.get = function(_params) {
     };
     $.ajax(paramsAJAX);
 };
+
+jeedom.plugin.getDependancyInfo = function(_params) {
+    var paramsRequired = ['id'];
+    var paramsSpecifics = {
+        global: false,
+    };
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/plugin.ajax.php';
+    paramsAJAX.data = {
+        action: 'getDependancyInfo',
+        id: _params.id,
+        slave_id: _params.slave_id || 0
+    };
+    $.ajax(paramsAJAX);
+};
+
+jeedom.plugin.dependancyInstall = function(_params) {
+    var paramsRequired = ['id'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/plugin.ajax.php';
+    paramsAJAX.data = {
+        action: 'dependancyInstall',
+        id: _params.id,
+        slave_id: _params.slave_id || 0
+    };
+    $.ajax(paramsAJAX);
+};
