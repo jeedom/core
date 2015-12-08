@@ -44,40 +44,42 @@ switch ($dependancy_info['state']) {
 		</div>
 
 		<?php
-foreach (jeeNetwork::byPlugin($plugin_id) as $jeeNetwork) {
-	$dependancy_info = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => $plugin_id));
-	?>
-			<div class="form-group">
-				<label class="col-lg-4 control-label">{{Status}} <?php echo $jeeNetwork->getName(); ?></label>
-				<div class="col-lg-2 dependancyState" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
-					<?php
+if (config::byKey('jeeNetwork::mode') == 'master') {
+	foreach (jeeNetwork::byPlugin($plugin_id) as $jeeNetwork) {
+		$dependancy_info = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => $plugin_id));
+		?>
+				<div class="form-group">
+					<label class="col-lg-4 control-label">{{Status}} <?php echo $jeeNetwork->getName(); ?></label>
+					<div class="col-lg-2 dependancyState" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
+						<?php
 $refresh[$jeeNetwork->getId()] = 0;
-	if (!isset($dependancy_info['state'])) {
-		$dependancy_info['state'] = 'nok';
-	}
-	switch ($dependancy_info['state']) {
-		case 'ok':
-			echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
-			break;
-		case 'nok':
-			echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
-			break;
-		case 'in_progress':
-			$refresh[$jeeNetwork->getId()] = 1;
-			echo '<span class="label label-primary" style="font-size:1em;">{{En cours}}</span>';
-			break;
-		default:
-			echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
-			break;
-	}
-	?>
+		if (!isset($dependancy_info['state'])) {
+			$dependancy_info['state'] = 'nok';
+		}
+		switch ($dependancy_info['state']) {
+			case 'ok':
+				echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
+				break;
+			case 'nok':
+				echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
+				break;
+			case 'in_progress':
+				$refresh[$jeeNetwork->getId()] = 1;
+				echo '<span class="label label-primary" style="font-size:1em;">{{En cours}}</span>';
+				break;
+			default:
+				echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
+				break;
+		}
+		?>
+					</div>
+					<div class="col-lg-6">
+						<a class="btn btn-warning launchInstallPluginDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-bicycle"></i> {{Relancer l'installation}}</a>
+						<a class="btn btn-default showLogPluginDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i> {{Voir la log}}</a>
+					</div>
 				</div>
-				<div class="col-lg-6">
-					<a class="btn btn-warning launchInstallPluginDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-bicycle"></i> {{Relancer l'installation}}</a>
-					<a class="btn btn-default showLogPluginDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i> {{Voir la log}}</a>
-				</div>
-			</div>
-			<?php }
+				<?php }
+}
 ?>
 		</fieldset>
 	</form>
