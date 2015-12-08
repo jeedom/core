@@ -29,7 +29,7 @@ switch ($dependancy_info['state']) {
 		break;
 	case 'in_progress':
 		$refresh[0] = 1;
-		echo '<span class="label label-primary" style="font-size:1em;">{{En cours}}</span>';
+		echo '<span class="label label-primary" style="font-size:1em;">{{Installation en cours}}</span>';
 		break;
 	default:
 		echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
@@ -65,7 +65,7 @@ $refresh[$jeeNetwork->getId()] = 0;
 				break;
 			case 'in_progress':
 				$refresh[$jeeNetwork->getId()] = 1;
-				echo '<span class="label label-primary" style="font-size:1em;">{{En cours}}</span>';
+				echo '<span class="label label-primary" style="font-size:1em;">{{Installation en cours}}</span>';
 				break;
 			default:
 				echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
@@ -107,7 +107,7 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 								break;
 								case 'in_progress':
 								refresh_dependancy_info[i] = 1;
-								$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-primary" style="font-size:1em;">{{En cours}}</span>');
+								$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-primary" style="font-size:1em;">{{Installation en cours}}</span>');
 								break;
 								default:
 								$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>');

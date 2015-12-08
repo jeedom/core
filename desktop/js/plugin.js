@@ -84,7 +84,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
                 $('#span_plugin_installation').html(data.installation);
             }
 
-            if(data.hasDependency == 0){
+            if(data.hasDependency == 0 || data.activate == 0){
                 $('#div_plugin_dependancy').closest('.alert').hide();
             }else{
                 $('#div_plugin_dependancy').closest('.alert').show();
