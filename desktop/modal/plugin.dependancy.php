@@ -5,6 +5,9 @@ if (!isConnect('admin')) {
 $plugin_id = init('plugin_id');
 sendVarToJs('plugin_id', $plugin_id);
 $dependancy_info = $plugin_id::dependancy_info();
+if (!method_exists($plugin_id, 'dependancy_info')) {
+	die();
+}
 $refresh = array();
 ?>
 <form class="form-horizontal">
@@ -38,7 +41,7 @@ switch ($dependancy_info['state']) {
 		</div>
 
 		<?php
-foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
+foreach (jeeNetwork::byPlugin($plugin_id) as $jeeNetwork) {
 	$dependancy_info = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => $plugin_id));
 	?>
 			<div class="form-group">
@@ -46,6 +49,9 @@ foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
 				<div class="col-lg-2 dependancyState" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
 					<?php
 $refresh[$jeeNetwork->getId()] = 0;
+	if (!isset($dependancy_info['state'])) {
+		$dependancy_info['state'] = 'nok';
+	}
 	switch ($dependancy_info['state']) {
 		case 'ok':
 			echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';

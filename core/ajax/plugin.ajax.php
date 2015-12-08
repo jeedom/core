@@ -172,6 +172,9 @@ try {
 		}
 		$plugin_id = init('id');
 		if (init('slave_id', 0) == 0) {
+			if (!method_exists($plugin_id, 'dependancy_info')) {
+				ajax::success();
+			}
 			ajax::success($plugin_id::dependancy_info());
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
@@ -185,6 +188,9 @@ try {
 		}
 		$plugin_id = init('id');
 		if (init('slave_id', 0) == 0) {
+			if (!method_exists($plugin_id, 'dependancy_info')) {
+				ajax::success();
+			}
 			ajax::success($plugin_id::dependancy_install());
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));

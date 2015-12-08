@@ -398,7 +398,7 @@ class plugin {
 			if ($_state == 1) {
 				if ($this->getHasDependency() == 1) {
 					$plugin_id = $this->getId();
-					if (function_exists($this->id . '::dependancy_info') && function_exists($this->id . '::dependancy_install')) {
+					if (method_exists($plugin_id, 'dependancy_info') && method_exists($plugin_id, 'dependancy_install')) {
 						$dependancy_info = $plugin_id::dependancy_info();
 						if ($dependancy_info['state'] == 'nok') {
 							$plugin_id::dependancy_install();

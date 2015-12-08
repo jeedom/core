@@ -697,11 +697,17 @@ if (init('type') != '') {
 
 			if ($jsonrpc->getMethod() == 'plugin::dependancyInfo') {
 				$plugin_id = $params['plugin_id'];
+				if (!method_exists($plugin_id, 'dependancy_info')) {
+					$jsonrpc->makeSuccess(array());
+				}
 				$jsonrpc->makeSuccess($plugin_id::dependancy_info());
 			}
 
 			if ($jsonrpc->getMethod() == 'plugin::dependancyInstall') {
 				$plugin_id = $params['plugin_id'];
+				if (!method_exists($plugin_id, 'dependancy_info')) {
+					$jsonrpc->makeSuccess(array());
+				}
 				$jsonrpc->makeSuccess($plugin_id::dependancy_install());
 			}
 
