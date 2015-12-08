@@ -225,21 +225,51 @@ if (exec('diff /etc/nginx/sites-available/default ' . dirname(__FILE__) . '/../.
 
 <?php
 foreach (plugin::listPlugin(true) as $plugin) {
+	$plugin_id = $plugin->getId();
+	if ($plugin->getHasDependency() == 1 || method_exists($plugin->getId(), 'health')) {
+		echo '<legend>';
+		if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
+			echo '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
+		} else {
+			echo '<i class="' . $plugin->getIcon() . '"></i> ';
+		}
+		echo '{{Santé }} <a target="_blank" href="index.php?v=d&p=plugin&id=' . $plugin->getId() . '">' . $plugin->getName() . '</a></legend>';
+		echo '<table class="table table-condensed table-bordered">';
+		echo '<thead><tr><th style="width : 250px;"></th><th style="width : 150px;">{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>';
+		echo '<tbody>';
+	}
+	try {
+		if ($plugin->getHasDependency() == 1) {
+			$dependancy_info = $plugin_id::dependancy_info();
+			echo '<tr>';
+			echo '<td style="font-weight : bold;">';
+			echo '{{Dépendance}}';
+			echo '</td>';
+			switch ($dependancy_info['state']) {
+				case 'ok':
+					echo '<td class="alert alert-success">{{OK}}</td>';
+					break;
+				case 'nok':
+					echo '<td class="alert alert-danger">{{NOK}}</td>';
+					break;
+				case 'in_progress':
+					echo '<td class="alert alert-info">{{En cours}}</td>';
+					break;
+				default:
+					echo '<td class="alert alert-danger">{{NOK}}</td>';
+					break;
+			}
+			echo '<td>';
+			echo '</td>';
+			echo '</tr>';
+		}
+	} catch (Exception $e) {
+
+	}
 	try {
 		if (method_exists($plugin->getId(), 'health')) {
-			echo '<legend>';
-			if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
-				echo '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
-			} else {
-				echo '<i class="' . $plugin->getIcon() . '"></i> ';
-			}
 
-			echo '{{Santé }} <a target="_blank" href="index.php?v=d&p=plugin&id=' . $plugin->getId() . '">' . $plugin->getName() . '</a></legend>';
-			echo '<table class="table table-condensed table-bordered">';
-			echo '<thead><tr><th style="width : 250px;"></th><th style="width : 150px;">{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>';
-			echo '<tbody>';
-			$name = $plugin->getId();
-			foreach ($name::health() as $result) {
+			foreach ($plugin_id::health() as $result) {
 				echo '<tr>';
 				echo '<td style="font-weight : bold;">';
 				echo $result['test'];
@@ -256,13 +286,15 @@ foreach (plugin::listPlugin(true) as $plugin) {
 				echo '</td>';
 				echo '</tr>';
 			}
-			echo '</tbody>';
-			echo '</table>';
+
 		}
 	} catch (Exception $e) {
 
 	}
-
+	if ($plugin->getHasDependency() == 1 || method_exists($plugin->getId(), 'health')) {
+		echo '</tbody>';
+		echo '</table>';
+	}
 }
 ?>
 
