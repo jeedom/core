@@ -3,6 +3,9 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $plugin_id = init('plugin_id');
+if (!class_exists($plugin_id)) {
+	die();
+}
 if (init('slave_id') == 0) {
 	if (!method_exists($plugin_id, 'dependancy_info')) {
 		die();
