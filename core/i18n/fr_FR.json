@@ -418,7 +418,7 @@
         "Permet de rajouter un message dans les logs": "Permet de rajouter un message dans les logs",
         "Permet d'ajouter une message dans le centre de message": "Permet d'ajouter une message dans le centre de message",
         "Permet de modifier les prorietés visible\/invisible actif\/inactif d'un équipement": "Permet de modifier les prorietés visible\/invisible actif\/inactif d'un équipement",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponde dans une variable. Cette action est bloquant et ne finie que : si jeedom reçoit une réponde ou si le timeout est atteind. Pour le moment cette action n'est compatible qu'avec le plugin SMS ou Slack.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finir que : si jeedom reçoit une réponde ou si le délai est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS ou Slack.",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponde dans une variable. Cette action est bloquant et ne finie que : si jeedom reçoit une réponde ou si le timeout est atteind. Pour le moment cette action n'est compatible qu'avec le plugin SMS ou Slack.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finir que : si jeedom reçoit une réponse ou si le délai est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS ou Slack.",
         "Valider": "Valider"
     },
     "core\/template\/scenario\/variable.default": {
