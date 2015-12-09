@@ -32,7 +32,7 @@ switch ($dependancy_info['state']) {
 		echo '<span class="label label-primary" style="font-size:1em;">{{Installation en cours}}</span>';
 		break;
 	default:
-		echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
+		echo '<span class="label label-warning" style="font-size:1em;">' . $dependancy_info['state'] . '</span>';
 		break;
 }
 ?>
@@ -68,7 +68,7 @@ $refresh[$jeeNetwork->getId()] = 0;
 				echo '<span class="label label-primary" style="font-size:1em;">{{Installation en cours}}</span>';
 				break;
 			default:
-				echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
+				echo '<span class="label label-warning" style="font-size:1em;">' . $dependancy_info['state'] . '</span>';
 				break;
 		}
 		?>
@@ -110,7 +110,7 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 								$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-primary" style="font-size:1em;">{{Installation en cours}}</span>');
 								break;
 								default:
-								$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>');
+								$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
 							}
 						}
 					});
