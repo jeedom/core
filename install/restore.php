@@ -166,12 +166,10 @@ try {
 
 	foreach (plugin::listPlugin(true) as $plugin) {
 		$plugin_id = $plugin->getId();
-		if ($plugin->getHasDependency() == 1) {
-			if (function_exists($plugin_id . '::dependancy_info') && function_exists($plugin_id . '::dependancy_install')) {
-				$dependancy_info = $plugin_id::dependancy_info();
-				if ($dependancy_info['state'] == 'nok') {
-					$plugin_id::dependancy_install();
-				}
+		if (method_exists($plugin_id, 'dependancy_info') && method_exists($plugin_id, 'dependancy_install')) {
+			$dependancy_info = $plugin_id::dependancy_info();
+			if ($dependancy_info['state'] == 'nok') {
+				$plugin_id::dependancy_install();
 			}
 		}
 		if (method_exists($plugin_id, 'restore')) {

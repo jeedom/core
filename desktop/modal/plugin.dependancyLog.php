@@ -3,11 +3,20 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $plugin_id = init('plugin_id');
+if (!class_exists($plugin_id)) {
+	die();
+}
 if (init('slave_id') == 0) {
+	if (!method_exists($plugin_id, 'dependancy_info')) {
+		die();
+	}
 	$dependancy_info = $plugin_id::dependancy_info();
 } else {
 	$jeeNetwork = jeeNetwork::byId(init('slave_id'));
 	$dependancy_info = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => $plugin_id));
+}
+if (!isset($dependancy_info['log'])) {
+	die();
 }
 sendVarToJs('logfile', $dependancy_info['log']);
 sendVarToJs('slave_id', init('slave_id'));

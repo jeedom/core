@@ -29,28 +29,28 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
     $('#div_resumePluginList').addClass('col-lg-12').removeClass('col-md-9 col-sm-8');
     $('#div_confPlugin').addClass('col-lg-12').removeClass('col-md-9 col-sm-8');
     $('#bt_displayPluginList').on('mouseenter',function(){
-     var timer = setTimeout(function(){
+       var timer = setTimeout(function(){
         $('#bt_displayPluginList').find('i').hide();
         $('#div_resumePluginList').addClass('col-md-9 col-sm-8').removeClass('col-lg-12');
         $('#div_confPlugin').addClass('col-md-9 col-sm-8').removeClass('col-lg-12');
         $('#sd_pluginList').show();
         $('.pluginListContainer').packery();
     }, 100);
-     $(this).data('timerMouseleave', timer)
- }).on("mouseleave", function(){
-  clearTimeout($(this).data('timerMouseleave'));
-});
+       $(this).data('timerMouseleave', timer)
+   }).on("mouseleave", function(){
+      clearTimeout($(this).data('timerMouseleave'));
+  });
 
- $('#sd_pluginList').on('mouseleave',function(){
-   var timer = setTimeout(function(){
-     $('#sd_pluginList').hide();
-     $('#bt_displayPluginList').find('i').show();
-     $('#div_resumePluginList').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
-     $('#div_confPlugin').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
-     $('.pluginListContainer').packery();
- }, 300);
-   $(this).data('timerMouseleave', timer);
-}).on("mouseenter", function(){
+   $('#sd_pluginList').on('mouseleave',function(){
+     var timer = setTimeout(function(){
+       $('#sd_pluginList').hide();
+       $('#bt_displayPluginList').find('i').show();
+       $('#div_resumePluginList').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
+       $('#div_confPlugin').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
+       $('.pluginListContainer').packery();
+   }, 300);
+     $(this).data('timerMouseleave', timer);
+ }).on("mouseenter", function(){
   clearTimeout($(this).data('timerMouseleave'));
 });
 }
@@ -77,14 +77,14 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
                 $('#span_plugin_install_version').html('');
             }
             $('#span_plugin_licence').html(data.licence);
-            if($.trim(data.installation) == ''){
+            if($.trim(data.installation) == '' || $.trim(data.installation) == 'Aucune'){
                 $('#span_plugin_installation').closest('.alert').hide();
             }else{
                 $('#span_plugin_installation').closest('.alert').show();
                 $('#span_plugin_installation').html(data.installation);
             }
 
-            if(data.hasDependency == 0){
+            if(data.hasDependency == 0 || data.activate == 0){
                 $('#div_plugin_dependancy').closest('.alert').hide();
             }else{
                 $('#div_plugin_dependancy').closest('.alert').show();
@@ -125,44 +125,50 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
             $('#div_plugin_configuration').empty();
             if (data.checkVersion != -1) {
                 if (data.configurationPath != '' && data.activate == 1) {
-                    $('#div_plugin_configuration').load('index.php?v=d&plugin='+data.id+'&configure=1', function () {
-                        jeedom.config.load({
-                            configuration: $('#div_plugin_configuration').getValues('.configKey')[0],
+                   $('#div_plugin_configuration').load('index.php?v=d&plugin='+data.id+'&configure=1', function () {
+                    if($.trim($('#div_plugin_configuration').html()) == ''){
+                        $('#div_plugin_configuration').closest('.alert').hide();
+                        return;
+                    }else{
+                         $('#div_plugin_configuration').closest('.alert').show();
+                    }
+                    jeedom.config.load({
+                        configuration: $('#div_plugin_configuration').getValues('.configKey')[0],
+                        plugin: $('.li_plugin.active').attr('data-plugin_id'),
+                        error: function (error) {
+                            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                        },
+                        success: function (data) {
+                            $('#div_plugin_configuration').setValues(data, '.configKey');
+                            $('#div_plugin_configuration').parent().show();
+                            modifyWithoutSave = false;
+                            initTooltips();
+                            initExpertMode();
+                        }
+                    });
+                    $('.slaveConfig').each(function(){
+                        var slave_id = $(this).attr('data-slave_id');
+                        jeedom.jeeNetwork.loadConfig({
+                            configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
                             plugin: $('.li_plugin.active').attr('data-plugin_id'),
+                            id: slave_id,
                             error: function (error) {
                                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
                             },
                             success: function (data) {
-                                $('#div_plugin_configuration').setValues(data, '.configKey');
-                                $('#div_plugin_configuration').parent().show();
+                                $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').setValues(data, '.slaveConfigKey');
                                 modifyWithoutSave = false;
                                 initTooltips();
                                 initExpertMode();
                             }
                         });
-                        $('.slaveConfig').each(function(){
-                            var slave_id = $(this).attr('data-slave_id');
-                            jeedom.jeeNetwork.loadConfig({
-                                configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
-                                plugin: $('.li_plugin.active').attr('data-plugin_id'),
-                                id: slave_id,
-                                error: function (error) {
-                                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                                },
-                                success: function (data) {
-                                    $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').setValues(data, '.slaveConfigKey');
-                                    modifyWithoutSave = false;
-                                    initTooltips();
-                                    initExpertMode();
-                                }
-                            });
-                        })
+                    })
 });
 } else {
-    $('#div_plugin_configuration').parent().hide();
+    $('#div_plugin_configuration').closest('.alert').hide();
 }
 } else {
-    $('#div_plugin_configuration').parent().hide();
+    $('#div_plugin_configuration').closest('.alert').hide();
 }
 $('#div_confPlugin').show();
 modifyWithoutSave = false;
@@ -182,9 +188,9 @@ $('#span_plugin_delete').delegate('.removePlugin','click',function(){
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                     loadPage('index.php?v=d&p=plugin');
-                }
-            });
+                   loadPage('index.php?v=d&p=plugin');
+               }
+           });
         }
     });
 });
@@ -198,9 +204,9 @@ $("#span_plugin_toggleState").delegate(".togglePlugin", 'click', function () {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-             window.location.href = 'index.php?v=d&p=plugin&id=' + _el.attr('data-plugin_id');
-        }
-    });
+           window.location.href = 'index.php?v=d&p=plugin&id=' + _el.attr('data-plugin_id');
+       }
+   });
 });
 
 $('#bt_uploadPlugin').fileupload({
