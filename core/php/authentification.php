@@ -29,7 +29,9 @@ if (isset($_COOKIE['sess_id'])) {
 	session_id($_COOKIE['sess_id']);
 }
 @session_start();
-setcookie('sess_id', session_id(), time() + 24 * 3600, "/", '', false, true);
+if (!headers_sent()) {
+	setcookie('sess_id', session_id(), time() + 24 * 3600, "/", '', false, true);
+}
 @session_write_close();
 
 if (!isConnect() && isset($_COOKIE['registerDevice'])) {
