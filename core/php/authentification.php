@@ -62,7 +62,9 @@ if (init('login') != '' && init('hash') != '') {
 	login(init('login'), init('hash'), false, true);
 }
 if (init('connect') == '1' && (init('mdp') == '' || init('login') == '')) {
-	header('Location:../../index.php?v=' . $_GET['v'] . '&p=connection&error=1');
+	if (!headers_sent()) {
+		header('Location:../../index.php?v=' . $_GET['v'] . '&p=connection&error=1');
+	}
 }
 
 if (init('logout') == 1) {
@@ -97,9 +99,13 @@ if (trim(init('auiKey')) != '') {
 		connection::failed();
 		sleep(5);
 		if (strpos($_SERVER['PHP_SELF'], 'core') || strpos($_SERVER['PHP_SELF'], 'desktop')) {
-			header('Location:../../index.php?v=' . $_GET['v'] . '&error=1');
+			if (!headers_sent()) {
+				header('Location:../../index.php?v=' . $_GET['v'] . '&error=1');
+			}
 		} else {
-			header('Location:index.php?v=' . $_GET['v'] . '&error=1');
+			if (!headers_sent()) {
+				header('Location:index.php?v=' . $_GET['v'] . '&error=1');
+			}
 		}
 	}
 }
@@ -109,8 +115,10 @@ try {
 	if (config::byKey('security::enable') == 1) {
 		$connection = connection::byIp(getClientIp());
 		if (is_object($connection) && $connection->getStatus() == 'Ban') {
-			header("Status: 404 Not Found");
-			header('HTTP/1.0 404 Not Found');
+			if (!headers_sent()) {
+				header("Status: 404 Not Found");
+				header('HTTP/1.0 404 Not Found');
+			}
 			$_SERVER['REDIRECT_STATUS'] = 404;
 			echo "<h1>404 Not Found</h1>";
 			echo "The page that you have requested could not be found.";
@@ -141,9 +149,13 @@ function login($_login, $_password, $_ajax = false, $_hash = false) {
 		}
 		if (!$_ajax) {
 			if (strpos($_SERVER['PHP_SELF'], 'core') || strpos($_SERVER['PHP_SELF'], 'desktop')) {
-				header('Location:../../index.php?' . trim($getParams, '&'));
+				if (!headers_sent()) {
+					header('Location:../../index.php?' . trim($getParams, '&'));
+				}
 			} else {
-				header('Location:index.php?' . trim($getParams, '&'));
+				if (!headers_sent()) {
+					header('Location:index.php?' . trim($getParams, '&'));
+				}
 			}
 		}
 		return true;
@@ -152,9 +164,13 @@ function login($_login, $_password, $_ajax = false, $_hash = false) {
 	sleep(5);
 	if (!$_ajax) {
 		if (strpos($_SERVER['PHP_SELF'], 'core') || strpos($_SERVER['PHP_SELF'], 'desktop')) {
-			header('Location:../../index.php?v=d&error=1');
+			if (!headers_sent()) {
+				header('Location:../../index.php?v=d&error=1');
+			}
 		} else {
-			header('Location:index.php?v=' . $_GET['v'] . '&error=1');
+			if (!headers_sent()) {
+				header('Location:index.php?v=' . $_GET['v'] . '&error=1');
+			}
 		}
 	}
 	return false;
@@ -187,9 +203,13 @@ function loginByHash($_key, $_ajax = false) {
 	sleep(5);
 	if (!$_ajax) {
 		if (strpos($_SERVER['PHP_SELF'], 'core') || strpos($_SERVER['PHP_SELF'], 'desktop')) {
-			header('Location:../../index.php?v=derror=1');
+			if (!headers_sent()) {
+				header('Location:../../index.php?v=derror=1');
+			}
 		} else {
-			header('Location:index.php?v=' . $_GET['v'] . '&error=1');
+			if (!headers_sent()) {
+				header('Location:index.php?v=' . $_GET['v'] . '&error=1');
+			}
 		}
 	}
 	return false;
