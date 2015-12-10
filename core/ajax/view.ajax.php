@@ -92,7 +92,7 @@ try {
 					foreach ($viewZone_info['viewData'] as $viewData_info) {
 						$viewData = new viewData();
 						$viewData->setviewZone_id($viewZone->getId());
-						$viewData->setOrder($order);
+						//$viewData->setOrder($order);
 						utils::a2o($viewData, $viewData_info);
 						$viewData->save();
 						$order++;
