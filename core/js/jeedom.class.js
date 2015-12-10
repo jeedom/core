@@ -35,10 +35,10 @@ jeedom.changes = function(){
                 $('body').trigger(data.result[i].name,data.result[i].option);
             }
         }
-        setTimeout(jeedom.changes, 750);
+        setTimeout(jeedom.changes, 1000);
     },
     error: function(){
-        setTimeout(jeedom.changes, 750);
+        setTimeout(jeedom.changes, 1000);
     }
 };
 try {

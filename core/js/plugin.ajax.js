@@ -469,15 +469,3 @@ $('body').on('.eqLogicAttr', 'change', function () {
     modifyWithoutSave = true;
 });
 
-if (io != null) {
-    socket = io.connect();
-    socket.on('initStackDataEqLogic', function (param) {
-        console.log(param);
-        //stackAjaxTab.push(param);
-    });
-    socket.on('stackDataEqLogic', function (param) {
-        console.log(param);
-        stackAjaxTab.push(param);
-    });
-}
-
