@@ -705,7 +705,7 @@ if (init('type') != '') {
 
 			if ($jsonrpc->getMethod() == 'plugin::dependancyInstall') {
 				$plugin_id = $params['plugin_id'];
-				if (!method_exists($plugin_id, 'dependancy_info')) {
+				if (!method_exists($plugin_id, 'dependancyInstall')) {
 					$jsonrpc->makeSuccess(array());
 				}
 				$jsonrpc->makeSuccess($plugin_id::dependancy_install());
