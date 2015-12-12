@@ -308,10 +308,16 @@ $("#bt_stopScenario").on('click', function () {
 });
 
 $('#bt_displayScenarioVariable,#bt_displayScenarioVariable2').on('click', function () {
-  $('#md_modal').closest('.ui-dialog').css('z-index', '1030');
   $('#md_modal').dialog({title: "{{Variables des scénarios}}"});
   $("#md_modal").load('index.php?v=d&modal=dataStore.management&type=scenario').dialog('open');
 });
+
+$('.bt_showExpressionTest').on('click', function () {
+  $('#md_modal').dialog({title: "{{Testeur d'expression}}"});
+  $("#md_modal").load('index.php?v=d&modal=expression.test').dialog('open');
+});
+
+
 
 $('#in_addElementType').on('change',function(){
   $('.addElementTypeDescription').hide();

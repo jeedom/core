@@ -105,6 +105,13 @@ foreach ($scenarioListGroup as $group) {
     </center>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
 </div>
+
+   <div class="cursor expertModeVisible bt_showExpressionTest" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+       <center>
+        <i class="fa fa-check" style="font-size : 4em;color:#337ab7;"></i>
+    </center>
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Testeur d'expression}}</center></span>
+</div>
 </div>
 
 <legend>{{Mes scénarios}}</legend>
@@ -157,6 +164,7 @@ if (count($scenarios) == 0) {
         <a class="btn btn-success btn-xs pull-right" id="bt_saveScenario2"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
         <a class="btn btn-danger btn-xs pull-right" id="bt_delScenario2"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
         <a class="btn btn-warning btn-xs pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Executer}}</a>
+        <a class="btn btn-primary btn-xs pull-right bt_showExpressionTest"><i class="fa fa-check"></i> {{Testeur d'expression}}</a>
     </legend>
     <div class="row">
         <div class="col-sm-4">
