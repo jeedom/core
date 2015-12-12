@@ -222,6 +222,7 @@ foreach (jeedom::getConfiguration('cmd:type') as $type) {
       <div class="form-group">
         <label class="col-sm-3 control-label">{{Limiter aux commandes ayant pour unité}}</label>
         <div class="col-sm-9">
+        <label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="none" checked="true" />{{Sans unité}}</label>
           <?php
 foreach (cmd::allUnite() as $unite) {
 	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="' . $unite['unite'] . '" checked="true" />' . $unite['unite'] . '</label> ';

@@ -380,9 +380,16 @@ class interactDef {
 							if (isset($type_filter[$cmd->getType()]) && $type_filter[$cmd->getType()] == 0) {
 								continue;
 							}
-							if ($cmd->getUnite() != '' && isset($unite_filter[$cmd->getUnite()]) && $unite_filter[$cmd->getUnite()] == 0) {
-								continue;
+							if ($cmd->getUnite() == '') {
+								if (isset($unite_filter['none']) && $unite_filter['none'] == 0) {
+									continue;
+								}
+							} else {
+								if (isset($unite_filter[$cmd->getUnite()]) && $unite_filter[$cmd->getUnite()] == 0) {
+									continue;
+								}
 							}
+
 							$replace = array(
 								'#objet#' => strtolower($object->getName()),
 								'#commande#' => strtolower($cmd->getName()),
