@@ -1,3 +1,5 @@
+![Travis ci](https://travis-ci.org/jeedom/core.svg)
+
 # Jeedom by Loïc Gevrey #
 
 Website (English): [https://jeedom.fr/site/en/](https://jeedom.fr/site/en/)
