@@ -11,6 +11,9 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 ?>
 <div id='div_alertReportBug'></div>
 <form class="form-horizontal" role="form" id="form_reportBug">
+    <div class='alert alert-info'>
+        {{Vous avez une idée vous voulez la partager ? N'hesitez pas à nous la décrire <a href="http://prd.jeedom.com/feedback" target="_blank">ici</a>}}
+    </div>
     <div class='alert alert-warning'>
         {{Merci de vérifier avant toute ouverture de ticket :}}<br/>
         {{- que la question n'a pas déjà été posée sur le <a href='https://jeedom.fr/forum'>forum</a>}}<br/>
