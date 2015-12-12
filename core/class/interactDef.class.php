@@ -398,20 +398,21 @@ class interactDef {
 							$options = array();
 							if ($cmd->getType() == 'action') {
 								if ($cmd->getSubtype() == 'color') {
-									$options['#color#'] = '#color#';
+									$options['color'] = '#color#';
 								}
 								if ($cmd->getSubtype() == 'slider') {
-									$options['#slider#'] = '#slider#';
+									$options['slider'] = '#slider#';
 								}
 								if ($cmd->getSubtype() == 'message') {
-									$options['#message#'] = '#message#';
-									$options['#title#'] = '#title#';
+									$options['message'] = '#message#';
+									$options['title'] = '#title#';
 								}
 							}
 							$query = str_replace(array_keys($replace), $replace, $input);
 							$return[$query] = array(
 								'query' => $query,
-								'cmd' => array(array('cmd' => '#' . $cmd->getId() . '#')),
+								'cmd' => array(array('cmd' => '#' . $cmd->getId() . '#', 'options' => $options)),
+
 							);
 						}
 					}

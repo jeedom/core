@@ -342,6 +342,7 @@ class interactQuery {
 						$options = $action['options'];
 					}
 					if ($tags != null) {
+
 						foreach ($options as &$option) {
 							$option = str_replace(array_keys($tags_replace), $tags_replace, $option);
 						}

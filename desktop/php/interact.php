@@ -225,7 +225,7 @@ foreach (jeedom::getConfiguration('cmd:type') as $type) {
         <label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="none" checked="true" />{{Sans unité}}</label>
           <?php
 foreach (cmd::allUnite() as $unite) {
-	if (trim($unite) == '') {
+	if (trim($unite['unite']) == '') {
 		continue;
 	}
 	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="' . $unite['unite'] . '" checked="true" />' . $unite['unite'] . '</label> ';
