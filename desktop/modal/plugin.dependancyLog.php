@@ -46,4 +46,33 @@ sendVarToJs('slave_id', init('slave_id'));
 			control : $('#bt_pluginDependancyLogStopStart'),
 		});
 	}
+
+	$('#bt_pluginDependancyLogStopStart').on('click',function(){
+		if($(this).attr('data-state') == 1){
+			$(this).attr('data-state',0);
+			$(this).removeClass('btn-warning').addClass('btn-success');
+			$(this).html('<i class="fa fa-play"></i> {{Reprise}}');
+
+		}else{
+			$(this).removeClass('btn-success').addClass('btn-warning');
+			$(this).html('<i class="fa fa-pause"></i> {{Pause}}');
+			$(this).attr('data-state',1);
+			if(slave_id == 0){
+				jeedom.log.autoupdate({
+					log : logfile,
+					display : $('#pre_pluginDependancyLogUpdate'),
+					search : $('#in_pluginDependancyLogSearch'),
+					control : $('#bt_pluginDependancyLogStopStart'),
+				});
+			}else{
+				jeedom.log.autoupdate({
+					log : logfile,
+					slaveId :slave_id,
+					display : $('#pre_pluginDependancyLogUpdate'),
+					search : $('#in_pluginDependancyLogSearch'),
+					control : $('#bt_pluginDependancyLogStopStart'),
+				});
+			}
+		}
+	});
 </script>
