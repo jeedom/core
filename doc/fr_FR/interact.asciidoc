@@ -349,8 +349,17 @@ Pour ce faire ont as 3 partie :
 On peut utiliser n'importe quel tag excepter ceux déjà utiliser par Jeedom, il peut en avoir plusieurs pour piloter par exemple plusieurs commandes. A noter aussi que tous les tags sont passé aux scénarios que l'interaction lance (il faut toutefois que le scénario soit en "Exécuter en avant plan")
 
 ==== Evolution 
+Ont peu vouloir piloter toutes les commandes de type curseur avec une seul intéraction, avec l'exemple qui suit ont vas donc pouvoir commander plusieurs variateur avec une seul onteraction et donc générer un enssemble de phrase pour les controler.
 
+image::../images/interact033.png[]
 
+Dans cette interaction, ont as pas de commande dans la partie action, ont laisse Jeedom généer a partir des tags la liste de phrase, ont peux voir le tags *\#slider#*, il est impératif d'utiliser se tag pour les consigne dans une intéraction multiple commande, il peut ne pas être le dernier mot de la phrase.
+Ont peux aussi voir dans l'exemple que l'on peut utiliser dans la réponse un tag qui ne fais pas parti de la demande, la majoritée des tag dispo dans les sénario sont dispo aussi dans les intéractions et donc peuvent être utiliser dans une réponse
+
+Résultat de l'interaction : 
+image::../images/interact034.png[]
+
+Ont peux constater que le tag *\#equipement#* qui n'est pas utiliser dans la demande est bien compléter dans la réponse
 
 
 === Piloter la couleur d'un bandeau de LED
