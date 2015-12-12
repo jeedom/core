@@ -357,6 +357,7 @@ Dans cette interaction, ont as pas de commande dans la partie action, ont laisse
 Ont peux aussi voir dans l'exemple que l'on peut utiliser dans la réponse un tag qui ne fais pas parti de la demande, la majoritée des tag dispo dans les sénario sont dispo aussi dans les intéractions et donc peuvent être utiliser dans une réponse
 
 Résultat de l'interaction : 
+
 image::../images/interact034.png[]
 
 Ont peux constater que le tag *\#equipement#* qui n'est pas utiliser dans la demande est bien compléter dans la réponse
