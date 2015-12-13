@@ -48,7 +48,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
                     <option>{{Historique}}</option>
                     <?php
 foreach (plugin::listPlugin(true) as $plugin) {
-	echo '<option>plugin::' . $plugin->getId() . '</option>';
+	echo '<option value="plugin::' . $plugin->getId() . '">Plugin ' . $plugin->getName() . '</option>';
 }
 ?>
                </select>
