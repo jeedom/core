@@ -137,7 +137,7 @@ class interactDef {
 		}
 		foreach ($tags[1] as $match) {
 			if (!isset($options[$match])) {
-				$options[$match] = '';
+				$options[$match] = '""';
 			}
 		}
 		return $options;
