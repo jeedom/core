@@ -181,45 +181,45 @@ $('.bt_showDeamonLog').on('click',function(){
 
 $('.bt_startDeamon').on('click',function(){
 	var slave_id = $(this).attr('data-slave_id');
-	relaunchDeamonAfterSave = false;
-	savePluginConfig(function(_slave_id){
-		if(slave_id == _slave_id){
-			jeedom.plugin.deamonStart({
-				id : plugin_id,
-				slave_id: slave_id,
-				forceRestart: 1,
-				error: function (error) {
-					relaunchDeamonAfterSave = true;
-					$('#div_alert').showAlert({message: error.message, level: 'danger'});
-				},
-				success: function (data) {
-					relaunchDeamonAfterSave = true;
-					$("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
-				}
-			});
+	savePluginConfig({
+		relaunchDeamon : false,
+		success : function(_slave_id){
+			if(slave_id == _slave_id){
+				jeedom.plugin.deamonStart({
+					id : plugin_id,
+					slave_id: slave_id,
+					forceRestart: 1,
+					error: function (error) {
+						$('#div_alert').showAlert({message: error.message, level: 'danger'});
+					},
+					success: function (data) {
+						$("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
+					}
+				});
+			}
 		}
 	});
 });
 
 $('.bt_launchDebug').on('click',function(){
 	var slave_id = $(this).attr('data-slave_id');
-	relaunchDeamonAfterSave = false;
-	savePluginConfig(function(_slave_id){
-		if(slave_id == _slave_id){
-			jeedom.plugin.deamonStart({
-				id : plugin_id,
-				slave_id: slave_id,
-				debug:1,
-				forceRestart: 1,
-				error: function (error) {
-					relaunchDeamonAfterSave = true;
-					$('#div_alert').showAlert({message: error.message, level: 'danger'});
-				},
-				success: function (data) {
-					relaunchDeamonAfterSave = true;
-					$("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
-				}
-			});
+	savePluginConfig({
+		relaunchDeamon : false,
+		success : function(_slave_id){
+			if(slave_id == _slave_id){
+				jeedom.plugin.deamonStart({
+					id : plugin_id,
+					slave_id: slave_id,
+					debug:1,
+					forceRestart: 1,
+					error: function (error) {
+						$('#div_alert').showAlert({message: error.message, level: 'danger'});
+					},
+					success: function (data) {
+						$("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
+					}
+				});
+			}
 		}
 	});
 });

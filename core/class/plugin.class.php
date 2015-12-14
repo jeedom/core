@@ -374,10 +374,13 @@ class plugin {
 
 	public function deamon_start($_debug = false, $_forceRestart = false) {
 		$plugin_id = $this->getId();
+		if ($_forceRestart) {
+			$this->deamon_stop();
+		}
 		try {
 			if ($this->getHasOwnDeamon() == 1 && method_exists($plugin_id, 'deamon_info')) {
 				$deamon_info = $this->deamon_info();
-				if ($deamon_info['launchable'] == 'ok' && ($deamon_info['state'] == 'nok' || $_forceRestart) && method_exists($plugin_id, 'deamon_start')) {
+				if ($deamon_info['launchable'] == 'ok' && ($deamon_info['state'] == 'nok') && method_exists($plugin_id, 'deamon_start')) {
 					$plugin_id::deamon_start($_debug);
 				}
 			}

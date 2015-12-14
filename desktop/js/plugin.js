@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
- var relaunchDeamonAfterSave = true;
  setTimeout(function(){
   $('.pluginListContainer').packery();
 },100);
@@ -270,7 +269,7 @@ $('body').delegate('.configKey', 'change', function () {
     modifyWithoutSave = true;
 });
 
-function savePluginConfig(_callback) {
+function savePluginConfig(_param) {
     jeedom.config.save({
         configuration: $('#div_plugin_configuration').getValues('.configKey')[0],
         plugin: $('.li_plugin.active').attr('data-plugin_id'),
@@ -280,7 +279,14 @@ function savePluginConfig(_callback) {
         success: function () {
             $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
             modifyWithoutSave = false;
-            if(relaunchDeamonAfterSave){
+            var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveConfiguration';
+            if (typeof window[postSave] == 'function'){
+                window[postSave]();
+            }
+            if (isset(_param) && typeof _param.success == 'function'){
+                _param.success(0);
+            }
+            if(!isset(_param) || !isset(_param.relaunchDeamon) || _param.relaunchDeamon){
                 jeedom.plugin.deamonStart({
                     id : $('.li_plugin.active').attr('data-plugin_id'),
                     slave_id: 0,
@@ -292,13 +298,6 @@ function savePluginConfig(_callback) {
                         $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
                     }
                 });
-            }
-            var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveConfiguration';
-            if (typeof window[postSave] == 'function'){
-                window[postSave]();
-            }
-            if (typeof _callback == 'function'){
-                _callback(0);
             }
         }
     });
@@ -315,28 +314,28 @@ $('.slaveConfig').each(function(){
         success: function () {
             $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
             modifyWithoutSave = false;
-            if(relaunchDeamonAfterSave){
-                jeedom.plugin.deamonStart({
-                    id : $('.li_plugin.active').attr('data-plugin_id'),
-                    slave_id: slave_id,
-                    forceRestart: 1,
-                    error: function (error) {
-                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                    },
-                    success: function (data) {
-                        $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
-                    }
-                });
-            }
             var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveSlaveConfiguration';
             if (typeof window[postSave] == 'function'){
                 window[postSave](slave_id);
             }
-            if (typeof _callback == 'function'){
-                _callback(slave_id);
+            if (isset(_param) && typeof _param.success == 'function'){
+                _param.success(slave_id);
             }
-        }
-    });
+            if(!isset(_param) || !isset(_param.relaunchDeamon) || _param.relaunchDeamon){
+               jeedom.plugin.deamonStart({
+                id : $('.li_plugin.active').attr('data-plugin_id'),
+                slave_id: slave_id,
+                forceRestart: 1,
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                    $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
+                }
+            });
+           }
+       }
+   });
 });
 }
 
