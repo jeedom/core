@@ -62,6 +62,20 @@
  	if (!_params['display'].is(':visible')) {
  		return;
  	}
+ 	if(isset(_params['control'])){
+ 		_params['control'].off('click').on('click',function(){
+ 			if($(this).attr('data-state') == 1){
+ 				$(this).attr('data-state',0);
+ 				$(this).removeClass('btn-warning').addClass('btn-success');
+ 				$(this).html('<i class="fa fa-play"></i> {{Reprise}}');
+ 			}else{
+ 				$(this).removeClass('btn-success').addClass('btn-warning');
+ 				$(this).html('<i class="fa fa-pause"></i> {{Pause}}');
+ 				$(this).attr('data-state',1);
+ 				jeedom.log.autoupdate(_params);
+ 			}
+ 		});
+ 	}
  	if(isset(_params['control']) && _params['control'].attr('data-state') != 1){
  		return;
  	}
@@ -93,4 +107,4 @@
  			}, 1000);
  		},
  	});
-}
+ }
