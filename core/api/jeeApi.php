@@ -725,7 +725,10 @@ if (init('type') != '') {
 				if (!isset($params['debug'])) {
 					$params['debug'] = false;
 				}
-				$jsonrpc->makeSuccess($plugin->deamon_stop($params['debug']));
+				if (!isset($params['forceRestart'])) {
+					$params['forceRestart'] = false;
+				}
+				$jsonrpc->makeSuccess($plugin->deamon_stop($params['debug'], $params['forceRestart']));
 			}
 
 			if ($jsonrpc->getMethod() == 'plugin::deamonStop') {

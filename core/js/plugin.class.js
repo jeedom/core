@@ -168,7 +168,8 @@ jeedom.plugin.deamonStart = function(_params) {
         action: 'deamonStart',
         id: _params.id,
         slave_id: _params.slave_id || 0,
-        debug: _params.debug || 0
+        debug: _params.debug || 0,
+        forceRestart: _params.forceRestart || 0
     };
     $.ajax(paramsAJAX);
 };

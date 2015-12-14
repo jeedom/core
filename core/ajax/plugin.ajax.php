@@ -219,10 +219,10 @@ try {
 		$plugin_id = init('id');
 		if (init('slave_id', 0) == 0) {
 			$plugin = plugin::byId(init('id'));
-			ajax::success($plugin->deamon_start(init('debug', 0)));
+			ajax::success($plugin->deamon_start(init('debug', 0), init('forceRestart', 0)));
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonStart', array('plugin_id' => $plugin_id, 'debug' => init('debug', 0))));
+			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonStart', array('plugin_id' => $plugin_id, 'debug' => init('debug', 0), 'forceRestart' => init('forceRestart', 0))));
 		}
 	}
 
