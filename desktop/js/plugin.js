@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
+ var relaunchDeamonAfterSave = true;
  setTimeout(function(){
   $('.pluginListContainer').packery();
 },100);
@@ -90,7 +90,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
                 $('#div_plugin_dependancy').closest('.alert').show();
                 $("#div_plugin_dependancy").load('index.php?v=d&modal=plugin.dependancy&plugin_id='+data.id);
             }
-
             if(data.hasOwnDeamon == 0 || data.activate == 0){
                 $('#div_plugin_deamon').closest('.alert').hide();
             }else{
@@ -281,6 +280,19 @@ function savePluginConfig(_callback) {
         success: function () {
             $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
             modifyWithoutSave = false;
+            if(relaunchDeamonAfterSave){
+                jeedom.plugin.deamonStart({
+                    id : $('.li_plugin.active').attr('data-plugin_id'),
+                    slave_id: 0,
+                    forceRestart: 1,
+                    error: function (error) {
+                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                    },
+                    success: function (data) {
+                        $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
+                    }
+                });
+            }
             var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveConfiguration';
             if (typeof window[postSave] == 'function'){
                 window[postSave]();
@@ -291,27 +303,40 @@ function savePluginConfig(_callback) {
         }
     });
 
-    $('.slaveConfig').each(function(){
-        var slave_id = $(this).attr('data-slave_id');
-        jeedom.jeeNetwork.saveConfig({
-            configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
-            plugin: $('.li_plugin.active').attr('data-plugin_id'),
-            id: slave_id,
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-                $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
-                modifyWithoutSave = false;
-                var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveSlaveConfiguration';
-                if (typeof window[postSave] == 'function'){
-                    window[postSave](slave_id);
-                }
-                if (typeof _callback == 'function'){
-                    _callback(slave_id);
-                }
+$('.slaveConfig').each(function(){
+    var slave_id = $(this).attr('data-slave_id');
+    jeedom.jeeNetwork.saveConfig({
+        configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
+        plugin: $('.li_plugin.active').attr('data-plugin_id'),
+        id: slave_id,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
+            modifyWithoutSave = false;
+            if(relaunchDeamonAfterSave){
+                jeedom.plugin.deamonStart({
+                    id : $('.li_plugin.active').attr('data-plugin_id'),
+                    slave_id: slave_id,
+                    forceRestart: 1,
+                    error: function (error) {
+                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                    },
+                    success: function (data) {
+                        $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
+                    }
+                });
             }
-        });
+            var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveSlaveConfiguration';
+            if (typeof window[postSave] == 'function'){
+                window[postSave](slave_id);
+            }
+            if (typeof _callback == 'function'){
+                _callback(slave_id);
+            }
+        }
     });
+});
 }
 
