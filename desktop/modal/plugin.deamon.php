@@ -156,9 +156,15 @@ sendVarToJs('refresh_deamon_info', $refresh);
 					}
 					switch(data.launchable) {
 						case 'ok':
+						$('.bt_startDeamon').show();
+						$('.bt_stopDeamon').show();
+						$('.bt_launchDebug').show();
 						$('.deamonLaunchable[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
 						break;
 						case 'nok':
+						$('.bt_startDeamon').hide();
+						$('.bt_stopDeamon').hide();
+						$('.bt_launchDebug').hide();
 						$('.deamonLaunchable[data-slave_id='+i+']').empty().append('<span class="label label-danger" style="font-size:1em;" title="'+data.launchable_message+'">{{NOK}}</span>');
 						break;
 						default:
