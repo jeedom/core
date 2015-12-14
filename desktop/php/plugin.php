@@ -95,24 +95,11 @@ foreach (plugin::listPlugin() as $plugin) {
 </div>
 <div class="alert alert-info">
     <legend>{{Dépendances}}</legend>
-    <div id="div_plugin_dependancy">
-        <form class="form-horizontal">
-            <fieldset>
-                <div class="form-group">
-                    <label class="col-lg-4 control-label">{{Status}}</label>
-                    <div class="col-lg-3" id="div_plugin_dependancy_state">
-                    </div>
-                </div>
-                 <div class="form-group">
-                    <label class="col-lg-4 control-label">{{Action}}</label>
-                    <div class="col-lg-8">
-                        <a class="btn btn-warning">{{Relancer l'installation des dépendances}}</a>
-                        <a class="btn btn-default">{{Voir la log}}</a>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
+    <div id="div_plugin_dependancy"></div>
+</div>
+<div class="alert alert-info">
+    <legend>{{Démon}}</legend>
+    <div id="div_plugin_deamon"></div>
 </div>
 <div class="alert alert-info">
     <legend>{{Installation}}</legend>

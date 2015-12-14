@@ -711,6 +711,33 @@ if (init('type') != '') {
 				$jsonrpc->makeSuccess($plugin_id::dependancy_install());
 			}
 
+			if ($jsonrpc->getMethod() == 'plugin::deamonInfo') {
+				$plugin_id = $params['plugin_id'];
+				if (!method_exists($plugin_id, 'deamon_info')) {
+					$jsonrpc->makeSuccess(array());
+				}
+				$jsonrpc->makeSuccess($plugin_id::deamon_info());
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::deamonStart') {
+				$plugin_id = $params['plugin_id'];
+				if (!method_exists($plugin_id, 'deamon_start')) {
+					$jsonrpc->makeSuccess(array());
+				}
+				if (!isset($params['debug'])) {
+					$params['debug'] = false;
+				}
+				$jsonrpc->makeSuccess($plugin_id::deamon_start($params['debug']));
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::deamonStop') {
+				$plugin_id = $params['plugin_id'];
+				if (!method_exists($plugin_id, 'deamon_stop')) {
+					$jsonrpc->makeSuccess(array());
+				}
+				$jsonrpc->makeSuccess($plugin_id::deamon_stop());
+			}
+
 			/*             * ************************Update*************************** */
 			if ($jsonrpc->getMethod() == 'update::all') {
 				$jsonrpc->makeSuccess(utils::o2a(update::all()));

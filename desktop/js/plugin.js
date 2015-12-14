@@ -90,6 +90,13 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
                 $('#div_plugin_dependancy').closest('.alert').show();
                 $("#div_plugin_dependancy").load('index.php?v=d&modal=plugin.dependancy&plugin_id='+data.id);
             }
+
+             if(data.hasOwnDeamon == 0 || data.activate == 0){
+                $('#div_plugin_deamon').closest('.alert').hide();
+            }else{
+                $('#div_plugin_deamon').closest('.alert').show();
+                $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+data.id);
+            }
             
             $('#span_plugin_market').empty();
             if (data.status.market == 1) {

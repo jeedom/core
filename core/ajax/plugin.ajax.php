@@ -188,13 +188,61 @@ try {
 		}
 		$plugin_id = init('id');
 		if (init('slave_id', 0) == 0) {
-			if (!method_exists($plugin_id, 'dependancy_info')) {
+			if (!method_exists($plugin_id, 'dependancy_install')) {
 				ajax::success();
 			}
 			ajax::success($plugin_id::dependancy_install());
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
 			ajax::success($jeeNetwork->sendRawRequest('plugin::dependancyInstall', array('plugin_id' => $plugin_id)));
+		}
+	}
+
+	if (init('action') == 'getDeamonInfo') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$plugin_id = init('id');
+		if (init('slave_id', 0) == 0) {
+			if (!method_exists($plugin_id, 'deamon_info')) {
+				ajax::success();
+			}
+			ajax::success($plugin_id::deamon_info());
+		} else {
+			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
+			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id)));
+		}
+	}
+
+	if (init('action') == 'deamonStart') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$plugin_id = init('id');
+		if (init('slave_id', 0) == 0) {
+			if (!method_exists($plugin_id, 'deamon_start')) {
+				ajax::success();
+			}
+			ajax::success($plugin_id::deamon_start(init('debug', 0)));
+		} else {
+			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
+			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonStart', array('plugin_id' => $plugin_id, 'debug' => init('debug', 0))));
+		}
+	}
+
+	if (init('action') == 'deamonStop') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$plugin_id = init('id');
+		if (init('slave_id', 0) == 0) {
+			if (!method_exists($plugin_id, 'deamon_stop')) {
+				ajax::success();
+			}
+			ajax::success($plugin_id::deamon_stop());
+		} else {
+			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
+			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonStop', array('plugin_id' => $plugin_id)));
 		}
 	}
 

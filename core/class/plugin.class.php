@@ -39,6 +39,7 @@ class plugin {
 	private $allowRemote;
 	private $eventjs;
 	private $hasDependency;
+	private $hasOwnDeamon;
 	private $include = array();
 	private static $_cache = array();
 
@@ -81,6 +82,10 @@ class plugin {
 		$plugin->hasDependency = 0;
 		if (isset($plugin_xml->hasDependency)) {
 			$plugin->hasDependency = $plugin_xml->hasDependency;
+		}
+		$plugin->hasOwnDeamon = 0;
+		if (isset($plugin_xml->hasOwnDeamon)) {
+			$plugin->hasOwnDeamon = $plugin_xml->hasOwnDeamon;
 		}
 		$plugin->eventjs = 0;
 		if (isset($plugin_xml->eventjs)) {
@@ -277,26 +282,23 @@ class plugin {
 
 	public static function start() {
 		foreach (self::listPlugin(true) as $plugin) {
+			$plugin->deamon_start();
 			if (method_exists($plugin->getId(), 'start')) {
 				$plugin_id = $plugin->getId();
-				echo 'Start plugin : ' . $plugin_id . '...';
 				try {
 					$plugin_id::start();
-					echo "OK\n";
 				} catch (Exception $e) {
-					echo "NOK\n";
 					log::add($plugin_id, 'error', __('Erreur sur la fonction start du plugin : ', __FILE__) . $e->getMessage());
 				} catch (Error $e) {
-					echo "NOK\n";
 					log::add($plugin_id, 'error', __('Erreur sur la fonction start du plugin : ', __FILE__) . $e->getMessage());
 				}
-
 			}
 		}
 	}
 
 	public static function stop() {
 		foreach (self::listPlugin(true) as $plugin) {
+			$plugin->deamon_stop();
 			if (method_exists($plugin->getId(), 'stop')) {
 				$plugin_id = $plugin->getId();
 				try {
@@ -307,6 +309,12 @@ class plugin {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction stop du plugin : ', __FILE__) . $e->getMessage());
 				}
 			}
+		}
+	}
+
+	public static function checkDeamon() {
+		foreach (self::listPlugin(true) as $plugin) {
+			$plugin->deamon_start();
 		}
 	}
 
@@ -342,7 +350,38 @@ class plugin {
 				return ob_get_clean();
 			}
 		}
+	}
 
+	public function deamon_start() {
+		$plugin_id = $this->getId();
+		try {
+			if ($this->getHasOwnDeamon() == 1 && method_exists($plugin_id, 'deamon_info')) {
+				$deamon_info = $plugin_id::deamon_info();
+				if ($deamon_info['launchable'] == 'ok' && $deamon_info['state'] == 'nok' && method_exists($plugin_id, 'deamon_start')) {
+					$plugin_id::deamon_start();
+				}
+			}
+		} catch (Exception $e) {
+			log::add($plugin_id, 'error', __('Erreur sur la fonction deamon_start du plugin : ', __FILE__) . $e->getMessage());
+		} catch (Error $e) {
+			log::add($plugin_id, 'error', __('Erreur sur la fonction deamon_start du plugin : ', __FILE__) . $e->getMessage());
+		}
+	}
+
+	public function deamon_stop() {
+		$plugin_id = $this->getId();
+		try {
+			if ($this->getHasOwnDeamon() == 1 && method_exists($plugin_id, 'deamon_info')) {
+				$deamon_info = $plugin_id::deamon_info();
+				if ($deamon_info['state'] == 'ok' && method_exists($plugin_id, 'deamon_stop')) {
+					$plugin_id::deamon_stop();
+				}
+			}
+		} catch (Exception $e) {
+			log::add($plugin_id, 'error', __('Erreur sur la fonction deamon_stop du plugin : ', __FILE__) . $e->getMessage());
+		} catch (Error $e) {
+			log::add($plugin_id, 'error', __('Erreur sur la fonction deamon_stop du plugin : ', __FILE__) . $e->getMessage());
+		}
 	}
 
 	public function setIsEnable($_state) {
@@ -354,7 +393,6 @@ class plugin {
 			if (config::byKey('jeeNetwork::mode') != 'master' && $this->getAllowRemote() != 1) {
 				throw new Exception('Vous ne pouvez pas activer ce plugin sur un Jeedom configuré en esclave');
 			}
-			//market::checkPayment($this->getId());
 			config::save('active', $_state, $this->getId());
 		}
 		if ($_state == 0) {
@@ -396,6 +434,7 @@ class plugin {
 		}
 		try {
 			if ($_state == 1) {
+				$this->deamon_start();
 				if ($this->getHasDependency() == 1) {
 					$plugin_id = $this->getId();
 					if (method_exists($plugin_id, 'dependancy_info') && method_exists($plugin_id, 'dependancy_install')) {
@@ -410,7 +449,9 @@ class plugin {
 				} else {
 					$out = $this->callInstallFunction('install');
 				}
+				$this->deamon_stop();
 			} else {
+				$this->deamon_stop();
 				if ($alreadyActive == 1) {
 					$out = $this->callInstallFunction('remove');
 				}
@@ -581,6 +622,14 @@ class plugin {
 
 	public function setHasDependency($hasDependency) {
 		$this->hasDependency = $hasDependency;
+	}
+
+	public function getHasOwnDeamon() {
+		return $this->hasOwnDeamon;
+	}
+
+	public function setHasOwnDeamony($hasOwnDeamon) {
+		$this->hasOwnDeamon = $hasOwnDeamon;
 	}
 
 }

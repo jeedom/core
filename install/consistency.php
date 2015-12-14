@@ -211,6 +211,18 @@ try {
 	$cron->setDeamon(0);
 	$cron->save();
 
+	$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
+	if (!is_object($cron)) {
+		echo "Création de plugin::checkDeamon\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('checkDeamon');
+	$cron->setSchedule('*/5 * * * * *');
+	$cron->setTimeout(5);
+	$cron->setDeamon(0);
+	$cron->save();
+
 	$cron = cron::byClassAndFunction('cache', 'persist');
 	if (!is_object($cron)) {
 		echo "Création de cache::persist\n";
