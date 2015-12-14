@@ -352,11 +352,31 @@ class plugin {
 		}
 	}
 
+	public function deamon_info() {
+		$return = array();
+		$plugin_id = $this->getId();
+		if ($this->getHasOwnDeamon() != 1 || !method_exists($plugin_id, 'deamon_info')) {
+			return array();
+		}
+		$return = $plugin_id::deamon_info();
+		if ($this->getHasDependency() == 1 && method_exists($plugin_id, 'dependancy_info') && $return['launchable'] == 'ok') {
+			$dependancy_info = $plugin_id::dependancy_info();
+			if ($dependancy_info['state'] != 'ok') {
+				$return['launchable'] = 'nok';
+				$return['launchable_message'] = __('Dépendances non installées', __FILE__);
+			}
+		}
+		if (!isset($return['launchable_message'])) {
+			$return['launchable_message'] = '';
+		}
+		return $return;
+	}
+
 	public function deamon_start() {
 		$plugin_id = $this->getId();
 		try {
 			if ($this->getHasOwnDeamon() == 1 && method_exists($plugin_id, 'deamon_info')) {
-				$deamon_info = $plugin_id::deamon_info();
+				$deamon_info = $this->deamon_info();
 				if ($deamon_info['launchable'] == 'ok' && $deamon_info['state'] == 'nok' && method_exists($plugin_id, 'deamon_start')) {
 					$plugin_id::deamon_start();
 				}
@@ -372,7 +392,7 @@ class plugin {
 		$plugin_id = $this->getId();
 		try {
 			if ($this->getHasOwnDeamon() == 1 && method_exists($plugin_id, 'deamon_info')) {
-				$deamon_info = $plugin_id::deamon_info();
+				$deamon_info = $this->deamon_info();
 				if ($deamon_info['state'] == 'ok' && method_exists($plugin_id, 'deamon_stop')) {
 					$plugin_id::deamon_stop();
 				}
@@ -434,7 +454,7 @@ class plugin {
 		}
 		try {
 			if ($_state == 1) {
-				$this->deamon_start();
+				$this->deamon_stop();
 				if ($this->getHasDependency() == 1) {
 					$plugin_id = $this->getId();
 					if (method_exists($plugin_id, 'dependancy_info') && method_exists($plugin_id, 'dependancy_install')) {
@@ -449,7 +469,7 @@ class plugin {
 				} else {
 					$out = $this->callInstallFunction('install');
 				}
-				$this->deamon_stop();
+				$this->deamon_start();
 			} else {
 				$this->deamon_stop();
 				if ($alreadyActive == 1) {

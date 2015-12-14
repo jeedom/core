@@ -2,18 +2,15 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$plugin_id = init('plugin_id');
-if (!class_exists($plugin_id)) {
+if (!class_exists(init('plugin_id'))) {
 	die();
 }
 if (init('slave_id') == 0) {
-	if (!method_exists($plugin_id, 'deamon_info')) {
-		die();
-	}
-	$deamon_info = $plugin_id::deamon_info();
+	$plugin = plugin::byId(init('plugin_id'));
+	$deamon_info = $plugin->deamon_info();
 } else {
 	$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-	$deamon_info = $jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id));
+	$deamon_info = $jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => init('plugin_id')));
 }
 if (!isset($deamon_info['log'])) {
 	die();

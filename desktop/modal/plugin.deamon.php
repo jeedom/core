@@ -7,11 +7,11 @@ sendVarToJs('plugin_id', $plugin_id);
 if (!class_exists($plugin_id)) {
 	die();
 }
-
-if (!method_exists($plugin_id, 'deamon_info')) {
+$plugin = plugin::byId($plugin_id);
+$deamon_info = $plugin->deamon_info();
+if (count($deamon_info) == 0) {
 	die();
 }
-$deamon_info = $plugin_id::deamon_info();
 $refresh = array();
 ?>
 <form class="form-horizontal">

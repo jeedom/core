@@ -226,7 +226,7 @@ if (exec('diff /etc/nginx/sites-available/default ' . dirname(__FILE__) . '/../.
 <?php
 foreach (plugin::listPlugin(true) as $plugin) {
 	$plugin_id = $plugin->getId();
-	if ($plugin->getHasDependency() == 1 || method_exists($plugin->getId(), 'health')) {
+	if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health')) {
 		echo '<legend>';
 		if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
 			echo '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
@@ -262,10 +262,110 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			echo '<td>';
 			echo '</td>';
 			echo '</tr>';
+			if (config::byKey('jeeNetwork::mode') == 'master') {
+				foreach (jeeNetwork::byPlugin($plugin_id) as $jeeNetwork) {
+					$dependancyInfo = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => $plugin_id));
+					echo '<tr>';
+					echo '<td style="font-weight : bold;">';
+					echo '{{Dépendance}}';
+					echo '</td>';
+					switch ($dependancy_info['state']) {
+						case 'ok':
+							echo '<td class="alert alert-success">{{OK}}</td>';
+							break;
+						case 'nok':
+							echo '<td class="alert alert-danger">{{NOK}}</td>';
+							break;
+						case 'in_progress':
+							echo '<td class="alert alert-info">{{En cours}}</td>';
+							break;
+						default:
+							echo '<td class="alert alert-danger">{{NOK}}</td>';
+							break;
+					}
+					echo '<td>';
+					echo '</td>';
+					echo '</tr>';
+				}
+			}
 		}
 	} catch (Exception $e) {
 
 	}
+	try {
+		if ($plugin->getHasOwnDeamon() == 1) {
+			$deamon_info = $plugin->deamon_info();
+			echo '<tr>';
+			echo '<td style="font-weight : bold;">';
+			echo '{{Configuration démon}}';
+			echo '</td>';
+			switch ($deamon_info['launchable']) {
+				case 'ok':
+					echo '<td class="alert alert-success">{{OK}}</td>';
+					break;
+				case 'nok':
+					echo '<td class="alert alert-danger">{{NOK}}</td>';
+					break;
+			}
+			echo '<td>';
+			echo $deamon_info['launchable_message'];
+			echo '</td>';
+			echo '</tr>';
+			echo '<tr>';
+			echo '<td style="font-weight : bold;">';
+			echo '{{Status démon}}';
+			echo '</td>';
+			switch ($deamon_info['state']) {
+				case 'ok':
+					echo '<td class="alert alert-success">{{OK}}</td>';
+					break;
+				case 'nok':
+					echo '<td class="alert alert-danger">{{NOK}}</td>';
+					break;
+			}
+			echo '<td>';
+			echo '</td>';
+			echo '</tr>';
+			if (config::byKey('jeeNetwork::mode') == 'master') {
+				foreach (jeeNetwork::byPlugin($plugin_id) as $jeeNetwork) {
+					$deamon_info = $jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id));
+					echo '<tr>';
+					echo '<td style="font-weight : bold;">';
+					echo '{{Configuration démon}}';
+					echo '</td>';
+					switch ($deamon_info['launchable']) {
+						case 'ok':
+							echo '<td class="alert alert-success">{{OK}}</td>';
+							break;
+						case 'nok':
+							echo '<td class="alert alert-danger" title="' . $deamon_info['launchable_message'] . '">{{NOK}}</td>';
+							break;
+					}
+					echo '<td>';
+					echo '</td>';
+					echo '</tr>';
+					echo '<tr>';
+					echo '<td style="font-weight : bold;">';
+					echo '{{Status démon}}';
+					echo '</td>';
+					switch ($deamon_info['state']) {
+						case 'ok':
+							echo '<td class="alert alert-success">{{OK}}</td>';
+							break;
+						case 'nok':
+							echo '<td class="alert alert-danger">{{NOK}}</td>';
+							break;
+					}
+					echo '<td>';
+					echo '</td>';
+					echo '</tr>';
+				}
+			}
+		}
+	} catch (Exception $e) {
+
+	}
+
 	try {
 		if (method_exists($plugin->getId(), 'health')) {
 
@@ -291,7 +391,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	} catch (Exception $e) {
 
 	}
-	if ($plugin->getHasDependency() == 1 || method_exists($plugin->getId(), 'health')) {
+	if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health')) {
 		echo '</tbody>';
 		echo '</table>';
 	}

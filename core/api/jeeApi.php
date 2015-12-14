@@ -716,26 +716,21 @@ if (init('type') != '') {
 				if (!method_exists($plugin_id, 'deamon_info')) {
 					$jsonrpc->makeSuccess(array());
 				}
-				$jsonrpc->makeSuccess($plugin_id::deamon_info());
+				$plugin = plugin::byId($params['plugin_id']);
+				$jsonrpc->makeSuccess($plugin->deamon_info());
 			}
 
 			if ($jsonrpc->getMethod() == 'plugin::deamonStart') {
-				$plugin_id = $params['plugin_id'];
-				if (!method_exists($plugin_id, 'deamon_start')) {
-					$jsonrpc->makeSuccess(array());
-				}
+				$plugin = plugin::byId($params['plugin_id']);
 				if (!isset($params['debug'])) {
 					$params['debug'] = false;
 				}
-				$jsonrpc->makeSuccess($plugin_id::deamon_start($params['debug']));
+				$jsonrpc->makeSuccess($plugin->deamon_stop($params['debug']));
 			}
 
 			if ($jsonrpc->getMethod() == 'plugin::deamonStop') {
-				$plugin_id = $params['plugin_id'];
-				if (!method_exists($plugin_id, 'deamon_stop')) {
-					$jsonrpc->makeSuccess(array());
-				}
-				$jsonrpc->makeSuccess($plugin_id::deamon_stop());
+				$plugin = plugin::byId($params['plugin_id']);
+				$jsonrpc->makeSuccess($plugin->deamon_stop());
 			}
 
 			/*             * ************************Update*************************** */

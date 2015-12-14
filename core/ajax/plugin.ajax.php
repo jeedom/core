@@ -204,10 +204,8 @@ try {
 		}
 		$plugin_id = init('id');
 		if (init('slave_id', 0) == 0) {
-			if (!method_exists($plugin_id, 'deamon_info')) {
-				ajax::success();
-			}
-			ajax::success($plugin_id::deamon_info());
+			$plugin = plugin::byId(init('id'));
+			ajax::success($plugin->deamon_info());
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
 			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id)));
@@ -220,10 +218,8 @@ try {
 		}
 		$plugin_id = init('id');
 		if (init('slave_id', 0) == 0) {
-			if (!method_exists($plugin_id, 'deamon_start')) {
-				ajax::success();
-			}
-			ajax::success($plugin_id::deamon_start(init('debug', 0)));
+			$plugin = plugin::byId(init('id'));
+			ajax::success($plugin->deamon_start(init('debug', 0)));
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
 			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonStart', array('plugin_id' => $plugin_id, 'debug' => init('debug', 0))));
@@ -236,10 +232,8 @@ try {
 		}
 		$plugin_id = init('id');
 		if (init('slave_id', 0) == 0) {
-			if (!method_exists($plugin_id, 'deamon_stop')) {
-				ajax::success();
-			}
-			ajax::success($plugin_id::deamon_stop());
+			$plugin = plugin::byId(init('id'));
+			ajax::success($plugin->deamon_stop());
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
 			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonStop', array('plugin_id' => $plugin_id)));
