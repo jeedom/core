@@ -312,7 +312,7 @@ function savePluginConfig(_param) {
                         $('#div_alert').showAlert({message: error.message, level: 'danger'});
                     },
                     success: function (data) {
-                        $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
+                        $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+$('.li_plugin.active').attr('data-plugin_id'));
                     }
                 });
             }
@@ -347,7 +347,7 @@ $('.slaveConfig').each(function(){
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                    $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
+                    $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+$('.li_plugin.active').attr('data-plugin_id'));
                 }
             });
          }
