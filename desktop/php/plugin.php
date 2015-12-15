@@ -113,7 +113,7 @@ foreach (plugin::listPlugin() as $plugin) {
    </div>
 </div>
 
-<div class="panel panel-warning">
+<div class="panel panel-primary">
   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Configuration}}</h3></div>
   <div class="panel-body">
     <div id="div_plugin_configuration"></div>
