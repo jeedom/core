@@ -71,10 +71,16 @@ switch ($deamon_info['launchable']) {
 				<a class="btn btn-danger btn-sm bt_stopDeamon" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-stop"></i></a>
 			</td>
 			<td>
+				<?php if ($deamon_info['log'] != '') {?>
 				<a class="btn btn-warning btn-sm bt_launchDebug" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-bug"></i></a>
+				<?php }
+?>
 			</td>
 			<td>
+				<?php if ($deamon_info['log'] != '') {?>
 				<a class="btn btn-default btn-sm bt_showDeamonLog" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i></a>
+				<?php }
+?>
 			</td>
 		</tr>
 
@@ -130,10 +136,16 @@ if (!isset($deamon_info['launchable'])) {
 							<a class="btn btn-danger btn-sm bt_stopDeamon" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-stop"></i></a>
 						</td>
 						<td>
+							<?php if ($deamon_info['log'] != '') {?>
 							<a class="btn btn-warning btn-sm bt_launchDebug" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-bug"></i></a>
+							<?php }
+			?>
 						</td>
 						<td>
+							<?php if ($deamon_info['log'] != '') {?>
 							<a class="btn btn-default btn-sm bt_showDeamonLog" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i></a>
+							<?php }
+			?>
 						</td>
 					</tr>
 					<?php
