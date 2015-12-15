@@ -14,11 +14,22 @@ if (count($deamon_info) == 0) {
 }
 $refresh = array();
 ?>
-<form class="form-horizontal">
-	<fieldset>
-		<div class="form-group">
-			<label class="col-lg-4 control-label">{{Status}}</label>
-			<div class="col-lg-1 deamonState" data-slave_id="0">
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>{{Nom}}</th>
+			<th>{{Statut}}</th>
+			<th>{{Configuration}}</th>
+			<th>{{Démarrer}}</th>
+			<th>{{Arrêter}}</th>
+			<th>{{Debug}}</th>
+			<th>{{Log}}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>{{Local}}</td>
+			<td class="deamonState" data-slave_id="0">
 				<?php
 $refresh[0] = 1;
 switch ($deamon_info['state']) {
@@ -33,9 +44,8 @@ switch ($deamon_info['state']) {
 		break;
 }
 ?>
-			</div>
-			<label class="col-lg-2 control-label">{{Configuration}}</label>
-			<div class="col-lg-1 deamonLaunchable" data-slave_id="0">
+			</td>
+			<td class="deamonLaunchable" data-slave_id="0">
 				<?php
 if (!isset($deamon_info['launchable_message'])) {
 	$deamon_info['launchable_message'] = '';
@@ -52,14 +62,21 @@ switch ($deamon_info['launchable']) {
 		break;
 }
 ?>
-			</div>
-			<div class="col-lg-4">
-				<a class="btn btn-success bt_startDeamon" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-play"></i></a>
-				<a class="btn btn-danger bt_stopDeamon" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-stop"></i></a>
-				<a class="btn btn-warning bt_launchDebug" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-bug"></i></a>
-				<a class="btn btn-default bt_showDeamonLog" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i></a>
-			</div>
-		</div>
+			</td>
+
+			<td>
+				<a class="btn btn-success btn-sm bt_startDeamon" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-play"></i></a>
+			</td>
+			<td>
+				<a class="btn btn-danger btn-sm bt_stopDeamon" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-stop"></i></a>
+			</td>
+			<td>
+				<a class="btn btn-warning btn-sm bt_launchDebug" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-bug"></i></a>
+			</td>
+			<td>
+				<a class="btn btn-default btn-sm bt_showDeamonLog" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i></a>
+			</td>
+		</tr>
 
 		<?php
 if (config::byKey('jeeNetwork::mode') == 'master') {
@@ -68,9 +85,9 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 			$deamon_info = $jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id));
 			$refresh[$jeeNetwork->getId()] = 1;
 			?>
-					<div class="form-group">
-						<label class="col-lg-4 control-label">{{Status}} <?php echo $jeeNetwork->getName(); ?></label>
-						<div class="col-lg-2 deamonState" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
+					<tr>
+						<td><?php echo $jeeNetwork->getName(); ?></td>
+						<td class="deamonState" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
 							<?php
 if (!isset($deamon_info['state'])) {
 				$deamon_info['state'] = 'nok';
@@ -87,15 +104,11 @@ if (!isset($deamon_info['state'])) {
 					break;
 			}
 			?>
-						</div>
-						<label class="col-lg-4 control-label">{{Configuration}} <?php echo $jeeNetwork->getName(); ?></label>
-						<div class="col-lg-2 deamonLaunchable" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
+						</td>
+						<td class="deamonLaunchable" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
 							<?php
 if (!isset($deamon_info['launchable'])) {
 				$deamon_info['launchable'] = 'nok';
-			}
-			if (!isset($deamon_info['launchable_message'])) {
-				$deamon_info['launchable_message'] = '';
 			}
 			switch ($deamon_info['launchable']) {
 				case 'ok':
@@ -109,14 +122,20 @@ if (!isset($deamon_info['launchable'])) {
 					break;
 			}
 			?>
-						</div>
-						<div class="col-lg-6">
-							<a class="btn btn-success bt_startDeamon" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-play"></i></a>
-							<a class="btn btn-danger bt_stopDeamon" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-stop"></i></a>
-							<a class="btn btn-warning bt_launchDebug" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-bug"></i></a>
-							<a class="btn btn-default bt_showDeamonLog" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i></a>
-						</div>
-					</div>
+						</td>
+						<td>
+							<a class="btn btn-success btn-sm bt_startDeamon" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-play"></i></a>
+						</td>
+						<td>
+							<a class="btn btn-danger btn-sm bt_stopDeamon" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-stop"></i></a>
+						</td>
+						<td>
+							<a class="btn btn-warning btn-sm bt_launchDebug" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-bug"></i></a>
+						</td>
+						<td>
+							<a class="btn btn-default btn-sm bt_showDeamonLog" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i></a>
+						</td>
+					</tr>
 					<?php
 } catch (Exception $e) {
 
@@ -124,8 +143,9 @@ if (!isset($deamon_info['launchable'])) {
 	}
 }
 ?>
-	</fieldset>
-</form>
+	</tbody>
+</table>
+
 <?php
 sendVarToJs('refresh_deamon_info', $refresh);
 ?>

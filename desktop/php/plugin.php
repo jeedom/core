@@ -31,7 +31,6 @@ foreach ($plugins_list as $category_name => $category) {
 		$name = $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'];
 	}
 	echo '<li><i class="fa ' . $icon . '"></i> ' . $name . '</li>';
-
 	foreach ($category as $plugin) {
 		$opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
 		echo '<li class="cursor li_plugin" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="' . $opacity . '"><a>';
@@ -72,53 +71,67 @@ foreach (plugin::listPlugin() as $plugin) {
 		echo "</center>";
 		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $plugin->getName() . '</center></span>';
 	}
-
 	echo '</div>';
 }
 ?>
 </div>
 </div>
 <div class="col-md-9 col-sm-8" id="div_confPlugin" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
+ <legend>
+     <i class="fa fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i>
+     <span id="span_plugin_name" ></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
+     <span id="span_plugin_market" class="pull-right"></span>
+     <span id="span_plugin_delete" class="pull-right"></span>
+     <span id="span_plugin_doc" class="pull-right"></span>
+ </legend>
 
- <legend><i class="fa fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i>
-    <span id="span_plugin_name" ></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
-</legend>
-<div>
-    <center>
-        <span style='font-weight: bold;'>{{N'oubliez pas d'activer le plugin pour pouvoir vous servir de celui-ci}}</span><br/>
-        <span id="span_plugin_toggleState"></span><br/><br/>
-        <span id="span_plugin_market"></span>
-        <span id="span_plugin_delete"></span>
-        <span id="span_plugin_doc"></span>
-    </center>
-    <br/>
+ <div class="panel panel-default">
+     <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-circle-o-notch"></i> {{Etat}}</h3></div>
+     <div class="panel-body">
+        <div id="div_plugin_toggleState"></div>
+    </div>
 </div>
-<div class="alert alert-info">
-    <legend>{{Dépendances}}</legend>
-    <div id="div_plugin_dependancy"></div>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-map"></i> {{Installation}}</h3></div>
+  <div class="panel-body">
+   <span id="span_plugin_installation"></span>
 </div>
-<div class="alert alert-info">
-    <legend>{{Démon}}</legend>
-    <div id="div_plugin_deamon"></div>
 </div>
-<div class="alert alert-info">
-    <legend>{{Installation}}</legend>
-    <span id="span_plugin_installation"></span>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-certificate"></i> {{Dépendances}}</h3></div>
+  <div class="panel-body">
+   <div id="div_plugin_dependancy"></div>
 </div>
-<div class="alert alert-warning">
-    <legend  id="lg_configuration"><i class="fa fa-wrench"></i> {{Configuration}}</legend>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-university"></i> {{Démon}}</h3></div>
+    <div class="panel-body">
+       <div id="div_plugin_deamon"></div>
+   </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Configuration}}</h3></div>
+  <div class="panel-body">
     <div id="div_plugin_configuration"></div>
-
     <div class="form-actions">
         <a class="btn btn-success" id="bt_savePluginConfig"><i class="fa fa-check-circle icon-white" style="position:relative;left:-5px;top:1px"></i>{{Sauvegarder}}</a>
     </div>
 </div>
-<div class="alert alert-success">
-    <h5 style="display: inline-block;font-weight: bold;">{{Description}} : </h5> <span id="span_plugin_description"></span><br/>
-    <h5 style="display: inline-block;font-weight: bold;">{{Version plugin}} : </h5> <span id="span_plugin_version"></span> -
-    <h5 style="display: inline-block;font-weight: bold;">{{Version Jeedom requise}} : </h5> <span id="span_plugin_require"></span><br/>
-    <h5 style="display: inline-block;font-weight: bold;">{{Auteur}} : </h5> <span id="span_plugin_author"></span> -
-    <h5 style="display: inline-block;font-weight: bold;">{{Licence}} : </h5> <span id="span_plugin_licence"></span>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info-circle"></i> {{Informations}}</h3></div>
+  <div class="panel-body">
+   <h5 style="display: inline-block;font-weight: bold;">{{Description}} : </h5> <span id="span_plugin_description"></span><br/>
+   <h5 style="display: inline-block;font-weight: bold;">{{Version plugin}} : </h5> <span id="span_plugin_version"></span> -
+   <h5 style="display: inline-block;font-weight: bold;">{{Version Jeedom requise}} : </h5> <span id="span_plugin_require"></span><br/>
+   <h5 style="display: inline-block;font-weight: bold;">{{Auteur}} : </h5> <span id="span_plugin_author"></span> -
+   <h5 style="display: inline-block;font-weight: bold;">{{Licence}} : </h5> <span id="span_plugin_licence"></span>
+</div>
 </div>
 
 </div>

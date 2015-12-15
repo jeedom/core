@@ -28,28 +28,28 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
     $('#div_resumePluginList').addClass('col-lg-12').removeClass('col-md-9 col-sm-8');
     $('#div_confPlugin').addClass('col-lg-12').removeClass('col-md-9 col-sm-8');
     $('#bt_displayPluginList').on('mouseenter',function(){
-       var timer = setTimeout(function(){
+     var timer = setTimeout(function(){
         $('#bt_displayPluginList').find('i').hide();
         $('#div_resumePluginList').addClass('col-md-9 col-sm-8').removeClass('col-lg-12');
         $('#div_confPlugin').addClass('col-md-9 col-sm-8').removeClass('col-lg-12');
         $('#sd_pluginList').show();
         $('.pluginListContainer').packery();
     }, 100);
-       $(this).data('timerMouseleave', timer)
-   }).on("mouseleave", function(){
-      clearTimeout($(this).data('timerMouseleave'));
-  });
+     $(this).data('timerMouseleave', timer)
+ }).on("mouseleave", function(){
+  clearTimeout($(this).data('timerMouseleave'));
+});
 
-   $('#sd_pluginList').on('mouseleave',function(){
-     var timer = setTimeout(function(){
-       $('#sd_pluginList').hide();
-       $('#bt_displayPluginList').find('i').show();
-       $('#div_resumePluginList').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
-       $('#div_confPlugin').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
-       $('.pluginListContainer').packery();
-   }, 300);
-     $(this).data('timerMouseleave', timer);
- }).on("mouseenter", function(){
+ $('#sd_pluginList').on('mouseleave',function(){
+   var timer = setTimeout(function(){
+     $('#sd_pluginList').hide();
+     $('#bt_displayPluginList').find('i').show();
+     $('#div_resumePluginList').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
+     $('#div_confPlugin').removeClass('col-md-9 col-sm-8').addClass('col-lg-12');
+     $('.pluginListContainer').packery();
+ }, 300);
+   $(this).data('timerMouseleave', timer);
+}).on("mouseenter", function(){
   clearTimeout($(this).data('timerMouseleave'));
 });
 }
@@ -77,9 +77,9 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
             }
             $('#span_plugin_licence').html(data.licence);
             if($.trim(data.installation) == '' || $.trim(data.installation) == 'Aucune'){
-                $('#span_plugin_installation').closest('.alert').hide();
+                $('#span_plugin_installation').closest('.panel').hide();
             }else{
-                $('#span_plugin_installation').closest('.alert').show();
+                $('#span_plugin_installation').closest('.panel').show();
                 $('#span_plugin_installation').html(data.installation);
             }
 
@@ -114,65 +114,73 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
             }
             $('#span_plugin_version').html(data.version);
 
-            $('#span_plugin_toggleState').empty();
+            $('#div_plugin_toggleState').empty();
             if (data.checkVersion != -1) {
-                if (data.activate == 1) {
-                    var html = '<div class="alert alert-success">{{Votre plugin est activé.}}';
-                    html += '<a class="btn btn-danger togglePlugin" data-state="0" data-plugin_id="' + data.id + '" style="margin : 5px;"><i class="fa fa-times"></i> {{Désactiver}}</a>';
-                } else {
-                    var html = '<div class="alert alert-danger">{{Votre plugin est désactivé}}';
-                    html += '<a class="btn btn-success togglePlugin" data-state="1" data-plugin_id="' + data.id + '" style="margin : 5px;"><i class="fa fa-check"></i> {{Activer}}</a>';
-                }
-                html += '</div>';
-                $('#span_plugin_toggleState').html(html);
+             var html = '<form class="form-horizontal">';
+             html += '<div class="form-group">';
+             html += '<label class="col-sm-2 control-label">{{Statut}}</label>';
+             html += '<div class="col-sm-2">';
+             if (data.activate == 1) {
+                html += '<span class="label label-success" style="font-size:1em;position:relative;top:7px;">{{Actif}}</span>';
+            }else{
+                html += '<span class="label label-danger" style="font-size:1em;position:relative;top:7px;">{{Inactif}}</span>';
             }
-            initExpertMode();
-            $('#div_plugin_configuration').empty();
-            if (data.checkVersion != -1) {
-                if (data.configurationPath != '' && data.activate == 1) {
-                   $('#div_plugin_configuration').load('index.php?v=d&plugin='+data.id+'&configure=1', function () {
-                    if($.trim($('#div_plugin_configuration').html()) == ''){
-                        $('#div_plugin_configuration').closest('.alert').hide();
-                        return;
-                    }else{
-                     $('#div_plugin_configuration').closest('.alert').show();
-                 }
-                 $('#lg_configuration').show();
-                 if($('#div_plugin_configuration').html().indexOf('<legend>') != -1){
-                    $('#lg_configuration').hide();
+            html += '</div>';
+            html += '<label class="col-sm-2 control-label">{{Action}}</label>';
+            html += '<div class="col-sm-4">';
+            if (data.activate == 1) {
+               html += '<a class="btn btn-danger togglePlugin" data-state="0" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fa fa-times"></i> {{Désactiver}}</a>';
+           }else{
+               html += '<a class="btn btn-success togglePlugin" data-state="1" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fa fa-check"></i> {{Activer}}</a>';
+           }
+           html += '</div>';
+           html += '</div>';
+           html += '</form>';
+           $('#div_plugin_toggleState').html(html);
+       }
+       initExpertMode();
+       $('#div_plugin_configuration').empty();
+       if (data.checkVersion != -1) {
+        if (data.configurationPath != '' && data.activate == 1) {
+         $('#div_plugin_configuration').load('index.php?v=d&plugin='+data.id+'&configure=1', function () {
+            if($.trim($('#div_plugin_configuration').html()) == ''){
+                $('#div_plugin_configuration').closest('.alert').hide();
+                return;
+            }else{
+               $('#div_plugin_configuration').closest('.alert').show();
+           }
+           jeedom.config.load({
+            configuration: $('#div_plugin_configuration').getValues('.configKey')[0],
+            plugin: $('.li_plugin.active').attr('data-plugin_id'),
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function (data) {
+                $('#div_plugin_configuration').setValues(data, '.configKey');
+                $('#div_plugin_configuration').parent().show();
+                modifyWithoutSave = false;
+                initTooltips();
+                initExpertMode();
+            }
+        });
+           $('.slaveConfig').each(function(){
+            var slave_id = $(this).attr('data-slave_id');
+            jeedom.jeeNetwork.loadConfig({
+                configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
+                plugin: $('.li_plugin.active').attr('data-plugin_id'),
+                id: slave_id,
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                    $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').setValues(data, '.slaveConfigKey');
+                    modifyWithoutSave = false;
+                    initTooltips();
+                    initExpertMode();
                 }
-                jeedom.config.load({
-                    configuration: $('#div_plugin_configuration').getValues('.configKey')[0],
-                    plugin: $('.li_plugin.active').attr('data-plugin_id'),
-                    error: function (error) {
-                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                    },
-                    success: function (data) {
-                        $('#div_plugin_configuration').setValues(data, '.configKey');
-                        $('#div_plugin_configuration').parent().show();
-                        modifyWithoutSave = false;
-                        initTooltips();
-                        initExpertMode();
-                    }
-                });
-                $('.slaveConfig').each(function(){
-                    var slave_id = $(this).attr('data-slave_id');
-                    jeedom.jeeNetwork.loadConfig({
-                        configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
-                        plugin: $('.li_plugin.active').attr('data-plugin_id'),
-                        id: slave_id,
-                        error: function (error) {
-                            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                        },
-                        success: function (data) {
-                            $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').setValues(data, '.slaveConfigKey');
-                            modifyWithoutSave = false;
-                            initTooltips();
-                            initExpertMode();
-                        }
-                    });
-                })
             });
+        })
+       });
 } else {
     $('#div_plugin_configuration').closest('.alert').hide();
 }
@@ -197,9 +205,9 @@ $('#span_plugin_delete').delegate('.removePlugin','click',function(){
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                   loadPage('index.php?v=d&p=plugin');
-               }
-           });
+                 loadPage('index.php?v=d&p=plugin');
+             }
+         });
         }
     });
 });
@@ -213,9 +221,9 @@ $("#span_plugin_toggleState").delegate(".togglePlugin", 'click', function () {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-           window.location.href = 'index.php?v=d&p=plugin&id=' + _el.attr('data-plugin_id');
-       }
-   });
+         window.location.href = 'index.php?v=d&p=plugin&id=' + _el.attr('data-plugin_id');
+     }
+ });
 });
 
 $('#bt_uploadPlugin').fileupload({
@@ -326,7 +334,7 @@ $('.slaveConfig').each(function(){
                 _param.success(slave_id);
             }
             if(!isset(_param) || !isset(_param.relaunchDeamon) || _param.relaunchDeamon){
-               jeedom.plugin.deamonStart({
+             jeedom.plugin.deamonStart({
                 id : $('.li_plugin.active').attr('data-plugin_id'),
                 slave_id: slave_id,
                 forceRestart: 1,
@@ -337,9 +345,9 @@ $('.slaveConfig').each(function(){
                     $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
                 }
             });
-           }
-       }
-   });
+         }
+     }
+ });
 });
 }
 

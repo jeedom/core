@@ -13,11 +13,19 @@ if (!method_exists($plugin_id, 'dependancy_info')) {
 $dependancy_info = $plugin_id::dependancy_info();
 $refresh = array();
 ?>
-<form class="form-horizontal">
-	<fieldset>
-		<div class="form-group">
-			<label class="col-lg-4 control-label">{{Status}}</label>
-			<div class="col-lg-2 dependancyState" data-slave_id="0">
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>{{Nom}}</th>
+			<th>{{Statut}}</th>
+			<th>{{Installation}}</th>
+			<th>{{Log}}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>{{Local}}</td>
+			<td class="dependancyState" data-slave_id="0">
 				<?php
 $refresh[0] = 0;
 switch ($dependancy_info['state']) {
@@ -36,12 +44,14 @@ switch ($dependancy_info['state']) {
 		break;
 }
 ?>
-			</div>
-			<div class="col-lg-6">
-				<a class="btn btn-warning launchInstallPluginDependancy" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-bicycle"></i> {{Relancer l'installation}}</a>
-				<a class="btn btn-default showLogPluginDependancy" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i> {{Voir la log}}</a>
-			</div>
-		</div>
+			</td>
+			<td>
+				<a class="btn btn-warning btn-sm launchInstallPluginDependancy" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-bicycle"></i> {{Relancer}}</a>
+			</td>
+			<td>
+				<a class="btn btn-default btn-sm showLogPluginDependancy" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i> {{Voir la log}}</a>
+			</td>
+		</tr>
 
 		<?php
 if (config::byKey('jeeNetwork::mode') == 'master') {
@@ -49,9 +59,11 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 		try {
 			$dependancy_info = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => $plugin_id));
 			?>
-					<div class="form-group">
-						<label class="col-lg-4 control-label">{{Status}} <?php echo $jeeNetwork->getName(); ?></label>
-						<div class="col-lg-2 dependancyState" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
+					<tr>
+						<td>
+							<?php echo $jeeNetwork->getName(); ?>
+						</td>
+						<td class="dependancyState" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
 							<?php
 $refresh[$jeeNetwork->getId()] = 0;
 			if (!isset($dependancy_info['state'])) {
@@ -73,12 +85,14 @@ $refresh[$jeeNetwork->getId()] = 0;
 					break;
 			}
 			?>
-						</div>
-						<div class="col-lg-6">
-							<a class="btn btn-warning launchInstallPluginDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-bicycle"></i> {{Relancer l'installation}}</a>
-							<a class="btn btn-default showLogPluginDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i> {{Voir la log}}</a>
-						</div>
-					</div>
+						</td>
+						<td>
+							<a class="btn btn-warning btn-sm launchInstallPluginDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-bicycle"></i> {{Relancer}}</a>
+						</td>
+						<td>
+							<a class="btn btn-default btn-sm showLogPluginDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i> {{Voir la log}}</a>
+						</td>
+					</tr>
 					<?php
 } catch (Exception $e) {
 
@@ -86,8 +100,8 @@ $refresh[$jeeNetwork->getId()] = 0;
 	}
 }
 ?>
-	</fieldset>
-</form>
+	</tbody>
+</table>
 <?php
 sendVarToJs('refresh_dependancy_info', $refresh);
 ?>
