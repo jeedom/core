@@ -121,8 +121,10 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
              html += '<label class="col-sm-2 control-label">{{Statut}}</label>';
              html += '<div class="col-sm-2">';
              if (data.activate == 1) {
+                $('#div_plugin_toggleState').closest('.panel').removeClass('panel-default panel-danger').addClass('panel-success');
                 html += '<span class="label label-success" style="font-size:1em;position:relative;top:7px;">{{Actif}}</span>';
             }else{
+                $('#div_plugin_toggleState').closest('.panel').removeClass('panel-default panel-success').addClass('panel-danger');
                 html += '<span class="label label-danger" style="font-size:1em;position:relative;top:7px;">{{Inactif}}</span>';
             }
             html += '</div>';
@@ -137,6 +139,9 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
            html += '</div>';
            html += '</form>';
            $('#div_plugin_toggleState').html(html);
+       }else{
+           $('#div_plugin_toggleState').closest('.panel').removeClass('panel-default panel-success').addClass('panel-danger');
+           $('#div_plugin_toggleState').html('{{Votre version de jeedom ne permet pas d\'activer ce plugin}}');
        }
        initExpertMode();
        $('#div_plugin_configuration').empty();
@@ -144,10 +149,10 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         if (data.configurationPath != '' && data.activate == 1) {
          $('#div_plugin_configuration').load('index.php?v=d&plugin='+data.id+'&configure=1', function () {
             if($.trim($('#div_plugin_configuration').html()) == ''){
-                $('#div_plugin_configuration').closest('.alert').hide();
+                $('#div_plugin_configuration').closest('.panel').hide();
                 return;
             }else{
-               $('#div_plugin_configuration').closest('.alert').show();
+               $('#div_plugin_configuration').closest('.panel').show();
            }
            jeedom.config.load({
             configuration: $('#div_plugin_configuration').getValues('.configKey')[0],
@@ -182,7 +187,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         })
        });
 } else {
-    $('#div_plugin_configuration').closest('.alert').hide();
+    $('#div_plugin_configuration').closest('.panel').hide();
 }
 } else {
     $('#div_plugin_configuration').closest('.alert').hide();
@@ -212,7 +217,7 @@ $('#span_plugin_delete').delegate('.removePlugin','click',function(){
     });
 });
 
-$("#span_plugin_toggleState").delegate(".togglePlugin", 'click', function () {
+$("#div_plugin_toggleState").delegate(".togglePlugin", 'click', function () {
     var _el = $(this);
     jeedom.plugin.toggle({
         id: _el.attr('data-plugin_id'),

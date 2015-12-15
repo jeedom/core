@@ -55,7 +55,7 @@ switch ($deamon_info['launchable']) {
 		echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
 		break;
 	case 'nok':
-		echo '<span class="label label-danger" style="font-size:1em;" title="' . $deamon_info['launchable_message'] . '">{{NOK}}</span>';
+		echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span> ' . $deamon_info['launchable_message'];
 		break;
 	default:
 		echo '<span class="label label-warning" style="font-size:1em;">' . $deamon_info['launchable'] . '</span>';
@@ -115,7 +115,7 @@ if (!isset($deamon_info['launchable'])) {
 					echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
 					break;
 				case 'nok':
-					echo '<span class="label label-danger" style="font-size:1em;" title="' . $deamon_info['launchable_message'] . '">{{NOK}}</span>';
+					echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span> ' . $deamon_info['launchable_message'];
 					break;
 				default:
 					echo '<span class="label label-warning" style="font-size:1em;">' . $deamon_info['launchable'] . '</span>';
@@ -185,7 +185,7 @@ sendVarToJs('refresh_deamon_info', $refresh);
 						$('.bt_startDeamon').hide();
 						$('.bt_stopDeamon').hide();
 						$('.bt_launchDebug').hide();
-						$('.deamonLaunchable[data-slave_id='+i+']').empty().append('<span class="label label-danger" style="font-size:1em;" title="'+data.launchable_message+'">{{NOK}}</span>');
+						$('.deamonLaunchable[data-slave_id='+i+']').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span> '+data.launchable_message);
 						break;
 						default:
 						$('.deamonLaunchable[data-slave_id='+i+']').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
