@@ -92,28 +92,28 @@ foreach (plugin::listPlugin() as $plugin) {
     </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-map"></i> {{Installation}}</h3></div>
   <div class="panel-body">
    <span id="span_plugin_installation"></span>
 </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-success">
   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-certificate"></i> {{Dépendances}}</h3></div>
   <div class="panel-body">
    <div id="div_plugin_dependancy"></div>
 </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-success">
     <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-university"></i> {{Démon}}</h3></div>
     <div class="panel-body">
        <div id="div_plugin_deamon"></div>
    </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-warning">
   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Configuration}}</h3></div>
   <div class="panel-body">
     <div id="div_plugin_configuration"></div>
@@ -123,7 +123,7 @@ foreach (plugin::listPlugin() as $plugin) {
 </div>
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info-circle"></i> {{Informations}}</h3></div>
   <div class="panel-body">
    <h5 style="display: inline-block;font-weight: bold;">{{Description}} : </h5> <span id="span_plugin_description"></span><br/>

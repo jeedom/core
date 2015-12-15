@@ -116,12 +116,15 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 						$('#div_alert').showAlert({message: error.message, level: 'danger'});
 					},
 					success: function (data) {
+						var nok = false;
 						refresh_dependancy_info[i] = 0;
 						switch(data.state) {
 							case 'ok':
 							$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
 							break;
 							case 'nok':
+							nok = true;
+							$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success').addClass('panel-danger');
 							$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>');
 							break;
 							case 'in_progress':
@@ -130,6 +133,9 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 							break;
 							default:
 							$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
+						}
+						if(!nok){
+							$("#div_plugin_deamon").closest('.panel').removeClass('panel-danger').addClass('panel-success');
 						}
 					}
 				});

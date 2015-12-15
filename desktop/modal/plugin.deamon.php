@@ -161,11 +161,14 @@ sendVarToJs('refresh_deamon_info', $refresh);
 					$('#div_alert').showAlert({message: error.message, level: 'danger'});
 				},
 				success: function (data) {
+					var nok = false;
 					switch(data.state) {
 						case 'ok':
 						$('.deamonState[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
 						break;
 						case 'nok':
+						nok = true;
+						$("#div_plugin_deamon").closest('.panel').removeClass('panel-success').addClass('panel-danger');
 						$('.deamonState[data-slave_id='+i+']').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>');
 						break;
 						default:
@@ -182,6 +185,8 @@ sendVarToJs('refresh_deamon_info', $refresh);
 						$('.deamonLaunchable[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
 						break;
 						case 'nok':
+						nok = true;
+						$("#div_plugin_deamon").closest('.panel').removeClass('panel-success').addClass('panel-danger');
 						$('.bt_startDeamon').hide();
 						$('.bt_stopDeamon').hide();
 						$('.bt_launchDebug').hide();
@@ -189,6 +194,9 @@ sendVarToJs('refresh_deamon_info', $refresh);
 						break;
 						default:
 						$('.deamonLaunchable[data-slave_id='+i+']').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
+					}
+					if(!nok){
+						$("#div_plugin_deamon").closest('.panel').removeClass('panel-danger').addClass('panel-success');
 					}
 				}
 			});
