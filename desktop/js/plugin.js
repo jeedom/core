@@ -137,7 +137,11 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
                     }else{
                      $('#div_plugin_configuration').closest('.alert').show();
                  }
-                 jeedom.config.load({
+                 $('#lg_configuration').show();
+                 if($('#div_plugin_configuration').html().indexOf('<legend>') != -1){
+                    $('#lg_configuration').hide();
+                }
+                jeedom.config.load({
                     configuration: $('#div_plugin_configuration').getValues('.configKey')[0],
                     plugin: $('.li_plugin.active').attr('data-plugin_id'),
                     error: function (error) {
@@ -151,7 +155,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
                         initExpertMode();
                     }
                 });
-                 $('.slaveConfig').each(function(){
+                $('.slaveConfig').each(function(){
                     var slave_id = $(this).attr('data-slave_id');
                     jeedom.jeeNetwork.loadConfig({
                         configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
@@ -168,7 +172,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
                         }
                     });
                 })
-             });
+            });
 } else {
     $('#div_plugin_configuration').closest('.alert').hide();
 }

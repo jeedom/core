@@ -106,7 +106,7 @@ foreach (plugin::listPlugin() as $plugin) {
     <span id="span_plugin_installation"></span>
 </div>
 <div class="alert alert-warning">
-    <legend><i class="fa fa-wrench"></i> {{Configuration}}</legend>
+    <legend  id="lg_configuration"><i class="fa fa-wrench"></i> {{Configuration}}</legend>
     <div id="div_plugin_configuration"></div>
 
     <div class="form-actions">
