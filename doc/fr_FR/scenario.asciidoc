@@ -19,18 +19,18 @@ En haut on retrouve une série de 3 boutons :
 * *Voir les variables* : permet de voir les variables, leur valeur ainsi que l'endroit ou elle sont utilisées
 
 [TIP]
-Les scénarios en rouge sont ceux qui sont désactivé
+Les scénarios en rouge sont ceux qui sont désactivés
 
 [TIP]
 Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
 
 Il existe 2 modes de scénario : 
 
-* *Simple* : permet de faire des scénarios très simple type SI ca ALORS fait ca
-* *Avancé* : la vous pouvez tout faire mais cela demande plus de connaissances
+* *Simple* : permet de faire des scénarios très simple type SI ça ALORS fait ça
+* *Avancé* : là vous pouvez tout faire mais cela demande plus de connaissances
 
 [IMPORTANT]
-Il est possible de passer un scénario tu mode simple au mode avancé mais pas l'inverse
+Il est possible de passer un scénario du mode simple au mode avancé mais pas l'inverse
 
 Lors de la création Jeedom va vous demander le type de scénario à faire : 
 
@@ -108,8 +108,8 @@ En haut la partie générale où on retrouve :
 * *Timeout secondes (0 = illimité)* : La durée d’exécution maximum autorisée
 * *Déclencheurs* : Ensuite vient la partie des déclencheurs qui peuvent soit être un ou plusieurs événements et/ou une programmation (une heure donnée, une fréquence…). Cette partie s’écrit à l’aide d’une syntaxe type crontab accessible via la touche, un assistant est disponible en cliquant sur ?
 * *Action* : En haut à droite on retrouve quelques actions utiles comme le lancement forcé du scénario (pour test),la suppression du scénario, la sauvegarde, la génération d'un template (voir le chapitre dédié), l'export, l’arrêt forcé d’un scénario (si en cours), log des dernières exécutions (très pratique pour vérifier le déroulement exact du scénario), la duplication.
-* *Execution en avant plan* : permet de lancer le scénario directement et non dans un fils d'exécution séparé. Attention cette option peut etre dangereuse car elle met en pause toutes les autres action du scénario. IL NE FAUT JAMAIS l'activer sur un scénario déclenché par une programmation horaire ou un scénario contenant des actions de type sleep
-* *Enchainer les commandes sans attendre* : permet d'enchainer les suite d'actions sans attendre le retour et donc la vérification de la bonne exécution (attention il faut que le plugin le support actuellement seul les plugins openzwave et script sont compatible)
+* *Execution en avant plan* : permet de lancer le scénario directement et non dans un fil d'exécution séparé. Attention cette option peut être dangereuse car elle met en pause toutes les autres actions du scénario. IL NE FAUT JAMAIS l'activer sur un scénario déclenché par une programmation horaire ou un scénario contenant des actions de type sleep
+* *Enchainer les commandes sans attendre* : permet d'enchainer les suites d'actions sans attendre le retour et donc la vérification de la bonne exécution (attention : il faut que le plugin le supporte, actuellement seuls les plugins openzwave et script sont compatibles)
 * *Pas de log* : indique au scénario de ne pas écrire dans les logs (permet de le rendre un peu plus rapide)
 * *Etat* : état actuel du scénario
 
@@ -133,16 +133,16 @@ Le premier bouton permet d'aller chercher une commande :
 
 image::../images/scenario6.JPG[]
 
-Une fois la commande trouvé Jeedom vous demande ce que vous voulez tester : 
+Une fois la commande trouvée Jeedom vous demande ce que vous voulez tester : 
 
 image::../images/scenario7.JPG[]
 
-En fonction du type vous aurez différentes possibilités vous pouvez ensuite mettre d'autre test et les liée en avec un "ou" ou un "et". Ainsi avec cette assistant vous pouvez construire votre condition
+En fonction du type vous aurez différentes possibilités vous pouvez ensuite mettre d'autres tests et les lier avec un "ou" ou un "et". Ainsi avec cet assistant vous pouvez construire votre condition
 
 [TIP]
-Si vous cliquez sur "Ne rien mettre" Jeedom va juste écrire la commande dans le champs condition en vous laissant la main pour la suite
+Si vous cliquez sur "Ne rien mettre" Jeedom va juste écrire la commande dans le champ condition en vous laissant la main pour la suite
 
-Le deuxième bouton quand a lui permet d'aller chercher un scénario pour par exemple tester si celui-ci est en cours (voir partie "Condition ou valeur d’une commande d’action")
+Le deuxième bouton quant à lui permet d'aller chercher un scénario pour par exemple tester si celui-ci est en cours (voir partie "Condition ou valeur d’une commande d’action")
 
 Pour les actions, on peut exécuter soit une action d’une commande (les options de celle-ci apparaitront sur sa droite), soit une commande d’affectation de variable ou de pause(très pratique pour simuler la présence surtout couplé à la génération d’une durée aléatoire) ou même d’action sur un autre scénario (start, stop, activer, désactiver).
 
@@ -156,7 +156,7 @@ Dans l'ordre :
 * un bouton pour supprimer l'action
 * un bouton pour désactiver temporairement l'action
 * un bouton pour rechercher une commande d'action
-* un bouton pour les actions spécifique, avec à chaque fois la description de cette action
+* un bouton pour les actions spécifiques, avec à chaque fois la description de cette action
 
 === Déclencheurs
 
@@ -171,7 +171,7 @@ Vous avez ici aussi un bouton pour aller chercher une commande
 === Condition ou valeur d'une commande d'action
 
 [IMPORTANT]
-Attention à bien mettre des ' ou " (quote ou double quote) lors de l'utilisation de chaîne de caractère. Ex : "\#[Object][Equipement][Info]#" = "oui"
+Attention à bien mettre des ' ou " (quote ou double quote) lors de l'utilisation de chaînes de caractères. Ex : "\#[Object][Equipement][Info]#" = "oui"
 
 
 Vous pouvez utiliser n'importe lequel des symboles suivant pour les opérateurs : 
@@ -202,7 +202,7 @@ Un tag est remplacé lors de l'exécution du scénario par sa valeur
 * *\#jour#* : jour courant,
 * *\#mois#* : mois courant,
 * *\#annee#* : année courante,
-* *\#time#* : heure et minute courante (ex : 1715 pour 17h15),
+* *\#time#* : heure et minute courante (ex : 1715 pour 17h15 ou 815 pour 08h15),
 * *\#timestamp#* : retourne le nombre de secondes depuis le 1er janvier 1970,
 * *\#date#* : jour et mois courant (ex : 1215 pour le 15 décembre),
 * *\#semaine#* : numéro de la semaine (ex : 51),
@@ -318,18 +318,18 @@ Une boîte à outils de fonctions génériques peut également servir à effectu
 En plus des commandes domotiques vous avez accès aux actions suivantes : 
 
 * *sleep* : pause de x seconde(s)
-* *wait* : attend jusqu'a ce que la condition soit valide (maximum 2h), le timeout est en seconde                   
+* *wait* : attend jusqu'à ce que la condition soit valide (maximum 2h), le timeout est en seconde                   
 * *variable* : création/modification d'une ou de la valeur d'une variable
-* *scenario* : permet le controle des scénarios
+* *scenario* : permet le contrôle des scénarios
 * *stop* : arrête le scénario
 * *icon* : permet de changer l'icône de représentation du scénario
 * *say* : permet de faire dire un texte à jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)
-* *return* : retourne un message à la fin du scénario, ne sert que pour retourner un message spécifique suite a une intéraction. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ça marche
+* *return* : retourne un message à la fin du scénario, ne sert que pour retourner un message spécifique suite a une intéraction. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que cela fonctionne
 * *gotodesign* : change le design affiché sur tous les navigateurs qui affichage un design par le design demandé
 * *log* : permet de rajouter un message dans les logs
 * *message* : permet d'ajouter une message dans le centre de message
 * *equipement* : permet de modifier les prorietés visible/invisible actif/inactif d'un équipement
-* *ask* : permet d'indiquer à jeedom qu'il faut poser une question à l'utilisateur. La réponse est stocké dans une variable, il suffit ensuite de tester sa valeur. Pour le moment seul les plugins sms et slack sont compatible. Attention l'action ask est bloquante, tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint le scénario attend. Voila un exemple d'utilisation : 
+* *ask* : permet d'indiquer à jeedom qu'il faut poser une question à l'utilisateur. La réponse est stockée dans une variable, il suffit ensuite de tester sa valeur. Pour le moment seuls les plugins sms et slack sont compatibles. Attention l'action ask est bloquante, tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint le scénario attend. Voilà un exemple d'utilisation : 
 
 image::../images/scenario20.JPG[]
              
@@ -397,20 +397,20 @@ Scénario::
     ** Supprime une donnée
 
 * *$scenario->setLog($message)*;
-    ** Ecris message dans le log du scénario
+    ** Ecrit un message dans le log du scénario
 
 * *$scenario->persistLog()*;
     ** Force l'écriture du log (sinon il est écrit seulement à la fin du scénario). Attention ceci peut un peu ralentir le scénario
 
 == Les variables
 
-Vous pouvez en cliquant sur le bouton variable voir toutes les variables existant sur votre système, changer leur valeur, les supprimer, en ajouter et voir dans quel scénario elles sont utilisée : 
+Vous pouvez en cliquant sur le bouton variable voir toutes les variables existantes sur votre système, changer leur valeur, les supprimer, en ajouter et voir dans quel scénario elles sont utilisées : 
 
 image::../images/scenario14.JPG[]
 
 == Template de scénario
 
-Fonctionnalité permettant de transformer un scénario en template pour par exemple l'appliquer sur un autre Jeedom ou le partager sur le market. C'est aussi a partir de la que vous pouvez récupérer un scénario du market
+Fonctionnalité permettant de transformer un scénario en template pour - par exemple - l'appliquer sur un autre Jeedom ou le partager sur le market. C'est aussi à partir de là que vous pouvez récupérer un scénario du market
 
 image::../images/scenario15.JPG[]
 
@@ -418,14 +418,14 @@ Vous verrez alors cette fenêtre :
 
 image::../images/scenario16.JPG[]
 
-A partir de celle vous avez la possibilité : 
+A partir de celle-ci vous avez la possibilité : 
 
-* D'envoyer un template à Jeedom (fichier JSON prealablement recuperé)
+* D'envoyer un template à Jeedom (fichier JSON préalablement recuperé)
 * De consulter la liste des scénarios disponible sur le market
-* De creer un template à partir du scénario courant (n'oubliez pas de donner un nom)
-* Consulter les templates actuellement présent sur votre Jeedom
+* De créer un template à partir du scénario courant (n'oubliez pas de donner un nom)
+* Consulter les templates actuellement présents sur votre Jeedom
 
-Une fois un clique sur un template vous obtenez : 
+Après avoir cliqué sur un template vous obtenez : 
 
 image::../images/scenario17.JPG[]
 
@@ -438,7 +438,7 @@ En haut vous pouvez :
 En dessous vous avez la partie pour appliquer votre template au scénario courant.
 
 [TIP]
-Etant donnée que d'un Jeedom à l'autre ou d'une installation à une autre les commandes peuvent être différentes Jeedom vous demande la correspondance des commandes entre celles présentes lors de la création du template et celles présentes chez vous
+Etant donné que d'un Jeedom à l'autre ou d'une installation à une autre les commandes peuvent être différentes, Jeedom vous demande la correspondance des commandes entre celles présentes lors de la création du template et celles présentes chez vous
 
 Il vous suffit de remplir la correspondance des commandes puis de faire appliquer
 
@@ -452,4 +452,4 @@ Vous obtenez :
 
 image::../images/scenario19.JPG[]
 
-En haut vous pouvez rafraichir le log, le télécharger ou le supprimer. La taille des logs n'est pas limité en exécution mais en nombre de ligne (en fonction de la valeur mise dans la configuration de Jeedom)
+En haut vous pouvez rafraichir le log, le télécharger ou le supprimer. La taille des logs n'est pas limitée en exécution mais en nombre de lignes (en fonction de la valeur mise dans la configuration de Jeedom)
