@@ -224,13 +224,25 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		$plugin_id = init('id');
 		if (init('slave_id', 0) == 0) {
 			$plugin = plugin::byId(init('id'));
 			ajax::success($plugin->deamon_stop());
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonStop', array('plugin_id' => $plugin_id)));
+			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonStop', array('plugin_id' => init('id'))));
+		}
+	}
+
+	if (init('action') == 'deamonChangeAutoMode') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		if (init('slave_id', 0) == 0) {
+			$plugin = plugin::byId(init('id'));
+			ajax::success($plugin->deamon_changeAutoMode(init('mode')));
+		} else {
+			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
+			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonChangeAutoMode', array('plugin_id' => init('id'), 'mode' => init('mode'))));
 		}
 	}
 

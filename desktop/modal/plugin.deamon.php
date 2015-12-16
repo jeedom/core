@@ -25,6 +25,7 @@ $refresh = array();
 			<th>{{Arrêter}}</th>
 			<th>{{Debug}}</th>
 			<th>{{Log}}</th>
+			<th>{{Gestion automatique}}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -80,6 +81,14 @@ switch ($deamon_info['launchable']) {
 			<td>
 				<?php if ($deamon_info['log'] != '') {?>
 				<a class="btn btn-default btn-sm bt_showDeamonLog" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i></a>
+				<?php }
+?>
+			</td>
+			<td>
+				<?php if ($deamon_info['auto'] == 1) {?>
+				<a class="btn btn-danger btn-sm bt_changeAutoMode" data-mode="0" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-times"></i> {{Désactiver}}</a>
+				<?php } else {?>
+				<a class="btn btn-success btn-sm bt_changeAutoMode" data-mode="1" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-magic"></i> {{Activer}}</a>
 				<?php }
 ?>
 			</td>
@@ -148,6 +157,14 @@ if (!isset($deamon_info['launchable'])) {
 							<?php }
 			?>
 						</td>
+						<td>
+							<?php if ($deamon_info['auto'] == 1) {?>
+							<a class="btn btn-danger btn-sm bt_changeAutoMode" data-mode="0" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-times"></i> {{Désactiver}}</a>
+							<?php } else {?>
+							<a class="btn btn-success btn-sm bt_changeAutoMode" data-mode="1" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-magic"></i> {{Activer}}</a>
+							<?php }
+			?>
+						</td>
 					</tr>
 					<?php
 } catch (Exception $e) {
@@ -206,12 +223,21 @@ sendVarToJs('refresh_deamon_info', $refresh);
 						default:
 						$('.deamonLaunchable[data-slave_id='+i+']').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
 					}
+					if(data.auto == 1){
+						$('.bt_changeAutoMode[data-slave_id='+i+']').removeClass('btn-success').addClass('btn-danger');
+						$('.bt_changeAutoMode[data-slave_id='+i+']').attr('data-mode',0);
+						$('.bt_changeAutoMode[data-slave_id='+i+']').html('<i class="fa fa-times"></i> {{Désactiver}}');
+					}else{
+						$('.bt_changeAutoMode[data-slave_id='+i+']').removeClass('btn-danger').addClass('btn-success');
+						$('.bt_changeAutoMode[data-slave_id='+i+']').attr('data-mode',1);
+						$('.bt_changeAutoMode[data-slave_id='+i+']').html('<i class="fa fa-magic"></i> {{Activer}}');
+					}
 					if(!nok){
 						$("#div_plugin_deamon").closest('.panel').removeClass('panel-danger').addClass('panel-success');
 					}else{
 						$("#div_plugin_deamon").closest('.panel').removeClass('panel-success').addClass('panel-danger');
 					}
-					if(data.launchable == 'ok' && data.state != 'ok'){
+					if(data.launchable == 'ok' && data.state != 'ok' && data.auto == 1){
 						jeedom.plugin.deamonStart({
 							id : plugin_id,
 							slave_id: i,
@@ -286,6 +312,22 @@ $('.bt_stopDeamon').on('click',function(){
 	jeedom.plugin.deamonStop({
 		id : plugin_id,
 		slave_id: slave_id,
+		error: function (error) {
+			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+		},
+		success: function (data) {
+			$("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
+		}
+	});
+});
+
+$('.bt_changeAutoMode').on('click',function(){
+	var slave_id = $(this).attr('data-slave_id');
+	var mode = $(this).attr('data-mode');
+	jeedom.plugin.deamonChangeAutoMode({
+		id : plugin_id,
+		slave_id: slave_id,
+		mode : mode,
 		error: function (error) {
 			$('#div_alert').showAlert({message: error.message, level: 'danger'});
 		},

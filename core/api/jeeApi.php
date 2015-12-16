@@ -725,9 +725,14 @@ if (init('type') != '') {
 				$jsonrpc->makeSuccess($plugin->deamon_stop($params['debug'], $params['forceRestart']));
 			}
 
-			if ($jsonrpc->getMethod() == 'plugin::deamonStop') {
+			if ($jsonrpc->getMethod() == 'plugin::deamonStart') {
 				$plugin = plugin::byId($params['plugin_id']);
-				$jsonrpc->makeSuccess($plugin->deamon_stop());
+				$jsonrpc->makeSuccess($plugin->deamon_stop($params['debug'], $params['forceRestart']));
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::deamonChangeAutoMode') {
+				$plugin = plugin::byId($params['plugin_id']);
+				$jsonrpc->makeSuccess($plugin->deamon_changeAutoMode($params['mode']));
 			}
 
 			/*             * ************************Update*************************** */

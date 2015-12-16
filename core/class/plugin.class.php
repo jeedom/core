@@ -282,7 +282,7 @@ class plugin {
 
 	public static function start() {
 		foreach (self::listPlugin(true) as $plugin) {
-			$plugin->deamon_start();
+			$plugin->deamon_start(false, false, true);
 			if (method_exists($plugin->getId(), 'start')) {
 				$plugin_id = $plugin->getId();
 				try {
@@ -314,7 +314,7 @@ class plugin {
 
 	public static function checkDeamon() {
 		foreach (self::listPlugin(true) as $plugin) {
-			$plugin->deamon_start();
+			$plugin->deamon_start(false, false, true);
 		}
 	}
 
@@ -373,11 +373,15 @@ class plugin {
 		return $plugin_id::dependancy_install();
 	}
 
+	public function deamon_changeAutoMode($_mode) {
+		config::save('deamonAutoMode', $_mode, $this->getId());
+	}
+
 	public function deamon_info() {
 		$return = array();
 		$plugin_id = $this->getId();
 		if ($this->getHasOwnDeamon() != 1 || !method_exists($plugin_id, 'deamon_info')) {
-			return array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok');
+			return array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0);
 		}
 		$return = $plugin_id::deamon_info();
 		if ($this->getHasDependency() == 1 && method_exists($plugin_id, 'dependancy_info') && $return['launchable'] == 'ok') {
@@ -397,10 +401,11 @@ class plugin {
 		if (!isset($return['log'])) {
 			$return['log'] = '';
 		}
+		$return['auto'] = config::byKey('deamonAutoMode', $this->getId(), 1);
 		return $return;
 	}
 
-	public function deamon_start($_debug = false, $_forceRestart = false) {
+	public function deamon_start($_debug = false, $_forceRestart = false, $_auto = false) {
 		$plugin_id = $this->getId();
 		if ($_forceRestart) {
 			$this->deamon_stop();
@@ -408,6 +413,9 @@ class plugin {
 		try {
 			if ($this->getHasOwnDeamon() == 1 && method_exists($plugin_id, 'deamon_info')) {
 				$deamon_info = $this->deamon_info();
+				if ($_auto && $deamon_info['auto'] == 0) {
+					return;
+				}
 				if ($deamon_info['launchable'] == 'ok' && ($deamon_info['state'] == 'nok') && method_exists($plugin_id, 'deamon_start')) {
 					$plugin_id::deamon_start($_debug);
 				}
@@ -498,7 +506,7 @@ class plugin {
 				} else {
 					$out = $this->callInstallFunction('install');
 				}
-				$this->deamon_start();
+				$this->deamon_start(false, false, true);
 			} else {
 				$this->deamon_stop();
 				if ($alreadyActive == 1) {
