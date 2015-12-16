@@ -172,6 +172,9 @@ try {
 		}
 		if (init('slave_id', 0) == 0) {
 			$plugin = plugin::byId(init('id'));
+			if (!is_object($plugin)) {
+				ajax::success(array('state' => 'nok', 'log' => 'nok'));
+			}
 			ajax::success($plugin->dependancy_info());
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
@@ -185,6 +188,9 @@ try {
 		}
 		if (init('slave_id', 0) == 0) {
 			$plugin = plugin::byId(init('id'));
+			if (!is_object($plugin)) {
+				ajax::success();
+			}
 			ajax::success($plugin->dependancy_install());
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
@@ -199,6 +205,9 @@ try {
 		$plugin_id = init('id');
 		if (init('slave_id', 0) == 0) {
 			$plugin = plugin::byId(init('id'));
+			if (!is_object($plugin)) {
+				ajax::success(array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0));
+			}
 			ajax::success($plugin->deamon_info());
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
@@ -213,6 +222,9 @@ try {
 		$plugin_id = init('id');
 		if (init('slave_id', 0) == 0) {
 			$plugin = plugin::byId(init('id'));
+			if (!is_object($plugin)) {
+				ajax::success();
+			}
 			ajax::success($plugin->deamon_start(init('debug', 0), init('forceRestart', 0)));
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
@@ -226,6 +238,9 @@ try {
 		}
 		if (init('slave_id', 0) == 0) {
 			$plugin = plugin::byId(init('id'));
+			if (!is_object($plugin)) {
+				ajax::success();
+			}
 			ajax::success($plugin->deamon_stop());
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
@@ -239,6 +254,9 @@ try {
 		}
 		if (init('slave_id', 0) == 0) {
 			$plugin = plugin::byId(init('id'));
+			if (!is_object($plugin)) {
+				ajax::success();
+			}
 			ajax::success($plugin->deamon_changeAutoMode(init('mode')));
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));

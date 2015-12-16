@@ -697,25 +697,33 @@ if (init('type') != '') {
 
 			if ($jsonrpc->getMethod() == 'plugin::dependancyInfo') {
 				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess(array('state' => 'nok', 'log' => 'nok'));
+				}
 				$jsonrpc->makeSuccess($plugin->dependancy_info());
 			}
 
 			if ($jsonrpc->getMethod() == 'plugin::dependancyInstall') {
 				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess();
+				}
 				$jsonrpc->makeSuccess($plugin->dependancy_install());
 			}
 
 			if ($jsonrpc->getMethod() == 'plugin::deamonInfo') {
-				$plugin_id = $params['plugin_id'];
-				if (!method_exists($plugin_id, 'deamon_info')) {
-					$jsonrpc->makeSuccess(array());
-				}
 				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess(array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0));
+				}
 				$jsonrpc->makeSuccess($plugin->deamon_info());
 			}
 
 			if ($jsonrpc->getMethod() == 'plugin::deamonStart') {
 				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess();
+				}
 				if (!isset($params['debug'])) {
 					$params['debug'] = false;
 				}
@@ -725,13 +733,19 @@ if (init('type') != '') {
 				$jsonrpc->makeSuccess($plugin->deamon_stop($params['debug'], $params['forceRestart']));
 			}
 
-			if ($jsonrpc->getMethod() == 'plugin::deamonStart') {
+			if ($jsonrpc->getMethod() == 'plugin::deamonStop') {
 				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess();
+				}
 				$jsonrpc->makeSuccess($plugin->deamon_stop($params['debug'], $params['forceRestart']));
 			}
 
 			if ($jsonrpc->getMethod() == 'plugin::deamonChangeAutoMode') {
 				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess();
+				}
 				$jsonrpc->makeSuccess($plugin->deamon_changeAutoMode($params['mode']));
 			}
 
