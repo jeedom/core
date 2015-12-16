@@ -1,6 +1,6 @@
 <div style="width:90px;height:100%;vertical-align: top;" class="cmd #history# tooltips" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" title="#collectDate#">
     <center>
-        <span class="cursor" style="font-size: 3em;" class="action" id="iconCmd#uid#"></span>
+        <span style="font-size: 3em;" class="action cursor" id="iconCmd#uid#"></span>
     </center>
 </div>
 
@@ -16,8 +16,7 @@
             $('.cmd[data-cmd_uid=#uid#]').hide();
         }
     }
-    $('.cmd[data-cmd_uid=#uid#] .action').off();
-    $('.cmd[data-cmd_uid=#uid#] .action').on('click', function() {
+    $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function() {
         jeedom.cmd.execute({id: '#id#'});
     });
 </script>
