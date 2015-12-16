@@ -267,7 +267,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 					$dependancyInfo = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => $plugin_id));
 					echo '<tr>';
 					echo '<td style="font-weight : bold;">';
-					echo '{{Dépendance}}';
+					echo '{{Dépendance}} ' . $jeeNetwork->getName();
 					echo '</td>';
 					switch ($dependancy_info['state']) {
 						case 'ok':
@@ -331,7 +331,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 					$deamon_info = $jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id));
 					echo '<tr>';
 					echo '<td style="font-weight : bold;">';
-					echo '{{Configuration démon}}';
+					echo '{{Configuration démon}} ' . $jeeNetwork->getName();
 					echo '</td>';
 					switch ($deamon_info['launchable']) {
 						case 'ok':
@@ -346,7 +346,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 					echo '</tr>';
 					echo '<tr>';
 					echo '<td style="font-weight : bold;">';
-					echo '{{Status démon}}';
+					echo '{{Status démon}} ' . $jeeNetwork->getName();
 					echo '</td>';
 					switch ($deamon_info['state']) {
 						case 'ok':
