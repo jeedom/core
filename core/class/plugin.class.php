@@ -406,7 +406,7 @@ class plugin {
 			$return['log'] = '';
 		}
 		$return['auto'] = config::byKey('deamonAutoMode', $this->getId(), 1);
-		if ($return['auto'] == 0 && $return['launchable_message'] == '') {
+		if ($return['auto'] == 0) {
 			$return['launchable_message'] = __('Gestion automatique désactivée', __FILE__);
 		}
 		return $return;
