@@ -375,6 +375,10 @@ class plugin {
 
 	public function deamon_changeAutoMode($_mode) {
 		config::save('deamonAutoMode', $_mode, $this->getId());
+		$plugin_id = $this->getId();
+		if (method_exists($plugin_id, 'deamon_changeAutoMode')) {
+			$plugin_id::deamon_changeAutoMode($_mode);
+		}
 	}
 
 	public function deamon_info() {
