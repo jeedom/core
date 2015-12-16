@@ -355,7 +355,7 @@ class plugin {
 	public function dependancy_info() {
 		$plugin_id = $this->getId();
 		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_info')) {
-			return array();
+			return array('state' => 'nok', 'log' => 'nok');
 		}
 		return $plugin_id::dependancy_info();
 	}
@@ -373,7 +373,7 @@ class plugin {
 		$return = array();
 		$plugin_id = $this->getId();
 		if ($this->getHasOwnDeamon() != 1 || !method_exists($plugin_id, 'deamon_info')) {
-			return array();
+			return array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok');
 		}
 		$return = $plugin_id::deamon_info();
 		if ($this->getHasDependency() == 1 && method_exists($plugin_id, 'dependancy_info') && $return['launchable'] == 'ok') {
