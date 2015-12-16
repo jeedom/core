@@ -357,7 +357,11 @@ class plugin {
 		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_info')) {
 			return array('state' => 'nok', 'log' => 'nok');
 		}
-		return $plugin_id::dependancy_info();
+		$return = $plugin_id::dependancy_info();
+		if (!isset($return['log'])) {
+			$return['log'] = '';
+		}
+		return $return;
 	}
 
 	public function dependancy_install() {
@@ -389,6 +393,9 @@ class plugin {
 		}
 		if (!isset($return['launchable_message'])) {
 			$return['launchable_message'] = '';
+		}
+		if (!isset($return['log'])) {
+			$return['log'] = '';
 		}
 		return $return;
 	}
