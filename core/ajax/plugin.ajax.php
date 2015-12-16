@@ -170,15 +170,12 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		$plugin_id = init('id');
 		if (init('slave_id', 0) == 0) {
-			if (!method_exists($plugin_id, 'dependancy_info')) {
-				ajax::success();
-			}
-			ajax::success($plugin_id::dependancy_info());
+			$plugin = plugin::byId(init('id'));
+			ajax::success($plugin->dependancy_info());
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-			ajax::success($jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => $plugin_id)));
+			ajax::success($jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => init('id'))));
 		}
 	}
 
@@ -186,15 +183,12 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		$plugin_id = init('id');
 		if (init('slave_id', 0) == 0) {
-			if (!method_exists($plugin_id, 'dependancy_install')) {
-				ajax::success();
-			}
-			ajax::success($plugin_id::dependancy_install());
+			$plugin = plugin::byId(init('id'));
+			ajax::success($plugin->dependancy_install());
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-			ajax::success($jeeNetwork->sendRawRequest('plugin::dependancyInstall', array('plugin_id' => $plugin_id)));
+			ajax::success($jeeNetwork->sendRawRequest('plugin::dependancyInstall', array('plugin_id' => init('id'))));
 		}
 	}
 

@@ -27,7 +27,7 @@ $refresh = array();
 			<td>{{Local}}</td>
 			<td class="dependancyState" data-slave_id="0">
 				<?php
-$refresh[0] = 0;
+$refresh[0] = 1;
 switch ($dependancy_info['state']) {
 	case 'ok':
 		echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
@@ -36,7 +36,6 @@ switch ($dependancy_info['state']) {
 		echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
 		break;
 	case 'in_progress':
-		$refresh[0] = 1;
 		echo '<span class="label label-primary" style="font-size:1em;">{{Installation en cours}}</span>';
 		break;
 	default:
@@ -65,7 +64,7 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 						</td>
 						<td class="dependancyState" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
 							<?php
-$refresh[$jeeNetwork->getId()] = 0;
+$refresh[$jeeNetwork->getId()] = 1;
 			if (!isset($dependancy_info['state'])) {
 				$dependancy_info['state'] = 'nok';
 			}
@@ -77,7 +76,6 @@ $refresh[$jeeNetwork->getId()] = 0;
 					echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
 					break;
 				case 'in_progress':
-					$refresh[$jeeNetwork->getId()] = 1;
 					echo '<span class="label label-primary" style="font-size:1em;">{{Installation en cours}}</span>';
 					break;
 				default:
@@ -107,6 +105,7 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 ?>
 <script>
 	function refreshDependancyInfo(){
+		var nok = false;
 		for(var i in refresh_dependancy_info){
 			if(refresh_dependancy_info[i] == 1){
 				jeedom.plugin.getDependancyInfo({
@@ -116,7 +115,6 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 						$('#div_alert').showAlert({message: error.message, level: 'danger'});
 					},
 					success: function (data) {
-						var nok = false;
 						refresh_dependancy_info[i] = 0;
 						switch(data.state) {
 							case 'ok':
@@ -124,10 +122,12 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 							break;
 							case 'nok':
 							nok = true;
-							$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success').addClass('panel-danger');
+							$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-info').addClass('panel-danger');
 							$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>');
 							break;
 							case 'in_progress':
+							nok = true;
+							$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-danger').addClass('panel-info');
 							refresh_dependancy_info[i] = 1;
 							$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-primary" style="font-size:1em;">{{Installation en cours}}</span>');
 							break;
@@ -135,7 +135,7 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 							$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
 						}
 						if(!nok){
-							$("#div_plugin_deamon").closest('.panel').removeClass('panel-danger').addClass('panel-success');
+							$("#div_plugin_dependancy").closest('.panel').removeClass('panel-danger panel-info').addClass('panel-success');
 						}
 					}
 				});

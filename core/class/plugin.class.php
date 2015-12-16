@@ -352,6 +352,23 @@ class plugin {
 		}
 	}
 
+	public function dependancy_info() {
+		$plugin_id = $this->getId();
+		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_info')) {
+			return array();
+		}
+		return $plugin_id::dependancy_info();
+	}
+
+	public function dependancy_install() {
+		$plugin_id = $this->getId();
+		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_install')) {
+			return;
+		}
+		$this->deamon_stop();
+		return $plugin_id::dependancy_install();
+	}
+
 	public function deamon_info() {
 		$return = array();
 		$plugin_id = $this->getId();
@@ -360,10 +377,14 @@ class plugin {
 		}
 		$return = $plugin_id::deamon_info();
 		if ($this->getHasDependency() == 1 && method_exists($plugin_id, 'dependancy_info') && $return['launchable'] == 'ok') {
-			$dependancy_info = $plugin_id::dependancy_info();
+			$dependancy_info = $this->dependancy_info();
 			if ($dependancy_info['state'] != 'ok') {
 				$return['launchable'] = 'nok';
-				$return['launchable_message'] = __('Dépendances non installées', __FILE__);
+				if ($dependancy_info['state'] == 'in_progress') {
+					$return['launchable_message'] = __('Dépendances en cours d\'installation', __FILE__);
+				} else {
+					$return['launchable_message'] = __('Dépendances non installées', __FILE__);
+				}
 			}
 		}
 		if (!isset($return['launchable_message'])) {
@@ -460,11 +481,9 @@ class plugin {
 				$this->deamon_stop();
 				if ($this->getHasDependency() == 1) {
 					$plugin_id = $this->getId();
-					if (method_exists($plugin_id, 'dependancy_info') && method_exists($plugin_id, 'dependancy_install')) {
-						$dependancy_info = $plugin_id::dependancy_info();
-						if ($dependancy_info['state'] == 'nok') {
-							$plugin_id::dependancy_install();
-						}
+					$dependancy_info = $this->dependancy_info();
+					if ($dependancy_info['state'] == 'nok') {
+						$this->dependancy_install();
 					}
 				}
 				if ($alreadyActive == 1) {

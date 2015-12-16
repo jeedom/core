@@ -14,6 +14,7 @@ if (count($deamon_info) == 0) {
 }
 $refresh = array();
 ?>
+<div class="alert alert-warning">{{Suite à l'installation du plugin ou à la mise à jour des dépendances veuillez attendre au moins 5min pour que le démon se relance automatiquement}}</div>
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -164,6 +165,7 @@ sendVarToJs('refresh_deamon_info', $refresh);
 <script>
 	function refreshDeamonInfo(){
 		var relaunch = false;
+		var nok = false;
 		for(var i in refresh_deamon_info){
 			relaunch = true;
 			jeedom.plugin.getDeamonInfo({
@@ -173,14 +175,12 @@ sendVarToJs('refresh_deamon_info', $refresh);
 					$('#div_alert').showAlert({message: error.message, level: 'danger'});
 				},
 				success: function (data) {
-					var nok = false;
 					switch(data.state) {
 						case 'ok':
 						$('.deamonState[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
 						break;
 						case 'nok':
 						nok = true;
-						$("#div_plugin_deamon").closest('.panel').removeClass('panel-success').addClass('panel-danger');
 						$('.deamonState[data-slave_id='+i+']').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>');
 						break;
 						default:
@@ -198,7 +198,6 @@ sendVarToJs('refresh_deamon_info', $refresh);
 						break;
 						case 'nok':
 						nok = true;
-						$("#div_plugin_deamon").closest('.panel').removeClass('panel-success').addClass('panel-danger');
 						$('.bt_startDeamon').hide();
 						$('.bt_stopDeamon').hide();
 						$('.bt_launchDebug').hide();
@@ -209,6 +208,18 @@ sendVarToJs('refresh_deamon_info', $refresh);
 					}
 					if(!nok){
 						$("#div_plugin_deamon").closest('.panel').removeClass('panel-danger').addClass('panel-success');
+					}else{
+						$("#div_plugin_deamon").closest('.panel').removeClass('panel-success').addClass('panel-danger');
+					}
+					if(data.launchable == 'ok' && data.state != 'ok'){
+						jeedom.plugin.deamonStart({
+							id : plugin_id,
+							slave_id: i,
+							global : false,
+							error: function (error) {
+								$('#div_alert').showAlert({message: error.message, level: 'danger'});
+							}
+						});
 					}
 				}
 			});
