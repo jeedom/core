@@ -17,9 +17,9 @@
 
         $('#iconCmd#uid#').on('click', function() {
             if ($(this).attr('data-state') == 'on') {
-                jeedom.cmd.execute({id: '#id#', value: {slider: ('#minValue#' == '') ? 0 : parseInt('#minValue#')}});
+                jeedom.cmd.execute({id: '#id#', value: {slider: 0}});
             } else {
-                jeedom.cmd.execute({id: '#id#', value: {slider: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')}});
+                jeedom.cmd.execute({id: '#id#', value: {slider: 99}});
             }
         });
 

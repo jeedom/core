@@ -4,7 +4,7 @@
         <div class="slider" style="margin : 5px 10px 8px 10px;width: 80px;" value="#state#" ></div>
     </center>
     <script>
-        $('.iconCmd#id#').empty();
+        $('.iconCmd#uid#').empty();
         if (parseInt('#state#') > 0) {
             $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-on"></i>');
             $('.iconCmd#uid#').attr('data-state', 'on');
@@ -15,9 +15,9 @@
 
         $('.iconCmd#uid#').off().on('click', function() {
             if ($(this).attr('data-state') == 'on') {
-                jeedom.cmd.execute({id: '#id#', value: {slider: ('#minValue#' == '') ? 0 : parseInt('#minValue#')}});
+                jeedom.cmd.execute({id: '#id#', value: {slider: 0}});
             } else {
-                jeedom.cmd.execute({id: '#id#', value: {slider: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')}});
+                jeedom.cmd.execute({id: '#id#', value: {slider: 99}});
             }
         });
 
