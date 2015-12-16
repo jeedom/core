@@ -209,7 +209,9 @@ sendVarToJs('refresh_deamon_info', $refresh);
 					switch(data.launchable) {
 						case 'ok':
 						$('.bt_startDeamon').show();
-						$('.bt_stopDeamon').show();
+						if(data.auto == 1){
+							$('.bt_stopDeamon').show();
+						}
 						$('.bt_launchDebug').show();
 						$('.deamonLaunchable[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
 						break;
@@ -224,10 +226,14 @@ sendVarToJs('refresh_deamon_info', $refresh);
 						$('.deamonLaunchable[data-slave_id='+i+']').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
 					}
 					if(data.auto == 1){
+						$('.bt_stopDeamon').hide();
 						$('.bt_changeAutoMode[data-slave_id='+i+']').removeClass('btn-success').addClass('btn-danger');
 						$('.bt_changeAutoMode[data-slave_id='+i+']').attr('data-mode',0);
 						$('.bt_changeAutoMode[data-slave_id='+i+']').html('<i class="fa fa-times"></i> {{Désactiver}}');
 					}else{
+						if(data.launchable == 'ok'){
+							$('.bt_stopDeamon').show();
+						}
 						$('.bt_changeAutoMode[data-slave_id='+i+']').removeClass('btn-danger').addClass('btn-success');
 						$('.bt_changeAutoMode[data-slave_id='+i+']').attr('data-mode',1);
 						$('.bt_changeAutoMode[data-slave_id='+i+']').html('<i class="fa fa-magic"></i> {{Activer}}');
@@ -235,6 +241,7 @@ sendVarToJs('refresh_deamon_info', $refresh);
 					if(!nok){
 						$("#div_plugin_deamon").closest('.panel').removeClass('panel-danger').addClass('panel-success');
 					}else{
+
 						$("#div_plugin_deamon").closest('.panel').removeClass('panel-success').addClass('panel-danger');
 					}
 					if(data.launchable == 'ok' && data.state != 'ok' && data.auto == 1){
