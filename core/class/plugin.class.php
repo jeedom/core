@@ -361,6 +361,16 @@ class plugin {
 		if (!isset($return['log'])) {
 			$return['log'] = '';
 		}
+		if (isset($return['progress_file'])) {
+			$return['progression'] = 0;
+			if (@file_exists($return['progress_file'])) {
+				$return['state'] = 'in_progress';
+				$progression = trim(file_get_contents($return['progress_file']));
+				if ($progression != '') {
+					$return['progression'] = $progression;
+				}
+			}
+		}
 		return $return;
 	}
 

@@ -36,7 +36,11 @@ switch ($dependancy_info['state']) {
 		echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
 		break;
 	case 'in_progress':
-		echo '<span class="label label-primary" style="font-size:1em;">{{Installation en cours}}</span>';
+		echo '<span class="label label-primary" style="font-size:1em;"><i class="fa fa-spinner fa-spin"></i> {{Installation en cours}}';
+		if (isset($dependancy_info['progression']) && $dependancy_info['progression'] !== '') {
+			echo ' (' . $dependancy_info['progression'] . ' %)';
+		}
+		echo '</span>';
 		break;
 	default:
 		echo '<span class="label label-warning" style="font-size:1em;">' . $dependancy_info['state'] . '</span>';
@@ -76,7 +80,11 @@ $refresh[$jeeNetwork->getId()] = 1;
 					echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
 					break;
 				case 'in_progress':
-					echo '<span class="label label-primary" style="font-size:1em;">{{Installation en cours}}</span>';
+					echo '<span class="label label-primary" style="font-size:1em;"><i class="fa fa-spinner fa-spin"></i> {{Installation en cours}}';
+					if (isset($dependancy_info['progression']) && $dependancy_info['progression'] !== '') {
+						echo ' (' . $dependancy_info['progression'] . ' %)';
+					}
+					echo '</span>';
 					break;
 				default:
 					echo '<span class="label label-warning" style="font-size:1em;">' . $dependancy_info['state'] . '</span>';
@@ -129,7 +137,12 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 							nok = true;
 							$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-danger').addClass('panel-info');
 							refresh_dependancy_info[i] = 1;
-							$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-primary" style="font-size:1em;">{{Installation en cours}}</span>');
+							var html = '<span class="label label-primary" style="font-size:1em;"><i class="fa fa-spinner fa-spin"></i> {{Installation en cours}}';
+							if(isset(data.progression) && data.progression !== ''){
+								html += ' ('+data.progression+' %)';
+							}
+							html += '</span>';
+							$('.dependancyState[data-slave_id='+i+']').empty().append(html);
 							break;
 							default:
 							$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
