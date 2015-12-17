@@ -62,7 +62,7 @@ fi
 
 # Installing php vendors
 curl -sS https://getcomposer.org/installer | php
-composer install -o
+php composer.phar install -o
 
 WEBSERVER_HOME=$(pwd)
 
