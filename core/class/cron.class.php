@@ -337,12 +337,20 @@ class cron {
 				while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
 					sleep(1);
 					exec('kill -9 ' . $this->getPID());
+					exec('sudo kill -9 ' . $this->getPID());
 					$kill = $this->running();
 					$retry++;
 				}
 			}
 			if ($this->running()) {
 				exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+				exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $2}' | xargs sudo kill -9 > /dev/null 2>&1");
+				sleep(1);
+				if ($this->running()) {
+					exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+					exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $2}' | xargs sudo kill -9 > /dev/null 2>&1");
+					sleep(1);
+				}
 				if ($this->running()) {
 					$this->setState('error');
 					$this->setServer('');
