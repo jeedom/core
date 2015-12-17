@@ -60,6 +60,10 @@ if [ $(id -u) != 0 ] ; then
     exit 1
 fi
 
+# Installing php vendors
+curl -sS https://getcomposer.org/installer | php
+composer install -o
+
 WEBSERVER_HOME=$(pwd)
 
 echo "********************************************************"

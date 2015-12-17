@@ -15,3 +15,6 @@ tmp/*
 
 Thumbs.db
 .DS_Store
+
+vendor
+composer.phar
