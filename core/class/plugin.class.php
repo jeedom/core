@@ -371,6 +371,7 @@ class plugin {
 				}
 			}
 		}
+		$return['last_launch'] = config::byKey('lastDependancyInstallTime', $this->getId(), __('Inconnue', __FILE__));
 		return $return;
 	}
 
@@ -380,7 +381,9 @@ class plugin {
 			return;
 		}
 		$this->deamon_stop();
-		return $plugin_id::dependancy_install();
+		config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
+		$plugin_id::dependancy_install();
+		return;
 	}
 
 	public function deamon_changeAutoMode($_mode) {
@@ -427,6 +430,7 @@ class plugin {
 			$return['launchable'] = 'nok';
 			$return['launchable_message'] = __('Jeedom n\'est pas encore démarré', __FILE__);
 		}
+		$return['last_launch'] = config::byKey('lastDeamonLaunchTime', $this->getId(), __('Inconnue', __FILE__));
 		return $return;
 	}
 
@@ -442,6 +446,7 @@ class plugin {
 					return;
 				}
 				if ($deamon_info['launchable'] == 'ok' && ($deamon_info['state'] == 'nok') && method_exists($plugin_id, 'deamon_start')) {
+					config::save('lastDeamonLaunchTime', date('Y-m-d H:i:s'), $plugin_id);
 					$plugin_id::deamon_start($_debug);
 				}
 			}

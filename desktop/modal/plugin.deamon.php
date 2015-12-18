@@ -26,6 +26,7 @@ $refresh = array();
 			<th>{{Debug}}</th>
 			<th>{{Log}}</th>
 			<th>{{Gestion automatique}}</th>
+			<th>{{Dernier lancement}}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -91,6 +92,9 @@ switch ($deamon_info['launchable']) {
 				<a class="btn btn-success btn-sm bt_changeAutoMode" data-mode="1" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-magic"></i> {{Activer}}</a>
 				<?php }
 ?>
+			</td>
+			<td class="td_lastLaunch" data-slave_id="0">
+				<?php echo $deamon_info['last_launch'] ?>
 			</td>
 		</tr>
 
@@ -165,6 +169,9 @@ if (!isset($deamon_info['launchable'])) {
 							<?php }
 			?>
 						</td>
+						<td class="td_lastLaunch" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
+							<?php echo $deamon_info['last_launch'] ?>
+						</td>
 					</tr>
 					<?php
 } catch (Exception $e) {
@@ -227,6 +234,7 @@ sendVarToJs('refresh_deamon_info', $refresh);
 						default:
 						$('.deamonLaunchable[data-slave_id='+i+']').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
 					}
+					$('.td_lastLaunch[data-slave_id='+i+']').empty().append(data.last_launch);
 					if(data.auto == 1){
 						$('.bt_stopDeamon').hide();
 						$('.bt_changeAutoMode[data-slave_id='+i+']').removeClass('btn-success').addClass('btn-danger');
