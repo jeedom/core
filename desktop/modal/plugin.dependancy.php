@@ -114,47 +114,45 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 <script>
 	function refreshDependancyInfo(){
 		var nok = false;
-		for(var i in refresh_dependancy_info){
-			if(refresh_dependancy_info[i] == 1){
-				jeedom.plugin.getDependancyInfo({
-					id : plugin_id,
-					slave_id: i,
-					error: function (error) {
-						$('#div_alert').showAlert({message: error.message, level: 'danger'});
-					},
-					success: function (data) {
-						refresh_dependancy_info[i] = 0;
-						switch(data.state) {
-							case 'ok':
-							$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
-							break;
-							case 'nok':
-							nok = true;
-							$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-info').addClass('panel-danger');
-							$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>');
-							break;
-							case 'in_progress':
-							nok = true;
-							$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-danger').addClass('panel-info');
-							refresh_dependancy_info[i] = 1;
-							var html = '<span class="label label-primary" style="font-size:1em;"><i class="fa fa-spinner fa-spin"></i> {{Installation en cours}}';
-							if(isset(data.progression) && data.progression !== ''){
-								html += ' ('+data.progression+' %)';
-							}
-							html += '</span>';
-							$('.dependancyState[data-slave_id='+i+']').empty().append(html);
-							break;
-							default:
-							$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
+		jeedom.plugin.getDependancyInfo({
+			id : plugin_id,
+			slave_id: json_encode(refresh_dependancy_info),
+			error: function (error) {
+				$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			},
+			success: function (datas) {
+				for(var i in datas){
+					var data = datas[i];
+					switch(data.state) {
+						case 'ok':
+						$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
+						break;
+						case 'nok':
+						nok = true;
+						$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-info').addClass('panel-danger');
+						$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>');
+						break;
+						case 'in_progress':
+						nok = true;
+						$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-danger').addClass('panel-info');
+						refresh_dependancy_info[i] = 1;
+						var html = '<span class="label label-primary" style="font-size:1em;"><i class="fa fa-spinner fa-spin"></i> {{Installation en cours}}';
+						if(isset(data.progression) && data.progression !== ''){
+							html += ' ('+data.progression+' %)';
 						}
-						if(!nok){
-							$("#div_plugin_dependancy").closest('.panel').removeClass('panel-danger panel-info').addClass('panel-success');
-						}
+						html += '</span>';
+						$('.dependancyState[data-slave_id='+i+']').empty().append(html);
+						break;
+						default:
+						$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
 					}
-				});
-}
-}
-setTimeout(refreshDependancyInfo, 5000);
+					if(!nok){
+						$("#div_plugin_dependancy").closest('.panel').removeClass('panel-danger panel-info').addClass('panel-success');
+					}
+				}
+				setTimeout(refreshDependancyInfo, 5000);
+			}
+		});
 }
 refreshDependancyInfo();
 

@@ -180,16 +180,19 @@ if (!isset($deamon_info['launchable'])) {
 sendVarToJs('refresh_deamon_info', $refresh);
 ?>
 <script>
+	var timeout_refreshDeamonInfo = null;
 	function refreshDeamonInfo(){
+		var in_progress = true;
 		var nok = false;
-		for(var i in refresh_deamon_info){
-			jeedom.plugin.getDeamonInfo({
-				id : plugin_id,
-				slave_id: i,
-				error: function (error) {
-					$('#div_alert').showAlert({message: error.message, level: 'danger'});
-				},
-				success: function (data) {
+		jeedom.plugin.getDeamonInfo({
+			id : plugin_id,
+			slave_id: json_encode(refresh_deamon_info),
+			error: function (error) {
+				$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			},
+			success: function (datas) {
+				for(var i in datas){
+					var data = datas[i];
 					switch(data.state) {
 						case 'ok':
 						$('.deamonState[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
@@ -243,21 +246,26 @@ sendVarToJs('refresh_deamon_info', $refresh);
 						$("#div_plugin_deamon").closest('.panel').removeClass('panel-success').addClass('panel-danger');
 					}
 					if(data.launchable == 'ok' && data.state != 'ok' && data.auto == 1){
+						clearTimeout(timeout_refreshDeamonInfo);
 						jeedom.plugin.deamonStart({
 							id : plugin_id,
 							slave_id: i,
 							global : false,
 							error: function (error) {
 								$('#div_alert').showAlert({message: error.message, level: 'danger'});
+								timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
+							},
+							success :function(){
+								timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 							}
 						});
 					}
 				}
-			});
-}
-if($("#div_plugin_deamon").is(':visible')){
-	setTimeout(refreshDeamonInfo, 5000);
-}
+				if($("#div_plugin_deamon").is(':visible')){
+					timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
+				}
+			}
+		});
 }
 refreshDeamonInfo();
 

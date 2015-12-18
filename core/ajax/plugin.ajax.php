@@ -170,16 +170,33 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		if (init('slave_id', 0) == 0) {
-			$plugin = plugin::byId(init('id'));
-			if (!is_object($plugin)) {
-				ajax::success(array('state' => 'nok', 'log' => 'nok'));
+		$plugin = plugin::byId(init('id'));
+		if (is_json(init('slave_id', 0)) && is_array(json_decode(init('slave_id', 0), true))) {
+			$return = array();
+			foreach (json_decode(init('slave_id', 0), true) as $key => $value) {
+				if ($key == 0) {
+					$plugin = plugin::byId(init('id'));
+					if (is_object($plugin)) {
+						$return[$key] = $plugin->dependancy_info();
+					}
+				} else {
+					$jeeNetwork = jeeNetwork::byId([$key]);
+					$return[$key] = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => $plugin_id));
+				}
 			}
-			ajax::success($plugin->dependancy_info());
 		} else {
-			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-			ajax::success($jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => init('id'))));
+			$return = array('state' => 'nok', 'log' => 'nok');
+			if (init('slave_id', 0) == 0) {
+				$plugin = plugin::byId(init('id'));
+				if (is_object($plugin)) {
+					$return = $plugin->dependancy_info();
+				}
+			} else {
+				$jeeNetwork = jeeNetwork::byId(init('slave_id'));
+				$return = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => init('id')));
+			}
 		}
+		ajax::success($return);
 	}
 
 	if (init('action') == 'dependancyInstall') {
@@ -203,16 +220,32 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		$plugin_id = init('id');
-		if (init('slave_id', 0) == 0) {
-			$plugin = plugin::byId(init('id'));
-			if (!is_object($plugin)) {
-				ajax::success(array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0));
+		if (is_json(init('slave_id', 0)) && is_array(json_decode(init('slave_id', 0), true))) {
+			$return = array();
+			foreach (json_decode(init('slave_id', 0), true) as $key => $value) {
+				if ($key == 0) {
+					$plugin = plugin::byId(init('id'));
+					if (is_object($plugin)) {
+						$return[$key] = $plugin->deamon_info();
+					}
+				} else {
+					$jeeNetwork = jeeNetwork::byId([$key]);
+					$return[$key] = $jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id));
+				}
 			}
-			ajax::success($plugin->deamon_info());
 		} else {
-			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id)));
+			$return = array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0);
+			if (init('slave_id', 0) == 0) {
+				$plugin = plugin::byId(init('id'));
+				if (is_object($plugin)) {
+					$return = $plugin->deamon_info();
+				}
+			} else {
+				$jeeNetwork = jeeNetwork::byId(init('slave_id'));
+				$return = $jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id));
+			}
 		}
+		ajax::success($return);
 	}
 
 	if (init('action') == 'deamonStart') {
