@@ -419,6 +419,14 @@ class plugin {
 		if ($return['auto'] == 0) {
 			$return['launchable_message'] = __('Gestion automatique désactivée', __FILE__);
 		}
+		if (config::byKey('enableCron', 'core', 1, true) == 0) {
+			$return['launchable'] = 'nok';
+			$return['launchable_message'] = __('Les crons et démons sont désactivés', __FILE__);
+		}
+		if (!jeedom::isStarted()) {
+			$return['launchable'] = 'nok';
+			$return['launchable_message'] = __('Jeedom n\'est pas encore démarré', __FILE__);
+		}
 		return $return;
 	}
 

@@ -181,10 +181,8 @@ sendVarToJs('refresh_deamon_info', $refresh);
 ?>
 <script>
 	function refreshDeamonInfo(){
-		var relaunch = false;
 		var nok = false;
 		for(var i in refresh_deamon_info){
-			relaunch = true;
 			jeedom.plugin.getDeamonInfo({
 				id : plugin_id,
 				slave_id: i,
@@ -257,7 +255,7 @@ sendVarToJs('refresh_deamon_info', $refresh);
 				}
 			});
 }
-if(relaunch && $("#div_plugin_deamon").is(':visible')){
+if($("#div_plugin_deamon").is(':visible')){
 	setTimeout(refreshDeamonInfo, 5000);
 }
 }
@@ -281,9 +279,6 @@ $('.bt_startDeamon').on('click',function(){
 					forceRestart: 1,
 					error: function (error) {
 						$('#div_alert').showAlert({message: error.message, level: 'danger'});
-					},
-					success: function (data) {
-						$("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
 					}
 				});
 			}
@@ -304,9 +299,6 @@ $('.bt_launchDebug').on('click',function(){
 					forceRestart: 1,
 					error: function (error) {
 						$('#div_alert').showAlert({message: error.message, level: 'danger'});
-					},
-					success: function (data) {
-						$("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
 					}
 				});
 			}
@@ -321,9 +313,6 @@ $('.bt_stopDeamon').on('click',function(){
 		slave_id: slave_id,
 		error: function (error) {
 			$('#div_alert').showAlert({message: error.message, level: 'danger'});
-		},
-		success: function (data) {
-			$("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
 		}
 	});
 });
@@ -337,9 +326,6 @@ $('.bt_changeAutoMode').on('click',function(){
 		mode : mode,
 		error: function (error) {
 			$('#div_alert').showAlert({message: error.message, level: 'danger'});
-		},
-		success: function (data) {
-			$("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+plugin_id);
 		}
 	});
 });
