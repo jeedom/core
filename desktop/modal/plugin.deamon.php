@@ -21,7 +21,7 @@ $refresh = array();
 			<th>{{Nom}}</th>
 			<th>{{Statut}}</th>
 			<th>{{Configuration}}</th>
-			<th>{{Démarrer}}</th>
+			<th>{{(Re)Démarrer}}</th>
 			<th>{{Arrêter}}</th>
 			<th>{{Debug}}</th>
 			<th>{{Log}}</th>
