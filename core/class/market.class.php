@@ -162,7 +162,7 @@ class market {
 			$timeout = 120;
 		} else {
 			$options = array('logicalId' => $_logicalId, 'type' => $_type);
-			$timeout = 2;
+			$timeout = 4;
 		}
 		if ($market->sendRequest('market::byLogicalIdAndType', $options, $timeout, null, 1)) {
 			if (is_array($_logicalId)) {
