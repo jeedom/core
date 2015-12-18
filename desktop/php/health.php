@@ -39,7 +39,7 @@ if (!cron::ok()) {
 			<?php
 if (config::byKey('enableCron', 'core', 1, true) == 0) {
 	echo '<td class="alert alert-danger">{{NOK}}</td>';
-	echo '<td>{{Erreur cron : les crons sont désactivés. Allez dans Général -> Administration -> Moteur de tâches pour les réactiver}}</td>';
+	echo '<td>{{Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver}}</td>';
 } else {
 	echo '<td class="alert alert-success">{{OK}}</td>';
 	echo '<td></td>';
@@ -52,7 +52,7 @@ if (config::byKey('enableCron', 'core', 1, true) == 0) {
 			<?php
 if (config::byKey('enableScenario') == 0 && count(scenario::all()) > 0) {
 	echo '<td class="alert alert-danger">{{NOK}}</td>';
-	echo '<td>{{Erreur scénario : tous les scénarios sont désactivés. Allez dans Général -> Scénarios pour les réactiver}}</td>';
+	echo '<td>{{Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver}}</td>';
 } else {
 	echo '<td class="alert alert-success">{{OK}}</td>';
 	echo '<td></td>';
