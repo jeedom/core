@@ -281,6 +281,7 @@ $('.bt_showDeamonLog').on('click',function(){
 });
 
 $('.bt_startDeamon').on('click',function(){
+	clearTimeout(timeout_refreshDeamonInfo);
 	var slave_id = $(this).attr('data-slave_id');
 	savePluginConfig({
 		relaunchDeamon : false,
@@ -292,6 +293,10 @@ $('.bt_startDeamon').on('click',function(){
 					forceRestart: 1,
 					error: function (error) {
 						$('#div_alert').showAlert({message: error.message, level: 'danger'});
+						timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
+					},
+					success:function(){
+						timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 					}
 				});
 			}
@@ -300,6 +305,7 @@ $('.bt_startDeamon').on('click',function(){
 });
 
 $('.bt_launchDebug').on('click',function(){
+	clearTimeout(timeout_refreshDeamonInfo);
 	var slave_id = $(this).attr('data-slave_id');
 	savePluginConfig({
 		relaunchDeamon : false,
@@ -312,6 +318,10 @@ $('.bt_launchDebug').on('click',function(){
 					forceRestart: 1,
 					error: function (error) {
 						$('#div_alert').showAlert({message: error.message, level: 'danger'});
+						timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
+					},
+					success:function(){
+						timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 					}
 				});
 			}
@@ -320,17 +330,23 @@ $('.bt_launchDebug').on('click',function(){
 });
 
 $('.bt_stopDeamon').on('click',function(){
+	clearTimeout(timeout_refreshDeamonInfo);
 	var slave_id = $(this).attr('data-slave_id');
 	jeedom.plugin.deamonStop({
 		id : plugin_id,
 		slave_id: slave_id,
 		error: function (error) {
 			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
+		},
+		success:function(){
+			timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 		}
 	});
 });
 
 $('.bt_changeAutoMode').on('click',function(){
+	clearTimeout(timeout_refreshDeamonInfo);
 	var slave_id = $(this).attr('data-slave_id');
 	var mode = $(this).attr('data-mode');
 	jeedom.plugin.deamonChangeAutoMode({
@@ -339,6 +355,10 @@ $('.bt_changeAutoMode').on('click',function(){
 		mode : mode,
 		error: function (error) {
 			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
+		},
+		success:function(){
+			timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 		}
 	});
 });
