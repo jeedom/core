@@ -95,4 +95,4 @@ Une fois le bouton d'ajout/édition des graphiques pressé, vous obtenez :
 
 image::../images/view9.png[]
 
-Une fois ajouté vous avez accès à des options de configuration : les différentes options sont expliquées link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-history.html#_graphique_sur_les_vues_et_les_designs[ici]
+Une fois ajouté vous avez accès à des options de configuration : les différentes options sont expliquées link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_graphique_sur_les_vues_et_les_designs[ici]

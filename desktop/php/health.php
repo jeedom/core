@@ -108,7 +108,7 @@ if (jeedom::isCapable('sudo')) {
 	echo '<td></td>';
 } else {
 	echo '<td class="alert alert-danger">{{NOK}}</td>';
-	echo '<td>Appliquer <a href="https://www.jeedom.fr/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom" targe="_blank">cette étape</a> de l\'installation</td>';
+	echo '<td>Appliquer <a href="https://www.jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom" targe="_blank">cette étape</a> de l\'installation</td>';
 }
 ?>
 		</tr>

@@ -12,7 +12,7 @@ if (!is_object($object)) {
 	$object = object::rootObject();
 }
 if (!is_object($object)) {
-	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Général -> Objet.<br/> Si vous ne savez pas quoi faire ou que c\'est la première fois que vous utilisez Jeedom n\'hésitez pas à consulter cette <a href="https://jeedom.fr/doc/documentation/premiers-pas/fr_FR/doc-premiers-pas.html" target="_blank">page</a> et celle la si vous avez un pack : <a href="https://jeedom.fr/start" target="_blank">page</a>}}');
+	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Général -> Objet.<br/> Si vous ne savez pas quoi faire ou que c\'est la première fois que vous utilisez Jeedom n\'hésitez pas à consulter cette <a href="https://jeedom.com/doc/documentation/premiers-pas/fr_FR/doc-premiers-pas.html" target="_blank">page</a> et celle la si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
 }
 $child_object = object::buildTree($object);
 $parentNumber = array();
@@ -61,8 +61,8 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 	}
 }
 ?>
-<i class='fa fa-picture-o cursor tooltips pull-left' id='bt_displayObject' data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault')?>' title="{{Afficher/Masquer les objets}}"></i>
-<i class='fa fa-cogs pull-right cursor tooltips' id='bt_displayScenario' data-display='<?php echo $_SESSION['user']->getOptions('displayScenarioByDefault')?>' title="{{Afficher/Masquer les scénarios}}"></i>
+<i class='fa fa-picture-o cursor tooltips pull-left' id='bt_displayObject' data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"></i>
+<i class='fa fa-cogs pull-right cursor tooltips' id='bt_displayScenario' data-display='<?php echo $_SESSION['user']->getOptions('displayScenarioByDefault') ?>' title="{{Afficher/Masquer les scénarios}}"></i>
 <?php if (init('category', 'all') == 'all') {?>
 <i class="fa fa-pencil pull-right cursor" id="bt_editDashboardWidgetOrder" data-mode="0" style="margin-right : 10px;"></i>
 <?php }

@@ -8,7 +8,7 @@ Pour accèder à la page d'interaction il faut aller sur Outils -> Intérations 
 
 image::../images/interact1.JPG[]
 
-La page d’intéraction permet de configurer toutes les intéractions orales (via le module SARAH, ou tasker + autovoice, voir https://jeedom.fr/doc/documentation/howto/fr_FR/doc-howto-android.autovoice.html[ici]) ou écrites ( les sms ou le plugin Slack par exemple…) que l’on peut avoir avec Jeedom :
+La page d’intéraction permet de configurer toutes les intéractions orales (via le module SARAH, ou tasker + autovoice, voir https://jeedom.com/doc/documentation/howto/fr_FR/doc-howto-android.autovoice.html[ici]) ou écrites ( les sms ou le plugin Slack par exemple…) que l’on peut avoir avec Jeedom :
 
 image::../images/interact6.JPG[]
 

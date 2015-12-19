@@ -12,14 +12,14 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 <div id='div_alertReportBug'></div>
 <form class="form-horizontal" role="form" id="form_reportBug">
     <div class='alert alert-info'>
-        {{Vous avez une idée vous voulez la partager ? N'hesitez pas à nous la décrire <a href="http://prd.jeedom.com/feedback" target="_blank">ici</a>}}
+        {{Vous avez une idée vous voulez la partager ? N'hesitez pas à nous la décrire <a href="https://jeedom.com/feedback" target="_blank">ici</a>}}
     </div>
     <div class='alert alert-warning'>
         {{Merci de vérifier avant toute ouverture de ticket :}}<br/>
-        {{- que la question n'a pas déjà été posée sur le <a href='https://jeedom.fr/forum'>forum</a>}}<br/>
+        {{- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>}}<br/>
         {{- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais}}<br/>
-        {{- que la réponse n'est pas déjà dans la <a href='https://jeedom.fr/doc'>documentation</a>}}<br/>
-        {{- que la réponse n'est pas déjà dans la <a href='http://prd.jeedom.com/faq'>faq</a>}}<br/><br/>
+        {{- que la réponse n'est pas déjà dans la <a href='https://jeedom.com/doc'>documentation</a>}}<br/>
+        {{- que la réponse n'est pas déjà dans la <a href='https://jeedom.com/faq'>faq</a>}}<br/><br/>
         {{N'oubliez pas que poser la question sur le forum vous fournira généralement une réponse plus rapide que par ticket.}}
     </div>
     <div class="form-group">
@@ -99,6 +99,6 @@ foreach (plugin::listPlugin(true) as $plugin) {
 
 $('#bt_searchOnFaq').on('click',function(){
     $('#div_reportModalSendAction').show();
-    window.open('http://prd.jeedom.com/faq/?submit=&action=search&search='+encodeURIComponent($('#form_reportBug .ticketAttr[data-l1key=title]').value()), '_blank');
+    window.open('https://jeedom.com/faq/?submit=&action=search&search='+encodeURIComponent($('#form_reportBug .ticketAttr[data-l1key=title]').value()), '_blank');
 });
 </script>

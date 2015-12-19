@@ -164,7 +164,7 @@ foreach ($market->getImg('screenshot') as $screenshot) {
   <div class='row'>
     <div class='col-sm-6'>
         <legend>{{Description}}
-<a class="btn btn-default btn-xs pull-right" target="_blank" href="https://jeedom.fr/doc/documentation/plugins/<?php echo $market->getLogicalId() . '/fr_FR/' . $market->getLogicalId() . '.html' ?>"><i class="fa fa-book"></i> {{Documentation}}</a><br/>
+<a class="btn btn-default btn-xs pull-right" target="_blank" href="https://jeedom.com/doc/documentation/plugins/<?php echo $market->getLogicalId() . '/fr_FR/' . $market->getLogicalId() . '.html' ?>"><i class="fa fa-book"></i> {{Documentation}}</a><br/>
         </legend>
         <span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
         <br/><br/>

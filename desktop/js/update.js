@@ -277,7 +277,7 @@ function addUpdate(_update) {
             tr += '<a class="btn btn-primary btn-xs pull-right view tooltips cursor" style="color : white;margin-bottom : 5px;"><i class="fa fa-search"></i> {{Voir}}</a>';
         }
     } else {
-        tr += '<a class="btn btn-default btn-xs pull-right" href="http://prd.jeedom.com/roadmap/index.php?changelog" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-bars"></i> {{Changelog}}</a>';
+        tr += '<a class="btn btn-default btn-xs pull-right" href="https://jeedom.com/roadmap/index.php?changelog" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-bars"></i> {{Changelog}}</a>';
     }
 
     tr += '</td>';
