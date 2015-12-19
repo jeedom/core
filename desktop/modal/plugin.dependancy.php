@@ -7,10 +7,8 @@ sendVarToJs('plugin_id', $plugin_id);
 if (!class_exists($plugin_id)) {
 	die();
 }
-if (!method_exists($plugin_id, 'dependancy_info')) {
-	die();
-}
-$dependancy_info = $plugin_id::dependancy_info();
+$plugin = plugin::byId($plugin_id);
+$dependancy_info = $plugin->dependancy_info();
 $refresh = array();
 ?>
 <table class="table table-bordered">
