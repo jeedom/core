@@ -124,9 +124,6 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 		jeedom.plugin.getDependancyInfo({
 			id : plugin_id,
 			slave_id: json_encode(refresh_dependancy_info),
-			error: function (error) {
-				$('#div_alert').showAlert({message: error.message, level: 'danger'});
-			},
 			success: function (datas) {
 				for(var i in datas){
 					var data = datas[i];

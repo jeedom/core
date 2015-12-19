@@ -194,9 +194,6 @@ sendVarToJs('refresh_deamon_info', $refresh);
 		jeedom.plugin.getDeamonInfo({
 			id : plugin_id,
 			slave_id: json_encode(refresh_deamon_info),
-			error: function (error) {
-				$('#div_alert').showAlert({message: error.message, level: 'danger'});
-			},
 			success: function (datas) {
 				for(var i in datas){
 					var data = datas[i];
