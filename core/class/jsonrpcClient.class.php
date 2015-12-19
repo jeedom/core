@@ -80,7 +80,7 @@ class jsonrpcClient {
 		}
 	}
 
-	private function send($_request, $_timeout = 3, $_file = null, $_maxRetry = 2) {
+	private function send($_request, $_timeout = 15, $_file = null, $_maxRetry = 2) {
 		if ($_file !== null) {
 			if (version_compare(phpversion(), '5.5.0', '>=')) {
 				foreach ($_file as $key => $value) {
