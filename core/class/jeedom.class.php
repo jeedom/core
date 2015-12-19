@@ -111,7 +111,7 @@ class jeedom {
 			if (isset($usbMapping[$_name])) {
 				return $usbMapping[$_name];
 			}
-			$usbMapping = self::getUsbMapping('', $_getGPIO);
+			$usbMapping = self::getUsbMapping('', true);
 			if (isset($usbMapping[$_name])) {
 				return $usbMapping[$_name];
 			}
