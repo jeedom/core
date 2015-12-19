@@ -55,7 +55,7 @@ switch ($dependancy_info['state']) {
 			<td>
 				<a class="btn btn-default btn-sm showLogPluginDependancy" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i> {{Voir la log}}</a>
 			</td>
-			<td class="td_lastLaunch" data-slave_id="0">
+			<td class="td_lastLaunchDependancy" data-slave_id="0">
 				<?php echo $deamon_info['last_launch'] ?>
 			</td>
 		</tr>
@@ -102,7 +102,7 @@ $refresh[$jeeNetwork->getId()] = 1;
 						<td>
 							<a class="btn btn-default btn-sm showLogPluginDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i> {{Voir la log}}</a>
 						</td>
-						<td class="td_lastLaunch" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
+						<td class="td_lastLaunchDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
 							<?php echo $deamon_info['last_launch'] ?>
 						</td>
 					</tr>
@@ -153,7 +153,7 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 						default:
 						$('.dependancyState[data-slave_id='+i+']').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
 					}
-					$('.td_lastLaunch[data-slave_id='+i+']').empty().append(data.last_launch);
+					$('.td_lastLaunchDependancy[data-slave_id='+i+']').empty().append(data.last_launch);
 					if(!nok){
 						$("#div_plugin_dependancy").closest('.panel').removeClass('panel-danger panel-info').addClass('panel-success');
 					}
