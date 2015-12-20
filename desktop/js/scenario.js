@@ -767,6 +767,7 @@ function printScenario(_id) {
       pColor = 0;
       $('.scenarioAttr').value('');
       $('.scenarioAttr[data-l1key=object_id] option:first').attr('selected',true);
+      $('.scenarioAttr[data-l1key=object_id]').val('');
       $('body').setValues(data, '.scenarioAttr');
       data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
       $('#span_lastLaunch').text(data.lastLaunch);
