@@ -343,12 +343,12 @@ class cron {
 				}
 			}
 			if ($this->running()) {
-				exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
-				exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $2}' | xargs sudo kill -9 > /dev/null 2>&1");
+				exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $1}' | xargs kill -9 > /dev/null 2>&1");
+				exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1");
 				sleep(1);
 				if ($this->running()) {
-					exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
-					exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $2}' | xargs sudo kill -9 > /dev/null 2>&1");
+					exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $1}' | xargs kill -9 > /dev/null 2>&1");
+					exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1");
 					sleep(1);
 				}
 				if ($this->running()) {

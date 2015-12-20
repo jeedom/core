@@ -188,7 +188,10 @@ sendVarToJs('refresh_deamon_info', $refresh);
 ?>
 <script>
 	var timeout_refreshDeamonInfo = null;
-	function refreshDeamonInfo(){
+	function refreshDeamonInfo(_refreshOnly){
+		if(!isset(_refreshOnly)){
+			_refreshOnly = false;
+		}
 		var in_progress = true;
 		var nok = false;
 		jeedom.plugin.getDeamonInfo({
@@ -199,12 +202,16 @@ sendVarToJs('refresh_deamon_info', $refresh);
 					var data = datas[i];
 					switch(data.state) {
 						case 'ok':
+						if(data.auto == 1){
+							$('.bt_stopDeamon[data-slave_id='+i+']').show();
+						}
 						$('.deamonState[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
 						break;
 						case 'nok':
 						if(data.auto == 1){
 							nok = true;
 						}
+						$('.bt_stopDeamon[data-slave_id='+i+']').hide();
 						$('.deamonState[data-slave_id='+i+']').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>');
 						break;
 						default:
@@ -212,20 +219,20 @@ sendVarToJs('refresh_deamon_info', $refresh);
 					}
 					switch(data.launchable) {
 						case 'ok':
-						$('.bt_startDeamon').show();
-						if(data.auto == 1){
-							$('.bt_stopDeamon').show();
+						$('.bt_startDeamon[data-slave_id='+i+']').show();
+						if(data.auto == 1 && data.state == 'ok'){
+							$('.bt_stopDeamon[data-slave_id='+i+']').show();
 						}
-						$('.bt_launchDebug').show();
+						$('.bt_launchDebug[data-slave_id='+i+']').show();
 						$('.deamonLaunchable[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
 						break;
 						case 'nok':
 						if(data.auto == 1){
 							nok = true;
 						}
-						$('.bt_startDeamon').hide();
-						$('.bt_stopDeamon').hide();
-						$('.bt_launchDebug').hide();
+						$('.bt_startDeamon[data-slave_id='+i+']').hide();
+						$('.bt_stopDeamon[data-slave_id='+i+']').hide();
+						$('.bt_launchDebug[data-slave_id='+i+']').hide();
 						$('.deamonLaunchable[data-slave_id='+i+']').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span> '+data.launchable_message);
 						break;
 						default:
@@ -238,7 +245,7 @@ sendVarToJs('refresh_deamon_info', $refresh);
 						$('.bt_changeAutoMode[data-slave_id='+i+']').attr('data-mode',0);
 						$('.bt_changeAutoMode[data-slave_id='+i+']').html('<i class="fa fa-times"></i> {{Désactiver}}');
 					}else{
-						if(data.launchable == 'ok'){
+						if(data.launchable == 'ok' && data.state == 'ok'){
 							$('.bt_stopDeamon').show();
 						}
 						$('.bt_changeAutoMode[data-slave_id='+i+']').removeClass('btn-danger').addClass('btn-success');
@@ -250,7 +257,7 @@ sendVarToJs('refresh_deamon_info', $refresh);
 					}else{
 						$("#div_plugin_deamon").closest('.panel').removeClass('panel-success').addClass('panel-danger');
 					}
-					if(data.launchable == 'ok' && data.state != 'ok' && data.auto == 1){
+					if(!_refreshOnly && data.launchable == 'ok' && data.state != 'ok' && data.auto == 1){
 						clearTimeout(timeout_refreshDeamonInfo);
 						jeedom.plugin.deamonStart({
 							id : plugin_id,
@@ -293,9 +300,11 @@ $('.bt_startDeamon').on('click',function(){
 					forceRestart: 1,
 					error: function (error) {
 						$('#div_alert').showAlert({message: error.message, level: 'danger'});
+						refreshDeamonInfo(true);
 						timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 					},
 					success:function(){
+						refreshDeamonInfo(true);
 						timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 					}
 				});
@@ -318,9 +327,11 @@ $('.bt_launchDebug').on('click',function(){
 					forceRestart: 1,
 					error: function (error) {
 						$('#div_alert').showAlert({message: error.message, level: 'danger'});
+						refreshDeamonInfo(true);
 						timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 					},
 					success:function(){
+						refreshDeamonInfo(true);
 						timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 					}
 				});
@@ -337,9 +348,11 @@ $('.bt_stopDeamon').on('click',function(){
 		slave_id: slave_id,
 		error: function (error) {
 			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			refreshDeamonInfo(true);
 			timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 		},
 		success:function(){
+			refreshDeamonInfo(true);
 			timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 		}
 	});
@@ -355,9 +368,11 @@ $('.bt_changeAutoMode').on('click',function(){
 		mode : mode,
 		error: function (error) {
 			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			refreshDeamonInfo(true);
 			timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 		},
 		success:function(){
+			refreshDeamonInfo(true);
 			timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
 		}
 	});
