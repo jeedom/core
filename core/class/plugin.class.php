@@ -220,6 +220,21 @@ class plugin {
 		}
 	}
 
+	public static function cron5() {
+		foreach (self::listPlugin(true) as $plugin) {
+			if (method_exists($plugin->getId(), 'cron5')) {
+				$plugin_id = $plugin->getId();
+				try {
+					$plugin_id::cron5();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron15 du plugin : ', __FILE__) . $e->getMessage());
+				} catch (Error $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron15 du plugin : ', __FILE__) . $e->getMessage());
+				}
+			}
+		}
+	}
+
 	public static function cron15() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron15')) {

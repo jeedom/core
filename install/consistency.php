@@ -93,7 +93,7 @@ try {
 	$cron->setClass('plugin');
 	$cron->setFunction('cronDaily');
 	$cron->setSchedule('00 00 * * * *');
-	$cron->setTimeout(5);
+	$cron->setTimeout(240);
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -121,7 +121,7 @@ try {
 	$cron->setSchedule('00 * * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
-	$cron->setTimeout(5);
+	$cron->setTimeout(60);
 	$cron->save();
 
 	$cron = cron::byClassAndFunction('scenario', 'check');
@@ -134,7 +134,7 @@ try {
 	$cron->setSchedule('* * * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
-	$cron->setTimeout(5);
+	$cron->setTimeout(30);
 	$cron->save();
 
 	$cron = cron::byClassAndFunction('jeedom', 'cronDaily');
@@ -147,7 +147,7 @@ try {
 	$cron->setSchedule('00 00 * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
-	$cron->setTimeout(5);
+	$cron->setTimeout(240);
 	$cron->save();
 
 	$cron = cron::byClassAndFunction('jeedom', 'cron5');
@@ -171,7 +171,7 @@ try {
 	$cron->setClass('jeedom');
 	$cron->setFunction('cron');
 	$cron->setSchedule('* * * * * *');
-	$cron->setTimeout(60);
+	$cron->setTimeout(2);
 	$cron->setDeamon(0);
 	$cron->save();
 
@@ -183,7 +183,19 @@ try {
 	$cron->setClass('plugin');
 	$cron->setFunction('cron');
 	$cron->setSchedule('* * * * * *');
-	$cron->setTimeout(60);
+	$cron->setTimeout(2);
+	$cron->setDeamon(0);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('plugin', 'cron5');
+	if (!is_object($cron)) {
+		echo "Création de plugin::cron5\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('cron5');
+	$cron->setSchedule('*/5 * * * * *');
+	$cron->setTimeout(5);
 	$cron->setDeamon(0);
 	$cron->save();
 
@@ -195,7 +207,7 @@ try {
 	$cron->setClass('plugin');
 	$cron->setFunction('cron15');
 	$cron->setSchedule('*/15 * * * * *');
-	$cron->setTimeout(60);
+	$cron->setTimeout(15);
 	$cron->setDeamon(0);
 	$cron->save();
 
@@ -207,7 +219,7 @@ try {
 	$cron->setClass('plugin');
 	$cron->setFunction('cron30');
 	$cron->setSchedule('*/30 * * * * *');
-	$cron->setTimeout(60);
+	$cron->setTimeout(30);
 	$cron->setDeamon(0);
 	$cron->save();
 
@@ -231,7 +243,7 @@ try {
 	$cron->setClass('cache');
 	$cron->setFunction('persist');
 	$cron->setSchedule('*/30 * * * * *');
-	$cron->setTimeout(60);
+	$cron->setTimeout(30);
 	$cron->setDeamon(0);
 	$cron->save();
 
