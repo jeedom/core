@@ -306,6 +306,12 @@ class market {
 		if (config::byKey('market::address') == '') {
 			throw new Exception(__('Aucune addresse n\'est renseignée pour le market', __FILE__));
 		}
+		$internalIp = '';
+		try {
+			$internalIp = network::getNetworkAccess('internal', 'ip');
+		} catch (Exception $e) {
+
+		}
 		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
 			$params = array(
 				'username' => config::byKey('market::username'),
@@ -318,6 +324,7 @@ class market {
 					'nbMessage' => message::nbMessage(),
 					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 				),
+				'localIp' => $internalIp,
 			);
 			if (config::byKey('market::allowDNS') != 1) {
 				$params['addr'] = config::byKey('externalAddr');
@@ -330,6 +337,7 @@ class market {
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
 				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
+				'localIp' => $internalIp,
 			));
 		}
 		$jsonrpc->setCb_class('market');

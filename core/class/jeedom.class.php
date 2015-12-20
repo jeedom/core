@@ -428,6 +428,13 @@ class jeedom {
 			} catch (Error $e) {
 
 			}
+			try {
+				market::test();
+			} catch (Exception $e) {
+
+			} catch (Error $e) {
+
+			}
 		}
 		self::isDateOk();
 		try {
