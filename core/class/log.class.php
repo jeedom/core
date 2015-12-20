@@ -18,6 +18,7 @@
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogHandler;
 use Monolog\Handler\SyslogUdpHandler;
@@ -32,21 +33,25 @@ class log {
 		if (isset(self::$logger[$_log])) {
 			return self::$logger[$_log];
 		}
+		$output = "[%datetime%][%channel%][%level_name%] : %message%\n";
+		$formatter = new LineFormatter($output);
 		self::$logger[$_log] = new Logger($_log);
 		switch (config::byKey('log::engine')) {
 			case 'StreamHandler':
-				self::$logger[$_log]->pushHandler(new StreamHandler(self::getPathToLog($_log), config::byKey('log::level')));
+				$handler = new StreamHandler(self::getPathToLog($_log), config::byKey('log::level'));
 				break;
 			case 'SyslogHandler':
-				self::$logger[$_log]->pushHandler(new SyslogHandler(config::byKey('log::level')));
+				$handler = new SyslogHandler(config::byKey('log::level'));
 				break;
 			case 'SyslogUdp':
-				self::$logger[$_log]->pushHandler(new SyslogUdpHandler(config::byKey('log::syslogudphost'), config::byKey('log::syslogudpport')));
+				$handler = new SyslogUdpHandler(config::byKey('log::syslogudphost'), config::byKey('log::syslogudpport'));
 				break;
 			default:
-				self::$logger[$_log]->pushHandler(new StreamHandler(self::getPathToLog($_log), config::byKey('log::level')));
+				$handler = new StreamHandler(self::getPathToLog($_log), config::byKey('log::level'));
 				break;
 		}
+		$handler->setFormatter($formatter);
+		self::$logger[$_log]->pushHandler($handler);
 		return self::$logger[$_log];
 	}
 
