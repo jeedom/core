@@ -187,7 +187,7 @@ if (network::test('external')) {
 }
 ?>
 		</tr>
-				<tr>
+		<tr>
 			<td style="font-weight : bold;">{{Commande info en non evènement seulement}}</td>
 			<?php
 $cmds = cmd::byTypeEventonly('info', 0);
@@ -206,21 +206,7 @@ if (count($cmds) == 0) {
 }
 ?>
 		</tr>
-<!--
-		<tr>
-			<td style="font-weight : bold;">{{Configuration nginx}}</td>
-			<?php
-if (exec('diff /etc/nginx/sites-available/default ' . dirname(__FILE__) . '/../../install/nginx_default | wc -l') == 0 || exec('diff /etc/nginx/sites-available/default ' . dirname(__FILE__) . '/../../install/nginx_default_without_jeedom | wc -l') == 0) {
-	echo '<td class="alert alert-success">{{OK}}</td>';
-	echo '<td></td>';
-} else {
-	echo '<td class="alert alert-danger">{{NOK}}</td>';
-	echo '<td>{{Votre fichier de configuration nginx, n\'est pas à jour. Si vous l\'avez modifié cela est normal}}</td>';
-}
-?>
-		</tr>
-	-->
-</tbody>
+	</tbody>
 </table>
 
 <?php

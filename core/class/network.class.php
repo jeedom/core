@@ -162,6 +162,9 @@ class network {
 			} else {
 				$internalIp = getHostByName(getHostName());
 				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+					$internalIp = gethostbyname(trim(exec("hostname")));
+				}
+				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
 					$internalIp = self::getInterfaceIp('eth0');
 				}
 				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
