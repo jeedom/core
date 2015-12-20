@@ -61,11 +61,19 @@ if (init('cron_id') != '') {
 			$function = $cron->getFunction();
 			if (class_exists($class) && method_exists($class, $function)) {
 				if ($cron->getDeamon() == 0) {
-					$class::$function($option);
+					if ($option !== null) {
+						$class::$function($option);
+					} else {
+						$class::$function();
+					}
 				} else {
 					while (true) {
 						$cycleStartTime = getmicrotime();
-						$class::$function($option);
+						if ($option !== null) {
+							$class::$function($option);
+						} else {
+							$class::$function();
+						}
 						if ($cron->getDeamonSleepTime() > 1) {
 							sleep($cron->getDeamonSleepTime());
 						} else {
@@ -88,11 +96,19 @@ if (init('cron_id') != '') {
 			$function = $cron->getFunction();
 			if (function_exists($function)) {
 				if ($cron->getDeamon() == 0) {
-					$function($option);
+					if ($option !== null) {
+						$function($option);
+					} else {
+						$function();
+					}
 				} else {
 					while (true) {
 						$cycleStartTime = getmicrotime();
-						$function($option);
+						if ($option !== null) {
+							$function($option);
+						} else {
+							$function();
+						}
 						$cycleDuration = getmicrotime() - $cycleStartTime;
 						if ($cron->getDeamonSleepTime() > 1) {
 							sleep($cron->getDeamonSleepTime());
