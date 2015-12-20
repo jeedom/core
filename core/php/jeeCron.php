@@ -203,13 +203,13 @@ if (init('cron_id') != '') {
 				}
 				$duration = strtotime('now') - strtotime($cron->getLastRun());
 				if ($cron->getEnable() == 1 && $cron->getState() != 'run' && $cron->getState() != 'starting' && $cron->getState() != 'stoping') {
-					if ($cron->isDue()) {
-						if ($cron->getDeamon() == 0) {
-							$cron->start();
-						} else {
-							$cron->halt();
+					if ($cron->getDeamon() == 0) {
+						if ($cron->isDue()) {
 							$cron->start();
 						}
+					} else {
+						$cron->halt();
+						$cron->start();
 					}
 				}
 				if ($cron->getState() == 'run' && ($duration / 60) >= $cron->getTimeout()) {
@@ -222,7 +222,7 @@ if (init('cron_id') != '') {
 						break;
 					case 'stoping':
 						$cron->halt();
-						if ($cron->getEnable() == 1 && $cron->getDeamon() == 1 && !$cron->running() && $cron->isDue()) {
+						if ($cron->getEnable() == 1 && $cron->getDeamon() == 1 && !$cron->running()) {
 							$cron->run();
 						}
 						break;
