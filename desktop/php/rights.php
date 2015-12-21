@@ -35,7 +35,7 @@ $pages = array(
 		// 'edit' => array('title' => 'Editer')
 	),
 	'object' => array(
-		'title' => 'Pièces',
+		'title' => 'Objets',
 		'view' => array('title' => 'Voir'),
 		// 'edit' => array('title' => 'Editer')
 	),

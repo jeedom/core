@@ -257,7 +257,7 @@ foreach (planHeader::all() as $plan) {
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Déplier le panneau des pièces}}</label>
+    <label class="col-sm-3 control-label">{{Déplier le panneau des objets}}</label>
     <div class="col-sm-1">
         <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="displayObjetByDefault"/>
     </div>

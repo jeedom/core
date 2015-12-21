@@ -59,7 +59,7 @@ foreach ($allObject as $object) {
                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom de l'objet}}</label>
                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                     <input class="form-control objectAttr" type="text" data-l1key="id" style="display : none;"/>
-                    <input class="form-control objectAttr" type="text" data-l1key="name" placeholder="Nom de la pièce"/>
+                    <input class="form-control objectAttr" type="text" data-l1key="name" placeholder="Nom de l'objet"/>
                 </div>
             </div>
             <div class="form-group">

@@ -124,7 +124,7 @@ class object {
 
 	public function preSave() {
 		if (is_numeric($this->getFather_id()) && $this->getFather_id() == $this->getId()) {
-			throw new Exception(__('La pièce ne peut pas être son propre père', __FILE__));
+			throw new Exception(__('L\'objet ne peut pas être son propre père', __FILE__));
 		}
 		$this->checkTreeConsistency();
 	}
@@ -135,7 +135,7 @@ class object {
 			return;
 		}
 		if (in_array($this->getFather_id(), $_fathers)) {
-			throw new Exception(__('Problème dans l\'arbre des pièces', __FILE__));
+			throw new Exception(__('Problème dans l\'arbre des objets', __FILE__));
 		}
 		$_fathers[] = $this->getId();
 

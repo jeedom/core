@@ -96,7 +96,7 @@
  $('#table_update').delegate('.changeState', 'click', function () {
     var id = $(this).closest('tr').attr('data-id');
     var state = $(this).attr('data-state');
-    bootbox.confirm('{{Etes vous sur de vouloir changer l\'état de la pièce ?}}', function (result) {
+    bootbox.confirm('{{Etes vous sur de vouloir changer l\'état de l\'objet ?}}', function (result) {
         if (result) {
             $.hideAlert();
             jeedom.update.changeState({
@@ -116,7 +116,7 @@
 
  $('#table_update').delegate('.update', 'click', function () {
     var id = $(this).closest('tr').attr('data-id');
-    bootbox.confirm('{{Etes vous sur de vouloir mettre à jour cette pièce ?}}', function (result) {
+    bootbox.confirm('{{Etes vous sur de vouloir mettre à jour cet objet ?}}', function (result) {
         if (result) {
             $.hideAlert();
             jeedom.update.do({
@@ -134,7 +134,7 @@
 
  $('#table_update').delegate('.remove', 'click', function () {
     var id = $(this).closest('tr').attr('data-id');
-    bootbox.confirm('{{Etes vous sur de vouloir supprimer cette pièce ?}}', function (result) {
+    bootbox.confirm('{{Etes vous sur de vouloir supprimer cet objet ?}}', function (result) {
         if (result) {
             $.hideAlert();
             jeedom.update.remove({

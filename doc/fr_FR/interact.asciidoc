@@ -76,7 +76,7 @@ Ici vous trouvez 2 zones avec plusieurs élément en leur sein :
 ** *Limiter aux commandes de type* : permet de n'utiliser que les type actions, infos ou les 2 type.
 ** *Limiter aux commandes ayant pour sous-type* : permet de limiter la génération à un ou plusieurs sous-type.
 ** *Limiter aux commandes ayant pour unité* : permet de limiter la génération à une ou plusieurs unité (Jeedom crée la liste automatiquement à partir des unités définie dans vos commandes).
-** *Limiter aux commandes appartenant à la pièce* : permet de limiter la génération à une ou plusieures pièce (Jeedom crée la liste automatiquement à partir des pièces que vous avez créés).
+** *Limiter aux commandes appartenant à l'objet* : permet de limiter la génération à un ou plusieurs objet (Jeedom crée la liste automatiquement à partir des objets que vous avez créé).
 ** *Limiter au plugin* : permet de limiter la génération à un ou plusieurs plugin (Jeedom crée la liste automatiquement à partir des plugins installer).
 ** *Limiter à la catégorie* : permet de limiter la génération à une ou plusieurs catégorie.
 ** *Limiter à l'équipement* : permet de limiter la génération à un seul équipement/module (Jeedom crée la liste automatiquement à partir des équipement/module que vous avez).

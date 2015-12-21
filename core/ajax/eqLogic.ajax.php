@@ -28,7 +28,7 @@ try {
 		$object = object::byId(init('object_id'));
 
 		if (!is_object($object)) {
-			throw new Exception(__('Pièce inconnu verifié l\'id', __FILE__));
+			throw new Exception(__('Objet inconnu verifié l\'id', __FILE__));
 		}
 		$return = utils::o2a($object);
 		$return['eqLogic'] = array();

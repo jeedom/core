@@ -49,7 +49,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">{{ID de la pièce}}</label>
+                        <label class="col-sm-4 control-label">{{ID de l'objet}}</label>
                         <div class="col-sm-4">
                             <span class="eqLogicAttr label label-primary" data-l1key="object_id" style="font-size : 1em;"></span>
                         </div>
@@ -87,14 +87,14 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                 <div class="form-group">
                     <label class="col-sm-4 control-label">{{Tentative échouée}}</label>
                     <div class="col-sm-4">
-                        <span class="label label-primary" style="font-size : 1em;"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess', 0) ?></span>
+                        <span class="label label-primary" style="font-size : 1em;"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess', 0)?></span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label">{{Date de dernière communication}}</label>
                     <div class="col-sm-4">
-                        <span class="label label-primary" style="font-size : 1em;"><?php echo $eqLogic->getStatus('lastCommunication') ?></span>
+                        <span class="label label-primary" style="font-size : 1em;"><?php echo $eqLogic->getStatus('lastCommunication')?></span>
                     </div>
                 </div>
 
@@ -135,7 +135,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                 <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnMobile" /></td>
             </tr>
             <tr>
-                <td>{{Afficher le nom de la pièce}}</td>
+                <td>{{Afficher le nom de l'objet}}</td>
                 <td></td>
                 <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowObjectNameOnView" /></td>
                 <td></td>

@@ -105,7 +105,7 @@ if (init('type') != '') {
 			log::add('api', 'debug', 'Demande API pour ajouter un message');
 			message::add(init('category'), init('message'));
 		} else if ($type == 'object') {
-			log::add('api', 'debug', 'Demande API pour les pieces');
+			log::add('api', 'debug', 'Demande API pour les objets');
 			echo json_encode(utils::o2a(object::all()));
 		} else if ($type == 'eqLogic') {
 			log::add('api', 'debug', 'Demande API pour les équipements');
@@ -218,7 +218,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'object::byId') {
 				$object = object::byId($params['id']);
 				if (!is_object($object)) {
-					throw new Exception('Pièce introuvable : ' . secureXSS($params['id']), -32601);
+					throw new Exception('Objet introuvable : ' . secureXSS($params['id']), -32601);
 				}
 				$jsonrpc->makeSuccess(utils::o2a($object));
 			}
@@ -246,7 +246,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'object::fullById') {
 				$object = object::byId($params['id']);
 				if (!is_object($object)) {
-					throw new Exception('Pièce introuvable : ' . secureXSS($params['id']), -32601);
+					throw new Exception('Objet introuvable : ' . secureXSS($params['id']), -32601);
 				}
 				$return = utils::o2a($object);
 				$return['eqLogics'] = array();

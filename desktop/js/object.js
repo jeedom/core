@@ -93,7 +93,7 @@ $(".li_object,.objectDisplayCard").on('click', function (event) {
 });
 
 $("#bt_addObject,#bt_addObject2").on('click', function (event) {
-    bootbox.prompt("Nom de la pièce ?", function (result) {
+    bootbox.prompt("Nom de l'objet ?", function (result) {
         if (result !== null) {
             jeedom.object.save({
                 object: {name: result, isVisible: 1},
@@ -131,7 +131,7 @@ $("#bt_saveObject").on('click', function (event) {
             }
         });
     } else {
-        $('#div_alert').showAlert({message: '{{Veuillez d\'abord sélectionner une pièce}}', level: 'danger'});
+        $('#div_alert').showAlert({message: '{{Veuillez d\'abord sélectionner un objet}}', level: 'danger'});
     }
     return false;
 });
@@ -139,7 +139,7 @@ $("#bt_saveObject").on('click', function (event) {
 $("#bt_removeObject").on('click', function (event) {
     if ($('.li_object.active').attr('data-object_id') != undefined) {
         $.hideAlert();
-        bootbox.confirm('{{Etes-vous sûr de vouloir supprimer la pièce}} <span style="font-weight: bold ;">' + $('.li_object.active a').text() + '</span> ?', function (result) {
+        bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.li_object.active a').text() + '</span> ?', function (result) {
             if (result) {
                 jeedom.object.remove({
                     id: $('.li_object.active').attr('data-object_id'),
@@ -154,7 +154,7 @@ $("#bt_removeObject").on('click', function (event) {
             }
         });
     } else {
-        $('#div_alert').showAlert({message: '{{Veuillez d\'abord sélectionner une pièce}}', level: 'danger'});
+        $('#div_alert').showAlert({message: '{{Veuillez d\'abord sélectionner un objet}}', level: 'danger'});
     }
     return false;
 });

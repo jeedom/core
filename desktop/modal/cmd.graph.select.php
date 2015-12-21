@@ -11,7 +11,7 @@ if (!isConnect()) {
     <thead>
         <tr>
             <th style="width: 50px;">#</th>
-            <th style="width: 150px;">{{Pièce}}</th>
+            <th style="width: 150px;">{{Objet}}</th>
             <th style="width: 150px;">{{Nom}}</th>
             <th>{{Affichage}}</th>
         </tr>

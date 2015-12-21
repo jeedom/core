@@ -1,10 +1,10 @@
 <?php
 if (!isConnect('admin')) {
-	throw new Exception('{{401 - Accès non autorisé}}');
+    throw new Exception('{{401 - Accès non autorisé}}');
 }
 $object = object::byId(init('object_id'));
 if (!is_object($object)) {
-	throw new Exception('Pièce non trouvé : ' . init('object_id'));
+    throw new Exception('Objet non trouvé : ' . init('object_id'));
 }
 sendVarToJS('objectInfo', utils::o2a($object));
 ?>

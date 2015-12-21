@@ -12,7 +12,7 @@ if (!is_object($object)) {
 	$object = object::rootObject();
 }
 if (!is_object($object)) {
-	throw new Exception('{{Aucune pièce racine trouvé. Pour en créer un, allez dans Général -> Pièce.<br/> Si vous ne savez pas quoi faire ou que c\'est la première fois que vous utilisez Jeedom n\'hésitez pas à consulter cette <a href="https://jeedom.com/doc/documentation/premiers-pas/fr_FR/doc-premiers-pas.html" target="_blank">page</a> et celle la si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
+	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Général -> Objet.<br/> Si vous ne savez pas quoi faire ou que c\'est la première fois que vous utilisez Jeedom n\'hésitez pas à consulter cette <a href="https://jeedom.com/doc/documentation/premiers-pas/fr_FR/doc-premiers-pas.html" target="_blank">page</a> et celle la si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
 }
 $child_object = object::buildTree($object);
 $parentNumber = array();

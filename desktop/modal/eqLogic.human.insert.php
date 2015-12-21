@@ -6,7 +6,7 @@ if (!isConnect()) {
 <table class="table table-condensed table-bordered" id="table_mod_insertEqLogicValue_valueEqLogicToMessage">
     <thead>
         <tr>
-            <th style="width: 150px;">{{Pièce}}</th>
+            <th style="width: 150px;">{{Objet}}</th>
             <th style="width: 150px;">{{Equipement}}</th>
         </tr>
     </thead>

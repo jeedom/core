@@ -82,8 +82,8 @@ Vérifiez si votre systeme de fichier n'est pas corrompu, en ssh la commande est
 ''''
 
 Je ne vois pas tout mes équipements sur le dashboard::
-Souvent cela du au fait que les équipements sont affectés à un pièce qui n'est pas le fils ou 
-à la pièce lui même du premier objet selectionné à gauche dans l'arbre (vous pouvez dans votre profils configurer celui-ci)
+Souvent cela du au fait que les équipements sont affectés à un objet qui n'est pas le fils ou 
+l'objet lui même du premier objet selectionné à gauche dans l'arbre (vous pouvez dans votre profils configurer celui-ci)
 
 ''''
 

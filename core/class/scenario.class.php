@@ -984,7 +984,7 @@ class scenario {
 			$return = '';
 			$return .= '- Nom du scénario : ' . $this->getName() . "\n";
 			if (is_numeric($this->getObject_id())) {
-				$return .= '- Pièce parente : ' . $this->getObject()->getName() . "\n";
+				$return .= '- Objet parent : ' . $this->getObject()->getName() . "\n";
 			}
 			$return .= '- Mode du scénario : ' . $this->getMode() . "\n";
 			$schedules = $this->getSchedule();
