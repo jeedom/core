@@ -10,18 +10,18 @@ Le premiere onglet permet d'orgniser les differents équipement, les commandes, 
 
 image::../images/display2.png[]
 
-On retrouve tout en haut un résumé du nombre d'objet existant, du nombre d'équipement et du nombre de commande. Sur la droite se trouve, un bouton pour masquer tous les équipements inactif et  un champs de recherche pour par exemple chercher un équipement,une commande ou tous les équipements d'un certain type (plugin, par exemple il suffit de taper rfxcom pour avoir tous les équipements rfxcom)
+On retrouve tout en haut un résumé du nombre de pièce existant, du nombre d'équipement et du nombre de commande. Sur la droite se trouve, un bouton pour masquer tous les équipements inactif et  un champs de recherche pour par exemple chercher un équipement,une commande ou tous les équipements d'un certain type (plugin, par exemple il suffit de taper rfxcom pour avoir tous les équipements rfxcom)
 
-En dessous on retrouve un cadre par objet, dans chaque cadre se trouve la liste des équipements (en bleu) contenu dans l'objet. Vous avez sur la ligne du nom de l'objets jusqu'a 3 boutons, dans l'ordre : 
+En dessous on retrouve un cadre par pièce, dans chaque cadre se trouve la liste des équipements (en bleu) contenu dans la pièce. Vous avez sur la ligne du nom de l'objets jusqu'a 3 boutons, dans l'ordre : 
 
-* le premier sert à ouvrir la page de configuration de l'objet dans un nouvel onglet
-* le deuxieme donne un résumé sur l'objet
+* le premier sert à ouvrir la page de configuration de la pièce dans un nouvel onglet
+* le deuxieme donne un résumé sur la pièce
 * le dernier permet de masquer la liste des équipements (en dessous en bleu)
 
 [TIP]
-La couleur de fond des cadre objet dépend de la couleur mise dans la configuration de l'objet
+La couleur de fond des cadres pièce dépend de la couleur mise dans la configuration de la pièce
 
-A partir de la vous pouvez en cliquant/maintenant un équipement changer l'ordre dans l'objet ou meme l'affecter à un autre objet.
+A partir de la vous pouvez en cliquant/maintenant un équipement changer l'ordre dans la pièce ou meme l'affecter à une autre pièce.
 
 [TIP]
 C'est a partir de cette ordre la qu'est calculé l'ordre d'affichage sur le dashboard
@@ -70,7 +70,7 @@ L'onglet information contient les informations général de l'équipement :
 * *ID* : identifiant unique dans la base de données
 * *Nom* : nom de l'équipement
 * *ID logique* : identifiant logique de l'équipement (peut etre vide)
-* *ID de l'objet* : identifiant unique de l'objet père (peut etre vide)
+* *ID de la pièce* : identifiant unique de la pièce mère (peut etre vide)
 * *Date de création* : date de création de l'équipement
 * *Activer* : permet d'activer ou non l'équipement (n'oubliez pas de sauvegarder)
 * *Visible* : permet de rendre visible ou non l'équipement (n'oubliez pas de sauvegarder)
@@ -88,7 +88,7 @@ Vous pouvez :
 
 * *Visible* : permet de masquer ou non l'équipement en desktop ou mobile
 * *Afficher le nom* : permet de masquer le nom de l'équipement sur la tuile en fonction du contexte (dashboard et design, vue ou mobile)
-* *Afficher le nom de l'objet* : uniquement sur les vues cela permet de ne pas afficher le nom de l'objet a coté du nom de l'équipement
+* *Afficher le nom de la pièce* : uniquement sur les vues cela permet de ne pas afficher le nom de la pièce à coté du nom de l'équipement
 * *Afficher le niveau de batterie* : uniquement pour le dashboard, les designs et le vues cette option permet de masquer le niveau de batterie de l'équipement (si il est sur batterie bien sur)
 
 En dessous on retrouve des paramètre optionnel d'affichage que l'on peut passer à l'équipement. Ces parametres sont composés d'un nom et d'une valeur. Pour les équipements seul le valeur "style" et pour le moment utilisée, elle permet d'inserer du code CSS sur l'équipement en question. Exemple ici pour arrondir les angles : 

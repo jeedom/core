@@ -93,7 +93,7 @@ $(".li_object,.objectDisplayCard").on('click', function (event) {
 });
 
 $("#bt_addObject,#bt_addObject2").on('click', function (event) {
-    bootbox.prompt("Nom de l'objet ?", function (result) {
+    bootbox.prompt("Nom de la pièce ?", function (result) {
         if (result !== null) {
             jeedom.object.save({
                 object: {name: result, isVisible: 1},

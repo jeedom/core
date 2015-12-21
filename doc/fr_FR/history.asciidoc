@@ -139,10 +139,10 @@ La page d'historique donne accès à quelques options supplémentaires :
 image::../images/history15.JPG[]
 
 [TIP]
-Il suffit de cliquer sur le nom de l'objet pour le déplier ; apparaissent les commandes historisées qui peuvent être graphées.
+Il suffit de cliquer sur le nom de la pièce pour le déplier ; apparaissent les commandes historisées qui peuvent être graphées.
 
 [TIP]
-La couleur d'arrière-plan des objets de cette liste peuvent être modifiées à partir de la configuration de l'objet.
+La couleur d'arrière-plan des objets de cette liste peuvent être modifiées à partir de la configuration de la pièce.
 
 Devant chaque donnée pouvant être graphée, vous retrouvez deux icônes : 
 
