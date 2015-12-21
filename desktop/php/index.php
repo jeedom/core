@@ -298,7 +298,7 @@ if (config::byKey('jeeNetwork::mode') == 'master' && (hasRight('objectview', tru
 										<?php
 if (config::byKey('jeeNetwork::mode') == 'master' && hasRight('objectview', true)) {
 			?>
-											<li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Objets}}</a></li>
+											<li><a href="index.php?v=d&p=object"><i class="fa fa-picture-o"></i> {{Pièces}}</a></li>
 											<?php
 
 		}
