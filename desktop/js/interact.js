@@ -225,7 +225,7 @@ $("#bt_removeInteract").on('click', function () {
       }
     });
   } else {
-    $('#div_alert').showAlert({message: '{{Veuillez d\'abord sélectionner un objet}}', level: 'danger'});
+    $('#div_alert').showAlert({message: '{{Veuillez d\'abord sélectionner une pièce}}', level: 'danger'});
   }
 });
 

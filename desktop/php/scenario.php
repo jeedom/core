@@ -196,7 +196,7 @@ if (count($scenarios) == 0) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-6 control-label" >{{Objet parent}}</label>
+                        <label class="col-xs-6 control-label" >{{Pièces parente}}</label>
                         <div class="col-xs-6">
                             <select class="scenarioAttr form-control input-sm" data-l1key="object_id">
                                 <option value="">{{Aucun}}</option>

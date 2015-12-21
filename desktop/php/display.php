@@ -49,9 +49,9 @@ foreach ($objects as $object) {
 	<input type="checkbox" class="bootstrapSwitch pull-right" id="cb_actifDisplay" data-on-text="{{Afficher}}" data-off-text="{{Masquer}}" data-label-text="{{Inactif}}" checked />
 </span>
 <center>
-	<span class="label label-default" style="font-size : 1em;">{{Nombre d'objet :}} <?php echo count($objects)?></span>
-	<span class="label label-info" style="font-size : 1em;">{{Nombre d'équipement :}} <?php echo $nbEqlogic?></span>
-	<span class="label label-primary" style="font-size : 1em;">{{Nombre de commande :}} <?php echo $nbCmd?></span>
+	<span class="label label-default" style="font-size : 1em;">{{Nombre de pièce :}} <?php echo count($objects) ?></span>
+	<span class="label label-info" style="font-size : 1em;">{{Nombre d'équipement :}} <?php echo $nbEqlogic ?></span>
+	<span class="label label-primary" style="font-size : 1em;">{{Nombre de commande :}} <?php echo $nbCmd ?></span>
 </center>
 <a class="btn btn-danger btn-sm" id="bt_removeEqlogic" style="display:none;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
 <a class="btn btn-success btn-sm bt_setIsVisible" data-value="1" style="display:none;"><i class="fa fa-eye"></i> {{Visible}}</a>
@@ -103,7 +103,7 @@ foreach ($objects as $object) {
 	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">' . $object->getName();
 	echo '<i class="fa fa-chevron-down pull-right showEqLogic tooltips cursor" title="{{Voir les équipements}}"></i>';
 	echo '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject tooltips" title="{{Configuration avancée}}"></i>';
-	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right tooltips" title="{{Aller sur la configuration de l\'objet}}"><i class="fa fa-external-link"></i></a>';
+	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right tooltips" title="{{Aller sur la configuration de la pièce}}"><i class="fa fa-external-link"></i></a>';
 
 	echo '</legend>';
 	echo '<ul class="eqLogicSortable">';

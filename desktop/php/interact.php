@@ -234,7 +234,7 @@ foreach (cmd::allUnite() as $unite) {
        </div>
      </div>
      <div class="form-group">
-      <label class="col-sm-3 control-label">{{Limiter aux commandes appartenant à l'objet}}</label>
+      <label class="col-sm-3 control-label">{{Limiter aux commandes appartenant à la pièce}}</label>
       <div class="col-sm-9">
         <?php
 foreach (object::all() as $object) {

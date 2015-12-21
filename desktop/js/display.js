@@ -72,7 +72,7 @@
  });
 
  $('.configureObject').on('click',function(){
-     $('#md_modal').dialog({title: "{{Configuration de l'objet}}"});
+     $('#md_modal').dialog({title: "{{Configuration de la pièce}}"});
      $('#md_modal').load('index.php?v=d&modal=object.configure&object_id=' + $(this).closest('.object').attr('data-id')).dialog('open');
  });
 

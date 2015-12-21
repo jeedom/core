@@ -132,7 +132,7 @@
 
  $('.changeJeeNetworkMode').on('click', function () {
     var mode = $(this).attr('data-mode');
-    bootbox.confirm('{{Etes-vous sûr de vouloir changer le mode de Jeedom ? Cette opération est très risquée. Si vous passer de Maitre à Esclave cela va supprimer tous vos équipements, objet, vue, plan, plugin non compatibles avec le fonctionnement déporté. Aucun retour en arrière n\'est possible.}}', function (result) {
+    bootbox.confirm('{{Etes-vous sûr de vouloir changer le mode de Jeedom ? Cette opération est très risquée. Si vous passer de Maitre à Esclave cela va supprimer tous vos équipements, pièce, vue, plan, plugin non compatibles avec le fonctionnement déporté. Aucun retour en arrière n\'est possible.}}', function (result) {
         if (result) {
             jeedom.jeeNetwork.changeMode({
                 mode: mode,
