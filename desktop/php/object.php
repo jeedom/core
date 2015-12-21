@@ -11,7 +11,7 @@ sendVarToJS('select_id', init('id', '-1'));
     <div class="col-md-2 col-sm-3" id="sd_objectList" style="z-index:999">
         <div class="bs-sidebar">
             <ul id="ul_object" class="nav nav-list bs-sidenav">
-                <a id="bt_addObject" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter une pièce}}</a>
+                <a id="bt_addObject" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-plus-circle"></i> {{Ajouter objet}}</a>
                 <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
                 <?php
 $allObject = object::buildTree(null, false);
@@ -30,7 +30,7 @@ foreach ($allObject as $object) {
    </div>
 
    <div class="col-lg-10 col-md-10 col-sm-9" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
-       <legend>{{Mes pièces}}</legend>
+       <legend>{{Mes objets}}</legend>
        <div class="objectListContainer">
            <div class="cursor" id="bt_addObject2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
              <center>
@@ -56,7 +56,7 @@ foreach ($allObject as $object) {
         <fieldset>
         <legend><i class="fa fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i> {{Général}}</legend>
             <div class="form-group">
-                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom de la pièce}}</label>
+                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom de l'objet}}</label>
                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                     <input class="form-control objectAttr" type="text" data-l1key="id" style="display : none;"/>
                     <input class="form-control objectAttr" type="text" data-l1key="name" placeholder="Nom de la pièce"/>
