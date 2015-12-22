@@ -1366,7 +1366,7 @@ class cmd {
 			if (strpos($name, 'fuite') !== false) {
 				return 'FLIGHT';
 			}
-			if (strpos($name_eq, 'porte') !== false || strpos($name_eq, 'door') !== false || strpos($name_eq, 'fenetre') !== false || strpos($name_eq, 'fenêtre') !== false) {
+			if (strpos($name_eq, 'porte') !== false || strpos($name_eq, 'door') !== false || strpos($name_eq, 'baie') !== false || strpos($name_eq, 'fenetre') !== false || strpos($name_eq, 'fenêtre') !== false) {
 				return 'OPENING';
 			}
 			return $type . 'STATE';
