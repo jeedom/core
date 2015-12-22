@@ -1331,6 +1331,9 @@ class cmd {
 				if (strpos($name, 'down') !== false) {
 					return $type . 'DOWN';
 				}
+				if (strpos($name, 'stop') !== false) {
+					return $type . 'STOP';
+				}
 			}
 			return $type . strtoupper($this->getSubtype());
 		} else {
