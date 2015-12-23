@@ -1,5 +1,4 @@
 <?php
-require_once dirname(__FILE__) . '/../core/php/core.inc.php';
 if (!file_exists('/tmp/jeedom_tmp_key')) {
 	$tmp_key = config::genKey();
 	file_put_contents('/tmp/jeedom_tmp_key', $tmp_key);
@@ -57,7 +56,7 @@ if (version_compare(PHP_VERSION, '5.6.0', '<')) {
 	echo '<center style="font-size:1.2em;">Jeedom need php 5.6 or upper (current : ' . PHP_VERSION . ')</center>';
 	echo '</div>';
 }
-if (!jeedom::isCapable('sudo')) {
+if (shell_exec('sudo -l > /dev/null 2>&1; echo $?') != 0) {
 	$error = true;
 	echo '<div class="alert alert-warning" style="margin:15px;">';
 	echo '<center style="font-size:1.2em;">Jeedom has not sudo right please do in ssh : </center>';
