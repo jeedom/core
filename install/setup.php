@@ -51,6 +51,12 @@ $loadExtensions = get_loaded_extensions();
 	</center>
 	<?php
 $error = false;
+if (version_compare(PHP_VERSION, '5.6.0', '<')) {
+	$error = true;
+	echo '<div class="alert alert-danger" style="margin:15px;">';
+	echo '<center style="font-size:1.2em;">Jeedom need php 5.6 or upper (current : ' . PHP_VERSION . ')</center>';
+	echo '</div>';
+}
 if (!jeedom::isCapable('sudo')) {
 	$error = true;
 	echo '<div class="alert alert-warning" style="margin:15px;">';

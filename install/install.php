@@ -359,6 +359,9 @@ try {
 	} else {
 
 		/*         * ***************************INSTALLATION************************** */
+		if (version_compare(PHP_VERSION, '5.6.0', '<')) {
+			throw new Exception('Jeedom need php 5.6 or upper (current : ' . PHP_VERSION . ')');
+		}
 		if (init('mode') != 'force') {
 			echo "Jeedom va être installé. Voulez-vous continuer ? [o/N] ";
 			if (trim(fgets(STDIN)) !== 'o') {
