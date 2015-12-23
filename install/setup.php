@@ -1,6 +1,27 @@
 <?php
+function init($_name, $_default = '') {
+	if (isset($_GET[$_name])) {
+		$cache[$_name] = $_GET[$_name];
+		return $_GET[$_name];
+	}
+	if (isset($_POST[$_name])) {
+		$cache[$_name] = $_POST[$_name];
+		return $_POST[$_name];
+	}
+	if (isset($_REQUEST[$_name])) {
+		$cache[$_name] = $_REQUEST[$_name];
+		return $_REQUEST[$_name];
+	}
+	return $_default;
+}
+
 if (!file_exists('/tmp/jeedom_tmp_key')) {
-	$tmp_key = config::genKey();
+	$tmp_key = '';
+	$chaine = "abcdefghijklmnpqrstuvwxy1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	srand((double) microtime() * 1000000);
+	for ($i = 0; $i < 50; $i++) {
+		$tmp_key .= $chaine[rand() % strlen($chaine)];
+	}
 	file_put_contents('/tmp/jeedom_tmp_key', $tmp_key);
 } else {
 	$tmp_key = file_get_contents('/tmp/jeedom_tmp_key');

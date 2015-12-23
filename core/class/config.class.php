@@ -161,7 +161,7 @@ class config {
 	}
 
 	public static function genKey($_car = 20) {
-		$key = "";
+		$key = '';
 		$chaine = "abcdefghijklmnpqrstuvwxy1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		srand((double) microtime() * 1000000);
 		for ($i = 0; $i < $_car; $i++) {
