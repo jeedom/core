@@ -25,7 +25,6 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 	exit();
 }
 set_time_limit(1800);
-
 echo "[START UPDATE]\n";
 
 if (isset($argv)) {

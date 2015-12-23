@@ -50,30 +50,40 @@ $loadExtensions = get_loaded_extensions();
 		<img src="../../core/img/logo-jeedom-grand-nom-couleur-460x320.png" class="img-responsive" />
 	</center>
 	<?php
+$error = false;
 if (!jeedom::isCapable('sudo')) {
-	echo '<div class="alert alert-danger" style="margin:15px;">';
+	$error = true;
+	echo '<div class="alert alert-warning" style="margin:15px;">';
 	echo '<center style="font-size:1.2em;">Jeedom has not sudo right please do in ssh : </center>';
 	echo '<pre>';
 	echo "sudo su -\n";
-	echo 'echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)';
+	echo 'echo "' . get_current_user() . ' ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)';
 	echo '</pre>';
 	echo '</div>';
-	echo '</body>';
-	echo '</html>';
-	die();
 }
+if (shell_exec('sudo crontab -l | grep jeeCron.php | wc -l') == 0) {
+	$error = true;
+	echo '<div class="alert alert-warning" style="margin:15px;">';
+	echo '<center style="font-size:1.2em;">Please add crontab line for jeedom : </center>';
+	echo '<pre>';
+	echo "sudo su -\n";
+	echo 'croncmd="su --shell=/bin/bash - ' . get_current_user() . ' -c \'/usr/bin/php ' . realpath(dirname(__FILE__) . '/../') . '/core/php/jeeCron.php\' >> /dev/null 2>&1' . "\n";
+	echo 'cronjob="* * * * * $croncmd' . "\n";
+	echo '( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -' . "\n";
+	echo '</pre>';
+	echo '</div>';
+}
+
 foreach ($needpackages as $needpackage) {
 	if (shell_exec(' dpkg --get-selections | grep -v deinstall | grep ' . $needpackage . ' | wc -l') == 0) {
-		echo '<div class="alert alert-danger" style="margin:15px;">';
+		$error = true;
+		echo '<div class="alert alert-warning" style="margin:15px;">';
 		echo '<center style="font-size:1.2em;">Jeedom need ' . $needpackage . ' package, please do in ssh : </center>';
 		echo '<pre>';
 		echo "sudo su -\n";
 		echo 'apt-get install -y ' . $needpackage;
 		echo '</pre>';
 		echo '</div>';
-		echo '</body>';
-		echo '</html>';
-		die();
 	}
 }
 foreach ($needphpextensions as $needphpextension) {
@@ -82,7 +92,8 @@ foreach ($needphpextensions as $needphpextension) {
 			break 2;
 		}
 	}
-	echo '<div class="alert alert-danger" style="margin:15px;">';
+	$error = true;
+	echo '<div class="alert alert-warning" style="margin:15px;">';
 	echo '<center style="font-size:1.2em;">Jeedom need ' . $needphpextension . ' php extension, please do in ssh : </center>';
 	echo '<pre>';
 	echo "sudo su -\n";
@@ -90,30 +101,26 @@ foreach ($needphpextensions as $needphpextension) {
 	echo 'systemctl reload php5-fpm or systemctl reload apache2';
 	echo '</pre>';
 	echo '</div>';
-	echo '</body>';
-	echo '</html>';
-	die();
 }
 if (ini_get('max_execution_time') < 300) {
-	echo '<div class="alert alert-danger" style="margin:15px;">';
+	$error = true;
+	echo '<div class="alert alert-warning" style="margin:15px;">';
 	echo '<center style="font-size:1.2em;">max_execution_time must be >= 300, edit ' . php_ini_loaded_file() . ' and change this value (current ' . ini_get('max_execution_time') . ')</center>';
 	echo '</div>';
-	echo '</body>';
-	echo '</html>';
-	die();
 }
 if (ini_get('upload_max_filesize') != '1G') {
-	echo '<div class="alert alert-danger" style="margin:15px;">';
+	$error = true;
+	echo '<div class="alert alert-warning" style="margin:15px;">';
 	echo '<center style="font-size:1.2em;">upload_max_filesize must be = 1G, edit ' . php_ini_loaded_file() . ' and change this value (current ' . ini_get('upload_max_filesize') . ')</center>';
 	echo '</div>';
-	echo '</body>';
-	echo '</html>';
-	die();
 }
 if (ini_get('post_max_size') != '1G') {
-	echo '<div class="alert alert-danger" style="margin:15px;">';
+	$error = true;
+	echo '<div class="alert alert-warning" style="margin:15px;">';
 	echo '<center style="font-size:1.2em;">post_max_size must be = 1G, edit ' . php_ini_loaded_file() . ' and change this value (current ' . ini_get('post_max_size') . ')</center>';
 	echo '</div>';
+}
+if ($error) {
 	echo '</body>';
 	echo '</html>';
 	die();
