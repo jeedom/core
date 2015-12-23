@@ -133,21 +133,6 @@ if (version_compare(phpversion(), '5.5', '>=')) {
 }
 ?>
 		</tr>
-
-		<tr>
-			<td style="font-weight : bold;">{{Version NodeJS}}</td>
-			<?php
-$version = str_replace('v', '', shell_exec('nodejs -v'));
-if (version_compare($version, '0.10', '>=')) {
-	echo '<td class="alert alert-success">' . $version . '</td>';
-	echo '<td></td>';
-} else {
-	echo '<td class="alert alert-danger">' . $version . '</td>';
-	echo '<td></td>';
-}
-?>
-		</tr>
-
 		<tr>
 			<td style="font-weight : bold;">{{Espace disque libre}}</td>
 			<?php
