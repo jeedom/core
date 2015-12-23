@@ -540,7 +540,6 @@ class plugin {
 			if ($_state == 1) {
 				$this->deamon_stop();
 				if ($this->getHasDependency() == 1) {
-					$plugin_id = $this->getId();
 					$dependancy_info = $this->dependancy_info();
 					if ($dependancy_info['state'] == 'nok') {
 						$this->dependancy_install();
