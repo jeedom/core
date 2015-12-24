@@ -151,37 +151,56 @@ if ($error) {
 	echo '</html>';
 	die();
 }
-if (init('hostname') == '' && init('username') == '' && init('password') == '' && init('database') == '') {
+$config = true;
+if (init('hostname') != '' && init('username') != '' && init('password') != '' && init('database') != '') {
+	$dsn = "mysql:host=" . init('hostname') . ";dbname=" . init('database') . ";charset=utf8";
+	$opt = array(
+		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+	);
+	try {
+		$pdo = new PDO($dsn, init('username'), init('password'), $opt);
+		$config = false;
+	} catch (Exception $e) {
+		echo '<div class="alert alert-danger" style="margin:15px;">';
+		echo '<center style="font-size:1.2em;">Unable to connect to database</center>';
+		echo '<pre>';
+		echo $e->getMessage();
+		echo '</pre>';
+		echo '</div>';
+	}
+}
+
+if ($config) {
 	?>
 		<form class="form-horizontal" action="setup.php" method="POST">
 			<div class="form-group">
 				<label class="col-sm-5 control-label">Database hostname</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" id="hostname" name="hostname" />
+					<input type="text" class="form-control" id="hostname" name="hostname" value="<?php echo init('hostname', 'localhost') ?>" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-5 control-label">Database port</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" id="port" name="port" value="3306" />
+					<input type="text" class="form-control" id="port" name="port" value="<?php echo init('port', '3306') ?>"  />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-5 control-label">Database username</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" id="username" name="username" />
+					<input type="text" class="form-control" id="username" name="username" value="<?php echo init('username') ?>" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-5 control-label">Database password</label>
 				<div class="col-sm-2">
-					<input type="password" class="form-control" id="password" name="password" />
+					<input type="password" class="form-control" id="password" name="password" value="<?php echo init('password') ?>" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-5 control-label">Database name</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" id="database" name="database" />
+					<input type="text" class="form-control" id="database" name="database" value="<?php echo init('database', 'jeedom') ?>" />
 				</div>
 			</div>
 			<div class="form-group">
