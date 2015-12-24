@@ -203,7 +203,7 @@ if (init('hostname') == '' && init('username') == '' && init('password') == '' &
 	}
 	$replace = array(
 		'#PASSWORD#' => init('password'),
-		'#DBNAME#' => init('hostname'),
+		'#DBNAME#' => init('database'),
 		'#USERNAME#' => init('username'),
 		'#PORT#' => init('port'),
 		'#HOST#' => init('hostname'),
