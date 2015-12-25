@@ -653,12 +653,11 @@ class scenario {
 		if (!$this->hasRight('r')) {
 			return '';
 		}
-		$sql = 'SELECT `value` FROM cache
-	WHERE `key`="scenarioHtml' . $_version . $this->getId() . '"';
-		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-		if ($result['value'] != '') {
-			return $result['value'];
+		$mc = cache::byKey('scenarioHtml' . $_version . $this->getId());
+		if ($mc->getValue() != '') {
+			return $mc->getValue();
 		}
+
 		$_version = jeedom::versionAlias($_version);
 		$replace = array(
 			'#id#' => $this->getId(),
@@ -683,9 +682,14 @@ class scenario {
 	}
 
 	public function emptyCacheWidget() {
-		$sql = 'DELETE FROM cache
-	WHERE `key` LIKE "scenarioHtml%' . $this->getId() . '"';
-		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		$mc = cache::byKey('scenarioHtmldashboard' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('scenarioHtmlmobile' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('scenarioHtmlmview' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('scenarioHtmldview' . $this->getId());
+		$mc->remove();
 	}
 
 	public function getIcon($_only_class = false) {
