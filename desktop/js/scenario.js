@@ -438,8 +438,7 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
       '             <div class="col-xs-3">' +
       '                <select class="conditionAttr form-control" data-l1key="operator">' +
       '                    <option value="==">{{égale}}</option>' +
-      '                  <option value="~">{{contient}}</option>' +
-      '                  <option value="!~">{{ne contient pas}}</option>' +
+      '                  <option value="matches">{{contient}}</option>' +
       '                 <option value="!=">{{différent}}</option>' +
       '            </select>' +
       '       </div>' +
@@ -451,7 +450,7 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
       '<label class="col-xs-5 control-label" >{{Ensuite}}</label>' +
       '             <div class="col-xs-3">' +
       '                <select class="conditionAttr form-control" data-l1key="next">' +
-      '                    <option value="">rien</option>' +
+      '                    <option value="">{{rien}}</option>' +
       '                  <option value="ET">{{et}}</option>' +
       '                  <option value="OU">{{ou}}</option>' +
       '            </select>' +
@@ -509,7 +508,7 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
            var condition = result.human;
            condition += ' ' + $('.conditionAttr[data-l1key=operator]').value();
            if(result.cmd.subType == 'string'){
-             condition += ' "' + $('.conditionAttr[data-l1key=operande]').value()+'"';
+             condition += ' "/' + $('.conditionAttr[data-l1key=operande]').value()+'/"';
            }else{
             condition += ' ' + $('.conditionAttr[data-l1key=operande]').value();
           }
