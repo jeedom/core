@@ -29,7 +29,6 @@ class plugin {
 	private $installation;
 	private $author;
 	private $require;
-	private $version;
 	private $category;
 	private $filepath;
 	private $icon;
@@ -72,7 +71,6 @@ class plugin {
 		$plugin->licence = (string) $plugin_xml->licence;
 		$plugin->author = (string) $plugin_xml->author;
 		$plugin->require = (string) $plugin_xml->require;
-		$plugin->version = (string) $plugin_xml->version;
 		$plugin->installation = (string) $plugin_xml->installation;
 		$plugin->category = (string) $plugin_xml->category;
 		$plugin->allowRemote = 0;
@@ -651,10 +649,6 @@ class plugin {
 
 	public function getRequire() {
 		return $this->require;
-	}
-
-	public function getVersion() {
-		return $this->version;
 	}
 
 	public function getCategory() {

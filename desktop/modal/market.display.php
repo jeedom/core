@@ -48,13 +48,13 @@ switch ($market->getType()) {
 $urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
 echo '<img src="' . $default_image . '" data-original="' . $urlPath . '"  class="lazy img-responsive" style="height : 200px;"/>';
 ?>
-        </center>
-    </div>
-    <div class='col-sm-8'>
-       <input class="form-control marketAttr" data-l1key="id" style="display: none;">
-       <span class="marketAttr" data-l1key="name" placeholder="{{Nom}}" style="font-size: 3em;font-weight: bold;"></span>
-       <br/>
-       <?php
+       </center>
+   </div>
+   <div class='col-sm-8'>
+     <input class="form-control marketAttr" data-l1key="id" style="display: none;">
+     <span class="marketAttr" data-l1key="name" placeholder="{{Nom}}" style="font-size: 3em;font-weight: bold;"></span>
+     <br/>
+     <?php
 if ($market->getCertification() == 'Officiel') {
 	echo '<span style="font-size : 1.5em;color:#707070">Officiel</span><br/>';
 }
@@ -65,9 +65,9 @@ if ($market->getCertification() == 'Obsolète') {
 	echo '<span style="font-size: 1.5em;font-weight: bold;color:#e74c3c;">Obsolète</span><br/>';
 }
 ?>
-       <span class="marketAttr" data-l1key="categorie" style="font-size: 1em;font-weight: bold;"></span>
-       <br/><br/>
-       <?php
+   <span class="marketAttr" data-l1key="categorie" style="font-size: 1em;font-weight: bold;"></span>
+   <br/><br/>
+   <?php
 if ($market->getPurchase() == 1) {
 	if ($market->getStatus('stable') == 1) {
 		echo ' <a class="btn btn-success bt_installFromMarket" data-version="stable" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer stable}}</a>';
@@ -87,25 +87,25 @@ if ($market->getPurchase() == 1) {
 		$purchase_info = market::getPurchaseInfo();
 		if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id']) && isset($purchase_info['paypal::url']) && isset($purchase_info['paypal::marchandMail'])) {
 			?>
-             <a class="btn btn-default" href='https://market.jeedom.fr/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> Code promo</a>
-             <form action="<?php echo $purchase_info['paypal::url']; ?>/cgi-bin/webscr" method="post" style="display: inline-block;position: relative;top: 5px;" target="_blank" id='form_paypal'>
-                <input type='hidden' name="amount" value="<?php echo $market->getCost(); ?>" />
-                <input name="currency_code" type="hidden" value="EUR" />
-                <input name="shipping" type="hidden" value="0.00" />
-                <input name="tax" type="hidden" value="0.00" />
-                <input name="return" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=resultBuy&success=1'; ?>" />
-                <input name="cancel_return" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=resultBuy&success=0'; ?>" />
-                <input name="notify_url" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=registerBuy'; ?>" />
-                <input name="cmd" type="hidden" value="_xclick" />
-                <input name="business" type="hidden" value="<?php echo $purchase_info['paypal::marchandMail']; ?>" />
-                <input name="item_name" type="hidden" value="<?php echo '[' . $market->getType() . '] ' . $market->getLogicalId(); ?>" />
-                <input name="no_note" type="hidden" value="1" />
-                <input name="lc" type="hidden" value="FR" />
-                <input name="bn" type="hidden" value="PP-BuyNowBF" />
-                <input name="custom" type="hidden" value="<?php echo $purchase_info['user_id'] . ':' . $market->getId(); ?>" />
-                <input id='bt_paypalClick' alt="{{Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée}}" name="submit" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif" type="image" style="display: inline-block;position: relative;top: 5px;"/><img class="pull-right" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" style="display: inline-block;"/>
-            </form>
-            <?php
+           <a class="btn btn-default" href='https://market.jeedom.fr/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> Code promo</a>
+           <form action="<?php echo $purchase_info['paypal::url']; ?>/cgi-bin/webscr" method="post" style="display: inline-block;position: relative;top: 5px;" target="_blank" id='form_paypal'>
+            <input type='hidden' name="amount" value="<?php echo $market->getCost(); ?>" />
+            <input name="currency_code" type="hidden" value="EUR" />
+            <input name="shipping" type="hidden" value="0.00" />
+            <input name="tax" type="hidden" value="0.00" />
+            <input name="return" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=resultBuy&success=1'; ?>" />
+            <input name="cancel_return" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=resultBuy&success=0'; ?>" />
+            <input name="notify_url" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=registerBuy'; ?>" />
+            <input name="cmd" type="hidden" value="_xclick" />
+            <input name="business" type="hidden" value="<?php echo $purchase_info['paypal::marchandMail']; ?>" />
+            <input name="item_name" type="hidden" value="<?php echo '[' . $market->getType() . '] ' . $market->getLogicalId(); ?>" />
+            <input name="no_note" type="hidden" value="1" />
+            <input name="lc" type="hidden" value="FR" />
+            <input name="bn" type="hidden" value="PP-BuyNowBF" />
+            <input name="custom" type="hidden" value="<?php echo $purchase_info['user_id'] . ':' . $market->getId(); ?>" />
+            <input id='bt_paypalClick' alt="{{Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée}}" name="submit" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif" type="image" style="display: inline-block;position: relative;top: 5px;"/><img class="pull-right" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" style="display: inline-block;"/>
+        </form>
+        <?php
 } else {
 			echo '<div class="alert alert-info">{{Cet article est payant vous devez avoir un compte sur le market et avoir renseigné les identifiants market dans Jeedom pour pouvoir l\'acheter}}</div>';
 		}
@@ -164,7 +164,7 @@ foreach ($market->getImg('screenshot') as $screenshot) {
   <div class='row'>
     <div class='col-sm-6'>
         <legend>{{Description}}
-<a class="btn btn-default btn-xs pull-right" target="_blank" href="https://jeedom.com/doc/documentation/plugins/<?php echo $market->getLogicalId() . '/fr_FR/' . $market->getLogicalId() . '.html' ?>"><i class="fa fa-book"></i> {{Documentation}}</a><br/>
+            <a class="btn btn-default btn-xs pull-right" target="_blank" href="https://jeedom.com/doc/documentation/plugins/<?php echo $market->getLogicalId() . '/fr_FR/' . $market->getLogicalId() . '.html' ?>"><i class="fa fa-book"></i> {{Documentation}}</a><br/>
         </legend>
         <span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
         <br/><br/>
@@ -271,34 +271,10 @@ if ($market->getLanguage('it_IT') == 1) {
 ?>
            </div>
            <div class='col-sm-3'>
-            <label class="control-label">{{Version}}</label><br/>
-            <?php
-if ($market->getStatus('stable') == 1) {
-	echo '<span class="label label-success">';
-	echo 'Stable : ';
-	echo $market->getDatetime('stable');
-	echo '</span><br/>';
-}
-if ($market->getStatus('beta') == 1) {
-	echo ' <span class="label label-warning">';
-	echo 'Beta : ';
-	echo $market->getDatetime('beta');
-	echo '</span>';
-}
-if (is_object($update) && $update->getConfiguration('version', 'stable') == 'beta' && $market->getStatus('stable') == 1) {
-	if (strtotime($market->getDatetime('stable')) >= strtotime($update->getLocalVersion())) {
-		echo '<br/><span class="label label-info">';
-		echo '{{Le retour à la version stable est possible}}';
-		echo '</span>';
-	} else {
-		echo '<br/><span class="label label-danger">';
-		echo '{{Le retour à la version stable est dangereux}}';
-		echo '</span>';
-	}
-}
-?>
-      </div>
-  </div>
+           <label class="control-label">{{Dernière mise à jour le}}</label><br/>
+           <?php echo $market->getDatetime('stable') ?>
+        </div>
+    </div>
 
 </div>
 
@@ -337,7 +313,7 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
         var nb = 0;
         var html = '';
         for(var i in market_display_info.changelog.reverse()){
-            html += '<strong>{{Version}} '+market_display_info.changelog[i].version+' - '+market_display_info.changelog[i].date+'</strong><br/>';
+            html += '<strong>'+market_display_info.changelog[i].date+'</strong><br/>';
             html += linkify(market_display_info.changelog[i].change);
             html += '<br/><br/>';
             nb++;
@@ -348,21 +324,21 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
         $('.marketAttr[data-l1key=changelog]').html(html);
         var html = '';
         for(var i in market_display_info.changelog.reverse()){
-         html += '<strong>{{Version}} '+market_display_info.changelog[i].version+' - '+market_display_info.changelog[i].date+'</strong><br/>';
-         html += linkify(market_display_info.changelog[i].change);
-         html += '<br/><br/>';
-     }
-     $('#div_changelog').html(html);
- }
- $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
- $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
+           html += '<strong>{{Version}} '+market_display_info.changelog[i].version+' - '+market_display_info.changelog[i].date+'</strong><br/>';
+           html += linkify(market_display_info.changelog[i].change);
+           html += '<br/><br/>';
+       }
+       $('#div_changelog').html(html);
+   }
+   $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
+   $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
 
- $('#bt_paypalClick').on('click', function () {
+   $('#bt_paypalClick').on('click', function () {
     $(this).hide();
 });
 
 
- $("#div_comments").dialog({
+   $("#div_comments").dialog({
     autoOpen: false,
     modal: true,
     height: (jQuery(window).height() - 300),
@@ -375,7 +351,7 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
     }
 });
 
- $("#div_changelog").dialog({
+   $("#div_changelog").dialog({
     autoOpen: false,
     modal: true,
     height: (jQuery(window).height() - 300),
@@ -388,12 +364,12 @@ if (is_object($update) && $update->getConfiguration('version', 'stable') == 'bet
     }
 });
 
- $("#bt_viewCompleteChangelog").on('click',function(){
+   $("#bt_viewCompleteChangelog").on('click',function(){
     $('#div_changelog').dialog('open');
 });
 
 
-$('.bt_installFromMarket').on('click', function () {
+   $('.bt_installFromMarket').on('click', function () {
     var id = $(this).attr('data-market_id');
     var logicalId = $(this).attr('data-market_logicalId');
     jeedom.market.install({
@@ -404,19 +380,19 @@ $('.bt_installFromMarket').on('click', function () {
         },
  success: function (data) { // si l'appel a bien fonctionné
  if(market_display_info.type == 'plugin'){
-   bootbox.confirm('{{Voulez vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
-     if (result) {
+     bootbox.confirm('{{Voulez vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
+       if (result) {
         loadPage('index.php?v=d&p=plugin&id=' + logicalId);
-   }
+    }
 });
-}
-$('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
+ }
+ $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
 }
 });
 
 });
 
-$('#bt_removeFromMarket').on('click', function () {
+   $('#bt_removeFromMarket').on('click', function () {
     var id = $(this).attr('data-market_id');
     jeedom.market.remove({
         id: id,
@@ -430,12 +406,12 @@ $('#bt_removeFromMarket').on('click', function () {
 });
 });
 
-$('#in_myRating').on('change', function () {
+   $('#in_myRating').on('change', function () {
     var id = $('.marketAttr[data-l1key=id]').value();
     jeedom.market.setRating({
-     id: id,
-     rating: $(this).val(),
-     error: function (error) {
+       id: id,
+       rating: $(this).val(),
+       error: function (error) {
         $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
     }
 });

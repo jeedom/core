@@ -69,11 +69,15 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
             $('#span_plugin_id').html(data.id);
             $('#span_plugin_name').html(data.name);
             $('#span_plugin_author').html(data.author);
-            $('#span_plugin_description').html(data.description);
             if(isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.version)){
                 $('#span_plugin_install_version').html(data.update.configuration.version);
             }else{
                 $('#span_plugin_install_version').html('');
+            }
+            if(isset(data.update) && isset(data.update) && isset(data.update.localVersion)){
+                $('#span_plugin_install_date').html(data.update.localVersion);
+            }else{
+                $('#span_plugin_install_date').html('');
             }
             $('#span_plugin_licence').html(data.licence);
             if($.trim(data.installation) == '' || $.trim(data.installation) == 'Aucune'){
@@ -112,7 +116,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
             } else {
                 $('#span_plugin_require').html('<span class="label label-danger">' + data.require + '</span>');
             }
-            $('#span_plugin_version').html(data.version);
 
             $('#div_plugin_toggleState').empty();
             if (data.checkVersion != -1) {
