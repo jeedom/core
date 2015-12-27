@@ -160,6 +160,20 @@ if (init('hostname') != '' && init('username') != '' && init('password') != '' &
 	try {
 		$pdo = new PDO($dsn, init('username'), init('password'), $opt);
 		$config = false;
+		if (init('erase_database') == 1) {
+			$sql = $dbo->prepare("SET foreign_key_checks = 0");
+			$sql->execute();
+			$tables = array();
+			$result = $pdo->query("SHOW TABLES");
+			while ($row = $result->fetch(PDO::FETCH_NUM)) {
+				$tables[] = $row[0];
+			}
+
+			foreach ($tables as $table) {
+				$sql = $dbo->prepare("DROP TABLE `$table`");
+				$sql->execute();
+			}
+		}
 	} catch (Exception $e) {
 		echo '<div class="alert alert-danger" style="margin:15px;">';
 		echo '<center style="font-size:1.2em;">Unable to connect to database</center>';
@@ -201,6 +215,12 @@ if ($config) {
 				<label class="col-sm-5 control-label">Database name</label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" id="database" name="database" value="<?php echo init('database', 'jeedom') ?>" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-5 control-label">Erase database</label>
+				<div class="col-sm-2">
+					<input type="checbox" class="form-control" id="erase_database" name="erase_database" value="<?php echo init('erase_database') ?>" />
 				</div>
 			</div>
 			<div class="form-group">
