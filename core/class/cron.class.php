@@ -438,6 +438,9 @@ class cron {
 	}
 
 	public function getLastRun() {
+		if ($this->lastRun == '0000-00-00 00:00:00') {
+			return date('Y-m-d H:i:s');
+		}
 		return $this->lastRun;
 	}
 
