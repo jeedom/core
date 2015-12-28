@@ -598,6 +598,12 @@ class market {
 	}
 
 	public function install($_version = 'stable') {
+		if (!file_exists(dirname(__FILE__) . '/../../plugins')) {
+			mkdir(dirname(__FILE__) . '/../../plugins');
+			@chown(dirname(__FILE__) . '/../../plugins', 'www-data');
+			@chgrp(dirname(__FILE__) . '/../../plugins', 'www-data');
+			@chmod(dirname(__FILE__) . '/../../plugins', 0775);
+		}
 		log::add('update', 'alert', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
 		$tmp_dir = dirname(__FILE__) . '/../../tmp';
 		$tmp = $tmp_dir . '/' . $this->getLogicalId() . '.zip';
