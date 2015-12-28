@@ -164,7 +164,7 @@ if (init('hostname') != '' && init('username') != '' && init('password') != '') 
 		$pdo = new PDO($dsn, init('username'), init('password'), $opt);
 		$sql = $pdo->prepare("CREATE DATABASE IF NOT EXISTS `" . init('database') . "`");
 		$sql->execute();
-		$dsn = "mysql:host=" . init('hostname') . ";dbname=" . init('database') . ";port=" . init('port', '3306') . ";charset=utf8";
+		$dsn .= ";dbname=" . init('database');
 		$pdo = new PDO($dsn, init('username'), init('password'), $opt);
 		$config = false;
 		if (init('erase_database') == 1) {
@@ -227,7 +227,7 @@ if ($config) {
 			<div class="form-group">
 				<label class="col-sm-5 control-label">Erase database</label>
 				<div class="col-sm-2">
-					<input type="checbox" class="form-control" id="erase_database" name="erase_database" value="<?php echo init('erase_database') ?>" />
+					<input type="checkbox" class="form-control" id="erase_database" name="erase_database" value="<?php echo init('erase_database') ?>" />
 				</div>
 			</div>
 			<div class="form-group">
