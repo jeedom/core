@@ -1,7 +1,7 @@
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
 
-        DocumentRoot /var/www
+        DocumentRoot /var/www/jeedom
         <Directory />
                 Options FollowSymLinks
                 AllowOverride None
