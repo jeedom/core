@@ -772,7 +772,7 @@ function printScenario(_id) {
       $('#span_lastLaunch').text(data.lastLaunch);
 
       $('#div_scenarioElement').empty();
-      $('#div_scenarioElement').append('<a class="btn btn-default bt_addScenarioElement tootlips" title="Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a><br/><br/>');
+      $('#div_scenarioElement').append('<a class="btn btn-default bt_addScenarioElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}"><i class="fa fa-plus-circle"></i> {{Ajouter bloc}}</a><br/><br/>');
       $('.provokeMode').empty();
       $('.scheduleMode').empty();
       $('.scenarioAttr[data-l1key=mode]').trigger('change');
@@ -1055,11 +1055,11 @@ function addSubElement(_subElement, _pColor) {
     retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{ALORS}}</legend>'; 
     retour += '     <div class="dropdown">';
     retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += '         <i class="fa fa-plus-circle"></i> Ajouter';
+    retour += '         <i class="fa fa-plus-circle"></i> {{Ajouter}}';
     retour += '         <span class="caret"></span>';
     retour += '       </button>';
     retour += '       <ul class="dropdown-menu">';
-    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)">{{Bloc}}</a></li>';
+    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
     retour += '         <li><a class="bt_addAction" href="#">{{Action}}</a></li>';
     retour += '       </ul>';
     retour += '     </div><p> </p>';
@@ -1085,7 +1085,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '         <span class="caret"></span>';
     retour += '       </button>';
     retour += '       <ul class="dropdown-menu">';
-    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)">{{Bloc}}</a></li>';
+    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
     retour += '         <li><a class="bt_addAction" href="#">{{Action}}</a></li>';
     retour += '       </ul>';
     retour += '     </div><p> </p>';
@@ -1106,9 +1106,9 @@ function addSubElement(_subElement, _pColor) {
     retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
     retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
     if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément"/>';
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}"/>';
     }else{
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="Décocher pour désactiver l\'élément"/>';
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}"/>';
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
@@ -1128,9 +1128,9 @@ function addSubElement(_subElement, _pColor) {
     retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
     retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
     if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément"/>';
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}"/>';
     }else{
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="Décocher pour désactiver l\'élément"/>';
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}"/>';
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
@@ -1151,9 +1151,9 @@ function addSubElement(_subElement, _pColor) {
     retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
     retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
     if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément"/>';
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}"/>';
     }else{
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="Décocher pour désactiver l\'élément"/>';
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}"/>';
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
@@ -1178,7 +1178,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '         <span class="caret"></span>';
     retour += '       </button>';
     retour += '       <ul class="dropdown-menu">';
-    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)">{{Bloc}}</a></li>';
+    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
     retour += '         <li><a class="bt_addAction" href="#">{{Action}}</a></li>';
     retour += '       </ul>';
     retour += '     </div><p> </p>';
@@ -1199,9 +1199,9 @@ function addSubElement(_subElement, _pColor) {
     retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
     retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
     if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément"/>';
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}"/>';
     }else{
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="Décocher pour désactiver l\'élément"/>';
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}"/>';
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
@@ -1238,9 +1238,9 @@ function addSubElement(_subElement, _pColor) {
     retour += '  <div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
     retour += '     <i class="fa fa-arrows-v pull-left cursor bt_sortable"></i>';
     if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément"/>';
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}"/>';
     }else{
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="Décocher pour désactiver l\'élément"/>';
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}"/>';
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
@@ -1251,7 +1251,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '         <span class="caret"></span>';
     retour += '       </button>';
     retour += '       <ul class="dropdown-menu">';
-    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)">{{Bloc}}</a></li>';
+    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
     retour += '         <li><a class="bt_addAction" href="#">{{Action}}</a></li>';
     retour += '       </ul>';
     retour += '     </div><p> </p>';
