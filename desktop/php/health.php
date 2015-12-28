@@ -265,7 +265,11 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	}
 	try {
 		if ($plugin->getHasOwnDeamon() == 1) {
+			$alert = 'alert-danger';
 			$deamon_info = $plugin->deamon_info();
+			if ($deamon_info['auto'] != 1) {
+				$alert = 'alert-success';
+			}
 			echo '<tr>';
 			echo '<td style="font-weight : bold;">';
 			echo '{{Configuration démon}}';
@@ -275,7 +279,11 @@ foreach (plugin::listPlugin(true) as $plugin) {
 					echo '<td class="alert alert-success">{{OK}}</td>';
 					break;
 				case 'nok':
-					echo '<td class="alert alert-danger">{{NOK}}</td>';
+					if ($deamon_info['auto'] != 1) {
+						echo '<td class="alert alert-success">{{Désactivé}}</td>';
+					} else {
+						echo '<td class="alert alert-danger" title="' . $deamon_info['launchable_message'] . '">{{NOK}}</td>';
+					}
 					break;
 			}
 			echo '<td>';
@@ -291,7 +299,11 @@ foreach (plugin::listPlugin(true) as $plugin) {
 					echo '<td class="alert alert-success">{{OK}}</td>';
 					break;
 				case 'nok':
-					echo '<td class="alert alert-danger">{{NOK}}</td>';
+					if ($deamon_info['auto'] != 1) {
+						echo '<td class="alert alert-success">{{Désactivé}}</td>';
+					} else {
+						echo '<td class="alert alert-danger">{{NOK}}</td>';
+					}
 					break;
 			}
 			echo '<td>';
@@ -309,7 +321,11 @@ foreach (plugin::listPlugin(true) as $plugin) {
 							echo '<td class="alert alert-success">{{OK}}</td>';
 							break;
 						case 'nok':
-							echo '<td class="alert alert-danger" title="' . $deamon_info['launchable_message'] . '">{{NOK}}</td>';
+							if ($deamon_info['auto'] != 1) {
+								echo '<td class="alert alert-success">{{Désactivé}}</td>';
+							} else {
+								echo '<td class="alert alert-danger" title="' . $deamon_info['launchable_message'] . '">{{NOK}}</td>';
+							}
 							break;
 					}
 					echo '<td>';
@@ -324,7 +340,11 @@ foreach (plugin::listPlugin(true) as $plugin) {
 							echo '<td class="alert alert-success">{{OK}}</td>';
 							break;
 						case 'nok':
-							echo '<td class="alert alert-danger">{{NOK}}</td>';
+							if ($deamon_info['auto'] != 1) {
+								echo '<td class="alert alert-success">{{Désactivé}}</td>';
+							} else {
+								echo '<td class="alert alert-danger">{{NOK}}</td>';
+							}
 							break;
 					}
 					echo '<td>';
