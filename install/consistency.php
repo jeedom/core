@@ -259,13 +259,6 @@ try {
 	$cron->setDeamon(0);
 	$cron->save();
 
-	if (jeedom::isCapable('sudo')) {
-		if (!file_exists('/var/log/auth.log')) {
-			exec('sudo touch /var/log/auth.log');
-			exec('sudo service fail2ban restart');
-		}
-		exec('sudo service cron restart');
-	}
 	config::save('hardware_name', '');
 
 	if (config::byKey('api') == '') {
