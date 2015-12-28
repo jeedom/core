@@ -104,7 +104,7 @@ class jsonrpcClient {
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $_request);
 			curl_setopt($ch, CURLOPT_FORBID_REUSE, true);
 			curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-			if ($this->getCertificate_path() != '') {
+			if ($this->getCertificate_path() != '' && file_exists($this->getCertificate_path())) {
 				curl_setopt($ch, CURLOPT_CAINFO, $this->getCertificate_path());
 			}
 			$response = curl_exec($ch);
