@@ -160,11 +160,11 @@ if (init('hostname') != '' && init('username') != '' && init('password') != '') 
 		if (init('database') == '') {
 			$_POST['database'] = 'jeedom';
 		}
-		$dsn = "mysql:host=" . init('hostname') . ";charset=utf8";
+		$dsn = "mysql:host=" . init('hostname') . ";port=" . init('port', '3306') . ";charset=utf8";
 		$pdo = new PDO($dsn, init('username'), init('password'), $opt);
-		$sql = $dbo->prepare("CREATE DATABASE IF NOT EXISTS `" . init('database') . "`");
+		$sql = $pdo->prepare("CREATE DATABASE IF NOT EXISTS `" . init('database') . "`");
 		$sql->execute();
-		$dsn = "mysql:host=" . init('hostname') . ";dbname=" . init('database') . ";charset=utf8";
+		$dsn = "mysql:host=" . init('hostname') . ";dbname=" . init('database') . ";port=" . init('port', '3306') . ";charset=utf8";
 		$pdo = new PDO($dsn, init('username'), init('password'), $opt);
 		$config = false;
 		if (init('erase_database') == 1) {
