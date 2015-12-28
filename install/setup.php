@@ -152,12 +152,19 @@ if ($error) {
 	die();
 }
 $config = true;
-if (init('hostname') != '' && init('username') != '' && init('password') != '' && init('database') != '') {
-	$dsn = "mysql:host=" . init('hostname') . ";dbname=" . init('database') . ";charset=utf8";
-	$opt = array(
-		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-	);
+if (init('hostname') != '' && init('username') != '' && init('password') != '') {
 	try {
+		$opt = array(
+			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+		);
+		if (init('database') == '') {
+			$_POST['database'] = 'jeedom';
+		}
+		$dsn = "mysql:host=" . init('hostname') . ";charset=utf8";
+		$pdo = new PDO($dsn, init('username'), init('password'), $opt);
+		$sql = $dbo->prepare("CREATE DATABASE IF NOT EXISTS `" . init('database') . "`");
+		$sql->execute();
+		$dsn = "mysql:host=" . init('hostname') . ";dbname=" . init('database') . ";charset=utf8";
 		$pdo = new PDO($dsn, init('username'), init('password'), $opt);
 		$config = false;
 		if (init('erase_database') == 1) {
