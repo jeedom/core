@@ -341,7 +341,7 @@ class market {
 				'jeedom_name' => config::byKey('name'),
 			));
 		}
-		$jsonrpc->setCertificate_path(dirname(__FILE__) . '/../../script/root_market.crt');
+		//$jsonrpc->setCertificate_path(dirname(__FILE__) . '/../../script/root_market.crt');
 		$jsonrpc->setCb_class('market');
 		$jsonrpc->setCb_function('postJsonRpc');
 		return $jsonrpc;
