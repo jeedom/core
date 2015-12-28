@@ -209,7 +209,7 @@ if ($config) {
 			<div class="form-group">
 				<label class="col-sm-5 control-label">Database username</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" id="username" name="username" value="<?php echo init('username') ?>" />
+					<input type="text" class="form-control" id="username" name="username" value="<?php echo init('username', 'root') ?>" />
 				</div>
 			</div>
 			<div class="form-group">
