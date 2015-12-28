@@ -259,6 +259,13 @@ try {
 	$cron->setDeamon(0);
 	$cron->save();
 
+	if (!file_exists('/usr/local/share/ca-certificates/root_market.crt') && file_exists('/usr/local/share/ca-certificates')) {
+		echo 'Ajout du certificat du market...';
+		shell_exec('sudo cp ' . dirname(__FILE__) . '/../script/root_market.crt /usr/local/share/ca-certificates');
+		shell_exec('sudo update-ca-certificates');
+		echo "OK\n";
+	}
+
 	config::save('hardware_name', '');
 
 	if (config::byKey('api') == '') {
