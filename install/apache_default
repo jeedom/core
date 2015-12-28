@@ -21,7 +21,7 @@
                 Allow from all
         </Directory>
 
-        ErrorLog ${APACHE_LOG_DIR}/error.log
+        ErrorLog /var/www/jeedom/log/error.log
 
         # Possible values include: debug, info, notice, warn, error, crit,
         # alert, emerg.
