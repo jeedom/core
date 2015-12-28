@@ -37,27 +37,6 @@
                 DirectoryIndex index.html index.php
         </Directory>
 
-        <Directory /var/www/jeedom/tmp/>
-                Options Indexes FollowSymLinks MultiViews
-                AllowOverride AuthConfig
-                Order allow,deny
-                deny from all
-        </Directory>
-
-        <Directory /var/www/jeedom/log/>
-                Options Indexes FollowSymLinks MultiViews
-                AllowOverride AuthConfig
-                Order allow,deny
-                deny from all
-        </Directory>
-                                                                                                                                                                                
-        <Directory /var/www/jeedom/backup/>
-                Options Indexes FollowSymLinks MultiViews
-                AllowOverride AuthConfig
-                Order allow,deny
-                deny from all
-        </Directory>
-
         ProxyPreserveHost On
         ProxyRequests On
 
@@ -70,5 +49,4 @@
                 Order deny,allow
                 Allow from all
         </ProxyMatch>
-
 </VirtualHost>
