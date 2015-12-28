@@ -18,6 +18,7 @@ class jsonrpcClient {
 	private $apiAddr;
 	private $cb_function = '';
 	private $cb_class = '';
+	private $certificate_path = '';
 
 	/*     * ********Static******************* */
 
@@ -98,11 +99,14 @@ class jsonrpcClient {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_TIMEOUT, $_timeout);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $_request);
 			curl_setopt($ch, CURLOPT_FORBID_REUSE, true);
 			curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+			if ($this->getCertificate_path() != '') {
+				curl_setopt($ch, CURLOPT_CAINFO, $this->getCertificate_path());
+			}
 			$response = curl_exec($ch);
 			$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			$nbRetry++;
@@ -111,6 +115,12 @@ class jsonrpcClient {
 				usleep(500000);
 			} else {
 				$nbRetry = $_maxRetry + 1;
+			}
+		}
+		if ($http_status == 301) {
+			if (preg_match('/<a href="(.*)">/i', $response, $r)) {
+				$this->apiAddr = trim($r[1]);
+				return $this->send($_request, $_timeout, $_file, $_maxRetry);
 			}
 		}
 		if ($http_status != 200) {
@@ -145,20 +155,28 @@ class jsonrpcClient {
 		return $this->errorMessage;
 	}
 
-	function getCb_function() {
+	public function getCb_function() {
 		return $this->cb_function;
 	}
 
-	function getCb_class() {
+	public function getCb_class() {
 		return $this->cb_class;
 	}
 
-	function setCb_function($cb_function) {
+	public function setCb_function($cb_function) {
 		$this->cb_function = $cb_function;
 	}
 
-	function setCb_class($cb_class) {
+	public function setCb_class($cb_class) {
 		$this->cb_class = $cb_class;
+	}
+
+	public function setCertificate_path($certificate_path) {
+		$this->certificate_path = $certificate_path;
+	}
+
+	public function getCertificate_path() {
+		return $this->certificate_path;
 	}
 
 }

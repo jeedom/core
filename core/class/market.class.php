@@ -333,7 +333,6 @@ class market {
 				$params['addrPort'] = config::byKey('externalPort');
 			}
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
-
 		} else {
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
 				'jeedomversion' => jeedom::version(),
@@ -342,6 +341,7 @@ class market {
 				'jeedom_name' => config::byKey('name'),
 			));
 		}
+		$jsonrpc->setCertificate_path(dirname(__FILE__) . '/../../script/root_market.crt');
 		$jsonrpc->setCb_class('market');
 		$jsonrpc->setCb_function('postJsonRpc');
 		return $jsonrpc;
