@@ -167,8 +167,8 @@ if (init('hostname') != '' && init('username') != '' && init('password') != '') 
 		$dsn .= ";dbname=" . init('database');
 		$pdo = new PDO($dsn, init('username'), init('password'), $opt);
 		$config = false;
-		if (init('erase_database') == 1) {
-			$sql = $dbo->prepare("SET foreign_key_checks = 0");
+		if (init('eraseDatabase') == 'on') {
+			$sql = $pdo->prepare("SET foreign_key_checks = 0");
 			$sql->execute();
 			$tables = array();
 			$result = $pdo->query("SHOW TABLES");
@@ -177,7 +177,7 @@ if (init('hostname') != '' && init('username') != '' && init('password') != '') 
 			}
 
 			foreach ($tables as $table) {
-				$sql = $dbo->prepare("DROP TABLE `$table`");
+				$sql = $pdo->prepare("DROP TABLE `$table`");
 				$sql->execute();
 			}
 		}
@@ -227,7 +227,7 @@ if ($config) {
 			<div class="form-group">
 				<label class="col-sm-5 control-label">Erase database</label>
 				<div class="col-sm-2">
-					<input type="checkbox" class="form-control" id="erase_database" name="erase_database" value="<?php echo init('erase_database') ?>" />
+					<input type="checkbox" class="form-control" id="eraseDatabase" name="eraseDatabase" />
 				</div>
 			</div>
 			<div class="form-group">
