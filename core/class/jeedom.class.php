@@ -614,12 +614,12 @@ class jeedom {
 		}
 		$result = 'DIY';
 		$uname = shell_exec('uname -a');
-		if (strpos($uname, 'cubox') !== false || strpos($uname, 'jeedom') !== false) {
-			$result = 'Jeedomboard';
-		} else if (file_exists('/.dockerinit')) {
+		if (file_exists('/.dockerinit')) {
 			$result = 'Docker';
 		} else if (file_exists('/usr/bin/raspi-config')) {
 			$result = 'RPI/RPI2';
+		} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'jeedom') !== false) {
+			$result = 'Jeedomboard';
 		}
 		config::save('hardware_name', $result);
 		return config::byKey('hardware_name');
