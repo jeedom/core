@@ -623,7 +623,6 @@ class jeedom {
 		}
 		config::save('hardware_name', $result);
 		return config::byKey('hardware_name');
-
 	}
 
 	public static function isCapable($_function) {
