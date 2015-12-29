@@ -1,3 +1,14 @@
+php_value post_max_size 1G
+php_value upload_max_filesize 1G
+php_value max_execution_time 300
+php_flag display_startup_errors on
+php_flag display_errors on
+php_flag html_errors on
+php_flag  log_errors on
+php_value error_log  log/http.error
+
+ServerSignature Off
+
 <IfModule mod_gzip.c>
     mod_gzip_on       Yes
     mod_gzip_dechunk  Yes
@@ -9,35 +20,31 @@
     mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
 </IfModule>
 
-php_value post_max_size 1G
-php_value upload_max_filesize 1G
-php_value max_execution_time 600
-
 <Files .htaccess>
-Order Allow,Deny
-Deny from all
+	Order Allow,Deny
+	Deny from all
 </Files>
 
 <Files ~ "^.*\.gz">
-order allow,deny
-deny from all
-satisfy all
+	order allow,deny
+	deny from all
+	satisfy all
 </Files>
 
 <Files ~ "^.*\.sql">
-order allow,deny
-deny from all
-satisfy all
+	order allow,deny
+	deny from all
+	satisfy all
 </Files>
 
 <Files ~ "^.*\.ini">
-order allow,deny
-deny from all
-satisfy all
+	order allow,deny
+	deny from all
+	satisfy all
 </Files>
 
 <Files ~ "^.*\.tar">
-order allow,deny
-deny from all
-satisfy all
+	order allow,deny
+	deny from all
+	satisfy all
 </Files>
