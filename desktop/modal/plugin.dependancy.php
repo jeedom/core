@@ -54,7 +54,7 @@ switch ($dependancy_info['state']) {
 				<a class="btn btn-default btn-sm showLogPluginDependancy" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i> {{Voir la log}}</a>
 			</td>
 			<td class="td_lastLaunchDependancy" data-slave_id="0">
-				<?php echo $deamon_info['last_launch'] ?>
+				<?php echo $dependancy_info['last_launch'] ?>
 			</td>
 		</tr>
 
@@ -101,7 +101,7 @@ $refresh[$jeeNetwork->getId()] = 1;
 							<a class="btn btn-default btn-sm showLogPluginDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i> {{Voir la log}}</a>
 						</td>
 						<td class="td_lastLaunchDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
-							<?php echo $deamon_info['last_launch'] ?>
+							<?php echo $dependancy_info['last_launch'] ?>
 						</td>
 					</tr>
 					<?php
