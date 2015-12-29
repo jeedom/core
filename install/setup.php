@@ -128,10 +128,10 @@ foreach ($needphpextensions as $needphpextension) {
 	echo '</pre>';
 	echo '</div>';
 }
-if (ini_get('max_execution_time') < 300) {
+if (ini_get('max_execution_time') < 600) {
 	$error = true;
 	echo '<div class="alert alert-warning" style="margin:15px;">';
-	echo '<center style="font-size:1.2em;">max_execution_time must be >= 300, edit ' . php_ini_loaded_file() . ' and change this value (current ' . ini_get('max_execution_time') . ')</center>';
+	echo '<center style="font-size:1.2em;">max_execution_time must be >= 600, edit ' . php_ini_loaded_file() . ' and change this value (current ' . ini_get('max_execution_time') . ')</center>';
 	echo '</div>';
 }
 if (ini_get('upload_max_filesize') != '1G') {
