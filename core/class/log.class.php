@@ -147,14 +147,7 @@ class log {
 		if (!file_exists($path) || !is_file($path)) {
 			return;
 		}
-		if (strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) {
-			shell_exec('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
-			return;
-		}
-		shell_exec('sudo chmod 777 ' . $path);
-		$log = fopen($path, "w");
-		ftruncate($log, 0);
-		fclose($log);
+		shell_exec('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
 		return true;
 	}
 
