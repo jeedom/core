@@ -140,15 +140,15 @@ class log {
 		if (config::byKey('log::engine') != 'StreamHandler') {
 			return;
 		}
-		if (!file_exists($path) || !is_file($path)) {
-			return;
-		}
 		if (strpos($_log, '.htaccess') !== false) {
 			return;
 		}
 		$path = self::getPathToLog($_log);
+		if (!file_exists($path) || !is_file($path)) {
+			return;
+		}
 		if (strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) {
-			shell_exec('cat /dev/null > ' . $path);
+			shell_exec('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
 			return;
 		}
 		$log = fopen($path, "w");
@@ -172,7 +172,7 @@ class log {
 			return;
 		}
 		if (strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) {
-			shell_exec('cat /dev/null > ' . $path);
+			shell_exec('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
 			return;
 		}
 		unlink($path);
@@ -193,7 +193,7 @@ class log {
 				continue;
 			}
 			if (strpos($log, 'nginx.error') !== false || strpos($log, 'http.error') !== false) {
-				shell_exec('cat /dev/null > ' . $path);
+				shell_exec('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
 				continue;
 			}
 			unlink($path);
