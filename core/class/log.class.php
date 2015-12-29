@@ -101,20 +101,20 @@ class log {
 			if (is_file($path)) {
 				self::chunkLog($path, $maxLineLog);
 			}
-		} else {
-			$logs = ls(dirname(__FILE__) . '/../../log/', '*');
-			foreach ($logs as $log) {
-				$path = dirname(__FILE__) . '/../../log/' . $log;
-				if (is_file($path)) {
-					self::chunkLog($path, $maxLineLog);
-				}
+			return;
+		}
+		$logs = ls(dirname(__FILE__) . '/../../log/', '*');
+		foreach ($logs as $log) {
+			$path = dirname(__FILE__) . '/../../log/' . $log;
+			if (is_file($path)) {
+				self::chunkLog($path, $maxLineLog);
 			}
-			$logs = ls(dirname(__FILE__) . '/../../log/scenarioLog', '*');
-			foreach ($logs as $log) {
-				$path = dirname(__FILE__) . '/../../log/scenarioLog/' . $log;
-				if (is_file($path)) {
-					self::chunkLog($path, $maxLineLog);
-				}
+		}
+		$logs = ls(dirname(__FILE__) . '/../../log/scenarioLog', '*');
+		foreach ($logs as $log) {
+			$path = dirname(__FILE__) . '/../../log/scenarioLog/' . $log;
+			if (is_file($path)) {
+				self::chunkLog($path, $maxLineLog);
 			}
 		}
 	}
