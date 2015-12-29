@@ -123,7 +123,7 @@ class log {
 		if (strpos($_path, '.htaccess') !== false) {
 			return;
 		}
-		shell_exec('echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+		shell_exec('sudo chmod 777 ' . $_path . ' ;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		@chown($_path, 'www-data');
 		@chgrp($_path, 'www-data');
 		@chmod($_path, 0777);
@@ -151,6 +151,7 @@ class log {
 			shell_exec('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
 			return;
 		}
+		shell_exec('sudo chmod 777 ' . $path);
 		$log = fopen($path, "w");
 		ftruncate($log, 0);
 		fclose($log);
@@ -175,6 +176,7 @@ class log {
 			shell_exec('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
 			return;
 		}
+		shell_exec('sudo chmod 777 ' . $path);
 		unlink($path);
 		return true;
 	}
@@ -196,6 +198,7 @@ class log {
 				shell_exec('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
 				continue;
 			}
+			shell_exec('sudo chmod 777 ' . $path);
 			unlink($path);
 		}
 		return true;

@@ -550,7 +550,7 @@ class jeedom {
 		$processGroup = posix_getgrgid(posix_getegid());
 		$user = $processUser['name'];
 		$group = $processGroup['name'];
-		$path = dirname(__FILE__) . '/../../';
+		$path = dirname(__FILE__) . '/../../*';
 		exec('sudo chown -R ' . $user . ':' . $group . ' ' . $path);
 	}
 
