@@ -1313,6 +1313,9 @@ class cmd {
 		$category = $this->getEqLogic()->getPrimaryCategory();
 		$name_eq = strtolower($this->getEqLogic()->getName());
 		$type = strtoupper($category) . '_';
+      	if (strpos($name_eq, 'volet') !== false) {
+        	$type = 'FLAP_';
+        }
 		if ($this->getType() == 'action') {
 			if ($this->getSubtype() == 'other') {
 				$name = strtolower($this->getName());
@@ -1339,9 +1342,9 @@ class cmd {
 		} else {
 			switch ($this->getUnite()) {
 				case 'W':
-					return $type . 'POWER';
+					return 'POWER';
 				case 'kWh':
-					return $type . 'CONSUMPTION';
+					return 'CONSUMPTION';
 				case '°C':
 					return 'TEMPERATURE';
 				case 'Lux':
