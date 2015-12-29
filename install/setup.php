@@ -227,7 +227,7 @@ if ($config) {
 			<div class="form-group">
 				<label class="col-sm-5 control-label">Erase database</label>
 				<div class="col-sm-2">
-					<input type="checkbox" class="form-control" id="eraseDatabase" name="eraseDatabase" />
+					<input type="checkbox" id="eraseDatabase" name="eraseDatabase" />
 				</div>
 			</div>
 			<div class="form-group">
