@@ -97,8 +97,9 @@ class log {
 			$maxLineLog = 200;
 		}
 		if ($_log != '') {
-			if (is_file(self::getPathToLog($_log))) {
-				self::chunkLog(self::getPathToLog($_log), $maxLineLog);
+			$path = self::getPathToLog($_log);
+			if (is_file($path)) {
+				self::chunkLog($path, $maxLineLog);
 			}
 		} else {
 			$logs = ls(dirname(__FILE__) . '/../../log/', '*');
@@ -122,7 +123,7 @@ class log {
 		if (strpos($_path, '.htaccess') !== false) {
 			return;
 		}
-		shell_exec('tail -n ' . $maxLineLog . ' ' . $_path . ' > ' . $_path . 'tmp;rm ' . $_path . ';mv ' . $_path . 'tmp ' . $_path);
+		shell_exec('echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		@chown($_path, 'www-data');
 		@chgrp($_path, 'www-data');
 		@chmod($_path, 0777);
@@ -139,15 +140,20 @@ class log {
 		if (config::byKey('log::engine') != 'StreamHandler') {
 			return;
 		}
+		if (!file_exists($path) || !is_file($path)) {
+			return;
+		}
+		if (strpos($_log, '.htaccess') !== false) {
+			return;
+		}
 		$path = self::getPathToLog($_log);
-		if (file_exists($path) && is_file($path) && strpos($_log, 'nginx.error') === false && strpos($_log, 'http.error') === false && strpos($_log, '.htaccess') === false) {
-			$log = fopen($path, "w");
-			ftruncate($log, 0);
-			fclose($log);
-		}
-		if ((strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) && strpos($_log, '.htaccess') === false) {
+		if (strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) {
 			shell_exec('cat /dev/null > ' . $path);
+			return;
 		}
+		$log = fopen($path, "w");
+		ftruncate($log, 0);
+		fclose($log);
 		return true;
 	}
 
@@ -159,14 +165,17 @@ class log {
 			return;
 		}
 		$path = self::getPathToLog($_log);
-		if (file_exists($path) && is_file($path) && strpos($_log, '.htaccess') === false) {
-			if (strpos($_log, 'nginx.error') === false || strpos($_log, 'http.error') === false) {
-				unlink($path);
-			}
-			if (strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) {
-				shell_exec('cat /dev/null > ' . $path);
-			}
+		if (!file_exists($path) || !is_file($path)) {
+			return;
 		}
+		if (strpos($_log, '.htaccess') !== false) {
+			return;
+		}
+		if (strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) {
+			shell_exec('cat /dev/null > ' . $path);
+			return;
+		}
+		unlink($path);
 		return true;
 	}
 
@@ -177,13 +186,17 @@ class log {
 		$logs = ls(dirname(__FILE__) . '/../../log/', '*');
 		foreach ($logs as $log) {
 			$path = dirname(__FILE__) . '/../../log/' . $log;
-			if (is_file($path) && strpos($log, '.htaccess') === false) {
-				if (strpos($log, 'nginx.error') === false || strpos($log, 'http.error') === false) {
-					unlink($path);
-				} else {
-					shell_exec('cat /dev/null > ' . $path);
-				}
+			if (!file_exists($path) || !is_file($path)) {
+				continue;
 			}
+			if (strpos($log, '.htaccess') !== false) {
+				continue;
+			}
+			if (strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) {
+				shell_exec('cat /dev/null > ' . $path);
+				continue;
+			}
+			unlink($path);
 		}
 		return true;
 	}
