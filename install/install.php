@@ -170,7 +170,7 @@ try {
 						throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
 					}
 					echo __("OK\n", __FILE__);
-					echo __("Installation en cours...", __FILE__);
+					echo __("Copie des fichiers en cours...", __FILE__);
 					$update_begin = true;
 					if (!file_exists($cibDir . '/core')) {
 						$files = ls($cibDir, '*');
@@ -179,6 +179,8 @@ try {
 						}
 					}
 					rcopy($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
+					echo __("OK\n", __FILE__);
+					echo __("Suppression des fichiers temporaire...", __FILE__);
 					rrmdir($cibDir);
 					unlink($tmp);
 					echo __("OK\n", __FILE__);
