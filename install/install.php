@@ -27,7 +27,7 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 set_time_limit(1800);
 echo "[START UPDATE]\n";
 
-if (shell_exec('(ps ax || ps w) | grep -ie "install.php$" | grep -v grep | wc -l') > 0) {
+if (shell_exec('(ps ax || ps w) | grep -ie "install.php$" | grep -v grep | wc -l') > 1) {
 	echo "Une mise a jour est deja en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une";
 	echo "[END UPDATE]\n";
 	die();
