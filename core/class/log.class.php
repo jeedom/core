@@ -192,7 +192,7 @@ class log {
 			if (strpos($log, '.htaccess') !== false) {
 				continue;
 			}
-			if (strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) {
+			if (strpos($log, 'nginx.error') !== false || strpos($log, 'http.error') !== false) {
 				shell_exec('cat /dev/null > ' . $path);
 				continue;
 			}
