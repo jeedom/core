@@ -92,14 +92,10 @@ class log {
 	}
 
 	public static function chunk($_log = '') {
-		$maxLineLog = config::byKey('maxLineLog');
-		if ($maxLineLog < 200) {
-			$maxLineLog = 200;
-		}
 		if ($_log != '') {
 			$path = self::getPathToLog($_log);
 			if (is_file($path)) {
-				self::chunkLog($path, $maxLineLog);
+				self::chunkLog($path);
 			}
 			return;
 		}
@@ -107,21 +103,25 @@ class log {
 		foreach ($logs as $log) {
 			$path = dirname(__FILE__) . '/../../log/' . $log;
 			if (is_file($path)) {
-				self::chunkLog($path, $maxLineLog);
+				self::chunkLog($path);
 			}
 		}
 		$logs = ls(dirname(__FILE__) . '/../../log/scenarioLog', '*');
 		foreach ($logs as $log) {
 			$path = dirname(__FILE__) . '/../../log/scenarioLog/' . $log;
 			if (is_file($path)) {
-				self::chunkLog($path, $maxLineLog);
+				self::chunkLog($path);
 			}
 		}
 	}
 
-	public static function chunkLog($_path, $maxLineLog = 500) {
+	public static function chunkLog($_path) {
 		if (strpos($_path, '.htaccess') !== false) {
 			return;
+		}
+		$maxLineLog = config::byKey('maxLineLog');
+		if ($maxLineLog < 200) {
+			$maxLineLog = 200;
 		}
 		shell_exec('sudo chmod 777 ' . $_path . ' ;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		@chown($_path, 'www-data');
