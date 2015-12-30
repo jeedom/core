@@ -240,13 +240,13 @@ sendVarToJs('refresh_deamon_info', $refresh);
 					}
 					$('.td_lastLaunchDeamon[data-slave_id='+i+']').empty().append(data.last_launch);
 					if(data.auto == 1){
-						$('.bt_stopDeamon').hide();
+						$('.bt_stopDeamon[data-slave_id='+i+']').hide();
 						$('.bt_changeAutoMode[data-slave_id='+i+']').removeClass('btn-success').addClass('btn-danger');
 						$('.bt_changeAutoMode[data-slave_id='+i+']').attr('data-mode',0);
 						$('.bt_changeAutoMode[data-slave_id='+i+']').html('<i class="fa fa-times"></i> {{Désactiver}}');
 					}else{
 						if(data.launchable == 'ok' && data.state == 'ok'){
-							$('.bt_stopDeamon').show();
+							$('.bt_stopDeamon[data-slave_id='+i+']').show();
 						}
 						$('.bt_changeAutoMode[data-slave_id='+i+']').removeClass('btn-danger').addClass('btn-success');
 						$('.bt_changeAutoMode[data-slave_id='+i+']').attr('data-mode',1);
