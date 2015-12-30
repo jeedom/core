@@ -537,11 +537,9 @@ class plugin {
 		try {
 			if ($_state == 1) {
 				$this->deamon_stop();
-				if ($this->getHasDependency() == 1) {
-					$dependancy_info = $this->dependancy_info();
-					if ($dependancy_info['state'] == 'nok') {
-						$this->dependancy_install();
-					}
+				$dependancy_info = $this->dependancy_info();
+				if ($dependancy_info['state'] == 'nok') {
+					$this->dependancy_install();
 				}
 				if ($alreadyActive == 1) {
 					$out = $this->callInstallFunction('update');
