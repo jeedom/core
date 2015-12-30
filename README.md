@@ -1,8 +1,8 @@
 # Jeedom by Loïc Gevrey #
 
-Website (English): [https://jeedom.fr/site/en/](https://jeedom.fr/site/en/)
+Website (English): [https://jeedom.com/site/en/](https://jeedom.com/site/en/)
 
-Website (French):  [https://jeedom.fr/site/](https://jeedom.fr/site/)
+Website (French):  [https://jeedom.com/site/](https://jeedom.com/site/)
 
 (Readme en français [ci-dessous](#french).)
 
