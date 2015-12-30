@@ -141,7 +141,7 @@ try {
 	}
 
 	echo __('Nettoyage des anciennes sauvegardes...', __FILE__);
-	system('find ' . $backup_dir . ' -mtime +' . config::byKey('backup::keepDays') . ' -delete');
+	shell_exec('find ' . $backup_dir . ' -mtime +' . config::byKey('backup::keepDays') . ' -delete');
 	echo __("OK", __FILE__) . "\n";
 
 	echo __('Limite de la taille totale des sauvegardes à ', __FILE__) . config::byKey('backup::maxSize') . ' Mo...';
