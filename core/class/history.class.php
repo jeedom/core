@@ -396,7 +396,7 @@ ORDER BY `datetime` ASC';
 ORDER BY  `datetime` DESC
 LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		if ($result['datetime'] == '' || strtotime($result['datetime']) === false) {
+		if ($result['datetime'] == '' || strtotime($result['datetime']) === false || strtotime($result['datetime']) == 0) {
 			return -1;
 		}
 		return strtotime('now') - strtotime($result['datetime']);
