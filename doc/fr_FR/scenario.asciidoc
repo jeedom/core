@@ -246,7 +246,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 * **tendance**(commande,période,seuil) : donne la tendance de la commande sur la période (period=[month,day,hour,min] ou http://php.net/manual/fr/datetime.formats.relative.php[expression PHP])
     * Ex : tendance(\#[Salle de bain][Hydrometrie][Humidité]#,1 hour,0.1) : renvoie 1 si en augmentation, 0 si constant et -1 si en diminution
            Le seuil permet de definir la sensibilité, attention le calcul du seuil utilise la calcul de http://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s[moindre carrés]
-* **stateDuration**(commande,[valeur]) : donne la durée en secondes depuis le dernier changement de valeur. Retourne -1 si aucun historique n'existe ou si la valeur n'existe pas dans l'historique.
+* **stateDuration**(commande,[valeur]) : donne la durée en secondes depuis le dernier changement de valeur. Retourne -1 si aucun historique n'existe ou si la valeur n'existe pas dans l'historique. Return -2 si la commande n'est pas historisée
     ** Ex : stateDuration(\#[Salle de bain][Hydrometrie][Humidité]#) : renvoie 300 si cette valeur est la depuis 5min
 * **lastChangeStateDuration**(commande,valeur) : donne la durée en secondes depuis le dernier changement d'état à la valeur passée en paramètre.Attention, la valeur de l'équipement doit être historisée.
     ** Ex : lastChangeStateDuration(\#[Salle de bain][Hydrometrie][Humidité]#,0) : renvoie 300 si cette valeur est passée à 0 la dernière fois il y a 5 minutes (même si depuis sa valeur a changé).

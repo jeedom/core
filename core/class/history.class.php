@@ -373,6 +373,9 @@ ORDER BY `datetime` ASC';
 		if (!is_object($cmd)) {
 			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
 		}
+		if ($cmd->getIsHistorized() != 1) {
+			return -2;
+		}
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
