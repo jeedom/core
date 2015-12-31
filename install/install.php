@@ -57,7 +57,7 @@ try {
 	}
 
 	if ($update) {
-		if (shell_exec('(ps ax || ps w) | grep -ie "install/install.php" | grep -v grep | wc -l') > 1) {
+		if (shell_exec('(ps ax || ps w) | grep -i "install/install.php" | grep -v grep | wc -l') > 1) {
 			echo "Une mise a jour est deja en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une";
 			echo "[END UPDATE]\n";
 			die();
