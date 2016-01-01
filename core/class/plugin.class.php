@@ -458,7 +458,7 @@ class plugin {
 				if ($_auto && $deamon_info['auto'] == 0) {
 					return;
 				}
-				if ($deamon_info['launchable'] == 'ok' && ($deamon_info['state'] == 'nok') && method_exists($plugin_id, 'deamon_start')) {
+				if ($deamon_info['launchable'] == 'ok' && $deamon_info['state'] == 'nok' && method_exists($plugin_id, 'deamon_start')) {
 					config::save('lastDeamonLaunchTime', date('Y-m-d H:i:s'), $plugin_id);
 					$plugin_id::deamon_start($_debug);
 				}
