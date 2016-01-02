@@ -15,9 +15,11 @@
 
         $('.iconCmd#uid#').off().on('click', function() {
             if ($(this).attr('data-state') == 'on') {
-                jeedom.cmd.execute({id: '#id#', value: {slider: 0 : parseInt('#minValue#')}});
+                var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
+                jeedom.cmd.execute({id: '#id#', value: {slider:value }});
             } else {
-                jeedom.cmd.execute({id: '#id#', value: {slider: 100 : parseInt('#maxValue#')}});
+                var value = ('#minValue#' == '') ? 100 : parseInt('#maxValue#');
+                jeedom.cmd.execute({id: '#id#', value: {slider: value}});
             }
         });
 
