@@ -41,9 +41,9 @@ $backup_ok = false;
 $update_begin = false;
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-	if (count(jeedom::ps('install/install.php', 'sudo')) > 1) {
+	if (count(system::ps('install/install.php', 'sudo')) > 1) {
 		echo "Une mise a jour/installation est deja en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une\n";
-		print_r(jeedom::ps('install/install.php', 'sudo'));
+		print_r(system::ps('install/install.php', 'sudo'));
 		echo "[END UPDATE]\n";
 		die();
 	}

@@ -921,7 +921,7 @@ class scenario {
 		if ($this->getPID() > 0 && posix_getsid($this->getPID()) && (!file_exists('/proc/' . $this->getPID() . '/cmdline') || strpos(file_get_contents('/proc/' . $this->getPID() . '/cmdline'), 'scenario_id=' . $this->getId()) !== false)) {
 			return true;
 		}
-		if (count(jeedom::ps('scenario_id=' . $this->getId() . ' force', array(getmypid()))) > 0) {
+		if (count(system::ps('scenario_id=' . $this->getId() . ' force', array(getmypid()))) > 0) {
 			return true;
 		}
 		return false;

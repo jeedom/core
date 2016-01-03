@@ -129,7 +129,7 @@ class cron {
 	 * @return int
 	 */
 	public static function nbCronRun() {
-		return count(jeedom::ps('jeeCron.php', array('grep', 'sudo', 'shell=/bin/bash - ', '/bin/bash -c ', posix_getppid(), getmypid())));
+		return count(system::ps('jeeCron.php', array('grep', 'sudo', 'shell=/bin/bash - ', '/bin/bash -c ', posix_getppid(), getmypid())));
 	}
 
 	/**
@@ -137,7 +137,7 @@ class cron {
 	 * @return int
 	 */
 	public static function nbProcess() {
-		return count(jeedom::ps('.'));
+		return count(system::ps('.'));
 	}
 
 	/**
@@ -280,7 +280,7 @@ class cron {
 				return true;
 			}
 		}
-		if (count(jeedom::ps('cron_id=' . $this->getId() . '$')) > 0) {
+		if (count(system::ps('cron_id=' . $this->getId() . '$')) > 0) {
 			return true;
 		}
 		return false;
@@ -325,25 +325,25 @@ class cron {
 		} else {
 			log::add('cron', 'info', __('Arrêt de ', __FILE__) . $this->getClass() . '::' . $this->getFunction() . '(), PID : ' . $this->getPID());
 			if ($this->getPID() > 0) {
-				jeedom::kill($this->getPID());
+				system::kill($this->getPID());
 				$retry = 0;
 				while ($this->running() && $retry < (config::byKey('deamonsSleepTime') + 5)) {
 					sleep(1);
-					jeedom::kill($this->getPID());
+					system::kill($this->getPID());
 					$retry++;
 				}
 				$retry = 0;
 				while ($this->running() && $retry < (config::byKey('deamonsSleepTime') + 5)) {
 					sleep(1);
-					jeedom::kill($this->getPID());
+					system::kill($this->getPID());
 					$retry++;
 				}
 			}
 			if ($this->running()) {
-				jeedom::kill("cron_id=" . $this->getId() . "$");
+				system::kill("cron_id=" . $this->getId() . "$");
 				sleep(1);
 				if ($this->running()) {
-					jeedom::kill("cron_id=" . $this->getId() . "$");
+					system::kill("cron_id=" . $this->getId() . "$");
 					sleep(1);
 				}
 				if ($this->running()) {
