@@ -25,25 +25,25 @@ ServerSignature Off
 	Deny from all
 </Files>
 
-<Files ~ "^.*\.gz">
+<Files ~ ".*\.gz">
 	order allow,deny
 	deny from all
 	satisfy all
 </Files>
 
-<Files ~ "^.*\.sql">
+<Files ~ ".*\.sql">
 	order allow,deny
 	deny from all
 	satisfy all
 </Files>
 
-<Files ~ "^.*\.ini">
+<Files ~ ".*\.ini">
 	order allow,deny
 	deny from all
 	satisfy all
 </Files>
 
-<Files ~ "^.*\.tar">
+<Files ~ ".*\.tar">
 	order allow,deny
 	deny from all
 	satisfy all
