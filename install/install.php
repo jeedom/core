@@ -26,12 +26,6 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 }
 set_time_limit(1800);
 echo "[START UPDATE]\n";
-if (count(jeedom::ps('install/install.php', 'sudo')) > 1) {
-	echo "Une mise a jour/installation est deja en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une\n";
-	print_r(jeedom::ps('install/install.php', 'sudo'));
-	echo "[END UPDATE]\n";
-	die();
-}
 
 if (isset($argv)) {
 	foreach ($argv as $arg) {
@@ -47,6 +41,12 @@ $backup_ok = false;
 $update_begin = false;
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
+	if (count(jeedom::ps('install/install.php', 'sudo')) > 1) {
+		echo "Une mise a jour/installation est deja en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une\n";
+		print_r(jeedom::ps('install/install.php', 'sudo'));
+		echo "[END UPDATE]\n";
+		die();
+	}
 	echo "****Installation/Mise à jour de Jeedom " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
 	echo "Paramètres de la mise à jour : level : " . init('level', -1) . ", mode : " . init('mode') . ", version : " . init('version', 'no') . ", onlyThisVersion : " . init('onlyThisVersion', 'no') . " \n";
 
