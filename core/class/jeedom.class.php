@@ -482,11 +482,71 @@ class jeedom {
 	/***************************************THREAD MANGEMENT**********************************************/
 
 	public static function checkOngoingThread($_cmd) {
-		return shell_exec('ps ax | grep "' . $_cmd . '$" | grep -v "grep" | wc -l');
+		return shell_exec('(ps ax || ps w) | grep "' . $_cmd . '$" | grep -v "grep" | wc -l');
 	}
 
 	public static function retrievePidThread($_cmd) {
-		return shell_exec('ps ax | grep "' . $_cmd . '$" | grep -v "grep" | awk \'{print $1}\'');
+		return shell_exec('(ps ax || ps w) | grep "' . $_cmd . '$" | grep -v "grep" | awk \'{print $1}\'');
+	}
+
+	public static function ps($_find, $_without = null) {
+		$return = array();
+		$cmd = '(ps ax || ps w) | grep -ie "' . $_find . '" | grep -v "grep"';
+		if ($_without != null) {
+			if (!is_array($_without)) {
+				$_without = array($_without);
+			}
+			foreach ($_without as $value) {
+				$cmd .= ' | grep -v "' . $value . '"';
+			}
+		}
+		$results = explode("\n", trim(shell_exec($cmd)));
+		if (!is_array($results) || count($results) == 0) {
+			return $return;
+		}
+		$order = array('pid', 'tty', 'stat', 'time', 'command');
+		foreach ($results as $result) {
+			if (trim($result) == '') {
+				continue;
+			}
+			$explodes = explode(" ", $result);
+			$info = array();
+			$i = 0;
+			foreach ($explodes as $value) {
+				if (trim($value) == '') {
+					continue;
+				}
+				if (isset($order[$i])) {
+					$info[$order[$i]] = trim($value);
+				} else {
+					$info[end($order)] = $info[end($order)] . ' ' . trim($value);
+
+				}
+				$i++;
+			}
+			$return[] = $info;
+		}
+		return $return;
+	}
+
+	public static function kill($_find) {
+		if (is_numeric($_find)) {
+			$kill = posix_kill($_find, 15);
+			if ($kill) {
+				return true;
+			}
+			usleep(100);
+			$kill = posix_kill($_find, 9);
+			if ($kill) {
+				return true;
+			}
+			usleep(100);
+			exec('kill -9 ' . $_find);
+			exec('sudo kill -9 ' . $_find);
+			return;
+		}
+		exec("(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs kill -9 > /dev/null 2>&1");
+		exec("(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1");
 	}
 
 	/******************************************UTILS******************************************************/

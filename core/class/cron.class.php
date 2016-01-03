@@ -129,7 +129,7 @@ class cron {
 	 * @return int
 	 */
 	public static function nbCronRun() {
-		return shell_exec('(ps ax || ps w) | grep jeeCron.php | grep -v "grep" | grep -v "sudo" | grep -v "shell=/bin/bash - " | grep -v "/bin/bash -c " | grep -v "/bin/sh -c " | grep -v ' . posix_getppid() . ' | grep -v ' . getmypid() . ' | wc -l');
+		return count(jeedom::ps('jeeCron.php', array('grep', 'sudo', 'shell=/bin/bash - ', '/bin/bash -c ', posix_getppid(), getmypid())));
 	}
 
 	/**
@@ -137,8 +137,7 @@ class cron {
 	 * @return int
 	 */
 	public static function nbProcess() {
-		$result = shell_exec('ps ax | wc -l');
-		return $result;
+		return count(jeedom::ps('.'));
 	}
 
 	/**
@@ -281,7 +280,7 @@ class cron {
 				return true;
 			}
 		}
-		if (shell_exec('(ps ax || ps w) | grep -ie "cron_id=' . $this->getId() . '$" | grep -v grep | wc -l') > 0) {
+		if (count(jeedom::ps('cron_id=' . $this->getId() . '$')) > 0) {
 			return true;
 		}
 		return false;
@@ -326,29 +325,25 @@ class cron {
 		} else {
 			log::add('cron', 'info', __('Arrêt de ', __FILE__) . $this->getClass() . '::' . $this->getFunction() . '(), PID : ' . $this->getPID());
 			if ($this->getPID() > 0) {
-				$kill = posix_kill($this->getPID(), 15);
+				jeedom::kill($this->getPID());
 				$retry = 0;
-				while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
+				while ($this->running() && $retry < (config::byKey('deamonsSleepTime') + 5)) {
 					sleep(1);
-					$kill = posix_kill($this->getPID(), 9);
+					jeedom::kill($this->getPID());
 					$retry++;
 				}
 				$retry = 0;
-				while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
+				while ($this->running() && $retry < (config::byKey('deamonsSleepTime') + 5)) {
 					sleep(1);
-					exec('kill -9 ' . $this->getPID());
-					exec('sudo kill -9 ' . $this->getPID());
-					$kill = $this->running();
+					jeedom::kill($this->getPID());
 					$retry++;
 				}
 			}
 			if ($this->running()) {
-				exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $1}' | xargs kill -9 > /dev/null 2>&1");
-				exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1");
+				jeedom::kill("cron_id=" . $this->getId() . "$");
 				sleep(1);
 				if ($this->running()) {
-					exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $1}' | xargs kill -9 > /dev/null 2>&1");
-					exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1");
+					jeedom::kill("cron_id=" . $this->getId() . "$");
 					sleep(1);
 				}
 				if ($this->running()) {
