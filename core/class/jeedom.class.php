@@ -489,6 +489,10 @@ class jeedom {
 		return shell_exec('(ps ax || ps w) | grep "' . $_cmd . '$" | grep -v "grep" | awk \'{print $1}\'');
 	}
 
+	public static function fuserk($_port, $_protocol = 'tcp') {
+		exec('fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1;sudo fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1');
+	}
+
 	public static function ps($_find, $_without = null) {
 		$return = array();
 		$cmd = '(ps ax || ps w) | grep -ie "' . $_find . '" | grep -v "grep"';
@@ -541,12 +545,14 @@ class jeedom {
 				return true;
 			}
 			usleep(100);
-			exec('kill -9 ' . $_find);
-			exec('sudo kill -9 ' . $_find);
+			$cmd = 'kill -9 ' . $_find;
+			$cmd .= '; sudo kill -9 ' . $_find;
+			exec($cmd);
 			return;
 		}
-		exec("(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs kill -9 > /dev/null 2>&1");
-		exec("(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1");
+		$cmd = "(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs kill -9 > /dev/null 2>&1";
+		$cmd .= "; (ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1";
+		exec($cmd);
 	}
 
 	/******************************************UTILS******************************************************/
