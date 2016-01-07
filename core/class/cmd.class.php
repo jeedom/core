@@ -1337,7 +1337,9 @@ class cmd {
 				if (strpos($name, 'stop') !== false) {
 					return $type . 'STOP';
 				}
-			}
+			}elseif ($this->getSubtype() == 'color') {
+             			return $type . 'COLOR_ACTION';
+            		}
 			return $type . strtoupper($this->getSubtype());
 		} else {
 			switch ($this->getUnite()) {
