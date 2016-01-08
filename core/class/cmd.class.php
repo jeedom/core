@@ -1322,7 +1322,7 @@ class cmd {
 				if ($category = 'heating' && strpos($name, 'cool') !== false) {
 					$type = 'COOLING_';
 				}
-				if (strpos($name, 'off') !== false) {
+				if (strpos($name, 'off') !== false || strpos($name, 'arret') !== false) {
 					return $type . 'OFF';
 				}
 				if (strpos($name, 'on') !== false && strpos($name, 'confort') == false) {
