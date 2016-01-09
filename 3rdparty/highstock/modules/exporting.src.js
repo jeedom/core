@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v2.1.9 (2015-10-07)
+ * @license Highstock JS v4.2.1 (2015-12-21)
  * Exporting module
  *
  * (c) 2010-2014 Torstein Honsi
@@ -7,16 +7,22 @@
  * License: www.highcharts.com/license
  */
 
-// JSLint options:
-/*global Highcharts, HighchartsAdapter, document, window, Math, setTimeout */
-
-(function (Highcharts) { // encapsulate
+/* eslint indent:0 */
+(function (factory) {
+    if (typeof module === 'object' && module.exports) {
+        module.exports = factory;
+    } else {
+        factory(Highcharts);
+    }
+}(function (Highcharts) {
 
 // create shortcuts
-var Chart = Highcharts.Chart,
+var win = Highcharts.win,
+	doc = win.document,
+	Chart = Highcharts.Chart,
 	addEvent = Highcharts.addEvent,
 	removeEvent = Highcharts.removeEvent,
-	fireEvent = HighchartsAdapter.fireEvent,
+	fireEvent = Highcharts.fireEvent,
 	createElement = Highcharts.createElement,
 	discardElement = Highcharts.discardElement,
 	css = Highcharts.css,
@@ -26,8 +32,6 @@ var Chart = Highcharts.Chart,
 	splat = Highcharts.splat,
 	math = Math,
 	mathMax = math.max,
-	doc = document,
-	win = window,
 	isTouchDevice = Highcharts.isTouchDevice,
 	M = 'M',
 	L = 'L',
@@ -257,16 +261,14 @@ extend(Chart.prototype, {
 			cssHeight,
 			html,
 			options = merge(chart.options, additionalOptions), // copy the options and add extra options
-			allowHTML = options.exporting.allowHTML; // docs: experimental, see #2473
+			allowHTML = options.exporting.allowHTML;
 			
 
 		// IE compatibility hack for generating SVG content that it doesn't really understand
 		if (!doc.createElementNS) {
-			/*jslint unparam: true*//* allow unused parameter ns in function below */
 			doc.createElementNS = function (ns, tagName) {
 				return doc.createElement(tagName);
 			};
-			/*jslint unparam: false*/
 		}
 
 		// create a sandbox where a new chart will be generated
@@ -368,7 +370,7 @@ extend(Chart.prototype, {
 
 		// IE9 beta bugs with innerHTML. Test again with final IE9.
 		svg = svg.replace(/(url\(#highcharts-[0-9]+)&quot;/g, '$1')
-			.replace(/&quot;/g, "'");
+			.replace(/&quot;/g, '\'');
 
 		return svg;
 	},
@@ -429,6 +431,7 @@ extend(Chart.prototype, {
 		}
 
 		chart.isPrinting = true;
+		chart.pointer.reset(null, 0);
 
 		fireEvent(chart, 'beforePrint');
 
@@ -536,9 +539,9 @@ extend(Chart.prototype, {
 
 
 			// Hide it on clicking or touching outside the menu (#2258, #2335, #2407)
-			addEvent(document, 'mouseup', docMouseUpHandler);
+			addEvent(doc, 'mouseup', docMouseUpHandler);
 			addEvent(chart, 'destroy', function () {
-				removeEvent(document, 'mouseup', docMouseUpHandler);
+				removeEvent(doc, 'mouseup', docMouseUpHandler);
 			});
 
 
@@ -555,7 +558,9 @@ extend(Chart.prototype, {
 								css(this, menuItemStyle);
 							},
 							onclick: function (e) {
-								e.stopPropagation();
+								if (e) { // IE7
+									e.stopPropagation();
+								}
 								hide();
 								if (item.onclick) {
 									item.onclick.apply(chart, arguments);
@@ -772,4 +777,4 @@ Chart.prototype.callbacks.push(function (chart) {
 });
 
 
-}(Highcharts));
+}));
