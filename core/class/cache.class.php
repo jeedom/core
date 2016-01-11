@@ -108,7 +108,7 @@ class cache {
 			default:
 				return;
 		}
-		shell_exec('rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null');
+		shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null');
 	}
 
 	public static function restore() {
