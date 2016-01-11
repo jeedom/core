@@ -508,19 +508,23 @@ $('body').delegate('.bt_selectCmdExpression', 'click', function (event) {
            var condition = result.human;
            condition += ' ' + $('.conditionAttr[data-l1key=operator]').value();
            if(result.cmd.subType == 'string'){
-             condition += ' "/' + $('.conditionAttr[data-l1key=operande]').value()+'/"';
-           }else{
-            condition += ' ' + $('.conditionAttr[data-l1key=operande]').value();
-          }
-          condition += ' ' + $('.conditionAttr[data-l1key=next]').value()+' ';
-          expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition);
-          if($('.conditionAttr[data-l1key=next]').value() != ''){
-            el.click();
-          }
+            if($('.conditionAttr[data-l1key=operator]') == 'matches'){
+              condition += ' "/' + $('.conditionAttr[data-l1key=operande]').value()+'/"';
+            }else{
+             condition += ' "' + $('.conditionAttr[data-l1key=operande]').value()+'"';
+           }
+         }else{
+          condition += ' ' + $('.conditionAttr[data-l1key=operande]').value();
         }
-      },
-    }
-  });
+        condition += ' ' + $('.conditionAttr[data-l1key=next]').value()+' ';
+        expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition);
+        if($('.conditionAttr[data-l1key=next]').value() != ''){
+          el.click();
+        }
+      }
+    },
+  }
+});
 
 
 }
