@@ -1325,7 +1325,7 @@ class cmd {
 				if (strpos($name, 'off') !== false || strpos($name, 'arret') !== false) {
 					return $type . 'OFF';
 				}
-				if (strpos($name, 'on') !== false && strpos($name, 'confort') == false) {
+				if (strpos($name, 'on') !== false && strpos($name, 'confort') === false) {
 					return $type . 'ON';
 				}
 				if (strpos($name, 'up') !== false) {
