@@ -194,6 +194,22 @@ class log {
 			shell_exec('sudo chmod 777 ' . $path);
 			unlink($path);
 		}
+		$logs = ls(dirname(__FILE__) . '/../../log/scenarioLog', '*');
+		foreach ($logs as $log) {
+			$path = dirname(__FILE__) . '/../../log/' . $log;
+			if (!file_exists($path) || !is_file($path)) {
+				continue;
+			}
+			if (strpos($log, '.htaccess') !== false) {
+				continue;
+			}
+			if (strpos($log, 'nginx.error') !== false || strpos($log, 'http.error') !== false) {
+				shell_exec('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
+				continue;
+			}
+			shell_exec('sudo chmod 777 ' . $path);
+			unlink($path);
+		}
 		return true;
 	}
 
