@@ -196,7 +196,7 @@ class log {
 		}
 		$logs = ls(dirname(__FILE__) . '/../../log/scenarioLog', '*');
 		foreach ($logs as $log) {
-			$path = dirname(__FILE__) . '/../../log/' . $log;
+			$path = dirname(__FILE__) . '/../../log/scenarioLog/' . $log;
 			if (!file_exists($path) || !is_file($path)) {
 				continue;
 			}
