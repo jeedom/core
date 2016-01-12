@@ -22,35 +22,36 @@ error_reporting(E_ALL | E_STRICT);
  *
  * @return void
  */
-function __autoload($class_name) {
-	//$class_name = str_replace('-', '', $class_name);
+function __autoload($class_name)
+{
+    //$class_name = str_replace('-', '', $class_name);
 
-	/* case-insensitive folders */
-	$dirs = array('/plugins/' . strtolower($class_name) . '/', '/includes/mb/', '/includes/ups/');
+    /* case-insensitive folders */
+    $dirs = array('/plugins/'.strtolower($class_name).'/', '/includes/mb/', '/includes/ups/');
 
-	foreach ($dirs as $dir) {
-		if (file_exists(APP_ROOT . $dir . 'class.' . strtolower($class_name) . '.inc.php')) {
-			include_once APP_ROOT . $dir . 'class.' . strtolower($class_name) . '.inc.php';
+    foreach ($dirs as $dir) {
+        if (file_exists(APP_ROOT.$dir.'class.'.strtolower($class_name).'.inc.php')) {
+            include_once APP_ROOT.$dir.'class.'.strtolower($class_name).'.inc.php';
 
-			return;
-		}
-	}
+            return;
+        }
+    }
 
-	/* case-sensitive folders */
-	$dirs = array('/includes/', '/includes/interface/', '/includes/to/', '/includes/to/device/', '/includes/os/', '/includes/plugin/', '/includes/xml/', '/includes/web/', '/includes/error/', '/includes/js/', '/includes/output/');
+    /* case-sensitive folders */
+    $dirs = array('/includes/', '/includes/interface/', '/includes/to/', '/includes/to/device/', '/includes/os/', '/includes/plugin/', '/includes/xml/', '/includes/web/', '/includes/error/', '/includes/js/', '/includes/output/');
 
-	foreach ($dirs as $dir) {
-		if (file_exists(APP_ROOT . $dir . 'class.' . $class_name . '.inc.php')) {
-			include_once APP_ROOT . $dir . 'class.' . $class_name . '.inc.php';
+    foreach ($dirs as $dir) {
+        if (file_exists(APP_ROOT.$dir.'class.'.$class_name.'.inc.php')) {
+            include_once APP_ROOT.$dir.'class.'.$class_name.'.inc.php';
 
-			return;
-		}
-	}
+            return;
+        }
+    }
 
-	$error = Error2::singleton();
+    $error = PSI_Error::singleton();
 
-	$error->addError("_autoload(\"" . $class_name . "\")", "autoloading of class file (class." . $class_name . ".inc.php) failed!");
-	$error->errorsAsXML();
+    $error->addError("_autoload(\"".$class_name."\")", "autoloading of class file (class.".$class_name.".inc.php) failed!");
+    $error->errorsAsXML();
 }
 
 /**
@@ -63,9 +64,10 @@ function __autoload($class_name) {
  *
  * @return void
  */
-function errorHandlerPsi($level, $message, $file, $line) {
-	$error = Error2::singleton();
-	$error->addPhpError("errorHandlerPsi : ", "Level : " . $level . " Message : " . $message . " File : " . $file . " Line : " . $line);
+function errorHandlerPsi($level, $message, $file, $line)
+{
+    $error = PSI_Error::singleton();
+    $error->addPhpError("errorHandlerPsi : ", "Level : ".$level." Message : ".$message." File : ".$file." Line : ".$line);
 }
 
 set_error_handler('errorHandlerPsi');
