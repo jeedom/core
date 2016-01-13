@@ -709,16 +709,18 @@ class market {
 				log::add('update', 'alert', __("OK\n", __FILE__));
 				break;
 		}
-		$update = update::byTypeAndLogicalId($this->getType(), $this->getLogicalId());
-		if (!is_object($update)) {
-			$update = new update();
-			$update->setLogicalId($this->getLogicalId());
-			$update->setType($this->getType());
+		if ($type != 'scenario') {
+			$update = update::byTypeAndLogicalId($this->getType(), $this->getLogicalId());
+			if (!is_object($update)) {
+				$update = new update();
+				$update->setLogicalId($this->getLogicalId());
+				$update->setType($this->getType());
+			}
+			$update->setLocalVersion($this->getDatetime($_version));
+			$update->setConfiguration('version', $_version);
+			$update->save();
+			$update->checkUpdate();
 		}
-		$update->setLocalVersion($this->getDatetime($_version));
-		$update->setConfiguration('version', $_version);
-		$update->save();
-		$update->checkUpdate();
 	}
 
 	public function remove() {

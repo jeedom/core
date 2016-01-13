@@ -545,21 +545,11 @@ class scenario {
 	}
 
 	public static function removeFromMarket(&$market) {
-		$moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
-		if (!file_exists($moduleFile)) {
-			throw new Exception(__('Echec lors de la suppression. Impossible de trouver le module ', __FILE__) . $moduleFile);
-		}
-		if (!unlink($moduleFile)) {
-			throw new Exception(__('Impossible de supprimer le fichier :  ', __FILE__) . $moduleFile . '. Veuillez vérifier les droits');
-		}
+
 	}
 
 	public static function listMarketObject() {
-		$return = array();
-		foreach (scenario::getTemplate() as $logical_id => $name) {
-			$return[] = $logical_id;
-		}
-		return $return;
+		return array();
 	}
 
 /*     * *********************Méthodes d'instance************************* */
