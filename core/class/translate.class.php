@@ -64,7 +64,6 @@ class translate {
 				$replace["{{" . $text . "}}"] = $translate['common'][$text];
 			}
 			if (!isset($replace["{{" . $text . "}}"])) {
-
 				if (strpos($_name, '#') === false) {
 					$modify = true;
 					if (!isset($translate[$_name])) {
@@ -72,7 +71,6 @@ class translate {
 					}
 					$translate[$_name][$text] = $text;
 				}
-
 			}
 			if ($_backslash && isset($replace["{{" . $text . "}}"])) {
 				$replace["{{" . $text . "}}"] = str_replace("'", "\'", str_replace("\'", "'", $replace));
