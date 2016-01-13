@@ -64,11 +64,13 @@ class translate {
 				$replace["{{" . $text . "}}"] = $translate['common'][$text];
 			}
 			if (!isset($replace["{{" . $text . "}}"])) {
-				$modify = true;
-				if (!isset($translate[$_name])) {
-					$translate[$_name] = array();
+				if (strpos($_name, '#') === false) {
+					$modify = true;
+					if (!isset($translate[$_name])) {
+						$translate[$_name] = array();
+					}
+					$translate[$_name][$text] = $text;
 				}
-				$translate[$_name][$text] = $text;
 			}
 			if ($_backslash && isset($replace["{{" . $text . "}}"])) {
 				$replace["{{" . $text . "}}"] = str_replace("'", "\'", str_replace("\'", "'", $replace));
