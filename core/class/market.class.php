@@ -701,7 +701,7 @@ class market {
 				}
 				break;
 			default:
-				log::add('update', 'alert', __('Installation de du plugin,widget...', __FILE__));
+				log::add('update', 'alert', __('Installation de du plugin,widget,scénario...', __FILE__));
 				$type = $this->getType();
 				if (class_exists($type) && method_exists($type, 'getFromMarket')) {
 					$type::getFromMarket($this, $tmp);

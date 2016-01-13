@@ -542,10 +542,6 @@ class scenario {
 		} else {
 			throw new Exception('Impossible de décompresser l\'archive zip : ' . $_path);
 		}
-		$moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
-		if (!file_exists($moduleFile)) {
-			throw new Exception(__('Echec de l\'installation. Impossible de trouver le module ', __FILE__) . $moduleFile);
-		}
 	}
 
 	public static function removeFromMarket(&$market) {
