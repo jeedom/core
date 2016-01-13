@@ -155,7 +155,7 @@ if (network::test('internal')) {
 	echo '<td></td>';
 } else {
 	echo '<td class="alert alert-danger">{{NOK}}</td>';
-	echo '<td>{{Allez sur Général -> Administration -> Configuration puis configurez correctement la partie réseaux}}</td>';
+	echo '<td>{{Allez sur Administration -> Configuration puis configurez correctement la partie réseaux}}</td>';
 }
 ?>
 		</tr>
@@ -168,7 +168,7 @@ if (network::test('external')) {
 	echo '<td></td>';
 } else {
 	echo '<td class="alert alert-danger">{{NOK}}</td>';
-	echo '<td>{{Allez sur Général -> Administration -> Configuration puis configurez correctement la partie réseaux}}</td>';
+	echo '<td>{{Allez sur Administration -> Configuration puis configurez correctement la partie réseaux}}</td>';
 }
 ?>
 		</tr>
