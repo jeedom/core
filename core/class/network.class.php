@@ -162,6 +162,9 @@ class network {
 			} else {
 				$internalIp = getHostByName(getHostName());
 				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+					$internalIp = gethostbyname(trim(exec("hostname")));
+				}
+				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
 					$internalIp = self::getInterfaceIp('eth0');
 				}
 				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
@@ -356,7 +359,7 @@ class network {
 		$cmd->execCmd();
 	}
 
-/*     * *********************WICD************************* */
+/*     * *********************Network management************************* */
 
 	public static function getInterfaceIp($_interface) {
 		$results = trim(shell_exec('sudo ip addr show ' . $_interface . '| grep inet | head -1 2>&1'));
@@ -368,6 +371,20 @@ class network {
 		$ip = substr($result, 0, strrpos($result, '/'));
 		if (filter_var($ip, FILTER_VALIDATE_IP)) {
 			return $ip;
+		}
+		return false;
+	}
+
+	public static function getInterfaceMac($_interface) {
+		$valid_mac = "([0-9A-F]{2}[:-]){5}([0-9A-F]{2})";
+		$results = trim(shell_exec('sudo ip addr show ' . $_interface . '| grep ether | head -1 2>&1'));
+		$results = explode(' ', $results);
+		if (!isset($results[1])) {
+			return false;
+		}
+		$result = $results[1];
+		if (preg_match("/" . $valid_mac . "/i", $result)) {
+			return $result;
 		}
 		return false;
 	}

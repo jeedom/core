@@ -100,7 +100,7 @@ N'oubliez pas de sauvegarder après toute modification
 
 image::../images/administration4.png[]
 
-* *Historique* : voir link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_général_de_l_historique[ici]
+* *Historique* : voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_général_de_l_historique[ici]
 * *Push*
 ** *URL de push globale* :  permet de rajouter une URL à appeler en cas de mise à jour d'une commande. Vous pouvez utiliser les tags suivant : \#value# pour la valeur de la commande, \#cmd_name# pour le nom de la commande, \#cmd_id# pour l'identifiant unique de la commande, \#humanname# pour le nom complet de la commande (ex : \#[Salle de bain][Hydrometrie][Humidité]#)
 
@@ -108,7 +108,7 @@ image::../images/administration4.png[]
 
 image::../images/administration5.png[]
 
-Voir link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-interact.html#_configuration_2[ici]
+Voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-interact.html#_configuration_2[ici]
 
 == Configuration des crontask, scripts & démons
 
@@ -127,7 +127,7 @@ Il n'est pas recommandé de modifier ces paramètres
 
 image::../images/administration7.png[]
 
-Voir link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-log.html#_configuration[ici]
+Voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-log.html#_configuration[ici]
 
 == Configuration LDAP
 

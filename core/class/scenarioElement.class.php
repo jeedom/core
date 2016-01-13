@@ -130,7 +130,12 @@ class scenarioElement {
 			if ($this->getSubElement('if')->getOptions('enable', 1) == 0) {
 				return true;
 			}
-			if ($this->getSubElement('if')->execute($_scenario)) {
+			$result = $this->getSubElement('if')->execute($_scenario);
+			if (is_string($result) && strlen($result) > 1) {
+				$_scenario->setLog(__('Expression non valide : ', __FILE__) . $result);
+				return;
+			}
+			if ($result) {
 				if ($this->getSubElement('if')->getOptions('allowRepeatCondition', 0) == 1) {
 					if ($this->getSubElement('if')->getOptions('previousState', -1) != 1) {
 						$this->getSubElement('if')->setOptions('previousState', 1);

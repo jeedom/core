@@ -29,7 +29,6 @@ class plugin {
 	private $installation;
 	private $author;
 	private $require;
-	private $version;
 	private $category;
 	private $filepath;
 	private $icon;
@@ -38,6 +37,8 @@ class plugin {
 	private $mobile;
 	private $allowRemote;
 	private $eventjs;
+	private $hasDependency;
+	private $hasOwnDeamon;
 	private $include = array();
 	private static $_cache = array();
 
@@ -70,12 +71,19 @@ class plugin {
 		$plugin->licence = (string) $plugin_xml->licence;
 		$plugin->author = (string) $plugin_xml->author;
 		$plugin->require = (string) $plugin_xml->require;
-		$plugin->version = (string) $plugin_xml->version;
 		$plugin->installation = (string) $plugin_xml->installation;
 		$plugin->category = (string) $plugin_xml->category;
 		$plugin->allowRemote = 0;
 		if (isset($plugin_xml->allowRemote)) {
 			$plugin->allowRemote = $plugin_xml->allowRemote;
+		}
+		$plugin->hasDependency = 0;
+		if (isset($plugin_xml->hasDependency)) {
+			$plugin->hasDependency = $plugin_xml->hasDependency;
+		}
+		$plugin->hasOwnDeamon = 0;
+		if (isset($plugin_xml->hasOwnDeamon)) {
+			$plugin->hasOwnDeamon = $plugin_xml->hasOwnDeamon;
 		}
 		$plugin->eventjs = 0;
 		if (isset($plugin_xml->eventjs)) {
@@ -210,6 +218,21 @@ class plugin {
 		}
 	}
 
+	public static function cron5() {
+		foreach (self::listPlugin(true) as $plugin) {
+			if (method_exists($plugin->getId(), 'cron5')) {
+				$plugin_id = $plugin->getId();
+				try {
+					$plugin_id::cron5();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron15 du plugin : ', __FILE__) . $e->getMessage());
+				} catch (Error $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron15 du plugin : ', __FILE__) . $e->getMessage());
+				}
+			}
+		}
+	}
+
 	public static function cron15() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron15')) {
@@ -272,26 +295,23 @@ class plugin {
 
 	public static function start() {
 		foreach (self::listPlugin(true) as $plugin) {
+			$plugin->deamon_start(false, false, true);
 			if (method_exists($plugin->getId(), 'start')) {
 				$plugin_id = $plugin->getId();
-				echo 'Start plugin : ' . $plugin_id . '...';
 				try {
 					$plugin_id::start();
-					echo "OK\n";
 				} catch (Exception $e) {
-					echo "NOK\n";
 					log::add($plugin_id, 'error', __('Erreur sur la fonction start du plugin : ', __FILE__) . $e->getMessage());
 				} catch (Error $e) {
-					echo "NOK\n";
 					log::add($plugin_id, 'error', __('Erreur sur la fonction start du plugin : ', __FILE__) . $e->getMessage());
 				}
-
 			}
 		}
 	}
 
 	public static function stop() {
 		foreach (self::listPlugin(true) as $plugin) {
+			$plugin->deamon_stop();
 			if (method_exists($plugin->getId(), 'stop')) {
 				$plugin_id = $plugin->getId();
 				try {
@@ -302,6 +322,12 @@ class plugin {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction stop du plugin : ', __FILE__) . $e->getMessage());
 				}
 			}
+		}
+	}
+
+	public static function checkDeamon() {
+		foreach (self::listPlugin(true) as $plugin) {
+			$plugin->deamon_start(false, false, true);
 		}
 	}
 
@@ -337,7 +363,127 @@ class plugin {
 				return ob_get_clean();
 			}
 		}
+	}
 
+	public function dependancy_info() {
+		$plugin_id = $this->getId();
+		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_info')) {
+			return array('state' => 'nok', 'log' => 'nok');
+		}
+		$return = $plugin_id::dependancy_info();
+		if (!isset($return['log'])) {
+			$return['log'] = '';
+		}
+		if (isset($return['progress_file'])) {
+			$return['progression'] = 0;
+			if (@file_exists($return['progress_file'])) {
+				$return['state'] = 'in_progress';
+				$progression = trim(file_get_contents($return['progress_file']));
+				if ($progression != '') {
+					$return['progression'] = $progression;
+				}
+			}
+		}
+		$return['last_launch'] = config::byKey('lastDependancyInstallTime', $this->getId(), __('Inconnue', __FILE__));
+		return $return;
+	}
+
+	public function dependancy_install() {
+		$plugin_id = $this->getId();
+		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_install')) {
+			return;
+		}
+		$this->deamon_stop();
+		config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
+		$plugin_id::dependancy_install();
+		return;
+	}
+
+	public function deamon_changeAutoMode($_mode) {
+		config::save('deamonAutoMode', $_mode, $this->getId());
+		$plugin_id = $this->getId();
+		if (method_exists($plugin_id, 'deamon_changeAutoMode')) {
+			$plugin_id::deamon_changeAutoMode($_mode);
+		}
+	}
+
+	public function deamon_info() {
+		$return = array();
+		$plugin_id = $this->getId();
+		if ($this->getHasOwnDeamon() != 1 || !method_exists($plugin_id, 'deamon_info')) {
+			return array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0);
+		}
+		$return = $plugin_id::deamon_info();
+		if ($this->getHasDependency() == 1 && method_exists($plugin_id, 'dependancy_info') && $return['launchable'] == 'ok') {
+			$dependancy_info = $this->dependancy_info();
+			if ($dependancy_info['state'] != 'ok') {
+				$return['launchable'] = 'nok';
+				if ($dependancy_info['state'] == 'in_progress') {
+					$return['launchable_message'] = __('Dépendances en cours d\'installation', __FILE__);
+				} else {
+					$return['launchable_message'] = __('Dépendances non installées', __FILE__);
+				}
+			}
+		}
+		if (!isset($return['launchable_message'])) {
+			$return['launchable_message'] = '';
+		}
+		if (!isset($return['log'])) {
+			$return['log'] = '';
+		}
+		$return['auto'] = config::byKey('deamonAutoMode', $this->getId(), 1);
+		if ($return['auto'] == 0) {
+			$return['launchable_message'] = __('Gestion automatique désactivée', __FILE__);
+		}
+		if (config::byKey('enableCron', 'core', 1, true) == 0) {
+			$return['launchable'] = 'nok';
+			$return['launchable_message'] = __('Les crons et démons sont désactivés', __FILE__);
+		}
+		if (!jeedom::isStarted()) {
+			$return['launchable'] = 'nok';
+			$return['launchable_message'] = __('Jeedom n\'est pas encore démarré', __FILE__);
+		}
+		$return['last_launch'] = config::byKey('lastDeamonLaunchTime', $this->getId(), __('Inconnue', __FILE__));
+		return $return;
+	}
+
+	public function deamon_start($_debug = false, $_forceRestart = false, $_auto = false) {
+		$plugin_id = $this->getId();
+		if ($_forceRestart) {
+			$this->deamon_stop();
+		}
+		try {
+			if ($this->getHasOwnDeamon() == 1 && method_exists($plugin_id, 'deamon_info')) {
+				$deamon_info = $this->deamon_info();
+				if ($_auto && $deamon_info['auto'] == 0) {
+					return;
+				}
+				if ($deamon_info['launchable'] == 'ok' && $deamon_info['state'] == 'nok' && method_exists($plugin_id, 'deamon_start')) {
+					config::save('lastDeamonLaunchTime', date('Y-m-d H:i:s'), $plugin_id);
+					$plugin_id::deamon_start($_debug);
+				}
+			}
+		} catch (Exception $e) {
+			log::add($plugin_id, 'error', __('Erreur sur la fonction deamon_start du plugin : ', __FILE__) . $e->getMessage());
+		} catch (Error $e) {
+			log::add($plugin_id, 'error', __('Erreur sur la fonction deamon_start du plugin : ', __FILE__) . $e->getMessage());
+		}
+	}
+
+	public function deamon_stop() {
+		$plugin_id = $this->getId();
+		try {
+			if ($this->getHasOwnDeamon() == 1 && method_exists($plugin_id, 'deamon_info')) {
+				$deamon_info = $this->deamon_info();
+				if ($deamon_info['state'] == 'ok' && method_exists($plugin_id, 'deamon_stop')) {
+					$plugin_id::deamon_stop();
+				}
+			}
+		} catch (Exception $e) {
+			log::add($plugin_id, 'error', __('Erreur sur la fonction deamon_stop du plugin : ', __FILE__) . $e->getMessage());
+		} catch (Error $e) {
+			log::add($plugin_id, 'error', __('Erreur sur la fonction deamon_stop du plugin : ', __FILE__) . $e->getMessage());
+		}
 	}
 
 	public function setIsEnable($_state) {
@@ -349,7 +495,6 @@ class plugin {
 			if (config::byKey('jeeNetwork::mode') != 'master' && $this->getAllowRemote() != 1) {
 				throw new Exception('Vous ne pouvez pas activer ce plugin sur un Jeedom configuré en esclave');
 			}
-			//market::checkPayment($this->getId());
 			config::save('active', $_state, $this->getId());
 		}
 		if ($_state == 0) {
@@ -391,12 +536,19 @@ class plugin {
 		}
 		try {
 			if ($_state == 1) {
+				$this->deamon_stop();
+				$dependancy_info = $this->dependancy_info();
+				if ($dependancy_info['state'] == 'nok') {
+					$this->dependancy_install();
+				}
 				if ($alreadyActive == 1) {
 					$out = $this->callInstallFunction('update');
 				} else {
 					$out = $this->callInstallFunction('install');
 				}
+				$this->deamon_start(false, false, true);
 			} else {
+				$this->deamon_stop();
 				if ($alreadyActive == 1) {
 					$out = $this->callInstallFunction('remove');
 				}
@@ -497,10 +649,6 @@ class plugin {
 		return $this->require;
 	}
 
-	public function getVersion() {
-		return $this->version;
-	}
-
 	public function getCategory() {
 		return $this->category;
 	}
@@ -559,6 +707,22 @@ class plugin {
 
 	public function setEventjs($eventjs) {
 		$this->eventjs = $eventjs;
+	}
+
+	public function getHasDependency() {
+		return $this->hasDependency;
+	}
+
+	public function setHasDependency($hasDependency) {
+		$this->hasDependency = $hasDependency;
+	}
+
+	public function getHasOwnDeamon() {
+		return $this->hasOwnDeamon;
+	}
+
+	public function setHasOwnDeamony($hasOwnDeamon) {
+		$this->hasOwnDeamon = $hasOwnDeamon;
 	}
 
 }

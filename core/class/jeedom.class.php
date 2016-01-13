@@ -99,6 +99,9 @@ class jeedom {
 				if (file_exists('/dev/ttyS0')) {
 					$usbMapping['Cubiboard'] = '/dev/ttyS0';
 				}
+				if (file_exists('/dev/ttyS3')) {
+					$usbMapping['Orange PI'] = '/dev/ttyS3';
+				}
 				foreach (ls('/dev/', 'ttyACM*') as $value) {
 					$usbMapping['/dev/' . $value] = '/dev/' . $value;
 				}
@@ -111,7 +114,7 @@ class jeedom {
 			if (isset($usbMapping[$_name])) {
 				return $usbMapping[$_name];
 			}
-			$usbMapping = self::getUsbMapping('', $_getGPIO);
+			$usbMapping = self::getUsbMapping('', true);
 			if (isset($usbMapping[$_name])) {
 				return $usbMapping[$_name];
 			}
@@ -428,6 +431,13 @@ class jeedom {
 			} catch (Error $e) {
 
 			}
+			try {
+				market::test();
+			} catch (Exception $e) {
+
+			} catch (Error $e) {
+
+			}
 		}
 		self::isDateOk();
 		try {
@@ -475,11 +485,11 @@ class jeedom {
 	/***************************************THREAD MANGEMENT**********************************************/
 
 	public static function checkOngoingThread($_cmd) {
-		return shell_exec('ps ax | grep "' . $_cmd . '$" | grep -v "grep" | wc -l');
+		return shell_exec('(ps ax || ps w) | grep "' . $_cmd . '$" | grep -v "grep" | wc -l');
 	}
 
 	public static function retrievePidThread($_cmd) {
-		return shell_exec('ps ax | grep "' . $_cmd . '$" | grep -v "grep" | awk \'{print $1}\'');
+		return shell_exec('(ps ax || ps w) | grep "' . $_cmd . '$" | grep -v "grep" | awk \'{print $1}\'');
 	}
 
 	/******************************************UTILS******************************************************/
@@ -543,7 +553,7 @@ class jeedom {
 		$processGroup = posix_getgrgid(posix_getegid());
 		$user = $processUser['name'];
 		$group = $processGroup['name'];
-		$path = dirname(__FILE__) . '/../../';
+		$path = dirname(__FILE__) . '/../../*';
 		exec('sudo chown -R ' . $user . ':' . $group . ' ' . $path);
 	}
 
@@ -607,16 +617,15 @@ class jeedom {
 		}
 		$result = 'DIY';
 		$uname = shell_exec('uname -a');
-		if (strpos($uname, 'cubox') !== false || strpos($uname, 'jeedom') !== false) {
-			$result = 'Jeedomboard';
-		} else if (file_exists('/.dockerinit')) {
+		if (file_exists('/.dockerinit')) {
 			$result = 'Docker';
 		} else if (file_exists('/usr/bin/raspi-config')) {
 			$result = 'RPI/RPI2';
+		} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'jeedom') !== false) {
+			$result = 'Jeedomboard';
 		}
 		config::save('hardware_name', $result);
 		return config::byKey('hardware_name');
-
 	}
 
 	public static function isCapable($_function) {

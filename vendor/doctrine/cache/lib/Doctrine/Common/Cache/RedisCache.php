@@ -71,14 +71,40 @@ class RedisCache extends CacheProvider
      */
     protected function doFetchMultiple(array $keys)
     {
-        $fetchedItems = $this->redis->mget($keys);
+        $fetchedItems = array_combine($keys, $this->redis->mget($keys));
 
-        return array_filter(
-            array_combine($keys, $fetchedItems),
-            function ($value) {
-                return $value !== false;
+        // Redis mget returns false for keys that do not exist. So we need to filter those out unless it's the real data.
+        $foundItems   = array();
+
+        foreach ($fetchedItems as $key => $value) {
+            if (false !== $value || $this->redis->exists($key)) {
+                $foundItems[$key] = $value;
             }
-        );
+        }
+
+        return $foundItems;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function doSaveMultiple(array $keysAndValues, $lifetime = 0)
+    {
+        if ($lifetime) {
+            $success = true;
+
+            // Keys have lifetime, use SETEX for each of them
+            foreach ($keysAndValues as $key => $value) {
+                if (!$this->redis->setex($key, $lifetime, $value)) {
+                    $success = false;
+                }
+            }
+
+            return $success;
+        }
+
+        // No lifetime, use MSET
+        return (bool) $this->redis->mset($keysAndValues);
     }
 
     /**

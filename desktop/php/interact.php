@@ -179,7 +179,7 @@ foreach ($interactListGroup as $group) {
           <div class="form-group">
             <label class="col-xs-3 control-label">{{Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes}}</label>
             <div class="col-xs-6">
-              <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="allowSyntaxCheck">
+              <input type="checkbox" class="interactAttr bootstrapSwitch" data-l1key="options" data-l2key="allowSyntaxCheck">
             </div>
           </div>
           <div class="form-group">
@@ -222,8 +222,12 @@ foreach (jeedom::getConfiguration('cmd:type') as $type) {
       <div class="form-group">
         <label class="col-sm-3 control-label">{{Limiter aux commandes ayant pour unité}}</label>
         <div class="col-sm-9">
+        <label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="none" checked="true" />{{Sans unité}}</label>
           <?php
 foreach (cmd::allUnite() as $unite) {
+	if (trim($unite['unite']) == '') {
+		continue;
+	}
 	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="' . $unite['unite'] . '" checked="true" />' . $unite['unite'] . '</label> ';
 }
 ?>
@@ -240,11 +244,22 @@ foreach (object::all() as $object) {
      </div>
    </div>
    <div class="form-group">
-    <label class="col-sm-3 control-label">{{Limiter au plugin}}</label>
+    <label class="col-sm-3 control-label">{{Limiter aux plugins}}</label>
     <div class="col-sm-9">
       <?php
 foreach (eqLogic::allType() as $type) {
 	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="plugin" data-l3key="' . $type['type'] . '" checked="true" />' . $type['type'] . '</label> ';
+}
+?>
+   </div>
+ </div>
+
+    <div class="form-group">
+    <label class="col-sm-3 control-label">{{Limiter aux categories}}</label>
+    <div class="col-sm-9">
+      <?php
+foreach (jeedom::getConfiguration('eqLogic:category') as $id => $category) {
+	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="category" data-l3key="' . $id . '" checked="true" />' . $category['name'] . '</label> ';
 }
 ?>
    </div>

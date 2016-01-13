@@ -274,6 +274,7 @@ function displayInteract(_id){
       $('.interactAttr[data-l1key=filtres][data-l2key=unite]').value(1);
       $('.interactAttr[data-l1key=filtres][data-l2key=object]').value(1);
       $('.interactAttr[data-l1key=filtres][data-l2key=plugin]').value(1);
+       $('.interactAttr[data-l1key=filtres][data-l2key=category]').value(1);
       if(isset(data.filtres) && isset(data.filtres.type) && $.isPlainObject(data.filtres.type)){
         for(var i in data.filtres.type){
          $('.interactAttr[data-l1key=filtres][data-l2key=type][data-l3key='+i+']').value(data.filtres.type[i]);
@@ -297,6 +298,11 @@ function displayInteract(_id){
 if(isset(data.filtres) && isset(data.filtres.plugin) && $.isPlainObject(data.filtres.plugin)){
   for(var i in data.filtres.plugin){
    $('.interactAttr[data-l1key=filtres][data-l2key=plugin][data-l3key='+i+']').value(data.filtres.plugin[i]);
+ }
+}
+if(isset(data.filtres) && isset(data.filtres.category) && $.isPlainObject(data.filtres.category)){
+  for(var i in data.filtres.category){
+   $('.interactAttr[data-l1key=filtres][data-l2key=category][data-l3key='+i+']').value(data.filtres.category[i]);
  }
 }
 if(isset(data.actions.cmd) && $.isArray(data.actions.cmd) && data.actions.cmd.length != null){

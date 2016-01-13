@@ -373,6 +373,9 @@ ORDER BY `datetime` ASC';
 		if (!is_object($cmd)) {
 			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
 		}
+		if ($cmd->getIsHistorized() != 1) {
+			return -2;
+		}
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
@@ -396,6 +399,9 @@ ORDER BY `datetime` ASC';
 ORDER BY  `datetime` DESC
 LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		if ($result['datetime'] == '' || strtotime($result['datetime']) === false || strtotime($result['datetime']) == 0) {
+			return -1;
+		}
 		return strtotime('now') - strtotime($result['datetime']);
 	}
 

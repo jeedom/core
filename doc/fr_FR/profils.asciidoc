@@ -17,7 +17,7 @@ image::../images/profils2.png[]
 A partir de ce menu vous avez accès à la page profils, à l'activation ou non du mode expert, au redemarrage de Jeedom, à l'arret de Jeedom, au passage en version mobile et un bouton pour se deconnecter.
 
 [IMPORTANT]
-En DIY les actions de redemarrage et d'arret ne marche que si vous avez bien fait les actions visudo, voir link:https://jeedom.fr/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom[ici]
+En DIY les actions de redemarrage et d'arret ne marche que si vous avez bien fait les actions visudo, voir link:https://jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom[ici]
 
 == Page profils
 

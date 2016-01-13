@@ -695,6 +695,60 @@ if (init('type') != '') {
 				$jsonrpc->makeSuccess('ok');
 			}
 
+			if ($jsonrpc->getMethod() == 'plugin::dependancyInfo') {
+				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess(array('state' => 'nok', 'log' => 'nok'));
+				}
+				$jsonrpc->makeSuccess($plugin->dependancy_info());
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::dependancyInstall') {
+				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess();
+				}
+				$jsonrpc->makeSuccess($plugin->dependancy_install());
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::deamonInfo') {
+				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess(array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0));
+				}
+				$jsonrpc->makeSuccess($plugin->deamon_info());
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::deamonStart') {
+				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess();
+				}
+				if (!isset($params['debug'])) {
+					$params['debug'] = false;
+				}
+				if (!isset($params['forceRestart'])) {
+					$params['forceRestart'] = false;
+				}
+				$jsonrpc->makeSuccess($plugin->deamon_stop($params['debug'], $params['forceRestart']));
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::deamonStop') {
+				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess();
+				}
+				$jsonrpc->makeSuccess($plugin->deamon_stop($params['debug'], $params['forceRestart']));
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::deamonChangeAutoMode') {
+				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess();
+				}
+				$jsonrpc->makeSuccess($plugin->deamon_changeAutoMode($params['mode']));
+			}
+
 			/*             * ************************Update*************************** */
 			if ($jsonrpc->getMethod() == 'update::all') {
 				$jsonrpc->makeSuccess(utils::o2a(update::all()));

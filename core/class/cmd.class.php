@@ -1313,16 +1313,19 @@ class cmd {
 		$category = $this->getEqLogic()->getPrimaryCategory();
 		$name_eq = strtolower($this->getEqLogic()->getName());
 		$type = strtoupper($category) . '_';
+      	if (strpos($name_eq, 'volet') !== false) {
+        	$type = 'FLAP_';
+        }
 		if ($this->getType() == 'action') {
 			if ($this->getSubtype() == 'other') {
 				$name = strtolower($this->getName());
 				if ($category = 'heating' && strpos($name, 'cool') !== false) {
 					$type = 'COOLING_';
 				}
-				if (strpos($name, 'off') !== false) {
+				if (strpos($name, 'off') !== false || strpos($name, 'arret') !== false) {
 					return $type . 'OFF';
 				}
-				if (strpos($name, 'on') !== false) {
+				if (strpos($name, 'on') !== false && strpos($name, 'confort') === false) {
 					return $type . 'ON';
 				}
 				if (strpos($name, 'up') !== false) {
@@ -1331,14 +1334,19 @@ class cmd {
 				if (strpos($name, 'down') !== false) {
 					return $type . 'DOWN';
 				}
-			}
+				if (strpos($name, 'stop') !== false) {
+					return $type . 'STOP';
+				}
+			}elseif ($this->getSubtype() == 'color') {
+             			return $type . 'COLOR_ACTION';
+            		}
 			return $type . strtoupper($this->getSubtype());
 		} else {
 			switch ($this->getUnite()) {
 				case 'W':
-					return $type . 'POWER';
+					return 'POWER';
 				case 'kWh':
-					return $type . 'CONSUMPTION';
+					return 'CONSUMPTION';
 				case '°C':
 					return 'TEMPERATURE';
 				case 'Lux':
@@ -1363,8 +1371,20 @@ class cmd {
 			if (strpos($name, 'fuite') !== false) {
 				return 'FLIGHT';
 			}
-			if (strpos($name_eq, 'porte') !== false || strpos($name_eq, 'door') !== false || strpos($name_eq, 'fenetre') !== false || strpos($name_eq, 'fenêtre') !== false) {
+			if (strpos($name, 'ultraviolet') !== false || strpos($name, 'uv') !== false) {
+				return 'UV';
+			}
+			if (strpos($name, 'humidité') !== false) {
+				return 'MOISTURE';
+			}
+			if (strpos($name, 'sabotage') !== false || strpos($name, 'anti-sabotage') !== false) {
+				return 'SABOTAGE';
+			}
+			if (strpos($name_eq, 'porte') !== false || strpos($name_eq, 'door') !== false || strpos($name_eq, 'baie') !== false || strpos($name_eq, 'fenetre') !== false || strpos($name_eq, 'fenêtre') !== false) {
 				return 'OPENING';
+			}
+			if (strpos($name, 'couleur') !== false || strpos($name, 'color') !== false){
+				return $type . 'COLOR';
 			}
 			return $type . 'STATE';
 		}

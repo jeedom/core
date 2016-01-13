@@ -166,6 +166,10 @@ try {
 
 	foreach (plugin::listPlugin(true) as $plugin) {
 		$plugin_id = $plugin->getId();
+		$dependancy_info = $plugin->dependancy_info();
+		if ($dependancy_info['state'] == 'nok') {
+			$plugin->dependancy_install();
+		}
 		if (method_exists($plugin_id, 'restore')) {
 			echo 'Restauration specifique du plugin ' . $plugin_id . '...';
 			if (file_exists($tmp . '/plugin_backup/' . $plugin_id)) {

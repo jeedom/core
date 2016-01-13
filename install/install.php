@@ -25,8 +25,8 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 	exit();
 }
 set_time_limit(1800);
-
 echo "[START UPDATE]\n";
+
 if (isset($argv)) {
 	foreach ($argv as $arg) {
 		$argList = explode('=', $arg);
@@ -41,6 +41,12 @@ $backup_ok = false;
 $update_begin = false;
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
+	if (count(system::ps('install/install.php', 'sudo')) > 1) {
+		echo "Une mise a jour/installation est deja en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une\n";
+		print_r(system::ps('install/install.php', 'sudo'));
+		echo "[END UPDATE]\n";
+		die();
+	}
 	echo "****Installation/Mise à jour de Jeedom " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
 	echo "Paramètres de la mise à jour : level : " . init('level', -1) . ", mode : " . init('mode') . ", version : " . init('version', 'no') . ", onlyThisVersion : " . init('onlyThisVersion', 'no') . " \n";
 
@@ -57,6 +63,7 @@ try {
 	}
 
 	if ($update) {
+
 		/*         * ************************MISE A JOUR********************************** */
 		try {
 			if (init('level', -1) > -1 && init('mode') != 'force') {
@@ -130,8 +137,8 @@ try {
 					if (!file_exists($tmp)) {
 						throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
 					}
-					if (filesize($tmp) < 10) {
-						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 10 octets)', __FILE__));
+					if (filesize($tmp) < 100) {
+						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
 					}
 					echo __("OK\n", __FILE__);
 
@@ -170,7 +177,7 @@ try {
 						throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
 					}
 					echo __("OK\n", __FILE__);
-					echo __("Installation en cours...", __FILE__);
+					echo __("Copie des fichiers en cours...", __FILE__);
 					$update_begin = true;
 					if (!file_exists($cibDir . '/core')) {
 						$files = ls($cibDir, '*');
@@ -179,6 +186,8 @@ try {
 						}
 					}
 					rcopy($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
+					echo __("OK\n", __FILE__);
+					echo __("Suppression des fichiers temporaire...", __FILE__);
 					rrmdir($cibDir);
 					unlink($tmp);
 					echo __("OK\n", __FILE__);
@@ -359,6 +368,9 @@ try {
 	} else {
 
 		/*         * ***************************INSTALLATION************************** */
+		if (version_compare(PHP_VERSION, '5.6.0', '<')) {
+			throw new Exception('Jeedom need php 5.6 or upper (current : ' . PHP_VERSION . ')');
+		}
 		if (init('mode') != 'force') {
 			echo "Jeedom va être installé. Voulez-vous continuer ? [o/N] ";
 			if (trim(fgets(STDIN)) !== 'o') {
@@ -375,7 +387,7 @@ try {
 		echo "Post installe...\n";
 		config::save('api', config::genKey());
 		require_once dirname(__FILE__) . '/consistency.php';
-		echo "Ajout de l\'utilisateur (admin,admin)\n";
+		echo "Ajout de l'utilisateur (admin,admin)\n";
 		$user = new user();
 		$user->setLogin('admin');
 		$user->setPassword(sha1('admin'));

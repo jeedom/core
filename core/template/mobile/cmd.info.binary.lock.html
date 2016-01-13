@@ -1,0 +1,14 @@
+<div style="width:90px;height:100%;vertical-align: top;" class="cmd #history# tooltips" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" title="#collectDate#">
+    <center>
+        <span style="font-size: 3em;" id="iconCmd#uid#"></span>
+    </center>
+</div>
+
+<script>
+    if ('#state#' == '1' || '#state#' == 1) {
+        $('#iconCmd#uid#').append('<i class="icon jeedom-lock-ferme"></i>');
+    }
+    if ('#state#' == '0' || '#state#' == 0) {
+        $('#iconCmd#uid#').append('<i class="icon jeedom-lock-ouvert"></i>');
+    }
+</script>

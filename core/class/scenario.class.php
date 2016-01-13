@@ -542,28 +542,14 @@ class scenario {
 		} else {
 			throw new Exception('Impossible de décompresser l\'archive zip : ' . $_path);
 		}
-		$moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
-		if (!file_exists($moduleFile)) {
-			throw new Exception(__('Echec de l\'installation. Impossible de trouver le module ', __FILE__) . $moduleFile);
-		}
 	}
 
 	public static function removeFromMarket(&$market) {
-		$moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
-		if (!file_exists($moduleFile)) {
-			throw new Exception(__('Echec lors de la suppression. Impossible de trouver le module ', __FILE__) . $moduleFile);
-		}
-		if (!unlink($moduleFile)) {
-			throw new Exception(__('Impossible de supprimer le fichier :  ', __FILE__) . $moduleFile . '. Veuillez vérifier les droits');
-		}
+
 	}
 
 	public static function listMarketObject() {
-		$return = array();
-		foreach (scenario::getTemplate() as $logical_id => $name) {
-			$return[] = $logical_id;
-		}
-		return $return;
+		return array();
 	}
 
 /*     * *********************Méthodes d'instance************************* */
@@ -653,12 +639,11 @@ class scenario {
 		if (!$this->hasRight('r')) {
 			return '';
 		}
-		$sql = 'SELECT `value` FROM cache
-	WHERE `key`="scenarioHtml' . $_version . $this->getId() . '"';
-		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-		if ($result['value'] != '') {
-			return $result['value'];
+		$mc = cache::byKey('scenarioHtml' . $_version . $this->getId());
+		if ($mc->getValue() != '') {
+			return $mc->getValue();
 		}
+
 		$_version = jeedom::versionAlias($_version);
 		$replace = array(
 			'#id#' => $this->getId(),
@@ -683,9 +668,14 @@ class scenario {
 	}
 
 	public function emptyCacheWidget() {
-		$sql = 'DELETE FROM cache
-	WHERE `key` LIKE "scenarioHtml%' . $this->getId() . '"';
-		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		$mc = cache::byKey('scenarioHtmldashboard' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('scenarioHtmlmobile' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('scenarioHtmlmview' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('scenarioHtmldview' . $this->getId());
+		$mc->remove();
 	}
 
 	public function getIcon($_only_class = false) {
@@ -917,7 +907,7 @@ class scenario {
 		if ($this->getPID() > 0 && posix_getsid($this->getPID()) && (!file_exists('/proc/' . $this->getPID() . '/cmdline') || strpos(file_get_contents('/proc/' . $this->getPID() . '/cmdline'), 'scenario_id=' . $this->getId()) !== false)) {
 			return true;
 		}
-		if (shell_exec('(ps ax || ps w) | grep -ie "scenario_id=' . $this->getId() . ' force" | grep -v ' . getmypid() . ' | grep -v grep | wc -l') > 0) {
+		if (count(system::ps('scenario_id=' . $this->getId() . ' force', array(getmypid()))) > 0) {
 			return true;
 		}
 		return false;

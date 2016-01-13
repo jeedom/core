@@ -129,7 +129,7 @@ class cron {
 	 * @return int
 	 */
 	public static function nbCronRun() {
-		return shell_exec('(ps ax || ps w) | grep jeeCron.php | grep -v "grep" | grep -v "sudo" | grep -v "shell=/bin/bash - " | grep -v "/bin/bash -c " | grep -v "/bin/sh -c " | grep -v ' . posix_getppid() . ' | grep -v ' . getmypid() . ' | wc -l');
+		return count(system::ps('jeeCron.php', array('grep', 'sudo', 'shell=/bin/bash - ', '/bin/bash -c ', posix_getppid(), getmypid())));
 	}
 
 	/**
@@ -137,8 +137,7 @@ class cron {
 	 * @return int
 	 */
 	public static function nbProcess() {
-		$result = shell_exec('ps ax | wc -l');
-		return $result;
+		return count(system::ps('.'));
 	}
 
 	/**
@@ -210,6 +209,12 @@ class cron {
 		if ($this->getSchedule() == '') {
 			throw new Exception(__('La programmation ne peut pas être vide : ', __FILE__) . print_r($this, true));
 		}
+		if (count($this->getOption()) == 0 || $this->getOption() == '') {
+			$cron = cron::byClassAndFunction($this->getClass(), $this->getFunction());
+			if (is_object($cron)) {
+				$this->setId($cron->getId());
+			}
+		}
 	}
 
 	/**
@@ -275,7 +280,7 @@ class cron {
 				return true;
 			}
 		}
-		if (shell_exec('(ps ax || ps w) | grep -ie "cron_id=' . $this->getId() . '$" | grep -v grep | wc -l') > 0) {
+		if (count(system::ps('cron_id=' . $this->getId() . '$')) > 0) {
 			return true;
 		}
 		return false;
@@ -320,23 +325,27 @@ class cron {
 		} else {
 			log::add('cron', 'info', __('Arrêt de ', __FILE__) . $this->getClass() . '::' . $this->getFunction() . '(), PID : ' . $this->getPID());
 			if ($this->getPID() > 0) {
-				$kill = posix_kill($this->getPID(), 15);
+				system::kill($this->getPID());
 				$retry = 0;
-				while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
+				while ($this->running() && $retry < (config::byKey('deamonsSleepTime') + 5)) {
 					sleep(1);
-					$kill = posix_kill($this->getPID(), 9);
+					system::kill($this->getPID());
 					$retry++;
 				}
 				$retry = 0;
-				while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
+				while ($this->running() && $retry < (config::byKey('deamonsSleepTime') + 5)) {
 					sleep(1);
-					exec('kill -9 ' . $this->getPID());
-					$kill = $this->running();
+					system::kill($this->getPID());
 					$retry++;
 				}
 			}
 			if ($this->running()) {
-				exec("(ps ax || ps w) | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+				system::kill("cron_id=" . $this->getId() . "$");
+				sleep(1);
+				if ($this->running()) {
+					system::kill("cron_id=" . $this->getId() . "$");
+					sleep(1);
+				}
 				if ($this->running()) {
 					$this->setState('error');
 					$this->setServer('');
@@ -424,6 +433,9 @@ class cron {
 	}
 
 	public function getLastRun() {
+		if ($this->lastRun == '0000-00-00 00:00:00') {
+			return date('Y-m-d H:i:s');
+		}
 		return $this->lastRun;
 	}
 

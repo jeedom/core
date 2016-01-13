@@ -46,7 +46,6 @@ try {
 	}
 
 	if (init('action') == 'ssh') {
-
 		ajax::success(shell_exec(init('command')));
 	}
 

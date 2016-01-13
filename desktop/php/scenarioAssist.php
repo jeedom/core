@@ -297,8 +297,6 @@ foreach ($scenarioListGroup as $group) {
                             <select class="conditionAttr form-control" data-l1key="operator">
                                 <option value="==">{{égal}}</option>
                                 <option value="!=">{{différent}}</option>
-                                <option value="~">{{contient}}</option>
-                                <option value="!~">{{ne contient pas}}</option>
                             </select>
                         </div>
                         <div class="col-xs-5">

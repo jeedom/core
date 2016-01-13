@@ -18,6 +18,7 @@
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogHandler;
 use Monolog\Handler\SyslogUdpHandler;
@@ -32,21 +33,25 @@ class log {
 		if (isset(self::$logger[$_log])) {
 			return self::$logger[$_log];
 		}
+		$output = "[%datetime%][%channel%][%level_name%] : %message%\n";
+		$formatter = new LineFormatter($output);
 		self::$logger[$_log] = new Logger($_log);
 		switch (config::byKey('log::engine')) {
 			case 'StreamHandler':
-				self::$logger[$_log]->pushHandler(new StreamHandler(self::getPathToLog($_log), config::byKey('log::level')));
+				$handler = new StreamHandler(self::getPathToLog($_log), config::byKey('log::level'));
 				break;
 			case 'SyslogHandler':
-				self::$logger[$_log]->pushHandler(new SyslogHandler(config::byKey('log::level')));
+				$handler = new SyslogHandler(config::byKey('log::level'));
 				break;
 			case 'SyslogUdp':
-				self::$logger[$_log]->pushHandler(new SyslogUdpHandler(config::byKey('log::syslogudphost'), config::byKey('log::syslogudpport')));
+				$handler = new SyslogUdpHandler(config::byKey('log::syslogudphost'), config::byKey('log::syslogudpport'));
 				break;
 			default:
-				self::$logger[$_log]->pushHandler(new StreamHandler(self::getPathToLog($_log), config::byKey('log::level')));
+				$handler = new StreamHandler(self::getPathToLog($_log), config::byKey('log::level'));
 				break;
 		}
+		$handler->setFormatter($formatter);
+		self::$logger[$_log]->pushHandler($handler);
 		return self::$logger[$_log];
 	}
 
@@ -87,37 +92,38 @@ class log {
 	}
 
 	public static function chunk($_log = '') {
-		$maxLineLog = config::byKey('maxLineLog');
-		if ($maxLineLog < 200) {
-			$maxLineLog = 200;
-		}
 		if ($_log != '') {
-			if (is_file(self::getPathToLog($_log))) {
-				self::chunkLog(self::getPathToLog($_log), $maxLineLog);
+			$path = self::getPathToLog($_log);
+			if (is_file($path)) {
+				self::chunkLog($path);
 			}
-		} else {
-			$logs = ls(dirname(__FILE__) . '/../../log/', '*');
-			foreach ($logs as $log) {
-				$path = dirname(__FILE__) . '/../../log/' . $log;
-				if (is_file($path)) {
-					self::chunkLog($path, $maxLineLog);
-				}
+			return;
+		}
+		$logs = ls(dirname(__FILE__) . '/../../log/', '*');
+		foreach ($logs as $log) {
+			$path = dirname(__FILE__) . '/../../log/' . $log;
+			if (is_file($path)) {
+				self::chunkLog($path);
 			}
-			$logs = ls(dirname(__FILE__) . '/../../log/scenarioLog', '*');
-			foreach ($logs as $log) {
-				$path = dirname(__FILE__) . '/../../log/scenarioLog/' . $log;
-				if (is_file($path)) {
-					self::chunkLog($path, $maxLineLog);
-				}
+		}
+		$logs = ls(dirname(__FILE__) . '/../../log/scenarioLog', '*');
+		foreach ($logs as $log) {
+			$path = dirname(__FILE__) . '/../../log/scenarioLog/' . $log;
+			if (is_file($path)) {
+				self::chunkLog($path);
 			}
 		}
 	}
 
-	public static function chunkLog($_path, $maxLineLog = 500) {
+	public static function chunkLog($_path) {
 		if (strpos($_path, '.htaccess') !== false) {
 			return;
 		}
-		shell_exec('echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+		$maxLineLog = config::byKey('maxLineLog');
+		if ($maxLineLog < 200) {
+			$maxLineLog = 200;
+		}
+		shell_exec('sudo chmod 777 ' . $_path . ' ;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		@chown($_path, 'www-data');
 		@chgrp($_path, 'www-data');
 		@chmod($_path, 0777);
@@ -134,15 +140,14 @@ class log {
 		if (config::byKey('log::engine') != 'StreamHandler') {
 			return;
 		}
+		if (strpos($_log, '.htaccess') !== false) {
+			return;
+		}
 		$path = self::getPathToLog($_log);
-		if (file_exists($path) && is_file($path) && strpos($_log, 'nginx.error') === false && strpos($_log, '.htaccess') === false) {
-			$log = fopen($path, "w");
-			ftruncate($log, 0);
-			fclose($log);
+		if (!file_exists($path) || !is_file($path)) {
+			return;
 		}
-		if (strpos($_log, 'nginx.error') !== false && strpos($_log, '.htaccess') === false) {
-			shell_exec('cat /dev/null > ' . $path);
-		}
+		shell_exec('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
 		return true;
 	}
 
@@ -154,14 +159,18 @@ class log {
 			return;
 		}
 		$path = self::getPathToLog($_log);
-		if (file_exists($path) && is_file($path) && strpos($_log, '.htaccess') === false) {
-			if (strpos($_log, 'nginx.error') === false) {
-				unlink($path);
-			}
-			if (strpos($_log, 'nginx.error') !== false) {
-				shell_exec('cat /dev/null > ' . $path);
-			}
+		if (!file_exists($path) || !is_file($path)) {
+			return;
 		}
+		if (strpos($_log, '.htaccess') !== false) {
+			return;
+		}
+		if (strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) {
+			shell_exec('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
+			return;
+		}
+		shell_exec('sudo chmod 777 ' . $path);
+		unlink($path);
 		return true;
 	}
 
@@ -172,13 +181,34 @@ class log {
 		$logs = ls(dirname(__FILE__) . '/../../log/', '*');
 		foreach ($logs as $log) {
 			$path = dirname(__FILE__) . '/../../log/' . $log;
-			if (is_file($path) && strpos($log, '.htaccess') === false) {
-				if (strpos($log, 'nginx.error') === false) {
-					unlink($path);
-				} else {
-					shell_exec('cat /dev/null > ' . $path);
-				}
+			if (!file_exists($path) || !is_file($path)) {
+				continue;
 			}
+			if (strpos($log, '.htaccess') !== false) {
+				continue;
+			}
+			if (strpos($log, 'nginx.error') !== false || strpos($log, 'http.error') !== false) {
+				shell_exec('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
+				continue;
+			}
+			shell_exec('sudo chmod 777 ' . $path);
+			unlink($path);
+		}
+		$logs = ls(dirname(__FILE__) . '/../../log/scenarioLog', '*');
+		foreach ($logs as $log) {
+			$path = dirname(__FILE__) . '/../../log/scenarioLog/' . $log;
+			if (!file_exists($path) || !is_file($path)) {
+				continue;
+			}
+			if (strpos($log, '.htaccess') !== false) {
+				continue;
+			}
+			if (strpos($log, 'nginx.error') !== false || strpos($log, 'http.error') !== false) {
+				shell_exec('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
+				continue;
+			}
+			shell_exec('sudo chmod 777 ' . $path);
+			unlink($path);
 		}
 		return true;
 	}

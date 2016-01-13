@@ -4,7 +4,7 @@ if (!hasRight('logview', true)) {
 }
 
 $page = init('page', 1);
-$logfile = init('logfile', 'nginx.error');
+$logfile = init('logfile', 'http.error');
 $list_logfile = array();
 $dir = opendir('log/');
 $logExist = false;
@@ -24,6 +24,7 @@ if ($logfile == '') {
 	throw new Exception('No log file');
 }
 ?>
+
 <a class="btn btn-danger pull-right" id="bt_removeAllLog"><i class="fa fa-trash-o"></i> {{Supprimer tous les logs}}</a>
 <a class="btn btn-danger pull-right" id="bt_removeLog"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
 <a class="btn btn-warning pull-right" id="bt_clearLog"><i class="fa fa-times"></i> {{Vider}}</a>
@@ -41,104 +42,9 @@ foreach ($list_logfile as $file) {
 ?>
 </select>
 <br/><br/>
+<?php
+log::chunk($logfile);
+?>
 <div id="div_logDisplay" style="overflow: scroll;"><pre><?php
-echo secureXSS(shell_exec('cat ' . dirname(__FILE__) . '/../../log/' . $logfile));?></pre></div>
-    <script>
-        $(function() {
-            $('#div_logDisplay').height($(window).height() - $('header').height() - $('footer').height() - 90);
-            $('#div_logDisplay').scrollTop(999999999);
-            $('#bt_downloadLog').click(function() {
-                window.open('core/php/downloadFile.php?pathfile=log/' + $('#sel_log').value(), "_blank", null);
-            });
-
-            $("#sel_log").on('change', function() {
-                log = $('#sel_log').value();
-                $('#div_pageContainer').empty().load('index.php?v=d&p=log&logfile=' + log+'&ajax=1',function(){
-                    initPage();
-                });
-            });
-
-            $('#bt_refreshLog').on('click', function() {
-                log = $('#sel_log').value();
-                $('#div_pageContainer').empty().load('index.php?v=d&p=log&logfile=' + log+'&ajax=1',function(){
-                    initPage();
-                });
-            });
-
-            $("#bt_clearLog").on('click', function(event) {
-            $.ajax({// fonction permettant de faire de l'ajax
-                type: "POST", // methode de transmission des données au fichier php
-                url: "core/ajax/log.ajax.php", // url du fichier php
-                data: {
-                    action: "clear",
-                    logfile: $('#sel_log').value()
-                },
-                dataType: 'json',
-                error: function(request, status, error) {
-                    handleAjaxError(request, status, error);
-                },
-                success: function(data) { // si l'appel a bien fonctionné
-                if (data.state != 'ok') {
-                    $('#div_alertError').showAlert({message: data.result, level: 'danger'});
-                } else {
-                 $('#div_pageContainer').empty().load('index.php?v=d&p=log&ajax=1',function(){
-                    initPage();
-                });
-             }
-         }
-     });
-        });
-
-            $("#bt_removeLog").on('click', function(event) {
-            $.ajax({// fonction permettant de faire de l'ajax
-                type: "POST", // methode de transmission des données au fichier php
-                url: "core/ajax/log.ajax.php", // url du fichier php
-                data: {
-                    action: "remove",
-                    logfile: $('#sel_log').value()
-                },
-                dataType: 'json',
-                error: function(request, status, error) {
-                    handleAjaxError(request, status, error);
-                },
-                success: function(data) { // si l'appel a bien fonctionné
-                if (data.state != 'ok') {
-                    $('#div_alertError').showAlert({message: data.result, level: 'danger'});
-                } else {
-                   $('#div_pageContainer').empty().load('index.php?v=d&p=log&ajax=1',function(){
-                    initPage();
-                });
-               }
-           }
-       });
-        });
-
-            $("#bt_removeAllLog").on('click', function(event) {
-                bootbox.confirm("{{Etes-vous sur de vouloir supprimer tous les logs ?}}", function(result) {
-                    if (result) {
-                    $.ajax({// fonction permettant de faire de l'ajax
-                        type: "POST", // methode de transmission des données au fichier php
-                        url: "core/ajax/log.ajax.php", // url du fichier php
-                        data: {
-                            action: "removeAll",
-                        },
-                        dataType: 'json',
-                        error: function(request, status, error) {
-                            handleAjaxError(request, status, error);
-                        },
-                        success: function(data) { // si l'appel a bien fonctionné
-                        if (data.state != 'ok') {
-                            $('#div_alertError').showAlert({message: data.result, level: 'danger'});
-                            return;
-                        }
-                        $('#div_pageContainer').empty().load('index.php?v=d&p=log&ajax=1',function(){
-                            initPage();
-                        });
-
-                    }
-                });
-}
-});
-});
-});
-</script>
+echo secureXSS(shell_exec('cat ' . dirname(__FILE__) . '/../../log/' . $logfile)); ?></pre></div>
+<?php include_file('desktop', 'log', 'js');?>

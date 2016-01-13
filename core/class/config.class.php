@@ -91,7 +91,7 @@ class config {
 				'plugin' => $_plugin,
 			);
 			$sql = 'DELETE FROM config
-                WHERE plugin=:plugin';
+                	WHERE plugin=:plugin';
 			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		} else {
 			$values = array(
@@ -99,9 +99,12 @@ class config {
 				'key' => $_key,
 			);
 			$sql = 'DELETE FROM config
-                WHERE `key`=:key
-                    AND plugin=:plugin';
-			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+                	WHERE `key`=:key
+                    	AND plugin=:plugin';
+			DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+			if (isset(self::$cache[$_plugin . '::' . $_key])) {
+				unset(self::$cache[$_plugin . '::' . $_key]);
+			}
 		}
 	}
 
@@ -158,7 +161,7 @@ class config {
 	}
 
 	public static function genKey($_car = 20) {
-		$key = "";
+		$key = '';
 		$chaine = "abcdefghijklmnpqrstuvwxy1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		srand((double) microtime() * 1000000);
 		for ($i = 0; $i < $_car; $i++) {

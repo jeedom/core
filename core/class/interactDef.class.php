@@ -135,6 +135,11 @@ class interactDef {
 				}
 			}
 		}
+		foreach ($tags[1] as $match) {
+			if (!isset($options[$match])) {
+				$options[$match] = '""';
+			}
+		}
 		return $options;
 	}
 
@@ -342,6 +347,7 @@ class interactDef {
 		$subtype_filter = $this->getFiltres('subtype');
 		$unite_filter = $this->getFiltres('unite');
 		$plugin_filter = $this->getFiltres('plugin');
+		$category_filter = $this->getFiltres('category');
 		$eqLogic_category_filter = $this->getFiltres('eqLogic_category');
 		foreach ($inputs as $input) {
 			preg_match_all("/#(.*?)#/", $input, $matches);
@@ -358,6 +364,20 @@ class interactDef {
 						if (isset($plugin_filter[$eqLogic->getEqType_name()]) && $plugin_filter[$eqLogic->getEqType_name()] == 0) {
 							continue;
 						}
+						$eq_caterogy = $eqLogic->getCategory();
+						$category_ok = true;
+						if (is_array($category_filter)) {
+							$category_ok = false;
+							foreach ($category_filter as $category => $value) {
+								if ($value == 1 && $eqLogic->getCategory($category) == 1) {
+									$category_ok = true;
+									break;
+								}
+							}
+						}
+						if (!$category_ok) {
+							continue;
+						}
 						foreach ($eqLogic->getCmd() as $cmd) {
 							if (isset($subtype_filter[$cmd->getSubType()]) && $subtype_filter[$cmd->getSubType()] == 0) {
 								continue;
@@ -365,9 +385,16 @@ class interactDef {
 							if (isset($type_filter[$cmd->getType()]) && $type_filter[$cmd->getType()] == 0) {
 								continue;
 							}
-							if ($cmd->getUnite() != '' && isset($unite_filter[$cmd->getUnite()]) && $unite_filter[$cmd->getUnite()] == 0) {
-								continue;
+							if ($cmd->getUnite() == '') {
+								if (isset($unite_filter['none']) && $unite_filter['none'] == 0) {
+									continue;
+								}
+							} else {
+								if (isset($unite_filter[$cmd->getUnite()]) && $unite_filter[$cmd->getUnite()] == 0) {
+									continue;
+								}
 							}
+
 							$replace = array(
 								'#objet#' => strtolower($object->getName()),
 								'#commande#' => strtolower($cmd->getName()),
@@ -376,20 +403,21 @@ class interactDef {
 							$options = array();
 							if ($cmd->getType() == 'action') {
 								if ($cmd->getSubtype() == 'color') {
-									$options['#color#'] = '#color#';
+									$options['color'] = '#color#';
 								}
 								if ($cmd->getSubtype() == 'slider') {
-									$options['#slider#'] = '#slider#';
+									$options['slider'] = '#slider#';
 								}
 								if ($cmd->getSubtype() == 'message') {
-									$options['#message#'] = '#message#';
-									$options['#title#'] = '#title#';
+									$options['message'] = '#message#';
+									$options['title'] = '#title#';
 								}
 							}
 							$query = str_replace(array_keys($replace), $replace, $input);
 							$return[$query] = array(
 								'query' => $query,
-								'cmd' => array(array('cmd' => '#' . $cmd->getId() . '#')),
+								'cmd' => array(array('cmd' => '#' . $cmd->getId() . '#', 'options' => $options)),
+
 							);
 						}
 					}

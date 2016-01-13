@@ -38,12 +38,10 @@ if (!isConnect('admin')) {
 	function refresh() {
 		$.ajax({
 			url: "desktop/js/rebootjs.js?t="+Date.now(),
-			success:
-			function(retour){
+			success:function(retour){
 				$('reboot_jeedom').html(retour);
 			}
 		});
-
 	}
 
 	function page_rebootjs(rebooti){

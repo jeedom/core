@@ -64,6 +64,18 @@ try {
 		ajax::success($return);
 	}
 
+	if (init('action') == 'testExpression') {
+		$return = array();
+		$scenario = null;
+		$return['evaluate'] = scenarioExpression::setTags(cmd::humanReadableToCmd(init('expression')), $scenario, true);
+		$return['result'] = evaluate($return['evaluate']);
+		$return['correct'] = 'ok';
+		if (trim($return['result']) == trim($return['evaluate'])) {
+			$return['correct'] = 'nok';
+		}
+		ajax::success($return);
+	}
+
 	if (init('action') == 'getTemplate') {
 		ajax::success(scenario::getTemplate());
 	}

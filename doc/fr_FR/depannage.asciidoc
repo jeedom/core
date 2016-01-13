@@ -4,7 +4,7 @@ J'ai une page blanche::
 Il faut se connecter en SSH à jeedom et lancer un script d'auto-diagnostique : 
 
 [source,bash]
-sudo chmod+x /usr/share/nginx/www/jeedom/health.sh;sudo /usr/share/nginx/www/jeedom/health.sh
+sudo chmod +x /usr/share/nginx/www/jeedom/health.sh;sudo /usr/share/nginx/www/jeedom/health.sh
 
 Voila le résultat si tout est bon : 
 

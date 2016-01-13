@@ -143,7 +143,7 @@ Pour une commande de type info :
 ** *Arrondi (chiffre après la virgule)* : permet d'arrondir la valeur de la commande, exemple : mettre 2 pour tranformer 16.643345 en 16.64
 * *Type générique* : cette partie permet de configurer le type generique de la commande (jeedom essaye de le trouver par lui meme en mode auto). Cette information est utilisée par l'application mobile.
 * *Action sur la valeur* : cette partie permet de faire des sorte de mini scénario, vous pouvez par exemple dire que si la valeur vaut plus de 50 pendant 3 minutes alors il faut faire tel action. Cela permet par exemple d'eteindre une lumiere X minutes après que celle-ci se soit allumée
-* *Historique* : voir link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_spécifique_par_commande[ici]
+* *Historique* : voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_spécifique_par_commande[ici]
 * *Autres*
 ** *Ne pas répéter si la valeur ne change pas* : Si la commande remonte 2 fois la meme valeur d'affiler alors Jeedom ne prend pas en compte la 2eme remonté (evite de déclencher plusieurs fois un scénario par exemple si la valeur ne change pas)
 ** *Push URL* : permet de rajouter une URL à appeler en cas de mise à jour de la commande. Vous pouvez utiliser les tags suivant : \#value# pour la valeur de la commande, \#cmd_name# pour le nom de la commande, \#cmd_id# pour l'identifiant unique de la commande, \#humanname# pour le nom complet de la commande (ex : \#[Salle de bain][Hydrometrie][Humidité]#)

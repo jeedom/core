@@ -61,11 +61,19 @@ if (init('cron_id') != '') {
 			$function = $cron->getFunction();
 			if (class_exists($class) && method_exists($class, $function)) {
 				if ($cron->getDeamon() == 0) {
-					$class::$function($option);
+					if ($option !== null) {
+						$class::$function($option);
+					} else {
+						$class::$function();
+					}
 				} else {
 					while (true) {
 						$cycleStartTime = getmicrotime();
-						$class::$function($option);
+						if ($option !== null) {
+							$class::$function($option);
+						} else {
+							$class::$function();
+						}
 						if ($cron->getDeamonSleepTime() > 1) {
 							sleep($cron->getDeamonSleepTime());
 						} else {
@@ -88,11 +96,19 @@ if (init('cron_id') != '') {
 			$function = $cron->getFunction();
 			if (function_exists($function)) {
 				if ($cron->getDeamon() == 0) {
-					$function($option);
+					if ($option !== null) {
+						$function($option);
+					} else {
+						$function();
+					}
 				} else {
 					while (true) {
 						$cycleStartTime = getmicrotime();
-						$function($option);
+						if ($option !== null) {
+							$function($option);
+						} else {
+							$function();
+						}
 						$cycleDuration = getmicrotime() - $cycleStartTime;
 						if ($cron->getDeamonSleepTime() > 1) {
 							sleep($cron->getDeamonSleepTime());
@@ -178,6 +194,9 @@ if (init('cron_id') != '') {
 		}
 		foreach (cron::all() as $cron) {
 			try {
+				if ($cron->getDeamon() == 1) {
+					continue;
+				}
 				if (!$started && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
 					continue;
 				}
@@ -187,12 +206,7 @@ if (init('cron_id') != '') {
 				}
 				$duration = strtotime('now') - strtotime($cron->getLastRun());
 				if ($cron->getEnable() == 1 && $cron->getState() != 'run' && $cron->getState() != 'starting' && $cron->getState() != 'stoping') {
-					if ($cron->getDeamon() == 0) {
-						if ($cron->isDue()) {
-							$cron->start();
-						}
-					} else {
-						$cron->halt();
+					if ($cron->isDue()) {
 						$cron->start();
 					}
 				}
@@ -206,9 +220,6 @@ if (init('cron_id') != '') {
 						break;
 					case 'stoping':
 						$cron->halt();
-						if ($cron->getEnable() == 1 && $cron->getDeamon() == 1 && !$cron->running()) {
-							$cron->run();
-						}
 						break;
 				}
 			} catch (Exception $e) {

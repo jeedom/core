@@ -1,0 +1,14 @@
+<div style="width:90px;min-height:80px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" title="Valeur du #valueDate#, collectée le #collectDate#">
+    <center>
+        <span class='cmdName' style="font-weight: bold;font-size : 12px;">#name_display#</span>
+        <span style="font-size: 3.5em;font-weight: bold;margin-top: 5px;" class="iconCmd#uid#"></span>
+    </center>
+    <script>
+        $('.iconCmd#uid#').empty();
+        if ('#state#' == '1') {
+            $('.iconCmd#uid#').append('<i class="icon jeedom-lock-ferme"></i>');
+        } else {
+            $('.iconCmd#uid#').append('<i class="icon jeedom-lock-ouvert"></i>');
+        }
+    </script>
+</div>

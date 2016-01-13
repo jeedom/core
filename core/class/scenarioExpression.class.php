@@ -782,6 +782,13 @@ class scenarioExpression {
 		if ($_scenario != null) {
 			$replace1 = array_merge($replace1, $_scenario->getTags());
 		}
+		if ($_quote) {
+			foreach ($replace1 as &$value) {
+				if (strpos($value, ' ') !== false || preg_match("/[a-zA-Z]/", $value) || $value === '') {
+					$value = '"' . trim($value, '"') . '"';
+				}
+			}
+		}
 		$replace2 = array();
 		if (is_string($_expression)) {
 			preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
@@ -838,7 +845,7 @@ class scenarioExpression {
 
 	}
 
-	public static function createAndExec($_type, $_cmd, $_options) {
+	public static function createAndExec($_type, $_cmd, $_options = null) {
 		$scenarioExpression = new self();
 		$scenarioExpression->setType($_type);
 		$scenarioExpression->setExpression($_cmd);

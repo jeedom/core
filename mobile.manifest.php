@@ -105,12 +105,13 @@ foreach (ls($root_dir, '*') as $dir) {
 		}
 	}
 }
-echo '#LANG : ' . translate::getLanguage();
+//echo '#LANG : ' . translate::getLanguage();
 ?>
 CACHE MANIFEST
 
 CACHE:
 <?php
+echo '#LANG : ' . translate::getLanguage();
 foreach (plugin::listPlugin(true) as $plugin) {
 	foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile', '*') as $file) {
 		if (is_dir(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file)) {
