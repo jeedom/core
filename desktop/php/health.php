@@ -196,7 +196,7 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 	foreach (jeeNetwork::all() as $jeeNetwork) {
 		echo '<tr>';
 		echo '<td style="font-weight : bold;">{{Version esclave}} ' . $jeeNetwork->getName() . '</td>';
-		if ($jeeNetwork->getConfiguration('version') != jeedom::version()) {
+		if (trim($jeeNetwork->getConfiguration('version')) != trim(jeedom::version())) {
 			echo '<td class="alert alert-success">' . $jeeNetwork->getConfiguration('version') . ' </td>';
 		} else {
 			echo '<td class="alert alert-danger">' . $jeeNetwork->getConfiguration('version') . ' </td>';
