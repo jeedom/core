@@ -1310,12 +1310,14 @@ class cmd {
 		if ($this->getDisplay('generic_type') != '') {
 			return $this->getDisplay('generic_type');
 		}
+		return 'GENERIC_ERROR';
+		/*
 		$category = $this->getEqLogic()->getPrimaryCategory();
 		$name_eq = strtolower($this->getEqLogic()->getName());
 		$type = strtoupper($category) . '_';
-      	if (strpos($name_eq, 'volet') !== false) {
-        	$type = 'FLAP_';
-        }
+      		if (strpos($name_eq, 'volet') !== false) {
+        		$type = 'FLAP_';
+        	}
 		if ($this->getType() == 'action') {
 			if ($this->getSubtype() == 'other') {
 				$name = strtolower($this->getName());
@@ -1388,6 +1390,7 @@ class cmd {
 			}
 			return $type . 'STATE';
 		}
+		*/
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
