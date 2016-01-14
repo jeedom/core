@@ -38,23 +38,7 @@
     }
 });
 
- $('body').delegate('.configKey[data-l1key="cache::engine"]', 'change', function () {
-   $('.cacheEngine').hide();
-   $('.cacheEngine.'+$(this).value()).show();
-});
-
- $('body').delegate('.configKey[data-l1key="log::engine"]', 'change', function () {
-   $('.logEngine').hide();
-   $('.logEngine.'+$(this).value()).show();
-});
-
- $('body').delegate('.configKey[data-l1key="market::branch"]', 'change', function () {
-    if($(this).value() == 'url'){
-        $('#div_githubupdate').show();
-    }else{
-        $('#div_githubupdate').hide();
-    }
-});
+ printWifiList();
 
  $("#bt_genKeyAPI").on('click', function (event) {
     $.hideAlert();
@@ -77,7 +61,7 @@
     });
 });
 
- $('#bt_restartDns').on('click', function () {
+ $('#bt_restartNgrok').on('click', function () {
      $.hideAlert();
      jeedom.config.save({
         configuration: $('#config').getValues('.configKey')[0],
@@ -85,13 +69,13 @@
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         jeedom.network.restartDns({
+         jeedom.network.restartNgrok({
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
                modifyWithoutSave = false;
-               loadPage('index.php?v=d&p=administration&panel=config_network');
+               window.location.href='index.php?v=d&p=administration&panel=config_network';
            }
        });
      }
@@ -99,7 +83,7 @@
  });
 
 
- $('#bt_haltDns').on('click', function () {
+ $('#bt_haltNgrok').on('click', function () {
      $.hideAlert();
      jeedom.config.save({
         configuration: $('#config').getValues('.configKey')[0],
@@ -107,18 +91,26 @@
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         jeedom.network.stopDns({
+         jeedom.network.stopNgrok({
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
                modifyWithoutSave = false;
-               loadPage('index.php?v=d&p=administration&panel=config_network');
+               window.location.href='index.php?v=d&p=administration&panel=config_network';
            }
        });
      }
  }); 
+
+
+
  });
+
+ $("#bt_nodeJsKey").on('click', function (event) {
+    $.hideAlert();
+    genNodeJsKey();
+});
 
  $("#bt_flushMemcache").on('click', function (event) {
     $.hideAlert();
@@ -140,9 +132,9 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                 loadPage('index.php?v=d&p=administration');
-             }
-         });
+                    window.location.reload();
+                }
+            });
         }
     });
 });
@@ -288,7 +280,7 @@ $('#bt_resetHwKey').on('click',function(){
             $('#div_alert').showAlert({message: data.result, level: 'danger'});
             return;
         }
-        loadPage('index.php?v=d&p=administration');
+        window.location.reload();
     }
 });
 });
@@ -314,6 +306,26 @@ function genKeyAPI() {
 });
 }
 
+function genNodeJsKey() {
+    $.ajax({// fonction permettant de faire de l'ajax
+        type: "POST", // methode de transmission des données au fichier php
+        url: "core/ajax/config.ajax.php", // url du fichier php
+        data: {
+            action: "genNodeJsKey"
+        },
+        dataType: 'json',
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+        },
+        success: function (data) { // si l'appel a bien fonctionné
+        if (data.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            return;
+        }
+        $('#in_nodeJsKey').value(data.result);
+    }
+});
+}
 
 function clearJeedomDate() {
     $.ajax({// fonction permettant de faire de l'ajax
@@ -430,9 +442,67 @@ function saveConvertColor() {
 
 /**************************NETWORK***********************************/
 
+function printWifiList(_global){
+   jeedom.network.listWifi({
+    global : _global || false,
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+        var option = '';
+        for(var i in data){
+            option += '<option value="'+data[i]+'">'; 
+            option += data[i]; 
+            option += '</option>';  
+        }
+        $('.configKey[data-l1key="network::wifi::ssid"]').empty().append(option);
+        jeedom.config.load({
+            configuration: {"network::wifi::ssid" : ""},
+            global : false,
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function (data) {
+                $('#config').setValues(data, '.configKey');
+                modifyWithoutSave = false;
+            }
+        });
+    }
+});
+}
+
+$('#bt_writeInterfaceFile').on('click', function () {
+    bootbox.confirm('{{Etes-vous sûr de vouloir ecrire la configuration réseaux ? La moindre erreur peut rendre votre box inaccessible et vous obligera à une reinstallation. Suite à ce changement un redemarrage est necessaire.}}', function (result) {
+        if (result) {
+         $.hideAlert();
+         jeedom.config.save({
+            configuration: $('#config').getValues('.configKey')[0],
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function () {
+             jeedom.network.writeInterfaceFile({
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                   modifyWithoutSave = false;
+               }
+           });
+         }
+     }); 
+     }
+ });
+});
+
+$('#bt_refreshWifiList').on('click',function(){
+    printWifiList(true);
+});
+
+
 /*CMD color*/
 
-$('.bt_resetColor').on('click', function () {
+ $('.bt_resetColor').on('click', function () {
     var el = $(this);
     jeedom.getConfiguration({
         key: $(this).attr('data-l1key'),

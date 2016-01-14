@@ -37,7 +37,7 @@
                         "unichr", "unicode", "xrange", "False", "True", "None"],
              keywords: ["exec", "print"]};
   var py3 = {builtins: ["ascii", "bytes", "exec", "print"],
-             keywords: ["nonlocal", "False", "True", "None", "async", "await"]};
+             keywords: ["nonlocal", "False", "True", "None"]};
 
   CodeMirror.registerHelper("hintWords", "python", commonKeywords.concat(commonBuiltins));
 

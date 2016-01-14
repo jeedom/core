@@ -92,7 +92,7 @@ class XML
      */
     public function __construct($complete = false, $pluginname = "")
     {
-        $this->_errors = PSI_Error::singleton();
+        $this->_errors = Error::singleton();
         if ($pluginname == "") {
             $this->_plugin_request = false;
             $this->_plugin = '';
@@ -200,7 +200,7 @@ class XML
                 $device->addAttribute('TxBytes', $dev->getTxBytes());
                 $device->addAttribute('Err', $dev->getErrors());
                 $device->addAttribute('Drops', $dev->getDrops());
-                if (defined('PSI_SHOW_NETWORK_INFOS') && PSI_SHOW_NETWORK_INFOS && $dev->getInfo())
+                if ( defined('PSI_SHOW_NETWORK_INFOS') && PSI_SHOW_NETWORK_INFOS && $dev->getInfo() )
                     $device->addAttribute('Info', $dev->getInfo());
             }
         }
@@ -218,23 +218,20 @@ class XML
         if ($this->_sys->getMachine() != "") {
             $hardware->addAttribute('Name', $this->_sys->getMachine());
         }
-        $pci = null;
+        $pci = $hardware->addChild('PCI');
         foreach (System::removeDupsAndCount($this->_sys->getPciDevices()) as $dev) {
-            if ($pci === null) $pci = $hardware->addChild('PCI');
             $tmp = $pci->addChild('Device');
             $tmp->addAttribute('Name', $dev->getName());
             $tmp->addAttribute('Count', $dev->getCount());
         }
-        $usb = null;
+        $usb = $hardware->addChild('USB');
         foreach (System::removeDupsAndCount($this->_sys->getUsbDevices()) as $dev) {
-            if ($usb === null) $usb = $hardware->addChild('USB');
             $tmp = $usb->addChild('Device');
             $tmp->addAttribute('Name', $dev->getName());
             $tmp->addAttribute('Count', $dev->getCount());
         }
-        $ide = null;
+        $ide = $hardware->addChild('IDE');
         foreach (System::removeDupsAndCount($this->_sys->getIdeDevices()) as $dev) {
-            if ($ide === null) $ide = $hardware->addChild('IDE');
             $tmp = $ide->addChild('Device');
             $tmp->addAttribute('Name', $dev->getName());
             $tmp->addAttribute('Count', $dev->getCount());
@@ -242,9 +239,8 @@ class XML
                 $tmp->addAttribute('Capacity', $dev->getCapacity());
             }
         }
-        $scsi = null;
+        $scsi = $hardware->addChild('SCSI');
         foreach (System::removeDupsAndCount($this->_sys->getScsiDevices()) as $dev) {
-            if ($scsi === null) $scsi = $hardware->addChild('SCSI');
             $tmp = $scsi->addChild('Device');
             $tmp->addAttribute('Name', $dev->getName());
             $tmp->addAttribute('Count', $dev->getCount());
@@ -252,24 +248,9 @@ class XML
                 $tmp->addAttribute('Capacity', $dev->getCapacity());
             }
         }
-        $tb = null;
-        foreach (System::removeDupsAndCount($this->_sys->getTbDevices()) as $dev) {
-            if ($tb === null) $tb = $hardware->addChild('TB');
-            $tmp = $tb->addChild('Device');
-            $tmp->addAttribute('Name', $dev->getName());
-            $tmp->addAttribute('Count', $dev->getCount());
-        }
-        $i2c = null;
-        foreach (System::removeDupsAndCount($this->_sys->getI2cDevices()) as $dev) {
-            if ($i2c === null) $i2c = $hardware->addChild('I2C');
-            $tmp = $i2c->addChild('Device');
-            $tmp->addAttribute('Name', $dev->getName());
-            $tmp->addAttribute('Count', $dev->getCount());
-        }
 
-        $cpu = null;
+        $cpu = $hardware->addChild('CPU');
         foreach ($this->_sys->getCpus() as $oneCpu) {
-            if ($cpu === null) $cpu = $hardware->addChild('CPU');
             $tmp = $cpu->addChild('CpuCore');
             $tmp->addAttribute('Model', $oneCpu->getModel());
             if ($oneCpu->getCpuSpeed() !== 0) {
@@ -363,7 +344,7 @@ class XML
         $mount->addAttribute('Percent', $dev->getPercentUsed());
         if (PSI_SHOW_MOUNT_OPTION === true) {
             if ($dev->getOptions() !== null) {
-                $mount->addAttribute('MountOptions', preg_replace("/,/", ", ", $dev->getOptions()));
+                $mount->addAttribute('MountOptions', preg_replace("/,/",", ",$dev->getOptions()));
             }
         }
         if ($dev->getPercentInodesUsed() !== null) {
@@ -383,14 +364,14 @@ class XML
     {
         $hideMounts = $hideFstypes = $hideDisks = array();
         $i = 1;
-        if (defined('PSI_HIDE_MOUNTS') && is_string(PSI_HIDE_MOUNTS)) {
+        if ( defined('PSI_HIDE_MOUNTS') && is_string(PSI_HIDE_MOUNTS) ) {
             if (preg_match(ARRAY_EXP, PSI_HIDE_MOUNTS)) {
                 $hideMounts = eval(PSI_HIDE_MOUNTS);
             } else {
                 $hideMounts = array(PSI_HIDE_MOUNTS);
             }
         }
-        if (defined('PSI_HIDE_FS_TYPES') && is_string(PSI_HIDE_FS_TYPES)) {
+        if ( defined('PSI_HIDE_FS_TYPES') && is_string(PSI_HIDE_FS_TYPES) ) {
             if (preg_match(ARRAY_EXP, PSI_HIDE_FS_TYPES)) {
                 $hideFstypes = eval(PSI_HIDE_FS_TYPES);
             } else {
@@ -442,7 +423,7 @@ class XML
                     if ($dev->getMax() !== null) {
                         $item->addAttribute('Max', $dev->getMax());
                     }
-                    if (defined('PSI_SENSOR_EVENTS') && PSI_SENSOR_EVENTS && $dev->getEvent() !== "") {
+                    if ( defined('PSI_SENSOR_EVENTS') && PSI_SENSOR_EVENTS && $dev->getEvent() !== "" ) {
                         $item->addAttribute('Event', $dev->getEvent());
                     }
                 }
@@ -457,7 +438,7 @@ class XML
                     if ($dev->getMin() !== null) {
                         $item->addAttribute('Min', $dev->getMin());
                     }
-                    if (defined('PSI_SENSOR_EVENTS') && PSI_SENSOR_EVENTS && $dev->getEvent() !== "") {
+                    if ( defined('PSI_SENSOR_EVENTS') && PSI_SENSOR_EVENTS && $dev->getEvent() !== "" ) {
                         $item->addAttribute('Event', $dev->getEvent());
                     }
                 }
@@ -475,7 +456,7 @@ class XML
                     if ($dev->getMax() !== null) {
                         $item->addAttribute('Max', $dev->getMax());
                     }
-                    if (defined('PSI_SENSOR_EVENTS') && PSI_SENSOR_EVENTS && $dev->getEvent() !== "") {
+                    if ( defined('PSI_SENSOR_EVENTS') && PSI_SENSOR_EVENTS && $dev->getEvent() !== "") {
                         $item->addAttribute('Event', $dev->getEvent());
                     }
                 }
@@ -490,7 +471,7 @@ class XML
                     if ($dev->getMax() !== null) {
                         $item->addAttribute('Max', $dev->getMax());
                     }
-                    if (defined('PSI_SENSOR_EVENTS') && PSI_SENSOR_EVENTS && $dev->getEvent() !== "") {
+                    if ( defined('PSI_SENSOR_EVENTS') && PSI_SENSOR_EVENTS && $dev->getEvent() !== "") {
                         $item->addAttribute('Event', $dev->getEvent());
                     }
                 }
@@ -505,7 +486,7 @@ class XML
                     if ($dev->getMax() !== null) {
                         $item->addAttribute('Max', $dev->getMax());
                     }
-                    if (defined('PSI_SENSOR_EVENTS') && PSI_SENSOR_EVENTS && $dev->getEvent() !== "") {
+                    if ( defined('PSI_SENSOR_EVENTS') && PSI_SENSOR_EVENTS && $dev->getEvent() !== "") {
                         $item->addAttribute('Event', $dev->getEvent());
                     }
                 }
@@ -537,7 +518,7 @@ class XML
     private function _buildUpsinfo()
     {
         $upsinfo = $this->_xml->addChild('UPSInfo');
-        if (defined('PSI_UPS_APCUPSD_CGI_ENABLE') && PSI_UPS_APCUPSD_CGI_ENABLE) {
+        if ( defined('PSI_UPS_APCUPSD_CGI_ENABLE') && PSI_UPS_APCUPSD_CGI_ENABLE) {
             $upsinfo->addAttribute('ApcupsdCgiLinks', true);
         }
         if (sizeof(unserialize(PSI_UPSINFO))>0) {
@@ -604,7 +585,7 @@ class XML
             if ($this->_sys === null) {
                 if (PSI_DEBUG === true) {
                     // Safe mode check
-                    $safe_mode = @ini_get("safe_mode") ? true : false;
+                    $safe_mode = @ini_get("safe_mode") ? TRUE : FALSE;
                     if ($safe_mode) {
                         $this->_errors->addError("WARN", "PhpSysInfo requires to set off 'safe_mode' in 'php.ini'");
                     }
@@ -698,7 +679,7 @@ class XML
         $options = $this->_xml->addChild('Options');
         $options->addAttribute('tempFormat', defined('PSI_TEMP_FORMAT') ? strtolower(PSI_TEMP_FORMAT) : 'c');
         $options->addAttribute('byteFormat', defined('PSI_BYTE_FORMAT') ? strtolower(PSI_BYTE_FORMAT) : 'auto_binary');
-        if (defined('PSI_REFRESH')) {
+        if ( defined('PSI_REFRESH') ) {
             if (PSI_REFRESH === false) {
                 $options->addAttribute('refresh', 0);
             } elseif (PSI_REFRESH === true) {
@@ -709,15 +690,17 @@ class XML
         } else {
             $options->addAttribute('refresh', 60000);
         }
-        if (defined('PSI_FS_USAGE_THRESHOLD')) {
+        if ( defined('PSI_FS_USAGE_THRESHOLD') ) {
             if (PSI_FS_USAGE_THRESHOLD === true) {
                 $options->addAttribute('threshold', 1);
-            } elseif ((PSI_FS_USAGE_THRESHOLD !== false) && (PSI_FS_USAGE_THRESHOLD >= 1) && (PSI_FS_USAGE_THRESHOLD <= 99)) {
+            } elseif ((PSI_FS_USAGE_THRESHOLD !== false) && (PSI_FS_USAGE_THRESHOLD >= 1) && (PSI_FS_USAGE_THRESHOLD <= 99) ) {
                 $options->addAttribute('threshold', PSI_FS_USAGE_THRESHOLD);
             }
         } else {
             $options->addAttribute('threshold', 90);
         }
+        $options->addAttribute('showPickListTemplate', defined('PSI_SHOW_PICKLIST_TEMPLATE') ? (PSI_SHOW_PICKLIST_TEMPLATE ? 'true' : 'false') : 'false');
+        $options->addAttribute('showPickListLang', defined('PSI_SHOW_PICKLIST_LANG') ? (PSI_SHOW_PICKLIST_LANG ? 'true' : 'false') : 'false');
         $options->addAttribute('showCPUListExpanded', defined('PSI_SHOW_CPULIST_EXPANDED') ? (PSI_SHOW_CPULIST_EXPANDED ? 'true' : 'false') : 'true');
         $options->addAttribute('showCPUInfoExpanded', defined('PSI_SHOW_CPUINFO_EXPANDED') ? (PSI_SHOW_CPUINFO_EXPANDED ? 'true' : 'false') : 'false');
         if (count($this->_plugins) > 0) {

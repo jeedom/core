@@ -1,5 +1,5 @@
 /**
- * @license  Highstock JS v4.2.1 (2015-12-21)
+ * @license  Highstock JS v2.1.7 (2015-06-26)
  * Solid angular gauge module
  *
  * (c) 2010-2014 Torstein Honsi
@@ -7,14 +7,9 @@
  * License: www.highcharts.com/license
  */
 
-(function (factory) {
-	if (typeof module === 'object' && module.exports) {
-		module.exports = factory;
-	} else {
-		factory(Highcharts);
-	}
-}(function (H) {
-	'use strict';
+/*global Highcharts, HighchartsAdapter*/
+(function (H) {
+	"use strict";
 
 	var defaultPlotOptions = H.getOptions().plotOptions,
 		pInt = H.pInt,
@@ -137,7 +132,7 @@
 
 			// Unsupported color, return to-color (#3920)
 			if (!to.rgba.length || !from.rgba.length) {
-				ret = to.input || 'none';
+				ret = to.raw || 'none';
 
 			// Interpolate
 			} else {
@@ -158,9 +153,9 @@
 	 * Handle animation of the color attributes directly
 	 */
 	each(['fill', 'stroke'], function (prop) {
-		H.Fx.prototype[prop + 'Setter'] = function () {
-			this.elem.attr(prop, colorAxisMethods.tweenColors(H.Color(this.start), H.Color(this.end), this.pos));
-		};
+		HighchartsAdapter.addAnimSetter(prop, function (fx) {
+			fx.elem.attr(prop, colorAxisMethods.tweenColors(H.Color(fx.start), H.Color(fx.end), fx.pos));
+		});
 	});
 
 	// The series prototype
@@ -201,28 +196,29 @@
 					shapeArgs,
 					d,
 					toColor = yAxis.toColor(point.y, point),
-					axisMinAngle = Math.min(yAxis.startAngleRad, yAxis.endAngleRad),
-					axisMaxAngle = Math.max(yAxis.startAngleRad, yAxis.endAngleRad),
-					minAngle,
-					maxAngle;
+					fromColor;
 
 				if (toColor === 'none') { // #3708
 					toColor = point.color || series.color || 'none';
 				}
 				if (toColor !== 'none') {
+					fromColor = point.color;
 					point.color = toColor;
 				}
 
 				// Handle overshoot and clipping to axis max/min
-				rotation = Math.max(axisMinAngle - overshootVal, Math.min(axisMaxAngle + overshootVal, rotation));
+				rotation = Math.max(yAxis.startAngleRad - overshootVal, Math.min(yAxis.endAngleRad + overshootVal, rotation));
 
 				// Handle the wrap option
 				if (options.wrap === false) {
-					rotation = Math.max(axisMinAngle, Math.min(axisMaxAngle, rotation));
+					rotation = Math.max(yAxis.startAngleRad, Math.min(yAxis.endAngleRad, rotation));
 				}
+				rotation = rotation * 180 / Math.PI;
 
-				minAngle = Math.min(rotation, yAxis.startAngleRad);
-				maxAngle = Math.max(rotation, yAxis.startAngleRad);
+				var angle1 = rotation / (180 / Math.PI),
+					angle2 = yAxis.startAngleRad,
+					minAngle = Math.min(angle1, angle2),
+					maxAngle = Math.max(angle1, angle2);
 
 				if (maxAngle - minAngle > 2 * Math.PI) {
 					maxAngle = minAngle + 2 * Math.PI;
@@ -270,4 +266,4 @@
 		}
 	});
 
-}));
+}(Highcharts));

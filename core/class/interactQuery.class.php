@@ -82,6 +82,7 @@ class interactQuery {
 	}
 
 	public static function recognize($_query) {
+
 		$values = array(
 			'query' => $_query,
 		);
@@ -128,11 +129,6 @@ class interactQuery {
 			}
 			$lev = levenshtein($input, $_query);
 			log::add('interact', 'debug', 'Je compare : ' . $_query . ' avec ' . $input . ' => ' . $lev);
-			if (trim($_query) == trim($input)) {
-				$shortest = 0;
-				$closest = $query;
-				break;
-			}
 			if ($lev == 0) {
 				$shortest = 0;
 				$closest = $query;
@@ -160,6 +156,20 @@ class interactQuery {
 		return $closest;
 	}
 
+	public static function whatDoYouKnow($_object = null) {
+		$results = jeedom::whatDoYouKnow($_object);
+		$reply = '';
+		foreach ($results as $object) {
+			$reply .= __('*** Je sais que pour ', __FILE__) . $object['name'] . " : \n";
+			foreach ($object['eqLogic'] as $eqLogic) {
+				foreach ($eqLogic['cmd'] as $cmd) {
+					$reply .= $eqLogic['name'] . ' ' . $cmd['name'] . ' = ' . $cmd['value'] . ' ' . $cmd['unite'] . "\n";
+				}
+			}
+		}
+		return $reply;
+	}
+
 	public static function tryToReply($_query, $_parameters = array()) {
 		$_parameters['dictation'] = $_query;
 		if (isset($_parameters['profile'])) {
@@ -169,9 +179,13 @@ class interactQuery {
 		$interactQuery = interactQuery::recognize($_query);
 		if (is_object($interactQuery)) {
 			$reply = $interactQuery->executeAndReply($_parameters);
-			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJ'ai compris : " . $interactQuery->getQuery() . "\nJ'ai répondu : " . $reply);
-		} else if (config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
+		}
+		if (trim($reply) == '' && config::byKey('interact::noResponseIfEmpty', 'core', 0) == 0 && (!isset($_parameters['emptyReply']) || $_parameters['emptyReply'] == 0)) {
 			$reply = self::dontUnderstand($_parameters);
+		}
+		if (is_object($interactQuery)) {
+			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJ'ai compris : " . $interactQuery->getQuery() . "\nJ'ai répondu : " . $reply);
+		} else {
 			log::add('interact', 'debug', 'J\'ai reçu : ' . $_query . "\nJe n'ai rien compris\nJ'ai répondu : " . $reply);
 		}
 		return ucfirst($reply);
@@ -270,17 +284,11 @@ class interactQuery {
 		}
 		$reply = $interactDef->selectReply();
 		$replace = array();
-		$tags_replace = array('#query#' => $this->getQuery());
-		$tags = null;
-		if (isset($_parameters['dictation'])) {
-			$tags = interactDef::getTagFromQuery($this->getQuery(), $_parameters['dictation']);
-			$tags_replace['#dictation#'] = $_parameters['dictation'];
-		}
-		if (is_array($tags)) {
-			foreach ($tags as $key => $value) {
-				$tags_replace['#' . $key . '#'] = $value;
-				$replace['#' . $key . '#'] = $value;
-			}
+		$tags = interactDef::getTagFromQuery($this->getQuery(), $_parameters['dictation']);
+		$tags_replace = array();
+		foreach ($tags as $key => $value) {
+			$tags_replace['#' . $key . '#'] = $value;
+			$replace['#' . $key . '#'] = $value;
 		}
 		$executeDate = null;
 		$dateConvert = array(
@@ -326,72 +334,63 @@ class interactQuery {
 			$cron->setOption(array_merge(array('interactQuery_id' => intval($this->getId())), $_parameters));
 			$cron->setLastRun(date('Y-m-d H:i:s'));
 			$cron->setOnce(1);
-			$cron->setSchedule(cron::convertDateToCron($executeDate));
+			$cron->setSchedule(date('i', $executeDate) . ' ' . date('H', $executeDate) . ' ' . date('d', $executeDate) . ' ' . date('m', $executeDate) . ' * ' . date('Y', $executeDate));
 			$cron->save();
-			$replace['#valeur#'] = date('Y-m-d H:i:s', $executeDate);
+			$replace['#value#'] = date('Y-m-d H:i:s', $executeDate);
 			$result = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
 			return $result;
 		}
 
 		$colors = config::byKey('convertColor');
-		if (is_array($this->getActions('cmd'))) {
-			foreach ($this->getActions('cmd') as $action) {
-				try {
-					$options = array();
-					if (isset($action['options'])) {
-						$options = $action['options'];
-					}
-					if ($tags != null) {
-						foreach ($options as &$option) {
-							$option = str_replace(array_keys($tags_replace), $tags_replace, $option);
-						}
-						if (isset($options['color']) && isset($colors[strtolower($options['color'])])) {
-							$options['color'] = $colors[strtolower($options['color'])];
-						}
-					}
-					$cmd = cmd::byId(str_replace('#', '', $action['cmd']));
-					if (is_object($cmd)) {
-						$replace['#unite#'] = $cmd->getUnite();
-						$replace['#commande#'] = $cmd->getName();
-						$replace['#objet#'] = '';
-						$replace['#equipement#'] = '';
-						$eqLogic = $cmd->getEqLogic();
-						if (is_object($eqLogic)) {
-							$replace['#equipement#'] = $eqLogic->getName();
-							$object = $eqLogic->getObject();
-							if (is_object($object)) {
-								$replace['#objet#'] = $object->getName();
-							}
-						}
-					}
-					$options['tags'] = $tags_replace;
-					$return = scenarioExpression::createAndExec('action', $action['cmd'], $options);
-					if (trim($return) != '') {
-						$replace['#valeur#'] = $return;
-					}
-
-				} catch (Exception $e) {
-					log::add('interact', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
-				} catch (Error $e) {
-					log::add('interact', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+		foreach ($this->getActions('cmd') as $action) {
+			try {
+				$options = array();
+				if (isset($action['options'])) {
+					$options = $action['options'];
 				}
+				if ($tags != null) {
+					foreach ($options as &$option) {
+						$option = str_replace(array_keys($tags_replace), $tags_replace, $option);
+					}
+					if (isset($options['color']) && isset($colors[strtolower($options['color'])])) {
+						$options['color'] = $colors[strtolower($options['color'])];
+					}
+				}
+				$cmd = cmd::byId(str_replace('#', '', $action['cmd']));
+				if (is_object($cmd) && $cmd->getType() == 'info') {
+					$replace['#unite#'] = $cmd->getUnite();
+					$replace['#commande#'] = $cmd->getName();
+					$replace['#objet#'] = '';
+					$replace['#equipement#'] = '';
+					$eqLogic = $cmd->getEqLogic();
+					if (is_object($eqLogic)) {
+						$replace['#equipement#'] = $eqLogic->getName();
+						$object = $eqLogic->getObject();
+						if (is_object($object)) {
+							$replace['#objet#'] = $object->getName();
+						}
+					}
+				}
+				$options['tags'] = $tags_replace;
+				$return = scenarioExpression::createAndExec('action', $action['cmd'], $options);
+				if (trim($return) != '') {
+					$replace['#valeur#'] = $return;
+				}
+
+			} catch (Exception $e) {
+				log::add('interact', 'error', __('Erreur lors de l\'éxecution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
 			}
 		}
 
 		$replace['#profile#'] = isset($_parameters['profile']) ? $_parameters['profile'] : '';
 		if ($interactDef->getOptions('convertBinary') != '') {
-			$convertBinary = explode('|', $interactDef->getOptions('convertBinary'));
-			if (is_array($convertBinary) && count($convertBinary) == 2) {
-				$replace['1'] = $convertBinary[1];
-				$replace['0'] = $convertBinary[0];
-			}
+			$convertBinary = $interactDef->getOptions('convertBinary');
+			$convertBinary = explode('|', $convertBinary);
+			$replace['1'] = $convertBinary[1];
+			$replace['0'] = $convertBinary[0];
 		}
-		foreach ($replace as $key => $value) {
-			if (is_array($value)) {
-				unset($replace[$key]);
-			}
-		}
-		return str_replace(array_keys($replace), $replace, scenarioExpression::setTags($reply));
+		$result = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
+		return $result;
 	}
 
 	public function getInteractDef() {

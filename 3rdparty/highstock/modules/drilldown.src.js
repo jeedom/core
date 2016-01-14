@@ -1,20 +1,16 @@
 /**
- * Highcharts Drilldown module
+ * Highcharts Drilldown plugin
  * 
  * Author: Torstein Honsi
- * License: www.highcharts.com/license
+ * License: MIT License
  *
+ * Demo: http://jsfiddle.net/highcharts/Vf3yT/
  */
 
-(function (factory) {
-	if (typeof module === 'object' && module.exports) {
-		module.exports = factory;
-	} else {
-		factory(Highcharts);
-	}
-}(function (H) {
+/*global Highcharts,HighchartsAdapter*/
+(function (H) {
 
-	'use strict';
+	"use strict";
 
 	var noop = function () {},
 		defaultOptions = H.getOptions(),
@@ -28,8 +24,8 @@
 		PieSeries = seriesTypes.pie,
 		ColumnSeries = seriesTypes.column,
 		Tick = H.Tick,
-		fireEvent = H.fireEvent,
-		inArray = H.inArray,
+		fireEvent = HighchartsAdapter.fireEvent,
+		inArray = HighchartsAdapter.inArray,
 		ddSeriesId = 1;
 
 	// Utilities
@@ -46,7 +42,7 @@
 
 		// Unsupported color, return to-color (#3920)
 		if (!to.rgba.length || !from.rgba.length) {
-			ret = to.input || 'none';
+			ret = to.raw || 'none';
 
 		// Interpolate
 		} else {
@@ -65,9 +61,9 @@
 	 * Handle animation of the color attributes directly
 	 */
 	each(['fill', 'stroke'], function (prop) {
-		H.Fx.prototype[prop + 'Setter'] = function () {
-			this.elem.attr(prop, tweenColors(H.Color(this.start), H.Color(this.end), this.pos));
-		};
+		HighchartsAdapter.addAnimSetter(prop, function (fx) {
+			fx.elem.attr(prop, tweenColors(H.Color(fx.start), H.Color(fx.end), fx.pos));
+		});
 	});
 
 	// Add language
@@ -714,4 +710,4 @@
 		}
 	}
 		
-}));
+}(Highcharts));

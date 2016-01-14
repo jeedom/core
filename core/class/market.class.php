@@ -49,7 +49,7 @@ class market {
 	private $private;
 	private $change;
 	private $updateBy;
-	private $release;
+	private $docOnly;
 	private $hardwareCompatibility;
 
 	/*     * ***********************Méthodes statiques*************************** */
@@ -162,7 +162,7 @@ class market {
 			$timeout = 120;
 		} else {
 			$options = array('logicalId' => $_logicalId, 'type' => $_type);
-			$timeout = 4;
+			$timeout = 2;
 		}
 		if ($market->sendRequest('market::byLogicalIdAndType', $options, $timeout, null, 1)) {
 			if (is_array($_logicalId)) {
@@ -267,6 +267,9 @@ class market {
 		if (isset($_ticket['allowRemoteAccess']) && $_ticket['allowRemoteAccess'] == 1) {
 			$user = user::createTemporary(72);
 			$_ticket['options']['remoteAccess'] = 'Http : ' . $user->getDirectUrlAccess();
+			if (config::byKey('market::allowDNS') == 1 && config::byKey('market::redirectSSH') == 1 && config::byKey('ngrok::port') != '') {
+				$_ticket['options']['remoteAccess'] .= ' | SSH : dns.jeedom.com:' . config::byKey('ngrok::port');
+			}
 		}
 		$_ticket['options']['jeedom_version'] = jeedom::version();
 		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket))) {
@@ -281,22 +284,15 @@ class market {
 			if (!$_refresh && $cache->getValue('') != '') {
 				return $cache->getValue();
 			}
-			if (config::byKey('market::branch') == 'url') {
-				$url = config::byKey('update::url');
-				$url = str_replace('archive/', '', $url);
-				$url = str_replace('.zip', '', $url);
-				$url .= '/core/config/version';
-				$url = str_replace('https://github.com', 'https://raw.githubusercontent.com', $url);
+			$jsonrpc = self::getJsonRpc();
+			if ($jsonrpc->sendRequest('jeedom::getCurrentVersion', array('branch' => config::byKey('market::branch')))) {
+				$version = trim($jsonrpc->getResult());
+				cache::set('jeedom::lastVersion', $version, 86400);
+				return $version;
 			} else {
-				$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('market::branch', 'core', 'stable') . '/core/config/version';
+				log::add('market', 'error', $jsonrpc->getErrorMessage());
 			}
-			$request_http = new com_http($url);
-			$version = trim($request_http->exec());
-			cache::set('jeedom::lastVersion', $version, 86400);
-			return $version;
 		} catch (Exception $e) {
-
-		} catch (Error $e) {
 
 		}
 		return null;
@@ -305,12 +301,6 @@ class market {
 	public static function getJsonRpc() {
 		if (config::byKey('market::address') == '') {
 			throw new Exception(__('Aucune addresse n\'est renseignée pour le market', __FILE__));
-		}
-		$internalIp = '';
-		try {
-			$internalIp = network::getNetworkAccess('internal', 'ip');
-		} catch (Exception $e) {
-
 		}
 		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
 			$params = array(
@@ -324,8 +314,6 @@ class market {
 					'nbMessage' => message::nbMessage(),
 					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 				),
-				'localIp' => $internalIp,
-				'jeedom_name' => config::byKey('name'),
 			);
 			if (config::byKey('market::allowDNS') != 1) {
 				$params['addr'] = config::byKey('externalAddr');
@@ -333,12 +321,11 @@ class market {
 				$params['addrPort'] = config::byKey('externalPort');
 			}
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
+
 		} else {
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
 				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
-				'localIp' => $internalIp,
-				'jeedom_name' => config::byKey('name'),
 			));
 		}
 		$jsonrpc->setCb_class('market');
@@ -348,25 +335,25 @@ class market {
 
 	public static function postJsonRpc(&$_result) {
 		if (is_array($_result)) {
-			$restart_dns = false;
-			if (isset($_result['register::dnsToken']) && config::byKey('dns::token') != $_result['register::dnsToken']) {
-				config::save('dns::token', $_result['register::dnsToken']);
-				$restart_dns = true;
-			}
-			if (isset($_result['register::dnsNumber']) && config::byKey('dns::number') != $_result['register::dnsNumber']) {
-				config::save('dns::number', $_result['register::dnsNumber']);
-				$restart_dns = true;
-			}
-			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
-				network::dns_start();
-			}
 			if (config::byKey('market::allowDNS') == 1) {
+				$dnsRestart = false;
+				if (isset($_result['register::ngrokAddr']) && config::byKey('ngrok::addr') != $_result['register::ngrokAddr']) {
+					config::save('ngrok::addr', $_result['register::ngrokAddr']);
+					$dnsRestart = true;
+				}
+				if (isset($_result['register::ngrokToken']) && config::byKey('ngrok::token') != $_result['register::ngrokToken']) {
+					config::save('ngrok::token', $_result['register::ngrokToken']);
+					$dnsRestart = true;
+				}
+				if ($dnsRestart) {
+					if (network::dns_run()) {
+						network::dns_stop();
+					}
+					network::dns_start();
+				}
 				if (isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
 					config::save('jeedom::url', $_result['jeedom::url']);
 				}
-			}
-			if (isset($_result['market::allowBeta']) && config::byKey('market::allowBeta') != $_result['market::allowBeta']) {
-				config::save('market::allowBeta', $_result['market::allowBeta']);
 			}
 			if (isset($_result['register::ngrokAddr'])) {
 				unset($_result['register::ngrokAddr']);
@@ -377,23 +364,8 @@ class market {
 			if (isset($_result['register::ngrokToken'])) {
 				unset($_result['register::ngrokToken']);
 			}
-			if (isset($_result['register::dnsNumber'])) {
-				unset($_result['register::dnsNumber']);
-			}
-			if (isset($_result['register::dnsToken'])) {
-				unset($_result['register::dnsToken']);
-			}
 			if (isset($_result['jeedom::url'])) {
 				unset($_result['jeedom::url']);
-			}
-			if (isset($_result['market::allowBeta'])) {
-				unset($_result['market::allowBeta']);
-			}
-			if (isset($_result['register::dnsToken'])) {
-				unset($_result['register::dnsToken']);
-			}
-			if (isset($_result['register::dnsNumber'])) {
-				unset($_result['register::dnsNumber']);
 			}
 			if (isset($_result['register::hwkey_nok']) && $_result['register::hwkey_nok'] == 1) {
 				config::save('jeedom::installKey', '');
@@ -458,9 +430,6 @@ class market {
 				} catch (Exception $e) {
 					log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
 					$return['status'] = 'ok';
-				} catch (Error $e) {
-					log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
-					$return['status'] = 'ok';
 				}
 				$returns[$logicalId] = $return;
 			}
@@ -506,9 +475,6 @@ class market {
 				}
 			}
 		} catch (Exception $e) {
-			log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
-			$return['status'] = 'ok';
-		} catch (Error $e) {
 			log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
 			$return['status'] = 'ok';
 		}
@@ -598,13 +564,7 @@ class market {
 	}
 
 	public function install($_version = 'stable') {
-		if (!file_exists(dirname(__FILE__) . '/../../plugins')) {
-			mkdir(dirname(__FILE__) . '/../../plugins');
-			@chown(dirname(__FILE__) . '/../../plugins', 'www-data');
-			@chgrp(dirname(__FILE__) . '/../../plugins', 'www-data');
-			@chmod(dirname(__FILE__) . '/../../plugins', 0775);
-		}
-		log::add('update', 'alert', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
+		log::add('update', 'update', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
 		$tmp_dir = dirname(__FILE__) . '/../../tmp';
 		$tmp = $tmp_dir . '/' . $this->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
@@ -617,12 +577,12 @@ class market {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
 		}
 		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . config::byKey('market::password') . '&password_type=sha1';
-		log::add('update', 'alert', __('Téléchargement de ', __FILE__) . $this->getLogicalId() . '...');
+		log::add('update', 'update', __('Téléchargement de ', __FILE__) . $this->getLogicalId() . '...');
 		file_put_contents($tmp, fopen($url, 'r'));
 		if (!file_exists($tmp)) {
 			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '. Si l\'application est payante, l\'avez-vous achetée ?', __FILE__));
 		}
-		log::add('update', 'alert', __("OK\n", __FILE__));
+		log::add('update', 'update', __("OK\n", __FILE__));
 		switch ($this->getType()) {
 			case 'plugin':
 				$cibDir = dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId();
@@ -632,17 +592,15 @@ class market {
 				try {
 					$plugin = plugin::byId($this->getLogicalId());
 					if (is_object($plugin)) {
-						log::add('update', 'alert', __('Action de pre update...', __FILE__));
+						log::add('update', 'update', __('Action de pre update...', __FILE__));
 						$plugin->callInstallFunction('pre_update');
-						log::add('update', 'alert', __("OK\n", __FILE__));
+						log::add('update', 'update', __("OK\n", __FILE__));
 					}
 				} catch (Exception $e) {
 
-				} catch (Error $e) {
-
 				}
 
-				log::add('update', 'alert', __('Décompression du zip...', __FILE__));
+				log::add('update', 'update', __('Décompression du zip...', __FILE__));
 				$zip = new ZipArchive;
 				$res = $zip->open($tmp);
 				if ($res === TRUE) {
@@ -651,18 +609,15 @@ class market {
 						throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
 					}
 					$zip->close();
-					log::add('update', 'alert', __("OK\n", __FILE__));
-					log::add('update', 'alert', __('Installation de ', __FILE__) . $this->getLogicalId() . '...');
+					log::add('update', 'update', __("OK\n", __FILE__));
+					log::add('update', 'update', __('Installation de ', __FILE__) . $this->getLogicalId() . '...');
 					try {
 						$plugin = plugin::byId($this->getLogicalId());
 					} catch (Exception $e) {
 						$this->remove();
 						throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
-					} catch (Error $e) {
-						$this->remove();
-						throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
 					}
-					log::add('update', 'alert', __("OK\n", __FILE__));
+					log::add('update', 'update', __("OK\n", __FILE__));
 					$update = update::byTypeAndLogicalId($this->getType(), $this->getLogicalId());
 					if (is_object($plugin) && $plugin->isActive()) {
 						$plugin->setIsEnable(1);
@@ -701,26 +656,24 @@ class market {
 				}
 				break;
 			default:
-				log::add('update', 'alert', __('Installation de du plugin,widget,scénario...', __FILE__));
+				log::add('update', 'update', __('Installation de du plugin,widget...', __FILE__));
 				$type = $this->getType();
 				if (class_exists($type) && method_exists($type, 'getFromMarket')) {
 					$type::getFromMarket($this, $tmp);
 				}
-				log::add('update', 'alert', __("OK\n", __FILE__));
+				log::add('update', 'update', __("OK\n", __FILE__));
 				break;
 		}
-		if ($type != 'scenario') {
-			$update = update::byTypeAndLogicalId($this->getType(), $this->getLogicalId());
-			if (!is_object($update)) {
-				$update = new update();
-				$update->setLogicalId($this->getLogicalId());
-				$update->setType($this->getType());
-			}
-			$update->setLocalVersion($this->getDatetime($_version));
-			$update->setConfiguration('version', $_version);
-			$update->save();
-			$update->checkUpdate();
+		$update = update::byTypeAndLogicalId($this->getType(), $this->getLogicalId());
+		if (!is_object($update)) {
+			$update = new update();
+			$update->setLogicalId($this->getLogicalId());
+			$update->setType($this->getType());
 		}
+		$update->setLocalVersion($this->getDatetime($_version));
+		$update->setConfiguration('version', $_version);
+		$update->save();
+		$update->checkUpdate();
 	}
 
 	public function remove() {
@@ -737,23 +690,17 @@ class market {
 							$plugin->setIsEnable(0);
 						} catch (Exception $e) {
 
-						} catch (Error $e) {
-
 						}
 						foreach (eqLogic::byType($this->getLogicalId()) as $eqLogic) {
 							try {
 								$eqLogic->remove();
 							} catch (Exception $e) {
 
-							} catch (Error $e) {
-
 							}
 						}
 					}
 					config::remove('*', $this->getLogicalId());
 				} catch (Exception $e) {
-
-				} catch (Error $e) {
 
 				}
 				try {
@@ -762,8 +709,6 @@ class market {
 						rrmdir($cibDir);
 					}
 				} catch (Exception $e) {
-
-				} catch (Error $e) {
 
 				}
 				break;
@@ -801,9 +746,6 @@ class market {
 					'tmp',
 				);
 				rcopy(realpath(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId()), $cibDir, true, $exclude, true);
-				if (file_exists($cibDir . '/data')) {
-					rrmdir($cibDir . '/data');
-				}
 				$tmp = dirname(__FILE__) . '/../../tmp/' . $this->getLogicalId() . '.zip';
 				if (file_exists($tmp)) {
 					if (!unlink($tmp)) {
@@ -1041,12 +983,12 @@ class market {
 		$this->change = $change;
 	}
 
-	public function getRelease() {
-		return $this->release;
+	public function getDocOnly() {
+		return $this->docOnly;
 	}
 
-	public function setRelease($release) {
-		$this->release = $release;
+	public function setDocOnly($docOnly) {
+		$this->docOnly = $docOnly;
 	}
 
 	public function getUpdateBy() {

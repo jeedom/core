@@ -69,7 +69,7 @@ try {
 			throw new Exception(__('Aucune commande trouvé pour envoyé le nouveau mot de passe, la demande de récupération a echouée', __FILE__));
 		}
 		if (!$found) {
-			throw new Exception(__('Aucune commande trouvé pour envoyé le nouveau mot de passe, la demande de récupération a echouée, vous pouvez trouver une procedure <a href="https://www.jeedom.com/doc/documentation/howto/fr_FR/doc-howto-reset.password.html" target="_blank">ici</a>', __FILE__));
+			throw new Exception(__('Aucune commande trouvé pour envoyé le nouveau mot de passe, la demande de récupération a echouée, vous pouvez trouver une procedure <a href="https://www.jeedom.fr/doc/documentation/howto/fr_FR/doc-howto-reset.password.html" target="_blank">ici</a>', __FILE__));
 		}
 		$user->save();
 		ajax::success();

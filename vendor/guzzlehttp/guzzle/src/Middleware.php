@@ -2,7 +2,9 @@
 namespace GuzzleHttp;
 
 use GuzzleHttp\Cookie\CookieJarInterface;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Promise\RejectedPromise;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\ResponseInterface;
@@ -62,7 +64,9 @@ final class Middleware
                         if ($code < 400) {
                             return $response;
                         }
-                        throw RequestException::create($request, $response);
+                        throw $code > 499
+                            ? new ServerException("Server error: $code", $request, $response)
+                            : new ClientException("Client error: $code", $request, $response);
                     }
                 );
             };

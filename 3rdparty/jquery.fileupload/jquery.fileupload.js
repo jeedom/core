@@ -1,5 +1,5 @@
 /*
- * jQuery File Upload Plugin
+ * jQuery File Upload Plugin 5.41.0
  * https://github.com/blueimp/jQuery-File-Upload
  *
  * Copyright 2010, Sebastian Tschan
@@ -10,7 +10,7 @@
  */
 
 /* jshint nomen:false */
-/* global define, require, window, document, location, Blob, FormData */
+/* global define, window, document, location, Blob, FormData */
 
 (function (factory) {
     'use strict';
@@ -20,12 +20,6 @@
             'jquery',
             'jquery.ui.widget'
         ], factory);
-    } else if (typeof exports === 'object') {
-        // Node/CommonJS:
-        factory(
-            require('jquery'),
-            require('./vendor/jquery.ui.widget')
-        );
     } else {
         // Browser globals:
         factory(window.jQuery);
@@ -57,25 +51,6 @@
     $.support.blobSlice = window.Blob && (Blob.prototype.slice ||
         Blob.prototype.webkitSlice || Blob.prototype.mozSlice);
 
-    // Helper function to create drag handlers for dragover/dragenter/dragleave:
-    function getDragHandler(type) {
-        var isDragOver = type === 'dragover';
-        return function (e) {
-            e.dataTransfer = e.originalEvent && e.originalEvent.dataTransfer;
-            var dataTransfer = e.dataTransfer;
-            if (dataTransfer && $.inArray('Files', dataTransfer.types) !== -1 &&
-                    this._trigger(
-                        type,
-                        $.Event(type, {delegatedEvent: e})
-                    ) !== false) {
-                e.preventDefault();
-                if (isDragOver) {
-                    dataTransfer.dropEffect = 'copy';
-                }
-            }
-        };
-    }
-
     // The fileupload widget listens for change events on file input fields defined
     // via fileInput setting and paste or drop events of the given dropZone.
     // In addition to the default jQuery Widget methods, the fileupload widget
@@ -90,9 +65,9 @@
             // The drop target element(s), by the default the complete document.
             // Set to null to disable drag & drop support:
             dropZone: $(document),
-            // The paste target element(s), by the default undefined.
-            // Set to a DOM node or jQuery object to enable file pasting:
-            pasteZone: undefined,
+            // The paste target element(s), by the default the complete document.
+            // Set to null to disable paste support:
+            pasteZone: $(document),
             // The file input field(s), that are listened to for change events.
             // If undefined, it is set to the file input fields inside
             // of the widget element on plugin initialization.
@@ -277,8 +252,7 @@
             // The following are jQuery ajax settings required for the file uploads:
             processData: false,
             contentType: false,
-            cache: false,
-            timeout: 0
+            cache: false
         },
 
         // A list of options that require reinitializing event listeners and/or
@@ -984,10 +958,7 @@
                 fileSet,
                 i,
                 j = 0;
-            if (!filesLength) {
-                return false;
-            }
-            if (limitSize && files[0].size === undefined) {
+            if (limitSize && (!filesLength || files[0].size === undefined)) {
                 limitSize = undefined;
             }
             if (!(options.singleFileUploads || limit || limitSize) ||
@@ -1046,19 +1017,13 @@
 
         _replaceFileInput: function (data) {
             var input = data.fileInput,
-                inputClone = input.clone(true),
-                restoreFocus = input.is(document.activeElement);
+                inputClone = input.clone(true);
             // Add a reference for the new cloned file input to the data argument:
             data.fileInputClone = inputClone;
             $('<form></form>').append(inputClone)[0].reset();
             // Detaching allows to insert the fileInput on another form
             // without loosing the file input value:
             input.after(inputClone).detach();
-            // If the fileInput had focus before it was detached,
-            // restore focus to the inputClone.
-            if (restoreFocus) {
-                inputClone.focus();
-            }
             // Avoid memory leaks with the detached file input:
             $.cleanData(input.unbind('remove'));
             // Replace the original file input element in the fileInput
@@ -1278,21 +1243,24 @@
             }
         },
 
-        _onDragOver: getDragHandler('dragover'),
-
-        _onDragEnter: getDragHandler('dragenter'),
-
-        _onDragLeave: getDragHandler('dragleave'),
+        _onDragOver: function (e) {
+            e.dataTransfer = e.originalEvent && e.originalEvent.dataTransfer;
+            var dataTransfer = e.dataTransfer;
+            if (dataTransfer && $.inArray('Files', dataTransfer.types) !== -1 &&
+                    this._trigger(
+                        'dragover',
+                        $.Event('dragover', {delegatedEvent: e})
+                    ) !== false) {
+                e.preventDefault();
+                dataTransfer.dropEffect = 'copy';
+            }
+        },
 
         _initEventHandlers: function () {
             if (this._isXHRUpload(this.options)) {
                 this._on(this.options.dropZone, {
                     dragover: this._onDragOver,
-                    drop: this._onDrop,
-                    // event.preventDefault() on dragenter is required for IE10+:
-                    dragenter: this._onDragEnter,
-                    // dragleave is not required, but added for completeness:
-                    dragleave: this._onDragLeave
+                    drop: this._onDrop
                 });
                 this._on(this.options.pasteZone, {
                     paste: this._onPaste
@@ -1306,7 +1274,7 @@
         },
 
         _destroyEventHandlers: function () {
-            this._off(this.options.dropZone, 'dragenter dragleave dragover drop');
+            this._off(this.options.dropZone, 'dragover drop');
             this._off(this.options.pasteZone, 'paste');
             this._off(this.options.fileInput, 'change');
         },
@@ -1354,19 +1322,15 @@
         _initDataAttributes: function () {
             var that = this,
                 options = this.options,
-                data = this.element.data();
+                clone = $(this.element[0].cloneNode(false));
             // Initialize options set via HTML5 data-attributes:
             $.each(
-                this.element[0].attributes,
-                function (index, attr) {
-                    var key = attr.name.toLowerCase(),
-                        value;
-                    if (/^data-/.test(key)) {
-                        // Convert hyphen-ated key to camelCase:
-                        key = key.slice(5).replace(/-[a-z]/g, function (str) {
-                            return str.charAt(1).toUpperCase();
-                        });
-                        value = data[key];
+                clone.data(),
+                function (key, value) {
+                    var dataAttributeName = 'data-' +
+                        // Convert camelCase to hyphen-ated key:
+                        key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+                    if (clone.attr(dataAttributeName)) {
                         if (that._isRegExpOption(key, value)) {
                             value = that._getRegExp(value);
                         }

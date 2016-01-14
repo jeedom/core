@@ -1,6 +1,6 @@
 /*
  * File:        jquery.dataTables.js
- * Version:     1.8.2+jquery1.9fix
+ * Version:     1.8.2
  * Description: Paginate, search and sort HTML tables
  * Author:      Allan Jardine (www.sprymedia.co.uk)
  * Created:     28/3/2008
@@ -3971,7 +3971,7 @@
 				iWidth, aApplied=[], iSanityWidth,
 				nScrollFootInner = (o.nTFoot !== null) ? o.nScrollFoot.getElementsByTagName('div')[0] : null,
 				nScrollFootTable = (o.nTFoot !== null) ? nScrollFootInner.getElementsByTagName('table')[0] : null,
-				ie67 = (navigator.userAgent.match(/MSIE ([2-7]\.)/) !== null);
+				ie67 = $.browser.msie && $.browser.version <= 7;
 			
 			/*
 			 * 1. Re-create the table inside the scrolling div

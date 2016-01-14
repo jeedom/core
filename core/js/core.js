@@ -21,6 +21,17 @@ $(function () {
     }
 });
 
+if ($.mobile) {
+    if (jeedom.nodeJs.state === true) {
+        setTimeout(function () {
+            $('body').trigger('nodeJsConnect');
+        }, 500);
+    }
+    if (jeedom.nodeJs.state == -1 || socket == null) {
+        jeedom.init();
+    }
+}
+
 function getTemplate(_folder, _version, _filename, _replace) {
     if (_folder == 'core') {
         var path = _folder + '/template/' + _version + '/' + _filename;

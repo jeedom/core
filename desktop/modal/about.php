@@ -7,13 +7,13 @@ if (!isConnect()) {
   <div class="col-lg-2">
     <h3>{{Auteur(s)}}</h3>
     <lu>
-      <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc Gevrey</a></li>
+      <li><a class="cursor" href="http://jeedom.fr/" style="color:blue;" target="_blank">Loïc Gevrey</a></li>
     </lu>
   </div>
   <div class="col-lg-2">
     <h3>{{Développeur(s)}}</h3>
     <lu>
-      <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc Gevrey</a></li>
+      <li><a class="cursor" href="http://jeedom.fr/" style="color:blue;" target="_blank">Loïc Gevrey</a></li>
       <li>Thomas Martinez</li>
       <li><a class="cursor" href="http://arnaud.quette.fr" style="color:blue;" target="_blank">Arnaud Quette</a></li>
     </lu>
@@ -33,7 +33,7 @@ if (!isConnect()) {
   <div class="col-lg-2">
     <h3>{{Designer}}</h3>
     <lu>
-      <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc Gevrey</a></li>
+      <li><a class="cursor" href="http://jeedom.fr/" style="color:blue;" target="_blank">Loïc Gevrey</a></li>
       <li>Marie Corbière</li>
       <li><a class="cursor" href="http://ma-maison-domotique.blogspot.com/" style="color:blue;" target="_blank">Mathieu (alias Algeroth)</a></li>
     </lu>
@@ -41,7 +41,7 @@ if (!isConnect()) {
   <div class="col-lg-2">
     <h3>{{Beta-testeur(s)}}</h3>
     <lu>
-      <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc Gevrey</a></li>
+      <li><a class="cursor" href="http://jeedom.fr/" style="color:blue;" target="_blank">Loïc Gevrey</a></li>
       <li>Marie Corbière</li>
       <li><a class="cursor" href="http://ma-maison-domotique.blogspot.com/" style="color:blue;" target="_blank">Mathieu (alias Algeroth)</a></li>
       <li>Gerandhal</li>

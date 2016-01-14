@@ -18,21 +18,15 @@
  modifyWithoutSave = false;
  nbActiveAjaxRequest = 0;
  utid = Date.now();
+ $(function () {
 
- function loadPage(_url){
-    window.location.href = _url;
-    return;
-}
-
-$(function () {
-
- $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+  $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
     $(this).parent().siblings().removeClass('open');
     $(this).parent().toggleClass('open');
 });
- if (!navigator.userAgent.match(/Android/i)
+  if (!navigator.userAgent.match(/Android/i)
     && !navigator.userAgent.match(/webOS/i)
     && !navigator.userAgent.match(/iPhone/i)
     && !navigator.userAgent.match(/iPad/i)
@@ -116,7 +110,7 @@ setInterval(function () {
         position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'})
-            $(this).closest( ".ui-dialog" ).find(":button").blur();
+             $(this).closest( ".ui-dialog" ).find(":button").blur();
         },
         beforeClose: function (event, ui) {
             $("body").css({overflow: 'inherit'})
@@ -133,7 +127,7 @@ setInterval(function () {
         position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'});
-            $(this).closest( ".ui-dialog" ).find(":button").blur();
+             $(this).closest( ".ui-dialog" ).find(":button").blur();
         },
         beforeClose: function (event, ui) {
             $("body").css({overflow: 'inherit'});
@@ -165,7 +159,7 @@ setInterval(function () {
         position: {my: 'center', at: 'center bottom-10px', of: window},
         open: function () {
             $("body").css({overflow: 'hidden'});
-            $(this).closest( ".ui-dialog" ).find(":button").blur();
+             $(this).closest( ".ui-dialog" ).find(":button").blur();
         },
         beforeClose: function (event, ui) {
             $("body").css({overflow: 'inherit'});
@@ -250,18 +244,15 @@ setInterval(function () {
  });
 
     $('#bt_gotoDashboard').on('click',function(){
-        $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
-        loadPage('index.php?v=d&p=dashboard');
+        window.location.href = 'index.php?v=d&p=dashboard';
     });
 
     $('#bt_gotoView').on('click',function(){
-        $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
-        loadPage('index.php?v=d&p=view');
+        window.location.href = 'index.php?v=d&p=view';
     });
 
     $('#bt_gotoPlan').on('click',function(){
-        $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
-        loadPage('index.php?v=d&p=plan');
+        window.location.href = 'index.php?v=d&p=plan';
     });
 
     $('#bt_messageModal').on('click',function(){
@@ -282,13 +273,26 @@ function initCheckBox(){
     $("input[type=checkbox].bootstrapSwitch").bootstrapSwitch();
 }
 
+function initMultiSelect(){
+    $("select[multiple=multiple].bootstrapMultiselect").multiselect({ 
+        maxHeight: 300,
+        includeSelectAllOption: true,
+        selectAllText: '{{Sélectionner tous}}',
+        enableFiltering: true,
+        filterPlaceholder: 'Rechercher...',
+        enableCaseInsensitiveFiltering: false,
+        nonSelectedText: 'Aucune option selectionnée'
+    });
+}
+
 function initPage(){
+    initTooltips();
     initTableSorter();
     initExpertMode();
     $.initTableFilter();
     initRowOverflow();
     initCheckBox();
-    initHelp();
+    initMultiSelect();
 }
 
 function linkify(inputText) {
@@ -347,15 +351,6 @@ function initTableSorter() {
             }
         });
     });
-}
-
-function initHelp(){
-    $('.help').each(function(){
-        if($(this).attr('data-help') != undefined){
-            $(this).append(' <sup><i class="fa fa-question-circle tooltips" title="'+$(this).attr('data-help')+'" style="font-size : 1em;color:grey;"></i></sup>');
-        }
-    });
-    initTooltips();
 }
 
 function showHelpModal(_name, _plugin) {
@@ -476,19 +471,19 @@ function positionEqLogic(_id) {
         eqLogic.height(Math.floor(eqLogic.height() / 80) * 80);
         eqLogic.width(Math.ceil(eqLogic.width() / 40) * 40 + (Math.ceil(eqLogic.width() / 40)-1) * 2);
         eqLogic.height(Math.ceil(eqLogic.height() / 80) * 80 + (Math.ceil(eqLogic.height() / 80)-1) * 2);
-        /* var verticalAlign = eqLogic.find('.verticalAlign');
+        var verticalAlign = eqLogic.find('.verticalAlign');
         if (count(verticalAlign) > 0 && verticalAlign != undefined) {
             verticalAlign.css('position', 'relative').css('top', ((eqLogic.height() - verticalAlign.height()) / 2) - eqLogic.find('.widget-name').height() + 10);
-        }*/
+        }
     }else{
         $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
         $('.eqLogic-widget:not(.jeedomAlreadyPosition)').each(function () {
             $(this).width(Math.ceil($(this).width() / 40) * 40 + (Math.ceil($(this).width() / 40)-1) * 2);
             $(this).height(Math.ceil($(this).height() / 80) * 80 + (Math.ceil($(this).height() / 80)-1) * 2);
-           /* var verticalAlign = $(this).find('.verticalAlign');
+            var verticalAlign = $(this).find('.verticalAlign');
             if (count(verticalAlign) > 0 && verticalAlign != undefined) {
                 verticalAlign.css('position', 'relative').css('top', (($(this).height() - verticalAlign.height()) / 2) - $(this).find('.widget-name').height() + 10);
-            }*/
+            }
         });
         $('.eqLogic-widget').addClass('jeedomAlreadyPosition');
     }

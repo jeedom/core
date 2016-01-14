@@ -27,8 +27,7 @@ function initView(_view_id) {
             },
             success: function (html) {
                 displayView(html);
-            }
-        });
+            }});
     } else {
         $('#bottompanel').panel('open');
     }

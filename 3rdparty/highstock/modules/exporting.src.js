@@ -1,5 +1,5 @@
 /**
- * @license Highstock JS v4.2.1 (2015-12-21)
+ * @license Highstock JS v2.1.7 (2015-06-26)
  * Exporting module
  *
  * (c) 2010-2014 Torstein Honsi
@@ -7,22 +7,16 @@
  * License: www.highcharts.com/license
  */
 
-/* eslint indent:0 */
-(function (factory) {
-    if (typeof module === 'object' && module.exports) {
-        module.exports = factory;
-    } else {
-        factory(Highcharts);
-    }
-}(function (Highcharts) {
+// JSLint options:
+/*global Highcharts, HighchartsAdapter, document, window, Math, setTimeout */
+
+(function (Highcharts) { // encapsulate
 
 // create shortcuts
-var win = Highcharts.win,
-	doc = win.document,
-	Chart = Highcharts.Chart,
+var Chart = Highcharts.Chart,
 	addEvent = Highcharts.addEvent,
 	removeEvent = Highcharts.removeEvent,
-	fireEvent = Highcharts.fireEvent,
+	fireEvent = HighchartsAdapter.fireEvent,
 	createElement = Highcharts.createElement,
 	discardElement = Highcharts.discardElement,
 	css = Highcharts.css,
@@ -32,6 +26,8 @@ var win = Highcharts.win,
 	splat = Highcharts.splat,
 	math = Math,
 	mathMax = math.max,
+	doc = document,
+	win = window,
 	isTouchDevice = Highcharts.isTouchDevice,
 	M = 'M',
 	L = 'L',
@@ -238,13 +234,6 @@ extend(Chart.prototype, {
 	},
 
 	/**
-	 * Return innerHTML of chart. Used as hook for plugins.
-	 */
-	getChartHTML: function () {
-		return this.container.innerHTML;
-	},
-
-	/**
 	 * Return an SVG representation of the chart
 	 *
 	 * @param additionalOptions {Object} Additional chart options for the generated SVG representation
@@ -259,16 +248,15 @@ extend(Chart.prototype, {
 			sourceHeight,
 			cssWidth,
 			cssHeight,
-			html,
-			options = merge(chart.options, additionalOptions), // copy the options and add extra options
-			allowHTML = options.exporting.allowHTML;
-			
+			options = merge(chart.options, additionalOptions); // copy the options and add extra options
 
 		// IE compatibility hack for generating SVG content that it doesn't really understand
 		if (!doc.createElementNS) {
+			/*jslint unparam: true*//* allow unused parameter ns in function below */
 			doc.createElementNS = function (ns, tagName) {
 				return doc.createElement(tagName);
 			};
+			/*jslint unparam: false*/
 		}
 
 		// create a sandbox where a new chart will be generated
@@ -296,7 +284,6 @@ extend(Chart.prototype, {
 			animation: false,
 			renderTo: sandbox,
 			forExport: true,
-			renderer: 'SVGRenderer',
 			width: sourceWidth,
 			height: sourceHeight
 		});
@@ -345,32 +332,19 @@ extend(Chart.prototype, {
 		});
 
 		// get the SVG from the container's innerHTML
-		svg = chartCopy.getChartHTML();
+		svg = chartCopy.container.innerHTML;
 
 		// free up memory
 		options = null;
 		chartCopy.destroy();
 		discardElement(sandbox);
 
-		// Move HTML into a foreignObject
-		if (allowHTML) {
-			html = svg.match(/<\/svg>(.*?$)/);
-			if (html) {
-				html = '<foreignObject x="0" y="0" width="200" height="200">' +
-					'<body xmlns="http://www.w3.org/1999/xhtml">' +
-					html[1] +
-					'</body>' + 
-					'</foreignObject>';
-				svg = svg.replace('</svg>', html + '</svg>');
-			}
-		}
-
 		// sanitize
 		svg = this.sanitizeSVG(svg);
 
 		// IE9 beta bugs with innerHTML. Test again with final IE9.
 		svg = svg.replace(/(url\(#highcharts-[0-9]+)&quot;/g, '$1')
-			.replace(/&quot;/g, '\'');
+			.replace(/&quot;/g, "'");
 
 		return svg;
 	},
@@ -431,7 +405,6 @@ extend(Chart.prototype, {
 		}
 
 		chart.isPrinting = true;
-		chart.pointer.reset(null, 0);
 
 		fireEvent(chart, 'beforePrint');
 
@@ -539,9 +512,9 @@ extend(Chart.prototype, {
 
 
 			// Hide it on clicking or touching outside the menu (#2258, #2335, #2407)
-			addEvent(doc, 'mouseup', docMouseUpHandler);
+			addEvent(document, 'mouseup', docMouseUpHandler);
 			addEvent(chart, 'destroy', function () {
-				removeEvent(doc, 'mouseup', docMouseUpHandler);
+				removeEvent(document, 'mouseup', docMouseUpHandler);
 			});
 
 
@@ -557,10 +530,7 @@ extend(Chart.prototype, {
 							onmouseout: function () {
 								css(this, menuItemStyle);
 							},
-							onclick: function (e) {
-								if (e) { // IE7
-									e.stopPropagation();
-								}
+							onclick: function () {
 								hide();
 								if (item.onclick) {
 									item.onclick.apply(chart, arguments);
@@ -643,9 +613,8 @@ extend(Chart.prototype, {
 		delete attr.states;
 
 		if (onclick) {
-			callback = function (e) {
-				e.stopPropagation();
-				onclick.call(chart, e);
+			callback = function () {
+				onclick.apply(chart, arguments);
 			};
 
 		} else if (menuItems) {
@@ -777,4 +746,4 @@ Chart.prototype.callbacks.push(function (chart) {
 });
 
 
-}));
+}(Highcharts));

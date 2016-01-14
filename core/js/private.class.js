@@ -54,7 +54,7 @@ jeedom.private = {
  * String to help user know what's going on
  */
 var no_error_code = 'No error code has been sent.';
-var no_result = '';
+var no_result = 'No result has been sent.';
 var code = 42;
 
 /**
@@ -107,7 +107,7 @@ jeedom.private.getParamsAJAX = function(_params) {
             else {
                 // On envoie les données à l'utilisateur, tout s'est bien passé
                 // Il récupère l'objet qu'il a demandé directement
-                var result = init(data.result, no_result);
+                var result = init(data.result, 'Success - ' + no_result);
 
                 if (data.result === false) {
                     result = false;

@@ -56,13 +56,13 @@ class Pmset extends UPS
         $lines = explode(PHP_EOL, implode($this->_output));
         $dev = new UPSDevice();
         $model = explode('FW:',  $lines[1]);
-        if (strpos($model[0], 'InternalBattery') === false) {
+        if (strpos($model[0], 'InternalBattery') === FALSE) {
             $percCharge = explode(';',  $lines[1]);
             $dev->setName('UPS');
-            if ($model !== false) {
+            if ($model !== FALSE) {
                 $dev->setModel(substr(trim($model[0]), 1));
             }
-            if ($percCharge !== false) {
+            if ($percCharge !== FALSE) {
                 $dev->setBatterCharge(trim(substr($percCharge[0], -4, 3)));
                 $dev->setStatus(trim($percCharge[1]));
                 if (isset($percCharge[2])) {

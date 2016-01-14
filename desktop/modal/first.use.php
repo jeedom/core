@@ -16,7 +16,7 @@ if (!isConnect()) {
 <div class="row">
     <div class="col-xs-4">
        <center>
-        <a href="https://jeedom.com/start" target="_blank">
+        <a href="https://jeedom.fr/start" target="_blank">
             <i class="fa fa-picture-o" style="font-size:12em;"></i><br/>
             {{Guide de démarrage}}
         </a>
@@ -24,7 +24,7 @@ if (!isConnect()) {
 </div>
 <div class="col-xs-4">
    <center>
-    <a href="https://jeedom.com/doc/documentation/premiers-pas/fr_FR/doc-premiers-pas.html" target="_blank">
+    <a href="https://jeedom.fr/doc/documentation/premiers-pas/fr_FR/doc-premiers-pas.html" target="_blank">
         <i class="fa fa-check-square" style="font-size:12em;"></i><br/>
         {{Documentation de démarrage}}
     </a>
@@ -32,7 +32,7 @@ if (!isConnect()) {
 </div>
 <div class="col-xs-4">
  <center>
-    <a href="https://jeedom.com/doc" target="_blank">
+    <a href="https://jeedom.fr/doc" target="_blank">
         <i class="fa fa-book" style="font-size:12em;"></i><br/>
         {{Documentation}}
     </a>

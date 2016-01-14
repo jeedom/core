@@ -390,7 +390,7 @@ jeedom.jeeNetwork.loadConfig = function (_params) {
     $.ajax(paramsAJAX);
 };
 
-jeedom.jeeNetwork.restartDns = function (_params) {
+jeedom.jeeNetwork.restartNgrok = function (_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
@@ -403,13 +403,13 @@ jeedom.jeeNetwork.restartDns = function (_params) {
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/jeeNetwork.ajax.php';
     paramsAJAX.data = {
-        action: 'restartDns',
+        action: 'restartNgrok',
         id : _params.id
     };
     $.ajax(paramsAJAX);
 };
 
-jeedom.jeeNetwork.stopDns = function (_params) {
+jeedom.jeeNetwork.stopNgrok = function (_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
@@ -422,13 +422,13 @@ jeedom.jeeNetwork.stopDns = function (_params) {
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/jeeNetwork.ajax.php';
     paramsAJAX.data = {
-        action: 'stopDns',
+        action: 'stopNgrok',
         id : _params.id
     };
     $.ajax(paramsAJAX);
 };
 
-jeedom.jeeNetwork.dnsRun = function (_params) {
+jeedom.jeeNetwork.ngrokRun = function (_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
@@ -441,7 +441,7 @@ jeedom.jeeNetwork.dnsRun = function (_params) {
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/jeeNetwork.ajax.php';
     paramsAJAX.data = {
-        action: 'dnsRun',
+        action: 'ngrokRun',
         id : _params.id,
         proto: _params.proto || 'https',
         port: _params.port || 80,

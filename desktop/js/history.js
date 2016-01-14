@@ -19,7 +19,6 @@
  var noChart = 1;
  var colorChart = 0;
  var lastId = null;
- delete jeedom.history.chart['div_graph']
 
  initHistoryTrigger();
 

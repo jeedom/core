@@ -2,24 +2,24 @@
 
 == Centre de mise à jour
 
-Le centre de mise à jour centralise l'ensemble des fonctions de Jeedom, et permet de mettre à jour toutes les fonctionnalités de Jeedom, incluant le logiciel de base, les plugins, les widgets, etc...
+Le centre de mise à jour centralise l'ensemble des fonctions de Jeedom et permet de mettre à jour toutes les fonctionnalités de Jeedom, incluant le logiciel de base, les plugins, les widgets, etc.
 
-Il est accessible par le menu Administration -> Centre de mise à jour : 
+Il est accessible par le menu Général -> Administration -> Centre de mise à jour : 
 
 image::../images/update.JPG[]
 
-Une fois dessus vous obtenez : 
+Une fois dessus, vous obtenez : 
 
 image::../images/update2.png[]
 
 Il présente sous forme de tableau l'ensemble des éléments installés dans Jeedom. 
 [TIP]
-En mode Expert, on affiche tous les élements, si non, on affiche uniquement les éléments à mettre à jour.
+En mode Expert, on affiche tous les élements, sinon, on affiche uniquement les éléments à mettre à jour.
 
 
 Il y a au total jusqu'à 5 boutons qui peuvent être disponibles par élément :
 
-* *Voir* : permet de consulter la page du market correspondant à l'élément selectionné.
+* *Voir* : permet de consulter la page du market correspondant à l'élément sélectionné.
 * *Partager* : permet lorsque vous avez créé un élément de le partager sur le market.
 * *Supprimer* : permet de désinstaller un élément.
 * *Mettre à jour* : permet de mettre à jour l'élément.
@@ -62,9 +62,9 @@ image::../images/update4.png[]
 
 == Paramètres de mise à jour
 
-Il est possible dans Administration -> Configuration puis dans la partie "Market et mise à jour" de configurer certain paramètre de mise à jour : 
+Il est possible dans Général -> Administration -> Configuration puis dans la partie "Market et mise à jour" de configurer certain paramètre de mise à jour : 
 
-image::../images/administration10.png[]
+image::../images/update7.png[]
 
 Ici on retrouve : 
 

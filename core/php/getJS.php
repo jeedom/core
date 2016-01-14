@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+
 require_once dirname(__FILE__) . "/core.inc.php";
 $file = dirname(__FILE__) . "/../../" . init('file');
 $pathinfo = pathinfo($file);
@@ -24,7 +25,7 @@ if ($pathinfo['extension'] != 'js') {
 if (file_exists($file)) {
 	header('Content-Type: application/javascript');
 	$lastModified = filemtime($file);
-	$etagFile = (init('md5') == '') ? md5_file($file) : init('md5');
+	$etagFile = md5_file($file);
 	$ifModifiedSince = (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : false);
 	$etagHeader = (isset($_SERVER['HTTP_IF_NONE_MATCH']) ? trim($_SERVER['HTTP_IF_NONE_MATCH']) : false);
 	header("Last-Modified: " . gmdate("D, d M Y H:i:s", $lastModified) . " GMT");

@@ -17,7 +17,7 @@
 
 
 $("#sel_plugin").on('change', function() {
-    loadPage('index.php?v=d&p=message&plugin=' + $('#sel_plugin').value());
+    window.location = 'index.php?v=d&p=message&plugin=' + $('#sel_plugin').value();
 });
 
 $("#bt_clearMessage").on('click', function(event) {

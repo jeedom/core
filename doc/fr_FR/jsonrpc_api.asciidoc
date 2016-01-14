@@ -4,30 +4,6 @@ Voici une documentation (qui évoluera) sur les méthodes de l'API. Tout d'abord
 
 L'accès à l'API se fait par l'url : #URL_JEEDOM#/core/api/jeeApi.php
 
-== Divers
-
-=== ping
-
-Retourne pong, permet de tester la communication avec Jeedom
-
-=== version
-
-Retourne la version de Jeedom
-
-=== datetime
-
-Retourne le datetime de jeedom en microseconde
-
-== API JSON Event
-
-=== event::changes 
-
-Retourne la liste des changements depuis le datetime passée en paramètre (doit être en microseconde). Vous aurez aussi dans la réponse le datetime courant de Jeedom (à réutiliser pour l'interrogation suivante)
-
-Paramètres :
-
-- int datetime
-
 == API JSON Plugin
 
 === plugin::listPlugin

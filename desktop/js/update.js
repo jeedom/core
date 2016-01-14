@@ -36,30 +36,30 @@
 });
 
  $('#bt_reapplySpecifyUpdate').on('click',function(){
-     var level = "-1";
-     var mode = '';
-     if($('#cb_forceReapplyUpdate').value() == 1){
-        mode = 'force';
-    }
-    jeedom.update.doAll({
-        mode: mode,
-        level: level,
-        version : $('#sel_updateVersion').value(),
-        onlyThisVersion : ($('#cb_allFromThisUpdate').value() == 1) ? 'no':'yes',
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-           $("#md_specifyUpdate").dialog('close');
-           getJeedomLog(1, 'update');
-       }
-   });
+   var level = "-1";
+   var mode = '';
+   if($('#cb_forceReapplyUpdate').value() == 1){
+    mode = 'force';
+}
+jeedom.update.doAll({
+    mode: mode,
+    level: level,
+    version : $('#sel_updateVersion').value(),
+    onlyThisVersion : ($('#cb_allFromThisUpdate').value() == 1) ? 'no':'yes',
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+     $("#md_specifyUpdate").dialog('close');
+     getJeedomLog(1, 'update');
+ }
+});
 });
 
  $('#bt_allChangelog').on('click', function () {
-     $('#md_modal2').dialog({title: "{{Changelog}}"});
-     $("#md_modal2").load('index.php?v=d&modal=market.allChangelog').dialog('open');
- });
+   $('#md_modal2').dialog({title: "{{Changelog}}"});
+   $("#md_modal2").load('index.php?v=d&modal=market.allChangelog').dialog('open');
+});
 
  $('.bt_updateAll').on('click', function () {
   var level = $(this).attr('data-level');
@@ -79,6 +79,22 @@
         });
     }
 });
+});
+
+ $('#bt_updateSystem').on('click', function () {
+    bootbox.confirm('{{Etes-vous sur de vouloir mettre à jour le systeme, cette opération peut être risquée ?}} ', function (result) {
+        if (result) {
+            $.hideAlert();
+            jeedom.update.doSystem({
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                    getJeedomLog(1, 'update');
+                }
+            });
+        }
+    });
 });
 
  $('#bt_checkAllUpdate').on('click', function () {
@@ -190,13 +206,13 @@
             var regex = /<br\s*[\/]?>/gi;
             if($.isArray(data.result)){
                 for (var i in data.result.reverse()) {
-                    log += data.result[i]+"\n";
-                    if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1){
+                    log += $.trim(data.result[i][2].replace(regex, "\n")) + "\n";
+                    if ($.trim(data.result[i][2].replace(regex, "\n")) == '[END ' + _log.toUpperCase() + ' SUCCESS]') {
                         printUpdate();
                         $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'});
                         _autoUpdate = 0;
                     }
-                    if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
+                    if ($.trim(data.result[i][2].replace(regex, "\n")) == '[END ' + _log.toUpperCase() + ' ERROR]') {
                         printUpdate();
                         $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
                         _autoUpdate = 0;
@@ -277,7 +293,7 @@ function addUpdate(_update) {
             tr += '<a class="btn btn-primary btn-xs pull-right view tooltips cursor" style="color : white;margin-bottom : 5px;"><i class="fa fa-search"></i> {{Voir}}</a>';
         }
     } else {
-        tr += '<a class="btn btn-default btn-xs pull-right" href="https://jeedom.com/roadmap/index.php?changelog" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-bars"></i> {{Changelog}}</a>';
+        tr += '<a class="btn btn-default btn-xs pull-right" href="http://blog.jeedom.fr" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-bars"></i> {{Changelog}}</a>';
     }
 
     tr += '</td>';

@@ -373,9 +373,6 @@ ORDER BY `datetime` ASC';
 		if (!is_object($cmd)) {
 			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
 		}
-		if ($cmd->getIsHistorized() != 1) {
-			return -2;
-		}
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
@@ -399,9 +396,6 @@ ORDER BY `datetime` ASC';
 ORDER BY  `datetime` DESC
 LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		if ($result['datetime'] == '' || strtotime($result['datetime']) === false || strtotime($result['datetime']) == 0) {
-			return -1;
-		}
 		return strtotime('now') - strtotime($result['datetime']);
 	}
 
@@ -527,6 +521,26 @@ where prev_value <> value' . $_condition . '';
 		return $result['changes'];
 	}
 
+	/**
+	 * Fonction qui recupere les valeurs actuellement des capteurs,
+	 * les mets dans la BDD et archive celle-ci
+	 */
+	public static function historize() {
+		$listHistorizedCmd = cmd::allHistoryCmd(true);
+		foreach ($listHistorizedCmd as $cmd) {
+			try {
+				if ($cmd->getEqLogic()->getIsEnable() == 1) {
+					$value = $cmd->execCmd(null, 0);
+					if ($value !== false) {
+						$cmd->addHistoryValue($value);
+					}
+				}
+			} catch (Exception $e) {
+				log::add('historized', 'error', 'Erreur sur ' . $cmd->getHumanName() . ' : ' . $e->getMessage(), 'historized::cmd::' . $cmd->getId());
+			}
+		}
+	}
+
 	public static function emptyHistory($_cmd_id, $_date = '') {
 		$values = array(
 			'cmd_id' => $_cmd_id,
@@ -597,8 +611,6 @@ where prev_value <> value' . $_condition . '';
 					$result = floatval(evaluate($calcul));
 					$value[$datetime] = $result;
 				} catch (Exception $e) {
-
-				} catch (Error $e) {
 
 				}
 			}

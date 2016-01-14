@@ -3,7 +3,7 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-$status = (config::byKey('market::allowBeta') == 1) ? null : 'stable';
+$status = init('status', null);
 $type = init('type', null);
 $categorie = init('categorie', null);
 $name = init('name', null);

@@ -170,13 +170,7 @@ class object {
 	}
 
 	public function getEqLogic($_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
-		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
-		if (is_array($eqLogics)) {
-			foreach ($eqLogics as $eqLogic) {
-				$eqLogic->setObject($this);
-			}
-		}
-		return $eqLogics;
+		return eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 	}
 
 	public function getScenario($_onlyEnable = true, $_onlyVisible = false) {

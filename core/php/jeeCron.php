@@ -38,6 +38,22 @@ require_once dirname(__FILE__) . "/core.inc.php";
 
 $startTime = getmicrotime();
 
+declare (ticks = 1);
+
+global $SIGKILL;
+$SIGKILL = false;
+
+// gestionnaire de signaux système
+function sig_handler($signo) {
+	global $SIGKILL;
+	$SIGKILL = true;
+}
+
+// Installation des gestionnaires de signaux
+pcntl_signal(SIGTERM, "sig_handler");
+pcntl_signal(SIGHUP, "sig_handler");
+pcntl_signal(SIGUSR1, "sig_handler");
+
 if (init('cron_id') != '') {
 	if (jeedom::isStarted() && config::byKey('enableCron', 'core', 1, true) == 0) {
 		die(__('Tous les crons sont actuellement désactivés', __FILE__));
@@ -61,19 +77,11 @@ if (init('cron_id') != '') {
 			$function = $cron->getFunction();
 			if (class_exists($class) && method_exists($class, $function)) {
 				if ($cron->getDeamon() == 0) {
-					if ($option !== null) {
-						$class::$function($option);
-					} else {
-						$class::$function();
-					}
+					$class::$function($option);
 				} else {
 					while (true) {
 						$cycleStartTime = getmicrotime();
-						if ($option !== null) {
-							$class::$function($option);
-						} else {
-							$class::$function();
-						}
+						$class::$function($option);
 						if ($cron->getDeamonSleepTime() > 1) {
 							sleep($cron->getDeamonSleepTime());
 						} else {
@@ -81,6 +89,9 @@ if (init('cron_id') != '') {
 							if ($cycleDuration < $cron->getDeamonSleepTime()) {
 								usleep(round(($cron->getDeamonSleepTime() - $cycleDuration) * 1000000));
 							}
+						}
+						if ($SIGKILL) {
+							die();
 						}
 					}
 				}
@@ -96,19 +107,11 @@ if (init('cron_id') != '') {
 			$function = $cron->getFunction();
 			if (function_exists($function)) {
 				if ($cron->getDeamon() == 0) {
-					if ($option !== null) {
-						$function($option);
-					} else {
-						$function();
-					}
+					$function($option);
 				} else {
 					while (true) {
 						$cycleStartTime = getmicrotime();
-						if ($option !== null) {
-							$function($option);
-						} else {
-							$function();
-						}
+						$function($option);
 						$cycleDuration = getmicrotime() - $cycleStartTime;
 						if ($cron->getDeamonSleepTime() > 1) {
 							sleep($cron->getDeamonSleepTime());
@@ -116,6 +119,9 @@ if (init('cron_id') != '') {
 							if ($cycleDuration < $cron->getDeamonSleepTime()) {
 								usleep(round(($cron->getDeamonSleepTime() - $cycleDuration) * 1000000));
 							}
+						}
+						if ($SIGKILL) {
+							die();
 						}
 					}
 				}
@@ -160,24 +166,7 @@ if (init('cron_id') != '') {
 		} else {
 			log::add('cron', 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
 		}
-	} catch (Error $e) {
-		$cron->setState('error');
-		$cron->setPID('');
-		$cron->setServer('');
-		$cron->setDuration(-1);
-		$cron->save();
-		$logicalId = config::genKey();
-		if ($e->getCode() != 0) {
-			$logicalId = $cron->getName() . '::' . $e->getCode();
-		}
-		echo '[Erreur] ' . $cron->getName() . ' : ' . print_r($e, true);
-		if (isset($class) && $class != '') {
-			log::add($class, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
-		} else if (isset($function) && $function != '') {
-			log::add($function, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
-		} else {
-			log::add('cron', 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
-		}
+
 	}
 } else {
 	if (cron::jeeCronRun()) {
@@ -194,9 +183,6 @@ if (init('cron_id') != '') {
 		}
 		foreach (cron::all() as $cron) {
 			try {
-				if ($cron->getDeamon() == 1) {
-					continue;
-				}
 				if (!$started && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
 					continue;
 				}
@@ -206,7 +192,12 @@ if (init('cron_id') != '') {
 				}
 				$duration = strtotime('now') - strtotime($cron->getLastRun());
 				if ($cron->getEnable() == 1 && $cron->getState() != 'run' && $cron->getState() != 'starting' && $cron->getState() != 'stoping') {
-					if ($cron->isDue()) {
+					if ($cron->getDeamon() == 0) {
+						if ($cron->isDue()) {
+							$cron->start();
+						}
+					} else {
+						$cron->halt();
 						$cron->start();
 					}
 				}
@@ -220,19 +211,12 @@ if (init('cron_id') != '') {
 						break;
 					case 'stoping':
 						$cron->halt();
+						if ($cron->getEnable() == 1 && $cron->getDeamon() == 1 && !$cron->running()) {
+							$cron->run();
+						}
 						break;
 				}
 			} catch (Exception $e) {
-				if ($cron->getOnce() != 1) {
-					$cron->setState('error');
-					$cron->setPID('');
-					$cron->setServer('');
-					$cron->setDuration(-1);
-					$cron->save();
-					echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true);
-					log::add('cron', 'error', __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . $e->getMessage());
-				}
-			} catch (Error $e) {
 				if ($cron->getOnce() != 1) {
 					$cron->setState('error');
 					$cron->setPID('');
