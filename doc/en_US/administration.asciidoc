@@ -1,69 +1,69 @@
 = Administration
 
-C’est ici que se trouvent la plupart des paramètres de configuration. Bien que nombreux, ils sont pré-configurés par défaut.
+Most configuration settings are here. Although there are a lot, all are pre-configured by default.
 
-La page est accessible par Administration -> Configuration : 
+To configure simply go to Administration -> Settings: 
 
 image::../images/administration.png[]
 
 [IMPORTANT]
-Si vous n'êtes pas en mode expert certains paramètres peuvent ne pas être visibles.
+Some settings might not be visible if you are not in advance mode.
 
-== Configuration générale
+== General settings
 
 image::../images/administration1.png[]
 
-Dans cet onglet on retrouve des informations générales sur Jeedom : 
+In this tab you will find general information on Jeedom: 
 
-* *Clef API* : votre clef API, à utiliser pour toute requête vers l'API Jeedom
-* *Système* : type de votre hardware
-* *Clef hardware* : clef hardware de votre Jeedom sur le market. Si votre Jeedom n'apparait pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton
+* *API key* : your API key, to be used at each Jeedom API call
+* *System* : hardware type
+* * * Hardware key: hardware key to your Jeedom on the market. If your Jeedom does not appear in the list of your Jeedom on the market click on this button
 * *Commande d'information utilisateur* : permet de spécifier une commande de type message qui sera utilisée par Jeedom pour vous communiquer des messages importants. Vous pouvez indiquer plusieurs commandes séparées par des &&
-* *Langue* : Langue de votre Jeedom
-* *Durée de vie des sessions (heure)* : durée de vie des sessions PHP, il est conseillé de ne pas y toucher
-* *Date et heure* : votre fuseau horaire
-* *Serveur de temps optionnel* : permet d'ajouter un serveur de temps optionnel (à reserver aux experts)
-* *Ignorer la vérification de l'heure* : indique à Jeedom de ne pas vérifier si l'heure est cohérente. Utile par exemple si vous ne connectez pas Jeedom à internet et qu'il n'a pas de pile RTC
-* *Mode* : Mode de votre Jeedom maître ou esclave, attention lors du passage en esclave : tous vos équipements, scénario, design... seront supprimés.
+* *Language* : Language of your Jeedom
+* *Session lifespan (hours)* : PHP sessions life time, it is advisable not to change it
+* *Date and time* : your time zone
+* *Optional Time Server* : add a time server (reserved for the experts)
+* *Do not check time* : tells Jeedom not to check if the time is consistent. Useful for example if Jeedom is not connected to the internet and has no RTC battery
+* *Mode* : Whether this Jeedom instance is in master or slave mode. Be aware when changing to slave: all your devices, scripts, designs ... will be deleted.
 
-== Composants Jeedom
+== Jeedom components
 
 image::../images/administration11.png[]
 
-Cette partie permet d'activer/désactiver certain composant du core jeedom : 
+This section allows you to enable / disable some core functions of jeedom: 
 
-* *Droits avancés* : permet de désactiver la gestion des droits avancés (si vous ne vous en servez pas cela peut rendre jeedom plus réactif)
-* *Sécruté* : permet d'activer ou non la sécurité anti-piratage de Jeedom (brute force sur le mot de passe). 
+* *Advanced rights* : disable advanced rights management (if you do not use it can make Jeedom more responsive)
+* *Security* : enable or not protection against attack (brute force attack of password ). 
 
-== Base de données
+== Database
 
 image::../images/administration2.png[]
 
-* *Accès à l'interface d'administration* : permet d'accèder à une interface d'administration de la base, les informations à renseigner sont en-dessous
-* *Machine (hostname)* : localisation de la base
-* *Utilisateur* : nom d'utilisateur utilisé par Jeedom
-* *Mot de passe* : mot de passe d'accès à la base utilisé par Jeedom
+* *Access to the administration interface* : give access to the database web management interface. The following information must be provided.
+* *Server* : database server address (localhost if on the same server than Jeedom)
+* *Username* : Jeedom database username
+* *Password* : Jeedom database password assigned the username.
 
-== Configuration réseau
+== Network setup
 
 image::../images/administration3.png[]
 
-Partie très importante dans Jeedom, il faut absolument la configurer correctement sinon beaucoup de plugin risquent d'être non fonctionnels
+Very important section for Jeedom, it is essential to set those settings correctly if not many plugins might not work
 
-* *Accès interne* : information pour joindre Jeedom à partir d'un équipement sur le même réseau
-** *Protocole* : le protocole à utiliser, souvent HTTP
-** *Adresse URL ou IP* : IP de Jeedom, à renseigner
-** *Complément (exemple : /jeedom)* : le fragment d'URL complémentaire (type /jeedom). Pour savoir si vous avez besoin de définir une valeur ici, regardez si quand vous vous connectez à Jeedom vous devez renseigner /jeedom après l'IP
-** *Port* : le port, en général 80. Attention changer le port ici ne change pas le port réel de Jeedom qui restera le même
-** *Statut* : Indique si la configuration réseau interne est correcte
-* *Accès externe* : information pour joindre Jeedom de l'extérieur. A ne remplir que si vous n'utilisez pas le DNS Jeedom
-** *Protocole* : protocole utilisé pour l'accès extérieur
-** *Adresse URL ou IP* : adresse ou ip externe si fixe
-** *Complément (exemple : /jeedom)* :  le fragment d'URL complémentaire (type /jeedom). Pour savoir si vous avez besoin de définir une valeur ici, regardez si quand vous vous connectez à Jeedom vous devez renseigner /jeedom après l'IP
-** *Port* : le port, en général 80. Attention changer le port ici ne change pas le port réel de Jeedom qui restera le même
-** *Statut* : Indique si la configuration réseau externe est correcte
-* *Gestion avancée* : peut ne pas apparaitre en fonction de la compatibilité avec votre matériel
-** *Désactiver la gestion du réseaux par Jeedom* : indique à Jeedom de ne pas monitorer le réseau (à activer si jeedom n'est connecté à aucun réseau)
+* *Internal access* : configuration to get access to Jeedom from a device on the same local area network
+** *Protocol* : protocol to use, most often HTTP
+** *URL or IP address* : Server name in the URL or local IP address of the Jeedom server.
+** *Additional*: the additional URL fragment after the IP or server name, typically "/jeedom". Check in the URL when you log in to Jeedom if you have "/jeedom" after the IP or server name
+** *Port* : TCP/IP port number, most likely 80. Caution, changing the port number here will not make Jeedom to run on this new port.
+** *Status* : Indicates whether the internal network configuration is correct
+* *External access* : configuration to get access to Jeedom from outside the local network. Fill in only if you are not using the DNS Jeedom service.
+** *Protocol* : protocol to use from external access
+** *URL or IP address* : External server name in the URL or external fixed IP address
+** *Additional*: the additional URL fragment after the IP or server name, typically "/jeedom". Check in the URL when you log in to Jeedom if you have "/jeedom" after the IP or server name
+** *Port* : TCP/IP port number, most likely 80. Caution, changing the port number here will not make Jeedom to run on this new port.
+** *Status* : Indicates whether the external network configuration is correct
+* *Adavnced management* : may not appear depending on your hardware
+** *Deactivate Jeedom network manager* : tells Jeedom not to monitor the network (to be activated if Jeedom is not connected to any network)
 * *DNS Jeedom* : permet un accès distant à votre Jeedom sans avoir besoin d'un DNS, d'une IP fixe ou d'ouvrir les ports de votre box
 ** *Utiliser les DNS Jeedom* : active les DNS Jeedom (attention cela nécessite au moins un service pack)
 ** *Statut http* : statut du DNS http
