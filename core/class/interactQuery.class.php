@@ -82,6 +82,7 @@ class interactQuery {
 	}
 
 	public static function recognize($_query) {
+		$_query = sanitizeQuery($_query);
 		$values = array(
 			'query' => $_query,
 		);
@@ -109,17 +110,6 @@ class interactQuery {
 			}
 			$queries = self::all();
 		}
-		$caracteres = array(
-			'À' => 'a', 'Á' => 'a', 'Â' => 'a', 'Ä' => 'a', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ä' => 'a', '@' => 'a',
-			'È' => 'e', 'É' => 'e', 'Ê' => 'e', 'Ë' => 'e', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', '€' => 'e',
-			'Ì' => 'i', 'Í' => 'i', 'Î' => 'i', 'Ï' => 'i', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i',
-			'Ò' => 'o', 'Ó' => 'o', 'Ô' => 'o', 'Ö' => 'o', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'ö' => 'o',
-			'Ù' => 'u', 'Ú' => 'u', 'Û' => 'u', 'Ü' => 'u', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'µ' => 'u',
-			'Œ' => 'oe', 'œ' => 'oe',
-			'$' => 's');
-		$shortest = 999;
-		$closest = null;
-		$_query = strtolower(preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+#', '', strtr($_query, $caracteres)));
 		foreach ($queries as $query) {
 			$input = strtolower(preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+#', '', strtr($query->getQuery(), $caracteres)));
 			preg_match_all("/#(.*?)#/", $input, $matches);
