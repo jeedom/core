@@ -132,7 +132,6 @@ class interactQuery {
 				$closest = $query;
 				$shortest = $lev;
 			}
-
 		}
 		if (str_word_count($_query) == 1 && config::byKey('interact::confidence1') > 0 && $shortest > config::byKey('interact::confidence1')) {
 			log::add('interact', 'debug', 'Correspondance trop éloigné : ' . $shortest);
@@ -147,6 +146,11 @@ class interactQuery {
 			log::add('interact', 'debug', 'Correspondance trop éloigné : ' . $shortest);
 			return null;
 		}
+		if (!is_object($closest)) {
+			log::add('interact', 'debug', 'Aucune phrase trouvée');
+			return null;
+		}
+		log::add('interact', 'debug', 'J\'ai une correspondance  : ' . $closest->getQuery());
 		return $closest;
 	}
 
