@@ -111,7 +111,7 @@ class interactQuery {
 			$queries = self::all();
 		}
 		foreach ($queries as $query) {
-			$input = strtolower(preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+#', '', strtr($query->getQuery(), $caracteres)));
+			$input = sanitizeAccent($query->getQuery());
 			preg_match_all("/#(.*?)#/", $input, $matches);
 			foreach ($matches[1] as $match) {
 				$input = str_replace('#' . $match . '#', '', $input);
