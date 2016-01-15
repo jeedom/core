@@ -82,7 +82,7 @@ class interactQuery {
 	}
 
 	public static function recognize($_query) {
-		$_query = sanitizeAccent($_query);
+		$_query = interactDef::sanitizeQuery($_query);
 		$values = array(
 			'query' => $_query,
 		);
@@ -111,7 +111,7 @@ class interactQuery {
 			$queries = self::all();
 		}
 		foreach ($queries as $query) {
-			$input = sanitizeAccent($query->getQuery());
+			$input = interactDef::sanitizeQuery($query->getQuery());
 			preg_match_all("/#(.*?)#/", $input, $matches);
 			foreach ($matches[1] as $match) {
 				$input = str_replace('#' . $match . '#', '', $input);

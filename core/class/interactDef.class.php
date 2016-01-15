@@ -147,7 +147,7 @@ class interactDef {
 		$_query = str_replace(array("\'"), array("'"), $_query);
 		$_query = preg_replace('/\s+/', ' ', $_query);
 		$_query = ucfirst(strtolower($_query));
-		$_query = sanitizeAccent($_query);
+		$_query = strtolower(sanitizeAccent($_query));
 		return $_query;
 	}
 
