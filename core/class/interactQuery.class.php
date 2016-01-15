@@ -110,6 +110,7 @@ class interactQuery {
 			}
 			$queries = self::all();
 		}
+		$shortest = 999;
 		foreach ($queries as $query) {
 			$input = interactDef::sanitizeQuery($query->getQuery());
 			preg_match_all("/#(.*?)#/", $input, $matches);
