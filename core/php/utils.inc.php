@@ -878,7 +878,7 @@ function minify($buffer) {
 	return preg_replace($search, $replace, $buffer);
 }
 
-function removeAccent($_message) {
+function sanitizeAccent($_message) {
 	$caracteres = array(
 		'À' => 'a', 'Á' => 'a', 'Â' => 'a', 'Ä' => 'a', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ä' => 'a', '@' => 'a',
 		'È' => 'e', 'É' => 'e', 'Ê' => 'e', 'Ë' => 'e', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', '€' => 'e',

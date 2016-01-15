@@ -82,7 +82,7 @@ class interactQuery {
 	}
 
 	public static function recognize($_query) {
-		$_query = sanitizeQuery($_query);
+		$_query = sanitizeAccent($_query);
 		$values = array(
 			'query' => $_query,
 		);
