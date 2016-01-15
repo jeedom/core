@@ -54,6 +54,9 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		),
 	),
 	'cmd' => array(
+		'generic_type' => array(
+			'LIGHT_STATE' => array('name' => 'Etat de la lumière'),
+		),
 		'type' => array(
 			'info' => array(
 				'name' => 'Info',
