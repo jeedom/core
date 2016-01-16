@@ -80,14 +80,15 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
 include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
 ?>
 <div class="alert alert-info">
+<a class="btn btn-default" id="bt_applyRightsToogle" data-state="0"><i class="fa fa-check-circle-o"></i> {{Basculer}}</a>
 	<strong>{{Utilisateur :}}</strong> <select class="form-control" id="sel_userId" style="display: inline-block; width: 200px;">
-		<?php
+	<?php
 foreach (user::all() as $user) {
 	echo '<option value="' . $user->getId() . '">' . $user->getLogin() . '</option>';
 }
 ?>
-	</select>
-	<a class="btn btn-success" id="bt_saveRights" style="margin-top:-2px;"><i class="fa fa-floppy-o"></i> Sauvegarder</a>
+</select>
+<a class="btn btn-success" id="bt_saveRights" style="margin-top:-2px;"><i class="fa fa-floppy-o"></i> Sauvegarder</a>
 </div>
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
@@ -119,7 +120,7 @@ foreach ($pages as $kpage => $page) {
 			echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
 			echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
 			echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="' . $kpage . $kright . '" />';
-			echo '<input type="checkbox" data-size="mini" class="rightsAttr" data-l1key="right" checked />' . $right['title'];
+			echo '<input type="checkbox" class="rightsAttr" data-l1key="right" checked />' . $right['title'];
 			echo '</span>';
 		}
 	}
@@ -154,7 +155,7 @@ foreach (eqLogic::all() as $eqLogic) {
 		echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="eqLogic' . $eqLogic->getId() . $kright . '" />';
-		echo '<input type="checkbox" data-size="mini" class="rightsAttr" data-l1key="right" checked />' . $right;
+		echo '<input type="checkbox" class="rightsAttr" data-l1key="right" checked />' . $right;
 		echo '</span>';
 	}
 	echo '</td>';
@@ -186,7 +187,7 @@ foreach (scenario::all() as $scenario) {
 		echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="scenario' . $scenario->getId() . $kright . '" />';
-		echo '<input type="checkbox" data-size="mini" class="rightsAttr" data-l1key="right" checked />' . $right;
+		echo '<input type="checkbox" class="rightsAttr" data-l1key="right" checked />' . $right;
 		echo '</span>';
 	}
 	echo '</td>';
