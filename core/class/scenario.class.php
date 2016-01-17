@@ -907,7 +907,7 @@ class scenario {
 		if ($this->getPID() > 0 && posix_getsid($this->getPID()) && (!file_exists('/proc/' . $this->getPID() . '/cmdline') || strpos(file_get_contents('/proc/' . $this->getPID() . '/cmdline'), 'scenario_id=' . $this->getId()) !== false)) {
 			return true;
 		}
-		if (count(system::ps('scenario_id=' . $this->getId() . ' force', array(getmypid()))) > 0) {
+		if (count(system::ps('scenario_id=' . $this->getId(), array(getmypid()))) > 0) {
 			return true;
 		}
 		return false;
@@ -916,22 +916,22 @@ class scenario {
 	public function stop() {
 		if ($this->running()) {
 			if ($this->getPID() > 0) {
-				$kill = posix_kill($this->getPID(), 15);
+				system::kill($this->getPID());
 				$retry = 0;
-				while (!$kill && $retry < 5) {
+				while ($this->running() && $retry < 10) {
 					sleep(1);
-					$kill = posix_kill($this->getPID(), 9);
-					$retry++;
-				}
-				$retry = 0;
-				while ($this->running() && $retry < 5) {
-					sleep(1);
-					exec('kill -9 ' . $this->getPID());
+					system::kill($this->getPID());
 					$retry++;
 				}
 			}
+
 			if ($this->running()) {
-				exec("(ps ax || ps w) | grep -ie 'scenario_id=" . $this->getId() . " force' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+				system::kill("scenario_id=" . $this->getId());
+				sleep(1);
+				if ($this->running()) {
+					system::kill("scenario_id=" . $this->getId());
+					sleep(1);
+				}
 			}
 			if ($this->running()) {
 				throw new Exception(__('Impossible d\'arrêter le scénario : ', __FILE__) . $this->getHumanName() . __('. PID : ', __FILE__) . $this->getPID());
