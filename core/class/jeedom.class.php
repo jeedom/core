@@ -276,13 +276,7 @@ class jeedom {
 		if (cron::jeeCronRun()) {
 			echo "Arret du cron master ";
 			$pid = cron::getPidFile();
-			$kill = posix_kill($pid, 15);
-			if (!$kill) {
-				$kill = posix_kill($pid, 9);
-				if (!$kill) {
-					throw new Exception('Impossible d\'arrêter le cron master : ' . $pid);
-				}
-			}
+			system::kill($pid);
 			echo " OK\n";
 		}
 
