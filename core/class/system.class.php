@@ -64,7 +64,10 @@ class system {
 		return $return;
 	}
 
-	public static function kill($_find) {
+	public static function kill($_find = '') {
+		if (trim($_find) == '') {
+			return;
+		}
 		if (is_numeric($_find)) {
 			$kill = posix_kill($_find, 15);
 			if ($kill) {

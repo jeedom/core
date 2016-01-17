@@ -907,7 +907,7 @@ class scenario {
 		if ($this->getPID() > 0 && posix_getsid($this->getPID()) && (!file_exists('/proc/' . $this->getPID() . '/cmdline') || strpos(file_get_contents('/proc/' . $this->getPID() . '/cmdline'), 'scenario_id=' . $this->getId()) !== false)) {
 			return true;
 		}
-		if (count(system::ps('scenario_id=' . $this->getId(), array(getmypid()))) > 0) {
+		if (count(system::ps('scenario_id=' . $this->getId() . ' ', array(getmypid()))) > 0) {
 			return true;
 		}
 		return false;
@@ -926,10 +926,10 @@ class scenario {
 			}
 
 			if ($this->running()) {
-				system::kill("scenario_id=" . $this->getId());
+				system::kill("scenario_id=" . $this->getId() . ' ');
 				sleep(1);
 				if ($this->running()) {
-					system::kill("scenario_id=" . $this->getId());
+					system::kill("scenario_id=" . $this->getId() . ' ');
 					sleep(1);
 				}
 			}
