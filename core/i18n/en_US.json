@@ -23,9 +23,9 @@
     },
     "desktop/modal/market.send.php": {
         "Envoyer": "Envoyer",
-        "Sur ce prix 40 % seront reversés au développeur": "Sur ce prix 40 % seront reversés au développeur",
-        "Sur ce prix 60 % seront reversés au développeur": "Sur ce prix 60 % seront reversés au développeur",
-        "Sur ce prix 65 % seront reversés au développeur (doit être supérieur ou égal à 5 €)": "Sur ce prix 65 % seront reversés au développeur (doit être supérieur ou égal à 5 €)",
+        "Sur ce prix 40 % seront reversés au développeur": "40% on this price will be donated to developer",
+        "Sur ce prix 60 % seront reversés au développeur": "60% on this price will be donated to developer",
+        "Sur ce prix 65 % seront reversés au développeur (doit être supérieur ou égal à 5 €)": "65% on this price will be donated to developer (must be greater than or equal to 5 €)",
         "N'oubliez pas de rajouter une image à votre création en passant par le market.": "N'oubliez pas de rajouter une image à votre création en passant par le market.",
         "ID": "ID",
         "Nom": "Nom",
@@ -182,7 +182,7 @@
         "Autre": "Autre",
         "Scénarios": "Scénarios",
         "Musique": "Music",
-        "Cinéma": "Cinéma",
+        "Cinéma": "Movie theater",
         "Tv-Série": "TV-Show"
     },
     "core/class/message.class.php": {
@@ -607,7 +607,7 @@
         "Durée de vie des sessions (heure)": "Durée de vie des sessions (heure)",
         "Date et heure": "Date et heure",
         "Serveur de temps optionnel": "Serveur de temps optionnel",
-        "Ignorer la vérification de l'heure": "Ignorer la vérification de l'heure",
+        "Ignorer la vérification de l'heure": "Ignore time checking",
         "Mode": "Mode",
         "Maître": "Maître",
         "Esclave": "Esclave",
@@ -619,7 +619,7 @@
         "Utilisateur": "Utilisateur",
         "Mot de passe": "Mot de passe",
         "Configuration réseaux": "Configuration réseaux",
-        "Attention cette configuration n'est la que pour informer Jeedom de sa configuration réseaux et n'a aucun impact sur les ports ou l'IP réelement utilisés pour joindre Jeedom": "Attention cette configuration n'est la que pour informer Jeedom de sa configuration réseaux et n'a aucun impact sur les ports ou l'IP réelement utilisés pour joindre Jeedom",
+        "Attention cette configuration n'est la que pour informer Jeedom de sa configuration réseaux et n'a aucun impact sur les ports ou l'IP réelement utilisés pour joindre Jeedom": "Please note this configuration is only to inform Jeedom of its network configuration and has no impact on ports or IP actually used to join Jeedom",
         "Protocole": "Protocole",
         "Port": "Port",
         "Adresse IP": "IP Address",
@@ -733,15 +733,15 @@
         "Addresse Redis": "Redis address",
         "Port redis": "Redis port",
         "Plus la sensibilité est basse (proche de 1) plus la corrrespondance doit être exacte": "Plus la sensibilité est basse (proche de 1) plus la corrrespondance doit être exacte",
-        "Sensibilité": "Sensibilité",
+        "Sensibilité": "Sensibility",
         "Regex général d'exclusion pour les interactions": "Regex général d'exclusion pour les interactions",
-        "Moteur de log": "Moteur de log",
+        "Moteur de log": "Log engine",
         "Defaut": "Default",
         "Syslog": "Syslog",
         "SyslogUdp": "SyslogUdp",
         "Addresse syslog udp": "Syslog udp address",
-        "Port syslog udp": "Port syslog udp",
-        "Niveau de log": "Niveau de log",
+        "Port syslog udp": "Syslog udp port",
+        "Niveau de log": "Log level",
         "Notice": "Notice",
         "Warning": "Warning",
         "Erreur": "Error",
@@ -921,7 +921,7 @@
         "Options": "Options",
         "Changelog": "Changelog",
         "Etes-vous sur de vouloir faire les mises à jour ?": "Etes-vous sur de vouloir faire les mises à jour ?",
-        "Etes-vous sur de vouloir mettre à jour le systeme, cette opération peut être risquée ?": "Etes-vous sur de vouloir mettre à jour le systeme, cette opération peut être risquée ?",
+        "Etes-vous sur de vouloir mettre à jour le systeme, cette opération peut être risquée ?": "Are you sure you want to update the system, this can be risky?",
         "Etes vous sur de vouloir changer l\\'état de l\\'objet ?": "Etes vous sur de vouloir changer l\\'état de l\\'objet ?",
         "Etes vous sur de vouloir mettre à jour cet objet ?": "Etes vous sur de vouloir mettre à jour cet objet ?",
         "Etes vous sur de vouloir supprimer cet objet ?": "Etes vous sur de vouloir supprimer cet objet ?",
@@ -947,7 +947,7 @@
         "Rechercher": "Rechercher",
         "Afficher/Masquer les vues": "Afficher/Masquer les vues",
         "Editer": "Editer",
-        "Edition complète": "Edition complète"
+        "Edition complète": "Complete edition"
     },
     "desktop/js/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "You are in edit mode. You can move and resize widgets, and reorder the commands within them. "
@@ -1028,8 +1028,8 @@
         "Téléchargement de l'objet...": "Downloading object...",
         "OK\n": "OK",
         "Action de pre update...": "Pre-update action",
-        "Décompression du zip...": "Décompression du zip...",
-        "Installation du plugin,widget...": "Installation du plugin,widget...",
+        "Décompression du zip...": "Unpacking the zip...",
+        "Installation du plugin,widget...": "Installation of plugin,widget...",
         "Téléchargement de ": "Download of",
         "Installation de ": "Installation of",
         "Erreur market::getinfo : ": "Error market::getinfo :"
@@ -1091,7 +1091,7 @@
         "Enregistrer": "Save",
         "Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes": "Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes",
         "Regexp d'exclusion": "Regexp d'exclusion",
-        "Sans unité": "Sans unité",
+        "Sans unité": "Without unit",
         "Limiter aux plugins": "Limiter aux plugins",
         "Limiter aux categories": "Limiter aux categories"
     },
@@ -1119,7 +1119,7 @@
         "La demande ne peut être vide": "The question cannot be empty",
         "Aucune correspondance trouvée": "No matches found",
         "J\\'ai reconnu : ": "I recognized :",
-        "Je dois exécuter la/les commande(s) : ": "Je dois exécuter la/les commande(s) :",
+        "Je dois exécuter la/les commande(s) : ": "I have to execute command(s) :",
         "Je dois": "I must",
         "le scénario : ": "the scenario:",
         "Je vais répondre : ": "I will answer :"
@@ -1177,7 +1177,7 @@
         "Résultat": "Result",
         "Conseil": "Advice",
         "Système à jour": "System up to date",
-        "Lancement des crons": "Lancement des crons",
+        "Lancement des crons": "Launch crons",
         "OK": "OK",
         "Cron actif": "Cron active",
         "Scénario actif": "Scenario active",
@@ -1193,17 +1193,17 @@
         "Configuration réseaux externe": "External network configuration",
         "Configuration nginx": "Nginx configuration",
         "Santé ": "Health",
-        "Version Jeedom": "Version Jeedom",
+        "Version Jeedom": "Jeedom version",
         "Commande info en non evènement seulement": "Commande info en non evènement seulement",
         "Configuration démon": "Daemon setup",
-        "Status démon": "Status démon",
+        "Status démon": "Daemon status",
         "Dépendance": "Dépendance"
     },
     "mobile/js/equipment.js": {
         "Tout": "Tout"
     },
     "core/ajax/object.ajax.php": {
-        "Objet inconnu verifié l'id": "Objet inconnu verifié l'id"
+        "Objet inconnu verifié l'id": "Unknown object, check the ID :"
     },
     "mobile/js/home.js": {
         "Tout": "Tout"
@@ -1215,7 +1215,7 @@
     "desktop/php/profils.php": {
         "Profil": "Profile",
         "Desktop": "Desktop",
-        "Mobile couleur": "Mobile couleur",
+        "Mobile couleur": "Mobile color",
         "Graphique Desktop": "Desktop image",
         "Graphique mobile": "Mobile image",
         "Général": "Main",
@@ -1258,7 +1258,7 @@
     },
     "core/class/plugin.class.php": {
         "Inconnue": "Unknown",
-        "Gestion automatique désactivée": "Gestion automatique désactivée"
+        "Gestion automatique désactivée": "Automatic management disabled"
     },
     "/var/www/html/desktop/php/history.php": {
         "Aucun": "Aucun"
@@ -1272,7 +1272,7 @@
         "Warning": "Warning",
         "Bonne": "Good",
         "Piles": "Batteries",
-        "Non définies": "Non définies",
+        "Non définies": "Undefined",
         "Plugins": "Plugins",
         "Objets": "Objects",
         "Le ": "The"
@@ -1361,8 +1361,8 @@
     "desktop/modal/expression.test.php": {
         "Exécuter": "Run",
         "Résultat": "Result",
-        "L\\'epression de test ne peut être vide": "L\\'epression de test ne peut être vide",
-        "Attention je pense qu\\'il y a un soucis car le résultat et le même que l\\'expression": "Attention je pense qu\\'il y a un soucis car le résultat et le même que l\\'expression",
+        "L\\'epression de test ne peut être vide": "Test expression can not be empty",
+        "Attention je pense qu\\'il y a un soucis car le résultat et le même que l\\'expression": "Please note I think there is a concern because the result is the same as the expression",
         "Je vais évaluer : ": "Je vais évaluer :",
         "Résultat : ": "Result :"
     },
@@ -1460,12 +1460,12 @@
         "Statut http": "Statut http",
         "Gestion": "Gestion",
         "(Re)démarrer": "(Re)démarrer",
-        "Configuration des crontask, scripts & démons": "Configuration des crontask, scripts & démons",
+        "Configuration des crontask, scripts & démons": "Crontask, script, and deamon setup",
         "Rattrapage maximum autorisé (en minutes, -1 pour infini)": "Maximum allowed catch up (minutes, -1 for infinite)",
         "Crontask : temps d'exécution max (en minutes)": "Crontask : temps d'exécution max (en minutes)",
         "Script : temps d'exécution max (en minutes)": "Script: maximal run time (minutes)",
         "Temps de sommeil Jeecron": "Jeecron sleep time",
-        "Temps de sommeil des Démons": "Temps de sommeil des Démons",
+        "Temps de sommeil des Démons": "Daemon sleep time",
         "Configuration des logs & messages": "Configuration des logs & messages",
         "Ajouter un message à chaque erreur dans les logs": "Ajouter un message à chaque erreur dans les logs",
         "Nombre de lignes maximum dans un fichier de log": "Nombre de lignes maximum dans un fichier de log",
