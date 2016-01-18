@@ -7,7 +7,6 @@ if (!is_object($cmd)) {
 	throw new Exception('Commande non trouvé : ' . init('cmd_id'));
 }
 $cmdInfo = jeedom::toHumanReadable(utils::o2a($cmd));
-$cmdInfo['auto_generic_type'] = $cmd->getGenericType();
 sendVarToJS('cmdInfo', $cmdInfo);
 $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
@@ -192,68 +191,15 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
 ?>
       <legend><i class="fa fa-building"></i> {{Type générique}}</legend>
       <div class="form-group">
-        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Type actuel}}</label>
-        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-          <span class="cmdAttr label label-default" style="font-size : 1em;" data-l1key="auto_generic_type" ></span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Forcer à}}</label>
+        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeur}}</label>
         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
           <select class="cmdAttr form-control" data-l1key="display" data-l2key="generic_type">
-            <option value="LIGHT_STATE">{{Lumiere Etat (info)}}</option>
-            <option value="LIGHT_ON">{{Lumiere Bouton ON}}</option>
-            <option value="LIGHT_OFF">{{Lumiere Bouton OFF}}</option>
-            <option value="LIGHT_SLIDER">{{Lumiere SLIDER}}</option>
-            <option value="LIGHT_COLOR">{{Lumiere Couleur (info)}}</option>
-            <option value="LIGHT_SET_COLOR">{{Lumiere Couleur (action)}}</option>
-            <option value="ENERGY_STATE">{{Prise Etat (info)}}</option>
-            <option value="ENERGY_ON">{{Prise Bouton ON}}</option>
-            <option value="ENERGY_OFF">{{Prise Bouton OFF}}</option>
-            <option value="ENERGY_SLIDER">{{Prise SLIDER}}</option>
-            <option value="FLAP_STATE">{{Volet Etat (info)}}</option>
-            <option value="FLAP_UP">{{Volet Bouton Monter}}</option>
-            <option value="FLAP_DOWN">{{Volet Bouton Descendre}}</option>
-            <option value="FLAP_STOP">{{Volet Bouton Stop}}</option>
-            <option value="FLAP_SLIDER">{{Volet Bouton Slider}}</option>
-            <option value="HEATING_ON">{{Chauffage fil pilote Bouton ON}}</option>
-            <option value="HEATING_OFF">{{Chauffage fil pilote Bouton OFF}}</option>
-            <option value="HEATING_STATE">{{Chauffage fil pilote Etat (info)}}</option>
-            <option value="HEATING_OTHER">{{Chauffage fil pilote Bouton (action)}}</option>
-            <option value="LOCK_STATE">{{Sérrure Etat (info)}}</option>
-            <option value="LOCK_OPEN">{{Sérrure Bouton Ouvrir}}</option>
-            <option value="LOCK_CLOSE">{{Sérrure Bouton Fermer}}</option>
-            <option value="THERMOSTAT_STATE">{{Thermostat Etat (info)}}</option>
-            <option value="THERMOSTAT_TEMPERATURE">{{Thermostat Temerature ambiante (info)}}</option>
-            <option value="THERMOSTAT_SET_SETPOINT">{{Thermostat consigne (action)}}</option>
-            <option value="THERMOSTAT_SETPOINT">{{Thermostat consigne (info)}}</option>
-            <option value="THERMOSTAT_SET_MODE">{{Thermostat Mode (action)}}</option>
-            <option value="THERMOSTAT_MODE">{{Thermostat Mode (info)}}</option>
-            <option value="THERMOSTAT_SET_LOCK">{{Thermostat Verouillage (action)}}</option>
-            <option value="THERMOSTAT_LOCK">{{Thermostat Verouillage (info)}}</option>
-            <option value="POWER">{{Information Puissance Electrique}}</option>
-            <option value="CONSUMPTION">{{Information Consommation Electrique}}</option>
-            <option value="TEMPERATURE">{{Information Température}}</option>
-            <option value="BRIGHTNESS">{{Information Luminosité}}</option>
-            <option value="PRESENCE">{{Information Présence}}</option>
-            <option value="BATTERY">{{Information Batterie}}</option>
-            <option value="SMOKE">{{Information détection de fumée}}</option>
-            <option value="FLOOD">{{Information Inondation}}</option>
-            <option value="HUMIDITY">{{Information humidité}}</option>
-            <option value="UV">{{Information UV}}</option>
-            <option value="OPENING">{{Information ouvrant}}</option>
-            <option value="SABOTAGE">{{Information sabotage}}</option>
-            <option value="CO2">{{Information CO2 (ppm)}}</option>
-            <option value="VOLTAGE">{{Information Tension}}</option>
-            <option value="NOISE">{{Information Son (dB)}}</option>
-            <option value="PRESSURE">{{Information Pression}}</option>
-            <option value="RAIN_CURRENT">{{Information Pluie (mm/h)}}</option>
-            <option value="RAIN_TOTAL">{{Information Pluie (accumulation)}}</option>
-            <option value="WIND_SPEED">{{Information Vent (vitesse)}}</option>
-            <option value="WIND_DIRECTION">{{Information Vent (direction)}}</option>
-            <option value="GENERIC">{{Information Generique}}</option>
-            <option value="DONT">{{ne pas tenir compte de cette commande}}</option>
+          <option value="">{{Aucun}}</option>
+            <?php
+foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $value) {
+	echo '<option value="' . $key . '">' . __($value['name'], 'common') . '</option>';
+}
+?>
           </select>
         </div>
       </div>

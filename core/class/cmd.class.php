@@ -1301,96 +1301,9 @@ class cmd {
 	public function exportApi() {
 		$value = ($this->getType() !== 'action') ? $this->execCmd(null, 2) : $this->getConfiguration('lastCmdValue', null);
 		$return = utils::o2a($this);
-		$return['generic_type'] = $this->getGenericType();
+		$return['generic_type'] = $this->getDisplay('generic_type', 'GENERIC_ERROR');
 		$return['currentValue'] = $value;
 		return $return;
-	}
-
-	public function getGenericType() {
-		if ($this->getDisplay('generic_type') != '') {
-			return $this->getDisplay('generic_type');
-		}
-		return 'GENERIC_ERROR';
-		/*
-		$category = $this->getEqLogic()->getPrimaryCategory();
-		$name_eq = strtolower($this->getEqLogic()->getName());
-		$type = strtoupper($category) . '_';
-      		if (strpos($name_eq, 'volet') !== false) {
-        		$type = 'FLAP_';
-        	}
-		if ($this->getType() == 'action') {
-			if ($this->getSubtype() == 'other') {
-				$name = strtolower($this->getName());
-				if ($category = 'heating' && strpos($name, 'cool') !== false) {
-					$type = 'COOLING_';
-				}
-				if (strpos($name, 'off') !== false || strpos($name, 'arret') !== false) {
-					return $type . 'OFF';
-				}
-				if (strpos($name, 'on') !== false && strpos($name, 'confort') === false) {
-					return $type . 'ON';
-				}
-				if (strpos($name, 'up') !== false) {
-					return $type . 'UP';
-				}
-				if (strpos($name, 'down') !== false) {
-					return $type . 'DOWN';
-				}
-				if (strpos($name, 'stop') !== false) {
-					return $type . 'STOP';
-				}
-			}elseif ($this->getSubtype() == 'color') {
-             			return $type . 'COLOR_ACTION';
-            		}
-			return $type . strtoupper($this->getSubtype());
-		} else {
-			switch ($this->getUnite()) {
-				case 'W':
-					return 'POWER';
-				case 'kWh':
-					return 'CONSUMPTION';
-				case '°C':
-					return 'TEMPERATURE';
-				case 'Lux':
-					return 'BRIGHTNESS';
-			}
-			$name = strtolower($this->getName());
-			if (strpos($name, 'présence') !== false) {
-				return 'PRESENCE';
-			}
-			if (strpos($name, 'batterie') !== false) {
-				return 'BATTERY';
-			}
-			if (strpos($name, 'fumées') !== false) {
-				return 'FUMES';
-			}
-			if (strpos($name, 'température') !== false) {
-				return 'TEMPERATURE';
-			}
-			if (strpos($name, 'luminosité') !== false) {
-				return 'BRIGHTNESS';
-			}
-			if (strpos($name, 'fuite') !== false) {
-				return 'FLIGHT';
-			}
-			if (strpos($name, 'ultraviolet') !== false || strpos($name, 'uv') !== false) {
-				return 'UV';
-			}
-			if (strpos($name, 'humidité') !== false) {
-				return 'MOISTURE';
-			}
-			if (strpos($name, 'sabotage') !== false || strpos($name, 'anti-sabotage') !== false) {
-				return 'SABOTAGE';
-			}
-			if (strpos($name_eq, 'porte') !== false || strpos($name_eq, 'door') !== false || strpos($name_eq, 'baie') !== false || strpos($name_eq, 'fenetre') !== false || strpos($name_eq, 'fenêtre') !== false) {
-				return 'OPENING';
-			}
-			if (strpos($name, 'couleur') !== false || strpos($name, 'color') !== false){
-				return $type . 'COLOR';
-			}
-			return $type . 'STATE';
-		}
-		*/
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
