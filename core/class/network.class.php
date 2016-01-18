@@ -274,7 +274,21 @@ class network {
 		if (config::byKey('market::allowDNS') != 1) {
 			return;
 		}
-		$plugin = plugin::byId('openvpn');
+		try {
+			$plugin = plugin::byId('openvpn');
+			if (!is_object($plugin)) {
+				$plugin = market::byLogicalIdAndType('openvpn', 'plugin');
+				$plugin->install('stable');
+				$plugin = plugin::byId('openvpn');
+			}
+		} catch (Exception $e) {
+			$plugin = market::byLogicalIdAndType('openvpn', 'plugin');
+			$plugin->install('stable');
+			$plugin = plugin::byId('openvpn');
+		}
+		if (!$plugin->isActive()) {
+			$plugin->setIsEnable(1);
+		}
 		if (!is_object($plugin)) {
 			throw new Exception(__('Le plugin openvpn doit être installé', __FILE__));
 		}
