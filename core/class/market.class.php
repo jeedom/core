@@ -709,7 +709,7 @@ class market {
 				log::add('update', 'alert', __("OK\n", __FILE__));
 				break;
 		}
-		if ($type != 'scenario') {
+		if ($this->getType() != 'scenario') {
 			$update = update::byTypeAndLogicalId($this->getType(), $this->getLogicalId());
 			if (!is_object($update)) {
 				$update = new update();
