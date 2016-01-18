@@ -187,7 +187,6 @@
                 return;
             }
             var log = '';
-            var regex = /<br\s*[\/]?>/gi;
             if($.isArray(data.result)){
                 for (var i in data.result.reverse()) {
                     log += data.result[i]+"\n";

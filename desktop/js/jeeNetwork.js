@@ -510,9 +510,7 @@ function getJeedomSlaveLog(_autoUpdate, _log,_el) {
             var log = '';
             if($.isArray(data)){
                 for (var i in data.reverse()) {
-                    log += data[i].replace(/<br\s*[\/]?>/gi, "\n");
-                    log = log.replace(/^\s+|\s+$/g, '');
-                    log += "\n";
+                    log += data.result[i]+"\n";
                     if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1){
                         $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'});
                         loadInfoFromSlave($('.li_jeeNetwork.active').attr('data-jeeNetwork_id'));
