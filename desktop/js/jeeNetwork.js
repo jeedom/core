@@ -139,7 +139,7 @@ $('#sel_logSlave').on('change', function () {
             var log = '';
             if($.isArray(data)){
                 for (var i in data.reverse()) {
-                 log += data.result[i]+"\n";
+                    log += data[i]+"\n";
              }
          }
          $('#pre_logInfo').text(log);
@@ -162,7 +162,7 @@ $('#bt_refreshLog').on('click', function () {
             var log = '';
             if($.isArray(data)){
                 for (var i in data.reverse()) {
-                   log += data.result[i]+"\n";
+                   log += data[i]+"\n";
                }
            }
            $('#pre_logInfo').text(log);
@@ -495,7 +495,7 @@ function getJeedomSlaveLog(_autoUpdate, _log,_el) {
                 getJeedomSlaveLog(_autoUpdate, _log,_el)
             }, 1000);
         },
-        success: function (data) {
+        success: function (result) {
             if (data.state != 'ok') {
                 setTimeout(function () {
                     getJeedomSlaveLog(_autoUpdate, _log,_el)
@@ -503,15 +503,16 @@ function getJeedomSlaveLog(_autoUpdate, _log,_el) {
                 return;
             }
             var log = '';
+            var data = result.result;
             if($.isArray(data)){
                 for (var i in data.reverse()) {
-                    log += data.result[i]+"\n";
-                    if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1){
+                    log += data[i]+"\n";
+                    if(data[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1){
                         $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'});
                         loadInfoFromSlave($('.li_jeeNetwork.active').attr('data-jeeNetwork_id'));
                         _autoUpdate = 0;
                     }
-                    if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
+                    if(data[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
                      $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
                      _autoUpdate = 0;
                  }

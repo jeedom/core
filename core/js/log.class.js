@@ -89,9 +89,7 @@
  			if($.isArray(result)){
  				for (var i in result.reverse()) {
  					if(!isset(_params['search']) || _params['search'].value() == '' || result[i].toLowerCase().indexOf(_params['search'].value().toLowerCase()) != -1){
- 						log += result[i].replace(regex, "\n");
- 						log = log.replace(/^\s+|\s+$/g, '');
- 						log += "\n";
+ 						log += $.trim(result[i])+"\n";
  					}
  				}
  			}
