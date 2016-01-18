@@ -13,7 +13,7 @@ Yes it is possible, simply drag & drop the controls of your device.
 
 '''
 Can the style of the widgets be edited? ::
-Yes it is possible either via the widget plugin, or using the page ??
+Yes it is possible either via the widget plugin, or using the page Main -> Command setup -> Advanced display
 
 '''
 Can the same device be present many times on the same design ?::
