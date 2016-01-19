@@ -745,7 +745,7 @@
         "Notice": "Notice",
         "Warning": "Warning",
         "Erreur": "Error",
-        "Seuils des piles": "Seuils des piles",
+        "Seuils des piles": "Batteries threshold",
         "Danger": "Danger",
         "Ok": "Ok",
         "Tester/Synchroniser": "Test/Synchronize",
@@ -1197,7 +1197,7 @@
         "Commande info en non evènement seulement": "Commande info en non evènement seulement",
         "Configuration démon": "Daemon setup",
         "Status démon": "Daemon status",
-        "Dépendance": "Dépendance"
+        "Dépendance": "Dependencie"
     },
     "mobile/js/equipment.js": {
         "Tout": "Tout"
