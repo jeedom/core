@@ -1055,7 +1055,8 @@ class cmd {
 						event::add('cmd::update', array('cmd_id' => $cmd->getId()));
 					} else {
 						if ($_loop > 1) {
-							$cmd->event($cmd->execute(), $_loop);
+							$cValue = $cmd->execute();
+							$cmd->event($cValue, $_loop);
 						} else {
 							$foundInfo = true;
 						}
