@@ -144,7 +144,7 @@ class message {
 			DB::save($this);
 			event::add('notify', array('title' => __('Message de ', __FILE__) . $this->getPlugin(), 'message' => $this->getMessage(), 'category' => 'message'));
 			$cmds = explode(('&&'), config::byKey('emailAdmin'));
-			if (count($cmds) > 0) {
+			if (count($cmds) > 0 && trim(config::byKey('emailAdmin')) != '') {
 				foreach ($cmds as $id) {
 					$cmd = cmd::byId(str_replace('#', '', $id));
 					if (is_object($cmd)) {
