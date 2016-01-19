@@ -230,7 +230,9 @@ try {
 					}
 				} else {
 					$jeeNetwork = jeeNetwork::byId([$key]);
-					$return[$key] = $jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id));
+					if (is_object($jeeNetwork)) {
+						$return[$key] = $jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id));
+					}
 				}
 			}
 		} else {
@@ -242,7 +244,9 @@ try {
 				}
 			} else {
 				$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-				$return = $jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id));
+				if (is_object($jeeNetwork)) {
+					$return = $jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id));
+				}
 			}
 		}
 		ajax::success($return);
@@ -261,6 +265,9 @@ try {
 			ajax::success($plugin->deamon_start(init('debug', 0), init('forceRestart', 0)));
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
+			if (!is_object($jeeNetwork)) {
+				ajax::success();
+			}
 			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonStart', array('plugin_id' => $plugin_id, 'debug' => init('debug', 0), 'forceRestart' => init('forceRestart', 0))));
 		}
 	}
@@ -277,6 +284,9 @@ try {
 			ajax::success($plugin->deamon_stop());
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
+			if (!is_object($jeeNetwork)) {
+				ajax::success();
+			}
 			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonStop', array('plugin_id' => init('id'))));
 		}
 	}
@@ -293,6 +303,9 @@ try {
 			ajax::success($plugin->deamon_changeAutoMode(init('mode')));
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
+			if (!is_object($jeeNetwork)) {
+				ajax::success();
+			}
 			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonChangeAutoMode', array('plugin_id' => init('id'), 'mode' => init('mode'))));
 		}
 	}
