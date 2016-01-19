@@ -496,7 +496,7 @@ function getJeedomSlaveLog(_autoUpdate, _log,_el) {
             }, 1000);
         },
         success: function (result) {
-            if (data.state != 'ok') {
+            if (result.state != 'ok') {
                 setTimeout(function () {
                     getJeedomSlaveLog(_autoUpdate, _log,_el)
                 }, 1000);
