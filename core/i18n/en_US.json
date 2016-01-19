@@ -150,7 +150,7 @@
         "Mode expert": "Mode expert",
         "Redémarrer": "Redémarrer",
         "Eteindre": "Eteindre",
-        "Temps réel": "Temps réel",
+        "Temps réel": "Real time",
         "Version mobile": "Version mobile",
         "Se déconnecter": "Se déconnecter",
         "Node JS": "Node JS",
@@ -434,8 +434,8 @@
         "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH."
     },
     "core/template/scenario/variable.default": {
-        "Nom": "Nom",
-        "Valeur": "Valeur",
+        "Nom": "Name",
+        "Valeur": "Value",
         "Sélectionner la commande": "Sélectionner la commande"
     },
     "core/template/scenario/sleep.default": {
@@ -517,7 +517,7 @@
         "Afficher le nom de l'objet": "Afficher le nom de l'objet",
         "Afficher le niveau de batterie": "Afficher le niveau de batterie",
         "Paramètres optionnels sur la tuile": "Paramètres optionnels sur la tuile",
-        "Valeur": "Valeur",
+        "Valeur": "Value",
         "Action": "Action",
         "Enregistrement réussi": "Enregistrement réussi",
         "Etes-vous sûr de vouloir supprimer cet équipement ?": "Etes-vous sûr de vouloir supprimer cet équipement ?",
@@ -564,10 +564,10 @@
     },
     "desktop/modal/plan.configure.php": {
         "Nom": "Nom",
-        "Lien": "Lien",
+        "Lien": "Link",
         "Position X": "Position X",
         "Position Y": "Position Y",
-        "Icône": "Icône",
+        "Icône": "Icon",
         "Choisir une icône": "Choisir une icône",
         "Couleur de fond": "Couleur de fond",
         "Transparent": "Transparent",
@@ -708,7 +708,7 @@
         "Dashboard couleur commande": "Dashboard command color",
         "Mobile couleur de fond": "Mobile couleur de fond",
         "Mobile couleur commande": "Mobile command color",
-        "Nom de votre Jeedom (utilisé notamment par le market)": "Nom de votre Jeedom (utilisé notamment par le market)",
+        "Nom de votre Jeedom (utilisé notamment par le market)": "Your Jeedom name (Used on the market)",
         "Nom de votre Jeedom": "Jeedom name",
         "Clef API global de Jeedom": "Clef API global de Jeedom",
         "Indique votre type de matériel": "Indique votre type de matériel",
@@ -716,7 +716,7 @@
         "Clef d'installation": "Setup key",
         "Langue de votre Jeedom": "Jeedom language",
         "Durée de vie de votre connexion à Jeedom si vous n'avez pas coché la case enregistrer cet ordinateur": "Durée de vie de votre connexion à Jeedom si vous n'avez pas coché la case enregistrer cet ordinateur",
-        "Fuseau horraire de votre Jeedom": "Fuseau horraire de votre Jeedom",
+        "Fuseau horraire de votre Jeedom": "Time zone Jeedom",
         "Permet d'ajouter un serveur de temps à Jeedom utilisé lorsque Jeedom force la synchronisation de l'heure": "Permet d'ajouter un serveur de temps à Jeedom utilisé lorsque Jeedom force la synchronisation de l'heure",
         "Indique à Jeedom de ne pas prendre en compte l'heure du système": "Indique à Jeedom de ne pas prendre en compte l'heure du système",
         "Permet de passer Jeedom en mode exclave.": "Permet de passer Jeedom en mode exclave.",
@@ -831,7 +831,7 @@
     },
     "desktop/js/scenario.js": {
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
-        "Nom": "Nom",
+        "Nom": "Name",
         "Nom de votre scénario": "Nom de votre scénario",
         "Type": "Type",
         "Simple": "Simple",
@@ -950,7 +950,7 @@
         "Edition complète": "Complete edition"
     },
     "desktop/js/view.js": {
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "You are in edit mode. You can move and resize widgets, and reorder the commands within them. "
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "You are in edit mode. You can move and resize widgets, and reorder the commands within them."
     },
     "core/ajax/view.ajax.php": {
         "Aucune methode correspondante à : ": "No methode matches:"
@@ -958,7 +958,7 @@
     "desktop/modal/cmd.history.php": {
         "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher",
         "Ok": "Ok",
-        "Ligne": "Ligne",
+        "Ligne": "Line",
         "Aire": "Aire",
         "Colonne": "Colonne",
         "Variation": "Variation",
@@ -1424,8 +1424,8 @@
         "Nombre de message(s)": "Number of messages",
         "Dernière communication": "Last communication",
         "Plugin": "Plugin",
-        "Supprimer": "Supprimer",
-        "Sauvegarder": "Sauvegarder",
+        "Supprimer": "Delete",
+        "Sauvegarder": "Backup",
         "Rafraîchir": "Rafraîchir",
         "Vider": "Vider",
         "Voir les messages": "View messages",
@@ -1459,7 +1459,7 @@
         "Authentification (optionnelle)": "Authentication (Optional)",
         "Statut http": "Statut http",
         "Gestion": "Gestion",
-        "(Re)démarrer": "(Re)démarrer",
+        "(Re)démarrer": "Start/ Restart",
         "Configuration des crontask, scripts & démons": "Crontask, script, and deamon setup",
         "Rattrapage maximum autorisé (en minutes, -1 pour infini)": "Maximum allowed catch up (minutes, -1 for infinite)",
         "Crontask : temps d'exécution max (en minutes)": "Crontask : temps d'exécution max (en minutes)",
