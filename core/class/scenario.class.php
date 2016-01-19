@@ -542,28 +542,14 @@ class scenario {
 		} else {
 			throw new Exception('Impossible de décompresser l\'archive zip : ' . $_path);
 		}
-		$moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
-		if (!file_exists($moduleFile)) {
-			throw new Exception(__('Echec de l\'installation. Impossible de trouver le module ', __FILE__) . $moduleFile);
-		}
 	}
 
 	public static function removeFromMarket(&$market) {
-		$moduleFile = dirname(__FILE__) . '/../config/scenario/' . $market->getLogicalId() . '.json';
-		if (!file_exists($moduleFile)) {
-			throw new Exception(__('Echec lors de la suppression. Impossible de trouver le module ', __FILE__) . $moduleFile);
-		}
-		if (!unlink($moduleFile)) {
-			throw new Exception(__('Impossible de supprimer le fichier :  ', __FILE__) . $moduleFile . '. Veuillez vérifier les droits');
-		}
+
 	}
 
 	public static function listMarketObject() {
-		$return = array();
-		foreach (scenario::getTemplate() as $logical_id => $name) {
-			$return[] = $logical_id;
-		}
-		return $return;
+		return array();
 	}
 
 /*     * *********************Méthodes d'instance************************* */
@@ -602,9 +588,9 @@ class scenario {
 		}
 		$cmd = cmd::byId(str_replace('#', '', $_trigger));
 		if (is_object($cmd)) {
-			log::add('event', 'event', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $cmd->getHumanName());
+			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $cmd->getHumanName());
 		} else {
-			log::add('event', 'event', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
+			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
 		}
 		$this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
@@ -653,12 +639,11 @@ class scenario {
 		if (!$this->hasRight('r')) {
 			return '';
 		}
-		$sql = 'SELECT `value` FROM cache
-	WHERE `key`="scenarioHtml' . $_version . $this->getId() . '"';
-		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-		if ($result['value'] != '') {
-			return $result['value'];
+		$mc = cache::byKey('scenarioHtml' . $_version . $this->getId());
+		if ($mc->getValue() != '') {
+			return $mc->getValue();
 		}
+
 		$_version = jeedom::versionAlias($_version);
 		$replace = array(
 			'#id#' => $this->getId(),
@@ -683,9 +668,14 @@ class scenario {
 	}
 
 	public function emptyCacheWidget() {
-		$sql = 'DELETE FROM cache
-	WHERE `key` LIKE "scenarioHtml%' . $this->getId() . '"';
-		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		$mc = cache::byKey('scenarioHtmldashboard' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('scenarioHtmlmobile' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('scenarioHtmlmview' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('scenarioHtmldview' . $this->getId());
+		$mc->remove();
 	}
 
 	public function getIcon($_only_class = false) {
@@ -750,7 +740,7 @@ class scenario {
 		}
 		DB::save($this);
 		if ($this->_changeState) {
-			@nodejs::pushUpdate('eventScenario', $this->getId());
+			event::add('scenario::update', $this->getId());
 		}
 	}
 
@@ -817,6 +807,8 @@ class scenario {
 					$calculatedDate_tmp['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
 				} catch (Exception $exc) {
 					//echo $exc->getTraceAsString();
+				} catch (Error $exc) {
+					//echo $exc->getTraceAsString();
 				}
 				if ($calculatedDate['prevDate'] == '' || strtotime($calculatedDate['prevDate']) < strtotime($calculatedDate_tmp['prevDate'])) {
 					$calculatedDate['prevDate'] = $calculatedDate_tmp['prevDate'];
@@ -831,6 +823,8 @@ class scenario {
 				$calculatedDate['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 				$calculatedDate['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
 			} catch (Exception $exc) {
+				//echo $exc->getTraceAsString();
+			} catch (Error $exc) {
 				//echo $exc->getTraceAsString();
 			}
 		}
@@ -855,10 +849,14 @@ class scenario {
 						}
 					} catch (Exception $e) {
 
+					} catch (Error $e) {
+
 					}
 					try {
 						$prev = $c->getPreviousRunDate()->getTimestamp();
 					} catch (Exception $e) {
+						return false;
+					} catch (Error $e) {
 						return false;
 					}
 					$lastCheck = strtotime($this->getLastLaunch());
@@ -867,6 +865,8 @@ class scenario {
 						return true;
 					}
 				} catch (Exception $e) {
+
+				} catch (Error $e) {
 
 				}
 			}
@@ -879,10 +879,14 @@ class scenario {
 					}
 				} catch (Exception $e) {
 
+				} catch (Error $e) {
+
 				}
 				try {
 					$prev = $c->getPreviousRunDate()->getTimestamp();
 				} catch (Exception $e) {
+					return false;
+				} catch (Error $e) {
 					return false;
 				}
 				$lastCheck = strtotime($this->getLastLaunch());
@@ -891,6 +895,8 @@ class scenario {
 					return true;
 				}
 			} catch (Exception $exc) {
+
+			} catch (Error $exc) {
 
 			}
 		}
@@ -901,7 +907,7 @@ class scenario {
 		if ($this->getPID() > 0 && posix_getsid($this->getPID()) && (!file_exists('/proc/' . $this->getPID() . '/cmdline') || strpos(file_get_contents('/proc/' . $this->getPID() . '/cmdline'), 'scenario_id=' . $this->getId()) !== false)) {
 			return true;
 		}
-		if (shell_exec('ps ax | grep -ie "scenario_id=' . $this->getId() . ' force" | grep -v ' . getmypid() . ' | grep -v grep | wc -l') > 0) {
+		if (count(system::ps('scenario_id=' . $this->getId() . ' ', array(getmypid()))) > 0) {
 			return true;
 		}
 		return false;
@@ -910,22 +916,22 @@ class scenario {
 	public function stop() {
 		if ($this->running()) {
 			if ($this->getPID() > 0) {
-				$kill = posix_kill($this->getPID(), 15);
+				system::kill($this->getPID());
 				$retry = 0;
-				while (!$kill && $retry < 5) {
+				while ($this->running() && $retry < 10) {
 					sleep(1);
-					$kill = posix_kill($this->getPID(), 9);
-					$retry++;
-				}
-				$retry = 0;
-				while ($this->running() && $retry < 5) {
-					sleep(1);
-					exec('kill -9 ' . $this->getPID());
+					system::kill($this->getPID());
 					$retry++;
 				}
 			}
+
 			if ($this->running()) {
-				exec("ps aux | grep -ie 'scenario_id=" . $this->getId() . " force' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+				system::kill("scenario_id=" . $this->getId() . ' ');
+				sleep(1);
+				if ($this->running()) {
+					system::kill("scenario_id=" . $this->getId() . ' ');
+					sleep(1);
+				}
 			}
 			if ($this->running()) {
 				throw new Exception(__('Impossible d\'arrêter le scénario : ', __FILE__) . $this->getHumanName() . __('. PID : ', __FILE__) . $this->getPID());
@@ -1107,10 +1113,14 @@ class scenario {
 		return $name;
 	}
 
-	public function hasRight($_right, $_needAdmin = false, $_user = null) {
-		if (!is_object($_user)) {
-			$_user = $_SESSION['user'];
+	public function hasRight($_right) {
+		if (config::byKey('rights::enable') != 1) {
+			return true;
 		}
+		if (session_status() != PHP_SESSION_NONE || !isset($_SESSION) || !isset($_SESSION['user'])) {
+			return true;
+		}
+		$_user = $_SESSION['user'];
 		if (!is_object($_user)) {
 			return false;
 		}
@@ -1129,7 +1139,7 @@ class scenario {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'view');
 		}
 		if (!is_object($rights)) {
-			return ($_needAdmin) ? false : true;
+			return false;
 		}
 		return $rights->getRight();
 	}

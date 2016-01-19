@@ -6,164 +6,165 @@ $cmd = cmd::byId(init('cmd_id'));
 if (!is_object($cmd)) {
 	throw new Exception('Commande non trouvé : ' . init('cmd_id'));
 }
-sendVarToJS('cmdInfo', jeedom::toHumanReadable(utils::o2a($cmd)));
+$cmdInfo = jeedom::toHumanReadable(utils::o2a($cmd));
+sendVarToJS('cmdInfo', $cmdInfo);
 $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
 ?>
-<div style="display: none;" id="md_displayCmdConfigure"></div>
+   <div style="display: none;" id="md_displayCmdConfigure"></div>
 
 
-<a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureSaveOn"><i class="fa fa-plus-circle"></i> {{Appliquer à}}</a>
+   <a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+   <a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureSaveOn"><i class="fa fa-plus-circle"></i> {{Appliquer à}}</a>
 
-<div role="tabpanel">
+   <div role="tabpanel">
 
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
-    <li role="presentation"><a href="#configuration" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> {{Configuration avancée}}</a></li>
-    <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
-  </ul>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
+      <li role="presentation"><a href="#configuration" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> {{Configuration avancée}}</a></li>
+      <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
+    </ul>
 
 
-  <div class="tab-content" id="div_displayCmdConfigure">
-    <div role="tabpanel" class="tab-pane active" id="information">
-      <br/>
-      <legend><i class="fa fa-list-alt"></i> {{Général}}</legend>
-      <div class="row">
-        <div class="col-sm-6" >
-          <form class="form-horizontal">
-            <fieldset>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{ID}}</label>
-                <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="id" style="font-size : 1em;"></span>
+    <div class="tab-content" id="div_displayCmdConfigure">
+      <div role="tabpanel" class="tab-pane active" id="information">
+        <br/>
+        <legend><i class="fa fa-list-alt"></i> {{Général}}</legend>
+        <div class="row">
+          <div class="col-sm-6" >
+            <form class="form-horizontal">
+              <fieldset>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{ID}}</label>
+                  <div class="col-xs-4">
+                    <span class="cmdAttr label label-primary" data-l1key="id" style="font-size : 1em;"></span>
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Logical ID}}</label>
-                <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="logicalId" style="font-size : 1em;"></span>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Logical ID}}</label>
+                  <div class="col-xs-4">
+                    <span class="cmdAttr label label-primary" data-l1key="logicalId" style="font-size : 1em;"></span>
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Nom}}</label>
-                <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="name" style="font-size : 1em;"></span>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Nom}}</label>
+                  <div class="col-xs-4">
+                    <span class="cmdAttr label label-primary" data-l1key="name" style="font-size : 1em;"></span>
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Type}}</label>
-                <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="type" style="font-size : 1em;"></span>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Type}}</label>
+                  <div class="col-xs-4">
+                    <span class="cmdAttr label label-primary" data-l1key="type" style="font-size : 1em;"></span>
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Sous-type}}</label>
-                <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="subType" style="font-size : 1em;"></span>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Sous-type}}</label>
+                  <div class="col-xs-4">
+                    <span class="cmdAttr label label-primary" data-l1key="subType" style="font-size : 1em;"></span>
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{URL directe}}</label>
-                <div class="col-xs-8">
-                  <?php
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{URL directe}}</label>
+                  <div class="col-xs-8">
+                    <?php
 echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa fa-external-link"></i> URL</a>';
 ?>
+                  </div>
                 </div>
-              </div>
-            </fieldset>
-          </form>
+              </fieldset>
+            </form>
+          </div>
+          <div class="col-sm-6" >
+            <form class="form-horizontal">
+              <fieldset>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Unité}}</label>
+                  <div class="col-xs-4">
+                    <span class="cmdAttr label label-primary" data-l1key="unite" style="font-size : 1em;"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Commande déclenchant une mise à jour}}</label>
+                  <div class="col-xs-4">
+                    <span class="cmdAttr label label-primary" data-l1key="value" style="font-size : 1em;"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Cache}}</label>
+                  <div class="col-xs-4">
+                    <span class="cmdAttr label label-primary tooltips" data-l1key="cache" data-l2key="enable" title="{{Actif}}" style="font-size : 1em;"></span>
+                    <span class="label label-default tooltips" title="{{Durée du cache}}" style="font-size : 1em;"><span class="cmdAttr" data-l1key="cache" data-l2key="lifetime"></span> {{seconde(s)}}</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Evènement seulement}}</label>
+                  <div class="col-xs-4">
+                    <span class="cmdAttr label label-primary" data-l1key="eventOnly" style="font-size : 1em;"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-xs-4 control-label"></label>
+                  <div class="col-xs-4">
+                    <input type="checkbox" data-label-text="{{Visible}}" class="cmdAttr bootstrapSwitch" data-l1key="isVisible" />
+                  </div>
+                </div>
+
+              </fieldset>
+            </form>
+          </div>
         </div>
-        <div class="col-sm-6" >
-          <form class="form-horizontal">
-            <fieldset>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Unité}}</label>
-                <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="unite" style="font-size : 1em;"></span>
-                </div>
-              </div>
 
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Commande déclenchant une mise à jour}}</label>
-                <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="value" style="font-size : 1em;"></span>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Cache}}</label>
-                <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary tooltips" data-l1key="cache" data-l2key="enable" title="{{Actif}}" style="font-size : 1em;"></span>
-                  <span class="label label-default tooltips" title="{{Durée du cache}}" style="font-size : 1em;"><span class="cmdAttr" data-l1key="cache" data-l2key="lifetime"></span> {{seconde(s)}}</span>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Evènement seulement}}</label>
-                <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="eventOnly" style="font-size : 1em;"></span>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="col-xs-4 control-label"></label>
-                <div class="col-xs-4">
-                  <input type="checkbox" data-label-text="{{Visible}}" class="cmdAttr bootstrapSwitch" data-l1key="isVisible" />
-                </div>
-              </div>
-
-            </fieldset>
-          </form>
-        </div>
-      </div>
-
-      <legend><i class="fa fa-search"></i> {{Utilisé par}}</legend>
-      <form class="form-horizontal">
-        <fieldset id="fd_cmdUsedBy">
-          <?php
+        <legend><i class="fa fa-search"></i> {{Utilisé par}}</legend>
+        <form class="form-horizontal">
+          <fieldset id="fd_cmdUsedBy">
+            <?php
 $usedBy = $cmd->getUsedBy();
 ?>
-          <div class="form-group">
-            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement}}</label>
-            <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
-              <?php
+            <div class="form-group">
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement}}</label>
+              <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
+                <?php
 foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
 	echo '<span class="label label-primary cursor"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
+}
+?>
+             </div>
+           </div>
+           <div class="form-group">
+            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commandes}}</label>
+            <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
+              <?php
+foreach ($usedBy['cmd'] as $usedByCmd) {
+	echo '<span class="label label-primary cursor"><a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" style="color : white;">' . $usedByCmd->getHumanName() . '</a></span><br/>';
 }
 ?>
            </div>
          </div>
          <div class="form-group">
-          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commandes}}</label>
+          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario}}</label>
           <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
             <?php
-foreach ($usedBy['cmd'] as $usedByCmd) {
-	echo '<span class="label label-primary cursor"><a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" style="color : white;">' . $usedByCmd->getHumanName() . '</a></span><br/>';
-}
-?>
-         </div>
-       </div>
-       <div class="form-group">
-        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario}}</label>
-        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 ">
-          <?php
 foreach ($usedBy['scenario'] as $usedByScneario) {
 	echo '<span class="label label-primary cursor"><a href="' . $usedByScneario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScneario->getHumanName() . '</a></span><br/>';
 }
 ?>
+         </div>
        </div>
-     </div>
- </fieldset>
-</form>
-</div>
-<div role="tabpanel" class="tab-pane" id="configuration">
+     </fieldset>
+   </form>
+ </div>
+ <div role="tabpanel" class="tab-pane" id="configuration">
   <br/>
   <form class="form-horizontal">
     <fieldset>
@@ -188,6 +189,21 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
 	?>
       <?php }
 ?>
+      <legend><i class="fa fa-building"></i> {{Type générique}}</legend>
+      <div class="form-group">
+        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeur}}</label>
+        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+          <select class="cmdAttr form-control" data-l1key="display" data-l2key="generic_type">
+          <option value="">{{Aucun}}</option>
+            <?php
+foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $value) {
+	echo '<option value="' . $key . '">' . __($value['name'], 'common') . '</option>';
+}
+?>
+          </select>
+        </div>
+      </div>
+
       <?php if ($cmd->getType() == 'action') {?>
       <legend><i class="fa fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
       <div class="form-group">
@@ -225,133 +241,125 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
         <input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
       </div>
     </div>
+
     <div class="form-group">
-     <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action à faire}}</label>
-     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-      <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdActionType" >
-       <option value="cmd">{{Commande}}</option>
-       <option value="scenario">{{Scénario}}</option>
-     </select>
-   </div>
+      <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <a class="btn btn-success" id="bt_addActionCheckCmd"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
+      </div>
+    </div>
+    <div id="div_actionCheckCmd"></div>
 
-   <div class="cmdCheckAction cmd">
-    <div class="col-xs-6">
-     <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdCmdActionId" />
-   </div>
-   <div class="col-xs-1">
-    <a class="btn btn-default btn-sm cursor" id="bt_checkCmdActionGetCmd"><i class="fa fa-list-alt"></i></a>
-  </div>
-</div>
+    <script type="text/javascript">
+      $("#div_actionCheckCmd").sortable({axis: "y", cursor: "move", items: ".actionCheckCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
-<div class="cmdCheckAction scenario" style="display : none;">
- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-   <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdScenarioActionMode" >
-     <option value="start">{{Lancer}}</option>
-     <option value="stop">{{Arrêter}}</option>
-     <option value="activate">{{Activer}}</option>
-     <option value="deactivate">{{Désactiver}}</option>
-   </select>
- </div>
- <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-   <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdScenarioActionId" >
-     <?php
-foreach (scenario::all() as $scenario) {
-		echo ' <option value="' . $scenario->getId() . '">' . $scenario->getHumanName() . '</option>';
-	}
-
-	?>
-  </select>
-</div>
-</div>
-
-</div>
-
-
-<div class="cmdCheckAction cmd form-group">
-  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Option}}</label>
-  <div id="div_jeedomCheckCmdCmdOption" class="col-lg-9 col-md-9 col-sm-8 col-xs-6"></div>
-</div>
-
-<script>
-  $('.cmdAttr[data-l2key=jeedomCheckCmdActionType]').on('change',function(){
-    $('.cmdCheckAction').hide();
-    $('.cmdCheckAction.'+$(this).value()).show();
-  });
-
-
-  $('#bt_checkCmdActionGetCmd').on('click', function() {
-    jeedom.cmd.getSelectModal({cmd: {type: 'action'}}, function(result) {
-      $('.cmdAttr[data-l2key=jeedomCheckCmdCmdActionId]').value(result.human);
-      jeedom.cmd.displayActionOption($('.cmdAttr[data-l2key=jeedomCheckCmdCmdActionId]').value(), '', function (html) {
-        $('#div_jeedomCheckCmdCmdOption').html(html);
+      $('#bt_addActionCheckCmd').off('click').on('click',function(){
+        addActionCheckCmd({}, 'actionCheckCmd','{{Action}}');
       });
-    });
-  });
 
-  $('.cmdAttr[data-l2key=jeedomCheckCmdCmdActionId]').on('change',function(){
-   if(isset(cmdInfo.configuration.jeedomCheckCmdCmdActionOption)){
-     jeedom.cmd.displayActionOption($('.cmdAttr[data-l2key=jeedomCheckCmdCmdActionId]').value(), cmdInfo.configuration.jeedomCheckCmdCmdActionOption, function (html) {
-      $('#div_jeedomCheckCmdCmdOption').html(html);
-    });
-   }else{
-    jeedom.cmd.displayActionOption($('.cmdAttr[data-l2key=jeedomCheckCmdCmdActionId]').value(), '', function (html) {
-      $('#div_jeedomCheckCmdCmdOption').html(html);
-    });
-  }
+      $("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', 'click', function () {
+        var type = $(this).attr('data-type');
+        $(this).closest('.' + type).remove();
+      });
 
-});
-</script>
-<?php }
+      $("body").undelegate(".listCmd", 'click').delegate(".listCmd", 'click', function () {
+        var type = $(this).attr('data-type');
+        var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
+        jeedom.cmd.getSelectModal({}, function (result) {
+          el.value(result.human);
+          jeedom.cmd.displayActionOption(el.value(), '', function (html) {
+            el.closest('.' + type).find('.actionOptions').html(html);
+          });
+        });
+      });
+
+      $('body').undelegate(".cmdAction.expressionAttr[data-l1key=cmd]", 'focusout').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', function (event) {
+        var type = $(this).attr('data-type')
+        var expression = $(this).closest('.' + type).getValues('.expressionAttr');
+        var el = $(this);
+        jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function (html) {
+          el.closest('.' + type).find('.actionOptions').html(html);
+        })
+      });
+
+      function addActionCheckCmd(_action, _type, _name) {
+        if (!isset(_action)) {
+          _action = {};
+        }
+        if (!isset(_action.options)) {
+          _action.options = {};
+        }
+        var div = '<div class="' + _type + '">';
+        div += '<div class="form-group ">';
+        div += '<div class="col-sm-5">';
+        div += '<div class="input-group">';
+        div += '<span class="input-group-btn">';
+        div += '<a class="btn btn-default btn-sm bt_removeAction" data-type="' + _type + '"><i class="fa fa-minus-circle"></i></a>';
+        div += '</span>';
+        div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
+        div += '<span class="input-group-btn">';
+        div += '<a class="btn btn-default btn-sm listCmd" data-type="' + _type + '"><i class="fa fa-list-alt"></i></a>';
+        div += '</span>';
+        div += '</div>';
+        div += '</div>';
+        div += '<div class="col-sm-7 actionOptions">';
+        div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options);
+        div += '</div>';
+        $('#div_' + _type).append(div);
+        $('#div_' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
+      }
+    </script>
+    <?php }
 ?>
-<?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {?>
-<legend><i class="fa fa-bar-chart-o"></i> {{Historique}}</legend>
-<div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
-  <div class="col-xs-1">
-    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="isHistorized" />
-  </div>
-</div>
-<div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
-  <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
-      <option value="avg">{{Moyenne}}</option>
-      <option value="min">{{Minimum}}</option>
-      <option value="max">{{Maximum}}</option>
-      <option value="none">{{Aucun}}</option>
-    </select>
-  </div>
-</div>
+    <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {?>
+    <legend><i class="fa fa-bar-chart-o"></i> {{Historique}}</legend>
+    <div class="form-group">
+      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
+      <div class="col-xs-1">
+        <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="isHistorized" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
+      <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+        <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
+          <option value="avg">{{Moyenne}}</option>
+          <option value="min">{{Minimum}}</option>
+          <option value="max">{{Maximum}}</option>
+          <option value="none">{{Aucun}}</option>
+        </select>
+      </div>
+    </div>
 
-<div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux de }}</label>
-  <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-   <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
-     <option value="">{{Jamais}}</option>
-     <option value="-1 day">{{1 jour}}</option>
-     <option value="-7 days">{{7 jours}}</option>
-     <option value="-1 month">{{1 mois}}</option>
-     <option value="-6 month">{{6 mois}}</option>
-   </select>
- </div>
-</div>
-<?php }
+    <div class="form-group">
+      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux de }}</label>
+      <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+       <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
+         <option value="">{{Jamais}}</option>
+         <option value="-1 day">{{1 jour}}</option>
+         <option value="-7 days">{{7 jours}}</option>
+         <option value="-1 month">{{1 mois}}</option>
+         <option value="-6 month">{{6 mois}}</option>
+       </select>
+     </div>
+   </div>
+   <?php }
 ?>
-<?php if ($cmd->getType() == 'info') {?>
-<legend><i class="fa fa-plus"></i> {{Autres}}</legend>
-<div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ne pas répéter si la valeur ne change pas}}</label>
-  <div class="col-xs-1">
-    <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="configuration" data-l2key="doNotRepeatEvent" />
+   <?php if ($cmd->getType() == 'info') {?>
+   <legend><i class="fa fa-plus"></i> {{Autres}}</legend>
+   <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ne pas répéter si la valeur ne change pas}}</label>
+    <div class="col-xs-1">
+      <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="configuration" data-l2key="doNotRepeatEvent" />
+    </div>
   </div>
-</div>
-<div class="form-group">
-  <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push URL}}</label>
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
+  <div class="form-group">
+    <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push URL}}</label>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
+    </div>
   </div>
-</div>
-<?php }
+  <?php }
 ?>
 </fieldset>
 </form>
@@ -390,16 +398,16 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
        </select>
      </td>
    </tr>
-    <tr>
+   <tr>
     <td>{{Visible}}</td>
     <td colspan="2"><input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="hideOndashboard" /></td>
     <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="hideOnmobile" /></td>
-   </tr>
-   <tr>
+  </tr>
+  <tr>
     <td>{{Afficher le nom}}</td>
     <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
     <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
-    <td></td>
+    <td><input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowNameOnMobile" /></td>
   </tr>
   <tr>
     <td>{{Afficher les statistiques}}</td>
@@ -497,6 +505,11 @@ if ($cmd->getDisplay('parameters') != '') {
   });
 
   $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
+  if(isset(cmdInfo.configuration.actionCheckCmd) && $.isArray(cmdInfo.configuration.actionCheckCmd) && cmdInfo.configuration.actionCheckCmd.length != null){
+    for(var i in cmdInfo.configuration.actionCheckCmd){
+      addActionCheckCmd(cmdInfo.configuration.actionCheckCmd[i], 'actionCheckCmd','{{Action}}');
+    }
+  }
 
   $('#bt_cmdConfigureSave').on('click', function () {
     var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
@@ -513,6 +526,8 @@ if ($cmd->getDisplay('parameters') != '') {
     if (isset(checkCmdParameter) && isset(checkCmdParameter.options)) {
       cmd.configuration.jeedomCheckCmdCmdActionOption = checkCmdParameter.options;
     }
+    cmd.configuration.actionCheckCmd = {};
+    cmd.configuration.actionCheckCmd = $('#div_actionCheckCmd .actionCheckCmd').getValues('.expressionAttr');
     jeedom.cmd.save({
       cmd: cmd,
       error: function (error) {
@@ -525,62 +540,58 @@ if ($cmd->getDisplay('parameters') != '') {
   });
 
 
-  $('#bt_cmdConfigureSaveOn').on('click',function(){
-    var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
-    if (!isset(cmd.display)) {
-      cmd.display = {};
-    }
-    if (!isset(cmd.display.parameters)) {
-      cmd.display.parameters = {};
-    }
-    $('#table_widgetParameters tbody tr').each(function () {
-      cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
-    });
-    cmd = {display : cmd.display,template : cmd.template };
-    var checkCmdParameter = $('#div_jeedomCheckCmdCmdOption').getValues('.expressionAttr')[0];
-    if (isset(checkCmdParameter) && isset(checkCmdParameter.options)) {
-      cmd.configuration.jeedomCheckCmdCmdActionOption = checkCmdParameter.options;
-    }
-    $('#md_cmdConfigureSelectMultiple').load('index.php?v=d&modal=cmd.selectMultiple&cmd_id='+cmdInfo.id, function() {
-      initTableSorter();
-      initCheckBox();
-      $('#bt_cmdConfigureSelectMultipleAlertToogle').off().on('click', function () {
-        var state = false;
-        if ($(this).attr('data-state') == 0) {
-          state = true;
-          $(this).attr('data-state', 1);
-          $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
-        } else {
-          state = false;
-          $(this).attr('data-state', 0);
-          $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
-        }
-        $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
-          if ($(this).is(':visible')) {
-           $(this).find('.selectMultipleApplyCmd').bootstrapSwitch('destroy');
-           $(this).find('.selectMultipleApplyCmd').prop('checked', state);
-           $(this).find('.selectMultipleApplyCmd').bootstrapSwitch();
-         }
-       });
+    $('#bt_cmdConfigureSaveOn').on('click',function(){
+      var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
+      if (!isset(cmd.display)) {
+        cmd.display = {};
+      }
+      if (!isset(cmd.display.parameters)) {
+        cmd.display.parameters = {};
+      }
+      $('#table_widgetParameters tbody tr').each(function () {
+        cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
       });
-
-      $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
-        $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
-          if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
-            cmd.id = $(this).attr('data-cmd_id');
-            jeedom.cmd.save({
-              cmd: cmd,
-              error: function (error) {
-                $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'});
-              },
-              success: function () {
-
-              }
-            });
+      cmd = {display : cmd.display,template : cmd.template };
+      $('#md_cmdConfigureSelectMultiple').load('index.php?v=d&modal=cmd.selectMultiple&cmd_id='+cmdInfo.id, function() {
+        initTableSorter();
+        initCheckBox();
+        $('#bt_cmdConfigureSelectMultipleAlertToogle').off().on('click', function () {
+          var state = false;
+          if ($(this).attr('data-state') == 0) {
+            state = true;
+            $(this).attr('data-state', 1);
+            $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
+          } else {
+            state = false;
+            $(this).attr('data-state', 0);
+            $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
           }
+          $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
+            if ($(this).is(':visible')) {
+             $(this).find('.selectMultipleApplyCmd').bootstrapSwitch('destroy');
+             $(this).find('.selectMultipleApplyCmd').prop('checked', state);
+             $(this).find('.selectMultipleApplyCmd').bootstrapSwitch();
+           }
+         });
         });
-        $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification(s) appliquée(s) avec succès}}", level: 'success'});
-      });
-    }).dialog('open');
-});
+
+        $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
+          $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
+            if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
+              cmd.id = $(this).attr('data-cmd_id');
+              jeedom.cmd.save({
+                cmd: cmd,
+                error: function (error) {
+                  $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+
+                }
+              });
+            }
+          });
+          $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification(s) appliquée(s) avec succès}}", level: 'success'});
+        });
+      }).dialog('open');
+  });
 </script>

@@ -3,3 +3,15 @@ test.php
 core/config/common.config.php
 /plugins
 sftp-config.json
+
+.idea
+.project
+
+log/*
+!log/.htaccess
+
+tmp/*
+!tmp/.htaccess
+
+Thumbs.db
+.DS_Store

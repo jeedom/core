@@ -1,0 +1,11 @@
+language: php
+sudo: required
+php:
+  - 5.6
+  - 7.0
+install:
+  - sudo ./install/install.sh
+  - php install/install.php mode=force
+  - sudo mkdir /home/travis/build/jeedom/plugins
+  - sudo chmod 777 -R /home/travis/build/jeedom
+  - sudo chown www-data:www-data -R /home/travis/build/jeedom

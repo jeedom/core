@@ -110,6 +110,8 @@ class scenarioExpression {
 				$return['html'] = template_replace(cmd::cmdToHumanReadable($replace), $return['html']);
 			} catch (Exception $e) {
 
+			} catch (Error $e) {
+
 			}
 		}
 		$replace = array('#uid#' => 'exp' . mt_rand());
@@ -167,6 +169,8 @@ class scenarioExpression {
 							$values[] = evaluate($value);
 						} catch (Exception $ex) {
 
+						} catch (Error $ex) {
+
 						}
 					}
 				}
@@ -219,6 +223,8 @@ class scenarioExpression {
 						try {
 							$values[] = evaluate($value);
 						} catch (Exception $ex) {
+
+						} catch (Error $ex) {
 
 						}
 					}
@@ -290,6 +296,8 @@ class scenarioExpression {
 							$values[] = evaluate($value);
 						} catch (Exception $ex) {
 
+						} catch (Error $ex) {
+
 						}
 					}
 				}
@@ -341,6 +349,8 @@ class scenarioExpression {
 					try {
 						$values[] = evaluate($value);
 					} catch (Exception $ex) {
+
+					} catch (Error $ex) {
 
 					}
 				}
@@ -589,9 +599,6 @@ class scenarioExpression {
 		$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, trim($_name));
 		if (is_object($dataStore)) {
 			$value = $dataStore->getValue($_default);
-			if (strpos($value, ' ') !== false) {
-				return '"' . $value . '"';
-			}
 			return $value;
 		}
 		return $_default;
@@ -775,6 +782,13 @@ class scenarioExpression {
 		if ($_scenario != null) {
 			$replace1 = array_merge($replace1, $_scenario->getTags());
 		}
+		if ($_quote) {
+			foreach ($replace1 as &$value) {
+				if (strpos($value, ' ') !== false || preg_match("/[a-zA-Z]/", $value) || $value === '') {
+					$value = '"' . trim($value, '"') . '"';
+				}
+			}
+		}
 		$replace2 = array();
 		if (is_string($_expression)) {
 			preg_match_all("/([a-zA-Z][a-zA-Z_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
@@ -806,9 +820,10 @@ class scenarioExpression {
 							if (!isset($arguments[0])) {
 								$arguments[0] = '';
 							}
-							$replace2[$replace_string] = self::trigger($arguments[0], $_scenario, $_quote);
+							$replace2[$replace_string] = self::trigger($arguments[0], $_scenario);
 						} else {
 							$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
+
 						}
 					} else {
 						if (function_exists($function)) {
@@ -818,7 +833,9 @@ class scenarioExpression {
 							$replace2[$replace_string] = call_user_func_array($function, $arguments);
 						}
 					}
-
+					if ($_quote && (strpos($replace2[$replace_string], ' ') !== false || preg_match("/[a-zA-Z]/", $replace2[$replace_string]) || $replace2[$replace_string] === '')) {
+						$replace2[$replace_string] = '"' . trim($replace2[$replace_string], '"') . '"';
+					}
 				}
 			}
 		} else {
@@ -828,7 +845,7 @@ class scenarioExpression {
 
 	}
 
-	public static function createAndExec($_type, $_cmd, $_options) {
+	public static function createAndExec($_type, $_cmd, $_options = null) {
 		$scenarioExpression = new self();
 		$scenarioExpression->setType($_type);
 		$scenarioExpression->setExpression($_cmd);
@@ -901,6 +918,8 @@ class scenarioExpression {
 							$options['duration'] = evaluate($options['duration']);
 						} catch (Exception $e) {
 
+						} catch (Error $e) {
+
 						}
 						if (is_numeric($options['duration']) && $options['duration'] > 0) {
 							$this->setLog($scenario, __('Pause de ', __FILE__) . $options['duration'] . __(' seconde(s)', __FILE__));
@@ -967,11 +986,11 @@ class scenarioExpression {
 					return;
 				} else if ($this->getExpression() == 'say') {
 					$this->setLog($scenario, __('Je dis : ', __FILE__) . $options['message']);
-					nodejs::pushUpdate('jeedom::say', $options['message']);
+					event::add('jeedom::say', $options['message']);
 					return;
 				} else if ($this->getExpression() == 'gotodesign') {
 					$this->setLog($scenario, __('Changement design : ', __FILE__) . $options['plan_id']);
-					nodejs::pushUpdate('jeedom::gotoplan', $options['plan_id']);
+					event::add('jeedom::gotoplan', $options['plan_id']);
 					return;
 				} else if ($this->getExpression() == 'return') {
 					$this->setLog($scenario, __('Je vais retourner : ', __FILE__) . $options['message']);
@@ -1023,6 +1042,8 @@ class scenarioExpression {
 						}
 					} catch (Exception $ex) {
 						$result = $options['value'];
+					} catch (Error $ex) {
+						$result = $options['value'];
 					}
 					$this->setLog($scenario, __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' => ', __FILE__) . $options['value'] . ' = ' . $result);
 					$dataStore = new dataStore();
@@ -1039,12 +1060,12 @@ class scenarioExpression {
 					$dataStore->setValue('');
 					$dataStore->setLink_id(-1);
 					$dataStore->save();
-					$options_cmd = array('title' => '', 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'variable' => $this->getOptions('variable'));
+					$limit = (isset($options['timeout'])) ? $options['timeout'] : 300;
+					$options_cmd = array('title' => '', 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'timeout' => $limit, 'variable' => $this->getOptions('variable'));
 					$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
 					if (!is_object($cmd)) {
 						throw new Exception(__('Commande introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
 					}
-					$limit = (isset($options['timeout'])) ? $options['timeout'] : 300;
 					$this->setLog($scenario, __('Demande ', __FILE__) . print_r($options_cmd, true));
 					$cmd->setConfiguration('storeVariable', $this->getOptions('variable'));
 					$cmd->save();
@@ -1112,6 +1133,8 @@ class scenarioExpression {
 				return eval($this->getExpression());
 			}
 		} catch (Exception $e) {
+			$this->setLog($scenario, $message . $e->getMessage());
+		} catch (Error $e) {
 			$this->setLog($scenario, $message . $e->getMessage());
 		}
 	}

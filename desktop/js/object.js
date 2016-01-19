@@ -102,7 +102,7 @@ $("#bt_addObject,#bt_addObject2").on('click', function (event) {
                 },
                 success: function (data) {
                     modifyWithoutSave = false;
-                    window.location.replace('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1');
+                     loadPage('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1');
                 }
             });
         }
@@ -127,7 +127,7 @@ $("#bt_saveObject").on('click', function (event) {
             },
             success: function (data) {
                 modifyWithoutSave = false;
-                window.location.replace('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1');
+                 loadPage('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1');
             }
         });
     } else {
@@ -148,7 +148,7 @@ $("#bt_removeObject").on('click', function (event) {
                     },
                     success: function () {
                         modifyWithoutSave = false;
-                        window.location.replace('index.php?v=d&p=object&removeSuccessFull=1');
+                         loadPage('index.php?v=d&p=object&removeSuccessFull=1');
                     }
                 });
             }

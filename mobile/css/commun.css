@@ -20,12 +20,20 @@ body{
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
+.eqLogic-widget :after {
+   content: none;
+}
+
 .scenario-widget{
     display: inline-block;
     background-color: #7f8c8d;
     color : white;
     vertical-align: top;
     text-shadow: initial;
+}
+
+.scenario-widget :after {
+   content: none;
 }
 
 .cursor{

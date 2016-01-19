@@ -1,0 +1,22 @@
+<div style="width:90px;height:100%;vertical-align: top;" class="cmd #history# tooltips" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" title="#collectDate#">
+    <center>
+        <span style="font-size: 3em;" class="action cursor" id="iconCmd#uid#"></span>
+    </center>
+</div>
+
+<script>
+    if ('#state#' == '1' || '#state#' == 1) {
+        $('#iconCmd#uid#').append('<i class="icon jeedom-lumiere-on"></i>');
+        if (jeedom.cmd.normalizeName('#name#') == 'on') {
+            $('.cmd[data-cmd_uid=#uid#]').hide();
+        }
+    } else {
+        $('#iconCmd#uid#').append('<i class="icon jeedom-lumiere-off"></i>');
+        if (jeedom.cmd.normalizeName('#name#') == 'off') {
+            $('.cmd[data-cmd_uid=#uid#]').hide();
+        }
+    }
+    $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function() {
+        jeedom.cmd.execute({id: '#id#'});
+    });
+</script>

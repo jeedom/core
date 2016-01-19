@@ -41,16 +41,16 @@ try {
 		}
 		try {
 			if ($update->getType() != 'core') {
-				log::add('update', 'update', __("[START UPDATE]\n", __FILE__));
+				log::add('update', 'alert', __("[START UPDATE]\n", __FILE__));
 			}
 			$update->doUpdate();
 			if ($update->getType() != 'core') {
-				log::add('update', 'update', __("[END UPDATE SUCCESS]\n", __FILE__));
+				log::add('update', 'alert', __("[END UPDATE SUCCESS]\n", __FILE__));
 			}
 		} catch (Exception $e) {
 			if ($update->getType() != 'core') {
-				log::add('update', 'update', $e->getMessage());
-				log::add('update', 'update', __("[END UPDATE ERROR]\n", __FILE__));
+				log::add('update', 'alert', $e->getMessage());
+				log::add('update', 'alert', __("[END UPDATE ERROR]\n", __FILE__));
 			}
 		}
 		ajax::success();
@@ -71,11 +71,6 @@ try {
 
 	if (init('action') == 'updateAll') {
 		update::makeUpdateLevel(init('mode'), init('level'), init('version', ''), init('onlyThisVersion', ''));
-		ajax::success();
-	}
-
-	if (init('action') == 'updateSystem') {
-		jeedom::updateSystem();
 		ajax::success();
 	}
 

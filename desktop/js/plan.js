@@ -41,7 +41,7 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                    window.location.replace('index.php?v=d&p=plan&plan_id=' + data.id);
+                    loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
                 }
             });
         }
@@ -58,9 +58,9 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                    window.location.replace('index.php?v=d&p=plan&plan_id=' + data.id);
-                },
-            });
+                   loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
+               },
+           });
         }
     });
 });
@@ -76,7 +76,7 @@
  $('body').delegate('.plan-link-widget', 'click', function () {
     if ($('#bt_editPlan').attr('data-mode') != "1") {
         planHeader_id = $(this).attr('data-link_id');
-        displayPlan();
+        $('#sel_planHeader').value(planHeader_id);
     }
 });
 
@@ -90,7 +90,7 @@
                 },
                 success: function () {
                    $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
-                   window.location.reload();
+                   loadPage('index.php?v=d&p=plan');
                },
            });
         }
@@ -386,7 +386,7 @@ function displayPlan(_offsetX, _offsetY) {
                 $('#bt_editPlan').show();
             }
 
-           $('.div_displayObject:visible:last').find('eqLogic-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
+            $('.div_displayObject:visible:last').find('eqLogic-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget').remove();
             if (planHeader_id != -1) {
                 jeedom.plan.byPlanHeader({
                     id: planHeader_id,
@@ -744,7 +744,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     if (init(_noRender, false) == false) {
         $('.div_displayObject:visible:last').append(html);
     }
-
+    html.addClass('jeedomAlreadyPosition');
     html.css('z-index', 1000);
     if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
@@ -778,7 +778,6 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
         }
     }
 
-
     html.css('position', 'absolute');
     var position = {
         top: init(_plan.position.top, '10') * parent.height / 100,
@@ -788,19 +787,12 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     html.css('top', position.top);
     html.css('left', position.left);
 
-
-    var rotate = '';
-    if (isset(_plan.css) && isset(_plan.css.rotate) && _plan.css.rotate != 0) {
-        //    rotate = ' rotate(' + _plan.css.rotate + 'deg)';
-    }
-
-
     html.css('transform-origin', '0 0');
-    html.css('transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
+    html.css('transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
     html.css('-webkit-transform-origin', '0 0');
-    html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
+    html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
     html.css('-moz-transform-origin', '0 0');
-    html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate);
+    html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')');
 
     html.addClass('noResize');
     if (!isset(_plan.display) || !isset(_plan.display.noPredefineSize) || _plan.display.noPredefineSize == 0) {

@@ -105,12 +105,13 @@ foreach (ls($root_dir, '*') as $dir) {
 		}
 	}
 }
+//echo '#LANG : ' . translate::getLanguage();
 ?>
 CACHE MANIFEST
 
 CACHE:
-/socket.io/socket.io.js?1.2.1
 <?php
+echo '#LANG : ' . translate::getLanguage();
 foreach (plugin::listPlugin(true) as $plugin) {
 	foreach (ls(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile', '*') as $file) {
 		if (is_dir(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/core/template/mobile/' . $file)) {
@@ -135,8 +136,8 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			$other_file[] = 'plugins/' . $plugin->getId() . '/core/template/mobile/' . $file;
 		}
 	}
-	if ($plugin->getNodejs() == 1 && file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/js/node.js')) {
-		$js_file[] = 'plugins/' . $plugin->getId() . '/mobile/js/node.js';
+	if ($plugin->getEventjs() == 1 && file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/mobile/js/event.js')) {
+		$js_file[] = 'plugins/' . $plugin->getId() . '/mobile/js/event.js';
 	}
 	if ($plugin->getMobile() != '') {
 		if (file_exists(dirname(__FILE__) . '/plugins/' . $plugin->getId() . '/doc/images/' . $plugin->getId() . '_icon.png')) {

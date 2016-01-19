@@ -71,8 +71,6 @@ try {
 	$exclude = array(
 		'tmp',
 		'backup',
-		'log',
-		'ngrok',
 		'.git',
 		realpath(dirname(__FILE__) . '/../core/nodeJS/node_modules'),
 		realpath(dirname(__FILE__) . '/../doc'),
@@ -125,10 +123,10 @@ try {
 	}
 
 	echo __("Vérification de la base de données : \n", __FILE__);
-	system("mysqlcheck --host=" . $CONFIG['db']['host'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . ' --auto-repair --silent');
+	system("mysqlcheck --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . ' --auto-repair --silent');
 
 	echo __('Sauvegarde de la base de données...', __FILE__);
-	$rc = system("mysqldump --host=" . $CONFIG['db']['host'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  > " . $tmp . "/DB_backup.sql");
+	$rc = system("mysqldump --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  > " . $tmp . "/DB_backup.sql");
 	if ($rc != 0) {
 		throw new Exception('Echec lors de la sauvegarde de la BDD, verifier que mysqldump est bien présent. Code retour : ' . $rc);
 	}
@@ -143,7 +141,7 @@ try {
 	}
 
 	echo __('Nettoyage des anciennes sauvegardes...', __FILE__);
-	system('find ' . $backup_dir . ' -mtime +' . config::byKey('backup::keepDays') . ' -delete');
+	shell_exec('find ' . $backup_dir . ' -mtime +' . config::byKey('backup::keepDays') . ' -delete');
 	echo __("OK", __FILE__) . "\n";
 
 	echo __('Limite de la taille totale des sauvegardes à ', __FILE__) . config::byKey('backup::maxSize') . ' Mo...';

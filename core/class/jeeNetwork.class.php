@@ -75,12 +75,6 @@ class jeeNetwork {
 					$cron->setTimeout(5);
 					$cron->save();
 					$cron = new cron();
-					$cron->setClass('cmd');
-					$cron->setFunction('collect');
-					$cron->setSchedule('*/5 * * * * *');
-					$cron->setTimeout(5);
-					$cron->save();
-					$cron = new cron();
 					$cron->setClass('history');
 					$cron->setFunction('archive');
 					$cron->setSchedule('00 * * * * *');
@@ -99,9 +93,9 @@ class jeeNetwork {
 					}
 					foreach (update::all() as $update) {
 						switch ($update->getType()) {
-						case 'core':
+							case 'core':
 								break;
-						case 'plugin':
+							case 'plugin':
 								try {
 									$plugin = plugin::byId($update->getLogicalId());
 									if (is_object($plugin) && $plugin->getAllowRemote() != 1) {
@@ -109,9 +103,11 @@ class jeeNetwork {
 									}
 								} catch (Exception $e) {
 
+								} catch (Error $e) {
+
 								}
 								break;
-						default:
+							default:
 								$update->deleteObjet();
 								break;
 						}
@@ -133,10 +129,6 @@ class jeeNetwork {
 						$cron->remove();
 					}
 					$cron = cron::byClassAndFunction('scenario', 'check');
-					if (is_object($cron)) {
-						$cron->remove();
-					}
-					$cron = cron::byClassAndFunction('cmd', 'collect');
 					if (is_object($cron)) {
 						$cron->remove();
 					}
@@ -162,11 +154,15 @@ class jeeNetwork {
 					$jeeNetwork->save();
 				} catch (Exception $e) {
 					log::add('jeeNetwork', 'error', $e->getMessage());
+				} catch (Error $e) {
+					log::add('jeeNetwork', 'error', $e->getMessage());
 				}
 			} else {
 				try {
 					$jeeNetwork->save();
 				} catch (Exception $e) {
+
+				} catch (Error $e) {
 
 				}
 			}
@@ -273,7 +269,6 @@ class jeeNetwork {
 			$this->setConfiguration('url', $result['jeedom::url']);
 			$this->setConfiguration('version', $result['version']);
 			$this->setConfiguration('auiKey', $result['auiKey']);
-			$this->setConfiguration('ngrok::port', $result['ngrok::port']);
 			$this->setConfiguration('lastCommunication', date('Y-m-d H:i:s'));
 			if ($this->getConfiguration('nbMessage') != $result['nbMessage'] && $result['nbMessage'] > 0) {
 				log::add('jeeNetwork', 'error', __('Le jeedom esclave : ', __FILE__) . $this->getName() . __(' a de nouveaux messages : ', __FILE__) . $result['nbMessage']);
@@ -438,36 +433,36 @@ class jeeNetwork {
 		return true;
 	}
 
-	public function restartNgrok() {
+	public function restartDns() {
 		if ($this->getStatus() == 'error') {
 			return '';
 		}
 		$jsonrpc = $this->getJsonRpc();
-		if (!$jsonrpc->sendRequest('network::restartNgrok', array())) {
+		if (!$jsonrpc->sendRequest('network::restartDns', array())) {
 			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 		}
 		$this->save();
 		return true;
 	}
 
-	public function stopNgrok() {
+	public function stopDns() {
 		if ($this->getStatus() == 'error') {
 			return '';
 		}
 		$jsonrpc = $this->getJsonRpc();
-		if (!$jsonrpc->sendRequest('network::stopNgrok', array())) {
+		if (!$jsonrpc->sendRequest('network::stopDns', array())) {
 			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 		}
 		$this->save();
 		return true;
 	}
 
-	public function ngrokRun($_proto = 'https', $_port = 80, $_name = '') {
+	public function dnsRun($_proto = 'https', $_port = 80, $_name = '') {
 		if ($this->getStatus() == 'error') {
 			return '';
 		}
 		$jsonrpc = $this->getJsonRpc();
-		if (!$jsonrpc->sendRequest('network::ngrokRun', array('proto' => $_proto, 'port' => $_port, 'name' => $_name))) {
+		if (!$jsonrpc->sendRequest('network::dnsRun', array('proto' => $_proto, 'port' => $_port, 'name' => $_name))) {
 			throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 		}
 		return $jsonrpc->getResult();

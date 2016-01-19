@@ -16,6 +16,10 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+if (!file_exists(dirname(__FILE__) . '/core/config/common.config.php')) {
+	header("location: install/setup.php");
+}
+
 if (!isset($_GET['v'])) {
 	$useragent = (isset($_SERVER["HTTP_USER_AGENT"])) ? $_SERVER["HTTP_USER_AGENT"] : 'none';
 	$getParams = '';

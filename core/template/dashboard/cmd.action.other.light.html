@@ -1,0 +1,26 @@
+<div style="width:90px;min-height:80px;" class="cmd tooltips cmd-widget cursor" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#">
+    <center>
+        <span class='cmdName' style="font-weight: bold;font-size : 12px;display: none;">#valueName#</span>
+        <span style="font-size: 3.5em;font-weight: bold;margin-top: 5px;" class="action iconCmd#uid#"></span>
+    </center>
+    <script>
+        if ('#displayName#' == 1 || '#displayName#' == '1') {
+            $('.cmd[data-cmd_uid=#uid#] .cmdName').show();
+        }
+        $('.iconCmd#uid#').empty();
+        if ('#state#' == '1' || '#state#' == 1 || '#state#' == '99' || '#state#' == 99 || '#state#' == 'on') {
+            $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-on"></i>');
+            if (jeedom.cmd.normalizeName('#name#') == 'on') {
+                $('.cmd[data-cmd_uid=#uid#]').hide();
+            }
+        } else {
+            $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-off"></i>');
+            if (jeedom.cmd.normalizeName('#name#') == 'off') {
+                $('.cmd[data-cmd_uid=#uid#]').hide();
+            }
+        }
+        $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
+            jeedom.cmd.execute({id: '#id#'});
+        });
+    </script>
+</div>

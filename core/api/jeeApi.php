@@ -25,9 +25,10 @@ if (isset($argv)) {
 		}
 	}
 }
+
 if (init('type') != '') {
 	try {
-		if (!jeedom::apiAccess(init('apikey')) && !jeedom::apiAccess(init('api'))) {
+		if (!jeedom::apiAccess(init('apikey', init('api')))) {
 			connection::failed();
 			throw new Exception('Clé API non valide (ou vide) . Demande venant de :' . getClientIp() . '. Clé API : ' . secureXSS(init('apikey') . init('api')));
 		}
@@ -75,6 +76,11 @@ if (init('type') != '') {
 			switch (init('action')) {
 				case 'start':
 					log::add('api', 'debug', 'Démarrage scénario de : ' . $scenario->getHumanName());
+					$tags = array();
+					foreach ($_REQUEST as $key => $value) {
+						$tags['#' . $key . '#'] = $value;
+					}
+					$scenario->setTags($tags);
 					$scenario->launch(false, __('Exécution provoquée par un appel API ', __FILE__));
 					break;
 				case 'stop':
@@ -138,17 +144,26 @@ if (init('type') != '') {
 
 		$jsonrpc = new jsonrpc($request);
 
-		if (!mySqlIsHere()) {
-			throw new Exception('Mysql non lancé', -32001);
-		}
-
 		if ($jsonrpc->getJsonrpc() != '2.0') {
 			throw new Exception('Requête invalide. Version Jsonrpc invalide : ' . $jsonrpc->getJsonrpc(), -32001);
 		}
 
 		$params = $jsonrpc->getParams();
 
-		if (!jeedom::apiAccess($params['apikey']) && !jeedom::apiAccess($params['api'])) {
+		if ($jsonrpc->getMethod() == 'user::getHash') {
+			if (!isset($params['login']) || !isset($params['password']) || $params['login'] == '' || $params['password'] == '') {
+				connection::failed();
+				throw new Exception('Le login ou le password ne peuvent être vide', -32001);
+			}
+			$user = user::connect($params['login'], $params['password']);
+			if (!is_object($user) || $user->getEnable() != 1) {
+				connection::failed();
+				throw new Exception('Echec de l\'authentification', -32001);
+			}
+			$jsonrpc->makeSuccess($user->getHash());
+		}
+
+		if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) || (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
 			connection::failed();
 			throw new Exception('Clé API invalide', -32001);
 		}
@@ -164,7 +179,7 @@ if (init('type') != '') {
 			$jsonrpc->makeSuccess(config::save($params['key'], $params['value'], $params['plugin']));
 		}
 
-		if (isset($params['plugin']) && $params['plugin'] != '') {
+		if (isset($params['plugin']) && $params['plugin'] != '' && $params['plugin'] != 'core') {
 			log::add('api', 'info', 'Demande pour le plugin : ' . secureXSS($params['plugin']));
 			include_file('core', $params['plugin'], 'api', $params['plugin']);
 		} else {
@@ -176,6 +191,16 @@ if (init('type') != '') {
 			/*             * ***********************Version********************************* */
 			if ($jsonrpc->getMethod() == 'version') {
 				$jsonrpc->makeSuccess(jeedom::version());
+			}
+
+			/*             * ***********************Datetime********************************* */
+			if ($jsonrpc->getMethod() == 'datetime') {
+				$jsonrpc->makeSuccess(getmicrotime());
+			}
+
+			/*             * ***********************changes********************************* */
+			if ($jsonrpc->getMethod() == 'event::changes') {
+				$jsonrpc->makeSuccess(event::changes($params['datetime']));
 			}
 
 			/*             * ************************Plugin*************************** */
@@ -229,11 +254,7 @@ if (init('type') != '') {
 					$eqLogic_return = utils::o2a($eqLogic);
 					$eqLogic_return['cmds'] = array();
 					foreach ($eqLogic->getCmd() as $cmd) {
-						$cmd_return = utils::o2a($cmd);
-						if ($cmd->getType() == 'info') {
-							$cmd_return['state'] = $cmd->execCmd();
-						}
-						$eqLogic_return['cmds'][] = $cmd_return;
+						$return['cmds'][] = $cmd->exportApi();
 					}
 					$return['eqLogics'][] = $eqLogic_return;
 				}
@@ -285,11 +306,7 @@ if (init('type') != '') {
 				$return = utils::o2a($eqLogic);
 				$return['cmds'] = array();
 				foreach ($eqLogic->getCmd() as $cmd) {
-					$cmd_return = utils::o2a($cmd);
-					if ($cmd->getType() == 'info') {
-						$cmd_return['state'] = $cmd->execCmd();
-					}
-					$return['cmds'][] = $cmd_return;
+					$return['cmds'][] = $cmd->exportApi();
 				}
 				$jsonrpc->makeSuccess($return);
 			}
@@ -330,8 +347,6 @@ if (init('type') != '') {
 						$cmd_order++;
 						$enableList[$cmd->getId()] = true;
 					}
-
-					//suppression des entrées inexistante.
 					foreach ($dbList as $dbObject) {
 						if (!isset($enableList[$dbObject->getId()]) && !$dbObject->dontRemoveCmd()) {
 							$dbObject->remove();
@@ -346,17 +361,10 @@ if (init('type') != '') {
 				foreach ($params['eqType'] as $eqType) {
 					$info_eqLogics = array();
 					foreach (eqLogic::byType($eqType) as $eqLogic) {
-						$info_cmds = array();
-						foreach ($eqLogic->getCmd() as $cmd) {
-							$info_cmd = utils::o2a($cmd);
-							if ($cmd->getType() == 'info') {
-								$info_cmd['value'] = $cmd->execCmd();
-								$info_cmd['collectDate'] = $cmd->getCollectDate();
-							}
-							$info_cmds[] = $info_cmd;
-						}
 						$info_eqLogic = utils::o2a($eqLogic);
-						$info_eqLogic['cmds'] = $info_cmds;
+						foreach ($eqLogic->getCmd() as $cmd) {
+							$info_eqLogic['cmds'][] = $cmd->exportApi();
+						}
 						$info_eqLogics[] = $info_eqLogic;
 					}
 					$return[$eqType] = $info_eqLogics;
@@ -364,18 +372,10 @@ if (init('type') != '') {
 
 				foreach ($params['id'] as $id) {
 					$eqLogic = eqLogic::byId($id);
-					$info_cmds = array();
-					foreach ($eqLogic->getCmd() as $cmd) {
-						$info_cmd = utils::o2a($cmd);
-						if ($cmd->getType() == 'info') {
-							$info_cmd['value'] = $cmd->execCmd();
-							$info_cmd['collectDate'] = $cmd->getCollectDate();
-						}
-						$info_cmds[] = $info_cmd;
-					}
-
 					$info_eqLogic = utils::o2a($eqLogic);
-					$info_eqLogic['cmds'] = $info_cmds;
+					foreach ($eqLogic->getCmd() as $cmd) {
+						$info_eqLogic['cmds'][] = $cmd->exportApi();
+					}
 					$return[$id] = $info_eqLogic;
 				}
 				$jsonrpc->makeSuccess($return);
@@ -384,11 +384,19 @@ if (init('type') != '') {
 
 			/*             * ************************Commande*************************** */
 			if ($jsonrpc->getMethod() == 'cmd::all') {
-				$jsonrpc->makeSuccess(utils::o2a(cmd::all()));
+				$return = array();
+				foreach (cmd::all() as $cmd) {
+					$return[] = $cmd->exportApi();
+				}
+				$jsonrpc->makeSuccess($return);
 			}
 
 			if ($jsonrpc->getMethod() == 'cmd::byEqLogicId') {
-				$jsonrpc->makeSuccess(utils::o2a(cmd::byEqLogicId($params['eqLogic_id'])));
+				$return = array();
+				foreach (cmd::byEqLogicId($params['eqLogic_id']) as $cmd) {
+					$return[] = $cmd->exportApi();
+				}
+				$jsonrpc->makeSuccess($return);
 			}
 
 			if ($jsonrpc->getMethod() == 'cmd::byId') {
@@ -396,7 +404,7 @@ if (init('type') != '') {
 				if (!is_object($cmd)) {
 					throw new Exception('Cmd introuvable : ' . secureXSS($params['id']), -32701);
 				}
-				$jsonrpc->makeSuccess(utils::o2a($cmd));
+				$jsonrpc->makeSuccess($cmd->exportApi());
 			}
 
 			if ($jsonrpc->getMethod() == 'cmd::execCmd') {
@@ -495,7 +503,6 @@ if (init('type') != '') {
 					'nbMessage' => message::nbMessage(),
 					'auiKey' => $auiKey,
 					'jeedom::url' => config::byKey('jeedom::url'),
-					'ngrok::port' => config::byKey('ngrok::port'),
 				);
 				if (!filter_var(network::getNetworkAccess('external', 'ip'), FILTER_VALIDATE_IP) && network::getNetworkAccess('external', 'ip') != '') {
 					$return['jeedom::url'] = network::getNetworkAccess('internal');
@@ -688,6 +695,60 @@ if (init('type') != '') {
 				$jsonrpc->makeSuccess('ok');
 			}
 
+			if ($jsonrpc->getMethod() == 'plugin::dependancyInfo') {
+				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess(array('state' => 'nok', 'log' => 'nok'));
+				}
+				$jsonrpc->makeSuccess($plugin->dependancy_info());
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::dependancyInstall') {
+				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess();
+				}
+				$jsonrpc->makeSuccess($plugin->dependancy_install());
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::deamonInfo') {
+				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess(array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0));
+				}
+				$jsonrpc->makeSuccess($plugin->deamon_info());
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::deamonStart') {
+				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess();
+				}
+				if (!isset($params['debug'])) {
+					$params['debug'] = false;
+				}
+				if (!isset($params['forceRestart'])) {
+					$params['forceRestart'] = false;
+				}
+				$jsonrpc->makeSuccess($plugin->deamon_stop($params['debug'], $params['forceRestart']));
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::deamonStop') {
+				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess();
+				}
+				$jsonrpc->makeSuccess($plugin->deamon_stop($params['debug'], $params['forceRestart']));
+			}
+
+			if ($jsonrpc->getMethod() == 'plugin::deamonChangeAutoMode') {
+				$plugin = plugin::byId($params['plugin_id']);
+				if (!is_object($plugin)) {
+					$jsonrpc->makeSuccess();
+				}
+				$jsonrpc->makeSuccess($plugin->deamon_changeAutoMode($params['mode']));
+			}
+
 			/*             * ************************Update*************************** */
 			if ($jsonrpc->getMethod() == 'update::all') {
 				$jsonrpc->makeSuccess(utils::o2a(update::all()));
@@ -705,22 +766,19 @@ if (init('type') != '') {
 
 			/*             * ************************Network*************************** */
 
-			if ($jsonrpc->getMethod() == 'network::restartNgrok') {
+			if ($jsonrpc->getMethod() == 'network::restartDns') {
 				config::save('market::allowDNS', 1);
-				if (network::dns_run()) {
-					network::dns_stop();
-				}
 				network::dns_start();
 				$jsonrpc->makeSuccess();
 			}
 
-			if ($jsonrpc->getMethod() == 'network::stopNgrok') {
+			if ($jsonrpc->getMethod() == 'network::stopDns') {
 				config::save('market::allowDNS', 0);
 				network::dns_stop();
 				$jsonrpc->makeSuccess();
 			}
 
-			if ($jsonrpc->getMethod() == 'network::ngrokRun') {
+			if ($jsonrpc->getMethod() == 'network::dnsRun') {
 				if (!isset($params['proto'])) {
 					$params['proto'] = 'https';
 				}

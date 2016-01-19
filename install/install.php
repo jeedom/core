@@ -25,8 +25,8 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 	exit();
 }
 set_time_limit(1800);
-
 echo "[START UPDATE]\n";
+
 if (isset($argv)) {
 	foreach ($argv as $arg) {
 		$argList = explode('=', $arg);
@@ -41,6 +41,12 @@ $backup_ok = false;
 $update_begin = false;
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
+	if (count(system::ps('install/install.php', 'sudo')) > 1) {
+		echo "Une mise a jour/installation est deja en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une\n";
+		print_r(system::ps('install/install.php', 'sudo'));
+		echo "[END UPDATE]\n";
+		die();
+	}
 	echo "****Installation/Mise à jour de Jeedom " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
 	echo "Paramètres de la mise à jour : level : " . init('level', -1) . ", mode : " . init('mode') . ", version : " . init('version', 'no') . ", onlyThisVersion : " . init('onlyThisVersion', 'no') . " \n";
 
@@ -57,6 +63,7 @@ try {
 	}
 
 	if ($update) {
+
 		/*         * ************************MISE A JOUR********************************** */
 		try {
 			if (init('level', -1) > -1 && init('mode') != 'force') {
@@ -111,7 +118,11 @@ try {
 					echo __('***ERREUR*** ', __FILE__) . $e->getMessage() . "\n";
 				}
 				try {
-					$url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip?timespamp=' . strtotime('now');
+					if (config::byKey('market::branch') == 'url') {
+						$url = config::byKey('update::url');
+					} else {
+						$url = 'https://github.com/jeedom/core/archive/' . config::byKey('market::branch', 'core', 'stable') . '.zip';
+					}
 					echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
 					echo __("Téléchargement en cours...", __FILE__);
 					$tmp_dir = dirname(__FILE__) . '/../tmp';
@@ -119,7 +130,6 @@ try {
 					if (!is_writable($tmp_dir)) {
 						throw new Exception(__('Impossible d\'écrire dans le dossier : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : chmod 777 -R ', __FILE__) . $tmp_dir);
 					}
-					$url = config::byKey('market::address') . "/jeedom/" . config::byKey('market::branch') . '/jeedom.zip';
 					if (file_exists($tmp)) {
 						unlink($tmp);
 					}
@@ -127,8 +137,8 @@ try {
 					if (!file_exists($tmp)) {
 						throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
 					}
-					if (filesize($tmp) < 10) {
-						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 10 octets)', __FILE__));
+					if (filesize($tmp) < 100) {
+						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
 					}
 					echo __("OK\n", __FILE__);
 
@@ -167,9 +177,17 @@ try {
 						throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
 					}
 					echo __("OK\n", __FILE__);
-					echo __("Installation en cours...", __FILE__);
+					echo __("Copie des fichiers en cours...", __FILE__);
 					$update_begin = true;
+					if (!file_exists($cibDir . '/core')) {
+						$files = ls($cibDir, '*');
+						if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'core')) {
+							$cibDir = $cibDir . '/' . $files[0];
+						}
+					}
 					rcopy($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
+					echo __("OK\n", __FILE__);
+					echo __("Suppression des fichiers temporaire...", __FILE__);
 					rrmdir($cibDir);
 					unlink($tmp);
 					echo __("OK\n", __FILE__);
@@ -350,6 +368,9 @@ try {
 	} else {
 
 		/*         * ***************************INSTALLATION************************** */
+		if (version_compare(PHP_VERSION, '5.6.0', '<')) {
+			throw new Exception('Jeedom need php 5.6 or upper (current : ' . PHP_VERSION . ')');
+		}
 		if (init('mode') != 'force') {
 			echo "Jeedom va être installé. Voulez-vous continuer ? [o/N] ";
 			if (trim(fgets(STDIN)) !== 'o') {
@@ -364,30 +385,17 @@ try {
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		echo "OK\n";
 		echo "Post installe...\n";
-		nodejs::updateKey();
 		config::save('api', config::genKey());
 		require_once dirname(__FILE__) . '/consistency.php';
-		echo "Ajout de l\'utilisateur (admin,admin)\n";
+		echo "Ajout de l'utilisateur (admin,admin)\n";
 		$user = new user();
 		$user->setLogin('admin');
 		$user->setPassword(sha1('admin'));
 		$user->setRights('admin', 1);
 		$user->save();
-		$logLevel = array('info' => 0, 'debug' => 0, 'event' => 0, 'error' => 1);
-		if (init('mode') != 'force') {
-			echo "Jeedom est-il installé sur un Rasberry PI ? [o/N] ";
-			if (trim(fgets(STDIN)) === 'o') {
-				config::save('cronSleepTime', 60);
-			}
-		} else {
-			config::save('cronSleepTime', 60);
-		}
-		config::save('logLevel', $logLevel);
+		config::save('cronSleepTime', 60);
+		config::save('log::level', 400);
 		echo "OK\n";
-		echo 'Installation de socket.io et express (peut etre très long > 30min)';
-		echo shell_exec('cd ' . dirname(__FILE__) . '/../core/nodeJS;sudo npm install socket.io;npm install express');
-		echo "OK\n";
-
 	}
 
 	config::save('version', jeedom::version());
@@ -398,8 +406,8 @@ try {
 		}
 		jeedom::start();
 	}
-	echo __('Erreur durant l\'installation : ', __FILE__) . $e->getMessage();
-	echo __('Details : ', __FILE__) . print_r($e->getTrace());
+	echo 'Error during install : ' . $e->getMessage();
+	echo 'Details : ' . print_r($e->getTrace());
 	echo "[END UPDATE ERROR]\n";
 	throw $e;
 }
