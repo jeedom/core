@@ -72,7 +72,7 @@ if ($market->getPurchase() == 1) {
 	if ($market->getStatus('stable') == 1) {
 		echo ' <a class="btn btn-success bt_installFromMarket" data-version="stable" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer stable}}</a>';
 	}
-	if (config::byKey('market::allowBeta') == 1) {
+	if (config::byKey('market::allowBeta') == 1 || $market->getIsAuthor()) {
 		if ($market->getStatus('stable') == 1) {
 			echo ' <a class="btn btn-primary bt_installFromMarket" data-version="release" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer release}}</a>';
 		}
