@@ -181,7 +181,9 @@ try {
 					}
 				} else {
 					$jeeNetwork = jeeNetwork::byId([$key]);
-					$return[$key] = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => $plugin_id));
+					if (is_object($jeeNetwork)) {
+						$return[$key] = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => $plugin_id));
+					}
 				}
 			}
 		} else {
@@ -193,7 +195,9 @@ try {
 				}
 			} else {
 				$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-				$return = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => init('id')));
+				if (is_object($jeeNetwork)) {
+					$return = $jeeNetwork->sendRawRequest('plugin::dependancyInfo', array('plugin_id' => init('id')));
+				}
 			}
 		}
 		ajax::success($return);
@@ -211,7 +215,9 @@ try {
 			ajax::success($plugin->dependancy_install());
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
-			ajax::success($jeeNetwork->sendRawRequest('plugin::dependancyInstall', array('plugin_id' => init('id'))));
+			if (is_object($jeeNetwork)) {
+				ajax::success($jeeNetwork->sendRawRequest('plugin::dependancyInstall', array('plugin_id' => init('id'))));
+			}
 		}
 	}
 
