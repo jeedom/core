@@ -15,59 +15,10 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- setTimeout(function () {
-    positionEqLogic();
-    $('.div_displayEquipement').disableSelection();
-    $( "input").click(function() { $(this).focus(); });
-    $( "textarea").click(function() { $(this).focus(); });
-    $('.div_displayEquipement').each(function(){
-        var container = $(this).packery({
-            itemSelector: ".eqLogic-widget",
-            columnWidth:40,
-            rowHeight: 80,
-            gutter : 2,
-        });
-        var itemElems =  container.find('.eqLogic-widget');
-        itemElems.draggable();
-        container.packery( 'bindUIDraggableEvents', itemElems );
-        container.packery( 'on', 'dragItemPositioned',function(){
-            var itemElems = container.packery('getItemElements');
-            var eqLogics = [];
-            $(itemElems).each( function( i, itemElem ) {
-                if($(itemElem).attr('data-eqlogic_id') != undefined){
-                    eqLogic = {};
-                    eqLogic.id =  $(itemElem).attr('data-eqlogic_id');
-                    eqLogic.order = i;
-                    eqLogics.push(eqLogic);
-                }
-            });
-            jeedom.eqLogic.setOrder({
-                eqLogics: eqLogics,
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                }
-            });
-        });
-    });
-
-
-
-$('.div_displayEquipement .eqLogic-widget').draggable('disable');
-
-$('#bt_editDashboardWidgetOrder').on('click',function(){
-    if($(this).attr('data-mode') == 1){
-        $.hideAlert();
-        $(this).attr('data-mode',0);
-        editWidgetMode(0);
-        $(this).css('color','black');
-    }else{
-     $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets}}", level: 'info'});
-     $(this).attr('data-mode',1);
-     editWidgetMode(1);
-     $(this).css('color','rgb(46, 176, 75)');
- }
-});
-}, 1);
+ var category_dashabord = getUrlVars('category');
+ if(category_dashabord == false){
+    category_dashabord = 'all';
+}
 
 $('body').delegate('.eqLogic-widget .history', 'click', function () {
     $('#md_modal2').dialog({title: "Historique"});
@@ -130,32 +81,58 @@ function editWidgetMode(_mode){
         }
     }
     if(_mode == 0){
-        if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
-           $('.div_displayEquipement .eqLogic-widget').draggable('disable');
-           $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('destroy');
-           $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('destroy');
-           $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseover');
-           $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseleave');
-       }
-   }else{
-     $('.div_displayEquipement .eqLogic-widget').draggable('enable');
+       if( $('.div_displayEquipement .eqLogic-widget.ui-resizable').length > 0){
+        $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('destroy');
+    }
+    if( $('.div_displayEquipement .eqLogic-widget.ui-sortable').length > 0){
+       $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('destroy');
+   }
+   if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
+       $('.div_displayEquipement .eqLogic-widget').draggable('disable');
+       $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseover');
+       $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseleave');
+   }
+}else{
+ $('.div_displayEquipement .eqLogic-widget').draggable('enable');
 
-     $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
-      grid: [ 40, 80 ],
-      resize: function( event, ui ) {
-         var el = ui.element;
-         el.closest('.div_displayEquipement').packery();
-     },
-     stop: function( event, ui ) {
-        var el = ui.element;
-        positionEqLogic(el.attr('data-eqlogic_id'));
-        el.closest('.div_displayEquipement').packery();
-        var eqLogic = {id : el.attr('data-eqlogic_id')}
-        eqLogic.display = {};
-        eqLogic.display.width =  Math.floor(el.width() / 40) * 40 + 'px';
-        eqLogic.display.height = Math.floor(el.height() / 80) * 80+ 'px';
-        jeedom.eqLogic.simpleSave({
-            eqLogic : eqLogic,
+ $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
+  grid: [ 40, 80 ],
+  resize: function( event, ui ) {
+     var el = ui.element;
+     el.closest('.div_displayEquipement').packery();
+ },
+ stop: function( event, ui ) {
+    var el = ui.element;
+    positionEqLogic(el.attr('data-eqlogic_id'));
+    el.closest('.div_displayEquipement').packery();
+    var eqLogic = {id : el.attr('data-eqlogic_id')}
+    eqLogic.display = {};
+    eqLogic.display.width =  Math.floor(el.width() / 40) * 40 + 'px';
+    eqLogic.display.height = Math.floor(el.height() / 80) * 80+ 'px';
+    jeedom.eqLogic.simpleSave({
+        eqLogic : eqLogic,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        }
+    });
+}
+});
+
+ $( ".div_displayEquipement .eqLogic-widget.allowReorderCmd").sortable({
+    items: ".cmd",
+    stop: function (event, ui) {
+        var cmds = [];
+        var eqLogic = ui.item.closest('.eqLogic-widget');
+        order = 1;
+        eqLogic.find('.cmd').each(function(){
+            cmd = {};
+            cmd.id = $(this).attr('data-cmd_id');
+            cmd.order = order;
+            cmds.push(cmd);
+            order++;
+        });
+        jeedom.cmd.setOrder({
+            cmds: cmds,
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             }
@@ -163,34 +140,77 @@ function editWidgetMode(_mode){
     }
 });
 
-     $( ".div_displayEquipement .eqLogic-widget.allowReorderCmd").sortable({
-        items: ".cmd",
-        stop: function (event, ui) {
-            var cmds = [];
-            var eqLogic = ui.item.closest('.eqLogic-widget');
-            order = 1;
-            eqLogic.find('.cmd').each(function(){
-                cmd = {};
-                cmd.id = $(this).attr('data-cmd_id');
-                cmd.order = order;
-                cmds.push(cmd);
-                order++;
-            });
-            jeedom.cmd.setOrder({
-                cmds: cmds,
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                }
-            });
-        }
-    });
+ $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseover','.cmd',function(){
+    $('.div_displayEquipement .eqLogic-widget').draggable('disable');
+});
+ $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseleave','.cmd',function(){
+    $('.div_displayEquipement .eqLogic-widget').draggable('enable');
+});
 
-     $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseover','.cmd',function(){
-        $('.div_displayEquipement .eqLogic-widget').draggable('disable');
-    });
-     $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseleave','.cmd',function(){
-        $('.div_displayEquipement .eqLogic-widget').draggable('enable');
-    });
-
- }
 }
+}
+
+function getObjectHtml(_object_id){
+  jeedom.object.toHtml({
+    id: _object_id,
+    version: 'dashboard',
+    category : category_dashabord,
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (html) {
+        $('#div_ob'+_object_id).empty().html(html);
+        setTimeout(function(){
+            positionEqLogic();
+            $('#div_ob'+_object_id+'.div_displayEquipement').disableSelection();
+            $("input").click(function() { $(this).focus(); });
+            $("textarea").click(function() { $(this).focus(); });
+            $("select").click(function() { $(this).focus(); });
+            $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
+                var container = $(this).packery({
+                    itemSelector: ".eqLogic-widget",
+                    columnWidth:40,
+                    rowHeight: 80,
+                    gutter : 2,
+                });
+                var itemElems =  container.find('.eqLogic-widget');
+                itemElems.draggable();
+                container.packery( 'bindUIDraggableEvents', itemElems );
+                container.packery( 'on', 'dragItemPositioned',function(){
+                    var itemElems = container.packery('getItemElements');
+                    var eqLogics = [];
+                    $(itemElems).each( function( i, itemElem ) {
+                        if($(itemElem).attr('data-eqlogic_id') != undefined){
+                            eqLogic = {};
+                            eqLogic.id =  $(itemElem).attr('data-eqlogic_id');
+                            eqLogic.order = i;
+                            eqLogics.push(eqLogic);
+                        }
+                    });
+                    jeedom.eqLogic.setOrder({
+                        eqLogics: eqLogics,
+                        error: function (error) {
+                            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                        }
+                    });
+                });
+            });
+$('#div_ob'+_object_id+'.div_displayEquipement .eqLogic-widget').draggable('disable');
+},10);
+}
+});
+}
+
+$('#bt_editDashboardWidgetOrder').on('click',function(){
+    if($(this).attr('data-mode') == 1){
+        $.hideAlert();
+        $(this).attr('data-mode',0);
+        editWidgetMode(0);
+        $(this).css('color','black');
+    }else{
+     $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets}}", level: 'info'});
+     $(this).attr('data-mode',1);
+     editWidgetMode(1);
+     $(this).css('color','rgb(46, 176, 75)');
+ }
+});

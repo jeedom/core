@@ -263,7 +263,7 @@ jeedom.eqLogic.getSelectModal = function (_options, callback) {
         _options = {};
     }
     if ($("#mod_insertEqLogicValue").length == 0) {
-        $('body').append('<div id="mod_insertEqLogicValue" title="{{Sélectionner la commande}}" ></div>');
+        $('body').append('<div id="mod_insertEqLogicValue" title="{{Sélectionner un équipement}}" ></div>');
 
         $("#mod_insertEqLogicValue").dialog({
             autoOpen: false,

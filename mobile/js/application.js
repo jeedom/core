@@ -96,10 +96,11 @@ function initApplication(_reinit) {
                 modal(false);
                 panel(false);
                 /*************Initialisation environement********************/
-                nodeJsKey = data.result.nodeJsKey;
+                serverDatetime  = data.result.serverDatetime ;
                 user_id = data.result.user_id;
                 plugins = data.result.plugins;
                 userProfils = data.result.userProfils;
+                jeedom.init();
                 var include = ['core/js/core.js'];
 
                 if (isset(userProfils) && userProfils != null) {
@@ -119,8 +120,8 @@ function initApplication(_reinit) {
                     }
                 }
                 for(var i in plugins){
-                    if(plugins[i].nodejs == 1){
-                        include.push('plugins/'+plugins[i].id+'/mobile/js/node.js');
+                    if(plugins[i].eventjs == 1){
+                        include.push('plugins/'+plugins[i].id+'/mobile/js/event.js');
                     }
                 }
                 $.get("core/php/icon.inc.php", function (data) {
@@ -128,7 +129,7 @@ function initApplication(_reinit) {
                     $.include(include, function () {
                         deviceInfo = getDeviceType();
                         if(getUrlVars('p') != '' && getUrlVars('ajax') != 1){
-                         switch (getUrlVars('p')) {
+                           switch (getUrlVars('p')) {
                             case 'view' :
                             page('view', 'Vue',getUrlVars('view_id'));
                             break;
@@ -270,16 +271,12 @@ function panel(_content) {
 }
 
 function refreshMessageNumber() {
-    if (MESSAGE_NUMBER !== null) {
-        $('.span_nbMessage').html(MESSAGE_NUMBER);
-    } else {
-        jeedom.message.number({
-            success: function (_number) {
-                MESSAGE_NUMBER = _number;
-                $('.span_nbMessage').html(_number);
-            }
-        });
-    }
+    jeedom.message.number({
+        success: function (_number) {
+            MESSAGE_NUMBER = _number;
+            $('.span_nbMessage').html(_number);
+        }
+    });
 }
 
 function notify(_title, _text) {

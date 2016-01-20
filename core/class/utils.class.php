@@ -33,6 +33,9 @@ class utils {
 			return $return;
 		}
 		$array = array();
+		if (!is_object($_object)) {
+			return $array;
+		}
 		$reflections = array();
 		$uuid = spl_object_hash($_object);
 		if (!class_exists(get_class($_object))) {

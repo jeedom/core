@@ -175,7 +175,7 @@ try {
 		ajax::success(jeeNetwork::changeMode(init('mode')));
 	}
 
-	if (init('action') == 'restartNgrok') {
+	if (init('action') == 'restartDns') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -183,10 +183,10 @@ try {
 		if (!is_object($jeeNetwork)) {
 			throw new Exception(__('JeeNetwork inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
-		ajax::success($jeeNetwork->restartNgrok());
+		ajax::success($jeeNetwork->restartDns());
 	}
 
-	if (init('action') == 'stopNgrok') {
+	if (init('action') == 'stopDns') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -194,10 +194,10 @@ try {
 		if (!is_object($jeeNetwork)) {
 			throw new Exception(__('JeeNetwork inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
-		ajax::success($jeeNetwork->stopNgrok());
+		ajax::success($jeeNetwork->stopDns());
 	}
 
-	if (init('action') == 'ngrokRun') {
+	if (init('action') == 'dnsRun') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -205,7 +205,7 @@ try {
 		if (!is_object($jeeNetwork)) {
 			throw new Exception(__('JeeNetwork inconnu, vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
-		ajax::success($jeeNetwork->ngrokRun(init('proto', 'https'), init('port', 80), init('name')));
+		ajax::success($jeeNetwork->dnsRun(init('proto', 'https'), init('port', 80), init('name')));
 	}
 
 	if (init('action') == 'listLocalSlaveBackup') {

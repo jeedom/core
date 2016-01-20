@@ -77,9 +77,27 @@ class AccessToken implements JsonSerializable
             // Some providers supply the seconds until expiration rather than
             // the exact timestamp. Take a best guess at which we received.
             $expires = $options['expires'];
-            $expiresInFuture = $expires > time();
-            $this->expires = $expiresInFuture ? $expires : time() + ((int) $expires);
+
+            if (!$this->isExpirationTimestamp($expires)) {
+                $expires += time();
+            }
+
+            $this->expires = $expires;
         }
+    }
+
+    /**
+     * Check if a value is an expiration timestamp or second value.
+     *
+     * @param integer $value
+     * @return bool
+     */
+    protected function isExpirationTimestamp($value)
+    {
+        // If the given value is larger than the original OAuth 2 draft date,
+        // assume that it is meant to be a (possible expired) timestamp.
+        $oauth2InceptionDate = 1349067600; // 2012-10-01
+        return ($value > $oauth2InceptionDate);
     }
 
     /**
@@ -168,7 +186,7 @@ class AccessToken implements JsonSerializable
         }
 
         if ($this->expires) {
-            $parameters['expires_in'] = $this->expires - time();
+            $parameters['expires'] = $this->expires;
         }
 
         return $parameters;

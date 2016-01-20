@@ -120,6 +120,9 @@ class update {
 							} catch (Exception $e) {
 								log::add('update', 'update', $e->getMessage());
 								$error = true;
+							} catch (Error $e) {
+								log::add('update', 'update', $e->getMessage());
+								$error = true;
 							}
 						}
 					}
@@ -280,6 +283,8 @@ class update {
 				$this->save();
 			} catch (Exception $ex) {
 
+			} catch (Error $ex) {
+
 			}
 		}
 	}
@@ -331,12 +336,17 @@ class update {
 				$market = new market();
 				$market->setLogicalId($this->getLogicalId());
 				$market->setType($this->getType());
+			} catch (Error $e) {
+				$market = new market();
+				$market->setLogicalId($this->getLogicalId());
+				$market->setType($this->getType());
 			}
 			try {
 				if (is_object($market)) {
 					$market->remove();
 				}
 			} catch (Exception $e) {
+			} catch (Error $e) {
 			}
 			$this->remove();
 		}

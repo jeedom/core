@@ -259,6 +259,7 @@ jeedom.history.drawChart = function (_params) {
         }else{
             var dateRange = 3;  
         }
+
         jeedom.history.chart[_params.el].type = _params.option.graphType;
         jeedom.history.chart[_params.el].chart = new Highcharts.StockChart({
             chart: charts,
@@ -304,7 +305,7 @@ jeedom.history.drawChart = function (_params) {
             },
             legend: legend,
             tooltip: {
-                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y} (Min : {series.dataMin}, Max : {series.dataMax})</b><br/>',
                 valueDecimals: 2,
             },
             yAxis: [{
@@ -343,6 +344,7 @@ jeedom.history.drawChart = function (_params) {
             },
             series: [series]
         });
+console.log(jeedom.history.chart[_params.el].chart);
 } else {
     jeedom.history.chart[_params.el].chart.addSeries(series);
 }

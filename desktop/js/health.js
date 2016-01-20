@@ -14,8 +14,3 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
- if( isset(jeedom.nodeJs.state) &&  jeedom.nodeJs.state){
- 	$('#td_nodejsState').text('OK');
- 	$('#td_nodejsState').removeClass('alert-danger').addClass('alert-success');
- }

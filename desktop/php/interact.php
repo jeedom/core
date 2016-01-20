@@ -176,6 +176,18 @@ foreach ($interactListGroup as $group) {
               <input class="form-control tooltips interactAttr" type="text" data-l1key="person" placeholder="" title="{{Liste des utilisateurs (login) séparés par un |}}"/>
             </div>
           </div>
+          <div class="form-group">
+            <label class="col-xs-3 control-label">{{Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes}}</label>
+            <div class="col-xs-6">
+              <input type="checkbox" class="interactAttr bootstrapSwitch" data-l1key="options" data-l2key="allowSyntaxCheck">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 col-xs-3 control-label">{{Regexp d'exclusion}}</label>
+            <div class="col-sm-9 col-xs-9">
+              <input class="form-control tooltips interactAttr" type="text" data-l1key="options" data-l2key="exclude_regexp" placeholder="" />
+            </div>
+          </div>
         </fieldset>
       </form>
     </div>
@@ -186,140 +198,131 @@ foreach ($interactListGroup as $group) {
           <legend>{{Filtres}}</legend>
 
           <div class="form-group">
-            <label class="col-sm-6 control-label">{{Limiter aux commandes de type}}</label>
-            <div class="col-sm-4">
-              <select class="interactAttr form-control" data-l1key="filtres" data-l2key="cmd_type">
-                <?php
+            <label class="col-sm-3 control-label">{{Limiter aux commandes de type}}</label>
+            <div class="col-sm-9">
+              <?php
 foreach (jeedom::getConfiguration('cmd:type') as $id => $type) {
-	echo '<option value="' . $id . '">' . $type['name'] . '</option>';
+	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="type" data-l3key="' . $id . '" checked="true" />' . $type['name'] . '</label> ';
 }
 ?>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-6 control-label">{{Limiter aux commandes ayant pour sous-type}}</label>
-            <div class="col-sm-4">
-              <select class="interactAttr form-control" data-l1key="filtres" data-l2key="subtype">
-                <option value="all">{{Tous}}</option>
-                <?php
+           </div>
+         </div>
+         <div class="form-group">
+          <label class="col-sm-3 control-label">{{Limiter aux commandes ayant pour sous-type}}</label>
+          <div class="col-sm-9">
+            <?php
 foreach (jeedom::getConfiguration('cmd:type') as $type) {
 	foreach ($type['subtype'] as $id => $subtype) {
-		echo '<option value="' . $id . '">' . $subtype['name'] . '</option>';
+		echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="subtype" data-l3key="' . $id . '" checked="true" />' . $subtype['name'] . '</label> ';
 	}
 }
 ?>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-6 control-label">{{Limiter aux commandes ayant pour unité}}</label>
-            <div class="col-sm-4">
-              <select class='interactAttr form-control' data-l1key='filtres' data-l2key='cmd_unite'>
-                <option value="all">{{Tous}}</option>
-                <?php
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">{{Limiter aux commandes ayant pour unité}}</label>
+        <div class="col-sm-9">
+        <label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="none" checked="true" />{{Sans unité}}</label>
+          <?php
 foreach (cmd::allUnite() as $unite) {
-	echo '<option value="' . $unite['unite'] . '" >' . $unite['unite'] . '</option>';
+	if (trim($unite['unite']) == '') {
+		continue;
+	}
+	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="' . $unite['unite'] . '" checked="true" />' . $unite['unite'] . '</label> ';
 }
 ?>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-6 control-label">{{Limiter aux commandes appartenant à l'objet}}</label>
-            <div class="col-sm-4">
-              <select class='interactAttr form-control' data-l1key='filtres' data-l2key='object_id' >
-                <option value="all">{{Tous}}</option>
-                <?php
+       </div>
+     </div>
+     <div class="form-group">
+      <label class="col-sm-3 control-label">{{Limiter aux commandes appartenant à l'objet}}</label>
+      <div class="col-sm-9">
+        <?php
 foreach (object::all() as $object) {
-	echo '<option value="' . $object->getId() . '" >' . $object->getName() . '</option>';
+	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="object" data-l3key="' . $object->getId() . '" checked="true" />' . $object->getName() . '</label> ';
 }
 ?>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-6 control-label">{{Limiter à l'équipement}}</label>
-            <div class="col-sm-4">
-              <select class='interactAttr form-control' data-l1key='filtres' data-l2key='eqLogic_id' >
-                <option value="all">{{Tous}}</option>
-                <?php
+     </div>
+   </div>
+   <div class="form-group">
+    <label class="col-sm-3 control-label">{{Limiter aux plugins}}</label>
+    <div class="col-sm-9">
+      <?php
+foreach (eqLogic::allType() as $type) {
+	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="plugin" data-l3key="' . $type['type'] . '" checked="true" />' . $type['type'] . '</label> ';
+}
+?>
+   </div>
+ </div>
+
+    <div class="form-group">
+    <label class="col-sm-3 control-label">{{Limiter aux categories}}</label>
+    <div class="col-sm-9">
+      <?php
+foreach (jeedom::getConfiguration('eqLogic:category') as $id => $category) {
+	echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="category" data-l3key="' . $id . '" checked="true" />' . $category['name'] . '</label> ';
+}
+?>
+   </div>
+ </div>
+ <div class="form-group">
+  <label class="col-sm-3 control-label">{{Limiter à l'équipement}}</label>
+  <div class="col-sm-6">
+    <select class='interactAttr form-control' data-l1key='filtres' data-l2key='eqLogic_id' >
+      <option value="all">{{Tous}}</option>
+      <?php
 foreach (eqLogic::all() as $eqLogic) {
 	echo '<option value="' . $eqLogic->getId() . '" >' . $eqLogic->getHumanName() . '</option>';
 }
 ?>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-6 control-label">{{Limiter au plugin}}</label>
-            <div class="col-sm-4">
-              <select class='interactAttr form-control' data-l1key='filtres' data-l2key='plugin'>
-                <option value="all">{{Tous}}</option>
-                <?php
-foreach (eqLogic::allType() as $type) {
-	echo '<option value="' . $type['type'] . '" >' . $type['type'] . '</option>';
-}
-?>
-              </select>
-            </div>
-          </div>
+   </select>
+ </div>
+</div>
 
-          <div class="form-group">
-            <label class="col-sm-6 control-label">{{Limiter à la catégorie}}</label>
-            <div class="col-sm-4">
-              <select class='interactAttr form-control' data-l1key='filtres' data-l2key='eqLogic_category'>
-                <option value="all">{{Toutes}}</option>
-                <?php
-foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-	echo '<option value="' . $key . '">{{' . $value['name'] . '}}</option>';
-}
-?>
-              </select>
-            </div>
-          </div>
+</fieldset>
+</form>
+</div>
 
-        </fieldset>
-      </form>
-    </div>
+</div>
 
+
+<div class="row">
+  <div class="col-sm-6">
+    <form class="form-horizontal">
+      <fieldset>
+        <legend>{{Action}} <a class="btn btn-xs btn-success pull-right" id="bt_addAction"><i class="fa fa-plus-circle"></i></a></legend>
+        <div id="div_action"></div>
+      </fieldset>
+    </form>
   </div>
 
-
-  <div class="row">
-    <div class="col-sm-6">
-      <form class="form-horizontal">
-        <fieldset>
-          <legend>{{Action}} <a class="btn btn-xs btn-success pull-right" id="bt_addAction"><i class="fa fa-plus-circle"></i></a></legend>
-          <div id="div_action"></div>
-        </fieldset>
-      </form>
-    </div>
-
-    <div class="col-sm-6">
-      <form class="form-horizontal">
-        <fieldset>
-          <legend>{{Phrases générées}}</legend>
-          <div class="form-group">
-            <label class="col-sm-4 col-xs-7 control-label">{{Nombre de phrases générées}}</label>
-            <div class="col-sm-8 col-xs-2">
-              <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span>
-            </div>
+  <div class="col-sm-6">
+    <form class="form-horizontal">
+      <fieldset>
+        <legend>{{Phrases générées}}</legend>
+        <div class="form-group">
+          <label class="col-sm-4 col-xs-7 control-label">{{Phrases générées}}</label>
+          <div class="col-sm-8 col-xs-4">
+            <a class="btn btn-default displayInteracQuery"><i class="fa fa-eye"></i> {{Voir}}</a>
           </div>
-        </fieldset>
-      </form>
-    </div>
-
-
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 col-xs-7 control-label">{{Nombre de phrases générées}}</label>
+          <div class="col-sm-8 col-xs-2">
+            <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span>
+          </div>
+        </div>
+      </fieldset>
+    </form>
   </div>
-  <form class="form-horizontal">
-    <fieldset>
-      <div class="form-actions">
-        <a class="btn btn-danger" id="bt_removeInteract"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
-        <a class="btn btn-success" id="bt_saveInteract"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
-      </div>
-    </fieldset>
-  </form>
+</div>
+<form class="form-horizontal">
+  <fieldset>
+    <div class="form-actions">
+      <a class="btn btn-danger" id="bt_removeInteract"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+      <a class="btn btn-success" id="bt_saveInteract"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
+    </div>
+  </fieldset>
+</form>
 </div>
 </div>
 

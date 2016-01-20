@@ -27,7 +27,7 @@ try {
 		$_SESSION['user']->refresh();
 		$return = array();
 		$return['user_id'] = $_SESSION['user']->getId();
-		$return['nodeJsKey'] = config::byKey('nodeJsKey');
+		$return['serverDatetime'] = getmicrotime();
 		$return['userProfils'] = $_SESSION['user']->getOptions();
 		$return['plugins'] = array();
 		foreach (plugin::listPlugin(true) as $plugin) {
@@ -46,7 +46,6 @@ try {
 	}
 
 	if (init('action') == 'ssh') {
-
 		ajax::success(shell_exec(init('command')));
 	}
 
@@ -74,18 +73,6 @@ try {
 	if (init('action') == 'restoreCloud') {
 		market::retoreBackup(init('backup'));
 		ajax::success();
-	}
-
-	if (init('action') == 'getUpdateLog') {
-		ajax::success(log::get('update', 0, 3000));
-	}
-
-	if (init('action') == 'getBackupLog') {
-		ajax::success(log::get('backup', 0, 3000));
-	}
-
-	if (init('action') == 'getRestoreLog') {
-		ajax::success(log::get('restore', 0, 3000));
 	}
 
 	if (init('action') == 'removeBackup') {

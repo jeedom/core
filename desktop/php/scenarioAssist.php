@@ -119,7 +119,7 @@ if (count($scenarios[-1]) > 0) {
 	echo '<div class="scenarioListContainer">';
 	foreach ($scenarios[-1] as $scenario) {
 		$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-		echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+		echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" style="background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 		echo "<center>";
 		echo '<img src="core/img/scenario.png" height="90" width="85" />';
 		echo "</center>";
@@ -134,7 +134,7 @@ foreach ($scenarioListGroup as $group) {
 		echo '<div class="scenarioListContainer">';
 		foreach ($scenarios[$group['group']] as $scenario) {
 			$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" data-type="' . $scenario->getType() . '" style="background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 			echo "<center>";
 			echo '<img src="core/img/scenario.png" height="90" width="85" />';
 			echo "</center>";
@@ -297,8 +297,6 @@ foreach ($scenarioListGroup as $group) {
                             <select class="conditionAttr form-control" data-l1key="operator">
                                 <option value="==">{{égal}}</option>
                                 <option value="!=">{{différent}}</option>
-                                <option value="~">{{contient}}</option>
-                                <option value="!~">{{ne contient pas}}</option>
                             </select>
                         </div>
                         <div class="col-xs-5">

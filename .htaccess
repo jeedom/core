@@ -1,0 +1,72 @@
+ServerSignature Off
+
+<IfModule mod_php5.c>
+	php_value post_max_size 1G
+	php_value upload_max_filesize 1G
+	php_value max_execution_time 600
+	php_flag display_startup_errors on
+	php_flag display_errors off
+	php_flag html_errors on
+	php_flag log_errors on
+	php_value error_log  log/http.error
+	php_value output_buffering off
+</IfModule>
+
+<IfModule mod_php7.c>
+	php_value post_max_size 1G
+	php_value upload_max_filesize 1G
+	php_value max_execution_time 600
+	php_flag display_startup_errors on
+	php_flag display_errors off
+	php_flag html_errors on
+	php_flag log_errors on
+	php_value error_log  log/http.error
+	php_value output_buffering off
+</IfModule>
+
+<IfModule mod_headers.c>
+	<FilesMatch "\.(css|js|png|jpeg|jpg|ttf|woff)$">
+		Header set Cache-Control "max-age=7200, public"
+	</FilesMatch>
+	<FilesMatch ".*(getJS.php)">
+		Header set Cache-Control "max-age=7200, public"
+	</FilesMatch>
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType image/svg+xml svg svgz
+  AddEncoding gzip svgz
+</IfModule>
+
+<IfModule mod_dir.c>
+  DirectoryIndex index.php
+</IfModule>
+
+<Files .htaccess>
+	Order Allow,Deny
+	Deny from all
+</Files>
+
+<Files ~ ".*\.gz">
+	order allow,deny
+	deny from all
+	satisfy all
+</Files>
+
+<Files ~ ".*\.sql">
+	order allow,deny
+	deny from all
+	satisfy all
+</Files>
+
+<Files ~ ".*\.ini">
+	order allow,deny
+	deny from all
+	satisfy all
+</Files>
+
+<Files ~ ".*\.tar">
+	order allow,deny
+	deny from all
+	satisfy all
+</Files>

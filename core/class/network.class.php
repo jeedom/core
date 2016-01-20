@@ -37,6 +37,8 @@ class network {
 	public static function getClientIp() {
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			return $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} elseif (isset($_SERVER['HTTP_X_REAL_IP'])) {
+			return $_SERVER['HTTP_X_REAL_IP'];
 		} elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
 			return $_SERVER['HTTP_CLIENT_IP'];
 		} elseif (isset($_SERVER['REMOTE_ADDR'])) {
@@ -160,6 +162,9 @@ class network {
 			} else {
 				$internalIp = getHostByName(getHostName());
 				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
+					$internalIp = gethostbyname(trim(exec("hostname")));
+				}
+				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
 					$internalIp = self::getInterfaceIp('eth0');
 				}
 				if (netMatch('127.0.*.*', $internalIp) || $internalIp == '' || !filter_var($internalIp, FILTER_VALIDATE_IP)) {
@@ -260,233 +265,115 @@ class network {
 		return true;
 	}
 
-/*     * ****************************Nginx management*************************** */
+/*     * *********************DNS************************* */
 
-	public static function nginx_saveRule($_rules) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-			throw new Exception('Fichier non trouvé : /etc/nginx/sites-available/jeedom_dynamic_rule');
-		}
-		$nginx_conf = self::nginx_removeRule($_rules, true);
-
-		foreach ($_rules as $rule) {
-			$nginx_conf .= "\n" . $rule . "\n";
-		}
-		if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-			touch('/etc/nginx/sites-available/jeedom_dynamic_rule');
-		}
-		shell_exec('sudo chmod 777 /etc/nginx/sites-available/jeedom_dynamic_rule');
-		file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $nginx_conf);
-		shell_exec('sudo service nginx reload');
-	}
-
-	public static function nginx_removeRule($_rules, $_returnResult = false) {
-		if (!is_array($_rules)) {
-			$_rules = array($_rules);
-		}
-		if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-			return $_rules;
-		}
-		$result = '';
-		$nginx_conf = trim(file_get_contents('/etc/nginx/sites-available/jeedom_dynamic_rule'));
-		$accolade = 0;
-		$change = false;
-		foreach (explode("\n", trim($nginx_conf)) as $conf_line) {
-			if ($accolade > 0 && strpos('{', $conf_line) !== false) {
-				$accolade++;
-			}
-			foreach ($_rules as $rule) {
-				$rule_line = explode("\n", trim($rule));
-				if (trim($conf_line) == trim($rule_line[0])) {
-					$accolade = 1;
-				}
-			}
-			if ($accolade == 0) {
-				$result .= $conf_line . "\n";
-			} else {
-				$change = true;
-			}
-			if ($accolade > 0 && strpos('}', $conf_line) !== false) {
-				$accolade--;
-			}
-		}
-		if ($_returnResult) {
-			return $result;
-		}
-		if ($change) {
-			if (!file_exists('/etc/nginx/sites-available/jeedom_dynamic_rule')) {
-				touch('/etc/nginx/sites-available/jeedom_dynamic_rule');
-			}
-			shell_exec('sudo chmod 777 /etc/nginx/sites-available/jeedom_dynamic_rule');
-			file_put_contents('/etc/nginx/sites-available/jeedom_dynamic_rule', $result);
-			shell_exec('sudo service nginx reload');
-		}
-	}
-
-/*     * *********************NGROK************************* */
-
-	public static function dns_start() {
-		if (config::byKey('ngrok::addr') == '') {
+	public static function dns_create() {
+		if (config::byKey('dns::token') == '') {
 			return;
 		}
-		network::dns_stop();
-		$config_file = '/tmp/ngrok_jeedom';
-		$logfile = log::getPathToLog('ngrok');
-		$uname = posix_uname();
-		if (strrpos($uname['machine'], 'arm') !== false) {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-arm';
-		} else if ($uname['machine'] == 'x86_64') {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x64';
-		} else {
-			$cmd = dirname(__FILE__) . '/../../script/ngrok/ngrok-x86';
+		if (config::byKey('market::allowDNS') != 1) {
+			return;
 		}
-		exec('chmod +x ' . $cmd);
-		$cmd .= ' -config=' . $config_file . ' start jeedom';
-		if (!self::dns_run()) {
-			$replace = array(
-				'#server_addr#' => 'dns.jeedom.com:4443',
-				'#name#' => 'jeedom',
-				'#proto#' => 'https',
-				'#port#' => 80,
-				'#remote_port#' => '',
-				'#token#' => config::byKey('ngrok::token'),
-				'#auth#' => '',
-				'#subdomain#' => 'subdomain : ' . config::byKey('ngrok::addr'),
-			);
-			$config = template_replace($replace, file_get_contents(dirname(__FILE__) . '/../../script/ngrok/config'));
-			if (file_exists($config_file)) {
-				unlink($config_file);
+		try {
+			$plugin = plugin::byId('openvpn');
+			if (!is_object($plugin)) {
+				$plugin = market::byLogicalIdAndType('openvpn', 'plugin');
+				$plugin->install('stable');
+				$plugin = plugin::byId('openvpn');
 			}
-			file_put_contents($config_file, $config);
-			log::remove('ngrok');
-			log::add('ngork', 'debug', 'Lancement de ngork : ' . $cmd);
-			exec($cmd . ' >> /dev/null 2>&1 &');
+		} catch (Exception $e) {
+			$plugin = market::byLogicalIdAndType('openvpn', 'plugin');
+			$plugin->install('stable');
+			$plugin = plugin::byId('openvpn');
 		}
-		return true;
+		if (!$plugin->isActive()) {
+			$plugin->setIsEnable(1);
+		}
+		if (!is_object($plugin)) {
+			throw new Exception(__('Le plugin openvpn doit être installé', __FILE__));
+		}
+		if (!$plugin->isActive()) {
+			throw new Exception(__('Le plugin openvpn doit être actif', __FILE__));
+		}
+		$openvpn = eqLogic::byLogicalId('dnsjeedom', 'openvpn');
+		if (!is_object($openvpn)) {
+			$openvpn = new openvpn();
+			$openvpn->setName('DNS Jeedom');
+		}
+		$openvpn->setIsEnable(1);
+		$openvpn->setLogicalId('dnsjeedom');
+		$openvpn->setEqType_name('openvpn');
+		$openvpn->setConfiguration('dev', 'tun');
+		$openvpn->setConfiguration('proto', 'udp');
+		$openvpn->setConfiguration('remote_host', 'vpn' . config::byKey('dns::number', 'core', 1) . '.jeedom.com');
+		$openvpn->setConfiguration('username', jeedom::getHardwareKey());
+		$openvpn->setConfiguration('password', config::byKey('dns::token'));
+		$openvpn->setConfiguration('compression', 'comp-lzo');
+		$openvpn->setConfiguration('remote_port', 1194);
+		$openvpn->setConfiguration('auth_mode', 'password');
+		$openvpn->save();
+		if (!file_exists(dirname(__FILE__) . '/../../plugins/openvpn/data')) {
+			shell_exec('mkdir -p ' . dirname(__FILE__) . '/../../plugins/openvpn/data');
+		}
+		copy(dirname(__FILE__) . '/../../script/ca_dns.crt', dirname(__FILE__) . '/../../plugins/openvpn/data/ca_' . $openvpn->getConfiguration('key') . '.crt');
+		return $openvpn;
+	}
+
+	public static function dns_start() {
+		if (config::byKey('dns::token') == '') {
+			return;
+		}
+		if (config::byKey('market::allowDNS') != 1) {
+			return;
+		}
+		$openvpn = self::dns_create();
+		$cmd = $openvpn->getCmd('action', 'start');
+		if (!is_object($cmd)) {
+			throw new Exception(__('La commande de start du DNS est introuvable', __FILE__));
+		}
+		$cmd->execCmd();
 	}
 
 	public static function dns_run() {
-		return (shell_exec('ps ax | grep -ie "/tmp/ngrok_jeedom" | grep -v grep | wc -l') > 0);
+		if (config::byKey('dns::token') == '') {
+			return false;
+		}
+		if (config::byKey('market::allowDNS') != 1) {
+			return false;
+		}
+		try {
+			$openvpn = self::dns_create();
+		} catch (Exception $e) {
+			return false;
+		}
+		$cmd = $openvpn->getCmd('info', 'state');
+		if (!is_object($cmd)) {
+			throw new Exception(__('La commande de status du DNS est introuvable', __FILE__));
+		}
+		$cmd->execCmd();
+		$interface = $openvpn->getInterfaceName();
+		if ($interface != null && $interface != '' && $interface !== false) {
+			shell_exec('sudo iptables -A INPUT -i ' . $interface . ' -p tcp  --destination-port 80 -j ACCEPT');
+			shell_exec('sudo iptables -A INPUT -i ' . $interface . ' -j DROP');
+		}
 	}
 
 	public static function dns_stop() {
-		exec("ps aux | grep -ie '/tmp/ngrok_jeedom' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
-		return self::dns_run();
-	}
-
-/*     * *********************WICD************************* */
-
-	public static function listWifi() {
-		$results = shell_exec('sudo ifconfig wlan0 up;sudo iwlist scan | grep ESSID 2> /dev/null');
-		$results = explode("\n", $results);
-		$return = array();
-		foreach ($results as $result) {
-			if (strpos($result, 'ESSID') !== false) {
-				$essid = trim(str_replace(array('ESSID', ':', '"'), '', $result));
-				if ($essid != '' && !isset($return[$essid])) {
-					$return[$essid] = $essid;
-				}
-			}
-		}
-		return $return;
-
-	}
-
-	public static function getMac($_interface = 'eth0') {
-		return shell_exec("ip addr show $_interface | grep -i 'link/ether' | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}' | sed -n 1p");
-	}
-
-	public static function canManageNetwork() {
-		if (shell_exec('sudo dpkg --get-selections | grep ifenslave | wc -l') == 0) {
-			return false;
-		}
-		if (shell_exec('sudo lsmod | grep bonding | wc -l') == 0) {
-			return false;
-		}
-		return true;
-	}
-
-	public static function signalStrength() {
-		if (config::byKey('network::wifi::enable') != 1 || config::byKey('network::wifi::ssid') == '' || config::byKey('network::wifi::password') == '') {
-			$return = -1;
-		}
-		return str_replace('.', '', shell_exec("tail -n +3 /proc/net/wireless | awk '{ print $3 }'"));
-	}
-
-	public static function ehtIsUp() {
-		if (!file_exists("/sys/class/net/eth0/operstate")) {
-			return false;
-		}
-		return (trim(file_get_contents("/sys/class/net/eth0/operstate")) == 'up') ? true : false;
-	}
-
-	public static function wlanIsUp() {
-		if (!file_exists("/sys/class/net/wlan0/operstate")) {
-			return false;
-		}
-		return (trim(file_get_contents("/sys/class/net/wlan0/operstate")) == 'up') ? true : false;
-	}
-
-	public static function writeInterfaceFile() {
-		if (config::byKey('network::disableMangement') == 1) {
+		if (config::byKey('dns::token') == '') {
 			return;
 		}
-		if (!self::canManageNetwork()) {
+		if (config::byKey('market::allowDNS') != 1) {
 			return;
 		}
-		if (!jeedom::isCapable('wifi') || !jeedom::isCapable('ipfix')) {
-			return;
+		$openvpn = self::dns_create();
+		$cmd = $openvpn->getCmd('action', 'stop');
+		if (!is_object($cmd)) {
+			throw new Exception(__('La commande de stop du DNS est introuvable', __FILE__));
 		}
-
-		$interface = 'auto lo
-	iface lo inet loopback';
-		$interface .= "\n\n";
-		$interface .= 'auto eth0
-	iface eth0 inet manual
-	bond-master bond0
-	bond-primary eth0
-	bond-mode active-backup';
-		$interface .= "\n\n";
-
-		if (config::byKey('network::wifi::enable') == 1 && config::byKey('network::wifi::ssid') != '' && config::byKey('network::wifi::password') != '') {
-			$interface .= 'auto wlan0
-	iface wlan0 inet manual
-	wpa-ssid ' . config::byKey('network::wifi::ssid') . '
-	wpa-psk ' . config::byKey('network::wifi::password') . '
-	bond-master bond0
-	bond-primary eth0
-	bond-mode active-backup';
-		}
-		$interface .= "\n\n";
-
-		if (config::byKey('network::fixip::enable') == 1 && config::byKey('internalAddr') != '' && filter_var(config::byKey('internalAddr'), FILTER_VALIDATE_IP) && config::byKey('network::fixip::gateway') != '' && filter_var(config::byKey('network::fixip::gateway'), FILTER_VALIDATE_IP) && config::byKey('network::fixip::netmask') != '' && filter_var(config::byKey('network::fixip::netmask'), FILTER_VALIDATE_IP)) {
-			$interface .= 'auto bond0
-	iface bond0 inet static
-	address ' . config::byKey('internalAddr') . '
-	gateway ' . config::byKey('network::fixip::gateway') . '
-	netmask ' . config::byKey('network::fixip::netmask') . '
-    bond-slaves none
-	bond-primary eth0
-	bond-mode active-backup
-	bond-miimon 100';
-		} else {
-			$interface .= 'auto bond0
-	iface bond0 inet dhcp
-	bond-slaves none
-	bond-primary eth0
-	bond-mode active-backup
-	bond-miimon 100';
-		}
-		$interface .= "\n";
-		file_put_contents('/tmp/interfaces', $interface);
-		$filepath = '/etc/network/interfaces';
-		if (!file_exists($filepath . '.save')) {
-			exec('sudo cp ' . $filepath . ' ' . $filepath . '.save');
-		}
-		exec('sudo rm -rf ' . $filepath . '; sudo mv /tmp/interfaces ' . $filepath . ';sudo chown root:root ' . $filepath . ';sudo chmod 644 ' . $filepath);
+		$cmd->execCmd();
 	}
+
+/*     * *********************Network management************************* */
 
 	public static function getInterfaceIp($_interface) {
 		$results = trim(shell_exec('sudo ip addr show ' . $_interface . '| grep inet | head -1 2>&1'));
@@ -498,6 +385,20 @@ class network {
 		$ip = substr($result, 0, strrpos($result, '/'));
 		if (filter_var($ip, FILTER_VALIDATE_IP)) {
 			return $ip;
+		}
+		return false;
+	}
+
+	public static function getInterfaceMac($_interface) {
+		$valid_mac = "([0-9A-F]{2}[:-]){5}([0-9A-F]{2})";
+		$results = trim(shell_exec('sudo ip addr show ' . $_interface . '| grep ether | head -1 2>&1'));
+		$results = explode(' ', $results);
+		if (!isset($results[1])) {
+			return false;
+		}
+		$result = $results[1];
+		if (preg_match("/" . $valid_mac . "/i", $result)) {
+			return $result;
 		}
 		return false;
 	}
@@ -546,11 +447,10 @@ class network {
 			$output = array();
 			$return_val = -1;
 			if ($route['gateway'] != '0.0.0.0' && $route['gateway'] != '127.0.0.1') {
-				exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
+				exec('sudo ping -n -c 1 -t 255 ' . $route['gateway'] . ' 2>&1 > /dev/null', $output, $return_val);
 				$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
 				if ($return[$route['iface']]['ping'] == 'nok') {
-					sleep(5);
-					exec('sudo ping -c 1 ' . $route['gateway'] . ' > /dev/null 2> /dev/null', $output, $return_val);
+					exec('sudo ping -n -c 1 -t 255 ' . $route['gateway'] . ' 2>&1 > /dev/null', $output, $return_val);
 					$return[$route['iface']]['ping'] = ($return_val == 0) ? 'ok' : 'nok';
 				}
 			} else {
@@ -561,13 +461,10 @@ class network {
 	}
 
 	public static function cron() {
-		if (config::byKey('market::allowDNS') == 1 && !network::test('external', false, 120)) {
-			network::dns_start();
-		}
 		if (config::byKey('network::disableMangement') == 1) {
 			return;
 		}
-		if (!jeedom::isCapable('sudo')) {
+		if (!jeedom::isCapable('sudo') || jeedom::getHardwareName() == 'docker') {
 			return;
 		}
 		try {
@@ -592,6 +489,8 @@ class network {
 				}
 			}
 		} catch (Exception $e) {
+
+		} catch (Error $e) {
 
 		}
 	}

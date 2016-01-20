@@ -27,8 +27,8 @@ if (config::byKey('enableScenario') == 0) {
 	echo '<a class="btn btn-sm btn-danger expertModeVisible" id="bt_changeAllScenarioState" data-state="0" style="width : 48%;min-width : 127px;margin-top : 3px;text-shadow: none;" ><i class="fa fa-times"></i> {{Désac. scénarios}}</a>';
 }
 ?>
-               </div>
-               <div class="col-xs-6">
+             </div>
+             <div class="col-xs-6">
                 <a class="btn btn-default btn-sm tooltips expertModeVisible" id="bt_displayScenarioVariable" title="{{Voir toutes les variables des scénarios}}" style="margin-top : 3px;text-shadow: none;"><i class="fa fa fa-eye"></i> {{Voir variables}}</a>
             </div>
         </center>
@@ -37,18 +37,21 @@ if (config::byKey('enableScenario') == 0) {
         <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
         <div id="div_tree">
             <ul id="ul_scenario" >
+                <?php if (count($scenarios[-1]) > 0) {
+	?>
                 <li data-jstree='{"opened":true}'>
                     <a>Aucune</a>
                     <ul>
-                        <?php
+                    <?php
 foreach ($scenarios[-1] as $scenario) {
-	echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-	echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" title="{{Scénario ID :}} ' . $scenario->getId() . '">' . $scenario->getHumanName(false, true) . '</a>';
-	echo '</li>';
+		echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
+		echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '" title="{{Scénario ID :}} ' . $scenario->getId() . '">' . $scenario->getHumanName(false, true) . '</a>';
+		echo '</li>';
+	}
+	?>
+             </ul>
+             <?php
 }
-?>
-                   </ul>
-                   <?php
 foreach ($scenarioListGroup as $group) {
 	if ($group['group'] != '') {
 		echo '<li data-jstree=\'{"opened":true}\'>';
@@ -64,44 +67,51 @@ foreach ($scenarioListGroup as $group) {
 	}
 }
 ?>
-             </ul>
-         </div>
-     </div>
- </div>
+</ul>
+</div>
+</div>
+</div>
 
- <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
+<div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
 
-     <div class="scenarioListContainer">
-         <legend>{{Gestion}}</legend>
-         <div class="cursor" id="bt_addScenario2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-           <center>
-            <i class="fa fa-plus-circle" style="font-size : 4em;color:#94ca02;"></i>
-        </center>
-        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
-    </div>
-    <?php if (config::byKey('enableScenario') == 0) {?>
-        <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="1" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-           <center>
-               <i class="fa fa-check" style="font-size : 4em;color:#5cb85c;"></i>
-           </center>
-           <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
-       </div>
-       <?php } else {?>
-       <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-           <center>
-               <i class="fa fa-times" style="font-size : 4em;color:#d9534f;"></i>
-           </center>
-           <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
-       </div>
-       <?php }
+ <div class="scenarioListContainer">
+     <legend>{{Gestion}}</legend>
+     <div class="cursor" id="bt_addScenario2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+       <center>
+        <i class="fa fa-plus-circle" style="font-size : 4em;color:#94ca02;"></i>
+    </center>
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
+</div>
+<?php if (config::byKey('enableScenario') == 0) {?>
+    <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="1" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+       <center>
+           <i class="fa fa-check" style="font-size : 4em;color:#5cb85c;"></i>
+       </center>
+       <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
+   </div>
+   <?php } else {?>
+   <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+       <center>
+           <i class="fa fa-times" style="font-size : 4em;color:#d9534f;"></i>
+       </center>
+       <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
+   </div>
+   <?php }
 ?>
 
-       <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-           <center>
-            <i class="fa fa-eye" style="font-size : 4em;color:#337ab7;"></i>
-        </center>
-        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
-    </div>
+   <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+       <center>
+        <i class="fa fa-eye" style="font-size : 4em;color:#337ab7;"></i>
+    </center>
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
+</div>
+
+   <div class="cursor expertModeVisible bt_showExpressionTest" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+       <center>
+        <i class="fa fa-check" style="font-size : 4em;color:#337ab7;"></i>
+    </center>
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Testeur d'expression}}</center></span>
+</div>
 </div>
 
 <legend>{{Mes scénarios}}</legend>
@@ -109,26 +119,27 @@ foreach ($scenarioListGroup as $group) {
 if (count($scenarios) == 0) {
 	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
 } else {
-	echo '<legend>Aucun</legend>';
-	echo '<div class="scenarioListContainer">';
-	foreach ($scenarios[-1] as $scenario) {
-		$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-		echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
-		echo "<center>";
-		echo '<img src="core/img/scenario.png" height="90" width="85" />';
-		echo "</center>";
-		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
+	if (count($scenarios[-1]) > 0) {
+		echo '<legend>Aucun</legend>';
+		echo '<div class="scenarioListContainer">';
+		foreach ($scenarios[-1] as $scenario) {
+			$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+			echo "<center>";
+			echo '<img src="core/img/scenario.png" height="90" width="85" />';
+			echo "</center>";
+			echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $scenario->getHumanName(true, true, true, true) . '</center></span>';
+			echo '</div>';
+		}
 		echo '</div>';
 	}
-	echo '</div>';
-
 	foreach ($scenarioListGroup as $group) {
 		if ($group['group'] != '') {
 			echo '<legend>' . $group['group'] . '</legend>';
 			echo '<div class="scenarioListContainer">';
 			foreach ($scenarios[$group['group']] as $scenario) {
 				$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+				echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 				echo "<center>";
 				echo '<img src="core/img/scenario.png" height="90" width="85" />';
 				echo "</center>";
@@ -149,10 +160,11 @@ if (count($scenarios) == 0) {
         <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_logScenario"><i class="fa fa-file-text-o"></i> {{Log}}</a>
         <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_exportScenario"><i class="fa fa fa-share"></i> {{Exporter}}</a>
         <a class="btn btn-danger btn-xs pull-right expertModeVisible" id="bt_stopScenario"><i class="fa fa-stop"></i> {{Arrêter}}</a>
-        <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_templateScenario"><i class="fa fa-cubes"></i> {{Template}}</a>
+        <a class="btn btn-default btn-xs pull-right expertModeVisible" id="bt_templateScenario"><i class="fa fa-cubes"></i> {{Template/Market}}</a>
         <a class="btn btn-success btn-xs pull-right" id="bt_saveScenario2"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
         <a class="btn btn-danger btn-xs pull-right" id="bt_delScenario2"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
         <a class="btn btn-warning btn-xs pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Executer}}</a>
+        <a class="btn btn-primary btn-xs pull-right bt_showExpressionTest"><i class="fa fa-check"></i> {{Testeur d'expression}}</a>
     </legend>
     <div class="row">
         <div class="col-sm-4">
@@ -193,10 +205,10 @@ foreach (object::all() as $object) {
 	echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
 }
 ?>
-                           </select>
-                       </div>
-                   </div>
-                   <div class="form-group expertModeVisible">
+                         </select>
+                     </div>
+                 </div>
+                 <div class="form-group expertModeVisible">
                     <label class="col-xs-6 control-label">{{Timeout secondes (0 = illimité)}}</label>
                     <div class="col-xs-6">
                         <input class="form-control scenarioAttr input-sm" data-l1key="timeout">
@@ -433,7 +445,7 @@ foreach (object::all() as $object) {
         </div>
 
         <div class="alert alert-info sel_otherActionDescription ask" style="display:none;">
-            {{Action qui permet à Jeedom de faire une demande puis de stocker la réponde dans une variable. Cette action est bloquant et ne finie que : si jeedom reçoit une réponde ou si le timeout est atteind. Pour le moment cette action n'est compatible qu'avec le plugin SMS ou Slack.}}
+            {{Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.}}
         </div>
 
     </div>
