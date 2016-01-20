@@ -304,7 +304,7 @@ class market {
 
 	public static function getJsonRpc() {
 		if (config::byKey('market::address') == '') {
-			throw new Exception(__('Aucune addresse n\'est renseignée pour le market', __FILE__));
+			throw new Exception(__('Aucune adresse n\'est renseignée pour le market', __FILE__));
 		}
 		$internalIp = '';
 		try {
