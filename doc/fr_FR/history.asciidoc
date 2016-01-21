@@ -1,28 +1,28 @@
 = Historique
 
-Partie importante dans un logiciel : la partie historisation, véritable mémoire de celle-ci. Il est possible dans Jeedom d'historiser n'importe quelle commande de type information (binaire ou numérique). Cela vous permettra donc par exemple d'historiser une courbe de température, de consommation ou les ouvertures d'une porte...
+Partie importante dans un logiciel : la partie historisation, véritable mémoire de celui-ci. Il est possible dans Jeedom d'historiser n'importe quelle commande de type information (binaire ou numérique). Cela vous permettra donc par exemple d'historiser une courbe de température, de consommation ou les ouvertures d'une porte...
 
 image::../images/history.JPG[]
 
 == Principe
 
-Ici est décrit le principe d'historisation de Jeedom. Il n'est nécessaire de les comprendre que si vous rencontrez des soucis d'historisation ou que vous voulez modifier les réglages de l'historisation. Les réglages par défaut conviennent dans la plupart des cas.
+Ici est décrit le principe d'historisation de Jeedom. Il n'est nécessaire de le comprendre que si vous rencontrez des soucis d'historisation ou que vous voulez modifier les réglages de l'historisation. Les réglages par défaut conviennent dans la plupart des cas.
 
 === Méthode d'historisation
 
 Un des premiers éléments est de savoir si la commande que vous historisez est de type évènement ou non : 
 
-* *Non évènement* : c'est le cas le plus simple. Jeedom va collecter toutes les 5min la valeur de la commande et historiser le résultat.
-* *Evènement* : Jeedom sait qu'il ne peut récupérer la valeur. Il attend donc que le plugin (et indirectement le module) la lui transmette. Ensuite, en fonction de la fréquence et de vos réglages, il se peut qu'un premier lissage intervienne. En effet, si Jeedom reçoit 2 valeurs à moins de 5min d'intervalle, il va par défaut en faire la moyenne pour n'en stocker qu'une. Vous pouvez bien sûr changer ce réglage pour qu'au lieu de la moyenne il prenne le maximum, le minimum ou au contraire qu'il garde les deux. Nous verrons par la suite comment changer ce réglage.
+* *Non évènement* : c'est le cas le plus simple. Jeedom va collecter toutes les 5 minutes la valeur de la commande et historiser le résultat.
+* *Evènement* : Jeedom sait qu'il ne peut pas récupérer la valeur par lui-même. Il attend donc que le plugin (et indirectement le module) la lui transmette. Ensuite, en fonction de la fréquence et de vos réglages, il se peut qu'un premier lissage intervienne. En effet, si Jeedom reçoit 2 valeurs à moins de 5 minutes d'intervalle, il va par défaut en faire la moyenne pour n'en stocker qu'une. Vous pouvez bien sûr changer ce réglage pour qu'au lieu de la moyenne il prenne le maximum, le minimum ou au contraire qu'il garde les deux. Nous verrons par la suite comment changer ce réglage.
 
 === Archivage
 
 L'archivage de données permet à Jeedom de réduire la quantité de données conservées en mémoire. Cela permet de ne pas utiliser trop de place et de ne pas ralentir le système. En effet, si vous conservez toute les mesures, cela fait d'autant plus de points à afficher et donc peut considérablement allonger les temps pour rendre un graphique. En cas d'un nombre trop important de points, cela peut même faire planter l'affichage du graphique.
 
-L'archivage est une tâche qui se lance dans la nuit et compacte les données récuperées dans la journée. Par défaut Jeedom récupère toutes les données plus vieille de 2h et en fait des paquets de 1h (soit une moyenne, un minimum ou un maximum en fonction des réglages). On a donc ici 2 paramètres, un pour la taille des paquets et un autre pour savoir à partir de quand en faire (pour rappel par défaut ce sont des paquets de 1h avec des données qui ont plus de 2h d'ancienneté).
+L'archivage est une tâche qui se lance dans la nuit et compacte les données récuperées dans la journée. Par défaut, Jeedom récupère toutes les données plus vieilles de 2h et en fait des paquets de 1h (soit une moyenne, un minimum ou un maximum en fonction des réglages). On a donc ici 2 paramètres, un pour la taille des paquets et un autre pour savoir à partir de quand en faire (pour rappel, par défaut ce sont des paquets de 1h avec des données qui ont plus de 2h d'ancienneté).
 
 [TIP]
-Si vous avez bien suivi vous devriez avoir une haute précision sur les 2 dernières heures seulement. Pourtant quand je me connecte à 17h, j'ai une précision sur les 17 dernières heures. Pourquoi ? En fait, pour éviter de consommer des ressources inutilement, la tâche qui fait l'archivage ne se déroule qu'une fois par jour, le soir.
+Si vous avez bien suivi, vous devriez avoir une haute précision sur les 2 dernières heures seulement. Pourtant quand je me connecte à 17h, j'ai une précision sur les 17 dernières heures. Pourquoi ? En fait, pour éviter de consommer des ressources inutilement, la tâche qui fait l'archivage ne se déroule qu'une fois par jour, le soir.
 
 [IMPORTANT]
 Bien sûr, ce principe d'archivage ne s'applique qu'aux commandes de type numérique ; sur les commandes de type binaire, Jeedom ne conserve que les dates de changement d'état.
@@ -37,9 +37,9 @@ La méthode de calcul de tendance est fondée sur le calcul des moindres carrés
 
 == Configuration générale de l'historique
 
-La configuration générale de l'historique se passe sur la page Administration -> Configuration.
+La configuration générale de l'historique se passe sur la page Général -> Administration -> Configuration.
 
-image::../images/administration.png[]
+image::../images/history2.JPG[]
 
 Nous allons voir ici les détails de la partie configuration des commandes, qui contient toute une branche concernant l'historique.
 
@@ -48,9 +48,9 @@ image::../images/history3.JPG[]
 On retrouve ici : 
 
 * *Afficher les statistiques sur les widgets* : permet d'afficher ou non les statistiques sur les widgets ; il faut que le widget soit compatible, ce qui est le cas pour la plupart ; il faut aussi que la commande soit de type numérique
-* *Période de calcul pour min, max, moyenne (en heures)* : période de calcul des statistiques (par défaut 24h), il n'est pas possible de mettre moins d'une heure
-* *Période de calcul pour la tendance (en heures)* : période de calcul des tendances (par défaut 2h), il n'est pas possible de mettre moins d'une heure
-* *Délai avant archivage (en heures)* : donne le délai avant archivage, par défaut la valeur est de 24h, c'est-à-dire que les données historisées doivent avoir plus de 24h pour être archivées (pour rappel, l'archivage va soit moyenner, soit prendre le maximum ou le minimum de la donnée sur une période qui correspond à la taille des paquets)
+* *Période de calcul pour min, max, moyenne (en heures)* : période de calcul des statistiques (par défaut 24h), il n'est pas possible de mettre moins de 1 heure
+* *Période de calcul pour la tendance (en heures)* : période de calcul des tendances (par défaut 2h), il n'est pas possible de mettre moins de 1 heure
+* *Délai avant archivage (en heures)* : donne le délai avant archivage, par défaut la valeur est de 24h; c'est-à-dire que les données historisées doivent avoir plus de 24h pour être archivées (pour rappel, l'archivage va soit moyenner, soit prendre le maximum ou le minimum de la donnée sur une période qui correspond à la taille des paquets)
 * *Archiver par paquet de (en heures)* : ce paramètre donne justement la taille des paquets, par defaut 1h ; cela signifie que Jeedom va prendre des périodes de 1h, moyenner (par exemple, suivant le réglage de la commande) et stocker cette nouvelle valeur (en supprimant les valeurs moyennées).
 * *Seuil de calcul de tendance basse* : cette valeur correspond au seuil de tendance basse (Jeedom indique que la valeur est en baisse), il doit être négatif (par défaut -0.1).
 * *Seuil de calcul de tendance haut* : idem mais à la tendance haute.
@@ -58,24 +58,28 @@ On retrouve ici :
 
 == Configuration spécifique par commande
 
-Pour accèder à ces réglages, il faut aller dans la configuration avancée des commandes, en passant par Outils -> Résumé domotique : 
+Pour accèder à ces réglages, il faut aller dans la configuration avancée des commandes, en passant par Général -> Résumé domotique : 
 
-image::../images/display.png[]
+image::../images/history8.JPG[]
 
 Puis en dépliant la liste des commande d'un équipement (petite flèche à droite) et, soit en double-cliquant sur la commande, soit en cliquant sur la petite roue : 
 
 image::../images/history9.JPG[]
 
 [TIP]
-Vous pouvez aussi utiliser le champ de recherche à droite en tapant le nom de la commande que vous voulez.
+Vous pouvez aussi utiliser le champ de recherche à droite, en tapant le nom de la commande que vous voulez.
 
 Vous pouvez également y accèder par la page de l'équipement en question et en cliquant sur la petite roue tout à droite sur la ligne de la commande (si le plugin a intégré cette option) : 
 
 image::../images/history10.JPG[]
 
-A partir de là, vous devez avoir une fenetre qui apparait, il faut cliquer sur "Configuration avancée" : 
+A partir de là, vous devez avoir la fenêtre suivante qui apparait : 
 
-image::../images/display13.JPG[]
+image::../images/history11.JPG[]
+
+Cliquez sur l'onglet "Configuration avancée" pour avoir : 
+
+image::../images/history12.JPG[]
 
 A partir de là, vous avez plusieurs possibilités de réglages. En ce qui concerne l'historique, il y a : 
 

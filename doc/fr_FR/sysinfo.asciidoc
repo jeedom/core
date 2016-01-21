@@ -2,7 +2,7 @@
 
 La page systeme information vous permet d'avoir un resumé générale sur votre systeme (hardware + OS)
 
-Il est accessible à partir du menu Analyse -> Informations système : 
+Il est accessible à partir du menu Général -> Administration -> Informations système : 
 
 image::../images/sysinfo.png[]
 

@@ -2,7 +2,7 @@
 
 C'est ici que vous allez pouvoir gerer les droits finements des utilisateurs sur les pages, équipement et scénario
 
-Accessible depuis Administration -> Gestion des droits avancés :
+Accessible depuis Général -> Administration -> Gestion des droits avancés :
 
 image::../images/rights.png[]
 

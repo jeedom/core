@@ -4,7 +4,7 @@
 
 Le menu Logs permet de suivre ce qui se passe sur sa domotique. Dans la plupart des cas les logs ne serviront qu'à effectuer du debuggage et à résoudre des problèmes par l'équipe de support. Ce menu est d'ailleurs accessible uniquement en mode expert.
 
-Pour y accèder il faut aller dans Administration -> Log : 
+Pour y accèder il faut aller dans Général -> Administration -> Log : 
 
 image::../images/log1.JPG[]
 
@@ -25,7 +25,7 @@ A noter que le log nginx.error ne peut être supprimé. Il est essentiel ! si vo
 
 == Configuration
 
-Il existe certains paramètres de configuration des logs (accessible par Administation -> Configuration puis la partie "Configuration des logs & messages").
+Il existe certains paramètres de configuration des logs (accessible par Général -> Administation -> Configuration puis la partie "Configuration des logs & messages").
 
 image::../images/log2.JPG[]
 
@@ -36,13 +36,12 @@ Vous avez ici les options suivantes :
 ** *Ne pas autoriser les messages venant de* : permet d'interdire certains messages venant de plugin ou autre
 ** *Commande d'information utilisateur* : permet de sélectionner une ou plusieurs commandes (à séparer par des &&) de type message qui seront utilisées lors de nouveaux messages (permet d'être tout de suite prévenu)
 * *Log* 
-** *Moteur de log* : permet de changer le moteur de log pour par exemple les envoyer à un demon syslog(d)
 ** *Nombre de lignes maximum dans un fichier de log* : Définit le nombre maximum de lignes dans un fichier de log, il est recommandé de ne pas toucher cette valeur, car une valeur trop grande pourrait remplir le système de fichiers et/ou rendre Jeedom incapable d'afficher le log
 ** *Logs actifs* : permet de définir les niveaux de log actif. Attention : plus il y a de niveaux actifs, plus Jeedom peut être lent ! Cela entraîne aussi une usure prématurée de la carte SD. Il est conseillé de n'activer que le niveau "Error". "Event" peut être activé aussi car il est nécessaire pour voir en temps réel ce qu'il se passe sur sa domotique (bien sûr c'est seulement si vous en avez besoin).
 
 == Le log "Event" et le niveau de log "Event"
 
-Le log "Event" est un peu particulier. Tout d'abord pour qu'il marche, il faut activer le niveau de log "Info" ou plus, ensuite celui-ci recense tous les évènements ou actions qui se passent sur la domotique. Pour y accéder, il faut cliquer sur la petite icône "compteur" en bas à droite dans Jeedom : 
+Le log "Event" est un peu particulier. Tout d'abord pour qu'il marche, il faut activer le niveau de log "Event", ensuite celui-ci recense tous les évènements ou actions qui se passent sur la domotique. Pour y accéder, il faut cliquer sur la petite icône "compteur" en bas à droite dans Jeedom : 
 
 image::../images/log3.JPG[]
 
@@ -53,4 +52,4 @@ image::../images/log4.JPG[]
 En haut à droite vous avez un champs recherche (ne marche que si vous n'êtes pas en pause) et un bouton pour mettre en pause (utile pour faire un copier/coller par exemple).
 
 [IMPORTANT]
-Pour que cela marche il faut absolument avoir activé le niveau de log "Info" ou plus (voir paragraphe précédent)
+Pour que cela marche il faut absolument avoir activé le niveau de log "Event" (voir paragraphe précédent)

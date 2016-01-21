@@ -10,7 +10,7 @@ image::../images/view.png[]
 Comme vous pouvez le voir sur la capture il est possible d'aller directement sur une vue grace au sous-menu
 
 [TIP]
-Vous pouvez dans votre profil choisir la vue par defaut lors du clique sur le menu des vues
+Vous pouvez dans votre profil choisir la vue par defaut lors du clic sur le menu des vues
 
 == Les vues
 
@@ -18,7 +18,7 @@ Voila un exemple de vue :
 
 image::../images/view2.png[]
 
-Comme le montre la capture sur les vues on peut mettre aussi bien des widgets que des graphiques (qui peuvent etre composés de plusieurs données)
+Comme le montre la capture sur les vues, on peut mettre aussi bien des widgets que des graphiques (qui peuvent etre composés de plusieurs données)
 
 Sur cette page on retrouve un bouton en haut à gauche pour montrer ou masquer la liste des vues ainsi que le bouton pour en ajouter une (Jeedom vous demandera son nom et vous enverra sur la page d'édition) : 
 
@@ -37,7 +37,7 @@ image::../images/view4.png[]
 
 Principe::
 
-Le principe est assez simple : une vue est composée de zones (on peut en mettre autant que l'on veut). Chaque zone est de type graphique ou widget : en fonction du type vous pourrez mettre des widgets ou des graphiques dedans
+Le principe est assez simple : une vue est composée de zones (on peut en mettre autant que l'on veut). Chaque zone est de type graphique ou widget : en fonction du type vous pourrez mettre des widgets ou des graphiques dedans.
 
 [TIP]
 Il est possible de deplacer l'ordre des zones en les glissant/déposant
@@ -95,4 +95,4 @@ Une fois le bouton d'ajout/édition des graphiques pressé, vous obtenez :
 
 image::../images/view9.png[]
 
-Une fois ajouté vous avez accès à des options de configuration : les différentes options sont expliquées link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_graphique_sur_les_vues_et_les_designs[ici]
+Une fois ajouté vous avez accès à des options de configuration : les différentes options sont expliquées link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-history.html#_graphique_sur_les_vues_et_les_designs[ici]
