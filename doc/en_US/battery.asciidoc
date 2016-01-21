@@ -4,7 +4,7 @@ La page Batteries vous permet de voir d'un seul coup le statut de tous vos équi
 
 image::../images/battery.PNG[]
 
-Une fois dessus vous obtenez : 
+Once above, you get: 
 
 image::../images/battery2.PNG[]
 

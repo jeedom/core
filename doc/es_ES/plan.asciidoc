@@ -91,7 +91,7 @@ Ici on a :
 ** *Ne pas afficher le nom de l'équipement* : masque le nom du widget, s'applique uniquement sur le design
 * *Spécifique* : permet de masquer certaine commande du widget uniquement sur le design
 
-[IMPORTANT]
+[IMPORTANTE]
 En fonction des plugins certaines options peuvent ne pas marcher
 
 [TIP]

@@ -2,7 +2,7 @@
 
 C'est ici que vous allez pouvoir gerer les droits finements des utilisateurs sur les pages, équipement et scénario
 
-Accessible depuis Général -> Administration -> Gestion des droits avancés :
+Accessible depuis Administration -> Gestion des droits avancés :
 
 image::../images/rights.png[]
 
@@ -10,7 +10,7 @@ Une fois dessus cette page se decompose en 3 parties : Général, Plugins/Equipe
 
 En haut a droite vous retrouver le login de l'utilisateur pour lequel vous modifiez les droits et le bouton de sauvegarde
 
-[IMPORTANT]
+[IMPORTANTE]
 Si l'utilisateur est admin, vous ne pouvez lui restreindre ses droits. Il faut d'abord lui désactiver le droits admin
 
 == Général

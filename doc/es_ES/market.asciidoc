@@ -76,7 +76,7 @@ image::../images/market4.png[]
 
 Ici vous retrouver tous vos achats et vous pouvez demande le renvoi du mail de facture ou de recu
 
-[IMPORTANT]
+[IMPORTANTE]
 Si vous achetez un plugin officiel vous recevez une facture en revanche pour un plugin tierce c'est un reçu, pour la facture il faut la demander au developpeur
 
 Vous pouvez aussi à partir de cette entrer un code promos (un code pour un plugin par exemple que le developpeur à pu vous transmettre) et faire un don.

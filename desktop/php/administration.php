@@ -25,7 +25,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             </div>
                         </div>
                         <div class="form-group expertModeVisible">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API global de Jeedom}}">{{Clef API}}</label>
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de Jeedom}}">{{Clef API}}</label>
                             <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
                                 <span class="label label-info" style="font-size : 1em;" id="in_keyAPI"><?php echo config::byKey('api'); ?></span>
                             </div>
@@ -75,7 +75,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Fuseau horraire de votre Jeedom}}">{{Date et heure}}</label>
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Fuseau horaire de votre Jeedom}}">{{Date et heure}}</label>
                         <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
                             <select class="configKey form-control" data-l1key="timezone">
                                 <option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
@@ -250,7 +250,7 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
         <div class="panel-body">
             <form class="form-horizontal">
                 <fieldset>
-                    <div class="alert alert-danger">{{ATTENTION ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. Suite à une modification de la base de données, l'équipe Jeedom se réserve le droit de refuser toute demande de support.}}</div>
+                    <div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. Suite à une modification de la base de données, l'équipe Jeedom se réserve le droit de refuser toute demande de support.}}</div>
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès à l'interface d'administration}}</label>
                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -300,7 +300,7 @@ echo $CONFIG['db']['password'];
         <div class="panel-body">
             <form class="form-horizontal">
                 <fieldset>
-                    <div class="alert alert-warning">{{Attention cette configuration n'est la que pour informer Jeedom de sa configuration réseaux et n'a aucun impact sur les ports ou l'IP réelement utilisés pour joindre Jeedom}}</div>
+                    <div class="alert alert-warning">{{Attention : cette configuration n'est là que pour informer Jeedom de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre Jeedom}}</div>
                     <div class="row">
                         <div class="col-sm-6">
                          <legend>Accès interne</legend>
@@ -396,7 +396,7 @@ if (network::test('external')) {
     <div class="col-sm-6">
         <legend>{{Gestion avancée}}</legend>
         <div class="form-group expertModeVisible has-error">
-            <label class="col-xs-4 control-label">{{Désactiver la gestion du réseaux par Jeedom}}</label>
+            <label class="col-xs-4 control-label">{{Désactiver la gestion du réseau par Jeedom}}</label>
             <div class="col-xs-8">
                 <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="network::disableMangement" />
             </div>
@@ -420,7 +420,7 @@ foreach (array('eth0', 'wlan0', 'bond0') as $value) {
 	?>
        <legend>DNS Jeedom</legend>
        <?php if (config::byKey('dns::token') == '') {?>
-        <div class="alert alert-warning">{{Attention cette fonctionnalité n'est pas disponible dans le service pack community (voir votre service pack sur  votre page profils sur le market)}}</div>
+        <div class="alert alert-warning">{{Attention : cette fonctionnalité n'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le market)}}</div>
         <?php } else {
 		?>
           <div class="form-group">
@@ -576,7 +576,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période d'affichage des graphiques par defaut}}</label>
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Période d'affichage des graphiques par défaut}}</label>
                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                             <select  class="configKey form-control" data-l1key="history::defautShowPeriod" >
                                 <option value="-6 month">6 mois</option>
@@ -617,14 +617,14 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
             <form class="form-horizontal">
                 <fieldset>
                     <div class="alert alert-info">
-                        {{Attention toute modification du moteur de cache necessite un redemarrage de Jeedom}}
+                        {{Attention toute modification du moteur de cache nécessite un redémarrage de Jeedom}}
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Moteur de cache}}</label>
                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                             <select type="text"  class="configKey form-control" data-l1key="cache::engine" >
-                                <option value="FilesystemCache">Systeme de fichier (/tmp/jeedom-cache)</option>
-                                <option value="PhpFileCache">Systeme de fichier php (/tmp/jeedom-cache-php)</option>
+                                <option value="FilesystemCache">Système de fichier (/tmp/jeedom-cache)</option>
+                                <option value="PhpFileCache">Système de fichier php (/tmp/jeedom-cache-php)</option>
                                 <option value="MemcachedCache">Memcached</option>
                                 <option value="RedisCache">Redis</option>
                             </select>
@@ -632,7 +632,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                     </div>
                     <div class="cacheEngine MemcachedCache">
                         <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Addresse Memcache}}</label>
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse Memcache}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                 <input type="text"  class="configKey form-control" data-l1key="cache::memcacheaddr" />
                             </div>
@@ -646,7 +646,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                     </div>
                     <div class="cacheEngine RedisCache">
                         <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Addresse Redis}}</label>
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse Redis}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                 <input type="text"  class="configKey form-control" data-l1key="cache::redisaddr" />
                             </div>
@@ -847,7 +847,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
             </div>
             <div class="logEngine SyslogUdp">
                 <div class="form-group">
-                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Addresse syslog udp}}</label>
+                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse syslog udp}}</label>
                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                         <input type="text"  class="configKey form-control" data-l1key="log::syslogudphost" />
                     </div>
@@ -982,7 +982,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Seuils des piles}}</label>
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Seuil des piles}}</label>
                             <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1 eqLogicAttr label label-danger" style="font-size : 1.4em">{{Danger}}</label>
                             <div class="col-xs-1">
                              <input class="configKey form-control" data-l1key="battery::danger" />
@@ -1049,7 +1049,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
                                 <option value="stable">{{Stable}}</option>
                                 <?php if (config::byKey('market::allowBeta') == 1) {?>
                                     <option value="release">{{Release}}</option>
-                                    <option value="beta">{{Beta (developpement, instable)}}</option>
+                                    <option value="beta">{{Beta (développement, instable)}}</option>
                                     <?php }
 ?>
                                     <option value="url">{{URL (github)}}</option>
@@ -1057,7 +1057,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
                             </div>
                         </div>
                         <div class="form-group" id="div_githubupdate">
-                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Addresse}}</label>
+                            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse}}</label>
                             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                                 <input class="configKey form-control" data-l1key="update::url"/>
                             </div>

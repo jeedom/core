@@ -4,7 +4,7 @@ Le sous-menu Plugins, permet de gérer ses plugins, à savoir : les télécharge
 
 == Gestion des plugins
 
-Vous pouvez accèder à la page plugin à partir de Général -> Plugins : 
+Vous pouvez accèder à la page plugin à partir de Plugins -> Gestion des plugins : 
 
 image::../images/plugin1.png[]
 
@@ -21,7 +21,7 @@ image::../images/plugin3.png[]
 
 En haut vous retrouver l'ID et le nom du plugin, ainsi que la version installée (ici beta). En dessous vous avez le bouton d'activation/desactivation d'un plugin
 
-[IMPORTANT]
+[IMPORTANTE]
 Lors du téléchagement d'un plugin celui-ci n'est pas activer il donc que vous l'activiez
 
 En dessous vous retrouver 4 boutons : 
@@ -68,10 +68,10 @@ Cette fiche vous donne plein d'information sur le plugin en autre :
 En dessous vous retrouver sur la gauche la description du plugin, la compatibilité (si Jeedom detecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter), les commentaire sur celui-ci et des information complementaire (l'auteur, la personne ayant fait la derniere mise à jour, un lien vers la doc, le nombre de téléchagement).
 Sur la droite vous retrouvez la liste des dernieres mise à jour (un bouton tout voir vous permet d'avoir tout l'historique), une documentation rapide d'utilisation (il est recommandé quand meme de lire la documentation complete) et enfin le type (plugin, widget...), la langue et les diverses informations sur la date de la derniere stable, la beta et si vous pouvez sans crainte revenir sur la beta
 
-[IMPORTANT]
+[IMPORTANTE]
 Il n'est vraiment pas recommandé de mettre un plugin beta sur un Jeedom beta, beaucoup de soucis de fonctionnement peuvent en resulter
 
-[IMPORTANT]
+[IMPORTANTE]
 Certain plugin son payant, dans ce cas la fiche du plugin vous proposera de l'acheter, une fois cela fait il faut attendre une dizaine de minutes (temps de validation du paiement), puis retrouner sur la fiche du plugin pour l'installer normalement
 
 [TIP]

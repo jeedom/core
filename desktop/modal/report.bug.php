@@ -3,7 +3,7 @@ if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 if (config::byKey('market::address') == '') {
-	throw new Exception('{{Aucune addresse pour le market n\'est renseignée}}');
+	throw new Exception('{{Aucune adresse pour le market n\'est renseignée}}');
 }
 if (config::byKey('market::apikey') == '' && config::byKey('market::username') == '') {
 	throw new Exception('{{Aucune clé pour le market n\'est renseignée. Veuillez vous enregistrer sur le market puis renseigner la clé dans Jeedom avant d\'ouvrir un ticket}}');
@@ -12,7 +12,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 <div id='div_alertReportBug'></div>
 <form class="form-horizontal" role="form" id="form_reportBug">
     <div class='alert alert-info'>
-        {{Vous avez une idée vous voulez la partager ? N'hesitez pas à nous la décrire <a href="https://jeedom.com/feedback" target="_blank">ici</a>}}
+        {{Vous avez une idée ? Vous voulez la partager ? N'hésitez pas à nous la décrire <a href="https://jeedom.com/feedback" target="_blank">ici</a>}}
     </div>
     <div class='alert alert-warning'>
         {{Merci de vérifier avant toute ouverture de ticket :}}<br/>

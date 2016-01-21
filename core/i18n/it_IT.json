@@ -25,8 +25,8 @@
         "Aucun": "Nessuno"
     },
     "desktop/modal/plugin.deamonLog.php": {
-        "Pause": "Pause",
-        "Rechercher": "Rechercher"
+        "Pause": "Pausa",
+        "Rechercher": "Cerca"
     },
     "desktop/php/index.php": {
         "Toggle navigation": "Commuta naviazione",
@@ -128,20 +128,20 @@
     },
     "desktop/modal/plugin.deamon.php": {
         "Suite à l'installation du plugin ou à la mise à jour des dépendances veuillez attendre au moins 5min pour que le démon se relance automatiquement": "Suite à l'installation du plugin ou à la mise à jour des dépendances veuillez attendre au moins 5min pour que le démon se relance automatiquement",
-        "Nom": "Nom",
-        "Statut": "Statut",
-        "Configuration": "Configuration",
+        "Nom": "Nome",
+        "Statut": "Stato",
+        "Configuration": "Configurazione",
         "(Re)Démarrer": "(Re)Démarrer",
-        "Arrêter": "Arrêter",
+        "Arrêter": "Ferma",
         "Debug": "Debug",
-        "Log": "Log",
+        "Log": "Registro",
         "Gestion automatique": "Gestion automatique",
-        "Dernier lancement": "Dernier lancement",
+        "Dernier lancement": "Ultima esecuzione",
         "Local": "Local",
         "OK": "OK",
-        "Désactiver": "Désactiver",
+        "Désactiver": "Disattiva",
         "NOK": "NOK",
-        "Activer": "Activer",
+        "Activer": "Attiva",
         "Log du démon": "Log du démon"
     },
     "core/com/http.com.php": {
@@ -291,7 +291,7 @@
         "Télécharger": "Scarica",
         "Rafraîchir": "Aggiorna",
         "Log vidés avec succès": "Registro svuotato correttamente",
-        "Aucun log n'existe pour votre scénario : ": "Aucun log n'existe pour votre scénario :"
+        "Aucun log n'existe pour votre scénario : ": "Nessun registro esistente per la tua scena:"
     },
     "desktop/php/message.php": {
         "Vider": "Vuota",
@@ -445,9 +445,9 @@
         "Equipement": "Dispositivo",
         "Commandes": "Comandi",
         "Scénario": "Scena",
-        "Calcul et arrondit": "Calcul et arrondit",
-        "Formule de calcul (#value# pour la valeur)": "Formule de calcul (#value# pour la valeur)",
-        "Arrondi (chiffre après la virgule)": "Arrondi (chiffre après la virgule)",
+        "Calcul et arrondit": "Calcolo e arrotondamento",
+        "Formule de calcul (#value# pour la valeur)": "Calcolo formula (#valore# per il valore)",
+        "Arrondi (chiffre après la virgule)": "Arrotondato (decimale)",
         "Type générique": "Type générique",
         "Type actuel": "Type actuel",
         "Forcer à": "Forcer à",
@@ -470,32 +470,32 @@
         "SECURITY_ON": "SECURITY_ON",
         "SECURITY_OFF": "SECURITY_OFF",
         "SECURITY_STATE": "SECURITY_STATE",
-        "Action sur la valeur": "Action sur la valeur",
-        "Action sur valeur, si": "Action sur valeur, si",
-        "égal": "égal",
-        "supérieur": "supérieur",
-        "inférieur": "inférieur",
-        "différent": "différent",
-        "plus de (min)": "plus de (min)",
-        "Action": "Action",
-        "Ajouter": "Ajouter",
-        "Historique": "Historique",
-        "Historiser": "Historiser",
-        "Mode de lissage": "Mode de lissage",
-        "Moyenne": "Moyenne",
-        "Minimum": "Minimum",
-        "Maximum": "Maximum",
-        "Aucun": "Aucun",
-        "Purger l'historique si plus vieux de ": "Purger l'historique si plus vieux de",
-        "Jamais": "Jamais",
-        "1 jour": "1 jour",
-        "7 jours": "7 jours",
-        "1 mois": "1 mois",
-        "6 mois": "6 mois",
-        "Autres": "Autres",
-        "Ne pas répéter si la valeur ne change pas": "Ne pas répéter si la valeur ne change pas",
-        "Push URL": "Push URL",
-        "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)",
+        "Action sur la valeur": "Azione su valore",
+        "Action sur valeur, si": "Azione su valore, se",
+        "égal": "uguale",
+        "supérieur": "sopra",
+        "inférieur": "minore di",
+        "différent": "differente",
+        "plus de (min)": "più (min)",
+        "Action": "Azione",
+        "Ajouter": "Aggiungi",
+        "Historique": "Storico",
+        "Historiser": "Storicizza",
+        "Mode de lissage": "Modalità livellamento",
+        "Moyenne": "Media",
+        "Minimum": "Minimo",
+        "Maximum": "Massimo",
+        "Aucun": "Nessuno",
+        "Purger l'historique si plus vieux de ": "Elimina storico se più vecchio",
+        "Jamais": "Mai",
+        "1 jour": "1 giorno",
+        "7 jours": "7 giorni",
+        "1 mois": "1 mese",
+        "6 mois": "6 mesi",
+        "Autres": "Altri",
+        "Ne pas répéter si la valeur ne change pas": "Non ripetere se il valore non cambia",
+        "Push URL": "URL Push",
+        "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Inserisci qui l\\'URL da chiamare in un aggiornamento del valore del comando. Puoi usare questi tag: #value# (valore comando), #cmd_id# (id comando) e #cmd_name# (nome comando)",
         "Widget": "Widget",
         "Afficher le nom": "Nome visualizzato",
         "Afficher les statistiques": "Mostra statistiche",
@@ -505,18 +505,18 @@
         "Sélection multiple de commandes": "Selezione multipla comandi",
         "Enregistrement réussi": "Salvataggio riuscito",
         "Modification(s) appliquée(s) avec succès": "Modifiche applicate con successo",
-        "Valeur": "Valeur",
+        "Valeur": "Valore",
         "Restriction de l'action": "Restrizione azione",
         "Confirmer l'action": "Conferma azione",
         "Code d'accès": "Codice d\\'accesso"
     },
     "core/template/scenario/scenario.default": {
-        "Scénario": "Scénario",
-        "Action": "Action",
-        "Start": "Start",
-        "Stop": "Stop",
-        "Activer": "Activer",
-        "Désactiver": "Désactiver"
+        "Scénario": "Scena",
+        "Action": "Azione",
+        "Start": "Avvia",
+        "Stop": "Ferma",
+        "Activer": "Attiva",
+        "Désactiver": "Disattiva"
     },
     "desktop/php/log.php": {
         "Supprimer tous les logs": "Rimuovi tutti i registri",
@@ -526,13 +526,13 @@
         "Rafraîchir": "Aggiorna"
     },
     "desktop/js/log.js": {
-        "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sur de vouloir supprimer tous les logs ?"
+        "Etes-vous sur de vouloir supprimer tous les logs ?": "Sei sicuro di voler eliminare tutti i registri?"
     },
     "desktop/modal/plugin.dependancy.php": {
-        "Nom": "Nom",
-        "Statut": "Statut",
-        "Installation": "Installation",
-        "Log": "Log",
+        "Nom": "Nome",
+        "Statut": "Stato",
+        "Installation": "Installazione",
+        "Log": "Registro",
         "Dernière installation": "Dernière installation",
         "Local": "Local",
         "OK": "OK",
@@ -787,12 +787,12 @@
         "Sélectionner un équipement": "Sélectionner un équipement"
     },
     "desktop/modal/plugin.dependancyLog.php": {
-        "Pause": "Pause",
-        "Rechercher": "Rechercher"
+        "Pause": "Pausa",
+        "Rechercher": "Cerca"
     },
     "core/js/log.class.js": {
-        "Reprise": "Reprise",
-        "Pause": "Pause"
+        "Reprise": "Ripristina",
+        "Pause": "Pausa"
     },
     "/var/www/html/desktop/php/history.php": {
         "Aucun": "Nessuno"
@@ -1109,7 +1109,7 @@
         "SI": "CASO",
         "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente": "Autorizza o non la ripetizione di azioni se la valutazione delle condizioni è la stessa della precedente",
         "ALORS": "ALLORA",
-        "Ajouter": "Ajouter",
+        "Ajouter": "Aggiungi",
         "Bloc": "Bloc",
         "Action": "Azione",
         "SINON": "ALTRIMENTI",
@@ -1122,21 +1122,21 @@
         "ACTION": "AZIONE"
     },
     "desktop/js/plugin.js": {
-        "Voir sur le market": "Voir sur le market",
-        "Envoyer sur le market": "Envoyer sur le market",
-        "Supprimer": "Supprimer",
-        "Documentation": "Documentation",
-        "Statut": "Statut",
-        "Actif": "Actif",
-        "Inactif": "Inactif",
-        "Action": "Action",
-        "Désactiver": "Désactiver",
-        "Activer": "Activer",
+        "Voir sur le market": "Visualizza sul market",
+        "Envoyer sur le market": "Condividi sul Market",
+        "Supprimer": "Elimina",
+        "Documentation": "Documentazione",
+        "Statut": "Stato",
+        "Actif": "Attiva",
+        "Inactif": "Inattiva",
+        "Action": "Azione",
+        "Désactiver": "Disattiva",
+        "Activer": "Attiva",
         "Votre version de jeedom ne permet pas d\\'activer ce plugin": "Votre version de jeedom ne permet pas d\\'activer ce plugin",
-        "Etes vous sûr de vouloir supprimer ce plugin ?": "Etes vous sûr de vouloir supprimer ce plugin ?",
-        "Plugin ajouté avec succès. Recharger la page pour le voir.": "Plugin ajouté avec succès. Recharger la page pour le voir.",
+        "Etes vous sûr de vouloir supprimer ce plugin ?": "Sei sicuro di voler eliminare questo plugin?",
+        "Plugin ajouté avec succès. Recharger la page pour le voir.": "Plugin aggiunto con successo. Si prega di ricaricare la pagina web per vederlo.",
         "Market Jeedom": "Market Jeedom",
-        "Sauvegarde effectuée": "Sauvegarde effectuée"
+        "Sauvegarde effectuée": "Backup completato"
     },
     "desktop/js/administration.js": {
         "Etes-vous sûr de vouloir réinitialiser la clef API de Jeedom ? Vous devrez reconfigurer tous les équipements communiquant avec Jeedom et utilisant la clef API": "Sei sicuro di voler resettare la chiave API Jeedom? Dovrai riconfigurare tutti i dispositivi che comunicano con Jeedom attraverso la chiave API",
