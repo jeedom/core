@@ -128,18 +128,18 @@
     },
     "desktop/modal/plugin.deamon.php": {
         "Suite à l'installation du plugin ou à la mise à jour des dépendances veuillez attendre au moins 5min pour que le démon se relance automatiquement": "Suite à l'installation du plugin ou à la mise à jour des dépendances veuillez attendre au moins 5min pour que le démon se relance automatiquement",
-        "Nom": "Nom",
+        "Nom": "Name",
         "Statut": "Statut",
         "Configuration": "Configuration",
-        "(Re)Démarrer": "(Re)Démarrer",
+        "(Re)Démarrer": "(Re)Start",
         "Arrêter": "Arrêter",
         "Debug": "Debug",
         "Log": "Log",
-        "Gestion automatique": "Gestion automatique",
+        "Gestion automatique": "Automatic management",
         "Dernier lancement": "Dernier lancement",
         "Local": "Local",
         "OK": "OK",
-        "Désactiver": "Désactiver",
+        "Désactiver": "Disable",
         "NOK": "NOK",
         "Activer": "Activer",
         "Log du démon": "Log du démon"
@@ -505,7 +505,7 @@
         "Sélection multiple de commandes": "Sélection multiple de commandes",
         "Enregistrement réussi": "Enregistrement réussi",
         "Modification(s) appliquée(s) avec succès": "Modification(s) appliquée(s) avec succès",
-        "Valeur": "Valeur",
+        "Valeur": "Value",
         "Restriction de l'action": "Restriction de l'action",
         "Confirmer l'action": "Confirmer l'action",
         "Code d'accès": "Code d'accès"
@@ -516,7 +516,7 @@
         "Start": "Start",
         "Stop": "Stop",
         "Activer": "Activer",
-        "Désactiver": "Désactiver"
+        "Désactiver": "Disable"
     },
     "desktop/php/log.php": {
         "Supprimer tous les logs": "Supprimer tous les logs",
@@ -529,7 +529,7 @@
         "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sur de vouloir supprimer tous les logs ?"
     },
     "desktop/modal/plugin.dependancy.php": {
-        "Nom": "Nom",
+        "Nom": "Name",
         "Statut": "Statut",
         "Installation": "Installation",
         "Log": "Log",
@@ -539,8 +539,8 @@
         "Relancer": "Relancer",
         "Voir la log": "Voir la log",
         "NOK": "NOK",
-        "Installation en cours": "Installation en cours",
-        "Log des dépendances": "Log des dépendances"
+        "Installation en cours": "Setup in progress",
+        "Log des dépendances": "Log of dependencies"
     },
     "mobile/html/index.html": {
         "Accueil": "Accueil"
@@ -791,7 +791,7 @@
         "Rechercher": "Rechercher"
     },
     "core/js/log.class.js": {
-        "Reprise": "Reprise",
+        "Reprise": "Recovery",
         "Pause": "Pause"
     },
     "/var/www/html/desktop/php/history.php": {
@@ -1122,20 +1122,20 @@
         "ACTION": "ACTION"
     },
     "desktop/js/plugin.js": {
-        "Voir sur le market": "Voir sur le market",
+        "Voir sur le market": "View on market",
         "Envoyer sur le market": "Envoyer sur le market",
-        "Supprimer": "Supprimer",
+        "Supprimer": "Delete",
         "Documentation": "Documentation",
         "Statut": "Statut",
         "Actif": "Actif",
         "Inactif": "Inactif",
         "Action": "Action",
-        "Désactiver": "Désactiver",
+        "Désactiver": "Disable",
         "Activer": "Activer",
         "Votre version de jeedom ne permet pas d\\'activer ce plugin": "Votre version de jeedom ne permet pas d\\'activer ce plugin",
-        "Etes vous sûr de vouloir supprimer ce plugin ?": "Etes vous sûr de vouloir supprimer ce plugin ?",
-        "Plugin ajouté avec succès. Recharger la page pour le voir.": "Plugin ajouté avec succès. Recharger la page pour le voir.",
-        "Market Jeedom": "Market Jeedom",
+        "Etes vous sûr de vouloir supprimer ce plugin ?": "Do you really want to delete this plugin?",
+        "Plugin ajouté avec succès. Recharger la page pour le voir.": "Plugin successfully added. Please refresh the webpage to see it.",
+        "Market Jeedom": "Jeedom Market",
         "Sauvegarde effectuée": "Sauvegarde effectuée"
     },
     "desktop/js/administration.js": {

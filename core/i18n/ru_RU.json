@@ -25,8 +25,8 @@
         "Aucun": "Нет"
     },
     "desktop/modal/plugin.deamonLog.php": {
-        "Pause": "Pause",
-        "Rechercher": "Rechercher"
+        "Pause": "Пауза",
+        "Rechercher": "Искать"
     },
     "desktop/php/index.php": {
         "Toggle navigation": "Включить/выключить навигацию",
@@ -128,20 +128,20 @@
     },
     "desktop/modal/plugin.deamon.php": {
         "Suite à l'installation du plugin ou à la mise à jour des dépendances veuillez attendre au moins 5min pour que le démon se relance automatiquement": "Suite à l'installation du plugin ou à la mise à jour des dépendances veuillez attendre au moins 5min pour que le démon se relance automatiquement",
-        "Nom": "Nom",
-        "Statut": "Statut",
-        "Configuration": "Configuration",
+        "Nom": "Имя",
+        "Statut": "Статус",
+        "Configuration": "Конфигурация",
         "(Re)Démarrer": "(Re)Démarrer",
-        "Arrêter": "Arrêter",
+        "Arrêter": "Стоп",
         "Debug": "Debug",
-        "Log": "Log",
+        "Log": "Журнал",
         "Gestion automatique": "Gestion automatique",
-        "Dernier lancement": "Dernier lancement",
-        "Local": "Local",
-        "OK": "OK",
-        "Désactiver": "Désactiver",
+        "Dernier lancement": "Последний запуск",
+        "Local": "Локальный",
+        "OK": "ОК",
+        "Désactiver": "Отключить",
         "NOK": "NOK",
-        "Activer": "Activer",
+        "Activer": "Активировать",
         "Log du démon": "Log du démon"
     },
     "core/com/http.com.php": {
@@ -291,7 +291,7 @@
         "Télécharger": "Скачать",
         "Rafraîchir": "Обновить",
         "Log vidés avec succès": "Log vidés avec succès",
-        "Aucun log n'existe pour votre scénario : ": "Aucun log n'existe pour votre scénario :"
+        "Aucun log n'existe pour votre scénario : ": "Нет журнала для вашего сценария:"
     },
     "desktop/php/message.php": {
         "Vider": "Пусто",
@@ -446,8 +446,8 @@
         "Commandes": "Команды",
         "Scénario": "Сценарий",
         "Calcul et arrondit": "Calcul et arrondit",
-        "Formule de calcul (#value# pour la valeur)": "Formule de calcul (#value# pour la valeur)",
-        "Arrondi (chiffre après la virgule)": "Arrondi (chiffre après la virgule)",
+        "Formule de calcul (#value# pour la valeur)": "Формула расчета (#значение #по стоимости)",
+        "Arrondi (chiffre après la virgule)": "Округление (в десятичной системе)",
         "Type générique": "Type générique",
         "Type actuel": "Type actuel",
         "Forcer à": "Forcer à",
@@ -471,27 +471,27 @@
         "SECURITY_OFF": "SECURITY_OFF",
         "SECURITY_STATE": "SECURITY_STATE",
         "Action sur la valeur": "Action sur la valeur",
-        "Action sur valeur, si": "Action sur valeur, si",
-        "égal": "égal",
-        "supérieur": "supérieur",
-        "inférieur": "inférieur",
-        "différent": "différent",
-        "plus de (min)": "plus de (min)",
-        "Action": "Action",
-        "Ajouter": "Ajouter",
-        "Historique": "Historique",
-        "Historiser": "Historiser",
-        "Mode de lissage": "Mode de lissage",
-        "Moyenne": "Moyenne",
-        "Minimum": "Minimum",
-        "Maximum": "Maximum",
-        "Aucun": "Aucun",
-        "Purger l'historique si plus vieux de ": "Purger l'historique si plus vieux de",
-        "Jamais": "Jamais",
-        "1 jour": "1 jour",
-        "7 jours": "7 jours",
-        "1 mois": "1 mois",
-        "6 mois": "6 mois",
+        "Action sur valeur, si": "Действие по значению, если",
+        "égal": "равный",
+        "supérieur": "высший",
+        "inférieur": "Нижний",
+        "différent": "другой",
+        "plus de (min)": "более (мин)",
+        "Action": "Действие",
+        "Ajouter": "Добавить",
+        "Historique": "История",
+        "Historiser": "История",
+        "Mode de lissage": "Режим сглаживания",
+        "Moyenne": "Средний",
+        "Minimum": "Минимум",
+        "Maximum": "Максимум",
+        "Aucun": "Нет",
+        "Purger l'historique si plus vieux de ": "Затереть в истории старые данные",
+        "Jamais": "Никогда",
+        "1 jour": "1 день",
+        "7 jours": "7 дней",
+        "1 mois": "1 месяц",
+        "6 mois": "6 месяцев",
         "Autres": "Autres",
         "Ne pas répéter si la valeur ne change pas": "Ne pas répéter si la valeur ne change pas",
         "Push URL": "Push URL",
@@ -505,18 +505,18 @@
         "Sélection multiple de commandes": "Выбор пакета команд",
         "Enregistrement réussi": "Регистрация прошла успешно",
         "Modification(s) appliquée(s) avec succès": "Modification(s) appliquée(s) avec succès",
-        "Valeur": "Valeur",
+        "Valeur": "Значение",
         "Restriction de l'action": "Restriction de l'action",
         "Confirmer l'action": "Подтвердите действие",
         "Code d'accès": "Код доступа"
     },
     "core/template/scenario/scenario.default": {
-        "Scénario": "Scénario",
-        "Action": "Action",
-        "Start": "Start",
-        "Stop": "Stop",
-        "Activer": "Activer",
-        "Désactiver": "Désactiver"
+        "Scénario": "Сценарий",
+        "Action": "Действие",
+        "Start": "Старт",
+        "Stop": "Стоп",
+        "Activer": "Активировать",
+        "Désactiver": "Отключить"
     },
     "desktop/php/log.php": {
         "Supprimer tous les logs": "Удалить все журналы",
@@ -526,16 +526,16 @@
         "Rafraîchir": "Обновить"
     },
     "desktop/js/log.js": {
-        "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sur de vouloir supprimer tous les logs ?"
+        "Etes-vous sur de vouloir supprimer tous les logs ?": "Вы уверены, что желаете удалить все журналы?"
     },
     "desktop/modal/plugin.dependancy.php": {
-        "Nom": "Nom",
-        "Statut": "Statut",
-        "Installation": "Installation",
-        "Log": "Log",
+        "Nom": "Имя",
+        "Statut": "Статус",
+        "Installation": "Установка",
+        "Log": "Журнал",
         "Dernière installation": "Dernière installation",
-        "Local": "Local",
-        "OK": "OK",
+        "Local": "Локальный",
+        "OK": "ОК",
         "Relancer": "Relancer",
         "Voir la log": "Voir la log",
         "NOK": "NOK",
@@ -787,12 +787,12 @@
         "Sélectionner un équipement": "Sélectionner un équipement"
     },
     "desktop/modal/plugin.dependancyLog.php": {
-        "Pause": "Pause",
-        "Rechercher": "Rechercher"
+        "Pause": "Пауза",
+        "Rechercher": "Искать"
     },
     "core/js/log.class.js": {
-        "Reprise": "Reprise",
-        "Pause": "Pause"
+        "Reprise": "Возобновление",
+        "Pause": "Пауза"
     },
     "/var/www/html/desktop/php/history.php": {
         "Aucun": "Нет"
@@ -1109,7 +1109,7 @@
         "SI": "SI",
         "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente": "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente",
         "ALORS": "ТОГДА",
-        "Ajouter": "Ajouter",
+        "Ajouter": "Добавить",
         "Bloc": "Bloc",
         "Action": "Действие",
         "SINON": "ИНАЧЕ",
@@ -1122,21 +1122,21 @@
         "ACTION": "ДЕЙСТВИЕ"
     },
     "desktop/js/plugin.js": {
-        "Voir sur le market": "Voir sur le market",
-        "Envoyer sur le market": "Envoyer sur le market",
-        "Supprimer": "Supprimer",
-        "Documentation": "Documentation",
-        "Statut": "Statut",
-        "Actif": "Actif",
+        "Voir sur le market": "Посмотреть на Маркете",
+        "Envoyer sur le market": "Отправить в Маркет",
+        "Supprimer": "Удалить",
+        "Documentation": "Документация",
+        "Statut": "Статус",
+        "Actif": "Активный",
         "Inactif": "Inactif",
-        "Action": "Action",
-        "Désactiver": "Désactiver",
-        "Activer": "Activer",
+        "Action": "Действие",
+        "Désactiver": "Отключить",
+        "Activer": "Активировать",
         "Votre version de jeedom ne permet pas d\\'activer ce plugin": "Votre version de jeedom ne permet pas d\\'activer ce plugin",
         "Etes vous sûr de vouloir supprimer ce plugin ?": "Etes vous sûr de vouloir supprimer ce plugin ?",
         "Plugin ajouté avec succès. Recharger la page pour le voir.": "Plugin ajouté avec succès. Recharger la page pour le voir.",
-        "Market Jeedom": "Market Jeedom",
-        "Sauvegarde effectuée": "Sauvegarde effectuée"
+        "Market Jeedom": "Маркет Jeedom",
+        "Sauvegarde effectuée": "Резервное копирование произведено"
     },
     "desktop/js/administration.js": {
         "Etes-vous sûr de vouloir réinitialiser la clef API de Jeedom ? Vous devrez reconfigurer tous les équipements communiquant avec Jeedom et utilisant la clef API": "Etes-vous sûr de vouloir réinitialiser la clef API de Jeedom ? Vous devrez reconfigurer tous les équipements communiquant avec Jeedom et utilisant la clef API",
