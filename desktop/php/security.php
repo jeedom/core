@@ -4,13 +4,13 @@ if (!hasRight('securityview', true)) {
 }
 ?>
 <ul class="nav nav-tabs" id="security_tab">
-    <li class="active"><a href="#config">{{Configuration}}</a></li>
-    <li><a href="#status">{{Statut}}</a></li>
+    <li class="active"><a href="#status">{{Statut}}</a></li>
+    <li><a href="#config">{{Configuration}}</a></li>
 </ul>
 
 
 <div class="tab-content">
-    <div class="tab-pane" id="status">
+    <div class="tab-pane active" id="status">
         <br/>
         <table id="table_security" class="table table-bordered table-condensed tablesorter" >
             <thead>
@@ -57,43 +57,49 @@ foreach (connection::all() as $connection) {
 	echo '</tr>';
 }
 ?>
-           </tbody>
-       </table>
-   </div>
-
-   <div class="tab-pane active" id="config">
-    <br/>
-    <form class="form-horizontal">
-        <fieldset>
-            <div class="form-group">
-                <label class="col-sm-2 col-xs-3 control-label">{{Nombre de tentatives de connexion max}}</label>
-                <div class="col-sm-1 col-xs-3">
-                    <input type="text" class="configKey form-control" data-l1key="security::retry" />
-                </div>
-                <label class="col-sm-1 col-xs-3 control-label">{{en (min) }}</label>
-                <div class="col-sm-1 col-xs-3">
-                    <input type="text" class="configKey form-control" data-l1key="security::backlogtime" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 col-xs-6 control-label">{{Durée du bannissement (min)}}</label>
-                <div class="col-sm-1 col-xs-6">
-                    <input type="text" class="configKey form-control" data-l1key="security::bantime" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 col-xs-6 control-label">{{Liste blanche d'IP}}</label>
-                <div class="col-sm-8 col-xs-6">
-                    <input type="text" class="configKey form-control" data-l1key="security::protectIp" />
-                </div>
-            </div>
-
-        </fieldset>
-    </form>
-    <div class="form-actions" style="height: 20px;">
-        <a class="btn btn-success" id="bt_saveSecurityConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+            </tbody>
+        </table>
     </div>
-</div>
+
+    <div class="tab-pane" id="config">
+        <br/>
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 col-xs-6 control-label">{{Activer la sécurité anti-piratage}}</label>
+                    <div class="col-sm-3 col-xs-6">
+                        <input type="checkbox" class="configKey bootstrapSwitch" data-l1key="security::enable"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-xs-3 control-label">{{Nombre de tentatives de connexion max}}</label>
+                    <div class="col-sm-1 col-xs-3">
+                        <input type="text" class="configKey form-control" data-l1key="security::retry" />
+                    </div>
+                    <label class="col-sm-1 col-xs-3 control-label">{{en (min) }}</label>
+                    <div class="col-sm-1 col-xs-3">
+                        <input type="text" class="configKey form-control" data-l1key="security::backlogtime" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-xs-6 control-label">{{Durée du bannissement (min)}}</label>
+                    <div class="col-sm-1 col-xs-6">
+                        <input type="text" class="configKey form-control" data-l1key="security::bantime" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-xs-6 control-label">{{Liste blanche d'IP}}</label>
+                    <div class="col-sm-8 col-xs-6">
+                        <input type="text" class="configKey form-control" data-l1key="security::protectIp" />
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+        <div class="form-actions" style="height: 20px;">
+            <a class="btn btn-success" id="bt_saveSecurityConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+        </div>
+    </div>
 </div>
 
 

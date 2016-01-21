@@ -38,24 +38,6 @@ $('#bt_saveRights').on('click', function () {
     });
 });
 
- $('#bt_applyRightsToogle').on('click', function () {
-        var state = false;
-        if ($(this).attr('data-state') == 0) {
-            state = true;
-            $(this).attr('data-state', 1);
-            $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
-        } else {
-            state = false;
-            $(this).attr('data-state', 0);
-            $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
-        }
-        $('.tab-pane.active .rightsAttr[data-l1key=right]').each(function () {
-            if ($(this).is(':visible')) {
-                $(this).prop('checked', state);
-            }
-        });
-    });
-
 
 function loadRights() {
     jeedom.rights.byUserId({

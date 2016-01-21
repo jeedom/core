@@ -84,7 +84,7 @@ class user {
 						$user->save();
 						log::add("connection", "info", __('Utilisateur créé depuis le LDAP : ', __FILE__) . $_login);
 						jeedom::event('user_connect');
-						log::add('event', 'info', __('Connexion de l\'utilisateur ', __FILE__) . $_login);
+						log::add('event', 'event', __('Connexion de l\'utilisateur ', __FILE__) . $_login);
 						return $user;
 					} else {
 						$user = self::byLogin($_login);
@@ -117,7 +117,7 @@ class user {
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
 			$user->save();
 			jeedom::event('user_connect');
-			log::add('event', 'info', __('Connexion de l\'utilisateur ', __FILE__) . $_login);
+			log::add('event', 'event', __('Connexion de l\'utilisateur ', __FILE__) . $_login);
 			if ($user->getOptions('validity_limit') != '' && strtotime('now') > strtotime($user->getOptions('validity_limit'))) {
 				$user->remove();
 				return false;

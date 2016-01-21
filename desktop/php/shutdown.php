@@ -1,4 +1,5 @@
 <?php
+header("Cache-Control: no-cache");
 if (!isConnect('admin')) {
 	throw new Exception(__('401 - Accès non autorisé', __FILE__));
 }

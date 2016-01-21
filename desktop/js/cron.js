@@ -103,67 +103,55 @@
     $.showLoading();
     jeedom.cron.all({
         success: function (data) {
-         $.showLoading();
-         $('#table_cron tbody').empty();
-         var tr = [];
-         for (var i in data.crons) {
-           tr.push(addCron(data.crons[i]));
-       }
-       $('#table_cron tbody').append(tr);
-       $('#span_jeecronMasterRuns').html(data.nbMasterCronRun);
-       $('#span_jeecronRuns').html(data.nbCronRun);
-       $('#span_nbProcess').html(data.nbProcess);
-       $('#span_loadAvg1').html(data.loadAvg[0]);
-       $('#span_loadAvg5').html(data.loadAvg[1]);
-       $('#span_loadAvg15').html(data.loadAvg[2]);
-       $("#table_cron").trigger("update");
-       modifyWithoutSave = false;
-       $.hideLoading();
-   }
-});
+           $.showLoading();
+           $('#table_cron tbody').empty();
+           var tr = [];
+           for (var i in data.crons) {
+             tr.push(addCron(data.crons[i]));
+         }
+         $('#table_cron tbody').append(tr);
+         $('#span_jeecronMasterRuns').html(data.nbMasterCronRun);
+         $('#span_jeecronRuns').html(data.nbCronRun);
+         $('#span_nbProcess').html(data.nbProcess);
+         $('#span_loadAvg1').html(data.loadAvg[0]);
+         $('#span_loadAvg5').html(data.loadAvg[1]);
+         $('#span_loadAvg15').html(data.loadAvg[2]);
+         $("#table_cron").trigger("update");
+         modifyWithoutSave = false;
+         $.hideLoading();
+     }
+ });
 }
 
 function addCron(_cron) {
     $.hideAlert();
-    var disabled ='';
-    if(init(_cron.deamon) == 1){
-        disabled ='disabled';
-    }
     var tr = '<tr id="' + init(_cron.id) + '">';
     tr += '<td class="option"><span class="cronAttr" data-l1key="id"></span></td>';
     tr += '<td>';
-    if(init(_cron.deamon) == 0){
-        if (init(_cron.state) == 'run') {
-            tr += '<a class="btn btn-danger btn-xs stop" style="color : white;"><i class="fa fa-stop"></i></a>';
-        }
-        if (init(_cron.state) != '' && init(_cron.state) != 'starting' && init(_cron.state) != 'run' && init(_cron.state) != 'stoping') {
-            tr += '<a class="btn btn-success btn-xs start" style="color : white;"><i class="fa fa-play"></i></a>';
-        }
+    if (init(_cron.state) == 'run') {
+        tr += '<a class="btn btn-danger btn-xs stop" style="color : white;"><i class="fa fa-stop"></i></a>';
+    }
+    if (init(_cron.state) != '' && init(_cron.state) != 'starting' && init(_cron.state) != 'run' && init(_cron.state) != 'stoping') {
+        tr += '<a class="btn btn-success btn-xs start" style="color : white;"><i class="fa fa-play"></i></a>';
     }
     tr += '</td>';
     tr += '<td class="enable"><center>';
-    tr += '<input type="checkbox" data-size="mini" class="cronAttr bootstrapSwitch" data-l1key="enable" checked '+disabled+'/>';
+    tr += '<input type="checkbox" data-size="mini" class="cronAttr bootstrapSwitch" data-l1key="enable" checked/>';
     tr += '</center></td>';
     tr += '<td>';
     tr += init(_cron.pid);
     tr += '</td>';
     tr += '<td class="deamons">';
-    tr += '<input type="checkbox" data-size="mini" class="cronAttr bootstrapSwitch" data-l1key="deamon" '+disabled+' /></span> ';
-    tr += '<input class="cronAttr form-control input-sm" data-l1key="deamonSleepTime" style="width : 50px; display : inline-block;" />';
+    tr += '<input type="checkbox" data-size="mini" class="cronAttr bootstrapSwitch" data-l1key="deamon" /></span> ';
+    tr += '<input class="cronAttr form-control input-sm" data-l1key="deamonSleepTime" style="width : 50px; display : inline-block;"/>';
     tr += '</td>';
     tr += '<td class="once">';
-    if(init(_cron.deamon) == 0){
-        tr += '<input type="checkbox" class="cronAttr bootstrapSwitch" data-size="mini" data-l1key="once" /></span> ';
-    }
+    tr += '<input type="checkbox" class="cronAttr bootstrapSwitch" data-size="mini" data-l1key="once" /></span> ';
     tr += '</td>';
-    tr += '<td class="class"><input class="form-control cronAttr input-sm" data-l1key="class" '+disabled+' /></td>';
-    tr += '<td class="function"><input class="form-control cronAttr input-sm" data-l1key="function" '+disabled+' /></td>';
-    tr += '<td class="schedule"><input class="cronAttr form-control input-sm" data-l1key="schedule" '+disabled+' /></td>';
-    tr += '<td class="function">';
-    if(init(_cron.deamon) == 0){
-        tr += '<input class="form-control cronAttr input-sm" data-l1key="timeout" />';
-    }
-    tr += '</td>';
+    tr += '<td class="class"><input class="form-control cronAttr input-sm" data-l1key="class" /></td>';
+    tr += '<td class="function"><input class="form-control cronAttr input-sm" data-l1key="function" /></td>';
+    tr += '<td class="schedule"><input class="cronAttr form-control input-sm" data-l1key="schedule" /></td>';
+    tr += '<td class="function"><input class="form-control cronAttr input-sm" data-l1key="timeout" /></td>';
     tr += '<td class="lastRun">';
     tr += init(_cron.lastRun);
     tr += '</td>';

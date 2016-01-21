@@ -84,14 +84,7 @@ class ExpressionLanguage
             return $expression;
         }
 
-        asort($names);
-        $cacheKeyItems = array();
-
-        foreach ($names as $nameKey => $name) {
-            $cacheKeyItems[] = is_int($nameKey) ? $name : $nameKey.':'.$name;
-        }
-
-        $key = $expression.'//'.implode('|', $cacheKeyItems);
+        $key = $expression.'//'.implode('-', $names);
 
         if (null === $parsedExpression = $this->cache->fetch($key)) {
             $nodes = $this->getParser()->parse($this->getLexer()->tokenize((string) $expression), $names);

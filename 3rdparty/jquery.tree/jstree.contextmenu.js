@@ -20,6 +20,8 @@
 
 	if($.jstree.plugins.contextmenu) { return; }
 
+	var cto = null, ex, ey;
+
 	/**
 	 * stores all defaults for the contextmenu plugin
 	 * @name $.jstree.defaults.contextmenu
@@ -40,9 +42,9 @@
 		show_at_node : true,
 		/**
 		 * an object of actions, or a function that accepts a node and a callback function and calls the callback function with an object of actions available for that node (you can also return the items too).
-		 *
+		 * 
 		 * Each action consists of a key (a unique name) and a value which is an object with the following properties (only label and action are required):
-		 *
+		 * 
 		 * * `separator_before` - a boolean indicating if there should be a separator before this item
 		 * * `separator_after` - a boolean indicating if there should be a separator after this item
 		 * * `_disabled` - a boolean indicating if this action should be disabled
@@ -51,7 +53,7 @@
 		 * * `icon` - a string, can be a path to an icon or a className, if using an image that is in the current directory use a `./` prefix, otherwise it will be detected as a class
 		 * * `shortcut` - keyCode which will trigger the action if the menu is open (for example `113` for rename, which equals F2)
 		 * * `shortcut_label` - shortcut label (like for example `F2` for rename)
-		 *
+		 * 
 		 * @name $.jstree.defaults.contextmenu.items
 		 * @plugin contextmenu
 		 */
@@ -75,7 +77,7 @@
 					"separator_after"	: false,
 					"_disabled"			: false, //(this.check("rename_node", data.reference, this.get_parent(data.reference), "")),
 					"label"				: "Rename",
-					/*!
+					/*
 					"shortcut"			: 113,
 					"shortcut_label"	: 'F2',
 					"icon"				: "glyphicon glyphicon-leaf",
@@ -118,7 +120,7 @@
 								var inst = $.jstree.reference(data.reference),
 									obj = inst.get_node(data.reference);
 								if(inst.is_selected(obj)) {
-									inst.cut(inst.get_top_selected());
+									inst.cut(inst.get_selected());
 								}
 								else {
 									inst.cut(obj);
@@ -134,7 +136,7 @@
 								var inst = $.jstree.reference(data.reference),
 									obj = inst.get_node(data.reference);
 								if(inst.is_selected(obj)) {
-									inst.copy(inst.get_top_selected());
+									inst.copy(inst.get_selected());
 								}
 								else {
 									inst.copy(obj);
@@ -165,7 +167,7 @@
 		this.bind = function () {
 			parent.bind.call(this);
 
-			var last_ts = 0, cto = null, ex, ey;
+			var last_ts = 0;
 			this.element
 				.on("contextmenu.jstree", ".jstree-anchor", $.proxy(function (e, data) {
 						e.preventDefault();
@@ -195,19 +197,8 @@
 						cto = setTimeout(function () {
 							$(e.currentTarget).trigger('contextmenu', true);
 						}, 750);
-					})
-				.on('touchmove.vakata.jstree', function (e) {
-						if(cto && e.originalEvent && e.originalEvent.changedTouches && e.originalEvent.changedTouches[0] && (Math.abs(ex - e.pageX) > 50 || Math.abs(ey - e.pageY) > 50)) {
-							clearTimeout(cto);
-						}
-					})
-				.on('touchend.vakata.jstree', function (e) {
-						if(cto) {
-							clearTimeout(cto);
-						}
 					});
-
-			/*!
+			/*
 			if(!('oncontextmenu' in document.body) && ('ontouchstart' in document.body)) {
 				var el = null, tm = null;
 				this.element
@@ -249,7 +240,7 @@
 		 */
 		this.show_contextmenu = function (obj, x, y, e) {
 			obj = this.get_node(obj);
-			if(!obj || obj.id === $.jstree.root) { return false; }
+			if(!obj || obj.id === '#') { return false; }
 			var s = this.settings.contextmenu,
 				d = this.get_node(obj, true),
 				a = d.children(".jstree-anchor"),
@@ -306,6 +297,20 @@
 			this.trigger('show_contextmenu', { "node" : obj, "x" : x, "y" : y });
 		};
 	};
+
+	$(function () {
+		$(document)
+			.on('touchmove.vakata.jstree', function (e) {
+				if(cto && e.originalEvent && e.originalEvent.changedTouches && e.originalEvent.changedTouches[0] && (Math.abs(ex - e.pageX) > 50 || Math.abs(ey - e.pageY) > 50)) {
+					clearTimeout(cto);
+				}
+			})
+			.on('touchend.vakata.jstree', function (e) {
+				if(cto) {
+					clearTimeout(cto);
+				}
+			});
+	});
 
 	// contextmenu helper
 	(function ($) {

@@ -38,7 +38,6 @@ class Coretemp extends Sensors
         for ($i = 0; $i < $smp; $i++) {
             $temp = 0;
             if (CommonFunctions::executeProgram('sysctl', '-n dev.cpu.'.$i.'.temperature', $temp)) {
-                $temp = preg_replace('/C/', '', $temp);
                 $dev = new SensorDevice();
                 $dev->setName("CPU ".($i + 1));
                 $dev->setValue($temp);

@@ -9,7 +9,7 @@ if (!isConnect('admin')) {
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Demande</label>
 		<div class="col-sm-9">
-			<input class="form-control" id="in_testInteractQuery">
+			<input type="email" class="form-control" id="in_testInteractQuery">
 		</div>
 		<div class="col-sm-1">
 			<a class="btn btn-warning" id="bt_executeInteractOk"><i class="fa fa-bolt"></i> {{Exécuter}}</a>

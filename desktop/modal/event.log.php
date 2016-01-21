@@ -32,4 +32,23 @@ if (!isConnect('admin')) {
 		search : $('#in_eventLogSearch'),
 		control : $('#in_eventLogStopStart'),
 	});
+
+	$('#in_eventLogStopStart').on('click',function(){
+		if($(this).attr('data-state') == 1){
+			$(this).attr('data-state',0);
+			$(this).removeClass('btn-warning').addClass('btn-success');
+			$(this).html('<i class="fa fa-play"></i> {{Reprise}}');
+
+		}else{
+			$(this).removeClass('btn-success').addClass('btn-warning');
+			$(this).html('<i class="fa fa-pause"></i> {{Pause}}');
+			$(this).attr('data-state',1);
+			jeedom.log.autoupdate({
+				log : 'event',
+				display : $('#pre_eventlog'),
+				search : $('#in_eventLogSearch'),
+				control : $('#in_eventLogStopStart'),
+			});
+		}
+	});
 </script>

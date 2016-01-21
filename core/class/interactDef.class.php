@@ -117,9 +117,7 @@ class interactDef {
 	}
 
 	public static function getTagFromQuery($_def, $_query) {
-		$_def = trim($_def);
-		$_query = trim($_query);
-		$options = array();
+		$options = null;
 		$regexp = preg_quote(strtolower($_def));
 		preg_match_all("/#(.*?)#/", $_def, $tags);
 		if (count($tags[1]) > 0) {
@@ -127,179 +125,20 @@ class interactDef {
 				$regexp = str_replace('#' . $match . '#', '(.*?)', $regexp);
 			}
 			preg_match_all("/" . $regexp . "$/", strtolower($_query), $matches, PREG_SET_ORDER);
-			if (isset($matches[0])) {
-				for ($i = 0; $i < count($tags[1]); $i++) {
-					if (isset($matches[0][$i + 1])) {
-						$options[$tags[1][$i]] = $matches[0][$i + 1];
-					}
-				}
-			}
-		}
-		foreach ($tags[1] as $match) {
-			if (!isset($options[$match])) {
-				$options[$match] = '""';
+			$options = array();
+			for ($i = 0; $i < count($tags[1]); $i++) {
+				$options[$tags[1][$i]] = $matches[0][$i + 1];
 			}
 		}
 		return $options;
 	}
 
-	public static function sanitizeQuery($_query) {
-		$_query = str_replace(array("\'"), array("'"), $_query);
-		$_query = preg_replace('/\s+/', ' ', $_query);
-		$_query = ucfirst(strtolower($_query));
-		$_query = strtolower(sanitizeAccent($_query));
-		return $_query;
-	}
-
-	public static function cleanInteract() {
-		$list_id = array();
-		foreach (self::all() as $interactDef) {
-			$list_id[$interactDef->getId()] = $interactDef->getId();
-		}
-		$sql = 'DELETE FROM interactQuery WHERE interactDef_id NOT IN (' . implode(',', $list_id) . ')';
-		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-	}
-
 	/*     * *********************Méthodes d'instance************************* */
-
-	public function checkQuery($_query) {
-		if ($this->getOptions('allowSyntaxCheck', 1) == 1) {
-			$exclude_regexp = "/l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n)|( |^)la (a|e|y|u|i|o)|( |^)le (a|e|y|u|i|o)|( |^)du (a|e|y|u|i|o)/i";
-			if (preg_match($exclude_regexp, $_query)) {
-				return false;
-			}
-			$disallow = array(
-				'le salle',
-				'le chambre',
-				'la dressing',
-				'la salon',
-				'le cuisine',
-				'la jours',
-				'la total',
-				'(le|la) dehors',
-				'la balcon',
-				'du chambre',
-				'du salle',
-				'du cuisine',
-				'la homecinema',
-				'la led',
-				'le led',
-				'la pc',
-				'la sol',
-				'la conseil',
-				'(la|les) lave\-vaisselle',
-				'(la|les) lave\-linge',
-				'la sonos',
-				'(la|le) humidité',
-				'la genre',
-				'la résumé',
-				'le bouton',
-				'la status',
-				'la volume',
-				'le piste',
-				'le consommation',
-				'le position',
-				'le puissance',
-				'le luminosité',
-				'le température',
-				'(la|les) micro\-onde',
-				'la mirroir',
-				'la lapin',
-				'la greenmomit',
-				'le prise',
-				'le frigo',
-				'le (petite | )lumière',
-				'la boutton',
-				'la sommeil',
-				'la temps',
-				'la poids',
-				'(la|les) heartbeat',
-				'(la|le) heure',
-				'la nombre',
-				'la coût',
-				'la titre',
-				'la type',
-				'la demain',
-				'la pas',
-				'la démarré',
-				'la relai',
-				'(la|le) vacance',
-				'la coucher',
-				'la lever',
-				'la kodi',
-				'la frigo',
-				'la citronier',
-				'la basilique',
-				'la plante',
-				'la mouvement',
-				'la mode',
-				'la statut',
-				'la dns',
-				'la thym',
-				'lumière cuisine',
-				'lumière salon',
-				'lumière chambre',
-				'lumière salle de bain',
-				'la thumbnail',
-				'la bouton',
-				'la co',
-				'la co2',
-				'la répéter',
-				'(fait-il|combien) chambre',
-				'(fait-il|combien) salon',
-				'(fait-il|combien) cuisine',
-				'(fait-il|combien) salle',
-				'(fait-il|combien) entrée',
-				'(fait-il|combien) balcon',
-				'(fait-il|combien) appartement',
-				'dans le balcon',
-				'le calorie',
-				'le chansons',
-				'le charge',
-				'le demain',
-				'le démarré',
-				'le direction',
-				'le distance',
-				'le masse',
-				'le mémoire',
-				'le pr(é|e)sence',
-				'le répéter',
-				'le taille',
-				'le fumée',
-				'le pression',
-				'le vitesse',
-				'le condition',
-				'les pc',
-				'la tetris',
-				'le bougies',
-				'le myfox',
-				'les homecinema',
-				'les kodi',
-				'les appartement',
-			);
-			if (preg_match('/( |^)' . implode('( |$)|( |^)', $disallow) . '( |$)/i', $_query)) {
-				return false;
-			}
-		}
-		if ($this->getOptions('exclude_regexp') != '' && preg_match($this->getOptions('exclude_regexp'), $_query)) {
-			return false;
-		}
-		if (config::byKey('interact::regexpExcludGlobal') != '' && preg_match(config::byKey('interact::regexpExcludGlobal'), $_query)) {
-			return false;
-		}
-		return true;
-	}
 
 	public function selectReply() {
 		$replies = self::generateTextVariant($this->getReply());
 		$random = rand(0, count($replies) - 1);
 		return $replies[$random];
-	}
-
-	public function preSave() {
-		if ($this->getOptions('allowSyntaxCheck') === '') {
-			$this->setOptions('allowSyntaxCheck', 1);
-		}
 	}
 
 	public function save() {
@@ -314,10 +153,6 @@ class interactDef {
 		interactQuery::removeByInteractDefId($this->getId());
 		DB::beginTransaction();
 		foreach ($queries as $query) {
-			$query['query'] = self::sanitizeQuery($query['query']);
-			if (!$this->checkQuery($query['query'])) {
-				continue;
-			}
 			$interactQuery = new interactQuery();
 			$interactQuery->setInteractDef_id($this->getId());
 			$interactQuery->setQuery($query['query']);
@@ -325,7 +160,6 @@ class interactDef {
 			$interactQuery->save();
 		}
 		DB::commit();
-		self::cleanInteract();
 	}
 
 	public function remove() {
@@ -336,90 +170,51 @@ class interactDef {
 		interactQuery::removeByInteractDefId($this->getId());
 	}
 
-	public function postRemove() {
-		self::cleanInteract();
-	}
-
 	public function generateQueryVariant() {
 		$inputs = self::generateTextVariant($this->getQuery());
 		$return = array();
-		$object_filter = $this->getFiltres('object');
-		$type_filter = $this->getFiltres('type');
-		$subtype_filter = $this->getFiltres('subtype');
-		$unite_filter = $this->getFiltres('unite');
-		$plugin_filter = $this->getFiltres('plugin');
-		$category_filter = $this->getFiltres('category');
-		$eqLogic_category_filter = $this->getFiltres('eqLogic_category');
 		foreach ($inputs as $input) {
 			preg_match_all("/#(.*?)#/", $input, $matches);
 			$matches = $matches[1];
 			if (in_array('commande', $matches) && (in_array('objet', $matches) || in_array('equipement', $matches))) {
 				foreach (object::all() as $object) {
-					if (isset($object_filter[$object->getId()]) && $object_filter[$object->getId()] == 0) {
-						continue;
-					}
-					foreach ($object->getEqLogic() as $eqLogic) {
-						if ($this->getFiltres('eqLogic_id', 'all') != 'all' && $eqLogic->getId() != $this->getFiltres('eqLogic_id')) {
-							continue;
-						}
-						if (isset($plugin_filter[$eqLogic->getEqType_name()]) && $plugin_filter[$eqLogic->getEqType_name()] == 0) {
-							continue;
-						}
-						$eq_caterogy = $eqLogic->getCategory();
-						$category_ok = true;
-						if (is_array($category_filter)) {
-							$category_ok = false;
-							foreach ($category_filter as $category => $value) {
-								if ($value == 1 && $eqLogic->getCategory($category) == 1) {
-									$category_ok = true;
-									break;
+					if (($this->getFiltres('object_id', 'all') == 'all' || $object->getId() == $this->getFiltres('object_id'))) {
+						foreach ($object->getEqLogic() as $eqLogic) {
+							if (($this->getFiltres('eqLogic_id', 'all') == 'all' || $eqLogic->getId() == $this->getFiltres('eqLogic_id'))) {
+								if (($this->getFiltres('plugin', 'all') == 'all' || $eqLogic->getEqType_name() == $this->getFiltres('plugin'))) {
+									if (($this->getFiltres('eqLogic_category', 'all') == 'all' || $eqLogic->getCategory($this->getFiltres('eqLogic_category', 'all'), 0) == 1)) {
+										foreach ($eqLogic->getCmd() as $cmd) {
+											if ($this->getFiltres('subtype') == 'all' || $this->getFiltres('subtype') == $cmd->getSubType()) {
+												if ($cmd->getType() == $this->getFiltres('cmd_type') && ($this->getFiltres('cmd_unite', 'all') == 'all' || $cmd->getUnite() == $this->getFiltres('cmd_unite'))) {
+													$replace = array(
+														'#objet#' => strtolower($object->getName()),
+														'#commande#' => strtolower($cmd->getName()),
+														'#equipement#' => strtolower($eqLogic->getName()),
+													);
+													$options = array();
+													if ($cmd->getType() == 'action') {
+														if ($cmd->getSubtype() == 'color') {
+															$options['#color#'] = '#color#';
+														}
+														if ($cmd->getSubtype() == 'slider') {
+															$options['#slider#'] = '#slider#';
+														}
+														if ($cmd->getSubtype() == 'message') {
+															$options['#message#'] = '#message#';
+															$options['#title#'] = '#title#';
+														}
+													}
+													$query = str_replace(array_keys($replace), $replace, $input);
+													$return[$query] = array(
+														'query' => $query,
+														'cmd' => array(array('cmd' => '#' . $cmd->getId() . '#')),
+													);
+												}
+											}
+										}
+									}
 								}
 							}
-						}
-						if (!$category_ok) {
-							continue;
-						}
-						foreach ($eqLogic->getCmd() as $cmd) {
-							if (isset($subtype_filter[$cmd->getSubType()]) && $subtype_filter[$cmd->getSubType()] == 0) {
-								continue;
-							}
-							if (isset($type_filter[$cmd->getType()]) && $type_filter[$cmd->getType()] == 0) {
-								continue;
-							}
-							if ($cmd->getUnite() == '') {
-								if (isset($unite_filter['none']) && $unite_filter['none'] == 0) {
-									continue;
-								}
-							} else {
-								if (isset($unite_filter[$cmd->getUnite()]) && $unite_filter[$cmd->getUnite()] == 0) {
-									continue;
-								}
-							}
-
-							$replace = array(
-								'#objet#' => strtolower($object->getName()),
-								'#commande#' => strtolower($cmd->getName()),
-								'#equipement#' => strtolower($eqLogic->getName()),
-							);
-							$options = array();
-							if ($cmd->getType() == 'action') {
-								if ($cmd->getSubtype() == 'color') {
-									$options['color'] = '#color#';
-								}
-								if ($cmd->getSubtype() == 'slider') {
-									$options['slider'] = '#slider#';
-								}
-								if ($cmd->getSubtype() == 'message') {
-									$options['message'] = '#message#';
-									$options['title'] = '#title#';
-								}
-							}
-							$query = str_replace(array_keys($replace), $replace, $input);
-							$return[$query] = array(
-								'query' => $query,
-								'cmd' => array(array('cmd' => '#' . $cmd->getId() . '#', 'options' => $options)),
-
-							);
 						}
 					}
 				}

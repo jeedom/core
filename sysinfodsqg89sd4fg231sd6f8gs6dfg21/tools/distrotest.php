@@ -28,7 +28,7 @@ if (is_resource($fp)) {
         echo $contents;
     }
     if ((strlen($contents)>0)&&(substr($contents, -1)!="\n")) {
-        echo "\n";
+        echo "<-----no new line at end\n";
     }
     pclose($fp);
 }
@@ -38,7 +38,8 @@ foreach ($filemaskarray as $filemask) {
         echo "----------".$filename."----------\n";
         echo $contents=file_get_contents($filename);
         if ((strlen($contents)>0)&&(substr($contents, -1)!="\n")) {
-            echo "\n";
+            echo "<-----no new line at end\n";
         }
+        //readfile($filename);
     }
 }

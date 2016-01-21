@@ -5,10 +5,6 @@
     padding: 0;
 }
 
-wbr {
-    display: inline-block;
-}
-
 html {
     background: url("cream/bg.gif") repeat-x #F8F2E3;
     color: #444B54;
@@ -103,7 +99,7 @@ a:hover {
     width: 451px;
 }
 
-#pciTable, #ideTable, #scsiTable, #usbTable, #tbTable, #i2cTable {
+#pciTable, #ideTable, #scsiTable, #usbTable {
     padding: 0px 30px;
 }
 
@@ -142,20 +138,4 @@ a:hover {
 .right {
     padding-right: 20px;
     text-align: right;
-}
-
-.treeimg {
-    display: table-cell;
-    vertical-align: top;
-}
-
-.treespan {
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.treespanbold {
-    font-weight: bold;
-    display: table-cell;
-    vertical-align: middle;
 }

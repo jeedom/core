@@ -231,6 +231,7 @@
                                 for (var i in _path) {
                                     if (jQuery.inArray(_path[i], scriptsCache) == -1) {
                                         var extension = _path[i].substr(_path[i].length - 3);
+
                                         if (extension == 'css') {
                                             $('<link rel="stylesheet" href="' + _path[i] + '" type="text/css" />').appendTo('head');
                                         }
@@ -281,11 +282,11 @@
                                 options.emptyBefore = init(options.emptyBefore, true);
                                 options.show = init(options.show, true);
                                 if ($.mobile) {
-                                 new $.nd2Toast({
+                                   new $.nd2Toast({
                                     message :  options.message, 
                                     ttl : 3000
                                 });
-                             } else {
+                               } else {
                                 if (options.emptyBefore == false) {
                                     var html = $(this).find('.displayError').html();
                                     if (isset(html)) {
@@ -387,103 +388,115 @@
                 }
                 if ($(this).is('select')) {
                     if (init(_value) == '') {
+                        if(!$(this).hasClass('bootstrapMultiselect')) { 
+                            $(this).find('option:first').prop('selected', true);
+                        }
                     } else {
+                       if($(this).hasClass('bootstrapMultiselect')){
+                        if(_value.length > 0){
+                            for(var i in _value){
+                                console.log(i);
+                                $(this).multiselect('select',_value[i]);
+                            }
+                        }
+                    }else{
                         $(this).val(init(_value));
                     }
                 }
-                if ($(this).is('textarea')) {
-                    $(this).val(init(_value));
-                }
-                if ($(this).is('span') || $(this).is('div') || $(this).is('p')) {
-                    $(this).html(init(_value));
-                }
-                if ($(this).is('pre')) {
-                    $(this).html(init(_value));
-                }
-                $(this).trigger('change');
             }
-        } else {
-            var value = '';
-            if ($(this).is('input') || $(this).is('select') || $(this).is('textarea')) {
-                if ($(this).attr('type') == 'checkbox') {
-                    value = ($(this).is(':checked')) ? '1' : '0';
-                } else {
-                    value = $(this).val();
-                }
+            if ($(this).is('textarea')) {
+                $(this).val(init(_value));
             }
-            if ($(this).is('div') || $(this).is('span') || $(this).is('p')) {
-                value = $(this).text();
-                if (value == '') {
-                    value = $(this).html();
-                }
+            if ($(this).is('span') || $(this).is('div') || $(this).is('p')) {
+                $(this).html(init(_value));
             }
-            if ($(this).is('a') && $(this).attr('value') != undefined) {
-                value = $(this).attr('value');
+            if ($(this).is('pre')) {
+                $(this).html(init(_value));
             }
-            if (value == '') {
+            $(this).trigger('change');
+        }
+    } else {
+        var value = '';
+        if ($(this).is('input') || $(this).is('select') || $(this).is('textarea')) {
+            if ($(this).attr('type') == 'checkbox') {
+                value = ($(this).is(':checked')) ? '1' : '0';
+            } else {
                 value = $(this).val();
             }
-            return value;
-
         }
-    };
+        if ($(this).is('div') || $(this).is('span') || $(this).is('p')) {
+            value = $(this).text();
+            if (value == '') {
+                value = $(this).html();
+            }
+        }
+        if ($(this).is('a') && $(this).attr('value') != undefined) {
+            value = $(this).attr('value');
+        }
+        if (value == '') {
+            value = $(this).val();
+        }
+        return value;
 
-    $.fn.getValues = function (_attr, _depth) {
-        var values = [];
-        if ($(this).length > 1) {
-            $(this).each(function () {
-                var value = {};
-                $(this).findAtDepth(_attr, init(_depth, 0)).each(function () {
-                    var elValue = $(this).value();
-                    try {
-                        if ($.trim(elValue).substr(0, 1) == '{') {
-                            var elValue = JSON.parse($(this).value());
-                        }
-                    } catch (e) {
+    }
+};
 
+$.fn.getValues = function (_attr, _depth) {
+    var values = [];
+    if ($(this).length > 1) {
+        $(this).each(function () {
+            var value = {};
+            $(this).findAtDepth(_attr, init(_depth, 0)).each(function () {
+                var elValue = $(this).value();
+                try {
+                    if ($.trim(elValue).substr(0, 1) == '{') {
+                        var elValue = JSON.parse($(this).value());
                     }
-                    if ($(this).attr('data-l1key') != undefined && $(this).attr('data-l1key') != '') {
-                        var l1key = $(this).attr('data-l1key');
-                        if ($(this).attr('data-l2key') !== undefined) {
-                            var l2key = $(this).attr('data-l2key');
-                            if (!isset(value[l1key])) {
-                                value[l1key] = {};
+                } catch (e) {
+
+                }
+                if ($(this).attr('data-l1key') != undefined && $(this).attr('data-l1key') != '') {
+                    var l1key = $(this).attr('data-l1key');
+                    if ($(this).attr('data-l2key') !== undefined) {
+                        var l2key = $(this).attr('data-l2key');
+                        if (!isset(value[l1key])) {
+                            value[l1key] = {};
+                        }
+                        if ($(this).attr('data-l3key') !== undefined) {
+                            var l3key = $(this).attr('data-l3key');
+                            if (!isset(value[l1key][l2key])) {
+                                value[l1key][l2key] = {};
                             }
-                            if ($(this).attr('data-l3key') !== undefined) {
-                                var l3key = $(this).attr('data-l3key');
-                                if (!isset(value[l1key][l2key])) {
-                                    value[l1key][l2key] = {};
+                            if (isset(value[l1key][l2key][l3key])) {
+                                if (!is_array(value[l1key][l2key][l3key])) {
+                                    value[l1key][l2key][l3key] = [value[l1key][l2key][l3key]];
                                 }
-                                if (isset(value[l1key][l2key][l3key])) {
-                                    if (!is_array(value[l1key][l2key][l3key])) {
-                                        value[l1key][l2key][l3key] = [value[l1key][l2key][l3key]];
-                                    }
-                                    value[l1key][l2key][l3key].push(elValue);
-                                } else {
-                                    value[l1key][l2key][l3key] = elValue;
-                                }
+                                value[l1key][l2key][l3key].push(elValue);
                             } else {
-                                if (isset(value[l1key][l2key])) {
-                                    if (!is_array(value[l1key][l2key])) {
-                                        value[l1key][l2key] = [value[l1key][l2key]];
-                                    }
-                                    value[l1key][l2key].push(elValue);
-                                } else {
-                                    value[l1key][l2key] = elValue;
-                                }
+                                value[l1key][l2key][l3key] = elValue;
                             }
                         } else {
-                            if (isset(value[l1key])) {
-                                if (!is_array(value[l1key])) {
-                                    value[l1key] = [value[l1key]];
+                            if (isset(value[l1key][l2key])) {
+                                if (!is_array(value[l1key][l2key])) {
+                                    value[l1key][l2key] = [value[l1key][l2key]];
                                 }
-                                value[l1key].push(elValue);
+                                value[l1key][l2key].push(elValue);
                             } else {
-                                value[l1key] = elValue;
+                                value[l1key][l2key] = elValue;
                             }
                         }
+                    } else {
+                        if (isset(value[l1key])) {
+                            if (!is_array(value[l1key])) {
+                                value[l1key] = [value[l1key]];
+                            }
+                            value[l1key].push(elValue);
+                        } else {
+                            value[l1key] = elValue;
+                        }
                     }
-                });
+                }
+            });
 values.push(value);
 });
 }

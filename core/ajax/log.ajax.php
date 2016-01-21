@@ -50,6 +50,10 @@ try {
 		}
 	}
 
+	if (init('action') == 'getNbLine') {
+		ajax::success(log::nbLine(init('logfile')));
+	}
+
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

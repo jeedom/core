@@ -78,6 +78,20 @@ else
 	echo "${VERT}OK${NORMAL}"
 fi
 
+echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Check ${ROSE}jeedom (nodejs)${NORMAL}..."
+sudo service jeedom status >> /dev/null 2>&1
+if [ $? -ne 0 ]; then
+	echo -n "${JAUNE}NOK, try to restart...${NORMAL}"
+	sudo service jeedom start 
+	sudo service jeedom status >> /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		echo "${ROUGE}[$(date +%d-%m-%Y\ %H:%M:%S)] Can not start it${NORMAL}"
+		exit 1
+	fi	
+else
+	echo "${VERT}OK${NORMAL}"
+fi
+
 echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Check ${ROSE}cron${NORMAL}..."
 sudo service cron status >> /dev/null 2>&1
 if [ $? -ne 0 ]; then

@@ -152,7 +152,6 @@
         },
         success: function (data) {
             $('#table_user tbody').empty();
-            var tr = [];
             for (var i in data) {
                 var ligne = '<tr><td class="login">';
                 ligne += '<span class="userAttr" data-l1key="id" style="display : none;"/>';
@@ -181,10 +180,9 @@
                 ligne += '</td>';
                 ligne += '</tr>';
                 var result = $(ligne);
-                result.setValues(data[i], '.userAttr');
-                tr.push(result);
+                result.setValues(data[i], '.userAttr')
+                $('#table_user tbody').append(result);
             }
-            $('#table_user tbody').append(tr);
             modifyWithoutSave = false;
             initCheckBox();
             $.hideLoading();

@@ -110,7 +110,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		} else if ($type == 'css') {
 			echo "<link href=\"$_folder/$_fn?md5=" . md5_file($path) . "\" rel=\"stylesheet\" />";
 		} else if ($type == 'js') {
-			echo "<script type=\"text/javascript\" src=\"core/php/getJS.php?file=$_folder/$_fn&md5=" . md5_file($path) . "&lang=" . translate::getLanguage() . "\"></script>";
+			echo "<script type=\"text/javascript\" src=\"core/php/getJS.php?file=$_folder/$_fn&md5=" . md5_file($path) . "\"></script>";
 		}
 	} else {
 		throw new Exception("File not found : $_fn", 35486);
@@ -134,6 +134,15 @@ function template_replace($_array, $_subject) {
 }
 
 function init($_name, $_default = '') {
+	static $cache;
+	if (isset($cache[$_name])) {
+		return $cache[$_name];
+	}
+	$cache = array();
+	if (isset($_REQUEST[$_name])) {
+		$cache[$_name] = $_REQUEST[$_name];
+		return $_REQUEST[$_name];
+	}
 	if (isset($_GET[$_name])) {
 		$cache[$_name] = $_GET[$_name];
 		return $_GET[$_name];
@@ -141,10 +150,6 @@ function init($_name, $_default = '') {
 	if (isset($_POST[$_name])) {
 		$cache[$_name] = $_POST[$_name];
 		return $_POST[$_name];
-	}
-	if (isset($_REQUEST[$_name])) {
-		$cache[$_name] = $_REQUEST[$_name];
-		return $_REQUEST[$_name];
 	}
 	return $_default;
 }
@@ -704,8 +709,8 @@ function getDirectorySize($path) {
 				}
 			}
 		}
-		closedir($handle);
 	}
+	closedir($handle);
 	return $totalsize;
 }
 
@@ -844,48 +849,32 @@ function evaluate($_string) {
 	if (!isset($GLOBALS['ExpressionLanguage'])) {
 		$GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
 	}
+	if (strpos($_string, '~') === false) {
+		try {
+			$expr = str_replace(array(' et ', ' ET ', ' AND ', ' and ', ' ou ', ' OR ', ' or ', ' OU '), array(' && ', ' && ', ' && ', ' && ', ' || ', ' || ', ' || ', ' || '), $_string);
+			$expr = str_replace('==', '=', $expr);
+			$expr = str_replace('=', '==', $expr);
+			$expr = str_replace('<==', '<=', $expr);
+			$expr = str_replace('>==', '>=', $expr);
+			$expr = str_replace('!==', '!=', $expr);
+			$expr = str_replace('!===', '!==', $expr);
+			$expr = str_replace('====', '===', $expr);
+			return $GLOBALS['ExpressionLanguage']->evaluate($expr);
+		} catch (Exception $e) {
+			//log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
+		}
+	}
+	if (!isset($GLOBALS['evaluate'])) {
+		$GLOBALS['evaluate'] = new evaluate();
+	}
 	try {
-		$expr = str_replace(array(' et ', ' ET ', ' AND ', ' and ', ' ou ', ' OR ', ' or ', ' OU '), array(' && ', ' && ', ' && ', ' && ', ' || ', ' || ', ' || ', ' || '), $_string);
-		$expr = str_replace('==', '=', $expr);
-		$expr = str_replace('=', '==', $expr);
-		$expr = str_replace('<==', '<=', $expr);
-		$expr = str_replace('>==', '>=', $expr);
-		$expr = str_replace('!==', '!=', $expr);
-		$expr = str_replace('!===', '!==', $expr);
-		$expr = str_replace('====', '===', $expr);
-		return $GLOBALS['ExpressionLanguage']->evaluate($expr);
+		return $GLOBALS['evaluate']->Evaluer($_string);
 	} catch (Exception $e) {
-		log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
+		//log::add('expression', 'debug', '[Parser 2] Expression : ' . $_string . ' => ' . $e->getMessage());
 	}
 	return $_string;
 }
 
 function secureXSS($_string) {
 	return str_replace('&amp;', '&', htmlspecialchars(strip_tags($_string), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
-}
-
-function minify($buffer) {
-	$search = array(
-		'/\>[^\S ]+/s', // strip whitespaces after tags, except space
-		'/[^\S ]+\</s', // strip whitespaces before tags, except space
-		'/(\s)+/s', // shorten multiple whitespace sequences
-	);
-	$replace = array(
-		'>',
-		'<',
-		'\\1',
-	);
-	return preg_replace($search, $replace, $buffer);
-}
-
-function sanitizeAccent($_message) {
-	$caracteres = array(
-		'À' => 'a', 'Á' => 'a', 'Â' => 'a', 'Ä' => 'a', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ä' => 'a', '@' => 'a',
-		'È' => 'e', 'É' => 'e', 'Ê' => 'e', 'Ë' => 'e', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', '€' => 'e',
-		'Ì' => 'i', 'Í' => 'i', 'Î' => 'i', 'Ï' => 'i', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i',
-		'Ò' => 'o', 'Ó' => 'o', 'Ô' => 'o', 'Ö' => 'o', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'ö' => 'o',
-		'Ù' => 'u', 'Ú' => 'u', 'Û' => 'u', 'Ü' => 'u', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'µ' => 'u',
-		'Œ' => 'oe', 'œ' => 'oe',
-		'$' => 's');
-	return preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+#', '', strtr($_message, $caracteres));
 }

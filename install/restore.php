@@ -127,7 +127,7 @@ try {
 	}
 
 	echo "Restauration de la base de donnees...";
-	system("mysql --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  < " . $tmp . "/DB_backup.sql");
+	system("mysql --host=" . $CONFIG['db']['host'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  < " . $tmp . "/DB_backup.sql");
 	echo "OK\n";
 
 	echo "Réactivation des contraintes...";
@@ -151,14 +151,6 @@ try {
 		echo "OK\n";
 	}
 
-	echo "Restauration du cache...";
-	try {
-		cache::restore();
-	} catch (Exception $e) {
-
-	}
-	echo "OK\n";
-
 	if (!file_exists($jeedom_dir . '/install')) {
 		mkdir($jeedom_dir . '/install');
 		exec('cd ' . $jeedom_dir . '/install;wget https://raw.githubusercontent.com/jeedom/core/master/install/backup.php;wget https://raw.githubusercontent.com/jeedom/core/master/install/install.php;wget https://raw.githubusercontent.com/jeedom/core/master/install/restore.php');
@@ -166,10 +158,6 @@ try {
 
 	foreach (plugin::listPlugin(true) as $plugin) {
 		$plugin_id = $plugin->getId();
-		$dependancy_info = $plugin->dependancy_info();
-		if ($dependancy_info['state'] == 'nok') {
-			$plugin->dependancy_install();
-		}
 		if (method_exists($plugin_id, 'restore')) {
 			echo 'Restauration specifique du plugin ' . $plugin_id . '...';
 			if (file_exists($tmp . '/plugin_backup/' . $plugin_id)) {

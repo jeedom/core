@@ -48,9 +48,9 @@ switch ($market->getType()) {
 $urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
 echo '<img src="' . $default_image . '" data-original="' . $urlPath . '"  class="lazy img-responsive" style="height : 200px;"/>';
 ?>
-       </center>
-   </div>
-   <div class='col-sm-8'>
+        </center>
+    </div>
+    <div class='col-sm-8'>
        <input class="form-control marketAttr" data-l1key="id" style="display: none;">
        <span class="marketAttr" data-l1key="name" placeholder="{{Nom}}" style="font-size: 3em;font-weight: bold;"></span>
        <br/>
@@ -72,13 +72,8 @@ if ($market->getPurchase() == 1) {
 	if ($market->getStatus('stable') == 1) {
 		echo ' <a class="btn btn-success bt_installFromMarket" data-version="stable" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer stable}}</a>';
 	}
-	if (config::byKey('market::allowBeta') == 1) {
-		if ($market->getStatus('stable') == 1) {
-			echo ' <a class="btn btn-primary bt_installFromMarket" data-version="release" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer release}}</a>';
-		}
-		if ($market->getStatus('beta') == 1) {
-			echo ' <a class="btn btn-warning bt_installFromMarket" data-version="beta" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer beta}}</a>';
-		}
+	if ($market->getStatus('beta') == 1) {
+		echo ' <a class="btn btn-warning bt_installFromMarket" data-version="beta" style="color : white;" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer beta}}</a>';
 	}
 } else if ($market->getPrivate() == 1) {
 	echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accèder}}</div>';
@@ -88,21 +83,21 @@ if ($market->getPurchase() == 1) {
 		if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id']) && isset($purchase_info['paypal::url']) && isset($purchase_info['paypal::marchandMail'])) {
 			?>
              <a class="btn btn-default" href='https://market.jeedom.fr/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> Code promo</a>
-             <form action="<?php echo $purchase_info['paypal::url']; ?>/cgi-bin/webscr" method="post" style="display: inline-block;position: relative;top: 5px;" target="_blank" id='form_paypal'>
-                <input type='hidden' name="amount" value="<?php echo $market->getCost(); ?>" />
+             <form action="<?php echo $purchase_info['paypal::url']?>/cgi-bin/webscr" method="post" style="display: inline-block;position: relative;top: 5px;" target="_blank" id='form_paypal'>
+                <input type='hidden' name="amount" value="<?php echo $market->getCost()?>" />
                 <input name="currency_code" type="hidden" value="EUR" />
                 <input name="shipping" type="hidden" value="0.00" />
                 <input name="tax" type="hidden" value="0.00" />
-                <input name="return" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=resultBuy&success=1'; ?>" />
-                <input name="cancel_return" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=resultBuy&success=0'; ?>" />
-                <input name="notify_url" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=registerBuy'; ?>" />
+                <input name="return" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=resultBuy&success=1'?>" />
+                <input name="cancel_return" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=resultBuy&success=0'?>" />
+                <input name="notify_url" type="hidden" value="<?php echo config::byKey('market::address') . '/index.php?v=d&p=registerBuy'?>" />
                 <input name="cmd" type="hidden" value="_xclick" />
-                <input name="business" type="hidden" value="<?php echo $purchase_info['paypal::marchandMail']; ?>" />
-                <input name="item_name" type="hidden" value="<?php echo '[' . $market->getType() . '] ' . $market->getLogicalId(); ?>" />
+                <input name="business" type="hidden" value="<?php echo $purchase_info['paypal::marchandMail']?>" />
+                <input name="item_name" type="hidden" value="<?php echo '[' . $market->getType() . '] ' . $market->getLogicalId()?>" />
                 <input name="no_note" type="hidden" value="1" />
                 <input name="lc" type="hidden" value="FR" />
                 <input name="bn" type="hidden" value="PP-BuyNowBF" />
-                <input name="custom" type="hidden" value="<?php echo $purchase_info['user_id'] . ':' . $market->getId(); ?>" />
+                <input name="custom" type="hidden" value="<?php echo $purchase_info['user_id'] . ':' . $market->getId()?>" />
                 <input id='bt_paypalClick' alt="{{Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée}}" name="submit" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif" type="image" style="display: inline-block;position: relative;top: 5px;"/><img class="pull-right" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" style="display: inline-block;"/>
             </form>
             <?php
@@ -115,7 +110,7 @@ if ($market->getPurchase() == 1) {
 }
 if (is_object($update)) {
 	?>
-    <a class="btn btn-danger" style="color : white;" id="bt_removeFromMarket" data-market_id="<?php echo $market->getId(); ?>" ><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+    <a class="btn btn-danger" style="color : white;" id="bt_removeFromMarket" data-market_id="<?php echo $market->getId();?>" ><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
     <?php }
 ?>
     <br/><br/>
@@ -164,7 +159,7 @@ foreach ($market->getImg('screenshot') as $screenshot) {
   <div class='row'>
     <div class='col-sm-6'>
         <legend>{{Description}}
-            <a class="btn btn-default btn-xs pull-right" target="_blank" href="https://jeedom.com/doc/documentation/plugins/<?php echo $market->getLogicalId() . '/fr_FR/' . $market->getLogicalId() . '.html' ?>"><i class="fa fa-book"></i> {{Documentation}}</a><br/>
+<a class="btn btn-default btn-xs pull-right" target="_blank" href="https://jeedom.fr/doc/documentation/plugins/<?php echo $market->getLogicalId() . '/fr_FR/' . $market->getLogicalId() . '.html'?>"><i class="fa fa-book"></i> {{Documentation}}</a><br/>
         </legend>
         <span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
         <br/><br/>
@@ -204,7 +199,7 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
                     <div class="form-group">
                         <label class="col-sm-4 control-label">{{Ma Note}}</label>
                         <div class="col-sm-8">
-                            <span><input type="number" class="rating" id="in_myRating" data-max="5" data-empty-value="0" data-min="1" data-clearable="Effacer" value="<?php echo $market->getRating('user') ?>" /></span>
+                            <span><input type="number" class="rating" id="in_myRating" data-max="5" data-empty-value="0" data-min="1" data-clearable="Effacer" value="<?php echo $market->getRating('user')?>" /></span>
                         </div>
                     </div><br/>
                     <?php }
@@ -223,18 +218,18 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
         <div class='row'>
             <div class='col-sm-2'>
                 <label class="control-label">{{Auteur}}</label><br/>
-                <span><?php echo $market->getAuthor(); ?></span><br/>
+                <span><?php echo $market->getAuthor()?></span><br/>
                 <label class="control-label">{{Dernière mise à jour par}}</label><br/>
-                <span><?php echo $market->getUpdateBy(); ?></span>
+                <span><?php echo $market->getUpdateBy()?></span>
             </div>
             <div class='col-sm-2'>
                 <label class="control-label">{{Lien}}</label><br/>
                 <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
-                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a><br/>
+                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video');?>"><i class="fa fa-youtube"></i> Video</a><br/>
                 <?php }
 ?>
                 <?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') {?>
-                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a><br/>
+                <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum');?>"><i class="fa fa-users"></i> Forum</a><br/>
                 <?php }
 ?>
             </div>
@@ -271,18 +266,42 @@ if ($market->getLanguage('it_IT') == 1) {
 ?>
            </div>
            <div class='col-sm-3'>
-             <label class="control-label">{{Dernière mise à jour le}}</label><br/>
-             <?php echo $market->getDatetime('stable') ?>
-         </div>
-     </div>
+            <label class="control-label">{{Version}}</label><br/>
+            <?php
+if ($market->getStatus('stable') == 1) {
+	echo '<span class="label label-success">';
+	echo 'Stable : ';
+	echo $market->getDatetime('stable');
+	echo '</span><br/>';
+}
+if ($market->getStatus('beta') == 1) {
+	echo ' <span class="label label-warning">';
+	echo 'Beta : ';
+	echo $market->getDatetime('beta');
+	echo '</span>';
+}
+if (is_object($update) && $update->getConfiguration('version', 'stable') == 'beta' && $market->getStatus('stable') == 1) {
+	if (strtotime($market->getDatetime('stable')) >= strtotime($update->getLocalVersion())) {
+		echo '<br/><span class="label label-info">';
+		echo '{{Le retour à la version stable est possible}}';
+		echo '</span>';
+	} else {
+		echo '<br/><span class="label label-danger">';
+		echo '{{Le retour à la version stable est dangereux}}';
+		echo '</span>';
+	}
+}
+?>
+      </div>
+  </div>
 
- </div>
+</div>
 
- <div id="div_comments" title="{{Commentaires}}"></div>
+<div id="div_comments" title="{{Commentaires}}"></div>
 
- <div id="div_changelog" title="{{Changelog}}"></div>
+<div id="div_changelog" title="{{Changelog}}"></div>
 
- <style>
+<style>
     .slick-prev:before, .slick-next:before {
         color : #707070;
     }
@@ -313,7 +332,7 @@ if ($market->getLanguage('it_IT') == 1) {
         var nb = 0;
         var html = '';
         for(var i in market_display_info.changelog.reverse()){
-            html += '<strong>'+market_display_info.changelog[i].date+'</strong><br/>';
+            html += '<strong>{{Version}} '+market_display_info.changelog[i].version+' - '+market_display_info.changelog[i].date+'</strong><br/>';
             html += linkify(market_display_info.changelog[i].change);
             html += '<br/><br/>';
             nb++;
@@ -369,7 +388,7 @@ if ($market->getLanguage('it_IT') == 1) {
 });
 
 
- $('.bt_installFromMarket').on('click', function () {
+$('.bt_installFromMarket').on('click', function () {
     var id = $(this).attr('data-market_id');
     var logicalId = $(this).attr('data-market_logicalId');
     jeedom.market.install({
@@ -382,12 +401,9 @@ if ($market->getLanguage('it_IT') == 1) {
  if(market_display_info.type == 'plugin'){
    bootbox.confirm('{{Voulez vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
      if (result) {
-        loadPage('index.php?v=d&p=plugin&id=' + logicalId);
-    }
+       window.location.href = 'index.php?v=d&p=plugin&id=' + logicalId;
+   }
 });
-}
-if ( typeof refreshListAfterMarketObjectInstall == 'function'){
-    refreshListAfterMarketObjectInstall()
 }
 $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
 }
@@ -395,7 +411,7 @@ $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès
 
 });
 
- $('#bt_removeFromMarket').on('click', function () {
+$('#bt_removeFromMarket').on('click', function () {
     var id = $(this).attr('data-market_id');
     jeedom.market.remove({
         id: id,
@@ -409,7 +425,7 @@ $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès
 });
 });
 
- $('#in_myRating').on('change', function () {
+$('#in_myRating').on('change', function () {
     var id = $('.marketAttr[data-l1key=id]').value();
     jeedom.market.setRating({
      id: id,

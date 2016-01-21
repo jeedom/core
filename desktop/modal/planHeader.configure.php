@@ -40,45 +40,43 @@ sendVarToJS('id', $planHeader->getId())
         <div class="form-group">
             <label class="col-lg-4 control-label">{{Image}}</label>
             <div class="col-lg-8">
-              <span class="btn btn-default btn-file">
-                <i class="fa fa-cloud-upload"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
-            </span>
+                <input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
+            </div>
         </div>
-    </div>
-    <div class="form-group expertModeVisible">
-        <label class="col-lg-4 control-label">{{Afficher la flèche de retour lors de la mise en plein écran}}</label>
-        <div class="col-lg-4">
-            <input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" class="planHeaderAttr bootstrapSwitch" data-l1key='configuration' data-l2key="noReturnFullScreen" />
+        <div class="form-group expertModeVisible">
+            <label class="col-lg-4 control-label">{{Afficher la flèche de retour lors de la mise en plein écran}}</label>
+            <div class="col-lg-4">
+                <input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" class="planHeaderAttr bootstrapSwitch" data-l1key='configuration' data-l2key="noReturnFullScreen" />
+            </div>
         </div>
-    </div>
-    <legend><i class="icon techno-fleches"></i> {{Tailles}}</legend>
-    <div class="form-group expertModeVisible">
-        <label class="col-lg-4 control-label">{{Responsive mode (Attention toute les valeurs de taille sont ignorées)}}</label>
-        <div class="col-lg-4">
-            <input type="checkbox" class="planHeaderAttr bootstrapSwitch" data-l1key='configuration' data-l2key="responsiveMode" />
+        <legend><i class="icon techno-fleches"></i> {{Tailles}}</legend>
+        <div class="form-group expertModeVisible">
+            <label class="col-lg-4 control-label">{{Responsive mode (Attention toute les valeurs de taille sont ignorées)}}</label>
+            <div class="col-lg-4">
+                <input type="checkbox" class="planHeaderAttr bootstrapSwitch" data-l1key='configuration' data-l2key="responsiveMode" />
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-lg-4 control-label">{{Taille (LxH)}}</label>
-        <div class="col-lg-4">
-            <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="desktopSizeX" style="width: 80px;display: inline-block;"/>
-            x
-            <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key='desktopSizeY' style="width: 80px;display: inline-block;"/>
+        <div class="form-group">
+            <label class="col-lg-4 control-label">{{Taille (LxH)}}</label>
+            <div class="col-lg-4">
+                <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="desktopSizeX" style="width: 80px;display: inline-block;"/>
+                x
+                <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key='desktopSizeY' style="width: 80px;display: inline-block;"/>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-lg-4 control-label">{{Proportion tablette (ex : 0.7)}}</label>
-        <div class="col-lg-1">
-            <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="tabletteProportion" value="1"/>
+        <div class="form-group">
+            <label class="col-lg-4 control-label">{{Proportion tablette (ex : 0.7)}}</label>
+            <div class="col-lg-1">
+                <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="tabletteProportion" value="1"/>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-lg-4 control-label">{{Proportion téléphone (ex 0.5)}}</label>
-        <div class="col-lg-1">
-            <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="mobileProportion" value="1"/>
+        <div class="form-group">
+            <label class="col-lg-4 control-label">{{Proportion téléphone (ex 0.5)}}</label>
+            <div class="col-lg-1">
+                <input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="mobileProportion" value="1"/>
+            </div>
         </div>
-    </div>
-</fieldset>
+    </fieldset>
 </form>
 
 
@@ -114,7 +112,7 @@ sendVarToJS('id', $planHeader->getId())
         },
         success: function () {
             $('#div_alertPlanHeaderConfigure').showAlert({message: 'Design sauvegardé', level: 'success'});
-            loadPage('index.php?v=d&p=plan');
+            window.location.reload();
         },
     });
   });
@@ -129,7 +127,7 @@ sendVarToJS('id', $planHeader->getId())
                 },
                 success: function () {
                  $('#div_alertPlanHeaderConfigure').showAlert({message: 'Design supprimé', level: 'success'});
-                 loadPage('index.php?v=d&p=plan');
+                 window.location.reload();
              },
          });
          }

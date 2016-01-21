@@ -25,18 +25,8 @@
   };
 
   CodeMirror.defineExtension("showHint", function(options) {
-    options = parseOptions(this, this.getCursor("start"), options);
-    var selections = this.listSelections()
-    if (selections.length > 1) return;
-    // By default, don't allow completion when something is selected.
-    // A hint function can have a `supportsSelection` property to
-    // indicate that it can handle selections.
-    if (this.somethingSelected()) {
-      if (!options.hint.supportsSelection) return;
-      // Don't try with cross-line selections
-      for (var i = 0; i < selections.length; i++)
-        if (selections[i].head.line != selections[i].anchor.line) return;
-    }
+    // We want a single cursor position.
+    if (this.listSelections().length > 1 || this.somethingSelected()) return;
 
     if (this.state.completionActive) this.state.completionActive.close();
     var completion = this.state.completionActive = new Completion(this, options);
@@ -48,12 +38,12 @@
 
   function Completion(cm, options) {
     this.cm = cm;
-    this.options = options;
+    this.options = this.buildOptions(options);
     this.widget = null;
     this.debounce = 0;
     this.tick = 0;
-    this.startPos = this.cm.getCursor("start");
-    this.startLen = this.cm.getLine(this.startPos.line).length - this.cm.getSelection().length;
+    this.startPos = this.cm.getCursor();
+    this.startLen = this.cm.getLine(this.startPos.line).length;
 
     var self = this;
     cm.on("cursorActivity", this.activityFunc = function() { self.cursorActivity(); });
@@ -109,6 +99,7 @@
 
     update: function(first) {
       if (this.tick == null) return;
+      if (this.data) CodeMirror.signal(this.data, "update");
       if (!this.options.hint.async) {
         this.finishUpdate(this.options.hint(this.cm, this.options), first);
       } else {
@@ -120,8 +111,6 @@
     },
 
     finishUpdate: function(data, first) {
-      if (this.data) CodeMirror.signal(this.data, "update");
-      if (data && this.data && CodeMirror.cmpPos(data.from, this.data.from)) data = null;
       this.data = data;
 
       var picked = (this.widget && this.widget.picked) || (first && this.options.completeSingle);
@@ -134,20 +123,19 @@
           CodeMirror.signal(data, "shown");
         }
       }
+    },
+
+    buildOptions: function(options) {
+      var editor = this.cm.options.hintOptions;
+      var out = {};
+      for (var prop in defaultOptions) out[prop] = defaultOptions[prop];
+      if (editor) for (var prop in editor)
+        if (editor[prop] !== undefined) out[prop] = editor[prop];
+      if (options) for (var prop in options)
+        if (options[prop] !== undefined) out[prop] = options[prop];
+      return out;
     }
   };
-
-  function parseOptions(cm, pos, options) {
-    var editor = cm.options.hintOptions;
-    var out = {};
-    for (var prop in defaultOptions) out[prop] = defaultOptions[prop];
-    if (editor) for (var prop in editor)
-      if (editor[prop] !== undefined) out[prop] = editor[prop];
-    if (options) for (var prop in options)
-      if (options[prop] !== undefined) out[prop] = options[prop];
-    if (out.hint.resolve) out.hint = out.hint.resolve(cm, pos)
-    return out;
-  }
 
   function getText(completion) {
     if (typeof completion == "string") return completion;
@@ -347,79 +335,34 @@
     }
   };
 
-  function applicableHelpers(cm, helpers) {
-    if (!cm.somethingSelected()) return helpers
-    var result = []
-    for (var i = 0; i < helpers.length; i++)
-      if (helpers[i].supportsSelection) result.push(helpers[i])
-    return result
-  }
-
-  function resolveAutoHints(cm, pos) {
-    var helpers = cm.getHelpers(pos, "hint"), words
+  CodeMirror.registerHelper("hint", "auto", function(cm, options) {
+    var helpers = cm.getHelpers(cm.getCursor(), "hint"), words;
     if (helpers.length) {
-      var async = false, resolved
-      for (var i = 0; i < helpers.length; i++) if (helpers[i].async) async = true
-      if (async) {
-        resolved = function(cm, callback, options) {
-          var app = applicableHelpers(cm, helpers)
-          function run(i, result) {
-            if (i == app.length) return callback(null)
-            var helper = app[i]
-            if (helper.async) {
-              helper(cm, function(result) {
-                if (result) callback(result)
-                else run(i + 1)
-              }, options)
-            } else {
-              var result = helper(cm, options)
-              if (result) callback(result)
-              else run(i + 1)
-            }
-          }
-          run(0)
-        }
-        resolved.async = true
-      } else {
-        resolved = function(cm, options) {
-          var app = applicableHelpers(cm, helpers)
-          for (var i = 0; i < app.length; i++) {
-            var cur = app[i](cm, options)
-            if (cur && cur.list.length) return cur
-          }
-        }
+      for (var i = 0; i < helpers.length; i++) {
+        var cur = helpers[i](cm, options);
+        if (cur && cur.list.length) return cur;
       }
-      resolved.supportsSelection = true
-      return resolved
     } else if (words = cm.getHelper(cm.getCursor(), "hintWords")) {
-      return function(cm) { return CodeMirror.hint.fromList(cm, {words: words}) }
+      if (words) return CodeMirror.hint.fromList(cm, {words: words});
     } else if (CodeMirror.hint.anyword) {
-      return function(cm, options) { return CodeMirror.hint.anyword(cm, options) }
-    } else {
-      return function() {}
+      return CodeMirror.hint.anyword(cm, options);
     }
-  }
-
-  CodeMirror.registerHelper("hint", "auto", {
-    resolve: resolveAutoHints
   });
 
   CodeMirror.registerHelper("hint", "fromList", function(cm, options) {
     var cur = cm.getCursor(), token = cm.getTokenAt(cur);
-    var to = CodeMirror.Pos(cur.line, token.end);
-    if (token.string && /\w/.test(token.string[token.string.length - 1])) {
-      var term = token.string, from = CodeMirror.Pos(cur.line, token.start);
-    } else {
-      var term = "", from = to;
-    }
     var found = [];
     for (var i = 0; i < options.words.length; i++) {
       var word = options.words[i];
-      if (word.slice(0, term.length) == term)
+      if (word.slice(0, token.string.length) == token.string)
         found.push(word);
     }
 
-    if (found.length) return {list: found, from: from, to: to};
+    if (found.length) return {
+      list: found,
+      from: CodeMirror.Pos(cur.line, token.start),
+            to: CodeMirror.Pos(cur.line, token.end)
+    };
   });
 
   CodeMirror.commands.autocomplete = CodeMirror.showHint;

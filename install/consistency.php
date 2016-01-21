@@ -61,26 +61,7 @@ try {
 		$cron->remove();
 	}
 
-	$cron = cron::byClassAndFunction('history', 'historize');
-	if (is_object($cron)) {
-		$cron->remove();
-	}
-	$cron = cron::byClassAndFunction('cmd', 'collect');
-	if (is_object($cron)) {
-		$cron->remove();
-	}
-
-	$cron = cron::byClassAndFunction('jeedom', 'updateSystem');
-	if (is_object($cron)) {
-		$cron->remove();
-	}
-
-	$cron = cron::byClassAndFunction('jeedom', 'checkAndCollect');
-	if (is_object($cron)) {
-		$cron->remove();
-	}
-
-	$cron = cron::byClassAndFunction('DB', 'optimize');
+	$cron = cron::byClassAndFunction('plugin', 'cron');
 	if (is_object($cron)) {
 		$cron->remove();
 	}
@@ -93,7 +74,7 @@ try {
 	$cron->setClass('plugin');
 	$cron->setFunction('cronDaily');
 	$cron->setSchedule('00 00 * * * *');
-	$cron->setTimeout(240);
+	$cron->setTimeout(5);
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -121,8 +102,17 @@ try {
 	$cron->setSchedule('00 * * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
-	$cron->setTimeout(60);
+	$cron->setTimeout(5);
 	$cron->save();
+
+	$cron = cron::byClassAndFunction('history', 'historize');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
+	$cron = cron::byClassAndFunction('cmd', 'collect');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
 
 	$cron = cron::byClassAndFunction('scenario', 'check');
 	if (!is_object($cron)) {
@@ -134,34 +124,31 @@ try {
 	$cron->setSchedule('* * * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
-	$cron->setTimeout(30);
+	$cron->setTimeout(5);
 	$cron->save();
 
-	$cron = cron::byClassAndFunction('jeedom', 'cronDaily');
+	$cron = cron::byClassAndFunction('jeedom', 'checkAndCollect');
 	if (!is_object($cron)) {
-		echo "Création de jeedom::cronDaily\n";
+		echo "Création de jeedom::checkAndCollect\n";
 		$cron = new cron();
 	}
 	$cron->setClass('jeedom');
-	$cron->setFunction('cronDaily');
-	$cron->setSchedule('00 00 * * * *');
-	$cron->setEnable(1);
-	$cron->setDeamon(0);
-	$cron->setTimeout(240);
-	$cron->save();
-
-	$cron = cron::byClassAndFunction('jeedom', 'cron5');
-	if (!is_object($cron)) {
-		echo "Création de jeedom::cron5\n";
-		$cron = new cron();
-	}
-	$cron->setClass('jeedom');
-	$cron->setFunction('cron5');
+	$cron->setFunction('checkAndCollect');
 	$cron->setSchedule('*/5 * * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(5);
 	$cron->save();
+
+	$cron = cron::byClassAndFunction('history', 'archive');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
+
+	$cron = cron::byClassAndFunction('jeedom', 'updateSystem');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
 
 	$cron = cron::byClassAndFunction('jeedom', 'cron');
 	if (!is_object($cron)) {
@@ -171,8 +158,7 @@ try {
 	$cron->setClass('jeedom');
 	$cron->setFunction('cron');
 	$cron->setSchedule('* * * * * *');
-	$cron->setTimeout(2);
-	$cron->setDeamon(0);
+	$cron->setTimeout(60);
 	$cron->save();
 
 	$cron = cron::byClassAndFunction('plugin', 'cron');
@@ -183,20 +169,7 @@ try {
 	$cron->setClass('plugin');
 	$cron->setFunction('cron');
 	$cron->setSchedule('* * * * * *');
-	$cron->setTimeout(2);
-	$cron->setDeamon(0);
-	$cron->save();
-
-	$cron = cron::byClassAndFunction('plugin', 'cron5');
-	if (!is_object($cron)) {
-		echo "Création de plugin::cron5\n";
-		$cron = new cron();
-	}
-	$cron->setClass('plugin');
-	$cron->setFunction('cron5');
-	$cron->setSchedule('*/5 * * * * *');
-	$cron->setTimeout(5);
-	$cron->setDeamon(0);
+	$cron->setTimeout(60);
 	$cron->save();
 
 	$cron = cron::byClassAndFunction('plugin', 'cron15');
@@ -207,8 +180,7 @@ try {
 	$cron->setClass('plugin');
 	$cron->setFunction('cron15');
 	$cron->setSchedule('*/15 * * * * *');
-	$cron->setTimeout(15);
-	$cron->setDeamon(0);
+	$cron->setTimeout(60);
 	$cron->save();
 
 	$cron = cron::byClassAndFunction('plugin', 'cron30');
@@ -219,60 +191,24 @@ try {
 	$cron->setClass('plugin');
 	$cron->setFunction('cron30');
 	$cron->setSchedule('*/30 * * * * *');
-	$cron->setTimeout(30);
-	$cron->setDeamon(0);
+	$cron->setTimeout(60);
 	$cron->save();
 
-	$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
-	if (!is_object($cron)) {
-		echo "Création de plugin::checkDeamon\n";
-		$cron = new cron();
+	$dynamic_apache_path = dirname(__FILE__) . '/../core/config/apache_jeedom_dynamic_rules';
+	if (!file_exists($dynamic_apache_path)) {
+		touch($dynamic_apache_path);
 	}
-	$cron->setClass('plugin');
-	$cron->setFunction('checkDeamon');
-	$cron->setSchedule('*/5 * * * * *');
-	$cron->setTimeout(5);
-	$cron->setDeamon(0);
-	$cron->save();
-
-	$cron = cron::byClassAndFunction('cache', 'persist');
-	if (!is_object($cron)) {
-		echo "Création de cache::persist\n";
-		$cron = new cron();
+	if (jeedom::isCapable('sudo')) {
+		if (!file_exists('/var/log/auth.log')) {
+			exec('sudo touch /var/log/auth.log');
+			exec('sudo service fail2ban restart');
+		}
+		exec('sudo service cron restart');
 	}
-	$cron->setClass('cache');
-	$cron->setFunction('persist');
-	$cron->setSchedule('*/30 * * * * *');
-	$cron->setTimeout(30);
-	$cron->setDeamon(0);
-	$cron->save();
-
-	$cron = cron::byClassAndFunction('history', 'archive');
-	if (!is_object($cron)) {
-		echo "Création de history::archive\n";
-		$cron = new cron();
-	}
-	$cron->setClass('history');
-	$cron->setFunction('archive');
-	$cron->setSchedule('00 5 * * * *');
-	$cron->setTimeout(240);
-	$cron->setDeamon(0);
-	$cron->save();
-
-	if (!file_exists('/usr/local/share/ca-certificates/root_market.crt') && file_exists('/usr/local/share/ca-certificates')) {
-		echo 'Ajout du certificat du market...';
-		shell_exec('sudo cp ' . dirname(__FILE__) . '/../script/root_market.crt /usr/local/share/ca-certificates');
-		shell_exec('sudo update-ca-certificates');
-		echo "OK\n";
-	}
-
-	if (!file_exists(dirname(__FILE__) . '/../plugins')) {
-		mkdir(dirname(__FILE__) . '/../plugins');
-		@chown(dirname(__FILE__) . '/../plugins', 'www-data');
-		@chgrp(dirname(__FILE__) . '/../plugins', 'www-data');
-		@chmod(dirname(__FILE__) . '/../plugins', 0775);
-	}
-
+	cache::deleteBySearch('widgetHtml');
+	cache::deleteBySearch('cmdWidgetdashboard');
+	cache::deleteBySearch('cmdWidgetmobile');
+	cache::deleteBySearch('scenarioHtmldashboard');
 	config::save('hardware_name', '');
 
 	if (config::byKey('api') == '') {

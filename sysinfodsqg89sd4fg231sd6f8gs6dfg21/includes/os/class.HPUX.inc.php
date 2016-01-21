@@ -43,6 +43,24 @@ class HPUX extends OS
     }
 
     /**
+     * IP of the Virtual Host Name
+     *
+     *  @return void
+     */
+    private function _ip()
+    {
+        if (PSI_USE_VHOST === true) {
+            $this->sys->setIp(gethostbyname($this->sys->getHostname()));
+        } else {
+            if (!($result = getenv('SERVER_ADDR'))) {
+                $this->sys->setIp(gethostbyname($this->sys->getHostname()));
+            } else {
+                $this->sys->setIp($result);
+            }
+        }
+    }
+
+    /**
      * HP-UX Version
      *
      * @return void
@@ -369,6 +387,7 @@ class HPUX extends OS
     {
         $this->_distro();
         $this->_hostname();
+        $this->_ip();
         $this->_kernel();
         $this->_uptime();
         $this->_users();

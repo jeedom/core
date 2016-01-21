@@ -1,15 +1,4 @@
-(function (factory) {
-	"use strict";
-	if (typeof define === 'function' && define.amd) {
-		define('jstree.checkbox', ['jquery','jstree'], factory);
-	}
-	else if(typeof exports === 'object') {
-		factory(require('jquery'), require('jstree'));
-	}
-	else {
-		factory(jQuery);
-	}
-}(function ($, undefined) {
+(function ($) {
 	"use strict";
 	if(document.registerElement && Object && Object.create) {
 		var proto = Object.create(HTMLElement.prototype);
@@ -28,11 +17,11 @@
 					c.core[i] = JSON.parse(this.getAttribute(i)) || this.getAttribute(i);
 				}
 			}
-			$(this).jstree(c);
+			jQuery(this).jstree(c);
 		};
 		// proto.attributeChangedCallback = function (name, previous, value) { };
 		try {
 			document.registerElement("vakata-jstree", { prototype: proto });
 		} catch(ignore) { }
 	}
-}));
+}(jQuery));

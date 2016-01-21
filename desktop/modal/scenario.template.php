@@ -72,10 +72,6 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
         });
     }
 
-    function refreshListAfterMarketObjectInstall(){
-         refreshScenarioTemplateList();
-    }
-
     refreshScenarioTemplateList();
 
     $('#bt_scenarioTemplateDisplayMarket').on('click', function () {

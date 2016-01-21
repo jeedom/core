@@ -22,31 +22,31 @@
 
 	/**
 	 * An object storing all types as key value pairs, where the key is the type name and the value is an object that could contain following keys (all optional).
-	 *
+	 * 
 	 * * `max_children` the maximum number of immediate children this node type can have. Do not specify or set to `-1` for unlimited.
 	 * * `max_depth` the maximum number of nesting this node type can have. A value of `1` would mean that the node can have children, but no grandchildren. Do not specify or set to `-1` for unlimited.
 	 * * `valid_children` an array of node type strings, that nodes of this type can have as children. Do not specify or set to `-1` for no limits.
 	 * * `icon` a string - can be a path to an icon or a className, if using an image that is in the current directory use a `./` prefix, otherwise it will be detected as a class. Omit to use the default icon from your theme.
 	 *
 	 * There are two predefined types:
-	 *
+	 * 
 	 * * `#` represents the root of the tree, for example `max_children` would control the maximum number of root nodes.
 	 * * `default` represents the default node - any settings here will be applied to all nodes that do not have a type specified.
-	 *
+	 * 
 	 * @name $.jstree.defaults.types
 	 * @plugin types
 	 */
 	$.jstree.defaults.types = {
+		'#' : {},
 		'default' : {}
 	};
-	$.jstree.defaults.types[$.jstree.root] = {};
 
 	$.jstree.plugins.types = function (options, parent) {
 		this.init = function (el, options) {
 			var i, j;
 			if(options && options.types && options.types['default']) {
 				for(i in options.types) {
-					if(i !== "default" && i !== $.jstree.root && options.types.hasOwnProperty(i)) {
+					if(i !== "default" && i !== "#" && options.types.hasOwnProperty(i)) {
 						for(j in options.types['default']) {
 							if(options.types['default'].hasOwnProperty(j) && options.types[i][j] === undefined) {
 								options.types[i][j] = options.types['default'][j];
@@ -56,11 +56,11 @@
 				}
 			}
 			parent.init.call(this, el, options);
-			this._model.data[$.jstree.root].type = $.jstree.root;
+			this._model.data['#'].type = '#';
 		};
 		this.refresh = function (skip_loading, forget_state) {
 			parent.refresh.call(this, skip_loading, forget_state);
-			this._model.data[$.jstree.root].type = $.jstree.root;
+			this._model.data['#'].type = '#';
 		};
 		this.bind = function () {
 			this.element
@@ -82,7 +82,7 @@
 								m[dpc[i]].icon = t[c].icon;
 							}
 						}
-						m[$.jstree.root].type = $.jstree.root;
+						m['#'].type = '#';
 					}, this));
 			parent.bind.call(this);
 		};
@@ -137,7 +137,7 @@
 			if(parent.check.call(this, chk, obj, par, pos, more) === false) { return false; }
 			obj = obj && obj.id ? obj : this.get_node(obj);
 			par = par && par.id ? par : this.get_node(par);
-			var m = obj && obj.id ? (more && more.origin ? more.origin : $.jstree.reference(obj.id)) : null, tmp, d, i, j;
+			var m = obj && obj.id ? $.jstree.reference(obj.id) : null, tmp, d, i, j;
 			m = m && m._model && m._model.data ? m._model.data : null;
 			switch(chk) {
 				case "create_node":

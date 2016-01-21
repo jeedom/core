@@ -1,7 +1,6 @@
 <?php
 namespace GuzzleHttp\Handler;
 
-use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -23,7 +22,7 @@ class Proxy
         callable $sync
     ) {
         return function (RequestInterface $request, array $options) use ($default, $sync) {
-            return empty($options[RequestOptions::SYNCHRONOUS])
+            return empty($options['sync'])
                 ? $default($request, $options)
                 : $sync($request, $options);
         };

@@ -55,11 +55,7 @@ class jsonrpc {
 				'message' => $_message,
 			),
 		);
-		if (init('callback') != '') {
-			echo init('callback') . '(' . json_encode($return) . ')';
-		} else {
-			echo json_encode($return);
-		}
+		echo json_encode($return);
 		exit;
 	}
 
@@ -69,11 +65,7 @@ class jsonrpc {
 			'id' => $this->id,
 			'result' => $_result,
 		);
-		if (init('callback') != '') {
-			echo init('callback') . '(' . json_encode($return) . ')';
-		} else {
-			echo json_encode($return);
-		}
+		echo json_encode($return);
 		exit;
 	}
 

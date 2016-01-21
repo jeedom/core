@@ -2908,7 +2908,7 @@ if (CanvasRenderingContext2D) {
 		});
 	}
 }/**
- * @license Highcharts JS v4.2.1 (2015-12-21)
+ * @license Highstock JS v2.1.7 (2015-06-26)
  * CanVGRenderer Extension module
  *
  * (c) 2011-2012 Torstein Honsi, Erik Olsson
@@ -2916,9 +2916,11 @@ if (CanvasRenderingContext2D) {
  * License: www.highcharts.com/license
  */
 
-(function (Highcharts) {
+// JSLint options:
+/*global Highcharts */
+
+(function (Highcharts) { // encapsulate
 	var UNDEFINED,
-		win = Highcharts.win,
 		DIV = 'div',
 		ABSOLUTE = 'absolute',
 		RELATIVE = 'relative',
@@ -2953,7 +2955,7 @@ if (CanvasRenderingContext2D) {
 				canvas,
 				initialHiddenStyle = { visibility: HIDDEN, position: ABSOLUTE };
 
-			this.init(container, chartWidth, chartHeight);
+			this.init.apply(this, [container, chartWidth, chartHeight]);
 
 			// add the canvas above it
 			canvas = createElement('canvas', {
@@ -3031,11 +3033,7 @@ if (CanvasRenderingContext2D) {
 				tooltipDiv.innerHTML = args.text;
 
 				// Compute the best position for the tooltip based on the divs size and container size.
-				position = chart.tooltip.getPosition(
-					tooltipDiv.offsetWidth, 
-					tooltipDiv.offsetHeight, 
-					{ plotX: args.x, plotY: args.y }
-				);
+				position = chart.tooltip.getPosition(tooltipDiv.offsetWidth, tooltipDiv.offsetHeight, {plotX: args.x, plotY: args.y});
 
 				css(tooltipDiv, {
 					visibility: VISIBLE,
@@ -3109,7 +3107,7 @@ if (CanvasRenderingContext2D) {
 		 */
 		draw: function () {
 			var renderer = this;
-			win.canvg(renderer.canvas, renderer.hiddenSvg.innerHTML);
+			window.canvg(renderer.canvas, renderer.hiddenSvg.innerHTML);
 		}
 	});
 }(Highcharts));

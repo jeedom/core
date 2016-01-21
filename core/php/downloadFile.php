@@ -29,21 +29,13 @@ $rootPath = realpath(dirname(__FILE__) . '/../../');
 if (strpos($pathfile, $rootPath) === false) {
 	throw new Exception(__('401 - Accès non autorisé', __FILE__));
 }
-if (strpos($pathfile, '*') === false) {
-	if (!file_exists($pathfile)) {
-		throw new Exception(__('Fichier non trouvé : ', __FILE__) . $pathfile);
-	}
-} else {
-	system('cd ' . dirname($pathfile) . ';tar cfz ' . dirname(__FILE__) . '/../../tmp/archive.tar.gz * > /dev/null 2>&1');
-	$pathfile = dirname(__FILE__) . '/../../tmp/archive.tar.gz';
+if (!file_exists($pathfile)) {
+	throw new Exception(__('Fichier non trouvé : ', __FILE__) . $pathfile);
 }
+
 $path_parts = pathinfo($pathfile);
 header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename=' . $path_parts['basename']);
 readfile($pathfile);
-if (file_exists(dirname(__FILE__) . '/../../tmp/archive.tar.gz')) {
-	unlink(dirname(__FILE__) . '/../../tmp/archive.tar.gz');
-}
 exit;
-
 ?>

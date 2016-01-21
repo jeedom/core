@@ -431,15 +431,21 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
                         </div>
                         <div class="form-group">
                             <label class="col-xs-4 control-label">{{Statut http}}</label>
-                            <div class="col-xs-8" id="div_dnsHttpStatus">
+                            <div class="col-xs-8" id="div_ngrokHttpStatus">
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">{{Statut SSH}}</label>
+                            <div class="col-xs-8" id="div_ngrokSSHStatus">
 
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-4 control-label">{{Gestion}}</label>
                             <div class="col-xs-8">
-                             <a class="btn btn-success" id="bt_restartDns"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
-                             <a class="btn btn-danger" id="bt_haltDns"><i class='fa fa-stop'></i> {{Arrêter}}</a>
+                             <a class="btn btn-success" id="bt_restartNgrok"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
+                             <a class="btn btn-danger" id="bt_haltNgrok"><i class='fa fa-stop'></i> {{Arrêter}}</a>
                          </div>
                      </div>
                  </div>
@@ -655,6 +661,12 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Afficher les plugins mis en avant par le market}}</label>
                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                             <input type="checkbox"  class="configKey bootstrapSwitch" data-l1key="market::showPromotion" />
+                        </div>
+                    </div>
+                    <div class="form-group has-error">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Voir les modules en beta (à vos risques et périls)}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                            <input type="checkbox"  class="configKey bootstrapSwitch" data-l1key="market::showBetaMarket" />
                         </div>
                     </div>
                     <div class="form-group expertModeVisible">

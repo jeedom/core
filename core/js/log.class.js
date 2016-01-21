@@ -62,20 +62,6 @@
  	if (!_params['display'].is(':visible')) {
  		return;
  	}
- 	if(isset(_params['control'])){
- 		_params['control'].off('click').on('click',function(){
- 			if($(this).attr('data-state') == 1){
- 				$(this).attr('data-state',0);
- 				$(this).removeClass('btn-warning').addClass('btn-success');
- 				$(this).html('<i class="fa fa-play"></i> {{Reprise}}');
- 			}else{
- 				$(this).removeClass('btn-success').addClass('btn-warning');
- 				$(this).html('<i class="fa fa-pause"></i> {{Pause}}');
- 				$(this).attr('data-state',1);
- 				jeedom.log.autoupdate(_params);
- 			}
- 		});
- 	}
  	if(isset(_params['control']) && _params['control'].attr('data-state') != 1){
  		return;
  	}
@@ -88,13 +74,24 @@
  			var regex = /<br\s*[\/]?>/gi;
  			if($.isArray(result)){
  				for (var i in result.reverse()) {
- 					if(!isset(_params['search']) || _params['search'].value() == '' || result[i].toLowerCase().indexOf(_params['search'].value().toLowerCase()) != -1){
- 						log += $.trim(result[i])+"\n";
+ 					if(!isset(_params['search']) || _params['search'].value() == '' || result[i][2].toLowerCase().indexOf(_params['search'].value().toLowerCase()) != -1){
+ 						if(result[i][0] != ''){
+ 							log += result[i][0].replace(regex, "\n");
+ 							log += " - ";
+ 						}
+ 						if(result[i][1] != ''){
+ 							log += result[i][1].replace(regex, "\n");
+ 							log += " - ";
+ 						}
+ 						log += result[i][2].replace(regex, "\n");
+ 						log = log.replace(/^\s+|\s+$/g, '');
+ 						log += "\n";
  					}
  				}
  			}
  			_params.display.text(log);
  			_params.display.scrollTop(_params.display.height() + 200000);
+
  			setTimeout(function() {
  				jeedom.log.autoupdate(_params)
  			}, 1000);
@@ -105,4 +102,4 @@
  			}, 1000);
  		},
  	});
- }
+}

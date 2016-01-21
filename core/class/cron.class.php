@@ -118,8 +118,6 @@ class cron {
 				}
 			} catch (Exception $ex) {
 				$cron->remove();
-			} catch (Error $ex) {
-				$cron->remove();
 			}
 		}
 	}
@@ -129,7 +127,7 @@ class cron {
 	 * @return int
 	 */
 	public static function nbCronRun() {
-		return count(system::ps('jeeCron.php', array('grep', 'sudo', 'shell=/bin/bash - ', '/bin/bash -c ', posix_getppid(), getmypid())));
+		return shell_exec('ps ax | grep jeeCron.php | grep -v "grep" | grep -v "sudo" | grep -v "shell=/bin/bash - " | grep -v "/bin/bash -c " | grep -v "/bin/sh -c " | grep -v ' . posix_getppid() . ' | grep -v ' . getmypid() . ' | wc -l');
 	}
 
 	/**
@@ -137,7 +135,8 @@ class cron {
 	 * @return int
 	 */
 	public static function nbProcess() {
-		return count(system::ps('.'));
+		$result = shell_exec('ps ax | wc -l');
+		return $result;
 	}
 
 	/**
@@ -192,10 +191,6 @@ class cron {
 		return true;
 	}
 
-	public static function convertDateToCron($_date) {
-		return date('i', $_date) . ' ' . date('H', $_date) . ' ' . date('d', $_date) . ' ' . date('m', $_date) . ' * ' . date('Y', $_date);
-	}
-
 	/*     * *********************Méthodes d'instance************************* */
 
 	/**
@@ -208,12 +203,6 @@ class cron {
 		}
 		if ($this->getSchedule() == '') {
 			throw new Exception(__('La programmation ne peut pas être vide : ', __FILE__) . print_r($this, true));
-		}
-		if (count($this->getOption()) == 0 || $this->getOption() == '') {
-			$cron = cron::byClassAndFunction($this->getClass(), $this->getFunction());
-			if (is_object($cron)) {
-				$this->setId($cron->getId());
-			}
 		}
 	}
 
@@ -262,7 +251,7 @@ class cron {
 			if (!$_noErrorReport) {
 				$this->halt();
 				if (!$this->running()) {
-					exec($cmd . ' >> ' . log::getPathToLog('cron_execution') . ' 2>&1 &');
+					exec($cmd . ' >> /dev/null 2>&1 &');
 				} else {
 					throw new Exception(__('Impossible d\'exécuter la tâche car elle est déjà en cours d\'exécution (', __FILE__) . ' : ' . $cmd);
 				}
@@ -280,7 +269,7 @@ class cron {
 				return true;
 			}
 		}
-		if (count(system::ps('cron_id=' . $this->getId() . '$')) > 0) {
+		if (shell_exec('ps ax | grep -ie "cron_id=' . $this->getId() . '$" | grep -v grep | wc -l') > 0) {
 			return true;
 		}
 		return false;
@@ -302,8 +291,8 @@ class cron {
 	}
 
 	/*
-		 * Set this cron to stop
-	*/
+	 * Set this cron to stop
+	 */
 
 	public function stop() {
 		if ($this->running()) {
@@ -313,8 +302,8 @@ class cron {
 	}
 
 	/*
-		 * Stop immediatly cron (this method must be only call by jeecron master)
-	*/
+	 * Stop immediatly cron (this method must be only call by jeecron master)
+	 */
 
 	public function halt() {
 		if (!$this->running()) {
@@ -325,27 +314,23 @@ class cron {
 		} else {
 			log::add('cron', 'info', __('Arrêt de ', __FILE__) . $this->getClass() . '::' . $this->getFunction() . '(), PID : ' . $this->getPID());
 			if ($this->getPID() > 0) {
-				system::kill($this->getPID());
+				$kill = posix_kill($this->getPID(), 15);
 				$retry = 0;
-				while ($this->running() && $retry < (config::byKey('deamonsSleepTime') + 5)) {
+				while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
 					sleep(1);
-					system::kill($this->getPID());
+					$kill = posix_kill($this->getPID(), 9);
 					$retry++;
 				}
 				$retry = 0;
-				while ($this->running() && $retry < (config::byKey('deamonsSleepTime') + 5)) {
+				while (!$kill && $retry < (config::byKey('deamonsSleepTime') + 5)) {
 					sleep(1);
-					system::kill($this->getPID());
+					exec('kill -9 ' . $this->getPID());
+					$kill = $this->running();
 					$retry++;
 				}
 			}
 			if ($this->running()) {
-				system::kill("cron_id=" . $this->getId() . "$");
-				sleep(1);
-				if ($this->running()) {
-					system::kill("cron_id=" . $this->getId() . "$");
-					sleep(1);
-				}
+				exec("ps aux | grep -ie 'cron_id=" . $this->getId() . "$' | grep -v grep | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
 				if ($this->running()) {
 					$this->setState('error');
 					$this->setServer('');
@@ -385,14 +370,10 @@ class cron {
 				}
 			} catch (Exception $e) {
 
-			} catch (Error $e) {
-
 			}
 			try {
 				$prev = $c->getPreviousRunDate()->getTimestamp();
 			} catch (Exception $e) {
-				return false;
-			} catch (Error $e) {
 				return false;
 			}
 			$diff = abs((strtotime('now') - $prev) / 60);
@@ -400,8 +381,6 @@ class cron {
 				return true;
 			}
 		} catch (Exception $e) {
-			log::add('cron', 'debug', 'Error on isDue : ' . $e->getMessage() . ', cron : ' . $this->getSchedule());
-		} catch (Error $e) {
 			log::add('cron', 'debug', 'Error on isDue : ' . $e->getMessage() . ', cron : ' . $this->getSchedule());
 		}
 		return false;
@@ -433,9 +412,6 @@ class cron {
 	}
 
 	public function getLastRun() {
-		if ($this->lastRun == '0000-00-00 00:00:00') {
-			return date('Y-m-d H:i:s');
-		}
 		return $this->lastRun;
 	}
 
