@@ -2,7 +2,7 @@
     "core/class/plugin.class.php": {
         "Inconnue": "Unknown",
         "Gestion automatique désactivée": "Automatic management disabled",
-        "Dépendances en cours d'installation": "Dépendances en cours d'installation"
+        "Dépendances en cours d'installation": "Currently being installed dependencies"
     },
     "core/class/cmd.class.php": {
         "Evènement sur la commande ": "Evènement sur la commande",
@@ -94,7 +94,7 @@
         "Pause de ": "Pause de",
         " seconde(s)": "seconde(s)",
         "Activation du scénario : ": "Activation du scénario :",
-        "[Erreur] Aucune commande trouvée pour ": "[Erreur] Aucune commande trouvée pour",
+        "[Erreur] Aucune commande trouvée pour ": "[Error] nothing command found for",
         "Désactivation du scénario : ": "Désactivation du scénario :",
         "Lancement du scénario : ": "Lancement du scénario :",
         "Lancement provoqué": "Lancement provoqué",
@@ -795,7 +795,7 @@
         "Pause": "Pause"
     },
     "/var/www/html/desktop/php/history.php": {
-        "Aucun": "Aucun"
+        "Aucun": "None"
     },
     "desktop/php/history.php": {
         "Historique": "Historique",
@@ -936,7 +936,7 @@
     "desktop/modal/eqLogic.human.insert.php": {
         "Objet": "Object",
         "Equipement": "Device",
-        "Aucun": "Aucun"
+        "Aucun": "None"
     },
     "desktop/js/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?",

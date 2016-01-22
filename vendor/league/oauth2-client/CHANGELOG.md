@@ -1,5 +1,20 @@
 # OAuth 2.0 Client Changelog
 
+## 1.1.0
+
+_Released: 2015-11-13_
+
+* Add `ArrayAccessorTrait`, update `AbstractProvider` to utilize.
+* Use `expires` to serialize access tokens.
+* Documentation updates.
+
+## 1.0.2
+
+_Released: 2015-09-22_
+
+* Allow access tokens to be created from storage (see #431).
+* Minor fixes and documentation updates.
+
 ## 1.0.1
 
 _Released: 2015-08-26_

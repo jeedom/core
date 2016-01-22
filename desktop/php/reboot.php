@@ -1,5 +1,4 @@
 <?php
-header("Cache-Control: no-cache");
 if (!isConnect('admin')) {
 	throw new Exception(__('401 - Accès non autorisé', __FILE__));
 }
@@ -38,13 +37,11 @@ if (!isConnect('admin')) {
 
 	function refresh() {
 		$.ajax({
-			url: "../../desktop/js/rebootjs.js?t="+Date.now(),
-			success:
-			function(retour){
+			url: "desktop/js/rebootjs.js?t="+Date.now(),
+			success:function(retour){
 				$('reboot_jeedom').html(retour);
 			}
 		});
-
 	}
 
 	function page_rebootjs(rebooti){

@@ -14,16 +14,15 @@
 
 namespace League\OAuth2\Client\Provider;
 
-use Closure;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\ClientInterface as HttpClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
-use InvalidArgumentException;
 use League\OAuth2\Client\Grant\AbstractGrant;
 use League\OAuth2\Client\Grant\GrantFactory;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Token\AccessToken;
 use League\OAuth2\Client\Tool\RequestFactory;
+use League\OAuth2\Client\Tool\ArrayAccessorTrait;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use RandomLib\Factory as RandomFactory;
@@ -36,6 +35,8 @@ use UnexpectedValueException;
  */
 abstract class AbstractProvider
 {
+    use ArrayAccessorTrait;
+
     /**
      * @var string Key used in a token response to identify the resource owner.
      */
@@ -401,7 +402,7 @@ abstract class AbstractProvider
         $query = trim($query, '?&');
 
         if ($query) {
-            return $url.'?'.$query;
+            return $url . '?' . $query;
         }
 
         return $url;
@@ -459,6 +460,7 @@ abstract class AbstractProvider
      * Returns the full URL to use when requesting an access token.
      *
      * @param array $params Query parameters
+     * @return string
      */
     protected function getAccessTokenUrl(array $params)
     {
@@ -504,6 +506,7 @@ abstract class AbstractProvider
      * Returns a prepared request for requesting an access token.
      *
      * @param array $params Query string parameters
+     * @return RequestInterface
      */
     protected function getAccessTokenRequest(array $params)
     {
@@ -709,8 +712,8 @@ abstract class AbstractProvider
     {
         if ($this->getAccessTokenResourceOwnerId() !== null) {
             $result['resource_owner_id'] = $this->getValueByKey(
-                $this->getAccessTokenResourceOwnerId(),
-                $result
+                $result,
+                $this->getAccessTokenResourceOwnerId()
             );
         }
         return $result;
@@ -816,36 +819,5 @@ abstract class AbstractProvider
         }
 
         return $this->getDefaultHeaders();
-    }
-
-    /**
-     * Returns a value by key using dot notation.
-     *
-     * @param  string $key
-     * @param  array $data
-     * @param  mixed|null $default
-     * @return mixed
-     */
-    protected function getValueByKey($key, array $data, $default = null)
-    {
-        if (!is_string($key) || empty($key) || !count($data)) {
-            return $default;
-        }
-
-        if (strpos($key, '.') !== false) {
-            $keys = explode('.', $key);
-
-            foreach ($keys as $innerKey) {
-                if (!array_key_exists($innerKey, $data)) {
-                    return $default;
-                }
-
-                $data = $data[$innerKey];
-            }
-
-            return $data;
-        }
-
-        return array_key_exists($key, $data) ? $data[$key] : $default;
     }
 }

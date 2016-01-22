@@ -127,7 +127,15 @@ class scenarioElement {
 
 	public function execute(&$_scenario) {
 		if ($this->getType() == 'if') {
-			if ($this->getSubElement('if')->execute($_scenario)) {
+			if ($this->getSubElement('if')->getOptions('enable', 1) == 0) {
+				return true;
+			}
+			$result = $this->getSubElement('if')->execute($_scenario);
+			if (is_string($result) && strlen($result) > 1) {
+				$_scenario->setLog(__('Expression non valide : ', __FILE__) . $result);
+				return;
+			}
+			if ($result) {
 				if ($this->getSubElement('if')->getOptions('allowRepeatCondition', 0) == 1) {
 					if ($this->getSubElement('if')->getOptions('previousState', -1) != 1) {
 						$this->getSubElement('if')->setOptions('previousState', 1);
@@ -154,11 +162,20 @@ class scenarioElement {
 			return $this->getSubElement('else')->execute($_scenario);
 
 		} else if ($this->getType() == 'action') {
+			if ($this->getSubElement('action')->getOptions('enable', 1) == 0) {
+				return true;
+			}
 			return $this->getSubElement('action')->execute($_scenario);
 		} else if ($this->getType() == 'code') {
+			if ($this->getSubElement('code')->getOptions('enable', 1) == 0) {
+				return true;
+			}
 			return $this->getSubElement('code')->execute($_scenario);
 		} else if ($this->getType() == 'for') {
 			$for = $this->getSubElement('for');
+			if ($for->getOptions('enable', 1) == 0) {
+				return true;
+			}
 			$limits = $for->getExpression();
 			$limits = intval(jeedom::evaluateExpression($limits[0]->getExpression()));
 			if (!is_numeric($limits)) {
@@ -172,6 +189,9 @@ class scenarioElement {
 			return $return;
 		} else if ($this->getType() == 'in') {
 			$in = $this->getSubElement('in');
+			if ($in->getOptions('enable', 1) == 0) {
+				return true;
+			}
 			$in = $in->getExpression();
 			$time = ceil(str_replace('.', ',', jeedom::evaluateExpression($in[0]->getExpression())));
 			if (!is_numeric($time) || $time < 0) {
@@ -199,13 +219,16 @@ class scenarioElement {
 				$cron->setLastRun(date('Y-m-d H:i:s'));
 				$cron->setOnce(1);
 				$next = strtotime('+ ' . $time . ' min');
-				$cron->setSchedule(date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next));
+				$cron->setSchedule(cron::convertDateToCron($next));
 				$cron->save();
 				$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmé à : ', __FILE__) . date('Y-m-d H:i:00', $next) . ' (+ ' . $time . ' min)');
 			}
 			return true;
 		} else if ($this->getType() == 'at') {
 			$at = $this->getSubElement('at');
+			if ($at->getOptions('enable', 1) == 0) {
+				return true;
+			}
 			$at = $at->getExpression();
 			$next = jeedom::evaluateExpression($at[0]->getExpression());
 			if (($next % 100) > 59) {
@@ -246,7 +269,7 @@ class scenarioElement {
 			$cron->setOption(array('scenario_id' => intval($_scenario->getId()), 'scenarioElement_id' => intval($this->getId()), 'second' => 0));
 			$cron->setLastRun(date('Y-m-d H:i:s'));
 			$cron->setOnce(1);
-			$cron->setSchedule(date('i', $next) . ' ' . date('H', $next) . ' ' . date('d', $next) . ' ' . date('m', $next) . ' * ' . date('Y', $next));
+			$cron->setSchedule(cron::convertDateToCron($next));
 			$cron->save();
 			$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmée à : ', __FILE__) . date('Y-m-d H:i:00', $next));
 			return true;

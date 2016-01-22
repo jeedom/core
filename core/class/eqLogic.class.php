@@ -409,6 +409,9 @@ class eqLogic {
 		$eqLogicCopy->setName($_name);
 		$eqLogicCopy->setId('');
 		$eqLogicCopy->save();
+		foreach ($eqLogicCopy->getCmd() as $cmd) {
+			$cmd->remove();
+		}
 		foreach ($this->getCmd() as $cmd) {
 			$cmdCopy = clone $cmd;
 			$cmdCopy->setId('');
@@ -448,18 +451,12 @@ class eqLogic {
 		if ($this->getDisplay('hideOn' . $version) == 1) {
 			return '';
 		}
-		$hasOnlyEventOnly = $this->hasOnlyEventOnlyCmd();
-		if ($hasOnlyEventOnly) {
-			$sql = 'SELECT `value` FROM cache
-           WHERE `key`="widgetHtml' . $_version . $this->getId() . '"';
-			$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-			if ($result['value'] != '') {
-				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $result['value']);
-			}
+		$mc = cache::byKey('widgetHtml' . $_version . $this->getId());
+		if ($mc->getValue() != '') {
+			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 		}
 		$parameters = $this->getDisplay('parameters');
 		$cmd_html = '';
-
 		$vcolor = 'cmdColor';
 		if ($version == 'mobile') {
 			$vcolor = 'mcmdColor';
@@ -492,9 +489,6 @@ class eqLogic {
 			'#style#' => '',
 			'#max_width#' => '650px',
 			'#logicalId#' => $this->getLogicalId(),
-			'#battery#' => $this->getConfiguration('batteryStatus', -2),
-			'#batteryDatetime#' => $this->getConfiguration('batteryStatusDatetime', __('inconnue', __FILE__)),
-			'#batteryType#' => $this->getConfiguration('battery_type', ''),
 			'#object_name#' => '',
 			'#height#' => $this->getDisplay('height', 'auto'),
 			'#width#' => $this->getDisplay('width', 'auto'),
@@ -526,16 +520,19 @@ class eqLogic {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
 		}
 		$html = template_replace($replace, self::$_templateArray[$version]);
-		if ($hasOnlyEventOnly) {
-			cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
-		}
+		cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
 		return $html;
 	}
 
 	public function emptyCacheWidget() {
-		$sql = 'DELETE FROM cache
-    WHERE `key` LIKE "widgetHtml%' . $this->getId() . '"';
-		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		$mc = cache::byKey('widgetHtmldashboard' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('widgetHtmlmobile' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('widgetHtmlmview' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('widgetHtmldview' . $this->getId());
+		$mc->remove();
 	}
 
 	public function getShowOnChild() {
@@ -571,22 +568,6 @@ class eqLogic {
 
 	public function getLinkToConfiguration() {
 		return 'index.php?v=d&p=' . $this->getEqType_name() . '&m=' . $this->getEqType_name() . '&id=' . $this->getId();
-	}
-
-	public function collectInProgress() {
-		$values = array(
-			'eqLogic_id' => $this->getId(),
-		);
-		$sql = 'SELECT count(*)
-    FROM cmd
-    WHERE eqLogic_id=:eqLogic_id
-    AND collect=1
-    AND eventOnly=0';
-		$results = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		if ($results['count(*)'] > 0) {
-			return true;
-		}
-		return false;
 	}
 
 	public function getHumanName($_tag = false, $_prettify = false) {
@@ -661,25 +642,21 @@ class eqLogic {
 	}
 
 	public function batteryStatus($_pourcent, $_datetime = '') {
-		if ($_pourcent > 20) {
+		$warning_threshold = $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
+		if ($_pourcent > $warning_threshold) {
 			foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
 				$message->remove();
 			}
 			foreach (message::byPluginLogicalId($this->getEqType_name(), 'noBattery' . $this->getId()) as $message) {
 				$message->remove();
 			}
-		} else if ($_pourcent > 0 && $_pourcent <= 20) {
+		} else {
 			$logicalId = 'lowBattery' . $this->getId();
 			$message = 'Le module ' . $this->getEqType_name() . ' ';
 			$message .= $this->getHumanName() . ' a moins de ' . $_pourcent . '% de batterie';
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
-			message::add($this->getEqType_name(), $message, '', $logicalId);
-		} else {
-			$logicalId = 'noBattery' . $this->getId();
-			$message = __('Le module ', __FILE__) . $this->getEqType_name() . ' ';
-			$message .= $this->getHumanName() . __(' n\'a plus de batterie (', __FILE__) . $_pourcent . ' %)';
 			message::add($this->getEqType_name(), $message, '', $logicalId);
 		}
 		$this->setConfiguration('batteryStatus', $_pourcent);
@@ -688,22 +665,21 @@ class eqLogic {
 		} else {
 			$this->setConfiguration('batteryStatusDatetime', date('Y-m-d H:i:s'));
 		}
-		$this->emptyCacheWidget();
 		$this->save();
 	}
 
 	public function refreshWidget() {
-		nodejs::pushUpdate('eventEqLogic', $this->getId());
+		event::add('eqLogic::update', $this->getId());
 	}
 
-	public function hasRight($_right, $_needAdmin = false, $_user = null) {
-		if (!is_object($_user)) {
-			if (session_status() != PHP_SESSION_NONE || !isset($_SESSION) || !isset($_SESSION['user'])) {
-				return true;
-			}
-			$_user = $_SESSION['user'];
+	public function hasRight($_right) {
+		if (config::byKey('rights::enable') != 1) {
+			return true;
 		}
-
+		if (session_status() != PHP_SESSION_NONE || !isset($_SESSION) || !isset($_SESSION['user'])) {
+			return true;
+		}
+		$_user = $_SESSION['user'];
 		if (!is_object($_user)) {
 			return false;
 		}
@@ -720,7 +696,7 @@ class eqLogic {
 			$rights = rights::byuserIdAndEntity($_user->getId(), 'eqLogic' . $this->getId() . 'view');
 		}
 		if (!is_object($rights)) {
-			return ($_needAdmin) ? false : true;
+			return false;
 		}
 		return $rights->getRight();
 	}
@@ -785,9 +761,13 @@ class eqLogic {
 
 	public function getObject() {
 		if ($this->_object == null) {
-			$this->_object = object::byId($this->object_id);
+			$this->setObject(object::byId($this->object_id));
 		}
 		return $this->_object;
+	}
+
+	public function setObject($_object) {
+		$this->_object = $_object;
 	}
 
 	public function getEqType_name() {
@@ -804,9 +784,18 @@ class eqLogic {
 
 	public function getCmd($_type = null, $_logicalId = null, $_visible = null, $_multiple = false) {
 		if ($_logicalId != null) {
-			return cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple, $_type);
+			$cmds = cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple, $_type);
+		} else {
+			$cmds = cmd::byEqLogicId($this->id, $_type, $_visible, $this);
 		}
-		return cmd::byEqLogicId($this->id, $_type, $_visible, $this);
+		if (is_array($cmds)) {
+			foreach ($cmds as $cmd) {
+				$cmd->setEqLogic($this);
+			}
+		} elseif (is_object($cmds)) {
+			$cmds->setEqLogic($this);
+		}
+		return $cmds;
 	}
 
 	public function searchCmdByConfiguration($_configuration, $_type = null) {

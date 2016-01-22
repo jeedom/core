@@ -24,27 +24,16 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
-	if (init('action') == 'restartNgrok') {
+	if (init('action') == 'restartDns') {
 		config::save('market::allowDNS', 1);
-		if (network::dns_run()) {
-			network::dns_stop();
-		}
 		network::dns_start();
 		ajax::success();
 	}
 
-	if (init('action') == 'stopNgrok') {
+	if (init('action') == 'stopDns') {
 		config::save('market::allowDNS', 0);
 		network::dns_stop();
 		ajax::success();
-	}
-
-	if (init('action') == 'listWifi') {
-		ajax::success(network::listWifi());
-	}
-
-	if (init('action') == 'writeInterfaceFile') {
-		ajax::success(network::writeInterfaceFile());
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));

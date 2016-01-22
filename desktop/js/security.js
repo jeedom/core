@@ -66,7 +66,7 @@ $('#table_security').delegate('.remove', 'click', function() {
                 },
                 success: function() {
                     modifyWithoutSave = false;
-                    window.location.replace('index.php?v=d&p=security&removeSuccessFull=1');
+                    tr.remove();
                 }
             });
         }
@@ -84,7 +84,7 @@ $('#table_security').delegate('.ban', 'click', function() {
                 },
                 success: function() {
                     modifyWithoutSave = false;
-                    window.location.replace('index.php?v=d&p=security&saveSuccessFull=1');
+                    loadPage('index.php?v=d&p=security&saveSuccessFull=1');
                 }
             });
         }

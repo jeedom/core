@@ -1,30 +1,26 @@
 server {
         #listen   80; ## listen for ipv4; this line is default and implied
         #listen   [::]:80 default_server ipv6only=on; ## listen for ipv6
-        root /usr/share/nginx/www;
+        root /var/www/html;
         index index.html index.htm index.php;
         access_log off;
-        error_log /usr/share/nginx/www/jeedom/log/nginx.error;
+        error_log /var/www/html/log/http.error;
         client_max_body_size 100M;
         server_tokens off;
+        add_header Cache-Control "public";
        
-        location /jeedom/ {
+        location / {
                 try_files $uri $uri/ /index.html /index.php;
         }
-
-        location ~ ^/jeedom/tmp/(.*)$ {
+        location ~ ^/tmp/(.*)$ {
                 deny all;
         }
         
-        location ~ ^/jeedom/log/(.*)$ {
+        location ~ ^/log/(.*)$ {
                 deny all;
         }
 
-        location ~ ^/jeedom/backup/(.*)$ {
-                deny all;
-        }
-
-        location ~ ^/jeedom/core/config/version$ {
+        location ~ ^/backup/(.*)$ {
                 deny all;
         }
 
@@ -44,19 +40,16 @@ server {
                 deny all;
         }
 
-        include sites-available/jeedom_dynamic_rule;
-
-        location /socket.io/ {
-                proxy_pass http://127.0.0.1:8070/socket.io/;
-                proxy_http_version 1.1;
-                proxy_set_header Upgrade $http_upgrade;
-                proxy_set_header Connection "Upgrade";
-                proxy_set_header Host $host;
-                proxy_redirect off;
-                proxy_read_timeout 6000;
+        location ~ ^/core/config/version$ {
+                deny all;
         }
+        
+        include sites-available/jeedom.d/*.conf;
 
         location ~ ^(.+?\.php)(/.*)?$ {
+                if (!-f $document_root$fastcgi_script_name) {
+                   return 404;
+                }
                 try_files $uri =404;
                 fastcgi_param SCRIPT_FILENAME $document_root$1;
                 fastcgi_param PATH_INFO $2;

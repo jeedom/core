@@ -61,7 +61,7 @@ class DB {
 	public static function getConnection() {
 		if (!isset(self::$sharedInstance)) {
 			self::$sharedInstance = new self();
-		} else if (self::$sharedInstance->lastConnection + 59 < strtotime('now')) {
+		} else if (self::$sharedInstance->lastConnection + 120 < strtotime('now')) {
 			try {
 				if (!self::$sharedInstance->connection->query('select 1;')) {
 					self::$sharedInstance = new self();
@@ -124,7 +124,7 @@ class DB {
 		trigger_error('DB : Cloning this object is not permitted', E_USER_ERROR);
 	}
 
-	public function optimize() {
+	public static function optimize() {
 		$tables = self::Prepare("SELECT TABLE_NAME FROM information_schema.TABLES WHERE Data_Free > 0", array(), DB::FETCH_TYPE_ALL);
 		foreach ($tables as $table) {
 			$table = array_values($table);
@@ -203,7 +203,7 @@ class DB {
 		$parameters = array('id' => self::getField($object, 'id'));
 		$sql = 'SELECT ' . self::buildField(get_class($object)) .
 		' FROM `' . self::getTableName($object) . '` ' .
-		' WHERE ';
+			' WHERE ';
 		foreach ($parameters as $field => $value) {
 			if ($value != '') {
 				$sql .= '`' . $field . '`=:' . $field . ' AND ';

@@ -3,7 +3,10 @@
     "description": "Software for home automation",
     "require": {
         "mtdowling/cron-expression": "~1.0",
-        "symfony/expression-language": "~2.6"
+        "symfony/expression-language": "~2.6",
+        "league/oauth2-client": "^1.0",
+        "doctrine/cache": "^1.4.0",
+        "monolog/monolog": "^1.17"
     },
     "license": "GPL",
     "authors": [

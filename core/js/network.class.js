@@ -19,7 +19,7 @@
  jeedom.network = function () {
  };
 
- jeedom.network.restartNgrok = function (_params) {
+ jeedom.network.restartDns = function (_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -32,12 +32,12 @@
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/network.ajax.php';
     paramsAJAX.data = {
-        action: 'restartNgrok',
+        action: 'restartDns',
     };
     $.ajax(paramsAJAX);
 };
 
-jeedom.network.stopNgrok = function (_params) {
+jeedom.network.stopDns = function (_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -50,44 +50,7 @@ jeedom.network.stopNgrok = function (_params) {
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/network.ajax.php';
     paramsAJAX.data = {
-        action: 'stopNgrok',
-    };
-    $.ajax(paramsAJAX);
-};
-
-jeedom.network.listWifi = function (_params) {
-    var paramsRequired = [];
-    var paramsSpecifics = {global: _params.global || true};
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
-    }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/network.ajax.php';
-    paramsAJAX.data = {
-        action: 'listWifi',
-        rescan : _params.rescan || false
-    };
-    $.ajax(paramsAJAX);
-};
-
-jeedom.network.writeInterfaceFile = function (_params) {
-    var paramsRequired = [];
-    var paramsSpecifics = {};
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
-    }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/network.ajax.php';
-    paramsAJAX.data = {
-        action: 'writeInterfaceFile'
+        action: 'stopDns',
     };
     $.ajax(paramsAJAX);
 };
