@@ -34,7 +34,7 @@ $refresh = array();
 			<td>{{Local}}</td>
 			<td class="deamonState" data-slave_id="0">
 				<?php
-$refresh[0] = 1;
+$refresh[0] = 0;
 switch ($deamon_info['state']) {
 	case 'ok':
 		echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
@@ -103,7 +103,7 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 	foreach (jeeNetwork::byPlugin($plugin_id) as $jeeNetwork) {
 		try {
 			$deamon_info = $jeeNetwork->sendRawRequest('plugin::deamonInfo', array('plugin_id' => $plugin_id));
-			$refresh[$jeeNetwork->getId()] = 1;
+			$refresh[$jeeNetwork->getId()] = $jeeNetwork->getId();
 			?>
 					<tr>
 						<td><?php echo $jeeNetwork->getName(); ?></td>
