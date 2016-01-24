@@ -304,7 +304,7 @@ class market {
 
 	public static function getJsonRpc() {
 		if (config::byKey('market::address') == '') {
-			throw new Exception(__('Aucune addresse n\'est renseignée pour le market', __FILE__));
+			throw new Exception(__('Aucune adresse n\'est renseignée pour le market', __FILE__));
 		}
 		$internalIp = '';
 		try {
@@ -673,7 +673,7 @@ class market {
 							$ErrMsg = "Le fichier existe déjà.";
 							break;
 						case ZipArchive::ER_INCONS:
-							$ErrMsg = "Archive zip est inconsistente.";
+							$ErrMsg = "Archive zip est inconsistante.";
 							break;
 						case ZipArchive::ER_MEMORY:
 							$ErrMsg = "Erreur mémoire.";
@@ -701,7 +701,7 @@ class market {
 				}
 				break;
 			default:
-				log::add('update', 'alert', __('Installation de du plugin,widget,scénario...', __FILE__));
+				log::add('update', 'alert', __('Installation du plugin, widget, scénario...', __FILE__));
 				$type = $this->getType();
 				if (class_exists($type) && method_exists($type, 'getFromMarket')) {
 					$type::getFromMarket($this, $tmp);
