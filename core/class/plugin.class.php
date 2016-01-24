@@ -131,7 +131,7 @@ class plugin {
 		}
 	}
 
-	public static function listPlugin($_activateOnly = false, $_orderByCaterogy = false, $_translate = true) {
+	public static function listPlugin($_activateOnly = false, $_orderByCaterogy = false, $_translate = true, $_nameOnly = false) {
 		$listPlugin = array();
 		if ($_activateOnly) {
 			$sql = "SELECT plugin
@@ -139,6 +139,12 @@ class plugin {
             WHERE `key`='active'
             AND `value`='1'";
 			$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+			if ($_nameOnly) {
+				foreach ($results as $result) {
+					$listPlugin[] = $result['plugin'];
+				}
+				return $listPlugin;
+			}
 			foreach ($results as $result) {
 				try {
 					$listPlugin[] = plugin::byId($result['plugin'], $_translate);

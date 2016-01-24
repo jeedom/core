@@ -326,6 +326,7 @@ class market {
 				),
 				'localIp' => $internalIp,
 				'jeedom_name' => config::byKey('name'),
+				'plugin_install_list' => plugin::listPlugin(true, false, false, true),
 			);
 			if (config::byKey('market::allowDNS') != 1) {
 				$params['addr'] = config::byKey('externalAddr');
@@ -339,6 +340,7 @@ class market {
 				'hwkey' => jeedom::getHardwareKey(),
 				'localIp' => $internalIp,
 				'jeedom_name' => config::byKey('name'),
+				'plugin_install_list' => plugin::listPlugin(true, false, false, true),
 			));
 		}
 		$jsonrpc->setCb_class('market');
