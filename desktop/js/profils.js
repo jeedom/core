@@ -20,6 +20,12 @@
     $("#bt_saveProfils").click();
 });
 
+ $('#bt_configureTwoFactorAuthentification').on('click',function(){
+     var profil = $('body').getValues('.userAttr')[0];
+    $('#md_modal').dialog({title: "{{Authentification 2 étapes}}"});
+    $("#md_modal").load('index.php?v=d&modal=twoFactor.authentification').dialog('open');
+});
+
  $("#bt_saveProfils").on('click', function (event) {
     $.hideAlert();
     var profil = $('body').getValues('.userAttr')[0];

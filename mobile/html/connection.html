@@ -4,6 +4,9 @@
     </center><br/>
     <input type="text" id="in_login_username" value="" placeholder="{{Nom d'utilisateur}}" />
     <input type="password" id="in_login_password" value="" placeholder="{{Mot de passe}}" />
+    <div id="div_twoFactorCode" style="display:none;">
+        <input type="text" id="in_twoFactorCode" value="" placeholder="{{Code à 2 facteurs}}" />
+    </div>
     <form>
         <input type="checkbox" id="cb_storeConnection" data-mini="true">
         <label for="cb_storeConnection">{{Enregistrer cet appareil}}</label>
@@ -11,6 +14,21 @@
     <a id="bt_login_validate" href="#" class="ui-btn ui-corner-all ui-btn-raised clr-primary waves-effect waves-button">{{Connexion}}</a>
 </div>
 <script>
+    $('#in_login_username').on('focusout',function(){
+        jeedom.user.useTwoFactorAuthentification({
+            login: $('#in_login_username').value(),
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function (data) {
+                if(data == 1){
+                    $('#div_twoFactorCode').show();
+                }else{
+                    $('#div_twoFactorCode').hide();
+                }
+            }
+        });
+    });
     $('#bt_login_validate').on('click', function() {
         $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // methode de transmission des données au fichier php
@@ -19,6 +37,7 @@
                 action: "login",
                 username: $('#in_login_username').val(),
                 password: $('#in_login_password').val(),
+                twoFactorCode: $('#in_twoFactorCode').val(),
                 storeConnection: $('#cb_storeConnection').value()
             },
             dataType: 'json',
@@ -26,17 +45,17 @@
                 handleAjaxError(request, status, error, $('#div_alert'));
             },
             success: function(data) { // si l'appel a bien fonctionné
-                if (data.state != 'ok') {
-                    $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                    return;
-                }
-                if ($('#cb_storeConnection').value() == 1) {
-                    localStorage.setItem("deviceKey", data.result.deviceKey);
-                }
-                initApplication();
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
             }
-        });
+            if ($('#cb_storeConnection').value() == 1) {
+                localStorage.setItem("deviceKey", data.result.deviceKey);
+            }
+            initApplication();
+        }
     });
+});
 </script>
 
 

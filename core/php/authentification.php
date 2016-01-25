@@ -58,7 +58,7 @@ if (ini_get('register_globals') == '1') {
 }
 
 if (init('login') != '' && init('mdp') != '') {
-	login(init('login'), init('mdp'));
+	login(init('login'), init('mdp'), false, false, init('twoFactorCode'));
 }
 if (init('login') != '' && init('hash') != '') {
 	login(init('login'), init('hash'), false, true);
@@ -133,9 +133,27 @@ try {
 
 /* * **************************Definition des function************************** */
 
-function login($_login, $_password, $_ajax = false, $_hash = false) {
+function login($_login, $_password, $_ajax = false, $_hash = false, $_twoFactor = null) {
 	$user = user::connect($_login, $_password, $_hash);
 	if (is_object($user) && $user->getEnable() == 1) {
+		if (!$_hash && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
+			if (trim($_twoFactor) == '' || $_twoFactor == null || !$user->validateTwoFactorCode($_twoFactor)) {
+				connection::failed();
+				sleep(5);
+				if (!$_ajax) {
+					if (strpos($_SERVER['PHP_SELF'], 'core') || strpos($_SERVER['PHP_SELF'], 'desktop')) {
+						if (!headers_sent()) {
+							header('Location:../../index.php?v=d&error=1');
+						}
+					} else {
+						if (!headers_sent()) {
+							header('Location:index.php?v=' . $_GET['v'] . '&error=1');
+						}
+					}
+				}
+				return false;
+			}
+		}
 		connection::success($user->getLogin());
 		@session_start();
 		$_SESSION['user'] = $user;

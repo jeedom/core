@@ -18,6 +18,7 @@
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+use PragmaRX\Google2FA\Google2FA;
 
 class user {
 	/*     * *************************Attributs****************************** */
@@ -260,6 +261,11 @@ class user {
 
 	public function getDirectUrlAccess() {
 		return network::getNetworkAccess('external') . '/core/php/authentification.php?login=' . $this->getLogin() . '&hash=' . $this->getHash();
+	}
+
+	public function validateTwoFactorCode($_code) {
+		$google2fa = new Google2FA();
+		return $google2fa->verifyKey($this->getOptions('twoFactorAuthentificationSecret'), $_code);
 	}
 
 	/*     * **********************Getteur Setteur*************************** */

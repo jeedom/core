@@ -16,11 +16,11 @@
  */
 
 
-jeedom.user = function() {
-};
-jeedom.user.connectCheck = 0;
+ jeedom.user = function() {
+ };
+ jeedom.user.connectCheck = 0;
 
-jeedom.user.all = function(_params) {
+ jeedom.user.all = function(_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -166,4 +166,46 @@ jeedom.user.isConnect = function(_params) {
         }
     }
 }
+
+jeedom.user.validateTwoFactorCode = function(_params) {
+    var paramsRequired = ['code'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/user.ajax.php';
+    paramsAJAX.data = {
+        action: 'validateTwoFactorCode',
+        code: _params.code
+    };
+    $.ajax(paramsAJAX);
+};
+
+jeedom.user.useTwoFactorAuthentification = function(_params) {
+    var paramsRequired = ['login'];
+    var paramsSpecifics = {
+        global: false,
+    }
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/user.ajax.php';
+    paramsAJAX.data = {
+        action: 'useTwoFactorAuthentification',
+        login: _params.login,
+        enableTwoFactorAuthentification : _params.enableTwoFactorAuthentification || 0
+    };
+    $.ajax(paramsAJAX);
+};
+
 

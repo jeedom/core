@@ -329,31 +329,48 @@ foreach ($notifyTheme as $key => $value) {
         <div class="panel-body">
             <form class="form-horizontal">
                 <fieldset>
-                    <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="password" class="userAttr form-control" data-l1key="password" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Retapez le mot de passe}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="password" class="form-control" id="in_passwordCheck" />
-                        </div>
-                    </div>
-                    <div class="form-group expertModeVisible">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef API}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <span class="label label-info userAttr" style="font-size : 1em;" data-l1key="hash" ></span>
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-sm-3">
-                            <a class="btn btn-default form-control" id="bt_genUserKeyAPI"><i class="fa fa-refresh"></i> {{Générer}}</a>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-    </div>
+                   <div class="form-group">
+                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Authentification en 2 étapes}}</label>
+                    <div class="col-lg-4 col-md-3 col-sm-3 col-xs-3">
+                     <a class="btn btn-default" id="bt_configureTwoFactorAuthentification">{{Configurer}}</a>
+                 </div>
+                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                     <?php
+if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
+	?>
+                       <input type="checkbox" class="userAttr form-control bootstrapSwitch" data-l1key="options" data-l2key="twoFactorAuthentification" />
+                       <?php }
+?>
+                   </div>
+
+               </div>
+
+               <div class="form-group">
+                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
+                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                    <input type="password" class="userAttr form-control" data-l1key="password" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Retapez le mot de passe}}</label>
+                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                    <input type="password" class="form-control" id="in_passwordCheck" />
+                </div>
+            </div>
+            <div class="form-group expertModeVisible">
+                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef API}}</label>
+                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                    <span class="label label-info userAttr" style="font-size : 1em;" data-l1key="hash" ></span>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-3">
+                    <a class="btn btn-default form-control" id="bt_genUserKeyAPI"><i class="fa fa-refresh"></i> {{Générer}}</a>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+</div>
 </div>
 
 <br/>

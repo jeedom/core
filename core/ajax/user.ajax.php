@@ -20,6 +20,14 @@ try {
 	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 
+	if (init('action') == 'useTwoFactorAuthentification') {
+		$user = user::byLogin(init('login'));
+		if (!is_object($user)) {
+			ajax::success(0);
+		}
+		ajax::success($user->getOptions('twoFactorAuthentification', 0));
+	}
+
 	if (init('action') == 'login') {
 		if (!isConnect() && config::byKey('sso:allowRemoteUser') == 1) {
 			$user = user::byLogin($_SERVER['REMOTE_USER']);
@@ -31,7 +39,7 @@ try {
 				log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER : ', __FILE__) . $user->getLogin());
 			}
 		}
-		if (!isConnect() && !login(init('username'), init('password'), true)) {
+		if (!isConnect() && !login(init('username'), init('password'), true, false, init('twoFactorCode'))) {
 			throw new Exception('Mot de passe ou nom d\'utilisateur incorrect');
 		}
 		if (init('storeConnection') == 1) {
@@ -77,6 +85,18 @@ try {
 
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
+	}
+
+	if (init('action') == 'validateTwoFactorCode') {
+		@session_start();
+		$_SESSION['user']->refresh();
+		$result = $_SESSION['user']->validateTwoFactorCode(init('code'));
+		if (init('enableTwoFactorAuthentification')) {
+			$_SESSION['user']->setOption('twoFactorAuthentification', 1);
+			$_SESSION['user']->save();
+		}
+		@session_write_close();
+		ajax::success($result);
 	}
 
 	if (init('action') == 'isConnect') {
@@ -150,14 +170,16 @@ try {
 	}
 
 	if (init('action') == 'saveProfils') {
+
 		$user_json = json_decode(init('profils'), true);
 		if (isset($user_json['id']) && $user_json['id'] != $_SESSION['user']->getId()) {
 			throw new Exception('401 unautorized');
 		}
+		@session_start();
+		$_SESSION['user']->refresh();
 		$login = $_SESSION['user']->getLogin();
 		$rights = $_SESSION['user']->getRights();
 		$password = $_SESSION['user']->getPassword();
-		@session_start();
 		utils::a2o($_SESSION['user'], $user_json);
 		foreach ($rights as $right => $value) {
 			$_SESSION['user']->setRights($right, $value);
