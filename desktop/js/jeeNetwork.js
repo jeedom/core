@@ -32,46 +32,33 @@ function loadInfoFromSlave(_id){
         success: function (data) {
             $('.jeeNetworkAttr').value('');
             $('.jeeNetwork').setValues(data, '.jeeNetworkAttr');
+            $('#bt_connectToSlave').hide();
             var plugin = '';
             for (var i in data.plugin) {
                 plugin += '<span class="label label-info">' + data.plugin[i] + '</span> ';
             }
-            if (isset(data.configuration) && isset(data.configuration.auiKey)) {
-                if(isset(data.configuration.url)){
-                    $('#bt_connectToSlave').attr('href', data.configuration.url + '/index.php?v=d&auiKey=' + data.configuration.auiKey).show();
-                }else{
-                 if(isset(data.configuration.addrComplement)){
-                    $('#bt_connectToSlave').attr('href', 'http://' + data.ip+data.configuration.addrComplement + '/index.php?v=d&auiKey=' + data.configuration.auiKey).show();
-                }else{
-                    $('#bt_connectToSlave').attr('href', 'http://' + data.ip + '/index.php?v=d&auiKey=' + data.configuration.auiKey).show();
-                }
-                
-            }
-        } else {
-            $('#bt_connectToSlave').hide();
+            $('#div_pluginList').empty().append(plugin);
+            var jeeNetworkConfig = data;
+            jeedom.jeeNetwork.dnsRun({
+                id: _id,
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                    if(data == 0){
+                        $('#div_dnsHttpStatus').html('<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>');
+                    }else{
+                       $('#div_dnsHttpStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' +init(jeeNetworkConfig.configuration.url)+ '" target="_blank" style="color:white;text-decoration: underline;">' +init(jeeNetworkConfig.configuration.url)+ '</a></span>');
+                   }
+               }
+           });
+            modifyWithoutSave = false;
         }
-        $('#div_pluginList').empty().append(plugin);
-        var jeeNetworkConfig = data;
-        jeedom.jeeNetwork.dnsRun({
-            id: _id,
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (data) {
-                if(data == 0){
-                    $('#div_dnsHttpStatus').html('<span class="label label-warning tooltips" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>');
-                }else{
-                 $('#div_dnsHttpStatus').html('<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' +init(jeeNetworkConfig.configuration.url)+ '" target="_blank" style="color:white;text-decoration: underline;">' +init(jeeNetworkConfig.configuration.url)+ '</a></span>');
-             }
-         }
-     });
-        modifyWithoutSave = false;
-    }
-});
+    });
 jeedom.jeeNetwork.loadConfig({
-   id: _id,
-   configuration: $('#administration').getValues('.configKey')[0],
-   error: function (error) {
+ id: _id,
+ configuration: $('#administration').getValues('.configKey')[0],
+ error: function (error) {
     $('#div_alert').showAlert({message: error.message, level: 'danger'});
 },
 success: function (data) {
@@ -140,12 +127,12 @@ $('#sel_logSlave').on('change', function () {
             if($.isArray(data)){
                 for (var i in data.reverse()) {
                     log += data[i]+"\n";
-             }
-         }
-         $('#pre_logInfo').text(log);
-         $('#pre_logInfo').scrollTop(999999999);
-     }
- });
+                }
+            }
+            $('#pre_logInfo').text(log);
+            $('#pre_logInfo').scrollTop(999999999);
+        }
+    });
 });
 
 $('#bt_refreshLog').on('click', function () {
@@ -162,13 +149,13 @@ $('#bt_refreshLog').on('click', function () {
             var log = '';
             if($.isArray(data)){
                 for (var i in data.reverse()) {
-                   log += data[i]+"\n";
-               }
-           }
-           $('#pre_logInfo').text(log);
-           $('#pre_logInfo').scrollTop(999999999);
-       }
-   });
+                 log += data[i]+"\n";
+             }
+         }
+         $('#pre_logInfo').text(log);
+         $('#pre_logInfo').scrollTop(999999999);
+     }
+ });
 });
 
 
@@ -513,14 +500,14 @@ function getJeedomSlaveLog(_autoUpdate, _log,_el) {
                         _autoUpdate = 0;
                     }
                     if(data[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
-                     $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
-                     _autoUpdate = 0;
-                 }
-             }
-         }
-         _el.text(log);
-         _el.scrollTop(_el.height() + 200000);
-         if (init(_autoUpdate, 0) == 1) {
+                       $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
+                       _autoUpdate = 0;
+                   }
+               }
+           }
+           _el.text(log);
+           _el.scrollTop(_el.height() + 200000);
+           if (init(_autoUpdate, 0) == 1) {
             setTimeout(function () {
                 getJeedomSlaveLog(_autoUpdate, _log,_el)
             }, 1000);

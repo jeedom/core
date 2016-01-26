@@ -119,20 +119,8 @@ class user {
 			$user->save();
 			jeedom::event('user_connect');
 			log::add('event', 'info', __('Connexion de l\'utilisateur ', __FILE__) . $_login);
-			if ($user->getOptions('validity_limit') != '' && strtotime('now') > strtotime($user->getOptions('validity_limit'))) {
-				$user->remove();
-				return false;
-			}
 		}
 		return $user;
-	}
-
-	public static function cleanOutdatedUser() {
-		foreach (user::all() as $user) {
-			if ($user->getOptions('validity_limit') != '' && strtotime('now') > strtotime($user->getOptions('validity_limit'))) {
-				$user->remove();
-			}
-		}
 	}
 
 	public static function connectToLDAP() {
@@ -209,16 +197,6 @@ class user {
         WHERE rights LIKE :rights
         OR rights LIKE :rights2';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-	}
-
-	public static function createTemporary($_hours) {
-		$user = new self();
-		$user->setLogin('temp_' . config::genKey());
-		$user->setPassword(config::genKey(45));
-		$user->setRights('admin', 1);
-		$user->setOptions('validity_limit', date('Y-m-d H:i:s', strtotime('+' . $_hours . ' hour now')));
-		$user->save();
-		return $user;
 	}
 
 	public static function hasDefaultIdentification() {

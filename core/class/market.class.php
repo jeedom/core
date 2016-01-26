@@ -264,10 +264,6 @@ class market {
 		if (isset($_ticket['options']['page'])) {
 			$_ticket['options']['page'] = substr($_ticket['options']['page'], strpos($_ticket['options']['page'], 'index.php'));
 		}
-		if (isset($_ticket['allowRemoteAccess']) && $_ticket['allowRemoteAccess'] == 1) {
-			$user = user::createTemporary(72);
-			$_ticket['options']['remoteAccess'] = 'Http : ' . $user->getDirectUrlAccess();
-		}
 		$_ticket['options']['jeedom_version'] = jeedom::version();
 		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket))) {
 			throw new Exception($jsonrpc->getErrorMessage());

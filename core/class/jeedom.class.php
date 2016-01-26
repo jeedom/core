@@ -464,7 +464,6 @@ class jeedom {
 	public static function cronDaily() {
 		try {
 			scenario::cleanTable();
-			user::cleanOutdatedUser();
 			scenario::consystencyCheck();
 			log::chunk();
 			cron::clean();

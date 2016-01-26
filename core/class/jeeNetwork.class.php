@@ -268,7 +268,6 @@ class jeeNetwork {
 			$this->setConfiguration('nbUpdate', $result['nbUpdate']);
 			$this->setConfiguration('url', $result['jeedom::url']);
 			$this->setConfiguration('version', $result['version']);
-			$this->setConfiguration('auiKey', $result['auiKey']);
 			$this->setConfiguration('lastCommunication', date('Y-m-d H:i:s'));
 			if ($this->getConfiguration('nbMessage') != $result['nbMessage'] && $result['nbMessage'] > 0) {
 				log::add('jeeNetwork', 'error', __('Le jeedom esclave : ', __FILE__) . $this->getName() . __(' a de nouveaux messages : ', __FILE__) . $result['nbMessage']);

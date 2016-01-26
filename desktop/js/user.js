@@ -78,22 +78,6 @@
     });
 });
 
- $('#bt_addTemporariUser').on('click', function () {
-    bootbox.confirm('{{Etes-vous sûr de vouloir créer un utilisateur d\'accès temporaire ?}}', function (result) {
-        if (result) {
-            jeedom.user.createTemporary({
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                },
-                success: function (data) {
-                    printUsers();
-                    bootbox.alert("{{Voici l'URL à passer pour donner un accès temporaire :}} <br\><b style='word-break: break-all;white-space: pre-wrap;word-wrap: break-word;'>" + data.directUrl + "</b>");
-                }
-            });
-        }
-    });
-});
-
  $("#table_user").delegate(".change_mdp_user", 'click', function (event) {
     $.hideAlert();
     var user = {id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value(), login: $(this).closest('tr').find('.userAttr[data-l1key=login]').value()};
@@ -174,20 +158,24 @@
                 ligne += '<a class="cursor bt_changeHash" title="{{Renouveler la clef API}}"><i class="fa fa-refresh"></i></a> <span class="userAttr" data-l1key="hash"></span>';
                 ligne += '</td>';
                 ligne += '<td>';
-                ligne += '<span class="userAttr" data-l1key="options" data-l2key="lastConnection"></span>';
-                ligne += '</td>';
-                ligne += '<td>';
-                ligne += '<a target="blank" href="' + data[i].directUrl + '">URL</a>';
-                ligne += '</td>';
-                ligne += '</tr>';
-                var result = $(ligne);
-                result.setValues(data[i], '.userAttr');
-                tr.push(result);
-            }
-            $('#table_user tbody').append(tr);
-            modifyWithoutSave = false;
-            initCheckBox();
-            $.hideLoading();
-        }
-    });
+                if(isset(data[i].options.twoFactorAuthentification) && data[i].options.twoFactorAuthentification == 1 && isset(data[i].options.twoFactorAuthentificationSecret) && data[i].options.twoFactorAuthentificationSecret != ''){
+                    ligne += '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
+                }else{
+                   ligne += '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
+               }
+               ligne += '</td>';
+               ligne += '<td>';
+               ligne += '<span class="userAttr" data-l1key="options" data-l2key="lastConnection"></span>';
+               ligne += '</td>';
+               ligne += '</tr>';
+               var result = $(ligne);
+               result.setValues(data[i], '.userAttr');
+               tr.push(result);
+           }
+           $('#table_user tbody').append(tr);
+           modifyWithoutSave = false;
+           initCheckBox();
+           $.hideLoading();
+       }
+   });
 }

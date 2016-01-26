@@ -39,7 +39,7 @@ try {
 				log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER : ', __FILE__) . $user->getLogin());
 			}
 		}
-		if (!isConnect() && !login(init('username'), init('password'), true, false, init('twoFactorCode'))) {
+		if (!isConnect() && !login(init('username'), init('password'), init('twoFactorCode'))) {
 			throw new Exception('Mot de passe ou nom d\'utilisateur incorrect');
 		}
 		if (init('storeConnection') == 1) {
@@ -206,16 +206,6 @@ try {
 			throw new Exception();
 		}
 		ajax::success();
-	}
-
-	if (init('action') == 'createTemporary') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
-		$user = user::createTemporary(24);
-		$return = utils::o2a($user);
-		$return['directUrl'] = $user->getDirectUrlAccess();
-		ajax::success($return);
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));

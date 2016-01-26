@@ -29,33 +29,23 @@
             }
         });
     });
-    $('#bt_login_validate').on('click', function() {
-        $.ajax({// fonction permettant de faire de l'ajax
-            type: "POST", // methode de transmission des données au fichier php
-            url: "core/ajax/user.ajax.php", // url du fichier php
-            data: {
-                action: "login",
-                username: $('#in_login_username').val(),
-                password: $('#in_login_password').val(),
-                twoFactorCode: $('#in_twoFactorCode').val(),
-                storeConnection: $('#cb_storeConnection').value()
+  $('#bt_login_validate').on('click', function() {
+        jeedom.user.login({
+            username: $('#in_login_username').val(),
+            password: $('#in_login_password').val(),
+            twoFactorCode: $('#in_twoFactorCode').val(),
+            storeConnection: $('#cb_storeConnection').value(),
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
-            dataType: 'json',
-            error: function(request, status, error) {
-                handleAjaxError(request, status, error, $('#div_alert'));
-            },
-            success: function(data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
+            success: function (data) {
+                if ($('#cb_storeConnection').value() == 1) {
+                    localStorage.setItem("deviceKey", data.result.deviceKey);
+                }
+                initApplication();
             }
-            if ($('#cb_storeConnection').value() == 1) {
-                localStorage.setItem("deviceKey", data.result.deviceKey);
-            }
-            initApplication();
-        }
+        });
     });
-});
 </script>
 
 

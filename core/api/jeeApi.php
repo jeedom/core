@@ -153,12 +153,21 @@ if (init('type') != '') {
 		if ($jsonrpc->getMethod() == 'user::getHash') {
 			if (!isset($params['login']) || !isset($params['password']) || $params['login'] == '' || $params['password'] == '') {
 				connection::failed();
+				sleep(5);
 				throw new Exception('Le login ou le password ne peuvent être vide', -32001);
 			}
 			$user = user::connect($params['login'], $params['password']);
 			if (!is_object($user) || $user->getEnable() != 1) {
 				connection::failed();
+				sleep(5);
 				throw new Exception('Echec de l\'authentification', -32001);
+			}
+			if ($user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
+				if (!isset($params['twoFactorCode']) || trim($params['twoFactorCode']) == '' || !$user->validateTwoFactorCode($params['twoFactorCode'])) {
+					connection::failed();
+					sleep(5);
+					throw new Exception('Echec de l\'authentification', -32001);
+				}
 			}
 			$jsonrpc->makeSuccess($user->getHash());
 		}
@@ -491,17 +500,11 @@ if (init('type') != '') {
 				if (config::byKey('jeeNetwork::mode') != 'slave') {
 					throw new Exception('Impossible d\'ajouter une box jeedom non esclave à un réseau Jeedom');
 				}
-				$auiKey = config::byKey('auiKey');
-				if ($auiKey == '') {
-					$auiKey = config::genKey(255);
-					config::save('auiKey', $auiKey);
-				}
 				$return = array(
 					'mode' => config::byKey('jeeNetwork::mode'),
 					'nbUpdate' => update::nbNeedUpdate(),
 					'version' => jeedom::version(),
 					'nbMessage' => message::nbMessage(),
-					'auiKey' => $auiKey,
 					'jeedom::url' => config::byKey('jeedom::url'),
 				);
 				if (!filter_var(network::getNetworkAccess('external', 'ip'), FILTER_VALIDATE_IP) && network::getNetworkAccess('external', 'ip') != '') {

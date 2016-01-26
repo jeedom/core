@@ -17,7 +17,6 @@
  */
 
 require_once dirname(__FILE__) . '/core.inc.php';
-
 $session_lifetime = config::byKey('session_lifetime', 24);
 if (!is_numeric($session_lifetime)) {
 	$session_lifetime = 24;
@@ -35,7 +34,7 @@ if (!headers_sent()) {
 @session_write_close();
 
 if (!isConnect() && isset($_COOKIE['registerDevice'])) {
-	if (loginByHash($_COOKIE['registerDevice'], true)) {
+	if (loginByHash($_COOKIE['registerDevice'])) {
 		setcookie('registerDevice', $_COOKIE['registerDevice'], time() + 365 * 24 * 3600, "/", '', false, true);
 	} else {
 		setcookie('registerDevice', '', time() - 3600, "/", '', false, true);
@@ -53,63 +52,8 @@ if (!isConnect() && config::byKey('sso:allowRemoteUser') == 1) {
 	}
 }
 
-if (ini_get('register_globals') == '1') {
-	echo __('Vous devriez mettre <b>register_globals</b> à <b>Off</b><br/>', __FILE__);
-}
-
-if (init('login') != '' && init('mdp') != '') {
-	login(init('login'), init('mdp'), false, false, init('twoFactorCode'));
-}
-if (init('login') != '' && init('hash') != '') {
-	login(init('login'), init('hash'), false, true);
-}
-if (init('connect') == '1' && (init('mdp') == '' || init('login') == '')) {
-	if (!headers_sent()) {
-		header('Location:../../index.php?v=' . $_GET['v'] . '&p=connection&error=1');
-	}
-}
-
 if (init('logout') == 1) {
 	logout();
-}
-
-if (trim(init('auiKey')) != '') {
-	if (init('auiKey') == config::byKey('auiKey')) {
-		$user = user::byLogin('jeedom_master');
-		if (!is_object($user)) {
-			$user = user::byLogin('admin');
-		}
-		if (is_object($user) && $user->getEnable() == 1) {
-			connection::success($user->getLogin());
-			@session_start();
-			$_SESSION['user'] = $user;
-			@session_write_close();
-			log::add('connection', 'info', __('Connexion par auikey', __FILE__));
-			$getParams = '';
-			unset($_GET['auth']);
-			foreach ($_GET AS $var => $value) {
-				$getParams .= $var . '=' . $value . '&';
-			}
-			if (strpos($_SERVER['PHP_SELF'], 'core') || strpos($_SERVER['PHP_SELF'], 'desktop')) {
-				header('Location:../../index.php?' . trim($getParams, '&'));
-			} else {
-				header('Location:index.php?' . trim($getParams, '&'));
-			}
-		}
-	} else {
-		log::add('connection', 'info', __('Echec de connexion par auikey', __FILE__));
-		connection::failed();
-		sleep(5);
-		if (strpos($_SERVER['PHP_SELF'], 'core') || strpos($_SERVER['PHP_SELF'], 'desktop')) {
-			if (!headers_sent()) {
-				header('Location:../../index.php?v=' . $_GET['v'] . '&error=1');
-			}
-		} else {
-			if (!headers_sent()) {
-				header('Location:index.php?v=' . $_GET['v'] . '&error=1');
-			}
-		}
-	}
 }
 
 /* * *******************Securité anti piratage**************************** */
@@ -133,106 +77,46 @@ try {
 
 /* * **************************Definition des function************************** */
 
-function login($_login, $_password, $_ajax = false, $_hash = false, $_twoFactor = null) {
-	$user = user::connect($_login, $_password, $_hash);
-	if (is_object($user) && $user->getEnable() == 1) {
-		if (!$_hash && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
-			if (trim($_twoFactor) == '' || $_twoFactor == null || !$user->validateTwoFactorCode($_twoFactor)) {
-				connection::failed();
-				sleep(5);
-				if (!$_ajax) {
-					if (strpos($_SERVER['PHP_SELF'], 'core') || strpos($_SERVER['PHP_SELF'], 'desktop')) {
-						if (!headers_sent()) {
-							header('Location:../../index.php?v=d&error=1');
-						}
-					} else {
-						if (!headers_sent()) {
-							header('Location:index.php?v=' . $_GET['v'] . '&error=1');
-						}
-					}
-				}
-				return false;
-			}
-		}
-		connection::success($user->getLogin());
-		@session_start();
-		$_SESSION['user'] = $user;
-		if (init('v') == 'd' && init('registerDevice') == 'on') {
-			setcookie('registerDevice', $_SESSION['user']->getHash(), time() + 365 * 24 * 3600, "/", '', false, true);
-		}
-		@session_write_close();
-		log::add('connection', 'info', __('Connexion de l\'utilisateur : ', __FILE__) . $_login);
-		$getParams = '';
-		unset($_GET['auth']);
-		foreach ($_GET AS $var => $value) {
-			$getParams .= $var . '=' . $value . '&';
-		}
-		if (!$_ajax) {
-			if (strpos($_SERVER['PHP_SELF'], 'core') || strpos($_SERVER['PHP_SELF'], 'desktop')) {
-				if (!headers_sent()) {
-					header('Location:../../index.php?' . trim($getParams, '&'));
-				}
-			} else {
-				if (!headers_sent()) {
-					header('Location:index.php?' . trim($getParams, '&'));
-				}
-			}
-		}
-		return true;
+function login($_login, $_password, $_twoFactor = null) {
+	$user = user::connect($_login, $_password);
+	if (!is_object($user) || $user->getEnable() == 0) {
+		connection::failed();
+		sleep(5);
+		return false;
 	}
-	connection::failed();
-	sleep(5);
-	if (!$_ajax) {
-		if (strpos($_SERVER['PHP_SELF'], 'core') || strpos($_SERVER['PHP_SELF'], 'desktop')) {
-			if (!headers_sent()) {
-				header('Location:../../index.php?v=d&error=1');
-			}
-		} else {
-			if (!headers_sent()) {
-				header('Location:index.php?v=' . $_GET['v'] . '&error=1');
-			}
+	if ($user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
+		if (trim($_twoFactor) == '' || $_twoFactor == null || !$user->validateTwoFactorCode($_twoFactor)) {
+			connection::failed();
+			sleep(5);
+			return false;
 		}
 	}
-	return false;
+	connection::success($user->getLogin());
+	@session_start();
+	$_SESSION['user'] = $user;
+	if (init('v') == 'd' && init('registerDevice') == 'on') {
+		setcookie('registerDevice', $_SESSION['user']->getHash(), time() + 365 * 24 * 3600, "/", '', false, true);
+	}
+	@session_write_close();
+	log::add('connection', 'info', __('Connexion de l\'utilisateur : ', __FILE__) . $_login);
+	return true;
 }
 
-function loginByHash($_key, $_ajax = false) {
+function loginByHash($_key) {
 	$user = user::byHash($_key);
-	if (is_object($user) && $user->getEnable() == 1) {
-		connection::success($user->getLogin());
-		@session_start();
-		$_SESSION['user'] = $user;
-		@session_write_close();
-		setcookie('registerDevice', $_key, time() + 365 * 24 * 3600, "/", '', false, true);
-		log::add('connection', 'info', __('Connexion de l\'utilisateur par clef : ', __FILE__) . $user->getLogin());
-		$getParams = '';
-		unset($_GET['auth']);
-		foreach ($_GET AS $var => $value) {
-			$getParams .= $var . '=' . $value . '&';
-		}
-		if (!$_ajax) {
-			if (strpos($_SERVER['PHP_SELF'], 'core') || strpos($_SERVER['PHP_SELF'], 'desktop')) {
-				header('Location:../../index.php?' . trim($getParams, '&'));
-			} else {
-				header('Location:index.php?' . trim($getParams, '&'));
-			}
-		}
-		return true;
+	if (!is_object($user) || $user->getEnable() == 0) {
+		connection::failed();
+		sleep(5);
+		return false;
 	}
-	connection::failed();
-	sleep(5);
-	if (!$_ajax) {
-		if (strpos($_SERVER['PHP_SELF'], 'core') || strpos($_SERVER['PHP_SELF'], 'desktop')) {
-			if (!headers_sent()) {
-				header('Location:../../index.php?v=derror=1');
-			}
-		} else {
-			if (!headers_sent()) {
-				header('Location:index.php?v=' . $_GET['v'] . '&error=1');
-			}
-		}
-	}
-	return false;
+	connection::success($user->getLogin());
+	@session_start();
+	$_SESSION['user'] = $user;
+	@session_write_close();
+	setcookie('registerDevice', $_key, time() + 365 * 24 * 3600, "/", '', false, true);
+	log::add('connection', 'info', __('Connexion de l\'utilisateur par clef : ', __FILE__) . $user->getLogin());
+	unset($_GET['auth']);
+	return true;
 }
 
 function logout() {
