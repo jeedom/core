@@ -294,9 +294,9 @@ class user {
 
 	public function getHash() {
 		if ($this->hash == '' && $this->id != '') {
-			$hash = sha1(config::genKey(255));
+			$hash = config::genKey(255);
 			while (is_object(self::byHash($hash))) {
-				$hash = sha1(config::genKey(255));
+				$hash = config::genKey(255);
 			}
 			$this->setHash($hash);
 			$this->save();
