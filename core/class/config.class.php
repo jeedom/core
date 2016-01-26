@@ -160,7 +160,7 @@ class config {
 		return $results;
 	}
 
-	public static function genKey($_car = 128) {
+	public static function genKey($_car = 48) {
 		$key = '';
 		$chaine = "abcdefghijklmnpqrstuvwxy1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		srand((double) microtime() * 1000000);
