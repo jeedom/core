@@ -180,6 +180,10 @@ if (init('type') != '') {
 			$jsonrpc->makeSuccess($user->getHash());
 		}
 
+		if ($jsonrpc->getMethod() == 'ping') {
+			$jsonrpc->makeSuccess('pong');
+		}
+
 		if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) || (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
 			connection::failed();
 			throw new Exception('Clé API invalide', -32001);
@@ -200,11 +204,6 @@ if (init('type') != '') {
 			log::add('api', 'info', 'Demande pour le plugin : ' . secureXSS($params['plugin']));
 			include_file('core', $params['plugin'], 'api', $params['plugin']);
 		} else {
-			/*             * ***********************Ping********************************* */
-			if ($jsonrpc->getMethod() == 'ping') {
-				$jsonrpc->makeSuccess('pong');
-			}
-
 			/*             * ***********************Version********************************* */
 			if ($jsonrpc->getMethod() == 'version') {
 				$jsonrpc->makeSuccess(jeedom::version());
