@@ -321,7 +321,7 @@ foreach ($notifyTheme as $key => $value) {
   <div class="panel-heading">
     <h3 class="panel-title">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_other">
-        {{Autre}}
+        {{Sécurité}}
       </a>
     </h3>
   </div>

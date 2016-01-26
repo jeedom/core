@@ -162,7 +162,8 @@ jeedom.user.validateTwoFactorCode = function(_params) {
     paramsAJAX.url = 'core/ajax/user.ajax.php';
     paramsAJAX.data = {
         action: 'validateTwoFactorCode',
-        code: _params.code
+        code: _params.code,
+        enableTwoFactorAuthentification : _params.enableTwoFactorAuthentification || 0
     };
     $.ajax(paramsAJAX);
 };
@@ -183,8 +184,7 @@ jeedom.user.useTwoFactorAuthentification = function(_params) {
     paramsAJAX.url = 'core/ajax/user.ajax.php';
     paramsAJAX.data = {
         action: 'useTwoFactorAuthentification',
-        login: _params.login,
-        enableTwoFactorAuthentification : _params.enableTwoFactorAuthentification || 0
+        login: _params.login
     };
     $.ajax(paramsAJAX);
 };
