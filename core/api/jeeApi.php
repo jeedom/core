@@ -150,6 +150,14 @@ if (init('type') != '') {
 
 		$params = $jsonrpc->getParams();
 
+		if ($jsonrpc->getMethod() == 'user::useTwoFactorAuthentification') {
+			$user = user::byLogin(init('login'));
+			if (!is_object($user)) {
+				$jsonrpc->makeSuccess(0);
+			}
+			$jsonrpc->makeSuccess($user->getOptions('twoFactorAuthentification', 0));
+		}
+
 		if ($jsonrpc->getMethod() == 'user::getHash') {
 			if (!isset($params['login']) || !isset($params['password']) || $params['login'] == '' || $params['password'] == '') {
 				connection::failed();

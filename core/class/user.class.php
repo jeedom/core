@@ -237,10 +237,6 @@ class user {
 		return (is_numeric($this->id) && $this->login != '');
 	}
 
-	public function getDirectUrlAccess() {
-		return network::getNetworkAccess('external') . '/core/php/authentification.php?login=' . $this->getLogin() . '&hash=' . $this->getHash();
-	}
-
 	public function validateTwoFactorCode($_code) {
 		$google2fa = new Google2FA();
 		return $google2fa->verifyKey($this->getOptions('twoFactorAuthentificationSecret'), $_code);
@@ -298,9 +294,9 @@ class user {
 
 	public function getHash() {
 		if ($this->hash == '' && $this->id != '') {
-			$hash = sha1(config::genKey(128));
+			$hash = sha1(config::genKey(255));
 			while (is_object(self::byHash($hash))) {
-				$hash = sha1(config::genKey(128));
+				$hash = sha1(config::genKey(255));
 			}
 			$this->setHash($hash);
 			$this->save();

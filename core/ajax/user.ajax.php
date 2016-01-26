@@ -115,7 +115,6 @@ try {
 		$users = array();
 		foreach (user::all() as $user) {
 			$user_info = utils::o2a($user);
-			$user_info['directUrl'] = $user->getDirectUrlAccess();
 			$users[] = $user_info;
 		}
 		ajax::success($users);
