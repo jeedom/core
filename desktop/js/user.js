@@ -158,7 +158,7 @@
                 ligne += '<a class="cursor bt_changeHash" title="{{Renouveler la clef API}}"><i class="fa fa-refresh"></i></a> <textarea class="userAttr" data-l1key="hash" style="width:100%;" rows="7" disabled></textarea>';
                 ligne += '</td>';
                 ligne += '<td>';
-                if(isset(data[i].options.twoFactorAuthentification) && data[i].options.twoFactorAuthentification == 1 && isset(data[i].options.twoFactorAuthentificationSecret) && data[i].options.twoFactorAuthentificationSecret != ''){
+                if(isset(data[i].options) && isset(data[i].options.twoFactorAuthentification) && data[i].options.twoFactorAuthentification == 1 && isset(data[i].options.twoFactorAuthentificationSecret) && data[i].options.twoFactorAuthentificationSecret != ''){
                     ligne += '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
                 }else{
                    ligne += '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
