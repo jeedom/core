@@ -219,6 +219,7 @@ try {
 				ajax::success($jeeNetwork->sendRawRequest('plugin::dependancyInstall', array('plugin_id' => init('id'))));
 			}
 		}
+		ajax::success();
 	}
 
 	if (init('action') == 'getDeamonInfo') {
@@ -296,6 +297,7 @@ try {
 			}
 			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonStop', array('plugin_id' => init('id'))));
 		}
+		ajax::success();
 	}
 
 	if (init('action') == 'deamonChangeAutoMode') {
@@ -315,6 +317,7 @@ try {
 			}
 			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonChangeAutoMode', array('plugin_id' => init('id'), 'mode' => init('mode'))));
 		}
+		ajax::success();
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
