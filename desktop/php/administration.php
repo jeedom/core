@@ -27,7 +27,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                         <div class="form-group expertModeVisible">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de Jeedom}}">{{Clef API}}</label>
                             <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
-                                <span class="label label-info" style="font-size : 1em;" id="in_keyAPI"><?php echo config::byKey('api'); ?></span>
+                                <textarea id="in_keyAPI" style="width:100%;" rows="5" disabled><?php echo config::byKey('api'); ?></textarea>
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-3">
                                 <a class="btn btn-default form-control" id="bt_genKeyAPI"><i class="fa fa-refresh"></i> {{Générer}}</a>
