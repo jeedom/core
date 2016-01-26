@@ -717,7 +717,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'plugin::dependancyInstall') {
 				$plugin = plugin::byId($params['plugin_id']);
 				if (!is_object($plugin)) {
-					$jsonrpc->makeSuccess();
+					$jsonrpc->makeSuccess('ok');
 				}
 				$jsonrpc->makeSuccess($plugin->dependancy_install());
 			}
@@ -747,7 +747,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'plugin::deamonStop') {
 				$plugin = plugin::byId($params['plugin_id']);
 				if (!is_object($plugin)) {
-					$jsonrpc->makeSuccess();
+					$jsonrpc->makeSuccess('ok');
 				}
 				$jsonrpc->makeSuccess($plugin->deamon_stop($params['debug'], $params['forceRestart']));
 			}
@@ -755,7 +755,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'plugin::deamonChangeAutoMode') {
 				$plugin = plugin::byId($params['plugin_id']);
 				if (!is_object($plugin)) {
-					$jsonrpc->makeSuccess();
+					$jsonrpc->makeSuccess('ok');
 				}
 				$jsonrpc->makeSuccess($plugin->deamon_changeAutoMode($params['mode']));
 			}
