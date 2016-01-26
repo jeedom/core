@@ -276,6 +276,7 @@ try {
 			}
 			ajax::success($jeeNetwork->sendRawRequest('plugin::deamonStart', array('plugin_id' => $plugin_id, 'debug' => init('debug', 0), 'forceRestart' => init('forceRestart', 0))));
 		}
+		ajax::success();
 	}
 
 	if (init('action') == 'deamonStop') {
