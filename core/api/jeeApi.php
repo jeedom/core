@@ -733,7 +733,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'plugin::deamonStart') {
 				$plugin = plugin::byId($params['plugin_id']);
 				if (!is_object($plugin)) {
-					$jsonrpc->makeSuccess();
+					$jsonrpc->makeSuccess('ok');
 				}
 				if (!isset($params['debug'])) {
 					$params['debug'] = false;
