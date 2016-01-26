@@ -30,7 +30,6 @@ $google2fa_url = $google2fa->getQRCodeGoogleUrl(
 
 	</div>
 
-
 	<div class="panel panel-primary">
 		<div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Etape 2 : Configuration}}</h3></div>
 		<div class="panel-body">
@@ -41,6 +40,7 @@ $google2fa_url = $google2fa->getQRCodeGoogleUrl(
 			</center>
 		</div>
 	</div>
+
 	<div class="panel panel-success">
 		<div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Etape 3 : vérification}}</h3></div>
 		<div class="panel-body">
