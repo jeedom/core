@@ -151,7 +151,7 @@ if (init('type') != '') {
 		$params = $jsonrpc->getParams();
 
 		if ($jsonrpc->getMethod() == 'user::useTwoFactorAuthentification') {
-			$user = user::byLogin(init('login'));
+			$user = user::byLogin($params['login']);
 			if (!is_object($user)) {
 				$jsonrpc->makeSuccess(0);
 			}
