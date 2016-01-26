@@ -362,12 +362,12 @@ if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
         <?php }
 ?>
         <div class="form-group expertModeVisible">
-          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Clef API}}</label>
+          <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hash de l'utilisateur}}</label>
           <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-            <span class="label label-info userAttr" style="font-size : 1em;" data-l1key="hash" ></span>
+            <textarea class="userAttr" data-l1key="hash" style="width:100%;" rows="5" disabled></textarea>
           </div>
           <div class="col-lg-2 col-md-3 col-sm-3">
-            <a class="btn btn-default form-control" id="bt_genUserKeyAPI"><i class="fa fa-refresh"></i> {{Générer}}</a>
+            <a class="btn btn-default form-control" id="bt_genUserKeyAPI"><i class="fa fa-refresh"></i> {{Regénérer}}</a>
           </div>
         </div>
 

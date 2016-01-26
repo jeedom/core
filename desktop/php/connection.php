@@ -17,7 +17,7 @@
 <br/>
 </div>
 <script>
-    $('#in_login_username').on('focusout',function(){
+    $('#in_login_username').on('focusout change keypress',function(){
         jeedom.user.useTwoFactorAuthentification({
             login: $('#in_login_username').value(),
             error: function (error) {

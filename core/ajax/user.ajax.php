@@ -179,11 +179,13 @@ try {
 		$login = $_SESSION['user']->getLogin();
 		$rights = $_SESSION['user']->getRights();
 		$password = $_SESSION['user']->getPassword();
+		$hash = $_SESSION['user']->getHash();
 		utils::a2o($_SESSION['user'], $user_json);
 		foreach ($rights as $right => $value) {
 			$_SESSION['user']->setRights($right, $value);
 		}
 		$_SESSION['user']->setLogin($login);
+		$_SESSION['user']->setHash($hash);
 		if ($password != $_SESSION['user']->getPassword()) {
 			$_SESSION['user']->setPassword(sha1($_SESSION['user']->getPassword()));
 		}
