@@ -40,7 +40,7 @@
             },
             success: function (data) {
                 if ($('#cb_storeConnection').value() == 1) {
-                    localStorage.setItem("deviceKey", data.result.deviceKey);
+                    localStorage.setItem("deviceKey", data.deviceKey);
                 }
                 initApplication();
             }

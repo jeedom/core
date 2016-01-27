@@ -702,7 +702,7 @@ if (init('type') != '') {
 					$params['version'] = 'stable';
 				}
 				$market->remove();
-				$jsonrpc->makeSuccess('ok');
+				$jsonrpc->makeSuccess();
 			}
 
 			if ($jsonrpc->getMethod() == 'plugin::dependancyInfo') {
@@ -716,9 +716,10 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'plugin::dependancyInstall') {
 				$plugin = plugin::byId($params['plugin_id']);
 				if (!is_object($plugin)) {
-					$jsonrpc->makeSuccess('ok');
+					$jsonrpc->makeSuccess();
 				}
-				$jsonrpc->makeSuccess($plugin->dependancy_install());
+				$plugin->dependancy_install()
+				$jsonrpc->makeSuccess();
 			}
 
 			if ($jsonrpc->getMethod() == 'plugin::deamonInfo') {
@@ -732,7 +733,7 @@ if (init('type') != '') {
 			if ($jsonrpc->getMethod() == 'plugin::deamonStart') {
 				$plugin = plugin::byId($params['plugin_id']);
 				if (!is_object($plugin)) {
-					$jsonrpc->makeSuccess('ok');
+					$jsonrpc->makeSuccess();
 				}
 				if (!isset($params['debug'])) {
 					$params['debug'] = false;
@@ -740,23 +741,26 @@ if (init('type') != '') {
 				if (!isset($params['forceRestart'])) {
 					$params['forceRestart'] = false;
 				}
-				$jsonrpc->makeSuccess($plugin->deamon_stop($params['debug'], $params['forceRestart']));
+				$plugin->deamon_stop($params['debug'], $params['forceRestart'])
+				$jsonrpc->makeSuccess();
 			}
 
 			if ($jsonrpc->getMethod() == 'plugin::deamonStop') {
 				$plugin = plugin::byId($params['plugin_id']);
 				if (!is_object($plugin)) {
-					$jsonrpc->makeSuccess('ok');
+					$jsonrpc->makeSuccess();
 				}
-				$jsonrpc->makeSuccess($plugin->deamon_stop($params['debug'], $params['forceRestart']));
+				$plugin->deamon_stop($params['debug'], $params['forceRestart'])
+				$jsonrpc->makeSuccess();
 			}
 
 			if ($jsonrpc->getMethod() == 'plugin::deamonChangeAutoMode') {
 				$plugin = plugin::byId($params['plugin_id']);
 				if (!is_object($plugin)) {
-					$jsonrpc->makeSuccess('ok');
+					$jsonrpc->makeSuccess();
 				}
-				$jsonrpc->makeSuccess($plugin->deamon_changeAutoMode($params['mode']));
+				$plugin->deamon_changeAutoMode($params['mode'])
+				$jsonrpc->makeSuccess();
 			}
 
 			/*             * ************************Update*************************** */
