@@ -53,6 +53,12 @@ switch ($deamon_info['state']) {
 if (!isset($deamon_info['launchable_message'])) {
 	$deamon_info['launchable_message'] = '';
 }
+if (!isset($deamon_info['log'])) {
+	$deamon_info['log'] = '';
+}
+if (!isset($deamon_info['auto'])) {
+	$deamon_info['auto'] = 1;
+}
 switch ($deamon_info['launchable']) {
 	case 'ok':
 		echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
@@ -112,6 +118,15 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 if (!isset($deamon_info['state'])) {
 				$deamon_info['state'] = 'nok';
 			}
+			if (!isset($deamon_info['log'])) {
+				$deamon_info['log'] = '';
+			}
+			if (!isset($deamon_info['launchable_message'])) {
+				$deamon_info['launchable_message'] = '';
+			}
+			if (!isset($deamon_info['auto'])) {
+				$deamon_info['auto'] = 1;
+			}
 			switch ($deamon_info['state']) {
 				case 'ok':
 					echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
@@ -130,6 +145,7 @@ if (!isset($deamon_info['state'])) {
 if (!isset($deamon_info['launchable'])) {
 				$deamon_info['launchable'] = 'nok';
 			}
+
 			switch ($deamon_info['launchable']) {
 				case 'ok':
 					echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
