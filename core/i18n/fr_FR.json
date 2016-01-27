@@ -2,7 +2,8 @@
     "core\/class\/plugin.class.php": {
         "Inconnue": "Inconnue",
         "Gestion automatique désactivée": "Gestion automatique désactivée",
-        "Dépendances en cours d'installation": "Dépendances en cours d'installation"
+        "Dépendances en cours d'installation": "Dépendances en cours d'installation",
+        "Erreur sur la fonction cronDaily du plugin : ": "Erreur sur la fonction cronDaily du plugin : "
     },
     "core\/class\/cmd.class.php": {
         "Evènement sur la commande ": "Evènement sur la commande ",
@@ -22,7 +23,8 @@
         " déclenché par : ": " déclenché par : ",
         "Début d'exécution du scénario : ": "Début d'exécution du scénario : ",
         "Fin correcte du scénario": "Fin correcte du scénario",
-        "Aucun": "Aucun"
+        "Aucun": "Aucun",
+        "Scénario exécuté sur événement : #": "Scénario exécuté sur événement : #"
     },
     "desktop\/modal\/plugin.deamonLog.php": {
         "Pause": "Pause",
@@ -78,7 +80,8 @@
         "Envoyer un rapport de bug": "Envoyer un rapport de bug",
         "Générale": "Générale",
         "Détaillée": "Détaillée",
-        "Ouverture d'un ticket": "Ouverture d'un ticket"
+        "Ouverture d'un ticket": "Ouverture d'un ticket",
+        "Nombre de mises à jour": "Nombre de mises à jour"
     },
     "core\/class\/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type [condition] : ": "Exécution du sous-élément de type [condition] : ",
@@ -98,7 +101,8 @@
         "Désactivation du scénario : ": "Désactivation du scénario : ",
         "Lancement du scénario : ": "Lancement du scénario : ",
         "Lancement provoqué": "Lancement provoqué",
-        "Action sur scénario impossible. Scénario introuvable - Vérifiez l'id : ": "Action sur scénario impossible. Scénario introuvable - Vérifiez l'id : "
+        "Action sur scénario impossible. Scénario introuvable - Vérifiez l'id : ": "Action sur scénario impossible. Scénario introuvable - Vérifiez l'id : ",
+        "[Wait] Condition valide : ": "[Wait] Condition valide : "
     },
     "core\/class\/eqLogic.class.php": {
         "Aucun": "Aucun"
@@ -305,7 +309,8 @@
         "Non exécution des actions pour cause de répétition": "Non exécution des actions pour cause de répétition"
     },
     "core\/php\/authentification.php": {
-        "Connexion de l'utilisateur par clef : ": "Connexion de l'utilisateur par clef : "
+        "Connexion de l'utilisateur par clef : ": "Connexion de l'utilisateur par clef : ",
+        "Connexion de l'utilisateur : ": "Connexion de l'utilisateur : "
     },
     "install\/backup.php": {
         "***************Lancement de la sauvegarde de Jeedom le ": "***************Lancement de la sauvegarde de Jeedom le ",
@@ -380,7 +385,9 @@
         "Nom d'utilisateur": "Nom d'utilisateur",
         "Mot de passe": "Mot de passe",
         "Enregistrer cet ordinateur": "Enregistrer cet ordinateur",
-        "Connexion": "Connexion"
+        "Connexion": "Connexion",
+        "Nom d'utilisateur ou mot de passe incorrect !": "Nom d'utilisateur ou mot de passe incorrect !",
+        "Code à 2 facteurs": "Code à 2 facteurs"
     },
     "core\/template\/scenario\/sleep.default": {
         "Durée": "Durée"
@@ -686,7 +693,19 @@
         "Beta (developpement, instable)": "Beta (developpement, instable)",
         "URL (github)": "URL (github)",
         "Addresse": "Addresse",
-        "Sauvegarder": "Sauvegarder"
+        "Sauvegarder": "Sauvegarder",
+        "Clef API globale de Jeedom": "Clef API globale de Jeedom",
+        "Fuseau horaire de votre Jeedom": "Fuseau horaire de votre Jeedom",
+        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. Suite à une modification de la base de données, l'équipe Jeedom se réserve le droit de refuser toute demande de support.": "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. Suite à une modification de la base de données, l'équipe Jeedom se réserve le droit de refuser toute demande de support.",
+        "Attention : cette configuration n'est là que pour informer Jeedom de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre Jeedom": "Attention : cette configuration n'est là que pour informer Jeedom de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre Jeedom",
+        "Désactiver la gestion du réseau par Jeedom": "Désactiver la gestion du réseau par Jeedom",
+        "Période d'affichage des graphiques par défaut": "Période d'affichage des graphiques par défaut",
+        "Attention toute modification du moteur de cache nécessite un redémarrage de Jeedom": "Attention toute modification du moteur de cache nécessite un redémarrage de Jeedom",
+        "Adresse Memcache": "Adresse Memcache",
+        "Adresse Redis": "Adresse Redis",
+        "Adresse syslog udp": "Adresse syslog udp",
+        "Seuil des piles": "Seuil des piles",
+        "Beta (développement, instable)": "Beta (développement, instable)"
     },
     "common": {
         "Lumiere Etat (info)": "Lumiere Etat (info)",
@@ -740,7 +759,50 @@
         "Information Vent (vitesse)": "Information Vent (vitesse)",
         "Information Vent (direction)": "Information Vent (direction)",
         "Information Generique": "Information Generique",
-        "ne pas tenir compte de cette commande": "ne pas tenir compte de cette commande"
+        "ne pas tenir compte de cette commande": "ne pas tenir compte de cette commande",
+        "Lumiere Bouton ON (action)": "Lumiere Bouton ON (action)",
+        "Lumiere Bouton OFF (action)": "Lumiere Bouton OFF (action)",
+        "Lumiere SLIDER (action)": "Lumiere SLIDER (action)",
+        "Prise Bouton ON (action)": "Prise Bouton ON (action)",
+        "Prise Bouton OFF (action)": "Prise Bouton OFF (action)",
+        "Prise SLIDER (action)": "Prise SLIDER (action)",
+        "Volet Bouton Monter (action)": "Volet Bouton Monter (action)",
+        "Volet Bouton Descendre (action)": "Volet Bouton Descendre (action)",
+        "Volet Bouton Stop (action)": "Volet Bouton Stop (action)",
+        "Volet Bouton Slider (action)": "Volet Bouton Slider (action)",
+        "Chauffage fil pilote Bouton ON (action)": "Chauffage fil pilote Bouton ON (action)",
+        "Chauffage fil pilote Bouton OFF (action)": "Chauffage fil pilote Bouton OFF (action)",
+        "Sérrure Bouton Ouvrir (action)": "Sérrure Bouton Ouvrir (action)",
+        "Sérrure Bouton Fermer (action)": "Sérrure Bouton Fermer (action)",
+        "Mode (info)": "Mode (info)",
+        "Mode (action)": "Mode (action)",
+        "Alarme etat (info)": "Alarme etat (info)",
+        "Alarme mode (info)": "Alarme mode (info)",
+        "Alarme état activée (info)": "Alarme état activée (info)",
+        "Alarme armée (action)": "Alarme armée (action)",
+        "Alarme libérée (action)": "Alarme libérée (action)",
+        "Alarme Mode (action)": "Alarme Mode (action)",
+        "Puissance Electrique (info)": "Puissance Electrique (info)",
+        "Consommation Electrique (info)": "Consommation Electrique (info)",
+        "Température (info)": "Température (info)",
+        "Luminosité (info)": "Luminosité (info)",
+        "Présence (info)": "Présence (info)",
+        "Batterie (info)": "Batterie (info)",
+        "Détection de fumée (info)": "Détection de fumée (info)",
+        "Inondation (info)": "Inondation (info)",
+        "Humidité (info)": "Humidité (info)",
+        "UV (info)": "UV (info)",
+        "Ouvrant (info)": "Ouvrant (info)",
+        "Sabotage (info)": "Sabotage (info)",
+        "CO2 (ppm) (info)": "CO2 (ppm) (info)",
+        "Tension (info)": "Tension (info)",
+        "Son (dB) (info)": "Son (dB) (info)",
+        "Pression (info)": "Pression (info)",
+        "Pluie (mm\/h) (info)": "Pluie (mm\/h) (info)",
+        "Pluie (accumulation) (info)": "Pluie (accumulation) (info)",
+        "Vent (vitesse) (info)": "Vent (vitesse) (info)",
+        "Vent (direction) (info)": "Vent (direction) (info)",
+        "Generique (info)": "Generique (info)"
     },
     "core\/js\/jeedom.class.js": {
         "Assistant cron": "Assistant cron",
@@ -778,10 +840,12 @@
         "Nom d'utilisateur": "Nom d'utilisateur",
         "Mot de passe": "Mot de passe",
         "Enregistrer cet appareil": "Enregistrer cet appareil",
-        "Connexion": "Connexion"
+        "Connexion": "Connexion",
+        "Code à 2 facteurs": "Code à 2 facteurs"
     },
     "core\/class\/jeedom.class.php": {
-        "Connexion par API de l'utilisateur : ": "Connexion par API de l'utilisateur : "
+        "Connexion par API de l'utilisateur : ": "Connexion par API de l'utilisateur : ",
+        "De nouvelles mises à jour sont disponibles : ": "De nouvelles mises à jour sont disponibles : "
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Sélectionner un équipement"
@@ -1387,7 +1451,8 @@
         "Login": "Login",
         "Mot de passe": "Mot de passe",
         "Annuler": "Annuler",
-        "Enregistrer": "Enregistrer"
+        "Enregistrer": "Enregistrer",
+        "Double authentification": "Double authentification"
     },
     "desktop\/js\/user.js": {
         "Sauvegarde effectuée": "Sauvegarde effectuée",
@@ -1401,7 +1466,9 @@
         "Supprimer": "Supprimer",
         "Changer le mot de passe": "Changer le mot de passe",
         "Admin": "Admin",
-        "Renouveler la clef API": "Renouveler la clef API"
+        "Renouveler la clef API": "Renouveler la clef API",
+        "OK": "OK",
+        "NOK": "NOK"
     },
     "desktop\/php\/profils.php": {
         "Profil": "Profil",
@@ -1436,12 +1503,19 @@
         "Retapez le mot de passe": "Retapez le mot de passe",
         "Clef API": "Clef API",
         "Générer": "Générer",
-        "Sauvegarder": "Sauvegarder"
+        "Sauvegarder": "Sauvegarder",
+        "Authentification en 2 étapes": "Authentification en 2 étapes",
+        "Configurer": "Configurer",
+        "Actif": "Actif",
+        "Sécurité": "Sécurité",
+        "Hash de l'utilisateur": "Hash de l'utilisateur",
+        "Regénérer": "Regénérer"
     },
     "desktop\/js\/profils.js": {
         "Les deux mots de passe ne sont pas identiques": "Les deux mots de passe ne sont pas identiques",
         "Sauvegarde effectuée": "Sauvegarde effectuée",
-        "Opération effectuée": "Opération effectuée"
+        "Opération effectuée": "Opération effectuée",
+        "Authentification 2 étapes": "Authentification 2 étapes"
     },
     "desktop\/modal\/report.bug.php": {
         "Vous avez une idée vous voulez la partager ? N'hesitez pas à nous la décrire <a href=\"https:\/\/jeedom.com\/feedback\" target=\"_blank\">ici<\/a>": "Vous avez une idée vous voulez la partager ? N'hesitez pas à nous la décrire <a href=\"https:\/\/jeedom.com\/feedback\" target=\"_blank\">ici<\/a>",
@@ -1480,5 +1554,122 @@
         "Plugins": "Plugins",
         "Version desktop": "Version desktop",
         "Déconnexion": "Déconnexion"
+    },
+    "core\/ajax\/message.ajax.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé"
+    },
+    "desktop\/modal\/cmd.history.php": {
+        "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher",
+        "Ok": "Ok",
+        "Ligne": "Ligne",
+        "Aire": "Aire",
+        "Colonne": "Colonne",
+        "Variation": "Variation",
+        "Escalier": "Escalier",
+        "Historique": "Historique"
+    },
+    "desktop\/js\/dashboard.js": {
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets"
+    },
+    "core\/ajax\/update.ajax.php": {
+        "[START UPDATE]\n": "[START UPDATE]\n",
+        "[END UPDATE SUCCESS]\n": "[END UPDATE SUCCESS]\n"
+    },
+    "core\/class\/market.class.php": {
+        "Début de la mise à jour de : ": "Début de la mise à jour de : ",
+        "Téléchargement de ": "Téléchargement de ",
+        "OK\n": "OK\n",
+        "Installation de du plugin,widget,scénario...": "Installation de du plugin,widget,scénario...",
+        "Action de pre update...": "Action de pre update...",
+        "Décompression du zip...": "Décompression du zip...",
+        "Installation de ": "Installation de "
+    },
+    "core\/template\/scenario\/wait.default": {
+        "Condition": "Condition",
+        "Sélectionner la commande": "Sélectionner la commande",
+        "Time out": "Time out"
+    },
+    "core\/class\/user.class.php": {
+        "Connexion de l'utilisateur ": "Connexion de l'utilisateur "
+    },
+    "core\/js\/plugin.template.js": {
+        "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
+        "Suppression effectuée avec succès": "Suppression effectuée avec succès",
+        "Nom de la copie de l'équipement ?": "Nom de la copie de l'équipement ?",
+        "Etes-vous sûr de vouloir supprimer l\\'équipement": "Etes-vous sûr de vouloir supprimer l\\'équipement",
+        "Veuillez d\\'abord sélectionner un": "Veuillez d\\'abord sélectionner un",
+        "Nom de l'équipement ?": "Nom de l'équipement ?",
+        "Configuration de l'équipement": "Configuration de l'équipement",
+        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Veuillez activer l\\'équipement avant de tester une de ses commandes",
+        "Configuration commande": "Configuration commande"
+    },
+    "desktop\/modal\/eqLogic.configure.php": {
+        "Supprimer": "Supprimer",
+        "Enregistrer": "Enregistrer",
+        "Informations": "Informations",
+        "Affichage avancé": "Affichage avancé",
+        "Batterie": "Batterie",
+        "ID": "ID",
+        "Nom": "Nom",
+        "ID logique": "ID logique",
+        "ID de l'objet": "ID de l'objet",
+        "Date de création": "Date de création",
+        "Activer": "Activer",
+        "Visible": "Visible",
+        "Type": "Type",
+        "Tentative échouée": "Tentative échouée",
+        "Date de dernière communication": "Date de dernière communication",
+        "Dernière mise à jour": "Dernière mise à jour",
+        "Widget": "Widget",
+        "Afficher le nom": "Afficher le nom",
+        "Afficher le nom de l'objet": "Afficher le nom de l'objet",
+        "Paramètres optionnels sur la tuile": "Paramètres optionnels sur la tuile",
+        "Valeur": "Valeur",
+        "Action": "Action",
+        "Cet équipement ne possède pas de batterie\/piles ou il n'a pas encore remonté sa valeur": "Cet équipement ne possède pas de batterie\/piles ou il n'a pas encore remonté sa valeur",
+        "Type de batterie": "Type de batterie",
+        "Mis à jour le": "Mis à jour le",
+        "Niveau de batterie": "Niveau de batterie",
+        "Seuils spécifiques": "Seuils spécifiques",
+        "Danger": "Danger",
+        "Warning": "Warning",
+        "Ok": "Ok",
+        "Enregistrement réussi": "Enregistrement réussi",
+        "Etes-vous sûr de vouloir supprimer cet équipement ?": "Etes-vous sûr de vouloir supprimer cet équipement ?",
+        "Suppression réalisée avec succès": "Suppression réalisée avec succès"
+    },
+    "desktop\/modal\/twoFactor.authentification.php": {
+        "Code de test": "Code de test",
+        "OK": "OK",
+        "Configuration réussie": "Configuration réussie",
+        "Code invalide": "Code invalide",
+        "Etape 1 : Installation sur le téléphone": "Etape 1 : Installation sur le téléphone",
+        "Etape 2 : Configuration": "Etape 2 : Configuration",
+        "Etape 3 : vérification": "Etape 3 : vérification",
+        "La vérification en 2 étapes fournit une couche supplémentaire de protection pour votre compte Jeedom. Une fois la vérification en 2 étapes configurée, votre mot de passe sera nécessaire en plus d’un code de vérification unique pour vous connecter à Jeedom. Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.": "La vérification en 2 étapes fournit une couche supplémentaire de protection pour votre compte Jeedom. Une fois la vérification en 2 étapes configurée, votre mot de passe sera nécessaire en plus d’un code de vérification unique pour vous connecter à Jeedom. Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.",
+        "Veuillez installer une appli d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installé une, Jeedom prend en charge les applis d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Authenticator (Windows Phone).": "Veuillez installer une appli d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installé une, Jeedom prend en charge les applis d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Authenticator (Windows Phone).",
+        "IMPORTANT : si votre Jeedom n'est plus à l'heure vous ne pourrez pas vous connecter du tout": "IMPORTANT : si votre Jeedom n'est plus à l'heure vous ne pourrez pas vous connecter du tout",
+        "Ouvrez et configurez l’appli d’authentification en scannant le code QR ci-dessous.": "Ouvrez et configurez l’appli d’authentification en scannant le code QR ci-dessous.",
+        "Vous pouvez aussi entrée manuellement le code suivant : ": "Vous pouvez aussi entrée manuellement le code suivant : ",
+        "Veuillez entrée le code fournis pour verification et activation de la double authentification": "Veuillez entrée le code fournis pour verification et activation de la double authentification"
+    },
+    "mobile\/js\/equipment.js": {
+        "Tout": "Tout"
+    },
+    "mobile\/js\/home.js": {
+        "Tout": "Tout"
+    },
+    "mobile\/js\/message.js": {
+        "Vider": "Vider"
+    },
+    "core\/ajax\/user.ajax.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé"
+    },
+    "desktop\/modal\/market.allChangelog.php": {
+        "Version": "Version"
+    },
+    "desktop\/modal\/cron.human.insert.php": {
+        "A exécuter": "A exécuter",
+        "En date du": "En date du"
     }
 }
