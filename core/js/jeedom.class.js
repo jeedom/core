@@ -25,8 +25,8 @@
 }
 
 jeedom.changes = function(){
- var paramsRequired = [];
- var paramsSpecifics = {
+   var paramsRequired = [];
+   var paramsSpecifics = {
     global: false,
     success: function(data) {
         jeedom.datetime = data.datetime;
@@ -90,7 +90,7 @@ jeedom.init = function () {
 
     $('body').on('jeedom::gotoplan', function (_event,_plan_id) {
         if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
-           if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
+         if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
             planHeader_id = _plan_id;
             displayPlan();
         }
@@ -101,7 +101,13 @@ jeedom.init = function () {
         if (!isset(_options.message) || $.trim(_options.message) == '') {
             $.hideAlert();
         } else {
-            $('#div_alert').showAlert({message: _options.message, level: _options.level});
+            if(isset(_options.page) && _options.page != ''){
+                if(getUrlVars('p') == _options.page){
+                    $('#div_alert').showAlert({message: _options.message, level: _options.level});
+                }
+            }else{
+                $('#div_alert').showAlert({message: _options.message, level: _options.level});
+            }
         }
 
     });
