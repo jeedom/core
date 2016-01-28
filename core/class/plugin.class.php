@@ -399,6 +399,7 @@ class plugin {
 		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_install')) {
 			return;
 		}
+		message::add($plugin_id, __('Attention lancement de l\'installation des dépendances', __FILE__));
 		$this->deamon_stop();
 		config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
 		$plugin_id::dependancy_install();
@@ -465,7 +466,6 @@ class plugin {
 					return;
 				}
 				if ($deamon_info['launchable'] == 'ok' && $deamon_info['state'] == 'nok' && method_exists($plugin_id, 'deamon_start')) {
-					message::add($plugin_id, __('Attention lancement de l\'installation des dépendances', __FILE__));
 					config::save('lastDeamonLaunchTime', date('Y-m-d H:i:s'), $plugin_id);
 					$plugin_id::deamon_start($_debug);
 				}

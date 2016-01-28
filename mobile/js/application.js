@@ -1,6 +1,7 @@
 /***************Fonction d'initialisation*********************/
 $(function () {
     MESSAGE_NUMBER = null;
+    CURRENT_PAGE='home';
     nbActiveAjaxRequest = 0;
     utid = Date.now();
 
@@ -129,7 +130,7 @@ function initApplication(_reinit) {
                     $.include(include, function () {
                         deviceInfo = getDeviceType();
                         if(getUrlVars('p') != '' && getUrlVars('ajax') != 1){
-                           switch (getUrlVars('p')) {
+                         switch (getUrlVars('p')) {
                             case 'view' :
                             page('view', 'Vue',getUrlVars('view_id'));
                             break;
@@ -174,6 +175,7 @@ function page(_page, _title, _option, _plugin,_dialog) {
     if (_page == 'connection') {
         var page = 'index.php?v=m&ajax=1&p=' + _page;
         $('#page').load(page, function () {
+            CURRENT_PAGE = _page;
             $('#page').trigger('create');
             $('#pagecontainer').css('padding-top','64px');
             setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
@@ -193,53 +195,54 @@ function page(_page, _title, _option, _plugin,_dialog) {
             }
             if(isset(_dialog) && _dialog){
                 $('#popupDialog .content').load(page, function () {
-                    var functionName = '';
-                    if (init(_plugin) != '') {
-                        functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+                   CURRENT_PAGE = _page;
+                   var functionName = '';
+                   if (init(_plugin) != '') {
+                    functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+                } else {
+                    functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+                }
+                if ('function' == typeof (window[functionName])) {
+                    if (init(_option) != '') {
+                        window[functionName](_option);
                     } else {
-                        functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+                        window[functionName]();
                     }
-                    if ('function' == typeof (window[functionName])) {
-                        if (init(_option) != '') {
-                            window[functionName](_option);
-                        } else {
-                            window[functionName]();
-                        }
-                    }
-                    Waves.init();
-                    $("#popupDialog").popup({
-                        beforeposition: function () {
-                            $(this).css({
-                                width: window.innerWidth - 40,
-                            });
-                        },
-                        x: 5,
-                        y: 70
-                    });
-                    $('#popupDialog').popup('open');
+                }
+                Waves.init();
+                $("#popupDialog").popup({
+                    beforeposition: function () {
+                        $(this).css({
+                            width: window.innerWidth - 40,
+                        });
+                    },
+                    x: 5,
+                    y: 70
                 });
+                $('#popupDialog').popup('open');
+            });
 }else{
     $('#page').hide().load(page, function () {
-        $('#page').trigger('create');
-
-        var functionName = '';
-        if (init(_plugin) != '') {
-            functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+       CURRENT_PAGE = _page;
+       $('#page').trigger('create');
+       var functionName = '';
+       if (init(_plugin) != '') {
+        functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+    } else {
+        functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+    }
+    if ('function' == typeof (window[functionName])) {
+        if (init(_option) != '') {
+            window[functionName](_option);
         } else {
-            functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+            window[functionName]();
         }
-        if ('function' == typeof (window[functionName])) {
-            if (init(_option) != '') {
-                window[functionName](_option);
-            } else {
-                window[functionName]();
-            }
-        }
-        Waves.init();
-        $('#pagecontainer').css('padding-top','64px');
-        $('#page').fadeIn(400);
-        setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
-    });
+    }
+    Waves.init();
+    $('#pagecontainer').css('padding-top','64px');
+    $('#page').fadeIn(400);
+    setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
+});
 }
 }
 });
