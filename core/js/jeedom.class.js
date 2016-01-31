@@ -99,18 +99,24 @@ jeedom.init = function () {
 
     $('body').on('jeedom::alert', function (_event,_options) {
         if (!isset(_options.message) || $.trim(_options.message) == '') {
+         if(isset(_options.page) && _options.page != ''){
+            if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
+                $.hideAlert();
+            }
+        }else{
             $.hideAlert();
-        } else {
-            if(isset(_options.page) && _options.page != ''){
-                if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
-                    $('#div_alert').showAlert({message: _options.message, level: _options.level});
-                }
-            }else{
+        }
+    } else {
+        if(isset(_options.page) && _options.page != ''){
+            if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
                 $('#div_alert').showAlert({message: _options.message, level: _options.level});
             }
+        }else{
+            $('#div_alert').showAlert({message: _options.message, level: _options.level});
         }
+    }
 
-    });
+});
     $('body').on('jeedom::alertPopup', function (_event,_message) {
         alert(_message);
     });
