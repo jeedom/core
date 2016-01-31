@@ -209,8 +209,13 @@ jeedom.haltSystem = function (_params) {
     $.ajax(paramsAJAX);
 };
 
-jeedom.ssh = function (_command) {
-    _params = {};
+jeedom.ssh = function (_params) {
+    if($.isPlainObject(_params)){
+        command = _params.command;
+    }else{
+        command = _params;
+        _params = {};
+    }
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -224,10 +229,10 @@ jeedom.ssh = function (_command) {
     paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
     paramsAJAX.data = {
         action: 'ssh',
-        command : _command
+        command : command
     };
     $.ajax(paramsAJAX);
-    return 'Execute command : '+_command;
+    return 'Execute command : '+command;
 };
 
 

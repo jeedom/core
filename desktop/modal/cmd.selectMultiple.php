@@ -8,21 +8,21 @@ if (!is_object($cmd)) {
 }
 ?>
 
-<div style="display: none;" id="md_cmdConfigureSelectMultipleAlert"></div>
-<div>
-  <a class="btn btn-default" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="fa fa-check-circle-o"></i> {{Basculer}}</a>
-  <a class="btn btn-success pull-right" id="bt_cmdConfigureSelectMultipleAlertApply" style="color : white;" ><i class="fa fa-check"></i> {{Valider}}</a>
-</div>
-<br/>
-<table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureSelectMultiple">
-  <thead>
-    <tr>
-      <th></th>
-      <th>{{Nom}}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
+  <div style="display: none;" id="md_cmdConfigureSelectMultipleAlert"></div>
+  <div>
+  	<a class="btn btn-default" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="fa fa-check-circle-o"></i> {{Basculer}}</a>
+  	<a class="btn btn-success pull-right" id="bt_cmdConfigureSelectMultipleAlertApply" style="color : white;" ><i class="fa fa-check"></i> {{Valider}}</a>
+  </div>
+  <br/>
+  <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureSelectMultiple">
+  	<thead>
+  		<tr>
+  			<th></th>
+  			<th>{{Nom}}</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<?php
 foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
 	echo '<tr data-cmd_id="' . $listCmd->getId() . '">';
 	echo '<td>';
@@ -38,5 +38,5 @@ foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
 	echo '</tr>';
 }
 ?>
-</tbody>
-</table>
+  	</tbody>
+  </table>

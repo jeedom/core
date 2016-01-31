@@ -237,6 +237,31 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 </div>
 </div>
 
+<div class="panel panel-default expertModeVisible">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_system">
+                {{Système (OS)}}
+            </a>
+        </h3>
+    </div>
+    <div id="config_system" class="panel-collapse collapse">
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès à l'interface d'administration}}</label>
+                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                        <a class="btn btn-danger" id="bt_accessSystemAdministration"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <div class="panel panel-default expertModeVisible">
     <div class="panel-heading">
