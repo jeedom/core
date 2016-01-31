@@ -33,7 +33,7 @@ class message {
 
 	public static function add($_type, $_message, $_action = '', $_logicalId = '') {
 		$list_plugin = config::byKey('message::disallowPlugin', 'core', array());
-		if (in_array($_type, $list_plugin)) {
+		if (isset($list_plugin[$_type]) && $list_plugin[$_type] == 1) {
 			return;
 		}
 		$message = new message();
