@@ -20,6 +20,8 @@ if (!isConnect('admin')) {
   				<li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo free -m 2>&1">free -m</a></li>
   				<li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ps ax 2>&1">ps ax</a></li>
   				<li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo cat /var/log/mysql/error.log 2>&1">MySQL log</a></li>
+  				<li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo df -h">df -h</a></li>
+  				<li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo w">w</a></li>
   			</ul>
   		</div>
   	</div>
