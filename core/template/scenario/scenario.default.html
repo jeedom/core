@@ -10,7 +10,7 @@
     </select>
 </div>
 <script>
-    if ($('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=action] option[value=#action#]').html() != undefined) {
+    if ('#action#' != '' && $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=action] option[value=#action#]').html() != undefined) {
         $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=action]').value('#action#');
     }
     jeedom.scenario.all({
@@ -24,7 +24,7 @@
                 options += '<option value="' + scenarios[i].id + '">' + scenarios[i].humanName + '</option>';
             }
             $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=scenario_id]').append(options);
-            if ($('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=scenario_id] option[value=#scenario_id#]').html() != undefined) {
+            if ('#scenario_id#' != '' && $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=scenario_id] option[value=#scenario_id#]').html() != undefined) {
                 $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=scenario_id]').value('#scenario_id#');
             }
         }

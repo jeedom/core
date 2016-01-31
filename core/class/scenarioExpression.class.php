@@ -89,7 +89,8 @@ class scenarioExpression {
 	}
 
 	public static function getExpressionOptions($_expression, $_options) {
-		$startLoadTime = getmicrotime();
+		$replace = array();
+		$return = array('html' => '');
 		$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_expression)));
 		if (is_object($cmd)) {
 			$return['html'] = trim($cmd->toHtml('scenario', $_options));
@@ -114,7 +115,12 @@ class scenarioExpression {
 
 			}
 		}
-		$replace = array('#uid#' => 'exp' . mt_rand());
+		$replace = array(
+			'#uid#' => 'exp' . mt_rand(),
+			'#action#' => '',
+			'#scenario_id#' => '',
+			'#plan_id#' => '',
+		);
 		$return['html'] = translate::exec(template_replace($replace, $return['html']), 'core/template/scenario/' . $_expression . '.default');
 		return $return;
 	}

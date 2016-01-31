@@ -13,7 +13,7 @@
 </select>
 </div>
 <script>
-    if ($('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=action] option[value=#action#]').html() != undefined) {
+    if ('#action#' != '' && $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=action] option[value=#action#]').html() != undefined) {
         $('.expressionAttr[data-option_id=#id#][data-uid=#uid#][data-l1key=options][data-l2key=action]').value('#action#');
     }
     $('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
