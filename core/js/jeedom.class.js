@@ -149,7 +149,7 @@ jeedom.init = function () {
             refreshMessageNumber();
             break;
         }
-        notify(_options.title, _options.text, _options.theme);
+        notify(_options.title, _options.message, _options.theme);
     });
 
     jeedom.changes();
