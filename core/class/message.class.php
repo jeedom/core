@@ -135,14 +135,13 @@ class message {
 			'plugin' => $this->getPlugin(),
 		);
 		$sql = 'SELECT count(*)
-		FROM message
-		WHERE plugin=:plugin
-		AND ( logicalId=:logicalId
-			OR message=:message ) ';
+				FROM message
+				WHERE plugin=:plugin
+					AND (logicalId=:logicalId
+						OR message=:message)';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		if ($result['count(*)'] == 0) {
 			DB::save($this);
-			event::add('notify', array('title' => __('Message de ', __FILE__) . $this->getPlugin(), 'message' => $this->getMessage(), 'category' => 'message'));
 			$cmds = explode(('&&'), config::byKey('emailAdmin'));
 			if (count($cmds) > 0 && trim(config::byKey('emailAdmin')) != '') {
 				foreach ($cmds as $id) {
@@ -152,13 +151,13 @@ class message {
 							'title' => __('[JEEDOM] Message de ', __FILE__) . $this->getPlugin(),
 							'message' => $this->getMessage(),
 						));
-					} else {
-						log::add('message', 'info', __('Impossible de trouver la commande correspondant à :', __FILE__) . $id);
 					}
 				}
 			}
+			event::add('notify', array('title' => __('Message de ', __FILE__) . $this->getPlugin(), 'message' => $this->getMessage(), 'category' => 'message'));
+			event::add('message::refreshMessageNumber');
 		}
-		event::add('message::refreshMessageNumber');
+
 	}
 
 	public function remove() {
