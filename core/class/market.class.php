@@ -318,6 +318,7 @@ class market {
 				'addrComplement' => config::byKey('externalComplement'),
 				'information' => array(
 					'nbMessage' => message::nbMessage(),
+					'jeeNetwork::mode' => config::byKey('jeeNetwork::mode'),
 					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 				),
 				'localIp' => $internalIp,
