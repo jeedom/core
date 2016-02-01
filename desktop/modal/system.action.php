@@ -13,6 +13,7 @@ if (!isConnect('admin')) {
   <div class="bs-sidebar">
    <ul class="nav nav-list bs-sidenav list-group">
     <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
+    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ../../health.sh 2>&1">health.sh</a></li>
     <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo dmesg 2>&1">dmesg</a></li>
     <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ifconfig 2>&1">ifconfig</a></li>
     <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo lsusb 2>&1">lsusb</a></li>
