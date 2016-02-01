@@ -12,7 +12,7 @@ fi
 echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Check mysql..."
 sudo service mysql status >> /dev/null 2>&1
 if [ $? -ne 0 ]; then
-	echo -n "${JAUNE}NOK, try to restart..."
+	echo -n "NOK, try to restart..."
 	sudo service mysql start 
 	sudo service mysql status >> /dev/null 2>&1
 	if [ $? -ne 0 ]; then
@@ -26,7 +26,7 @@ fi
 echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Check cron..."
 sudo service cron status >> /dev/null 2>&1
 if [ $? -ne 0 ]; then
-	echo -n "${JAUNE}NOK, try to restart..."
+	echo -n "NOK, try to restart..."
 	sudo service cron start 
 	sudo service cron status >> /dev/null 2>&1
 	if [ $? -ne 0 ]; then
