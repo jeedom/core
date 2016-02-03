@@ -1,16 +1,17 @@
 <div style="width:90px;height:100%;vertical-align: top;" class="cmd #history# tooltips" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" title="#collectDate#">
     <center>
-        <span style="font-size: 2.5em;" class="action" id="iconCmd#uid#"></span>
+        <span class='cmdName' style="font-size : 12px;">#valueName#</span>
+        <span style="font-size: 2.5em;" class="iconCmd#uid# cursor action"></span>
     </center>
 </div>
 <script>
     if ('#state#' == '1' || '#state#' == 1) {
-        $('#iconCmd#uid#').append('<i class="icon jeedom-lumiere-on"></i>');
+        $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-on"></i>');
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
             $('.cmd[data-cmd_uid=#uid#]').hide();
         }
     } else {
-        $('#iconCmd#uid#').append('<i class="icon jeedom-lumiere-off"></i>');
+        $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-off"></i>');
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
             $('.cmd[data-cmd_uid=#uid#]').hide();
         }
