@@ -1,10 +1,10 @@
 <div style="width:90px;min-height:90px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
     <center>
-        <span class="cursor iconCmd#uid#" style="font-size: 3.5em;"></span>
+        <span class="cursor iconCmd#uid#" style="font-size: 5.3em;"></span>
         <div class="slider" style="margin : 5px 10px 8px 10px;width: 80px;" value="#state#" ></div>
     </center>
     <script>
-        $('.iconCmd#uid#').empty();
+        $('.iconCmd#id#').empty();
         if (parseInt('#state#') > 0) {
             $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-on"></i>');
             $('.iconCmd#uid#').attr('data-state', 'on');

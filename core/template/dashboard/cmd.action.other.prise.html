@@ -6,12 +6,12 @@
     <script>
         $('.iconCmd#uid#').empty();
         if ('#state#' == '1') {
-            $('.iconCmd#uid#').append('<i class="icon jeedom-lock-ferme"></i>');
+            $('.iconCmd#uid#').append('<i class="icon jeedom-prise"></i>');
             if (jeedom.cmd.normalizeName('#name#') == 'on') {
                 $('.cmd[data-cmd_uid=#uid#]').hide();
             }
         } else {
-            $('.iconCmd#uid#').append('<i class="icon jeedom-lock-ouvert"></i>');
+            $('.iconCmd#uid#').append('<i class="fa fa-times"></i>');
             if (jeedom.cmd.normalizeName('#name#') == 'off') {
                 $('.cmd[data-cmd_uid=#uid#]').hide();
             }

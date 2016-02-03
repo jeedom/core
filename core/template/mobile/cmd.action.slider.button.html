@@ -1,0 +1,26 @@
+<div class="cmd" data-type="action" data-subtype="slider" data-cmd_id="#id#" data-cmd_uid="#uid#">
+    <div data-role="controlgroup" data-type="horizontal">
+        <input type="text" class="value" data-mini="true" value="#state#" data-wrapper-class="controlgroup-textinput ui-btn" style="width: 50px;"/>
+        <a class="action ui-btn ui-mini ui-btn-inline ui-btn-raised" style="background-color:#cmdColor# !important;"><i class="fa fa-plus"></i></a>
+        <a class="action ui-btn ui-mini ui-btn-inline ui-btn-raised" style="background-color:#cmdColor# !important;"><i class="fa fa-minus"></i></a>
+    </div>
+    <script>
+        $('.cmd[data-cmd_uid=#uid#] .bt_plus').on('click', function() {
+            $('.cmd[data-cmd_uid=#uid#] .value').val((parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) + 0.5));
+            $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
+        });
+        $('.cmd[data-cmd_uid=#uid#] .bt_minus').on('click', function() {
+            $('.cmd[data-cmd_uid=#uid#] .value').val((parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) - 0.5));
+            $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
+        });
+        $('.cmd[data-cmd_uid=#uid#] .value').on('change', function() {
+            jeedom.cmd.execute({id: '#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .value').val()}});
+        });
+    </script>
+    <style>
+        .controlgroup-textinput{
+            padding-top:.15em;
+            padding-bottom:.12em;
+        }
+    </style>
+</div>

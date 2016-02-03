@@ -1,0 +1,19 @@
+<div style="width:90px;height:100%;vertical-align: top;" class="cmd #history# tooltips" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" title="#collectDate#">
+    <center>
+        <span style="font-size: 3em;" id="iconCmd#uid#"></span>
+    </center>
+</div>
+<script>
+    if ('#state#' == '3' || '#state#' == 3) {
+        $('#iconCmd#uid#').append('<i class="icon jeedom-pilote-eco"></i>');
+    }
+    if ('#state#' == '2' || '#state#' == 2) {
+        $('#iconCmd#uid#').append('<i class="icon jeedom-pilote-off"></i>');
+    }
+    if ('#state#' == '1' || '#state#' == 1) {
+        $('#iconCmd#uid#').append('<i class="icon jeedom-pilote-hg"></i>');
+    }
+    if ('#state#' == '0' || '#state#' == 0) {
+        $('#iconCmd#uid#').append('<i class="icon jeedom-pilote-conf"></i>');
+    }
+</script>

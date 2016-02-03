@@ -1,0 +1,9 @@
+<textarea class="message expressionAttr form-control" data-l1key="options" data-l2key="text" rows="1" style="resize:vertical;display: inline-block; width: 90%;" placeholder="Message" data-cmd_id="#id#" data-uid="#uid#">#text#</textarea>
+<a class="btn btn-default btn-sm listEquipementInfo cursor" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block;"><i class="fa fa-list-alt"></i></a>
+<script>
+    $('.listEquipementInfo[data-uid=#uid#]').on('click', function() {
+        jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+            $('.expressionAttr[data-l1key=options][data-l2key=message][data-uid=#uid#][data-cmd_id=#id#]').atCaret('insert', result.human);
+        });
+    });
+</script>

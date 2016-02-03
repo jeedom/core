@@ -1,7 +1,8 @@
 <div style="width:90px;height:100%;vertical-align: top;" class="cmd #history# tooltips" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" title="#collectDate#">
     <center>
-        <span class='cmdName'>#name_display#</span><br\>
+        <span class='cmdName'>#name_display#</span>
         <span style="font-size: 2.5em;" id="iconCmd#uid#"></span>
+        <span class="timeCmd#id# label label-default" style="background-color:#cmdColor# !important;"></span>
     </center>
 </div>
 
@@ -11,5 +12,11 @@
     }
     if ('#state#' == '0' || '#state#' == 0) {
         $('#iconCmd#uid#').append('<i class="icon jeedom-mouvement"></i>');
+    }
+    jeedom.cmd.displayDuration('#valueDate#', $('.timeCmd#id#:last'));
+    if ('#state#' == '1') {
+      $('.iconCmd#id#:last').append('<i class="fa fa-check"></i>');
+    }else {
+      $('.iconCmd#id#:last').append('<i class="icon jeedom-mouvement"></i>');
     }
 </script>
