@@ -1,14 +1,13 @@
-<div style="width:90px;min-height:62px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#" title="Valeur du #valueDate#, collectée le #collectDate#">
+<div class="cmd" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#">
     <center>
-        <span class='cmdName' style="font-weight: bold;font-size : 12px;">#name_display#</span>
-        <span style="font-size: 3em;font-weight: bold;margin-top: 5px;" class="iconCmd#uid#"></span>
+        <span style="font-weight: bold;font-size : 12px;" class='cmdName'>#name_display#</span>
+        <span style="font-size: 3em;margin-top: 5px;" class="iconCmd#uid#"></span>
     </center>
     <script>
-        $('.iconCmd#uid#').empty();
-        if ('#state#' == '1') {
-            $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-on"></i>');
-        } else {
-            $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-off"></i>');
-        }
-    </script>
+       if ('#state#' == '1' || '#state#' == 1) {
+        $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-on"></i>');
+    } else {
+        $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-off"></i>');
+    }
+</script>
 </div>

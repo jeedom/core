@@ -1,19 +1,13 @@
-<div style="width:90px;height:100%;vertical-align: top;" class="cmd #history# tooltips" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" title="#collectDate#">
+<div class="cmd" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#">
     <center>
-        <span style="font-size: 2.5em;" id="iconCmd#uid#"></span>
+        <span style="font-weight: bold;font-size : 12px;" class='cmdName'>#name_display#</span>
+        <span style="font-size: 3em;margin-top: 5px;" class="iconCmd#uid#"></span>
     </center>
-</div>
-
-<script>
-    if ('#state#' == '1' || '#state#' == 1) {
-        $('#iconCmd#uid#').append('<i class="fa fa-check"></i>');
-        if ($('.cmd[data-cmd_uid=#uid#]').closest('.eqLogic').attr('data-bgColor') != undefined) {
-            $('.cmd[data-cmd_uid=#uid#]').closest('.eqLogic').css('background-color', $('.cmd[data-cmd_uid=#uid#]').closest('.eqLogic').attr('data-bgColor'));
+    <script>
+        if ('#state#' == '1' || '#state#' == 1) {
+            $('.iconCmd#uid#').append('<i class="fa fa-check"></i>');
+        }else  {
+            $('.iconCmd#uid#').append('<i class="icon jeedom-alerte2"></i>');
         }
-    }
-    if ('#state#' == '0' || '#state#' == 0) {
-        $('#iconCmd#uid#').append('<i class="icon jeedom-alerte2"></i>');
-        $('.cmd[data-cmd_id=#uid#]').closest('.eqLogic').attr('data-bgColor', $('.cmd[data-cmd_uid=#uid#]').closest('.eqLogic').css('background-color'));
-        $('.cmd[data-cmd_id=#uid#]').closest('.eqLogic').css('background-color', '#e74c3c');
-    }
-</script>
+    </script>
+</div>

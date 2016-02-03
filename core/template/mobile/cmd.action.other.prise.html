@@ -5,7 +5,6 @@
 </div>
 
 <script>
-    var cmdName = '#name#';
     if ('#state#' == '1' || '#state#' == 1) {
         $('#iconCmd#uid#').append('<i class="icon jeedom-prise"></i>');
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
@@ -17,8 +16,7 @@
             $('.cmd[data-cmd_uid=#uid#]').hide();
         }
     }
-    $('.cmd[data-cmd_uid=#uid#] .action').off();
-    $('.cmd[data-cmd_uid=#uid#] .action').on('click', function () {
+    $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
         jeedom.cmd.execute({id: '#id#'});
     });
 </script>

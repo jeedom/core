@@ -1,16 +1,15 @@
 <div style="width:90px;min-height:62px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="binary" data-cmd_id="#id#" title="Valeur du #valueDate#, collectée le #collectDate#">
   <center>
-    <span class='cmdName' style="font-weight: bold;font-size : 12px;">#name_display#</span>
-    <span style="font-size: 3em;font-weight: bold;margin-top: 5px;" class="iconCmd#id#"></span><br/>
-    <span class="timeCmd#id# label label-default" style="background-color:#cmdColor# !important;"></span>
+    <span style="font-weight: bold;font-size : 12px;" class='cmdName'>#name_display#</span>
+    <span style="font-size: 3.5em;font-weight: bold;margin-top: 5px;" class="iconCmd#uid#"></span><br/>
+    <span class="timeCmd#uid# label label-default" style="background-color:#cmdColor# !important;"></span>
   </center>
   <script>
-    $('.iconCmd#id#:last').empty();
-    jeedom.cmd.displayDuration('#valueDate#', $('.timeCmd#id#:last'));
+    jeedom.cmd.displayDuration('#valueDate#', $('.timeCmd#uid#:last'));
     if ('#state#' == '1') {
-      $('.iconCmd#id#:last').append('<i class="fa fa-check"></i>');
+      $('.iconCmd#uid#:last').append('<i class="fa fa-check"></i>');
     }else {
-      $('.iconCmd#id#:last').append('<i class="icon jeedom-mouvement"></i>');
+      $('.iconCmd#uid#:last').append('<i class="icon jeedom-mouvement"></i>');
     }
   </script>
 </div>

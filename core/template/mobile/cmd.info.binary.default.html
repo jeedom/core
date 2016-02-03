@@ -1,14 +1,13 @@
 <div class="cmd" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#">
     <center>
-        <span style="font-weight: bold;font-size : 12px;">#name#</span>
-        <span style="font-size: 3em;margin-top: 5px;" id="iconCmd#uid#"></span>
+        <span style="font-weight: bold;font-size : 12px;" class='cmdName'>#name_display#</span>
+        <span style="font-size: 3em;margin-top: 5px;" class="iconCmd#uid#"></span>
     </center>
     <script>
         if ('#state#' == '1' || '#state#' == 1) {
-            $('#iconCmd#uid#').addClass('fa fa-check');
-        }
-        if ('#state#' == '0' || '#state#' == 0) {
-            $('#iconCmd#uid#').addClass('fa fa-times');
-        }
-    </script>
+         $('.iconCmd#uid#').append('<i class="fa fa-check"></i>');
+     }else {
+        $('.iconCmd#uid#').append('<i class="fa fa-times"></i>');
+    }
+</script>
 </div>

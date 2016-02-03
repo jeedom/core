@@ -3,7 +3,6 @@
         <span style="font-size: 2.5em;" class="action" id="iconCmd#uid#"></span>
     </center>
 </div>
-
 <script>
     if ('#state#' == '1' || '#state#' == 1) {
         $('#iconCmd#uid#').append('<i class="icon jeedom-lumiere-on"></i>');
@@ -11,13 +10,12 @@
             $('.cmd[data-cmd_uid=#uid#]').hide();
         }
     } else {
-        $('#iconCmd#id#').append('<i class="icon jeedom-lumiere-off"></i>');
+        $('#iconCmd#uid#').append('<i class="icon jeedom-lumiere-off"></i>');
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
             $('.cmd[data-cmd_uid=#uid#]').hide();
         }
     }
-    $('.cmd[data-cmd_uid=#uid#] .action').off();
-    $('.cmd[data-cmd_uid=#uid#] .action').on('click', function() {
+    $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function() {
         jeedom.cmd.execute({id: '#id#'});
     });
 </script>
