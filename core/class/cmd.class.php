@@ -880,8 +880,6 @@ class cmd {
 		} else if ($this->getDisplay('doNotShowNameOnMobile') == 1 && $_version == 'mobile') {
 			$replace['#name_display#'] = '';
 			$replace['#name#'] = '';
-		} else {
-			$replace['#name_display#'] .= '<br/>';
 		}
 		if ($this->getType() == 'info') {
 			$replace['#state#'] = '';
@@ -969,7 +967,6 @@ class cmd {
 					$replace['#' . $key . '#'] = $value;
 				}
 			}
-			$replace['#valueName#'] .= '<br/>';
 
 			$html .= template_replace($replace, $template);
 			if (trim($html) == '') {
