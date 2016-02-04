@@ -24,6 +24,7 @@ if (!isConnect('admin')) {
     <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo cat /var/log/php5-fpm.log 2>&1">PHP log</a></li>
     <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo df -h">df -h</a></li>
     <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo w">w</a></li>
+    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo dpkg -l">dpkg -l</a></li>
   </ul>
 </div>
 </div>
