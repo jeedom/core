@@ -13,15 +13,15 @@ if (!isConnect('admin')) {
   <div class="bs-sidebar">
    <ul class="nav nav-list bs-sidenav list-group">
     <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ../../health.sh 2>&1">health.sh</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo dmesg 2>&1">dmesg</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ifconfig 2>&1">ifconfig</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo lsusb 2>&1">lsusb</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ls -la /dev/ttyUSB* 2>&1">ls -la /dev/ttyUSB*</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo free -m 2>&1">free -m</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ps ax 2>&1">ps ax</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo cat /var/log/mysql/error.log 2>&1">MySQL log</a></li>
-    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo cat /var/log/php5-fpm.log 2>&1">PHP log</a></li>
+    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ../../health.sh">health.sh</a></li>
+    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo dmesg">dmesg</a></li>
+    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ifconfig">ifconfig</a></li>
+    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo lsusb">lsusb</a></li>
+    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ls -la /dev/ttyUSB*">ls -la /dev/ttyUSB*</a></li>
+    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo free -m">free -m</a></li>
+    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ps ax">ps ax</a></li>
+    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo cat /var/log/mysql/error.log">MySQL log</a></li>
+    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo cat /var/log/php5-fpm.log">PHP log</a></li>
     <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo df -h">df -h</a></li>
     <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo w">w</a></li>
     <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo dpkg -l">dpkg -l</a></li>

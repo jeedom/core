@@ -46,7 +46,11 @@ try {
 	}
 
 	if (init('action') == 'ssh') {
-		ajax::success(shell_exec(init('command')));
+		$command = init('command');
+		if (strpos($command, '2>&1') === false) {
+			$command .= ' 2>&1';
+		}
+		ajax::success(shell_exec($command));
 	}
 
 	if (init('action') == 'update') {
