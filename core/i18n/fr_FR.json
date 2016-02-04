@@ -3,7 +3,8 @@
         "Inconnue": "Inconnue",
         "Gestion automatique désactivée": "Gestion automatique désactivée",
         "Dépendances en cours d'installation": "Dépendances en cours d'installation",
-        "Erreur sur la fonction cronDaily du plugin : ": "Erreur sur la fonction cronDaily du plugin : "
+        "Erreur sur la fonction cronDaily du plugin : ": "Erreur sur la fonction cronDaily du plugin : ",
+        "Attention lancement de l'installation des dépendances": "Attention lancement de l'installation des dépendances"
     },
     "core\/class\/cmd.class.php": {
         "Evènement sur la commande ": "Evènement sur la commande ",
@@ -24,7 +25,9 @@
         "Début d'exécution du scénario : ": "Début d'exécution du scénario : ",
         "Fin correcte du scénario": "Fin correcte du scénario",
         "Aucun": "Aucun",
-        "Scénario exécuté sur événement : #": "Scénario exécuté sur événement : #"
+        "Scénario exécuté sur événement : #": "Scénario exécuté sur événement : #",
+        "Une commande du scénario : ": "Une commande du scénario : ",
+        " est introuvable": " est introuvable"
     },
     "desktop\/modal\/plugin.deamonLog.php": {
         "Pause": "Pause",
@@ -275,7 +278,9 @@
         "Permet d'ajouter une message dans le centre de message": "Permet d'ajouter une message dans le centre de message",
         "Permet de modifier les prorietés visible\/invisible actif\/inactif d'un équipement": "Permet de modifier les prorietés visible\/invisible actif\/inactif d'un équipement",
         "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.",
-        "Valider": "Valider"
+        "Valider": "Valider",
+        "Act. scénarios": "Act. scénarios",
+        "Activer scénarios": "Activer scénarios"
     },
     "desktop\/modal\/cmd.human.insert.php": {
         "Objet": "Objet",
@@ -705,7 +710,10 @@
         "Adresse Redis": "Adresse Redis",
         "Adresse syslog udp": "Adresse syslog udp",
         "Seuil des piles": "Seuil des piles",
-        "Beta (développement, instable)": "Beta (développement, instable)"
+        "Beta (développement, instable)": "Beta (développement, instable)",
+        "Système (OS)": "Système (OS)",
+        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.",
+        "Lancer": "Lancer"
     },
     "common": {
         "Lumiere Etat (info)": "Lumiere Etat (info)",
@@ -1229,7 +1237,8 @@
         "Connexion échouée :": "Connexion échouée :",
         "Connexion réussie": "Connexion réussie",
         "Connexion au market réussie": "Connexion au market réussie",
-        "Cache vidé": "Cache vidé"
+        "Cache vidé": "Cache vidé",
+        "Administration système": "Administration système"
     },
     "desktop\/php\/backup.php": {
         "Sauvegardes": "Sauvegardes",
@@ -1689,5 +1698,42 @@
     "desktop\/modal\/cron.human.insert.php": {
         "A exécuter": "A exécuter",
         "En date du": "En date du"
+    },
+    "\/var\/www\/html\/test.php": {
+        "Le controleur est occupé veuillez réessayer plus tard": "Le controleur est occupé veuillez réessayer plus tard",
+        "Ce module est déja inclus, veuillez le supprimer avant de le réinclure : ": "Ce module est déja inclus, veuillez le supprimer avant de le réinclure : "
+    },
+    "core\/class\/cron.class.php": {
+        "Arrêt de ": "Arrêt de "
+    },
+    "desktop\/modal\/system.action.php": {
+        "Rechercher": "Rechercher",
+        "Etes-vous sûr de vouloir éxécuter cette commande ? Celle-ci est classé en dangereuse": "Etes-vous sûr de vouloir éxécuter cette commande ? Celle-ci est classé en dangereuse",
+        "Etes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir éxécuter cette commande : ",
+        "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse",
+        "Commande": "Commande",
+        "Cliquez sur une commande à droite": "Cliquez sur une commande à droite",
+        "Commande : ": "Commande : ",
+        "OK": "OK",
+        "Cliquez sur une commande à droite ou tapez une commande personalisé ci-dessous": "Cliquez sur une commande à droite ou tapez une commande personalisé ci-dessous"
+    },
+    "desktop\/modal\/icon.selector.php": {
+        "Rechercher": "Rechercher",
+        "animal": "animal",
+        "custom": "custom",
+        "divers": "divers",
+        "fashion": "fashion",
+        "jeedom": "jeedom",
+        "jeedom2": "jeedom2",
+        "loisir": "loisir",
+        "maison": "maison",
+        "meteo": "meteo",
+        "nature": "nature",
+        "nourriture": "nourriture",
+        "personne": "personne",
+        "securite": "securite",
+        "techno": "techno",
+        "transport": "transport",
+        "Général": "Général"
     }
 }
