@@ -29,7 +29,6 @@ if (isset(_object_id)) {
         },
         success: function (html) {
             if(_object_id == 'all'){
-
              jeedom.object.all({
                 error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -41,21 +40,20 @@ if (isset(_object_id)) {
                     div += '<legend>';
                     for(var j in objects){
                         if(objects[j].id == i){
-                             div += objects[j].name;
-                        }
-                    }
-                    div += '</legend>';
-                    div += html[i]
-                    div += '</div>';
-                }
-                $('#div_displayEquipement').empty().html(div).trigger('create');
-                setTileSize('.eqLogic');
-                setTimeout(function () {
-                    $('.div_displayEquipement').packery({gutter : 4});
-                }, 10);
-            }
-        });  
-
+                         div += objects[j].name;
+                     }
+                 }
+                 div += '</legend>';
+                 div += html[i]
+                 div += '</div>';
+             }
+             $('#div_displayEquipement').empty().html(div).trigger('create');
+             setTileSize('.eqLogic');
+             setTimeout(function () {
+                $('.div_displayEquipement').packery({gutter : 4});
+            }, 10);
+         }
+     });  
          }else{
            $('#div_displayEquipement').empty().html(html).trigger('create');
            setTileSize('.eqLogic');
