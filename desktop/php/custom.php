@@ -43,7 +43,7 @@ if (file_exists(dirname(__FILE__) . '/../custom/custom.css')) {
                     </legend>
                     <textarea class='form-control' id='ta_jsMobileContent' style='height: 500px;'><?php
 if (file_exists(dirname(__FILE__) . '/../../mobile/custom/custom.js')) {
-	echo trim(file_get_contents(dirname(__FILE__) . '/../custom/custom.js'));
+	echo trim(file_get_contents(dirname(__FILE__) . '/../../mobile/custom/custom.js'));
 }
 ?></textarea>
                 </div>
