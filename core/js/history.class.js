@@ -231,6 +231,9 @@ jeedom.history.drawChart = function (_params) {
                     if($('#md_modal2').is(':visible')){
                         return;
                     }
+                    if($('#md_modal1').is(':visible')){
+                        return;
+                    }
                     var id = this.series.userOptions.id;
                     var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x);
                     var value = this.y;
