@@ -961,6 +961,13 @@ class cmd {
 				$replace['#valueName#'] = $this->getName();
 				$replace['#unite#'] = $this->getUnite();
 			}
+			if ($this->getDisplay('doNotShowNameOnView') == 1 && ($_version == 'dview' || $_version == 'mview')) {
+				$replace['#valueName#'] = '';
+			} else if ($this->getDisplay('doNotShowNameOnDashboard') == 1 && $_version == 'dashboard') {
+				$replace['#valueName#'] = '';
+			} else if ($this->getDisplay('doNotShowNameOnMobile') == 1 && $_version == 'mobile') {
+				$replace['#valueName#'] = '';
+			}
 			$parameters = $this->getDisplay('parameters');
 			if (is_array($parameters)) {
 				foreach ($parameters as $key => $value) {
