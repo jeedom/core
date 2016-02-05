@@ -25,6 +25,7 @@ if (!isConnect('admin')) {
     <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo df -h">df -h</a></li>
     <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo w">w</a></li>
     <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo dpkg -l">dpkg -l</a></li>
+    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo  netstat -tupln"> netstat -tupln</a></li>
   </ul>
 </div>
 </div>
