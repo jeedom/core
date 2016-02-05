@@ -225,16 +225,20 @@ jeedom.history.drawChart = function (_params) {
             events: {
                 click: function (event) {
                     var deviceInfo = getDeviceType();
-                    if (!$.mobile && deviceInfo.type != 'tablet' && deviceInfo.type != 'phone') {
-                        var id = this.series.userOptions.id;
-                        var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x);
-                        var value = this.y;
-                        bootbox.prompt("{{Edition de la série :}} <b>" + this.series.name + "</b> {{et du point de}} <b>" + datetime + "</b> ({{valeur :}} <b>" + value + "</b>) ? {{Ne rien mettre pour supprimer la valeur}}", function (result) {
-                            if (result !== null) {
-                                jeedom.history.changePoint({cmd_id: id, datetime: datetime, value: result});
-                            }
-                        });
+                    if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
+                        return
                     }
+                    if($('#md_modal2').is(':visible')){
+                        return;
+                    }
+                    var id = this.series.userOptions.id;
+                    var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x);
+                    var value = this.y;
+                    bootbox.prompt("{{Edition de la série :}} <b>" + this.series.name + "</b> {{et du point de}} <b>" + datetime + "</b> ({{valeur :}} <b>" + value + "</b>) ? {{Ne rien mettre pour supprimer la valeur}}", function (result) {
+                        if (result !== null) {
+                            jeedom.history.changePoint({cmd_id: id, datetime: datetime, value: result});
+                        }
+                    });
                 }
             }
         }
