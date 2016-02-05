@@ -530,6 +530,7 @@ class jeedom {
 
 	public static function forceSyncHour() {
 		exec('sudo service ntp restart');
+		shell_exec('sudo ntpdate -s ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org'));
 	}
 
 	public static function checkFilesystem() {
