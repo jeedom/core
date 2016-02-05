@@ -40,9 +40,9 @@ class com_shell {
 			exec($this->cmd . ' >> /dev/null 2>&1 &');
 			return;
 		} else {
-			$return = exec($this->cmd, $output, $retval);
+			exec($this->cmd, $output, $retval);
+			$return = implode("/n", $output);
 		}
-
 		if ($retval != 0) {
 			throw new Exception('Error on shell exec, return value : ' . $retval . '. Details : ' . $return);
 		}
