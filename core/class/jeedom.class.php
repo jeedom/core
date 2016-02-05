@@ -337,14 +337,6 @@ class jeedom {
 			return true;
 		}
 		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
-			shell_exec('sudo sntp ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org'));
-			sleep(3);
-		}
-		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
-			shell_exec('sudo sntp 1.debian.pool.ntp.org');
-			sleep(3);
-		}
-		if (strtotime('now') < strtotime('2015-01-01 00:00:00') || strtotime('now') > strtotime('2019-01-01 00:00:00')) {
 			jeedom::forceSyncHour();
 			sleep(3);
 		}
@@ -529,8 +521,7 @@ class jeedom {
 	}
 
 	public static function forceSyncHour() {
-		exec('sudo service ntp restart');
-		shell_exec('sudo ntpdate -s ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org'));
+		shell_exec('sudo service ntp stop;sudo ntpdate -s ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org') . ';sudo service ntp start');
 	}
 
 	public static function checkFilesystem() {
