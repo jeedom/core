@@ -4,7 +4,6 @@
         <span style="font-size: 3em;font-weight: bold;margin-top: 5px;" class="action iconCmd#uid#"></span>
     </center>
     <script>
-        $('.iconCmd#uid#').empty();
         if ('#state#' == '1' || '#state#' == 1 || '#state#' == '99' || '#state#' == 99 || '#state#' == 'on') {
             $('.iconCmd#uid#').append('<i class="icon jeedom-lock-ferme"></i>');
             if (jeedom.cmd.normalizeName('#name#') == 'on') {
