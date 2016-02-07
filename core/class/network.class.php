@@ -332,6 +332,11 @@ class network {
 			throw new Exception(__('La commande de start du DNS est introuvable', __FILE__));
 		}
 		$cmd->execCmd();
+		$interface = $openvpn->getInterfaceName();
+		if ($interface != null && $interface != '' && $interface !== false) {
+			shell_exec('sudo iptables -A INPUT -i ' . $interface . ' -p tcp  --destination-port 80 -j ACCEPT');
+			shell_exec('sudo iptables -A INPUT -i ' . $interface . ' -j DROP');
+		}
 	}
 
 	public static function dns_run() {
@@ -350,12 +355,7 @@ class network {
 		if (!is_object($cmd)) {
 			throw new Exception(__('La commande de status du DNS est introuvable', __FILE__));
 		}
-		$cmd->execCmd();
-		$interface = $openvpn->getInterfaceName();
-		if ($interface != null && $interface != '' && $interface !== false) {
-			shell_exec('sudo iptables -A INPUT -i ' . $interface . ' -p tcp  --destination-port 80 -j ACCEPT');
-			shell_exec('sudo iptables -A INPUT -i ' . $interface . ' -j DROP');
-		}
+		return $cmd->execCmd();
 	}
 
 	public static function dns_stop() {
