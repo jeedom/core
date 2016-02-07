@@ -24,11 +24,15 @@ if [ -z $1 -a "$1" = "travis" ]; then
     MYSQL_JEEDOM_PASSWORD=jeedom
     MYSQL_HOST=localhost
     MYSQL_PORT=3306
-    echo "DROP USER '${MYSQL_JEEDOM_USER}'@'%';" | mysql -uroot
-    echo "CREATE USER '${MYSQL_JEEDOM_USER}'@'%' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWORD}';" | mysql -uroot
-    echo "DROP DATABASE IF EXISTS ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot
-    echo "CREATE DATABASE ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot
-    echo "GRANT ALL PRIVILEGES ON ${MYSQL_JEEDOM_DBNAME}.* TO '${MYSQL_JEEDOM_USER}'@'%';" | mysql -uroot
+    echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
+    echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
+    apt-get -y install mysql-client mysql-common mysql-server
+    mysqladmin -u root password root
+    echo "DROP USER '${MYSQL_JEEDOM_USER}'@'%';" | mysql -uroot -proot
+    echo "CREATE USER '${MYSQL_JEEDOM_USER}'@'%' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWORD}';" | mysql -uroot -proot
+    echo "DROP DATABASE IF EXISTS ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot -proot
+    echo "CREATE DATABASE ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot -proot
+    echo "GRANT ALL PRIVILEGES ON ${MYSQL_JEEDOM_DBNAME}.* TO '${MYSQL_JEEDOM_USER}'@'%';" | mysql -uroot -proot
     cp core/config/common.config.sample.php ${WEBSERVER_HOME}/core/config/common.config.php
     sed -i "s/#PASSWORD#/${bdd_password}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
     sed -i "s/#DBNAME#/${MYSQL_JEEDOM_DBNAME}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
@@ -38,6 +42,8 @@ if [ -z $1 -a "$1" = "travis" ]; then
 else
     apt-get -y install mysql-client mysql-common mysql-server
 fi
+
+
 
 wget https://raw.githubusercontent.com/jeedom/core/stable/install/apache_security -O /etc/apache2/conf-available/security.conf
 systemctl restart apache2
