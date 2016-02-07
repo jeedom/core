@@ -8,9 +8,9 @@ services:
 before_install:
   - mysql -e "create database IF NOT EXISTS test;" -uroot
   - mysql -e "CREATE USER 'jeedom'@'%' IDENTIFIED BY 'jeedom';" | mysql -uroot
-  - mysql -e "DROP DATABASE IF EXISTS jeedom;" | mysql -uroot -proot
-  - mysql -e "CREATE DATABASE jeedom;" | mysql -uroot -proot
-  - mysql -e "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'%';" | mysql -uroot -proot
+  - mysql -e "DROP DATABASE IF EXISTS jeedom;" | mysql -uroot
+  - mysql -e "CREATE DATABASE jeedom;" | mysql -uroot
+  - mysql -e "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'%';" | mysql -uroot
 install:
   - sudo apt-get -y install ca-certificates unzip curl sudo ntp apache2 php5 libapache2-mod-php5 php5-cli php5-common php5-curl php5-fpm php5-json php5-mysql php5-gd
   - sudo echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
