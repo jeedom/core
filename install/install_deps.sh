@@ -6,17 +6,6 @@ if [ $(id -u) != 0 ] ; then
     exit 1
 fi
 WEBSERVER_HOME=$(pwd)
-apt-get update
-apt-get -y install ca-certificates unzip curl sudo ntp
-apt-get -y install apache2 php5 libapache2-mod-php5 php5-cli php5-common php5-curl php5-fpm php5-json php5-mysql php5-gd 
-
-JEEDOM_CRON="`crontab -l | grep -e 'jeeCron.php'`"
-if [ -z "${JEEDOM_CRON}" ] ; then
-    croncmd="su --shell=/bin/bash - www-data -c '/usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php' >> /dev/null 2>&1"
-    cronjob="* * * * * $croncmd"
-    ( crontab -l | grep -v "$croncmd" ; echo "$cronjob" ) | crontab -
-fi
-echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
 
 if [ "$1" = "travis" ]; then
     MYSQL_JEEDOM_USER=jeedom

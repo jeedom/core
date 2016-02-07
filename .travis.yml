@@ -1,28 +1,27 @@
 language: php
 sudo: required
-addons:
-  apt:
-    packages:
-    - ca-certificates
-    - unzip
-    - curl
-    - ntp
-    - apache2
-    - php5
-    - libapache2-mod-php5
-    - php5-cli
-    - php5-common
-    - php5-curl
-    - php5-fpm
-    - php5-json
-    - php5-mysql
-    - php5-gd
 php:
   - 5.6
   - 7.0
+services:
+  - mysql
+before_install:
+  - mysql -e "create database IF NOT EXISTS test;" -uroot
+  - mysql -e "CREATE USER 'jeedom'@'%' IDENTIFIED BY 'jeedom';" | mysql -uroot
+  - mysql -e "DROP DATABASE IF EXISTS jeedom;" | mysql -uroot -proot
+  - mysql -e "CREATE DATABASE jeedom;" | mysql -uroot -proot
+  - mysql -e "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'%';" | mysql -uroot -proot
 install:
-  - sudo chmod +x install/install_deps.sh
-  - sudo ./install/install_deps.sh travis
+  - sudo apt-get -y install ca-certificates unzip curl sudo ntp apache2 php5 libapache2-mod-php5 php5-cli php5-common php5-curl php5-fpm php5-json php5-mysql php5-gd
+  - sudo echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
+  - cp core/config/common.config.sample.php core/config/common.config.php
+  - sed -i "s/#PASSWORD#/jeedom/g" core/config/common.config.php 
+  - sed -i "s/#DBNAME#/jeedom/g" core/config/common.config.php 
+  - sed -i "s/#USERNAME#/jeedom/g" core/config/common.config.php 
+  - sed -i "s/#PORT#/3306/g" core/config/common.config.php 
+  - sed -i "s/#HOST#/127.0.0.1/g" core/config/common.config.php 
+  - sudo chmod 775 -R *
+  - sudo chown -R www-data:www-data *
   - php install/install.php mode=force
   - sudo mkdir /home/travis/build/jeedom/plugins
   - sudo chmod 777 -R /home/travis/build/jeedom
