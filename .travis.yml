@@ -4,9 +4,7 @@ php:
   - 5.6
   - 7.0
 install:
-  - ls
-  - ls install/install_deps.sh
-  - sudo install/install_deps.sh travis 2>&1
+  - sudo ./install/install_deps.sh
   - php install/install.php mode=force
   - sudo mkdir /home/travis/build/jeedom/plugins
   - sudo chmod 777 -R /home/travis/build/jeedom
