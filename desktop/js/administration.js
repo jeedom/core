@@ -229,7 +229,7 @@ $('#bt_selectMailCmd').on('click', function () {
 });
 
 if (getUrlVars('panel') != false) {
- $('a[href=#'+getUrlVars('panel')+']').click();
+ $('a[href="#'+getUrlVars('panel')+'"]').click();
 }
 
 printConvertColor();
