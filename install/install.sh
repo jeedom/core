@@ -43,11 +43,9 @@ else
     apt-get -y install mysql-client mysql-common mysql-server
 fi
 
-
-
 wget https://raw.githubusercontent.com/jeedom/core/stable/install/apache_security -O /etc/apache2/conf-available/security.conf
 systemctl restart apache2
-apt-get autoremove
+apt-get -y autoremove
 
 chmod 775 -R ${WEBSERVER_HOME}
 chown -R www-data:www-data ${WEBSERVER_HOME}
