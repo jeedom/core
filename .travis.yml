@@ -6,8 +6,8 @@ php:
 install:
   - ls
   - ls /home/travis/build/jeedom/
-  - sudo /home/travis/build/jeedom/install/install_deps.sh travis
-  - php /home/travis/build/jeedom/install/install.php mode=force
+  - sudo install/install_deps.sh travis
+  - php install/install.php mode=force
   - sudo mkdir /home/travis/build/jeedom/plugins
   - sudo chmod 777 -R /home/travis/build/jeedom
   - sudo chown www-data:www-data -R /home/travis/build/jeedom
