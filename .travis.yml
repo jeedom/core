@@ -13,7 +13,6 @@ before_install:
   - mysql -e "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'%';" | mysql -uroot
 install:
   - sudo apt-get -y install ca-certificates ntp
-  - sudo echo "www-data ALL=(ALL) NOPASSWD\: ALL" | (EDITOR="tee -a" visudo)
   - cp core/config/common.config.sample.php core/config/common.config.php
   - sed -i "s/#PASSWORD#/jeedom/g" core/config/common.config.php 
   - sed -i "s/#DBNAME#/jeedom/g" core/config/common.config.php 
