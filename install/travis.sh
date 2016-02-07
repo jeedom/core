@@ -26,7 +26,6 @@ sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
 sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php 
 sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php 
 
-
 wget https://raw.githubusercontent.com/jeedom/core/stable/install/apache_security -O /etc/apache2/conf-available/security.conf
 systemctl restart apache2
 apt-get -y autoremove
