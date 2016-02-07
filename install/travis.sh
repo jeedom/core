@@ -10,26 +10,21 @@ apt-get update
 apt-get -y install ca-certificates unzip curl sudo ntp
 apt-get -y install apache2 php5 libapache2-mod-php5 php5-cli php5-common php5-curl php5-fpm php5-json php5-mysql php5-gd 
 
-MYSQL_JEEDOM_USER=jeedom
-MYSQL_JEEDOM_DBNAME=jeedom
-MYSQL_JEEDOM_PASSWORD=jeedom
-MYSQL_HOST=localhost
-MYSQL_PORT=3306
 echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
 apt-get -y install mysql-client mysql-common mysql-server
 mysqladmin -u root password root
-echo "DROP USER '${MYSQL_JEEDOM_USER}'@'%';" | mysql -uroot -proot
-echo "CREATE USER '${MYSQL_JEEDOM_USER}'@'%' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWORD}';" | mysql -uroot -proot
-echo "DROP DATABASE IF EXISTS ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot -proot
-echo "CREATE DATABASE ${MYSQL_JEEDOM_DBNAME};" | mysql -uroot -proot
-echo "GRANT ALL PRIVILEGES ON ${MYSQL_JEEDOM_DBNAME}.* TO '${MYSQL_JEEDOM_USER}'@'%';" | mysql -uroot -proot
+echo "DROP USER 'jeedom'@'%';" | mysql -uroot -proot
+echo "CREATE USER 'jeedom'@'%' IDENTIFIED BY 'jeedom';" | mysql -uroot -proot
+echo "DROP DATABASE IF EXISTS jeedom;" | mysql -uroot -proot
+echo "CREATE DATABASE jeedom;" | mysql -uroot -proot
+echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'%';" | mysql -uroot -proot
 cp core/config/common.config.sample.php ${WEBSERVER_HOME}/core/config/common.config.php
-sed -i "s/#PASSWORD#/${bdd_password}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
-sed -i "s/#DBNAME#/${MYSQL_JEEDOM_DBNAME}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
-sed -i "s/#USERNAME#/${MYSQL_JEEDOM_USER}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
-sed -i "s/#PORT#/${MYSQL_PORT}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
-sed -i "s/#HOST#/${MYSQL_HOST}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
+sed -i "s/#PASSWORD#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php 
+sed -i "s/#DBNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php 
+sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php 
+sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php 
+sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php 
 
 
 wget https://raw.githubusercontent.com/jeedom/core/stable/install/apache_security -O /etc/apache2/conf-available/security.conf
