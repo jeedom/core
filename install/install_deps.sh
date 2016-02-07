@@ -18,7 +18,7 @@ if [ -z "${JEEDOM_CRON}" ] ; then
 fi
 echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
 
-if [ -z $1 -a "$1" = "travis" ]; then
+if [ "$1" = "travis" ]; then
     MYSQL_JEEDOM_USER=jeedom
     MYSQL_JEEDOM_DBNAME=jeedom
     MYSQL_JEEDOM_PASSWORD=jeedom
