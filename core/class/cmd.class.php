@@ -873,13 +873,10 @@ class cmd {
 		}
 		if ($this->getDisplay('doNotShowNameOnView') == 1 && ($_version == 'dview' || $_version == 'mview')) {
 			$replace['#name_display#'] = '';
-			$replace['#name#'] = '';
 		} else if ($this->getDisplay('doNotShowNameOnDashboard') == 1 && $_version == 'dashboard') {
 			$replace['#name_display#'] = '';
-			$replace['#name#'] = '';
 		} else if ($this->getDisplay('doNotShowNameOnMobile') == 1 && $_version == 'mobile') {
 			$replace['#name_display#'] = '';
-			$replace['#name#'] = '';
 		}
 		if ($this->getType() == 'info') {
 			$replace['#state#'] = '';
