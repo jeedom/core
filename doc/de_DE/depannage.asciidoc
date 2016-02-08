@@ -1,0 +1,116 @@
+= Dépannage
+
+J'ai une page blanche::
+Il faut se connecter en SSH à jeedom et lancer un script d'auto-diagnostique : 
+
+[source,bash]
+sudo chmod +x /usr/share/nginx/www/jeedom/health.sh;sudo /usr/share/nginx/www/jeedom/health.sh
+
+Voila le résultat si tout est bon : 
+
+image::../images/depannage.png[]
+
+S'il y a un soucis le script essaye de corriger si il n'y arrive pas il vous l'indiquera.
+
+Vous pouvez aussi regarder le log /usr/share/nginx/www/jeedom/log/nginx.error, très souvent celui-ci indique le soucis
+
+''''
+
+J'ai un probleme d'identifiant BDD::
+Il faut reinitialiser ceux-ci
+[source,bash]
+bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p
+echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p
+echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p
+cd /usr/share/nginx/www/jeedom
+sudo cp core/config/common.config.sample.php core/config/common.config.php
+sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php 
+sudo chown www-data:www-data core/config/common.config.php
+
+''''
+
+J'ai des {{...}} partout::
+La cause la plus frequente est l'utilisation d'un plugin en version beta, et pas Jeedom, ou l'inverse
+
+''''
+
+Lors d'une commande j'ai une roue qui tourne sans s'arreter::
+Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom est en stable
+
+''''
+
+Je n'ai plus accès a Jeedom ni en SSH::
+Cette erreur n'est pas dû à Jeedom mais à un probleme avec le système. 
+Si celui ci persiste suite à une reinstallation il est conseillé de voir avec le SAV pour un soucis hardware
+
+''''
+
+Mon scenario ne s'arrete plus/pas::
+Il est conseillé de regarder les commandes éxecutées par le scénario, 
+souvent cela vient d'une commande qui ne se termine pas
+
+''''
+
+Mon scenario est lent à se declencher::
+Si dans le scénario il n'y a pas de pause il est conseillé de cocher la case "éxécuter le plus rapidement possible" (disponible en mode expert)
+
+''''
+
+Le témoin nodeJS en bas de la page est rouge ou gris::
+En ssh faite "sudo service jeedom restart" pour forcer un redémarrage de celui-ci. Si ca ne marche pas faites : 
+
+[source,bash]
+sudo su -
+rm -rf /usr/share/nginx/www/jeedom/core/nodeJS
+reboot
+
+Puis mettre à jour jeedom, le redemarrer à nouveau et ca devrait être bon
+
+''''
+
+Je n'ai aucune erreur dans le log nginx.error malgrès des erreurs 500::
+En ssh :
+Editez le fichier /etc/php5/fpm/pool.d/www.conf et decommanter la ligne ";catch_worket_process=yes" (supression du ;) 
+et redemarrez php "sudo service php5-fpm restart"
+
+''''
+
+J'ai des instabilités ou des erreurs 504::
+Vérifiez si votre systeme de fichier n'est pas corrompu, en ssh la commande est : "sudo dmesg | grep error"
+
+''''
+
+Je ne vois pas tout mes équipements sur le dashboard::
+Souvent cela du au fait que les équipements sont affectés à un objet qui n'est pas le fils ou 
+l'objet lui même du premier objet selectionné à gauche dans l'arbre (vous pouvez dans votre profils configurer celui-ci)
+
+''''
+
+Lors de la connexion du maitre avec les esclaves j'ai des erreurs::
+Vergewissern Sie sich, das sie /jeedom direkt nach der Jeedom-IP verwenden 
+(souvent le cas en installation DIY)
+
+''''
+
+J'ai l'erreur suivante : SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'::
+Das MySQL angehalten wird ist nicht normal, die üblichen Probleme sind : 
+* soucis de place sur le système de fichier (peut etre vérifié en faisant la commande "df -h", en ssh)
+* probleme de corruption de fichier, arrive souvent suite à un arrêt non propre de jeedom (coupure de courant)
+
+Malheureusement il n'y a pas beaucoup de solution si c'est le deuxieme cas, 
+am besten ist es ein Backup  abzurufen  (standardmäßig in  /usr/share/nginx/www/jeedom/backup verfügbar), 
+Jeedom neu installieren und die Sicherung wiederherstellen.
+Vous pouvez aussi en ssh regarder pourquoi mysql ne veut pas demarrer : 
+[source,bash]
+sudo su -
+service mysql stop
+mysqld --verbose
+
+Ou consulter le log : /var/log/mysql/error.log
+
+''''
+
+Les boutons arreter/redemarrer ne fonctionne pas::
+Sur une installation DIY c'est normal, il faut faire en ssh la commande visudo et à la fin du fichier 
+vous devez ajouter : www-data ALL=(ALL) NOPASSWD: ALL.

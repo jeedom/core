@@ -1,0 +1,16 @@
+Información de sistema
+
+La página información de sistema le permite ver un resumen general de su sistema (hardware y sistema operativo)
+
+Il est accessible à partir du menu Analyse -> Informations système : 
+
+image::../images/sysinfo.png[]
+
+Una vez que llegue: 
+
+image::../images/sysinfo2.png[]
+
+Tous ne sera pas detaillé ici, cette page est plus la pour aider en cas de support. Ce qu'il faut savoir : 
+
+* une mémoire pleine à 100% est normale sous linux, il ne la vide que quand il en a besoin
+* on peut voir dans la partie tout en bas l'occupation du disque

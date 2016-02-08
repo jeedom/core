@@ -1,0 +1,168 @@
+= Administración
+
+Aquí están la mayoría de los ajustes de configuración. Muchos de ellos vienen pre configurados de manera predeterminada.
+
+La page est accessible par Administration -> Configuration : 
+
+image::../images/administration.png[]
+
+[IMPORTANTE]
+Si vous n'êtes pas en mode expert certains paramètres peuvent ne pas être visibles.
+
+== Configuraciónn general
+
+image::../images/administration1.png[]
+
+Dans cet onglet on retrouve des informations générales sur Jeedom : 
+
+* * * Clave API: la clave de la API a utilizar para cualquier aplicación en la API de Jeedom
+* *Sistema*: modelo de hardware
+* *Clef hardware* : clef hardware de votre Jeedom sur le market. Si votre Jeedom n'apparait pas dans la liste de vos Jeedom sur le market il est conseillé de cliquer sur ce bouton
+* *Comando de información de usuario*: Especifique un tipo de mensajes de control para que Jeedom le muestre los mensajes importantes. Puede especificar varios comandos separados por &&
+* *Idioma* : Idioma de su Jeedom
+* *Duración de sesión (tiempo)*: Duración de la sesión en PHP; se aconseja no modificar este valor
+* *Fecha y hora*: Su zona horaria
+* *Serveur de temps optionnel* : permet d'ajouter un serveur de temps optionnel (à reserver aux experts)
+* *Ignorer la vérification de l'heure* : indique à Jeedom de ne pas vérifier si l'heure est cohérente. Utile par exemple si vous ne connectez pas Jeedom à internet et qu'il n'a pas de pile RTC
+* *Mode* : Mode de votre Jeedom maître ou esclave, attention lors du passage en esclave : tous vos équipements, scénario, design... seront supprimés.
+
+== Composants Jeedom
+
+image::../images/administration11.png[]
+
+Cette partie permet d'activer/désactiver certain composant du core jeedom : 
+
+* *Droits avancés* : permet de désactiver la gestion des droits avancés (si vous ne vous en servez pas cela peut rendre jeedom plus réactif)
+* *Sécruté* : permet d'activer ou non la sécurité anti-piratage de Jeedom (brute force sur le mot de passe). 
+
+== Base de datos
+
+image::../images/administration2.png[]
+
+* *Acceso al interface de administración*: Permite acceder al interface de administración de la base de datos. La información a completar está más abajo
+* *Máquina (hostname)*: Ubicación de la base de datos
+* *Usuario*: Nombre de usuario utilizado por Jeedom
+* *Contraseña*: Contraseña de accesso a la base de datos utilizada por Jeedom
+
+== Configuración de red
+
+image::../images/administration3.png[]
+
+Partie très importante dans Jeedom, il faut absolument la configurer correctement sinon beaucoup de plugin risquent d'être non fonctionnels
+
+* *Acceso a internet*: Información para acceder a Jeedom desde un equipo de la misma red
+** *Protocolo*: El protocolo a utilizar, normalmente HTTP
+** *Dirección URL o IP*: IP de Jeedom para informar
+** *Complément (exemple : /jeedom)* : le fragment d'URL complémentaire (type /jeedom). Pour savoir si vous avez besoin de définir une valeur ici, regardez si quand vous vous connectez à Jeedom vous devez renseigner /jeedom après l'IP
+** *Port* : le port, en général 80. Attention changer le port ici ne change pas le port réel de Jeedom qui restera le même
+** *Estado*: Indica si la conexión de red interna es correcta
+* *Accès externe* : information pour joindre Jeedom de l'extérieur. A ne remplir que si vous n'utilisez pas le DNS Jeedom
+** *Protocolo*: Protocolo a utilizar para el acceso desde el exterior
+** *Dirección URL o IP*: Dirección o IO externa si es fija
+** *Complément (exemple : /jeedom)* :  le fragment d'URL complémentaire (type /jeedom). Pour savoir si vous avez besoin de définir une valeur ici, regardez si quand vous vous connectez à Jeedom vous devez renseigner /jeedom après l'IP
+** *Port* : le port, en général 80. Attention changer le port ici ne change pas le port réel de Jeedom qui restera le même
+** *Estado*: Indica si la conexión de red externa es correcta
+* *Gestion avancée* : peut ne pas apparaitre en fonction de la compatibilité avec votre matériel
+** *Desactivar la gestión de redes en Jeedom*: Jeedom no supervisará la red (deberá ser activado si Jeedom no está conectado a ninguna red)
+* *DNS Jeedom*: permite el acceso remoto a su Jeedom sin la necesidad de un DNS, una dirección IP fija o puertos abiertos en su router
+** *Usar DNS Jeedom*: Activars DNS Jeedom (se requiere disponer de un service pack)
+** *Estado http*: Estado de DNS http
+** *Gestión*: Permite detener y reiniciar el servicio DNS
+
+[TIP]
+Si accede a través de HTTPS, el puerto por defecto es el 443 y si lo hace a través de HTTP, el puerto por defecto es el 80
+
+[IMPORTANTE]
+Cette partie est juste là pour expliquer à Jeedom son environnement : une modification du port ou de l'IP ici ne changera pas le port ou l'IP de Jeedom. Pour cela il faut se connecter en SSH et éditer le fichier /etc/network/interfaces pour l'IP et les fichiers etc/nginx/sites-available/default et etc/nginx/sites-available/default_ssl (pour le HTTPS). En cas de mauvaise manipulation de votre Jeedom, l'équipe Jeedom ne pourra etre tenue responsable et pourra refuser toute demande de support.
+
+[NOTA]
+Puede ver link:http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https[aquí] un tutorial para instalar un certificado auto firmado
+
+[IMPORTANTE]
+Si vous n'arrivez pas à faire fonctionner le DNS Jeedom, regardez la configuration du pare-feu et filtre parental de votre box (sur livebox il faut par exemple le pare-feu en moyen)
+
+== Configuración de colores
+
+La colorisation des widgets est effectuée en fonction de la catégorie d'appartenance du widget qui est définie dans la configuration de chaque module (voir plugin Z-Wave, RFXCOM...etc). Parmi les catégories on retrouve le chauffage, les lumières, les automatismes etc...
+
+Para cada categoría se puede elegir un color diferente para la versión de escritorio y la versión móvil. También hay 2 tipos de colores, los colores de fondo de los widgets y colores de comandos color cuando el widget es de tipo gradual, por ejemplo, las luces, persianas, temperaturas.
+
+image::../images/display6.png[]
+
+En cliquant sur la couleur une fenêtre s'ouvre, permettant de choisir sa couleur.
+
+image::../images/display7.png[]
+
+[TIP]
+No olvide guardar los cambios después de hacer modificaciones
+
+== Configuración de comandos
+
+image::../images/administration4.png[]
+
+* *Historique* : voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-history.html#_configuration_général_de_l_historique[ici]
+* *Push*
+** *URL global de push*:  le permite añadir una dirección URL para invocarla en caso de actualización de un comando. Puede utilizar la etiqueta: \#valor# para el valor del comando, \#cmd_name# para el nombre del comando, \#cmd_id# para el identificador único del comando, \#humanname# para el nombre completo del comando (por ejemplo \#[Salle de bain][Hydrometrie][Humidité]#)
+
+== Configuración de interacciones
+
+image::../images/administration5.png[]
+
+Voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-interact.html#_configuration_2[ici]
+
+== Configuración de tareas (cron), scripts & demonios
+
+image::../images/administration6.png[]
+
+[IMPORTANTE]
+No se recomienda cambiar esta configuración
+
+* *Tiempo máximo autorizado de captura (en minutos, -1 para infinito)*: Tiempo para ponerse al día en cuestión de minutos para un trabajo en el caso de que su lanzamiento habría sucedido
+* *Crontask : temps d'exécution max (en minutes)* : durée maximum par défaut d'une tache cron
+* *Script : temps d'exécution max (en minutes)* : temps maximum d'exécution d'un script par defaut
+* *Tiempo de espera de Jeecron*: Tiempo de espera del cron principal (entre 1 y 59 segundos)
+* *Temps de sommeil des Démons* : temps de sommeil entre 2 cycles par defaut des démons
+
+== Configuración de logs y mensajes
+
+image::../images/administration7.png[]
+
+Voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-log.html#_configuration[ici]
+
+== Configuración LDAP
+
+image::../images/administration8.png[]
+
+* *Activar autentificaación LDAP*: Activar la autentificación a través de Active Directory (LDAP)
+* *Anfitrión*: Servidor de Active Directory
+* *Dominio*: Dominio de Active Directory
+* *Base DN*: Base DN de Active Directory
+* *Nombre de usuario*: Nombre de usuario para que Jeedom se conecte a Active Directory
+* *Contraseña*: Contraseña para que Jeedom se conecte a Active Directory
+* *Filtro (opcional)*: Filtro de Active Directory (para la gestión de grupos por ejemplo)
+* *Permitir REMOTE_USER*: Activar REMOTE_USER (Utilizado en SSO por ejemplo)
+
+== Configuración de dispositivos
+
+image::../images/administration9.png[]
+
+* *Nombre d'échecs avant désactivation de l'équipement* : nombre d'échecs de communication avec l'équipement avant desactivation de celui-ci (un message vous préviendra si cela arrive)
+* *Seuils des piles* : permet de gerer les seuils d'alertes globaux sur les piles
+
+== Market y actualizaciones
+
+image::../images/administration10.png[]
+
+* *Dirección*: Dirección del market
+* *Nombre de usuario*: Su nombre de usuario para el market
+* *Contraseña*: Su contraseña para el market
+* *Installer automatiquement les widgets manquants* : autorise Jeedom à installer automatiquement les widgets manquants (il faut le plugin widget)
+* *Voir les modules en beta (à vos risques et périls)* : permet de voir les plugins, widgets... beta
+* *Faire une sauvegarde avant la mise à jour* : indique à Jeedom de faire un backup avant chaque mise à jour
+* *Branche* : permet de changer la version de Jeedom.
+
+[NOTA]
+Seul les betatesteurs peuvent voir la branche beta de Jeedom
+
+[ATTENTION]
+L'option URL est dangereuse et reserver à un public d'expert. Toute demande de support après la mise en place de cette option sera systématiquement refusé
