@@ -328,6 +328,7 @@ try {
 						}
 					}
 					$curentVersion = $nextVersion;
+					config::save('version', $curentVersion);
 				}
 			}
 			try {
