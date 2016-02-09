@@ -850,7 +850,7 @@ class cmd {
 		}
 		$replace = array(
 			'#id#' => $this->getId(),
-			'#name#' => ($this->getDisplay('icon') != '') ? $this->getDisplay('icon') : $this->getName(),
+			'#name#' => $this->getName(),
 			'#name_display#' => ($this->getDisplay('icon') != '') ? $this->getDisplay('icon') : $this->getName(),
 			'#history#' => '',
 			'#displayHistory#' => 'display : none;',
