@@ -1,4 +1,4 @@
-= Utilisateur
+= Users
 
 C'est ici que l'on va pouvoir définir la liste des utilisateurs autorisés à se connecter à Jeedom, mais également leurs droits d'administrateur
 
