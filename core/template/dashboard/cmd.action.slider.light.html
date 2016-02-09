@@ -16,7 +16,7 @@
         $('.iconCmd#uid#').off().on('click', function() {
             if ($(this).attr('data-state') == 'on') {
                 var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
-                jeedom.cmd.execute({id: '#id#', value: {slider:value }});
+                jeedom.cmd.execute({id: '#id#', value: {slider: value}});
             } else {
                 var value = ('#minValue#' == '') ? 100 : parseInt('#maxValue#');
                 jeedom.cmd.execute({id: '#id#', value: {slider: value}});
