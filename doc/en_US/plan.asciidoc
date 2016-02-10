@@ -50,7 +50,7 @@ On retrouve ici :
 ** *Nom* : Le nom de votre design
 ** *Icône* : Une icone pour celui-ci (apparait dans le menu de choix de design)
 ** *Disponible sur téléphone* : Rend ce design visible dans la liste des designs en version mobile
-** *Image* : add a background image to design
+** *Image* : permet d'ajouter une image de fond au design
 ** *Ne pas afficher la flèche de retour lors de la mise en plein écran* : en mode pleine ecran cette option masque le bouton de retour au mode fenetré (idéal pour une tablette murale)
 * *Tailles*
 ** *Responsive mode (Attention toute les valeurs de taille sont ignorées)* : passe le design en mode responsive pour le faire s'adapter à l'écran. Attention dans ce cas les paramètres de taille sont ignoré
