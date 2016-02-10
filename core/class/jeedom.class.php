@@ -512,11 +512,13 @@ class jeedom {
 
 	public static function haltSystem() {
 		plugin::stop();
+		cache::persist();
 		exec('sudo shutdown -h now');
 	}
 
 	public static function rebootSystem() {
 		plugin::stop();
+		cache::persist();
 		exec('sudo reboot');
 	}
 
