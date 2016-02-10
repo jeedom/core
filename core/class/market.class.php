@@ -51,6 +51,7 @@ class market {
 	private $updateBy;
 	private $release;
 	private $hardwareCompatibility;
+	private $nbInstall;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -80,6 +81,7 @@ class market {
 		$market->setBuyer($_arrayMarket['buyer']);
 		$market->setUpdateBy($_arrayMarket['updateBy']);
 		$market->setPrivate($_arrayMarket['private']);
+		$market->setNbInstall($_arrayMarket['nbInstall']);
 		$market->img = json_encode($_arrayMarket['img'], JSON_UNESCAPED_UNICODE);
 		$market->link = json_encode($_arrayMarket['link'], JSON_UNESCAPED_UNICODE);
 		$market->language = json_encode($_arrayMarket['language'], JSON_UNESCAPED_UNICODE);
@@ -1054,6 +1056,14 @@ class market {
 
 	public function setUpdateBy($updateBy) {
 		$this->updateBy = $updateBy;
+	}
+
+	public function getNbInstall() {
+		return $this->nbInstall;
+	}
+
+	public function setNbInstall($nbInstall) {
+		$this->nbInstall = $nbInstall;
 	}
 
 	public function getHardwareCompatibility($_key = '', $_default = '') {
