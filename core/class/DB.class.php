@@ -98,9 +98,6 @@ class DB {
 
 		$errorInfo = $stmt->errorInfo();
 		if ($errorInfo[0] != 0000) {
-			if (strpos($errorInfo[2], 'Can\'t connect to local MySQL server through socket') !== false) {
-				shell_exec('/bin/bash ' . dirname(__FILE__) . '/../../script/check_mysql.sh >> ' . dirname(__FILE__) . '/../../log/watchdog 2>&1');
-			}
 			throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2]);
 		}
 		return $res;
