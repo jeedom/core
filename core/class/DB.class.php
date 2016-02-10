@@ -158,7 +158,7 @@ class DB {
 		}
 		if (!self::getField($object, 'id')) {
 			//New object to save.
-			self::setField($object, 'id', '0');
+			self::setField($object, 'id', null);
 			if (!$_direct && method_exists($object, 'preInsert')) {
 				$object->preInsert();
 			}
