@@ -24,6 +24,7 @@ if (config::byKey('update1.212first', 'core', 0) == 0) {
 	foreach ($caches as $cache) {
 		$cache->save();
 	}
+	cache::persist();
 }
 ?>
 
