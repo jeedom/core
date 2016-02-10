@@ -859,6 +859,7 @@ class cmd {
 			'#maxValue#' => $this->getConfiguration('maxValue', 100),
 			'#logicalId#' => $this->getLogicalId(),
 			'#uid#' => 'cmd' . $this->getId() . eqLogic::UIDDELIMITER . mt_rand() . eqLogic::UIDDELIMITER,
+			'#hideCmdName#' => '',
 		);
 		if ($_cmdColor == null && $version != 'scenario') {
 			$eqLogic = $this->getEqLogic();
@@ -872,11 +873,11 @@ class cmd {
 			$replace['#cmdColor#'] = $_cmdColor;
 		}
 		if ($this->getDisplay('doNotShowNameOnView') == 1 && ($_version == 'dview' || $_version == 'mview')) {
-			$replace['#name_display#'] = '';
+			$replace['#hideCmdName#'] = 'display:none;';
 		} else if ($this->getDisplay('doNotShowNameOnDashboard') == 1 && $_version == 'dashboard') {
-			$replace['#name_display#'] = '';
+			$replace['#hideCmdName#'] = 'display:none;';
 		} else if ($this->getDisplay('doNotShowNameOnMobile') == 1 && $_version == 'mobile') {
-			$replace['#name_display#'] = '';
+			$replace['#hideCmdName#'] = 'display:none;';
 		}
 		if ($this->getType() == 'info') {
 			$replace['#state#'] = '';
@@ -900,7 +901,6 @@ class cmd {
 			$replace['#valueDate#'] = $this->getValueDate();
 			if ($this->getIsHistorized() == 1) {
 				$replace['#history#'] = 'history cursor';
-
 				if (config::byKey('displayStatsWidget') == 1 && strpos($template, '#displayHistory#') !== false) {
 					$showStat = true;
 					if ($this->getDisplay('doNotShowStatOnDashboard') == 1 && $_version == 'dashboard') {
@@ -957,13 +957,6 @@ class cmd {
 				$replace['#state#'] = ($this->getLastValue() != null) ? $this->getLastValue() : '';
 				$replace['#valueName#'] = $this->getName();
 				$replace['#unite#'] = $this->getUnite();
-			}
-			if ($this->getDisplay('doNotShowNameOnView') == 1 && ($_version == 'dview' || $_version == 'mview')) {
-				$replace['#valueName#'] = '';
-			} else if ($this->getDisplay('doNotShowNameOnDashboard') == 1 && $_version == 'dashboard') {
-				$replace['#valueName#'] = '';
-			} else if ($this->getDisplay('doNotShowNameOnMobile') == 1 && $_version == 'mobile') {
-				$replace['#valueName#'] = '';
 			}
 			$parameters = $this->getDisplay('parameters');
 			if (is_array($parameters)) {

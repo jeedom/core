@@ -1,5 +1,5 @@
 <span class="cmd" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#">
-    <a class="btn btn-sm btn-default action cmdName tooltips" title="#other_tooltips#" style="background-color:#cmdColor# !important;border-color : transparent !important;">#name#</a>
+    <a class="btn btn-sm btn-default action cmdName tooltips" title="#other_tooltips#" style="background-color:#cmdColor# !important;border-color : transparent !important;">#name_display#</a>
     <script>
         $('.cmd[data-cmd_uid=#uid#]:last .action').off('click').on('click', function () {
             jeedom.cmd.execute({id: '#id#'});
