@@ -425,7 +425,7 @@ foreach (object::all() as $object) {
             </div>
 
             <div class="alert alert-info sel_otherActionDescription return" style="display:none;">
-                {{Retourne un message à la fin du scénario. Cela ne sert que pour retourner un message spécifique suite à une intération. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ça fonctionne.}}
+                {{Retourne un message à la fin du scénario. Cela ne sert que pour retourner un message spécifique suite à une intéraction. Attention à bien cocher la case "Exécuter le plus rapidement possible" pour que ça fonctionne.}}
             </div>
 
             <div class="alert alert-info sel_otherActionDescription gotodesign" style="display:none;">
