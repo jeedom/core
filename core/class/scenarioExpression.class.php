@@ -786,9 +786,6 @@ class scenarioExpression {
 				$replace1['#trigger#'] = $_scenario->getRealTrigger();
 			}
 		}
-		if ($_scenario != null) {
-			$replace1 = array_merge($replace1, $_scenario->getTags());
-		}
 		if ($_quote) {
 			foreach ($replace1 as &$value) {
 				if (strpos($value, ' ') !== false || preg_match("/[a-zA-Z]/", $value) || $value === '') {
@@ -1008,9 +1005,6 @@ class scenarioExpression {
 					switch ($this->getOptions('action')) {
 						case 'start':
 							$this->setLog($scenario, __('Lancement du scénario : ', __FILE__) . $actionScenario->getName());
-							if (isset($options['tags'])) {
-								$actionScenario->setTags($options['tags']);
-							}
 							if ($scenario != null) {
 								return $actionScenario->launch(false, __('Lancement provoqué par le scénario  : ', __FILE__) . $scenario->getHumanName());
 							} else {

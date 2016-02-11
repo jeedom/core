@@ -45,7 +45,6 @@ class scenario {
 	private $_elements = array();
 	private $_changeState = false;
 	private $_realTrigger = '';
-	private $_tags = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -1322,14 +1321,6 @@ class scenario {
 
 	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
-	}
-
-	public function setTags($_tags) {
-		$this->_tags = $_tags;
-	}
-
-	public function getTags() {
-		return $this->_tags;
 	}
 
 	public function getRealTrigger() {

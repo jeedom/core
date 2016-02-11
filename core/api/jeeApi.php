@@ -80,7 +80,6 @@ if (init('type') != '') {
 					foreach ($_REQUEST as $key => $value) {
 						$tags['#' . $key . '#'] = $value;
 					}
-					$scenario->setTags($tags);
 					$scenario->launch(false, __('Exécution provoquée par un appel API ', __FILE__));
 					break;
 				case 'stop':
