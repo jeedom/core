@@ -10,11 +10,13 @@ $link = $plan->getLink();
 sendVarToJS('id', $plan->getId());
 ?>
 <div id="div_alertPlanConfigure"></div>
-<a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlan'><i class="fa fa-check"></i> Sauvegarder</a>
-<a class='btn btn-danger  btn-xs pull-right cursor' style="color: white;" id='bt_removeConfigurePlan'><i class="fa fa-times"></i> Supprimer</a>
+
 <form class="form-horizontal">
     <fieldset id="fd_planConfigure">
-        <legend>Général</legend>
+        <legend>Général
+            <a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlan'><i class="fa fa-check"></i> Sauvegarder</a>
+            <a class='btn btn-danger  btn-xs pull-right cursor' style="color: white;" id='bt_removeConfigurePlan'><i class="fa fa-times"></i> Supprimer</a>
+        </legend>
         <input type="text"  class="planAttr form-control" data-l1key="id" style="display: none;"/>
         <input type="text"  class="planAttr form-control" data-l1key="link_type" style="display: none;"/>
         <?php if ($plan->getLink_type() == 'eqLogic' || $plan->getLink_type() == 'scenario') {
@@ -32,6 +34,8 @@ if ($plan->getLink_type() == 'eqLogic') {
 	?>
           </div>
       </div>
+
+      <?php if ($plan->getLink_type() != 'eqLogic' || !is_object($link) || $link->widgetPossibility('changeWidget')) {?>
       <div class="form-group">
         <label class="col-lg-4 control-label">{{Couleur de fond}}</label>
         <div class="col-lg-2">
@@ -68,6 +72,8 @@ if ($plan->getLink_type() == 'eqLogic') {
             <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
         </div>
     </div>
+    <?php }
+	?>
     <div class="form-group">
         <label class="col-lg-4 control-label">{{Profondeur}}</label>
         <div class="col-lg-2">
@@ -469,31 +475,31 @@ foreach (planHeader::all() as $planHeader_select) {
 
         }
     });
-}
-
-
-function save() {
-    var plans = $('#fd_planConfigure').getValues('.planAttr');
-    if (plans[0].link_type == 'text') {
-        var id = $('.planAttr[data-l1key=display][data-l2key=text]').attr('id');
-        if (id != undefined && isset(editor[id])) {
-            plans[0].display.text = editor[id].getValue();
-        }
     }
-    jeedom.plan.save({
-        plans: plans,
-        error: function (error) {
-            $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-            $('#div_alertPlanConfigure').showAlert({message: 'Design sauvegardé', level: 'success'});
-            displayPlan();
-            $('#fd_planConfigure').closest("div.ui-dialog-content").dialog("close");
-        },
-    });
-}
 
-function remove() {
+
+    function save() {
+        var plans = $('#fd_planConfigure').getValues('.planAttr');
+        if (plans[0].link_type == 'text') {
+            var id = $('.planAttr[data-l1key=display][data-l2key=text]').attr('id');
+            if (id != undefined && isset(editor[id])) {
+                plans[0].display.text = editor[id].getValue();
+            }
+        }
+        jeedom.plan.save({
+            plans: plans,
+            error: function (error) {
+                $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function () {
+                $('#div_alertPlanConfigure').showAlert({message: 'Design sauvegardé', level: 'success'});
+                displayPlan();
+                $('#fd_planConfigure').closest("div.ui-dialog-content").dialog("close");
+            },
+        });
+    }
+
+    function remove() {
         $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // methode de transmission des données au fichier php
             url: "core/ajax/plan.ajax.php", // url du fichier php
