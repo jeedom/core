@@ -1,14 +1,14 @@
 = Plugin
 
-Das Untermenü Plugins, ermöglicht seine Plugins zu Verwalten : sie hochladen, sie auf den neuesten Stand bringen und sie zu aktivieren.
+Le sous-menu Plugins, permet de gérer ses plugins, à savoir : les télécharger, les mettre à jour et les activer.
 
-== Plugin Verwaltung
+== Gestion des plugins
 
-Sie können auf die Plugin-Seite über das Menü  Plugin->Plugin Verwaltung zugreifen. 
+Vous pouvez accèder à la page plugin à partir de Plugins -> Gestion des plugins : 
 
 image::../images/plugin1.png[]
 
-Wenn man darauf geklickt hat, findet man sich auf der Seite wieder, die uns eine Liste der Plugins anzeigt :  
+Une fois que l'on clique dessus on retrouve la page qui nous presente la liste des plugins : 
 
 image::../images/plugin2.png[]
 
@@ -53,14 +53,14 @@ Tout en haut comme sur le market vous avez des filtres :
 * *Rechercher* : permet de rechercher un plugin (dans le nom ou la description de celui-ci)
 * *Nom d'utilisateur* : affiche le nom d'utilisateur utilisé pour la connexion au market ainsi que le statut de la connexion (ici ok)
 
-Sobald das gewünschte Plugin gefunden wurde klicken Sie einfach auf das Plugin, um es zu öffnen :
+Un fois le plugin voulu trouvé il suffit de cliquer sur celui-ci pour faire apparaitre la fiche du plugin :
 
 image::../images/plugin6.png[]
 
-Ein andere Karteikarte gibt Ihnen die volle Information über das Plug-In : 
+Cette fiche vous donne plein d'information sur le plugin en autre : 
 
-Wenn es offizielle/registriert oder veraltete ist (Sie müssen wirklich alte Plugin Installationen vermeiden)
-* 3 Schaltflächen : 
+* Si il est officiel/recommandé ou si il est obselete (il faut vraiment eviter d'installer des plugins obselete)
+* 3 actions : 
 ** *Installer stable* : permet d'installer le plugin dans sa version stable
 ** *Installer beta* : permet d'installer le plugin dans sa version beta
 ** *Supprimer* : si le plugin est actuellement installé ce bouton permet de le supprimer
