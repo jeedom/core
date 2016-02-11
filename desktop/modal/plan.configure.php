@@ -14,8 +14,12 @@ sendVarToJS('id', $plan->getId());
 <form class="form-horizontal">
     <fieldset id="fd_planConfigure">
         <legend>Général
-            <a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlan'><i class="fa fa-check"></i> Sauvegarder</a>
-            <a class='btn btn-danger  btn-xs pull-right cursor' style="color: white;" id='bt_removeConfigurePlan'><i class="fa fa-times"></i> Supprimer</a>
+            <a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlan'><i class="fa fa-check"></i> {{Sauvegarder}}</a>
+            <a class='btn btn-danger btn-xs pull-right cursor' style="color: white;" id='bt_removeConfigurePlan'><i class="fa fa-times"></i> {{Supprimer}}</a>
+            <?php if ($plan->getLink_type() == 'eqLogic') {?>
+            <a class='btn btn-default btn-xs pull-right cursor' id='bt_advanceEqLogicConfiguration' data-id='<?php echo $link->getId(); ?>'><i class="fa fa-cogs"></i> {{Configuration avancée de l'équipement}}</a>
+            <?php }
+?>
         </legend>
         <input type="text"  class="planAttr form-control" data-l1key="id" style="display: none;"/>
         <input type="text"  class="planAttr form-control" data-l1key="link_type" style="display: none;"/>
@@ -87,12 +91,15 @@ if ($plan->getLink_type() == 'eqLogic') {
     </div>
     <legend>Spécifique</legend>
     <?php
-if ($plan->getLink_type() == 'eqLogic' && is_object($link) && $link->widgetPossibility('changeWidget')) {
+if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
 		echo '<table class="table table-condensed">';
 		echo '<thead>';
 		echo '<tr>';
 		echo '<th>{{Commande}}</th>';
-		echo '<th><center>{{Ne pas afficher la commande}}</center></th>';
+		if ($link->widgetPossibility('changeWidget')) {
+			echo '<th>{{Ne pas afficher la commande}}</th>';
+		}
+		echo '<th>{{Configuration avancée}}</th>';
 		echo '</tr>';
 		echo '</thead>';
 		echo '<tbody>';
@@ -100,8 +107,13 @@ if ($plan->getLink_type() == 'eqLogic' && is_object($link) && $link->widgetPossi
 			if ($cmd->getIsVisible() == 1) {
 				echo '<tr>';
 				echo '<td>' . $cmd->getHumanName() . '</td>';
+				if ($link->widgetPossibility('changeWidget')) {
+					echo '<td>';
+					echo '<center><input type="checkbox" data-size="small" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="cmd" data-l3key="' . $cmd->getId() . '" /></center>';
+					echo '</td>';
+				}
 				echo '<td>';
-				echo '<center><input type="checkbox" data-size="small" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="cmd" data-l3key="' . $cmd->getID() . '" /></center>';
+				echo '<a class="btn btn-default btn-xs pull-right cursor bt_advanceCmdConfiguration" data-id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
 				echo '</td>';
 				echo '</tr>';
 			}
@@ -395,6 +407,19 @@ foreach (planHeader::all() as $planHeader_select) {
 
 <script>
     initCheckBox();
+
+    $('#bt_advanceEqLogicConfiguration').off('click').on('click', function () {
+        $('#md_modal2').dialog({title: "{{Configuration de l'équipement}}"});
+        $('#md_modal2').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).attr('data-id')).dialog('open');
+    });
+
+    $('.bt_advanceCmdConfiguration').off('click').on('click', function () {
+        $('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
+        $('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
+    });
+
+
+
 
     $('#fd_planConfigure').on('change switchChange.bootstrapSwitch','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
         if($(this).value() == 1){

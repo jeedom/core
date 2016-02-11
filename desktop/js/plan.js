@@ -26,8 +26,8 @@
 
  $('body').delegate('.eqLogic-widget .history', 'click', function () {
     if ($('#bt_editPlan').attr('data-mode') != "1") {
-        $('#md_modal2').dialog({title: "Historique"});
-        $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+        $('#md_modal').dialog({title: "Historique"});
+        $("#md_modal").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
     }
 });
 
@@ -137,50 +137,50 @@
 
  $('#bt_configurePlanHeader').on('click', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
-        $('#md_modal2').dialog({title: "{{Configuration du design}}"});
-        $('#md_modal2').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
+        $('#md_modal').dialog({title: "{{Configuration du design}}"});
+        $('#md_modal').load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
  $('.div_displayObject:last').delegate('.eqLogic-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
-        $('#md_modal2').dialog({title: "{{Configuration du widget}}"});
-        $('#md_modal2').load('index.php?v=d&modal=plan.configure&link_type=eqLogic&link_id=' + $(this).attr('data-eqLogic_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+        $('#md_modal').dialog({title: "{{Configuration du widget}}"});
+        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=eqLogic&link_id=' + $(this).attr('data-eqLogic_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
  $('.div_displayObject:last').delegate('.scenario-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
-        $('#md_modal2').dialog({title: "{{Configuration du scénario}}"});
-        $('#md_modal2').load('index.php?v=d&modal=plan.configure&link_type=scenario&link_id=' + $(this).attr('data-scenario_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+        $('#md_modal').dialog({title: "{{Configuration du scénario}}"});
+        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=scenario&link_id=' + $(this).attr('data-scenario_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
  $('.div_displayObject:last').delegate('.plan-link-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
-        $('#md_modal2').dialog({title: "{{Configuration du lien}}"});
-        $('#md_modal2').load('index.php?v=d&modal=plan.configure&link_type=plan&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+        $('#md_modal').dialog({title: "{{Configuration du lien}}"});
+        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=plan&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
  $('.div_displayObject:visible:last').delegate('.text-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
-        $('#md_modal2').dialog({title: "{{Configuration du texte}}"});
-        $('#md_modal2').load('index.php?v=d&modal=plan.configure&link_type=text&link_id=' + $(this).attr('data-text_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+        $('#md_modal').dialog({title: "{{Configuration du texte}}"});
+        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=text&link_id=' + $(this).attr('data-text_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
  $('.div_displayObject:last').delegate('.view-link-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
-        $('#md_modal2').dialog({title: "{{Configuration du lien}}"});
-        $('#md_modal2').load('index.php?v=d&modal=plan.configure&link_type=view&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+        $('#md_modal').dialog({title: "{{Configuration du lien}}"});
+        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=view&link_id=' + $(this).attr('data-link_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
  $('.div_displayObject:last').delegate('.graph-widget', 'dblclick', function () {
     if ($('#bt_editPlan').attr('data-mode') == "1") {
-        $('#md_modal2').dialog({title: "{{Configuration du graph}}"});
-        $('#md_modal2').load('index.php?v=d&modal=plan.configure&link_type=graph&link_id=' + $(this).attr('data-graph_id') + '&planHeader_id=' + planHeader_id).dialog('open');
+        $('#md_modal').dialog({title: "{{Configuration du graph}}"});
+        $('#md_modal').load('index.php?v=d&modal=plan.configure&link_type=graph&link_id=' + $(this).attr('data-graph_id') + '&planHeader_id=' + planHeader_id).dialog('open');
     }
 });
 
