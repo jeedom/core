@@ -602,6 +602,7 @@ class scenarioExpression {
 	}
 
 	public static function variable($_name, $_default = '') {
+		$_name = trim(trim(trim($_name), '"'));
 		$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, trim($_name));
 		if (is_object($dataStore)) {
 			$value = $dataStore->getValue($_default);

@@ -497,7 +497,8 @@ class jeedom {
 
 	public static function evaluateExpression($_input) {
 		try {
-			$_input = scenarioExpression::setTags($_input);
+			$_scenario = null;
+			$_input = scenarioExpression::setTags($_input, $_scenario, true);
 			$result = evaluate($_input);
 			if (is_bool($result) || is_numeric($result)) {
 				return $result;
@@ -512,11 +513,13 @@ class jeedom {
 
 	public static function haltSystem() {
 		plugin::stop();
+		cache::persist();
 		exec('sudo shutdown -h now');
 	}
 
 	public static function rebootSystem() {
 		plugin::stop();
+		cache::persist();
 		exec('sudo reboot');
 	}
 

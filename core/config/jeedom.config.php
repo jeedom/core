@@ -119,6 +119,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'RAIN_TOTAL' => array('name' => 'Pluie (accumulation) (info)'),
 			'WIND_SPEED' => array('name' => 'Vent (vitesse) (info)'),
 			'WIND_DIRECTION' => array('name' => 'Vent (direction) (info)'),
+			'SHOCK' => array('name' => 'Choc (info)'),
 			'GENERIC' => array('name' => 'Générique (info)'),
 			'DONT' => array('name' => 'Ne pas tenir compte de cette commande'),
 		),

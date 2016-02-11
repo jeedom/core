@@ -357,6 +357,8 @@ echo $plugin_menu;
 											<span class="badge tooltips" title="{{Nombre de mises à jour}}" style="background-color : #c9302c;">' . $nbUpdate . '</span></a></li>';
 	}
 	?>
+	<?php if (isConnect('admin') || hasRight('backupview', true) || hasRight('updateview', true) || hasRight('cronview', true) || hasRight('customview', true) || hasRight('securityview', true) || hasRight('userview', true)) {
+		?>
 										<li class="dropdown">
 											<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-cogs"></i><span class="caret"></span></a>
 											<ul class="dropdown-menu">
@@ -364,49 +366,51 @@ echo $plugin_menu;
 												<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fa fa-wrench"></i> {{Configuration}}</a></li>
 												<?php
 }
-	if (hasRight('backupview', true)) {
-		?>
+		if (hasRight('backupview', true)) {
+			?>
 												<li><a href="index.php?v=d&p=backup"><i class="fa fa-floppy-o"></i> {{Sauvegardes}}</a></li>
 												<?php
 }
-	if (hasRight('updateview', true)) {
-		?>
+		if (hasRight('updateview', true)) {
+			?>
 												<li><a href="index.php?v=d&p=update"><i class="fa fa-refresh"></i> {{Centre de mise à jour}}</a></li>
 												<?php
 }
-	if (config::byKey('jeeNetwork::mode') == 'master') {
-		?>
+		if (config::byKey('jeeNetwork::mode') == 'master') {
+			?>
 												<li class="expertModeVisible"><a href="index.php?v=d&p=jeeNetwork"><i class="fa fa-sitemap"></i> {{Réseau Jeedom}}</a></li>
 												<?php }
-	if (hasRight('cronview', true)) {?>
+		if (hasRight('cronview', true)) {?>
 												<li class="expertModeVisible"><a href="index.php?v=d&p=cron"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
 												<?php
 }
-	if (config::byKey('jeeNetwork::mode') == 'master' && hasRight('customview', true)) {
-		?>
+		if (config::byKey('jeeNetwork::mode') == 'master' && hasRight('customview', true)) {
+			?>
 												<li class="expertModeVisible"><a href="index.php?v=d&p=custom"><i class="fa fa-pencil-square-o"></i> {{Personnalisation avancée}}</a></li>
 												<?php
 }
-	?>
+		?>
 											<li role="separator" class="divider"></li>
 											<?php
 if (config::byKey('security::enable') != 0 && hasRight('securityview', true)) {
-		?>
+			?>
 												<li class="expertModeVisible"><a href="index.php?v=d&p=security"><i class="fa fa-lock"></i> {{Sécurité}}</a></li>
 												<?php
 }
-	if (hasRight('userview', true)) {
-		?>
+		if (hasRight('userview', true)) {
+			?>
 												<li><a href="index.php?v=d&p=user"><i class="fa fa-users"></i> {{Utilisateurs}}</a></li>
 												<?php
 }
-	if (config::byKey('rights::enable') != 0 && isConnect('admin')) {
-		?>
+		if (config::byKey('rights::enable') != 0 && isConnect('admin')) {
+			?>
 												<li><a href="index.php?v=d&p=rights"><i class="fa fa-graduation-cap"></i> {{Gestion des droits avancés}}</a></li>
 												<?php }
-	?>
+		?>
 											</ul>
 										</li>
+										<?php }
+	?>
 										<li class="dropdown">
 											<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 												<i class="fa fa-user"></i>
