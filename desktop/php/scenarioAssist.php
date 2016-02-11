@@ -184,12 +184,6 @@ foreach ($scenarioListGroup as $group) {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 col-xs-4 control-label">{{Exécuter en avant plan}}</label>
-                    <div class="col-sm-1 col-xs-1">
-                        <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="speedPriority" >
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="col-xs-4 control-label" for="span_lastCheck">{{Dernier lancement}}</label>
                     <div class="col-xs-3">
                         <div><span id="span_lastLaunch" class="label label-info" style="font-size : 1em;"></span></div>

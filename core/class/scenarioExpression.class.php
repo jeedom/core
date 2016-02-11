@@ -955,9 +955,6 @@ class scenarioExpression {
 				} else if ($this->getExpression() == 'log') {
 					if ($scenario != null) {
 						$scenario->setLog('Log : ' . $options['message']);
-						if ($scenario->getConfiguration('speedPriority', 0) == 1) {
-							$scenario->persistLog();
-						}
 					}
 					return;
 				} else if ($this->getExpression() == 'message') {

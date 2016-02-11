@@ -211,7 +211,6 @@ class scenario {
 	public static function check($_event = null) {
 		$message = '';
 		if ($_event != null) {
-			$speedPriority = null;
 			if (is_object($_event)) {
 				$scenarios = self::byTrigger($_event->getId());
 				$trigger = '#' . $_event->getId() . '#';
@@ -222,7 +221,6 @@ class scenario {
 				$message = __('Scénario exécuté sur événement : #', __FILE__) . $_event . '#';
 			}
 		} else {
-			$speedPriority = 0;
 			$message = __('Scénario exécuté automatiquement sur programmation', __FILE__);
 			$scenarios = scenario::all();
 			$trigger = '#schedule#';
@@ -243,7 +241,7 @@ class scenario {
 			return true;
 		}
 		foreach ($scenarios as $scenario_) {
-			$scenario_->launch(false, $trigger, $message, $speedPriority);
+			$scenario_->launch(false, $trigger, $message);
 		}
 		return true;
 	}
@@ -554,24 +552,17 @@ class scenario {
 
 /*     * *********************Méthodes d'instance************************* */
 
-	public function launch($_force = false, $_trigger = '', $_message = '', $_speedPriority = null) {
+	public function launch($_force = false, $_trigger = '', $_message = '') {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 			return false;
 		}
-		if ($_speedPriority === null) {
-			$_speedPriority = $this->getConfiguration('speedPriority', 0);
-		}
-		if ($_speedPriority == 1) {
-			return $this->execute($_trigger, $_message);
-		} else {
-			$cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
-			$cmd .= ' scenario_id=' . $this->getId();
-			$cmd .= ' force=' . $_force;
-			$cmd .= ' trigger=' . escapeshellarg($_trigger);
-			$cmd .= ' message=' . escapeshellarg($_message);
-			$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
-			exec($cmd);
-		}
+		$cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
+		$cmd .= ' scenario_id=' . $this->getId();
+		$cmd .= ' force=' . $_force;
+		$cmd .= ' trigger=' . escapeshellarg($_trigger);
+		$cmd .= ' message=' . escapeshellarg($_message);
+		$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
+		exec($cmd);
 		return true;
 	}
 
@@ -594,20 +585,16 @@ class scenario {
 		}
 		$this->setLog(__('Début d\'exécution du scénario : ', __FILE__) . $this->getHumanName() . '. ' . $_message);
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
-		if ($this->getConfiguration('speedPriority', 0) == 0) {
-			$this->setDisplay('icon', '');
-			$this->setState('in progress');
-			$this->setPID(getmypid());
-			$this->save();
-		}
+		$this->setDisplay('icon', '');
+		$this->setState('in progress');
+		$this->setPID(getmypid());
+		$this->save();
 		$this->setRealTrigger($_trigger);
 		foreach ($this->getElement() as $element) {
 			$element->execute($this);
 		}
-		if ($this->getConfiguration('speedPriority', 0) == 0) {
-			$this->setState('stop');
-			$this->setPID('');
-		}
+		$this->setState('stop');
+		$this->setPID('');
 		$this->setLog(__('Fin correcte du scénario', __FILE__));
 		$this->persistLog();
 		$scenario = scenario::byId($this->getId());
