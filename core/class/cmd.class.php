@@ -1241,6 +1241,23 @@ class cmd {
 		return history::getPlurality($this->id, $_dateStart, $_dateEnd, $_period, $_offset);
 	}
 
+	public function widgetPossibility($_key = '', $_default = '') {
+		$eqLogic = $this->getEqLogic();
+
+		$class = new ReflectionClass($eqLogic->getEqType_name() . 'Cmd');
+		$method_toHtml = $class->getMethod('toHtml');
+		$return = array();
+		if ($method_toHtml->class != 'cmd') {
+			$return['changeWidget'] = false;
+		} else {
+			$return['changeWidget'] = $eqLogic->widgetPossibility('changeWidget', true);
+		}
+		if ($_key != '') {
+			return (isset($return[$_key])) ? $return[$_key] : $_default;
+		}
+		return $return;
+	}
+
 	public function export() {
 		$cmd = clone $this;
 		$cmd->setId('');

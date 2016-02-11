@@ -747,6 +747,19 @@ class eqLogic {
 		return $return;
 	}
 
+	public function widgetPossibility($_key = '', $_default = '') {
+		$class = new ReflectionClass($this->getEqType_name());
+		$method_toHtml = $class->getMethod('toHtml');
+		$return = array();
+
+		$return['changeWidget'] = ($method_toHtml->class == 'eqLogic') ? true : false;
+
+		if ($_key != '') {
+			return (isset($return[$_key])) ? $return[$_key] : $_default;
+		}
+		return $return;
+	}
+
 /*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {
