@@ -79,15 +79,6 @@ if ($plan->getLink_type() == 'eqLogic') {
             </select>
         </div>
     </div>
-    <?php if ($plan->getLink_type() == 'eqLogic' && $link->widgetPossibility('changeWidget')) {?>
-    <div class="form-group">
-        <label class="col-lg-4 control-label">{{Afficher le nom de l'équipement}}</label>
-        <div class="col-lg-2">
-            <input type="checkbox" class="planAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-l1key="display" data-l2key="name" >
-        </div>
-    </div>
-    <?php }
-	?>
     <legend>Spécifique</legend>
     <?php
 if ($plan->getLink_type() == 'eqLogic' && is_object($link) && $link->widgetPossibility('changeWidget')) {
