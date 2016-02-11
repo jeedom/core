@@ -177,7 +177,7 @@ Vous avez ici aussi un bouton pour aller chercher une commande
 === Condition ou valeur d'une commande d'action
 
 [IMPORTANT]
-Attention à bien mettre des ' ou " (quote ou double quote) lors de l'utilisation de chaîne de caractère. Ex : "\#[Object][Equipement][Info]#" = "oui"
+Attention à bien mettre des ' ou " (quote ou double quote) lors de l'utilisation de chaîne de caractère. Ex : \#[Object][Equipement][Info]# = "oui"
 
 
 Vous pouvez utiliser n'importe lequel des symboles suivant pour les opérateurs : 
