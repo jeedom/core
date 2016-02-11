@@ -909,7 +909,7 @@
         "Edition complète": "Edición completada"
     },
     "desktop/js/view.js": {
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Está en el modo de edición, puede desplazar y cambiar el tamaño de los widgets y cambiar la orden de los comandos de los widgets"
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Está en el modo de edición, puede desplazar y cambiar el tamaño de los widgets y cambiar el orden de los comandos de los widgets"
     },
     "desktop/php/view_edit.php": {
         "Créer une vue": "Crear una vista",
@@ -1596,7 +1596,7 @@
         "Historique": "Historial"
     },
     "desktop/js/dashboard.js": {
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Está en el modo de edición, puede desplazar y cambiar el tamaño de los widgets y cambiar la orden de los comandos de los widgets"
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Está en el modo de edición, puede desplazar y cambiar el tamaño de los widgets y cambiar el orden de los comandos de los widgets"
     },
     "core/ajax/update.ajax.php": {
         "[START UPDATE]\n": "[START UPDATE]",
