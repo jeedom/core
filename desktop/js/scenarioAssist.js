@@ -262,7 +262,16 @@ $("#bt_stopScenario").on('click', function () {
     });
 });
 
+$('.bt_showExpressionTest').on('click', function () {
+  $('#md_modal').dialog({title: "{{Testeur d'expression}}"});
+  $("#md_modal").load('index.php?v=d&modal=expression.test').dialog('open');
+});
 
+
+$('.bt_showScenarioSummary').on('click', function () {
+  $('#md_modal').dialog({title: "{{Résumé scénario}}"});
+  $("#md_modal").load('index.php?v=d&modal=scenario.summary').dialog('open');
+});
 /***********************LOG*****************************/
 
 $('#bt_logScenario').on('click', function () {

@@ -317,7 +317,10 @@ $('.bt_showExpressionTest').on('click', function () {
   $("#md_modal").load('index.php?v=d&modal=expression.test').dialog('open');
 });
 
-
+$('.bt_showScenarioSummary').on('click', function () {
+  $('#md_modal').dialog({title: "{{Résumé scénario}}"});
+  $("#md_modal").load('index.php?v=d&modal=scenario.summary').dialog('open');
+});
 
 $('#in_addElementType').on('change',function(){
   $('.addElementTypeDescription').hide();
@@ -786,26 +789,26 @@ function printScenario(_id) {
       $('#bt_stopScenario').hide();
       switch (data.state) {
         case 'error' :
-        $('#span_ongoing').text('Erreur');
+        $('#span_ongoing').text('{{Erreur}}');
         $('#span_ongoing').removeClass('label-info label-danger label-success').addClass('label-warning');
         break;
         case 'on' :
-        $('#span_ongoing').text('Actif');
+        $('#span_ongoing').text('{{Actif}}');
         $('#span_ongoing').removeClass('label-info label-danger label-warning').addClass('label-success');
         break;
         case 'in progress' :
-        $('#span_ongoing').text('En cours');
+        $('#span_ongoing').text('{{En cours}}');
         $('#span_ongoing').addClass('label-success');
         $('#span_ongoing').removeClass('label-success label-danger label-warning').addClass('label-info');
         $('#bt_stopScenario').show();
         break;
         case 'stop' :
-        $('#span_ongoing').text('Arrêté');
+        $('#span_ongoing').text('{{Arrêté}}');
         $('#span_ongoing').removeClass('label-info label-success label-warning').addClass('label-danger');
         break;
       }
       if (data.isActive != 1) {
-        $('#in_ongoing').text('Inactif');
+        $('#in_ongoing').text('{{Inactif}}');
         $('#in_ongoing').removeClass('label-danger');
         $('#in_ongoing').removeClass('label-success');
       }

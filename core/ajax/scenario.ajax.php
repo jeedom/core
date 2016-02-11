@@ -177,6 +177,21 @@ try {
 		ajax::success($return);
 	}
 
+	if (init('action') == 'saveAll') {
+		$scenarios = json_decode(init('scenarios'), true);
+		if (is_array($scenarios)) {
+			foreach ($scenarios as $scenario_ajax) {
+				$scenario = scenario::byId($scenario_ajax['id']);
+				if (!is_object($scenario)) {
+					continue;
+				}
+				utils::a2o($scenario, $scenario_ajax);
+				$scenario->save();
+			}
+		}
+		ajax::success();
+	}
+
 	if (init('action') == 'autoCompleteGroup') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));

@@ -1336,19 +1336,19 @@ class scenario {
 		return $this->_tags;
 	}
 
-	function getRealTrigger() {
+	public function getRealTrigger() {
 		return $this->_realTrigger;
 	}
 
-	function setRealTrigger($_realTrigger) {
+	public function setRealTrigger($_realTrigger) {
 		$this->_realTrigger = $_realTrigger;
 	}
 
-	function getReturn() {
+	public function getReturn() {
 		return $this->_return;
 	}
 
-	function setReturn($_return) {
+	public function setReturn($_return) {
 		$this->_return = $_return;
 	}
 

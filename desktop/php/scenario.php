@@ -106,6 +106,13 @@ foreach ($scenarioListGroup as $group) {
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
 </div>
 
+   <div class="cursor expertModeVisible bt_showScenarioSummary" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+       <center>
+        <i class="fa fa-list" style="font-size : 4em;color:#337ab7;"></i>
+    </center>
+    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Vue d'ensemble}}</center></span>
+</div>
+
    <div class="cursor expertModeVisible bt_showExpressionTest" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
        <center>
         <i class="fa fa-check" style="font-size : 4em;color:#337ab7;"></i>
@@ -260,13 +267,13 @@ foreach (object::all() as $object) {
             <div class="form-group expertModeVisible">
                 <label class="col-xs-6 control-label">{{Enchainer les commandes sans attendre}}</label>
                 <div class="col-xs-1">
-                    <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="cmdNoWait" titme="{{Enchaine les commandes sans verification que la commande précedente c'est bien éxecutée (Attention il faut que le plugin le supporte)}}">
+                    <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="cmdNoWait" title="{{Enchaine les commandes sans verification que la commande précedente c'est bien éxecutée (Attention il faut que le plugin le supporte)}}">
                 </div>
             </div>
             <div class="form-group expertModeVisible">
                 <label class="col-xs-6 control-label">{{Pas de log}}</label>
                 <div class="col-xs-1">
-                    <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="noLog" titme="{{Le scénario n'écrit plus de log}}">
+                    <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="noLog" title="{{Le scénario n'écrit plus de log}}">
                 </div>
             </div>
             <div class="form-group">
@@ -283,7 +290,7 @@ foreach (object::all() as $object) {
 <div id="div_scenarioElement" class="element"></div>
 
 <div class="form-actions">
-    <a class="btn btn-warning tooltips" id="bt_testScenario" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> Exécuter</a>
+    <a class="btn btn-warning tooltips" id="bt_testScenario" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Exécuter}}</a>
     <a class="btn btn-danger" id="bt_delScenario"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
     <a class="btn btn-success" id="bt_saveScenario"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
 </div>
