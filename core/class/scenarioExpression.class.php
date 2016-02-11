@@ -996,10 +996,6 @@ class scenarioExpression {
 					$this->setLog($scenario, __('Changement design : ', __FILE__) . $options['plan_id']);
 					event::add('jeedom::gotoplan', $options['plan_id']);
 					return;
-				} else if ($this->getExpression() == 'return') {
-					$this->setLog($scenario, __('Je vais retourner : ', __FILE__) . $options['message']);
-					$scenario->setReturn($scenario->getReturn() . $options['message']);
-					return;
 				} else if ($this->getExpression() == 'scenario') {
 					if ($scenario != null && $this->getOptions('scenario_id') == $scenario->getId()) {
 						$actionScenario = &$scenario;

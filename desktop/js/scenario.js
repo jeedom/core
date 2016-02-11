@@ -51,7 +51,7 @@
  {val: 'collectDate(cmd)'},
  {val: 'eqEnable(equipement)'}
  ];
- autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'say','wait','return','gotodesign','log','message','equipement','ask'];
+ autoCompleteAction = ['sleep', 'variable', 'scenario', 'stop', 'say','wait','gotodesign','log','message','equipement','ask'];
 
  if (getUrlVars('saveSuccessFull') == 1) {
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});

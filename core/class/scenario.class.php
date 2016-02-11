@@ -45,7 +45,6 @@ class scenario {
 	private $_elements = array();
 	private $_changeState = false;
 	private $_realTrigger = '';
-	private $_return = '';
 	private $_tags = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
@@ -602,9 +601,6 @@ class scenario {
 			$this->setIsActive($scenario->getIsActive());
 		}
 		$this->save();
-		if ($this->getReturn() != '') {
-			return $this->getReturn();
-		}
 		return true;
 	}
 
@@ -1342,14 +1338,6 @@ class scenario {
 
 	public function setRealTrigger($_realTrigger) {
 		$this->_realTrigger = $_realTrigger;
-	}
-
-	public function getReturn() {
-		return $this->_return;
-	}
-
-	public function setReturn($_return) {
-		$this->_return = $_return;
 	}
 
 }
