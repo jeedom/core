@@ -887,5 +887,5 @@ function sanitizeAccent($_message) {
 		'Ù' => 'u', 'Ú' => 'u', 'Û' => 'u', 'Ü' => 'u', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'µ' => 'u',
 		'Œ' => 'oe', 'œ' => 'oe',
 		'$' => 's');
-	return preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+#', '', strtr($_message, $caracteres));
+	return preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+\##', '', strtr($_message, $caracteres));
 }
