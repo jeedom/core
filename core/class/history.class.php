@@ -324,7 +324,7 @@ ORDER BY `datetime` ASC';
 			'startTime' => $_startTime,
 			'endTime' => $_endTime,
 		);
-		$sql = 'SELECT AVG(value) as avg, MIN(value) as min, MAX(value) as max, SUM(value) as sum, COUNT(value) as count, STD(value) as std, VARIANCE(value) as variance, value as last
+		$sql = 'SELECT AVG(value) as avg, MIN(value) as min, MAX(value) as max, SUM(value) as sum, COUNT(value) as count, STD(value) as std, VARIANCE(value) as variance, value as `last`
 	FROM (
 		SELECT *
 		FROM history
