@@ -184,8 +184,8 @@ Vous pouvez utiliser n'importe lequel des symboles suivant pour les opérateurs 
 * < : inférieur,
 * \<= : inférieur ou égal,
 * != : différent,
-* ~ : contient,
-* !~ : ne contient pas.
+* matches : contient (ex : #[Salle de bain][Hydrometrie][etat]# matches "/humide/" ),
+* not ( ... matches ...) : ne contient pas (ex : not(#[Salle de bain][Hydrometrie][etat]# matches "/humide/")),
 
 Vous pouvez combiner n'importe quelle opération avec les opérateurs suivants :
 
