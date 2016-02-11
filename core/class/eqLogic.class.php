@@ -499,9 +499,6 @@ class eqLogic {
 		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowObjectNameOnView', 0) == 0) {
 			$object = $this->getObject();
 			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
-		} else if (($_version == 'dplan') && $this->getDisplay('doNotShowObjectNameOnPlan', 0) == 0) {
-			$object = $this->getObject();
-			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
 		}
 		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
 			$replace['#hideEqLogicName#'] = 'display:none;';

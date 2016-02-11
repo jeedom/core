@@ -79,7 +79,7 @@ if ($plan->getLink_type() == 'eqLogic') {
             </select>
         </div>
     </div>
-    <?php if ($plan->getLink_type() == 'eqLogic') {?>
+    <?php if ($plan->getLink_type() == 'eqLogic' && $link->widgetPossibility('changeWidget')) {?>
     <div class="form-group">
         <label class="col-lg-4 control-label">{{Afficher le nom de l'équipement}}</label>
         <div class="col-lg-2">
@@ -90,12 +90,11 @@ if ($plan->getLink_type() == 'eqLogic') {
 	?>
     <legend>Spécifique</legend>
     <?php
-if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
+if ($plan->getLink_type() == 'eqLogic' && is_object($link) && $link->widgetPossibility('changeWidget')) {
 		echo '<table class="table table-condensed">';
 		echo '<thead>';
 		echo '<tr>';
 		echo '<th>{{Commande}}</th>';
-		//echo '<th><center>{{Ne pas afficher les stats}}</center></th>';
 		echo '<th><center>{{Ne pas afficher la commande}}</center></th>';
 		echo '</tr>';
 		echo '</thead>';
@@ -104,11 +103,6 @@ if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
 			if ($cmd->getIsVisible() == 1) {
 				echo '<tr>';
 				echo '<td>' . $cmd->getHumanName() . '</td>';
-				//echo '<td>';
-				if ($cmd->getIsHistorized() == 1) {
-					//	echo '<center><input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmdStats" data-l3key="' . $cmd->getID() . '" /></center>';
-				}
-				//echo '</td>';
 				echo '<td>';
 				echo '<center><input type="checkbox" data-size="small" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="cmd" data-l3key="' . $cmd->getID() . '" /></center>';
 				echo '</td>';

@@ -145,7 +145,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                 <tr>
                     <td>{{Afficher le nom de l'objet}}</td>
                     <td></td>
-                    <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowObjectNameOnPlan" /></td>
+                    <td></td>
                     <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowObjectNameOnView" /></td>
                     <td></td>
                 </tr>
