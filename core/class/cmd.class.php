@@ -878,6 +878,8 @@ class cmd {
 			$replace['#hideCmdName#'] = 'display:none;';
 		} else if ($this->getDisplay('doNotShowNameOnMobile') == 1 && $_version == 'mobile') {
 			$replace['#hideCmdName#'] = 'display:none;';
+		} else if ($this->getDisplay('doNotShowNameOnPlan') == 1 && $_version == 'dplan') {
+			$replace['#hideCmdName#'] = 'display:none;';
 		}
 		if ($this->getType() == 'info') {
 			$replace['#state#'] = '';
@@ -905,11 +907,11 @@ class cmd {
 					$showStat = true;
 					if ($this->getDisplay('doNotShowStatOnDashboard') == 1 && $_version == 'dashboard') {
 						$showStat = false;
-					}
-					if ($this->getDisplay('doNotShowStatOnView') == 1 && ($_version == 'dview' || $_version == 'mview')) {
+					} else if ($this->getDisplay('doNotShowStatOnView') == 1 && ($_version == 'dview' || $_version == 'mview')) {
 						$showStat = false;
-					}
-					if ($this->getDisplay('doNotShowStatOnMobile') == 1 && $_version == 'mobile') {
+					} else if ($this->getDisplay('doNotShowStatOnMobile') == 1 && $_version == 'mobile') {
+						$showStat = false;
+					} else if ($this->getDisplay('doNotShowStatOnPlan') == 1 && $_version == 'dplan') {
 						$showStat = false;
 					}
 					if ($showStat) {

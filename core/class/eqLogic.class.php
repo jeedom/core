@@ -453,7 +453,7 @@ class eqLogic {
 		}
 		$mc = cache::byKey('widgetHtml' . $_version . $this->getId());
 		if ($mc->getValue() != '') {
-			//return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 		}
 		$parameters = $this->getDisplay('parameters');
 		$cmd_html = '';
@@ -482,6 +482,8 @@ class eqLogic {
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
+			'#name_display#' => $this->getName(),
+			'#hideEqLogicName#' => '',
 			'#eqLink#' => ($this->hasRight('w')) ? $this->getLinkToConfiguration() : '#',
 			'#category#' => $this->getPrimaryCategory(),
 			'#background_color#' => $this->getBackgroundColor($version),
@@ -497,18 +499,16 @@ class eqLogic {
 		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowObjectNameOnView', 0) == 0) {
 			$object = $this->getObject();
 			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
+		} else if (($_version == 'dplan') && $this->getDisplay('doNotShowObjectNameOnPlan', 0) == 0) {
+			$object = $this->getObject();
+			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
 		}
 		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
-			$replace['#name#'] = '';
-		}
-		if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
-			$replace['#name#'] = '';
-		}
-		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotDisplayBatteryLevelOnView') == 1) {
-			$replace['#battery#'] = -1;
-		}
-		if ($_version == 'dashboard' && $this->getDisplay('doNotDisplayBatteryLevelOnDashboard') == 1) {
-			$replace['#battery#'] = -1;
+			$replace['#hideEqLogicName#'] = 'display:none;';
+		} else if (($_version == 'dplan') && $this->getDisplay('doNotShowNameOnPlan') == 1) {
+			$replace['#hideEqLogicName#'] = 'display:none;';
+		} else if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
+			$replace['#hideEqLogicName#'] = 'display:none;';
 		}
 
 		if (is_array($parameters)) {

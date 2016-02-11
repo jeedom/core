@@ -483,6 +483,7 @@ class jeedom {
 		$alias = array(
 			'mview' => 'mobile',
 			'dview' => 'dashboard',
+			'dplan' => 'dashboard',
 		);
 		return (isset($alias[$_version])) ? $alias[$_version] : $_version;
 	}

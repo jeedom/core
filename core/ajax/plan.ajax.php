@@ -50,7 +50,7 @@ try {
 				}
 				$return[] = array(
 					'plan' => utils::o2a($plan),
-					'html' => $link->toHtml(init('version', 'dashboard')),
+					'html' => $link->toHtml(init('version', 'dplan')),
 				);
 			} else if ($plan->getLink_type() == 'plan') {
 				$plan_link = planHeader::byId($plan->getLink_id());

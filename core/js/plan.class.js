@@ -97,7 +97,7 @@ jeedom.plan.getObjectPlan = function (_params) {
     paramsAJAX.data = {
         action: 'getObjectPlan',
         id: _params.id,
-        version: _params.version || 'dashboard'
+        version: _params.version || 'dplan'
     };
     $.ajax(paramsAJAX);
 };
@@ -118,7 +118,7 @@ jeedom.plan.byPlanHeader = function (_params) {
         action: 'planHeader',
         planHeader_id: _params.id,
         noHtml : _params.noHtml,
-        version: _params.version || 'dashboard'
+        version: _params.version || 'dplan'
     };
     $.ajax(paramsAJAX);
 };
