@@ -4,15 +4,17 @@ if (!isConnect('admin')) {
 }
 ?>
 <div id="div_alertExpressionTest"></div>
+
+
+
 <form class="form-horizontal">
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Test</label>
-		<div class="col-sm-9">
-			<input class="form-control" id="in_testExpression">
-		</div>
-		<div class="col-sm-1">
-			<a class="btn btn-warning" id="bt_executeExpressionOk"><i class="fa fa-bolt"></i> {{Exécuter}}</a>
-		</div>
+	<div class="input-group input-group-sm" style="width: 100%">
+		<span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Test}}</span>
+		<input class="form-control" id="in_testExpression">
+		<span class="input-group-btn">
+			<a class="btn btn-default" id="bt_searchInfoCmd"><i class="fa fa-list-alt"></i></a>
+			<a class="btn btn-default" id="bt_executeExpressionOk"><i class="fa fa-bolt"></i> {{Exécuter}}</a>
+		</span>
 	</div>
 </form>
 
@@ -20,6 +22,14 @@ if (!isConnect('admin')) {
 <div id="div_expressionTestResult"></div>
 
 <script>
+
+	$('#bt_searchInfoCmd').on('click', function() {
+		var el = $(this);
+		jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+			$('#in_testExpression').atCaret('insert', result.human);
+		});
+	});
+
 	$('#bt_executeExpressionOk').on('click',function(){
 		if($('#in_testExpression').value() == ''){
 			$('#div_alertExpressionTest').showAlert({message: '{{L\'epression de test ne peut être vide}}', level: 'danger'});
