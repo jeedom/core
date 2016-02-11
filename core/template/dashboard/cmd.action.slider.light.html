@@ -1,6 +1,6 @@
 <div style="width:90px;min-height:90px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
     <center>
-        <span style="font-weight: bold;font-size : 12px;" class='cmdName'>#name_display#<br/></span>
+        <div style="font-weight: bold;font-size : 12px;#hideCmdName#" class='cmdName'>#name_display#</div>
         <span class="cursor iconCmd#uid#" style="font-size: 3em;"></span>
         <div class="slider" style="margin : 5px 10px 8px 10px;width: 80px;" value="#state#" ></div>
     </center>
@@ -16,7 +16,7 @@
         $('.iconCmd#uid#').off().on('click', function() {
             if ($(this).attr('data-state') == 'on') {
                 var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
-                jeedom.cmd.execute({id: '#id#', value: {slider:value }});
+                jeedom.cmd.execute({id: '#id#', value: {slider: value}});
             } else {
                 var value = ('#minValue#' == '') ? 100 : parseInt('#maxValue#');
                 jeedom.cmd.execute({id: '#id#', value: {slider: value}});

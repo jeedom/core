@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
 require_once dirname(__FILE__) . '/core.inc.php';
 $session_lifetime = config::byKey('session_lifetime', 24);
 if (!is_numeric($session_lifetime)) {
@@ -142,7 +141,24 @@ function hasRight($_right, $_needAdmin = false) {
 	if (!isConnect()) {
 		return false;
 	}
+	if (!is_array($_SESSION['rights'])) {
+		@session_start();
+		$_SESSION['rights'] = array();
+		@session_write_close();
+	}
+	if (isset($_SESSION['rights']['*'])) {
+		return $_SESSION['rights']['*'];
+	}
+	if (isset($_SESSION['rights'][$_right])) {
+		if ($_SESSION['rights'][$_right] == -1) {
+			return !$_needAdmin;
+		}
+		return $_SESSION['rights'][$_right];
+	}
 	if (isConnect('admin')) {
+		@session_start();
+		$_SESSION['rights']['*'] = true;
+		@session_write_close();
 		return true;
 	}
 	if (config::byKey('rights::enable') != 0) {
@@ -150,9 +166,15 @@ function hasRight($_right, $_needAdmin = false) {
 	}
 	$rights = rights::byuserIdAndEntity($_SESSION['user']->getId(), $_right);
 	if (!is_object($rights)) {
+		@session_start();
+		$_SESSION['rights'][$_right] = -1;
+		@session_write_close();
 		return !$_needAdmin;
 	}
-	return $rights->getRight();
+	@session_start();
+	$_SESSION['rights'][$_right] = $rights->getRight();
+	@session_write_close();
+	return $_SESSION['rights'][$_right];
 }
 
 ?>

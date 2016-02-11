@@ -239,16 +239,18 @@ if ($market->getHardwareCompatibility('Jeedomboard') == 1) {
 ?>
             </div>
             <div class='col-sm-2'>
-                <label class="control-label">{{Nombre de téléchargements}}</label><br/>
-                <span class="marketAttr" data-l1key="downloaded"></span>
-            </div>
-            <div class='col-sm-1'>
-                <label class="control-label">{{Type}}</label><br/>
-                <span class="marketAttr" data-l1key="type"></span>
-            </div>
-            <div class='col-sm-2'>
-                <label class="control-label">Langue disponible</label><br/>
-                <?php
+               <label class="control-label">{{Nombre d'installation}}</label><br/>
+               <span class="marketAttr" data-l1key="nbInstall"></span><br/>
+               <label class="control-label">{{Nombre de téléchargements}}</label><br/>
+               <span class="marketAttr" data-l1key="downloaded"></span>
+           </div>
+           <div class='col-sm-1'>
+            <label class="control-label">{{Type}}</label><br/>
+            <span class="marketAttr" data-l1key="type"></span>
+        </div>
+        <div class='col-sm-2'>
+            <label class="control-label">Langue disponible</label><br/>
+            <?php
 echo '<img src="core/img/francais.png" width="30" />';
 if ($market->getLanguage('en_US') == 1) {
 	echo '<img src="core/img/anglais.png" width="30" />';
@@ -269,20 +271,20 @@ if ($market->getLanguage('it_IT') == 1) {
 	echo '<img src="core/img/italien.png" width="30" />';
 }
 ?>
-           </div>
-           <div class='col-sm-3'>
-             <label class="control-label">{{Dernière mise à jour le}}</label><br/>
-             <?php echo $market->getDatetime('stable') ?>
-         </div>
+       </div>
+       <div class='col-sm-3'>
+         <label class="control-label">{{Dernière mise à jour le}}</label><br/>
+         <?php echo $market->getDatetime('stable') ?>
      </div>
-
  </div>
 
- <div id="div_comments" title="{{Commentaires}}"></div>
+</div>
 
- <div id="div_changelog" title="{{Changelog}}"></div>
+<div id="div_comments" title="{{Commentaires}}"></div>
 
- <style>
+<div id="div_changelog" title="{{Changelog}}"></div>
+
+<style>
     .slick-prev:before, .slick-next:before {
         color : #707070;
     }

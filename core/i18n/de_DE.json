@@ -713,7 +713,7 @@
         "Beta (développement, instable)": "Beta (Entwicklung, instabil)",
         "Système (OS)": "System (OS)",
         "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "Achtung : Diese Vorgänge sind riskant, sie können den Zugriff auf das System und Jeedom verlieren. Das Jeedom-Team behält sich das Recht vor, jeden Antrag auf Unterstützung bei unsachgemäßer Handhabung zu verweigern.",
-        "Lancer": "Einführung"
+        "Lancer": "Start"
     },
     "common": {
         "Lumiere Etat (info)": "Licht Zustand (Info)",
@@ -1242,7 +1242,7 @@
     },
     "desktop/php/backup.php": {
         "Sauvegardes": "Sicherungen",
-        "Lancer": "Einführung",
+        "Lancer": "Start",
         "Emplacement des sauvegardes": "Sicherungsort",
         "Nombre de jour(s) de mémorisation des sauvegardes": "Anzahl der Tag (e) zum Speichern der Sicherungskopie",
         "Taille totale maximale des backups (Mo)": "Maximale Gesamtgröße des Backups (MB)",

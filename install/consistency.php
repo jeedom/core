@@ -261,8 +261,8 @@ try {
 
 	if (!file_exists('/usr/local/share/ca-certificates/root_market.crt') && file_exists('/usr/local/share/ca-certificates')) {
 		echo 'Ajout du certificat du market...';
-		shell_exec('sudo cp ' . dirname(__FILE__) . '/../script/root_market.crt /usr/local/share/ca-certificates');
-		shell_exec('sudo update-ca-certificates');
+		shell_exec('sudo cp ' . dirname(__FILE__) . '/../script/root_market.crt /usr/local/share/ca-certificates 2>&1 > /dev/null');
+		shell_exec('sudo update-ca-certificates 2>&1 > /dev/null');
 		echo "OK\n";
 	}
 
