@@ -128,9 +128,11 @@ class market {
 
 	public static function byLogicalId($_logicalId) {
 		$market = self::getJsonRpc();
-		$options = array('logicalId' => $_logicalId);
+
 		if (is_array($_logicalId)) {
 			$options = $_logicalId;
+		} else {
+			$options = array('logicalId' => $_logicalId);
 		}
 		if ($market->sendRequest('market::byLogicalId', $options)) {
 			if (is_array($_logicalId)) {
@@ -161,10 +163,10 @@ class market {
 		$market = self::getJsonRpc();
 		if (is_array($_logicalId)) {
 			$options = $_logicalId;
-			$timeout = 120;
+			$timeout = 240;
 		} else {
 			$options = array('logicalId' => $_logicalId, 'type' => $_type);
-			$timeout = 4;
+			$timeout = 10;
 		}
 		if ($market->sendRequest('market::byLogicalIdAndType', $options, $timeout, null, 1)) {
 			if (is_array($_logicalId)) {
