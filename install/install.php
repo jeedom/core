@@ -134,12 +134,36 @@ try {
 						unlink($tmp);
 					}
 					exec('wget --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
+					$redownload = false;
 					if (!file_exists($tmp)) {
-						throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
+						if (config::byKey('market::branch', 'core', 'stable') != 'stable') {
+							throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
+						}
+						$redownload = true;
+						echo __("NOK. Retry....\n", __FILE__);
 					}
 					if (filesize($tmp) < 100) {
-						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
+						if (config::byKey('market::branch', 'core', 'stable') != 'stable') {
+							throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
+						}
+						$redownload = true;
+						echo __("NOK. Retry....\n", __FILE__);
 					}
+
+					if ($redownload) {
+						$url = 'https://market.jeedom.fr/jeedom/stable.zip';
+						if (file_exists($tmp)) {
+							unlink($tmp);
+						}
+						exec('wget --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
+						if (!file_exists($tmp)) {
+							throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
+						}
+						if (filesize($tmp) < 100) {
+							throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
+						}
+					}
+
 					echo __("OK\n", __FILE__);
 
 					echo __("Nettoyage des dossiers en cours...", __FILE__);
