@@ -117,8 +117,8 @@ class interactDef {
 	}
 
 	public static function getTagFromQuery($_def, $_query) {
-		$_def = trim($_def);
-		$_query = trim($_query);
+		$_def = self::sanitizeQuery(trim($_def));
+		$_query = self::sanitizeQuery(trim($_query));
 		$options = array();
 		$regexp = preg_quote(strtolower($_def));
 		preg_match_all("/#(.*?)#/", $_def, $tags);
