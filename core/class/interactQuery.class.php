@@ -361,7 +361,7 @@ class interactQuery {
 					}
 					$options['tags'] = $tags_replace;
 					$return = scenarioExpression::createAndExec('action', $action['cmd'], $options);
-					if (trim($return) != '') {
+					if (trim($return) !== '' && trim($return) !== null) {
 						$replace['#valeur#'] = $return;
 					}
 
