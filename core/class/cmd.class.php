@@ -697,7 +697,7 @@ class cmd {
 	 * @throws Exception
 	 */
 	public function execCmd($_options = null, $cache = 1, $_sendNodeJsEvent = true, $_quote = false) {
-		if ($this->getType() == 'info' && $cache != 0) {
+		if ($this->getType() == 'info') {
 			$mc = cache::byKey('cmd' . $this->getId());
 			if ($mc->getValue() !== null) {
 				$this->setCollectDate($mc->getOptions('collectDate', $mc->getDatetime()));
@@ -1142,10 +1142,6 @@ class cmd {
 		} catch (Error $e) {
 			log::add('cmd', 'error', __('Erreur push sur : ', __FILE__) . $url . ' => ' . $e->getMessage());
 		}
-	}
-
-	public function invalidCache() {
-		$mc->remove();
 	}
 
 	public function emptyHistory($_date = '') {
