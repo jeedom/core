@@ -386,6 +386,9 @@ class interactQuery {
 				unset($replace[$key]);
 			}
 		}
+		if (!isset($replace['#valeur#'])) {
+			$replace['#valeur#'] = __('aucune valeur', __FILE__);
+		}
 		$replace['"'] = '';
 		return str_replace(array_keys($replace), $replace, scenarioExpression::setTags($reply));
 	}
