@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
 
 ?>
 <div id="div_alertInteractTest"></div>
-<form class="form-horizontal">
+<form class="form-horizontal" onsubmit="return false;">
 	<div class="input-group input-group-sm" style="width: 100%">
 		<span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Demande}}</span>
 		<input class="form-control" id="in_testInteractQuery">
