@@ -51,6 +51,14 @@ class cache {
 			return self::$cache;
 		}
 		$engine = config::byKey('cache::engine');
+		if ($engine == 'MemcachedCache' && !class_exists('memcached')) {
+			$engine = 'FilesystemCache';
+			config::save('cache::engine', 'FilesystemCache');
+		}
+		if ($engine == 'RedisCache' && !class_exists('redis')) {
+			$engine = 'FilesystemCache';
+			config::save('cache::engine', 'FilesystemCache');
+		}
 		switch ($engine) {
 			case 'FilesystemCache':
 				self::$cache = new \Doctrine\Common\Cache\FilesystemCache("/tmp/jeedom-cache");
