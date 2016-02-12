@@ -690,13 +690,6 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Durée de vie du cache (en secondes)}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input type="text"  class="configKey form-control" data-l1key="lifetimeMemCache" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Vider toutes les données en cache}}</label>
                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                             <a class="btn btn-warning" id="bt_flushMemcache"><i class="fa fa-trash"></i> {{Vider}}</a>

@@ -418,15 +418,9 @@ $('body').on('.cmd .cmdAttr[data-l1key=display][data-l2key=icon]', 'click', func
 
 $('body').on('.cmd .cmdAttr[data-l1key=eventOnly]', 'change', function () {
     if ($(this).value() == 1) {
-        $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').hide();
-        $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').addClass('hide');
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().show();
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().removeClass('hide');
     } else {
-        if ($(this).closest('.cmd').find('.cmdAttr[data-l1key=type]').value() != 'action') {
-            $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').show();
-            $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').removeClass('hide');
-        }
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().hide();
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().addClass('hide');
 

@@ -122,7 +122,7 @@ $(".li_eqLogic").off('click').on('click', function () {
             changeLeftMenuObjectOrEqLogicName = false;
         }
     });
-return false;
+    return false;
 });
 
 if (getUrlVars('saveSuccessFull') == 1) {
@@ -161,10 +161,10 @@ $('.eqLogicAction[data-action=copy]').off('click').on('click', function () {
                         }
                     }
                 });
-return false;
-}
-});
-}
+                return false;
+            }
+        });
+    }
 });
 
 
@@ -215,7 +215,7 @@ $('.eqLogicAction[data-action=save]').off('click').on('click', function () {
             }
         }
     });
-return false;
+    return false;
 });
 
 $('.eqLogicAttr[data-l1key=name]').off('click').on('change', function () {
@@ -251,9 +251,9 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function () {
                 });
             }
         });
-} else {
-    $('#div_alert').showAlert({message: '{{Veuillez d\'abord sélectionner un}} ' + eqType, level: 'danger'});
-}
+    } else {
+        $('#div_alert').showAlert({message: '{{Veuillez d\'abord sélectionner un}} ' + eqType, level: 'danger'});
+    }
 });
 
 
@@ -308,19 +308,12 @@ $('body').undelegate('.cmd .cmdAction[data-l1key=display][data-l2key=icon]', 'cl
 
 $('body').undelegate('.cmd .cmdAction[data-l1key=eventOnly]', 'click').delegate('.cmd .cmdAttr[data-l1key=eventOnly]', 'change switchChange.bootstrapSwitch', function () {
     if ($(this).value() == 1) {
-        $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').hide();
-        $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').addClass('hide');
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().show();
         $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().removeClass('hide');
     } else {
-       if($(this).closest('.cmd').find('.cmdAttr[data-l1key=type]').value() != 'action'){
-        $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').show();
-        $(this).closest('.cmd').find('.cmdAttr[data-l1key=cache][data-l2key=lifetime]').removeClass('hide');
+        $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().hide();
+        $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().addClass('hide');
     }
-    $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().hide();
-    $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().addClass('hide');
-    
-}
 });
 
 $('body').undelegate('.cmd .cmdAction[data-action=remove]', 'click').delegate('.cmd .cmdAction[data-action=remove]', 'click', function () {
@@ -410,20 +403,20 @@ $("img.lazy").each(function () {
                         el.trigger("sporty");
                     }
                 });
-},
-load: function () {
-    el.lazyload({
-        event: "sporty"
-    });
-    el.trigger("sporty");
-}
-});
-} else {
-    el.lazyload({
-        event: "sporty"
-    });
-    el.trigger("sporty");
-}
+            },
+            load: function () {
+                el.lazyload({
+                    event: "sporty"
+                });
+                el.trigger("sporty");
+            }
+        });
+    } else {
+        el.lazyload({
+            event: "sporty"
+        });
+        el.trigger("sporty");
+    }
 });
 
 $('body').delegate('.cmdAttr', 'change switchChange.bootstrapSwitch', function () {

@@ -32,7 +32,7 @@ class cache {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function set($_key, $_value, $_lifetime = 60, $_options = null) {
+	public static function set($_key, $_value, $_lifetime = 0, $_options = null) {
 		if ($_lifetime < 0) {
 			$_lifetime = 0;
 		}

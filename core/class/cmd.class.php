@@ -689,10 +689,6 @@ class cmd {
 			$this->setEqType($this->getEqLogic()->getEqType_name());
 		}
 		DB::save($this);
-		$mc = cache::byKey('cmd' . $this->getId());
-		if ($mc->getLifetime() != $this->getCacheLifetime()) {
-			$mc->remove();
-		}
 		$this->getEqLogic()->emptyCacheWidget();
 		return true;
 	}
@@ -782,7 +778,7 @@ class cmd {
 			if ($this->getValueDate() == '') {
 				$this->setValueDate(date('Y-m-d H:i:s'));
 			}
-			cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
+			cache::set('cmd' . $this->getId(), $value, 0, array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
 			event::add('cmd::update', array('cmd_id' => $this->getId()));
 			foreach (self::byValue($this->getId()) as $cmd) {
 				event::add('cmd::update', array('cmd_id' => $cmd->getId()));
@@ -1038,7 +1034,7 @@ class cmd {
 			$message .= ' (répétition)';
 		}
 		log::add('event', 'info', $message);
-		cache::set('cmd' . $this->getId(), $value, $this->getCacheLifetime(), array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
+		cache::set('cmd' . $this->getId(), $value, 0, array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
 		if (!$repeat) {
 			scenario::check($this);
 		}
@@ -1200,17 +1196,6 @@ class cmd {
 
 	public function getTendance($_startTime, $_endTime) {
 		return history::getTendance($this->getId(), $_startTime, $_endTime);
-	}
-
-	public function getCacheLifetime() {
-		if ($this->getEventOnly() == 1) {
-			return 0;
-		}
-		if ($this->getCache('enable', 0) == 0 && $this->getCache('lifetime') == '') {
-			return config::byKey('lifeTimeMemCache');
-		}
-		$lifetime = $this->getCache('lifetime', config::byKey('lifeTimeMemCache'));
-		return ($lifetime < 10) ? 10 : $lifetime;
 	}
 
 	public function getCmdValue() {
