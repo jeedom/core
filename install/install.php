@@ -133,7 +133,7 @@ try {
 					if (file_exists($tmp)) {
 						unlink($tmp);
 					}
-					exec('wget --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
+					exec('wget --no-check-certificate --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
 					$redownload = false;
 					if (!file_exists($tmp)) {
 						if (config::byKey('market::branch', 'core', 'stable') != 'stable') {
@@ -155,7 +155,7 @@ try {
 						if (file_exists($tmp)) {
 							unlink($tmp);
 						}
-						exec('wget --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
+						exec('wget --no-check-certificate --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
 						if (!file_exists($tmp)) {
 							throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
 						}
