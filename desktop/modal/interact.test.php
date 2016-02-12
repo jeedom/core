@@ -7,7 +7,7 @@ if (!isConnect('admin')) {
 <div id="div_alertInteractTest"></div>
 <form class="form-horizontal" onsubmit="return false;">
 	<div class="input-group input-group-sm" style="width: 100%">
-		<span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Demande}}</span>
+		<span class="input-group-addon" style="width: 100px">{{Demande}}</span>
 		<input class="form-control" id="in_testInteractQuery">
 		<span class="input-group-btn">
 			<a class="btn btn-default" id="bt_executeInteractOk"><i class="fa fa-bolt"></i> {{Exécuter}}</a>
@@ -19,6 +19,13 @@ if (!isConnect('admin')) {
 <div id="div_interactTestResult"></div>
 
 <script>
+
+	$('#in_testInteractQuery').keypress(function(e) {
+		if(e.which == 13) {
+			$('#bt_executeInteractOk').trigger('click');
+		}
+	});
+
 	$('#bt_executeInteractOk').on('click',function(){
 		if($('#in_testInteractQuery').value() == ''){
 			$('#div_alertInteractTest').showAlert({message: '{{La demande ne peut être vide}}', level: 'danger'});

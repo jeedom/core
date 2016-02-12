@@ -9,7 +9,7 @@ if (!isConnect('admin')) {
 
 <form class="form-horizontal" onsubmit="return false;">
 	<div class="input-group input-group-sm" style="width: 100%">
-		<span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Test}}</span>
+		<span class="input-group-addon" style="width: 100px">{{Test}}</span>
 		<input class="form-control" id="in_testExpression">
 		<span class="input-group-btn">
 			<a class="btn btn-default" id="bt_searchInfoCmd"><i class="fa fa-list-alt"></i></a>
@@ -22,6 +22,12 @@ if (!isConnect('admin')) {
 <div id="div_expressionTestResult"></div>
 
 <script>
+
+	$('#in_testExpression').keypress(function(e) {
+		if(e.which == 13) {
+			$('#bt_executeExpressionOk').trigger('click');
+		}
+	});
 
 	$('#bt_searchInfoCmd').on('click', function() {
 		var el = $(this);

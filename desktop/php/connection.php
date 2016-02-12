@@ -50,37 +50,13 @@
 
     $('#in_login_password').keypress(function(e) {
       if(e.which == 13) {
-        jeedom.user.useTwoFactorAuthentification({
-            login: $('#in_login_username').value(),
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (data) {
-                if(data == 1){
-                    $('#div_twoFactorCode').show();
-                }else{
-                    $('#div_twoFactorCode').hide();
-                }
-            }
-        });
-    }
-});
+         $('#bt_login_validate').trigger('click');
+     }
+ });
 
     $('#in_twoFactorCode').keypress(function(e) {
       if(e.which == 13) {
-        jeedom.user.useTwoFactorAuthentification({
-            login: $('#in_login_username').value(),
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (data) {
-                if(data == 1){
-                    $('#div_twoFactorCode').show();
-                }else{
-                    $('#div_twoFactorCode').hide();
-                }
-            }
-        });
+        $('#bt_login_validate').trigger('click');
     }
 });
 </script>
