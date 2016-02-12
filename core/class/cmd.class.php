@@ -544,11 +544,11 @@ class cmd {
 				$return[$informations[1]][$informations[2]] = array();
 			}
 			if (isset($informations[3])) {
-				$return[$informations[1]][$informations[2]][] = array('name' => $informations[3]);
+				$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'core');
 			}
 		}
-		foreach (plugin::listPlugin(true) as $plugin) {
-			$path = dirname(__FILE__) . '/../../plugins/' . $plugin->getId() . '/core/template/' . $_version;
+		$path = dirname(__FILE__) . '/../../plugins/widget/core/template/' . $_version;
+		if (file_exists($path)) {
 			$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
 			foreach ($files as $file) {
 				$informations = explode('.', $file);
@@ -559,7 +559,9 @@ class cmd {
 					if (!isset($return[$informations[1]][$informations[2]])) {
 						$return[$informations[1]][$informations[2]] = array();
 					}
-					$return[$informations[1]][$informations[2]][] = array('name' => $informations[3]);
+					if (!isset($return[$informations[1]][$informations[2]][$informations[3]])) {
+						$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'widget');
+					}
 				}
 			}
 		}
