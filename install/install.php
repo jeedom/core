@@ -151,7 +151,7 @@ try {
 					}
 
 					if ($redownload) {
-						$url = 'https://market.jeedom.fr/jeedom/stable.zip';
+						$url = 'https://market.jeedom.fr/jeedom/jeedom_stable.zip';
 						if (file_exists($tmp)) {
 							unlink($tmp);
 						}
