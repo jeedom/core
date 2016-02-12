@@ -386,6 +386,7 @@ class interactQuery {
 				unset($replace[$key]);
 			}
 		}
+		$replace['"'] = '';
 		return str_replace(array_keys($replace), $replace, scenarioExpression::setTags($reply));
 	}
 
