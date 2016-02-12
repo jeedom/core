@@ -255,9 +255,7 @@ class eqLogic {
 			$sendReport = false;
 			$cmds = $eqLogic->getCmd();
 			foreach ($cmds as $cmd) {
-				if ($cmd->getEventOnly() == 1) {
-					$sendReport = true;
-				}
+				$sendReport = true;
 			}
 			$logicalId = 'noMessage' . $eqLogic->getId();
 			if ($sendReport) {
@@ -268,9 +266,7 @@ class eqLogic {
 						$message .= __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifier les piles)', __FILE__);
 						message::add('core', $message, '', $logicalId);
 						foreach ($cmds as $cmd) {
-							if ($cmd->getEventOnly() == 1) {
-								$cmd->event('error::timeout');
-							}
+							$cmd->event('error::timeout');
 						}
 					}
 				} else {

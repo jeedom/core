@@ -32,8 +32,6 @@ class cmd {
 	protected $eqLogic_id;
 	protected $isHistorized = 0;
 	protected $unite = '';
-	protected $cache;
-	protected $eventOnly = 1;
 	protected $configuration;
 	protected $template;
 	protected $display;
@@ -88,16 +86,13 @@ class cmd {
 		return $return;
 	}
 
-	public static function allHistoryCmd($_notEventOnly = false) {
+	public static function allHistoryCmd() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 		FROM cmd c
 		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
 		INNER JOIN object ob ON el.object_id=ob.id
 		WHERE isHistorized=1
 		AND type=\'info\'';
-		if ($_notEventOnly) {
-			$sql .= ' AND eventOnly=0';
-		}
 		$sql .= ' ORDER BY ob.name,el.name,c.name';
 		$result1 = self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
@@ -106,9 +101,6 @@ class cmd {
 		WHERE el.object_id IS NULL
 		AND isHistorized=1
 		AND type=\'info\'';
-		if ($_notEventOnly) {
-			$sql .= ' AND eventOnly=0';
-		}
 		$sql .= ' ORDER BY el.name,c.name';
 		$result2 = self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 		return array_merge($result1, $result2);
@@ -329,18 +321,6 @@ class cmd {
 			$values['subtype'] = $_subType;
 			$sql .= ' AND c.subtype=:subtype';
 		}
-		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
-	}
-
-	public static function byTypeEventonly($_type, $_eventOnly = 1) {
-		$values = array(
-			'type' => $_type,
-			'eventOnly' => $_eventOnly,
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
-		FROM cmd c
-		WHERE c.type=:type
-			AND c.eventOnly=:eventOnly';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -717,9 +697,9 @@ class cmd {
 	 * @throws Exception
 	 */
 	public function execCmd($_options = null, $cache = 1, $_sendNodeJsEvent = true, $_quote = false) {
-		if ($this->getType() == 'info' && ($cache != 0 || $this->getEventOnly() == 1)) {
+		if ($this->getType() == 'info' && $cache != 0) {
 			$mc = cache::byKey('cmd' . $this->getId());
-			if ($mc->getValue() !== null || $this->getEventOnly() == 1) {
+			if ($mc->getValue() !== null) {
 				$this->setCollectDate($mc->getOptions('collectDate', $mc->getDatetime()));
 				$this->setValueDate($mc->getOptions('valueDate', $mc->getDatetime()));
 				return $mc->getValue();
@@ -1353,7 +1333,7 @@ class cmd {
 	}
 
 	public function getEventOnly() {
-		return $this->eventOnly;
+		return 1;
 	}
 
 	public function setId($id = '') {
@@ -1386,15 +1366,7 @@ class cmd {
 	}
 
 	public function setEventOnly($eventOnly) {
-		$this->eventOnly = $eventOnly;
-	}
 
-	public function getCache($_key = '', $_default = '') {
-		return utils::getJsonAttr($this->cache, $_key, $_default);
-	}
-
-	public function setCache($_key, $_value) {
-		$this->cache = utils::setJsonAttr($this->cache, $_key, $_value);
 	}
 
 	public function getTemplate($_key = '', $_default = '') {

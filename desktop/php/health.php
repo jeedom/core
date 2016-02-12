@@ -172,25 +172,6 @@ if (network::test('external')) {
 }
 ?>
 		</tr>
-		<tr>
-			<td style="font-weight : bold;">{{Commande info en non evènement seulement}}</td>
-			<?php
-$cmds = cmd::byTypeEventonly('info', 0);
-if (count($cmds) == 0) {
-	echo '<td class="alert alert-success">' . count($cmds) . ' </td>';
-	echo '<td></td>';
-} else {
-	echo '<td class="alert alert-warning">' . count($cmds) . ' </td>';
-	echo '<td>{{Les commandes info qui ne sont pas en évenement seulement ralentissent fortement l\'affichage de jeedom veuillez contacter les développeurs des plugins : }}';
-	$plugins = array();
-	foreach ($cmds as $cmd) {
-		$plugins[$cmd->getEqType()] = $cmd->getEqType();
-	}
-	echo implode(',', $plugins);
-	echo '</td>';
-}
-?>
-		</tr>
 <?php
 if (config::byKey('jeeNetwork::mode') == 'master') {
 	foreach (jeeNetwork::all() as $jeeNetwork) {

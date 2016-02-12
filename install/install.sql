@@ -112,9 +112,7 @@ CREATE TABLE IF NOT EXISTS `cmd` (
   `isHistorized` VARCHAR(45) NOT NULL,
   `type` VARCHAR(45) NULL,
   `subType` VARCHAR(45) NULL,
-  `cache` TEXT NULL DEFAULT NULL,
   `unite` VARCHAR(45) NULL,
-  `eventOnly` TINYINT(1) NULL DEFAULT 0,
   `display` TEXT NULL,
   `isVisible` INT NULL DEFAULT 1,
   `value` VARCHAR(255) NULL,
@@ -122,7 +120,6 @@ CREATE TABLE IF NOT EXISTS `cmd` (
   UNIQUE INDEX `unique` (`eqLogic_id` ASC, `name` ASC),
   INDEX `isHistorized` (`isHistorized` ASC),
   INDEX `type` (`type` ASC),
-  INDEX `eventOnly` (`eventOnly` ASC),
   INDEX `name` (`name` ASC),
   INDEX `subtype` (`subType` ASC),
   INDEX `eqLogic_id` (`eqLogic_id` ASC),
@@ -130,7 +127,6 @@ CREATE TABLE IF NOT EXISTS `cmd` (
   INDEX `order` (`order` ASC),
   INDEX `logicalID` (`logicalId` ASC),
   INDEX `logicalId_eqLogicID` (`eqLogic_id` ASC, `logicalId` ASC),
-  INDEX `type_eventOnly` (`type` ASC, `eventOnly` ASC),
   CONSTRAINT `fk_cmd_eqLogic1`
     FOREIGN KEY (`eqLogic_id`)
     REFERENCES `eqLogic` (`id`)
