@@ -31,7 +31,7 @@ try {
 		}
 		$info_cmd = array();
 		$info_cmd['id'] = $cmd->getId();
-		$info_cmd['html'] = $cmd->toHtml(init('version'), init('option'), init('cmdColor', null), init('cache', 2));
+		$info_cmd['html'] = $cmd->toHtml(init('version'), init('option'), init('cmdColor', null));
 		ajax::success($info_cmd);
 	}
 
@@ -54,7 +54,7 @@ try {
 		if (init('utid') != '') {
 			$options['utid'] = init('utid');
 		}
-		ajax::success($cmd->execCmd($options, init('cache', 1)));
+		ajax::success($cmd->execCmd($options));
 	}
 
 	if (init('action') == 'getByObjectNameEqNameCmdName') {

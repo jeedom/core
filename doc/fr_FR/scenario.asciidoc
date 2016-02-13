@@ -347,14 +347,13 @@ Commandes (capteurs et actionneurs)::
 * *cmd::byId($id)*;
     ** Retourne l'objet commande correspondant
     ** $id => Id de la commande voulue (voir Général => Affichage)
-* *$cmd->execCmd($options = null, $cache = 1)*;
+* *$cmd->execCmd($options = null)*;
     ** Exécute la commande et retourne le résultat
     ** $options => Options pour l'exécution de la commande (peut être spécifique au plugin), option de base : 
           *** Sous-type de la commande : 
           **** message => `$option = array('title' => 'titre du message , 'message' => 'Mon message');`
           **** color => `$option = array('color' => 'couleur en hexadécimal');`
           **** slider => `$option = array('slider' => 'valeur voulue de 0 à 100');`
-    ** $cache  => 0 = ignorer le cache , 1 = mode normal, 2 = cache utilisé même si expiré (puis marqué à recollecter)
 
 Log::
 

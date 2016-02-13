@@ -105,7 +105,7 @@ class object {
 							if (!isset($_restrict['cmd']) || !is_array($_restrict['cmd']) || isset($_restrict['cmd'][$cmd->getId()])) {
 								$cmd_return = utils::o2a($cmd);
 								if ($cmd->getType() == 'info') {
-									$cmd_return['state'] = $cmd->execCmd(null, 2);
+									$cmd_return['state'] = $cmd->execCmd();
 								}
 								$eqLogic_return['cmds'][] = $cmd_return;
 							}

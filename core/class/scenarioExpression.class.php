@@ -197,7 +197,7 @@ class scenarioExpression {
 			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
 			if ($historyStatistique['avg'] == '') {
-				return $cmd->execCmd(null, 2);
+				return $cmd->execCmd();
 			}
 			return round($historyStatistique['avg'], 1);
 		}
@@ -252,7 +252,7 @@ class scenarioExpression {
 			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
 			if ($historyStatistique['max'] == '') {
-				return $cmd->execCmd(null, 2);
+				return $cmd->execCmd();
 			}
 			return round($historyStatistique['max'], 1);
 		}
@@ -324,7 +324,7 @@ class scenarioExpression {
 			}
 			$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
 			if ($historyStatistique['min'] == '') {
-				return $cmd->execCmd(null, 2);
+				return $cmd->execCmd();
 			}
 			return round($historyStatistique['min'], 1);
 		}
@@ -584,7 +584,7 @@ class scenarioExpression {
 		$_calc = str_replace(' ', '', $_calc);
 		$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
 		if ($historyStatistique['min'] == '') {
-			return $cmd->execCmd(null, 2);
+			return $cmd->execCmd();
 		}
 		return $historyStatistique[$_calc];
 	}
@@ -640,7 +640,7 @@ class scenarioExpression {
 		if ($cmd->getType() != 'info') {
 			return -2;
 		}
-		$cmd->execCmd(null, 2);
+		$cmd->execCmd();
 		return date($_format, strtotime($cmd->getCollectDate()));
 	}
 

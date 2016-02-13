@@ -460,7 +460,7 @@ class cmd {
 				if (!is_object($cmd)) {
 					continue;
 				}
-				$cmd_value = $cmd->execCmd(null, 1, true, $_quote);
+				$cmd_value = $cmd->execCmd(null, true, $_quote);
 				$collectDate = $cmd->getCollectDate();
 				$valueDate = $cmd->getValueDate();
 			}
@@ -692,11 +692,10 @@ class cmd {
 	/**
 	 *
 	 * @param type $_options
-	 * @param type $cache 0 = ignorer le cache , 1 = mode normal, 2 = cache utilisé même si expiré
 	 * @return command result
 	 * @throws Exception
 	 */
-	public function execCmd($_options = null, $cache = 1, $_sendNodeJsEvent = true, $_quote = false) {
+	public function execCmd($_options = null, $_sendNodeJsEvent = true, $_quote = false) {
 		if ($this->getType() == 'info') {
 			$mc = cache::byKey('cmd' . $this->getId());
 			if ($mc->getValue() !== null) {
@@ -704,12 +703,12 @@ class cmd {
 				$this->setValueDate($mc->getOptions('valueDate', $mc->getDatetime()));
 				return $mc->getValue();
 			}
+			return '';
 		}
 		$eqLogic = $this->getEqLogic();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() != 1) {
 			throw new Exception(__('Equipement désactivé - impossible d\'exécuter la commande : ' . $this->getHumanName(), __FILE__));
 		}
-		$eqLogic->emptyCacheWidget();
 		try {
 			if ($_options !== null && $_options !== '') {
 				$options = self::cmdToValue($_options);
@@ -725,13 +724,10 @@ class cmd {
 			if ($this->getSubType() == 'color' && isset($options['color']) && substr($options['color'], 0, 1) != '#') {
 				$options['color'] = cmd::convertColor($options['color']);
 			}
-			if ($this->getType() == 'action') {
-				if (is_array($options) && count($options) > 0) {
-					log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . str_replace(array("\n", '  ', 'Array', '>'), '', print_r($options, true)));
-				} else {
-					log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName());
-				}
-
+			if (is_array($options) && count($options) > 0) {
+				log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . str_replace(array("\n", '  ', 'Array', '>'), '', print_r($options, true)));
+			} else {
+				log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName());
 			}
 			$value = $this->formatValue($this->execute($options), $_quote);
 		} catch (Exception $e) {
@@ -751,26 +747,7 @@ class cmd {
 			log::add($type, 'error', __('Erreur execution de la commande ', __FILE__) . $this->getHumanName() . ' : ' . $e->getMessage());
 			throw $e;
 		}
-		if ($this->getType() == 'info' && $value !== false) {
-			if ($this->getCollectDate() == '') {
-				$this->setCollectDate(date('Y-m-d H:i:s'));
-			}
-			if ($this->getValueDate() == '') {
-				$this->setValueDate(date('Y-m-d H:i:s'));
-			}
-			cache::set('cmd' . $this->getId(), $value, 0, array('collectDate' => $this->getCollectDate(), 'valueDate' => $this->getValueDate()));
-			event::add('cmd::update', array('cmd_id' => $this->getId()));
-			foreach (self::byValue($this->getId()) as $cmd) {
-				event::add('cmd::update', array('cmd_id' => $cmd->getId()));
-			}
-		}
-		if ($this->getType() != 'action' && !is_array($value) && strpos($value, 'error') === false) {
-			if ($eqLogic->getStatus('numberTryWithoutSuccess') != 0) {
-				$eqLogic->setStatus('numberTryWithoutSuccess', 0);
-			}
-			$eqLogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
-		}
-		if ($this->getType() == 'action' && $options !== null && $this->getValue() == '') {
+		if ($options !== null && $this->getValue() == '') {
 			if (isset($options['slider'])) {
 				$this->setConfiguration('lastCmdValue', $options['slider']);
 				$this->save();
@@ -780,7 +757,7 @@ class cmd {
 				$this->save();
 			}
 		}
-		if ($this->getType() == 'action' && $this->getConfiguration('updateCmdId') != '') {
+		if ($this->getConfiguration('updateCmdId') != '') {
 			$cmd = cmd::byId($this->getConfiguration('updateCmdId'));
 			if (is_object($cmd)) {
 				$value = $this->getConfiguration('updateCmdToValue');
@@ -798,7 +775,7 @@ class cmd {
 		return $value;
 	}
 
-	public function toHtml($_version = 'dashboard', $options = '', $_cmdColor = null, $_cache = 2) {
+	public function toHtml($_version = 'dashboard', $options = '', $_cmdColor = null) {
 		$version = jeedom::versionAlias($_version);
 		$html = '';
 		$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $this->getTemplate($version, 'default');
@@ -862,7 +839,7 @@ class cmd {
 		if ($this->getType() == 'info') {
 			$replace['#state#'] = '';
 			$replace['#tendance#'] = '';
-			$replace['#state#'] = $this->execCmd(null, $_cache);
+			$replace['#state#'] = $this->execCmd();
 			if (strpos($replace['#state#'], 'error::') !== false) {
 				$template = getTemplate('core', $version, 'cmd.error');
 				$replace['#state#'] = str_replace('error::', '', $replace['#state#']);
@@ -927,7 +904,7 @@ class cmd {
 		} else {
 			$cmdValue = $this->getCmdValue();
 			if (is_object($cmdValue) && $cmdValue->getType() == 'info') {
-				$replace['#state#'] = $cmdValue->execCmd(null, 2);
+				$replace['#state#'] = $cmdValue->execCmd();
 				$replace['#valueName#'] = $cmdValue->getName();
 				$replace['#unite#'] = $cmdValue->getUnite();
 				if (trim($replace['#state#']) === '' && ($cmdValue->getSubtype() == 'binary' || $cmdValue->getSubtype() == 'numeric')) {
@@ -999,7 +976,7 @@ class cmd {
 			return;
 		}
 		$collectDate = ($this->getCollectDate() != '') ? $this->getCollectDate() : date('Y-m-d H:i:s');
-		$repeat = ($this->execCmd(null, 2) == $value && $this->getConfiguration('doNotRepeatEvent', 0) == 1);
+		$repeat = ($this->execCmd() == $value && $this->getConfiguration('doNotRepeatEvent', 0) == 1);
 		if ($repeat) {
 			$valueDate = $this->getValueDate();
 		} else {
