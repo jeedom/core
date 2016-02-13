@@ -31,7 +31,7 @@ try {
 		$return['userProfils'] = $_SESSION['user']->getOptions();
 		$return['plugins'] = array();
 		foreach (plugin::listPlugin(true) as $plugin) {
-			if ($plugin->getMobile() != '') {
+			if ($plugin->getMobile() != '' || $plugin->getEventJs() == 1) {
 				$return['plugins'][] = utils::o2a($plugin);
 			}
 		}
