@@ -111,6 +111,18 @@ function initHistoryTrigger() {
             }
         });
     });
+     $('#sel_groupingType').on('change', function () {
+        $('.li_history[data-cmd_id=' + lastId + '] .history').click();
+        jeedom.cmd.save({
+            cmd: {id: lastId, display: {groupingType: $(this).value()}},
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function () {
+                $('.li_history[data-cmd_id=' + lastId + '] .history').click();
+            }
+        });
+    });
     $('#cb_derive').on('change switchChange.bootstrapSwitch', function () {
         $('.li_history[data-cmd_id=' + lastId + '] .history').click();
         jeedom.cmd.save({
@@ -166,6 +178,9 @@ function addChart(_cmd_id, _action) {
                     }
                     if (init(data.cmd.display.graphType) != '') {
                         $('#sel_chartType').off().value(init(data.cmd.display.graphType));
+                    }
+                    if (init(data.cmd.display.groupingType) != '') {
+                        $('#sel_groupingType').off().value(init(data.cmd.display.groupingType));
                     }
                     if (init(data.cmd.display.graphDerive) != '') {
                         $('#cb_derive').off().value(init(data.cmd.display.graphDerive));

@@ -25,7 +25,6 @@
         success: function (html) {
             $('.div_displayView:last').empty().html(html.html);
             setTimeout(function () {
-                console.log('je passe');
                 positionEqLogic();
                 $('.eqLogicZone').disableSelection();
                 $( "input").click(function() { $(this).focus(); });

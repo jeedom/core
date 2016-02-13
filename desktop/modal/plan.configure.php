@@ -418,9 +418,6 @@ foreach (planHeader::all() as $planHeader_select) {
         $('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
     });
 
-
-
-
     $('#fd_planConfigure').on('change switchChange.bootstrapSwitch','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
         if($(this).value() == 1){
             $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0);

@@ -119,6 +119,14 @@ jeedom.history.drawChart = function (_params) {
                 _params.option.graphType = 'line';
             }
         }
+        if (init(_params.option.groupingType) == '') {
+            if (isset(data.result.cmd.display) && init(data.result.cmd.display.groupingType) != '') {
+                _params.option.groupingType = {};
+                var split = data.result.cmd.display.groupingType.split('::');
+                _params.option.groupingType.function = split[0];
+                _params.option.groupingType.time = split[1];
+            }
+        }
         var stacking = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? null : 'value';
         _params.option.graphStack = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? Math.floor(Math.random() * 10000 + 2) : 1;
         _params.option.graphScale = (_params.option.graphScale == undefined) ? 0 : parseInt(_params.option.graphScale);
@@ -200,172 +208,189 @@ jeedom.history.drawChart = function (_params) {
                 },
                 series: [series]
             });
-}else {
-    jeedom.history.chart[_params.el].chart.series[0].addPoint({y:data.result.data[data.result.data.length - 1][1], name : (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name + ' '+ data.result.unite, color: _params.option.graphColor});
-}
-}else{
-    var series = {
-        dataGrouping: {
+        }else {
+            jeedom.history.chart[_params.el].chart.series[0].addPoint({y:data.result.data[data.result.data.length - 1][1], name : (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name + ' '+ data.result.unite, color: _params.option.graphColor});
+        }
+    }else{
+        var dataGrouping = {
             enabled: false
-        },
-        type: _params.option.graphType,
-        id: parseInt(_params.cmd_id),
-        cursor: 'pointer',
-        name: (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name+ ' '+ data.result.unite,
-        data: data.result.data,
-        color: _params.option.graphColor,
-        stack: _params.option.graphStack,
-        step: _params.option.graphStep,
-        yAxis: _params.option.graphScale,
-        stacking : stacking,
-        tooltip: {
-            valueDecimals: 2
-        },
-        point: {
-            events: {
-                click: function (event) {
-                    var deviceInfo = getDeviceType();
-                    if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
-                        return
-                    }
-                    if($('#md_modal2').is(':visible')){
-                        return;
-                    }
-                    if($('#md_modal1').is(':visible')){
-                        return;
-                    }
-                    var id = this.series.userOptions.id;
-                    var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x);
-                    var value = this.y;
-                    bootbox.prompt("{{Edition de la série :}} <b>" + this.series.name + "</b> {{et du point de}} <b>" + datetime + "</b> ({{valeur :}} <b>" + value + "</b>) ? {{Ne rien mettre pour supprimer la valeur}}", function (result) {
-                        if (result !== null) {
-                            jeedom.history.changePoint({cmd_id: id, datetime: datetime, value: result});
+        };
+        if(isset(_params.option.groupingType) && jQuery.type(_params.option.groupingType) == 'string'){
+            var split = _params.option.groupingType.split('::');
+            _params.option.groupingType = {};
+            _params.option.groupingType.function = split[0];
+            _params.option.groupingType.time = split[1];
+        }
+        if(isset(_params.option.groupingType) && isset(_params.option.groupingType.function) && isset(_params.option.groupingType.time)){
+            dataGrouping = {
+                approximation: _params.option.groupingType.function,
+                enabled: true,
+                forced: true,
+                units: [[_params.option.groupingType.time,[1]]]
+            };
+        }
+        var series = {
+            dataGrouping: dataGrouping,
+            type: _params.option.graphType,
+            id: parseInt(_params.cmd_id),
+            cursor: 'pointer',
+            name: (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name+ ' '+ data.result.unite,
+            data: data.result.data,
+            color: _params.option.graphColor,
+            stack: _params.option.graphStack,
+            step: _params.option.graphStep,
+            yAxis: _params.option.graphScale,
+            stacking : stacking,
+            tooltip: {
+                valueDecimals: 2
+            },
+            point: {
+                events: {
+                    click: function (event) {
+                        var deviceInfo = getDeviceType();
+                        if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
+                            return
                         }
-                    });
+                        if($('#md_modal2').is(':visible')){
+                            return;
+                        }
+                        if($('#md_modal1').is(':visible')){
+                            return;
+                        }
+                        var id = this.series.userOptions.id;
+                        var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x);
+                        var value = this.y;
+                        bootbox.prompt("{{Edition de la série :}} <b>" + this.series.name + "</b> {{et du point de}} <b>" + datetime + "</b> ({{valeur :}} <b>" + value + "</b>) ? {{Ne rien mettre pour supprimer la valeur}}", function (result) {
+                            if (result !== null) {
+                                jeedom.history.changePoint({cmd_id: id, datetime: datetime, value: result});
+                            }
+                        });
+                    }
                 }
             }
-        }
-    };
-    if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
-        jeedom.history.chart[_params.el] = {};
-        jeedom.history.chart[_params.el].cmd = new Array();
-        jeedom.history.chart[_params.el].color = 0;
+        };
 
-        if(_params.dateRange == '30 min'){
-            var dateRange = 0
-        }else  if(_params.dateRange == '1 hour'){
-            var dateRange = 1
-        }else  if(_params.dateRange == '1 day'){
-            var dateRange = 2
-        }else  if(_params.dateRange == '7 days'){
-            var dateRange = 3
-        }else  if(_params.dateRange == '1 month'){
-            var dateRange = 4
-        }else  if(_params.dateRange == 'all'){
-            var dateRange = 5
-        }else{
-            var dateRange = 3;  
-        }
 
-        jeedom.history.chart[_params.el].type = _params.option.graphType;
-        jeedom.history.chart[_params.el].chart = new Highcharts.StockChart({
-            chart: charts,
-            credits: {
-                text: '',
-                href: '',
-            },
-            navigator: {
-                enabled:  _params.showNavigator
-            },
-            exporting: { 
-                enabled: _params.enableExport || ($.mobile) ? false : true 
-            },
-            rangeSelector: {
-                buttons: [{
-                    type: 'minute',
-                    count: 30,
-                    text: '30m'
+        if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
+            jeedom.history.chart[_params.el] = {};
+            jeedom.history.chart[_params.el].cmd = new Array();
+            jeedom.history.chart[_params.el].color = 0;
+
+            if(_params.dateRange == '30 min'){
+                var dateRange = 0
+            }else  if(_params.dateRange == '1 hour'){
+                var dateRange = 1
+            }else  if(_params.dateRange == '1 day'){
+                var dateRange = 2
+            }else  if(_params.dateRange == '7 days'){
+                var dateRange = 3
+            }else  if(_params.dateRange == '1 month'){
+                var dateRange = 4
+            }else  if(_params.dateRange == 'all'){
+                var dateRange = 5
+            }else{
+                var dateRange = 3;  
+            }
+
+            jeedom.history.chart[_params.el].type = _params.option.graphType;
+            jeedom.history.chart[_params.el].chart = new Highcharts.StockChart({
+                chart: charts,
+                credits: {
+                    text: '',
+                    href: '',
+                },
+                navigator: {
+                    enabled:  _params.showNavigator
+                },
+                exporting: { 
+                    enabled: _params.enableExport || ($.mobile) ? false : true 
+                },
+                rangeSelector: {
+                    buttons: [{
+                        type: 'minute',
+                        count: 30,
+                        text: '30m'
+                    }, {
+                        type: 'hour',
+                        count: 1,
+                        text: 'H'
+                    }, {
+                        type: 'day',
+                        count: 1,
+                        text: 'J'
+                    }, {
+                        type: 'week',
+                        count: 1,
+                        text: 'S'
+                    }, {
+                        type: 'month',
+                        count: 1,
+                        text: 'M'
+                    }, {
+                        type: 'all',
+                        count: 1,
+                        text: 'Tous'
+                    }],
+                    selected: dateRange,
+                    inputEnabled: false,
+                    enabled: _params.showTimeSelector
+                },
+                legend: legend,
+                tooltip: {
+                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y} (Min : {series.dataMin}, Max : {series.dataMax})</b><br/>',
+                    valueDecimals: 2,
+                },
+                yAxis: [{
+                    format: '{value}',
+                    showEmpty: false,
+                    minPadding: 0.001,
+                    maxPadding: 0.001,
+                    showLastLabel: true,
                 }, {
-                    type: 'hour',
-                    count: 1,
-                    text: 'H'
-                }, {
-                    type: 'day',
-                    count: 1,
-                    text: 'J'
-                }, {
-                    type: 'week',
-                    count: 1,
-                    text: 'S'
-                }, {
-                    type: 'month',
-                    count: 1,
-                    text: 'M'
-                }, {
-                    type: 'all',
-                    count: 1,
-                    text: 'Tous'
+                    opposite: false,
+                    format: '{value}',
+                    showEmpty: false,
+                    gridLineWidth: 0,
+                    minPadding: 0.001,
+                    maxPadding: 0.001,
+                    labels: {
+                        align: 'left',
+                        x: 2
+                    }
                 }],
-                selected: dateRange,
-                inputEnabled: false,
-                enabled: _params.showTimeSelector
-            },
-            legend: legend,
-            tooltip: {
-                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y} (Min : {series.dataMin}, Max : {series.dataMax})</b><br/>',
-                valueDecimals: 2,
-            },
-            yAxis: [{
-                format: '{value}',
-                showEmpty: false,
-                minPadding: 0.001,
-                maxPadding: 0.001,
-                showLastLabel: true,
-            }, {
-                opposite: false,
-                format: '{value}',
-                showEmpty: false,
-                gridLineWidth: 0,
-                minPadding: 0.001,
-                maxPadding: 0.001,
-                labels: {
-                    align: 'left',
-                    x: 2
-                }
-            }],
-            xAxis: {
-                type: 'datetime',
-                ordinal: false,
-            },
-            scrollbar: {
-                barBackgroundColor: 'gray',
-                barBorderRadius: 7,
-                barBorderWidth: 0,
-                buttonBackgroundColor: 'gray',
-                buttonBorderWidth: 0,
-                buttonBorderRadius: 7,
-                trackBackgroundColor: 'none', trackBorderWidth: 1,
-                trackBorderRadius: 8,
-                trackBorderColor: '#CCC',
-                enabled: _params.showScrollbar
-            },
-            series: [series]
-        });
-console.log(jeedom.history.chart[_params.el].chart);
-} else {
-    jeedom.history.chart[_params.el].chart.addSeries(series);
-}
-jeedom.history.chart[_params.el].cmd[parseInt(_params.cmd_id)] = {option: _params.option, dateRange: _params.dateRange};
-}
+                xAxis: {
+                    type: 'datetime',
+                    ordinal: false,
+                },
+                scrollbar: {
+                    barBackgroundColor: 'gray',
+                    barBorderRadius: 7,
+                    barBorderWidth: 0,
+                    buttonBackgroundColor: 'gray',
+                    buttonBorderWidth: 0,
+                    buttonBorderRadius: 7,
+                    trackBackgroundColor: 'none', trackBorderWidth: 1,
+                    trackBorderRadius: 8,
+                    trackBorderColor: '#CCC',
+                    enabled: _params.showScrollbar
+                },
+                series: [series]
+            });
+            console.log(jeedom.history.chart[_params.el].chart);
+        } else {
+            jeedom.history.chart[_params.el].chart.addSeries(series);
+        }
+        jeedom.history.chart[_params.el].cmd[parseInt(_params.cmd_id)] = {option: _params.option, dateRange: _params.dateRange};
+    }
 
-jeedom.history.chart[_params.el].color++;
-if (jeedom.history.chart[_params.el].color > 9) {
-    jeedom.history.chart[_params.el].color = 0;
-}
-$.hideLoading();
-if (typeof (init(_params.success)) == 'function') {
-    _params.success(data.result);
-}
+    jeedom.history.chart[_params.el].color++;
+    if (jeedom.history.chart[_params.el].color > 9) {
+        jeedom.history.chart[_params.el].color = 0;
+    }
+    $.hideLoading();
+    if (typeof (init(_params.success)) == 'function') {
+        _params.success(data.result);
+    }
 }
 });
 }

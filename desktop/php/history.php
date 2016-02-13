@@ -45,11 +45,25 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 	</div>
 
 	<div class="col-lg-9 col-md-8 col-sm-7" style="border-left: solid 1px #EEE; padding-left: 25px;height: 600px;">
-		<input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['start']?>"/>
-		<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['end']?>"/>
+		<input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['start'] ?>"/>
+		<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['end'] ?>"/>
 		<a class="btn btn-success btn-sm tooltips" id='bt_validChangeDate' title="{{Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher}}">{{Ok}}</a>
 
-
+		<select class="form-control pull-right" id="sel_groupingType" style="width: 200px;">
+			<option value="">{{Aucun groupement}}</option>
+			<option value="sum::day">{{Sommes par jour}}</option>
+			<option value="average::day">{{Moyenne par jour}}</option>
+			<option value="low::day">{{Minimum par jour}}</option>
+			<option value="high::day">{{Maximum par jour}}</option>
+			<option value="sum::week">{{Sommes par semaine}}</option>
+			<option value="average::week">{{Moyenne par semaine}}</option>
+			<option value="low::week">{{Minimum par semaine}}</option>
+			<option value="high::week">{{Maximum par semaine}}</option>
+			<option value="sum::month">{{Sommes par mois}}</option>
+			<option value="average::month">{{Moyenne par mois}}</option>
+			<option value="low::month">{{Minimum par mois}}</option>
+			<option value="high::month">{{Maximum par mois}}</option>
+		</select>
 		<select class="form-control pull-right" id="sel_chartType" style="width: 200px;">
 			<option value="line">{{Ligne}}</option>
 			<option value="areaspline">{{Areaspline}}</option>
