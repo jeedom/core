@@ -215,7 +215,7 @@ jeedom.history.drawChart = function (_params) {
         var dataGrouping = {
             enabled: false
         };
-        if(isset(_params.option.groupingType) && jQuery.type(_params.option.groupingType) == 'string'){
+        if(isset(_params.option.groupingType) && jQuery.type(_params.option.groupingType) == 'string' && _params.option.groupingType != ''){
             var split = _params.option.groupingType.split('::');
             _params.option.groupingType = {};
             _params.option.groupingType.function = split[0];
