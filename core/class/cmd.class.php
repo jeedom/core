@@ -968,7 +968,7 @@ class cmd {
 			return;
 		}
 		$value = $this->formatValue($_value);
-		if ($this->getSubType() == 'numeric' && $value > $this->getConfiguration('maxValue', $value) && $value < $this->getConfiguration('minValue', $value) && strpos($value, 'error') === false) {
+		if ($this->getSubType() == 'numeric' && ($value > $this->getConfiguration('maxValue', $value) || $value < $this->getConfiguration('minValue', $value)) && strpos($value, 'error') === false) {
 			return;
 		}
 		$eqLogic = $this->getEqLogic();
