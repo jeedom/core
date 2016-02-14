@@ -156,8 +156,10 @@ class interactDef {
 		foreach (self::all() as $interactDef) {
 			$list_id[$interactDef->getId()] = $interactDef->getId();
 		}
-		$sql = 'DELETE FROM interactQuery WHERE interactDef_id NOT IN (' . implode(',', $list_id) . ')';
-		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		if (count($list_id) > 0) {
+			$sql = 'DELETE FROM interactQuery WHERE interactDef_id NOT IN (' . implode(',', $list_id) . ')';
+			return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		}
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
