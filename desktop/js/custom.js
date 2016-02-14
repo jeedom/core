@@ -15,12 +15,23 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-editorDesktopJS = null;
-editorDesktopCSS = null;
-editorMobileJS = null;
-editorMobileCSS = null;
+ editorDesktopJS = null;
+ editorDesktopCSS = null;
+ editorMobileJS = null;
+ editorMobileCSS = null;
 
-setTimeout(function () {
+ jeedom.config.load({
+    configuration: $('#div_spanAlertMessage').getValues('.configKey:not(.noSet)')[0],
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+        $('#div_spanAlertMessage').setValues(data, '.configKey');
+        modifyWithoutSave = false;
+    }
+});
+
+ setTimeout(function () {
     editorDesktopJS = CodeMirror.fromTextArea(document.getElementById("ta_jsDesktopContent"), {
         lineNumbers: true,
         mode: "text/javascript",
@@ -35,7 +46,7 @@ setTimeout(function () {
     });
 }, 1);
 
-$('a[data-toggle="tab"][href="#mobile"]').on('shown.bs.tab', function (e) {
+ $('a[data-toggle="tab"][href="#mobile"]').on('shown.bs.tab', function (e) {
     if (editorMobileCSS == null) {
         editorMobileCSS = CodeMirror.fromTextArea(document.getElementById("ta_cssMobileContent"), {
             lineNumbers: true,
@@ -54,7 +65,7 @@ $('a[data-toggle="tab"][href="#mobile"]').on('shown.bs.tab', function (e) {
     }
 });
 
-$('.saveCustom').on('click', function () {
+ $('.saveCustom').on('click', function () {
     var version = $(this).attr('data-version');
     var type = $(this).attr('data-type');
     var content = '';
@@ -74,16 +85,25 @@ $('.saveCustom').on('click', function () {
     if (editor != null) {
         content = editor.getValue();
     }
-    jeedom.saveCustum({
-        version: version,
-        type: type,
-        content: content,
+
+    jeedom.config.save({
+        configuration: $('#div_spanAlertMessage').getValues('.configKey')[0],
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
-        success: function (data) {
-            $('#div_alert').showAlert({message: 'Sauvegarde réussie', level: 'success'});
-        }
-    });
+        success: function () {
+          jeedom.saveCustum({
+            version: version,
+            type: type,
+            content: content,
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function (data) {
+                $('#div_alert').showAlert({message: 'Sauvegarde réussie', level: 'success'});
+            }
+        });
+      }
+  });
 });
 

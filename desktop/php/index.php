@@ -152,12 +152,13 @@ include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
 include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
 include_file('3rdparty', 'bootstrap-switch/bootstrap-switch.min', 'js');
 include_file('3rdparty', 'bootstrap-switch/bootstrap-switch.min', 'css');
-
-if (file_exists(dirname(__FILE__) . '/../custom/custom.css')) {
-	include_file('desktop', '', 'custom.css');
-}
-if (file_exists(dirname(__FILE__) . '/../custom/custom.js')) {
-	include_file('desktop', '', 'custom.js');
+if (config::byKey('enableCustomCss', 'core', 1) == 1) {
+	if (file_exists(dirname(__FILE__) . '/../custom/custom.css')) {
+		include_file('desktop', '', 'custom.css');
+	}
+	if (file_exists(dirname(__FILE__) . '/../custom/custom.js')) {
+		include_file('desktop', '', 'custom.js');
+	}
 }
 if (isConnect() && $_SESSION['user']->getOptions('desktop_highcharts_theme') != '') {
 	try {

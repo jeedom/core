@@ -35,9 +35,11 @@ try {
 				$return['plugins'][] = utils::o2a($plugin);
 			}
 		}
-		$return['custom'] = array();
-		$return['custom']['js'] = file_exists(dirname(__FILE__) . '/../../mobile/custom/custom.js');
-		$return['custom']['css'] = file_exists(dirname(__FILE__) . '/../../mobile/custom/custom.css');
+		$return['custom'] = array('js' => false, 'css' => false);
+		if (config::byKey('enableCustomCss', 'core', 1) == 1) {
+			$return['custom']['js'] = file_exists(dirname(__FILE__) . '/../../mobile/custom/custom.js');
+			$return['custom']['css'] = file_exists(dirname(__FILE__) . '/../../mobile/custom/custom.css');
+		}
 		ajax::success($return);
 	}
 
