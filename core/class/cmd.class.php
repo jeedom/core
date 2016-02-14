@@ -969,6 +969,7 @@ class cmd {
 		}
 		$value = $this->formatValue($_value);
 		if ($this->getSubType() == 'numeric' && ($value > $this->getConfiguration('maxValue', $value) || $value < $this->getConfiguration('minValue', $value)) && strpos($value, 'error') === false) {
+			log::add('cmd', 'info', __('La commande n\'est pas dans la plage de valeur autorisée : ', __FILE__) . $this->getHumanName() . ' => ' . $value);
 			return;
 		}
 		$eqLogic = $this->getEqLogic();
