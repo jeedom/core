@@ -375,6 +375,9 @@ foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $value) {
       <div class="col-xs-1">
         <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="html" data-l2key="enable" />
       </div>
+      <div class="col-xs-3">
+        <a class="btn btn-warning" id="bt_reinitHtmlCode"><i class="fa fa-times"></i> {{Reinitialiser la personalisation}}</a>
+      </div>
     </div>
     <legend><i class="fa fa-code"></i> {{Code}}</legend>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -614,6 +617,12 @@ if ($cmd->getDisplay('parameters') != '') {
     }
   }
 
+  editorCodeDview = null;
+  editorCodeDplan = null;
+  editorCodeMobile = null;
+  editorCodeMview = null;
+  editorCodeDashboard = null;
+
   $('#bt_codeDashboard').one('click',function(){
     setTimeout(function () {
       editorCodeDashboard = CodeMirror.fromTextArea(document.getElementById("ta_codeDashboard"), {
@@ -669,6 +678,30 @@ if ($cmd->getDisplay('parameters') != '') {
     }, 1);
   });
 
+  $('#bt_reinitHtmlCode').on('click',function(){
+    $('#ta_codeDashboard').value('');
+    $('#ta_codeDview').value('');
+    $('#ta_codeDplan').value('');
+    $('#ta_codeMobile').value('');
+    $('#ta_codeMview').value('');
+    if(editorCodeDashboard != null){
+     editorCodeDashboard.setValue('');
+   }
+   if(editorCodeDview != null){
+     editorCodeDview.setValue('');
+   }
+   if(editorCodeDplan != null){
+     editorCodeDplan.setValue('');
+   }
+   if(editorCodeMobile != null){
+    editorCodeMobile.setValue('');
+  }
+  if(editorCodeMview != null){
+   editorCodeMview.setValue('');
+ }
+ $('#md_displayCmdConfigure').showAlert({message: '{{Opération faite, n\'oubliez pas de sauvegarder}}', level: 'success'});
+});
+
 
   $('#bt_cmdConfigureSave').on('click', function () {
     var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
@@ -688,11 +721,21 @@ if ($cmd->getDisplay('parameters') != '') {
     cmd.configuration.actionCheckCmd = {};
     cmd.configuration.actionCheckCmd = $('#div_actionCheckCmd .actionCheckCmd').getValues('.expressionAttr');
 
-    cmd.html.dashboard = editorCodeDashboard.getValue();
-    cmd.html.dview = editorCodeDview.getValue();
-    cmd.html.dplan = editorCodeDplan.getValue();
-    cmd.html.mobile = editorCodeMobile.getValue();
-    cmd.html.mview = editorCodeMview.getValue();
+    if(editorCodeDashboard != null){
+      cmd.html.dashboard = editorCodeDashboard.getValue();
+    }
+    if(editorCodeDview != null){
+      cmd.html.dview = editorCodeDview.getValue();
+    }
+    if(editorCodeDplan != null){
+      cmd.html.dplan = editorCodeDplan.getValue();
+    }
+    if(editorCodeMobile != null){
+      cmd.html.mobile = editorCodeMobile.getValue();
+    }
+    if(editorCodeMview != null){
+      cmd.html.mview = editorCodeMview.getValue();
+    }
 
     jeedom.cmd.save({
       cmd: cmd,
