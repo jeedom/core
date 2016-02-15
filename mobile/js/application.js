@@ -141,13 +141,13 @@ function initApplication(_reinit) {
                             if (res[0] == 'core') {
                                 switch (res[1]) {
                                     case 'dashboard' :
-                                    page('equipment', 'Objet', userProfils.defaultMobileObject);
+                                    page('equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject);
                                     break;
                                     case 'plan' :
                                     window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan;
                                     break;
                                     case 'view' :
-                                    page('view', 'Vue', userProfils.defaultMobileView);
+                                    page('view', userProfils.defaultMobileViewName, userProfils.defaultMobileView);
                                     break;
                                 }
                             } else {

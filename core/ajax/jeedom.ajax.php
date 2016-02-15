@@ -29,6 +29,21 @@ try {
 		$return['user_id'] = $_SESSION['user']->getId();
 		$return['serverDatetime'] = getmicrotime();
 		$return['userProfils'] = $_SESSION['user']->getOptions();
+		$return['userProfils']['defaultMobileViewName'] = __('Vue', __FILE__);
+		if ($_SESSION['user']->getOptions('defaultDesktopView') != '') {
+			$view = view::byId($_SESSION['user']->getOptions('defaultDesktopView'));
+			if (is_object($view)) {
+				$return['userProfils']['defaultMobileViewName'] = $view->getName();
+			}
+		}
+		$return['userProfils']['defaultMobileObjectName'] = __('Objet', __FILE__);
+		if ($_SESSION['user']->getOptions('defaultDashboardObject') != '') {
+			$object = object::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
+			if (is_object($object)) {
+				$return['userProfils']['defaultMobileObjectName'] = $object->getName();
+			}
+		}
+
 		$return['plugins'] = array();
 		foreach (plugin::listPlugin(true) as $plugin) {
 			if ($plugin->getMobile() != '' || $plugin->getEventJs() == 1) {
