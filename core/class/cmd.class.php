@@ -35,6 +35,7 @@ class cmd {
 	protected $configuration;
 	protected $template;
 	protected $display;
+	protected $html;
 	protected $_collectDate = '';
 	protected $_valueDate = '';
 	protected $value = null;
@@ -775,9 +776,11 @@ class cmd {
 		return $value;
 	}
 
-	public function toHtml($_version = 'dashboard', $options = '', $_cmdColor = null) {
+	public function getWidgetTemplateCode($_version = 'dashboard') {
 		$version = jeedom::versionAlias($_version);
-		$html = '';
+		if ($this->getHtml('enable', 0) == 1 && $this->getHtml($_version) != '') {
+			return $this->getHtml($_version);
+		}
 		$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $this->getTemplate($version, 'default');
 		$template = '';
 		if (!isset(self::$_templateArray[$version . '::' . $template_name])) {
@@ -803,6 +806,13 @@ class cmd {
 		} else {
 			$template = self::$_templateArray[$version . '::' . $template_name];
 		}
+		return $template;
+	}
+
+	public function toHtml($_version = 'dashboard', $options = '', $_cmdColor = null) {
+		$version = jeedom::versionAlias($_version);
+		$html = '';
+		$template = $this->getWidgetTemplateCode($_version);
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
@@ -1341,6 +1351,14 @@ class cmd {
 
 	public function setEventOnly($eventOnly) {
 
+	}
+
+	public function getHtml($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->html, $_key, $_default);
+	}
+
+	public function setHtml($_key, $_value) {
+		$this->html = utils::setJsonAttr($this->html, $_key, $_value);
 	}
 
 	public function getTemplate($_key = '', $_default = '') {
