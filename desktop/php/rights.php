@@ -49,6 +49,11 @@ $pages = array(
 		'view' => array('title' => 'Voir'),
 		// 'edit' => array('title' => 'Editer')
 	),
+	'battery' => array(
+		'title' => 'Batteries',
+		'view' => array('title' => 'Voir'),
+		// 'edit' => array('title' => 'Editer')
+	),
 	'scenario' => array(
 		'title' => 'Scénarios',
 		'view' => array('title' => 'Voir'),
