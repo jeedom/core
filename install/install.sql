@@ -116,6 +116,7 @@ CREATE TABLE IF NOT EXISTS `cmd` (
   `display` TEXT NULL,
   `isVisible` INT NULL DEFAULT 1,
   `value` VARCHAR(255) NULL,
+  `html` MEDIUMTEXT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `unique` (`eqLogic_id` ASC, `name` ASC),
   INDEX `isHistorized` (`isHistorized` ASC),
