@@ -18,7 +18,7 @@
     <exp>Nom</exp>
   </expression>
   <expression id="plugin_dmraid_005" name="dmraid_status">
-    <exp>Status</exp>
+    <exp>Statut</exp>
   </expression>
   <expression id="plugin_dmraid_006" name="dmraid_type">
     <exp>Type de RAID</exp>
