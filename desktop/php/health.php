@@ -148,27 +148,27 @@ if ($value > 10) {
 		</tr>
 
 		<tr>
-			<td style="font-weight : bold;">{{Configuration réseaux interne}}</td>
+			<td style="font-weight : bold;">{{Configuration réseau interne}}</td>
 			<?php
 if (network::test('internal')) {
 	echo '<td class="alert alert-success">{{OK}}</td>';
 	echo '<td></td>';
 } else {
 	echo '<td class="alert alert-danger">{{NOK}}</td>';
-	echo '<td>{{Allez sur Administration -> Configuration puis configurez correctement la partie réseaux}}</td>';
+	echo '<td>{{Allez sur Administration -> Configuration puis configurez correctement la partie réseau}}</td>';
 }
 ?>
 		</tr>
 
 		<tr>
-			<td style="font-weight : bold;">{{Configuration réseaux externe}}</td>
+			<td style="font-weight : bold;">{{Configuration réseau externe}}</td>
 			<?php
 if (network::test('external')) {
 	echo '<td class="alert alert-success">{{OK}}</td>';
 	echo '<td></td>';
 } else {
 	echo '<td class="alert alert-danger">{{NOK}}</td>';
-	echo '<td>{{Allez sur Administration -> Configuration puis configurez correctement la partie réseaux}}</td>';
+	echo '<td>{{Allez sur Administration -> Configuration puis configurez correctement la partie réseau}}</td>';
 }
 ?>
 		</tr>
@@ -288,7 +288,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			echo '</tr>';
 			echo '<tr>';
 			echo '<td style="font-weight : bold;">';
-			echo '{{Status démon}}';
+			echo '{{Statut démon}}';
 			echo '</td>';
 			switch ($deamon_info['state']) {
 				case 'ok':
@@ -329,7 +329,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 					echo '</tr>';
 					echo '<tr>';
 					echo '<td style="font-weight : bold;">';
-					echo '{{Status démon}} ' . $jeeNetwork->getName();
+					echo '{{Statut démon}} ' . $jeeNetwork->getName();
 					echo '</td>';
 					switch ($deamon_info['state']) {
 						case 'ok':
