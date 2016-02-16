@@ -141,7 +141,7 @@ function hasRight($_right, $_needAdmin = false) {
 	if (!isConnect()) {
 		return false;
 	}
-	if (!is_array($_SESSION['rights'])) {
+	if (!isset($_SESSION['rights']) || !is_array($_SESSION['rights'])) {
 		@session_start();
 		$_SESSION['rights'] = array();
 		@session_write_close();
