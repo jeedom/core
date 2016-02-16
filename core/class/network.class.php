@@ -353,7 +353,7 @@ class network {
 		}
 		$cmd = $openvpn->getCmd('info', 'state');
 		if (!is_object($cmd)) {
-			throw new Exception(__('La commande de status du DNS est introuvable', __FILE__));
+			throw new Exception(__('La commande de statut du DNS est introuvable', __FILE__));
 		}
 		return $cmd->execCmd();
 	}
