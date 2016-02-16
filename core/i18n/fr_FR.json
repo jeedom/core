@@ -1717,23 +1717,7 @@
         "OK": "OK",
         "Cliquez sur une commande à droite ou tapez une commande personalisé ci-dessous": "Cliquez sur une commande à droite ou tapez une commande personalisé ci-dessous"
     },
-    "desktop\/modal\/icon.selector.php": {
-        "Rechercher": "Rechercher",
-        "animal": "animal",
-        "custom": "custom",
-        "divers": "divers",
-        "fashion": "fashion",
-        "jeedom": "jeedom",
-        "jeedom2": "jeedom2",
-        "loisir": "loisir",
-        "maison": "maison",
-        "meteo": "meteo",
-        "nature": "nature",
-        "nourriture": "nourriture",
-        "personne": "personne",
-        "securite": "securite",
-        "techno": "techno",
-        "transport": "transport",
-        "Général": "Général"
+    "core\/php\/jeeCron.php": {
+        "Erreur sur ": "Erreur sur "
     }
 }
