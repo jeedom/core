@@ -1358,6 +1358,9 @@ class cmd {
 	}
 
 	public function setHtml($_key, $_value) {
+		if (in_array($_key, array('dashboard', 'mobile', 'dview', 'mview', 'dplan')) && $this->getWidgetTemplateCode($_key) == $_value) {
+			$_value = '';
+		}
 		$this->html = utils::setJsonAttr($this->html, $_key, $_value);
 	}
 
