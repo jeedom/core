@@ -3,7 +3,7 @@ if (!hasRight('pluginview', true)) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 global $JEEDOM_INTERNAL_CONFIG;
-sendVarToJS('select_id', init('id', '-1'));
+sendVarToJS('sel_plugin_id', init('id', '-1'));
 $plugins_list = plugin::listPlugin(false, true);
 ?>
 

@@ -14,11 +14,19 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
- setTimeout(function(){
+ if($('#md_modal').is(':visible')){
+    $('#bt_returnToThumbnailDisplay').hide();
+    $('#div_confPlugin').addClass('col-lg-12').removeClass('col-md-9 col-sm-8');
+}
+
+
+setTimeout(function(){
+
   $('.pluginListContainer').packery();
 },100);
 
- if((isset(userProfils.doNotAutoHideMenu) && userProfils.doNotAutoHideMenu == 1) || jQuery.support.touch){
+if(!$('#md_modal').is(':visible')){
+   if((isset(userProfils.doNotAutoHideMenu) && userProfils.doNotAutoHideMenu == 1) || jQuery.support.touch){
     $('#sd_pluginList').show();
     setTimeout(function(){
       $('.pluginListContainer').packery();
@@ -52,6 +60,8 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
 }).on("mouseenter", function(){
   clearTimeout($(this).data('timerMouseleave'));
 });
+
+}
 }
 
 $(".li_plugin,.pluginDisplayCard").on('click', function () {
@@ -189,9 +199,9 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
             });
         })
        });
-} else {
-    $('#div_plugin_configuration').closest('.panel').hide();
-}
+     } else {
+        $('#div_plugin_configuration').closest('.panel').hide();
+    }
 } else {
     $('#div_plugin_configuration').closest('.alert').hide();
 }
@@ -229,7 +239,11 @@ $("#div_plugin_toggleState").delegate(".togglePlugin", 'click', function () {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         window.location.href = 'index.php?v=d&p=plugin&id=' + _el.attr('data-plugin_id');
+            if($('#md_modal').is(':visible')){
+                $("#md_modal").load('index.php?v=d&p=plugin&ajax=1&id=' + _el.attr('data-plugin_id')).dialog('open');
+            }else{
+             window.location.href = 'index.php?v=d&p=plugin&id=' + _el.attr('data-plugin_id');
+         }
      }
  });
 });
@@ -246,9 +260,9 @@ $('#bt_uploadPlugin').fileupload({
     }
 });
 
-if (getUrlVars('id') != '') {
-    if ($('#ul_plugin .li_plugin[data-plugin_id=' + getUrlVars('id') + ']').length != 0) {
-        $('#ul_plugin .li_plugin[data-plugin_id=' + getUrlVars('id') + ']').click();
+if (sel_plugin_id != -1) {
+    if ($('#ul_plugin .li_plugin[data-plugin_id=' + sel_plugin_id + ']').length != 0) {
+        $('#ul_plugin .li_plugin[data-plugin_id=' + sel_plugin_id + ']').click();
     } else {
         $('#ul_plugin .li_plugin:first').click();
     }
@@ -322,40 +336,40 @@ function savePluginConfig(_param) {
         }
     });
 
-$('.slaveConfig').each(function(){
-    var slave_id = $(this).attr('data-slave_id');
-    jeedom.jeeNetwork.saveConfig({
-        configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
-        plugin: $('.li_plugin.active').attr('data-plugin_id'),
-        id: slave_id,
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-            $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
-            modifyWithoutSave = false;
-            var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveSlaveConfiguration';
-            if (typeof window[postSave] == 'function'){
-                window[postSave](slave_id);
-            }
-            if (isset(_param) && typeof _param.success == 'function'){
-                _param.success(slave_id);
-            }
-            if(!isset(_param) || !isset(_param.relaunchDeamon) || _param.relaunchDeamon){
-             jeedom.plugin.deamonStart({
-                id : $('.li_plugin.active').attr('data-plugin_id'),
-                slave_id: slave_id,
-                forceRestart: 1,
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                },
-                success: function (data) {
-                    $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+$('.li_plugin.active').attr('data-plugin_id'));
+    $('.slaveConfig').each(function(){
+        var slave_id = $(this).attr('data-slave_id');
+        jeedom.jeeNetwork.saveConfig({
+            configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
+            plugin: $('.li_plugin.active').attr('data-plugin_id'),
+            id: slave_id,
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function () {
+                $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
+                modifyWithoutSave = false;
+                var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveSlaveConfiguration';
+                if (typeof window[postSave] == 'function'){
+                    window[postSave](slave_id);
                 }
-            });
+                if (isset(_param) && typeof _param.success == 'function'){
+                    _param.success(slave_id);
+                }
+                if(!isset(_param) || !isset(_param.relaunchDeamon) || _param.relaunchDeamon){
+                 jeedom.plugin.deamonStart({
+                    id : $('.li_plugin.active').attr('data-plugin_id'),
+                    slave_id: slave_id,
+                    forceRestart: 1,
+                    error: function (error) {
+                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                    },
+                    success: function (data) {
+                        $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+$('.li_plugin.active').attr('data-plugin_id'));
+                    }
+                });
+             }
          }
-     }
- });
-});
+     });
+    });
 }
 
