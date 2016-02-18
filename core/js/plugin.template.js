@@ -52,12 +52,14 @@
   });
 }
 
-
-
 $('.eqLogicDisplayCard').off('click').on('click', function () {
     $('.li_eqLogic[data-eqLogic_id=' + $(this).attr('data-eqLogic_id') + ']').click();
 });
 
+$('.eqLogicAction[data-action=gotoPluginConf]').off('click').on('click', function () {
+     $('#md_modal').dialog({title: "{{Configuration du plugin}}"});
+    $("#md_modal").load('index.php?v=d&p=plugin&ajax=1&id='+eqType).dialog('open');
+});
 
 $('.eqLogicAction[data-action=returnToThumbnailDisplay]').off('click').on('click', function () {
     $('.eqLogic').hide();
