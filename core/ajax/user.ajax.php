@@ -91,7 +91,7 @@ try {
 		@session_start();
 		$_SESSION['user']->refresh();
 		$result = $_SESSION['user']->validateTwoFactorCode(init('code'));
-		if (init('enableTwoFactorAuthentification') == 1) {
+		if ($result && init('enableTwoFactorAuthentification') == 1) {
 			$_SESSION['user']->setOptions('twoFactorAuthentification', 1);
 			$_SESSION['user']->save();
 		}
