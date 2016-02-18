@@ -150,6 +150,9 @@ if (init('type') != '') {
 		$params = $jsonrpc->getParams();
 
 		if ($jsonrpc->getMethod() == 'user::useTwoFactorAuthentification') {
+			if (network::getUserLocation() == 'internal') {
+				$jsonrpc->makeSuccess(0);
+			}
 			$user = user::byLogin($params['login']);
 			if (!is_object($user)) {
 				$jsonrpc->makeSuccess(0);
@@ -169,7 +172,7 @@ if (init('type') != '') {
 				sleep(5);
 				throw new Exception('Echec de l\'authentification', -32001);
 			}
-			if ($user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
+			if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
 				if (!isset($params['twoFactorCode']) || trim($params['twoFactorCode']) == '' || !$user->validateTwoFactorCode($params['twoFactorCode'])) {
 					connection::failed();
 					sleep(5);

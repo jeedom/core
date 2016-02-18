@@ -21,6 +21,9 @@ try {
 	include_file('core', 'authentification', 'php');
 
 	if (init('action') == 'useTwoFactorAuthentification') {
+		if (network::getUserLocation() == 'internal') {
+			ajax::success(0);
+		}
 		$user = user::byLogin(init('login'));
 		if (!is_object($user)) {
 			ajax::success(0);
