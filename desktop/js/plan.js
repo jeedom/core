@@ -661,10 +661,7 @@ if (_type == 'eqLogic') {
                 html.find('.cmd[data-cmd_id=' + id + ']').remove(); 
             } 
         } 
-    } 
-    if (isset(_plan.display) && (isset(_plan.display.name) && _plan.display.name == 1)) { 
-        html.find('.widget-name').remove(); 
-    } 
+    }  
 } 
 if (_type == 'scenario' && isset(_plan.display) && isset(_plan.display.hideCmd) && _plan.display.hideCmd == 1) { 
     html.find('.changeScenarioState').remove(); 

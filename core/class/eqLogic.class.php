@@ -461,8 +461,13 @@ class eqLogic {
 		if (is_array($parameters) && isset($parameters['background_cmd_color'])) {
 			$cmdColor = $parameters['background_cmd_color'];
 		}
+		$refresh_cmd = null;
 		if ($this->getIsEnable()) {
 			foreach ($this->getCmd(null, null, true) as $cmd) {
+				if ($cmd->getLogicalId() == 'refresh') {
+					$refresh_cmd = $cmd;
+					continue;
+				}
 				if ($cmd->getDisplay('hideOn' . $version) == 1) {
 					continue;
 				}
@@ -488,6 +493,7 @@ class eqLogic {
 			'#max_width#' => '650px',
 			'#logicalId#' => $this->getLogicalId(),
 			'#object_name#' => '',
+			'#refresh_id#' => ($refresh_cmd != null) ? $refresh_cmd->getId() : '',
 			'#height#' => $this->getDisplay('height', 'auto'),
 			'#width#' => $this->getDisplay('width', 'auto'),
 			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
