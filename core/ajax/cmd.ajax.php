@@ -293,6 +293,9 @@ try {
 	if (init('action') == 'setOrder') {
 		$cmds = json_decode(init('cmds'), true);
 		foreach ($cmds as $cmd_json) {
+			if (trim($cmd_json['id']) == '') {
+				continue;
+			}
 			$cmd = cmd::byId($cmd_json['id']);
 			if (!is_object($cmd)) {
 				throw new Exception(__('Commande inconnu verifié l\'id :', __FILE__) . ' ' . $cmd_json['id']);
