@@ -837,7 +837,7 @@ class scenarioExpression {
 							$replace2[$replace_string] = call_user_func_array($function, $arguments);
 						}
 					}
-					if ($_quote && (strpos($replace2[$replace_string], ' ') !== false || preg_match("/[a-zA-Z\#]/", $replace2[$replace_string]) || $replace2[$replace_string] === '')) {
+					if ($_quote && (strpos($replace2[$replace_string], ' ') !== false || preg_match("/[a-zA-Z#]/", $replace2[$replace_string]) || $replace2[$replace_string] === '')) {
 						$replace2[$replace_string] = '"' . trim($replace2[$replace_string], '"') . '"';
 					}
 				}
