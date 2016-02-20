@@ -1272,7 +1272,7 @@ class scenario {
 		$this->_log .= '[' . date('Y-m-d H:i:s') . '][SCENARIO] ' . $log . "\n";
 	}
 
-	public function getTimeout($_default = '') {
+	public function getTimeout($_default = 0) {
 		if ($this->timeout == '' || !is_numeric($this->timeout)) {
 			return $_default;
 		}
