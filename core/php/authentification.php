@@ -161,7 +161,7 @@ function hasRight($_right, $_needAdmin = false) {
 		@session_write_close();
 		return true;
 	}
-	if (config::byKey('rights::enable') != 0) {
+	if (config::byKey('rights::enable') == 0) {
 		return !$_needAdmin;
 	}
 	$rights = rights::byuserIdAndEntity($_SESSION['user']->getId(), $_right);

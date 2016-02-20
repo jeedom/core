@@ -13,19 +13,19 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-loadRights();
+ loadRights();
 
-$('#sel_userId').on('change', function () {
+ $('#sel_userId').on('change', function () {
     loadRights();
 });
 
-jwerty.key('ctrl+s', function (e) {
+ jwerty.key('ctrl+s', function (e) {
     e.preventDefault();
     $("#bt_saveRights").click();
 });
 
 
-$('#bt_saveRights').on('click', function () {
+ $('#bt_saveRights').on('click', function () {
     jeedom.rights.save({
         rights: $('.rights').getValues('.rightsAttr'),
         error: function (error) {
@@ -38,26 +38,26 @@ $('#bt_saveRights').on('click', function () {
     });
 });
 
- $('#bt_applyRightsToogle').on('click', function () {
-        var state = false;
-        if ($(this).attr('data-state') == 0) {
-            state = true;
-            $(this).attr('data-state', 1);
-            $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
-        } else {
-            state = false;
-            $(this).attr('data-state', 0);
-            $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
+ $('.toggleRight').on('click', function () {
+    var state = false;
+    if ($(this).attr('data-state') == 0) {
+        state = true;
+        $(this).attr('data-state', 1);
+        $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
+    } else {
+        state = false;
+        $(this).attr('data-state', 0);
+        $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
+    }
+    $('.tab-pane.active .rightsAttr[data-l1key=right][data-type='+$(this).attr('data-type')+']').each(function () {
+        if ($(this).is(':visible')) {
+            $(this).prop('checked', state);
         }
-        $('.tab-pane.active .rightsAttr[data-l1key=right]').each(function () {
-            if ($(this).is(':visible')) {
-                $(this).prop('checked', state);
-            }
-        });
     });
+});
 
 
-function loadRights() {
+ function loadRights() {
     jeedom.rights.byUserId({
         user_id: $('#sel_userId').value(),
         error: function (error) {

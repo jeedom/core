@@ -85,10 +85,12 @@ include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
 include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
 ?>
 <div class="alert alert-info">
-<a class="btn btn-default" id="bt_applyRightsToogle" data-state="0"><i class="fa fa-check-circle-o"></i> {{Basculer}}</a>
-	<strong>{{Utilisateur :}}</strong> <select class="form-control" id="sel_userId" style="display: inline-block; width: 200px;">
+	<strong>{{Utilisateur (non admin uniquement) :}}</strong> <select class="form-control" id="sel_userId" style="display: inline-block; width: 200px;">
 	<?php
 foreach (user::all() as $user) {
+	if ($user->getRights('admin')) {
+		continue;
+	}
 	echo '<option value="' . $user->getId() . '">' . $user->getLogin() . '</option>';
 }
 ?>
@@ -105,7 +107,7 @@ foreach (user::all() as $user) {
 <!-- Tab panes -->
 <div class="tab-content">
 	<div role="tabpanel" class="tab-pane active" id="general">
-		<br/>
+		<a class="btn btn-default toggleRight" data-state="1" data-type='view' style="margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-check-circle-o"></i> {{Inverser}}</a>
 		<table class="table table-bordered table-condensed tablesorter" >
 			<thead>
 				<tr>
@@ -125,7 +127,7 @@ foreach ($pages as $kpage => $page) {
 			echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
 			echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
 			echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="' . $kpage . $kright . '" />';
-			echo '<input type="checkbox" class="rightsAttr" data-l1key="right" checked />' . $right['title'];
+			echo '<input type="checkbox" class="rightsAttr" data-type="' . $kright . '" data-l1key="right" checked />' . $right['title'];
 			echo '</span>';
 		}
 	}
@@ -142,7 +144,8 @@ foreach ($pages as $kpage => $page) {
 		</table>
 	</div>
 	<div role="tabpanel" class="tab-pane" id="eqLogic">
-		<br/>
+		<a class="btn btn-default toggleRight" data-state="1" data-type='view' style="margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-check-circle-o"></i> {{Inverser voir}}</a>
+		<a class="btn btn-default toggleRight" data-state="1" data-type='action' style="margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-check-circle-o"></i> {{Inverser action}}</a>
 		<table class="table table-bordered table-condensed tablesorter" >
 			<thead>
 				<tr>
@@ -160,7 +163,7 @@ foreach (eqLogic::all() as $eqLogic) {
 		echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="eqLogic' . $eqLogic->getId() . $kright . '" />';
-		echo '<input type="checkbox" class="rightsAttr" data-l1key="right" checked />' . $right;
+		echo '<input type="checkbox" class="rightsAttr" data-l1key="right" data-type="' . $kright . '" checked />' . $right;
 		echo '</span>';
 	}
 	echo '</td>';
@@ -174,7 +177,9 @@ foreach (eqLogic::all() as $eqLogic) {
 		</table>
 	</div>
 	<div role="tabpanel" class="tab-pane" id="scenario">
-		<br/>
+		<a class="btn btn-default toggleRight" data-state="1" data-type='view' style="margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-check-circle-o"></i> {{Inverser voir}}</a>
+		<a class="btn btn-default toggleRight" data-state="1" data-type='edit' style="margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-check-circle-o"></i> {{Inverser editer}}</a>
+		<a class="btn btn-default toggleRight" data-state="1" data-type='action' style="margin-top : 5px;margin-bottom: 5px;"><i class="fa fa-check-circle-o"></i> {{Inverser action}}</a>
 		<table class="table table-bordered table-condensed tablesorter" >
 			<thead>
 				<tr>
@@ -192,7 +197,7 @@ foreach (scenario::all() as $scenario) {
 		echo '<input class="rightsAttr" data-l1key="id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="user_id" style="display:none;" />';
 		echo '<input class="rightsAttr" data-l1key="entity" style="display:none;" value="scenario' . $scenario->getId() . $kright . '" />';
-		echo '<input type="checkbox" class="rightsAttr" data-l1key="right" checked />' . $right;
+		echo '<input type="checkbox" class="rightsAttr" data-l1key="right" data-type="' . $kright . '" checked />' . $right;
 		echo '</span>';
 	}
 	echo '</td>';
