@@ -98,6 +98,7 @@ $(".li_eqLogic").off('click').on('click', function () {
         },
         success: function (data) {
             $('body .eqLogicAttr').value('');
+            $('body .eqLogicAttr[data-l1key=object_id] option:first').attr('selected',true);
             if(isset(data) && isset(data.timeout) && data.timeout == 0){
                 data.timeout = '';
             }
