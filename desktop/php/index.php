@@ -436,8 +436,8 @@ if (isConnect('admin')) {
 		}
 		?>
 
-														<li class="divider"></li>
 														<?php	if (jeedom::isCapable('sudo')) {
+			echo '<li class="divider expertModeVisible"></li>';
 			echo '<li class="cursor expertModeVisible"><a id="bt_rebootSystem" state="0"><i class="fa fa-repeat"></i> {{Redémarrer}}</a></li>';
 			echo '<li class="cursor expertModeVisible"><a id="bt_haltSystem" state="0"><i class="fa fa-power-off"></i> {{Eteindre}}</a></li>';
 		}
