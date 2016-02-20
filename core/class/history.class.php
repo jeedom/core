@@ -324,21 +324,45 @@ ORDER BY `datetime` ASC';
 			'startTime' => $_startTime,
 			'endTime' => $_endTime,
 		);
-		$sql = 'SELECT AVG(value) as avg, MIN(value) as min, MAX(value) as max, SUM(value) as sum, COUNT(value) as count, STD(value) as std, VARIANCE(value) as variance, value as `last`
-	FROM (
-		SELECT *
-		FROM history
-		WHERE cmd_id=:cmd_id
-		AND `datetime`>=:startTime
-		AND `datetime`<=:endTime
-		UNION ALL
-		SELECT *
-		FROM historyArch
-		WHERE cmd_id=:cmd_id
-		AND `datetime`>=:startTime
-		AND `datetime`<=:endTime
+		$sql = 'SELECT AVG(value) as avg, MIN(value) as min, MAX(value) as max, SUM(value) as sum, COUNT(value) as count, STD(value) as std, VARIANCE(value) as variance
+		FROM (
+			SELECT *
+			FROM history
+			WHERE cmd_id=:cmd_id
+			AND `datetime`>=:startTime
+			AND `datetime`<=:endTime
+			UNION ALL
+			SELECT *
+			FROM historyArch
+			WHERE cmd_id=:cmd_id
+			AND `datetime`>=:startTime
+			AND `datetime`<=:endTime
 		) as dt';
-		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+
+		$values = array(
+			'cmd_id' => $_cmd_id,
+			'startTime' => $_startTime,
+			'endTime' => $_endTime,
+		);
+		$sql = 'SELECT value as `last`
+		FROM (
+			SELECT *
+			FROM history
+			WHERE cmd_id=:cmd_id
+			AND `datetime`>=:startTime
+			AND `datetime`<=:endTime
+			UNION ALL
+			SELECT *
+			FROM historyArch
+			WHERE cmd_id=:cmd_id
+			AND `datetime`>=:startTime
+			AND `datetime`<=:endTime
+		) as dt
+		ORDER BY `datetime` DESC
+		LIMIT 1';
+		$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		return array_merge($result, $result2);
 	}
 
 	public static function getTendance($_cmd_id, $_startTime, $_endTime) {
