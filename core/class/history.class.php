@@ -339,7 +339,9 @@ ORDER BY `datetime` ASC';
 			AND `datetime`<=:endTime
 		) as dt';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-
+		if (!is_array($result)) {
+			$result = array();
+		}
 		$values = array(
 			'cmd_id' => $_cmd_id,
 			'startTime' => $_startTime,
@@ -362,6 +364,9 @@ ORDER BY `datetime` ASC';
 		ORDER BY `datetime` DESC
 		LIMIT 1';
 		$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		if (!is_array($result2)) {
+			$result2 = array();
+		}
 		return array_merge($result, $result2);
 	}
 
