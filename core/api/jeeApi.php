@@ -282,7 +282,7 @@ if (init('type') != '') {
 			/*             * ************************datastore*************************** */
 
 			if ($jsonrpc->getMethod() == 'datastore::byTypeLinkIdKey') {
-				$jsonrpc->makeSuccess(dataStore::byTypeLinkIdKey($params['type'], $params['linkId'], $params['key']));
+				$jsonrpc->makeSuccess(utils::o2a(dataStore::byTypeLinkIdKey($params['type'], $params['linkId'], $params['key'])));
 			}
 
 			if ($jsonrpc->getMethod() == 'datastore::save') {
