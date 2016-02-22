@@ -267,7 +267,7 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_database">
-                <i class="fa fa-table"></i>  {{Base de données}}
+                <i class="fa fa-database"></i>  {{Base de données}}
             </a>
         </h3>
     </div>
