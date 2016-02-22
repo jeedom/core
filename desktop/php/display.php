@@ -62,7 +62,7 @@ foreach ($objects as $object) {
 <br/>
 <div class="row row-same-height">
 	<div class="col-xs-4 object col-xs-height" data-id="-1">
-		<legend><i class="fa fa-circle-o"></i>  {{Aucun}} <i class="fa fa-chevron-down pull-right showEqLogic tooltips cursor" title="{{Voir les équipements}}"></i></legend>
+		<legend style="cursor : default"><i class="fa fa-circle-o"></i>  {{Aucun}} <i class="fa fa-chevron-down pull-right showEqLogic tooltips cursor" title="{{Voir les équipements}}"></i></legend>
 		<ul class="eqLogicSortable">
 			<?php
 foreach ($eqLogics[-1] as $eqLogic) {
@@ -100,7 +100,7 @@ foreach ($objects as $object) {
 		echo '<div class="row row-same-height">';
 	}
 	echo '<div class="col-xs-4 object col-xs-height" data-id="' . $object->getId() . '" style="background-color : ' . $object->getDisplay('tagColor') . ';color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">';
-	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">' .$object->getDisplay('icon') . '  ' . $object->getName();
+	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . ';cursor : default">' .$object->getDisplay('icon') . '  ' . $object->getName();
 	echo '<i class="fa fa-chevron-down pull-right showEqLogic tooltips cursor" title="{{Voir les équipements}}"></i>';
 	echo '<i style="position:relative;top : 3px;" class="fa fa-cog pull-right cursor configureObject tooltips" title="{{Configuration avancée}}"></i>';
 	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right tooltips" title="{{Aller sur la configuration de l\'objet}}"><i class="fa fa-external-link"></i></a>';
