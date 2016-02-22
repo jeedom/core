@@ -6,7 +6,7 @@ if (!hasRight('updateview', true)) {
 <br/>
 <div class="row row-overflow">
     <div class="col-sm-8">
-        {{Dernière vérification : }}<span class="label label-info" id="span_lastUpdateCheck" style="margin-bottom: 5px;"></span>
+        <i class="fa fa-clock-o"></i>  {{Dernière vérification : }}<span class="label label-info" id="span_lastUpdateCheck" style="margin-bottom: 5px;"></span>
 
         <a class="btn btn-warning pull-right" id="bt_checkAllUpdate" style="margin-top:5px;"><i class="fa fa-refresh"></i> {{Vérifier les objets et mises à jour}}</a>
         <a class="btn btn-primary pull-right" id="bt_allChangelog" style="margin-top:5px;"><i class="fa fa-search-plus"></i> {{Changelog}}</a>
@@ -43,7 +43,7 @@ if (!hasRight('updateview', true)) {
         </table>
     </div>
     <div class="col-sm-4">
-        <legend>{{Informations :}}</legend>
+        <legend><i class="fa fa-info-circle"></i>  {{Informations :}}</legend>
         <pre id="pre_updateInfo"></pre>
     </div>
 </div>
