@@ -21,7 +21,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 	}
 }
 ?>
-<legend>{{Profil}}</legend>
+<legend><i class="fa fa-user"></i>  {{Profil}}</legend>
 
 <div class="panel-group" id="accordionConfiguration">
   <input style="display: none;" class="userAttr form-control" data-l1key="id" />
@@ -29,7 +29,7 @@ foreach (plugin::listPlugin() as $pluginList) {
     <div class="panel-heading">
       <h3 class="panel-title">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_themes">
-          Thèmes
+          <i class="fa fa-tint"></i>  {{Thèmes}}
         </a>
       </h3>
     </div>
@@ -131,7 +131,7 @@ foreach (plugin::listPlugin() as $pluginList) {
     <div class="panel-heading">
       <h3 class="panel-title">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_interface">
-          Interface
+          <i class="fa fa-laptop"></i>  {{Interface}}
         </a>
       </h3>
     </div>
@@ -139,7 +139,7 @@ foreach (plugin::listPlugin() as $pluginList) {
       <div class="panel-body">
         <form class="form-horizontal">
           <fieldset>
-            <legend>{{Général}}</legend>
+            <legend><i class="fa fa-home"></i>  {{Général}}</legend>
             <div class="form-group">
               <label class="col-sm-3 control-label">{{Masquer les menus automatiquement}}</label>
               <div class="col-sm-1">
@@ -148,7 +148,7 @@ foreach (plugin::listPlugin() as $pluginList) {
             </div>
 
 
-            <legend>Page par défaut</legend>
+            <legend><i class="fa fa-file-o"></i>  {{Page par défaut}}</legend>
             <div class="form-group">
               <label class="col-sm-3 control-label">{{Desktop}}</label>
               <div class="col-sm-2">
@@ -172,7 +172,7 @@ foreach ($homePage as $key => $value) {
              </select>
            </div>
          </div>
-         <legend>{{Objet par défaut sur le dashboard}}</legend>
+         <legend><i class="fa fa-columns"></i>  {{Objet par défaut sur le dashboard}}</legend>
          <div class="form-group">
           <label class="col-sm-3 control-label">{{Desktop}}</label>
           <div class="col-sm-2">
@@ -196,7 +196,7 @@ foreach (object::all() as $object) {
          </select>
        </div>
      </div>
-     <legend>{{Vue par défaut}}</legend>
+     <legend><i class="fa fa-eye"></i>  {{Vue par défaut}}</legend>
      <div class="form-group">
       <label class="col-sm-3 control-label">{{Desktop}}</label>
       <div class="col-sm-2">
@@ -219,7 +219,7 @@ foreach (view::all() as $view) {
      </select>
    </div>
  </div>
- <legend>{{Design par défaut}}</legend>
+ <legend><i class="fa fa-paint-brush"></i>  {{Design par défaut}}</legend>
  <div class="form-group">
   <label class="col-sm-3 control-label">{{Desktop}}</label>
   <div class="col-sm-2">
@@ -249,7 +249,7 @@ foreach (planHeader::all() as $plan) {
   </div>
 </div>
 
-<legend>{{Dashboard}}</legend>
+<legend><i class="fa fa-tachometer"></i>  {{Dashboard}}</legend>
 <div class="form-group">
   <label class="col-sm-3 control-label">{{Déplier le panneau des scénarios}}</label>
   <div class="col-sm-1">
@@ -262,7 +262,7 @@ foreach (planHeader::all() as $plan) {
     <input type="checkbox" class="userAttr bootstrapSwitch" data-l1key="options" data-l2key="displayObjetByDefault"/>
   </div>
 </div>
-<legend>{{Vue}}</legend>
+<legend><i class="fa fa-picture-o"></i>  {{Vue}}</legend>
 <div class="form-group">
   <label class="col-sm-3 control-label">{{Déplier le panneau des vues}}</label>
   <div class="col-sm-1">
@@ -279,7 +279,7 @@ foreach (planHeader::all() as $plan) {
   <div class="panel-heading">
     <h3 class="panel-title">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_notification">
-        {{Notifications}}
+        <i class="fa fa-download"></i>  {{Notifications}}
       </a>
     </h3>
   </div>
@@ -321,7 +321,7 @@ foreach ($notifyTheme as $key => $value) {
   <div class="panel-heading">
     <h3 class="panel-title">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_other">
-        {{Sécurité}}
+        <i class="icon securite-key1"></i>  {{Sécurité}}
       </a>
     </h3>
   </div>
