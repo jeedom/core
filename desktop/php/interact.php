@@ -87,7 +87,7 @@ foreach ($interactListGroup as $group) {
   </div>
 </div>
 
-<legend><i class="fa fa-microphone"></i>  {{Mes interactions}}</legend>
+<legend><i class="fa fa-comments-o"></i>  {{Mes interactions}}</legend>
 <?php
 echo '<legend>Aucun</legend>';
 echo '<div class="interactListContainer">';
@@ -195,7 +195,7 @@ foreach ($interactListGroup as $group) {
     <div class="col-sm-6">
       <form class="form-horizontal" id="div_filtre">
         <fieldset>
-          <legend>{{Filtres}}</legend>
+          <legend><i class="fa fa-filter"></i>  {{Filtres}}</legend>
 
           <div class="form-group">
             <label class="col-sm-3 control-label">{{Limiter aux commandes de type}}</label>
@@ -289,7 +289,7 @@ foreach (eqLogic::all() as $eqLogic) {
   <div class="col-sm-6">
     <form class="form-horizontal">
       <fieldset>
-        <legend>{{Action}} <a class="btn btn-xs btn-success pull-right" id="bt_addAction"><i class="fa fa-plus-circle"></i></a></legend>
+        <legend><i class="fa fa-cogs"></i>  {{Action}} <a class="btn btn-xs btn-success pull-right" id="bt_addAction"><i class="fa fa-plus-circle"></i></a></legend>
         <div id="div_action"></div>
       </fieldset>
     </form>
@@ -298,7 +298,7 @@ foreach (eqLogic::all() as $eqLogic) {
   <div class="col-sm-6">
     <form class="form-horizontal">
       <fieldset>
-        <legend>{{Phrases générées}}</legend>
+        <legend><i class="fa fa-comment-o"></i>  {{Phrases générées}}</legend>
         <div class="form-group">
           <label class="col-sm-4 col-xs-7 control-label">{{Phrases générées}}</label>
           <div class="col-sm-8 col-xs-4">
