@@ -6,7 +6,7 @@ if (!hasRight('backupview', true)) {
 <div id="backup">
     <div class="row row-overflow">
         <div class="col-sm-6">
-            <legend>{{Sauvegardes}}</legend>
+            <legend><i class="fa fa-floppy-o"></i>  {{Sauvegardes}}</legend>
             <form class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
@@ -51,7 +51,7 @@ if (!hasRight('backupview', true)) {
                     <div class="form-actions" style="height: 20px;">
                         <a class="btn btn-success" id="bt_saveBackup"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
                     </div><br/><br/>
-                    <legend>{{Sauvegardes locales}}</legend>
+                    <legend><i class="fa fa-folder-open"></i>  {{Sauvegardes locales}}</legend>
                     <form class="form-horizontal">
                         <fieldset>
                             <div class="form-group">
@@ -90,7 +90,7 @@ if (!hasRight('backupview', true)) {
                     </form>
                     <?php if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
 	?>
-                       <legend>{{Sauvegardes cloud}}</legend>
+                       <legend><i class="fa fa-cloud"></i>  {{Sauvegardes cloud}}</legend>
                        <form class="form-horizontal">
                         <fieldset>
                             <?php
@@ -131,7 +131,7 @@ try {
 ?>
         </div>
         <div class="col-sm-6">
-            <legend>{{Informations}}</legend>
+            <legend><i class="fa fa-info-circle"></i>  {{Informations}}</legend>
             <pre id="pre_backupInfo" style="overflow: scroll;"></pre>
         </div>
     </div>
