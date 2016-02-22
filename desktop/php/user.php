@@ -9,7 +9,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 
     <!--********************Onglet utilisateur********************************-->
     <div class="tab-pane" id="user">
-        <legend>{{Liste des utilisateurs :}}</legend>
+        <legend><i class="icon personne-toilet1"></i>  {{Liste des utilisateurs :}}</legend>
         <?php if (config::byKey('ldap::enable') != '1') {?>
             <a class="btn btn-success pull-right" id="bt_addUser"><i class="fa fa-plus-circle"></i> {{Ajouter un utilisateur}}</a>
             <br/><br/>
