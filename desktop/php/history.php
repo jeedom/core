@@ -11,7 +11,7 @@ $date = array(
 <div class="row row-overflow">
 	<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
 		<ul id="ul_history" class="nav nav-list bs-sidenav">
-			<li class="nav-header">{{Historique}}</li>
+			<li class="nav-header"><i class="icon techno-courbes3"></i> {{Historique}}</li>
 			<li class="filter"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" /></li>
 			<?php
 $object_id = -1;
