@@ -139,7 +139,7 @@ class network {
 				return config::byKey('externalProtocol');
 			}
 			if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
-				return config::byKey('jeedom::url');
+				return config::byKey('jeedom::url') . config::byKey('externalComplement', 'core', '');
 			}
 			return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . config::byKey('externalComplement');
 		}
