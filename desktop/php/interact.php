@@ -66,7 +66,7 @@ foreach ($interactListGroup as $group) {
 
  <div id="interactThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
    <div class="interactListContainer">
-     <legend>{{Gestion}}</legend>
+     <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
      <div class="cursor" id="bt_addInteract2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
        <center>
         <i class="fa fa-plus-circle" style="font-size : 4em;color:#94ca02;"></i>
@@ -87,7 +87,7 @@ foreach ($interactListGroup as $group) {
   </div>
 </div>
 
-<legend>{{Mes interactions}}</legend>
+<legend><i class="fa fa-microphone"></i>  {{Mes interactions}}</legend>
 <?php
 echo '<legend>Aucun</legend>';
 echo '<div class="interactListContainer">';
