@@ -131,10 +131,12 @@ class market {
 
 		if (is_array($_logicalId)) {
 			$options = $_logicalId;
+			$timeout = 240;
 		} else {
 			$options = array('logicalId' => $_logicalId);
+			$timeout = 10;
 		}
-		if ($market->sendRequest('market::byLogicalId', $options)) {
+		if ($market->sendRequest('market::byLogicalId', $options, $timeout, null, 1)) {
 			if (is_array($_logicalId)) {
 				$return = array();
 				foreach ($market->getResult() as $logicalId => $result) {
