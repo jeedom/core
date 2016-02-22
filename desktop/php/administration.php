@@ -10,7 +10,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_generale">
-                        {{Configuration générale}}
+                        <i class="fa fa-wrench"></i>  {{Configuration générale}}
                     </a>
                 </h3>
             </div>
@@ -172,7 +172,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             </select>
                         </div>
                         <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
-                            <a class="btn btn-primary" id="bt_forceSyncHour"><i class="fa fa-clock-o"></i> Forcer la synchronisation de l'heure</a>
+                            <a class="btn btn-primary" id="bt_forceSyncHour"><i class="fa fa-clock-o"></i> {{Forcer la synchronisation de l'heure}}</a>
                         </div>
                     </div>
                     <div class="form-group expertModeVisible">
@@ -211,7 +211,7 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_component">
-                {{Composants Jeedom}}
+                <i class="fa fa-home"></i>  {{Composants Jeedom}}
             </a>
         </h3>
     </div>
@@ -241,7 +241,7 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_system">
-                {{Système (OS)}}
+                <i class="fa fa-terminal"></i>  {{Système (OS)}}
             </a>
         </h3>
     </div>
@@ -267,7 +267,7 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_database">
-                {{Base de données}}
+                <i class="fa fa-table"></i>  {{Base de données}}
             </a>
         </h3>
     </div>
@@ -317,7 +317,7 @@ echo $CONFIG['db']['password'];
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_network">
-                {{Configuration réseaux}}
+                <i class="fa fa-rss"></i>  {{Configuration réseaux}}
             </a>
         </h3>
     </div>
@@ -492,7 +492,7 @@ if (config::byKey('market::allowDNS') == 1 && network::dns_run()) {
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_color">
-                {{Configuration des couleurs}}
+                <i class="fa fa-tint"></i>  {{Configuration des couleurs}}
             </a>
         </h3>
     </div>
@@ -549,7 +549,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_cmd">
-                {{Configuration des commandes}}
+                <i class="icon divers-table29"></i>  {{Configuration des commandes}}
             </a>
         </h3>
     </div>
@@ -633,7 +633,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_cache">
-                {{Configuration du cache}}
+                <i class="fa fa-hdd-o"></i>  {{Configuration du cache}}
             </a>
         </h3>
     </div>
@@ -707,7 +707,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_interact">
-                {{Configuration des interactions}}
+                <i class="fa fa-microphone"></i>  {{Configuration des interactions}}
             </a>
         </h3>
     </div>
@@ -770,7 +770,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_logMessage">
-                {{Configuration des logs & messages}}
+                <i class="fa fa-pencil-square-o"></i>  {{Configuration des logs & messages}}
             </a>
         </h3>
     </div>
@@ -862,7 +862,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_ldap">
-                {{Configuration LDAP}}
+                <i class="icon personne-toilet1"></i>  {{Configuration LDAP}}
             </a>
         </h3>
     </div>
@@ -942,7 +942,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
         <div class="panel-heading">
             <h3 class="panel-title">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_commandeEqlogic">
-                    {{Configuration des équipements}}
+                    <i class="icon divers-svg"></i>  {{Configuration des équipements}}
                 </a>
             </h3>
         </div>
@@ -980,7 +980,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_market">
-                {{Market et mise à jour}}
+                <i class="fa fa-credit-card"></i>  {{Market et mise à jour}}
             </a>
         </h3>
     </div>
