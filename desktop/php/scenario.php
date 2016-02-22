@@ -264,6 +264,12 @@ foreach (object::all() as $object) {
                     <textarea class="form-control scenarioAttr" data-l1key="description" placeholder="Description"></textarea>
                 </div>
             </div>
+             <div class="form-group expertModeVisible">
+                <label class="col-xs-6 control-label">{{Autoriser plusieurs lancement en parallèle}}</label>
+                <div class="col-xs-1">
+                    <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourné plusieurs fois en même temps}}">
+                </div>
+            </div>
             <div class="form-group expertModeVisible">
                 <label class="col-xs-6 control-label">{{Enchainer les commandes sans attendre}}</label>
                 <div class="col-xs-1">

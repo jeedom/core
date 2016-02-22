@@ -565,7 +565,7 @@ class scenario {
 	}
 
 	public function execute($_trigger = '', $_message = '') {
-		if ($this->getIsActive() != 1) {
+		if ($this->getIsActive() != 1 && $this->getConfiguration('allowMultiInstance', 0) == 0) {
 			$this->setLog(__('Impossible d\'exécuter le scénario : ', __FILE__) . $this->getHumanName() . __(' sur : ', __FILE__) . $_message . __(' car il est désactivé', __FILE__));
 			$this->persistLog();
 			return;
