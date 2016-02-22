@@ -21,7 +21,11 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class system {
 	public static function fuserk($_port, $_protocol = 'tcp') {
-		exec('fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1;sudo fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1');
+		if (file_exists($_port)) {
+			exec('fuser -k ' . $_port . ' > /dev/null 2>&1;sudo fuser -k ' . $_port . ' > /dev/null 2>&1');
+		} else {
+			exec('fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1;sudo fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1');
+		}
 	}
 
 	public static function ps($_find, $_without = null) {
