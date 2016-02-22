@@ -79,7 +79,7 @@ if (is_array($scenarioListGroup)) {
 <div id="scenarioThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
 
  <div class="scenarioListContainer">
-     <legend>{{Gestion}}</legend>
+     <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
      <div class="cursor" id="bt_addScenario2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
        <center>
         <i class="fa fa-plus-circle" style="font-size : 4em;color:#94ca02;"></i>
@@ -125,7 +125,7 @@ if (is_array($scenarioListGroup)) {
 </div>
 </div>
 
-<legend>{{Mes scénarios}}</legend>
+<legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}}</legend>
 <?php
 
 if (count($scenarios[-1]) > 0) {
