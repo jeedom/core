@@ -49,7 +49,7 @@ foreach ($plugins_list as $category_name => $category) {
  </div>
 
  <div class="col-md-9 col-sm-8" id="div_resumePluginList" style="border-left: solid 1px #EEE; padding-left: 25px;">
-     <legend>{{Mes plugins}}</legend>
+     <legend><i class="fa fa-list-alt"></i>  {{Mes plugins}}</legend>
      <div class="pluginListContainer">
         <div class="cursor" id="bt_displayMarket2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
            <center>
