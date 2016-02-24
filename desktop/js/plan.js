@@ -58,9 +58,9 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                   loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
-               },
-           });
+                 loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
+             },
+         });
         }
     });
 });
@@ -89,10 +89,10 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                   $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
-                   loadPage('index.php?v=d&p=plan');
-               },
-           });
+                 $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
+                 loadPage('index.php?v=d&p=plan');
+             },
+         });
         }
     });
 });
@@ -242,7 +242,7 @@ $('.div_displayObject:last').delegate('.configureGraph', 'click', function () {
             });
             $('#md_addViewData').dialog('open');
         });
-}
+    }
 });
 
 $('#bt_editPlan').off('click').on('click', function () {
@@ -343,32 +343,30 @@ function displayPlan(_offsetX, _offsetY) {
             if (isset(data.image)) {
                 $('.div_displayObject:visible:last').append(data.image);
             }
-            if (!isset(data.configuration) || !isset(data.configuration.responsiveMode) || data.configuration.responsiveMode != 1) {
-                var proportion = 1;
-                if (deviceInfo.type == 'tablet' && isset(data.configuration) && isset(data.configuration.tabletteProportion) && data.configuration.tabletteProportion != 1) {
-                    proportion = data.configuration.tabletteProportion;
-                }
-                if (deviceInfo.type == 'phone' && isset(data.configuration) && isset(data.configuration.mobileProportion) && data.configuration.mobileProportion != 1) {
-                    proportion = data.configuration.mobileProportion;
-                }
-                if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
-                    $('.div_displayObject:visible:last').height(data.configuration.desktopSizeY * proportion);
-                    $('.div_displayObject:visible:last').width(data.configuration.desktopSizeX * proportion);
-                    $('.div_displayObject:visible:last img').height(data.configuration.desktopSizeY * proportion);
-                    $('.div_displayObject:visible:last img').width(data.configuration.desktopSizeX * proportion);
-                } else {
-                    $('.div_displayObject:visible:last').width($('.div_displayObject:visible:last img').attr('data-sixe_x') * proportion);
-                    $('.div_displayObject:visible:last').height($('.div_displayObject:visible:last img').attr('data-sixe_y') * proportion);
-                    $('.div_displayObject:visible:last img').css('height', ($('.div_displayObject:visible:last img').attr('data-sixe_y') * proportion) + 'px');
-                    $('.div_displayObject:visible:last img').css('width', ($('.div_displayObject:visible:last img').attr('data-sixe_x') * proportion) + 'px');
-                }
-                if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
-                    fullScreen(deviceInfo.type);
-                    if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '' && isNaN(data.configuration.desktopSizeX) && isNaN(data.configuration.desktopSizeY)) {
+            var proportion = 1;
+            if (deviceInfo.type == 'tablet' && isset(data.configuration) && isset(data.configuration.tabletteProportion) && data.configuration.tabletteProportion != 1) {
+                proportion = data.configuration.tabletteProportion;
+            }
+            if (deviceInfo.type == 'phone' && isset(data.configuration) && isset(data.configuration.mobileProportion) && data.configuration.mobileProportion != 1) {
+                proportion = data.configuration.mobileProportion;
+            }
+            if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
+                $('.div_displayObject:visible:last').height(data.configuration.desktopSizeY * proportion);
+                $('.div_displayObject:visible:last').width(data.configuration.desktopSizeX * proportion);
+                $('.div_displayObject:visible:last img').height(data.configuration.desktopSizeY * proportion);
+                $('.div_displayObject:visible:last img').width(data.configuration.desktopSizeX * proportion);
+            } else {
+                $('.div_displayObject:visible:last').width($('.div_displayObject:visible:last img').attr('data-sixe_x') * proportion);
+                $('.div_displayObject:visible:last').height($('.div_displayObject:visible:last img').attr('data-sixe_y') * proportion);
+                $('.div_displayObject:visible:last img').css('height', ($('.div_displayObject:visible:last img').attr('data-sixe_y') * proportion) + 'px');
+                $('.div_displayObject:visible:last img').css('width', ($('.div_displayObject:visible:last img').attr('data-sixe_x') * proportion) + 'px');
+            }
+            if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
+                fullScreen(deviceInfo.type);
+                if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '' && isNaN(data.configuration.desktopSizeX) && isNaN(data.configuration.desktopSizeY)) {
 
-                    } else {
-                        $('meta[name="viewport"]').prop('content', 'width=' + $('.div_displayObject:visible:last').width() + ',height=' + $('.div_displayObject:visible:last').height());
-                    }
+                } else {
+                    $('meta[name="viewport"]').prop('content', 'width=' + $('.div_displayObject:visible:last').width() + ',height=' + $('.div_displayObject:visible:last').height());
                 }
             }
             if (isset(data.configuration) && isset(data.configuration.noReturnFullScreen) && data.configuration.noReturnFullScreen == 1) {
@@ -410,9 +408,9 @@ function displayPlan(_offsetX, _offsetY) {
                         }
                     },
                 });
-}
-},
-});
+            }
+        },
+    });
 }
 
 function savePlan(_refreshDisplay) {
@@ -566,9 +564,9 @@ function displayFrameObject(name, _type, _id, _html, _plan, _noRender) {
         $(name).find('.eqLogic-widget[data-eqLogic_id=' + _id + ']').remove();
     } 
     if (_type == 'scenario') { 
-     $(name).find('.scenario-widget[data-scenario_id=' + _id + ']').remove();
- } 
- if (_type == 'view') { 
+       $(name).find('.scenario-widget[data-scenario_id=' + _id + ']').remove();
+   } 
+   if (_type == 'view') { 
     $(name).find('.view-link-widget[data-link_id=' + _id + ']').remove();
 } 
 if (_type == 'plan') { 
@@ -670,16 +668,16 @@ return html;
 }
 
 function addGraphFrame(name, _plan) {
-   var parent = {
-       height: $(name).height(),
-       width: $(name).width(),
-   };
-   _plan = init(_plan, {});
-   _plan.display = init(_plan.display, {});
-   _plan.link_id = init(_plan.link_id, Math.round(Math.random() * 99999999) + 9999);
-   var options = init(_plan.display.graph, '[]');
-   var background_color = 'background-color : white;';
-   if(init(_plan.display.transparentBackground, false)){
+ var parent = {
+     height: $(name).height(),
+     width: $(name).width(),
+ };
+ _plan = init(_plan, {});
+ _plan.display = init(_plan.display, {});
+ _plan.link_id = init(_plan.link_id, Math.round(Math.random() * 99999999) + 9999);
+ var options = init(_plan.display.graph, '[]');
+ var background_color = 'background-color : white;';
+ if(init(_plan.display.transparentBackground, false)){
     background_color = '';
 }
 var html = '<div class="graph-widget" data-graph_id="' + _plan.link_id + '" style="'+background_color+'border : solid 1px black;">';
@@ -690,19 +688,19 @@ html += '</div>';
 displayFrameObject(name, 'graph', _plan.link_id, html, _plan);
 for (var i in options) {
   if (init(options[i].link_id) != '') {
-     jeedom.history.drawChart({
-        cmd_id: options[i].link_id,
-        el: 'graph' + _plan.link_id,
-        showLegend: init(_plan.display.showLegend, true),
-        showTimeSelector: init(_plan.display.showTimeSelector, false),
-        showScrollbar: init(_plan.display.showScrollbar, true),
-        dateRange: init(_plan.display.dateRange, '7 days'),
-        option: init(options[i].configuration, {}),
-        transparentBackground : init(_plan.display.transparentBackground, false),
-        enableExport : false,
-        global: false,
-    });
- }
+   jeedom.history.drawChart({
+    cmd_id: options[i].link_id,
+    el: 'graph' + _plan.link_id,
+    showLegend: init(_plan.display.showLegend, true),
+    showTimeSelector: init(_plan.display.showTimeSelector, false),
+    showScrollbar: init(_plan.display.showScrollbar, true),
+    dateRange: init(_plan.display.dateRange, '7 days'),
+    option: init(options[i].configuration, {}),
+    transparentBackground : init(_plan.display.transparentBackground, false),
+    enableExport : false,
+    global: false,
+});
+}
 }
 }
 
