@@ -278,6 +278,11 @@ class interactDef {
 				'les homecinema',
 				'les kodi',
 				'les appartement',
+				'le maison',
+				'du maison',
+				'le buanderie',
+				'du buanderie',
+				'la bureau',
 			);
 			if (preg_match('/( |^)' . implode('( |$)|( |^)', $disallow) . '( |$)/i', $_query)) {
 				return false;
