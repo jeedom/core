@@ -54,7 +54,7 @@ try {
 		$backup = null;
 		$mtime = null;
 		foreach (scandir($backup_dir) as $file) {
-			if ($file != "." && $file != "..") {
+			if ($file != "." && $file != ".." && $file != ".htaccess" && strpos($file, '.tar.gz') !== false) {
 				$s = stat($backup_dir . '/' . $file);
 				if ($backup == null || $mtime == null) {
 					$backup = $backup_dir . '/' . $file;
@@ -107,6 +107,7 @@ try {
 	if ($return_var != 0) {
 		throw new Exception('Impossible de décompresser l\'archive');
 	}
+
 	@unlink($tmp . '/core/config/apache_jeedom_dynamic_rules');
 	echo "OK\n";
 	if (!file_exists($tmp . "/DB_backup.sql")) {
