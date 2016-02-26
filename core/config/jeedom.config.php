@@ -61,6 +61,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'LIGHT_SLIDER' => array('name' => 'Lumière Slider (action)'),
 			'LIGHT_COLOR' => array('name' => 'Lumière Couleur (info)'),
 			'LIGHT_SET_COLOR' => array('name' => 'Lumière Couleur (action)'),
+			'LIGHT_MODE' => array('name' => 'Lumière Mode (action)'),
 			'ENERGY_STATE' => array('name' => 'Prise Etat (info)'),
 			'ENERGY_ON' => array('name' => 'Prise Bouton On (action)'),
 			'ENERGY_OFF' => array('name' => 'Prise Bouton Off (action)'),
