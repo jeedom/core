@@ -94,7 +94,7 @@ class object {
 	public static function fullData($_restrict = array()) {
 		$return = array();
 		foreach (object::all(true) as $object) {
-			if (!is_array($_restrict['object']) || isset($_restrict['object'][$object->getId()])) {
+			if (!isset($_restrict['object']) || !is_array($_restrict['object']) || isset($_restrict['object'][$object->getId()])) {
 				$object_return = utils::o2a($object);
 				$object_return['eqLogics'] = array();
 				foreach ($object->getEqLogic(true, true) as $eqLogic) {
