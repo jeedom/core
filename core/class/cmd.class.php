@@ -594,7 +594,7 @@ class cmd {
 				case 'binary':
 					if ($this->getConfiguration('calculValueOffset') != '') {
 						try {
-							$_value = evaluate(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
+							$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
 						} catch (Exception $ex) {
 
 						} catch (Error $ex) {
@@ -616,7 +616,7 @@ class cmd {
 					$_value = floatval(str_replace(',', '.', $_value));
 					if ($this->getConfiguration('calculValueOffset') != '') {
 						try {
-							$_value = evaluate(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
+							$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
 						} catch (Exception $ex) {
 
 						} catch (Error $ex) {
