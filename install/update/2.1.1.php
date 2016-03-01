@@ -16,6 +16,10 @@ try {
 } catch (Exception $exc) {
 	echo $exc->getMessage();
 }
+
+if (file_exists('/etc/apt/sources.list.d/imx6.list')) {
+	shell_exec('sudo rm /etc/apt/sources.list.d/imx6.list');
+}
 ?>
 
 
