@@ -422,18 +422,7 @@ class eqLogic {
 	}
 
 	public function hasOnlyEventOnlyCmd() {
-		$values = array(
-			'eqLogic_id' => $this->getId(),
-		);
-		$sql = 'SELECT count(*)
-        FROM cmd
-        WHERE eqLogic_id=:eqLogic_id
-        AND eventOnly!=1
-        AND type="info"
-        AND isVisible=1
-        AND isHistorized=0';
-		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		return ($result['count(*)'] > 0) ? false : true;
+		return true;
 	}
 
 	public function toHtml($_version = 'dashboard') {
