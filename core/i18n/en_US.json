@@ -1718,6 +1718,6 @@
         "Cliquez sur une commande à droite ou tapez une commande personalisé ci-dessous": "Click a command to the right or type a personalized command below"
     },
     "core/php/jeeCron.php": {
-        "Erreur sur ": "Erreur sur"
+        "Erreur sur ": "Error on"
     }
 }
