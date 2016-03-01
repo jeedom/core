@@ -1,0 +1,84 @@
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+
+        DocumentRoot /var/www
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+        <Directory /var/www/>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride AuthConfig
+                Order allow,deny
+                allow from all
+        </Directory>
+
+        ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+        <Directory "/usr/lib/cgi-bin">
+                AllowOverride None
+                Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+                Order allow,deny
+                Allow from all
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        LogLevel warn
+
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        <Directory /var/www/jeedom/>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride AuthConfig
+                Order allow,deny
+                allow from all
+                DirectoryIndex index.html index.php
+        </Directory>
+
+        <Directory /var/www/jeedom/tmp/>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride AuthConfig
+                Order allow,deny
+                deny from all
+        </Directory>
+
+        <Directory /var/www/jeedom/log/>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride AuthConfig
+                Order allow,deny
+                deny from all
+        </Directory>
+                                                                                                                                                                                
+        <Directory /var/www/jeedom/backup/>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride AuthConfig
+                Order allow,deny
+                deny from all
+        </Directory>
+
+                ProxyPreserveHost On
+                ProxyRequests On
+
+        <Location /nodeJS/>
+                ProxyPass http://127.0.0.1:8070/
+                ProxyPassReverse http://127.0.0.1:8070/
+        </Location>
+                                                                                                                                                                                
+        <Location /socket.io/>
+                ProxyPass  http://127.0.0.1:8070/socket.io/
+                ProxyPassReverse http://127.0.0.1:8070/socket.io/
+        </Location>
+
+        <ProxyMatch ^((?!127\.0\.0\.1).)*$>
+                Order deny,allow
+                Deny from all
+        </ProxyMatch>
+
+        <ProxyMatch 127\.0\.0\.1>
+                Order deny,allow
+                Allow from all
+        </ProxyMatch>
+
+</VirtualHost>
