@@ -134,7 +134,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'minValue' => array('visible' => true),
 							'maxValue' => array('visible' => true)),
 						'unite' => array('visible' => true),
-						'eventOnly' => array('visible' => true),
 						'isHistorized' => array('visible' => true),
 						'cache' => array(
 							'lifetime' => array('visible' => true),
@@ -151,7 +150,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'minValue' => array('visible' => false),
 							'maxValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
-						'eventOnly' => array('visible' => true),
 						'isHistorized' => array('visible' => true),
 						'cache' => array(
 							'lifetime' => array('visible' => true),
@@ -168,7 +166,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'minValue' => array('visible' => false),
 							'maxValue' => array('visible' => false)),
 						'unite' => array('visible' => true),
-						'eventOnly' => array('visible' => true),
 						'isHistorized' => array('visible' => false),
 						'cache' => array(
 							'lifetime' => array('visible' => true),
@@ -190,7 +187,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'minValue' => array('visible' => false),
 							'maxValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
-						'eventOnly' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
 						'cache' => array(
 							'lifetime' => array('visible' => false),
@@ -207,7 +203,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'minValue' => array('visible' => true),
 							'maxValue' => array('visible' => true)),
 						'unite' => array('visible' => false),
-						'eventOnly' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
 						'cache' => array(
 							'lifetime' => array('visible' => false),
@@ -224,7 +219,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'minValue' => array('visible' => false),
 							'maxValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
-						'eventOnly' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
 						'cache' => array(
 							'lifetime' => array('visible' => false),
@@ -241,7 +235,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'minValue' => array('visible' => false),
 							'maxValue' => array('visible' => false)),
 						'unite' => array('visible' => false),
-						'eventOnly' => array('visible' => false),
 						'isHistorized' => array('visible' => false),
 						'cache' => array(
 							'lifetime' => array('visible' => false),

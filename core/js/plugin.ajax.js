@@ -416,17 +416,6 @@ $('body').on('.cmd .cmdAttr[data-l1key=display][data-l2key=icon]', 'click', func
     $(this).empty();
 });
 
-$('body').on('.cmd .cmdAttr[data-l1key=eventOnly]', 'change', function () {
-    if ($(this).value() == 1) {
-        $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().show();
-        $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().removeClass('hide');
-    } else {
-        $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().hide();
-        $(this).closest('.cmd').find('.cmdAttr[data-l1key=configuration][data-l2key=onlyChangeEvent]').parent().addClass('hide');
-
-    }
-});
-
 $('body').on('.cmd .cmdAction[data-action=remove]', 'click', function () {
     $(this).closest('tr').remove();
 });

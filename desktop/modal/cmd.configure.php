@@ -109,13 +109,6 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
                 </div>
 
                 <div class="form-group">
-                  <label class="col-xs-4 control-label">{{Evènement seulement}}</label>
-                  <div class="col-xs-4">
-                    <span class="cmdAttr label label-primary" data-l1key="eventOnly" style="font-size : 1em;"></span>
-                  </div>
-                </div>
-
-                <div class="form-group">
                   <label class="col-xs-4 control-label"></label>
                   <div class="col-xs-4">
                     <input type="checkbox" data-label-text="{{Visible}}" class="cmdAttr bootstrapSwitch" data-l1key="isVisible" />
