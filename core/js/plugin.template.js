@@ -57,7 +57,7 @@ $('.eqLogicDisplayCard').off('click').on('click', function () {
 });
 
 $('.eqLogicAction[data-action=gotoPluginConf]').off('click').on('click', function () {
-     $('#md_modal').dialog({title: "{{Configuration du plugin}}"});
+    $('#md_modal').dialog({title: "{{Configuration du plugin}}"});
     $("#md_modal").load('index.php?v=d&p=plugin&ajax=1&id='+eqType).dialog('open');
 });
 

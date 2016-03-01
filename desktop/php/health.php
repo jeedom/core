@@ -200,7 +200,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 		} else {
 			echo '<i class="' . $plugin->getIcon() . '"></i> ';
 		}
-		echo '{{Santé }} <a target="_blank" href="index.php?v=d&p=plugin&id=' . $plugin->getId() . '">' . $plugin->getName() . '</a></legend>';
+		echo '{{Santé }} <a class="bt_configurationPlugin cursor" data-pluginid="' . $plugin->getId() . '">' . $plugin->getName() . '</a></legend>';
 		echo '<table class="table table-condensed table-bordered">';
 		echo '<thead><tr><th style="width : 250px;"></th><th style="width : 150px;">{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>';
 		echo '<tbody>';
