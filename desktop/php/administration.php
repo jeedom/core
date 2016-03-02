@@ -649,7 +649,6 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                             <select type="text"  class="configKey form-control" data-l1key="cache::engine" >
                                 <option value="FilesystemCache">{{Système de fichier (/tmp/jeedom-cache)}}</option>
-                                <option value="PhpFileCache">{{Système de fichier php (/tmp/jeedom-cache-php)}}</option>
                                 <?php if (class_exists('memcached')) {?>
                                 <option value="MemcachedCache">{{Memcached}}</option>
                                 <?php }
