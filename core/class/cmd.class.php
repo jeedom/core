@@ -1214,7 +1214,6 @@ class cmd {
 		$cmd->setId('');
 		$cmd->setOrder('');
 		$cmd->setEqLogic_id('');
-		$cmd->cache = '';
 		$cmd->setDisplay('graphType', '');
 		$cmdValue = $cmd->getCmdValue();
 		if (is_object($cmdValue)) {
