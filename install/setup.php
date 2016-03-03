@@ -60,10 +60,10 @@ $loadExtensions = get_loaded_extensions();
 <html>
 <head>
 	<title>Jeedom Installation</title>
-	<script src="../../3rdparty/jquery/jquery.min.js"></script>
-	<script src="../../3rdparty/bootstrap/bootstrap.min.js"></script>
-	<link href="../../3rdparty/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<link href="../../3rdparty/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="../3rdparty/jquery/jquery.min.js"></script>
+	<script src="../3rdparty/bootstrap/bootstrap.min.js"></script>
+	<link href="../3rdparty/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../3rdparty/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 	<center>
