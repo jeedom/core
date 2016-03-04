@@ -8,12 +8,14 @@ $date = array(
 );
 ?>
 
-<div class="row row-overflow">
-	<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
-		<ul id="ul_history" class="nav nav-list bs-sidenav">
-			<li class="nav-header"><i class="icon techno-courbes3"></i> {{Historique}}</li>
-			<li class="filter"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" /></li>
-			<?php
+	<div class="row row-overflow">
+		<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
+			<ul id="ul_history" class="nav nav-list bs-sidenav">
+				<li class="nav-header"><i class="icon techno-courbes3"></i> {{Historique}}
+					<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="position:relatif; top:-5px;"><i class="fa fa-cogs"></i> {{Configuration}}</a>
+				</li>
+				<li class="filter"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" /></li>
+				<?php
 $object_id = -1;
 foreach (cmd::allHistoryCmd() as $cmd) {
 	$eqLogic = $cmd->getEqLogic();
@@ -41,38 +43,38 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 	$object_id = $eqLogic->getObject_id();
 }
 ?>
-		</ul>
+			</ul>
+		</div>
+
+		<div class="col-lg-9 col-md-8 col-sm-7" style="border-left: solid 1px #EEE; padding-left: 25px;height: 600px;">
+			<input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['start'] ?>"/>
+			<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['end'] ?>"/>
+			<a class="btn btn-success btn-sm tooltips" id='bt_validChangeDate' title="{{Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher}}">{{Ok}}</a>
+
+			<select class="form-control pull-right" id="sel_groupingType" style="width: 200px;">
+				<option value="">{{Aucun groupement}}</option>
+				<option value="sum::day">{{Sommes par jour}}</option>
+				<option value="average::day">{{Moyenne par jour}}</option>
+				<option value="low::day">{{Minimum par jour}}</option>
+				<option value="high::day">{{Maximum par jour}}</option>
+				<option value="sum::week">{{Sommes par semaine}}</option>
+				<option value="average::week">{{Moyenne par semaine}}</option>
+				<option value="low::week">{{Minimum par semaine}}</option>
+				<option value="high::week">{{Maximum par semaine}}</option>
+				<option value="sum::month">{{Sommes par mois}}</option>
+				<option value="average::month">{{Moyenne par mois}}</option>
+				<option value="low::month">{{Minimum par mois}}</option>
+				<option value="high::month">{{Maximum par mois}}</option>
+			</select>
+			<select class="form-control pull-right" id="sel_chartType" style="width: 200px;">
+				<option value="line">{{Ligne}}</option>
+				<option value="areaspline">{{Areaspline}}</option>
+				<option value="column">{{Barre}}</option>
+			</select>
+			<span class="pull-right"><input type="checkbox" data-label-text="{{Variation}}" class="bootstrapSwitch" id="cb_derive" /></span>
+			<span class="pull-right"><input type="checkbox" data-label-text="{{Escalier}}" class="bootstrapSwitch" id="cb_step" /></span>
+			<div id="div_graph" style="margin-top: 50px;"></div>
+		</div>
 	</div>
 
-	<div class="col-lg-9 col-md-8 col-sm-7" style="border-left: solid 1px #EEE; padding-left: 25px;height: 600px;">
-		<input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['start'] ?>"/>
-		<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['end'] ?>"/>
-		<a class="btn btn-success btn-sm tooltips" id='bt_validChangeDate' title="{{Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher}}">{{Ok}}</a>
-
-		<select class="form-control pull-right" id="sel_groupingType" style="width: 200px;">
-			<option value="">{{Aucun groupement}}</option>
-			<option value="sum::day">{{Sommes par jour}}</option>
-			<option value="average::day">{{Moyenne par jour}}</option>
-			<option value="low::day">{{Minimum par jour}}</option>
-			<option value="high::day">{{Maximum par jour}}</option>
-			<option value="sum::week">{{Sommes par semaine}}</option>
-			<option value="average::week">{{Moyenne par semaine}}</option>
-			<option value="low::week">{{Minimum par semaine}}</option>
-			<option value="high::week">{{Maximum par semaine}}</option>
-			<option value="sum::month">{{Sommes par mois}}</option>
-			<option value="average::month">{{Moyenne par mois}}</option>
-			<option value="low::month">{{Minimum par mois}}</option>
-			<option value="high::month">{{Maximum par mois}}</option>
-		</select>
-		<select class="form-control pull-right" id="sel_chartType" style="width: 200px;">
-			<option value="line">{{Ligne}}</option>
-			<option value="areaspline">{{Areaspline}}</option>
-			<option value="column">{{Barre}}</option>
-		</select>
-		<span class="pull-right"><input type="checkbox" data-label-text="{{Variation}}" class="bootstrapSwitch" id="cb_derive" /></span>
-		<span class="pull-right"><input type="checkbox" data-label-text="{{Escalier}}" class="bootstrapSwitch" id="cb_step" /></span>
-		<div id="div_graph" style="margin-top: 50px;"></div>
-	</div>
-</div>
-
-<?php include_file("desktop", "history", "js");?>
+	<?php include_file("desktop", "history", "js");?>

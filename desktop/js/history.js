@@ -71,6 +71,11 @@
     window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null);
 });
 
+ $('#bt_openCmdHistoryConfigure').on('click',function(){
+    $('#md_modal').dialog({title: "{{Configuration de l'historique des commandes}}"});
+    $("#md_modal").load('index.php?v=d&modal=cmd.configureHistory').dialog('open');
+});
+
  function emptyHistory(_cmd_id,_date) {
     $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
@@ -111,7 +116,7 @@ function initHistoryTrigger() {
             }
         });
     });
-     $('#sel_groupingType').on('change', function () {
+    $('#sel_groupingType').on('change', function () {
         $('.li_history[data-cmd_id=' + lastId + '] .history').click();
         jeedom.cmd.save({
             cmd: {id: lastId, display: {groupingType: $(this).value()}},
@@ -151,7 +156,7 @@ function initHistoryTrigger() {
 
 $('#bt_validChangeDate').on('click',function(){
     $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie){
-     if(!isNaN(serie.options.id)){
+       if(!isNaN(serie.options.id)){
         var cmd_id = serie.options.id;
         addChart(cmd_id, 0);
         addChart(cmd_id, 1);
