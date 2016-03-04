@@ -79,7 +79,7 @@ jeedom.init = function () {
     });
 
     $('body').on('scenario::update', function (_event,_options) {
-        jeedom.scenario.refreshValue({id: _options.id});
+        jeedom.scenario.refreshValue({id: _options.scenario_id });
     });
     $('body').on('eqLogic::update', function (_event,eqLogic_id) {
         jeedom.eqLogic.refreshValue({id: eqLogic_id});
