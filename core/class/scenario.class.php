@@ -722,7 +722,7 @@ class scenario {
 		}
 		DB::save($this);
 		if ($this->_changeState) {
-			event::add('scenario::update', $this->getId());
+			event::add('scenario::update', array('id' => $this->getId(), 'state' => $this->getState()));
 		}
 	}
 

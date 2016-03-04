@@ -78,8 +78,8 @@ jeedom.init = function () {
         jeedom.cmd.refreshValue({id: _options.cmd_id});
     });
 
-    $('body').on('scenario::update', function (_event,scenario_id) {
-        jeedom.scenario.refreshValue({id: scenario_id});
+    $('body').on('scenario::update', function (_event,_options) {
+        jeedom.scenario.refreshValue({id: _options.id});
     });
     $('body').on('eqLogic::update', function (_event,eqLogic_id) {
         jeedom.eqLogic.refreshValue({id: eqLogic_id});
