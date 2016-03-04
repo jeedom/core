@@ -292,7 +292,11 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			echo '</td>';
 			switch ($deamon_info['state']) {
 				case 'ok':
-					echo '<td class="alert alert-success">{{OK}}</td>';
+					echo '<td class="alert alert-success">{{OK}}';
+					if ($deamon_info['debug_mode']) {
+						echo ' ({{Debug}})';
+					}
+					echo '</td>';
 					break;
 				case 'nok':
 					if ($deamon_info['auto'] != 1) {
@@ -333,7 +337,11 @@ foreach (plugin::listPlugin(true) as $plugin) {
 					echo '</td>';
 					switch ($deamon_info['state']) {
 						case 'ok':
-							echo '<td class="alert alert-success">{{OK}}</td>';
+							echo '<td class="alert alert-success">{{OK}}';
+							if ($deamon_info['debug_mode']) {
+								echo ' ({{Debug}})';
+							}
+							echo '</td>';
 							break;
 						case 'nok':
 							if ($deamon_info['auto'] != 1) {
