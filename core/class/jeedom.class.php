@@ -544,6 +544,7 @@ class jeedom {
 		$group = $processGroup['name'];
 		$path = dirname(__FILE__) . '/../../*';
 		exec('sudo chown -R ' . $user . ':' . $group . ' ' . $path);
+		exec('sudo chmod 775 -R ' . $path);
 	}
 
 	public static function checkSpaceLeft() {

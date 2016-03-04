@@ -113,6 +113,7 @@ try {
 					echo __('Nettoyage du dossier temporaire (tmp)...', __FILE__);
 					exec('rm -rf ' . dirname(__FILE__) . '/../tmp/*.zip');
 					exec('rm -rf ' . dirname(__FILE__) . '/../tmp/backup');
+					exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
 					echo __("OK\n", __FILE__);
 				} catch (Exception $e) {
 					echo __('***ERREUR*** ', __FILE__) . $e->getMessage() . "\n";
