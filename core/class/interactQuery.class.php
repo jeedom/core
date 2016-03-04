@@ -83,6 +83,9 @@ class interactQuery {
 
 	public static function recognize($_query) {
 		$_query = interactDef::sanitizeQuery($_query);
+		if (trim($_query) == '') {
+			return null;
+		}
 		$values = array(
 			'query' => $_query,
 		);
@@ -156,6 +159,9 @@ class interactQuery {
 	}
 
 	public static function tryToReply($_query, $_parameters = array()) {
+		if (trim($_query) == '') {
+			return;
+		}
 		$_parameters['dictation'] = $_query;
 		if (isset($_parameters['profile'])) {
 			$_parameters['profile'] = strtolower($_parameters['profile']);
