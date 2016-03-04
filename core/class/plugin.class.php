@@ -451,6 +451,7 @@ class plugin {
 			$return['launchable_message'] = __('Jeedom n\'est pas encore démarré', __FILE__);
 		}
 		$return['last_launch'] = config::byKey('lastDeamonLaunchTime', $this->getId(), __('Inconnue', __FILE__));
+		$return['debug_mode'] = config::byKey('deamonDebugMode', $this->getId(), false);
 		return $return;
 	}
 
@@ -467,6 +468,7 @@ class plugin {
 				}
 				if ($deamon_info['launchable'] == 'ok' && $deamon_info['state'] == 'nok' && method_exists($plugin_id, 'deamon_start')) {
 					config::save('lastDeamonLaunchTime', date('Y-m-d H:i:s'), $plugin_id);
+					config::save('deamonDebugMode', $_debug, $plugin_id);
 					$plugin_id::deamon_start($_debug);
 				}
 			}
