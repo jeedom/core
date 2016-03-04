@@ -43,13 +43,10 @@ if [ $(crontab -l | grep jeeCron | wc -l) -lt 1 ]; then
 else
 	echo "OK"
 fi
-
-
+DIR="$( cd "$( dirname "$0" )" && pwd )"
 echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Check right..."
-sudo chown -R www-data:www-data /usr/share/nginx/www/jeedom
-sudo chmod 775 -R /usr/share/nginx/www/jeedom
-echo "OK"
-
+sudo chown -R www-data:www-data ${DIR}/*
+sudo chmod 775 -R ${DIR}/*
 
 echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Check access to market..."
 sudo ping -c 2 market.jeedom.fr >> /dev/null 2>&1
