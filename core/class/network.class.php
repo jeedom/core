@@ -68,12 +68,12 @@ class network {
 				return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80);
 			}
 			if ($_protocole == 'proto:127.0.0.1:port:comp') {
-				return config::byKey('internalProtocol') . '127.0.0.1:' . config::byKey('internalPort', 'core', 80) . config::byKey('internalComplement');
+				return trim(config::byKey('internalProtocol') . '127.0.0.1:' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
 			if ($_protocole == 'http:127.0.0.1:port:comp') {
-				return 'http://127.0.0.1:' . config::byKey('internalPort', 'core', 80) . config::byKey('internalComplement');
+				return trim('http://127.0.0.1:' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
-			return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . config::byKey('internalComplement');
+			return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 
 		}
 		if ($_mode == 'dnsjeedom') {
@@ -139,9 +139,9 @@ class network {
 				return config::byKey('externalProtocol');
 			}
 			if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
-				return config::byKey('jeedom::url') . config::byKey('externalComplement', 'core', '');
+				return trim(config::byKey('jeedom::url') . '/' . trim(config::byKey('externalComplement', 'core', ''), '/'), '/');
 			}
-			return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . config::byKey('externalComplement');
+			return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . '/' . trim(config::byKey('externalComplement'), '/'), '/');
 		}
 	}
 
