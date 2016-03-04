@@ -155,6 +155,22 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'multiSave') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$cmds = json_decode(init('cmd'), true);
+		foreach ($cmds as $cmd_ajax) {
+			$cmd = cmd::byId($cmd_ajax['id']);
+			if (!is_object($cmd)) {
+				continue;
+			}
+			utils::a2o($cmd, $cmd_ajax);
+			$cmd->save();
+		}
+		ajax::success();
+	}
+
 	if (init('action') == 'changeHistoryPoint') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));

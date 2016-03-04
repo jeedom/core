@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
 ?>
    <div style="display: none;" id="md_cmdConfigureHistory"></div>
    <div>
-     <a class="btn btn-success pull-right" id="bt_cmdConfigureSelectMultipleAlertApply" style="color : white;" ><i class="fa fa-check"></i> {{Valider}}</a>
+     <a class="btn btn-success pull-right" id="bt_cmdConfigureCmdHistoryApply" style="color : white;" ><i class="fa fa-check"></i> {{Valider}}</a>
  </div>
  <br/>
  <br/>
@@ -39,6 +39,7 @@ sendVarToJs('cmds_history_configure', $list_cmd);
   table_history.push(addCommandHistory(cmds_history_configure[i]));
 }
 $('#table_cmdConfigureHistory tbody').empty().append(table_history);
+$('#table_cmdConfigureHistory tbody tr').attr('data-change','0');
 $("#table_cmdConfigureHistory").trigger("update");
 $("#table_cmdConfigureHistory").width('100%');
 
@@ -48,6 +49,7 @@ function addCommandHistory(_cmd){
   tr += '<input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />';
   tr += '</td>';
   tr += '<td>';
+  tr += '<span class="cmdAttr" data-l1key="id" style="display:none;"></span>';
   tr += '<span class="cmdAttr" data-l1key="humanName"></span>';
   tr += '</td>';
   tr += '<td>';
@@ -104,11 +106,11 @@ $(".bt_configureHistoryEmptyCmdHistory").on('click', function () {
                 },
                 dataType: 'json',
                 error: function (request, status, error) {
-                    handleAjaxError(request, status, error);
+                    handleAjaxError(request, status, error,$('#md_cmdConfigureHistory'));
                 },
                 success: function (data) {
                     if (data.state != 'ok') {
-                        $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                        $('#md_cmdConfigureHistory').showAlert({message: data.result, level: 'danger'});
                         return;
                     }
                     $('#md_cmdConfigureHistory').showAlert({message: '{{Historique supprimé avec succès}}', level: 'success'});
@@ -116,6 +118,28 @@ $(".bt_configureHistoryEmptyCmdHistory").on('click', function () {
             });
         }
     });
+});
+
+$('.cmdAttr').on('change click',function(){
+    $(this).closest('tr').attr('data-change','1');
+});
+
+$('#bt_cmdConfigureCmdHistoryApply').on('click',function(){
+    var cmds = [];
+    $('#table_cmdConfigureHistory tbody tr').each(function(){
+        if($(this).attr('data-change') == '1'){
+            cmds.push($(this).getValues('.cmdAttr')[0]);
+        }
+    })
+    jeedom.cmd.multiSave({
+        cmds : cmds,
+        error: function (error) {
+            $('#md_cmdConfigureHistory').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+           $('#md_cmdConfigureHistory').showAlert({message: '{{Modifications sauvegardées avec succès}}', level: 'success'});
+       }
+   });
 });
 
 </script>

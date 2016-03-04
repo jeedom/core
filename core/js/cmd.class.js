@@ -370,6 +370,30 @@ jeedom.cmd.save = function(_params) {
     $.ajax(paramsAJAX);
 };
 
+jeedom.cmd.multiSave = function(_params) {
+    var paramsRequired = ['cmds'];
+    var paramsSpecifics = {
+        pre_success: function(data) {
+            jeedom.cmd.cache.byId = [];
+            return data;
+        }
+    };
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+    paramsAJAX.data = {
+        action: 'multiSave',
+        cmd: json_encode(_params.cmds)
+    };
+    $.ajax(paramsAJAX);
+};
+
 jeedom.cmd.byId = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {
