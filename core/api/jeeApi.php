@@ -671,6 +671,10 @@ if (init('type') != '') {
 				$jsonrpc->makeSuccess(interactQuery::tryToReply($params['query']));
 			}
 
+			if ($jsonrpc->getMethod() == 'interactQuery::all') {
+				$jsonrpc->makeSuccess(utils::o2a(interactQuery::all()));
+			}
+
 			/*             * ************************USB mapping*************************** */
 			if ($jsonrpc->getMethod() == 'jeedom::getUsbMapping') {
 				$name = (isset($params['name'])) ? $params['name'] : '';

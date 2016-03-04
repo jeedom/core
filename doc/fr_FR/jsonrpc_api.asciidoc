@@ -220,6 +220,9 @@ Supprime tous les messages
 === interact::tryToReply
 Essaye de faire correspondre une demande avec une interaction, exécute l'action et répond en conséquence
 
+=== interactQuery::all
+Renvoi un tableau contenant toute les interactions générées
+
 Paramètres:
 
 - query (phrase de la demande)
