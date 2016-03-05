@@ -1166,7 +1166,7 @@ class scenario {
 		return $this->group;
 	}
 
-	public function getLastLaunch($_default == NULL) {
+	public function getLastLaunch($_default = NULL) {
 		if ($this->lastLaunch == '') {
 			return $_default;
 		}
