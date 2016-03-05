@@ -895,9 +895,7 @@ class eqLogic {
 	}
 
 	public function getTimeout($_default = null) {
-		if ($this->timeout == '' || !is_numeric($this->timeout)) {
-			return $_default;
-		}
+
 		return $this->timeout;
 	}
 
