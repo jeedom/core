@@ -125,7 +125,7 @@ sudo su -
 cd /etc/php5/fpm/pool.d/
 vim www.conf
 
-Editer la ligne "pm.max_children" en mettant p[source,bash]
+Editer la ligne "pm.max_children" en mettant "pm.max_children = 20"
 
 Ensuite il suffit de redemarrer php5-fpm
 
