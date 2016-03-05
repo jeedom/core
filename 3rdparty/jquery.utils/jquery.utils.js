@@ -364,7 +364,6 @@
 
 
     $.fn.value = function (_value) {
-
         if (isset(_value)) {
             if ($(this).length > 1) {
                 $(this).each(function () {
@@ -387,6 +386,7 @@
                 }
                 if ($(this).is('select')) {
                     if (init(_value) == '') {
+                        $(this).find('option:first').attr('selected',true);
                     } else {
                         $(this).val(init(_value));
                     }
