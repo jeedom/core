@@ -1423,6 +1423,9 @@ class cmd {
 	}
 
 	public function getOrder() {
+		if ($this->order == '') {
+			return 0;
+		}
 		return $this->order;
 	}
 

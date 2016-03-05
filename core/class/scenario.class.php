@@ -1166,7 +1166,10 @@ class scenario {
 		return $this->group;
 	}
 
-	public function getLastLaunch() {
+	public function getLastLaunch($_default == NULL) {
+		if ($this->lastLaunch == '') {
+			return $_default;
+		}
 		return $this->lastLaunch;
 	}
 
@@ -1202,7 +1205,7 @@ class scenario {
 		return $this->type;
 	}
 
-	function setType($type) {
+	public function setType($type) {
 		$this->type = $type;
 	}
 
@@ -1228,7 +1231,10 @@ class scenario {
 		$this->schedule = $schedule;
 	}
 
-	public function getPID() {
+	public function getPID($_default = NULL) {
+		if ($this->pid == '' || !is_numeric($this->pid)) {
+			return $_default;
+		}
 		return $this->pid;
 	}
 
@@ -1272,7 +1278,7 @@ class scenario {
 		$this->_log .= '[' . date('Y-m-d H:i:s') . '][SCENARIO] ' . $log . "\n";
 	}
 
-	public function getTimeout($_default = 0) {
+	public function getTimeout($_default = null) {
 		if ($this->timeout == '' || !is_numeric($this->timeout)) {
 			return $_default;
 		}
@@ -1280,14 +1286,23 @@ class scenario {
 	}
 
 	public function setTimeout($timeout) {
+		if ($timeout == '' || is_string($timeout) || is_nan(intval($timeout)) || $timeout < 1) {
+			$timeout == '';
+		}
 		$this->timeout = $timeout;
 	}
 
-	public function getObject_id() {
+	public function getObject_id($_default = null) {
+		if ($this->object_id == '' || !is_numeric($this->object_id)) {
+			return $_default;
+		}
 		return $this->object_id;
 	}
 
-	public function getIsVisible() {
+	public function getIsVisible($_default = 0) {
+		if ($this->isVisible == '' || !is_numeric($this->isVisible)) {
+			return $_default;
+		}
 		return $this->isVisible;
 	}
 

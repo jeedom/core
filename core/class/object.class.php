@@ -238,11 +238,17 @@ class object {
 		return $this->name;
 	}
 
-	public function getFather_id() {
+	public function getFather_id($_default = null) {
+		if ($this->father_id == '' || !is_numeric($this->father_id)) {
+			return $_default;
+		}
 		return $this->father_id;
 	}
 
-	public function getIsVisible() {
+	public function getIsVisible($_default = null) {
+		if ($this->isVisible == '' || !is_numeric($this->isVisible)) {
+			return $_default;
+		}
 		return $this->isVisible;
 	}
 
@@ -263,7 +269,10 @@ class object {
 		$this->isVisible = $isVisible;
 	}
 
-	public function getPosition() {
+	public function getPosition($_default = null) {
+		if ($this->position == '' || !is_numeric($this->position)) {
+			return $_default;
+		}
 		return $this->position;
 	}
 

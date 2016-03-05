@@ -443,7 +443,10 @@ class cron {
 		return $this->state;
 	}
 
-	public function getEnable() {
+	public function getEnable($_default = 0) {
+		if ($this->enable == '' || !is_numeric($this->enable)) {
+			return $_default;
+		}
 		return $this->enable;
 	}
 
@@ -451,7 +454,10 @@ class cron {
 		return $this->duration;
 	}
 
-	public function getPID() {
+	public function getPID($_default = null) {
+		if ($this->pid == '' || !is_numeric($this->pid)) {
+			return $_default;
+		}
 		return $this->pid;
 	}
 
@@ -542,7 +548,10 @@ class cron {
 		return json_decode($this->option, true);
 	}
 
-	public function getOnce() {
+	public function getOnce($_default = 0) {
+		if ($this->once == '' || !is_numeric($this->once)) {
+			return $_default;
+		}
 		return $this->once;
 	}
 

@@ -32,7 +32,7 @@ class eqLogic {
 	protected $isEnable = 0;
 	protected $configuration;
 	protected $specificCapatibilities;
-	protected $timeout;
+	protected $timeout = 0;
 	protected $category;
 	protected $display;
 	protected $order;
@@ -783,11 +783,17 @@ class eqLogic {
 		return $this->eqType_name;
 	}
 
-	public function getIsVisible() {
+	public function getIsVisible($_default = 0) {
+		if ($this->isVisible == '' || !is_numeric($this->isVisible)) {
+			return $_default;
+		}
 		return $this->isVisible;
 	}
 
-	public function getIsEnable() {
+	public function getIsEnable($_default = 0) {
+		if ($this->isEnable == '' || !is_numeric($this->isEnable)) {
+			return $_default;
+		}
 		return $this->isEnable;
 	}
 
@@ -811,7 +817,10 @@ class eqLogic {
 		return cmd::searchConfigurationEqLogic($this->id, $_configuration, $_type);
 	}
 
-	public function getEqReal_id() {
+	public function getEqReal_id($_default = null) {
+		if ($this->eqReal_id == '' || !is_numeric($this->eqReal_id)) {
+			return $_default;
+		}
 		return $this->eqReal_id;
 	}
 
@@ -885,7 +894,10 @@ class eqLogic {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
 	}
 
-	public function getTimeout() {
+	public function getTimeout($_default = null) {
+		if ($this->timeout == '' || !is_numeric($this->timeout)) {
+			return $_default;
+		}
 		return $this->timeout;
 	}
 
@@ -918,14 +930,14 @@ class eqLogic {
 		$this->_debug = $_debug;
 	}
 
-	function getOrder() {
+	public function getOrder() {
 		if ($this->order == '') {
 			return 0;
 		}
 		return $this->order;
 	}
 
-	function setOrder($order) {
+	public function setOrder($order) {
 		$this->order = $order;
 	}
 
