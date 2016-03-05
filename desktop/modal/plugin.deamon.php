@@ -311,8 +311,8 @@ sendVarToJs('refresh_deamon_info', $refresh);
 
 	$('.bt_showDeamonLog').on('click',function(){
 		var slave_id = $(this).attr('data-slave_id');
-		$('#md_modal').dialog({title: "{{Log du démon}}"});
-		$('#md_modal').load('index.php?v=d&modal=plugin.deamonLog&plugin_id='+plugin_id+'&slave_id='+slave_id).dialog('open');
+		$('#md_modal2').dialog({title: "{{Log du démon}}"});
+		$('#md_modal2').load('index.php?v=d&modal=plugin.deamonLog&plugin_id='+plugin_id+'&slave_id='+slave_id).dialog('open');
 	});
 
 	$('.bt_startDeamon').on('click',function(){

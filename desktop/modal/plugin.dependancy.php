@@ -161,8 +161,8 @@ refreshDependancyInfo();
 
 $('.showLogPluginDependancy').on('click',function(){
 	var slave_id = $(this).attr('data-slave_id');
-	$('#md_modal').dialog({title: "{{Log des dépendances}}"});
-	$('#md_modal').load('index.php?v=d&modal=plugin.dependancyLog&plugin_id='+plugin_id+'&slave_id='+slave_id).dialog('open');
+	$('#md_modal2').dialog({title: "{{Log des dépendances}}"});
+	$('#md_modal2').load('index.php?v=d&modal=plugin.dependancyLog&plugin_id='+plugin_id+'&slave_id='+slave_id).dialog('open');
 });
 
 $('.launchInstallPluginDependancy').on('click',function(){
