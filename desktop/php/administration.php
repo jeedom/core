@@ -287,7 +287,7 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
                         <div class="col-sm-1">
                             <?php
 global $CONFIG;
-echo $CONFIG['db']['host'];
+echo $CONFIG['db']['host'] . ':' . $CONFIG['db']['port'];
 ?>
                         </div>
                     </div>
