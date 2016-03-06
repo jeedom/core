@@ -96,8 +96,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
     $('.ticketAttr[data-l1key=options][data-l2key=page]').value(location.href);
 
     $('#bt_sendBugReport').on('click', function () {
-        var ticket = $('#form_reportBug').getValues('.ticketAttr');
-        var ticket = ticket[0];
+        var ticket = $('#form_reportBug').getValues('.ticketAttr')[0];
         ticket.messages = $('#form_reportBug').getValues('.messageAttr');
         $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // méthode de transmission des données au fichier php
