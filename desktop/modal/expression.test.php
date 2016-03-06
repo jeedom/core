@@ -50,7 +50,7 @@ if (!isConnect('admin')) {
 				$('#div_expressionTestResult').empty();
 				var html = '<div class="alert alert-info">';
 				if(data.correct == 'nok'){
-					html += '<strong>{{Attention je pense qu\'il y a un soucis car le résultat et le même que l\'expression}}</strong><br\>';
+					html += '<strong>{{Attention je pense qu\'il y a un soucis car le résultat est le même que l\'expression}}</strong><br\>';
 				}
 				html += '{{Je vais évaluer : }} <strong>'+data.evaluate+'</strong><br/>';
 				html += '{{Résultat : }} <strong>'+data.result+'</strong>';
