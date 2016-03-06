@@ -5,7 +5,7 @@ Non, Jeedom ne nécessite pas d'abonnement pour son utilisation. Seul un service
 
 '''
 Jeedom utilise-t-il des serveurs extérieurs pour fonctionner ?::
-Non, Jeedom n'utilise pas d'infrastructure type "Cloud". Tout se fait en local et vous n'avez pas besoin de nos serveurs pour que votre installation fonctionne. Seuls les services comme le Market ou la sauvegarde online nécessitent l'utilisation de nos serveurs.
+Non, Jeedom n'utilise pas d'infrastructure type "Cloud". Tout se fait en local et vous n'avez pas besoin de nos serveurs pour que votre installation fonctionne. Seuls les services comme le Market, la sauvegarde online ou le DNS Jeedom nécessitent l'utilisation de nos serveurs.
 
 '''
 Peut-on réordonner les commandes d'un équipement ?::
@@ -28,10 +28,6 @@ Comment enregistrer un ordinateur pour ne plus avoir à s'identifier ?::
 Il suffit lors de la connexion de cocher la case "Enregistrer cet ordinateur".
 
 '''
-On me demande de mettre à jour Jeedom alors qu'il ne me propose rien, meme après vérification.::
-C'est normal, pendant la phase de développement de la futur bêta, les numéros de version ne sont pas forcément incrémentés après chaque mise à jour.
-
-'''
 Combien de temps dure un backup ?::
 Il n'y a pas de durée standard, cela dépend du système et du volume de données à sauvegarder, mais il peut prendre plus de 5 minutes, c'est normal.
 
@@ -46,41 +42,8 @@ Lors de votre première connexion à Jeedom (et même après si vous ne les avez
 A la première connexion, il vous est fortement recommandé de modifier ces identifiants pour plus de sécurité.
 
 '''
-Comment externaliser la BDD ?::
-Il suffit d'éditer le fichier /usr/share/nginx/www/jeedom/core/config/common.config.php.
-Dans ce fichier se trouve la configuration de la base de données :
-
-[source,php]
-    $CONFIG = array(
-        //MySQL parametres
-        'db' => array(
-            'host' => 'localhost',
-            'port' => 3306,
-            'dbname' => 'jeedom',
-            'username' => 'jeedom',
-            'password' => '************',
-        )
-    );
-
-Il suffit de modifier les paramètres en fonction des identifiants de la base Jeedom sur le serveur MySQL.
-On exécute ces changements :
-
-[source,bash]
-sudo php /usr/share/nginx/www/jeedom/install/install.php
-
-Le tour est joué ! 
-
-'''
 Ou acheter la Mini+ ?::
 La Jeedom Mini est commercialisée chez notre partenaire http://www.domadoo.fr/ .
-
-'''
-Quelle est la date de sortie de la Jeedom Center ?::
-La Jeedom Center est prévue dans le courant de cette année.
-
-'''
-Quelle est le tarif de la Jeedom Center ?::
-Il n'y a pas de tarif annoncé pour le moment.
 
 '''
 Impossible d'accéder à Jeedom de l'extérieur depuis l'achat d'une box::
@@ -132,3 +95,10 @@ php /usr/share/nginx/www/jeedom/install/install.php
 chmod -R 775 /usr/share/nginx/www/jeedom
 chown -R www-data:www-data /usr/share/nginx/www/jeedom
 
+'''
+La Webapp est-elle compatible Symbian ?::
+La webapp necessite un smartphone supportant le HTML5 et le CSS3. Elle n'est donc malheureusement pas compatible Symbian.
+
+'''
+Sur quelles plateformes Jeedom peut-il fonctionner ?::
+Pour que Jeedom fonctionne il faut une plateforme linux avec les droits root ou un système type docker. Il ne fonctionne donc pas sur une plateforme android pure.
