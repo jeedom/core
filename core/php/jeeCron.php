@@ -87,7 +87,6 @@ if (init('cron_id') != '') {
 			} else {
 				$cron->setState('Not found');
 				$cron->setPID();
-				$cron->setServer('');
 				$cron->save();
 				log::add('cron', 'error', __('[Erreur] Classe ou fonction non trouvée ', __FILE__) . $cron->getName());
 				die();
@@ -122,7 +121,6 @@ if (init('cron_id') != '') {
 			} else {
 				$cron->setState('Not found');
 				$cron->setPID();
-				$cron->setServer('');
 				$cron->save();
 				$cron->setEnable(0);
 				log::add('cron', 'error', __('[Erreur] Non trouvée ', __FILE__) . $cron->getName());
@@ -137,7 +135,6 @@ if (init('cron_id') != '') {
 			}
 			$cron->setState('stop');
 			$cron->setPID();
-			$cron->setServer('');
 			$cron->setDuration(convertDuration(strtotime('now') - $datetimeStart));
 			$cron->save();
 		}
@@ -145,7 +142,6 @@ if (init('cron_id') != '') {
 	} catch (Exception $e) {
 		$cron->setState('error');
 		$cron->setPID('');
-		$cron->setServer('');
 		$cron->setDuration(-1);
 		$cron->save();
 		$logicalId = config::genKey();
@@ -163,7 +159,6 @@ if (init('cron_id') != '') {
 	} catch (Error $e) {
 		$cron->setState('error');
 		$cron->setPID('');
-		$cron->setServer('');
 		$cron->setDuration(-1);
 		$cron->save();
 		$logicalId = config::genKey();
@@ -226,7 +221,6 @@ if (init('cron_id') != '') {
 				if ($cron->getOnce() != 1) {
 					$cron->setState('error');
 					$cron->setPID('');
-					$cron->setServer('');
 					$cron->setDuration(-1);
 					$cron->save();
 					echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true);
@@ -236,7 +230,6 @@ if (init('cron_id') != '') {
 				if ($cron->getOnce() != 1) {
 					$cron->setState('error');
 					$cron->setPID('');
-					$cron->setServer('');
 					$cron->setDuration(-1);
 					$cron->save();
 					echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true);

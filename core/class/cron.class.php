@@ -23,7 +23,6 @@ class cron {
 	/*     * *************************Attributs****************************** */
 
 	private $id;
-	private $server;
 	private $enable = 1;
 	private $class = '';
 	private $function;
@@ -295,7 +294,6 @@ class cron {
 		if ($result && ($this->getState() == 'run' || $this->getState() == 'stoping') && !$this->running()) {
 			$this->setState('stop');
 			$this->setPID();
-			$this->setServer('');
 			$this->save();
 		}
 		return $result;
@@ -320,7 +318,6 @@ class cron {
 		if (!$this->running()) {
 			$this->setState('stop');
 			$this->setPID();
-			$this->setServer('');
 			$this->save();
 		} else {
 			log::add('cron', 'info', __('Arrêt de ', __FILE__) . $this->getClass() . '::' . $this->getFunction() . '(), PID : ' . $this->getPID());
@@ -348,7 +345,6 @@ class cron {
 				}
 				if ($this->running()) {
 					$this->setState('error');
-					$this->setServer('');
 					$this->setPID();
 					$this->save();
 					throw new Exception($this->getClass() . '::' . $this->getFunction() . __('() : Impossible d\'arrêter la tâche', __FILE__));
@@ -357,7 +353,6 @@ class cron {
 				$this->setState('stop');
 				$this->setDuration(-1);
 				$this->setPID();
-				$this->setServer('');
 				$this->save();
 			}
 		}
@@ -494,14 +489,6 @@ class cron {
 			$pid = null;
 		}
 		$this->pid = $pid;
-	}
-
-	public function getServer() {
-		return $this->server;
-	}
-
-	public function setServer($server) {
-		$this->server = $server;
 	}
 
 	public function getSchedule() {
