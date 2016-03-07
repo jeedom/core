@@ -5,18 +5,23 @@
     </center>
     <script>
         if ('#state#' == '1' || '#state#' == 1 || '#state#' == '99' || '#state#' == 99 || '#state#' == 'on') {
-            $('.iconCmd#uid#').append('<i class="icon jeedom-lock-ferme"></i>');
             if (jeedom.cmd.normalizeName('#name#') == 'on') {
                 $('.cmd[data-cmd_uid=#uid#]').hide();
-            }
-        } else {
+            }else{
+               $('.iconCmd#uid#').append('<i class="icon jeedom-lock-ferme"></i>');
+               $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
+                jeedom.cmd.execute({id: '#id#'});
+            });
+           }
+       } else {
+        if (jeedom.cmd.normalizeName('#name#') == 'off') {
+            $('.cmd[data-cmd_uid=#uid#]').hide();
+        }else{
             $('.iconCmd#uid#').append('<i class="icon jeedom-lock-ouvert"></i>');
-            if (jeedom.cmd.normalizeName('#name#') == 'off') {
-                $('.cmd[data-cmd_uid=#uid#]').hide();
-            }
+            $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
+                jeedom.cmd.execute({id: '#id#'});
+            });
         }
-        $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
-            jeedom.cmd.execute({id: '#id#'});
-        });
-    </script>
+    }
+</script>
 </div>

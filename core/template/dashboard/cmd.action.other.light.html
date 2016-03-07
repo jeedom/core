@@ -6,18 +6,23 @@
     <script>
         $('.iconCmd#uid#').empty();
         if ('#state#' == '1' || '#state#' == 1 || '#state#' == '99' || '#state#' == 99 || '#state#' == 'on') {
-            $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-on"></i>');
             if (jeedom.cmd.normalizeName('#name#') == 'on') {
                 $('.cmd[data-cmd_uid=#uid#]').hide();
+            }else{
+                $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-on"></i>');
+                $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
+                    jeedom.cmd.execute({id: '#id#'});
+                });
             }
         } else {
-            $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-off"></i>');
             if (jeedom.cmd.normalizeName('#name#') == 'off') {
                 $('.cmd[data-cmd_uid=#uid#]').hide();
-            }
-        }
-        $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
-            jeedom.cmd.execute({id: '#id#'});
-        });
-    </script>
+            }else{
+               $('.iconCmd#uid#').append('<i class="icon jeedom-lumiere-off"></i>');
+               $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
+                jeedom.cmd.execute({id: '#id#'});
+            });
+           }
+       }
+   </script>
 </div>
