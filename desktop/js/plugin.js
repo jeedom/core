@@ -97,13 +97,13 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
                 $('#span_plugin_installation').html(data.installation);
             }
 
-            if(data.hasDependency == 0 || data.activate == 0){
+            if(data.hasDependency == 0 || data.activate != 1){
                 $('#div_plugin_dependancy').closest('.panel').hide();
             }else{
                 $('#div_plugin_dependancy').closest('.panel').show();
                 $("#div_plugin_dependancy").load('index.php?v=d&modal=plugin.dependancy&plugin_id='+data.id);
             }
-            if(data.hasOwnDeamon == 0 || data.activate == 0){
+            if(data.hasOwnDeamon == 0 || data.activate != 1){
                 $('#div_plugin_deamon').closest('.panel').hide();
             }else{
                 $('#div_plugin_deamon').closest('.panel').show();
