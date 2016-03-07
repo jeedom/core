@@ -1349,7 +1349,7 @@ class cmd {
 	}
 
 	public function setEventOnly($eventOnly) {
-
+		trigger_error( 'This method is deprecated', E_USER_DEPRECATED ); 
 	}
 
 	public function getHtml($_key = '', $_default = '') {
