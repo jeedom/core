@@ -278,6 +278,10 @@ try {
 	if (config::byKey('api') == '') {
 		config::save('api', config::genKey());
 	}
+
+	if (file_exists(dirname(__FILE__) . '/../../core/nodeJS')) {
+		shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../core/nodeJS');
+	}
 } catch (Exception $e) {
 	echo "Error : ";
 	echo $e->getMessage();
