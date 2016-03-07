@@ -4,7 +4,7 @@
         <span style="font-size: 3em;font-weight: bold;margin-top: 5px;" class="action iconCmd#uid#"></span>
     </center>
     <script>
-    if ('#state#' == '1' || '#state#' == 1 || '#state#' == '99' || '#state#' == 99 || '#state#' == 'on') {
+        if ('#state#' == '1' || '#state#' == 1 || '#state#' == '99' || '#state#' == 99 || '#state#' == 'on') {
             if (jeedom.cmd.normalizeName('#name#') == 'on') {
                 $('.cmd[data-cmd_uid=#uid#]').hide();
             }else{
