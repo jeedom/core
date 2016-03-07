@@ -668,10 +668,10 @@ class market {
 						throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
 					}
 					log::add('update', 'alert', __("OK\n", __FILE__));
-					$update = update::byTypeAndLogicalId($this->getType(), $this->getLogicalId());
 					if (is_object($plugin) && $plugin->isActive()) {
 						$plugin->setIsEnable(1);
 					}
+					$update = update::byTypeAndLogicalId($this->getType(), $this->getLogicalId());
 				} else {
 					switch ($res) {
 						case ZipArchive::ER_EXISTS:
