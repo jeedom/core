@@ -956,6 +956,7 @@ class scenarioExpression {
 					return;
 				} else if ($this->getExpression() == 'message') {
 					message::add('scenario', $options['message']);
+					$this->setLog($scenario, __('Ajout du message suivant dans le centre de message : ', __FILE__) . $options['message']);
 					return;
 				} else if ($this->getExpression() == 'equipement') {
 					$eqLogic = eqLogic::byId(str_replace(array('#eqLogic', '#'), '', $this->getOptions('eqLogic')));
