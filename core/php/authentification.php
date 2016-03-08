@@ -83,6 +83,11 @@ function login($_login, $_password, $_twoFactor = null) {
 		sleep(5);
 		return false;
 	}
+	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
+		connection::failed();
+		sleep(5);
+		return false;
+	}
 	if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
 		if (trim($_twoFactor) == '' || $_twoFactor == null || !$user->validateTwoFactorCode($_twoFactor)) {
 			connection::failed();
@@ -104,6 +109,11 @@ function login($_login, $_password, $_twoFactor = null) {
 function loginByHash($_key) {
 	$user = user::byHash($_key);
 	if (!is_object($user) || $user->getEnable() == 0) {
+		connection::failed();
+		sleep(5);
+		return false;
+	}
+	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
 		connection::failed();
 		sleep(5);
 		return false;

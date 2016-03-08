@@ -149,7 +149,8 @@
                 }
                 ligne += '</center></td>';
                 ligne += '<td>';
-                ligne += '<input type="checkbox" data-size="mini" class="userAttr bootstrapSwitch" data-l1key="enable" />';
+                ligne += '<label style="margin-right:25px;"><input type="checkbox" class="userAttr" data-l1key="enable" />{{Actif}}</label><br/>';
+                ligne += '<label style="margin-right:25px;"><input type="checkbox" class="userAttr" data-l1key="options" data-l2key="localOnly" />{{Local seulement}}</label>';
                 ligne += '</td>';
                 ligne += '<td>';
                 ligne += '<input type="checkbox" data-size="mini" class="userAttr bootstrapSwitch" data-label-text="{{Admin}}" data-l1key="rights" data-l2key="admin"/>';

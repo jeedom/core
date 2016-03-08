@@ -44,6 +44,10 @@ class jeedom {
 		}
 		$user = user::byHash($_apikey);
 		if (is_object($user)) {
+			if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
+				sleep(5);
+				return false;
+			}
 			@session_start();
 			$_SESSION['user'] = $user;
 			@session_write_close();
