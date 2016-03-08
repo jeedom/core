@@ -497,12 +497,12 @@ class plugin {
 
 	public function setIsEnable($_state) {
 		if (version_compare(jeedom::version(), $this->getRequire()) == -1 && $_state == 1) {
-			throw new Exception('Votre version de jeedom n\'est pas assez récente pour activer ce plugin');
+			throw new Exception(__('Votre version de jeedom n\'est pas assez récente pour activer ce plugin', __FILE__));
 		}
 		$alreadyActive = config::byKey('active', $this->getId(), 0);
 		if ($_state == 1) {
 			if (config::byKey('jeeNetwork::mode') != 'master' && $this->getAllowRemote() != 1) {
-				throw new Exception('Vous ne pouvez pas activer ce plugin sur un Jeedom configuré en esclave');
+				throw new Exception(__('Vous ne pouvez pas activer ce plugin sur un Jeedom configuré en esclave', __FILE__));
 			}
 			config::save('active', $_state, $this->getId());
 		}
