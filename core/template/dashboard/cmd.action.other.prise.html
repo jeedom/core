@@ -8,20 +8,19 @@
             if (jeedom.cmd.normalizeName('#name#') == 'on') {
                 $('.cmd[data-cmd_uid=#uid#]').hide();
             }else{
-             $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
+               $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
                 jeedom.cmd.execute({id: '#id#'});
             });
-             $('.iconCmd#uid#').append('<i class="icon jeedom-prise"></i>');
-         }
-     } else {
-        $('.iconCmd#uid#').append('<i class="fa fa-times"></i>');
+               $('.iconCmd#uid#').append('<i class="icon jeedom-prise"></i>');
+           }
+       } else {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
             $('.cmd[data-cmd_uid=#uid#]').hide();
         }else{
             $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
                 jeedom.cmd.execute({id: '#id#'});
             }); 
-            $('.iconCmd#uid#').append('<i class="icon jeedom-prise"></i>');
+            $('.iconCmd#uid#').append('<i class="fa fa-times"></i>');
         }
     }
 </script>
