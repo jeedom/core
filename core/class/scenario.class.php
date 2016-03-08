@@ -722,7 +722,7 @@ class scenario {
 		}
 		DB::save($this);
 		if ($this->_changeState) {
-			event::add('scenario::update', array('scenario_id' => $this->getId(), 'state' => $this->getState(), 'lastLaung' => $this->getLastLaunch()));
+			event::add('scenario::update', array('scenario_id' => $this->getId(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch()));
 		}
 	}
 
