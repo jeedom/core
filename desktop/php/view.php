@@ -18,7 +18,7 @@ if (init('view_id') == '') {
 	}
 }
 if (!is_object($view)) {
-	throw new Exception('{{Aucune vue n\'éxiste, cliquez <a href="index.php?v=d&p=view_edit">ici</a> pour en creer une}}');
+	throw new Exception('{{Aucune vue n\'existe, cliquez <a href="index.php?v=d&p=view_edit">ici</a> pour en créer une}}');
 }
 sendVarToJS('view_id', $view->getId());
 ?>
@@ -57,13 +57,13 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1) {
 	echo '<div class="col-lg-12 col-md-12 col-sm-12 div_displayViewContainer">';
 }
 ?>
-<i class='fa fa-picture-o cursor tooltips pull-left bt_displayView' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault')?>' title="{{Afficher/Masquer les vues}}"></i>
+<i class='fa fa-picture-o cursor tooltips pull-left bt_displayView' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault') ?>' title="{{Afficher/Masquer les vues}}"></i>
 
 <legend style="height: 35px;color : #563d7c;">Vue <?php
 echo $view->getName();
 if (init('noControl') == '') {
 	if (hasRight('viewedit', true)) {
-		?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId();?>" class="btn btn-warning btn-xs pull-right"><i class="fa fa-pencil"></i> {{Edition complète}}</a><?php }
+		?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right"><i class="fa fa-pencil"></i> {{Edition complète}}</a><?php }
 	?>
 
 	<i class="fa fa-pencil pull-right cursor" id="bt_editViewWidgetOrder" data-mode="0"></i>

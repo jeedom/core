@@ -545,8 +545,10 @@ class plugin {
 		}
 		try {
 			if ($_state == 1) {
+				log::add($this->getId(), 'info', 'Début d\'activation du plugin');
 				$this->deamon_stop();
 				$dependancy_info = $this->dependancy_info();
+				log::add($this->getId(), 'info', 'Info sur les dépendances : ' . print_r($dependancy_info, true));
 				if ($dependancy_info['state'] == 'nok') {
 					$this->dependancy_install();
 				}
