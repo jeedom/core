@@ -1,0 +1,15 @@
+<div style="width:90px;min-height:62px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="binary" data-cmd_id="#id#" title="Valeur du #valueDate#, collectée le #collectDate#">
+    <center>
+        <div style="font-weight: bold;font-size : 12px;#hideCmdName#">#name_display#</div>
+        <span style="font-size: 3.5em;font-weight: bold;margin-top: 5px;" class="iconCmd#uid#"></span>
+        <span class="timeCmd#uid# label label-default" style="background-color:#cmdColor# !important;"></span>
+    </center>
+    <script>
+        jeedom.cmd.displayDuration('#valueDate#', $('.timeCmd#uid#'));
+        if ('#state#' == '1') {
+            $('.iconCmd#uid#').append('<i class="icon jeedom-porte-ferme"></i>');
+        }else {
+            $('.iconCmd#uid#').append('<i class="icon jeedom-porte-ouverte"></i>');
+        }
+    </script>
+</div>

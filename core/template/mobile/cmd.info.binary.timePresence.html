@@ -1,20 +1,15 @@
 <div class="cmd" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" style="margin-bottom: 5px;">
-    <center>
-        <div style="font-size : 12px;#hideCmdName#">#name_display#</div>
-        <span style="font-size: 2.5em;" class="iconCmd#uid#"></span><br/>
-        <span class="timeCmd#id#" style="background-color:#cmdColor# !important;padding : 3px;border-radius: 4px;"></span>
-    </center>
-    <script>
-        if ('#state#' == '1' || '#state#' == 1) {
-            $('.iconCmd#uid#').append('<i class="fa fa-check"></i>');
-        } else {
-            $('.iconCmd#uid#').append('<i class="icon jeedom-mouvement"></i>');
-        }
-        jeedom.cmd.displayDuration('#valueDate#', $('.timeCmd#id#:last'));
-        if ('#state#' == '1') {
-          $('.iconCmd#id#:last').append('<i class="fa fa-check"></i>');
-      }else {
-          $('.iconCmd#id#:last').append('<i class="icon jeedom-mouvement"></i>');
-      }
+  <center>
+    <div style="font-size : 12px;#hideCmdName#">#name_display#</div>
+    <span style="font-size: 2.5em;" class="iconCmd#uid#"></span><br/>
+    <span class="timeCmd#uid#" style="background-color:#cmdColor# !important;padding : 3px;border-radius: 4px;"></span>
+  </center>
+  <script>
+    jeedom.cmd.displayDuration('#valueDate#', $('.timeCmd#uid#'));
+    if ('#state#' == '1' || '#state#' == 1) {
+      $('.iconCmd#id#:last').append('<i class="fa fa-check"></i>');
+    }else {
+      $('.iconCmd#id#:last').append('<i class="icon jeedom-mouvement"></i>');
+    }
   </script>
 </div>
