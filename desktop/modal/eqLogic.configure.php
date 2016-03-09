@@ -25,9 +25,9 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
    </ul>
 
    <div class="tab-content" id="div_displayEqLogicConfigure">
-       <div role="tabpanel" class="tab-pane active" id="information">
-           <br/>
-           <div class="row">
+     <div role="tabpanel" class="tab-pane active" id="information">
+         <br/>
+         <div class="row">
             <div class="col-sm-4" >
                 <form class="form-horizontal">
                     <fieldset>
@@ -74,12 +74,12 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                         <div class="form-group">
                             <label class="col-sm-4 control-label"></label>
                             <div class="col-sm-8">
-                             <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Activer}}" data-l1key="isEnable" checked/>
-                             <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Visible}}" data-l1key="isVisible" checked/>
-                         </div>
-                     </div>
+                               <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Activer}}" data-l1key="isEnable" checked/>
+                               <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Visible}}" data-l1key="isVisible" checked/>
+                           </div>
+                       </div>
 
-                     <div class="form-group">
+                       <div class="form-group">
                         <label class="col-sm-4 control-label">{{Type}}</label>
                         <div class="col-sm-4">
                             <span class="eqLogicAttr label label-primary" data-l1key="eqType_name" style="font-size : 1em;"></span>
@@ -184,9 +184,9 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<td>';
 			if ($eqLogic->widgetPossibility('custom::background-color::' . $key)) {
-				echo '<input type="checkbox" class="eqLogicAttr bootstrapSwitch background-color-default" data-size="small" data-l1key="display" data-label-text="{{Défaut}}" data-l2key="background-color-default' . $key . '" checked />';
+				echo '<label>{{Defaut}} <input type="checkbox" class="eqLogicAttr background-color-default" data-l1key="display" data-l2key="background-color-default' . $key . '" checked /></label>';
 				echo '<span class="span_configureBackgroundColor" style="display:none;" >';
-				echo ' <label>{{Transparent}} <input type="checkbox" class="eqLogicAttr background-color-transparent" data-l1key="display" data-label-text="{{Transparent}}" data-l2key="background-color-transparent' . $key . '" /></label>';
+				echo ' <label>{{Transparent}} <input type="checkbox" class="eqLogicAttr background-color-transparent" data-l1key="display" data-l2key="background-color-transparent' . $key . '" /></label>';
 				echo ' <input type="color" class="eqLogicAttr background-color" data-l1key="display" data-l2key="background-color' . $key . '" value="' . $eqLogic->getBackgroundColor($key) . '" />';
 				echo '</span>';
 			}
@@ -204,8 +204,42 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<td>';
 			if ($eqLogic->widgetPossibility('custom::text-color::' . $key)) {
-				echo '<input type="checkbox" class="eqLogicAttr bootstrapSwitch color-default" data-size="small" data-l1key="display" data-label-text="{{Défaut}}" data-l2key="color-default' . $key . '" checked />';
+				echo '<label>{{Defaut}} <input type="checkbox" class="eqLogicAttr color-default" data-l1key="display" data-l2key="color-default' . $key . '" checked /></label>';
 				echo ' <input type="color" class="eqLogicAttr color" data-l1key="display" data-l2key="color' . $key . '" value="#ffffff" style="display:none;" />';
+			}
+			echo '</td>';
+		}
+		?>
+</tr>
+<?php }
+	?>
+<?php if ($eqLogic->widgetPossibility('custom::border')) {
+		?>
+  <tr>
+    <td>{{Bordures}}</td>
+    <?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			if ($eqLogic->widgetPossibility('custom::border::' . $key)) {
+				echo '<label>{{Defaut}} <input type="checkbox" class="eqLogicAttr border-default" data-l1key="display" data-l2key="border-default' . $key . '" checked /></label>';
+				echo ' <input class="eqLogicAttr border form-control inline-block pull-right" data-l1key="display" data-l2key="border' . $key . '" style="display:none;width:50%" />';
+			}
+			echo '</td>';
+		}
+		?>
+</tr>
+<?php }
+	?>
+<?php if ($eqLogic->widgetPossibility('custom::border-radius')) {
+		?>
+  <tr>
+    <td>{{Arrondit des bordures (en px)}}</td>
+    <?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			if ($eqLogic->widgetPossibility('custom::border-radius::' . $key)) {
+				echo '<label>{{Defaut}} <input type="checkbox" class="eqLogicAttr border-radius-default" data-l1key="display" data-l2key="border-radius-default' . $key . '" checked /></label>';
+				echo ' <input type="number" class="eqLogicAttr border-radius form-control inline-block pull-right" data-l1key="display" data-l2key="border-radius' . $key . '" style="display:none;width:50%" />';
 			}
 			echo '</td>';
 		}
@@ -253,9 +287,9 @@ if ($eqLogic->getDisplay('parameters') != '') {
 <?php }
 ?>
 <div role="tabpanel" class="tab-pane" id="battery">
-   <br/>
-   <legend><i class="fa fa-info-circle"></i> {{Informations}}</legend>
-   <div class="alert alert-info" id="nobattery">
+ <br/>
+ <legend><i class="fa fa-info-circle"></i> {{Informations}}</legend>
+ <div class="alert alert-info" id="nobattery">
     {{Cet équipement ne possède pas de batterie/piles ou il n'a pas encore remonté sa valeur}}
 </div>
 <div id="hasbattery">
@@ -281,7 +315,7 @@ if ($eqLogic->getDisplay('parameters') != '') {
         <div class="col-sm-4" >
             <form class="form-horizontal">
                 <fieldset>
-                 <div class="form-group">
+                   <div class="form-group">
                     <label class="col-sm-4 control-label">{{Niveau de batterie}}</label>
                     <div class="col-sm-4" id="batterylevel">
                         <span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="batteryStatus" style="font-size : 1em;"></span>
@@ -310,7 +344,9 @@ if ($eqLogic->getDisplay('parameters') != '') {
 
 
 <script>
-$('.background-color-default').on('change switchChange.bootstrapSwitch',function(){
+    initCheckBox();
+
+    $('.background-color-default').off('change switchChange.bootstrapSwitch').on('change switchChange.bootstrapSwitch',function(){
         if($(this).value() == 1){
             $(this).closest('td').find('.span_configureBackgroundColor').hide();
         }else{
@@ -318,7 +354,7 @@ $('.background-color-default').on('change switchChange.bootstrapSwitch',function
         }
     });
 
-    $('.background-color-transparent').on('change switchChange.bootstrapSwitch',function(){
+    $('.background-color-transparent').off('change switchChange.bootstrapSwitch').on('change switchChange.bootstrapSwitch',function(){
         var td = $(this).closest('td');
         if($(this).value() == 1){
             td.find('.background-color').hide();
@@ -328,7 +364,7 @@ $('.background-color-default').on('change switchChange.bootstrapSwitch',function
         td.find('.background-color-default').trigger('switchChange.bootstrapSwitch');
     });
 
-    $('.color-default').on('change switchChange.bootstrapSwitch',function(){
+    $('.color-default').off('change switchChange.bootstrapSwitch').on('change switchChange.bootstrapSwitch',function(){
         var td = $(this).closest('td')
         if($(this).value() == 1){
             td.find('.color').hide();
@@ -337,17 +373,34 @@ $('.background-color-default').on('change switchChange.bootstrapSwitch',function
         }
     });
 
-    initCheckBox();
+    $('.border-default').off('change switchChange.bootstrapSwitch').on('change switchChange.bootstrapSwitch',function(){
+        var td = $(this).closest('td')
+        if($(this).value() == 1){
+            td.find('.border').hide();
+        }else{
+            td.find('.border').show();
+        }
+    });
+
+    $('.border-radius-default').off('change switchChange.bootstrapSwitch').on('change switchChange.bootstrapSwitch',function(){
+        var td = $(this).closest('td')
+        if($(this).value() == 1){
+            td.find('.border-radius').hide();
+        }else{
+            td.find('.border-radius').show();
+        }
+    });
+
+
 
     $(document).ready(function() {
       if(typeof $('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').value() != null) {
-       console.log($('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').html());
-       $( "#nobattery" ).show();
-       $( "#hasbattery" ).hide();
-   }else{
-    $( "#nobattery" ).hide();
-    $( "#hasbattery" ).show();
-}
+         $( "#nobattery" ).show();
+         $( "#hasbattery" ).hide();
+     }else{
+        $( "#nobattery" ).hide();
+        $( "#hasbattery" ).show();
+    }
 });
 
     $('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr');
@@ -355,7 +408,6 @@ $('.background-color-default').on('change switchChange.bootstrapSwitch',function
         $(this).closest('tr').remove();
     });
     if($('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').html() != '') {
-      console.log($('.eqLogicAttr[data-l1key=configuration][data-l2key=batteryStatus]').html());
       $( "#nobattery" ).hide();
       $( "#hasbattery" ).show();
   }else{

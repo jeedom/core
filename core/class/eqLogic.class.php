@@ -443,7 +443,6 @@ class eqLogic {
 		if ($mc->getValue() != '') {
 			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 		}
-
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
@@ -452,6 +451,8 @@ class eqLogic {
 			'#eqLink#' => ($this->hasRight('w')) ? $this->getLinkToConfiguration() : '#',
 			'#category#' => $this->getPrimaryCategory(),
 			'#color#' => '#ffffff',
+			'#border#' => 'none',
+			'#border-radius#' => '4px',
 			'#style#' => '',
 			'#max_width#' => '650px',
 			'#logicalId#' => $this->getLogicalId(),
@@ -461,12 +462,18 @@ class eqLogic {
 			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
 		);
 		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {
-			$replace['#background_color#'] = $this->getBackgroundColor($version);
+			$replace['#background-color#'] = $this->getBackgroundColor($version);
 		} else {
-			$replace['#background_color#'] = ($this->getDisplay('background-color-transparent' . $version, 0) == 1) ? 'transparent' : $this->getDisplay('background-color' . $version, $this->getBackgroundColor($version));
+			$replace['#background-color#'] = ($this->getDisplay('background-color-transparent' . $version, 0) == 1) ? 'transparent' : $this->getDisplay('background-color' . $version, $this->getBackgroundColor($version));
 		}
 		if ($this->getDisplay('color-default' . $version, 1) != 1) {
 			$replace['#color#'] = $this->getDisplay('color' . $version, '#ffffff');
+		}
+		if ($this->getDisplay('border-default' . $version, 1) != 1) {
+			$replace['#border#'] = $this->getDisplay('border' . $version, 'none');
+		}
+		if ($this->getDisplay('border-radius-default' . $version, 1) != 1) {
+			$replace['#border-radius#'] = $this->getDisplay('border-radius' . $version, '4') . 'px';
 		}
 		$refresh_cmd = $this->getCmd('action', 'refresh');
 		$replace['#refresh_id#'] = ($refresh_cmd != null) ? $refresh_cmd->getId() : '';
