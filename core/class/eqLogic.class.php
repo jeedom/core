@@ -425,11 +425,14 @@ class eqLogic {
 		return true;
 	}
 
-	public function toHtml($_version = 'dashboard') {
+	public function preToHtml($_version = 'dashboard', $_cacheTag = 'widgetHtml') {
 		if ($_version == '') {
 			throw new Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
 		}
 		if (!$this->hasRight('r')) {
+			return '';
+		}
+		if (!$this->getIsEnable()) {
 			return '';
 		}
 		$version = jeedom::versionAlias($_version);
@@ -440,35 +443,12 @@ class eqLogic {
 		if ($mc->getValue() != '') {
 			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 		}
+		return null;
+	}
+
+	public function parametersTohtml($_version = 'dashboard') {
+		$version = jeedom::versionAlias($_version);
 		$parameters = $this->getDisplay('parameters');
-		$cmd_html = '';
-		$vcolor = 'cmdColor';
-		if ($version == 'mobile') {
-			$vcolor = 'mcmdColor';
-		}
-		$cmdColor = ($this->getPrimaryCategory() == '') ? '' : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
-		if (is_array($parameters) && isset($parameters['background_cmd_color'])) {
-			$cmdColor = $parameters['background_cmd_color'];
-		}
-		$refresh_cmd = null;
-		if ($this->getIsEnable()) {
-			foreach ($this->getCmd(null, null, true) as $cmd) {
-				if ($cmd->getLogicalId() == 'refresh') {
-					$refresh_cmd = $cmd;
-					continue;
-				}
-				if ($cmd->getDisplay('hideOn' . $version) == 1) {
-					continue;
-				}
-				if ($cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
-					$cmd_html .= '<br/>';
-				}
-				$cmd_html .= $cmd->toHtml($_version, '', $cmdColor);
-				if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
-					$cmd_html .= '<br/>';
-				}
-			}
-		}
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
@@ -477,16 +457,17 @@ class eqLogic {
 			'#eqLink#' => ($this->hasRight('w')) ? $this->getLinkToConfiguration() : '#',
 			'#category#' => $this->getPrimaryCategory(),
 			'#background_color#' => $this->getBackgroundColor($version),
-			'#cmd#' => $cmd_html,
 			'#style#' => '',
 			'#max_width#' => '650px',
 			'#logicalId#' => $this->getLogicalId(),
 			'#object_name#' => '',
-			'#refresh_id#' => ($refresh_cmd != null) ? $refresh_cmd->getId() : '',
 			'#height#' => $this->getDisplay('height', 'auto'),
 			'#width#' => $this->getDisplay('width', 'auto'),
 			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
 		);
+		$refresh_cmd = $this->getCmd('action', 'refresh');
+		$replace['#refresh_id#'] = ($refresh_cmd != null) ? $refresh_cmd->getId() : '';
+
 		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowObjectNameOnView', 0) == 0) {
 			$object = $this->getObject();
 			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
@@ -498,12 +479,46 @@ class eqLogic {
 		} else if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
 			$replace['#hideEqLogicName#'] = 'display:none;';
 		}
-
+		$vcolor = 'cmdColor';
+		if ($version == 'mobile') {
+			$vcolor = 'mcmdColor';
+		}
+		$replace['#background_cmd_color#'] = ($this->getPrimaryCategory() == '') ? '' : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
+		if (is_array($parameters) && isset($parameters['background_cmd_color'])) {
+			$replace['#background_cmd_color#'] = $parameters['background_cmd_color'];
+		}
 		if (is_array($parameters)) {
 			foreach ($parameters as $key => $value) {
 				$replace['#' . $key . '#'] = $value;
 			}
 		}
+		return $replace;
+	}
+
+	public function toHtml($_version = 'dashboard') {
+		$preHtml = $this->preToHtml($_version);
+		if ($preHtml !== null) {
+			return $preHtml;
+		}
+		$version = jeedom::versionAlias($_version);
+		$replace = $this->parametersTohtml($_version);
+		$cmd_html = '';
+		foreach ($this->getCmd(null, null, true) as $cmd) {
+			if ($cmd->getLogicalId() == 'refresh') {
+				continue;
+			}
+			if ($cmd->getDisplay('hideOn' . $version) == 1) {
+				continue;
+			}
+			if ($cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
+				$cmd_html .= '<br/>';
+			}
+			$cmd_html .= $cmd->toHtml($_version, '', $replace['#background_cmd_color#']);
+			if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
+				$cmd_html .= '<br/>';
+			}
+		}
+		$replace['#cmd#'] = $cmd_html;
 		if (!isset(self::$_templateArray[$version])) {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
 		}
