@@ -242,6 +242,7 @@ function addEditviewZone(_viewZone) {
      if (init(_viewZone.type, 'widget') == 'graph') {
         div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;">';
         div += '<option value="30 min">{{30 min}}</option>';
+        div += '<option value="1 hour">{{1 heure}}</option>';
         div += '<option value="1 day">{{Jour}}</option>';
         div += '<option value="7 days">{{Semaine}}</option>';
         div += '<option value="1 month">{{Mois}}</option>';

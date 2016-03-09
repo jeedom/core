@@ -286,8 +286,10 @@ jeedom.history.drawChart = function (_params) {
                 var dateRange = 3
             }else  if(_params.dateRange == '1 month'){
                 var dateRange = 4
-            }else  if(_params.dateRange == 'all'){
+            }else  if(_params.dateRange == '1 year'){
                 var dateRange = 5
+            }else  if(_params.dateRange == 'all'){
+                var dateRange = 6
             }else{
                 var dateRange = 3;  
             }
@@ -326,6 +328,10 @@ jeedom.history.drawChart = function (_params) {
                         type: 'month',
                         count: 1,
                         text: 'M'
+                    }, {
+                        type: 'year',
+                        count: 1,
+                        text: 'A'
                     }, {
                         type: 'all',
                         count: 1,
