@@ -518,9 +518,6 @@ class eqLogic {
 			if ($cmd->getLogicalId() == 'refresh') {
 				continue;
 			}
-			if ($cmd->getDisplay('hideOn' . $version) == 1) {
-				continue;
-			}
 			if ($cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
 				$cmd_html .= '<br/>';
 			}

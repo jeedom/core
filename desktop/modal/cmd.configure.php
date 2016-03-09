@@ -463,10 +463,11 @@ foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $value) {
       <thead>
         <tr>
           <th></th>
-          <th>{{Dashboard}}</th>
-          <th>{{Design}}</th>
-          <th>{{Vue}}</th>
-          <th>{{Mobile}}</th>
+                  <?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+		echo '<th>{{' . $value['name'] . '}}</th>';
+	}
+	?>
         </tr>
       </thead>
       <tbody>
@@ -507,21 +508,15 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
 		?>
           <tr>
             <td>{{Visible}}</td>
-            <td>
-              <?php if ($cmd->widgetPossibility('custom::visibility::dashboard')) {
-			?>
-               <input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="hideOndashboard" />
-               <?php }
+ <?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			if ($cmd->widgetPossibility('custom::visibility::' . $key)) {
+				echo '<input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="showOn' . $key . '" checked />';
+			}
+			echo '</td>';
+		}
 		?>
-             </td>
-             <td colspan="2"></td>
-             <td>
-              <?php if ($cmd->widgetPossibility('custom::visibility::mobile')) {
-			?>
-               <input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="hideOnmobile" />
-               <?php }
-		?>
-             </td>
            </tr>
            <?php }
 	?>
@@ -529,34 +524,15 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
 		?>
             <tr>
               <td>{{Afficher le nom}}</td>
-              <td>
-              <?php if ($cmd->widgetPossibility('custom::displayName::dashboard')) {
-			?>
-              <input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowNameOnDashboard" />
-               <?php }
+              <?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			if ($cmd->widgetPossibility('custom::displayName::' . $key)) {
+				echo '<input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="showNameOn' . $key . '" checked />';
+			}
+			echo '</td>';
+		}
 		?>
-              </td>
-              <td>
-              <?php if ($cmd->widgetPossibility('custom::displayName::plan')) {
-			?>
-              <input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowNameOnPlan" />
-               <?php }
-		?>
-              </td>
-              <td>
-              <?php if ($cmd->widgetPossibility('custom::displayName::view')) {
-			?>
-              <input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowNameOnView" />
-               <?php }
-		?>
-              </td>
-              <td>
-              <?php if ($cmd->widgetPossibility('custom::displayName::mobile')) {
-			?>
-              <input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowNameOnMobile" />
-               <?php }
-		?>
-              </td>
             </tr>
             <?php }
 	?>
@@ -565,34 +541,15 @@ foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
 		?>
               <tr>
                 <td>{{Afficher les statistiques}}</td>
-                <td>
-                  <?php if ($cmd->widgetPossibility('custom::displayStats::dashboard')) {
-			?>
-                <input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnDashboard" />
-                 <?php }
+              <?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			if ($cmd->widgetPossibility('custom::displayStats::' . $key)) {
+				echo '<input type="checkbox" class="cmdAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="showStatsOn' . $key . '" checked />';
+			}
+			echo '</td>';
+		}
 		?>
-                </td>
-                <td>
-                  <?php if ($cmd->widgetPossibility('custom::displayStats::plan')) {
-			?>
-                <input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnPlan" />
-                 <?php }
-		?>
-                </td>
-                <td>
-                  <?php if ($cmd->widgetPossibility('custom::displayStats::view')) {
-			?>
-                <input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnView" />
-                 <?php }
-		?>
-                </td>
-                <td>
-                  <?php if ($cmd->widgetPossibility('custom::displayStats::mobile')) {
-			?>
-                <input type="checkbox" class="cmdAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="doNotShowStatOnMobile" />
-                 <?php }
-		?>
-                </td>
               </tr>
               <?php
 }

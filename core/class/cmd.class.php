@@ -809,10 +809,24 @@ class cmd {
 		return $template;
 	}
 
+	public function preToHtml() {
+
+		return $replace;
+	}
+
 	public function toHtml($_version = 'dashboard', $options = '', $_cmdColor = null) {
+		if ($_version == 'dplan') {
+			$version2 = 'plan';
+		} else if ($_version == 'dview') {
+			$version2 = 'view';
+		} else {
+			$version2 = jeedom::versionAlias($_version);
+		}
+		if ($this->getDisplay('showOn' . $version2, 1) == 0) {
+			return '';
+		}
 		$version = jeedom::versionAlias($_version);
 		$html = '';
-		$template = $this->getWidgetTemplateCode($_version);
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
@@ -826,6 +840,11 @@ class cmd {
 			'#uid#' => 'cmd' . $this->getId() . eqLogic::UIDDELIMITER . mt_rand() . eqLogic::UIDDELIMITER,
 			'#hideCmdName#' => '',
 		);
+		if ($this->getDisplay('showNameOn' . $version2, 1) == 0) {
+			$replace['#hideCmdName#'] = 'display:none;';
+		}
+		$template = $this->getWidgetTemplateCode($_version);
+
 		if ($_cmdColor == null && $version != 'scenario') {
 			$eqLogic = $this->getEqLogic();
 			$vcolor = ($version == 'mobile') ? 'mcmdColor' : 'cmdColor';
@@ -837,15 +856,7 @@ class cmd {
 		} else {
 			$replace['#cmdColor#'] = $_cmdColor;
 		}
-		if ($this->getDisplay('doNotShowNameOnView') == 1 && ($_version == 'dview' || $_version == 'mview')) {
-			$replace['#hideCmdName#'] = 'display:none;';
-		} else if ($this->getDisplay('doNotShowNameOnDashboard') == 1 && $_version == 'dashboard') {
-			$replace['#hideCmdName#'] = 'display:none;';
-		} else if ($this->getDisplay('doNotShowNameOnMobile') == 1 && $_version == 'mobile') {
-			$replace['#hideCmdName#'] = 'display:none;';
-		} else if ($this->getDisplay('doNotShowNameOnPlan') == 1 && $_version == 'dplan') {
-			$replace['#hideCmdName#'] = 'display:none;';
-		}
+
 		if ($this->getType() == 'info') {
 			$replace['#state#'] = '';
 			$replace['#tendance#'] = '';
@@ -869,17 +880,7 @@ class cmd {
 			if ($this->getIsHistorized() == 1) {
 				$replace['#history#'] = 'history cursor';
 				if (config::byKey('displayStatsWidget') == 1 && strpos($template, '#displayHistory#') !== false) {
-					$showStat = true;
-					if ($this->getDisplay('doNotShowStatOnDashboard') == 1 && $_version == 'dashboard') {
-						$showStat = false;
-					} else if ($this->getDisplay('doNotShowStatOnView') == 1 && ($_version == 'dview' || $_version == 'mview')) {
-						$showStat = false;
-					} else if ($this->getDisplay('doNotShowStatOnMobile') == 1 && $_version == 'mobile') {
-						$showStat = false;
-					} else if ($this->getDisplay('doNotShowStatOnPlan') == 1 && $_version == 'dplan') {
-						$showStat = false;
-					}
-					if ($showStat) {
+					if ($this->getDisplay('showStatsOn' . $version2, 1) == 1) {
 						$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));
 						$replace['#displayHistory#'] = '';
 						$historyStatistique = $this->getStatistique($startHist, date('Y-m-d H:i:s'));
