@@ -737,14 +737,40 @@ class eqLogic {
 		return $return;
 	}
 
-	public function widgetPossibility($_key = '', $_default = '') {
+	public function widgetPossibility($_key = '', $_default = true) {
 		$class = new ReflectionClass($this->getEqType_name());
 		$method_toHtml = $class->getMethod('toHtml');
 		$return = array();
-
-		$return['changeWidget'] = ($method_toHtml->class == 'eqLogic') ? true : false;
-
+		if ($method_toHtml->class == 'eqLogic') {
+			$return['custom'] = true;
+		} else {
+			$return['custom'] = false;
+		}
+		$class = $this->getEqType_name();
+		if (property_exists($class, '_widgetPossibility')) {
+			$return = $class::$_widgetPossibility;
+			if ($_key != '') {
+				$keys = explode('::', $_key);
+				foreach ($keys as $k) {
+					if (!isset($return[$k])) {
+						return false;
+					}
+					if (is_array($return[$k])) {
+						$return = $return[$k];
+					} else {
+						return $return[$k];
+					}
+				}
+				if (is_array($return)) {
+					return $_default;
+				}
+				return $return;
+			}
+		}
 		if ($_key != '') {
+			if (isset($return['custom']) && !isset($return[$_key])) {
+				return $return['custom'];
+			}
 			return (isset($return[$_key])) ? $return[$_key] : $_default;
 		}
 		return $return;

@@ -1192,18 +1192,41 @@ class cmd {
 		return history::getPlurality($this->id, $_dateStart, $_dateEnd, $_period, $_offset);
 	}
 
-	public function widgetPossibility($_key = '', $_default = '') {
-		$eqLogic = $this->getEqLogic();
-
-		$class = new ReflectionClass($eqLogic->getEqType_name() . 'Cmd');
+	public function widgetPossibility($_key = '', $_default = true) {
+		$class = new ReflectionClass($this->getEqType_name());
 		$method_toHtml = $class->getMethod('toHtml');
 		$return = array();
-		if ($method_toHtml->class != 'cmd') {
-			$return['changeWidget'] = false;
+		if ($method_toHtml->class == 'eqLogic') {
+			$return['custom'] = true;
 		} else {
-			$return['changeWidget'] = $eqLogic->widgetPossibility('changeWidget', true);
+			$return['custom'] = false;
 		}
+		$class = $this->getEqType_name() . 'Cmd';
+		if (property_exists($class, '_widgetPossibility')) {
+			$return = $class::$_widgetPossibility;
+			if ($_key != '') {
+				$keys = explode('::', $_key);
+				foreach ($keys as $k) {
+					if (!isset($return[$k])) {
+						return false;
+					}
+					if (is_array($return[$k])) {
+						$return = $return[$k];
+					} else {
+						return $return[$k];
+					}
+				}
+				if (is_array($return)) {
+					return $_default;
+				}
+				return $return;
+			}
+		}
+
 		if ($_key != '') {
+			if (isset($return['custom']) && !isset($return[$_key])) {
+				return $return['custom'];
+			}
 			return (isset($return[$_key])) ? $return[$_key] : $_default;
 		}
 		return $return;
@@ -1349,7 +1372,7 @@ class cmd {
 	}
 
 	public function setEventOnly($eventOnly) {
-		trigger_error( 'This method is deprecated', E_USER_DEPRECATED ); 
+		trigger_error('This method is deprecated', E_USER_DEPRECATED);
 	}
 
 	public function getHtml($_key = '', $_default = '') {

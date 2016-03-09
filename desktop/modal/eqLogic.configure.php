@@ -16,15 +16,15 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
-    <?php if ($eqLogic->widgetPossibility('changeWidget')) {
+    <?php if ($eqLogic->widgetPossibility('custom')) {
 	?>
-        <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
-        <?php }
+       <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
+       <?php }
 ?>
-        <li role="presentation"><a href="#battery" aria-controls="messages" role="tab" data-toggle="tab"><i class="icon techno-charging"></i> {{Batterie}}</a></li>
-    </ul>
+       <li role="presentation"><a href="#battery" aria-controls="messages" role="tab" data-toggle="tab"><i class="icon techno-charging"></i> {{Batterie}}</a></li>
+   </ul>
 
-    <div class="tab-content" id="div_displayEqLogicConfigure">
+   <div class="tab-content" id="div_displayEqLogicConfigure">
        <div role="tabpanel" class="tab-pane active" id="information">
            <br/>
            <div class="row">
@@ -113,7 +113,7 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
         </div>
     </div>
 </div>
-<?php if ($eqLogic->widgetPossibility('changeWidget')) {
+<?php if ($eqLogic->widgetPossibility('custom')) {
 	?>
     <div role="tabpanel" class="tab-pane" id="display">
         <br/>
@@ -129,112 +129,172 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <?php if ($eqLogic->widgetPossibility('custom::visibility')) {
+		?>
+                  <tr>
                     <td>{{Visible}}</td>
-                    <td><input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="hideOndashboard" /></td>
+
+                    <td>
+                      <?php if ($eqLogic->widgetPossibility('custom::visibility::dashboard')) {
+			?>
+                        <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="hideOndashboard" />
+                        <?php }
+		?>
+                    </td>
+
                     <td colspan="2"></td>
-                    <td><input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="hideOnmobile" /></td>
+                    <td>
+                       <?php if ($eqLogic->widgetPossibility('custom::visibility::mobile')) {
+			?>
+                        <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="hideOnmobile" />
+                        <?php }
+		?>
+                    </td>
                 </tr>
-                <tr>
+                <?php }
+	?>
+                <?php if ($eqLogic->widgetPossibility('custom::displayName')) {
+		?>
+                  <tr>
                     <td>{{Afficher le nom}}</td>
-                    <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnDashboard" /></td>
-                    <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnPlan" /></td>
-                    <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnView" /></td>
-                    <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnMobile" /></td>
-                </tr>
-                <tr>
+                    <td>
+                        <?php if ($eqLogic->widgetPossibility('custom::displayName::dashboard')) {
+			?>
+                         <input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnDashboard" />
+                         <?php }
+		?>
+                     </td>
+                     <td>
+                        <?php if ($eqLogic->widgetPossibility('custom::displayName::plan')) {
+			?>
+                         <input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnPlan" />
+                         <?php }
+		?>
+                     </td>
+                     <td>
+                        <?php if ($eqLogic->widgetPossibility('custom::displayName::view')) {
+			?>
+                         <input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnView" />
+                         <?php }
+		?>
+                     </td>
+                     <td>
+                        <?php if ($eqLogic->widgetPossibility('custom::displayName::mobile')) {
+			?>
+                         <input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnMobile" />
+                         <?php }
+		?>
+                     </td>
+                 </tr>
+                 <?php }
+	?>
+                 <?php if ($eqLogic->widgetPossibility('custom::displayObjectName')) {
+		?>
+                  <tr>
                     <td>{{Afficher le nom de l'objet}}</td>
                     <td></td>
                     <td></td>
-                    <td><input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowObjectNameOnView" /></td>
-                    <td></td>
-                </tr>
+                    <td>
+                        <?php if ($eqLogic->widgetPossibility('custom::displayObjectName::view')) {
+			?>
+                            <input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowObjectNameOnView" />
+                            <?php }
+		?>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <?php }
+	?>
+                </tbody>
+            </table>
+            <?php if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
+		?>
+              <legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
+              <table class="table table-bordered table-condensed" id="table_widgetParameters">
+                <thead>
+                    <tr>
+                        <th>{{Nom}}</th>
+                        <th>{{Valeur}}</th>
+                        <th>{{Action}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+if ($eqLogic->getDisplay('parameters') != '') {
+			foreach ($eqLogic->getDisplay('parameters') as $key => $value) {
+				echo '<tr>';
+				echo '<td>';
+				echo '<input class="form-control key" value="' . $key . '" />';
+				echo '</td>';
+				echo '<td>';
+				echo '<input class="form-control value" value="' . $value . '" />';
+				echo '</td>';
+				echo '<td>';
+				echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fa fa-times"></i> Supprimer</a>';
+				echo '</td>';
+				echo '</tr>';
+			}
+		}
+		?>
             </tbody>
         </table>
-        <legend><i class="fa fa-pencil-square-o"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fa fa-plus-circle"></i> Ajouter</a></legend>
-        <table class="table table-bordered table-condensed" id="table_widgetParameters">
-            <thead>
-                <tr>
-                    <th>{{Nom}}</th>
-                    <th>{{Valeur}}</th>
-                    <th>{{Action}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-if ($eqLogic->getDisplay('parameters') != '') {
-		foreach ($eqLogic->getDisplay('parameters') as $key => $value) {
-			echo '<tr>';
-			echo '<td>';
-			echo '<input class="form-control key" value="' . $key . '" />';
-			echo '</td>';
-			echo '<td>';
-			echo '<input class="form-control value" value="' . $value . '" />';
-			echo '</td>';
-			echo '<td>';
-			echo '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fa fa-times"></i> Supprimer</a>';
-			echo '</td>';
-			echo '</tr>';
-		}
-	}
+        <?php }
 	?>
-          </tbody>
-      </table>
-  </div>
+    </div>
 
-  <?php }
+    <?php }
 ?>
-  <div role="tabpanel" class="tab-pane" id="battery">
-   <br/>
-   <legend><i class="fa fa-info-circle"></i> {{Informations}}</legend>
-   <div class="alert alert-info" id="nobattery">
-    {{Cet équipement ne possède pas de batterie/piles ou il n'a pas encore remonté sa valeur}}
-</div>
-<div id="hasbattery">
-    <div class="row">
-        <div class="col-sm-4" >
-            <form class="form-horizontal">
-                <fieldset>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">{{Type de batterie}}</label>
-                        <div class="col-sm-4">
-                            <span class="eqLogicAttr label label-primary" data-l1key="configuration"data-l2key="battery_type" style="font-size : 1em;"></span>
+    <div role="tabpanel" class="tab-pane" id="battery">
+       <br/>
+       <legend><i class="fa fa-info-circle"></i> {{Informations}}</legend>
+       <div class="alert alert-info" id="nobattery">
+        {{Cet équipement ne possède pas de batterie/piles ou il n'a pas encore remonté sa valeur}}
+    </div>
+    <div id="hasbattery">
+        <div class="row">
+            <div class="col-sm-4" >
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">{{Type de batterie}}</label>
+                            <div class="col-sm-4">
+                                <span class="eqLogicAttr label label-primary" data-l1key="configuration"data-l2key="battery_type" style="font-size : 1em;"></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">{{Mis à jour le}}</label>
-                        <div class="col-sm-4">
-                            <span class="eqLogicAttr label label-primary" data-l1key="configuration"data-l2key="batteryStatusDatetime" style="font-size : 1em;"></span>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">{{Mis à jour le}}</label>
+                            <div class="col-sm-4">
+                                <span class="eqLogicAttr label label-primary" data-l1key="configuration"data-l2key="batteryStatusDatetime" style="font-size : 1em;"></span>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col-sm-4" >
+                <form class="form-horizontal">
+                    <fieldset>
+                     <div class="form-group">
+                        <label class="col-sm-4 control-label">{{Niveau de batterie}}</label>
+                        <div class="col-sm-4" id="batterylevel">
+                            <span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="batteryStatus" style="font-size : 1em;"></span>
                         </div>
                     </div>
                 </fieldset>
             </form>
         </div>
-        <div class="col-sm-4" >
-            <form class="form-horizontal">
-                <fieldset>
-                 <div class="form-group">
-                    <label class="col-sm-4 control-label">{{Niveau de batterie}}</label>
-                    <div class="col-sm-4" id="batterylevel">
-                        <span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="batteryStatus" style="font-size : 1em;"></span>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
     </div>
-</div>
-<legend><i class="icon techno-fleches"></i> {{Seuils spécifiques}}</legend>
-<div class="form-group">
-    <label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
+    <legend><i class="icon techno-fleches"></i> {{Seuils spécifiques}}</legend>
+    <div class="form-group">
+        <label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
+        <div class="col-xs-2">
+            <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
+        </input>
+    </div>
+    <label class="col-xs-2 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
     <div class="col-xs-2">
-        <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
-    </input>
-</div>
-<label class="col-xs-2 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
-<div class="col-xs-2">
-    <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
-</div>
-<label class="col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
+        <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
+    </div>
+    <label class="col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
 </div>
 </div>
 </div>
