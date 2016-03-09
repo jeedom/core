@@ -195,6 +195,22 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
                     </tr>
                     <?php }
 	?>
+           <?php if ($eqLogic->widgetPossibility('custom::text-color')) {
+		?>
+                  <tr>
+                    <td>{{Couleur de texte}}</td>
+                                        <?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			if ($eqLogic->widgetPossibility('custom::text-color::' . $key)) {
+				echo '<input type="color" class="eqLogicAttr" data-l1key="display" data-l2key="text-color' . $key . '" value="#ffffff" />';
+			}
+			echo '</td>';
+		}
+		?>
+                    </tr>
+                    <?php }
+	?>
                 </tbody>
             </table>
             <?php if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
