@@ -590,22 +590,9 @@ var html = $(_html);
 $(name).append(html) 
 html.css('z-index', 1000);
 
-
-if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
-    if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
-        html.css('border-radius', '0px'); 
-        html.css('box-shadow', 'none'); 
-    }
-}
 for (var key in _plan.css) { 
     if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate') { 
-        if (key == 'background-color') { 
-            if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) { 
-                html.css(key, _plan.css[key]); 
-            } 
-        } else { 
-            html.css(key, _plan.css[key]); 
-        } 
+        html.css(key, _plan.css[key]); 
     } 
     if (key == 'color' && (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1)) { 
         html.find('.btn.btn-default').css("cssText", key + ': ' + _plan.css[key] + ' !important;border-color : ' + _plan.css[key] + ' !important'); 
@@ -615,14 +602,6 @@ for (var key in _plan.css) {
     } 
 } 
 
-if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) { 
-    if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) { 
-        html.css('background-color', 'transparent'); 
-        html.find('.cmd').each(function () { 
-            $(this).css('background-color', 'transparent'); 
-        }); 
-    } 
-}
 html.css('position', 'absolute'); 
 var position = { 
     top: init(_plan.position.top, '10') * parent.height / 100, 
@@ -630,12 +609,6 @@ var position = {
 }; 
 html.css('top', position.top); 
 html.css('left', position.left);
-
-var rotate = ''; 
-if (isset(_plan.css) && isset(_plan.css.rotate) && _plan.css.rotate != 0) { 
-// rotate = ' rotate(' + _plan.css.rotate + 'deg)'; 
-}
-
 html.css('transform-origin', '0 0'); 
 html.css('transform', 'scale(' + init(_plan.css.zoom, defaultZoom) + ')' + rotate); 
 html.css('-webkit-transform-origin', '0 0'); 
@@ -741,38 +714,12 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     }
     html.addClass('jeedomAlreadyPosition');
     html.css('z-index', 1000);
-    if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
-        if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
-            html.css('border-radius', '0px'); 
-            html.css('box-shadow', 'none'); 
-        }
-    }
+
     for (var key in _plan.css) {
-        if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate') {
-            if (key == 'background-color') {
-                if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
-                    html.css(key, _plan.css[key]);
-                }
-            } else {
-                html.css(key, _plan.css[key]);
-            }
-        }
-        if (key == 'color' && (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1)) {
-            html.find('.btn.btn-default').css("cssText", key + ': ' + _plan.css[key] + ' !important;border-color : ' + _plan.css[key] + ' !important');
-            html.find('tspan').css('fill', _plan.css[key]);
-            html.find('span').css(key, _plan.css[key]);
+        if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate' && key != 'background-color') {
             html.css(key, _plan.css[key]);
         }
     }
-    if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
-        if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
-            html.css('background-color', 'transparent');
-            html.find('.cmd').each(function () {
-                $(this).css('background-color', 'transparent');
-            });
-        }
-    }
-
     html.css('position', 'absolute');
     var position = {
         top: init(_plan.position.top, '10') * parent.height / 100,
@@ -796,15 +743,6 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
         }
         if (isset(_plan.display) && isset(_plan.display.height)) {
             html.css('height', init(_plan.display.height, 50));
-        }
-    }
-    if (_type == 'eqLogic') {
-        if (isset(_plan.display) && isset(_plan.display.cmd)) {
-            for (var id in _plan.display.cmd) {
-                if (_plan.display.cmd[id] == 1) {
-                    html.find('.cmd[data-cmd_id=' + id + ']').remove();
-                }
-            }
         }
     }
     if (_type == 'scenario' && isset(_plan.display) && (isset(_plan.display.hideCmd) && _plan.display.hideCmd == 1)) {

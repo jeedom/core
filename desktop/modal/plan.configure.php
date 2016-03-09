@@ -78,9 +78,6 @@ if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
 		echo '<thead>';
 		echo '<tr>';
 		echo '<th>{{Commande}}</th>';
-		if ($link->widgetPossibility('changeWidget')) {
-			echo '<th>{{Ne pas afficher la commande}}</th>';
-		}
 		echo '<th>{{Configuration avancée}}</th>';
 		echo '</tr>';
 		echo '</thead>';
@@ -89,11 +86,6 @@ if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
 			if ($cmd->getIsVisible() == 1) {
 				echo '<tr>';
 				echo '<td>' . $cmd->getHumanName() . '</td>';
-				if ($link->widgetPossibility('changeWidget')) {
-					echo '<td>';
-					echo '<center><input type="checkbox" data-size="small" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="cmd" data-l3key="' . $cmd->getId() . '" /></center>';
-					echo '</td>';
-				}
 				echo '<td>';
 				echo '<a class="btn btn-default btn-xs pull-right cursor bt_advanceCmdConfiguration" data-id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
 				echo '</td>';
@@ -103,7 +95,6 @@ if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
 		echo '</tbody>';
 		echo '</table>';
 	}
-
 	if ($plan->getLink_type() == 'scenario') {
 		echo '<div class="form-group">';
 		echo '<label class="col-lg-6 control-label">{{Masquer les commandes}}</label>';
