@@ -1201,6 +1201,13 @@ class cmd {
 		} else {
 			$return['custom'] = false;
 		}
+		$class = new ReflectionClass($this->getEqType_name() . 'Cmd');
+		$method_toHtml = $class->getMethod('toHtml');
+		if ($method_toHtml->class == 'cmd') {
+			$return['custom'] = true;
+		} else {
+			$return['custom'] = false;
+		}
 		$class = $this->getEqType_name() . 'Cmd';
 		if (property_exists($class, '_widgetPossibility')) {
 			$return = $class::$_widgetPossibility;
