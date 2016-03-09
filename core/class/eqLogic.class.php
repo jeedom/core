@@ -443,11 +443,6 @@ class eqLogic {
 		if ($mc->getValue() != '') {
 			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 		}
-		return null;
-	}
-
-	public function parametersTohtml($_version = 'dashboard') {
-		$version = jeedom::versionAlias($_version);
 		$parameters = $this->getDisplay('parameters');
 		$replace = array(
 			'#id#' => $this->getId(),
@@ -496,12 +491,11 @@ class eqLogic {
 	}
 
 	public function toHtml($_version = 'dashboard') {
-		$preHtml = $this->preToHtml($_version);
-		if ($preHtml !== null) {
-			return $preHtml;
+		$replace = $this->preToHtml($_version);
+		if (!is_array($replace)) {
+			return $replace;
 		}
 		$version = jeedom::versionAlias($_version);
-		$replace = $this->parametersTohtml($_version);
 		$cmd_html = '';
 		foreach ($this->getCmd(null, null, true) as $cmd) {
 			if ($cmd->getLogicalId() == 'refresh') {
