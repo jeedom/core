@@ -178,6 +178,22 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
                     </tr>
                     <?php }
 	?>
+       <?php if ($eqLogic->widgetPossibility('custom::background-color')) {
+		?>
+                  <tr>
+                    <td>{{Couleur de fond}}</td>
+                                        <?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			if ($eqLogic->widgetPossibility('custom::background-color::' . $key)) {
+				echo '<input type="color" class="eqLogicAttr" data-l1key="display" data-l2key="background-color' . $key . '" value="' . $eqLogic->getBackgroundColor($key) . '" />';
+			}
+			echo '</td>';
+		}
+		?>
+                    </tr>
+                    <?php }
+	?>
                 </tbody>
             </table>
             <?php if ($eqLogic->widgetPossibility('custom::optionalParameters')) {

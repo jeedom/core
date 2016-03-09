@@ -451,7 +451,7 @@ class eqLogic {
 			'#hideEqLogicName#' => '',
 			'#eqLink#' => ($this->hasRight('w')) ? $this->getLinkToConfiguration() : '#',
 			'#category#' => $this->getPrimaryCategory(),
-			'#background_color#' => $this->getBackgroundColor($version),
+			'#background_color#' => $this->getDisplay('background-color' . $version, $this->getBackgroundColor($version)),
 			'#style#' => '',
 			'#max_width#' => '650px',
 			'#logicalId#' => $this->getLogicalId(),
