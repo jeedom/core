@@ -122,10 +122,11 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
             <thead>
                 <tr>
                     <th></th>
-                    <th>{{Dashboard}}</th>
-                    <th>{{Design}}</th>
-                    <th>{{Vue}}</th>
-                    <th>{{Mobile}}</th>
+                    <?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+		echo '<th>{{' . $value['name'] . '}}</th>';
+	}
+	?>
                 </tr>
             </thead>
             <tbody>
@@ -133,23 +134,15 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 		?>
                   <tr>
                     <td>{{Visible}}</td>
-
-                    <td>
-                      <?php if ($eqLogic->widgetPossibility('custom::visibility::dashboard')) {
-			?>
-                        <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="hideOndashboard" />
-                        <?php }
+                                        <?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			if ($eqLogic->widgetPossibility('custom::visibility::' . $key)) {
+				echo '<input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="showOn' . $key . '" checked />';
+			}
+			echo '</td>';
+		}
 		?>
-                    </td>
-
-                    <td colspan="2"></td>
-                    <td>
-                       <?php if ($eqLogic->widgetPossibility('custom::visibility::mobile')) {
-			?>
-                        <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" data-l1key="display" data-l2key="hideOnmobile" />
-                        <?php }
-		?>
-                    </td>
                 </tr>
                 <?php }
 	?>
@@ -157,34 +150,15 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 		?>
                   <tr>
                     <td>{{Afficher le nom}}</td>
-                    <td>
-                        <?php if ($eqLogic->widgetPossibility('custom::displayName::dashboard')) {
-			?>
-                         <input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnDashboard" />
-                         <?php }
+                                        <?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			if ($eqLogic->widgetPossibility('custom::displayName::' . $key)) {
+				echo '<input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="showNameOn' . $key . '" checked />';
+			}
+			echo '</td>';
+		}
 		?>
-                     </td>
-                     <td>
-                        <?php if ($eqLogic->widgetPossibility('custom::displayName::plan')) {
-			?>
-                         <input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnPlan" />
-                         <?php }
-		?>
-                     </td>
-                     <td>
-                        <?php if ($eqLogic->widgetPossibility('custom::displayName::view')) {
-			?>
-                         <input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnView" />
-                         <?php }
-		?>
-                     </td>
-                     <td>
-                        <?php if ($eqLogic->widgetPossibility('custom::displayName::mobile')) {
-			?>
-                         <input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowNameOnMobile" />
-                         <?php }
-		?>
-                     </td>
                  </tr>
                  <?php }
 	?>
@@ -192,16 +166,15 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 		?>
                   <tr>
                     <td>{{Afficher le nom de l'objet}}</td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <?php if ($eqLogic->widgetPossibility('custom::displayObjectName::view')) {
-			?>
-                            <input type="checkbox" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-size="small" class="eqLogicAttr bootstrapSwitch" data-l1key="display" data-l2key="doNotShowObjectNameOnView" />
-                            <?php }
+                                        <?php
+foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+			echo '<td>';
+			if ($eqLogic->widgetPossibility('custom::displayObjectName::' . $key)) {
+				echo '<input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-size="small" data-l1key="display" data-l2key="showObjectNameOn' . $key . '" />';
+			}
+			echo '</td>';
+		}
 		?>
-                        </td>
-                        <td></td>
                     </tr>
                     <?php }
 	?>

@@ -436,12 +436,12 @@ class eqLogic {
 			return '';
 		}
 		$version = jeedom::versionAlias($_version);
-		if ($this->getDisplay('hideOn' . $version) == 1) {
+		if ($this->getDisplay('showOn' . $version, 1) == 0) {
 			return '';
 		}
 		$mc = cache::byKey('widgetHtml' . $_version . $this->getId());
 		if ($mc->getValue() != '') {
-			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+			//return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 		}
 		$parameters = $this->getDisplay('parameters');
 		$replace = array(
@@ -462,16 +462,11 @@ class eqLogic {
 		);
 		$refresh_cmd = $this->getCmd('action', 'refresh');
 		$replace['#refresh_id#'] = ($refresh_cmd != null) ? $refresh_cmd->getId() : '';
-
-		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowObjectNameOnView', 0) == 0) {
+		if ($this->getDisplay('showObjectNameOn' . $version, 0) == 1) {
 			$object = $this->getObject();
 			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
 		}
-		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
-			$replace['#hideEqLogicName#'] = 'display:none;';
-		} else if (($_version == 'dplan') && $this->getDisplay('doNotShowNameOnPlan') == 1) {
-			$replace['#hideEqLogicName#'] = 'display:none;';
-		} else if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
+		if ($this->getDisplay('showNameOn' . $version, 1) == 0) {
 			$replace['#hideEqLogicName#'] = 'display:none;';
 		}
 		$vcolor = 'cmdColor';

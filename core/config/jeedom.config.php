@@ -31,6 +31,12 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		'style' => array(
 			'noactive' => '-webkit-filter: grayscale(100%);-moz-filter: grayscale(100);-o-filter: grayscale(100%);-ms-filter: grayscale(100%);filter: grayscale(100%); opacity: 0.35;',
 		),
+		'displayType' => array(
+			'dashboard' => array('name' => 'Dashboard'),
+			'plan' => array('name' => 'Design'),
+			'view' => array('name' => 'Vue'),
+			'mobile' => array('name' => 'Mobile'),
+		),
 	),
 	'plugin' => array(
 		'category' => array(
