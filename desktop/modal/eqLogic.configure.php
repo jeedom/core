@@ -187,6 +187,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 			echo '<td>';
 			if ($eqLogic->widgetPossibility('custom::background-color::' . $key)) {
 				echo '<input type="color" class="eqLogicAttr" data-l1key="display" data-l2key="background-color' . $key . '" value="' . $eqLogic->getBackgroundColor($key) . '" />';
+				echo ' <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-size="small" data-l1key="display" data-label-text="{{Transparent}}" data-l2key="background-color-transparent' . $key . '" />';
 			}
 			echo '</td>';
 		}
