@@ -39,7 +39,9 @@ if ($plan->getLink_type() == 'eqLogic') {
           </div>
       </div>
 
-      <?php if ($plan->getLink_type() != 'eqLogic' || !is_object($link) || $link->widgetPossibility('changeWidget')) {?>
+      <?php if ($plan->getLink_type() != 'eqLogic' || !is_object($link) || $link->widgetPossibility('custom')) {
+		?>
+      <?php if ($link->widgetPossibility('custom::background-color::plan')) {?>
       <div class="form-group">
         <label class="col-lg-4 control-label">{{Couleur de fond}}</label>
         <div class="col-lg-2">
@@ -54,6 +56,9 @@ if ($plan->getLink_type() == 'eqLogic') {
             <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="background-defaut" checked />
         </div>
     </div>
+    <?php }
+		?>
+        <?php if ($link->widgetPossibility('custom::text-color::plan')) {?>
     <div class="form-group">
         <label class="col-lg-4 control-label">{{Couleur des icônes et textes}}</label>
         <div class="col-lg-2">
@@ -64,18 +69,26 @@ if ($plan->getLink_type() == 'eqLogic') {
             <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="color-defaut" checked />
         </div>
     </div>
+     <?php }
+		?>
+         <?php if ($link->widgetPossibility('custom::text-color::plan')) {?>
     <div class="form-group">
         <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
         <div class="col-lg-2">
             <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
         </div>
     </div>
+     <?php }
+		?>
+         <?php if ($link->widgetPossibility('custom::border::plan')) {?>
     <div class="form-group">
         <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black)}}</label>
         <div class="col-lg-2">
             <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
         </div>
     </div>
+     <?php }
+		?>
     <?php }
 	?>
     <div class="form-group">
