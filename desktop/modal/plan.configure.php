@@ -40,38 +40,7 @@ if ($plan->getLink_type() == 'eqLogic') {
       </div>
 
       <?php if ($plan->getLink_type() != 'eqLogic' || !is_object($link) || $link->widgetPossibility('custom')) {
-		?>
-      <?php if ($link->widgetPossibility('custom::background-color::plan')) {?>
-      <div class="form-group">
-        <label class="col-lg-4 control-label">{{Couleur de fond}}</label>
-        <div class="col-lg-2">
-            <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />
-        </div>
-        <label class="col-lg-2 control-label">{{Transparent}}</label>
-        <div class="col-lg-1">
-            <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="background-transparent" />
-        </div>
-        <label class="col-lg-2 control-label">{{Défaut}}</label>
-        <div class="col-lg-1">
-            <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="background-defaut" checked />
-        </div>
-    </div>
-    <?php }
-		?>
-        <?php if ($link->widgetPossibility('custom::text-color::plan')) {?>
-    <div class="form-group">
-        <label class="col-lg-4 control-label">{{Couleur des icônes et textes}}</label>
-        <div class="col-lg-2">
-            <input type="color" class="form-control planAttr" data-l1key="css" data-l2key="color" />
-        </div>
-        <label class="col-lg-2 control-label">{{Défaut}}</label>
-        <div class="col-lg-1">
-            <input type="checkbox" class="planAttr bootstrapSwitch" data-l1key="display" data-l2key="color-defaut" checked />
-        </div>
-    </div>
-     <?php }
-		?>
-         <?php if ($link->widgetPossibility('custom::text-color::plan')) {?>
+		if ($link->widgetPossibility('custom::border-radius::plan')) {?>
     <div class="form-group">
         <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
         <div class="col-lg-2">
