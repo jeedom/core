@@ -436,6 +436,9 @@ class eqLogic {
 			return '';
 		}
 		$version = jeedom::versionAlias($_version);
+		if ($_version == 'dplan') {
+			$version = 'plan';
+		}
 		if ($this->getDisplay('showOn' . $version, 1) == 0) {
 			return '';
 		}
