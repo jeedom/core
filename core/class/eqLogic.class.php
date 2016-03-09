@@ -441,9 +441,9 @@ class eqLogic {
 		}
 		$mc = cache::byKey('widgetHtml' . $_version . $this->getId());
 		if ($mc->getValue() != '') {
-			//return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 		}
-		$parameters = $this->getDisplay('parameters');
+
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
@@ -451,8 +451,7 @@ class eqLogic {
 			'#hideEqLogicName#' => '',
 			'#eqLink#' => ($this->hasRight('w')) ? $this->getLinkToConfiguration() : '#',
 			'#category#' => $this->getPrimaryCategory(),
-			'#background_color#' => ($this->getDisplay('background-color-transparent' . $version, 0) == 1) ? 'transparent' : $this->getDisplay('background-color' . $version, $this->getBackgroundColor($version)),
-			'#color#' => $this->getDisplay('color' . $version, '#ffffff'),
+			'#color#' => '#ffffff',
 			'#style#' => '',
 			'#max_width#' => '650px',
 			'#logicalId#' => $this->getLogicalId(),
@@ -461,6 +460,14 @@ class eqLogic {
 			'#width#' => $this->getDisplay('width', 'auto'),
 			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
 		);
+		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {
+			$replace['#background_color#'] = $this->getBackgroundColor($version);
+		} else {
+			$replace['#background_color#'] = ($this->getDisplay('background-color-transparent' . $version, 0) == 1) ? 'transparent' : $this->getDisplay('background-color' . $version, $this->getBackgroundColor($version));
+		}
+		if ($this->getDisplay('color-default' . $version, 1) != 1) {
+			$replace['#color#'] = $this->getDisplay('color' . $version, '#ffffff');
+		}
 		$refresh_cmd = $this->getCmd('action', 'refresh');
 		$replace['#refresh_id#'] = ($refresh_cmd != null) ? $refresh_cmd->getId() : '';
 		if ($this->getDisplay('showObjectNameOn' . $version, 0) == 1) {
@@ -474,6 +481,7 @@ class eqLogic {
 		if ($version == 'mobile') {
 			$vcolor = 'mcmdColor';
 		}
+		$parameters = $this->getDisplay('parameters');
 		$replace['#background_cmd_color#'] = ($this->getPrimaryCategory() == '') ? '' : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
 		if (is_array($parameters) && isset($parameters['background_cmd_color'])) {
 			$replace['#background_cmd_color#'] = $parameters['background_cmd_color'];
