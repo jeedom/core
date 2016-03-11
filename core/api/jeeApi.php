@@ -185,6 +185,11 @@ if (init('type') != '') {
 		if ($jsonrpc->getMethod() == 'ping') {
 			$jsonrpc->makeSuccess('pong');
 		}
+		
+		if (!isset($params['apikey']) && !isset($params['api'])) {
+			connection::failed();
+			throw new Exception(__('Aucune clef api', __FILE__), -32001);
+		}
 
 		if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) || (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
 			connection::failed();
