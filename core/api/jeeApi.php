@@ -186,6 +186,11 @@ if (init('type') != '') {
 			$jsonrpc->makeSuccess('pong');
 		}
 
+		if (!isset($params['apikey']) && !isset($params['api'])) {
+			connection::failed();
+			throw new Exception('Clé API invalide', -32001);
+		}
+
 		if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) || (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
 			connection::failed();
 			throw new Exception('Clé API invalide', -32001);
