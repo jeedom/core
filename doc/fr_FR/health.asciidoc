@@ -19,23 +19,3 @@ En dessous vous retrouvez les meme tableau mais par plugin (si le plugin est com
 === Version PHP
 
 Pour l'instant la version 5.5 de php n'est pas obligatoire vous pouvez donc tout laisser comme ca pour le moment. Le jour ou la version 5.5 devient obligatoire vous serez prévenu
-
-=== Configuration nginx
-
-Ma configuration nginx est NOK, cela peut etre normal si vous avez modifié le fichier /etc/nginx/sites-available/default, sinon en SSH faites : 
-
-- Si vous etês sur une mini/mini+ ou que vous ne voulez pas de /jeedom : 
-
-----
-sudo su -
-cp /usr/share/nginx/www/jeedom/install/nginx_default_without_jeedom /etc/nginx/sites-available/default
-service nginx restart
----- 
-
-- Vous voulez le /jeedom
-
-----
-sudo su -
-cp /usr/share/nginx/www/jeedom/install/nginx_default /etc/nginx/sites-available/default
-service nginx restart
----- 
