@@ -426,7 +426,7 @@ class eqLogic {
 		return true;
 	}
 
-	public function preToHtml($_version = 'dashboard', $_cacheTag = 'widgetHtml', $_default = array()) {
+	public function preToHtml($_version = 'dashboard', $_default = array()) {
 		if ($_version == '') {
 			throw new Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
 		}
