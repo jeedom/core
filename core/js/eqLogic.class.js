@@ -313,6 +313,9 @@ jeedom.eqLogic.refreshValue = function (_params) {
                 var margin =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('margin');
                 var padding =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('padding');
                 var position =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('position');
+                var transform_origin =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform-origin');
+                var transform =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform');
+                var zindex =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('zindex');
                 $('.eqLogic[data-eqLogic_id=' + params.id + ']').attr("style", html.attr("style"));
                 $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('top',top);
                 $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('left',left);
@@ -320,7 +323,10 @@ jeedom.eqLogic.refreshValue = function (_params) {
                 $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('height',height);
                 $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('margin',margin);
                 $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('padding',padding);
-                 $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('position',position);
+                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('position',position);
+                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform-origin',transform_origin);
+                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform',transform);
+                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('zindex',zindex);
                 initTooltips();
                 if ($.mobile) {
                     $('.eqLogic[data-eqLogic_id=' + params.id + ']').trigger("create");
