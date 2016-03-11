@@ -306,6 +306,21 @@ jeedom.eqLogic.refreshValue = function (_params) {
                     $('.eqLogic[data-eqLogic_id=' + params.id + ']').attr('data-eqLogic_uid',uid);
                 }
                 $('.eqLogic[data-eqLogic_id=' + params.id + ']').empty().html(html.children());
+                var top =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('top');
+                var left =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('left');
+                var width =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('width');
+                var height =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('height');
+                var margin =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('margin');
+                var padding =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('padding');
+                var position =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('position');
+                $('.eqLogic[data-eqLogic_id=' + params.id + ']').attr("style", html.attr("style"));
+                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('top',top);
+                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('left',left);
+                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('width',width);
+                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('height',height);
+                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('margin',margin);
+                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('padding',padding);
+                 $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('position',position);
                 initTooltips();
                 if ($.mobile) {
                     $('.eqLogic[data-eqLogic_id=' + params.id + ']').trigger("create");

@@ -39,6 +39,7 @@ class eqLogic {
 	protected $_debug = false;
 	protected $_object = null;
 	private static $_templateArray = array();
+	protected $_needRefreshWidget = false;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -576,7 +577,11 @@ class eqLogic {
 		} else {
 			$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
 		}
-		return DB::save($this, $_direct);
+		DB::save($this, $_direct);
+		if ($this->_needRefreshWidget) {
+			$this->emptyCacheWidget();
+			$this->refreshWidget();
+		}
 	}
 
 	public function refresh() {
@@ -945,6 +950,7 @@ class eqLogic {
 
 	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
+		$this->_needRefreshWidget = true;
 	}
 
 	public function getTimeout($_default = null) {
