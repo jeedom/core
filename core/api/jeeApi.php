@@ -188,12 +188,12 @@ if (init('type') != '') {
 
 		if (!isset($params['apikey']) && !isset($params['api'])) {
 			connection::failed();
-			throw new Exception('Clé API invalide', -32001);
+			throw new Exception(__('Aucune clef api fournie', __FILE__), -32001);
 		}
 
 		if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) || (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
 			connection::failed();
-			throw new Exception('Clé API invalide', -32001);
+			throw new Exception(__('Clé API invalide', __FILE__), -32001);
 		}
 
 		connection::success('api');
