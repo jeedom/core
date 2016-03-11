@@ -425,7 +425,7 @@ class eqLogic {
 		return true;
 	}
 
-	public function preToHtml($_version = 'dashboard', $_cacheTag = 'widgetHtml') {
+	public function preToHtml($_version = 'dashboard', $_cacheTag = 'widgetHtml', $_default = array()) {
 		if ($_version == '') {
 			throw new Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
 		}
@@ -468,7 +468,11 @@ class eqLogic {
 			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
 		);
 		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {
-			$replace['#background-color#'] = $this->getBackgroundColor($version);
+			if (isset($_default['#background-color#'])) {
+				$replace['#background-color#'] = $_default['#background-color#'];
+			} else {
+				$replace['#background-color#'] = $this->getBackgroundColor($version);
+			}
 		} else {
 			$replace['#background-color#'] = ($this->getDisplay('background-color-transparent' . $version, 0) == 1) ? 'transparent' : $this->getDisplay('background-color' . $version, $this->getBackgroundColor($version));
 		}
@@ -495,9 +499,9 @@ class eqLogic {
 			$vcolor = 'mcmdColor';
 		}
 		$parameters = $this->getDisplay('parameters');
-		$replace['#background_cmd_color#'] = ($this->getPrimaryCategory() == '') ? '' : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
-		if (is_array($parameters) && isset($parameters['background_cmd_color'])) {
-			$replace['#background_cmd_color#'] = $parameters['background_cmd_color'];
+		$replace['#cmd-background-color#'] = ($this->getPrimaryCategory() == '') ? '' : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
+		if (is_array($parameters) && isset($parameters['cmd-background-color'])) {
+			$replace['#cmd-background-color#'] = $parameters['cmd-background-color'];
 		}
 		if (is_array($parameters)) {
 			foreach ($parameters as $key => $value) {
@@ -521,7 +525,7 @@ class eqLogic {
 			if ($cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
 				$cmd_html .= '<br/>';
 			}
-			$cmd_html .= $cmd->toHtml($_version, '', $replace['#background_cmd_color#']);
+			$cmd_html .= $cmd->toHtml($_version, '', $replace['#cmd-background-color#']);
 			if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
 				$cmd_html .= '<br/>';
 			}
