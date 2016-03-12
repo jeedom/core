@@ -436,20 +436,20 @@ class eqLogic {
 		if (!$this->getIsEnable()) {
 			return '';
 		}
+		$version = jeedom::versionAlias($_version);
+		if ($this->getDisplay('showOn' . $version, 1) == 0) {
+			return '';
+		}
 		if ($_version == 'dplan') {
 			$version = 'plan';
 		} else if ($_version == 'dview') {
 			$version = 'view';
-		} else {
-			$version = jeedom::versionAlias($_version);
-		}
-		if ($this->getDisplay('showOn' . $version, 1) == 0) {
-			return '';
 		}
 		$mc = cache::byKey('widgetHtml' . $_version . $this->getId());
 		if ($mc->getValue() != '') {
 			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 		}
+
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
@@ -579,7 +579,6 @@ class eqLogic {
 		}
 		DB::save($this, $_direct);
 		if ($this->_needRefreshWidget) {
-			$this->emptyCacheWidget();
 			$this->refreshWidget();
 		}
 	}
@@ -697,6 +696,7 @@ class eqLogic {
 	}
 
 	public function refreshWidget() {
+		$this->emptyCacheWidget();
 		event::add('eqLogic::update', $this->getId());
 	}
 
