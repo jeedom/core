@@ -509,6 +509,7 @@ class eqLogic {
 				$replace['#' . $key . '#'] = $value;
 			}
 		}
+		$replace['#style#'] = trim($replace['#style#'], ';');
 		return $replace;
 	}
 
