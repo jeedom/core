@@ -215,7 +215,7 @@ class network {
 
 		if (file_exists('/etc/nginx/sites-available/default')) {
 			$data = file_get_contents('/etc/nginx/sites-available/default');
-			if (strpos($data, 'root /usr/share/nginx/www;') !== false) {
+			if (strpos($data, 'root /usr/share/nginx/www;') !== false || strpos($data, 'root /var/www/html;') !== false) {
 				if ($_mode == 'internal') {
 					config::save('internalComplement', '/jeedom');
 				}
