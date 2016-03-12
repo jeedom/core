@@ -343,7 +343,10 @@ class plugin {
 		return config::byKey('active', $this->id);
 	}
 
-	public function callInstallFunction($_function) {
+	public function callInstallFunction($_function, $_direct = false) {
+		if (!$_direct) {
+			return $this->launch($_function, true);
+		}
 		if (strpos($_function, 'pre_') !== false) {
 			log::add('plugin', 'debug', 'Recherche de ' . dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/pre_install.php');
 			if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getId() . '/plugin_info/pre_install.php')) {
@@ -547,15 +550,22 @@ class plugin {
 			if ($_state == 1) {
 				log::add($this->getId(), 'info', 'Début d\'activation du plugin');
 				$this->deamon_stop();
-				$dependancy_info = $this->dependancy_info();
-				log::add($this->getId(), 'info', 'Info sur les dépendances : ' . print_r($dependancy_info, true));
-				if ($dependancy_info['state'] == 'nok') {
-					$this->dependancy_install();
+
+				$deamon_info = $this->deamon_info();
+				sleep(1);
+				log::add($this->getId(), 'info', 'Info sur le démon : ' . print_r($deamon_info, true));
+				if ($deamon_info['state'] == 'ok') {
+					$this->deamon_stop();
 				}
 				if ($alreadyActive == 1) {
 					$out = $this->callInstallFunction('update');
 				} else {
 					$out = $this->callInstallFunction('install');
+				}
+				$dependancy_info = $this->dependancy_info();
+				log::add($this->getId(), 'info', 'Info sur les dépendances : ' . print_r($dependancy_info, true));
+				if ($dependancy_info['state'] == 'nok') {
+					$this->dependancy_install();
 				}
 				$this->deamon_start(false, false, true);
 			} else {
@@ -586,20 +596,26 @@ class plugin {
 		return market::getInfo(array('logicalId' => $this->getId(), 'type' => 'plugin'));
 	}
 
-	public function launch($_function) {
+	public function launch($_function, $_callInstallFunction = false) {
 		if ($_function == '') {
 			throw new Exception('La fonction à lancer ne peut être vide');
 		}
-		if (!class_exists($this->getId()) || !method_exists($this->getId(), $_function)) {
+		if (!$_callInstallFunction && (!class_exists($this->getId()) || !method_exists($this->getId(), $_function))) {
 			throw new Exception('Il n\'existe aucune méthode : ' . $this->getId() . '::' . $_function . '()');
 		}
 		$cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeePlugin.php ';
 		$cmd .= ' plugin_id=' . $this->getId();
 		$cmd .= ' function=' . $_function;
+		$cmd .= ' callInstallFunction=' . $_callInstallFunction;
 		if (jeedom::checkOngoingThread($cmd) > 0) {
 			return true;
 		}
-		exec($cmd . ' >> /dev/null 2>&1 &');
+		log::add($this->getId(), 'debug', __('Lancement de : ', __FILE__) . $cmd);
+		if ($_callInstallFunction) {
+			return exec($cmd . ' >> /dev/null 2>&1');
+		} else {
+			exec($cmd . ' >> /dev/null 2>&1 &');
+		}
 		return true;
 	}
 
