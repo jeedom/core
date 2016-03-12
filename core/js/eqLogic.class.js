@@ -296,63 +296,72 @@ jeedom.eqLogic.getSelectModal = function (_options, callback) {
 jeedom.eqLogic.refreshValue = function (_params) {
     if ($('.eqLogic[data-eqLogic_id=' + _params.id + ']').html() != undefined) {
         var version = $('.eqLogic[data-eqLogic_id=' + _params.id + ']').attr('data-version');
-        var paramsRequired = ['id'];
-        var paramsSpecifics = {
-            global: false,
-            success: function (result) {
-                var html = $(result.html);
-                var uid = html.attr('data-eqLogic_uid');
-                if(uid != 'undefined'){
-                    $('.eqLogic[data-eqLogic_id=' + params.id + ']').attr('data-eqLogic_uid',uid);
-                }
-                $('.eqLogic[data-eqLogic_id=' + params.id + ']').empty().html(html.children());
-                var top =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('top');
-                var left =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('left');
-                var width =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('width');
-                var height =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('height');
-                var margin =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('margin');
-                var padding =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('padding');
-                var position =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('position');
-                var transform_origin =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform-origin');
-                var transform =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform');
-                var zindex =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('zindex');
-                $('.eqLogic[data-eqLogic_id=' + params.id + ']').attr("style", html.attr("style"));
-                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('top',top);
-                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('left',left);
-                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('width',width);
-                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('height',height);
-                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('margin',margin);
-                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('padding',padding);
-                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('position',position);
-                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform-origin',transform_origin);
-                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform',transform);
-                $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('zindex',zindex);
-                initTooltips();
-                if ($.mobile) {
-                    $('.eqLogic[data-eqLogic_id=' + params.id + ']').trigger("create");
-                    setTileSize('.eqLogic');
-                }else{
-                    if (typeof editWidgetMode == 'function') {
-                     editWidgetMode(); 
-                 }
-             }
-         }
-     };
-     try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
-    }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
-    paramsAJAX.data = {
-        action: 'toHtml',
-        id: _params.id,
-        version: _params.version || version
-    };
-    $.ajax(paramsAJAX);
+        if(getUrlVars('p') == 'plan'){
+            version = 'dplan';
+        }else if(getUrlVars('p') == 'view'){
+            if(version == 'dashboard'){
+                version = 'dview';
+           }else{
+               version = 'mview';
+           }
+       }
+       var paramsRequired = ['id'];
+       var paramsSpecifics = {
+        global: false,
+        success: function (result) {
+            var html = $(result.html);
+            var uid = html.attr('data-eqLogic_uid');
+            if(uid != 'undefined'){
+                $('.eqLogic[data-eqLogic_id=' + params.id + ']').attr('data-eqLogic_uid',uid);
+            }
+            $('.eqLogic[data-eqLogic_id=' + params.id + ']').empty().html(html.children());
+            var top =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('top');
+            var left =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('left');
+            var width =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('width');
+            var height =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('height');
+            var margin =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('margin');
+            var padding =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('padding');
+            var position =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('position');
+            var transform_origin =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform-origin');
+            var transform =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform');
+            var zindex =  $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('zindex');
+            $('.eqLogic[data-eqLogic_id=' + params.id + ']').attr("style", html.attr("style"));
+            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('top',top);
+            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('left',left);
+            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('width',width);
+            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('height',height);
+            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('margin',margin);
+            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('padding',padding);
+            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('position',position);
+            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform-origin',transform_origin);
+            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform',transform);
+            $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('zindex',zindex);
+            initTooltips();
+            if ($.mobile) {
+                $('.eqLogic[data-eqLogic_id=' + params.id + ']').trigger("create");
+                setTileSize('.eqLogic');
+            }else{
+                if (typeof editWidgetMode == 'function') {
+                   editWidgetMode(); 
+               }
+           }
+       }
+   };
+   try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+} catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+}
+var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+var paramsAJAX = jeedom.private.getParamsAJAX(params);
+paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
+paramsAJAX.data = {
+    action: 'toHtml',
+    id: _params.id,
+    version: _params.version || version
+};
+$.ajax(paramsAJAX);
 }
 };
 
