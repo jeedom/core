@@ -90,7 +90,7 @@ try {
 		}
 		mkdir($tmp_dir);
 
-		log::add('update', 'update', __('Décompression de l\'archive...', __FILE__));
+		log::add('update', 'info', __('Décompression de l\'archive...', __FILE__));
 		$zip = new ZipArchive;
 		$res = $zip->open($tmp);
 		if ($res === TRUE) {
@@ -99,19 +99,19 @@ try {
 				throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
 			}
 			$zip->close();
-			log::add('update', 'update', __("OK\n", __FILE__));
-			log::add('update', 'update', __('Installation de l\'objet...', __FILE__));
+			log::add('update', 'info', __("OK\n", __FILE__));
+			log::add('update', 'info', __('Installation de l\'objet...', __FILE__));
 			if (!file_exists($tmp_dir . '/plugin_info')) {
-				log::add('update', 'update', __('Plugin info non trouvé, je le recherche...', __FILE__));
+				log::add('update', 'info', __('Plugin info non trouvé, je le recherche...', __FILE__));
 				$files = ls($tmp_dir, '*');
 				if (count($files) == 1 && file_exists($tmp_dir . '/' . $files[0] . 'plugin_info')) {
 					shell_exec('mv ' . $tmp_dir . '/' . $files[0] . '* ' . $tmp_dir);
 					rmdir($tmp_dir . '/' . $files[0]);
-					log::add('update', 'update', __('OK', __FILE__));
+					log::add('update', 'info', __('OK', __FILE__));
 				}
 			}
 			if (file_exists($tmp_dir . '/plugin_info/info.xml')) {
-				log::add('update', 'update', __('Fichier info.xml trouvé', __FILE__));
+				log::add('update', 'info', __('Fichier info.xml trouvé', __FILE__));
 				libxml_use_internal_errors(true);
 				$plugin_xml = @simplexml_load_file($tmp_dir . '/plugin_info/info.xml');
 				$logicalId = $plugin_xml->id;
@@ -127,7 +127,7 @@ try {
 			} catch (Exception $e) {
 				throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
 			}
-			log::add('update', 'update', __("OK\n", __FILE__));
+			log::add('update', 'info', __("OK\n", __FILE__));
 			if (is_object($plugin) && $plugin->isActive()) {
 				$plugin->setIsEnable(1);
 			}
