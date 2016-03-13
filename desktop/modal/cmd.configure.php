@@ -26,23 +26,23 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
-      <li role="presentation"><a href="#configuration" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> {{Configuration avancée}}</a></li>
+      <li role="presentation" class="active"><a href="#cmd_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
+      <li role="presentation"><a href="#cmd_configuration" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-wrench"></i> {{Configuration avancée}}</a></li>
       <?php if ($cmd->widgetPossibility('custom')) {
 	?>
-       <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
+       <li role="presentation"><a href="#cmd_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
        <?php }
 ?>
        <?php if ($cmd->widgetPossibility('custom::htmlCode')) {
 	?>
-         <li role="presentation"><a href="#html" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-code-fork"></i> {{Code du widget}}</a></li>
+         <li role="presentation"><a href="#cmd_html" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-code-fork"></i> {{Code du widget}}</a></li>
          <?php }
 ?>
        </ul>
 
 
        <div class="tab-content" id="div_displayCmdConfigure">
-        <div role="tabpanel" class="tab-pane active" id="information">
+        <div role="tabpanel" class="tab-pane active" id="cmd_information">
           <br/>
           <legend><i class="fa fa-list-alt"></i> {{Général}}</legend>
           <div class="row">
@@ -163,7 +163,7 @@ foreach ($usedBy['scenario'] as $usedByScneario) {
        </fieldset>
      </form>
    </div>
-   <div role="tabpanel" class="tab-pane" id="configuration">
+   <div role="tabpanel" class="tab-pane" id="cmd_configuration">
     <br/>
     <form class="form-horizontal">
       <fieldset>
@@ -365,11 +365,11 @@ foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $value) {
 </div>
 <?php if ($cmd->widgetPossibility('custom::htmlCode')) {
 	?>
-  <div role="tabpanel" class="tab-pane" id="html">
+  <div role="tabpanel" class="tab-pane" id="cmd_html">
     <br/>
     <div class="form-group">
       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer la personalisation du widget}}</label>
-      <div class="col-xs-1">
+      <div class="col-xs-2">
         <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="html" data-l2key="enable" />
       </div>
       <div class="col-xs-3">
@@ -456,7 +456,7 @@ foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $value) {
 
 <?php if ($cmd->widgetPossibility('custom')) {
 	?>
-  <div role="tabpanel" class="tab-pane" id="display">
+  <div role="tabpanel" class="tab-pane" id="cmd_display">
     <br/>
     <legend><i class="fa fa-tint"></i> {{Widget}}</legend>
     <table class="table table-bordered table-condensed">

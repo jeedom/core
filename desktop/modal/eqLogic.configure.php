@@ -15,17 +15,17 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 <a class="btn btn-success pull-right btn-sm" id="bt_eqLogicConfigureSave"><i class="fa fa-check-circle"></i> {{Enregistrer}}</a>
 
 <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
+    <li role="presentation" class="active"><a href="#eqLogic_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> {{Informations}}</a></li>
     <?php if ($eqLogic->widgetPossibility('custom')) {
 	?>
-       <li role="presentation"><a href="#display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
+       <li role="presentation"><a href="#eqLogic_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> {{Affichage avancé}}</a></li>
        <?php }
 ?>
-       <li role="presentation"><a href="#battery" aria-controls="messages" role="tab" data-toggle="tab"><i class="icon techno-charging"></i> {{Batterie}}</a></li>
+       <li role="presentation"><a href="#eqLogic_battery" aria-controls="messages" role="tab" data-toggle="tab"><i class="icon techno-charging"></i> {{Batterie}}</a></li>
    </ul>
 
    <div class="tab-content" id="div_displayEqLogicConfigure">
-     <div role="tabpanel" class="tab-pane active" id="information">
+     <div role="tabpanel" class="tab-pane active" id="eqLogic_information">
          <br/>
          <div class="row">
             <div class="col-sm-4" >
@@ -109,11 +109,34 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
                 </fieldset>
             </form>
         </div>
-    </div>
+        <div class="col-sm-12" >
+            <legend>{{Commandes}}</legend>
+            <table class="table table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th>{{Nom}}</th>
+                        <th>{{Action}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+foreach ($eqLogic->getCmd() as $cmd) {
+	echo '<tr>';
+	echo '<td>' . $cmd->getHumanName() . '</td>';
+	echo '<td>';
+	echo '<a class="btn btn-default btn-xs pull-right cursor bt_advanceCmdConfigurationOnEqLogicConfiguration" data-id="' . $cmd->getId() . '"><i class="fa fa-cogs"></i></a>';
+	echo '</td>';
+	echo '</tr>';
+}
+?>
+               </tbody>
+           </table>
+       </div>
+   </div>
 </div>
 <?php if ($eqLogic->widgetPossibility('custom')) {
 	?>
-    <div role="tabpanel" class="tab-pane" id="display">
+    <div role="tabpanel" class="tab-pane" id="eqLogic_display">
         <br/>
         <legend><i class="fa fa-tint"></i> {{Widget}}</legend>
         <table class="table table-bordered table-condensed">
@@ -286,7 +309,7 @@ if ($eqLogic->getDisplay('parameters') != '') {
 
 <?php }
 ?>
-<div role="tabpanel" class="tab-pane" id="battery">
+<div role="tabpanel" class="tab-pane" id="eqLogic_battery">
  <br/>
  <legend><i class="fa fa-info-circle"></i> {{Informations}}</legend>
  <div class="alert alert-info" id="nobattery">
@@ -468,6 +491,11 @@ $('#bt_eqLogicConfigureRemove').on('click',function(){
             });
         }
     });
+});
+
+$('.bt_advanceCmdConfigurationOnEqLogicConfiguration').off('click').on('click', function () {
+    $('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
+    $('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
 });
 
 
