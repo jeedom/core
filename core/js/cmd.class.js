@@ -744,7 +744,7 @@ jeedom.cmd.displayDuration = function(_date,_el){
     var timeInMillis = Date.parse(_date);
     _el.attr('data-time',timeInMillis);
     if(timeInMillis < Date.now()){
-       var d = (Date.now() - _el.attr('data-time')) / 1000;
+       var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
        var h = Math.floor(d / 3600);
        var m = Math.floor(d % 3600 / 60);
        _el.empty().append(((h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));

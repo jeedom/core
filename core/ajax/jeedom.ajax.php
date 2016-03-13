@@ -27,7 +27,7 @@ try {
 		$_SESSION['user']->refresh();
 		$return = array();
 		$return['user_id'] = $_SESSION['user']->getId();
-		$return['serverDatetime'] = getmicrotime();
+		$return['serverDatetime'] = strtotime('now') * 1000;
 		$return['userProfils'] = $_SESSION['user']->getOptions();
 		$return['userProfils']['defaultMobileViewName'] = __('Vue', __FILE__);
 		if ($_SESSION['user']->getOptions('defaultDesktopView') != '') {

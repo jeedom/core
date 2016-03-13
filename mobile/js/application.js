@@ -98,6 +98,8 @@ function initApplication(_reinit) {
                 panel(false);
                 /*************Initialisation environement********************/
                 serverDatetime  = data.result.serverDatetime ;
+                var clientDatetime = new Date();
+                clientServerDiffDatetime = serverDatetime - clientDatetime.getTime();
                 user_id = data.result.user_id;
                 plugins = data.result.plugins;
                 userProfils = data.result.userProfils;
@@ -130,7 +132,7 @@ function initApplication(_reinit) {
                     $.include(include, function () {
                         deviceInfo = getDeviceType();
                         if(getUrlVars('p') != '' && getUrlVars('ajax') != 1){
-                         switch (getUrlVars('p')) {
+                           switch (getUrlVars('p')) {
                             case 'view' :
                             page('view', 'Vue',getUrlVars('view_id'));
                             break;
@@ -159,10 +161,10 @@ function initApplication(_reinit) {
                     }
                     $('#pagecontainer').css('padding-top','64px');
                 });
-});
-}
-}
-}
+                });
+            }
+        }
+    }
 });
 }
 
@@ -195,9 +197,9 @@ function page(_page, _title, _option, _plugin,_dialog) {
             }
             if(isset(_dialog) && _dialog){
                 $('#popupDialog .content').load(page, function () {
-                   CURRENT_PAGE = _page;
-                   var functionName = '';
-                   if (init(_plugin) != '') {
+                 CURRENT_PAGE = _page;
+                 var functionName = '';
+                 if (init(_plugin) != '') {
                     functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
                 } else {
                     functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
@@ -221,31 +223,31 @@ function page(_page, _title, _option, _plugin,_dialog) {
                 });
                 $('#popupDialog').popup('open');
             });
-}else{
-    $('#page').hide().load(page, function () {
-       CURRENT_PAGE = _page;
-       $('#page').trigger('create');
-       var functionName = '';
-       if (init(_plugin) != '') {
-        functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
-    } else {
-        functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
-    }
-    if ('function' == typeof (window[functionName])) {
-        if (init(_option) != '') {
-            window[functionName](_option);
-        } else {
-            window[functionName]();
+            }else{
+                $('#page').hide().load(page, function () {
+                 CURRENT_PAGE = _page;
+                 $('#page').trigger('create');
+                 var functionName = '';
+                 if (init(_plugin) != '') {
+                    functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+                } else {
+                    functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
+                }
+                if ('function' == typeof (window[functionName])) {
+                    if (init(_option) != '') {
+                        window[functionName](_option);
+                    } else {
+                        window[functionName]();
+                    }
+                }
+                Waves.init();
+                $('#pagecontainer').css('padding-top','64px');
+                $('#page').fadeIn(400);
+                setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
+            });
+            }
         }
-    }
-    Waves.init();
-    $('#pagecontainer').css('padding-top','64px');
-    $('#page').fadeIn(400);
-    setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
-});
-}
-}
-});
+    });
 }
 
 function modal(_name) {
