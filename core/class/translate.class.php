@@ -99,7 +99,7 @@ class translate {
 			} else {
 				$return = array();
 			}
-			foreach (plugin::listPlugin(true, false, false) as $plugin) {
+			foreach (plugin::listPlugin(false, false, false) as $plugin) {
 				$return = array_merge($return, $plugin->getTranslation(self::getLanguage()));
 			}
 		}

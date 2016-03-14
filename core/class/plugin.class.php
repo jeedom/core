@@ -628,6 +628,7 @@ class plugin {
 		}
 		if (file_exists($dir . '/' . $_language . '.json')) {
 			$return = file_get_contents($dir . '/' . $_language . '.json');
+
 			if (is_json($return)) {
 				return json_decode($return, true);
 			} else {
