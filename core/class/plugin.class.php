@@ -532,8 +532,7 @@ class plugin {
 					$listener->remove();
 				}
 			}
-		}
-		if ($alreadyActive == 0 && $_state == 1) {
+		} else if ($alreadyActive == 0 && $_state == 1) {
 			foreach (eqLogic::byType($this->getId()) as $eqLogic) {
 				try {
 					$eqLogic->setIsEnable($eqLogic->getConfiguration('previousIsEnable', 1));
