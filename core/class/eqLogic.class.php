@@ -686,7 +686,9 @@ class eqLogic {
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
-			message::add($this->getEqType_name(), $message, '', $logicalId);
+			if ($this->getConfiguration('noBatterieCheck', 0) == 0) {
+				message::add($this->getEqType_name(), $message, '', $logicalId);
+			}
 		}
 		$this->setConfiguration('batteryStatus', $_pourcent);
 		if ($_datetime != '') {
