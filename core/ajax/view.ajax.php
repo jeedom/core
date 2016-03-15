@@ -133,6 +133,22 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'setOrder') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$order = 1;
+		foreach (json_decode(init('views'), true) as $id) {
+			$view = view::byId($id);
+			if (is_object($view)) {
+				$view->setOrder($order);
+				$view->save();
+				$order++;
+			}
+		}
+		ajax::success();
+	}
+
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
