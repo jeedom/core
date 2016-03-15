@@ -553,6 +553,10 @@ class eqLogic {
 		$mc->remove();
 		$mc = cache::byKey('widgetHtmldplan' . $this->getId());
 		$mc->remove();
+		$mc = cache::byKey('widgetHtmlview' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('widgetHtmlplan' . $this->getId());
+		$mc->remove();
 	}
 
 	public function getShowOnChild() {
