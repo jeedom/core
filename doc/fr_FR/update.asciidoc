@@ -35,7 +35,7 @@ Le bouton "Mettre à jour" permet de mettre à jour l'ensemble de Jeedom.
 image::../images/update3.png[]
 
 [TIP]
-Sur la branche beta le numéro de version n'est pas toujours mise à jour après chaque modification, il faut donc cliquer sur "Mettre à jour" régulièrement pour être sur d'avoir la dernière version. Ce n'est le cas bien sur que sur la branche beta.
+Sur la branche beta le numéro de version n'est pas toujours mise à jour après chaque modification, il faut donc cliquer sur "Mettre à jour" régulièrement pour être sur d'avoir la dernière version. Ce n'est le cas bien sûr que sur la branche beta.
 
 [IMPORTANT]
 Avant une mise à jour, Jeedom va par défaut faire une sauvegarde. En cas de soucis lors de l'application d'une mise à jour, Jeedom va automatiquement restaurer la sauvegarde faite juste avant. Ce principe n'est bien sûr valable que pour les mises à jour de Jeedom et non des plugins.
@@ -44,16 +44,16 @@ En cliquant sur la flêche à côté du bouton "Mettre à jour" on a un certain 
 
 image::../images/update5.png[]
 
-* *Tout forcer* : met à jour Jeedom et les plugin en mode forcé c'est à dire que meme si il y a une erreur Jeedom continue et ne restaurera pas la sauvegarde
+* *Tout forcer* : met à jour Jeedom et les plugin en mode forcé c'est à dire que même s'il y a une erreur Jeedom continue et ne restaurera pas la sauvegarde
 * *Plugins seulement* : met à jour seulement les plugins
 * *Plugins seulement forcés* : met à jour seulement les plugins en mode forcé (continue en cas d'erreur)
 * *Jeedom seulement* : met à jour seulement Jeedom
-* *Jeedom seulement forcés* : met à jour seulement Jeedom en mode forcé c'est à dire que meme si il y a une erreur Jeedom continue et ne restaurera pas la sauvegarde
-* *Réappliquer une mise à jour* : permet de réappliquer une mise à jour. Toutes les mise à jour ne peuvent être réappliquées. En cliquant dessus vous obtenez cette fenêtre : 
+* *Jeedom seulement forcés* : met à jour seulement Jeedom en mode forcé c'est à dire que même s'il y a une erreur Jeedom continue et ne restaurera pas la sauvegarde
+* *Réappliquer une mise à jour* : permet de réappliquer une mise à jour. Toutes les mises à jour ne peuvent être réappliquées. En cliquant dessus vous obtenez cette fenêtre : 
 
 image::../images/update6.png[]
 
-Ici vous choisissez d'abord la mise à jour à réapliquer, si c'est en mode forcé ou non (vivement conseillé dans ce cas là) et si il faut aussi appliquer les mises à jour suivantes (vivement conseillé aussi).
+Ici vous choisissez d'abord la mise à jour à réappliquer, si c'est en mode forcé ou non (vivement conseillé dans ce cas là) et s'il faut aussi appliquer les mises à jour suivantes (vivement conseillé aussi).
 
 Enfin à droite de la page, la partie "Informations" permet de suivre l'état de la mise à jour.
 Ces informations sont à communiquer à l'équipe en cas de problème.
@@ -96,13 +96,13 @@ Voilà les paramètres possibles :
 * *mode* : force, pour lancer une mise à jour en mode forcé (ne tiens pas compte des erreurs)
 * *version* : numéro de version, pour réapliquer les changements depuis cette version
 
-Exemple pour faire une mise à jour forcée en réapliquant les changements depuis la 1.188.0 : 
+Exemple pour faire une mise à jour forcée en réappliquant les changements depuis la 1.188.0 : 
 
 ----
 sudo php /usr/share/nginx/www/jeedom/install/install.php mode=force version=1.188.0
 ----
 
-Attention, après une mise à jour en ligne de commande, il faut réapliquer les droits sur le dossier jeedom :
+Attention, après une mise à jour en ligne de commande, il faut réappliquer les droits sur le dossier Jeedom :
 
 ----
 chown -R www-data:www-data /usr/share/nginx/www/jeedom

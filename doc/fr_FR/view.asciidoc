@@ -89,7 +89,7 @@ Une zone de type graphique permet d'ajouter des graphiques à votre vue, elle po
 Vous pouvez supprimer une donnée à grapher directement en cliquant sur la poubelle devant celui-ci.
 
 [TIP]
-Il est possible de modifier l'ordre des graphiques dans la zone en les glissant/deposant.
+Il est possible de modifier l'ordre des graphiques dans la zone en les glissant/déposant.
 
 Une fois le bouton d'ajout/édition des graphiques pressé, vous obtenez : 
 

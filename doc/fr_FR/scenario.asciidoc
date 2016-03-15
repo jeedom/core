@@ -16,10 +16,10 @@ En haut on retrouve une série de 3 boutons :
 
 * *Ajouter* : permet d'ajouter un scénario
 * *Désactiver scénarios* : permet de désactiver tous les scénarios
-* *Voir les variables* : permet de voir les variables, leur valeur ainsi que l'endroit ou elle sont utilisées
+* *Voir les variables* : permet de voir les variables, leur valeur ainsi que l'endroit où elle sont utilisées
 
 [TIP]
-Les scénarios en rouge sont ceux qui sont désactivé
+Les scénarios en rouge sont ceux qui sont désactivés
 
 [TIP]
 Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez à partir de votre profil le laisser toujours visible).
@@ -27,19 +27,19 @@ Comme à beaucoup d'endroits sur Jeedom, mettre la souris tout à gauche permet 
 Il existe 2 modes de scénario : 
 
 * *Simple* : permet de faire des scénarios très simple type SI ca ALORS fait ca
-* *Avancé* : la vous pouvez tout faire mais cela demande plus de connaissances
+* *Avancé* : là vous pouvez tout faire mais cela demande plus de connaissances
 
 [IMPORTANT]
-Il est possible de passer un scénario tu mode simple au mode avancé mais pas l'inverse
+Il est possible de passer un scénario du mode simple au mode avancé mais pas l'inverse
 
-Lors de la création Jeedom va vous demander le type de scénario à faire : 
+Lors de la création, Jeedom va vous demander le type de scénario à faire : 
 
 image::../images/scenario2.JPG[]
 
 
 == Mode simple
 
-Voila l'interface en mode simple : 
+Voilà l'interface en mode simple : 
 
 image::../images/scenario9.JPG[]
 
@@ -48,21 +48,21 @@ Vous retrouvez :
 * *Nom* : le nom du scénario
 * *Description* : une description que vous pouvez ajouter pour savoir ce que fait le scénario et faire un suivi par exemple
 * *Actif* : défini si le scénario est actif ou non
-* *Exécuter en avant plan* : permet de lancer le scénario directement et non dans un fils d'éxecution séparé. Attention cette option peut etre dangereuse car elle mets en pause toute les autres action du scénario. IL NE FAUT JAMAIS l'activer sur un scénario déclenché par une programmation horraire
-* *Dernier lancement* : la date de derniere execution du scénario
+* *Exécuter en avant plan* : permet de lancer le scénario directement et non dans un fils d'éxecution séparé. Attention cette option peut être dangereuse car elle met en pause toutes les autres actions du scénario. IL NE FAUT JAMAIS l'activer sur un scénario déclenché par une programmation horaire
+* *Dernier lancement* : la date de dernière execution du scénario
 * *Etat* : l'état actuel du scénario (en cours, arrêté...)
 
 En haut à droite on retrouve :
 
-* un bouton pour faire un export texte du scénario (pratique pour le montrer sur le forum ou a l'équipe support)
-* un bouton pour avoir la log du scénario
+* un bouton pour faire un export texte du scénario (pratique pour le montrer sur le forum ou à l'équipe support)
+* un bouton pour avoir le log du scénario
 * un bouton pour dupliquer le scénario
 
 En dessous à gauche vous avez le conditionnement du scénario : 
 
-* *Scénario* : permet d'indiquer si le scénario est programmé (à une date et heure precise) ou si il est provoquer (comme par exemple la détection d'un mouvement)
-* *A exécuter* : en mode programmé permet de dire si il doit etre executé une fois ou de maniere repeté
-* *En date du* : si il n'est executé qu'une fois alors il faut indiquer la date et l'heure
+* *Scénario* : permet d'indiquer si le scénario est programmé (à une date et heure précise) ou s'il est provoqué (comme par exemple la détection d'un mouvement)
+* *A exécuter* : en mode programmé permet de dire s'il doit être executé une fois ou de manière répétée
+* *En date du* : s'il n'est exécuté qu'une fois alors il faut indiquer la date et l'heure
 * *Fréquence* : en mode répété vous pouvez choisir la fréquence de répétition
 
 image::../images/scenario10.JPG[]
@@ -76,21 +76,21 @@ image::../images/scenario11.JPG[]
 image::../images/scenario12.JPG[]
 
 * *Si* : permet de choisir la commande sur laquel s'applique la condition, en cliquant sur le petit bouton à gauche
-* *Est* : permet de choisir le statut que doit avoir la commande precedente pour que les actions soit éxécutées (en fonction de la commande les options peuvent changer)
+* *Est* : permet de choisir le statut que doit avoir la commande précédente pour que les actions soit exécutées (en fonction de la commande les options peuvent changer)
 
-Enfin sur la droite vous avez les actions, ici très simple il suffit de cliquer sur ajouter une action
+Enfin sur la droite vous avez les actions, ici très simple il suffit de cliquer sur "Ajouter une action"
 
-=== Exemple allumer sur presence
+=== Exemple allumer sur présence
 
 image::../images/scenario13.JPG[]
 
-Voila un scénario très simple qui allume la lumiere en cas de présence
+Voila un scénario très simple qui allume la lumière en cas de présence
 
 [TIP]
-Ce scénario sera declenché aussi bien lors de la detection d'une présence que lors du relachement (fin de présence), il est donc necessaire de tester la valeur de la presence (ici déclenchée)
+Ce scénario sera déclenché aussi bien lors de la détection d'une présence que lors du relachement (fin de présence), il est donc nécessaire de tester la valeur de la présence (ici déclenchée)
 
 [IMPORTANT]
-Il ne faut pas oublier de faire le meme genre de scénario mais pour eteindre la lumiere lorsque plus personne n'est present
+Il ne faut pas oublier de faire le même genre de scénario mais pour éteindre la lumière lorsque plus personne n'est présent
 
 == Mode avancée
 
@@ -98,38 +98,38 @@ Voici un exemple de scénario en mode avancé :
 
 image::../images/scenario3.JPG[]
 
-En haut la partie générale où on retrouve :
+En haut la partie générale où l'on retrouve :
 
 * *nom*
 * *groupe* : permet d'organiser les scénarios
-* *Actif* : Si le scenario est actif ou non
-* *Visible* : Si le scenario est visible ou non
+* *Actif* : Si le scénario est actif ou non
+* *Visible* : Si le scénario est visible ou non
 * *Objet parent* : Le choix d'affecter à un objet parent ou pas
 * *Timeout secondes (0 = illimité)* : La durée d’exécution maximum autorisée
-* *Déclencheurs* : Ensuite vient la partie des déclencheurs qui peuvent soit être un ou plusieurs événements et/ou une programmation (une heure donnée, une fréquence… Cette partie s’écrit à l’aide d’une syntaxe type crontab accessible via la touche, un assitant est disponile en cliquant sur ?
+* *Déclencheurs* : Ensuite vient la partie des déclencheurs qui peuvent soit être un ou plusieurs événements et/ou une programmation (une heure donnée, une fréquence… Cette partie s’écrit à l’aide d’une syntaxe type crontab accessible via la touche, un assistant est disponible en cliquant sur ?
 * *Action* : En haut à droite on retrouve quelques actions utiles comme le lancement forcé du scénario (pour test),la suppression du scénario, la sauvegarde, la génération d'un template (voir le chapitre dédié), l'export, l’arrêt forcé d’un scénario (si en cours), log des dernières exécutions (très pratique pour vérifier le déroulement exact du scénario), la duplication.
-* *Execution en avant plan* : permet de lancer le scénario directement et non dans un fils d'éxecution séparé. Attention cette option peut etre dangereuse car elle mets en pause toute les autres action du scénario. IL NE FAUT JAMAIS l'activer sur un scénario déclenché par une programmation horraire ou un scénario contenant des actions de type sleep
-* *Enchainer les commandes sans attendre* : permet d'enchainer les suite d'action sans attendre le retour et donc la verification de la bonne éxecution (attention il faut que le plugin le support actuellement seul les plugins openzwave et script sont compatible)
+* *Execution en avant plan* : permet de lancer le scénario directement et non dans un fils d'éxecution séparé. Attention cette option peut être dangereuse car elle met en pause toute les autres actions du scénario. IL NE FAUT JAMAIS l'activer sur un scénario déclenché par une programmation horaire ou un scénario contenant des actions de type sleep
+* *Enchainer les commandes sans attendre* : permet d'enchaîner les suites d'actions sans attendre le retour et donc la vérification de la bonne exécution (attention actuellement seul les plugins openzwave et script sont compatibles)
 * *Pas de log* : indique au scénario de ne pas écrire dans les logs (permet de le rendre un peu plus rapide)
-* *Etat* : etat actuel du scénario
+* *Etat* : état actuel du scénario
 
-Sur la partie basse vient le scénario en lui meme avec un bouton pour ajouter des blocs : 
+Sur la partie basse vient le scénario en lui même avec un bouton pour ajouter des blocs : 
 
 image::../images/scenario4.JPG[]
 
 * *Si/Alors/Sinon* : bloc de base permettant de réaliser des conditions.
 * *Action* : bloc permet de lancer une action sans simple sans aucune condition ou autre avant
 * *Boucle* : permet de réaliser des boucles de 1 jusqu’à un nombre défini (ou même une valeur d’un capteur, ou nombre aléatoire).
-* *Dans* : permet de lancer une action dans X minute(s) (0 est une valeur possible). La particularité c'est que les actions sont lancées en arriere plan, elles ne bloquent donc pas la suite du scénario. C'est donc un bloc non bloquant.
+* *Dans* : permet de lancer une action dans X minute(s) (0 est une valeur possible). La particularité c'est que les actions sont lancées en arrière plan, elles ne bloquent donc pas la suite du scénario. C'est donc un bloc non bloquant.
 * *A* : permet de dire à Jeedom de lancer les actions action du bloc A à une heure donnée (sous la forme hhmm). Ce bloc est non bloquant
 * *Code* : permet d’écrire directement en code PHP (demande certaines connaissances et peut être risqué mais permet de n’avoir plus aucune contrainte).
 * *Commentaire* : permet d'ajouter des commentaires à son scénario
 
 [TIP]
-Devant chaque bloc (en dessous de la double fleche vertical qui permet de deplacer les blocs) vous avez une petit coche pour désactiver completement le bloc sans pour autant supprimer celui-ci (permet de faire des tests pour le réactiver plus tard par exemple)
+Devant chaque bloc (en dessous de la double flèche verticale qui permet de déplacer les blocs) vous avez une petit coche pour désactiver completement le bloc sans pour autant supprimer celui-ci (permet de faire des tests pour le réactiver plus tard par exemple)
 
 [NOTE]
-Sur les blocs de type Si/Alors/Sinon vous avez tout devant des flèches circulaire, elles permets d'activer ou non la répétition des actions si l'évaluation de la condition donne le meme résultat que la précedente évaluation
+Sur les blocs de type Si/Alors/Sinon vous avez devant des flèches circulaires, elles permettent d'activer ou non la répétition des actions si l'évaluation de la condition donne le même résultat que la précedente évaluation
 
 Pour les conditions, Jeedom essaye de faire en sorte qu’on puisse les écrire le plus possible en langage naturel tout en restant souple. On a donc un bouton permettant de sélectionner un équipement puis on écrit la condition. Il existe une liste de tag permettant d’avoir accès à des variables issues du scénario ou d’un autre, à l’heure, à la date, à un nombre aléatoire….
 
@@ -143,22 +143,22 @@ Une fois la commande trouvé Jeedom vous demande ce que vous voulez tester :
 
 image::../images/scenario7.JPG[]
 
-En fonction du type vous aurez differentes possibilitées vous pouvez ensuite mettre d'autre test et les liée en avec un "ou" ou un "et". Ainsi avec cette assitant vous pouvez construire votre condition
+En fonction du type vous aurez différentes possibilitées, vous pouvez ensuite mettre d'autres tests et les lier en avec un "ou" ou un "et". Ainsi avec cet assistant vous pouvez construire votre condition.
 
 [TIP]
-Si vous cliquez sur "Ne rien mettre" Jeedom va juste écrire la commande dans le champs condition en vous laissant la main pour la suite
+Si vous cliquez sur "Ne rien mettre" Jeedom va juste écrire la commande dans le champ condition en vous laissant la main pour la suite.
 
-Le deuxieme bouton quand a lui permet d'aller chercher un scénario pour par exemple tester si celui-ci est en cours (voir partie "Condition ou valeur d’une commande d’action")
+Le deuxième bouton quant à lui permet d'aller chercher un scénario pour par exemple tester si celui-ci est en cours (voir partie "Condition ou valeur d’une commande d’action")
 
 Pour les actions, on peut exécuter soit une action d’une commande (les options de celle-ci apparaitront sur sa droite), soit une commande d’affectation de variable ou de pause(très pratique pour simuler la présence surtout couplé à la génération d’une durée aléatoire) ou même d’action sur un autre scénario (start, stop, activer, désactiver).
 
-Vous retrouvez ici les possibilitées suivante : 
+Vous retrouvez ici les possibilitées suivantes : 
 
 image::../images/scenario8.JPG[]
 
 Dans l'ordre : 
 
-* un bouton pour deplacer l'action (les doubles fleches), il suffit de cliquer et maintenir le bouton puis de deplacer le bloc
+* un bouton pour déplacer l'action (les doubles flèches), il suffit de cliquer et maintenir le bouton puis de déplacer le bloc
 * un bouton pour supprimer l'action
 * un bouton pour désactiver temporairement l'action
 * un bouton pour rechercher une commande d'action
@@ -196,7 +196,7 @@ Vous pouvez combiner n'importe quelle opération avec les opérateurs suivants :
 Vous pouvez aussi utiliser les tags suivants :
 
 [TIP]
-Un tag est remplacé lors de l'éxecution du scénario par sa valeur
+Un tag est remplacé lors de l'exécution du scénario par sa valeur
 
 * *\#seconde#* : seconde courante,
 * *\#heure#* : heure courante (ex : 17 pour 17h15),
@@ -215,10 +215,10 @@ Un tag est remplacé lors de l'éxecution du scénario par sa valeur
 * *\#hostname#* : nom de la machine Jeedom,
 * *\#trigger#* : nom de la commande qui a déclenché le scénario.
 
-Vous avez aussi les tags suivants en plus si votre scénario à été déclenché par une interaction : 
+Vous avez aussi les tags suivants en plus si votre scénario a été déclenché par une interaction : 
 
 * *\#query#* : interaction ayant déclenché le scénario,
-* *\#profil#* : profil de l'utilisateur ayant déclenché le scénario (peut etre vide).
+* *\#profil#* : profil de l'utilisateur ayant déclenché le scénario (peut être vide).
 
 [IMPORTANT]
 Lorsqu'un scénario est déclenché par une interaction, celui-ci est forcément executé en mode rapide.
@@ -253,13 +253,13 @@ Plusieurs fonctions sont disponibles pour les équipements :
     ** Ex : stateChangesBetween(\#[Salon][Prise][Etat]#,0,2015-01-01 00:00:00,2015-01-15 00:00:00) : renvoie le nombre d'extinctions (passage à 0) de la prise entre le 1 janvier 2015 et le 15 janvier 2015
 * **lastBetween**(commande,start,end) : donne la dernière valeur enregistrée pour l'équipement entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou http://php.net/manual/fr/datetime.formats.relative.php[expression PHP])
     ** Ex : lastBetween(\#[Salle de bain][Hydrometrie][Humidité]#,Yesterday,Today) : renvoie la dernière température enregistrée hier.
-* **variable**(mavariable,valeur par default) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
+* **variable**(mavariable,valeur par défaut) : récupération de la valeur d'une variable ou de la valeur souhaitée par défaut
     ** Ex : variable(plop,10) renvoie la valeur de la variable plop ou 10 si elle est vide ou n'existe pas
 * **scenario**(scenario) : donne le statut du scenario
-    * Ex : scenario(\#[Salle de bain][Lumière][Auto]#) : renvoie 1 en cours, 0 si arreté et -1 si desactivé, -2 si le scénario n'éxiste pas et -3 si l'état n'est pas cohérent
+    * Ex : scenario(\#[Salle de bain][Lumière][Auto]#) : renvoie 1 en cours, 0 si arreté et -1 si desactivé, -2 si le scénario n'existe pas et -3 si l'état n'est pas cohérent
 * **lastScenarioExecution**(scenario) : donne la durée en secondes depuis le dernier lancement du scénario
-    ** Ex : lastScenarioExecution(\#[Salle de bain][Lumière][Auto]#) : renvoie 300 si le scénario c'est lancé pour la dernière fois il y a 5min
-* **collectDate**(cmd,[format]) : renvoie la date de la derniere donnée pour la commande donnée en paramètre, le 2eme paramètre optionel permet de spécifier le format de retour (détails http://php.net/manual/fr/function.date.php[ici]). Un retour de -1 signifie que la commande est introuvable, et -2 que la commande n'est pas de type info
+    ** Ex : lastScenarioExecution(\#[Salle de bain][Lumière][Auto]#) : renvoie 300 si le scénario s'est lancé pour la dernière fois il y a 5 min
+* **collectDate**(cmd,[format]) : renvoie la date de la dernière donnée pour la commande donnée en paramètre, le 2ème paramètre optionel permet de spécifier le format de retour (détails http://php.net/manual/fr/function.date.php[ici]). Un retour de -1 signifie que la commande est introuvable, et -2 que la commande n'est pas de type info
     ** Ex : collectDate(\#[Salle de bain][Hydrometrie][Humidité]#) : renverra 2015-01-01 17:45:12
  **eqEnable**(equipement) : renvoie l'état de l'équipement (actif ou non)
     * Ex : eqEnable(\#[Aucun][Basilique]#) : renvoie -2 si l'équipement est introuvable, 1 si l'équipement est actif et 0 si il est inactif
@@ -301,11 +301,11 @@ Une boîte à outils de fonctions génériques peut également servir à effectu
 * **rand**(1,10) : pour un nombre aléatoire de 1 à 10
 * **randomColor**(min,max) : donne une couleur aléatoire compris entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu)
     ** Ex : randomColor(40,60) : pour avoir une couleur aléatoire proche du vert
-* **trigger**(commande) : permet de connaitre le declencheur du scénario ou de savoir si c'est bien la commande passé en parametre qui a declenchée le scénario
-    ** Ex : trigger(\#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien \#[Salle de bain][Hydrometrie][Humidité]# qui a declenché le scénario sinon 0
-* **round**(valeur,[decimal]) : permet un arrondi au dessus, [decimal] nombre de decimal après la virgule
+* **trigger**(commande) : permet de connaitre le déclencheur du scénario ou de savoir si c'est bien la commande passée en paramètre qui a déclenché le scénario
+    ** Ex : trigger(\#[Salle de bain][Hydrometrie][Humidité]#) : 1 si c'est bien \#[Salle de bain][Hydrometrie][Humidité]# qui a déclenché le scénario sinon 0
+* **round**(valeur,[decimal]) : permet un arrondi au dessus, [decimal] nombre de décimales après la virgule
     ** Ex : round(\#[Salle de bain][Hydrometrie][Humidité]# / 10) : renverra 9 si le pourcentage d'humidité et 85
-* **odd**(valeur) : permet de savoir si un nombre est impaire ou non. Renvoi 1 si impaire 0 sinon
+* **odd**(valeur) : permet de savoir si un nombre est impair ou non. Renvoi 1 si impair 0 sinon
     ** Ex : odd(1) :  renverra 1
 * **median**(commande1,commande2....commandeN) : renvoie la médiane de valeur
     ** Ex : median(15,25,20) :  renverra 20
@@ -325,12 +325,12 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 * *scenario* : permet le controle des scénarios
 * *stop* : arrête le scénario
 * *icon* : permet de changer l'icône de représentation du scénario
-* *say* : permet de faire dire un texte à jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)
-* *gotodesign* : change le design affiché sur tous les navigateurs qui affichage un design par le design demandé
+* *say* : permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)
+* *gotodesign* : change le design affiché sur tous les navigateurs par le design demandé
 * *log* : permet de rajouter un message dans les logs
-* *message* : permet d'ajouter une message dans le centre de message
-* *equipement* : permet de modifier les prorietés visible/invisible actif/inactif d'un équipement
-* *ask* : permet d'indiquer à jeedom qu'il faut poser une question à l'utilisateur. La réponse est stocké dans une variable, il suffit ensuite de tester sa valeur. Pour le moment seul les plugins sms et slack sont compatible. Attention l'action ask est bloquante, tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint le scénario attend. Voila un exemple d'utilisation : 
+* *message* : permet d'ajouter un message dans le centre de message
+* *equipement* : permet de modifier les propriétés visible/invisible actif/inactif d'un équipement
+* *ask* : permet d'indiquer à jeedom qu'il faut poser une question à l'utilisateur. La réponse est stockée dans une variable, il suffit ensuite de tester sa valeur. Pour le moment seul les plugins sms et slack sont compatibles. Attention l'action ask est bloquante, tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint le scénario attend. Voila un exemple d'utilisation : 
 
 image::../images/scenario20.JPG[]
              
@@ -404,13 +404,13 @@ Scénario::
 
 == Les variables
 
-Vous pouvez en cliquant sur le bouton variable voir toute les variables exitant sur votre systeme, changer leur valeur, les supprimer, en ajouter et voir dans quel scénario elles sont utilisée : 
+Vous pouvez en cliquant sur le bouton variable voir toutes les variables exitantes sur votre système, changer leur valeur, les supprimer, en ajouter et voir dans quel scénario elles sont utilisées : 
 
 image::../images/scenario14.JPG[]
 
 == Template de scénario
 
-Fonctionalité permettant de transformer un scénario en template pour par exemple l'appliquer sur un autre Jeedom ou le partager sur le market. C'est aussi a partir de la que vous pouvez récuperer un scénario du market
+Fonctionalité permettant de transformer un scénario en template pour par exemple l'appliquer sur un autre Jeedom ou le partager sur le market. C'est aussi à partir de là que vous pouvez récupérer un scénario du market
 
 image::../images/scenario15.JPG[]
 
@@ -421,11 +421,11 @@ image::../images/scenario16.JPG[]
 A partir de celle vous avez la possibilité : 
 
 * D'envoyer un template à Jeedom (fichier JSON prealablement recuperé)
-* De consulter la liste des scénarios disponible sur le market
-* De creer un template à partir du scénario courant (n'oubliez pas de donner un nom)
+* De consulter la liste des scénarios disponibles sur le market
+* De créer un template à partir du scénario courant (n'oubliez pas de donner un nom)
 * Consulter les templates actuellement présent sur votre Jeedom
 
-Une fois un clique sur un template vous obtenez : 
+Une fois un clic sur un template vous obtenez : 
 
 image::../images/scenario17.JPG[]
 
@@ -433,18 +433,18 @@ En haut vous pouvez :
 
 * *Partager* : partager le template sur le market
 * *Supprimer* : supprimer le template 
-* *Télécharger* : permet de recuperer le template sous forme de fichier JSON pour le renvoyer sur un autre Jeedom par exemple
+* *Télécharger* : permet de récupérer le template sous forme de fichier JSON pour le renvoyer sur un autre Jeedom par exemple
 
 En dessous vous avez la partie pour appliquer votre template au scénario courant.
 
 [TIP]
-Etant donnée que d'un Jeedom à l'autre ou d'une installation à une autre les commandes peuvent etre differente Jeedom vous demande la correspondance des commandes entre celle résente lors de la création du template et celle presente chez vous
+Etant donné que d'un Jeedom à l'autre ou d'une installation à une autre les commandes peuvent être différentes, Jeedom vous demande la correspondance des commandes entre celles présentes lors de la création du template et celles présentes chez vous.
 
 Il vous suffit de remplir la correspondance des commandes puis de faire appliquer
 
 == Les logs
 
-Vous pouvez acceder aux logs d'éxecution d'un scénario en cliquant sur le bouton log de celui-ci : 
+Vous pouvez accéder aux logs d'éxecution d'un scénario en cliquant sur le bouton log de celui-ci : 
 
 image::../images/scenario17.JPG[]
 
@@ -452,4 +452,4 @@ Vous obtenez :
 
 image::../images/scenario19.JPG[]
 
-En haut vous pouvez rafraichir le log, le télécharger ou le supprimer. La taille des logs n'est pas limité en execution mais en nombre de ligne (en fonction de la valeur mise dans la configuration de Jeedom)
+En haut vous pouvez rafraichir le log, le télécharger ou le supprimer. La taille des logs n'est pas limitée en exécution mais en nombre de lignes (en fonction de la valeur mise dans la configuration de Jeedom)
