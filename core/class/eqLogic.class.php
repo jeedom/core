@@ -446,10 +446,10 @@ class eqLogic {
 		if ($this->getDisplay('showOn' . $version, 1) == 0) {
 			return '';
 		}
-		/*$mc = cache::byKey('widgetHtml' . $_version . $this->getId());
-			if ($mc->getValue() != '') {
-				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
-		*/
+		$mc = cache::byKey('widgetHtml' . $_version . $this->getId());
+		if ($mc->getValue() != '') {
+			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+		}
 
 		$replace = array(
 			'#id#' => $this->getId(),
@@ -538,12 +538,11 @@ class eqLogic {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
 		}
 		return template_replace($replace, self::$_templateArray[$version]);
-		//cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
+		cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
 		return $html;
 	}
 
 	public function emptyCacheWidget() {
-		return;
 		$mc = cache::byKey('widgetHtmldashboard' . $this->getId());
 		$mc->remove();
 		$mc = cache::byKey('widgetHtmlmobile' . $this->getId());
