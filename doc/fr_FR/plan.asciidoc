@@ -53,10 +53,9 @@ On retrouve ici :
 ** *Image* : permet d'ajouter une image de fond au design
 ** *Ne pas afficher la flèche de retour lors de la mise en plein écran* : en mode pleine ecran cette option masque le bouton de retour au mode fenetré (idéal pour une tablette murale)
 * *Tailles*
-** *Responsive mode (Attention toute les valeurs de taille sont ignorées)* : passe le design en mode responsive pour le faire s'adapter à l'écran. Attention dans ce cas les paramètres de taille sont ignoré
 ** *Taille (LxH)* : Permet de fixé la taille de votre design (cadre gris en mode édition)
-** *Proportion tablette (ex : 0.7)* : permet de changer la proportion du design sur tablette (pour le reduire par exemple tout en maitrisant encore la taille ce qui ne serait pas le cas en mode responsive)
-** *Proportion téléphone (ex 0.5)* : permet de changer la proportion du design sur téléphone (pour le reduire par exemple tout en maitrisant encore la taille ce qui ne serait pas le cas en mode responsive)
+** *Proportion tablette (ex : 0.7)* : permet de changer la proportion du design sur tablette (pour le reduire par exemple tout en maitrisant encore la taille)
+** *Proportion téléphone (ex 0.5)* : permet de changer la proportion du design sur téléphone (pour le reduire par exemple tout en maitrisant encore la taille)
 
 == Ajout d'un widget
 
