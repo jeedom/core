@@ -179,7 +179,7 @@ try {
 			echo "OK\n";
 		}
 	}
-
+	config::save('hardware_name', '');
 	jeedom::start();
 	echo "***************Fin de la restauration de Jeedom***************\n";
 	echo "[END RESTORE SUCCESS]\n";
