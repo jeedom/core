@@ -38,6 +38,9 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                 <span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareName() ?></span>
                             </div>
+                             <div class="col-lg-2 col-md-3 col-sm-3">
+                                <a class="btn btn-default form-control" id="bt_resetHardwareType"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
+                            </div>
                         </div>
                         <div class="form-group expertModeVisible">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef d'installation qui permet d'identifier votre Jeedom quand il communique avec le market}}">{{Clef d'installation}}</label>
