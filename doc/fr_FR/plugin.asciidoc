@@ -62,7 +62,7 @@ Cette fiche vous donne plein d'informations sur le plugin, entre autre :
 * S'il est officiel/recommandé ou s'il est obsolète (il faut vraiment éviter d'installer des plugins obsolètes)
 * 3 actions : 
 ** *Installer stable* : permet d'installer le plugin dans sa version stable
-** *Installer beta* : permet d'installer le plugin dans sa version beta
+** *Installer beta* : permet d'installer le plugin dans sa version beta (seulement pour les betatesteurs)
 ** *Supprimer* : si le plugin est actuellement installé, ce bouton permet de le supprimer
 
 En dessous vous retrouvez sur la gauche la description du plugin, la compatibilité (si Jeedom détecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter), les commentaires sur celui-ci et des information complémentaires (l'auteur, la personne ayant fait la dernière mise à jour, un lien vers la doc, le nombre de téléchargements).
@@ -76,3 +76,33 @@ Certains plugins sont payants, dans ce cas la fiche du plugin vous proposera de 
 
 [TIP]
 Vous pouvez aussi en mode expert pousser directement l'archive ZIP d'un plugin a Jeedom, pour cela il faut mettre la souris tout à gauche pour faire apparaitre le menu de la page plugin puis cliquer sur "Envoyer un plugin". Attention le nom du zip doit être le meme que l'id du plugin et dès l'ouverture du ZIP un dossier plugin_info doit être présent
+
+== La partie démon des plugins
+
+Certain plugin ont des démons, vous trouverez ici le statut des démons par jeedom (maitre ou esclave)
+
+image::../images/plugin7.png[]
+
+Vous avez ici : 
+
+* *Nom* : jeedom en question (local veut dire celui sur lequel vous êtes)
+* *Statut* : indique le statut du démon
+* *Configuration* : indique si tout est bon niveau configuration pour que le démon tourne
+* *(Re)Démarrer* : permet de redémarrer le démon
+* *Arrêter* : permet d'arreter le démon (disponible seulement di la gestion automatique est désactivée)
+* *Debug* : permet de lancer le démon en debug (une icone sur le statut vous indiquera que vous êtes en debug)
+* *Log* : permet d'afficher la log du démon
+* *Gestion automatique* : autorise Jeedom à démarrer et à relancer le démon en cas de soucis. Elle est à désactiver quand vous êtes en déporté et que par exemple sur le maître vous n'avez pas besoin que le démon tourne
+* *Dernier lancement* : date de démarrage du démon
+
+== La partie dépendance
+
+Certain plugin ont des dépendances, vous trouverez ici le statut des dépendances par jeedom (maitre ou esclave)
+
+image::../images/plugin8.png[]
+
+* *Nom* : jeedom en question (local veut dire celui sur lequel vous êtes)
+* *Statut* : indique si les dépendances sont bien installées
+* *Installation* : lance l'installation des dépendances
+* *Log* : permet de voir la log d'installation des dépendances
+* *Dernière installation* : donne la date ou les dépendances ont été lancées pour la derniere fois
