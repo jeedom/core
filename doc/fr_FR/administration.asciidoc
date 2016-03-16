@@ -30,10 +30,10 @@ Dans cet onglet on retrouve des informations générales sur Jeedom :
 
 image::../images/administration11.png[]
 
-Cette partie permet d'activer/désactiver certain composant du core jeedom : 
+Cette partie permet d'activer/désactiver certains composants du core jeedom : 
 
 * *Droits avancés* : permet de désactiver la gestion des droits avancés (si vous ne vous en servez pas cela peut rendre jeedom plus réactif)
-* *Sécruté* : permet d'activer ou non la sécurité anti-piratage de Jeedom (brute force sur le mot de passe). 
+* *Sécurité* : permet d'activer ou non la sécurité anti-piratage de Jeedom (brute force sur le mot de passe). 
 
 == Base de données
 
@@ -48,7 +48,7 @@ image::../images/administration2.png[]
 
 image::../images/administration3.png[]
 
-Partie très importante dans Jeedom, il faut absolument la configurer correctement sinon beaucoup de plugin risquent d'être non fonctionnels
+Partie très importante dans Jeedom, il faut absolument la configurer correctement sinon beaucoup de plugins risquent d'être non fonctionnels
 
 * *Accès interne* : information pour joindre Jeedom à partir d'un équipement sur le même réseau
 ** *Protocole* : le protocole à utiliser, souvent HTTP
@@ -70,10 +70,10 @@ Partie très importante dans Jeedom, il faut absolument la configurer correcteme
 ** *Gestion* : permet d'arrêter et relancer le service DNS
 
 [TIP]
-Si vous êtes en HTTPS le port est le 443 (par defaut) et en HTTP le port est par defaut le 80
+Si vous êtes en HTTPS le port est le 443 (par défaut) et en HTTP le port est par défaut le 80
 
 [IMPORTANT]
-Cette partie est juste là pour expliquer à Jeedom son environnement : une modification du port ou de l'IP ici ne changera pas le port ou l'IP de Jeedom. Pour cela il faut se connecter en SSH et éditer le fichier /etc/network/interfaces pour l'IP et les fichiers etc/nginx/sites-available/default et etc/nginx/sites-available/default_ssl (pour le HTTPS). En cas de mauvaise manipulation de votre Jeedom, l'équipe Jeedom ne pourra etre tenue responsable et pourra refuser toute demande de support.
+Cette partie est juste là pour expliquer à Jeedom son environnement : une modification du port ou de l'IP ici ne changera pas le port ou l'IP de Jeedom. Pour cela il faut se connecter en SSH et éditer le fichier /etc/network/interfaces pour l'IP et les fichiers etc/nginx/sites-available/default et etc/nginx/sites-available/default_ssl (pour le HTTPS). En cas de mauvaise manipulation de votre Jeedom, l'équipe Jeedom ne pourra être tenue responsable et pourra refuser toute demande de support.
 
 [NOTE]
 Vous pouvez voir link:http://blog.domadoo.fr/2014/10/15/acceder-depuis-lexterieur-jeedom-en-https[ici] un tutoriel pour mettre en place un certificat HTTPS auto-signé
@@ -104,7 +104,7 @@ image::../images/administration4.png[]
 * *Push*
 ** *URL de push globale* :  permet de rajouter une URL à appeler en cas de mise à jour d'une commande. Vous pouvez utiliser les tags suivant : \#value# pour la valeur de la commande, \#cmd_name# pour le nom de la commande, \#cmd_id# pour l'identifiant unique de la commande, \#humanname# pour le nom complet de la commande (ex : \#[Salle de bain][Hydrometrie][Humidité]#)
 
-== Configuration des intérations
+== Configuration des intéractions
 
 image::../images/administration5.png[]
 
@@ -119,9 +119,9 @@ Il n'est pas recommandé de modifier ces paramètres
 
 * *Rattrapage maximum autorisé (en minutes, -1 pour infini)* : délai de rattrapage maximum en minute pour un Job au cas où son lancement serait passé
 * *Crontask : temps d'exécution max (en minutes)* : durée maximum par défaut d'une tache cron
-* *Script : temps d'exécution max (en minutes)* : temps maximum d'exécution d'un script par defaut
+* *Script : temps d'exécution max (en minutes)* : temps maximum d'exécution d'un script par défaut
 * *Temps de sommeil Jeecron* : temps de sommeil du cron principal (entre 1 et 59 secondes)
-* *Temps de sommeil des Démons* : temps de sommeil entre 2 cycles par defaut des démons
+* *Temps de sommeil des Démons* : temps de sommeil entre 2 cycles par défaut des démons
 
 == Configuration des logs & messages
 
@@ -147,7 +147,7 @@ image::../images/administration8.png[]
 image::../images/administration9.png[]
 
 * *Nombre d'échecs avant désactivation de l'équipement* : nombre d'échecs de communication avec l'équipement avant desactivation de celui-ci (un message vous préviendra si cela arrive)
-* *Seuils des piles* : permet de gerer les seuils d'alertes globaux sur les piles
+* *Seuils des piles* : permet de gérer les seuils d'alertes globaux sur les piles
 
 == Market et mise à jour
 

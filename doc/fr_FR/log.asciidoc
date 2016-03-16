@@ -46,11 +46,11 @@ Le log "Event" est un peu particulier. Tout d'abord pour qu'il marche, il faut a
 
 image::../images/log3.JPG[]
 
-Une fois que vous avez cliquez dessus, vous obtenez une fenêtre qui se met à jour toutes les secondes et vous affiche tous les évènements de votre domotique.
+Une fois que vous avez cliqué dessus, vous obtenez une fenêtre qui se met à jour toutes les secondes et vous affiche tous les évènements de votre domotique.
 
 image::../images/log4.JPG[]
 
-En haut à droite vous avez un champs recherche (ne marche que si vous n'êtes pas en pause) et un bouton pour mettre en pause (utile pour faire un copier/coller par exemple).
+En haut à droite vous avez un champ recherche (ne marche que si vous n'êtes pas en pause) et un bouton pour mettre en pause (utile pour faire un copier/coller par exemple).
 
 [IMPORTANT]
 Pour que cela marche il faut absolument avoir activé le niveau de log "Info" ou plus (voir paragraphe précédent)

@@ -73,14 +73,14 @@ Vous pouvez également y accèder par la page de l'équipement en question et en
 
 image::../images/history10.JPG[]
 
-A partir de là, vous devez avoir une fenetre qui apparait, il faut cliquer sur "Configuration avancée" : 
+A partir de là, vous devez avoir une fenêtre qui apparait, il faut cliquer sur "Configuration avancée" : 
 
 image::../images/display13.JPG[]
 
 A partir de là, vous avez plusieurs possibilités de réglages. En ce qui concerne l'historique, il y a : 
 
 * *Historiser* : permet de définir si vous voulez historiser ou non cette commande.
-* *Mode de lissage* : mode de lissage ou d'archivage permet de choisir la manière d'archiver la donnée ; par défaut c'est une moyenne ; il est aussi possible de choisir le maximum, le minimum, ou aucun ; aucun permet de dire à Jeedom qu'il ne doit pas réaliser d'archivage sur cette commande (aussi bien sur la premiere période des 5 min qu'avec la tache d'archivage). Cette option est dangereuse car Jeedom conserve tout : il va donc y avoir beaucoup plus de données conservées.
+* *Mode de lissage* : mode de lissage ou d'archivage permet de choisir la manière d'archiver la donnée ; par défaut c'est une moyenne ; il est aussi possible de choisir le maximum, le minimum, ou aucun ; aucun permet de dire à Jeedom qu'il ne doit pas réaliser d'archivage sur cette commande (aussi bien sur la première période des 5 min qu'avec la tache d'archivage). Cette option est dangereuse car Jeedom conserve tout : il va donc y avoir beaucoup plus de données conservées.
 * *Purger l'historique si plus vieux de* : cette option permet de dire à Jeedom de supprimer toutes les données plus vieilles qu'une certaine période. Peut être pratique pour ne pas conserver de données si ça n'est pas nécessaire et donc limiter la quantité d'informations enregistrées par Jeedom.
 
 == Affichage d'un graphique
