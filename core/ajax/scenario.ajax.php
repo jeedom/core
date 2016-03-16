@@ -67,7 +67,7 @@ try {
 	if (init('action') == 'testExpression') {
 		$return = array();
 		$scenario = null;
-		$return['evaluate'] = scenarioExpression::setTags(scenario::fromHumanReadable(cmd::humanReadableToCmd(init('expression'))), $scenario, true);
+		$return['evaluate'] = scenarioExpression::setTags(jeedom::fromHumanReadable(init('expression')), $scenario, true);
 		$return['result'] = evaluate($return['evaluate']);
 		$return['correct'] = 'ok';
 		if (trim($return['result']) == trim($return['evaluate'])) {
