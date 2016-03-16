@@ -13,7 +13,7 @@ Une fois dessus vous obtenez :
 
 image::../images/cron1.JPG[]
 
-En haut à droite vous retrouvez un resumé des processus Jeedom. Le premier chiffre indique le nombre de tâche principale (doit toujours être égal à 0 ou 1), le second le nombre de tâches secondaires et le dernier le nombre de tâches totales sur le système (Jeedom et hors Jeedom).
+En haut à droite vous retrouvez un résumé des processus Jeedom. Le premier chiffre indique le nombre de tâche principale (doit toujours être égal à 0 ou 1), le second le nombre de tâches secondaires et le dernier le nombre de tâches totales sur le système (Jeedom et hors Jeedom).
 En-dessous vous avez les chiffres de la charge moyenne de votre système, il est recommandé que ce chiffre soit inférieur au nombre total de coeurs de la machine.
 
 A droite, vous avez un bouton pour désactiver ou réactiver toutes les tâches (si vous les désactivées toutes, plus rien ne sera fonctionnel sur votre Jeedom), un bouton pour rafraîchir le tableau des tâches (juste en-dessous), un bouton pour ajouter une tâche et un bouton pour enregistrer vos modifications.
