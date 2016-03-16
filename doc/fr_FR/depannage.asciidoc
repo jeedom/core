@@ -114,3 +114,20 @@ Ou consulter le log : /var/log/mysql/error.log
 Les boutons arrêter/redémarrer ne fonctionnent pas::
 Sur une installation DIY c'est normal, il faut faire en ssh la commande visudo et à la fin du fichier 
 vous devez ajouter : www-data ALL=(ALL) NOPASSWD: ALL.
+
+''''
+
+J'ai souvent des "502 bad gateway"::
+Il faut aller (en mode expert) dans la configuration de jeedom, puis Système OS et cliquer sur lancer. La vous cliquez sur "PHP log", si vous avez le message "server reached pm.max_clidren", c'est qu'il manque des processus php fpm, il faut donc en autoriser plus. Pour cela faire : 
+
+[source,bash]
+sudo su -
+cd /etc/php5/fpm/pool.d/
+vim www.conf
+
+Editer la ligne "pm.max_children" en mettant "pm.max_children = 20"
+
+Ensuite il suffit de redemarrer php5-fpm
+
+[source,bash]
+sudo service php5-fpm restart
