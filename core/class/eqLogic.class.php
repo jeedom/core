@@ -583,6 +583,15 @@ class eqLogic {
 		} else {
 			$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
 		}
+		if ($this->getDisplay('showObjectNameOnview', -1) == -1) {
+			$this->setDisplay('showObjectNameOnview', 1);
+		}
+		if ($this->getDisplay('showObjectNameOndview', -1) == -1) {
+			$this->setDisplay('showObjectNameOndview', 1);
+		}
+		if ($this->getDisplay('showObjectNameOnmview', -1) == -1) {
+			$this->setDisplay('showObjectNameOnmview', 1);
+		}
 		DB::save($this, $_direct);
 		if ($this->_needRefreshWidget) {
 			$this->refreshWidget();
