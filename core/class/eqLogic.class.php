@@ -721,14 +721,11 @@ class eqLogic {
 		if (config::byKey('rights::enable') != 1) {
 			return true;
 		}
-		if (session_status() != PHP_SESSION_NONE || !isset($_SESSION) || !isset($_SESSION['user'])) {
-			return true;
+		if (!isConnect()) {
+			return false;
 		}
 		$_user = $_SESSION['user'];
 		if (!is_object($_user)) {
-			return false;
-		}
-		if (!isConnect()) {
 			return false;
 		}
 		if (isConnect('admin')) {
