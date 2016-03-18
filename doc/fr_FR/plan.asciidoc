@@ -54,8 +54,8 @@ On retrouve ici :
 ** *Ne pas afficher la flèche de retour lors de la mise en plein écran* : en mode plein écran cette option masque le bouton de retour au mode fenêtré (idéal pour une tablette murale)
 * *Tailles*
 ** *Taille (LxH)* : Permet de fixer la taille de votre design (cadre gris en mode édition)
-** *Proportion tablette (ex : 0.7)* : permet de changer la proportion du design sur tablette (pour le reduire par exemple tout en maitrisant encore la taille)
-** *Proportion téléphone (ex 0.5)* : permet de changer la proportion du design sur téléphone (pour le reduire par exemple tout en maitrisant encore la taille)
+** *Proportion tablette (ex : 0.7)* : permet de changer la proportion du design sur tablette (pour le réduire par exemple tout en maîtrisant encore la taille)
+** *Proportion téléphone (ex 0.5)* : permet de changer la proportion du design sur téléphone (pour le réduire par exemple tout en maîtrisant encore la taille)
 
 == Ajout d'un widget
 
@@ -74,14 +74,14 @@ image::../images/plan9.png[]
 [TIP]
 Vous pouvez le déplacer en cliquant/glissant le widget
 
-Vous avez accès a la configuration avancée de l'affichage du widget en double cliquant sur celui-ci :
+Vous avez accès à la configuration avancée de l'affichage du widget en double cliquant sur celui-ci :
 
 image::../images/plan10.png[]
 
 Ici on a : 
 
 * *Général*
-** *Taille du widget* : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
+** *Taille du widget* : permet de définir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
 ** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
 ** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer défaut sur Non)
 ** *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles du widget, ne pas oublier de mettre le %
@@ -139,7 +139,7 @@ Un double clic dessus vous amènera à la configuration de cet élément scénar
 image::../images/plan17.png[]
 
 * *Général*
-** *Taille du widget* : permet de definir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
+** *Taille du widget* : permet de définir un ratio de taille de widget, par exemple ici il ne fera que 65% de sa taille
 ** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
 ** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer défaut sur Non)
 ** *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles du widget, ne pas oublier de mettre le %
@@ -207,7 +207,7 @@ Ici on retrouve :
 * *Afficher la barre de défilement* : affiche ou non la barre de défilement
 * *Fond transparent* : rend le fond transparent
 
-Pour choisir les données à afficher il faut cliquecliquer sur les 3 roues crantées : 
+Pour choisir les données à afficher il faut cliquer sur les 3 roues crantées : 
 
 image::../images/plan25.png[]
 

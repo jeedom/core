@@ -35,8 +35,8 @@ Le panneau thèmes vous permet de régler des paramètres d'interface :
 
 * *Desktop* : thèmes à utiliser en mode desktop, attention seul le thème par défaut est officiellement supporté par Jeedom
 * *Mobile* : permet de légèrement configurer le thème mobile (ici tout est supporté), soit clair soit sombre, ainsi que la couleur dominant de celui-ci
-* *Graphique Desktop* : permet de definir le thème par défaut des graphiques en mode desktop
-* *Graphique Mobile* : permet de definir le thème par défaut des graphiques en mode mobile
+* *Graphique Desktop* : permet de définir le thème par défaut des graphiques en mode desktop
+* *Graphique Mobile* : permet de définir le thème par défaut des graphiques en mode mobile
 
 === Interface
 
