@@ -46,7 +46,11 @@ function initView(_view_id) {
 }
 
 function displayView(html) {
-    $('#div_displayView').empty().html(html.html).trigger('create');
+    try{
+        $('#div_displayView').empty().html(html.html).trigger('create');
+    }catch(err) {
+        console.log(err);
+    }
     if (deviceInfo.type == 'phone') {
         $('.chartContainer').width((deviceInfo.width - 20));
     } else {

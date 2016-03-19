@@ -6,7 +6,7 @@ Deux API sont disponibles : une orientée développeur qui se pilote en JSON RPC
 
 Cette API s'utilise très facilement par de simples requêtes HTTP via URL. Pour simplifier au maximum, l'API utilise seulement 2 types de requête HTTP.
 
-Attention si vous etes en DIY il faut ajouter un /jeedom après l'ip les URLs.
+Attention si vous êtes en DIY il faut ajouter un /jeedom après l'ip les URLs.
 
 == Pilotage des scénarios
 
@@ -36,4 +36,4 @@ Voici l'URL = http://\#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY#&ty
 
 \#ID# correspond à l’id de ce que vous voulez piloter ou recevoir comme informations.
 
-Le plus simple pour avoir cette URL est d'aller la page Résumé domotique, de chercher la commande puis d'ouvrir sa configuration avancé et la vous allez voir une URL qui contient déja tous ce qu'il faut en fonction du type et du sous-type de la commande. Voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-display.html#_informations_2[ici]
+Le plus simple pour avoir cette URL est d'aller la page Résumé domotique, de chercher la commande puis d'ouvrir sa configuration avancée et là vous allez voir une URL qui contient déjà tous ce qu'il faut en fonction du type et du sous-type de la commande. Voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-display.html#_informations_2[ici]

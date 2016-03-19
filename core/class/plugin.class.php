@@ -532,8 +532,7 @@ class plugin {
 					$listener->remove();
 				}
 			}
-		}
-		if ($alreadyActive == 0 && $_state == 1) {
+		} else if ($alreadyActive == 0 && $_state == 1) {
 			foreach (eqLogic::byType($this->getId()) as $eqLogic) {
 				try {
 					$eqLogic->setIsEnable($eqLogic->getConfiguration('previousIsEnable', 1));
@@ -629,6 +628,7 @@ class plugin {
 		}
 		if (file_exists($dir . '/' . $_language . '.json')) {
 			$return = file_get_contents($dir . '/' . $_language . '.json');
+
 			if (is_json($return)) {
 				return json_decode($return, true);
 			} else {

@@ -15,6 +15,29 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+ $("#ul_view").sortable({
+    axis: "y",
+    cursor: "move",
+    items: ".li_view",
+    placeholder: "ui-state-highlight",
+    tolerance: "intersect",
+    forcePlaceholderSize: true,
+    dropOnEmpty: true,
+    stop: function (event, ui) {
+        var views = [];
+        $('#ul_view .li_view').each(function () {
+            views.push($(this).attr('data-view_id'));
+        });
+        jeedom.view.setOrder({
+            views: views,
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            }
+        });
+    }
+});
+$("#ul_view").sortable("enable");
+
  $('#bt_chooseIcon').on('click', function () {
     chooseIcon(function (_icon) {
         $('.viewAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);

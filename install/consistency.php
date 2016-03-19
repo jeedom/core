@@ -282,6 +282,14 @@ try {
 	if (file_exists(dirname(__FILE__) . '/../../core/nodeJS')) {
 		shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../core/nodeJS');
 	}
+
+	try {
+		foreach (eqLogic::all() as $eqLogic) {
+			$eqLogic->emptyCacheWidget();
+		}
+	} catch (Exception $e) {
+
+	}
 } catch (Exception $e) {
 	echo "Error : ";
 	echo $e->getMessage();

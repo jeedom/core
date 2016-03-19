@@ -105,19 +105,21 @@
 
 function initHistoryTrigger() {
     $('#sel_chartType').on('change', function () {
-        $('.li_history[data-cmd_id=' + lastId + '] .history').click();
-        jeedom.cmd.save({
-            cmd: {id: lastId, display: {graphType: $(this).value()}},
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-                $('.li_history[data-cmd_id=' + lastId + '] .history').click();
-            }
-        });
+       $('.li_history[data-cmd_id=' + lastId + ']').removeClass('active');
+       addChart(lastId,0);
+       jeedom.cmd.save({
+        cmd: {id: lastId, display: {graphType: $(this).value()}},
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            $('.li_history[data-cmd_id=' + lastId + '] .history').click();
+        }
     });
+   });
     $('#sel_groupingType').on('change', function () {
-        $('.li_history[data-cmd_id=' + lastId + '] .history').click();
+        $('.li_history[data-cmd_id=' + lastId + ']').removeClass('active');
+        addChart(lastId,0);
         jeedom.cmd.save({
             cmd: {id: lastId, display: {groupingType: $(this).value()}},
             error: function (error) {
@@ -129,19 +131,21 @@ function initHistoryTrigger() {
         });
     });
     $('#cb_derive').on('change switchChange.bootstrapSwitch', function () {
-        $('.li_history[data-cmd_id=' + lastId + '] .history').click();
-        jeedom.cmd.save({
-            cmd: {id: lastId, display: {graphDerive: $(this).value()}},
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-                $('.li_history[data-cmd_id=' + lastId + '] .history').click();
-            }
-        });
+       $('.li_history[data-cmd_id=' + lastId + ']').removeClass('active');
+       addChart(lastId,0);
+       jeedom.cmd.save({
+        cmd: {id: lastId, display: {graphDerive: $(this).value()}},
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            $('.li_history[data-cmd_id=' + lastId + '] .history').click();
+        }
     });
+   });
     $('#cb_step').on('change switchChange.bootstrapSwitch', function () {
-        $('.li_history[data-cmd_id=' + lastId + '] .history').click();
+        $('.li_history[data-cmd_id=' + lastId + ']').removeClass('active');
+        addChart(lastId,0);
         jeedom.cmd.save({
             cmd: {id: lastId, display: {graphStep: $(this).value()}},
             error: function (error) {
@@ -156,7 +160,7 @@ function initHistoryTrigger() {
 
 $('#bt_validChangeDate').on('click',function(){
     $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie){
-       if(!isNaN(serie.options.id)){
+     if(!isNaN(serie.options.id)){
         var cmd_id = serie.options.id;
         addChart(cmd_id, 0);
         addChart(cmd_id, 1);
@@ -166,7 +170,7 @@ $('#bt_validChangeDate').on('click',function(){
 
 function addChart(_cmd_id, _action) {
     if (_action == 0) {
-        if (isset(jeedom.history.chart['div_graph'])) {
+        if (isset(jeedom.history.chart['div_graph']) && jeedom.history.chart['div_graph'].chart.get(parseInt(_cmd_id)) !== null) {
             jeedom.history.chart['div_graph'].chart.get(parseInt(_cmd_id)).remove();
         }
     } else {

@@ -8,7 +8,7 @@ Vous pouvez accèder à la page plugin à partir de Plugins -> Gestion des plugi
 
 image::../images/plugin1.png[]
 
-Une fois que l'on clique dessus on retrouve la page qui nous presente la liste des plugins : 
+Une fois que l'on clique dessus on retrouve la page qui nous présente la liste des plugins : 
 
 image::../images/plugin2.png[]
 
@@ -19,20 +19,20 @@ Sur cette page vous retrouvez tous les plugins présent sur votre Jeedom. Ceux e
 
 image::../images/plugin3.png[]
 
-En haut vous retrouver l'ID et le nom du plugin, ainsi que la version installée (ici beta). En dessous vous avez le bouton d'activation/desactivation d'un plugin
+En haut vous retrouvez l'ID et le nom du plugin, ainsi que la version installée (ici beta). En dessous vous avez le bouton d'activation/désactivation d'un plugin
 
 [IMPORTANT]
-Lors du téléchagement d'un plugin celui-ci n'est pas activer il donc que vous l'activiez
+Lors du téléchargement d'un plugin celui-ci n'est pas activé, il faut donc que vous l'activiez
 
-En dessous vous retrouver 4 boutons : 
+En dessous vous retrouvez 4 boutons : 
 
 * *Voir sur le market* : permet de voir la fiche du plugin 
-* *Envoyer sur le market* : permet d'envoyé le plugin sur le market (uniquement disponible si vous en etes l'auteur)
+* *Envoyer sur le market* : permet d'envoyer le plugin sur le market (uniquement disponible si vous en etes l'auteur)
 * *Supprimer* : Supprime le plugin de votre Jeedom. Attention cela supprime définitivement tous les équipements de ce plugin aussi
-* *Documentation* : Permet d'acceder directement à la page de documentation du plugin
+* *Documentation* : Permet d'accéder directement à la page de documentation du plugin
 
 [TIP]
-Certain plugin on une partie configuration, il faut dans ce cas se referer à la doc du plugin en question pour savoir comment le configurer
+Certains plugins ont une partie configuration, il faut dans ce cas se référé à la doc du plugin en question pour savoir comment le configurer
 
 == Installation d'un plugin
 
@@ -46,10 +46,10 @@ image::../images/plugin5.png[]
 
 Tout en haut comme sur le market vous avez des filtres : 
 
-* *Gratuit/Payant* : permet de ne filtrer que sur les gratuits ou les payants, la petite croix permet de reinitialiser le filtre
-* *Nouveau/Populaire* : permet d'afficher les dernieres plugin ou ceux les plus téléchargé, la petite croix permet de reinitialiser le filtre
-* *Installé/Non installé* : permet de n'afficher que les plugins installé ou non, la petite croix permet de reinitialiser le filtre
-* *Catégorie* : permet n'afficher que certain categorie de plugin
+* *Gratuit/Payant* : permet de ne filtrer que sur les gratuits ou les payants, la petite croix permet de réinitialiser le filtre
+* *Nouveau/Populaire* : permet d'afficher les derniers plugin ou ceux les plus téléchargés, la petite croix permet de réinitialiser le filtre
+* *Installé/Non installé* : permet de n'afficher que les plugins installés ou non, la petite croix permet de réinitialiser le filtre
+* *Catégorie* : permet de n'afficher que certaines catégories de plugins
 * *Rechercher* : permet de rechercher un plugin (dans le nom ou la description de celui-ci)
 * *Nom d'utilisateur* : affiche le nom d'utilisateur utilisé pour la connexion au market ainsi que le statut de la connexion (ici ok)
 
@@ -57,22 +57,52 @@ Un fois le plugin voulu trouvé il suffit de cliquer sur celui-ci pour faire app
 
 image::../images/plugin6.png[]
 
-Cette fiche vous donne plein d'information sur le plugin en autre : 
+Cette fiche vous donne plein d'informations sur le plugin, entre autre : 
 
-* Si il est officiel/recommandé ou si il est obselete (il faut vraiment eviter d'installer des plugins obselete)
+* S'il est officiel/recommandé ou s'il est obsolète (il faut vraiment éviter d'installer des plugins obsolètes)
 * 3 actions : 
 ** *Installer stable* : permet d'installer le plugin dans sa version stable
-** *Installer beta* : permet d'installer le plugin dans sa version beta
-** *Supprimer* : si le plugin est actuellement installé ce bouton permet de le supprimer
+** *Installer beta* : permet d'installer le plugin dans sa version beta (seulement pour les betatesteurs)
+** *Supprimer* : si le plugin est actuellement installé, ce bouton permet de le supprimer
 
-En dessous vous retrouver sur la gauche la description du plugin, la compatibilité (si Jeedom detecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter), les commentaire sur celui-ci et des information complementaire (l'auteur, la personne ayant fait la derniere mise à jour, un lien vers la doc, le nombre de téléchagement).
-Sur la droite vous retrouvez la liste des dernieres mise à jour (un bouton tout voir vous permet d'avoir tout l'historique), une documentation rapide d'utilisation (il est recommandé quand meme de lire la documentation complete) et enfin le type (plugin, widget...), la langue et les diverses informations sur la date de la derniere stable, la beta et si vous pouvez sans crainte revenir sur la beta
-
-[IMPORTANT]
-Il n'est vraiment pas recommandé de mettre un plugin beta sur un Jeedom beta, beaucoup de soucis de fonctionnement peuvent en resulter
+En dessous vous retrouvez sur la gauche la description du plugin, la compatibilité (si Jeedom détecte une incompatibilité il vous le signalera), les avis sur le plugin (vous pouvez ici le noter), les commentaires sur celui-ci et des information complémentaires (l'auteur, la personne ayant fait la dernière mise à jour, un lien vers la doc, le nombre de téléchargements).
+Sur la droite vous retrouvez la liste des dernières mises à jour (un bouton tout voir vous permet d'avoir tout l'historique), une documentation rapide d'utilisation (il est recommandé quand même de lire la documentation complète) et enfin le type (plugin, widget...), la langue et les diverses informations sur la date de la dernière stable, la beta et si vous pouvez sans crainte revenir sur la beta.
 
 [IMPORTANT]
-Certain plugin son payant, dans ce cas la fiche du plugin vous proposera de l'acheter, une fois cela fait il faut attendre une dizaine de minutes (temps de validation du paiement), puis retrouner sur la fiche du plugin pour l'installer normalement
+Il n'est vraiment pas recommandé de mettre un plugin beta sur un Jeedom beta, beaucoup de soucis de fonctionnement peuvent en résulter.
+
+[IMPORTANT]
+Certains plugins sont payants, dans ce cas la fiche du plugin vous proposera de l'acheter, une fois cela fait il faut attendre une dizaine de minutes (temps de validation du paiement), puis retourner sur la fiche du plugin pour l'installer normalement.
 
 [TIP]
-Vous pouvez aussi en mode expert pousser directement l'archive ZIP d'un plugin a Jeedom, pour cela il faut mettre la souris tout a gauche pour faire apparaitre le menu de la page plugin puis cliquer sur envoyer un plugins. Attention le nom du zip doit etre le meme que l'id du plugin et dès l'ouverture du ZIP un dossier plugin_info doit etre présent
+Vous pouvez aussi en mode expert pousser directement l'archive ZIP d'un plugin a Jeedom, pour cela il faut mettre la souris tout à gauche pour faire apparaitre le menu de la page plugin puis cliquer sur "Envoyer un plugin". Attention le nom du zip doit être le meme que l'id du plugin et dès l'ouverture du ZIP un dossier plugin_info doit être présent
+
+== La partie démon des plugins
+
+Certain plugin ont des démons, vous trouverez ici le statut des démons par jeedom (maitre ou esclave)
+
+image::../images/plugin7.png[]
+
+Vous avez ici : 
+
+* *Nom* : jeedom en question (local veut dire celui sur lequel vous êtes)
+* *Statut* : indique le statut du démon
+* *Configuration* : indique si tout est bon niveau configuration pour que le démon tourne
+* *(Re)Démarrer* : permet de redémarrer le démon
+* *Arrêter* : permet d'arreter le démon (disponible seulement di la gestion automatique est désactivée)
+* *Debug* : permet de lancer le démon en debug (une icone sur le statut vous indiquera que vous êtes en debug)
+* *Log* : permet d'afficher la log du démon
+* *Gestion automatique* : autorise Jeedom à démarrer et à relancer le démon en cas de soucis. Elle est à désactiver quand vous êtes en déporté et que par exemple sur le maître vous n'avez pas besoin que le démon tourne
+* *Dernier lancement* : date de démarrage du démon
+
+== La partie dépendance
+
+Certain plugin ont des dépendances, vous trouverez ici le statut des dépendances par jeedom (maitre ou esclave)
+
+image::../images/plugin8.png[]
+
+* *Nom* : jeedom en question (local veut dire celui sur lequel vous êtes)
+* *Statut* : indique si les dépendances sont bien installées
+* *Installation* : lance l'installation des dépendances
+* *Log* : permet de voir la log d'installation des dépendances
+* *Dernière installation* : donne la date ou les dépendances ont été lancées pour la derniere fois

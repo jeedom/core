@@ -537,7 +537,7 @@ class eqLogic {
 		if (!isset(self::$_templateArray[$version])) {
 			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
 		}
-		$html = template_replace($replace, self::$_templateArray[$version]);
+		return template_replace($replace, self::$_templateArray[$version]);
 		cache::set('widgetHtml' . $_version . $this->getId(), $html, 0);
 		return $html;
 	}
@@ -552,6 +552,10 @@ class eqLogic {
 		$mc = cache::byKey('widgetHtmldview' . $this->getId());
 		$mc->remove();
 		$mc = cache::byKey('widgetHtmldplan' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('widgetHtmlview' . $this->getId());
+		$mc->remove();
+		$mc = cache::byKey('widgetHtmlplan' . $this->getId());
 		$mc->remove();
 	}
 
@@ -578,6 +582,15 @@ class eqLogic {
 			$this->setConfiguration('updatetime', date('Y-m-d H:i:s'));
 		} else {
 			$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
+		}
+		if ($this->getDisplay('showObjectNameOnview', -1) == -1) {
+			$this->setDisplay('showObjectNameOnview', 1);
+		}
+		if ($this->getDisplay('showObjectNameOndview', -1) == -1) {
+			$this->setDisplay('showObjectNameOndview', 1);
+		}
+		if ($this->getDisplay('showObjectNameOnmview', -1) == -1) {
+			$this->setDisplay('showObjectNameOnmview', 1);
 		}
 		DB::save($this, $_direct);
 		if ($this->_needRefreshWidget) {
@@ -686,7 +699,9 @@ class eqLogic {
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
-			message::add($this->getEqType_name(), $message, '', $logicalId);
+			if ($this->getConfiguration('noBatterieCheck', 0) == 0) {
+				message::add($this->getEqType_name(), $message, '', $logicalId);
+			}
 		}
 		$this->setConfiguration('batteryStatus', $_pourcent);
 		if ($_datetime != '') {
@@ -706,14 +721,11 @@ class eqLogic {
 		if (config::byKey('rights::enable') != 1) {
 			return true;
 		}
-		if (session_status() != PHP_SESSION_NONE || !isset($_SESSION) || !isset($_SESSION['user'])) {
-			return true;
+		if (!isConnect()) {
+			return false;
 		}
 		$_user = $_SESSION['user'];
 		if (!is_object($_user)) {
-			return false;
-		}
-		if (!isConnect()) {
 			return false;
 		}
 		if (isConnect('admin')) {

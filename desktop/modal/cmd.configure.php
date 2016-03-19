@@ -778,7 +778,6 @@ if ($cmd->getDisplay('parameters') != '') {
         if(editorCodeMview != null){
           cmd.html.mview = editorCodeMview.getValue();
         }
-
         jeedom.cmd.save({
           cmd: cmd,
           error: function (error) {

@@ -81,27 +81,27 @@ function editWidgetMode(_mode){
         }
     }
     if(_mode == 0){
-       if( $('.div_displayEquipement .eqLogic-widget.ui-resizable').length > 0){
+     if( $('.div_displayEquipement .eqLogic-widget.ui-resizable').length > 0){
         $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('destroy');
     }
     if( $('.div_displayEquipement .eqLogic-widget.ui-sortable').length > 0){
-       $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('destroy');
-   }
-   if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
-       $('.div_displayEquipement .eqLogic-widget').draggable('disable');
-       $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseover');
-       $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseleave');
-   }
+     $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').sortable('destroy');
+ }
+ if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
+     $('.div_displayEquipement .eqLogic-widget').draggable('disable');
+     $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseover');
+     $('.div_displayEquipement .eqLogic-widget.allowReorderCmd .cmd').off('mouseleave');
+ }
 }else{
- $('.div_displayEquipement .eqLogic-widget').draggable('enable');
+   $('.div_displayEquipement .eqLogic-widget').draggable('enable');
 
- $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
-  grid: [ 40, 80 ],
-  resize: function( event, ui ) {
-     var el = ui.element;
-     el.closest('.div_displayEquipement').packery();
- },
- stop: function( event, ui ) {
+   $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
+      grid: [ 40, 80 ],
+      resize: function( event, ui ) {
+       var el = ui.element;
+       el.closest('.div_displayEquipement').packery();
+   },
+   stop: function( event, ui ) {
     var el = ui.element;
     positionEqLogic(el.attr('data-eqlogic_id'));
     el.closest('.div_displayEquipement').packery();
@@ -118,7 +118,7 @@ function editWidgetMode(_mode){
 }
 });
 
- $( ".div_displayEquipement .eqLogic-widget.allowReorderCmd").sortable({
+   $( ".div_displayEquipement .eqLogic-widget.allowReorderCmd").sortable({
     items: ".cmd",
     stop: function (event, ui) {
         var cmds = [];
@@ -140,10 +140,10 @@ function editWidgetMode(_mode){
     }
 });
 
- $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseover','.cmd',function(){
+   $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseover','.cmd',function(){
     $('.div_displayEquipement .eqLogic-widget').draggable('disable');
 });
- $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseleave','.cmd',function(){
+   $('.div_displayEquipement .eqLogic-widget.allowReorderCmd').on('mouseleave','.cmd',function(){
     $('.div_displayEquipement .eqLogic-widget').draggable('enable');
 });
 
@@ -159,7 +159,11 @@ function getObjectHtml(_object_id){
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (html) {
-        $('#div_ob'+_object_id).empty().html(html);
+        try {
+            $('#div_ob'+_object_id).empty().html(html);
+        }catch(err) {
+            console.log(err);
+        }
         setTimeout(function(){
             positionEqLogic();
             $('#div_ob'+_object_id+'.div_displayEquipement').disableSelection();
@@ -195,9 +199,9 @@ function getObjectHtml(_object_id){
                     });
                 });
             });
-$('#div_ob'+_object_id+'.div_displayEquipement .eqLogic-widget').draggable('disable');
-},10);
-}
+            $('#div_ob'+_object_id+'.div_displayEquipement .eqLogic-widget').draggable('disable');
+        },10);
+    }
 });
 }
 
@@ -208,9 +212,9 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
         editWidgetMode(0);
         $(this).css('color','black');
     }else{
-     $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets}}", level: 'info'});
-     $(this).attr('data-mode',1);
-     editWidgetMode(1);
-     $(this).css('color','rgb(46, 176, 75)');
- }
+       $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets}}", level: 'info'});
+       $(this).attr('data-mode',1);
+       editWidgetMode(1);
+       $(this).css('color','rgb(46, 176, 75)');
+   }
 });

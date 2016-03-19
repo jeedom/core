@@ -275,8 +275,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cron` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `priority` INT NULL,
-  `server` VARCHAR(127) NULL,
   `pid` INT NULL,
   `enable` INT NULL,
   `class` VARCHAR(127) NULL,
@@ -305,6 +303,7 @@ CREATE TABLE IF NOT EXISTS `view` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(127) NULL,
   `display` text NULL,
+  `order` INT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB

@@ -25,12 +25,14 @@ class view {
 	private $id;
 	private $name;
 	private $display;
+	private $order;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM view';
+                FROM view
+                ORDER BY `order`';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -129,6 +131,17 @@ class view {
 
 	public function setName($name) {
 		$this->name = $name;
+	}
+
+	public function getOrder($_default = null) {
+		if ($this->order == '' || !is_numeric($this->order)) {
+			return $_default;
+		}
+		return $this->order;
+	}
+
+	public function setOrder($order) {
+		$this->order = $order;
 	}
 
 	public function getDisplay($_key = '', $_default = '') {

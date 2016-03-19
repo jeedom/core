@@ -889,3 +889,56 @@ function sanitizeAccent($_message) {
 		'$' => 's');
 	return preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+\##', '', strtr($_message, $caracteres));
 }
+
+function isConnect($_right = '') {
+	if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION) || !isset($_SESSION['user'])) {
+		return false;
+	}
+	if (is_object($_SESSION['user']) && $_SESSION['user']->is_Connected()) {
+		if ($_right != '') {
+			return ($_SESSION['user']->getRights($_right) == 1) ? true : false;
+		}
+		return true;
+	}
+	return false;
+}
+
+function hasRight($_right, $_needAdmin = false) {
+	if (!isConnect()) {
+		return false;
+	}
+	if (!isset($_SESSION['rights']) || !is_array($_SESSION['rights'])) {
+		@session_start();
+		$_SESSION['rights'] = array();
+		@session_write_close();
+	}
+	if (isset($_SESSION['rights']['*'])) {
+		return $_SESSION['rights']['*'];
+	}
+	if (isset($_SESSION['rights'][$_right])) {
+		if ($_SESSION['rights'][$_right] == -1) {
+			return !$_needAdmin;
+		}
+		return $_SESSION['rights'][$_right];
+	}
+	if (isConnect('admin')) {
+		@session_start();
+		$_SESSION['rights']['*'] = true;
+		@session_write_close();
+		return true;
+	}
+	if (config::byKey('rights::enable') == 0) {
+		return !$_needAdmin;
+	}
+	$rights = rights::byuserIdAndEntity($_SESSION['user']->getId(), $_right);
+	if (!is_object($rights)) {
+		@session_start();
+		$_SESSION['rights'][$_right] = -1;
+		@session_write_close();
+		return !$_needAdmin;
+	}
+	@session_start();
+	$_SESSION['rights'][$_right] = $rights->getRight();
+	@session_write_close();
+	return $_SESSION['rights'][$_right];
+}

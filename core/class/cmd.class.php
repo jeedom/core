@@ -776,9 +776,9 @@ class cmd {
 		return $value;
 	}
 
-	public function getWidgetTemplateCode($_version = 'dashboard') {
+	public function getWidgetTemplateCode($_version = 'dashboard', $_noCustom = false) {
 		$version = jeedom::versionAlias($_version);
-		if ($this->getHtml('enable', 0) == 1 && $this->getHtml($_version) != '') {
+		if (!$_noCustom && $this->getHtml('enable', 0) == 1 && $this->getHtml($_version) != '') {
 			return $this->getHtml($_version);
 		}
 		$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $this->getTemplate($version, 'default');
@@ -1388,7 +1388,7 @@ class cmd {
 	}
 
 	public function setHtml($_key, $_value) {
-		if (in_array($_key, array('dashboard', 'mobile', 'dview', 'mview', 'dplan')) && $this->getWidgetTemplateCode($_key) == $_value) {
+		if (in_array($_key, array('dashboard', 'mobile', 'dview', 'mview', 'dplan')) && $this->getWidgetTemplateCode($_key, true) == $_value) {
 			$_value = '';
 		}
 		$this->html = utils::setJsonAttr($this->html, $_key, $_value);
