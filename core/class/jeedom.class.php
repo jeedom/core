@@ -486,9 +486,9 @@ class jeedom {
 	public static function versionAlias($_version, $_lightMode = true) {
 		if (!$_lightMode) {
 			if ($_version == 'dplan') {
-				$version = 'plan';
+				return 'plan';
 			} else if ($_version == 'dview') {
-				$version = 'view';
+				return 'view';
 			}
 		}
 		$alias = array(
