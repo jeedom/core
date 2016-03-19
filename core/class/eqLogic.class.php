@@ -436,13 +436,7 @@ class eqLogic {
 		if (!$this->getIsEnable()) {
 			return '';
 		}
-		if ($_version == 'dplan') {
-			$version = 'plan';
-		} else if ($_version == 'dview') {
-			$version = 'view';
-		} else {
-			$version = jeedom::versionAlias($_version);
-		}
+		$version = jeedom::versionAlias($_version, false);
 		if ($this->getDisplay('showOn' . $version, 1) == 0) {
 			return '';
 		}

@@ -815,13 +815,7 @@ class cmd {
 	}
 
 	public function toHtml($_version = 'dashboard', $options = '', $_cmdColor = null) {
-		if ($_version == 'dplan') {
-			$version2 = 'plan';
-		} else if ($_version == 'dview') {
-			$version2 = 'view';
-		} else {
-			$version2 = jeedom::versionAlias($_version);
-		}
+		$version2 = jeedom::versionAlias($_version, false);
 		if ($this->getDisplay('showOn' . $version2, 1) == 0) {
 			return '';
 		}
