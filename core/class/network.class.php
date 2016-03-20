@@ -23,7 +23,16 @@ class network {
 
 	public static function getUserLocation() {
 		$client_ip = self::getClientIp();
-		if (netMatch('192.168.*.*', $client_ip) || netMatch('10.0.*.*', $client_ip)) {
+		$jeedom_ip = self::getNetworkAccess('internal', 'ip', '', false);
+		if (!filter_var($jeedom_ip, FILTER_VALIDATE_IP)) {
+			return 'external';
+		}
+		$jeedom_ips = explode('.', $jeedom_ip);
+		if (count($jeedom_ips) != 4) {
+			return 'external';
+		}
+		$match = $jeedom_ips[0] . '.' . $jeedom_ips[1] . '.' . $jeedom_ips[2] . '.*';
+		if (netMatch($match, $client_ip)) {
 			return 'internal';
 		} else {
 			return 'external';
