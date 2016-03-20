@@ -24,11 +24,7 @@ class network {
 	public static function getUserLocation() {
 		$client_ip = self::getClientIp();
 		if (netMatch('192.168.*.*', $client_ip) || netMatch('10.0.*.*', $client_ip)) {
-			if (!isset($_SERVER['HTTP_HOST']) || netMatch('192.168.*.*', $_SERVER['HTTP_HOST']) || netMatch('10.0.*.*', $_SERVER['HTTP_HOST'])) {
-				return 'internal';
-			} else {
-				return 'external';
-			}
+			return 'internal';
 		} else {
 			return 'external';
 		}
