@@ -248,10 +248,6 @@ Lien utile :
 * https://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql/les-expressions-regulieres-partie-1-2
 
 
-
-
-
-
 == Exemples
 
 === Réponse composé de plusieurs informations
@@ -261,9 +257,6 @@ Il est aussi possible de mettre plusieurs commandes info dans une réponse, par 
 image::../images/interact021.png[]
 
 Dans cet exemple on voit une phrase simple qui va nous retourner une réponse avec 3 températures différentes, on peut donc ici mettre un peu tout ce que l'on veut afin d'avoir un ensemble d'informations en une seule fois.
-
-
-
 
 
 === Y a-t-il quelqu'un dans la chambre ?
@@ -289,8 +282,6 @@ image::../images/interact018.png[]
 
 Sans le Regexp on obtient ici 11 phrases, or mon interaction a pour but de générer des phrases uniquement pour demander s'il y a quelqu'un dans une pièce, donc je n'ai pas besoin d'état de lampe ou autre comme les prises, ce qui peux être résolu avec le filtrage regexp.
 Pour rendre encore plus flexible on peut ajouter des synonymes, mais dans ce cas il ne faudra pas oublier de modifier la regexp.
-
-
 
 
 === Connaitre la température/humidité/luminosité
@@ -324,9 +315,6 @@ Celui-ci permet de supprimer toutes les commandes qui ont l'un de ces mots dans 
 
 [NOTE]
 Le regexp ici est une version simplifiée pour une utilisation simple on peut donc soit utiliser les expressions traditionnelles, soit utiliser les expressions simplifiées comme dans cet exemple.
-
-
-
 
 
 === Piloter un dimmer ou un thermostat (slider)
@@ -381,7 +369,6 @@ On peut en ajouter autant que bon nous semble, on peut mettre comme nom n'import
 Une fois configuré vous dite "Allume le sapin en vert", Jeedom va rechercher dans la demande une couleur et l'appliquer à la commande.
 
 
-
 === Utilisation couplée à un scénario
 
 ==== Version basique
@@ -391,63 +378,6 @@ image::../images/interact026.png[]
 
 Cette exemple permet donc de lancer le scénario qui est lié dans la partie action, on peut bien sûr en avoir plusieurs.
 
-
-==== Evolution 
-
-On peut aller plus loin avec cette méthode de couplage, ainsi avec un scénario qui retourne une valeur, on peut poser une question, démarrer un scénario, dans ce dernier traiter des informations et retourner une réponse à l'interaction qui a son tour va la retourner au déclencheur de l'interaction.
-
-image::../images/interact027.png[]
-
-Sur la capture on voit l'interaction, très basique pour l'exemple mais on peut bien sur lui appliquer tout ce que l'on peut voir dans cette doc.
-Elle fait donc appelle à un scénario.
-
-image::../images/interact028.png[]
-
-Ce scénario est aussi relativement simple, on a des blocs "si" imbriqués pour tester l'heure qu'il est, et en fonction retourner une réponse.
-On ne peut retourner qu'une seul réponse à l'interaction, il faut donc la construire, dans le cas de notre exemple on a une simple phrase, mais on peut imaginer avoir des variables et des commandes qui vont permettre de faire varier la réponse.
-On aurait aussi pu à la place de toutes les actions "return" mettre une action "variable", et à la fin du scénario ne mettre qu'un return avec comme valeur la variable qui aurait eu le contenu de l'une des réponses.
-
-[IMPORTANT]
-Il faut absolument que le scénario soit en #*"Exécuter en avant plan"*#
-
-[TIP]
-Il est possible de récupérer dans le scénario la demande qui a déclenché celui-ci à l'aide du tag *\#query#*
-
-image::../images/interact029.png[]
-
-On peut ici voir la réponse que nous a donné le scénario qui correspond bien à l'heure actuelle (19h).
-C'est donc un outil très puissant pour réaliser des interactions complexes avec des réponses variées, on peut imaginer en début de scénario générer un nombre aléatoire, et donc choisir une réponse en fonction de ce nombre, donc pour une même question avoir des dizaines de formulations différentes de la réponse.
-
-
-=== Utilisation couplée à un scénario avec passage de tags
-
-Comme vu précédemment dans l'exemple du dessus, on peut coupler l'interaction à un scénario, dans lequel on va pouvoir faire des actions plus ou moins complexes et retourner une valeur.
-Ici on va voir que l'on peut aller encore un peu plus loin en utilisant les tags pour passer des informations au scénario.
-Lors de l'utilisation de tags dans la demande ceux-ci sont automatiquement passés aux scénarios.
-
-[IMPORTANT]
-Il faut absolument que le scénario soit en #*"Exécuter en avant plan"*#. 
-
-Voilà un exemple : 
-
-image::../images/interact031.png[]
-
-Interaction à nouveau relativement simple, dans la demande on crée le tag *\#nom#*, puis dans la réponse on fait une composition entre du texte fixe et la valeur de retour du scénario qui viendra remplacer le tag *\#value#*, puis enfin dans la partie action le lien avec le scénario à exécuter qui recevra le tag *\#nom#*
-
-Pour le scénario :
- 
-image::../images/interact032.png[]
-
-Comme on peut le voir, il est relativement simple de reprendre un tag généré par une interaction dans le scénario, il suffit de l'écrire comme dans l'interaction.
-Dans cette exemple on teste le nom de la personne qui se trouve dans le tag *\#nom#* (ça aurait pu être trucmuch...).
-Si on a une correspondance, contrairement à avant cette fois ci j'utilise une variable pour stocker la réponse, puis en fin de scénario on fait un return de la variable qui est envoyée à l'interaction.
-
-[NOTE]
-Vous remarquerez que dans le test, les noms des personnes sont entourés de *'* ou *"* c'est très important de le faire autour de tout texte à tester pour éviter une erreur, si vous trouvez dans les log une ligne avec :[xxxx-xx-xx xx:xx:xx][SCENARIO] Expression non valide xxxxxxxx, c'est qu'il y a surement un souci de ce coté.
-
-et la réponse avec le test de l'interaction
-
-image::../images/interact030.png[]
 
 === Programmation d'une action avec les interactions
 
