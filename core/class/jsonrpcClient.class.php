@@ -19,6 +19,7 @@ class jsonrpcClient {
 	private $cb_function = '';
 	private $cb_class = '';
 	private $certificate_path = '';
+	private $noSslCheck = false;
 
 	/*     * ********Static******************* */
 
@@ -107,6 +108,10 @@ class jsonrpcClient {
 			if ($this->getCertificate_path() != '' && file_exists($this->getCertificate_path())) {
 				curl_setopt($ch, CURLOPT_CAINFO, $this->getCertificate_path());
 			}
+			if ($this->getNoSslCheck()) {
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+			}
 			$response = curl_exec($ch);
 			$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			$nbRetry++;
@@ -177,6 +182,18 @@ class jsonrpcClient {
 
 	public function getCertificate_path() {
 		return $this->certificate_path;
+	}
+
+	public function setDisable_ssl_verifiy($noSslCheck) {
+		$this->noSslCheck = $noSslCheck;
+	}
+
+	public function getNoSslCheck() {
+		return $this->noSslCheck;
+	}
+
+	public function setNoSslCheck($noSslCHeck) {
+		$this->noSslCheck = $noSslCHeck;
 	}
 
 }
