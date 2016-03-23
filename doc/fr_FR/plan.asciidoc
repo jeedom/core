@@ -85,7 +85,7 @@ Ici on a :
 ** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
 ** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer défaut sur Non)
 ** *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles du widget, ne pas oublier de mettre le %
-** *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+** *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 ** *Profondeur* : permet de choisir le niveau de la profondeur, pour par exemple passer un widget par dessus un autre
 ** *Ne pas afficher le nom de l'équipement* : masque le nom du widget, s'applique uniquement sur le design
 * *Spécifique* : permet de masquer certaines commandes du widget uniquement sur le design
@@ -113,7 +113,7 @@ image::../images/plan13.png[]
 * *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
 * *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer défaut sur Non)
 * *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
-* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 * *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
 * *Ne pas prendre en compte la taille prédéfinie* : permet d'ignorer la taille prédéfinie du widget
 * *Profondeur* : permet de choisir le niveau de la profondeur
@@ -143,7 +143,7 @@ image::../images/plan17.png[]
 ** *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
 ** *Couleur des icônes et textes* : permet de changer la couleur des icônes et des textes (attention à bien passer défaut sur Non)
 ** *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles du widget, ne pas oublier de mettre le %
-** *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+** *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 ** *Profondeur* : permet de choisir le niveau de la profondeur, pour par exemple passer un widget par dessus un autre
 * *Spécifique* : permet de masquer les commandes d'action sur le scénario
 
@@ -175,7 +175,7 @@ On retrouve ici :
 * *Couleur de fond* : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Defaut" sur NON
 * *Couleur du textes* : permet de changer la couleur des icônes et des textes (attention à bien passer defaut sur Non)
 * *Arrondir les angles (ne pas oublier de mettre %, ex 50%)* : permet d'arrondir les angles, ne pas oublier de mettre le %
-* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 * *Profondeur* : permet de choisir le niveau de la profondeur
 * *Taille de la police (ex 50%, il faut bien mettre le signe %)* : permet de modifier la taille de la police
 * *Ne pas prendre en compte la taille prédéfinie* : permet d'ignorer la taille prédéfinie du widget
@@ -199,7 +199,7 @@ image::../images/plan24.png[]
 Ici on retrouve : 
 
 * *Période* : permet de choisir la période d'affichage
-* *Bordure (attention syntax css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
+* *Bordure (attention syntaxe css, ex : solid 1px black)* : permet d'ajouter une bordure, attention la syntaxe est HTML
 * *Profondeur* : permet de choisir le niveau de la profondeur
 * *Afficher la légende* : permet d'afficher ou non la légende
 * *Afficher le navigateur* : permet d'afficher ou non le navigateur (deuxième graph plus léger en dessous du premier)

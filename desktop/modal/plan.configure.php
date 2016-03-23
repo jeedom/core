@@ -65,13 +65,13 @@ if ($plan->getLink_type() == 'eqLogic') {
         </div>
     </div>
     <div class="form-group">
-        <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
+        <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublier de mettre %, ex 50%)}}</label>
         <div class="col-lg-2">
             <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
         </div>
     </div>
     <div class="form-group">
-        <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black)}}</label>
+        <label class="col-lg-4 control-label">{{Bordure (attention syntaxe css, ex : solid 1px black)}}</label>
         <div class="col-lg-2">
             <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
         </div>
@@ -146,7 +146,7 @@ if ($plan->getLink_type() == 'eqLogic' && is_object($link)) {
     </div>
 </div>
 <div class="form-group">
-    <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black}}</label>
+    <label class="col-lg-4 control-label">{{Bordure (attention syntaxe css, ex : solid 1px black}}</label>
     <div class="col-lg-2">
         <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
     </div>
@@ -278,13 +278,13 @@ foreach (planHeader::all() as $planHeader_select) {
     </div>
 </div>
 <div class="form-group">
-    <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
+    <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublier de mettre %, ex 50%)}}</label>
     <div class="col-lg-2">
         <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
     </div>
 </div>
 <div class="form-group">
-    <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black)}}</label>
+    <label class="col-lg-4 control-label">{{Bordure (attention syntaxe css, ex : solid 1px black)}}</label>
     <div class="col-lg-2">
         <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
     </div>
@@ -356,7 +356,7 @@ foreach (planHeader::all() as $planHeader_select) {
     </div>
 </div>
 <div class="form-group">
-    <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
+    <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublier de mettre %, ex 50%)}}</label>
     <div class="col-lg-2">
         <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
     </div>
@@ -374,7 +374,7 @@ foreach (planHeader::all() as $planHeader_select) {
     </div>
 </div>
 <div class="form-group expertModeVisible">
-    <label class="col-lg-4 control-label">{{Prendre en compte la taille predefinie}}</label>
+    <label class="col-lg-4 control-label">{{Prendre en compte la taille prédéfinie}}</label>
     <div class="col-lg-4">
         <input type="checkbox" class="planHeaderAttr bootstrapSwitch" data-on-color="danger" data-off-color="success" data-off-text="Oui" data-on-text="Non" data-l1key='configuration' data-l2key="noPredefineSize" />
     </div>
