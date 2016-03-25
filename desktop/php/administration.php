@@ -331,7 +331,7 @@ echo $CONFIG['db']['password'];
                     <div class="alert alert-warning">{{Attention : cette configuration n'est là que pour informer Jeedom de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre Jeedom}}</div>
                     <div class="row">
                         <div class="col-sm-6">
-                           <legend>Accès interne</legend>
+                           <legend>{{Accès interne}}</legend>
                            <?php
 if (config::byKey('jeeNetwork::mode') == 'slave') {
 	echo '<div class="form-group expertModeVisible">';
@@ -380,7 +380,7 @@ if (network::test('internal')) {
                    </div>
                </div>
                <div class="col-sm-6">
-                <legend>Accès externe</legend>
+                <legend>{{Accès externe}}</legend>
                 <div class="form-group">
                     <label class="col-xs-3 control-label">{{Protocole}}</label>
                     <div class="col-xs-3">
@@ -788,7 +788,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas autoriser les messages venant de}}</label>
+                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ignorer les messages venant de}}</label>
                         <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                             <label style="margin-right : 15px;"><input type="checkbox" class="configKey" data-l1key="message::disallowupdate" /> Mise à jour (update)</label>
                             <label style="margin-right : 15px;"><input type="checkbox" class="configKey" data-l1key="message::disallowconnection" /> Connection</label>
