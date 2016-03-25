@@ -193,17 +193,25 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 <?php
 foreach (plugin::listPlugin(true) as $plugin) {
 	$plugin_id = $plugin->getId();
-	if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health')) {
+	$hasSpecificHealth = 0;
+	$hasSpecificHealthIcon = '';
+	if (file_exists(dirname(plugin::getPathById($plugin_id)) . '/../desktop/modal/health.php')) {
+		$hasSpecificHealth = 1;
+		$hasSpecificHealthIcon = '  <i data-pluginname="' . $plugin->getName() . '" data-pluginid="' . $plugin->getId() . '" class="fa fa-medkit bt_healthSpecific tooltips" style="cursor:pointer;color:grey;font-size:0.8em" title="Santé spécifique"></i>';
+	}
+	if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health') || $hasSpecificHealth == 1 ) {
 		echo '<legend>';
 		if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
 			echo '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
 		} else {
 			echo '<i class="' . $plugin->getIcon() . '"></i> ';
 		}
-		echo '{{Santé }} <a class="bt_configurationPlugin cursor" data-pluginid="' . $plugin->getId() . '">' . $plugin->getName() . '</a></legend>';
-		echo '<table class="table table-condensed table-bordered">';
-		echo '<thead><tr><th style="width : 250px;"></th><th style="width : 150px;">{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>';
-		echo '<tbody>';
+		echo '{{Santé }} <a class="bt_configurationPlugin cursor" data-pluginid="' . $plugin->getId() . '">' . $plugin->getName() . '</a>' . $hasSpecificHealthIcon . '</legend>';
+		if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health')){
+			echo '<table class="table table-condensed table-bordered">';
+			echo '<thead><tr><th style="width : 250px;"></th><th style="width : 150px;">{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>';
+			echo '<tbody>';
+		}
 	}
 	try {
 		if ($plugin->getHasDependency() == 1) {
