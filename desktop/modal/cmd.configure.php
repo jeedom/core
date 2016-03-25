@@ -347,7 +347,7 @@ foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $value) {
    <?php if ($cmd->getType() == 'info') {?>
    <legend><i class="fa fa-plus"></i> {{Autres}}</legend>
    <div class="form-group">
-    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ne pas répéter si la valeur ne change pas}}</label>
+    <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ignorer évènement si la valeur ne change pas}}</label>
     <div class="col-xs-1">
       <input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="configuration" data-l2key="doNotRepeatEvent" />
     </div>
