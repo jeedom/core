@@ -82,6 +82,16 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 			$_fn = $_fn . 'custom.css';
 			$type = 'css';
 		}
+		if ($_type == 'themes.js') {
+			$_folder = $_folder . '/themes';
+			$_fn = $_fn . '.js';
+			$type = 'js';
+		}
+		if ($_type == 'themes.css') {
+			$_folder = $_folder . '/themes';
+			$_fn = $_fn . '.css';
+			$type = 'css';
+		}
 		if ($_type == 'api') {
 			$_folder .= '/api';
 			$_fn = $_fn . '.api.php';

@@ -79,9 +79,9 @@ $('#bt_genUserKeyAPI').on('click',function(){
 
 $('.userAttr[data-l1key=options][data-l2key=bootstrap_theme]').on('change', function () {
     if($(this).value() == ''){
-        $('#div_imgThemeDesktop').html('<img src="core/img/desktop_themes/default.png" height="300" class="img-thumbnail" />');
+        $('#div_imgThemeDesktop').html('<img src="core/img/theme_default.png" height="300" class="img-thumbnail" />');
     }else{
-        $('#div_imgThemeDesktop').html('<img src="core/img/desktop_themes/' + $(this).value() + '.png" height="300" class="img-thumbnail" />');
+        $('#div_imgThemeDesktop').html('<img src="core/themes/' + $(this).value() + '/desktop/preview.png" height="300" class="img-thumbnail" />');
     }
     
 });
