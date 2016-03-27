@@ -45,6 +45,7 @@ class scenario {
 	private $_elements = array();
 	private $_changeState = false;
 	private $_realTrigger = '';
+	private $_justSetRunning = false;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -788,9 +789,9 @@ class scenario {
 					$calculatedDate_tmp['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 					$calculatedDate_tmp['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
 				} catch (Exception $exc) {
-					//echo $exc->getTraceAsString();
+
 				} catch (Error $exc) {
-					//echo $exc->getTraceAsString();
+
 				}
 				if ($calculatedDate['prevDate'] == '' || strtotime($calculatedDate['prevDate']) < strtotime($calculatedDate_tmp['prevDate'])) {
 					$calculatedDate['prevDate'] = $calculatedDate_tmp['prevDate'];
@@ -805,9 +806,9 @@ class scenario {
 				$calculatedDate['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 				$calculatedDate['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
 			} catch (Exception $exc) {
-				//echo $exc->getTraceAsString();
+
 			} catch (Error $exc) {
-				//echo $exc->getTraceAsString();
+
 			}
 		}
 		return $calculatedDate;
@@ -1152,7 +1153,7 @@ class scenario {
 	}
 
 	public function getState() {
-		if ($this->state == 'in progress' && !$this->running()) {
+		if (!$this->_changeState && $this->state == 'in progress' && !$this->running()) {
 			return 'error';
 		}
 		return $this->state;
@@ -1193,7 +1194,9 @@ class scenario {
 	}
 
 	public function setState($state) {
-		$this->_changeState = true;
+		if ($this->state != $state) {
+			$this->_changeState = true;
+		}
 		$this->state = $state;
 	}
 
