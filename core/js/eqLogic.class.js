@@ -336,6 +336,7 @@ jeedom.eqLogic.refreshValue = function (_params) {
             $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform-origin',transform_origin);
             $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('transform',transform);
             $('.eqLogic[data-eqLogic_id=' + params.id + ']').css('zindex',zindex);
+            $('.eqLogic[data-eqLogic_id=' + params.id + ']').trigger('change');
             initTooltips();
             if ($.mobile) {
                 $('.eqLogic[data-eqLogic_id=' + params.id + ']').trigger("create");

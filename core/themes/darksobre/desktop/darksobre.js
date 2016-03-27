@@ -1,0 +1,10 @@
+$(document).ready(function(){
+	$('.div_displayEquipement').bind("DOMNodeInserted",function(){
+		$(this).find('.eqLogic-widget').each(function(){
+			$(this).css("background-color",$(this).css("background-color").replace(")",",0.4)").replace("rgb","rgba"))
+		});
+		$(this).find('.eqLogic-widget').off('change').on('change',function(){
+			$(this).css("background-color",$(this).css("background-color").replace(")",",0.4)").replace("rgb","rgba"))
+		});
+	});
+});
