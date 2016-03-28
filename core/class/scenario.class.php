@@ -45,7 +45,6 @@ class scenario {
 	private $_elements = array();
 	private $_changeState = false;
 	private $_realTrigger = '';
-	private $_justSetRunning = false;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
