@@ -29,7 +29,7 @@ class jeedom {
 	public static function sick() {
 		$cmd = dirname(__FILE__) . '/../../sick.php';
 		$cmd .= ' >> ' . log::getPathToLog('sick') . ' 2>&1';
-		php($cmd);
+		system::php($cmd);
 	}
 
 	public static function apiAccess($_apikey = '') {
@@ -137,7 +137,7 @@ class jeedom {
 			log::clear('backup');
 			$cmd = dirname(__FILE__) . '/../../install/backup.php noCloudUpload=' . $_noCloudUpload;
 			$cmd .= ' >> ' . log::getPathToLog('backup') . ' 2>&1 &';
-			php($cmd);
+			system::php($cmd);
 		} else {
 			require_once dirname(__FILE__) . '/../../install/backup.php';
 		}
@@ -170,7 +170,7 @@ class jeedom {
 			log::clear('restore');
 			$cmd = dirname(__FILE__) . '/../../install/restore.php backup=' . $_backup;
 			$cmd .= ' >> ' . log::getPathToLog('restore') . ' 2>&1 &';
-			php($cmd);
+			system::php($cmd);
 		} else {
 			global $BACKUP_FILE;
 			$BACKUP_FILE = $_backup;
@@ -184,7 +184,7 @@ class jeedom {
 		log::clear('update');
 		$cmd = dirname(__FILE__) . '/../../install/install.php mode=' . $_mode . ' level=' . $_level . ' version=' . $_version . ' onlyThisVersion=' . $__onlyThisVersion;
 		$cmd .= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
-		php($cmd);
+		system::php($cmd);
 	}
 
 	public static function needUpdate($_refresh = false) {

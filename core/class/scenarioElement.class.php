@@ -202,7 +202,7 @@ class scenarioElement {
 				$cmd .= ' scenario_id=' . $_scenario->getId();
 				$cmd .= ' scenarioElement_id=' . $this->getId();
 				$cmd .= ' >> ' . log::getPathToLog('scenario_element_execution') . ' 2>&1 &';
-				php($cmd);
+				system::php($cmd);
 			} else {
 				$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId());
 				if (is_array($crons)) {

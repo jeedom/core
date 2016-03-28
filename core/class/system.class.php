@@ -97,7 +97,4 @@ class system {
 		return exec("php ".$arguments);
 	}
 }
-if ( file_exists(dirname(__FILE__) . '/../../core/class/system_local.inc.php') )
-{
-	require_once dirname(__FILE__) . '/../../core/class/system_local.inc.php';
-}
+?>

@@ -560,7 +560,7 @@ class scenario {
 		$cmd .= ' trigger=' . escapeshellarg($_trigger);
 		$cmd .= ' message=' . escapeshellarg($_message);
 		$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
-		php($cmd);
+		system::php($cmd);
 		return true;
 	}
 
