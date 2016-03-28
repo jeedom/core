@@ -554,13 +554,13 @@ class scenario {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 			return false;
 		}
-		$cmd = 'php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
+		$cmd = dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
 		$cmd .= ' scenario_id=' . $this->getId();
 		$cmd .= ' force=' . $_force;
 		$cmd .= ' trigger=' . escapeshellarg($_trigger);
 		$cmd .= ' message=' . escapeshellarg($_message);
 		$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
-		exec($cmd);
+		php($cmd);
 		return true;
 	}
 
