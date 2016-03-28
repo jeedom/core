@@ -198,11 +198,11 @@ class scenarioElement {
 				$time = 0;
 			}
 			if ($time == 0) {
-				$cmd = '/usr/bin/php ' . dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
+				$cmd = dirname(__FILE__) . '/../../core/php/jeeScenario.php ';
 				$cmd .= ' scenario_id=' . $_scenario->getId();
 				$cmd .= ' scenarioElement_id=' . $this->getId();
 				$cmd .= ' >> ' . log::getPathToLog('scenario_element_execution') . ' 2>&1 &';
-				exec($cmd);
+				php($cmd);
 			} else {
 				$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId());
 				if (is_array($crons)) {
