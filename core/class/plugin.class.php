@@ -611,9 +611,9 @@ class plugin {
 		}
 		log::add($this->getId(), 'debug', __('Lancement de : ', __FILE__) . $cmd);
 		if ($_callInstallFunction) {
-			return exec($cmd . ' >> /dev/null 2>&1');
+			return system::php($cmd . ' >> /dev/null 2>&1');
 		} else {
-			exec($cmd . ' >> /dev/null 2>&1 &');
+			system::php($cmd . ' >> /dev/null 2>&1 &');
 		}
 		return true;
 	}
