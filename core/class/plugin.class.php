@@ -602,7 +602,7 @@ class plugin {
 		if (!$_callInstallFunction && (!class_exists($this->getId()) || !method_exists($this->getId(), $_function))) {
 			throw new Exception('Il n\'existe aucune méthode : ' . $this->getId() . '::' . $_function . '()');
 		}
-		$cmd = ' ' . dirname(__FILE__) . '/../../core/php/jeePlugin.php ';
+		$cmd = dirname(__FILE__) . '/../../core/php/jeePlugin.php ';
 		$cmd .= ' plugin_id=' . $this->getId();
 		$cmd .= ' function=' . $_function;
 		$cmd .= ' callInstallFunction=' . $_callInstallFunction;
