@@ -92,4 +92,9 @@ class system {
 		$cmd .= "; (ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1";
 		exec($cmd);
 	}
+
+	public static function php($arguments) {
+		return exec("php ".$arguments);
+	}
 }
+?>

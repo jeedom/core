@@ -99,9 +99,9 @@ class listener {
 	}
 
 	public static function backgroundCalculDependencyCmd($_event) {
-		$cmd = '/usr/bin/php ' . dirname(__FILE__) . '/../php/jeeListener.php';
+		$cmd = dirname(__FILE__) . '/../php/jeeListener.php';
 		$cmd .= ' event_id=' . $_event;
-		exec($cmd . ' >> /dev/null 2>&1 &');
+		system::php($cmd . ' >> /dev/null 2>&1 &');
 	}
 
 	public function getName() {
@@ -114,9 +114,9 @@ class listener {
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function run($_event, $_value) {
-		$cmd = '/usr/bin/php ' . dirname(__FILE__) . '/../php/jeeListener.php';
+		$cmd = dirname(__FILE__) . '/../php/jeeListener.php';
 		$cmd .= ' listener_id=' . $this->getId() . ' event_id=' . $_event . ' value=' . $_value;
-		exec($cmd . ' >> /dev/null 2>&1 &');
+		system::php($cmd . ' >> /dev/null 2>&1 &');
 	}
 
 	public function preSave() {

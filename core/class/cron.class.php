@@ -253,10 +253,10 @@ class cron {
 	 * @throws Exception
 	 */
 	public function run($_noErrorReport = false) {
-		$cmd = '/usr/bin/php ' . dirname(__FILE__) . '/../php/jeeCron.php';
+		$cmd = dirname(__FILE__) . '/../php/jeeCron.php';
 		$cmd .= ' cron_id=' . $this->getId();
 		if (!$this->running()) {
-			exec($cmd . ' >> ' . log::getPathToLog('cron_execution') . ' 2>&1 &');
+			system::php($cmd . ' >> ' . log::getPathToLog('cron_execution') . ' 2>&1 &');
 		} else {
 			if (!$_noErrorReport) {
 				$this->halt();

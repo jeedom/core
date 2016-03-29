@@ -27,9 +27,9 @@ class jeedom {
 	/*     * ***********************Methode static*************************** */
 
 	public static function sick() {
-		$cmd = 'php ' . dirname(__FILE__) . '/../../sick.php';
+		$cmd = dirname(__FILE__) . '/../../sick.php';
 		$cmd .= ' >> ' . log::getPathToLog('sick') . ' 2>&1';
-		shell_exec($cmd);
+		system::php($cmd);
 	}
 
 	public static function apiAccess($_apikey = '') {
@@ -135,9 +135,9 @@ class jeedom {
 	public static function backup($_background = false, $_noCloudUpload = 0) {
 		if ($_background) {
 			log::clear('backup');
-			$cmd = 'php ' . dirname(__FILE__) . '/../../install/backup.php noCloudUpload=' . $_noCloudUpload;
+			$cmd = dirname(__FILE__) . '/../../install/backup.php noCloudUpload=' . $_noCloudUpload;
 			$cmd .= ' >> ' . log::getPathToLog('backup') . ' 2>&1 &';
-			exec($cmd);
+			system::php($cmd);
 		} else {
 			require_once dirname(__FILE__) . '/../../install/backup.php';
 		}
@@ -168,9 +168,9 @@ class jeedom {
 	public static function restore($_backup = '', $_background = false) {
 		if ($_background) {
 			log::clear('restore');
-			$cmd = 'php ' . dirname(__FILE__) . '/../../install/restore.php backup=' . $_backup;
+			$cmd = dirname(__FILE__) . '/../../install/restore.php backup=' . $_backup;
 			$cmd .= ' >> ' . log::getPathToLog('restore') . ' 2>&1 &';
-			exec($cmd);
+			system::php($cmd);
 		} else {
 			global $BACKUP_FILE;
 			$BACKUP_FILE = $_backup;
@@ -182,9 +182,9 @@ class jeedom {
 
 	public static function update($_mode = '', $_level = -1, $_version = '', $__onlyThisVersion = '') {
 		log::clear('update');
-		$cmd = 'php ' . dirname(__FILE__) . '/../../install/install.php mode=' . $_mode . ' level=' . $_level . ' version=' . $_version . ' onlyThisVersion=' . $__onlyThisVersion;
+		$cmd = dirname(__FILE__) . '/../../install/install.php mode=' . $_mode . ' level=' . $_level . ' version=' . $_version . ' onlyThisVersion=' . $__onlyThisVersion;
 		$cmd .= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
-		exec($cmd);
+		system::php($cmd);
 	}
 
 	public static function needUpdate($_refresh = false) {
