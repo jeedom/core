@@ -19,7 +19,7 @@
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
-class system {
+class defaultsystem {
 	public static function fuserk($_port, $_protocol = 'tcp') {
 		if (file_exists($_port)) {
 			exec('fuser -k ' . $_port . ' > /dev/null 2>&1;sudo fuser -k ' . $_port . ' > /dev/null 2>&1');
@@ -95,6 +95,16 @@ class system {
 
 	public static function php($arguments) {
 		return exec("php ".$arguments);
+	}
+}
+
+if (file_exists(dirname(__FILE__) . '/../../core/class/localsystem.class.php'))
+{
+	require_once dirname(__FILE__) . '/../../core/class/localsystem.class.php';
+}
+else
+{
+	class system extends defaultsystem {
 	}
 }
 ?>
