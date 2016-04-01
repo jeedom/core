@@ -21,6 +21,10 @@
  	window.open('core/php/downloadFile.php?pathfile=log/' + $('#sel_log').value(), "_blank", null);
  });
 
+ $('#bt_downloadAllLog').click(function() {
+ 	window.open('core/php/downloadFile.php?pathfile=log/*', "_blank", null);
+ });
+
  $("#sel_log").on('change', function() {
  	log = $('#sel_log').value();
  	$('#div_pageContainer').empty().load('index.php?v=d&p=log&logfile=' + log+'&ajax=1',function(){
