@@ -68,7 +68,7 @@ class cache {
 				break;
 			case 'MemcachedCache':
 				$memcached = new Memcached();
-				$memcached->connect(config::byKey('cache::memcacheaddr'), config::byKey('cache::memcacheport'));
+				$memcached->addServer(config::byKey('cache::memcacheaddr'), config::byKey('cache::memcacheport'));
 				self::$cache = new \Doctrine\Common\Cache\MemcachedCache();
 				self::$cache->setMemcached($memcached);
 				break;
