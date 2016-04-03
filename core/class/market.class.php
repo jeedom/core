@@ -805,6 +805,8 @@ class market {
 				mkdir($cibDir);
 				$exclude = array(
 					'tmp',
+					'.git',
+					'.DStore',
 				);
 				rcopy(realpath(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId()), $cibDir, true, $exclude, true);
 				if (file_exists($cibDir . '/data')) {
