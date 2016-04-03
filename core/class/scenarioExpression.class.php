@@ -708,6 +708,9 @@ class scenarioExpression {
 		} else {
 			$date = DateTime::createFromFormat('Gi', intval(trim($_time)));
 		}
+		if ($date === false) {
+			return -1;
+		}
 		if ($_value > 0) {
 			$date->add(new DateInterval('PT' . abs($_value) . 'M'));
 		} else {
