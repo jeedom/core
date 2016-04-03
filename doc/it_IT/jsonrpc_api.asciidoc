@@ -4,6 +4,30 @@ Voici une documentation (qui évoluera) sur les méthodes de l'API. Tout d'abord
 
 L'accès à l'API se fait par l'url : #URL_JEEDOM#/core/api/jeeApi.php
 
+== Divers
+
+=== ping
+
+Retourne pong, permet de tester la communication avec Jeedom
+
+=== version
+
+Retourne la version de Jeedom
+
+=== datetime
+
+Retourne le datetime de jeedom en microseconde
+
+== API JSON Event
+
+=== event::changes 
+
+Retourne la liste des changements depuis le datetime passée en paramètre (doit être en microseconde). Vous aurez aussi dans la réponse le datetime courant de Jeedom (à réutiliser pour l'interrogation suivante)
+
+Paramètres :
+
+- int datetime
+
 == API JSON Plugin
 
 === plugin::listPlugin
@@ -66,8 +90,8 @@ Renvoi un tableau d'équipement en fonction des paramètres. Le retour sera de l
 
 Paramètres:
 
-- string[] eqType = tableau des types d'équipement voulu
-- int[] id = tableau des ID d'équipements personnalisé voulu
+- string[] eqType = tableau des types d'équipements voulus
+- int[] id = tableau des ID d'équipements personnalisés voulus
 
 === eqLogic::save
 Retourne l'équipement enregistré/créé
@@ -112,7 +136,7 @@ Exécute la commande spécifiée
 Paramètres:
 
 - int id
-- [options] Liste des options de la commandes (dépend du type et du sous-type de la commande)
+- [options] Liste des options de la commande (dépend du type et du sous-type de la commande)
 
 === cmd::getStatistique
 Retourne les statistiques sur la commande (ne marche que sur les commandes de type info et historisée)
@@ -124,7 +148,7 @@ Paramètres:
 - string endTime : date de fin de calcul des statistiques
 
 === cmd::getTendance
-Retourne la tendance sur la commande (ne marche que sur les commandes de type info et historisée)
+Retourne la tendance sur la commande (ne marche que sur les commandes de type info et historisées)
 
 Paramètres:
 
@@ -133,7 +157,7 @@ Paramètres:
 - string endTime : date de fin de calcul de la tendance
 
 === cmd::getHistory
-Retourne l'historique de la commande (ne marche que sur les commandes de type info et historisée)
+Retourne l'historique de la commande (ne marche que sur les commandes de type info et historisées)
 
 Paramètres:
 
@@ -165,7 +189,7 @@ Paramètres:
 == API JSON datastore (variable)
 
 === datastore::byTypeLinkIdKey
-Recupere la valeur d'une variable stocké dans le datastore
+Récupère la valeur d'une variable stockée dans le datastore
 
 Paramètres:
 
@@ -203,10 +227,10 @@ Paramètres:
 == API JSON System
 
 === jeeNetwork::halt
-Permet d'arreter Jeedom
+Permet d'arrêter Jeedom
 
 === jeeNetwork::reboot
-Permet de redemarrer Jeedom
+Permet de redémarrer Jeedom
 
 
 == API JSON plugin
@@ -228,7 +252,7 @@ Paramètres:
 == API JSON update
 
 === update::all
-Retour la liste de tous les composants installé, leur versions et les informations associées
+Retour la liste de tous les composants installés, leur version et les informations associées
 
 === update::checkUpdate
 Permet de mettre de faire vérifier les mises à jour

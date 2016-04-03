@@ -1,41 +1,41 @@
-= Santé
+= Gesundheit
 
-La page Santé de Jeedom vous permet d'avoir un aperçu rapide de l'état de santé de votre Jeedom. Il indique aussi (si les plugins l'utilise), l'état de santé par plugin.
+Die Jeedom Gesundheits Seite gibt Ihnen einen schnellen Überblick über Ihre Jeedom Gesundheit. Sie zeigt auch (wenn Plugins verwendet werden), den Gesundheitszustand von Plugins.
 
-Il est accessible par Général -> Administration -> Santé
+Sie ist über das Menü  Analyse -> Gesundheit erreichbar.
 
 image::../images/health1.png[]
 
-Une fois dessus, voilà ce que vous avez : 
+Einmal darauf sehen sie hier folgendes : 
 
 image::../images/health2.png[]
 
-Vous retrouvez ici un tableau qui donne une description de ce que Jeedom vérifie et du statut de celle-ci dans la 2ème colonne, enfin la derniere colonne peut vous donner des conseils de résolution si la vérification n'est pas OK.
+Sie finden hier eine Tabelle, die eine Beschreibung von dem was Jeedom geprüft hat anzeigt, in der zweiten Spalte ist der Status und  schließlich in der letzte Spalte wird ihnen Tipps zur Fehlerbehebung, wenn die Prüfung nicht OK ist, angeboten.
 
-En dessous, vous retrouvez les mêmes tableaux mais par plugin (si le plugin est compatible). Un clic sur le nom du plugin vous amène directement sur sa page de configuration.
+Nachfolgend finden sie die gleiche Tabelle, aber für Plugins (wenn das Plugin kompatibel ist). Mit einem Klick auf den Plugin-Namen gelangen sie auf dessen Konfigurations-Seite.
 
-== Aide à la résolution
+== Hilfe zur Lösung
 
-=== Version PHP
+=== PHP Version
 
-Pour l'instant, la version 5.5 de php n'est pas obligatoire, vous pouvez donc tout laisser comme ça pour le moment. Le jour ou la version 5.5 deviendra obligatoire, vous serez prévenu.
+Für den Moment ist die Php-Version 5.5 nicht erforderlich, sie können  vorerst alles so belassen. Am Tag das die Version 5.5 obligatorisch wird, werden sie benachrichtigt.
 
-=== Configuration nginx
+=== Nginx Konfiguration
 
-Ma configuration nginx est NOK, cela peut être normal si vous avez modifié le fichier /etc/nginx/sites-available/default, sinon en SSH faites : 
+Meine Nginx-Konfiguration ist NOK, das ist normal, wenn Sie die Datei /etc/nginx/sites-available/defaut geändert haben, sonst in SSH machen : 
 
-- Si vous etês sur une mini/mini+ ou que vous ne voulez pas de /jeedom : 
+- Wenn Sie sich auf einem mini/mini+ befinden oder sie wollen /jeedom nicht : 
 
 ----
 sudo su -
-cp /usr/share/nginx/www/jeedom/install/nginx_default_without_jeedom /etc/nginx/sites-available/default
+cp /usr/share/nginx/www/jeedom/install/nginx_default_without_jeedom /etc/nginx/sites-available/defaut
 service nginx restart
 ---- 
 
-- Vous voulez le /jeedom
+- Sie wollen /jeedom
 
 ----
 sudo su -
-cp /usr/share/nginx/www/jeedom/install/nginx_default /etc/nginx/sites-available/default
+cp /usr/share/nginx/www/jeedom/install/nginx_default /etc/nginx/sites-available/defaut
 service nginx restart
 ---- 

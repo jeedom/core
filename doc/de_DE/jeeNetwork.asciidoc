@@ -1,59 +1,61 @@
-= Réseaux Jeedom
+= Jeedom Netzwerk
 
-Page permettant d'interconnecter plusieurs Jeedom en mode maître/esclave. Cette possibilité permet par exemple de déporter le zwave, le rfxcom, l'enOcean ou le GSM sur d'autres raspberry pi ou Jeedom Mini. Vous pourrez aussi à partir de cette page avoir un statut de vos Jeedom esclave, consulter leurs logs, les mettres à jour, les arrêter...
+Page permettant d'interconnecter plusieurs Jeedom en mode maître/esclave. Cette possibilité permet par exemple de déporter le Z-Wave, le RFXCom, l'EnOcean ou le GSM sur d'autres Raspberry Pi ou Jeedom mini. Vous pourrez aussi à partir de cette page avoir un statut de vos Jeedom esclaves, consulter leur log, les mettre à jour, les arrêter, etc.
 
-== Le réseaux Jeedom
+== Das Jeedom Netzwerk
 
-Accessible depuis Général -> Administration -> Réseaux Jeedom :
+Accessible depuis Administration -> Réseau Jeedom :
 
 image::../images/jeeNetwork4.JPG[]
 
-Une fois dessus, vous avez :
+Une fois dessus vous avez :
 
 image::../images/jeeNetwork.JPG[]
 
-Cette page liste tous vos esclaves et permet de voir en details chacun d'entre eux avec certaines possibilités de configuration et un accès direct à ceux-ci.
+Cette page liste tous vos esclaves et permet de voir en détail chacun d'entre eux avec certaines possibilités de configuration et un accès direct à chacun.
 
-[IMPORTANT]
-Cette documentation ne décrit pas volontairement tous les menus disponible car ils ne sont qu'un report des menus existants sur le maître pour centraliser la configuration. Il faut donc se reporter aux docs existantes pour avoir le détail de fonctionnement.
+[WICHTIG]
+Cette documentation ne décrit pas volontairement tous les menus disponibles car ils ne sont qu'un report des menus existants sur le maître pour centraliser la configuration. Il faut donc se reporter à la documentation existante pour avoir le détail de fonctionnement.
 
-== Configuration
+== Konfiguration
 
-La configuration est assez simple, il faut tout d'abord décider le systeme maître et esclave. 
-Ensuite, sur l'esclave, il faut aller dans Général -> Administration -> Configuration puis dans la partie "Configuration réseaux" et cliquer sur esclave : 
+La configuration est assez simple, il faut tout d'abord décider le système maître et esclave. 
+Ensuite sur l'esclave, il faut aller dans Administration -> Configuration dans la partie "Configuration réseau" 
+et cliquer sur esclave : 
 
 image::../images/jeeNetwork2.JPG[]
 
-Il faut ensuite installer les plugins voulus en déportés (attention tous les plugins ne sont pas forcément compatibles), 
+Il faut ensuite installer les plugins voulus en déporté (attention tous les plugins ne sont pas forcément compatibles), 
 les activer et les configurer.
 
-Ensuite, du coté du maître, vous devez aller dans Général -> Administration -> Configuration puis dans la partie "Configuration réseaux", remplir la partie "Accès interne" : 
+Ensuite du coté du maître, aller dans Administration -> Configuration dans la partie "Configuration réseau" et 
+kompletter Teil "Accès interne" : 
 
 image::../images/jeeNetwork3.JPG[]
 
-Voici le detail : 
+Hier sind die Details: 
 
-* *Protocole* : protocole utilisé (en générale HTTP)
+* *Protokoll* : Das http Protokoll wird in der Regel verwendet
 * *Adresse/IP* : IP (ou adresse mais en interne c'est assez rare) du maître (en général de la forme 192.168.xxx.xxx)
-* *Complement* : si vous avez une Mini, Center ou Pro vous n'avez rien a mettre sinon vous devez mettre /jeedom (si présent dans l'adresse après l'IP)
-* *Port* : 80 si vous n'avez pas modifié la configuration nginx
+* *Complement* : si vous avez une mini, center ou pro vous n'avez rien à mettre sinon vous devez mettre /jeedom
+* *Port* : 80, wenn Sie nicht die nginx-Konfiguration ändern
 
-Ensuite, toujours sur le maître, aller sur Général -> Administration -> Réseaux Jeedom et faites "Ajouter un Jeedom" :
+Danach immer auf dem Master auf Einstellungen -> Jeedom Netzwerk gehen und auf "Jeedom hinzufügen" klicken : 
 
 image::../images/jeeNetwork.JPG[]
 
-- donnez-lui un nom
-- indiquez l'IP de l'esclave
-- indiquez le complément si nécessaire (ex : /jeedom si vous n'avez pas une Mini/Center/Pro et que vous utilisez le /jeedom pour vous connecter sur l'esclave)
-- la clef API de l'esclave (elle se trouve sur l'esclave dans Général -> Administration -> Configuration)
+- einen Namen geben
+- Slave ID anzeigen
+- die Ergänzung anzugeben wenn nötig (z.B.: /jeedom wenn sie einen Mini/Center/Pro haben  und verwenden sie /jeedom, um sich auf dem Slave zu verbinden
+- Der API-Schlüssel des Slave (ist auf dem Slave im Menü Administration -> Konfiguration zu finden)
 - Sicherungskopie
 
-Si vous avez un message vous disant que c'est OK, alors tout est lié, normalement le maître devrait détecter automatiquement les plugins de l'esclave.
+Wenn sie eine Meldung erhalten die sagt, es ist OK, dann ist alles miteinander verbunden, normalerweise sollte der Master automatisch die Plugins vom Slave erkennen. 
 
-[IMPORTANT]
-En cas de souci avec un plugin en mode deporté, reportez-vous à sa documentation.
+[WICHTIG]
+Bei Problemen mit einem Plugin im entfernten Modus finden Sie in der Dokumentation Hilfe.
 
-== Troubleshooting
+== Fehlerbehebung
 
-Erreur 404 lors de la sauvegarde::
-C'est qu'il y a une erreur sur la configuration réseau du maître (en général).
+Fehler 404 beim Speichern::
+Es geht darum, dass es einen Fehler in der Netzwerk Konfiguration des Masters (im Allgemeinen) gibt.

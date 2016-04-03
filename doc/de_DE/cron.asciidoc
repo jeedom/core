@@ -1,34 +1,34 @@
-= Moteur de tâches
+= Task-Engine
 
 Die Task Engine Menü ist nur im Expertenmodus zur Verfügung. Es informiert über alle Jeedom Anwendungsaufgaben die auf dem Server ausgeführt werden.
 
-[IMPORTANT]
-En cas de mauvaise manipulation sur cette page, toute demande de support peut vous être refusée.
+[WICHTIG]
+Bei unsachgemäßer Handhabung auf dieser Seite kann ihnen jede Support-Anfrage verweigert werden.
 
-Pour y accèder, il faut aller dans Général -> Administration -> Moteur de tâches : 
+Um dorthin zu gelangen muss man auf Einstellungen -> Task Engine gehen  
 
 image::../images/cron.JPG[]
 
-Une fois dessus, vous obtenez :
+Sobald sie darauf sind, sehen sie :
 
 image::../images/cron1.JPG[]
 
-En haut à droite, vous retrouvez un resumé des processus Jeedom. Le premier chiffre indique le nombre de tâche principale (doit toujours être égal à 0 ou 1), le second le nombre de tâches secondaires et le dernier le nombre de tâches totales sur le système (Jeedom et hors Jeedom).
-En-dessous, vous avez les chiffres de la charge moyenne de votre système, il est recommandé que ce chiffre soit inférieur au nombre total de coeurs de la machine.
+En haut à droite vous retrouvez un résumé des processus Jeedom. Le premier chiffre indique le nombre de tâche principale (doit toujours être égal à 0 ou 1), le second le nombre de tâches secondaires et le dernier le nombre de tâches totales sur le système (Jeedom et hors Jeedom).
+En-dessous vous avez les chiffres de la charge moyenne de votre système, il est recommandé que ce chiffre soit inférieur au nombre total de coeurs de la machine.
 
 A droite, vous avez un bouton pour désactiver ou réactiver toutes les tâches (si vous les désactivées toutes, plus rien ne sera fonctionnel sur votre Jeedom), un bouton pour rafraîchir le tableau des tâches (juste en-dessous), un bouton pour ajouter une tâche et un bouton pour enregistrer vos modifications.
 
-Enfin, en-dessous, vous avez le tableau de toutes les tâches existantes (attention, certaines tâches peuvent lancer des sous-tâches, il est donc vivement recommandé de ne jamais modifier d'informations sur cette page). Dans ce tableau, on retrouve : 
+Enfin en-dessous vous avez le tableau de toutes les tâches existantes (attention certaines tâches peuvent lancer des sous-tâches, il est donc vivement recommandé de ne jamais modifier d'informations sur cette page). Dans ce tableau on retrouve : 
 
 * *#* : ID de la tâche, peut être utile pour faire le lien entre un processus qui tourne et ce qu'il fait vraiment
-* *Action* : un bouton pour lancer ou arrêter la tâche en fonction de son statut
-* *Actif* : indique si la tâche est active (peut être lancée par Jeedom) ou non
-* *PID* : indique le process ID actuel
-* *Démon* : si cette case est à "oui" alors la tâche doit toujours être en cours. A coté, vous retrouvez la fréquence du démon, il est conseillé de ne jamais toucher cette valeur et surtout de ne jamais la diminuer
-* *Unique* : si c'est à "oui", alors la tâche se lancera une seule fois puis se supprimera
-* *Classe* : classe PHP appelée pour exécuter la tâche (peut être vide)
-* *Fonction* : fonction  PHP appelée dans la classe appelée (ou non si la classe est vide) 
-* *Timeout* : durée maximale de fonctionnement de la tâche. Si la tâche est un démon alors elle sera automatiquement arrêtée et redémarrée à la fin du timeout
-* *Dernier lancement* : date de dernier lancement de la tâche
-* *Statut* : état actuel de la tâche (pour rappel une tâche démon est toujours à "run")
-* *Suppression* : permet de supprimer la tâche
+* *Action* : Ist eine Schaltfläche zum Starten oder Beenden der Aufgabe abhängig von seinen Status.
+* *Aktiv* : zeigt an ob der Task aktiv ist (kann durch Jeedom gestartet werden) oder nicht
+* *PID* : zeigt die aktuelle Prozess-ID
+* *Démon* : si cette case est à "oui" alors la tâche doit toujours être en cours. A coté vous retrouvez la fréquence du démon, il est conseillé de ne jamais toucher cette valeur et surtout de ne jamais la diminuer
+* *Unique* : wenn das "Ja" aktiviert ist, dann wird der Task einmalig ausgeführt und danach gelöscht
+* *Klasse* : PHP Klasse aufgerufen, um den Task auszuführen (kann leer sein)
+* *Funktion* : PHP-Funktion in der Klasse mit dem Namen e genannt (oder auch nicht, wenn die Klasse leer ist) 
+* *Auszeit* : Maximale Betriebsdauer der Aufgabe. Wenn die Aufgabe ein Dämon ist, dann wird sie automatisch beendet und wird am Ende der Auszeit neu gestartet.
+* *Letzter Start* : Datum des letzten Aufgaben Starts   
+* *Status* : aktueller Status des Tasks (zur Erinnerung eines Dämons Aufgabe ist noch auf "run")
+* *Entfernen* : Löscht die Aufgabe

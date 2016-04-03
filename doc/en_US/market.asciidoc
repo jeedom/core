@@ -1,88 +1,88 @@
 = Market
 
-Doc un peu particulierement car elle va traiter uniquement de votre page profil du market.
+Doc un peu particulière car elle va traiter uniquement de votre page profil du market.
 
 Disponible en allant sur votre nom d'utilisateur puis profils à partir du market (un peu comme sur Jeedom) : 
 
 image::../images/market.png[]
 
-Celle-ci se decompose en plugisuer partie : 
+Celle-ci se décompose en plusieurs parties : 
 
-== Mon profil
+== My profile
 
 image::../images/market1.png[]
 
-C'est ici que vous allez pouvoir regler différents paramètre de votre profils : 
+Here you can fix your settings of your profile 
 
-* *Profil*
-** *Login* : Votre login sur le market, il ne peut etre changé
-** *Nom* : Votre nom (cette information n'est utile que pour rendre les mails plus sympa)
-** *Prénom* : Votre prénom (cette information n'est utile que pour rendre les mails plus sympa)
+* *Profile*
+** *Login* : Your login on the market, it cannot be changed
+** *Name* : Your name (this information is only useful to make the mails nicer)
+** *Name* : Your name (this information is useful only to make mails funnier)
 ** *Pseudo* : Votre pseudo (uniquement pour les developpeurs)
-** *Email* : Votre mail
-** *Email public* : Non utilisé pour le moment mais ca pourra etre un email de contact pour les developpeurs si un jour on met en place ce genre de service
-** *Langue* : Votre langue
+** *Email* : Your mail
+** *Email public* : Non utilisé pour le moment mais ca pourra être un email de contact pour les développeurs si un jour on met en place ce genre de service
+** *Language* : Your language
 ** *Compte paypal* : Votre mail de compte paypal (uniquement utilisé pour payer les developpeurs)
 ** *Mot de passe && Confirmer le mot de passe* : permet de changer votre mot passe
 * *CGU*
-** *Utilisateur* : condition général d'utilisation (attention à bien les lire elle vous engages)
-** *Developpeur* : condition général d'utilisation pour les developpeurs
+** *Utilisateur* : conditions générales d'utilisation (attention à bien les lire elle vous engage)
+** *Developpeur* : conditions générales d'utilisation pour les développeurs
 * *Tickets*
-** *Nombre de ticket* : Nombre de ticket pour le mois en cours ainsi que votre limite
+** *Nombre de tickets* : Nombre de tickets pour le mois en cours ainsi que votre limite
 ** *Support* : bouton pour envoyer une demande de support (accessible aussi par le point d'exclamation en haut à droite sur le market ou sur votre Jeedom)
 
 [TIP]
 N'oubliez pas de sauvegarder
 
-== Mes Jeedoms
+== My Jeedoms
 
 image::../images/market2.png[]
 
 Ici vous pouvoir : 
 
-* *Niveau*
+* *Level*
 ** *Jeedom* : votre niveau de service pack
 ** *Entrer un numéro de service pack* : permet d'entrer votre numéro de service pack (il se trouve dans le mail envoyé par Jeedom lors de votre commande)
 * *Clef d'installation*
-** *Nombre de clef d'installation* : affiche le nombre d'installation Jeedom actuellement liée à votre compte ainsi que la limite autorisé
-** *Clef d'installation* : vous pouvez demander ici une reinitialisation des Jeedom lié a votre compte. Attention dépassé les 2 demandes dans le mois, une verification manuel a lieu, la demande peut donc prendre plus de temps
+** *Nombre de clefs d'installation* : affiche le nombre d'installation Jeedom actuellement liée à votre compte ainsi que la limite autorisée
+** *Clef d'installation* : vous pouvez demander ici une réinitialisation des Jeedom liés à votre compte. Attention, dépassé les 2 demandes dans le mois, une vérification manuelle a lieu, la demande peut donc prendre plus de temps.
 [TIP]
-Il est possible que le market vous demande desfois de remettre à zéro vos clef d'installation, c'est normalement il suffit de suivre ce qu'il vous demande
-* *Mes Jeedoms* : c'est ici que sont listé tous vos Jeedoms
-** *Nom* : le nom que vous voulez donner a votre Jeedom (se retrouve dans le nom du backup si vous avez l'abonnement de sauvegarde cloud)
-** *Protocole* : protocole utilisé pour se connecter a votre Jeedom (se configure a partir de Jeedom)
-** *IP ou adresse* : IP ou addresse de ce Jeedom, se configure dans Jeedom si vous ne mettez rien ca sera la derniere IP connue
+Il est possible que le market vous demande des fois de remettre à zéro vos clefs d'installation, c'est normal, il suffit de suivre ce qu'il vous demande
+* *My Jeedoms* : it's here where your Jeedoms are listed
+** *Nom* : le nom que vous voulez donner à votre Jeedom (se retrouve dans le nom du backup si vous avez l'abonnement de sauvegarde cloud)
+** *Protocole* : protocole utilisé pour se connecter à votre Jeedom (se configure à partir de Jeedom)
+** *IP ou adresse* : IP ou addresse de ce Jeedom, se configure dans Jeedom, si vous ne mettez rien ça sera la dernière IP connue
 ** *Port* : port utilisé pour joindre le Jeedom (se configure a partir de Jeedom)
-** *URL* : liste les differentes URL d'accès au Jeedom ainsi que le port pour le SSH. Attention si vous n'avez pas un service pack power ou plus vous n'avez pas le service DNS Jeedom, vous aurez donc moins de valeur dans ce champs
+** *URL* : liste les différentes URL d'accès au Jeedom ainsi que le port pour le SSH. Attention, si vous n'avez pas de service pack power ou plus, vous n'avez pas le service DNS Jeedom, vous aurez donc moins de valeur dans ce champ
 ** *Accès* : vous indique si le DNS Jeedom est OK
 ** *DNS* : permet de personnaliser votre DNS Jeedom
 ** *Date de création* : date de création de ce Jeedom sur votre compte market (pour rappel cela se fait automatiquement lorsque vous le liez au market)
-** *Dernière mise à jour* : derniere communication du Jeedom avec le market
-** *Hardware* : Nom du hardware du Jeedom
-** *Version* : la version de Jeedom installé
+** *Dernière mise à jour* : dernière communication du Jeedom avec le market
+** *Hardware* : Hardware name of Jeedom
+** *Version* : la version de Jeedom installée
 
 [TIP]
 N'oubliez pas de sauvegarder
 
-== Mes backups
+== My backups
 
 image::../images/market3.png[]
 
-Sur cette onglet vous pouvez consulter les backups present sur le market et en télécharger un. En dessous vous avez accès au lien pour acheter 1,3,6 ou 12 mois d'abonnement à la sauvegarde cloud
+Sur cette onglet vous pouvez consulter les backups présents sur le market et en télécharger un. En dessous vous avez accès au lien pour acheter 1,3,6 ou 12 mois d'abonnement à la sauvegarde cloud
 
-== Mes achats/promos/dons
+== My purchase/discounts/gifts
 
 image::../images/market4.png[]
 
-Ici vous retrouver tous vos achats et vous pouvez demande le renvoi du mail de facture ou de recu
+Ici vous retrouvez tous vos achats et vous pouvez demander le renvoi du mail de facture ou de recu
 
 [IMPORTANT]
-Si vous achetez un plugin officiel vous recevez une facture en revanche pour un plugin tierce c'est un reçu, pour la facture il faut la demander au developpeur
+Si vous achetez un plugin officiel vous recevez une facture en revanche pour un plugin tierce c'est un reçu, pour la facture il faut la demander au développeur
 
-Vous pouvez aussi à partir de cette entrer un code promos (un code pour un plugin par exemple que le developpeur à pu vous transmettre) et faire un don.
+Vous pouvez aussi à partir de cet onglet entrer un code promo (un code pour un plugin par exemple que le développeur a pu vous transmettre) et faire un don.
 
-== Mes développments
+== My developments
 
 image::../images/market5.png[]
 
-Si vous etes developpeurs vous retrouvez ici la liste de toute vos ventes sur une periode, la liste de vos versements ainsi qu'un résumé du nombre de téléchargement, du nombre de ventes...
+Si vous êtes développeur vous retrouvez ici la liste de toutes vos ventes sur une période, la liste de vos versements ainsi qu'un résumé du nombre de téléchargements, du nombre de ventes...

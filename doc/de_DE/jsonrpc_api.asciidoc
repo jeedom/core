@@ -4,6 +4,30 @@ Voici une documentation (qui évoluera) sur les méthodes de l'API. Tout d'abord
 
 L'accès à l'API se fait par l'url : #URL_JEEDOM#/core/api/jeeApi.php
 
+== Divers
+
+=== ping
+
+Retourne pong, permet de tester la communication avec Jeedom
+
+=== version
+
+Retourne la version de Jeedom
+
+=== datetime
+
+Retourne le datetime de jeedom en microseconde
+
+== API JSON Event
+
+=== event::changes 
+
+Retourne la liste des changements depuis le datetime passée en paramètre (doit être en microseconde). Vous aurez aussi dans la réponse le datetime courant de Jeedom (à réutiliser pour l'interrogation suivante)
+
+Paramètres :
+
+- int datetime
+
 == API JSON Plugin
 
 === plugin::listPlugin
@@ -21,7 +45,7 @@ Paramètres :
 Retourne la liste de tous les objets
 
 === object::full
-Retourne la liste de tous les objets, avec pour chaque objet tous ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
+Liefert eine Liste aller Objekte, mit allen Geräten für jedes Objekt und alle Befehle von jedem Gerät, sowie die Zustände von diesem (für Befehle des Info Typs)
 
 === object::byId
 Retourne l'objet spécifié
@@ -31,14 +55,14 @@ Paramètres:
 - int id
 
 === object::fullById
-Retourne un objet, ses équipements et pour chaque équipement toutes ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
+Gibt ein Objekt zurück, seine Geräte und für jedes Gerät alle seine Befehle und die Zustände
 
 == API JSON EqLogic
 === eqLogic::all
 Retourne la liste de tous les équipements
 
 === eqLogic::fullById
-Retourne un équipement et ses commandes ainsi que les états de celle-ci (pour les commandes de type info)
+Gibt ein Gerät sowie dessen Befehle und die Zustände zurück (für Befehle des Info Typs)
 
 === eqLogic::byId
 Retourne l'équipement spécifié
@@ -66,8 +90,8 @@ Renvoi un tableau d'équipement en fonction des paramètres. Le retour sera de l
 
 Paramètres:
 
-- string[] eqType = tableau des types d'équipement voulu
-- int[] id = tableau des ID d'équipements personnalisé voulu
+- string[] eqType = tableau des types d'équipements voulus
+- int[] id = tableau des ID d'équipements personnalisés voulus
 
 === eqLogic::save
 Retourne l'équipement enregistré/créé
@@ -100,46 +124,46 @@ Paramètres:
 - int id
 
 === cmd::byEqLogicId
-Retourne toutes les commandes appartenant à l'équipement spécifié
+Gibt alle zum angegebenen Gerät gehörenden Befehle zurück
 
 Paramètres:
 
 - int eqLogic_id
 
 === cmd::execCmd
-Exécute la commande spécifiée
+Führt den angegebenen Befehl aus
 
 Paramètres:
 
 - int id
-- [options] Liste des options de la commandes (dépend du type et du sous-type de la commande)
+- [options] Liste des options de la commande (dépend du type et du sous-type de la commande)
 
 === cmd::getStatistique
-Retourne les statistiques sur la commande (ne marche que sur les commandes de type info et historisée)
+Gibt Statistiken über den Befehl zurück (funktioniert nur Befehle vom Info Typ und historisiert)
 
 Paramètres:
 
 - int id
-- string startTime : date de début de calcul des statistiques
-- string endTime : date de fin de calcul des statistiques
+- string startTime : Der Anfangszeitpunkt für die Berechnung der Statistik
+- string endTime : Der Endzeitpunkt für die Berechnung der Statistik
 
 === cmd::getTendance
-Retourne la tendance sur la commande (ne marche que sur les commandes de type info et historisée)
+Retourne la tendance sur la commande (ne marche que sur les commandes de type info et historisées)
 
 Paramètres:
 
 - int id
-- string startTime : date de début de calcul de la tendance
-- string endTime : date de fin de calcul de la tendance
+- string startTime : Der Anfangszeitpunkt für die Berechnung der Tendenz
+- string endTime : Der Endzeitpunkt für die Berechnung der Tendenz
 
 === cmd::getHistory
-Retourne l'historique de la commande (ne marche que sur les commandes de type info et historisée)
+Retourne l'historique de la commande (ne marche que sur les commandes de type info et historisées)
 
 Paramètres:
 
 - int id
-- string startTime : date de début de l'historique
-- string endTime : date de fin de l'historique
+- string startTime : Der Anfangszeitpunkt für die Berechnung der Chronik
+- string endTime : Der Endzeitpunkt der Chronik
 
 
 == API JSON Scenario
@@ -165,7 +189,7 @@ Paramètres:
 == API JSON datastore (variable)
 
 === datastore::byTypeLinkIdKey
-Recupere la valeur d'une variable stocké dans le datastore
+Récupère la valeur d'une variable stockée dans le datastore
 
 Paramètres:
 
@@ -186,12 +210,12 @@ Paramètres:
 == API JSON Message
 
 === message::all
-Retourne la liste de tous les messages
+Gibt eine Liste aller Nachrichten zurück
 
 === message::removeAll
-Supprime tous les messages
+Alle Nachrichten löschen
 
-== API JSON Interaction
+== JSON API Interaktion
 
 === interact::tryToReply
 Essaye de faire correspondre une demande avec une interaction, exécute l'action et répond en conséquence
@@ -200,46 +224,46 @@ Paramètres:
 
 - query (phrase de la demande)
 
-== API JSON System
+== JSON API System
 
 === jeeNetwork::halt
-Permet d'arreter Jeedom
+Ermöglicht Jeedom zu stoppen
 
 === jeeNetwork::reboot
-Permet de redemarrer Jeedom
+Ermöglicht Jeedom neu zu starten
 
 
-== API JSON plugin
+== JSON API Plugin
 
 === plugin::install
-Installation/Mise à jour d'un plugin donné
+Installation/Update eines speziellen Plugin
 
 Paramètres:
 
-- string plugin_id : nom du plugin (nom logique)
+- string plugin_id : nom du plugin (logischer Namen)
 
 === plugin::remove
-Suppression d'un plugin donné
+Löschen eines speziellen Plugin
 
 Paramètres:
 
-- string plugin_id : nom du plugin (nom logique)
+- string plugin_id : nom du plugin (logischer Namen)
 
-== API JSON update
+== JSON API Update
 
 === update::all
-Retour la liste de tous les composants installé, leur versions et les informations associées
+Gibt eine Liste aller installierten Komponenten, deren Versionen und die zugehörigen Informationen zurück
 
 === update::checkUpdate
-Permet de mettre de faire vérifier les mises à jour
+Ermöglich, auf Updates zu überprüfen
 
 === update::update
-Permet de mettre à jour Jeedom et tous les plugins
+Erlaubt, Jeedom und aller Plugins zu aktualisieren
 
-== API JSON Exemples
-Voici un exemple d'utilisation de l'API. Pour l'exemple si dessous j'utilise https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php[cette class php] qui permet de simplifier l'utilisation de l'api.
+== JSON API Beispiele
+Hier ist ein Beispiel für die Verwendung der API. Für das nachfolgende Beispiel verwende ich https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php[diese php Klasse], sie ermöglicht es, die Nutzung der API zu vereinfachen.  
 
-Récupération de la liste des objets :
+Die Liste der Objekte abrufen :
 
 
 [source,php]
@@ -250,7 +274,7 @@ if($jsonrpc->sendRequest('object::all', array())){
     echo $jsonrpc->getError();
 }
  
-Exécution d'une commande (avec comme option un titre et un message)
+Einen Befehl ausführen (mit der Option von Titel und Nachricht)
 
 
 [source,php]
@@ -261,4 +285,4 @@ if($jsonrpc->sendRequest('cmd::execCmd', array('id' => #cmd_id#, 'options' => ar
     echo $jsonrpc->getError();
 }
  
-L'API est bien sur utilisable avec d'autre langage (simplement un post sur une page) 
+Die API ist natürlich verwendbar mit anderen Sprache (nur post auf einer Seite) 

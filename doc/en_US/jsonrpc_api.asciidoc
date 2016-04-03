@@ -1,21 +1,45 @@
 = API JSON RPC
 
-Voici une documentation (qui évoluera) sur les méthodes de l'API. Tout d'abord voici les spécifications (JSON RPC 2.0) : http://www.jsonrpc.org/specification
+Here is a documentation (which will change) on API's methods. First of all, here are the specifications (JSON RPC 2.0) : http://www.jsonrpc.org/specification
 
 L'accès à l'API se fait par l'url : #URL_JEEDOM#/core/api/jeeApi.php
+
+== Various
+
+=== ping
+
+Retourne pong, permet de tester la communication avec Jeedom
+
+=== version
+
+Retourne la version de Jeedom
+
+=== datetime
+
+Retourne le datetime de jeedom en microseconde
+
+== API JSON Event
+
+=== event::changes 
+
+Retourne la liste des changements depuis le datetime passée en paramètre (doit être en microseconde). Vous aurez aussi dans la réponse le datetime courant de Jeedom (à réutiliser pour l'interrogation suivante)
+
+Settings :
+
+- int datetime
 
 == API JSON Plugin
 
 === plugin::listPlugin
 Retourne la liste de tous les plugins
 
-Paramètres :
+Settings :
 
 - int activateOnly = 0 (ne retourne que la liste des plugins activés)
 - int orderByCaterogy = 0 (retourne la liste des plugins triés par catégorie)
 
 
-== API JSON Objet
+== API JSON Object
 
 === object::all
 Retourne la liste de tous les objets
@@ -26,7 +50,7 @@ Retourne la liste de tous les objets, avec pour chaque objet tous ses équipemen
 === object::byId
 Retourne l'objet spécifié
 
-Paramètres:
+Settings:
 
 - int id
 
@@ -43,7 +67,7 @@ Retourne un équipement et ses commandes ainsi que les états de celle-ci (pour 
 === eqLogic::byId
 Retourne l'équipement spécifié
 
-Paramètres:
+Settings:
 
 - int id
 
@@ -51,30 +75,30 @@ Paramètres:
 
 Retourne tous les équipements appartenant au type (plugin) spécifié
 
-Paramètres:
+Settings:
 
 - string type
 
 === eqLogic::byObjectId
 Retourne tous les équipements appartenant à l'objet spécifié
 
-Paramètres:
+Settings:
 - int object_id
 
 === eqLogic::byTypeAndId
 Renvoi un tableau d'équipement en fonction des paramètres. Le retour sera de la forme array('eqType1' =>array( 'id'=>...,'cmds' => array(....)),'eqType2' =>array( 'id'=>...,'cmds' => array(....))....,id1 => array( 'id'=>...,'cmds' => array(....)),id2 => array( 'id'=>...,'cmds' => array(....))..)
 
-Paramètres:
+Settings:
 
-- string[] eqType = tableau des types d'équipement voulu
-- int[] id = tableau des ID d'équipements personnalisé voulu
+- string[] eqType = equipment types wanted
+- int[] id = tableau des ID d'équipements personnalisés voulus
 
 === eqLogic::save
 Retourne l'équipement enregistré/créé
 
-Paramètres:
+Settings:
 
-- int id (vide si c'est une création)
+- int id (empty if it's a creation)
 - string eqType_name (type de l'équipement script, virtuel...)
 - string $name
 - string $logicalId = <nowiki>''</nowiki>
@@ -95,47 +119,47 @@ Retourne la liste de toutes les commandes
 === cmd::byId
 Retourne la commande spécifiée
 
-Paramètres:
+Settings:
 
 - int id
 
 === cmd::byEqLogicId
 Retourne toutes les commandes appartenant à l'équipement spécifié
 
-Paramètres:
+Settings:
 
 - int eqLogic_id
 
 === cmd::execCmd
 Exécute la commande spécifiée
 
-Paramètres:
+Settings:
 
 - int id
-- [options] Liste des options de la commandes (dépend du type et du sous-type de la commande)
+- [options] Liste des options de la commande (dépend du type et du sous-type de la commande)
 
 === cmd::getStatistique
 Retourne les statistiques sur la commande (ne marche que sur les commandes de type info et historisée)
 
-Paramètres:
+Settings:
 
 - int id
 - string startTime : date de début de calcul des statistiques
 - string endTime : date de fin de calcul des statistiques
 
 === cmd::getTendance
-Retourne la tendance sur la commande (ne marche que sur les commandes de type info et historisée)
+Retourne la tendance sur la commande (ne marche que sur les commandes de type info et historisées)
 
-Paramètres:
+Settings:
 
 - int id
 - string startTime : date de début de calcul de la tendance
 - string endTime : date de fin de calcul de la tendance
 
 === cmd::getHistory
-Retourne l'historique de la commande (ne marche que sur les commandes de type info et historisée)
+Retourne l'historique de la commande (ne marche que sur les commandes de type info et historisées)
 
-Paramètres:
+Settings:
 
 - int id
 - string startTime : date de début de l'historique
@@ -150,14 +174,14 @@ Retourne la liste de tous les scénarios
 === scenario::byId
 Retourne le scénario spécifié
 
-Paramètres:
+Settings:
 
 - int id
 
 === scenario::changeState
 Change l'état du scénario spécifié.
 
-Paramètres:
+Settings:
 
 - int id
 - string state : [run,stop,enable,disable]
@@ -165,22 +189,22 @@ Paramètres:
 == API JSON datastore (variable)
 
 === datastore::byTypeLinkIdKey
-Recupere la valeur d'une variable stocké dans le datastore
+Récupère la valeur d'une variable stockée dans le datastore
 
-Paramètres:
+Settings:
 
 - string type : type de la valeur stockée (pour les scénarios c'est scenario)
 - id linkId : -1 pour le global (valeur pour les scénarios par defaut, ou l'id du scénario)
-- string key : nom de la valeur
+- string key : name of the value
 
 === datastore::save
 Enregistre la valeur d'une variable dans le datastore
 
-Paramètres:
+Settings:
 
 - string type : type de la valeur stockée (pour les scénarios c'est scenario)
 - id linkId : -1 pour le global (valeur pour les scénarios par defaut, ou l'id du scénario)
-- string key : nom de la valeur
+- string key : name of the value
 - mixte value : valeur à enregistrer
 
 == API JSON Message
@@ -189,24 +213,24 @@ Paramètres:
 Retourne la liste de tous les messages
 
 === message::removeAll
-Supprime tous les messages
+Cancel all messages
 
 == API JSON Interaction
 
 === interact::tryToReply
 Essaye de faire correspondre une demande avec une interaction, exécute l'action et répond en conséquence
 
-Paramètres:
+Settings:
 
 - query (phrase de la demande)
 
 == API JSON System
 
 === jeeNetwork::halt
-Permet d'arreter Jeedom
+Permet d'arrêter Jeedom
 
 === jeeNetwork::reboot
-Permet de redemarrer Jeedom
+Permet de redémarrer Jeedom
 
 
 == API JSON plugin
@@ -214,21 +238,21 @@ Permet de redemarrer Jeedom
 === plugin::install
 Installation/Mise à jour d'un plugin donné
 
-Paramètres:
+Settings:
 
 - string plugin_id : nom du plugin (nom logique)
 
 === plugin::remove
 Suppression d'un plugin donné
 
-Paramètres:
+Settings:
 
 - string plugin_id : nom du plugin (nom logique)
 
 == API JSON update
 
 === update::all
-Retour la liste de tous les composants installé, leur versions et les informations associées
+Retour la liste de tous les composants installés, leur version et les informations associées
 
 === update::checkUpdate
 Permet de mettre de faire vérifier les mises à jour
@@ -236,7 +260,7 @@ Permet de mettre de faire vérifier les mises à jour
 === update::update
 Permet de mettre à jour Jeedom et tous les plugins
 
-== API JSON Exemples
+== API JSON Examples
 Voici un exemple d'utilisation de l'API. Pour l'exemple si dessous j'utilise https://github.com/jeedom/core/blob/stable/core/class/jsonrpcClient.class.php[cette class php] qui permet de simplifier l'utilisation de l'api.
 
 Récupération de la liste des objets :

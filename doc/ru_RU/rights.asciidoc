@@ -1,36 +1,36 @@
 = Droits
 
-C'est ici que vous allez pouvoir gerer les droits finements des utilisateurs sur les pages, équipement et scénario
+C'est ici que vous allez pouvoir gérer finements les droits des utilisateurs sur les pages, équipements et scénarios.
 
-Accessible depuis Général -> Administration -> Gestion des droits avancés :
+Accessible depuis Administration -> Gestion des droits avancés :
 
 image::../images/rights.png[]
 
-Une fois dessus cette page se decompose en 3 parties : Général, Plugins/Equipements et Scénario.
+Une fois dessus cette page se décompose en 3 parties : Général, Plugins/Equipements et Scénario.
 
-En haut a droite vous retrouver le login de l'utilisateur pour lequel vous modifiez les droits et le bouton de sauvegarde
+En haut à droite vous retrouvez le login de l'utilisateur pour lequel vous modifiez les droits et le bouton de sauvegarde
 
 [IMPORTANT]
-Si l'utilisateur est admin, vous ne pouvez lui restreindre ses droits. Il faut d'abord lui désactiver le droits admin
+Si l'utilisateur est admin, vous ne pouvez lui restreindre ses droits. Il faut d'abord lui désactiver les droits admin
 
 == Général
 
 image::../images/rights2.png[]
 
-Rien de bien compliqué ici vous activez ou non le droit d'accès à la page ou la fonctionalité pour l'utilisateur
+Rien de bien compliqué ici, vous activez ou non le droit d'accès à la page ou la fonctionalité pour l'utilisateur
 
 == Plugins/Equipements
 
 image::../images/rights3.png[]
 
-Ici pour chaque équipement vous pouvez decider si l'utilisateur à le droits de le voir sur le dahsboard/vue/design (droit voir) et si il peut faire une action dessus (droit action)
+Ici pour chaque équipement, vous pouvez décider si l'utilisateur à le droit de le voir sur le dahsboard/vue/design (droit voir) et si il peut faire une action dessus (droit action)
 
 == Scénario
 
 image::../images/rights4.png[]
 
-C'est a partir de la que vous pouvez modifier les droits d'un utilisateur sur un scénario : 
+C'est à partir de là que vous pouvez modifier les droits d'un utilisateur sur un scénario : 
 
 * *Voir* : droit de voir le scénario sur le dashboard/vue/design
 * *Editer* : droit de modifier le scénario
-* *Action* : droit de forcer l'éxecution du scénario a partir du dashboard/vue/design
+* *Action* : droit de forcer l'éxecution du scénario à partir du dashboard/vue/design

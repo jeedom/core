@@ -1,97 +1,60 @@
 = FAQ
 
-Jeedom nécessite-t-il un abonnement ?::
+Erfordert Jeedom ein Abonnement ?::
 Jeedom erfordert kein Abonnement für seine Benutzung. Nur ein optioneller Online-Backup-Service ist nicht kostenlos.
 
 '''
-Jeedom utilise-t-il des serveurs extérieurs pour fonctionner ?::
-Non, Jeedom n'utilise pas d'infrastructure type "Cloud". Tout se fait en local et vous n'avez pas besoin de nos serveurs pour que votre installation fonctionne. Seuls les services comme le Market ou la sauvegarde online nécessitent l'utilisation de nos serveurs.
+Benutzt Jeedom einen externen Server, um zu funktionieren ?::
+Non, Jeedom n'utilise pas d'infrastructure type "Cloud". Tout se fait en local et vous n'avez pas besoin de nos serveurs pour que votre installation fonctionne. Seuls les services comme le Market, la sauvegarde online ou le DNS Jeedom nécessitent l'utilisation de nos serveurs.
 
 '''
-Peut-on réordonner les commandes d'un équipement ?::
-Oui c'est possible, il suffit de glisser/déposer les commandes de votre objet sur sa configuration.
+Können die Befehle der Geräte neu angeordnet werden ?::
+Ja, ´sie können einfach per Drag/Drop die Befehle auf dem Objekte verschieben und neu anordnen.
 
 '''
-Peut-on éditer le style des widgets ?::
-Oui c'est possible, soit en passant par le plugin widget, ou en utilisant la page Général -> Affichage
+Können wir den Widget Stil bearbeiten ?::
+Ja, es ist möglich, entweder über das Widget-Plugin, oder mit Hilfe der Seite Allgemein -> Anzeige
 
 '''
-Peut-on mettre plusieurs fois le même équipements sur un design ?::
-Non ce n'est pas possible, mais vous pouvez dupliquer celui-ci grâce au plugin virtuel.
+Können wir mehrmals die gleichen Geräte auf einem Design darstellen ?::
+Das ist nicht möglich, aber Sie können diese Geräte vervielfältigen, dank des virtuellen Plugins.
 
 '''
-Comment changer une donnée erronée de l'historique ?::
-Il suffit sur une courbe historique de la commande, de cliquer sur le point en question. Si vous laissez le champs vierge, alors la valeur est supprimée.
+Wie kann man eine fehlerhafte Chronik ändern ?::
+Es genügt auf einer Kurve der entsprechenden Chronik, auf den fraglichen Punkt zu klicken. Wenn Sie das Feld leer lassen, dann wird der Wert gelöscht.
 
 '''
-Comment enregistrer un ordinateur pour ne plus avoir à s'identifier ?::
-Il suffit lors de la connexion de cocher la case "Enregistrer cet ordinateur".
+Wie kann man einen Computer registrieren damit mann sich nicht anzumelden muß ?::
+Nur beim Verbinden das Kontrollkästchen "Speichern auf Computer" anklicken.
 
 '''
-On me demande de mettre à jour Jeedom alors qu'il ne me propose rien, meme après vérification.::
-C'est normal, pendant la phase de développement de la futur bêta, les numéros de version ne sont pas forcément incrémentés après chaque mise à jour.
+Wie lange dauert eine Sicherung ?::
+Es gibt keine Standard-Länge, es hängt von dem System ab, aber es kann mehr als 5 Minuten in Anspruch nehmen, das ist normal.
 
 '''
-Combien de temps dure un backup ?::
-Il n'y a pas de durée standard, cela dépend du système et du volume de données à sauvegarder, mais il peut prendre plus de 5 minutes, c'est normal.
+Gibt es eine spezielle Mobile Anwendung ?::
+Jeedom hat eine mobile Version für den Einsatz auf Handy und Tablet. Das Team ist aber dabei eine mobile Anwendung zu entwickeln, derzeit wurde noch kein Release-Datum angekündigt. 
+Es ist durchaus möglich, dass Drittentwickler eine Anwendung für Jeedom anbietet.
 
 '''
-Y a-t-il une application mobile dédiée ?::
-Jeedom possède une version mobile adaptée à l'utilisation sur mobile et tablette. Une application mobile est en cours de développement par l'équipe actuellement, aucune date de sortie n'est annoncée pour l'instant.
-Il est tout à fait possible que des développeurs tiers proposent des applications dédiées pour Jeedom.
+Was sind die Anmeldeinformationen, um mich das erste Mal einzuloggen ?::
+Wenn sie sich das erste mal mit Jeedom Verbinden (und sogar danach, wenn Sie die Loggindaten nicht geändert haben) ist der Benutzernamen und das Standardkennwort admin/admin.
+Bei der ersten Verbindung, wird dringend gebeten, diese Loggindaten für zusätzliche Sicherheit zu ändern.
 
 '''
-Quels sont les identifiants pour me connecter la première fois ?::
-Lors de votre première connexion à Jeedom (et même après si vous ne les avez pas modifiés), le nom d'utilisateur et le mot de passe par défaut sont admin/admin.
-A la première connexion, il vous est fortement recommandé de modifier ces identifiants pour plus de sécurité.
+Oder kaufen Sie die Mini+ ?::
+Die Jeedom-Mini wird von unseren Partner http://www.domadoo.fr/ vertrieben .
 
 '''
-Comment externaliser la BDD ?::
-Editieren Sie einfach die /usr/share/nginx/www/jeedom/core/config/common.config.php Datei.
-In dieser Datei ist die Konfiguration der Datenbank :
-
-[source,php]
-    $CONFIG = array(
-        //MySQL parametres
-        'db' => array(
-            'host' => 'localhost',
-            'port' => 3306,
-            'dbname' => 'jeedom',
-            'username' => 'jeedom',
-            'password' => '************',
-        )
-    );
-
-Ändern Sie einfach die Einstellungen entsprechend der Jeedom IDs  basierend auf dem MySQL-Server.
-Man führt diese Veränderungen aus: 
-
-[source,bash]
-sudo php /usr/share/nginx/www/jeedom/install/install.php
-
-Die Sache ist erledigt ! 
+Seit dem Kauf ist es nicht möglich von aussen auf Jeedom  zuzugreifen.::
+Standardmäßig ist auf der Box Jeedom die Wurzel von Nginx. Sie dürfen nicht nach /jeedom/ die Zugriffsadresse hinzufügen. Die genaue Adresse ist : Ihre_öffentliche_IP:Ihr_Port/
 
 '''
-Ou acheter la Mini+ ?::
-La Jeedom Mini est commercialisée chez notre partenaire http://www.domadoo.fr/ .
-
-'''
-Quelle est la date de sortie de la Jeedom Center ?::
-Das Jeedom-Center ist noch in diesem Jahr zu erwarten.
-
-'''
-Quelle est le tarif de la Jeedom Center ?::
-Es gibt vorerst keinen angekündigten Preis. 
-
-'''
-Impossible d'accéder à Jeedom de l'extérieur depuis l'achat d'une box::
-Par défaut, Jeedom est à la racine de Nginx sur les box. Vous n'avez plus à rajouter /jeedom/ dans l'adresse d'accès. L'adresse exacte sera donc : votre_ip_public:votre_port/
-
-'''
-Peut on mettre Jeedom en https ?::
-Oui, 3 possibilités :
-* Vous avez un pack power ou plus, dans ce cas il vous suffit d'utiliser le DNS Jeedom.
-* Soit avez un DNS et vous savez mettre en place un certificat valide, dans ce cas c'est une installation standard d'un certificat.
-* Soit vous n'avez pas de DNS, et avoir un certificat auto-signé (pour rappel un certificat auto-signé assure le cryptage des données mais pas la validation du site) ne vous gêne pas, dans ce cas il faut faire ce qui suit, si ça ne marche pas quand vous mettez https devant l'URL :
+Kann Jeedom https ?::
+Ja, es  giebt 3 Möglichkeiten :
+* Sie haben ein PowerPack oder mehr, in diesem Fall verwenden sie nur die Jeedom-DNS.
+* Entweder sie haben eine DNS und sie wissen wie ein gültiges Zertifikat zu erstellen ist, in diesem Fall ist es eine standardisierte Zertifikat Installation.
+* Sie haben entweder keine DNS, und nachdem ein selbstsigniertes Zertifikat (für Rückruf ein selbstsigniertes Zertifikat-Verschlüsselung der Daten aber nicht die Validierung der Website bietet) Sie behindern, in diesem Fall um zu tun, was folgt, wenn es nicht funktioniert, wenn man Https in der URL :
 
 [source,bash]
 sudo su -
@@ -100,34 +63,42 @@ sudo su -
 Sie können in der Jeedom Konfiguration https erzwingen.
 
 '''
-J'ai le message : "Vous avez un trop grand nombre de système jeedom déclaré, veuillez en réduire le nombre et demander une réinitialisation de vos clefs d'installation", que faire ?::
-Rendez vous sur le market, connectez-vous avec votre compte puis allez sur votre page profil et demandez une réinitilisation des clefs d'installation.
+Ich erhalte die Meldung : "Vous avez un trop grand nombre de système jeedom déclaré, veuillez en réduire le nombre et demander une réinitialisation de vos clefs d'installation", was ist zu tun?
+Gehen sie auf den Markt, melden sie sich auf Ihr Konto an und gehen sie zu ihrem Profil und fragen nach dem Rücksetzen des Installationsschlüssels.
 
 '''
-Qu'est ce que événement seulement et lifetime cache ?::
-* Événement seulement : indique à Jeedom de ne jamais demander la valeur (c'est l'équipement qui la remonte). Donc lors de la réception d'une valeur, celle-ci à une durée de vie infinie (jusqu’à la réception de la suivante).
+Was ist, nur Ereignis und Lifetime Cache ?::
+* nur Ereignis : weist Jeedom an, niemals nach dem Wert zu fragen(c'est l'équipement qui la remonte). Also beim Empfang eines Werts, hat dieser eine unendliche Lebensdauer (bis zum nächsten Empfang). 
 * Lifetime cache : Durée de validité d'une valeur, si vous mettez 60 secondes par exemple, quand la valeur datera de plus de 60 secondes ET que jeedom en a besoin (dashboard, scénario...) alors il ira interroger le module pour avoir une valeur à jour.
 
-Attention, ces 2 options sont reservées aux utilisateurs avancés qui comprennent parfaitement leur fonction, une erreur de configuration dans cette partie peut rendre une installation instable voire inopérante. Par exemple, en zwave, rfxcom et enocean, la case événement seulement devrait TOUJOURS etre cochée.
+Achtung, diese 2 Optionen sind für erfahrene Benutzer die diese Funktionen verstehen vorbehalten, ein Konfigurationsfehler in diesem Teil kann das System instabil oder funktionsunfähig machen. Zum Beispiel sollte in Zwave, RFXCOM und enocean, das Feld Ereignis IMMER angekreutzt werden,
 
 '''
-Comment remettre à plat les droits ?::
-En SSH faites : 
+Wie sind die Rechte zu überarbeiten ?::
+In SSH eingeben : 
 [source,bash]
 sudo su -
 chmod -R 775 /usr/share/nginx/www/jeedom
 chown -R www-data:www-data /usr/share/nginx/www/jeedom
 
 '''
-Ou se trouve les backups de jeedom ?::
+Oder ist die Sicherungen von Jeedom ?::
 Sie sind im Verzeichnis /usr/share/nginx/www/jeedom/backup
 
 '''
-Comment mettre à jour jeedom en SSH ?::
-Ssh hergestellt: 
+Wie kann mann Jeedom mit SSH auf den neuesten Stand bringen ?::
+In SSH eingeben : 
 
 [source,bash]
 sudo su -
 php /usr/share/nginx/www/jeedom/install/install.php
 chmod -R 775 /usr/share/nginx/www/jeedom
 chown -R www-data:www-data /usr/share/nginx/www/jeedom
+
+'''
+La Webapp est-elle compatible Symbian ?::
+La webapp necessite un smartphone supportant le HTML5 et le CSS3. Elle n'est donc malheureusement pas compatible Symbian.
+
+'''
+Sur quelles plateformes Jeedom peut-il fonctionner ?::
+Pour que Jeedom fonctionne il faut une plateforme linux avec les droits root ou un système type docker. Il ne fonctionne donc pas sur une plateforme android pure.
