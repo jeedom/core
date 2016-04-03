@@ -94,7 +94,7 @@ class system {
 	}
 
 	public static function php($arguments) {
-		return exec("php ".$arguments);
+		return exec('php ' . $arguments);
 	}
 }
 ?>
