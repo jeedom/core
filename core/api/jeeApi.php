@@ -596,8 +596,8 @@ if (init('type') != '') {
 				if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
 					throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . secureXSS($extension));
 				}
-				if (filesize($_file['tmp_name']) > 50000000) {
-					throw new Exception('La taille du fichier est trop importante (maximum 50Mo)');
+				if (filesize($_file['tmp_name']) > 100000000) {
+					throw new Exception('La taille du fichier est trop importante (maximum 100Mo)');
 				}
 				$uploadfile = $uploaddir . $jeeNetwork->getId() . '-' . $jeeNetwork->getName() . '-' . $jeeNetwork->getConfiguration('version') . '-' . date('Y-m-d_H\hi') . '.tar' . $extension;
 				if (!move_uploaded_file($_file['tmp_name'], $uploadfile)) {
@@ -627,8 +627,8 @@ if (init('type') != '') {
 				if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
 					throw new Exception('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ' . secureXSS($extension));
 				}
-				if (filesize($_file['tmp_name']) > 50000000) {
-					throw new Exception('La taille du fichier est trop importante (maximum 50Mo)');
+				if (filesize($_file['tmp_name']) > 100000000) {
+					throw new Exception('La taille du fichier est trop importante (maximum 100Mo)');
 				}
 				$bakcup_name = 'backup-' . jeedom::version() . '-' . date("d-m-Y-H\hi") . '.tar.gz';
 				$uploadfile = $uploaddir . '/' . $bakcup_name;
