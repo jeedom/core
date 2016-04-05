@@ -94,7 +94,7 @@ try {
 	echo "OK\n";
 
 	echo "Nettoyage des anciens fichiers...";
-	$tmp = dirname(__FILE__) . '/../tmp/backup';
+	$tmp = '/tmp/jeedom_restore';
 	rrmdir($tmp);
 	echo "OK\n";
 	if (!file_exists($tmp)) {
@@ -179,6 +179,7 @@ try {
 			echo "OK\n";
 		}
 	}
+	rrmdir($tmp);
 	config::save('hardware_name', '');
 	jeedom::start();
 	echo "***************Fin de la restauration de Jeedom***************\n";
