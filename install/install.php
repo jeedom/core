@@ -111,8 +111,7 @@ try {
 			if (init('version') == '') {
 				try {
 					echo __('Nettoyage du dossier temporaire (tmp)...', __FILE__);
-					exec('rm -rf ' . dirname(__FILE__) . '/../tmp/*.zip');
-					exec('rm -rf ' . dirname(__FILE__) . '/../tmp/backup');
+					exec('rm -rf /tmp/backup');
 					exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
 					echo __("OK\n", __FILE__);
 				} catch (Exception $e) {
@@ -126,7 +125,7 @@ try {
 					}
 					echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
 					echo __("Téléchargement en cours...", __FILE__);
-					$tmp_dir = dirname(__FILE__) . '/../tmp';
+					$tmp_dir = '/tmp';
 					$tmp = $tmp_dir . '/jeedom_update.zip';
 					if (!is_writable($tmp_dir)) {
 						throw new Exception(__('Impossible d\'écrire dans le dossier : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : chmod 777 -R ', __FILE__) . $tmp_dir);
@@ -168,7 +167,7 @@ try {
 					echo __("OK\n", __FILE__);
 
 					echo __("Nettoyage des dossiers en cours...", __FILE__);
-					$cibDir = dirname(__FILE__) . '/../tmp/jeedom';
+					$cibDir = '/tmp/jeedom_update';
 					if (file_exists($cibDir)) {
 						rrmdir($cibDir);
 					}

@@ -57,18 +57,6 @@ Si dans le scénario il n'y a pas de pause il est conseillé de cocher la case "
 
 ''''
 
-Le témoin nodeJS en bas de la page est rouge ou gris::
-En ssh faites "sudo service jeedom restart" pour forcer un redémarrage de celui-ci. Si ca ne marche pas faites : 
-
-[source,bash]
-sudo su -
-rm -rf /usr/share/nginx/www/jeedom/core/nodeJS
-reboot
-
-Puis mettre à jour jeedom, le redémarrer à nouveau et ca devrait être bon
-
-''''
-
 Je n'ai aucune erreur dans le log nginx.error malgrès des erreurs 500::
 En ssh :
 Editez le fichier /etc/php5/fpm/pool.d/www.conf et decommanter la ligne ";catch_worket_process=yes" (supression du ;) 
@@ -131,3 +119,6 @@ Ensuite il suffit de redemarrer php5-fpm
 
 [source,bash]
 sudo service php5-fpm restart
+
+Je ne vois pas certain plugins du market::
+Ce genre de cas arrive si votre jeedom n'est pas compatible avec le plugin, en général une mise à jour de jeedom corrige le soucis

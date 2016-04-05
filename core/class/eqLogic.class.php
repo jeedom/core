@@ -442,7 +442,7 @@ class eqLogic {
 		}
 		$mc = cache::byKey('widgetHtml' . $_version . $this->getId());
 		if ($mc->getValue() != '') {
-			//return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+			return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 		}
 
 		$replace = array(
@@ -462,6 +462,7 @@ class eqLogic {
 			'#height#' => $this->getDisplay('height', 'auto'),
 			'#width#' => $this->getDisplay('width', 'auto'),
 			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
+			'#refresh_id#' => '',
 		);
 		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {
 			if (isset($_default['#background-color#'])) {
@@ -482,7 +483,9 @@ class eqLogic {
 			$replace['#border-radius#'] = $this->getDisplay('border-radius' . $version, '4') . 'px';
 		}
 		$refresh_cmd = $this->getCmd('action', 'refresh');
-		$replace['#refresh_id#'] = ($refresh_cmd != null) ? $refresh_cmd->getId() : '';
+		if (is_object($refresh_cmd) && $refresh_cmd->getDisplay('showOn' . $version, 1) == 1) {
+			$replace['#refresh_id#'] = $refresh_cmd->getId();
+		}
 		if ($this->getDisplay('showObjectNameOn' . $version, 0) == 1) {
 			$object = $this->getObject();
 			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
