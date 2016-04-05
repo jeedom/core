@@ -1,23 +1,23 @@
-= Dépannage
+= Solución de problemas
 
-J'ai une page blanche::
-Il faut se connecter en SSH à jeedom et lancer un script d'auto-diagnostique : 
+Obtengo una página en blanco::
+Debe conectarse a  jeedom por SSH y lanzar un script de autodiagnóstico: 
 
 [source,bash]
-sudo chmod+x /usr/share/nginx/www/jeedom/health.sh;sudo /usr/share/nginx/www/jeedom/health.sh
+sudo chmod +x /usr/share/nginx/www/jeedom/health.sh;sudo /usr/share/nginx/www/jeedom/health.sh
 
-Voilà le résultat si tout est bon : 
+Este es el resultado si todo es correcto: 
 
 image::../images/depannage.png[]
 
-S'il y a un souci, le script essaye de corriger. S'il n'y arrive pas, il vous l'indiquera.
+Si hay un problema en el script lo intentará corregir, si no se lo indicará.
 
-Vous pouvez aussi regarder le log /usr/share/nginx/www/jeedom/log/nginx.error, très souvent celui-ci indique le souci.
+También puede ver el registro de usr/share/nginx/www/jeedom/log/nginx.error, muy a menudo esto le indica los problemas
 
 ''''
 
-J'ai un problème d'identifiants BDD::
-Il faut réinitialiser ceux-ci.
+Tengo un problema de identificación de la BDD:
+Necesidad de reajustarlos
 [source,bash]
 bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p
@@ -30,93 +30,104 @@ sudo chown www-data:www-data core/config/common.config.php
 
 ''''
 
-J'ai des accolades {{...}} partout::
-La cause la plus fréquente est l'utilisation d'un plugin en version bêta, et pas Jeedom, ou l'inverse
+Tengo {...} en todas partes.
+La causa más frecuente es el uso de un plugin en versión beta y no Jeedom, o viceversa
 
 ''''
 
-Lors d'une commande, j'ai une roue qui tourne sans s'arrêter::
-Encore une fois, cela est souvent dû à un plugin en bêta alors que Jeedom est en stable.
+Al lanzar un comando tengo una rueda que gira sin parar::
+Sin embargo, esto ocurre amenudo debido al uso de un plugin en versión beta, mientras que Jeedom es estable
 
 ''''
 
-J'ai des erreurs timeout sur socket.io dans les logs::
-Cela est normal, c'est le nodeJS qui redémarre sa connexion.
+Ya no tengo acceso a Jeedom ni por  ssh:.
+Este error es debido a un problema con el sistema pero no de Jeedom. 
+Si persiste después de la reinstalación es recomendable comprobar con el SAT si se trata de un problema de hardware
 
 ''''
 
-Je n'ai plus accès a Jeedom par l'interface web, ni en SSH::
-Cette erreur n'est pas dûe à Jeedom, mais à un problème avec le système. 
-Si celui ci persiste suite à une réinstallation, il est conseillé de voir avec le SAV pour un souci hardware.
+Mi escena no funciona::
+Se recomienda ver los comandos ejecutadas por la escena, 
+a menudo esto es una orden que no termina (Bucle loop)
 
 ''''
 
-Mon scenario ne s'arrête pas/plus::
-Il est conseillé de regarder les commandes éxecutées par le scénario, souvent cela vient d'une commande qui ne se termine pas.
+Mi escena es lenta al ser ejecutado::
+Si la escena no tiene pausas es aconsejable chequear "ejecutar tan pronto como sea posible" (disponible en modo experto)
 
 ''''
 
-Mon scénario est lent à se déclencher::
-Si dans le scénario il n'y a pas de pause, il est conseillé de cocher la case "éxécuter le plus rapidement possible" (disponible en mode expert).
-
-''''
-
-Le témoin nodeJS en bas de la page est rouge ou gris::
-En SSH faite "sudo service jeedom restart" pour forcer un redémarrage de celui-ci. Si ca ne marche pas faites : 
+El testigo nodeJS es de color rojo o gris::
+SSH indica "sudo service jeedom restart" se reinicia a la fuerza. Si el trabajo no es realizado: 
 
 [source,bash]
 sudo su -
 rm -rf /usr/share/nginx/www/jeedom/core/nodeJS
 reboot
 
-Puis mettre à jour Jeedom, le redemarrer à nouveau et cela devrait être bon.
+Después de  actualizar jeedom, reinicie otra vez y ya debería funcionar
 
 ''''
 
-Je n'ai aucune erreur dans le log nginx.error malgré des erreurs 500::
-En SSH :
-Editez le fichier /etc/php5/fpm/pool.d/www.conf et décommenter la ligne ";catch_worket_process=yes" (supression du ;) 
-puis redemarrez php "sudo service php5-fpm restart".
+No tengo ningún error en el registro nginx.error a pesar de los errores 500::
+ssh :
+Editar el archivo /etc/php5/fpm/pool.d/www.conf y descomentar la línea "; catch_worket_process = yes" (borra el ;)) 
+Reiniciar el php "sudo service php5-fpm restart"
 
 ''''
 
-J'ai des instabilités ou des erreurs 504::
-Vérifiez si votre système de fichier n'est pas corrompu, en SSH la commande est : "sudo dmesg | grep error"
+Tengo inestabilidades o errores 504::
+Compruebe que su sistema de archivos no está dañado, por ssh ejecute el comando: "sudo dmesg |" grep error"
 
 ''''
 
-Je ne vois pas tous mes équipements sur le dashboard::
-Souvent cela est dû au fait que les équipements sont affectés à un objet qui n'est pas le fils ou 
-l'objet lui même du premier objet selectionné à gauche dans l'arbre (vous pouvez dans votre profil configurer celui-ci)
+No veo todos mis dispositivos en el dashboard::
+Souvent cela du au fait que les équipements sont affectés à un objet qui n'est pas le fils ou 
+l'objet lui même du premier objet sélectionné à gauche dans l'arbre (vous pouvez dans votre profil configurer celui-ci)
 
 ''''
 
-Lors de la connexion du maître avec les esclaves, j'ai des erreurs::
-Vérifiez que vous avez bien mis les /jeedom si vous utilisez ceux-ci juste après l'IP de jeedom 
-(souvent le cas en installation DIY)
+Al conectar al maestro con los esclavos obtengo errores.
+Compruebe que ha puesto el /jeedom correctamente  Si lo utilizas debe ir justo después de la IP jeedom 
+(a menudo en caso de instalación DIY)
 
 ''''
 
-J'ai l'erreur suivante : SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'::
-Cela est du à MySQL qui s'est arreté, ce n'est pas normal, les cas courants sont : 
-* souci de place sur le système de fichier (peut être vérifié en faisant la commande "df -h", en ssh)
-* problème de corruption de fichier, arrive souvent suite à un arrêt non propre de jeedom (coupure de courant)
+Tengo el siguiente error : SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'::
+Esto es que el MySQL se detiene , no es normal, las posibles causas son: 
+* problemas de espacio en el sistema de archivos (se puede verificar utilizando el comando "df - h", SSH)
+* problema de corrupción de archivo, a menudo ocurre después de un cierre no limpio de jeedom (apagón)
 
-Malheureusement, il n'y a pas beaucoup de solution si c'est le deuxième cas, 
-le mieux étant de récupérer un backup (disponible dans /usr/share/nginx/www/jeedom/backup par défaut), 
-de réinstaller jeedom et de restaurer le backup.
-Vous pouvez aussi en SSH regarder pourquoi MySQL ne veut pas demarrer : 
+Por desgracia no hay solución en el segundo caso, 
+Lo mejor sería recuperar una copia de seguridad (disponibles en /usr/share/nginx/www/jeedom/backup por defecto), 
+reinstale jeedom y restaurare desde la copia de seguridad.
+También puedes comprobar desde SSH porque no se ejecuta mysql: 
 [source,bash]
 sudo su -
 service mysql stop
 mysqld --verbose
 
-Ou consulter le log : /var/log/mysql/error.log
+O consultar el registro: /var/log/mysql/error.log
 
 ''''
 
-Les boutons arrêter/redémarrer ne fonctionnent pas::
-Sur une installation DIY c'est normal, il faire en SSH les commandes suivantes pour donner les droits à Jeedom d'effectuer ces actions.
+los botones de parada/reinicio no funcionan:.
+En una instalación  DIY es normal hacer uso del comando visudo en SSH  
+Debe añadir: www-data ALL=(ALL) NOPASSWD: ALL.
+
+''''
+
+J'ai souvent des "502 bad gateway"::
+Il faut aller (en mode expert) dans la configuration de jeedom, puis Système OS et cliquer sur lancer. La vous cliquez sur "PHP log", si vous avez le message "server reached pm.max_clidren", c'est qu'il manque des processus php fpm, il faut donc en autoriser plus. Pour cela faire : 
+
 [source,bash]
 sudo su -
-echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
+cd /etc/php5/fpm/pool.d/
+vim www.conf
+
+Editer la ligne "pm.max_children" en mettant "pm.max_children = 20"
+
+Ensuite il suffit de redemarrer php5-fpm
+
+[source,bash]
+sudo service php5-fpm restart

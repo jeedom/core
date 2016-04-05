@@ -1,20 +1,20 @@
 = API HTTP
 
-Jeedom met à disposition des développeurs et des utilisateurs une API complète afin de pouvoir piloter Jeedom depuis n'importe quel objet connecté.
+Jeedom provides developers and users with a full API to be able to control Jeedom from any connected object.
 
 Deux API sont disponibles : une orientée développeur qui se pilote en JSON RPC 2.0, et une autre via URL et requête HTTP.
 
 Cette API s'utilise très facilement par de simples requêtes HTTP via URL. Pour simplifier au maximum, l'API utilise seulement 2 types de requête HTTP.
 
-Attention si vous etes en DIY il faut ajouter un /jeedom après l'ip des URLs.
+Attention si vous êtes en DIY il faut ajouter un /jeedom après l'ip les URLs.
 
 == Pilotage des scénarios
 
 La première requête est utilisée uniquement pour piloter un scénario.
 
-Voici l'URL = http://\#IP_JEEDOM#/core/api/jeeApi.php?apikey=\#APIKEY#&type=scenario&id=\#ID#&action=\#ACTION#
+Here is the URL = http://\#IP_JEEDOM#/core/api/jeeApi.php?apikey=\#APIKEY#&type=scenario&id=\#ID#&action=\#ACTION#
 
-\#IP_JEEDOM# correspond à votre url d’accès à Jeedom. Il s’agit (sauf si vous êtes connecté à votre réseau local) de l’adresse internet que vous utilisez pour accéder à Jeedom depuis l’extérieur
+\#IP_JEEDOM# correspond à votre url d’accès à Jeedom. Il s’agit (sauf si vous êtes connecté à votre réseau local) de l’adresse internet que vous utilisez pour accéder à Jeedom depuis l’extérieure.
 
 \#API_KEY# correspond à votre clé API, propre à votre installation. Pour la trouver il faut aller dans le menu « Général », puis « Administration » et « Configuration », en activant le mode Expert vous verrez alors une ligne Clef API.
 
@@ -32,8 +32,8 @@ La seconde requête permet tout simplement de piloter tous les autres modules de
 
 Voici l'URL = http://\#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY#&type=cmd&id=\#ID#
 
-\#IP_JEEDOM# et \#API_KEY# s'utilisent de la même façon que précédemment.
+\#IP_JEEDOM# et \#API_KEY# s'utilisent de la même façon que précédement.
 
-\#ID# correspond à l’id de ce que vous voulez piloter ou recevoir comme information.
+\#ID# correspond à l’id de ce que vous voulez piloter ou recevoir comme informations.
 
-Le plus simple pour avoir cette URL est d'aller sur la page Résumé domotique, de chercher la commande puis d'ouvrir sa configuration avancée; là vous allez voir une URL qui contient déja tout ce qu'il faut en fonction du type et du sous-type de la commande. Voir link:https://jeedom.fr/doc/documentation/core/fr_FR/doc-core-display.html#_informations_2[ici]
+Le plus simple pour avoir cette URL est d'aller la page Résumé domotique, de chercher la commande puis d'ouvrir sa configuration avancée et là vous allez voir une URL qui contient déjà tous ce qu'il faut en fonction du type et du sous-type de la commande. Voir link:https://jeedom.com/doc/documentation/core/fr_FR/doc-core-display.html#_informations_2[ici]

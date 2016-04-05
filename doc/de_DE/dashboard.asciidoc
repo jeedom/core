@@ -1,31 +1,31 @@
-= Dashboard
+= Armaturenbrett
 
-Une des pages principales de Jeedom, celle-ci affiche un compte-rendu de toute votre domotique. Ce compte-rendu (contrairement aux vues et design) est auto-généré par Jeedom.
+Das ist die Hauptseite von Jeedom, es zeigt eine Übersicht über die ganze Heimautomation.
 
-Elle est accessible en cliquant sur Accueil -> Dashboard
+Es kann zugegriffen werden, indem Sie auf Mein Haus -> Armaturenbrett klicken 
 
 image::../images/dashboard2.JPG[]
 
 [TIP]
-Comme vous pouvez le voir sur la capture, il est possible d'aller directement sur un objet de votre domotique. Cela permet de n'avoir que les équipements qui vous interessent, et donc de charger la page plus rapidement.
+Wie man auf dem Screenshot sehen kann, ist es möglich, direkt auf ein Gerät in Ihrer Home-Automation zu gehen. Cela permet de n'avoir que les équipements qui vous interesse et donc de charger la page plus rapidement
 
-Voici un exemple de dashboard :
+Hier ist ein Beispiel für ein Armaturenbrett  
 
 image::../images/dashboard.JPG[]
 
-Vous avez en haut à gauche une petite icône pour afficher/masquer l'arbre des objets : 
+Sie haben auf der Seite oben links ein kleines Symbol zum anzeigen/ausblenden des Objektbaumes : 
 
 image::../images/dashboard1.JPG[]
 
-Au milieu, vous pouvez choisir de ne filtrer que sur certains types d'équipement :
+In der Mitte sind Schaltflächen, mit denen mann verschiedene Gerätetypen Filtern kann :
 
 image::../images/dashboard3.JPG[]
 
-A droite, un premier bouton permet de passer en mode édition, pour par exemple modifier l'ordre des widgets (à l'aide d'un cliqué déposé sur le widget), vous pouvez aussi dans ce mode édition redimensionner certains widgets et réorganiser l'ordre des commandes à l'interieur de celui-ci. Attention, ces modifications ne sont pas applicables aux widgets spécifiques de certains plugins.
+Rechts ist eine Schaltfläche zum wechseln in den Bearbeitungsmodus, wo man beispielsweise die Reihenfolge der Widgets ändern kann (das erreicht man mit einem Klick auf das Widget), sie können auch in diesem Bearbeitungsmodus einige Widget in der Größe ändern und die einzelnen Befehl innerhalb dieses Widgets reorganisieren
 
-Puis un bouton pour afficher/masquer les scénarios :
+Dann noch eine Schaltfläche zum Anzeigen/Verbergen der Szenarien :  
 
 image::../images/dashboard4.JPG[]
 
 [TIP]
-Il est possible, à partir de votre profil, de configurer Jeedom pour que l'arbre des objets et/ou les scénarios soient visibles par défaut lorsque vous arrivez sur le Dashboard.
+Es ist in ihrem Profil möglich, Jeedom so zu konfigurieren, das der Gerätebaum und/oder die Szenarien standardmäßig sichtbar sind, wenn sie auf das Armaturenbrett kommen

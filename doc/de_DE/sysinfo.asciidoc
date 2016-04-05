@@ -1,16 +1,16 @@
-= Informations système
+= System Information
 
-La page systeme information vous permet d'avoir un resumé générale sur votre systeme (hardware + OS)
+La page systeme information vous permet d'avoir un résumé général sur votre système (hardware + OS)
 
-Il est accessible à partir du menu Général -> Administration -> Informations système : 
+Sie ist über das Menü Analyse -> System Information erreichbar : 
 
 image::../images/sysinfo.png[]
 
-Une fois dessus vous obtenez : 
+Sobald sie darauf sind, sehen sie : 
 
 image::../images/sysinfo2.png[]
 
-Tous ne sera pas detaillé ici, cette page est plus la pour aider en cas de support. Ce qu'il faut savoir : 
+Tout ne sera pas d"taillé ici, cette page est plus là pour aider en cas de support. Ce qu'il faut savoir : 
 
-* une mémoire pleine à 100% est normale sous linux, il ne la vide que quand il en a besoin
-* on peut voir dans la partie tout en bas l'occupation du disque
+* Ein mit 100 % voller Speicher ist unter Linux normal, er leert ihn wenn er ihn braucht.
+* Man kann ganz unten auf der Seite die Belegung der Speichermediums sehen

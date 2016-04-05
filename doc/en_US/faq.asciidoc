@@ -5,7 +5,7 @@ No, Jeedom does not require a subscription to use. Only an online backup service
 
 '''
 Does Jeedom require external servers to operate?::
-No, Jeedom does not need any cloud infrastructure. Everything run locally and you do not need our servers for your installation to work. Only services such as Market or online backup require the use of our servers.
+Non, Jeedom n'utilise pas d'infrastructure type "Cloud". Tout se fait en local et vous n'avez pas besoin de nos serveurs pour que votre installation fonctionne. Seuls les services comme le Market, la sauvegarde online ou le DNS Jeedom nécessitent l'utilisation de nos serveurs.
 
 '''
 Can the order of the controls of a device be changed?::
@@ -28,10 +28,6 @@ How to avoid to log in each time?::
 At login just check the box "Register this computer".
 
 '''
-I'm asked to update Jeedom even though no update seems to be available, even after check for update.::
-This is normal, during the development phase of the futur beta, version numbers are not necessarily incremented after each update.
-
-'''
 How long takes a backup?::
 There is no standard time, it depends on the system and the data volume, so it may take more than 5 minutes, which is normal.
 
@@ -46,41 +42,8 @@ When you first connect to Jeedom (and beyond if you don't change it) the user na
 At the first connection, it is strongly recommended to change these identifiers for better security.
 
 '''
-How to use an external database?::
-Just edit the file /usr/share/nginx/www/jeedom/core/config/common.config.php.
-In this file is the configuration of the database :
-
-[source,php]
-    $CONFIG = array(
-        //MySQL parameters
-        'db' => array(
-            'host' => 'localhost',
-            'port' => 3306,
-            'dbname' => 'jeedom',
-            'username' => 'jeedom',
-            'password' => '************',
-        )
-    );
-
-Simply change the settings according to the IDs of the Jeedom database on the MySQL server.
-Perform these modifications:
-
-[source,bash]
-sudo php /usr/share/nginx/www/jeedom/install/install.php
-
-Voila! 
-
-'''
 Where to buy the Mini+?::
 Jeedom Mini is marketed at our partner http://www.domadoo.fr/.
-
-'''
-What is the release date of Jeedom Center?::
-The Jeedom Center is expected later this year.
-
-'''
-What Is the price of the Jeedom Center?::
-There is no price announced yet.
 
 '''
 Impossible to access Jeedom from to the outside after purchasing a box::
@@ -131,3 +94,11 @@ sudo su -
 php /usr/share/nginx/www/jeedom/install/install.php
 chmod -R 775 /usr/share/nginx/www/jeedom
 chown -R www-data:www-data /usr/share/nginx/www/jeedom
+
+'''
+La Webapp est-elle compatible Symbian ?::
+La webapp necessite un smartphone supportant le HTML5 et le CSS3. Elle n'est donc malheureusement pas compatible Symbian.
+
+'''
+Sur quelles plateformes Jeedom peut-il fonctionner ?::
+Pour que Jeedom fonctionne il faut une plateforme linux avec les droits root ou un système type docker. Il ne fonctionne donc pas sur une plateforme android pure.

@@ -1,18 +1,18 @@
-= Centre des messages
+= Centro de mensajes
 
-Le centre des messages regroupes tous les messages important que vous devez regarder
+Le centre des messages regroupe tous les messages importants que vous devez regarder.
 
-Il est accessible que quand il y a des messages, en cliquant sur le nombre de messages : 
+Il n'est accessible que lorsqu'il y a des messages en cliquant sur le nombre de messages : 
 
 image::../images/message1.png[]
 
-Voici celui-ci : 
+Voici un exemple : 
 
 image::../images/message.png[]
 
-Il est assez simple, il vous montre la date et l'heure du message, le plugin qui l'a émit et le message en question, vous pouvez en appuyant sur la bouton au tout debut de la ligne d'un message supprimer le message en question (il reviendra si le problème est toujours d'actualité)
+Il est assez simple. Il vous montre la date et l'heure du message, le plugin qui l'a émis et le message en question. Vous pouvez, en appuyant sur le bouton au tout début de la ligne d'un message, supprimer le message en question (il reviendra si le problème est toujours d'actualité).
 
-En haut on retrouve un selecteur pour filtrer les message que sur un plugin particulier et tout a droite un bouton pour vider tous les messages
+En haut, on retrouve un sélecteur pour filtrer les messages sur un plugin particulier et tout à droite un bouton pour vider tous les messages.
 
 [TIP]
-Lorsque vous avez une erreur dans le centre des message essayez d'abord de supprimer le message puis voir si l'erreur revient avant de contacter le support. Il arrive (comme sur la capture ici) que ca soit juste du à un soucis de connexion réseaux
+Lorsque vous avez une erreur dans le centre des messages, essayez d'abord de supprimer le message puis voir si l'erreur revient avant de contacter le support. Il arrive (comme sur la capture ici) que ce soit juste dû à un soucis de connexion réseau.

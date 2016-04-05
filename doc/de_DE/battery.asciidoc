@@ -1,0 +1,16 @@
+= Batterien
+
+Auf der Batterien-Seite können Sie den Status aller Ihrer Geräte auf einen Schlag sehen. Sie ist erreichbar über das Menü Analyse -> Batterien :   
+
+image::../images/battery.PNG[]
+
+Sobald sie darauf sind, sehen sie : 
+
+image::../images/battery2.PNG[]
+
+Sie können die Liste der Batterie-Module auf dieser Seite sehen, die verbleibende Batteriekapazität (die Farbe der Kachel hängt von der Batteriekapazität ab), die Art und Anzahl der Batterien die in das Modul eingesetzt werden müssen, der Typ des Moduls sowie das Datum wann die Information der Batteriekapazität aktualisiert wurde.
+
+[TIP]
+Die Alarm/Warnschwellen für den Batteriestand sind konfigurierbar, wie allgemein in der Jeedom Konfiguration (Einstellungen -> Konfiguration und dann im Teil "Geräte Konfiguration"), oder durch die Geräte Seite, in der erweiterten Konfiguration. 
+
+Wenn sie mit der Maus auf die äußerste linke Seite gehen haben sie Zugang zu einem erweiterten Filter-Menü, für eine genau suchen von Modultyp, Warnung ....

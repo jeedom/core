@@ -1,6 +1,6 @@
-= Sécurité
+= Security
 
-Le menu sécurité permet de configurer le système "Anti-piratage" primaire de Jeedom. Il n'est disponible qu'en mode Expert. Il s'agit d'un système de bannissement d'adresses IP, si une d'entre elles essaye de se connecter plusieurs fois à Jeedom sans succès alors elle ne pourra plus essayer pendant un temps prédefini.
+The Security menu to configure the system "Anti-piracy" primary Jeedom. It is available only in Expert mode. This is an IP ban system, if one of them tries to connect several times to Jeedom without success then it will no longer try for a predefined time.
 
 Ce menu permet également de suivre en temps réel les personnes connectées sur Jeedom. Cette information est disponible sur le premier onglet "Statut". Il donnera la liste des adresses IP qui se sont ou ont essayées de se connecter à Jeedom avec certaines informations. Des actions sont disponibles comme le bannissement des adresses IP, ou la suppression du bannissement (bouton supprimer).
 
@@ -13,9 +13,9 @@ image::../images/security2.png[]
 Plusieurs options sont disponibles : 
 
 * *Activer la sécurité anti-piratage* : permet d'activer ou non le système de bannissement
-* *Nombre de tentatives de connexion max* : nombre maximum de tentative de connexion infructueuse avant banissement par rapport à un temps donnée (ici si plus de 3 tentatives en 30min)
+* *Nombre de tentatives de connexion max* : nombre maximum de tentatives de connexions infructueuses avant banissement par rapport à un temps donné (ici si plus de 3 tentatives en 30min)
 * *Durée du bannissement (min)* : la durée du bannissement
-* *Liste blanche d'IP* : Liste blanche des IPs ne pouvant etre bannies.Par défaut, cette liste est configurée pour accepter toutes les connexions depuis votre réseau local (chez vous).Ainsi chez vous, vous ne pouvez pas être banni. Toutefois, si votre réseau local possède une typologie différente, il faudra paramétrer cette liste en fonction.
+* *Liste blanche d'IP* : Liste blanche des IPs ne pouvant être bannies.Par défaut, cette liste est configurée pour accepter toutes les connexions depuis votre réseau local (chez vous). Ainsi chez vous, vous ne pouvez pas être banni. Toutefois, si votre réseau local possède une typologie différente, il faudra paramétrer cette liste en fonction.
 
 [TIP]
 Pensez bien à sauvegarder les changements

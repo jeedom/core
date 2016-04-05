@@ -2,26 +2,28 @@
 
 C'est ici que l'on va pouvoir définir la liste des utilisateurs autorisés à se connecter à Jeedom, mais également leurs droits d'administrateur
 
-Accessible par Général -> Administration -> Utilisateurs : 
+Accessible par Administration -> Utilisateurs : 
 
 image::../images/user.png[]
 
-Une fois dessus vous obtenez : 
+Sobald sie darauf sind, sehen sie : 
 
 image::../images/user2.png[]
 
-En haut vous avez un bouton pour ajouter un compte temporaire (pour par exemple fournir un accès au support), une fois que vous cliquez dessus vous allez avoir une URL à passer à la personne devant l'utiliser. Ce compte a une durée de vie de 24h. Vous avez aussi un bouton pour ajouter un utilisateur, si vous cliquez dessus Jeedom vous demandera le mot de passe et le login de l'utilisateur :
+En haut vous avez un bouton pour ajouter un compte temporaire (pour par exemple fournir un accès au support). Une fois que vous cliquez dessus, vous allez avoir une url à envoyer à la personne devant l'utiliser. Ce compte a une durée de vie de 24h.
+Vous avez aussi un bouton pour ajouter un utilisateur. Si vous cliquez dessus, Jeedom vous demandera le mot de passe et le login de l'utilisateur :
 
 image::../images/user3.png[]
 
 En dessous vous avez un tableau :
 
 * *Nom d'utilisateur* : le login de l'utilisateur
-* *Actions* : la possibilité de changer le mot de passe de l'utilisateur ou de supprimer son compte
-* *Actif* : la possibilité de desactiver le compte
-* *Droits* : la possibilité de passer ou non l'utilisateur en mode administrateur (permet d'avoir accès à tout ce qui est configuration de Jeedom, création des scénarios, gestion des plugins, configuration des équipements, des designs, des vues...)
-* *Date de dernière connexion* : date de derniere connexion de l'utilisateur. Attention ici c'est la date de connexion réelle, ainsi si vous enregistrez votre ordinateur la date de connexion n'est pas mise à jour à chaque fois que vous y retournez
-* *Accès direct* : donne une URL pour se connecter directement à Jeedom avec le compte en question
+* *Actions* : La possibilité de changer le mot de passe de l'utilisateur ou de supprimer son compte
+* *Actif* : la possibilité de désactiver le compte
+* *Droits* : la possibilité de passer ou non l'utilisateur en mode administrateur (permet d'avoir accès à tous ce qui est configuration de Jeedom, création des scénarios, gestion des plugin, configuration des équipements, des designs, des vues...)
+* *Clef API* : clef api personnelle de l'utilisateur
+* *Date de dernière connexion* : date de dernière connexion de l'utilisateur. Attention, ici c'est la date de connexion réelle; ainsi si vous enregistrez votre ordinateur, la date de connexion n'est pas mise à jour à chaque fois que vous y retournez.
+* *Accès direct* : donne une url pour se connecter directement à Jeedom avec le compte en question
 
 [TIP]
-En cas de changement n'oubliez pas de cliquer sur sauvegarder
+En cas de changement, n'oubliez pas de cliquer sur "sauvegarder".
