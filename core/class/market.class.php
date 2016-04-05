@@ -827,7 +827,7 @@ class market {
 				if (!create_zip($cibDir, $tmp)) {
 					throw new Exception(__('Echec de création de l\'archive zip', __FILE__));
 				}
-				//rrmdir($cibDir);
+				rrmdir($cibDir);
 				break;
 			default:
 				$type = $this->getType();
