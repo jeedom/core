@@ -719,7 +719,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
     html.addClass('jeedomAlreadyPosition');
     html.css('z-index', 1000);
 
-    if (_type == 'text' || _type == 'graph') {
+    if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
        if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
             html.css('border-radius', '0px'); 
@@ -729,7 +729,7 @@ function displayObject(_type, _id, _html, _plan, _noRender) {
 }
 
 for (var key in _plan.css) {
- if (_type == 'text' || _type == 'graph') {
+ if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
     if (key == 'background-color') {
         if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
             html.css(key, _plan.css[key]);
@@ -747,7 +747,7 @@ if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate' &
 }
 }
 
-if (_type == 'text' || _type == 'graph') {
+if (_type == 'text' || _type == 'graph' || _type == 'plan' || _type == 'view') {
     if (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
             html.css('background-color', 'transparent');
