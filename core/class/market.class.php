@@ -813,11 +813,11 @@ class market {
 				if (property_exists($plugin_id, '_excludeOnSendPlugin')) {
 					$exclude = array_merge($plugin_id::$_excludeOnSendPlugin);
 				}
+				exec('find ' . realpath(dirname(__FILE__) . '/../../plugins/' . $plugin_id) . ' -name "*.sh" -type f -exec dos2unix {} \;');
 				rcopy(realpath(dirname(__FILE__) . '/../../plugins/' . $plugin_id), $cibDir, true, $exclude, true);
 				if (file_exists($cibDir . '/data')) {
 					rrmdir($cibDir . '/data');
 				}
-				shell_exec('find ' . $cibDir . ' -name "*.sh" -type f -exec dos2unix {} \; 2>&1 >> /dev/null');
 				$tmp = '/tmp/' . $plugin_id . '.zip';
 				if (file_exists($tmp)) {
 					if (!unlink($tmp)) {
