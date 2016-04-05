@@ -817,7 +817,7 @@ class market {
 				if (file_exists($cibDir . '/data')) {
 					rrmdir($cibDir . '/data');
 				}
-				shell_exec('find ' . $cibDir . ' -name "*.sh" -type f -exec dos2unix {} \; > 2>&1 >> /dev/null');
+				shell_exec('find ' . $cibDir . ' -name "*.sh" -type f -exec dos2unix {} \; 2>&1 >> /dev/null');
 				$tmp = '/tmp/' . $plugin_id . '.zip';
 				if (file_exists($tmp)) {
 					if (!unlink($tmp)) {
@@ -827,7 +827,7 @@ class market {
 				if (!create_zip($cibDir, $tmp)) {
 					throw new Exception(__('Echec de création de l\'archive zip', __FILE__));
 				}
-				rrmdir($cibDir);
+				//rrmdir($cibDir);
 				break;
 			default:
 				$type = $this->getType();
