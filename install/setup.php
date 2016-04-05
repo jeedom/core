@@ -84,7 +84,7 @@ if (shell_exec('sudo -l > /dev/null 2>&1; echo $?') != 0) {
 	echo '<center style="font-size:1.2em;">Jeedom has not sudo right please do in ssh : </center>';
 	echo '<pre>';
 	echo "sudo su -\n";
-	echo 'echo "' . shell_exec('whoami') . ' ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)';
+	echo 'echo "' . get_current_user() . ' ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)';
 	echo '</pre>';
 	echo '</div>';
 }
