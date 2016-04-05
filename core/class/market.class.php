@@ -611,7 +611,7 @@ class market {
 			@chmod(dirname(__FILE__) . '/../../plugins', 0775);
 		}
 		log::add('update', 'alert', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
-		$tmp_dir = dirname(__FILE__) . '/../../tmp';
+		$tmp_dir = '/tmp';
 		$tmp = $tmp_dir . '/' . $this->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
 			unlink($tmp);
@@ -657,6 +657,7 @@ class market {
 						throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
 					}
 					$zip->close();
+					unlink($tmp);
 					log::add('update', 'alert', __("OK\n", __FILE__));
 					log::add('update', 'alert', __('Installation de ', __FILE__) . $this->getLogicalId() . '...');
 					try {
@@ -703,7 +704,9 @@ class market {
 							$ErrMsg = "Erreur inconnue (Code $res)";
 							break;
 					}
-					throw new Exception(__('Impossible de décompresser le zip : ', __FILE__) . $tmp . __('. Erreur : ', __FILE__) . $ErrMsg . '. Avez vous acheté le plugin ?');
+					$content = file_get_contents($tmp);
+					unlink($tmp);
+					throw new Exception(__('Impossible de décompresser le zip : ', __FILE__) . $tmp . __('. Erreur : ', __FILE__) . $ErrMsg . '.' . $content);
 				}
 				break;
 			default:
