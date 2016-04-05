@@ -1,3 +1,3 @@
 <?php
-shell_exec("find /etc/apache2/conf-available/* -exec sed -i 's/#*[Cc]ustom[Ll]og/#CustomLog/g' {} \;");
+shell_exec('sudo rm /etc/apache2/conf-available/other-vhosts-access-log.conf;sudo rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf');
 ?>
