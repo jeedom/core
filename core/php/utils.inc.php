@@ -19,124 +19,57 @@
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
-	$type = '';
+	$type = 'php';
 	if ($_folder == '3rdparty') {
-		$_folder = $_folder;
-		$_fn = $_fn . '.' . $_type;
-		$path = dirname(__FILE__) . "/../../$_folder/$_fn";
-		if ($_type == 'css') {
-			$type = 'css';
-		} else if ($_type == 'js') {
-			$type = 'js';
-		} else {
-			$type = 'php';
-		}
+		$_fn .= '.' . $_type;
+		$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
+		$type = ($_type == 'css' || $_type == 'js') ? $_type : $type;
 	} else {
-		if ($_type == 'class') {
-			$_folder .= '/class';
-			$_fn = $_fn . '.class.php';
-			$type = 'php';
-		}
-		if ($_type == 'com') {
-			$_folder .= '/com';
-			$_fn = $_fn . '.com.php';
-			$type = 'php';
-		}
-		if ($_type == 'config') {
-			$_folder .= '/config';
-			$_fn = $_fn . '.config.php';
-			$type = 'php';
-		}
-		if ($_type == 'modal') {
-			$_folder = $_folder . '/modal';
-			$_fn = $_fn . '.php';
-			$type = 'php';
-		}
-		if ($_type == 'php') {
-			$_folder = $_folder . '/php';
-			$_fn = $_fn . '.php';
-			$type = 'php';
-		}
-		if ($_type == 'css') {
-			$_folder = $_folder . '/css';
-			$_fn = $_fn . '.css';
-			$type = 'css';
-		}
-		if ($_type == 'js') {
-			$_folder = $_folder . '/js';
-			$_fn = $_fn . '.js';
-			$type = 'js';
-		}
-		if ($_type == 'class.js') {
-			$_folder = $_folder . '/js';
-			$_fn = $_fn . '.class.js';
-			$type = 'js';
-		}
-		if ($_type == 'custom.js') {
-			$_folder = $_folder . '/custom';
-			$_fn = $_fn . 'custom.js';
-			$type = 'js';
-		}
-		if ($_type == 'custom.css') {
-			$_folder = $_folder . '/custom';
-			$_fn = $_fn . 'custom.css';
-			$type = 'css';
-		}
-		if ($_type == 'themes.js') {
-			$_folder = $_folder . '/themes';
-			$_fn = $_fn . '.js';
-			$type = 'js';
-		}
-		if ($_type == 'themes.css') {
-			$_folder = $_folder . '/themes';
-			$_fn = $_fn . '.css';
-			$type = 'css';
-		}
-		if ($_type == 'api') {
-			$_folder .= '/api';
-			$_fn = $_fn . '.api.php';
-			$type = 'php';
-		}
-		if ($_type == 'html') {
-			$_folder .= '/html';
-			$_fn = $_fn . '.html';
-			$type = 'php';
-		}
-		if ($_type == 'configuration') {
-			$_folder .= '';
-			$_fn = $_fn . '.php';
-			$type = 'php';
-		}
+		$config = array(
+			'class'      => array('/class' , '.class.php' , 'php'),
+			'com'        => array('/com'   , '.com.php'   , 'php'),
+			'config'     => array('/config', '.config.php', 'php'),
+			'modal'      => array('/modal' , '.php'       , 'php'),
+			'php'        => array('/php'   , '.php'       , 'php'),
+			'css'        => array('/css'   , '.css'       , 'css'),
+			'js'         => array('/js'    , '.js'        , 'js' ),
+			'class.js'   => array('/js'    , '.class.js'  , 'js' ),
+			'custom.js'  => array('/custom', 'custom.js'  , 'js' ),
+			'custom.css' => array('/custom', 'custom.css' , 'css'),
+			'themes.js'  => array('/themes', '.js'        , 'js' ),
+			'themes.css' => array('/themes', '.css'       , 'css'),
+			'api'        => array('/api'   , '.api.php'   , 'php'),
+			'html'       => array('/html'  , '.html'      , 'php'),
+			'configuration' => array(''    , '.php'       , 'php'),
+		);
+		$_folder .= $config[$_type][0];
+		$_fn .= $config[$_type][1];
+		$type = $config[$_type][2];
 	}
 	if ($_plugin != '') {
 		$_folder = 'plugins/' . $_plugin . '/' . $_folder;
 	}
-	$path = dirname(__FILE__) . "/../../$_folder/$_fn";
+	$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
 	if (file_exists($path)) {
 		if ($type == 'php') {
 			ob_start();
 			require_once $path;
-			echo translate::exec(ob_get_clean(), "$_folder/$_fn");
+			echo translate::exec(ob_get_clean(), $_folder . '/' . $_fn);
 		} else if ($type == 'css') {
-			echo "<link href=\"$_folder/$_fn?md5=" . md5_file($path) . "\" rel=\"stylesheet\" />";
+			echo '<link href="'. $_folder . '/' . $_fn . '?md5=' . md5_file($path) . '" rel="stylesheet" />';
 		} else if ($type == 'js') {
-			echo "<script type=\"text/javascript\" src=\"core/php/getJS.php?file=$_folder/$_fn&md5=" . md5_file($path) . "&lang=" . translate::getLanguage() . "\"></script>";
+			echo '<script type="text/javascript" src="core/php/getJS.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
 		}
 	} else {
-		throw new Exception("File not found : $_fn", 35486);
+		throw new Exception('File not found : ' . $_fn, 35486);
 	}
 }
 
 function getTemplate($_folder, $_version, $_filename, $_plugin = '') {
-	if ($_plugin == '') {
-		$path = dirname(__FILE__) . '/../../' . $_folder . '/template/' . $_version . '/' . $_filename . '.html';
-	} else {
-		$path = dirname(__FILE__) . '/../../plugins/' . $_plugin . '/core/template/' . $_version . '/' . $_filename . '.html';
-	}
-	if (file_exists($path)) {
-		return file_get_contents($path);
-	}
-	return '';
+	$path = ($_plugin == '')
+		? dirname(__FILE__) . '/../../' . $_folder . '/template/' . $_version . '/' . $_filename . '.html'
+		: dirname(__FILE__) . '/../../plugins/' . $_plugin . '/core/template/' . $_version . '/' . $_filename . '.html';
+	return (file_exists($path)) ? file_get_contents($path) : '';
 }
 
 function template_replace($_array, $_subject) {
@@ -160,15 +93,13 @@ function init($_name, $_default = '') {
 }
 
 function sendVarToJS($_varName, $_value) {
-	if (is_array($_value)) {
-		echo '<script>';
-		echo 'var ' . $_varName . ' = jQuery.parseJSON("' . addslashes(json_encode($_value, JSON_UNESCAPED_UNICODE)) . '");';
-		echo '</script>';
-	} else {
-		echo '<script>';
-		echo 'var ' . $_varName . ' = "' . $_value . '";';
-		echo '</script>';
-	}
+	$_value = (is_array($_value))
+		? 'jQuery.parseJSON("' . addslashes(json_encode($_value, JSON_UNESCAPED_UNICODE)) . '")'
+		: '"' . $_value . '"'
+	;
+	echo '<script>'
+		.'var ' . $_varName . ' = ' .$_value. ';'
+		.'</script>';
 }
 
 function resizeImage($contents, $width, $height) {
@@ -176,24 +107,16 @@ function resizeImage($contents, $width, $height) {
 	$width_orig = imagesx($contents);
 	$height_orig = imagesy($contents);
 	$ratio_orig = $width_orig / $height_orig;
-	if ($width / $height > $ratio_orig) {
-		$dest_width = ceil($height * $ratio_orig);
-		$dest_height = $height;
-	} else {
-		$dest_height = ceil($width / $ratio_orig);
-		$dest_width = $width;
-	}
+	$test = $width / $height > $ratio_orig;
+	$dest_width = $test ? ceil($height * $ratio_orig) : $width;
+	$dest_height = $test ? $height : ceil($width / $ratio_orig);
 
 	$dest_image = imagecreatetruecolor($width, $height);
 	$wh = imagecolorallocate($dest_image, 0xFF, 0xFF, 0xFF);
 	imagefill($dest_image, 0, 0, $wh);
 
-	$milieu_dest_x = $width / 2;
-	$milieu_dest_y = $height / 2;
-	$milieu_source_x = $dest_width / 2;
-	$milieu_source_y = $dest_height / 2;
-	$offcet_x = $milieu_dest_x - $milieu_source_x;
-	$offcet_y = $milieu_dest_y - $milieu_source_y;
+	$offcet_x = ($width - $dest_width) / 2;
+	$offcet_y = ($height - $dest_height) / 2;
 	if ($dest_image && $contents) {
 		if (!imagecopyresampled($dest_image, $contents, $offcet_x, $offcet_y, 0, 0, $dest_width, $dest_height, $width_orig, $height_orig)) {
 			error_log("Error image copy resampled");
@@ -214,24 +137,12 @@ function getmicrotime() {
 }
 
 function redirect($_url, $_forceType = null) {
-	switch ($_forceType) {
-		case 'JS':
-			echo '<script type="text/javascript">';
-			echo "window.location.href='$_url';";
-			echo '</script>';
-			break;
-		case 'PHP':
-			exit(header("Location: $_url"));
-			break;
-		default:
-			if (headers_sent() || isset($_GET['ajax'])) {
-				echo '<script type="text/javascript">';
-				echo "window.location.href='$_url';";
-				echo '</script>';
-			} else {
-				exit(header("Location: $_url"));
-			}
-			break;
+	if ($_forceType == 'JS' || headers_sent() || isset($_GET['ajax'])){
+		echo '<script type="text/javascript">';
+		echo "window.location.href='$_url';";
+		echo '</script>';
+	} else {
+		exit(header("Location: $_url"));
 	}
 	return;
 }
