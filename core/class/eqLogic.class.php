@@ -483,7 +483,7 @@ class eqLogic {
 			$replace['#border-radius#'] = $this->getDisplay('border-radius' . $version, '4') . 'px';
 		}
 		$refresh_cmd = $this->getCmd('action', 'refresh');
-		if (is_object($refresh_cmd) && $refresh_cmd->getDisplay('showOn' . $version, 1) == 1) {
+		if (is_object($refresh_cmd) && $refresh_cmd->getIsVisible() == 1 && $refresh_cmd->getDisplay('showOn' . $version, 1) == 1) {
 			$replace['#refresh_id#'] = $refresh_cmd->getId();
 		}
 		if ($this->getDisplay('showObjectNameOn' . $version, 0) == 1) {
