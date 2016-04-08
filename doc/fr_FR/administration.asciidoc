@@ -22,9 +22,9 @@ Dans cet onglet on retrouve des informations générales sur Jeedom :
 * *Langue* : Langue de votre Jeedom
 * *Durée de vie des sessions (heure)* : durée de vie des sessions PHP, il est conseillé de ne pas y toucher
 * *Date et heure* : votre fuseau horaire
-* *Serveur de temps optionnel* : permet d'ajouter un serveur de temps optionnel (à reserver aux experts)
+* *Serveur de temps optionnel* : permet d'ajouter un serveur de temps optionnel (à réserver aux experts)
 * *Ignorer la vérification de l'heure* : indique à Jeedom de ne pas vérifier si l'heure est cohérente. Utile par exemple si vous ne connectez pas Jeedom à internet et qu'il n'a pas de pile RTC
-* *Mode* : Mode de votre Jeedom maître ou esclave, attention lors du passage en esclave : tous vos équipements, scénario, design... seront supprimés.
+* *Mode* : Mode de votre Jeedom maître ou esclave, attention lors du passage en esclave : tous vos équipements, scénarios, design... seront supprimés.
 
 == Composants Jeedom
 
@@ -162,7 +162,7 @@ image::../images/administration10.png[]
 * *Branche* : permet de changer la version de Jeedom.
 
 [NOTE]
-Seul les betatesteurs peuvent voir la branche beta de Jeedom
+Seuls les betatesteurs peuvent voir la branche beta de Jeedom
 
 [ATTENTION]
-L'option URL est dangereuse et reserver à un public d'expert. Toute demande de support après la mise en place de cette option sera systématiquement refusé
+L'option URL est dangereuse et réservée à un public d'expert. Toute demande de support après la mise en place de cette option sera systématiquement refusée.
