@@ -162,7 +162,7 @@ image::../images/administration10.png[]
 * *Branche* : permet de changer la version de Jeedom.
 
 [NOTE]
-Seul les betatesteurs peuvent voir la branche beta de Jeedom
+Seuls les betatesteurs peuvent voir la branche beta de Jeedom
 
 [ATTENTION]
-L'option URL est dangereuse et reserver à un public d'expert. Toute demande de support après la mise en place de cette option sera systématiquement refusé
+L'option URL est dangereuse et réservée à un public d'expert. Toute demande de support après la mise en place de cette option sera systématiquement refusée.
