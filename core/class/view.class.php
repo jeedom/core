@@ -70,7 +70,7 @@ class view {
 		return viewZone::removeByViewId($this->getId());
 	}
 
-	public function toAjax() {
+	public function toAjax($_version = 'dview') {
 		$return = utils::o2a($this);
 		$return['viewZone'] = array();
 		foreach ($this->getViewZone() as $viewZone) {
@@ -86,7 +86,7 @@ class view {
 							$viewData_info['type'] = 'cmd';
 							$viewData_info['name'] = $cmd->getHumanName();
 							$viewData_info['id'] = $cmd->getId();
-							$viewData_info['html'] = $cmd->toHtml(init('version', 'dashboard'));
+							$viewData_info['html'] = $cmd->toHtml($_version);
 						}
 						break;
 					case 'eqLogic':
@@ -95,7 +95,7 @@ class view {
 							$viewData_info['type'] = 'eqLogic';
 							$viewData_info['name'] = $eqLogic->getHumanName();
 							$viewData_info['id'] = $eqLogic->getId();
-							$viewData_info['html'] = $eqLogic->toHtml(init('version', 'dashboard'));
+							$viewData_info['html'] = $eqLogic->toHtml($_version);
 						}
 						break;
 					case 'scenario':
@@ -104,7 +104,7 @@ class view {
 							$viewData_info['type'] = 'scenario';
 							$viewData_info['name'] = $scenario->getHumanName();
 							$viewData_info['id'] = $scenario->getId();
-							$viewData_info['html'] = $scenario->toHtml(init('version', 'dashboard'));
+							$viewData_info['html'] = $scenario->toHtml($_version);
 						}
 						break;
 				}
