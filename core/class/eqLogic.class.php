@@ -494,7 +494,7 @@ class eqLogic {
 			$replace['#hideEqLogicName#'] = 'display:none;';
 		}
 		$vcolor = 'cmdColor';
-		if ($version == 'mobile') {
+		if ($version == 'mobile' || $_version == 'mview') {
 			$vcolor = 'mcmdColor';
 		}
 		$parameters = $this->getDisplay('parameters');

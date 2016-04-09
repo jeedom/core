@@ -492,6 +492,8 @@ class jeedom {
 				return 'plan';
 			} else if ($_version == 'dview') {
 				return 'view';
+			} else if ($_version == 'mview') {
+				return 'view';
 			}
 		}
 		$alias = array(
