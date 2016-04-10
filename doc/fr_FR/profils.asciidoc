@@ -65,7 +65,7 @@ image::../images/profils6.png[]
 
 Ici vous pouvez régler la couleur des notifications qui arrivent sur l'interface
 
-=== Autres
+=== Sécurité
 
 image::../images/profils7.png[]
 
