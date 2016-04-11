@@ -777,6 +777,7 @@ class scenarioExpression {
 			'#smois#' => '"' . date_fr(date('F')) . '"',
 			'#njour#' => (int) date('w'),
 			'#hostname#' => '"' . gethostname() . '"',
+			'#jeedom_name#' => '"' . config::byKey('name') . '"',
 			'#IP#' => '"' . network::getNetworkAccess('internal', 'ip') . '"',
 			'#trigger#' => '',
 		);
