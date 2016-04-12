@@ -386,11 +386,6 @@ class jeedom {
 		if (!self::isStarted()) {
 			echo date('Y-m-d H:i:s') . ' starting Jeedom';
 			log::add('starting', 'debug', 'Starting jeedom');
-			config::save('enableScenario', 1);
-			config::save('enableCron', 1);
-			$cache = cache::byKey('jeedom::usbMapping');
-			log::add('starting', 'debug', 'Clean USB mapping');
-			$cache->remove();
 			log::add('starting', 'debug', 'Stop all cron');
 			foreach (cron::all() as $cron) {
 				if ($cron->running() && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
@@ -403,14 +398,6 @@ class jeedom {
 					}
 				}
 			}
-			log::add('starting', 'debug', 'Start jeedom');
-			try {
-				jeedom::start();
-			} catch (Exception $e) {
-
-			} catch (Error $e) {
-
-			}
 			log::add('starting', 'debug', 'Restore cache');
 			try {
 				cache::restore();
@@ -419,6 +406,18 @@ class jeedom {
 			} catch (Error $e) {
 
 			}
+			$cache = cache::byKey('jeedom::usbMapping');
+			log::add('starting', 'debug', 'Clean USB mapping');
+			$cache->remove();
+			log::add('starting', 'debug', 'Start jeedom');
+			try {
+				jeedom::start();
+			} catch (Exception $e) {
+
+			} catch (Error $e) {
+
+			}
+
 			log::add('starting', 'debug', 'Touch start file');
 			touch('/tmp/jeedom_start');
 			log::add('starting', 'debug', 'Send start event');
