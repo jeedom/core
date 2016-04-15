@@ -25,6 +25,15 @@ use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Logger;
 
 class log {
+	/*     * *************************Constantes****************************** */
+	const LEVEL_DEBUG = 100;
+	const LEVEL_INFO = 200;
+	const LEVEL_NOTICE = 250;
+	const LEVEL_WARNING = 300;
+	const LEVEL_ERROR = 400;
+	
+	const DEFAULT_MAX_LINE = 200;
+	
 	/*     * *************************Attributs****************************** */
 	private static $logger = array();
 	/*     * ***********************Methode static*************************** */
@@ -120,8 +129,8 @@ class log {
 			return;
 		}
 		$maxLineLog = config::byKey('maxLineLog');
-		if ($maxLineLog < 200) {
-			$maxLineLog = 200;
+		if ($maxLineLog < self::DEFAULT_MAX_LINE) {
+			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
 		shell_exec('sudo chmod 777 ' . $_path . ' ;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		@chown($_path, 'www-data');
@@ -262,6 +271,31 @@ class log {
 		return $return;
 	}
 
+	/**
+	 * Fixe le niveau de rapport d'erreurs PHP
+	 * @param int $log_level 
+	 * @since 2.1.4
+	 * @author KwiZeR <kwizer@kw12er.com>
+	 */
+	public static function define_error_reporting($log_level)
+	{
+		switch ($log_level) {
+			case self::LEVEL_DEBUG :
+			case self::LEVEL_INFO :
+			case self::LEVEL_NOTICE :
+				error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+				break;
+			case self::LEVEL_WARNING :
+				error_reporting(E_ERROR | E_WARNING | E_PARSE);
+				break;
+			case self::LEVEL_ERROR :
+				error_reporting(E_ERROR | E_PARSE);
+				break;
+			default:
+				throw new Exception('log::level invalide ("'.$log_level.'")');
+		}
+	}
+	
 	/*     * *********************Methode d'instance************************* */
 
 	/*     * **********************Getteur Setteur*************************** */

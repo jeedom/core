@@ -27,6 +27,7 @@ require_once dirname(__FILE__) . '/utils.inc.php';
 include_file('core', 'jeedom', 'config');
 include_file('core', 'compatibility', 'config');
 include_file('core', 'utils', 'class');
+include_file('core', 'log', 'class');
 try {
 	date_default_timezone_set(config::byKey('timezone'));
 } catch (Exception $e) {
@@ -40,26 +41,11 @@ function jeedomCoreAutoload($classname) {
 
 	}
 }
-try {
-	switch (config::byKey('log::level')) {
-		case 100: //debug
-			error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
-			break;
-		case 200: //Info
-			error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
-			break;
-		case 250: //Notice
-			error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
-			break;
-		case 300: //Warning
-			error_reporting(E_ERROR | E_WARNING | E_PARSE);
-			break;
-		case 400: //Error
-			error_reporting(E_ERROR | E_PARSE);
-			break;
-	}
-} catch (Exception $e) {
 
+try {
+	log::define_error_reporting(config::byKey('log::level'));
+} catch (Exception $e) {
+	
 }
 
 function jeedomComAutoload($classname) {

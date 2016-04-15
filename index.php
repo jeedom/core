@@ -22,95 +22,74 @@ if (!file_exists(dirname(__FILE__) . '/core/config/common.config.php')) {
 
 if (!isset($_GET['v'])) {
 	$useragent = (isset($_SERVER["HTTP_USER_AGENT"])) ? $_SERVER["HTTP_USER_AGENT"] : 'none';
-	$getParams = '';
+	$getParams = (stristr($useragent, "Android") || strpos($useragent, "iPod") || strpos($useragent, "iPhone") || strpos($useragent, "Mobile") || strpos($useragent, "WebOS") || strpos($useragent, "mobile") || strpos($useragent, "hp-tablet")) 
+			? 'm' : 'd';
 	foreach ($_GET AS $var => $value) {
-		$getParams .= $var . '=' . $value . '&';
+		$getParams .= '&' . $var . '=' . $value;
 	}
-	if (stristr($useragent, "Android") || strpos($useragent, "iPod") || strpos($useragent, "iPhone") || strpos($useragent, "Mobile") || strpos($useragent, "WebOS") || strpos($useragent, "mobile") || strpos($useragent, "hp-tablet")) {
-		header("location: index.php?v=m&" . trim($getParams, '&'));
-	} else {
-		header("location: index.php?v=d&" . trim($getParams, '&'));
-	}
-} else {
-	require_once dirname(__FILE__) . "/core/php/core.inc.php";
-	if ($_GET['v'] == "d") {
-		if (isset($_GET['modal'])) {
-			include_file('core', 'authentification', 'php');
-			try {
-				if (!isConnect()) {
-					throw new Exception('{{401 - Accès non autorisé}}');
-				}
-				include_file('desktop', init('modal'), 'modal', init('plugin'));
-			} catch (Exception $e) {
-				$_folder = 'desktop/modal';
-				if (init('plugin') != '') {
-					$_folder = 'plugins/' . init('plugin') . '/' . $_folder;
-				}
-				ob_end_clean(); //Clean pile after expetion (to prevent no-traduction)
-				echo '<div class="alert alert-danger div_alert">';
-				echo translate::exec(displayExeption($e), $_folder . '/' . init('modal') . '.php');
-				echo '</div>';
-			}
-			die();
-		}
-		if (isset($_GET['configure'])) {
-			include_file('core', 'authentification', 'php');
-			try {
-				if (!isConnect()) {
-					throw new Exception('{{401 - Accès non autorisé}}');
-				}
-				include_file('plugin_info', 'configuration', 'configuration', init('plugin'));
-			} catch (Exception $e) {
-				$_folder = 'plugin_info';
-				if (init('plugin') != '') {
-					$_folder = 'plugins/' . init('plugin') . '/plugin_info';
-				}
-				ob_end_clean(); //Clean pile after expetion (to prevent no-traduction)
-				echo '<div class="alert alert-danger div_alert">';
-				echo translate::exec(displayExeption($e), $_folder . '/configure.php');
-				echo '</div>';
-			}
-			die();
-		}
-		if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
-			include_file('core', 'authentification', 'php');
-			try {
-				if (!isConnect()) {
-					throw new Exception('{{401 - Accès non autorisé}}');
-				}
-				include_file('desktop', init('p'), 'php', init('m'));
-			} catch (Exception $e) {
-				$_folder = 'desktop/php';
-				if (init('m') != '') {
-					$_folder = 'plugins/' . init('m') . '/' . $_folder;
-				}
-				ob_end_clean(); //Clean pile after expetion (to prevent no-traduction)
-				echo '<div class="alert alert-danger div_alert">';
-				echo translate::exec(displayExeption($e), $_folder . '/' . init('modal') . '.php');
-				echo '</div>';
+	header("location: index.php?v=" . trim($getParams, '&'));
+}
 
-			}
-			die();
-		} else {
-			include_file('desktop', 'index', 'php');
-			die();
+require_once dirname(__FILE__) . "/core/php/core.inc.php";
+
+function include_authenticated_file($_folder, $_fn, $_type, $_plugin, $alert_folder) {
+	include_file('core', 'authentification', 'php');
+	try {
+		if (!isConnect()) {
+			throw new Exception('{{401 - Accès non autorisé}}');
 		}
-	} else if ($_GET['v'] == "m") {
-		if (isset($_GET['modal'])) {
-			include_file('mobile', init('modal'), 'modal', init('plugin'));
-		} else {
-			if (isset($_GET['p']) && isset($_GET['ajax'])) {
-				if (isset($_GET['m'])) {
-					include_file('mobile', $_GET['p'], 'html', $_GET['m']);
-				} else {
-					include_file('mobile', $_GET['p'], 'html');
-				}
-			} else {
-				include_file('mobile', 'index', 'html');
-			}
+		include_file($_folder, $_fn, $_type, $_plugin);
+	} catch (Exception $e) {
+		$_folder = 'desktop/modal';
+		if (init('plugin') != '') {
+			$_folder = 'plugins/' . init('plugin') . '/' . $_folder;
 		}
-	} else {
-		echo "Erreur veuillez contacter l'administrateur";
+		ob_end_clean(); //Clean pile after expetion (to prevent no-traduction)
+		echo '<div class="alert alert-danger div_alert">';
+		echo translate::exec(displayExeption($e), $alert_folder);
+		echo '</div>';
 	}
 }
-?>
+if ($_GET['v'] == 'd') {
+	if (isset($_GET['modal'])) {
+		$alert_folder = 'desktop/modal/' . init('modal') . '.php';
+		if (init('plugin') != '') {
+			$alert_folder = 'plugins/' . init('plugin') . '/' . $alert_folder;
+		}
+		include_authenticated_file('desktop', init('modal'), 'modal', init('plugin'), $alert_folder);
+	}
+	elseif (isset($_GET['configure'])) {
+		$alert_folder = 'plugin_info/configure.php';
+		if (init('plugin') != '') {
+			$alert_folder = 'plugins/' . init('plugin') . '/' . $alert_folder;
+		}
+		include_authenticated_file('plugin_info', 'configuration', 'configuration', init('plugin'), $alert_folder);
+	}
+	elseif (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
+		$alert_folder = 'desktop/php/' . init('modal') . '.php';
+		if (init('m') != '') {
+			$_folder = 'plugins/' . init('m') . '/' . $_folder;
+		}	
+		include_authenticated_file('desktop', init('p'), 'php', init('m'), $alert_folder);
+	}
+	else {
+		include_file('desktop', 'index', 'php');
+	}
+} elseif ($_GET['v'] == 'm') {
+	$_folder = 'mobile';
+	$_fn = 'index';
+	$_type = 'html';
+	$_plugin = '';
+	if (isset($_GET['modal'])) {
+		$_fn = init('modal');
+		$_type = 'modal';
+		$_plugin = init('plugin');
+	} elseif (isset($_GET['p']) && isset($_GET['ajax'])) {
+		$_fn = $_GET['p'];
+		$_plugin = isset($_GET['m']) ? $_GET['m'] : $_plugin;
+	}
+	include_file($_folder, $_fn, $_type, $_plugin);
+}
+else {
+	echo "Erreur: veuillez contacter l'administrateur";
+}

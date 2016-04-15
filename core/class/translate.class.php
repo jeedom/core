@@ -92,13 +92,10 @@ class translate {
 
 	public static function loadTranslation() {
 		$return = array();
-		if (file_exists(self::getPathTranslationFile(self::getLanguage()))) {
-			$return = file_get_contents(self::getPathTranslationFile(self::getLanguage()));
-			if (is_json($return)) {
-				$return = json_decode($return, true);
-			} else {
-				$return = array();
-			}
+		$filename = self::getPathTranslationFile(self::getLanguage());
+		if (file_exists($filename)) {
+			$return = file_get_contents($filename);
+			$return = is_json($return) ? json_decode($return, true) : array();
 			foreach (plugin::listPlugin(false, false, false) as $plugin) {
 				$return = array_merge($return, $plugin->getTranslation(self::getLanguage()));
 			}
