@@ -28,6 +28,8 @@
         LogLevel warn
 
         CustomLog ${APACHE_LOG_DIR}/access.log combined
+        
+        IncludeOptional /etc/apache2/jeedom.conf/*.conf
 
         <Directory /var/www/jeedom/>
                 Options Indexes FollowSymLinks MultiViews
