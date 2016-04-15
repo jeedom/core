@@ -1,4 +1,4 @@
-/* DARK SOBRE JS BETA v0.9.8b by dJuL */
+/* DARK SOBRE JS v0.9.86 by dJuL */
 
 if ($.type(dark_sobre) !== "object") {
   var dark_sobre = { config: {} };
