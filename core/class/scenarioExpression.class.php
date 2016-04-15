@@ -849,7 +849,7 @@ class scenarioExpression {
 		} else {
 			log::add('scenario', 'debug', print_r($_expression, true));
 		}
-		return str_replace('""', '"', cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)), $_quote));
+		return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)), $_quote);
 
 	}
 
