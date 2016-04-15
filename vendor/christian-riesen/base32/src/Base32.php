@@ -62,8 +62,7 @@ class Base32
 
         foreach (str_split($string) as $s) {
             // Return each character as an 8-bit binary string
-            $s = decbin(ord($s));
-            $binaryString .= str_pad($s, 8, 0, STR_PAD_LEFT);
+            $binaryString .= sprintf('%08b', ord($s));
         }
 
         // Break into 5-bit chunks, then break that into an array
@@ -123,8 +122,7 @@ class Base32
 
             // Ignore the padding character
             if ($char !== 32) {
-                $char = decbin($char);
-                $string .= str_pad($char, 5, 0, STR_PAD_LEFT);
+                $string .= sprintf('%05b', $char);
             }
         }
 
