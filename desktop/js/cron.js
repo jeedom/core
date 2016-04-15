@@ -153,7 +153,7 @@ function addCron(_cron) {
     tr += '</td>';
     tr += '<td class="once">';
     if(init(_cron.deamon) == 0){
-        tr += '<input type="checkbox" class="cronAttr bootstrapSwitch" data-size="mini" data-l1key="once" /></span> ';
+        tr += '<input type="checkbox" class="cronAttr" data-l1key="once" /></span> ';
     }
     tr += '</td>';
     tr += '<td class="class"><input class="form-control cronAttr input-sm" data-l1key="class" '+disabled+' /></td>';
