@@ -29,6 +29,7 @@ if ($logfile == '') {
 <a class="btn btn-danger pull-right" id="bt_removeLog"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
 <a class="btn btn-warning pull-right" id="bt_clearLog"><i class="fa fa-times"></i> {{Vider}}</a>
 <a class="btn btn-success pull-right" id="bt_downloadLog"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
+<a class="btn btn-success pull-right" id="bt_downloadAllLog"><i class="fa fa-cloud-download"></i> {{Télécharger tous les logs}}</a>
 <a class="btn btn-primary pull-right" id="bt_refreshLog"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
 <select id="sel_log" class="pull-left form-control" style="width: 200px;">
     <?php
