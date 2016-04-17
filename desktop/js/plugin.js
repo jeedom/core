@@ -17,6 +17,9 @@
  if($('#md_modal').is(':visible')){
     $('#bt_returnToThumbnailDisplay').hide();
     $('#div_confPlugin').addClass('col-lg-12').removeClass('col-md-9 col-sm-8');
+    alert_div_plugin_configuration = $('#div_alertPluginConfiguration');
+}else{
+    alert_div_plugin_configuration = $('#div_alert');
 }
 
 
@@ -73,7 +76,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
     jeedom.plugin.get({
         id: $(this).attr('data-plugin_id'),
         error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
             $('#span_plugin_id').html(data.id);
@@ -171,7 +174,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
             configuration: $('#div_plugin_configuration').getValues('.configKey')[0],
             plugin: $('.li_plugin.active').attr('data-plugin_id'),
             error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
                 $('#div_plugin_configuration').setValues(data, '.configKey');
@@ -188,7 +191,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
                 plugin: $('.li_plugin.active').attr('data-plugin_id'),
                 id: slave_id,
                 error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                    alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
                     $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').setValues(data, '.slaveConfigKey');
@@ -220,7 +223,7 @@ $('#span_plugin_delete').delegate('.removePlugin','click',function(){
             jeedom.update.remove({
                 id: _el.attr('data-market_logicalId'),
                 error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                    alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
                  loadPage('index.php?v=d&p=plugin');
@@ -236,7 +239,7 @@ $("#div_plugin_toggleState").delegate(".togglePlugin", 'click', function () {
         id: _el.attr('data-plugin_id'),
         state: _el.attr('data-state'),
         error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
             if($('#md_modal').is(':visible')){
@@ -253,10 +256,10 @@ $('#bt_uploadPlugin').fileupload({
     replaceFileInput: false,
     done: function (e, data) {
         if (data.result.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result.result, level: 'danger'});
+            alert_div_plugin_configuration.showAlert({message: data.result.result, level: 'danger'});
             return;
         }
-        $('#div_alert').showAlert({message: '{{Plugin ajouté avec succès. Recharger la page pour le voir.}}', level: 'success'});
+        alert_div_plugin_configuration.showAlert({message: '{{Plugin ajouté avec succès. Recharger la page pour le voir.}}', level: 'success'});
     }
 });
 
@@ -308,10 +311,13 @@ function savePluginConfig(_param) {
         configuration: $('#div_plugin_configuration').getValues('.configKey')[0],
         plugin: $('.li_plugin.active').attr('data-plugin_id'),
         error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-            $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
+
+
+
+            alert_div_plugin_configuration.showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
             modifyWithoutSave = false;
             var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveConfiguration';
             if (typeof window[postSave] == 'function'){
@@ -326,7 +332,7 @@ function savePluginConfig(_param) {
                     slave_id: 0,
                     forceRestart: 1,
                     error: function (error) {
-                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                        alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
                     },
                     success: function (data) {
                         $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+$('.li_plugin.active').attr('data-plugin_id'));
@@ -343,10 +349,10 @@ function savePluginConfig(_param) {
             plugin: $('.li_plugin.active').attr('data-plugin_id'),
             id: slave_id,
             error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
             },
             success: function () {
-                $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
+                alert_div_plugin_configuration.showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
                 modifyWithoutSave = false;
                 var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveSlaveConfiguration';
                 if (typeof window[postSave] == 'function'){
@@ -361,7 +367,7 @@ function savePluginConfig(_param) {
                     slave_id: slave_id,
                     forceRestart: 1,
                     error: function (error) {
-                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                        alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
                     },
                     success: function (data) {
                         $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+$('.li_plugin.active').attr('data-plugin_id'));
