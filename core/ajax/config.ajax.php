@@ -23,16 +23,29 @@ try {
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
-
-	if (init('action') == 'genKeyAPI') {
+	$action = init('action');
+	if (!method_exists('ajax_config',$action))
+	{
+		throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	}
+	ajax::succes(ajax_config::$action());
+	/*     * *********Catch exeption*************** */
+} catch (Exception $e) {
+	ajax::error(displayExeption($e), $e->getCode());
+}
+	
+class ajax_config
+{
+	public static function genKeyAPI() {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		config::save('api', config::genKey());
-		ajax::success(config::byKey('api'));
+		
+		return config::byKey('api');
 	}
 
-	if (init('action') == 'getKey') {
+	public static function getKey() {
 		$keys = init('key');
 		if ($keys == '') {
 			throw new Exception(__('Aucune clef demandée', __FILE__));
@@ -43,13 +56,14 @@ try {
 			foreach ($keys as $key => $value) {
 				$return[$key] = jeedom::toHumanReadable(config::byKey($key, init('plugin', 'core')));
 			}
-			ajax::success($return);
-		} else {
-			ajax::success(config::byKey(init('key'), init('plugin', 'core')));
+			
+			return $return;
 		}
+		
+		return config::byKey(init('key'), init('plugin', 'core'));
 	}
 
-	if (init('action') == 'addKey') {
+	public static function addKey() {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -74,10 +88,11 @@ try {
 				}
 			}
 		}
-		ajax::success();
+		
+		return '';
 	}
 
-	if (init('action') == 'removeKey') {
+	public static function removeKey() {
 		$keys = init('key');
 		if ($keys == '') {
 			throw new Exception(__('Aucune clef demandée', __FILE__));
@@ -91,12 +106,7 @@ try {
 		} else {
 			config::remove(init('key'), init('plugin', 'core'));
 		}
-		ajax::success();
+		
+		return '';
 	}
-
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
-/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
 }
-?>

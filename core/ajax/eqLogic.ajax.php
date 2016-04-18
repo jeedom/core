@@ -23,13 +23,19 @@ try {
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
+	$action = init('action');
+	if (!method_exists('ajax_eqLogic', $action)) {
+		throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	}
+	ajax::success(ajax_eqLogic::$action());
+	/*     * *********Catch exeption*************** */
+} catch (Exception $e) {
+	ajax::error(displayExeption($e), $e->getCode());
+}
 
-	if (init('action') == 'getEqLogicObject') {
-		$object = object::byId(init('object_id'));
-
-		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu verifié l\'id', __FILE__));
-		}
+class ajax_eqLogic {	
+	public static function getEqLogicObject() {
+		$eqLogic = self::_fromId($id);
 		$return = utils::o2a($object);
 		$return['eqLogic'] = array();
 		foreach ($object->getEqLogic() as $eqLogic) {
@@ -42,49 +48,45 @@ try {
 				$return['eqLogic'][] = $info_eqLogic;
 			}
 		}
-		ajax::success($return);
+		return $return;
 	}
 
-	if (init('action') == 'byId') {
-		$eqLogic = eqLogic::byId(init('id'));
-		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu verifié l\'id', __FILE__));
-		}
-		ajax::success(utils::o2a($eqLogic));
+	public static function byId() {
+		$eqLogic = self::_fromId($id);
+		return utils::o2a($eqLogic);
 	}
 
-	if (init('action') == 'toHtml') {
-		$eqLogic = eqLogic::byId(init('id'));
-		if (!is_object($eqLogic)) {
-			throw new Exception(__('Eqlogic inconnu verifié l\'id', __FILE__));
-		}
-		$info_eqLogic = array();
-		$info_eqLogic['id'] = $eqLogic->getId();
-		$info_eqLogic['type'] = $eqLogic->getEqType_name();
-		$info_eqLogic['object_id'] = $eqLogic->getObject_id();
-		$info_eqLogic['html'] = $eqLogic->toHtml(init('version'));
-		ajax::success($info_eqLogic);
+	public static function toHtml() {
+		$eqLogic = self::_fromId($id);		
+		return array(
+			'id' => $eqLogic->getId(),
+			'type' => $eqLogic->getEqType_name(),
+			'object_id' => $eqLogic->getObject_id(),
+			'html' => $eqLogic->toHtml(init('version')),
+		);;
 	}
 
-	if (init('action') == 'listByType') {
-		ajax::success(utils::a2o(eqLogic::byType(init('type'))));
+	public static function listByType() {
+		return utils::a2o(eqLogic::byType(init('type')));
 	}
 
-	if (init('action') == 'listByObjectAndCmdType') {
+	public static function listByObjectAndCmdType() {
 		$object_id = (init('object_id') != -1) ? init('object_id') : null;
-		ajax::success(eqLogic::listByObjectAndCmdType($object_id, init('typeCmd'), init('subTypeCmd')));
+		
+		return eqLogic::listByObjectAndCmdType($object_id, init('typeCmd'), init('subTypeCmd'));
 	}
 
-	if (init('action') == 'listByObject') {
+	public static function listByObject() {
 		$object_id = (init('object_id') != -1) ? init('object_id') : null;
-		ajax::success(utils::o2a(eqLogic::byObjectId($object_id, init('onlyEnable', true), init('onlyVisible', false), init('eqType_name', null), init('logicalId', null), init('orderByName', false))));
+		
+		return utils::o2a(eqLogic::byObjectId($object_id, init('onlyEnable', true), init('onlyVisible', false), init('eqType_name', null), init('logicalId', null), init('orderByName', false)));
 	}
 
-	if (init('action') == 'listByTypeAndCmdType') {
+	public static function listByTypeAndCmdType() {
 		$results = eqLogic::listByTypeAndCmdType(init('type'), init('typeCmd'), init('subTypeCmd'));
 		$return = array();
 		foreach ($results as $result) {
-			$eqLogic = eqLogic::byId($result['id']);
+			$eqLogic = self::_fromId($result['id']);
 			$info['eqLogic'] = utils::o2a($eqLogic);
 			$info['object'] = array('name' => 'Aucun');
 			if (is_object($eqLogic)) {
@@ -95,23 +97,20 @@ try {
 			}
 			$return[] = $info;
 		}
-		ajax::success($return);
+		
+		return $return;
 	}
 
-	if (init('action') == 'setIsEnable') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
-		$eqLogic = eqLogic::byId(init('id'));
-		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu verifié l\'id', __FILE__));
-		}
+	public static function setIsEnable() {
+		self::_assertConnection('admin');
+		$eqLogic = self::_fromId($id);
 		$eqLogic->setIsEnable(init('isEnable'));
 		$eqLogic->save();
-		ajax::success();
+		
+		return '';
 	}
 
-	if (init('action') == 'setOrder') {
+	public static function setOrder() {
 		$eqLogics = json_decode(init('eqLogics'), true);
 		$sql = '';
 		foreach ($eqLogics as $eqLogic_json) {
@@ -128,103 +127,83 @@ try {
 			}
 		}
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-		ajax::success();
+		
+		return '';
 	}
 
-	if (init('action') == 'removes') {
+	public static function removes() {
 		$eqLogics = json_decode(init('eqLogics'), true);
 		foreach ($eqLogics as $id) {
-			$eqLogic = eqLogic::byId($id);
-			if (!is_object($eqLogic)) {
-				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $id);
-			}
+			$eqLogic = self::_fromId($id);
 			$eqLogic->remove();
 		}
-		ajax::success();
+		
+		return '';
 	}
 
-	if (init('action') == 'setIsVisibles') {
+	public static function setIsVisibles() {
 		$eqLogics = json_decode(init('eqLogics'), true);
 		foreach ($eqLogics as $id) {
-			$eqLogic = eqLogic::byId($id);
-			if (!is_object($eqLogic)) {
-				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $id);
-			}
+			$eqLogic = self::_fromId($id);
 			$eqLogic->setIsVisible(init('isVisible'));
 			$eqLogic->save();
 		}
-		ajax::success();
+		
+		return '';
 	}
 
-	if (init('action') == 'setIsEnables') {
+	public static function setIsEnables() {
 		$eqLogics = json_decode(init('eqLogics'), true);
 		foreach ($eqLogics as $id) {
-			$eqLogic = eqLogic::byId($id);
-			if (!is_object($eqLogic)) {
-				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $id);
-			}
+			$eqLogic = self::_fromId($id);
 			$eqLogic->setIsEnable(init('isEnable'));
 			$eqLogic->save();
 		}
-		ajax::success();
+		
+		return '';
 	}
 
-	if (init('action') == 'simpleSave') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+	public static function simpleSave() {
+		self::_assertConnection('admin');
 		$eqLogicSave = json_decode(init('eqLogic'), true);
-		$eqLogic = eqLogic::byId($eqLogicSave['id']);
-		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu verifié l\'id : ', __FILE__) . $eqLogicsSave['id']);
-		}
-
+		$eqLogic = self::_fromId($eqLogicSave['id']);
+		
 		if (!$eqLogic->hasRight('w')) {
 			throw new Exception('Vous n\'etês pas autorisé à faire cette action');
 		}
 		utils::a2o($eqLogic, $eqLogicSave);
 		$eqLogic->save();
-		ajax::success();
+		
+		return '';
 	}
 
-	if (init('action') == 'copy') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
-		$eqLogic = eqLogic::byId(init('id'));
-		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu verifié l\'id', __FILE__));
-		}
+	public static function copy() {
+		self::_assertConnection('admin');
+		$eqLogic = self::_fromId();
 		if (init('name') == '') {
 			throw new Exception(__('Le nom de la copie de l\'équipement ne peut être vide', __FILE__));
 		}
-		ajax::success(utils::o2a($eqLogic->copy(init('name'))));
+		
+		return utils::o2a($eqLogic->copy(init('name')));
 	}
 
-	if (init('action') == 'remove') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
-		$eqLogic = eqLogic::byId(init('id'));
-		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu verifié l\'id : ', __FILE__) . init('id'));
-		}
+	public static function remove() {
+		self::_assertConnection('admin');
+		$eqLogic = self::_fromId();
 		if (!$eqLogic->hasRight('w')) {
 			throw new Exception('Vous n\'etês pas autorisé à faire cette action');
 		}
 		$eqLogic->remove();
-		ajax::success();
+		
+		return '';
 	}
 
-	if (init('action') == 'get') {
+	public static function get() {
 		$typeEqLogic = init('type');
 		if ($typeEqLogic == '' || !class_exists($typeEqLogic)) {
 			throw new Exception(__('Type incorrect (classe équipement inexistante) : ', __FILE__) . $typeEqLogic);
 		}
-		$eqLogic = $typeEqLogic::byId(init('id'));
-		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu verifié l\'id : ', __FILE__) . init('id'));
-		}
+		$eqLogic = self::_fromId();
 		$return = utils::o2a($eqLogic);
 		if (init('status') == 1) {
 			$return['status'] = array(
@@ -236,13 +215,12 @@ try {
 			}
 		}
 		$return['cmd'] = utils::o2a($eqLogic->getCmd());
-		ajax::success(jeedom::toHumanReadable($return));
+		
+		return jeedom::toHumanReadable($return);
 	}
 
-	if (init('action') == 'save') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+	public static function save() {
+		self::_assertConnection('admin');
 
 		$eqLogicsSave = json_decode(init('eqLogic'), true);
 
@@ -305,12 +283,25 @@ try {
 				$eqLogic->postAjax();
 			}
 		}
-		ajax::success(utils::o2a($eqLogic));
+		
+		return utils::o2a($eqLogic);
 	}
-
-	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
-	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
+	
+	protected static function _fromId($id = null)
+	{
+		$id = ($id === null) ? init('id') : $id;
+		$eqLogic = eqLogic::byId($id);
+		if (!is_object($eqLogic)) {
+			throw new Exception(__('EqLogic inconnu verifiez l\'id', __FILE__));
+		}
+		
+		return $eqLogic;
+	}
+	
+	protected static function _assertConnection($_right = '')
+	{
+		if (!isConnect($role)) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+	}
 }
-?>

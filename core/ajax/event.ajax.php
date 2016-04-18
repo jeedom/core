@@ -20,13 +20,21 @@ try {
 	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 
-	if (init('action') == 'changes') {
-		ajax::success(event::changes(init('datetime', 0)));
+	if (!method_exists('ajax_event', 'changes'))
+	{
+		throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	}
-
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	$action = 'changes'; 	// meme principe que les autres fichiers, pour factoriser ultieriement
+	ajax::success(ajax_event::$action());
 /*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());
 }
-?>
+
+class ajax_event
+{
+	public static function changes()
+	{
+		return event::changes(init('datetime', 0));
+	}
+}
