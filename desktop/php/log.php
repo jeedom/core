@@ -24,27 +24,38 @@ if ($logfile == '') {
 	throw new Exception('No log file');
 }
 ?>
-
-<a class="btn btn-danger pull-right" id="bt_removeAllLog"><i class="fa fa-trash-o"></i> {{Supprimer tous les logs}}</a>
-<a class="btn btn-danger pull-right" id="bt_removeLog"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
-<a class="btn btn-warning pull-right" id="bt_clearLog"><i class="fa fa-times"></i> {{Vider}}</a>
-<a class="btn btn-success pull-right" id="bt_downloadLog"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
-<a class="btn btn-primary pull-right" id="bt_refreshLog"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
-<select id="sel_log" class="pull-left form-control" style="width: 200px;">
-    <?php
+<div class="row row-overflow">
+	<div class="col-lg-2 col-md-3 col-sm-4" id="div_displayLogList">
+		<?php echo '<input type="hidden" id="sel_log" value="' . $logfile . '">' ?>
+		<div class="bs-sidebar">
+			<ul id="ul_object" class="nav nav-list bs-sidenav">
+				<li class="nav-header">{{Logs}} </li>
+				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
+				<?php
 foreach ($list_logfile as $file) {
 	if ($file == $logfile) {
-		echo '<option value="' . $file . '" selected>' . $file . '</option>';
+		echo '<li class="cursor li_object active" ><a href="index.php?v=d&p=log&logfile=' . $file . '">' . $file . '</a></li>';
 	} else {
-		echo '<option value="' . $file . '">' . $file . '</option>';
+		echo '<li class="cursor li_object" ><a href="index.php?v=d&p=log&logfile=' . $file . '">' . $file . '</a></li>';
 	}
 }
 ?>
-</select>
-<br/><br/>
-<?php
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-10 col-sm-9">
+		<a class="btn btn-danger pull-right" id="bt_removeAllLog"><i class="fa fa-trash-o"></i> {{Supprimer tous les logs}}</a>
+		<a class="btn btn-danger pull-right" id="bt_removeLog"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
+		<a class="btn btn-warning pull-right" id="bt_clearLog"><i class="fa fa-times"></i> {{Vider}}</a>
+		<a class="btn btn-success pull-right" id="bt_downloadLog"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
+		<a class="btn btn-primary pull-right" id="bt_refreshLog"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
+		<br/><br/>
+		<?php
 log::chunk($logfile);
 ?>
-<div id="div_logDisplay" style="overflow: scroll;"><pre><?php
+		<div id="div_logDisplay" style="overflow: scroll;"><pre><?php
 echo secureXSS(shell_exec('cat ' . dirname(__FILE__) . '/../../log/' . $logfile)); ?></pre></div>
-<?php include_file('desktop', 'log', 'js');?>
+
+		</div>
+	</div>
+	<?php include_file('desktop', 'log', 'js');?>

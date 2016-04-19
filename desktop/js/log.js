@@ -15,7 +15,7 @@
  */
 
 
- $('#div_logDisplay').height($(window).height() - $('header').height() - $('footer').height() - 50);
+ $('#div_logDisplay').height($(window).height() - $('header').height() - $('footer').height() - 75);
  $('#div_logDisplay').scrollTop(999999999);
  $('#bt_downloadLog').click(function() {
  	window.open('core/php/downloadFile.php?pathfile=log/' + $('#sel_log').value(), "_blank", null);
@@ -51,9 +51,9 @@
                 if (data.state != 'ok') {
                 	$('#div_alertError').showAlert({message: data.result, level: 'danger'});
                 } else {
-                	$('#div_pageContainer').empty().load('index.php?v=d&p=log&ajax=1',function(){
-                		initPage();
-                	});
+                	$('#div_pageContainer').empty().load('index.php?v=d&p=log&logfile=' + $('#sel_log').value() +'&ajax=1',function(){
+                      initPage();
+                  });
                 }
             }
         });
@@ -107,6 +107,6 @@
 
                     }
                 });
-}
-});
-});
+                }
+            });
+ });
