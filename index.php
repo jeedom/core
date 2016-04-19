@@ -22,8 +22,8 @@ if (!file_exists(dirname(__FILE__) . '/core/config/common.config.php')) {
 
 if (!isset($_GET['v'])) {
 	$useragent = (isset($_SERVER["HTTP_USER_AGENT"])) ? $_SERVER["HTTP_USER_AGENT"] : 'none';
-	$getParams = (stristr($useragent, "Android") || strpos($useragent, "iPod") || strpos($useragent, "iPhone") || strpos($useragent, "Mobile") || strpos($useragent, "WebOS") || strpos($useragent, "mobile") || strpos($useragent, "hp-tablet")) 
-			? 'm' : 'd';
+	$getParams = (stristr($useragent, "Android") || strpos($useragent, "iPod") || strpos($useragent, "iPhone") || strpos($useragent, "Mobile") || strpos($useragent, "WebOS") || strpos($useragent, "mobile") || strpos($useragent, "hp-tablet"))
+	? 'm' : 'd';
 	foreach ($_GET AS $var => $value) {
 		$getParams .= '&' . $var . '=' . $value;
 	}
@@ -50,29 +50,26 @@ function include_authenticated_file($_folder, $_fn, $_type, $_plugin, $alert_fol
 		echo '</div>';
 	}
 }
-if ($_GET['v'] == 'd') {
+if (!isset($_GET['v']) || $_GET['v'] == 'd') {
 	if (isset($_GET['modal'])) {
 		$alert_folder = 'desktop/modal/' . init('modal') . '.php';
 		if (init('plugin') != '') {
 			$alert_folder = 'plugins/' . init('plugin') . '/' . $alert_folder;
 		}
 		include_authenticated_file('desktop', init('modal'), 'modal', init('plugin'), $alert_folder);
-	}
-	elseif (isset($_GET['configure'])) {
+	} elseif (isset($_GET['configure'])) {
 		$alert_folder = 'plugin_info/configure.php';
 		if (init('plugin') != '') {
 			$alert_folder = 'plugins/' . init('plugin') . '/' . $alert_folder;
 		}
 		include_authenticated_file('plugin_info', 'configuration', 'configuration', init('plugin'), $alert_folder);
-	}
-	elseif (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
+	} elseif (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
 		$alert_folder = 'desktop/php/' . init('modal') . '.php';
 		if (init('m') != '') {
 			$_folder = 'plugins/' . init('m') . '/' . $_folder;
-		}	
+		}
 		include_authenticated_file('desktop', init('p'), 'php', init('m'), $alert_folder);
-	}
-	else {
+	} else {
 		include_file('desktop', 'index', 'php');
 	}
 } elseif ($_GET['v'] == 'm') {
@@ -89,7 +86,6 @@ if ($_GET['v'] == 'd') {
 		$_plugin = isset($_GET['m']) ? $_GET['m'] : $_plugin;
 	}
 	include_file($_folder, $_fn, $_type, $_plugin);
-}
-else {
+} else {
 	echo "Erreur: veuillez contacter l'administrateur";
 }
