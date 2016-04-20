@@ -1,6 +1,11 @@
 /*
  * Color Definition Sheet
  */
+#pagecontainer{
+ 	background-color: #404141!important;
+    background-attachment: fixed!important;
+    background-image: url("background.jpg") !important;
+}
 
 .nd2-bg-500 { background-color: #94CA02; color: #ffffff; }
 
@@ -9,8 +14,12 @@
  *
  */
 
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+	color: white !important;
+}
+
 .ui-page-theme-a .ui-header {
-	background-color: #454449;
+	background-color: rgba(69,68,73,0.85);
 	color: #ffffff;
 }
 
