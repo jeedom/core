@@ -27,7 +27,15 @@ if (!isset($_GET['v'])) {
 	foreach ($_GET AS $var => $value) {
 		$getParams .= '&' . $var . '=' . $value;
 	}
-	header("location: index.php?v=" . trim($getParams, '&'));
+	$url = 'index.php?v=' . trim($getParams, '&');
+	if (headers_sent()) {
+		echo '<script type="text/javascript">';
+		echo "window.location.href='$url';";
+		echo '</script>';
+	} else {
+		exit(header('Location: ' . $url));
+	}
+	die();
 }
 
 require_once dirname(__FILE__) . "/core/php/core.inc.php";
