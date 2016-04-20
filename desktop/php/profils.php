@@ -44,10 +44,9 @@ foreach (plugin::listPlugin() as $pluginList) {
                 <select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme">
                   <option value="">Défaut</option>
                   <?php
-
 foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
 	if (is_dir(dirname(__FILE__) . '/../../core/themes/' . $dir . '/desktop')) {
-		echo '<option value="' . trim($dir, '/') . '">' . ucfirst(trim($dir, '/')) . '</option>';
+		echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
 	}
 }
 ?>
@@ -58,25 +57,13 @@ foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
               <label class="col-sm-3 control-label">{{Mobile couleur}}</label>
               <div class="col-sm-2">
                 <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color">
-                  <option value="amber">Ambre</option>
-                  <option value="blue">Bleu</option>
-                  <option value="blue-grey">Bleu-gris</option>
-                  <option value="brown">Marron</option>
-                  <option value="cyan">Cyan</option>
-                  <option value="deep-orange">Orange foncé</option>
-                  <option value="deep-purple">Violet foncé</option>
-                  <option value="green">Vert</option>
-                  <option value="grey">Gris</option>
-                  <option value="indigo">Indigo</option>
-                  <option value="light-blue">Bleu clair</option>
-                  <option value="light-green">Vert clair</option>
-                  <option value="lime">Citron</option>
-                  <option value="orange">Orange</option>
-                  <option value="pink">Rose</option>
-                  <option value="purple">Violet</option>
-                  <option value="red">Rouge</option>
-                  <option value="teal">Bleu-vert foncé</option>
-                  <option value="yellow">Jaune</option>
+                  <?php
+foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
+	if (is_dir(dirname(__FILE__) . '/../../core/themes/' . $dir . '/mobile')) {
+		echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+	}
+}
+?>
                 </select>
               </div>
             </div>

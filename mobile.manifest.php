@@ -45,25 +45,6 @@ $other_file = array(
 	'3rdparty/jquery.mobile/css/font-awesome.min.css',
 	'3rdparty/jquery.mobile/jquery.mobile.min.css',
 	'3rdparty/jquery.mobile/css/nativedroid2.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.amber.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.blue.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.blue-grey.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.cyan.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.deep-orange.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.deep-purple.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.grey.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.indigo.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.light-blue.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.light-green.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.lime.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.orange.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.pink.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.purple.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.red.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.teal.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.yellow.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.brown.css',
-	'3rdparty/jquery.mobile/css/nativedroid2.color.green.css',
 	'3rdparty/jquery.mobile/css/fonts.css',
 	'3rdparty/jquery.mobile/css/flexboxgrid.min.css',
 	'3rdparty/jquery.mobile/css/material-design-iconic-font.min.css',
@@ -105,7 +86,12 @@ foreach (ls($root_dir, '*') as $dir) {
 		}
 	}
 }
-//echo '#LANG : ' . translate::getLanguage();
+
+foreach (ls(dirname(__FILE__) . '/core/themes') as $dir) {
+	if (is_dir(dirname(__FILE__) . '/core/themes/' . $dir . '/mobile')) {
+		$other_file[] = 'core/themes/' . $dir . 'mobile/' . trim($dir, '/') . '.css';
+	}
+}
 ?>
 CACHE MANIFEST
 
