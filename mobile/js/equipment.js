@@ -29,27 +29,29 @@ function initEquipment(_object_id) {
             },
             success: function (html) {
                 if(_object_id == 'all'){
-                   jeedom.object.all({
+                 jeedom.object.all({
                     error: function (error) {
                         $('#div_alert').showAlert({message: error.message, level: 'danger'});
                     },
                     success: function (objects) {
-                     var div = '';
-                     for(var i in html){
-                        div += '<div class="div_displayEquipement">';
-                        div += '<legend>';
+                       var div = '';
+                       var number = 0;
+                       for(var i in html){
+                        div += '<div class="div_displayEquipement" style="margin-top : '+(number * 10 )+'px;">';
+                        div += '<legend style="margin : 0px;padding-bottom: 0px;">';
                         for(var j in objects){
                             if(objects[j].id == i){
-                               div += objects[j].name;
-                           }
-                       }
-                       div += '</legend>';
-                       div += html[i]
-                       div += '</div>';
-                   }
-                   try {
-                       $('#div_displayEquipement').empty().html(div).trigger('create');
-                   }catch(err) {
+                             div += objects[j].name;
+                         }
+                     }
+                     div += '</legend>';
+                     div += html[i]
+                     div += '</div>';
+                     number = 1;
+                 }
+                 try {
+                     $('#div_displayEquipement').empty().html(div).trigger('create');
+                 }catch(err) {
                     console.log(err);
                 }
                 setTileSize('.eqLogic');
@@ -58,16 +60,16 @@ function initEquipment(_object_id) {
                 }, 10);
             }
         });  
-               }else{
-                 $('#div_displayEquipement').empty().html(html).trigger('create');
-                 setTileSize('.eqLogic');
-                 setTimeout(function () {
-                    $('#div_displayEquipement').packery({gutter : 4});
-                }, 10);
-             }
+             }else{
+               $('#div_displayEquipement').empty().html(html).trigger('create');
+               setTileSize('.eqLogic');
+               setTimeout(function () {
+                $('#div_displayEquipement').packery({gutter : 4});
+            }, 10);
+           }
 
-         }
-     });
+       }
+   });
     } else {
         $('#bottompanel').panel('open');
     }
@@ -78,7 +80,7 @@ function initEquipment(_object_id) {
         if(_object_id == 'all'){
             $('.div_displayEquipement').packery({gutter : 4});
         }else{
-           $('#div_displayEquipement').packery({gutter : 4}); 
-       }
-   });
+         $('#div_displayEquipement').packery({gutter : 4}); 
+     }
+ });
 }
