@@ -50,7 +50,7 @@ function include_authenticated_file($_folder, $_fn, $_type, $_plugin, $alert_fol
 		echo '</div>';
 	}
 }
-if (!isset($_GET['v']) || $_GET['v'] == 'd') {
+if (isset($_GET['v']) && $_GET['v'] == 'd') {
 	if (isset($_GET['modal'])) {
 		$alert_folder = 'desktop/modal/' . init('modal') . '.php';
 		if (init('plugin') != '') {
@@ -72,7 +72,7 @@ if (!isset($_GET['v']) || $_GET['v'] == 'd') {
 	} else {
 		include_file('desktop', 'index', 'php');
 	}
-} elseif ($_GET['v'] == 'm') {
+} elseif (isset($_GET['v']) && $_GET['v'] == 'm') {
 	$_folder = 'mobile';
 	$_fn = 'index';
 	$_type = 'html';
