@@ -58,13 +58,14 @@
 
 
  function loadRights() {
+	$('.rightsAttr[data-l1key=id]').value('');
+    $('.rightsAttr[data-l1key=right]').value(1);
     jeedom.rights.byUserId({
         user_id: $('#sel_userId').value(),
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-            $('.rightsAttr[data-l1key=right]').value(1);
             for (var i in data) {
                 var rights = $('.rightsAttr[data-l1key=entity][value=' + data[i].entity + ']').closest('.rights');
                 if (rights != undefined) {
