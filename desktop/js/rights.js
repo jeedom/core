@@ -58,7 +58,7 @@
 
 
  function loadRights() {
-	$('.rightsAttr[data-l1key=id]').value('');
+    $('.rightsAttr[data-l1key=id]').value('');
     $('.rightsAttr[data-l1key=right]').value(1);
     jeedom.rights.byUserId({
         user_id: $('#sel_userId').value(),
