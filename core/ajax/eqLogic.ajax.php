@@ -300,7 +300,7 @@ class ajax_eqLogic {
 	
 	protected static function _assertConnection($_right = '')
 	{
-		if (!isConnect($role)) {
+		if (!isConnect($_right)) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 	}
