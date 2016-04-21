@@ -88,8 +88,8 @@ if ($market->getPurchase() == 1) {
 		if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
 
 			?>
-      <a class="btn btn-default" href='https://market.jeedom.fr/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> Code promo</a>
-      <?php
+     <a class="btn btn-default" href='https://market.jeedom.fr/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> Code promo</a>
+     <?php
 echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=purchaseItem&user_id=' . $purchase_info['user_id'] . '&type=plugin&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
 
 		} else {
@@ -276,6 +276,7 @@ if ($market->getLanguage('it_IT') == 1) {
   }
 </style>
 <script>
+
   $("img.lazy").lazyload({
     event: "sporty"
   });
@@ -297,7 +298,10 @@ if ($market->getLanguage('it_IT') == 1) {
   });
 
   $('body').setValues(market_display_info, '.marketAttr');
+  $('#div_changelog').empty();
+
   if($.isArray(market_display_info.changelog)){
+
     var nb = 0;
     var html = '';
     for(var i in market_display_info.changelog.reverse()){
@@ -325,20 +329,6 @@ if ($market->getLanguage('it_IT') == 1) {
   $(this).hide();
 });
 
-
- $("#div_comments").dialog({
-  autoOpen: false,
-  modal: true,
-  height: (jQuery(window).height() - 300),
-  width: 600,
-  position: {my: 'center', at: 'center', of: window},
-  open: function () {
-    if ((jQuery(window).width() - 50) < 1500) {
-      $('#md_modal').dialog({width: jQuery(window).width() - 50});
-    }
-  }
-});
-
  $("#div_changelog").dialog({
   autoOpen: false,
   modal: true,
@@ -352,12 +342,31 @@ if ($market->getLanguage('it_IT') == 1) {
   }
 });
 
- $("#bt_viewCompleteChangelog").on('click',function(){
+ try{
+  $("#div_changelog").dialog('destroy');
+}catch (e) {
+
+}
+
+$("#div_changelog").dialog({
+  autoOpen: false,
+  modal: true,
+  height: (jQuery(window).height() - 300),
+  width: 600,
+  position: {my: 'center', at: 'center', of: window},
+  open: function () {
+    if ((jQuery(window).width() - 50) < 1500) {
+      $('#md_modal').dialog({width: jQuery(window).width() - 50});
+    }
+  }
+});
+
+$("#bt_viewCompleteChangelog").off().on('click',function(){
   $('#div_changelog').dialog('open');
 });
 
 
- $('.bt_installFromMarket').on('click', function () {
+$('.bt_installFromMarket').on('click', function () {
   var id = $(this).attr('data-market_id');
   var logicalId = $(this).attr('data-market_logicalId');
   jeedom.market.install({
@@ -383,7 +392,7 @@ $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès
 
 });
 
- $('#bt_removeFromMarket').on('click', function () {
+$('#bt_removeFromMarket').on('click', function () {
   var id = $(this).attr('data-market_id');
   jeedom.market.remove({
     id: id,
@@ -397,7 +406,7 @@ $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès
 });
 });
 
- $('#in_myRating').on('change', function () {
+$('#in_myRating').on('change', function () {
   var id = $('.marketAttr[data-l1key=id]').value();
   jeedom.market.setRating({
    id: id,
