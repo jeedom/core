@@ -235,10 +235,10 @@
                                             $('<link rel="stylesheet" href="' + _path[i] + '" type="text/css" />').appendTo('head');
                                         }
                                         if (extension == '.js') {
-                                            if (_path[i].indexOf('core/php/getJS.php?file=') >= 0) {
+                                            if (_path[i].indexOf('core/php/getResource.php?file=') >= 0) {
                                                 $('<script type="text/javascript" src="' + _path[i] + '"></script>').appendTo('head');
                                             } else {
-                                                $('<script type="text/javascript" src="core/php/getJS.php?file=' + _path[i] + '"></script>').appendTo('head');
+                                                $('<script type="text/javascript" src="core/php/getResource.php?file=' + _path[i] + '"></script>').appendTo('head');
                                             }
                                         }
 
