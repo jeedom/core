@@ -26,10 +26,13 @@ ServerSignature Off
 
 <IfModule mod_headers.c>
 	<FilesMatch "\.(css|js|png|jpeg|jpg|ttf|woff)$">
-		Header set Cache-Control "max-age=7200, public"
+		Header set Cache-Control "max-age=7200"
+	</FilesMatch>
+	<FilesMatch ".*(getResources.php)">
+		Header set Cache-Control "max-age=7200"
 	</FilesMatch>
 	<FilesMatch ".*(getJS.php)">
-		Header set Cache-Control "max-age=7200, public"
+		Header set Cache-Control "max-age=7200"
 	</FilesMatch>
 </IfModule>
 
