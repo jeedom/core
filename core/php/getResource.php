@@ -35,7 +35,7 @@ if (file_exists($file)) {
 		default:
 			die();
 	}
-	header('Content-Type: '. $contentType);
+	header('Content-Type: ' . $contentType);
 	$lastModified = filemtime($file);
 	$ifModifiedSince = (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : false);
 	$etagHeader = (isset($_SERVER['HTTP_IF_NONE_MATCH']) ? trim($_SERVER['HTTP_IF_NONE_MATCH']) : false);
@@ -46,12 +46,10 @@ if (file_exists($file)) {
 		header('HTTP/1.1 304 Not Modified');
 		exit;
 	}
-	if ($pathinfo['extension'] == 'js')
-	{
+	if ($pathinfo['extension'] == 'js') {
 		echo translate::exec(file_get_contents($file), init('file'), true);
 	}
-	if ($pathinfo['extension'] == 'css')
-	{
+	if ($pathinfo['extension'] == 'css') {
 		echo file_get_contents($file);
 	}
 	exit;

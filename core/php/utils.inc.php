@@ -26,21 +26,21 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		$type = ($_type == 'css' || $_type == 'js') ? $_type : $type;
 	} else {
 		$config = array(
-			'class'      => array('/class' , '.class.php' , 'php'),
-			'com'        => array('/com'   , '.com.php'   , 'php'),
-			'config'     => array('/config', '.config.php', 'php'),
-			'modal'      => array('/modal' , '.php'       , 'php'),
-			'php'        => array('/php'   , '.php'       , 'php'),
-			'css'        => array('/css'   , '.css'       , 'css'),
-			'js'         => array('/js'    , '.js'        , 'js' ),
-			'class.js'   => array('/js'    , '.class.js'  , 'js' ),
-			'custom.js'  => array('/custom', 'custom.js'  , 'js' ),
-			'custom.css' => array('/custom', 'custom.css' , 'css'),
-			'themes.js'  => array('/themes', '.js'        , 'js' ),
-			'themes.css' => array('/themes', '.css'       , 'css'),
-			'api'        => array('/api'   , '.api.php'   , 'php'),
-			'html'       => array('/html'  , '.html'      , 'php'),
-			'configuration' => array(''    , '.php'       , 'php'),
+			'class' => array('/class', '.class.php', 'php'),
+			'com' => array('/com', '.com.php', 'php'),
+			'config' => array('/config', '.config.php', 'php'),
+			'modal' => array('/modal', '.php', 'php'),
+			'php' => array('/php', '.php', 'php'),
+			'css' => array('/css', '.css', 'css'),
+			'js' => array('/js', '.js', 'js'),
+			'class.js' => array('/js', '.class.js', 'js'),
+			'custom.js' => array('/custom', 'custom.js', 'js'),
+			'custom.css' => array('/custom', 'custom.css', 'css'),
+			'themes.js' => array('/themes', '.js', 'js'),
+			'themes.css' => array('/themes', '.css', 'css'),
+			'api' => array('/api', '.api.php', 'php'),
+			'html' => array('/html', '.html', 'php'),
+			'configuration' => array('', '.php', 'php'),
 		);
 		$_folder .= $config[$_type][0];
 		$_fn .= $config[$_type][1];
@@ -56,9 +56,9 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 			require_once $path;
 			echo translate::exec(ob_get_clean(), $_folder . '/' . $_fn);
 		} else if ($type == 'css') {
-			echo '<link href="'. $_folder . '/' . $_fn . '?md5=' . md5_file($path) . '" rel="stylesheet" />';
+			echo '<link href="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path) . '" rel="stylesheet" />';
 		} else if ($type == 'js') {
-			echo '<script type="text/javascript" src="core/php/getJS.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
+			echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
 		}
 	} else {
 		throw new Exception('File not found : ' . $_fn, 35486);
@@ -67,8 +67,8 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 
 function getTemplate($_folder, $_version, $_filename, $_plugin = '') {
 	$path = ($_plugin == '')
-		? dirname(__FILE__) . '/../../' . $_folder . '/template/' . $_version . '/' . $_filename . '.html'
-		: dirname(__FILE__) . '/../../plugins/' . $_plugin . '/core/template/' . $_version . '/' . $_filename . '.html';
+	? dirname(__FILE__) . '/../../' . $_folder . '/template/' . $_version . '/' . $_filename . '.html'
+	: dirname(__FILE__) . '/../../plugins/' . $_plugin . '/core/template/' . $_version . '/' . $_filename . '.html';
 	return (file_exists($path)) ? file_get_contents($path) : '';
 }
 
@@ -94,12 +94,12 @@ function init($_name, $_default = '') {
 
 function sendVarToJS($_varName, $_value) {
 	$_value = (is_array($_value))
-		? 'jQuery.parseJSON("' . addslashes(json_encode($_value, JSON_UNESCAPED_UNICODE)) . '")'
-		: '"' . $_value . '"'
+	? 'jQuery.parseJSON("' . addslashes(json_encode($_value, JSON_UNESCAPED_UNICODE)) . '")'
+	: '"' . $_value . '"'
 	;
 	echo '<script>'
-		.'var ' . $_varName . ' = ' .$_value. ';'
-		.'</script>';
+		. 'var ' . $_varName . ' = ' . $_value . ';'
+		. '</script>';
 }
 
 function resizeImage($contents, $width, $height) {
@@ -137,7 +137,7 @@ function getmicrotime() {
 }
 
 function redirect($_url, $_forceType = null) {
-	if ($_forceType == 'JS' || headers_sent() || isset($_GET['ajax'])){
+	if ($_forceType == 'JS' || headers_sent() || isset($_GET['ajax'])) {
 		echo '<script type="text/javascript">';
 		echo "window.location.href='$_url';";
 		echo '</script>';
