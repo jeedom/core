@@ -594,7 +594,11 @@ class cmd {
 				case 'binary':
 					if ($this->getConfiguration('calculValueOffset') != '') {
 						try {
-							$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
+							if (preg_match("/[a-zA-Z#]/", $_value)) {
+								$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . $_value . '"', $this->getConfiguration('calculValueOffset')));
+							} else {
+								$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
+							}
 						} catch (Exception $ex) {
 
 						} catch (Error $ex) {
@@ -616,7 +620,11 @@ class cmd {
 					$_value = floatval(str_replace(',', '.', $_value));
 					if ($this->getConfiguration('calculValueOffset') != '') {
 						try {
-							$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
+							if (preg_match("/[a-zA-Z#]/", $_value)) {
+								$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . $_value . '"', $this->getConfiguration('calculValueOffset')));
+							} else {
+								$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
+							}
 						} catch (Exception $ex) {
 
 						} catch (Error $ex) {
