@@ -452,7 +452,6 @@ if (config::byKey('security::enable') != 0 && hasRight('securityview', true)) {
 												</a>
 												<ul class="dropdown-menu">
 													<li><a href="index.php?v=d&p=profils"><i class="fa fa-briefcase"></i> {{Profil}} <?php echo $_SESSION['user']->getLogin(); ?></a></li>
-													<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
 
 													<?php
 if (isConnect('admin')) {
@@ -463,17 +462,21 @@ if (isConnect('admin')) {
 		}
 		?>
 
-														<?php	if (jeedom::isCapable('sudo')) {
-			echo '<li class="divider expertModeVisible"></li>';
+														
+													<li class="divider"></li>
+													<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
+													<li class="divider"></li>
+													<li><a href="#" id="bt_jeedomAbout"><i class="fa fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
+													
+													<?php	if (jeedom::isCapable('sudo')) {
+														echo '<li class="divider expertModeVisible"></li>';
 			echo '<li class="cursor expertModeVisible"><a id="bt_rebootSystem" state="0"><i class="fa fa-repeat"></i> {{Redémarrer}}</a></li>';
 			echo '<li class="cursor expertModeVisible"><a id="bt_haltSystem" state="0"><i class="fa fa-power-off"></i> {{Eteindre}}</a></li>';
 		}
 	}
 	?>
 													<li class="divider"></li>
-													<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
-													<li class="divider"></li>
-													<li><a href="#" id="bt_jeedomAbout">{{Version}} v<?php echo jeedom::version(); ?></a></li>
+													<li><a href="index.php?v=d&logout=1"><i class="fa fa-sign-out"></i> {{Se déconnecter}}</a></li>
 												</ul>
 											</li>
 											<li>
