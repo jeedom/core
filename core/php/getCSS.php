@@ -16,26 +16,5 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once dirname(__FILE__) . "/core.inc.php";
-$file = dirname(__FILE__) . "/../../" . init('file');
+require_once 'getResource.php';
 
-$pathinfo = pathinfo($file);
-if ($pathinfo['extension'] != 'css') {
-	die();
-}
-if (file_exists($file)) {
-	header('Content-Type: text/css');
-	$lastModified = filemtime($file);
-	$etagFile = md5_file($file);
-	$ifModifiedSince = (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : false);
-	$etagHeader = (isset($_SERVER['HTTP_IF_NONE_MATCH']) ? trim($_SERVER['HTTP_IF_NONE_MATCH']) : false);
-	header("Last-Modified: " . gmdate("D, d M Y H:i:s", $lastModified) . " GMT");
-	header("Etag: $etagFile");
-	header('Cache-Control: public');
-	if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $lastModified || $etagHeader == $etagFile) {
-		header("HTTP/1.1 304 Not Modified");
-		exit;
-	}
-	echo file_get_contents($file);
-	exit;
-}
