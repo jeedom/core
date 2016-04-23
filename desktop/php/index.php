@@ -166,7 +166,7 @@ if (config::byKey('enableCustomCss', 'core', 1) == 1) {
 	}
 }
 try {
-	if (is_object($_SESSION['user'])) {
+	if (isset($_SESSION['user']) && is_object($_SESSION['user'])) {
 		if (is_dir(dirname(__FILE__) . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop')) {
 			if (file_exists(dirname(__FILE__) . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.js')) {
 				include_file('core', $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme'), 'themes.js');
@@ -462,14 +462,14 @@ if (isConnect('admin')) {
 		}
 		?>
 
-														
+
 													<li class="divider"></li>
 													<li><a href="index.php?v=m"><i class="fa fa-mobile"></i> {{Version mobile}}</a></li>
 													<li class="divider"></li>
 													<li><a href="#" id="bt_jeedomAbout"><i class="fa fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
-													
+
 													<?php	if (jeedom::isCapable('sudo')) {
-														echo '<li class="divider expertModeVisible"></li>';
+			echo '<li class="divider expertModeVisible"></li>';
 			echo '<li class="cursor expertModeVisible"><a id="bt_rebootSystem" state="0"><i class="fa fa-repeat"></i> {{Redémarrer}}</a></li>';
 			echo '<li class="cursor expertModeVisible"><a id="bt_haltSystem" state="0"><i class="fa fa-power-off"></i> {{Eteindre}}</a></li>';
 		}
