@@ -151,7 +151,7 @@ class message {
 					$cmd = cmd::byId(str_replace('#', '', $id));
 					if (is_object($cmd)) {
 						$cmd->execCmd(array(
-							'title' => __('[' . $jeedomName .'] Message de ', __FILE__) . $this->getPlugin(),
+							'title' => __('[' . $jeedomName . '] Message de ', __FILE__) . $this->getPlugin(),
 							'message' => $jeedomName . ' : ' . $this->getMessage(),
 						));
 					}
