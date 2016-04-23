@@ -340,7 +340,7 @@ if (config::byKey('jeeNetwork::mode') == 'master' && hasRight('objectview', true
 			?>
 											<li><a href="index.php?v=d&p=interact"><i class="fa fa-comments-o"></i> {{Interactions}}</a></li>
 											<?php }
-		if (hasRight('displayview')) {
+		if (hasRight('displayview', true)) {
 			?>
 												<li><a href="index.php?v=d&p=display"><i class="fa fa-th"></i> {{Résumé domotique}}</a></li>
 												<?php
