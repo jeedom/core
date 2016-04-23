@@ -31,9 +31,9 @@ class log {
 	const LEVEL_NOTICE = 250;
 	const LEVEL_WARNING = 300;
 	const LEVEL_ERROR = 400;
-	
+
 	const DEFAULT_MAX_LINE = 200;
-	
+
 	/*     * *************************Attributs****************************** */
 	private static $logger = array();
 	/*     * ***********************Methode static*************************** */
@@ -124,7 +124,7 @@ class log {
 		}
 	}
 
-	public static function chunkLog($_path) {
+	public static function chunkLog($_path, $_invert = false) {
 		if (strpos($_path, '.htaccess') !== false) {
 			return;
 		}
@@ -132,7 +132,11 @@ class log {
 		if ($maxLineLog < self::DEFAULT_MAX_LINE) {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
-		shell_exec('sudo chmod 777 ' . $_path . ' ;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+		if (strpos($_path, 'scenarioLog') !== false) {
+			shell_exec('sudo chmod 777 ' . $_path . ' ;echo "$(head -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+		} else {
+			shell_exec('sudo chmod 777 ' . $_path . ' ;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+		}
 		@chown($_path, 'www-data');
 		@chgrp($_path, 'www-data');
 		@chmod($_path, 0777);
@@ -273,29 +277,28 @@ class log {
 
 	/**
 	 * Fixe le niveau de rapport d'erreurs PHP
-	 * @param int $log_level 
+	 * @param int $log_level
 	 * @since 2.1.4
 	 * @author KwiZeR <kwizer@kw12er.com>
 	 */
-	public static function define_error_reporting($log_level)
-	{
+	public static function define_error_reporting($log_level) {
 		switch ($log_level) {
-			case self::LEVEL_DEBUG :
-			case self::LEVEL_INFO :
-			case self::LEVEL_NOTICE :
+			case self::LEVEL_DEBUG:
+			case self::LEVEL_INFO:
+			case self::LEVEL_NOTICE:
 				error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 				break;
-			case self::LEVEL_WARNING :
+			case self::LEVEL_WARNING:
 				error_reporting(E_ERROR | E_WARNING | E_PARSE);
 				break;
-			case self::LEVEL_ERROR :
+			case self::LEVEL_ERROR:
 				error_reporting(E_ERROR | E_PARSE);
 				break;
 			default:
-				throw new Exception('log::level invalide ("'.$log_level.'")');
+				throw new Exception('log::level invalide ("' . $log_level . '")');
 		}
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
 
 	/*     * **********************Getteur Setteur*************************** */
