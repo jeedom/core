@@ -97,7 +97,8 @@ class logTest extends \PHPUnit_Framework_TestCase
 	 * @dataProvider getLogs
 	 * @param string $engin
 	 * @param string $message
-	 * @param string $return
+	 * @param string $get
+	 * @param string $removeAll
 	 */
 	public function testAddGetRemove($engin, $message, $get, $removeAll) {
 		config::save('log::engine', $engin);
