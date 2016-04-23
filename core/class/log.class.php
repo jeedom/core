@@ -73,7 +73,7 @@ class log {
 			return;
 		}
 		$logger = self::getLogger($_log);
-		$action = 'add'.ucword(strtolower($_type));
+		$action = 'add'.ucwords(strtolower($_type));
 		if (method_exists($logger, $action)) {
 			$logger->$action($_message);
 			if ($action == 'addError' && config::byKey('addMessageForErrorLog') == 1) {
@@ -158,7 +158,7 @@ class log {
 		}
 		if (self::authorizeClearLog($_log))
 		{
-			shell_exec('sudo chmod 777 ' . $path);
+			shell_exec('sudo chmod 777 ' . self::getPathToLog($_log));
 			unlink($path);
 			return true;
 		}
