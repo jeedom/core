@@ -143,12 +143,16 @@ class message {
 			DB::save($this);
 			$cmds = explode(('&&'), config::byKey('emailAdmin'));
 			if (count($cmds) > 0 && trim(config::byKey('emailAdmin')) != '') {
+				$jeedomName = trim(config::byKey('name'));
+				if ($jeedomName == '') {
+					$jeedomName = 'JEEDOM';
+				}
 				foreach ($cmds as $id) {
 					$cmd = cmd::byId(str_replace('#', '', $id));
 					if (is_object($cmd)) {
 						$cmd->execCmd(array(
-							'title' => __('[JEEDOM] Message de ', __FILE__) . $this->getPlugin(),
-							'message' => $this->getMessage(),
+							'title' => __('[' . $jeedomName . '] Message de ', __FILE__) . $this->getPlugin(),
+							'message' => $jeedomName . ' : ' . $this->getMessage(),
 						));
 					}
 				}
