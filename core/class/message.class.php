@@ -148,7 +148,7 @@ class message {
 					if (is_object($cmd)) {
 						$cmd->execCmd(array(
 							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] Message de ', __FILE__) . $this->getPlugin(),
-							'message' => $this->getMessage(),
+							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $this->getMessage(),
 						));
 					}
 				}
