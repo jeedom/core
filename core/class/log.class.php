@@ -73,7 +73,7 @@ class log {
 			return;
 		}
 		$logger = self::getLogger($_log);
-		$action = 'add'.ucwords(strtolower($_type));
+		$action = 'add' . ucwords(strtolower($_type));
 		if (method_exists($logger, $action)) {
 			$logger->$action($_message);
 			if ($action == 'addError' && config::byKey('addMessageForErrorLog') == 1) {
@@ -97,13 +97,13 @@ class log {
 			}
 		}
 		foreach ($paths as $path) {
-			if (is_file($_path)) {
+			if (is_file($path)) {
 				self::chunkLog($path);
 			}
 		}
 	}
 
-	public static function chunkLog($_path, $_invert = false) {	
+	public static function chunkLog($_path, $_invert = false) {
 		if (strpos($_path, '.htaccess') !== false) {
 			return;
 		}
@@ -125,27 +125,23 @@ class log {
 	/**
 	 * Autorisation de vide le fichier de log
 	 */
-	public static function authorizeClearLog($_log, $_subPath = '')
-	{
-		$path = self::getPathToLog($_subPath.$_log);
+	public static function authorizeClearLog($_log, $_subPath = '') {
+		$path = self::getPathToLog($_subPath . $_log);
 		return !((!self::isStreamHandlerEngine())
-				||  (strpos($_log, '.htaccess') !== false)
-				||  (!file_exists($path) || !is_file($path)))
+			|| (strpos($_log, '.htaccess') !== false)
+			|| (!file_exists($path) || !is_file($path)))
 		;
 	}
-	
+
 	/**
 	 * Vide le fichier de log
 	 */
 	public static function clear($_log) {
-		if (self::authorizeClearLog($_log))
-		{
+		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
 			shell_exec('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
-			
 			return true;
 		}
-		
 		return;
 	}
 
@@ -157,8 +153,7 @@ class log {
 			self::clear($_log);
 			return;
 		}
-		if (self::authorizeClearLog($_log))
-		{
+		if (self::authorizeClearLog($_log)) {
 			shell_exec('sudo chmod 777 ' . self::getPathToLog($_log));
 			unlink($path);
 			return true;
@@ -247,11 +242,10 @@ class log {
 		}
 	}
 
-	public static function isStreamHandlerEngine()
-	{
+	public static function isStreamHandlerEngine() {
 		return config::byKey('log::engine') == 'StreamHandler';
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
 
 	/*     * **********************Getteur Setteur*************************** */
