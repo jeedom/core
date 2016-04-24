@@ -83,6 +83,7 @@
  				$(this).removeClass('btn-success').addClass('btn-warning');
  				$(this).html('<i class="fa fa-pause"></i> {{Pause}}');
  				$(this).attr('data-state',1);
+ 				_params.display.scrollTop(_params.display.height() + 200000);
  				jeedom.log.autoupdate(_params);
  			}
  		});
