@@ -42,8 +42,7 @@ class log {
 		if (isset(self::$logger[$_log])) {
 			return self::$logger[$_log];
 		}
-		$output = "[%datetime%][%channel%][%level_name%] : %message%\n";
-		$formatter = new LineFormatter($output);
+		$formatter = new LineFormatter(config::byKey('log::formatter'));
 		self::$logger[$_log] = new Logger($_log);
 		switch (config::byKey('log::engine')) {
 			case 'SyslogHandler':

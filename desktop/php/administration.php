@@ -636,7 +636,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#config_cache">
-                <i class="fa fa-hdd-o"></i>  {{Configuration du cache}}
+                <i class="fa fa-hdd-o"></i> {{Configuration du cache}}
             </a>
         </h3>
     </div>
@@ -772,7 +772,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
     <div class="panel-heading">
         <h3 class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionConfiguration" href="#configuration_logMessage">
-                <i class="fa fa-pencil-square-o"></i>  {{Configuration des logs & messages}}
+                <i class="fa fa-pencil-square-o"></i> {{Configuration des logs & messages}}
             </a>
         </h3>
     </div>
@@ -834,6 +834,12 @@ foreach (plugin::listPlugin(true) as $plugin) {
                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                         <input type="text"  class="configKey form-control" data-l1key="log::syslogudpport" />
                     </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Format des logs}}</label>
+                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                    <input type="text" class="configKey form-control" data-l1key="log::formatter" />
                 </div>
             </div>
             <div class="form-group">
