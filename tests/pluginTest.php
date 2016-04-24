@@ -7,6 +7,11 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 					'The CURL extension is not available.'
 			);
 		}
+		if (!extension_loaded('zip')) {
+			$this->markTestSkipped(
+					'The zip extension is not available.'
+			);
+		}
 		
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		try {
