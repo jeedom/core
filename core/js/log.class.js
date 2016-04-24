@@ -78,7 +78,7 @@
  			if($(this).attr('data-state') == 1){
  				$(this).attr('data-state',0);
  				$(this).removeClass('btn-warning').addClass('btn-success');
- 				$(this).html('<i class="fa fa-play"></i> {{Reprise}}');
+ 				$(this).html('<i class="fa fa-play"></i> {{Reprendre}}');
  			}else{
  				$(this).removeClass('btn-success').addClass('btn-warning');
  				$(this).html('<i class="fa fa-pause"></i> {{Pause}}');
@@ -89,6 +89,13 @@
  	}
  	_params.callNumber++;
  	jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')] = {log : _params.log};
+
+ 	if(_params.display.scrollTop() + _params.display.innerHeight() < _params.display[0].scrollHeight){
+ 		if(_params['control'].attr('data-state') == 1){
+ 			_params['control'].trigger('click');
+ 		}
+ 		return;
+ 	}
  	jeedom.log.get({
  		log : _params.log,
  		slaveId : _params.slaveId,
