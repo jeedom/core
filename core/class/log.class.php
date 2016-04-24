@@ -152,7 +152,8 @@ class log {
 			return;
 		}
 		if (self::authorizeClearLog($_log)) {
-			shell_exec('sudo chmod 777 ' . self::getPathToLog($_log));
+			$path = self::getPathToLog($_log);
+			shell_exec('sudo chmod 777 ' . $path);
 			unlink($path);
 			return true;
 		}
