@@ -129,17 +129,18 @@ class config {
 		if ($value['value'] === '' || $value['value'] === null) {
 			$defaultConfiguration = self::getDefaultConfiguration($_plugin);
 			if (isset($defaultConfiguration[$_plugin][$_key])) {
-				return $defaultConfiguration[$_plugin][$_key];
+				self::$cache[$_plugin . '::' . $_key] = $defaultConfiguration[$_plugin][$_key];
 			}
 			if ($_default !== '') {
-				return $_default;
+				self::$cache[$_plugin . '::' . $_key] = $_default;
 			}
+		} else {
+			if (is_json($value['value'])) {
+				$value['value'] = json_decode($value['value'], true);
+			}
+			self::$cache[$_plugin . '::' . $_key] = $value['value'];
 		}
-		if (is_json($value['value'])) {
-			$value['value'] = json_decode($value['value'], true);
-		}
-		self::$cache[$_plugin . '::' . $_key] = $value['value'];
-		return self::$cache[$_plugin . '::' . $_key];
+		return isset(self::$cache[$_plugin . '::' . $_key]) ? self::$cache[$_plugin . '::' . $_key] : '';
 	}
 
 	public static function searchKey($_key, $_plugin = 'core') {
