@@ -1,6 +1,18 @@
 <?php
 class pluginTest extends \PHPUnit_Framework_TestCase {
 	public function testInstall() {
+		// On passe le test si curl n'est pas installé
+		if (!extension_loaded('curl')) {
+			$this->markTestSkipped(
+					'The CURL extension is not available.'
+			);
+		}
+		if (!extension_loaded('zip')) {
+			$this->markTestSkipped(
+					'The zip extension is not available.'
+			);
+		}
+		
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		try {
 			$plugin = plugin::byId('virtual');
