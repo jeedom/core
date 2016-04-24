@@ -1,5 +1,13 @@
 <?php
 class scenarioExpressionTest extends \PHPUnit_Framework_TestCase {
+	protected function setUp() {
+		if (!extension_loaded('curl')) {
+			$this->markTestSkipped(
+					'The CURL extension is not available.'
+			);
+		}
+	} 
+	
 	public function testCalculCondition() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$tests = array(
@@ -12,7 +20,7 @@ class scenarioExpressionTest extends \PHPUnit_Framework_TestCase {
 		}
 		echo "\n";
 	}
-
+	
 	public function testVariable() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		scenarioExpression::createAndExec('action', 'variable', array('value' => 'plop', 'name' => 'test'));
