@@ -1134,11 +1134,7 @@ class scenario {
 			mkdir(dirname(__FILE__) . '/../../log/scenarioLog');
 		}
 		$path = dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $this->getId() . '.log';
-		$content = '';
-		if (file_exists($path)) {
-			$content = file_get_contents($path);
-		}
-		file_put_contents($path, $this->getLog() . "------------------------------------\n" . $content);
+		file_put_contents($path, "------------------------------------\n" . $this->getLog(), FILE_APPEND);
 	}
 
 /*     * **********************Getteur Setteur*************************** */

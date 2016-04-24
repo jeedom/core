@@ -9,21 +9,25 @@ if (!is_object($scenario)) {
 sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
 ?>
 <div style="display: none;width : 100%" id="div_alertScenarioLog"></div>
+
+<a class="btn btn-warning pull-right" data-state="1" id="bt_scenarioLogStopStart"><i class="fa fa-pause"></i> {{Pause}}</a>
+<input class="form-control pull-right" id="in_scenarioLogSearch" style="width : 300px;" placeholder="{{Rechercher}}" />
 <a class="btn btn-danger pull-right" id="bt_scenarioLogEmpty"><i class="fa fa-trash"></i> {{Vider les logs}}</a>
 <a class="btn btn-success pull-right" id="bt_scenarioLogDownload"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
-<a class="btn btn-primary pull-right" id="bt_scenarioLogRefresh"><i class="fa fa-refresh"></i> {{Rafraîchir}}</a>
-<br/><br/>
-<?php
-if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . init('scenario_id') . '.log')) {
-	echo '<pre id="pre_logScenarioDisplay">' . trim(file_get_contents(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . init('scenario_id') . '.log')) . '</pre>';
-} else {
-	echo "{{Aucun log n'existe pour votre scénario : }}" . dirname(__FILE__) . '/../../log/scenarioLog/scenario' . init('scenario_id') . '.log.';
-}
-?>
+<br/><br/><br/>
+<pre id='pre_scenariolog' style='overflow: auto; height: calc(100% - 50px);with:90%;'></pre>
+
 <script>
+    jeedom.log.autoupdate({
+        log : 'scenarioLog/scenario'+scenarioLog_scenario_id+'.log',
+        display : $('#pre_scenariolog'),
+        search : $('#in_scenarioLogSearch'),
+        control : $('#bt_scenarioLogStopStart'),
+    });
+
     $('#bt_scenarioLogEmpty').on('click', function () {
      jeedom.scenario.emptyLog({
-        id: <?php echo init('scenario_id')?>,
+        id: <?php echo init('scenario_id') ?>,
         error: function (error) {
             $('#div_alertScenarioLog').showAlert({message: error.message, level: 'danger'});
         },
@@ -34,13 +38,8 @@ if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . init('sc
     });
  });
 
-    $('#bt_scenarioLogRefresh').on('click',function(){
-        $('#md_modal').load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + scenarioLog_scenario_id).dialog('open');
-    });
-
-
     $('#bt_scenarioLogDownload').click(function() {
-        window.open('core/php/downloadFile.php?pathfile=log/scenarioLog/scenario<?php echo init('scenario_id')?>.log', "_blank", null);
+        window.open('core/php/downloadFile.php?pathfile=log/scenarioLog/scenario<?php echo init('scenario_id') ?>.log', "_blank", null);
     });
 </script>
 

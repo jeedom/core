@@ -110,8 +110,7 @@ class log {
 		if ($maxLineLog < self::DEFAULT_MAX_LINE) {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
-		$func = (strpos($_path, 'scenarioLog') !== false) ? 'head' : 'tail';
-		shell_exec('sudo chmod 777 ' . $_path . ' ;echo "$(' . $func . ' -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+		shell_exec('sudo chmod 777 ' . $_path . ' ;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		@chown($_path, 'www-data');
 		@chgrp($_path, 'www-data');
 		@chmod($_path, 0777);
