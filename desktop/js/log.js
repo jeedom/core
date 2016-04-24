@@ -14,99 +14,88 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+ function changeLog(_log){
+    jeedom.log.autoupdate({
+        log : _log,
+        display : $('#pre_globallog'),
+        search : $('#in_globalLogSearch'),
+        control : $('#bt_globalLogStopStart'),
+    });
+}
 
- $('#div_logDisplay').height($(window).height() - $('header').height() - $('footer').height() - 75);
- $('#div_logDisplay').scrollTop(999999999);
- $('#bt_downloadLog').click(function() {
- 	window.open('core/php/downloadFile.php?pathfile=log/' + $('#sel_log').value(), "_blank", null);
- });
+$('#bt_downloadLog').click(function() {
+  window.open('core/php/downloadFile.php?pathfile=log/' + $('#sel_log').value(), "_blank", null);
+});
 
- $("#sel_log").on('change', function() {
- 	log = $('#sel_log').value();
- 	$('#div_pageContainer').empty().load('index.php?v=d&p=log&logfile=' + log+'&ajax=1',function(){
- 		initPage();
- 	});
- });
+$(".li_log").on('click', function() {
+    $(".li_log").removeClass('active');
+    $(this).addClass('active');
+    changeLog($(this).attr('data-log'))
+});
 
- $('#bt_refreshLog').on('click', function() {
- 	log = $('#sel_log').value();
- 	$('#div_pageContainer').empty().load('index.php?v=d&p=log&logfile=' + log+'&ajax=1',function(){
- 		initPage();
- 	});
- });
+$("#bt_clearLog").on('click', function(event) {
+    $.ajax({
+        type: "POST", 
+        url: "core/ajax/log.ajax.php", 
+        data: {
+         action: "clear",
+         logfile: $('.li_log.active').attr('data-log')
+     },
+     dataType: 'json',
+     error: function(request, status, error) {
+         handleAjaxError(request, status, error);
+     },
+     success: function(data) { 
+        if (data.state != 'ok') {
+         $('#div_alertError').showAlert({message: data.result, level: 'danger'});
+     }
+ }
+});
+});
 
- $("#bt_clearLog").on('click', function(event) {
-            $.ajax({// fonction permettant de faire de l'ajax
-                type: "POST", // methode de transmission des données au fichier php
-                url: "core/ajax/log.ajax.php", // url du fichier php
-                data: {
-                	action: "clear",
-                	logfile: $('#sel_log').value()
-                },
-                dataType: 'json',
-                error: function(request, status, error) {
-                	handleAjaxError(request, status, error);
-                },
-                success: function(data) { // si l'appel a bien fonctionné
-                if (data.state != 'ok') {
-                	$('#div_alertError').showAlert({message: data.result, level: 'danger'});
-                } else {
-                	$('#div_pageContainer').empty().load('index.php?v=d&p=log&logfile=' + $('#sel_log').value() +'&ajax=1',function(){
-                      initPage();
-                  });
-                }
-            }
-        });
-        });
+$("#bt_removeLog").on('click', function(event) {
+    $.ajax({
+        type: "POST", 
+        url: "core/ajax/log.ajax.php", 
+        data: {
+           action: "remove",
+           logfile: $('.li_log.active').attr('data-log')
+       },
+       dataType: 'json',
+       error: function(request, status, error) {
+           handleAjaxError(request, status, error);
+       },
+       success: function(data) { 
+        if (data.state != 'ok') {
+           $('#div_alertError').showAlert({message: data.result, level: 'danger'});
+           return;
+       } 
+       window.location.reload();
+   }
+});
+});
 
- $("#bt_removeLog").on('click', function(event) {
-            $.ajax({// fonction permettant de faire de l'ajax
-                type: "POST", // methode de transmission des données au fichier php
-                url: "core/ajax/log.ajax.php", // url du fichier php
-                data: {
-                	action: "remove",
-                	logfile: $('#sel_log').value()
-                },
-                dataType: 'json',
-                error: function(request, status, error) {
-                	handleAjaxError(request, status, error);
-                },
-                success: function(data) { // si l'appel a bien fonctionné
-                if (data.state != 'ok') {
-                	$('#div_alertError').showAlert({message: data.result, level: 'danger'});
-                } else {
-                	$('#div_pageContainer').empty().load('index.php?v=d&p=log&ajax=1',function(){
-                		initPage();
-                	});
-                }
-            }
-        });
-        });
-
- $("#bt_removeAllLog").on('click', function(event) {
- 	bootbox.confirm("{{Etes-vous sur de vouloir supprimer tous les logs ?}}", function(result) {
- 		if (result) {
-                    $.ajax({// fonction permettant de faire de l'ajax
-                        type: "POST", // methode de transmission des données au fichier php
-                        url: "core/ajax/log.ajax.php", // url du fichier php
-                        data: {
-                        	action: "removeAll",
-                        },
-                        dataType: 'json',
-                        error: function(request, status, error) {
-                        	handleAjaxError(request, status, error);
-                        },
-                        success: function(data) { // si l'appel a bien fonctionné
-                        if (data.state != 'ok') {
-                        	$('#div_alertError').showAlert({message: data.result, level: 'danger'});
-                        	return;
-                        }
-                        $('#div_pageContainer').empty().load('index.php?v=d&p=log&ajax=1',function(){
-                        	initPage();
-                        });
-
-                    }
-                });
-                }
-            });
- });
+$("#bt_removeAllLog").on('click', function(event) {
+  bootbox.confirm("{{Etes-vous sur de vouloir supprimer tous les logs ?}}", function(result) {
+     if (result) {
+        $.ajax({
+            type: "POST", 
+            url: "core/ajax/log.ajax.php", 
+            data: {
+               action: "removeAll",
+           },
+           dataType: 'json',
+           error: function(request, status, error) {
+               handleAjaxError(request, status, error);
+           },
+           success: function(data) {
+            if (data.state != 'ok') {
+               $('#div_alertError').showAlert({message: data.result, level: 'danger'});
+               return;
+           }
+           window.location.reload();
+       }
+   });
+    }
+});
+});

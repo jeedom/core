@@ -19,6 +19,8 @@
  jeedom.log = function () {
  };
 
+ jeedom.log.currentAutoupdate = [];
+
  jeedom.log.get = function (_params) {
  	var paramsRequired = ['log'];
  	var paramsSpecifics = {
@@ -62,7 +64,16 @@
  	if (!_params['display'].is(':visible')) {
  		return;
  	}
- 	if(isset(_params['control'])){
+ 	if(isset(_params['control']) && _params['control'].attr('data-state') != 1){
+ 		return;
+ 	}
+ 	if(!isset(_params.callNumber)){
+ 		_params.callNumber = 0;
+ 	}
+ 	if(_params.callNumber > 0 && isset(jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')]) && jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')].log != _params.log){
+ 		return;
+ 	}
+ 	if(_params.callNumber > 0){
  		_params['control'].off('click').on('click',function(){
  			if($(this).attr('data-state') == 1){
  				$(this).attr('data-state',0);
@@ -76,9 +87,8 @@
  			}
  		});
  	}
- 	if(isset(_params['control']) && _params['control'].attr('data-state') != 1){
- 		return;
- 	}
+ 	_params.callNumber++;
+ 	jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')] = {log : _params.log};
  	jeedom.log.get({
  		log : _params.log,
  		slaveId : _params.slaveId,

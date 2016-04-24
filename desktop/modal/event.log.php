@@ -20,8 +20,8 @@ if (!isConnect('admin')) {
 }
 ?>
 <div class="alert alert-info">{{Vous devez activer tous les log de niveau event pour suivre en temps réel toute votre domotique}}</div>
-<a class="btn btn-warning pull-right" data-state="1" id="in_eventLogStopStart"><i class="fa fa-pause"></i> {{Pause}}</a>
-<input class="form-control pull-right" id="bt_eventLogSearch" style="width : 300px;" placeholder="{{Rechercher}}" />
+<a class="btn btn-warning pull-right" data-state="1" id="bt_eventLogStopStart"><i class="fa fa-pause"></i> {{Pause}}</a>
+<input class="form-control pull-right" id="in_eventLogSearch" style="width : 300px;" placeholder="{{Rechercher}}" />
 <br/><br/><br/>
 <pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 135px);with:90%;'></pre>
 
