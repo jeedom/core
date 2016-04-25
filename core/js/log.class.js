@@ -100,7 +100,7 @@
  	jeedom.log.get({
  		log : _params.log,
  		slaveId : _params.slaveId,
- 		global : false,
+ 		global : (_params.callNumber == 1),
  		success : function(result){
  			var log = '';
  			var regex = /<br\s*[\/]?>/gi;
