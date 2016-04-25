@@ -47,14 +47,14 @@ class log {
 		self::$logger[$_log] = new Logger($_log);
 		switch (config::byKey('log::engine')) {
 			case 'SyslogHandler':
-				$handler = new SyslogHandler(config::byKey('log::level'));
+				$handler = new SyslogHandler(self::getLogLevel($_log));
 				break;
 			case 'SyslogUdp':
 				$handler = new SyslogUdpHandler(config::byKey('log::syslogudphost'), config::byKey('log::syslogudpport'));
 				break;
 			case 'StreamHandler':
 			default:
-				$handler = new StreamHandler(self::getPathToLog($_log), config::byKey('log::level'));
+				$handler = new StreamHandler(self::getPathToLog($_log), self::getLogLevel($_log));
 				break;
 		}
 		$handler->setFormatter($formatter);
@@ -62,49 +62,22 @@ class log {
 		return self::$logger[$_log];
 	}
 
-	public static function allowLog($_log, $_type) {
-		if (isset(self::$specific_level[$_log]) && isset(self::$specific_level[$_log][$_type])) {
-			return self::$specific_level[$_log][$_type];
-		}
+	public static function getLogLevel($_log) {
 		$specific_level = config::byKey('log::level::' . $_log);
 		if (is_array($specific_level)) {
 			if (isset($specific_level['default']) && $specific_level['default'] == 1) {
-				self::$specific_level[$_log][$_type] = true;
-				return self::$specific_level[$_log][$_type];
+				return config::byKey('log::level');
 			}
-			$minLevel = 0;
 			foreach ($specific_level as $key => $value) {
 				if (!is_numeric($key)) {
 					continue;
 				}
 				if ($value == 1) {
-					$minLevel = $key;
+					return $key;
 				}
 			}
-			$level = 500;
-			switch ($_type) {
-				case 'debug':
-					$level = 100;
-					break;
-				case 'info':
-					$level = 200;
-					break;
-				case 'notice':
-					$level = 250;
-					break;
-				case 'warning':
-					$level = 300;
-					break;
-				case 'error':
-					$level = 400;
-					break;
-			}
-			self::$specific_level[$_log][$_type] = ($level >= $minLevel);
-			return self::$specific_level[$_log][$_type];
 		}
-		return true;
-		self::$specific_level[$_log][$_type] = true;
-		return self::$specific_level[$_log][$_type];
+		return config::byKey('log::level');
 	}
 
 	/**
@@ -119,9 +92,6 @@ class log {
 		}
 		$logger = self::getLogger($_log);
 		$action = 'add' . ucwords(strtolower($_type));
-		if (!self::allowLog($_log, $_type)) {
-			return;
-		}
 		if (method_exists($logger, $action)) {
 			$logger->$action($_message);
 			if ($action == 'addError' && config::byKey('addMessageForErrorLog') == 1) {

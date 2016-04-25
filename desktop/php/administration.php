@@ -836,7 +836,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Niveau de log}}</label>
+                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Niveau de log par défaut}}</label>
                     <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                         <select class="configKey form-control" data-l1key="log::level">
                             <option value="100">{{Debug}}</option>
@@ -847,7 +847,6 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                         </select>
                     </div>
                 </div>
-                <div class="alert alert-info">{{Attention le niveau de log d'un plugin ne peut être supérieur au niveau de log de jeedom (ex si jeedom est au niveau warning aucun plugin ne pourra envoyer des logs de niveau notice, info ou debug)}}</div>
                 <table class="table table-condensed">
                     <thead>
                         <tr>

@@ -32,9 +32,6 @@ class message {
 	/*     * ***********************Methode static*************************** */
 
 	public static function add($_type, $_message, $_action = '', $_logicalId = '') {
-		if (config::byKey('message::disallow' . $_type, 'core', 0) == 1) {
-			return;
-		}
 		$message = new message();
 		$message->setPlugin(secureXSS($_type));
 		$message->setMessage(secureXSS($_message));
