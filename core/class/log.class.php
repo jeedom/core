@@ -61,6 +61,44 @@ class log {
 		return self::$logger[$_log];
 	}
 
+	public static function allowLog($_log, $_type) {
+		$specific_level = config::byKey('log::level::' . $_log);
+		if (is_array($specific_level)) {
+			if (isset($specific_level['default']) && $specific_level['default'] == 1) {
+				return true;
+			}
+			$minLevel = 0;
+			foreach ($specific_level as $key => $value) {
+				if (!is_numeric($key)) {
+					continue;
+				}
+				if ($value == 1) {
+					$minLevel = $key;
+				}
+			}
+			$level = 500;
+			switch ($_type) {
+				case 'debug':
+					$level = 100;
+					break;
+				case 'info':
+					$level = 200;
+					break;
+				case 'notice':
+					$level = 250;
+					break;
+				case 'warning':
+					$level = 300;
+					break;
+				case 'error':
+					$level = 400;
+					break;
+			}
+			return ($level >= $minLevel);
+		}
+		return true;
+	}
+
 	/**
 	 * Ajoute un message dans les log et fait en sorte qu'il n'y
 	 * ai jamais plus de 1000 lignes
@@ -73,6 +111,9 @@ class log {
 		}
 		$logger = self::getLogger($_log);
 		$action = 'add' . ucwords(strtolower($_type));
+		if (!self::allowLog($_log, $_type)) {
+			return;
+		}
 		if (method_exists($logger, $action)) {
 			$logger->$action($_message);
 			if ($action == 'addError' && config::byKey('addMessageForErrorLog') == 1) {
