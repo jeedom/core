@@ -108,6 +108,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'CAMERA_ZOOM'  => array('name' => 'Zoom caméra vers l\'avant (action)'),
 			'CAMERA_DEZOOM'  => array('name' => 'Zoom caméra vers l\'arrière (action)'),
 			'CAMERA_STOP'  => array('name' => 'Stop caméra (action)'),
+			'CAMERA_PRESET'  => array('name' => 'Preset caméra (action)'),
 			'MODE_STATE' => array('name' => 'Mode (info)'),
 			'MODE_SET_STATE' => array('name' => 'Mode (action)'),
 			'ALARM_STATE' => array('name' => 'Alarme état (info)'),
