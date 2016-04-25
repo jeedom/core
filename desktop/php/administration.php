@@ -847,6 +847,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                         </select>
                     </div>
                 </div>
+                <div class="alert alert-info">{{Attention le niveau de log d'un plugin ne peut être supérieur au niveau de log de jeedom (ex si jeedom est au niveau warning aucun plugin ne pourra envoyer des logs de niveau notice, info ou debug)}}</div>
                 <table class="table table-condensed">
                     <thead>
                         <tr>
