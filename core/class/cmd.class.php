@@ -595,7 +595,7 @@ class cmd {
 					if ($this->getConfiguration('calculValueOffset') != '') {
 						try {
 							if (preg_match("/[a-zA-Z#]/", $_value)) {
-								$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . str_replace('\'#value#\'', '#value#', str_replace('"#value#"', '#value#', '"' . $_value . '"')) , $this->getConfiguration('calculValueOffset')));
+								$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . $_value . '"', str_replace('\'#value#\'', '#value#', str_replace('"#value#"', '#value#', $this->getConfiguration('calculValueOffset')))));
 							} else {
 								$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
 							}
@@ -621,7 +621,7 @@ class cmd {
 					if ($this->getConfiguration('calculValueOffset') != '') {
 						try {
 							if (preg_match("/[a-zA-Z#]/", $_value)) {
-								$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . $_value . '"', $this->getConfiguration('calculValueOffset')));
+								$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . $_value . '"', str_replace('\'#value#\'', '#value#', str_replace('"#value#"', '#value#', $this->getConfiguration('calculValueOffset')))));
 							} else {
 								$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
 							}
