@@ -943,7 +943,7 @@ function addExpression(_expression) {
     retour += '    <span class="input-group-btn">';
     retour += '       <button type="button" class="btn btn-default cursor bt_selectCmdExpression tooltips"  title="{{Rechercher une commande}}"><i class="fa fa-list-alt"></i></button>';
     retour += '       <button type="button" class="btn btn-default cursor bt_selectScenarioExpression tooltips"  title="{{Rechercher un scenario}}"><i class="fa fa-history"></i></button>';
-    retour += '       <button type="button" class="btn btn-default cursor bt_selectEqLogicExpression tooltips"  title="{{Rechercher d\'une fonction}}"><i class="fa fa-cube"></i></button>';
+    retour += '       <button type="button" class="btn btn-default cursor bt_selectEqLogicExpression tooltips"  title="{{Rechercher d\'un équipement}}"><i class="fa fa-cube"></i></button>';
     retour += '    </span>';
     retour += '</div>';
 
