@@ -36,6 +36,7 @@ class log {
 
 	/*     * *************************Attributs****************************** */
 	private static $logger = array();
+	private static $specific_level = array();
 	/*     * ***********************Methode static*************************** */
 
 	public static function getLogger($_log) {
@@ -62,10 +63,14 @@ class log {
 	}
 
 	public static function allowLog($_log, $_type) {
+		if (isset(self::$specific_level[$_log]) && isset(self::$specific_level[$_log][$_type])) {
+			return self::$specific_level[$_log][$_type];
+		}
 		$specific_level = config::byKey('log::level::' . $_log);
 		if (is_array($specific_level)) {
 			if (isset($specific_level['default']) && $specific_level['default'] == 1) {
-				return true;
+				self::$specific_level[$_log][$_type] = true;
+				return self::$specific_level[$_log][$_type];
 			}
 			$minLevel = 0;
 			foreach ($specific_level as $key => $value) {
@@ -94,9 +99,12 @@ class log {
 					$level = 400;
 					break;
 			}
-			return ($level >= $minLevel);
+			self::$specific_level[$_log][$_type] = ($level >= $minLevel);
+			return self::$specific_level[$_log][$_type];
 		}
 		return true;
+		self::$specific_level[$_log][$_type] = true;
+		return self::$specific_level[$_log][$_type];
 	}
 
 	/**
