@@ -73,7 +73,7 @@
  	if(_params.callNumber > 0 && isset(jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')]) && jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')].log != _params.log){
  		return;
  	}
- 	if(_params.callNumber > 0){
+ 	if(_params.callNumber == 0){
  		_params['control'].off('click').on('click',function(){
  			if($(this).attr('data-state') == 1){
  				$(this).attr('data-state',0);
@@ -85,6 +85,12 @@
  				$(this).attr('data-state',1);
  				_params.display.scrollTop(_params.display.height() + 200000);
  				jeedom.log.autoupdate(_params);
+ 			}
+ 		});
+
+ 		_params['search'].off('keypress').on('keypress',function(){
+ 			if(_params['control'].attr('data-state') == 0){
+ 				_params['control'].trigger('click');
  			}
  		});
  	}
