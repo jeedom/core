@@ -23,12 +23,11 @@ class com_shell {
 	/*     * ***********************Attributs************************* */
 
 	private static $instance;
-	
+
 	private $cmds = array();
 	private $background;
 	private $cache = array();
 	private $history = array();
-	
 
 	/*     * ********************Functions static********************* */
 
@@ -36,17 +35,16 @@ class com_shell {
 		$this->setBackground($_background);
 		$this->addCmd($_cmd);
 	}
-	
+
 	/**
 	 * Get the instance of com_shell
 	 * @return com_shell
 	 */
 	public static function getInstance() {
-		if (self::$instance === null)
-		{
+		if (self::$instance === null) {
 			self::$instance = new self();
 		}
-		
+
 		return self::$instance;
 	}
 
@@ -61,7 +59,7 @@ class com_shell {
 		$shell->addCmd($_cmd, $_background);
 		return $shell->exec();
 	}
-	
+
 	/**
 	 * Test if a command exists
 	 * @param string $_cmd
@@ -74,7 +72,7 @@ class com_shell {
 		pclose($fp);
 		return $exists;
 	}
-	
+
 	/*     * ************* Functions ************************************ */
 
 	/**
@@ -96,7 +94,7 @@ class com_shell {
 		}
 		$this->cmds = $this->cache;
 		$this->cache = array();
-		
+
 		return implode("\n", $return);
 	}
 
@@ -108,12 +106,12 @@ class com_shell {
 	public function commandExist($_cmd) {
 		return self::commandExists($_cmd);
 	}
-	
-	public function clear()	{
+
+	public function clear() {
 		$this->cache = array_merge($this->cache, $this->cmds);
 		$this->cmds = array();
 	}
-	
+
 	public function clearHistory() {
 		$this->history = array();
 	}
@@ -123,18 +121,18 @@ class com_shell {
 	public function getCmd() {
 		return implode("\n", $this->cmds);
 	}
-	
+
 	public function addCmd($_cmd, $_background = null) {
 		if (!self::commandExists($_cmd)) {
 			return false;
 		}
 		$bg = ($_background === null) ? $this->getBackground() : $_background;
 		$add = $bg ? ' >> /dev/null 2>&1 &' : '';
-		$this->cmds[] = $_cmd.$add;
-		
+		$this->cmds[] = $_cmd . $add;
+
 		return true;
 	}
-	
+
 	public function setBackground($background) {
 		$this->background = $background;
 	}
