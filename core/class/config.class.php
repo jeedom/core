@@ -62,12 +62,13 @@ class config {
 			self::remove($_key, $_plugin);
 			return true;
 		}
-		$jeedomConfig = jeedom::getConfiguration($_key, true);
-		if ($jeedomConfig != '' && $jeedomConfig == $_value) {
-			self::remove($_key);
-			return true;
+		if ($_plugin == 'core') {
+			$jeedomConfig = jeedom::getConfiguration($_key, true);
+			if ($jeedomConfig != '' && $jeedomConfig == $_value) {
+				self::remove($_key);
+				return true;
+			}
 		}
-
 		$values = array(
 			'plugin' => $_plugin,
 			'key' => $_key,
