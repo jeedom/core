@@ -53,6 +53,9 @@
  }
 
  jeedom.log.autoupdate = function (_params) {
+ 	if(!isset(_params.callNumber)){
+ 		_params.callNumber = 0;
+ 	}
  	if(!isset(_params.log)){
  		console.log('[jeedom.log.autoupdate] No logfile');
  		return;
@@ -64,16 +67,18 @@
  	if (!_params['display'].is(':visible')) {
  		return;
  	}
- 	if(isset(_params['control']) && _params['control'].attr('data-state') != 1){
+ 	if(_params.callNumber > 0 && isset(_params['control']) && _params['control'].attr('data-state') != 1){
  		return;
- 	}
- 	if(!isset(_params.callNumber)){
- 		_params.callNumber = 0;
  	}
  	if(_params.callNumber > 0 && isset(jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')]) && jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')].log != _params.log){
  		return;
  	}
  	if(_params.callNumber == 0){
+ 		_params['search'].value('');
+ 		_params.display.scrollTop(_params.display.height() + 200000);
+ 		if(_params['control'].attr('data-state') == 0){
+ 			_params['control'].attr('data-state',1);
+ 		}
  		_params['control'].off('click').on('click',function(){
  			if($(this).attr('data-state') == 1){
  				$(this).attr('data-state',0);
@@ -97,7 +102,7 @@
  	_params.callNumber++;
  	jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')] = {log : _params.log};
 
- 	if(_params.display.scrollTop() + _params.display.innerHeight() < _params.display[0].scrollHeight){
+ 	if(_params.callNumber > 0 && _params.display.scrollTop() + _params.display.innerHeight() < _params.display[0].scrollHeight){
  		if(_params['control'].attr('data-state') == 1){
  			_params['control'].trigger('click');
  		}
