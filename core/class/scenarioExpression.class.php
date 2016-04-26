@@ -108,6 +108,18 @@ class scenarioExpression {
 				if (!isset($replace['#id#'])) {
 					$replace['#id#'] = rand();
 				}
+				if (!isset($replace['#title#'])) {
+					$replace['#title#'] = '';
+				}
+				if (!isset($replace['#message#'])) {
+					$replace['#message#'] = '';
+				}
+				if (!isset($replace['#slider#'])) {
+					$replace['#slider#'] = '';
+				}
+				if (!isset($replace['#color#'])) {
+					$replace['#color#'] = '';
+				}
 				$return['html'] = template_replace(cmd::cmdToHumanReadable($replace), $return['html']);
 			} catch (Exception $e) {
 
