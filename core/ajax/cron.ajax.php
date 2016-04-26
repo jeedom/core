@@ -23,55 +23,64 @@ try {
 	if (!isConnect('admin')) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-
-	if (init('action') == 'save') {
+	
+	$action = init('action');
+	if (!method_exists('ajax_cron', $action)) {
+		throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	}
+	ajax::success(ajax_cron::$action());
+	
+	/*     * *********Catch exeption*************** */
+	} catch (Exception $e) {
+		ajax::error(displayExeption($e), $e->getCode());
+	}
+class ajax_cron
+{
+	public static function save() {
 		utils::processJsonObject('cron', init('crons'));
-		ajax::success();
+		
+		return '';
 	}
 
-	if (init('action') == 'remove') {
+	public static function remove() {
 		$cron = cron::byId(init('id'));
 		if (!is_object($cron)) {
 			throw new Exception(__('Cron id inconnu', __FILE__));
 		}
 		$cron->remove();
-		ajax::success();
+		
+		return '';
 	}
 
-	if (init('action') == 'all') {
-		$results = array();
-		$results['crons'] = utils::o2a(cron::all(true));
-		$results['nbCronRun'] = cron::nbCronRun();
-		$results['nbProcess'] = cron::nbProcess();
-		$results['nbMasterCronRun'] = (cron::jeeCronRun()) ? 1 : 0;
-		$results['loadAvg'] = cron::loadAvg();
-		ajax::success($results);
+	public static function all() {
+		return array(
+			'crons' => utils::o2a(cron::all(true)),
+			'nbCronRun' => cron::nbCronRun(),
+			'nbProcess' => cron::nbProcess(),
+			'nbMasterCronRun' => (cron::jeeCronRun()) ? 1 : 0,
+			'loadAvg' => cron::loadAvg(),
+		);
 	}
 
-	if (init('action') == 'start') {
+	public static function start() {
 		$cron = cron::byId(init('id'));
 		if (!is_object($cron)) {
 			throw new Exception(__('Cron id inconnu', __FILE__));
 		}
 		$cron->run();
 		sleep(1);
-		ajax::success();
+		
+		return '';
 	}
 
-	if (init('action') == 'stop') {
+	public static function stop() {
 		$cron = cron::byId(init('id'));
 		if (!is_object($cron)) {
 			throw new Exception(__('Cron id inconnu', __FILE__));
 		}
 		$cron->halt();
 		sleep(1);
-		ajax::success();
+		
+		return '';
 	}
-
-	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
-
-	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
 }
-?>

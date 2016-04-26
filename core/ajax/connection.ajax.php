@@ -23,28 +23,40 @@ try {
     if (!isConnect('admin')) {
         throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
     }
-
-    if (init('action') == 'remove') {
-        $connection = connection::byId(init('id'));
-        if (!is_object($connection)) {
-            throw new Exception(__('Connexion inconnue. Vérifiez l\'id', __FILE__));
-        }
-        $connection->remove();
-        ajax::success();
+	$action = init('action');
+    if (!method_exists('ajax_connection', $action))
+    {
+    	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
     }
-    
-    if (init('action') == 'ban') {
-        $connection = connection::byId(init('id'));
-        if (!is_object($connection)) {
-            throw new Exception(__('Connexion inconnue. Vérifiez l\'id', __FILE__));
-        }
-        $connection->setStatus('Ban');
-        $connection->save();
-        ajax::success();
-    }
-
-    throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+    ajax::success(ajax_connection::$action());
     /*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-    ajax::error(displayExeption($e), $e->getCode());
+  	ajax::error(displayExeption($e), $e->getCode());
+}
+
+class ajax_connection
+{
+    public static function remove() {
+        $connection = self::_getConnection();
+        $connection->remove();
+        
+        return '';
+    }
+    
+    public static function ban() {
+        $connection = self::_getConnection();
+        $connection->setStatus('Ban');
+        $connection->save();
+        
+        return '';
+    }
+    
+    protected static function _getConnection() {
+    	$connection = connection::byId(init('id'));
+    	if (!is_object($connection)) {
+    		throw new Exception(__('Connexion inconnue. Vérifiez l\'id', __FILE__));
+    	}
+    	
+    	return $connection;
+    }
 }

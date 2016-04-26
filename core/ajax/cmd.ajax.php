@@ -23,19 +23,34 @@ try {
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
+	$action = init('action');
+	if (!method_exists('ajax_cmd', $action))
+	{
+		throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	}
+	
+	//ajax_cmd::$action();
+	ajax::success(ajax_cmd::$action()); // maybe with returns in methods
+	/*     * *********Catch exeption*************** */
+} catch (Exception $e) {
+	ajax::error(displayExeption($e), $e->getCode());
+}
 
-	if (init('action') == 'toHtml') {
+class ajax_cmd
+{
+	public static function toHtml() {
 		$cmd = cmd::byId(init('id'));
 		if (!is_object($cmd)) {
 			throw new Exception(__('Cmd inconnu - Vérifiez l\'id', __FILE__));
 		}
-		$info_cmd = array();
-		$info_cmd['id'] = $cmd->getId();
-		$info_cmd['html'] = $cmd->toHtml(init('version'), init('option'), init('cmdColor', null));
-		ajax::success($info_cmd);
+		
+		return array(
+			'id' => $cmd->getId(),
+			'html' => $cmd->toHtml(init('version'), init('option'), init('cmdColor', null)),
+		);
 	}
 
-	if (init('action') == 'execCmd') {
+	public static function execCmd() {
 		$cmd = cmd::byId(init('id'));
 		if (!is_object($cmd)) {
 			throw new Exception(__('Cmd ID inconnu : ', __FILE__) . init('id'));
@@ -54,43 +69,48 @@ try {
 		if (init('utid') != '') {
 			$options['utid'] = init('utid');
 		}
-		ajax::success($cmd->execCmd($options));
+		
+		return $cmd->execCmd($options);
 	}
 
-	if (init('action') == 'getByObjectNameEqNameCmdName') {
+	public static function getByObjectNameEqNameCmdName() {
 		$cmd = cmd::byObjectNameEqLogicNameCmdName(init('object_name'), init('eqLogic_name'), init('cmd_name'));
 		if (!is_object($cmd)) {
 			throw new Exception(__('Cmd inconnu : ', __FILE__) . init('object_name') . '/' . init('eqLogic_name') . '/' . init('cmd_name'));
 		}
-		ajax::success($cmd->getId());
+		
+		return $cmd->getId();
 	}
 
-	if (init('action') == 'getByObjectNameCmdName') {
+	public static function getByObjectNameCmdName() {
 		$cmd = cmd::byObjectNameCmdName(init('object_name'), init('cmd_name'));
 		if (!is_object($cmd)) {
 			throw new Exception(__('Cmd inconnu : ', __FILE__) . init('object_name') . '/' . init('cmd_name'), 9999);
 		}
-		ajax::success(utils::o2a($cmd));
+		
+		return utils::o2a($cmd);
 	}
 
-	if (init('action') == 'byId') {
+	public static function byId() {
 		$cmd = cmd::byId(init('id'));
 		if (!is_object($cmd)) {
 			throw new Exception(__('Cmd inconnu : ', __FILE__) . init('id'), 9999);
 		}
-		ajax::success(utils::o2a($cmd));
+		
+		return utils::o2a($cmd);
 	}
 
-	if (init('action') == 'byHumanName') {
+	public static function byHumanName() {
 		$cmd_id = cmd::humanReadableToCmd(init('humanName'));
 		$cmd = cmd::byId(str_replace('#', '', $cmd_id));
 		if (!is_object($cmd)) {
 			throw new Exception(__('Cmd inconnu : ', __FILE__) . init('humanName'), 9999);
 		}
-		ajax::success(utils::o2a($cmd));
+		
+		return utils::o2a($cmd);
 	}
 
-	if (init('action') == 'usedBy') {
+	public static function usedBy() {
 		$cmd = cmd::byId(init('id'));
 		if (!is_object($cmd)) {
 			throw new Exception(__('Cmd inconnu : ', __FILE__) . init('id'), 9999);
@@ -115,18 +135,19 @@ try {
 			$info['link'] = $scenario->getLinkToConfiguration();
 			$return['scenario'][] = $info;
 		}
-		ajax::success($return);
+		
+		return $return;
 	}
 
-	if (init('action') == 'getHumanCmdName') {
-		ajax::success(cmd::cmdToHumanReadable('#' . init('id') . '#'));
+	public static function getHumanCmdName() {
+		return cmd::cmdToHumanReadable('#' . init('id') . '#');
 	}
 
-	if (init('action') == 'byEqLogic') {
-		ajax::success(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
+	public static function byEqLogic() {
+		return utils::o2a(cmd::byEqLogicId(init('eqLogic_id')));
 	}
 
-	if (init('action') == 'getCmd') {
+	public static function getCmd() {
 		$cmd = cmd::byId(init('id'));
 		if (!is_object($cmd)) {
 			throw new Exception(__('Cmd ID inconnu : ', __FILE__) . init('id'));
@@ -138,10 +159,11 @@ try {
 		if ($eqLogic->getObject_id() > 0) {
 			$return['object_name'] = $eqLogic->getObject()->getName();
 		}
-		ajax::success($return);
+		
+		return $return;
 	}
 
-	if (init('action') == 'save') {
+	public static function save() {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -152,10 +174,11 @@ try {
 		}
 		utils::a2o($cmd, $cmd_ajax);
 		$cmd->save();
-		ajax::success();
+		
+		return '';
 	}
 
-	if (init('action') == 'multiSave') {
+	public static function multiSave() {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -168,10 +191,10 @@ try {
 			utils::a2o($cmd, $cmd_ajax);
 			$cmd->save();
 		}
-		ajax::success();
+		return '';
 	}
 
-	if (init('action') == 'changeHistoryPoint') {
+	public static function changeHistoryPoint() {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -181,10 +204,10 @@ try {
 		}
 		$history->setValue(init('value', null));
 		$history->save(null, true);
-		ajax::success();
+		return '';
 	}
 
-	if (init('action') == 'getHistory') {
+	public static function getHistory() {
 		$return = array();
 		$data = array();
 		$dateStart = null;
@@ -235,26 +258,23 @@ try {
 				throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 			}
 			$histories = $cmd->getHistory($dateStart, $dateEnd);
-			$return['cmd_name'] = $cmd->getName();
-			$return['history_name'] = $cmd->getHumanName();
-			$return['unite'] = $cmd->getUnite();
-			$return['cmd'] = utils::o2a($cmd);
-			$return['eqLogic'] = utils::o2a($cmd->getEqLogic());
+			$return = array(
+				'cmd_name' => $cmd->getName(),
+				'history_name' => $cmd->getHumanName(),
+				'unite' => $cmd->getUnite(),
+				'cmd' => utils::o2a($cmd),
+				'eqLogic' => utils::o2a($cmd->getEqLogic()),
+			);
 			$previsousValue = null;
 			$derive = init('derive', $cmd->getDisplay('graphDerive'));
 			if (trim($derive) == '') {
 				$derive = $cmd->getDisplay('graphDerive');
 			}
 			foreach ($histories as $history) {
-				$info_history = array();
-				$info_history[] = floatval(strtotime($history->getDatetime() . " UTC")) * 1000;
+				$info_history = array(floatval(strtotime($history->getDatetime() . " UTC")) * 1000);
 				$value = ($history->getValue() === null) ? null : floatval($history->getValue());
 				if ($derive == 1 || $derive == '1') {
-					if ($value !== null && $previsousValue != null) {
-						$value = $value - $previsousValue;
-					} else {
-						$value = null;
-					}
+					$value = ($value !== null && $previsousValue != null) ? $value - $previsousValue : null;
 					$previsousValue = ($history->getValue() === null) ? null : floatval($history->getValue());
 				}
 				$info_history[] = $value;
@@ -270,9 +290,10 @@ try {
 			$histories = history::getHistoryFromCalcul(init('id'), $dateStart, $dateEnd, init('allowZero', true));
 			if (is_array($histories)) {
 				foreach ($histories as $datetime => $value) {
-					$info_history = array();
-					$info_history[] = floatval($datetime) * 1000;
-					$info_history[] = ($value === null) ? null : floatval($value);
+					$info_history = array(
+						floatval($datetime) * 1000,
+						($value === null) ? null : floatval($value),
+					);
 					if ($value > $return['maxValue'] || $return['maxValue'] == '') {
 						$return['maxValue'] = $value;
 					}
@@ -287,14 +308,15 @@ try {
 			$return['unite'] = init('unite');
 		}
 		$last = end($data);
-		if ($last[0] < (strtotime($dateEnd) * 1000)) {
-			//$data[] = array((strtotime($dateEnd) * 1000), $last[1]);
-		}
+//		if ($last[0] < (strtotime($dateEnd) * 1000)) {
+//			$data[] = array((strtotime($dateEnd) * 1000), $last[1]);
+//		}
 		$return['data'] = $data;
-		ajax::success($return);
+		
+		return $return;
 	}
 
-	if (init('action') == 'emptyHistory') {
+	public static function emptyHistory() {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 		}
@@ -303,28 +325,23 @@ try {
 			throw new Exception(__('Cmd ID inconnu : ', __FILE__) . init('id'));
 		}
 		$cmd->emptyHistory(init('date'));
-		ajax::success();
+		
+		return '';
 	}
 
-	if (init('action') == 'setOrder') {
+	public static function setOrder() {
 		$cmds = json_decode(init('cmds'), true);
 		foreach ($cmds as $cmd_json) {
-			if (trim($cmd_json['id']) == '') {
-				continue;
+			if (trim($cmd_json['id']) != '') {
+				$cmd = cmd::byId($cmd_json['id']);
+				if (!is_object($cmd)) {
+					throw new Exception(__('Commande inconnu verifié l\'id :', __FILE__) . ' ' . $cmd_json['id']);
+				}
+				$cmd->setOrder($cmd_json['order']);
+				$cmd->save();
 			}
-			$cmd = cmd::byId($cmd_json['id']);
-			if (!is_object($cmd)) {
-				throw new Exception(__('Commande inconnu verifié l\'id :', __FILE__) . ' ' . $cmd_json['id']);
-			}
-			$cmd->setOrder($cmd_json['order']);
-			$cmd->save();
 		}
-		ajax::success();
+		
+		return '';
 	}
-
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
-	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
 }
-?>

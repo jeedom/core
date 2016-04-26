@@ -23,17 +23,29 @@ try {
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-
-	if (init('action') == 'remove') {
+	$action = init('action');
+	if (!method_exists('ajax_dataStore', $action))
+	{
+		throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	}
+	ajax::success(ajax_dataStore::$action());
+/*     * *********Catch exeption*************** */
+} catch (Exception $e) {
+	ajax::error(displayExeption($e), $e->getCode());
+}
+class ajax_dataStore
+{
+	public static function remove() {
 		$dataStore = dataStore::byId(init('id'));
 		if (!is_object($dataStore)) {
 			throw new Exception(__('Data store inconnu vérifer l\'id : ', __FILE__) . init('id'));
 		}
 		$dataStore->remove();
-		ajax::success();
+		
+		return '';
 	}
 
-	if (init('action') == 'save') {
+	public static function save() {
 		if (init('id') == '') {
 			$dataStore = new dataStore();
 			$dataStore->setKey(init('key'));
@@ -47,10 +59,11 @@ try {
 		}
 		$dataStore->setValue(init('value'));
 		$dataStore->save();
-		ajax::success();
+		
+		return '';
 	}
 
-	if (init('action') == 'all') {
+	public static function all() {
 		$datastores = utils::o2a(dataStore::byTypeLinkId(init('type')));
 		if (init('usedBy') == 1) {
 			foreach ($datastores as &$datastore) {
@@ -62,12 +75,6 @@ try {
 				}
 			}
 		}
-		ajax::success($datastores);
+		return $datastores;
 	}
-
-	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
-	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
 }
-?>
