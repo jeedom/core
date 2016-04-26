@@ -24,7 +24,13 @@ class com_shellTest extends \PHPUnit_Framework_TestCase {
 				array(false),
 		);
 	}
-
+	
+	public function assertPreConditions()
+	{
+		// Fix bug : Call execute before getInstance
+		$this->assertSame('ok', com_shell::execute('echo ok'));
+	}
+	
 	public function testGetCmd() {
 		$shell = new com_shell('ls');
 		$this->assertSame('ls', $shell->getCmd());
