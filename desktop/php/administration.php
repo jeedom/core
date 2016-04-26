@@ -862,8 +862,9 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                     </thead>
                     <tbody>
                         <?php
+$bgcolor = 'bgcolor="#d4d4d4"';
 foreach (plugin::listPlugin(true) as $plugin) {
-	echo '<tr>';
+	echo '<tr ' . $bgcolor . '>';
 	echo '<td>' . $plugin->getName() . '</td>';
 	echo '<td><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="1000" /></td>';
 	echo '<td><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="default" /></td>';
@@ -873,6 +874,11 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	echo '<td><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="300" /></td>';
 	echo '<td><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="400" /></td>';
 	echo '</tr>';
+	if ($bgcolor == 'bgcolor="#d4d4d4"') {
+		$bgcolor = '';
+	} else {
+		$bgcolor = 'bgcolor="#d4d4d4"';
+	}
 }
 ?>
                    </tbody>
