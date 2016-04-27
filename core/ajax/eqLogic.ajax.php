@@ -265,7 +265,7 @@ try {
 					$eqLogic->setEqType_name(init('type'));
 				} else {
 					if (!$eqLogic->hasRight('w')) {
-						throw new Exception('Vous n\'etês pas autorisé à faire cette action');
+						throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));
 					}
 				}
 				if (method_exists($eqLogic, 'preAjax')) {
@@ -308,9 +308,9 @@ try {
 			} catch (Exception $e) {
 				if (strpos ( $e->getMessage() , '[MySQL] Error code : 23000' ) !== false ) {
 					if ($e->getTrace()[2]['class'] == 'eqLogic') {
-						throw new Exception('Un équipement portant ce nom (' . $e->getTrace()[0]['args'][1]['name'] . ') existe déjà pour cet objet');
+						throw new Exception(__('Un équipement portant ce nom (', __FILE__) . $e->getTrace()[0]['args'][1]['name'] . __(') existe déjà pour cet objet', __FILE__));
 					} elseif ($e->getTrace()[2]['class'] == 'cmd') {
-						throw new Exception('Une commande portant ce nom (' . $e->getTrace()[0]['args'][1]['name'] . ') existe déjà pour cet équipement');
+						throw new Exception(__('Une commande portant ce nom (', __FILE__) . $e->getTrace()[0]['args'][1]['name'] . __(') existe déjà pour cet équipement', __FILE__));
 					}
 				} else {
 					throw new Exception($e->getMessage());
