@@ -247,65 +247,77 @@ try {
 		$eqLogicsSave = json_decode(init('eqLogic'), true);
 
 		foreach ($eqLogicsSave as $eqLogicSave) {
-			if (!is_array($eqLogicSave)) {
-				throw new Exception(__('Informations recues incorrecte', __FILE__));
-			}
-			$typeEqLogic = init('type');
-			$typeCmd = $typeEqLogic . 'Cmd';
-			if ($typeEqLogic == '' || !class_exists($typeEqLogic) || !class_exists($typeCmd)) {
-				throw new Exception(__('Type incorrect (classe commande inexistante)', __FILE__) . $typeCmd);
-			}
-			$eqLogic = null;
-			if (isset($eqLogicSave['id'])) {
-				$eqLogic = $typeEqLogic::byId($eqLogicSave['id']);
-			}
-			if (!is_object($eqLogic)) {
-				$eqLogic = new $typeEqLogic();
-				$eqLogic->setEqType_name(init('type'));
-			} else {
-				if (!$eqLogic->hasRight('w')) {
-					throw new Exception('Vous n\'etês pas autorisé à faire cette action');
+			try{
+				if (!is_array($eqLogicSave)) {
+					throw new Exception(__('Informations recues incorrecte', __FILE__));
 				}
-			}
-			if (method_exists($eqLogic, 'preAjax')) {
-				$eqLogic->preAjax();
-			}
-			$eqLogicSave = jeedom::fromHumanReadable($eqLogicSave);
-			utils::a2o($eqLogic, $eqLogicSave);
-			$dbList = $typeCmd::byEqLogicId($eqLogic->getId());
-			$eqLogic->save();
-			$enableList = array();
-
-			if (isset($eqLogicSave['cmd'])) {
-				$cmd_order = 0;
-				foreach ($eqLogicSave['cmd'] as $cmd_info) {
-					$cmd = null;
-					if (isset($cmd_info['id'])) {
-						$cmd = $typeCmd::byId($cmd_info['id']);
-					}
-					if (!is_object($cmd)) {
-						$cmd = new $typeCmd();
-					}
-					$cmd->setEqLogic_id($eqLogic->getId());
-					$cmd->setOrder($cmd_order);
-					utils::a2o($cmd, $cmd_info);
-					$cmd->save();
-					$cmd_order++;
-					$enableList[$cmd->getId()] = true;
+				$typeEqLogic = init('type');
+				$typeCmd = $typeEqLogic . 'Cmd';
+				if ($typeEqLogic == '' || !class_exists($typeEqLogic) || !class_exists($typeCmd)) {
+					throw new Exception(__('Type incorrect (classe commande inexistante)', __FILE__) . $typeCmd);
 				}
-
-				//suppression des entrées non innexistante.
-				foreach ($dbList as $dbObject) {
-					if (!isset($enableList[$dbObject->getId()]) && !$dbObject->dontRemoveCmd()) {
-						$dbObject->remove();
+				$eqLogic = null;
+				if (isset($eqLogicSave['id'])) {
+					$eqLogic = $typeEqLogic::byId($eqLogicSave['id']);
+				}
+				if (!is_object($eqLogic)) {
+					$eqLogic = new $typeEqLogic();
+					$eqLogic->setEqType_name(init('type'));
+				} else {
+					if (!$eqLogic->hasRight('w')) {
+						throw new Exception('Vous n\'etês pas autorisé à faire cette action');
 					}
 				}
+				if (method_exists($eqLogic, 'preAjax')) {
+					$eqLogic->preAjax();
+				}
+				$eqLogicSave = jeedom::fromHumanReadable($eqLogicSave);
+				utils::a2o($eqLogic, $eqLogicSave);
+				$dbList = $typeCmd::byEqLogicId($eqLogic->getId());
+				$eqLogic->save();
+				$enableList = array();
+	
+				if (isset($eqLogicSave['cmd'])) {
+					$cmd_order = 0;
+					foreach ($eqLogicSave['cmd'] as $cmd_info) {
+						$cmd = null;
+						if (isset($cmd_info['id'])) {
+							$cmd = $typeCmd::byId($cmd_info['id']);
+						}
+						if (!is_object($cmd)) {
+							$cmd = new $typeCmd();
+						}
+						$cmd->setEqLogic_id($eqLogic->getId());
+						$cmd->setOrder($cmd_order);
+						utils::a2o($cmd, $cmd_info);
+						$cmd->save();
+						$cmd_order++;
+						$enableList[$cmd->getId()] = true;
+					}
+	
+					//suppression des entrées non innexistante.
+					foreach ($dbList as $dbObject) {
+						if (!isset($enableList[$dbObject->getId()]) && !$dbObject->dontRemoveCmd()) {
+							$dbObject->remove();
+						}
+					}
+				}
+				if (method_exists($eqLogic, 'postAjax')) {
+					$eqLogic->postAjax();
+				}
+			} catch (Exception $e) {
+				if (strpos ( $e->getMessage() , '[MySQL] Error code : 23000' ) !== false ) {
+					if ($e->getTrace()[2]['class'] == 'eqLogic') {
+						throw new Exception('Un équipement portant ce nom (' . $e->getTrace()[0]['args'][1]['name'] . ') existe déjà pour cet objet');
+					} elseif ($e->getTrace()[2]['class'] == 'cmd') {
+						throw new Exception('Une commande portant ce nom (' . $e->getTrace()[0]['args'][1]['name'] . ') existe déjà pour cet équipement');
+					}
+				} else {
+					throw new Exception($e->getMessage());
+				}
 			}
-			if (method_exists($eqLogic, 'postAjax')) {
-				$eqLogic->postAjax();
-			}
+			ajax::success(utils::o2a($eqLogic));
 		}
-		ajax::success(utils::o2a($eqLogic));
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
