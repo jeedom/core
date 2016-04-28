@@ -47,7 +47,12 @@ try {
 		if (!is_object($market)) {
 			throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . init('id'));
 		}
-		$market->remove();
+		$update = update::byTypeAndLogicalId($market->getType(), $market->getLogicalId());
+		if (is_object($update)) {
+			$update->remove();
+		} else {
+			$market->remove();
+		}
 		ajax::success();
 	}
 
@@ -92,15 +97,6 @@ try {
 			throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . init('id'));
 		}
 		$market->setRating(init('rating'));
-		ajax::success();
-	}
-
-	if (init('action') == 'setComment') {
-		$market = market::byId(init('id'));
-		if (!is_object($market)) {
-			throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . init('id'));
-		}
-		$market->setComment(init('comment', null), init('order', null));
 		ajax::success();
 	}
 
