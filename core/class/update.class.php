@@ -30,6 +30,7 @@ class update {
 	private $remoteVersion;
 	private $status;
 	private $configuration;
+	private $source = 'market';
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -53,6 +54,7 @@ class update {
 					$findCore = true;
 					$update->setType('core');
 					$update->setLogicalId('jeedom');
+					$update->setSource('github');
 					if (method_exists('jeedom', 'version')) {
 						$update->setLocalVersion(jeedom::version());
 					} else {
@@ -416,6 +418,14 @@ class update {
 
 	public function setLogicalId($logicalId) {
 		$this->logicalId = $logicalId;
+	}
+
+	public function getSource() {
+		return $this->source;
+	}
+
+	public function setSource($source) {
+		$this->source = $source;
 	}
 
 }
