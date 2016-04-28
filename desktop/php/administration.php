@@ -847,7 +847,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                         </select>
                     </div>
                 </div>
-                <table class="table table-condensed">
+                <table class="table table-condensed table-striped">
                     <thead>
                         <tr>
                             <th>{{Nom}}</th>
@@ -862,6 +862,20 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                     </thead>
                     <tbody>
                         <?php
+
+$other_log = array('scenario', 'plugin', 'market', 'api');
+foreach ($other_log as $name) {
+	echo '<tr>';
+	echo '<td>' . ucfirst($name) . '</td>';
+	echo '<td><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="1000" /></td>';
+	echo '<td><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="default" /></td>';
+	echo '<td><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="100" /></td>';
+	echo '<td><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="200" /></td>';
+	echo '<td><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="250" /></td>';
+	echo '<td><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="300" /></td>';
+	echo '<td><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="400" /></td>';
+	echo '</tr>';
+}
 foreach (plugin::listPlugin(true) as $plugin) {
 	echo '<tr>';
 	echo '<td>' . $plugin->getName() . '</td>';

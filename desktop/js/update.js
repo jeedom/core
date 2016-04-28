@@ -251,6 +251,7 @@ function addUpdate(_update) {
     var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
     tr += '<td><span class="updateAttr" data-l1key="type"></span></td>';
     tr += '<td><span class="updateAttr" data-l1key="name"></span></td>';
+    tr += '<td><span class="updateAttr" data-l1key="source"></span></td>';
     tr += '<td><span class="updateAttr" data-l1key="localVersion"></span></td>';
     tr += '<td><span class="updateAttr" data-l1key="remoteVersion"></span></td>';
     tr += '<td><span class="updateAttr label label-success" data-l1key="status"></span>';

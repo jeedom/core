@@ -32,6 +32,7 @@ if (!hasRight('updateview', true)) {
                 <tr>
                     <th>{{Type}}</th>
                     <th>{{Nom}}</th>
+                    <th>{{Source}}</th>
                     <th>{{Version actuelle}}</th>
                     <th>{{Version disponible}}</th>
                     <th>{{Statut}}</th>
@@ -49,11 +50,11 @@ if (!hasRight('updateview', true)) {
 </div>
 
 <div id="md_specifyUpdate">
-   <form class="form-horizontal">
+ <form class="form-horizontal">
     <fieldset>
-     <div class="form-group">
-         <label class="col-xs-6 control-label">{{Mise à jour à réappliquer}}</label>
-         <div class="col-xs-6">
+       <div class="form-group">
+           <label class="col-xs-6 control-label">{{Mise à jour à réappliquer}}</label>
+           <div class="col-xs-6">
             <select id="sel_updateVersion" class="form-control">
                 <option value="">{{Aucune}}</option>
                 <?php
@@ -72,7 +73,7 @@ foreach ($udpates as $value) {
    <div class="form-group">
     <label class="col-xs-6 control-label">{{Mode forcé}}</label>
     <div class="col-xs-4">
-    <input type="checkbox" id="cb_forceReapplyUpdate" checked />
+        <input type="checkbox" id="cb_forceReapplyUpdate" checked />
     </div>
 </div>
 <div class="form-group">
