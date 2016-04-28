@@ -25,25 +25,26 @@ class ajax {
     /*     * *********************Methode static ************************* */
 
     public static function success($_data = '') {
-        $return = array(
-            'state' => 'ok',
-            'result' => $_data
-        );
-        echo json_encode($return,JSON_UNESCAPED_UNICODE);
+        echo self::getResponse($_data);
         die();
     }
 
     public static function error($_data = '', $_errorCode = 0) {
-        $return = array(
-            'state' => 'error',
-            'code' => $_errorCode,
-            'result' => $_data
-        );
-        echo json_encode($return,JSON_UNESCAPED_UNICODE);
+        echo self::getResponse($_data, $_errorCode);
         die();
     }
 
+    public static function getResponse($_data = '', $_errorCode = null) {
+    	$isError = !(null === $_errorCode);
+    	$return = array(
+    			'state' => $isError ? 'error' : 'ok',
+    			'result' => $_data,
+    	);
+    	if ($isError) {
+    		$return['code'] = $_errorCode;
+    	}
+    	return json_encode($return,JSON_UNESCAPED_UNICODE);
+    }
     /*     * **********************Getteur Setteur*************************** */
 }
 
-?>
