@@ -36,10 +36,6 @@ class update {
 
 	public static function checkAllUpdate($_filter = '', $_findNewObject = true) {
 		$findCore = false;
-		$marketObject = array(
-			'logical_id' => array(),
-			'version' => array(),
-		);
 		if ($_findNewObject) {
 			self::findNewUpdateObject();
 		}
@@ -64,17 +60,7 @@ class update {
 					$update->checkUpdate();
 				} else {
 					if ($update->getStatus() != 'hold') {
-						switch ($update->getSource()) {
-							case 'market':
-								$marketObject['logical_id'][] = array('logicalId' => $update->getLogicalId(), 'type' => $update->getType());
-								$marketObject['version'][] = $update->getConfiguration('version', 'stable');
-								$marketObject[$update->getType() . $update->getLogicalId()] = $update;
-								break;
-							case 'github':
-								$update->checkUpdate();
-								break;
-						}
-
+						$update->checkUpdate();
 					}
 				}
 			}
@@ -92,20 +78,6 @@ class update {
 			$update->save();
 			$update->checkUpdate();
 		}
-		if (count($marketObject) > 0) {
-			$markets_infos = market::getInfo($marketObject['logical_id'], $marketObject['version']);
-			foreach ($markets_infos as $logicalId => $market_info) {
-				$update = $marketObject[$logicalId];
-				if (is_object($update)) {
-					$update->setStatus($market_info['status']);
-					$update->setConfiguration('market_owner', $market_info['market_owner']);
-					$update->setConfiguration('market', $market_info['market']);
-					$update->setRemoteVersion($market_info['datetime']);
-					$update->save();
-				}
-			}
-		}
-
 		config::save('update::lastCheck', date('Y-m-d H:i:s'));
 	}
 
@@ -263,7 +235,9 @@ class update {
 	public static function getAllUpdateChangelog() {
 		$params = array();
 		foreach (self::byStatus('update') as $update) {
-			$params[] = array('logicalId' => $update->getLogicalId(), 'datetime' => $update->getLocalVersion());
+			if ($update->getSource() == 'market') {
+				$params[] = array('logicalId' => $update->getLogicalId(), 'datetime' => $update->getLocalVersion());
+			}
 		}
 		return market::getMultiChangelog($params);
 	}
