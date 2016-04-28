@@ -847,7 +847,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                         </select>
                     </div>
                 </div>
-                <table class="table table-condensed">
+                <table class="table table-condensed table-striped">
                     <thead>
                         <tr>
                             <th>{{Nom}}</th>
@@ -862,6 +862,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                     </thead>
                     <tbody>
                         <?php
+
 $other_log = array('scenario', 'plugin', 'market', 'api');
 foreach ($other_log as $name) {
 	echo '<tr>';
