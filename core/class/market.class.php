@@ -604,13 +604,6 @@ class market {
 	}
 
 	public function install($_version = 'stable') {
-		if (!file_exists(dirname(__FILE__) . '/../../plugins')) {
-			mkdir(dirname(__FILE__) . '/../../plugins');
-			@chown(dirname(__FILE__) . '/../../plugins', 'www-data');
-			@chgrp(dirname(__FILE__) . '/../../plugins', 'www-data');
-			@chmod(dirname(__FILE__) . '/../../plugins', 0775);
-		}
-		log::add('update', 'alert', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
 		$tmp_dir = '/tmp';
 		$tmp = $tmp_dir . '/' . $this->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
@@ -635,19 +628,6 @@ class market {
 				if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
 					throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
 				}
-				try {
-					$plugin = plugin::byId($this->getLogicalId());
-					if (is_object($plugin)) {
-						log::add('update', 'alert', __('Action de pre update...', __FILE__));
-						$plugin->callInstallFunction('pre_update');
-						log::add('update', 'alert', __("OK\n", __FILE__));
-					}
-				} catch (Exception $e) {
-
-				} catch (Error $e) {
-
-				}
-
 				log::add('update', 'alert', __('Décompression du zip...', __FILE__));
 				$zip = new ZipArchive;
 				$res = $zip->open($tmp);
@@ -659,21 +639,6 @@ class market {
 					$zip->close();
 					unlink($tmp);
 					log::add('update', 'alert', __("OK\n", __FILE__));
-					log::add('update', 'alert', __('Installation de ', __FILE__) . $this->getLogicalId() . '...');
-					try {
-						$plugin = plugin::byId($this->getLogicalId());
-					} catch (Exception $e) {
-						$this->remove();
-						throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
-					} catch (Error $e) {
-						$this->remove();
-						throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
-					}
-					log::add('update', 'alert', __("OK\n", __FILE__));
-					if (is_object($plugin) && $plugin->isActive()) {
-						$plugin->setIsEnable(1);
-					}
-					$update = update::byTypeAndLogicalId($this->getType(), $this->getLogicalId());
 				} else {
 					switch ($res) {
 						case ZipArchive::ER_EXISTS:
@@ -718,18 +683,6 @@ class market {
 				log::add('update', 'alert', __("OK\n", __FILE__));
 				break;
 		}
-		if ($this->getType() != 'scenario') {
-			$update = update::byTypeAndLogicalId($this->getType(), $this->getLogicalId());
-			if (!is_object($update)) {
-				$update = new update();
-				$update->setLogicalId($this->getLogicalId());
-				$update->setType($this->getType());
-			}
-			$update->setLocalVersion($this->getDatetime($_version));
-			$update->setConfiguration('version', $_version);
-			$update->save();
-			$update->checkUpdate();
-		}
 	}
 
 	public function remove() {
@@ -739,42 +692,7 @@ class market {
 		}
 		switch ($this->getType()) {
 			case 'plugin':
-				try {
-					$plugin = plugin::byId($this->getLogicalId());
-					if (is_object($plugin)) {
-						try {
-							$plugin->setIsEnable(0);
-						} catch (Exception $e) {
 
-						} catch (Error $e) {
-
-						}
-						foreach (eqLogic::byType($this->getLogicalId()) as $eqLogic) {
-							try {
-								$eqLogic->remove();
-							} catch (Exception $e) {
-
-							} catch (Error $e) {
-
-							}
-						}
-					}
-					config::remove('*', $this->getLogicalId());
-				} catch (Exception $e) {
-
-				} catch (Error $e) {
-
-				}
-				try {
-					$cibDir = dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId();
-					if (file_exists($cibDir)) {
-						rrmdir($cibDir);
-					}
-				} catch (Exception $e) {
-
-				} catch (Error $e) {
-
-				}
 				break;
 			default:
 				$type = $this->getType();
@@ -782,10 +700,6 @@ class market {
 					$type::removeFromMarket($this);
 				}
 				break;
-		}
-		$update = update::byTypeAndLogicalId($this->getType(), $this->getLogicalId());
-		if (is_object($update)) {
-			$update->remove();
 		}
 	}
 

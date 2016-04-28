@@ -29,7 +29,16 @@ try {
 		if (!is_object($market)) {
 			throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . init('id'));
 		}
-		$market->install(init('version', 'stable'));
+		$update = update::byTypeAndLogicalId($market->getType(), $market->getLogicalId());
+		if (!is_object($update)) {
+			$update = new update();
+			$update->setLogicalId($market->getLogicalId());
+			$update->setType($market->getType());
+			$update->setLocalVersion($market->getDatetime(init('version', 'stable')));
+		}
+		$update->setConfiguration('version', init('version', 'stable'));
+		$update->save();
+		$update->doUpdate();
 		ajax::success();
 	}
 
