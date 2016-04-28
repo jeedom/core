@@ -704,7 +704,6 @@ class market {
 	}
 
 	public function save() {
-
 		$cache = cache::byKey('market::info::' . $this->getLogicalId());
 		if (is_object($cache)) {
 			$cache->remove();
