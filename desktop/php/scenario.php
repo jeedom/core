@@ -78,7 +78,7 @@ foreach ($scenarioListGroup as $group) {
      <legend>{{Gestion}}</legend>
      <div class="cursor" id="bt_addScenario2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
        <center>
-        <i class="fa fa-plus-circle" style="font-size : 4em;color:#94ca02;"></i>
+        <i class="fa fa-plus-circle" style="font-size : 8em;color:#94ca02;"></i>
     </center>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
 </div>
@@ -92,7 +92,7 @@ foreach ($scenarioListGroup as $group) {
    <?php } else {?>
    <div class="cursor expertModeVisible" id="bt_changeAllScenarioState2" data-state="0" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
        <center>
-           <i class="fa fa-times" style="font-size : 4em;color:#d9534f;"></i>
+           <i class="fa fa-times" style="font-size : 8em;color:#d9534f;"></i>
        </center>
        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
    </div>
@@ -101,21 +101,21 @@ foreach ($scenarioListGroup as $group) {
 
    <div class="cursor expertModeVisible" id="bt_displayScenarioVariable2" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
        <center>
-        <i class="fa fa-eye" style="font-size : 4em;color:#337ab7;"></i>
+        <i class="fa fa-eye" style="font-size : 8em;color:#337ab7;"></i>
     </center>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
 </div>
 
    <div class="cursor expertModeVisible bt_showScenarioSummary" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
        <center>
-        <i class="fa fa-list" style="font-size : 4em;color:#337ab7;"></i>
+        <i class="fa fa-list" style="font-size : 8em;color:#337ab7;"></i>
     </center>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Vue d'ensemble}}</center></span>
 </div>
 
    <div class="cursor expertModeVisible bt_showExpressionTest" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
        <center>
-        <i class="fa fa-check" style="font-size : 4em;color:#337ab7;"></i>
+        <i class="fa fa-check" style="font-size : 8em;color:#337ab7;"></i>
     </center>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Testeur d'expression}}</center></span>
 </div>
