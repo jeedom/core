@@ -10,7 +10,7 @@ $name = init('name', null);
 if ($name == 'false') {
 	$name = null;
 }
-$markets = market::byFilter(
+$markets = repo_market::byFilter(
 	array(
 		'status' => $status,
 		'type' => $type,

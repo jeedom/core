@@ -30,6 +30,91 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'sendReportBug') {
+		$class = 'repo_' . init('repo');
+		$ticket = json_decode(init('ticket'), true);
+		$class::saveTicket($ticket);
+		ajax::success();
+	}
+
+	if (init('action') == 'install') {
+		$class = 'repo_' . init('repo');
+		$repo = $class::byId(init('id'));
+		if (!is_object($repo)) {
+			throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . init('id'));
+		}
+		$update = update::byTypeAndLogicalId($repo->getType(), $repo->getLogicalId());
+		if (!is_object($update)) {
+			$update = new update();
+			$update->setLogicalId($repo->getLogicalId());
+			$update->setType($repo->getType());
+			$update->setLocalVersion($repo->getDatetime(init('version', 'stable')));
+		}
+		$update->setConfiguration('version', init('version', 'stable'));
+		$update->save();
+		$update->doUpdate();
+		ajax::success();
+	}
+
+	if (init('action') == 'remove') {
+		$class = 'repo_' . init('repo');
+		$repo = $class::byId(init('id'));
+		if (!is_object($market)) {
+			throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . init('id'));
+		}
+		$update = update::byTypeAndLogicalId($repo->getType(), $repo->getLogicalId());
+		if (is_object($update)) {
+			$update->remove();
+		} else {
+			$market->remove();
+		}
+		ajax::success();
+	}
+
+	if (init('action') == 'save') {
+		$class = 'repo_' . init('repo');
+		$repo_ajax = json_decode(init('market'), true);
+		try {
+			$repo = $class::byId($repo_ajax['id']);
+		} catch (Exception $e) {
+			$repo = new $class();
+		}
+		if (isset($repo_ajax['rating'])) {
+			unset($repo_ajax['rating']);
+		}
+		utils::a2o($repo, $repo_ajax);
+		$repo->save();
+		ajax::success();
+	}
+
+	if (init('action') == 'getInfo') {
+		$class = 'repo_' . init('repo');
+		ajax::success($class::getInfo(init('logicalId')));
+	}
+
+	if (init('action') == 'byLogicalId') {
+		$class = 'repo_' . init('repo');
+		if (init('noExecption', 0) == 1) {
+			try {
+				ajax::success(utils::o2a($class::byLogicalIdAndType(init('logicalId'), init('type'))));
+			} catch (Exception $e) {
+				ajax::success();
+			}
+		} else {
+			ajax::success(utils::o2a($class::byLogicalIdAndType(init('logicalId'), init('type'))));
+		}
+	}
+
+	if (init('action') == 'setRating') {
+		$class = 'repo_' . init('repo');
+		$repo = $class::byId(init('id'));
+		if (!is_object($repo)) {
+			throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . init('id'));
+		}
+		$repo->setRating(init('rating'));
+		ajax::success();
+	}
+
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 
 	/*     * *********Catch exeption*************** */

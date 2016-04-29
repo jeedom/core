@@ -596,10 +596,6 @@ class plugin {
 		return true;
 	}
 
-	public function status() {
-		return market::getInfo(array('logicalId' => $this->getId(), 'type' => 'plugin'));
-	}
-
 	public function launch($_function, $_callInstallFunction = false) {
 		if ($_function == '') {
 			throw new Exception('La fonction à lancer ne peut être vide');

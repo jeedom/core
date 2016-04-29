@@ -16,16 +16,11 @@
  */
 
 
- jeedom.market = function() {
+ jeedom.repo = function() {
  };
 
-
- jeedom.market.byLogicalId = function (_params) {
- 	var paramsRequired = ['logicalId'];
- 	if( _params.logicalId == '' ){
- 		_params.success({});
- 		return;
- 	}
+ jeedom.repo.install = function (_params) {
+ 	var paramsRequired = ['id','repo'];
  	var paramsSpecifics = {
  		global: _params.global || true,
  	};
@@ -37,63 +32,18 @@
  	}
  	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
- 	paramsAJAX.url = 'core/ajax/market.ajax.php';
- 	paramsAJAX.data = {
- 		action: 'byLogicalId',
- 		logicalId: _params.logicalId,
- 		type: _params.type,
- 		noExecption: _params.noExecption || 0,
- 	};
- 	$.ajax(paramsAJAX);
- }
-
- jeedom.market.setComment = function (_params) {
- 	var paramsRequired = ['id'];
- 	var paramsSpecifics = {
- 		global: _params.global || true,
- 	};
- 	try {
- 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
- 	} catch (e) {
- 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
- 		return;
- 	}
- 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
- 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
- 	paramsAJAX.url = 'core/ajax/market.ajax.php';
- 	paramsAJAX.data = {
- 		action: 'setComment',
- 		id: _params.id,
- 		comment: _params.comment || '',
- 		order: _params.order || '',
- 	};
- 	$.ajax(paramsAJAX);
- }
-
- jeedom.market.install = function (_params) {
- 	var paramsRequired = ['id'];
- 	var paramsSpecifics = {
- 		global: _params.global || true,
- 	};
- 	try {
- 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
- 	} catch (e) {
- 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
- 		return;
- 	}
- 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
- 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
- 	paramsAJAX.url = 'core/ajax/market.ajax.php';
+ 	paramsAJAX.url = 'core/ajax/repo.ajax.php';
  	paramsAJAX.data = {
  		action: 'install',
+ 		repo: _params.repo,
  		id: _params.id,
  		version: _params.version || 'stable'
  	};
  	$.ajax(paramsAJAX);
  }
 
- jeedom.market.remove = function (_params) {
- 	var paramsRequired = ['id'];
+ jeedom.repo.remove = function (_params) {
+ 	var paramsRequired = ['id','repo'];
  	var paramsSpecifics = {
  		global: _params.global || true,
  	};
@@ -105,16 +55,17 @@
  	}
  	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
- 	paramsAJAX.url = 'core/ajax/market.ajax.php';
+ 	paramsAJAX.url = 'core/ajax/repo.ajax.php';
  	paramsAJAX.data = {
  		action: 'remove',
+ 		repo: _params.repo,
  		id: _params.id,
  	};
  	$.ajax(paramsAJAX);
  }
 
- jeedom.market.setRating = function (_params) {
- 	var paramsRequired = ['id','rating'];
+ jeedom.repo.setRating = function (_params) {
+ 	var paramsRequired = ['id','rating','repo'];
  	var paramsSpecifics = {
  		global: _params.global || true,
  	};
@@ -126,9 +77,10 @@
  	}
  	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
- 	paramsAJAX.url = 'core/ajax/market.ajax.php';
+ 	paramsAJAX.url = 'core/ajax/repo.ajax.php';
  	paramsAJAX.data = {
  		action: 'setRating',
+ 		repo: _params.repo,
  		id: _params.id,
  		rating: _params.rating,
  	};

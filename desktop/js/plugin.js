@@ -87,7 +87,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
             }else{
                 $('#span_plugin_install_version').html('');
             }
-            if(isset(data.update) && isset(data.update) && isset(data.update.localVersion)){
+            if(isset(data.update) && isset(data.update.localVersion)){
                 $('#span_plugin_install_date').html(data.update.localVersion);
             }else{
                 $('#span_plugin_install_date').html('');
@@ -114,11 +114,11 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
             }
             
             $('#span_plugin_market').empty();
-            if (data.status.market == 1) {
+            if (isset(data.update) && isset(data.update.source) && data.update.source == 'market' && isset(data.status) && isset(data.status.market) && data.status.market == 1) {
                 $('#span_plugin_market').append('<a class="btn btn-default btn-xs viewOnMarket" data-market_logicalId="' + data.id + '" style="margin-right : 5px;"><i class="fa fa-cloud-download"></i> {{Voir sur le market}}</a>')
             }
 
-            if (data.status.market_owner == 1) {
+            if (isset(data.update) && isset(data.update.source) && data.update.source == 'market' && isset(data.status) && isset(data.status.market_owner) && data.status.market_owner == 1) {
                 $('#span_plugin_market').append('<a class="btn btn-warning btn-xs sendOnMarket" data-market_logicalId="' + data.id + '"><i class="fa fa-cloud-upload"></i> {{Envoyer sur le market}}</a>')
             }
             $('#span_plugin_delete').empty().append('<a class="btn btn-danger btn-xs removePlugin" data-market_logicalId="' + data.id + '"><i class="fa fa-trash"></i> {{Supprimer}}</a>');

@@ -4,21 +4,24 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		// On passe le test si curl n'est pas installé
 		if (!extension_loaded('curl')) {
 			$this->markTestSkipped(
-					'The CURL extension is not available.'
+				'The CURL extension is not available.'
 			);
 		}
 		if (!extension_loaded('zip')) {
 			$this->markTestSkipped(
-					'The zip extension is not available.'
+				'The zip extension is not available.'
 			);
 		}
-		
+
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		try {
 			$plugin = plugin::byId('virtual');
 		} catch (Exception $e) {
-			$plugin = market::byLogicalIdAndType('virtual', 'plugin');
-			$plugin->install('beta');
+			$update = new update();
+			$update->setLogicalId('openvpn');
+			$update->setSource('market');
+			$update->setConfiguration('version', 'stable');
+			$update->save();
 			$plugin = plugin::byId('virtual');
 		}
 		if (!$plugin->isActive()) {
