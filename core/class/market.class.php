@@ -283,14 +283,14 @@ class market {
 			if (!$_refresh && $cache->getValue('') != '') {
 				return $cache->getValue();
 			}
-			if (config::byKey('market::branch') == 'url') {
+			if (config::byKey('core::branch') == 'url') {
 				$url = config::byKey('update::url');
 				$url = str_replace('archive/', '', $url);
 				$url = str_replace('.zip', '', $url);
 				$url .= '/core/config/version';
 				$url = str_replace('https://github.com', 'https://raw.githubusercontent.com', $url);
 			} else {
-				$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('market::branch', 'core', 'stable') . '/core/config/version';
+				$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('core::branch', 'core', 'stable') . '/core/config/version';
 			}
 			$request_http = new com_http($url);
 			$version = trim($request_http->exec());

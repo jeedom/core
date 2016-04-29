@@ -25,6 +25,12 @@ class repo_github {
 
 	public static $_name = 'Github';
 
+	public static $_scope = array(
+		'plugin' => true,
+		'backup' => false,
+		'hasConfiguration' => false,
+	);
+
 	public static $_configuration = array(
 		'parameters_for_add' => array(
 			'user' => array(

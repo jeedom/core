@@ -32,6 +32,7 @@ class repo {
 			$return[str_replace('.repo.php', '', $file)] = array(
 				'name' => $class::$_name,
 				'configuration' => $class::$_configuration,
+				'scope' => $class::$_scope,
 			);
 		}
 		return $return;
@@ -42,6 +43,7 @@ class repo {
 		return array(
 			'name' => $class::$_name,
 			'configuration' => $class::$_configuration,
+			'scope' => $class::$_scope,
 		);
 	}
 

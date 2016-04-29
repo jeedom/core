@@ -18,12 +18,12 @@
 
  $('body').delegate('.configKey[data-l1key="market::allowDNS"]', 'change switchChange.bootstrapSwitch', function () {
     if($(this).value() == 1){
-       $('.configKey[data-l1key=externalProtocol]').attr('disabled',true);
-       $('.configKey[data-l1key=externalAddr]').attr('disabled',true);
-       $('.configKey[data-l1key=externalPort]').attr('disabled',true);
-       $('.configKey[data-l1key=externalAddr]').value('');
-       $('.configKey[data-l1key=externalPort]').value('');
-   }else{
+     $('.configKey[data-l1key=externalProtocol]').attr('disabled',true);
+     $('.configKey[data-l1key=externalAddr]').attr('disabled',true);
+     $('.configKey[data-l1key=externalPort]').attr('disabled',true);
+     $('.configKey[data-l1key=externalAddr]').value('');
+     $('.configKey[data-l1key=externalPort]').value('');
+ }else{
     $('.configKey[data-l1key=externalProtocol]').attr('disabled',false);
     $('.configKey[data-l1key=externalAddr]').attr('disabled',false);
     $('.configKey[data-l1key=externalPort]').attr('disabled',false);
@@ -31,12 +31,12 @@
 });
 
 
- $('body').delegate('.configKey[data-l1key="market::enable"]', 'change switchChange.bootstrapSwitch', function () {
+ $('body').delegate('.enableRepository', 'change switchChange.bootstrapSwitch', function () {
     if($(this).value() == 1){
-        $('.div_marketConfiguration').show();
+        $('.repositoryConfiguration'+$(this).attr('data-repo')).show();
     }else{
-     $('.div_marketConfiguration').hide();
- }
+        $('.repositoryConfiguration'+$(this).attr('data-repo')).hide();
+    }
 });
 
  $('body').delegate('.configKey[data-l1key="ldap:enable"]', 'change switchChange.bootstrapSwitch', function () {
@@ -48,16 +48,16 @@
 });
 
  $('body').delegate('.configKey[data-l1key="cache::engine"]', 'change', function () {
-     $('.cacheEngine').hide();
-     $('.cacheEngine.'+$(this).value()).show();
- });
+   $('.cacheEngine').hide();
+   $('.cacheEngine.'+$(this).value()).show();
+});
 
  $('body').delegate('.configKey[data-l1key="log::engine"]', 'change', function () {
-     $('.logEngine').hide();
-     $('.logEngine.'+$(this).value()).show();
- });
+   $('.logEngine').hide();
+   $('.logEngine.'+$(this).value()).show();
+});
 
- $('body').delegate('.configKey[data-l1key="market::branch"]', 'change', function () {
+ $('body').delegate('.configKey[data-l1key="core::branch"]', 'change', function () {
     if($(this).value() == 'url'){
         $('#div_githubupdate').show();
     }else{
@@ -87,47 +87,47 @@
 });
 
  $('#bt_restartDns').on('click', function () {
-   $.hideAlert();
-   jeedom.config.save({
-    configuration: $('#config').getValues('.configKey')[0],
-    error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-       jeedom.network.restartDns({
+     $.hideAlert();
+     jeedom.config.save({
+        configuration: $('#config').getValues('.configKey')[0],
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
-        success: function (data) {
-         modifyWithoutSave = false;
-         loadPage('index.php?v=d&p=administration&panel=config_network');
+        success: function () {
+         jeedom.network.restartDns({
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function (data) {
+               modifyWithoutSave = false;
+               loadPage('index.php?v=d&p=administration&panel=config_network');
+           }
+       });
      }
+ }); 
  });
-   }
-}); 
-});
 
 
  $('#bt_haltDns').on('click', function () {
-   $.hideAlert();
-   jeedom.config.save({
-    configuration: $('#config').getValues('.configKey')[0],
-    error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-       jeedom.network.stopDns({
+     $.hideAlert();
+     jeedom.config.save({
+        configuration: $('#config').getValues('.configKey')[0],
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
-        success: function (data) {
-         modifyWithoutSave = false;
-         loadPage('index.php?v=d&p=administration&panel=config_network');
+        success: function () {
+         jeedom.network.stopDns({
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function (data) {
+               modifyWithoutSave = false;
+               loadPage('index.php?v=d&p=administration&panel=config_network');
+           }
+       });
      }
+ }); 
  });
-   }
-}); 
-});
 
  $("#bt_flushMemcache").on('click', function (event) {
     $.hideAlert();
@@ -149,9 +149,9 @@
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
-                   loadPage('index.php?v=d&p=administration');
-               }
-           });
+                 loadPage('index.php?v=d&p=administration');
+             }
+         });
         }
     });
 });
@@ -238,13 +238,13 @@
 });
 
  if (getUrlVars('panel') != false) {
-     $('a[href="#'+getUrlVars('panel')+'"]').click();
- }
+   $('a[href="#'+getUrlVars('panel')+'"]').click();
+}
 
- printConvertColor();
+printConvertColor();
 
- $.showLoading();
- jeedom.config.load({
+$.showLoading();
+jeedom.config.load({
     configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
     error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -256,11 +256,11 @@
         modifyWithoutSave = false;
     }
 });
- $('body').delegate('.configKey', 'change', function () {
+$('body').delegate('.configKey', 'change', function () {
     modifyWithoutSave = true;
 });
 
- $('#bt_testMarketConnection').on('click', function () {
+$('#bt_testMarketConnection').on('click', function () {
     jeedom.config.save({
         configuration: $('#config').getValues('.configKey')[0],
         error: function (error) {
@@ -268,20 +268,20 @@
         },
         success: function () {
             jeedom.market.test({
-               error: function (error) {
+             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function () {
-             $('#div_alert').showAlert({message: '{{Connexion au market réussie}}', level: 'success'});
-         }
+               $('#div_alert').showAlert({message: '{{Connexion au market réussie}}', level: 'success'});
+           }
 
-     });
+       });
         }
     });
 });
 
 
- $('#bt_resetHwKey').on('click',function(){
+$('#bt_resetHwKey').on('click',function(){
  $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
         url: "core/ajax/jeedom.ajax.php", // url du fichier php
@@ -302,7 +302,7 @@
 });
 });
 
- $('#bt_resetHardwareType').on('click',function(){
+$('#bt_resetHardwareType').on('click',function(){
     jeedom.config.save({
         configuration: {hardware_name : ''},
         error: function (error) {
@@ -314,7 +314,7 @@
     });
 });
 
- function genKeyAPI() {
+function genKeyAPI() {
     $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
         url: "core/ajax/config.ajax.php", // url du fichier php

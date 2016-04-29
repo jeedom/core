@@ -25,7 +25,30 @@ class repo_market {
 
 	public static $_name = 'Market';
 
-	public static $_configuration = false;
+	public static $_scope = array(
+		'plugin' => true,
+		'backup' => true,
+		'hasConfiguration' => true,
+		'proxy' => true,
+	);
+
+	public static $_configuration = array(
+		'configuration' => array(
+			'address' => array(
+				'name' => 'Adresse',
+				'type' => 'input',
+				'default' => 'https://market.jeedom.fr';
+			),
+			'username' => array(
+				'name' => 'Nom d\'utilisateur',
+				'type' => 'input',
+			),
+			'password' => array(
+				'name' => 'Mot de passe',
+				'type' => 'password',
+			),
+		),
+	);
 
 	/*     * ***********************Méthodes statiques*************************** */
 

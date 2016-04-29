@@ -18,6 +18,12 @@ foreach ($repos as $key => $value) {
 	if ($value['configuration'] === false) {
 		continue;
 	}
+	if ($value['scope']['plugin'] === false) {
+		continue;
+	}
+	if (!isset($value['configuration']['parameters_for_add'])) {
+		continue;
+	}
 	echo '<option value="' . $key . '">' . $value['name'] . '</option>';
 }
 ?>
@@ -34,6 +40,9 @@ foreach ($repos as $key => $value) {
  		<?php
 foreach ($repos as $key => $value) {
 	if ($value['configuration'] === false) {
+		continue;
+	}
+	if ($value['scope']['plugin'] === false) {
 		continue;
 	}
 	if (!isset($value['configuration']['parameters_for_add'])) {

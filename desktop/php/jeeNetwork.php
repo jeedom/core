@@ -672,7 +672,7 @@ foreach (jeeNetwork::all() as $jeeNetwork) {
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Branche}}</label>
                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <select class="configKey form-control" data-l1key="market::branch">
+                            <select class="configKey form-control" data-l1key="core::branch">
                                 <option value="stable">{{Stable}}</option>
                                 <option value="master">{{Développement}}</option>
                             </select>
