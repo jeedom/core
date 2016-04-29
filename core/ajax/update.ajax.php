@@ -25,7 +25,13 @@ try {
 	}
 
 	if (init('action') == 'all') {
-		ajax::success(utils::o2a(update::all(init('filter'))));
+		$return = array();
+		foreach (update::all(init('filter')) as $update) {
+			$infos = utils::o2a($update);
+			$infos['info'] = $update->getInfo();
+			$return[] = $infos;
+		}
+		ajax::success($return);
 	}
 
 	if (init('action') == 'checkAllUpdate') {
