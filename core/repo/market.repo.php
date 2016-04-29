@@ -69,6 +69,13 @@ class repo_market {
 		}
 	}
 
+	public static function objectInfo($_update) {
+		return array(
+			'doc' => 'https://jeedom.com/doc/documentation/plugins/' . $_update->getLogicalId() . '/' . config::byKey('language', 'core', 'fr_FR') . '/' . $_update->getLogicalId() . '.html',
+			'changelog' => '',
+		);
+	}
+
 	/*     * *********************Methode d'instance************************* */
 
 	/*     * **********************Getteur Setteur*************************** */

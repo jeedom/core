@@ -97,6 +97,9 @@ try {
 		if (isset($update_json['id'])) {
 			$update = update::byId($update_json['id']);
 		}
+		if (isset($update_json['logicalId'])) {
+			$update = update::byLogicalId($update_json['logicalId']);
+		}
 		if (!isset($update) || !is_object($update)) {
 			$update = new update();
 		}

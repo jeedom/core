@@ -248,6 +248,16 @@ class update {
 
 	/*     * *********************Méthodes d'instance************************* */
 
+	public function getInfo() {
+		if ($this->getType() != 'core') {
+			$class = 'repo_' . $this->getSource();
+			if (class_exists($class) && method_exists($class, 'objectInfo')) {
+				return $class::objectInfo($this);
+			}
+		}
+		return array();
+	}
+
 	public function doUpdate() {
 		if ($this->getType() == 'core') {
 			jeedom::update();

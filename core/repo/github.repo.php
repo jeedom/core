@@ -124,6 +124,13 @@ class repo_github {
 
 	}
 
+	public static function objectInfo($_update) {
+		return array(
+			'doc' => 'https://github.com/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/blob/' . $_update->getConfiguration('version', 'master') . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.asciidoc',
+			'changelog' => 'https://github.com/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/commits/' . $_update->getConfiguration('version', 'master'),
+		);
+	}
+
 	/*     * *********************Methode d'instance************************* */
 
 	/*     * **********************Getteur Setteur*************************** */
