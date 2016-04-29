@@ -49,7 +49,7 @@ class repo_github {
 		),
 		'configuration' => array(
 			'token' => array(
-				'name' => 'Clef api',
+				'name' => 'Token (faculatatif)',
 				'type' => 'input',
 			),
 		),
