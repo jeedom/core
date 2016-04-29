@@ -51,10 +51,14 @@ class repo_github {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function checkUpdate($_update) {
-		$client = new \Github\Client(
+	public static function getGithubClient() {
+		return new \Github\Client(
 			new \Github\HttpClient\CachedHttpClient(array('cache_dir' => '/tmp/jeedom-github-api-cache'))
 		);
+	}
+
+	public static function checkUpdate($_update) {
+		$client = self::getGithubClient();
 		$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
 		if (!isset($branch['commit']) || !isset($branch['commit']['sha'])) {
 			return;
@@ -86,6 +90,9 @@ class repo_github {
 		if (!file_exists($tmp)) {
 			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '. Si l\'application est payante, l\'avez-vous achetée ?', __FILE__));
 		}
+		if (filesize($tmp) < 100) {
+			throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
+		}
 		log::add('update', 'alert', __("OK\n", __FILE__));
 		$cibDir = '/tmp/jeedom_' . $_update->getLogicalId();
 		if (file_exists($cibDir)) {
@@ -116,9 +123,7 @@ class repo_github {
 		} else {
 			throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
 		}
-		$client = new \Github\Client(
-			new \Github\HttpClient\CachedHttpClient(array('cache_dir' => '/tmp/jeedom-github-api-cache'))
-		);
+		$client = self::getGithubClient();
 		$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
 		if (!isset($branch['commit']) || !isset($branch['commit']['sha'])) {
 			return array();

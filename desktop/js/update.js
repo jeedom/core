@@ -266,8 +266,9 @@ function addUpdate(_update) {
     tr += '<td style="width : 400px;">';
     if (_update.status == 'update') {
         tr += '<a class="btn btn-info btn-xs pull-right update tooltips" style="color : white;margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fa fa-refresh"></i> {{Mettre à jour}}</a>';
+    }else{
+        tr += '<a class="btn btn-info btn-xs pull-right update tooltips" style="color : white;margin-bottom : 5px;" title="{{Re-installer}}"><i class="fa fa-refresh"></i> {{Re-installer}}</a>';
     }
-
     if (_update.type != 'core') {
         tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible tooltips" data-state="unhold" style="color : white;margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
         if (isset(_update.info) && isset(_update.info.changelog) && _update.info.changelog != '') {
