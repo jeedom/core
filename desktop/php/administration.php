@@ -446,7 +446,7 @@ foreach (array('eth0', 'wlan0', 'bond0') as $value) {
   <div class="col-sm-6">
     <?php if (config::byKey('jeeNetwork::mode') != 'slave') {
 	foreach (repo::all() as $key => $value) {
-		if ($value['scope']['proxy'] == false) {
+		if (!isset($value['scope']['proxy']) || $value['scope']['proxy'] == false) {
 			continue;
 		}
 		if (config::byKey($key . '::enable') == 0) {

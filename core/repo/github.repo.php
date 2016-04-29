@@ -28,7 +28,7 @@ class repo_github {
 	public static $_scope = array(
 		'plugin' => true,
 		'backup' => false,
-		'hasConfiguration' => false,
+		'hasConfiguration' => true,
 	);
 
 	public static $_configuration = array(
@@ -47,14 +47,24 @@ class repo_github {
 				'default' => 'master',
 			),
 		),
+		'configuration' => array(
+			'token' => array(
+				'name' => 'Clef api',
+				'type' => 'input',
+			),
+		),
 	);
 
 	/*     * ***********************Méthodes statiques*************************** */
 
 	public static function getGithubClient() {
-		return new \Github\Client(
+		$client = new \Github\Client(
 			new \Github\HttpClient\CachedHttpClient(array('cache_dir' => '/tmp/jeedom-github-api-cache'))
 		);
+		if (config::byKey('github::token') != '') {
+			$client->authenticate(config::byKey('github::token'), '', Github\Client::AUTH_URL_TOKEN);
+		}
+		return $client;
 	}
 
 	public static function checkUpdate($_update) {
@@ -84,9 +94,16 @@ class repo_github {
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
 		}
-		$url = 'https://github.com/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/archive/' . $_update->getConfiguration('version', 'master') . '.zip';
+
+		$url = 'https://api.github.com/repos/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/zipball';
 		log::add('update', 'alert', __('Téléchargement de ', __FILE__) . $_update->getLogicalId() . '...');
-		file_put_contents($tmp, fopen($url, 'r'));
+		if (config::byKey('github::token') == '') {
+			$result = shell_exec('curl -s -L ' . $url . ' > ' . $tmp);
+		} else {
+			log::add('update', 'alert', 'curl -H "Authorization: token ' . config::byKey('github::token') . '" -L ' . $url . ' > ' . $tmp);
+			$result = shell_exec('curl -H "Authorization: token ' . config::byKey('github::token') . '" -L ' . $url . ' > ' . $tmp);
+		}
+		log::add('update', 'alert', $result);
 		if (!file_exists($tmp)) {
 			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '. Si l\'application est payante, l\'avez-vous achetée ?', __FILE__));
 		}
