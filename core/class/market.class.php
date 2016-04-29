@@ -99,24 +99,6 @@ class market {
 		return $market;
 	}
 
-	public static function test() {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('market::test')) {
-			return $market->getResult();
-		} else {
-			throw new Exception($market->getError(), $market->getErrorCode());
-		}
-	}
-
-	public static function sendUserMessage($_title, $_message) {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('user::sendMessage', array('title' => $_title, 'message' => $_message))) {
-			return $market->getResult();
-		} else {
-			throw new Exception($market->getError(), $market->getErrorCode());
-		}
-	}
-
 	public static function byId($_id) {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('market::byId', array('id' => $_id))) {
@@ -147,15 +129,6 @@ class market {
 				return $return;
 			}
 			return self::construct($market->getResult());
-		} else {
-			throw new Exception($market->getError(), $market->getErrorCode());
-		}
-	}
-
-	public static function getMultiChangelog($_params) {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('market::changelog', $_params)) {
-			return $market->getResult();
 		} else {
 			throw new Exception($market->getError(), $market->getErrorCode());
 		}
@@ -248,13 +221,6 @@ class market {
 		}
 	}
 
-	public static function getPurchaseInfo() {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('purchase::getInfo')) {
-			return $market->getResult();
-		}
-	}
-
 	public static function saveTicket($_ticket) {
 		$jsonrpc = self::getJsonRpc();
 		$_ticket['user_plugin'] = '';
@@ -275,33 +241,6 @@ class market {
 			throw new Exception($jsonrpc->getErrorMessage());
 		}
 		return $jsonrpc->getResult();
-	}
-
-	public static function getJeedomCurrentVersion($_refresh = false) {
-		try {
-			$cache = cache::byKey('jeedom::lastVersion');
-			if (!$_refresh && $cache->getValue('') != '') {
-				return $cache->getValue();
-			}
-			if (config::byKey('core::branch') == 'url') {
-				$url = config::byKey('update::url');
-				$url = str_replace('archive/', '', $url);
-				$url = str_replace('.zip', '', $url);
-				$url .= '/core/config/version';
-				$url = str_replace('https://github.com', 'https://raw.githubusercontent.com', $url);
-			} else {
-				$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('core::branch', 'core', 'stable') . '/core/config/version';
-			}
-			$request_http = new com_http($url);
-			$version = trim($request_http->exec());
-			cache::set('jeedom::lastVersion', $version, 86400);
-			return $version;
-		} catch (Exception $e) {
-
-		} catch (Error $e) {
-
-		}
-		return null;
 	}
 
 	public static function getJsonRpc() {
@@ -404,146 +343,6 @@ class market {
 			if (isset($_result['register::hwkey_nok']) && $_result['register::hwkey_nok'] == 1) {
 				config::save('jeedom::installKey', '');
 			}
-		}
-	}
-
-	public static function getInfo($_logicalId, $_version = 'stable') {
-		$returns = array();
-		if (is_array($_logicalId) && is_array($_version) && count($_logicalId) == count($_version)) {
-			if (is_array(reset($_logicalId))) {
-				$markets = market::byLogicalIdAndType($_logicalId);
-			} else {
-				$markets = market::byLogicalId($_logicalId);
-			}
-
-			$returns = array();
-			for ($i = 0; $i < count($_logicalId); $i++) {
-				if (is_array($_logicalId[$i])) {
-					$logicalId = $_logicalId[$i]['type'] . $_logicalId[$i]['logicalId'];
-				} else {
-					$logicalId = $_logicalId[$i];
-				}
-				$return['datetime'] = '0000-01-01 00:00:00';
-				if ($logicalId == '' || config::byKey('market::address') == '') {
-					$return['market'] = 0;
-					$return['market_owner'] = 0;
-					$return['status'] = 'ok';
-					return $return;
-				}
-
-				if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
-					$return['market_owner'] = 1;
-				} else {
-					$return['market_owner'] = 0;
-				}
-				$return['market'] = 0;
-
-				try {
-					if (isset($markets[$logicalId])) {
-						$market = $markets[$logicalId];
-						if (!is_object($market)) {
-							$return['status'] = 'ok';
-						} else {
-							$return['datetime'] = $market->getDatetime($_version[$i]);
-							$return['market'] = 1;
-							$return['market_owner'] = $market->getIsAuthor();
-							$update = update::byTypeAndLogicalId($market->getType(), $market->getLogicalId());
-							$updateDateTime = '0000-01-01 00:00:00';
-							if (is_object($update)) {
-								$updateDateTime = $update->getLocalVersion();
-							}
-							if ($updateDateTime < $market->getDatetime($_version[$i], $updateDateTime)) {
-								$return['status'] = 'update';
-							} else {
-								$return['status'] = 'ok';
-							}
-						}
-					} else {
-						$return['status'] = 'ok';
-					}
-				} catch (Exception $e) {
-					log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
-					$return['status'] = 'ok';
-				} catch (Error $e) {
-					log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
-					$return['status'] = 'ok';
-				}
-				$returns[$logicalId] = $return;
-			}
-			return $returns;
-		}
-		$return = array();
-		$return['datetime'] = '0000-01-01 00:00:00';
-		if (config::byKey('market::address') == '') {
-			$return['market'] = 0;
-			$return['market_owner'] = 0;
-			$return['status'] = 'ok';
-			return $return;
-		}
-
-		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
-			$return['market_owner'] = 1;
-		} else {
-			$return['market_owner'] = 0;
-		}
-		$return['market'] = 0;
-
-		try {
-			if (is_array($_logicalId)) {
-				$market = market::byLogicalIdAndType($_logicalId['logicalId'], $_logicalId['type']);
-			} else {
-				$market = market::byLogicalId($_logicalId);
-			}
-			if (!is_object($market)) {
-				$return['status'] = 'depreciated';
-			} else {
-				$return['datetime'] = $market->getDatetime($_version);
-				$return['market'] = 1;
-				$return['market_owner'] = $market->getIsAuthor();
-				$update = update::byTypeAndLogicalId($market->getType(), $market->getLogicalId());
-				$updateDateTime = '0000-01-01 00:00:00';
-				if (is_object($update)) {
-					$updateDateTime = $update->getLocalVersion();
-				}
-				if ($updateDateTime < $market->getDatetime($_version, $updateDateTime)) {
-					$return['status'] = 'update';
-				} else {
-					$return['status'] = 'ok';
-				}
-			}
-		} catch (Exception $e) {
-			log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
-			$return['status'] = 'ok';
-		} catch (Error $e) {
-			log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
-			$return['status'] = 'ok';
-		}
-		return $return;
-	}
-
-	public static function checkPayment($_id) {
-		try {
-			$market = self::byLogicalId($_id);
-		} catch (Exception $e) {
-			if ($e->getCode() == 3456) {
-				throw new Exception(__('Veuillez vous connecter à internet pour activer le plugin. Cette opération n\'est à effectuer qu\'une seule fois lors de l\'activation', __FILE__));
-			} else {
-				if (strpos($e->getMessage(), '-32026') === false) {
-					throw new Exception($e->getMessage());
-				}
-			}
-		}
-		if (is_object($market) && $market->getPurchase() == 0) {
-			throw new Exception(__('Vous devez acheter cet article avant de pouvoir l\'activer', __FILE__));
-		}
-	}
-
-	public static function distinctCategorie($_type) {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('market::distinctCategorie', array('type' => $_type))) {
-			return $market->getResult();
-		} else {
-			throw new Exception($market->getError(), $market->getErrorCode());
 		}
 	}
 

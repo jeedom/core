@@ -72,7 +72,7 @@ try {
 	}
 
 	if (init('action') == 'getInfo') {
-		ajax::success(market::getInfo(init('logicalId')));
+		ajax::success(repo_market::getInfo(init('logicalId')));
 	}
 
 	if (init('action') == 'byLogicalId') {

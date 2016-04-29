@@ -239,7 +239,7 @@ class update {
 				$params[] = array('logicalId' => $update->getLogicalId(), 'datetime' => $update->getLocalVersion());
 			}
 		}
-		return market::getMultiChangelog($params);
+		return repo_market::getMultiChangelog($params);
 	}
 
 	public static function listCoreUpdate() {

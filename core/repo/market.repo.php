@@ -53,7 +53,7 @@ class repo_market {
 	/*     * ***********************Méthodes statiques*************************** */
 
 	public static function checkUpdate($_update) {
-		$market_info = market::getInfo(array('logicalId' => $_update->getLogicalId(), 'type' => $_update->getType()), $_update->getConfiguration('version', 'stable'));
+		$market_info = repo_market::getInfo(array('logicalId' => $_update->getLogicalId(), 'type' => $_update->getType()), $_update->getConfiguration('version', 'stable'));
 		$_update->setStatus($market_info['status']);
 		$_update->setConfiguration('market_owner', $market_info['market_owner']);
 		$_update->setConfiguration('market', $market_info['market']);
@@ -136,6 +136,154 @@ class repo_market {
 			throw new Exception(__('Impossible de trouver le fichier : ', __FILE__) . $backup_path . '.');
 		}
 		jeedom::restore('backup/' . $_backup, true);
+	}
+
+	public static function test() {
+		$market = self::getJsonRpc();
+		if ($market->sendRequest('market::test')) {
+			return $market->getResult();
+		} else {
+			throw new Exception($market->getError(), $market->getErrorCode());
+		}
+	}
+
+	public static function getMultiChangelog($_params) {
+		$market = self::getJsonRpc();
+		if ($market->sendRequest('market::changelog', $_params)) {
+			return $market->getResult();
+		} else {
+			throw new Exception($market->getError(), $market->getErrorCode());
+		}
+	}
+
+	public static function getPurchaseInfo() {
+		$market = self::getJsonRpc();
+		if ($market->sendRequest('purchase::getInfo')) {
+			return $market->getResult();
+		}
+	}
+
+	public static function getInfo($_logicalId, $_version = 'stable') {
+		$returns = array();
+		if (is_array($_logicalId) && is_array($_version) && count($_logicalId) == count($_version)) {
+			if (is_array(reset($_logicalId))) {
+				$markets = market::byLogicalIdAndType($_logicalId);
+			} else {
+				$markets = market::byLogicalId($_logicalId);
+			}
+
+			$returns = array();
+			for ($i = 0; $i < count($_logicalId); $i++) {
+				if (is_array($_logicalId[$i])) {
+					$logicalId = $_logicalId[$i]['type'] . $_logicalId[$i]['logicalId'];
+				} else {
+					$logicalId = $_logicalId[$i];
+				}
+				$return['datetime'] = '0000-01-01 00:00:00';
+				if ($logicalId == '' || config::byKey('market::address') == '') {
+					$return['market'] = 0;
+					$return['market_owner'] = 0;
+					$return['status'] = 'ok';
+					return $return;
+				}
+
+				if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
+					$return['market_owner'] = 1;
+				} else {
+					$return['market_owner'] = 0;
+				}
+				$return['market'] = 0;
+
+				try {
+					if (isset($markets[$logicalId])) {
+						$market = $markets[$logicalId];
+						if (!is_object($market)) {
+							$return['status'] = 'ok';
+						} else {
+							$return['datetime'] = $market->getDatetime($_version[$i]);
+							$return['market'] = 1;
+							$return['market_owner'] = $market->getIsAuthor();
+							$update = update::byTypeAndLogicalId($market->getType(), $market->getLogicalId());
+							$updateDateTime = '0000-01-01 00:00:00';
+							if (is_object($update)) {
+								$updateDateTime = $update->getLocalVersion();
+							}
+							if ($updateDateTime < $market->getDatetime($_version[$i], $updateDateTime)) {
+								$return['status'] = 'update';
+							} else {
+								$return['status'] = 'ok';
+							}
+						}
+					} else {
+						$return['status'] = 'ok';
+					}
+				} catch (Exception $e) {
+					log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
+					$return['status'] = 'ok';
+				} catch (Error $e) {
+					log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
+					$return['status'] = 'ok';
+				}
+				$returns[$logicalId] = $return;
+			}
+			return $returns;
+		}
+		$return = array();
+		$return['datetime'] = '0000-01-01 00:00:00';
+		if (config::byKey('market::address') == '') {
+			$return['market'] = 0;
+			$return['market_owner'] = 0;
+			$return['status'] = 'ok';
+			return $return;
+		}
+
+		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
+			$return['market_owner'] = 1;
+		} else {
+			$return['market_owner'] = 0;
+		}
+		$return['market'] = 0;
+
+		try {
+			if (is_array($_logicalId)) {
+				$market = market::byLogicalIdAndType($_logicalId['logicalId'], $_logicalId['type']);
+			} else {
+				$market = market::byLogicalId($_logicalId);
+			}
+			if (!is_object($market)) {
+				$return['status'] = 'depreciated';
+			} else {
+				$return['datetime'] = $market->getDatetime($_version);
+				$return['market'] = 1;
+				$return['market_owner'] = $market->getIsAuthor();
+				$update = update::byTypeAndLogicalId($market->getType(), $market->getLogicalId());
+				$updateDateTime = '0000-01-01 00:00:00';
+				if (is_object($update)) {
+					$updateDateTime = $update->getLocalVersion();
+				}
+				if ($updateDateTime < $market->getDatetime($_version, $updateDateTime)) {
+					$return['status'] = 'update';
+				} else {
+					$return['status'] = 'ok';
+				}
+			}
+		} catch (Exception $e) {
+			log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
+			$return['status'] = 'ok';
+		} catch (Error $e) {
+			log::add('market', 'debug', __('Erreur market::getinfo : ', __FILE__) . $e->getMessage());
+			$return['status'] = 'ok';
+		}
+		return $return;
+	}
+
+	public static function distinctCategorie($_type) {
+		$market = self::getJsonRpc();
+		if ($market->sendRequest('market::distinctCategorie', array('type' => $_type))) {
+			return $market->getResult();
+		} else {
+			throw new Exception($market->getError(), $market->getErrorCode());
+		}
 	}
 
 	public static function getJsonRpc() {

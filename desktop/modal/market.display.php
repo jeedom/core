@@ -84,7 +84,7 @@ if ($market->getPurchase() == 1) {
 	echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accèder}}</div>';
 } else {
 	if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
-		$purchase_info = market::getPurchaseInfo();
+		$purchase_info = repo_market::getPurchaseInfo();
 		if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
 
 			?>

@@ -256,6 +256,7 @@ jeedom.config.load({
         modifyWithoutSave = false;
     }
 });
+
 $('body').delegate('.configKey', 'change', function () {
     modifyWithoutSave = true;
 });
