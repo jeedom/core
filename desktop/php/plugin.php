@@ -15,29 +15,29 @@ $plugins_list = plugin::listPlugin(false, true);
       <ul id="ul_plugin" class="nav nav-list bs-sidenav">
        <li class="filter" style="margin-bottom: 5px;margin-top: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
        <?php
-       foreach ($plugins_list as $category_name => $category) {
-         $icon = '';
-         if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['icon'])) {
-          $icon = $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['icon'];
-        }
-        $name = $category_name;
-        if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'])) {
-          $name = $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'];
-        }
-        echo '<li><i class="fa ' . $icon . '"></i> ' . $name . '</li>';
-        foreach ($category as $plugin) {
-          $opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-          echo '<li class="cursor li_plugin" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="' . $opacity . '"><a>';
-          if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
-           echo '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
-         } else {
-           echo '<i class="' . $plugin->getIcon() . '"></i> ';
-         }
-         echo $plugin->getName();
-         echo '</a></li>';
-       }
-     }
-     ?>
+foreach ($plugins_list as $category_name => $category) {
+	$icon = '';
+	if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['icon'])) {
+		$icon = $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['icon'];
+	}
+	$name = $category_name;
+	if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'])) {
+		$name = $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'];
+	}
+	echo '<li><i class="fa ' . $icon . '"></i> ' . $name . '</li>';
+	foreach ($category as $plugin) {
+		$opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+		echo '<li class="cursor li_plugin" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="' . $opacity . '"><a>';
+		if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
+			echo '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
+		} else {
+			echo '<i class="' . $plugin->getIcon() . '"></i> ';
+		}
+		echo $plugin->getName();
+		echo '</a></li>';
+	}
+}
+?>
    </ul>
  </div>
 </div>
@@ -45,15 +45,15 @@ $plugins_list = plugin::listPlugin(false, true);
 <div class="col-md-9 col-sm-8" id="div_resumePluginList" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <legend><i class="fa fa-list-alt"></i>  {{Mes plugins}}</legend>
  <div class="pluginListContainer">
-   <?php if(config::byKey('market::enable') == 1) ?>
-
+   <?php if (config::byKey('market::enable') == 1) {?>
     <div class="cursor" id="bt_displayMarket2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
      <center>
       <i class="fa fa-shopping-cart" style="font-size : 6em;color:#94ca02;margin-top:20px;"></i>
     </center>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajout depuis le market}}</center></span>
   </div>
-  <?php } ?>
+  <?php }
+?>
   <div class="cursor" id="bt_addPluginFromOtherSource" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
    <center>
      <i class="fa fa-plus" style="font-size : 6em;color:#94ca02;margin-top:20px;"></i>
@@ -62,19 +62,19 @@ $plugins_list = plugin::listPlugin(false, true);
  </div>
 
  <?php
- foreach (plugin::listPlugin() as $plugin) {
-   $opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-   echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
-   echo "<center>";
-   if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
-    echo '<img class="img-responsive" style="width : 120px;" src="' . $plugin->getPathImgIcon() . '" />';
-    echo "</center>";
-  } else {
-    echo '<i class="' . $plugin->getIcon() . '" style="font-size : 6em;margin-top:20px;"></i>';
-    echo "</center>";
-    echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $plugin->getName() . '</center></span>';
-  }
-  echo '</div>';
+foreach (plugin::listPlugin() as $plugin) {
+	$opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+	echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+	echo "<center>";
+	if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
+		echo '<img class="img-responsive" style="width : 120px;" src="' . $plugin->getPathImgIcon() . '" />';
+		echo "</center>";
+	} else {
+		echo '<i class="' . $plugin->getIcon() . '" style="font-size : 6em;margin-top:20px;"></i>';
+		echo "</center>";
+		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $plugin->getName() . '</center></span>';
+	}
+	echo '</div>';
 }
 ?>
 </div>
