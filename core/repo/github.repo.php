@@ -100,8 +100,7 @@ class repo_github {
 		if (config::byKey('github::token') == '') {
 			$result = shell_exec('curl -s -L ' . $url . ' > ' . $tmp);
 		} else {
-			log::add('update', 'alert', 'curl -H "Authorization: token ' . config::byKey('github::token') . '" -L ' . $url . ' > ' . $tmp);
-			$result = shell_exec('curl -H "Authorization: token ' . config::byKey('github::token') . '" -L ' . $url . ' > ' . $tmp);
+			$result = shell_exec('curl -s -H "Authorization: token ' . config::byKey('github::token') . '" -L ' . $url . ' > ' . $tmp);
 		}
 		log::add('update', 'alert', $result);
 		if (!file_exists($tmp)) {
