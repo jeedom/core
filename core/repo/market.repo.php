@@ -37,7 +37,7 @@ class repo_market {
 			'address' => array(
 				'name' => 'Adresse',
 				'type' => 'input',
-				'default' => 'https://market.jeedom.fr';
+				'default' => 'https://market.jeedom.fr',
 			),
 			'username' => array(
 				'name' => 'Nom d\'utilisateur',
