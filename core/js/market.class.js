@@ -16,8 +16,8 @@
  */
 
 
-jeedom.market = function() {
-};
+ jeedom.market = function() {
+ };
 
 
  jeedom.market.byLogicalId = function (_params) {
@@ -47,27 +47,7 @@ jeedom.market = function() {
  	$.ajax(paramsAJAX);
  }
 
-  jeedom.market.test = function (_params) {
- 	var paramsRequired = [];
- 	var paramsSpecifics = {
- 		global: _params.global || true,
- 	};
- 	try {
- 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
- 	} catch (e) {
- 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
- 		return;
- 	}
- 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
- 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
- 	paramsAJAX.url = 'core/ajax/market.ajax.php';
- 	paramsAJAX.data = {
- 		action: 'test',
- 	};
- 	$.ajax(paramsAJAX);
- }
-
-   jeedom.market.setComment = function (_params) {
+ jeedom.market.setComment = function (_params) {
  	var paramsRequired = ['id'];
  	var paramsSpecifics = {
  		global: _params.global || true,
@@ -90,7 +70,7 @@ jeedom.market = function() {
  	$.ajax(paramsAJAX);
  }
 
-  jeedom.market.install = function (_params) {
+ jeedom.market.install = function (_params) {
  	var paramsRequired = ['id'];
  	var paramsSpecifics = {
  		global: _params.global || true,
@@ -112,7 +92,7 @@ jeedom.market = function() {
  	$.ajax(paramsAJAX);
  }
 
-   jeedom.market.remove = function (_params) {
+ jeedom.market.remove = function (_params) {
  	var paramsRequired = ['id'];
  	var paramsSpecifics = {
  		global: _params.global || true,

@@ -260,27 +260,6 @@ $('body').delegate('.configKey', 'change', function () {
     modifyWithoutSave = true;
 });
 
-$('#bt_testMarketConnection').on('click', function () {
-    jeedom.config.save({
-        configuration: $('#config').getValues('.configKey')[0],
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-            jeedom.market.test({
-             error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-               $('#div_alert').showAlert({message: '{{Connexion au market réussie}}', level: 'success'});
-           }
-
-       });
-        }
-    });
-});
-
-
 $('#bt_resetHwKey').on('click',function(){
  $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php

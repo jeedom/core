@@ -87,10 +87,6 @@ try {
 		}
 	}
 
-	if (init('action') == 'test') {
-		ajax::success(market::test());
-	}
-
 	if (init('action') == 'setRating') {
 		$market = market::byId(init('id'));
 		if (!is_object($market)) {
