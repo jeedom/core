@@ -135,6 +135,10 @@ class repo_github {
 			}
 			rcopy($cibDir . '/', dirname(__FILE__) . '/../../plugins/' . $_update->getLogicalId(), false, array(), true);
 			rrmdir($cibDir);
+			$cibDir = '/tmp/jeedom_' . $_update->getLogicalId();
+			if (file_exists($cibDir)) {
+				rrmdir($cibDir);
+			}
 			log::add('update', 'alert', __("OK\n", __FILE__));
 		} else {
 			throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);

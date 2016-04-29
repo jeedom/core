@@ -94,7 +94,7 @@ try {
 	echo "OK\n";
 
 	echo "Nettoyage des anciens fichiers...";
-	$tmp = '/tmp/jeedom_restore';
+	$tmp = dirname(__FILE__) . '/../tmp/jeedom_restore';
 	rrmdir($tmp);
 	echo "OK\n";
 	if (!file_exists($tmp)) {
