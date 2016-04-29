@@ -270,15 +270,6 @@ function addUpdate(_update) {
 
     if (_update.type != 'core') {
         tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible tooltips" data-state="unhold" style="color : white;margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
-        if (isset(_update.configuration) && isset(_update.configuration.market_owner) && _update.configuration.market_owner == 1) {
-            tr += '<a class="btn btn-success btn-xs pull-right sendToMarket tooltips cursor expertModeVisible" style="color : white;margin-bottom : 5px;" title="{{Envoyer sur le market}}"><i class="fa fa-cloud-upload"></i> {{Partager}}</a>';
-        }
-        if (isset(_update.configuration) && isset(_update.configuration.market) && _update.configuration.market == 1) {
-            tr += '<a class="btn btn-primary btn-xs pull-right view tooltips cursor" style="color : white;margin-bottom : 5px;"><i class="fa fa-search"></i> {{Voir}}</a>';
-        }
-        if (isset(_update.info) && isset(_update.info.doc) && _update.info.doc != '') {
-            tr += '<a class="btn btn-primary btn-xs pull-right tooltips cursor" target="_blank" href="'+_update.info.doc+'" style="color : white;margin-bottom : 5px;"><i class="fa fa-book"></i> {{Documentation}}</a>';
-        }
         if (isset(_update.info) && isset(_update.info.changelog) && _update.info.changelog != '') {
             tr += '<a class="btn btn-primary btn-xs pull-right tooltips cursor" target="_blank" href="'+_update.info.changelog+'" style="color : white;margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';
         }
