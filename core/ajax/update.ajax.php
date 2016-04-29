@@ -92,6 +92,19 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'save') {
+		$update_json = json_decode(init('update'), true);
+		if (isset($update_json['id'])) {
+			$update = update::byId($update_json['id']);
+		}
+		if (!isset($update) || !is_object($update)) {
+			$update = new update();
+		}
+		utils::a2o($update, $update_json);
+		$update->save();
+		ajax::success(utils::o2a($update));
+	}
+
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

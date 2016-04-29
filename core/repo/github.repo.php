@@ -20,8 +20,26 @@
 
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
-class updateGithub {
+class repo_github {
 	/*     * *************************Attributs****************************** */
+
+	public static $_configuration = array(
+		'parameters_for_add' => array(
+			'user' => array(
+				'name' => 'Utilisateur ou organisation du dépot',
+				'type' => 'input',
+			),
+			'repository' => array(
+				'name' => 'Nom du dépôt',
+				'type' => 'input',
+			),
+			'version' => array(
+				'name' => 'Branche',
+				'type' => 'input',
+				'default' => 'master',
+			),
+		),
+	);
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -44,7 +62,7 @@ class updateGithub {
 
 	public static function doUpdate($_update) {
 		$tmp_dir = '/tmp';
-		$tmp = $tmp_dir . '/' . $this->getLogicalId() . '.zip';
+		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
 			unlink($tmp);
 		}
@@ -55,13 +73,13 @@ class updateGithub {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
 		}
 		$url = 'https://github.com/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/archive/' . $_update->getConfiguration('version', 'master') . '.zip';
-		log::add('update', 'alert', __('Téléchargement de ', __FILE__) . $this->getLogicalId() . '...');
+		log::add('update', 'alert', __('Téléchargement de ', __FILE__) . $_update->getLogicalId() . '...');
 		file_put_contents($tmp, fopen($url, 'r'));
 		if (!file_exists($tmp)) {
 			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '. Si l\'application est payante, l\'avez-vous achetée ?', __FILE__));
 		}
 		log::add('update', 'alert', __("OK\n", __FILE__));
-		$cibDir = '/tmp/jeedom_' . $this->getLogicalId();
+		$cibDir = '/tmp/jeedom_' . $_update->getLogicalId();
 		if (file_exists($cibDir)) {
 			rrmdir($cibDir);
 		}
@@ -84,7 +102,7 @@ class updateGithub {
 					$cibDir = $cibDir . '/' . $files[0];
 				}
 			}
-			rcopy($cibDir . '/', dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId(), false, array(), true);
+			rcopy($cibDir . '/', dirname(__FILE__) . '/../../plugins/' . $_update->getLogicalId(), false, array(), true);
 			rrmdir($cibDir);
 			log::add('update', 'alert', __("OK\n", __FILE__));
 		} else {

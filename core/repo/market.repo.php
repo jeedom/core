@@ -20,8 +20,10 @@
 
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
-class updateMarket {
+class repo_market {
 	/*     * *************************Attributs****************************** */
+
+	public static $_configuration = false;
 
 	/*     * ***********************Méthodes statiques*************************** */
 

@@ -23,7 +23,7 @@ class update {
 	/*     * *************************Attributs****************************** */
 
 	private $id;
-	private $type;
+	private $type = 'plugin';
 	private $logicalId;
 	private $name;
 	private $localVersion;
@@ -252,7 +252,7 @@ class update {
 		if ($this->getType() == 'core') {
 			jeedom::update();
 		} else {
-			$class = 'update' . ucfirst($this->getSource());
+			$class = 'repo_' . $this->getSource();
 			if (class_exists($class) && method_exists($class, 'doUpdate')) {
 				$this->preInstallUpdate();
 				$this->postInstallUpdate($class::doUpdate($this));
@@ -297,7 +297,7 @@ class update {
 					break;
 			}
 			try {
-				$class = 'update' . ucfirst($this->getSource());
+				$class = 'repo_' . $this->getSource();
 				if (class_exists($class) && method_exists($class, 'deleteObjet')) {
 					$class::doUpdate($this);
 				}
@@ -383,7 +383,7 @@ class update {
 			$this->save();
 		} else {
 			try {
-				$class = 'update' . ucfirst($this->getSource());
+				$class = 'repo_' . $this->getSource();
 				if (class_exists($class) && method_exists($class, 'checkUpdate')) {
 					$class::checkUpdate($this);
 				}
@@ -399,11 +399,16 @@ class update {
 		if ($this->getLogicalId() == '') {
 			throw new Exception(__('Le logical ID ne peut pas être vide', __FILE__));
 		}
-		if ($this->getLocalVersion() == '') {
-			throw new Exception(__('La version locale ne peut pas être vide', __FILE__));
-		}
 		if ($this->getName() == '') {
 			$this->setName($this->getLogicalId());
+		}
+	}
+
+	public function postInsert() {
+		try {
+			$this->doUpdate();
+		} catch (Exception $e) {
+
 		}
 	}
 

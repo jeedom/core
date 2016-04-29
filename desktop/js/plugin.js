@@ -379,3 +379,7 @@ function savePluginConfig(_param) {
     });
 }
 
+$('#bt_addPluginFromOtherSource').on('click',function(){
+    $('#md_modal').dialog({title: "{{Ajouter un plugin}}"});
+    $('#md_modal').load('index.php?v=d&modal=repo.add').dialog('open');
+});
