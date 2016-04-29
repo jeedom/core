@@ -13,12 +13,6 @@ $plugins_list = plugin::listPlugin(false, true);
   <div class="col-md-3 col-sm-4" id="sd_pluginList" style="z-index:999;display:none">
     <div class="bs-sidebar">
       <ul id="ul_plugin" class="nav nav-list bs-sidenav">
-        <center>
-          <a class="btn btn-default tooltips" id="bt_displayMarket" style="display: inline-block;"><i class="fa fa-shopping-cart"></i> {{Market}}</a>
-          <span class="btn btn-default btn-file expertModeVisible">
-           <i class="fa fa-cloud-upload"></i> {{Envoyer un plugin}}<input id="bt_uploadPlugin" type="file" name="file" data-url="core/ajax/plugin.ajax.php?action=pluginupload" style="display : inline-block;">
-         </span>
-       </center>
        <li class="filter" style="margin-bottom: 5px;margin-top: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
        <?php
 foreach ($plugins_list as $category_name => $category) {

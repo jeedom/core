@@ -23,6 +23,8 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 class repo_github {
 	/*     * *************************Attributs****************************** */
 
+	public static $_name = 'Github';
+
 	public static $_configuration = array(
 		'parameters_for_add' => array(
 			'user' => array(

@@ -23,6 +23,8 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 class repo_market {
 	/*     * *************************Attributs****************************** */
 
+	public static $_name = 'Market';
+
 	public static $_configuration = false;
 
 	/*     * ***********************Méthodes statiques*************************** */

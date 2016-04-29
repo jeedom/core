@@ -251,17 +251,7 @@ $("#div_plugin_toggleState").delegate(".togglePlugin", 'click', function () {
  });
 });
 
-$('#bt_uploadPlugin').fileupload({
-    dataType: 'json',
-    replaceFileInput: false,
-    done: function (e, data) {
-        if (data.result.state != 'ok') {
-            alert_div_plugin_configuration.showAlert({message: data.result.result, level: 'danger'});
-            return;
-        }
-        alert_div_plugin_configuration.showAlert({message: '{{Plugin ajouté avec succès. Recharger la page pour le voir.}}', level: 'success'});
-    }
-});
+
 
 if (sel_plugin_id != -1) {
     if ($('#ul_plugin .li_plugin[data-plugin_id=' + sel_plugin_id + ']').length != 0) {

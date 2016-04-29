@@ -30,7 +30,7 @@ class repo {
 			$id = str_replace('.repo.php', '', $file);
 			$class = 'repo_' . str_replace('.repo.php', '', $file);
 			$return[str_replace('.repo.php', '', $file)] = array(
-				'name' => str_replace('.repo.php', '', $file),
+				'name' => $class::$_name,
 				'configuration' => $class::$_configuration,
 			);
 		}
@@ -40,7 +40,7 @@ class repo {
 	public static function byId($_id) {
 		$class = 'repo_' . $_id;
 		return array(
-			'name' => $_id,
+			'name' => $class::$_name,
 			'configuration' => $class::$_configuration,
 		);
 	}

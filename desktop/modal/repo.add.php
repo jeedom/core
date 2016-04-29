@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 $repos = repo::all();
 ?>
-<div style="display: none;" id="div_repoAddAlert"></div>
+ <div style="display: none;" id="div_repoAddAlert"></div>
  <legend>{{Source}}</legend>
  <form class="form-horizontal">
  	<fieldset>
@@ -12,6 +12,7 @@ $repos = repo::all();
  			<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Type de source}}</label>
  			<div class="col-sm-4">
  				<select class="updateAttr form-control" data-l1key="source">
+ 					<option value="nothing">{{Aucun}}</option>
  					<?php
 foreach ($repos as $key => $value) {
 	if ($value['configuration'] === false) {
@@ -38,7 +39,7 @@ foreach ($repos as $key => $value) {
 	if (!isset($value['configuration']['parameters_for_add'])) {
 		continue;
 	}
-	echo '<div class="repoSource ' . $key . '" >';
+	echo '<div class="repoSource ' . $key . '" style="display:none;">';
 	echo '<div class="form-group">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">';
 	echo '{{ID logique du plugin}}';
@@ -61,6 +62,12 @@ foreach ($repos as $key => $value) {
 			case 'number':
 				echo '<input type="number" class="updateAttr form-control" data-l1key="configuration" data-l2key="' . $pKey . '" value="' . $default . '" />';
 				break;
+			case 'file':
+				echo '<input class="updateAttr form-control" data-l1key="configuration" data-l2key="' . $pKey . '" style="display:none;" />';
+				echo '<span class="btn btn-default btn-file">';
+				echo '<i class="fa fa-cloud-upload"></i> {{Envoyer un plugin}}<input id="bt_uploadPlugin" data-key="' . $pKey . '" type="file" name="file" data-url="core/ajax/update.ajax.php?action=preUploadFile" style="display : inline-block;">';
+				echo '</span>';
+				break;
 		}
 		echo '</div>';
 		echo '</div>';
@@ -74,6 +81,24 @@ foreach ($repos as $key => $value) {
  </form>
 
  <script type="text/javascript">
+ 	$('.updateAttr[data-l1key=source]').on('change',function(){
+ 		$('.repoSource').hide();
+ 		$('.repoSource.'+$(this).value()).show();
+ 	});
+
+ 	$('#bt_uploadPlugin').fileupload({
+ 		dataType: 'json',
+ 		replaceFileInput: false,
+ 		done: function (e, data) {
+ 			if (data.result.state != 'ok') {
+ 				$('#div_repoAddAlert').showAlert({message: data.result.result, level: 'danger'});
+ 				return;
+ 			}
+ 			$('.updateAttr[data-l1key=configuration][data-l2key='+$('#bt_uploadPlugin').attr('data-key')+']').value(data.result.result);
+ 		}
+ 	});
+
+
  	$('#bt_repoAddSaveUpdate').on('click',function(){
  		var source = $('.updateAttr[data-l1key=source]').value();
  		var update =  $('.repoSource.'+source).getValues('.updateAttr')[0];
