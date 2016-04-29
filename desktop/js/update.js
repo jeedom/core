@@ -36,30 +36,30 @@
 });
 
  $('#bt_reapplySpecifyUpdate').on('click',function(){
-   var level = "-1";
-   var mode = '';
-   if($('#cb_forceReapplyUpdate').value() == 1){
-    mode = 'force';
-}
-jeedom.update.doAll({
-    mode: mode,
-    level: level,
-    version : $('#sel_updateVersion').value(),
-    onlyThisVersion : ($('#cb_allFromThisUpdate').value() == 1) ? 'no':'yes',
-    error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-     $("#md_specifyUpdate").dialog('close');
-     getJeedomLog(1, 'update');
- }
-});
+     var level = "-1";
+     var mode = '';
+     if($('#cb_forceReapplyUpdate').value() == 1){
+        mode = 'force';
+    }
+    jeedom.update.doAll({
+        mode: mode,
+        level: level,
+        version : $('#sel_updateVersion').value(),
+        onlyThisVersion : ($('#cb_allFromThisUpdate').value() == 1) ? 'no':'yes',
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+           $("#md_specifyUpdate").dialog('close');
+           getJeedomLog(1, 'update');
+       }
+   });
 });
 
  $('#bt_allChangelog').on('click', function () {
-   $('#md_modal2').dialog({title: "{{Changelog}}"});
-   $("#md_modal2").load('index.php?v=d&modal=market.allChangelog').dialog('open');
-});
+     $('#md_modal2').dialog({title: "{{Changelog}}"});
+     $("#md_modal2").load('index.php?v=d&modal=market.allChangelog').dialog('open');
+ });
 
  $('.bt_updateAll').on('click', function () {
   var level = $(this).attr('data-level');
@@ -259,7 +259,9 @@ function addUpdate(_update) {
         if (_update.configuration.version == 'beta') {
             tr += ' <span class="label label-danger">' + _update.configuration.version + '</span>';
         } else {
-            tr += ' <span class="label label-info">' + _update.configuration.version + '</span>';
+            if (_update.type != 'core') {
+                tr += ' <span class="label label-info">' + _update.configuration.version + '</span>';
+            }
         }
     }
     tr += '</td>';
