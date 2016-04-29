@@ -19,8 +19,8 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		} catch (Exception $e) {
 			$update = new update();
 			$update->setLogicalId('virtual');
-			$update->setSource('market');
-			$update->setConfiguration('version', 'stable');
+			$update->setSource('github');
+			$update->setConfiguration('version', 'master');
 			$update->save();
 			$plugin = plugin::byId('virtual');
 		}
