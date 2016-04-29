@@ -51,11 +51,30 @@ if (count($plugins_list) > 0) {
 				$plugin = $pluginList;
 				$title = ucfirst($plugin->getName()) . ' - Jeedom';
 			}
+			
+			// Début
+			$plugin_menu_link = 'index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() ;
 			if (file_exists(dirname(__FILE__) . '/../../' . $pluginList->getPathImgIcon())) {
-				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() . '"><img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
-			} else {
-				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() . '"><i class="' . $pluginList->getIcon() . '"></i> ' . $pluginList->getName() . '</a></li>';
+				$plugin_menu_icon = '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $pluginList->getPathImgIcon() . '" />';
+			} else {		
+				$plugin_menu_icon = '<i class="' . $pluginList->getIcon() . '"></i>';
 			}
+			$plugin_menu .= '<li class="dropdown-submenu"><a data-toggle="dropdown" href="' . $plugin_menu_link . '">' . $plugin_menu_icon . ' ' . $pluginList->getName() . '</a>';
+
+			// Sub-menu Equipements
+			$eqLogics = eqLogic::byType($pluginList->getId());  //    /!\ getId renvoie le nom du plugin pas son id...
+			$plugin_menu .= '<ul class="dropdown-menu">';
+			$plugin_menu .= '<li><a href="' . $plugin_menu_link . '" >' . $plugin_menu_icon . ' {{ Tous }}</a></li>';
+			$plugin_menu .= '<li class="divider"></li>';
+			foreach ($eqLogics as $eqLogic) 
+			{
+				$label = $eqLogic->getIsEnable() ? 'success' : 'warning';
+				$plugin_menu .= '<li><a href="' . $eqLogic->getLinkToConfiguration() . '" ><span class="label label-' . $label . '">' . $eqLogic->getId() . '</span> ' . $eqLogic->getName() . ' </a></li>';
+			}
+			$plugin_menu .= '</ul>';
+			$plugin_menu .= '</li>';
+			// fin
+			
 			if ($pluginList->getDisplay() != '') {
 				if (file_exists(dirname(__FILE__) . '/../../' . $pluginList->getPathImgIcon())) {
 					$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getDisplay() . '"><img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
