@@ -521,45 +521,6 @@ class market {
 		return $return;
 	}
 
-	public static function sendBackup($_path) {
-		$market = self::getJsonRpc();
-		$file = array(
-			'file' => '@' . realpath($_path),
-		);
-		if (!$market->sendRequest('backup::upload', array(), 3600, $file)) {
-			throw new Exception($market->getError());
-		}
-	}
-
-	public static function listeBackup() {
-		$market = self::getJsonRpc();
-		if (!$market->sendRequest('backup::liste', array())) {
-			throw new Exception($market->getError());
-		}
-		return $market->getResult();
-	}
-
-	public static function retoreBackup($_backup) {
-		$url = config::byKey('market::address') . "/core/php/downloadBackup.php?backup=" . $_backup . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . config::byKey('market::password') . '&password_type=sha1';
-		$tmp_dir = dirname(__FILE__) . '/../../tmp';
-		$tmp = $tmp_dir . '/' . $_backup;
-		file_put_contents($tmp, fopen($url, 'r'));
-		if (!file_exists($tmp)) {
-			throw new Exception(__('Impossible de télécharger la sauvegarde : ', __FILE__) . $url . '.');
-		}
-		if (!file_exists(dirname(__FILE__) . '/../../backup/')) {
-			mkdir(dirname(__FILE__) . '/../../backup/');
-		}
-		$backup_path = dirname(__FILE__) . '/../../backup/' . $_backup;
-		if (!copy($tmp, $backup_path)) {
-			throw new Exception(__('Impossible de copier le fichier de  : ', __FILE__) . $tmp . '.');
-		}
-		if (!file_exists($backup_path)) {
-			throw new Exception(__('Impossible de trouver le fichier : ', __FILE__) . $backup_path . '.');
-		}
-		jeedom::restore('backup/' . $_backup, true);
-	}
-
 	public static function checkPayment($_id) {
 		try {
 			$market = self::byLogicalId($_id);

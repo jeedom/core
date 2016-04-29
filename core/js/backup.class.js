@@ -16,10 +16,10 @@
  */
 
 
-jeedom.backup = function() {
-};
+ jeedom.backup = function() {
+ };
 
-jeedom.backup.backup = function(_params) {
+ jeedom.backup.backup = function(_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -78,7 +78,7 @@ jeedom.backup.remove = function(_params) {
 };
 
 jeedom.backup.restoreCloud = function(_params) {
-    var paramsRequired = ['backup'];
+    var paramsRequired = ['backup','repo'];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -88,10 +88,11 @@ jeedom.backup.restoreCloud = function(_params) {
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+    paramsAJAX.url = 'core/ajax/repo.ajax.php';
     paramsAJAX.data = {
         action: 'restoreCloud',
         backup: _params.backup,
+        repo: _params.repo,
     };
     $.ajax(paramsAJAX);
 };

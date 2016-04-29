@@ -91,11 +91,6 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'restoreCloud') {
-		market::retoreBackup(init('backup'));
-		ajax::success();
-	}
-
 	if (init('action') == 'removeBackup') {
 		jeedom::removeBackup(init('backup'));
 		ajax::success();

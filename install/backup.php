@@ -189,11 +189,21 @@ try {
 	}
 	echo __("OK", __FILE__) . "\n";
 	global $NO_CLOUD_BAKCUP;
-	if (!isset($NO_CLOUD_BAKCUP) || $NO_CLOUD_BAKCUP == false) {
-		if (config::byKey('backup::cloudUpload') == 1 && init('noCloudUpload', 0) == 0) {
-			echo __('Envoi de la sauvegarde dans le cloud...', __FILE__);
+	if ((!isset($NO_CLOUD_BAKCUP) || $NO_CLOUD_BAKCUP == false) && init('noCloudUpload', 0) == 0) {
+		foreach (repo::all() as $key => $value) {
+			if ($value['scope']['backup'] == false) {
+				continue;
+			}
+			if (config::byKey($key . '::enable') == 0) {
+				continue;
+			}
+			if (config::byKey($key . '::cloudUpload') == 0) {
+				continue;
+			}
+			$class = 'repo_' . $key;
+			echo __('Envoi de la sauvegarde dans le cloud', __FILE__) . ' ' . $value['name'];
 			try {
-				market::sendBackup($backup_dir . '/' . $bakcup_name);
+				$class::sendBackup($backup_dir . '/' . $bakcup_name);
 			} catch (Exception $e) {
 				log::add('backup', 'error', $e->getMessage());
 				echo '/!\ ' . br2nl($e->getMessage()) . ' /!\\';
