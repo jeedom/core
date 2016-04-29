@@ -18,7 +18,7 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 			$plugin = plugin::byId('virtual');
 		} catch (Exception $e) {
 			$update = new update();
-			$update->setLogicalId('openvpn');
+			$update->setLogicalId('virtual');
 			$update->setSource('market');
 			$update->setConfiguration('version', 'stable');
 			$update->save();
