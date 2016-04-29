@@ -20,7 +20,8 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 			$update = new update();
 			$update->setLogicalId('virtual');
 			$update->setSource('github');
-			$update->setConfiguration('version', 'master');
+			$update->setConfiguration('user', 'jeedom');
+			$update->setConfiguration('repository', 'plugin-virtual');
 			$update->save();
 			$plugin = plugin::byId('virtual');
 		}
