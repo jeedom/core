@@ -415,11 +415,7 @@ class update {
 	}
 
 	public function postInsert() {
-		try {
-			$this->doUpdate();
-		} catch (Exception $e) {
-
-		}
+		$this->doUpdate();
 	}
 
 	public function save() {

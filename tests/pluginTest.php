@@ -2,10 +2,10 @@
 class pluginTest extends \PHPUnit_Framework_TestCase {
 	public function getSources() {
 		return array(
-//				array('file'),
-			//array('market', array(
-			//		'version' => 'stable',
-			//)),
+			//array('file'),
+			array('market', array(
+				'version' => 'stable',
+			)),
 			array('github', array(
 				'user' => 'jeedom',
 				'repository' => 'plugin-virtual',
