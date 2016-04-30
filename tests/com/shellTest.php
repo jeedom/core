@@ -25,17 +25,22 @@ class com_shellTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function assertPreConditions() {
+		// Fix bug : Call execute before getInstance
+		$this->assertSame('ok', com_shell::execute('echo ok'));
+	}
+
 	public function testGetCmd() {
 		$shell = new com_shell('ls');
 		$this->assertSame('ls', $shell->getCmd());
 	}
-	
+
 	public function testCommandExist() {
 		$shell = new com_shell();
 		$this->assertTrue($shell->commandExist('ls'));
 		$this->assertFalse($shell->commandExist('foo'));
 	}
-	
+
 	/**
 	 * @dataProvider getBackgrounds
 	 * @var bool $in
@@ -45,7 +50,7 @@ class com_shellTest extends \PHPUnit_Framework_TestCase {
 		$shell->setBackground($in);
 		$this->assertSame($in, $shell->getBackground());
 	}
-	
+
 	public function testExec() {
 		if (file_exists('foo.txt'))
 		{
@@ -67,13 +72,13 @@ class com_shellTest extends \PHPUnit_Framework_TestCase {
 		$return = $shell->exec();
 		$this->assertSame('foo', $return);
 	}
-	
+
 	/*************** Improvement *****************/
 	public function testInstance() {
 		$shell = com_shell::getInstance();
 		$this->assertInstanceOf('com_shell', $shell);
 	}
-	
+
 	public function testExecute() {
 		if (file_exists('bar.txt'))
 		{
@@ -92,7 +97,7 @@ class com_shellTest extends \PHPUnit_Framework_TestCase {
 		$result = com_shell::execute('echo bar');
 		$this->assertSame('bar', $result);
 	}
-	
+
 	public function testCache() {
 		$shell = com_shell::getInstance();
 		$shell->clearHistory();
@@ -103,7 +108,7 @@ class com_shellTest extends \PHPUnit_Framework_TestCase {
 		$result = $shell->exec();
 		$this->assertSame('foo', $result);
 	}
-	
+
 	public function testHistory() {
 		$shell = com_shell::getInstance();
 		$shell->clearHistory();

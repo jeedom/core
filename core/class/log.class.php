@@ -129,7 +129,7 @@ class log {
 		if ($maxLineLog < self::DEFAULT_MAX_LINE) {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
-		shell_exec('sudo chmod 777 ' . $_path . ' ;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+		com_shell::execute('sudo chmod 777 ' . $_path . ' ;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		@chown($_path, 'www-data');
 		@chgrp($_path, 'www-data');
 		@chmod($_path, 0777);
@@ -156,7 +156,7 @@ class log {
 	public static function clear($_log) {
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
-			shell_exec('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
+			com_shell::execute('sudo chmod 777 ' . $path . ';cat /dev/null > ' . $path);
 			return true;
 		}
 		return;
@@ -172,7 +172,7 @@ class log {
 		}
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
-			shell_exec('sudo chmod 777 ' . $path);
+			com_shell::execute('sudo chmod 777 ' . $path);
 			unlink($path);
 			return true;
 		}

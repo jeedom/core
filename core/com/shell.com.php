@@ -54,7 +54,7 @@ class com_shell {
 	 * @param bool $_background
 	 */
 	public static function execute($_cmd, $_background = false) {
-		$shell = self::$instance;
+		$shell = self::getInstance();
 		$shell->clear();
 		$shell->addCmd($_cmd, $_background);
 		return $shell->exec();

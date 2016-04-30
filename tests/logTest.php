@@ -59,14 +59,13 @@ class logTest extends \PHPUnit_Framework_TestCase
 				array('SyslogHandler','notice'),
 				array('SyslogHandler','warning'),
 				array('SyslogHandler','error'),
-				array('SysloguUdp','debug'),
-				array('SysloguUdp','info'),
-				array('SysloguUdp','notice'),
-				array('SysloguUdp','warning'),
-				array('SysloguUdp','error'),
+				array('SyslogUdp','debug'),
+				array('SyslogUdp','info'),
+				array('SyslogUdp','notice'),
+				array('SyslogUdp','warning'),
+				array('SyslogUdp','error'),
 		);
 	}
-	
 	
 	public function getErrorReporting()
 	{

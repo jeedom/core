@@ -1,6 +1,23 @@
 <?php
 class pluginTest extends \PHPUnit_Framework_TestCase {
-	public function testInstall() {
+	public function getSources()
+	{
+		return array(
+//				array('file'),
+				array('market', array(
+						'version' => 'stable',
+				)),
+				array('github', array(
+						'user' => 'jeedom',
+						'repository' => 'plugin-virtual',
+				)),
+		);
+	}
+	
+	/**
+	 * @dataProvider getSources
+	 */
+	public function testInstall($source, $config) {
 		// On passe le test si curl n'est pas installé
 		if (!extension_loaded('curl')) {
 			$this->markTestSkipped(
@@ -19,9 +36,11 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		} catch (Exception $e) {
 			$update = new update();
 			$update->setLogicalId('virtual');
-			$update->setSource('github');
-			$update->setConfiguration('user', 'jeedom');
-			$update->setConfiguration('repository', 'plugin-virtual');
+			$update->setSource($source);
+			foreach ($config as $key => $value)
+			{
+				$update->setConfiguration($key, $value);
+			}
 			$update->save();
 			$plugin = plugin::byId('virtual');
 		}
@@ -182,10 +201,10 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		$cmd->save();
 		$this->assertTrue((is_numeric($cmd->getId()) && $cmd->getId() != ''));
 	}
-
-/**
- * @depends testCreateEqVirtual
- */
+	
+	/**
+	 * @depends testCreateEqVirtual
+	 */
 	public function testCmdVirtualActionOther($virtual) {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$info = virtualCmd::byEqLogicIdCmdName($virtual->getId(), 'test_action_other_info');
@@ -222,9 +241,9 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue((is_numeric($cmd->getId()) && $cmd->getId() != ''));
 	}
 
-/**
- * @depends testCreateEqVirtual
- */
+	/**
+	 * @depends testCreateEqVirtual
+	 */
 	public function testCmdVirtualActionNumeric($virtual) {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$action = $virtual->getCmd(null, 'virtual_test_8');
@@ -251,9 +270,9 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue((is_numeric($cmd->getId()) && $cmd->getId() != ''));
 	}
 
-/**
- * @depends testCreateEqVirtual
- */
+	/**
+	 * @depends testCreateEqVirtual
+	 */
 	public function testCmdVirtualActionColor($virtual) {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$action = $virtual->getCmd(null, 'virtual_test_9');
