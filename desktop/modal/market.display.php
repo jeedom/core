@@ -4,10 +4,10 @@ if (!isConnect('admin')) {
 }
 
 if (init('id') != '') {
-	$market = market::byId(init('id'));
+	$market = repo_market::byId(init('id'));
 }
 if (init('logicalId') != '' && init('type') != '') {
-	$market = market::byLogicalIdAndType(init('logicalId'), init('type'));
+	$market = repo_market::byLogicalIdAndType(init('logicalId'), init('type'));
 }
 if (!isset($market)) {
 	throw new Exception('404 not found');
@@ -84,7 +84,7 @@ if ($market->getPurchase() == 1) {
 	echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accèder}}</div>';
 } else {
 	if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
-		$purchase_info = market::getPurchaseInfo();
+		$purchase_info = repo_market::getPurchaseInfo();
 		if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
 
 			?>
@@ -369,8 +369,9 @@ $("#bt_viewCompleteChangelog").off().on('click',function(){
 $('.bt_installFromMarket').on('click', function () {
   var id = $(this).attr('data-market_id');
   var logicalId = $(this).attr('data-market_logicalId');
-  jeedom.market.install({
+  jeedom.repo.install({
     id: id,
+    repo : 'market',
     version: $(this).attr('data-version'),
     error: function (error) {
       $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
@@ -394,8 +395,9 @@ $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès
 
 $('#bt_removeFromMarket').on('click', function () {
   var id = $(this).attr('data-market_id');
-  jeedom.market.remove({
+  jeedom.repo.remove({
     id: id,
+    repo : 'market',
     error: function (error) {
       $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
     },
@@ -408,8 +410,9 @@ $('#bt_removeFromMarket').on('click', function () {
 
 $('#in_myRating').on('change', function () {
   var id = $('.marketAttr[data-l1key=id]').value();
-  jeedom.market.setRating({
+  jeedom.repo.setRating({
    id: id,
+   repo : 'market',
    rating: $(this).val(),
    error: function (error) {
     $('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});

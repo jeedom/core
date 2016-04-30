@@ -118,10 +118,10 @@ try {
 					echo __('***ERREUR*** ', __FILE__) . $e->getMessage() . "\n";
 				}
 				try {
-					if (config::byKey('market::branch') == 'url') {
+					if (config::byKey('core::branch') == 'url') {
 						$url = config::byKey('update::url');
 					} else {
-						$url = 'https://github.com/jeedom/core/archive/' . config::byKey('market::branch', 'core', 'stable') . '.zip';
+						$url = 'https://github.com/jeedom/core/archive/' . config::byKey('core::branch', 'core', 'stable') . '.zip';
 					}
 					echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
 					echo __("Téléchargement en cours...", __FILE__);
@@ -136,14 +136,14 @@ try {
 					exec('wget --no-check-certificate --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
 					$redownload = false;
 					if (!file_exists($tmp)) {
-						if (config::byKey('market::branch', 'core', 'stable') != 'stable') {
+						if (config::byKey('core::branch', 'core', 'stable') != 'stable') {
 							throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
 						}
 						$redownload = true;
 						echo __("NOK. Retry....\n", __FILE__);
 					}
 					if (filesize($tmp) < 100) {
-						if (config::byKey('market::branch', 'core', 'stable') != 'stable') {
+						if (config::byKey('core::branch', 'core', 'stable') != 'stable') {
 							throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
 						}
 						$redownload = true;

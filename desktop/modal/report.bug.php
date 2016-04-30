@@ -100,9 +100,10 @@ foreach (plugin::listPlugin(true) as $plugin) {
         ticket.messages = $('#form_reportBug').getValues('.messageAttr');
         $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // méthode de transmission des données au fichier php
-            url: "core/ajax/market.ajax.php", // url du fichier php
+            url: "core/ajax/repo.ajax.php", // url du fichier php
             data: {
                 action: "sendReportBug",
+                repo : 'market',
                 ticket: json_encode(ticket),
             },
             dataType: 'json',

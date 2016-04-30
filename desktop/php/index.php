@@ -480,9 +480,11 @@ if (isConnect('admin')) {
 												</ul>
 											</li>
 											<li>
-												<?php if (isset($plugin) && is_object($plugin)) {?>
-												<a class="cursor tooltips" target="_blank" href="https://jeedom.com/doc/documentation/plugins/<?php echo init('m'); ?>/fr_FR/<?php echo init('m'); ?>.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>
-												<?php } else {
+												<?php if (isset($plugin) && is_object($plugin)) {
+		if ($plugin->getInfo('doc') != '') {
+			echo '<a class="cursor tooltips" target="_blank" href="' . $plugin->getInfo('doc') . '" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
+		}
+	} else {
 		if (init('p') == 'scenarioAssist') {
 			echo '<a class="cursor tooltips" target="_blank" href="https://jeedom.com/doc/documentation/core/fr_FR/doc-core-scenario.html" title="{{Aide sur la page en cours}}"><i class="fa fa-question-circle" ></i></a>';
 		} else if (init('p') == 'view_edit') {

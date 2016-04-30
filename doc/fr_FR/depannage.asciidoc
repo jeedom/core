@@ -120,5 +120,5 @@ Ensuite il suffit de redemarrer php5-fpm
 [source,bash]
 sudo service php5-fpm restart
 
-Je ne vois pas certain plugins du market::
+Je ne vois pas certain plugins du market ::
 Ce genre de cas arrive si votre jeedom n'est pas compatible avec le plugin, en général une mise à jour de jeedom corrige le soucis

@@ -25,7 +25,13 @@ try {
 	}
 
 	if (init('action') == 'all') {
-		ajax::success(utils::o2a(update::all(init('filter'))));
+		$return = array();
+		foreach (update::all(init('filter')) as $update) {
+			$infos = utils::o2a($update);
+			$infos['info'] = $update->getInfo();
+			$return[] = $infos;
+		}
+		ajax::success($return);
 	}
 
 	if (init('action') == 'checkAllUpdate') {
@@ -90,6 +96,43 @@ try {
 			$update->checkUpdate();
 		}
 		ajax::success();
+	}
+
+	if (init('action') == 'save') {
+		$update_json = json_decode(init('update'), true);
+		if (isset($update_json['id'])) {
+			$update = update::byId($update_json['id']);
+		}
+		if (isset($update_json['logicalId'])) {
+			$update = update::byLogicalId($update_json['logicalId']);
+		}
+		if (!isset($update) || !is_object($update)) {
+			$update = new update();
+		}
+		utils::a2o($update, $update_json);
+		$update->save();
+		ajax::success(utils::o2a($update));
+	}
+
+	if (init('action') == 'preUploadFile') {
+		$uploaddir = '/tmp';
+		if (!file_exists($uploaddir)) {
+			throw new Exception(__('Répertoire d\'upload non trouvé : ', __FILE__) . $uploaddir);
+		}
+		if (!isset($_FILES['file'])) {
+			throw new Exception(__('Aucun fichier trouvé. Vérifié parametre PHP (post size limit)', __FILE__));
+		}
+		if (filesize($_FILES['file']['tmp_name']) > 100000000) {
+			throw new Exception(__('Le fichier est trop gros (maximum 100mo)', __FILE__));
+		}
+		$filename = str_replace(array(' ', '(', ')'), '', $_FILES['file']['name']);
+		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $filename)) {
+			throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
+		}
+		if (!file_exists($uploaddir . '/' . $filename)) {
+			throw new Exception(__('Impossible d\'uploader le fichier (limite du serveur web ?)', __FILE__));
+		}
+		ajax::success($uploaddir . '/' . $filename);
 	}
 
 	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));

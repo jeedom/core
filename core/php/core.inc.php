@@ -45,12 +45,17 @@ function jeedomCoreAutoload($classname) {
 try {
 	log::define_error_reporting(config::byKey('log::level'));
 } catch (Exception $e) {
-	
+
 }
 
-function jeedomComAutoload($classname) {
+function jeedomOtherAutoload($classname) {
 	try {
 		include_file('core', substr($classname, 4), 'com');
+	} catch (Exception $e) {
+
+	}
+	try {
+		include_file('core', substr($classname, 5), 'repo');
 	} catch (Exception $e) {
 
 	}
@@ -94,6 +99,6 @@ function jeedomPluginAutoload($classname) {
 
 spl_autoload_register('jeedomCoreAutoload', true, true);
 spl_autoload_register('jeedomPluginAutoload', true, true);
-spl_autoload_register('jeedomComAutoload', true, true);
+spl_autoload_register('jeedomOtherAutoload', true, true);
 require_once dirname(__FILE__) . '/../../vendor/autoload.php';
 ?>

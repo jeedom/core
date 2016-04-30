@@ -121,13 +121,14 @@
     }
 });
 
- $("#bt_restoreCloudJeedom").on('click', function (event) {
+ $(".bt_restoreRepoBackup").on('click', function (event) {
     var el = $(this);
     bootbox.confirm('{{Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde Cloud}} <b>' + $('#sel_restoreCloudBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée}}', function (result) {
         if (result) {
             el.find('.fa-refresh').show();
             jeedom.backup.restoreCloud({
                 backup: $('#sel_restoreCloudBackup').value(),
+                repo: el.attr('data-repo'),
                 error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
@@ -188,7 +189,7 @@
                         $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'});
                         _autoUpdate = 0;
                     }
-                   if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
+                    if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
                         $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
                         _autoUpdate = 0;
                     }

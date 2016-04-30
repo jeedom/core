@@ -29,12 +29,18 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		$plugin = plugin::byId(init('id'));
+		$update = update::byLogicalId(init('id'));
 		$return = utils::o2a($plugin);
 		$return['activate'] = $plugin->isActive();
 		$return['configurationPath'] = $plugin->getPathToConfigurationById();
 		$return['checkVersion'] = version_compare(jeedom::version(), $plugin->getRequire());
-		$return['status'] = market::getInfo(array('logicalId' => $plugin->getId(), 'type' => 'plugin'));
-		$return['update'] = utils::o2a(update::byLogicalId($plugin->getId()));
+		if (is_object($update)) {
+			$class = 'repo_' . $update->getSource();
+			if (method_exists($class, 'getInfo')) {
+				$return['status'] = $class::getInfo(array('logicalId' => $plugin->getId(), 'type' => 'plugin'));
+			}
+		}
+		$return['update'] = utils::o2a($update);
 		ajax::success($return);
 	}
 
@@ -55,115 +61,6 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		ajax::success(utils::o2a(plugin::listPlugin()));
-	}
-
-	if (init('action') == 'pluginupload') {
-		$uploaddir = dirname(__FILE__) . '/../../tmp';
-		if (!file_exists($uploaddir)) {
-			mkdir($uploaddir);
-		}
-		if (!file_exists($uploaddir)) {
-			throw new Exception(__('Répertoire d\'upload non trouvé : ', __FILE__) . $uploaddir);
-		}
-		if (!isset($_FILES['file'])) {
-			throw new Exception(__('Aucun fichier trouvé. Vérifié parametre PHP (post size limit)', __FILE__));
-		}
-		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
-		if (!in_array($extension, array('.zip'))) {
-			throw new Exception('Extension du fichier non valide (autorisé .zip) : ' . $extension);
-		}
-		if (filesize($_FILES['file']['tmp_name']) > 100000000) {
-			throw new Exception(__('Le fichier est trop gros (maximum 100mo)', __FILE__));
-		}
-		$filename = str_replace(array(' ', '(', ')'), '', $_FILES['file']['name']);
-		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $filename)) {
-			throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
-		}
-		if (!file_exists($uploaddir . '/' . $filename)) {
-			throw new Exception(__('Impossible d\'uploader le fichier (limite du serveur web ?)', __FILE__));
-		}
-		$logicalId = str_replace(array('.zip'), '', $filename);
-		$tmp = $uploaddir . '/' . $logicalId . '.zip';
-		$tmp_dir = $uploaddir . '/' . $logicalId;
-		if (file_exists($tmp_dir)) {
-			rrmdir($tmp_dir);
-		}
-		mkdir($tmp_dir);
-
-		log::add('update', 'info', __('Décompression de l\'archive...', __FILE__));
-		$zip = new ZipArchive;
-		$res = $zip->open($tmp);
-		if ($res === TRUE) {
-			if (!$zip->extractTo($tmp_dir . '/')) {
-				$content = file_get_contents($tmp);
-				throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
-			}
-			$zip->close();
-			log::add('update', 'info', __("OK\n", __FILE__));
-			log::add('update', 'info', __('Installation de l\'objet...', __FILE__));
-			if (!file_exists($tmp_dir . '/plugin_info')) {
-				log::add('update', 'info', __('Plugin info non trouvé, je le recherche...', __FILE__));
-				$files = ls($tmp_dir, '*');
-				if (count($files) == 1 && file_exists($tmp_dir . '/' . $files[0] . 'plugin_info')) {
-					shell_exec('mv ' . $tmp_dir . '/' . $files[0] . '* ' . $tmp_dir);
-					rmdir($tmp_dir . '/' . $files[0]);
-					log::add('update', 'info', __('OK', __FILE__));
-				}
-			}
-			if (file_exists($tmp_dir . '/plugin_info/info.xml')) {
-				log::add('update', 'info', __('Fichier info.xml trouvé', __FILE__));
-				libxml_use_internal_errors(true);
-				$plugin_xml = @simplexml_load_file($tmp_dir . '/plugin_info/info.xml');
-				$logicalId = $plugin_xml->id;
-			}
-			$cibDir = dirname(__FILE__) . '/../../plugins/' . $logicalId;
-			if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
-				throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
-			}
-			rcopy($tmp_dir, $cibDir);
-			rrmdir($tmp_dir);
-			try {
-				$plugin = plugin::byId($logicalId);
-			} catch (Exception $e) {
-				throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
-			}
-			log::add('update', 'info', __("OK\n", __FILE__));
-			if (is_object($plugin) && $plugin->isActive()) {
-				$plugin->setIsEnable(1);
-			}
-		} else {
-			switch ($res) {
-				case ZipArchive::ER_EXISTS:
-					$ErrMsg = "Le fichier existe déjà.";
-					break;
-				case ZipArchive::ER_INCONS:
-					$ErrMsg = "L'archive zip est inconsistente.";
-					break;
-				case ZipArchive::ER_MEMORY:
-					$ErrMsg = "Erreur mémoire.";
-					break;
-				case ZipArchive::ER_NOENT:
-					$ErrMsg = "Ce fichier n\'existe pas.";
-					break;
-				case ZipArchive::ER_NOZIP:
-					$ErrMsg = "Ceci n\'est pas une archive zip.";
-					break;
-				case ZipArchive::ER_OPEN:
-					$ErrMsg = "Le fichier ne peut pas être ouvert.";
-					break;
-				case ZipArchive::ER_READ:
-					$ErrMsg = "Erreur de lecture.";
-					break;
-				case ZipArchive::ER_SEEK:
-					$ErrMsg = "Erreur de recherche.";
-					break;
-				default:
-					$ErrMsg = "Erreur inconnue (Code $res)";
-					break;
-			}
-			throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp . __('. Erreur : ', __FILE__) . $ErrMsg . '.');
-		}
-		ajax::success();
 	}
 
 	if (init('action') == 'getDependancyInfo') {

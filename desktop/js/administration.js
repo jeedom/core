@@ -30,6 +30,15 @@
 }
 });
 
+
+ $('body').delegate('.enableRepository', 'change switchChange.bootstrapSwitch', function () {
+    if($(this).value() == 1){
+        $('.repositoryConfiguration'+$(this).attr('data-repo')).show();
+    }else{
+        $('.repositoryConfiguration'+$(this).attr('data-repo')).hide();
+    }
+});
+
  $('body').delegate('.configKey[data-l1key="ldap:enable"]', 'change switchChange.bootstrapSwitch', function () {
     if($(this).value() == 1){
         $('#div_config_ldap').show();
@@ -48,7 +57,7 @@
    $('.logEngine.'+$(this).value()).show();
 });
 
- $('body').delegate('.configKey[data-l1key="market::branch"]', 'change', function () {
+ $('body').delegate('.configKey[data-l1key="core::branch"]', 'change', function () {
     if($(this).value() == 'url'){
         $('#div_githubupdate').show();
     }else{
@@ -247,30 +256,10 @@ jeedom.config.load({
         modifyWithoutSave = false;
     }
 });
+
 $('body').delegate('.configKey', 'change', function () {
     modifyWithoutSave = true;
 });
-
-$('#bt_testMarketConnection').on('click', function () {
-    jeedom.config.save({
-        configuration: $('#config').getValues('.configKey')[0],
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-            jeedom.market.test({
-             error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-               $('#div_alert').showAlert({message: '{{Connexion au market réussie}}', level: 'success'});
-           }
-
-       });
-        }
-    });
-});
-
 
 $('#bt_resetHwKey').on('click',function(){
  $.ajax({// fonction permettant de faire de l'ajax
@@ -461,3 +450,4 @@ $('#bt_accessSystemAdministration').on('click',function(){
     $('#md_modal').dialog({title: "{{Administration système}}"});
     $("#md_modal").load('index.php?v=d&modal=system.action').dialog('open');
 });
+

@@ -39,6 +39,7 @@ class plugin {
 	private $eventjs;
 	private $hasDependency;
 	private $hasOwnDeamon;
+	private $info = array();
 	private $include = array();
 	private static $_cache = array();
 
@@ -114,6 +115,10 @@ class plugin {
 			$plugin->installation = __($plugin->installation, $_id);
 		}
 
+		$update = update::byLogicalId($plugin->id);
+		if (is_object($update)) {
+			$plugin->info = $update->getInfo();
+		}
 		self::$_cache[$_id] = $plugin;
 		self::$_cache[$plugin->id] = $plugin;
 		return $plugin;
@@ -591,10 +596,6 @@ class plugin {
 		return true;
 	}
 
-	public function status() {
-		return market::getInfo(array('logicalId' => $this->getId(), 'type' => 'plugin'));
-	}
-
 	public function launch($_function, $_callInstallFunction = false) {
 		if ($_function == '') {
 			throw new Exception('La fonction à lancer ne peut être vide');
@@ -666,6 +667,16 @@ class plugin {
 
 	public function getDescription() {
 		return nl2br($this->description);
+	}
+
+	public function getInfo($_name = '', $_default = '') {
+		if ($_name !== '') {
+			if (isset($this->info[$_name])) {
+				return $this->info[$_name];
+			}
+			return $_default;
+		}
+		return $this->info;
 	}
 
 	public function getAuthor() {

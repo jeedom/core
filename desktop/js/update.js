@@ -36,30 +36,30 @@
 });
 
  $('#bt_reapplySpecifyUpdate').on('click',function(){
-     var level = "-1";
-     var mode = '';
-     if($('#cb_forceReapplyUpdate').value() == 1){
-        mode = 'force';
-    }
-    jeedom.update.doAll({
-        mode: mode,
-        level: level,
-        version : $('#sel_updateVersion').value(),
-        onlyThisVersion : ($('#cb_allFromThisUpdate').value() == 1) ? 'no':'yes',
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-           $("#md_specifyUpdate").dialog('close');
-           getJeedomLog(1, 'update');
-       }
-   });
+   var level = "-1";
+   var mode = '';
+   if($('#cb_forceReapplyUpdate').value() == 1){
+    mode = 'force';
+}
+jeedom.update.doAll({
+    mode: mode,
+    level: level,
+    version : $('#sel_updateVersion').value(),
+    onlyThisVersion : ($('#cb_allFromThisUpdate').value() == 1) ? 'no':'yes',
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+     $("#md_specifyUpdate").dialog('close');
+     getJeedomLog(1, 'update');
+ }
+});
 });
 
  $('#bt_allChangelog').on('click', function () {
-     $('#md_modal2').dialog({title: "{{Changelog}}"});
-     $("#md_modal2").load('index.php?v=d&modal=market.allChangelog').dialog('open');
- });
+   $('#md_modal2').dialog({title: "{{Changelog}}"});
+   $("#md_modal2").load('index.php?v=d&modal=market.allChangelog').dialog('open');
+});
 
  $('.bt_updateAll').on('click', function () {
   var level = $(this).attr('data-level');
@@ -266,22 +266,22 @@ function addUpdate(_update) {
     tr += '<td style="width : 400px;">';
     if (_update.status == 'update') {
         tr += '<a class="btn btn-info btn-xs pull-right update tooltips" style="color : white;margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fa fa-refresh"></i> {{Mettre à jour}}</a>';
+    }else{
+       if (_update.type != 'core') {
+        tr += '<a class="btn btn-info btn-xs pull-right update tooltips" style="color : white;margin-bottom : 5px;" title="{{Re-installer}}"><i class="fa fa-refresh"></i> {{Re-installer}}</a>';
     }
-
-    if (_update.type != 'core') {
-        tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible tooltips" data-state="unhold" style="color : white;margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
-        if (isset(_update.configuration) && isset(_update.configuration.market_owner) && _update.configuration.market_owner == 1) {
-            tr += '<a class="btn btn-success btn-xs pull-right sendToMarket tooltips cursor expertModeVisible" style="color : white;margin-bottom : 5px;" title="{{Envoyer sur le market}}"><i class="fa fa-cloud-upload"></i> {{Partager}}</a>';
-        }
-        if (isset(_update.configuration) && isset(_update.configuration.market) && _update.configuration.market == 1) {
-            tr += '<a class="btn btn-primary btn-xs pull-right view tooltips cursor" style="color : white;margin-bottom : 5px;"><i class="fa fa-search"></i> {{Voir}}</a>';
-        }
-    } else {
-        tr += '<a class="btn btn-default btn-xs pull-right" href="https://jeedom.com/roadmap/index.php?changelog" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-bars"></i> {{Changelog}}</a>';
+}
+if (_update.type != 'core') {
+    tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible tooltips" data-state="unhold" style="color : white;margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
+    if (isset(_update.info) && isset(_update.info.changelog) && _update.info.changelog != '') {
+        tr += '<a class="btn btn-primary btn-xs pull-right tooltips cursor" target="_blank" href="'+_update.info.changelog+'" style="color : white;margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';
     }
+} else {
+    tr += '<a class="btn btn-default btn-xs pull-right" href="https://jeedom.com/roadmap/index.php?changelog" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-bars"></i> {{Changelog}}</a>';
+}
 
-    tr += '</td>';
-    tr += '</tr>';
-    $('#table_update').append(tr);
-    $('#table_update tbody tr:last').setValues(_update, '.updateAttr');
+tr += '</td>';
+tr += '</tr>';
+$('#table_update').append(tr);
+$('#table_update tbody tr:last').setValues(_update, '.updateAttr');
 }

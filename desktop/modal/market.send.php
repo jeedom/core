@@ -9,7 +9,7 @@ sendVarToJS('market_display_info', array(
 sendVarToJS('market_type', init('type'));
 try {
 	if (init('logicalId') != '' && init('type') != '') {
-		$market = market::byLogicalIdAndType(init('logicalId'), init('type'));
+		$market = repo_market::byLogicalIdAndType(init('logicalId'), init('type'));
 	}
 } catch (Exception $e) {
 	$market = null;
@@ -325,9 +325,10 @@ if (is_object($market)) {
 
   $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // methode de transmission des données au fichier php
-            url: "core/ajax/market.ajax.php", // url du fichier php
+            url: "core/ajax/repo.ajax.php", // url du fichier php
             data: {
               action: "save",
+              repo : 'market',
               market: json_encode(market),
             },
             dataType: 'json',
@@ -351,12 +352,13 @@ if (is_object($market)) {
        });
 });
 
-}else{
+   }else{
         $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // methode de transmission des données au fichier php
-            url: "core/ajax/market.ajax.php", // url du fichier php
+            url: "core/ajax/repo.ajax.php", // url du fichier php
             data: {
               action: "save",
+              repo : 'market',
               market: json_encode(market),
             },
             dataType: 'json',
@@ -377,6 +379,6 @@ if (is_object($market)) {
 
           }
         });
-}
-});
+      }
+    });
 </script>

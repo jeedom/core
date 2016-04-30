@@ -87,7 +87,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
             }else{
                 $('#span_plugin_install_version').html('');
             }
-            if(isset(data.update) && isset(data.update) && isset(data.update.localVersion)){
+            if(isset(data.update) && isset(data.update.localVersion)){
                 $('#span_plugin_install_date').html(data.update.localVersion);
             }else{
                 $('#span_plugin_install_date').html('');
@@ -114,16 +114,22 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
             }
             
             $('#span_plugin_market').empty();
-            if (data.status.market == 1) {
+            if (isset(data.update) && isset(data.update.source) && data.update.source == 'market' && isset(data.status) && isset(data.status.market) && data.status.market == 1) {
                 $('#span_plugin_market').append('<a class="btn btn-default btn-xs viewOnMarket" data-market_logicalId="' + data.id + '" style="margin-right : 5px;"><i class="fa fa-cloud-download"></i> {{Voir sur le market}}</a>')
             }
 
-            if (data.status.market_owner == 1) {
+            if (isset(data.update) && isset(data.update.source) && data.update.source == 'market' && isset(data.status) && isset(data.status.market_owner) && data.status.market_owner == 1) {
                 $('#span_plugin_market').append('<a class="btn btn-warning btn-xs sendOnMarket" data-market_logicalId="' + data.id + '"><i class="fa fa-cloud-upload"></i> {{Envoyer sur le market}}</a>')
             }
             $('#span_plugin_delete').empty().append('<a class="btn btn-danger btn-xs removePlugin" data-market_logicalId="' + data.id + '"><i class="fa fa-trash"></i> {{Supprimer}}</a>');
-            $('#span_plugin_doc').empty().append('<a class="btn btn-primary btn-xs" target="_blank" href="https://www.jeedom.fr/doc/documentation/plugins/' + data.id + '/fr_FR/' + data.id + '.html"><i class="fa fa-book"></i> {{Documentation}}</a>');
-
+            $('#span_plugin_doc').empty();
+            if(isset(data.info.doc) && data.info.doc != ''){
+                $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.info.doc+'"><i class="fa fa-book"></i> {{Documentation}}</a>');
+            }
+            if(isset(data.info.changelog) && data.info.changelog != ''){
+                $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.info.changelog+'"><i class="fa fa-book"></i> {{Changelog}}</a>');
+            }
+            
             if (data.checkVersion != -1) {
                 $('#span_plugin_require').html('<span>' + data.require + '</span>');
             } else {
@@ -251,18 +257,6 @@ $("#div_plugin_toggleState").delegate(".togglePlugin", 'click', function () {
  });
 });
 
-$('#bt_uploadPlugin').fileupload({
-    dataType: 'json',
-    replaceFileInput: false,
-    done: function (e, data) {
-        if (data.result.state != 'ok') {
-            alert_div_plugin_configuration.showAlert({message: data.result.result, level: 'danger'});
-            return;
-        }
-        alert_div_plugin_configuration.showAlert({message: '{{Plugin ajouté avec succès. Recharger la page pour le voir.}}', level: 'success'});
-    }
-});
-
 if (sel_plugin_id != -1) {
     if ($('#ul_plugin .li_plugin[data-plugin_id=' + sel_plugin_id + ']').length != 0) {
         $('#ul_plugin .li_plugin[data-plugin_id=' + sel_plugin_id + ']').click();
@@ -314,9 +308,6 @@ function savePluginConfig(_param) {
             alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-
-
-
             alert_div_plugin_configuration.showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
             modifyWithoutSave = false;
             var postSave = $('.li_plugin.active').attr('data-plugin_id')+'_postSaveConfiguration';
@@ -379,3 +370,7 @@ function savePluginConfig(_param) {
     });
 }
 
+$('#bt_addPluginFromOtherSource').on('click',function(){
+    $('#md_modal').dialog({title: "{{Ajouter un plugin}}"});
+    $('#md_modal').load('index.php?v=d&modal=repo.add').dialog('open');
+});
