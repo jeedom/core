@@ -161,14 +161,16 @@ function convertDuration($time) {
 }
 
 function getClientIp() {
-	if (isset($_SERVER['HTTP_X_REAL_IP'])) {
-		return $_SERVER['HTTP_X_REAL_IP'];
-	} elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-		return $_SERVER['HTTP_X_FORWARDED_FOR'];
-	} elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
-		return $_SERVER['HTTP_CLIENT_IP'];
-	} elseif (isset($_SERVER['REMOTE_ADDR'])) {
-		return $_SERVER['REMOTE_ADDR'];
+	$sources = array(			
+		'HTTP_X_REAL_IP',
+		'HTTP_X_FORWARDED_FOR',
+		'HTTP_CLIENT_IP',
+		'REMOTE_ADDR',
+	);
+	foreach ($sources as $source) {
+		if (isset($_SERVER[$source])) {
+			return $_SERVER[$source];
+		}
 	}
 	return '';
 }
