@@ -162,7 +162,7 @@ function convertDuration($time) {
 		$reste = $time % 3600;
 		$minute = floor($reste / 60);
 		$seconde = $reste % 60;
-		$result = $heure . 'h ' . $minute . 'min ' . $seconde . ' s';
+		$result = $heure . 'h ' . $minute . 'min ' . $seconde . 's';
 	} elseif ($time < 3600 AND $time >= 60) {
 		$minute = floor($time / 60);
 		$seconde = $time % 60;
