@@ -149,27 +149,14 @@ function redirect($_url, $_forceType = null) {
 }
 
 function convertDuration($time) {
-	if ($time >= 86400) {
-		$jour = floor($time / 86400);
-		$reste = $time % 86400;
-		$heure = floor($reste / 3600);
-		$reste = $reste % 3600;
-		$minute = floor($reste / 60);
-		$seconde = $reste % 60;
-		$result = $jour . 'j ' . $heure . 'h ' . $minute . 'min ' . $seconde . 's';
-	} elseif ($time < 86400 AND $time >= 3600) {
-		$heure = floor($time / 3600);
-		$reste = $time % 3600;
-		$minute = floor($reste / 60);
-		$seconde = $reste % 60;
-		$result = $heure . 'h ' . $minute . 'min ' . $seconde . 's';
-	} elseif ($time < 3600 AND $time >= 60) {
-		$minute = floor($time / 60);
-		$seconde = $time % 60;
-		$result = $minute . 'min ' . $seconde . 's';
-	} elseif ($time < 60) {
-		$result = $time . 's';
+	$result = '';
+	$unities = array('j'=>86400,'h'=>3600,'min'=>60);
+	foreach ($unities as $unity => $value)
+	if ($time >= $value || $result != '') {
+		$result .= floor($time / $value) . $unity . ' ';
+		$time %= $value;
 	}
+	$result .= $time . 's';
 	return $result;
 }
 
