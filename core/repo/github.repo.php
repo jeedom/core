@@ -69,8 +69,18 @@ class repo_github {
 
 	public static function checkUpdate($_update) {
 		$client = self::getGithubClient();
-		$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
+		try {
+			$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
+		} catch (Exception $e) {
+			$_update->setRemoteVersion('repository not found');
+			$_update->setStatus('ok');
+			$_update->save();
+			return;
+		}
 		if (!isset($branch['commit']) || !isset($branch['commit']['sha'])) {
+			$_update->setRemoteVersion('error');
+			$_update->setStatus('ok');
+			$_update->save();
 			return;
 		}
 		$_update->setRemoteVersion($branch['commit']['sha']);
@@ -83,6 +93,12 @@ class repo_github {
 	}
 
 	public static function doUpdate($_update) {
+		$client = self::getGithubClient();
+		try {
+			$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
+		} catch (Exception $e) {
+			throw new Exception(__('Dépot github non trouvé : ', __FILE__) . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/' . $_update->getConfiguration('version', 'master'));
+		}
 		$tmp_dir = '/tmp';
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
@@ -143,8 +159,11 @@ class repo_github {
 		} else {
 			throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
 		}
-		$client = self::getGithubClient();
-		$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
+		try {
+			$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
+		} catch (Exception $e) {
+			return array();
+		}
 		if (!isset($branch['commit']) || !isset($branch['commit']['sha'])) {
 			return array();
 		}
