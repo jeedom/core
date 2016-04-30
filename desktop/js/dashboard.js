@@ -75,10 +75,11 @@ $('#bt_displayObject').on('click', function () {
 
 function editWidgetMode(_mode){
     if(!isset(_mode)){
-        _mode = $('#bt_editDashboardWidgetOrder').attr('data-mode');
-        if(_mode == undefined){
-            return;
+        if($('#bt_editDashboardWidgetOrder').attr('data-mode') != undefined && $('#bt_editDashboardWidgetOrder').attr('data-mode') == 1){
+            editWidgetMode(0);
+            editWidgetMode(1);
         }
+        return;
     }
     if(_mode == 0){
      if( $('.div_displayEquipement .eqLogic-widget.ui-resizable').length > 0){
