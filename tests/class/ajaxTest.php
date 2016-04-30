@@ -44,7 +44,7 @@ class ajaxTest extends \PHPUnit_Framework_TestCase
 	 * @param mixed $data
 	 * @param string $out
 	 */
-	public function testSuccess($data)
+	public function testSuccess($data, $out)
 	{
 		$response = ajax::getResponse($data);
 		$this->assertEquals($out, $response);
