@@ -1,19 +1,18 @@
 <?php
 class pluginTest extends \PHPUnit_Framework_TestCase {
-	public function getSources()
-	{
+	public function getSources() {
 		return array(
 //				array('file'),
-				array('market', array(
-						'version' => 'stable',
-				)),
-				array('github', array(
-						'user' => 'jeedom',
-						'repository' => 'plugin-virtual',
-				)),
+			//array('market', array(
+			//		'version' => 'stable',
+			//)),
+			array('github', array(
+				'user' => 'jeedom',
+				'repository' => 'plugin-virtual',
+			)),
 		);
 	}
-	
+
 	/**
 	 * @dataProvider getSources
 	 */
@@ -37,8 +36,7 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 			$update = new update();
 			$update->setLogicalId('virtual');
 			$update->setSource($source);
-			foreach ($config as $key => $value)
-			{
+			foreach ($config as $key => $value) {
 				$update->setConfiguration($key, $value);
 			}
 			$update->save();
@@ -201,7 +199,7 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		$cmd->save();
 		$this->assertTrue((is_numeric($cmd->getId()) && $cmd->getId() != ''));
 	}
-	
+
 	/**
 	 * @depends testCreateEqVirtual
 	 */
