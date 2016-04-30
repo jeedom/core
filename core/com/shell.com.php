@@ -31,9 +31,11 @@ class com_shell {
 
 	/*     * ********************Functions static********************* */
 
-	function __construct($_cmd, $_background = false) {
+	function __construct($_cmd = null, $_background = false) {
 		$this->setBackground($_background);
-		$this->addCmd($_cmd);
+		if ($_cmd !== null) {
+			$this->addCmd($_cmd);
+		}
 	}
 
 	/**
@@ -44,7 +46,6 @@ class com_shell {
 		if (self::$instance === null) {
 			self::$instance = new self();
 		}
-
 		return self::$instance;
 	}
 
@@ -88,13 +89,12 @@ class com_shell {
 			exec($cmd, $output, $retval);
 			$return[] = implode("\n", $output);
 			if ($retval != 0) {
-				throw new Exception('Error on shell exec, return value : ' . $retval . '. Details : ' . $return);
+				throw new Exception('Error on shell exec, return value : ' . $retval . '. Details : ' . print_r($return, true));
 			}
 			$this->history[] = $cmd;
 		}
 		$this->cmds = $this->cache;
 		$this->cache = array();
-
 		return implode("\n", $return);
 	}
 
@@ -123,13 +123,9 @@ class com_shell {
 	}
 
 	public function addCmd($_cmd, $_background = null) {
-		if (!self::commandExists($_cmd)) {
-			return false;
-		}
 		$bg = ($_background === null) ? $this->getBackground() : $_background;
 		$add = $bg ? ' >> /dev/null 2>&1 &' : '';
 		$this->cmds[] = $_cmd . $add;
-
 		return true;
 	}
 
