@@ -319,7 +319,7 @@ class repo_market {
 
 	public static function getJsonRpc() {
 		if (config::byKey('market::address') == '') {
-			throw new Exception(__('Aucune adresse n\'est renseignée pour le market', __FILE__));
+			config::save('market::address', self::$_configuration['configuration']['address']['default']);
 		}
 		$internalIp = '';
 		try {
