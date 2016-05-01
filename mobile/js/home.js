@@ -56,17 +56,27 @@ function initHome() {
     if (plugins.length > 0) {
         var li = '';
         for (var i in plugins) {
+            if(plugins[i].mobile == ''){
+                continue;
+            }
+            if(plugins[i].displayMobilePanel == 0){
+                continue;
+            }
             li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="' + plugins[i].mobile + '" data-plugin="' + plugins[i].id + '" data-title="' + plugins[i].name + '">';
             li += '<img src="plugins/'+plugins[i].id +'/doc/images/'+plugins[i].id +'_icon.png" style="width : 20px;position:relative;top:5px;" onerror=\'this.style.display = "none"\' /> ';
             li +=  plugins[i].name;
             li +=  '</a>';
         }
-        $('#bottompanel_pluginList').empty().append(li);
-    } else {
-        $('#bt_listPlugin').hide();
-    }
+        if(li != ''){
+            $('#bottompanel_pluginList').empty().append(li);
+        }else{
+           $('#bt_listPlugin').hide();   
+       }
+   } else {
+    $('#bt_listPlugin').hide();
+}
 
-    $('#bt_logout').off().on('click', function () {
+$('#bt_logout').off().on('click', function () {
         $.ajax({// fonction permettant de faire de l'ajax
             type: "POST", // methode de transmission des données au fichier php
             url: "core/ajax/user.ajax.php", // url du fichier php
@@ -86,7 +96,7 @@ function initHome() {
         }
     });
     });
-    setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
+setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
 
 }
 

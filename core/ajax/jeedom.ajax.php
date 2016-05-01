@@ -47,7 +47,9 @@ try {
 		$return['plugins'] = array();
 		foreach (plugin::listPlugin(true) as $plugin) {
 			if ($plugin->getMobile() != '' || $plugin->getEventJs() == 1) {
-				$return['plugins'][] = utils::o2a($plugin);
+				$info_plugin = utils::o2a($plugin);
+				$info_plugin['displayMobilePanel'] = config::bykey('displayMobilePanel', $plugin->getId(), 0);
+				$return['plugins'][] = $info_plugin;
 			}
 		}
 		$return['custom'] = array('js' => false, 'css' => false);
