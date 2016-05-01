@@ -38,7 +38,7 @@ try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
 	echo __("***************Lancement de la sauvegarde de Jeedom le ", __FILE__) . date('Y-m-d H:i:s') . "***************\n";
 	global $CONFIG;
-	$tmp = '/tmp/jeedom_backup';
+	$tmp = dirname(__FILE__) . '/../tmp/jeedom_backup';
 	if (!file_exists($tmp)) {
 		mkdir($tmp, 0770, true);
 	}
