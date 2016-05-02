@@ -127,7 +127,7 @@
         if (result) {
             el.find('.fa-refresh').show();
             jeedom.backup.restoreCloud({
-                backup: $('#sel_restoreCloudBackup').value(),
+                backup: el.closest('.repo').find('.sel_restoreCloudBackup').value(),
                 repo: el.attr('data-repo'),
                 error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});

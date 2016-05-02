@@ -65,7 +65,7 @@ try {
 		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
 	}
 
-	$bakcup_name = 'backup-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz';
+	$bakcup_name = 'backup-' . config::byKey('name', 'core', 'Jeedom') . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz';
 
 	echo __('Sauvegarde des fichiers...', __FILE__);
 	$exclude = array(
