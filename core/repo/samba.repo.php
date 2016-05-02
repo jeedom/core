@@ -81,7 +81,20 @@ class repo_samba {
 	/*     * ***********************Méthodes statiques*************************** */
 
 	public static function checkUpdate($_update) {
-
+		$file = self::ls(config::byKey('samba::plugin::folder') . '/' . $_update->getConfiguration('path'), 'plugin');
+		if (count($file) != 1) {
+			return;
+		}
+		if (!isset($file[0]['datetime'])) {
+			return;
+		}
+		$_update->setRemoteVersion($file[0]['datetime']);
+		if ($file[0]['datetime'] != $_update->getLocalVersion()) {
+			$_update->setStatus('update');
+		} else {
+			$_update->setStatus('ok');
+		}
+		$_update->save();
 	}
 
 	public static function deleteObjet($_update) {
@@ -149,7 +162,14 @@ class repo_samba {
 		} else {
 			throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
 		}
-		return array('localVersion' => date('Y-m-d H:i:s'));
+		$file = self::ls(config::byKey('samba::plugin::folder') . '/' . $_update->getConfiguration('path'), 'plugin');
+		if (count($file) != 1) {
+			return array('localVersion' => date('Y-m-d H:i:s'));
+		}
+		if (!isset($file[0]['datetime'])) {
+			return array('localVersion' => date('Y-m-d H:i:s'));
+		}
+		return array('localVersion' => $file[0]['datetime']);
 	}
 
 	public static function objectInfo($_update) {
