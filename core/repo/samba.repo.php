@@ -26,12 +26,18 @@ class repo_samba {
 	public static $_name = 'Samba';
 
 	public static $_scope = array(
-		'plugin' => false,
+		'plugin' => true,
 		'backup' => true,
 		'hasConfiguration' => true,
 	);
 
 	public static $_configuration = array(
+		'parameters_for_add' => array(
+			'path' => array(
+				'name' => 'Chemin',
+				'type' => 'input',
+			),
+		),
 		'configuration' => array(
 			'backup::ip' => array(
 				'name' => '[Backup] IP',
@@ -53,10 +59,105 @@ class repo_samba {
 				'name' => '[Backup] Chemin',
 				'type' => 'input',
 			),
+			'plugin::ip' => array(
+				'name' => '[Plugin] IP',
+				'type' => 'input',
+			),
+			'plugin::username' => array(
+				'name' => '[Plugin] Utilisateur',
+				'type' => 'input',
+			),
+			'plugin::password' => array(
+				'name' => '[Plugin] Mot de passe',
+				'type' => 'password',
+			),
+			'plugin::share' => array(
+				'name' => '[Plugin] Partage',
+				'type' => 'input',
+			),
 		),
 	);
 
 	/*     * ***********************Méthodes statiques*************************** */
+
+	public static function checkUpdate($_update) {
+
+	}
+
+	public static function deleteObjet($_update) {
+
+	}
+
+	public static function doUpdate($_update) {
+		$tmp_dir = '/tmp';
+		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
+		if (file_exists($tmp)) {
+			unlink($tmp);
+		}
+		if (!is_writable($tmp_dir)) {
+			exec('sudo chmod 777 -R ' . $tmp);
+		}
+		if (!is_writable($tmp_dir)) {
+			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
+		}
+
+		$cmd = 'cd ' . $tmp_dir . ';';
+		$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::plugin::folder') . ';get ' . $_update->getConfiguration('path'), 'plugin');
+		com_shell::execute($cmd);
+
+		$pathinfo = pathinfo($_update->getConfiguration('path'));
+		com_shell::execute('mv ' . $tmp_dir . '/' . $pathinfo['filename'] . '.' . $pathinfo['extension'] . ' ' . $tmp);
+
+		log::add('update', 'alert', $result);
+		if (!file_exists($tmp)) {
+			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
+		}
+		if (filesize($tmp) < 100) {
+			throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
+		}
+		log::add('update', 'alert', __("OK\n", __FILE__));
+		$cibDir = '/tmp/jeedom_' . $_update->getLogicalId();
+		if (file_exists($cibDir)) {
+			rrmdir($cibDir);
+		}
+		if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
+			throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
+		}
+		log::add('update', 'alert', __('Décompression du zip...', __FILE__));
+		$zip = new ZipArchive;
+		$res = $zip->open($tmp);
+		if ($res === TRUE) {
+			if (!$zip->extractTo($cibDir . '/')) {
+				$content = file_get_contents($tmp);
+				throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
+			}
+			$zip->close();
+			unlink($tmp);
+			if (!file_exists($cibDir . '/plugin_info')) {
+				$files = ls($cibDir, '*');
+				if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'plugin_info')) {
+					$cibDir = $cibDir . '/' . $files[0];
+				}
+			}
+			rcopy($cibDir . '/', dirname(__FILE__) . '/../../plugins/' . $_update->getLogicalId(), false, array(), true);
+			rrmdir($cibDir);
+			$cibDir = '/tmp/jeedom_' . $_update->getLogicalId();
+			if (file_exists($cibDir)) {
+				rrmdir($cibDir);
+			}
+			log::add('update', 'alert', __("OK\n", __FILE__));
+		} else {
+			throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
+		}
+		return array('localVersion' => date('Y-m-d H:i:s'));
+	}
+
+	public static function objectInfo($_update) {
+		return array(
+			'doc' => '',
+			'changelog' => '',
+		);
+	}
 
 	public static function makeSambaCommand($_cmd, $_type = 'backup') {
 		return 'sudo smbclient ' . config::byKey('samba::' . $_type . '::share') . ' -U ' . config::byKey('samba::' . $_type . '::username') . '%' . config::byKey('samba::' . $_type . '::password') . ' -I ' . config::byKey('samba::' . $_type . '::ip') . ' -c "' . $_cmd . '"';
