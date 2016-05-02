@@ -20,36 +20,21 @@
 
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
-class repo_github {
+class repo_url {
 	/*     * *************************Attributs****************************** */
 
-	public static $_name = 'Github';
+	public static $_name = 'URL';
 
 	public static $_scope = array(
 		'plugin' => true,
 		'backup' => false,
-		'hasConfiguration' => true,
+		'hasConfiguration' => false,
 	);
 
 	public static $_configuration = array(
 		'parameters_for_add' => array(
-			'user' => array(
-				'name' => 'Utilisateur ou organisation du dépot',
-				'type' => 'input',
-			),
-			'repository' => array(
-				'name' => 'Nom du dépôt',
-				'type' => 'input',
-			),
-			'version' => array(
-				'name' => 'Branche',
-				'type' => 'input',
-				'default' => 'master',
-			),
-		),
-		'configuration' => array(
-			'token' => array(
-				'name' => 'Token (faculatatif)',
+			'url' => array(
+				'name' => 'URL du fichier ZIP',
 				'type' => 'input',
 			),
 		),
@@ -57,48 +42,11 @@ class repo_github {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function getGithubClient() {
-		$client = new \Github\Client(
-			new \Github\HttpClient\CachedHttpClient(array('cache_dir' => '/tmp/jeedom-github-api-cache'))
-		);
-		if (config::byKey('github::token') != '') {
-			$client->authenticate(config::byKey('github::token'), '', Github\Client::AUTH_URL_TOKEN);
-		}
-		return $client;
-	}
-
 	public static function checkUpdate($_update) {
-		$client = self::getGithubClient();
-		try {
-			$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
-		} catch (Exception $e) {
-			$_update->setRemoteVersion('repository not found');
-			$_update->setStatus('ok');
-			$_update->save();
-			return;
-		}
-		if (!isset($branch['commit']) || !isset($branch['commit']['sha'])) {
-			$_update->setRemoteVersion('error');
-			$_update->setStatus('ok');
-			$_update->save();
-			return;
-		}
-		$_update->setRemoteVersion($branch['commit']['sha']);
-		if ($branch['commit']['sha'] != $_update->getLocalVersion()) {
-			$_update->setStatus('update');
-		} else {
-			$_update->setStatus('ok');
-		}
-		$_update->save();
+
 	}
 
 	public static function doUpdate($_update) {
-		$client = self::getGithubClient();
-		try {
-			$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
-		} catch (Exception $e) {
-			throw new Exception(__('Dépot github non trouvé : ', __FILE__) . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/' . $_update->getConfiguration('version', 'master'));
-		}
 		$tmp_dir = '/tmp';
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
@@ -112,12 +60,8 @@ class repo_github {
 		}
 
 		$url = 'https://api.github.com/repos/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/zipball';
-		log::add('update', 'alert', __('Téléchargement de ', __FILE__) . $_update->getLogicalId() . '...');
-		if (config::byKey('github::token') == '') {
-			$result = shell_exec('curl -s -L ' . $url . ' > ' . $tmp);
-		} else {
-			$result = shell_exec('curl -s -H "Authorization: token ' . config::byKey('github::token') . '" -L ' . $url . ' > ' . $tmp);
-		}
+		file_put_contents($tmp, fopen($url, 'r'));
+
 		log::add('update', 'alert', $result);
 		if (!file_exists($tmp)) {
 			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
@@ -159,10 +103,7 @@ class repo_github {
 		} else {
 			throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
 		}
-		if (!isset($branch['commit']) || !isset($branch['commit']['sha'])) {
-			return array();
-		}
-		return array('localVersion' => $branch['commit']['sha']);
+		return array('localVersion' => date('Y-m-d H:i:s'));
 	}
 
 	public static function deleteObjet($_update) {
