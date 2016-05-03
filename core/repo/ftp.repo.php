@@ -23,8 +23,10 @@ use Touki\FTP\Connection\Connection;
 use Touki\FTP\FTPFactory;
 use Touki\FTP\Model\Directory;
 
+class repo_ftp {
 	/*     * *************************Attributs****************************** */
 
+	public static $_name = 'FTP';
 
 	public static $_scope = array(
 		'plugin' => true,
