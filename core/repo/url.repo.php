@@ -28,13 +28,20 @@ class repo_url {
 	public static $_scope = array(
 		'plugin' => true,
 		'backup' => false,
-		'hasConfiguration' => false,
+		'hasConfiguration' => true,
+		'core' => true,
 	);
 
 	public static $_configuration = array(
 		'parameters_for_add' => array(
 			'url' => array(
 				'name' => 'URL du fichier ZIP',
+				'type' => 'input',
+			),
+		),
+		'configuration' => array(
+			'core::url' => array(
+				'name' => 'URL core Jeedom',
 				'type' => 'input',
 			),
 		),
@@ -115,6 +122,11 @@ class repo_url {
 			'doc' => '',
 			'changelog' => '',
 		);
+	}
+
+	public static function downloadCore($_path) {
+		exec('wget --no-check-certificate --progress=dot --dot=mega ' . config::byKey('url::core::url') . ' -O ' . $_path);
+		return;
 	}
 
 	/*     * *********************Methode d'instance************************* */

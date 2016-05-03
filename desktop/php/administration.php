@@ -1037,18 +1037,21 @@ foreach (plugin::listPlugin(true) as $plugin) {
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Branche}}</label>
                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <select class="configKey form-control" data-l1key="core::branch">
-                                <option value="stable">{{Stable}}</option>
-                                <option value="release">{{Release}}</option>
-                                <option value="beta">{{Beta (développement, instable)}}</option>
-                                <option value="url">{{URL (github)}}</option>
+                            <select class="configKey form-control" data-l1key="core::repo::provider">
+                             <option value="default">{{Défaut}}</option>
+                            <?php
+foreach (repo::all() as $key => $value) {
+	if ($value['scope']['core'] == false) {
+		continue;
+	}
+	if (config::byKey($key . '::enable') == 0) {
+		continue;
+	}
+	echo '<option value="' . $key . '">' . $value['name'] . '</option>';
+
+}
+?>
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group" id="div_githubupdate">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input class="configKey form-control" data-l1key="update::url"/>
                         </div>
                     </div>
                     <div class="form-group expertModeVisible">

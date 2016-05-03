@@ -118,54 +118,33 @@ try {
 					echo __('***ERREUR*** ', __FILE__) . $e->getMessage() . "\n";
 				}
 				try {
-					if (config::byKey('core::branch') == 'url') {
-						$url = config::byKey('update::url');
-					} else {
-						$url = 'https://github.com/jeedom/core/archive/' . config::byKey('core::branch', 'core', 'stable') . '.zip';
-					}
-					echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
-					echo __("Téléchargement en cours...", __FILE__);
-					$tmp_dir = '/tmp';
-					$tmp = $tmp_dir . '/jeedom_update.zip';
-					if (!is_writable($tmp_dir)) {
-						throw new Exception(__('Impossible d\'écrire dans le dossier : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : chmod 777 -R ', __FILE__) . $tmp_dir);
-					}
-					if (file_exists($tmp)) {
-						unlink($tmp);
-					}
-					exec('wget --no-check-certificate --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
-					$redownload = false;
-					if (!file_exists($tmp)) {
-						if (config::byKey('core::branch', 'core', 'stable') != 'stable') {
-							throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
+					if (config::byKey('core::repo::provider', 'core', 'default') == 'default') {
+						$url = 'https://github.com/jeedom/core/archive/stable.zip';
+						echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
+						echo __("Téléchargement en cours...", __FILE__);
+						$tmp_dir = '/tmp';
+						$tmp = $tmp_dir . '/jeedom_update.zip';
+						if (!is_writable($tmp_dir)) {
+							throw new Exception(__('Impossible d\'écrire dans le dossier : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : chmod 777 -R ', __FILE__) . $tmp_dir);
 						}
-						$redownload = true;
-						echo __("NOK. Retry....\n", __FILE__);
-					}
-					if (filesize($tmp) < 100) {
-						if (config::byKey('core::branch', 'core', 'stable') != 'stable') {
-							throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
-						}
-						$redownload = true;
-						echo __("NOK. Retry....\n", __FILE__);
-					}
-
-					if ($redownload) {
-						$url = 'https://market.jeedom.fr/jeedom/jeedom_stable.zip';
 						if (file_exists($tmp)) {
 							unlink($tmp);
 						}
 						exec('wget --no-check-certificate --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
-						if (!file_exists($tmp)) {
-							throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
+					} else {
+						$class = 'repo_' . config::byKey('core::repo::provider', 'core', 'default');
+						if (!class_exists($class)) {
+							throw new Exception(__('Classe repo introuvable : ', __FILE__) . $class);
 						}
-						if (filesize($tmp) < 100) {
-							throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
+						if (!method_exists($class, 'downloadCore')) {
+							throw new Exception(__('Méthode repo introuvable : ', __FILE__) . $class . '::downloadCore');
 						}
+						$class::downloadCore($tmp);
 					}
-
+					if (filesize($tmp) < 100) {
+						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
+					}
 					echo __("OK\n", __FILE__);
-
 					echo __("Nettoyage des dossiers en cours...", __FILE__);
 					$cibDir = '/tmp/jeedom_update';
 					if (file_exists($cibDir)) {

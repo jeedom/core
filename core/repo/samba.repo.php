@@ -29,6 +29,7 @@ class repo_samba {
 		'plugin' => true,
 		'backup' => true,
 		'hasConfiguration' => true,
+		'core' => true,
 	);
 
 	public static $_configuration = array(
@@ -73,6 +74,10 @@ class repo_samba {
 			),
 			'plugin::share' => array(
 				'name' => '[Plugin] Partage',
+				'type' => 'input',
+			),
+			'core::path' => array(
+				'name' => '[Core] Chemin',
 				'type' => 'input',
 			),
 		),
@@ -244,6 +249,15 @@ class repo_samba {
 		com_shell::execute($cmd);
 		com_shell::execute('sudo chmod 777 -R ' . $backup_dir . '/*');
 		jeedom::restore('backup/' . $_backup, true);
+	}
+
+	public static function downloadCore($_path) {
+		$pathinfo = pathinfo($_path);
+		$cmd = 'cd ' . $pathinfo['dirname'] . ';';
+		$cmd .= self::makeSambaCommand('get ' . config::byKey('samba::core::path'), 'plugin');
+		com_shell::execute($cmd);
+		com_shell::execute('sudo chmod 777 -R ' . $_path);
+		return;
 	}
 
 	/*     * *********************Methode d'instance************************* */
