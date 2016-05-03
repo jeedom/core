@@ -117,13 +117,13 @@ try {
 				} catch (Exception $e) {
 					echo __('***ERREUR*** ', __FILE__) . $e->getMessage() . "\n";
 				}
+				$tmp_dir = '/tmp';
+				$tmp = $tmp_dir . '/jeedom_update.zip';
 				try {
 					if (config::byKey('core::repo::provider', 'core', 'default') == 'default') {
 						$url = 'https://github.com/jeedom/core/archive/stable.zip';
 						echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
 						echo __("Téléchargement en cours...", __FILE__);
-						$tmp_dir = '/tmp';
-						$tmp = $tmp_dir . '/jeedom_update.zip';
 						if (!is_writable($tmp_dir)) {
 							throw new Exception(__('Impossible d\'écrire dans le dossier : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : chmod 777 -R ', __FILE__) . $tmp_dir);
 						}
