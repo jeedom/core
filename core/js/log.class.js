@@ -102,7 +102,7 @@
  	_params.callNumber++;
  	jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')] = {log : _params.log};
 
- 	if(_params.callNumber > 0 && _params.display.scrollTop() + _params.display.innerHeight() < _params.display[0].scrollHeight){
+ 	if(_params.callNumber > 0 && (_params.display.scrollTop() + _params.display.innerHeight() + 1) < _params.display[0].scrollHeight){
  		if(_params['control'].attr('data-state') == 1){
  			_params['control'].trigger('click');
  		}

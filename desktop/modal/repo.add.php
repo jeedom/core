@@ -24,6 +24,9 @@ foreach ($repos as $key => $value) {
 	if (!isset($value['configuration']['parameters_for_add'])) {
 		continue;
 	}
+	if (config::byKey($key . '::enable') == 0) {
+		continue;
+	}
 	echo '<option value="' . $key . '">' . $value['name'] . '</option>';
 }
 ?>

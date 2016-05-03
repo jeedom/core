@@ -1,4 +1,4 @@
-/* Widget: chart (beta) - updated 2/7/2015 (v2.19.0) *//*
+/* Widget: chart (beta) - updated 10/31/2015 (v2.24.0) *//*
  * Requires tablesorter v2.8+ and jQuery 1.7+
  */
 /*jshint browser:true, jquery:true, unused:false */
@@ -32,7 +32,7 @@
 				.off(wo.chart_event)
 				.on(wo.chart_event, function() {
 					if (this.hasInitialized) {
-						// refresh "c" variable in case options are updated dynamically
+						// refresh 'c' variable in case options are updated dynamically
 						var c = this.config;
 						chart.getCols(c, c.widgetOptions);
 						chart.getData(c, c.widgetOptions);
@@ -213,7 +213,7 @@
 					}
 
 					if (value !== false) {
-						if ( /s/i.test( '' + wo.chart_layout[row.length] ) ) {
+						if ( /s/i.test( '' + wo.chart_layout[indx] ) ) {
 							row.push( value );
 							chart_series[objIndex].data.push( value );
 							chart_dataset[objIndex].data.push( value );
@@ -258,7 +258,7 @@
 			// Set the label column
 			chart_labelCol: 0,
 			// data sort, should always be first row, might want [[0,1]]
-			chart_sort: [[0,0]],
+			chart_sort: [ [ 0, 0 ] ],
 			// event to trigger get updated data
 			chart_event: 'chartData'
 		},

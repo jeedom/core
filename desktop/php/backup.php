@@ -87,7 +87,7 @@ foreach (repo::all() as $rkey => $value) {
 	}
 	$class = 'repo_' . $rkey;
 	echo '<legend><i class="fa fa-cloud"></i> {{Sauvegardes}} ' . $value['name'] . '</legend>';
-	echo '<form class="form-horizontal">';
+	echo '<form class="form-horizontal repo">';
 	echo '<fieldset>';
 	echo '<div class="form-group">';
 	echo '<label class="col-sm-4 col-xs-6 control-label">{{Envoyer les sauvegardes dans le cloud}}</label>';
@@ -104,7 +104,7 @@ foreach (repo::all() as $rkey => $value) {
 	echo '<div class="form-group">';
 	echo '<label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes disponibles}}</label>';
 	echo '<div class="col-sm-6 col-xs-6">';
-	echo '<select class="form-control" id="sel_restoreCloudBackup">';
+	echo '<select class="form-control sel_restoreCloudBackup">';
 	try {
 		foreach ($listeCloudBackup as $key => $backup) {
 			if (is_numeric($key)) {
@@ -123,10 +123,11 @@ foreach (repo::all() as $rkey => $value) {
 	echo '<a class="btn btn-warning bt_restoreRepoBackup" data-repo="' . $rkey . '"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-file"></i> {{Restaurer}}</a>';
 	echo '</div>';
 	echo '</div>';
+	echo '</fieldset>';
+	echo '</form>';
 }
 ?>
-        </fieldset>
-    </form>
+
     <div class="form-actions" style="height: 20px;">
         <a class="btn btn-success" id="bt_saveBackup"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
     </div>

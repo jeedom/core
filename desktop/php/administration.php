@@ -1037,18 +1037,21 @@ foreach (plugin::listPlugin(true) as $plugin) {
                     <div class="form-group">
                         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Branche}}</label>
                         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <select class="configKey form-control" data-l1key="core::branch">
-                                <option value="stable">{{Stable}}</option>
-                                <option value="release">{{Release}}</option>
-                                <option value="beta">{{Beta (développement, instable)}}</option>
-                                <option value="url">{{URL (github)}}</option>
+                            <select class="configKey form-control" data-l1key="core::repo::provider">
+                             <option value="default">{{Défaut}}</option>
+                            <?php
+foreach (repo::all() as $key => $value) {
+	if (!isset($value['scope']['core']) || $value['scope']['core'] == false) {
+		continue;
+	}
+	if (config::byKey($key . '::enable') == 0) {
+		continue;
+	}
+	echo '<option value="' . $key . '">' . $value['name'] . '</option>';
+
+}
+?>
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group" id="div_githubupdate">
-                        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse}}</label>
-                        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                            <input class="configKey form-control" data-l1key="update::url"/>
                         </div>
                     </div>
                     <div class="form-group expertModeVisible">
@@ -1061,16 +1064,16 @@ foreach (plugin::listPlugin(true) as $plugin) {
                     <?php
 
 foreach (repo::all() as $key => $value) {
-	if ($value['scope']['hasConfiguration'] == false) {
-		continue;
-	}
 	echo '<legend>' . $value['name'] . '</legend>';
 	echo '<div class="form-group">';
-	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer le ' . $value['name'] . '}}</label>';
+	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer}} ' . $value['name'] . '</label>';
 	echo '<div class="col-sm-1">';
 	echo '<input type="checkbox" class="configKey bootstrapSwitch enableRepository" data-repo="' . $key . '" data-l1key="' . $key . '::enable"/>';
 	echo '</div>';
 	echo '</div>';
+	if ($value['scope']['hasConfiguration'] == false) {
+		continue;
+	}
 	echo '<div class="repositoryConfiguration' . $key . '">';
 	foreach ($value['configuration']['configuration'] as $pKey => $parameter) {
 		echo '<div class="form-group">';
@@ -1080,6 +1083,9 @@ foreach (repo::all() as $key => $value) {
 		echo '<div class="col-sm-4">';
 		$default = (isset($parameter['default'])) ? $parameter['default'] : '';
 		switch ($parameter['type']) {
+			case 'checkbox':
+				echo '<input type="checkbox" class="configKey" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+				break;
 			case 'input':
 				echo '<input class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 				break;

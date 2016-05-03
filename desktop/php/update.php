@@ -27,7 +27,7 @@ if (!hasRight('updateview', true)) {
             </div>
         </div>
         <br/><br/>
-        <table class="table table-condensed table-bordered tablesorter tablefixheader" id="table_update" style="margin-top: 5px;">
+        <table class="table table-condensed table-bordered tablesorter" id="table_update" style="margin-top: 5px;">
             <thead>
                 <tr>
                     <th>{{Type}}</th>
