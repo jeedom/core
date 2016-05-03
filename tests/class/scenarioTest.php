@@ -18,6 +18,14 @@
 
 class scenarioTest extends \PHPUnit_Framework_TestCase
 {	
+	protected function setUp() {
+		if (!extension_loaded('mysqli')) {
+			$this->markTestSkipped(
+					'The MySQL extension is not available.'
+			);
+		}
+	}
+	
 	public function getGetSets() {
 		return array(
 			array('Id', 'foo', 'foo'),
