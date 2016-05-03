@@ -251,7 +251,7 @@ class update {
 	public function getInfo() {
 		if ($this->getType() != 'core') {
 			$class = 'repo_' . $this->getSource();
-			if (class_exists($class) && method_exists($class, 'objectInfo')) {
+			if (class_exists($class) && method_exists($class, 'objectInfo') && config::byKey($this->getSource() . '::enable') == 1) {
 				return $class::objectInfo($this);
 			}
 		}
@@ -263,7 +263,7 @@ class update {
 			jeedom::update();
 		} else {
 			$class = 'repo_' . $this->getSource();
-			if (class_exists($class) && method_exists($class, 'doUpdate')) {
+			if (class_exists($class) && method_exists($class, 'doUpdate') && config::byKey($this->getSource() . '::enable') == 1) {
 				$this->preInstallUpdate();
 				$this->postInstallUpdate($class::doUpdate($this));
 			}
@@ -308,7 +308,7 @@ class update {
 			}
 			try {
 				$class = 'repo_' . $this->getSource();
-				if (class_exists($class) && method_exists($class, 'deleteObjet')) {
+				if (class_exists($class) && method_exists($class, 'deleteObjet') && config::byKey($this->getSource() . '::enable') == 1) {
 					$class::doUpdate($this);
 				}
 			} catch (Exception $e) {
