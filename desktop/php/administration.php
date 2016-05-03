@@ -1061,9 +1061,6 @@ foreach (plugin::listPlugin(true) as $plugin) {
                     <?php
 
 foreach (repo::all() as $key => $value) {
-	if ($value['scope']['hasConfiguration'] == false) {
-		continue;
-	}
 	echo '<legend>' . $value['name'] . '</legend>';
 	echo '<div class="form-group">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer le ' . $value['name'] . '}}</label>';
@@ -1071,6 +1068,9 @@ foreach (repo::all() as $key => $value) {
 	echo '<input type="checkbox" class="configKey bootstrapSwitch enableRepository" data-repo="' . $key . '" data-l1key="' . $key . '::enable"/>';
 	echo '</div>';
 	echo '</div>';
+	if ($value['scope']['hasConfiguration'] == false) {
+		continue;
+	}
 	echo '<div class="repositoryConfiguration' . $key . '">';
 	foreach ($value['configuration']['configuration'] as $pKey => $parameter) {
 		echo '<div class="form-group">';
