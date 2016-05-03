@@ -50,7 +50,7 @@ class repo_github {
 		),
 		'configuration' => array(
 			'token' => array(
-				'name' => 'Token (faculatatif)',
+				'name' => 'Token (facultatif)',
 				'type' => 'input',
 			),
 			'core::user' => array(
