@@ -275,6 +275,9 @@ class update {
 				}
 				log::add('update', 'alert', __('téléchargement du plugin...', __FILE__));
 				$info = $class::downloadObject($this);
+				if ($info['path'] === false) {
+					return;
+				}
 				$tmp = $info['path'];
 				log::add('update', 'alert', __("OK\n", __FILE__));
 

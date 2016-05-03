@@ -634,6 +634,7 @@ class repo_market {
 				log::add('update', 'alert', __("OK\n", __FILE__));
 				break;
 		}
+		return false;
 	}
 
 	public function remove() {
