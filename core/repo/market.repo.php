@@ -92,7 +92,7 @@ class repo_market {
 		$_update->save();
 	}
 
-	public static function doUpdate($_update) {
+	public static function downloadObject($_update) {
 		$market = repo_market::byLogicalIdAndType($_update->getLogicalId(), $_update->getType());
 		if (is_object($market)) {
 			$file = $market->install($_update->getConfiguration('version', 'stable'));

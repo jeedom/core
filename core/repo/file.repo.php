@@ -46,7 +46,7 @@ class repo_file {
 
 	}
 
-	public static function doUpdate($_update) {
+	public static function downloadObject($_update) {
 		return array('localVersion' => date('Y-m-d H:i:s'), 'path' => $_update->getConfiguration('path'));
 	}
 

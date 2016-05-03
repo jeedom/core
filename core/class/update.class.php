@@ -263,7 +263,7 @@ class update {
 			jeedom::update();
 		} else {
 			$class = 'repo_' . $this->getSource();
-			if (class_exists($class) && method_exists($class, 'doUpdate') && config::byKey($this->getSource() . '::enable') == 1) {
+			if (class_exists($class) && method_exists($class, 'downloadObject') && config::byKey($this->getSource() . '::enable') == 1) {
 				$this->preInstallUpdate();
 				$cibDir = '/tmp/jeedom_' . $this->getLogicalId();
 				if (file_exists($cibDir)) {
@@ -274,7 +274,7 @@ class update {
 					throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
 				}
 				log::add('update', 'alert', __('téléchargement du plugin...', __FILE__));
-				$info = $class::doUpdate($this);
+				$info = $class::downloadObject($this);
 				$tmp = $info['path'];
 				log::add('update', 'alert', __("OK\n", __FILE__));
 

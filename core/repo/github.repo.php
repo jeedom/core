@@ -108,7 +108,7 @@ class repo_github {
 		$_update->save();
 	}
 
-	public static function doUpdate($_update) {
+	public static function downloadObject($_update) {
 		$client = self::getGithubClient();
 		try {
 			$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));

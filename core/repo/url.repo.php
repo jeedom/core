@@ -53,7 +53,7 @@ class repo_url {
 
 	}
 
-	public static function doUpdate($_update) {
+	public static function downloadObject($_update) {
 		$tmp_dir = '/tmp';
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
