@@ -1063,7 +1063,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 foreach (repo::all() as $key => $value) {
 	echo '<legend>' . $value['name'] . '</legend>';
 	echo '<div class="form-group">';
-	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer le ' . $value['name'] . '}}</label>';
+	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer}} ' . $value['name'] . '</label>';
 	echo '<div class="col-sm-1">';
 	echo '<input type="checkbox" class="configKey bootstrapSwitch enableRepository" data-repo="' . $key . '" data-l1key="' . $key . '::enable"/>';
 	echo '</div>';
