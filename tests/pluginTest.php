@@ -30,6 +30,8 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 		}
 
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+		config::save('github::enable', 1);
+		config::save('market::enable', 1);
 		try {
 			$plugin = plugin::byId('virtual');
 		} catch (Exception $e) {
