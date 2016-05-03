@@ -19,11 +19,12 @@
 /* * ***************************Includes********************************* */
 
 require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+use Touki\FTP\Connection\Connection;
+use Touki\FTP\FTPFactory;
+use Touki\FTP\Model\Directory;
 
-class repo_samba {
 	/*     * *************************Attributs****************************** */
 
-	public static $_name = 'Samba';
 
 	public static $_scope = array(
 		'plugin' => true,
@@ -41,8 +42,20 @@ class repo_samba {
 		),
 		'configuration' => array(
 			'backup::ip' => array(
-				'name' => '[Backup] IP',
+				'name' => '[Backup] IP/Host',
 				'type' => 'input',
+			),
+			'backup::port' => array(
+				'name' => '[Backup] Port',
+				'type' => 'input',
+			),
+			'backup::passive' => array(
+				'name' => '[Backup] Passif',
+				'type' => 'checkbox',
+			),
+			'backup::ssl' => array(
+				'name' => '[Backup] SSL',
+				'type' => 'checkbox',
 			),
 			'backup::username' => array(
 				'name' => '[Backup] Utilisateur',
@@ -52,17 +65,25 @@ class repo_samba {
 				'name' => '[Backup] Mot de passe',
 				'type' => 'password',
 			),
-			'backup::share' => array(
-				'name' => '[Backup] Partage',
-				'type' => 'input',
-			),
 			'backup::folder' => array(
 				'name' => '[Backup] Chemin',
 				'type' => 'input',
 			),
 			'plugin::ip' => array(
-				'name' => '[Plugin] IP',
+				'name' => '[Plugin] IP/Host',
 				'type' => 'input',
+			),
+			'plugin::port' => array(
+				'name' => '[Plugin] Port',
+				'type' => 'input',
+			),
+			'plugin::passive' => array(
+				'name' => '[Plugin] Passif',
+				'type' => 'checkbox',
+			),
+			'plugin::ssl' => array(
+				'name' => '[Plugin] SSL',
+				'type' => 'checkbox',
 			),
 			'plugin::username' => array(
 				'name' => '[Plugin] Utilisateur',
@@ -71,10 +92,6 @@ class repo_samba {
 			'plugin::password' => array(
 				'name' => '[Plugin] Mot de passe',
 				'type' => 'password',
-			),
-			'plugin::share' => array(
-				'name' => '[Plugin] Partage',
-				'type' => 'input',
 			),
 			'core::path' => array(
 				'name' => '[Core] Chemin',
@@ -85,16 +102,29 @@ class repo_samba {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
+	public static function getFtpConnection($_type = 'backup') {
+		if (config::byKey('ftp::' . $_type . '::ssl') == 1) {
+			$connection = new SSLConnection(config::byKey('ftp::' . $_type . '::ip'), config::byKey('ftp::' . $_type . '::user'), config::byKey('ftp::' . $_type . '::password'), config::byKey('ftp::' . $_type . '::port'), 120, config::byKey('ftp::' . $_type . '::passive', 'core', false));
+		} else {
+			$connection = new Connection(config::byKey('ftp::' . $_type . '::ip'), config::byKey('ftp::' . $_type . '::user'), config::byKey('ftp::' . $_type . '::password'), config::byKey('ftp::' . $_type . '::port'), 120, config::byKey('ftp::' . $_type . '::passive', 'core', false));
+		}
+		$connexion->open();
+		return $connection;
+	}
+
 	public static function checkUpdate($_update) {
-		$file = self::ls(config::byKey('samba::plugin::folder') . '/' . $_update->getConfiguration('path'), 'plugin');
-		if (count($file) != 1) {
+		$connexion = self::getFtpConnection('plugin');
+		$factory = new FTPFactory;
+		$ftp = $factory->build($connection);
+		$pathinfo = pathinfo($_update->getConfiguration('path'));
+		$file = $ftp->findFileByName($pathinfo['filename'] . '.' . $pathinfo['extension'], new Directory($pathinfo['dirname']));
+		$connexion->close();
+		if (!isset($file->mtime)) {
 			return;
 		}
-		if (!isset($file[0]['datetime'])) {
-			return;
-		}
-		$_update->setRemoteVersion($file[0]['datetime']);
-		if ($file[0]['datetime'] != $_update->getLocalVersion()) {
+		$date = $file->mtime->format('Y-m-d H:i:s');
+		$_update->setRemoteVersion($date);
+		if ($date != $_update->getLocalVersion()) {
 			$_update->setStatus('update');
 		} else {
 			$_update->setStatus('ok');
@@ -119,15 +149,19 @@ class repo_samba {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
 		}
 
-		$cmd = 'cd ' . $tmp_dir . ';';
-		$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::plugin::folder') . ';get ' . $_update->getConfiguration('path'), 'plugin');
-		com_shell::execute($cmd);
-
+		$connexion = self::getFtpConnection('plugin');
+		$factory = new FTPFactory;
+		$ftp = $factory->build($connection);
 		$pathinfo = pathinfo($_update->getConfiguration('path'));
-		com_shell::execute('mv ' . $tmp_dir . '/' . $pathinfo['filename'] . '.' . $pathinfo['extension'] . ' ' . $tmp);
+		$file = $ftp->findFileByName($pathinfo['filename'] . '.' . $pathinfo['extension'], new Directory($pathinfo['dirname']));
+		if (null === $file) {
+			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $_update->getConfiguration('path') . '.', __FILE__));
+		}
+		$ftp->download($tmp, $file);
+		$connection->close();
 
 		if (!file_exists($tmp)) {
-			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
+			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $_update->getConfiguration('path') . '.', __FILE__));
 		}
 		if (filesize($tmp) < 100) {
 			throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
@@ -166,14 +200,16 @@ class repo_samba {
 		} else {
 			throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
 		}
-		$file = self::ls(config::byKey('samba::plugin::folder') . '/' . $_update->getConfiguration('path'), 'plugin');
-		if (count($file) != 1) {
+		$connexion = self::getFtpConnection('plugin');
+		$factory = new FTPFactory;
+		$ftp = $factory->build($connection);
+		$pathinfo = pathinfo($_update->getConfiguration('path'));
+		$file = $ftp->findFileByName($pathinfo['filename'] . '.' . $pathinfo['extension'], new Directory($pathinfo['dirname']));
+		$connexion->close();
+		if (!isset($file->mtime)) {
 			return array('localVersion' => date('Y-m-d H:i:s'));
 		}
-		if (!isset($file[0]['datetime'])) {
-			return array('localVersion' => date('Y-m-d H:i:s'));
-		}
-		return array('localVersion' => $file[0]['datetime']);
+		return array('localVersion' => $file->mtime->format('Y-m-d H:i:s'));
 	}
 
 	public static function objectInfo($_update) {
@@ -183,80 +219,55 @@ class repo_samba {
 		);
 	}
 
-	public static function makeSambaCommand($_cmd, $_type = 'backup') {
-		return 'sudo smbclient ' . config::byKey('samba::' . $_type . '::share') . ' -U ' . config::byKey('samba::' . $_type . '::username') . '%' . config::byKey('samba::' . $_type . '::password') . ' -I ' . config::byKey('samba::' . $_type . '::ip') . ' -c "' . $_cmd . '"';
-	}
-
-	public static function sortByDatetime($a, $b) {
-		if (strtotime($a['datetime']) == strtotime($b['datetime'])) {
-			return 0;
-		}
-		return (strtotime($a['datetime']) < strtotime($b['datetime'])) ? -1 : 1;
-	}
-
-	public static function ls($_dir = '', $type = 'backup') {
-		$cmd = repo_samba::makeSambaCommand('cd ' . $_dir . ';ls', $type);
-		$result = explode("\n", com_shell::execute($cmd));
-		$return = array();
-		for ($i = 2; $i < count($result) - 2; $i++) {
-			$line = array();
-			foreach (explode(" ", $result[$i]) as $value) {
-				if (trim($value) == '') {
-					continue;
-				}
-				$line[] = $value;
-			}
-			$file_info = array();
-			$file_info['filename'] = $line[0];
-			$file_info['size'] = $line[2];
-			$file_info['datetime'] = date('Y-m-d H:i:s', strtotime($line[5] . ' ' . $line[4] . ' ' . $line[7] . ' ' . $line[6]));
-			$return[] = $file_info;
-		}
-		usort($return, 'repo_samba::sortByDatetime');
-		return array_reverse($return);
-	}
-
-	public static function cleanBackupFolder() {
-		$timelimit = strtotime('-' . config::byKey('backup::keepDays') . ' days');
-		foreach (self::ls(config::byKey('samba::backup::folder')) as $file) {
-			if ($timelimit > strtotime($file['datetime'])) {
-				$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';del ' . $file['filename']);
-			}
-		}
-	}
-
 	public static function sendBackup($_path) {
-		$pathinfo = pathinfo($_path);
-		$cmd = 'cd ' . $pathinfo['dirname'] . ';';
-		$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';put ' . $pathinfo['filename'] . '.' . $pathinfo['extension']);
-		com_shell::execute($cmd);
-		self::cleanBackupFolder();
+		$connexion = self::getFtpConnection();
+		$factory = new FTPFactory;
+		$ftp = $factory->build($connection);
+		$ftp->upload(new File($_path), '.');
+		$connexion->close();
 	}
 
 	public static function listeBackup() {
+		$connexion = self::getFtpConnection();
+		$factory = new FTPFactory;
+		$ftp = $factory->build($connection);
+		$list = $ftp->findFilesystems(new Directory(config::byKey('ftp::backup::folder')));
+		$connexion->close();
 		$return = array();
-		foreach (self::ls(config::byKey('samba::backup::folder')) as $file) {
-			$return[] = $file['filename'];
+		foreach ($list as $file) {
+			$pathinfo = pathinfo($file->realpath);
+			$return[] = $pathinfo['filename'] . '.' . $pathinfo['extension'];
 		}
 		return $return;
 	}
 
 	public static function retoreBackup($_backup) {
-		$backup_dir = calculPath(config::byKey('backup::path'));
-		$cmd = 'cd ' . $backup_dir . ';';
-		$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';get ' . $_backup);
-		com_shell::execute($cmd);
+		$connexion = self::getFtpConnection();
+		$factory = new FTPFactory;
+		$ftp = $factory->build($connection);
+		$pathinfo = pathinfo(config::byKey('ftp::backup::folder') . '/' . $_backup);
+		$file = $ftp->findFileByName($pathinfo['filename'] . '.' . $pathinfo['extension'], new Directory($pathinfo['dirname']));
+		if (null === $file) {
+			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . config::byKey('ftp::backup::folder') . '/' . $_backup . '.', __FILE__));
+		}
+		$ftp->download($backup_dir . '/' . $_backu, $file);
+		$connection->close();
 		com_shell::execute('sudo chmod 777 -R ' . $backup_dir . '/*');
 		jeedom::restore('backup/' . $_backup, true);
+
 	}
 
 	public static function downloadCore($_path) {
-		$pathinfo = pathinfo($_path);
-		$cmd = 'cd ' . $pathinfo['dirname'] . ';';
-		$cmd .= self::makeSambaCommand('get ' . config::byKey('samba::core::path'), 'plugin');
-		com_shell::execute($cmd);
-		com_shell::execute('sudo chmod 777 -R ' . $_path);
-		return;
+		$connexion = self::getFtpConnection('plugin');
+		$factory = new FTPFactory;
+		$ftp = $factory->build($connection);
+		$pathinfo = pathinfo(config::byKey('ftp::core::path'));
+		$file = $ftp->findFileByName($pathinfo['filename'] . '.' . $pathinfo['extension'], new Directory($pathinfo['dirname']));
+		if (null === $file) {
+			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . config::byKey('ftp::core::path') . '.', __FILE__));
+		}
+		$ftp->download($_path, $file);
+		$connection->close();
 	}
 
 	/*     * *********************Methode d'instance************************* */

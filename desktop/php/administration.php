@@ -1083,6 +1083,9 @@ foreach (repo::all() as $key => $value) {
 		echo '<div class="col-sm-4">';
 		$default = (isset($parameter['default'])) ? $parameter['default'] : '';
 		switch ($parameter['type']) {
+			case 'checkbox':
+				echo '<input type="checkbox" class="configKey" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+				break;
 			case 'input':
 				echo '<input class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 				break;
