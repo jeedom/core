@@ -331,9 +331,6 @@ function initExpertMode() {
 function initTableSorter() {
     $(".tablesorter").each(function () {
         var widgets = ['uitheme', 'filter', 'zebra', 'resizable'];
-        if ($(this).hasClass('tablefixheader')) {
-            widgets.push("stickyHeaders");
-        }
         $(".tablesorter").tablesorter({
             theme: "bootstrap",
             widthFixed: true,
