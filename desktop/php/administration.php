@@ -1041,7 +1041,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
                              <option value="default">{{Défaut}}</option>
                             <?php
 foreach (repo::all() as $key => $value) {
-	if ($value['scope']['core'] == false) {
+	if (!isset($value['scope']['core']) || $value['scope']['core'] == false) {
 		continue;
 	}
 	if (config::byKey($key . '::enable') == 0) {

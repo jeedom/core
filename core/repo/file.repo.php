@@ -47,49 +47,7 @@ class repo_file {
 	}
 
 	public static function doUpdate($_update) {
-		log::add('update', 'info', __('Décompression de l\'archive...', __FILE__));
-		$logicalId = $_update->getLogicalId();
-		$cibDir = '/tmp/' . $logicalId;
-		if (file_exists($cibDir)) {
-			rrmdir($cibDir);
-		}
-		mkdir($cibDir);
-		if (!file_exists($_update->getConfiguration('path'))) {
-			throw new Exception(__('Impossible de trouver le fichier zip : ', __FILE__) . $_update->getConfiguration('path'));
-		}
-		$extension = strtolower(strrchr($_update->getConfiguration('path'), '.'));
-		if (!in_array($extension, array('.zip'))) {
-			throw new Exception('Extension du fichier non valide (autorisé .zip) : ' . $extension);
-		}
-		$zip = new ZipArchive;
-		$res = $zip->open($_update->getConfiguration('path'));
-		if ($res === TRUE) {
-			if (!$zip->extractTo($cibDir . '/')) {
-				$content = file_get_contents($_update->getConfiguration('path'));
-				unlink($_update->getConfiguration('path'));
-				throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
-			}
-			unlink($_update->getConfiguration('path'));
-			$zip->close();
-			log::add('update', 'info', __("OK\n", __FILE__));
-			log::add('update', 'info', __('Installation de l\'objet...', __FILE__));
-			if (!file_exists($cibDir . '/plugin_info')) {
-				$files = ls($cibDir, '*');
-				if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'plugin_info')) {
-					$cibDir = $cibDir . '/' . $files[0];
-				}
-			}
-			rcopy($cibDir . '/', dirname(__FILE__) . '/../../plugins/' . $_update->getLogicalId(), false, array(), true);
-			rrmdir($cibDir);
-			$cibDir = '/tmp/jeedom_' . $_update->getLogicalId();
-			if (file_exists($cibDir)) {
-				rrmdir($cibDir);
-			}
-			log::add('update', 'info', __("OK\n", __FILE__));
-		} else {
-			throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
-		}
-		return array('localVersion' => date('Y-m-d H:i:s'));
+		return array('localVersion' => date('Y-m-d H:i:s'), 'path' => $_update->getConfiguration('path'));
 	}
 
 	public static function deleteObjet($_update) {

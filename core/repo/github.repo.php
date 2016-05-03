@@ -135,50 +135,11 @@ class repo_github {
 			$result = shell_exec('curl -s -H "Authorization: token ' . config::byKey('github::token') . '" -L ' . $url . ' > ' . $tmp);
 		}
 		log::add('update', 'alert', $result);
-		if (!file_exists($tmp)) {
-			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
-		}
-		if (filesize($tmp) < 100) {
-			throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
-		}
-		log::add('update', 'alert', __("OK\n", __FILE__));
-		$cibDir = '/tmp/jeedom_' . $_update->getLogicalId();
-		if (file_exists($cibDir)) {
-			rrmdir($cibDir);
-		}
-		if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
-			throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
-		}
-		log::add('update', 'alert', __('Décompression du zip...', __FILE__));
-		$zip = new ZipArchive;
-		$res = $zip->open($tmp);
-		if ($res === TRUE) {
-			if (!$zip->extractTo($cibDir . '/')) {
-				$content = file_get_contents($tmp);
-				throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
-			}
-			$zip->close();
-			unlink($tmp);
-			if (!file_exists($cibDir . '/plugin_info')) {
-				$files = ls($cibDir, '*');
-				if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'plugin_info')) {
-					$cibDir = $cibDir . '/' . $files[0];
-				}
-			}
-			rcopy($cibDir . '/', dirname(__FILE__) . '/../../plugins/' . $_update->getLogicalId(), false, array(), true);
-			rrmdir($cibDir);
-			$cibDir = '/tmp/jeedom_' . $_update->getLogicalId();
-			if (file_exists($cibDir)) {
-				rrmdir($cibDir);
-			}
-			log::add('update', 'alert', __("OK\n", __FILE__));
-		} else {
-			throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
-		}
+
 		if (!isset($branch['commit']) || !isset($branch['commit']['sha'])) {
-			return array();
+			return array('path' => $tmp);
 		}
-		return array('localVersion' => $branch['commit']['sha']);
+		return array('localVersion' => $branch['commit']['sha'], 'path' => $tmp);
 	}
 
 	public static function deleteObjet($_update) {
