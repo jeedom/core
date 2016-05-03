@@ -96,6 +96,8 @@ class repo_market {
 		$market = repo_market::byLogicalIdAndType($_update->getLogicalId(), $_update->getType());
 		if (is_object($market)) {
 			$file = $market->install($_update->getConfiguration('version', 'stable'));
+		} else {
+			throw new Exception(__('Objet introuvable sur le market : ', __FILE__) . $_update->getLogicalId() . '/' . $_update->getType());
 		}
 		return array('path' => $file, 'localVersion' => $market->getDatetime($_update->getConfiguration('version', 'stable')));
 	}
