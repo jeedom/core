@@ -111,6 +111,7 @@ try {
 		}
 		utils::a2o($update, $update_json);
 		$update->save();
+		$update->doUpdate();
 		ajax::success(utils::o2a($update));
 	}
 

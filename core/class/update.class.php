@@ -465,10 +465,6 @@ class update {
 		}
 	}
 
-	public function postInsert() {
-		$this->doUpdate();
-	}
-
 	public function save() {
 		return DB::save($this);
 	}
