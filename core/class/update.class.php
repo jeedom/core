@@ -251,7 +251,7 @@ class update {
 	public function getInfo() {
 		if ($this->getType() != 'core') {
 			$class = 'repo_' . $this->getSource();
-			if (class_exists($class) && method_exists($class, 'objectInfo')) {
+			if (class_exists($class) && method_exists($class, 'objectInfo') && config::byKey($this->getSource() . '::enable') == 1) {
 				return $class::objectInfo($this);
 			}
 		}
@@ -263,9 +263,62 @@ class update {
 			jeedom::update();
 		} else {
 			$class = 'repo_' . $this->getSource();
-			if (class_exists($class) && method_exists($class, 'doUpdate')) {
+			if (class_exists($class) && method_exists($class, 'downloadObject') && config::byKey($this->getSource() . '::enable') == 1) {
 				$this->preInstallUpdate();
-				$this->postInstallUpdate($class::doUpdate($this));
+				$cibDir = '/tmp/jeedom_' . $this->getLogicalId();
+				if (file_exists($cibDir)) {
+					rrmdir($cibDir);
+				}
+				mkdir($cibDir);
+				if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
+					throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
+				}
+				log::add('update', 'alert', __('téléchargement du plugin...', __FILE__));
+				$info = $class::downloadObject($this);
+				if ($info['path'] === false) {
+					return;
+				}
+				$tmp = $info['path'];
+				log::add('update', 'alert', __("OK\n", __FILE__));
+
+				if (!file_exists($tmp)) {
+					throw new Exception(__('Impossible de trouver le fichier zip : ', __FILE__) . $this->getConfiguration('path'));
+				}
+				if (filesize($tmp) < 100) {
+					throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
+				}
+				$extension = strtolower(strrchr($tmp, '.'));
+				if (!in_array($extension, array('.zip'))) {
+					throw new Exception('Extension du fichier non valide (autorisé .zip) : ' . $extension);
+				}
+				log::add('update', 'alert', __('Décompression du zip...', __FILE__));
+				$zip = new ZipArchive;
+				$res = $zip->open($tmp);
+				if ($res === TRUE) {
+					if (!$zip->extractTo($cibDir . '/')) {
+						$content = file_get_contents($tmp);
+						throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
+					}
+					$zip->close();
+					unlink($tmp);
+					if (!file_exists($cibDir . '/plugin_info')) {
+						$files = ls($cibDir, '*');
+						if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'plugin_info')) {
+							$cibDir = $cibDir . '/' . $files[0];
+						}
+					}
+					rcopy($cibDir . '/', dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId(), false, array(), true);
+					rrmdir($cibDir);
+					$cibDir = '/tmp/jeedom_' . $this->getLogicalId();
+					if (file_exists($cibDir)) {
+						rrmdir($cibDir);
+					}
+					log::add('update', 'alert', __("OK\n", __FILE__));
+				} else {
+					throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
+				}
+
+				$this->postInstallUpdate($info);
 			}
 		}
 		$this->refresh();
@@ -308,8 +361,8 @@ class update {
 			}
 			try {
 				$class = 'repo_' . $this->getSource();
-				if (class_exists($class) && method_exists($class, 'deleteObjet')) {
-					$class::doUpdate($this);
+				if (class_exists($class) && method_exists($class, 'deleteObjet') && config::byKey($this->getSource() . '::enable') == 1) {
+					$class::deleteObjet($this);
 				}
 			} catch (Exception $e) {
 

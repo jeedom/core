@@ -28,13 +28,20 @@ class repo_url {
 	public static $_scope = array(
 		'plugin' => true,
 		'backup' => false,
-		'hasConfiguration' => false,
+		'hasConfiguration' => true,
+		'core' => true,
 	);
 
 	public static $_configuration = array(
 		'parameters_for_add' => array(
 			'url' => array(
 				'name' => 'URL du fichier ZIP',
+				'type' => 'input',
+			),
+		),
+		'configuration' => array(
+			'core::url' => array(
+				'name' => 'URL core Jeedom',
 				'type' => 'input',
 			),
 		),
@@ -46,7 +53,7 @@ class repo_url {
 
 	}
 
-	public static function doUpdate($_update) {
+	public static function downloadObject($_update) {
 		$tmp_dir = '/tmp';
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
@@ -58,52 +65,9 @@ class repo_url {
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
 		}
-
-		$url = 'https://api.github.com/repos/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/zipball';
-		file_put_contents($tmp, fopen($url, 'r'));
-
+		exec('wget --no-check-certificate --progress=dot --dot=mega ' . $_update->getConfiguration('url') . ' -O ' . $tmp);
 		log::add('update', 'alert', $result);
-		if (!file_exists($tmp)) {
-			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '.', __FILE__));
-		}
-		if (filesize($tmp) < 100) {
-			throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)', __FILE__));
-		}
-		log::add('update', 'alert', __("OK\n", __FILE__));
-		$cibDir = '/tmp/jeedom_' . $_update->getLogicalId();
-		if (file_exists($cibDir)) {
-			rrmdir($cibDir);
-		}
-		if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
-			throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
-		}
-		log::add('update', 'alert', __('Décompression du zip...', __FILE__));
-		$zip = new ZipArchive;
-		$res = $zip->open($tmp);
-		if ($res === TRUE) {
-			if (!$zip->extractTo($cibDir . '/')) {
-				$content = file_get_contents($tmp);
-				throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
-			}
-			$zip->close();
-			unlink($tmp);
-			if (!file_exists($cibDir . '/plugin_info')) {
-				$files = ls($cibDir, '*');
-				if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'plugin_info')) {
-					$cibDir = $cibDir . '/' . $files[0];
-				}
-			}
-			rcopy($cibDir . '/', dirname(__FILE__) . '/../../plugins/' . $_update->getLogicalId(), false, array(), true);
-			rrmdir($cibDir);
-			$cibDir = '/tmp/jeedom_' . $_update->getLogicalId();
-			if (file_exists($cibDir)) {
-				rrmdir($cibDir);
-			}
-			log::add('update', 'alert', __("OK\n", __FILE__));
-		} else {
-			throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp);
-		}
-		return array('localVersion' => date('Y-m-d H:i:s'));
+		return array('path' => $tmp, 'localVersion' => date('Y-m-d H:i:s'));
 	}
 
 	public static function deleteObjet($_update) {
@@ -115,6 +79,11 @@ class repo_url {
 			'doc' => '',
 			'changelog' => '',
 		);
+	}
+
+	public static function downloadCore($_path) {
+		exec('wget --no-check-certificate --progress=dot --dot=mega ' . config::byKey('url::core::url') . ' -O ' . $_path);
+		return;
 	}
 
 	/*     * *********************Methode d'instance************************* */

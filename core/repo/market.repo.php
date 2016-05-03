@@ -92,12 +92,14 @@ class repo_market {
 		$_update->save();
 	}
 
-	public static function doUpdate($_update) {
+	public static function downloadObject($_update) {
 		$market = repo_market::byLogicalIdAndType($_update->getLogicalId(), $_update->getType());
 		if (is_object($market)) {
-			$market->install($_update->getConfiguration('version', 'stable'));
+			$file = $market->install($_update->getConfiguration('version', 'stable'));
+		} else {
+			throw new Exception(__('Objet introuvable sur le market : ', __FILE__) . $_update->getLogicalId() . '/' . $_update->getType());
 		}
-		return array('localVersion' => $market->getDatetime($_update->getConfiguration('version', 'stable')));
+		return array('path' => $file, 'localVersion' => $market->getDatetime($_update->getConfiguration('version', 'stable')));
 	}
 
 	public static function deleteObjet($_update) {
@@ -618,61 +620,10 @@ class repo_market {
 		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&jeedomversion=' . jeedom::version() . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . config::byKey('market::password') . '&password_type=sha1';
 		log::add('update', 'alert', __('Téléchargement de ', __FILE__) . $this->getLogicalId() . '...');
 		file_put_contents($tmp, fopen($url, 'r'));
-		if (!file_exists($tmp)) {
-			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . $url . '. Si l\'application est payante, l\'avez-vous achetée ?', __FILE__));
-		}
-		log::add('update', 'alert', __("OK\n", __FILE__));
+
 		switch ($this->getType()) {
 			case 'plugin':
-				$cibDir = dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId();
-				if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
-					throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
-				}
-				log::add('update', 'alert', __('Décompression du zip...', __FILE__));
-				$zip = new ZipArchive;
-				$res = $zip->open($tmp);
-				if ($res === TRUE) {
-					if (!$zip->extractTo($cibDir . '/')) {
-						$content = file_get_contents($tmp);
-						throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
-					}
-					$zip->close();
-					unlink($tmp);
-					log::add('update', 'alert', __("OK\n", __FILE__));
-				} else {
-					switch ($res) {
-						case ZipArchive::ER_EXISTS:
-							$ErrMsg = "Le fichier existe déjà.";
-							break;
-						case ZipArchive::ER_INCONS:
-							$ErrMsg = "Archive zip est inconsistente.";
-							break;
-						case ZipArchive::ER_MEMORY:
-							$ErrMsg = "Erreur mémoire.";
-							break;
-						case ZipArchive::ER_NOENT:
-							$ErrMsg = "Ce fichier n\'existe pas.";
-							break;
-						case ZipArchive::ER_NOZIP:
-							$ErrMsg = "Ceci n\'est pas une archive zip.";
-							break;
-						case ZipArchive::ER_OPEN:
-							$ErrMsg = "Le fichier ne peut pas être ouvert.";
-							break;
-						case ZipArchive::ER_READ:
-							$ErrMsg = "Erreur de lecture.";
-							break;
-						case ZipArchive::ER_SEEK:
-							$ErrMsg = "Erreur de recherche.";
-							break;
-						default:
-							$ErrMsg = "Erreur inconnue (Code $res)";
-							break;
-					}
-					$content = file_get_contents($tmp);
-					unlink($tmp);
-					throw new Exception(__('Impossible de décompresser le zip : ', __FILE__) . $tmp . __('. Erreur : ', __FILE__) . $ErrMsg . '.' . $content);
-				}
+				return $tmp;
 				break;
 			default:
 				log::add('update', 'alert', __('Installation de du plugin,widget,scénario...', __FILE__));
@@ -683,6 +634,7 @@ class repo_market {
 				log::add('update', 'alert', __("OK\n", __FILE__));
 				break;
 		}
+		return false;
 	}
 
 	public function remove() {
