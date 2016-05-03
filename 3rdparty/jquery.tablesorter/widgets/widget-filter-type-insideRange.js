@@ -1,6 +1,6 @@
-/*! Widget: filter, insideRange filter type - updated 2/23/2015 (v2.21.0) */
+/*! Widget: filter, insideRange filter type - updated 12/10/2015 (v2.25.0) */
 ;(function($){
-'use strict';
+	'use strict';
 
 	// Add insideRange filter type
 	// ============================
@@ -15,18 +15,21 @@
 		};
 
 	ts.filter.types.insideRange = function( c, data ) {
-		if ( isDigit.test( data.iFilter ) && range.test( data.iExact ) ) {
+		// don't look for an inside range if "any" match is enabled... multiple "-" really screw things up
+		if ( !data.anyMatch && isDigit.test( data.iFilter ) && range.test( data.iExact ) ) {
 			var t, val, low, high,
+				index = data.index,
+				cell = data.$cells[ index ],
 				parts = data.iExact.split( range ),
-				format = c.parsers[data.index].format;
-			// the cell does not contain a range
-			if ( parts && parts.length < 2 ) {
+				format = c.parsers[data.index] && c.parsers[data.index].format;
+			// the cell does not contain a range or the parser isn't defined
+			if ( parts && parts.length < 2 || typeof format !== 'function' ) {
 				return null;
 			}
 			// format each side part of the range using the assigned parser
-			low = parseNumber( format( parts[0], c.table ) );
-			high = parseNumber( format( parts[1], c.table ) );
-			val = parseNumber( format( data.iFilter, c.table ) );
+			low = parseNumber( format( parts[0], c.table, cell, index ) );
+			high = parseNumber( format( parts[1], c.table, cell, index ) );
+			val = parseNumber( format( data.iFilter, c.table, cell, index ) );
 			if ( high < low ) {
 				// swap high & low
 				t = high; high = low; low = t;
