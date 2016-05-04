@@ -221,13 +221,40 @@ class repo_ftp {
 		$connexion = self::getFtpConnection('plugin');
 		$factory = new FTPFactory;
 		$ftp = $factory->build($connection);
-		$pathinfo = pathinfo(config::byKey('ftp::core::path'));
-		$file = $ftp->findFileByName($pathinfo['filename'] . '.' . $pathinfo['extension'], new Directory($pathinfo['dirname']));
+		$file = $ftp->findFileByName('jeedom.zip', new Directory(config::byKey('ftp::core::path')));
 		if (null === $file) {
 			throw new Exception(__('Impossible de télécharger le fichier depuis : ' . config::byKey('ftp::core::path') . '.', __FILE__));
 		}
 		$ftp->download($_path, $file);
 		$connection->close();
+	}
+
+	public static function versionCore() {
+		try {
+			if (file_exists('/tmp/jeedom_version')) {
+				com_shell::execute('sudo rm /tmp/jeedom_version');
+			}
+			$connexion = self::getFtpConnection('plugin');
+			$factory = new FTPFactory;
+			$ftp = $factory->build($connection);
+			$file = $ftp->findFileByName('jeedom_version', new Directory(config::byKey('ftp::core::path')));
+			if (null === $file) {
+				return null;
+			}
+			$ftp->download('/tmp/jeedom_version', $file);
+			$connection->close();
+			if (!file_exists('/tmp/jeedom_version')) {
+				return null;
+			}
+			$version = trim(file_get_contents('/tmp/jeedom_version'));
+			com_shell::execute('sudo rm /tmp/jeedom_version');
+			return $version;
+		} catch (Exception $e) {
+
+		} catch (Error $e) {
+
+		}
+		return null;
 	}
 
 	/*     * *********************Methode d'instance************************* */
