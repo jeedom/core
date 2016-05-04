@@ -42,6 +42,7 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 				$update->setConfiguration($key, $value);
 			}
 			$update->save();
+			$update->doUpdate();
 			$plugin = plugin::byId('virtual');
 		}
 		if (!$plugin->isActive()) {
