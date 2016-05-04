@@ -207,10 +207,32 @@ class repo_samba {
 	public static function downloadCore($_path) {
 		$pathinfo = pathinfo($_path);
 		$cmd = 'cd ' . $pathinfo['dirname'] . ';';
-		$cmd .= self::makeSambaCommand('get ' . config::byKey('samba::core::path'), 'plugin');
+		$cmd .= self::makeSambaCommand('get ' . config::byKey('samba::core::path') . '/jeedom.zip', 'plugin');
 		com_shell::execute($cmd);
 		com_shell::execute('sudo chmod 777 -R ' . $_path);
 		return;
+	}
+
+	public static function versionCore() {
+		try {
+			if (file_exists('/tmp/jeedom_version')) {
+				com_shell::execute('sudo rm /tmp/jeedom_version');
+			}
+			$cmd = 'cd /tmp;';
+			$cmd .= self::makeSambaCommand('get ' . config::byKey('samba::core::path') . '/jeedom_version', 'plugin');
+			com_shell::execute($cmd);
+			if (!file_exists('/tmp/jeedom_version')) {
+				return null;
+			}
+			$version = trim(file_get_contents('/tmp/jeedom_version'));
+			com_shell::execute('sudo rm /tmp/jeedom_version');
+			return $version;
+		} catch (Exception $e) {
+
+		} catch (Error $e) {
+
+		}
+		return null;
 	}
 
 	/*     * *********************Methode d'instance************************* */
