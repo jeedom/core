@@ -45,6 +45,12 @@ class repo_url {
 				'type' => 'input',
 			),
 		),
+		'configuration' => array(
+			'core::url::version' => array(
+				'name' => 'URL version core Jeedom',
+				'type' => 'input',
+			),
+		),
 	);
 
 	/*     * ***********************Méthodes statiques*************************** */
@@ -84,6 +90,29 @@ class repo_url {
 	public static function downloadCore($_path) {
 		exec('wget --no-check-certificate --progress=dot --dot=mega ' . config::byKey('url::core::url') . ' -O ' . $_path);
 		return;
+	}
+
+	public static function versionCore() {
+		if (config::byKey('url::core::url::version') == '') {
+			return null;
+		}
+		try {
+			if (file_exists('/tmp/jeedom_version')) {
+				com_shell::execute('sudo rm /tmp/jeedom_version');
+			}
+			exec('wget --no-check-certificate --progress=dot --dot=mega ' . config::byKey('url::core::url::version') . ' -O /tmp/jeedom_version');
+			if (!file_exists('/tmp/jeedom_version')) {
+				return null;
+			}
+			$version = trim(file_get_contents('/tmp/jeedom_version'));
+			com_shell::execute('sudo rm /tmp/jeedom_version');
+			return $version;
+		} catch (Exception $e) {
+
+		} catch (Error $e) {
+
+		}
+		return null;
 	}
 
 	/*     * *********************Methode d'instance************************* */
