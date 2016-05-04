@@ -51,11 +51,7 @@ class update {
 					$update->setType('core');
 					$update->setLogicalId('jeedom');
 					$update->setSource(config::byKey('core::repo::provider'));
-					if (method_exists('jeedom', 'version')) {
-						$update->setLocalVersion(jeedom::version());
-					} else {
-						$update->setLocalVersion(getVersion('jeedom'));
-					}
+					$update->setLocalVersion(jeedom::version());
 					$update->save();
 					$update->checkUpdate();
 				} else {
@@ -70,11 +66,7 @@ class update {
 			$update->setType('core');
 			$update->setLogicalId('jeedom');
 			$update->setSource(config::byKey('core::repo::provider'));
-			if (method_exists('jeedom', 'version')) {
-				$update->setLocalVersion(jeedom::version());
-			} else {
-				$update->setLocalVersion(getVersion('jeedom'));
-			}
+			$update->setLocalVersion(jeedom::version());
 			$update->save();
 			$update->checkUpdate();
 		}
@@ -431,12 +423,32 @@ class update {
 		log::add('update', 'alert', __("OK\n", __FILE__));
 	}
 
+	public static function getLastAvailableVersion() {
+		try {
+			$url = 'https://raw.githubusercontent.com/jeedom/core/stable/core/config/version';
+			$request_http = new com_http($url);
+			return trim($request_http->exec());
+		} catch (Exception $e) {
+
+		} catch (Error $e) {
+
+		}
+		return null;
+	}
+
 	public function checkUpdate() {
 		if ($this->getType() == 'core') {
-			$update_info = jeedom::needUpdate(true);
-			$this->setLocalVersion($update_info['version']);
-			$this->setRemoteVersion($update_info['currentVersion']);
-			if ($update_info['needUpdate']) {
+			if (config::byKey('core::repo::provider') == 'default') {
+				$this->setRemoteVersion(self::getLastAvailableVersion(true));
+			} else {
+				$class = 'repo_' . config::byKey('core::repo::provider', 'core', 'default');
+				if (!method_exists($class, 'versionCore')) {
+					$this->setRemoteVersion(jeedom::getLastAvailableVersion(true));
+				} else {
+					$this->setRemoteVersion($class::versionCore());
+				}
+			}
+			if (version_compare($this->getRemoteVersion(), $this->getLocalVersion(), '>')) {
 				$this->setStatus('update');
 			} else {
 				$this->setStatus('ok');

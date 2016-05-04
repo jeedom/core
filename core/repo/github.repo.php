@@ -170,6 +170,19 @@ class repo_github {
 		return;
 	}
 
+	public static function versionCore() {
+		try {
+			$client = self::getGithubClient();
+			$fileContent = $client->api('repo')->contents()->download(config::byKey('github::core::user', 'core', 'jeedom'), config::byKey('github::core::repository', 'core', 'core'), 'core/config/version', config::byKey('github::core::branch', 'core', 'stable'));
+			return trim($fileContent);
+		} catch (Exception $e) {
+
+		} catch (Error $e) {
+
+		}
+		return null;
+	}
+
 	/*     * *********************Methode d'instance************************* */
 
 	/*     * **********************Getteur Setteur*************************** */
