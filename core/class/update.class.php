@@ -443,10 +443,14 @@ class update {
 			} else {
 				$class = 'repo_' . config::byKey('core::repo::provider', 'core', 'default');
 				if (!method_exists($class, 'versionCore')) {
-					$this->setRemoteVersion(jeedom::getLastAvailableVersion(true));
+					$version = $this->getLocalVersion();
 				} else {
-					$this->setRemoteVersion($class::versionCore());
+					$version = $class::versionCore();
+					if ($version == null) {
+						$version = $this->getLocalVersion();
+					}
 				}
+				$this->setRemoteVersion($version);
 			}
 			if (version_compare($this->getRemoteVersion(), $this->getLocalVersion(), '>')) {
 				$this->setStatus('update');
