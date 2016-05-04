@@ -50,7 +50,7 @@ class update {
 					$findCore = true;
 					$update->setType('core');
 					$update->setLogicalId('jeedom');
-					$update->setSource('github');
+					$update->setSource(config::byKey('core::repo::provider'));
 					if (method_exists('jeedom', 'version')) {
 						$update->setLocalVersion(jeedom::version());
 					} else {
@@ -69,7 +69,7 @@ class update {
 			$update = new update();
 			$update->setType('core');
 			$update->setLogicalId('jeedom');
-			$update->setSource('github');
+			$update->setSource(config::byKey('core::repo::provider'));
 			if (method_exists('jeedom', 'version')) {
 				$update->setLocalVersion(jeedom::version());
 			} else {

@@ -120,7 +120,7 @@ try {
 				$tmp_dir = '/tmp';
 				$tmp = $tmp_dir . '/jeedom_update.zip';
 				try {
-					if (config::byKey('core::repo::provider', 'core', 'default') == 'default') {
+					if (config::byKey('core::repo::provider') == 'default') {
 						$url = 'https://github.com/jeedom/core/archive/stable.zip';
 						echo __("Adresse de téléchargement : " . $url . "\n", __FILE__);
 						echo __("Téléchargement en cours...", __FILE__);
