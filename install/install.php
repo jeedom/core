@@ -132,12 +132,15 @@ try {
 						}
 						exec('wget --no-check-certificate --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
 					} else {
-						$class = 'repo_' . config::byKey('core::repo::provider', 'core', 'default');
+						$class = 'repo_' . config::byKey('core::repo::provider');
 						if (!class_exists($class)) {
 							throw new Exception(__('Classe repo introuvable : ', __FILE__) . $class);
 						}
 						if (!method_exists($class, 'downloadCore')) {
 							throw new Exception(__('Méthode repo introuvable : ', __FILE__) . $class . '::downloadCore');
+						}
+						if (config::byKey(config::byKey('core::repo::provider') . '::enable') != 1) {
+							throw new Exception(__('Repo désactivé : ', __FILE__) . $class);
 						}
 						$class::downloadCore($tmp);
 					}

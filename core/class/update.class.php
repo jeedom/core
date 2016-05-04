@@ -441,8 +441,8 @@ class update {
 			if (config::byKey('core::repo::provider') == 'default') {
 				$this->setRemoteVersion(self::getLastAvailableVersion(true));
 			} else {
-				$class = 'repo_' . config::byKey('core::repo::provider', 'core', 'default');
-				if (!method_exists($class, 'versionCore')) {
+				$class = 'repo_' . config::byKey('core::repo::provider');
+				if (!method_exists($class, 'versionCore') || config::byKey(config::byKey('core::repo::provider') . '::enable') != 1) {
 					$version = $this->getLocalVersion();
 				} else {
 					$version = $class::versionCore();
@@ -461,7 +461,7 @@ class update {
 		} else {
 			try {
 				$class = 'repo_' . $this->getSource();
-				if (class_exists($class) && method_exists($class, 'checkUpdate')) {
+				if (class_exists($class) && method_exists($class, 'checkUpdate') && config::byKey($this->getSource() . '::enable') == 1) {
 					$class::checkUpdate($this);
 				}
 			} catch (Exception $ex) {
