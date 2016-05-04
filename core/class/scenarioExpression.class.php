@@ -105,20 +105,15 @@ class scenarioExpression {
 						$replace['#' . $key . '#'] = $value;
 					}
 				}
+
 				if (!isset($replace['#id#'])) {
 					$replace['#id#'] = rand();
 				}
-				if (!isset($replace['#title#'])) {
-					$replace['#title#'] = '';
-				}
-				if (!isset($replace['#message#'])) {
-					$replace['#message#'] = '';
-				}
-				if (!isset($replace['#slider#'])) {
-					$replace['#slider#'] = '';
-				}
-				if (!isset($replace['#color#'])) {
-					$replace['#color#'] = '';
+				$tags = array('#title#', '#message#', '#slider#', '#color#', '#duration#');
+				foreach ($tags as $tag) {
+					if (!isset($replace[$tag])) {
+						$replace[$tag] = '';
+					}
 				}
 				$return['html'] = template_replace(cmd::cmdToHumanReadable($replace), $return['html']);
 			} catch (Exception $e) {

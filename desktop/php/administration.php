@@ -869,7 +869,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                     <tbody>
                         <?php
 
-$other_log = array('scenario', 'plugin', 'market', 'api');
+$other_log = array('scenario', 'plugin', 'market', 'api', 'connection');
 foreach ($other_log as $name) {
 	echo '<tr>';
 	echo '<td>' . ucfirst($name) . '</td>';
