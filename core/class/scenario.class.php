@@ -1103,37 +1103,29 @@ class scenario {
 			return true;
 		}
 		$_user = $_SESSION['user'];
-		if (!is_object($_user)) {
-			return false;
-		}
-		if (!isConnect()) {
+		if (!is_object($_user) || !isConnect()) {
 			return false;
 		}
 		if (isConnect('admin')) {
 			return true;
 		}
+		$assocRights = array('x'=>'action', 'w'=>'edit', 'r'=>'view');
 		$rights = null;
-		if ($_right == 'x') {
-			$rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'action');
-		} elseif ($_right == 'w') {
-			$rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'edit');
-		} elseif ($_right == 'r') {
-			$rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . 'view');
+		if (array_key_exists($_right, $assocRights)) {
+			$rights = rights::byuserIdAndEntity($_user->getId(), 'scenario' . $this->getId() . $assocRights[$_right]);
 		}
-		if (!is_object($rights)) {
-			return false;
-		}
-		return $rights->getRight();
+		return (!is_object($rights)) ? false : $rights->getRight();
 	}
 
 	public function persistLog() {
 		if ($this->getConfiguration('noLog', 0) == 1) {
 			return;
 		}
-		if (!file_exists(dirname(__FILE__) . '/../../log/scenarioLog')) {
-			mkdir(dirname(__FILE__) . '/../../log/scenarioLog');
+		$path = getRootPath().'/log/scenarioLog';
+		if (!file_exists($path)) {
+			mkdir($path);
 		}
-		$path = dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $this->getId() . '.log';
+		$path .= '/scenario' . $this->getId() . '.log';
 		file_put_contents($path, "------------------------------------\n" . $this->getLog(), FILE_APPEND);
 	}
 
