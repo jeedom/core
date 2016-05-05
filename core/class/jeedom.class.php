@@ -418,6 +418,15 @@ class jeedom {
 			} catch (Error $e) {
 
 			}
+			if (config::byKey('market::enable') == 1) {
+				try {
+					repo_market::test();
+				} catch (Exception $e) {
+
+				} catch (Error $e) {
+
+				}
+			}
 			log::add('starting', 'debug', 'All it\'s done');
 		}
 		self::isDateOk();
