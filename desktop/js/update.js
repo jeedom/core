@@ -93,26 +93,6 @@ jeedom.update.doAll({
     });
 });
 
- $('#table_update').delegate('.changeState', 'click', function () {
-    var id = $(this).closest('tr').attr('data-id');
-    var state = $(this).attr('data-state');
-    bootbox.confirm('{{Etes vous sur de vouloir changer l\'état de l\'objet ?}}', function (result) {
-        if (result) {
-            $.hideAlert();
-            jeedom.update.changeState({
-                id: id,
-                state: state,
-                error: function (error) {
-                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                },
-                success: function () {
-                    printUpdate();
-                }
-            });
-        }
-    });
-
-});
 
  $('#table_update').delegate('.update', 'click', function () {
     var id = $(this).closest('tr').attr('data-id');
@@ -148,6 +128,21 @@ jeedom.update.doAll({
             });
         }
     });
+});
+
+ $('#table_update').delegate('.checkUpdate', 'click', function () {
+    var id = $(this).closest('tr').attr('data-id');
+    $.hideAlert();
+    jeedom.update.check({
+        id: id,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+            printUpdate();
+        }
+    });
+
 });
 
  $('#table_update').delegate('.view', 'click', function () {
@@ -249,12 +244,9 @@ function addUpdate(_update) {
         }
     }
     var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
-    tr += '<td><span class="updateAttr" data-l1key="type"></span></td>';
-    tr += '<td><span class="updateAttr" data-l1key="name"></span></td>';
-    tr += '<td><span class="updateAttr" data-l1key="source"></span></td>';
-    tr += '<td><span class="updateAttr" data-l1key="localVersion"></span></td>';
-    tr += '<td><span class="updateAttr" data-l1key="remoteVersion"></span></td>';
-    tr += '<td><span class="updateAttr label label-success" data-l1key="status"></span>';
+    tr += '<td><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr label label-primary" data-l1key="source"></span> <span class="updateAttr label label-primary" data-l1key="type"></span> <span class="updateAttr label label-info" data-l1key="name"></span></td>';
+    tr += '<td><span class="updateAttr label label-primary" data-l1key="localVersion"></span><br/><span class="updateAttr label label-info" data-l1key="remoteVersion"></span></td>';
+    tr += '<td><span class="updateAttr label label-success" data-l1key="status"></span><br/>';
     if (isset(_update.configuration) && isset(_update.configuration.version)) {
         if (_update.configuration.version == 'beta') {
             tr += ' <span class="label label-danger">' + _update.configuration.version + '</span>';
@@ -263,21 +255,25 @@ function addUpdate(_update) {
         }
     }
     tr += '</td>';
-    tr += '<td style="width : 400px;">';
+    tr += '<td>';
+    tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate">{{Ne pas mettre à jour}}';
+    tr += '</td>';
+    tr += '<td>';
     if (_update.status == 'update') {
-        tr += '<a class="btn btn-info btn-xs pull-right update tooltips" style="color : white;margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fa fa-refresh"></i> {{Mettre à jour}}</a>';
+        tr += '<a class="btn btn-info btn-xs pull-right update tooltips" style="margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fa fa-refresh"></i> {{Mettre à jour}}</a>';
     }else{
-       if (_update.type != 'core') {
-        tr += '<a class="btn btn-info btn-xs pull-right update tooltips" style="color : white;margin-bottom : 5px;" title="{{Re-installer}}"><i class="fa fa-refresh"></i> {{Re-installer}}</a>';
+     tr += '<a class="btn btn-info btn-xs pull-right checkUpdate expertModeVisible tooltips" style="margin-bottom : 5px;" ><i class="fa fa-check"></i> {{Vérifier les mises à jour}}</a>';
+     if (_update.type != 'core') {
+        tr += '<a class="btn btn-info btn-xs pull-right update tooltips" style="margin-bottom : 5px;" title="{{Re-installer}}"><i class="fa fa-refresh"></i> {{Re-installer}}</a>';
     }
 }
 if (_update.type != 'core') {
-    tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible tooltips" data-state="unhold" style="color : white;margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
+    tr += '<a class="btn btn-danger btn-xs pull-right remove expertModeVisible tooltips" style="margin-bottom : 5px;" ><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
     if (isset(_update.info) && isset(_update.info.changelog) && _update.info.changelog != '') {
-        tr += '<a class="btn btn-primary btn-xs pull-right tooltips cursor" target="_blank" href="'+_update.info.changelog+'" style="color : white;margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';
+        tr += '<a class="btn btn-default btn-xs pull-right tooltips cursor" target="_blank" href="'+_update.info.changelog+'" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';
     }
 } else {
-    tr += '<a class="btn btn-default btn-xs pull-right" href="https://jeedom.com/roadmap/index.php?changelog" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-bars"></i> {{Changelog}}</a>';
+    tr += '<a class="btn btn-default btn-xs pull-right" href="https://jeedom.com/roadmap/index.php?changelog" target="_blank" style="margin-bottom : 5px;"><i class="fa fa-book"></i> {{Changelog}}</a>';
 }
 
 tr += '</td>';
@@ -285,3 +281,16 @@ tr += '</tr>';
 $('#table_update').append(tr);
 $('#table_update tbody tr:last').setValues(_update, '.updateAttr');
 }
+
+$('#bt_saveUpdate').on('click',function(){
+    jeedom.update.saves({
+        updates : $('#table_update tbody tr').getValues('.updateAttr'),
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+           $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
+           printUpdate();
+       }
+   });
+});

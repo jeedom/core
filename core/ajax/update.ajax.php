@@ -63,7 +63,6 @@ try {
 	}
 
 	if (init('action') == 'remove') {
-		update::findNewUpdateObject();
 		$update = update::byId(init('id'));
 		if (!is_object($update)) {
 			$update = update::byLogicalId(init('id'));
@@ -75,26 +74,20 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'updateAll') {
-		update::makeUpdateLevel(init('mode'), init('level'), init('version', ''), init('onlyThisVersion', ''));
-		ajax::success();
-	}
-
-	if (init('action') == 'changeState') {
-		update::findNewUpdateObject();
+	if (init('action') == 'checkUpdate') {
 		$update = update::byId(init('id'));
+		if (!is_object($update)) {
+			$update = update::byLogicalId(init('id'));
+		}
 		if (!is_object($update)) {
 			throw new Exception(__('Aucune correspondance pour l\'ID : ' . init('id'), __FILE__));
 		}
-		if (init('state') == '') {
-			throw new Exception(__('Le status ne peut être vide', __FILE__));
-		}
-		if (init('state') == 'hold') {
-			$update->setStatus('hold');
-			$update->save();
-		} else {
-			$update->checkUpdate();
-		}
+		$update->checkUpdate();
+		ajax::success();
+	}
+
+	if (init('action') == 'updateAll') {
+		update::makeUpdateLevel(init('mode'), init('level'), init('version', ''), init('onlyThisVersion', ''));
 		ajax::success();
 	}
 
@@ -113,6 +106,11 @@ try {
 		$update->save();
 		$update->doUpdate();
 		ajax::success(utils::o2a($update));
+	}
+
+	if (init('action') == 'saves') {
+		utils::processJsonObject('update', init('updates'));
+		ajax::success();
 	}
 
 	if (init('action') == 'preUploadFile') {

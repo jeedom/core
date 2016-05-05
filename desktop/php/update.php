@@ -6,8 +6,9 @@ if (!hasRight('updateview', true)) {
 <br/>
 <div class="row row-overflow">
     <div class="col-sm-8">
-        <i class="fa fa-clock-o"></i>  {{Dernière vérification : }}<span class="label label-info" id="span_lastUpdateCheck" style="margin-bottom: 5px;"></span>
+    <i class="fa fa-clock-o"></i>  {{Dernière vérification : }}<span class="label label-info" id="span_lastUpdateCheck" style="margin-bottom: 5px;font-size:1em;"></span>
 
+        <a class="btn btn-success pull-right" id="bt_saveUpdate" style="margin-top:5px;"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
         <a class="btn btn-warning pull-right" id="bt_checkAllUpdate" style="margin-top:5px;"><i class="fa fa-refresh"></i> {{Vérifier les objets et mises à jour}}</a>
         <a class="btn btn-primary pull-right" id="bt_allChangelog" style="margin-top:5px;"><i class="fa fa-search-plus"></i> {{Changelog}}</a>
         <div class="btn-group pull-right" style="margin-top:5px;">
@@ -30,13 +31,11 @@ if (!hasRight('updateview', true)) {
         <table class="table table-condensed table-bordered tablesorter" id="table_update" style="margin-top: 5px;">
             <thead>
                 <tr>
-                    <th>{{Type}}</th>
                     <th>{{Nom}}</th>
-                    <th>{{Source}}</th>
-                    <th>{{Version actuelle}}</th>
-                    <th>{{Version disponible}}</th>
+                    <th>{{Version}}</th>
                     <th>{{Statut}}</th>
-                    <th data-sorter="false" data-filter="false" style="width: 400px;">{{Actions}}</th>
+                    <th data-sorter="false" data-filter="false">{{Options}}</th>
+                    <th data-sorter="false" data-filter="false">{{Actions}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,11 +49,11 @@ if (!hasRight('updateview', true)) {
 </div>
 
 <div id="md_specifyUpdate">
- <form class="form-horizontal">
+   <form class="form-horizontal">
     <fieldset>
-       <div class="form-group">
-           <label class="col-xs-6 control-label">{{Mise à jour à réappliquer}}</label>
-           <div class="col-xs-6">
+     <div class="form-group">
+         <label class="col-xs-6 control-label">{{Mise à jour à réappliquer}}</label>
+         <div class="col-xs-6">
             <select id="sel_updateVersion" class="form-control">
                 <option value="">{{Aucune}}</option>
                 <?php

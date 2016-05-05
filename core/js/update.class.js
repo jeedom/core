@@ -16,11 +16,11 @@
  */
 
 
-jeedom.update = function () {
-};
+ jeedom.update = function () {
+ };
 
 
-jeedom.update.doAll = function (_params) {
+ jeedom.update.doAll = function (_params) {
     var paramsRequired = ['level', 'mode'];
     var paramsSpecifics = {};
     try {
@@ -38,26 +38,6 @@ jeedom.update.doAll = function (_params) {
         mode: _params.mode,
         version: _params.version || '',
         onlyThisVersion: _params.onlyThisVersion || '',
-    };
-    $.ajax(paramsAJAX);
-}
-
-jeedom.update.changeState = function (_params) {
-    var paramsRequired = ['id', 'state'];
-    var paramsSpecifics = {};
-    try {
-        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-    } catch (e) {
-        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-        return;
-    }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.url = 'core/ajax/update.ajax.php';
-    paramsAJAX.data = {
-        action: 'changeState',
-        id: _params.id,
-        state: _params.state
     };
     $.ajax(paramsAJAX);
 }
@@ -118,6 +98,25 @@ jeedom.update.checkAll = function (_params) {
     $.ajax(paramsAJAX);
 }
 
+jeedom.update.check = function (_params) {
+    var paramsRequired = ['id'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/update.ajax.php';
+    paramsAJAX.data = {
+        action: 'checkUpdate',
+        id: _params.id
+    };
+    $.ajax(paramsAJAX);
+}
+
 
 jeedom.update.get = function (_params) {
     var paramsRequired = [];
@@ -152,6 +151,25 @@ jeedom.update.save = function (_params) {
     paramsAJAX.data = {
         action: 'save',
         update: json_encode(_params.update)
+    };
+    $.ajax(paramsAJAX);
+}
+
+jeedom.update.saves = function (_params) {
+    var paramsRequired = ['updates'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/update.ajax.php';
+    paramsAJAX.data = {
+        action: 'saves',
+        updates: json_encode(_params.updates)
     };
     $.ajax(paramsAJAX);
 }

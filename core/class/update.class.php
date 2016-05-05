@@ -251,6 +251,10 @@ class update {
 	}
 
 	public function doUpdate() {
+		if ($this->getConfiguration('doNotUpdate') == 1) {
+			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivé sur ', __FILE__) . $this->getLogicalId());
+			return;
+		}
 		if ($this->getType() == 'core') {
 			jeedom::update();
 		} else {
@@ -437,6 +441,10 @@ class update {
 	}
 
 	public function checkUpdate() {
+		if ($this->getConfiguration('doNotUpdate') == 1) {
+			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivé sur ', __FILE__) . $this->getLogicalId());
+			return;
+		}
 		if ($this->getType() == 'core') {
 			if (config::byKey('core::repo::provider') == 'default') {
 				$this->setRemoteVersion(self::getLastAvailableVersion(true));
