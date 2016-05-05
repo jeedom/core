@@ -86,7 +86,7 @@ class Base32
             }
 
             // Base32 character
-            $base32String .= substr(self::$alphabet, $char, 1);
+            $base32String .= self::$alphabet[$char];
         }
 
         return $base32String;

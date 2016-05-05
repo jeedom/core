@@ -31,13 +31,16 @@ Gateway | Composer Package | Maintainer
 --- | --- | ---
 [Amazon](https://github.com/lemonstand/oauth2-amazon/) | lemonstand/oauth2-amazon | [LemonStand](https://github.com/lemonstand)
 [Auth0](https://github.com/RiskioFr/oauth2-auth0) | riskio/oauth2-auth0 | [Riskio](https://github.com/RiskioFr)
+[Azure Active Directory](https://github.com/thenetworg/oauth2-azure) | thenetworg/oauth2-azure | [Jan Hajek](https://github.com/hajekj)
 [Battle.net](https://github.com/tpavlek/oauth2-bnet) | depotwarehouse/oauth2-bnet | [Troy Pavlek](https://github.com/tpavlek)
+[Betaseries](https://github.com/florentsorel/oauth2-betaseries) | rtransat/oauth2-betaseries | [Florent Sorel](https://github.com/florentsorel)
 [Bitbucket](https://github.com/stevenmaguire/oauth2-bitbucket) | stevenmaguire/oauth2-bitbucket | [Steven Maguire](https://github.com/stevenmaguire)
 [BookingSync](https://github.com/BookingSync/oauth2-bookingsync-php) | bookingsync/oauth2-bookingsync-php | [BookingSync](https://github.com/BookingSync)
 [Box](https://github.com/stevenmaguire/oauth2-box) | stevenmaguire/oauth2-box | [Steven Maguire](https://github.com/stevenmaguire)
 [Clover](https://github.com/wheniwork/oauth2-clover) | wheniwork/oauth2-clover | [When I Work](https://github.com/wheniwork)
 [Coinbase](https://github.com/openclerk/coinbase-oauth2) | openclerk/coinbase-oauth2 | [Openclerk](https://github.com/openclerk)
 [Dropbox](https://github.com/pixelfear/oauth2-dropbox) | pixelfear/oauth2-dropbox | [Jason Varga](https://github.com/jasonvarga)
+[Drupal](https://github.com/chrishemmings/oauth2-drupal) | chrishemmings/oauth2-drupal | [Chris Hemmings](https://github.com/chrishemmings)
 [Elance](https://github.com/stevenmaguire/oauth2-elance) | stevenmaguire/oauth2-elance | [Steven Maguire](https://github.com/stevenmaguire)
 [Envato](https://github.com/dilab/envato-oauth2-provider) | dilab/envato-oauth2-provider | [Xu Ding](https://github.com/dilab)
 [Eventbrite](https://github.com/stevenmaguire/oauth2-eventbrite) | stevenmaguire/oauth2-eventbrite | [Steven Maguire](https://github.com/stevenmaguire)
@@ -48,6 +51,7 @@ Gateway | Composer Package | Maintainer
 [Google Nest](https://github.com/JC5/nest-oauth2-provider) | grumpydictator/nest-oauth2-provider | [James Cole](https://github.com/JC5)
 [Imgur](https://github.com/adam-paterson/oauth2-imgur) | adam-paterson/oauth2-imgur | [Adam Paterson](https://github.com/adam-paterson)
 [Keycloak](https://github.com/stevenmaguire/oauth2-keycloak) | stevenmaguire/oauth2-keycloak | [Steven Maguire](https://github.com/stevenmaguire)
+[MailChimp](https://github.com/cfreear/oauth2-mailchimp) | cfreear/oauth2-mailchimp | [Christian Freear](https://github.com/cfreear)
 [Mail.ru](https://packagist.org/packages/aego/oauth2-mailru) | aego/oauth2-mailru | [Alexey](https://github.com/rakeev)
 [Meetup](https://github.com/howlowck/meetup-oauth2-provider) | howlowck/meetup-oauth2-provider | [Hao Luo](https://github.com/howlowck)
 [Microsoft](https://github.com/stevenmaguire/oauth2-microsoft) | stevenmaguire/oauth2-microsoft | [Steven Maguire](https://github.com/stevenmaguire)
@@ -58,6 +62,7 @@ Gateway | Composer Package | Maintainer
 [Rdio](https://github.com/adam-paterson/oauth2-rdio) | adam-paterson/oauth2-rdio | [Adam Paterson](https://github.com/adam-paterson)
 [Reddit](https://github.com/rtheunissen/oauth2-reddit) | rtheunissen/oauth2-reddit | [Rudi Theunissen](https://github.com/rtheunissen)
 [Resource Guru](https://github.com/adam-paterson/oauth2-resource-guru) | adam-paterson/oauth2-resource-guru | [Adam Paterson](https://github.com/adam-paterson)
+[Ring Central](https://github.com/tmannherz/oauth2-ringcentral) | tmannherz/oauth2-ringcentral | [Todd Mannherz](https://github.com/tmannherz)
 [Salesforce](https://github.com/stevenmaguire/oauth2-salesforce) | stevenmaguire/oauth2-salesforce | [Steven Maguire](https://github.com/stevenmaguire)
 [Shotbow](https://packagist.org/packages/shotbow/oauth2-shotbow) | shotbow/oauth2-shotbow | [Navarr Barnier](https://github.com/navarr)
 [Slack](https://github.com/adam-paterson/oauth2-slack) | adam-paterson/oauth2-slack | [Adam Paterson](https://github.com/adam-paterson)
@@ -66,14 +71,18 @@ Gateway | Composer Package | Maintainer
 [Square](https://packagist.org/packages/wheniwork/oauth2-square) | wheniwork/oauth2-square | [Woody Gilk](https://github.com/shadowhand)
 [Twitch.tv](https://github.com/tpavlek/oauth2-twitch) | depotwarehouse/oauth2-twitch | [Troy Pavlek](https://github.com/tpavlek)
 [Uber](https://github.com/stevenmaguire/oauth2-uber) | stevenmaguire/oauth2-uber | [Steven Maguire](https://github.com/stevenmaguire)
+[Untappd](https://github.com/shadowhand/oauth2-untappd) | shadowhand/oauth2-untappd | [Woody Gilk](https://github.com/shadowhand)
 [Vend](https://github.com/wheniwork/oauth2-vend) | wheniwork/oauth2-vend | [When I Work](https://github.com/wheniwork)
 [Vkontakte](https://github.com/j4k/oauth2-vkontakte) | j4k/oauth2-vkontakte | [Jack W](https://github.com/j4k)
 [Yahoo](https://packagist.org/packages/hayageek/oauth2-yahoo) | hayageek/oauth2-yahoo | [Ravishanker Kusuma](https://github.com/hayageek)
 [Yandex](https://packagist.org/packages/aego/oauth2-yandex) | aego/oauth2-yandex | [Alexey](https://github.com/rakeev)
+[Zendesk](https://github.com/stevenmaguire/oauth2-zendesk) | stevenmaguire/oauth2-zendesk | [Steven Maguire](https://github.com/stevenmaguire)
 [ZenPayroll](https://packagist.org/packages/wheniwork/oauth2-zenpayroll) | wheniwork/oauth2-zenpayroll | [Woody Gilk](https://github.com/shadowhand)
 
 ## Client Packages
 
 Some developers use this library as a base for their own PHP API wrappers, and that seems like a really great idea. It might make it slightly tricky to integrate their provider with an existing generic "OAuth 2.0 All the Things" login system, but it does make working with them easier.
 
+- [OAuth2 PSR7 Middleware](https://github.com/gsomoza/oauth2-middleware)
 - [Sniply](https://github.com/younes0/sniply)
+
