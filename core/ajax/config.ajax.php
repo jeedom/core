@@ -55,9 +55,6 @@ try {
 		}
 		$values = json_decode(init('value'), true);
 		foreach ($values as $key => $value) {
-			if ($key == 'market::password' && !preg_match('/^[0-9a-f]{40}$/i', $value)) {
-				$value = sha1($value);
-			}
 			config::save($key, jeedom::fromHumanReadable($value), init('plugin', 'core'));
 			if ($key == 'internalAddr') {
 				jeeNetwork::pull();

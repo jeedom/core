@@ -333,7 +333,7 @@ class repo_market {
 			$params = array(
 				'username' => config::byKey('market::username'),
 				'password' => config::byKey('market::password'),
-				'password_type' => 'sha1',
+				'password_type' => (preg_match('/^[0-9a-f]{40}$/i', config::byKey('market::password'))) ? 'sha1' : '',
 				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
 				'addrComplement' => config::byKey('externalComplement'),
