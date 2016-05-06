@@ -48,6 +48,12 @@ class repo_market {
 				'type' => 'password',
 			),
 		),
+		'parameters_for_add' => array(
+			'version' => array(
+				'name' => 'Version : beta,release, stable',
+				'type' => 'input',
+			),
+		),
 	);
 
 	private $id;
