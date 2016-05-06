@@ -710,10 +710,20 @@ class scenarioExpression {
 	public static function time_op($_time, $_value) {
 		$_time = self::setTags($_time);
 		$_value = self::setTags($_value);
-		if (strlen($_time) < 4) {
-			$date = DateTime::createFromFormat('Gi', '0' . intval(trim($_time)));
-		} else {
-			$date = DateTime::createFromFormat('Gi', intval(trim($_time)));
+		$_time = ltrim($_time, 0);
+		switch (strlen($_time)) {
+			case 1:
+				$date = DateTime::createFromFormat('Gi', '000' . intval(trim($_time)));
+				break;
+			case 2:
+				$date = DateTime::createFromFormat('Gi', '00' . intval(trim($_time)));
+				break;
+			case 3:
+				$date = DateTime::createFromFormat('Gi', '0' . intval(trim($_time)));
+				break;
+			default:
+				$date = DateTime::createFromFormat('Gi', intval(trim($_time)));
+				break;
 		}
 		if ($date === false) {
 			return -1;
