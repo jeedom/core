@@ -404,17 +404,17 @@ class update {
 
 	public function postInstallUpdate($_infos) {
 		log::add('update', 'alert', __('Post-installation de ', __FILE__) . $this->getLogicalId() . '...');
-		try {
-			$plugin = plugin::byId($this->getLogicalId());
-		} catch (Exception $e) {
-			$this->remove();
-			throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
-		} catch (Error $e) {
-			$this->remove();
-			throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
-		}
 		switch ($this->getType()) {
 			case 'plugin':
+				try {
+					$plugin = plugin::byId($this->getLogicalId());
+				} catch (Exception $e) {
+					$this->remove();
+					throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
+				} catch (Error $e) {
+					$this->remove();
+					throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
+				}
 				if (is_object($plugin) && $plugin->isActive()) {
 					$plugin->setIsEnable(1);
 				}
