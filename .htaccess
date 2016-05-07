@@ -73,3 +73,57 @@ ServerSignature Off
 	deny from all
 	satisfy all
 </Files>
+
+<Files ~ ".*\.xml">
+	order allow,deny
+	deny from all
+	satisfy all
+</Files>
+
+<Files ~ ".*\.sh">
+	order allow,deny
+	deny from all
+	satisfy all
+</Files>
+
+<Files ~ ".*\.sqlite">
+	order allow,deny
+	deny from all
+	satisfy all
+</Files>
+
+<Files ~ ".*\.service">
+	order allow,deny
+	deny from all
+	satisfy all
+</Files>
+
+<Files ~ ".*\.db">
+	order allow,deny
+	deny from all
+	satisfy all
+</Files>
+
+<Files ~ ".*\.log">
+	order allow,deny
+	deny from all
+	satisfy all
+</Files>
+
+<Files ~ ".*\.py">
+	order allow,deny
+	deny from all
+	satisfy all
+</Files>
+
+<Files ~ ".*\.pyc">
+	order allow,deny
+	deny from all
+	satisfy all
+</Files>
+
+<Files ~ ".*\.json">
+	order allow,deny
+	deny from all
+	satisfy all
+</Files>
