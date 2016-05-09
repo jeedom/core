@@ -14,7 +14,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
  $('#bt_downloadLog').click(function() {
-  window.open('core/php/downloadFile.php?pathfile=log/' + $('#sel_log').value(), "_blank", null);
+  window.open('core/php/downloadFile.php?pathfile=log/' + $('.li_log.active').attr('data-log'), "_blank", null);
 });
 
  $(".li_log").on('click', function() {
