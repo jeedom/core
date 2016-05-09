@@ -80,6 +80,10 @@ class log {
 		return config::byKey('log::level');
 	}
 
+	public static function convertLogLevel($_level = 100) {
+		$level = array(100 => 'debug', 200 => 'info', 250 => 'notice', 300 => 'warning', 400 => 'error', 1000 => 'none');
+	}
+
 	/**
 	 * Ajoute un message dans les log et fait en sorte qu'il n'y
 	 * ai jamais plus de 1000 lignes
