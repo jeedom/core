@@ -81,7 +81,8 @@ class log {
 	}
 
 	public static function convertLogLevel($_level = 100) {
-		$level = array(100 => 'debug', 200 => 'info', 250 => 'notice', 300 => 'warning', 400 => 'error', 1000 => 'none');
+		$convert = array(100 => 'debug', 200 => 'info', 250 => 'notice', 300 => 'warning', 400 => 'error', 1000 => 'none');
+		return $convert[$_level];
 	}
 
 	/**
