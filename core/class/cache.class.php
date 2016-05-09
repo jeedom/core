@@ -116,7 +116,7 @@ class cache {
 			default:
 				return;
 		}
-		shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null');
+		com_shell::execute('sudo rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';sudo tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null;sudo chmod 775 ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chown www-data:www-data ' . dirname(__FILE__) . '/../../cache.tar.gz');
 	}
 
 	public static function restore() {
