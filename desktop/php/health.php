@@ -20,7 +20,6 @@ if ($nbNeedUpdate > 0) {
 }
 ?>
 		</tr>
-
 		<tr>
 			<td style="font-weight : bold;">{{Lancement des crons}}</td>
 			<?php
@@ -33,7 +32,6 @@ if (!cron::ok()) {
 }
 ?>
 		</tr>
-
 		<tr>
 			<td style="font-weight : bold;">{{Cron actif}}</td>
 			<?php
@@ -46,7 +44,6 @@ if (config::byKey('enableCron', 'core', 1, true) == 0) {
 }
 ?>
 		</tr>
-
 		<tr>
 			<td style="font-weight : bold;">{{Scénario actif}}</td>
 			<?php
@@ -59,7 +56,6 @@ if (config::byKey('enableScenario') == 0 && count(scenario::all()) > 0) {
 }
 ?>
 		</tr>
-
 		<tr>
 			<td style="font-weight : bold;">{{Démarré}}</td>
 			<?php
@@ -72,7 +68,6 @@ if (!jeedom::isStarted()) {
 }
 ?>
 		</tr>
-
 		<tr>
 			<td style="font-weight : bold;">{{Date système}}</td>
 			<?php
@@ -85,7 +80,6 @@ if (!jeedom::isDateOk()) {
 }
 ?>
 		</tr>
-
 		<tr>
 			<td style="font-weight : bold;">{{Authentification par défaut}}</td>
 			<?php
@@ -99,7 +93,6 @@ if (user::hasDefaultIdentification() == 1) {
 }
 ?>
 		</tr>
-
 		<tr>
 			<td style="font-weight : bold;">{{Droits sudo}}</td>
 			<?php
@@ -112,7 +105,6 @@ if (jeedom::isCapable('sudo')) {
 }
 ?>
 		</tr>
-
 		<tr>
 			<td style="font-weight : bold;">{{Version Jeedom}}</td>
 			<?php
@@ -120,7 +112,6 @@ echo '<td class="alert alert-success">' . jeedom::version() . '</td>';
 echo '<td></td>';
 ?>
 		</tr>
-
 		<tr>
 			<td style="font-weight : bold;">{{Version PHP}}</td>
 			<?php
@@ -146,7 +137,6 @@ if ($value > 10) {
 }
 ?>
 		</tr>
-
 		<tr>
 			<td style="font-weight : bold;">{{Configuration réseau interne}}</td>
 			<?php
@@ -159,7 +149,6 @@ if (network::test('internal')) {
 }
 ?>
 		</tr>
-
 		<tr>
 			<td style="font-weight : bold;">{{Configuration réseau externe}}</td>
 			<?php
@@ -189,9 +178,6 @@ if (cache::isPersistOk()) {
 }
 ?>
 		</tr>
-
-
-
 <?php
 if (config::byKey('jeeNetwork::mode') == 'master') {
 	foreach (jeeNetwork::all() as $jeeNetwork) {
