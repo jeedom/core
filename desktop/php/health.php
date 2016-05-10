@@ -5,7 +5,7 @@ if (!hasRight('health', true)) {
 ?>
 <legend><i class="icon divers-caduceus3"></i>  {{Santé de Jeedom}}</legend>
 <table class="table table-condensed table-bordered">
-	<thead><tr><th style="width : 250px;"></th><th style="width : 150px;">{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>
+	<thead><tr><th style="width : 250px;"></th><th style="width : 200px;">{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>
 	<tbody>
 		<tr>
 			<td style="font-weight : bold;">{{Système à jour}}</td>
@@ -172,6 +172,26 @@ if (network::test('external')) {
 }
 ?>
 		</tr>
+	<tr>
+			<td style="font-weight : bold;">{{Persistance du cache}}</td>
+			<?php
+if (cache::isPersistOk()) {
+	if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
+		echo '<td class="alert alert-success">{{OK}}</td>';
+	} else {
+		$filename = dirname(__FILE__) . '/../../cache.tar.gz';
+		echo '<td class="alert alert-success">{{OK}} (' . date('Y-m-d H:i:s', filemtime($filename)) . ')</td>';
+	}
+	echo '<td></td>';
+} else {
+	echo '<td class="alert alert-danger">{{NOK}}</td>';
+	echo '<td>{{Votre cache n\'est pas sauvegardé en cas de redemarrage certaines information peuvent être perdues. Essayez de lancer (à partir du moteur de têche) la tâche cache::persist}}</td>';
+}
+?>
+		</tr>
+
+
+
 <?php
 if (config::byKey('jeeNetwork::mode') == 'master') {
 	foreach (jeeNetwork::all() as $jeeNetwork) {
@@ -199,7 +219,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 		$hasSpecificHealth = 1;
 		$hasSpecificHealthIcon = '  <i data-pluginname="' . $plugin->getName() . '" data-pluginid="' . $plugin->getId() . '" class="fa fa-medkit bt_healthSpecific tooltips" style="cursor:pointer;color:grey;font-size:0.8em" title="Santé spécifique"></i>';
 	}
-	if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health') || $hasSpecificHealth == 1 ) {
+	if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health') || $hasSpecificHealth == 1) {
 		echo '<legend>';
 		if (file_exists(dirname(__FILE__) . '/../../' . $plugin->getPathImgIcon())) {
 			echo '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
@@ -207,7 +227,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			echo '<i class="' . $plugin->getIcon() . '"></i> ';
 		}
 		echo '{{Santé }} <a class="bt_configurationPlugin cursor" data-pluginid="' . $plugin->getId() . '">' . $plugin->getName() . '</a>' . $hasSpecificHealthIcon . '</legend>';
-		if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health')){
+		if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health')) {
 			echo '<table class="table table-condensed table-bordered">';
 			echo '<thead><tr><th style="width : 250px;"></th><th style="width : 150px;">{{Résultat}}</th><th>{{Conseil}}</th></tr></thead>';
 			echo '<tbody>';

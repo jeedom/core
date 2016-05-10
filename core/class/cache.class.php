@@ -119,6 +119,20 @@ class cache {
 		com_shell::execute('sudo rm -rf ' . dirname(__FILE__) . '/../../cache.tar.gz;cd ' . $cache_dir . ';sudo tar cfz ' . dirname(__FILE__) . '/../../cache.tar.gz * 2>&1 > /dev/null;sudo chmod 775 ' . dirname(__FILE__) . '/../../cache.tar.gz;sudo chown www-data:www-data ' . dirname(__FILE__) . '/../../cache.tar.gz');
 	}
 
+	public static function isPersistOk() {
+		if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
+			return true;
+		}
+		$filename = dirname(__FILE__) . '/../../cache.tar.gz';
+		if (!file_exists($filename)) {
+			return false;
+		}
+		if (filemtime($filename) < strtotime('-30min')) {
+			return false;
+		}
+		return true;
+	}
+
 	public static function restore() {
 		if (!file_exists(dirname(__FILE__) . '/../../cache.tar.gz')) {
 			return;
