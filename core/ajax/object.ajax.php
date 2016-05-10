@@ -104,19 +104,19 @@ try {
 					$objects[] = object::byId($id);
 				}
 			} else {
-				$objects = object::all();
+				$objects = object::buildTree(null, true);
 			}
 			$return = array();
+			$i = 0;
 			foreach ($objects as $object) {
-				if (is_object($object) && $object->getIsVisible() == 1) {
-					$html = '';
-					foreach ($object->getEqLogic() as $eqLogic) {
-						if ($eqLogic->getIsVisible() == '1' && (init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1)) {
-							$html .= $eqLogic->toHtml(init('version'));
-						}
+				$html = '';
+				foreach ($object->getEqLogic(true, true) as $eqLogic) {
+					if (init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1) {
+						$html .= $eqLogic->toHtml(init('version'));
 					}
-					$return[$object->getId()] = $html;
 				}
+				$return[$i . '::' . $object->getId()] = $html;
+				$i++;
 			}
 			ajax::success($return);
 		} else {
@@ -125,8 +125,8 @@ try {
 				throw new Exception(__('Objet inconnu verifié l\'id', __FILE__));
 			}
 			$html = '';
-			foreach ($object->getEqLogic() as $eqLogic) {
-				if ($eqLogic->getIsVisible() == '1' && (init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1)) {
+			foreach ($object->getEqLogic(true, true) as $eqLogic) {
+				if (init('category', 'all') == 'all' || $eqLogic->getCategory(init('category')) == 1) {
 					$html .= $eqLogic->toHtml(init('version'));
 				}
 			}

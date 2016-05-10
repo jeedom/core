@@ -182,7 +182,7 @@ foreach (ls('mobile/js', '*.js') as $file) {
 		echo '#' . md5_file(dirname(__FILE__) . '/mobile/js/' . $file);
 		echo "\n";
 	}
-	echo 'core/php/getJS.php?file=mobile/js/' . $file;
+	echo 'core/php/getResource.php?file=mobile/js/' . $file;
 	echo "\n";
 }
 foreach (ls('mobile/html', '*.html') as $file) {
