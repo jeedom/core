@@ -143,7 +143,7 @@ foreach (plugin::listPlugin() as $plugin) {
 <div class="panel panel-primary">
   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info-circle"></i> {{Informations}}</h3></div>
   <div class="panel-body">
-   <h5 style="display: inline-block;font-weight: bold;">{{Version du}} : </h5> <span id="span_plugin_install_date"></span><br/>
+   <h5 style="display: inline-block;font-weight: bold;">{{Version}} : </h5> <span id="span_plugin_install_date"></span><br/>
    <h5 style="display: inline-block;font-weight: bold;">{{Version Jeedom requise}} : </h5> <span id="span_plugin_require"></span><br/>
    <h5 style="display: inline-block;font-weight: bold;">{{Auteur}} : </h5> <span id="span_plugin_author"></span> -
    <h5 style="display: inline-block;font-weight: bold;">{{Licence}} : </h5> <span id="span_plugin_licence"></span>
