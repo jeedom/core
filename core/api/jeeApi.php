@@ -753,7 +753,7 @@ if (init('type') != '') {
 				if (!isset($params['forceRestart'])) {
 					$params['forceRestart'] = false;
 				}
-				$plugin->deamon_start($params['debug'], $params['forceRestart']);
+				$plugin->deamon_start($params['forceRestart']);
 				$jsonrpc->makeSuccess();
 			}
 

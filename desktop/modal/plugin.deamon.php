@@ -23,8 +23,6 @@ $refresh = array();
 			<th>{{Configuration}}</th>
 			<th>{{(Re)Démarrer}}</th>
 			<th>{{Arrêter}}</th>
-			<th>{{Debug}}</th>
-			<th>{{Log}}</th>
 			<th>{{Gestion automatique}}</th>
 			<th>{{Dernier lancement}}</th>
 		</tr>
@@ -82,18 +80,6 @@ switch ($deamon_info['launchable']) {
 			</td>
 			<td>
 				<a class="btn btn-danger btn-sm bt_stopDeamon" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-stop"></i></a>
-			</td>
-			<td>
-				<?php if ($deamon_info['log'] != '') {?>
-				<a class="btn btn-warning btn-sm bt_launchDebug" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-bug"></i></a>
-				<?php }
-?>
-			</td>
-			<td>
-				<?php if ($deamon_info['log'] != '') {?>
-				<a class="btn btn-default btn-sm bt_showDeamonLog" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i></a>
-				<?php }
-?>
 			</td>
 			<td>
 				<?php if ($deamon_info['auto'] == 1) {?>
@@ -172,18 +158,6 @@ if (!isset($deamon_info['launchable'])) {
 						</td>
 						<td>
 							<a class="btn btn-danger btn-sm bt_stopDeamon" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-stop"></i></a>
-						</td>
-						<td>
-							<?php if ($deamon_info['log'] != '') {?>
-							<a class="btn btn-warning btn-sm bt_launchDebug" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-bug"></i></a>
-							<?php }
-			?>
-						</td>
-						<td>
-							<?php if ($deamon_info['log'] != '') {?>
-							<a class="btn btn-default btn-sm bt_showDeamonLog" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i></a>
-							<?php }
-			?>
 						</td>
 						<td>
 							<?php if ($deamon_info['auto'] == 1) {?>

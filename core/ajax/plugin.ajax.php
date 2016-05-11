@@ -166,7 +166,7 @@ try {
 			if (!is_object($plugin)) {
 				ajax::success();
 			}
-			ajax::success($plugin->deamon_start(init('debug', 0), init('forceRestart', 0)));
+			ajax::success($plugin->deamon_start(init('forceRestart', 0)));
 		} else {
 			$jeeNetwork = jeeNetwork::byId(init('slave_id'));
 			if (!is_object($jeeNetwork)) {

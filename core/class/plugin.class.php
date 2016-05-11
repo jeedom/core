@@ -306,7 +306,7 @@ class plugin {
 
 	public static function start() {
 		foreach (self::listPlugin(true) as $plugin) {
-			$plugin->deamon_start(false, false, true);
+			$plugin->deamon_start(false, true);
 			if (method_exists($plugin->getId(), 'start')) {
 				$plugin_id = $plugin->getId();
 				try {
@@ -338,7 +338,7 @@ class plugin {
 
 	public static function checkDeamon() {
 		foreach (self::listPlugin(true) as $plugin) {
-			$plugin->deamon_start(false, false, true);
+			$plugin->deamon_start(false, true);
 		}
 	}
 
@@ -463,7 +463,7 @@ class plugin {
 		return $return;
 	}
 
-	public function deamon_start($_debug = false, $_forceRestart = false, $_auto = false) {
+	public function deamon_start($_forceRestart = false, $_auto = false) {
 		$plugin_id = $this->getId();
 		if ($_forceRestart) {
 			$this->deamon_stop();
@@ -476,8 +476,7 @@ class plugin {
 				}
 				if ($deamon_info['launchable'] == 'ok' && $deamon_info['state'] == 'nok' && method_exists($plugin_id, 'deamon_start')) {
 					config::save('lastDeamonLaunchTime', date('Y-m-d H:i:s'), $plugin_id);
-					config::save('deamonDebugMode', $_debug, $plugin_id);
-					$plugin_id::deamon_start($_debug);
+					$plugin_id::deamon_start();
 				}
 			}
 		} catch (Exception $e) {
@@ -571,7 +570,7 @@ class plugin {
 				if ($dependancy_info['state'] == 'nok') {
 					$this->dependancy_install();
 				}
-				$this->deamon_start(false, false, true);
+				$this->deamon_start(false, true);
 			} else {
 				$this->deamon_stop();
 				if ($alreadyActive == 1) {
