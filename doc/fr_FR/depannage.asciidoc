@@ -10,9 +10,9 @@ Voila le résultat si tout est bon :
 
 image::../images/depannage.png[]
 
-S'il y a un soucis, le script essaye de corriger, s'il n'y arrive pas il vous l'indiquera.
+S'il y a un souci, le script essaye de le corriger. S'il n'y arrive pas, il vous l'indiquera.
 
-Vous pouvez aussi regarder le log /usr/share/nginx/www/jeedom/log/nginx.error, très souvent celui-ci indique le soucis
+Vous pouvez aussi regarder le log /usr/share/nginx/www/jeedom/log/nginx.error, très souvent celui-ci indique le souci
 
 ''''
 
@@ -35,14 +35,14 @@ La cause la plus fréquente est l'utilisation d'un plugin en version beta, et pa
 
 ''''
 
-Lors d'une commande j'ai une roue qui tourne sans s'arreter::
+Lors d'une commande j'ai une roue qui tourne sans s'arrêter::
 Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom est en stable
 
 ''''
 
-Je n'ai plus accès a Jeedom ni en SSH::
+Je n'ai plus accès à Jeedom ni en SSH::
 Cette erreur n'est pas dû à Jeedom mais à un problème avec le système. 
-Si celui ci persiste suite à une réinstallation il est conseillé de voir avec le SAV pour un soucis hardware
+Si celui ci persiste suite à une réinstallation il est conseillé de voir avec le SAV pour un souci hardware
 
 ''''
 
@@ -53,23 +53,23 @@ souvent cela vient d'une commande qui ne se termine pas
 ''''
 
 Mon scenario est lent à se declencher::
-Si dans le scénario il n'y a pas de pause il est conseillé de cocher la case "éxécuter le plus rapidement possible" (disponible en mode expert)
+Si dans le scénario il n'y a pas de pause il est conseillé de cocher la case "exécuter le plus rapidement possible" (disponible en mode expert)
 
 ''''
 
 Le témoin nodeJS en bas de la page est rouge ou gris::
-En ssh faites "sudo service jeedom restart" pour forcer un redémarrage de celui-ci. Si ca ne marche pas faites : 
+En ssh faites "sudo service jeedom restart" pour forcer un redémarrage de celui-ci. Si ça ne marche pas faites : 
 
 [source,bash]
 sudo su -
 rm -rf /usr/share/nginx/www/jeedom/core/nodeJS
 reboot
 
-Puis mettre à jour jeedom, le redémarrer à nouveau et ca devrait être bon
+Puis mettre à jour jeedom, le redémarrer à nouveau et ça devrait être bon
 
 ''''
 
-Je n'ai aucune erreur dans le log nginx.error malgrès des erreurs 500::
+Je n'ai aucune erreur dans le log nginx.error malgré des erreurs 500::
 En ssh :
 Editez le fichier /etc/php5/fpm/pool.d/www.conf et decommanter la ligne ";catch_worket_process=yes" (supression du ;) 
 et redémarrez php "sudo service php5-fpm restart"
@@ -81,24 +81,24 @@ Vérifiez si votre systeme de fichier n'est pas corrompu, en ssh la commande est
 
 ''''
 
-Je ne vois pas tout mes équipements sur le dashboard::
-Souvent cela du au fait que les équipements sont affectés à un objet qui n'est pas le fils ou 
-l'objet lui même du premier objet sélectionné à gauche dans l'arbre (vous pouvez dans votre profil configurer celui-ci)
+Je ne vois pas tous mes équipements sur le dashboard::
+Souvent cela est dû au fait que les équipements sont affectés à un objet qui n'est pas le fils ou 
+l'objet lui-même du premier objet sélectionné à gauche dans l'arbre (vous pouvez dans votre profil configurer celui-ci)
 
 ''''
 
-Lors de la connexion du maitre avec les esclaves j'ai des erreurs::
+Lors de la connexion du maître avec les esclaves j'ai des erreurs::
 Vérifiez que vous avez bien mis les /jeedom si vous utilisez ceux-ci juste après l'IP de jeedom 
 (souvent le cas en installation DIY)
 
 ''''
 
 J'ai l'erreur suivante : SQLSTATE[HY000] [2002] Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'::
-Cela est du à MySQL qui s'est arrêté, ce n'est pas normal, les cas courants sont : 
-* soucis de place sur le système de fichier (peut être vérifié en faisant la commande "df -h", en ssh)
+Cela est dû à MySQL qui s'est arrêté, ce n'est pas normal, les cas courants sont : 
+* souci de place sur le système de fichier (peut être vérifié en faisant la commande "df -h", en ssh)
 * problème de corruption de fichier, arrive souvent suite à un arrêt non propre de jeedom (coupure de courant)
 
-Malheureusement il n'y a pas beaucoup de solution si c'est le deuxieme cas, 
+Malheureusement il n'y a pas beaucoup de solution si c'est le deuxième cas, 
 le mieux étant de récupérer un backup (disponible dans /usr/share/nginx/www/jeedom/backup par défaut), 
 de réinstaller jeedom et de restaurer le backup.
 Vous pouvez aussi en ssh regarder pourquoi mysql ne veut pas démarrer : 
@@ -118,7 +118,7 @@ vous devez ajouter : www-data ALL=(ALL) NOPASSWD: ALL.
 ''''
 
 J'ai souvent des "502 bad gateway"::
-Il faut aller (en mode expert) dans la configuration de jeedom, puis Système OS et cliquer sur lancer. La vous cliquez sur "PHP log", si vous avez le message "server reached pm.max_clidren", c'est qu'il manque des processus php fpm, il faut donc en autoriser plus. Pour cela faire : 
+Il faut aller (en mode expert) dans la configuration de jeedom, puis Système OS et cliquer sur lancer. Là, vous cliquez sur "PHP log", si vous avez le message "server reached pm.max_clidren", c'est qu'il manque des processus php fpm, ilfaut donc en autoriser plus. Pour cela faire : 
 
 [source,bash]
 sudo su -
@@ -127,7 +127,7 @@ vim www.conf
 
 Editer la ligne "pm.max_children" en mettant "pm.max_children = 20"
 
-Ensuite il suffit de redemarrer php5-fpm
+Ensuite il suffit de redémarrer php5-fpm
 
 [source,bash]
 sudo service php5-fpm restart
