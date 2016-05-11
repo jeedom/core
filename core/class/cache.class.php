@@ -127,7 +127,7 @@ class cache {
 		if (!file_exists($filename)) {
 			return false;
 		}
-		if (filemtime($filename) < strtotime('-30min')) {
+		if (filemtime($filename) < strtotime('-35min')) {
 			return false;
 		}
 		return true;
