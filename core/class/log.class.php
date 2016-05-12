@@ -137,7 +137,6 @@ class log {
 		com_shell::execute('sudo chmod 777 ' . $_path . ' ;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		@chown($_path, 'www-data');
 		@chgrp($_path, 'www-data');
-		@chmod($_path, 0777);
 	}
 
 	public static function getPathToLog($_log = 'core') {
