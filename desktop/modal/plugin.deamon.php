@@ -35,11 +35,7 @@ $refresh = array();
 $refresh[0] = 0;
 switch ($deamon_info['state']) {
 	case 'ok':
-		if ($deamon_info['debug_mode']) {
-			echo '<span class="label label-success" style="font-size:1em;"><i class="fa fa-bug"></i> {{OK}}</span>';
-		} else {
-			echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
-		}
+		echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
 		break;
 	case 'nok':
 		echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
@@ -119,11 +115,7 @@ if (!isset($deamon_info['state'])) {
 			}
 			switch ($deamon_info['state']) {
 				case 'ok':
-					if ($deamon_info['debug_mode']) {
-						echo '<span class="label label-success" style="font-size:1em;"><i class="fa fa-bug"></i> {{OK}}</span>';
-					} else {
-						echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
-					}
+					echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
 					break;
 				case 'nok':
 					echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
@@ -203,11 +195,7 @@ sendVarToJs('refresh_deamon_info', $refresh);
 						if(data.auto == 1){
 							$('.bt_stopDeamon[data-slave_id='+i+']').show();
 						}
-						if (data.debug_mode == "1") {
-							$('.deamonState[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;"><i class="fa fa-bug"></i> {{OK}}</span>');
-						} else {
-							$('.deamonState[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
-						}
+						$('.deamonState[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
 						break;
 						case 'nok':
 						if(data.auto == 1){
@@ -225,7 +213,6 @@ sendVarToJs('refresh_deamon_info', $refresh);
 						if(data.auto == 1 && data.state == 'ok'){
 							$('.bt_stopDeamon[data-slave_id='+i+']').show();
 						}
-						$('.bt_launchDebug[data-slave_id='+i+']').show();
 						$('.deamonLaunchable[data-slave_id='+i+']').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
 						break;
 						case 'nok':
@@ -234,7 +221,6 @@ sendVarToJs('refresh_deamon_info', $refresh);
 						}
 						$('.bt_startDeamon[data-slave_id='+i+']').hide();
 						$('.bt_stopDeamon[data-slave_id='+i+']').hide();
-						$('.bt_launchDebug[data-slave_id='+i+']').hide();
 						$('.deamonLaunchable[data-slave_id='+i+']').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span> '+data.launchable_message);
 						break;
 						default:
@@ -299,33 +285,6 @@ sendVarToJs('refresh_deamon_info', $refresh);
 					jeedom.plugin.deamonStart({
 						id : plugin_id,
 						slave_id: slave_id,
-						forceRestart: 1,
-						error: function (error) {
-							$('#div_alert').showAlert({message: error.message, level: 'danger'});
-							refreshDeamonInfo(true);
-							timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
-						},
-						success:function(){
-							refreshDeamonInfo(true);
-							timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000);
-						}
-					});
-				}
-			}
-		});
-	});
-
-	$('.bt_launchDebug').on('click',function(){
-		clearTimeout(timeout_refreshDeamonInfo);
-		var slave_id = $(this).attr('data-slave_id');
-		savePluginConfig({
-			relaunchDeamon : false,
-			success : function(_slave_id){
-				if(slave_id == _slave_id){
-					jeedom.plugin.deamonStart({
-						id : plugin_id,
-						slave_id: slave_id,
-						debug:1,
 						forceRestart: 1,
 						error: function (error) {
 							$('#div_alert').showAlert({message: error.message, level: 'danger'});

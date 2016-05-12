@@ -459,7 +459,6 @@ class plugin {
 			$return['launchable_message'] = __('Jeedom n\'est pas encore démarré', __FILE__);
 		}
 		$return['last_launch'] = config::byKey('lastDeamonLaunchTime', $this->getId(), __('Inconnue', __FILE__));
-		$return['debug_mode'] = config::byKey('deamonDebugMode', $this->getId(), false);
 		return $return;
 	}
 
