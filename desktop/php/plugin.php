@@ -116,10 +116,25 @@ foreach (plugin::listPlugin() as $plugin) {
  </div>
 </div>
 
+<div class="panel panel-primary" id="div_configLog">
+  <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-file-o"></i> {{Log}}</h3></div>
+  <div class="panel-body">
+    <form class="form-horizontal">
+      <fieldset>
+      <div id="div_plugin_log"></div>
+     </fieldset>
+   </form>
+   <div class="form-actions">
+    <a class="btn btn-success" id="bt_savePluginLogConfig"><i class="fa fa-check-circle icon-white" style="position:relative;left:-5px;top:1px"></i>{{Sauvegarder}}</a>
+  </div>
+</div>
+</div>
+
 <div class="panel panel-primary">
   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Configuration}}</h3></div>
   <div class="panel-body">
     <div id="div_plugin_configuration"></div>
+
     <div class="form-actions">
       <a class="btn btn-success" id="bt_savePluginConfig"><i class="fa fa-check-circle icon-white" style="position:relative;left:-5px;top:1px"></i>{{Sauvegarder}}</a>
     </div>

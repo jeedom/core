@@ -853,50 +853,40 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                         </select>
                     </div>
                 </div>
-                <table class="table table-condensed table-striped">
-                    <thead>
-                        <tr>
-                            <th>{{Nom}}</th>
-                            <th>{{Aucun}}</th>
-                            <th>{{Défaut}}</th>
-                            <th>{{Debug}}</th>
-                            <th>{{Info}}</th>
-                            <th>{{Notice}}</th>
-                            <th>{{Warning}}</th>
-                            <th>{{Erreur}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
                         <?php
 
 $other_log = array('scenario', 'plugin', 'market', 'api', 'connection');
 foreach ($other_log as $name) {
-	echo '<tr>';
-	echo '<td>' . ucfirst($name) . '</td>';
-	echo '<td><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="1000" /></td>';
-	echo '<td><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="default" /></td>';
-	echo '<td><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="100" /></td>';
-	echo '<td><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="200" /></td>';
-	echo '<td><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="250" /></td>';
-	echo '<td><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="300" /></td>';
-	echo '<td><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="400" /></td>';
-	echo '</tr>';
+	echo '<form class="form-horizontal">';
+	echo '<div class="form-group">';
+	echo '<label class="col-sm-2 control-label">{{Niveau de log pour}} ' . ucfirst($name) . '</label>';
+	echo '<div class="col-sm-6">';
+	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="1000" /> {{Aucun}}</label>';
+	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="default" /> {{Défaut}}</label>';
+	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="100" /> {{Debug}}</label>';
+	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="200" /> {{Info}}</label>';
+	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="250" /> {{Notice}}</label>';
+	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="300" /> {{Warning}}</label>';
+	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="400" /> {{Erreur}}</label>';
+	echo '</div>';
+	echo '</div>';
 }
 foreach (plugin::listPlugin(true) as $plugin) {
-	echo '<tr>';
-	echo '<td>' . $plugin->getName() . '</td>';
-	echo '<td><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="1000" /></td>';
-	echo '<td><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="default" /></td>';
-	echo '<td><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="100" /></td>';
-	echo '<td><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="200" /></td>';
-	echo '<td><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="250" /></td>';
-	echo '<td><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="300" /></td>';
-	echo '<td><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="400" /></td>';
-	echo '</tr>';
+	echo '<form class="form-horizontal">';
+	echo '<div class="form-group">';
+	echo '<label class="col-sm-2 control-label">{{Niveau de log pour}} ' . $plugin->getName() . '</label>';
+	echo '<div class="col-sm-6">';
+	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="1000" /> {{Aucun}}</label>';
+	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="default" /> {{Défaut}}</label>';
+	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="100" /> {{Debug}}</label>';
+	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="200" /> {{Info}}</label>';
+	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="250" /> {{Notice}}</label>';
+	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="300" /> {{Warning}}</label>';
+	echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="400" /> {{Erreur}}</label>';
+	echo '</div>';
+	echo '</div>';
 }
 ?>
-                   </tbody>
-               </table>
            </fieldset>
        </form>
    </div>

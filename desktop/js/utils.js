@@ -246,7 +246,7 @@ setInterval(function () {
 
     $('#bt_showEventInRealTime').on('click',function(){
      $('#md_modal').dialog({title: "{{Evènement en temps réel}}"});
-     $("#md_modal").load('index.php?v=d&modal=event.log').dialog('open');
+     $("#md_modal").load('index.php?v=d&modal=log.display&log=event').dialog('open');
  });
 
     $('#bt_gotoDashboard').on('click',function(){

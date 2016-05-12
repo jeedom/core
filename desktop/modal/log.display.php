@@ -18,6 +18,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('401 Unauthorized');
 }
+sendVarToJS('log_display_name', init('log', 'event'));
 ?>
 <div class="alert alert-info">{{Vous devez activer tous les log de niveau event pour suivre en temps réel toute votre domotique}}</div>
 <a class="btn btn-warning pull-right" data-state="1" id="bt_eventLogStopStart"><i class="fa fa-pause"></i> {{Pause}}</a>
@@ -27,7 +28,7 @@ if (!isConnect('admin')) {
 
 <script>
 	jeedom.log.autoupdate({
-		log : 'event',
+		log : log_display_name,
 		display : $('#pre_eventlog'),
 		search : $('#in_eventLogSearch'),
 		control : $('#bt_eventLogStopStart'),
