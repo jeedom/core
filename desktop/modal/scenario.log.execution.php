@@ -15,7 +15,7 @@ sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
 <a class="btn btn-danger pull-right" id="bt_scenarioLogEmpty"><i class="fa fa-trash"></i> {{Vider les logs}}</a>
 <a class="btn btn-success pull-right" id="bt_scenarioLogDownload"><i class="fa fa-cloud-download"></i> {{Télécharger}}</a>
 <br/><br/><br/>
-<pre id='pre_scenariolog' style='overflow: auto; height: calc(100% - 50px);with:90%;'></pre>
+<pre id='pre_scenariolog' style='overflow: auto; height: calc(100% - 70px);with:90%;'></pre>
 
 <script>
     jeedom.log.autoupdate({
