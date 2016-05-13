@@ -105,7 +105,7 @@ try {
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('backup');
-	$cron->setSchedule('00 02 * * *');
+	$cron->setSchedule('02 02 * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(60);
