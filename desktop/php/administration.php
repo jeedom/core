@@ -855,7 +855,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
                 </div>
                         <?php
 
-$other_log = array('scenario', 'plugin', 'market', 'api', 'connection');
+$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact');
 foreach ($other_log as $name) {
 	echo '<form class="form-horizontal">';
 	echo '<div class="form-group">';
