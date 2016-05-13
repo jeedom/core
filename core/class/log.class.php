@@ -31,6 +31,9 @@ class log {
 	const LEVEL_NOTICE = 250;
 	const LEVEL_WARNING = 300;
 	const LEVEL_ERROR = 400;
+	const LEVEL_CRITICAL = 500;
+	const LEVEL_ALERT = 550;
+	const LEVEL_EMERGENCY = 600;
 
 	const DEFAULT_MAX_LINE = 200;
 
@@ -81,7 +84,17 @@ class log {
 	}
 
 	public static function convertLogLevel($_level = 100) {
-		$convert = array(100 => 'debug', 200 => 'info', 250 => 'notice', 300 => 'warning', 400 => 'error', 1000 => 'none');
+		$convert = array(
+			self::LEVEL_DEBUG => 'debug',
+			self::LEVEL_INFO => 'info',
+			self::LEVEL_NOTICE => 'notice',
+			self::LEVEL_WARNING => 'warning',
+			self::LEVEL_ERROR => 'error',
+			self::LEVEL_CRITICAL => 'critical',
+			self::LEVEL_ALERT => 'alert',
+			self::LEVEL_EMERGENCY => 'emergency',
+			1000 => 'none',
+		);
 		return $convert[$_level];
 	}
 
@@ -100,6 +113,8 @@ class log {
 		if (method_exists($logger, $action)) {
 			$logger->$action($_message);
 			if ($action == 'addError' && config::byKey('addMessageForErrorLog') == 1) {
+				@message::add($_log, $_message, '', $_logicalId);
+			} else if ($action == 'addCritical' || $action == 'addAlert' || $action == 'addEmergency') {
 				@message::add($_log, $_message, '', $_logicalId);
 			}
 		}
@@ -258,6 +273,15 @@ class log {
 				error_reporting(E_ERROR | E_WARNING | E_PARSE);
 				break;
 			case self::LEVEL_ERROR:
+				error_reporting(E_ERROR | E_PARSE);
+				break;
+			case self::LEVEL_CRITICAL:
+				error_reporting(E_ERROR | E_PARSE);
+				break;
+			case self::LEVEL_ALERT:
+				error_reporting(E_ERROR | E_PARSE);
+				break;
+			case self::LEVEL_EMERGENCY:
 				error_reporting(E_ERROR | E_PARSE);
 				break;
 			default:
