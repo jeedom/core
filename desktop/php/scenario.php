@@ -271,12 +271,6 @@ foreach (object::all() as $object) {
                 </div>
             </div>
             <div class="form-group expertModeVisible">
-                <label class="col-xs-6 control-label">{{Enchainer les commandes sans attendre}}</label>
-                <div class="col-xs-1">
-                    <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="cmdNoWait" title="{{Enchaine les commandes sans verification que la commande précedente c'est bien éxecutée (Attention il faut que le plugin le supporte)}}">
-                </div>
-            </div>
-            <div class="form-group expertModeVisible">
                 <label class="col-xs-6 control-label">{{Pas de log}}</label>
                 <div class="col-xs-1">
                     <input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="noLog" title="{{Le scénario n'écrit plus de log}}">

@@ -15,7 +15,6 @@ if (!isConnect()) {
 			<th>{{Dernier lancement}}</th>
 			<th>{{Actif}}</th>
 			<th>{{Visible}}</th>
-			<th>{{Enchainer les commandes}}</th>
 			<th>{{Pas de log}}</th>
 			<th>{{Actions}}</th>
 		</tr>
@@ -71,9 +70,6 @@ if (!isConnect()) {
 					tr += '</td>';
 					tr += '<td>';
 					tr += '<input type="checkbox" class="scenarioAttr bootstrapSwitch" data-label-text="{{Visible}}" data-size="mini" data-l1key="isVisible">';
-					tr += '</td>';
-					tr += '<td>';
-					tr += '<input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="cmdNoWait" data-size="mini">';
 					tr += '</td>';
 					tr += '<td>';
 					tr += '<input type="checkbox" class="scenarioAttr bootstrapSwitch" data-l1key="configuration" data-l2key="noLog" data-size="mini">';

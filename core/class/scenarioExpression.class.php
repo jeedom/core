@@ -1121,9 +1121,6 @@ class scenarioExpression {
 						} else {
 							$this->setLog($scenario, __('Exécution de la commande ', __FILE__) . $cmd->getHumanName());
 						}
-						if (is_object($scenario) && $scenario->getConfiguration('cmdNoWait', 0) == 1) {
-							$options['speedAndNoErrorReport'] = true;
-						}
 						return $cmd->execCmd($options);
 					}
 					$this->setLog($scenario, __('[Erreur] Aucune commande trouvée pour ', __FILE__) . $this->getExpression());
