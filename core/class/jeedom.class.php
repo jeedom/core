@@ -408,6 +408,9 @@ class jeedom {
 
 			log::add('starting', 'debug', 'Touch start file');
 			touch('/tmp/jeedom_start');
+			if (file_exists('/tmp/jeedom_start')) {
+				com_shell::execute('sudo touch /tmp/jeedom_start;sudo chmod 777 /tmp/jeedom_start');
+			}
 			log::add('starting', 'debug', 'Send start event');
 			self::event('start');
 			log::add('starting', 'debug', 'Starting plugins');
