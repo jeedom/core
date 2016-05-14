@@ -106,6 +106,9 @@ try {
 		if (!is_object($eqLogic)) {
 			throw new Exception(__('EqLogic inconnu verifié l\'id', __FILE__));
 		}
+		if (!$eqLogic->hasRight('w')) {
+			throw new Exception('Vous n\'etês pas autorisé à faire cette action');
+		}
 		$eqLogic->setIsEnable(init('isEnable'));
 		$eqLogic->save();
 		ajax::success();
@@ -138,6 +141,9 @@ try {
 			if (!is_object($eqLogic)) {
 				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $id);
 			}
+			if (!$eqLogic->hasRight('w')) {
+				continue;
+			}
 			$eqLogic->remove();
 		}
 		ajax::success();
@@ -149,6 +155,9 @@ try {
 			$eqLogic = eqLogic::byId($id);
 			if (!is_object($eqLogic)) {
 				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $id);
+			}
+			if (!$eqLogic->hasRight('w')) {
+				continue;
 			}
 			$eqLogic->setIsVisible(init('isVisible'));
 			$eqLogic->save();
@@ -162,6 +171,9 @@ try {
 			$eqLogic = eqLogic::byId($id);
 			if (!is_object($eqLogic)) {
 				throw new Exception(__('EqLogic inconnu verifié l\'id :', __FILE__) . ' ' . $id);
+			}
+			if (!$eqLogic->hasRight('w')) {
+				continue;
 			}
 			$eqLogic->setIsEnable(init('isEnable'));
 			$eqLogic->save();
@@ -247,7 +259,7 @@ try {
 		$eqLogicsSave = json_decode(init('eqLogic'), true);
 
 		foreach ($eqLogicsSave as $eqLogicSave) {
-			try{
+			try {
 				if (!is_array($eqLogicSave)) {
 					throw new Exception(__('Informations recues incorrecte', __FILE__));
 				}
@@ -276,7 +288,7 @@ try {
 				$dbList = $typeCmd::byEqLogicId($eqLogic->getId());
 				$eqLogic->save();
 				$enableList = array();
-	
+
 				if (isset($eqLogicSave['cmd'])) {
 					$cmd_order = 0;
 					foreach ($eqLogicSave['cmd'] as $cmd_info) {
@@ -294,7 +306,7 @@ try {
 						$cmd_order++;
 						$enableList[$cmd->getId()] = true;
 					}
-	
+
 					//suppression des entrées non innexistante.
 					foreach ($dbList as $dbObject) {
 						if (!isset($enableList[$dbObject->getId()]) && !$dbObject->dontRemoveCmd()) {
@@ -306,7 +318,7 @@ try {
 					$eqLogic->postAjax();
 				}
 			} catch (Exception $e) {
-				if (strpos ( $e->getMessage() , '[MySQL] Error code : 23000' ) !== false ) {
+				if (strpos($e->getMessage(), '[MySQL] Error code : 23000') !== false) {
 					if ($e->getTrace()[2]['class'] == 'eqLogic') {
 						throw new Exception(__('Un équipement portant ce nom (', __FILE__) . $e->getTrace()[0]['args'][1]['name'] . __(') existe déjà pour cet objet', __FILE__));
 					} elseif ($e->getTrace()[2]['class'] == 'cmd') {
