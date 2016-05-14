@@ -174,7 +174,8 @@ class repo_samba {
 		$timelimit = strtotime('-' . config::byKey('backup::keepDays') . ' days');
 		foreach (self::ls(config::byKey('samba::backup::folder')) as $file) {
 			if ($timelimit > strtotime($file['datetime'])) {
-				$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';del ' . $file['filename']);
+				$cmd = self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';del ' . $file['filename']);
+				com_shell::execute($cmd);
 			}
 		}
 	}
