@@ -114,7 +114,7 @@ class log {
 			$logger->$action($_message);
 			if ($action == 'addError' && config::byKey('addMessageForErrorLog') == 1) {
 				@message::add($_log, $_message, '', $_logicalId);
-			} else if ($action == 'addCritical' || $action == 'addAlert' || $action == 'addEmergency') {
+			} else if ($action == 'addCritical' || $action == 'addEmergency') {
 				@message::add($_log, $_message, '', $_logicalId);
 			}
 		}
