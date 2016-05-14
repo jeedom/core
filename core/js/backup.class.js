@@ -33,7 +33,6 @@
     paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
     paramsAJAX.data = {
         action: 'backup',
-        noCloudUpload : _params.noCloudUpload || 0
     };
     $.ajax(paramsAJAX);
 };

@@ -189,7 +189,7 @@ try {
 	}
 	echo __("OK", __FILE__) . "\n";
 	global $NO_CLOUD_BAKCUP;
-	if ((!isset($NO_CLOUD_BAKCUP) || $NO_CLOUD_BAKCUP == false) && init('noCloudUpload', 0) == 0) {
+	if ((!isset($NO_CLOUD_BAKCUP) || $NO_CLOUD_BAKCUP == false)) {
 		foreach (repo::all() as $key => $value) {
 			if ($value['scope']['backup'] == false) {
 				continue;

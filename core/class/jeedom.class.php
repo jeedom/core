@@ -135,10 +135,10 @@ class jeedom {
 
 	/********************************************BACKUP*****************************************************************/
 
-	public static function backup($_background = false, $_noCloudUpload = 0) {
+	public static function backup($_background = false) {
 		if ($_background) {
 			log::clear('backup');
-			$cmd = dirname(__FILE__) . '/../../install/backup.php noCloudUpload=' . $_noCloudUpload;
+			$cmd = dirname(__FILE__) . '/../../install/backup.php';
 			$cmd .= ' >> ' . log::getPathToLog('backup') . ' 2>&1 &';
 			system::php($cmd);
 		} else {

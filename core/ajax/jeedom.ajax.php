@@ -84,7 +84,7 @@ try {
 	}
 
 	if (init('action') == 'backup') {
-		jeedom::backup(true, init('noCloudUpload'));
+		jeedom::backup(true);
 		ajax::success();
 	}
 
