@@ -414,7 +414,7 @@ try {
 		jeedom::start();
 	}
 	echo 'Error during install : ' . $e->getMessage();
-	echo 'Details : ' . print_r($e->getTrace());
+	echo 'Details : ' . print_r($e->getTrace(), true);
 	echo "[END UPDATE ERROR]\n";
 	throw $e;
 }

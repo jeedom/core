@@ -65,7 +65,7 @@ try {
 		echo __('***ERREUR*** ', __FILE__) . $e->getMessage();
 	}
 
-	$bakcup_name = str_replace(' ','_','backup-' . config::byKey('name', 'core', 'Jeedom') . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
+	$bakcup_name = str_replace(' ', '_', 'backup-' . config::byKey('name', 'core', 'Jeedom') . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
 
 	echo __('Sauvegarde des fichiers...', __FILE__);
 	$exclude = array(
@@ -230,7 +230,7 @@ try {
 	echo "[END BACKUP SUCCESS]\n";
 } catch (Exception $e) {
 	echo __('Erreur durant la sauvegarde : ', __FILE__) . br2nl($e->getMessage());
-	echo __('Détails : ', __FILE__) . print_r($e->getTrace());
+	echo __('Détails : ', __FILE__) . print_r($e->getTrace(), true);
 	echo "[END BACKUP ERROR]\n";
 	throw $e;
 }
