@@ -148,8 +148,8 @@ class repo_samba {
 		return (strtotime($a['datetime']) < strtotime($b['datetime'])) ? -1 : 1;
 	}
 
-	public static function ls($_dir = '', $type = 'backup') {
-		$cmd = repo_samba::makeSambaCommand('cd ' . $_dir . ';ls', $type);
+	public static function ls($_dir = '', $_type = 'backup') {
+		$cmd = repo_samba::makeSambaCommand('cd ' . $_dir . ';ls', $_type);
 		$result = explode("\n", com_shell::execute($cmd));
 		$return = array();
 		for ($i = 2; $i < count($result) - 2; $i++) {
