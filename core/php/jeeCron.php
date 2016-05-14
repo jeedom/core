@@ -149,12 +149,17 @@ if (init('cron_id') != '') {
 			$logicalId = $cron->getName() . '::' . $e->getCode();
 		}
 		echo '[Erreur] ' . $cron->getName() . ' : ' . print_r($e, true);
-		if (isset($class) && $class != '') {
-			log::add($class, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
-		} else if (isset($function) && $function != '') {
-			log::add($function, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
+		if (config::byKey('log::level') > 100) {
+			$message = $e->getMessage();
 		} else {
-			log::add('cron', 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . print_r($e, true), $logicalId);
+			$message = print_r($e, true);
+		}
+		if (isset($class) && $class != '') {
+			log::add($class, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . $message, $logicalId);
+		} else if (isset($function) && $function != '') {
+			log::add($function, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . $message, $logicalId);
+		} else {
+			log::add('cron', 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . $message, $logicalId);
 		}
 	} catch (Error $e) {
 		$cron->setState('error');
