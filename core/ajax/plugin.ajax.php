@@ -41,6 +41,7 @@ try {
 			}
 		}
 		$return['update'] = utils::o2a($update);
+		$return['log'] = log::liste($plugin->getId());
 		ajax::success($return);
 	}
 

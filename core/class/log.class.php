@@ -243,12 +243,15 @@ class log {
 		return $page;
 	}
 
-	public static function liste() {
+	public static function liste($_filtre = null) {
 		if (!self::isStreamHandlerEngine()) {
 			return array();
 		}
 		$return = array();
 		foreach (ls(self::getPathToLog(''), '*') as $log) {
+			if ($_filtre != null && strpos($log, $_filtre) === false) {
+				continue;
+			}
 			if (!is_dir(self::getPathToLog($log))) {
 				$return[] = $log;
 			}
