@@ -50,73 +50,73 @@ ServerSignature Off
 	Deny from all
 </Files>
 
-<Files ~ ".*\.gz">
+<Files ~ ".*\.gz$">
 	order allow,deny
 	deny from all
 	satisfy all
 </Files>
 
-<Files ~ ".*\.sql">
+<Files ~ ".*\.sql$">
 	order allow,deny
 	deny from all
 	satisfy all
 </Files>
 
-<Files ~ ".*\.ini">
+<Files ~ ".*\.ini$">
 	order allow,deny
 	deny from all
 	satisfy all
 </Files>
 
-<Files ~ ".*\.tar">
+<Files ~ ".*\.tar$">
 	order allow,deny
 	deny from all
 	satisfy all
 </Files>
 
-<Files ~ ".*\.xml">
+<Files ~ ".*\.xml$">
 	order allow,deny
 	deny from all
 	satisfy all
 </Files>
 
-<Files ~ ".*\.sh">
+<Files ~ ".*\.sh$">
 	order allow,deny
 	deny from all
 	satisfy all
 </Files>
 
-<Files ~ ".*\.sqlite">
+<Files ~ ".*\.sqlite$">
 	order allow,deny
 	deny from all
 	satisfy all
 </Files>
 
-<Files ~ ".*\.service">
+<Files ~ ".*\.service$">
 	order allow,deny
 	deny from all
 	satisfy all
 </Files>
 
-<Files ~ ".*\.db">
+<Files ~ ".*\.db$">
 	order allow,deny
 	deny from all
 	satisfy all
 </Files>
 
-<Files ~ ".*\.log">
+<Files ~ ".*\.log$">
 	order allow,deny
 	deny from all
 	satisfy all
 </Files>
 
-<Files ~ ".*\.py">
+<Files ~ ".*\.py$">
 	order allow,deny
 	deny from all
 	satisfy all
 </Files>
 
-<Files ~ ".*\.pyc">
+<Files ~ ".*\.pyc$">
 	order allow,deny
 	deny from all
 	satisfy all
