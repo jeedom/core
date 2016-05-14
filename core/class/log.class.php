@@ -292,6 +292,14 @@ class log {
 		}
 	}
 
+	public static function exception($e) {
+		if (config::byKey('log::level') > 100) {
+			return $e->getMessage();
+		} else {
+			return print_r($e, true);
+		}
+	}
+
 	public static function isStreamHandlerEngine() {
 		return config::byKey('log::engine') == 'StreamHandler';
 	}
