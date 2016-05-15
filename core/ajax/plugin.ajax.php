@@ -41,7 +41,17 @@ try {
 			}
 		}
 		$return['update'] = utils::o2a($update);
-		$return['log'] = log::liste($plugin->getId());
+		$return['logs'] = array();
+		$return['logs'][-1] = array('name' => 'local', 'log' => log::liste($plugin->getId()));
+		if (config::byKey('jeeNetwork::mode') == 'master') {
+			foreach (jeeNetwork::byPlugin($plugin->getId()) as $jeeNetwork) {
+				try {
+					$return['logs'][$plugin->getId()] = array('name' => $jeeNetwork->getName(), 'log' => $jeeNetwork->sendRawRequest('log::list', array('filtre' => $plugin->getId())));
+				} catch (Exception $e) {
+
+				}
+			}
+		}
 		ajax::success($return);
 	}
 

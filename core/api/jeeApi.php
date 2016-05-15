@@ -650,7 +650,10 @@ if (init('type') != '') {
 			}
 
 			if ($jsonrpc->getMethod() == 'log::list') {
-				$jsonrpc->makeSuccess(log::liste());
+				if (!isset($params['filtre'])) {
+					$params['filtre'] = null;
+				}
+				$jsonrpc->makeSuccess(log::liste($params['filtre']));
 			}
 
 			if ($jsonrpc->getMethod() == 'log::empty') {

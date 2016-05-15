@@ -204,91 +204,94 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
    log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="400" /> {{Error}}</label>';
    log_conf += '</div>';
    log_conf += '</div>';
-   if(isset(data.log) && $.isArray(data.log)){
-     log_conf += '<form class="form-horizontal">';
-     log_conf += '<div class="form-group">';
-     log_conf += '<label class="col-sm-2 control-label">{{Voir les logs}}</label>';
-     log_conf += '<div class="col-sm-10">';
-     for(i in data.log){
-      log_conf += '<a class="btn btn-default bt_plugin_conf_view_log" data-log="'+data.log[i]+'">'+data.log[i]+'</a> ';
+   for(i in data.logs){
+    if(!isset(data.logs[i].log) || !$.isArray(data.logs[i].log)){
+     continue;
+   }
+   log_conf += '<form class="form-horizontal">';
+   log_conf += '<div class="form-group">';
+   log_conf += '<label class="col-sm-2 control-label">{{Voir les logs de}} '+data.logs[i].name+'</label>';
+   log_conf += '<div class="col-sm-10">';
+   for(j in data.logs[i].log){
+    log_conf += '<a class="btn btn-default bt_plugin_conf_view_log" data-slaveId="'+i+'" data-log="'+data.logs[i].log[j]+'">'+data.logs[i].log[j]+'</a> ';
+  }
+  log_conf += '</div>';
+  log_conf += '</div>';
+}
+
+$('#div_plugin_log').empty().append(log_conf);
+
+initExpertMode();
+$('#div_plugin_configuration').empty();
+if (data.checkVersion != -1) {
+  if (data.configurationPath != '' && data.activate == 1) {
+   $('#div_plugin_configuration').load('index.php?v=d&plugin='+data.id+'&configure=1', function () {
+    if($.trim($('#div_plugin_configuration').html()) == ''){
+      $('#div_plugin_configuration').closest('.panel').hide();
+      return;
+    }else{
+     $('#div_plugin_configuration').closest('.panel').show();
+   }
+   jeedom.config.load({
+    configuration: $('#div_plugin_configuration').getValues('.configKey')[0],
+    plugin: $('.li_plugin.active').attr('data-plugin_id'),
+    error: function (error) {
+      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      $('#div_plugin_configuration').setValues(data, '.configKey');
+      $('#div_plugin_configuration').parent().show();
+      modifyWithoutSave = false;
+      initTooltips();
+      initExpertMode();
     }
-    log_conf += '</div>';
-    log_conf += '</div>';
-  }
-
-  $('#div_plugin_log').empty().append(log_conf);
-
-  initExpertMode();
-  $('#div_plugin_configuration').empty();
-  if (data.checkVersion != -1) {
-    if (data.configurationPath != '' && data.activate == 1) {
-     $('#div_plugin_configuration').load('index.php?v=d&plugin='+data.id+'&configure=1', function () {
-      if($.trim($('#div_plugin_configuration').html()) == ''){
-        $('#div_plugin_configuration').closest('.panel').hide();
-        return;
-      }else{
-       $('#div_plugin_configuration').closest('.panel').show();
-     }
-     jeedom.config.load({
-      configuration: $('#div_plugin_configuration').getValues('.configKey')[0],
+  });
+   jeedom.config.load({
+    configuration: $('#div_plugin_panel').getValues('.configKey')[0],
+    plugin: $('.li_plugin.active').attr('data-plugin_id'),
+    error: function (error) {
+      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      $('#div_plugin_panel').setValues(data, '.configKey');
+      modifyWithoutSave = false;
+      initTooltips();
+      initExpertMode();
+    }
+  });
+   jeedom.config.load({
+    configuration: $('#div_plugin_log').getValues('.configKey')[0],
+    error: function (error) {
+      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      $('#div_plugin_log').setValues(data, '.configKey');
+      modifyWithoutSave = false;
+      initTooltips();
+      initExpertMode();
+    }
+  });
+   $('.slaveConfig').each(function(){
+    var slave_id = $(this).attr('data-slave_id');
+    jeedom.jeeNetwork.loadConfig({
+      configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
       plugin: $('.li_plugin.active').attr('data-plugin_id'),
+      id: slave_id,
       error: function (error) {
         alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
       },
       success: function (data) {
-        $('#div_plugin_configuration').setValues(data, '.configKey');
-        $('#div_plugin_configuration').parent().show();
+        $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').setValues(data, '.slaveConfigKey');
         modifyWithoutSave = false;
         initTooltips();
         initExpertMode();
       }
     });
-     jeedom.config.load({
-      configuration: $('#div_plugin_panel').getValues('.configKey')[0],
-      plugin: $('.li_plugin.active').attr('data-plugin_id'),
-      error: function (error) {
-        alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-      },
-      success: function (data) {
-        $('#div_plugin_panel').setValues(data, '.configKey');
-        modifyWithoutSave = false;
-        initTooltips();
-        initExpertMode();
-      }
-    });
-     jeedom.config.load({
-      configuration: $('#div_plugin_log').getValues('.configKey')[0],
-      error: function (error) {
-        alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-      },
-      success: function (data) {
-        $('#div_plugin_log').setValues(data, '.configKey');
-        modifyWithoutSave = false;
-        initTooltips();
-        initExpertMode();
-      }
-    });
-     $('.slaveConfig').each(function(){
-      var slave_id = $(this).attr('data-slave_id');
-      jeedom.jeeNetwork.loadConfig({
-        configuration: $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').getValues('.slaveConfigKey')[0],
-        plugin: $('.li_plugin.active').attr('data-plugin_id'),
-        id: slave_id,
-        error: function (error) {
-          alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (data) {
-          $('#div_plugin_configuration .slaveConfig[data-slave_id='+slave_id+']').setValues(data, '.slaveConfigKey');
-          modifyWithoutSave = false;
-          initTooltips();
-          initExpertMode();
-        }
-      });
-    })
-   });
-   } else {
-    $('#div_plugin_configuration').closest('.panel').hide();
-  }
+  })
+ });
+ } else {
+  $('#div_plugin_configuration').closest('.panel').hide();
+}
 } else {
   $('#div_plugin_configuration').closest('.alert').hide();
 }
@@ -407,7 +410,7 @@ $('#bt_savePluginLogConfig').off('click').on('click',function(){
 
 $('#div_plugin_log').on('click','.bt_plugin_conf_view_log',function(){
   $('#md_modal').dialog({title: "{{Log du plugin}}"});
-  $("#md_modal").load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')).dialog('open');
+  $("#md_modal").load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')+'&slaveId='+$(this).attr('data-slaveId')).dialog('open');
 });
 
 function savePluginConfig(_param) {
