@@ -64,11 +64,11 @@ class logTest extends \PHPUnit_Framework_TestCase {
 
 	public function getErrorReporting() {
 		return array(
-			array(Logger::DEBUG, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
-			array(Logger::INFO, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
-			array(Logger::NOTICE, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
-			array(Logger::WARNING, E_ERROR | E_WARNING | E_PARSE),
-			array(Logger::ERROR, E_ERROR | E_PARSE),
+			array(100, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
+			array(200, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
+			array(250, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
+			array(300, E_ERROR | E_WARNING | E_PARSE),
+			array(400, E_ERROR | E_PARSE),
 		);
 	}
 
