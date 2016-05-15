@@ -30,8 +30,9 @@ class log {
 	const DEFAULT_MAX_LINE = 200;
 
 	/*     * *************************Attributs****************************** */
+
 	private static $logger = array();
-	private static $specific_level = array();
+
 	/*     * ***********************Methode static*************************** */
 
 	public static function getLogger($_log) {
@@ -102,7 +103,7 @@ class log {
 			$logger->$action($_message);
 			try {
 				$level = Logger::toMonologLevel($_type);
-				$write_message = $logger->isHandling($level);
+				$write_message = ($level != Logger::ALERT && $logger->isHandling($level));
 				if ($level == Logger::ERROR && config::byKey('addMessageForErrorLog') == 1) {
 					@message::add($_log, $_message, '', $_logicalId, $write_message);
 				} elseif ($level > Logger::ERROR) {
