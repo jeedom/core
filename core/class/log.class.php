@@ -164,8 +164,7 @@ class log {
 	 */
 	public static function authorizeClearLog($_log, $_subPath = '') {
 		$path = self::getPathToLog($_subPath . $_log);
-		return !((!self::isStreamHandlerEngine())
-			|| (strpos($_log, '.htaccess') !== false)
+		return !((strpos($_log, '.htaccess') !== false)
 			|| (!file_exists($path) || !is_file($path)))
 		;
 	}
@@ -199,9 +198,6 @@ class log {
 	}
 
 	public static function removeAll() {
-		if (!self::isStreamHandlerEngine()) {
-			return;
-		}
 		foreach (array('', 'scenarioLog/') as $logPath) {
 			$logs = ls(self::getPathToLog($logPath), '*');
 			foreach ($logs as $log) {
@@ -244,9 +240,6 @@ class log {
 	}
 
 	public static function liste($_filtre = null) {
-		if (!self::isStreamHandlerEngine()) {
-			return array();
-		}
 		$return = array();
 		foreach (ls(self::getPathToLog(''), '*') as $log) {
 			if ($_filtre != null && strpos($log, $_filtre) === false) {
@@ -298,10 +291,6 @@ class log {
 		} else {
 			return print_r($e, true);
 		}
-	}
-
-	public static function isStreamHandlerEngine() {
-		return config::byKey('log::engine') == 'StreamHandler';
 	}
 
 	/*     * *********************Methode d'instance************************* */
