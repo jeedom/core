@@ -10,7 +10,6 @@ if (!hasRight('updateview', true)) {
 
         <a class="btn btn-success pull-right" id="bt_saveUpdate" style="margin-top:5px;"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
         <a class="btn btn-warning pull-right" id="bt_checkAllUpdate" style="margin-top:5px;"><i class="fa fa-refresh"></i> {{Vérifier les objets et mises à jour}}</a>
-        <a class="btn btn-primary pull-right" id="bt_allChangelog" style="margin-top:5px;"><i class="fa fa-search-plus"></i> {{Changelog}}</a>
         <div class="btn-group pull-right" style="margin-top:5px;">
             <a href="#" class="bt_updateAll btn btn-default"  data-level="0" data-mode=""><i class="fa fa-check"></i> {{Mettre à jour}}</a>
             <div class="btn-group">

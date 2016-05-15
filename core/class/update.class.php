@@ -224,16 +224,6 @@ class update {
 		}
 	}
 
-	public static function getAllUpdateChangelog() {
-		$params = array();
-		foreach (self::byStatus('update') as $update) {
-			if ($update->getSource() == 'market') {
-				$params[] = array('logicalId' => $update->getLogicalId(), 'datetime' => $update->getLocalVersion());
-			}
-		}
-		return repo_market::getMultiChangelog($params);
-	}
-
 	public static function listCoreUpdate() {
 		return ls(dirname(__FILE__) . '/../../install/update', '*');
 	}

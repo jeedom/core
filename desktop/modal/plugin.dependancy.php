@@ -17,7 +17,6 @@ $refresh = array();
 			<th>{{Nom}}</th>
 			<th>{{Statut}}</th>
 			<th>{{Installation}}</th>
-			<th>{{Log}}</th>
 			<th>{{Dernière installation}}</th>
 		</tr>
 	</thead>
@@ -49,9 +48,6 @@ switch ($dependancy_info['state']) {
 			</td>
 			<td>
 				<a class="btn btn-warning btn-sm launchInstallPluginDependancy" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-bicycle"></i> {{Relancer}}</a>
-			</td>
-			<td>
-				<a class="btn btn-default btn-sm showLogPluginDependancy" data-slave_id="0" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i> {{Voir la log}}</a>
 			</td>
 			<td class="td_lastLaunchDependancy" data-slave_id="0">
 				<?php echo $dependancy_info['last_launch'] ?>
@@ -96,9 +92,6 @@ $refresh[$jeeNetwork->getId()] = 1;
 						</td>
 						<td>
 							<a class="btn btn-warning btn-sm launchInstallPluginDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-bicycle"></i> {{Relancer}}</a>
-						</td>
-						<td>
-							<a class="btn btn-default btn-sm showLogPluginDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>" style="position:relative;top:-5px;"><i class="fa fa-file-o"></i> {{Voir la log}}</a>
 						</td>
 						<td class="td_lastLaunchDependancy" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
 							<?php echo $dependancy_info['last_launch'] ?>
@@ -158,12 +151,6 @@ sendVarToJs('refresh_dependancy_info', $refresh);
 		});
 }
 refreshDependancyInfo();
-
-$('.showLogPluginDependancy').on('click',function(){
-	var slave_id = $(this).attr('data-slave_id');
-	$('#md_modal2').dialog({title: "{{Log des dépendances}}"});
-	$('#md_modal2').load('index.php?v=d&modal=plugin.dependancyLog&plugin_id='+plugin_id+'&slave_id='+slave_id).dialog('open');
-});
 
 $('.launchInstallPluginDependancy').on('click',function(){
 	var slave_id = $(this).attr('data-slave_id');

@@ -56,11 +56,6 @@ jeedom.update.doAll({
 });
 });
 
- $('#bt_allChangelog').on('click', function () {
-   $('#md_modal2').dialog({title: "{{Changelog}}"});
-   $("#md_modal2").load('index.php?v=d&modal=market.allChangelog').dialog('open');
-});
-
  $('.bt_updateAll').on('click', function () {
   var level = $(this).attr('data-level');
   var mode = $(this).attr('data-mode');

@@ -51,9 +51,6 @@ switch ($deamon_info['state']) {
 if (!isset($deamon_info['launchable_message'])) {
 	$deamon_info['launchable_message'] = '';
 }
-if (!isset($deamon_info['log'])) {
-	$deamon_info['log'] = '';
-}
 if (!isset($deamon_info['auto'])) {
 	$deamon_info['auto'] = 1;
 }
@@ -103,9 +100,6 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 							<?php
 if (!isset($deamon_info['state'])) {
 				$deamon_info['state'] = 'nok';
-			}
-			if (!isset($deamon_info['log'])) {
-				$deamon_info['log'] = '';
 			}
 			if (!isset($deamon_info['launchable_message'])) {
 				$deamon_info['launchable_message'] = '';
@@ -268,12 +262,6 @@ sendVarToJs('refresh_deamon_info', $refresh);
 		});
 	}
 	refreshDeamonInfo();
-
-	$('.bt_showDeamonLog').on('click',function(){
-		var slave_id = $(this).attr('data-slave_id');
-		$('#md_modal2').dialog({title: "{{Log du démon}}"});
-		$('#md_modal2').load('index.php?v=d&modal=plugin.deamonLog&plugin_id='+plugin_id+'&slave_id='+slave_id).dialog('open');
-	});
 
 	$('.bt_startDeamon').on('click',function(){
 		clearTimeout(timeout_refreshDeamonInfo);
